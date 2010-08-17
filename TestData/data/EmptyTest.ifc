@@ -1,0 +1,9 @@
+ISO-10303-21;
+HEADER;
+FILE_DESCRIPTION (('IFC Engine Kernal version 1.10 beta release x generated IFC file.'), '2;1');
+FILE_NAME ('IFC Engine DLL test', '2006-03-31T16:51:19', ('Architect'), ('Building Designer Office'), 'test', 'Windows System', 'The authorising person.');
+FILE_SCHEMA (('IFC2X3'));
+ENDSEC;
+DATA;
+ENDSEC;
+END-ISO-10303-21;

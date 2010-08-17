@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="WebApp_ID" version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+	<display-name>BIM Server @VERSION@</display-name>
+	<welcome-file-list>
+		<welcome-file>login.jsp</welcome-file>
+	</welcome-file-list>
+
+	<listener>
+		<listener-class>org.bimserver.ServerInitializer</listener-class>
+	</listener>
+
+	<servlet>
+		<servlet-name>RestLikeServlet</servlet-name>
+		<servlet-class>org.bimserver.servlets.RestLikeServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>RestLikeServlet</servlet-name>
+		<url-pattern>/get/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>DownloadServlet</servlet-name>
+		<servlet-class>org.bimserver.servlets.DownloadServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DownloadServlet</servlet-name>
+		<url-pattern>/download/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>SettingsServlet</servlet-name>
+		<servlet-class>org.bimserver.servlets.SettingsServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SettingsServlet</servlet-name>
+		<url-pattern>/settings/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>UploadServlet</servlet-name>
+		<servlet-class>org.bimserver.servlets.UploadServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UploadServlet</servlet-name>
+		<url-pattern>/upload/*</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>WebServiceServlet</servlet-name>
+		<servlet-class>org.bimserver.servlets.WebServiceServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>WebServiceServlet</servlet-name>
+		<url-pattern>/services/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>SyndicationServlet</servlet-name>
+		<servlet-class>org.bimserver.servlets.SyndicationServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SyndicationServlet</servlet-name>
+		<url-pattern>/syndication/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>CompileServlet</servlet-name>
+		<servlet-class>org.bimserver.servlets.CompileServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CompileServlet</servlet-name>
+		<url-pattern>/compile/*</url-pattern>
+	</servlet-mapping>
+</web-app>

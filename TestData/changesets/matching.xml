@@ -1,0 +1,1301 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+  <ChangeSet>
+    <Addition>
+      <oid>223</oid>
+      <className>IfcOpeningElement</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>GlobalId</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="string">3yEl4kjB98e9jYEmmNx99a</value>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeInternalReferencePair">
+        <name>OwnerHistory</name>
+        <oid>8</oid>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Name</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="string">Bathroom Window Opening</value>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Description</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="string">Description of Opening</value>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>ObjectType</name>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeReferencePair">
+        <name>ObjectPlacement</name>
+        <nid>224</nid>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeReferencePair">
+        <name>Representation</name>
+        <nid>225</nid>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Tag</name>
+      </Attribute>
+    </Addition>
+    <Addition>
+      <oid>226</oid>
+      <className>IfcWindow</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>GlobalId</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="string">1sIwg22DXD2AB_q8bbZgyR</value>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeInternalReferencePair">
+        <name>OwnerHistory</name>
+        <oid>8</oid>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Name</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="string">Bathroom Window</value>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Description</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="string">Description of Window</value>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>ObjectType</name>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeReferencePair">
+        <name>ObjectPlacement</name>
+        <nid>227</nid>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeReferencePair">
+        <name>Representation</name>
+        <nid>228</nid>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Tag</name>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>OverallHeight</name>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>OverallWidth</name>
+      </Attribute>
+    </Addition>
+    <Addition>
+      <oid>229</oid>
+      <className>IfcRelVoidsElement</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>GlobalId</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="string">2bYxol3FX8ReDpDLJ4pBH0</value>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeInternalReferencePair">
+        <name>OwnerHistory</name>
+        <oid>8</oid>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Name</name>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Description</name>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeInternalReferencePair">
+        <name>RelatingBuildingElement</name>
+        <oid>50</oid>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeReferencePair">
+        <name>RelatedOpeningElement</name>
+        <nid>223</nid>
+      </Attribute>
+    </Addition>
+    <Addition>
+      <oid>224</oid>
+      <className>IfcLocalPlacement</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeInternalReferencePair">
+        <name>PlacementRelTo</name>
+        <oid>49</oid>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeReferencePair">
+        <name>RelativePlacement</name>
+        <nid>230</nid>
+      </Attribute>
+    </Addition>
+    <Addition>
+      <oid>230</oid>
+      <className>IfcAxis2Placement3D</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeReferencePair">
+        <name>Location</name>
+        <nid>231</nid>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeReferencePair">
+        <name>Axis</name>
+        <nid>232</nid>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeReferencePair">
+        <name>RefDirection</name>
+        <nid>233</nid>
+      </Attribute>
+    </Addition>
+    <Addition>
+      <oid>231</oid>
+      <className>IfcCartesianPoint</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Coordinates</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="AttributeList">
+          <value index="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">200.000000</value>
+          <value index="2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">0.000000</value>
+          <value index="3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">3850.000000</value>
+        </value>
+      </Attribute>
+    </Addition>
+    <Addition>
+      <oid>232</oid>
+      <className>IfcDirection</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>DirectionRatios</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="AttributeList">
+          <value index="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">0.000000</value>
+          <value index="2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">0.000000</value>
+          <value index="3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">1.000000</value>
+        </value>
+      </Attribute>
+    </Addition>
+    <Addition>
+      <oid>233</oid>
+      <className>IfcDirection</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>DirectionRatios</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="AttributeList">
+          <value index="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">1.000000</value>
+          <value index="2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">0.000000</value>
+          <value index="3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">0.000000</value>
+        </value>
+      </Attribute>
+    </Addition>
+    <Addition>
+      <oid>225</oid>
+      <className>IfcProductDefinitionShape</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Name</name>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Description</name>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Representations</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="AttributeList">
+          <oid index="1">234</oid>
+          <oid index="2">235</oid>
+        </value>
+      </Attribute>
+    </Addition>
+    <Addition>
+      <oid>234</oid>
+      <className>IfcShapeRepresentation</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeInternalReferencePair">
+        <name>ContextOfItems</name>
+        <oid>56</oid>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>RepresentationIdentifier</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="string">Body</value>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>RepresentationType</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="string">Brep</value>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Items</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="AttributeList">
+          <oid index="1">236</oid>
+        </value>
+      </Attribute>
+    </Addition>
+    <Addition>
+      <oid>236</oid>
+      <className>IfcFacetedBrep</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeReferencePair">
+        <name>Outer</name>
+        <nid>237</nid>
+      </Attribute>
+    </Addition>
+    <Addition>
+      <oid>237</oid>
+      <className>IfcClosedShell</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>CfsFaces</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="AttributeList">
+          <oid index="1">238</oid>
+          <oid index="2">239</oid>
+          <oid index="3">240</oid>
+          <oid index="4">241</oid>
+          <oid index="5">242</oid>
+          <oid index="6">243</oid>
+        </value>
+      </Attribute>
+    </Addition>
+    <Addition>
+      <oid>238</oid>
+      <className>IfcFace</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Bounds</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="AttributeList">
+          <oid index="1">244</oid>
+        </value>
+      </Attribute>
+    </Addition>
+    <Addition>
+      <oid>244</oid>
+      <className>IfcFaceOuterBound</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeReferencePair">
+        <name>Bound</name>
+        <nid>245</nid>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Orientation</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="enum">.T.</value>
+      </Attribute>
+    </Addition>
+    <Addition>
+      <oid>245</oid>
+      <className>IfcPolyLoop</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Polygon</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="AttributeList">
+          <oid index="1">246</oid>
+          <oid index="2">247</oid>
+          <oid index="3">248</oid>
+          <oid index="4">249</oid>
+        </value>
+      </Attribute>
+    </Addition>
+    <Addition>
+      <oid>246</oid>
+      <className>IfcCartesianPoint</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Coordinates</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="AttributeList">
+          <value index="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">0.000000</value>
+          <value index="2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">0.000000</value>
+          <value index="3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">0.000000</value>
+        </value>
+      </Attribute>
+    </Addition>
+    <Addition>
+      <oid>247</oid>
+      <className>IfcCartesianPoint</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Coordinates</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="AttributeList">
+          <value index="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">0.000000</value>
+          <value index="2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">200.000000</value>
+          <value index="3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">0.000000</value>
+        </value>
+      </Attribute>
+    </Addition>
+    <Addition>
+      <oid>248</oid>
+      <className>IfcCartesianPoint</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Coordinates</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="AttributeList">
+          <value index="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">700.000000</value>
+          <value index="2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">200.000000</value>
+          <value index="3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">0.000000</value>
+        </value>
+      </Attribute>
+    </Addition>
+    <Addition>
+      <oid>249</oid>
+      <className>IfcCartesianPoint</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Coordinates</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="AttributeList">
+          <value index="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">700.000000</value>
+          <value index="2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">0.000000</value>
+          <value index="3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">0.000000</value>
+        </value>
+      </Attribute>
+    </Addition>
+    <Addition>
+      <oid>239</oid>
+      <className>IfcFace</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Bounds</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="AttributeList">
+          <oid index="1">250</oid>
+        </value>
+      </Attribute>
+    </Addition>
+    <Addition>
+      <oid>250</oid>
+      <className>IfcFaceOuterBound</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeReferencePair">
+        <name>Bound</name>
+        <nid>251</nid>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Orientation</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="enum">.T.</value>
+      </Attribute>
+    </Addition>
+    <Addition>
+      <oid>251</oid>
+      <className>IfcPolyLoop</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Polygon</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="AttributeList">
+          <oid index="1">252</oid>
+          <oid index="2">253</oid>
+          <oid index="3">254</oid>
+          <oid index="4">255</oid>
+        </value>
+      </Attribute>
+    </Addition>
+    <Addition>
+      <oid>252</oid>
+      <className>IfcCartesianPoint</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Coordinates</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="AttributeList">
+          <value index="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">0.000000</value>
+          <value index="2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">0.000000</value>
+          <value index="3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">600.000000</value>
+        </value>
+      </Attribute>
+    </Addition>
+    <Addition>
+      <oid>253</oid>
+      <className>IfcCartesianPoint</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Coordinates</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="AttributeList">
+          <value index="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">700.000000</value>
+          <value index="2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">0.000000</value>
+          <value index="3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">600.000000</value>
+        </value>
+      </Attribute>
+    </Addition>
+    <Addition>
+      <oid>254</oid>
+      <className>IfcCartesianPoint</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Coordinates</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="AttributeList">
+          <value index="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">700.000000</value>
+          <value index="2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">200.000000</value>
+          <value index="3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">600.000000</value>
+        </value>
+      </Attribute>
+    </Addition>
+    <Addition>
+      <oid>255</oid>
+      <className>IfcCartesianPoint</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Coordinates</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="AttributeList">
+          <value index="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">0.000000</value>
+          <value index="2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">200.000000</value>
+          <value index="3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">600.000000</value>
+        </value>
+      </Attribute>
+    </Addition>
+    <Addition>
+      <oid>240</oid>
+      <className>IfcFace</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Bounds</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="AttributeList">
+          <oid index="1">256</oid>
+        </value>
+      </Attribute>
+    </Addition>
+    <Addition>
+      <oid>256</oid>
+      <className>IfcFaceOuterBound</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeReferencePair">
+        <name>Bound</name>
+        <nid>257</nid>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Orientation</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="enum">.T.</value>
+      </Attribute>
+    </Addition>
+    <Addition>
+      <oid>257</oid>
+      <className>IfcPolyLoop</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Polygon</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="AttributeList">
+          <oid index="1">246</oid>
+          <oid index="2">252</oid>
+          <oid index="3">255</oid>
+          <oid index="4">247</oid>
+        </value>
+      </Attribute>
+    </Addition>
+    <Addition>
+      <oid>241</oid>
+      <className>IfcFace</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Bounds</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="AttributeList">
+          <oid index="1">258</oid>
+        </value>
+      </Attribute>
+    </Addition>
+    <Addition>
+      <oid>258</oid>
+      <className>IfcFaceOuterBound</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeReferencePair">
+        <name>Bound</name>
+        <nid>259</nid>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Orientation</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="enum">.T.</value>
+      </Attribute>
+    </Addition>
+    <Addition>
+      <oid>259</oid>
+      <className>IfcPolyLoop</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Polygon</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="AttributeList">
+          <oid index="1">247</oid>
+          <oid index="2">255</oid>
+          <oid index="3">254</oid>
+          <oid index="4">248</oid>
+        </value>
+      </Attribute>
+    </Addition>
+    <Addition>
+      <oid>242</oid>
+      <className>IfcFace</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Bounds</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="AttributeList">
+          <oid index="1">260</oid>
+        </value>
+      </Attribute>
+    </Addition>
+    <Addition>
+      <oid>260</oid>
+      <className>IfcFaceOuterBound</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeReferencePair">
+        <name>Bound</name>
+        <nid>261</nid>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Orientation</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="enum">.T.</value>
+      </Attribute>
+    </Addition>
+    <Addition>
+      <oid>261</oid>
+      <className>IfcPolyLoop</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Polygon</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="AttributeList">
+          <oid index="1">248</oid>
+          <oid index="2">254</oid>
+          <oid index="3">253</oid>
+          <oid index="4">249</oid>
+        </value>
+      </Attribute>
+    </Addition>
+    <Addition>
+      <oid>243</oid>
+      <className>IfcFace</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Bounds</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="AttributeList">
+          <oid index="1">262</oid>
+        </value>
+      </Attribute>
+    </Addition>
+    <Addition>
+      <oid>262</oid>
+      <className>IfcFaceOuterBound</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeReferencePair">
+        <name>Bound</name>
+        <nid>263</nid>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Orientation</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="enum">.T.</value>
+      </Attribute>
+    </Addition>
+    <Addition>
+      <oid>263</oid>
+      <className>IfcPolyLoop</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Polygon</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="AttributeList">
+          <oid index="1">249</oid>
+          <oid index="2">253</oid>
+          <oid index="3">252</oid>
+          <oid index="4">246</oid>
+        </value>
+      </Attribute>
+    </Addition>
+    <Addition>
+      <oid>235</oid>
+      <className>IfcShapeRepresentation</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeInternalReferencePair">
+        <name>ContextOfItems</name>
+        <oid>56</oid>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>RepresentationIdentifier</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="string">Box</value>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>RepresentationType</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="string">BoundingBox</value>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Items</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="AttributeList">
+          <oid index="1">264</oid>
+        </value>
+      </Attribute>
+    </Addition>
+    <Addition>
+      <oid>264</oid>
+      <className>IfcBoundingBox</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeReferencePair">
+        <name>Corner</name>
+        <nid>265</nid>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>XDim</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">700.000000</value>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>YDim</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">200.000000</value>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>ZDim</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">600.000000</value>
+      </Attribute>
+    </Addition>
+    <Addition>
+      <oid>265</oid>
+      <className>IfcCartesianPoint</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Coordinates</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="AttributeList">
+          <value index="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">0.000000</value>
+          <value index="2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">0.000000</value>
+          <value index="3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">0.000000</value>
+        </value>
+      </Attribute>
+    </Addition>
+    <Addition>
+      <oid>266</oid>
+      <className>IfcRelFillsElement</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>GlobalId</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="string">06pMC2LcnDMfYBrFXHM70J</value>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeInternalReferencePair">
+        <name>OwnerHistory</name>
+        <oid>8</oid>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Name</name>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Description</name>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeReferencePair">
+        <name>RelatingOpeningElement</name>
+        <nid>223</nid>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeReferencePair">
+        <name>RelatedBuildingElement</name>
+        <nid>226</nid>
+      </Attribute>
+    </Addition>
+    <Addition>
+      <oid>227</oid>
+      <className>IfcLocalPlacement</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeReferencePair">
+        <name>PlacementRelTo</name>
+        <nid>224</nid>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeReferencePair">
+        <name>RelativePlacement</name>
+        <nid>267</nid>
+      </Attribute>
+    </Addition>
+    <Addition>
+      <oid>267</oid>
+      <className>IfcAxis2Placement3D</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeReferencePair">
+        <name>Location</name>
+        <nid>268</nid>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeReferencePair">
+        <name>Axis</name>
+        <nid>269</nid>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeReferencePair">
+        <name>RefDirection</name>
+        <nid>270</nid>
+      </Attribute>
+    </Addition>
+    <Addition>
+      <oid>268</oid>
+      <className>IfcCartesianPoint</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Coordinates</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="AttributeList">
+          <value index="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">0.000000</value>
+          <value index="2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">40.000000</value>
+          <value index="3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">0.000000</value>
+        </value>
+      </Attribute>
+    </Addition>
+    <Addition>
+      <oid>269</oid>
+      <className>IfcDirection</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>DirectionRatios</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="AttributeList">
+          <value index="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">0.000000</value>
+          <value index="2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">0.000000</value>
+          <value index="3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">1.000000</value>
+        </value>
+      </Attribute>
+    </Addition>
+    <Addition>
+      <oid>270</oid>
+      <className>IfcDirection</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>DirectionRatios</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="AttributeList">
+          <value index="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">1.000000</value>
+          <value index="2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">0.000000</value>
+          <value index="3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">0.000000</value>
+        </value>
+      </Attribute>
+    </Addition>
+    <Addition>
+      <oid>228</oid>
+      <className>IfcProductDefinitionShape</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Name</name>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Description</name>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Representations</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="AttributeList">
+          <oid index="1">271</oid>
+          <oid index="2">272</oid>
+        </value>
+      </Attribute>
+    </Addition>
+    <Addition>
+      <oid>271</oid>
+      <className>IfcShapeRepresentation</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeInternalReferencePair">
+        <name>ContextOfItems</name>
+        <oid>56</oid>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>RepresentationIdentifier</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="string">Body</value>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>RepresentationType</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="string">Brep</value>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Items</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="AttributeList">
+          <oid index="1">273</oid>
+        </value>
+      </Attribute>
+    </Addition>
+    <Addition>
+      <oid>273</oid>
+      <className>IfcFacetedBrep</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeReferencePair">
+        <name>Outer</name>
+        <nid>274</nid>
+      </Attribute>
+    </Addition>
+    <Addition>
+      <oid>274</oid>
+      <className>IfcClosedShell</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>CfsFaces</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="AttributeList">
+          <oid index="1">275</oid>
+          <oid index="2">276</oid>
+          <oid index="3">277</oid>
+          <oid index="4">278</oid>
+          <oid index="5">279</oid>
+          <oid index="6">280</oid>
+        </value>
+      </Attribute>
+    </Addition>
+    <Addition>
+      <oid>275</oid>
+      <className>IfcFace</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Bounds</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="AttributeList">
+          <oid index="1">281</oid>
+        </value>
+      </Attribute>
+    </Addition>
+    <Addition>
+      <oid>281</oid>
+      <className>IfcFaceOuterBound</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeReferencePair">
+        <name>Bound</name>
+        <nid>282</nid>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Orientation</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="enum">.T.</value>
+      </Attribute>
+    </Addition>
+    <Addition>
+      <oid>282</oid>
+      <className>IfcPolyLoop</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Polygon</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="AttributeList">
+          <oid index="1">283</oid>
+          <oid index="2">284</oid>
+          <oid index="3">285</oid>
+          <oid index="4">286</oid>
+        </value>
+      </Attribute>
+    </Addition>
+    <Addition>
+      <oid>283</oid>
+      <className>IfcCartesianPoint</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Coordinates</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="AttributeList">
+          <value index="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">0.000000</value>
+          <value index="2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">0.000000</value>
+          <value index="3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">0.000000</value>
+        </value>
+      </Attribute>
+    </Addition>
+    <Addition>
+      <oid>284</oid>
+      <className>IfcCartesianPoint</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Coordinates</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="AttributeList">
+          <value index="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">0.000000</value>
+          <value index="2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">120.000000</value>
+          <value index="3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">0.000000</value>
+        </value>
+      </Attribute>
+    </Addition>
+    <Addition>
+      <oid>285</oid>
+      <className>IfcCartesianPoint</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Coordinates</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="AttributeList">
+          <value index="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">700.000000</value>
+          <value index="2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">120.000000</value>
+          <value index="3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">0.000000</value>
+        </value>
+      </Attribute>
+    </Addition>
+    <Addition>
+      <oid>286</oid>
+      <className>IfcCartesianPoint</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Coordinates</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="AttributeList">
+          <value index="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">700.000000</value>
+          <value index="2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">0.000000</value>
+          <value index="3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">0.000000</value>
+        </value>
+      </Attribute>
+    </Addition>
+    <Addition>
+      <oid>276</oid>
+      <className>IfcFace</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Bounds</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="AttributeList">
+          <oid index="1">287</oid>
+        </value>
+      </Attribute>
+    </Addition>
+    <Addition>
+      <oid>287</oid>
+      <className>IfcFaceOuterBound</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeReferencePair">
+        <name>Bound</name>
+        <nid>288</nid>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Orientation</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="enum">.T.</value>
+      </Attribute>
+    </Addition>
+    <Addition>
+      <oid>288</oid>
+      <className>IfcPolyLoop</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Polygon</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="AttributeList">
+          <oid index="1">289</oid>
+          <oid index="2">290</oid>
+          <oid index="3">291</oid>
+          <oid index="4">292</oid>
+        </value>
+      </Attribute>
+    </Addition>
+    <Addition>
+      <oid>289</oid>
+      <className>IfcCartesianPoint</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Coordinates</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="AttributeList">
+          <value index="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">0.000000</value>
+          <value index="2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">0.000000</value>
+          <value index="3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">600.000000</value>
+        </value>
+      </Attribute>
+    </Addition>
+    <Addition>
+      <oid>290</oid>
+      <className>IfcCartesianPoint</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Coordinates</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="AttributeList">
+          <value index="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">700.000000</value>
+          <value index="2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">0.000000</value>
+          <value index="3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">600.000000</value>
+        </value>
+      </Attribute>
+    </Addition>
+    <Addition>
+      <oid>291</oid>
+      <className>IfcCartesianPoint</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Coordinates</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="AttributeList">
+          <value index="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">700.000000</value>
+          <value index="2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">120.000000</value>
+          <value index="3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">600.000000</value>
+        </value>
+      </Attribute>
+    </Addition>
+    <Addition>
+      <oid>292</oid>
+      <className>IfcCartesianPoint</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Coordinates</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="AttributeList">
+          <value index="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">0.000000</value>
+          <value index="2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">120.000000</value>
+          <value index="3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">600.000000</value>
+        </value>
+      </Attribute>
+    </Addition>
+    <Addition>
+      <oid>277</oid>
+      <className>IfcFace</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Bounds</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="AttributeList">
+          <oid index="1">293</oid>
+        </value>
+      </Attribute>
+    </Addition>
+    <Addition>
+      <oid>293</oid>
+      <className>IfcFaceOuterBound</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeReferencePair">
+        <name>Bound</name>
+        <nid>294</nid>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Orientation</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="enum">.T.</value>
+      </Attribute>
+    </Addition>
+    <Addition>
+      <oid>294</oid>
+      <className>IfcPolyLoop</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Polygon</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="AttributeList">
+          <oid index="1">283</oid>
+          <oid index="2">289</oid>
+          <oid index="3">292</oid>
+          <oid index="4">284</oid>
+        </value>
+      </Attribute>
+    </Addition>
+    <Addition>
+      <oid>278</oid>
+      <className>IfcFace</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Bounds</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="AttributeList">
+          <oid index="1">295</oid>
+        </value>
+      </Attribute>
+    </Addition>
+    <Addition>
+      <oid>295</oid>
+      <className>IfcFaceOuterBound</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeReferencePair">
+        <name>Bound</name>
+        <nid>296</nid>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Orientation</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="enum">.T.</value>
+      </Attribute>
+    </Addition>
+    <Addition>
+      <oid>296</oid>
+      <className>IfcPolyLoop</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Polygon</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="AttributeList">
+          <oid index="1">284</oid>
+          <oid index="2">292</oid>
+          <oid index="3">291</oid>
+          <oid index="4">285</oid>
+        </value>
+      </Attribute>
+    </Addition>
+    <Addition>
+      <oid>279</oid>
+      <className>IfcFace</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Bounds</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="AttributeList">
+          <oid index="1">297</oid>
+        </value>
+      </Attribute>
+    </Addition>
+    <Addition>
+      <oid>297</oid>
+      <className>IfcFaceOuterBound</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeReferencePair">
+        <name>Bound</name>
+        <nid>298</nid>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Orientation</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="enum">.T.</value>
+      </Attribute>
+    </Addition>
+    <Addition>
+      <oid>298</oid>
+      <className>IfcPolyLoop</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Polygon</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="AttributeList">
+          <oid index="1">285</oid>
+          <oid index="2">291</oid>
+          <oid index="3">290</oid>
+          <oid index="4">286</oid>
+        </value>
+      </Attribute>
+    </Addition>
+    <Addition>
+      <oid>280</oid>
+      <className>IfcFace</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Bounds</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="AttributeList">
+          <oid index="1">299</oid>
+        </value>
+      </Attribute>
+    </Addition>
+    <Addition>
+      <oid>299</oid>
+      <className>IfcFaceOuterBound</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeReferencePair">
+        <name>Bound</name>
+        <nid>300</nid>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Orientation</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="enum">.T.</value>
+      </Attribute>
+    </Addition>
+    <Addition>
+      <oid>300</oid>
+      <className>IfcPolyLoop</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Polygon</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="AttributeList">
+          <oid index="1">286</oid>
+          <oid index="2">290</oid>
+          <oid index="3">289</oid>
+          <oid index="4">283</oid>
+        </value>
+      </Attribute>
+    </Addition>
+    <Addition>
+      <oid>272</oid>
+      <className>IfcShapeRepresentation</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeInternalReferencePair">
+        <name>ContextOfItems</name>
+        <oid>56</oid>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>RepresentationIdentifier</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="string">Box</value>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>RepresentationType</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="string">BoundingBox</value>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Items</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="AttributeList">
+          <oid index="1">301</oid>
+        </value>
+      </Attribute>
+    </Addition>
+    <Addition>
+      <oid>301</oid>
+      <className>IfcBoundingBox</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeReferencePair">
+        <name>Corner</name>
+        <nid>302</nid>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>XDim</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">700.000000</value>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>YDim</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">120.000000</value>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>ZDim</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">600.000000</value>
+      </Attribute>
+    </Addition>
+    <Addition>
+      <oid>302</oid>
+      <className>IfcCartesianPoint</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Coordinates</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="AttributeList">
+          <value index="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">0.000000</value>
+          <value index="2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">0.000000</value>
+          <value index="3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">0.000000</value>
+        </value>
+      </Attribute>
+    </Addition>
+    <Modification>
+      <oid>50</oid>
+      <className>IfcWall</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>GlobalId</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="string">3Ep4r0uuX5ywPYOUG2H2A4</value>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeInternalReferencePair">
+        <name>OwnerHistory</name>
+        <oid>8</oid>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Name</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="string">Front Wall</value>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Description</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="string">Description of Wall</value>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>ObjectType</name>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeInternalReferencePair">
+        <name>ObjectPlacement</name>
+        <oid>49</oid>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeInternalReferencePair">
+        <name>Representation</name>
+        <oid>54</oid>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Tag</name>
+      </Attribute>
+    </Modification>
+    <Modification>
+      <oid>8</oid>
+      <className>IfcOwnerHistory</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeInternalReferencePair">
+        <name>OwningUser</name>
+        <oid>9</oid>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeInternalReferencePair">
+        <name>OwningApplication</name>
+        <oid>17</oid>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>State</name>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>ChangeAction</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="enum">.ADDED.</value>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>LastModifiedDate</name>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>LastModifyingUser</name>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>LastModifyingApplication</name>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>CreationDate</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="int">1216884646</value>
+      </Attribute>
+    </Modification>
+    <Modification>
+      <oid>215</oid>
+      <className>IfcMeasureWithUnit</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>ValueComponent</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="AttributeList">
+          <value index="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">0.017450</value>
+        </value>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeInternalReferencePair">
+        <name>UnitComponent</name>
+        <oid>217</oid>
+      </Attribute>
+    </Modification>
+    <Modification>
+      <oid>190</oid>
+      <className>IfcRelContainedInSpatialStructure</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>GlobalId</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="string">3DvJ_Cxfb5mhww8XtlkBwl</value>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeInternalReferencePair">
+        <name>OwnerHistory</name>
+        <oid>8</oid>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Name</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="string">Default Building</value>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Description</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="string">Description of Default Building</value>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>RelatedElements</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="AttributeList">
+          <nid index="1">50</nid>
+        </value>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeInternalReferencePair">
+        <name>RelatingStructure</name>
+        <oid>44</oid>
+      </Attribute>
+    </Modification>
+    <Modification>
+      <oid>24</oid>
+      <className>IfcRelAggregates</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>GlobalId</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="string">1hGct2v1LFjuexLy7xe$Mo</value>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeInternalReferencePair">
+        <name>OwnerHistory</name>
+        <oid>8</oid>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Name</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="string">ProjectContainer</value>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Description</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="string">ProjectContainer for Sites</value>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeInternalReferencePair">
+        <name>RelatingObject</name>
+        <oid>6</oid>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>RelatedObjects</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="AttributeList">
+          <nid index="1">28</nid>
+        </value>
+      </Attribute>
+    </Modification>
+    <Modification>
+      <oid>32</oid>
+      <className>IfcRelAggregates</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>GlobalId</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="string">1_M0EvY2z24AX0l7nBeVj1</value>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeInternalReferencePair">
+        <name>OwnerHistory</name>
+        <oid>8</oid>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Name</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="string">SiteContainer</value>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Description</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="string">SiteContainer For Buildings</value>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeInternalReferencePair">
+        <name>RelatingObject</name>
+        <oid>28</oid>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>RelatedObjects</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="AttributeList">
+          <nid index="1">36</nid>
+        </value>
+      </Attribute>
+    </Modification>
+    <Modification>
+      <oid>40</oid>
+      <className>IfcRelAggregates</className>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>GlobalId</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="string">2QTqyzvgj6qBjsx1U3rHkG</value>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeInternalReferencePair">
+        <name>OwnerHistory</name>
+        <oid>8</oid>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Name</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="string">BuildingContainer</value>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>Description</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="string">BuildingContainer for BuildigStories</value>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeInternalReferencePair">
+        <name>RelatingObject</name>
+        <oid>36</oid>
+      </Attribute>
+      <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
+        <name>RelatedObjects</name>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="AttributeList">
+          <nid index="1">44</nid>
+        </value>
+      </Attribute>
+    </Modification>
+  </ChangeSet>

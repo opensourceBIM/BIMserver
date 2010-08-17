@@ -1,0 +1,351 @@
+/*******************************************************************
+*
+* contents:	STEP Part 21 - clear text encoding parser
+*             to be used with JavaCC
+*
+*
+* history :
+* --------
+*   18 Aug 1999: Creation. Singva Ma <Singva.Ma@leg.ensieg.inpg.fr>.
+*   2004       : Modfications by Jakob Beetz <j.beetz@tue.nl> 
+*				 Eindhoven University of Technology 
+* 
+******************************************************************/
+
+options {
+  LOOKAHEAD = 3;
+  STATIC = false;
+}
+
+PARSER_BEGIN(Part21ParserToEmf)
+
+package org.bimserver.ifc.filereader.generated;
+
+import java.util.ArrayList;
+import org.bimserver.ifc.filereader.*;
+
+public class Part21ParserToEmf {
+
+	private ArrayList<IfcPair> currentRecord = new ArrayList<IfcPair>();
+	private String entityName;
+
+	private EObjectMapParser parsingHelper;
+
+	public void init(EObjectMapParser parsingHelper){
+		this.parsingHelper = parsingHelper;
+	}
+}
+
+PARSER_END(Part21ParserToEmf)
+
+/************************************************
+*************************************************
+** Tokens
+*************************************************
+************************************************/
+
+SKIP : /* WHITE SPACE */
+{
+ " "
+| "\t"
+| "\n"
+| "\r"
+| "\f"
+}
+
+SPECIAL_TOKEN : /* COMMENTS */
+{
+<EMBEDDED_REMARK: "/*" (~["*"])* "*" ("*" | (~["*",")"] (~["*"])* "*"))* "/">
+}
+
+TOKEN :
+{
+ < LPAREN: "(" >
+| < RPAREN: ")" >
+| < LBRACE: "{" >
+| < RBRACE: "}" >
+| < LBRACKET: "[" >
+| < RBRACKET: "]" >
+| < SEMICOLON: ";" >
+| < COLON: ":" >
+| < COMMA: "," >
+| < DOT: "."  >
+| < EQ: "=" >
+| < DOLLAR: "$" >
+| < STAR: "*">
+| < SLASH: "/">
+}
+
+TOKEN : {
+  <INTEGER: (<SIGN>)? <DIGIT> (<DIGIT>)*>
+|  <KEYWORD: <USER_DEFINED_KEYWORD> | <STANDARD_KEYWORD> >
+|  <USER_DEFINED_KEYWORD: "!" <UPPER> (<UPPER> | <DIGIT>)*>
+|  <STANDARD_KEYWORD: <UPPER> (<UPPER> | <DIGIT>)*>
+|  <#SIGN: ["+", "-"]>
+|  <REAL: (<SIGN>)? <DIGIT> (<DIGIT>)* <DOT> (<DIGIT>)* ("E" (<SIGN>)? <DIGIT> (<DIGIT>)* )?>
+|  <NON_Q_CHAR: <SPECIAL> | <DIGIT> | " " | <LOWER> | <UPPER> >
+|  <STRING: "'" (<NON_Q_CHAR> | <APOSTROPHE><APOSTROPHE> | <REVERSE_SOLIDUS><REVERSE_SOLIDUS> | <CONTROL_DIRECTIVE>)* "'">
+|  <ENTITY_INSTANCE_NAME: "#" <DIGIT> (<DIGIT>)*>
+|  <ENUMERATION: <DOT> <UPPER> (<UPPER> | <DIGIT>)* <DOT> >
+|  <#HEX: ["0"-"9", "A"-"F"]>
+|  <BINARY: "\"" ( "0" | "1" | "2" | "3" ) (<HEX>)* "\"">
+}
+
+TOKEN : {
+  <#DIGIT: ["0"-"9"]>
+|  <#LOWER: ["a"-"z"]>
+|  <#UPPER: ["A"-"Z", "_"]>
+|  <SPECIAL: "!" | "\"" | <STAR> | <DOLLAR> | "%" | "&" | <DOT> | "#" | "+" | <COMMA> | "-" | <LPAREN> | <RPAREN> | "?" | <SLASH> | <COLON> | <SEMICOLON> | "<" | <EQ> | ">" | "@" | <LBRACKET> | <RBRACKET> | <LBRACE> | "|" | <RBRACE> | "^" | "`">
+|  <REVERSE_SOLIDUS: "\\">
+|  <APOSTROPHE: "'">
+|  <CHARACTER: " " | <DIGIT> | <LOWER> | <UPPER> | <SPECIAL> | <REVERSE_SOLIDUS> | <APOSTROPHE> >
+}
+
+TOKEN : {
+  <CONTROL_DIRECTIVE: <PAGE> | <ALPHABET> | <EXTENDED2> | <EXTENDED4> | <ARBITRARY> >
+|  <PAGE: <REVERSE_SOLIDUS> "S" <REVERSE_SOLIDUS> <CHARACTER> >
+|  <ALPHABET: <REVERSE_SOLIDUS> "P" <UPPER> <REVERSE_SOLIDUS> >
+|  <EXTENDED2: <REVERSE_SOLIDUS> "X2" <REVERSE_SOLIDUS> <HEX_TWO> (<HEX_TWO>)* <END_EXTENDED> >
+|  <EXTENDED4: <REVERSE_SOLIDUS> "X4" <REVERSE_SOLIDUS> <HEX_FOUR> (<HEX_FOUR>)* <END_EXTENDED> >
+|  <END_EXTENDED: <REVERSE_SOLIDUS> "X0" <REVERSE_SOLIDUS> >
+|  <ARBITRARY: <REVERSE_SOLIDUS> "X" <REVERSE_SOLIDUS> <HEX_ONE> >
+|  <HEX_ONE: <HEX> <HEX> >
+|  <HEX_TWO: <HEX_ONE> <HEX_ONE> >
+|  <HEX_FOUR: <HEX_TWO> <HEX_TWO> >
+}
+
+/************************************************
+* Grammar
+***********************************************/
+
+void exchange_file() : {}
+{
+  "ISO-10303-21;" 
+	header_section() 
+	data_section() 
+	"END-ISO-10303-21"
+}
+
+void header_section() : {}
+{
+  "HEADER;" 
+	header_entity() header_entity() header_entity() 
+	[header_entity_list()]
+	"ENDSEC;"
+}
+
+void header_entity_list() : {}
+{
+  header_entity() (header_entity())*
+}
+
+void header_entity() : {Token name=null;}
+{
+ name=<KEYWORD>
+ <LPAREN> 
+ [parameter_list()] {
+ }
+ <RPAREN> 
+ <SEMICOLON>
+}
+
+void parameter_list() : {}
+{
+  parameter() (<COMMA> parameter())*
+}
+
+void parameter() : {}
+{
+    typed_parameter()
+	| untyped_parameter()
+	| omitted_parameter()
+}
+
+void typed_parameter() : 
+ {
+  Token t = null;
+  IfcListPair pair = new IfcListPair();
+  ArrayList<IfcPair> park_current = (ArrayList<IfcPair>)currentRecord.clone();
+  currentRecord.clear();
+ }
+{
+ t=<KEYWORD> <LPAREN> parameter() <RPAREN>
+ {
+  pair.setName(t.image);
+  pair.setList((ArrayList<IfcPair>)currentRecord.clone());
+  park_current.add(pair);
+  currentRecord = (ArrayList<IfcPair>)park_current.clone();
+ }
+}
+
+void untyped_parameter() : 
+{
+ Token t = null;
+ IfcSimplePair pair = new IfcSimplePair();
+}
+{
+   t=<DOLLAR>
+   {
+	   if (t!=null) {
+	   	    pair.setType(IfcSimplePair.Type.DOLLAR);
+			pair.setName(t.image);
+	   		currentRecord.add(pair); 
+	   }
+   }
+ | t=<INTEGER> 
+   {
+	   if (t!=null) {
+	   		pair.setType(IfcSimplePair.Type.INTEGER);
+			pair.setName(t.image);
+	   		currentRecord.add(pair); 
+	   }
+   }
+ | t=<REAL>
+   {
+	   if (t!=null) {
+	   		pair.setType(IfcSimplePair.Type.REAL);
+			pair.setName(t.image);
+	   		currentRecord.add(pair); 
+	   }
+   }
+ | t=<STRING> 
+  {
+	   if (t!=null) {
+	   		pair.setType(IfcSimplePair.Type.STRING);
+			pair.setName(t.image);
+	   		currentRecord.add(pair); 
+	   }
+   }
+ | t=<ENTITY_INSTANCE_NAME>
+ {
+	   if (t!=null) {
+	   		pair.setType(IfcSimplePair.Type.ENTITY_INSTANCE_NAME);
+			pair.setName(t.image);
+	   		currentRecord.add(pair); 
+	   }
+   }
+ | t=<ENUMERATION>
+  {
+	   if (t!=null) {
+	   		pair.setType(IfcSimplePair.Type.ENUMERATION);
+			pair.setName(t.image);
+	   		currentRecord.add(pair); 
+	   }
+   }
+ | t=<BINARY>
+ {
+	   if (t!=null) {
+	   		pair.setType(IfcSimplePair.Type.BINARY);
+			pair.setName(t.image);
+	   		currentRecord.add(pair); 
+	   }
+   }
+ | list()
+}
+
+void omitted_parameter() : 
+{
+ Token t = null;
+ IfcOmittedPair pair = new IfcOmittedPair();
+}
+{
+ t=<STAR>
+  {
+   if (t!=null) {
+    pair.setName(t.image);
+    currentRecord.add(pair); 
+  }
+ }
+}
+
+void list() :
+{
+ ArrayList<IfcListPair> park_current = (ArrayList<IfcListPair>)currentRecord.clone();
+ currentRecord.clear();
+}
+{
+ // accept emtpty lists: brackets around whole statement to make it optional, was not valid in orginal code
+ <LPAREN> (parameter() (<COMMA> parameter())*)* <RPAREN>
+ {
+ 	park_current.add(new IfcListPair((ArrayList<IfcPair>)currentRecord.clone()));
+	currentRecord = (ArrayList<IfcPair>)park_current.clone();
+ }
+}
+
+void data_section() : {}
+{
+ "DATA;" entity_instance_list() "ENDSEC;"
+}
+
+void entity_instance_list() : {}
+{
+ entity_instance() (entity_instance())*
+}
+
+void entity_instance() : {}
+{
+ simple_entity_instance() | complex_entity_instance()
+}
+
+void simple_entity_instance() : {Token name=null;}
+{
+ name=<ENTITY_INSTANCE_NAME> <EQ> [scope()] simple_record() <SEMICOLON>
+ {
+  try {
+   parsingHelper.parse(new Long(name.image.substring(1, name.image.length())), currentRecord, entityName);
+  } catch (IfcReaderException e) {
+   throw new RuntimeException(e);
+  }
+ }
+}
+
+void complex_entity_instance() :
+{
+ Token t=null;
+}
+{
+ <ENTITY_INSTANCE_NAME> <EQ> [scope()] subsuper_record() <SEMICOLON>
+ {
+ }
+}
+
+void scope() : {}
+{
+ "&SCOPE" entity_instance_list() "ENDSCOPE" [export_list()]
+}
+
+void export_list() : {}
+{
+ <SLASH> <ENTITY_INSTANCE_NAME> (<COMMA> <ENTITY_INSTANCE_NAME>)* <SLASH>
+}
+
+void simple_record() : {Token record=null;}
+{
+ {
+  currentRecord = new ArrayList();
+ }
+ record=<KEYWORD> 
+ {
+ }
+  <LPAREN> [ parameter_list() ] <RPAREN>
+ {
+ 	entityName = record.image;
+ }
+}
+
+void subsuper_record() : {}
+{
+  <LPAREN> simple_record_list() <RPAREN>
+}
+
+void simple_record_list() : {}
+{
+  simple_record() (simple_record())*
+  {
+  }
+}
+
+void syntax() : {}
+{
+ exchange_file()
+}

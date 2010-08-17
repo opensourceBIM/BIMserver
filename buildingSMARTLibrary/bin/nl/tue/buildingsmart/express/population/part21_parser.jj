@@ -1,0 +1,569 @@
+/*******************************************************************
+*
+* contents:	STEP Part 21 - clear text encoding parser
+*             to be used with JavaCC
+*
+*
+* history :
+* --------
+*   18 Aug 1999: Creation. Singva Ma <Singva.Ma@leg.ensieg.inpg.fr>.
+*   2004       : Modfications by Jakob Beetz <j.beetz@tue.nl> 
+*				 Eindhoven University of Technology 
+* 
+******************************************************************/
+
+options {
+  LOOKAHEAD = 3;
+  STATIC = false;
+}
+
+PARSER_BEGIN(Part21Parser)
+
+package emfpopulation;
+import java.io.*;
+import java.util.*;
+import org.iai.express.dictionary.*;
+import org.iai.express.parser.*;
+
+
+//import owlGenerator;
+
+public class Part21Parser{
+
+	public Vector current_record = new Vector();
+	public Object[] current_entity = new Object[2];
+	
+	
+	
+	private SchemaDefinition schema;
+	private String schemaName;
+	private File schemaFile;
+	private ModelPopulation model;
+	
+	private HashMap <Integer,EntityInstance> instances;
+	
+	private FileInputStream inputStream;
+	
+	static boolean verbose;
+	
+	public void init(){
+		 this.instances = new HashMap<Integer,EntityInstance>();
+		
+		this.verbose= false;
+		this.schemaName = new String("");
+    	if (this.schema ==null ){
+        	ExpressSchemaParser schemaParser = new ExpressSchemaParser(schemaFile);
+        	schemaParser.parse();
+        	this.schema = schemaParser.getSchema();
+        	if (verbose) System.out.println("Loading Schema "+this.schema.getName()+" successful");
+        }
+}
+	public HashMap<Integer, EntityInstance> getInstances() {
+		return instances;
+	}
+	
+	
+	public void setInstances(HashMap<Integer, EntityInstance> instances) {
+		this.instances = instances;
+	}
+	
+	
+		public SchemaDefinition getSchema() {
+		return schema;
+	}
+	
+	public void setSchema(SchemaDefinition schema) {
+		this.schema = schema;
+	}
+	
+	public String getSchemaName() {
+		return schemaName;
+	}
+	
+	public void setSchemaName(String schemaName) {
+		this.schemaName = schemaName;
+	}
+	
+   	public File getSchemaFile() {
+		return schemaFile;
+	}
+
+	public void setSchemaFile(File schemaFile) {
+		this.schemaFile = schemaFile;
+	}	
+	
+
+
+	public ModelPopulation getModel() {
+		return model;
+	}
+	public void setModel(ModelPopulation model) {
+		this.model = model;
+	}
+} // end class Part21Parser
+
+PARSER_END(Part21Parser)
+
+
+
+/************************************************
+*************************************************
+** Tokens
+*************************************************
+************************************************/
+
+SKIP : /* WHITE SPACE */
+{
+ " "
+| "\t"
+| "\n"
+| "\r"
+| "\f"
+}
+
+SPECIAL_TOKEN : /* COMMENTS */
+{
+<EMBEDDED_REMARK: "/*" (~["*"])* "*" ("*" | (~["*",")"] (~["*"])* "*"))* "/">
+}
+
+TOKEN :
+{
+ < LPAREN: "(" >
+| < RPAREN: ")" >
+| < LBRACE: "{" >
+| < RBRACE: "}" >
+| < LBRACKET: "[" >
+| < RBRACKET: "]" >
+| < SEMICOLON: ";" >
+| < COLON: ":" >
+| < COMMA: "," >
+| < DOT: "."  >
+| < EQ: "=" >
+| < DOLLAR: "$" >
+| < STAR: "*">
+| < SLASH: "/">
+}
+
+TOKEN : {
+  <INTEGER: (<SIGN>)? <DIGIT> (<DIGIT>)*>
+|  <KEYWORD: <USER_DEFINED_KEYWORD> | <STANDARD_KEYWORD> >
+|  <USER_DEFINED_KEYWORD: "!" <UPPER> (<UPPER> | <DIGIT>)*>
+|  <STANDARD_KEYWORD: <UPPER> (<UPPER> | <DIGIT>)*>
+|  <#SIGN: ["+", "-"]>
+|  <REAL: (<SIGN>)? <DIGIT> (<DIGIT>)* <DOT> (<DIGIT>)* ("E" (<SIGN>)? <DIGIT> (<DIGIT>)* )?>
+|  <NON_Q_CHAR: <SPECIAL> | <DIGIT> | " " | <LOWER> | <UPPER> >
+|  <STRING: "'" (<NON_Q_CHAR> | <APOSTROPHE><APOSTROPHE> | <REVERSE_SOLIDUS><REVERSE_SOLIDUS> | <CONTROL_DIRECTIVE>)* "'">
+|  <ENTITY_INSTANCE_NAME: "#" <DIGIT> (<DIGIT>)*>
+|  <ENUMERATION: <DOT> <UPPER> (<UPPER> | <DIGIT>)* <DOT> >
+|  <#HEX: ["0"-"9", "A"-"F"]>
+|  <BINARY: "\"" ( "0" | "1" | "2" | "3" ) (<HEX>)* "\"">
+}
+
+TOKEN : {
+  <#DIGIT: ["0"-"9"]>
+|  <#LOWER: ["a"-"z"]>
+|  <#UPPER: ["A"-"Z", "_"]>
+|  <SPECIAL: "!" | "\"" | <STAR> | <DOLLAR> | "%" | "&" | <DOT> | "#" | "+" | <COMMA> | "-" | <LPAREN> | <RPAREN> | "?" | <SLASH> | <COLON> | <SEMICOLON> | "<" | <EQ> | ">" | "@" | <LBRACKET> | <RBRACKET> | <LBRACE> | "|" | <RBRACE> | "^" | "`">
+|  <REVERSE_SOLIDUS: "\\">
+|  <APOSTROPHE: "'">
+|  <CHARACTER: " " | <DIGIT> | <LOWER> | <UPPER> | <SPECIAL> | <REVERSE_SOLIDUS> | <APOSTROPHE> >
+}
+
+
+TOKEN : {
+  <CONTROL_DIRECTIVE: <PAGE> | <ALPHABET> | <EXTENDED2> | <EXTENDED4> | <ARBITRARY> >
+|  <PAGE: <REVERSE_SOLIDUS> "S" <REVERSE_SOLIDUS> <CHARACTER> >
+|  <ALPHABET: <REVERSE_SOLIDUS> "P" <UPPER> <REVERSE_SOLIDUS> >
+|  <EXTENDED2: <REVERSE_SOLIDUS> "X2" <REVERSE_SOLIDUS> <HEX_TWO> (<HEX_TWO>)* <END_EXTENDED> >
+|  <EXTENDED4: <REVERSE_SOLIDUS> "X4" <REVERSE_SOLIDUS> <HEX_FOUR> (<HEX_FOUR>)* <END_EXTENDED> >
+|  <END_EXTENDED: <REVERSE_SOLIDUS> "X0" <REVERSE_SOLIDUS> >
+|  <ARBITRARY: <REVERSE_SOLIDUS> "X" <REVERSE_SOLIDUS> <HEX_ONE> >
+|  <HEX_ONE: <HEX> <HEX> >
+|  <HEX_TWO: <HEX_ONE> <HEX_ONE> >
+|  <HEX_FOUR: <HEX_TWO> <HEX_TWO> >
+}
+
+
+
+/************************************************
+* Grammar
+***********************************************/
+
+void exchange_file() : {}
+{
+  "ISO-10303-21;" 
+	header_section() 
+	data_section() 
+	"END-ISO-10303-21"
+ 	
+}
+
+void header_section() : {}
+{
+  "HEADER;" 
+	header_entity() header_entity() header_entity() 
+	[header_entity_list()]
+	"ENDSEC;"
+}
+
+void header_entity_list() : {}
+{
+  header_entity() (header_entity())*
+}
+
+void header_entity() : {Token name=null;}
+{
+ name=<KEYWORD>
+ <LPAREN> 
+ [parameter_list()] {
+	if (name.image.indexOf("FILE_SCHEMA")>-1){
+        String schema_name = ((String[])((Vector)current_record.get(9)).get(0))[1];
+        this.setSchemaName(schema_name);
+
+ 	}
+ }
+ <RPAREN> 
+ <SEMICOLON>
+
+
+ //generator.addIndividual(name.image.toString(),"test");
+
+}
+
+void parameter_list() : {}
+{
+  parameter() (<COMMA> parameter())*
+}
+
+void parameter() : {}
+{
+	
+    typed_parameter()
+	| untyped_parameter()
+	| omitted_parameter()
+}
+
+void typed_parameter() : 
+	{
+		
+		Token t = null;
+		Object[] pair = new Object[2];
+		Vector park_current = (Vector)current_record.clone();
+	    current_record.clear();
+	}
+{
+ t=<KEYWORD> <LPAREN> parameter() <RPAREN>
+ {
+ 	
+ 	pair[0]=t.image;
+ 	pair[1]=current_record.clone();
+ 	//System.out.println("TP:"+t.image+"("+current_record.clone()+")");
+ 	park_current.add(pair);
+ 	current_record=(Vector)park_current.clone();
+ 	
+ }
+}
+
+
+void untyped_parameter() : 
+{
+	Token t=null;
+	String[] pair = new String[2];
+}
+{
+	
+   t=<DOLLAR>
+   {
+	   if (t!=null) {
+	   	    
+	   	    pair[0]="DOLLAR";
+	   	    pair[1]=t.image;
+	   		current_record.add(pair); 
+	   		if (verbose) 
+	   			System.out.print("DOLLAR"+t.image+", ");
+	   }
+   }
+ | t=<INTEGER> 
+   {
+	   if (t!=null) {
+	   		pair[0]="INTEGER";
+	   	    pair[1]=t.image;
+	   		current_record.add(pair); 
+	   		if (verbose) 
+	   			System.out.print("INTEGER"+t.image+", ");
+	   }
+   }
+ | t=<REAL>
+   {
+	   if (t!=null) {
+	   		pair[0]="REAL";
+	   	    pair[1]=t.image;
+	   		current_record.add(pair); 
+	   		if (verbose) 
+	   			System.out.print("REAL"+t.image+", ");
+	   }
+   }
+ | t=<STRING> 
+  {
+	   if (t!=null) {
+	   		pair[0]="STRING";
+	   	    pair[1]=t.image;
+	   		current_record.add(pair); 
+	   		if (verbose) 
+	   			System.out.print("STRING"+t.image+", ");
+	   }
+   }
+ | t=<ENTITY_INSTANCE_NAME>
+ {
+	   if (t!=null) {
+	   		pair[0]="ENTITY_INSTANCE_NAME";
+	   	    pair[1]=t.image;
+	   		current_record.add(pair); 
+	   		if (verbose) 
+	   			System.out.print("ENTITY_INSTANCE_NAME"+t.image+", ");
+	   }
+   }
+ | t=<ENUMERATION>
+  {
+	   if (t!=null) {
+	   		pair[0]="ENUMERATION";
+	   	    pair[1]=t.image;
+	   		current_record.add(pair); 
+	   		if (verbose) 
+	   			System.out.print("ENUMERATION"+t.image+", ");
+	   }
+   }
+ | t=<BINARY>
+ {
+	   if (t!=null) {
+	   		pair[0]="BINARY";
+	   	    pair[1]=t.image;
+	   		current_record.add(pair); 
+	   		if (verbose) 
+	   			System.out.print("BINARY"+t.image+", ");
+	   }
+   }
+ 
+ 
+ | list()
+ 
+
+ 
+}
+
+void omitted_parameter() : 
+{
+	Token t=null;
+	String[] pair = new String[2];
+}
+{
+ t=<STAR>
+  {
+	   if (t!=null) {
+	   		pair[0]="STAR";
+	   	    pair[1]=t.image;
+	   		current_record.add(pair); 
+	   		if (verbose) 
+	   			System.out.print("STAR"+t.image+", ");
+	   }
+   }
+}
+
+void list() :
+{
+	//park the Vector 
+	 Vector park_current = (Vector)current_record.clone();
+     current_record.clear();
+	
+}
+{
+ {
+ 	if (verbose) 
+ 		System.out.print("list, ");
+ }
+ // accept emtpty lists: brackets around whole statement to make it optional, was not valid in orginal code
+ <LPAREN> (parameter() (<COMMA> parameter())*)* <RPAREN>
+ {
+ 	
+ 	park_current.add(current_record.clone());
+ 	current_record=(Vector)park_current.clone();
+ 	
+ }
+}
+
+void data_section() : {}
+{
+ "DATA;" entity_instance_list() "ENDSEC;"
+}
+
+void entity_instance_list() : {}
+{
+  
+  entity_instance() (entity_instance())*
+}
+
+void entity_instance() : {}
+{
+ {
+ 	if (verbose) 
+ 		System.out.print("entity_instance, ");
+ }
+ simple_entity_instance() | complex_entity_instance()
+}
+
+void simple_entity_instance() : {Token name=null;}
+{
+ name=<ENTITY_INSTANCE_NAME> <EQ> [scope()] simple_record() <SEMICOLON>
+ {
+ 	//System.out.println("instance name "+name.image);
+        Integer id = new Integer(name.image.substring(1,name.image.length()));
+        EntityInstance ent = new EntityInstance(this.getModel(), id.intValue());
+        EntityDefinition entDef = schema.getEntityBN((String)current_entity[0]);
+        ent.setEntDef(entDef);
+        Iterator<Attribute> attribIter = entDef.getAttributes(true).iterator();
+        int attribCount = entDef.getAttributes(true).size();
+        int recordSize = current_record.size();
+        Iterator recordIter = current_record.iterator();
+        while (attribIter.hasNext()){
+                //System.out.println(attribIter.next().getName());
+                Attribute attr = attribIter.next();
+                if (!(attr instanceof InverseAttribute)){
+                        AttributeInstance ai = new AttributeInstance();
+                        ai.setAttributeType((ExplicitAttribute)attr);
+                        Object tmp = recordIter.next();
+                        //System.out.println(tmp.getClass());
+                        //ai.setValue(tmp);
+                       
+                        if (tmp instanceof String[]){
+                        	//only get the value part
+                        	String[] singleval = (String[])tmp;
+                        	ai.setValue(singleval[1]);
+                        	ai.setP21Header(singleval[0]);
+                        }
+                        else if (tmp instanceof Vector){
+                        	   	Vector<String> tmpVec = new Vector<String>();
+	                        	Iterator vecIter = ((Vector)tmp).iterator();
+	                        	String header ="";
+	                        	while (vecIter.hasNext()){
+	                        		Object value = vecIter.next();
+	                        		if (value instanceof String[])
+	                        		{
+	                        			String[] stringVal = (String[])value;
+	                        			if (!header.equals("") && !stringVal[0].equals(header))
+	                        				System.err.println("ERROR: "+stringVal[0]+" has different header than "+header);
+	                        			tmpVec.add(stringVal[1]);
+	                        			ai.setP21Header(stringVal[0]);
+	                        			header=stringVal[0];
+	                        		}
+	                        	}
+	                        	ai.setValue(tmpVec);
+                        	}
+                        	
+                        	
+                        
+                        
+                        else if (tmp instanceof Object[]){
+                        	//an inlinde definition of some type
+                        	Object[] inline = (Object[])tmp;
+                        	ai.setP21Header((String)inline[0]);
+                        	if (inline[1] instanceof Vector){
+	                        	Vector<String> tmpVec = new Vector<String>();
+	                        	Iterator vecIter = ((Vector)inline[1]).iterator();
+	                        	while (vecIter.hasNext()){
+	                        		Object value = vecIter.next();
+	                        		if (value instanceof String[])
+	                        		{
+	                        			tmpVec.add(((String[])value)[1]);
+	                        		}
+	                        	}
+	                        	ai.setValue(tmpVec);
+                        	}
+                        	
+                        	
+                        }
+                        
+                        			
+                        ent.addAttribute(ai);
+                     /*   if (ai.getAttributeType().getDomain() instanceof SimpleType){
+                                if (ai.getAttributeType().getDomain() instanceof StringType){
+                                        if (!(tmp instanceof String[] || !((String[])tmp)[0].equalsIgnoreCase("string")))
+                                                        System.err.println("error");
+                                }
+
+
+                        }
+                        */
+                }
+        }
+        //ent.setId(name.image);
+        instances.put(id, ent);   
+ }
+}
+
+void complex_entity_instance() :
+{
+  Token t=null;
+}
+{
+ <ENTITY_INSTANCE_NAME> <EQ> [scope()] subsuper_record() <SEMICOLON>
+ {
+ 	if (verbose) 
+ 		System.out.println("Complex:"+t);
+ }
+}
+
+void scope() : {}
+{
+ "&SCOPE" entity_instance_list() "ENDSCOPE" [export_list()]
+}
+
+void export_list() : {}
+{
+ <SLASH> <ENTITY_INSTANCE_NAME> (<COMMA> <ENTITY_INSTANCE_NAME>)* <SLASH>
+}
+
+void simple_record() : {Token record=null;}
+{
+	{
+		current_entity = new Object[2];
+		current_record = new Vector();
+	}
+ record=<KEYWORD> 
+ {
+ 	if (verbose) 
+ 		System.out.print("record: " + record.image+ " ");
+ }
+  <LPAREN> [ parameter_list() ] <RPAREN>
+ {
+ 	if (verbose) 
+ 		System.out.println(" end record: "+current_record.size()) ;	
+ 		
+ 		
+ 	current_entity[0]=record.image;
+ 	current_entity[1]=current_record.clone();
+ 		
+ 
+ }
+ 	
+}
+
+void subsuper_record() : {}
+{
+  <LPAREN> simple_record_list() <RPAREN>
+}
+
+void simple_record_list() : {}
+{
+  simple_record() (simple_record())*
+  {
+  if (verbose) 
+  	System.out.print("simple_record_list triggered");
+  }
+}
+
+void syntax() : {}
+{
+ exchange_file()
+ 
+} 
+
