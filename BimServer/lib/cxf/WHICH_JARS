@@ -1,0 +1,88 @@
+This directory includes the CXF jar, the CXF manifest jar, the required
+dependencies, and many optional dependencies. The "modules" directory
+contains the cxf.jar split up into smaller pieces if you wish to use only
+specific parts of CXF.
+
+Jars marked with a [6] at the end are optional for Java 6 (update 4 or 
+later is supported) as the functionality provided by those jars are 
+provided in the JDK.
+
+Some users may prefer to use axis2-saaj.jar rather than saaj-impl.jar. Both are
+supported.
+
+The following jars are required for all CXF usage:
+- cxf.jar
+- commons-logging.jar
+- geronimo-activation.jar (Or the Sun equivalent) [6]
+- geronimo-annotation.jar (Or the Sun equivalent) [6]
+- geronimo-javamail.jar (Or the Sun equivalent) [6]
+  (MAY be able to remove javamail if you don't use any MTOM/SAAJ type things)
+- geronimo-stax-api.jar (Or the Sun equivalent) [6]
+- neethi.jar
+- jaxb-api.jar  [6]
+- jaxb-impl.jar (this is a [6] for normal runtime, but is required for 
+                 tooling and the dynamic clients)
+- XmlSchema.jar
+- wstx-asl.jar  [6] or another StAX implementation
+- wsdl4j.jar
+
+The following jars are required for XML catalog support:
+- xml-resolver.jar 
+
+For Java2WSDL and WSDL2Java:
+- The above jars
+- jaxb-xjc.jar
+- velocity.jar
+- commons-collections.jar
+- commons-lang.jar
+
+For JAX-WS support:
+- geronimo-ws-metadata.jar [6]
+- geronimo-jaxws_2.1_spec-1.0.jar (Or the Sun equivalent) [6]
+- saaj-api.jar [6]
+- saaj-impl.jar [6]
+- asm.jar (semi-optional, helps with performance of wrapper types and is 
+        required when adding JAXB annotations onto the SEI methods and 
+	parameters.)
+
+For XML Configuration support:
+- aopalliance.jar
+- spring-beans.jar
+- spring-context.jar
+- spring-core.jar
+- spring.web.jar
+- FastInfoset.jar
+
+For standalone HTTP support:
+- geronimo-servlet.jar
+- jetty.jar
+- jetty-util.jar
+- sl4j.jar & sl4j-jdk14.jar (optional - but improves logging)
+ 
+For Aegis support:
+- jdom.jar (optional, if you want to map xsd:anyType to JDOM)
+
+For WS-Security support:
+- bcprov-jdk15.jar
+- xalan.jar
+- serializer.jar
+- wss4j.jar
+- xmlsec.jar
+
+For HTTP Binding support:
+- jra.jar
+- jettison.jar (Needed for JSON services only)
+
+For JAX-RS support:
+- abdera*
+- axiom*
+- jsr311-api.jar
+- jettison.jar (Needed for JSON services only)
+
+For JMS transport
+- geronimo-jms.jar (Or the Sun equivalent)
+- spring-jms.jar
+
+For CORBA support:
+- antlr.jar
+

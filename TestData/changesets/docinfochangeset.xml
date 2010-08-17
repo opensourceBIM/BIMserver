@@ -1,0 +1,46 @@
+<ChangeSet>
+    <Addition>
+        <oid>250</oid>
+        <className>IfcRelAssociatesDocument</className>
+        <AttributeReferencePair>
+            <name>OwnerHistory</name>
+            <oid>76</oid>
+        </AttributeReferencePair>
+        <AttributeValuePair>
+            <name>Name</name>
+            <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">Wall</value>
+        </AttributeValuePair>
+        <AttributeValuePair>
+            <name>Description</name>
+            <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:int">23</value>
+        </AttributeValuePair>
+   </Addition>
+   <Addition>
+       <oid>224</oid>
+       <className>IfcDocumentInformation</className>
+       <AttributeValuePair>
+           <name>Name</name>
+           <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">Connects to object</value>
+       </AttributeValuePair>
+       <AttributeValuePair>
+           <name>Description</name>
+           <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">WALL TYPE</value>
+       </AttributeValuePair>
+       <AttributeValuePair>
+           <name>Purpose</name>
+           <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">Annotate Objects</value>
+       </AttributeValuePair>
+       <AttributeValuePair>
+           <name>IntendedUse</name>
+           <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">Objects only</value>
+       </AttributeValuePair>
+       <AttributeValuePair>
+           <name>Scope</name>
+           <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">Accurate</value>
+       </AttributeValuePair>
+       <AttributeNewReferencePair>
+           <name>DocumentReferences</name>
+           <oid>250</oid>
+       </AttributeNewReferencePair>
+   </Addition>
+</ChangeSet>

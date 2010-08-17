@@ -1,0 +1,9 @@
+## Available parameters:
+##   name: The users full name
+##   username: The users username (usually e-mail address)
+##   password: The users cleartext password
+
+Dear $name,
+
+Thank you for registering at demo.bimserver.org.
+Your username: $username

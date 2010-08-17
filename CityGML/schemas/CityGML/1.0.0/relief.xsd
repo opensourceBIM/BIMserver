@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CityGML Version No. 1.0.0, May 19th, 2008-->
+<!-- CityGML - GML3 application schema for the 3D city model of the Special Interest Group 3D (SIG 3D) of GDI NRW-->
+<!-- Editors: PD Dr. Gerhard Groeger, Institute for Geodesy and Geoinformation, University of Bonn & -->
+<!-- Prof. Dr. Thomas H. Kolbe, Institute for Geodesy and Geoinformation Science, Technical University of Berlin -->
+<!-- For further information see: www.citygml.org -->
+<!-- For the history of changes and additions to this CityGML schema see file history.txt -->
+<xs:schema xmlns="http://www.opengis.net/citygml/relief/1.0" xmlns:core="http://www.opengis.net/citygml/1.0"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml"
+    targetNamespace="http://www.opengis.net/citygml/relief/1.0" elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xs:import namespace="http://www.opengis.net/gml" schemaLocation="../../GML/3.1.1/base/gml.xsd"/>
+    <xs:import namespace="http://www.opengis.net/citygml/1.0" schemaLocation="cityGMLBase.xsd"/>
+    <!-- ========================================================================================= -->
+    <!-- ==================================CityGML Relief module ===================================== -->
+    <!-- ========================================================================================= -->
+    <xs:complexType name="ReliefFeatureType">
+        <xs:annotation>
+            <xs:documentation>Type describing the features of the Digital Terrain Model. As subclass of _CityObject, a
+                ReliefFeature inherits all attributes and relations, in particular an id, names, external references, and
+                generalization relations. </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="core:AbstractCityObjectType">
+                <xs:sequence>
+                    <xs:element name="lod" type="core:integerBetween0and4"/>
+                    <xs:element name="reliefComponent" type="ReliefComponentPropertyType" maxOccurs="unbounded"/>
+                    <xs:element ref="_GenericApplicationPropertyOfReliefFeature" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <!-- ========================================================================================= -->
+    <xs:element name="ReliefFeature" type="ReliefFeatureType" substitutionGroup="core:_CityObject"/>
+    <!-- ========================================================================================= -->
+    <xs:element name="_GenericApplicationPropertyOfReliefFeature" type="xs:anyType" abstract="true"/>
+    <!-- ========================================================================================= -->
+    <xs:complexType name="AbstractReliefComponentType" abstract="true">
+        <xs:annotation>
+            <xs:documentation>Type describing the components of a relief feature - either a TIN, a Grid, mass points or break
+                lines. As subclass of _CityObject, a ReliefComponent inherits all attributes and relations, in particular an id,
+                names, external references, and generalization relations. </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="core:AbstractCityObjectType">
+                <xs:sequence>
+                    <xs:element name="lod" type="core:integerBetween0and4"/>
+                    <xs:element name="extent" type="gml:PolygonPropertyType" minOccurs="0"/>
+                    <xs:element ref="_GenericApplicationPropertyOfReliefComponent" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <!-- ========================================================================================= -->
+    <xs:element name="_ReliefComponent" type="AbstractReliefComponentType" abstract="true" substitutionGroup="core:_CityObject"/>
+    <!-- ========================================================================================= -->
+    <xs:element name="_GenericApplicationPropertyOfReliefComponent" type="xs:anyType" abstract="true"/>
+    <!-- ========================================================================================= -->
+    <xs:complexType name="ReliefComponentPropertyType">
+        <xs:annotation>
+            <xs:documentation>Denotes the relation of a ReliefFeature to its components. The ReliefComponentPropertyType element
+                must either carry a reference to a _ReliefComponent object or contain a _ReliefComponent object inline, but
+                neither both nor none. </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:restriction base="gml:AssociationType">
+                <xs:sequence minOccurs="0">
+                    <xs:element ref="_ReliefComponent"/>
+                </xs:sequence>
+            </xs:restriction>
+        </xs:complexContent>
+    </xs:complexType>
+    <!-- ========================================================================================= -->
+    <xs:complexType name="TINReliefType">
+        <xs:annotation>
+            <xs:documentation>Type describing the TIN component of a relief feature. As subclass of _CityObject, a TINRelief
+                inherits all attributes and relations, in particular an id, names, external references, and generalization
+                relations. </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="AbstractReliefComponentType">
+                <xs:sequence>
+                    <xs:element name="tin" type="tinPropertyType"/>
+                    <xs:element ref="_GenericApplicationPropertyOfTinRelief" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <!-- ========================================================================================= -->
+    <xs:element name="TINRelief" type="TINReliefType" substitutionGroup="_ReliefComponent"/>
+    <!-- ========================================================================================= -->
+    <xs:element name="_GenericApplicationPropertyOfTinRelief" type="xs:anyType" abstract="true"/>
+    <!-- ========================================================================================= -->
+    <xs:complexType name="RasterReliefType">
+        <xs:annotation>
+            <xs:documentation>Type describing the raster component of a relief feature. As subclass of _CityObject, a RasterRelief
+                inherits all attributes and relations, in particular an id, names, external references, and generalization
+                relations. </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="AbstractReliefComponentType">
+                <xs:sequence>
+                    <xs:element name="grid" type="gridPropertyType"/>
+                    <xs:element ref="_GenericApplicationPropertyOfRasterRelief" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <!-- ========================================================================================= -->
+    <xs:element name="RasterRelief" type="RasterReliefType" substitutionGroup="_ReliefComponent"/>
+    <!-- ========================================================================================= -->
+    <xs:element name="_GenericApplicationPropertyOfRasterRelief" type="xs:anyType" abstract="true"/>
+    <!-- ========================================================================================= -->
+    <xs:complexType name="MassPointReliefType">
+        <xs:annotation>
+            <xs:documentation>Type describing the mass point component of a relief feature. As subclass of _CityObject, a
+                MassPoint Relief inherits all attributes and relations, in particular an id, names, external references, and
+                generalization relations. </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="AbstractReliefComponentType">
+                <xs:sequence>
+                    <xs:element name="reliefPoints" type="gml:MultiPointPropertyType"/>
+                    <xs:element ref="_GenericApplicationPropertyOfMassPointRelief" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <!-- ========================================================================================= -->
+    <xs:element name="MassPointRelief" type="MassPointReliefType" substitutionGroup="_ReliefComponent"/>
+    <!-- ========================================================================================= -->
+    <xs:element name="_GenericApplicationPropertyOfMassPointRelief" type="xs:anyType" abstract="true"/>
+    <!-- ========================================================================================= -->
+    <xs:complexType name="BreaklineReliefType">
+        <xs:annotation>
+            <xs:documentation>Type describing the break line Component of a relief feature. A break line relief consists of break
+                lines or ridgeOrValleyLines. As subclass of _CityObject, a BreaklineRelief inherits all attributes and relations,
+                in particular an id, names, external references, and generalization relations. </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="AbstractReliefComponentType">
+                <xs:sequence>
+                    <xs:element name="ridgeOrValleyLines" type="gml:MultiCurvePropertyType" minOccurs="0"/>
+                    <xs:element name="breaklines" type="gml:MultiCurvePropertyType" minOccurs="0"/>
+                    <xs:element ref="_GenericApplicationPropertyOfBreaklineRelief" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <!-- ========================================================================================= -->
+    <xs:element name="BreaklineRelief" type="BreaklineReliefType" substitutionGroup="_ReliefComponent"/>
+    <!-- ========================================================================================= -->
+    <xs:element name="_GenericApplicationPropertyOfBreaklineRelief" type="xs:anyType" abstract="true"/>
+    <!-- ========================================================================================= -->
+    <xs:complexType name="tinPropertyType">
+        <xs:annotation>
+            <xs:documentation>Denotes the relation of a TINRelief to its components. The tinPropertyType element must either carry
+                a reference to a gml:TriangulatedSurface object or contain a gml:TriangulatedSurface object inline, but neither
+                both nor none. </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:restriction base="gml:AssociationType">
+                <xs:sequence minOccurs="0">
+                    <xs:element ref="gml:TriangulatedSurface"/>
+                </xs:sequence>
+            </xs:restriction>
+        </xs:complexContent>
+    </xs:complexType>
+    <!-- ========================================================================================= -->
+    <xs:complexType name="gridPropertyType">
+        <xs:complexContent>
+            <xs:annotation>
+                <xs:documentation>Denotes the relation of a RasterReliefType to its components. The gridPropertyType element must
+                    either carry a reference to a gml:RectifiedGridCoverage object or contain a gml:RectifiedGridCoverage object
+                    inline, but neither both nor none. </xs:documentation>
+            </xs:annotation>
+            <xs:restriction base="gml:AssociationType">
+                <xs:sequence minOccurs="0">
+                    <xs:element ref="gml:RectifiedGridCoverage"/>
+                </xs:sequence>
+            </xs:restriction>
+        </xs:complexContent>
+    </xs:complexType>
+    <!-- ========================================================================================= -->
+    <!-- ============= The height values of the grid are represented by Elevation elements, which have a height  ====== -->
+    <!-- ============= value and a unit of measurement, e.g. meter.                                                                                 ====== -->
+    <!-- ========================================================================================= -->
+    <xs:element name="Elevation" type="gml:LengthType" substitutionGroup="gml:_Object"/>
+    <!-- ========================================================================================= -->
+</xs:schema>

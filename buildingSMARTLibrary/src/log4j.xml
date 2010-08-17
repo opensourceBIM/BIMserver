@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/" debug="false">
+	<appender name="Console" class="org.apache.log4j.ConsoleAppender">
+		<param name="Threshold" value="DEBUG" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{ISO8601} %-5p %c - %m%n" />
+		</layout>
+	</appender>
+	<logger name="org.quartz">
+		<level value="error" />
+		<appender-ref ref="Console" />
+	</logger>
+	<logger name="org.apache.cxf">
+		<level value="error" />
+		<appender-ref ref="Console" />
+	</logger>
+	<logger name="org.mortbay">
+		<level value="error" />
+		<appender-ref ref="Console" />
+	</logger>
+	<root>
+		<priority value="INFO" />
+		<appender-ref ref="Console" />
+	</root>
+</log4j:configuration>
