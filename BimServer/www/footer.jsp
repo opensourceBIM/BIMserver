@@ -1,7 +1,7 @@
 </div>
 <div class="footer">    
 	<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>
-        <div><img src="images/footerlogo.gif" alt="Open Source BIMserver.org" /><br/>
+        <div><img src="images/footerlogo.gif" alt="Open Source BIMserver" /><br/>
         <a href="<%=getServletContext().getContextPath()%>/settings?action=downloadlog" target="_blank">Download Logfile</a></div> 
 </div><!-- end footer --> 
 </div>
