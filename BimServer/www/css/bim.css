@@ -190,8 +190,18 @@ table.formatted th {
 	float:left;
 	padding: 50px 0px 0px 0px;
 	margin-right:2px;
+	margin-left:-20px;
 	width:150px;
 }
+	
+.sidebar li {
+	padding:8px;
+	margin-left:-10px;
+	font-size:14px;
+	list-style-type: none;
+	border-bottom:1px solid #DCDDDE;
+	border-top:1px solid #FFFFFF;
+}	
 
 .content {
 	margin-left:150px;
