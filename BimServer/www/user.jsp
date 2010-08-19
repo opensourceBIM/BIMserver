@@ -42,7 +42,8 @@
 %>
 <div class="sidebar">
  <h4>Submenu</h4>
- <a href="changepassword.jsp?uoid=<%=uoid%>">Change password</a>
+ <li>
+ <a href="changepassword.jsp?uoid=<%=uoid%>">Change password</a></li>
 </div>
 
 <div class="content">

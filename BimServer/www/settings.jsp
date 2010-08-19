@@ -59,11 +59,11 @@
 
 <div class="sidebar">
 <h4>Submenu</h4>
-<a
-	href="<%=getServletContext().getContextPath()%>/settings?action=downloadsettings">Download
-settings</a> <a
-	href="<%=getServletContext().getContextPath()%>/settings?action=downloadignorefile">Download
-ignore.xml</a></div>
+<li>
+<a href="<%=getServletContext().getContextPath()%>/settings?action=downloadsettings">Download settings</a></li>
+<li>
+<a href="<%=getServletContext().getContextPath()%>/settings?action=downloadignorefile">Download ignore.xml</a></li>
+</div>
 
 <div class="content">
 
