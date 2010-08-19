@@ -41,10 +41,11 @@
  <%
 	if (emfSerializerFactory.resultTypeEnabled(ResultType.O3D_JSON)) {
 %>
- <a href="visualize.jsp?width=520&height=530&roid=<%=revision.getOid() %>" class="visualizelink thickbox" title="Visualisation">Visualise</a><br/>
+<li>
+ <a href="visualize.jsp?width=520&height=530&roid=<%=revision.getOid() %>" class="visualizelink thickbox" title="Visualisation">Visualise</a></li>
  <%} %> 
- <a href="browser.jsp?width=520&height=530&roid=<%=revision.getOid() %>" class="thickbox" id="browserajaxlink" title="Browser">Browser</a><br/>
- <br/>
+ <li>
+ <a href="browser.jsp?width=520&height=530&roid=<%=revision.getOid() %>" class="thickbox" id="browserajaxlink" title="Browser">Browser</a></li>
 </div>
 <div class="content">
 

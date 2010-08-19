@@ -11,7 +11,8 @@ if (serverInfo.isAvailable()) {
 
 <div class="sidebar">
  <h4>Submenu</h4>
- <a href="addproject.jsp">Add project</a><br/><br/>
+ <li>
+ <a href="addproject.jsp">Add project</a></li>
 </div>
 
 <div class="content">

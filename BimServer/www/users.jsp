@@ -14,7 +14,8 @@
 
 <div class="sidebar">
  <h4>Submenu</h4>
- <a href="adduser.jsp">Add user</a>
+ <li>
+ <a href="adduser.jsp">Add user</a></li>
 </div>
 
 <div class="content">

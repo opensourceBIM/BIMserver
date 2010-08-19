@@ -74,14 +74,42 @@ if (emfSerializerFactory.resultTypeEnabled(ResultType.O3D_JSON) && lastRevision 
  <%
 	if (emfSerializerFactory.resultTypeEnabled(ResultType.O3D_JSON) && lastRevision != null) {
 %>
- <a href="visualize.jsp?width=520&height=530&roid=<%=project.getLastRevisionId() %>" class="visualizelink thickbox" title="Visualisation">Visualise</a><br/>
+<li>
+ <a href="visualize.jsp?width=520&height=530&roid=<%=project.getLastRevisionId() %>" class="visualizelink thickbox" title="Visualisation">Visualise</a></li>
  <%} %> 
  <%
 if (lastRevision != null) {
 %>
- <a href="browser.jsp?width=520&height=530&roid=<%=project.getLastRevisionId() %>" class="thickbox" id="browserajaxlink" title="Browser">Browser</a><br/>
+<li>
+ <a href="browser.jsp?width=520&height=530&roid=<%=project.getLastRevisionId() %>" class="thickbox" id="browserajaxlink" title="Browser">Browser</a></li>
  <%} %>
  <br/>
+ 
+ 
+ <%
+	if (project.getSubProjects().size() == 0) {
+%> <br/> <%
+	} else {
+%>
+<br/>
+<br/>
+<h5>Subprojects:</h5>
+	<%
+	Set<SProject> subProjects = new TreeSet<SProject>(new SProjectNameComparator());
+	for (long subPoid : project.getSubProjects()) {
+		SProject subProject = loginManager.getService().getProjectByPoid(subPoid);
+		subProjects.add(subProject);
+	}
+	for (SProject subProject : subProjects) {
+		SRevision lastSubProjectRevision = null;
+		if (subProject.getLastRevisionId() != -1) {
+			lastSubProjectRevision = loginManager.getService().getRevision(subProject.getLastRevisionId());
+		}
+%>
+   <a href="project.jsp?poid=<%=subProject.getOid() %>"><%=subProject.getName() %></a><br/>	
+	<%
+	}
+  } %>
 </div>
 
 <div class="content">
