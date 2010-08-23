@@ -133,7 +133,7 @@
 <table class="formtable">
 	<tr>
 		<td class="first" width="100">Download:</td>
-		<td><select name="resultType">
+		<td><select name="resultType" id="downloadcheckoutselect">
 			<%
 				for (ResultType resultType : EmfSerializerFactory.getInstance().getMultipleResultTypes()) {
 			%>
@@ -145,7 +145,7 @@
 		</select> <label for="zip_<%=revision.getId()%>">Zip</label><input
 			type="checkbox" name="zip" id="zip_<%=revision.getId()%>" /> <input
 			name="download" type="submit" value="Download"> <input
-			name="checkout" type="submit" value="Checkout"></td>
+			name="checkout" type="submit" value="Checkout" class="checkoutbutton"></td>
 </table>
 </form>
 <br />
@@ -210,6 +210,11 @@ comment</label> <input type="text" name="comment" /> <input type="submit"
 			$("#browserajaxloader").show();
 			$("#browser").load("browser.jsp?roid=<%=roid%>");
 		});
+		checkCheckoutButton = function(event){
+			$(event.target).parent().children(".checkoutbutton").attr("disabled", $(event.target).val() != "IFC" && $(event.target).val() != "IFCXML");
+		};
+		$("#downloadcheckoutselect").change(checkCheckoutButton);
+		checkCheckoutButton();		
 	});
 </script> <%
  	} catch (UserException e) {

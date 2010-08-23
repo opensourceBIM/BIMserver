@@ -306,6 +306,9 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public CheckoutResult checkout(Token token, long roid, ResultType resultType) throws UserException {
+		if (resultType != ResultType.IFC && resultType != ResultType.IFCXML) {
+			throw new UserException("Only IFC or IFCXML allowed when checking out");
+		}
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
 			BimDatabaseAction<IfcModel> action = new CheckoutDatabaseAction(accessMethod, tokenManager.getUoid(token), roid);
