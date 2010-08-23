@@ -76,7 +76,7 @@ public class SettingsServlet extends HttpServlet {
 				if (request.getParameter("action") != null && request.getParameter("action").equals("downloadsettings")) {
 					Settings settings = ServerSettings.getSettings();
 					response.setContentType("text/xml");
-					response.setHeader("Content-Disposition", "inline; filename=\"settings.xml\"");
+					response.setHeader("Content-Disposition", "attachment; filename=\"settings.xml\"");
 					settings.saveToStream(response.getOutputStream());
 					return;
 				} else if (request.getParameter("action") != null && request.getParameter("action").equals("downloadlog")) {
@@ -90,19 +90,19 @@ public class SettingsServlet extends HttpServlet {
 					}
 					if (logfile != null) {
 						response.setContentType("text");
-						response.setHeader("Content-Disposition", "inline; filename=\"bimserver.log\"");
+						response.setHeader("Content-Disposition", "attachment; filename=\"bimserver.log\"");
 						FileInputStream fileIn = new FileInputStream(logfile);
 						byte[] buffer = new byte[1024];
 						int read = fileIn.read(buffer);
 						while (read >= 0) {
-							response.getOutputStream().write(buffer);
+							response.getOutputStream().write(buffer, 0, read);
 							read = fileIn.read(buffer);
 						}
 					}
 					return;
 				} else if (request.getParameter("action") != null && request.getParameter("action").equals("downloadignorefile")) {
 					response.setContentType("text/xml");
-					response.setHeader("Content-Disposition", "inline; filename=\"ignore.xml\"");
+					response.setHeader("Content-Disposition", "attachment; filename=\"ignore.xml\"");
 					URL resource = ServerInitializer.getResourceFetcher().getResource("ignore.xml");
 					InputStream openStream = resource.openStream();
 					IOUtils.copy(openStream, response.getOutputStream());
