@@ -19,6 +19,7 @@
 <%@page import="java.util.Map"%>
 <%@page import="org.bimserver.TemplateIdentifier"%>
 <%@page import="org.bimserver.Settings"%>
+<%@page import="org.bimserver.MailSystem"%>
 <jsp:include page="htmlheader.jsp" />
 <jsp:useBean id="loginManager" scope="session" class="org.bimserver.LoginManager" />
 <%
@@ -38,10 +39,7 @@
 			if (errorMessages.size() == 0) {
 				try {
 					if (ServerSettings.getSettings().isSendConfirmationEmailAfterRegistration()) {
-						Properties props = new Properties();
-						props.put("mail.smtp.host", ServerSettings.getSettings().getSmtpServer());
-			
-						Session mailSession = Session.getDefaultInstance(props);
+						Session mailSession = MailSystem.createMailSession();
 		
 						Message msg = new MimeMessage(mailSession);
 	
