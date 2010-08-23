@@ -18,11 +18,12 @@
 		if (!senderAddress.contains("@") || !senderAddress.contains(".")) {
 			senderAddress = ServerSettings.getSettings().getEmailSenderAddress();
 		}
-		
+		System.out.println(senderAddress);
 		Properties props = new Properties();
 		props.put("mail.smtp.host", ServerSettings.getSettings().getSmtpServer());
 	
 		Session mailSession = Session.getDefaultInstance(props);
+		mailSession.getProperties().put("mail.smtp.localhost", "bimserver.org");
 	
 		MimeMessage msg = new MimeMessage(mailSession);
 	
@@ -44,6 +45,7 @@
 		Transport.send(msg);
 		out.append("Clash detection succesfully e-mailed to " + address);
 	} catch (Exception e) {
+		e.printStackTrace();
 		out.append("An error has occured while sending clash detection: " + e.getMessage());
 	}
 %>
