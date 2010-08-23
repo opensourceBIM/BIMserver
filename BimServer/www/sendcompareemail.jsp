@@ -10,6 +10,7 @@
 <%@page import="org.bimserver.ServerSettings"%>
 <%@page import="org.bimserver.shared.SCompareResult"%>
 <%@page import="org.bimserver.interfaces.objects.SProject"%>
+<%@page import="org.bimserver.MailSystem"%>
 <jsp:useBean id="loginManager" scope="session" class="org.bimserver.LoginManager" />
 <%
 	try {
@@ -25,10 +26,7 @@
 			senderAddress = ServerSettings.getSettings().getEmailSenderAddress();
 		}
 		
-		Properties props = new Properties();
-		props.put("mail.smtp.host", ServerSettings.getSettings().getSmtpServer());
-
-		Session mailSession = Session.getDefaultInstance(props);
+		Session mailSession = MailSystem.createMailSession();
 
 		Message msg = new MimeMessage(mailSession);
 

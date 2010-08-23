@@ -8,7 +8,8 @@
 <%@page import="java.util.Properties"%>
 <%@page import="org.bimserver.ServerSettings"%>
 <%@page import="org.bimserver.interfaces.objects.SProject"%>
-<jsp:useBean id="loginManager" scope="session" class="org.bimserver.LoginManager" />
+
+<%@page import="org.bimserver.MailSystem"%><jsp:useBean id="loginManager" scope="session" class="org.bimserver.LoginManager" />
 <%
 	try {
 		String address = request.getParameter("address");
@@ -18,12 +19,7 @@
 		if (!senderAddress.contains("@") || !senderAddress.contains(".")) {
 			senderAddress = ServerSettings.getSettings().getEmailSenderAddress();
 		}
-		System.out.println(senderAddress);
-		Properties props = new Properties();
-		props.put("mail.smtp.host", ServerSettings.getSettings().getSmtpServer());
-	
-		Session mailSession = Session.getDefaultInstance(props);
-		mailSession.getProperties().put("mail.smtp.localhost", "bimserver.org");
+		Session mailSession = MailSystem.createMailSession();
 	
 		MimeMessage msg = new MimeMessage(mailSession);
 	
