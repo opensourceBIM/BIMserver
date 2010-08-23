@@ -434,6 +434,8 @@ public class FastIfcFileReader {
 				IfcBoolean createIfcBoolean = Ifc2x3Factory.eINSTANCE.createIfcBoolean();
 				createIfcBoolean.setWrappedValue(Tristate.TRUE);
 				object.eSet(structuralFeature, createIfcBoolean);
+			} else if (structuralFeature.getEType() == EcorePackage.eINSTANCE.getEBoolean()) {
+				object.eSet(structuralFeature, true);
 			} else {
 				IfcLogical createIfcBoolean = Ifc2x3Factory.eINSTANCE.createIfcLogical();
 				createIfcBoolean.setWrappedValue(Tristate.TRUE);
@@ -446,6 +448,8 @@ public class FastIfcFileReader {
 				IfcBoolean createIfcBoolean = Ifc2x3Factory.eINSTANCE.createIfcBoolean();
 				createIfcBoolean.setWrappedValue(Tristate.FALSE);
 				object.eSet(structuralFeature, createIfcBoolean);
+			} else if (structuralFeature.getEType() == EcorePackage.eINSTANCE.getEBoolean()) {
+				object.eSet(structuralFeature, false);
 			} else {
 				IfcLogical createIfcBoolean = Ifc2x3Factory.eINSTANCE.createIfcLogical();
 				createIfcBoolean.setWrappedValue(Tristate.FALSE);
