@@ -218,7 +218,7 @@ the latest revision<br />
 <div id="simpledownload">
 <form action="<%=request.getContextPath() %>/download" method="post">
 Download: <input type="hidden" name="roid"
-	value="<%=project.getLastRevisionId() %>" /> <select name="resultType">
+	value="<%=project.getLastRevisionId() %>" /> <select name="resultType" id="detailsdownloadcheckoutselect">
 	<%
 	for (ResultType resultType : emfSerializerFactory.getMultipleResultTypes()) {
 %>
@@ -230,7 +230,7 @@ Download: <input type="hidden" name="roid"
 </select> <label for="simplezip_<%=lastRevision.getId() %>">Zip</label><input
 	type="checkbox" name="zip" id="simplezip_<%=lastRevision.getId() %>" />
 <input name="download" type="submit" value="Download"> <input
-	name="checkout" type="submit" value="Checkout"></form>
+	name="checkout" type="submit" value="Checkout" id="detailscheckoutbutton"></form>
 </div>
 <div id="advanceddownload"><script>
 var projects = new Object();
@@ -437,7 +437,7 @@ if (revisions.size() > 0) {
 		<form method="post" action="<%=request.getContextPath() %>/download">
 		<input type="hidden" name="roid" value="<%=revision.getOid() %>" /> <%
 	if (revision.isFinalized()) {
-%> <select name="resultType">
+%> <select name="resultType" class="revisionsdownloadcheckoutselect">
 			<%
 	for (ResultType resultType : emfSerializerFactory.getMultipleResultTypes()) {
 %>
@@ -449,7 +449,7 @@ if (revisions.size() > 0) {
 		</select> <label for="revisionzip_<%=revision.getId() %>">Zip</label><input
 			type="checkbox" name="zip" id="revisionzip_<%=revision.getId() %>" />
 		<input name="download" type="submit" value="Download" /> <input
-			name="checkout" type="submit" value="Checkout" /></form>
+			name="checkout" type="submit" value="Checkout" class="revisionscheckoutbutton" /></form>
 		</td>
 		<%
 } else {
@@ -690,6 +690,18 @@ feed</a></div>
 			return false;
 		});
 
+		checkDetailsCheckoutButton = function(){
+			$("#detailscheckoutbutton").attr("disabled", $("#detailsdownloadcheckoutselect").val() != "IFC" && $("#detailsdownloadcheckoutselect").val() != "IFCXML");
+		};
+		$("#detailsdownloadcheckoutselect").change(checkDetailsCheckoutButton);
+		checkDetailsCheckoutButton();
+
+		checkRevisionsCheckoutButton = function(event){
+			$(event.target).parent().children(".revisionscheckoutbutton").attr("disabled", $(event.target).val() != "IFC" && $(event.target).val() != "IFCXML");
+		};
+		$(".revisionsdownloadcheckoutselect").change(checkRevisionsCheckoutButton);
+//		checkRevisionsCheckoutButton();
+		
 		updateTreeSelectListeners();
 	});
 	
