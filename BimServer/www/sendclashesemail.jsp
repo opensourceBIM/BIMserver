@@ -8,10 +8,14 @@
 <%@page import="java.util.Properties"%>
 <%@page import="org.bimserver.ServerSettings"%>
 <%@page import="org.bimserver.interfaces.objects.SProject"%>
-
-<%@page import="org.bimserver.MailSystem"%><jsp:useBean id="loginManager" scope="session" class="org.bimserver.LoginManager" />
+<%@page import="org.bimserver.MailSystem"%>
+<%@page import="org.slf4j.Logger"%>
+<%@page import="org.slf4j.LoggerFactory"%>
+<jsp:useBean id="loginManager" scope="session" class="org.bimserver.LoginManager" />
 <%
+	Logger logger = LoggerFactory.getLogger(MailSystem.class);
 	try {
+		
 		String address = request.getParameter("address");
 		
 		String senderName = loginManager.getService().getCurrentUser().getName();
@@ -41,7 +45,7 @@
 		Transport.send(msg);
 		out.append("Clash detection succesfully e-mailed to " + address);
 	} catch (Exception e) {
-		e.printStackTrace();
+		logger.error("", e);
 		out.append("An error has occured while sending clash detection: " + e.getMessage());
 	}
 %>

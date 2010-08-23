@@ -20,9 +20,12 @@
 <%@page import="org.bimserver.TemplateIdentifier"%>
 <%@page import="org.bimserver.Settings"%>
 <%@page import="org.bimserver.MailSystem"%>
+<%@page import="org.slf4j.Logger"%>
+<%@page import="org.slf4j.LoggerFactory"%>
 <jsp:include page="htmlheader.jsp" />
 <jsp:useBean id="loginManager" scope="session" class="org.bimserver.LoginManager" />
 <%
+	Logger logger = LoggerFactory.getLogger(MailSystem.class);
 	if (ServerSettings.getSettings().isAllowSelfRegistration()) {
 		List<String> errorMessages = new ArrayList<String>();
 		Version version = VersionChecker.getInstance().getLocalVersion();
@@ -64,6 +67,7 @@
 						Transport.send(msg);
 					}
 				} catch (Exception e) {
+					logger.error("", e);
 					errorMessages.add(e.getMessage());
 				}
 			}

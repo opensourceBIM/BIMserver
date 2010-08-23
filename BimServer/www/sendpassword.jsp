@@ -20,10 +20,13 @@
 <%@page import="org.bimserver.TemplateIdentifier"%>
 <%@page import="org.bimserver.Settings"%>
 <%@page import="org.bimserver.MailSystem"%>
+<%@page import="org.slf4j.Logger"%>
+<%@page import="org.slf4j.LoggerFactory"%>
 <jsp:include page="htmlheader.jsp" />
 <jsp:useBean id="loginManager" scope="session" class="org.bimserver.LoginManager" />
 <%
 	String message = "";
+	Logger logger = LoggerFactory.getLogger(MailSystem.class);
 	if (request.getParameter("register") != null) {
 		try {
 			String emailaddress = request.getParameter("emailaddress");
@@ -49,6 +52,7 @@
 			Transport.send(msg);
 			message = "<div class=\"info\">A new password has been sent to " + emailaddress + ", click <a href=\"login.jsp?username=" + emailaddress + "\">here</a> to login</div>";
 		} catch (Exception e) {
+			logger.error("", e);
 			message = "<div class=\"error\">An unknown error has occured, please try again or contact an administrator</div>";
 		}
 	}

@@ -9,8 +9,11 @@
 <%@page import="org.bimserver.ServerSettings"%>
 <%@page import="org.bimserver.interfaces.objects.SProject"%>
 <%@page import="org.bimserver.MailSystem"%>
+<%@page import="org.slf4j.Logger"%>
+<%@page import="org.slf4j.LoggerFactory"%>
 <jsp:useBean id="loginManager" scope="session" class="org.bimserver.LoginManager" />
 <%
+	Logger logger = LoggerFactory.getLogger(MailSystem.class);
 	try {
 		String address = request.getParameter("address");
 		long poid = Long.parseLong(request.getParameter("poid"));
@@ -42,6 +45,7 @@
 		Transport.send(msg);
 		out.append("Revision summary succesfully e-mailed to " + address);
 	} catch (Exception e) {
+		logger.error("", e);
 		out.append("An error has occured while sending revision summary: " + e.getMessage());
 	}
 %>
