@@ -323,7 +323,6 @@ project</a><br />
 	String checkoutWarning = loginManager.getService().getShowCheckoutWarning(project.getOid(), loginManager.getUoid());
 	if (checkoutWarning != null) {
 		out.write("<div class=\"warning\"><img src=\"images/warning.png\" alt=\"warning\" />" + checkoutWarning + "</div>");
-//		out.write("<div class=\"warning\"><img src=\"images/warning.png\" alt=\"warning\" />Warning, after your last checkout of this project (revision " + checkoutRevision.getId() + "), at least one other user has checked-in a newer revision</div>");
 	}
 	if (userHasCheckinRights) {
 %> <a href="#" id="uploadlink">Upload (note: Subprojects present)</a>
@@ -350,7 +349,7 @@ project</a><br />
 %>
 	<optgroup label="<%=sProject.getName() %>">
 		<%
-	for (SRevision sRevision : loginManager.getService().getAllRevisionsOfProject(sProject.getOid())) {
+	for (SRevision sRevision : revisions) {
 %>
 		<option value="<%=sRevision.getOid() %>"><%=sRevision.getId() %></option>
 		<%}
@@ -418,8 +417,8 @@ if (revisions.size() > 0) {
 		for (SRevision revision : revisions) {
 			SUser revisionUser = loginManager.getService().getUserByUoid(revision.getUserId());
 %>
-	<tr
-		style="<%=lastRevision != null && revision.getId() == lastRevision.getId() ? "font-weight: bold;" : "" %><%=revision.isFinalized() ? "" : "background-color: #CCCCCC" %>">
+	<tr id="rev<%=revision.getOid() %>"
+		<%=lastRevision != null && revision.getId() == lastRevision.getId() ? "class=\"lastrevision\"" : "" %> style="<%=revision.isFinalized() ? "" : " background-color: #CCCCCC" %>">
 		<td><a href="revision.jsp?roid=<%=revision.getOid() %>"><%=revision.getId() %></a></td>
 		<td><%=dateFormat.format(revision.getDate()) %></td>
 		<td><a href="user.jsp?uoid=<%=revision.getUserId() %>"><%=revisionUser.getUsername() %></a></td>
@@ -427,14 +426,13 @@ if (revisions.size() > 0) {
 			<div><%=revision.getComment()%></div><a href="#" class="morelink">more</a>
 		</div></td>
 		<% if (project.getParentId() == -1 && sClashDetectionSettings.isEnabled()) { %>
-		<td><%=revision.isProcessingClashes() ? "Processing" : revision.getLastClashes().size() %></td>
+		<td class="clashesfield"><%=revision.isProcessingClashes() ? "Processing" : revision.getLastClashes().size() %></td>
 		<% } %>
-		<td><%=revision.isFinalized() ? revision.getSize() : "Processing" %></td>
-		<td>
-		<form method="post" action="<%=request.getContextPath() %>/download">
-		<input type="hidden" name="roid" value="<%=revision.getOid() %>" /> <%
-	if (revision.isFinalized()) {
-%> <select name="resultType" class="revisionsdownloadcheckoutselect">
+		<td class="sizefield"><%=revision.isFinalized() ? revision.getSize() : "Processing" %></td>
+		<td class="downloadfield">
+		<form method="post" action="<%=request.getContextPath() %>/download" class="<%=revision.isFinalized() ? "" : "blockinvisible" %>">
+		<input type="hidden" name="roid" value="<%=revision.getOid() %>" />
+<select name="resultType" class="revisionsdownloadcheckoutselect">
 			<%
 	for (ResultType resultType : emfSerializerFactory.getMultipleResultTypes()) {
 %>
@@ -448,15 +446,6 @@ if (revisions.size() > 0) {
 		<input name="download" type="submit" value="Download" /> <input
 			name="checkout" type="submit" value="Checkout" class="revisionscheckoutbutton" /></form>
 		</td>
-		<%
-} else {
-%>
-		Press the
-		<a href="javascript:location.reload(true)">refresh</a>
-		button on your browser after a while
-		<%	
-}
-%>
 	</tr>
 	<%
 		}
@@ -599,6 +588,15 @@ feed</a></div>
 </div>
 </div>
 <script>
+var revisions = new Array(<%=revisions.size()%>);
+var i =0;
+<%
+for (SRevision sRevision : revisions) {
+	%>
+		revisions[i++] = <%=sRevision.getOid()%>;
+	<%
+}
+%>
 	$(document).ready(function(){
 		$("#revisiontablink").click(function (){
 			document.getElementById("projecttabber").tabber.tabShow(2);	
@@ -625,6 +623,29 @@ feed</a></div>
 <%
 		}
 %>
+		window.setInterval(function() {
+			var roids = "";
+			for (var roid in revisions) {
+				roids += revisions[roid] + ";";
+			}
+			$.ajax({ url: "/progress", context: document.body, data: {roids: roids}, success: function(data){
+				for (result in data) {
+					var item = data[result];
+					if (item.finalized) {
+						$("#rev" + item.roid).children(".sizefield").text(item.totalsize);
+						$("#rev" + item.roid).children(".downloadfield").children("form").removeClass("blockinvisible");
+					} else {
+						$("#rev" + item.roid).children(".downloadfield").children("form").addClass("blockinvisible");
+					}
+					$("#rev" + item.roid).css("background-color", item.finalized ? "white" : "#CCCCCC");
+					if (item.islast) {
+						$("#rev" + item.roid).addClass("lastrevision");
+					} else {
+						$("#rev" + item.roid).removeClass("lastrevision");
+					}
+				}
+		    }});
+		}, 1000);
 	});
 </script>
 <%

@@ -88,8 +88,8 @@ public class BerkeleyColumnDatabase implements ColumnDatabase {
 		envConfig.setCachePercent(25);
 		envConfig.setAllowCreate(true);
 		envConfig.setTransactional(transactional);
-		envConfig.setTxnTimeout(60, TimeUnit.SECONDS);
-		envConfig.setLockTimeout(60, TimeUnit.SECONDS);
+		envConfig.setTxnTimeout(5, TimeUnit.SECONDS);
+		envConfig.setLockTimeout(5, TimeUnit.SECONDS);
 		envConfig.setTxnSerializableIsolation(true);
 		dbConfig = new DatabaseConfig();
 		try {

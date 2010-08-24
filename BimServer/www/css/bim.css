@@ -391,3 +391,11 @@ table.cleantable td {
 label {
 	cursor: pointer;
 }
+
+.blockinvisible {
+	display: none;
+}
+
+.lastrevision {
+	font-weight: bold;
+}
