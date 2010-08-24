@@ -498,6 +498,30 @@ public class IfcEngineJNA {
 	 * @param size
 	 * @return
 	 */
+	public Set<Clash> finalizeClashesByEI(Pointer modelId, int size) {
+		Set<Clash> clashes = new HashSet<Clash>();
+		Memory pG1 = new Memory(size * 4 * getPlatformMultiplier());
+		Memory pG2 = new Memory(size * 4 * getPlatformMultiplier());
+		engine.finalizeClashesByGuid(modelId, pG1, pG2);
+		for (int i = 0; i < size; i++) {
+			Pointer memory1 = pG1.getPointer(i * 4 * getPlatformMultiplier());
+			String pG1Str = memory1.getString(0);
+			Pointer memory2 = pG2.getPointer(i * 4 * getPlatformMultiplier());
+			String pG2Str = memory2.getString(0);
+
+			Clash clash = StoreFactory.eINSTANCE.createClash();
+			clash.setGuid1(pG1Str);
+			clash.setGuid2(pG2Str);
+			clashes.add(clash);
+		}
+		return clashes;
+	}
+
+	/**
+	 * @param modelId
+	 * @param size
+	 * @return
+	 */
 	public Set<Clash> finalizeClashesByGuid(Pointer modelId, int size) {
 		Set<Clash> clashes = new HashSet<Clash>();
 		Memory pG1 = new Memory(size * 4 * getPlatformMultiplier());

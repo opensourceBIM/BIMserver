@@ -9,10 +9,15 @@
 $(document).ready(function(){
 	instrumentBrowserLinks();
 });
+
+	function showOverlay(title, url) {
+		tb_show(title, url + "&width=" + $(document).width() * 0.7 + "&height=" + $(document).height() * 0.7);
+	}
+
 	function instrumentBrowserLinks() {
 		$(".browserlink").unbind('click');
 		$(".browserlink").click(function(event){
-			tb_show("Browser", $(event.target).attr('browserurl') + "&width=500&height=500");
+			showOverlay("Browser", $(event.target).attr('browserurl'));
 			return false;
 		});
 		$(".querylink").click(function(event){
