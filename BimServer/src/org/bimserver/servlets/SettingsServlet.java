@@ -80,17 +80,18 @@ public class SettingsServlet extends HttpServlet {
 					settings.saveToStream(response.getOutputStream());
 					return;
 				} else if (request.getParameter("action") != null && request.getParameter("action").equals("downloadlog")) {
+					response.setContentType("text");
+					response.setHeader("Content-Disposition", "attachment; filename=\"bimserver.log\"");
 					File logfile = null;
 					if (ServerInitializer.getResourceFetcher() instanceof WarResourceFetcher) {
 						logfile = new File(getServletContext().getRealPath("/") + "bimserver.log");
 					} else if (ServerInitializer.getResourceFetcher() instanceof JarResourceFetcher) {
 						logfile = new File("bimserver.log");
 					} else {
+						response.getWriter().println("No log file on local development stations");
 						return;
 					}
 					if (logfile != null) {
-						response.setContentType("text");
-						response.setHeader("Content-Disposition", "attachment; filename=\"bimserver.log\"");
 						FileInputStream fileIn = new FileInputStream(logfile);
 						byte[] buffer = new byte[1024];
 						int read = fileIn.read(buffer);

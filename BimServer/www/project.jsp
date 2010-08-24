@@ -341,6 +341,7 @@ project</a><br />
 	if (atLeastOne) {
 %>
 <form method="post" action="branch.jsp">
+
 <fieldset><legend>Checkin existing revision</legend> <label>Project/Revision</label>
 <select name="roid">
 	<%
