@@ -2,7 +2,7 @@
 <div class="footer">    
 	<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>
         <div><img src="images/footerlogo.gif" alt="Open Source BIMserver" /><br/>
-        <a href="<%=getServletContext().getContextPath()%>/settings?action=downloadlog" target="_blank">Download Logfile</a></div> 
+        <a href="<%=getServletContext().getContextPath()%>/settings?action=downloadlog">Download Logfile</a></div> 
 </div><!-- end footer --> 
 </div>
 <script>

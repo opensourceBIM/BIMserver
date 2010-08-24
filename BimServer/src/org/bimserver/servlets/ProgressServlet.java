@@ -23,19 +23,23 @@ public class ProgressServlet extends HttpServlet {
 		try {
 			response.setContentType("application/json");
 			LoginManager loginManager = (LoginManager) request.getSession().getAttribute("loginManager");
-			String roidsString = request.getParameter("roids");
-			String[] split = roidsString.split(";");
 			JSONArray result = new JSONArray();
-			for (String roidString : split) {
-				long roid = Long.parseLong(roidString);
-				SRevision revision = loginManager.getService().getRevision(roid);
-				JSONObject object = new JSONObject();
-				object.put("roid", roid);
-				object.put("finalized", revision.isFinalized());
-				object.put("processingClashes", revision.isProcessingClashes());
-				object.put("totalsize", revision.getSize());
-				object.put("islast", (loginManager.getService().getProjectByPoid(revision.getProjectId()).getLastRevisionId() == revision.getOid()));
-				result.put(object);
+			if (loginManager != null) {
+				String roidsString = request.getParameter("roids");
+				String[] split = roidsString.split(";");
+				for (String roidString : split) {
+					long roid = Long.parseLong(roidString);
+					SRevision revision = loginManager.getService().getRevision(roid);
+					JSONObject object = new JSONObject();
+					object.put("roid", roid);
+					object.put("finalized", revision.isFinalized());
+					object.put("processingClashes", revision.isProcessingClashes());
+					object.put("totalsize", revision.getSize());
+					object.put("islast", (loginManager.getService().getProjectByPoid(revision.getProjectId()).getLastRevisionId() == revision.getOid()));
+					result.put(object);
+				}
+			} else {
+				result.put("error");
 			}
 			result.write(response.getWriter());
 		} catch (NumberFormatException e) {
