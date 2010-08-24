@@ -176,11 +176,18 @@ function o3dinit(callback) {
 
 function createClient(element, callback) {
 	 g_o3dElement = o3djs.util.createClient(element, "", "");
-	 o3djs.base.init(g_o3dElement);
-	  g_o3d = g_o3dElement.o3d;
-	  g_math = o3djs.math;
-	  g_quaternions = o3djs.quaternions;
-	  g_client = g_o3dElement.client;
+	 try {
+       o3djs.base.init(g_o3dElement);
+	   g_o3d = g_o3dElement.o3d;
+	   g_math = o3djs.math;
+	   g_quaternions = o3djs.quaternions;
+	   g_client = g_o3dElement.client;
+	 } catch (e) {
+	 }
+	   if (!o3djs.base.ready()) {
+	 	  $("#" + g_idOfLoader).html("O3D Plugin Required, please follow installation <a target=\"_blank\" href=\"http://code.google.com/apis/o3d/docs/gettingstarted.html#install\">instructions</a>");
+		  return;
+	   }
 	 
 	  g_mainPack = g_client.createPack();
 	 
@@ -225,7 +232,7 @@ function uninit() {
 }
  
 function doload(url, idOfLoader) {
-  g_idOfLoader = idOfLoader;		
+  g_idOfLoader = idOfLoader;
 //  if (g_root) {
 //    g_root.parent = null;
 //   g_root = null;
