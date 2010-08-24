@@ -96,7 +96,7 @@ if (currentUser.getOid() == uoid || currentUser.getUserType() == SUserType.ADMIN
 	<td>
 	<form method="post" action="<%=request.getContextPath() %>/download">
 	<input type="hidden" name="roid" value="<%=revision.getOid() %>"/>
-	<select name="resultType">
+	<select name="resultType" class="revisionsdownloadcheckoutselect">
 <%
 	for (ResultType resultType : emfSerializerFactory.getMultipleResultTypes()) {
 %>
@@ -104,7 +104,7 @@ if (currentUser.getOid() == uoid || currentUser.getUserType() == SUserType.ADMIN
 <%	
 	}
 %>
-	</select> <label for="zip_<%=revision.getId() %>">Zip</label><input type="checkbox" name="zip" id="zip_<%=revision.getId() %>"/> <input name="download" type="submit" value="Download"/> <input name="checkout" type="submit" value="Checkout"/>
+	</select> <label for="zip_<%=revision.getId() %>">Zip</label><input type="checkbox" name="zip" id="zip_<%=revision.getId() %>"/> <input name="download" type="submit" value="Download"/> <input name="checkout" type="submit" value="Checkout" class="revisionscheckoutbutton"/>
 	</form>
 	</td>
 </tr>
@@ -151,7 +151,7 @@ if (currentUser.getOid() == uoid || currentUser.getUserType() == SUserType.ADMIN
 <%	
 	}
 %>
-	</select> <label for="zip_<%=checkout.getOid() %>">Zip</label><input type="checkbox" name="zip" id="zip_<%=checkout.getOid() %>"/> <input name="download" type="submit" value="Download"/> <input name="checkout" type="submit" value="Checkout"/>
+	</select> <label for="zip_<%=checkout.getOid() %>">Zip</label><input type="checkbox" name="zip" id="zip_<%=checkout.getOid() %>"/> <input name="download" type="submit" value="Download"/>
 	</form>
 	</td>
 </tr>
@@ -219,4 +219,12 @@ if (currentUser.getOid() == uoid || currentUser.getUserType() == SUserType.ADMIN
 }
 %>
 </div>
+<script>
+	$(document).ready(function(){
+		checkRevisionsCheckoutButton = function(event){
+			$(event.target).parent().children(".revisionscheckoutbutton").attr("disabled", $(event.target).val() != "IFC" && $(event.target).val() != "IFCXML");
+		};
+		$(".revisionsdownloadcheckoutselect").change(checkRevisionsCheckoutButton);
+	});
+</script>
 <%@ include file="footer.jsp" %>

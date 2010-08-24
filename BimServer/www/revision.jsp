@@ -51,14 +51,11 @@
 
 <h1>Revision details (Project: <%=project.getName()%>, Revision: <%=revision.getId()%>)</h1>
 <div id="guide">
-<div id="guidewrap">
-<ol id="breadcrumb">
-	<li id="bc-home"><a href="main.jsp" id="usernav-home" class="home">Home</a>
-	</li>
-	<li><%=JspHelper.generateBreadCrumbPath(revision, loginManager.getService())%>
-	</li>
-</ol>
-</div>
+  <div id="guidewrap">
+    <ol id="breadcrumb">
+	  <li><%=JspHelper.generateBreadCrumbPath(revision, loginManager.getService())%></li>
+    </ol>
+  </div>
 </div>
 <div id="guide_wrap_btm"></div>
 

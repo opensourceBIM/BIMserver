@@ -57,8 +57,8 @@ E-mail <a href="mailto:<%= checkVersion.getOnlineVersion().getSupportEmail() %>"
 	  (c) Copyright bimserver.org<br/>
 	  Licensed under GNU GPLv3<br/>
 	  <a href="http://www.gnu.org/licenses/gpl-3.0.txt" target="_blank">http://www.gnu.org/licenses/gpl-3.0.txt</a><br/>
-	  For more information mail to <a href"mailto:license@bimserver.org">license@bimserver.org</a><br/>
-      </br>
+	  For more information mail to <a href="mailto:license@bimserver.org">license@bimserver.org</a><br/>
+      <br/>
       BIMserver software uses the IFC Engine DLL.<br/>
       This Engine DLL is NOT open source. The IFC Engine DLL is a commercial product owned by TNO.<br/>
 	  The latest versions are available for download from <a href=" http://ifcengine.com" target="_blank">ifcengine.com</a>. <br/>

@@ -68,14 +68,11 @@
 			}
 %>
 <div id="guide">
-<div id="guidewrap">
-<ol id="breadcrumb">
-	<li id="bc-home"><a href="main.jsp" id="usernav-home" class="home">Home</a>
-	</li>
-	<li><%=JspHelper.generateBreadCrumbPath(sProject, loginManager.getService())%>
-	</li>
-</ol>
-</div>
+  <div id="guidewrap">
+    <ol id="breadcrumb">
+	  <li><%=JspHelper.generateBreadCrumbPath(sProject, loginManager.getService())%></li>
+    </ol>
+  </div>
 </div>
 <div id="guide_wrap_btm"></div>
 <div class="tabber" id="projecttabber">
