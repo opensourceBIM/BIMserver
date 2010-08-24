@@ -340,8 +340,6 @@ tr.checkinrights {
 	margin-left: -38px;
 	padding-left: 0;
 	padding-right: 0;
-	background: url("../images/chevron-home.png") 100% 50% no-repeat !important;
-	background-image: url("../images/chevron-home.png");
 	overflow: hidden;
 	text-indent: -9999em;
 }

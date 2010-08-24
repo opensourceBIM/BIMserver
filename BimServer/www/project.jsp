@@ -118,14 +118,11 @@ if (lastRevision != null) {
 }
 %>
 <div id="guide">
-<div id="guidewrap">
-<ol id="breadcrumb">
-	<li id="bc-home"><a href="main.jsp" id="usernav-home" class="home">Home</a>
-	</li>
-	<li><%= JspHelper.generateBreadCrumbPath(project, loginManager.getService()) %>
-	</li>
-</ol>
-</div>
+  <div id="guidewrap">
+    <ol id="breadcrumb">
+	  <li><%= JspHelper.generateBreadCrumbPath(project, loginManager.getService()) %></li>
+    </ol>
+  </div>
 </div>
 <h1>Project details (<%=project.getName() %>)</h1>
 <div class="tabber" id="projecttabber">
@@ -525,11 +522,8 @@ open a specific revision to query other revisions<br />
 			<%	
 	}
 %>
-		</select> <label for="checkoutsdownloadzip_<%=checkout.getOid() %>">Zip</label><input
-			type="checkbox" name="zip"
-			id="checkoutsdownloadzip_<%=checkout.getOid() %>" /> <input
-			name="download" type="submit" value="Download" /> <input
-			name="checkout" type="submit" value="Checkout" /></form>
+		</select> <label for="checkoutsdownloadzip_<%=checkout.getOid() %>">Zip</label><input type="checkbox" name="zip" id="checkoutsdownloadzip_<%=checkout.getOid() %>" /> <input	name="download" type="submit" value="Download" />
+			</form>
 		</td>
 	</tr>
 	<%
@@ -700,7 +694,6 @@ feed</a></div>
 			$(event.target).parent().children(".revisionscheckoutbutton").attr("disabled", $(event.target).val() != "IFC" && $(event.target).val() != "IFCXML");
 		};
 		$(".revisionsdownloadcheckoutselect").change(checkRevisionsCheckoutButton);
-//		checkRevisionsCheckoutButton();
 		
 		updateTreeSelectListeners();
 	});
