@@ -115,6 +115,13 @@ public interface IfcEngineInterface extends Library {
 	void finalizeClashesByGuid(Pointer modelId, Pointer pG1, Pointer pG2);
 
 	/**
+	 * @param modelId
+	 * @param pG1
+	 * @param pG2
+	 */
+	void finalizeClashesByEI(Pointer modelId, Pointer pG1, Pointer pG2);
+
+	/**
 	 * @param model
 	 * @param pV
 	 * @param pI

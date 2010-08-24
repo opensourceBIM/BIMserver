@@ -75,17 +75,15 @@ if (emfSerializerFactory.resultTypeEnabled(ResultType.O3D_JSON) && lastRevision 
 	if (emfSerializerFactory.resultTypeEnabled(ResultType.O3D_JSON) && lastRevision != null) {
 %>
 <li>
- <a href="visualize.jsp?width=520&height=530&roid=<%=project.getLastRevisionId() %>" class="visualizelink thickbox" title="Visualisation">Visualise</a></li>
+ <a id="visualiselink">Visualise</a></li>
  <%} %> 
  <%
 if (lastRevision != null) {
 %>
 <li>
- <a href="browser.jsp?width=520&height=530&roid=<%=project.getLastRevisionId() %>" class="thickbox" id="browserajaxlink" title="Browser">Browser</a></li>
+ <a id="browserlink">Browser</a></li>
  <%} %>
  <br/>
- 
- 
  <%
 	if (project.getSubProjects().size() == 0) {
 %> <br/> <%
@@ -625,27 +623,29 @@ for (SRevision sRevision : revisions) {
 		}
 %>
 		window.setInterval(function() {
-			var roids = "";
-			for (var roid in revisions) {
-				roids += revisions[roid] + ";";
-			}
-			$.ajax({ url: "/progress", context: document.body, data: {roids: roids}, success: function(data){
-				for (result in data) {
-					var item = data[result];
-					if (item.finalized) {
-						$("#rev" + item.roid).children(".sizefield").text(item.totalsize);
-						$("#rev" + item.roid).children(".downloadfield").children("form").removeClass("blockinvisible");
-					} else {
-						$("#rev" + item.roid).children(".downloadfield").children("form").addClass("blockinvisible");
-					}
-					$("#rev" + item.roid).css("background-color", item.finalized ? "white" : "#CCCCCC");
-					if (item.islast) {
-						$("#rev" + item.roid).addClass("lastrevision");
-					} else {
-						$("#rev" + item.roid).removeClass("lastrevision");
-					}
+			if (revisions.length > 0) {
+				var roids = "";
+				for (var roid in revisions) {
+					roids += revisions[roid] + ";";
 				}
-		    }});
+				$.ajax({ url: "/progress", context: document.body, data: {roids: roids}, success: function(data){
+					for (result in data) {
+						var item = data[result];
+						if (item.finalized) {
+							$("#rev" + item.roid).children(".sizefield").text(item.totalsize);
+							$("#rev" + item.roid).children(".downloadfield").children("form").removeClass("blockinvisible");
+						} else {
+							$("#rev" + item.roid).children(".downloadfield").children("form").addClass("blockinvisible");
+						}
+						$("#rev" + item.roid).css("background-color", item.finalized ? "white" : "#CCCCCC");
+						if (item.islast) {
+							$("#rev" + item.roid).addClass("lastrevision");
+						} else {
+							$("#rev" + item.roid).removeClass("lastrevision");
+						}
+					}
+			    }});
+			}
 		}, 1000);
 	});
 </script>
@@ -716,6 +716,16 @@ for (SRevision sRevision : revisions) {
 			$(event.target).parent().children(".revisionscheckoutbutton").attr("disabled", $(event.target).val() != "IFC" && $(event.target).val() != "IFCXML");
 		};
 		$(".revisionsdownloadcheckoutselect").change(checkRevisionsCheckoutButton);
+
+		$("#visualiselink").click(function(){
+			showOverlay("Visualisation", "visualize.jsp?roid=<%=project.getLastRevisionId() %>");
+			return false;
+		});
+
+		$("#browserlink").click(function(){
+			showOverlay("Browser", "browser.jsp?roid=<%=project.getLastRevisionId() %>");
+			return false;
+		});
 		
 		updateTreeSelectListeners();
 	});
