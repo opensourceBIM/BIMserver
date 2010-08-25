@@ -60,9 +60,4 @@ public class CheckoutResult {
 	public void setFile(DataHandler ifcFile) {
 		this.file = ifcFile;
 	}
-
-	public void setRevisionNr(String revisionNr2) {
-		// TODO Auto-generated method stub
-		
-	}
 }
