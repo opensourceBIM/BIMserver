@@ -4,7 +4,6 @@ import java.util.*;
 
 public class SProject
 {
-	private long oid;
 	
 	public long getOid() {
 		return oid;
@@ -13,6 +12,8 @@ public class SProject
 	public void setOid(long oid) {
 		this.oid = oid;
 	}
+
+	private long oid;
 	private int id;
 	private java.lang.String name;
 	private List<Long> hasAuthorizedUsers;

@@ -41,11 +41,13 @@
  <%
 	if (emfSerializerFactory.resultTypeEnabled(ResultType.O3D_JSON)) {
 %>
+<ul>
 <li>
  <a href="visualize.jsp?width=520&height=530&roid=<%=revision.getOid() %>" class="visualizelink thickbox" title="Visualisation">Visualise</a></li>
  <%} %> 
  <li>
  <a href="browser.jsp?width=520&height=530&roid=<%=revision.getOid() %>" class="thickbox" id="browserajaxlink" title="Browser">Browser</a></li>
+</ul>
 </div>
 <div class="content">
 
@@ -145,12 +147,15 @@
 <br />
 
 <%-- --------------------------------------------------------------- BRANCH TO NEW PROJECT --%>
-Branch to new project
-<form method="post" action="branch.jsp"><label>New
-project name</label> <input type="text" name="name" /> <label>Revision
-comment</label> <input type="text" name="comment" /> <input type="submit"
-	value="Branch" /> <input type="hidden" name="roid" value="<%=roid%>" />
-<input type="hidden" name="action" value="branchtonewproject" /></form>
+<fieldset>
+<legend>Branch to new project</legend>
+<form method="post" action="branch.jsp">
+<label>New project name</label> <input type="text" name="name" /> 
+<label>Revision comment</label> <input type="text" name="comment" />
+<input type="submit" value="Branch" /> <input type="hidden" name="roid" value="<%=roid%>" />
+<input type="hidden" name="action" value="branchtonewproject" />
+</form>
+</fieldset>
 </div>
 <%
 	if (checkouts.size() > 0) {

@@ -339,8 +339,9 @@ project</a><br />
 	if (atLeastOne) {
 %>
 <form method="post" action="branch.jsp">
-
-<fieldset><legend>Checkin existing revision</legend> <label>Project/Revision</label>
+<fieldset>
+<legend>Checkin existing revision</legend>
+ <label>Project/Revision</label>
 <select name="roid">
 	<%
 		for (SProject sProject : projects) {
@@ -361,13 +362,12 @@ project</a><br />
 </select> <label>Comment</label> <input type="text" name="comment" /> <input
 	type="submit" value="Checkin as new revision" /> <input type="hidden"
 	name="action" value="branchtoexistingproject" /> <input type="hidden"
-	name="destpoid" value="<%=poid %>" /></fieldset>
+	name="destpoid" value="<%=poid %>" />
+</fieldset>
 </form>
 <% }
 } %>
 </div>
-<br />
-<br />
 <%
 	}
 	if (revisions.size() > 1) {
@@ -418,7 +418,7 @@ if (revisions.size() > 0) {
 			boolean isTagged = revision.getTag() != null;
 %>
 	<tr <%=isTagged?"class=\"tagged\"":""%> id="rev<%=revision.getOid() %>"
-		<%=lastRevision != null && revision.getId() == lastRevision.getId() ? "class=\"lastrevision\"" : "" %> style="<%=revision.isFinalized() ? "" : " background-color: #CCCCCC" %>">
+		<%=lastRevision != null && revision.getId() == lastRevision.getId() ? "class=\"lastrevision\"" : "" %>>
 		<td><a href="revision.jsp?roid=<%=revision.getOid() %>"><%=revision.getId() %></a></td>
 		<td><%=dateFormat.format(revision.getDate()) %></td>
 		<td><a href="user.jsp?uoid=<%=revision.getUserId() %>"><%=revisionUser.getUsername() %></a></td>
@@ -428,7 +428,7 @@ if (revisions.size() > 0) {
 		<% if (project.getParentId() == -1 && sClashDetectionSettings.isEnabled()) { %>
 		<td class="clashesfield"><%=revision.isProcessingClashes() ? "Processing" : revision.getLastClashes().size() %></td>
 		<% } %>
-		<td class="sizefield"><%=revision.isFinalized() ? revision.getSize() : "Processing" %></td>
+		<td class="sizefield"><img src="images/ajax-loader.gif" style="display: <%=revision.isFinalized() ? "none" : "block"%>"/><span><%=revision.isFinalized() ? revision.getSize() : " Processing" %></span></td>
 		<td class="downloadfield">
 		<form method="post" action="<%=request.getContextPath() %>/download" class="<%=revision.isFinalized() ? "" : "blockinvisible" %>">
 		<input type="hidden" name="roid" value="<%=revision.getOid() %>" />
@@ -633,12 +633,13 @@ for (SRevision sRevision : revisions) {
 					for (result in data) {
 						var item = data[result];
 						if (item.finalized) {
-							$("#rev" + item.roid).children(".sizefield").text(item.totalsize);
+							$("#rev" + item.roid).children(".sizefield").children("span").text(item.totalsize);
+							$("#rev" + item.roid).children(".sizefield").children("img").hide();
 							$("#rev" + item.roid).children(".downloadfield").children("form").removeClass("blockinvisible");
 						} else {
+							$("#rev" + item.roid).children(".sizefield").children("img").show();
 							$("#rev" + item.roid).children(".downloadfield").children("form").addClass("blockinvisible");
 						}
-						$("#rev" + item.roid).css("background-color", item.finalized ? "white" : "#CCCCCC");
 						if (item.islast) {
 							$("#rev" + item.roid).addClass("lastrevision");
 						} else {
@@ -647,7 +648,7 @@ for (SRevision sRevision : revisions) {
 					}
 			    }});
 			}
-		}, 1000);
+		}, 500);
 	});
 </script>
 <%
