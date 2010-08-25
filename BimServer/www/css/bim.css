@@ -274,6 +274,10 @@ tr.checkinrights {
 	background-color: #D2E1FA;
 }
 
+tr.tagged {
+	background-color: #D2E1FA;
+}
+
 .checkbox {
 	cursor: pointer;
 }

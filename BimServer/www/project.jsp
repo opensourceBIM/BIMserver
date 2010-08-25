@@ -415,8 +415,9 @@ if (revisions.size() > 0) {
 	<%
 		for (SRevision revision : revisions) {
 			SUser revisionUser = loginManager.getService().getUserByUoid(revision.getUserId());
+			boolean isTagged = revision.getTag() != null;
 %>
-	<tr id="rev<%=revision.getOid() %>"
+	<tr <%=isTagged?"class=\"tagged\"":""%> id="rev<%=revision.getOid() %>"
 		<%=lastRevision != null && revision.getId() == lastRevision.getId() ? "class=\"lastrevision\"" : "" %> style="<%=revision.isFinalized() ? "" : " background-color: #CCCCCC" %>">
 		<td><a href="revision.jsp?roid=<%=revision.getOid() %>"><%=revision.getId() %></a></td>
 		<td><%=dateFormat.format(revision.getDate()) %></td>

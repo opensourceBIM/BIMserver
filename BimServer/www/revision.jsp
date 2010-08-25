@@ -98,10 +98,8 @@
 		<%
 			if (isAdmin && isTagged && isTopProject) {
 		%>
-		<td><input type="text" name="tagLabel"
-			value="<%=revision.getTag()%>" disabled="disabled" /></td>
-		<td><input type="submit" name="setTag" value="Set"
-			disabled="disabled" /></td>
+		<td><%=revision.getTag()%></td>
+		<td></td>
 		<%
 			} else if (isAdmin && !isTagged && isTopProject) {
 		%>
@@ -110,12 +108,11 @@
 		<%
 			} else if (isTagged) {
 		%>
-		<td><input type="text" name="tagLabel"
-			value="<%=revision.getTag()%>" disabled="disabled" /></td>
+		<td><%=revision.getTag()%></td><td></td>
 		<%
 			} else {
 		%>
-		<td><input type="text" name="tagLabel" disabled="disabled" /></td>
+		<td></td><td></td>
 		<%
 			}
 		%>
