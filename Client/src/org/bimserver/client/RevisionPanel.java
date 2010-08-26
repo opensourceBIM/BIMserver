@@ -80,8 +80,10 @@ public class RevisionPanel extends JPanel {
 		downloadItem.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				SRevision revision = revisionTableModel.getRevision(revisionTable.getSelectedRow());
-				testWindow.download(revision);
+				if (revisionTable.getSelectedRow() != -1) {
+					SRevision revision = revisionTableModel.getRevision(revisionTable.getSelectedRow());
+					testWindow.download(revision);
+				}
 			}
 		});
 

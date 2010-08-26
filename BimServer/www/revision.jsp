@@ -43,10 +43,10 @@
 %>
 <ul>
 <li>
- <a href="visualize.jsp?width=520&height=530&roid=<%=revision.getOid() %>" class="visualizelink thickbox" title="Visualisation">Visualise</a></li>
+ <a id="visualiselink" class="link">Visualise</a></li>
  <%} %> 
  <li>
- <a href="browser.jsp?width=520&height=530&roid=<%=revision.getOid() %>" class="thickbox" id="browserajaxlink" title="Browser">Browser</a></li>
+ <a id="browserlink" class="link">Browser</a></li>
 </ul>
 </div>
 <div class="content">
@@ -213,7 +213,16 @@
 			$(event.target).parent().children(".checkoutbutton").attr("disabled", $(event.target).val() != "IFC" && $(event.target).val() != "IFCXML");
 		};
 		$("#downloadcheckoutselect").change(checkCheckoutButton);
-		checkCheckoutButton();		
+		$("#visualiselink").click(function(){
+			showOverlay("Visualisation", "visualize.jsp?roid=<%=revision.getOid() %>");
+			return false;
+		});
+
+		$("#browserlink").click(function(){
+			showOverlay("Browser", "browser.jsp?roid=<%=revision.getOid() %>");
+			return false;
+		});
+		checkCheckoutButton();
 	});
 </script> <%
  	} catch (UserException e) {

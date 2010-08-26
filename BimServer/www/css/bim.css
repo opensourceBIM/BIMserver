@@ -394,6 +394,10 @@ table.cleantable td {
 	color: red;
 }
 
+.link {
+	cursor: pointer;	
+}
+
 label {
 	cursor: pointer;
 }

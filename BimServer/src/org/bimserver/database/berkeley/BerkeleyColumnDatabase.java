@@ -108,10 +108,10 @@ public class BerkeleyColumnDatabase implements ColumnDatabase {
 		long e = System.nanoTime();
 
 		transactionConfig = new TransactionConfig();
-//		transactionConfig.setReadCommitted(true);
+		transactionConfig.setReadCommitted(true);
 
 		cursorConfig = new CursorConfig();
-//		cursorConfig.setReadCommitted(true);
+		cursorConfig.setReadCommitted(true);
 
 		LOGGER.info("Berkeley Database Init done " + ((e - s) / 1000000) + " ms");
 	}
@@ -170,7 +170,7 @@ public class BerkeleyColumnDatabase implements ColumnDatabase {
 		DatabaseEntry value = new DatabaseEntry();
 		try {
 			OperationStatus operationStatus = getDatabase(tableName, databaseSession, false).get(
-					transactional ? ((BerkeleyTransaction) databaseSession.getBimTransaction()).getTransaction() : null, key, value, LockMode.DEFAULT);
+					transactional ? ((BerkeleyTransaction) databaseSession.getBimTransaction()).getTransaction() : null, key, value, LockMode.READ_COMMITTED);
 			if (operationStatus == OperationStatus.SUCCESS) {
 				increaseReads();
 				return value.getData();
