@@ -239,10 +239,29 @@ public class Service implements ServiceInterface {
 		return null;
 	}
 
-	private IfcModel readModel(InputStream inputStream, long fileSize) throws UserException {
+	private IfcModel readModel(final InputStream inputStream, long fileSize) throws UserException {
 		FastIfcFileReader fastIfcFileReader = new FastIfcFileReader(schema);
 		try {
-			fastIfcFileReader.read(inputStream, fileSize);
+			/*
+			 * Strangest hack ever, it seems that DelegatingInputStream (when using SOAP), sometimes gives 0 as a result of read(byte[] b, int off, int len),
+			 * which is illegal, so this code makes sure a 0 will be interpreted as the end of the stream
+			 */
+			InputStream between = new InputStream() {
+				@Override
+				public int read() throws IOException {
+					return inputStream.read();
+				}
+				
+				@Override
+				public int read(byte[] b, int off, int len) throws IOException {
+					int read = inputStream.read(b, off, len);
+					if (read == 0) {
+						return -1;
+					}
+					return read;
+				}
+			};
+			fastIfcFileReader.read(between, fileSize);
 			return fastIfcFileReader.getModel();
 		} catch (IncorrectIfcFileException e) {
 			throw new UserException("Invalid IFC File", e);

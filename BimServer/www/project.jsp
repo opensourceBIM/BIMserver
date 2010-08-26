@@ -75,13 +75,13 @@ if (emfSerializerFactory.resultTypeEnabled(ResultType.O3D_JSON) && lastRevision 
 	if (emfSerializerFactory.resultTypeEnabled(ResultType.O3D_JSON) && lastRevision != null) {
 %>
 <li>
- <a id="visualiselink">Visualise</a></li>
+ <a id="visualiselink" class="link">Visualise</a></li>
  <%} %> 
  <%
 if (lastRevision != null) {
 %>
 <li>
- <a id="browserlink">Browser</a></li>
+ <a id="browserlink" class="link">Browser</a></li>
  <%} %>
  <br/>
  <%
