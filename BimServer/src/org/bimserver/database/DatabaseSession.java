@@ -228,7 +228,7 @@ public class DatabaseSession implements BimDatabaseSession {
 		database.convertAdditionToEObject(object, addition, processedAdditions, map);
 	}
 
-	public ConcreteRevision createNewConcreteRevision(long size, long poid, long uoid, String comment) throws BimDatabaseException, BimDeadlockException {
+	public ConcreteRevision createNewConcreteRevision(long size, long poid, long uoid, String comment, boolean finalized) throws BimDatabaseException, BimDeadlockException {
 		ConcreteRevision concreteRevision = StoreFactory.eINSTANCE.createConcreteRevision();
 		Date date = new Date();
 		Project project = getProjectByPoid(poid);
@@ -239,7 +239,8 @@ public class DatabaseSession implements BimDatabaseSession {
 		}
 		User user = getUserByUoid(uoid);
 		concreteRevision.setProject(project);
-		createNewVirtualRevision(project, concreteRevision, comment, date, user, size);
+		concreteRevision.setFinalized(finalized);
+		createNewVirtualRevision(project, concreteRevision, comment, date, user, size, finalized);
 
 		for (Checkout checkout : project.getCheckouts()) {
 			if (checkout.getUser() == user) {
@@ -255,6 +256,7 @@ public class DatabaseSession implements BimDatabaseSession {
 			revision.setUser(user);
 			revision.setSize(size);
 			revision.setProject(parent);
+			revision.setFinalized(finalized);
 			if (parent.getLastRevision() != null) {
 				Revision lastRevision = parent.getLastRevision();
 				for (ConcreteRevision oldRevision : lastRevision.getConcreteRevisions()) {
@@ -277,7 +279,7 @@ public class DatabaseSession implements BimDatabaseSession {
 		return concreteRevision;
 	}
 
-	private void createNewVirtualRevision(Project project, ConcreteRevision revision, String comment, Date date, User user, long size)
+	private void createNewVirtualRevision(Project project, ConcreteRevision revision, String comment, Date date, User user, long size, boolean finalized)
 			throws BimDeadlockException {
 		Revision virtualRevision = StoreFactory.eINSTANCE.createRevision();
 		virtualRevision.getConcreteRevisions().add(revision);
@@ -286,6 +288,8 @@ public class DatabaseSession implements BimDatabaseSession {
 		virtualRevision.setDate(date);
 		virtualRevision.setUser(user);
 		virtualRevision.setSize(size);
+		virtualRevision.setFinalized(finalized);
+		project.setLastRevision(virtualRevision);
 		if (project.getRevisions().isEmpty()) {
 			virtualRevision.setId(1);
 		} else {
