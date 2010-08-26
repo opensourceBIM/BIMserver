@@ -11,7 +11,6 @@ import org.bimserver.database.store.Project;
 import org.bimserver.database.store.Revision;
 import org.bimserver.database.store.User;
 import org.bimserver.emf.IdEObject;
-import org.bimserver.ifc.IfcModel;
 import org.bimserver.shared.Addition;
 import org.bimserver.shared.DatabaseInformation;
 import org.bimserver.shared.UserException;
@@ -44,7 +43,7 @@ public interface BimDatabaseSession {
 
 	Project getProjectById(int pid) throws BimDeadlockException, BimDatabaseException;
 
-	ConcreteRevision createNewConcreteRevision(long size, long poid, long actingUoid, String comment) throws BimDeadlockException, BimDatabaseException;
+	ConcreteRevision createNewConcreteRevision(long size, long poid, long actingUoid, String comment, boolean finalized) throws BimDeadlockException, BimDatabaseException;
 
 	void clearProject(int pid, int oldRid, int newRid) throws BimDeadlockException;
 

@@ -53,7 +53,7 @@ public class ProcessChangeSetDatabaseAction extends BimDatabaseAction<ChangeSetR
 			throw new UserException("There must be at least 1 revision to use changesets");
 		}
 		ConcreteRevision oldRevision = project.getLastConcreteRevision();
-		ConcreteRevision newRevision = bimDatabaseSession.createNewConcreteRevision(0, poid, actingUoid, comment);
+		ConcreteRevision newRevision = bimDatabaseSession.createNewConcreteRevision(0, poid, actingUoid, comment, true);
 		changeSetResult.setNewRevisionNr(newRevision.getId());
 		final CommitSet commitSet = new CommitSet(project.getId(), newRevision.getId());
 		ReadSet map = bimDatabaseSession.getMap(project.getId(), oldRevision.getId());
