@@ -259,6 +259,10 @@ public class DatabaseSession implements BimDatabaseSession {
 			revision.setFinalized(finalized);
 			if (parent.getLastRevision() != null) {
 				Revision lastRevision = parent.getLastRevision();
+				if (lastRevision.getConcreteRevisions().size() == 1 && lastRevision.getConcreteRevisions().get(0).getProject() == project) {
+				} else {
+					revision.setSize(size + lastRevision.getSize());
+				}
 				for (ConcreteRevision oldRevision : lastRevision.getConcreteRevisions()) {
 					if (oldRevision.getProject() != project && oldRevision.getProject() != parent) {
 						revision.getConcreteRevisions().add(oldRevision);
