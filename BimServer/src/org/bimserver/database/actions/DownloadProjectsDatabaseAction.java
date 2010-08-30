@@ -1,5 +1,6 @@
 package org.bimserver.database.actions;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import org.bimserver.database.BimDatabaseException;
@@ -29,21 +30,23 @@ public class DownloadProjectsDatabaseAction extends BimDatabaseAction<IfcModel> 
 	@Override
 	public IfcModel execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
 		User user = bimDatabaseSession.getUserByUoid(actingUoid);
-		IfcModel ifcModel = new IfcModel();
+		Project project = null;
 		String projectName = "";
+		Set<IfcModel> ifcModels = new HashSet<IfcModel>();
 		for (long roid : roids) {
 			Revision revision = bimDatabaseSession.getVirtualRevision(roid);
-			Project project = revision.getProject();
+			project = revision.getProject();
 			if (RightsManager.hasRightsOnProjectOrSuperProjectsOrSubProjects(user, project)) {
 				for (ConcreteRevision concreteRevision : revision.getConcreteRevisions()) {
 					ReadSet readSet = bimDatabaseSession.getMap(concreteRevision.getProject().getId(), concreteRevision.getId());
 					projectName += concreteRevision.getProject().getName() + "-";
-					merge(concreteRevision.getProject(), ifcModel, new IfcModel(readSet.getMap()));
+					ifcModels.add(new IfcModel(readSet.getMap()));
 				}
 			} else {
 				throw new UserException("User has no rights on project " + project.getOid());
 			}
 		}
+		IfcModel ifcModel = merge(project, ifcModels);
 		if (projectName.endsWith("-")) {
 			projectName = projectName.substring(0, projectName.length()-1);
 		}

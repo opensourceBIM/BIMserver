@@ -1,5 +1,8 @@
 package org.bimserver.database.actions;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
@@ -34,11 +37,12 @@ public class DownloadOfTypeDatabaseAction extends BimDatabaseAction<IfcModel> {
 		if (!RightsManager.hasRightsOnProjectOrSuperProjectsOrSubProjects(user, project)) {
 			throw new UserException("User has insufficient rights to download revisions from this project");
 		}
-		IfcModel IfcModel = new IfcModel((int)virtualRevision.getSize());
+		Set<IfcModel> ifcModels = new HashSet<IfcModel>();
 		for (ConcreteRevision concreteRevision : virtualRevision.getConcreteRevisions()) {
 			ReadSet allOfType = bimDatabaseSession.getAllOfType(className, concreteRevision.getProject().getId(), concreteRevision.getId());
-			merge(concreteRevision.getProject(), IfcModel, new IfcModel(allOfType.getMap()));
+			ifcModels.add( new IfcModel(allOfType.getMap()));
 		}
+		IfcModel IfcModel = merge(project, ifcModels);
 		IfcModel.setRevisionNr(project.getRevisions().indexOf(virtualRevision) + 1);
 		IfcModel.setAuthorizedUser(bimDatabaseSession.getUserByUoid(actingUoid).getName());
 		IfcModel.setDate(virtualRevision.getDate());

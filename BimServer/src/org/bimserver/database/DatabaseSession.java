@@ -319,6 +319,7 @@ public class DatabaseSession implements BimDatabaseSession {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	public IdEObject convertByteArrayToObject(EClass originalQueryClass, EClass eClass, long oid, ByteBuffer buffer, ReadSet readSet)
 			throws BimDatabaseException, BimDeadlockException {
 		if (readSet.isReading(oid)) {

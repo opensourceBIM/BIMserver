@@ -1,6 +1,7 @@
 package org.bimserver.database.actions;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 import org.bimserver.database.BimDatabaseException;
@@ -32,21 +33,23 @@ public class DownloadByOidsDatabaseAction extends BimDatabaseAction<IfcModel> {
 	@Override
 	public IfcModel execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
 		User user = bimDatabaseSession.getUserByUoid(actingUoid);
-		IfcModel ifcModel = new IfcModel();
+		Set<IfcModel> ifcModels = new HashSet<IfcModel>();
+		Project project = null;
 		for (Long roid : roids) {
 			Revision virtualRevision = bimDatabaseSession.getVirtualRevision(roid);
-			Project project = virtualRevision.getProject();
+			project = virtualRevision.getProject();
 			if (!RightsManager.hasRightsOnProjectOrSuperProjectsOrSubProjects(user, project)) {
 				throw new UserException("User has insufficient rights to download revisions from this project");
 			}
 			for (ConcreteRevision concreteRevision : virtualRevision.getConcreteRevisions()) {
 				for (Long oid : oids) {
 					ReadSet mapWithOid = bimDatabaseSession.getMapWithOid(concreteRevision.getProject().getId(), concreteRevision.getId(), oid);
-					merge(concreteRevision.getProject(), ifcModel, new IfcModel(mapWithOid.getMap()));
-					ifcModel.setMainObject(mapWithOid.get(oid));
+					ifcModels.add(new IfcModel(mapWithOid.getMap()));					
+//					ifcModel.setMainObject(mapWithOid.get(oid));
 				}
 			}
 		}
+		IfcModel ifcModel = merge(project, ifcModels);
 		ifcModel.setRevisionNr(1);
 		ifcModel.setAuthorizedUser(bimDatabaseSession.getUserByUoid(actingUoid).getName());
 		ifcModel.setDate(new Date());

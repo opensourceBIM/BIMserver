@@ -1,5 +1,8 @@
 package org.bimserver.database.actions;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
@@ -7,7 +10,6 @@ import org.bimserver.database.ReadSet;
 import org.bimserver.database.store.ConcreteRevision;
 import org.bimserver.database.store.Revision;
 import org.bimserver.database.store.log.AccessMethod;
-import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.emf.Ifc2x3.Ifc2x3Package;
 import org.bimserver.ifc.emf.Ifc2x3.IfcGloballyUniqueId;
@@ -25,7 +27,6 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 import com.google.common.collect.BiMap;
-import com.google.common.collect.HashBiMap;
 
 public class GetDataObjectByOidDatabaseAction extends BimDatabaseAction<DataObject> {
 
@@ -42,19 +43,18 @@ public class GetDataObjectByOidDatabaseAction extends BimDatabaseAction<DataObje
 
 	@Override
 	public DataObject execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
-		HashBiMap<Long, IdEObject> mapResult = HashBiMap.create();
-		IfcModel model = new IfcModel(mapResult);
-
 		Revision virtualRevision = bimDatabaseSession.getVirtualRevision(roid);
 		EObject eObject = null;
+		Set<IfcModel> ifcModels = new HashSet<IfcModel>();
 		for (ConcreteRevision concreteRevision : virtualRevision.getConcreteRevisions()) {
 			ReadSet readSet = new ReadSet(concreteRevision.getProject().getId(), concreteRevision.getId());
 			eObject = bimDatabaseSession.get(cid, oid, readSet);
-			merge(concreteRevision.getProject(), model, new IfcModel(readSet.getMap()));
+			ifcModels.add(new IfcModel(readSet.getMap()));
 			if (eObject != null) {
 				break;
 			}
 		}
+		IfcModel ifcModel = merge(virtualRevision.getProject(), ifcModels);
 		if (eObject == null) {
 			throw new UserException("Object not found");
 		}
@@ -67,7 +67,7 @@ public class GetDataObjectByOidDatabaseAction extends BimDatabaseAction<DataObje
 		} else {
 			dataObject = new DataObject(eObject.eClass().getName(), oid, "", "");
 		}
-		fillDataObject(mapResult, eObject, dataObject);
+		fillDataObject(ifcModel.getMap(), eObject, dataObject);
 		return dataObject;
 	}
 

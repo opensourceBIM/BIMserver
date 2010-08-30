@@ -1,7 +1,9 @@
 package org.bimserver.database.actions;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
@@ -31,16 +33,16 @@ public class GetDataObjectsByTypeDatabaseAction extends BimDatabaseAction<List<D
 	@Override
 	public List<DataObject> execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
 		EClass eClass = bimDatabaseSession.getEClassForName(className);
-		
 		Revision virtualRevision = bimDatabaseSession.getVirtualRevision(roid);
-		IfcModel IfcModel = new IfcModel((int)virtualRevision.getSize());
+		Set<IfcModel> ifcModels = new HashSet<IfcModel>();
 		for (ConcreteRevision concreteRevision : virtualRevision.getConcreteRevisions()) {
 			ReadSet readSet = bimDatabaseSession.getAllOfType(className, concreteRevision.getProject().getId(), concreteRevision.getId());
-			merge(virtualRevision.getProject(), IfcModel, new IfcModel(readSet.getMap()));
+			ifcModels.add(new IfcModel(readSet.getMap()));
 		}
+		IfcModel ifcModel = merge(virtualRevision.getProject(), ifcModels);
 		List<DataObject> dataObjects = new ArrayList<DataObject>();
-		for (Long oid : IfcModel.keySet()) {
-			EObject eObject = IfcModel.get(oid);
+		for (Long oid : ifcModel.keySet()) {
+			EObject eObject = ifcModel.get(oid);
 			if (eClass.isInstance(eObject)) {
 				DataObject dataObject = null;
 				if (eObject instanceof IfcRoot) {
@@ -51,7 +53,7 @@ public class GetDataObjectsByTypeDatabaseAction extends BimDatabaseAction<List<D
 				} else {
 					dataObject = new DataObject(eObject.eClass().getName(), oid, "", "");
 				}
-				GetDataObjectByOidDatabaseAction.fillDataObject(IfcModel.getMap(), eObject, dataObject);
+				GetDataObjectByOidDatabaseAction.fillDataObject(ifcModel.getMap(), eObject, dataObject);
 				dataObjects.add(dataObject);
 			}
 		}
