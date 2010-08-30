@@ -114,6 +114,18 @@
 </div>
 <script>
 $(document).ready(function(){
+	$("#browservisualizeloader").hide();
+	$("#browservisualizelink").click(function(){
+		$("#browservisualizelink").hide();
+		$("#browservisualizeloader").show();
+		var o3dId = "o3d" + (o3dcounter++);
+		$("<div id='" + o3dId + "' style='width: 500px; height: 300px'></div>").appendTo("#browservisualizediv");
+		g_idOfLoader = "browservisualizeloader";
+		createClient(document.getElementById(o3dId), function(){
+			doload(o3djs.util.getCurrentURI() + 'download?roid=<%=request.getParameter("roid") %>&guids=<%=request.getParameter("guid")%>&resultType=O3D_JSON', "browservisualizeloader");
+		});
+		return false;
+	});
 	instrumentBrowserLinks();
 });
 </script>

@@ -713,34 +713,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.database.store.impl.StorePackageImpl#getClash()
 	 * @generated
 	 */
-	int CLASH = 6;
-
-	/**
-	 * The feature id for the '<em><b>Revision</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASH__REVISION = 0;
-
-	/**
-	 * The feature id for the '<em><b>Guid1</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASH__GUID1 = 1;
-
-	/**
-	 * The feature id for the '<em><b>Guid2</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASH__GUID2 = 2;
+	int CLASH = 8;
 
 	/**
 	 * The feature id for the '<em><b>Name1</b></em>' attribute.
@@ -749,7 +722,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASH__NAME1 = 3;
+	int CLASH__NAME1 = 0;
 
 	/**
 	 * The feature id for the '<em><b>Name2</b></em>' attribute.
@@ -758,7 +731,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASH__NAME2 = 4;
+	int CLASH__NAME2 = 1;
 
 	/**
 	 * The feature id for the '<em><b>Type1</b></em>' attribute.
@@ -767,7 +740,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASH__TYPE1 = 5;
+	int CLASH__TYPE1 = 2;
 
 	/**
 	 * The feature id for the '<em><b>Type2</b></em>' attribute.
@@ -776,7 +749,25 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASH__TYPE2 = 6;
+	int CLASH__TYPE2 = 3;
+
+	/**
+	 * The feature id for the '<em><b>Revision1</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASH__REVISION1 = 4;
+
+	/**
+	 * The feature id for the '<em><b>Revision2</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASH__REVISION2 = 5;
 
 	/**
 	 * The number of structural features of the '<em>Clash</em>' class.
@@ -785,7 +776,98 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASH_FEATURE_COUNT = 7;
+	int CLASH_FEATURE_COUNT = 6;
+
+	/**
+	 * The meta object id for the '{@link org.bimserver.database.store.impl.GuidClashImpl <em>Guid Clash</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.database.store.impl.GuidClashImpl
+	 * @see org.bimserver.database.store.impl.StorePackageImpl#getGuidClash()
+	 * @generated
+	 */
+	int GUID_CLASH = 6;
+
+	/**
+	 * The feature id for the '<em><b>Name1</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUID_CLASH__NAME1 = CLASH__NAME1;
+
+	/**
+	 * The feature id for the '<em><b>Name2</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUID_CLASH__NAME2 = CLASH__NAME2;
+
+	/**
+	 * The feature id for the '<em><b>Type1</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUID_CLASH__TYPE1 = CLASH__TYPE1;
+
+	/**
+	 * The feature id for the '<em><b>Type2</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUID_CLASH__TYPE2 = CLASH__TYPE2;
+
+	/**
+	 * The feature id for the '<em><b>Revision1</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUID_CLASH__REVISION1 = CLASH__REVISION1;
+
+	/**
+	 * The feature id for the '<em><b>Revision2</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUID_CLASH__REVISION2 = CLASH__REVISION2;
+
+	/**
+	 * The feature id for the '<em><b>Guid1</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUID_CLASH__GUID1 = CLASH_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Guid2</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUID_CLASH__GUID2 = CLASH_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Guid Clash</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUID_CLASH_FEATURE_COUNT = CLASH_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.database.store.impl.ClashDetectionSettingsImpl <em>Clash Detection Settings</em>}' class.
@@ -852,6 +934,97 @@ public interface StorePackage extends EPackage {
 	int CLASH_DETECTION_SETTINGS_FEATURE_COUNT = 5;
 
 	/**
+	 * The meta object id for the '{@link org.bimserver.database.store.impl.EidClashImpl <em>Eid Clash</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.database.store.impl.EidClashImpl
+	 * @see org.bimserver.database.store.impl.StorePackageImpl#getEidClash()
+	 * @generated
+	 */
+	int EID_CLASH = 9;
+
+	/**
+	 * The feature id for the '<em><b>Name1</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EID_CLASH__NAME1 = CLASH__NAME1;
+
+	/**
+	 * The feature id for the '<em><b>Name2</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EID_CLASH__NAME2 = CLASH__NAME2;
+
+	/**
+	 * The feature id for the '<em><b>Type1</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EID_CLASH__TYPE1 = CLASH__TYPE1;
+
+	/**
+	 * The feature id for the '<em><b>Type2</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EID_CLASH__TYPE2 = CLASH__TYPE2;
+
+	/**
+	 * The feature id for the '<em><b>Revision1</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EID_CLASH__REVISION1 = CLASH__REVISION1;
+
+	/**
+	 * The feature id for the '<em><b>Revision2</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EID_CLASH__REVISION2 = CLASH__REVISION2;
+
+	/**
+	 * The feature id for the '<em><b>Eid1</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EID_CLASH__EID1 = CLASH_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Eid2</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EID_CLASH__EID2 = CLASH_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Eid Clash</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EID_CLASH_FEATURE_COUNT = CLASH_FEATURE_COUNT + 2;
+
+	/**
 	 * The meta object id for the '{@link org.bimserver.database.store.ObjectState <em>Object State</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -859,7 +1032,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.database.store.impl.StorePackageImpl#getObjectState()
 	 * @generated
 	 */
-	int OBJECT_STATE = 8;
+	int OBJECT_STATE = 10;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.database.store.UserType <em>User Type</em>}' enum.
@@ -869,7 +1042,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.database.store.impl.StorePackageImpl#getUserType()
 	 * @generated
 	 */
-	int USER_TYPE = 9;
+	int USER_TYPE = 11;
 
 
 	/**
@@ -880,7 +1053,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.database.store.impl.StorePackageImpl#getSIPrefix()
 	 * @generated
 	 */
-	int SI_PREFIX = 10;
+	int SI_PREFIX = 12;
 
 
 	/**
@@ -1593,6 +1766,38 @@ public interface StorePackage extends EPackage {
 	EAttribute getRevision_Tag();
 
 	/**
+	 * Returns the meta object for class '{@link org.bimserver.database.store.GuidClash <em>Guid Clash</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Guid Clash</em>'.
+	 * @see org.bimserver.database.store.GuidClash
+	 * @generated
+	 */
+	EClass getGuidClash();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.database.store.GuidClash#getGuid1 <em>Guid1</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Guid1</em>'.
+	 * @see org.bimserver.database.store.GuidClash#getGuid1()
+	 * @see #getGuidClash()
+	 * @generated
+	 */
+	EAttribute getGuidClash_Guid1();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.database.store.GuidClash#getGuid2 <em>Guid2</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Guid2</em>'.
+	 * @see org.bimserver.database.store.GuidClash#getGuid2()
+	 * @see #getGuidClash()
+	 * @generated
+	 */
+	EAttribute getGuidClash_Guid2();
+
+	/**
 	 * Returns the meta object for class '{@link org.bimserver.database.store.Clash <em>Clash</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1601,28 +1806,6 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 */
 	EClass getClash();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.database.store.Clash#getGuid1 <em>Guid1</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Guid1</em>'.
-	 * @see org.bimserver.database.store.Clash#getGuid1()
-	 * @see #getClash()
-	 * @generated
-	 */
-	EAttribute getClash_Guid1();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.database.store.Clash#getGuid2 <em>Guid2</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Guid2</em>'.
-	 * @see org.bimserver.database.store.Clash#getGuid2()
-	 * @see #getClash()
-	 * @generated
-	 */
-	EAttribute getClash_Guid2();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.bimserver.database.store.Clash#getName1 <em>Name1</em>}'.
@@ -1669,15 +1852,58 @@ public interface StorePackage extends EPackage {
 	EAttribute getClash_Type2();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.bimserver.database.store.Clash#getRevision <em>Revision</em>}'.
+	 * Returns the meta object for the reference '{@link org.bimserver.database.store.Clash#getRevision1 <em>Revision1</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Revision</em>'.
-	 * @see org.bimserver.database.store.Clash#getRevision()
+	 * @return the meta object for the reference '<em>Revision1</em>'.
+	 * @see org.bimserver.database.store.Clash#getRevision1()
 	 * @see #getClash()
 	 * @generated
 	 */
-	EReference getClash_Revision();
+	EReference getClash_Revision1();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.database.store.Clash#getRevision2 <em>Revision2</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Revision2</em>'.
+	 * @see org.bimserver.database.store.Clash#getRevision2()
+	 * @see #getClash()
+	 * @generated
+	 */
+	EReference getClash_Revision2();
+
+	/**
+	 * Returns the meta object for class '{@link org.bimserver.database.store.EidClash <em>Eid Clash</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Eid Clash</em>'.
+	 * @see org.bimserver.database.store.EidClash
+	 * @generated
+	 */
+	EClass getEidClash();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.database.store.EidClash#getEid1 <em>Eid1</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Eid1</em>'.
+	 * @see org.bimserver.database.store.EidClash#getEid1()
+	 * @see #getEidClash()
+	 * @generated
+	 */
+	EAttribute getEidClash_Eid1();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.database.store.EidClash#getEid2 <em>Eid2</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Eid2</em>'.
+	 * @see org.bimserver.database.store.EidClash#getEid2()
+	 * @see #getEidClash()
+	 * @generated
+	 */
+	EAttribute getEidClash_Eid2();
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.database.store.ClashDetectionSettings <em>Clash Detection Settings</em>}'.
@@ -2329,6 +2555,32 @@ public interface StorePackage extends EPackage {
 		EAttribute REVISION__TAG = eINSTANCE.getRevision_Tag();
 
 		/**
+		 * The meta object literal for the '{@link org.bimserver.database.store.impl.GuidClashImpl <em>Guid Clash</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.database.store.impl.GuidClashImpl
+		 * @see org.bimserver.database.store.impl.StorePackageImpl#getGuidClash()
+		 * @generated
+		 */
+		EClass GUID_CLASH = eINSTANCE.getGuidClash();
+
+		/**
+		 * The meta object literal for the '<em><b>Guid1</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute GUID_CLASH__GUID1 = eINSTANCE.getGuidClash_Guid1();
+
+		/**
+		 * The meta object literal for the '<em><b>Guid2</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute GUID_CLASH__GUID2 = eINSTANCE.getGuidClash_Guid2();
+
+		/**
 		 * The meta object literal for the '{@link org.bimserver.database.store.impl.ClashImpl <em>Clash</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2337,22 +2589,6 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EClass CLASH = eINSTANCE.getClash();
-
-		/**
-		 * The meta object literal for the '<em><b>Guid1</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute CLASH__GUID1 = eINSTANCE.getClash_Guid1();
-
-		/**
-		 * The meta object literal for the '<em><b>Guid2</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute CLASH__GUID2 = eINSTANCE.getClash_Guid2();
 
 		/**
 		 * The meta object literal for the '<em><b>Name1</b></em>' attribute feature.
@@ -2387,12 +2623,46 @@ public interface StorePackage extends EPackage {
 		EAttribute CLASH__TYPE2 = eINSTANCE.getClash_Type2();
 
 		/**
-		 * The meta object literal for the '<em><b>Revision</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Revision1</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CLASH__REVISION = eINSTANCE.getClash_Revision();
+		EReference CLASH__REVISION1 = eINSTANCE.getClash_Revision1();
+
+		/**
+		 * The meta object literal for the '<em><b>Revision2</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CLASH__REVISION2 = eINSTANCE.getClash_Revision2();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.database.store.impl.EidClashImpl <em>Eid Clash</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.database.store.impl.EidClashImpl
+		 * @see org.bimserver.database.store.impl.StorePackageImpl#getEidClash()
+		 * @generated
+		 */
+		EClass EID_CLASH = eINSTANCE.getEidClash();
+
+		/**
+		 * The meta object literal for the '<em><b>Eid1</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EID_CLASH__EID1 = eINSTANCE.getEidClash_Eid1();
+
+		/**
+		 * The meta object literal for the '<em><b>Eid2</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EID_CLASH__EID2 = eINSTANCE.getEidClash_Eid2();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.database.store.impl.ClashDetectionSettingsImpl <em>Clash Detection Settings</em>}' class.

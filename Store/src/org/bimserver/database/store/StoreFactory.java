@@ -80,6 +80,15 @@ public interface StoreFactory extends EFactory {
 	Revision createRevision();
 
 	/**
+	 * Returns a new object of class '<em>Guid Clash</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Guid Clash</em>'.
+	 * @generated
+	 */
+	GuidClash createGuidClash();
+
+	/**
 	 * Returns a new object of class '<em>Clash</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -87,6 +96,15 @@ public interface StoreFactory extends EFactory {
 	 * @generated
 	 */
 	Clash createClash();
+
+	/**
+	 * Returns a new object of class '<em>Eid Clash</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Eid Clash</em>'.
+	 * @generated
+	 */
+	EidClash createEidClash();
 
 	/**
 	 * Returns a new object of class '<em>Clash Detection Settings</em>'.

@@ -15,6 +15,7 @@ import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
 import org.bimserver.database.store.Clash;
 import org.bimserver.database.store.ConcreteRevision;
+import org.bimserver.database.store.EidClash;
 import org.bimserver.database.store.Revision;
 import org.bimserver.database.store.log.AccessMethod;
 import org.bimserver.emf.IdEObject;
@@ -35,7 +36,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
-public class FindClashesDatabaseAction extends BimDatabaseAction<Set<Clash>> {
+public class FindClashesDatabaseAction extends BimDatabaseAction<Set<? extends Clash>> {
 	private static File tempDir;
 	private static int dumpCounter = 0;
 
@@ -57,12 +58,17 @@ public class FindClashesDatabaseAction extends BimDatabaseAction<Set<Clash>> {
 	}
 
 	@Override
-	public Set<Clash> execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
+	public Set<? extends Clash> execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
 		IfcModel ifcModel = new IfcModel();
+		Map<Long, Revision> oidToRoidMap = new HashMap<Long, Revision>();
 		for (Long roid : sClashDetectionSettings.getRevisions()) {
 			Revision revision = bimDatabaseSession.getRevisionByRoid(roid);
 			for (ConcreteRevision concreteRevision : revision.getConcreteRevisions()) {
-				BimDatabaseAction.merge(revision.getProject(), ifcModel, new IfcModel(bimDatabaseSession.getMap(concreteRevision.getProject().getId(), concreteRevision.getId()).getMap()));
+				IfcModel source = new IfcModel(bimDatabaseSession.getMap(concreteRevision.getProject().getId(), concreteRevision.getId()).getMap());
+				BimDatabaseAction.merge(revision.getProject(), ifcModel, source);
+				for (Long oid : source.keySet()) {
+					oidToRoidMap.put(oid, revision);
+				}
 			}
 		}
 		IfcModel newModel = new IfcModel();
@@ -79,16 +85,17 @@ public class FindClashesDatabaseAction extends BimDatabaseAction<Set<Clash>> {
 			try {
 				IfcEngineModel ifcEngineModel = failSafeIfcEngine.openModel(file);
 				try {
-					Set<Clash> clashes = ifcEngineModel.findClashes(sClashDetectionSettings.getMargin());
+					Set<EidClash> clashes = ifcEngineModel.findClashesByEid(sClashDetectionSettings.getMargin());
 					ifcEngineModel.close();
-					newModel.indexGuids();
-					for (Clash clash : clashes) {
-						IfcRoot object1 = newModel.getByGuid(clash.getGuid1());
+					for (EidClash clash : clashes) {
+						IfcRoot object1 = (IfcRoot) newModel.get(clash.getEid1());
 						clash.setName1(object1.getName());
 						clash.setType1(object1.eClass().getName());
-						IfcRoot object2 = newModel.getByGuid(clash.getGuid2());
+						clash.setRevision1(oidToRoidMap.get(clash.getEid1()));
+						IfcRoot object2 = (IfcRoot) newModel.get(clash.getEid2());
 						clash.setName2(object2.getName());
 						clash.setType2(object2.eClass().getName());
+						clash.setRevision2(oidToRoidMap.get(clash.getEid2()));
 					}
 					return clashes;
 				} finally {

@@ -77,8 +77,10 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			case StorePackage.GEO_TAG: return (EObject)createGeoTag();
 			case StorePackage.CONCRETE_REVISION: return (EObject)createConcreteRevision();
 			case StorePackage.REVISION: return (EObject)createRevision();
-			case StorePackage.CLASH: return (EObject)createClash();
+			case StorePackage.GUID_CLASH: return (EObject)createGuidClash();
 			case StorePackage.CLASH_DETECTION_SETTINGS: return (EObject)createClashDetectionSettings();
+			case StorePackage.CLASH: return (EObject)createClash();
+			case StorePackage.EID_CLASH: return (EObject)createEidClash();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -187,9 +189,29 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public GuidClash createGuidClash() {
+		GuidClashImpl guidClash = new GuidClashImpl();
+		return guidClash;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Clash createClash() {
 		ClashImpl clash = new ClashImpl();
 		return clash;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EidClash createEidClash() {
+		EidClashImpl eidClash = new EidClashImpl();
+		return eidClash;
 	}
 
 	/**

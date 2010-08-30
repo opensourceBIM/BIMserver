@@ -26,9 +26,10 @@ import java.util.Set;
 import javax.activation.DataHandler;
 
 import org.bimserver.interfaces.objects.SCheckout;
-import org.bimserver.interfaces.objects.SClash;
 import org.bimserver.interfaces.objects.SClashDetectionSettings;
+import org.bimserver.interfaces.objects.SEidClash;
 import org.bimserver.interfaces.objects.SGeoTag;
+import org.bimserver.interfaces.objects.SGuidClash;
 import org.bimserver.interfaces.objects.SLogAction;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevision;
@@ -105,8 +106,8 @@ public class AuthenticatedServiceWrapper {
 		return service.downloadOfType(token, roid, className, resultType);
 	}
 
-	public CheckoutResult downloadById(long roid, int oid, ResultType resultType) throws UserException {
-		return service.downloadByOid(token, roid, oid, resultType);
+	public CheckoutResult downloadByOids(Set<Long> roids, Set<Long> oids, ResultType resultType) throws UserException {
+		return service.downloadByOids(token, roids, oids, resultType);
 	}
 
 	public SUser getUserByUoid(long uoid) throws UserException {
@@ -241,8 +242,12 @@ public class AuthenticatedServiceWrapper {
 		return service.resetPassword(emailAddress);
 	}
 
-	public List<SClash> findClashes(SClashDetectionSettings sClashDetectionSettings) throws UserException {
-		return service.findClashes(token, sClashDetectionSettings);
+	public List<SGuidClash> findClashesByGuid(SClashDetectionSettings sClashDetectionSettings) throws UserException {
+		return service.findClashesByGuid(token, sClashDetectionSettings);
+	}
+
+	public List<SEidClash> findClashesByEid(SClashDetectionSettings sClashDetectionSettings) throws UserException {
+		return service.findClashesByEid(token, sClashDetectionSettings);
 	}
 
 	public CheckinResult branch(long roid, String projectName, String comment) throws UserException {

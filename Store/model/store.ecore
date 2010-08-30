@@ -103,19 +103,13 @@
         eType="#//Project" eOpposite="#//Project/revisions"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="finalized" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="lastClashes" upperBound="-1"
-        eType="#//Clash" eOpposite="#//Clash/revision"/>
+        eType="#//Clash"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="processingClashes" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="tag" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Clash">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="revision" eType="#//Revision"
-        eOpposite="#//Revision/lastClashes"/>
+  <eClassifiers xsi:type="ecore:EClass" name="GuidClash" eSuperTypes="#//Clash">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="guid1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="guid2" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name2" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type2" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ClashDetectionSettings">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="enabled" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
@@ -145,6 +139,18 @@
     <eLiterals name="terameter" value="12" literal="TERA"/>
     <eLiterals name="petameter" value="15" literal="PETA"/>
     <eLiterals name="exameter" value="18" literal="EXA"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Clash">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name2" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type2" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="revision1" eType="#//Revision"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="revision2" eType="#//Revision"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EidClash" eSuperTypes="#//Clash">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="eid1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="eid2" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
   </eClassifiers>
   <eSubpackages name="log" nsURI="log" nsPrefix="log">
     <eClassifiers xsi:type="ecore:EClass" name="ServerLog">

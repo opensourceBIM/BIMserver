@@ -24,69 +24,18 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.bimserver.database.store.impl.ClashImpl#getRevision <em>Revision</em>}</li>
- *   <li>{@link org.bimserver.database.store.impl.ClashImpl#getGuid1 <em>Guid1</em>}</li>
- *   <li>{@link org.bimserver.database.store.impl.ClashImpl#getGuid2 <em>Guid2</em>}</li>
  *   <li>{@link org.bimserver.database.store.impl.ClashImpl#getName1 <em>Name1</em>}</li>
  *   <li>{@link org.bimserver.database.store.impl.ClashImpl#getName2 <em>Name2</em>}</li>
  *   <li>{@link org.bimserver.database.store.impl.ClashImpl#getType1 <em>Type1</em>}</li>
  *   <li>{@link org.bimserver.database.store.impl.ClashImpl#getType2 <em>Type2</em>}</li>
+ *   <li>{@link org.bimserver.database.store.impl.ClashImpl#getRevision1 <em>Revision1</em>}</li>
+ *   <li>{@link org.bimserver.database.store.impl.ClashImpl#getRevision2 <em>Revision2</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public class ClashImpl extends IdEObjectImpl implements Clash {
-	/**
-	 * The cached value of the '{@link #getRevision() <em>Revision</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getRevision()
-	 * @generated
-	 * @ordered
-	 */
-	protected Revision revision;
-
-	/**
-	 * The default value of the '{@link #getGuid1() <em>Guid1</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getGuid1()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String GUID1_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getGuid1() <em>Guid1</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getGuid1()
-	 * @generated
-	 * @ordered
-	 */
-	protected String guid1 = GUID1_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getGuid2() <em>Guid2</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getGuid2()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String GUID2_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getGuid2() <em>Guid2</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getGuid2()
-	 * @generated
-	 * @ordered
-	 */
-	protected String guid2 = GUID2_EDEFAULT;
-
 	/**
 	 * The default value of the '{@link #getName1() <em>Name1</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -168,6 +117,26 @@ public class ClashImpl extends IdEObjectImpl implements Clash {
 	protected String type2 = TYPE2_EDEFAULT;
 
 	/**
+	 * The cached value of the '{@link #getRevision1() <em>Revision1</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRevision1()
+	 * @generated
+	 * @ordered
+	 */
+	protected Revision revision1;
+
+	/**
+	 * The cached value of the '{@link #getRevision2() <em>Revision2</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRevision2()
+	 * @generated
+	 * @ordered
+	 */
+	protected Revision revision2;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -184,48 +153,6 @@ public class ClashImpl extends IdEObjectImpl implements Clash {
 	@Override
 	protected EClass eStaticClass() {
 		return StorePackage.Literals.CLASH;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getGuid1() {
-		return guid1;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setGuid1(String newGuid1) {
-		String oldGuid1 = guid1;
-		guid1 = newGuid1;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.CLASH__GUID1, oldGuid1, guid1));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getGuid2() {
-		return guid2;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setGuid2(String newGuid2) {
-		String oldGuid2 = guid2;
-		guid2 = newGuid2;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.CLASH__GUID2, oldGuid2, guid2));
 	}
 
 	/**
@@ -317,16 +244,16 @@ public class ClashImpl extends IdEObjectImpl implements Clash {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Revision getRevision() {
-		if (revision != null && ((EObject)revision).eIsProxy()) {
-			InternalEObject oldRevision = (InternalEObject)revision;
-			revision = (Revision)eResolveProxy(oldRevision);
-			if (revision != oldRevision) {
+	public Revision getRevision1() {
+		if (revision1 != null && ((EObject)revision1).eIsProxy()) {
+			InternalEObject oldRevision1 = (InternalEObject)revision1;
+			revision1 = (Revision)eResolveProxy(oldRevision1);
+			if (revision1 != oldRevision1) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StorePackage.CLASH__REVISION, oldRevision, revision));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StorePackage.CLASH__REVISION1, oldRevision1, revision1));
 			}
 		}
-		return revision;
+		return revision1;
 	}
 
 	/**
@@ -334,8 +261,8 @@ public class ClashImpl extends IdEObjectImpl implements Clash {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Revision basicGetRevision() {
-		return revision;
+	public Revision basicGetRevision1() {
+		return revision1;
 	}
 
 	/**
@@ -343,14 +270,28 @@ public class ClashImpl extends IdEObjectImpl implements Clash {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetRevision(Revision newRevision, NotificationChain msgs) {
-		Revision oldRevision = revision;
-		revision = newRevision;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, StorePackage.CLASH__REVISION, oldRevision, newRevision);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+	public void setRevision1(Revision newRevision1) {
+		Revision oldRevision1 = revision1;
+		revision1 = newRevision1;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.CLASH__REVISION1, oldRevision1, revision1));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Revision getRevision2() {
+		if (revision2 != null && ((EObject)revision2).eIsProxy()) {
+			InternalEObject oldRevision2 = (InternalEObject)revision2;
+			revision2 = (Revision)eResolveProxy(oldRevision2);
+			if (revision2 != oldRevision2) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StorePackage.CLASH__REVISION2, oldRevision2, revision2));
+			}
 		}
-		return msgs;
+		return revision2;
 	}
 
 	/**
@@ -358,18 +299,8 @@ public class ClashImpl extends IdEObjectImpl implements Clash {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRevision(Revision newRevision) {
-		if (newRevision != revision) {
-			NotificationChain msgs = null;
-			if (revision != null)
-				msgs = ((InternalEObject)revision).eInverseRemove(this, StorePackage.REVISION__LAST_CLASHES, Revision.class, msgs);
-			if (newRevision != null)
-				msgs = ((InternalEObject)newRevision).eInverseAdd(this, StorePackage.REVISION__LAST_CLASHES, Revision.class, msgs);
-			msgs = basicSetRevision(newRevision, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.CLASH__REVISION, newRevision, newRevision));
+	public Revision basicGetRevision2() {
+		return revision2;
 	}
 
 	/**
@@ -377,29 +308,11 @@ public class ClashImpl extends IdEObjectImpl implements Clash {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case StorePackage.CLASH__REVISION:
-				if (revision != null)
-					msgs = ((InternalEObject)revision).eInverseRemove(this, StorePackage.REVISION__LAST_CLASHES, Revision.class, msgs);
-				return basicSetRevision((Revision)otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case StorePackage.CLASH__REVISION:
-				return basicSetRevision(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
+	public void setRevision2(Revision newRevision2) {
+		Revision oldRevision2 = revision2;
+		revision2 = newRevision2;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.CLASH__REVISION2, oldRevision2, revision2));
 	}
 
 	/**
@@ -410,13 +323,6 @@ public class ClashImpl extends IdEObjectImpl implements Clash {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case StorePackage.CLASH__REVISION:
-				if (resolve) return getRevision();
-				return basicGetRevision();
-			case StorePackage.CLASH__GUID1:
-				return getGuid1();
-			case StorePackage.CLASH__GUID2:
-				return getGuid2();
 			case StorePackage.CLASH__NAME1:
 				return getName1();
 			case StorePackage.CLASH__NAME2:
@@ -425,6 +331,12 @@ public class ClashImpl extends IdEObjectImpl implements Clash {
 				return getType1();
 			case StorePackage.CLASH__TYPE2:
 				return getType2();
+			case StorePackage.CLASH__REVISION1:
+				if (resolve) return getRevision1();
+				return basicGetRevision1();
+			case StorePackage.CLASH__REVISION2:
+				if (resolve) return getRevision2();
+				return basicGetRevision2();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -437,15 +349,6 @@ public class ClashImpl extends IdEObjectImpl implements Clash {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case StorePackage.CLASH__REVISION:
-				setRevision((Revision)newValue);
-				return;
-			case StorePackage.CLASH__GUID1:
-				setGuid1((String)newValue);
-				return;
-			case StorePackage.CLASH__GUID2:
-				setGuid2((String)newValue);
-				return;
 			case StorePackage.CLASH__NAME1:
 				setName1((String)newValue);
 				return;
@@ -457,6 +360,12 @@ public class ClashImpl extends IdEObjectImpl implements Clash {
 				return;
 			case StorePackage.CLASH__TYPE2:
 				setType2((String)newValue);
+				return;
+			case StorePackage.CLASH__REVISION1:
+				setRevision1((Revision)newValue);
+				return;
+			case StorePackage.CLASH__REVISION2:
+				setRevision2((Revision)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -470,15 +379,6 @@ public class ClashImpl extends IdEObjectImpl implements Clash {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case StorePackage.CLASH__REVISION:
-				setRevision((Revision)null);
-				return;
-			case StorePackage.CLASH__GUID1:
-				setGuid1(GUID1_EDEFAULT);
-				return;
-			case StorePackage.CLASH__GUID2:
-				setGuid2(GUID2_EDEFAULT);
-				return;
 			case StorePackage.CLASH__NAME1:
 				setName1(NAME1_EDEFAULT);
 				return;
@@ -490,6 +390,12 @@ public class ClashImpl extends IdEObjectImpl implements Clash {
 				return;
 			case StorePackage.CLASH__TYPE2:
 				setType2(TYPE2_EDEFAULT);
+				return;
+			case StorePackage.CLASH__REVISION1:
+				setRevision1((Revision)null);
+				return;
+			case StorePackage.CLASH__REVISION2:
+				setRevision2((Revision)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -503,12 +409,6 @@ public class ClashImpl extends IdEObjectImpl implements Clash {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case StorePackage.CLASH__REVISION:
-				return revision != null;
-			case StorePackage.CLASH__GUID1:
-				return GUID1_EDEFAULT == null ? guid1 != null : !GUID1_EDEFAULT.equals(guid1);
-			case StorePackage.CLASH__GUID2:
-				return GUID2_EDEFAULT == null ? guid2 != null : !GUID2_EDEFAULT.equals(guid2);
 			case StorePackage.CLASH__NAME1:
 				return NAME1_EDEFAULT == null ? name1 != null : !NAME1_EDEFAULT.equals(name1);
 			case StorePackage.CLASH__NAME2:
@@ -517,6 +417,10 @@ public class ClashImpl extends IdEObjectImpl implements Clash {
 				return TYPE1_EDEFAULT == null ? type1 != null : !TYPE1_EDEFAULT.equals(type1);
 			case StorePackage.CLASH__TYPE2:
 				return TYPE2_EDEFAULT == null ? type2 != null : !TYPE2_EDEFAULT.equals(type2);
+			case StorePackage.CLASH__REVISION1:
+				return revision1 != null;
+			case StorePackage.CLASH__REVISION2:
+				return revision2 != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -531,11 +435,7 @@ public class ClashImpl extends IdEObjectImpl implements Clash {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (guid1: ");
-		result.append(guid1);
-		result.append(", guid2: ");
-		result.append(guid2);
-		result.append(", name1: ");
+		result.append(" (name1: ");
 		result.append(name1);
 		result.append(", name2: ");
 		result.append(name2);

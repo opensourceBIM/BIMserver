@@ -12,6 +12,8 @@ import java.util.Map;
 import java.util.Set;
 
 import org.bimserver.database.store.Clash;
+import org.bimserver.database.store.EidClash;
+import org.bimserver.database.store.GuidClash;
 import org.bimserver.ifcengine.IfcEngineJNA.InstanceVisualisationProperties;
 import org.bimserver.ifcengine.IfcEngineJNA.SurfaceProperties;
 import org.slf4j.Logger;
@@ -113,16 +115,32 @@ public class IfcEngineServer extends Thread {
 					}
 				}
 					break;
-				case FIND_CLASHES: {
+				case FIND_CLASHES_BY_GUID: {
 					int modelId = in.readInt();
 					double dist = in.readDouble();
 					int nrClashes = ifcEngine.initializeClashes(pointers.get(modelId), dist);
 					if (nrClashes > 0) {
-						Set<Clash> clashes = ifcEngine.finalizeClashesByGuid(pointers.get(modelId), nrClashes);
+						Set<GuidClash> clashes = ifcEngine.finalizeClashesByGuid(pointers.get(modelId), nrClashes);
 						out.writeInt(nrClashes);
-						for (Clash clash : clashes) {
+						for (GuidClash clash : clashes) {
 							out.writeUTF(clash.getGuid1());
 							out.writeUTF(clash.getGuid2());
+						}
+					} else {
+						out.writeInt(0);
+					}
+				}
+					break;
+				case FIND_CLASHES_BY_EID: {
+					int modelId = in.readInt();
+					double dist = in.readDouble();
+					int nrClashes = ifcEngine.initializeClashes(pointers.get(modelId), dist);
+					if (nrClashes > 0) {
+						Set<EidClash> clashes = ifcEngine.finalizeClashesByEI(pointers.get(modelId), nrClashes);
+						out.writeInt(nrClashes);
+						for (EidClash clash : clashes) {
+							out.writeLong(clash.getEid1());
+							out.writeLong(clash.getEid2());
 						}
 					} else {
 						out.writeInt(0);

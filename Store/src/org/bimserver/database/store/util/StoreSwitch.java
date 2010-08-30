@@ -131,15 +131,29 @@ public class StoreSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case StorePackage.CLASH: {
-				Clash clash = (Clash)theEObject;
-				T result = caseClash(clash);
+			case StorePackage.GUID_CLASH: {
+				GuidClash guidClash = (GuidClash)theEObject;
+				T result = caseGuidClash(guidClash);
+				if (result == null) result = caseClash(guidClash);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case StorePackage.CLASH_DETECTION_SETTINGS: {
 				ClashDetectionSettings clashDetectionSettings = (ClashDetectionSettings)theEObject;
 				T result = caseClashDetectionSettings(clashDetectionSettings);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case StorePackage.CLASH: {
+				Clash clash = (Clash)theEObject;
+				T result = caseClash(clash);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case StorePackage.EID_CLASH: {
+				EidClash eidClash = (EidClash)theEObject;
+				T result = caseEidClash(eidClash);
+				if (result == null) result = caseClash(eidClash);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -238,6 +252,21 @@ public class StoreSwitch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Guid Clash</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Guid Clash</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseGuidClash(GuidClash object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Clash</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -249,6 +278,21 @@ public class StoreSwitch<T> {
 	 * @generated
 	 */
 	public T caseClash(Clash object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Eid Clash</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Eid Clash</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseEidClash(EidClash object) {
 		return null;
 	}
 

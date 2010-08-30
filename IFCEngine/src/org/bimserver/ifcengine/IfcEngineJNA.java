@@ -8,6 +8,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.bimserver.database.store.Clash;
+import org.bimserver.database.store.EidClash;
+import org.bimserver.database.store.GuidClash;
 import org.bimserver.database.store.StoreFactory;
 
 import com.sun.jna.Memory;
@@ -498,20 +500,18 @@ public class IfcEngineJNA {
 	 * @param size
 	 * @return
 	 */
-	public Set<Clash> finalizeClashesByEI(Pointer modelId, int size) {
-		Set<Clash> clashes = new HashSet<Clash>();
+	public Set<EidClash> finalizeClashesByEI(Pointer modelId, int size) {
+		Set<EidClash> clashes = new HashSet<EidClash>();
 		Memory pG1 = new Memory(size * 4 * getPlatformMultiplier());
 		Memory pG2 = new Memory(size * 4 * getPlatformMultiplier());
-		engine.finalizeClashesByGuid(modelId, pG1, pG2);
+		engine.finalizeClashesByEI(modelId, pG1, pG2);
 		for (int i = 0; i < size; i++) {
-			Pointer memory1 = pG1.getPointer(i * 4 * getPlatformMultiplier());
-			String pG1Str = memory1.getString(0);
-			Pointer memory2 = pG2.getPointer(i * 4 * getPlatformMultiplier());
-			String pG2Str = memory2.getString(0);
+			Long eid1 = pG1.getLong(i * 4 * getPlatformMultiplier());
+			Long eid2 = pG2.getLong(i * 4 * getPlatformMultiplier());
 
-			Clash clash = StoreFactory.eINSTANCE.createClash();
-			clash.setGuid1(pG1Str);
-			clash.setGuid2(pG2Str);
+			EidClash clash = StoreFactory.eINSTANCE.createEidClash();
+			clash.setEid1(eid1);
+			clash.setEid2(eid2);
 			clashes.add(clash);
 		}
 		return clashes;
@@ -522,8 +522,8 @@ public class IfcEngineJNA {
 	 * @param size
 	 * @return
 	 */
-	public Set<Clash> finalizeClashesByGuid(Pointer modelId, int size) {
-		Set<Clash> clashes = new HashSet<Clash>();
+	public Set<GuidClash> finalizeClashesByGuid(Pointer modelId, int size) {
+		Set<GuidClash> clashes = new HashSet<GuidClash>();
 		Memory pG1 = new Memory(size * 4 * getPlatformMultiplier());
 		Memory pG2 = new Memory(size * 4 * getPlatformMultiplier());
 		engine.finalizeClashesByGuid(modelId, pG1, pG2);
@@ -533,7 +533,7 @@ public class IfcEngineJNA {
 			Pointer memory2 = pG2.getPointer(i * 4 * getPlatformMultiplier());
 			String pG2Str = memory2.getString(0);
 
-			Clash clash = StoreFactory.eINSTANCE.createClash();
+			GuidClash clash = StoreFactory.eINSTANCE.createGuidClash();
 			clash.setGuid1(pG1Str);
 			clash.setGuid2(pG2Str);
 			clashes.add(clash);

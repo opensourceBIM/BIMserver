@@ -10,7 +10,9 @@ import org.bimserver.database.store.Checkout;
 import org.bimserver.database.store.Clash;
 import org.bimserver.database.store.ClashDetectionSettings;
 import org.bimserver.database.store.ConcreteRevision;
+import org.bimserver.database.store.EidClash;
 import org.bimserver.database.store.GeoTag;
+import org.bimserver.database.store.GuidClash;
 import org.bimserver.database.store.ObjectState;
 import org.bimserver.database.store.Project;
 import org.bimserver.database.store.Revision;
@@ -82,7 +84,21 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass guidClashEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass clashEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass eidClashEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -768,6 +784,33 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getGuidClash() {
+		return guidClashEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getGuidClash_Guid1() {
+		return (EAttribute)guidClashEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getGuidClash_Guid2() {
+		return (EAttribute)guidClashEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getClash() {
 		return clashEClass;
 	}
@@ -777,26 +820,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getClash_Guid1() {
-		return (EAttribute)clashEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getClash_Guid2() {
-		return (EAttribute)clashEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EAttribute getClash_Name1() {
-		return (EAttribute)clashEClass.getEStructuralFeatures().get(3);
+		return (EAttribute)clashEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -805,7 +830,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * @generated
 	 */
 	public EAttribute getClash_Name2() {
-		return (EAttribute)clashEClass.getEStructuralFeatures().get(4);
+		return (EAttribute)clashEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -814,7 +839,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * @generated
 	 */
 	public EAttribute getClash_Type1() {
-		return (EAttribute)clashEClass.getEStructuralFeatures().get(5);
+		return (EAttribute)clashEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -823,7 +848,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * @generated
 	 */
 	public EAttribute getClash_Type2() {
-		return (EAttribute)clashEClass.getEStructuralFeatures().get(6);
+		return (EAttribute)clashEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -831,8 +856,44 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getClash_Revision() {
-		return (EReference)clashEClass.getEStructuralFeatures().get(0);
+	public EReference getClash_Revision1() {
+		return (EReference)clashEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getClash_Revision2() {
+		return (EReference)clashEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getEidClash() {
+		return eidClashEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getEidClash_Eid1() {
+		return (EAttribute)eidClashEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getEidClash_Eid2() {
+		return (EAttribute)eidClashEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1015,14 +1076,9 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 		createEAttribute(revisionEClass, REVISION__PROCESSING_CLASHES);
 		createEAttribute(revisionEClass, REVISION__TAG);
 
-		clashEClass = createEClass(CLASH);
-		createEReference(clashEClass, CLASH__REVISION);
-		createEAttribute(clashEClass, CLASH__GUID1);
-		createEAttribute(clashEClass, CLASH__GUID2);
-		createEAttribute(clashEClass, CLASH__NAME1);
-		createEAttribute(clashEClass, CLASH__NAME2);
-		createEAttribute(clashEClass, CLASH__TYPE1);
-		createEAttribute(clashEClass, CLASH__TYPE2);
+		guidClashEClass = createEClass(GUID_CLASH);
+		createEAttribute(guidClashEClass, GUID_CLASH__GUID1);
+		createEAttribute(guidClashEClass, GUID_CLASH__GUID2);
 
 		clashDetectionSettingsEClass = createEClass(CLASH_DETECTION_SETTINGS);
 		createEAttribute(clashDetectionSettingsEClass, CLASH_DETECTION_SETTINGS__ENABLED);
@@ -1030,6 +1086,18 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 		createEAttribute(clashDetectionSettingsEClass, CLASH_DETECTION_SETTINGS__MARGIN);
 		createEReference(clashDetectionSettingsEClass, CLASH_DETECTION_SETTINGS__REVISIONS);
 		createEAttribute(clashDetectionSettingsEClass, CLASH_DETECTION_SETTINGS__IGNORED_CLASSES);
+
+		clashEClass = createEClass(CLASH);
+		createEAttribute(clashEClass, CLASH__NAME1);
+		createEAttribute(clashEClass, CLASH__NAME2);
+		createEAttribute(clashEClass, CLASH__TYPE1);
+		createEAttribute(clashEClass, CLASH__TYPE2);
+		createEReference(clashEClass, CLASH__REVISION1);
+		createEReference(clashEClass, CLASH__REVISION2);
+
+		eidClashEClass = createEClass(EID_CLASH);
+		createEAttribute(eidClashEClass, EID_CLASH__EID1);
+		createEAttribute(eidClashEClass, EID_CLASH__EID2);
 
 		// Create enums
 		objectStateEEnum = createEEnum(OBJECT_STATE);
@@ -1071,6 +1139,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
+		guidClashEClass.getESuperTypes().add(this.getClash());
+		eidClashEClass.getESuperTypes().add(this.getClash());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(projectEClass, Project.class, "Project", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1140,18 +1210,13 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 		initEReference(getRevision_Checkouts(), this.getCheckout(), this.getCheckout_Revision(), "checkouts", null, 0, -1, Revision.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getRevision_Project(), this.getProject(), this.getProject_Revisions(), "project", null, 1, 1, Revision.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getRevision_Finalized(), ecorePackage.getEBoolean(), "finalized", null, 0, 1, Revision.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getRevision_LastClashes(), this.getClash(), this.getClash_Revision(), "lastClashes", null, 0, -1, Revision.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getRevision_LastClashes(), this.getClash(), null, "lastClashes", null, 0, -1, Revision.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getRevision_ProcessingClashes(), ecorePackage.getEBoolean(), "processingClashes", null, 0, 1, Revision.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getRevision_Tag(), ecorePackage.getEString(), "tag", null, 0, 1, Revision.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(clashEClass, Clash.class, "Clash", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getClash_Revision(), this.getRevision(), this.getRevision_LastClashes(), "revision", null, 0, 1, Clash.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getClash_Guid1(), ecorePackage.getEString(), "guid1", null, 0, 1, Clash.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getClash_Guid2(), ecorePackage.getEString(), "guid2", null, 0, 1, Clash.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getClash_Name1(), ecorePackage.getEString(), "name1", null, 0, 1, Clash.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getClash_Name2(), ecorePackage.getEString(), "name2", null, 0, 1, Clash.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getClash_Type1(), ecorePackage.getEString(), "type1", null, 0, 1, Clash.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getClash_Type2(), ecorePackage.getEString(), "type2", null, 0, 1, Clash.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(guidClashEClass, GuidClash.class, "GuidClash", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getGuidClash_Guid1(), ecorePackage.getEString(), "guid1", null, 0, 1, GuidClash.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getGuidClash_Guid2(), ecorePackage.getEString(), "guid2", null, 0, 1, GuidClash.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(clashDetectionSettingsEClass, ClashDetectionSettings.class, "ClashDetectionSettings", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getClashDetectionSettings_Enabled(), ecorePackage.getEBoolean(), "enabled", null, 0, 1, ClashDetectionSettings.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1159,6 +1224,18 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 		initEAttribute(getClashDetectionSettings_Margin(), ecorePackage.getEFloat(), "margin", null, 0, 1, ClashDetectionSettings.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getClashDetectionSettings_Revisions(), this.getRevision(), null, "revisions", null, 0, -1, ClashDetectionSettings.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getClashDetectionSettings_IgnoredClasses(), ecorePackage.getEString(), "ignoredClasses", null, 0, -1, ClashDetectionSettings.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(clashEClass, Clash.class, "Clash", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getClash_Name1(), ecorePackage.getEString(), "name1", null, 0, 1, Clash.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getClash_Name2(), ecorePackage.getEString(), "name2", null, 0, 1, Clash.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getClash_Type1(), ecorePackage.getEString(), "type1", null, 0, 1, Clash.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getClash_Type2(), ecorePackage.getEString(), "type2", null, 0, 1, Clash.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getClash_Revision1(), this.getRevision(), null, "revision1", null, 0, 1, Clash.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getClash_Revision2(), this.getRevision(), null, "revision2", null, 0, 1, Clash.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(eidClashEClass, EidClash.class, "EidClash", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getEidClash_Eid1(), ecorePackage.getELong(), "eid1", null, 0, 1, EidClash.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getEidClash_Eid2(), ecorePackage.getELong(), "eid2", null, 0, 1, EidClash.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(objectStateEEnum, ObjectState.class, "ObjectState");

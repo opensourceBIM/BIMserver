@@ -29,7 +29,9 @@ import javax.xml.bind.annotation.XmlMimeType;
 import org.bimserver.interfaces.objects.SCheckout;
 import org.bimserver.interfaces.objects.SClash;
 import org.bimserver.interfaces.objects.SClashDetectionSettings;
+import org.bimserver.interfaces.objects.SEidClash;
 import org.bimserver.interfaces.objects.SGeoTag;
+import org.bimserver.interfaces.objects.SGuidClash;
 import org.bimserver.interfaces.objects.SLogAction;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevision;
@@ -60,7 +62,7 @@ public interface ServiceInterface {
 	CheckoutResult checkout(Token token, long roid, ResultType resultType) throws UserException;
 	CheckoutResult checkoutLastRevision(Token token, long poid, ResultType resultType) throws UserException;
 	CheckoutResult download(Token token, long roid, ResultType resultType) throws UserException;
-	CheckoutResult downloadByOid(Token token, long roid, long oid, ResultType resultType) throws UserException;
+	CheckoutResult downloadByOids(Token token, Set<Long> roids, Set<Long> oids, ResultType resultType) throws UserException;
 	CheckoutResult downloadOfType(Token token, long roid, String className, ResultType resultType) throws UserException;
 	CheckoutResult downloadByGuids(Token token, Set<Long> roids, Set<String> guids, ResultType resultType) throws UserException;
 	CheckoutResult downloadProjects(Token token, Set<Long> roids, ResultType resultType) throws UserException;
@@ -103,7 +105,8 @@ public interface ServiceInterface {
 	DataObject getDataObjectByOid(Token token, long roid, long oid, String className) throws UserException;
 	DataObject getDataObjectByGuid(Token token, long roid, String guid) throws UserException;
 	List<DataObject> getDataObjectsByType(Token token, long roid, String className) throws UserException;
-	List<SClash> findClashes(Token token, SClashDetectionSettings sClashDetectionSettings) throws UserException;
+	List<SGuidClash> findClashesByGuid(Token token, SClashDetectionSettings sClashDetectionSettings) throws UserException;
+	List<SEidClash> findClashesByEid(Token token, SClashDetectionSettings sClashDetectionSettings) throws UserException;
 	List<SClash> getLastClashes(Token token, long roid) throws UserException;
 	String resetPassword(String emailAddress) throws UserException;
 	CheckinResult branchToNewProject(Token token, long roid, String projectName, String comment) throws UserException;

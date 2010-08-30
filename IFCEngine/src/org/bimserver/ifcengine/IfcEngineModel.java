@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Set;
 
 import org.bimserver.database.store.Clash;
+import org.bimserver.database.store.EidClash;
+import org.bimserver.database.store.GuidClash;
 import org.bimserver.database.store.StoreFactory;
 
 public class IfcEngineModel {
@@ -86,16 +88,34 @@ public class IfcEngineModel {
 		}
 	}
 
-	public Set<Clash> findClashes(double d) throws IfcEngineException {
+	public Set<EidClash> findClashesByEid(double d) throws IfcEngineException {
 		synchronized (failSafeIfcEngine) {
-			failSafeIfcEngine.writeCommand(Command.FIND_CLASHES);
+			failSafeIfcEngine.writeCommand(Command.FIND_CLASHES_BY_EID);
 			failSafeIfcEngine.writeInt(modelId);
 			failSafeIfcEngine.writeDouble(d);
 			failSafeIfcEngine.flush();
 			int nrClashes = failSafeIfcEngine.readInt();
-			Set<Clash> clashes = new HashSet<Clash>();
+			Set<EidClash> clashes = new HashSet<EidClash>();
 			for (int i = 0; i < nrClashes; i++) {
-				Clash clash = StoreFactory.eINSTANCE.createClash();
+				EidClash clash = StoreFactory.eINSTANCE.createEidClash();
+				clashes.add(clash);
+				clash.setEid1(failSafeIfcEngine.readLong());
+				clash.setEid2(failSafeIfcEngine.readLong());
+			}
+			return clashes;
+		}
+	}
+	
+	public Set<GuidClash> findClashesByGuid(double d) throws IfcEngineException {
+		synchronized (failSafeIfcEngine) {
+			failSafeIfcEngine.writeCommand(Command.FIND_CLASHES_BY_GUID);
+			failSafeIfcEngine.writeInt(modelId);
+			failSafeIfcEngine.writeDouble(d);
+			failSafeIfcEngine.flush();
+			int nrClashes = failSafeIfcEngine.readInt();
+			Set<GuidClash> clashes = new HashSet<GuidClash>();
+			for (int i = 0; i < nrClashes; i++) {
+				GuidClash clash = StoreFactory.eINSTANCE.createGuidClash();
 				clashes.add(clash);
 				clash.setGuid1(failSafeIfcEngine.readString());
 				clash.setGuid2(failSafeIfcEngine.readString());

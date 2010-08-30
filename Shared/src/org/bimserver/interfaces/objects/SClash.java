@@ -13,37 +13,12 @@ public class SClash
 	public void setOid(long oid) {
 		this.oid = oid;
 	}
-	private long revisionId;
-	private java.lang.String guid1;
-	private java.lang.String guid2;
 	private java.lang.String name1;
 	private java.lang.String name2;
 	private java.lang.String type1;
 	private java.lang.String type2;
-	public long getRevisionId() {
-		return revisionId;
-	}
-
-	public void setRevisionId(long revisionId) {
-		this.revisionId = revisionId;
-	}
-	
-
-	public java.lang.String getGuid1() {
-		return guid1;
-	}
-
-	public void setGuid1(java.lang.String guid1) {
-		this.guid1 = guid1;
-	}
-
-	public java.lang.String getGuid2() {
-		return guid2;
-	}
-
-	public void setGuid2(java.lang.String guid2) {
-		this.guid2 = guid2;
-	}
+	private long revision1Id;
+	private long revision2Id;
 
 	public java.lang.String getName1() {
 		return name1;
@@ -76,6 +51,22 @@ public class SClash
 	public void setType2(java.lang.String type2) {
 		this.type2 = type2;
 	}
+	public long getRevision1Id() {
+		return revision1Id;
+	}
+
+	public void setRevision1Id(long revision1Id) {
+		this.revision1Id = revision1Id;
+	}
+	
+	public long getRevision2Id() {
+		return revision2Id;
+	}
+
+	public void setRevision2Id(long revision2Id) {
+		this.revision2Id = revision2Id;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

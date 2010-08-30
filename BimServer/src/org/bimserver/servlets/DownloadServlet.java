@@ -36,8 +36,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.bimserver.LoginManager;
 import org.bimserver.ifc.EmfSerializer;
 import org.bimserver.ifc.SerializerException;
-import org.bimserver.interfaces.objects.SClash;
 import org.bimserver.interfaces.objects.SClashDetectionSettings;
+import org.bimserver.interfaces.objects.SEidClash;
 import org.bimserver.shared.CheckoutResult;
 import org.bimserver.shared.ResultType;
 import org.bimserver.shared.UserException;
@@ -83,13 +83,13 @@ public class DownloadServlet extends HttpServlet {
 				for (String revisionOidString : revisions) {
 					sClashDetectionSettings.getRevisions().add(Long.parseLong(revisionOidString));
 				}
-				List<SClash> findClashes = loginManager.getService().findClashes(sClashDetectionSettings);
-				Set<String> guids = new HashSet<String>();
-				for (SClash clash : findClashes) {
-					guids.add(clash.getGuid1());
-					guids.add(clash.getGuid2());
+				List<SEidClash> findClashes = loginManager.getService().findClashesByEid(sClashDetectionSettings);
+				Set<Long> eids = new HashSet<Long>();
+				for (SEidClash clash : findClashes) {
+					eids.add(clash.getEid1());
+					eids.add(clash.getEid2());
 				}
-				checkoutResult = loginManager.getService().downloadByGuids(new HashSet<Long>(sClashDetectionSettings.getRevisions()), guids, resultType);
+				checkoutResult = loginManager.getService().downloadByOids(new HashSet<Long>(sClashDetectionSettings.getRevisions()), eids, resultType);
 			} else {
 				long roid = -1;
 				if (request.getParameter("roid") == null) {
@@ -103,7 +103,13 @@ public class DownloadServlet extends HttpServlet {
 					if (request.getParameter("class") != null) {
 						checkoutResult = loginManager.getService().downloadOfType(roid, request.getParameter("class"), resultType);
 					} else if (request.getParameter("oid") != null) {
-						checkoutResult = loginManager.getService().downloadById(roid, Integer.parseInt(request.getParameter("oid")), resultType);
+						Set<Long> oids = new HashSet<Long>();
+						for (String oidString : request.getParameter("oids").split(";")) {
+							oids.add(Long.parseLong(oidString));
+						}
+						Set<Long> roids = new HashSet<Long>();
+						roids.add(roid);
+						checkoutResult = loginManager.getService().downloadByOids(roids, oids, resultType);
 					} else if (request.getParameter("guids") != null) {
 						Set<String> guids = new HashSet<String>();
 						for (String guid : request.getParameter("guids").split(";")) {

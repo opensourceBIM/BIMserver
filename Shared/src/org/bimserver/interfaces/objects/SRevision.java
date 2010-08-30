@@ -2,17 +2,17 @@ package org.bimserver.interfaces.objects;
 
 import java.util.*;
 
-public class SRevision {
+public class SRevision
+{
 	private long oid;
-
+	
 	public long getOid() {
 		return oid;
 	}
-
+	
 	public void setOid(long oid) {
 		this.oid = oid;
 	}
-
 	private int id;
 	private long userId;
 	private java.util.Date date;
@@ -34,7 +34,6 @@ public class SRevision {
 	public void setId(int id) {
 		this.id = id;
 	}
-
 	public long getUserId() {
 		return userId;
 	}
@@ -42,6 +41,7 @@ public class SRevision {
 	public void setUserId(long userId) {
 		this.userId = userId;
 	}
+	
 
 	public java.util.Date getDate() {
 		return date;
@@ -66,7 +66,6 @@ public class SRevision {
 	public void setSize(long size) {
 		this.size = size;
 	}
-
 	public List<Long> getConcreteRevisions() {
 		return concreteRevisions;
 	}
@@ -74,7 +73,6 @@ public class SRevision {
 	public void setConcreteRevisions(List<Long> concreteRevisions) {
 		this.concreteRevisions = concreteRevisions;
 	}
-
 	public long getLastConcreteRevisionId() {
 		return lastConcreteRevisionId;
 	}
@@ -82,7 +80,7 @@ public class SRevision {
 	public void setLastConcreteRevisionId(long lastConcreteRevisionId) {
 		this.lastConcreteRevisionId = lastConcreteRevisionId;
 	}
-
+	
 	public List<Long> getCheckouts() {
 		return checkouts;
 	}
@@ -90,7 +88,6 @@ public class SRevision {
 	public void setCheckouts(List<Long> checkouts) {
 		this.checkouts = checkouts;
 	}
-
 	public long getProjectId() {
 		return projectId;
 	}
@@ -98,6 +95,7 @@ public class SRevision {
 	public void setProjectId(long projectId) {
 		this.projectId = projectId;
 	}
+	
 
 	public boolean isFinalized() {
 		return finalized;
@@ -106,7 +104,6 @@ public class SRevision {
 	public void setFinalized(boolean finalized) {
 		this.finalized = finalized;
 	}
-
 	public List<Long> getLastClashes() {
 		return lastClashes;
 	}
@@ -130,7 +127,6 @@ public class SRevision {
 	public void setTag(java.lang.String tag) {
 		this.tag = tag;
 	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;

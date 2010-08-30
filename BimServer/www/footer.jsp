@@ -29,7 +29,7 @@ $(document).ready(function(){
 		});
 		$(".guidquerylink").click(function(event){
 			var guid = $(event.currentTarget).attr("guid");
-			$("#guid").val(guid);
+			$("#guids").val(guid);
 			activateTab("Query");
 			$("#simplequerylink").click();
 			return false;

@@ -102,12 +102,20 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 				return createRevisionAdapter();
 			}
 			@Override
-			public Adapter caseClash(Clash object) {
-				return createClashAdapter();
+			public Adapter caseGuidClash(GuidClash object) {
+				return createGuidClashAdapter();
 			}
 			@Override
 			public Adapter caseClashDetectionSettings(ClashDetectionSettings object) {
 				return createClashDetectionSettingsAdapter();
+			}
+			@Override
+			public Adapter caseClash(Clash object) {
+				return createClashAdapter();
+			}
+			@Override
+			public Adapter caseEidClash(EidClash object) {
+				return createEidClashAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -214,6 +222,20 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.database.store.GuidClash <em>Guid Clash</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.database.store.GuidClash
+	 * @generated
+	 */
+	public Adapter createGuidClashAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.bimserver.database.store.Clash <em>Clash</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -224,6 +246,20 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createClashAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.database.store.EidClash <em>Eid Clash</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.database.store.EidClash
+	 * @generated
+	 */
+	public Adapter createEidClashAdapter() {
 		return null;
 	}
 

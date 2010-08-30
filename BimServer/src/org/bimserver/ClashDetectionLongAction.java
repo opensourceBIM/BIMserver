@@ -15,6 +15,7 @@ import org.bimserver.database.actions.BimDatabaseAction;
 import org.bimserver.database.actions.DownloadDatabaseAction;
 import org.bimserver.database.actions.FindClashesDatabaseAction;
 import org.bimserver.database.store.Clash;
+import org.bimserver.database.store.EidClash;
 import org.bimserver.database.store.Project;
 import org.bimserver.database.store.Revision;
 import org.bimserver.database.store.log.AccessMethod;
@@ -72,7 +73,7 @@ public class ClashDetectionLongAction extends LongAction {
 			try {	
 				IfcEngineModel ifcEngineModel = failSafeIfcEngine.openModel(file);
 				try {
-					Set<Clash> clashes = ifcEngineModel.findClashes(project.getClashDetectionSettings().getMargin());
+					Set<EidClash> clashes = ifcEngineModel.findClashesByEid(project.getClashDetectionSettings().getMargin());
 					for (Clash clash : clashes) {
 						revision.getLastClashes().add(clash);
 					}
