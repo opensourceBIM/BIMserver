@@ -58,7 +58,7 @@ import org.bimserver.database.actions.CompareDatabaseAction;
 import org.bimserver.database.actions.DeleteProjectDatabaseAction;
 import org.bimserver.database.actions.DeleteUserDatabaseAction;
 import org.bimserver.database.actions.DownloadByGuidsDatabaseAction;
-import org.bimserver.database.actions.DownloadByOidDatabaseAction;
+import org.bimserver.database.actions.DownloadByOidsDatabaseAction;
 import org.bimserver.database.actions.DownloadDatabaseAction;
 import org.bimserver.database.actions.DownloadOfTypeDatabaseAction;
 import org.bimserver.database.actions.DownloadProjectsDatabaseAction;
@@ -121,7 +121,9 @@ import org.bimserver.ifcengine.IfcEngineFactory;
 import org.bimserver.interfaces.objects.SCheckout;
 import org.bimserver.interfaces.objects.SClash;
 import org.bimserver.interfaces.objects.SClashDetectionSettings;
+import org.bimserver.interfaces.objects.SEidClash;
 import org.bimserver.interfaces.objects.SGeoTag;
+import org.bimserver.interfaces.objects.SGuidClash;
 import org.bimserver.interfaces.objects.SLogAction;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevision;
@@ -697,12 +699,12 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public CheckoutResult downloadByOid(Token token, long roid, long oid, ResultType resultType) throws UserException {
+	public CheckoutResult downloadByOids(Token token, Set<Long> roids, Set<Long> oids, ResultType resultType) throws UserException {
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
-			BimDatabaseAction<IfcModel> action = new DownloadByOidDatabaseAction(accessMethod, roid, oid, tokenManager.getUoid(token));
+			BimDatabaseAction<IfcModel> action = new DownloadByOidsDatabaseAction(accessMethod, roids, oids, tokenManager.getUoid(token));
 			IfcModel ifcModel = session.executeAndCommitAction(action, DEADLOCK_RETRIES);
-			return convertModelToCheckoutResult(session.getRevisionByRoid(roid).getProject(), session.getUserByUoid(tokenManager.getUoid(token)), ifcModel, resultType);
+			return convertModelToCheckoutResult(session.getRevisionByRoid(roids.iterator().next()).getProject(), session.getUserByUoid(tokenManager.getUoid(token)), ifcModel, resultType);
 		} catch (BimDatabaseException e) {
 			throw new UserException("Database error " + e.getMessage(), e);
 		} catch (NoSerializerFoundException e) {
@@ -729,7 +731,7 @@ public class Service implements ServiceInterface {
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
 			BimDatabaseAction<IfcModel> action = new DownloadOfTypeDatabaseAction(accessMethod, roid, className, tokenManager.getUoid(token));
-			IfcModel ifcModel = session.executeAndCommitAction(action, DEADLOCK_RETRIES);
+			IfcModel ifcModel = session.executeAction(action, DEADLOCK_RETRIES);
 			return convertModelToCheckoutResult(session.getRevisionByRoid(roid).getProject(), session.getUserByUoid(tokenManager.getUoid(token)), ifcModel, resultType);
 		} catch (BimDatabaseException e) {
 			throw new UserException("Database error", e);
@@ -1143,11 +1145,24 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public List<SClash> findClashes(Token token, SClashDetectionSettings sClashDetectionSettings) throws UserException {
+	public List<SGuidClash> findClashesByGuid(Token token, SClashDetectionSettings sClashDetectionSettings) throws UserException {
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
 			return convert(session.executeAction(new FindClashesDatabaseAction(accessMethod, sClashDetectionSettings, schema, ifcEngineFactory, tokenManager.getUoid(token)),
-					DEADLOCK_RETRIES), SClash.class, session);
+					DEADLOCK_RETRIES), SGuidClash.class, session);
+		} catch (BimDatabaseException e) {
+			throw new UserException("Database error", e);
+		} finally {
+			session.close();
+		}
+	}
+
+	@Override
+	public List<SEidClash> findClashesByEid(Token token, SClashDetectionSettings sClashDetectionSettings) throws UserException {
+		BimDatabaseSession session = bimDatabase.createSession();
+		try {
+			return convert(session.executeAction(new FindClashesDatabaseAction(accessMethod, sClashDetectionSettings, schema, ifcEngineFactory, tokenManager.getUoid(token)),
+					DEADLOCK_RETRIES), SEidClash.class, session);
 		} catch (BimDatabaseException e) {
 			throw new UserException("Database error", e);
 		} finally {

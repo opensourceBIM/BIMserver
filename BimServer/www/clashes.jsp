@@ -8,7 +8,8 @@
 <%@page import="java.util.HashSet"%>
 
 <%@page import="org.bimserver.shared.ResultType"%>
-<%@page import="org.bimserver.EmfSerializerFactory"%><jsp:useBean id="loginManager" scope="session" class="org.bimserver.LoginManager" />
+<%@page import="org.bimserver.EmfSerializerFactory"%>
+<%@page import="org.bimserver.interfaces.objects.SEidClash"%><jsp:useBean id="loginManager" scope="session" class="org.bimserver.LoginManager" />
 <%
 	long poid = Long.parseLong(request.getParameter("poid"));
 	SProject project = loginManager.getService().getProjectByPoid(poid);
@@ -183,18 +184,18 @@ $(document).ready(function(){
 		for (String revisionOidString : revisions) {
 			sClashDetectionSettings.getRevisions().add(Long.parseLong(revisionOidString));
 		}
-		List<SClash> clashes = loginManager.getService().findClashes(sClashDetectionSettings);
+		List<SEidClash> clashes = loginManager.getService().findClashesByEid(sClashDetectionSettings);
 		if (clashes.isEmpty()) {
 			out.println("No clashes found<br/>");
 		} else {
 			out.println("<table class=\"formatted maintable\">");
-			out.println("<tr><th>Guid 1</th><th>Name 1</th><th>Type 1</th><th>Guid 2</th><th>Name 2</th><th>Type 2</th></tr>");
-			for (SClash sClash : clashes) {
+			out.println("<tr><th>EID 1</th><th>Name 1</th><th>Type 1</th><th>EID 2</th><th>Name 2</th><th>Type 2</th></tr>");
+			for (SEidClash sClash : clashes) {
 				out.println("<tr>");
-				out.println("<td><a href=\"#\" class=\"browserlink\" browserurl=\"browser.jsp?roid=" + lastRevision.getOid() + "&guid=" + sClash.getGuid1() + "\">" + sClash.getGuid1() + "</a></td>");
+				out.println("<td><a href=\"#\" class=\"browserlink\" browserurl=\"browser.jsp?roid=" + sClash.getRevision1Id() + "&className=" + sClash.getType1() + "&oid=" + sClash.getEid1() + "\">" + sClash.getEid1() + "</a></td>");
 				out.println("<td>" + sClash.getName1() + "</td>");
 				out.println("<td>" + sClash.getType1() + "</td>");
-				out.println("<td><a href=\"#\" class=\"browserlink\" browserurl=\"browser.jsp?roid=" + lastRevision.getOid() + "&guid=" + sClash.getGuid2() + "\">" + sClash.getGuid2() + "</a></td>");
+				out.println("<td><a href=\"#\" class=\"browserlink\" browserurl=\"browser.jsp?roid=" + sClash.getRevision2Id() + "&className=" + sClash.getType2() + "&oid=" + sClash.getEid2() + "\">" + sClash.getEid2() + "</a></td>");
 				out.println("<td>" + sClash.getName2() + "</td>");
 				out.println("<td>" + sClash.getType2() + "</td>");
 				out.println("</tr>");

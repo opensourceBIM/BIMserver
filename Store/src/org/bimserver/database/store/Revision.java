@@ -290,7 +290,6 @@ public interface Revision extends IdEObject {
 	/**
 	 * Returns the value of the '<em><b>Last Clashes</b></em>' reference list.
 	 * The list contents are of type {@link org.bimserver.database.store.Clash}.
-	 * It is bidirectional and its opposite is '{@link org.bimserver.database.store.Clash#getRevision <em>Revision</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Last Clashes</em>' reference list isn't clear,
@@ -299,8 +298,7 @@ public interface Revision extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Last Clashes</em>' reference list.
 	 * @see org.bimserver.database.store.StorePackage#getRevision_LastClashes()
-	 * @see org.bimserver.database.store.Clash#getRevision
-	 * @model opposite="revision"
+	 * @model
 	 * @generated
 	 */
 	EList<Clash> getLastClashes();

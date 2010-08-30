@@ -16,13 +16,12 @@ import org.bimserver.emf.IdEObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.bimserver.database.store.Clash#getRevision <em>Revision</em>}</li>
- *   <li>{@link org.bimserver.database.store.Clash#getGuid1 <em>Guid1</em>}</li>
- *   <li>{@link org.bimserver.database.store.Clash#getGuid2 <em>Guid2</em>}</li>
  *   <li>{@link org.bimserver.database.store.Clash#getName1 <em>Name1</em>}</li>
  *   <li>{@link org.bimserver.database.store.Clash#getName2 <em>Name2</em>}</li>
  *   <li>{@link org.bimserver.database.store.Clash#getType1 <em>Type1</em>}</li>
  *   <li>{@link org.bimserver.database.store.Clash#getType2 <em>Type2</em>}</li>
+ *   <li>{@link org.bimserver.database.store.Clash#getRevision1 <em>Revision1</em>}</li>
+ *   <li>{@link org.bimserver.database.store.Clash#getRevision2 <em>Revision2</em>}</li>
  * </ul>
  * </p>
  *
@@ -32,58 +31,6 @@ import org.bimserver.emf.IdEObject;
  * @generated
  */
 public interface Clash extends IdEObject {
-	/**
-	 * Returns the value of the '<em><b>Guid1</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Guid1</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Guid1</em>' attribute.
-	 * @see #setGuid1(String)
-	 * @see org.bimserver.database.store.StorePackage#getClash_Guid1()
-	 * @model
-	 * @generated
-	 */
-	String getGuid1();
-
-	/**
-	 * Sets the value of the '{@link org.bimserver.database.store.Clash#getGuid1 <em>Guid1</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Guid1</em>' attribute.
-	 * @see #getGuid1()
-	 * @generated
-	 */
-	void setGuid1(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Guid2</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Guid2</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Guid2</em>' attribute.
-	 * @see #setGuid2(String)
-	 * @see org.bimserver.database.store.StorePackage#getClash_Guid2()
-	 * @model
-	 * @generated
-	 */
-	String getGuid2();
-
-	/**
-	 * Sets the value of the '{@link org.bimserver.database.store.Clash#getGuid2 <em>Guid2</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Guid2</em>' attribute.
-	 * @see #getGuid2()
-	 * @generated
-	 */
-	void setGuid2(String value);
-
 	/**
 	 * Returns the value of the '<em><b>Name1</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -189,31 +136,55 @@ public interface Clash extends IdEObject {
 	void setType2(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Revision</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link org.bimserver.database.store.Revision#getLastClashes <em>Last Clashes</em>}'.
+	 * Returns the value of the '<em><b>Revision1</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Revision</em>' reference isn't clear,
+	 * If the meaning of the '<em>Revision1</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Revision</em>' reference.
-	 * @see #setRevision(Revision)
-	 * @see org.bimserver.database.store.StorePackage#getClash_Revision()
-	 * @see org.bimserver.database.store.Revision#getLastClashes
-	 * @model opposite="lastClashes"
+	 * @return the value of the '<em>Revision1</em>' reference.
+	 * @see #setRevision1(Revision)
+	 * @see org.bimserver.database.store.StorePackage#getClash_Revision1()
+	 * @model
 	 * @generated
 	 */
-	Revision getRevision();
+	Revision getRevision1();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.database.store.Clash#getRevision <em>Revision</em>}' reference.
+	 * Sets the value of the '{@link org.bimserver.database.store.Clash#getRevision1 <em>Revision1</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Revision</em>' reference.
-	 * @see #getRevision()
+	 * @param value the new value of the '<em>Revision1</em>' reference.
+	 * @see #getRevision1()
 	 * @generated
 	 */
-	void setRevision(Revision value);
+	void setRevision1(Revision value);
+
+	/**
+	 * Returns the value of the '<em><b>Revision2</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Revision2</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Revision2</em>' reference.
+	 * @see #setRevision2(Revision)
+	 * @see org.bimserver.database.store.StorePackage#getClash_Revision2()
+	 * @model
+	 * @generated
+	 */
+	Revision getRevision2();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.database.store.Clash#getRevision2 <em>Revision2</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Revision2</em>' reference.
+	 * @see #getRevision2()
+	 * @generated
+	 */
+	void setRevision2(Revision value);
 
 } // Clash

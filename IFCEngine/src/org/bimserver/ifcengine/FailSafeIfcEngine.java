@@ -154,4 +154,12 @@ public class FailSafeIfcEngine {
 			throw new IfcEngineException(e);
 		}
 	}
+
+	public long readLong() throws IfcEngineException {
+		try {
+			return in.readLong();
+		} catch (IOException e) {
+			throw new IfcEngineException(e);
+		}
+	}
 }

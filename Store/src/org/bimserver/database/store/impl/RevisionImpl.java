@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -544,7 +545,7 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 */
 	public EList<Clash> getLastClashes() {
 		if (lastClashes == null) {
-			lastClashes = new EObjectWithInverseResolvingEList<Clash>(Clash.class, this, StorePackage.REVISION__LAST_CLASHES, StorePackage.CLASH__REVISION);
+			lastClashes = new EObjectResolvingEList<Clash>(Clash.class, this, StorePackage.REVISION__LAST_CLASHES);
 		}
 		return lastClashes;
 	}
@@ -608,8 +609,6 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 				if (project != null)
 					msgs = ((InternalEObject)project).eInverseRemove(this, StorePackage.PROJECT__REVISIONS, Project.class, msgs);
 				return basicSetProject((Project)otherEnd, msgs);
-			case StorePackage.REVISION__LAST_CLASHES:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getLastClashes()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -628,8 +627,6 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 				return ((InternalEList<?>)getCheckouts()).basicRemove(otherEnd, msgs);
 			case StorePackage.REVISION__PROJECT:
 				return basicSetProject(null, msgs);
-			case StorePackage.REVISION__LAST_CLASHES:
-				return ((InternalEList<?>)getLastClashes()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
