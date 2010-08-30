@@ -255,8 +255,8 @@ Download: <select name="resultType">
 <input type="submit" value="Download"> <input type="hidden"
 	name="multiple" value="true" /></form>
 </div>
-<% } %>
 </div>
+<% } %>
 </div>
 <div class="tabbertab" id="subprojectstab"
 	title="Sub Projects<%=project.getSubProjects().size() == 0 ? "" : " (" + project.getSubProjects().size() + ")" %>">
