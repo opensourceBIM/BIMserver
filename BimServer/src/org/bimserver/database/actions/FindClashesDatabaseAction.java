@@ -16,6 +16,7 @@ import org.bimserver.database.BimDeadlockException;
 import org.bimserver.database.store.Clash;
 import org.bimserver.database.store.ConcreteRevision;
 import org.bimserver.database.store.EidClash;
+import org.bimserver.database.store.Project;
 import org.bimserver.database.store.Revision;
 import org.bimserver.database.store.log.AccessMethod;
 import org.bimserver.emf.IdEObject;
@@ -59,18 +60,21 @@ public class FindClashesDatabaseAction extends BimDatabaseAction<Set<? extends C
 
 	@Override
 	public Set<? extends Clash> execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
-		IfcModel ifcModel = new IfcModel();
 		Map<Long, Revision> oidToRoidMap = new HashMap<Long, Revision>();
+		Project project = null;
+		Set<IfcModel> ifcModels = new HashSet<IfcModel>();
 		for (Long roid : sClashDetectionSettings.getRevisions()) {
 			Revision revision = bimDatabaseSession.getRevisionByRoid(roid);
+			project = revision.getProject();
 			for (ConcreteRevision concreteRevision : revision.getConcreteRevisions()) {
 				IfcModel source = new IfcModel(bimDatabaseSession.getMap(concreteRevision.getProject().getId(), concreteRevision.getId()).getMap());
-				BimDatabaseAction.merge(revision.getProject(), ifcModel, source);
+				ifcModels.add(source);
 				for (Long oid : source.keySet()) {
 					oidToRoidMap.put(oid, revision);
 				}
 			}
 		}
+		IfcModel ifcModel = BimDatabaseAction.merge(project, ifcModels);
 		IfcModel newModel = new IfcModel();
 		Map<IdEObject, IdEObject> converted = new HashMap<IdEObject, IdEObject>();
 		for (IdEObject idEObject : ifcModel.getValues()) {

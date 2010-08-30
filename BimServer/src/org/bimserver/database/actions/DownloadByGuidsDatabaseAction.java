@@ -34,11 +34,12 @@ public class DownloadByGuidsDatabaseAction extends BimDatabaseAction<IfcModel> {
 	@Override
 	public IfcModel execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
 		User user = bimDatabaseSession.getUserByUoid(actingUoid);
-		IfcModel ifcModel = new IfcModel();
 		Set<String> foundGuids = new HashSet<String>();
+		Set<IfcModel> ifcModels = new HashSet<IfcModel>();
+		Project project = null;
 		for (Long roid : roids) {
 			Revision virtualRevision = bimDatabaseSession.getVirtualRevision(roid);
-			Project project = virtualRevision.getProject();
+			project = virtualRevision.getProject();
 			if (!RightsManager.hasRightsOnProjectOrSuperProjectsOrSubProjects(user, project)) {
 				throw new UserException("User has insufficient rights to download revisions from this project");
 			}
@@ -51,8 +52,8 @@ public class DownloadByGuidsDatabaseAction extends BimDatabaseAction<IfcModel> {
 							if (oidOfGuid != -1) {
 								foundGuids.add(guid);
 								ReadSet mapWithOid = bimDatabaseSession.getMapWithOid(concreteRevision.getProject().getId(), concreteRevision.getId(), oidOfGuid);
-								ifcModel.setMainObject(mapWithOid.get(oidOfGuid));
-								merge(concreteRevision.getProject(), ifcModel, new IfcModel(mapWithOid.getMap()));
+//								ifcModel.setMainObject(mapWithOid.get(oidOfGuid));
+								ifcModels.add(new IfcModel(mapWithOid.getMap()));
 								break;
 							}
 						}
@@ -60,6 +61,7 @@ public class DownloadByGuidsDatabaseAction extends BimDatabaseAction<IfcModel> {
 				}
 			}
 		}
+		IfcModel ifcModel = merge(project, ifcModels);
 		for (String guid : guids) {
 			if (!foundGuids.contains(guid)) {
 				throw new UserException("Guid " + guid + " not found");
