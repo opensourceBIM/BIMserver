@@ -208,9 +208,9 @@ revisions tab</a> to add a first revision, or <a id="subprojecttablink"
 	href="revision.jsp?roid=<%=lastRevision.getOid() %>">here</a> to go to
 the latest revision<br />
 <br />
-<p><a href="#" id="simpledownloadlink">Simple download</a> | <a
-	href="#" id="advanceddownloadlink">Advanced download</a></p>
-<div id="simpledownload">
+<p/>
+<div class="tabber" id="downloadtabber">
+<div class="tabbertab" id="detailstab" title="Simple Download">
 <form action="<%=request.getContextPath() %>/download" method="post">
 Download: <input type="hidden" name="roid"
 	value="<%=project.getLastRevisionId() %>" /> <select name="resultType" id="detailsdownloadcheckoutselect">
@@ -227,7 +227,8 @@ Download: <input type="hidden" name="roid"
 <input name="download" type="submit" value="Download"> <input
 	name="checkout" type="submit" value="Checkout" id="detailscheckoutbutton"></form>
 </div>
-<div id="advanceddownload"><script>
+<div class="tabbertab" id="" title="Advanced Download">
+<script>
 var projects = new Object();
 <%=JspHelper.writeDownloadProjectTreeJavaScript(project, loginManager) %>
 </script>
@@ -255,6 +256,7 @@ Download: <select name="resultType">
 	name="multiple" value="true" /></form>
 </div>
 <% } %>
+</div>
 </div>
 <div class="tabbertab" id="subprojectstab"
 	title="Sub Projects<%=project.getSubProjects().size() == 0 ? "" : " (" + project.getSubProjects().size() + ")" %>">
@@ -657,7 +659,6 @@ for (SRevision sRevision : revisions) {
 <script>
 	$(document).ready(function(){
 		$("#compareajaxloader").hide();
-		$("#advanceddownload").hide();
 		$("#browserajaxloader").hide();
 		<%
 			String clashesUrl = "clashes.jsp?poid=" + poid;
@@ -676,19 +677,6 @@ for (SRevision sRevision : revisions) {
 			$("#compareform").hide();
 			$("#compareajaxloader").show();
 		});
-		$("#advanceddownloadlink").click(function(){
-			$("#simpledownload").hide();
-			$("#advanceddownloadlink").addClass("linkactive");
-			$("#simpledownloadlink").removeClass("linkactive");
-			$("#advanceddownload").show();
-		});
-		$("#simpledownloadlink").click(function(){
-			$("#advanceddownload").hide();
-			$("#simpledownloadlink").addClass("linkactive");
-			$("#advanceddownloadlink").removeClass("linkactive");
-			$("#simpledownload").show();
-		});
-		$("#simpledownloadlink").addClass("linkactive");
 		$("#browserajaxlink").click(function(){
 			$("#browserajaxloader").show();
 			$("#browser").load("browser.jsp?roid=<%=lastRevision.getOid()%>");

@@ -10,10 +10,9 @@
 	List<String> classes = loginManager.getService().getAvailableClasses();
 	Collections.sort(classes);
 	if (loginManager.getUserType() == SUserType.ADMIN) {
-%><a id="simplequerylink" href="#">Simple</a> | <a id="advancedquerylink" href="#">Advanced</a><br/><br/><%
-	}
 %>
-<div id="simplequery">
+<div class="tabber" id="querytab">
+<div class="tabbertab" title="Simple" id="simple">
 <form action="<%=request.getContextPath() %>/download" method="post">
 <input type="hidden" name="roid" value="<%=roid %>"/>
 <table>
@@ -78,10 +77,10 @@
 </table>
 </form>
 </div>
-<div id="advancedquery">
+<div class="tabbertab" title="Advanced" id="advanced">
 Examples: <a href="#" id="defaultbutton">Default</a> <a href="#" id="plumbingbutton">Plumbing</a> <a href="#" id="doorsbutton">Doors</a><br/>
 Get even <a href="http://extend.bimserver.org" target="_blank">more advanced Querys or share yours with others</a><br/>
-<textarea cols="96" rows="16" id="code">
+<textarea cols="93" rows="16" id="code">
 </textarea>
 <div style="float: right">
 	<span id="ajaxloader">
@@ -90,7 +89,7 @@ Get even <a href="http://extend.bimserver.org" target="_blank">more advanced Que
 	<button id="compilebutton">Compile</button>
 	<button id="compileandrunbutton">Compile &amp; Run</button>
 </div>
-<textarea cols="96" rows="16" id="console">
+<textarea cols="93" rows="16" id="console">
 </textarea>
 <script>
 	$(document).ready(function(){
@@ -249,3 +248,7 @@ Get even <a href="http://extend.bimserver.org" target="_blank">more advanced Que
 	});
 </script>
 </div>
+</div>
+<%
+	}
+%>
