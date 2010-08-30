@@ -81,7 +81,7 @@
 <div id="advancedquery">
 Examples: <a href="#" id="defaultbutton">Default</a> <a href="#" id="plumbingbutton">Plumbing</a> <a href="#" id="doorsbutton">Doors</a><br/>
 Get even <a href="http://extend.bimserver.org" target="_blank">more advanced Querys or share yours with others</a><br/>
-<textarea cols="106" rows="16" id="code">
+<textarea cols="96" rows="16" id="code">
 </textarea>
 <div style="float: right">
 	<span id="ajaxloader">
@@ -90,7 +90,7 @@ Get even <a href="http://extend.bimserver.org" target="_blank">more advanced Que
 	<button id="compilebutton">Compile</button>
 	<button id="compileandrunbutton">Compile &amp; Run</button>
 </div>
-<textarea cols="106" rows="16" id="console">
+<textarea cols="96" rows="16" id="console">
 </textarea>
 <script>
 	$(document).ready(function(){

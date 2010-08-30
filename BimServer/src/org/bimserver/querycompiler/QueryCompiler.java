@@ -26,7 +26,14 @@ public class QueryCompiler {
 	}
 
 	private String createLibraryPath() {
-		return "../BimServer/src" + File.pathSeparator + "../Ifc/src" + File.pathSeparator + "../Emf/src" + File.pathSeparator + createPath(new File("../BimServer/lib")) + File.pathSeparator + createPath(new File("../Emf/lib"));
+		StringBuilder path = new StringBuilder();
+		path.append("../BimServer/src" + File.pathSeparator);
+		path.append("../Ifc/src" + File.pathSeparator);
+		path.append("../Emf/src" + File.pathSeparator);
+		path.append(createPath(new File("../BimServer/lib")) + File.pathSeparator);
+		path.append(createPath(new File("../BimServer/lib/emf")) + File.pathSeparator);
+		path.append(createPath(new File("../Emf/lib")));
+		return path.toString();
 	}
 
 	private String createPath(File dir) {

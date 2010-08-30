@@ -14,11 +14,11 @@ import org.bimserver.ifc.emf.Ifc2x3.IfcRelConnectsPortToElement;
 
 public class Query implements QueryInterface {
 
-	private IfcDatabase<Long> model;
+	private IfcDatabase model;
 	private PrintWriter out;
 
 	@Override
-	public void query(IfcDatabase<Long> model, PrintWriter out) {
+	public void query(IfcDatabase model, PrintWriter out) {
 		this.model = model;
 		this.out = out;
 		step1();
