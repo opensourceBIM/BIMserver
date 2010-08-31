@@ -120,6 +120,9 @@
 		<copy todir="builds/BuildWar/META-INF" overwrite="true">
 			<fileset file="../deploy/shared/context.xml" />
 		</copy>
+		<copy todir="builds/BuildWar/META-INF" overwrite="true">
+			<fileset file="../deploy/war/MANIFEST.MF" />
+		</copy>
 		<replace file="builds/BuildWar/WEB-INF/version.xml" token="@VERSION@" value="${version}" />
 		<replace file="builds/BuildWar/WEB-INF/version.xml" token="@DATE@" value="${touch.time}" />
 		<replace file="builds/BuildWar/WEB-INF/web.xml" token="@VERSION@" value="${version}" />
