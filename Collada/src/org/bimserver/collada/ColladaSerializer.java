@@ -12,6 +12,7 @@ import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
 
 import org.bimserver.database.store.Project;
 import org.bimserver.database.store.User;
+import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.BimModelSerializer;
 import org.bimserver.ifc.FieldIgnoreMap;
 import org.bimserver.ifc.IfcModel;
@@ -143,7 +144,7 @@ public class ColladaSerializer extends BimModelSerializer {
 		out.println("	</library_geometries>");
 	}
 
-	private void setGeometry(PrintWriter out, EObject ifcRootObject, String id, String material) {
+	private void setGeometry(PrintWriter out, IdEObject ifcRootObject, String id, String material) {
 		id = id.replace('$', '-'); // XML QNAME may not contain a $ character.
 		id = "_" + id; // XML QNAME may not start with a digit.
 

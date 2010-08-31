@@ -37,11 +37,11 @@ public abstract class BimModelSerializer extends EmfSerializer {
 	}
 
 	@SuppressWarnings("unchecked")
-	protected EObject convertToSubset(EClass originalClass, EObject ifcRootObject, IfcModel newModel, Map<EObject, EObject> converted) {
+	protected EObject convertToSubset(EClass originalClass, IdEObject ifcRootObject, IfcModel newModel, Map<EObject, EObject> converted) {
 		IdEObject newObject = (IdEObject) Ifc2x3Factory.eINSTANCE.create(ifcRootObject.eClass());
 		converted.put(ifcRootObject, newObject);
 		if (!(newObject instanceof WrappedValue)) {
-			newModel.add(newObject);
+			newModel.add(ifcRootObject.getOid(), newObject);
 		}
 		for (EStructuralFeature eStructuralFeature : ifcRootObject.eClass().getEAllStructuralFeatures()) {
 			if (!fieldIgnoreMap.shouldIgnoreField(ifcRootObject.eClass(), ifcRootObject.eClass(), eStructuralFeature)) {
@@ -68,14 +68,14 @@ public abstract class BimModelSerializer extends EmfSerializer {
 								if (converted.containsKey(o)) {
 									toList.addUnique(converted.get(o));
 								} else {
-									toList.addUnique(convertToSubset(originalClass, (EObject) o, newModel, converted));
+									toList.addUnique(convertToSubset(originalClass, (IdEObject) o, newModel, converted));
 								}
 							}
 						} else {
 							if (converted.containsKey(get)) {
 								newObject.eSet(eStructuralFeature, converted.get(get));
 							} else {
-								newObject.eSet(eStructuralFeature, convertToSubset(originalClass, (EObject) get, newModel, converted));
+								newObject.eSet(eStructuralFeature, convertToSubset(originalClass, (IdEObject) get, newModel, converted));
 							}
 						}
 					}

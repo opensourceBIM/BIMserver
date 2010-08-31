@@ -34,7 +34,6 @@ import com.google.common.collect.HashBiMap;
 
 public class IfcModel {
 
-	private long counter = 1;
 	private final BiMap<Long, IdEObject> objects;
 	private Map<String, IfcRoot> guidIndexed;
 	private byte[] checksum;
@@ -81,10 +80,6 @@ public class IfcModel {
 
 	public BiMap<? extends Long, ? extends IdEObject> getMap() {
 		return (BiMap<? extends Long, ? extends IdEObject>) objects;
-	}
-
-	public void add(IdEObject newObject) {
-		objects.put(((Long)counter++), newObject);
 	}
 
 	public byte[] getChecksum() {
