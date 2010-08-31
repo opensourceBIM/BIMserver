@@ -216,6 +216,7 @@ $(document).ready(function(){
 		  		<input type="submit" name="email" value="Send"/>
 		  	</form>
 		  </div>
+		  <br/><br/>
 <form action="<%=request.getContextPath() %>/download" method="post">
 Download: 
 <input type="hidden" name="clashes" value="true" />

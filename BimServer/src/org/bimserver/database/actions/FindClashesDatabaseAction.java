@@ -75,11 +75,13 @@ public class FindClashesDatabaseAction extends BimDatabaseAction<Set<? extends C
 			}
 		}
 		IfcModel ifcModel = BimDatabaseAction.merge(project, ifcModels);
+		ifcModel.dump();
 		IfcModel newModel = new IfcModel();
 		Map<IdEObject, IdEObject> converted = new HashMap<IdEObject, IdEObject>();
 		for (IdEObject idEObject : ifcModel.getValues()) {
 			cleanupModel(idEObject, newModel, ifcModel, new HashSet<String>(sClashDetectionSettings.getIgnoredClasses()), converted);
 		}
+		newModel.dump();
 		File file = createTempFile();
 		IfcStepSerializer ifcStepSerializer = new IfcStepSerializer(null, bimDatabaseSession
 				.getUserByUoid(actingUoid), file.getName(), newModel, schema);
@@ -131,12 +133,13 @@ public class FindClashesDatabaseAction extends BimDatabaseAction<Set<? extends C
 	}
 	
 	@SuppressWarnings("unchecked")
-	private IdEObject cleanupModel(IdEObject original, IfcModel newModel, IfcModel IfcModel, Set<String> ignoredClasses, Map<IdEObject, IdEObject> converted) {
+	private IdEObject cleanupModel(IdEObject original, IfcModel newModel, IfcModel ifcModel, Set<String> ignoredClasses, Map<IdEObject, IdEObject> converted) {
 		if (converted.containsKey(original)) {
 			return converted.get(original);
 		}
 		if (!ignoredClasses.contains(original.eClass().getName())) {
 			IdEObject newObject = (IdEObject) original.eClass().getEPackage().getEFactoryInstance().create(original.eClass());
+			newObject.setOid(original.getOid());
 			converted.put(original, newObject);
 			for (EStructuralFeature eStructuralFeature : original.eClass().getEAllStructuralFeatures()) {
 				Object get = original.eGet(eStructuralFeature);
@@ -162,7 +165,7 @@ public class FindClashesDatabaseAction extends BimDatabaseAction<Set<? extends C
 								if (converted.containsKey(o)) {
 									toList.addUnique(converted.get(o));
 								} else {
-									IdEObject result = cleanupModel((IdEObject) o, newModel, IfcModel, ignoredClasses, converted);
+									IdEObject result = cleanupModel((IdEObject) o, newModel, ifcModel, ignoredClasses, converted);
 									if (result != null) {
 										toList.addUnique(result);
 									}
@@ -172,13 +175,13 @@ public class FindClashesDatabaseAction extends BimDatabaseAction<Set<? extends C
 							if (converted.containsKey(get)) {
 								newObject.eSet(eStructuralFeature, converted.get(get));
 							} else {
-								newObject.eSet(eStructuralFeature, cleanupModel((IdEObject) get, newModel, IfcModel, ignoredClasses, converted));
+								newObject.eSet(eStructuralFeature, cleanupModel((IdEObject) get, newModel, ifcModel, ignoredClasses, converted));
 							}
 						}
 					}
 				}
 			}
-			newModel.add(newObject);
+			newModel.add(newObject.getOid(), newObject);
 			return newObject;
 		}
 		return null;

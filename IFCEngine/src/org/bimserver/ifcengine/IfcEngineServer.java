@@ -11,7 +11,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-import org.bimserver.database.store.Clash;
 import org.bimserver.database.store.EidClash;
 import org.bimserver.database.store.GuidClash;
 import org.bimserver.ifcengine.IfcEngineJNA.InstanceVisualisationProperties;

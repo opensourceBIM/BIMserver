@@ -7,7 +7,6 @@ import java.io.InputStream;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.bimserver.database.store.Clash;
 import org.bimserver.database.store.EidClash;
 import org.bimserver.database.store.GuidClash;
 import org.bimserver.database.store.StoreFactory;
@@ -502,13 +501,16 @@ public class IfcEngineJNA {
 	 */
 	public Set<EidClash> finalizeClashesByEI(Pointer modelId, int size) {
 		Set<EidClash> clashes = new HashSet<EidClash>();
-		Memory pG1 = new Memory(size * 4 * getPlatformMultiplier());
-		Memory pG2 = new Memory(size * 4 * getPlatformMultiplier());
+		Memory pG1 = new Memory(size * 8);
+		Memory pG2 = new Memory(size * 8);
 		engine.finalizeClashesByEI(modelId, pG1, pG2);
 		for (int i = 0; i < size; i++) {
-			Long eid1 = pG1.getLong(i * 4 * getPlatformMultiplier());
-			Long eid2 = pG2.getLong(i * 4 * getPlatformMultiplier());
+			Long eid1 = pG1.getLong(i * 8);
+			Long eid2 = pG2.getLong(i * 8);
 
+			System.out.println(eid1);
+			System.out.println(eid2);
+			
 			EidClash clash = StoreFactory.eINSTANCE.createEidClash();
 			clash.setEid1(eid1);
 			clash.setEid2(eid2);
