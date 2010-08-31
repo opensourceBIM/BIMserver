@@ -507,9 +507,6 @@ public class IfcEngineJNA {
 		for (int i = 0; i < size; i++) {
 			Long eid1 = pG1.getLong(i * 8);
 			Long eid2 = pG2.getLong(i * 8);
-
-			System.out.println(eid1);
-			System.out.println(eid2);
 			
 			EidClash clash = StoreFactory.eINSTANCE.createEidClash();
 			clash.setEid1(eid1);
