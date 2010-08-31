@@ -42,11 +42,14 @@ import org.bimserver.ifcengine.IfcEngineJNA.InstanceVisualisationProperties;
 import org.bimserver.shared.ResultType;
 import org.codehaus.jettison.json.JSONException;
 import org.eclipse.emf.ecore.EObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.ice.tar.TarEntry;
 import com.ice.tar.TarOutputStream;
 
 public class O3dJsonSerializer extends BimModelSerializer {
+	private static final Logger LOGGER = LoggerFactory.getLogger(O3dJsonSerializer.class);
 	private final SchemaDefinition schemaDefinition;
 	private final FailSafeIfcEngine ifcEngine;
 	private int convertCounter;
@@ -96,7 +99,7 @@ public class O3dJsonSerializer extends BimModelSerializer {
 					binaryVertexFile.serialize(tarOutputStream);
 					tarOutputStream.closeEntry();
 				} catch (JSONException e) {
-					e.printStackTrace();
+					LOGGER.error("", e);
 				}
 				tarOutputStream.finish();
 				tarOutputStream.flush();
@@ -106,7 +109,7 @@ public class O3dJsonSerializer extends BimModelSerializer {
 				ifcEngine.close();
 				return 1;
 			} catch (IOException e) {
-				e.printStackTrace();
+				LOGGER.error("", e);
 			}
 		} else if (mode == SimpleMode.DONE) {
 			return -1;
@@ -203,9 +206,9 @@ public class O3dJsonSerializer extends BimModelSerializer {
 				}
 			}
 		} catch (SerializerException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (IfcEngineException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 		return scene;
 	}
@@ -217,7 +220,7 @@ public class O3dJsonSerializer extends BimModelSerializer {
 		try {
 			outputStreamWriter.close();
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 		return baos.toByteArray();
 	}

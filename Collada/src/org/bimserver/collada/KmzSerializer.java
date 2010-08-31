@@ -15,9 +15,12 @@ import org.bimserver.ifc.FieldIgnoreMap;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifcengine.IfcEngineFactory;
 import org.bimserver.shared.ResultType;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class KmzSerializer extends BimModelSerializer {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(KmzSerializer.class);
 	private final ColladaSerializer ifcToCollada;
 	private SimpleMode mode = SimpleMode.BUSY;
 	private final Project project;
@@ -41,8 +44,8 @@ public class KmzSerializer extends BimModelSerializer {
 				zipOutputStream.closeEntry();
 				zipOutputStream.finish();
 				zipOutputStream.flush();
-			} catch (IOException e2) {
-				e2.printStackTrace();
+			} catch (IOException e) {
+				LOGGER.error("", e);
 			}
 			mode = SimpleMode.DONE;
 			return 1;
