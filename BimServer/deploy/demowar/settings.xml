@@ -11,4 +11,5 @@
 	<autoTestClashes>false</autoTestClashes>
 	<useSecondEngineJvm>true</useSecondEngineJvm>
 	<intelligentMerging>true</intelligentMerging>
+	<allowUsersToCreateTopLevelProjects>true</allowUsersToCreateTopLevelProjects>
 </settings>

@@ -11,7 +11,8 @@
 <%@page import="org.bimserver.database.store.ClashDetectionSettings"%>
 
 <!-- start map scripts - many thanks to Bart vd Eijnden www.osgis.nl -->
-<script type="text/javascript" src="http://extjs.cachefly.net/ext-3.2.1/adapter/ext/ext-base.js"></script>
+
+<%@page import="org.bimserver.interfaces.objects.SUserType"%><script type="text/javascript" src="http://extjs.cachefly.net/ext-3.2.1/adapter/ext/ext-base.js"></script>
 <script type="text/javascript" src="http://extjs.cachefly.net/ext-3.2.1/ext-all.js"></script>
 <link rel="stylesheet" type="text/css" href="http://extjs.cachefly.net/ext-3.2.1/resources/css/ext-all.css" />
 <script src="http://www.openlayers.org/api/2.9/OpenLayers.js"></script>
@@ -24,46 +25,47 @@
 <%@ include file="header.jsp" %>
 <%
 	if (loginManager.isLoggedIn()) {
-		if (request.getParameter("save") != null) {
-			try {
-				SProject sProject = null;
-				SProject parentProject = null;
-				if (request.getParameter("parentoid") != null) {
-					parentProject = loginManager.getService().getProjectByPoid(Long.parseLong(request.getParameter("parentoid")));
+		if (loginManager.getUserType() == SUserType.ADMIN || ServerSettings.getSettings().isAllowUsersToCreateTopLevelProjects()) {
+			if (request.getParameter("save") != null) {
+				try {
+					SProject sProject = null;
+					SProject parentProject = null;
+					if (request.getParameter("parentoid") != null) {
+						parentProject = loginManager.getService().getProjectByPoid(Long.parseLong(request.getParameter("parentoid")));
+					}
+					if (request.getParameter("parentoid") != null) {
+						sProject = loginManager.getService().addProject(request.getParameter("name"), Long.parseLong(request.getParameter("parentoid")));
+					} else {
+						sProject = loginManager.getService().addProject(request.getParameter("name"));
+					}
+					if (request.getParameter("anonymous") != null) {
+						loginManager.getService().addUserToProject(loginManager.getService().getAnonymousUser().getOid(), sProject.getOid());
+					}
+					if (request.getParameter("parentoid") == null) {
+						SGeoTag sGeoTag = loginManager.getService().getGeoTag(sProject.getGeoTagId());
+						sGeoTag.setEnabled(request.getParameter("coordcheck") != null);
+						sGeoTag.setDirectionAngle(Float.parseFloat(request.getParameter("directionAngle")));
+						sGeoTag.setEpsg(Integer.parseInt(request.getParameter("epsg").substring(5)));
+						sGeoTag.setX(Float.parseFloat(request.getParameter("x"))); 
+						sGeoTag.setY(Float.parseFloat(request.getParameter("y"))); 
+						sGeoTag.setZ(Float.parseFloat(request.getParameter("z")));
+						loginManager.getService().updateGeoTag(sGeoTag);
+						SClashDetectionSettings sClashDetectionSettings = loginManager.getService().getClashDetectionSettings(sProject.getClashDetectionSettingsId());
+						sClashDetectionSettings.setEnabled(request.getParameter("clashdetection") != null);
+						sClashDetectionSettings.setMargin(Float.parseFloat(request.getParameter("margin")));
+						loginManager.getService().updateClashDetectionSettings(sClashDetectionSettings);
+					}
+					if (request.getParameter("parentoid") != null) {
+						response.sendRedirect("project.jsp?poid=" + request.getParameter("parentoid"));
+					} else {
+						response.sendRedirect("project.jsp?poid=" + sProject.getOid());
+					}
+				} catch (NumberFormatException e) {
+					out.println("<div class=\"error\">" + e.getMessage() + "</div>");
+				} catch (UserException e) {
+					out.println("<div class=\"error\">" + e.getUserMessage() + "</div>");
 				}
-				if (request.getParameter("parentoid") != null) {
-					sProject = loginManager.getService().addProject(request.getParameter("name"), Long.parseLong(request.getParameter("parentoid")));
-				} else {
-					sProject = loginManager.getService().addProject(request.getParameter("name"));
-				}
-				if (request.getParameter("anonymous") != null) {
-					loginManager.getService().addUserToProject(loginManager.getService().getAnonymousUser().getOid(), sProject.getOid());
-				}
-				if (request.getParameter("parentoid") == null) {
-					SGeoTag sGeoTag = loginManager.getService().getGeoTag(sProject.getGeoTagId());
-					sGeoTag.setEnabled(request.getParameter("coordcheck") != null);
-					sGeoTag.setDirectionAngle(Float.parseFloat(request.getParameter("directionAngle")));
-					sGeoTag.setEpsg(Integer.parseInt(request.getParameter("epsg").substring(5)));
-					sGeoTag.setX(Float.parseFloat(request.getParameter("x"))); 
-					sGeoTag.setY(Float.parseFloat(request.getParameter("y"))); 
-					sGeoTag.setZ(Float.parseFloat(request.getParameter("z")));
-					loginManager.getService().updateGeoTag(sGeoTag);
-					SClashDetectionSettings sClashDetectionSettings = loginManager.getService().getClashDetectionSettings(sProject.getClashDetectionSettingsId());
-					sClashDetectionSettings.setEnabled(request.getParameter("clashdetection") != null);
-					sClashDetectionSettings.setMargin(Float.parseFloat(request.getParameter("margin")));
-					loginManager.getService().updateClashDetectionSettings(sClashDetectionSettings);
-				}
-				if (request.getParameter("parentoid") != null) {
-					response.sendRedirect("project.jsp?poid=" + request.getParameter("parentoid"));
-				} else {
-					response.sendRedirect("project.jsp?poid=" + sProject.getOid());
-				}
-			} catch (NumberFormatException e) {
-				out.println("<div class=\"error\">" + e.getMessage() + "</div>");
-			} catch (UserException e) {
-				out.println("<div class=\"error\">" + e.getUserMessage() + "</div>");
 			}
-		}
 %>
 <div class="sidebar">
 </div>
@@ -164,5 +166,10 @@ $(document).ready(function(){
 	});
 });
 </script>
-<% } %>
+<% } else {
+%>
+<div class="error">Only administrator can create new top-level projects</div>
+<%
+}
+}%>
 <%@ include file="footer.jsp" %>

@@ -8,11 +8,13 @@
 <%
 if (serverInfo.isAvailable()) {
 	if (loginManager.isLoggedIn()) { %>
-
-<div class="sidebar">
+<%@page import="org.bimserver.interfaces.objects.SUserType"%><div class="sidebar">
  <h4>Submenu</h4>
- <li>
- <a href="addproject.jsp">Add project</a></li>
+ <ul>
+<% if (loginManager.getUserType() == SUserType.ADMIN || ServerSettings.getSettings().isAllowUsersToCreateTopLevelProjects()) { %>
+ <li><a href="addproject.jsp">Add project</a></li>
+<% } %>
+ </ul>
 </div>
 
 <div class="content">

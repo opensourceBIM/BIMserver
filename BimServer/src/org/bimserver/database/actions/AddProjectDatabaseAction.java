@@ -2,6 +2,7 @@ package org.bimserver.database.actions;
 
 import java.util.Date;
 
+import org.bimserver.ServerSettings;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
@@ -48,6 +49,9 @@ public class AddProjectDatabaseAction extends BimDatabaseAction<Project> {
 		final Project project = StoreFactory.eINSTANCE.createProject();
 		if (parentPoid != -1) {
 			project.setParent(bimDatabaseSession.getProjectByPoid(parentPoid));
+		}
+		if (parentPoid == -1 && actingUser.getUserType() != UserType.ADMIN && !ServerSettings.getSettings().isAllowUsersToCreateTopLevelProjects()) {
+			throw new UserException("Only administrators can create new top-level projects");
 		}
 		if (project.getParent() == null) {
 			for (Project p : bimDatabaseSession.getProjectsByName(name)) {

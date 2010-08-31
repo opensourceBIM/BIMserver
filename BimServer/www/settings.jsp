@@ -25,6 +25,7 @@
 			settings.setRegistrationAddition(request.getParameter("registrationAddition"));
 			settings.setSendConfirmationEmailAfterRegistration(request.getParameter("sendConfirmationEmailAfterRegistration") != null);
 			settings.setShowVersionUpgradeAvailable(request.getParameter("showVersionUpgradeAvailable") != null);
+			settings.setAllowUsersToCreateTopLevelProjects(request.getParameter("allowUsersToCreateTopLevelProjects") != null);
 			settings.setSmtpServer(request.getParameter("smtpServer"));
 			settings.setUseCaching(request.getParameter("usecaching") != null);
 			settings.setIntelligentMerging(request.getParameter("intelligentMerging") != null);
@@ -75,67 +76,72 @@
 		<td colspan="2" class="tabletitle">Registration</td>
 	</tr>
 	<tr>
-		<td>Extra information when registering</td>
-		<td><textarea name="registrationAddition" cols="60" rows="4"><%=settings.getRegistrationAddition()%></textarea></td>
+		<td><label for="registrationAddition">Extra information when registering</label></td>
+		<td><textarea id="registrationAddition" name="registrationAddition" cols="60" rows="4"><%=settings.getRegistrationAddition()%></textarea></td>
 	</tr>
 	<tr>
-		<td>Send confirmation e-mail after registering</td>
-		<td><input name="sendConfirmationEmailAfterRegistration"
+		<td><label for="sendConfirmationEmailAfterRegistration">Send confirmation e-mail after registering</label></td>
+		<td><input id="sendConfirmationEmailAfterRegistration" name="sendConfirmationEmailAfterRegistration"
 			type="checkbox"
 			<%=settings.isSendConfirmationEmailAfterRegistration() ? " checked=\"checked\"" : ""%>></input></td>
 	</tr>
 	<tr>
-		<td>Allow self registration</td>
-		<td><input type="checkbox" name="allowSelfRegistration"
+		<td><label for="allowSelfRegistration">Allow self registration</label></td>
+		<td><input id="allowSelfRegistration" type="checkbox" name="allowSelfRegistration"
 			<%=settings.isAllowSelfRegistration() ? " checked=\"checked\"" : ""%>></input></td>
 	</tr>
 	<tr>
 		<td colspan="2" class="tabletitle">E-mail</td>
 	</tr>
 	<tr>
-		<td>Address of e-mail sender</td>
-		<td><input type="text" name="emailsenderaddress"
+		<td><label for="emailsenderaddress">Address of e-mail sender</label></td>
+		<td><input id="emailsenderaddress" type="text" name="emailsenderaddress"
 			value="<%=settings.getEmailSenderAddress()%>"></input></td>
 	</tr>
 	<tr>
-		<td>SMTP server (for outgoing e-mail)</td>
-		<td><input name="smtpServer" type="text"
+		<td><label for="smtpServer">SMTP server (for outgoing e-mail)</label></td>
+		<td><input id="smtpServer" name="smtpServer" type="text"
 			value="<%=settings.getSmtpServer()%>"></input></td>
 	</tr>
 	<tr>
 		<td colspan="2" class="tabletitle">Database</td>
 	</tr>
 	<tr>
-		<td>Database location</td>
-		<td><input type="text" name="databaselocation"
+		<td><label for="databaselocation">Database location</label></td>
+		<td><input id="databaselocation" type="text" name="databaselocation"
 			value="<%=settings.getDatabaseLocation()%>"></input></td>
 	</tr>
 	<tr>
 		<td colspan="2" class="tabletitle">Other</td>
 	</tr>
 	<tr>
-		<td>Automatic clash detection on main projects</td>
-		<td><input name="autoTestClashes" type="checkbox"
+		<td><label for="autoTestClashes">Automatic clash detection on main projects</label></td>
+		<td><input id="autoTestClashes" name="autoTestClashes" type="checkbox"
 			<%=settings.isAutoTestClashes() ? " checked=\"checked\"" : ""%>></input></td>
 	</tr>
 	<tr>
-		<td>Show whether a new version is available</td>
-		<td><input name="showVersionUpgradeAvailable" type="checkbox"
+		<td><label for="allowUsersToCreateTopLevelProjects">Allow non-admin users to create top-level projects</label></td>
+		<td><input id="allowUsersToCreateTopLevelProjects" name="allowUsersToCreateTopLevelProjects" type="checkbox"
+			<%=settings.isAllowUsersToCreateTopLevelProjects() ? " checked=\"checked\"" : ""%>></input></td>
+	</tr>
+	<tr>
+		<td><label for="showVersionUpgradeAvailable">Show whether a new version is available</label></td>
+		<td><input id="showVersionUpgradeAvailable" name="showVersionUpgradeAvailable" type="checkbox"
 			<%=settings.isShowVersionUpgradeAvailable() ? " checked=\"checked\"" : ""%>></input></td>
 	</tr>
 	<tr>
-		<td>Use second JVM for IFCEngine</td>
-		<td><input name="usesecondenginejvm" type="checkbox"
+		<td><label for="usesecondenginejvm">Use second JVM for IFCEngine</label></td>
+		<td><input id="usesecondenginejvm" name="usesecondenginejvm" type="checkbox"
 			<%=settings.isUseSecondEngineJvm() ? " checked=\"checked\"" : ""%>></input></td>
 	</tr>
 	<tr>
-		<td>Intelligent merging</td>
-		<td><input name="intelligentMerging" type="checkbox"
+		<td><label for="intelligentMerging">Intelligent merging</label></td>
+		<td><input id="intelligentMerging" name="intelligentMerging" type="checkbox"
 			<%=settings.isIntelligentMerging() ? " checked=\"checked\"" : ""%>></input></td>
 	</tr>
 	<tr>
-		<td>Custom logo address</td>
-		<td><input name="customLogo" type="text" size="80"
+		<td><label for="customLogo">Custom logo address</label></td>
+		<td><input id="customLogo" name="customLogo" type="text" size="80"
 			value="<%=settings.getCustomLogoAddress()%>"></input></td>
 	</tr>
 	<!-- 
