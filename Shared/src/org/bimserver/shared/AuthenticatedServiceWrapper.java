@@ -297,4 +297,8 @@ public class AuthenticatedServiceWrapper {
 	public void setRevisionTag(long roid, String tag) throws UserException {
 		service.setRevisionTag(roid, tag);
 	}
+	
+	public List<SProject> getSubProjects(long poid) throws UserException {
+		return service.getSubProjects(token, poid);
+	}
 }

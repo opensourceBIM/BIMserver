@@ -351,7 +351,9 @@ project</a><br />
 %>
 	<optgroup label="<%=sProject.getName() %>">
 		<%
-	for (SRevision sRevision : revisions) {
+		List<SRevision> checkinRevisions = loginManager.getService().getAllRevisionsOfProject(sProject.getOid());
+		Collections.sort(checkinRevisions, new SRevisionIdComparator(true));
+	for (SRevision sRevision : checkinRevisions) {
 %>
 		<option value="<%=sRevision.getOid() %>"><%=sRevision.getId() %></option>
 		<%}
@@ -609,7 +611,7 @@ for (SRevision sRevision : revisions) {
 			return false;
 		});
 		<%
-		if (!project.getSubProjects().isEmpty()) {
+		if (!loginManager.getService().getSubProjects(project.getOid()).isEmpty()) {
 %>
 			$("#uploadlink").show();
 			$("#uploadlink").click(function(){
