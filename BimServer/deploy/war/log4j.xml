@@ -2,7 +2,7 @@
 <!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
 <log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/" debug="false">
 	<appender name="File" class="org.apache.log4j.FileAppender">
-		<param name="File" value="/var/log/bimserver.log" />
+		<param name="File" value="/var/log/tomcat6/bimserver.log" />
 		<param name="Threshold" value="DEBUG" />
 		<layout class="org.apache.log4j.PatternLayout">
 			<param name="ConversionPattern" value="%d{ISO8601} %-5p %c - %m%n" />
