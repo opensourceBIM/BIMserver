@@ -6,10 +6,12 @@
 <%@page import="org.bimserver.JspHelper"%>
 <%@page import="java.util.Set"%>
 <%@page import="java.util.HashSet"%>
-
 <%@page import="org.bimserver.shared.ResultType"%>
 <%@page import="org.bimserver.EmfSerializerFactory"%>
-<%@page import="org.bimserver.interfaces.objects.SEidClash"%><jsp:useBean id="loginManager" scope="session" class="org.bimserver.LoginManager" />
+<%@page import="org.bimserver.interfaces.objects.SEidClash"%>
+
+<%@page import="java.util.HashMap"%>
+<%@page import="java.util.Map"%><jsp:useBean id="loginManager" scope="session" class="org.bimserver.LoginManager" />
 <%
 	long poid = Long.parseLong(request.getParameter("poid"));
 	SProject project = loginManager.getService().getProjectByPoid(poid);
@@ -184,20 +186,33 @@ $(document).ready(function(){
 		for (String revisionOidString : revisions) {
 			sClashDetectionSettings.getRevisions().add(Long.parseLong(revisionOidString));
 		}
+		Map<Long, Long> revisionUsers = new HashMap<Long, Long>();
+		Map<Long, String> revisionUserNames = new HashMap<Long, String>();
 		List<SEidClash> clashes = loginManager.getService().findClashesByEid(sClashDetectionSettings);
 		if (clashes.isEmpty()) {
 			out.println("No clashes found<br/>");
 		} else {
 			out.println("<table class=\"formatted maintable\">");
-			out.println("<tr><th>EID 1</th><th>Name 1</th><th>Type 1</th><th>EID 2</th><th>Name 2</th><th>Type 2</th></tr>");
+			out.println("<tr><th>Name</th><th>Type</th><th>User</th><th></th><th>Name</th><th>Type</th><th></th></tr>");
 			for (SEidClash sClash : clashes) {
+				if (!revisionUsers.containsKey(sClash.getRevision1Id())) {
+					long uoid = loginManager.getService().getRevision(sClash.getRevision1Id()).getUserId();
+					revisionUsers.put(sClash.getRevision1Id(), uoid);
+					revisionUserNames.put(sClash.getRevision1Id(), loginManager.getService().getUserByUoid(uoid).getName());
+				}
+				if (!revisionUsers.containsKey(sClash.getRevision2Id())) {
+					long uoid = loginManager.getService().getRevision(sClash.getRevision2Id()).getUserId();
+					revisionUsers.put(sClash.getRevision2Id(), uoid);
+					revisionUserNames.put(sClash.getRevision2Id(), loginManager.getService().getUserByUoid(uoid).getName());
+				}
 				out.println("<tr>");
-				out.println("<td><a href=\"#\" class=\"browserlink\" browserurl=\"browser.jsp?roid=" + sClash.getRevision1Id() + "&className=" + sClash.getType1() + "&oid=" + sClash.getEid1() + "\">" + sClash.getEid1() + "</a></td>");
-				out.println("<td>" + sClash.getName1() + "</td>");
+				out.println("<td><a href=\"#\" class=\"browserlink\" browserurl=\"browser.jsp?roid=" + sClash.getRevision1Id() + "&className=" + sClash.getType1() + "&oid=" + sClash.getEid1() + "\">" + sClash.getName1() + "</a></td>");
 				out.println("<td>" + sClash.getType1() + "</td>");
-				out.println("<td><a href=\"#\" class=\"browserlink\" browserurl=\"browser.jsp?roid=" + sClash.getRevision2Id() + "&className=" + sClash.getType2() + "&oid=" + sClash.getEid2() + "\">" + sClash.getEid2() + "</a></td>");
-				out.println("<td>" + sClash.getName2() + "</td>");
+				out.println("<td><a href=\"user.jsp?uoid=" + revisionUsers.get(sClash.getRevision1Id()) + "\">" + revisionUserNames.get(sClash.getRevision1Id()) + "</a></td>");
+				out.println("<td>&nbsp;&nbsp;&nbsp;</td>");
+				out.println("<td><a href=\"#\" class=\"browserlink\" browserurl=\"browser.jsp?roid=" + sClash.getRevision2Id() + "&className=" + sClash.getType2() + "&oid=" + sClash.getEid2() + "\">" + sClash.getName2() + "</a></td>");
 				out.println("<td>" + sClash.getType2() + "</td>");
+				out.println("<td><a href=\"user.jsp?uoid=" + revisionUsers.get(sClash.getRevision2Id()) + "\">" + revisionUserNames.get(sClash.getRevision2Id()) + "</a></td>");
 				out.println("</tr>");
 			}
 			out.println("</table>");
