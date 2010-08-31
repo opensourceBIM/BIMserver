@@ -29,6 +29,7 @@ import org.bimserver.ifc.emf.Ifc2x3.IfcWindow;
 import org.bimserver.ifc.file.writer.IfcStepSerializer;
 import org.bimserver.ifcengine.FailSafeIfcEngine;
 import org.bimserver.ifcengine.Geometry;
+import org.bimserver.ifcengine.IfcEngineException;
 import org.bimserver.ifcengine.IfcEngineFactory;
 import org.bimserver.ifcengine.IfcEngineModel;
 import org.bimserver.ifcengine.Instance;
@@ -106,7 +107,7 @@ public class ColladaSerializer extends BimModelSerializer {
 		out.println("    </asset>");
 	}
 
-	private void writeGeometries(PrintWriter out) {
+	private void writeGeometries(PrintWriter out) throws IfcEngineException {
 		out.println("	<library_geometries>");
 		IfcDatabase ifcDatabase = new IfcDatabase(model, null);
 		for (IfcRoof ifcRoof : ifcDatabase.getAll(IfcRoof.class)) {
@@ -144,7 +145,7 @@ public class ColladaSerializer extends BimModelSerializer {
 		out.println("	</library_geometries>");
 	}
 
-	private void setGeometry(PrintWriter out, IdEObject ifcRootObject, String id, String material) {
+	private void setGeometry(PrintWriter out, IdEObject ifcRootObject, String id, String material) throws IfcEngineException {
 		id = id.replace('$', '-'); // XML QNAME may not contain a $ character.
 		id = "_" + id; // XML QNAME may not start with a digit.
 
@@ -219,6 +220,8 @@ public class ColladaSerializer extends BimModelSerializer {
 			} finally {
 				model.close();
 			}
+		} catch (IfcEngineException e) {
+			throw e;
 		} catch (Exception e) {
 			LOGGER.error("", e);
 		}
