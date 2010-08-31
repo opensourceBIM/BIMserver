@@ -165,4 +165,11 @@ public class IfcModel {
 	public void setRevisionNr(int revisionNr) {
 		this.revisionNr = revisionNr;
 	}
+
+	public void dump() {
+		System.out.println("Dumping IFC Model");
+		for (Long key : objects.keySet()) {
+			System.out.println(key + ": " + objects.get(key).eClass().getName());
+		}
+	}
 }
