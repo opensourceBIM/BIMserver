@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <settings>
 	<showVersionUpgradeAvailable>false</showVersionUpgradeAvailable>
-	<registrationAddition>By using this demo server you agree to the &lt;a href="http://www.bimserver.org/version/demoserveruseragreement.html"&gt;user agreement&lt;/a&gt;</registrationAddition>
+	<registrationAddition>By using this demo server you agree to the &lt;a
+		href="http://www.bimserver.org/version/demoserveruseragreement.html"&gt;user
+		agreement&lt;/a&gt;</registrationAddition>
 	<smtpServer>localhost</smtpServer>
 	<emailSenderAddress>no-reply@bimserver.org</emailSenderAddress>
-	<sendConfirmationEmailAfterRegistration>true</sendConfirmationEmailAfterRegistration>
+	<sendConfirmationEmailAfterRegistration>true
+	</sendConfirmationEmailAfterRegistration>
 	<databaseLocation>/var/databases/cloud.bimserver.org</databaseLocation>
-	<enabledExportTypes>IFC, IFCXML, CITYGML, COLLADA, KML, KMZ</enabledExportTypes>
+	<enabledExportTypes>IFC, IFCXML, CITYGML, COLLADA, KML, KMZ
+	</enabledExportTypes>
 	<allowSelfRegistration>true</allowSelfRegistration>
 	<autoTestClashes>false</autoTestClashes>
 	<useSecondEngineJvm>true</useSecondEngineJvm>
 	<intelligentMerging>true</intelligentMerging>
+	<allowUsersToCreateTopLevelProjects>true</allowUsersToCreateTopLevelProjects>
 </settings>

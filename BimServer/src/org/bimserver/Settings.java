@@ -24,6 +24,7 @@ public class Settings {
 	private boolean useSecondEngineJvm;
 	private boolean autoTestClashes;
 	private boolean intelligentMerging;
+	private boolean allowUsersToCreateTopLevelProjects;
 	private String registrationAddition;
 	private String smtpServer;
 	private String emailSenderAddress;
@@ -214,6 +215,14 @@ public class Settings {
 
 	public void setCustomLogoAddress(String customLogoAddress) {
 		this.customLogoAddress = customLogoAddress;
+	}
+
+	public void setAllowUsersToCreateTopLevelProjects(boolean allowUsersToCreateTopLevelProjects) {
+		this.allowUsersToCreateTopLevelProjects = allowUsersToCreateTopLevelProjects;
+	}
+
+	public boolean isAllowUsersToCreateTopLevelProjects() {
+		return allowUsersToCreateTopLevelProjects;
 	}
 
 }
