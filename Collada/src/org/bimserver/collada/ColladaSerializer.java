@@ -3,10 +3,10 @@ package org.bimserver.collada;
 import java.io.File;
 import java.io.OutputStream;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
 
@@ -16,6 +16,7 @@ import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.BimModelSerializer;
 import org.bimserver.ifc.FieldIgnoreMap;
 import org.bimserver.ifc.IfcModel;
+import org.bimserver.ifc.SerializerException;
 import org.bimserver.ifc.database.IfcDatabase;
 import org.bimserver.ifc.emf.Ifc2x3.IfcColumn;
 import org.bimserver.ifc.emf.Ifc2x3.IfcDoor;
@@ -43,7 +44,7 @@ public class ColladaSerializer extends BimModelSerializer {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ColladaSerializer.class);
 	private final FailSafeIfcEngine ifcEngine;
 	private final SchemaDefinition schemaDefinition;
-	private final Map<String, List<String>> converted = new HashMap<String, List<String>>();
+	private final Map<String, Set<String>> converted = new HashMap<String, Set<String>>();
 	private SimpleMode mode = SimpleMode.BUSY;
 	private final Project project;
 	private final User user;
@@ -150,15 +151,22 @@ public class ColladaSerializer extends BimModelSerializer {
 		id = "_" + id; // XML QNAME may not start with a digit.
 
 		if (!converted.containsKey(material)) {
-			converted.put(material, new ArrayList<String>());
+			converted.put(material, new HashSet<String>());
 		}
 		converted.get(material).add(id);
+		
 		IfcModel ifcModel = new IfcModel();
 		convertToSubset(ifcRootObject.eClass(), ifcRootObject, ifcModel, new HashMap<EObject, EObject>());
 		IfcStepSerializer ifcSerializer = new IfcStepSerializer(project, user, "", ifcModel, schemaDefinition);
 		File file = createTempFile();
 		try {
 			ifcSerializer.writeToFile(file);
+		} catch (SerializerException e) {
+			LOGGER.error("", e);
+			return;
+		}
+		
+		try {
 			IfcEngineModel model = ifcEngine.openModel(file);
 			try {
 				model.setPostProcessing(true);
@@ -251,7 +259,7 @@ public class ColladaSerializer extends BimModelSerializer {
 		out.println("                <instance_light url=\"#light-lib\"/>");
 		out.println("            </node>");
 		for (String material : converted.keySet()) {
-			List<String> ids = converted.get(material);
+			Set<String> ids = converted.get(material);
 			for (String id : ids) {
 				out.println("            <node id=\"" + id + "-node\" name=\"" + id + "-node\">");
 				out.println("                <rotate sid=\"rotateX\">1 0 0 90</rotate>");
