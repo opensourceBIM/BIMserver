@@ -41,7 +41,7 @@ public abstract class BimModelSerializer extends EmfSerializer {
 		IdEObject newObject = (IdEObject) Ifc2x3Factory.eINSTANCE.create(ifcRootObject.eClass());
 		converted.put(ifcRootObject, newObject);
 		if (!(newObject instanceof WrappedValue)) {
-			newModel.add(ifcRootObject.getOid(), newObject);
+			newModel.add(newObject);
 		}
 		for (EStructuralFeature eStructuralFeature : ifcRootObject.eClass().getEAllStructuralFeatures()) {
 			if (!fieldIgnoreMap.shouldIgnoreField(ifcRootObject.eClass(), ifcRootObject.eClass(), eStructuralFeature)) {
