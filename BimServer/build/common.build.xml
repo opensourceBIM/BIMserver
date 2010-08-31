@@ -151,7 +151,7 @@
 				<exclude name="jetty/*.jar" />
 				<exclude name="ant-1.6.5.jar" />
 				<exclude name="core-3.1.1.jar" />
-				<exclude name="geronimo-servlet_2.5_spec-1.2.jar" />
+				<exclude name="cxf/geronimo-servlet_2.5_spec-1.2.jar" />
 			</fileset>
 			<fileset dir="../../buildingSMARTLibrary/lib">
 				<include name="*.jar" />
