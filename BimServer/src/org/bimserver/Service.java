@@ -85,6 +85,7 @@ import org.bimserver.database.actions.GetLogsDatabaseAction;
 import org.bimserver.database.actions.GetRevisionDatabaseAction;
 import org.bimserver.database.actions.GetRevisionSummaryDatabaseAction;
 import org.bimserver.database.actions.GetShowCheckoutWarningDatabaseAction;
+import org.bimserver.database.actions.GetSubProjectsDatabaseAction;
 import org.bimserver.database.actions.GetUserByNameDatabaseAction;
 import org.bimserver.database.actions.ProcessChangeSetDatabaseAction;
 import org.bimserver.database.actions.RemoveUserFromProjectDatabaseAction;
@@ -1453,6 +1454,19 @@ public class Service implements ServiceInterface {
 		try {
 			BimDatabaseAction<String> action = new SetRevisionTagDatabaseAction(accessMethod, roid, tag);
 			session.executeAndCommitAction(action, DEADLOCK_RETRIES);
+		} catch (BimDatabaseException e) {
+			throw new UserException("Database error", e);
+		} finally {
+			session.close();
+		}
+	}
+
+	@Override
+	public List<SProject> getSubProjects(Token token, long poid) throws UserException {
+		BimDatabaseSession session = bimDatabase.createSession();
+		try {
+			BimDatabaseAction<Set<Project>> action = new GetSubProjectsDatabaseAction(accessMethod, tokenManager.getUoid(token), poid);
+			return convert(session.executeAction(action, DEADLOCK_RETRIES), SProject.class, session);
 		} catch (BimDatabaseException e) {
 			throw new UserException("Database error", e);
 		} finally {

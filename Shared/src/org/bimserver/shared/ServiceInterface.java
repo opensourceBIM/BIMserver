@@ -123,4 +123,5 @@ public interface ServiceInterface {
 	List<SProject> getUsersProjects(long uoid);
 	List<SProject> getProjectByName(String name) throws UserException;
 	void setRevisionTag(long roid, String tag) throws UserException;
+	List<SProject> getSubProjects(Token token, long poid) throws UserException;
 }
