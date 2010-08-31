@@ -77,7 +77,7 @@ public class ColladaSerializer extends BimModelSerializer {
 				writer.print("</COLLADA>");
 				writer.flush();
 			} catch (Exception e) {
-				e.printStackTrace();
+				LOGGER.error("", e);
 			}
 			writer.flush();
 			mode = SimpleMode.DONE;

@@ -57,7 +57,7 @@ public class FailSafeIfcEngine {
 				try {
 					Thread.sleep(500);
 				} catch (InterruptedException e1) {
-					e1.printStackTrace();
+					LOGGER.error("", e);
 				}
 			}
 		}
