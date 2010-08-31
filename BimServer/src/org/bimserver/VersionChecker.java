@@ -104,6 +104,19 @@ public class VersionChecker {
 	}
 
 	public boolean updateNeeded() {
-		return !getLocalVersion().getVersion().equals(getOnlineVersion().getVersion());
+		Version localVersion = getLocalVersion();
+		Version onlineVersion = getOnlineVersion();
+		if (localVersion.getMajor() < onlineVersion.getMajor()) {
+			return true;
+		} else if (localVersion.getMajor() == onlineVersion.getMajor()) {
+			if (localVersion.getMinor() < onlineVersion.getMinor()) {
+				return true;
+			} else if (localVersion.getMinor() == onlineVersion.getMinor()) {
+				if (localVersion.getRevision() < onlineVersion.getRevision()) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 }

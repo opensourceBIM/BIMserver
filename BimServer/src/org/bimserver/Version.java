@@ -76,6 +76,30 @@ public class Version {
 	public String getVersion() {
 		return version;
 	}
+	
+	public int getMajor() {
+		String[] split = version.split(".");
+		if (split.length > 0) {
+			return Integer.parseInt(split[0]);
+		}
+		return 0;
+	}
+	
+	public int getMinor() {
+		String[] split = version.split(".");
+		if (split.length > 1) {
+			return Integer.parseInt(split[1]);
+		}
+		return 0;
+	}
+	
+	public int getRevision() {
+		String[] split = version.split(".");
+		if (split.length > 2) {
+			return Integer.parseInt(split[2]);
+		}
+		return 0;
+	}
 
 	public void setDate(Date date) {
 		this.date = date;
