@@ -157,7 +157,6 @@ public class ColladaSerializer extends BimModelSerializer {
 		IfcStepSerializer ifcSerializer = new IfcStepSerializer(project, user, "", ifcModel, schemaDefinition);
 		File file = createTempFile();
 		try {
-			System.out.println(file);
 			ifcSerializer.writeToFile(file);
 			IfcEngineModel model = ifcEngine.openModel(file);
 			try {
