@@ -75,13 +75,11 @@ public class FindClashesDatabaseAction extends BimDatabaseAction<Set<? extends C
 			}
 		}
 		IfcModel ifcModel = BimDatabaseAction.merge(project, ifcModels);
-		ifcModel.dump();
 		IfcModel newModel = new IfcModel();
 		Map<IdEObject, IdEObject> converted = new HashMap<IdEObject, IdEObject>();
 		for (IdEObject idEObject : ifcModel.getValues()) {
 			cleanupModel(idEObject, newModel, ifcModel, new HashSet<String>(sClashDetectionSettings.getIgnoredClasses()), converted);
 		}
-		newModel.dump();
 		File file = createTempFile();
 		IfcStepSerializer ifcStepSerializer = new IfcStepSerializer(null, bimDatabaseSession
 				.getUserByUoid(actingUoid), file.getName(), newModel, schema);
