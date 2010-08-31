@@ -18,7 +18,7 @@
 <table>
 <tr>
 	<td width="120">Object ID</td>
-	<td width="320"><input type="text" name="oid" id="oid"/></td>
+	<td width="320"><input type="text" name="oids" id="oids"/></td>
 	<td>Type</td><td><select name="resultType">
 <%
 	for (ResultType resultType : emfSerializerFactory.getSingleResultTypes()) {

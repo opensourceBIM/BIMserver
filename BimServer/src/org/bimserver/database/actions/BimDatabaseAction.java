@@ -111,7 +111,7 @@ public abstract class BimDatabaseAction<T> {
 		if (allModelsSameScale) {
 			for (IfcModel ifcModel : ifcModels) {
 			for (long key : ifcModel.keySet()) {
-				endModel.add(ifcModel.get(key));
+				endModel.add(key, ifcModel.get(key));
 			}}
 		} else {
 			SIPrefix prefix = project.getExportLengthMeasurePrefix();

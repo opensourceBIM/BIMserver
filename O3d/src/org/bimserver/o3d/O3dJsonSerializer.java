@@ -13,6 +13,7 @@ import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
 
 import org.bimserver.database.store.Project;
 import org.bimserver.database.store.User;
+import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.BimModelSerializer;
 import org.bimserver.ifc.FieldIgnoreMap;
 import org.bimserver.ifc.IfcModel;
@@ -221,7 +222,7 @@ public class O3dJsonSerializer extends BimModelSerializer {
 		return baos.toByteArray();
 	}
 
-	private SetGeometryResult setGeometry(EObject ifcRootObject) throws SerializerException, IfcEngineException {
+	private SetGeometryResult setGeometry(IdEObject ifcRootObject) throws SerializerException, IfcEngineException {
 		convertCounter++;
 		IfcModel IfcModel = new IfcModel();
 		convertToSubset(ifcRootObject.eClass(), ifcRootObject, IfcModel, new HashMap<EObject, EObject>());
