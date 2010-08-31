@@ -152,11 +152,12 @@ public class ColladaSerializer extends BimModelSerializer {
 			converted.put(material, new ArrayList<String>());
 		}
 		converted.get(material).add(id);
-		IfcModel IfcModel = new IfcModel();
-		convertToSubset(ifcRootObject.eClass(), ifcRootObject, IfcModel, new HashMap<EObject, EObject>());
-		IfcStepSerializer ifcSerializer = new IfcStepSerializer(project, user, "", IfcModel, schemaDefinition);
+		IfcModel ifcModel = new IfcModel();
+		convertToSubset(ifcRootObject.eClass(), ifcRootObject, ifcModel, new HashMap<EObject, EObject>());
+		IfcStepSerializer ifcSerializer = new IfcStepSerializer(project, user, "", ifcModel, schemaDefinition);
 		File file = createTempFile();
 		try {
+			System.out.println(file);
 			ifcSerializer.writeToFile(file);
 			IfcEngineModel model = ifcEngine.openModel(file);
 			try {

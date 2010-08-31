@@ -34,6 +34,7 @@ import com.google.common.collect.HashBiMap;
 
 public class IfcModel {
 
+	private long counter = 1;
 	private final BiMap<Long, IdEObject> objects;
 	private Map<String, IfcRoot> guidIndexed;
 	private byte[] checksum;
@@ -166,5 +167,12 @@ public class IfcModel {
 		for (Long key : objects.keySet()) {
 			System.out.println(key + ": " + objects.get(key).eClass().getName());
 		}
+	}
+
+	public void add(IdEObject newObject) {
+		long oid = counter;
+		newObject.setOid(oid);
+		objects.put(oid, newObject);
+		counter++;
 	}
 }
