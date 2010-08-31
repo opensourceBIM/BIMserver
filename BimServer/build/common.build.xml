@@ -207,7 +207,7 @@
 			<src path="../../Utils/src" />
 			<src path="../../Shared/src" />
 			<classpath>
-				<fileset file="../../BimServer/lib/cxf/cxf-2.2.9.jar" />
+				<fileset file="../../BimServer/lib/cxf/cxf-2.2.10.jar" />
 				<fileset file="../../BimServer/lib/cxf/XmlSchema-1.4.5.jar" />
 				<fileset file="../../BimServer/lib/cxf/jaxb-impl-2.1.13.jar" />
 				<fileset file="../../BimServer/lib/cxf/wsdl4j-1.6.2.jar" />
