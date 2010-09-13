@@ -10,8 +10,8 @@ import org.bimserver.utils.StreamReaderToLog;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class EngineProces extends Thread {
-	private static final Logger LOGGER = LoggerFactory.getLogger(EngineProces.class);
+public class IfcEngineProcess extends Thread {
+	private static final Logger LOGGER = LoggerFactory.getLogger(IfcEngineProcess.class);
 	private Process process;
 	private final File nativeBaseDir;
 	private final int port;
@@ -20,7 +20,7 @@ public class EngineProces extends Thread {
 	private final ResourceFetcher resourceFetcher;
 	private boolean running;
 
-	public EngineProces(FailSafeIfcEngine failSafeIfcEngine, int port, File schemaFile, File nativeBaseDir, ResourceFetcher resourceFetcher) {
+	public IfcEngineProcess(FailSafeIfcEngine failSafeIfcEngine, int port, File schemaFile, File nativeBaseDir, ResourceFetcher resourceFetcher) {
 		this.failSafeIfcEngine = failSafeIfcEngine;
 		this.port = port;
 		this.schemaFile = schemaFile;
