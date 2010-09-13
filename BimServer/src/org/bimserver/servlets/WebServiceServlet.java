@@ -28,7 +28,7 @@ import javax.servlet.ServletException;
 
 import org.apache.cxf.Bus;
 import org.apache.cxf.BusFactory;
-import org.apache.cxf.frontend.ServerFactoryBean;
+import org.apache.cxf.jaxws.JaxWsServerFactoryBean;
 import org.apache.cxf.service.invoker.BeanInvoker;
 import org.apache.cxf.transport.servlet.CXFNonSpringServlet;
 import org.bimserver.shared.ServiceInterface;
@@ -42,7 +42,7 @@ public class WebServiceServlet extends CXFNonSpringServlet {
 		super.loadBus(servletConfig);
 		Bus bus = getBus();
 		BusFactory.setDefaultBus(bus);
-		ServerFactoryBean serverFactoryBean = new ServerFactoryBean();
+		JaxWsServerFactoryBean serverFactoryBean = new JaxWsServerFactoryBean();
 		Map<String,Object> properties = new HashMap<String, Object>();
 		properties.put("mtom-enabled", Boolean.TRUE);
 		serverFactoryBean.setProperties(properties);

@@ -44,7 +44,7 @@ public class AuthenticatedServiceWrapper {
 		this.service = service;
 		this.token = token;
 		if (admin) {
-			this.user = service.getUserByUserName("admin");
+			this.user = service.getUserByUserName(token, "admin");
 		} else {
 			this.user = service.getUserOfToken(token);
 		}
@@ -59,7 +59,7 @@ public class AuthenticatedServiceWrapper {
 	}
 
 	public SProject addProject(String name, long parentPoid) throws UserException {
-		return service.addProject(token, name, parentPoid);
+		return service.addProjectAsSubProject(token, name, parentPoid);
 	}
 
 	public long addUser(String username, String password, String name) throws UserException {
@@ -239,7 +239,7 @@ public class AuthenticatedServiceWrapper {
 	}
 
 	public String resetPassword(String emailAddress) throws UserException {
-		return service.resetPassword(emailAddress);
+		return service.resetPassword(token, emailAddress);
 	}
 
 	public List<SGuidClash> findClashesByGuid(SClashDetectionSettings sClashDetectionSettings) throws UserException {
@@ -279,7 +279,7 @@ public class AuthenticatedServiceWrapper {
 	}
 
 	public List<SProject> getUsersProjects(long uoid) {
-		return service.getUsersProjects(uoid);
+		return service.getUsersProjects(token, uoid);
 	}
 
 	public SProject getProjectByPoid(long poid) throws UserException {
@@ -291,11 +291,11 @@ public class AuthenticatedServiceWrapper {
 	}
 
 	public SUser getUserByUsername(String username) throws UserException {
-		return service.getUserByUserName(username);
+		return service.getUserByUserName(token, username);
 	}
 
 	public void setRevisionTag(long roid, String tag) throws UserException {
-		service.setRevisionTag(roid, tag);
+		service.setRevisionTag(token,roid, tag);
 	}
 	
 	public List<SProject> getSubProjects(long poid) throws UserException {

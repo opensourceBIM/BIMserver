@@ -27,9 +27,9 @@ import javax.xml.ws.soap.SOAPFaultException;
 
 import org.apache.cxf.endpoint.Client;
 import org.apache.cxf.frontend.ClientProxy;
-import org.apache.cxf.frontend.ClientProxyFactoryBean;
 import org.apache.cxf.interceptor.LoggingInInterceptor;
 import org.apache.cxf.interceptor.LoggingOutInterceptor;
+import org.apache.cxf.jaxws.JaxWsProxyFactoryBean;
 import org.apache.cxf.transport.http.HTTPConduit;
 import org.bimserver.shared.AuthenticatedServiceWrapper;
 import org.bimserver.shared.ServiceInterface;
@@ -53,7 +53,7 @@ public class ServiceHolder {
 		this.address = address;
 		this.username = username;
 		this.password = password;
-		ClientProxyFactoryBean cpfb = new ClientProxyFactoryBean();
+		JaxWsProxyFactoryBean cpfb = new JaxWsProxyFactoryBean();
 		LOGGER.info("Connecting to " + address);
 		cpfb.setServiceClass(ServiceInterface.class);
 		cpfb.setAddress(address);
