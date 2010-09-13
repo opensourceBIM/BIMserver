@@ -7,12 +7,15 @@ import java.util.TreeMap;
 
 public class DataObject {
 
-	private final String type;
-	private final long oid;
-	private final String guid;
-	private final Map<String, DataValue> values = new TreeMap<String, DataValue>();
-	private final String name;
+	private String type;
+	private long oid;
+	private String guid;
+	private Map<String, DataValue> values = new TreeMap<String, DataValue>();
+	private String name;
 
+	public DataObject() {
+	}
+	
 	public DataObject(String className, long oid, String guid, String name) {
 		this.type = className;
 		this.oid = oid;

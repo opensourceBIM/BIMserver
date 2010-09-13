@@ -24,7 +24,11 @@ import java.util.List;
 import java.util.Set;
 
 import javax.activation.DataHandler;
+import javax.jws.WebMethod;
+import javax.jws.WebParam;
+import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
+import javax.jws.soap.SOAPBinding.ParameterStyle;
 import javax.jws.soap.SOAPBinding.Style;
 import javax.jws.soap.SOAPBinding.Use;
 import javax.xml.bind.annotation.XmlMimeType;
@@ -44,14 +48,15 @@ import org.bimserver.interfaces.objects.SUser;
 /**
  * This interface defines all functions that are made available via SOAP, but also used by the JSP web interface
  */
-@SOAPBinding(style=Style.RPC, use=Use.LITERAL)
+@WebService
+@SOAPBinding(style=Style.RPC, use=Use.LITERAL, parameterStyle=ParameterStyle.BARE)
 public interface ServiceInterface {
 	/** This method exists only to test the underlying connection (such as SOAP)
 	 *  
 	 * @param in The String value ping should return
 	 * @return Returns the original String value
 	 */
-	String ping(String in);
+	String ping(@WebParam(name="in") String in);
 	/** Checks the given username and password with the internal database. Then a valid user is found, a new Token will be issued.
 	 *  
 	 * @param username
@@ -59,73 +64,73 @@ public interface ServiceInterface {
 	 * @return The new token when a succesfull login attempt has been made, or null When the username does not exist, or the given password is incorrect
 	 * @throws UserException
 	 */
-	Token login(String username, String password) throws UserException;
-	Token autologin(String username, String hash) throws UserException;
-	CheckinResult checkinSync(Token token, long poid, String comment, long fileSize, @XmlMimeType("application/octet-stream") DataHandler ifcFile) throws UserException;
-	CheckinResult checkinAsync(Token token, long poid, String comment, long fileSize, @XmlMimeType("application/octet-stream") DataHandler ifcFile) throws UserException;
-	CheckoutResult checkout(Token token, long roid, ResultType resultType) throws UserException;
-	CheckoutResult checkoutLastRevision(Token token, long poid, ResultType resultType) throws UserException;
-	CheckoutResult download(Token token, long roid, ResultType resultType) throws UserException;
-	CheckoutResult downloadByOids(Token token, Set<Long> roids, Set<Long> oids, ResultType resultType) throws UserException;
-	CheckoutResult downloadOfType(Token token, long roid, String className, ResultType resultType) throws UserException;
-	CheckoutResult downloadByGuids(Token token, Set<Long> roids, Set<String> guids, ResultType resultType) throws UserException;
-	CheckoutResult downloadProjects(Token token, Set<Long> roids, ResultType resultType) throws UserException;
-	long addUser(Token token, String username, String password, String name) throws UserException;
-	SProject addProject(Token token, String projectName) throws UserException;
-	SProject addProject(Token token, String projectName, long parentPoid) throws UserException;
-	void updateProject(Token token, SProject sProject) throws UserException;
-	void updateRevision(Token token, SRevision sRevision) throws UserException;
-	boolean addUserToProject(Token token, long uoid, long poid) throws UserException;
-	boolean removeUserFromProject(Token token, long uoid, long poid) throws UserException;
-	boolean deleteProject(Token token, long poid) throws UserException;
-	boolean deleteUser(Token token, long uoid) throws UserException;
-	List<SProject> getAllProjects(Token token) throws UserException;
-	List<SUser> getAllUsers(Token token) throws UserException;
-	List<SRevision> getAllRevisionsOfProject(Token token, long poid) throws UserException;
-	List<SCheckout> getAllCheckoutsOfProject(Token token, long poid) throws UserException;
-	List<SRevision> getAllRevisionsByUser(Token token, long uoid) throws UserException;
-	List<SCheckout> getAllCheckoutsByUser(Token token, long uoid) throws UserException;
-	List<SCheckout> getAllCheckoutsOfRevision(Token token, long roid) throws UserException;
-	SProject getProjectByPoid(Token token, long poid) throws UserException;
-	SRevision getRevision(Token token, long roid) throws UserException;
-	ChangeSetResult processChangeSet(Token token, ChangeSet changeSet, long poid, String comment) throws UserException;
-	List<String> getAvailableClasses(Token token) throws UserException;
-	DatabaseInformation getDatabaseInformation(Token token) throws UserException;
+	@WebMethod Token login(@WebParam(name="username") String username, @WebParam(name="password") String password) throws UserException;
+	Token autologin(@WebParam(name="username") String username, @WebParam(name="hash") String hash) throws UserException;
+	CheckinResult checkinSync(@WebParam(name="token") Token token, @WebParam(name="poid") long poid, @WebParam(name="comment") String comment, @WebParam(name="fileSize") long fileSize, @WebParam(name="ifcFile") @XmlMimeType("application/octet-stream") DataHandler ifcFile) throws UserException;
+	CheckinResult checkinAsync(@WebParam(name="token") Token token, @WebParam(name="poid") long poid, @WebParam(name="comment") String comment, @WebParam(name="fileSize") long fileSize, @WebParam(name="ifcFile") @XmlMimeType("application/octet-stream") DataHandler ifcFile) throws UserException;
+	CheckoutResult checkout(@WebParam(name="token") Token token, @WebParam(name="roid") long roid, @WebParam(name="resultType")ResultType resultType) throws UserException;
+	CheckoutResult checkoutLastRevision(@WebParam(name="token") Token token, @WebParam(name="poid") long poid, @WebParam(name="resultType") ResultType resultType) throws UserException;
+	CheckoutResult download(@WebParam(name="token") Token token, @WebParam(name="username") long roid, @WebParam(name="resultType") ResultType resultType) throws UserException;
+	CheckoutResult downloadByOids(@WebParam(name="token") Token token, @WebParam(name="roids") Set<Long> roids, @WebParam(name="oids") Set<Long> oids, @WebParam(name="resultType") ResultType resultType) throws UserException;
+	CheckoutResult downloadOfType(@WebParam(name="token") Token token, @WebParam(name="roid") long roid, @WebParam(name="className") String className, @WebParam(name="resultType") ResultType resultType) throws UserException;
+	CheckoutResult downloadByGuids(@WebParam(name="token") Token token, @WebParam(name="roids")Set<Long> roids, @WebParam(name="guids") Set<String> guids, @WebParam(name="resultType") ResultType resultType) throws UserException;
+	CheckoutResult downloadProjects(@WebParam(name="token") Token token, @WebParam(name="roids") Set<Long> roids, @WebParam(name="resultType") ResultType resultType) throws UserException;
+	long addUser(@WebParam(name="token") Token token, @WebParam(name="username") String username, @WebParam(name="password")String password, @WebParam(name="name") String name) throws UserException;
+	SProject addProject(@WebParam(name="token") Token token, @WebParam(name="projectName") String projectName) throws UserException;
+	SProject addProjectAsSubProject(@WebParam(name="token") Token token, @WebParam(name="projectName") String projectName, @WebParam(name="parentPoid") long parentPoid) throws UserException;
+	void updateProject(@WebParam(name="token") Token token, @WebParam(name="sProject") SProject sProject) throws UserException;
+	void updateRevision(@WebParam(name="token") Token token, @WebParam(name="sRevision") SRevision sRevision) throws UserException;
+	boolean addUserToProject(@WebParam(name="token") Token token, @WebParam(name="uoid") long uoid, @WebParam(name="poid") long poid) throws UserException;
+	boolean removeUserFromProject(@WebParam(name="token") Token token, @WebParam(name="uoid") long uoid, @WebParam(name="poid") long poid) throws UserException;
+	boolean deleteProject(@WebParam(name="token") Token token, @WebParam(name="poid") long poid) throws UserException;
+	boolean deleteUser(@WebParam(name="token") Token token, @WebParam(name="uoid") long uoid) throws UserException;
+	List<SProject> getAllProjects(@WebParam(name="token") Token token) throws UserException;
+	List<SUser> getAllUsers(@WebParam(name="token") Token token) throws UserException;
+	List<SRevision> getAllRevisionsOfProject(@WebParam(name="token") Token token, @WebParam(name="poid") long poid) throws UserException;
+	List<SCheckout> getAllCheckoutsOfProject(@WebParam(name="token") Token token, @WebParam(name="poid") long poid) throws UserException;
+	List<SRevision> getAllRevisionsByUser(@WebParam(name="token") Token token, @WebParam(name="uoid") long uoid) throws UserException;
+	List<SCheckout> getAllCheckoutsByUser(@WebParam(name="token") Token token, @WebParam(name="uoid") long uoid) throws UserException;
+	List<SCheckout> getAllCheckoutsOfRevision(@WebParam(name="token") Token token, @WebParam(name="roid") long roid) throws UserException;
+	SProject getProjectByPoid(@WebParam(name="token") Token token, @WebParam(name="poid") long poid) throws UserException;
+	SRevision getRevision(@WebParam(name="token") Token token, @WebParam(name="roid") long roid) throws UserException;
+	ChangeSetResult processChangeSet(@WebParam(name="token") Token token, @WebParam(name="changeSet") ChangeSet changeSet, @WebParam(name="poid") long poid, @WebParam(name="comment") String comment) throws UserException;
+	List<String> getAvailableClasses(@WebParam(name="token") Token token) throws UserException;
+	DatabaseInformation getDatabaseInformation(@WebParam(name="token") Token token) throws UserException;
 	Token createAnonymousToken() throws UserException;
-	ChangeSetResult processChangeSetFile(Token token, long poid, String comment, @XmlMimeType("application/octet-stream") DataHandler changeSetFile) throws UserException;
-	SUser getLoggedInUser(Token token) throws UserException;
-	List<SProject> getAllNonAuthorizedProjectsOfUser(Token token, long uoid) throws UserException;
-	SUser getUserOfToken(Token token) throws UserException;
-	void logout(Token token);
-	boolean changePassword(Token token, long uoid, String oldPassword, String newPassword) throws UserException;
-	SUser getUserByUserName(String username) throws UserException;
-	boolean undeleteProject(Token token, long poid) throws UserException;
-	boolean undeleteUser(Token token, long uoid) throws UserException;
-	SCompareResult compare(Token token, long uoid, long roid1, long roid2) throws UserException;
-	SRevisionSummary getRevisionSummary(Token token, long roid) throws UserException;
-	boolean userHasCheckinRights(Token token, long uoid, long poid) throws UserException;
-	String getShowCheckoutWarning(Token token, long poid, long uoid) throws UserException;
-	boolean userHasRights(Token token, long poid) throws UserException;
-	DataObject getDataObjectByOid(Token token, long roid, long oid, String className) throws UserException;
-	DataObject getDataObjectByGuid(Token token, long roid, String guid) throws UserException;
-	List<DataObject> getDataObjectsByType(Token token, long roid, String className) throws UserException;
-	List<SGuidClash> findClashesByGuid(Token token, SClashDetectionSettings sClashDetectionSettings) throws UserException;
-	List<SEidClash> findClashesByEid(Token token, SClashDetectionSettings sClashDetectionSettings) throws UserException;
-	List<SClash> getLastClashes(Token token, long roid) throws UserException;
-	String resetPassword(String emailAddress) throws UserException;
-	CheckinResult branchToNewProject(Token token, long roid, String projectName, String comment) throws UserException;
-	CheckinResult branchToExistingProject(Token token, long roid, long destPoid, String comment) throws UserException;
-	List<SLogAction> getLogs(Token token) throws UserException;
-	SGeoTag getGeoTag(Token token, long goid) throws UserException;
-	void updateGeoTag(Token token, SGeoTag sGeoTag) throws UserException;
-	SClashDetectionSettings getClashDetectionSettings(Token token, long cdsoid) throws UserException;
-	void updateClashDetectionSettings(Token token, SClashDetectionSettings sClashDetectionSettings) throws UserException;
-	SUser getUserByUoid(Token token, long uoid);
-	SUser getAnonymousUser(Token token);
-	List<SUser> getAllNonAuthorizedUsersOfProject(Token token, long poid) throws UserException;
-	List<SUser> getAllAuthorizedUsersOfProject(Token token, long poid) throws UserException;
-	List<SProject> getUsersProjects(long uoid);
-	List<SProject> getProjectByName(String name) throws UserException;
-	void setRevisionTag(long roid, String tag) throws UserException;
-	List<SProject> getSubProjects(Token token, long poid) throws UserException;
+	ChangeSetResult processChangeSetFile(@WebParam(name="token") Token token, @WebParam(name="poid") long poid, @WebParam(name="comment") String comment, @WebParam(name="changeSetFile") @XmlMimeType("application/octet-stream") DataHandler changeSetFile) throws UserException;
+	SUser getLoggedInUser(@WebParam(name="token") Token token) throws UserException;
+	List<SProject> getAllNonAuthorizedProjectsOfUser(@WebParam(name="token") Token token, @WebParam(name="uoid") long uoid) throws UserException;
+	SUser getUserOfToken(@WebParam(name="token") Token token) throws UserException;
+	void logout(@WebParam(name="token") Token token);
+	boolean changePassword(@WebParam(name="token") Token token, @WebParam(name="uoid") long uoid, @WebParam(name="oldPassword") String oldPassword, @WebParam(name="newPassword") String newPassword) throws UserException;
+	SUser getUserByUserName(@WebParam(name="token") Token token, @WebParam(name="username") String username) throws UserException;
+	boolean undeleteProject(@WebParam(name="token") Token token, @WebParam(name="poid") long poid) throws UserException;
+	boolean undeleteUser(@WebParam(name="token") Token token, @WebParam(name="uoid") long uoid) throws UserException;
+	SCompareResult compare(@WebParam(name="token") Token token, @WebParam(name="uoid") long uoid, @WebParam(name="roid1") long roid1, @WebParam(name="roid2") long roid2) throws UserException;
+	SRevisionSummary getRevisionSummary(@WebParam(name="token") Token token, @WebParam(name="roid") long roid) throws UserException;
+	boolean userHasCheckinRights(@WebParam(name="token") Token token, @WebParam(name="uoid") long uoid, @WebParam(name="poid") long poid) throws UserException;
+	String getShowCheckoutWarning(@WebParam(name="token") Token token, @WebParam(name="poid") long poid, @WebParam(name="uoid") long uoid) throws UserException;
+	boolean userHasRights(@WebParam(name="token") Token token, @WebParam(name="poid") long poid) throws UserException;
+	DataObject getDataObjectByOid(@WebParam(name="token") Token token, @WebParam(name="roid") long roid, @WebParam(name="oid") long oid, @WebParam(name="className") String className) throws UserException;
+	DataObject getDataObjectByGuid(@WebParam(name="token") Token token, @WebParam(name="roid") long roid, @WebParam(name="guid") String guid) throws UserException;
+	List<DataObject> getDataObjectsByType(@WebParam(name="token") Token token, @WebParam(name="roid") long roid, @WebParam(name="className") String className) throws UserException;
+	List<SGuidClash> findClashesByGuid(@WebParam(name="token") Token token, @WebParam(name="sClashDetectionSettings") SClashDetectionSettings sClashDetectionSettings) throws UserException;
+	List<SEidClash> findClashesByEid(@WebParam(name="token") Token token, @WebParam(name="sClashDetectionSettings") SClashDetectionSettings sClashDetectionSettings) throws UserException;
+	List<SClash> getLastClashes(@WebParam(name="token") Token token, @WebParam(name="roid") long roid) throws UserException;
+	String resetPassword(@WebParam(name="token") Token token, @WebParam(name="emailAddress") String emailAddress) throws UserException;
+	CheckinResult branchToNewProject(@WebParam(name="token") Token token, @WebParam(name="roid") long roid, @WebParam(name="projectName") String projectName, @WebParam(name="comment") String comment) throws UserException;
+	CheckinResult branchToExistingProject(@WebParam(name="token") Token token, @WebParam(name="roid") long roid, @WebParam(name="destPoid") long destPoid, @WebParam(name="comment") String comment) throws UserException;
+	List<SLogAction> getLogs(@WebParam(name="token") Token token) throws UserException;
+	SGeoTag getGeoTag(@WebParam(name="token") Token token, @WebParam(name="goid") long goid) throws UserException;
+	void updateGeoTag(@WebParam(name="token") Token token, @WebParam(name="sGeoTag") SGeoTag sGeoTag) throws UserException;
+	SClashDetectionSettings getClashDetectionSettings(@WebParam(name="token") Token token, @WebParam(name="cdsoid") long cdsoid) throws UserException;
+	void updateClashDetectionSettings(@WebParam(name="token") Token token, @WebParam(name="sClashDetectionSettings") SClashDetectionSettings sClashDetectionSettings) throws UserException;
+	SUser getUserByUoid(@WebParam(name="token") Token token, @WebParam(name="uoid") long uoid);
+	SUser getAnonymousUser(@WebParam(name="token") Token token);
+	List<SUser> getAllNonAuthorizedUsersOfProject(@WebParam(name="token") Token token, @WebParam(name="poid") long poid) throws UserException;
+	List<SUser> getAllAuthorizedUsersOfProject(@WebParam(name="token") Token token, @WebParam(name="poid") long poid) throws UserException;
+	List<SProject> getUsersProjects(@WebParam(name="token") Token token, @WebParam(name="uoid") long uoid);
+	List<SProject> getProjectByName(@WebParam(name="token") Token token, @WebParam(name="name") String name) throws UserException;
+	void setRevisionTag(@WebParam(name="token") Token token, @WebParam(name="roid") long roid, @WebParam(name="tag") String tag) throws UserException;
+	List<SProject> getSubProjects(@WebParam(name="token") Token token, @WebParam(name="poid") long poid) throws UserException;
 }

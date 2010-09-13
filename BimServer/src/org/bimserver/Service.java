@@ -35,6 +35,7 @@ import java.util.zip.ZipInputStream;
 
 import javax.activation.DataHandler;
 import javax.annotation.Resource;
+import javax.jws.WebParam;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
@@ -536,7 +537,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public Token login(String username, String password) throws UserException {
+	public Token login(@WebParam(name="username") String username, String password) throws UserException {
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
 			BimDatabaseAction<User> action = new GetUserByNameDatabaseAction(accessMethod, username);
@@ -868,7 +869,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public SUser getUserByUserName(String username) throws UserException {
+	public SUser getUserByUserName(Token token, String username) throws UserException {
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
 			BimDatabaseAction<User> action = new GetUserByNameDatabaseAction(accessMethod, username);
@@ -924,7 +925,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public SProject addProject(Token token, String projectName, long parentPoid) throws UserException {
+	public SProject addProjectAsSubProject(Token token, String projectName, long parentPoid) throws UserException {
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
 			BimDatabaseAction<Project> action = new AddProjectDatabaseAction(accessMethod, projectName, parentPoid, tokenManager.getUoid(token));
@@ -1134,7 +1135,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public String resetPassword(String emailAddress) throws UserException {
+	public String resetPassword(Token token, String emailAddress) throws UserException {
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
 			BimDatabaseAction<String> action = new ResetPasswordDatabaseAction(accessMethod, emailAddress);
@@ -1392,7 +1393,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public List<SProject> getUsersProjects(long uoid) {
+	public List<SProject> getUsersProjects(Token token, long uoid) {
 		BimDatabaseSession session = bimDatabase.createReadOnlySession();
 		try {
 			User user = session.getUserByUoid(uoid);
@@ -1403,7 +1404,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public List<SProject> getProjectByName(String name) throws UserException {
+	public List<SProject> getProjectByName(Token token, String name) throws UserException {
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
 			return convert(session.getProjectsByName(name), SProject.class, session);
@@ -1449,7 +1450,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public void setRevisionTag(long roid, String tag) throws UserException {
+	public void setRevisionTag(Token token, long roid, String tag) throws UserException {
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
 			BimDatabaseAction<String> action = new SetRevisionTagDatabaseAction(accessMethod, roid, tag);
