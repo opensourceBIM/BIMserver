@@ -23,13 +23,13 @@ public class FailSafeIfcEngine {
 	private DataInputStream in;
 	private DataOutputStream out;
 	private IfcEngineServer ifcEngineServer;
-	private EngineProces engineProces;
+	private IfcEngineProcess engineProces;
 	private int port;
 
 	public FailSafeIfcEngine(final File schemaFile, final File nativeBaseDir, ResourceFetcher resourceFetcher) {
 		try {
 			port = getNewPort();
-			engineProces = new EngineProces(this, port, schemaFile, nativeBaseDir, resourceFetcher);
+			engineProces = new IfcEngineProcess(this, port, schemaFile, nativeBaseDir, resourceFetcher);
 			engineProces.start();
 			connectClient();
 		} catch (IOException e) {

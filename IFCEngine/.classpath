@@ -7,7 +7,7 @@
 	</classpathentry>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Utils"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Shared"/>
-	<classpathentry exported="true" kind="lib" path="lib/jna.jar" sourcepath="C:/Java/JNA source"/>
+	<classpathentry exported="true" kind="lib" path="lib/jna.jar" sourcepath="C:/Java/JNA/src"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Store"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
