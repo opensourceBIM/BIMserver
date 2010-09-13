@@ -633,7 +633,7 @@ for (SRevision sRevision : revisions) {
 				for (var roid in revisions) {
 					roids += revisions[roid] + ";";
 				}
-				$.ajax({ url: "/progress", context: document.body, data: {roids: roids}, success: function(data){
+				$.ajax({ url: "/progress", cache: false, context: document.body, data: {roids: roids}, success: function(data){
 					for (result in data) {
 						var item = data[result];
 						if (item.finalized) {
@@ -652,7 +652,7 @@ for (SRevision sRevision : revisions) {
 					}
 			    }});
 			}
-		}, 500);
+		}, 1000);
 	});
 </script>
 <%

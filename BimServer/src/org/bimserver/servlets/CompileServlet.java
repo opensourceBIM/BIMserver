@@ -18,14 +18,18 @@ import org.bimserver.database.actions.DownloadDatabaseAction;
 import org.bimserver.database.store.log.AccessMethod;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.database.IfcDatabase;
+import org.bimserver.querycompiler.CompileException;
 import org.bimserver.querycompiler.QueryCompiler;
 import org.bimserver.querycompiler.QueryInterface;
 import org.bimserver.shared.UserException;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class CompileServlet extends HttpServlet {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(CompileServlet.class);
 	private static final long serialVersionUID = 2409894233105690606L;
 	public static BimDatabase database;
 
@@ -34,34 +38,26 @@ public class CompileServlet extends HttpServlet {
 		String action = request.getParameter("action");
 		String code = request.getParameter("code");
 		JSONObject root = new JSONObject();
-		if (action.equals("compile")) {
-			QueryInterface compile = compile(root, code);
-			if (compile != null) {
-				try {
-					root.put("output", "Compilation succesfull");
-				} catch (JSONException e) {
-					e.printStackTrace();
+		try {
+			if (action.equals("compile")) {
+				compile(root, code);
+			} else if (action.equals("compileandrun")) {
+				long roid = Long.parseLong(request.getParameter("roid"));
+				QueryInterface compile = compile(root, code);
+				LoginManager loginManager = (LoginManager) request.getSession().getAttribute("loginManager");
+				if (compile != null) {
+					run(compile, loginManager, roid, root);
 				}
 			}
-		} else if (action.equals("compileandrun")) {
-			long roid = Long.parseLong(request.getParameter("roid"));
-			QueryInterface compile = compile(root, code);
-			if (compile != null) {
-				try {
-					root.put("output", "Compilation succesfull");
-				} catch (JSONException e) {
-					e.printStackTrace();
-				}
-			}
-			LoginManager loginManager = (LoginManager) request.getSession().getAttribute("loginManager");
-			if (compile != null) {
-				run(compile, loginManager, roid, root);
-			}
+		} catch (CompileException e) {
+			LOGGER.info("", e);
+		} catch (JSONException e) {
+			LOGGER.error("", e);
 		}
 		try {
 			root.write(response.getWriter());
 		} catch (JSONException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 	}
 
@@ -81,19 +77,22 @@ public class CompileServlet extends HttpServlet {
 			try {
 				root.put("output", root.getString("output") + "\n" + "Executing...\n\n" + out + "\n" + "Execution complete");
 			} catch (JSONException e) {
-				e.printStackTrace();
+				LOGGER.error("", e);
 			}
 		} catch (BimDatabaseException e) {
 		} catch (UserException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} finally {
 			session.close();
 		}
 	}
 
-	private QueryInterface compile(JSONObject root, String code) {
+	private QueryInterface compile(JSONObject root, String code) throws CompileException, JSONException {
 		QueryCompiler queryCompiler = new QueryCompiler();
 		QueryInterface compile = queryCompiler.compile(code, root);
+		if (compile != null) {
+			root.put("output", "Compilation succesfull");
+		}
 		return compile;
 	}
 }

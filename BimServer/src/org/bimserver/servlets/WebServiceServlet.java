@@ -48,7 +48,8 @@ public class WebServiceServlet extends CXFNonSpringServlet {
 		serverFactoryBean.setProperties(properties);
 		serverFactoryBean.setServiceClass(ServiceInterface.class);
 		ServiceInterface service = (ServiceInterface) servletConfig.getServletContext().getAttribute("service");
-		serverFactoryBean.setInvoker(new BeanInvoker(service));
+		BeanInvoker beanInvoker = new BeanInvoker(service);
+		serverFactoryBean.setInvoker(beanInvoker);
 		serverFactoryBean.setAddress("/soap");
 		serverFactoryBean.setTransportId("http://schemas.xmlsoap.org/soap/http");
 		serverFactoryBean.create();

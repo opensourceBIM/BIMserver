@@ -93,7 +93,7 @@ Get even <a href="http://extend.bimserver.org" target="_blank">more advanced Que
 </textarea>
 <script>
 	$(document).ready(function(){
-		if ($("#code").val().trim() == "") {
+		if ($("#code").val() == "") {
 			$.ajax({
 				url: '<%=request.getContextPath() %>/queries/DefaultQuery.java',
 				success: function(data) {

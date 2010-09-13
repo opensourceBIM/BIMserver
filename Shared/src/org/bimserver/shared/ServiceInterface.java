@@ -24,6 +24,9 @@ import java.util.List;
 import java.util.Set;
 
 import javax.activation.DataHandler;
+import javax.jws.soap.SOAPBinding;
+import javax.jws.soap.SOAPBinding.Style;
+import javax.jws.soap.SOAPBinding.Use;
 import javax.xml.bind.annotation.XmlMimeType;
 
 import org.bimserver.interfaces.objects.SCheckout;
@@ -41,6 +44,7 @@ import org.bimserver.interfaces.objects.SUser;
 /**
  * This interface defines all functions that are made available via SOAP, but also used by the JSP web interface
  */
+@SOAPBinding(style=Style.RPC, use=Use.LITERAL)
 public interface ServiceInterface {
 	/** This method exists only to test the underlying connection (such as SOAP)
 	 *  
