@@ -17,10 +17,13 @@ import org.apache.commons.io.output.NullWriter;
 import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class QueryCompiler {
+	private static final Logger LOGGER = LoggerFactory.getLogger(QueryCompiler.class);
 	private final String libPath = createLibraryPath();
-	
+
 	public QueryCompiler() {
 
 	}
@@ -61,19 +64,24 @@ public class QueryCompiler {
 			}
 		}
 	}
-	
-	public QueryInterface compile(String code, JSONObject root) {
+
+	public QueryInterface compile(String code, JSONObject root) throws CompileException, JSONException {
 		JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
+		JSONArray compileWarnings = new JSONArray();
+		JSONArray compileErrors = new JSONArray();
 		if (compiler == null) {
-			throw new RuntimeException("JDK needed for compile tasks");
+			compileErrors.put("JDK needed for compile tasks");
+			root.put("compileErrors", compileErrors);
+			throw new CompileException("JDK needed for compile tasks");
 		}
 		JavaFileManager fileManager = compiler.getStandardFileManager(null, null, null);
-		ClassLoader classLoader = new ClassLoader() {};
+		ClassLoader classLoader = new ClassLoader() {
+		};
 		VirtualFile baseDir = new VirtualFile(null, null);
 		VirtualFile file = baseDir.createFile("org" + File.separator + "bimserver" + File.separator + "querycompiler" + File.separator + "Query.java");
 		file.setStringContent(code);
 		VirtualFileManager myFileManager = new VirtualFileManager(fileManager, classLoader, baseDir);
-		
+
 		List<VirtualFile> fileList = new ArrayList<VirtualFile>();
 		getJavaFiles(fileList, baseDir);
 		List<VirtualFile> compilationUnits = baseDir.getAllJavaFileObjects();
@@ -86,21 +94,15 @@ public class QueryCompiler {
 		boolean succes = true;
 		compiler.getTask(new NullWriter(), myFileManager, diagnosticsCollector, options, null, compilationUnits).call();
 		List<Diagnostic<? extends JavaFileObject>> diagnostics = diagnosticsCollector.getDiagnostics();
-		try {
-			JSONArray compileWarnings = new JSONArray();
-			root.put("compileWarnings", compileWarnings);
-			JSONArray compileErrors = new JSONArray();
-			root.put("compileErrors", compileErrors);
-			for (Diagnostic<? extends JavaFileObject> d : diagnostics) {
-				if (d.getKind() == Kind.ERROR) {
-					succes = false;
-					compileErrors.put(d.getMessage(Locale.ENGLISH));
-				} else if (d.getKind() == Kind.WARNING) {
-					compileWarnings.put(d.getMessage(Locale.ENGLISH));
-				}
+		root.put("compileWarnings", compileWarnings);
+		root.put("compileErrors", compileErrors);
+		for (Diagnostic<? extends JavaFileObject> d : diagnostics) {
+			if (d.getKind() == Kind.ERROR) {
+				succes = false;
+				compileErrors.put(d.getMessage(Locale.ENGLISH));
+			} else if (d.getKind() == Kind.WARNING) {
+				compileWarnings.put(d.getMessage(Locale.ENGLISH));
 			}
-		} catch (JSONException e1) {
-			e1.printStackTrace();
 		}
 		if (succes) {
 			VirtualClassLoader loader = new VirtualClassLoader(baseDir);
@@ -109,11 +111,11 @@ public class QueryCompiler {
 				QueryInterface newInstance = (QueryInterface) loadClass.newInstance();
 				return newInstance;
 			} catch (ClassNotFoundException e) {
-				e.printStackTrace();
+				LOGGER.error("", e);
 			} catch (InstantiationException e) {
-				e.printStackTrace();
+				LOGGER.error("", e);
 			} catch (IllegalAccessException e) {
-				e.printStackTrace();
+				LOGGER.error("", e);
 			}
 		}
 		return null;

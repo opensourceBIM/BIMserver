@@ -210,7 +210,7 @@
 			$("#browser").load("browser.jsp?roid=<%=roid%>");
 		});
 		checkCheckoutButton = function(event){
-			$(event.target).parent().children(".checkoutbutton").attr("disabled", $(event.target).val() != "IFC" && $(event.target).val() != "IFCXML");
+			$(".checkoutbutton").attr("disabled", $("#downloadcheckoutselect").val() != "IFC" && $("#downloadcheckoutselect").val() != "IFCXML");
 		};
 		$("#downloadcheckoutselect").change(checkCheckoutButton);
 		$("#visualiselink").click(function(){
