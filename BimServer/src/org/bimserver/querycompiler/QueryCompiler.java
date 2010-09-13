@@ -25,7 +25,6 @@ public class QueryCompiler {
 	private final String libPath = createLibraryPath();
 
 	public QueryCompiler() {
-
 	}
 
 	private String createLibraryPath() {
@@ -35,7 +34,7 @@ public class QueryCompiler {
 		path.append("../Emf/src" + File.pathSeparator);
 		path.append(createPath(new File("../BimServer/lib")) + File.pathSeparator);
 		path.append(createPath(new File("../BimServer/lib/emf")) + File.pathSeparator);
-		path.append(createPath(new File("../Emf/lib")));
+		path.append("lib/bimserver.jar");
 		return path.toString();
 	}
 

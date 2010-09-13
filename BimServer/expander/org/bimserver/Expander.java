@@ -45,6 +45,7 @@ import java.util.jar.JarFile;
 
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -87,6 +88,27 @@ public class Expander extends JFrame {
 
 		JPanel fields = new JPanel(new SpringLayout());
 
+		JLabel jvmLabel = new JLabel("JVM");
+		fields.add(jvmLabel);
+
+		final JTextField jvmField = new JTextField("default");
+		JButton browserJvm = new JButton("Browse...");
+		browserJvm.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JFileChooser chooser = new JFileChooser(new File("."));
+				int showOpenDialog = chooser.showOpenDialog(Expander.this);
+				if (showOpenDialog == JFileChooser.APPROVE_OPTION) {
+					jvmField.setText(chooser.getSelectedFile().getAbsolutePath());
+				}
+			}
+		});
+		JPanel jvmPanel = new JPanel();
+		jvmPanel.setLayout(new FlowLayout());
+		jvmPanel.add(browserJvm);
+		fields.add(jvmPanel);
+		jvmPanel.add(jvmField);
+
 		JLabel addressLabel = new JLabel("Address");
 		fields.add(addressLabel);
 
@@ -111,7 +133,7 @@ public class Expander extends JFrame {
 		final JTextField stackSizeField = new JTextField("1024k");
 		fields.add(stackSizeField);
 
-		SpringUtilities.makeCompactGrid(fields, 4, 2, // rows, cols
+		SpringUtilities.makeCompactGrid(fields, 5, 2, // rows, cols
 				6, 6, // initX, initY
 				6, 6); // xPad, yPad
 
@@ -127,7 +149,7 @@ public class Expander extends JFrame {
 						public void run() {
 							File file = expand();
 							startStopButton.setText("Stop");
-							start(file, addressField.getText(), portField.getText(), heapSizeField.getText(), stackSizeField.getText());
+							start(file, addressField.getText(), portField.getText(), heapSizeField.getText(), stackSizeField.getText(), jvmField.getText());
 						}
 					}).start();
 				} else if (startStopButton.getText().equals("Stop")) {
@@ -199,9 +221,9 @@ public class Expander extends JFrame {
 		setVisible(true);
 	}
 
-	private void start(File destDir, String address, String port, String heapsize, String stacksize) {
+	private void start(File destDir, String address, String port, String heapsize, String stacksize, String jvmPath) {
 		try {
-			String command = "java -Xmx" + heapsize;
+			String command = (jvmPath.equals("default") ? "java" : jvmPath + File.separator + "bin" + File.separator + "java") + " -Xmx" + heapsize;
 			command += " -Xss" + stacksize;
 			command += " -classpath";
 			command += " lib" + File.pathSeparator;
