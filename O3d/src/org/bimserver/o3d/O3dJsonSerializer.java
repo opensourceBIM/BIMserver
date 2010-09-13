@@ -38,6 +38,7 @@ import org.bimserver.ifcengine.IfcEngineException;
 import org.bimserver.ifcengine.IfcEngineFactory;
 import org.bimserver.ifcengine.IfcEngineModel;
 import org.bimserver.ifcengine.Instance;
+import org.bimserver.ifcengine.SurfaceProperties;
 import org.bimserver.ifcengine.IfcEngineJNA.InstanceVisualisationProperties;
 import org.bimserver.shared.ResultType;
 import org.codehaus.jettison.json.JSONException;
@@ -236,7 +237,7 @@ public class O3dJsonSerializer extends BimModelSerializer {
 		ifcSerializer.writeToFile(file);
 		IfcEngineModel model = ifcEngine.openModel(file);
 		try {
-			org.bimserver.ifcengine.SurfaceProperties sp = model.initializeModelling();
+			SurfaceProperties sp = model.initializeModelling();
 			model.setPostProcessing(true);
 			Geometry geometry = model.finalizeModelling(sp);
 			int nrIndices = 0;
