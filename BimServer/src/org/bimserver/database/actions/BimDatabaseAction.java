@@ -116,8 +116,8 @@ public abstract class BimDatabaseAction<T> {
 		} else {
 			SIPrefix prefix = project.getExportLengthMeasurePrefix();
 			for (IfcModel ifcModel : ifcModels) {
-				setLengthUnitToMilli(ifcModel);
-				float scale = (float) (getLengthUnitPrefix(ifcModel) * Math.pow(10.0, prefix.ordinal()));
+				// setLengthUnitToMilli(ifcModel);
+				float scale = (float) (getLengthUnitPrefix(ifcModel) / Math.pow(10.0, prefix.getValue()));
 				ifcModel.indexGuids();
 				for (long key : ifcModel.keySet()) {
 					IdEObject idEObject = ifcModel.get(key);
