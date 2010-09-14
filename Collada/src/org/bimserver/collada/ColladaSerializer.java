@@ -19,11 +19,16 @@ import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.SerializerException;
 import org.bimserver.ifc.database.IfcDatabase;
 import org.bimserver.ifc.emf.Ifc2x3.IfcColumn;
+import org.bimserver.ifc.emf.Ifc2x3.IfcCurtainWall;
 import org.bimserver.ifc.emf.Ifc2x3.IfcDoor;
+import org.bimserver.ifc.emf.Ifc2x3.IfcFlowSegment;
+import org.bimserver.ifc.emf.Ifc2x3.IfcMember;
+import org.bimserver.ifc.emf.Ifc2x3.IfcPlate;
 import org.bimserver.ifc.emf.Ifc2x3.IfcRailing;
 import org.bimserver.ifc.emf.Ifc2x3.IfcRoof;
 import org.bimserver.ifc.emf.Ifc2x3.IfcSlab;
 import org.bimserver.ifc.emf.Ifc2x3.IfcSlabTypeEnum;
+import org.bimserver.ifc.emf.Ifc2x3.IfcStairFlight;
 import org.bimserver.ifc.emf.Ifc2x3.IfcWall;
 import org.bimserver.ifc.emf.Ifc2x3.IfcWallStandardCase;
 import org.bimserver.ifc.emf.Ifc2x3.IfcWindow;
@@ -134,9 +139,24 @@ public class ColladaSerializer extends BimModelSerializer {
 		for (IfcWall ifcWall : ifcDatabase.getAll(IfcWall.class)) {
 			setGeometry(out, ifcWall, ifcWall.getGlobalId().getWrappedValue(), "Wall");
 		}
+		for (IfcStairFlight ifcStairFlight : ifcDatabase.getAll(IfcStairFlight.class)) {
+			setGeometry(out, ifcStairFlight, ifcStairFlight.getGlobalId().getWrappedValue(), "StairFlight");
+		}
+		for (IfcFlowSegment ifcFlowSegment : ifcDatabase.getAll(IfcFlowSegment.class)) {
+			setGeometry(out, ifcFlowSegment, ifcFlowSegment.getGlobalId().getWrappedValue(), "FlowSegment");
+		}
+		for (IfcPlate ifcPlate : ifcDatabase.getAll(IfcPlate.class)) {
+			setGeometry(out, ifcPlate, ifcPlate.getGlobalId().getWrappedValue(), "Plate");
+		}
+		for (IfcMember ifcMember : ifcDatabase.getAll(IfcMember.class)) {
+			setGeometry(out, ifcMember, ifcMember.getGlobalId().getWrappedValue(), "Member");
+		}
 		for (IfcWallStandardCase ifcWall : ifcDatabase.getAll(IfcWallStandardCase.class)) {
 			setGeometry(out, ifcWall, ifcWall.getGlobalId().getWrappedValue(), "Wall");
 		}
+		for (IfcCurtainWall ifcCurtainWall : ifcDatabase.getAll(IfcCurtainWall.class)) {
+			setGeometry(out, ifcCurtainWall, ifcCurtainWall.getGlobalId().getWrappedValue(), "CurtainWall");
+		}		
 		for (IfcRailing ifcRailing : ifcDatabase.getAll(IfcRailing.class)) {
 			setGeometry(out, ifcRailing, ifcRailing.getGlobalId().getWrappedValue(), "Railing");
 		}
