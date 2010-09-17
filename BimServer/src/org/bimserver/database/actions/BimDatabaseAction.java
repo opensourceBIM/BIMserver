@@ -1,8 +1,16 @@
 package org.bimserver.database.actions;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.bimserver.ServerSettings;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
@@ -11,6 +19,7 @@ import org.bimserver.database.store.SIPrefix;
 import org.bimserver.database.store.log.AccessMethod;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.IfcModel;
+import org.bimserver.ifc.emf.Ifc2x3.Ifc2x3Package;
 import org.bimserver.ifc.emf.Ifc2x3.IfcAsymmetricIShapeProfileDef;
 import org.bimserver.ifc.emf.Ifc2x3.IfcBlock;
 import org.bimserver.ifc.emf.Ifc2x3.IfcBoundingBox;
@@ -42,6 +51,7 @@ import org.bimserver.ifc.emf.Ifc2x3.IfcMaterialLayer;
 import org.bimserver.ifc.emf.Ifc2x3.IfcMaterialLayerSetUsage;
 import org.bimserver.ifc.emf.Ifc2x3.IfcMechanicalConcreteMaterialProperties;
 import org.bimserver.ifc.emf.Ifc2x3.IfcMechanicalFastener;
+import org.bimserver.ifc.emf.Ifc2x3.IfcObjectDefinition;
 import org.bimserver.ifc.emf.Ifc2x3.IfcOffsetCurve2D;
 import org.bimserver.ifc.emf.Ifc2x3.IfcOffsetCurve3D;
 import org.bimserver.ifc.emf.Ifc2x3.IfcPermeableCoveringProperties;
@@ -54,10 +64,13 @@ import org.bimserver.ifc.emf.Ifc2x3.IfcRectangularPyramid;
 import org.bimserver.ifc.emf.Ifc2x3.IfcReinforcementBarProperties;
 import org.bimserver.ifc.emf.Ifc2x3.IfcReinforcingBar;
 import org.bimserver.ifc.emf.Ifc2x3.IfcReinforcingMesh;
+import org.bimserver.ifc.emf.Ifc2x3.IfcRelAggregates;
 import org.bimserver.ifc.emf.Ifc2x3.IfcRelConnectsStructuralMember;
+import org.bimserver.ifc.emf.Ifc2x3.IfcRelDecomposes;
 import org.bimserver.ifc.emf.Ifc2x3.IfcRibPlateProfileProperties;
 import org.bimserver.ifc.emf.Ifc2x3.IfcRightCircularCone;
 import org.bimserver.ifc.emf.Ifc2x3.IfcRightCircularCylinder;
+import org.bimserver.ifc.emf.Ifc2x3.IfcRoot;
 import org.bimserver.ifc.emf.Ifc2x3.IfcRoundedEdgeFeature;
 import org.bimserver.ifc.emf.Ifc2x3.IfcRoundedRectangleProfileDef;
 import org.bimserver.ifc.emf.Ifc2x3.IfcSIPrefix;
@@ -90,8 +103,16 @@ import org.bimserver.ifc.emf.Ifc2x3.IfcWindowPanelProperties;
 import org.bimserver.ifc.emf.Ifc2x3.IfcZShapeProfileDef;
 import org.bimserver.shared.UserException;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public abstract class BimDatabaseAction<T> {
+	private static final Logger LOGGER = LoggerFactory.getLogger(BimDatabaseAction.class);
 	private final AccessMethod accessMethod;
 
 	public abstract T execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException;
@@ -100,7 +121,130 @@ public abstract class BimDatabaseAction<T> {
 		this.accessMethod = accessMethod;
 	}
 
-	public static IfcModel merge(Project project, Set<IfcModel> ifcModels) {
+	/*
+	 * ifcModels MUST be ordered by date already
+	 */
+	public static IfcModel merge(Project project, LinkedHashSet<IfcModel> ifcModels) {
+		IfcModel model = mergeScales(project, ifcModels);
+
+		// Seems like ifcModels are not always sorted, so we just do it (again)
+		// here
+		ArrayList<IfcModel> tmpList = new ArrayList<IfcModel>(ifcModels);
+		Collections.sort(tmpList, new Comparator<IfcModel>() {
+			@Override
+			public int compare(IfcModel o1, IfcModel o2) {
+				return o1.getDate().compareTo(o2.getDate());
+			}
+		});
+		ifcModels = new LinkedHashSet<IfcModel>(tmpList);
+		if (ServerSettings.getSettings().isIntelligentMerging()) {
+			// Top-down merging, based on decomposed-by tree, starting with IfcProject
+			Set<EClass> todoList = new HashSet<EClass>();
+			todoList.add(Ifc2x3Package.eINSTANCE.getIfcProject());
+			while (!todoList.isEmpty()) {
+				EClass eClass = todoList.iterator().next();
+				todoList.remove(eClass);
+				mergeType(model, ifcModels, eClass, todoList);
+			}
+			// Merge remaining objects not found in decomposed-by tree
+			mergeType(model, ifcModels, null, todoList);
+		}
+		return model;
+	}
+
+	private static void mergeType(IfcModel model, LinkedHashSet<IfcModel> ifcModels, EClass eClass, Set<EClass> todoList) {
+		Map<String, List<IdEObject>> guidMap = new HashMap<String, List<IdEObject>>();
+		for (IfcModel ifcModel : ifcModels) {
+			for (IdEObject idEObject : ifcModel.getValues()) {
+				if (idEObject instanceof IfcRoot) {
+					IfcRoot ifcRoot = (IfcRoot) idEObject;
+					if (eClass == null || eClass.isInstance(idEObject)) {
+						String guid = ifcRoot.getGlobalId().getWrappedValue();
+						if (guidMap.containsKey(guid)) {
+							guidMap.get(guid).add(ifcRoot);
+						} else {
+							List<IdEObject> list = new ArrayList<IdEObject>();
+							list.add(ifcRoot);
+							guidMap.put(guid, list);
+						}
+					}
+				}
+			}
+		}
+		cleanGuidMap(model, todoList, guidMap);
+	}
+
+	private static void cleanGuidMap(IfcModel model, Set<EClass> todoList, Map<String, List<IdEObject>> guidMap) {
+		for (String guid : guidMap.keySet()) {
+			List<IdEObject> list = guidMap.get(guid);
+			if (list.size() > 1) {
+				IdEObject newestObject = list.get(list.size() - 1);
+				for (IdEObject idEObject : list) {
+					if (idEObject != newestObject) {
+						removeReplaceLinks(model, newestObject, idEObject);
+					}
+				}
+				for (EAttribute eAttribute : newestObject.eClass().getEAllAttributes()) {
+					if (!newestObject.eIsSet(eAttribute)) {
+						for (int i = list.size() - 2; i >= 0; i--) {
+							IdEObject olderObject = list.get(i);
+							if (olderObject.eIsSet(eAttribute)) {
+								newestObject.eSet(eAttribute, olderObject.eGet(eAttribute));
+								break;
+							}
+						}
+					}
+				}
+			}
+			if (!list.isEmpty()) {
+				EObject lastObject = list.get(list.size() - 1);
+				EStructuralFeature decomposesFeature = lastObject.eClass().getEStructuralFeature("IsDecomposedBy");
+				if (decomposesFeature != null) {
+					List<IfcRelAggregates> eGet = (List<IfcRelAggregates>) lastObject.eGet(decomposesFeature);
+					for (IfcRelAggregates e : eGet) {
+						EList<IfcObjectDefinition> relatedObjects = e.getRelatedObjects();
+						for (IfcObjectDefinition ifcObjectDefinition : relatedObjects) {
+							todoList.add(ifcObjectDefinition.eClass());
+						}
+					}
+				}
+			}
+		}
+	}
+
+	private static void removeReplaceLinks(IfcModel model, IdEObject mainObject, IdEObject objectToRemove) {
+		if (mainObject.eClass() != objectToRemove.eClass()) {
+			throw new RuntimeException("Classes must be the same");
+		}
+		for (IdEObject idEObject : model.getValues()) {
+			for (EReference eReference : idEObject.eClass().getEAllReferences()) {
+				Object value = idEObject.eGet(eReference);
+				if (eReference.isMany()) {
+					List<IdEObject> list = (List<IdEObject>) value;
+					for (IdEObject val : list) {
+						if (val == objectToRemove) {
+							list.set(list.indexOf(val), mainObject);
+							// LOGGER.info(idEObject.eClass().getName() + "." +
+							// eReference.getName() + " / " +
+							// val.eClass().getName() + "." +
+							// eReference.getEOpposite().getName());
+						}
+					}
+				} else {
+					if (value == objectToRemove) {
+						// LOGGER.info(idEObject.eClass().getName() + "." +
+						// eReference.getName() + " / " +
+						// ((IdEObject)value).eClass().getName() + "." +
+						// eReference.getEOpposite().getName());
+						idEObject.eSet(eReference, mainObject);
+					}
+				}
+			}
+		}
+		model.remove(objectToRemove);
+	}
+
+	private static IfcModel mergeScales(Project project, Set<IfcModel> ifcModels) {
 		long size = 0;
 		for (IfcModel ifcModel : ifcModels) {
 			size += ifcModel.size();

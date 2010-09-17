@@ -8,6 +8,7 @@ package org.bimserver.database.store.impl;
 
 import java.util.Collection;
 
+import java.util.Date;
 import org.bimserver.database.store.ConcreteRevision;
 import org.bimserver.database.store.Project;
 import org.bimserver.database.store.Revision;
@@ -36,6 +37,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.bimserver.database.store.impl.ConcreteRevisionImpl#getChecksum <em>Checksum</em>}</li>
  *   <li>{@link org.bimserver.database.store.impl.ConcreteRevisionImpl#getRevisions <em>Revisions</em>}</li>
  *   <li>{@link org.bimserver.database.store.impl.ConcreteRevisionImpl#getSize <em>Size</em>}</li>
+ *   <li>{@link org.bimserver.database.store.impl.ConcreteRevisionImpl#getDate <em>Date</em>}</li>
  * </ul>
  * </p>
  *
@@ -130,7 +132,7 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int SIZE_EDEFAULT = 0;
+	protected static final long SIZE_EDEFAULT = 0L;
 
 	/**
 	 * The cached value of the '{@link #getSize() <em>Size</em>}' attribute.
@@ -140,7 +142,27 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 	 * @generated
 	 * @ordered
 	 */
-	protected int size = SIZE_EDEFAULT;
+	protected long size = SIZE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getDate() <em>Date</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDate()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final Date DATE_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getDate() <em>Date</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDate()
+	 * @generated
+	 * @ordered
+	 */
+	protected Date date = DATE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -301,7 +323,7 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getSize() {
+	public long getSize() {
 		return size;
 	}
 
@@ -310,11 +332,32 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSize(int newSize) {
-		int oldSize = size;
+	public void setSize(long newSize) {
+		long oldSize = size;
 		size = newSize;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.CONCRETE_REVISION__SIZE, oldSize, size));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Date getDate() {
+		return date;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDate(Date newDate) {
+		Date oldDate = date;
+		date = newDate;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.CONCRETE_REVISION__DATE, oldDate, date));
 	}
 
 	/**
@@ -373,6 +416,8 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 				return getRevisions();
 			case StorePackage.CONCRETE_REVISION__SIZE:
 				return getSize();
+			case StorePackage.CONCRETE_REVISION__DATE:
+				return getDate();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -403,7 +448,10 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 				getRevisions().addAll((Collection<? extends Revision>)newValue);
 				return;
 			case StorePackage.CONCRETE_REVISION__SIZE:
-				setSize((Integer)newValue);
+				setSize((Long)newValue);
+				return;
+			case StorePackage.CONCRETE_REVISION__DATE:
+				setDate((Date)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -435,6 +483,9 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 			case StorePackage.CONCRETE_REVISION__SIZE:
 				setSize(SIZE_EDEFAULT);
 				return;
+			case StorePackage.CONCRETE_REVISION__DATE:
+				setDate(DATE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -459,6 +510,8 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 				return revisions != null && !revisions.isEmpty();
 			case StorePackage.CONCRETE_REVISION__SIZE:
 				return size != SIZE_EDEFAULT;
+			case StorePackage.CONCRETE_REVISION__DATE:
+				return DATE_EDEFAULT == null ? date != null : !DATE_EDEFAULT.equals(date);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -481,6 +534,8 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 		result.append(checksum);
 		result.append(", size: ");
 		result.append(size);
+		result.append(", date: ");
+		result.append(date);
 		result.append(')');
 		return result.toString();
 	}

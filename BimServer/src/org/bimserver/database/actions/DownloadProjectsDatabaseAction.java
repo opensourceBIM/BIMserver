@@ -1,6 +1,6 @@
 package org.bimserver.database.actions;
 
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 import org.bimserver.database.BimDatabaseException;
@@ -32,7 +32,7 @@ public class DownloadProjectsDatabaseAction extends BimDatabaseAction<IfcModel> 
 		User user = bimDatabaseSession.getUserByUoid(actingUoid);
 		Project project = null;
 		String projectName = "";
-		Set<IfcModel> ifcModels = new HashSet<IfcModel>();
+		LinkedHashSet<IfcModel> ifcModels = new LinkedHashSet<IfcModel>();
 		for (long roid : roids) {
 			Revision revision = bimDatabaseSession.getVirtualRevision(roid);
 			project = revision.getProject();
@@ -40,7 +40,9 @@ public class DownloadProjectsDatabaseAction extends BimDatabaseAction<IfcModel> 
 				for (ConcreteRevision concreteRevision : revision.getConcreteRevisions()) {
 					ReadSet readSet = bimDatabaseSession.getMap(concreteRevision.getProject().getId(), concreteRevision.getId());
 					projectName += concreteRevision.getProject().getName() + "-";
-					ifcModels.add(new IfcModel(readSet.getMap()));
+					IfcModel subModel = new IfcModel(readSet.getMap());
+					subModel.setDate(concreteRevision.getDate());
+					ifcModels.add(subModel);
 				}
 			} else {
 				throw new UserException("User has no rights on project " + project.getOid());

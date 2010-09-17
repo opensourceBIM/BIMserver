@@ -2,6 +2,7 @@ package org.bimserver.database.actions;
 
 import java.util.Date;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 import org.bimserver.database.BimDatabaseException;
@@ -35,7 +36,7 @@ public class DownloadByGuidsDatabaseAction extends BimDatabaseAction<IfcModel> {
 	public IfcModel execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
 		User user = bimDatabaseSession.getUserByUoid(actingUoid);
 		Set<String> foundGuids = new HashSet<String>();
-		Set<IfcModel> ifcModels = new HashSet<IfcModel>();
+		LinkedHashSet<IfcModel> ifcModels = new LinkedHashSet<IfcModel>();
 		Project project = null;
 		for (Long roid : roids) {
 			Revision virtualRevision = bimDatabaseSession.getVirtualRevision(roid);
@@ -52,8 +53,9 @@ public class DownloadByGuidsDatabaseAction extends BimDatabaseAction<IfcModel> {
 							if (oidOfGuid != -1) {
 								foundGuids.add(guid);
 								ReadSet mapWithOid = bimDatabaseSession.getMapWithOid(concreteRevision.getProject().getId(), concreteRevision.getId(), oidOfGuid);
-//								ifcModel.setMainObject(mapWithOid.get(oidOfGuid));
-								ifcModels.add(new IfcModel(mapWithOid.getMap()));
+								IfcModel subModel = new IfcModel(mapWithOid.getMap());
+								subModel.setDate(concreteRevision.getDate());
+								ifcModels.add(subModel);
 								break;
 							}
 						}

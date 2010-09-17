@@ -230,13 +230,11 @@ public class DatabaseSession implements BimDatabaseSession {
 
 	public ConcreteRevision createNewConcreteRevision(long size, long poid, long uoid, String comment, boolean finalized) throws BimDatabaseException, BimDeadlockException {
 		ConcreteRevision concreteRevision = StoreFactory.eINSTANCE.createConcreteRevision();
+		concreteRevision.setSize(size);
 		Date date = new Date();
+		concreteRevision.setDate(date);
 		Project project = getProjectByPoid(poid);
-		if (project.getConcreteRevisions().isEmpty()) {
-			concreteRevision.setId(1);
-		} else {
-			concreteRevision.setId(project.getConcreteRevisions().size() + 1);
-		}
+		concreteRevision.setId(project.getConcreteRevisions().size() + 1);
 		User user = getUserByUoid(uoid);
 		concreteRevision.setProject(project);
 		concreteRevision.setFinalized(finalized);
@@ -254,22 +252,19 @@ public class DatabaseSession implements BimDatabaseSession {
 			revision.setComment(comment);
 			revision.setDate(date);
 			revision.setUser(user);
-			revision.setSize(size);
 			revision.setProject(parent);
 			revision.setFinalized(finalized);
 			if (parent.getLastRevision() != null) {
 				Revision lastRevision = parent.getLastRevision();
-				if (lastRevision.getConcreteRevisions().size() == 1 && lastRevision.getConcreteRevisions().get(0).getProject() == project) {
-				} else {
-					revision.setSize(size + lastRevision.getSize());
-				}
 				for (ConcreteRevision oldRevision : lastRevision.getConcreteRevisions()) {
 					if (oldRevision.getProject() != project && oldRevision.getProject() != parent) {
 						revision.getConcreteRevisions().add(oldRevision);
+						revision.setSize(revision.getSize() + oldRevision.getSize());
 					}
 				}
 			}
 			revision.getConcreteRevisions().add(concreteRevision);
+			revision.setSize(revision.getSize() + concreteRevision.getSize());
 			revision.setLastConcreteRevision(concreteRevision);
 			if (parent.getLastRevision() == null) {
 				revision.setId(1);
@@ -286,7 +281,6 @@ public class DatabaseSession implements BimDatabaseSession {
 	private void createNewVirtualRevision(Project project, ConcreteRevision revision, String comment, Date date, User user, long size, boolean finalized)
 			throws BimDeadlockException {
 		Revision virtualRevision = StoreFactory.eINSTANCE.createRevision();
-		virtualRevision.getConcreteRevisions().add(revision);
 		virtualRevision.setLastConcreteRevision(revision);
 		virtualRevision.setComment(comment);
 		virtualRevision.setDate(date);
@@ -294,17 +288,20 @@ public class DatabaseSession implements BimDatabaseSession {
 		virtualRevision.setSize(size);
 		virtualRevision.setFinalized(finalized);
 		project.setLastRevision(virtualRevision);
-		if (project.getRevisions().isEmpty()) {
-			virtualRevision.setId(1);
-		} else {
-			virtualRevision.setId(project.getRevisions().size() + 1);
-			for (ConcreteRevision concreteRevision : project.getRevisions().get(0).getConcreteRevisions()) {
-				if (concreteRevision.getProject() != project) {
-					virtualRevision.getConcreteRevisions().add(concreteRevision);
-					virtualRevision.setSize(virtualRevision.getSize() + concreteRevision.getSize());
-				}
-			}
-		}
+		virtualRevision.setId(project.getRevisions().size() + 1);
+		// RUBEN: Commented out on 17-09-2010, looks like this should never occur
+//		if (project.getRevisions().isEmpty()) {
+//			virtualRevision.setId(1);
+//		} else {
+//			virtualRevision.setId(project.getRevisions().size() + 1);
+//			for (ConcreteRevision concreteRevision : project.getRevisions().get(0).getConcreteRevisions()) {
+//				if (concreteRevision.getProject() != project) {
+//					virtualRevision.getConcreteRevisions().add(concreteRevision);
+//					virtualRevision.setSize(virtualRevision.getSize() + concreteRevision.getSize());
+//				}
+//			}
+//		}
+		virtualRevision.getConcreteRevisions().add(revision);
 		virtualRevision.setProject(project);
 		store(virtualRevision, new CommitSet(Database.STORE_PROJECT_ID, -1));
 	}

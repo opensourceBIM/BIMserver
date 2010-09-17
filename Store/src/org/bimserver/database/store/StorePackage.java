@@ -561,13 +561,22 @@ public interface StorePackage extends EPackage {
 	int CONCRETE_REVISION__SIZE = 5;
 
 	/**
+	 * The feature id for the '<em><b>Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONCRETE_REVISION__DATE = 6;
+
+	/**
 	 * The number of structural features of the '<em>Concrete Revision</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONCRETE_REVISION_FEATURE_COUNT = 6;
+	int CONCRETE_REVISION_FEATURE_COUNT = 7;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.database.store.impl.RevisionImpl <em>Revision</em>}' class.
@@ -1613,6 +1622,17 @@ public interface StorePackage extends EPackage {
 	EAttribute getConcreteRevision_Size();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.database.store.ConcreteRevision#getDate <em>Date</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Date</em>'.
+	 * @see org.bimserver.database.store.ConcreteRevision#getDate()
+	 * @see #getConcreteRevision()
+	 * @generated
+	 */
+	EAttribute getConcreteRevision_Date();
+
+	/**
 	 * Returns the meta object for class '{@link org.bimserver.database.store.Revision <em>Revision</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2439,6 +2459,14 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute CONCRETE_REVISION__SIZE = eINSTANCE.getConcreteRevision_Size();
+
+		/**
+		 * The meta object literal for the '<em><b>Date</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONCRETE_REVISION__DATE = eINSTANCE.getConcreteRevision_Date();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.database.store.impl.RevisionImpl <em>Revision</em>}' class.
