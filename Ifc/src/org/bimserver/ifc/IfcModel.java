@@ -175,4 +175,8 @@ public class IfcModel {
 		objects.put(oid, newObject);
 		counter++;
 	}
+
+	public void remove(IdEObject idEObject) {
+		objects.remove(idEObject.getOid());
+	}
 }

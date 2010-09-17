@@ -196,16 +196,14 @@ public abstract class BimDatabaseAction<T> {
 					}
 				}
 			}
-			if (!list.isEmpty()) {
-				EObject lastObject = list.get(list.size() - 1);
-				EStructuralFeature decomposesFeature = lastObject.eClass().getEStructuralFeature("IsDecomposedBy");
-				if (decomposesFeature != null) {
-					List<IfcRelAggregates> eGet = (List<IfcRelAggregates>) lastObject.eGet(decomposesFeature);
-					for (IfcRelAggregates e : eGet) {
-						EList<IfcObjectDefinition> relatedObjects = e.getRelatedObjects();
-						for (IfcObjectDefinition ifcObjectDefinition : relatedObjects) {
-							todoList.add(ifcObjectDefinition.eClass());
-						}
+			EObject lastObject = list.get(list.size() - 1);
+			EStructuralFeature decomposesFeature = lastObject.eClass().getEStructuralFeature("IsDecomposedBy");
+			if (decomposesFeature != null) {
+				List<IfcRelAggregates> eGet = (List<IfcRelAggregates>) lastObject.eGet(decomposesFeature);
+				for (IfcRelAggregates e : eGet) {
+					EList<IfcObjectDefinition> relatedObjects = e.getRelatedObjects();
+					for (IfcObjectDefinition ifcObjectDefinition : relatedObjects) {
+						todoList.add(ifcObjectDefinition.eClass());
 					}
 				}
 			}
