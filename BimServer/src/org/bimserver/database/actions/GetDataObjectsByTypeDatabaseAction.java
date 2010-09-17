@@ -1,9 +1,8 @@
 package org.bimserver.database.actions;
 
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
@@ -34,10 +33,12 @@ public class GetDataObjectsByTypeDatabaseAction extends BimDatabaseAction<List<D
 	public List<DataObject> execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
 		EClass eClass = bimDatabaseSession.getEClassForName(className);
 		Revision virtualRevision = bimDatabaseSession.getVirtualRevision(roid);
-		Set<IfcModel> ifcModels = new HashSet<IfcModel>();
+		LinkedHashSet<IfcModel> ifcModels = new LinkedHashSet<IfcModel>();
 		for (ConcreteRevision concreteRevision : virtualRevision.getConcreteRevisions()) {
 			ReadSet readSet = bimDatabaseSession.getAllOfType(className, concreteRevision.getProject().getId(), concreteRevision.getId());
-			ifcModels.add(new IfcModel(readSet.getMap()));
+			IfcModel subModel = new IfcModel(readSet.getMap());
+			subModel.setDate(concreteRevision.getDate());
+			ifcModels.add(subModel);
 		}
 		IfcModel ifcModel = merge(virtualRevision.getProject(), ifcModels);
 		List<DataObject> dataObjects = new ArrayList<DataObject>();

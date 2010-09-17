@@ -26,7 +26,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -1183,9 +1183,11 @@ public class Service implements ServiceInterface {
 			if (!RightsManager.hasRightsOnProjectOrSuperProjectsOrSubProjects(user, oldProject)) {
 				throw new UserException("User has insufficient rights to download revisions from this project");
 			}
-			Set<IfcModel> ifcModels = new HashSet<IfcModel>();
+			LinkedHashSet<IfcModel> ifcModels = new LinkedHashSet<IfcModel>();
 			for (ConcreteRevision subRevision : oldRevision.getConcreteRevisions()) {
-				ifcModels.add(new IfcModel(session.getMap(subRevision.getProject().getId(), subRevision.getId()).getMap()));
+				IfcModel subModel = new IfcModel(session.getMap(subRevision.getProject().getId(), subRevision.getId()).getMap());
+				subModel.setDate(subRevision.getDate());
+				ifcModels.add(subModel);
 			}
 			IfcModel model = BimDatabaseAction.merge(oldRevision.getProject(), ifcModels);
 			Project newProject = new AddProjectDatabaseAction(accessMethod, projectName, tokenManager.getUoid(token)).execute(session);
@@ -1225,9 +1227,11 @@ public class Service implements ServiceInterface {
 			if (!RightsManager.hasRightsOnProjectOrSuperProjectsOrSubProjects(user, oldProject)) {
 				throw new UserException("User has insufficient rights to download revisions from this project");
 			}
-			Set<IfcModel> ifcModels = new HashSet<IfcModel>();
+			LinkedHashSet<IfcModel> ifcModels = new LinkedHashSet<IfcModel>();
 			for (ConcreteRevision subRevision : oldRevision.getConcreteRevisions()) {
-				ifcModels.add(new IfcModel(session.getMap(subRevision.getProject().getId(), subRevision.getId()).getMap()));
+				IfcModel subModel = new IfcModel(session.getMap(subRevision.getProject().getId(), subRevision.getId()).getMap());
+				subModel.setDate(subRevision.getDate());
+				ifcModels.add(subModel);
 			}
 			IfcModel model = BimDatabaseAction.merge(oldRevision.getProject(), ifcModels);
 			BimDatabaseAction<ConcreteRevision> action = new CheckinPart1DatabaseAction(accessMethod, destPoid, tokenManager.getUoid(token), model, comment);

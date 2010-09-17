@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -62,12 +63,13 @@ public class FindClashesDatabaseAction extends BimDatabaseAction<Set<? extends C
 	public Set<? extends Clash> execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
 		Map<Long, Revision> oidToRoidMap = new HashMap<Long, Revision>();
 		Project project = null;
-		Set<IfcModel> ifcModels = new HashSet<IfcModel>();
+		LinkedHashSet<IfcModel> ifcModels = new LinkedHashSet<IfcModel>();
 		for (Long roid : sClashDetectionSettings.getRevisions()) {
 			Revision revision = bimDatabaseSession.getRevisionByRoid(roid);
 			project = revision.getProject();
 			for (ConcreteRevision concreteRevision : revision.getConcreteRevisions()) {
 				IfcModel source = new IfcModel(bimDatabaseSession.getMap(concreteRevision.getProject().getId(), concreteRevision.getId()).getMap());
+				source.setDate(concreteRevision.getDate());
 				ifcModels.add(source);
 				for (Long oid : source.keySet()) {
 					oidToRoidMap.put(oid, revision);

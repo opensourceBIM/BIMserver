@@ -1,7 +1,6 @@
 package org.bimserver.database.actions;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.LinkedHashSet;
 
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
@@ -45,11 +44,13 @@ public class GetDataObjectByOidDatabaseAction extends BimDatabaseAction<DataObje
 	public DataObject execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
 		Revision virtualRevision = bimDatabaseSession.getVirtualRevision(roid);
 		EObject eObject = null;
-		Set<IfcModel> ifcModels = new HashSet<IfcModel>();
+		LinkedHashSet<IfcModel> ifcModels = new LinkedHashSet<IfcModel>();
 		for (ConcreteRevision concreteRevision : virtualRevision.getConcreteRevisions()) {
 			ReadSet readSet = new ReadSet(concreteRevision.getProject().getId(), concreteRevision.getId());
 			eObject = bimDatabaseSession.get(cid, oid, readSet);
-			ifcModels.add(new IfcModel(readSet.getMap()));
+			IfcModel subModel = new IfcModel(readSet.getMap());
+			subModel.setDate(concreteRevision.getDate());
+			ifcModels.add(subModel);
 			if (eObject != null) {
 				break;
 			}

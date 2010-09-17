@@ -18,7 +18,8 @@ public class SConcreteRevision
 	private boolean finalized;
 	private byte[] checksum;
 	private List<Long> revisions;
-	private int size;
+	private long size;
+	private java.util.Date date;
 
 	public int getId() {
 		return id;
@@ -59,12 +60,20 @@ public class SConcreteRevision
 		this.revisions = revisions;
 	}
 
-	public int getSize() {
+	public long getSize() {
 		return size;
 	}
 
-	public void setSize(int size) {
+	public void setSize(long size) {
 		this.size = size;
+	}
+
+	public java.util.Date getDate() {
+		return date;
+	}
+
+	public void setDate(java.util.Date date) {
+		this.date = date;
 	}
 	@Override
 	public int hashCode() {

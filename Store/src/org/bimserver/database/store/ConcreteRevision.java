@@ -6,6 +6,7 @@
  */
 package org.bimserver.database.store;
 
+import java.util.Date;
 import org.bimserver.emf.IdEObject;
 import org.eclipse.emf.common.util.EList;
 
@@ -23,6 +24,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.database.store.ConcreteRevision#getChecksum <em>Checksum</em>}</li>
  *   <li>{@link org.bimserver.database.store.ConcreteRevision#getRevisions <em>Revisions</em>}</li>
  *   <li>{@link org.bimserver.database.store.ConcreteRevision#getSize <em>Size</em>}</li>
+ *   <li>{@link org.bimserver.database.store.ConcreteRevision#getDate <em>Date</em>}</li>
  * </ul>
  * </p>
  *
@@ -165,12 +167,12 @@ public interface ConcreteRevision extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Size</em>' attribute.
-	 * @see #setSize(int)
+	 * @see #setSize(long)
 	 * @see org.bimserver.database.store.StorePackage#getConcreteRevision_Size()
 	 * @model
 	 * @generated
 	 */
-	int getSize();
+	long getSize();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.database.store.ConcreteRevision#getSize <em>Size</em>}' attribute.
@@ -180,6 +182,32 @@ public interface ConcreteRevision extends IdEObject {
 	 * @see #getSize()
 	 * @generated
 	 */
-	void setSize(int value);
+	void setSize(long value);
+
+	/**
+	 * Returns the value of the '<em><b>Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Date</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Date</em>' attribute.
+	 * @see #setDate(Date)
+	 * @see org.bimserver.database.store.StorePackage#getConcreteRevision_Date()
+	 * @model
+	 * @generated
+	 */
+	Date getDate();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.database.store.ConcreteRevision#getDate <em>Date</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Date</em>' attribute.
+	 * @see #getDate()
+	 * @generated
+	 */
+	void setDate(Date value);
 
 } // ConcreteRevision
