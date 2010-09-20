@@ -51,6 +51,7 @@ import org.bimserver.ifc.FieldIgnoreMap;
 import org.bimserver.ifc.FileFieldIgnoreMap;
 import org.bimserver.ifc.emf.Ifc2x3.Ifc2x3Package;
 import org.bimserver.ifcengine.IfcEngineFactory;
+import org.bimserver.querycompiler.QueryCompiler;
 import org.bimserver.services.TokenManager;
 import org.bimserver.servlets.CompileServlet;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
@@ -120,7 +121,9 @@ public class ServerInitializer implements ServletContextListener {
 			servletContext.setAttribute("service", soapService);
 			LoginManager.setService(webService);
 
-			LOGGER.info("real path: " + servletContext.getRealPath("/"));
+			if (serverType == ServerType.DEPLOYED_WAR) {
+				QueryCompiler.addJarFolder(new File(servletContext.getRealPath("/") + "WEB-INF" + File.separator + "lib"));
+			}
 			
 			ServerStarted serverStarted = LogFactory.eINSTANCE.createServerStarted();
 			serverStarted.setDate(new Date());
