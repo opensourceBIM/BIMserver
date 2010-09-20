@@ -193,7 +193,7 @@
 		<jar jarfile="builds/BuildWar/WEB-INF/lib/bimserver.jar">
 			<fileset dir="builds/BuildWar/WEB-INF/classes" />
 		</jar>
-		<delete dir="builds/BuildWar/classes" />
+		<delete dir="builds/BuildWar/WEB-INF/classes" />
 		<jar destfile="builds/bimserver-${version}.war" manifest="../www/META-INF/MANIFEST.MF">
 			<fileset dir="builds/BuildWar">
 				<exclude name="*.svn" />

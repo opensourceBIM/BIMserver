@@ -1,6 +1,7 @@
 package org.bimserver.querycompiler;
 
 import java.io.File;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -13,7 +14,6 @@ import javax.tools.JavaFileObject;
 import javax.tools.ToolProvider;
 import javax.tools.Diagnostic.Kind;
 
-import org.apache.commons.io.output.NullWriter;
 import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
@@ -29,26 +29,36 @@ public class QueryCompiler {
 
 	private String createLibraryPath() {
 		StringBuilder path = new StringBuilder();
-		path.append("../BimServer/src" + File.pathSeparator);
-		path.append("../Ifc/src" + File.pathSeparator);
-		path.append("../Emf/src" + File.pathSeparator);
-		path.append(createPath(new File("../BimServer/lib")) + File.pathSeparator);
-		path.append(createPath(new File("../BimServer/lib/emf")) + File.pathSeparator);
-		path.append("lib/bimserver.jar");
+		addLocalPath(path, "../BimServer/src");
+		addLocalPath(path, "../Ifc/src");
+		addLocalPath(path, "../Emf/src");
+		addLocalJarPath(path, new File("../BimServer/lib"));
+		addLocalJarPath(path, new File("../BimServer/lib/emf"));
+		File libDir = new File("lib");
+		if (libDir.exists() && libDir.isDirectory()) {
+			for (File file : libDir.listFiles()) {
+				if (file.getName().endsWith(".jar")) {
+					path.append(file.getAbsolutePath() + File.pathSeparator);
+				}
+			}
+		}
 		return path.toString();
 	}
 
-	private String createPath(File dir) {
+	private void addLocalPath(StringBuilder path, String string) {
+		File file = new File(string);
+		if (file.exists()) {
+			path.append(string + File.pathSeparator);
+		}
+	}
+
+	private void addLocalJarPath(StringBuilder sb, File dir) {
 		if (dir.exists()) {
-			StringBuilder result = new StringBuilder();
 			for (File f : dir.listFiles()) {
 				if (f.getName().endsWith(".jar")) {
-					result.append(dir.getPath() + File.separator + f.getName() + File.pathSeparator);
+					sb.append(dir.getPath() + File.separator + f.getName() + File.pathSeparator);
 				}
 			}
-			return result.toString();
-		} else {
-			return "";
 		}
 	}
 
@@ -74,8 +84,7 @@ public class QueryCompiler {
 			throw new CompileException("JDK needed for compile tasks");
 		}
 		JavaFileManager fileManager = compiler.getStandardFileManager(null, null, null);
-		ClassLoader classLoader = new ClassLoader() {
-		};
+		ClassLoader classLoader = new ClassLoader(){};
 		VirtualFile baseDir = new VirtualFile(null, null);
 		VirtualFile file = baseDir.createFile("org" + File.separator + "bimserver" + File.separator + "querycompiler" + File.separator + "Query.java");
 		file.setStringContent(code);
@@ -88,10 +97,12 @@ public class QueryCompiler {
 		List<String> options = new ArrayList<String>();
 		options.add("-cp");
 		options.add(libPath);
+		options.add("-target");
+		options.add("6");
 
 		DiagnosticCollector<JavaFileObject> diagnosticsCollector = new DiagnosticCollector<JavaFileObject>();
 		boolean succes = true;
-		compiler.getTask(new NullWriter(), myFileManager, diagnosticsCollector, options, null, compilationUnits).call();
+		compiler.getTask(null, myFileManager, diagnosticsCollector, options, null, compilationUnits).call();
 		List<Diagnostic<? extends JavaFileObject>> diagnostics = diagnosticsCollector.getDiagnostics();
 		root.put("compileWarnings", compileWarnings);
 		root.put("compileErrors", compileErrors);
