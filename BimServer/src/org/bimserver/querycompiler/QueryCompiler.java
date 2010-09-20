@@ -13,7 +13,6 @@ import javax.tools.JavaFileObject;
 import javax.tools.ToolProvider;
 import javax.tools.Diagnostic.Kind;
 
-import org.bimserver.ServerInitializer;
 import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
@@ -22,47 +21,9 @@ import org.slf4j.LoggerFactory;
 
 public class QueryCompiler {
 	private static final Logger LOGGER = LoggerFactory.getLogger(QueryCompiler.class);
-	private final String libPath = createLibraryPath();
+	private final String libPath = System.getProperty("java.class.path");
 
 	public QueryCompiler() {
-	}
-
-	private String createLibraryPath() {
-		StringBuilder path = new StringBuilder();
-		addLocalPath(path, ".." + File.separator + "BimServer" + File.separator + "src");
-		addLocalPath(path, ".." + File.separator + "Ifc" + File.separator + "src");
-		addLocalPath(path, ".." + File.separator + "Emf" + File.separator + "src");
-		addLocalJarPath(path, new File(".." + File.separator + "BimServer" + File.separator + "lib"));
-		addLocalJarPath(path, new File(".." + File.separator + "BimServer" + File.separator + "lib/emf"));
-		File libDir = new File("lib");
-		if (!libDir.exists()) {
-			libDir = ServerInitializer.getResourceFetcher().getFile("lib" + File.separator);
-		}
-		if (libDir.exists() && libDir.isDirectory()) {
-			for (File file : libDir.listFiles()) {
-				if (file.getName().endsWith(".jar")) {
-					path.append(file.getAbsolutePath() + File.pathSeparator);
-				}
-			}
-		}
-		return path.toString();
-	}
-
-	private void addLocalPath(StringBuilder path, String string) {
-		File file = new File(string);
-		if (file.exists()) {
-			path.append(string + File.pathSeparator);
-		}
-	}
-
-	private void addLocalJarPath(StringBuilder sb, File dir) {
-		if (dir.exists()) {
-			for (File f : dir.listFiles()) {
-				if (f.getName().endsWith(".jar")) {
-					sb.append(dir.getPath() + File.separator + f.getName() + File.pathSeparator);
-				}
-			}
-		}
 	}
 
 	private void getJavaFiles(List<VirtualFile> fileList, VirtualFile baseDir) {
