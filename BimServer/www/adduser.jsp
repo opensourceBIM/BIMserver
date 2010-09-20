@@ -23,7 +23,7 @@
 					Properties props = new Properties();
 					props.put("mail.smtp.host", ServerSettings.getSettings().getSmtpServer());
 
-					Session mailSession = Session.getDefaultInstance(props);
+					Session mailSession = MailSystem.createMailSession();
 
 					Message msg = new MimeMessage(mailSession);
 
@@ -45,7 +45,8 @@
 			}
 		}
 %>
-<div class="sidebar">
+
+<%@page import="org.bimserver.MailSystem"%><div class="sidebar">
 </div>
 
 <div class="content">
