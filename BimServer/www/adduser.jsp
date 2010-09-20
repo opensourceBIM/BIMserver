@@ -54,10 +54,10 @@
 <fieldset>
 <form name="form" method="post" action="adduser.jsp">
 <table>
-<tr><td>Name</td><td><input type="text" name="name" autocomplete="off" value="<%=request.getParameter("name") != null ? request.getParameter("name") : "" %>"/></td></tr>
-<tr><td>Username (E-mail address)</td><td><input type="text" name="username" autocomplete="off" value="<%=request.getParameter("username") != null ? request.getParameter("username") : "" %>"/></td></tr>
-<tr><td>Password</td><td><input type="password" name="password" autocomplete="off"/></td></tr>
-<tr><td>Send confirmation to user</td><td><input type="checkbox" name="sendconfirmation"<%=(request.getParameter("sendconfirmation") != null ? " checked=\"checked\"" : "") %>/></td></tr>
+<tr><td><label for="name">Name</label></td><td><input id="name" type="text" name="name" autocomplete="off" value="<%=request.getParameter("name") != null ? request.getParameter("name") : "" %>"/></td></tr>
+<tr><td><label for="username">Username (E-mail address)</label></td><td><input id="username" type="text" name="username" autocomplete="off" value="<%=request.getParameter("username") != null ? request.getParameter("username") : "" %>"/></td></tr>
+<tr><td><label for="password">Password</label></td><td><input id="password" type="password" name="password" autocomplete="off"/></td></tr>
+<tr><td><label for="confirm">Send confirmation to user</label></td><td><input id="confirm" type="checkbox" name="sendconfirmation"<%=(request.getParameter("sendconfirmation") != null ? " checked=\"checked\"" : "") %>/></td></tr>
 </table>
 <input type="submit" value="Save" name="save"/>
 </form>
