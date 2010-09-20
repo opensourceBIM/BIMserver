@@ -11,7 +11,8 @@
 <%@page import="org.bimserver.MailSystem"%>
 <%@page import="org.slf4j.Logger"%>
 <%@page import="org.slf4j.LoggerFactory"%>
-<jsp:useBean id="loginManager" scope="session" class="org.bimserver.LoginManager" />
+
+<%@page import="org.bimserver.utils.WebUtils"%><jsp:useBean id="loginManager" scope="session" class="org.bimserver.LoginManager" />
 <%
 	Logger logger = LoggerFactory.getLogger(MailSystem.class);
 	try {
@@ -36,11 +37,7 @@
 		msg.setRecipients(Message.RecipientType.TO, addressTo);
 		
 		msg.setSubject("BIMserver Clash Detection");
-		String url = request.getRequestURL().toString();
-		if (url.startsWith("http://")) {
-			url = url.substring(7);
-		}
-		url = url.substring(0, url.indexOf("/") + 1);
+		String url = WebUtils.getWebServer(request.getRequestURL().toString());
 		msg.setContent("<a href=\"http://" + url + "project.jsp?tab=cd&poid=" + request.getParameter("poid") + "&margin=" + request.getParameter("margin") + "&revisions=" + request.getParameter("revisions") + "&ignore=" + request.getParameter("ignore") + "\">Click here for clash detection results</a>", "text/html");
 		Transport.send(msg);
 		out.append("Clash detection succesfully e-mailed to " + address);
