@@ -193,7 +193,7 @@ public class Service implements ServiceInterface {
 		final BimDatabaseSession session = bimDatabase.createSession();
 		try {
 			InputStream inputStream = ifcFile.getInputStream();
-			if (ifcFile.getName() != null && ifcFile.getName().toUpperCase().endsWith(".ZIP")) {
+			if (ifcFile.getName() != null && (ifcFile.getName().toUpperCase().endsWith(".ZIP") || ifcFile.getName().toUpperCase().endsWith(".IFCZIP"))) {
 				ZipInputStream zipInputStream = new ZipInputStream(inputStream);
 				ZipEntry nextEntry = zipInputStream.getNextEntry();
 				if (nextEntry == null) {
