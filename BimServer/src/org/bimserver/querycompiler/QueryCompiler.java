@@ -21,7 +21,7 @@ import org.slf4j.LoggerFactory;
 
 public class QueryCompiler {
 	private static final Logger LOGGER = LoggerFactory.getLogger(QueryCompiler.class);
-	private static String libPath = System.getProperty("java.class.path");
+	private static String libPath = System.getProperty("java.class.path") + File.pathSeparator;
 
 	public static void addJarFolder(File libDir) {
 		if (libDir.exists() && libDir.isDirectory()) {
