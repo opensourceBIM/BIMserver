@@ -28,10 +28,10 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.database.store.Revision#getLastConcreteRevision <em>Last Concrete Revision</em>}</li>
  *   <li>{@link org.bimserver.database.store.Revision#getCheckouts <em>Checkouts</em>}</li>
  *   <li>{@link org.bimserver.database.store.Revision#getProject <em>Project</em>}</li>
- *   <li>{@link org.bimserver.database.store.Revision#isFinalized <em>Finalized</em>}</li>
+ *   <li>{@link org.bimserver.database.store.Revision#getState <em>State</em>}</li>
  *   <li>{@link org.bimserver.database.store.Revision#getLastClashes <em>Last Clashes</em>}</li>
- *   <li>{@link org.bimserver.database.store.Revision#isProcessingClashes <em>Processing Clashes</em>}</li>
  *   <li>{@link org.bimserver.database.store.Revision#getTag <em>Tag</em>}</li>
+ *   <li>{@link org.bimserver.database.store.Revision#getLastError <em>Last Error</em>}</li>
  * </ul>
  * </p>
  *
@@ -262,30 +262,33 @@ public interface Revision extends IdEObject {
 	void setProject(Project value);
 
 	/**
-	 * Returns the value of the '<em><b>Finalized</b></em>' attribute.
+	 * Returns the value of the '<em><b>State</b></em>' attribute.
+	 * The literals are from the enumeration {@link org.bimserver.database.store.CheckinState}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Finalized</em>' attribute isn't clear,
+	 * If the meaning of the '<em>State</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Finalized</em>' attribute.
-	 * @see #setFinalized(boolean)
-	 * @see org.bimserver.database.store.StorePackage#getRevision_Finalized()
+	 * @return the value of the '<em>State</em>' attribute.
+	 * @see org.bimserver.database.store.CheckinState
+	 * @see #setState(CheckinState)
+	 * @see org.bimserver.database.store.StorePackage#getRevision_State()
 	 * @model
 	 * @generated
 	 */
-	boolean isFinalized();
+	CheckinState getState();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.database.store.Revision#isFinalized <em>Finalized</em>}' attribute.
+	 * Sets the value of the '{@link org.bimserver.database.store.Revision#getState <em>State</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Finalized</em>' attribute.
-	 * @see #isFinalized()
+	 * @param value the new value of the '<em>State</em>' attribute.
+	 * @see org.bimserver.database.store.CheckinState
+	 * @see #getState()
 	 * @generated
 	 */
-	void setFinalized(boolean value);
+	void setState(CheckinState value);
 
 	/**
 	 * Returns the value of the '<em><b>Last Clashes</b></em>' reference list.
@@ -302,32 +305,6 @@ public interface Revision extends IdEObject {
 	 * @generated
 	 */
 	EList<Clash> getLastClashes();
-
-	/**
-	 * Returns the value of the '<em><b>Processing Clashes</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Processing Clashes</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Processing Clashes</em>' attribute.
-	 * @see #setProcessingClashes(boolean)
-	 * @see org.bimserver.database.store.StorePackage#getRevision_ProcessingClashes()
-	 * @model
-	 * @generated
-	 */
-	boolean isProcessingClashes();
-
-	/**
-	 * Sets the value of the '{@link org.bimserver.database.store.Revision#isProcessingClashes <em>Processing Clashes</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Processing Clashes</em>' attribute.
-	 * @see #isProcessingClashes()
-	 * @generated
-	 */
-	void setProcessingClashes(boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Tag</b></em>' attribute.
@@ -354,5 +331,31 @@ public interface Revision extends IdEObject {
 	 * @generated
 	 */
 	void setTag(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Last Error</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Last Error</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Last Error</em>' attribute.
+	 * @see #setLastError(String)
+	 * @see org.bimserver.database.store.StorePackage#getRevision_LastError()
+	 * @model
+	 * @generated
+	 */
+	String getLastError();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.database.store.Revision#getLastError <em>Last Error</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Last Error</em>' attribute.
+	 * @see #getLastError()
+	 * @generated
+	 */
+	void setLastError(String value);
 
 } // Revision

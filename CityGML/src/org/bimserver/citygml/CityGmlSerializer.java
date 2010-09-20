@@ -132,11 +132,15 @@ public class CityGmlSerializer extends BimModelSerializer {
 	private final Project project;
 	private final User user;
 	
-	public CityGmlSerializer(Project project, User user, String fileName, IfcModel IfcModel, SchemaDefinition schemaDefinition, FieldIgnoreMap fieldIgnoreMap, IfcEngineFactory ifcEngineFactory) {
+	public CityGmlSerializer(Project project, User user, String fileName, IfcModel IfcModel, SchemaDefinition schemaDefinition, FieldIgnoreMap fieldIgnoreMap, IfcEngineFactory ifcEngineFactory) throws SerializerException {
 		super(fileName, IfcModel, fieldIgnoreMap);
 		this.project = project;
 		this.user = user;
-		this.ifcEngine = ifcEngineFactory.createFailSafeIfcEngine();
+		try {
+			this.ifcEngine = ifcEngineFactory.createFailSafeIfcEngine();
+		} catch (IfcEngineException e) {
+			throw new SerializerException(e);
+		}
 		this.model = IfcModel;
 		this.schemaDefinition = schemaDefinition;
 		ctx = new CityGMLContext();
@@ -194,7 +198,7 @@ public class CityGmlSerializer extends BimModelSerializer {
 				
 				marshaller.marshal(cityModelElement, writer);
 			} catch (JAXBException e) {
-				throw new SerializerException("JAXBException", e);
+				throw new SerializerException(e);
 			}
 			writer.flush();
 			mode = SimpleMode.DONE;

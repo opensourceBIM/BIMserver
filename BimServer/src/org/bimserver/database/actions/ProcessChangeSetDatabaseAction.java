@@ -10,6 +10,7 @@ import org.bimserver.database.CommitSet;
 import org.bimserver.database.Database;
 import org.bimserver.database.ReadSet;
 import org.bimserver.database.RecordIdentifier;
+import org.bimserver.database.store.CheckinState;
 import org.bimserver.database.store.ConcreteRevision;
 import org.bimserver.database.store.Project;
 import org.bimserver.database.store.log.AccessMethod;
@@ -53,7 +54,7 @@ public class ProcessChangeSetDatabaseAction extends BimDatabaseAction<ChangeSetR
 			throw new UserException("There must be at least 1 revision to use changesets");
 		}
 		ConcreteRevision oldRevision = project.getLastConcreteRevision();
-		ConcreteRevision newRevision = bimDatabaseSession.createNewConcreteRevision(0, poid, actingUoid, comment, true);
+		ConcreteRevision newRevision = bimDatabaseSession.createNewConcreteRevision(0, poid, actingUoid, comment, CheckinState.STORING);
 		changeSetResult.setNewRevisionNr(newRevision.getId());
 		final CommitSet commitSet = new CommitSet(project.getId(), newRevision.getId());
 		ReadSet map = bimDatabaseSession.getMap(project.getId(), oldRevision.getId());

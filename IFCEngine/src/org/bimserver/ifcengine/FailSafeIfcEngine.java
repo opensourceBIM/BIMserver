@@ -26,7 +26,7 @@ public class FailSafeIfcEngine {
 	private IfcEngineProcess engineProces;
 	private int port;
 
-	public FailSafeIfcEngine(final File schemaFile, final File nativeBaseDir, ResourceFetcher resourceFetcher) {
+	public FailSafeIfcEngine(final File schemaFile, final File nativeBaseDir, ResourceFetcher resourceFetcher) throws IfcEngineException {
 		try {
 			port = getNewPort();
 			engineProces = new IfcEngineProcess(this, port, schemaFile, nativeBaseDir, resourceFetcher);
@@ -34,6 +34,7 @@ public class FailSafeIfcEngine {
 			connectClient();
 		} catch (IOException e) {
 			LOGGER.error("", e);
+			throw new IfcEngineException("Unknown IFC Engine error");
 		}
 	}
 
@@ -75,7 +76,7 @@ public class FailSafeIfcEngine {
 		try {
 			return in.readInt();
 		} catch (IOException e) {
-			throw new IfcEngineException(e);
+			throw new IfcEngineException("Unknown IFC Engine error");
 		}
 	}
 
@@ -83,7 +84,7 @@ public class FailSafeIfcEngine {
 		try {
 			out.flush();
 		} catch (IOException e) {
-			throw new IfcEngineException(e);
+			throw new IfcEngineException("Unknown IFC Engine error");
 		}
 	}
 
@@ -91,7 +92,7 @@ public class FailSafeIfcEngine {
 		try {
 			out.writeUTF(value);
 		} catch (IOException e) {
-			throw new IfcEngineException(e);
+			throw new IfcEngineException("Unknown IFC Engine error");
 		}
 	}
 
@@ -99,7 +100,7 @@ public class FailSafeIfcEngine {
 		try {
 			out.writeByte(command.getId());
 		} catch (IOException e) {
-			throw new IfcEngineException(e);
+			throw new IfcEngineException("Unknown IFC Engine error");
 		}
 	}
 
@@ -116,7 +117,7 @@ public class FailSafeIfcEngine {
 		try {
 			out.writeInt(value);
 		} catch (IOException e) {
-			throw new IfcEngineException(e);
+			throw new IfcEngineException("Unknown IFC Engine error");
 		}
 	}
 
@@ -124,7 +125,7 @@ public class FailSafeIfcEngine {
 		try {
 			out.writeBoolean(value);
 		} catch (IOException e) {
-			throw new IfcEngineException(e);
+			throw new IfcEngineException("Unknown IFC Engine error");
 		}
 	}
 
@@ -132,7 +133,7 @@ public class FailSafeIfcEngine {
 		try {
 			return in.readFloat();
 		} catch (IOException e) {
-			throw new IfcEngineException(e);
+			throw new IfcEngineException("Unknown IFC Engine error");
 		}
 	}
 
@@ -143,7 +144,7 @@ public class FailSafeIfcEngine {
 		try {
 			return in.readUTF();
 		} catch (IOException e) {
-			throw new IfcEngineException(e);
+			throw new IfcEngineException("Unknown IFC Engine error");
 		}
 	}
 
@@ -151,7 +152,7 @@ public class FailSafeIfcEngine {
 		try {
 			out.writeDouble(d);
 		} catch (IOException e) {
-			throw new IfcEngineException(e);
+			throw new IfcEngineException("Unknown IFC Engine error");
 		}
 	}
 
@@ -159,7 +160,7 @@ public class FailSafeIfcEngine {
 		try {
 			return in.readLong();
 		} catch (IOException e) {
-			throw new IfcEngineException(e);
+			throw new IfcEngineException("Unknown IFC Engine error");
 		}
 	}
 }

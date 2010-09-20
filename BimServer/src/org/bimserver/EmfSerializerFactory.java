@@ -17,6 +17,7 @@ import org.bimserver.database.store.User;
 import org.bimserver.ifc.EmfSerializer;
 import org.bimserver.ifc.FieldIgnoreMap;
 import org.bimserver.ifc.IfcModel;
+import org.bimserver.ifc.SerializerException;
 import org.bimserver.ifc.file.writer.IfcStepSerializer;
 import org.bimserver.ifc.xml.writer.IfcXmlSerializer;
 import org.bimserver.ifcengine.IfcEngineFactory;
@@ -26,7 +27,7 @@ import org.bimserver.shared.ResultType.Type;
 
 public class EmfSerializerFactory {
 	public interface EmfSerializerCreator {
-		EmfSerializer create(Project project, User user, IfcModel model, String name);
+		EmfSerializer create(Project project, User user, IfcModel model, String name) throws SerializerException;
 	}
 
 	Comparator<ResultType> resultTypeComparator = new Comparator<ResultType>(){
@@ -65,7 +66,7 @@ public class EmfSerializerFactory {
 		emfSerializerCreators.remove(type);
 	}
 	
-	public EmfSerializer create(Project project, User user, ResultType resultType, IfcModel model, String name) throws NoSerializerFoundException {
+	public EmfSerializer create(Project project, User user, ResultType resultType, IfcModel model, String name) throws NoSerializerFoundException, SerializerException {
 		EmfSerializerCreator emfSerializerCreator = emfSerializerCreators.get(resultType);
 		if (emfSerializerCreator == null) {
 			throw new NoSerializerFoundException("Serializer for type " + resultType.getNiceName() + " not found or not enabled");
@@ -140,7 +141,7 @@ public class EmfSerializerFactory {
 		if (enabled.contains(ResultType.CITYGML)) {
 			register(ResultType.CITYGML, new EmfSerializerCreator() {
 				@Override
-				public EmfSerializer create(Project project, User user, IfcModel model, String fileName) {
+				public EmfSerializer create(Project project, User user, IfcModel model, String fileName) throws SerializerException {
 					return new CityGmlSerializer(project, user, fileName, model, schemaDefinition, fieldIgnoreMap, ifcEngineFactory);
 				}
 			});
@@ -150,7 +151,7 @@ public class EmfSerializerFactory {
 		if (enabled.contains(ResultType.COLLADA)) {
 			register(ResultType.COLLADA, new EmfSerializerCreator() {
 				@Override
-				public EmfSerializer create(Project project, User user, IfcModel model, String fileName) {
+				public EmfSerializer create(Project project, User user, IfcModel model, String fileName) throws SerializerException {
 					return new ColladaSerializer(project, user, fileName, model, schemaDefinition, fieldIgnoreMap, ifcEngineFactory);
 				}
 			});
@@ -160,7 +161,7 @@ public class EmfSerializerFactory {
 		if (enabled.contains(ResultType.KMZ)) {
 			register(ResultType.KMZ, new EmfSerializerCreator() {
 				@Override
-				public EmfSerializer create(Project project, User user, IfcModel model, String fileName) {
+				public EmfSerializer create(Project project, User user, IfcModel model, String fileName) throws SerializerException {
 					return new KmzSerializer(project, user, fileName, model, schemaDefinition, fieldIgnoreMap, ifcEngineFactory);
 				}
 			});
@@ -170,7 +171,7 @@ public class EmfSerializerFactory {
 		if (enabled.contains(ResultType.O3D_JSON)) {
 			register(ResultType.O3D_JSON, new EmfSerializerCreator() {
 				@Override
-				public EmfSerializer create(Project project, User user, IfcModel model, String fileName) {
+				public EmfSerializer create(Project project, User user, IfcModel model, String fileName) throws SerializerException {
 					return new O3dJsonSerializer(project, user, fileName, model, fieldIgnoreMap, schemaDefinition, ifcEngineFactory);
 				}
 			});

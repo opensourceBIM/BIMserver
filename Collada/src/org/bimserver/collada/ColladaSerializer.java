@@ -65,12 +65,16 @@ public class ColladaSerializer extends BimModelSerializer {
 
 	public ColladaSerializer(Project project, User user, String fileName,
 			IfcModel model, SchemaDefinition schemaDefinition,
-			FieldIgnoreMap fieldIgnoreMap, IfcEngineFactory ifcEngineFactory) {
+			FieldIgnoreMap fieldIgnoreMap, IfcEngineFactory ifcEngineFactory) throws SerializerException {
 		super(fileName, model, fieldIgnoreMap);
 		this.project = project;
 		this.user = user;
 		this.schemaDefinition = schemaDefinition;
-		this.ifcEngine = ifcEngineFactory.createFailSafeIfcEngine();
+		try {
+			this.ifcEngine = ifcEngineFactory.createFailSafeIfcEngine();
+		} catch (IfcEngineException e) {
+			throw new SerializerException(e);
+		}
 		lengthUnitPrefix = getLengthUnitPrefix(model);
 	}
 

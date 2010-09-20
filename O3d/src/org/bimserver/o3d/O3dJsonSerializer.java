@@ -60,12 +60,16 @@ public class O3dJsonSerializer extends BimModelSerializer {
 	private final Project project;
 	private final User user;
 
-	public O3dJsonSerializer(Project project, User user, String fileName, IfcModel model, FieldIgnoreMap fieldIgnoreMap, SchemaDefinition schemaDefinition, IfcEngineFactory ifcEngineFactory) {
+	public O3dJsonSerializer(Project project, User user, String fileName, IfcModel model, FieldIgnoreMap fieldIgnoreMap, SchemaDefinition schemaDefinition, IfcEngineFactory ifcEngineFactory) throws SerializerException {
 		super(fileName, model, fieldIgnoreMap);
 		this.project = project;
 		this.user = user;
 		this.schemaDefinition = schemaDefinition;
-		this.ifcEngine = ifcEngineFactory.createFailSafeIfcEngine();
+		try {
+			this.ifcEngine = ifcEngineFactory.createFailSafeIfcEngine();
+		} catch (IfcEngineException e) {
+			throw new SerializerException(e);
+		}
 	}
 
 	@Override

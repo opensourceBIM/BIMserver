@@ -7,6 +7,7 @@ import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
 import org.bimserver.database.CommitSet;
 import org.bimserver.database.Database;
+import org.bimserver.database.store.CheckinState;
 import org.bimserver.database.store.ConcreteRevision;
 import org.bimserver.database.store.Project;
 import org.bimserver.database.store.User;
@@ -47,10 +48,10 @@ public class CheckinPart1DatabaseAction extends GenericCheckinDatabaseAction {
 			throw new UserException("User has no rights to checkin models to this project");
 		}
 		checkCheckSum(project);
-		if (!project.getRevisions().isEmpty() && !project.getRevisions().get(project.getRevisions().size()-1).isFinalized()) {
+		if (!project.getRevisions().isEmpty() && project.getRevisions().get(project.getRevisions().size()-1).getState() == CheckinState.STORING) {
 			throw new UserException("Another checkin on this project is currently running, please wait and try again");
 		}
-		ConcreteRevision concreteRevision = bimDatabaseSession.createNewConcreteRevision(model.getSize(), poid, actingUid, comment, false);
+		ConcreteRevision concreteRevision = bimDatabaseSession.createNewConcreteRevision(model.getSize(), poid, actingUid, comment, CheckinState.STORING);
 		concreteRevision.setChecksum(model.getChecksum());
 		NewRevisionAdded newRevisionAdded = LogFactory.eINSTANCE.createNewRevisionAdded();
 		newRevisionAdded.setDate(new Date());

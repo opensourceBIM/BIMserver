@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.bimserver.database.actions.BimDatabaseAction;
 import org.bimserver.database.query.conditions.Condition;
+import org.bimserver.database.store.CheckinState;
 import org.bimserver.database.store.ConcreteRevision;
 import org.bimserver.database.store.Project;
 import org.bimserver.database.store.Revision;
@@ -43,7 +44,7 @@ public interface BimDatabaseSession {
 
 	Project getProjectById(int pid) throws BimDeadlockException, BimDatabaseException;
 
-	ConcreteRevision createNewConcreteRevision(long size, long poid, long actingUoid, String comment, boolean finalized) throws BimDeadlockException, BimDatabaseException;
+	ConcreteRevision createNewConcreteRevision(long size, long poid, long actingUoid, String comment, CheckinState checkinState) throws BimDeadlockException, BimDatabaseException;
 
 	void clearProject(int pid, int oldRid, int newRid) throws BimDeadlockException;
 

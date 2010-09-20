@@ -9,6 +9,7 @@ package org.bimserver.database.store.impl;
 import java.util.Collection;
 import java.util.Date;
 
+import org.bimserver.database.store.CheckinState;
 import org.bimserver.database.store.Checkout;
 import org.bimserver.database.store.Clash;
 import org.bimserver.database.store.ConcreteRevision;
@@ -44,10 +45,10 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.bimserver.database.store.impl.RevisionImpl#getLastConcreteRevision <em>Last Concrete Revision</em>}</li>
  *   <li>{@link org.bimserver.database.store.impl.RevisionImpl#getCheckouts <em>Checkouts</em>}</li>
  *   <li>{@link org.bimserver.database.store.impl.RevisionImpl#getProject <em>Project</em>}</li>
- *   <li>{@link org.bimserver.database.store.impl.RevisionImpl#isFinalized <em>Finalized</em>}</li>
+ *   <li>{@link org.bimserver.database.store.impl.RevisionImpl#getState <em>State</em>}</li>
  *   <li>{@link org.bimserver.database.store.impl.RevisionImpl#getLastClashes <em>Last Clashes</em>}</li>
- *   <li>{@link org.bimserver.database.store.impl.RevisionImpl#isProcessingClashes <em>Processing Clashes</em>}</li>
  *   <li>{@link org.bimserver.database.store.impl.RevisionImpl#getTag <em>Tag</em>}</li>
+ *   <li>{@link org.bimserver.database.store.impl.RevisionImpl#getLastError <em>Last Error</em>}</li>
  * </ul>
  * </p>
  *
@@ -185,24 +186,24 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	protected Project project;
 
 	/**
-	 * The default value of the '{@link #isFinalized() <em>Finalized</em>}' attribute.
+	 * The default value of the '{@link #getState() <em>State</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isFinalized()
+	 * @see #getState()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean FINALIZED_EDEFAULT = false;
+	protected static final CheckinState STATE_EDEFAULT = CheckinState.UPLOADING;
 
 	/**
-	 * The cached value of the '{@link #isFinalized() <em>Finalized</em>}' attribute.
+	 * The cached value of the '{@link #getState() <em>State</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isFinalized()
+	 * @see #getState()
 	 * @generated
 	 * @ordered
 	 */
-	protected boolean finalized = FINALIZED_EDEFAULT;
+	protected CheckinState state = STATE_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getLastClashes() <em>Last Clashes</em>}' reference list.
@@ -213,26 +214,6 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * @ordered
 	 */
 	protected EList<Clash> lastClashes;
-
-	/**
-	 * The default value of the '{@link #isProcessingClashes() <em>Processing Clashes</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isProcessingClashes()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean PROCESSING_CLASHES_EDEFAULT = false;
-
-	/**
-	 * The cached value of the '{@link #isProcessingClashes() <em>Processing Clashes</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isProcessingClashes()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean processingClashes = PROCESSING_CLASHES_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getTag() <em>Tag</em>}' attribute.
@@ -253,6 +234,26 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * @ordered
 	 */
 	protected String tag = TAG_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getLastError() <em>Last Error</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLastError()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String LAST_ERROR_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getLastError() <em>Last Error</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLastError()
+	 * @generated
+	 * @ordered
+	 */
+	protected String lastError = LAST_ERROR_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -522,8 +523,8 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isFinalized() {
-		return finalized;
+	public CheckinState getState() {
+		return state;
 	}
 
 	/**
@@ -531,11 +532,11 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setFinalized(boolean newFinalized) {
-		boolean oldFinalized = finalized;
-		finalized = newFinalized;
+	public void setState(CheckinState newState) {
+		CheckinState oldState = state;
+		state = newState == null ? STATE_EDEFAULT : newState;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.REVISION__FINALIZED, oldFinalized, finalized));
+			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.REVISION__STATE, oldState, state));
 	}
 
 	/**
@@ -548,27 +549,6 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 			lastClashes = new EObjectResolvingEList<Clash>(Clash.class, this, StorePackage.REVISION__LAST_CLASHES);
 		}
 		return lastClashes;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isProcessingClashes() {
-		return processingClashes;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setProcessingClashes(boolean newProcessingClashes) {
-		boolean oldProcessingClashes = processingClashes;
-		processingClashes = newProcessingClashes;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.REVISION__PROCESSING_CLASHES, oldProcessingClashes, processingClashes));
 	}
 
 	/**
@@ -590,6 +570,27 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 		tag = newTag;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.REVISION__TAG, oldTag, tag));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getLastError() {
+		return lastError;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setLastError(String newLastError) {
+		String oldLastError = lastError;
+		lastError = newLastError;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.REVISION__LAST_ERROR, oldLastError, lastError));
 	}
 
 	/**
@@ -660,14 +661,14 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 			case StorePackage.REVISION__PROJECT:
 				if (resolve) return getProject();
 				return basicGetProject();
-			case StorePackage.REVISION__FINALIZED:
-				return isFinalized();
+			case StorePackage.REVISION__STATE:
+				return getState();
 			case StorePackage.REVISION__LAST_CLASHES:
 				return getLastClashes();
-			case StorePackage.REVISION__PROCESSING_CLASHES:
-				return isProcessingClashes();
 			case StorePackage.REVISION__TAG:
 				return getTag();
+			case StorePackage.REVISION__LAST_ERROR:
+				return getLastError();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -710,18 +711,18 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 			case StorePackage.REVISION__PROJECT:
 				setProject((Project)newValue);
 				return;
-			case StorePackage.REVISION__FINALIZED:
-				setFinalized((Boolean)newValue);
+			case StorePackage.REVISION__STATE:
+				setState((CheckinState)newValue);
 				return;
 			case StorePackage.REVISION__LAST_CLASHES:
 				getLastClashes().clear();
 				getLastClashes().addAll((Collection<? extends Clash>)newValue);
 				return;
-			case StorePackage.REVISION__PROCESSING_CLASHES:
-				setProcessingClashes((Boolean)newValue);
-				return;
 			case StorePackage.REVISION__TAG:
 				setTag((String)newValue);
+				return;
+			case StorePackage.REVISION__LAST_ERROR:
+				setLastError((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -762,17 +763,17 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 			case StorePackage.REVISION__PROJECT:
 				setProject((Project)null);
 				return;
-			case StorePackage.REVISION__FINALIZED:
-				setFinalized(FINALIZED_EDEFAULT);
+			case StorePackage.REVISION__STATE:
+				setState(STATE_EDEFAULT);
 				return;
 			case StorePackage.REVISION__LAST_CLASHES:
 				getLastClashes().clear();
 				return;
-			case StorePackage.REVISION__PROCESSING_CLASHES:
-				setProcessingClashes(PROCESSING_CLASHES_EDEFAULT);
-				return;
 			case StorePackage.REVISION__TAG:
 				setTag(TAG_EDEFAULT);
+				return;
+			case StorePackage.REVISION__LAST_ERROR:
+				setLastError(LAST_ERROR_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -804,14 +805,14 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 				return checkouts != null && !checkouts.isEmpty();
 			case StorePackage.REVISION__PROJECT:
 				return project != null;
-			case StorePackage.REVISION__FINALIZED:
-				return finalized != FINALIZED_EDEFAULT;
+			case StorePackage.REVISION__STATE:
+				return state != STATE_EDEFAULT;
 			case StorePackage.REVISION__LAST_CLASHES:
 				return lastClashes != null && !lastClashes.isEmpty();
-			case StorePackage.REVISION__PROCESSING_CLASHES:
-				return processingClashes != PROCESSING_CLASHES_EDEFAULT;
 			case StorePackage.REVISION__TAG:
 				return TAG_EDEFAULT == null ? tag != null : !TAG_EDEFAULT.equals(tag);
+			case StorePackage.REVISION__LAST_ERROR:
+				return LAST_ERROR_EDEFAULT == null ? lastError != null : !LAST_ERROR_EDEFAULT.equals(lastError);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -834,12 +835,12 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 		result.append(comment);
 		result.append(", size: ");
 		result.append(size);
-		result.append(", finalized: ");
-		result.append(finalized);
-		result.append(", processingClashes: ");
-		result.append(processingClashes);
+		result.append(", state: ");
+		result.append(state);
 		result.append(", tag: ");
 		result.append(tag);
+		result.append(", lastError: ");
+		result.append(lastError);
 		result.append(')');
 		return result.toString();
 	}

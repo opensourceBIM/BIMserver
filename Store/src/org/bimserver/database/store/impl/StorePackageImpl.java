@@ -6,6 +6,7 @@
  */
 package org.bimserver.database.store.impl;
 
+import org.bimserver.database.store.CheckinState;
 import org.bimserver.database.store.Checkout;
 import org.bimserver.database.store.Clash;
 import org.bimserver.database.store.ClashDetectionSettings;
@@ -127,6 +128,13 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * @generated
 	 */
 	private EEnum siPrefixEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum checkinStateEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -622,7 +630,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getConcreteRevision_Finalized() {
+	public EAttribute getConcreteRevision_State() {
 		return (EAttribute)concreteRevisionEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -660,6 +668,15 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 */
 	public EAttribute getConcreteRevision_Date() {
 		return (EAttribute)concreteRevisionEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getConcreteRevision_LastError() {
+		return (EAttribute)concreteRevisionEClass.getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -757,7 +774,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getRevision_Finalized() {
+	public EAttribute getRevision_State() {
 		return (EAttribute)revisionEClass.getEStructuralFeatures().get(9);
 	}
 
@@ -775,7 +792,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getRevision_ProcessingClashes() {
+	public EAttribute getRevision_Tag() {
 		return (EAttribute)revisionEClass.getEStructuralFeatures().get(11);
 	}
 
@@ -784,7 +801,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getRevision_Tag() {
+	public EAttribute getRevision_LastError() {
 		return (EAttribute)revisionEClass.getEStructuralFeatures().get(12);
 	}
 
@@ -991,6 +1008,15 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EEnum getCheckinState() {
+		return checkinStateEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public StoreFactory getStoreFactory() {
 		return (StoreFactory)getEFactoryInstance();
 	}
@@ -1065,11 +1091,12 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 		concreteRevisionEClass = createEClass(CONCRETE_REVISION);
 		createEAttribute(concreteRevisionEClass, CONCRETE_REVISION__ID);
 		createEReference(concreteRevisionEClass, CONCRETE_REVISION__PROJECT);
-		createEAttribute(concreteRevisionEClass, CONCRETE_REVISION__FINALIZED);
+		createEAttribute(concreteRevisionEClass, CONCRETE_REVISION__STATE);
 		createEAttribute(concreteRevisionEClass, CONCRETE_REVISION__CHECKSUM);
 		createEReference(concreteRevisionEClass, CONCRETE_REVISION__REVISIONS);
 		createEAttribute(concreteRevisionEClass, CONCRETE_REVISION__SIZE);
 		createEAttribute(concreteRevisionEClass, CONCRETE_REVISION__DATE);
+		createEAttribute(concreteRevisionEClass, CONCRETE_REVISION__LAST_ERROR);
 
 		revisionEClass = createEClass(REVISION);
 		createEAttribute(revisionEClass, REVISION__ID);
@@ -1081,10 +1108,10 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 		createEReference(revisionEClass, REVISION__LAST_CONCRETE_REVISION);
 		createEReference(revisionEClass, REVISION__CHECKOUTS);
 		createEReference(revisionEClass, REVISION__PROJECT);
-		createEAttribute(revisionEClass, REVISION__FINALIZED);
+		createEAttribute(revisionEClass, REVISION__STATE);
 		createEReference(revisionEClass, REVISION__LAST_CLASHES);
-		createEAttribute(revisionEClass, REVISION__PROCESSING_CLASHES);
 		createEAttribute(revisionEClass, REVISION__TAG);
+		createEAttribute(revisionEClass, REVISION__LAST_ERROR);
 
 		guidClashEClass = createEClass(GUID_CLASH);
 		createEAttribute(guidClashEClass, GUID_CLASH__GUID1);
@@ -1113,6 +1140,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 		objectStateEEnum = createEEnum(OBJECT_STATE);
 		userTypeEEnum = createEEnum(USER_TYPE);
 		siPrefixEEnum = createEEnum(SI_PREFIX);
+		checkinStateEEnum = createEEnum(CHECKIN_STATE);
 	}
 
 	/**
@@ -1204,11 +1232,12 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 		initEClass(concreteRevisionEClass, ConcreteRevision.class, "ConcreteRevision", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getConcreteRevision_Id(), ecorePackage.getEInt(), "id", null, 0, 1, ConcreteRevision.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getConcreteRevision_Project(), this.getProject(), this.getProject_ConcreteRevisions(), "project", null, 1, 1, ConcreteRevision.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getConcreteRevision_Finalized(), ecorePackage.getEBoolean(), "finalized", null, 0, 1, ConcreteRevision.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getConcreteRevision_State(), this.getCheckinState(), "state", null, 0, 1, ConcreteRevision.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getConcreteRevision_Checksum(), ecorePackage.getEByteArray(), "checksum", null, 0, 1, ConcreteRevision.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getConcreteRevision_Revisions(), this.getRevision(), this.getRevision_ConcreteRevisions(), "revisions", null, 0, -1, ConcreteRevision.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getConcreteRevision_Size(), ecorePackage.getELong(), "size", null, 0, 1, ConcreteRevision.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getConcreteRevision_Date(), ecorePackage.getEDate(), "date", null, 0, 1, ConcreteRevision.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getConcreteRevision_LastError(), ecorePackage.getEString(), "lastError", null, 0, 1, ConcreteRevision.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(revisionEClass, Revision.class, "Revision", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getRevision_Id(), ecorePackage.getEInt(), "id", null, 0, 1, Revision.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1220,10 +1249,10 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 		initEReference(getRevision_LastConcreteRevision(), this.getConcreteRevision(), null, "lastConcreteRevision", null, 0, 1, Revision.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getRevision_Checkouts(), this.getCheckout(), this.getCheckout_Revision(), "checkouts", null, 0, -1, Revision.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getRevision_Project(), this.getProject(), this.getProject_Revisions(), "project", null, 1, 1, Revision.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getRevision_Finalized(), ecorePackage.getEBoolean(), "finalized", null, 0, 1, Revision.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getRevision_State(), this.getCheckinState(), "state", null, 0, 1, Revision.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getRevision_LastClashes(), this.getClash(), null, "lastClashes", null, 0, -1, Revision.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getRevision_ProcessingClashes(), ecorePackage.getEBoolean(), "processingClashes", null, 0, 1, Revision.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getRevision_Tag(), ecorePackage.getEString(), "tag", null, 0, 1, Revision.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getRevision_LastError(), ecorePackage.getEString(), "lastError", null, 0, 1, Revision.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(guidClashEClass, GuidClash.class, "GuidClash", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getGuidClash_Guid1(), ecorePackage.getEString(), "guid1", null, 0, 1, GuidClash.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1276,6 +1305,15 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 		addEEnumLiteral(siPrefixEEnum, SIPrefix.TERAMETER);
 		addEEnumLiteral(siPrefixEEnum, SIPrefix.PETAMETER);
 		addEEnumLiteral(siPrefixEEnum, SIPrefix.EXAMETER);
+
+		initEEnum(checkinStateEEnum, CheckinState.class, "CheckinState");
+		addEEnumLiteral(checkinStateEEnum, CheckinState.UPLOADING);
+		addEEnumLiteral(checkinStateEEnum, CheckinState.PARSING);
+		addEEnumLiteral(checkinStateEEnum, CheckinState.STORING);
+		addEEnumLiteral(checkinStateEEnum, CheckinState.SEARCHING_CLASHES);
+		addEEnumLiteral(checkinStateEEnum, CheckinState.DONE);
+		addEEnumLiteral(checkinStateEEnum, CheckinState.ERROR);
+		addEEnumLiteral(checkinStateEEnum, CheckinState.CLASHES_ERROR);
 
 		// Create resource
 		createResource(eNS_URI);

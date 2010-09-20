@@ -15,11 +15,12 @@ public class SConcreteRevision
 	}
 	private int id;
 	private long projectId;
-	private boolean finalized;
+	private SCheckinState state;
 	private byte[] checksum;
 	private List<Long> revisions;
 	private long size;
 	private java.util.Date date;
+	private java.lang.String lastError;
 
 	public int getId() {
 		return id;
@@ -36,13 +37,12 @@ public class SConcreteRevision
 		this.projectId = projectId;
 	}
 	
-
-	public boolean isFinalized() {
-		return finalized;
+	public SCheckinState getState() {
+		return state;
 	}
 
-	public void setFinalized(boolean finalized) {
-		this.finalized = finalized;
+	public void setState(SCheckinState state) {
+		this.state = state;
 	}
 
 	public byte[] getChecksum() {
@@ -74,6 +74,14 @@ public class SConcreteRevision
 
 	public void setDate(java.util.Date date) {
 		this.date = date;
+	}
+
+	public java.lang.String getLastError() {
+		return lastError;
+	}
+
+	public void setLastError(java.lang.String lastError) {
+		this.lastError = lastError;
 	}
 	@Override
 	public int hashCode() {

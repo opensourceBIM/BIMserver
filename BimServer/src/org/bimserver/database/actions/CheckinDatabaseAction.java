@@ -7,6 +7,7 @@ import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
 import org.bimserver.database.CommitSet;
 import org.bimserver.database.Database;
+import org.bimserver.database.store.CheckinState;
 import org.bimserver.database.store.ConcreteRevision;
 import org.bimserver.database.store.Project;
 import org.bimserver.database.store.User;
@@ -44,14 +45,14 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 		if (!RightsManager.hasRightsOnProjectOrSuperProjects(user, project)) {
 			throw new UserException("User has no rights to checkin models to this project");
 		}
-		if (!project.getRevisions().isEmpty() && !project.getRevisions().get(project.getRevisions().size()-1).isFinalized()) {
+		if (!project.getRevisions().isEmpty() && project.getRevisions().get(project.getRevisions().size()-1).getState() == CheckinState.STORING) {
 			throw new UserException("Another checkin on this project is currently running, please wait and try again");
 		}
 		checkCheckSum(project);
-		ConcreteRevision revision = bimDatabaseSession.createNewConcreteRevision(model.size(), poid, actingUoid, comment, true);
+		ConcreteRevision revision = bimDatabaseSession.createNewConcreteRevision(model.size(), poid, actingUoid, comment, CheckinState.STORING);
 		revision.setChecksum(model.getChecksum());
 		project.setLastConcreteRevision(revision);
-		revision.setFinalized(true);
+		revision.setState(CheckinState.STORING);
 		if (revision.getId() != 1) {
 			// There already was a revision, lets go delete em
 			bimDatabaseSession.clearProject(project.getId(), revision.getId() - 1, revision.getId());

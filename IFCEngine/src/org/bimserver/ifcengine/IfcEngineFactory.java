@@ -15,7 +15,7 @@ public class IfcEngineFactory {
 		this.resourceFetcher = resourceFetcher;
 	}
 	
-	public FailSafeIfcEngine createFailSafeIfcEngine() {
+	public FailSafeIfcEngine createFailSafeIfcEngine() throws IfcEngineException {
 		return new FailSafeIfcEngine(schemaFile, nativeBaseDir, resourceFetcher);
 	}
 }
