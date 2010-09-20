@@ -60,12 +60,13 @@
 			if (project.getLastRevisionId() != -1) {
 				lastRevision = loginManager.getService().getRevision(project.getLastRevisionId());
 			}
-			boolean anonymousAccess = project.getHasAuthorizedUsers().contains(loginManager.getService().getAnonymousUser());
+			boolean anonymousAccess = project.getHasAuthorizedUsers().contains(loginManager.getService().getAnonymousUser().getOid());
 			boolean hasUserManagementRights = project.getHasAuthorizedUsers().contains(loginManager.getUoid());
 			boolean userHasCheckinRights = loginManager.getService().userHasCheckinRights(project.getOid());
 if (emfSerializerFactory.resultTypeEnabled(ResultType.O3D_JSON) && lastRevision != null) {
 %>
-<jsp:include page="o3d.jsp"/>
+
+<%@page import="org.bimserver.utils.WebUtils"%><jsp:include page="o3d.jsp"/>
 <%
 }
 %>
@@ -74,6 +75,7 @@ if (emfSerializerFactory.resultTypeEnabled(ResultType.O3D_JSON) && lastRevision 
  <%
 	if (emfSerializerFactory.resultTypeEnabled(ResultType.O3D_JSON) && lastRevision != null) {
 %>
+<ul>
 <li>
  <a id="visualiselink" class="link">Visualise</a></li>
  <%} %> 
@@ -83,6 +85,7 @@ if (lastRevision != null) {
 <li>
  <a id="browserlink" class="link">Browser</a></li>
  <%} %>
+ </ul>
  <br/>
  <%
 	if (project.getSubProjects().size() == 0) {
@@ -182,6 +185,15 @@ revisions tab</a> to add a first revision, or <a id="subprojecttablink"
 		<td class="first">Description</td>
 		<td><%=project.getDescription() %></td>
 	</tr>
+<% if (emfSerializerFactory.resultTypeEnabled(ResultType.KMZ)) {
+	String url = WebUtils.getWebServer(request.getRequestURL().toString());
+	String link = "http://" + url + getServletContext().getContextPath() + "download?poid=" + project.getOid() + "&resultType=KMZ";
+%>
+	<tr>
+		<td class="first">Google Earth Link</td>
+		<td><a href="<%=link %>"><%=link %></a></td>
+	</tr>
+<% } %>
 	<tr>
 		<td class="first">Uniform length measure unit for combined
 		revisions</td>
@@ -208,7 +220,7 @@ revisions tab</a> to add a first revision, or <a id="subprojecttablink"
 	href="revision.jsp?roid=<%=lastRevision.getOid() %>">here</a> to go to
 the latest revision<br />
 <br />
-<p/>
+<p></p>
 <div class="tabber" id="downloadtabber">
 <div class="tabbertab" id="detailstab" title="Simple Download">
 <form action="<%=request.getContextPath() %>/download" method="post">
