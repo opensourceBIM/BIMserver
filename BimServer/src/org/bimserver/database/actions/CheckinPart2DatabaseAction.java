@@ -14,13 +14,13 @@ import org.bimserver.shared.UserException;
 
 public class CheckinPart2DatabaseAction extends BimDatabaseAction<Void> {
 
-	private final IfcModel IfcModel;
+	private final IfcModel ifcModel;
 	private final long actingUoid;
 	private final long croid;
 
-	public CheckinPart2DatabaseAction(AccessMethod accessMethod, IfcModel IfcModel, long actingUoid, long croid) {
+	public CheckinPart2DatabaseAction(AccessMethod accessMethod, IfcModel ifcModel, long actingUoid, long croid) {
 		super(accessMethod);
-		this.IfcModel = IfcModel;
+		this.ifcModel = ifcModel;
 		this.actingUoid = actingUoid;
 		this.croid = croid;
 	}
@@ -29,25 +29,16 @@ public class CheckinPart2DatabaseAction extends BimDatabaseAction<Void> {
 	public Void execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
 		ConcreteRevision concreteRevision = bimDatabaseSession.getConcreteRevision(croid);
 		try {
-			if (concreteRevision.getProject().getConcreteRevisions().size() != 0) { // TODO: Check if this is not already 1
-				// There already was a revision, lets go delete em
+			if (concreteRevision.getProject().getConcreteRevisions().size() != 0) {
+				// There already was a revision, lets delete it
 				bimDatabaseSession.clearProject(concreteRevision.getProject().getId(), concreteRevision.getId() - 1, concreteRevision.getId());
 			}
 			bimDatabaseSession.store(getIfcModel().getValues(), concreteRevision.getProject().getId(), concreteRevision.getId());
-			for (Revision virtualRevision : concreteRevision.getProject().getRevisions()) {
-				for (ConcreteRevision cr : virtualRevision.getConcreteRevisions()) {
-					if (concreteRevision == cr) {
-						concreteRevision.getProject().setLastRevision(virtualRevision);
-					}
-				}
-			}
-			concreteRevision.getProject().setLastConcreteRevision(concreteRevision);
 			for (Revision revision : concreteRevision.getRevisions()) {
 				revision.setState(CheckinState.DONE);
 			}
 			concreteRevision.setState(CheckinState.DONE);
 			bimDatabaseSession.store(concreteRevision, new CommitSet(Database.STORE_PROJECT_ID, -1));
-			bimDatabaseSession.saveOidCounter();
 		} catch (Throwable e) {
 			if (e instanceof BimDeadlockException) {
 				// Let this one slide
@@ -63,7 +54,7 @@ public class CheckinPart2DatabaseAction extends BimDatabaseAction<Void> {
 	}
 
 	public IfcModel getIfcModel() {
-		return IfcModel;
+		return ifcModel;
 	}
 
 	public long getActingUid() {
