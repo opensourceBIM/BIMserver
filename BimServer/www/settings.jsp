@@ -43,6 +43,7 @@
 			}
 			settings.setEnabledExportTypes(enabledExportTypes);
 			settings.save();
+			ServerSettings.setSettings(settings);
 			emfSerializerFactory.initSerializers();
 			response.sendRedirect(getServletContext().getContextPath() + "/settings.jsp?msg=settingschangeok");
 		}
