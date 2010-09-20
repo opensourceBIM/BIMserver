@@ -15,5 +15,8 @@
 	<autoTestClashes>false</autoTestClashes>
 	<useSecondEngineJvm>true</useSecondEngineJvm>
 	<intelligentMerging>true</intelligentMerging>
-	<allowUsersToCreateTopLevelProjects>true</allowUsersToCreateTopLevelProjects>
+	<allowUsersToCreateTopLevelProjects>true
+	</allowUsersToCreateTopLevelProjects>
+	<customLogoAddress>http://www.bimserver.org/version/defaultlogo.gif
+	</customLogoAddress>
 </settings>
