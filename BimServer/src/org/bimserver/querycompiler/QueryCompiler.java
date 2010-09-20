@@ -1,7 +1,6 @@
 package org.bimserver.querycompiler;
 
 import java.io.File;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -14,6 +13,7 @@ import javax.tools.JavaFileObject;
 import javax.tools.ToolProvider;
 import javax.tools.Diagnostic.Kind;
 
+import org.bimserver.ServerInitializer;
 import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
@@ -35,6 +35,9 @@ public class QueryCompiler {
 		addLocalJarPath(path, new File("../BimServer/lib"));
 		addLocalJarPath(path, new File("../BimServer/lib/emf"));
 		File libDir = new File("lib");
+		if (!libDir.exists()) {
+			libDir = ServerInitializer.getResourceFetcher().getFile("lib");
+		}
 		if (libDir.exists() && libDir.isDirectory()) {
 			for (File file : libDir.listFiles()) {
 				if (file.getName().endsWith(".jar")) {

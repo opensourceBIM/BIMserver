@@ -181,9 +181,8 @@ public class ServerInitializer implements ServletContextListener {
 	}
 
 	private String readFile(File file) {
-		FileInputStream fis;
 		try {
-			fis = new FileInputStream(file);
+			FileInputStream fis = new FileInputStream(file);
 			byte[] buffer = new byte[100];
 			int red = fis.read(buffer);
 			String string = new String(buffer, 0, red, "UTF-8");
