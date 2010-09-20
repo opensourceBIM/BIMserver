@@ -87,7 +87,7 @@ public class QueryCompiler {
 			}
 		}
 		if (succes) {
-			VirtualClassLoader loader = new VirtualClassLoader(baseDir);
+			VirtualClassLoader loader = new VirtualClassLoader(getClass().getClassLoader(), baseDir);
 			try {
 				Class<?> loadClass = loader.loadClass("org.bimserver.querycompiler.Query");
 				QueryInterface newInstance = (QueryInterface) loadClass.newInstance();
