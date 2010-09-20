@@ -29,14 +29,14 @@ public class QueryCompiler {
 
 	private String createLibraryPath() {
 		StringBuilder path = new StringBuilder();
-		addLocalPath(path, "../BimServer/src");
-		addLocalPath(path, "../Ifc/src");
-		addLocalPath(path, "../Emf/src");
-		addLocalJarPath(path, new File("../BimServer/lib"));
-		addLocalJarPath(path, new File("../BimServer/lib/emf"));
+		addLocalPath(path, ".." + File.separator + "BimServer" + File.separator + "src");
+		addLocalPath(path, ".." + File.separator + "Ifc" + File.separator + "src");
+		addLocalPath(path, ".." + File.separator + "Emf" + File.separator + "src");
+		addLocalJarPath(path, new File(".." + File.separator + "BimServer" + File.separator + "lib"));
+		addLocalJarPath(path, new File(".." + File.separator + "BimServer" + File.separator + "lib/emf"));
 		File libDir = new File("lib");
 		if (!libDir.exists()) {
-			libDir = ServerInitializer.getResourceFetcher().getFile("lib");
+			libDir = ServerInitializer.getResourceFetcher().getFile("lib" + File.separator);
 		}
 		if (libDir.exists() && libDir.isDirectory()) {
 			for (File file : libDir.listFiles()) {
