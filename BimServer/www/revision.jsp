@@ -32,7 +32,8 @@
 			boolean isTopProject = project.getParentId() == -1L;
 			if (emfSerializerFactory.resultTypeEnabled(ResultType.O3D_JSON)) {
 %>
-<jsp:include page="o3d.jsp"/>
+
+<%@page import="org.bimserver.utils.WebUtils"%><jsp:include page="o3d.jsp"/>
 <%
 }
 %>
@@ -88,6 +89,15 @@
 		<td class="first">Size</td>
 		<td><%=revision.getSize()%></td>
 	</tr>
+<% if (emfSerializerFactory.resultTypeEnabled(ResultType.KMZ)) {
+	String url = WebUtils.getWebServer(request.getRequestURL().toString());
+	String link = "http://" + url + getServletContext().getContextPath() + "download?roid=" + revision.getOid() + "&resultType=KMZ";
+%>
+	<tr>
+		<td class="first">Google Earth Link</td>
+		<td><a href="<%=link %>"><%=link %></a></td>
+	</tr>
+<% } %>
 </table>
 <br />
 

@@ -93,7 +93,7 @@ public class DownloadServlet extends HttpServlet {
 			} else {
 				long roid = -1;
 				if (request.getParameter("roid") == null) {
-					roid = loginManager.getService().getProjectByPoid(Long.parseLong(request.getParameter("poid"))).getLastConcreteRevisionId();
+					roid = loginManager.getService().getProjectByPoid(Long.parseLong(request.getParameter("poid"))).getLastRevisionId();
 				} else {
 					roid = Long.parseLong(request.getParameter("roid"));
 				}
