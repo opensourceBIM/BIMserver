@@ -122,7 +122,9 @@ public class ServerInitializer implements ServletContextListener {
 			LoginManager.setService(webService);
 
 			if (serverType == ServerType.DEPLOYED_WAR) {
-				QueryCompiler.addJarFolder(new File(servletContext.getRealPath("/") + "WEB-INF" + File.separator + "lib"));
+				File libDir = new File(servletContext.getRealPath("/") + "WEB-INF" + File.separator + "lib");
+				LOGGER.info("adding lib dir: " + libDir.getAbsolutePath());
+				QueryCompiler.addJarFolder(libDir);
 			}
 			
 			ServerStarted serverStarted = LogFactory.eINSTANCE.createServerStarted();
