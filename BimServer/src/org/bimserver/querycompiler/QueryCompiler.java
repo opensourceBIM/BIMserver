@@ -31,6 +31,7 @@ public class QueryCompiler {
 				}
 			}
 		}
+		LOGGER.info("libPath: " + libPath);
 	}
 	
 	private void getJavaFiles(List<VirtualFile> fileList, VirtualFile baseDir) {
