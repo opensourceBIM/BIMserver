@@ -9,10 +9,10 @@
 <%@page import="org.bimserver.interfaces.objects.SClashDetectionSettings"%>
 <%@page import="org.bimserver.interfaces.objects.SProject"%>
 <%@page import="org.bimserver.database.store.ClashDetectionSettings"%>
-
+<%@page import="org.bimserver.interfaces.objects.SUserType"%>
+<%@ include file="header.jsp" %>
 <!-- start map scripts - many thanks to Bart vd Eijnden www.osgis.nl -->
-
-<%@page import="org.bimserver.interfaces.objects.SUserType"%><script type="text/javascript" src="http://extjs.cachefly.net/ext-3.2.1/adapter/ext/ext-base.js"></script>
+<script type="text/javascript" src="http://extjs.cachefly.net/ext-3.2.1/adapter/ext/ext-base.js"></script>
 <script type="text/javascript" src="http://extjs.cachefly.net/ext-3.2.1/ext-all.js"></script>
 <link rel="stylesheet" type="text/css" href="http://extjs.cachefly.net/ext-3.2.1/resources/css/ext-all.css" />
 <script src="http://www.openlayers.org/api/2.9/OpenLayers.js"></script>
@@ -21,8 +21,6 @@
 <script src="http://proj4js.org/lib/proj4js.js"></script>
 <script type="text/javascript" src="js/map.js"></script>
 <!-- eind mapscripts -->
-     
-<%@ include file="header.jsp" %>
 <%
 	if (loginManager.isLoggedIn()) {
 		if (loginManager.getUserType() == SUserType.ADMIN || ServerSettings.getSettings().isAllowUsersToCreateTopLevelProjects()) {
@@ -71,7 +69,7 @@
 </div>
 <div class="content">
 <h1>Add <%= (request.getParameter("parentoid") != null) ? "sub" : "" %>project</h1>
-<fieldset>
+<fieldset style="padding: 5px">
 <form name="form" method="post" action="addproject.jsp">
 <table class="formtable">
 <tr>
@@ -89,7 +87,7 @@
 </tr>
 <tr class="clashdetectionrow">
 	<td class="indent first">Margin</td>
-	<td class="indent"><input type="text" name="margin" value="<%=request.getParameter("margin") != null ? request.getParameter("margin") : "0" %>"></input></td>
+	<td class="indent"><input type="text" name="margin" value="<%=request.getParameter("margin") != null ? request.getParameter("margin") : "0" %>"/></td>
 </tr>
 <tr>
 	<td><label for="coordcheck" class="checkbox">Geolocate</label></td>
