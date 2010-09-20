@@ -21,10 +21,7 @@ import org.slf4j.LoggerFactory;
 
 public class QueryCompiler {
 	private static final Logger LOGGER = LoggerFactory.getLogger(QueryCompiler.class);
-	private final String libPath = System.getProperty("java.class.path");
-
-	public QueryCompiler() {
-	}
+	private final String libPath = initLibraryPath();
 
 	private void getJavaFiles(List<VirtualFile> fileList, VirtualFile baseDir) {
 		for (VirtualFile f : baseDir.listFiles()) {
@@ -36,6 +33,10 @@ public class QueryCompiler {
 				}
 			}
 		}
+	}
+
+	private String initLibraryPath() {
+		return System.getProperty("java.class.path");
 	}
 
 	public QueryInterface compile(String code, JSONObject root) throws CompileException, JSONException {

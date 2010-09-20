@@ -119,6 +119,8 @@ public class ServerInitializer implements ServletContextListener {
 			ServiceInterface webService = new Service(bimDatabase, emfSerializerFactory, schema, tokenManager, longActionManager, AccessMethod.WEB_INTERFACE, ifcEngineFactory);
 			servletContext.setAttribute("service", soapService);
 			LoginManager.setService(webService);
+
+			LOGGER.info("real path: " + servletContext.getRealPath("/"));
 			
 			ServerStarted serverStarted = LogFactory.eINSTANCE.createServerStarted();
 			serverStarted.setDate(new Date());
