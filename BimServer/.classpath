@@ -67,7 +67,6 @@
 	<classpathentry exported="true" kind="lib" path="lib/cxf/spring-jms-2.5.6.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/spring-tx-2.5.6.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/spring-web-2.5.6.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/cxf/WHICH_JARS"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/wsdl4j-1.6.2.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/wss4j-1.5.8.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/wstx-asl-3.2.9.jar"/>

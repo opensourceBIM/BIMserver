@@ -48,6 +48,7 @@ import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -96,7 +97,9 @@ public class Expander extends JFrame {
 		browserJvm.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JFileChooser chooser = new JFileChooser(new File("."));
+				File currentFile = new File(jvmField.getText());
+				JFileChooser chooser = new JFileChooser(currentFile.exists() ? currentFile : new File("."));
+				chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 				int showOpenDialog = chooser.showOpenDialog(Expander.this);
 				if (showOpenDialog == JFileChooser.APPROVE_OPTION) {
 					jvmField.setText(chooser.getSelectedFile().getAbsolutePath());
@@ -104,10 +107,10 @@ public class Expander extends JFrame {
 			}
 		});
 		JPanel jvmPanel = new JPanel();
-		jvmPanel.setLayout(new FlowLayout());
-		jvmPanel.add(browserJvm);
+		jvmPanel.setLayout(new BorderLayout());
+		jvmPanel.add(jvmField, BorderLayout.CENTER);
+		jvmPanel.add(browserJvm, BorderLayout.EAST);
 		fields.add(jvmPanel);
-		jvmPanel.add(jvmField);
 
 		JLabel addressLabel = new JLabel("Address");
 		fields.add(addressLabel);
@@ -147,9 +150,13 @@ public class Expander extends JFrame {
 					new Thread(new Runnable() {
 						@Override
 						public void run() {
-							File file = expand();
-							startStopButton.setText("Stop");
-							start(file, addressField.getText(), portField.getText(), heapSizeField.getText(), stackSizeField.getText(), jvmField.getText());
+							if (jvmField.getText().equalsIgnoreCase("default") || new File(jvmField.getText()).exists()) {
+								File file = expand();
+								startStopButton.setText("Stop");
+								start(file, addressField.getText(), portField.getText(), heapSizeField.getText(), stackSizeField.getText(), jvmField.getText());
+							} else {
+								JOptionPane.showMessageDialog(Expander.this, "JVM field should contain a valid JVM directory, or 'default' for the default JVM");
+							}
 						}
 					}).start();
 				} else if (startStopButton.getText().equals("Stop")) {
@@ -223,7 +230,31 @@ public class Expander extends JFrame {
 
 	private void start(File destDir, String address, String port, String heapsize, String stacksize, String jvmPath) {
 		try {
-			String command = (jvmPath.equals("default") ? "java" : jvmPath + File.separator + "bin" + File.separator + "java") + " -Xmx" + heapsize;
+			String command = "";
+			if (jvmPath.equalsIgnoreCase("default")) {
+				command = "java";
+			} else {
+				File jvm = new File(jvmPath);
+				if (jvm.exists()) {
+					File jre = new File(jvm, "jre");
+					if (!jre.exists()) {
+						jre = jvm;
+					}
+					command = new File(jre, "bin" + File.separator + "java").getAbsolutePath();
+					File jreLib = new File(jre, "lib");
+					command += " -Xbootclasspath:\"";
+					for (File file : jreLib.listFiles()) {
+						if (file.getName().endsWith(".jar")) {
+							command += file.getAbsolutePath() + File.pathSeparator;
+						}
+					}
+					if (jre != jvm) {
+						command += new File(jvm, "lib" + File.separator + "tools.jar");
+					}
+					command += "\"";
+				}
+			}
+			command += " -Xmx" + heapsize;
 			command += " -Xss" + stacksize;
 			command += " -classpath";
 			command += " lib" + File.pathSeparator;
