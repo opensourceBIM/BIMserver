@@ -3,7 +3,8 @@ package org.bimserver.querycompiler;
 public class VirtualClassLoader extends ClassLoader {
 	private final VirtualFile baseDir;
 
-	public VirtualClassLoader(VirtualFile baseDir) {
+	public VirtualClassLoader(ClassLoader parent, VirtualFile baseDir) {
+		super(parent);
 		this.baseDir = baseDir;
 	}
 
