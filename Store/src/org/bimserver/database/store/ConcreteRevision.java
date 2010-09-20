@@ -20,11 +20,12 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link org.bimserver.database.store.ConcreteRevision#getId <em>Id</em>}</li>
  *   <li>{@link org.bimserver.database.store.ConcreteRevision#getProject <em>Project</em>}</li>
- *   <li>{@link org.bimserver.database.store.ConcreteRevision#isFinalized <em>Finalized</em>}</li>
+ *   <li>{@link org.bimserver.database.store.ConcreteRevision#getState <em>State</em>}</li>
  *   <li>{@link org.bimserver.database.store.ConcreteRevision#getChecksum <em>Checksum</em>}</li>
  *   <li>{@link org.bimserver.database.store.ConcreteRevision#getRevisions <em>Revisions</em>}</li>
  *   <li>{@link org.bimserver.database.store.ConcreteRevision#getSize <em>Size</em>}</li>
  *   <li>{@link org.bimserver.database.store.ConcreteRevision#getDate <em>Date</em>}</li>
+ *   <li>{@link org.bimserver.database.store.ConcreteRevision#getLastError <em>Last Error</em>}</li>
  * </ul>
  * </p>
  *
@@ -89,30 +90,33 @@ public interface ConcreteRevision extends IdEObject {
 	void setProject(Project value);
 
 	/**
-	 * Returns the value of the '<em><b>Finalized</b></em>' attribute.
+	 * Returns the value of the '<em><b>State</b></em>' attribute.
+	 * The literals are from the enumeration {@link org.bimserver.database.store.CheckinState}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Finalized</em>' attribute isn't clear,
+	 * If the meaning of the '<em>State</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Finalized</em>' attribute.
-	 * @see #setFinalized(boolean)
-	 * @see org.bimserver.database.store.StorePackage#getConcreteRevision_Finalized()
+	 * @return the value of the '<em>State</em>' attribute.
+	 * @see org.bimserver.database.store.CheckinState
+	 * @see #setState(CheckinState)
+	 * @see org.bimserver.database.store.StorePackage#getConcreteRevision_State()
 	 * @model
 	 * @generated
 	 */
-	boolean isFinalized();
+	CheckinState getState();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.database.store.ConcreteRevision#isFinalized <em>Finalized</em>}' attribute.
+	 * Sets the value of the '{@link org.bimserver.database.store.ConcreteRevision#getState <em>State</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Finalized</em>' attribute.
-	 * @see #isFinalized()
+	 * @param value the new value of the '<em>State</em>' attribute.
+	 * @see org.bimserver.database.store.CheckinState
+	 * @see #getState()
 	 * @generated
 	 */
-	void setFinalized(boolean value);
+	void setState(CheckinState value);
 
 	/**
 	 * Returns the value of the '<em><b>Checksum</b></em>' attribute.
@@ -209,5 +213,31 @@ public interface ConcreteRevision extends IdEObject {
 	 * @generated
 	 */
 	void setDate(Date value);
+
+	/**
+	 * Returns the value of the '<em><b>Last Error</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Last Error</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Last Error</em>' attribute.
+	 * @see #setLastError(String)
+	 * @see org.bimserver.database.store.StorePackage#getConcreteRevision_LastError()
+	 * @model
+	 * @generated
+	 */
+	String getLastError();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.database.store.ConcreteRevision#getLastError <em>Last Error</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Last Error</em>' attribute.
+	 * @see #getLastError()
+	 * @generated
+	 */
+	void setLastError(String value);
 
 } // ConcreteRevision

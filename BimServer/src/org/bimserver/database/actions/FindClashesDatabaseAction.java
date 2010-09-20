@@ -37,8 +37,11 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class FindClashesDatabaseAction extends BimDatabaseAction<Set<? extends Clash>> {
+	private static final Logger LOGGER = LoggerFactory.getLogger(FindClashesDatabaseAction.class);
 	private static File tempDir;
 	private static int dumpCounter = 0;
 
@@ -51,7 +54,8 @@ public class FindClashesDatabaseAction extends BimDatabaseAction<Set<? extends C
 	private final IfcEngineFactory ifcEngineFactory;
 	private final SchemaDefinition schema;
 
-	public FindClashesDatabaseAction(AccessMethod accessMethod, SClashDetectionSettings sClashDetectionSettings, SchemaDefinition schema, IfcEngineFactory ifcEngineFactory, long actingUoid) {
+	public FindClashesDatabaseAction(AccessMethod accessMethod, SClashDetectionSettings sClashDetectionSettings, SchemaDefinition schema, IfcEngineFactory ifcEngineFactory,
+			long actingUoid) {
 		super(accessMethod);
 		this.sClashDetectionSettings = sClashDetectionSettings;
 		this.schema = schema;
@@ -83,8 +87,7 @@ public class FindClashesDatabaseAction extends BimDatabaseAction<Set<? extends C
 			cleanupModel(idEObject, newModel, ifcModel, new HashSet<String>(sClashDetectionSettings.getIgnoredClasses()), converted);
 		}
 		File file = createTempFile();
-		IfcStepSerializer ifcStepSerializer = new IfcStepSerializer(null, bimDatabaseSession
-				.getUserByUoid(actingUoid), file.getName(), newModel, schema);
+		IfcStepSerializer ifcStepSerializer = new IfcStepSerializer(null, bimDatabaseSession.getUserByUoid(actingUoid), file.getName(), newModel, schema);
 		try {
 			ifcStepSerializer.writeToFile(file);
 			FailSafeIfcEngine failSafeIfcEngine = ifcEngineFactory.createFailSafeIfcEngine();
@@ -108,12 +111,14 @@ public class FindClashesDatabaseAction extends BimDatabaseAction<Set<? extends C
 					ifcEngineModel.close();
 				}
 			} catch (IfcEngineException e) {
-				e.printStackTrace();
+				LOGGER.error("", e);
 			} finally {
 				failSafeIfcEngine.close();
 			}
 		} catch (SerializerException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
+		} catch (IfcEngineException e) {
+			LOGGER.error("", e);
 		}
 		return null;
 	}
@@ -127,11 +132,11 @@ public class FindClashesDatabaseAction extends BimDatabaseAction<Set<? extends C
 		try {
 			makeTempFile.createNewFile();
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 		return makeTempFile;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	private IdEObject cleanupModel(IdEObject original, IfcModel newModel, IfcModel ifcModel, Set<String> ignoredClasses, Map<IdEObject, IdEObject> converted) {
 		if (converted.containsKey(original)) {

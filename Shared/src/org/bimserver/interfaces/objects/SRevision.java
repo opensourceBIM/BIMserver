@@ -22,10 +22,10 @@ public class SRevision
 	private long lastConcreteRevisionId;
 	private List<Long> checkouts;
 	private long projectId;
-	private boolean finalized;
+	private SCheckinState state;
 	private List<Long> lastClashes;
-	private boolean processingClashes;
 	private java.lang.String tag;
+	private java.lang.String lastError;
 
 	public int getId() {
 		return id;
@@ -96,13 +96,12 @@ public class SRevision
 		this.projectId = projectId;
 	}
 	
-
-	public boolean isFinalized() {
-		return finalized;
+	public SCheckinState getState() {
+		return state;
 	}
 
-	public void setFinalized(boolean finalized) {
-		this.finalized = finalized;
+	public void setState(SCheckinState state) {
+		this.state = state;
 	}
 	public List<Long> getLastClashes() {
 		return lastClashes;
@@ -112,20 +111,20 @@ public class SRevision
 		this.lastClashes = lastClashes;
 	}
 
-	public boolean isProcessingClashes() {
-		return processingClashes;
-	}
-
-	public void setProcessingClashes(boolean processingClashes) {
-		this.processingClashes = processingClashes;
-	}
-
 	public java.lang.String getTag() {
 		return tag;
 	}
 
 	public void setTag(java.lang.String tag) {
 		this.tag = tag;
+	}
+
+	public java.lang.String getLastError() {
+		return lastError;
+	}
+
+	public void setLastError(java.lang.String lastError) {
+		this.lastError = lastError;
 	}
 	@Override
 	public int hashCode() {

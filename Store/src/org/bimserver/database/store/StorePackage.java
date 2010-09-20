@@ -525,13 +525,13 @@ public interface StorePackage extends EPackage {
 	int CONCRETE_REVISION__PROJECT = 1;
 
 	/**
-	 * The feature id for the '<em><b>Finalized</b></em>' attribute.
+	 * The feature id for the '<em><b>State</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONCRETE_REVISION__FINALIZED = 2;
+	int CONCRETE_REVISION__STATE = 2;
 
 	/**
 	 * The feature id for the '<em><b>Checksum</b></em>' attribute.
@@ -570,13 +570,22 @@ public interface StorePackage extends EPackage {
 	int CONCRETE_REVISION__DATE = 6;
 
 	/**
+	 * The feature id for the '<em><b>Last Error</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONCRETE_REVISION__LAST_ERROR = 7;
+
+	/**
 	 * The number of structural features of the '<em>Concrete Revision</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONCRETE_REVISION_FEATURE_COUNT = 7;
+	int CONCRETE_REVISION_FEATURE_COUNT = 8;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.database.store.impl.RevisionImpl <em>Revision</em>}' class.
@@ -670,13 +679,13 @@ public interface StorePackage extends EPackage {
 	int REVISION__PROJECT = 8;
 
 	/**
-	 * The feature id for the '<em><b>Finalized</b></em>' attribute.
+	 * The feature id for the '<em><b>State</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REVISION__FINALIZED = 9;
+	int REVISION__STATE = 9;
 
 	/**
 	 * The feature id for the '<em><b>Last Clashes</b></em>' reference list.
@@ -688,22 +697,22 @@ public interface StorePackage extends EPackage {
 	int REVISION__LAST_CLASHES = 10;
 
 	/**
-	 * The feature id for the '<em><b>Processing Clashes</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REVISION__PROCESSING_CLASHES = 11;
-
-	/**
 	 * The feature id for the '<em><b>Tag</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REVISION__TAG = 12;
+	int REVISION__TAG = 11;
+
+	/**
+	 * The feature id for the '<em><b>Last Error</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REVISION__LAST_ERROR = 12;
 
 	/**
 	 * The number of structural features of the '<em>Revision</em>' class.
@@ -1063,6 +1072,17 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 */
 	int SI_PREFIX = 12;
+
+
+	/**
+	 * The meta object id for the '{@link org.bimserver.database.store.CheckinState <em>Checkin State</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.database.store.CheckinState
+	 * @see org.bimserver.database.store.impl.StorePackageImpl#getCheckinState()
+	 * @generated
+	 */
+	int CHECKIN_STATE = 13;
 
 
 	/**
@@ -1578,15 +1598,15 @@ public interface StorePackage extends EPackage {
 	EReference getConcreteRevision_Project();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.database.store.ConcreteRevision#isFinalized <em>Finalized</em>}'.
+	 * Returns the meta object for the attribute '{@link org.bimserver.database.store.ConcreteRevision#getState <em>State</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Finalized</em>'.
-	 * @see org.bimserver.database.store.ConcreteRevision#isFinalized()
+	 * @return the meta object for the attribute '<em>State</em>'.
+	 * @see org.bimserver.database.store.ConcreteRevision#getState()
 	 * @see #getConcreteRevision()
 	 * @generated
 	 */
-	EAttribute getConcreteRevision_Finalized();
+	EAttribute getConcreteRevision_State();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.bimserver.database.store.ConcreteRevision#getChecksum <em>Checksum</em>}'.
@@ -1631,6 +1651,17 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getConcreteRevision_Date();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.database.store.ConcreteRevision#getLastError <em>Last Error</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Last Error</em>'.
+	 * @see org.bimserver.database.store.ConcreteRevision#getLastError()
+	 * @see #getConcreteRevision()
+	 * @generated
+	 */
+	EAttribute getConcreteRevision_LastError();
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.database.store.Revision <em>Revision</em>}'.
@@ -1742,15 +1773,15 @@ public interface StorePackage extends EPackage {
 	EReference getRevision_Project();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.database.store.Revision#isFinalized <em>Finalized</em>}'.
+	 * Returns the meta object for the attribute '{@link org.bimserver.database.store.Revision#getState <em>State</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Finalized</em>'.
-	 * @see org.bimserver.database.store.Revision#isFinalized()
+	 * @return the meta object for the attribute '<em>State</em>'.
+	 * @see org.bimserver.database.store.Revision#getState()
 	 * @see #getRevision()
 	 * @generated
 	 */
-	EAttribute getRevision_Finalized();
+	EAttribute getRevision_State();
 
 	/**
 	 * Returns the meta object for the reference list '{@link org.bimserver.database.store.Revision#getLastClashes <em>Last Clashes</em>}'.
@@ -1764,17 +1795,6 @@ public interface StorePackage extends EPackage {
 	EReference getRevision_LastClashes();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.database.store.Revision#isProcessingClashes <em>Processing Clashes</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Processing Clashes</em>'.
-	 * @see org.bimserver.database.store.Revision#isProcessingClashes()
-	 * @see #getRevision()
-	 * @generated
-	 */
-	EAttribute getRevision_ProcessingClashes();
-
-	/**
 	 * Returns the meta object for the attribute '{@link org.bimserver.database.store.Revision#getTag <em>Tag</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1784,6 +1804,17 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getRevision_Tag();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.database.store.Revision#getLastError <em>Last Error</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Last Error</em>'.
+	 * @see org.bimserver.database.store.Revision#getLastError()
+	 * @see #getRevision()
+	 * @generated
+	 */
+	EAttribute getRevision_LastError();
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.database.store.GuidClash <em>Guid Clash</em>}'.
@@ -2019,6 +2050,16 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 */
 	EEnum getSIPrefix();
+
+	/**
+	 * Returns the meta object for enum '{@link org.bimserver.database.store.CheckinState <em>Checkin State</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Checkin State</em>'.
+	 * @see org.bimserver.database.store.CheckinState
+	 * @generated
+	 */
+	EEnum getCheckinState();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -2429,12 +2470,12 @@ public interface StorePackage extends EPackage {
 		EReference CONCRETE_REVISION__PROJECT = eINSTANCE.getConcreteRevision_Project();
 
 		/**
-		 * The meta object literal for the '<em><b>Finalized</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>State</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute CONCRETE_REVISION__FINALIZED = eINSTANCE.getConcreteRevision_Finalized();
+		EAttribute CONCRETE_REVISION__STATE = eINSTANCE.getConcreteRevision_State();
 
 		/**
 		 * The meta object literal for the '<em><b>Checksum</b></em>' attribute feature.
@@ -2467,6 +2508,14 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute CONCRETE_REVISION__DATE = eINSTANCE.getConcreteRevision_Date();
+
+		/**
+		 * The meta object literal for the '<em><b>Last Error</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONCRETE_REVISION__LAST_ERROR = eINSTANCE.getConcreteRevision_LastError();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.database.store.impl.RevisionImpl <em>Revision</em>}' class.
@@ -2551,12 +2600,12 @@ public interface StorePackage extends EPackage {
 		EReference REVISION__PROJECT = eINSTANCE.getRevision_Project();
 
 		/**
-		 * The meta object literal for the '<em><b>Finalized</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>State</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute REVISION__FINALIZED = eINSTANCE.getRevision_Finalized();
+		EAttribute REVISION__STATE = eINSTANCE.getRevision_State();
 
 		/**
 		 * The meta object literal for the '<em><b>Last Clashes</b></em>' reference list feature.
@@ -2567,20 +2616,20 @@ public interface StorePackage extends EPackage {
 		EReference REVISION__LAST_CLASHES = eINSTANCE.getRevision_LastClashes();
 
 		/**
-		 * The meta object literal for the '<em><b>Processing Clashes</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute REVISION__PROCESSING_CLASHES = eINSTANCE.getRevision_ProcessingClashes();
-
-		/**
 		 * The meta object literal for the '<em><b>Tag</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EAttribute REVISION__TAG = eINSTANCE.getRevision_Tag();
+
+		/**
+		 * The meta object literal for the '<em><b>Last Error</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute REVISION__LAST_ERROR = eINSTANCE.getRevision_LastError();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.database.store.impl.GuidClashImpl <em>Guid Clash</em>}' class.
@@ -2771,6 +2820,16 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EEnum SI_PREFIX = eINSTANCE.getSIPrefix();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.database.store.CheckinState <em>Checkin State</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.database.store.CheckinState
+		 * @see org.bimserver.database.store.impl.StorePackageImpl#getCheckinState()
+		 * @generated
+		 */
+		EEnum CHECKIN_STATE = eINSTANCE.getCheckinState();
 
 	}
 

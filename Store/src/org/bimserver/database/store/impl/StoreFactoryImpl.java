@@ -100,6 +100,8 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 				return createUserTypeFromString(eDataType, initialValue);
 			case StorePackage.SI_PREFIX:
 				return createSIPrefixFromString(eDataType, initialValue);
+			case StorePackage.CHECKIN_STATE:
+				return createCheckinStateFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -119,6 +121,8 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 				return convertUserTypeToString(eDataType, instanceValue);
 			case StorePackage.SI_PREFIX:
 				return convertSIPrefixToString(eDataType, instanceValue);
+			case StorePackage.CHECKIN_STATE:
+				return convertCheckinStateToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -281,6 +285,26 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	 * @generated
 	 */
 	public String convertSIPrefixToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CheckinState createCheckinStateFromString(EDataType eDataType, String initialValue) {
+		CheckinState result = CheckinState.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertCheckinStateToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

@@ -13,6 +13,7 @@ import org.bimserver.database.store.User;
 import org.bimserver.ifc.BimModelSerializer;
 import org.bimserver.ifc.FieldIgnoreMap;
 import org.bimserver.ifc.IfcModel;
+import org.bimserver.ifc.SerializerException;
 import org.bimserver.ifcengine.IfcEngineFactory;
 import org.bimserver.shared.ResultType;
 import org.slf4j.Logger;
@@ -25,10 +26,14 @@ public class KmzSerializer extends BimModelSerializer {
 	private SimpleMode mode = SimpleMode.BUSY;
 	private final Project project;
 
-	public KmzSerializer(Project project, User user, String fileName, IfcModel model, SchemaDefinition schemaDefinition, FieldIgnoreMap fieldIgnoreMap, IfcEngineFactory ifcEngineFactory) {
+	public KmzSerializer(Project project, User user, String fileName, IfcModel model, SchemaDefinition schemaDefinition, FieldIgnoreMap fieldIgnoreMap, IfcEngineFactory ifcEngineFactory) throws SerializerException {
 		super(fileName, model, fieldIgnoreMap);
 		this.project = project;
-		ifcToCollada = new ColladaSerializer(project, user, fileName, model, schemaDefinition, fieldIgnoreMap, ifcEngineFactory);
+		try {
+			ifcToCollada = new ColladaSerializer(project, user, fileName, model, schemaDefinition, fieldIgnoreMap, ifcEngineFactory);
+		} catch (SerializerException e) {
+			throw new SerializerException(e);
+		}
 	}
 
 	@Override

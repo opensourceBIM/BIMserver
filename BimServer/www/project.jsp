@@ -66,7 +66,8 @@
 if (emfSerializerFactory.resultTypeEnabled(ResultType.O3D_JSON) && lastRevision != null) {
 %>
 
-<%@page import="org.bimserver.utils.WebUtils"%><jsp:include page="o3d.jsp"/>
+<%@page import="org.bimserver.utils.WebUtils"%>
+<%@page import="org.bimserver.interfaces.objects.SCheckinState"%><jsp:include page="o3d.jsp"/>
 <%
 }
 %>
@@ -426,7 +427,7 @@ if (revisions.size() > 0) {
 		<th>Clashes</th>
 		<% } %>
 		<th>Size</th>
-		<th>Download / Checkout</th>
+		<th>Status / Actions</th>
 	</tr>
 	<%
 		for (SRevision revision : revisions) {
@@ -442,11 +443,33 @@ if (revisions.size() > 0) {
 			<div><%=revision.getComment()%></div><a href="#" class="morelink">more</a>
 		</div></td>
 		<% if (project.getParentId() == -1 && sClashDetectionSettings.isEnabled()) { %>
-		<td class="clashesfield"><%=revision.isProcessingClashes() ? "Processing" : revision.getLastClashes().size() %></td>
+		<td class="clashesfield">
+		<img src="images/ajax-loader.gif" align="left" style="margin-right: 5px; display: <%=revision.getState() == SCheckinState.SEARCHING_CLASHES ? "block" : "none"%>"/>
+		<span class="statusfield"><%
+			if (revision.getState() == SCheckinState.DONE) {
+				out.print(revision.getLastClashes().size());
+			} else if (revision.getState() == SCheckinState.SEARCHING_CLASHES) {
+				out.print("Searching clashes...");
+			} else if (revision.getState() == SCheckinState.CLASHES_ERROR) {
+				out.print("Error: " + revision.getLastError());
+			}
+		%>
+		</span>
+		</td>
 		<% } %>
-		<td class="sizefield"><img src="images/ajax-loader.gif" style="display: <%=revision.isFinalized() ? "none" : "block"%>"/><span><%=revision.isFinalized() ? revision.getSize() : " Processing" %></span></td>
+		<td class="sizefield"><%=(revision.getState() == SCheckinState.DONE || revision.getState() == SCheckinState.SEARCHING_CLASHES || revision.getState() == SCheckinState.CLASHES_ERROR) ? revision.getSize() : "" %></td>
 		<td class="downloadfield">
-		<form method="post" action="<%=request.getContextPath() %>/download" class="<%=revision.isFinalized() ? "" : "blockinvisible" %>">
+		<img src="images/ajax-loader.gif" align="left" style="margin-right: 5px; display: <%=(revision.getState() == SCheckinState.DONE || revision.getState() == SCheckinState.ERROR || revision.getState() == SCheckinState.CLASHES_ERROR || revision.getState() == SCheckinState.SEARCHING_CLASHES) ? "none" : "block"%>"/>
+		<span class="statusfield">
+		<%
+			if (revision.getState() == SCheckinState.ERROR) {
+				out.print("Error: " + revision.getState().name().toLowerCase());
+			} else if (revision.getState() == SCheckinState.STORING) {
+				out.print("Storing...");
+			}
+		%>
+		</span>
+		<form method="post" action="<%=request.getContextPath() %>/download" class="<%=revision.getState() == SCheckinState.DONE || revision.getState() == SCheckinState.CLASHES_ERROR || revision.getState() == SCheckinState.SEARCHING_CLASHES ? "" : "blockinvisible" %>">
 		<input type="hidden" name="roid" value="<%=revision.getOid() %>" />
 <select name="resultType" class="revisionsdownloadcheckoutselect">
 			<%
@@ -504,7 +527,7 @@ open a specific revision to query other revisions<br />
 		<th>User</th>
 		<th>Date</th>
 		<th>Active</th>
-		<th>Download / Checkout</th>
+		<th>Status / Actions</th>
 	</tr>
 	<%
 		for (SCheckout checkout : checkouts) {
@@ -648,14 +671,40 @@ for (SRevision sRevision : revisions) {
 				$.ajax({ url: "/progress", cache: false, context: document.body, data: {roids: roids}, success: function(data){
 					for (result in data) {
 						var item = data[result];
-						if (item.finalized) {
-							$("#rev" + item.roid).children(".sizefield").children("span").text(item.totalsize);
-							$("#rev" + item.roid).children(".sizefield").children("img").hide();
+						var state = item.state;
+						if (state == "DONE") {
+							$("#rev" + item.roid).children(".sizefield").text(item.totalsize);
+							$("#rev" + item.roid).children(".downloadfield").children("img").hide();
 							$("#rev" + item.roid).children(".downloadfield").children("form").removeClass("blockinvisible");
-						} else {
-							$("#rev" + item.roid).children(".sizefield").children("img").show();
+							$("#rev" + item.roid).children(".downloadfield").children(".statusfield").text("");
+							$("#rev" + item.roid).children(".clashesfield").children("img").hide();
+						} else if (state == "ERROR") {
+							$("#rev" + item.roid).children(".downloadfield").children("img").hide();
 							$("#rev" + item.roid).children(".downloadfield").children("form").addClass("blockinvisible");
-						}
+							$("#rev" + item.roid).children(".downloadfield").children(".statusfield").text("Error: " + item.lastError);
+							$("#rev" + item.roid).children(".clashesfield").children("img").hide();
+						} else if (state == "SEARCHING_CLASHES") {
+							$("#rev" + item.roid).children(".clashesfield").children("img").show();
+							$("#rev" + item.roid).children(".clashesfield").children(".statusfield").text("Searching clashes...");
+							$("#rev" + item.roid).children(".downloadfield").children(".statusfield").text("");
+							$("#rev" + item.roid).children(".downloadfield").children("form").removeClass("blockinvisible");
+							$("#rev" + item.roid).children(".downloadfield").children("img").hide();
+						} else if (state == "CLASHES_ERROR") {
+							$("#rev" + item.roid).children(".clashesfield").children("img").hide();
+							$("#rev" + item.roid).children(".clashesfield").children(".statusfield").text("Error: " + item.lastError);
+							$("#rev" + item.roid).children(".downloadfield").children(".statusfield").text("");
+							$("#rev" + item.roid).children(".downloadfield").children("form").removeClass("blockinvisible");
+							$("#rev" + item.roid).children(".downloadfield").children("img").hide();
+						} else {
+							$("#rev" + item.roid).children(".downloadfield").children("img").show();
+							$("#rev" + item.roid).children(".downloadfield").children("form").addClass("blockinvisible");
+							if (state == "STORING") {
+								$("#rev" + item.roid).children(".downloadfield").children(".statusfield").text("Storing...");
+							} else {
+								$("#rev" + item.roid).children(".downloadfield").children(".statusfield").text("");
+							}
+							$("#rev" + item.roid).children(".clashesfield").children("img").hide();
+						} 
 						if (item.islast) {
 							$("#rev" + item.roid).addClass("lastrevision");
 						} else {

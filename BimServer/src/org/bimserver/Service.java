@@ -115,6 +115,7 @@ import org.bimserver.emf.IdEObject;
 import org.bimserver.generators.GenerateUtils;
 import org.bimserver.ifc.EmfSerializer;
 import org.bimserver.ifc.IfcModel;
+import org.bimserver.ifc.SerializerException;
 import org.bimserver.ifc.emf.Ifc2x3.IfcRoot;
 import org.bimserver.ifc.file.compare.CompareResult;
 import org.bimserver.ifc.file.compare.CompareResult.Item;
@@ -154,8 +155,11 @@ import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Service implements ServiceInterface {
+	private static final Logger LOGGER = LoggerFactory.getLogger(Service.class);
 	public static final int DEADLOCK_RETRIES = 10;
 	private final SchemaDefinition schema;
 	private final TokenManager tokenManager;
@@ -237,7 +241,7 @@ public class Service implements ServiceInterface {
 				throw new UserException("Uploaded file does not seem to be a valid IFC file");
 			}
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} finally {
 			session.close();
 		}
@@ -248,15 +252,17 @@ public class Service implements ServiceInterface {
 		FastIfcFileReader fastIfcFileReader = new FastIfcFileReader(schema);
 		try {
 			/*
-			 * Strangest hack ever, it seems that DelegatingInputStream (when using SOAP), sometimes gives 0 as a result of read(byte[] b, int off, int len),
-			 * which is illegal, so this code makes sure a 0 will be interpreted as the end of the stream
+			 * Strangest hack ever, it seems that DelegatingInputStream (when
+			 * using SOAP), sometimes gives 0 as a result of read(byte[] b, int
+			 * off, int len), which is illegal, so this code makes sure a 0 will
+			 * be interpreted as the end of the stream
 			 */
 			InputStream between = new InputStream() {
 				@Override
 				public int read() throws IOException {
 					return inputStream.read();
 				}
-				
+
 				@Override
 				public int read(byte[] b, int off, int len) throws IOException {
 					int read = inputStream.read(b, off, len);
@@ -273,7 +279,7 @@ public class Service implements ServiceInterface {
 		} catch (Exception e) {
 			throw new UserException("Invalid IFC File", e);
 		} catch (OutOfMemoryError e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 			ServerInfo.setErrorMessage(e.getMessage());
 			throw new UserException("Out of memory.", e);
 		}
@@ -291,16 +297,16 @@ public class Service implements ServiceInterface {
 			return result;
 		} catch (UserException e) {
 			throw e;
-		} catch (Exception e1) {
-			e1.printStackTrace();
+		} catch (Exception e) {
+			LOGGER.error("", e);
 		}
 		return null;
 	}
 
 	private CheckinResult processCheckinAsync(final Token token, final long poid, final String comment, long fileSize, final BimDatabaseSession session, IfcModel model)
 			throws UserException {
-		BimDatabaseAction<ConcreteRevision> action = new CheckinPart1DatabaseAction(accessMethod, poid, tokenManager.getUoid(token), model, comment);
 		try {
+			BimDatabaseAction<ConcreteRevision> action = new CheckinPart1DatabaseAction(accessMethod, poid, tokenManager.getUoid(token), model, comment);
 			ConcreteRevision revision = session.executeAndCommitAction(action, DEADLOCK_RETRIES);
 			session.close();
 			CheckinPart2DatabaseAction createCheckinAction = new CheckinPart2DatabaseAction(accessMethod, model, tokenManager.getUoid(token), revision.getOid());
@@ -312,8 +318,8 @@ public class Service implements ServiceInterface {
 			return result;
 		} catch (UserException e) {
 			throw e;
-		} catch (Exception e1) {
-			e1.printStackTrace();
+		} catch (Exception e) {
+			LOGGER.error("", e);
 		}
 		return null;
 	}
@@ -441,7 +447,7 @@ public class Service implements ServiceInterface {
 							}
 						}
 						if (!found) {
-							System.out.println(value.toString() + " not found");
+							LOGGER.info(value.toString() + " not found");
 						}
 					} else if (eStructuralFeature.getEType() instanceof EDataType) {
 						try {
@@ -480,19 +486,19 @@ public class Service implements ServiceInterface {
 			}
 			return newInstance;
 		} catch (InstantiationException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (IllegalAccessException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (SecurityException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (IllegalArgumentException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (InvocationTargetException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (NoSuchMethodException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 		return null;
 	}
@@ -537,7 +543,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public Token login(@WebParam(name="username") String username, String password) throws UserException {
+	public Token login(@WebParam(name = "username") String username, String password) throws UserException {
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
 			BimDatabaseAction<User> action = new GetUserByNameDatabaseAction(accessMethod, username);
@@ -552,7 +558,7 @@ public class Service implements ServiceInterface {
 					try {
 						session2.commit();
 					} catch (BimDeadlockException e) {
-						e.printStackTrace();
+						LOGGER.error("", e);
 					}
 				} finally {
 					session2.close();
@@ -707,7 +713,8 @@ public class Service implements ServiceInterface {
 		try {
 			BimDatabaseAction<IfcModel> action = new DownloadByOidsDatabaseAction(accessMethod, roids, oids, tokenManager.getUoid(token));
 			IfcModel ifcModel = session.executeAction(action, DEADLOCK_RETRIES);
-			return convertModelToCheckoutResult(session.getRevisionByRoid(roids.iterator().next()).getProject(), session.getUserByUoid(tokenManager.getUoid(token)), ifcModel, resultType);
+			return convertModelToCheckoutResult(session.getRevisionByRoid(roids.iterator().next()).getProject(), session.getUserByUoid(tokenManager.getUoid(token)), ifcModel,
+					resultType);
 		} catch (BimDatabaseException e) {
 			throw new UserException("Database error " + e.getMessage(), e);
 		} catch (NoSerializerFoundException e) {
@@ -722,9 +729,14 @@ public class Service implements ServiceInterface {
 		if (model.isValid()) {
 			checkoutResult.setProjectName(project.getName());
 			checkoutResult.setRevisionNr(model.getRevisionNr());
-			EmfSerializer serializer = emfSerializerFactory.create(project, user, resultType, model, checkoutResult.getProjectName() + "." + checkoutResult.getRevisionNr() + "."
-					+ resultType.getDefaultExtension());
-			checkoutResult.setFile(new DataHandler(serializer));
+			EmfSerializer serializer;
+			try {
+				serializer = emfSerializerFactory.create(project, user, resultType, model, checkoutResult.getProjectName() + "." + checkoutResult.getRevisionNr() + "."
+						+ resultType.getDefaultExtension());
+				checkoutResult.setFile(new DataHandler(serializer));
+			} catch (SerializerException e) {
+				LOGGER.error("", e);
+			}
 		}
 		return checkoutResult;
 	}
@@ -820,7 +832,7 @@ public class Service implements ServiceInterface {
 		} catch (IOException e) {
 			throw new UserException("Error", e);
 		} catch (BimDatabaseException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} finally {
 			session.close();
 		}
@@ -1039,7 +1051,7 @@ public class Service implements ServiceInterface {
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
 			BimDatabaseAction<Boolean> action = new UserHasCheckinRightsDatabaseAction(accessMethod, uoid, poid);
-			return session.executeAndCommitAction(action, DEADLOCK_RETRIES);
+			return session.executeAction(action, DEADLOCK_RETRIES);
 		} catch (BimDatabaseException e) {
 			throw new UserException("Database error", e);
 		} finally {
@@ -1052,7 +1064,7 @@ public class Service implements ServiceInterface {
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
 			BimDatabaseAction<String> action = new GetShowCheckoutWarningDatabaseAction(accessMethod, poid, uoid);
-			return session.executeAndCommitAction(action, DEADLOCK_RETRIES);
+			return session.executeAction(action, DEADLOCK_RETRIES);
 		} catch (BimDatabaseException e) {
 			throw new UserException("Database error", e);
 		} finally {
@@ -1204,13 +1216,13 @@ public class Service implements ServiceInterface {
 				return result;
 			} catch (UserException e) {
 				throw e;
-			} catch (Exception e1) {
-				e1.printStackTrace();
+			} catch (Exception e) {
+				LOGGER.error("", e);
 			}
-		} catch (BimDeadlockException e2) {
-			e2.printStackTrace();
-		} catch (BimDatabaseException e2) {
-			e2.printStackTrace();
+		} catch (BimDeadlockException e) {
+			LOGGER.error("", e);
+		} catch (BimDatabaseException e) {
+			LOGGER.error("", e);
 		} finally {
 			session.close();
 		}
@@ -1247,13 +1259,13 @@ public class Service implements ServiceInterface {
 				return result;
 			} catch (UserException e) {
 				throw e;
-			} catch (Exception e1) {
-				e1.printStackTrace();
+			} catch (Exception e) {
+				LOGGER.error("", e);
 			}
-		} catch (BimDeadlockException e2) {
-			e2.printStackTrace();
-		} catch (BimDatabaseException e2) {
-			e2.printStackTrace();
+		} catch (BimDeadlockException e) {
+			LOGGER.error("", e);
+		} catch (BimDatabaseException e) {
+			LOGGER.error("", e);
 		} finally {
 			session.close();
 		}
@@ -1279,7 +1291,7 @@ public class Service implements ServiceInterface {
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
 			BimDatabaseAction<GeoTag> action = new GetGeoTagDatabaseAction(accessMethod, tokenManager.getUoid(token), goid);
-			return convert(session.executeAndCommitAction(action, DEADLOCK_RETRIES), SGeoTag.class, session);
+			return convert(session.executeAction(action, DEADLOCK_RETRIES), SGeoTag.class, session);
 		} catch (BimDatabaseException e) {
 			throw new UserException("Database error", e);
 		} finally {
@@ -1305,7 +1317,7 @@ public class Service implements ServiceInterface {
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
 			BimDatabaseAction<ClashDetectionSettings> action = new GetClashDetectionSettingsDatabaseAction(accessMethod, tokenManager.getUoid(token), cdsoid);
-			return convert(session.executeAndCommitAction(action, DEADLOCK_RETRIES), SClashDetectionSettings.class, session);
+			return convert(session.executeAction(action, DEADLOCK_RETRIES), SClashDetectionSettings.class, session);
 		} catch (BimDatabaseException e) {
 			throw new UserException("Database error", e);
 		} finally {
@@ -1362,9 +1374,9 @@ public class Service implements ServiceInterface {
 		try {
 			return convert(session.getAnonymousUser(), SUser.class, session);
 		} catch (BimDatabaseException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (BimDeadlockException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} finally {
 			session.close();
 		}
@@ -1437,7 +1449,7 @@ public class Service implements ServiceInterface {
 					try {
 						session2.commit();
 					} catch (BimDeadlockException e) {
-						e.printStackTrace();
+						LOGGER.error("", e);
 					}
 				} finally {
 					session2.close();

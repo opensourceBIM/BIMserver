@@ -9,6 +9,7 @@ package org.bimserver.database.store.impl;
 import java.util.Collection;
 
 import java.util.Date;
+import org.bimserver.database.store.CheckinState;
 import org.bimserver.database.store.ConcreteRevision;
 import org.bimserver.database.store.Project;
 import org.bimserver.database.store.Revision;
@@ -33,11 +34,12 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <ul>
  *   <li>{@link org.bimserver.database.store.impl.ConcreteRevisionImpl#getId <em>Id</em>}</li>
  *   <li>{@link org.bimserver.database.store.impl.ConcreteRevisionImpl#getProject <em>Project</em>}</li>
- *   <li>{@link org.bimserver.database.store.impl.ConcreteRevisionImpl#isFinalized <em>Finalized</em>}</li>
+ *   <li>{@link org.bimserver.database.store.impl.ConcreteRevisionImpl#getState <em>State</em>}</li>
  *   <li>{@link org.bimserver.database.store.impl.ConcreteRevisionImpl#getChecksum <em>Checksum</em>}</li>
  *   <li>{@link org.bimserver.database.store.impl.ConcreteRevisionImpl#getRevisions <em>Revisions</em>}</li>
  *   <li>{@link org.bimserver.database.store.impl.ConcreteRevisionImpl#getSize <em>Size</em>}</li>
  *   <li>{@link org.bimserver.database.store.impl.ConcreteRevisionImpl#getDate <em>Date</em>}</li>
+ *   <li>{@link org.bimserver.database.store.impl.ConcreteRevisionImpl#getLastError <em>Last Error</em>}</li>
  * </ul>
  * </p>
  *
@@ -75,24 +77,24 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 	protected Project project;
 
 	/**
-	 * The default value of the '{@link #isFinalized() <em>Finalized</em>}' attribute.
+	 * The default value of the '{@link #getState() <em>State</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isFinalized()
+	 * @see #getState()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean FINALIZED_EDEFAULT = false;
+	protected static final CheckinState STATE_EDEFAULT = CheckinState.UPLOADING;
 
 	/**
-	 * The cached value of the '{@link #isFinalized() <em>Finalized</em>}' attribute.
+	 * The cached value of the '{@link #getState() <em>State</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isFinalized()
+	 * @see #getState()
 	 * @generated
 	 * @ordered
 	 */
-	protected boolean finalized = FINALIZED_EDEFAULT;
+	protected CheckinState state = STATE_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getChecksum() <em>Checksum</em>}' attribute.
@@ -163,6 +165,26 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 	 * @ordered
 	 */
 	protected Date date = DATE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getLastError() <em>Last Error</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLastError()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String LAST_ERROR_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getLastError() <em>Last Error</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLastError()
+	 * @generated
+	 * @ordered
+	 */
+	protected String lastError = LAST_ERROR_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -269,8 +291,8 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isFinalized() {
-		return finalized;
+	public CheckinState getState() {
+		return state;
 	}
 
 	/**
@@ -278,11 +300,11 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setFinalized(boolean newFinalized) {
-		boolean oldFinalized = finalized;
-		finalized = newFinalized;
+	public void setState(CheckinState newState) {
+		CheckinState oldState = state;
+		state = newState == null ? STATE_EDEFAULT : newState;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.CONCRETE_REVISION__FINALIZED, oldFinalized, finalized));
+			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.CONCRETE_REVISION__STATE, oldState, state));
 	}
 
 	/**
@@ -365,6 +387,27 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getLastError() {
+		return lastError;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setLastError(String newLastError) {
+		String oldLastError = lastError;
+		lastError = newLastError;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.CONCRETE_REVISION__LAST_ERROR, oldLastError, lastError));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
@@ -408,8 +451,8 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 			case StorePackage.CONCRETE_REVISION__PROJECT:
 				if (resolve) return getProject();
 				return basicGetProject();
-			case StorePackage.CONCRETE_REVISION__FINALIZED:
-				return isFinalized();
+			case StorePackage.CONCRETE_REVISION__STATE:
+				return getState();
 			case StorePackage.CONCRETE_REVISION__CHECKSUM:
 				return getChecksum();
 			case StorePackage.CONCRETE_REVISION__REVISIONS:
@@ -418,6 +461,8 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 				return getSize();
 			case StorePackage.CONCRETE_REVISION__DATE:
 				return getDate();
+			case StorePackage.CONCRETE_REVISION__LAST_ERROR:
+				return getLastError();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -437,8 +482,8 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 			case StorePackage.CONCRETE_REVISION__PROJECT:
 				setProject((Project)newValue);
 				return;
-			case StorePackage.CONCRETE_REVISION__FINALIZED:
-				setFinalized((Boolean)newValue);
+			case StorePackage.CONCRETE_REVISION__STATE:
+				setState((CheckinState)newValue);
 				return;
 			case StorePackage.CONCRETE_REVISION__CHECKSUM:
 				setChecksum((byte[])newValue);
@@ -452,6 +497,9 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 				return;
 			case StorePackage.CONCRETE_REVISION__DATE:
 				setDate((Date)newValue);
+				return;
+			case StorePackage.CONCRETE_REVISION__LAST_ERROR:
+				setLastError((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -471,8 +519,8 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 			case StorePackage.CONCRETE_REVISION__PROJECT:
 				setProject((Project)null);
 				return;
-			case StorePackage.CONCRETE_REVISION__FINALIZED:
-				setFinalized(FINALIZED_EDEFAULT);
+			case StorePackage.CONCRETE_REVISION__STATE:
+				setState(STATE_EDEFAULT);
 				return;
 			case StorePackage.CONCRETE_REVISION__CHECKSUM:
 				setChecksum(CHECKSUM_EDEFAULT);
@@ -485,6 +533,9 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 				return;
 			case StorePackage.CONCRETE_REVISION__DATE:
 				setDate(DATE_EDEFAULT);
+				return;
+			case StorePackage.CONCRETE_REVISION__LAST_ERROR:
+				setLastError(LAST_ERROR_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -502,8 +553,8 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 				return id != ID_EDEFAULT;
 			case StorePackage.CONCRETE_REVISION__PROJECT:
 				return project != null;
-			case StorePackage.CONCRETE_REVISION__FINALIZED:
-				return finalized != FINALIZED_EDEFAULT;
+			case StorePackage.CONCRETE_REVISION__STATE:
+				return state != STATE_EDEFAULT;
 			case StorePackage.CONCRETE_REVISION__CHECKSUM:
 				return CHECKSUM_EDEFAULT == null ? checksum != null : !CHECKSUM_EDEFAULT.equals(checksum);
 			case StorePackage.CONCRETE_REVISION__REVISIONS:
@@ -512,6 +563,8 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 				return size != SIZE_EDEFAULT;
 			case StorePackage.CONCRETE_REVISION__DATE:
 				return DATE_EDEFAULT == null ? date != null : !DATE_EDEFAULT.equals(date);
+			case StorePackage.CONCRETE_REVISION__LAST_ERROR:
+				return LAST_ERROR_EDEFAULT == null ? lastError != null : !LAST_ERROR_EDEFAULT.equals(lastError);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -528,14 +581,16 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (id: ");
 		result.append(id);
-		result.append(", finalized: ");
-		result.append(finalized);
+		result.append(", state: ");
+		result.append(state);
 		result.append(", checksum: ");
 		result.append(checksum);
 		result.append(", size: ");
 		result.append(size);
 		result.append(", date: ");
 		result.append(date);
+		result.append(", lastError: ");
+		result.append(lastError);
 		result.append(')');
 		return result.toString();
 	}

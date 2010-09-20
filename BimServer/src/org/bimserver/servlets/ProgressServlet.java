@@ -32,9 +32,9 @@ public class ProgressServlet extends HttpServlet {
 					SRevision revision = loginManager.getService().getRevision(roid);
 					JSONObject object = new JSONObject();
 					object.put("roid", roid);
-					object.put("finalized", revision.isFinalized());
-					object.put("processingClashes", revision.isProcessingClashes());
+					object.put("state", revision.getState());
 					object.put("totalsize", revision.getSize());
+					object.put("lastError", revision.getLastError());
 					object.put("islast", (loginManager.getService().getProjectByPoid(revision.getProjectId()).getLastRevisionId() == revision.getOid()));
 					result.put(object);
 				}

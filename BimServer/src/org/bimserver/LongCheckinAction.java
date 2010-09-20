@@ -6,16 +6,23 @@ import org.bimserver.database.BimDatabase;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.CommitSet;
+import org.bimserver.database.Database;
 import org.bimserver.database.actions.CheckinPart2DatabaseAction;
+import org.bimserver.database.store.CheckinState;
 import org.bimserver.database.store.ConcreteRevision;
 import org.bimserver.database.store.Project;
+import org.bimserver.database.store.Revision;
 import org.bimserver.ifc.SerializerException;
 import org.bimserver.ifcengine.IfcEngineException;
 import org.bimserver.ifcengine.IfcEngineFactory;
 import org.bimserver.shared.UserException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class LongCheckinAction extends LongAction {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(LongCheckinAction.class);
 	private final CheckinPart2DatabaseAction createCheckinAction;
 	private final BimDatabase bimDatabase;
 	private final SchemaDefinition schema;
@@ -33,25 +40,43 @@ public class LongCheckinAction extends LongAction {
 	public void execute() {
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
-			createCheckinAction.execute(session);
-			runClashDetection(session);
-			session.commit();
-		} catch (UserException e) {
-			e.printStackTrace();
-		} catch (BimDatabaseException e) {
-			e.printStackTrace();
-		} catch (BimDeadlockException e) {
-			e.printStackTrace();
-		} catch (IfcEngineException e) {
-			e.printStackTrace();
-		} catch (SerializerException e) {
-			e.printStackTrace();
+			session.executeAndCommitAction(createCheckinAction, 10);
+			session.close();
+			session = bimDatabase.createReadOnlySession();
+			startClashDetection(session);
+		} catch (Exception e) {
+			LOGGER.error("", e);
+			long croid = createCheckinAction.getCroid();
+			try {
+				BimDatabaseSession rollBackSession = bimDatabase.createSession();
+				try {
+					Throwable throwable = e;
+					while (throwable.getCause() != null) {
+						throwable = throwable.getCause();
+					}
+					ConcreteRevision concreteRevision = rollBackSession.getConcreteRevision(croid);
+					concreteRevision.setState(CheckinState.ERROR);
+					concreteRevision.setLastError(throwable.getMessage());
+					for (Revision revision : concreteRevision.getRevisions()) {
+						revision.setState(CheckinState.ERROR);
+						revision.setLastError(throwable.getMessage());
+					}
+					rollBackSession.store(concreteRevision, new CommitSet(Database.STORE_PROJECT_ID, -1));
+					rollBackSession.commit();
+				} finally {
+					rollBackSession.close();
+				}
+			} catch (BimDeadlockException e1) {
+				LOGGER.error("", e1);
+			} catch (BimDatabaseException e1) {
+				LOGGER.error("", e1);
+			}
 		} finally {
 			session.close();
 		}
 	}
 
-	private void runClashDetection(BimDatabaseSession session) throws BimDeadlockException, BimDatabaseException, UserException, IfcEngineException, SerializerException {
+	private void startClashDetection(BimDatabaseSession session) throws BimDeadlockException, BimDatabaseException, UserException, IfcEngineException, SerializerException {
 		ConcreteRevision concreteRevision = session.getConcreteRevision(createCheckinAction.getCroid());
 		Project project = concreteRevision.getProject();
 		Project mainProject = project;

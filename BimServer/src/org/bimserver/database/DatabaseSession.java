@@ -39,6 +39,7 @@ import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.conditions.IsOfTypeCondition;
 import org.bimserver.database.query.literals.IntegerLiteral;
 import org.bimserver.database.query.literals.StringLiteral;
+import org.bimserver.database.store.CheckinState;
 import org.bimserver.database.store.Checkout;
 import org.bimserver.database.store.ConcreteRevision;
 import org.bimserver.database.store.Project;
@@ -228,7 +229,7 @@ public class DatabaseSession implements BimDatabaseSession {
 		database.convertAdditionToEObject(object, addition, processedAdditions, map);
 	}
 
-	public ConcreteRevision createNewConcreteRevision(long size, long poid, long uoid, String comment, boolean finalized) throws BimDatabaseException, BimDeadlockException {
+	public ConcreteRevision createNewConcreteRevision(long size, long poid, long uoid, String comment, CheckinState checkinState) throws BimDatabaseException, BimDeadlockException {
 		ConcreteRevision concreteRevision = StoreFactory.eINSTANCE.createConcreteRevision();
 		concreteRevision.setSize(size);
 		Date date = new Date();
@@ -237,8 +238,8 @@ public class DatabaseSession implements BimDatabaseSession {
 		concreteRevision.setId(project.getConcreteRevisions().size() + 1);
 		User user = getUserByUoid(uoid);
 		concreteRevision.setProject(project);
-		concreteRevision.setFinalized(finalized);
-		createNewVirtualRevision(project, concreteRevision, comment, date, user, size, finalized);
+		concreteRevision.setState(checkinState);
+		createNewVirtualRevision(project, concreteRevision, comment, date, user, size, checkinState);
 
 		for (Checkout checkout : project.getCheckouts()) {
 			if (checkout.getUser() == user) {
@@ -253,7 +254,7 @@ public class DatabaseSession implements BimDatabaseSession {
 			revision.setDate(date);
 			revision.setUser(user);
 			revision.setProject(parent);
-			revision.setFinalized(finalized);
+			revision.setState(checkinState);
 			if (parent.getLastRevision() != null) {
 				Revision lastRevision = parent.getLastRevision();
 				for (ConcreteRevision oldRevision : lastRevision.getConcreteRevisions()) {
@@ -278,7 +279,7 @@ public class DatabaseSession implements BimDatabaseSession {
 		return concreteRevision;
 	}
 
-	private void createNewVirtualRevision(Project project, ConcreteRevision revision, String comment, Date date, User user, long size, boolean finalized)
+	private void createNewVirtualRevision(Project project, ConcreteRevision revision, String comment, Date date, User user, long size, CheckinState checkinState)
 			throws BimDeadlockException {
 		Revision virtualRevision = StoreFactory.eINSTANCE.createRevision();
 		virtualRevision.setLastConcreteRevision(revision);
@@ -286,7 +287,7 @@ public class DatabaseSession implements BimDatabaseSession {
 		virtualRevision.setDate(date);
 		virtualRevision.setUser(user);
 		virtualRevision.setSize(size);
-		virtualRevision.setFinalized(finalized);
+		virtualRevision.setState(checkinState);
 		project.setLastRevision(virtualRevision);
 		virtualRevision.setId(project.getRevisions().size() + 1);
 		// RUBEN: Commented out on 17-09-2010, looks like this should never occur

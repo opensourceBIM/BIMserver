@@ -5,6 +5,7 @@ import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
 import org.bimserver.database.CommitSet;
 import org.bimserver.database.Database;
+import org.bimserver.database.store.CheckinState;
 import org.bimserver.database.store.ConcreteRevision;
 import org.bimserver.database.store.Revision;
 import org.bimserver.database.store.log.AccessMethod;
@@ -27,25 +28,37 @@ public class CheckinPart2DatabaseAction extends BimDatabaseAction<Void> {
 	@Override
 	public Void execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
 		ConcreteRevision concreteRevision = bimDatabaseSession.getConcreteRevision(croid);
-		for (Revision revision : concreteRevision.getRevisions()) {
-			revision.setFinalized(true);
-		}
-		concreteRevision.setFinalized(true);
-		if (concreteRevision.getProject().getConcreteRevisions().size() != 0) { // TODO: Check if this is not already 1
-			// There already was a revision, lets go delete em
-			bimDatabaseSession.clearProject(concreteRevision.getProject().getId(), concreteRevision.getId() - 1, concreteRevision.getId());
-		}
-		concreteRevision.getProject().setLastConcreteRevision(concreteRevision);
-		for (Revision virtualRevision : concreteRevision.getProject().getRevisions()) {
-			for (ConcreteRevision cr : virtualRevision.getConcreteRevisions()) {
-				if (concreteRevision == cr) {
-					concreteRevision.getProject().setLastRevision(virtualRevision);
+		try {
+			if (concreteRevision.getProject().getConcreteRevisions().size() != 0) { // TODO: Check if this is not already 1
+				// There already was a revision, lets go delete em
+				bimDatabaseSession.clearProject(concreteRevision.getProject().getId(), concreteRevision.getId() - 1, concreteRevision.getId());
+			}
+			bimDatabaseSession.store(getIfcModel().getValues(), concreteRevision.getProject().getId(), concreteRevision.getId());
+			for (Revision virtualRevision : concreteRevision.getProject().getRevisions()) {
+				for (ConcreteRevision cr : virtualRevision.getConcreteRevisions()) {
+					if (concreteRevision == cr) {
+						concreteRevision.getProject().setLastRevision(virtualRevision);
+					}
 				}
 			}
+			concreteRevision.getProject().setLastConcreteRevision(concreteRevision);
+			for (Revision revision : concreteRevision.getRevisions()) {
+				revision.setState(CheckinState.DONE);
+			}
+			concreteRevision.setState(CheckinState.DONE);
+			bimDatabaseSession.store(concreteRevision, new CommitSet(Database.STORE_PROJECT_ID, -1));
+			bimDatabaseSession.saveOidCounter();
+		} catch (Throwable e) {
+			if (e instanceof BimDeadlockException) {
+				// Let this one slide
+				throw (BimDeadlockException)e;
+			}
+			for (Revision revision : concreteRevision.getRevisions()) {
+				revision.setState(CheckinState.ERROR);
+				revision.setLastError(e.getMessage());
+			}
+			throw new UserException(e);
 		}
-		bimDatabaseSession.store(getIfcModel().getValues(), concreteRevision.getProject().getId(), concreteRevision.getId());
-		bimDatabaseSession.store(concreteRevision, new CommitSet(Database.STORE_PROJECT_ID, -1));
-		bimDatabaseSession.saveOidCounter();
 		return null;
 	}
 
