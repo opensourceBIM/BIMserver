@@ -124,6 +124,11 @@ public abstract class BimDatabaseAction<T> {
 	 * ifcModels MUST be ordered by date already
 	 */
 	public static IfcModel merge(Project project, LinkedHashSet<IfcModel> ifcModels) {
+		if (ifcModels.size() == 1) {
+			// Do no merging on only 1 model, same in - same out principle of
+			// Léon :)
+			return ifcModels.iterator().next();
+		}
 		IfcModel model = mergeScales(project, ifcModels);
 
 		// Seems like ifcModels are not always sorted, so we just do it (again)
@@ -137,7 +142,8 @@ public abstract class BimDatabaseAction<T> {
 		});
 		ifcModels = new LinkedHashSet<IfcModel>(tmpList);
 		if (ServerSettings.getSettings().isIntelligentMerging()) {
-			// Top-down merging, based on decomposed-by tree, starting with IfcProject
+			// Top-down merging, based on decomposed-by tree, starting with
+			// IfcProject
 			Set<EClass> todoList = new HashSet<EClass>();
 			todoList.add(Ifc2x3Package.eINSTANCE.getIfcProject());
 			while (!todoList.isEmpty()) {
@@ -161,7 +167,8 @@ public abstract class BimDatabaseAction<T> {
 						String guid = ifcRoot.getGlobalId().getWrappedValue();
 						if (guidMap.containsKey(guid)) {
 							if (guidMap.get(guid).get(0).eClass() != ifcRoot.eClass()) {
-								LOGGER.info("Not merging GUID " + guid + " because different types are found: " + guidMap.get(guid).get(0).eClass().getName() + " and " + ifcRoot.eClass().getName());
+								LOGGER.info("Not merging GUID " + guid + " because different types are found: " + guidMap.get(guid).get(0).eClass().getName() + " and "
+										+ ifcRoot.eClass().getName());
 							} else {
 								guidMap.get(guid).add(ifcRoot);
 							}
