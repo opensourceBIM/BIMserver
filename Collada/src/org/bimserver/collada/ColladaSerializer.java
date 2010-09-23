@@ -23,6 +23,7 @@ import org.bimserver.ifc.emf.Ifc2x3.IfcColumn;
 import org.bimserver.ifc.emf.Ifc2x3.IfcCurtainWall;
 import org.bimserver.ifc.emf.Ifc2x3.IfcDoor;
 import org.bimserver.ifc.emf.Ifc2x3.IfcFlowSegment;
+import org.bimserver.ifc.emf.Ifc2x3.IfcFurnishingElement;
 import org.bimserver.ifc.emf.Ifc2x3.IfcMember;
 import org.bimserver.ifc.emf.Ifc2x3.IfcPlate;
 import org.bimserver.ifc.emf.Ifc2x3.IfcProject;
@@ -167,7 +168,6 @@ public class ColladaSerializer extends BimModelSerializer {
 			setGeometry(out, ifcWall, ifcWall.getGlobalId().getWrappedValue(),
 					"Wall");
 		}
-
 		for (IfcStairFlight ifcStairFlight : ifcDatabase
 				.getAll(IfcStairFlight.class)) {
 			setGeometry(out, ifcStairFlight, ifcStairFlight.getGlobalId()
@@ -176,11 +176,16 @@ public class ColladaSerializer extends BimModelSerializer {
 		for (IfcFlowSegment ifcFlowSegment : ifcDatabase
 				.getAll(IfcFlowSegment.class)) {
 			setGeometry(out, ifcFlowSegment, ifcFlowSegment.getGlobalId()
-					.getWrappedValue(), "FlowSegment");
+					.getWrappedValue(), "Railing");
+		}
+		for (IfcFurnishingElement ifcFurnishingElement : ifcDatabase
+				.getAll(IfcFurnishingElement.class)) {
+			setGeometry(out, ifcFurnishingElement, ifcFurnishingElement.getGlobalId()
+					.getWrappedValue(), "FurnishingElement");
 		}
 		for (IfcPlate ifcPlate : ifcDatabase.getAll(IfcPlate.class)) {
 			setGeometry(out, ifcPlate,
-					ifcPlate.getGlobalId().getWrappedValue(), "Plate");
+					ifcPlate.getGlobalId().getWrappedValue(), "Wall");
 		}
 		for (IfcMember ifcMember : ifcDatabase.getAll(IfcMember.class)) {
 			setGeometry(out, ifcMember, ifcMember.getGlobalId()
@@ -194,7 +199,7 @@ public class ColladaSerializer extends BimModelSerializer {
 		for (IfcCurtainWall ifcCurtainWall : ifcDatabase
 				.getAll(IfcCurtainWall.class)) {
 			setGeometry(out, ifcCurtainWall, ifcCurtainWall.getGlobalId()
-					.getWrappedValue(), "CurtainWall");
+					.getWrappedValue(), "Window");
 		}
 		for (IfcRailing ifcRailing : ifcDatabase.getAll(IfcRailing.class)) {
 			setGeometry(out, ifcRailing, ifcRailing.getGlobalId()
@@ -669,7 +674,7 @@ public class ColladaSerializer extends BimModelSerializer {
 		out.println("                        </transparent>");
 		out.println("                        <transparency>");
 		out.println("                            <float>1</float>");
-		out.println("                        </transparency>");
+		out.println("                      </transparency>");
 		out.println("                        <index_of_refraction>");
 		out.println("                            <float>0</float>");
 		out.println("                        </index_of_refraction>");
