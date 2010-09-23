@@ -66,7 +66,6 @@ import org.bimserver.ifc.emf.Ifc2x3.IfcReinforcingBar;
 import org.bimserver.ifc.emf.Ifc2x3.IfcReinforcingMesh;
 import org.bimserver.ifc.emf.Ifc2x3.IfcRelAggregates;
 import org.bimserver.ifc.emf.Ifc2x3.IfcRelConnectsStructuralMember;
-import org.bimserver.ifc.emf.Ifc2x3.IfcRelDecomposes;
 import org.bimserver.ifc.emf.Ifc2x3.IfcRibPlateProfileProperties;
 import org.bimserver.ifc.emf.Ifc2x3.IfcRightCircularCone;
 import org.bimserver.ifc.emf.Ifc2x3.IfcRightCircularCylinder;
@@ -161,7 +160,11 @@ public abstract class BimDatabaseAction<T> {
 					if (eClass == null || eClass.isInstance(idEObject)) {
 						String guid = ifcRoot.getGlobalId().getWrappedValue();
 						if (guidMap.containsKey(guid)) {
-							guidMap.get(guid).add(ifcRoot);
+							if (guidMap.get(guid).get(0).eClass() != ifcRoot.eClass()) {
+								LOGGER.info("Not merging GUID " + guid + " because different types are found: " + guidMap.get(guid).get(0).eClass().getName() + " and " + ifcRoot.eClass().getName());
+							} else {
+								guidMap.get(guid).add(ifcRoot);
+							}
 						} else {
 							List<IdEObject> list = new ArrayList<IdEObject>();
 							list.add(ifcRoot);
