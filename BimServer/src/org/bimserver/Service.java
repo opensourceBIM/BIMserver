@@ -407,6 +407,9 @@ public class Service implements ServiceInterface {
 
 	private <T> List<T> convert(Collection<? extends IdEObject> list, Class<T> targetClass, BimDatabaseSession bimDatabaseSession) {
 		List<T> newList = new ArrayList<T>();
+		if (list == null) {
+			return null;
+		}
 		for (IdEObject eObject : list) {
 			newList.add(convert(eObject, targetClass, bimDatabaseSession));
 		}
