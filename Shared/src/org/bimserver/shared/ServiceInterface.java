@@ -49,7 +49,7 @@ import org.bimserver.interfaces.objects.SUser;
  * This interface defines all functions that are made available via SOAP, but also used by the JSP web interface
  */
 @WebService
-@SOAPBinding(style=Style.RPC, use=Use.LITERAL, parameterStyle=ParameterStyle.BARE)
+@SOAPBinding(style=Style.DOCUMENT, use=Use.LITERAL, parameterStyle=ParameterStyle.BARE)
 public interface ServiceInterface {
 	/** This method exists only to test the underlying connection (such as SOAP)
 	 *  
