@@ -126,7 +126,11 @@ public class DownloadServlet extends HttpServlet {
 			}
 			EmfSerializer serializer = (EmfSerializer) checkoutResult.getFile().getDataSource();
 			if (request.getParameter("zip") != null && request.getParameter("zip").equals("on")) {
-				response.setHeader("Content-Disposition", "inline; filename=\"" + checkoutResult.getFile().getName() + ".zip" + "\"");
+				if (resultType == ResultType.IFC) {
+					response.setHeader("Content-Disposition", "inline; filename=\"" + checkoutResult.getFile().getName().replace(".ifc", ".ifczip") + "\"");
+				} else {
+					response.setHeader("Content-Disposition", "inline; filename=\"" + checkoutResult.getFile().getName() + ".zip" + "\"");
+				}
 				response.setContentType("application/zip");
 				String name = checkoutResult.getProjectName() + "." + checkoutResult.getRevisionNr() + "." + resultType.getDefaultExtension();
 				ZipOutputStream zipOutputStream = new ZipOutputStream(response.getOutputStream());
