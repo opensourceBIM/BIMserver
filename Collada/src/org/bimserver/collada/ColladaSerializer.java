@@ -340,6 +340,7 @@ public class ColladaSerializer extends BimModelSerializer {
 	}
 
 	private void writeEffects(PrintWriter out) {
+		out.println("	<library_effects>");
 		writeEffect(out, "Space", new float[]{0.137255f, 0.403922f, 0.870588f});
 		writeEffect(out, "Roof", new float[]{0.837255f, 0.203922f, 0.270588f});
 		writeEffect(out, "Slab", new float[]{0.637255f, 0.603922f, 0.670588f});
@@ -353,7 +354,6 @@ public class ColladaSerializer extends BimModelSerializer {
 	}
 
 	private void writeEffect(PrintWriter out, String name, float[] colors) {
-		out.println("	<library_effects>");
 		out.println("        <effect id=\"" + name + "-fx\">");
 		out.println("            <profile_COMMON>");
 		out.println("                <technique sid=\"common\">");
