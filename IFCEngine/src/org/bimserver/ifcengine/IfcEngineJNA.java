@@ -22,17 +22,17 @@ import com.sun.jna.ptr.PointerByReference;
  * 
  */
 public class IfcEngineJNA {
-//	private static final String IFC_ENGINE_DLL_32 = "32" + File.separator
-//			+ "IFCEngine.dll";
-//	private static final String IFC_ENGINE_DLL_64 = "64" + File.separator
-//			+ "IFCEngine.dll";
-//	private static final String IFC_ENGINE_SO_32 = "32" + File.separator
-//			+ "libifcengine_linux.so";
-//	private static final String IFC_ENGINE_SO_64 = "64" + File.separator
-//			+ "libifcengine_linux.so";
-//	private String libraryPath;
-//	private static final Logger LOGGER = LoggerFactory
-//			.getLogger(IfcEngineJNA.class);
+	// private static final String IFC_ENGINE_DLL_32 = "32" + File.separator
+	// + "IFCEngine.dll";
+	// private static final String IFC_ENGINE_DLL_64 = "64" + File.separator
+	// + "IFCEngine.dll";
+	// private static final String IFC_ENGINE_SO_32 = "32" + File.separator
+	// + "libifcengine_linux.so";
+	// private static final String IFC_ENGINE_SO_64 = "64" + File.separator
+	// + "libifcengine_linux.so";
+	// private String libraryPath;
+	// private static final Logger LOGGER = LoggerFactory
+	// .getLogger(IfcEngineJNA.class);
 
 	public static final int D3DFVF_XYZ = 0x002;
 	public static final int D3DFVF_XYZRHW = 0x004;
@@ -50,49 +50,50 @@ public class IfcEngineJNA {
 
 	public void loadFromInputStream(final InputStream in) {
 		final Memory pResponseBuffer = new Memory(1024);
-//		IfcEngineInterface.StreamCallback fn = new IfcEngineInterface.StreamCallback() {
-//
-//			public void invoke(int sig) {
-//				if (sig == IfcEngineInterface.SIGUSR1)
-//					try {
-//						in.read(pResponseBuffer.getByteArray(0, 1024));
-//					} catch (IOException e) {
-//						e.printStackTrace();
-//					}
-//			}
-//		};
-//		IfcEngineInterface.StreamCallback old_handler = engine.signal(
-//				IfcEngineInterface.SIGUSR1, fn);
+		// IfcEngineInterface.StreamCallback fn = new
+		// IfcEngineInterface.StreamCallback() {
+		//
+		// public void invoke(int sig) {
+		// if (sig == IfcEngineInterface.SIGUSR1)
+		// try {
+		// in.read(pResponseBuffer.getByteArray(0, 1024));
+		// } catch (IOException e) {
+		// e.printStackTrace();
+		// }
+		// }
+		// };
+		// IfcEngineInterface.StreamCallback old_handler = engine.signal(
+		// IfcEngineInterface.SIGUSR1, fn);
 		Pointer callbackAddress = engine.raise(IfcEngineInterface.SIGUSR1);
 		engine.sdaiOpenModelByStream(callbackAddress, pResponseBuffer);
 	}
 
-//	public IfcEngineJNA(File nativeBaseDir) {
-//		this();
-//
-//		if (System.getProperty("os.name").startsWith("Windows")) {
-//			if (System.getProperty("sun.arch.data.model").equals("32")) {
-//				libraryPath = nativeBaseDir.getAbsolutePath() + File.separator
-//						+ IFC_ENGINE_DLL_32;
-//			} else if (System.getProperty("sun.arch.data.model").equals("64")) {
-//				libraryPath = nativeBaseDir.getAbsolutePath() + File.separator
-//						+ IFC_ENGINE_DLL_64;
-//			} else {
-//				throw new RuntimeException("Unknown JVM data model");
-//			}
-//		} else {
-//			if (System.getProperty("sun.arch.data.model").equals("32")) {
-//				libraryPath = nativeBaseDir.getAbsolutePath() + File.separator
-//						+ IFC_ENGINE_SO_32;
-//			} else if (System.getProperty("sun.arch.data.model").equals("64")) {
-//				libraryPath = nativeBaseDir.getAbsolutePath() + File.separator
-//						+ IFC_ENGINE_SO_64;
-//			} else {
-//				throw new RuntimeException("Unknown JVM data model");
-//			}
-//		}
-//		LOGGER.info("Using " + libraryPath + " as IFCEngine");
-//	}
+	// public IfcEngineJNA(File nativeBaseDir) {
+	// this();
+	//
+	// if (System.getProperty("os.name").startsWith("Windows")) {
+	// if (System.getProperty("sun.arch.data.model").equals("32")) {
+	// libraryPath = nativeBaseDir.getAbsolutePath() + File.separator
+	// + IFC_ENGINE_DLL_32;
+	// } else if (System.getProperty("sun.arch.data.model").equals("64")) {
+	// libraryPath = nativeBaseDir.getAbsolutePath() + File.separator
+	// + IFC_ENGINE_DLL_64;
+	// } else {
+	// throw new RuntimeException("Unknown JVM data model");
+	// }
+	// } else {
+	// if (System.getProperty("sun.arch.data.model").equals("32")) {
+	// libraryPath = nativeBaseDir.getAbsolutePath() + File.separator
+	// + IFC_ENGINE_SO_32;
+	// } else if (System.getProperty("sun.arch.data.model").equals("64")) {
+	// libraryPath = nativeBaseDir.getAbsolutePath() + File.separator
+	// + IFC_ENGINE_SO_64;
+	// } else {
+	// throw new RuntimeException("Unknown JVM data model");
+	// }
+	// }
+	// LOGGER.info("Using " + libraryPath + " as IFCEngine");
+	// }
 
 	static public class SurfaceProperties {
 		private Pointer model;
@@ -493,7 +494,7 @@ public class IfcEngineJNA {
 	private int getPlatformMultiplier() {
 		return System.getProperty("sun.arch.data.model").equals("32") ? 1 : 2;
 	}
-	
+
 	/**
 	 * @param modelId
 	 * @param size
@@ -507,7 +508,7 @@ public class IfcEngineJNA {
 		for (int i = 0; i < size; i++) {
 			Long eid1 = pG1.getLong(i * 8);
 			Long eid2 = pG2.getLong(i * 8);
-			
+
 			EidClash clash = StoreFactory.eINSTANCE.createEidClash();
 			clash.setEid1(eid1);
 			clash.setEid2(eid2);
@@ -1373,5 +1374,20 @@ public class IfcEngineJNA {
 		engine.initializeClashes(model, pV, dist);
 		int noClashes = pV.getValue();
 		return noClashes;
+	}
+
+	/**
+	 * Returns a numeric aggregateID that uniquely identifies the aggregate that
+	 * holds all instances of one particular type and its sub-types in a model.
+	 * 
+	 * @param model
+	 *            Unique number identifying the model in the opened file.
+	 * @param entityName
+	 *            Name of the Entity.
+	 * @return a numeric aggregateID
+	 **/
+	public Pointer xxxxGetEntityAndSubTypesExtentBN(Pointer model,
+			String entityName) {
+		return engine.xxxxGetEntityAndSubTypesExtentBN(model, entityName);
 	}
 }

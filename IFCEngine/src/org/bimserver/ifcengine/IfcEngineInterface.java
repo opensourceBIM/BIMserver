@@ -17,18 +17,21 @@ public interface IfcEngineInterface extends Library {
 			"IFCEngine", IfcEngineInterface.class);
 	// Optional: wraps every call to the native library in a
 	// synchronized block, limiting native calls to one at a time
-//	IfcEngineInterface SYNC_INSTANCE = (IfcEngineInterface) Native
-//			.synchronizedLibrary(INSTANCE);
+	// IfcEngineInterface SYNC_INSTANCE = (IfcEngineInterface) Native
+	// .synchronizedLibrary(INSTANCE);
 
 	int SIGUSR1 = 30;
-	interface StreamCallback extends Callback {
-        void invoke(int signal);        
-    }
-	StreamCallback signal(int sig, StreamCallback fn);
-    Pointer raise(int sig);
 
-    void sdaiOpenModelByStream(Pointer callbackAddress, Pointer pResponseBuffer);
-    
+	interface StreamCallback extends Callback {
+		void invoke(int signal);
+	}
+
+	StreamCallback signal(int sig, StreamCallback fn);
+
+	Pointer raise(int sig);
+
+	void sdaiOpenModelByStream(Pointer callbackAddress, Pointer pResponseBuffer);
+
 	/**
 	 * Change the number of segments a circle should be represented as.
 	 * 
@@ -132,14 +135,13 @@ public interface IfcEngineInterface extends Library {
 	int initializeModellingInstance(Pointer model, IntByReference pV,
 			IntByReference pI, double scale, Pointer instance);
 
-	
 	int initializeModelling(Pointer model, IntByReference pV,
 			IntByReference pI, double scale);
 
 	void initializeClashes(Pointer model, IntByReference pV, double diff);
-	
+
 	void setPostProcessing(Pointer model, int on);
-	
+
 	/**
 	 * @param model
 	 * @param pV
@@ -489,7 +491,8 @@ public interface IfcEngineInterface extends Library {
 	 * @param express_id
 	 * @return
 	 */
-	Pointer sdaiCreateInstanceBNEI(Pointer model, String entityName, int express_id);
+	Pointer sdaiCreateInstanceBNEI(Pointer model, String entityName,
+			int express_id);
 
 	/**
 	 * Creates an iterator for an existing aggregation.
@@ -567,4 +570,16 @@ public interface IfcEngineInterface extends Library {
 	 * @return a numeric attributeID
 	 */
 	Pointer sdaiGetAttrDefinition(Pointer entity, String attributeName);
+
+	/**
+	 * Returns a numeric aggregateID that uniquely identifies the aggregate that
+	 * holds all instances of one particular type and its sub-types in a model.
+	 * 
+	 * @param model
+	 *            Unique number identifying the model in the opened file.
+	 * @param entityName
+	 *            Name of the Entity.
+	 * @return a numeric aggregateID
+	 */
+	Pointer xxxxGetEntityAndSubTypesExtentBN(Pointer model, String entityName);
 }
