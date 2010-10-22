@@ -12,15 +12,20 @@ public class IndexBuffer extends SceneJsonObject {
 		put("properties", indexProperties);
 		JSONObject custom = new JSONObject();
 		put("custom", custom);
-		JSONArray fields = new JSONArray();
-		JSONArray binaryRange = new JSONArray();
-		custom.put("fields", fields);
-		custom.put("binaryRange", binaryRange);
-		fields.put(fieldId);
+//		JSONArray fields = new JSONArray();
+//		JSONArray binaryRange = new JSONArray();
+//		custom.put("fields", fields);
+//		custom.put("binaryRange", binaryRange);
+		custom.put("fieldData", new JSONArray());
+//		fields.put(fieldId);
 	}
 	
-	public void setBinaryRange(int from, int to) throws JSONException {
-		getJSONObject("custom").getJSONArray("binaryRange").put(from);
-		getJSONObject("custom").getJSONArray("binaryRange").put(to);
+	public void addFieldData(FieldData fieldData) throws JSONException {
+		getJSONObject("custom").getJSONArray("fieldData").put(fieldData);
 	}
+	
+//	public void setBinaryRange(int from, int to) throws JSONException {
+//		getJSONObject("custom").getJSONArray("binaryRange").put(from);
+//		getJSONObject("custom").getJSONArray("binaryRange").put(to);
+//	}
 }

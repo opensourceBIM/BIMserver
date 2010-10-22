@@ -125,11 +125,11 @@ $(document).ready(function(){
 			<%
 				if (request.getParameter("guid") != null) {
 			%>
-			doload(o3djs.util.getCurrentURI() + 'download?roid=<%=request.getParameter("roid") %>&guids=<%=request.getParameter("guid")%>&resultType=O3D_JSON', "browservisualizeloader");
+			loadFile(o3djs.util.getCurrentURI() + 'download?roid=<%=request.getParameter("roid") %>&guids=<%=request.getParameter("guid")%>&resultType=O3D_JSON', "browservisualizeloader");
 			<%					
 				} else if (request.getParameter("oid") != null) {
 			%>
-			doload(o3djs.util.getCurrentURI() + 'download?roid=<%=request.getParameter("roid") %>&oids=<%=request.getParameter("oid")%>&resultType=O3D_JSON', "browservisualizeloader");
+			loadFile(o3djs.util.getCurrentURI() + 'download?roid=<%=request.getParameter("roid") %>&oids=<%=request.getParameter("oid")%>&resultType=O3D_JSON', "browservisualizeloader");
 			<%	
 				}
 			%>

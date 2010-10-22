@@ -19,6 +19,7 @@
 <script src="js/main.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/jquery-1.4.2.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/thickbox-compressed.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/tabber-minimized.js" type="text/javascript" charset="utf-8"></script>
 <link rel="stylesheet" href="css/lightwindow.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="css/thickbox.css" type="text/css" media="screen" />
 <script type="text/javascript">
@@ -90,6 +91,5 @@
 		}
 	}
 </script>
-<script src="js/tabber-minimized.js" type="text/javascript" charset="utf-8"></script>
 </head>
 <body>

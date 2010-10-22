@@ -713,7 +713,7 @@ for (SRevision sRevision : revisions) {
 					}
 			    }});
 			}
-		}, 1000);
+		}, 100000);
 	});
 </script>
 <%
