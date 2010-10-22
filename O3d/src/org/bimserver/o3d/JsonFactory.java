@@ -50,4 +50,8 @@ public class JsonFactory {
 	public Material createMaterial(String name, Color color, float opacity) throws JSONException {
 		return new Material(incCounter(), name, color, opacity);
 	}
+
+	public FieldData createFieldData(int id, String type, int numComponents) throws JSONException {
+		return new FieldData(id, type, numComponents);
+	}
 }

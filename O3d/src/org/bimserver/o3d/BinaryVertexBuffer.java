@@ -10,19 +10,32 @@ import org.bimserver.utils.LittleEndianBinUtils;
 public class BinaryVertexBuffer {
 
 	private final List<Float> vertices = new ArrayList<Float>();
+	private final List<Float> normals = new ArrayList<Float>();
 	
 	public void addVertex(float vertex) {
-		vertices.add(vertex);
+		getVertices().add(vertex);
 	}
 
 	public int getNrVertices() {
-		return vertices.size();
+		return getVertices().size();
 	}
 
 	public void serialize(OutputStream outputStream) throws IOException {
-		outputStream.write(LittleEndianBinUtils.intToByteArray(vertices.size()/6));
-		for (Float vertex : vertices) {
+		outputStream.write(LittleEndianBinUtils.intToByteArray(getVertices().size()/6));
+		for (Float vertex : getVertices()) {
 			outputStream.write(LittleEndianBinUtils.floatToByteArray(vertex));
 		}
+	}
+
+	public List<Float> getVertices() {
+		return vertices;
+	}
+
+	public void addNormal(float normal) {
+		normals.add(normal);
+	}
+
+	public List<Float> getNormals() {
+		return normals;
 	}
 }

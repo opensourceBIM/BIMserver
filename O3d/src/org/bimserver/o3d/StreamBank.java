@@ -20,7 +20,7 @@ public class StreamBank extends SceneJsonObject {
 		custom.put("vertexStreams", vertexStreams);
 	}
 
-	public void addStream(Stream stream ) throws JSONException {
+	public void addStream(Stream stream) throws JSONException {
 		JSONObject streamObject = new JSONObject();
 		streamObject.put("stream", stream);
 		vertexStreams.put(streamObject);

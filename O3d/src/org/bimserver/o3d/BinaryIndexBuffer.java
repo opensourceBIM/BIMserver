@@ -19,6 +19,10 @@ public class BinaryIndexBuffer {
 		return indices.size();
 	}
 
+	public List<Integer> getIndices() {
+		return indices;
+	}
+	
 	public void serialize(OutputStream outputStream) throws IOException {
 		outputStream.write(LittleEndianBinUtils.intToByteArray(indices.size()));
 		for (Integer index : indices) {

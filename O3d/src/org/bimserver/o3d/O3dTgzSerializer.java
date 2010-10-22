@@ -6,8 +6,8 @@ import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.zip.GZIPOutputStream;
 
 import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
 
@@ -46,16 +46,21 @@ import org.eclipse.emf.ecore.EObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class O3dJsonSerializer extends BimModelSerializer {
-	private static final Logger LOGGER = LoggerFactory.getLogger(O3dJsonSerializer.class);
+import com.ice.tar.TarEntry;
+import com.ice.tar.TarOutputStream;
+
+public class O3dTgzSerializer extends BimModelSerializer {
+	private static final Logger LOGGER = LoggerFactory.getLogger(O3dTgzSerializer.class);
 	private final SchemaDefinition schemaDefinition;
 	private final FailSafeIfcEngine ifcEngine;
 	private int convertCounter;
+	private BinaryIndexFile binaryIndexFile = new BinaryIndexFile();
+	private BinaryVertexFile binaryVertexFile = new BinaryVertexFile();
 	private SimpleMode mode = SimpleMode.BUSY;
 	private final Project project;
 	private final User user;
 
-	public O3dJsonSerializer(Project project, User user, String fileName, IfcModel model, FieldIgnoreMap fieldIgnoreMap, SchemaDefinition schemaDefinition, IfcEngineFactory ifcEngineFactory) throws SerializerException {
+	public O3dTgzSerializer(Project project, User user, String fileName, IfcModel model, FieldIgnoreMap fieldIgnoreMap, SchemaDefinition schemaDefinition, IfcEngineFactory ifcEngineFactory) throws SerializerException {
 		super(fileName, model, fieldIgnoreMap);
 		this.project = project;
 		this.user = user;
@@ -71,18 +76,40 @@ public class O3dJsonSerializer extends BimModelSerializer {
 	public int write(OutputStream out) {
 		if (mode == SimpleMode.BUSY) {
 			try {
+				GZIPOutputStream gzipOutputStream = new GZIPOutputStream(out);
+				TarOutputStream tarOutputStream = new TarOutputStream(gzipOutputStream, 512, 512);
+				TarEntry tarEntry = new TarEntry("aaaaaaaa.o3d");
+				tarEntry.setSize(3);
+				tarOutputStream.putNextEntry(tarEntry);
+				tarOutputStream.write("o3d".getBytes("UTF-8"));
+				tarOutputStream.closeEntry();
 				try {
 					Scene scene = createScene();
-					PrintWriter printWriter = new PrintWriter(out);
-					scene.write(printWriter);
-					PrintWriter printWriter2 = new PrintWriter(System.out);
-					scene.write(printWriter2);
-					printWriter2.flush();
-					printWriter.flush();
+					byte[] buffer = serialize(scene);
+					TarEntry sceneEntry = new TarEntry("scene.json");
+					sceneEntry.setSize(buffer.length);
+					tarOutputStream.putNextEntry(sceneEntry);
+					tarOutputStream.write(buffer);
+					tarOutputStream.closeEntry();
+
+					TarEntry indexEntry = new TarEntry("index-buffers.bin");
+					indexEntry.setSize(binaryIndexFile.getNextOffset());
+					tarOutputStream.putNextEntry(indexEntry);
+					binaryIndexFile.serialize(tarOutputStream);
+					tarOutputStream.closeEntry();
+
+					TarEntry vertexEntry = new TarEntry("vertex-buffers.bin");
+					vertexEntry.setSize(binaryVertexFile.getNextOffset());
+					tarOutputStream.putNextEntry(vertexEntry);
+					binaryVertexFile.serialize(tarOutputStream);
+					tarOutputStream.closeEntry();
 				} catch (JSONException e) {
 					LOGGER.error("", e);
 				}
+				tarOutputStream.finish();
+				tarOutputStream.flush();
 				out.flush();
+				gzipOutputStream.finish();
 				mode = SimpleMode.DONE;
 				ifcEngine.close();
 				return 1;
@@ -123,26 +150,20 @@ public class O3dJsonSerializer extends BimModelSerializer {
 		IfcDatabase database = new IfcDatabase(model, getFieldIgnoreMap());
 		Class[] eClasses = new Class[] { IfcSlab.class, IfcRoof.class, IfcWall.class, IfcWallStandardCase.class, IfcWindow.class, IfcDoor.class, IfcColumn.class, IfcRamp.class,
 				IfcStair.class, IfcStairFlight.class };
-		int fieldId1 = jsonFactory.incCounter();
-		int fieldId2 = jsonFactory.incCounter();
-		int fieldId3 = jsonFactory.incCounter();
-		StreamBank streamBank = jsonFactory.createStreamBank();
-		streamBank.addStream(jsonFactory.createStream(1, fieldId1, 0));
-		streamBank.addStream(jsonFactory.createStream(2, fieldId2, 0));
-		VertexBuffer vertexBuffer = jsonFactory.createVertexBuffer(fieldId1, fieldId2);
-		scene.addVertexBuffer(vertexBuffer);
-		IndexBuffer indexBuffer = jsonFactory.createIndexBuffer(fieldId3);
-		scene.addIndexBuffer(indexBuffer);
-		scene.addStreamBank(streamBank);
-		FieldData indexFieldData = jsonFactory.createFieldData(fieldId3, "o3d.UInt32Field", 1);
-		FieldData vertexFieldData = jsonFactory.createFieldData(fieldId1, "o3d.FloatField", 3);
-		FieldData normalFieldData = jsonFactory.createFieldData(fieldId2, "o3d.FloatField", 3);
-		vertexBuffer.addFieldData(vertexFieldData);
-		vertexBuffer.addFieldData(normalFieldData);
-		indexBuffer.addFieldData(indexFieldData);
 		try {
 			for (Class<? extends EObject> eClass : eClasses) {
 				for (Object object : database.getAll(eClass)) {
+					int fieldId1 = jsonFactory.incCounter();
+					int fieldId2 = jsonFactory.incCounter();
+					int fieldId3 = jsonFactory.incCounter();
+					StreamBank streamBank = jsonFactory.createStreamBank();
+					streamBank.addStream(jsonFactory.createStream(1, fieldId1, 0));
+					streamBank.addStream(jsonFactory.createStream(2, fieldId2, 0));
+					scene.addStreamBank(streamBank);
+					VertexBuffer vertexBuffer = jsonFactory.createVertexBuffer(fieldId1, fieldId2);
+					scene.addVertexBuffer(vertexBuffer);
+					IndexBuffer indexBuffer = jsonFactory.createIndexBuffer(fieldId3);
+					scene.addIndexBuffer(indexBuffer);
 					IfcRoot ifcRoot = (IfcRoot) object;
 					Shape shape = jsonFactory.createShape(ifcRoot.getGlobalId().getWrappedValue());
 					scene.addShape(shape);
@@ -175,16 +196,17 @@ public class O3dJsonSerializer extends BimModelSerializer {
 							primitive.setMaterial(rampMaterial);
 						}
 						primitive.setNumberPrimitives(setGeometryResult.getAddedIndices() / 3);
-						primitive.setNumberVertices(setGeometryResult.getAddedVertices() / 6);
-						primitive.setStartIndex(indexFieldData.getSize());
+						primitive.setNumberVertices(setGeometryResult.getAddedVertices() / 3);
+						primitive.setStartIndex(0);
 						primitive.setStreamBank(streamBank);
 						primitive.setOwner(shape);
 						scene.addPrimitive(primitive);
 						shape.setPrimitive(primitive);
 						
-						indexFieldData.addDataIntegers(vertexFieldData.getSize(), setGeometryResult.getBinaryIndexBuffer().getIndices());
-						vertexFieldData.addDataFloats(setGeometryResult.getBinaryVertexBuffer().getVertices());
-						normalFieldData.addDataFloats(setGeometryResult.getBinaryVertexBuffer().getNormals());
+						binaryIndexFile.addBuffer(setGeometryResult.getBinaryIndexBuffer());
+						binaryVertexFile.addBuffer(setGeometryResult.getBinaryVertexBuffer());
+//						indexBuffer.setBinaryRange(binaryIndexFile.getCurrentOffset(), binaryIndexFile.getNextOffset());
+//						vertexBuffer.setBinaryRange(binaryVertexFile.getCurrentOffset(), binaryVertexFile.getNextOffset());
 					}
 				}
 			}
@@ -200,6 +222,7 @@ public class O3dJsonSerializer extends BimModelSerializer {
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		OutputStreamWriter outputStreamWriter = new OutputStreamWriter(baos);
 		try {
+//			sceneFile.write(outputStreamWriter);
 			outputStreamWriter.write(sceneFile.toString());
 			outputStreamWriter.close();
 		} catch (IOException e) {
