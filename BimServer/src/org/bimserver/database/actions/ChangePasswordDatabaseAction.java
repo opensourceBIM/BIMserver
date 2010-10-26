@@ -29,6 +29,10 @@ public class ChangePasswordDatabaseAction extends BimDatabaseAction<Boolean> {
 	@Override
 	public Boolean execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
 		if (uoid == actingUoid) {
+			User user = bimDatabaseSession.getUserByUoid(uoid);
+			if (user.getUserType() == UserType.ANONYMOUS) {
+				throw new UserException("Password of anonymous user cannot be changed");
+			}
 			return changePassword(bimDatabaseSession, false);
 		} else {
 			User actingUser = bimDatabaseSession.getUserByUoid(actingUoid);
