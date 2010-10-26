@@ -30,8 +30,11 @@ public class GetAllUsersDatabaseAction extends BimDatabaseAction<Set<User>> {
 
 	@Override
 	public Set<User> execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
-		Condition condition = new IsOfTypeCondition(StorePackage.eINSTANCE.getUser());
 		User actingUser = bimDatabaseSession.getUserByUoid(actingUoid);
+		if (actingUser.getUserType() == UserType.ANONYMOUS) {
+			throw new UserException("Anonymous users are not allowed to list all users");
+		}
+		Condition condition = new IsOfTypeCondition(StorePackage.eINSTANCE.getUser());
 		if (actingUser.getUserType() != UserType.ADMIN) {
 			condition.and(new AttributeCondition(StorePackage.eINSTANCE.getUser_State(), new EnumLiteral(ObjectState.ACTIVE)));
 		}
