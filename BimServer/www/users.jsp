@@ -38,7 +38,7 @@
 	<td><a href="user.jsp?uoid=<%=user.getOid() %>"><%=user.getName() %></a></td>
 	<td><a href="user.jsp?uoid=<%=user.getOid() %>"><%=user.getUsername() %></a></td>
 	<td><%=dateFormat.format(user.getCreatedOn()) %></td>
-	<td><%=dateFormat.format(user.getLastSeen()) %></td>
+	<td><%=user.getLastSeen() == null ? "never" : dateFormat.format(user.getLastSeen()) %></td>
 	<td>
 <%
 	if (user.getUserType() != SUserType.ADMIN && user.getUserType() != SUserType.ANONYMOUS) {

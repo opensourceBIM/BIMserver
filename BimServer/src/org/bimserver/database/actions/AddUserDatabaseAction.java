@@ -56,7 +56,7 @@ public class AddUserDatabaseAction extends BimDatabaseAction<Long> {
 		user.setCreatedOn(new Date());
 		user.setCreatedBy(bimDatabaseSession.getUserByUoid(createrUoid));
 		user.setUserType(userType);
-		user.setLastSeen(new Date());
+		user.setLastSeen(null);
 		NewUserAdded newUserAdded = LogFactory.eINSTANCE.createNewUserAdded();
 		newUserAdded.setUser(user);
 		newUserAdded.setExecutor(actingUser);

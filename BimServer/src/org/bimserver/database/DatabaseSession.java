@@ -812,7 +812,11 @@ public class DatabaseSession implements BimDatabaseSession {
 		} else if (classifier == EcorePackage.eINSTANCE.getEBoolean()) {
 			return buffer.get() == 1;
 		} else if (classifier == EcorePackage.eINSTANCE.getEDate()) {
-			return new Date(buffer.getLong());
+			long val = buffer.getLong();
+			if (val == -1L) {
+				return null;
+			}
+			return new Date(val);
 		} else if (classifier == EcorePackage.eINSTANCE.getEByteArray()) {
 			int size = buffer.getInt();
 			byte[] result = new byte[size];
@@ -880,7 +884,7 @@ public class DatabaseSession implements BimDatabaseSession {
 			buffer.put(((Boolean) value) ? (byte) 1 : (byte) 0);
 		} else if (feature.getEType() == EcorePackage.eINSTANCE.getEDate()) {
 			if (value == null) {
-				buffer.put(new byte[8]);
+				buffer.putLong(-1L);
 			} else {
 				buffer.putLong(((Date) value).getTime());
 			}

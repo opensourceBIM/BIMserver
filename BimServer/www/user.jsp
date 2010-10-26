@@ -55,7 +55,7 @@
 <tr><td class="first">Name</td><td><%=user.getName() %></td></tr>
 <tr><td class="first">Username</td><td><%=user.getUsername() %></td></tr>
 <tr><td class="first">Created on</td><td><%=dateFormat.format(user.getCreatedOn()) %></td></tr>
-<tr><td class="first">Last seen</td><td><%=dateFormat.format(user.getLastSeen()) %></td></tr>
+<tr><td class="first">Last seen</td><td><%=user.getLastSeen() == null ? "never" : dateFormat.format(user.getLastSeen()) %></td></tr>
 <tr><td class="first">State</td><td><%=user.getState().name().toLowerCase() %></td></tr>
 <% SUser currentUser = loginManager.getService().getUserByUoid(loginManager.getUoid());
 if (currentUser.getOid() == uoid || currentUser.getUserType() == SUserType.ADMIN) { %>
