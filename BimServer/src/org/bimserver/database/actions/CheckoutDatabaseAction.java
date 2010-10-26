@@ -14,6 +14,7 @@ import org.bimserver.database.store.Project;
 import org.bimserver.database.store.Revision;
 import org.bimserver.database.store.StoreFactory;
 import org.bimserver.database.store.User;
+import org.bimserver.database.store.UserType;
 import org.bimserver.database.store.log.AccessMethod;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.shared.UserException;
@@ -33,6 +34,9 @@ public class CheckoutDatabaseAction extends BimDatabaseAction<IfcModel> {
 	public IfcModel execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDatabaseException, BimDeadlockException {
 		DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
 		User user = bimDatabaseSession.getUserByUoid(uoid);
+		if (user.getUserType() == UserType.ANONYMOUS) {
+			throw new UserException("Anonymous user is never allowed to checkout revisions");
+		}
 		Revision revision = bimDatabaseSession.getVirtualRevision(roid);
 		Project project = revision.getProject();
 		if (user.getHasRightsOn().contains(project)) {
