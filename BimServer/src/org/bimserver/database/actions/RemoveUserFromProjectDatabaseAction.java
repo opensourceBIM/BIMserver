@@ -34,6 +34,17 @@ public class RemoveUserFromProjectDatabaseAction extends BimDatabaseAction<Boole
 		User user = bimDatabaseSession.getUserByUoid(uoid);
 		User actingUser = bimDatabaseSession.getUserByUoid(actingUoid);
 		if (actingUser.getUserType() == UserType.ADMIN || project.getHasAuthorizedUsers().contains(actingUser)) {
+			if (user.getUserType() == UserType.ADMIN) {
+				int nrAdmins = 0;
+				for (User authUser : project.getHasAuthorizedUsers()) {
+					if (authUser.getUserType() == UserType.ADMIN) {
+						nrAdmins++;
+					}
+				}
+				if (nrAdmins == 1) {
+					throw new UserException("User cannot be removed from this project because it is the only admin user with authorization on this project");
+				}
+			}
 			project.getHasAuthorizedUsers().remove(user);
 			user.getHasRightsOn().remove(project);
 			UserRemovedFromProject userRemovedFromProject = LogFactory.eINSTANCE.createUserRemovedFromProject();
