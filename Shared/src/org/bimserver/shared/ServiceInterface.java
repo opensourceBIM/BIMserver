@@ -43,6 +43,7 @@ import org.bimserver.interfaces.objects.SLogAction;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.interfaces.objects.SUser;
+import org.bimserver.interfaces.objects.SUserType;
 
 //TODO: Document the rest of the interface
 /**
@@ -76,6 +77,7 @@ public interface ServiceInterface {
 	CheckoutResult downloadByGuids(@WebParam(name="token") Token token, @WebParam(name="roids")Set<Long> roids, @WebParam(name="guids") Set<String> guids, @WebParam(name="resultType") ResultType resultType) throws UserException;
 	CheckoutResult downloadProjects(@WebParam(name="token") Token token, @WebParam(name="roids") Set<Long> roids, @WebParam(name="resultType") ResultType resultType) throws UserException;
 	long addUser(@WebParam(name="token") Token token, @WebParam(name="username") String username, @WebParam(name="password")String password, @WebParam(name="name") String name) throws UserException;
+	void changeUserType(@WebParam(name="token") Token token, @WebParam(name="uoid") long uoid, @WebParam(name="userType") SUserType userType) throws UserException;
 	SProject addProject(@WebParam(name="token") Token token, @WebParam(name="projectName") String projectName) throws UserException;
 	SProject addProjectAsSubProject(@WebParam(name="token") Token token, @WebParam(name="projectName") String projectName, @WebParam(name="parentPoid") long parentPoid) throws UserException;
 	void updateProject(@WebParam(name="token") Token token, @WebParam(name="sProject") SProject sProject) throws UserException;

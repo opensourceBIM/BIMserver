@@ -52,6 +52,7 @@ import org.bimserver.database.actions.AddUserDatabaseAction;
 import org.bimserver.database.actions.AddUserToProjectDatabaseAction;
 import org.bimserver.database.actions.BimDatabaseAction;
 import org.bimserver.database.actions.ChangePasswordDatabaseAction;
+import org.bimserver.database.actions.ChangeUserTypeDatabaseAction;
 import org.bimserver.database.actions.CheckinDatabaseAction;
 import org.bimserver.database.actions.CheckinPart1DatabaseAction;
 import org.bimserver.database.actions.CheckinPart2DatabaseAction;
@@ -132,6 +133,7 @@ import org.bimserver.interfaces.objects.SLogAction;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.interfaces.objects.SUser;
+import org.bimserver.interfaces.objects.SUserType;
 import org.bimserver.rights.RightsManager;
 import org.bimserver.services.TokenManager;
 import org.bimserver.shared.ChangeSet;
@@ -1487,6 +1489,19 @@ public class Service implements ServiceInterface {
 		try {
 			BimDatabaseAction<Set<Project>> action = new GetSubProjectsDatabaseAction(accessMethod, tokenManager.getUoid(token), poid);
 			return convert(session.executeAction(action, DEADLOCK_RETRIES), SProject.class, session);
+		} catch (BimDatabaseException e) {
+			throw new UserException("Database error", e);
+		} finally {
+			session.close();
+		}
+	}
+
+	@Override
+	public void changeUserType(Token token, long uoid, SUserType userType) throws UserException {
+		BimDatabaseSession session = bimDatabase.createSession();
+		try {
+			BimDatabaseAction<Void> action = new ChangeUserTypeDatabaseAction(accessMethod, tokenManager.getUoid(token), uoid, userType);
+			session.executeAndCommitAction(action, DEADLOCK_RETRIES);
 		} catch (BimDatabaseException e) {
 			throw new UserException("Database error", e);
 		} finally {
