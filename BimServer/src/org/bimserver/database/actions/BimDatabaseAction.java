@@ -195,14 +195,33 @@ public abstract class BimDatabaseAction<T> {
 					}
 				}
 				for (EAttribute eAttribute : newestObject.eClass().getEAllAttributes()) {
-					if (!newestObject.eIsSet(eAttribute)) {
-						for (int i = list.size() - 2; i >= 0; i--) {
-							IdEObject olderObject = list.get(i);
-							if (olderObject.eIsSet(eAttribute)) {
-								newestObject.eSet(eAttribute, olderObject.eGet(eAttribute));
-								break;
+					if (eAttribute.isMany()) {
+						// Do not merge lists
+					} else {
+						if (!newestObject.eIsSet(eAttribute)) {
+							for (int i = list.size() - 2; i >= 0; i--) {
+								IdEObject olderObject = list.get(i);
+								if (olderObject.eIsSet(eAttribute)) {
+									newestObject.eSet(eAttribute, olderObject.eGet(eAttribute));
+									break;
+								}
 							}
 						}
+					}
+				}
+				for (EReference eReference : newestObject.eClass().getEAllReferences()) {
+					if (eReference.isMany()) {
+						// Do not merge lists
+					} else {
+						if (!newestObject.eIsSet(eReference)) {
+							for (int i = list.size() - 2; i >= 0; i--) {
+								IdEObject olderObject = list.get(i);
+								if (olderObject.eIsSet(eReference)) {
+									newestObject.eSet(eReference, olderObject.eGet(eReference));
+									break;
+								}
+							}
+						}					
 					}
 				}
 			}
