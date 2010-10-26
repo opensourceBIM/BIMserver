@@ -10,8 +10,7 @@
 <%@page import="org.bimserver.JspHelper"%>
 <%@page import="org.bimserver.interfaces.objects.SProject"%>
 <%@page import="org.bimserver.interfaces.objects.SGeoTag"%>
-<%@page
-	import="org.bimserver.interfaces.objects.SClashDetectionSettings"%>
+<%@page	import="org.bimserver.interfaces.objects.SClashDetectionSettings"%>
 <%@page import="org.bimserver.interfaces.objects.SUser"%>
 <%@page import="org.bimserver.interfaces.objects.SSIPrefix"%>
 <%@ include file="header.jsp"%>

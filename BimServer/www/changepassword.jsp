@@ -3,6 +3,8 @@
 <%@page import="java.text.SimpleDateFormat" %>
 <%@page import="org.bimserver.utils.Formatters"%>
 <%@page import="org.bimserver.shared.UserException"%>
+<%@page import="org.bimserver.Message"%>
+<%@page import="org.bimserver.interfaces.objects.SUserType"%>
 <%@ include file="header.jsp" %>
 <%
 	if (loginManager.isLoggedIn()) {
@@ -24,13 +26,11 @@
 			}
 		}
 %>
-
-<%@page import="org.bimserver.Message"%>
 <div class="sidebar">
 </div>
 
 <div class="content">
-<%@page import="org.bimserver.interfaces.objects.SUserType"%><h1>Change password</h1>
+<h1>Change password</h1>
 <fieldset>
 <form name="form" method="post" action="changepassword.jsp">
 <input type="hidden" name="uoid" value="<%=request.getParameter("uoid")%>">
