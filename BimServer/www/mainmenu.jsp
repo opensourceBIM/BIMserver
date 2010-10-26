@@ -9,4 +9,4 @@
 <%	
 	}
 %>
-<a class="menu" href="#" onClick="alert('You foud the magic button! send an e-mail to magicbutton@bimserver.org to recieve status.'); return true"></a>
+<a class="menu" href="#" onClick="alert('You found the magic button! Send an e-mail to magicbutton@bimserver.org to receive status.'); return true"></a>
