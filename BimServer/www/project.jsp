@@ -73,10 +73,13 @@ if (emfSerializerFactory.resultTypeEnabled(ResultType.O3D_JSON) && lastRevision 
 %>
 <div class="sidebar">
  <h4>Submenu</h4>
- <%
+<ul>
+<% if (userHasCheckinRights) { %> <li><a class="link"
+	href="editproject.jsp?poid=<%=poid %>">Edit</a></li>
+<% } %>
+<%
 	if (emfSerializerFactory.resultTypeEnabled(ResultType.O3D_JSON) && lastRevision != null) {
 %>
-<ul>
 <li>
  <a id="visualiselink" class="link">Visualise</a></li>
  <%} %> 
@@ -134,10 +137,7 @@ if (lastRevision != null) {
 are no revisions yet, click <a id="revisiontablink" href="#">on the
 revisions tab</a> to add a first revision, or <a id="subprojecttablink"
 	href="#">add a subproject.</a></div>
-<% } %> <%}%> <% if (userHasCheckinRights) { %> <a
-	href="editproject.jsp?poid=<%=poid %>">Edit project</a><br />
-<br />
-<% } %>
+<% } %> <%}%>
 <table class="formtable">
 	<tr>
 		<td class="first">Name</td>

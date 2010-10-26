@@ -24,6 +24,7 @@ import java.util.List;
 import java.util.Set;
 
 import javax.activation.DataHandler;
+import javax.jws.WebParam;
 
 import org.bimserver.interfaces.objects.SCheckout;
 import org.bimserver.interfaces.objects.SClashDetectionSettings;
@@ -34,6 +35,7 @@ import org.bimserver.interfaces.objects.SLogAction;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.interfaces.objects.SUser;
+import org.bimserver.interfaces.objects.SUserType;
 
 public class AuthenticatedServiceWrapper {
 	private final ServiceInterface service;
@@ -300,5 +302,9 @@ public class AuthenticatedServiceWrapper {
 	
 	public List<SProject> getSubProjects(long poid) throws UserException {
 		return service.getSubProjects(token, poid);
+	}
+	
+	public void changeUserType(long uoid, SUserType userType) throws UserException {
+		service.changeUserType(token, uoid, userType);
 	}
 }
