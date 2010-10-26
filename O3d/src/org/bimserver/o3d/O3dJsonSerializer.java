@@ -75,9 +75,7 @@ public class O3dJsonSerializer extends BimModelSerializer {
 					Scene scene = createScene();
 					PrintWriter printWriter = new PrintWriter(out);
 					scene.write(printWriter);
-					PrintWriter printWriter2 = new PrintWriter(System.out);
-					scene.write(printWriter2);
-					printWriter2.flush();
+					System.out.println(scene.toString(2));
 					printWriter.flush();
 				} catch (JSONException e) {
 					LOGGER.error("", e);
@@ -123,23 +121,6 @@ public class O3dJsonSerializer extends BimModelSerializer {
 		IfcDatabase database = new IfcDatabase(model, getFieldIgnoreMap());
 		Class[] eClasses = new Class[] { IfcSlab.class, IfcRoof.class, IfcWall.class, IfcWallStandardCase.class, IfcWindow.class, IfcDoor.class, IfcColumn.class, IfcRamp.class,
 				IfcStair.class, IfcStairFlight.class };
-		int fieldId1 = jsonFactory.incCounter();
-		int fieldId2 = jsonFactory.incCounter();
-		int fieldId3 = jsonFactory.incCounter();
-		StreamBank streamBank = jsonFactory.createStreamBank();
-		streamBank.addStream(jsonFactory.createStream(1, fieldId1, 0));
-		streamBank.addStream(jsonFactory.createStream(2, fieldId2, 0));
-		VertexBuffer vertexBuffer = jsonFactory.createVertexBuffer(fieldId1, fieldId2);
-		scene.addVertexBuffer(vertexBuffer);
-		IndexBuffer indexBuffer = jsonFactory.createIndexBuffer(fieldId3);
-		scene.addIndexBuffer(indexBuffer);
-		scene.addStreamBank(streamBank);
-		FieldData indexFieldData = jsonFactory.createFieldData(fieldId3, "o3d.UInt32Field", 1);
-		FieldData vertexFieldData = jsonFactory.createFieldData(fieldId1, "o3d.FloatField", 3);
-		FieldData normalFieldData = jsonFactory.createFieldData(fieldId2, "o3d.FloatField", 3);
-		vertexBuffer.addFieldData(vertexFieldData);
-		vertexBuffer.addFieldData(normalFieldData);
-		indexBuffer.addFieldData(indexFieldData);
 		try {
 			for (Class<? extends EObject> eClass : eClasses) {
 				for (Object object : database.getAll(eClass)) {
@@ -149,6 +130,23 @@ public class O3dJsonSerializer extends BimModelSerializer {
 					rootTransformation.addShape(shape);
 					SetGeometryResult setGeometryResult = setGeometry(ifcRoot);
 					if (setGeometryResult != null) {
+						int fieldId1 = jsonFactory.incCounter();
+						int fieldId2 = jsonFactory.incCounter();
+						int fieldId3 = jsonFactory.incCounter();
+						StreamBank streamBank = jsonFactory.createStreamBank();
+						streamBank.addStream(jsonFactory.createStream(1, fieldId1, 0));
+						streamBank.addStream(jsonFactory.createStream(2, fieldId2, 0));
+						scene.addStreamBank(streamBank);
+						VertexBuffer vertexBuffer = jsonFactory.createVertexBuffer(fieldId1, fieldId2);
+						scene.addVertexBuffer(vertexBuffer);
+						IndexBuffer indexBuffer = jsonFactory.createIndexBuffer(fieldId3);
+						scene.addIndexBuffer(indexBuffer);
+						FieldData indexFieldData = jsonFactory.createFieldData(fieldId3, "o3d.UInt32Field", 1);
+						FieldData vertexFieldData = jsonFactory.createFieldData(fieldId1, "o3d.FloatField", 3);
+						FieldData normalFieldData = jsonFactory.createFieldData(fieldId2, "o3d.FloatField", 3);
+						vertexBuffer.addFieldData(vertexFieldData);
+						vertexBuffer.addFieldData(normalFieldData);
+						indexBuffer.addFieldData(indexFieldData);
 						Primitive primitive = jsonFactory.createPrimitive();
 						primitive.setIndexBuffer(indexBuffer);
 						if (object instanceof IfcRoof) {
@@ -176,13 +174,13 @@ public class O3dJsonSerializer extends BimModelSerializer {
 						}
 						primitive.setNumberPrimitives(setGeometryResult.getAddedIndices() / 3);
 						primitive.setNumberVertices(setGeometryResult.getAddedVertices() / 6);
-						primitive.setStartIndex(indexFieldData.getSize());
+						primitive.setStartIndex(0);
 						primitive.setStreamBank(streamBank);
 						primitive.setOwner(shape);
 						scene.addPrimitive(primitive);
 						shape.setPrimitive(primitive);
 						
-						indexFieldData.addDataIntegers(vertexFieldData.getSize(), setGeometryResult.getBinaryIndexBuffer().getIndices());
+						indexFieldData.addDataIntegers(0, setGeometryResult.getBinaryIndexBuffer().getIndices());
 						vertexFieldData.addDataFloats(setGeometryResult.getBinaryVertexBuffer().getVertices());
 						normalFieldData.addDataFloats(setGeometryResult.getBinaryVertexBuffer().getNormals());
 					}

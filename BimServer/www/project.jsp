@@ -235,7 +235,7 @@ Download: <input type="hidden" name="roid"
 	<%	
 	}
 %>
-</select> <label for="simplezip_<%=lastRevision.getId() %>">Zip</label><input
+</select> <label for="simplezip_<%=lastRevision.getId() %>">Zip </label><input
 	type="checkbox" name="zip" id="simplezip_<%=lastRevision.getId() %>" />
 <input name="download" type="submit" value="Download"> <input
 	name="checkout" type="submit" value="Checkout" id="detailscheckoutbutton"></form>
@@ -263,7 +263,7 @@ Download: <select name="resultType">
 	<%	
 	}
 %>
-</select> <label for="advancedzip_<%=lastRevision.getId() %>">Zip</label><input
+</select> <label for="advancedzip_<%=lastRevision.getId() %>">Zip </label><input
 	type="checkbox" name="zip" id="advancedzip_<%=lastRevision.getId() %>" />
 <input type="submit" value="Download"> <input type="hidden"
 	name="multiple" value="true" /></form>
@@ -480,7 +480,7 @@ if (revisions.size() > 0) {
 			<%	
 	}
 %>
-		</select> <label for="revisionzip_<%=revision.getId() %>">Zip</label><input
+		</select> <label for="revisionzip_<%=revision.getId() %>">Zip </label><input
 			type="checkbox" name="zip" id="revisionzip_<%=revision.getId() %>" />
 		<input name="download" type="submit" value="Download" /> <input
 			name="checkout" type="submit" value="Checkout" class="revisionscheckoutbutton" /></form>
@@ -550,7 +550,7 @@ open a specific revision to query other revisions<br />
 			<%	
 	}
 %>
-		</select> <label for="checkoutsdownloadzip_<%=checkout.getOid() %>">Zip</label><input type="checkbox" name="zip" id="checkoutsdownloadzip_<%=checkout.getOid() %>" /> <input	name="download" type="submit" value="Download" />
+		</select> <label for="checkoutsdownloadzip_<%=checkout.getOid() %>">Zip </label><input type="checkbox" name="zip" id="checkoutsdownloadzip_<%=checkout.getOid() %>" /> <input	name="download" type="submit" value="Download" />
 			</form>
 		</td>
 	</tr>
