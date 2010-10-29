@@ -161,6 +161,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class Service implements ServiceInterface {
+	private static final int DEFAULT_LOGIN_ERROR_TIMEOUT = 3000;
 	private static final Logger LOGGER = LoggerFactory.getLogger(Service.class);
 	public static final int DEADLOCK_RETRIES = 10;
 	private final SchemaDefinition schema;
@@ -570,6 +571,11 @@ public class Service implements ServiceInterface {
 				}
 				return tokenManager.newToken(user.getOid());
 			} else {
+				try {
+					Thread.sleep(DEFAULT_LOGIN_ERROR_TIMEOUT);
+				} catch (InterruptedException e) {
+					LOGGER.error("", e);
+				}
 				return null;
 			}
 		} catch (BimDatabaseException e) {
