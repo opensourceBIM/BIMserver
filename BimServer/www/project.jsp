@@ -53,6 +53,12 @@
 			Collections.sort(revisionsInc, new SRevisionIdComparator(true));
 			List<SCheckout> checkouts = loginManager.getService().getAllCheckoutsOfProject(poid);
 			Collections.sort(checkouts, new SCheckoutDateComparator());
+			List<SCheckout> activeCheckouts = new ArrayList<SCheckout>();
+			for (SCheckout checkout : checkouts) {
+				if (checkout.isActive()) {
+					activeCheckouts.add(checkout);
+				}
+			}
 			List<SUser> users = loginManager.getService().getAllAuthorizedUsersOfProject(poid);
 			Collections.sort(users, new SUserNameComparator());
 			List<SUser> nonAuthorizedUsers = loginManager.getService().getAllNonAuthorizedUsersOfProject(poid);
@@ -67,7 +73,8 @@ if (emfSerializerFactory.resultTypeEnabled(ResultType.O3D_JSON) && lastRevision 
 %>
 
 <%@page import="org.bimserver.utils.WebUtils"%>
-<%@page import="org.bimserver.interfaces.objects.SCheckinState"%><jsp:include page="o3d.jsp"/>
+<%@page import="org.bimserver.interfaces.objects.SCheckinState"%>
+<%@page import="java.util.ArrayList"%><jsp:include page="o3d.jsp"/>
 <%
 }
 %>
@@ -520,7 +527,8 @@ open a specific revision to query other revisions<br />
 	if (checkouts.size() > 0) {
 %>
 <div class="tabbertab" id="checkoutstab"
-	title="Checkouts<%=checkouts.size() == 0 ? "" : " (" + checkouts.size() + ")" %>">
+	title="Checkouts<%=checkouts.size() == 0 ? "" : " (" + activeCheckouts.size() + ")" %>">
+<label for="showinactivecheckouts">Show inactive checkouts </label><input id="showinactivecheckouts" type="checkbox"/>
 <table class="formatted">
 	<tr>
 		<th>Revision Id</th>
@@ -533,7 +541,7 @@ open a specific revision to query other revisions<br />
 		for (SCheckout checkout : checkouts) {
 			SUser checkoutUser = loginManager.getService().getUserByUoid(checkout.getUserId());
 %>
-	<tr>
+	<tr class="<%=checkout.isActive() ? "" : "inactivecheckoutrow" %>">
 		<td><a href="revision.jsp?roid=<%=checkout.getRevisionId() %>"><%=loginManager.getService().getRevision(checkout.getRevisionId()).getId() %></a></td>
 		<td><a href="user.jsp?uoid=<%=checkout.getUserId() %>"><%=checkoutUser.getUsername() %></a></td>
 		<td><%=dateFormat.format(checkout.getDate()) %></td>
@@ -662,6 +670,15 @@ for (SRevision sRevision : revisions) {
 <%
 		}
 %>
+		var updateInactiveCheckouts = function(){
+			if ($('#showinactivecheckouts').is(':checked')) {
+				$(".inactivecheckoutrow").show();
+			} else {
+				$(".inactivecheckoutrow").hide();
+			}
+		}
+		$("#showinactivecheckouts").change(updateInactiveCheckouts);
+		updateInactiveCheckouts();
 		window.setInterval(function() {
 			if (revisions.length > 0) {
 				var roids = "";
