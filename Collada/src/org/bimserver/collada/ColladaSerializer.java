@@ -17,6 +17,7 @@ import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.BimModelSerializer;
 import org.bimserver.ifc.FieldIgnoreMap;
 import org.bimserver.ifc.IfcModel;
+import org.bimserver.ifc.PackageDefinition;
 import org.bimserver.ifc.SerializerException;
 import org.bimserver.ifc.database.IfcDatabase;
 import org.bimserver.ifc.emf.Ifc2x3.IfcColumn;
@@ -62,13 +63,15 @@ public class ColladaSerializer extends BimModelSerializer {
 	private final Project project;
 	private final User user;
 	private final SIPrefix lengthUnitPrefix;
+	private final PackageDefinition packageDefinition;
 
 	public ColladaSerializer(Project project, User user, String fileName, IfcModel model, SchemaDefinition schemaDefinition, FieldIgnoreMap fieldIgnoreMap,
-			IfcEngineFactory ifcEngineFactory) throws SerializerException {
+			IfcEngineFactory ifcEngineFactory, PackageDefinition packageDefinition) throws SerializerException {
 		super(fileName, model, fieldIgnoreMap);
 		this.project = project;
 		this.user = user;
 		this.schemaDefinition = schemaDefinition;
+		this.packageDefinition = packageDefinition;
 		try {
 			this.ifcEngine = ifcEngineFactory.createFailSafeIfcEngine();
 		} catch (IfcEngineException e) {
@@ -120,13 +123,15 @@ public class ColladaSerializer extends BimModelSerializer {
 		out.println("        </contributor>");
 		out.println("        <created>2006-06-21T21:23:22Z</created>");
 		out.println("        <modified>2006-06-21T21:23:22Z</modified>");
+
 		// Ruben 23-09-2010 Why is this commented out? Can we throw it away?
-		
+
 		// double scale = Math.pow(10.0, project.getExportLengthMeasurePrefix()
 		// .getValue());
 		// out.println("        <unit meter=\"" + scale + "\" name=\""
 		// + project.getExportLengthMeasurePrefix().name().toLowerCase()
 		// + "\"/>");
+
 		if (lengthUnitPrefix == null) {
 			out.println("        <unit meter=\"1\" name=\"meter\"/>");
 		} else {
@@ -139,55 +144,89 @@ public class ColladaSerializer extends BimModelSerializer {
 	private void writeGeometries(PrintWriter out) throws IfcEngineException {
 		out.println("	<library_geometries>");
 		IfcDatabase ifcDatabase = new IfcDatabase(model, null);
-		for (IfcRoof ifcRoof : ifcDatabase.getAll(IfcRoof.class)) {
-			setGeometry(out, ifcRoof, ifcRoof.getGlobalId().getWrappedValue(), "Roof");
+
+		if (packageDefinition.hasClassDefinition("IfcRoof")) {
+			for (IfcRoof ifcRoof : ifcDatabase.getAll(IfcRoof.class)) {
+				setGeometry(out, ifcRoof, ifcRoof.getGlobalId().getWrappedValue(), "Roof");
+			}
 		}
+
+		// Ruben 29-10-2010 A long time ago this code made the IFCEngine crash,
+		// should try to enable it again
+
 		// for (IfcSpace ifcSpace : ifcDatabase.getAll(IfcSpace.class)) {
 		// setGeometry(out, (IfcRootObject) ifcSpace,
 		// ifcSpace.getGlobalId().getWrappedValue(), "Space");
 		// }
-		for (IfcSlab ifcSlab : ifcDatabase.getAll(IfcSlab.class)) {
-			if (ifcSlab.getPredefinedType() == IfcSlabTypeEnum.ROOF) {
-				setGeometry(out, ifcSlab, ifcSlab.getGlobalId().getWrappedValue(), "Roof");
-			} else {
-				setGeometry(out, ifcSlab, ifcSlab.getGlobalId().getWrappedValue(), "Slab");
+
+		if (packageDefinition.hasClassDefinition("IfcSlab")) {
+			for (IfcSlab ifcSlab : ifcDatabase.getAll(IfcSlab.class)) {
+				if (ifcSlab.getPredefinedType() == IfcSlabTypeEnum.ROOF) {
+					setGeometry(out, ifcSlab, ifcSlab.getGlobalId().getWrappedValue(), "Roof");
+				} else {
+					setGeometry(out, ifcSlab, ifcSlab.getGlobalId().getWrappedValue(), "Slab");
+				}
 			}
 		}
-		for (IfcWindow ifcWindow : ifcDatabase.getAll(IfcWindow.class)) {
-			setGeometry(out, ifcWindow, ifcWindow.getGlobalId().getWrappedValue(), "Window");
+		if (packageDefinition.hasClassDefinition("IfcWindow")) {
+			for (IfcWindow ifcWindow : ifcDatabase.getAll(IfcWindow.class)) {
+				setGeometry(out, ifcWindow, ifcWindow.getGlobalId().getWrappedValue(), "Window");
+			}
 		}
-		for (IfcDoor ifcDoor : ifcDatabase.getAll(IfcDoor.class)) {
-			setGeometry(out, ifcDoor, ifcDoor.getGlobalId().getWrappedValue(), "Door");
+		if (packageDefinition.hasClassDefinition("IfcDoor")) {
+			for (IfcDoor ifcDoor : ifcDatabase.getAll(IfcDoor.class)) {
+				setGeometry(out, ifcDoor, ifcDoor.getGlobalId().getWrappedValue(), "Door");
+			}
 		}
-		for (IfcWall ifcWall : ifcDatabase.getAll(IfcWall.class)) {
-			setGeometry(out, ifcWall, ifcWall.getGlobalId().getWrappedValue(), "Wall");
+		if (packageDefinition.hasClassDefinition("IfcWall")) {
+			for (IfcWall ifcWall : ifcDatabase.getAll(IfcWall.class)) {
+				setGeometry(out, ifcWall, ifcWall.getGlobalId().getWrappedValue(), "Wall");
+			}
 		}
-		for (IfcStairFlight ifcStairFlight : ifcDatabase.getAll(IfcStairFlight.class)) {
-			setGeometry(out, ifcStairFlight, ifcStairFlight.getGlobalId().getWrappedValue(), "StairFlight");
+		if (packageDefinition.hasClassDefinition("IfcStairFlight")) {
+			for (IfcStairFlight ifcStairFlight : ifcDatabase.getAll(IfcStairFlight.class)) {
+				setGeometry(out, ifcStairFlight, ifcStairFlight.getGlobalId().getWrappedValue(), "StairFlight");
+			}
 		}
-		for (IfcFlowSegment ifcFlowSegment : ifcDatabase.getAll(IfcFlowSegment.class)) {
-			setGeometry(out, ifcFlowSegment, ifcFlowSegment.getGlobalId().getWrappedValue(), "Railing");
+		if (packageDefinition.hasClassDefinition("IfcFlowSegment")) {
+			for (IfcFlowSegment ifcFlowSegment : ifcDatabase.getAll(IfcFlowSegment.class)) {
+				setGeometry(out, ifcFlowSegment, ifcFlowSegment.getGlobalId().getWrappedValue(), "Railing");
+			}
 		}
-		for (IfcFurnishingElement ifcFurnishingElement : ifcDatabase.getAll(IfcFurnishingElement.class)) {
-			setGeometry(out, ifcFurnishingElement, ifcFurnishingElement.getGlobalId().getWrappedValue(), "FurnishingElement");
+		if (packageDefinition.hasClassDefinition("IfcFurnishingElement")) {
+			for (IfcFurnishingElement ifcFurnishingElement : ifcDatabase.getAll(IfcFurnishingElement.class)) {
+				setGeometry(out, ifcFurnishingElement, ifcFurnishingElement.getGlobalId().getWrappedValue(), "FurnishingElement");
+			}
 		}
-		for (IfcPlate ifcPlate : ifcDatabase.getAll(IfcPlate.class)) {
-			setGeometry(out, ifcPlate, ifcPlate.getGlobalId().getWrappedValue(), "Wall");
+		if (packageDefinition.hasClassDefinition("IfcPlate")) {
+			for (IfcPlate ifcPlate : ifcDatabase.getAll(IfcPlate.class)) {
+				setGeometry(out, ifcPlate, ifcPlate.getGlobalId().getWrappedValue(), "Wall");
+			}
 		}
-		for (IfcMember ifcMember : ifcDatabase.getAll(IfcMember.class)) {
-			setGeometry(out, ifcMember, ifcMember.getGlobalId().getWrappedValue(), "Member");
+		if (packageDefinition.hasClassDefinition("IfcMember")) {
+			for (IfcMember ifcMember : ifcDatabase.getAll(IfcMember.class)) {
+				setGeometry(out, ifcMember, ifcMember.getGlobalId().getWrappedValue(), "Member");
+			}
 		}
-		for (IfcWallStandardCase ifcWall : ifcDatabase.getAll(IfcWallStandardCase.class)) {
-			setGeometry(out, ifcWall, ifcWall.getGlobalId().getWrappedValue(), "Wall");
+		if (packageDefinition.hasClassDefinition("IfcWallStandardCase")) {
+			for (IfcWallStandardCase ifcWall : ifcDatabase.getAll(IfcWallStandardCase.class)) {
+				setGeometry(out, ifcWall, ifcWall.getGlobalId().getWrappedValue(), "Wall");
+			}
 		}
-		for (IfcCurtainWall ifcCurtainWall : ifcDatabase.getAll(IfcCurtainWall.class)) {
-			setGeometry(out, ifcCurtainWall, ifcCurtainWall.getGlobalId().getWrappedValue(), "Window");
+		if (packageDefinition.hasClassDefinition("IfcCurtainWall")) {
+			for (IfcCurtainWall ifcCurtainWall : ifcDatabase.getAll(IfcCurtainWall.class)) {
+				setGeometry(out, ifcCurtainWall, ifcCurtainWall.getGlobalId().getWrappedValue(), "Window");
+			}
 		}
-		for (IfcRailing ifcRailing : ifcDatabase.getAll(IfcRailing.class)) {
-			setGeometry(out, ifcRailing, ifcRailing.getGlobalId().getWrappedValue(), "Railing");
+		if (packageDefinition.hasClassDefinition("IfcRailing")) {
+			for (IfcRailing ifcRailing : ifcDatabase.getAll(IfcRailing.class)) {
+				setGeometry(out, ifcRailing, ifcRailing.getGlobalId().getWrappedValue(), "Railing");
+			}
 		}
-		for (IfcColumn ifcColumn : ifcDatabase.getAll(IfcColumn.class)) {
-			setGeometry(out, ifcColumn, ifcColumn.getGlobalId().getWrappedValue(), "Column");
+		if (packageDefinition.hasClassDefinition("IfcColumn")) {
+			for (IfcColumn ifcColumn : ifcDatabase.getAll(IfcColumn.class)) {
+				setGeometry(out, ifcColumn, ifcColumn.getGlobalId().getWrappedValue(), "Column");
+			}
 		}
 		out.println("	</library_geometries>");
 	}
@@ -341,15 +380,15 @@ public class ColladaSerializer extends BimModelSerializer {
 
 	private void writeEffects(PrintWriter out) {
 		out.println("	<library_effects>");
-		writeEffect(out, "Space", new float[]{0.137255f, 0.403922f, 0.870588f});
-		writeEffect(out, "Roof", new float[]{0.837255f, 0.203922f, 0.270588f});
-		writeEffect(out, "Slab", new float[]{0.637255f, 0.603922f, 0.670588f});
-		writeEffect(out, "Wall", new float[]{0.537255f, 0.337255f, 0.237255f});
-		writeEffect(out, "Door", new float[]{0.637255f, 0.603922f, 0.670588f});
-		writeEffect(out, "Window", new float[]{0.2f, 0.2f, 0.8f});
-		writeEffect(out, "Railing", new float[]{0.137255f, 0.203922f, 0.270588f});
-		writeEffect(out, "Column", new float[]{0.437255f, 0.603922f, 0.370588f,});
-		writeEffect(out, "FurnishingElement", new float[]{0.437255f, 0.603922f, 0.370588f});
+		writeEffect(out, "Space", new float[] { 0.137255f, 0.403922f, 0.870588f });
+		writeEffect(out, "Roof", new float[] { 0.837255f, 0.203922f, 0.270588f });
+		writeEffect(out, "Slab", new float[] { 0.637255f, 0.603922f, 0.670588f });
+		writeEffect(out, "Wall", new float[] { 0.537255f, 0.337255f, 0.237255f });
+		writeEffect(out, "Door", new float[] { 0.637255f, 0.603922f, 0.670588f });
+		writeEffect(out, "Window", new float[] { 0.2f, 0.2f, 0.8f });
+		writeEffect(out, "Railing", new float[] { 0.137255f, 0.203922f, 0.270588f });
+		writeEffect(out, "Column", new float[] { 0.437255f, 0.603922f, 0.370588f, });
+		writeEffect(out, "FurnishingElement", new float[] { 0.437255f, 0.603922f, 0.370588f });
 		out.println("    </library_effects>");
 	}
 

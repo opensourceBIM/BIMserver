@@ -50,21 +50,25 @@
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
 		if (request.getParameter("msg") != null) {
 			if (request.getParameter("msg").equals("ignorefileuploadok")) {
-				out.println("<div class=\"info\">New ignore file uploaded succesfully, a restart of the BIMserver is required</div>");
+				out.println("<div class=\"info\">New ignore file uploaded successfully, a restart of the BIMserver is required</div>");
 			} else if (request.getParameter("msg").equals("settingsfileuploadok")) {
-				out.println("<div class=\"info\">New settings uploaded succesfully, a restart might be necessary</div>");
+				out.println("<div class=\"info\">New settings uploaded successfully, a restart might be necessary</div>");
 			} else if (request.getParameter("msg").equals("settingschangeok")) {
-				out.println("<div class=\"info\">Settings succesfully updated, a restart might be necessary</div>");
+				out.println("<div class=\"info\">Settings successfully updated, a restart might be necessary</div>");
+			} else if (request.getParameter("msg").equals("colladasettingsuploadok")) {
+				out.println("<div class=\"info\">New collada settings successfully updated, a restart is necessary</div>");
 			}
 		}
 %>
 
 <div class="sidebar">
 <h4>Submenu</h4>
+<ul>
 <li>
 <a href="<%=getServletContext().getContextPath()%>/settings?action=downloadsettings">Download settings</a></li>
 <li>
 <a href="<%=getServletContext().getContextPath()%>/settings?action=downloadignorefile">Download ignore.xml</a></li>
+</ul>
 </div>
 
 <div class="content">
@@ -169,13 +173,12 @@
 		</table>
 		</td>
 	</tr>
-	<tr>
-		<td></td>
-		<td><input name="save" type="submit" value="Save"></input></td>
-	</tr>
 </table>
+<input name="save" type="submit" value="Save"/>
 </form>
-<h1>Import/Export settings</h1>
+
+</div>
+<div class="tabbertab" id="importexport" title="Import/Export">
 <form enctype="multipart/form-data" method="post"
 	action="<%=getServletContext().getContextPath()%>/settings">
 <table class="formatted infotable">
@@ -210,6 +213,23 @@
 	</tr>
 </table>
 <input type="hidden" name="action" value="uploadsettings" /></form>
+</div>
+<div class="tabbertab" id="importexport" title="Collada/KMZ">
+<form enctype="multipart/form-data" method="post" action="<%=getServletContext().getContextPath()%>/settings">
+<table class="formatted infotable">
+	<tr>
+		<td>Download</td>
+		<td><a
+			href="<%=getServletContext().getContextPath()%>/settings?action=downloadcolladasettings">Download
+		collada.xml</a></td>
+	</tr>
+	<tr>
+		<td>Upload</td>
+		<td><input type="file" name="colladasettings"></input><input
+			type="submit" value="Upload"></input></td>
+	</tr>
+</table>
+<input type="hidden" name="action" value="uploadcolladasettings" /></form>
 </div>
 </div>
 <%

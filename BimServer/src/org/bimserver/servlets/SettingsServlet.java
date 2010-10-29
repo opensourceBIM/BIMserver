@@ -51,64 +51,86 @@ public class SettingsServlet extends HttpServlet {
 						Iterator<FileItem> iter = items.iterator();
 						while (iter.hasNext()) {
 							FileItem item = iter.next();
-							if (!item.isFormField() && item.getFieldName().equals("settings")) {
-								InputStream inputStream = item.getInputStream();
-								Settings readFromStream = Settings.readFromStream(inputStream);
-								readFromStream.save();
-								ServerSettings.setSettings(Settings.read());
-								EmfSerializerFactory.getInstance().initSerializers();
-								response.sendRedirect(getServletContext().getContextPath() + "/settings.jsp?msg=settingsfileuploadok");
-								return;
-							} else if (!item.isFormField() && item.getFieldName().equals("ignorefile")) {
-								InputStream inputStream = item.getInputStream();
-								File file = ServerInitializer.getResourceFetcher().getFile("ignore.xml");
-								FileOutputStream fos = new FileOutputStream(file);
-								IOUtils.copy(inputStream, fos);
-								fos.close();
-								response.sendRedirect(getServletContext().getContextPath() + "/settings.jsp?msg=ignorefileuploadok");
-								return;
+							if (!item.isFormField()) {
+								String fieldName = item.getFieldName();
+								if (fieldName.equals("settings")) {
+									InputStream inputStream = item.getInputStream();
+									Settings readFromStream = Settings.readFromStream(inputStream);
+									readFromStream.save();
+									ServerSettings.setSettings(Settings.read());
+									EmfSerializerFactory.getInstance().initSerializers();
+									response.sendRedirect(getServletContext().getContextPath() + "/settings.jsp?msg=settingsfileuploadok");
+									return;
+								} else if (fieldName.equals("ignorefile")) {
+									InputStream inputStream = item.getInputStream();
+									File file = ServerInitializer.getResourceFetcher().getFile("ignore.xml");
+									FileOutputStream fos = new FileOutputStream(file);
+									IOUtils.copy(inputStream, fos);
+									fos.close();
+									response.sendRedirect(getServletContext().getContextPath() + "/settings.jsp?msg=ignorefileuploadok");
+									return;
+								} else if (fieldName.equals("colladasettings")) {
+									InputStream inputStream = item.getInputStream();
+									File file = ServerInitializer.getResourceFetcher().getFile("collada.xml");
+									FileOutputStream fos = new FileOutputStream(file);
+									IOUtils.copy(inputStream, fos);
+									fos.close();
+									response.sendRedirect(getServletContext().getContextPath() + "/settings.jsp?msg=colladasettingsuploadok");
+									return;
+								}
 							}
 						}
 					} catch (FileUploadException e) {
 						e.printStackTrace();
 					}
 				}
-				if (request.getParameter("action") != null && request.getParameter("action").equals("downloadsettings")) {
-					Settings settings = ServerSettings.getSettings();
-					response.setContentType("text/xml");
-					response.setHeader("Content-Disposition", "attachment; filename=\"settings.xml\"");
-					settings.saveToStream(response.getOutputStream());
-					return;
-				} else if (request.getParameter("action") != null && request.getParameter("action").equals("downloadlog")) {
-					response.setContentType("text");
-					response.setHeader("Content-Disposition", "attachment; filename=\"bimserver.log\"");
-					File logfile = null;
-					if (ServerInitializer.getResourceFetcher() instanceof WarResourceFetcher) {
-						logfile = new File(getServletContext().getRealPath("/") + "bimserver.log");
-					} else if (ServerInitializer.getResourceFetcher() instanceof JarResourceFetcher) {
-						logfile = new File("bimserver.log");
-					} else {
-						response.getWriter().println("No log file on local development stations");
+				if (request.getParameter("action") != null) {
+					String action = request.getParameter("action");
+					if (action.equals("downloadsettings")) {
+						Settings settings = ServerSettings.getSettings();
+						response.setContentType("text/xml");
+						response.setHeader("Content-Disposition", "attachment; filename=\"settings.xml\"");
+						settings.saveToStream(response.getOutputStream());
+						return;
+					} else if (action.equals("downloadlog")) {
+						response.setContentType("text");
+						response.setHeader("Content-Disposition", "attachment; filename=\"bimserver.log\"");
+						File logfile = null;
+						if (ServerInitializer.getResourceFetcher() instanceof WarResourceFetcher) {
+							logfile = new File(getServletContext().getRealPath("/") + "bimserver.log");
+						} else if (ServerInitializer.getResourceFetcher() instanceof JarResourceFetcher) {
+							logfile = new File("bimserver.log");
+						} else {
+							response.getWriter().println("No log file on local development stations");
+							return;
+						}
+						if (logfile != null) {
+							FileInputStream fileIn = new FileInputStream(logfile);
+							byte[] buffer = new byte[1024];
+							int read = fileIn.read(buffer);
+							while (read >= 0) {
+								response.getOutputStream().write(buffer, 0, read);
+								read = fileIn.read(buffer);
+							}
+						}
+						return;
+					} else if (action.equals("downloadignorefile")) {
+						response.setContentType("text/xml");
+						response.setHeader("Content-Disposition", "attachment; filename=\"ignore.xml\"");
+						URL resource = ServerInitializer.getResourceFetcher().getResource("ignore.xml");
+						InputStream openStream = resource.openStream();
+						IOUtils.copy(openStream, response.getOutputStream());
+						openStream.close();
+						return;
+					} else if (action.equals("downloadcolladasettings")) {
+						response.setContentType("text/xml");
+						response.setHeader("Content-Disposition", "attachment; filename=\"collada.xml\"");
+						URL resource = ServerInitializer.getResourceFetcher().getResource("collada.xml");
+						InputStream openStream = resource.openStream();
+						IOUtils.copy(openStream, response.getOutputStream());
+						openStream.close();
 						return;
 					}
-					if (logfile != null) {
-						FileInputStream fileIn = new FileInputStream(logfile);
-						byte[] buffer = new byte[1024];
-						int read = fileIn.read(buffer);
-						while (read >= 0) {
-							response.getOutputStream().write(buffer, 0, read);
-							read = fileIn.read(buffer);
-						}
-					}
-					return;
-				} else if (request.getParameter("action") != null && request.getParameter("action").equals("downloadignorefile")) {
-					response.setContentType("text/xml");
-					response.setHeader("Content-Disposition", "attachment; filename=\"ignore.xml\"");
-					URL resource = ServerInitializer.getResourceFetcher().getResource("ignore.xml");
-					InputStream openStream = resource.openStream();
-					IOUtils.copy(openStream, response.getOutputStream());
-					openStream.close();
-					return;
 				}
 			}
 		} catch (Exception e) {
