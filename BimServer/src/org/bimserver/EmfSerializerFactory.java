@@ -17,6 +17,7 @@ import org.bimserver.database.store.User;
 import org.bimserver.ifc.EmfSerializer;
 import org.bimserver.ifc.FieldIgnoreMap;
 import org.bimserver.ifc.IfcModel;
+import org.bimserver.ifc.PackageDefinition;
 import org.bimserver.ifc.SerializerException;
 import org.bimserver.ifc.file.writer.IfcStepSerializer;
 import org.bimserver.ifc.xml.writer.IfcXmlSerializer;
@@ -39,6 +40,7 @@ public class EmfSerializerFactory {
 	private final Map<ResultType, EmfSerializerCreator> emfSerializerCreators = new TreeMap<ResultType, EmfSerializerCreator>(resultTypeComparator);
 	private static final EmfSerializerFactory INSTANCE = new EmfSerializerFactory();
 	private FieldIgnoreMap fieldIgnoreMap;
+	private PackageDefinition colladaSettings;
 	private SchemaDefinition schemaDefinition;
 	private Version version;
 
@@ -51,11 +53,12 @@ public class EmfSerializerFactory {
 		return INSTANCE;
 	}
 
-	public void init(Version version, SchemaDefinition schemaDefinition, FieldIgnoreMap fieldIgnoreMap, IfcEngineFactory ifcEngineFactory) {
+	public void init(Version version, SchemaDefinition schemaDefinition, FieldIgnoreMap fieldIgnoreMap, IfcEngineFactory ifcEngineFactory, PackageDefinition colladaSettings) {
 		this.version = version;
 		this.schemaDefinition = schemaDefinition;
 		this.fieldIgnoreMap = fieldIgnoreMap;
 		this.ifcEngineFactory = ifcEngineFactory;
+		this.colladaSettings = colladaSettings;
 	}
 	
 	public void register(ResultType type, EmfSerializerCreator emfSerializerCreater) {
@@ -152,7 +155,7 @@ public class EmfSerializerFactory {
 			register(ResultType.COLLADA, new EmfSerializerCreator() {
 				@Override
 				public EmfSerializer create(Project project, User user, IfcModel model, String fileName) throws SerializerException {
-					return new ColladaSerializer(project, user, fileName, model, schemaDefinition, fieldIgnoreMap, ifcEngineFactory);
+					return new ColladaSerializer(project, user, fileName, model, schemaDefinition, fieldIgnoreMap, ifcEngineFactory, colladaSettings);
 				}
 			});
 		} else {
@@ -162,7 +165,7 @@ public class EmfSerializerFactory {
 			register(ResultType.KMZ, new EmfSerializerCreator() {
 				@Override
 				public EmfSerializer create(Project project, User user, IfcModel model, String fileName) throws SerializerException {
-					return new KmzSerializer(project, user, fileName, model, schemaDefinition, fieldIgnoreMap, ifcEngineFactory);
+					return new KmzSerializer(project, user, fileName, model, schemaDefinition, fieldIgnoreMap, ifcEngineFactory, colladaSettings);
 				}
 			});
 		} else {

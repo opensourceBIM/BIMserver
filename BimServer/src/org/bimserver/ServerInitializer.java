@@ -49,6 +49,7 @@ import org.bimserver.database.store.log.LogFactory;
 import org.bimserver.database.store.log.ServerStarted;
 import org.bimserver.ifc.FieldIgnoreMap;
 import org.bimserver.ifc.FileFieldIgnoreMap;
+import org.bimserver.ifc.PackageDefinition;
 import org.bimserver.ifc.emf.Ifc2x3.Ifc2x3Package;
 import org.bimserver.ifcengine.IfcEngineFactory;
 import org.bimserver.querycompiler.QueryCompiler;
@@ -112,9 +113,12 @@ public class ServerInitializer implements ServletContextListener {
 
 			CompileServlet.database = bimDatabase;
 			
+			URL colladSettingsFile = resourceFetcher.getResource("collada.xml");
+			PackageDefinition colladaSettings = PackageDefinition.readFromFile(colladSettingsFile);
+			
 			TempUtils.makeTempDir("bimserver");
 			EmfSerializerFactory emfSerializerFactory = EmfSerializerFactory.getInstance();
-			emfSerializerFactory.init(version, schema, fieldIgnoreMap, ifcEngineFactory);
+			emfSerializerFactory.init(version, schema, fieldIgnoreMap, ifcEngineFactory, colladaSettings);
 			emfSerializerFactory.initSerializers();
 			ServiceInterface soapService = new Service(bimDatabase, emfSerializerFactory, schema, tokenManager, longActionManager, AccessMethod.SOAP, ifcEngineFactory);
 			ServiceInterface webService = new Service(bimDatabase, emfSerializerFactory, schema, tokenManager, longActionManager, AccessMethod.WEB_INTERFACE, ifcEngineFactory);
