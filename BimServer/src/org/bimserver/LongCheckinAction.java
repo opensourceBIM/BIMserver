@@ -42,6 +42,27 @@ public class LongCheckinAction extends LongAction {
 		try {
 			session.executeAndCommitAction(createCheckinAction, 10);
 			session.close();
+			
+			BimDatabaseSession extraSession = bimDatabase.createSession();
+			try {
+				ConcreteRevision concreteRevision2 = extraSession.getConcreteRevision(createCheckinAction.getCroid());
+				for (Revision r : concreteRevision2.getRevisions()) {
+					Revision latest = null;
+					for (Revision r2 : r.getProject().getRevisions()) {
+						if (latest == null || r2.getId() > latest.getId()) {
+							latest = r2;
+						}
+					}
+					if (latest != null) {
+						latest.getProject().setLastRevision(latest);
+						extraSession.store(latest.getProject(), new CommitSet(Database.STORE_PROJECT_ID, -1));
+					}
+				}
+				extraSession.commit();
+			} finally {
+				extraSession.close();
+			}
+			
 			session = bimDatabase.createReadOnlySession();
 			startClashDetection(session);
 		} catch (Exception e) {
