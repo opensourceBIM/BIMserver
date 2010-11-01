@@ -8,12 +8,16 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URL;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.bind.annotation.XmlRootElement;
+
+import org.bimserver.shared.ResultType;
 
 @XmlRootElement
 public class Settings {
@@ -98,6 +102,17 @@ public class Settings {
 		}
 	}
 
+	public void updateEnabledResultTypes(Set<ResultType> resultTypes) {
+		String enabledExportTypes = "";
+		for (ResultType resultType : resultTypes) {
+			enabledExportTypes += resultType.name() + ",";
+		}
+		if (enabledExportTypes.endsWith(",")) {
+			enabledExportTypes = enabledExportTypes.substring(0, enabledExportTypes.length() - 1);
+		}
+		this.enabledExportTypes = enabledExportTypes;
+	}
+	
 	public void saveToFile(File file) {
 		try {
 			FileOutputStream fos = new FileOutputStream(file);
@@ -225,4 +240,12 @@ public class Settings {
 		return allowUsersToCreateTopLevelProjects;
 	}
 
+	public Set<ResultType> getEnabledExportTypesAsSet() {
+		Set<ResultType> resultTypes = new HashSet<ResultType>();
+		String[] split = enabledExportTypes.split(",");
+		for (String s : split) {
+			resultTypes.add(ResultType.valueOf(s));
+		}
+		return resultTypes;
+	}
 }
