@@ -24,7 +24,6 @@ import java.util.List;
 import java.util.Set;
 
 import javax.activation.DataHandler;
-import javax.jws.WebParam;
 
 import org.bimserver.interfaces.objects.SCheckout;
 import org.bimserver.interfaces.objects.SClashDetectionSettings;

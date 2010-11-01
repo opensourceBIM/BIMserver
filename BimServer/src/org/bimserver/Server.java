@@ -56,7 +56,7 @@ public class Server {
 		} catch (Exception e) {
 			LOGGER.error("", e);
 		}
-		LOGGER.info("Server stopped succesfully");
+		LOGGER.info("Server stopped successfully");
 	}
 
 	public void start(String address, int port) {
@@ -75,10 +75,10 @@ public class Server {
 		try {
 			LOGGER.info("Starting web server...");
 			server.start();
-			LOGGER.info("Webserver succesfully started");
+			LOGGER.info("Webserver successfully started");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		LOGGER.info("Server started succesfully, click on the \"launch webbrowser\" button, or go to: http://" + address + ":" + port);
+		LOGGER.info("Server started successfully, click on the \"launch webbrowser\" button, or go to: http://" + address + ":" + port);
 	}
 }

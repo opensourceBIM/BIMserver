@@ -103,7 +103,7 @@
 //
 //				try {
 //					CheckinResult result = client.checkin(token, projectId, file.getName(), file.length(), new DataHandler(new FileDataSource(file)));
-//					LOGGER.info("Project " + result.getProjectName() + " succesfully stored, new revision " + result.getRevisionNr());
+//					LOGGER.info("Project " + result.getProjectName() + " successfully stored, new revision " + result.getRevisionNr());
 //				} catch (UserException e) {
 //					LOGGER.info("Error storing " + file.getName() + " " + e.getUserMessage());
 //				} catch (SOAPFaultException e) {
@@ -121,7 +121,7 @@
 //		// if (checkoutResult.isOke()) {
 //		// LOGGER.info("Revision " + checkoutResult.getRevisionNr() +
 //		// " of project " + checkoutResult.getProjectName() +
-//		// " succesfully checked out by "
+//		// " successfully checked out by "
 //		// + username2);
 //		// } else {
 //		// LOGGER.info("Error checking out last revision of " +

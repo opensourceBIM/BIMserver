@@ -78,7 +78,7 @@ public class BerkeleyColumnDatabase implements ColumnDatabase {
 			isNew = true;
 			LOGGER.info("No database directory found, creating \"" + dataDir.getAbsolutePath() + "\"");
 			if (dataDir.mkdir()) {
-				LOGGER.info("Succesfully created database dir \"" + dataDir.getAbsolutePath() + "\"");
+				LOGGER.info("Successfully created database dir \"" + dataDir.getAbsolutePath() + "\"");
 			} else {
 				LOGGER.error("Error creating database dir \"" + dataDir.getAbsolutePath() + "\"");
 			}

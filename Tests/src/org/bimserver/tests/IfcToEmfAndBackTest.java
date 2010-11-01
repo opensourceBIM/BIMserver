@@ -131,7 +131,7 @@
 //		} catch (FileNotFoundException e1) {
 //			e1.printStackTrace();
 //		}
-//		htmlWriter.startTable("File", "Succesfull read", "Succesfull write", "Compare result", "Error");
+//		htmlWriter.startTable("File", "Successfull read", "Successfull write", "Compare result", "Error");
 //		completionService.submit(new Callable<Result>(){
 //			@Override
 //			public Result call() throws Exception {

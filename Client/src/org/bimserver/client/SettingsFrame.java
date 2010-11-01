@@ -31,6 +31,7 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 import javax.swing.SpringLayout;
 import javax.swing.WindowConstants;
@@ -83,6 +84,8 @@ public class SettingsFrame extends JDialog {
 					testClient.setTitle(Client.APP_NAME + " - Connected to " + usernameField.getText() + "@" + serverField.getText());
 					testClient.updateTree();
 					testClient.expandTree();
+				} else {
+					JOptionPane.showMessageDialog(testClient, "Error logging in");
 				}
 				setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 			}});

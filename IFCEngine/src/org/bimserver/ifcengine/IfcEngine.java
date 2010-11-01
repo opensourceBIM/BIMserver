@@ -112,7 +112,7 @@
 //		try {
 //			File jnativeFile = new File(nativeBaseDir, JNative.DLL_NAME);
 //			System.load(jnativeFile.getAbsolutePath());
-//			LOGGER.info("Succesfully loaded " + jnativeFile);
+//			LOGGER.info("Successfully loaded " + jnativeFile);
 //		} catch (UnsatisfiedLinkError e) {
 //			// Not throwing another exception because we assume it's this
 //			// message:

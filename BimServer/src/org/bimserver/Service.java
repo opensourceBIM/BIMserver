@@ -425,7 +425,7 @@ public class Service implements ServiceInterface {
 			return null;
 		}
 		try {
-			Class realClass = Class.forName("org.bimserver.interfaces.objects.S" + original.eClass().getName());
+			Class<?> realClass = Class.forName("org.bimserver.interfaces.objects.S" + original.eClass().getName());
 			T newInstance = (T) realClass.newInstance();
 			Method setOidMethod = targetClass.getMethod("setOid", new Class[] { long.class });
 			setOidMethod.invoke(newInstance, original.getOid());
@@ -439,7 +439,7 @@ public class Service implements ServiceInterface {
 						Object[] enumConstants = forName.getEnumConstants();
 						boolean found = false;
 						for (Object t : enumConstants) {
-							Enum en = (Enum) t;
+							Enum<?> en = (Enum<?>) t;
 							Method method2 = en.getDeclaringClass().getMethod("getOrdinal");
 							Object invoke = method2.invoke(en);
 							if ((Integer) invoke == enumerator.getValue()) {
@@ -576,7 +576,7 @@ public class Service implements ServiceInterface {
 				} catch (InterruptedException e) {
 					LOGGER.error("", e);
 				}
-				return null;
+				throw new UserException("Invalid username/password combination");
 			}
 		} catch (BimDatabaseException e) {
 			throw new UserException("Database error", e);
