@@ -91,7 +91,7 @@ public class CompileServlet extends HttpServlet {
 		QueryCompiler queryCompiler = new QueryCompiler();
 		QueryInterface compile = queryCompiler.compile(code, root);
 		if (compile != null) {
-			root.put("output", "Compilation succesfull");
+			root.put("output", "Compilation successfull");
 		}
 		return compile;
 	}

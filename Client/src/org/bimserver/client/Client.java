@@ -67,7 +67,7 @@ public class Client extends JFrame {
 
 	private static final long serialVersionUID = -3971471091403217662L;
 	private static final Logger LOGGER = LoggerFactory.getLogger(Client.class);
-	public static final String APP_NAME = "BIM Server Client";
+	public static final String APP_NAME = "BIMserver Client";
 	private final ServiceHolder serviceHolder = new ServiceHolder();
 	private final RevisionPanel revisionPanel;
 	private final CheckoutsPanel checkoutsPanel;
@@ -139,7 +139,7 @@ public class Client extends JFrame {
 				JOptionPane.OK_OPTION | JOptionPane.INFORMATION_MESSAGE);
 		try {
 			CheckinResult upload = serviceHolder.getService().checkinSync(project.getOid(), comment, fileSize, new DataHandler(dataSource));
-			JOptionPane.showMessageDialog(this, "New revision number: " + upload.getRid(), "Checkin succesfull", JOptionPane.OK_OPTION
+			JOptionPane.showMessageDialog(this, "New revision number: " + upload.getRid(), "Checkin successfull", JOptionPane.OK_OPTION
 					| JOptionPane.INFORMATION_MESSAGE);
 			revisionPanel.showProject(project);
 		} catch (UserException e) {
@@ -163,7 +163,7 @@ public class Client extends JFrame {
 				}
 				out.close();
 				if (report) {
-					JOptionPane.showMessageDialog(Client.this, "Revision: " + revision.getOid() + "\n" + totalRed + " bytes written", "Checkout succesfull",
+					JOptionPane.showMessageDialog(Client.this, "Revision: " + revision.getOid() + "\n" + totalRed + " bytes written", "Checkout successfull",
 							JOptionPane.OK_OPTION | JOptionPane.INFORMATION_MESSAGE);
 				}
 				SProject project = new SProject();
@@ -227,7 +227,7 @@ public class Client extends JFrame {
 		}
 		try {
 			ChangeSetResult upload = serviceHolder.getService().processChangeSet(project.getId(), showInputDialog, changeSet);
-			JOptionPane.showMessageDialog(this, "New revision number: " + upload.getNewRevisionNr(), "Processing of ChangeSet succesfull", JOptionPane.OK_OPTION
+			JOptionPane.showMessageDialog(this, "New revision number: " + upload.getNewRevisionNr(), "Processing of ChangeSet successfull", JOptionPane.OK_OPTION
 					| JOptionPane.INFORMATION_MESSAGE);
 			revisionPanel.showProject(project);
 		} catch (UserException e) {
@@ -258,7 +258,7 @@ public class Client extends JFrame {
 				IOUtils.copy(inputStream, out);
 				out.close();
 				if (report) {
-					JOptionPane.showMessageDialog(Client.this, "Revision: " + checkout.getRevisionNr() + "\n", "Download succesfull",
+					JOptionPane.showMessageDialog(Client.this, "Revision: " + checkout.getRevisionNr() + "\n", "Download successfull",
 							JOptionPane.OK_OPTION | JOptionPane.INFORMATION_MESSAGE);
 				}
 			} catch (IOException e1) {

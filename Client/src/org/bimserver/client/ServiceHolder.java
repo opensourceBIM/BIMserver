@@ -86,7 +86,7 @@ public class ServiceHolder {
 				Token token = remoteService.login(username, password);
 				if (token != null) {
 					this.service = new AuthenticatedServiceWrapper(remoteService, token, false);
-					LOGGER.info("Succesfully logged on as " + username);
+					LOGGER.info("Successfully logged on as " + username);
 					return true;
 				} else {
 					this.service = null;

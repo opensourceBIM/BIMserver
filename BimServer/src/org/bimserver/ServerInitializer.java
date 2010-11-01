@@ -231,7 +231,7 @@ public class ServerInitializer implements ServletContextListener {
 				SchemaDefinition schema = schemaParser.getSchema();
 				new DerivedReader(ifcSchemaFile.openStream(), schema);
 				if (schema != null) {
-					LOGGER.info("IFC-Schema succesfully loaded");
+					LOGGER.info("IFC-Schema successfully loaded");
 				} else {
 					LOGGER.error("Error loading IFC-Schema");
 				}

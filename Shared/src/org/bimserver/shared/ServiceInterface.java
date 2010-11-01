@@ -62,7 +62,7 @@ public interface ServiceInterface {
 	 *  
 	 * @param username
 	 * @param password
-	 * @return The new token when a succesfull login attempt has been made, or null When the username does not exist, or the given password is incorrect
+	 * @return The new token when a successfull login attempt has been made, or null When the username does not exist, or the given password is incorrect
 	 * @throws UserException
 	 */
 	@WebMethod Token login(@WebParam(name="username") String username, @WebParam(name="password") String password) throws UserException;
