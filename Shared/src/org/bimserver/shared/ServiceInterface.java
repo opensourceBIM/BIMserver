@@ -135,4 +135,6 @@ public interface ServiceInterface {
 	@WebMethod(action="getProjectByName")List<SProject> getProjectByName(@WebParam(name="token") Token token, @WebParam(name="name") String name) throws UserException;
 	@WebMethod(action="setRevisionTag")void setRevisionTag(@WebParam(name="token") Token token, @WebParam(name="roid") long roid, @WebParam(name="tag") String tag) throws UserException;
 	@WebMethod(action="getSubProjects")List<SProject> getSubProjects(@WebParam(name="token") Token token, @WebParam(name="poid") long poid) throws UserException;
+	@WebMethod(action="isExportTypeEnabled")boolean isExportTypeEnabled(@WebParam(name="token") Token token, @WebParam(name="resultType") ResultType resultType) throws UserException;
+	@WebMethod(action="setExportTypeEnabled")void setExportTypeEnabled(@WebParam(name="token") Token token, @WebParam(name="resultType") ResultType resultType, boolean enabled) throws UserException;
 }

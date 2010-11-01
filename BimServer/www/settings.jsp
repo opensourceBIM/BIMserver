@@ -6,6 +6,8 @@
 <%@page import="org.bimserver.shared.DatabaseInformation"%>
 <%@page import="org.bimserver.VersionChecker"%>
 <%@page import="java.util.Map"%>
+<%@page import="java.util.Set"%>
+<%@page import="java.util.HashSet"%>
 <%@page import="org.bimserver.ServerInitializer"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="org.bimserver.ServerSettings"%>
@@ -33,15 +35,13 @@
 			settings.setAutoTestClashes(request.getParameter("autoTestClashes") != null);
 			settings.setCustomLogoAddress(request.getParameter("customLogo"));
 			String enabledExportTypes = "";
+			Set<ResultType> enabledTypes = new HashSet<ResultType>();
 			for (ResultType resultType : ResultType.values()) {
 				if (request.getParameter(resultType.name()) != null) {
-					enabledExportTypes += resultType.name() + ",";
+					enabledTypes.add(resultType);
 				}
 			}
-			if (enabledExportTypes.endsWith(",")) {
-				enabledExportTypes = enabledExportTypes.substring(0, enabledExportTypes.length() - 1);
-			}
-			settings.setEnabledExportTypes(enabledExportTypes);
+			settings.updateEnabledResultTypes(enabledTypes);
 			settings.save();
 			ServerSettings.setSettings(settings);
 			emfSerializerFactory.initSerializers();

@@ -345,8 +345,8 @@ public class Service implements ServiceInterface {
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
 			BimDatabaseAction<IfcModel> action = new CheckoutDatabaseAction(accessMethod, tokenManager.getUoid(token), roid);
-			return convertModelToCheckoutResult(session.getRevisionByRoid(roid).getProject(), session.getUserByUoid(tokenManager.getUoid(token)), session.executeAndCommitAction(
-					action, DEADLOCK_RETRIES), resultType);
+			return convertModelToCheckoutResult(session.getRevisionByRoid(roid).getProject(), session.getUserByUoid(tokenManager.getUoid(token)),
+					session.executeAndCommitAction(action, DEADLOCK_RETRIES), resultType);
 		} catch (BimDatabaseException e) {
 			throw new UserException("Database error", e);
 		} catch (NoSerializerFoundException e) {
@@ -1510,6 +1510,32 @@ public class Service implements ServiceInterface {
 			session.executeAndCommitAction(action, DEADLOCK_RETRIES);
 		} catch (BimDatabaseException e) {
 			throw new UserException("Database error", e);
+		} finally {
+			session.close();
+		}
+	}
+
+	@Override
+	public boolean isExportTypeEnabled(Token token, ResultType resultType) throws UserException {
+		return emfSerializerFactory.resultTypeEnabled(resultType);
+	}
+
+	@Override
+	public void setExportTypeEnabled(Token token, ResultType resultType, boolean enabled) throws UserException {
+		BimDatabaseSession session = bimDatabase.createSession();
+		try {
+			User user = session.getUserByUoid(tokenManager.getUoid(token));
+			if (user.getUserType() != UserType.ADMIN) {
+				throw new UserException("Only admin users can change enabled export types");
+			}
+			Set<ResultType> resultTypes= ServerSettings.getSettings().getEnabledExportTypesAsSet();
+			if (enabled) {
+				resultTypes.add(resultType);
+			} else {
+				resultTypes.remove(resultType);
+			}
+			ServerSettings.getSettings().updateEnabledResultTypes(resultTypes);
+			ServerSettings.getSettings().save();
 		} finally {
 			session.close();
 		}
