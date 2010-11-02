@@ -126,7 +126,7 @@ public abstract class BimDatabaseAction<T> {
 	public static IfcModel merge(Project project, LinkedHashSet<IfcModel> ifcModels) {
 		if (ifcModels.size() == 1) {
 			// Do no merging on only 1 model, same in - same out principle of
-			// Léon :)
+			// Leon :)
 			return ifcModels.iterator().next();
 		}
 		IfcModel model = mergeScales(project, ifcModels);
