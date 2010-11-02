@@ -5,8 +5,6 @@ import java.io.BufferedOutputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.net.ServerSocket;
-import java.net.Socket;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -20,39 +18,38 @@ import org.slf4j.LoggerFactory;
 
 import com.sun.jna.Pointer;
 
-public class IfcEngineServer extends Thread {
-	private boolean running = true;
+public class IfcEngineServer {
+	private static final Logger LOGGER = LoggerFactory.getLogger(IfcEngineServer.class);
+	private volatile boolean running = true;
 	private final String schemaFileName;
-	private final int port;
-	private ServerSocket serverSocket;
 	private IfcEngineJNA ifcEngine;
 	private final Map<Integer, Pointer> pointers = new HashMap<Integer, Pointer>();
 	private int pointerCounter = 0;
-	private static final Logger LOGGER = LoggerFactory.getLogger(IfcEngineServer.class);
 
 	public static void main(String[] args) {
-		IfcEngineServer ifcEngineServer = new IfcEngineServer((Integer) Integer.parseInt(args[0]), args[1], args[2]);
-		ifcEngineServer.run(); // This is on purpose, when running from main function, an extra thread is unnecessary
+		IfcEngineServer ifcEngineServer = new IfcEngineServer(args[0]);
+		ifcEngineServer.run();
 	}
 
-	public IfcEngineServer(int port, String schemaFileName, String nativeBaseDir) {
-		this.port = port;
+	public IfcEngineServer(String schemaFileName) {
 		this.schemaFileName = schemaFileName;
 		this.ifcEngine = new IfcEngineJNA();
 	}
 
 	public void run() {
-		LOGGER.info("Starting IfcEngineServer on " + port);
 		try {
-			serverSocket = new ServerSocket(port);
-			Socket socket = serverSocket.accept();
-			DataInputStream in = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
-			DataOutputStream out = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
+			DataInputStream in = new DataInputStream(new BufferedInputStream(System.in));
+			DataOutputStream out = new DataOutputStream(new BufferedOutputStream(System.out));
 			while (running) {
 				byte commandId = in.readByte();
 				Command command = Command.getCommand(commandId);
-//				LOGGER.info("Command " + command + " received");
+				// LOGGER.info("Command " + command + " received");
 				switch (command) {
+				case CHECK_CONNECTION: {
+					in.readBoolean();
+					out.writeBoolean(true);
+				}
+					break;
 				case OPEN_MODEL: {
 					String name = in.readUTF();
 					Pointer modelId = ifcEngine.sdaiOpenModelBN(0, name, schemaFileName);
@@ -107,7 +104,7 @@ public class IfcEngineServer extends Thread {
 					for (int k = 0; k < nrObjects; k++) {
 						Object instanceId = (Pointer) ifcEngine.engiGetAggrElement(aggrId, k, SdaiTypes.INSTANCE);
 						if (instanceId instanceof Pointer) {
-							out.writeInt(savePointer((Pointer)instanceId));
+							out.writeInt(savePointer((Pointer) instanceId));
 						} else {
 							throw new IfcEngineException("Unimplemented");
 						}
@@ -161,17 +158,20 @@ public class IfcEngineServer extends Thread {
 					pointers.remove(modelId);
 					break;
 				}
+				case CLOSE: {
+					close();
+					System.exit(0);
+				}
+					break;
 				}
 				out.flush();
 			}
 		} catch (IOException e) {
 			if (running) {
 				LOGGER.error("", e);
-				e.printStackTrace();
 			}
 		} catch (Exception e) {
 			LOGGER.error("", e);
-			e.printStackTrace();
 		}
 	}
 
@@ -185,14 +185,7 @@ public class IfcEngineServer extends Thread {
 		return newPointerKey;
 	}
 
-	public void close() {
+	private void close() {
 		running = false;
-		if (serverSocket != null) {
-			try {
-				serverSocket.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
 	}
 }
