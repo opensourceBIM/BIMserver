@@ -30,7 +30,6 @@
 	 * For more information mail to license@bimserver.org
 	 ***********************************************************/
 	 var o3dcounter = 0;
-
 	var tabberOptions = {
 		'cookie' :"tabber",
 		'onLoad' : function(argsObj) {

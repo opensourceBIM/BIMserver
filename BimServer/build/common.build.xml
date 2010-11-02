@@ -16,6 +16,7 @@
 			<fileset file="../deploy/shared/version.xml" />
 			<fileset file="../deploy/shared/ignore.xml" />
 			<fileset file="../deploy/shared/web.xml" />
+			<fileset file="../deploy/shared/collada.xml" />
 			<fileset file="../${deploydir}/settings.xml" />
 		</copy>
 		<copy file="../deploy/jar/servertype.txt" todir="builds/BuildJar" />
@@ -114,6 +115,7 @@
 			<fileset file="../deploy/shared/IFC2X3_FINAL.exp" />
 			<fileset file="../deploy/shared/version.xml" />
 			<fileset file="../deploy/shared/ignore.xml" />
+			<fileset file="../deploy/shared/collada.xml" />
 			<fileset file="../${deploydir}/web.xml" />
 		</copy>
 		<copy file="../deploy/war/servertype.txt" todir="builds/BuildWar" />
