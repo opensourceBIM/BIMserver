@@ -27,6 +27,8 @@ var g_o3dWidth = -1;
 var g_o3dHeight = -1;
 var g_o3dElement;
 var g_finished = false;
+var g_idOfLoader;
+var _callback;
 
 var g_camera = {
   farPlane: 500,
@@ -68,7 +70,6 @@ function updateCamera() {
 }
 
 function updateProjection() {
-  // Create a perspective projection matrix.
   g_viewInfo.drawContext.projection = g_math.matrix4.perspective(
     g_math.degToRad(45), g_o3dWidth / g_o3dHeight, g_camera.nearPlane,
     g_camera.farPlane);
@@ -97,23 +98,13 @@ function setClientSize() {
  
     updateProjection();
  
-    // Sets a new area size for arcball.
     g_aball.setAreaSize(g_o3dWidth, g_o3dHeight);
   }
 }
  
-/**
- *  Called every frame.
- */
 function onRender() {
-  // If we don't check the size of the client area every frame we don't get a
-  // chance to adjust the perspective matrix fast enough to keep up with the
-  // browser resizing us.
   setClientSize();
 }
-
-var g_idOfLoader;
-var _callback;
 
 function createClient(element, callback) {
 	 g_o3dElement = o3djs.webgl.createClient(element, "", "");
@@ -125,13 +116,12 @@ function createClient(element, callback) {
 	   g_client = g_o3dElement.client;
 	 } catch (e) {
 	 }
-	   if (!o3djs.base.ready()) {
-	 	  $("#" + g_idOfLoader).html("O3D Plugin Required, please follow installation <a target=\"_blank\" href=\"http://code.google.com/apis/o3d/docs/gettingstarted.html#install\">instructions</a>");
-		  return;
-	   }
+	 if (!o3djs.base.ready()) {
+	   $("#" + g_idOfLoader).html("O3D Plugin Required, please follow installation <a target=\"_blank\" href=\"http://code.google.com/apis/o3d/docs/gettingstarted.html#install\">instructions</a>");
+	     return;
+	  }
 	  g_mainPack = g_client.createPack();
 	 
-	  // Create the render graph for a view.
 	  g_viewInfo = o3djs.rendergraph.createBasicView(
 	      g_mainPack,
 	      g_client.root,
@@ -142,11 +132,9 @@ function createClient(element, callback) {
 	 
 	  var root = g_client.root;
 	 
-	  g_aball = o3djs.arcball.create(100, 100);
+	  g_aball = o3djs.arcball.create(1, 1);
 	  setClientSize();
 	 
-	  // Set the light at the same position as the camera to create a headlight
-	  // that illuminates the object straight on.
 	  var paramObject = g_mainPack.createObject('ParamObject');
 	  g_lightPosParam = paramObject.createParam('lightWorldPos', 'ParamFloat3');
 	  g_camera.target = [0, 0, 0];
@@ -184,8 +172,8 @@ function loadFile(path, idOfLoader) {
       var diag = g_math.length(g_math.subVector(bbox.maxExtent,
                                                 bbox.minExtent));
       g_camera.eye = g_math.addVector(g_camera.target, [0, 0, 1.5 * diag]);
-      g_camera.nearPlane = diag / 1000;
-      g_camera.farPlane = diag * 10;
+      g_camera.nearPlane = diag / 100;
+      g_camera.farPlane = diag * 100;
       setClientSize();
       updateCamera();
       updateProjection();
