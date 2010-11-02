@@ -89,7 +89,7 @@ public class Database implements BimDatabase {
 	/*  This variable should be _incremented_ with every (released) database-schema change
 	 *  Do not change this variable when nothing has changed in the schema!
 	 */
-	public static final int APPLICATION_SCHEMA_VERSION = 7;
+	public static final int APPLICATION_SCHEMA_VERSION = 8;
 
 	public Database(Set<? extends EPackage> emfPackages, ColumnDatabase columnDatabase, FieldIgnoreMap fieldIgnoreMap) throws DatabaseInitException {
 		this.columnDatabase = columnDatabase;
