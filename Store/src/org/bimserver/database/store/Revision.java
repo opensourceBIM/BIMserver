@@ -32,6 +32,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.database.store.Revision#getLastClashes <em>Last Clashes</em>}</li>
  *   <li>{@link org.bimserver.database.store.Revision#getTag <em>Tag</em>}</li>
  *   <li>{@link org.bimserver.database.store.Revision#getLastError <em>Last Error</em>}</li>
+ *   <li>{@link org.bimserver.database.store.Revision#getBmi <em>Bmi</em>}</li>
  * </ul>
  * </p>
  *
@@ -357,5 +358,31 @@ public interface Revision extends IdEObject {
 	 * @generated
 	 */
 	void setLastError(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Bmi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Bmi</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Bmi</em>' attribute.
+	 * @see #setBmi(int)
+	 * @see org.bimserver.database.store.StorePackage#getRevision_Bmi()
+	 * @model
+	 * @generated
+	 */
+	int getBmi();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.database.store.Revision#getBmi <em>Bmi</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Bmi</em>' attribute.
+	 * @see #getBmi()
+	 * @generated
+	 */
+	void setBmi(int value);
 
 } // Revision

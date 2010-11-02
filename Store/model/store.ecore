@@ -108,6 +108,7 @@
         eType="#//Clash"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="tag" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="lastError" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="bmi" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="GuidClash" eSuperTypes="#//Clash">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="guid1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
