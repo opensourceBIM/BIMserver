@@ -21,6 +21,7 @@ import org.bimserver.ifc.SerializerException;
 import org.bimserver.ifc.database.IfcDatabase;
 import org.bimserver.ifc.emf.Ifc2x3.IfcColumn;
 import org.bimserver.ifc.emf.Ifc2x3.IfcDoor;
+import org.bimserver.ifc.emf.Ifc2x3.IfcRailing;
 import org.bimserver.ifc.emf.Ifc2x3.IfcRamp;
 import org.bimserver.ifc.emf.Ifc2x3.IfcRoof;
 import org.bimserver.ifc.emf.Ifc2x3.IfcRoot;
@@ -75,7 +76,6 @@ public class O3dJsonSerializer extends BimModelSerializer {
 					Scene scene = createScene();
 					PrintWriter printWriter = new PrintWriter(out);
 					scene.write(printWriter);
-					System.out.println(scene.toString(2));
 					printWriter.flush();
 				} catch (JSONException e) {
 					LOGGER.error("", e);
@@ -109,6 +109,7 @@ public class O3dJsonSerializer extends BimModelSerializer {
 		Material rampMaterial = jsonFactory.createMaterial("RampMaterial", Color.yellow);
 		Material stairMaterial = jsonFactory.createMaterial("StairMaterial", Color.yellow);
 		Material stairFlightMaterial = jsonFactory.createMaterial("StairFlightMaterial", Color.yellow);
+		Material railingMaterial = jsonFactory.createMaterial("RailingMaterial", Color.yellow);
 		scene.addMaterial(roofMaterial);
 		scene.addMaterial(wallMaterial);
 		scene.addMaterial(slabMaterial);
@@ -118,9 +119,10 @@ public class O3dJsonSerializer extends BimModelSerializer {
 		scene.addMaterial(rampMaterial);
 		scene.addMaterial(stairMaterial);
 		scene.addMaterial(stairFlightMaterial);
+		scene.addMaterial(railingMaterial);
 		IfcDatabase database = new IfcDatabase(model, getFieldIgnoreMap());
 		Class[] eClasses = new Class[] { IfcSlab.class, IfcRoof.class, IfcWall.class, IfcWallStandardCase.class, IfcWindow.class, IfcDoor.class, IfcColumn.class, IfcRamp.class,
-				IfcStair.class, IfcStairFlight.class };
+				IfcStair.class, IfcStairFlight.class, IfcRailing.class };
 		try {
 			for (Class<? extends EObject> eClass : eClasses) {
 				for (Object object : database.getAll(eClass)) {
@@ -171,6 +173,8 @@ public class O3dJsonSerializer extends BimModelSerializer {
 							primitive.setMaterial(stairFlightMaterial);
 						} else if (object instanceof IfcRamp) {
 							primitive.setMaterial(rampMaterial);
+						} else if (object instanceof IfcRailing) {
+							primitive.setMaterial(railingMaterial);
 						}
 						primitive.setNumberPrimitives(setGeometryResult.getAddedIndices() / 3);
 						primitive.setNumberVertices(setGeometryResult.getAddedVertices() / 6);
