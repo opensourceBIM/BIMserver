@@ -26,6 +26,7 @@ public class SRevision
 	private List<Long> lastClashes;
 	private java.lang.String tag;
 	private java.lang.String lastError;
+	private int bmi;
 
 	public int getId() {
 		return id;
@@ -125,6 +126,14 @@ public class SRevision
 
 	public void setLastError(java.lang.String lastError) {
 		this.lastError = lastError;
+	}
+
+	public int getBmi() {
+		return bmi;
+	}
+
+	public void setBmi(int bmi) {
+		this.bmi = bmi;
 	}
 	@Override
 	public int hashCode() {

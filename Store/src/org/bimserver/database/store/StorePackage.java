@@ -715,13 +715,22 @@ public interface StorePackage extends EPackage {
 	int REVISION__LAST_ERROR = 12;
 
 	/**
+	 * The feature id for the '<em><b>Bmi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REVISION__BMI = 13;
+
+	/**
 	 * The number of structural features of the '<em>Revision</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REVISION_FEATURE_COUNT = 13;
+	int REVISION_FEATURE_COUNT = 14;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.database.store.impl.ClashImpl <em>Clash</em>}' class.
@@ -1817,6 +1826,17 @@ public interface StorePackage extends EPackage {
 	EAttribute getRevision_LastError();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.database.store.Revision#getBmi <em>Bmi</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Bmi</em>'.
+	 * @see org.bimserver.database.store.Revision#getBmi()
+	 * @see #getRevision()
+	 * @generated
+	 */
+	EAttribute getRevision_Bmi();
+
+	/**
 	 * Returns the meta object for class '{@link org.bimserver.database.store.GuidClash <em>Guid Clash</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2630,6 +2650,14 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute REVISION__LAST_ERROR = eINSTANCE.getRevision_LastError();
+
+		/**
+		 * The meta object literal for the '<em><b>Bmi</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute REVISION__BMI = eINSTANCE.getRevision_Bmi();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.database.store.impl.GuidClashImpl <em>Guid Clash</em>}' class.
