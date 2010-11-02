@@ -6,9 +6,6 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.IOException;
-import java.net.ConnectException;
-import java.net.Socket;
-import java.net.UnknownHostException;
 
 import org.bimserver.shared.ResourceFetcher;
 import org.slf4j.Logger;
@@ -16,52 +13,16 @@ import org.slf4j.LoggerFactory;
 
 public class FailSafeIfcEngine {
 	private static final Logger LOGGER = LoggerFactory.getLogger(FailSafeIfcEngine.class);
-	private static final int PORT_START = 20000;
-	private static final int PORT_END = 50000;
-	private static int portCounter = PORT_START;
-	private Socket socket;
 	private DataInputStream in;
 	private DataOutputStream out;
-	private IfcEngineServer ifcEngineServer;
 	private IfcEngineProcess engineProces;
-	private int port;
 
 	public FailSafeIfcEngine(final File schemaFile, final File nativeBaseDir, ResourceFetcher resourceFetcher) throws IfcEngineException {
-		try {
-			port = getNewPort();
-			engineProces = new IfcEngineProcess(this, port, schemaFile, nativeBaseDir, resourceFetcher);
-			engineProces.start();
-			connectClient();
-		} catch (IOException e) {
-			LOGGER.error("", e);
-			throw new IfcEngineException("Unknown IFC Engine error");
-		}
-	}
-
-	private synchronized static int getNewPort() {
-		if (portCounter < PORT_END) {
-			portCounter++;
-		} else {
-			portCounter = PORT_START;
-		}
-		return portCounter;
-	}
-	
-	private void connectClient() throws UnknownHostException, IOException {
-		for (int i = 0; i < 3; i++) {
-			try {
-				socket = new Socket("127.0.0.1", port);
-				in = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
-				out = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
-				break;
-			} catch (ConnectException e) {
-				try {
-					Thread.sleep(500);
-				} catch (InterruptedException e1) {
-					LOGGER.error("", e);
-				}
-			}
-		}
+		engineProces = new IfcEngineProcess(this, schemaFile, nativeBaseDir, resourceFetcher);
+		engineProces.start();
+		engineProces.waitForConnection();
+		in = new DataInputStream(new BufferedInputStream(engineProces.getInputStream()));
+		out = new DataOutputStream(new BufferedOutputStream(engineProces.getOutputStream()));
 	}
 
 	public synchronized IfcEngineModel openModel(File ifcFile) throws IfcEngineException {
@@ -106,10 +67,13 @@ public class FailSafeIfcEngine {
 
 	public synchronized void close() {
 		if (engineProces != null) {
+			try {
+				writeCommand(Command.CLOSE);
+				flush();
+			} catch (IfcEngineException e) {
+				LOGGER.error("", e);
+			}
 			engineProces.shutdown();
-		}
-		if (ifcEngineServer != null) {
-			ifcEngineServer.close();
 		}
 	}
 

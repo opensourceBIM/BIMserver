@@ -1,12 +1,14 @@
 package org.bimserver.ifcengine;
 
 import java.io.File;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.concurrent.CountDownLatch;
 
 import org.bimserver.shared.ResourceFetcher;
-import org.bimserver.utils.StreamReaderToLog;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,15 +16,14 @@ public class IfcEngineProcess extends Thread {
 	private static final Logger LOGGER = LoggerFactory.getLogger(IfcEngineProcess.class);
 	private Process process;
 	private final File nativeBaseDir;
-	private final int port;
 	private final File schemaFile;
 	private final FailSafeIfcEngine failSafeIfcEngine;
 	private final ResourceFetcher resourceFetcher;
 	private boolean running;
+	private CountDownLatch countDownLatch = new CountDownLatch(1);
 
-	public IfcEngineProcess(FailSafeIfcEngine failSafeIfcEngine, int port, File schemaFile, File nativeBaseDir, ResourceFetcher resourceFetcher) {
+	public IfcEngineProcess(FailSafeIfcEngine failSafeIfcEngine, File schemaFile, File nativeBaseDir, ResourceFetcher resourceFetcher) {
 		this.failSafeIfcEngine = failSafeIfcEngine;
-		this.port = port;
 		this.schemaFile = schemaFile;
 		this.nativeBaseDir = nativeBaseDir;
 		this.resourceFetcher = resourceFetcher;
@@ -60,21 +61,14 @@ public class IfcEngineProcess extends Thread {
 			command.append(addJar("emf/org.eclipse.emf.ecore.xmi_2.5.0.v200906151043.jar"));
 			command.append(" -Xmx512m");
 			command.append(" org.bimserver.ifcengine.IfcEngineServer");
-			command.append(" " + port);
 			if (schemaFile.getAbsolutePath().contains(" ")) {
 				command.append(" \"" + schemaFile.getAbsolutePath() + "\"");
 			} else {
 				command.append(" " + schemaFile.getAbsolutePath());
 			}
-			if (nativeBaseDir.getAbsolutePath().contains(" ")) {
-				command.append(" \"" + nativeBaseDir.getAbsolutePath() + "\"");
-			} else {
-				command.append(" " + nativeBaseDir.getAbsolutePath());
-			}
 			LOGGER.info(command.toString());
 			process = Runtime.getRuntime().exec(command.toString());
-			new StreamReaderToLog("EngineProces - InputStreamProcessor", process.getInputStream()).start();
-			new StreamReaderToLog("EngineProces - ErrorStreamProcessor", process.getErrorStream()).start();
+			countDownLatch.countDown();
 			process.waitFor();
 			failSafeIfcEngine.engineStopped();
 		} catch (Exception e) {
@@ -84,6 +78,14 @@ public class IfcEngineProcess extends Thread {
 		}
 	}
 
+	public void waitForConnection() {
+		try {
+			countDownLatch.await();
+		} catch (InterruptedException e) {
+			LOGGER.error("", e);
+		}
+	}
+	
 	private void addBinDir(File binFile, StringBuilder command) {
 		if (binFile.exists()) {
 			// For local development
@@ -116,5 +118,13 @@ public class IfcEngineProcess extends Thread {
 		running = false;
 		process.destroy();
 		interrupt();
+	}
+
+	public InputStream getInputStream() {
+		return process.getInputStream();
+	}
+
+	public OutputStream getOutputStream() {
+		return process.getOutputStream();
 	}
 }
