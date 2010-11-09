@@ -2,7 +2,6 @@ package org.bimserver.o3d;
 
 import java.awt.Color;
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
@@ -217,9 +216,7 @@ public class O3dJsonSerializer extends BimModelSerializer {
 		IfcStepSerializer ifcSerializer = new IfcStepSerializer(project, user, "", IfcModel, schemaDefinition);
 		BinaryIndexBuffer binaryIndexBuffer = new BinaryIndexBuffer();
 		BinaryVertexBuffer binaryVertexBuffer = new BinaryVertexBuffer();
-		File file = createTempFile();
-		ifcSerializer.writeToFile(file);
-		IfcEngineModel model = ifcEngine.openModel(file);
+		IfcEngineModel model = ifcEngine.openModel(ifcSerializer.getBytes());
 		try {
 			SurfaceProperties sp = model.initializeModelling();
 			model.setPostProcessing(true);

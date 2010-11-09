@@ -31,7 +31,6 @@
 			settings.setSmtpServer(request.getParameter("smtpServer"));
 			settings.setUseCaching(request.getParameter("usecaching") != null);
 			settings.setIntelligentMerging(request.getParameter("intelligentMerging") != null);
-			settings.setUseSecondEngineJvm(request.getParameter("usesecondenginejvm") != null);
 			settings.setAutoTestClashes(request.getParameter("autoTestClashes") != null);
 			settings.setCustomLogoAddress(request.getParameter("customLogo"));
 			String enabledExportTypes = "";
@@ -133,11 +132,6 @@
 		<td><label for="showVersionUpgradeAvailable">Show whether a new version is available</label></td>
 		<td><input id="showVersionUpgradeAvailable" name="showVersionUpgradeAvailable" type="checkbox"
 			<%=settings.isShowVersionUpgradeAvailable() ? " checked=\"checked\"" : ""%>></input></td>
-	</tr>
-	<tr>
-		<td><label for="usesecondenginejvm">Use second JVM for IFCEngine</label></td>
-		<td><input id="usesecondenginejvm" name="usesecondenginejvm" type="checkbox"
-			<%=settings.isUseSecondEngineJvm() ? " checked=\"checked\"" : ""%>></input></td>
 	</tr>
 	<tr>
 		<td><label for="intelligentMerging">Intelligent merging</label></td>

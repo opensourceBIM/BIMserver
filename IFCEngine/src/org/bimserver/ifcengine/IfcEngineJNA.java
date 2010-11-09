@@ -3,13 +3,18 @@
  */
 package org.bimserver.ifcengine;
 
+import java.io.IOException;
 import java.io.InputStream;
+import java.nio.ByteBuffer;
 import java.util.HashSet;
 import java.util.Set;
 
 import org.bimserver.database.store.EidClash;
 import org.bimserver.database.store.GuidClash;
 import org.bimserver.database.store.StoreFactory;
+import org.bimserver.ifcengine.IfcEngineInterface.StreamCallback;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.sun.jna.Memory;
 import com.sun.jna.Pointer;
@@ -34,6 +39,8 @@ public class IfcEngineJNA {
 	// private static final Logger LOGGER = LoggerFactory
 	// .getLogger(IfcEngineJNA.class);
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(IfcEngineJNA.class);
+	
 	public static final int D3DFVF_XYZ = 0x002;
 	public static final int D3DFVF_XYZRHW = 0x004;
 	public static final int D3DFVF_NORMAL = 0x010;
@@ -41,6 +48,8 @@ public class IfcEngineJNA {
 	public static final int D3DFVF_DIFFUSE = 0x040;
 	public static final int D3DFVF_SPECULAR = 0x080;
 	public static final int D3DFVF_TEX1 = 0x100;
+	
+	private final Set<StreamCallback> callBacks = new HashSet<StreamCallback>();
 
 	private IfcEngineInterface engine;
 
@@ -48,24 +57,31 @@ public class IfcEngineJNA {
 		engine = IfcEngineInterface.INSTANCE;
 	}
 
-	public void loadFromInputStream(final InputStream in) {
-		final Memory pResponseBuffer = new Memory(1024);
-		// IfcEngineInterface.StreamCallback fn = new
-		// IfcEngineInterface.StreamCallback() {
-		//
-		// public void invoke(int sig) {
-		// if (sig == IfcEngineInterface.SIGUSR1)
-		// try {
-		// in.read(pResponseBuffer.getByteArray(0, 1024));
-		// } catch (IOException e) {
-		// e.printStackTrace();
-		// }
-		// }
-		// };
-		// IfcEngineInterface.StreamCallback old_handler = engine.signal(
-		// IfcEngineInterface.SIGUSR1, fn);
-		Pointer callbackAddress = engine.raise(IfcEngineInterface.SIGUSR1);
-		engine.sdaiOpenModelByStream(callbackAddress, pResponseBuffer);
+	public Pointer loadFromInputStream(final InputStream in, final int size, String schemaName) {
+		IfcEngineInterface.StreamCallback fn = new IfcEngineInterface.StreamCallback() {
+			int total = 0;
+			
+			public int invoke(Pointer pointer) {
+				if (total == size) {
+					return -1;
+				}
+				ByteBuffer byteBuffer = pointer.getByteBuffer(0, 1024);
+				try {
+					byte[] buffer = new byte[1024];
+					int red = in.read(buffer, 0, Math.min(1024, size - total));
+					if (red == -1) {
+						return -1;
+					}
+					total += red;
+					byteBuffer.put(buffer, 0, red);
+					return red;
+				} catch (IOException e) {
+				}
+				return -1;
+			}
+		};
+		callBacks.add(fn);
+		return engine.xxxxOpenModelByStream(0, fn, schemaName);
 	}
 
 	// public IfcEngineJNA(File nativeBaseDir) {
@@ -103,8 +119,7 @@ public class IfcEngineJNA {
 		private int noIndices;
 		private double scale;
 
-		public SurfaceProperties(Pointer model, int noVertices, int noIndices,
-				double scale) {
+		public SurfaceProperties(Pointer model, int noVertices, int noIndices, double scale) {
 			this.model = model;
 			this.noVertices = noVertices;
 			this.noIndices = noIndices;
@@ -113,15 +128,12 @@ public class IfcEngineJNA {
 			this.instanceList = null;
 		}
 
-		public SurfaceProperties(Pointer model, Pointer instance,
-				int noVertices, int noIndices, double scale) {
+		public SurfaceProperties(Pointer model, Pointer instance, int noVertices, int noIndices, double scale) {
 			this(model, noVertices, noIndices, scale);
 			this.instance = instance;
 		}
 
-		public SurfaceProperties(Pointer model, Pointer instance,
-				Pointer instanceList, int noVertices, int noIndices,
-				double scale) {
+		public SurfaceProperties(Pointer model, Pointer instance, Pointer instanceList, int noVertices, int noIndices, double scale) {
 			this(model, instance, noVertices, noIndices, scale);
 			this.instanceList = instanceList;
 		}
@@ -164,8 +176,7 @@ public class IfcEngineJNA {
 		private int startIndex;
 		private int primitiveCount;
 
-		public InstanceVisualisationProperties(int startVertex, int startIndex,
-				int primitiveCount) {
+		public InstanceVisualisationProperties(int startVertex, int startIndex, int primitiveCount) {
 			this.startVertex = startVertex;
 			this.startIndex = startIndex;
 			this.primitiveCount = primitiveCount;
@@ -189,8 +200,7 @@ public class IfcEngineJNA {
 		private Pointer instance;
 		private double height, width, thickness;
 
-		public InstanceDerivedProperties(int model, Pointer instance,
-				double height, double width, double thickness) {
+		public InstanceDerivedProperties(int model, Pointer instance, double height, double width, double thickness) {
 			this.model = model;
 			this.instance = instance;
 			this.height = height;
@@ -224,8 +234,7 @@ public class IfcEngineJNA {
 		Pointer instance;
 		double ox, oy, oz, vx, vy, vz;
 
-		public InstanceDerivedBoundingBox(Pointer model, Pointer instance,
-				double ox, double oy, double oz, double vx, double vy, double vz) {
+		public InstanceDerivedBoundingBox(Pointer model, Pointer instance, double ox, double oy, double oz, double vx, double vy, double vz) {
 			this.model = model;
 			this.instance = instance;
 			this.ox = ox;
@@ -272,14 +281,10 @@ public class IfcEngineJNA {
 	public class InstanceDerivedTransformationMatrix {
 		Pointer model;
 		Pointer instance;
-		double _11, _12, _13, _14, _21, _22, _23, _24, _31, _32, _33, _34, _41,
-				_42, _43, _44;
+		double _11, _12, _13, _14, _21, _22, _23, _24, _31, _32, _33, _34, _41, _42, _43, _44;
 
-		public InstanceDerivedTransformationMatrix(Pointer model,
-				Pointer instance, double _11, double _12, double _13,
-				double _14, double _21, double _22, double _23, double _24,
-				double _31, double _32, double _33, double _34, double _41,
-				double _42, double _43, double _44) {
+		public InstanceDerivedTransformationMatrix(Pointer model, Pointer instance, double _11, double _12, double _13, double _14, double _21, double _22, double _23, double _24,
+				double _31, double _32, double _33, double _34, double _41, double _42, double _43, double _44) {
 			this.model = model;
 			this.instance = instance;
 			this._11 = _11;
@@ -400,34 +405,29 @@ public class IfcEngineJNA {
 	 *            Type of output value
 	 * @return Value of the specific element in the aggregation
 	 */
-	public Object engiGetAggrElement(Pointer aggregate, int elementIndex,
-			SdaiTypes valueType) {
+	public Object engiGetAggrElement(Pointer aggregate, int elementIndex, SdaiTypes valueType) {
 		Object returnValue = null;
 		switch (valueType) {
 		case INTEGER:
 			IntByReference intRef = new IntByReference();
-			engine.engiGetAggrElement(aggregate, elementIndex, valueType
-					.ordinal(), intRef);
+			engine.engiGetAggrElement(aggregate, elementIndex, valueType.ordinal(), intRef);
 			returnValue = new Integer(intRef.getValue());
 			break;
 		case REAL:
 			DoubleByReference dblRef = new DoubleByReference();
-			engine.engiGetAggrElement(aggregate, elementIndex, valueType
-					.ordinal(), dblRef);
+			engine.engiGetAggrElement(aggregate, elementIndex, valueType.ordinal(), dblRef);
 			returnValue = new Double(dblRef.getValue());
 			break;
 		case STRING:
 			PointerByReference strRef = new PointerByReference();
-			engine.engiGetAggrElement(aggregate, elementIndex, valueType
-					.ordinal(), strRef);
+			engine.engiGetAggrElement(aggregate, elementIndex, valueType.ordinal(), strRef);
 			Pointer strPtr = strRef.getValue();
 			if (strPtr != null)
 				returnValue = strPtr.getString(0);
 			break;
 		default:
 			PointerByReference ptrRef = new PointerByReference();
-			engine.engiGetAggrElement(aggregate, elementIndex, valueType
-					.ordinal(), ptrRef);
+			engine.engiGetAggrElement(aggregate, elementIndex, valueType.ordinal(), ptrRef);
 			returnValue = ptrRef.getValue();
 			break;
 		}
@@ -479,13 +479,11 @@ public class IfcEngineJNA {
 	 *            UPPER CASE version of the class name (as used in the schema).
 	 * @return
 	 */
-	public int engiGetInstanceMetaInfo(Pointer instance, String className,
-			String classNameUC) {
+	public int engiGetInstanceMetaInfo(Pointer instance, String className, String classNameUC) {
 		IntByReference localIdRef = new IntByReference();
 		PointerByReference classNameRef = new PointerByReference();
 		PointerByReference classNameUCRef = new PointerByReference();
-		engine.engiGetInstanceMetaInfo(instance, localIdRef, classNameRef,
-				classNameUCRef);
+		engine.engiGetInstanceMetaInfo(instance, localIdRef, classNameRef, classNameUCRef);
 		className = classNameRef.getValue().getString(0);
 		classNameUC = classNameUCRef.getValue().getString(0);
 		return localIdRef.getValue();
@@ -554,15 +552,13 @@ public class IfcEngineJNA {
 	 *            A numeric instanceID that uniquely identifies an instance.
 	 * @return
 	 */
-	public SurfaceProperties initializeModellingInstance(Pointer model,
-			double scale, Pointer instance) {
+	public SurfaceProperties initializeModellingInstance(Pointer model, double scale, Pointer instance) {
 		IntByReference pV = new IntByReference();
 		IntByReference pI = new IntByReference();
 		engine.initializeModellingInstance(model, pV, pI, scale, instance);
 		int noVertices = pV.getValue();
 		int noIndices = pI.getValue();
-		return new SurfaceProperties(model, instance, noVertices, noIndices,
-				scale);
+		return new SurfaceProperties(model, instance, noVertices, noIndices, scale);
 	}
 
 	/**
@@ -583,16 +579,13 @@ public class IfcEngineJNA {
 	 *            object.
 	 * @return
 	 */
-	public SurfaceProperties initializeModellingInstanceEx(Pointer model,
-			double scale, Pointer instance, Pointer instanceList) {
+	public SurfaceProperties initializeModellingInstanceEx(Pointer model, double scale, Pointer instance, Pointer instanceList) {
 		IntByReference pV = new IntByReference();
 		IntByReference pI = new IntByReference();
-		engine.initializeModellingInstanceEx(model, pV, pI, scale, instance,
-				instanceList);
+		engine.initializeModellingInstanceEx(model, pV, pI, scale, instance, instanceList);
 		int noVertices = pV.getValue();
 		int noIndices = pI.getValue();
-		return new SurfaceProperties(model, instance, instanceList, noVertices,
-				noIndices, scale);
+		return new SurfaceProperties(model, instance, instanceList, noVertices, noIndices, scale);
 	}
 
 	/**
@@ -619,8 +612,7 @@ public class IfcEngineJNA {
 	 * @return
 	 * @throws Exception
 	 */
-	public int finalizeModelling(Pointer model, float[] coordinates,
-			float[] normals, int[] indices) {
+	public int finalizeModelling(Pointer model, float[] coordinates, float[] normals, int[] indices) {
 		int fvf = 0;
 		int size = 0;
 		int noVertices = 0;
@@ -674,8 +666,7 @@ public class IfcEngineJNA {
 	 *            bounding box representation.
 	 * @return
 	 */
-	public InstanceVisualisationProperties getInstanceInModelling(
-			Pointer model, Pointer instance, int mode) {
+	public InstanceVisualisationProperties getInstanceInModelling(Pointer model, Pointer instance, int mode) {
 		IntByReference pV = new IntByReference();
 		IntByReference pI = new IntByReference();
 		IntByReference pC = new IntByReference();
@@ -683,8 +674,7 @@ public class IfcEngineJNA {
 		int startVertex = pV.getValue();
 		int startIndex = pI.getValue();
 		int primitiveCount = pC.getValue();
-		return new InstanceVisualisationProperties(startVertex, startIndex,
-				primitiveCount);
+		return new InstanceVisualisationProperties(startVertex, startIndex, primitiveCount);
 	}
 
 	/**
@@ -734,18 +724,15 @@ public class IfcEngineJNA {
 	 *            A numeric instanceID that uniquely identifies an instance.
 	 * @return InstanceDerivedProperties object
 	 */
-	public InstanceDerivedProperties getInstanceDerivedPropertiesInModelling(
-			int model, Pointer instance) {
+	public InstanceDerivedProperties getInstanceDerivedPropertiesInModelling(int model, Pointer instance) {
 		DoubleByReference pH = new DoubleByReference();
 		DoubleByReference pW = new DoubleByReference();
 		DoubleByReference pT = new DoubleByReference();
-		engine.getInstanceDerivedPropertiesInModelling(model, instance, pH, pW,
-				pT);
+		engine.getInstanceDerivedPropertiesInModelling(model, instance, pH, pW, pT);
 		double height = pH.getValue();
 		double width = pW.getValue();
 		double thickness = pT.getValue();
-		return new InstanceDerivedProperties(model, instance, height, width,
-				thickness);
+		return new InstanceDerivedProperties(model, instance, height, width, thickness);
 	}
 
 	/**
@@ -759,24 +746,21 @@ public class IfcEngineJNA {
 	 * @return InstanceDerivedBoundingBox object
 	 * @throws Exception
 	 */
-	public InstanceDerivedBoundingBox getInstanceDerivedBoundingBox(
-			Pointer model, Pointer instance) {
+	public InstanceDerivedBoundingBox getInstanceDerivedBoundingBox(Pointer model, Pointer instance) {
 		DoubleByReference pOx = new DoubleByReference();
 		DoubleByReference pOy = new DoubleByReference();
 		DoubleByReference pOz = new DoubleByReference();
 		DoubleByReference pVx = new DoubleByReference();
 		DoubleByReference pVy = new DoubleByReference();
 		DoubleByReference pVz = new DoubleByReference();
-		engine._getInstanceDerivedBoundingBox(model, instance, pOx, pOy, pOz,
-				pVx, pVy, pVz);
+		engine._getInstanceDerivedBoundingBox(model, instance, pOx, pOy, pOz, pVx, pVy, pVz);
 		double ox = pOx.getValue();
 		double oy = pOy.getValue();
 		double oz = pOz.getValue();
 		double vx = pVx.getValue();
 		double vy = pVy.getValue();
 		double vz = pVz.getValue();
-		return new InstanceDerivedBoundingBox(model, instance, ox, oy, oz, vx,
-				vy, vz);
+		return new InstanceDerivedBoundingBox(model, instance, ox, oy, oz, vx, vy, vz);
 	}
 
 	/**
@@ -790,8 +774,7 @@ public class IfcEngineJNA {
 	 *            A numeric instanceID that uniquely identifies an instance.
 	 * @return InstanceDerivedTransformationMatrix object
 	 */
-	public InstanceDerivedTransformationMatrix getInstanceDerivedTransformationMatrix(
-			Pointer model, Pointer instance) {
+	public InstanceDerivedTransformationMatrix getInstanceDerivedTransformationMatrix(Pointer model, Pointer instance) {
 		DoubleByReference p_11 = new DoubleByReference();
 		DoubleByReference p_12 = new DoubleByReference();
 		DoubleByReference p_13 = new DoubleByReference();
@@ -808,9 +791,7 @@ public class IfcEngineJNA {
 		DoubleByReference p_42 = new DoubleByReference();
 		DoubleByReference p_43 = new DoubleByReference();
 		DoubleByReference p_44 = new DoubleByReference();
-		engine.getInstanceDerivedTransformationMatrix(model, instance, p_11,
-				p_12, p_13, p_14, p_21, p_22, p_23, p_24, p_31, p_32, p_33,
-				p_34, p_41, p_42, p_43, p_44);
+		engine.getInstanceDerivedTransformationMatrix(model, instance, p_11, p_12, p_13, p_14, p_21, p_22, p_23, p_24, p_31, p_32, p_33, p_34, p_41, p_42, p_43, p_44);
 		double _11 = p_11.getValue();
 		double _12 = p_12.getValue();
 		double _13 = p_13.getValue();
@@ -827,9 +808,7 @@ public class IfcEngineJNA {
 		double _42 = p_42.getValue();
 		double _43 = p_43.getValue();
 		double _44 = p_44.getValue();
-		return new InstanceDerivedTransformationMatrix(model, instance, _11,
-				_12, _13, _14, _21, _22, _23, _24, _31, _32, _33, _34, _41,
-				_42, _43, _44);
+		return new InstanceDerivedTransformationMatrix(model, instance, _11, _12, _13, _14, _21, _22, _23, _24, _31, _32, _33, _34, _41, _42, _43, _44);
 	}
 
 	/**
@@ -847,8 +826,7 @@ public class IfcEngineJNA {
 	 * @return
 	 * @throws Exception
 	 */
-	public Pointer internalGetCenter(Pointer model, Pointer instance)
-			throws Exception {
+	public Pointer internalGetCenter(Pointer model, Pointer instance) throws Exception {
 		return engine.internalGetCenter(model, instance);
 	}
 
@@ -857,8 +835,7 @@ public class IfcEngineJNA {
 	 * @param attributeName
 	 * @param linked_id
 	 */
-	public void internalSetLink(Pointer instance, String attributeName,
-			int linked_id) {
+	public void internalSetLink(Pointer instance, String attributeName, int linked_id) {
 		engine.internalSetLink(instance, attributeName, linked_id);
 	}
 
@@ -893,11 +870,9 @@ public class IfcEngineJNA {
 	 *            Type of output value.
 	 * @return Output value of the specific element in the aggregation.
 	 */
-	public Object sdaiGetAttrBN(Pointer instance, String attributeName,
-			SdaiTypes valueType) {
+	public Object sdaiGetAttrBN(Pointer instance, String attributeName, SdaiTypes valueType) {
 		PointerByReference ptrRef = new PointerByReference();
-		engine.sdaiGetAttrBN(instance, attributeName, valueType.ordinal(),
-				ptrRef);
+		engine.sdaiGetAttrBN(instance, attributeName, valueType.ordinal(), ptrRef);
 		switch (valueType) {
 		case STRING:
 			return ptrRef.getValue().getString(0);
@@ -999,8 +974,7 @@ public class IfcEngineJNA {
 	 * 
 	 * @return modelID
 	 */
-	public Pointer sdaiOpenModelBN(int repository, String fileName,
-			String schemaName) {
+	public Pointer sdaiOpenModelBN(int repository, String fileName, String schemaName) {
 		return engine.sdaiOpenModelBN(1, fileName, schemaName);
 	}
 
@@ -1024,8 +998,7 @@ public class IfcEngineJNA {
 	 * 
 	 * @return modelID
 	 */
-	public int sdaiCreateModelBN(int repository, String fileName,
-			String schemaName) {
+	public int sdaiCreateModelBN(int repository, String fileName, String schemaName) {
 		return engine.sdaiCreateModelBN(repository, fileName, schemaName);
 	}
 
@@ -1122,12 +1095,10 @@ public class IfcEngineJNA {
 			returnValue = engine.sdaiCreateADB(valueType.ordinal(), dVal);
 			break;
 		case STRING:
-			returnValue = engine.sdaiCreateADB(valueType.ordinal(),
-					(String) value);
+			returnValue = engine.sdaiCreateADB(valueType.ordinal(), (String) value);
 			break;
 		default:
-			returnValue = engine.sdaiCreateADB(valueType.ordinal(),
-					(Pointer) value);
+			returnValue = engine.sdaiCreateADB(valueType.ordinal(), (Pointer) value);
 			break;
 		}
 
@@ -1201,8 +1172,7 @@ public class IfcEngineJNA {
 	 * @param express_id
 	 * @return
 	 */
-	public Pointer sdaiCreateInstanceBNEI(Pointer model, String entityName,
-			int express_id) {
+	public Pointer sdaiCreateInstanceBNEI(Pointer model, String entityName, int express_id) {
 		return engine.sdaiCreateInstanceBNEI(model, entityName, express_id);
 	}
 
@@ -1309,8 +1279,7 @@ public class IfcEngineJNA {
 	 *            Type of output value.
 	 * @return Output value of the specific element in the aggregation.
 	 */
-	public Object sdaiGetAttr(Pointer instance, int attribute,
-			SdaiTypes valueType) {
+	public Object sdaiGetAttr(Pointer instance, int attribute, SdaiTypes valueType) {
 		Object returnValue = null;
 
 		switch (valueType) {
@@ -1386,8 +1355,7 @@ public class IfcEngineJNA {
 	 *            Name of the Entity.
 	 * @return a numeric aggregateID
 	 **/
-	public Pointer xxxxGetEntityAndSubTypesExtentBN(Pointer model,
-			String entityName) {
+	public Pointer xxxxGetEntityAndSubTypesExtentBN(Pointer model, String entityName) {
 		return engine.xxxxGetEntityAndSubTypesExtentBN(model, entityName);
 	}
 }
