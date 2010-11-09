@@ -28,6 +28,7 @@ import javax.servlet.ServletException;
 
 import org.apache.cxf.Bus;
 import org.apache.cxf.BusFactory;
+import org.apache.cxf.binding.http.HttpBindingFactory;
 import org.apache.cxf.jaxws.JaxWsServerFactoryBean;
 import org.apache.cxf.service.invoker.BeanInvoker;
 import org.apache.cxf.transport.servlet.CXFNonSpringServlet;
@@ -47,6 +48,7 @@ public class WebServiceServlet extends CXFNonSpringServlet {
 		properties.put("mtom-enabled", Boolean.TRUE);
 		serverFactoryBean.setProperties(properties);
 		serverFactoryBean.setServiceClass(ServiceInterface.class);
+		serverFactoryBean.setBindingId(HttpBindingFactory.HTTP_BINDING_ID);
 		ServiceInterface service = (ServiceInterface) servletConfig.getServletContext().getAttribute("service");
 		BeanInvoker beanInvoker = new BeanInvoker(service);
 		serverFactoryBean.setInvoker(beanInvoker);

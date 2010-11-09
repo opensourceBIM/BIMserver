@@ -1,7 +1,10 @@
 package org.bimserver.interfaces.objects;
 
-import java.util.*;
+import java.util.List;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name="Revision")
 public class SRevision
 {
 	private long oid;

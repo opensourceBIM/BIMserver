@@ -25,6 +25,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 
 import org.bimserver.shared.Token;
+import org.bimserver.shared.UserException;
 import org.bimserver.utils.GeneratorUtils;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
@@ -38,8 +39,11 @@ public class TokenManager implements Job {
 	private static final int TOKEN_TTL_SECONDS = 60*60; // one hour
 	private final HashMap<Token, Long> tokens = new HashMap<Token, Long>();
 
-	public synchronized long getUoid(Token token) {
-		return tokens.get(token);
+	public synchronized long getUoid(Token token) throws UserException {
+		if (tokens.containsKey(token)) {
+			return tokens.get(token);
+		}
+		throw new UserException("Invalid token");
 	}
 
 	public synchronized Token newToken(long uoid) {

@@ -2,6 +2,8 @@ package org.bimserver.shared;
 
 import java.util.Date;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 /******************************************************************************
  * (c) Copyright bimserver.org 2009
  * Licensed under GNU GPLv3
@@ -22,6 +24,7 @@ import java.util.Date;
  * long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+@XmlRootElement
 public class Token {
 	private String tokenString;
 	private long expires;

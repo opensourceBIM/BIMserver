@@ -1,7 +1,9 @@
 package org.bimserver.interfaces.objects;
 
 import java.util.*;
+import javax.xml.bind.annotation.XmlRootElement;
 
+@XmlRootElement
 public class SNewUserAdded extends SLogAction
 {
 	private long oid;

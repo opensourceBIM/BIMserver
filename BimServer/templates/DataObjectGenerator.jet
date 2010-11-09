@@ -2,11 +2,13 @@
 package org.bimserver.interfaces.objects;
 
 import java.util.*;
+import javax.xml.bind.annotation.XmlRootElement;
 <%
 	if (argument instanceof EClass) {
 		EClass eClass = (EClass)argument;
 %>
 
+@XmlRootElement
 public class S<%=eClass.getName()%>
 <%
 	if (!eClass.getESuperTypes().isEmpty()) {
