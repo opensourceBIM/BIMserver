@@ -2,10 +2,12 @@ package org.bimserver.ifcengine;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
+import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 
 import org.bimserver.shared.ResourceFetcher;
 import org.slf4j.Logger;
@@ -28,6 +30,28 @@ public class FailSafeIfcEngine {
 	public synchronized IfcEngineModel openModel(File ifcFile) throws IfcEngineException {
 		writeCommand(Command.OPEN_MODEL);
 		writeUTF(ifcFile.getAbsolutePath());
+		flush();
+		int modelId = readInt();
+		return new IfcEngineModel(this, modelId);
+	}
+
+	public synchronized IfcEngineModel openModel(InputStream inputStream, int size) throws IfcEngineException {
+		writeCommand(Command.OPEN_MODEL_STREAMING);
+		try {
+			out.writeInt(size);
+			int total = 0;
+			while (total < size) {
+				byte[] buffer = new byte[1024];
+				int red = inputStream.read(buffer);
+				if (red == -1) {
+					break;
+				}
+				out.write(buffer, 0, red);
+				total += red;
+			}
+		} catch (IOException e) {
+			throw new IfcEngineException(e);
+		}
 		flush();
 		int modelId = readInt();
 		return new IfcEngineModel(this, modelId);
@@ -126,5 +150,9 @@ public class FailSafeIfcEngine {
 		} catch (IOException e) {
 			throw new IfcEngineException("Unknown IFC Engine error");
 		}
+	}
+
+	public IfcEngineModel openModel(byte[] bytes) throws IfcEngineException {
+		return openModel(new ByteArrayInputStream(bytes), bytes.length);
 	}
 }

@@ -25,7 +25,6 @@ public class Settings {
 	private boolean sendConfirmationEmailAfterRegistration;
 	private boolean useCaching;
 	private boolean allowSelfRegistration;
-	private boolean useSecondEngineJvm;
 	private boolean autoTestClashes;
 	private boolean intelligentMerging;
 	private boolean allowUsersToCreateTopLevelProjects;
@@ -198,14 +197,6 @@ public class Settings {
 	public static Settings read() {
 		File file = ServerInitializer.getResourceFetcher().getFile("settings.xml");
 		return readFromFile(file);
-	}
-
-	public void setUseSecondEngineJvm(boolean useSecondEngineJvm) {
-		this.useSecondEngineJvm = useSecondEngineJvm;
-	}
-
-	public boolean isUseSecondEngineJvm() {
-		return useSecondEngineJvm;
 	}
 
 	public void setAutoTestClashes(boolean autoTestClashes) {

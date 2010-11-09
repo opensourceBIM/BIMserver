@@ -7,6 +7,13 @@
 			<param name="ConversionPattern" value="%d{ISO8601} %-5p %c - %m%n" />
 		</layout>
 	</appender>
+	<appender name="File" class="org.apache.log4j.FileAppender">
+		<param name="File" value="ifcengine.log" />
+		<param name="Threshold" value="DEBUG" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{ISO8601} %-5p %c - %m%n" />
+		</layout>
+	</appender>
 	<logger name="org.quartz">
 		<level value="error" />
 		<appender-ref ref="Console" />
@@ -25,6 +32,7 @@
 	</logger>
 	<logger name="org.bimserver.ifcengine">
 		<level value="error" />
+		<appender-ref ref="File" />
 	</logger>
 	<root>
 		<priority value="INFO" />

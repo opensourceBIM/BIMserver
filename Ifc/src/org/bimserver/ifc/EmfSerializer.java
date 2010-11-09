@@ -45,6 +45,16 @@ public abstract class EmfSerializer implements DataSource {
 		this.model = model;
 	}
 
+	public byte[] getBytes() {
+		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+		try {
+			writeToOutputStream(outputStream);
+		} catch (SerializerException e1) {
+			e1.printStackTrace();
+		}
+		return outputStream.toByteArray();
+	}
+	
 	@Override
 	public InputStream getInputStream() throws IOException {
 		InputStream in = new InputStream() {

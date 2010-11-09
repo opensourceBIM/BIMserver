@@ -57,6 +57,13 @@ public class IfcEngineServer {
 					out.writeInt(newPointerKey);
 				}
 					break;
+				case OPEN_MODEL_STREAMING: {
+					int size = in.readInt();
+					Pointer modelId = ifcEngine.loadFromInputStream(in, size, schemaFileName);
+					int newPointerKey = savePointer(modelId);
+					out.writeInt(newPointerKey);
+				}
+					break;
 				case FINALIZE_MODELLING: {
 					int modelId = in.readInt();
 					int indicesCount = in.readInt();

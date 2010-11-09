@@ -1,6 +1,5 @@
 package org.bimserver.citygml;
 
-import java.io.File;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.Arrays;
@@ -612,10 +611,8 @@ public class CityGmlSerializer extends BimModelSerializer {
 		IfcModel IfcModel = new IfcModel();
 		convertToSubset(ifcRootObject.eClass(), ifcRootObject, IfcModel, new HashMap<EObject, EObject>());
 		IfcStepSerializer ifcSerializer = new IfcStepSerializer(project, user, "", IfcModel, schemaDefinition);
-		File file = createTempFile();
 		try {
-			ifcSerializer.writeToFile(file);
-			IfcEngineModel model = ifcEngine.openModel(file);
+			IfcEngineModel model = ifcEngine.openModel(ifcSerializer.getBytes());
 			try {
 				model.setPostProcessing(true);
 				SurfaceProperties initializeModelling = model.initializeModelling();
@@ -639,7 +636,7 @@ public class CityGmlSerializer extends BimModelSerializer {
 				model.close();
 			}
 		} catch (IfcEngineException e) {
-			throw new SerializerException("IfcEngineException in " + file.getAbsolutePath(), e);
+			throw new SerializerException("IfcEngineException", e);
 		} catch (Exception e) {
 			LOGGER.error("", e);
 		}

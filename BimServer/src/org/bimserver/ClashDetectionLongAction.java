@@ -1,6 +1,5 @@
 package org.bimserver;
 
-import java.io.File;
 import java.util.Set;
 
 import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
@@ -13,7 +12,6 @@ import org.bimserver.database.CommitSet;
 import org.bimserver.database.Database;
 import org.bimserver.database.actions.BimDatabaseAction;
 import org.bimserver.database.actions.DownloadDatabaseAction;
-import org.bimserver.database.actions.FindClashesDatabaseAction;
 import org.bimserver.database.store.CheckinState;
 import org.bimserver.database.store.Clash;
 import org.bimserver.database.store.EidClash;
@@ -70,12 +68,11 @@ public class ClashDetectionLongAction extends LongAction {
 			Revision revision = project.getLastRevision();
 			BimDatabaseAction<IfcModel> action = new DownloadDatabaseAction(AccessMethod.SOAP, revision.getOid(), actingUoid);
 			IfcModel model = action.execute(session);
-			File file = FindClashesDatabaseAction.createTempFile();
-			IfcStepSerializer ifcStepSerializer = new IfcStepSerializer(project, session.getUserByUoid(actingUoid), file.getName(), model, schema);
-			ifcStepSerializer.writeToFile(file);
+			IfcStepSerializer ifcStepSerializer = new IfcStepSerializer(project, session.getUserByUoid(actingUoid), "", model, schema);
+			byte[] bytes = ifcStepSerializer.getBytes();
 			FailSafeIfcEngine failSafeIfcEngine = ifcEngineFactory.createFailSafeIfcEngine();
 			try {	
-				IfcEngineModel ifcEngineModel = failSafeIfcEngine.openModel(file);
+				IfcEngineModel ifcEngineModel = failSafeIfcEngine.openModel(bytes);
 				try {
 					Set<EidClash> clashes = ifcEngineModel.findClashesByEid(project.getClashDetectionSettings().getMargin());
 					for (Clash clash : clashes) {

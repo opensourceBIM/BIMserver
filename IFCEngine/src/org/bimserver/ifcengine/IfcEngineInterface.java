@@ -20,17 +20,11 @@ public interface IfcEngineInterface extends Library {
 	// IfcEngineInterface SYNC_INSTANCE = (IfcEngineInterface) Native
 	// .synchronizedLibrary(INSTANCE);
 
-	int SIGUSR1 = 30;
-
 	interface StreamCallback extends Callback {
-		void invoke(int signal);
+		int invoke(Pointer pointer);
 	}
 
-	StreamCallback signal(int sig, StreamCallback fn);
-
-	Pointer raise(int sig);
-
-	void sdaiOpenModelByStream(Pointer callbackAddress, Pointer pResponseBuffer);
+	Pointer xxxxOpenModelByStream(int repository, StreamCallback callbackAddress, String schemaName);
 
 	/**
 	 * Change the number of segments a circle should be represented as.
@@ -570,7 +564,7 @@ public interface IfcEngineInterface extends Library {
 	 * @return a numeric attributeID
 	 */
 	Pointer sdaiGetAttrDefinition(Pointer entity, String attributeName);
-
+	
 	/**
 	 * Returns a numeric aggregateID that uniquely identifies the aggregate that
 	 * holds all instances of one particular type and its sub-types in a model.

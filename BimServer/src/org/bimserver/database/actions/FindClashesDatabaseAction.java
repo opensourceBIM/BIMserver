@@ -22,7 +22,6 @@ import org.bimserver.database.store.Revision;
 import org.bimserver.database.store.log.AccessMethod;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.IfcModel;
-import org.bimserver.ifc.SerializerException;
 import org.bimserver.ifc.emf.Ifc2x3.IfcRoot;
 import org.bimserver.ifc.file.writer.IfcStepSerializer;
 import org.bimserver.ifcengine.FailSafeIfcEngine;
@@ -86,13 +85,12 @@ public class FindClashesDatabaseAction extends BimDatabaseAction<Set<? extends C
 		for (IdEObject idEObject : ifcModel.getValues()) {
 			cleanupModel(idEObject, newModel, ifcModel, new HashSet<String>(sClashDetectionSettings.getIgnoredClasses()), converted);
 		}
-		File file = createTempFile();
-		IfcStepSerializer ifcStepSerializer = new IfcStepSerializer(null, bimDatabaseSession.getUserByUoid(actingUoid), file.getName(), newModel, schema);
+		IfcStepSerializer ifcStepSerializer = new IfcStepSerializer(null, bimDatabaseSession.getUserByUoid(actingUoid), "", newModel, schema);
 		try {
-			ifcStepSerializer.writeToFile(file);
+			byte[] bytes = ifcStepSerializer.getBytes();
 			FailSafeIfcEngine failSafeIfcEngine = ifcEngineFactory.createFailSafeIfcEngine();
 			try {
-				IfcEngineModel ifcEngineModel = failSafeIfcEngine.openModel(file);
+				IfcEngineModel ifcEngineModel = failSafeIfcEngine.openModel(bytes);
 				try {
 					Set<EidClash> clashes = ifcEngineModel.findClashesByEid(sClashDetectionSettings.getMargin());
 					ifcEngineModel.close();
@@ -115,8 +113,6 @@ public class FindClashesDatabaseAction extends BimDatabaseAction<Set<? extends C
 			} finally {
 				failSafeIfcEngine.close();
 			}
-		} catch (SerializerException e) {
-			LOGGER.error("", e);
 		} catch (IfcEngineException e) {
 			LOGGER.error("", e);
 		}

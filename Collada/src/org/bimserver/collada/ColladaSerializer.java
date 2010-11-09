@@ -1,6 +1,5 @@
 package org.bimserver.collada;
 
-import java.io.File;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.HashMap;
@@ -243,16 +242,8 @@ public class ColladaSerializer extends BimModelSerializer {
 		IfcModel ifcModel = new IfcModel();
 		convertToSubset(ifcRootObject.eClass(), ifcRootObject, ifcModel, new HashMap<EObject, EObject>());
 		IfcStepSerializer ifcSerializer = new IfcStepSerializer(project, user, "", ifcModel, schemaDefinition);
-		File file = createTempFile();
 		try {
-			ifcSerializer.writeToFile(file);
-		} catch (SerializerException e) {
-			LOGGER.error("", e);
-			return;
-		}
-
-		try {
-			IfcEngineModel model = ifcEngine.openModel(file);
+			IfcEngineModel model = ifcEngine.openModel(ifcSerializer.getBytes());
 			try {
 				model.setPostProcessing(true);
 				Geometry geometry = model.finalizeModelling(model.initializeModelling());
