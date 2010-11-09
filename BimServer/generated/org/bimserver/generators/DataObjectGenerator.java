@@ -15,8 +15,8 @@ public class DataObjectGenerator
   }
 
   public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-  protected final String TEXT_1 = "package org.bimserver.interfaces.objects;" + NL + "" + NL + "import java.util.*;";
-  protected final String TEXT_2 = NL + NL + "public class S";
+  protected final String TEXT_1 = "package org.bimserver.interfaces.objects;" + NL + "" + NL + "import java.util.*;" + NL + "import javax.xml.bind.annotation.XmlRootElement;";
+  protected final String TEXT_2 = NL + NL + "@XmlRootElement" + NL + "public class S";
   protected final String TEXT_3 = " extends ";
   protected final String TEXT_4 = "S";
   protected final String TEXT_5 = NL + "{" + NL + "\tprivate long oid;" + NL + "\t" + NL + "\tpublic long getOid() {" + NL + "\t\treturn oid;" + NL + "\t}" + NL + "\t" + NL + "\tpublic void setOid(long oid) {" + NL + "\t\tthis.oid = oid;" + NL + "\t}";

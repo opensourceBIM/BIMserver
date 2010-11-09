@@ -124,6 +124,7 @@ public class ServerInitializer implements ServletContextListener {
 			ServiceInterface webService = new Service(bimDatabase, emfSerializerFactory, schema, tokenManager, longActionManager, AccessMethod.WEB_INTERFACE, ifcEngineFactory);
 			servletContext.setAttribute("service", soapService);
 			LoginManager.setService(webService);
+			RestApplication.service = webService;
 
 			if (serverType == ServerType.DEPLOYED_WAR) {
 				File libDir = new File(servletContext.getRealPath("/") + "WEB-INF" + File.separator + "lib");

@@ -22,6 +22,9 @@ package org.bimserver.servlets;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -31,16 +34,24 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 
+import org.bimserver.ifc.EmfSerializer;
+import org.bimserver.ifc.SerializerException;
 import org.bimserver.interfaces.objects.SCheckout;
+import org.bimserver.interfaces.objects.SList;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevision;
+import org.bimserver.shared.CheckoutResult;
 import org.bimserver.shared.ResultType;
 import org.bimserver.shared.ServiceInterface;
 import org.bimserver.shared.Token;
+import org.bimserver.shared.UserException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class RestLikeServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 6286334261176028115L;
+	private static final Logger LOGGER = LoggerFactory.getLogger(RestLikeServlet.class);
 
 	private enum Action {
 		REVISIONS, CHECKOUTS, PROJECTS
@@ -50,25 +61,25 @@ public class RestLikeServlet extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ServiceInterface service = (ServiceInterface) getServletContext().getAttribute("service");
 		String[] urlParams = null;
-		if (request.getPathInfo() == null) {
-			urlParams = request.getQueryString().split("/");
-		} else {
+		if (request.getPathInfo() != null) {
 			urlParams = request.getPathInfo().split("/");
+		} else if (request.getQueryString() != null) {
+			urlParams = request.getQueryString().split("/");
 		}
-		int pid = -1;
-		int rid = -1;
+		long poid = -1;
+		long roid = -1;
 		long oid = -1;
 		String guid = null;
-		ResultType resultType = ResultType.IFC;
+		ResultType resultType = ResultType.TEXT;
 		Action action = null;
 		String className = null;
 		try {
 			if (urlParams != null) {
 				for (String param : urlParams) {
-					if (param.startsWith("pid=")) {
-						pid = Integer.parseInt(param.substring(4));
-					} else if (param.startsWith("rid=")) {
-						rid = Integer.parseInt(param.substring(4));
+					if (param.startsWith("poid=")) {
+						poid = Long.parseLong(param.substring(5));
+					} else if (param.startsWith("roid=")) {
+						roid = Long.parseLong(param.substring(5));
 					} else if (param.startsWith("oid=")) {
 						oid = Integer.parseInt(param.substring(4));
 					} else if (param.startsWith("guid=")) {
@@ -87,89 +98,110 @@ public class RestLikeServlet extends HttpServlet {
 			return;
 		}
 		response.setContentType(resultType.getContentType());
-		Token token;
-//		try {
-//			token = service.createAnonymousToken();
-//			if (urlParams == null) {
-//				writeObject(service.getAllProjects(token), response.getOutputStream());
-//			} else {
-//				if (pid != -1) {
-//					// Get a specific project
-//					if (rid != -1) {
-//						// Get a specific revision
-//						if (oid != -1) {
-//							// Get a specific object
-//							CheckoutResult downloadById = service.downloadByOid(token, roid, oid, resultType);
-//							EmfSerializer serializer = (EmfSerializer)downloadById.getFile().getDataSource();
-//							serializer.writeToOutputStream(response.getOutputStream());
-//						} else {
-//							if (guid != null) {
-//								CheckoutResult downloadById = service.downloadByGuid(token, roid, guid, resultType);
-//								EmfSerializer serializer = (EmfSerializer)downloadById.getFile().getDataSource();
-//								serializer.writeToOutputStream(response.getOutputStream());
-//							} else {
-//								if (className != null) {
-//									// Get all of class
-//									CheckoutResult download = service.downloadOfType(token, roid, className, resultType);
-//									EmfSerializer serializer = (EmfSerializer)download.getFile().getDataSource();
-//									serializer.writeToOutputStream(response.getOutputStream());
-//								} else {
-//									// Get all objects
-//									if (service.getRevision(token, pid, rid) == null) {
-//										response.getWriter().println("Project " + pid + " has no revision " + rid);
-//									} else {
-//										CheckoutResult download = service.download(token, roid, resultType);
-//										EmfSerializer serializer = (EmfSerializer)download.getFile().getDataSource();
-//										serializer.writeToOutputStream(response.getOutputStream());
-//									}
-//								}
-//							}
-//						}
-//					} else {
-//						// Get the last revision
-//						if (oid != -1) {
-//							// Get a specific object
-//							CheckoutResult downloadById = service.downloadByOid(token, pid, service.getLastRevision(token, pid).getId(), oid, resultType);
-//							downloadById.getFile().writeTo(response.getOutputStream());
-//						} else {
-//							if (action == null) {
-//								// Get all objects
-//								SRevision lastRevision = service.getLastRevision(token, pid);
-//								if (lastRevision == null) {
-//									response.getWriter().println("Project " + pid + " has no revisions");
-//								} else {
-//									CheckoutResult download = service.download(token, pid, lastRevision.getId(), resultType);
-//									EmfSerializer serializer = (EmfSerializer)download.getFile().getDataSource();
-//									response.setHeader("Content-Disposition", "inline; filename=\"" + download.getProjectName() + "." + download.getRevisionNr() + "." + resultType.getDefaultExtension() + "\"");
-//									serializer.writeToOutputStream(response.getOutputStream());
-//								}
-//							} else {
-//								if (action == Action.CHECKOUTS) {
-//									writeObject(service.getAllCheckoutsOfProject(token, pid), response.getOutputStream());
-//								} else if (action == Action.REVISIONS) {
-//									writeObject(service.getAllRevisionsOfProject(token, pid), response.getOutputStream());
-//								} else if (action == Action.PROJECTS) {
-//									writeObject(service.getAllProjects(token), response.getOutputStream());
-//								}
-//							}
-//						}
-//					}
-//				}
-//			}
-//		} catch (UserException e) {
-//			response.getWriter().print(e.getUserMessage());
-//		} catch (SerializerException e) {
-//			e.printStackTrace();
-//		}
+		try {
+			Token token = service.createAnonymousToken();
+			if (urlParams == null) {
+				writeObject(response, service.getAllProjects(token), response.getOutputStream());
+			} else {
+				if (poid != -1) {
+					// Get a specific project
+					if (roid != -1) {
+						// Get a specific revision
+						if (oid != -1) {
+							// Get a specific object'
+							CheckoutResult downloadById = service.downloadByOids(token, createSet(roid), createSet(oid), resultType);
+							EmfSerializer serializer = (EmfSerializer)downloadById.getFile().getDataSource();
+							serializer.writeToOutputStream(response.getOutputStream());
+						} else {
+							if (guid != null) {
+								CheckoutResult downloadById = service.downloadByGuids(token, createSet(roid), createSet(guid), resultType);
+								EmfSerializer serializer = (EmfSerializer)downloadById.getFile().getDataSource();
+								serializer.writeToOutputStream(response.getOutputStream());
+							} else {
+								if (className != null) {
+									// Get all of class
+									CheckoutResult download = service.downloadOfType(token, roid, className, resultType);
+									EmfSerializer serializer = (EmfSerializer)download.getFile().getDataSource();
+									serializer.writeToOutputStream(response.getOutputStream());
+								} else {
+									// Get all objects
+									if (service.getRevision(token, roid) == null) {
+										response.getWriter().println("Project " + poid + " has no revision " + roid);
+									} else {
+										CheckoutResult download = service.download(token, roid, resultType);
+										EmfSerializer serializer = (EmfSerializer)download.getFile().getDataSource();
+										serializer.writeToOutputStream(response.getOutputStream());
+									}
+								}
+							}
+						}
+					} else {
+						// Get the last revision
+						if (oid != -1) {
+							// Get a specific object
+							SProject sProject = service.getProjectByPoid(token, poid);
+							CheckoutResult downloadById = service.downloadByOids(token, createSet(poid), createSet(service.getRevision(token, sProject.getLastRevisionId()).getId()), resultType);
+							downloadById.getFile().writeTo(response.getOutputStream());
+						} else {
+							if (action == null) {
+								// Get all objects
+								SProject sProject = service.getProjectByPoid(token, poid);
+								if (sProject.getLastRevisionId() == -1) {
+									response.getWriter().println("Project " + poid + " has no revisions");
+								} else {
+									CheckoutResult download = service.download(token, sProject.getLastRevisionId(), resultType);
+									EmfSerializer serializer = (EmfSerializer)download.getFile().getDataSource();
+									response.setHeader("Content-Disposition", "inline; filename=\"" + download.getProjectName() + "." + download.getRevisionNr() + "." + resultType.getDefaultExtension() + "\"");
+									serializer.writeToOutputStream(response.getOutputStream());
+								}
+							} else {
+								if (action == Action.CHECKOUTS) {
+									writeObject(response, service.getAllCheckoutsOfProject(token, poid), response.getOutputStream());
+								} else if (action == Action.REVISIONS) {
+									writeObject(response, service.getAllRevisionsOfProject(token, poid), response.getOutputStream());
+								} else if (action == Action.PROJECTS) {
+									writeObject(response, service.getAllProjects(token), response.getOutputStream());
+								}
+							}
+						}
+					}
+				}
+			}
+		} catch (UserException e) {
+			response.getWriter().print(e.getUserMessage());
+		} catch (SerializerException e) {
+			LOGGER.error("", e);
+		}
 	}
 
-	private void writeObject(Object object, OutputStream out) {
+	private Set<String> createSet(String value) {
+		HashSet<String> hashSet = new HashSet<String>();
+		hashSet.add(value);
+		return hashSet;
+	}
+	
+	private Set<Long> createSet(long value) {
+		HashSet<Long> hashSet = new HashSet<Long>();
+		hashSet.add(value);
+		return hashSet;
+	}
+	
+	private void writeObject(HttpServletResponse response, Object object, OutputStream out) {
 		try {
-			JAXBContext jaxbContext = JAXBContext.newInstance(object.getClass(), SProject.class, SCheckout.class, SRevision.class);
+			response.setContentType("text/xml");
+			JAXBContext jaxbContext = JAXBContext.newInstance(object.getClass(), SProject.class, SCheckout.class, SRevision.class, SList.class);
 			Marshaller marshaller = jaxbContext.createMarshaller();
-			marshaller.marshal(object, out);
+			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+			if (object instanceof List<?>) {
+				SList sList = new SList();
+				List<?> list = (List<?>)object;
+				sList.setList(list);
+				marshaller.marshal(sList, out);
+			} else {
+				marshaller.marshal(object, out);
+			}
 		} catch (JAXBException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 	}
 }

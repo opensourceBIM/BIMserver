@@ -35,7 +35,6 @@ import java.util.zip.ZipInputStream;
 
 import javax.activation.DataHandler;
 import javax.annotation.Resource;
-import javax.jws.WebParam;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
@@ -549,7 +548,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public Token login(@WebParam(name = "username") String username, String password) throws UserException {
+	public Token login(String username, String password) throws UserException {
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
 			BimDatabaseAction<User> action = new GetUserByNameDatabaseAction(accessMethod, username);
