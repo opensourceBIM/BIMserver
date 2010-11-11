@@ -40,8 +40,8 @@ import org.bimserver.interfaces.objects.SCheckout;
 import org.bimserver.interfaces.objects.SList;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevision;
-import org.bimserver.shared.CheckoutResult;
 import org.bimserver.shared.ResultType;
+import org.bimserver.shared.SDownloadResult;
 import org.bimserver.shared.ServiceInterface;
 import org.bimserver.shared.Token;
 import org.bimserver.shared.UserException;
@@ -109,18 +109,18 @@ public class RestLikeServlet extends HttpServlet {
 						// Get a specific revision
 						if (oid != -1) {
 							// Get a specific object'
-							CheckoutResult downloadById = service.downloadByOids(token, createSet(roid), createSet(oid), resultType);
+							SDownloadResult downloadById = service.downloadByOids(token, createSet(roid), createSet(oid), resultType);
 							EmfSerializer serializer = (EmfSerializer)downloadById.getFile().getDataSource();
 							serializer.writeToOutputStream(response.getOutputStream());
 						} else {
 							if (guid != null) {
-								CheckoutResult downloadById = service.downloadByGuids(token, createSet(roid), createSet(guid), resultType);
+								SDownloadResult downloadById = service.downloadByGuids(token, createSet(roid), createSet(guid), resultType);
 								EmfSerializer serializer = (EmfSerializer)downloadById.getFile().getDataSource();
 								serializer.writeToOutputStream(response.getOutputStream());
 							} else {
 								if (className != null) {
 									// Get all of class
-									CheckoutResult download = service.downloadOfType(token, roid, className, resultType);
+									SDownloadResult download = service.downloadOfType(token, roid, className, resultType);
 									EmfSerializer serializer = (EmfSerializer)download.getFile().getDataSource();
 									serializer.writeToOutputStream(response.getOutputStream());
 								} else {
@@ -128,7 +128,7 @@ public class RestLikeServlet extends HttpServlet {
 									if (service.getRevision(token, roid) == null) {
 										response.getWriter().println("Project " + poid + " has no revision " + roid);
 									} else {
-										CheckoutResult download = service.download(token, roid, resultType);
+										SDownloadResult download = service.download(token, roid, resultType);
 										EmfSerializer serializer = (EmfSerializer)download.getFile().getDataSource();
 										serializer.writeToOutputStream(response.getOutputStream());
 									}
@@ -140,7 +140,7 @@ public class RestLikeServlet extends HttpServlet {
 						if (oid != -1) {
 							// Get a specific object
 							SProject sProject = service.getProjectByPoid(token, poid);
-							CheckoutResult downloadById = service.downloadByOids(token, createSet(poid), createSet(service.getRevision(token, sProject.getLastRevisionId()).getId()), resultType);
+							SDownloadResult downloadById = service.downloadByOids(token, createSet(poid), createSet(service.getRevision(token, sProject.getLastRevisionId()).getId()), resultType);
 							downloadById.getFile().writeTo(response.getOutputStream());
 						} else {
 							if (action == null) {
@@ -149,7 +149,7 @@ public class RestLikeServlet extends HttpServlet {
 								if (sProject.getLastRevisionId() == -1) {
 									response.getWriter().println("Project " + poid + " has no revisions");
 								} else {
-									CheckoutResult download = service.download(token, sProject.getLastRevisionId(), resultType);
+									SDownloadResult download = service.download(token, sProject.getLastRevisionId(), resultType);
 									EmfSerializer serializer = (EmfSerializer)download.getFile().getDataSource();
 									response.setHeader("Content-Disposition", "inline; filename=\"" + download.getProjectName() + "." + download.getRevisionNr() + "." + resultType.getDefaultExtension() + "\"");
 									serializer.writeToOutputStream(response.getOutputStream());

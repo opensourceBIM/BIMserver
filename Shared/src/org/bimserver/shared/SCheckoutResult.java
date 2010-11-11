@@ -20,42 +20,5 @@ package org.bimserver.shared;
  * long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-public class CheckinResult {
-
-	private long roid;
-	private int rid;
-	private long poid;
-	private String projectName;
-
-	public String getProjectName() {
-		return projectName;
-	}
-
-	public void setProjectName(String projectName) {
-		this.projectName = projectName;
-	}
-
-	public void setRoid(long roid) {
-		this.roid = roid;
-	}
-
-	public long getRoid() {
-		return roid;
-	}
-
-	public void setRid(int rid) {
-		this.rid = rid;
-	}
-
-	public int getRid() {
-		return rid;
-	}
-
-	public void setPoid(long poid) {
-		this.poid = poid;
-	}
-
-	public long getPoid() {
-		return poid;
-	}
+public class SCheckoutResult extends SDownloadResult {
 }

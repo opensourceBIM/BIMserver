@@ -9,13 +9,13 @@ import javax.activation.FileDataSource;
 
 import org.bimserver.ifc.EmfSerializer;
 import org.bimserver.ifc.SerializerException;
-import org.bimserver.shared.CheckoutResult;
+import org.bimserver.shared.SCheckoutResult;
 import org.bimserver.shared.ResultType;
 
 public class FileCache {
 	private File cacheDir = new File("cache");
 
-	public void store(int pid, int rid, ResultType resultType, CheckoutResult checkoutResult) {
+	public void store(int pid, int rid, ResultType resultType, SCheckoutResult checkoutResult) {
 		try {
 			String fileName = pid + "." + rid + "." + resultType.getDefaultExtension();
 			File file = new File(cacheDir, fileName);
@@ -30,10 +30,10 @@ public class FileCache {
 		}
 	}
 
-	public CheckoutResult get(int pid, int rid, ResultType resultType) {
+	public SCheckoutResult get(int pid, int rid, ResultType resultType) {
 		String fileName = pid + "." + rid + "." + resultType.getDefaultExtension();
 		File file = new File(cacheDir, fileName);
-		CheckoutResult checkoutResult = new CheckoutResult();
+		SCheckoutResult checkoutResult = new SCheckoutResult();
 		checkoutResult.setProjectName("" + pid);
 		checkoutResult.setRevisionNr(rid);
 		checkoutResult.setFile(new DataHandler(new FileDataSource(file)));

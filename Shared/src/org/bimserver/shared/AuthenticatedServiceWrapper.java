@@ -67,15 +67,15 @@ public class AuthenticatedServiceWrapper {
 		return service.addUser(token, username, password, name);
 	}
 
-	public CheckinResult checkinSync(long poid, String comment, long fileSize, DataHandler ifcFile) throws UserException {
+	public SCheckinResult checkinSync(long poid, String comment, long fileSize, DataHandler ifcFile) throws UserException {
 		return service.checkinSync(token, poid, comment, fileSize, ifcFile);
 	}
 
-	public CheckinResult checkinAsync(long poid, String comment, long fileSize, DataHandler ifcFile) throws UserException {
+	public SCheckinResult checkinAsync(long poid, String comment, long fileSize, DataHandler ifcFile) throws UserException {
 		return service.checkinAsync(token, poid, comment, fileSize, ifcFile);
 	}
 
-	public CheckoutResult checkout(long roid, ResultType resultType) throws UserException {
+	public SCheckoutResult checkout(long roid, ResultType resultType) throws UserException {
 		return service.checkout(token, roid, resultType);
 	}
 
@@ -95,19 +95,19 @@ public class AuthenticatedServiceWrapper {
 		return service.getAllUsers(token);
 	}
 
-	public CheckoutResult download(long roid, ResultType resultType) throws UserException {
+	public SDownloadResult download(long roid, ResultType resultType) throws UserException {
 		return service.download(token, roid, resultType);
 	}
 
-	public CheckoutResult downloadProjects(Set<Long> roids, ResultType resultType) throws UserException {
+	public SDownloadResult downloadProjects(Set<Long> roids, ResultType resultType) throws UserException {
 		return service.downloadProjects(token, roids, resultType);
 	}
 
-	public CheckoutResult downloadOfType(long roid, String className, ResultType resultType) throws UserException {
+	public SDownloadResult downloadOfType(long roid, String className, ResultType resultType) throws UserException {
 		return service.downloadOfType(token, roid, className, resultType);
 	}
 
-	public CheckoutResult downloadByOids(Set<Long> roids, Set<Long> oids, ResultType resultType) throws UserException {
+	public SDownloadResult downloadByOids(Set<Long> roids, Set<Long> oids, ResultType resultType) throws UserException {
 		return service.downloadByOids(token, roids, oids, resultType);
 	}
 
@@ -163,7 +163,7 @@ public class AuthenticatedServiceWrapper {
 		return service.getDatabaseInformation(token);
 	}
 
-	public CheckoutResult downloadByGuids(Set<Long> roids, Set<String> guids, ResultType resultType) throws UserException {
+	public SDownloadResult downloadByGuids(Set<Long> roids, Set<String> guids, ResultType resultType) throws UserException {
 		return service.downloadByGuids(token, roids, guids, resultType);
 	}
 
@@ -251,11 +251,11 @@ public class AuthenticatedServiceWrapper {
 		return service.findClashesByEid(token, sClashDetectionSettings);
 	}
 
-	public CheckinResult branch(long roid, String projectName, String comment) throws UserException {
+	public SCheckinResult branch(long roid, String projectName, String comment) throws UserException {
 		return service.branchToNewProject(token, roid, projectName, comment);
 	}
 
-	public CheckinResult branch(long roid, long destPoid, String comment) throws UserException {
+	public SCheckinResult branch(long roid, long destPoid, String comment) throws UserException {
 		return service.branchToExistingProject(token, roid, destPoid, comment);
 	}
 

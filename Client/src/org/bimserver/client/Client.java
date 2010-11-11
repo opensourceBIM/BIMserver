@@ -55,9 +55,10 @@ import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.interfaces.objects.SUser;
 import org.bimserver.shared.ChangeSet;
 import org.bimserver.shared.ChangeSetResult;
-import org.bimserver.shared.CheckinResult;
-import org.bimserver.shared.CheckoutResult;
 import org.bimserver.shared.ResultType;
+import org.bimserver.shared.SCheckinResult;
+import org.bimserver.shared.SCheckoutResult;
+import org.bimserver.shared.SDownloadResult;
 import org.bimserver.shared.UserException;
 import org.bimserver.utils.SwingUtil;
 import org.slf4j.Logger;
@@ -138,7 +139,7 @@ public class Client extends JFrame {
 		String comment = JOptionPane.showInputDialog(Client.this, "Please give a short description of you changes", "Checkin",
 				JOptionPane.OK_OPTION | JOptionPane.INFORMATION_MESSAGE);
 		try {
-			CheckinResult upload = serviceHolder.getService().checkinSync(project.getOid(), comment, fileSize, new DataHandler(dataSource));
+			SCheckinResult upload = serviceHolder.getService().checkinSync(project.getOid(), comment, fileSize, new DataHandler(dataSource));
 			JOptionPane.showMessageDialog(this, "New revision number: " + upload.getRid(), "Checkin successfull", JOptionPane.OK_OPTION
 					| JOptionPane.INFORMATION_MESSAGE);
 			revisionPanel.showProject(project);
@@ -150,7 +151,7 @@ public class Client extends JFrame {
 	void checkout(SRevision revision, OutputStream out, boolean report) {
 		try {
 			SProject sProject = serviceHolder.getService().getProjectByPoid(revision.getProjectId());
-			CheckoutResult checkout = serviceHolder.getService().checkout(revision.getOid(), ResultType.IFC);
+			SCheckoutResult checkout = serviceHolder.getService().checkout(revision.getOid(), ResultType.IFC);
 			try {
 				InputStream inputStream = checkout.getFile().getInputStream();
 				byte[] buffer = new byte[1024];
@@ -252,13 +253,13 @@ public class Client extends JFrame {
 
 	public void download(long roid, FileOutputStream out, boolean report) {
 		try {
-			CheckoutResult checkout = serviceHolder.getService().download(roid, ResultType.IFC);
+			SDownloadResult download = serviceHolder.getService().download(roid, ResultType.IFC);
 			try {
-				InputStream inputStream = checkout.getFile().getInputStream();
+				InputStream inputStream = download.getFile().getInputStream();
 				IOUtils.copy(inputStream, out);
 				out.close();
 				if (report) {
-					JOptionPane.showMessageDialog(Client.this, "Revision: " + checkout.getRevisionNr() + "\n", "Download successfull",
+					JOptionPane.showMessageDialog(Client.this, "Revision: " + download.getRevisionNr() + "\n", "Download successfull",
 							JOptionPane.OK_OPTION | JOptionPane.INFORMATION_MESSAGE);
 				}
 			} catch (IOException e1) {

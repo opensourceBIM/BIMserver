@@ -20,22 +20,12 @@ package org.bimserver.shared;
  * long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import javax.activation.DataHandler;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlMimeType;
+public class SCheckinResult {
 
-@XmlAccessorType(XmlAccessType.NONE)
-public class CheckoutResult {
-	@XmlMimeType("application/octet-stream")
-	private DataHandler file;
-
-	@XmlElement	
+	private long roid;
+	private int rid;
+	private long poid;
 	private String projectName;
-	
-	@XmlElement
-	private int revisionNr;
 
 	public String getProjectName() {
 		return projectName;
@@ -45,19 +35,27 @@ public class CheckoutResult {
 		this.projectName = projectName;
 	}
 
-	public int getRevisionNr() {
-		return revisionNr;
+	public void setRoid(long roid) {
+		this.roid = roid;
 	}
 
-	public void setRevisionNr(int revisionNr) {
-		this.revisionNr = revisionNr;
+	public long getRoid() {
+		return roid;
 	}
 
-	public DataHandler getFile() {
-		return file;
+	public void setRid(int rid) {
+		this.rid = rid;
 	}
 
-	public void setFile(DataHandler ifcFile) {
-		this.file = ifcFile;
+	public int getRid() {
+		return rid;
+	}
+
+	public void setPoid(long poid) {
+		this.poid = poid;
+	}
+
+	public long getPoid() {
+		return poid;
 	}
 }

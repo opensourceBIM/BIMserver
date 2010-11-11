@@ -137,8 +137,8 @@ import org.bimserver.rights.RightsManager;
 import org.bimserver.services.TokenManager;
 import org.bimserver.shared.ChangeSet;
 import org.bimserver.shared.ChangeSetResult;
-import org.bimserver.shared.CheckinResult;
-import org.bimserver.shared.CheckoutResult;
+import org.bimserver.shared.SCheckinResult;
+import org.bimserver.shared.SCheckoutResult;
 import org.bimserver.shared.DataObject;
 import org.bimserver.shared.DatabaseInformation;
 import org.bimserver.shared.ResultType;
@@ -170,6 +170,7 @@ public class Service implements ServiceInterface {
 
 	@Resource
 	public WebServiceContext context;
+
 	private final LongActionManager longActionManager;
 	private final AccessMethod accessMethod;
 	private final IfcEngineFactory ifcEngineFactory;
@@ -186,16 +187,16 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public CheckinResult checkinSync(final Token token, final long poid, final String comment, long fileSize, DataHandler ifcFile) throws UserException {
+	public SCheckinResult checkinSync(final Token token, final long poid, final String comment, long fileSize, DataHandler ifcFile) throws UserException {
 		return checkinInternal(token, poid, comment, fileSize, ifcFile, true);
 	}
 
 	@Override
-	public CheckinResult checkinAsync(final Token token, final long poid, final String comment, long fileSize, DataHandler ifcFile) throws UserException {
+	public SCheckinResult checkinAsync(final Token token, final long poid, final String comment, long fileSize, DataHandler ifcFile) throws UserException {
 		return checkinInternal(token, poid, comment, fileSize, ifcFile, false);
 	}
 
-	private CheckinResult checkinInternal(final Token token, final long poid, final String comment, long fileSize, DataHandler ifcFile, boolean sync) throws UserException {
+	private SCheckinResult checkinInternal(final Token token, final long poid, final String comment, long fileSize, DataHandler ifcFile, boolean sync) throws UserException {
 		final BimDatabaseSession session = bimDatabase.createSession();
 		try {
 			InputStream inputStream = ifcFile.getInputStream();
@@ -216,10 +217,10 @@ public class Service implements ServiceInterface {
 					} else {
 						zipInputStream.close();
 						if (sync) {
-							CheckinResult processCheckin = processCheckinSync(token, poid, comment, fileSize, session, model);
+							SCheckinResult processCheckin = processCheckinSync(token, poid, comment, fileSize, session, model);
 							return processCheckin;
 						} else {
-							CheckinResult processCheckin = processCheckinAsync(token, poid, comment, fileSize, session, model);
+							SCheckinResult processCheckin = processCheckinAsync(token, poid, comment, fileSize, session, model);
 							return processCheckin;
 						}
 					}
@@ -231,7 +232,7 @@ public class Service implements ServiceInterface {
 				if (model.getSize() == 0) {
 					throw new UserException("Uploaded file does not seem to be a correct IFC file");
 				}
-				CheckinResult checkinResult = null;
+				SCheckinResult checkinResult = null;
 				if (sync) {
 					checkinResult = processCheckinSync(token, poid, comment, fileSize, session, model);
 				} else {
@@ -287,12 +288,12 @@ public class Service implements ServiceInterface {
 		}
 	}
 
-	private CheckinResult processCheckinSync(final Token token, final long poid, final String comment, long fileSize, final BimDatabaseSession session, IfcModel model)
+	private SCheckinResult processCheckinSync(final Token token, final long poid, final String comment, long fileSize, final BimDatabaseSession session, IfcModel model)
 			throws UserException {
 		BimDatabaseAction<ConcreteRevision> action = new CheckinDatabaseAction(accessMethod, model, poid, tokenManager.getUoid(token), comment);
 		try {
 			ConcreteRevision revision = session.executeAndCommitAction(action, DEADLOCK_RETRIES);
-			CheckinResult result = new CheckinResult();
+			SCheckinResult result = new SCheckinResult();
 			result.setRid(revision.getId());
 			result.setPoid(revision.getProject().getOid());
 			result.setProjectName(revision.getProject().getName());
@@ -305,14 +306,14 @@ public class Service implements ServiceInterface {
 		return null;
 	}
 
-	private CheckinResult processCheckinAsync(final Token token, final long poid, final String comment, long fileSize, final BimDatabaseSession session, IfcModel model)
+	private SCheckinResult processCheckinAsync(final Token token, final long poid, final String comment, long fileSize, final BimDatabaseSession session, IfcModel model)
 			throws UserException {
 		try {
 			BimDatabaseAction<ConcreteRevision> action = new CheckinPart1DatabaseAction(accessMethod, poid, tokenManager.getUoid(token), model, comment);
 			ConcreteRevision revision = session.executeAndCommitAction(action, DEADLOCK_RETRIES);
 			session.close();
 			CheckinPart2DatabaseAction createCheckinAction = new CheckinPart2DatabaseAction(accessMethod, model, tokenManager.getUoid(token), revision.getOid());
-			CheckinResult result = new CheckinResult();
+			SCheckinResult result = new SCheckinResult();
 			result.setRid(revision.getId());
 			result.setPoid(revision.getProject().getOid());
 			result.setProjectName(revision.getProject().getName());
@@ -327,7 +328,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public CheckoutResult checkoutLastRevision(Token token, long poid, ResultType resultType) throws UserException {
+	public SCheckoutResult checkoutLastRevision(Token token, long poid, ResultType resultType) throws UserException {
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
 			return checkout(token, session.getProjectByPoid(poid).getLastRevision().getOid(), resultType);
@@ -337,15 +338,15 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public CheckoutResult checkout(Token token, long roid, ResultType resultType) throws UserException {
+	public SCheckoutResult checkout(Token token, long roid, ResultType resultType) throws UserException {
 		if (resultType != ResultType.IFC && resultType != ResultType.IFCXML) {
 			throw new UserException("Only IFC or IFCXML allowed when checking out");
 		}
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
 			BimDatabaseAction<IfcModel> action = new CheckoutDatabaseAction(accessMethod, tokenManager.getUoid(token), roid);
-			return convertModelToCheckoutResult(session.getRevisionByRoid(roid).getProject(), session.getUserByUoid(tokenManager.getUoid(token)),
-					session.executeAndCommitAction(action, DEADLOCK_RETRIES), resultType);
+			return convertModelToCheckoutResult(session.getRevisionByRoid(roid).getProject(), session.getUserByUoid(tokenManager.getUoid(token)), session.executeAndCommitAction(
+					action, DEADLOCK_RETRIES), resultType);
 		} catch (BimDatabaseException e) {
 			throw new UserException("Database error", e);
 		} catch (NoSerializerFoundException e) {
@@ -636,12 +637,12 @@ public class Service implements ServiceInterface {
 		}
 	}
 
-	public CheckoutResult download(Token token, long roid, ResultType resultType) throws UserException {
+	public SCheckoutResult download(Token token, long roid, ResultType resultType) throws UserException {
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
 			BimDatabaseAction<IfcModel> action = new DownloadDatabaseAction(accessMethod, roid, tokenManager.getUoid(token));
 			IfcModel ifcModel = session.executeAction(action, DEADLOCK_RETRIES);
-			CheckoutResult checkoutResult = convertModelToCheckoutResult(session.getRevisionByRoid(roid).getProject(), session.getUserByUoid(tokenManager.getUoid(token)),
+			SCheckoutResult checkoutResult = convertModelToCheckoutResult(session.getRevisionByRoid(roid).getProject(), session.getUserByUoid(tokenManager.getUoid(token)),
 					ifcModel, resultType);
 			return checkoutResult;
 		} catch (BimDatabaseException e) {
@@ -718,7 +719,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public CheckoutResult downloadByOids(Token token, Set<Long> roids, Set<Long> oids, ResultType resultType) throws UserException {
+	public SCheckoutResult downloadByOids(Token token, Set<Long> roids, Set<Long> oids, ResultType resultType) throws UserException {
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
 			BimDatabaseAction<IfcModel> action = new DownloadByOidsDatabaseAction(accessMethod, roids, oids, tokenManager.getUoid(token));
@@ -734,8 +735,8 @@ public class Service implements ServiceInterface {
 		}
 	}
 
-	private CheckoutResult convertModelToCheckoutResult(Project project, User user, IfcModel model, ResultType resultType) throws UserException, NoSerializerFoundException {
-		CheckoutResult checkoutResult = new CheckoutResult();
+	private SCheckoutResult convertModelToCheckoutResult(Project project, User user, IfcModel model, ResultType resultType) throws UserException, NoSerializerFoundException {
+		SCheckoutResult checkoutResult = new SCheckoutResult();
 		if (model.isValid()) {
 			checkoutResult.setProjectName(project.getName());
 			checkoutResult.setRevisionNr(model.getRevisionNr());
@@ -752,7 +753,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public CheckoutResult downloadOfType(Token token, long roid, String className, ResultType resultType) throws UserException {
+	public SCheckoutResult downloadOfType(Token token, long roid, String className, ResultType resultType) throws UserException {
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
 			BimDatabaseAction<IfcModel> action = new DownloadOfTypeDatabaseAction(accessMethod, roid, className, tokenManager.getUoid(token));
@@ -812,7 +813,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public CheckoutResult downloadByGuids(Token token, Set<Long> roids, Set<String> guids, ResultType resultType) throws UserException {
+	public SCheckoutResult downloadByGuids(Token token, Set<Long> roids, Set<String> guids, ResultType resultType) throws UserException {
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
 			BimDatabaseAction<IfcModel> action = new DownloadByGuidsDatabaseAction(accessMethod, roids, guids, tokenManager.getUoid(token));
@@ -1096,14 +1097,14 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public CheckoutResult downloadProjects(Token token, Set<Long> roids, ResultType resultType) throws UserException {
+	public SCheckoutResult downloadProjects(Token token, Set<Long> roids, ResultType resultType) throws UserException {
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
 			BimDatabaseAction<IfcModel> action = new DownloadProjectsDatabaseAction(accessMethod, roids, tokenManager.getUoid(token));
 			Project project = session.getRevisionByRoid(roids.iterator().next()).getProject();
 			IfcModel ifcModel = session.executeAction(action, DEADLOCK_RETRIES);
 			User userByUoid = session.getUserByUoid(tokenManager.getUoid(token));
-			CheckoutResult checkoutResult = convertModelToCheckoutResult(project, userByUoid, ifcModel, resultType);
+			SCheckoutResult checkoutResult = convertModelToCheckoutResult(project, userByUoid, ifcModel, resultType);
 			return checkoutResult;
 		} catch (BimDatabaseException e) {
 			throw new UserException("Database error", e);
@@ -1196,7 +1197,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public CheckinResult branchToNewProject(Token token, long roid, String projectName, String comment) throws UserException {
+	public SCheckinResult branchToNewProject(Token token, long roid, String projectName, String comment) throws UserException {
 		final BimDatabaseSession session = bimDatabase.createSession();
 		try {
 			Revision oldRevision = session.getVirtualRevision(roid);
@@ -1218,7 +1219,7 @@ public class Service implements ServiceInterface {
 				ConcreteRevision revision = session.executeAndCommitAction(action, DEADLOCK_RETRIES);
 				session.close();
 				CheckinPart2DatabaseAction createCheckinAction = new CheckinPart2DatabaseAction(accessMethod, model, tokenManager.getUoid(token), revision.getOid());
-				CheckinResult result = new CheckinResult();
+				SCheckinResult result = new SCheckinResult();
 				result.setRid(revision.getId());
 				result.setPoid(revision.getProject().getOid());
 				result.setProjectName(revision.getProject().getName());
@@ -1240,7 +1241,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public CheckinResult branchToExistingProject(Token token, long roid, long destPoid, String comment) throws UserException {
+	public SCheckinResult branchToExistingProject(Token token, long roid, long destPoid, String comment) throws UserException {
 		final BimDatabaseSession session = bimDatabase.createSession();
 		try {
 			Revision oldRevision = session.getVirtualRevision(roid);
@@ -1261,7 +1262,7 @@ public class Service implements ServiceInterface {
 				ConcreteRevision revision = session.executeAndCommitAction(action, DEADLOCK_RETRIES);
 				session.close();
 				CheckinPart2DatabaseAction createCheckinAction = new CheckinPart2DatabaseAction(accessMethod, model, tokenManager.getUoid(token), revision.getOid());
-				CheckinResult result = new CheckinResult();
+				SCheckinResult result = new SCheckinResult();
 				result.setRid(revision.getId());
 				result.setPoid(revision.getProject().getOid());
 				result.setProjectName(revision.getProject().getName());
@@ -1527,7 +1528,7 @@ public class Service implements ServiceInterface {
 			if (user.getUserType() != UserType.ADMIN) {
 				throw new UserException("Only admin users can change enabled export types");
 			}
-			Set<ResultType> resultTypes= ServerSettings.getSettings().getEnabledExportTypesAsSet();
+			Set<ResultType> resultTypes = ServerSettings.getSettings().getEnabledExportTypesAsSet();
 			if (enabled) {
 				resultTypes.add(resultType);
 			} else {
