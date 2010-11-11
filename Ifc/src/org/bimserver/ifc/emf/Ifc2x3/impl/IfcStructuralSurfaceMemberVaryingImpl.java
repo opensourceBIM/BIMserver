@@ -108,7 +108,6 @@ public class IfcStructuralSurfaceMemberVaryingImpl extends IfcStructuralSurfaceM
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	public float getVaryingThickness() {
 		return (Float) eGet(Ifc2x3Package.eINSTANCE.getIfcStructuralSurfaceMemberVarying_VaryingThickness(), true);
 	}
