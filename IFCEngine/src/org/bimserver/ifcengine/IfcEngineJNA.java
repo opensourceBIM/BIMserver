@@ -13,8 +13,6 @@ import org.bimserver.database.store.EidClash;
 import org.bimserver.database.store.GuidClash;
 import org.bimserver.database.store.StoreFactory;
 import org.bimserver.ifcengine.IfcEngineInterface.StreamCallback;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.sun.jna.Memory;
 import com.sun.jna.Pointer;
@@ -39,8 +37,6 @@ public class IfcEngineJNA {
 	// private static final Logger LOGGER = LoggerFactory
 	// .getLogger(IfcEngineJNA.class);
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(IfcEngineJNA.class);
-	
 	public static final int D3DFVF_XYZ = 0x002;
 	public static final int D3DFVF_XYZRHW = 0x004;
 	public static final int D3DFVF_NORMAL = 0x010;

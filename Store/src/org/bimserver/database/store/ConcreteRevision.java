@@ -7,6 +7,7 @@
 package org.bimserver.database.store;
 
 import java.util.Date;
+
 import org.bimserver.emf.IdEObject;
 import org.eclipse.emf.common.util.EList;
 

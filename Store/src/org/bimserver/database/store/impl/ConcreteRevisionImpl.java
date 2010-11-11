@@ -7,8 +7,8 @@
 package org.bimserver.database.store.impl;
 
 import java.util.Collection;
-
 import java.util.Date;
+
 import org.bimserver.database.store.CheckinState;
 import org.bimserver.database.store.ConcreteRevision;
 import org.bimserver.database.store.Project;

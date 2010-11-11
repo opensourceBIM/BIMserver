@@ -7,6 +7,7 @@ import org.bimserver.database.Database;
 import org.bimserver.database.ReadSet;
 import org.bimserver.database.store.ClashDetectionSettings;
 import org.bimserver.database.store.StorePackage;
+import org.bimserver.database.store.User;
 import org.bimserver.database.store.log.AccessMethod;
 import org.bimserver.shared.UserException;
 
@@ -23,6 +24,7 @@ public class GetClashDetectionSettingsDatabaseAction extends BimDatabaseAction<C
 
 	@Override
 	public ClashDetectionSettings execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
+		User actingUser = bimDatabaseSession.getUserByUoid(actingUoid);
 		return (ClashDetectionSettings) bimDatabaseSession.get(bimDatabaseSession.getCid(StorePackage.eINSTANCE.getClashDetectionSettings()), cdsoid, new ReadSet(Database.STORE_PROJECT_ID, -1));
 	}
 }

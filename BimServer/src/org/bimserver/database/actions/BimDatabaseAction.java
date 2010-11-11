@@ -184,6 +184,7 @@ public abstract class BimDatabaseAction<T> {
 		cleanGuidMap(model, todoList, guidMap);
 	}
 
+	@SuppressWarnings("unchecked")
 	private static void cleanGuidMap(IfcModel model, Set<EClass> todoList, Map<String, List<IdEObject>> guidMap) {
 		for (String guid : guidMap.keySet()) {
 			List<IdEObject> list = guidMap.get(guid);
@@ -239,6 +240,7 @@ public abstract class BimDatabaseAction<T> {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	private static void removeReplaceLinks(IfcModel model, IdEObject mainObject, IdEObject objectToRemove) {
 		if (mainObject.eClass() != objectToRemove.eClass()) {
 			throw new RuntimeException("Classes must be the same");

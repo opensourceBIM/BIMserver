@@ -8,11 +8,8 @@ package org.bimserver.database.store.impl;
 
 import org.bimserver.database.store.EidClash;
 import org.bimserver.database.store.StorePackage;
-
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**

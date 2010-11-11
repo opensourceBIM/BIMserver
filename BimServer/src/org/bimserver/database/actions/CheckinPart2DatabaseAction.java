@@ -1,6 +1,5 @@
 package org.bimserver.database.actions;
 
-import org.bimserver.database.BimDatabase;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
@@ -18,14 +17,12 @@ public class CheckinPart2DatabaseAction extends BimDatabaseAction<Void> {
 	private final IfcModel ifcModel;
 	private final long actingUoid;
 	private final long croid;
-	private final BimDatabase database;
 
-	public CheckinPart2DatabaseAction(AccessMethod accessMethod, IfcModel ifcModel, long actingUoid, long croid, BimDatabase database) {
+	public CheckinPart2DatabaseAction(AccessMethod accessMethod, IfcModel ifcModel, long actingUoid, long croid) {
 		super(accessMethod);
 		this.ifcModel = ifcModel;
 		this.actingUoid = actingUoid;
 		this.croid = croid;
-		this.database = database;
 	}
 
 	@Override

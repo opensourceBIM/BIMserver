@@ -1,6 +1,5 @@
 package org.bimserver.interfaces.objects;
 
-import java.util.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement

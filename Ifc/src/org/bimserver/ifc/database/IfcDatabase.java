@@ -21,7 +21,6 @@ package org.bimserver.ifc.database;
  *****************************************************************************/
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
@@ -33,7 +32,6 @@ import org.bimserver.ifc.FieldIgnoreMap;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.emf.Ifc2x3.Ifc2x3Package;
 import org.bimserver.ifc.emf.Ifc2x3.IfcRoot;
-import org.bimserver.ifc.emf.Ifc2x3.WrappedValue;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
@@ -191,21 +189,5 @@ public class IfcDatabase {
 
 	public EObject getByGuid(EClass eClass, String guid) {
 		return guidIndex.get(eClass).get(guid);
-	}
-
-	public <T extends EObject> List<T> getAll(Class<T> clazz, final EStructuralFeature sortFeature) {
-		List<T> all = getAll(clazz);
-		if (!(sortFeature instanceof WrappedValue)) {
-			throw new UnsupportedOperationException("Only WrappedValue types supported");
-		}
-		Collections.sort(all, new Comparator<T>(){
-			@Override
-			public int compare(T o1, T o2) {
-				WrappedValue val1 = (WrappedValue) o1.eGet(sortFeature);
-				WrappedValue val2 = (WrappedValue) o2.eGet(sortFeature);
-				val1.eGet(o1.eClass().getEStructuralFeature("wrappedValue"));
-				return 0;
-			}});
-		return all;
 	}
 }

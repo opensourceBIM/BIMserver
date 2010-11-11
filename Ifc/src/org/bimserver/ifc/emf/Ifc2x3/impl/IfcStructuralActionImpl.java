@@ -23,7 +23,6 @@
 package org.bimserver.ifc.emf.Ifc2x3.impl;
 
 import org.bimserver.ifc.emf.Ifc2x3.Ifc2x3Package;
-import org.bimserver.ifc.emf.Ifc2x3.IfcLogical;
 import org.bimserver.ifc.emf.Ifc2x3.IfcStructuralAction;
 import org.bimserver.ifc.emf.Ifc2x3.IfcStructuralReaction;
 import org.bimserver.ifc.emf.Ifc2x3.Tristate;
