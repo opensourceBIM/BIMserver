@@ -13,9 +13,11 @@
 %>
 
 <div class="sidebar">
- <h4>Submenu</h4>
- <li>
- <a href="adduser.jsp">Add user</a></li>
+<h4>Submenu</h4>
+<ul>
+<li>
+<a href="adduser.jsp">Add user</a></li>
+</ul>
 </div>
 
 <div class="content">
