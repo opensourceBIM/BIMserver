@@ -1,7 +1,7 @@
 package org.bimserver.generators;
 
 import org.eclipse.emf.ecore.*;
-import org.bimserver.generators.*;
+import org.bimserver.generators.GenerateUtils;
 
 public class DataObjectGenerator
 {

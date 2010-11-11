@@ -7,6 +7,7 @@ import org.bimserver.database.CommitSet;
 import org.bimserver.database.Database;
 import org.bimserver.database.store.GeoTag;
 import org.bimserver.database.store.StorePackage;
+import org.bimserver.database.store.User;
 import org.bimserver.database.store.log.AccessMethod;
 import org.bimserver.interfaces.objects.SGeoTag;
 import org.bimserver.shared.UserException;
@@ -14,16 +15,17 @@ import org.bimserver.shared.UserException;
 public class UpdateGeoTagDatabaseAction extends BimDatabaseAction<Void> {
 
 	private final SGeoTag sGeoTag;
-	private final long actionUoid;
+	private final long actingUoid;
 
-	public UpdateGeoTagDatabaseAction(AccessMethod accessMethod, long actionUoid, SGeoTag sGeoTag) {
+	public UpdateGeoTagDatabaseAction(AccessMethod accessMethod, long actingUoid, SGeoTag sGeoTag) {
 		super(accessMethod);
-		this.actionUoid = actionUoid;
+		this.actingUoid = actingUoid;
 		this.sGeoTag = sGeoTag;
 	}
 
 	@Override
 	public Void execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
+		User actingUser = bimDatabaseSession.getUserByUoid(actingUoid);
 		GeoTag geoTag = (GeoTag) bimDatabaseSession.get(StorePackage.eINSTANCE.getGeoTag(), sGeoTag.getOid());
 		geoTag.setEnabled(sGeoTag.isEnabled());
 		geoTag.setX(sGeoTag.getX());

@@ -7,6 +7,7 @@ import org.bimserver.database.CommitSet;
 import org.bimserver.database.Database;
 import org.bimserver.database.store.ClashDetectionSettings;
 import org.bimserver.database.store.StorePackage;
+import org.bimserver.database.store.User;
 import org.bimserver.database.store.log.AccessMethod;
 import org.bimserver.interfaces.objects.SClashDetectionSettings;
 import org.bimserver.shared.UserException;
@@ -14,16 +15,17 @@ import org.bimserver.shared.UserException;
 public class UpdateClashDetectionSettingsDatabaseAction extends BimDatabaseAction<Void> {
 
 	private final SClashDetectionSettings sClashDetectionSettings;
-	private final long actionUoid;
+	private final long actingUoid;
 
-	public UpdateClashDetectionSettingsDatabaseAction(AccessMethod accessMethod, long actionUoid, SClashDetectionSettings sClashDetectionSettings) {
+	public UpdateClashDetectionSettingsDatabaseAction(AccessMethod accessMethod, long actingUoid, SClashDetectionSettings sClashDetectionSettings) {
 		super(accessMethod);
-		this.actionUoid = actionUoid;
+		this.actingUoid = actingUoid;
 		this.sClashDetectionSettings = sClashDetectionSettings;
 	}
 
 	@Override
 	public Void execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
+		User actingUser = bimDatabaseSession.getUserByUoid(actingUoid);
 		ClashDetectionSettings clashDetectionSettings = (ClashDetectionSettings) bimDatabaseSession.get(StorePackage.eINSTANCE.getClashDetectionSettings(), sClashDetectionSettings.getOid());
 		clashDetectionSettings.setEnabled(sClashDetectionSettings.isEnabled());
 		clashDetectionSettings.setMargin(sClashDetectionSettings.getMargin());

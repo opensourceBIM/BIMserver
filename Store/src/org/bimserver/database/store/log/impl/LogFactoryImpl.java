@@ -6,7 +6,6 @@
  */
 package org.bimserver.database.store.log.impl;
 
-import org.bimserver.database.store.log.*;
 import org.bimserver.database.store.log.AccessMethod;
 import org.bimserver.database.store.log.DatabaseCreated;
 import org.bimserver.database.store.log.Download;

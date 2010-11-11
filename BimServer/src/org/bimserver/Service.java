@@ -311,7 +311,7 @@ public class Service implements ServiceInterface {
 			BimDatabaseAction<ConcreteRevision> action = new CheckinPart1DatabaseAction(accessMethod, poid, tokenManager.getUoid(token), model, comment);
 			ConcreteRevision revision = session.executeAndCommitAction(action, DEADLOCK_RETRIES);
 			session.close();
-			CheckinPart2DatabaseAction createCheckinAction = new CheckinPart2DatabaseAction(accessMethod, model, tokenManager.getUoid(token), revision.getOid(), bimDatabase);
+			CheckinPart2DatabaseAction createCheckinAction = new CheckinPart2DatabaseAction(accessMethod, model, tokenManager.getUoid(token), revision.getOid());
 			CheckinResult result = new CheckinResult();
 			result.setRid(revision.getId());
 			result.setPoid(revision.getProject().getOid());
@@ -1217,7 +1217,7 @@ public class Service implements ServiceInterface {
 			try {
 				ConcreteRevision revision = session.executeAndCommitAction(action, DEADLOCK_RETRIES);
 				session.close();
-				CheckinPart2DatabaseAction createCheckinAction = new CheckinPart2DatabaseAction(accessMethod, model, tokenManager.getUoid(token), revision.getOid(), bimDatabase);
+				CheckinPart2DatabaseAction createCheckinAction = new CheckinPart2DatabaseAction(accessMethod, model, tokenManager.getUoid(token), revision.getOid());
 				CheckinResult result = new CheckinResult();
 				result.setRid(revision.getId());
 				result.setPoid(revision.getProject().getOid());
@@ -1260,7 +1260,7 @@ public class Service implements ServiceInterface {
 			try {
 				ConcreteRevision revision = session.executeAndCommitAction(action, DEADLOCK_RETRIES);
 				session.close();
-				CheckinPart2DatabaseAction createCheckinAction = new CheckinPart2DatabaseAction(accessMethod, model, tokenManager.getUoid(token), revision.getOid(), bimDatabase);
+				CheckinPart2DatabaseAction createCheckinAction = new CheckinPart2DatabaseAction(accessMethod, model, tokenManager.getUoid(token), revision.getOid());
 				CheckinResult result = new CheckinResult();
 				result.setRid(revision.getId());
 				result.setPoid(revision.getProject().getOid());

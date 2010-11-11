@@ -26,8 +26,6 @@ import org.bimserver.ifc.emf.Ifc2x3.Ifc2x3Package;
 import org.bimserver.ifc.emf.Ifc2x3.IfcBSplineCurve;
 import org.bimserver.ifc.emf.Ifc2x3.IfcBSplineCurveForm;
 import org.bimserver.ifc.emf.Ifc2x3.IfcCartesianPoint;
-import org.bimserver.ifc.emf.Ifc2x3.IfcInteger;
-import org.bimserver.ifc.emf.Ifc2x3.IfcLogical;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 

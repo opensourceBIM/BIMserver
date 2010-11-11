@@ -23,7 +23,6 @@
 package org.bimserver.ifc.emf.Ifc2x3.impl;
 
 import org.bimserver.ifc.emf.Ifc2x3.Ifc2x3Package;
-import org.bimserver.ifc.emf.Ifc2x3.IfcLogical;
 import org.bimserver.ifc.emf.Ifc2x3.IfcWindowStyle;
 import org.bimserver.ifc.emf.Ifc2x3.IfcWindowStyleConstructionEnum;
 import org.bimserver.ifc.emf.Ifc2x3.IfcWindowStyleOperationEnum;

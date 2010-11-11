@@ -25,7 +25,6 @@ package org.bimserver.ifc.emf.Ifc2x3.impl;
 import org.bimserver.ifc.emf.Ifc2x3.Ifc2x3Package;
 import org.bimserver.ifc.emf.Ifc2x3.IfcBlobTexture;
 import org.bimserver.ifc.emf.Ifc2x3.Tristate;
-import org.bimserver.ifc.emf.Ifc2x3.IfcLogical;
 import org.eclipse.emf.ecore.EClass;
 
 /**
