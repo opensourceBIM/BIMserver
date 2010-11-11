@@ -38,8 +38,8 @@ import org.bimserver.ifc.EmfSerializer;
 import org.bimserver.ifc.SerializerException;
 import org.bimserver.interfaces.objects.SClashDetectionSettings;
 import org.bimserver.interfaces.objects.SEidClash;
-import org.bimserver.shared.CheckoutResult;
 import org.bimserver.shared.ResultType;
+import org.bimserver.shared.SDownloadResult;
 import org.bimserver.shared.UserException;
 
 public class DownloadServlet extends HttpServlet {
@@ -59,7 +59,7 @@ public class DownloadServlet extends HttpServlet {
 			if (request.getParameter("resultType") != null) {
 				resultType = ResultType.valueOf(request.getParameter("resultType"));
 			}
-			CheckoutResult checkoutResult = null;
+			SDownloadResult checkoutResult = null;
 			if (request.getParameter("multiple") != null) {
 				Set<Long> roids = new HashSet<Long>();
 				for (Object key : request.getParameterMap().keySet()) {

@@ -68,8 +68,8 @@ public interface ServiceInterface {
 	 */
 	@GET
 	@Path("/ping")
-	@WebMethod(action = "ping")
 	@Produces("application/text")
+	@WebMethod(action = "ping")
 	String ping(@QueryParam("in") @WebParam(name = "in") String in);
 
 	/**
@@ -85,46 +85,49 @@ public interface ServiceInterface {
 	 */
 	@GET
 	@Path("/login")
-	@WebMethod(action = "login")
 	@Produces("application/xml")
+	@WebMethod(action = "login")
 	Token login(@QueryParam("username") @WebParam(name = "username") String username, @QueryParam("password") @WebParam(name = "password") String password) throws UserException;
 
 	@WebMethod(action = "autologin")
 	Token autologin(@WebParam(name = "username") String username, @WebParam(name = "hash") String hash) throws UserException;
 
 	@WebMethod(action = "checkinSync")
-	CheckinResult checkinSync(@WebParam(name = "token") Token token, @WebParam(name = "poid") long poid, @WebParam(name = "comment") String comment,
+	SCheckinResult checkinSync(@WebParam(name = "token") Token token, @WebParam(name = "poid") long poid, @WebParam(name = "comment") String comment,
 			@WebParam(name = "fileSize") long fileSize, @WebParam(name = "ifcFile") @XmlMimeType("application/octet-stream") DataHandler ifcFile) throws UserException;
 
 	@WebMethod(action = "checkinAsync")
-	CheckinResult checkinAsync(@WebParam(name = "token") Token token, @WebParam(name = "poid") long poid, @WebParam(name = "comment") String comment,
+	SCheckinResult checkinAsync(@WebParam(name = "token") Token token, @WebParam(name = "poid") long poid, @WebParam(name = "comment") String comment,
 			@WebParam(name = "fileSize") long fileSize, @WebParam(name = "ifcFile") @XmlMimeType("application/octet-stream") DataHandler ifcFile) throws UserException;
 
 	@WebMethod(action = "checkout")
-	CheckoutResult checkout(@WebParam(name = "token") Token token, @WebParam(name = "roid") long roid, @WebParam(name = "resultType") ResultType resultType) throws UserException;
+	SCheckoutResult checkout(@WebParam(name = "token") Token token, @WebParam(name = "roid") long roid, @WebParam(name = "resultType") ResultType resultType) throws UserException;
 
 	@WebMethod(action = "checkoutLastRevision")
-	CheckoutResult checkoutLastRevision(@WebParam(name = "token") Token token, @WebParam(name = "poid") long poid, @WebParam(name = "resultType") ResultType resultType)
+	SCheckoutResult checkoutLastRevision(@QueryParam("") @WebParam(name = "token") Token token, @QueryParam("poid") @WebParam(name = "poid") long poid, @QueryParam("resultType") @WebParam(name = "resultType") ResultType resultType)
 			throws UserException;
 
+	@GET
+	@Path("/download")
+	@Produces("application/xml")
 	@WebMethod(action = "download")
-	CheckoutResult download(@WebParam(name = "token") Token token, @WebParam(name = "username") long roid, @WebParam(name = "resultType") ResultType resultType)
+	SDownloadResult download(@QueryParam("") @WebParam(name = "token") Token token, @QueryParam("roid") @WebParam(name = "roid") long roid, @QueryParam("resultType") @WebParam(name = "resultType") ResultType resultType)
 			throws UserException;
 
 	@WebMethod(action = "downloadByOids")
-	CheckoutResult downloadByOids(@WebParam(name = "token") Token token, @WebParam(name = "roids") Set<Long> roids, @WebParam(name = "oids") Set<Long> oids,
+	SDownloadResult downloadByOids(@WebParam(name = "token") Token token, @WebParam(name = "roids") Set<Long> roids, @WebParam(name = "oids") Set<Long> oids,
 			@WebParam(name = "resultType") ResultType resultType) throws UserException;
 
 	@WebMethod(action = "downloadOfType")
-	CheckoutResult downloadOfType(@WebParam(name = "token") Token token, @WebParam(name = "roid") long roid, @WebParam(name = "className") String className,
+	SDownloadResult downloadOfType(@WebParam(name = "token") Token token, @WebParam(name = "roid") long roid, @WebParam(name = "className") String className,
 			@WebParam(name = "resultType") ResultType resultType) throws UserException;
 
 	@WebMethod(action = "downloadByGuids")
-	CheckoutResult downloadByGuids(@WebParam(name = "token") Token token, @WebParam(name = "roids") Set<Long> roids, @WebParam(name = "guids") Set<String> guids,
+	SDownloadResult downloadByGuids(@WebParam(name = "token") Token token, @WebParam(name = "roids") Set<Long> roids, @WebParam(name = "guids") Set<String> guids,
 			@WebParam(name = "resultType") ResultType resultType) throws UserException;
 
 	@WebMethod(action = "downloadProjects")
-	CheckoutResult downloadProjects(@WebParam(name = "token") Token token, @WebParam(name = "roids") Set<Long> roids, @WebParam(name = "resultType") ResultType resultType)
+	SDownloadResult downloadProjects(@WebParam(name = "token") Token token, @WebParam(name = "roids") Set<Long> roids, @WebParam(name = "resultType") ResultType resultType)
 			throws UserException;
 
 	@WebMethod(action = "addUser")
@@ -168,8 +171,11 @@ public interface ServiceInterface {
 	@WebMethod(action = "getAllUsers")
 	List<SUser> getAllUsers(@WebParam(name = "token") Token token) throws UserException;
 
+	@GET
+	@Path("/getAllRevisionsOfProject")
+	@Produces("application/xml")
 	@WebMethod(action = "getAllRevisionsOfProject")
-	List<SRevision> getAllRevisionsOfProject(@WebParam(name = "token") Token token, @WebParam(name = "poid") long poid) throws UserException;
+	List<SRevision> getAllRevisionsOfProject(@QueryParam("") @WebParam(name = "token") Token token, @QueryParam("poid") @WebParam(name = "poid") long poid) throws UserException;
 
 	@WebMethod(action = "getAllCheckoutsOfProject")
 	List<SCheckout> getAllCheckoutsOfProject(@WebParam(name = "token") Token token, @WebParam(name = "poid") long poid) throws UserException;
@@ -273,11 +279,11 @@ public interface ServiceInterface {
 	String resetPassword(@WebParam(name = "token") Token token, @WebParam(name = "emailAddress") String emailAddress) throws UserException;
 
 	@WebMethod(action = "branchToNewProject")
-	CheckinResult branchToNewProject(@WebParam(name = "token") Token token, @WebParam(name = "roid") long roid, @WebParam(name = "projectName") String projectName,
+	SCheckinResult branchToNewProject(@WebParam(name = "token") Token token, @WebParam(name = "roid") long roid, @WebParam(name = "projectName") String projectName,
 			@WebParam(name = "comment") String comment) throws UserException;
 
 	@WebMethod(action = "branchToExistingProject")
-	CheckinResult branchToExistingProject(@WebParam(name = "token") Token token, @WebParam(name = "roid") long roid, @WebParam(name = "destPoid") long destPoid,
+	SCheckinResult branchToExistingProject(@WebParam(name = "token") Token token, @WebParam(name = "roid") long roid, @WebParam(name = "destPoid") long destPoid,
 			@WebParam(name = "comment") String comment) throws UserException;
 
 	@WebMethod(action = "getLogs")
