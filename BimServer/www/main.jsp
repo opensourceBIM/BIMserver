@@ -50,7 +50,6 @@ if (serverInfo.isAvailable()) {
 <%
 	} else {
 %>
-</table>
 No projects<br/><br/>
 
 <%
