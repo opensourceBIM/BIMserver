@@ -7,15 +7,15 @@
 	targetNamespace="http://www.citygml.org/ade/xbuilding"
 	elementFormDefault="qualified" attributeFormDefault="unqualified">
 	<xsd:import namespace="http://www.opengis.net/gml"
-		schemaLocation="schemas/GML/3.1.1/base/gml.xsd" />
+		schemaLocation="GML/3.1.1/base/gml.xsd" />
 	<xsd:import namespace="http://www.opengis.net/citygml/1.0"
-		schemaLocation="schemas/CityGML/1.0.0/cityGMLBase.xsd" />
+		schemaLocation="CityGML/1.0.0/cityGMLBase.xsd" />
 	<xsd:import namespace="http://www.opengis.net/citygml/transportation/1.0"
-		schemaLocation="schemas/CityGML/1.0.0/transportation.xsd" />
+		schemaLocation="CityGML/1.0.0/transportation.xsd" />
 	<xsd:import namespace="http://www.opengis.net/citygml/building/1.0"
-		schemaLocation="schemas/CityGML/1.0.0/building.xsd" />
+		schemaLocation="CityGML/1.0.0/building.xsd" />
 	<xsd:import namespace="http://www.opengis.net/citygml/cityfurniture/1.0"
-		schemaLocation="schemas/CityGML/1.0.0/cityFurniture.xsd" />
+		schemaLocation="CityGML/1.0.0/cityFurniture.xsd" />
 
 	<xsd:complexType name="VisualElementType">
 		<xsd:complexContent>
@@ -69,13 +69,10 @@
 	<xsd:complexType name="RailingType">
 		<xsd:complexContent>
 			<xsd:extension base="VisualElementType">
-				<element>
-					<xsd:sequence>
-						<xsd:element name="PredefinedType"
-							type="RailingTypeEnum">
-						</xsd:element>
-					</xsd:sequence>
-				</element>
+				<xsd:sequence>
+					<xsd:element name="PredefinedType" type="RailingTypeEnum">
+					</xsd:element>
+				</xsd:sequence>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
