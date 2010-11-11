@@ -564,17 +564,14 @@
       <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
         <name>XDim</name>
         <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">700.000000</value>
-        </value>
       </Attribute>
       <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
         <name>YDim</name>
         <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">200.000000</value>
-        </value>
       </Attribute>
       <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
         <name>ZDim</name>
         <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">600.000000</value>
-        </value>
       </Attribute>
     </Addition>
     <Addition>
@@ -1079,17 +1076,14 @@
       <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
         <name>XDim</name>
         <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">700.000000</value>
-        </value>
       </Attribute>
       <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
         <name>YDim</name>
         <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">120.000000</value>
-        </value>
       </Attribute>
       <Attribute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="attributeValuePair">
         <name>ZDim</name>
         <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="real">600.000000</value>
-        </value>
       </Attribute>
     </Addition>
     <Addition>
