@@ -121,6 +121,7 @@ import org.bimserver.ifc.file.compare.CompareResult.Item;
 import org.bimserver.ifc.file.reader.FastIfcFileReader;
 import org.bimserver.ifc.file.reader.IncorrectIfcFileException;
 import org.bimserver.ifcengine.IfcEngineFactory;
+import org.bimserver.interfaces.objects.SAccessMethod;
 import org.bimserver.interfaces.objects.SCheckout;
 import org.bimserver.interfaces.objects.SClash;
 import org.bimserver.interfaces.objects.SClashDetectionSettings;
@@ -191,11 +192,13 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public SCheckinResult checkinSync(final long poid, final String comment, long fileSize, DataHandler ifcFile) throws UserException {
+		requireAuthentication();
 		return checkinInternal(poid, comment, fileSize, ifcFile, true);
 	}
 
 	@Override
 	public SCheckinResult checkinAsync(final long poid, final String comment, long fileSize, DataHandler ifcFile) throws UserException {
+		requireAuthentication();
 		return checkinInternal(poid, comment, fileSize, ifcFile, false);
 	}
 
@@ -332,6 +335,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public SCheckoutResult checkoutLastRevision(long poid, ResultType resultType) throws UserException {
+		requireAuthentication();
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
 			return checkout(session.getProjectByPoid(poid).getLastRevision().getOid(), resultType);
@@ -342,6 +346,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public SCheckoutResult checkout(long roid, ResultType resultType) throws UserException {
+		requireAuthentication();
 		if (resultType != ResultType.IFC && resultType != ResultType.IFCXML) {
 			throw new UserException("Only IFC or IFCXML allowed when checking out");
 		}
@@ -361,6 +366,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public long addUser(String username, String password, String name) throws UserException {
+		requireAuthentication();
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
 			BimDatabaseAction<Long> action = new AddUserDatabaseAction(accessMethod, username, password, name, UserType.USER, currentUoid);
@@ -374,6 +380,8 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public SProject addProject(String projectName) throws UserException {
+		requireAuthentication();
+		requireAuthentication();
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
 			BimDatabaseAction<Project> action = new AddProjectDatabaseAction(accessMethod, projectName, currentUoid);
@@ -387,6 +395,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public boolean addUserToProject(long uoid, long poid) throws UserException {
+		requireAuthentication();
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
 			BimDatabaseAction<Boolean> action = new AddUserToProjectDatabaseAction(accessMethod, currentUoid, uoid, poid);
@@ -521,6 +530,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public List<SRevision> getAllRevisionsOfProject(long poid) throws UserException {
+		requireAuthentication();
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
 			BimDatabaseAction<Set<Revision>> action = new GetAllRevisionsOfProjectDatabaseAction(accessMethod, poid);
@@ -534,6 +544,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public List<SCheckout> getAllCheckoutsOfProject(long poid) throws UserException {
+		requireAuthentication();
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
 			BimDatabaseAction<Set<Checkout>> action = new GetAllCheckoutsOfProjectDatabaseAction(accessMethod, poid);
@@ -547,6 +558,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public List<SUser> getAllUsers() throws UserException {
+		requireAuthentication();
 		requireAuthentication();
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
@@ -599,6 +611,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public List<SCheckout> getAllCheckoutsByUser(long uoid) throws UserException {
+		requireAuthentication();
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
 			BimDatabaseAction<Set<Checkout>> action = new GetAllCheckoutsByUserDatabaseAction(accessMethod, uoid);
@@ -612,6 +625,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public List<SRevision> getAllRevisionsByUser(long uoid) throws UserException {
+		requireAuthentication();
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
 			BimDatabaseAction<Set<Revision>> action = new GetAllRevisionsByUserDatabaseAction(accessMethod, uoid);
@@ -625,6 +639,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public SRevision getRevision(long roid) throws UserException {
+		requireAuthentication();
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
 			BimDatabaseAction<Revision> action = new GetRevisionDatabaseAction(accessMethod, roid, currentUoid);
@@ -638,6 +653,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public List<SCheckout> getAllCheckoutsOfRevision(long roid) throws UserException {
+		requireAuthentication();
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
 			BimDatabaseAction<Set<Checkout>> action = new GetAllCheckoutsOfRevisionDatabaseAction(accessMethod, roid);
@@ -650,6 +666,7 @@ public class Service implements ServiceInterface {
 	}
 
 	public SCheckoutResult download(long roid, ResultType resultType) throws UserException {
+		requireAuthentication();
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
 			BimDatabaseAction<IfcModel> action = new DownloadDatabaseAction(accessMethod, roid, currentUoid);
@@ -668,6 +685,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public boolean deleteProject(long poid) throws UserException {
+		requireAuthentication();
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
 			BimDatabaseAction<Boolean> action = new DeleteProjectDatabaseAction(accessMethod, poid, currentUoid);
@@ -681,6 +699,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public boolean deleteUser(long uoid) throws UserException {
+		requireAuthentication();
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
 			BimDatabaseAction<Boolean> action = new DeleteUserDatabaseAction(accessMethod, currentUoid, uoid);
@@ -693,6 +712,7 @@ public class Service implements ServiceInterface {
 	}
 
 	public List<SUser> getAllNonAuthorizedUsersOfProject(int pid) throws UserException {
+		requireAuthentication();
 		BimDatabaseSession session = bimDatabase.createReadOnlySession();
 		try {
 			BimDatabaseAction<Set<User>> action = new GetAllNonAuthorizedUsersOfProjectDatabaseAction(accessMethod, pid);
@@ -706,6 +726,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public boolean removeUserFromProject(long uoid, long poid) throws UserException {
+		requireAuthentication();
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
 			BimDatabaseAction<Boolean> action = new RemoveUserFromProjectDatabaseAction(accessMethod, uoid, poid, currentUoid);
@@ -719,6 +740,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public ChangeSetResult processChangeSet(ChangeSet changeSet, long poid, String comment) throws UserException {
+		requireAuthentication();
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
 			BimDatabaseAction<ChangeSetResult> action = new ProcessChangeSetDatabaseAction(accessMethod, changeSet, poid, currentUoid, comment);
@@ -732,6 +754,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public SCheckoutResult downloadByOids(Set<Long> roids, Set<Long> oids, ResultType resultType) throws UserException {
+		requireAuthentication();
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
 			BimDatabaseAction<IfcModel> action = new DownloadByOidsDatabaseAction(accessMethod, roids, oids, currentUoid);
@@ -748,6 +771,7 @@ public class Service implements ServiceInterface {
 	}
 
 	private SCheckoutResult convertModelToCheckoutResult(Project project, User user, IfcModel model, ResultType resultType) throws UserException, NoSerializerFoundException {
+		requireAuthentication();
 		SCheckoutResult checkoutResult = new SCheckoutResult();
 		if (model.isValid()) {
 			checkoutResult.setProjectName(project.getName());
@@ -766,6 +790,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public SCheckoutResult downloadOfType(long roid, String className, ResultType resultType) throws UserException {
+		requireAuthentication();
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
 			BimDatabaseAction<IfcModel> action = new DownloadOfTypeDatabaseAction(accessMethod, roid, className, currentUoid);
@@ -782,6 +807,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public List<String> getAvailableClasses() throws UserException {
+		requireAuthentication();
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
 			BimDatabaseAction<List<String>> action = new GetAvailableClassesDatabaseAction(accessMethod);
@@ -795,6 +821,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public DatabaseInformation getDatabaseInformation() throws UserException {
+		requireAuthentication();
 		BimDatabaseSession session = bimDatabase.createReadOnlySession();
 		try {
 			BimDatabaseAction<DatabaseInformation> action = new GetDatabaseInformationAction(accessMethod);
@@ -808,6 +835,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public SCheckoutResult downloadByGuids(Set<Long> roids, Set<String> guids, ResultType resultType) throws UserException {
+		requireAuthentication();
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
 			BimDatabaseAction<IfcModel> action = new DownloadByGuidsDatabaseAction(accessMethod, roids, guids, currentUoid);
@@ -825,6 +853,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public ChangeSetResult processChangeSetFile(long poid, String comment, DataHandler changeSetFile) throws UserException {
+		requireAuthentication();
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
 			JAXBContext jaxbContext = JAXBContext.newInstance(ChangeSet.class);
@@ -846,11 +875,13 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public SUser getLoggedInUser() throws UserException {
+		requireAuthentication();
 		return getUserByUoid(currentUoid);
 	}
 
 	@Override
 	public List<SProject> getAllNonAuthorizedProjectsOfUser(long uoid) throws UserException {
+		requireAuthentication();
 		BimDatabaseSession session = bimDatabase.createReadOnlySession();
 		try {
 			BimDatabaseAction<Set<Project>> action = new GetAllNonAuthorizedProjectsOfUserDatabaseAction(accessMethod, uoid);
@@ -863,17 +894,14 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public SUser getUserOfToken() throws UserException {
-		return getUserByUoid(currentUoid);
-	}
-
-	@Override
-	public void logout() {
+	public void logout() throws UserException {
+		requireAuthentication();
 		currentUoid = -1;
 	}
 
 	@Override
 	public boolean changePassword(long uoid, String oldPassword, String newPassword) throws UserException {
+		requireAuthentication();
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
 			BimDatabaseAction<Boolean> action = new ChangePasswordDatabaseAction(accessMethod, uoid, oldPassword, newPassword, currentUoid);
@@ -887,6 +915,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public SUser getUserByUserName(String username) throws UserException {
+		requireAuthentication();
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
 			BimDatabaseAction<User> action = new GetUserByNameDatabaseAction(accessMethod, username);
@@ -918,6 +947,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public boolean undeleteProject(long poid) throws UserException {
+		requireAuthentication();
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
 			BimDatabaseAction<Boolean> action = new UndeleteProjectDatabaseAction(accessMethod, poid, currentUoid);
@@ -931,6 +961,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public boolean undeleteUser(long uoid) throws UserException {
+		requireAuthentication();
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
 			BimDatabaseAction<Boolean> action = new UndeleteUserDatabaseAction(accessMethod, currentUoid, uoid);
@@ -944,6 +975,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public SProject addProjectAsSubProject(String projectName, long parentPoid) throws UserException {
+		requireAuthentication();
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
 			BimDatabaseAction<Project> action = new AddProjectDatabaseAction(accessMethod, projectName, parentPoid, currentUoid);
@@ -957,6 +989,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public void updateProject(SProject sProject) throws UserException {
+		requireAuthentication();
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
 			BimDatabaseAction<Void> action = new UpdateProjectDatabaseAction(accessMethod, currentUoid, sProject);
@@ -970,6 +1003,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public void updateRevision(SRevision sRevision) throws UserException {
+		requireAuthentication();
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
 			BimDatabaseAction<Void> action = new UpdateRevisionDatabaseAction(accessMethod, currentUoid, sRevision);
@@ -983,6 +1017,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public SCompareResult compare(long roid1, long roid2) throws UserException {
+		requireAuthentication();
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
 			BimDatabaseAction<CompareResult> action = new CompareDatabaseAction(accessMethod, currentUoid, roid1, roid2);
@@ -994,7 +1029,7 @@ public class Service implements ServiceInterface {
 		}
 	}
 
-	public static SCompareResult.Type convert(CompareResult.Type type) {
+	private static SCompareResult.Type convert(CompareResult.Type type) {
 		if (type == CompareResult.Type.ADDED) {
 			return SCompareResult.Type.ADDED;
 		} else if (type == CompareResult.Type.DELETED) {
@@ -1041,6 +1076,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public SRevisionSummary getRevisionSummary(long roid) throws UserException {
+		requireAuthentication();
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
 			BimDatabaseAction<SRevisionSummary> action = new GetRevisionSummaryDatabaseAction(accessMethod, roid);
@@ -1054,6 +1090,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public boolean userHasCheckinRights(long poid) throws UserException {
+		requireAuthentication();
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
 			BimDatabaseAction<Boolean> action = new UserHasCheckinRightsDatabaseAction(accessMethod, currentUoid, poid);
@@ -1067,6 +1104,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public String getShowCheckoutWarning(long poid, long uoid) throws UserException {
+		requireAuthentication();
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
 			BimDatabaseAction<String> action = new GetShowCheckoutWarningDatabaseAction(accessMethod, poid, uoid);
@@ -1080,9 +1118,10 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public boolean userHasRights(long poid) throws UserException {
+		requireAuthentication();
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
-			BimDatabaseAction<Boolean> action = new UserHasRightsDatabaseAction(accessMethod, getUserOfToken().getOid(), poid);
+			BimDatabaseAction<Boolean> action = new UserHasRightsDatabaseAction(accessMethod, getCurrentUser().getOid(), poid);
 			return session.executeAndCommitAction(action, DEADLOCK_RETRIES);
 		} catch (BimDatabaseException e) {
 			throw new UserException("Database error", e);
@@ -1093,6 +1132,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public SCheckoutResult downloadProjects(Set<Long> roids, ResultType resultType) throws UserException {
+		requireAuthentication();
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
 			BimDatabaseAction<IfcModel> action = new DownloadProjectsDatabaseAction(accessMethod, roids, currentUoid);
@@ -1112,6 +1152,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public DataObject getDataObjectByOid(long roid, long oid, String className) throws UserException {
+		requireAuthentication();
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
 			BimDatabaseAction<DataObject> action = new GetDataObjectByOidDatabaseAction(accessMethod, roid, oid, session.getCidForClassName(className));
@@ -1126,6 +1167,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public DataObject getDataObjectByGuid(long roid, String guid) throws UserException {
+		requireAuthentication();
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
 			BimDatabaseAction<DataObject> action = new GetDataObjectByGuidDatabaseAction(accessMethod, roid, guid);
@@ -1140,6 +1182,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public List<DataObject> getDataObjectsByType(long roid, String className) throws UserException {
+		requireAuthentication();
 		BimDatabaseSession session = bimDatabase.createSession();
 		BimDatabaseAction<List<DataObject>> action = new GetDataObjectsByTypeDatabaseAction(accessMethod, roid, className);
 		try {
@@ -1154,6 +1197,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public String resetPassword(String emailAddress) throws UserException {
+		requireAuthentication();
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
 			BimDatabaseAction<String> action = new ResetPasswordDatabaseAction(accessMethod, emailAddress);
@@ -1167,6 +1211,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public List<SGuidClash> findClashesByGuid(SClashDetectionSettings sClashDetectionSettings) throws UserException {
+		requireAuthentication();
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
 			return convert(session.executeAction(new FindClashesDatabaseAction(accessMethod, sClashDetectionSettings, schema, ifcEngineFactory, currentUoid),
@@ -1180,6 +1225,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public List<SEidClash> findClashesByEid(SClashDetectionSettings sClashDetectionSettings) throws UserException {
+		requireAuthentication();
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
 			return convert(session.executeAction(new FindClashesDatabaseAction(accessMethod, sClashDetectionSettings, schema, ifcEngineFactory, currentUoid),
@@ -1193,6 +1239,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public SCheckinResult branchToNewProject(long roid, String projectName, String comment) throws UserException {
+		requireAuthentication();
 		final BimDatabaseSession session = bimDatabase.createSession();
 		try {
 			Revision oldRevision = session.getVirtualRevision(roid);
@@ -1237,6 +1284,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public SCheckinResult branchToExistingProject(long roid, long destPoid, String comment) throws UserException {
+		requireAuthentication();
 		final BimDatabaseSession session = bimDatabase.createSession();
 		try {
 			Revision oldRevision = session.getVirtualRevision(roid);
@@ -1280,6 +1328,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public List<SLogAction> getLogs() throws UserException {
+		requireAuthentication();
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
 			BimDatabaseAction<List<LogAction>> action = new GetLogsDatabaseAction(accessMethod, currentUoid);
@@ -1294,6 +1343,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public SGeoTag getGeoTag(long goid) throws UserException {
+		requireAuthentication();
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
 			BimDatabaseAction<GeoTag> action = new GetGeoTagDatabaseAction(accessMethod, currentUoid, goid);
@@ -1307,6 +1357,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public void updateGeoTag(SGeoTag sGeoTag) throws UserException {
+		requireAuthentication();
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
 			BimDatabaseAction<Void> action = new UpdateGeoTagDatabaseAction(accessMethod, currentUoid, sGeoTag);
@@ -1320,6 +1371,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public SClashDetectionSettings getClashDetectionSettings(long cdsoid) throws UserException {
+		requireAuthentication();
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
 			BimDatabaseAction<ClashDetectionSettings> action = new GetClashDetectionSettingsDatabaseAction(accessMethod, currentUoid, cdsoid);
@@ -1333,6 +1385,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public void updateClashDetectionSettings(SClashDetectionSettings sClashDetectionSettings) throws UserException {
+		requireAuthentication();
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
 			BimDatabaseAction<Void> action = new UpdateClashDetectionSettingsDatabaseAction(accessMethod, currentUoid, sClashDetectionSettings);
@@ -1346,11 +1399,13 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public List<SClash> getLastClashes(long roid) throws UserException {
+		requireAuthentication();
 		return null;
 	}
 
 	@Override
-	public SUser getUserByUoid(long uoid) {
+	public SUser getUserByUoid(long uoid) throws UserException {
+		requireAuthentication();
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
 			return convert(session.getUserByUoid(uoid), SUser.class, session);
@@ -1361,6 +1416,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public SProject getProjectByPoid(long poid) throws UserException {
+		requireAuthentication();
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
 			return convert(session.getProjectByPoid(poid), SProject.class, session);
@@ -1375,7 +1431,8 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public SUser getAnonymousUser() {
+	public SUser getAnonymousUser() throws UserException {
+		requireAuthentication();
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
 			return convert(session.getAnonymousUser(), SUser.class, session);
@@ -1390,6 +1447,7 @@ public class Service implements ServiceInterface {
 	}
 
 	public List<SUser> getAllNonAuthorizedUsersOfProject(long poid) throws UserException {
+		requireAuthentication();
 		BimDatabaseSession session = bimDatabase.createReadOnlySession();
 		try {
 			BimDatabaseAction<Set<User>> action = new GetAllNonAuthorizedUsersOfProjectDatabaseAction(accessMethod, poid);
@@ -1403,6 +1461,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public List<SUser> getAllAuthorizedUsersOfProject(long poid) throws UserException {
+		requireAuthentication();
 		BimDatabaseSession session = bimDatabase.createReadOnlySession();
 		try {
 			BimDatabaseAction<Set<User>> action = new GetAllAuthorizedUsersOfProjectDatabaseAction(accessMethod, poid);
@@ -1415,7 +1474,8 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public List<SProject> getUsersProjects(long uoid) {
+	public List<SProject> getUsersProjects(long uoid) throws UserException {
+		requireAuthentication();
 		BimDatabaseSession session = bimDatabase.createReadOnlySession();
 		try {
 			User user = session.getUserByUoid(uoid);
@@ -1427,6 +1487,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public List<SProject> getProjectByName(String name) throws UserException {
+		requireAuthentication();
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
 			return convert(session.getProjectsByName(name), SProject.class, session);
@@ -1474,6 +1535,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public void setRevisionTag(long roid, String tag) throws UserException {
+		requireAuthentication();
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
 			BimDatabaseAction<String> action = new SetRevisionTagDatabaseAction(accessMethod, roid, tag);
@@ -1487,6 +1549,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public List<SProject> getSubProjects(long poid) throws UserException {
+		requireAuthentication();
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
 			BimDatabaseAction<Set<Project>> action = new GetSubProjectsDatabaseAction(accessMethod, currentUoid, poid);
@@ -1500,6 +1563,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public void changeUserType(long uoid, SUserType userType) throws UserException {
+		requireAuthentication();
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
 			BimDatabaseAction<Void> action = new ChangeUserTypeDatabaseAction(accessMethod, currentUoid, uoid, userType);
@@ -1513,11 +1577,13 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public boolean isExportTypeEnabled(ResultType resultType) throws UserException {
+		requireAuthentication();
 		return emfSerializerFactory.resultTypeEnabled(resultType);
 	}
 
 	@Override
 	public void setExportTypeEnabled(ResultType resultType, boolean enabled) throws UserException {
+		requireAuthentication();
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
 			User user = session.getUserByUoid(currentUoid);
@@ -1538,7 +1604,8 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public SUser getCurrentUser() {
+	public SUser getCurrentUser() throws UserException {
+		requireAuthentication();
 		if (currentUoid == -1) {
 			return null;
 		}
@@ -1552,7 +1619,6 @@ public class Service implements ServiceInterface {
 	}
 
 	public void close() {
-		
 	}
 
 	@Override
@@ -1575,7 +1641,8 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public List<SUserSession> getActiveUserSessions() {
+	public List<SUserSession> getActiveUserSessions() throws UserException {
+		requireAuthentication();
 		return serviceFactory.getActiveUserSessions();
 	}
 
@@ -1596,5 +1663,10 @@ public class Service implements ServiceInterface {
 	
 	public void setToken(Token token) {
 		this.token = token;
+	}
+
+	@Override
+	public SAccessMethod getAccessMethod() {
+		return SAccessMethod.valueOf(accessMethod.getName());
 	}
 }

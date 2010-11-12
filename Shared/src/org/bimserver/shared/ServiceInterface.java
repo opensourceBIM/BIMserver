@@ -38,6 +38,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.xml.bind.annotation.XmlMimeType;
 
+import org.bimserver.interfaces.objects.SAccessMethod;
 import org.bimserver.interfaces.objects.SCheckout;
 import org.bimserver.interfaces.objects.SClash;
 import org.bimserver.interfaces.objects.SClashDetectionSettings;
@@ -198,11 +199,8 @@ public interface ServiceInterface {
 	@WebMethod(action = "getAllNonAuthorizedProjectsOfUser")
 	List<SProject> getAllNonAuthorizedProjectsOfUser(@WebParam(name = "uoid") long uoid) throws UserException;
 
-	@WebMethod(action = "getUserOfToken")
-	SUser getUserOfToken() throws UserException;
-
 	@WebMethod(action = "logout")
-	void logout();
+	void logout() throws UserException;
 
 	@WebMethod(action = "changePassword")
 	boolean changePassword(@WebParam(name = "uoid") long uoid, @WebParam(name = "oldPassword") String oldPassword,
@@ -283,10 +281,10 @@ public interface ServiceInterface {
 			throws UserException;
 
 	@WebMethod(action = "getUserByUoid")
-	SUser getUserByUoid(@WebParam(name = "uoid") long uoid);
+	SUser getUserByUoid(@WebParam(name = "uoid") long uoid) throws UserException;
 
 	@WebMethod(action = "getAnonymousUser")
-	SUser getAnonymousUser();
+	SUser getAnonymousUser() throws UserException;
 
 	@WebMethod(action = "getAllNonAuthorizedUsersOfProject")
 	List<SUser> getAllNonAuthorizedUsersOfProject(@WebParam(name = "poid") long poid) throws UserException;
@@ -295,7 +293,7 @@ public interface ServiceInterface {
 	List<SUser> getAllAuthorizedUsersOfProject(@WebParam(name = "poid") long poid) throws UserException;
 
 	@WebMethod(action = "getUsersProjects")
-	List<SProject> getUsersProjects(@WebParam(name = "uoid") long uoid);
+	List<SProject> getUsersProjects(@WebParam(name = "uoid") long uoid) throws UserException;
 
 	@WebMethod(action = "getProjectByName")
 	List<SProject> getProjectByName(@WebParam(name = "name") String name) throws UserException;
@@ -312,17 +310,19 @@ public interface ServiceInterface {
 	@WebMethod(action = "setExportTypeEnabled")
 	void setExportTypeEnabled(@WebParam(name = "resultType") ResultType resultType, boolean enabled) throws UserException;
 
-	SUser getCurrentUser();
+	SUser getCurrentUser() throws UserException;
 
 	boolean isLoggedIn();
 
 	void loginAnonymous() throws UserException;
 	
-	List<SUserSession> getActiveUserSessions();
+	List<SUserSession> getActiveUserSessions() throws UserException;
 
 	Date getActiveSince();
 
 	Date getLastActive();
 
 	Token getCurrentToken();
+
+	SAccessMethod getAccessMethod();
 }

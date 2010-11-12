@@ -28,7 +28,6 @@ import javax.servlet.ServletException;
 
 import org.apache.cxf.Bus;
 import org.apache.cxf.BusFactory;
-import org.apache.cxf.binding.http.HttpBindingFactory;
 import org.apache.cxf.jaxws.JaxWsServerFactoryBean;
 import org.apache.cxf.transport.servlet.CXFNonSpringServlet;
 import org.bimserver.CustomInvoker;
@@ -49,9 +48,8 @@ public class WebServiceServlet extends CXFNonSpringServlet {
 		properties.put("mtom-enabled", Boolean.TRUE);
 		serverFactoryBean.setProperties(properties);
 		serverFactoryBean.setServiceClass(ServiceInterface.class);
-//		serverFactoryBean.setBindingId(HttpBindingFactory.);
 		serverFactoryBean.setInvoker(new CustomInvoker(ServiceFactory.getINSTANCE()));
-		serverFactoryBean.setAddress("/soap");
+		serverFactoryBean.setAddress("/");
 		serverFactoryBean.setTransportId("http://schemas.xmlsoap.org/soap/http");
 		serverFactoryBean.create();
 	}
