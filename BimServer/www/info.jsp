@@ -29,14 +29,12 @@
 <%@page import="org.bimserver.interfaces.objects.SServerStarted"%>
 <%@page import="org.bimserver.interfaces.objects.SProjectUpdated"%>
 
-<div class="sidebar">
+<%@page import="org.bimserver.shared.SUserSession"%><div class="sidebar">
 </div>
 <div class="content">
-
 <h1>Info</h1>
-
 <%
-	if (loginManager.isLoggedIn() && loginManager.getUserType() == SUserType.ADMIN) {
+	if (loginManager.getService().isLoggedIn() && loginManager.getUserType() == SUserType.ADMIN) {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
 		DatabaseInformation databaseInformation = loginManager.getService().getDatabaseInformation();
 		VersionChecker checkVersion = VersionChecker.getInstance();
@@ -166,7 +164,31 @@ E-mail <a href="mailto:<%= checkVersion.getOnlineVersion().getSupportEmail() %>"
 		<table class="formatted infotable">
 			<tr><td colspan="2" class="tabletitle">General Information</td></tr>
 			<tr><td class="firstcolumn">WSDL</td><td><a href="services/soap?wsdl">WSDL</a></td></tr>
-			<tr><td class="firstcolumn">Active tokens</td><td><%=loginManager.getNumberOfTokens() %></td></tr>
+		</table>
+	</div>
+	<div class="tabbertab" id="activesessions" title="Active sessions">
+		<table class="formatted infotable">
+			<tr>
+				<th>Username</th>
+				<th>Name</th>
+				<th>Type</th>
+				<th>Active since</th>
+				<th>Last active</th>
+			</tr>
+<%
+	List<SUserSession> userSessions = loginManager.getService().getActiveUserSessions();
+	for (SUserSession userSession : userSessions) {
+%>
+	<tr>
+		<td><a href="user.jsp?uoid=<%=userSession.getUoid()%>"><%=userSession.getUsername() %></a></td>
+		<td><%=userSession.getName() %></td>
+		<td><%=userSession.getType().toString() %></td>
+		<td><%=dateFormat.format(userSession.getActiveSince()) %></td>
+		<td><%=dateFormat.format(userSession.getLastActive()) %></td>
+	</tr>
+<%
+	}
+%>
 		</table>
 	</div>
 	<div class="tabbertab" id="logtab" title="Log">

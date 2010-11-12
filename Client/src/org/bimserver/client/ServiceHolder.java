@@ -23,6 +23,7 @@ package org.bimserver.client;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.xml.ws.BindingProvider;
 import javax.xml.ws.soap.SOAPFaultException;
 
 import org.apache.cxf.endpoint.Client;
@@ -31,21 +32,19 @@ import org.apache.cxf.interceptor.LoggingInInterceptor;
 import org.apache.cxf.interceptor.LoggingOutInterceptor;
 import org.apache.cxf.jaxws.JaxWsProxyFactoryBean;
 import org.apache.cxf.transport.http.HTTPConduit;
-import org.bimserver.shared.AuthenticatedServiceWrapper;
 import org.bimserver.shared.ServiceInterface;
-import org.bimserver.shared.Token;
 import org.bimserver.shared.UserException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class ServiceHolder {
-	private AuthenticatedServiceWrapper service;
+	private ServiceInterface service;
 	private static final Logger LOGGER = LoggerFactory.getLogger(ServiceHolder.class);
 	private String username = "anonymous";
 	private String password = "anonymous";
 	private String address = "http://localhost:8082/services/soap";
 
-	public AuthenticatedServiceWrapper getService() {
+	public ServiceInterface getService() {
 		return service;
 	}
 
@@ -57,23 +56,24 @@ public class ServiceHolder {
 		LOGGER.info("Connecting to " + address);
 		cpfb.setServiceClass(ServiceInterface.class);
 		cpfb.setAddress(address);
-		Map<String,Object> properties = new HashMap<String, Object>();
+		Map<String, Object> properties = new HashMap<String, Object>();
 		properties.put("mtom-enabled", Boolean.TRUE);
 		cpfb.setProperties(properties);
 
-		ServiceInterface remoteService = (ServiceInterface) cpfb.create();
+		service = (ServiceInterface) cpfb.create();
 
-		Client client = ClientProxy.getClient(remoteService);
+		Client client = ClientProxy.getClient(service);
 		client.getInInterceptors().add(new LoggingInInterceptor(ConsoleAppender.getPrintWriter()));
 		client.getOutInterceptors().add(new LoggingOutInterceptor(ConsoleAppender.getPrintWriter()));
 		HTTPConduit http = (HTTPConduit) client.getConduit();
+		((BindingProvider) service).getRequestContext().put(BindingProvider.SESSION_MAINTAIN_PROPERTY, Boolean.TRUE);
 		http.getClient().setConnectionTimeout(360000);
 		http.getClient().setAllowChunking(false);
 		http.getClient().setReceiveTimeout(320000);
 
 		boolean connected = false;
 		try {
-			if (remoteService.ping("test").equals("test")) {
+			if (service.ping("test").equals("test")) {
 				connected = true;
 			}
 		} catch (Exception e) {
@@ -83,9 +83,7 @@ public class ServiceHolder {
 		if (connected) {
 			try {
 				LOGGER.info("Logging in as " + username);
-				Token token = remoteService.login(username, password);
-				if (token != null) {
-					this.service = new AuthenticatedServiceWrapper(remoteService, token, false);
+				if (service.login(username, password)) {
 					LOGGER.info("Successfully logged on as " + username);
 					return true;
 				} else {

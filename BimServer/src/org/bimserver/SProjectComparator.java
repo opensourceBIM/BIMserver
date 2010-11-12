@@ -3,14 +3,14 @@ package org.bimserver;
 import java.util.Comparator;
 
 import org.bimserver.interfaces.objects.SProject;
-import org.bimserver.shared.AuthenticatedServiceWrapper;
+import org.bimserver.shared.ServiceInterface;
 import org.bimserver.shared.UserException;
 
 public class SProjectComparator implements Comparator<SProject> {
 
-	private final AuthenticatedServiceWrapper service;
+	private final ServiceInterface service;
 
-	public SProjectComparator(AuthenticatedServiceWrapper service) {
+	public SProjectComparator(ServiceInterface service) {
 		this.service = service;
 	}
 	

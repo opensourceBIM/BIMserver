@@ -227,7 +227,7 @@ public class Client extends JFrame {
 			e.printStackTrace();
 		}
 		try {
-			ChangeSetResult upload = serviceHolder.getService().processChangeSet(project.getId(), showInputDialog, changeSet);
+			ChangeSetResult upload = serviceHolder.getService().processChangeSet(changeSet, project.getId(), showInputDialog);
 			JOptionPane.showMessageDialog(this, "New revision number: " + upload.getNewRevisionNr(), "Processing of ChangeSet successfull", JOptionPane.OK_OPTION
 					| JOptionPane.INFORMATION_MESSAGE);
 			revisionPanel.showProject(project);

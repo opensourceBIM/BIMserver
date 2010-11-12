@@ -20,81 +20,35 @@ package org.bimserver;
  * long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import org.bimserver.database.store.log.AccessMethod;
 import org.bimserver.interfaces.objects.SUserType;
-import org.bimserver.shared.AuthenticatedServiceWrapper;
 import org.bimserver.shared.ServiceInterface;
-import org.bimserver.shared.Token;
-import org.bimserver.shared.UserException;
 
 public class LoginManager {
-	private boolean loggedIn = false;
-	private static AuthenticatedServiceWrapper adminService;
-	private AuthenticatedServiceWrapper authenticatedServiceWrapper;
-	private static ServiceInterface service;
+	private static ServiceInterface adminService;
+	private ServiceInterface service;
 
-	public static void setService(ServiceInterface service) {
-		LoginManager.service = service;
-		try {
-			Token adminToken = ((Service) service).loginAsAdmin();
-			LoginManager.adminService = new AuthenticatedServiceWrapper(service, adminToken, true);
-		} catch (UserException e) {
-			e.printStackTrace();
-		}
+	public LoginManager() {
+		service = ServiceFactory.getINSTANCE().newService(AccessMethod.WEB_INTERFACE);
 	}
 
-	public boolean login(String username, String password) throws UserException {
-		Token token = service.login(username, password);
-		loggedIn = token != null;
-		if (loggedIn) {
-			authenticatedServiceWrapper = new AuthenticatedServiceWrapper(service, token, false);
-		}
-		return loggedIn;
-	}
-	
-	public boolean autologin(String username, String hash) throws UserException {
-		Token token = service.autologin(username, hash);
-		loggedIn = token != null;
-		if (loggedIn) {
-			authenticatedServiceWrapper = new AuthenticatedServiceWrapper(service, token, false);
-		}
-		return loggedIn;
+	public static void setAdminService(ServiceInterface adminService) {
+		LoginManager.adminService = adminService;
 	}
 
 	public long getUoid() {
-		return authenticatedServiceWrapper.getCurrentUser().getOid();
+		return service.getCurrentUser().getOid();
 	}
 
-	public boolean isLoggedIn() {
-		return loggedIn;
-	}
-
-	public void logout() {
-		authenticatedServiceWrapper.logout();
-		authenticatedServiceWrapper = null;
-		loggedIn = false;
-	}
-
-	public int getNumberOfTokens() {
-		return ((Service) service).getTokenManager().getNumberOfTokens();
-	}
-
-	public AuthenticatedServiceWrapper getService() {
-		return authenticatedServiceWrapper;
+	public ServiceInterface getService() {
+		return service;
 	}
 
 	public SUserType getUserType() {
-		return authenticatedServiceWrapper.getCurrentUser().getUserType();
+		return service.getCurrentUser().getUserType();
 	}
 
-	public AuthenticatedServiceWrapper getAdminService() {
+	public ServiceInterface getAdminService() {
 		return adminService;
-	}
-
-	public void loginAnonymous() {
-		try {
-			login("anonymous", "anonymous");
-		} catch (UserException e) {
-			e.printStackTrace();
-		}
 	}
 }

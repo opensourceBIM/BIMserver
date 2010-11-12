@@ -17,11 +17,11 @@
 <%@page import="org.bimserver.interfaces.objects.SUserType"%>
 <%@page import="org.bimserver.JspHelper"%>
 <%@page import="java.util.Comparator"%>
-<%@page import="org.bimserver.shared.AuthenticatedServiceWrapper"%>
 <%@page import="org.bimserver.SProjectComparator"%>
+<%@page import="org.bimserver.shared.ServiceInterface"%>
 <%@ include file="header.jsp" %>
 <%
-	if (loginManager.isLoggedIn()) {
+	if (loginManager.getService().isLoggedIn()) {
 		EmfSerializerFactory emfSerializerFactory = EmfSerializerFactory.getInstance();
 		try {
 	if (request.getParameter("mid") != null) {
@@ -37,7 +37,7 @@
 	List<SProject> projects = loginManager.getService().getUsersProjects(uoid);
 	Collections.sort(projects, new SProjectComparator(loginManager.getService()));
 	List<SProject> nonAuthorizedProjects = loginManager.getService().getAllNonAuthorizedProjectsOfUser(user.getOid());
-	final AuthenticatedServiceWrapper service = loginManager.getService();
+	final ServiceInterface service = loginManager.getService();
 	Collections.sort(nonAuthorizedProjects, new SProjectComparator(loginManager.getService()));
 %>
 <div class="sidebar">

@@ -15,7 +15,7 @@
 <%@page import="org.bimserver.interfaces.objects.SUserType"%>
 <%@ include file="header.jsp"%>
 <%
-	if (loginManager.isLoggedIn()) {
+	if (loginManager.getService().isLoggedIn()) {
 		EmfSerializerFactory emfSerializerFactory = EmfSerializerFactory.getInstance();
 		try {
 			DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");

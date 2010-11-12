@@ -15,7 +15,7 @@
 <%@page import="org.bimserver.interfaces.objects.SSIPrefix"%>
 <%@ include file="header.jsp"%>
 <%
-	if (loginManager.isLoggedIn()) {
+	if (loginManager.getService().isLoggedIn()) {
 		DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
 		EmfSerializerFactory emfSerializerFactory = EmfSerializerFactory.getInstance();
 		long poid = Long.parseLong(request.getParameter("poid"));

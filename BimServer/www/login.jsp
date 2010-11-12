@@ -15,7 +15,7 @@
 		boolean redirected = false;
 		if (request.getParameter("login") != null) {
 			try {
-				if (loginManager.login(request.getParameter("username"), request.getParameter("password"))) {
+				if (loginManager.getService().login(request.getParameter("username"), request.getParameter("password"))) {
 					if (request.getParameter("rememberme") != null) {
 						String rememberHash = Hashers.getSha256Hash(request.getParameter("username") + Hashers.getSha256Hash(request.getParameter("password")));
 						Cookie autologinCookie = new Cookie("autologin", rememberHash);
@@ -45,8 +45,8 @@
 				}
 			}
 			if (request.getSession().getAttribute("loggingout") == null && cookies.containsKey("autologin") && cookies.containsKey("username")) {
-				if (loginManager.autologin(cookies.get("username"), cookies.get("autologin"))) {
-					if (!loginManager.isLoggedIn()) {
+				if (loginManager.getService().autologin(cookies.get("username"), cookies.get("autologin"))) {
+					if (!loginManager.getService().isLoggedIn()) {
 						response.sendRedirect(request.getContextPath() + "/login.jsp?origurl=" + URLEncoder.encode(request.getRequestURI() + "?" + request.getQueryString(), "UTF-8"));
 					} else {
 						response.sendRedirect(request.getContextPath() + "/main.jsp");

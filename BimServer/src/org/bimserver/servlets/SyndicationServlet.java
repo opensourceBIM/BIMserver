@@ -16,10 +16,8 @@ import org.bimserver.interfaces.objects.SCheckout;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.interfaces.objects.SUser;
-import org.bimserver.shared.AuthenticatedServiceWrapper;
 import org.bimserver.shared.SRevisionIdComparator;
 import org.bimserver.shared.ServiceInterface;
-import org.bimserver.shared.Token;
 import org.bimserver.shared.UserException;
 
 import com.sun.syndication.feed.synd.SyndContent;
@@ -50,14 +48,12 @@ public class SyndicationServlet extends HttpServlet {
 			String password = split[1];
 			ServiceInterface service = (ServiceInterface) getServletContext().getAttribute("service");
 			try {
-				Token token = service.login(username, password);
-				if (token != null) {
-					AuthenticatedServiceWrapper serviceWrapper = new AuthenticatedServiceWrapper(service, token, false);
+				if (service.login(username, password)) {
 					String requestURI = request.getRequestURI();
 					response.setContentType("application/atom+xml");
 					try {
 						if (requestURI.endsWith("/projects")) {
-							writeProjectsFeed(request, response, serviceWrapper);
+							writeProjectsFeed(request, response, service);
 						} else if (requestURI.contains("/revisions")) {
 							writeRevisionsFeed(request, response);
 						} else if (requestURI.contains("/checkouts")) {
@@ -82,7 +78,7 @@ public class SyndicationServlet extends HttpServlet {
 		}
 	}
 
-	private void writeProjectsFeed(HttpServletRequest request, HttpServletResponse response, AuthenticatedServiceWrapper serviceWrapper) throws UserException, IOException, FeedException {
+	private void writeProjectsFeed(HttpServletRequest request, HttpServletResponse response, ServiceInterface serviceWrapper) throws UserException, IOException, FeedException {
 		SyndFeed feed = new SyndFeedImpl();
 		feed.setFeedType(FEED_TYPE);
 
@@ -125,9 +121,8 @@ public class SyndicationServlet extends HttpServlet {
 
 	private void writeRevisionsFeed(HttpServletRequest request, HttpServletResponse response) throws IOException, FeedException, UserException {
 		ServiceInterface service = (ServiceInterface) getServletContext().getAttribute("service");
-		AuthenticatedServiceWrapper serviceWrapper = new AuthenticatedServiceWrapper(service, service.createAnonymousToken(), false);
 		long poid = Long.parseLong(request.getParameter("poid"));
-		SProject sProject = serviceWrapper.getProjectByPoid(poid);
+		SProject sProject = service.getProjectByPoid(poid);
 
 		SyndFeed feed = new SyndFeedImpl();
 		feed.setFeedType(FEED_TYPE);
@@ -138,10 +133,10 @@ public class SyndicationServlet extends HttpServlet {
 
 		List<SyndEntry> entries = new ArrayList<SyndEntry>();
 		try {
-			List<SRevision> allRevisionsOfProject = serviceWrapper.getAllRevisionsOfProject(poid);
+			List<SRevision> allRevisionsOfProject = service.getAllRevisionsOfProject(poid);
 			Collections.sort(allRevisionsOfProject, new SRevisionIdComparator(false));
 			for (SRevision sVirtualRevision : allRevisionsOfProject) {
-				SUser user = serviceWrapper.getUserByUoid(sVirtualRevision.getUserId());
+				SUser user = service.getUserByUoid(sVirtualRevision.getUserId());
 				SyndEntry entry = new SyndEntryImpl();
 				entry.setTitle("Revision " + sVirtualRevision.getOid());
 				entry.setLink(request.getContextPath() + "/revision.jsp?poid=" + sVirtualRevision.getOid() + "&roid=" + sVirtualRevision.getOid());
@@ -162,9 +157,8 @@ public class SyndicationServlet extends HttpServlet {
 
 	private void writeCheckoutsFeed(HttpServletRequest request, HttpServletResponse response) throws UserException, IOException, FeedException {
 		ServiceInterface service = (ServiceInterface) getServletContext().getAttribute("service");
-		AuthenticatedServiceWrapper serviceWrapper = new AuthenticatedServiceWrapper(service, service.createAnonymousToken(), false);
 		long poid = Long.parseLong(request.getParameter("poid"));
-		SProject sProject = serviceWrapper.getProjectByPoid(poid);
+		SProject sProject = service.getProjectByPoid(poid);
 
 		SyndFeed feed = new SyndFeedImpl();
 		feed.setFeedType(FEED_TYPE);
@@ -175,9 +169,9 @@ public class SyndicationServlet extends HttpServlet {
 
 		List<SyndEntry> entries = new ArrayList<SyndEntry>();
 		try {
-			List<SCheckout> allCheckoutsOfProject = serviceWrapper.getAllCheckoutsOfProject(poid);
+			List<SCheckout> allCheckoutsOfProject = service.getAllCheckoutsOfProject(poid);
 			for (SCheckout sCheckout : allCheckoutsOfProject) {
-				SUser user = serviceWrapper.getUserByUoid(sCheckout.getUserId());
+				SUser user = service.getUserByUoid(sCheckout.getUserId());
 				SyndEntry entry = new SyndEntryImpl();
 				entry.setTitle(user.getUsername());
 				entry.setLink(request.getContextPath() + "/checkout.jsp?pid=" + sProject.getId() + "&cid=" + sCheckout.getOid());

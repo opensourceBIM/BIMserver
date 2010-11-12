@@ -1,6 +1,6 @@
 <jsp:useBean id="loginManager" scope="session" class="org.bimserver.LoginManager" />
 <%
-	loginManager.logout();
+	loginManager.getService().logout();
 	request.getSession().setAttribute("loggingout", "true");
 	Cookie autologinCookie = new Cookie("autologin", "");
 	autologinCookie.setMaxAge(0);

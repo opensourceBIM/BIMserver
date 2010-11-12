@@ -17,7 +17,7 @@
 <%@page import="org.apache.commons.io.IOUtils"%>
 <%@page import="org.bimserver.interfaces.objects.SUserType"%>
 <%
-	if (loginManager.isLoggedIn() && loginManager.getUserType() == SUserType.ADMIN) {
+	if (loginManager.getService().isLoggedIn() && loginManager.getUserType() == SUserType.ADMIN) {
 		Settings settings = ServerSettings.getSettings();
 		EmfSerializerFactory emfSerializerFactory = EmfSerializerFactory.getInstance();
 		if (request.getParameter("save") != null) {

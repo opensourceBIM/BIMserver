@@ -7,7 +7,7 @@
 <%@page import="org.bimserver.interfaces.objects.SUserType"%>
 <%@ include file="header.jsp" %>
 <%
-	if (loginManager.isLoggedIn()) {
+	if (loginManager.getService().isLoggedIn()) {
 		long uoid = Long.parseLong(request.getParameter("uoid"));
 		if (request.getParameter("save") != null) {
 			try {

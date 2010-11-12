@@ -40,7 +40,7 @@
 <%@page import="org.bimserver.database.store.SIPrefix"%>
 <%@ include file="header.jsp"%>
 <%
-	if (loginManager.isLoggedIn()) {
+	if (loginManager.getService().isLoggedIn()) {
 		DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
 		EmfSerializerFactory emfSerializerFactory = EmfSerializerFactory.getInstance();
 		long poid = Long.parseLong(request.getParameter("poid"));
@@ -349,7 +349,7 @@ project</a><br />
 <div id="upload"><jsp:include page="upload.jsp">
 	<jsp:param name="poid" value="<%=poid %>" />
 </jsp:include> <%
-	List<SProject> projects = loginManager.getAdminService().getAllProjects();
+	List<SProject> projects = loginManager.getService().getAllProjects();
 	if (!projects.isEmpty() && (projects.size() > 1 || !projects.get(0).getRevisions().isEmpty())) {
 	boolean atLeastOne = false;
 	for (SProject sProject : projects) {
