@@ -1,7 +1,7 @@
 <%@page import="org.bimserver.shared.UserException"%>
 <%@ include file="header.jsp" %>
 <%
-	if (loginManager.isLoggedIn()) {
+	if (loginManager.getService().isLoggedIn()) {
 		try {
 			long poid = Long.parseLong(request.getParameter("poid"));
 			if (loginManager.getService().deleteProject(poid)) {

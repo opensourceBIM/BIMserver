@@ -22,7 +22,7 @@
 <script type="text/javascript" src="js/map.js"></script>
 <!-- eind mapscripts -->
 <%
-	if (loginManager.isLoggedIn()) {
+	if (loginManager.getService().isLoggedIn()) {
 		if (loginManager.getUserType() == SUserType.ADMIN || ServerSettings.getSettings().isAllowUsersToCreateTopLevelProjects()) {
 			if (request.getParameter("save") != null) {
 				try {
@@ -32,7 +32,7 @@
 						parentProject = loginManager.getService().getProjectByPoid(Long.parseLong(request.getParameter("parentoid")));
 					}
 					if (request.getParameter("parentoid") != null) {
-						sProject = loginManager.getService().addProject(request.getParameter("name"), Long.parseLong(request.getParameter("parentoid")));
+						sProject = loginManager.getService().addProjectAsSubProject(request.getParameter("name"), Long.parseLong(request.getParameter("parentoid")));
 					} else {
 						sProject = loginManager.getService().addProject(request.getParameter("name"));
 					}

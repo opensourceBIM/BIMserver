@@ -8,7 +8,7 @@
 <%@page import="org.bimserver.shared.SUserNameComparator"%>
 <%@page import="org.bimserver.interfaces.objects.SUserType"%>
 <%@page import="org.bimserver.interfaces.objects.SObjectState"%>
-<% if (loginManager.isLoggedIn() && loginManager.getUserType() == SUserType.ADMIN) {
+<% if (loginManager.getService().isLoggedIn() && loginManager.getUserType() == SUserType.ADMIN) {
 		DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
 %>
 

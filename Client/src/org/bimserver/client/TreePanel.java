@@ -355,7 +355,7 @@ public class TreePanel extends JPanel {
 			}
 			tree.updateUI();
 		} catch (UserException e) {
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(getRootPane(), e.getMessage());
 		}
 	}
 
@@ -371,7 +371,7 @@ public class TreePanel extends JPanel {
 			}
 			tree.updateUI();
 		} catch (UserException e) {
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(getRootPane(), e.getMessage());
 		}
 	}
 

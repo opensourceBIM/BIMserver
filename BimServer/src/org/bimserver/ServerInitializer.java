@@ -53,7 +53,6 @@ import org.bimserver.ifc.PackageDefinition;
 import org.bimserver.ifc.emf.Ifc2x3.Ifc2x3Package;
 import org.bimserver.ifcengine.IfcEngineFactory;
 import org.bimserver.querycompiler.QueryCompiler;
-import org.bimserver.services.TokenManager;
 import org.bimserver.servlets.CompileServlet;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
 import org.bimserver.shared.ResourceFetcher;
@@ -98,7 +97,6 @@ public class ServerInitializer implements ServletContextListener {
 			longActionManager.start();
 			
 			FieldIgnoreMap fieldIgnoreMap = new FileFieldIgnoreMap(packages, resourceFetcher);
-			TokenManager tokenManager = new TokenManager();
 			TemplateEngine.getTemplateEngine().init(resourceFetcher.getResource("templates/"));
 			File databaseDir = new File(ServerSettings.getSettings().getDatabaseLocation());
 			BerkeleyColumnDatabase columnDatabase = new BerkeleyColumnDatabase(databaseDir);
@@ -120,11 +118,9 @@ public class ServerInitializer implements ServletContextListener {
 			EmfSerializerFactory emfSerializerFactory = EmfSerializerFactory.getInstance();
 			emfSerializerFactory.init(version, schema, fieldIgnoreMap, ifcEngineFactory, colladaSettings);
 			emfSerializerFactory.initSerializers();
-			ServiceInterface soapService = new Service(bimDatabase, emfSerializerFactory, schema, tokenManager, longActionManager, AccessMethod.SOAP, ifcEngineFactory);
-			ServiceInterface webService = new Service(bimDatabase, emfSerializerFactory, schema, tokenManager, longActionManager, AccessMethod.WEB_INTERFACE, ifcEngineFactory);
-			servletContext.setAttribute("service", soapService);
-			LoginManager.setService(webService);
-			RestApplication.service = webService;
+			ServiceFactory.init(bimDatabase, emfSerializerFactory, schema, longActionManager, ifcEngineFactory);
+			ServiceInterface adminService = ServiceFactory.getINSTANCE().newService(AccessMethod.WEB_INTERFACE);
+			LoginManager.setAdminService(adminService);
 
 			if (serverType == ServerType.DEPLOYED_WAR) {
 				File libDir = new File(servletContext.getRealPath("/") + "WEB-INF" + File.separator + "lib");

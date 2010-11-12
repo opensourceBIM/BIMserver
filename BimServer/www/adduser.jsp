@@ -12,7 +12,7 @@
 <%@page import="javax.mail.internet.MimeMessage"%>
 <%@ include file="header.jsp" %>
 <%
-	if (loginManager.isLoggedIn()) {
+	if (loginManager.getService().isLoggedIn()) {
 		if (request.getParameter("save") != null) {
 			try {
 				long uoid = loginManager.getService().addUser(request.getParameter("username"), request.getParameter("password"), request.getParameter("name"));

@@ -6,12 +6,9 @@
 <%@page import="org.bimserver.interfaces.objects.SUser"%>
 <%@page import="org.bimserver.ServerSettings"%>
 <%@page import="org.bimserver.Settings"%>
-<jsp:useBean id="serverInfo" scope="application"
-	class="org.bimserver.ServerInfo" />
-<jsp:useBean id="loginManager" scope="session"
-	class="org.bimserver.LoginManager" />
-<jsp:useBean id="errorMessages" scope="request"
-	class="org.bimserver.ErrorMessages" />
+<jsp:useBean id="serverInfo" scope="application" class="org.bimserver.ServerInfo" />
+<jsp:useBean id="loginManager" scope="session" class="org.bimserver.LoginManager" />
+<jsp:useBean id="errorMessages" scope="request" class="org.bimserver.ErrorMessages" />
 <jsp:include page="htmlheader.jsp" />
 <%
 	if (serverInfo.isAvailable()) {
@@ -22,7 +19,7 @@
  		Settings settings = ServerSettings.getSettings();
  %> <img class="headerimage"
 	src="<%=settings.getCustomLogoAddress() != null ? settings.getCustomLogoAddress() : "images/logo.gif"%>" alt="BIM Server" title="BIM Server <%=version.getVersion()%>" /></a> <%
- 	if (loginManager.isLoggedIn()) {
+ 	if (loginManager.getService().isLoggedIn()) {
  %>
 <div class="menubar">
 You are logged in as: <a href="user.jsp?uoid=<%=loginManager.getService().getLoggedInUser().getOid()%>"><%=loginManager.getService().getLoggedInUser().getName()%></a> - <a href="logout.jsp">Logout</a>&nbsp;&nbsp;&nbsp;&nbsp;<br/>
@@ -39,7 +36,7 @@ You are logged in as: <a href="user.jsp?uoid=<%=loginManager.getService().getLog
  					cookies.put(cookie.getName(), cookie.getValue());
  				}
  				if (cookies.containsKey("autologin") && cookies.containsKey("username")) {
- 					if (loginManager.autologin(cookies.get("username"), cookies.get("autologin"))) {
+ 					if (loginManager.getService().autologin(cookies.get("username"), cookies.get("autologin"))) {
  %>
 <div class="menubar">
 You are logged in as: <a href="user.jsp?uoid=<%=loginManager.getService().getLoggedInUser().getOid()%>"><%=loginManager.getService().getLoggedInUser().getName()%></a> - <a href="logout.jsp">Logout</a>&nbsp;&nbsp;&nbsp;&nbsp;<br/>
@@ -53,7 +50,7 @@ You are logged in as: <a href="user.jsp?uoid=<%=loginManager.getService().getLog
  				}
  				}
  			}
- 			if (!loginManager.isLoggedIn()) {
+ 			if (!loginManager.getService().isLoggedIn()) {
  				if (!request.getServletPath().equals("/login.jsp")) {
  					response.sendRedirect(request.getContextPath() + "/login.jsp?origurl="
  							+ URLEncoder.encode(request.getRequestURI() + "?" + request.getQueryString(), "UTF-8"));

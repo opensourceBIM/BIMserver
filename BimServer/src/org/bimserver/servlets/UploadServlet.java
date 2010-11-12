@@ -121,7 +121,7 @@ public class UploadServlet extends HttpServlet {
 								JAXBContext context = JAXBContext.newInstance(ChangeSet.class);
 								Unmarshaller unmarshaller = context.createUnmarshaller();
 								ChangeSet changeSet = (ChangeSet) unmarshaller.unmarshal(realStream);
-								loginManager.getService().processChangeSet(poid, comment, changeSet);
+								loginManager.getService().processChangeSet(changeSet, poid, comment);
 								response.sendRedirect("project.jsp?poid=" + poid);
 							} catch (JAXBException e) {
 								e.printStackTrace();

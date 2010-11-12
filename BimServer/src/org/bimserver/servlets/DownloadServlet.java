@@ -52,8 +52,8 @@ public class DownloadServlet extends HttpServlet {
 			if (loginManager == null) {
 				loginManager = new LoginManager();
 			}
-			if (!loginManager.isLoggedIn()) {
-				loginManager.loginAnonymous();
+			if (!loginManager.getService().isLoggedIn()) {
+				loginManager.getService().loginAnonymous();
 			}
 			ResultType resultType = ResultType.IFC;
 			if (request.getParameter("resultType") != null) {

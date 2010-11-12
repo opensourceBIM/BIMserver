@@ -7,7 +7,7 @@
 <%@ include file="header.jsp" %>
 <%
 if (serverInfo.isAvailable()) {
-	if (loginManager.isLoggedIn()) { %>
+	if (loginManager.getService().isLoggedIn()) { %>
 <%@page import="org.bimserver.interfaces.objects.SUserType"%><div class="sidebar">
  <h4>Submenu</h4>
  <ul>
