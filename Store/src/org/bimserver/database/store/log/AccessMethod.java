@@ -50,7 +50,15 @@ public enum AccessMethod implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	INTERNAL(2, "INTERNAL", "INTERNAL");
+	INTERNAL(2, "INTERNAL", "INTERNAL"), /**
+	 * The '<em><b>REST</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #REST_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	REST(3, "REST", "REST");
 
 	/**
 	 * The '<em><b>SOAP</b></em>' literal value.
@@ -98,6 +106,21 @@ public enum AccessMethod implements Enumerator {
 	public static final int INTERNAL_VALUE = 2;
 
 	/**
+	 * The '<em><b>REST</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>REST</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #REST
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int REST_VALUE = 3;
+
+	/**
 	 * An array of all the '<em><b>Access Method</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -108,6 +131,7 @@ public enum AccessMethod implements Enumerator {
 			SOAP,
 			WEB_INTERFACE,
 			INTERNAL,
+			REST,
 		};
 
 	/**
@@ -161,6 +185,7 @@ public enum AccessMethod implements Enumerator {
 			case SOAP_VALUE: return SOAP;
 			case WEB_INTERFACE_VALUE: return WEB_INTERFACE;
 			case INTERNAL_VALUE: return INTERNAL;
+			case REST_VALUE: return REST;
 		}
 		return null;
 	}

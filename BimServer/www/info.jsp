@@ -28,8 +28,8 @@
 <%@page import="org.bimserver.interfaces.objects.SUserRemovedFromProject"%>
 <%@page import="org.bimserver.interfaces.objects.SServerStarted"%>
 <%@page import="org.bimserver.interfaces.objects.SProjectUpdated"%>
-
-<%@page import="org.bimserver.shared.SUserSession"%><div class="sidebar">
+<%@page import="org.bimserver.shared.SUserSession"%>
+<div class="sidebar">
 </div>
 <div class="content">
 <h1>Info</h1>
@@ -172,6 +172,7 @@ E-mail <a href="mailto:<%= checkVersion.getOnlineVersion().getSupportEmail() %>"
 				<th>Username</th>
 				<th>Name</th>
 				<th>Type</th>
+				<th>Access method</th>
 				<th>Active since</th>
 				<th>Last active</th>
 			</tr>
@@ -183,6 +184,7 @@ E-mail <a href="mailto:<%= checkVersion.getOnlineVersion().getSupportEmail() %>"
 		<td><a href="user.jsp?uoid=<%=userSession.getUoid()%>"><%=userSession.getUsername() %></a></td>
 		<td><%=userSession.getName() %></td>
 		<td><%=userSession.getType().toString() %></td>
+		<td><%=userSession.getAccessMethod().toString() %></td>
 		<td><%=dateFormat.format(userSession.getActiveSince()) %></td>
 		<td><%=dateFormat.format(userSession.getLastActive()) %></td>
 	</tr>

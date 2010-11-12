@@ -85,20 +85,23 @@ public class ServiceFactory {
 		tokens.remove(token);
 	}
 
-	public List<SUserSession> getActiveUserSessions() {
+	public List<SUserSession> getActiveUserSessions() throws UserException {
 		List<SUserSession> userSessions = new ArrayList<SUserSession>();
 		for (Token token : tokens.keySet()) {
 			ServiceInterface serviceInterface = tokens.get(token);
-			SUser user = serviceInterface.getCurrentUser();
-			if (user != null) {
-				SUserSession userSession = new SUserSession();
-				userSession.setUsername(user.getUsername());
-				userSession.setType(user.getUserType());
-				userSession.setName(user.getName());
-				userSession.setUoid(user.getOid());
-				userSession.setActiveSince(serviceInterface.getActiveSince());
-				userSession.setLastActive(serviceInterface.getLastActive());
-				userSessions.add(userSession);
+			if (serviceInterface.isLoggedIn()) {
+				SUser user = serviceInterface.getCurrentUser();
+				if (user != null) {
+					SUserSession userSession = new SUserSession();
+					userSession.setUsername(user.getUsername());
+					userSession.setType(user.getUserType());
+					userSession.setName(user.getName());
+					userSession.setUoid(user.getOid());
+					userSession.setAccessMethod(serviceInterface.getAccessMethod());
+					userSession.setActiveSince(serviceInterface.getActiveSince());
+					userSession.setLastActive(serviceInterface.getLastActive());
+					userSessions.add(userSession);
+				}
 			}
 		}
 		return userSessions;

@@ -120,8 +120,11 @@ public class ServerInitializer implements ServletContextListener {
 			emfSerializerFactory.initSerializers();
 			ServiceFactory.init(bimDatabase, emfSerializerFactory, schema, longActionManager, ifcEngineFactory);
 			ServiceInterface adminService = ServiceFactory.getINSTANCE().newService(AccessMethod.WEB_INTERFACE);
+			((Service)adminService).loginAsAdmin();
 			LoginManager.setAdminService(adminService);
 
+			RestApplication.serviceFactory = ServiceFactory.getINSTANCE();
+			
 			if (serverType == ServerType.DEPLOYED_WAR) {
 				File libDir = new File(servletContext.getRealPath("/") + "WEB-INF" + File.separator + "lib");
 				LOGGER.info("adding lib dir: " + libDir.getAbsolutePath());

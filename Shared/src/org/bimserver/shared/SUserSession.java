@@ -2,6 +2,7 @@ package org.bimserver.shared;
 
 import java.util.Date;
 
+import org.bimserver.interfaces.objects.SAccessMethod;
 import org.bimserver.interfaces.objects.SUserType;
 
 public class SUserSession {
@@ -11,6 +12,7 @@ public class SUserSession {
 	private SUserType type;
 	private Date activeSince;
 	private Date lastActive;
+	private SAccessMethod accessMethod;
 
 	public long getUoid() {
 		return uoid;
@@ -58,5 +60,13 @@ public class SUserSession {
 
 	public String getName() {
 		return name;
+	}
+
+	public void setAccessMethod(SAccessMethod accessMethod) {
+		this.accessMethod = accessMethod;
+	}
+
+	public SAccessMethod getAccessMethod() {
+		return accessMethod;
 	}
 }

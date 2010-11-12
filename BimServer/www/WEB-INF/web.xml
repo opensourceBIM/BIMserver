@@ -14,6 +14,7 @@
 	<servlet>
 		<servlet-name>ProgressServlet</servlet-name>
 		<servlet-class>org.bimserver.servlets.ProgressServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>ProgressServlet</servlet-name>
@@ -23,6 +24,7 @@
 	<servlet>
 		<servlet-name>DownloadServlet</servlet-name>
 		<servlet-class>org.bimserver.servlets.DownloadServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>DownloadServlet</servlet-name>
@@ -32,6 +34,7 @@
 	<servlet>
 		<servlet-name>UploadServlet</servlet-name>
 		<servlet-class>org.bimserver.servlets.UploadServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>UploadServlet</servlet-name>
@@ -41,6 +44,7 @@
 	<servlet>
 		<servlet-name>SettingsServlet</servlet-name>
 		<servlet-class>org.bimserver.servlets.SettingsServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>SettingsServlet</servlet-name>
@@ -54,16 +58,17 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>WebServiceServlet</servlet-name>
-		<url-pattern>/services/*</url-pattern>
+		<url-pattern>/soap/*</url-pattern>
 	</servlet-mapping>
 
 	<servlet>
 		<servlet-name>RestServlet</servlet-name>
-		<servlet-class>org.apache.cxf.jaxrs.servlet.CXFNonSpringJaxrsServlet</servlet-class>
+		<servlet-class>org.bimserver.RestServlet</servlet-class>
 		<init-param>
 			<param-name>javax.ws.rs.Application</param-name>
 			<param-value>org.bimserver.RestApplication</param-value>
 		</init-param>
+		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>RestServlet</servlet-name>
@@ -73,6 +78,7 @@
 	<servlet>
 		<servlet-name>SyndicationServlet</servlet-name>
 		<servlet-class>org.bimserver.servlets.SyndicationServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>SyndicationServlet</servlet-name>
@@ -82,6 +88,7 @@
 	<servlet>
 		<servlet-name>CompileServlet</servlet-name>
 		<servlet-class>org.bimserver.servlets.CompileServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>CompileServlet</servlet-name>

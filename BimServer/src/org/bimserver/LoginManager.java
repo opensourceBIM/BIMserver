@@ -23,6 +23,7 @@ package org.bimserver;
 import org.bimserver.database.store.log.AccessMethod;
 import org.bimserver.interfaces.objects.SUserType;
 import org.bimserver.shared.ServiceInterface;
+import org.bimserver.shared.UserException;
 
 public class LoginManager {
 	private static ServiceInterface adminService;
@@ -36,7 +37,7 @@ public class LoginManager {
 		LoginManager.adminService = adminService;
 	}
 
-	public long getUoid() {
+	public long getUoid() throws UserException {
 		return service.getCurrentUser().getOid();
 	}
 
@@ -44,7 +45,7 @@ public class LoginManager {
 		return service;
 	}
 
-	public SUserType getUserType() {
+	public SUserType getUserType() throws UserException {
 		return service.getCurrentUser().getUserType();
 	}
 
