@@ -15,7 +15,7 @@
 		boolean redirected = false;
 		if (request.getParameter("login") != null) {
 			try {
-				if (loginManager.getService().login(request.getParameter("username"), request.getParameter("password"))) {
+				if (loginManager.login(request.getParameter("username"), request.getParameter("password"))) {
 					if (request.getParameter("rememberme") != null) {
 						String rememberHash = Hashers.getSha256Hash(request.getParameter("username") + Hashers.getSha256Hash(request.getParameter("password")));
 						Cookie autologinCookie = new Cookie("autologin", rememberHash);
@@ -45,8 +45,8 @@
 				}
 			}
 			if (request.getSession().getAttribute("loggingout") == null && cookies.containsKey("autologin") && cookies.containsKey("username")) {
-				if (loginManager.getService().autologin(cookies.get("username"), cookies.get("autologin"))) {
-					if (!loginManager.getService().isLoggedIn()) {
+				if (loginManager.autologin(cookies.get("username"), cookies.get("autologin"))) {
+					if (!loginManager.isLoggedIn()) {
 						response.sendRedirect(request.getContextPath() + "/login.jsp?origurl=" + URLEncoder.encode(request.getRequestURI() + "?" + request.getQueryString(), "UTF-8"));
 					} else {
 						response.sendRedirect(request.getContextPath() + "/main.jsp");
@@ -68,7 +68,7 @@
 <% errorMessages.print(out); %>
 <form id="loginForm" name="loginForm" method="post" action="login.jsp">
 <table class="formtable">
-<tr><td class="first"><label for="username">Username</label></td><td><input id="username" type="text" name="username" id="username" <%=request.getParameter("username") != null ? " value=\"" + request.getParameter("username") + "\"" : "" %> /></td></tr>
+<tr><td class="first"><label for="username">Username (e-mail)</label></td><td><input id="username" type="text" name="username" id="username" <%=request.getParameter("username") != null ? " value=\"" + request.getParameter("username") + "\"" : "" %> /></td></tr>
 <tr><td class="first"><label for="password">Password</label></td><td><input id="password" type="password" name="password"/></td></tr>
 <tr><td class="first"><label for="rememberme">Remember me</label></td><td><input id="rememberme" type="checkbox" name="rememberme"/></td></tr>
 <tr><td></td><td align="right"><input name="login" type="submit" value="Login"/></td></tr>
