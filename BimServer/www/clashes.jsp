@@ -193,7 +193,7 @@ $(document).ready(function(){
 			out.println("No clashes found<br/>");
 		} else {
 			out.println("<table class=\"formatted maintable\">");
-			out.println("<tr><th>Name</th><th>Type</th><th>User</th><th></th><th>Name</th><th>Type</th><th></th></tr>");
+			out.println("<tr><th>Name</th><th>Type</th><th>User</th><th></th><th>Name</th><th>Type</th><th>User</th></tr>");
 			for (SEidClash sClash : clashes) {
 				if (!revisionUsers.containsKey(sClash.getRevision1Id())) {
 					long uoid = loginManager.getService().getRevision(sClash.getRevision1Id()).getUserId();
