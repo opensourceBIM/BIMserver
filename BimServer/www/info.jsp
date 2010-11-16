@@ -160,10 +160,11 @@ E-mail <a href="mailto:<%= checkVersion.getOnlineVersion().getSupportEmail() %>"
 			%>
 		</table>
 	</div>
-	<div class="tabbertab" id="webservicetab" title="Web Service">
+	<div class="tabbertab" id="webservicetab" title="Web Services">
 		<table class="formatted infotable">
 			<tr><td colspan="2" class="tabletitle">General Information</td></tr>
-			<tr><td class="firstcolumn">WSDL</td><td><a href="services/soap?wsdl">WSDL</a></td></tr>
+			<tr><td class="firstcolumn">SOAP Service Descriptor</td><td><a href="soap?wsdl">WSDL</a></td></tr>
+			<tr><td class="firstcolumn">Rest Service Descriptor</td><td><a href="rest?_wadl">WADL</a></td></tr>
 		</table>
 	</div>
 	<div class="tabbertab" id="activesessions" title="Active sessions">

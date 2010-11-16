@@ -30,7 +30,9 @@ public class LoginManager {
 	private ServiceInterface service;
 
 	public LoginManager() {
-		service = ServiceFactory.getINSTANCE().newService(AccessMethod.WEB_INTERFACE);
+		if (ServiceFactory.isInitialized()) {
+			service = ServiceFactory.getINSTANCE().newService(AccessMethod.WEB_INTERFACE);
+		}
 	}
 
 	public static void setAdminService(ServiceInterface adminService) {
