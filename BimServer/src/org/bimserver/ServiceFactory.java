@@ -11,6 +11,7 @@ import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
 import org.bimserver.database.BimDatabase;
 import org.bimserver.database.store.log.AccessMethod;
 import org.bimserver.ifcengine.IfcEngineFactory;
+import org.bimserver.interfaces.objects.SAccessMethod;
 import org.bimserver.interfaces.objects.SUser;
 import org.bimserver.shared.SUserSession;
 import org.bimserver.shared.ServiceInterface;
@@ -89,7 +90,7 @@ public class ServiceFactory {
 		List<SUserSession> userSessions = new ArrayList<SUserSession>();
 		for (Token token : tokens.keySet()) {
 			ServiceInterface serviceInterface = tokens.get(token);
-			if (serviceInterface.isLoggedIn()) {
+			if (serviceInterface.isLoggedIn() && serviceInterface.getAccessMethod() != SAccessMethod.INTERNAL) {
 				SUser user = serviceInterface.getCurrentUser();
 				if (user != null) {
 					SUserSession userSession = new SUserSession();
