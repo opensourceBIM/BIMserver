@@ -20,38 +20,40 @@ if (serverInfo.isAvailable()) {
 <div class="content">
 
 <h1>Projects</h1>
-<fieldset>
-<table class="formatted maintable">
 <%
 	List<SProject> projects = loginManager.getService().getAllProjects();
 	Collections.sort(projects, new SProjectNameComparator());
 	if (projects.size() > 0) {
-
-	for (SProject project : projects) {
-		if (project.getParentId() == -1) {
-			%>
-			<tr>
-				<th>Name</th>
-				<th>Last revision</th>
-				<th>Revisions</th>
-				<th>Checkouts</th>
-				<th>Authorized users</th>
-				<th>Actions</th>
-			</tr>
-			<%
-			out.write(JspHelper.writeProjectTree(project, loginManager, 0));
-			%>
-			<tr><td colspan="6" class="seperator"></td></tr>
-			<%
+%>
+<fieldset>
+<table class="formatted maintable">
+<%
+		for (SProject project : projects) {
+			if (project.getParentId() == -1) {
+				%>
+				<tr>
+					<th>Name</th>
+					<th>Last revision</th>
+					<th>Revisions</th>
+					<th>Checkouts</th>
+					<th>Authorized users</th>
+					<th>Actions</th>
+				</tr>
+				<%
+				out.write(JspHelper.writeProjectTree(project, loginManager, 0));
+				%>
+				<tr><td colspan="6" class="seperator"></td></tr>
+				<%
+			}
 		}
-	}
 %>
 </table>
+</fieldset>
+</div>
 <%
 	} else {
 %>
 No projects<br/><br/>
-
 <%
 	}
 %>
@@ -60,6 +62,4 @@ No projects<br/><br/>
 	}
 }
 %>
-</fieldset>
-</div>
 <%@ include file="footer.jsp" %>
