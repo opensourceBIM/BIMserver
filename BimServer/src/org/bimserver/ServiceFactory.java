@@ -106,4 +106,8 @@ public class ServiceFactory {
 		}
 		return userSessions;
 	}
+
+	public static boolean isInitialized() {
+		return INSTANCE != null;
+	}
 }
