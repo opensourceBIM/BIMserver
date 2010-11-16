@@ -28,7 +28,7 @@ public class GetSubProjectsDatabaseAction extends BimDatabaseAction<Set<Project>
 	public Set<Project> execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
 		User user = bimDatabaseSession.getUserByUoid(actingUoid);
 		Project project = bimDatabaseSession.getProjectByPoid(poid);
-		if (!RightsManager.hasRightsOnProject(user, project)) {
+		if (!RightsManager.hasRightsOnProjectOrSuperProjects(user, project)) {
 			throw new UserException("User has no rights on project");
 		}
 		Set<Project> subProjects = new HashSet<Project>();
