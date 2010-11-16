@@ -9,7 +9,6 @@ public enum ResultType {
 	IFC("IFC2x3", "ifc", "application/ifc", UseInCheckout.USE_IN_CHECKOUT, UserType.USER_TYPE, Type.MULTIPLE, DefaultSelected.TRUE), 
 	IFCXML("IFCXML2x3", "ifcxml", "application/ifcxml", UseInCheckout.USE_IN_CHECKOUT, UserType.USER_TYPE, Type.MULTIPLE, DefaultSelected.FALSE), 
 	O3D_JSON("WebGL", "o3djson", "appliction/json", UseInCheckout.USE_NOT_IN_CHECKOUT, UserType.USER_TYPE, Type.MULTIPLE, DefaultSelected.FALSE),
-	O3D_TGZ("Google O3D", "o3dtgz", "appliction/tgz", UseInCheckout.USE_NOT_IN_CHECKOUT, UserType.USER_TYPE, Type.MULTIPLE, DefaultSelected.FALSE),
 	OBJECT_INFO("Object Info", "html", "text/html", UseInCheckout.USE_NOT_IN_CHECKOUT, UserType.USER_TYPE, Type.SINGLE, DefaultSelected.FALSE),
 	TEXT("Plain text IFC", "txt", "text", UseInCheckout.USE_NOT_IN_CHECKOUT, UserType.USER_TYPE, Type.MULTIPLE, DefaultSelected.FALSE),
 	KML("KML", "kml", "application/vnd.google-earth.kml+xml", UseInCheckout.USE_NOT_IN_CHECKOUT, UserType.NO_USER_TYPE, Type.MULTIPLE, DefaultSelected.FALSE),
