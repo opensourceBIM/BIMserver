@@ -46,7 +46,7 @@ public class DownloadByOidsDatabaseAction extends BimDatabaseAction<IfcModel> {
 					ReadSet mapWithOid = bimDatabaseSession.getMapWithOid(concreteRevision.getProject().getId(), concreteRevision.getId(), oid);
 					IfcModel subModel = new IfcModel(mapWithOid.getMap());
 					subModel.setDate(concreteRevision.getDate());
-					ifcModels.add(subModel);					
+					ifcModels.add(subModel);
 				}
 			}
 		}

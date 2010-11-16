@@ -26,7 +26,7 @@
 <%	
 	}
 %>
-	</select></td><td> <label for="queryoidzip_<%=roid %>">Zip</label><input type="checkbox" name="zip" id="queryoidzip_<%=roid %>"/> <input type="submit" value="Query"></td>
+	</select></td><td> <label for="queryoidzip_<%=roid %>">Zip </label><input type="checkbox" name="zip" id="queryoidzip_<%=roid %>"/> <input type="submit" value="Query"></td>
 </tr>
 </table>
 </form>
@@ -44,7 +44,7 @@
 <%	
 	}
 %>
-	</select></td><td> <label for="queryguidzip_<%=roid %>">Zip</label><input type="checkbox" name="zip" id="queryguidzip_<%=roid %>"/> <input type="submit" value="Query"></td>
+	</select></td><td> <label for="queryguidzip_<%=roid %>">Zip </label><input type="checkbox" name="zip" id="queryguidzip_<%=roid %>"/> <input type="submit" value="Query"></td>
 </tr>
 </table>
 </form>
@@ -71,7 +71,7 @@
 <%	
 	}
 %>
-	</select></td><td> <label for="querycidzip_<%=roid %>">Zip</label><input type="checkbox" name="zip" id="querycidzip_<%=roid %>"/> <input type="submit" value="Query"></td>
+	</select></td><td> <label for="querycidzip_<%=roid %>">Zip </label><input type="checkbox" name="zip" id="querycidzip_<%=roid %>"/> <input type="submit" value="Query"></td>
 </tr>
 </table>
 </form>

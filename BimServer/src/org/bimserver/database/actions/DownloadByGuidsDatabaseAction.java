@@ -56,7 +56,7 @@ public class DownloadByGuidsDatabaseAction extends BimDatabaseAction<IfcModel> {
 								IfcModel subModel = new IfcModel(mapWithOid.getMap());
 								subModel.setDate(concreteRevision.getDate());
 								ifcModels.add(subModel);
-								break;
+								continue;
 							}
 						}
 					}
