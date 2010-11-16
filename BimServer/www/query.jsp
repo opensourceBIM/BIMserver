@@ -9,7 +9,6 @@
 	long roid = Long.parseLong(request.getParameter("roid"));
 	List<String> classes = loginManager.getService().getAvailableClasses();
 	Collections.sort(classes);
-	if (loginManager.getUserType() == SUserType.ADMIN) {
 %>
 <div class="tabber" id="querytab">
 <div class="tabbertab" title="Simple" id="simple">
@@ -77,6 +76,9 @@
 </table>
 </form>
 </div>
+<%
+	if (loginManager.getUserType() == SUserType.ADMIN) {
+%>
 <div class="tabbertab" title="Advanced" id="advanced">
 Examples: <a href="#" id="defaultbutton">Default</a> <a href="#" id="plumbingbutton">Plumbing</a> <a href="#" id="doorsbutton">Doors</a><br/>
 Get even <a href="http://extend.bimserver.org" target="_blank">more advanced Querys or share yours with others</a><br/>
@@ -248,7 +250,7 @@ Get even <a href="http://extend.bimserver.org" target="_blank">more advanced Que
 	});
 </script>
 </div>
-</div>
 <%
 	}
 %>
+</div>
