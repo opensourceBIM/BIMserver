@@ -118,7 +118,7 @@ import org.bimserver.ifc.SerializerException;
 import org.bimserver.ifc.emf.Ifc2x3.IfcRoot;
 import org.bimserver.ifc.file.compare.CompareResult;
 import org.bimserver.ifc.file.compare.CompareResult.Item;
-import org.bimserver.ifc.file.reader.FastIfcFileReader;
+import org.bimserver.ifc.file.reader.IfcStepDeserializer;
 import org.bimserver.ifc.file.reader.IncorrectIfcFileException;
 import org.bimserver.ifcengine.IfcEngineFactory;
 import org.bimserver.interfaces.objects.SAccessMethod;
@@ -258,7 +258,7 @@ public class Service implements ServiceInterface {
 	}
 
 	private IfcModel readModel(final InputStream inputStream, long fileSize) throws UserException {
-		FastIfcFileReader fastIfcFileReader = new FastIfcFileReader(schema);
+		IfcStepDeserializer fastIfcFileReader = new IfcStepDeserializer(schema);
 		try {
 			/*
 			 * Strangest hack ever, it seems that DelegatingInputStream (when

@@ -18,7 +18,7 @@ import org.bimserver.ifc.emf.Ifc2x3.IfcBuildingStorey;
 import org.bimserver.ifc.emf.Ifc2x3.IfcDoor;
 import org.bimserver.ifc.emf.Ifc2x3.IfcProduct;
 import org.bimserver.ifc.emf.Ifc2x3.IfcRelContainedInSpatialStructure;
-import org.bimserver.ifc.file.reader.FastIfcFileReader;
+import org.bimserver.ifc.file.reader.IfcStepDeserializer;
 import org.bimserver.ifc.file.reader.IncorrectIfcFileException;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
 import org.bimserver.shared.ResourceFetcher;
@@ -39,7 +39,7 @@ public class SimpleTest {
 		} catch (FileNotFoundException e1) {
 			e1.printStackTrace();
 		}
-		FastIfcFileReader fastIfcFileReader = new FastIfcFileReader(schema);
+		IfcStepDeserializer fastIfcFileReader = new IfcStepDeserializer(schema);
 		ResourceFetcher resourceFetcher = new LocalDevelopmentResourceFetcher();
 		FileFieldIgnoreMap fieldIgnoreMap = new FileFieldIgnoreMap(CollectionUtils.singleSet(Ifc2x3Package.eINSTANCE), resourceFetcher);
 		try {

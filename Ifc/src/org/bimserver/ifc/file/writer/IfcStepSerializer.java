@@ -92,7 +92,9 @@ public class IfcStepSerializer extends IfcSerializer {
 
 	public IfcStepSerializer(Project project, User user, String fileName, IfcModel model, SchemaDefinition schema) {
 		super(fileName, model, schema);
-		setAuthor(user.getName());
+		if (user != null) {
+			setAuthor(user.getName());
+		}
 		setAuthorization(model.getAuthorizedUser());
 		if (project != null) {
 			setName(project.getName() + "." + model.getRevisionNr());
