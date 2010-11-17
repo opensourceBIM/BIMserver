@@ -64,7 +64,7 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EClassImpl;
 import org.eclipse.emf.ecore.impl.EEnumImpl;
 
-public class FastIfcFileReader {
+public class IfcStepDeserializer {
 
 	private static final int AVERAGE_LINE_LENGTH = 58;
 
@@ -81,7 +81,7 @@ public class FastIfcFileReader {
 	private Mode mode = Mode.HEADER;
 	private IfcModel model = new IfcModel();
 
-	public FastIfcFileReader(SchemaDefinition schema) {
+	public IfcStepDeserializer(SchemaDefinition schema) {
 		this.ePackage = Ifc2x3Package.eINSTANCE;
 		this.schema = schema;
 	}

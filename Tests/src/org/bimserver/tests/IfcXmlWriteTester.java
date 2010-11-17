@@ -8,7 +8,7 @@ import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
 import nl.tue.buildingsmart.express.parser.ExpressSchemaParser;
 
 import org.bimserver.ifc.IfcModel;
-import org.bimserver.ifc.file.reader.FastIfcFileReader;
+import org.bimserver.ifc.file.reader.IfcStepDeserializer;
 import org.bimserver.ifc.file.reader.IfcFileReader;
 import org.bimserver.ifc.file.reader.IncorrectIfcFileException;
 import org.bimserver.ifc.xml.writer.IfcXmlSerializer;
@@ -28,7 +28,7 @@ public class IfcXmlWriteTester {
 			e1.printStackTrace();
 		}
 		
-		FastIfcFileReader reader = new FastIfcFileReader(schema);
+		IfcStepDeserializer reader = new IfcStepDeserializer(schema);
 		try {
 			reader.read(TestFile.HAUS_SOURCE_FILE.getFile());
 			// reader.read(TestFile.AC11.getFile());

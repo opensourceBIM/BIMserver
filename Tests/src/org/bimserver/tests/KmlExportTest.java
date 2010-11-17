@@ -25,7 +25,7 @@ import org.bimserver.ifc.emf.Ifc2x3.IfcProductRepresentation;
 import org.bimserver.ifc.emf.Ifc2x3.IfcRepresentation;
 import org.bimserver.ifc.emf.Ifc2x3.IfcRepresentationItem;
 import org.bimserver.ifc.emf.Ifc2x3.IfcShapeRepresentation;
-import org.bimserver.ifc.file.reader.FastIfcFileReader;
+import org.bimserver.ifc.file.reader.IfcStepDeserializer;
 import org.bimserver.ifc.file.reader.IncorrectIfcFileException;
 import org.eclipse.emf.common.util.EList;
 
@@ -43,7 +43,7 @@ public class KmlExportTest {
 		PrintWriter out = null;
 		try {
 			out = new PrintWriter(kmlFile);
-			FastIfcFileReader fastIfcFileReader = new FastIfcFileReader(schema);
+			IfcStepDeserializer fastIfcFileReader = new IfcStepDeserializer(schema);
 			Set<IfcExtrudedAreaSolid> solids = new HashSet<IfcExtrudedAreaSolid>();
 			try {
 				fastIfcFileReader.read(TestFile.AC11.getFile());

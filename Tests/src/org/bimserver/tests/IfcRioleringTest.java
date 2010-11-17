@@ -32,7 +32,7 @@ import org.bimserver.ifc.emf.Ifc2x3.IfcFlowSegment;
 import org.bimserver.ifc.emf.Ifc2x3.IfcFlowTerminal;
 import org.bimserver.ifc.emf.Ifc2x3.IfcPort;
 import org.bimserver.ifc.emf.Ifc2x3.IfcRelConnectsPortToElement;
-import org.bimserver.ifc.file.reader.FastIfcFileReader;
+import org.bimserver.ifc.file.reader.IfcStepDeserializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -47,7 +47,7 @@ public class IfcRioleringTest {
 	private void start() {
 		File src = TestFile.RIOLERING_TEST.getFile();
 
-		FastIfcFileReader ifcReader = new FastIfcFileReader(SchemaLoader.loadDefaultSchema());
+		IfcStepDeserializer ifcReader = new IfcStepDeserializer(SchemaLoader.loadDefaultSchema());
 		try {
 			ifcReader.read(src);
 		} catch (Exception e) {

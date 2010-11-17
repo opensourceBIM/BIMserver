@@ -8,7 +8,7 @@ import nl.tue.buildingsmart.express.parser.ExpressSchemaParser;
 
 import org.bimserver.ifc.FileFieldIgnoreMap;
 import org.bimserver.ifc.emf.Ifc2x3.Ifc2x3Package;
-import org.bimserver.ifc.file.reader.FastIfcFileReader;
+import org.bimserver.ifc.file.reader.IfcStepDeserializer;
 import org.bimserver.ifc.file.reader.IfcFileReader;
 import org.bimserver.ifc.file.reader.IncorrectIfcFileException;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
@@ -34,7 +34,7 @@ public class O3dTest {
 		new FileFieldIgnoreMap(CollectionUtils.singleSet(Ifc2x3Package.eINSTANCE), resourceFetcher);
 		
 		TestFile testFile = TestFile.MERGE_TEST_SOURCE_FILE;
-		FastIfcFileReader fastIfcFileReader = new FastIfcFileReader(schema);
+		IfcStepDeserializer fastIfcFileReader = new IfcStepDeserializer(schema);
 		try {
 			fastIfcFileReader.read(testFile.getFile());
 		} catch (IncorrectIfcFileException e) {

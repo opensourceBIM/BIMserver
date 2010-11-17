@@ -1,0 +1,9 @@
+ISO-10303-21;
+HEADER;
+FILE_DESCRIPTION ((''), '2;1');
+FILE_NAME ('', '2010-11-16T13:58:06', (''), (''), '', '', 'null');
+FILE_SCHEMA (('IFC2X3'));
+ENDSEC;
+DATA;
+ENDSEC;
+END-ISO-10303-21;

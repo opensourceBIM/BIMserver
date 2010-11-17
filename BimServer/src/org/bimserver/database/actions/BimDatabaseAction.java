@@ -245,6 +245,9 @@ public abstract class BimDatabaseAction<T> {
 		if (mainObject.eClass() != objectToRemove.eClass()) {
 			throw new RuntimeException("Classes must be the same");
 		}
+		if (mainObject == objectToRemove) {
+			return;
+		}
 		for (IdEObject idEObject : model.getValues()) {
 			for (EReference eReference : idEObject.eClass().getEAllReferences()) {
 				Object value = idEObject.eGet(eReference);
@@ -252,7 +255,9 @@ public abstract class BimDatabaseAction<T> {
 					List<IdEObject> list = (List<IdEObject>) value;
 					for (IdEObject val : list) {
 						if (val == objectToRemove) {
-							list.set(list.indexOf(val), mainObject);
+							if (!list.contains(mainObject)) {
+								list.set(list.indexOf(val), mainObject);
+							}
 							// LOGGER.info(idEObject.eClass().getName() + "." +
 							// eReference.getName() + " / " +
 							// val.eClass().getName() + "." +
