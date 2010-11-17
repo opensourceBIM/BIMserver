@@ -1,8 +1,6 @@
 package org.bimserver.ifc.xml.reader;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -15,15 +13,11 @@ import javax.xml.stream.XMLStreamReader;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.emf.Ifc2x3.Ifc2x3Factory;
 import org.bimserver.ifc.emf.Ifc2x3.Ifc2x3Package;
-import org.bimserver.ifc.emf.Ifc2x3.Tristate;
-import org.bimserver.ifc.file.reader.IncorrectIfcFileException;
 import org.bimserver.ifc.file.reader.WaitingObject;
-import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
-import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -32,292 +26,227 @@ import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
 
 public class IfcXmlDeserializer {
+
+	private BiMap<Long, IdEObject> objects;
 	private final Map<Long, List<WaitingObject>> waitingObjects = new HashMap<Long, List<WaitingObject>>();
 
-	private static enum State {
-		NONE, ISO_10303_28, UOS, OBJECT, FIELD, REFERENCE, DONE, VALUE,
-	}
-
-	private State state = State.NONE;
-
-	public IfcXmlDeserializer() {
-
-	}
-
-	@SuppressWarnings("unchecked")
-	public BiMap<Long, IdEObject> read(File file) throws IfcXmlDeserializeException {
+	public BiMap<Long, IdEObject> read(InputStream inputStream) throws IfcXmlDeserializeException {
+		objects = HashBiMap.create();
 		XMLInputFactory inputFactory = XMLInputFactory.newInstance();
-		BiMap<Long, IdEObject> map = HashBiMap.create();
 		try {
-			XMLStreamReader reader = inputFactory.createXMLStreamReader(new FileInputStream(file));
-			IdEObject object = null;
-			EObject parentObject = null;
-			String valueName = null;
-			EStructuralFeature structuralFeature = null;
-			while (reader.hasNext()) {
-				switch (reader.getEventType()) {
-				case XMLStreamReader.START_ELEMENT:
-					switch (state) {
-					case NONE: {
-						if (reader.getLocalName().equalsIgnoreCase("iso_10303_28")) {
-							state = State.ISO_10303_28;
-						}
-						break;
-					}
-					case ISO_10303_28: {
-						if (reader.getLocalName().equalsIgnoreCase("uos")) {
-							state = State.UOS;
-						}
-						break;
-					}
-					case UOS: {
-						EClassifier classifier = Ifc2x3Package.eINSTANCE.getEClassifier(reader.getLocalName());
-						if (classifier == null) {
-							throw new IfcXmlDeserializeException("No classifier with name " + reader.getLocalName() + " found");
-						} else {
-							state = State.OBJECT;
-							object = (IdEObject) Ifc2x3Factory.eINSTANCE.create((EClass) classifier);
-							String idString = reader.getAttributeValue(null, "id");
-							if (idString != null) {
-								long id = Long.parseLong(idString.substring(1));
-								// System.out.println(id + " " +
-								// object.eClass().getName());
-								map.put(id, object);
-								parentObject = object;
-							}
-							String refString = reader.getAttributeValue(null, "ref");
-							if (refString != null) {
-								long refId = Long.parseLong(refString.substring(1));
-								if (map.containsKey(refId)) {
-									// System.out.println(refId);
-									EObject object2 = map.get(refId);
-									if (structuralFeature != null) {
-										if (structuralFeature.getUpperBound() == 1) {
-											parentObject.eSet(structuralFeature, object2);
-										} else {
-											BasicEList<EObject> list = (BasicEList<EObject>) parentObject.eGet(structuralFeature);
-											list.addUnique(object2);
-										}
-									}
-								} else {
-									if (structuralFeature != null) {
-										List<WaitingObject> waitingList = null;
-										if (waitingObjects.containsKey(refId)) {
-											waitingList = waitingObjects.get(refId);
-										} else {
-											waitingList = new ArrayList<WaitingObject>();
-											waitingObjects.put(refId, waitingList);
-										}
-										if (reader.getAttributeValue("ex", "pos") != null) {
-											waitingList.add(new WaitingObject(parentObject, structuralFeature, Integer.parseInt(reader.getAttributeValue("ex", "pos"))));
-										} else {
-											waitingList.add(new WaitingObject(parentObject, structuralFeature, -1));
-										}
-									}
-								}
-							}
-						}
-					}
-						break;
-					case OBJECT: {
-						state = State.FIELD;
-						structuralFeature = object.eClass().getEStructuralFeature(reader.getLocalName());
-						if (structuralFeature == null) {
-							throw new IfcXmlDeserializeException("Field with name " + reader.getLocalName() + " not found");
-						}
-					}
-						break;
-					case FIELD: {
-						if (reader.getAttributeValue("", "ref") != null) {
-							state = State.REFERENCE;
-						} else {
-							state = State.VALUE;
-							valueName = reader.getLocalName();
-						}
-					}
-						break;
-					}
-					break;
-				case XMLStreamReader.END_ELEMENT:
-					switch (state) {
-					case UOS: {
-						state = State.ISO_10303_28;
-						return map;
-					}
-					case ISO_10303_28: {
-						state = State.DONE;
-					}
-						break;
-					case OBJECT: {
-						state = State.UOS;
-						object = null;
-					}
-						break;
-					case FIELD: {
-						state = State.OBJECT;
-						structuralFeature = null;
-					}
-						break;
-					case REFERENCE: {
-						state = State.FIELD;
-					}
-						break;
-					}
-					break;
-				case XMLStreamReader.CHARACTERS:
-					if (reader.isWhiteSpace()) {
-						break;
-					}
-					switch (state) {
-					case DONE: {
-
-					}
-						break;
-					case VALUE: {
-						if (structuralFeature.isMany()) {
-							System.out.println(structuralFeature);
-						} else {
-							if (structuralFeature.getEType() instanceof EEnum) {
-
-							} else {
-								String text = reader.getText().trim();
-								Object value = null;
-								if (structuralFeature.getEType() == EcorePackage.eINSTANCE.getEFloat()) {
-									value = Float.parseFloat(text);
-								} else if (structuralFeature.getEType() == EcorePackage.eINSTANCE.getEString()) {
-									value = text;
-								} else if (structuralFeature.getEType() == EcorePackage.eINSTANCE.getEInt()) {
-									value = Integer.parseInt(text);
-								} else if (structuralFeature.getEType() == EcorePackage.eINSTANCE.getEBoolean()) {
-									value = Boolean.parseBoolean(text);
-								} else {
-									throw new RuntimeException("Unimplemented type " + structuralFeature.getEType().getName() + " " + object.getClass().getSimpleName() + "."
-											+ structuralFeature.getName());
-								}
-								object.eSet(structuralFeature, value);
-							}
-						}
-					}
-						break;
-					case OBJECT: {
-					}
-						break;
-					case UOS: {
-					}
-						break;
-					}
-					// if (structuralFeature != null) {
-					// // System.out.println(object.eClass().getName() + "." +
-					// // structuralFeature.getName());
-					// if (structuralFeature.getEType() instanceof EClass) {
-					// EClass wrappedClass = (EClass)
-					// structuralFeature.getEType();
-					// EStructuralFeature wrappedValueSf =
-					// wrappedClass.getEStructuralFeature("wrappedValue");
-					// if (wrappedValueSf != null) {
-					// EObject wrappedObject =
-					// Ifc2x3Factory.eINSTANCE.create(wrappedClass);
-					// String text = reader.getText().trim();
-					// if (text.equals("")) {
-					// if (wrappedValueSf.getEType() ==
-					// EcorePackage.eINSTANCE.getEString()) {
-					// wrappedObject.eSet(wrappedValueSf, text);
-					// } else if (wrappedValueSf.getEType() ==
-					// EcorePackage.eINSTANCE.getEFloat()) {
-					// wrappedObject.eSet(wrappedValueSf, 0.0F);
-					// wrappedObject.eSet(wrappedClass.getEStructuralFeature("stringValue"
-					// + "wrappedValue"), text);
-					// }
-					// } else {
-					// if (wrappedValueSf.getEType() ==
-					// EcorePackage.eINSTANCE.getEInt()) {
-					// wrappedObject.eSet(wrappedValueSf,
-					// Integer.parseInt(text));
-					// } else if (wrappedValueSf.getEType() ==
-					// EcorePackage.eINSTANCE.getEFloat()) {
-					// wrappedObject.eSet(wrappedValueSf,
-					// Float.parseFloat(text));
-					// wrappedObject.eSet(wrappedClass.getEStructuralFeature("stringValue"
-					// + "wrappedValue"), text);
-					// } else if (wrappedValueSf.getEType() ==
-					// Ifc2x3Package.eINSTANCE.getTristate()) {
-					// Tristate tristate = null;
-					// if (text.equals("true")) {
-					// tristate = Tristate.TRUE;
-					// } else if (text.equals("false")) {
-					// tristate = Tristate.FALSE;
-					// } else {
-					// tristate = Tristate.UNDEFINED;
-					// }
-					// wrappedObject.eSet(wrappedValueSf, tristate);
-					// } else if (wrappedValueSf.getEType() ==
-					// EcorePackage.eINSTANCE.getEString()) {
-					// wrappedObject.eSet(wrappedValueSf, text);
-					// } else {
-					// System.out.println(wrappedValueSf.getEType());
-					// }
-					// }
-					// if (structuralFeature.getUpperBound() == 1) {
-					// parentObject.eSet(structuralFeature, wrappedObject);
-					// } else {
-					// BasicEList list = (BasicEList)
-					// parentObject.eGet(structuralFeature);
-					// list.addUnique(wrappedObject);
-					// }
-					// } else if (structuralFeature.getEType() instanceof EEnum)
-					// {
-					// EEnum eEnum = (EEnum) structuralFeature.getEType();
-					// String text = reader.getText().trim();
-					// EEnumLiteral enumLiteral =
-					// eEnum.getEEnumLiteral(text.toUpperCase());
-					// if (enumLiteral != null) {
-					// parentObject.eSet(structuralFeature,
-					// enumLiteral.getInstance());
-					// }
-					// } else if (structuralFeature.getEType() instanceof
-					// EDataType) {
-					// }
-					// }
-					// }
-					break;
-				}
-				reader.next();
-			}
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			XMLStreamReader reader = inputFactory.createXMLStreamReader(inputStream);
+			parseDocument(reader);
 		} catch (XMLStreamException e) {
 			e.printStackTrace();
 		}
-		return map;
+		return objects;
 	}
 
-	@SuppressWarnings("unchecked")
-	private void updateNode(Long id, EClass ec, EObject eObject) throws IncorrectIfcFileException {
-		for (WaitingObject waitingObject : waitingObjects.get(id)) {
-			if (waitingObject.getStructuralFeature().getUpperBound() != 1) {
-				BasicEList<EObject> list = (BasicEList<EObject>) waitingObject.getObject().eGet(waitingObject.getStructuralFeature());
-				if (waitingObject.getIndex() == -1) {
-					list.addUnique(eObject);
-				} else {
-					if (((EClass) waitingObject.getStructuralFeature().getEType()).isSuperTypeOf(eObject.eClass())) {
-						while (list.size() <= waitingObject.getIndex()) {
-							list.addUnique(ec.getEPackage().getEFactoryInstance().create(eObject.eClass()));
-						}
-						list.setUnique(waitingObject.getIndex(), eObject);
-					} else {
-						throw new IncorrectIfcFileException("Field " + waitingObject.getStructuralFeature().getName() + " of "
-								+ waitingObject.getStructuralFeature().getEContainingClass().getName() + " cannot contain a " + eObject.eClass().getName());
-					}
-				}
-			} else {
-				if (((EClass) waitingObject.getStructuralFeature().getEType()).isSuperTypeOf(eObject.eClass())) {
-					waitingObject.getObject().eSet(waitingObject.getStructuralFeature(), eObject);
-				} else {
-					throw new IncorrectIfcFileException("Field " + waitingObject.getStructuralFeature().getName() + " of "
-							+ waitingObject.getStructuralFeature().getEContainingClass().getName() + " cannot contain a " + eObject.eClass().getName());
+	private void parseDocument(XMLStreamReader reader) throws XMLStreamException, IfcXmlDeserializeException {
+		while (reader.hasNext()) {
+			reader.next();
+			if (reader.getEventType() == XMLStreamReader.START_ELEMENT) {
+				if (reader.getLocalName().equalsIgnoreCase("iso_10303_28")) {
+					parseIso_10303_28(reader);
 				}
 			}
 		}
-		waitingObjects.remove(id);
+	}
+
+	private void parseIso_10303_28(XMLStreamReader reader) throws XMLStreamException, IfcXmlDeserializeException {
+		while (reader.hasNext()) {
+			reader.next();
+			if (reader.getEventType() == XMLStreamReader.START_ELEMENT) {
+				if (reader.getLocalName().equalsIgnoreCase("uos")) {
+					parseUos(reader);
+				}
+			} else if (reader.getEventType() == XMLStreamReader.END_ELEMENT) {
+				if (reader.getLocalName().equals("iso_10303_28")) {
+					return;
+				}
+			}
+		}
+	}
+
+	private void parseUos(XMLStreamReader reader) throws XMLStreamException, IfcXmlDeserializeException {
+		while (reader.hasNext()) {
+			reader.next();
+			if (reader.getEventType() == XMLStreamReader.START_ELEMENT) {
+				parseObject(reader);
+			} else if (reader.getEventType() == XMLStreamReader.END_ELEMENT) {
+				if (reader.getLocalName().equalsIgnoreCase("uos")) {
+					return;
+				}
+			}
+		}
+	}
+
+	private IdEObject parseObject(XMLStreamReader reader) throws XMLStreamException, IfcXmlDeserializeException {
+		String className = reader.getLocalName();
+		EClassifier eClassifier = Ifc2x3Package.eINSTANCE.getEClassifier(className);
+		if (eClassifier == null || !(eClassifier instanceof EClass)) {
+			throw new IfcXmlDeserializeException("No class with name " + className + " was found");
+		}
+		String id = reader.getAttributeValue("", "id");
+		if (id == null) {
+			throw new IfcXmlDeserializeException("No id attribute found on " + className);
+		}
+		if (!id.startsWith("i")) {
+			throw new IfcXmlDeserializeException("Id " + id + " is not starting with the letter 'i'");
+		}
+		EClass eClass = (EClass) eClassifier;
+		IdEObject object = (IdEObject) Ifc2x3Factory.eINSTANCE.create(eClass);
+		long oid = Long.parseLong(id.substring(1));
+		object.setOid(oid);
+		objects.put(oid, object);
+		if (waitingObjects.containsKey(oid)) {
+			for (WaitingObject waitingObject : waitingObjects.get(oid)) {
+				if (waitingObject.getStructuralFeature().isMany()) {
+					List list = (List) waitingObject.getObject().eGet(waitingObject.getStructuralFeature());
+					if (waitingObject.getIndex() >= list.size()) {
+						list.add(object);
+					} else {
+						list.add(waitingObject.getIndex(), object);
+					}
+				} else {
+					waitingObject.getObject().eSet(waitingObject.getStructuralFeature(), object);
+				}
+			}
+		}
+		while (reader.hasNext()) {
+			reader.next();
+			if (reader.getEventType() == XMLStreamReader.START_ELEMENT) {
+				parseField(object, reader);
+			} else if (reader.getEventType() == XMLStreamReader.END_ELEMENT) {
+				if (reader.getLocalName().equalsIgnoreCase(className)) {
+					return object;
+				}
+			}
+		}
+		return object;
+	}
+
+	private void parseField(IdEObject object, XMLStreamReader reader) throws XMLStreamException, IfcXmlDeserializeException {
+		String fieldName = reader.getLocalName();
+		EStructuralFeature eStructuralFeature = object.eClass().getEStructuralFeature(fieldName);
+		if (eStructuralFeature == null) {
+			throw new IfcXmlDeserializeException("Field " + fieldName + " not found on class " + object.eClass().getName());
+		}
+		EClassifier realType = null;
+		while (reader.hasNext()) {
+			reader.next();
+			if (reader.getEventType() == XMLStreamReader.START_ELEMENT) {
+				if (reader.getAttributeValue("", "id") != null) {
+					IdEObject reference = parseObject(reader);
+					if (eStructuralFeature.isMany()) {
+						((List) object.eGet(eStructuralFeature)).add(reference);
+					} else {
+						object.eSet(eStructuralFeature, reference);
+					}
+				} else if (reader.getAttributeValue("", "ref") != null) {
+					String ref = reader.getAttributeValue("", "ref");
+					if (!ref.startsWith("i")) {
+						throw new IfcXmlDeserializeException("Reference id " + ref + " should start with an 'i'");
+					}
+					Long refId = Long.parseLong(ref.substring(1));
+					if (objects.containsKey(refId)) {
+						IdEObject reference = objects.get(refId);
+						if (eStructuralFeature.isMany()) {
+							((List) object.eGet(eStructuralFeature)).add(reference);
+						} else {
+							object.eSet(eStructuralFeature, reference);
+						}
+					} else {
+						if (eStructuralFeature.isMany()) {
+							String posString = reader.getAttributeValue("urn:iso.org:standard:10303:part(28):version(2):xmlschema:common", "pos");
+							if (posString == null) {
+								throw new IfcXmlDeserializeException("No pos found on " + object.getOid() + " " + eStructuralFeature.getName());
+							}
+							int pos = Integer.parseInt(posString);
+							addToWaitingList(object, eStructuralFeature, refId, pos);
+						} else {
+							addToWaitingList(object, eStructuralFeature, refId, -1);
+						}
+					}
+				} else {
+					String realTypeString = reader.getLocalName();
+					realType = Ifc2x3Package.eINSTANCE.getEClassifier(realTypeString);
+				}
+			} else if (reader.getEventType() == XMLStreamReader.END_ELEMENT) {
+				if (reader.getLocalName().equalsIgnoreCase(fieldName)) {
+					return;
+				}
+				if (realType != null && reader.getLocalName().equalsIgnoreCase(realType.getName())) {
+					realType = null;
+				}
+			} else if (reader.getEventType() == XMLStreamReader.CHARACTERS) {
+				if (!reader.isWhiteSpace()) {
+					String text = reader.getText();
+					if (eStructuralFeature.getEType() instanceof EDataType) {
+						if (eStructuralFeature.isMany()) {
+							List list = (List) object.eGet(eStructuralFeature);
+							list.add(parsePrimitive(eStructuralFeature.getEType(), text));
+						} else {
+							object.eSet(eStructuralFeature, parsePrimitive(eStructuralFeature.getEType(), text));
+						}
+					} else {
+						if (realType == null) {
+							realType = eStructuralFeature.getEType();
+						}
+						if (realType instanceof EClass) {
+							EClass eClass = (EClass) realType;
+							if (Ifc2x3Package.eINSTANCE.getWrappedValue().isSuperTypeOf(eClass)) {
+								EObject wrappedObject = Ifc2x3Factory.eINSTANCE.create(eClass);
+								EStructuralFeature wrappedValueFeature = eClass.getEStructuralFeature("wrappedValue");
+								wrappedObject.eSet(wrappedValueFeature, parsePrimitive(wrappedValueFeature.getEType(), text));
+								if (wrappedValueFeature.getEType() == EcorePackage.eINSTANCE.getEFloat()) {
+									EStructuralFeature floatStringFeature = eClass.getEStructuralFeature("wrappedValueAsString");
+									wrappedObject.eSet(floatStringFeature, text);
+								}
+								List list = (List) object.eGet(eStructuralFeature);
+								if (eStructuralFeature.isMany()) {
+									list.add(wrappedObject);
+								} else {
+									object.eSet(eStructuralFeature, wrappedObject);
+								}
+							}
+						} else {
+							if (eStructuralFeature.isMany()) {
+								String[] split = text.split(" ");
+								List list = (List) object.eGet(eStructuralFeature);
+								for (String s : split) {
+									list.add(parsePrimitive(realType, s));
+								}
+							} else {
+								object.eSet(eStructuralFeature, parsePrimitive(realType, text));
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	private void addToWaitingList(IdEObject object, EStructuralFeature eStructuralFeature, Long refId, int pos) {
+		if (!waitingObjects.containsKey(refId)) {
+			waitingObjects.put(refId, new ArrayList<WaitingObject>());
+		}
+		waitingObjects.get(refId).add(new WaitingObject(object, eStructuralFeature, pos));
+	}
+
+	private Object parsePrimitive(EClassifier eType, String text) throws IfcXmlDeserializeException {
+		if (eType == EcorePackage.eINSTANCE.getEString()) {
+			return text;
+		} else if (eType == EcorePackage.eINSTANCE.getEInt()) {
+			return Integer.parseInt(text);
+		} else if (eType == EcorePackage.eINSTANCE.getEFloat()) {
+			return Float.parseFloat(text);
+		} else if (eType == EcorePackage.eINSTANCE.getEBoolean()) {
+			return Boolean.parseBoolean(text);
+		} else if (eType instanceof EEnum) {
+			return ((EEnum) eType).getEEnumLiteral(text);
+		} else {
+			throw new IfcXmlDeserializeException("Unimplemented primitive type: " + eType.getName());
+		}
 	}
 }

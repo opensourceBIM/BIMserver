@@ -28,6 +28,7 @@ public enum TestFile {
 	HITOS_SOURCE_FILE(new File(TestFileConstants.DATA_FOLDER, "HITOS_070308.ifc")), 
 	HAUS_SOURCE_FILE(new File(TestFileConstants.DATA_FOLDER, "AC9R1-Haus-G-H-Ver2-2x3.ifc")), 
 	AC11_XML(new File(TestFileConstants.DATA_FOLDER, "AC11-Institute-Var-2-ifcXML.ifcxml")), 
+	SIX_SPACES_XML(new File(TestFileConstants.DATA_FOLDER, "SixSpaces.ifcxml")), 
 	RIOLERING_TEST(new File(TestFileConstants.DATA_FOLDER, "RioleringTestArkey.ifc")), 
 	EMPTY_TEST(new File(TestFileConstants.DATA_FOLDER, "EmptyTest.ifc")), 
 	WALL_ONLY(new File(TestFileConstants.DATA_FOLDER, "WallOnly.ifc")),
