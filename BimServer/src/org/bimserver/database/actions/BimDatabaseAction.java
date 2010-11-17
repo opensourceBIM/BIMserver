@@ -257,6 +257,8 @@ public abstract class BimDatabaseAction<T> {
 						if (val == objectToRemove) {
 							if (!list.contains(mainObject)) {
 								list.set(list.indexOf(val), mainObject);
+							} else {
+								System.out.println();
 							}
 							// LOGGER.info(idEObject.eClass().getName() + "." +
 							// eReference.getName() + " / " +

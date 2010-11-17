@@ -49,7 +49,7 @@ public class GetShowCheckoutWarningDatabaseAction extends BimDatabaseAction<Stri
 		for (Project p : getAllRelatedProjects(project)) {
 			for (Checkout checkout : p.getCheckouts()) {
 				if (checkout.isActive() && checkout.getUser() != user) {
-					String warning = "Warning, another using is possibly working on this model because there is at least one active checkout";
+					String warning = "Warning, another user is possibly working on this model because there is at least one active checkout";
 					return warning;
 				}
 			}
