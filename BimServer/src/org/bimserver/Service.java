@@ -120,6 +120,8 @@ import org.bimserver.ifc.file.compare.CompareResult;
 import org.bimserver.ifc.file.compare.CompareResult.Item;
 import org.bimserver.ifc.file.reader.IfcStepDeserializer;
 import org.bimserver.ifc.file.reader.IncorrectIfcFileException;
+import org.bimserver.ifc.xml.reader.IfcXmlDeserializeException;
+import org.bimserver.ifc.xml.reader.IfcXmlDeserializer;
 import org.bimserver.ifcengine.IfcEngineFactory;
 import org.bimserver.interfaces.objects.SAccessMethod;
 import org.bimserver.interfaces.objects.SCheckout;
@@ -158,6 +160,8 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.google.common.collect.BiMap;
 
 public class Service implements ServiceInterface {
 	private static final int DEFAULT_LOGIN_ERROR_TIMEOUT = 3000;
@@ -213,7 +217,7 @@ public class Service implements ServiceInterface {
 					throw new UserException("Zip files must contain exactly one IFC-file, this zip-file looks empty");
 				}
 				if (nextEntry.getName().toUpperCase().endsWith(".IFC")) {
-					IfcModel model = readModel(zipInputStream, fileSize);
+					IfcModel model = readIfcStepModel(zipInputStream, fileSize);
 					if (model.getSize() == 0) {
 						throw new UserException("Uploaded file does not seem to be a correct IFC file");
 					}
@@ -233,8 +237,13 @@ public class Service implements ServiceInterface {
 				} else {
 					throw new UserException("Zip files must contain exactly one IFC-file, this zip-file seems to have one or more non-IFC files");
 				}
-			} else if ((ifcFile.getName() != null && ifcFile.getName().toUpperCase().endsWith(".IFC")) || ifcFile.getName() == null) {
-				IfcModel model = readModel(ifcFile.getInputStream(), fileSize);
+			} else if (ifcFile.getName() == null || ifcFile.getName().toUpperCase().endsWith(".IFC") || ifcFile.getName().toUpperCase().endsWith(".IFCXML")) {
+				IfcModel model = null;
+				if (ifcFile.getName().toUpperCase().endsWith(".IFCXML")) {
+					model = readIfcXmlModel(ifcFile.getInputStream(), fileSize);
+				} else {
+					model = readIfcStepModel(ifcFile.getInputStream(), fileSize);
+				}
 				if (model.getSize() == 0) {
 					throw new UserException("Uploaded file does not seem to be a correct IFC file");
 				}
@@ -257,7 +266,17 @@ public class Service implements ServiceInterface {
 		return null;
 	}
 
-	private IfcModel readModel(final InputStream inputStream, long fileSize) throws UserException {
+	private IfcModel readIfcXmlModel(InputStream inputStream, long fileSize) throws UserException {
+		IfcXmlDeserializer ifcXmlDeserializer = new IfcXmlDeserializer();
+		try {
+			BiMap<Long, IdEObject> read = ifcXmlDeserializer.read(inputStream);
+			return new IfcModel(read);
+		} catch (IfcXmlDeserializeException e) {
+			throw new UserException("Invalid IFC XML file");
+		}
+	}
+
+	private IfcModel readIfcStepModel(final InputStream inputStream, long fileSize) throws UserException {
 		IfcStepDeserializer fastIfcFileReader = new IfcStepDeserializer(schema);
 		try {
 			/*
@@ -284,13 +303,13 @@ public class Service implements ServiceInterface {
 			fastIfcFileReader.read(between, fileSize);
 			return fastIfcFileReader.getModel();
 		} catch (IncorrectIfcFileException e) {
-			throw new UserException("Invalid IFC File", e);
+			throw new UserException("Invalid IFC file", e);
 		} catch (Exception e) {
-			throw new UserException("Invalid IFC File", e);
+			throw new UserException("Invalid IFC file", e);
 		} catch (OutOfMemoryError e) {
 			LOGGER.error("", e);
 			ServerInfo.setErrorMessage(e.getMessage());
-			throw new UserException("Out of memory.", e);
+			throw new UserException("Out of memory", e);
 		}
 	}
 
