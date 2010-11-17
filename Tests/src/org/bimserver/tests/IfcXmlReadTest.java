@@ -1,6 +1,7 @@
 package org.bimserver.tests;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 import nl.tue.buildingsmart.emf.DerivedReader;
@@ -26,7 +27,7 @@ public class IfcXmlReadTest {
 		IfcXmlDeserializer ifcXmlReader = new IfcXmlDeserializer();
 		BiMap<Long, IdEObject> read;
 		try {
-			read = ifcXmlReader.read(TestFile.AC11_XML.getFile());
+			read = ifcXmlReader.read(new FileInputStream(TestFile.AC11_XML.getFile()));
 			IfcModel ifcModel = new IfcModel(read);
 			
 			ExpressSchemaParser schemaParser = new ExpressSchemaParser(IfcFileReader.DEFAULT_SCHEMA_FILE);
@@ -46,6 +47,8 @@ public class IfcXmlReadTest {
 			}
 		} catch (IfcXmlDeserializeException e2) {
 			e2.printStackTrace();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
 		}
 	}
 }
