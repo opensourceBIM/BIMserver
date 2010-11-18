@@ -269,8 +269,7 @@ public class Service implements ServiceInterface {
 	private IfcModel readIfcXmlModel(InputStream inputStream, long fileSize) throws UserException {
 		IfcXmlDeserializer ifcXmlDeserializer = new IfcXmlDeserializer();
 		try {
-			BiMap<Long, IdEObject> read = ifcXmlDeserializer.read(inputStream);
-			return new IfcModel(read);
+			return ifcXmlDeserializer.read(inputStream);
 		} catch (IfcXmlDeserializeException e) {
 			throw new UserException("Invalid IFC XML file");
 		}

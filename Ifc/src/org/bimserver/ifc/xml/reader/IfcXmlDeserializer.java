@@ -11,6 +11,7 @@ import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
 
 import org.bimserver.emf.IdEObject;
+import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.emf.Ifc2x3.Ifc2x3Factory;
 import org.bimserver.ifc.emf.Ifc2x3.Ifc2x3Package;
 import org.bimserver.ifc.file.reader.WaitingObject;
@@ -22,16 +23,12 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 
-import com.google.common.collect.BiMap;
-import com.google.common.collect.HashBiMap;
-
 public class IfcXmlDeserializer {
 
-	private BiMap<Long, IdEObject> objects;
+	private IfcModel model = new IfcModel();
 	private final Map<Long, List<WaitingObject>> waitingObjects = new HashMap<Long, List<WaitingObject>>();
 
-	public BiMap<Long, IdEObject> read(InputStream inputStream) throws IfcXmlDeserializeException {
-		objects = HashBiMap.create();
+	public IfcModel read(InputStream inputStream) throws IfcXmlDeserializeException {
 		XMLInputFactory inputFactory = XMLInputFactory.newInstance();
 		try {
 			XMLStreamReader reader = inputFactory.createXMLStreamReader(inputStream);
@@ -39,7 +36,7 @@ public class IfcXmlDeserializer {
 		} catch (XMLStreamException e) {
 			e.printStackTrace();
 		}
-		return objects;
+		return model;
 	}
 
 	private void parseDocument(XMLStreamReader reader) throws XMLStreamException, IfcXmlDeserializeException {
@@ -81,6 +78,7 @@ public class IfcXmlDeserializer {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	private IdEObject parseObject(XMLStreamReader reader) throws XMLStreamException, IfcXmlDeserializeException {
 		String className = reader.getLocalName();
 		EClassifier eClassifier = Ifc2x3Package.eINSTANCE.getEClassifier(className);
@@ -97,21 +95,29 @@ public class IfcXmlDeserializer {
 		EClass eClass = (EClass) eClassifier;
 		IdEObject object = (IdEObject) Ifc2x3Factory.eINSTANCE.create(eClass);
 		long oid = Long.parseLong(id.substring(1));
-		object.setOid(oid);
-		objects.put(oid, object);
+		model.add(oid, object);
 		if (waitingObjects.containsKey(oid)) {
 			for (WaitingObject waitingObject : waitingObjects.get(oid)) {
 				if (waitingObject.getStructuralFeature().isMany()) {
 					List list = (List) waitingObject.getObject().eGet(waitingObject.getStructuralFeature());
-					if (waitingObject.getIndex() >= list.size()) {
+					if (waitingObject.getIndex() == -1) {
 						list.add(object);
 					} else {
-						list.add(waitingObject.getIndex(), object);
+						if (list.size() > waitingObject.getIndex()) {
+							list.set(waitingObject.getIndex(), object);
+						} else {
+							for (int i=list.size()-1; i<waitingObject.getIndex()-1; i++) {
+								EObject tmp = object.eClass().getEPackage().getEFactoryInstance().create(object.eClass());
+								list.add(tmp);
+							}
+							list.add(object);
+						}
 					}
 				} else {
 					waitingObject.getObject().eSet(waitingObject.getStructuralFeature(), object);
 				}
 			}
+			waitingObjects.remove(oid);
 		}
 		while (reader.hasNext()) {
 			reader.next();
@@ -126,6 +132,7 @@ public class IfcXmlDeserializer {
 		return object;
 	}
 
+	@SuppressWarnings("unchecked")
 	private void parseField(IdEObject object, XMLStreamReader reader) throws XMLStreamException, IfcXmlDeserializeException {
 		String fieldName = reader.getLocalName();
 		EStructuralFeature eStructuralFeature = object.eClass().getEStructuralFeature(fieldName);
@@ -149,20 +156,44 @@ public class IfcXmlDeserializer {
 						throw new IfcXmlDeserializeException("Reference id " + ref + " should start with an 'i'");
 					}
 					Long refId = Long.parseLong(ref.substring(1));
-					if (objects.containsKey(refId)) {
-						IdEObject reference = objects.get(refId);
+					if (model.containsKey(refId)) {
+						IdEObject reference = model.get(refId);
 						if (eStructuralFeature.isMany()) {
-							((List) object.eGet(eStructuralFeature)).add(reference);
+							String posString = reader.getAttributeValue("urn:iso.org:standard:10303:part(28):version(2):xmlschema:common", "pos");
+							int pos;
+							if (posString == null) {
+								pos = -1;
+//								throw new IfcXmlDeserializeException("No pos found on " + object.getOid() + " " + eStructuralFeature.getName());
+							} else {
+								pos = Integer.parseInt(posString);
+							}
+							List list = (List) object.eGet(eStructuralFeature);
+							if (pos == -1) {
+								list.add(reference);
+							} else {
+								if (list.size() > pos) {
+									list.set(pos, reference);
+								} else {
+									for (int i=list.size()-1; i<pos-1; i++) {
+										EObject tmp = reference.eClass().getEPackage().getEFactoryInstance().create(reference.eClass());
+										list.add(tmp);
+									}
+									list.add(reference);
+								}
+							}
 						} else {
 							object.eSet(eStructuralFeature, reference);
 						}
 					} else {
 						if (eStructuralFeature.isMany()) {
 							String posString = reader.getAttributeValue("urn:iso.org:standard:10303:part(28):version(2):xmlschema:common", "pos");
+							int pos;
 							if (posString == null) {
-								throw new IfcXmlDeserializeException("No pos found on " + object.getOid() + " " + eStructuralFeature.getName());
+								pos = -1;
+//								throw new IfcXmlDeserializeException("No pos found on " + object.getOid() + " " + eStructuralFeature.getName());
+							} else {
+								pos = Integer.parseInt(posString);
 							}
-							int pos = Integer.parseInt(posString);
 							addToWaitingList(object, eStructuralFeature, refId, pos);
 						} else {
 							addToWaitingList(object, eStructuralFeature, refId, -1);
@@ -184,8 +215,11 @@ public class IfcXmlDeserializer {
 					String text = reader.getText();
 					if (eStructuralFeature.getEType() instanceof EDataType) {
 						if (eStructuralFeature.isMany()) {
+							String[] split = text.split(" ");
 							List list = (List) object.eGet(eStructuralFeature);
-							list.add(parsePrimitive(eStructuralFeature.getEType(), text));
+							for (String s : split) {
+								list.add(parsePrimitive(eStructuralFeature.getEType(), s));
+							}
 						} else {
 							object.eSet(eStructuralFeature, parsePrimitive(eStructuralFeature.getEType(), text));
 						}
