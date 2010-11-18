@@ -116,7 +116,7 @@ public class ServerInitializer implements ServletContextListener {
 			
 			TempUtils.makeTempDir("bimserver");
 			EmfSerializerFactory emfSerializerFactory = EmfSerializerFactory.getInstance();
-			emfSerializerFactory.init(version, schema, fieldIgnoreMap, ifcEngineFactory, colladaSettings);
+			emfSerializerFactory.init(version, schema, fieldIgnoreMap, ifcEngineFactory, colladaSettings, resourceFetcher);
 			emfSerializerFactory.initSerializers();
 			ServiceFactory.init(bimDatabase, emfSerializerFactory, schema, longActionManager, ifcEngineFactory);
 			ServiceInterface adminService = ServiceFactory.getINSTANCE().newService(AccessMethod.INTERNAL);

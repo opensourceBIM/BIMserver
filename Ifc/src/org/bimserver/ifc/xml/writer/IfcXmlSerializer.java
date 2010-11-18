@@ -26,6 +26,7 @@ import org.bimserver.ifc.IfcSerializer;
 import org.bimserver.ifc.emf.Ifc2x3.Ifc2x3Package;
 import org.bimserver.ifc.emf.Ifc2x3.Tristate;
 import org.bimserver.shared.ResultType;
+import org.bimserver.utils.UTFPrintWriter;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EClass;
@@ -55,7 +56,7 @@ public class IfcXmlSerializer extends IfcSerializer {
 	@Override
 	public int write(OutputStream out) {
 		if (mode == SimpleMode.BUSY) {
-			this.out = new PrintWriter(out);
+			this.out = new UTFPrintWriter(out);
 			printLineTabbed("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
 			tabs = 0;
 			printLineTabbed("<iso_10303_28 version=\"2.0\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns=\"urn:iso.org:standard:10303:part(28):version(2):xmlschema:common\" xsi:schemaLocation=\"urn:iso.org:standard:10303:part(28):version(2):xmlschema:common  http://www.iai-tech.org/ifcXML/IFC2x3/FINAL/ex.xsd\">");
