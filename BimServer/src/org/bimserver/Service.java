@@ -161,8 +161,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.google.common.collect.BiMap;
-
 public class Service implements ServiceInterface {
 	private static final int DEFAULT_LOGIN_ERROR_TIMEOUT = 3000;
 	private static final Logger LOGGER = LoggerFactory.getLogger(Service.class);

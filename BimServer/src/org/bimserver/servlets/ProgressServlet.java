@@ -45,7 +45,6 @@ public class ProgressServlet extends HttpServlet {
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
 		} catch (UserException e) {
-			e.printStackTrace();
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}

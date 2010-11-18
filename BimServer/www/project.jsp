@@ -231,7 +231,7 @@ the latest revision<br />
 <p></p>
 <div class="tabber" id="downloadtabber">
 <div class="tabbertab" id="detailstab" title="Simple Download">
-<form action="<%=request.getContextPath() %>/download" method="post">
+<form action="<%=request.getContextPath() %>/download" method="gett">
 Download: <input type="hidden" name="roid"
 	value="<%=project.getLastRevisionId() %>" /> <select name="resultType" id="detailsdownloadcheckoutselect">
 	<%
@@ -252,7 +252,7 @@ Download: <input type="hidden" name="roid"
 var projects = new Object();
 <%=JspHelper.writeDownloadProjectTreeJavaScript(project, loginManager) %>
 </script>
-<form method="post" action="<%=request.getContextPath() %>/download">
+<form method="get" action="<%=request.getContextPath() %>/download">
 <table class="formatted maintable">
 	<tr>
 		<th>Project</th>
@@ -476,7 +476,7 @@ if (revisions.size() > 0) {
 			}
 		%>
 		</span>
-		<form method="post" action="<%=request.getContextPath() %>/download" class="<%=revision.getState() == SCheckinState.DONE || revision.getState() == SCheckinState.CLASHES_ERROR || revision.getState() == SCheckinState.SEARCHING_CLASHES ? "" : "blockinvisible" %>">
+		<form method="get" action="<%=request.getContextPath() %>/download" class="<%=revision.getState() == SCheckinState.DONE || revision.getState() == SCheckinState.CLASHES_ERROR || revision.getState() == SCheckinState.SEARCHING_CLASHES ? "" : "blockinvisible" %>">
 		<input type="hidden" name="roid" value="<%=revision.getOid() %>" />
 <select name="resultType" class="revisionsdownloadcheckoutselect">
 			<%
@@ -547,7 +547,7 @@ open a specific revision to query other revisions<br />
 		<td><%=dateFormat.format(checkout.getDate()) %></td>
 		<td><%=checkout.isActive() %></td>
 		<td>
-		<form method="post" action="<%=request.getContextPath() %>/download">
+		<form method="get" action="<%=request.getContextPath() %>/download">
 		<input type="hidden" name="roid"
 			value="<%=checkout.getRevisionId() %>" /> <select name="resultType">
 			<%

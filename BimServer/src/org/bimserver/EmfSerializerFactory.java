@@ -19,10 +19,13 @@ import org.bimserver.ifc.FieldIgnoreMap;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.PackageDefinition;
 import org.bimserver.ifc.SerializerException;
+import org.bimserver.ifc.XsltParameter;
+import org.bimserver.ifc.XsltSerializer;
 import org.bimserver.ifc.file.writer.IfcStepSerializer;
 import org.bimserver.ifc.xml.writer.IfcXmlSerializer;
 import org.bimserver.ifcengine.IfcEngineFactory;
 import org.bimserver.o3d.O3dJsonSerializer;
+import org.bimserver.shared.ResourceFetcher;
 import org.bimserver.shared.ResultType;
 import org.bimserver.shared.ResultType.Type;
 
@@ -46,6 +49,8 @@ public class EmfSerializerFactory {
 
 	private IfcEngineFactory ifcEngineFactory;
 
+	private ResourceFetcher resourceFetcher;
+
 	private EmfSerializerFactory() {
 	}
 
@@ -53,12 +58,13 @@ public class EmfSerializerFactory {
 		return INSTANCE;
 	}
 
-	public void init(Version version, SchemaDefinition schemaDefinition, FieldIgnoreMap fieldIgnoreMap, IfcEngineFactory ifcEngineFactory, PackageDefinition colladaSettings) {
+	public void init(Version version, SchemaDefinition schemaDefinition, FieldIgnoreMap fieldIgnoreMap, IfcEngineFactory ifcEngineFactory, PackageDefinition colladaSettings, ResourceFetcher resourceFetcher) {
 		this.version = version;
 		this.schemaDefinition = schemaDefinition;
 		this.fieldIgnoreMap = fieldIgnoreMap;
 		this.ifcEngineFactory = ifcEngineFactory;
 		this.colladaSettings = colladaSettings;
+		this.resourceFetcher = resourceFetcher;
 	}
 	
 	public void register(ResultType type, EmfSerializerCreator emfSerializerCreater) {
@@ -160,6 +166,66 @@ public class EmfSerializerFactory {
 			});
 		} else {
 			unregister(ResultType.COLLADA);
+		}
+		if (enabled.contains(ResultType.REPORT_SPACES)) {
+			register(ResultType.REPORT_SPACES, new EmfSerializerCreator() {
+				@Override
+				public EmfSerializer create(Project project, User user, IfcModel model, String fileName) throws SerializerException {
+					return new XsltSerializer(fileName, model, fieldIgnoreMap, schemaDefinition, resourceFetcher.getResource("_Report1.xhtml.xsl"), ResultType.REPORT_SPACES, new XsltParameter("topic", "space"));
+				}
+			});
+		} else {
+			unregister(ResultType.REPORT_SPACES);
+		}
+		if (enabled.contains(ResultType.REPORT_COMPONENTS)) {
+			register(ResultType.REPORT_COMPONENTS, new EmfSerializerCreator() {
+				@Override
+				public EmfSerializer create(Project project, User user, IfcModel model, String fileName) throws SerializerException {
+					return new XsltSerializer(fileName, model, fieldIgnoreMap, schemaDefinition, resourceFetcher.getResource("_Report1.xhtml.xsl"), ResultType.REPORT_COMPONENTS, new XsltParameter("topic", "component"));
+				}
+			});
+		} else {
+			unregister(ResultType.REPORT_COMPONENTS);
+		}
+		if (enabled.contains(ResultType.REPORT_SYSTEMS)) {
+			register(ResultType.REPORT_SYSTEMS, new EmfSerializerCreator() {
+				@Override
+				public EmfSerializer create(Project project, User user, IfcModel model, String fileName) throws SerializerException {
+					return new XsltSerializer(fileName, model, fieldIgnoreMap, schemaDefinition, resourceFetcher.getResource("_Report1.xhtml.xsl"), ResultType.REPORT_SYSTEMS, new XsltParameter("topic", "system"));
+				}
+			});
+		} else {
+			unregister(ResultType.REPORT_SYSTEMS);
+		}
+		if (enabled.contains(ResultType.REPORT_TYPES)) {
+			register(ResultType.REPORT_TYPES, new EmfSerializerCreator() {
+				@Override
+				public EmfSerializer create(Project project, User user, IfcModel model, String fileName) throws SerializerException {
+					return new XsltSerializer(fileName, model, fieldIgnoreMap, schemaDefinition, resourceFetcher.getResource("_Report1.xhtml.xsl"), ResultType.REPORT_TYPES, new XsltParameter("topic", "type"));
+				}
+			});
+		} else {
+			unregister(ResultType.REPORT_TYPES);
+		}
+		if (enabled.contains(ResultType.REPORT_ZONES)) {
+			register(ResultType.REPORT_ZONES, new EmfSerializerCreator() {
+				@Override
+				public EmfSerializer create(Project project, User user, IfcModel model, String fileName) throws SerializerException {
+					return new XsltSerializer(fileName, model, fieldIgnoreMap, schemaDefinition, resourceFetcher.getResource("_Report1.xhtml.xsl"), ResultType.REPORT_ZONES, new XsltParameter("topic", "zone"));
+				}
+			});
+		} else {
+			unregister(ResultType.REPORT_ZONES);
+		}
+		if (enabled.contains(ResultType.COBIE2)) {
+			register(ResultType.COBIE2, new EmfSerializerCreator() {
+				@Override
+				public EmfSerializer create(Project project, User user, IfcModel model, String fileName) throws SerializerException {
+					return new XsltSerializer(fileName, model, fieldIgnoreMap, schemaDefinition, resourceFetcher.getResource("_asCOBie2.xml.xsl"), ResultType.COBIE2);
+				}
+			});
+		} else {
+			unregister(ResultType.COBIE2);
 		}
 		if (enabled.contains(ResultType.KMZ)) {
 			register(ResultType.KMZ, new EmfSerializerCreator() {
