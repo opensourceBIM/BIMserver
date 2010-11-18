@@ -12,7 +12,7 @@
 %>
 <div class="tabber" id="querytab">
 <div class="tabbertab" title="Simple" id="simple">
-<form action="<%=request.getContextPath() %>/download" method="post">
+<form action="<%=request.getContextPath() %>/download" method="get">
 <input type="hidden" name="roid" value="<%=roid %>"/>
 <table>
 <tr>
@@ -30,7 +30,7 @@
 </tr>
 </table>
 </form>
-<form action="<%=request.getContextPath() %>/download" method="post">
+<form action="<%=request.getContextPath() %>/download" method="get">
 <input type="hidden" name="roid" value="<%=roid %>"/>
 <table>
 <tr>
@@ -48,7 +48,7 @@
 </tr>
 </table>
 </form>
-<form action="<%=request.getContextPath() %>/download" method="post">
+<form action="<%=request.getContextPath() %>/download" method="get">
 <input type="hidden" name="roid" value="<%=roid %>"/>
 <table>
 <tr>

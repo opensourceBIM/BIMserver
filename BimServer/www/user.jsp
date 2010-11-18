@@ -99,7 +99,7 @@ if (currentUser.getOid() == uoid || currentUser.getUserType() == SUserType.ADMIN
 	<td><%=revision.getComment() %></td>
 	<td><%=revision.getSize() %></td>
 	<td>
-	<form method="post" action="<%=request.getContextPath() %>/download">
+	<form method="get" action="<%=request.getContextPath() %>/download">
 	<input type="hidden" name="roid" value="<%=revision.getOid() %>"/>
 	<select name="resultType" class="revisionsdownloadcheckoutselect">
 <%
@@ -146,7 +146,7 @@ if (currentUser.getOid() == uoid || currentUser.getUserType() == SUserType.ADMIN
 	<td><a href="revision.jsp?roid=<%=sRevision.getOid() %>"><%=sRevision.getId() %></a></td>
 	<td><%=dateFormat.format(checkout.getDate()) %></td>
 	<td>
-	<form method="post" action="<%=request.getContextPath() %>/download">
+	<form method="get" action="<%=request.getContextPath() %>/download">
 	<input type="hidden" name="roid" value="<%=checkout.getRevisionId() %>"/>
 	<select name="resultType">
 <%

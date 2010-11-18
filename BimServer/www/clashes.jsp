@@ -232,7 +232,7 @@ $(document).ready(function(){
 		  	</form>
 		  </div>
 		  <br/><br/>
-<form action="<%=request.getContextPath() %>/download" method="post">
+<form action="<%=request.getContextPath() %>/download" method="get">
 Download: 
 <input type="hidden" name="clashes" value="true" />
 <input type="hidden" name="margin" value="<%=request.getParameter("margin") %>" />
