@@ -134,7 +134,7 @@
 <br />
 
 <%-- ---------------------------------------------------------------------------- DOWNLOAD --%>
-<form action="<%=request.getContextPath()%>/download" method="post">
+<form action="<%=request.getContextPath()%>/download" method="get">
 <input type="hidden" name="roid" value="<%=roid%>" />
 <table class="formtable">
 	<tr>
@@ -186,7 +186,7 @@
 		<td><a href="user.jsp?id=<%=checkout.getUserId()%>"><%=checkoutUser.getUsername()%></a></td>
 		<td><%=dateFormat.format(checkout.getDate())%></td>
 		<td>
-		<form method="post" action="<%=request.getContextPath()%>/download">
+		<form method="get" action="<%=request.getContextPath()%>/download">
 		<input type="hidden" name="roid" value="<%=checkout.getRevisionId()%>" />
 		<select name="resultType">
 			<%
