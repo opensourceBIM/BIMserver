@@ -1,10 +1,7 @@
 package org.bimserver.ifc.xml.reader;
 
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamException;
@@ -14,7 +11,6 @@ import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.emf.Ifc2x3.Ifc2x3Factory;
 import org.bimserver.ifc.emf.Ifc2x3.Ifc2x3Package;
-import org.bimserver.ifc.file.reader.WaitingObject;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EDataType;
@@ -26,7 +22,6 @@ import org.eclipse.emf.ecore.EcorePackage;
 public class IfcXmlDeserializer {
 
 	private IfcModel model = new IfcModel();
-	private final Map<Long, List<WaitingObject>> waitingObjects = new HashMap<Long, List<WaitingObject>>();
 
 	public IfcModel read(InputStream inputStream) throws IfcXmlDeserializeException {
 		XMLInputFactory inputFactory = XMLInputFactory.newInstance();
@@ -78,7 +73,6 @@ public class IfcXmlDeserializer {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
 	private IdEObject parseObject(XMLStreamReader reader) throws XMLStreamException, IfcXmlDeserializeException {
 		String className = reader.getLocalName();
 		EClassifier eClassifier = Ifc2x3Package.eINSTANCE.getEClassifier(className);
@@ -93,31 +87,13 @@ public class IfcXmlDeserializer {
 			throw new IfcXmlDeserializeException("Id " + id + " is not starting with the letter 'i'");
 		}
 		EClass eClass = (EClass) eClassifier;
-		IdEObject object = (IdEObject) Ifc2x3Factory.eINSTANCE.create(eClass);
 		long oid = Long.parseLong(id.substring(1));
-		model.add(oid, object);
-		if (waitingObjects.containsKey(oid)) {
-			for (WaitingObject waitingObject : waitingObjects.get(oid)) {
-				if (waitingObject.getStructuralFeature().isMany()) {
-					List list = (List) waitingObject.getObject().eGet(waitingObject.getStructuralFeature());
-					if (waitingObject.getIndex() == -1) {
-						list.add(object);
-					} else {
-						if (list.size() > waitingObject.getIndex()) {
-							list.set(waitingObject.getIndex(), object);
-						} else {
-							for (int i=list.size()-1; i<waitingObject.getIndex()-1; i++) {
-								EObject tmp = object.eClass().getEPackage().getEFactoryInstance().create(object.eClass());
-								list.add(tmp);
-							}
-							list.add(object);
-						}
-					}
-				} else {
-					waitingObject.getObject().eSet(waitingObject.getStructuralFeature(), object);
-				}
-			}
-			waitingObjects.remove(oid);
+		IdEObject object;
+		if (model.containsKey(oid)) {
+			object = model.get(oid);
+		} else {
+			object = (IdEObject) Ifc2x3Factory.eINSTANCE.create(eClass);
+			model.add(oid, object);
 		}
 		while (reader.hasNext()) {
 			reader.next();
@@ -156,48 +132,33 @@ public class IfcXmlDeserializer {
 						throw new IfcXmlDeserializeException("Reference id " + ref + " should start with an 'i'");
 					}
 					Long refId = Long.parseLong(ref.substring(1));
-					if (model.containsKey(refId)) {
-						IdEObject reference = model.get(refId);
-						if (eStructuralFeature.isMany()) {
-							String posString = reader.getAttributeValue("urn:iso.org:standard:10303:part(28):version(2):xmlschema:common", "pos");
-							int pos;
-							if (posString == null) {
-								pos = -1;
-//								throw new IfcXmlDeserializeException("No pos found on " + object.getOid() + " " + eStructuralFeature.getName());
-							} else {
-								pos = Integer.parseInt(posString);
-							}
-							List list = (List) object.eGet(eStructuralFeature);
-							if (pos == -1) {
-								list.add(reference);
-							} else {
-								if (list.size() > pos) {
-									list.set(pos, reference);
-								} else {
-									for (int i=list.size()-1; i<pos-1; i++) {
-										EObject tmp = reference.eClass().getEPackage().getEFactoryInstance().create(reference.eClass());
-										list.add(tmp);
-									}
-									list.add(reference);
-								}
-							}
+					IdEObject reference = null;
+					if (!model.containsKey(refId)) {
+						String referenceType = reader.getLocalName();
+						reference = (IdEObject) Ifc2x3Factory.eINSTANCE.create((EClass) Ifc2x3Package.eINSTANCE.getEClassifier(referenceType));
+						model.add(refId, reference);
+					} else {
+						reference = model.get(refId);
+					}
+					if (eStructuralFeature.isMany()) {
+						List list = (List) object.eGet(eStructuralFeature);
+						String posString = reader.getAttributeValue("urn:iso.org:standard:10303:part(28):version(2):xmlschema:common", "pos");
+						if (posString == null) {
+							list.add(reference);
 						} else {
-							object.eSet(eStructuralFeature, reference);
+							int pos = Integer.parseInt(posString);
+							if (list.size() > pos) {
+								list.set(pos, reference);
+							} else {
+								for (int i = list.size() - 1; i < pos - 1; i++) {
+									EObject tmp = reference.eClass().getEPackage().getEFactoryInstance().create(reference.eClass());
+									list.add(tmp);
+								}
+								list.add(reference);
+							}
 						}
 					} else {
-						if (eStructuralFeature.isMany()) {
-							String posString = reader.getAttributeValue("urn:iso.org:standard:10303:part(28):version(2):xmlschema:common", "pos");
-							int pos;
-							if (posString == null) {
-								pos = -1;
-//								throw new IfcXmlDeserializeException("No pos found on " + object.getOid() + " " + eStructuralFeature.getName());
-							} else {
-								pos = Integer.parseInt(posString);
-							}
-							addToWaitingList(object, eStructuralFeature, refId, pos);
-						} else {
-							addToWaitingList(object, eStructuralFeature, refId, -1);
-						}
+						object.eSet(eStructuralFeature, reference);
 					}
 				} else {
 					String realTypeString = reader.getLocalName();
@@ -259,13 +220,6 @@ public class IfcXmlDeserializer {
 				}
 			}
 		}
-	}
-
-	private void addToWaitingList(IdEObject object, EStructuralFeature eStructuralFeature, Long refId, int pos) {
-		if (!waitingObjects.containsKey(refId)) {
-			waitingObjects.put(refId, new ArrayList<WaitingObject>());
-		}
-		waitingObjects.get(refId).add(new WaitingObject(object, eStructuralFeature, pos));
 	}
 
 	private Object parsePrimitive(EClassifier eType, String text) throws IfcXmlDeserializeException {
