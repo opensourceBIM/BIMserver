@@ -269,7 +269,7 @@ public class Service implements ServiceInterface {
 		try {
 			return ifcXmlDeserializer.read(inputStream);
 		} catch (IfcXmlDeserializeException e) {
-			throw new UserException("Invalid IFC XML file");
+			throw new UserException("Invalid IFC XML file", e);
 		}
 	}
 

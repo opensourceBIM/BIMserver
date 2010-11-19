@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -232,7 +233,15 @@ public class IfcXmlDeserializer {
 		} else if (eType == EcorePackage.eINSTANCE.getEBoolean()) {
 			return Boolean.parseBoolean(text);
 		} else if (eType instanceof EEnum) {
-			return ((EEnum) eType).getEEnumLiteral(text);
+			EEnumLiteral eEnumLiteral = ((EEnum) eType).getEEnumLiteral(text.toUpperCase());
+			if (eEnumLiteral == null) {
+				if (text.equals("unknown")) {
+					return null;
+				} else {
+					throw new IfcXmlDeserializeException("Unknown enum literal " + text + " in enum " + ((EEnum) eType).getName());
+				}
+			}
+			return eEnumLiteral.getInstance();
 		} else {
 			throw new IfcXmlDeserializeException("Unimplemented primitive type: " + eType.getName());
 		}
