@@ -68,7 +68,7 @@
 		<%
 		} else {
 		%>
-		<option value="<%=sUserType.ordinal() %>"><%=JspHelper.getNiceUserTypeName(sUserType) %></option>
+		<option <%=(request.getParameter("type") == null && sUserType == SUserType.USER) ? "selected=\"selected\"" : "" %>value="<%=sUserType.ordinal() %>"><%=JspHelper.getNiceUserTypeName(sUserType) %></option>
 		<%
 		}
 	}

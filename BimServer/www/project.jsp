@@ -314,7 +314,7 @@ project</a><br />
 			lastSubProjectRevision = loginManager.getService().getRevision(subProject.getLastRevisionId());
 		}
 %>
-	<tr
+	<tr <%=(loginManager.getService().userHasCheckinRights(subProject.getOid()) == true ? " class=\"checkinrights\"" : "")%>
 		<%=subProject.getState() == SObjectState.DELETED ? " class=\"deleted\"" : "" %>>
 		<td><a href="project.jsp?poid=<%=subProject.getOid() %>"><%=subProject.getName() %></a></td>
 		<td><%=lastSubProjectRevision == null ? "No revisions" : ("<a href=\"revision.jsp?roid=" + lastSubProjectRevision.getOid() + "\">" + lastSubProjectRevision.getId() + "</a> by <a href=\"user.jsp?id=" + lastSubProjectRevision.getUserId() + "\">" + loginManager.getService().getUserByUoid(lastSubProjectRevision.getUserId()).getUsername() + "</a>")%></td>
