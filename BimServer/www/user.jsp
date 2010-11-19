@@ -41,7 +41,6 @@
 	Collections.sort(nonAuthorizedProjects, new SProjectComparator(loginManager.getService()));
 %>
 <div class="sidebar">
- <h4>Submenu</h4>
  <ul>
 <% if (loginManager.getUserType() == SUserType.ADMIN) { %>
  <li><a href="edituser.jsp?uoid=<%=uoid%>">Edit</a></li>
@@ -61,7 +60,7 @@
 <tr><td class="first">Created on</td><td><%=dateFormat.format(user.getCreatedOn()) %></td></tr>
 <tr><td class="first">Last seen</td><td><%=user.getLastSeen() == null ? "never" : dateFormat.format(user.getLastSeen()) %></td></tr>
 <tr><td class="first">State</td><td><%=user.getState().name().toLowerCase() %></td></tr>
-<tr><td class="first">Type</td><td><%=user.getUserType().name().toLowerCase() %></td></tr>
+<tr><td class="first">Type</td><td><%=JspHelper.getNiceUserTypeName(user.getUserType()) %></td></tr>
 <% SUser currentUser = loginManager.getService().getUserByUoid(loginManager.getUoid());
 if (currentUser.getOid() == uoid || currentUser.getUserType() == SUserType.ADMIN) { %>
 <tr><td class="first">Change password</td><td><a href="changepassword.jsp?uoid=<%=uoid%>">Change password</a></td></tr>

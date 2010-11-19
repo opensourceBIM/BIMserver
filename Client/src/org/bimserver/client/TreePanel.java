@@ -48,6 +48,7 @@ import javax.swing.event.TreeSelectionListener;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.interfaces.objects.SUser;
+import org.bimserver.interfaces.objects.SUserType;
 import org.bimserver.shared.UserException;
 import org.bimserver.utils.InputStreamDataSource;
 
@@ -145,7 +146,7 @@ public class TreePanel extends JPanel {
 				String newPassword = JOptionPane.showInputDialog(testWindow, "What is the password new user?", "Add new user", JOptionPane.OK_OPTION
 						| JOptionPane.INFORMATION_MESSAGE);
 				try {
-					serviceHolder.getService().addUser(newUserName, newPassword, newUserName);
+					serviceHolder.getService().addUser(newUserName, newPassword, newUserName, SUserType.USER);
 				} catch (UserException e1) {
 					JOptionPane.showMessageDialog(testWindow, e1.getUserMessage());
 				}

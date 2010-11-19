@@ -173,14 +173,14 @@ public class Service implements ServiceInterface {
 	private final LongActionManager longActionManager;
 	private final AccessMethod accessMethod;
 	private final IfcEngineFactory ifcEngineFactory;
-	
+
 	private long currentUoid = -1;
 	private Date activeSince;
 	private Date lastActive;
 	private Token token;
 
-	public Service(BimDatabase bimDatabase, EmfSerializerFactory emfSerializerFactory, SchemaDefinition schema, LongActionManager longActionManager,
-			AccessMethod accessMethod, IfcEngineFactory ifcEngineFactory, ServiceFactory serviceFactory) {
+	public Service(BimDatabase bimDatabase, EmfSerializerFactory emfSerializerFactory, SchemaDefinition schema, LongActionManager longActionManager, AccessMethod accessMethod,
+			IfcEngineFactory ifcEngineFactory, ServiceFactory serviceFactory) {
 		this.bimDatabase = bimDatabase;
 		this.emfSerializerFactory = emfSerializerFactory;
 		this.schema = schema;
@@ -310,8 +310,7 @@ public class Service implements ServiceInterface {
 		}
 	}
 
-	private SCheckinResult processCheckinSync(final long poid, final String comment, long fileSize, final BimDatabaseSession session, IfcModel model)
-			throws UserException {
+	private SCheckinResult processCheckinSync(final long poid, final String comment, long fileSize, final BimDatabaseSession session, IfcModel model) throws UserException {
 		BimDatabaseAction<ConcreteRevision> action = new CheckinDatabaseAction(accessMethod, model, poid, currentUoid, comment);
 		try {
 			ConcreteRevision revision = session.executeAndCommitAction(action, DEADLOCK_RETRIES);
@@ -328,8 +327,7 @@ public class Service implements ServiceInterface {
 		return null;
 	}
 
-	private SCheckinResult processCheckinAsync(final long poid, final String comment, long fileSize, final BimDatabaseSession session, IfcModel model)
-			throws UserException {
+	private SCheckinResult processCheckinAsync(final long poid, final String comment, long fileSize, final BimDatabaseSession session, IfcModel model) throws UserException {
 		try {
 			BimDatabaseAction<ConcreteRevision> action = new CheckinPart1DatabaseAction(accessMethod, poid, currentUoid, model, comment);
 			ConcreteRevision revision = session.executeAndCommitAction(action, DEADLOCK_RETRIES);
@@ -369,8 +367,8 @@ public class Service implements ServiceInterface {
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
 			BimDatabaseAction<IfcModel> action = new CheckoutDatabaseAction(accessMethod, currentUoid, roid);
-			return convertModelToCheckoutResult(session.getRevisionByRoid(roid).getProject(), session.getUserByUoid(currentUoid), session.executeAndCommitAction(
-					action, DEADLOCK_RETRIES), resultType);
+			return convertModelToCheckoutResult(session.getRevisionByRoid(roid).getProject(), session.getUserByUoid(currentUoid), session.executeAndCommitAction(action,
+					DEADLOCK_RETRIES), resultType);
 		} catch (BimDatabaseException e) {
 			throw new UserException("Database error", e);
 		} catch (NoSerializerFoundException e) {
@@ -381,11 +379,11 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public long addUser(String username, String password, String name) throws UserException {
+	public long addUser(String username, String password, String name, SUserType type) throws UserException {
 		requireAuthentication();
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
-			BimDatabaseAction<Long> action = new AddUserDatabaseAction(accessMethod, username, password, name, UserType.USER, currentUoid);
+			BimDatabaseAction<Long> action = new AddUserDatabaseAction(accessMethod, username, password, name, convert(type), currentUoid);
 			return session.executeAndCommitAction(action, DEADLOCK_RETRIES);
 		} catch (BimDatabaseException e) {
 			throw new UserException("Database error", e);
@@ -687,8 +685,7 @@ public class Service implements ServiceInterface {
 		try {
 			BimDatabaseAction<IfcModel> action = new DownloadDatabaseAction(accessMethod, roid, currentUoid);
 			IfcModel ifcModel = session.executeAction(action, DEADLOCK_RETRIES);
-			SCheckoutResult checkoutResult = convertModelToCheckoutResult(session.getRevisionByRoid(roid).getProject(), session.getUserByUoid(currentUoid),
-					ifcModel, resultType);
+			SCheckoutResult checkoutResult = convertModelToCheckoutResult(session.getRevisionByRoid(roid).getProject(), session.getUserByUoid(currentUoid), ifcModel, resultType);
 			return checkoutResult;
 		} catch (BimDatabaseException e) {
 			throw new UserException("Database error", e);
@@ -775,8 +772,7 @@ public class Service implements ServiceInterface {
 		try {
 			BimDatabaseAction<IfcModel> action = new DownloadByOidsDatabaseAction(accessMethod, roids, oids, currentUoid);
 			IfcModel ifcModel = session.executeAction(action, DEADLOCK_RETRIES);
-			return convertModelToCheckoutResult(session.getRevisionByRoid(roids.iterator().next()).getProject(), session.getUserByUoid(currentUoid), ifcModel,
-					resultType);
+			return convertModelToCheckoutResult(session.getRevisionByRoid(roids.iterator().next()).getProject(), session.getUserByUoid(currentUoid), ifcModel, resultType);
 		} catch (BimDatabaseException e) {
 			throw new UserException("Database error " + e.getMessage(), e);
 		} catch (NoSerializerFoundException e) {
@@ -856,8 +852,7 @@ public class Service implements ServiceInterface {
 		try {
 			BimDatabaseAction<IfcModel> action = new DownloadByGuidsDatabaseAction(accessMethod, roids, guids, currentUoid);
 			IfcModel ifcModel = session.executeAction(action, DEADLOCK_RETRIES);
-			return convertModelToCheckoutResult(session.getRevisionByRoid(roids.iterator().next()).getProject(), session.getUserByUoid(currentUoid), ifcModel,
-					resultType);
+			return convertModelToCheckoutResult(session.getRevisionByRoid(roids.iterator().next()).getProject(), session.getUserByUoid(currentUoid), ifcModel, resultType);
 		} catch (BimDatabaseException e) {
 			throw new UserException("Database error", e);
 		} catch (NoSerializerFoundException e) {
@@ -1045,6 +1040,18 @@ public class Service implements ServiceInterface {
 		}
 	}
 
+	private static UserType convert(SUserType sUserType) {
+		switch (sUserType) {
+		case ADMIN:
+			return UserType.ADMIN;
+		case ANONYMOUS:
+			return UserType.ANONYMOUS;
+		case USER:
+			return UserType.USER;
+		}
+		return null;
+	}
+
 	private static SCompareResult.Type convert(CompareResult.Type type) {
 		if (type == CompareResult.Type.ADDED) {
 			return SCompareResult.Type.ADDED;
@@ -1230,8 +1237,8 @@ public class Service implements ServiceInterface {
 		requireAuthentication();
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
-			return convert(session.executeAction(new FindClashesDatabaseAction(accessMethod, sClashDetectionSettings, schema, ifcEngineFactory, currentUoid),
-					DEADLOCK_RETRIES), SGuidClash.class, session);
+			return convert(session.executeAction(new FindClashesDatabaseAction(accessMethod, sClashDetectionSettings, schema, ifcEngineFactory, currentUoid), DEADLOCK_RETRIES),
+					SGuidClash.class, session);
 		} catch (BimDatabaseException e) {
 			throw new UserException("Database error", e);
 		} finally {
@@ -1244,8 +1251,8 @@ public class Service implements ServiceInterface {
 		requireAuthentication();
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
-			return convert(session.executeAction(new FindClashesDatabaseAction(accessMethod, sClashDetectionSettings, schema, ifcEngineFactory, currentUoid),
-					DEADLOCK_RETRIES), SEidClash.class, session);
+			return convert(session.executeAction(new FindClashesDatabaseAction(accessMethod, sClashDetectionSettings, schema, ifcEngineFactory, currentUoid), DEADLOCK_RETRIES),
+					SEidClash.class, session);
 		} catch (BimDatabaseException e) {
 			throw new UserException("Database error", e);
 		} finally {
@@ -1676,7 +1683,7 @@ public class Service implements ServiceInterface {
 	public Token getCurrentToken() {
 		return token;
 	}
-	
+
 	public void setToken(Token token) {
 		this.token = token;
 	}

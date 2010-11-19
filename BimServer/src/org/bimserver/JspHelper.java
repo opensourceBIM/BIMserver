@@ -8,6 +8,7 @@ import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.bimserver.interfaces.objects.SAccessMethod;
 import org.bimserver.interfaces.objects.SObjectState;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevision;
@@ -42,7 +43,8 @@ public class JspHelper {
 		if (project.getLastRevisionId() != -1) {
 			lastRevision = loginManager.getService().getRevision(project.getLastRevisionId());
 		}
-		result.append("<tr" + (loginManager.getService().userHasCheckinRights(project.getOid()) == true ? "" : " class=\"checkinrights\"") + (project.getState() == SObjectState.DELETED ? " class=\"deleted\"" : "") + ">");
+		result.append("<tr" + (loginManager.getService().userHasCheckinRights(project.getOid()) == true ? "" : " class=\"checkinrights\"")
+				+ (project.getState() == SObjectState.DELETED ? " class=\"deleted\"" : "") + ">");
 		result.append("<td>");
 		for (int i = 0; i < level; i++) {
 			result.append("&nbsp;&nbsp;");
@@ -55,8 +57,8 @@ public class JspHelper {
 		result.append("</a></td>");
 		result.append("<td>"
 				+ (lastRevision == null ? "No revisions"
-						: ("<a href=\"revision.jsp?roid=" + lastRevision.getOid() + "\">" + lastRevision.getId()
-								+ "</a> by <a href=\"user.jsp?uoid=" + lastRevision.getUserId() + "\">" + loginManager.getService().getUserByUoid(lastRevision.getUserId()).getUsername() + "</a>")) + "</td>");
+						: ("<a href=\"revision.jsp?roid=" + lastRevision.getOid() + "\">" + lastRevision.getId() + "</a> by <a href=\"user.jsp?uoid=" + lastRevision.getUserId()
+								+ "\">" + loginManager.getService().getUserByUoid(lastRevision.getUserId()).getUsername() + "</a>")) + "</td>");
 		result.append("<td>" + project.getRevisions().size() + "</td>");
 		result.append("<td>" + project.getCheckouts().size() + "</td>");
 		result.append("<td>" + project.getHasAuthorizedUsers().size() + "</td>");
@@ -67,7 +69,8 @@ public class JspHelper {
 		}
 		result.append("</tr>");
 		for (long subProjectPoid : project.getSubProjects()) {
-			if (loginManager.getService().userHasRights(subProjectPoid) && (loginManager.getService().getProjectByPoid(subProjectPoid).getState() != SObjectState.DELETED) || loginManager.getUserType() == SUserType.ADMIN) {
+			if (loginManager.getService().userHasRights(subProjectPoid) && (loginManager.getService().getProjectByPoid(subProjectPoid).getState() != SObjectState.DELETED)
+					|| loginManager.getUserType() == SUserType.ADMIN) {
 				SProject subProject = loginManager.getService().getProjectByPoid(subProjectPoid);
 				result.append(writeProjectTree(subProject, loginManager, level + 1));
 			}
@@ -81,7 +84,7 @@ public class JspHelper {
 		result.append("projects.project" + project.getId() + ".id = " + project.getId() + ";\n");
 		result.append("projects.project" + project.getId() + ".name = \"" + project.getName() + "\";\n");
 		result.append("projects.project" + project.getId() + ".subprojects = new Array();\n");
-		int i=0;
+		int i = 0;
 		for (long subProjectPoid : project.getSubProjects()) {
 			SProject subProject = loginManager.getService().getProjectByPoid(subProjectPoid);
 			result.append(writeDownloadProjectTreeJavaScript(subProject, loginManager));
@@ -90,7 +93,7 @@ public class JspHelper {
 		}
 		return result.toString();
 	}
-	
+
 	public static String writeDownloadProjectTree(String baseName, SProject project, LoginManager loginManager, int level, Set<Long> revisions) throws UserException {
 		StringBuilder result = new StringBuilder();
 		SRevision lastRevision = null;
@@ -110,8 +113,8 @@ public class JspHelper {
 		result.append("</a></td>");
 		result.append("<td>"
 				+ (lastRevision == null ? "No revisions"
-						: ("<a href=\"revision.jsp?roid=" + lastRevision.getOid() + "\">" + lastRevision.getId()
-								+ "</a> by <a href=\"user.jsp?uoid=" + lastRevision.getUserId() + "\">" + loginManager.getService().getUserByUoid(lastRevision.getUserId()).getUsername() + "</a>")) + "</td>");
+						: ("<a href=\"revision.jsp?roid=" + lastRevision.getOid() + "\">" + lastRevision.getId() + "</a> by <a href=\"user.jsp?uoid=" + lastRevision.getUserId()
+								+ "\">" + loginManager.getService().getUserByUoid(lastRevision.getUserId()).getUsername() + "</a>")) + "</td>");
 		result.append("<td><select class=\"treeselect\" name=\"" + baseName + "_" + project.getId() + "\" id=\"" + baseName + "_" + project.getId() + "\">");
 		result.append("<option value=\"[off]\">Off</option>");
 		List<SRevision> allRevisionsOfProject = loginManager.getService().getAllRevisionsOfProject(project.getOid());
@@ -128,7 +131,7 @@ public class JspHelper {
 					selected = true;
 				}
 			} else {
-				selected = (project.getParentId() == -1 && allRevisionsOfProject.get(allRevisionsOfProject.size()-1) == revision);
+				selected = (project.getParentId() == -1 && allRevisionsOfProject.get(allRevisionsOfProject.size() - 1) == revision);
 			}
 			result.append("<option value=\"" + revision.getOid() + "\"" + (selected ? " SELECTED=\"SELECTED\"" : "") + ">" + revision.getId() + "</option>");
 		}
@@ -153,7 +156,9 @@ public class JspHelper {
 			Map<String, Integer> subMap = map.get(group);
 			for (String className : subMap.keySet()) {
 				Integer amount = subMap.get(className);
-				builder.append("<tr><td><span class=\"summaryitem\"><a class=\"browserlink\" href=\"#\" browserurl=\"" + request.getRequestURI() + "?roid=" + roid + "&className=" + className + "\">" + className + "</a></span></td><td><a href=\"#\" class=\"querylink\" cName=\"" + className + "\">query</a></td><td>" + amount + "</td></tr>");
+				builder.append("<tr><td><span class=\"summaryitem\"><a class=\"browserlink\" href=\"#\" browserurl=\"" + request.getRequestURI() + "?roid=" + roid + "&className="
+						+ className + "\">" + className + "</a></span></td><td><a href=\"#\" class=\"querylink\" cName=\"" + className + "\">query</a></td><td>" + amount
+						+ "</td></tr>");
 			}
 		}
 		builder.append("</table>");
@@ -203,11 +208,37 @@ public class JspHelper {
 		builder.append("</table>");
 		return builder.toString();
 	}
-	
+
 	public static String completeProjectName(ServiceInterface service, SProject sProject) throws UserException {
 		if (sProject.getParentId() != -1) {
 			return completeProjectName(service, service.getProjectByPoid(sProject.getParentId())) + "." + sProject.getName();
 		}
 		return sProject.getName();
+	}
+
+	public static String getNiceUserTypeName(SUserType userType) {
+		switch (userType) {
+		case ADMIN:
+			return "Admin";
+		case ANONYMOUS:
+			return "Anonymous";
+		case USER:
+			return "User";
+		}
+		return "unknown";
+	}
+
+	public static String getNiceAccessMethodName(SAccessMethod accessMethod) {
+		switch (accessMethod) {
+		case INTERNAL:
+			return "Internal";
+		case REST:
+			return "Rest";
+		case SOAP:
+			return "Soap";
+		case WEB_INTERFACE:
+			return "Web interface";
+		}
+		return "unknown";
 	}
 }

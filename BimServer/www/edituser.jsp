@@ -14,9 +14,9 @@
 	}
 %>
 
-<div class="sidebar">
-</div>
 
+<%@page import="org.bimserver.JspHelper"%><div class="sidebar">
+</div>
 <div class="content">
 <%
 	SUser user = loginManager.getService().getUserByUoid(uoid);
@@ -35,11 +35,11 @@
 	for (SUserType sUserType : SUserType.values()) {
 		if (sUserType == user.getUserType()) {
 			%>
-			<option value="<%=sUserType.ordinal() %>" selected="selected"><%=sUserType.name().toLowerCase() %></option>
+			<option value="<%=sUserType.ordinal() %>" selected="selected"><%=JspHelper.getNiceUserTypeName(sUserType) %></option>
 			<%
 		} else {
 			%>
-			<option value="<%=sUserType.ordinal() %>"><%=sUserType.name().toLowerCase() %></option>
+			<option value="<%=sUserType.ordinal() %>"><%=JspHelper.getNiceUserTypeName(sUserType) %></option>
 			<%
 		}
 	}

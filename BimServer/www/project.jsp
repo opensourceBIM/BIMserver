@@ -38,6 +38,9 @@
 <%@page import="java.util.Set"%>
 <%@page import="org.bimserver.shared.SProjectNameComparator"%>
 <%@page import="org.bimserver.database.store.SIPrefix"%>
+<%@page import="org.bimserver.utils.WebUtils"%>
+<%@page import="org.bimserver.interfaces.objects.SCheckinState"%>
+<%@page import="java.util.ArrayList"%>
 <%@ include file="header.jsp"%>
 <%
 	if (loginManager.getService().isLoggedIn()) {
@@ -71,15 +74,11 @@
 			boolean userHasCheckinRights = loginManager.getService().userHasCheckinRights(project.getOid());
 if (emfSerializerFactory.resultTypeEnabled(ResultType.O3D_JSON) && lastRevision != null) {
 %>
-
-<%@page import="org.bimserver.utils.WebUtils"%>
-<%@page import="org.bimserver.interfaces.objects.SCheckinState"%>
-<%@page import="java.util.ArrayList"%><jsp:include page="o3d.jsp"/>
+<jsp:include page="o3d.jsp"/>
 <%
 }
 %>
 <div class="sidebar">
- <h4>Submenu</h4>
 <ul>
 <% if (userHasCheckinRights) { %> <li><a class="link"
 	href="editproject.jsp?poid=<%=poid %>">Edit</a></li>
@@ -96,6 +95,8 @@ if (lastRevision != null) {
 <li>
  <a id="browserlink" class="link">Browser</a></li>
  <%} %>
+ <li><a class="rss"	href="<%=request.getContextPath() %>/syndication/revisions?poid=<%=poid %>">Revisions feed</a></li>
+ <li><a class="rss" href="<%=request.getContextPath() %>/syndication/checkouts?poid=<%=poid %>">Checkouts feed</a></li>
  </ul>
  <br/>
  <%
@@ -503,9 +504,7 @@ if (revisions.size() > 0) {
 <div class="none">No revisions<%=userHasCheckinRights ? ", upload an IFC file" : "" %></div>
 <%
 	}
-%> <a class="rss"
-	href="<%=request.getContextPath() %>/syndication/revisions?poid=<%=poid %>">Revisions
-feed</a></div>
+%></div>
 <%
 	if (lastRevision != null) {
 %>
@@ -566,9 +565,7 @@ open a specific revision to query other revisions<br />
 		}
 %>
 </table>
-<a class="rss"
-	href="<%=request.getContextPath() %>/syndication/checkouts?poid=<%=poid %>">Checkouts
-feed</a></div>
+</div>
 <%
 	}
 %> <%
@@ -603,6 +600,7 @@ feed</a></div>
 	<tr>
 		<th>Name</th>
 		<th>Username</th>
+		<th>Type</th>
 		<% if (userHasCheckinRights) { %>
 		<th>Actions</th>
 		<% } %>
@@ -613,6 +611,7 @@ feed</a></div>
 	<tr>
 		<td><a href="user.jsp?uoid=<%=user.getOid() %>"><%=user.getName() %></a></td>
 		<td><a href="user.jsp?uoid=<%=user.getOid() %>"><%=user.getUsername() %></a></td>
+		<td><%=JspHelper.getNiceUserTypeName(user.getUserType()) %></td>
 		<% if (userHasCheckinRights) { %>
 		<td>
 		<% if (hasUserManagementRights && user.getUserType() != SUserType.ADMIN) { %><a

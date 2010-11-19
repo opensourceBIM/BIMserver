@@ -1,6 +1,8 @@
 package org.bimserver;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -105,6 +107,11 @@ public class ServiceFactory {
 				}
 			}
 		}
+		Collections.sort(userSessions, new Comparator<SUserSession>(){
+			@Override
+			public int compare(SUserSession o1, SUserSession o2) {
+				return o1.getLastActive().compareTo(o2.getLastActive());
+			}});
 		return userSessions;
 	}
 

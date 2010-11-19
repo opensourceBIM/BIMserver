@@ -61,7 +61,6 @@
 %>
 
 <div class="sidebar">
-<h4>Submenu</h4>
 <ul>
 <li>
 <a href="<%=getServletContext().getContextPath()%>/settings?action=downloadsettings">Download settings</a></li>
