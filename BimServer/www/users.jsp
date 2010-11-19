@@ -3,17 +3,16 @@
 <%@page import="java.text.DateFormat"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="org.bimserver.interfaces.objects.SUser"%>
-<%@ include file="header.jsp" %>
-
 <%@page import="org.bimserver.shared.SUserNameComparator"%>
 <%@page import="org.bimserver.interfaces.objects.SUserType"%>
 <%@page import="org.bimserver.interfaces.objects.SObjectState"%>
+<%@page import="org.bimserver.JspHelper"%>
+<%@ include file="header.jsp" %>
 <% if (loginManager.getService().isLoggedIn() && loginManager.getUserType() == SUserType.ADMIN) {
 		DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
 %>
 
 <div class="sidebar">
-<h4>Submenu</h4>
 <ul>
 <li>
 <a href="adduser.jsp">Add user</a></li>
@@ -22,13 +21,13 @@
 
 <div class="content">
 <h1>Users</h1>
-<fieldset>
 <table class="formatted">
 <tr>
 	<th>Name</th>
 	<th>Username</th>
+	<th>Type</th>
 	<th>Created on</th>
-	<th>Last seen</th>
+	<th>Last login</th>
 	<th>Actions</th>
 </tr>
 <%
@@ -39,6 +38,7 @@
 <tr<%= user.getState() == SObjectState.DELETED ? " class=\"deleted\"" : "" %>>
 	<td><a href="user.jsp?uoid=<%=user.getOid() %>"><%=user.getName() %></a></td>
 	<td><a href="user.jsp?uoid=<%=user.getOid() %>"><%=user.getUsername() %></a></td>
+	<td><%=JspHelper.getNiceUserTypeName(user.getUserType()) %></td>
 	<td><%=dateFormat.format(user.getCreatedOn()) %></td>
 	<td><%=user.getLastSeen() == null ? "never" : dateFormat.format(user.getLastSeen()) %></td>
 	<td>
@@ -65,6 +65,5 @@
 	out.println("Insufficient rights");
 }
 %>
-</fieldset>
 </div>
 <%@ include file="footer.jsp" %>

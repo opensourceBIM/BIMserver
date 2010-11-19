@@ -224,6 +224,7 @@ a.rss {
    padding-left: 18px;
    text-decoration: none;
    font-weight:normal;
+   font-size: small;
    background: transparent url(../images/feed-icon-14x14.png) no-repeat center left;
 }
 

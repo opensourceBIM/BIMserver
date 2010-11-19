@@ -29,6 +29,7 @@
 <%@page import="org.bimserver.interfaces.objects.SServerStarted"%>
 <%@page import="org.bimserver.interfaces.objects.SProjectUpdated"%>
 <%@page import="org.bimserver.shared.SUserSession"%>
+<%@page import="org.bimserver.JspHelper"%>
 <div class="sidebar">
 </div>
 <div class="content">
@@ -184,8 +185,8 @@ E-mail <a href="mailto:<%= checkVersion.getOnlineVersion().getSupportEmail() %>"
 	<tr>
 		<td><a href="user.jsp?uoid=<%=userSession.getUoid()%>"><%=userSession.getUsername() %></a></td>
 		<td><%=userSession.getName() %></td>
-		<td><%=userSession.getType().toString() %></td>
-		<td><%=userSession.getAccessMethod().toString() %></td>
+		<td><%=JspHelper.getNiceUserTypeName(userSession.getType()) %></td>
+		<td><%=JspHelper.getNiceAccessMethodName(userSession.getAccessMethod()) %></td>
 		<td><%=dateFormat.format(userSession.getActiveSince()) %></td>
 		<td><%=dateFormat.format(userSession.getLastActive()) %></td>
 	</tr>
@@ -211,7 +212,7 @@ E-mail <a href="mailto:<%= checkVersion.getOnlineVersion().getSupportEmail() %>"
 <% } else { %>
 		<td>System</td>
 <% } %>
-		<td><%=log.getAccessMethod() %></td>
+		<td><%=JspHelper.getNiceAccessMethodName(log.getAccessMethod()) %></td>
 		<td>
 		<%
 			if (log instanceof SUserAddedToProject) {

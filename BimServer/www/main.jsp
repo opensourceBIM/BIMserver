@@ -9,23 +9,20 @@
 if (serverInfo.isAvailable()) {
 	if (loginManager.getService().isLoggedIn()) { %>
 <%@page import="org.bimserver.interfaces.objects.SUserType"%><div class="sidebar">
- <h4>Submenu</h4>
  <ul>
 <% if (loginManager.getUserType() == SUserType.ADMIN || ServerSettings.getSettings().isAllowUsersToCreateTopLevelProjects()) { %>
  <li><a href="addproject.jsp">Add project</a></li>
+ <li><a class="rss" href="<%=request.getContextPath() %>/syndication/projects">Projects feed</a></li>
 <% } %>
  </ul>
 </div>
-
 <div class="content">
-
 <h1>Projects</h1>
 <%
 	List<SProject> projects = loginManager.getService().getAllProjects();
 	Collections.sort(projects, new SProjectNameComparator());
 	if (projects.size() > 0) {
 %>
-<fieldset>
 <table class="formatted maintable">
 <%
 		for (SProject project : projects) {
@@ -48,18 +45,14 @@ if (serverInfo.isAvailable()) {
 		}
 %>
 </table>
-</fieldset>
-</div>
 <%
 	} else {
 %>
 No projects<br/><br/>
 <%
-	}
-%>
-<a class="rss" href="<%=request.getContextPath() %>/syndication/projects">Projects feed</a>
-<%
+		}
 	}
 }
 %>
+</div>
 <%@ include file="footer.jsp" %>

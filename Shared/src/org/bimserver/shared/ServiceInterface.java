@@ -116,7 +116,7 @@ public interface ServiceInterface {
 
 	@WebMethod(action = "addUser")
 	long addUser(@WebParam(name = "username") String username, @WebParam(name = "password") String password,
-			@WebParam(name = "name") String name) throws UserException;
+			@WebParam(name = "name") String name, @WebParam(name = "type") SUserType type) throws UserException;
 
 	@WebMethod(action = "changeUserType")
 	void changeUserType(@WebParam(name = "uoid") long uoid, @WebParam(name = "userType") SUserType userType) throws UserException;

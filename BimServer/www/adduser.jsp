@@ -15,7 +15,7 @@
 	if (loginManager.getService().isLoggedIn()) {
 		if (request.getParameter("save") != null) {
 			try {
-				long uoid = loginManager.getService().addUser(request.getParameter("username"), request.getParameter("password"), request.getParameter("name"));
+				long uoid = loginManager.getService().addUser(request.getParameter("username"), request.getParameter("password"), request.getParameter("name"), SUserType.values()[Integer.parseInt(request.getParameter("type"))]);
 				if (uoid != -1 && request.getParameter("sendconfirmation") != null) {
 					String senderName = loginManager.getService().getCurrentUser().getName();
 					String senderAddress = ServerSettings.getSettings().getEmailSenderAddress();
@@ -46,7 +46,9 @@
 		}
 %>
 
-<%@page import="org.bimserver.MailSystem"%><div class="sidebar">
+<%@page import="org.bimserver.MailSystem"%>
+<%@page import="org.bimserver.JspHelper"%>
+<%@page import="org.bimserver.interfaces.objects.SUserType"%><div class="sidebar">
 </div>
 
 <div class="content">
@@ -57,6 +59,21 @@
 <table>
 <tr><td><label for="name">Name</label></td><td><input id="name" type="text" name="name" autocomplete="off" value="<%=request.getParameter("name") != null ? request.getParameter("name") : "" %>"/></td></tr>
 <tr><td><label for="username">Username (E-mail address)</label></td><td><input id="username" type="text" name="username" autocomplete="off" value="<%=request.getParameter("username") != null ? request.getParameter("username") : "" %>"/></td></tr>
+<tr><td><label for="type">Type</label></td><td><select name="type">
+<%
+	for (SUserType sUserType : SUserType.values()) {
+		if (request.getParameter("type") != null && request.getParameter("type").equals("" + sUserType.ordinal())) {
+		%>
+		<option selected="selected" value="<%=sUserType.ordinal() %>"><%=JspHelper.getNiceUserTypeName(sUserType) %></option>
+		<%
+		} else {
+		%>
+		<option value="<%=sUserType.ordinal() %>"><%=JspHelper.getNiceUserTypeName(sUserType) %></option>
+		<%
+		}
+	}
+%>
+	</select></td></tr>
 <tr><td><label for="password">Password</label></td><td><input id="password" type="password" name="password" autocomplete="off"/></td></tr>
 <tr><td><label for="confirm">Send confirmation to user</label></td><td><input id="confirm" type="checkbox" name="sendconfirmation"<%=(request.getParameter("sendconfirmation") != null ? " checked=\"checked\"" : "") %>/></td></tr>
 </table>

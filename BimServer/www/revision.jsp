@@ -38,7 +38,6 @@
 }
 %>
 <div class="sidebar">
- <h4>Submenu</h4>
  <%
 	if (emfSerializerFactory.resultTypeEnabled(ResultType.O3D_JSON)) {
 %>

@@ -23,6 +23,10 @@
 <!-- eind mapscripts -->
 <%
 	if (loginManager.getService().isLoggedIn()) {
+		SProject superProject = null;
+		if (request.getParameter("parentoid") != null) {
+			superProject = loginManager.getService().getProjectByPoid(Long.parseLong(request.getParameter("parentoid")));
+		}
 		if (loginManager.getUserType() == SUserType.ADMIN || ServerSettings.getSettings().isAllowUsersToCreateTopLevelProjects()) {
 			if (request.getParameter("save") != null) {
 				try {
@@ -68,8 +72,8 @@
 <div class="sidebar">
 </div>
 <div class="content">
-<h1>Add <%= (request.getParameter("parentoid") != null) ? "sub" : "" %>project</h1>
-<fieldset style="padding: 5px">
+<h1>Add <%= (superProject != null) ? "sub" : "" %>project<%=superProject != null ? (" (to " + superProject.getName() + ")") : "" %></h1>
+<fieldset style="padding: 5px; margin-top: 10px">
 <form name="form" method="post" action="addproject.jsp">
 <table class="formtable">
 <tr>
@@ -123,8 +127,6 @@
 Don't know the coordinates? <a href="#" onclick="BIMServer.Viewer.create({width: 650, height: 500, title: 'Map', formid: 'form'});">Use a map!</a>
 </td>
 </tr>
-
-
 
 <% } %>
 </table>

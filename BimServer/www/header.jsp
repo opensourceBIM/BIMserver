@@ -52,8 +52,13 @@ You are logged in as: <a href="user.jsp?uoid=<%=loginManager.getService().getLog
  			}
  			if (!loginManager.getService().isLoggedIn()) {
  				if (!request.getServletPath().equals("/login.jsp")) {
- 					response.sendRedirect(request.getContextPath() + "/login.jsp?origurl="
- 							+ URLEncoder.encode(request.getRequestURI() + "?" + request.getQueryString(), "UTF-8"));
+ 					if (request.getQueryString() == null || request.getQueryString().trim().isEmpty()) {
+	 					response.sendRedirect(request.getContextPath() + "/login.jsp?origurl="
+	 							+ URLEncoder.encode(request.getRequestURI(), "UTF-8"));
+ 					} else {
+	 					response.sendRedirect(request.getContextPath() + "/login.jsp?origurl="
+	 							+ URLEncoder.encode(request.getRequestURI() + "?" + request.getQueryString(), "UTF-8"));
+ 					}
  				}
  			}
  		}
