@@ -5,6 +5,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeSet;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -14,6 +15,7 @@ import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.interfaces.objects.SUserType;
 import org.bimserver.shared.SCompareResult;
+import org.bimserver.shared.SProjectNameComparator;
 import org.bimserver.shared.SRevisionSummary;
 import org.bimserver.shared.ServiceInterface;
 import org.bimserver.shared.UserException;
@@ -43,7 +45,7 @@ public class JspHelper {
 		if (project.getLastRevisionId() != -1) {
 			lastRevision = loginManager.getService().getRevision(project.getLastRevisionId());
 		}
-		result.append("<tr" + (loginManager.getService().userHasCheckinRights(project.getOid()) == true ? "" : " class=\"checkinrights\"")
+		result.append("<tr" + (loginManager.getService().userHasCheckinRights(project.getOid()) ? " class=\"checkinrights\"" : "")
 				+ (project.getState() == SObjectState.DELETED ? " class=\"deleted\"" : "") + ">");
 		result.append("<td>");
 		for (int i = 0; i < level; i++) {
@@ -68,10 +70,14 @@ public class JspHelper {
 			result.append("<td><a href=\"undeleteproject.jsp?poid=" + project.getOid() + "\">undelete</a></td>");
 		}
 		result.append("</tr>");
-		for (long subProjectPoid : project.getSubProjects()) {
-			if (loginManager.getService().userHasRights(subProjectPoid) && (loginManager.getService().getProjectByPoid(subProjectPoid).getState() != SObjectState.DELETED)
+		Set<SProject> subProjects = new TreeSet<SProject>(new SProjectNameComparator());
+		for (long subPoid : project.getSubProjects()) {
+			SProject subProject = loginManager.getService().getProjectByPoid(subPoid);
+			subProjects.add(subProject);
+		}
+		for (SProject subProject : subProjects) {
+			if (loginManager.getService().userHasRights(subProject.getOid()) && (loginManager.getService().getProjectByPoid(subProject.getOid()).getState() != SObjectState.DELETED)
 					|| loginManager.getUserType() == SUserType.ADMIN) {
-				SProject subProject = loginManager.getService().getProjectByPoid(subProjectPoid);
 				result.append(writeProjectTree(subProject, loginManager, level + 1));
 			}
 		}
@@ -131,14 +137,18 @@ public class JspHelper {
 					selected = true;
 				}
 			} else {
-				selected = (project.getParentId() == -1 && allRevisionsOfProject.get(allRevisionsOfProject.size() - 1) == revision);
+				selected = ((project.getParentId() == -1 || level == 0) && allRevisionsOfProject.get(allRevisionsOfProject.size() - 1) == revision);
 			}
 			result.append("<option value=\"" + revision.getOid() + "\"" + (selected ? " SELECTED=\"SELECTED\"" : "") + ">" + revision.getId() + "</option>");
 		}
 		result.append("</select></td>");
 		result.append("</tr>");
-		for (long subProjectPoid : project.getSubProjects()) {
-			SProject subProject = loginManager.getService().getProjectByPoid(subProjectPoid);
+		Set<SProject> subProjects = new TreeSet<SProject>(new SProjectNameComparator());
+		for (long subPoid : project.getSubProjects()) {
+			SProject subProject = loginManager.getService().getProjectByPoid(subPoid);
+			subProjects.add(subProject);
+		}
+		for (SProject subProject : subProjects) {
 			if (subProject.getRevisions().size() > 0) {
 				result.append(writeDownloadProjectTree(baseName, subProject, loginManager, level + 1, revisions));
 			}
