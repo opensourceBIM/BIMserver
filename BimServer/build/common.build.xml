@@ -17,6 +17,9 @@
 			<fileset file="../deploy/shared/ignore.xml" />
 			<fileset file="../deploy/shared/web.xml" />
 			<fileset file="../deploy/shared/collada.xml" />
+			<fileset file="../deploy/shared/_asCOBie2.xml.xsl" />
+			<fileset file="../deploy/shared/_fromCOBie2.ifcxml.xsl" />
+			<fileset file="../deploy/shared/_Report1.xhtml.xsl" />
 			<fileset file="../${deploydir}/settings.xml" />
 		</copy>
 		<copy file="../deploy/jar/servertype.txt" todir="builds/BuildJar" />
@@ -116,6 +119,9 @@
 			<fileset file="../deploy/shared/version.xml" />
 			<fileset file="../deploy/shared/ignore.xml" />
 			<fileset file="../deploy/shared/collada.xml" />
+			<fileset file="../deploy/shared/_asCOBie2.xml.xsl" />
+			<fileset file="../deploy/shared/_fromCOBie2.ifcxml.xsl" />
+			<fileset file="../deploy/shared/_Report1.xhtml.xsl" />
 			<fileset file="../${deploydir}/web.xml" />
 		</copy>
 		<copy file="../deploy/war/servertype.txt" todir="builds/BuildWar" />
