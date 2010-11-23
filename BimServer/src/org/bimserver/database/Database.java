@@ -35,6 +35,8 @@ import org.bimserver.database.berkeley.DatabaseInitException;
 import org.bimserver.database.store.StorePackage;
 import org.bimserver.database.store.UserType;
 import org.bimserver.database.store.log.AccessMethod;
+import org.bimserver.database.store.log.DatabaseCreated;
+import org.bimserver.database.store.log.LogFactory;
 import org.bimserver.database.store.log.LogPackage;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.FieldIgnoreMap;
@@ -124,6 +126,15 @@ public class Database implements BimDatabase {
 			}
 			getColumnDatabase().createTableIfNotExists(Database.STORE_PROJECT_NAME, databaseSession);
 			initInternalStructure(databaseSession);
+			
+			DatabaseCreated databaseCreated = LogFactory.eINSTANCE.createDatabaseCreated();
+			databaseCreated.setAccessMethod(AccessMethod.INTERNAL);
+			databaseCreated.setExecutor(null);
+			databaseCreated.setDate(new Date());
+			databaseCreated.setPath(getColumnDatabase().getLocation());
+			databaseCreated.setVersion(databaseSchemaVersion);
+			databaseSession.store(databaseCreated, new CommitSet(Database.STORE_PROJECT_ID, -1));
+			
 			if (getColumnDatabase().isNew()) {
 				new CreateBaseProject(AccessMethod.INTERNAL).execute(databaseSession);
 				new AddUserDatabaseAction(AccessMethod.INTERNAL, "admin", "admin", "Administrator", UserType.ADMIN, -1).execute(databaseSession);

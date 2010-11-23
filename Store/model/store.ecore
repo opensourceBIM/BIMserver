@@ -217,7 +217,10 @@
     <eClassifiers xsi:type="ecore:EClass" name="PasswordReset" eSuperTypes="#//log/LogAction">
       <eStructuralFeatures xsi:type="ecore:EReference" name="user" eType="#//User"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="DatabaseCreated" eSuperTypes="#//log/LogAction"/>
+    <eClassifiers xsi:type="ecore:EClass" name="DatabaseCreated" eSuperTypes="#//log/LogAction">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="path" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="version" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ServerStarted" eSuperTypes="#//log/LogAction"/>
     <eClassifiers xsi:type="ecore:EClass" name="ProjectUpdated" eSuperTypes="#//log/LogAction">
       <eStructuralFeatures xsi:type="ecore:EReference" name="project" eType="#//Project"/>

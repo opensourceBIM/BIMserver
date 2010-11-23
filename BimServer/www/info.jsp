@@ -30,15 +30,15 @@
 <%@page import="org.bimserver.interfaces.objects.SProjectUpdated"%>
 <%@page import="org.bimserver.shared.SUserSession"%>
 <%@page import="org.bimserver.JspHelper"%>
-
 <%@page import="org.bimserver.interfaces.objects.SClashDetectionSettingsUpdated"%>
 <%@page import="org.bimserver.interfaces.objects.SGeoTagUpdated"%>
 <%@page import="org.bimserver.interfaces.objects.SUserChanged"%>
 <%@page import="org.bimserver.interfaces.objects.SPasswordReset"%>
 <%@page import="org.bimserver.interfaces.objects.SPasswordChanged"%>
-<%@page import="org.eclipse.jetty.security.authentication.LoginAuthenticator"%>
 <%@page import="org.bimserver.interfaces.objects.SClashDetectionSettings"%>
-<%@page import="org.bimserver.interfaces.objects.SGeoTag"%><div class="sidebar">
+<%@page import="org.bimserver.interfaces.objects.SGeoTag"%>
+
+<%@page import="org.bimserver.interfaces.objects.SDatabaseCreated"%><div class="sidebar">
 </div>
 <div class="content">
 <h1>Info</h1>
@@ -288,6 +288,9 @@ if (sNewProjectAdded.getParentProjectId() != -1) {
 				SPasswordChanged sPasswordChanged = (SPasswordChanged)log;
 				SUser sUser = loginManager.getService().getUserByUoid(sPasswordChanged.getUserId());
 %>Password of user <a href="user.jsp?uoid=<%=sUser.getOid()%>"><%=sUser.getName() %></a> changed<%
+			} else if (log instanceof SDatabaseCreated) {
+				SDatabaseCreated sDatabaseCreated = (SDatabaseCreated)log;
+%>Database (version <%=sDatabaseCreated.getVersion() %>) created in <%=sDatabaseCreated.getPath()%><%
 			} else {
 %>
 [Not implemented]

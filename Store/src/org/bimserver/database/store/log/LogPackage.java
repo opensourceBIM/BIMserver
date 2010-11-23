@@ -859,13 +859,31 @@ public interface LogPackage extends EPackage {
 	int DATABASE_CREATED__ACCESS_METHOD = LOG_ACTION__ACCESS_METHOD;
 
 	/**
+	 * The feature id for the '<em><b>Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATABASE_CREATED__PATH = LOG_ACTION_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Version</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATABASE_CREATED__VERSION = LOG_ACTION_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Database Created</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE_CREATED_FEATURE_COUNT = LOG_ACTION_FEATURE_COUNT + 0;
+	int DATABASE_CREATED_FEATURE_COUNT = LOG_ACTION_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.database.store.log.impl.ServerStartedImpl <em>Server Started</em>}' class.
@@ -1724,6 +1742,28 @@ public interface LogPackage extends EPackage {
 	EClass getDatabaseCreated();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.database.store.log.DatabaseCreated#getPath <em>Path</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Path</em>'.
+	 * @see org.bimserver.database.store.log.DatabaseCreated#getPath()
+	 * @see #getDatabaseCreated()
+	 * @generated
+	 */
+	EAttribute getDatabaseCreated_Path();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.database.store.log.DatabaseCreated#getVersion <em>Version</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Version</em>'.
+	 * @see org.bimserver.database.store.log.DatabaseCreated#getVersion()
+	 * @see #getDatabaseCreated()
+	 * @generated
+	 */
+	EAttribute getDatabaseCreated_Version();
+
+	/**
 	 * Returns the meta object for class '{@link org.bimserver.database.store.log.ServerStarted <em>Server Started</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2234,6 +2274,22 @@ public interface LogPackage extends EPackage {
 		 * @generated
 		 */
 		EClass DATABASE_CREATED = eINSTANCE.getDatabaseCreated();
+
+		/**
+		 * The meta object literal for the '<em><b>Path</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DATABASE_CREATED__PATH = eINSTANCE.getDatabaseCreated_Path();
+
+		/**
+		 * The meta object literal for the '<em><b>Version</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DATABASE_CREATED__VERSION = eINSTANCE.getDatabaseCreated_Version();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.database.store.log.impl.ServerStartedImpl <em>Server Started</em>}' class.
