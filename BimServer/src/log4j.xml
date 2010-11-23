@@ -19,7 +19,7 @@
 		<appender-ref ref="Console" />
 	</logger>
 	<logger name="org.apache.cxf">
-		<level value="debug" />
+		<level value="error" />
 		<appender-ref ref="Console" />
 	</logger>
 	<logger name="org.mortbay">

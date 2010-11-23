@@ -12,7 +12,6 @@ import org.bimserver.database.store.UserType;
 import org.bimserver.database.store.log.AccessMethod;
 import org.bimserver.database.store.log.LogFactory;
 import org.bimserver.database.store.log.PasswordChanged;
-import org.bimserver.database.store.log.PasswordReset;
 import org.bimserver.shared.UserException;
 import org.bimserver.utils.Hashers;
 
