@@ -9,8 +9,10 @@ package org.bimserver.database.store.log.impl;
 import org.bimserver.database.store.StorePackage;
 import org.bimserver.database.store.impl.StorePackageImpl;
 import org.bimserver.database.store.log.AccessMethod;
+import org.bimserver.database.store.log.ClashDetectionSettingsUpdated;
 import org.bimserver.database.store.log.DatabaseCreated;
 import org.bimserver.database.store.log.Download;
+import org.bimserver.database.store.log.GeoTagUpdated;
 import org.bimserver.database.store.log.LogAction;
 import org.bimserver.database.store.log.LogFactory;
 import org.bimserver.database.store.log.LogPackage;
@@ -19,14 +21,17 @@ import org.bimserver.database.store.log.NewIgnoreFileUploaded;
 import org.bimserver.database.store.log.NewProjectAdded;
 import org.bimserver.database.store.log.NewRevisionAdded;
 import org.bimserver.database.store.log.NewUserAdded;
+import org.bimserver.database.store.log.PasswordChanged;
 import org.bimserver.database.store.log.PasswordReset;
 import org.bimserver.database.store.log.ProjectDeleted;
 import org.bimserver.database.store.log.ProjectUndeleted;
 import org.bimserver.database.store.log.ProjectUpdated;
+import org.bimserver.database.store.log.RevisionUpdated;
 import org.bimserver.database.store.log.ServerLog;
 import org.bimserver.database.store.log.ServerStarted;
 import org.bimserver.database.store.log.SettingsSaved;
 import org.bimserver.database.store.log.UserAddedToProject;
+import org.bimserver.database.store.log.UserChanged;
 import org.bimserver.database.store.log.UserDeleted;
 import org.bimserver.database.store.log.UserRemovedFromProject;
 import org.bimserver.database.store.log.UserUndeleted;
@@ -176,6 +181,41 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * @generated
 	 */
 	private EClass projectUndeletedEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass revisionUpdatedEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass geoTagUpdatedEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass clashDetectionSettingsUpdatedEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass passwordChangedEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass userChangedEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -338,6 +378,15 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 */
 	public EReference getNewProjectAdded_Project() {
 		return (EReference)newProjectAddedEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getNewProjectAdded_ParentProject() {
+		return (EReference)newProjectAddedEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -615,6 +664,96 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getRevisionUpdated() {
+		return revisionUpdatedEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getRevisionUpdated_Revision() {
+		return (EReference)revisionUpdatedEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getGeoTagUpdated() {
+		return geoTagUpdatedEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getGeoTagUpdated_GeoTag() {
+		return (EReference)geoTagUpdatedEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getClashDetectionSettingsUpdated() {
+		return clashDetectionSettingsUpdatedEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getClashDetectionSettingsUpdated_ClashDetectionSettings() {
+		return (EReference)clashDetectionSettingsUpdatedEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getPasswordChanged() {
+		return passwordChangedEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPasswordChanged_User() {
+		return (EReference)passwordChangedEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getUserChanged() {
+		return userChangedEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getUserChanged_User() {
+		return (EReference)userChangedEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getAccessMethod() {
 		return accessMethodEEnum;
 	}
@@ -660,6 +799,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 
 		newProjectAddedEClass = createEClass(NEW_PROJECT_ADDED);
 		createEReference(newProjectAddedEClass, NEW_PROJECT_ADDED__PROJECT);
+		createEReference(newProjectAddedEClass, NEW_PROJECT_ADDED__PARENT_PROJECT);
 
 		newRevisionAddedEClass = createEClass(NEW_REVISION_ADDED);
 		createEReference(newRevisionAddedEClass, NEW_REVISION_ADDED__REVISION);
@@ -705,6 +845,21 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 
 		projectUndeletedEClass = createEClass(PROJECT_UNDELETED);
 		createEReference(projectUndeletedEClass, PROJECT_UNDELETED__PROJECT);
+
+		revisionUpdatedEClass = createEClass(REVISION_UPDATED);
+		createEReference(revisionUpdatedEClass, REVISION_UPDATED__REVISION);
+
+		geoTagUpdatedEClass = createEClass(GEO_TAG_UPDATED);
+		createEReference(geoTagUpdatedEClass, GEO_TAG_UPDATED__GEO_TAG);
+
+		clashDetectionSettingsUpdatedEClass = createEClass(CLASH_DETECTION_SETTINGS_UPDATED);
+		createEReference(clashDetectionSettingsUpdatedEClass, CLASH_DETECTION_SETTINGS_UPDATED__CLASH_DETECTION_SETTINGS);
+
+		passwordChangedEClass = createEClass(PASSWORD_CHANGED);
+		createEReference(passwordChangedEClass, PASSWORD_CHANGED__USER);
+
+		userChangedEClass = createEClass(USER_CHANGED);
+		createEReference(userChangedEClass, USER_CHANGED__USER);
 
 		// Create enums
 		accessMethodEEnum = createEEnum(ACCESS_METHOD);
@@ -758,6 +913,11 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 		projectUpdatedEClass.getESuperTypes().add(this.getLogAction());
 		userUndeletedEClass.getESuperTypes().add(this.getLogAction());
 		projectUndeletedEClass.getESuperTypes().add(this.getLogAction());
+		revisionUpdatedEClass.getESuperTypes().add(this.getLogAction());
+		geoTagUpdatedEClass.getESuperTypes().add(this.getLogAction());
+		clashDetectionSettingsUpdatedEClass.getESuperTypes().add(this.getLogAction());
+		passwordChangedEClass.getESuperTypes().add(this.getLogAction());
+		userChangedEClass.getESuperTypes().add(this.getLogAction());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(serverLogEClass, ServerLog.class, "ServerLog", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -773,6 +933,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 
 		initEClass(newProjectAddedEClass, NewProjectAdded.class, "NewProjectAdded", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getNewProjectAdded_Project(), theStorePackage.getProject(), null, "project", null, 0, 1, NewProjectAdded.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getNewProjectAdded_ParentProject(), theStorePackage.getProject(), null, "parentProject", null, 0, 1, NewProjectAdded.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(newRevisionAddedEClass, NewRevisionAdded.class, "NewRevisionAdded", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getNewRevisionAdded_Revision(), theStorePackage.getRevision(), null, "revision", null, 0, 1, NewRevisionAdded.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -818,6 +979,21 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 
 		initEClass(projectUndeletedEClass, ProjectUndeleted.class, "ProjectUndeleted", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getProjectUndeleted_Project(), theStorePackage.getProject(), null, "project", null, 0, 1, ProjectUndeleted.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(revisionUpdatedEClass, RevisionUpdated.class, "RevisionUpdated", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getRevisionUpdated_Revision(), theStorePackage.getRevision(), null, "revision", null, 0, 1, RevisionUpdated.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(geoTagUpdatedEClass, GeoTagUpdated.class, "GeoTagUpdated", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getGeoTagUpdated_GeoTag(), theStorePackage.getGeoTag(), null, "geoTag", null, 0, 1, GeoTagUpdated.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(clashDetectionSettingsUpdatedEClass, ClashDetectionSettingsUpdated.class, "ClashDetectionSettingsUpdated", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getClashDetectionSettingsUpdated_ClashDetectionSettings(), theStorePackage.getClashDetectionSettings(), null, "clashDetectionSettings", null, 0, 1, ClashDetectionSettingsUpdated.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(passwordChangedEClass, PasswordChanged.class, "PasswordChanged", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getPasswordChanged_User(), theStorePackage.getUser(), null, "user", null, 0, 1, PasswordChanged.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(userChangedEClass, UserChanged.class, "UserChanged", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getUserChanged_User(), theStorePackage.getUser(), null, "user", null, 0, 1, UserChanged.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(accessMethodEEnum, AccessMethod.class, "AccessMethod");

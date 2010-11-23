@@ -13,11 +13,6 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
-import org.bimserver.emf.IdEObject;
-import org.bimserver.ifc.xml.reader.IfcXmlDeserializer;
-
-import com.google.common.collect.BiMap;
-
 public class XsltTest {
 	public static void main(String[] args) {
 		new XsltTest().start();

@@ -8,8 +8,8 @@ import nl.tue.buildingsmart.express.parser.ExpressSchemaParser;
 
 import org.bimserver.ifc.FileFieldIgnoreMap;
 import org.bimserver.ifc.emf.Ifc2x3.Ifc2x3Package;
-import org.bimserver.ifc.file.reader.IfcStepDeserializer;
 import org.bimserver.ifc.file.reader.IfcFileReader;
+import org.bimserver.ifc.file.reader.IfcStepDeserializer;
 import org.bimserver.ifc.file.reader.IncorrectIfcFileException;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
 import org.bimserver.shared.ResourceFetcher;

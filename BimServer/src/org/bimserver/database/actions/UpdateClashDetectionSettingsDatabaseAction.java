@@ -1,5 +1,7 @@
 package org.bimserver.database.actions;
 
+import java.util.Date;
+
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
@@ -9,6 +11,8 @@ import org.bimserver.database.store.ClashDetectionSettings;
 import org.bimserver.database.store.StorePackage;
 import org.bimserver.database.store.User;
 import org.bimserver.database.store.log.AccessMethod;
+import org.bimserver.database.store.log.ClashDetectionSettingsUpdated;
+import org.bimserver.database.store.log.LogFactory;
 import org.bimserver.interfaces.objects.SClashDetectionSettings;
 import org.bimserver.shared.UserException;
 
@@ -35,7 +39,14 @@ public class UpdateClashDetectionSettingsDatabaseAction extends BimDatabaseActio
 		for (String ignoredClass : sClashDetectionSettings.getIgnoredClasses()) {
 			clashDetectionSettings.getIgnoredClasses().add(ignoredClass);
 		}
-		bimDatabaseSession.store(clashDetectionSettings, new CommitSet(Database.STORE_PROJECT_ID, -1));
+		ClashDetectionSettingsUpdated clashDetectionSettingsUpdated = LogFactory.eINSTANCE.createClashDetectionSettingsUpdated();
+		clashDetectionSettingsUpdated.setClashDetectionSettings(clashDetectionSettings);
+		clashDetectionSettingsUpdated.setAccessMethod(getAccessMethod());
+		clashDetectionSettingsUpdated.setDate(new Date());
+		clashDetectionSettingsUpdated.setExecutor(actingUser);
+		CommitSet commitSet = new CommitSet(Database.STORE_PROJECT_ID, -1);
+		bimDatabaseSession.store(clashDetectionSettings, commitSet);
+		bimDatabaseSession.store(clashDetectionSettingsUpdated, commitSet);
 		return null;
 	}
 }

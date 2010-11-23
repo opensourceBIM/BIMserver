@@ -9,8 +9,8 @@ import javax.activation.FileDataSource;
 
 import org.bimserver.ifc.EmfSerializer;
 import org.bimserver.ifc.SerializerException;
-import org.bimserver.shared.SCheckoutResult;
 import org.bimserver.shared.ResultType;
+import org.bimserver.shared.SCheckoutResult;
 
 public class FileCache {
 	private File cacheDir = new File("cache");

@@ -6,7 +6,6 @@
  */
 package org.bimserver.database.store.util;
 
-import org.bimserver.database.store.*;
 import org.bimserver.database.store.Checkout;
 import org.bimserver.database.store.Clash;
 import org.bimserver.database.store.ClashDetectionSettings;

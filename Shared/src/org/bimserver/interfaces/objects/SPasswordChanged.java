@@ -4,7 +4,7 @@ import java.util.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
-public class SUserUndeleted extends SLogAction
+public class SPasswordChanged extends SLogAction
 {
 	private long oid;
 	
@@ -40,7 +40,7 @@ public class SUserUndeleted extends SLogAction
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		SUserUndeleted other = (SUserUndeleted) obj;
+		SPasswordChanged other = (SPasswordChanged) obj;
 		if (oid != other.oid)
 			return false;
 		return true;

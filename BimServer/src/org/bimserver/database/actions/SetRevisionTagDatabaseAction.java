@@ -25,12 +25,13 @@ public class SetRevisionTagDatabaseAction extends BimDatabaseAction<String> {
 	@Override
 	public String execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
 		Revision revision = bimDatabaseSession.getRevisionByRoid(roid);
+		String trimmedTag = tag.trim();
 		Project project = revision.getProject();
 		if (project.getParent() != null) {
 			throw new UserException("Revision is not contained by a top project.");
 		}
 		EList<Revision> projRevs = project.getRevisions();
-		revision.setTag(tag);
+		revision.setTag(trimmedTag);
 		bimDatabaseSession.store(revision, new CommitSet(Database.STORE_PROJECT_ID, -1));
 		EList<ConcreteRevision> concreteRevisions = revision.getConcreteRevisions();
 		for (ConcreteRevision cRev : concreteRevisions) {
@@ -39,11 +40,10 @@ public class SetRevisionTagDatabaseAction extends BimDatabaseAction<String> {
 				if (projRevs.contains(vRev)) {
 					continue;
 				}
-				vRev.setTag(tag);
+				vRev.setTag(trimmedTag);
 				bimDatabaseSession.store(vRev, new CommitSet(Database.STORE_PROJECT_ID, -1));
 			}
 		}
 		return null;
 	}
-
 }

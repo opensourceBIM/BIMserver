@@ -254,7 +254,7 @@ public interface ServiceInterface {
 	List<SClash> getLastClashes(@WebParam(name = "roid") long roid) throws UserException;
 
 	@WebMethod(action = "resetPassword")
-	String resetPassword(@WebParam(name = "emailAddress") String emailAddress) throws UserException;
+	void resetPassword(@WebParam(name = "emailAddress") String emailAddress) throws UserException;
 
 	@WebMethod(action = "branchToNewProject")
 	SCheckinResult branchToNewProject(@WebParam(name = "roid") long roid, @WebParam(name = "projectName") String projectName,

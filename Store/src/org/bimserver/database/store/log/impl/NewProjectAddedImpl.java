@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.bimserver.database.store.log.impl.NewProjectAddedImpl#getProject <em>Project</em>}</li>
+ *   <li>{@link org.bimserver.database.store.log.impl.NewProjectAddedImpl#getParentProject <em>Parent Project</em>}</li>
  * </ul>
  * </p>
  *
@@ -38,6 +39,16 @@ public class NewProjectAddedImpl extends LogActionImpl implements NewProjectAdde
 	 * @ordered
 	 */
 	protected Project project;
+
+	/**
+	 * The cached value of the '{@link #getParentProject() <em>Parent Project</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getParentProject()
+	 * @generated
+	 * @ordered
+	 */
+	protected Project parentProject;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -101,12 +112,53 @@ public class NewProjectAddedImpl extends LogActionImpl implements NewProjectAdde
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Project getParentProject() {
+		if (parentProject != null && ((EObject)parentProject).eIsProxy()) {
+			InternalEObject oldParentProject = (InternalEObject)parentProject;
+			parentProject = (Project)eResolveProxy(oldParentProject);
+			if (parentProject != oldParentProject) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, LogPackage.NEW_PROJECT_ADDED__PARENT_PROJECT, oldParentProject, parentProject));
+			}
+		}
+		return parentProject;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Project basicGetParentProject() {
+		return parentProject;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setParentProject(Project newParentProject) {
+		Project oldParentProject = parentProject;
+		parentProject = newParentProject;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, LogPackage.NEW_PROJECT_ADDED__PARENT_PROJECT, oldParentProject, parentProject));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case LogPackage.NEW_PROJECT_ADDED__PROJECT:
 				if (resolve) return getProject();
 				return basicGetProject();
+			case LogPackage.NEW_PROJECT_ADDED__PARENT_PROJECT:
+				if (resolve) return getParentProject();
+				return basicGetParentProject();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -121,6 +173,9 @@ public class NewProjectAddedImpl extends LogActionImpl implements NewProjectAdde
 		switch (featureID) {
 			case LogPackage.NEW_PROJECT_ADDED__PROJECT:
 				setProject((Project)newValue);
+				return;
+			case LogPackage.NEW_PROJECT_ADDED__PARENT_PROJECT:
+				setParentProject((Project)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -137,6 +192,9 @@ public class NewProjectAddedImpl extends LogActionImpl implements NewProjectAdde
 			case LogPackage.NEW_PROJECT_ADDED__PROJECT:
 				setProject((Project)null);
 				return;
+			case LogPackage.NEW_PROJECT_ADDED__PARENT_PROJECT:
+				setParentProject((Project)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -151,6 +209,8 @@ public class NewProjectAddedImpl extends LogActionImpl implements NewProjectAdde
 		switch (featureID) {
 			case LogPackage.NEW_PROJECT_ADDED__PROJECT:
 				return project != null;
+			case LogPackage.NEW_PROJECT_ADDED__PARENT_PROJECT:
+				return parentProject != null;
 		}
 		return super.eIsSet(featureID);
 	}

@@ -1219,12 +1219,12 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public String resetPassword(String emailAddress) throws UserException {
+	public void resetPassword(String emailAddress) throws UserException {
 		requireAuthentication();
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
-			BimDatabaseAction<String> action = new ResetPasswordDatabaseAction(accessMethod, emailAddress);
-			return session.executeAndCommitAction(action, DEADLOCK_RETRIES);
+			BimDatabaseAction<Void> action = new ResetPasswordDatabaseAction(accessMethod, currentUoid, emailAddress);
+			session.executeAndCommitAction(action, DEADLOCK_RETRIES);
 		} catch (BimDatabaseException e) {
 			throw new UserException("Database error", e);
 		} finally {

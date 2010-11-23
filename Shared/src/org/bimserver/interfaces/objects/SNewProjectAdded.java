@@ -1,5 +1,6 @@
 package org.bimserver.interfaces.objects;
 
+import java.util.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
@@ -15,12 +16,21 @@ public class SNewProjectAdded extends SLogAction
 		this.oid = oid;
 	}
 	private long projectId;
+	private long parentProjectId;
 	public long getProjectId() {
 		return projectId;
 	}
 
 	public void setProjectId(long projectId) {
 		this.projectId = projectId;
+	}
+	
+	public long getParentProjectId() {
+		return parentProjectId;
+	}
+
+	public void setParentProjectId(long parentProjectId) {
+		this.parentProjectId = parentProjectId;
 	}
 	
 	@Override
