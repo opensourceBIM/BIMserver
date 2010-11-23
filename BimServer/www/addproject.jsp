@@ -51,11 +51,15 @@
 						sGeoTag.setX(Float.parseFloat(request.getParameter("x"))); 
 						sGeoTag.setY(Float.parseFloat(request.getParameter("y"))); 
 						sGeoTag.setZ(Float.parseFloat(request.getParameter("z")));
-						loginManager.getService().updateGeoTag(sGeoTag);
+						if (sGeoTag.isEnabled()) {
+							loginManager.getService().updateGeoTag(sGeoTag);
+						}
 						SClashDetectionSettings sClashDetectionSettings = loginManager.getService().getClashDetectionSettings(sProject.getClashDetectionSettingsId());
 						sClashDetectionSettings.setEnabled(request.getParameter("clashdetection") != null);
 						sClashDetectionSettings.setMargin(Float.parseFloat(request.getParameter("margin")));
-						loginManager.getService().updateClashDetectionSettings(sClashDetectionSettings);
+						if (sClashDetectionSettings.isEnabled()) {
+							loginManager.getService().updateClashDetectionSettings(sClashDetectionSettings);
+						}
 					}
 					if (request.getParameter("parentoid") != null) {
 						response.sendRedirect("project.jsp?poid=" + request.getParameter("parentoid"));

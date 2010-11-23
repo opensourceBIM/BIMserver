@@ -15,6 +15,24 @@ public class SDatabaseCreated extends SLogAction
 	public void setOid(long oid) {
 		this.oid = oid;
 	}
+	private java.lang.String path;
+	private int version;
+
+	public java.lang.String getPath() {
+		return path;
+	}
+
+	public void setPath(java.lang.String path) {
+		this.path = path;
+	}
+
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
