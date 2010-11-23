@@ -197,6 +197,51 @@ public interface LogFactory extends EFactory {
 	ProjectUndeleted createProjectUndeleted();
 
 	/**
+	 * Returns a new object of class '<em>Revision Updated</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Revision Updated</em>'.
+	 * @generated
+	 */
+	RevisionUpdated createRevisionUpdated();
+
+	/**
+	 * Returns a new object of class '<em>Geo Tag Updated</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Geo Tag Updated</em>'.
+	 * @generated
+	 */
+	GeoTagUpdated createGeoTagUpdated();
+
+	/**
+	 * Returns a new object of class '<em>Clash Detection Settings Updated</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Clash Detection Settings Updated</em>'.
+	 * @generated
+	 */
+	ClashDetectionSettingsUpdated createClashDetectionSettingsUpdated();
+
+	/**
+	 * Returns a new object of class '<em>Password Changed</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Password Changed</em>'.
+	 * @generated
+	 */
+	PasswordChanged createPasswordChanged();
+
+	/**
+	 * Returns a new object of class '<em>User Changed</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>User Changed</em>'.
+	 * @generated
+	 */
+	UserChanged createUserChanged();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

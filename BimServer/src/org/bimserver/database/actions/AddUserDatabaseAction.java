@@ -33,25 +33,27 @@ public class AddUserDatabaseAction extends BimDatabaseAction<Long> {
 	}
 
 	public Long execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDatabaseException, BimDeadlockException {
-		if (username == null || username.trim().equals("")) {
+		String trimmedUserName = username.trim();
+		String trimmedName = name.trim();
+		if (trimmedUserName.equals("")) {
 			throw new UserException("Invalid username");
 		}
-		if (name == null || name.trim().equals("")) {
+		if (trimmedName.equals("")) {
 			throw new UserException("Invalid name");
 		}
 		if (password == null || password.trim().equals("")) {
 			throw new UserException("Invalid password");
 		}
-		if (bimDatabaseSession.getUserByUserName(username) != null) {
-			throw new UserException("A user with the username " + username + " already exists");
+		if (bimDatabaseSession.getUserByUserName(trimmedUserName) != null) {
+			throw new UserException("A user with the username " + trimmedUserName + " already exists");
 		}
 		User actingUser = bimDatabaseSession.getUserByUoid(createrUoid);
 		if (createrUoid != -1 && actingUser.getUserType() != UserType.ADMIN) {
 			throw new UserException("Only admin users can create other users");
 		}
 		final User user = StoreFactory.eINSTANCE.createUser();
-		user.setName(name);
-		user.setUsername(username);
+		user.setName(trimmedName);
+		user.setUsername(trimmedUserName);
 		user.setPassword(Hashers.getSha256Hash(password));
 		user.setCreatedOn(new Date());
 		user.setCreatedBy(bimDatabaseSession.getUserByUoid(createrUoid));

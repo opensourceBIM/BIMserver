@@ -6,10 +6,11 @@
  */
 package org.bimserver.database.store.log.impl;
 
-import org.bimserver.database.store.log.*;
 import org.bimserver.database.store.log.AccessMethod;
+import org.bimserver.database.store.log.ClashDetectionSettingsUpdated;
 import org.bimserver.database.store.log.DatabaseCreated;
 import org.bimserver.database.store.log.Download;
+import org.bimserver.database.store.log.GeoTagUpdated;
 import org.bimserver.database.store.log.LogAction;
 import org.bimserver.database.store.log.LogFactory;
 import org.bimserver.database.store.log.LogPackage;
@@ -18,14 +19,17 @@ import org.bimserver.database.store.log.NewIgnoreFileUploaded;
 import org.bimserver.database.store.log.NewProjectAdded;
 import org.bimserver.database.store.log.NewRevisionAdded;
 import org.bimserver.database.store.log.NewUserAdded;
+import org.bimserver.database.store.log.PasswordChanged;
 import org.bimserver.database.store.log.PasswordReset;
 import org.bimserver.database.store.log.ProjectDeleted;
 import org.bimserver.database.store.log.ProjectUndeleted;
 import org.bimserver.database.store.log.ProjectUpdated;
+import org.bimserver.database.store.log.RevisionUpdated;
 import org.bimserver.database.store.log.ServerLog;
 import org.bimserver.database.store.log.ServerStarted;
 import org.bimserver.database.store.log.SettingsSaved;
 import org.bimserver.database.store.log.UserAddedToProject;
+import org.bimserver.database.store.log.UserChanged;
 import org.bimserver.database.store.log.UserDeleted;
 import org.bimserver.database.store.log.UserRemovedFromProject;
 import org.bimserver.database.store.log.UserUndeleted;
@@ -99,6 +103,11 @@ public class LogFactoryImpl extends EFactoryImpl implements LogFactory {
 			case LogPackage.PROJECT_UPDATED: return (EObject)createProjectUpdated();
 			case LogPackage.USER_UNDELETED: return (EObject)createUserUndeleted();
 			case LogPackage.PROJECT_UNDELETED: return (EObject)createProjectUndeleted();
+			case LogPackage.REVISION_UPDATED: return (EObject)createRevisionUpdated();
+			case LogPackage.GEO_TAG_UPDATED: return (EObject)createGeoTagUpdated();
+			case LogPackage.CLASH_DETECTION_SETTINGS_UPDATED: return (EObject)createClashDetectionSettingsUpdated();
+			case LogPackage.PASSWORD_CHANGED: return (EObject)createPasswordChanged();
+			case LogPackage.USER_CHANGED: return (EObject)createUserChanged();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -322,6 +331,56 @@ public class LogFactoryImpl extends EFactoryImpl implements LogFactory {
 	public ProjectUndeleted createProjectUndeleted() {
 		ProjectUndeletedImpl projectUndeleted = new ProjectUndeletedImpl();
 		return projectUndeleted;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public RevisionUpdated createRevisionUpdated() {
+		RevisionUpdatedImpl revisionUpdated = new RevisionUpdatedImpl();
+		return revisionUpdated;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public GeoTagUpdated createGeoTagUpdated() {
+		GeoTagUpdatedImpl geoTagUpdated = new GeoTagUpdatedImpl();
+		return geoTagUpdated;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ClashDetectionSettingsUpdated createClashDetectionSettingsUpdated() {
+		ClashDetectionSettingsUpdatedImpl clashDetectionSettingsUpdated = new ClashDetectionSettingsUpdatedImpl();
+		return clashDetectionSettingsUpdated;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PasswordChanged createPasswordChanged() {
+		PasswordChangedImpl passwordChanged = new PasswordChangedImpl();
+		return passwordChanged;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public UserChanged createUserChanged() {
+		UserChangedImpl userChanged = new UserChangedImpl();
+		return userChanged;
 	}
 
 	/**

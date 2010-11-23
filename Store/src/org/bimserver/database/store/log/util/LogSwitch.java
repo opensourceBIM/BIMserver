@@ -8,9 +8,10 @@ package org.bimserver.database.store.log.util;
 
 import java.util.List;
 
-import org.bimserver.database.store.log.*;
+import org.bimserver.database.store.log.ClashDetectionSettingsUpdated;
 import org.bimserver.database.store.log.DatabaseCreated;
 import org.bimserver.database.store.log.Download;
+import org.bimserver.database.store.log.GeoTagUpdated;
 import org.bimserver.database.store.log.LogAction;
 import org.bimserver.database.store.log.LogPackage;
 import org.bimserver.database.store.log.NewCheckoutAdded;
@@ -18,14 +19,17 @@ import org.bimserver.database.store.log.NewIgnoreFileUploaded;
 import org.bimserver.database.store.log.NewProjectAdded;
 import org.bimserver.database.store.log.NewRevisionAdded;
 import org.bimserver.database.store.log.NewUserAdded;
+import org.bimserver.database.store.log.PasswordChanged;
 import org.bimserver.database.store.log.PasswordReset;
 import org.bimserver.database.store.log.ProjectDeleted;
 import org.bimserver.database.store.log.ProjectUndeleted;
 import org.bimserver.database.store.log.ProjectUpdated;
+import org.bimserver.database.store.log.RevisionUpdated;
 import org.bimserver.database.store.log.ServerLog;
 import org.bimserver.database.store.log.ServerStarted;
 import org.bimserver.database.store.log.SettingsSaved;
 import org.bimserver.database.store.log.UserAddedToProject;
+import org.bimserver.database.store.log.UserChanged;
 import org.bimserver.database.store.log.UserDeleted;
 import org.bimserver.database.store.log.UserRemovedFromProject;
 import org.bimserver.database.store.log.UserUndeleted;
@@ -234,6 +238,41 @@ public class LogSwitch<T> {
 				ProjectUndeleted projectUndeleted = (ProjectUndeleted)theEObject;
 				T result = caseProjectUndeleted(projectUndeleted);
 				if (result == null) result = caseLogAction(projectUndeleted);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case LogPackage.REVISION_UPDATED: {
+				RevisionUpdated revisionUpdated = (RevisionUpdated)theEObject;
+				T result = caseRevisionUpdated(revisionUpdated);
+				if (result == null) result = caseLogAction(revisionUpdated);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case LogPackage.GEO_TAG_UPDATED: {
+				GeoTagUpdated geoTagUpdated = (GeoTagUpdated)theEObject;
+				T result = caseGeoTagUpdated(geoTagUpdated);
+				if (result == null) result = caseLogAction(geoTagUpdated);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case LogPackage.CLASH_DETECTION_SETTINGS_UPDATED: {
+				ClashDetectionSettingsUpdated clashDetectionSettingsUpdated = (ClashDetectionSettingsUpdated)theEObject;
+				T result = caseClashDetectionSettingsUpdated(clashDetectionSettingsUpdated);
+				if (result == null) result = caseLogAction(clashDetectionSettingsUpdated);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case LogPackage.PASSWORD_CHANGED: {
+				PasswordChanged passwordChanged = (PasswordChanged)theEObject;
+				T result = casePasswordChanged(passwordChanged);
+				if (result == null) result = caseLogAction(passwordChanged);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case LogPackage.USER_CHANGED: {
+				UserChanged userChanged = (UserChanged)theEObject;
+				T result = caseUserChanged(userChanged);
+				if (result == null) result = caseLogAction(userChanged);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -523,6 +562,81 @@ public class LogSwitch<T> {
 	 * @generated
 	 */
 	public T caseProjectUndeleted(ProjectUndeleted object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Revision Updated</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Revision Updated</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseRevisionUpdated(RevisionUpdated object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Geo Tag Updated</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Geo Tag Updated</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseGeoTagUpdated(GeoTagUpdated object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Clash Detection Settings Updated</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Clash Detection Settings Updated</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseClashDetectionSettingsUpdated(ClashDetectionSettingsUpdated object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Password Changed</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Password Changed</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePasswordChanged(PasswordChanged object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>User Changed</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>User Changed</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseUserChanged(UserChanged object) {
 		return null;
 	}
 

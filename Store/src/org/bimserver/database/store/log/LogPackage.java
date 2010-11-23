@@ -236,13 +236,22 @@ public interface LogPackage extends EPackage {
 	int NEW_PROJECT_ADDED__PROJECT = LOG_ACTION_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Parent Project</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NEW_PROJECT_ADDED__PARENT_PROJECT = LOG_ACTION_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>New Project Added</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NEW_PROJECT_ADDED_FEATURE_COUNT = LOG_ACTION_FEATURE_COUNT + 1;
+	int NEW_PROJECT_ADDED_FEATURE_COUNT = LOG_ACTION_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.database.store.log.impl.NewRevisionAddedImpl <em>New Revision Added</em>}' class.
@@ -1070,6 +1079,281 @@ public interface LogPackage extends EPackage {
 	int PROJECT_UNDELETED_FEATURE_COUNT = LOG_ACTION_FEATURE_COUNT + 1;
 
 	/**
+	 * The meta object id for the '{@link org.bimserver.database.store.log.impl.RevisionUpdatedImpl <em>Revision Updated</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.database.store.log.impl.RevisionUpdatedImpl
+	 * @see org.bimserver.database.store.log.impl.LogPackageImpl#getRevisionUpdated()
+	 * @generated
+	 */
+	int REVISION_UPDATED = 19;
+
+	/**
+	 * The feature id for the '<em><b>Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REVISION_UPDATED__DATE = LOG_ACTION__DATE;
+
+	/**
+	 * The feature id for the '<em><b>Executor</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REVISION_UPDATED__EXECUTOR = LOG_ACTION__EXECUTOR;
+
+	/**
+	 * The feature id for the '<em><b>Access Method</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REVISION_UPDATED__ACCESS_METHOD = LOG_ACTION__ACCESS_METHOD;
+
+	/**
+	 * The feature id for the '<em><b>Revision</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REVISION_UPDATED__REVISION = LOG_ACTION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Revision Updated</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REVISION_UPDATED_FEATURE_COUNT = LOG_ACTION_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link org.bimserver.database.store.log.impl.GeoTagUpdatedImpl <em>Geo Tag Updated</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.database.store.log.impl.GeoTagUpdatedImpl
+	 * @see org.bimserver.database.store.log.impl.LogPackageImpl#getGeoTagUpdated()
+	 * @generated
+	 */
+	int GEO_TAG_UPDATED = 20;
+
+	/**
+	 * The feature id for the '<em><b>Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEO_TAG_UPDATED__DATE = LOG_ACTION__DATE;
+
+	/**
+	 * The feature id for the '<em><b>Executor</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEO_TAG_UPDATED__EXECUTOR = LOG_ACTION__EXECUTOR;
+
+	/**
+	 * The feature id for the '<em><b>Access Method</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEO_TAG_UPDATED__ACCESS_METHOD = LOG_ACTION__ACCESS_METHOD;
+
+	/**
+	 * The feature id for the '<em><b>Geo Tag</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEO_TAG_UPDATED__GEO_TAG = LOG_ACTION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Geo Tag Updated</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEO_TAG_UPDATED_FEATURE_COUNT = LOG_ACTION_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link org.bimserver.database.store.log.impl.ClashDetectionSettingsUpdatedImpl <em>Clash Detection Settings Updated</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.database.store.log.impl.ClashDetectionSettingsUpdatedImpl
+	 * @see org.bimserver.database.store.log.impl.LogPackageImpl#getClashDetectionSettingsUpdated()
+	 * @generated
+	 */
+	int CLASH_DETECTION_SETTINGS_UPDATED = 21;
+
+	/**
+	 * The feature id for the '<em><b>Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASH_DETECTION_SETTINGS_UPDATED__DATE = LOG_ACTION__DATE;
+
+	/**
+	 * The feature id for the '<em><b>Executor</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASH_DETECTION_SETTINGS_UPDATED__EXECUTOR = LOG_ACTION__EXECUTOR;
+
+	/**
+	 * The feature id for the '<em><b>Access Method</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASH_DETECTION_SETTINGS_UPDATED__ACCESS_METHOD = LOG_ACTION__ACCESS_METHOD;
+
+	/**
+	 * The feature id for the '<em><b>Clash Detection Settings</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASH_DETECTION_SETTINGS_UPDATED__CLASH_DETECTION_SETTINGS = LOG_ACTION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Clash Detection Settings Updated</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASH_DETECTION_SETTINGS_UPDATED_FEATURE_COUNT = LOG_ACTION_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link org.bimserver.database.store.log.impl.PasswordChangedImpl <em>Password Changed</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.database.store.log.impl.PasswordChangedImpl
+	 * @see org.bimserver.database.store.log.impl.LogPackageImpl#getPasswordChanged()
+	 * @generated
+	 */
+	int PASSWORD_CHANGED = 22;
+
+	/**
+	 * The feature id for the '<em><b>Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PASSWORD_CHANGED__DATE = LOG_ACTION__DATE;
+
+	/**
+	 * The feature id for the '<em><b>Executor</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PASSWORD_CHANGED__EXECUTOR = LOG_ACTION__EXECUTOR;
+
+	/**
+	 * The feature id for the '<em><b>Access Method</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PASSWORD_CHANGED__ACCESS_METHOD = LOG_ACTION__ACCESS_METHOD;
+
+	/**
+	 * The feature id for the '<em><b>User</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PASSWORD_CHANGED__USER = LOG_ACTION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Password Changed</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PASSWORD_CHANGED_FEATURE_COUNT = LOG_ACTION_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link org.bimserver.database.store.log.impl.UserChangedImpl <em>User Changed</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.database.store.log.impl.UserChangedImpl
+	 * @see org.bimserver.database.store.log.impl.LogPackageImpl#getUserChanged()
+	 * @generated
+	 */
+	int USER_CHANGED = 23;
+
+	/**
+	 * The feature id for the '<em><b>Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_CHANGED__DATE = LOG_ACTION__DATE;
+
+	/**
+	 * The feature id for the '<em><b>Executor</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_CHANGED__EXECUTOR = LOG_ACTION__EXECUTOR;
+
+	/**
+	 * The feature id for the '<em><b>Access Method</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_CHANGED__ACCESS_METHOD = LOG_ACTION__ACCESS_METHOD;
+
+	/**
+	 * The feature id for the '<em><b>User</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_CHANGED__USER = LOG_ACTION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>User Changed</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_CHANGED_FEATURE_COUNT = LOG_ACTION_FEATURE_COUNT + 1;
+
+	/**
 	 * The meta object id for the '{@link org.bimserver.database.store.log.AccessMethod <em>Access Method</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1077,7 +1361,7 @@ public interface LogPackage extends EPackage {
 	 * @see org.bimserver.database.store.log.impl.LogPackageImpl#getAccessMethod()
 	 * @generated
 	 */
-	int ACCESS_METHOD = 19;
+	int ACCESS_METHOD = 24;
 
 
 	/**
@@ -1185,6 +1469,17 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getNewProjectAdded_Project();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.database.store.log.NewProjectAdded#getParentProject <em>Parent Project</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Parent Project</em>'.
+	 * @see org.bimserver.database.store.log.NewProjectAdded#getParentProject()
+	 * @see #getNewProjectAdded()
+	 * @generated
+	 */
+	EReference getNewProjectAdded_ParentProject();
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.database.store.log.NewRevisionAdded <em>New Revision Added</em>}'.
@@ -1502,6 +1797,111 @@ public interface LogPackage extends EPackage {
 	EReference getProjectUndeleted_Project();
 
 	/**
+	 * Returns the meta object for class '{@link org.bimserver.database.store.log.RevisionUpdated <em>Revision Updated</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Revision Updated</em>'.
+	 * @see org.bimserver.database.store.log.RevisionUpdated
+	 * @generated
+	 */
+	EClass getRevisionUpdated();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.database.store.log.RevisionUpdated#getRevision <em>Revision</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Revision</em>'.
+	 * @see org.bimserver.database.store.log.RevisionUpdated#getRevision()
+	 * @see #getRevisionUpdated()
+	 * @generated
+	 */
+	EReference getRevisionUpdated_Revision();
+
+	/**
+	 * Returns the meta object for class '{@link org.bimserver.database.store.log.GeoTagUpdated <em>Geo Tag Updated</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Geo Tag Updated</em>'.
+	 * @see org.bimserver.database.store.log.GeoTagUpdated
+	 * @generated
+	 */
+	EClass getGeoTagUpdated();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.database.store.log.GeoTagUpdated#getGeoTag <em>Geo Tag</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Geo Tag</em>'.
+	 * @see org.bimserver.database.store.log.GeoTagUpdated#getGeoTag()
+	 * @see #getGeoTagUpdated()
+	 * @generated
+	 */
+	EReference getGeoTagUpdated_GeoTag();
+
+	/**
+	 * Returns the meta object for class '{@link org.bimserver.database.store.log.ClashDetectionSettingsUpdated <em>Clash Detection Settings Updated</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Clash Detection Settings Updated</em>'.
+	 * @see org.bimserver.database.store.log.ClashDetectionSettingsUpdated
+	 * @generated
+	 */
+	EClass getClashDetectionSettingsUpdated();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.database.store.log.ClashDetectionSettingsUpdated#getClashDetectionSettings <em>Clash Detection Settings</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Clash Detection Settings</em>'.
+	 * @see org.bimserver.database.store.log.ClashDetectionSettingsUpdated#getClashDetectionSettings()
+	 * @see #getClashDetectionSettingsUpdated()
+	 * @generated
+	 */
+	EReference getClashDetectionSettingsUpdated_ClashDetectionSettings();
+
+	/**
+	 * Returns the meta object for class '{@link org.bimserver.database.store.log.PasswordChanged <em>Password Changed</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Password Changed</em>'.
+	 * @see org.bimserver.database.store.log.PasswordChanged
+	 * @generated
+	 */
+	EClass getPasswordChanged();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.database.store.log.PasswordChanged#getUser <em>User</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>User</em>'.
+	 * @see org.bimserver.database.store.log.PasswordChanged#getUser()
+	 * @see #getPasswordChanged()
+	 * @generated
+	 */
+	EReference getPasswordChanged_User();
+
+	/**
+	 * Returns the meta object for class '{@link org.bimserver.database.store.log.UserChanged <em>User Changed</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>User Changed</em>'.
+	 * @see org.bimserver.database.store.log.UserChanged
+	 * @generated
+	 */
+	EClass getUserChanged();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.database.store.log.UserChanged#getUser <em>User</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>User</em>'.
+	 * @see org.bimserver.database.store.log.UserChanged#getUser()
+	 * @see #getUserChanged()
+	 * @generated
+	 */
+	EReference getUserChanged_User();
+
+	/**
 	 * Returns the meta object for enum '{@link org.bimserver.database.store.log.AccessMethod <em>Access Method</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1620,6 +2020,14 @@ public interface LogPackage extends EPackage {
 		 * @generated
 		 */
 		EReference NEW_PROJECT_ADDED__PROJECT = eINSTANCE.getNewProjectAdded_Project();
+
+		/**
+		 * The meta object literal for the '<em><b>Parent Project</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference NEW_PROJECT_ADDED__PARENT_PROJECT = eINSTANCE.getNewProjectAdded_ParentProject();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.database.store.log.impl.NewRevisionAddedImpl <em>New Revision Added</em>}' class.
@@ -1890,6 +2298,96 @@ public interface LogPackage extends EPackage {
 		 * @generated
 		 */
 		EReference PROJECT_UNDELETED__PROJECT = eINSTANCE.getProjectUndeleted_Project();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.database.store.log.impl.RevisionUpdatedImpl <em>Revision Updated</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.database.store.log.impl.RevisionUpdatedImpl
+		 * @see org.bimserver.database.store.log.impl.LogPackageImpl#getRevisionUpdated()
+		 * @generated
+		 */
+		EClass REVISION_UPDATED = eINSTANCE.getRevisionUpdated();
+
+		/**
+		 * The meta object literal for the '<em><b>Revision</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference REVISION_UPDATED__REVISION = eINSTANCE.getRevisionUpdated_Revision();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.database.store.log.impl.GeoTagUpdatedImpl <em>Geo Tag Updated</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.database.store.log.impl.GeoTagUpdatedImpl
+		 * @see org.bimserver.database.store.log.impl.LogPackageImpl#getGeoTagUpdated()
+		 * @generated
+		 */
+		EClass GEO_TAG_UPDATED = eINSTANCE.getGeoTagUpdated();
+
+		/**
+		 * The meta object literal for the '<em><b>Geo Tag</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GEO_TAG_UPDATED__GEO_TAG = eINSTANCE.getGeoTagUpdated_GeoTag();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.database.store.log.impl.ClashDetectionSettingsUpdatedImpl <em>Clash Detection Settings Updated</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.database.store.log.impl.ClashDetectionSettingsUpdatedImpl
+		 * @see org.bimserver.database.store.log.impl.LogPackageImpl#getClashDetectionSettingsUpdated()
+		 * @generated
+		 */
+		EClass CLASH_DETECTION_SETTINGS_UPDATED = eINSTANCE.getClashDetectionSettingsUpdated();
+
+		/**
+		 * The meta object literal for the '<em><b>Clash Detection Settings</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CLASH_DETECTION_SETTINGS_UPDATED__CLASH_DETECTION_SETTINGS = eINSTANCE.getClashDetectionSettingsUpdated_ClashDetectionSettings();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.database.store.log.impl.PasswordChangedImpl <em>Password Changed</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.database.store.log.impl.PasswordChangedImpl
+		 * @see org.bimserver.database.store.log.impl.LogPackageImpl#getPasswordChanged()
+		 * @generated
+		 */
+		EClass PASSWORD_CHANGED = eINSTANCE.getPasswordChanged();
+
+		/**
+		 * The meta object literal for the '<em><b>User</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PASSWORD_CHANGED__USER = eINSTANCE.getPasswordChanged_User();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.database.store.log.impl.UserChangedImpl <em>User Changed</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.database.store.log.impl.UserChangedImpl
+		 * @see org.bimserver.database.store.log.impl.LogPackageImpl#getUserChanged()
+		 * @generated
+		 */
+		EClass USER_CHANGED = eINSTANCE.getUserChanged();
+
+		/**
+		 * The meta object literal for the '<em><b>User</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference USER_CHANGED__USER = eINSTANCE.getUserChanged_User();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.database.store.log.AccessMethod <em>Access Method</em>}' enum.

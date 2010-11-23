@@ -4,7 +4,7 @@ import java.util.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
-public class SUserUndeleted extends SLogAction
+public class SClashDetectionSettingsUpdated extends SLogAction
 {
 	private long oid;
 	
@@ -15,13 +15,13 @@ public class SUserUndeleted extends SLogAction
 	public void setOid(long oid) {
 		this.oid = oid;
 	}
-	private long userId;
-	public long getUserId() {
-		return userId;
+	private long clashDetectionSettingsId;
+	public long getClashDetectionSettingsId() {
+		return clashDetectionSettingsId;
 	}
 
-	public void setUserId(long userId) {
-		this.userId = userId;
+	public void setClashDetectionSettingsId(long clashDetectionSettingsId) {
+		this.clashDetectionSettingsId = clashDetectionSettingsId;
 	}
 	
 	@Override
@@ -40,7 +40,7 @@ public class SUserUndeleted extends SLogAction
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		SUserUndeleted other = (SUserUndeleted) obj;
+		SClashDetectionSettingsUpdated other = (SClashDetectionSettingsUpdated) obj;
 		if (oid != other.oid)
 			return false;
 		return true;

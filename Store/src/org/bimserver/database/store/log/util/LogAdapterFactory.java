@@ -6,9 +6,10 @@
  */
 package org.bimserver.database.store.log.util;
 
-import org.bimserver.database.store.log.*;
+import org.bimserver.database.store.log.ClashDetectionSettingsUpdated;
 import org.bimserver.database.store.log.DatabaseCreated;
 import org.bimserver.database.store.log.Download;
+import org.bimserver.database.store.log.GeoTagUpdated;
 import org.bimserver.database.store.log.LogAction;
 import org.bimserver.database.store.log.LogPackage;
 import org.bimserver.database.store.log.NewCheckoutAdded;
@@ -16,14 +17,17 @@ import org.bimserver.database.store.log.NewIgnoreFileUploaded;
 import org.bimserver.database.store.log.NewProjectAdded;
 import org.bimserver.database.store.log.NewRevisionAdded;
 import org.bimserver.database.store.log.NewUserAdded;
+import org.bimserver.database.store.log.PasswordChanged;
 import org.bimserver.database.store.log.PasswordReset;
 import org.bimserver.database.store.log.ProjectDeleted;
 import org.bimserver.database.store.log.ProjectUndeleted;
 import org.bimserver.database.store.log.ProjectUpdated;
+import org.bimserver.database.store.log.RevisionUpdated;
 import org.bimserver.database.store.log.ServerLog;
 import org.bimserver.database.store.log.ServerStarted;
 import org.bimserver.database.store.log.SettingsSaved;
 import org.bimserver.database.store.log.UserAddedToProject;
+import org.bimserver.database.store.log.UserChanged;
 import org.bimserver.database.store.log.UserDeleted;
 import org.bimserver.database.store.log.UserRemovedFromProject;
 import org.bimserver.database.store.log.UserUndeleted;
@@ -163,6 +167,26 @@ public class LogAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseProjectUndeleted(ProjectUndeleted object) {
 				return createProjectUndeletedAdapter();
+			}
+			@Override
+			public Adapter caseRevisionUpdated(RevisionUpdated object) {
+				return createRevisionUpdatedAdapter();
+			}
+			@Override
+			public Adapter caseGeoTagUpdated(GeoTagUpdated object) {
+				return createGeoTagUpdatedAdapter();
+			}
+			@Override
+			public Adapter caseClashDetectionSettingsUpdated(ClashDetectionSettingsUpdated object) {
+				return createClashDetectionSettingsUpdatedAdapter();
+			}
+			@Override
+			public Adapter casePasswordChanged(PasswordChanged object) {
+				return createPasswordChangedAdapter();
+			}
+			@Override
+			public Adapter caseUserChanged(UserChanged object) {
+				return createUserChangedAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -447,6 +471,76 @@ public class LogAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createProjectUndeletedAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.database.store.log.RevisionUpdated <em>Revision Updated</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.database.store.log.RevisionUpdated
+	 * @generated
+	 */
+	public Adapter createRevisionUpdatedAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.database.store.log.GeoTagUpdated <em>Geo Tag Updated</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.database.store.log.GeoTagUpdated
+	 * @generated
+	 */
+	public Adapter createGeoTagUpdatedAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.database.store.log.ClashDetectionSettingsUpdated <em>Clash Detection Settings Updated</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.database.store.log.ClashDetectionSettingsUpdated
+	 * @generated
+	 */
+	public Adapter createClashDetectionSettingsUpdatedAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.database.store.log.PasswordChanged <em>Password Changed</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.database.store.log.PasswordChanged
+	 * @generated
+	 */
+	public Adapter createPasswordChangedAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.database.store.log.UserChanged <em>User Changed</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.database.store.log.UserChanged
+	 * @generated
+	 */
+	public Adapter createUserChangedAdapter() {
 		return null;
 	}
 

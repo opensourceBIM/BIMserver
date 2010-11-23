@@ -4,7 +4,7 @@ import java.util.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
-public class SUserUndeleted extends SLogAction
+public class SRevisionUpdated extends SLogAction
 {
 	private long oid;
 	
@@ -15,13 +15,13 @@ public class SUserUndeleted extends SLogAction
 	public void setOid(long oid) {
 		this.oid = oid;
 	}
-	private long userId;
-	public long getUserId() {
-		return userId;
+	private long revisionId;
+	public long getRevisionId() {
+		return revisionId;
 	}
 
-	public void setUserId(long userId) {
-		this.userId = userId;
+	public void setRevisionId(long revisionId) {
+		this.revisionId = revisionId;
 	}
 	
 	@Override
@@ -40,7 +40,7 @@ public class SUserUndeleted extends SLogAction
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		SUserUndeleted other = (SUserUndeleted) obj;
+		SRevisionUpdated other = (SRevisionUpdated) obj;
 		if (oid != other.oid)
 			return false;
 		return true;

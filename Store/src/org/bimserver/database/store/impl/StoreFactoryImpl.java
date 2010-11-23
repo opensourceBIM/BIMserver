@@ -6,7 +6,6 @@
  */
 package org.bimserver.database.store.impl;
 
-import org.bimserver.database.store.*;
 import org.bimserver.database.store.CheckinState;
 import org.bimserver.database.store.Checkout;
 import org.bimserver.database.store.Clash;

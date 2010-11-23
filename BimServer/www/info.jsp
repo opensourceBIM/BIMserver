@@ -30,7 +30,15 @@
 <%@page import="org.bimserver.interfaces.objects.SProjectUpdated"%>
 <%@page import="org.bimserver.shared.SUserSession"%>
 <%@page import="org.bimserver.JspHelper"%>
-<div class="sidebar">
+
+<%@page import="org.bimserver.interfaces.objects.SClashDetectionSettingsUpdated"%>
+<%@page import="org.bimserver.interfaces.objects.SGeoTagUpdated"%>
+<%@page import="org.bimserver.interfaces.objects.SUserChanged"%>
+<%@page import="org.bimserver.interfaces.objects.SPasswordReset"%>
+<%@page import="org.bimserver.interfaces.objects.SPasswordChanged"%>
+<%@page import="org.eclipse.jetty.security.authentication.LoginAuthenticator"%>
+<%@page import="org.bimserver.interfaces.objects.SClashDetectionSettings"%>
+<%@page import="org.bimserver.interfaces.objects.SGeoTag"%><div class="sidebar">
 </div>
 <div class="content">
 <h1>Info</h1>
@@ -220,8 +228,15 @@ E-mail <a href="mailto:<%= checkVersion.getOnlineVersion().getSupportEmail() %>"
 				SUser sUser = loginManager.getService().getUserByUoid(((SUserAddedToProject)log).getUserId());
 %>User <a href="user.jsp?uoid=<%=sUser.getOid()%>"><%=sUser.getName() %></a> added to project <a href="project.jsp?poid=<%=sProject.getOid()%>"><%=sProject.getName() %></a><%
 			} else if (log instanceof SNewProjectAdded) {
-				SProject sProject = loginManager.getService().getProjectByPoid(((SNewProjectAdded)log).getProjectId());
+				SNewProjectAdded sNewProjectAdded = (SNewProjectAdded)log;
+				SProject sProject = loginManager.getService().getProjectByPoid(sNewProjectAdded.getProjectId());
 %>Project <a href="project.jsp?poid=<%=sProject.getOid()%>"><%=sProject.getName() %></a> created<%
+if (sNewProjectAdded.getParentProjectId() != -1) {
+	SProject parentProject = (SProject)loginManager.getService().getProjectByPoid(sNewProjectAdded.getParentProjectId());
+%>
+ as a subproject of <a href="project.jsp?poid=<%=parentProject.getOid()%>"><%=parentProject.getName() %></a>
+<%
+}
 			} else if (log instanceof SNewUserAdded) {
 				SUser sUser = loginManager.getService().getUserByUoid(((SNewUserAdded)log).getUserId());
 %>User <a href="user.jsp?uoid=<%=sUser.getOid()%>"><%=sUser.getName() %></a> created<%
@@ -251,6 +266,32 @@ E-mail <a href="mailto:<%= checkVersion.getOnlineVersion().getSupportEmail() %>"
 			} else if (log instanceof SProjectUpdated) {
 				SProject sProject = loginManager.getService().getProjectByPoid(((SProjectUpdated)log).getProjectId());
 %>Project <a href="project.jsp?poid=<%=sProject.getOid()%>"><%=sProject.getName() %></a> updated<%
+			} else if (log instanceof SClashDetectionSettingsUpdated) {
+				SClashDetectionSettingsUpdated sClashDetectionSettingsUpdated =  (SClashDetectionSettingsUpdated)log;
+				SClashDetectionSettings sClashDetectionSettings = loginManager.getService().getClashDetectionSettings(sClashDetectionSettingsUpdated.getClashDetectionSettingsId());
+				SProject sProject = loginManager.getService().getProjectByPoid(sClashDetectionSettings.getProjects().get(0));
+%>Clash detection settings of project <a href="project.jsp?poid=<%=sProject.getOid()%>"><%=sProject.getName() %></a> updated<%				
+			} else if (log instanceof SGeoTagUpdated) {
+				SGeoTagUpdated sGeoTagUpdated =  (SGeoTagUpdated)log;
+			    SGeoTag sGeoTag = loginManager.getService().getGeoTag(sGeoTagUpdated.getGeoTagId());
+			    SProject sProject = loginManager.getService().getProjectByPoid(sGeoTag.getProjects().get(0));
+%>GeoTag of project <a href="project.jsp?poid=<%=sProject.getOid()%>"><%=sProject.getName() %></a> updated<%				
+			} else if (log instanceof SUserChanged) {
+				SUserChanged sUserChanged = (SUserChanged)log;
+				SUser sUser = loginManager.getService().getUserByUoid(sUserChanged.getUserId());
+%>User <a href="user.jsp?uoid=<%=sUser.getOid()%>"><%=sUser.getName() %></a> changed<%
+			} else if (log instanceof SPasswordReset) {
+				SPasswordReset sPasswordReset = (SPasswordReset)log;
+				SUser sUser = loginManager.getService().getUserByUoid(sPasswordReset.getUserId());
+%>Password of user <a href="user.jsp?uoid=<%=sUser.getOid()%>"><%=sUser.getName() %></a> resetted<%
+			} else if (log instanceof SPasswordChanged) {
+				SPasswordChanged sPasswordChanged = (SPasswordChanged)log;
+				SUser sUser = loginManager.getService().getUserByUoid(sPasswordChanged.getUserId());
+%>Password of user <a href="user.jsp?uoid=<%=sUser.getOid()%>"><%=sUser.getName() %></a> changed<%
+			} else {
+%>
+[Not implemented]
+<%
 			}
 		%>
 		</td>

@@ -179,6 +179,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="NewProjectAdded" eSuperTypes="#//log/LogAction">
       <eStructuralFeatures xsi:type="ecore:EReference" name="project" eType="#//Project"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="parentProject" eType="#//Project"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="NewRevisionAdded" eSuperTypes="#//log/LogAction">
       <eStructuralFeatures xsi:type="ecore:EReference" name="revision" eType="#//Revision"/>
@@ -226,6 +227,22 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ProjectUndeleted" eSuperTypes="#//log/LogAction">
       <eStructuralFeatures xsi:type="ecore:EReference" name="project" eType="#//Project"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="RevisionUpdated" eSuperTypes="#//log/LogAction">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="revision" eType="#//Revision"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="GeoTagUpdated" eSuperTypes="#//log/LogAction">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="geoTag" eType="#//GeoTag"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ClashDetectionSettingsUpdated" eSuperTypes="#//log/LogAction">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="clashDetectionSettings"
+          eType="#//ClashDetectionSettings"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="PasswordChanged" eSuperTypes="#//log/LogAction">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="user" eType="#//User"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="UserChanged" eSuperTypes="#//log/LogAction">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="user" eType="#//User"/>
     </eClassifiers>
   </eSubpackages>
 </ecore:EPackage>

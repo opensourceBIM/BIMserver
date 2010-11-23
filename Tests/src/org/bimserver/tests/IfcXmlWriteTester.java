@@ -8,8 +8,8 @@ import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
 import nl.tue.buildingsmart.express.parser.ExpressSchemaParser;
 
 import org.bimserver.ifc.IfcModel;
-import org.bimserver.ifc.file.reader.IfcStepDeserializer;
 import org.bimserver.ifc.file.reader.IfcFileReader;
+import org.bimserver.ifc.file.reader.IfcStepDeserializer;
 import org.bimserver.ifc.file.reader.IncorrectIfcFileException;
 import org.bimserver.ifc.xml.writer.IfcXmlSerializer;
 
