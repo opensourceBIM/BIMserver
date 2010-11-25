@@ -38,7 +38,7 @@
 			}
 			cookie = getCookie(t.cookie);
 			for (i in t.tabs) {
-				if (t.tabs[i].div.id == cookie) {
+				if (t.tabs[i] != null && t.tabs[i].div != null && t.tabs[i].div.id == cookie) {
 					t.tabShow(i);
 					break;
 				}
