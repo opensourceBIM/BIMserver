@@ -22,6 +22,7 @@
 <%@page import="org.bimserver.MailSystem"%>
 <%@page import="org.slf4j.Logger"%>
 <%@page import="org.slf4j.LoggerFactory"%>
+<%@page import="org.bimserver.interfaces.objects.SUserType"%>
 <jsp:include page="htmlheader.jsp" />
 <jsp:useBean id="loginManager" scope="session" class="org.bimserver.LoginManager" />
 <%
@@ -35,7 +36,7 @@
 			String username = request.getParameter("register_username");
 			String password = request.getParameter("register_password");
 			try {
-				long uoid = loginManager.getAdminService().addUser(username, password, name);
+				long uoid = loginManager.getAdminService().addUser(username, password, name, SUserType.USER);
 			} catch (UserException e) {
 				errorMessages.add(e.getUserMessage());
 			}
