@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.bimserver.ifcengine;
+package org.bimserver.ifcengine.jvm;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -12,6 +12,8 @@ import java.util.Set;
 import org.bimserver.database.store.EidClash;
 import org.bimserver.database.store.GuidClash;
 import org.bimserver.database.store.StoreFactory;
+import org.bimserver.ifcengine.IfcEngineInterface;
+import org.bimserver.ifcengine.SdaiTypes;
 import org.bimserver.ifcengine.IfcEngineInterface.StreamCallback;
 
 import com.sun.jna.Memory;

@@ -125,11 +125,11 @@ public class ServerInitializer implements ServletContextListener {
 
 			RestApplication.serviceFactory = ServiceFactory.getINSTANCE();
 			
-			if (serverType == ServerType.DEPLOYED_WAR) {
-				File libDir = new File(servletContext.getRealPath("/") + "WEB-INF" + File.separator + "lib");
-				LOGGER.info("adding lib dir: " + libDir.getAbsolutePath());
-				QueryCompiler.addJarFolder(libDir);
-			}
+//			if (serverType == ServerType.DEPLOYED_WAR) {
+//				File libDir = new File(servletContext.getRealPath("/") + "WEB-INF" + File.separator + "lib");
+//				LOGGER.info("adding lib dir: " + libDir.getAbsolutePath());
+//				QueryCompiler.addJarFolder(libDir);
+//			}
 			
 			ServerStarted serverStarted = LogFactory.eINSTANCE.createServerStarted();
 			serverStarted.setDate(new Date());

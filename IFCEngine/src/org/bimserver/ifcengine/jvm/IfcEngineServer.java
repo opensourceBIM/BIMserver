@@ -1,4 +1,4 @@
-package org.bimserver.ifcengine;
+package org.bimserver.ifcengine.jvm;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -11,8 +11,11 @@ import java.util.Set;
 
 import org.bimserver.database.store.EidClash;
 import org.bimserver.database.store.GuidClash;
-import org.bimserver.ifcengine.IfcEngineJNA.InstanceVisualisationProperties;
-import org.bimserver.ifcengine.IfcEngineJNA.SurfaceProperties;
+import org.bimserver.ifcengine.Command;
+import org.bimserver.ifcengine.IfcEngineException;
+import org.bimserver.ifcengine.SdaiTypes;
+import org.bimserver.ifcengine.jvm.IfcEngineJNA.InstanceVisualisationProperties;
+import org.bimserver.ifcengine.jvm.IfcEngineJNA.SurfaceProperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
