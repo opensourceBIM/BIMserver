@@ -4,7 +4,7 @@ import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
-import org.bimserver.ifcengine.IfcEngineJNA.InstanceVisualisationProperties;
+import org.bimserver.ifcengine.jvm.IfcEngineJNA.InstanceVisualisationProperties;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
 import org.bimserver.shared.ResourceFetcher;
 

@@ -39,7 +39,7 @@ import org.bimserver.ifcengine.IfcEngineFactory;
 import org.bimserver.ifcengine.IfcEngineModel;
 import org.bimserver.ifcengine.Instance;
 import org.bimserver.ifcengine.SurfaceProperties;
-import org.bimserver.ifcengine.IfcEngineJNA.InstanceVisualisationProperties;
+import org.bimserver.ifcengine.jvm.IfcEngineJNA.InstanceVisualisationProperties;
 import org.bimserver.shared.ResultType;
 import org.codehaus.jettison.json.JSONException;
 import org.eclipse.emf.ecore.EObject;
