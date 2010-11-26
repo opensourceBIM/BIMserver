@@ -12,13 +12,13 @@
 <%@page import="org.bimserver.interfaces.objects.SUserType"%>
 <%@ include file="header.jsp" %>
 <!-- start map scripts - many thanks to Bart vd Eijnden www.osgis.nl -->
-<script type="text/javascript" src="http://extjs.cachefly.net/ext-3.2.1/adapter/ext/ext-base.js"></script>
-<script type="text/javascript" src="http://extjs.cachefly.net/ext-3.2.1/ext-all.js"></script>
-<link rel="stylesheet" type="text/css" href="http://extjs.cachefly.net/ext-3.2.1/resources/css/ext-all.css" />
-<script src="http://www.openlayers.org/api/2.9/OpenLayers.js"></script>
+<script type="text/javascript" src="js/adapter/ext/ext-base.js"></script>
+<script type="text/javascript" src="js/ext-all.js"></script>
+<link rel="stylesheet" type="text/css" href="css/ext-all.css" />
+<script type="text/javascript" src="js/OpenLayers.js"></script>
 <script type="text/javascript" src="js/ol_overrides.js"></script>
-<script type="text/javascript" src="http://api.geoext.org/0.7/script/GeoExt.js"></script>
-<script src="http://proj4js.org/lib/proj4js.js"></script>
+<script type="text/javascript" src="js/GeoExt.js"></script>
+<script type="text/javascript" src="js/proj4js.js"></script>
 <script type="text/javascript" src="js/map.js"></script>
 <!-- eind mapscripts -->
 <%
