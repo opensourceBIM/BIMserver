@@ -20,7 +20,7 @@ public class FailSafeIfcEngine {
 	private IfcEngineProcess engineProces;
 
 	public FailSafeIfcEngine(final File schemaFile, final File nativeBaseDir, ResourceFetcher resourceFetcher) throws IfcEngineException {
-		engineProces = new IfcEngineProcess(this, schemaFile, nativeBaseDir, resourceFetcher);
+		engineProces = new IfcEngineProcess(this, schemaFile, nativeBaseDir);
 		engineProces.start();
 		engineProces.waitForConnection();
 		in = new DataInputStream(new BufferedInputStream(engineProces.getInputStream()));
