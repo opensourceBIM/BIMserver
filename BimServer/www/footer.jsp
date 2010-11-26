@@ -12,7 +12,7 @@ $(document).ready(function(){
 });
 
 	function showOverlay(title, url) {
-		tb_show(title, url + "&width=" + $(document).width() * 0.7 + "&height=" + $(document).height() * 0.7);
+		tb_show(title, url + "&width=" + $(document).width() * 0.7 + "&height=" + Math.min($(document).height(), $(window).height()) * 0.8);
 	}
 
 	function instrumentBrowserLinks() {
