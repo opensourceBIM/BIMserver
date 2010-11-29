@@ -3,7 +3,7 @@
 <%@page import="org.bimserver.interfaces.objects.SRevision"%>
 <%@page import="org.bimserver.interfaces.objects.SClash"%>
 <%@page import="org.bimserver.interfaces.objects.SClashDetectionSettings"%>
-<%@page import="org.bimserver.JspHelper"%>
+<%@page import="org.bimserver.web.JspHelper"%>
 <%@page import="java.util.Set"%>
 <%@page import="java.util.HashSet"%>
 <%@page import="org.bimserver.shared.ResultType"%>

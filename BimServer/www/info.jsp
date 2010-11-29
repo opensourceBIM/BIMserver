@@ -29,7 +29,7 @@
 <%@page import="org.bimserver.interfaces.objects.SServerStarted"%>
 <%@page import="org.bimserver.interfaces.objects.SProjectUpdated"%>
 <%@page import="org.bimserver.shared.SUserSession"%>
-<%@page import="org.bimserver.JspHelper"%>
+<%@page import="org.bimserver.web.JspHelper"%>
 <%@page import="org.bimserver.interfaces.objects.SClashDetectionSettingsUpdated"%>
 <%@page import="org.bimserver.interfaces.objects.SGeoTagUpdated"%>
 <%@page import="org.bimserver.interfaces.objects.SUserChanged"%>

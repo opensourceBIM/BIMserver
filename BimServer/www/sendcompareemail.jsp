@@ -1,6 +1,6 @@
 <%@page import="org.bimserver.ifc.file.compare.CompareResult"%>
 <%@page import="org.bimserver.shared.SRevisionSummary"%>
-<%@page import="org.bimserver.JspHelper"%>
+<%@page import="org.bimserver.web.JspHelper"%>
 <%@page import="javax.mail.internet.MimeMessage"%>
 <%@page import="javax.mail.Transport"%>
 <%@page import="javax.mail.internet.InternetAddress"%>
@@ -10,10 +10,10 @@
 <%@page import="org.bimserver.ServerSettings"%>
 <%@page import="org.bimserver.shared.SCompareResult"%>
 <%@page import="org.bimserver.interfaces.objects.SProject"%>
-<%@page import="org.bimserver.MailSystem"%>
+<%@page import="org.bimserver.mail.MailSystem"%>
 <%@page import="org.slf4j.Logger"%>
 <%@page import="org.slf4j.LoggerFactory"%>
-<jsp:useBean id="loginManager" scope="session" class="org.bimserver.LoginManager" />
+<jsp:useBean id="loginManager" scope="session" class="org.bimserver.web.LoginManager" />
 <%
 	Logger logger = LoggerFactory.getLogger(MailSystem.class);
 	try {

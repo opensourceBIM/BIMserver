@@ -15,7 +15,7 @@
 %>
 
 
-<%@page import="org.bimserver.JspHelper"%><div class="sidebar">
+<%@page import="org.bimserver.web.JspHelper"%><div class="sidebar">
 </div>
 <div class="content">
 <%

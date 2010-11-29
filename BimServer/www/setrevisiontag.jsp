@@ -1,12 +1,12 @@
 <%@ page import="org.bimserver.shared.SRevisionSummary"%>
-<%@ page import="org.bimserver.JspHelper"%>
+<%@ page import="org.bimserver.web.JspHelper"%>
 <%@ page import="java.util.List"%>
 <%@ page import="org.bimserver.ServerSettings"%>
 <%@ page import="org.bimserver.interfaces.objects.SProject"%>
 <%@ page import="org.bimserver.interfaces.objects.SRevision"%>
 <%@ page import="org.bimserver.shared.UserException"%>
 <jsp:useBean id="loginManager" scope="session"
-	class="org.bimserver.LoginManager" />
+	class="org.bimserver.web.LoginManager" />
 
 <%
 	try {

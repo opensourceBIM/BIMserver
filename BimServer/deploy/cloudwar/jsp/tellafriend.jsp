@@ -5,7 +5,7 @@
 <%@page import="javax.mail.Session"%>
 <%@page import="java.util.Properties"%>
 <%@page import="org.bimserver.ServerSettings"%>
-<jsp:useBean id="loginManager" scope="session" class="org.bimserver.LoginManager" />
+<jsp:useBean id="loginManager" scope="session" class="org.bimserver.web.LoginManager" />
 <%
 	if (request.getParameter("email") != null) {
 		String senderName = loginManager.getService().getCurrentUser().getName();

@@ -7,7 +7,7 @@
 <%@page import="org.bimserver.shared.UserException"%>
 <%@page import="org.bimserver.serializers.EmfSerializerFactory"%>
 <%@page import="org.bimserver.shared.ResultType"%>
-<%@page import="org.bimserver.JspHelper"%>
+<%@page import="org.bimserver.web.JspHelper"%>
 <%@page import="org.bimserver.interfaces.objects.SProject"%>
 <%@page import="org.bimserver.interfaces.objects.SGeoTag"%>
 <%@page	import="org.bimserver.interfaces.objects.SClashDetectionSettings"%>

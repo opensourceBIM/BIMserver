@@ -10,6 +10,10 @@
 <%@page import="org.bimserver.ServerSettings"%>
 <%@page import="javax.mail.Transport"%>
 <%@page import="javax.mail.internet.MimeMessage"%>
+<%@page import="org.bimserver.mail.MailSystem"%>
+<%@page import="org.bimserver.web.JspHelper"%>
+<%@page import="org.bimserver.interfaces.objects.SUserType"%>
+<%@page import="org.bimserver.mail.MailSystem"%>
 <%@ include file="header.jsp" %>
 <%
 	if (loginManager.getService().isLoggedIn()) {
@@ -45,10 +49,7 @@
 			}
 		}
 %>
-
-<%@page import="org.bimserver.MailSystem"%>
-<%@page import="org.bimserver.JspHelper"%>
-<%@page import="org.bimserver.interfaces.objects.SUserType"%><div class="sidebar">
+<div class="sidebar">
 </div>
 
 <div class="content">

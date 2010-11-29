@@ -1,4 +1,4 @@
-<jsp:useBean id="loginManager" scope="session" class="org.bimserver.LoginManager" />
+<jsp:useBean id="loginManager" scope="session" class="org.bimserver.web.LoginManager" />
 <%
 	if (loginManager.getService().getCurrentUser().getUsername().contains("@")) {
 %>

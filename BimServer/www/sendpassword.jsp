@@ -14,7 +14,7 @@
 <%@page import="org.apache.velocity.Template"%>
 <%@page import="org.apache.velocity.VelocityContext"%>
 <%@page import="java.io.StringWriter"%>
-<%@page import="org.bimserver.TemplateEngine"%>
+<%@page import="org.bimserver.templating.TemplateEngine"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.Map"%>
 <%@page import="org.bimserver.templating.TemplateIdentifier"%>
