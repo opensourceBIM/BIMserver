@@ -13,6 +13,16 @@
 <%@page	import="org.bimserver.interfaces.objects.SClashDetectionSettings"%>
 <%@page import="org.bimserver.interfaces.objects.SUser"%>
 <%@page import="org.bimserver.interfaces.objects.SSIPrefix"%>
+<!-- start map scripts - many thanks to Bart vd Eijnden www.osgis.nl -->
+<script type="text/javascript" src="js/adapter/ext/ext-base.js"></script>
+<script type="text/javascript" src="js/ext-all.js"></script>
+<link rel="stylesheet" type="text/css" href="css/ext-all.css" />
+<script type="text/javascript" src="js/OpenLayers.js"></script>
+<script type="text/javascript" src="js/ol_overrides.js"></script>
+<script type="text/javascript" src="js/GeoExt.js"></script>
+<script type="text/javascript" src="js/proj4js.js"></script>
+<script type="text/javascript" src="js/map.js"></script>
+<!-- eind mapscripts -->
 <%@ include file="header.jsp"%>
 <%
 	if (loginManager.getService().isLoggedIn()) {
@@ -76,7 +86,7 @@
 <div id="guide_wrap_btm"></div>
 <div class="tabber" id="projecttabber">
 <div class="tabbertab" id="detailstab" title="Details">
-<form method="post" action="editproject.jsp">
+<form method="post" action="editproject.jsp" name="form">
 <table class="formtable">
 	<tr>
 		<td class="first">Name</td>
@@ -140,6 +150,11 @@
 		<option value="<%=sGeoTag.getEpsg()%>"><%=sGeoTag.getEpsg()%></option>
 		<option value="<%=sGeoTag.getEpsg()%>">More options will follow later</option>
 		</select>
+		</td>
+	</tr>
+	<tr class="coordcheckrow">
+		<td>
+			Don't know the coordinates? <a href="#" onclick="BIMServer.Viewer.create({width: 650, height: 500, title: 'Map', formid: 'form'});">Use a map!</a>
 		</td>
 	</tr>
 	<%
