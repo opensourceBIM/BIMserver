@@ -52,7 +52,6 @@ import org.bimserver.ifc.FileFieldIgnoreMap;
 import org.bimserver.ifc.PackageDefinition;
 import org.bimserver.ifc.emf.Ifc2x3.Ifc2x3Package;
 import org.bimserver.ifcengine.IfcEngineFactory;
-import org.bimserver.querycompiler.QueryCompiler;
 import org.bimserver.servlets.CompileServlet;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
 import org.bimserver.shared.ResourceFetcher;
