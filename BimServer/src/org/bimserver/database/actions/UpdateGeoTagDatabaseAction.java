@@ -8,12 +8,14 @@ import org.bimserver.database.BimDeadlockException;
 import org.bimserver.database.CommitSet;
 import org.bimserver.database.Database;
 import org.bimserver.database.store.GeoTag;
+import org.bimserver.database.store.Project;
 import org.bimserver.database.store.StorePackage;
 import org.bimserver.database.store.User;
 import org.bimserver.database.store.log.AccessMethod;
 import org.bimserver.database.store.log.GeoTagUpdated;
 import org.bimserver.database.store.log.LogFactory;
 import org.bimserver.interfaces.objects.SGeoTag;
+import org.bimserver.rights.RightsManager;
 import org.bimserver.shared.UserException;
 
 public class UpdateGeoTagDatabaseAction extends BimDatabaseAction<Void> {
@@ -31,20 +33,31 @@ public class UpdateGeoTagDatabaseAction extends BimDatabaseAction<Void> {
 	public Void execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
 		User actingUser = bimDatabaseSession.getUserByUoid(actingUoid);
 		GeoTag geoTag = (GeoTag) bimDatabaseSession.get(StorePackage.eINSTANCE.getGeoTag(), sGeoTag.getOid());
-		geoTag.setEnabled(sGeoTag.isEnabled());
-		geoTag.setX(sGeoTag.getX());
-		geoTag.setY(sGeoTag.getY());
-		geoTag.setZ(sGeoTag.getZ());
-		geoTag.setDirectionAngle(sGeoTag.getDirectionAngle());
-		geoTag.setEpsg(sGeoTag.getEpsg());
-		GeoTagUpdated geoTagUpdated = LogFactory.eINSTANCE.createGeoTagUpdated();
-		geoTagUpdated.setGeoTag(geoTag);
-		geoTagUpdated.setAccessMethod(getAccessMethod());
-		geoTagUpdated.setDate(new Date());
-		geoTagUpdated.setExecutor(actingUser);
-		CommitSet commitSet = new CommitSet(Database.STORE_PROJECT_ID, -1);
-		bimDatabaseSession.store(geoTagUpdated, commitSet);
-		bimDatabaseSession.store(geoTag, commitSet);
+		boolean hasRights = false;
+		for (Project project : geoTag.getProjects()) {
+			if (RightsManager.hasRightsOnProject(actingUser, project)) {
+				hasRights = true;
+				continue;
+			}
+		}
+		if (hasRights) {
+			geoTag.setEnabled(sGeoTag.isEnabled());
+			geoTag.setX(sGeoTag.getX());
+			geoTag.setY(sGeoTag.getY());
+			geoTag.setZ(sGeoTag.getZ());
+			geoTag.setDirectionAngle(sGeoTag.getDirectionAngle());
+			geoTag.setEpsg(sGeoTag.getEpsg());
+			GeoTagUpdated geoTagUpdated = LogFactory.eINSTANCE.createGeoTagUpdated();
+			geoTagUpdated.setGeoTag(geoTag);
+			geoTagUpdated.setAccessMethod(getAccessMethod());
+			geoTagUpdated.setDate(new Date());
+			geoTagUpdated.setExecutor(actingUser);
+			CommitSet commitSet = new CommitSet(Database.STORE_PROJECT_ID, -1);
+			bimDatabaseSession.store(geoTagUpdated, commitSet);
+			bimDatabaseSession.store(geoTag, commitSet);
+		} else {
+			throw new UserException("User has no rights on any projects associated with this geotag");
+		}
 		return null;
 	}
 }

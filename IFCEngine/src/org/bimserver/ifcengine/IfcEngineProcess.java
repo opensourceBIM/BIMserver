@@ -1,7 +1,6 @@
 package org.bimserver.ifcengine;
 
 import java.io.File;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.concurrent.CountDownLatch;
@@ -63,26 +62,6 @@ public class IfcEngineProcess extends Thread {
 			LOGGER.info(command.toString());
 			process = Runtime.getRuntime().exec(command.toString());
 			countDownLatch.countDown();
-			final InputStream errorStream = getErrorStream();
-			Runnable errorReader = new Runnable(){
-				@Override
-				public void run() {
-					while (true) {
-						try {
-							while (errorStream.available() > 0) {
-								byte[] buffer = new byte[1024];
-								int red = errorStream.read(buffer);
-								while (red != -1) {
-									System.err.print(new String(buffer, 0, red, "UTF-8"));
-									red = errorStream.read(buffer);
-								}
-							}
-						} catch (IOException e) {
-							LOGGER.error("", e);
-						}
-					}
-				}};
-			new Thread(errorReader).start();
 			process.waitFor();
 			failSafeIfcEngine.engineStopped();
 		} catch (Exception e) {
