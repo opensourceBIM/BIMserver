@@ -41,7 +41,6 @@ import javax.xml.bind.Unmarshaller;
 
 import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
 
-import org.bimserver.EmfSerializerFactory;
 import org.bimserver.ServerInfo;
 import org.bimserver.ServerSettings;
 import org.bimserver.database.BimDatabase;
@@ -144,6 +143,7 @@ import org.bimserver.interfaces.objects.SUserType;
 import org.bimserver.longaction.LongActionManager;
 import org.bimserver.longaction.LongCheckinAction;
 import org.bimserver.rights.RightsManager;
+import org.bimserver.serializers.EmfSerializerFactory;
 import org.bimserver.shared.ChangeSet;
 import org.bimserver.shared.ChangeSetResult;
 import org.bimserver.shared.DataObject;

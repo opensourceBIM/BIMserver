@@ -1,5 +1,5 @@
 <%@page import="org.bimserver.shared.ResultType"%>
-<%@page import="org.bimserver.EmfSerializerFactory"%>
+<%@page import="org.bimserver.serializers.EmfSerializerFactory"%>
 <%@page import="java.util.Collections"%>
 <%@page import="java.util.List"%>
 <%@page import="org.bimserver.interfaces.objects.SUserType"%>

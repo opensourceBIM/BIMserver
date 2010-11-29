@@ -13,7 +13,7 @@
 <%@page import="org.bimserver.ServerSettings"%>
 <%@page import="org.bimserver.shared.ResultType"%>
 <%@page import="org.bimserver.Settings"%>
-<%@page import="org.bimserver.EmfSerializerFactory"%>
+<%@page import="org.bimserver.serializers.EmfSerializerFactory"%>
 <%@page import="org.apache.commons.io.IOUtils"%>
 <%@page import="org.bimserver.interfaces.objects.SUserType"%>
 <%
@@ -21,42 +21,42 @@
 		Settings settings = ServerSettings.getSettings();
 		EmfSerializerFactory emfSerializerFactory = EmfSerializerFactory.getInstance();
 		if (request.getParameter("save") != null) {
-			settings.setAllowSelfRegistration(request.getParameter("allowSelfRegistration") != null);
-			settings.setDatabaseLocation(request.getParameter("databaselocation"));
-			settings.setEmailSenderAddress(request.getParameter("emailsenderaddress"));
-			settings.setRegistrationAddition(request.getParameter("registrationAddition"));
-			settings.setSendConfirmationEmailAfterRegistration(request.getParameter("sendConfirmationEmailAfterRegistration") != null);
-			settings.setShowVersionUpgradeAvailable(request.getParameter("showVersionUpgradeAvailable") != null);
-			settings.setAllowUsersToCreateTopLevelProjects(request.getParameter("allowUsersToCreateTopLevelProjects") != null);
-			settings.setSmtpServer(request.getParameter("smtpServer"));
-			settings.setUseCaching(request.getParameter("usecaching") != null);
-			settings.setIntelligentMerging(request.getParameter("intelligentMerging") != null);
-			settings.setAutoTestClashes(request.getParameter("autoTestClashes") != null);
-			settings.setCustomLogoAddress(request.getParameter("customLogo"));
-			String enabledExportTypes = "";
-			Set<ResultType> enabledTypes = new HashSet<ResultType>();
-			for (ResultType resultType : ResultType.values()) {
-				if (request.getParameter(resultType.name()) != null) {
-					enabledTypes.add(resultType);
-				}
-			}
-			settings.updateEnabledResultTypes(enabledTypes);
-			settings.save();
-			ServerSettings.setSettings(settings);
-			emfSerializerFactory.initSerializers();
-			response.sendRedirect(getServletContext().getContextPath() + "/settings.jsp?msg=settingschangeok");
+	settings.setAllowSelfRegistration(request.getParameter("allowSelfRegistration") != null);
+	settings.setDatabaseLocation(request.getParameter("databaselocation"));
+	settings.setEmailSenderAddress(request.getParameter("emailsenderaddress"));
+	settings.setRegistrationAddition(request.getParameter("registrationAddition"));
+	settings.setSendConfirmationEmailAfterRegistration(request.getParameter("sendConfirmationEmailAfterRegistration") != null);
+	settings.setShowVersionUpgradeAvailable(request.getParameter("showVersionUpgradeAvailable") != null);
+	settings.setAllowUsersToCreateTopLevelProjects(request.getParameter("allowUsersToCreateTopLevelProjects") != null);
+	settings.setSmtpServer(request.getParameter("smtpServer"));
+	settings.setUseCaching(request.getParameter("usecaching") != null);
+	settings.setIntelligentMerging(request.getParameter("intelligentMerging") != null);
+	settings.setAutoTestClashes(request.getParameter("autoTestClashes") != null);
+	settings.setCustomLogoAddress(request.getParameter("customLogo"));
+	String enabledExportTypes = "";
+	Set<ResultType> enabledTypes = new HashSet<ResultType>();
+	for (ResultType resultType : ResultType.values()) {
+		if (request.getParameter(resultType.name()) != null) {
+			enabledTypes.add(resultType);
+		}
+	}
+	settings.updateEnabledResultTypes(enabledTypes);
+	settings.save();
+	ServerSettings.setSettings(settings);
+	emfSerializerFactory.initSerializers();
+	response.sendRedirect(getServletContext().getContextPath() + "/settings.jsp?msg=settingschangeok");
 		}
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
 		if (request.getParameter("msg") != null) {
-			if (request.getParameter("msg").equals("ignorefileuploadok")) {
-				out.println("<div class=\"info\">New ignore file uploaded successfully, a restart of the BIMserver is required</div>");
-			} else if (request.getParameter("msg").equals("settingsfileuploadok")) {
-				out.println("<div class=\"info\">New settings uploaded successfully, a restart might be necessary</div>");
-			} else if (request.getParameter("msg").equals("settingschangeok")) {
-				out.println("<div class=\"info\">Settings successfully updated, a restart might be necessary</div>");
-			} else if (request.getParameter("msg").equals("colladasettingsuploadok")) {
-				out.println("<div class=\"info\">New collada settings successfully updated, a restart is necessary</div>");
-			}
+	if (request.getParameter("msg").equals("ignorefileuploadok")) {
+		out.println("<div class=\"info\">New ignore file uploaded successfully, a restart of the BIMserver is required</div>");
+	} else if (request.getParameter("msg").equals("settingsfileuploadok")) {
+		out.println("<div class=\"info\">New settings uploaded successfully, a restart might be necessary</div>");
+	} else if (request.getParameter("msg").equals("settingschangeok")) {
+		out.println("<div class=\"info\">Settings successfully updated, a restart might be necessary</div>");
+	} else if (request.getParameter("msg").equals("colladasettingsuploadok")) {
+		out.println("<div class=\"info\">New collada settings successfully updated, a restart is necessary</div>");
+	}
 		}
 %>
 

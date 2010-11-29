@@ -10,13 +10,13 @@ import java.util.List;
 
 import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
 
-import org.bimserver.EmfSerializerFactory;
 import org.bimserver.database.BimDatabase;
 import org.bimserver.database.store.log.AccessMethod;
 import org.bimserver.ifcengine.IfcEngineFactory;
 import org.bimserver.interfaces.objects.SAccessMethod;
 import org.bimserver.interfaces.objects.SUser;
 import org.bimserver.longaction.LongActionManager;
+import org.bimserver.serializers.EmfSerializerFactory;
 import org.bimserver.shared.SUserSession;
 import org.bimserver.shared.ServiceInterface;
 import org.bimserver.shared.Token;
