@@ -1,4 +1,4 @@
-package org.bimserver;
+package org.bimserver.exceptions;
 
 public class NoSerializerFoundException extends Exception {
 

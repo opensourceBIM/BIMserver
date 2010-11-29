@@ -14,6 +14,7 @@ import org.bimserver.collada.ColladaSerializer;
 import org.bimserver.collada.KmzSerializer;
 import org.bimserver.database.store.Project;
 import org.bimserver.database.store.User;
+import org.bimserver.exceptions.NoSerializerFoundException;
 import org.bimserver.ifc.EmfSerializer;
 import org.bimserver.ifc.FieldIgnoreMap;
 import org.bimserver.ifc.IfcModel;

@@ -17,7 +17,7 @@
 <%@page import="org.bimserver.TemplateEngine"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.Map"%>
-<%@page import="org.bimserver.TemplateIdentifier"%>
+<%@page import="org.bimserver.templating.TemplateIdentifier"%>
 <%@page import="org.bimserver.Settings"%>
 <%@page import="org.bimserver.MailSystem"%>
 <%@page import="org.slf4j.Logger"%>
@@ -29,30 +29,30 @@
 	Logger logger = LoggerFactory.getLogger(MailSystem.class);
 	if (request.getParameter("register") != null) {
 		try {
-			String emailaddress = request.getParameter("emailaddress");
-			loginManager.getAdminService().resetPassword(emailaddress);
+	String emailaddress = request.getParameter("emailaddress");
+	loginManager.getAdminService().resetPassword(emailaddress);
 
-			Session mailSession = MailSystem.createMailSession();
-			
-			Message msg = new MimeMessage(mailSession);
+	Session mailSession = MailSystem.createMailSession();
+	
+	Message msg = new MimeMessage(mailSession);
 
-			InternetAddress addressFrom = new InternetAddress(ServerSettings.getSettings().getEmailSenderAddress());
-			msg.setFrom(addressFrom);
+	InternetAddress addressFrom = new InternetAddress(ServerSettings.getSettings().getEmailSenderAddress());
+	msg.setFrom(addressFrom);
 
-			InternetAddress[] addressTo = new InternetAddress[1];
-			addressTo[0] = new InternetAddress(emailaddress);
-			msg.setRecipients(Message.RecipientType.TO, addressTo);
+	InternetAddress[] addressTo = new InternetAddress[1];
+	addressTo[0] = new InternetAddress(emailaddress);
+	msg.setRecipients(Message.RecipientType.TO, addressTo);
 
-			Map<String, Object> context = new HashMap<String, Object>();
-			String body = TemplateEngine.getTemplateEngine().process(context, TemplateIdentifier.PASSWORD_RESET_EMAIL_BODY);
-			String subject = TemplateEngine.getTemplateEngine().process(context, TemplateIdentifier.PASSWORD_RESET_EMAIL_SUBJECT);
-			msg.setContent(body, "text/plain");
-			msg.setSubject(subject.trim());
-			Transport.send(msg);
-			message = "<div class=\"info\">A new password has been sent to " + emailaddress + ", click <a href=\"login.jsp?username=" + emailaddress + "\">here</a> to login</div>";
+	Map<String, Object> context = new HashMap<String, Object>();
+	String body = TemplateEngine.getTemplateEngine().process(context, TemplateIdentifier.PASSWORD_RESET_EMAIL_BODY);
+	String subject = TemplateEngine.getTemplateEngine().process(context, TemplateIdentifier.PASSWORD_RESET_EMAIL_SUBJECT);
+	msg.setContent(body, "text/plain");
+	msg.setSubject(subject.trim());
+	Transport.send(msg);
+	message = "<div class=\"info\">A new password has been sent to " + emailaddress + ", click <a href=\"login.jsp?username=" + emailaddress + "\">here</a> to login</div>";
 		} catch (Exception e) {
-			logger.error("", e);
-			message = "<div class=\"error\">An unknown error has occured, please try again or contact an administrator</div>";
+	logger.error("", e);
+	message = "<div class=\"error\">An unknown error has occured, please try again or contact an administrator</div>";
 		}
 	}
 %>

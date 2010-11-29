@@ -8,7 +8,7 @@ import java.util.Set;
 
 import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
 
-import org.bimserver.ClashDetectionCache;
+import org.bimserver.cache.ClashDetectionCache;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;

@@ -1,4 +1,4 @@
-package org.bimserver;
+package org.bimserver.cache;
 
 import java.io.File;
 import java.io.FileOutputStream;

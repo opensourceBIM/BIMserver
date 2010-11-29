@@ -1,4 +1,4 @@
-package org.bimserver;
+package org.bimserver.tools;
 
 /******************************************************************************
  * (c) Copyright bimserver.org 2009

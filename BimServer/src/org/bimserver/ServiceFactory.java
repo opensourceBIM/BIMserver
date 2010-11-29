@@ -15,6 +15,7 @@ import org.bimserver.database.store.log.AccessMethod;
 import org.bimserver.ifcengine.IfcEngineFactory;
 import org.bimserver.interfaces.objects.SAccessMethod;
 import org.bimserver.interfaces.objects.SUser;
+import org.bimserver.longaction.LongActionManager;
 import org.bimserver.shared.SUserSession;
 import org.bimserver.shared.ServiceInterface;
 import org.bimserver.shared.Token;

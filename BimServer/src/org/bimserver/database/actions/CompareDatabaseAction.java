@@ -1,5 +1,6 @@
 package org.bimserver.database.actions;
 
+import org.bimserver.cache.CompareCache;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
@@ -26,8 +27,15 @@ public class CompareDatabaseAction extends BimDatabaseAction<CompareResult> {
 	@Override
 	public CompareResult execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
 		Compare compare = new Compare(((DatabaseSession)bimDatabaseSession).getFieldIgnoreMap());
-		IfcModel model1 = new DownloadDatabaseAction(getAccessMethod(), roid1, actingUoid).execute(bimDatabaseSession);
-		IfcModel model2 = new DownloadDatabaseAction(getAccessMethod(), roid2, actingUoid).execute(bimDatabaseSession);
-		return compare.compare(model1, model2);
+		CompareResult compareResults = CompareCache.getInstance().getCompareResults(roid1, roid2);
+		if (compareResults == null) {
+			IfcModel model1 = new DownloadDatabaseAction(getAccessMethod(), roid1, actingUoid).execute(bimDatabaseSession);
+			IfcModel model2 = new DownloadDatabaseAction(getAccessMethod(), roid2, actingUoid).execute(bimDatabaseSession);
+			compareResults = compare.compare(model1, model2);
+			CompareCache.getInstance().storeResults(roid1, roid2, compareResults);
+			return compareResults;
+		} else {
+			return compareResults;
+		}
 	}
 }
