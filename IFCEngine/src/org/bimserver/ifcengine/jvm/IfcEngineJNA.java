@@ -27,17 +27,6 @@ import com.sun.jna.ptr.PointerByReference;
  * 
  */
 public class IfcEngineJNA {
-	// private static final String IFC_ENGINE_DLL_32 = "32" + File.separator
-	// + "IFCEngine.dll";
-	// private static final String IFC_ENGINE_DLL_64 = "64" + File.separator
-	// + "IFCEngine.dll";
-	// private static final String IFC_ENGINE_SO_32 = "32" + File.separator
-	// + "libifcengine_linux.so";
-	// private static final String IFC_ENGINE_SO_64 = "64" + File.separator
-	// + "libifcengine_linux.so";
-	// private String libraryPath;
-	// private static final Logger LOGGER = LoggerFactory
-	// .getLogger(IfcEngineJNA.class);
 
 	public static final int D3DFVF_XYZ = 0x002;
 	public static final int D3DFVF_XYZRHW = 0x004;
@@ -81,33 +70,6 @@ public class IfcEngineJNA {
 		callBacks.add(fn);
 		return engine.xxxxOpenModelByStream(0, fn, schemaName);
 	}
-
-	// public IfcEngineJNA(File nativeBaseDir) {
-	// this();
-	//
-	// if (System.getProperty("os.name").startsWith("Windows")) {
-	// if (System.getProperty("sun.arch.data.model").equals("32")) {
-	// libraryPath = nativeBaseDir.getAbsolutePath() + File.separator
-	// + IFC_ENGINE_DLL_32;
-	// } else if (System.getProperty("sun.arch.data.model").equals("64")) {
-	// libraryPath = nativeBaseDir.getAbsolutePath() + File.separator
-	// + IFC_ENGINE_DLL_64;
-	// } else {
-	// throw new RuntimeException("Unknown JVM data model");
-	// }
-	// } else {
-	// if (System.getProperty("sun.arch.data.model").equals("32")) {
-	// libraryPath = nativeBaseDir.getAbsolutePath() + File.separator
-	// + IFC_ENGINE_SO_32;
-	// } else if (System.getProperty("sun.arch.data.model").equals("64")) {
-	// libraryPath = nativeBaseDir.getAbsolutePath() + File.separator
-	// + IFC_ENGINE_SO_64;
-	// } else {
-	// throw new RuntimeException("Unknown JVM data model");
-	// }
-	// }
-	// LOGGER.info("Using " + libraryPath + " as IFCEngine");
-	// }
 
 	static public class SurfaceProperties {
 		private Pointer model;
@@ -498,12 +460,20 @@ public class IfcEngineJNA {
 	 */
 	public Set<EidClash> finalizeClashesByEI(Pointer modelId, int size) {
 		Set<EidClash> clashes = new HashSet<EidClash>();
-		Memory pG1 = new Memory(size * 8);
-		Memory pG2 = new Memory(size * 8);
+		
+		Memory pG1 = new Memory(size * 4 * getPlatformMultiplier());
+		Memory pG2 = new Memory(size * 4 * getPlatformMultiplier());
 		engine.finalizeClashesByEI(modelId, pG1, pG2);
 		for (int i = 0; i < size; i++) {
-			Long eid1 = pG1.getLong(i * 8);
-			Long eid2 = pG2.getLong(i * 8);
+			Long eid1 = null;
+			Long eid2 = null;
+			if (getPlatformMultiplier() == 1) {
+				eid1 = (long)pG1.getInt(i * 4 * getPlatformMultiplier());
+				eid2 = (long)pG2.getInt(i * 4 * getPlatformMultiplier());
+			} else {
+				eid1 = pG1.getLong(i * 4 * getPlatformMultiplier());
+				eid2 = pG2.getLong(i * 4 * getPlatformMultiplier());
+			}
 
 			EidClash clash = StoreFactory.eINSTANCE.createEidClash();
 			clash.setEid1(eid1);

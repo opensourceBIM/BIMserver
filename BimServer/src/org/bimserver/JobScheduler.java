@@ -12,9 +12,10 @@ import org.quartz.SchedulerFactory;
 import org.quartz.SimpleTrigger;
 import org.quartz.impl.StdSchedulerFactory;
 
-public class BimScheduler {
+public class JobScheduler {
 	private SchedulerFactory sf;
-	private static final int CLEAN_INTERVAL = 60 * 60 * 1000; // 1 hour
+	private static final int TOKEN_CLEAN_INTERVAL_MILLIS = 60 * 60 * 1000; // 1 hour
+	private static final int CLASH_DETECTION_CLEAN_INTERVAL_MILLIS = 30 * 60 * 1000; // 30 minutes
 	private Scheduler sched;
 
 	public static class TokenCleaner implements Job {
@@ -26,7 +27,16 @@ public class BimScheduler {
 		}
 	}
 	
-	public BimScheduler() {
+	public static class ClashDetectionCacheCleaner implements Job {
+		@Override
+		public void execute(JobExecutionContext arg0) throws JobExecutionException {
+			if (ClashDetectionCache.getInstance() != null) {
+				ClashDetectionCache.getInstance().cleanup();
+			}
+		}
+	}
+	
+	public JobScheduler() {
 		try {
 			Properties properties = new Properties();
 			properties.setProperty("org.quartz.threadPool.class", "org.quartz.simpl.SimpleThreadPool");
@@ -40,12 +50,16 @@ public class BimScheduler {
 
 	public void start() {
 		try {
-			JobDetail job = new JobDetail("tokenCleaner", "group1", TokenCleaner.class);
-			sched.scheduleJob(job, new SimpleTrigger("tokenCleanerTrigger", "group1", SimpleTrigger.REPEAT_INDEFINITELY, CLEAN_INTERVAL));
+			addRecurringJob(TokenCleaner.class, TOKEN_CLEAN_INTERVAL_MILLIS);
+			addRecurringJob(ClashDetectionCacheCleaner.class, CLASH_DETECTION_CLEAN_INTERVAL_MILLIS);
 			sched.start();
 		} catch (SchedulerException e) {
 			e.printStackTrace();
 		}
+	}
+
+	private void addRecurringJob(Class<?> class1, int intervalMillis) throws SchedulerException {
+		sched.scheduleJob(new JobDetail(class1.getSimpleName(), "group1", class1), new SimpleTrigger(class1.getSimpleName(), "group1", SimpleTrigger.REPEAT_INDEFINITELY, intervalMillis));
 	}
 
 	public void close() {

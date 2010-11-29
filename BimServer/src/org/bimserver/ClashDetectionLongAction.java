@@ -71,7 +71,7 @@ public class ClashDetectionLongAction extends LongAction {
 			IfcStepSerializer ifcStepSerializer = new IfcStepSerializer(project, session.getUserByUoid(actingUoid), "", model, schema);
 			byte[] bytes = ifcStepSerializer.getBytes();
 			FailSafeIfcEngine failSafeIfcEngine = ifcEngineFactory.createFailSafeIfcEngine();
-			try {	
+			try {
 				IfcEngineModel ifcEngineModel = failSafeIfcEngine.openModel(bytes);
 				try {
 					Set<EidClash> clashes = ifcEngineModel.findClashesByEid(project.getClashDetectionSettings().getMargin());
