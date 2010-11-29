@@ -118,6 +118,9 @@ import org.bimserver.ifc.SerializerException;
 import org.bimserver.ifc.emf.Ifc2x3.IfcRoot;
 import org.bimserver.ifc.file.compare.CompareResult;
 import org.bimserver.ifc.file.compare.CompareResult.Item;
+import org.bimserver.ifc.file.compare.CompareResult.ObjectAdded;
+import org.bimserver.ifc.file.compare.CompareResult.ObjectDeleted;
+import org.bimserver.ifc.file.compare.CompareResult.ObjectModified;
 import org.bimserver.ifc.file.reader.IfcStepDeserializer;
 import org.bimserver.ifc.file.reader.IncorrectIfcFileException;
 import org.bimserver.ifc.xml.reader.IfcXmlDeserializeException;
@@ -149,6 +152,9 @@ import org.bimserver.shared.SUserSession;
 import org.bimserver.shared.ServiceInterface;
 import org.bimserver.shared.Token;
 import org.bimserver.shared.UserException;
+import org.bimserver.shared.SCompareResult.SObjectAdded;
+import org.bimserver.shared.SCompareResult.SObjectModified;
+import org.bimserver.shared.SCompareResult.SObjectRemoved;
 import org.bimserver.utils.Hashers;
 import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EAttribute;
@@ -1052,17 +1058,6 @@ public class Service implements ServiceInterface {
 		return null;
 	}
 
-	private static SCompareResult.Type convert(CompareResult.Type type) {
-		if (type == CompareResult.Type.ADDED) {
-			return SCompareResult.Type.ADDED;
-		} else if (type == CompareResult.Type.DELETED) {
-			return SCompareResult.Type.DELETED;
-		} else if (type == CompareResult.Type.MODIFIED) {
-			return SCompareResult.Type.MODIFIED;
-		}
-		return null;
-	}
-
 	private SCompareResult convert(CompareResult compareResult, Class<SCompareResult> class1, BimDatabaseSession session) {
 		SCompareResult sCompareResult = new SCompareResult();
 		Map<EClass, List<Item>> items = compareResult.getItems();
@@ -1070,8 +1065,14 @@ public class Service implements ServiceInterface {
 			List<Item> list = items.get(key);
 			for (Item item : list) {
 				DataObject dataObject = new DataObject(item.eObject.eClass().getName(), 0, getGuid(item.eObject), getName(item.eObject));
-				SCompareResult.Item item2 = new SCompareResult.Item(dataObject, convert(item.type));
-				sCompareResult.add(item2);
+				if (item instanceof ObjectAdded) {
+					sCompareResult.add(new SObjectAdded(dataObject));
+				} else if (item instanceof ObjectDeleted) {
+					sCompareResult.add(new SObjectRemoved(dataObject));
+				} else if (item instanceof ObjectModified) {
+					ObjectModified objectModified = (ObjectModified)item;
+					sCompareResult.add(new SObjectModified(dataObject, objectModified.getFeature().getName(), objectModified.getOldValue().toString(), objectModified.getNewValue().toString()));
+				}
 			}
 		}
 		return sCompareResult;

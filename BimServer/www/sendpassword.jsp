@@ -30,7 +30,7 @@
 	if (request.getParameter("register") != null) {
 		try {
 			String emailaddress = request.getParameter("emailaddress");
-			String newPassword = loginManager.getAdminService().resetPassword(emailaddress);
+			loginManager.getAdminService().resetPassword(emailaddress);
 
 			Session mailSession = MailSystem.createMailSession();
 			
@@ -44,7 +44,6 @@
 			msg.setRecipients(Message.RecipientType.TO, addressTo);
 
 			Map<String, Object> context = new HashMap<String, Object>();
-			context.put("newPassword", newPassword);
 			String body = TemplateEngine.getTemplateEngine().process(context, TemplateIdentifier.PASSWORD_RESET_EMAIL_BODY);
 			String subject = TemplateEngine.getTemplateEngine().process(context, TemplateIdentifier.PASSWORD_RESET_EMAIL_SUBJECT);
 			msg.setContent(body, "text/plain");

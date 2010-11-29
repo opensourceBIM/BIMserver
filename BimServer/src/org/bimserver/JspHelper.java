@@ -19,6 +19,7 @@ import org.bimserver.shared.SProjectNameComparator;
 import org.bimserver.shared.SRevisionSummary;
 import org.bimserver.shared.ServiceInterface;
 import org.bimserver.shared.UserException;
+import org.bimserver.shared.SCompareResult.SObjectModified;
 
 public class JspHelper {
 	public static String generateBreadCrumbPath(SRevision revision, ServiceInterface serviceWrapper) throws UserException {
@@ -190,9 +191,9 @@ public class JspHelper {
 		builder.append("<th>Name</th>");
 		builder.append("<th>Difference</th>");
 		builder.append("</tr>");
-		Map<String, List<SCompareResult.Item>> items = compareResult.getItems();
+		Map<String, List<SCompareResult.SItem>> items = compareResult.getItems();
 		for (String eClass : items.keySet()) {
-			for (SCompareResult.Item item : items.get(eClass)) {
+			for (SCompareResult.SItem item : items.get(eClass)) {
 				String name = "";
 				String guid = "";
 				if (item.dataObject.getGuid() != null) {
@@ -201,16 +202,22 @@ public class JspHelper {
 					name = item.dataObject.getName();
 				}
 				builder.append("<tr>");
-				if (item.type == SCompareResult.Type.ADDED) {
+				if (item instanceof SCompareResult.SObjectAdded) {
 					builder.append("<td>" + eClass + "</td>");
 					builder.append("<td>" + guid + "</td>");
 					builder.append("<td>" + name + "</td>");
 					builder.append("<td>Added</td>");
-				} else if (item.type == SCompareResult.Type.DELETED) {
+				} else if (item instanceof SCompareResult.SObjectRemoved) {
 					builder.append("<td>" + eClass + "</td>");
 					builder.append("<td>" + guid + "</td>");
 					builder.append("<td>" + name + "</td>");
 					builder.append("<td>Deleted</td>");
+				} else if (item instanceof SCompareResult.SObjectModified) {
+					SObjectModified objectModified = (SObjectModified)item;
+					builder.append("<td>" + eClass + "</td>");
+					builder.append("<td>" + guid + "</td>");
+					builder.append("<td>" + name + "</td>");
+					builder.append("<td>Modified " + objectModified.getFieldName() + " (" + objectModified.getOldValue() + " -> " + objectModified.getNewValue() + ")" + "</td>");
 				}
 				builder.append("</tr>");
 			}
