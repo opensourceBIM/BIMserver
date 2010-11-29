@@ -1,4 +1,4 @@
-package org.bimserver;
+package org.bimserver.serializers;
 
 import java.io.OutputStream;
 import java.io.PrintWriter;

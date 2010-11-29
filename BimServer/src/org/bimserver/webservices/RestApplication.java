@@ -5,7 +5,6 @@ import java.util.Set;
 
 import javax.ws.rs.core.Application;
 
-import org.bimserver.ServiceFactory;
 import org.bimserver.database.store.log.AccessMethod;
 import org.bimserver.shared.ServiceInterface;
 

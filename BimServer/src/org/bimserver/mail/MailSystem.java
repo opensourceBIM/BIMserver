@@ -1,8 +1,10 @@
-package org.bimserver;
+package org.bimserver.mail;
 
 import java.util.Properties;
 
 import javax.mail.Session;
+
+import org.bimserver.ServerSettings;
 
 public class MailSystem {
 	public static Session createMailSession() {

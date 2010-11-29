@@ -33,7 +33,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.bimserver.LoginManager;
 import org.bimserver.ifc.EmfSerializer;
 import org.bimserver.ifc.SerializerException;
 import org.bimserver.interfaces.objects.SClashDetectionSettings;
@@ -41,6 +40,7 @@ import org.bimserver.interfaces.objects.SEidClash;
 import org.bimserver.shared.ResultType;
 import org.bimserver.shared.SDownloadResult;
 import org.bimserver.shared.UserException;
+import org.bimserver.web.LoginManager;
 
 public class DownloadServlet extends HttpServlet {
 	private static final long serialVersionUID = 732025375536415841L;

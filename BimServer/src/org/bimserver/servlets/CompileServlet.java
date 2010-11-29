@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.bimserver.LoginManager;
 import org.bimserver.database.BimDatabase;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
@@ -22,6 +21,7 @@ import org.bimserver.querycompiler.CompileException;
 import org.bimserver.querycompiler.QueryCompiler;
 import org.bimserver.querycompiler.QueryInterface;
 import org.bimserver.shared.UserException;
+import org.bimserver.web.LoginManager;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 import org.slf4j.Logger;

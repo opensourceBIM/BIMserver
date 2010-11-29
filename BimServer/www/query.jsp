@@ -3,7 +3,7 @@
 <%@page import="java.util.Collections"%>
 <%@page import="java.util.List"%>
 <%@page import="org.bimserver.interfaces.objects.SUserType"%>
-<jsp:useBean id="loginManager" scope="session" class="org.bimserver.LoginManager" />
+<jsp:useBean id="loginManager" scope="session" class="org.bimserver.web.LoginManager" />
 <%
 	EmfSerializerFactory emfSerializerFactory = EmfSerializerFactory.getInstance();
 	long roid = Long.parseLong(request.getParameter("roid"));

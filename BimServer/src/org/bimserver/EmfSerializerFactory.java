@@ -26,6 +26,7 @@ import org.bimserver.ifc.file.writer.IfcStepSerializer;
 import org.bimserver.ifc.xml.writer.IfcXmlSerializer;
 import org.bimserver.ifcengine.IfcEngineFactory;
 import org.bimserver.o3d.O3dJsonSerializer;
+import org.bimserver.serializers.ObjectInfoSerializer;
 import org.bimserver.shared.ResourceFetcher;
 import org.bimserver.shared.ResultType;
 import org.bimserver.shared.ResultType.Type;

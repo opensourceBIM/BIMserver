@@ -4,7 +4,7 @@ import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 
 import org.apache.cxf.jaxrs.servlet.CXFNonSpringJaxrsServlet;
-import org.bimserver.services.RestAuthentication;
+import org.bimserver.webservices.RestAuthentication;
 
 public class RestServlet extends CXFNonSpringJaxrsServlet {
 	private static final long serialVersionUID = 6288864278630843847L;

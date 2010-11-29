@@ -1,4 +1,4 @@
-package org.bimserver;
+package org.bimserver.web;
 
 import java.util.Collections;
 import java.util.Comparator;

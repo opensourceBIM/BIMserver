@@ -1,4 +1,4 @@
-package org.bimserver.generators;
+package org.bimserver.tools.generators;
 
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;

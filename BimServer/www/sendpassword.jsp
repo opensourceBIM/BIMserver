@@ -19,11 +19,11 @@
 <%@page import="java.util.Map"%>
 <%@page import="org.bimserver.templating.TemplateIdentifier"%>
 <%@page import="org.bimserver.Settings"%>
-<%@page import="org.bimserver.MailSystem"%>
+<%@page import="org.bimserver.mail.MailSystem"%>
 <%@page import="org.slf4j.Logger"%>
 <%@page import="org.slf4j.LoggerFactory"%>
 <jsp:include page="htmlheader.jsp" />
-<jsp:useBean id="loginManager" scope="session" class="org.bimserver.LoginManager" />
+<jsp:useBean id="loginManager" scope="session" class="org.bimserver.web.LoginManager" />
 <%
 	String message = "";
 	Logger logger = LoggerFactory.getLogger(MailSystem.class);

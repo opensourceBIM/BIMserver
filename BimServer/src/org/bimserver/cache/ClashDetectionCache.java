@@ -7,11 +7,8 @@ import java.util.Set;
 import org.bimserver.database.store.ClashDetectionSettings;
 import org.bimserver.database.store.EidClash;
 import org.bimserver.database.store.Revision;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class ClashDetectionCache extends GenericCache<ClashDetectionCache.ClashDetectionSettingsKey, ClashDetectionCache.ClashDetectionValue> {
-	private static final Logger LOGGER = LoggerFactory.getLogger(ClashDetectionCache.class);
 	private static final int MAX_UNACCESSED_TIME_MILLIS = 1000 * 60 * 30; // 30
 
 	public static class ClashDetectionSettingsKey extends GenericCacheKey {

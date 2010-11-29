@@ -1,11 +1,8 @@
 package org.bimserver.cache;
 
 import org.bimserver.ifc.file.compare.CompareResult;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class CompareCache extends GenericCache<CompareCache.CompareKey, CompareCache.CompareValue> {
-	private static final Logger LOGGER = LoggerFactory.getLogger(CompareCache.class);
 	private static final int MAX_UNACCESSED_TIME_MS = 1000 * 60 * 30; // 30 minutes
 	private static final CompareCache INSTANCE = new CompareCache();
 

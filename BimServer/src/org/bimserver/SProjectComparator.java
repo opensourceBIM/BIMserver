@@ -5,6 +5,7 @@ import java.util.Comparator;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.shared.ServiceInterface;
 import org.bimserver.shared.UserException;
+import org.bimserver.web.JspHelper;
 
 public class SProjectComparator implements Comparator<SProject> {
 

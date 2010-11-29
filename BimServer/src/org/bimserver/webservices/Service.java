@@ -1,4 +1,4 @@
-package org.bimserver;
+package org.bimserver.webservices;
 
 /******************************************************************************
  * (c) Copyright bimserver.org 2009
@@ -41,6 +41,9 @@ import javax.xml.bind.Unmarshaller;
 
 import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
 
+import org.bimserver.EmfSerializerFactory;
+import org.bimserver.ServerInfo;
+import org.bimserver.ServerSettings;
 import org.bimserver.database.BimDatabase;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
@@ -112,7 +115,6 @@ import org.bimserver.database.store.log.AccessMethod;
 import org.bimserver.database.store.log.LogAction;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.exceptions.NoSerializerFoundException;
-import org.bimserver.generators.GenerateUtils;
 import org.bimserver.ifc.EmfSerializer;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.SerializerException;
@@ -158,6 +160,7 @@ import org.bimserver.shared.UserException;
 import org.bimserver.shared.SCompareResult.SObjectAdded;
 import org.bimserver.shared.SCompareResult.SObjectModified;
 import org.bimserver.shared.SCompareResult.SObjectRemoved;
+import org.bimserver.tools.generators.GenerateUtils;
 import org.bimserver.utils.Hashers;
 import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EAttribute;
