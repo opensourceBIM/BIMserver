@@ -1,7 +1,5 @@
 package org.bimserver.database.actions;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
@@ -10,15 +8,17 @@ import java.util.Set;
 
 import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
 
-import org.bimserver.Service;
+import org.bimserver.ClashDetectionCache;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
 import org.bimserver.database.store.Clash;
+import org.bimserver.database.store.ClashDetectionSettings;
 import org.bimserver.database.store.ConcreteRevision;
 import org.bimserver.database.store.EidClash;
 import org.bimserver.database.store.Project;
 import org.bimserver.database.store.Revision;
+import org.bimserver.database.store.StoreFactory;
 import org.bimserver.database.store.log.AccessMethod;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.IfcModel;
@@ -30,7 +30,6 @@ import org.bimserver.ifcengine.IfcEngineFactory;
 import org.bimserver.ifcengine.IfcEngineModel;
 import org.bimserver.interfaces.objects.SClashDetectionSettings;
 import org.bimserver.shared.UserException;
-import org.bimserver.utils.TempUtils;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
@@ -41,13 +40,6 @@ import org.slf4j.LoggerFactory;
 
 public class FindClashesDatabaseAction extends BimDatabaseAction<Set<? extends Clash>> {
 	private static final Logger LOGGER = LoggerFactory.getLogger(FindClashesDatabaseAction.class);
-	private static File tempDir;
-	private static int dumpCounter = 0;
-
-	static {
-		tempDir = TempUtils.makeTempDir("bimserver" + File.separator + Service.class.hashCode());
-	}
-
 	private final SClashDetectionSettings sClashDetectionSettings;
 	private final long actingUoid;
 	private final IfcEngineFactory ifcEngineFactory;
@@ -65,6 +57,14 @@ public class FindClashesDatabaseAction extends BimDatabaseAction<Set<? extends C
 	@Override
 	public Set<? extends Clash> execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
 		Map<Long, Revision> oidToRoidMap = new HashMap<Long, Revision>();
+		ClashDetectionSettings clashDetectionSettings = convert(sClashDetectionSettings, bimDatabaseSession);
+
+		// Look in the cache
+		Set<EidClash> clashDetection = ClashDetectionCache.getInstance().getClashDetection(clashDetectionSettings);
+		if (clashDetection != null) {
+			return clashDetection;
+		}
+
 		Project project = null;
 		LinkedHashSet<IfcModel> ifcModels = new LinkedHashSet<IfcModel>();
 		for (Long roid : sClashDetectionSettings.getRevisions()) {
@@ -93,6 +93,10 @@ public class FindClashesDatabaseAction extends BimDatabaseAction<Set<? extends C
 				IfcEngineModel ifcEngineModel = failSafeIfcEngine.openModel(bytes);
 				try {
 					Set<EidClash> clashes = ifcEngineModel.findClashesByEid(sClashDetectionSettings.getMargin());
+
+					// Store in cache
+					ClashDetectionCache.getInstance().storeClashDetection(clashDetectionSettings, clashes);
+
 					ifcEngineModel.close();
 					for (EidClash clash : clashes) {
 						IfcRoot object1 = (IfcRoot) newModel.get(clash.getEid1());
@@ -119,18 +123,16 @@ public class FindClashesDatabaseAction extends BimDatabaseAction<Set<? extends C
 		return null;
 	}
 
-	private synchronized static int incDumpCounter() {
-		return ++dumpCounter;
-	}
-
-	public static File createTempFile() {
-		File makeTempFile = TempUtils.makeTempFile(tempDir, (incDumpCounter()) + ".ifc");
-		try {
-			makeTempFile.createNewFile();
-		} catch (IOException e) {
-			LOGGER.error("", e);
+	private ClashDetectionSettings convert(SClashDetectionSettings sClashDetectionSettings, BimDatabaseSession bimDatabaseSession) {
+		ClashDetectionSettings clashDetectionSettings = StoreFactory.eINSTANCE.createClashDetectionSettings();
+		clashDetectionSettings.setMargin(sClashDetectionSettings.getMargin());
+		for (String ignoredClass : sClashDetectionSettings.getIgnoredClasses()) {
+			clashDetectionSettings.getIgnoredClasses().add(ignoredClass);
 		}
-		return makeTempFile;
+		for (long roid : sClashDetectionSettings.getRevisions()) {
+			clashDetectionSettings.getRevisions().add(bimDatabaseSession.getRevisionByRoid(roid));
+		}
+		return clashDetectionSettings;
 	}
 
 	@SuppressWarnings("unchecked")

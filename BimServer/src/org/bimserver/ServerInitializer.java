@@ -65,7 +65,7 @@ public class ServerInitializer implements ServletContextListener {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ServerInitializer.class);
 	private static GregorianCalendar serverStartTime;
 	private static BimDatabase bimDatabase;
-	private BimScheduler bimScheduler;
+	private JobScheduler bimScheduler;
 	private static ResourceFetcher resourceFetcher;
 	private static ServletContext servletContext;
 	private LongActionManager longActionManager;
@@ -89,7 +89,7 @@ public class ServerInitializer implements ServletContextListener {
 			SchemaDefinition schema = loadIfcSchema(resourceFetcher);
 			Set<Ifc2x3Package> packages = CollectionUtils.singleSet(Ifc2x3Package.eINSTANCE);
 
-			bimScheduler = new BimScheduler();
+			bimScheduler = new JobScheduler();
 			bimScheduler.start();
 
 			longActionManager = new LongActionManager();

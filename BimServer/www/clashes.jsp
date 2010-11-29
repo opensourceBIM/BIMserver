@@ -9,9 +9,9 @@
 <%@page import="org.bimserver.shared.ResultType"%>
 <%@page import="org.bimserver.EmfSerializerFactory"%>
 <%@page import="org.bimserver.interfaces.objects.SEidClash"%>
-
 <%@page import="java.util.HashMap"%>
-<%@page import="java.util.Map"%><jsp:useBean id="loginManager" scope="session" class="org.bimserver.LoginManager" />
+<%@page import="java.util.Map"%>
+<jsp:useBean id="loginManager" scope="session" class="org.bimserver.LoginManager" />
 <%
 	long poid = Long.parseLong(request.getParameter("poid"));
 	SProject project = loginManager.getService().getProjectByPoid(poid);

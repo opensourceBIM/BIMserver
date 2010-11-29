@@ -106,7 +106,7 @@ public interface BimDatabaseSession {
 
 	Revision getRevisionByRoid(long roid);
 
-	IdEObject get(EClass geoTag, long oid);
+	IdEObject get(EClass eClass, long oid);
 
 	User getAnonymousUser() throws BimDatabaseException, BimDeadlockException;
 }
