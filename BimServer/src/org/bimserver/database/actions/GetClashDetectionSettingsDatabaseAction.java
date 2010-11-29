@@ -6,9 +6,11 @@ import org.bimserver.database.BimDeadlockException;
 import org.bimserver.database.Database;
 import org.bimserver.database.ReadSet;
 import org.bimserver.database.store.ClashDetectionSettings;
+import org.bimserver.database.store.Project;
 import org.bimserver.database.store.StorePackage;
 import org.bimserver.database.store.User;
 import org.bimserver.database.store.log.AccessMethod;
+import org.bimserver.rights.RightsManager;
 import org.bimserver.shared.UserException;
 
 public class GetClashDetectionSettingsDatabaseAction extends BimDatabaseAction<ClashDetectionSettings> {
@@ -25,6 +27,18 @@ public class GetClashDetectionSettingsDatabaseAction extends BimDatabaseAction<C
 	@Override
 	public ClashDetectionSettings execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
 		User actingUser = bimDatabaseSession.getUserByUoid(actingUoid);
-		return (ClashDetectionSettings) bimDatabaseSession.get(bimDatabaseSession.getCid(StorePackage.eINSTANCE.getClashDetectionSettings()), cdsoid, new ReadSet(Database.STORE_PROJECT_ID, -1));
+		ClashDetectionSettings clashDetectionSettings = (ClashDetectionSettings) bimDatabaseSession.get(bimDatabaseSession.getCid(StorePackage.eINSTANCE.getClashDetectionSettings()), cdsoid, new ReadSet(Database.STORE_PROJECT_ID, -1));
+		boolean hasRights = false;
+		for (Project project : clashDetectionSettings.getProjects()) {
+			if (RightsManager.hasRightsOnProject(actingUser, project)) {
+				hasRights = true;
+				continue;
+			}
+		}
+		if (hasRights) {
+			return clashDetectionSettings;
+		} else {
+			throw new UserException("User has no rights on any projects associated with these clash detection settings");
+		}
 	}
 }
