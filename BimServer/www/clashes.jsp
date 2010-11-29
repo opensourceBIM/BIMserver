@@ -7,7 +7,7 @@
 <%@page import="java.util.Set"%>
 <%@page import="java.util.HashSet"%>
 <%@page import="org.bimserver.shared.ResultType"%>
-<%@page import="org.bimserver.EmfSerializerFactory"%>
+<%@page import="org.bimserver.serializers.EmfSerializerFactory"%>
 <%@page import="org.bimserver.interfaces.objects.SEidClash"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.Map"%>
@@ -22,31 +22,31 @@
 <div id="clashesinput">
 <form>
 <table>
-<tr><td>Margin</td><td><input type="text" id="margin" name="margin" value="<%=request.getParameter("margin") != null ? request.getParameter("margin") : defaultClashDetectionSettings.getMargin() %>"/></td></tr>
+<tr><td>Margin</td><td><input type="text" id="margin" name="margin" value="<%=request.getParameter("margin") != null ? request.getParameter("margin") : defaultClashDetectionSettings.getMargin()%>"/></td></tr>
 </table>
 <script>
-<%=JspHelper.writeDownloadProjectTreeJavaScript(project, loginManager) %>
+<%=JspHelper.writeDownloadProjectTreeJavaScript(project, loginManager)%>
 </script>
 <table class="formatted maintable">
 	<tr><th>Project</th><th>Last revision</th><th>Revision</th></tr>
 	<%
 		Set<Long> revisions = null;
-		if (request.getParameter("revisions") != null) {
-			revisions = new HashSet<Long>();
-			String[] revisionsSplit = request.getParameter("revisions").split(";");
-			for (String r : revisionsSplit) {
-				revisions.add(Long.parseLong(r));
-			}
+			if (request.getParameter("revisions") != null) {
+		revisions = new HashSet<Long>();
+		String[] revisionsSplit = request.getParameter("revisions").split(";");
+		for (String r : revisionsSplit) {
+			revisions.add(Long.parseLong(r));
 		}
-		out.write(JspHelper.writeDownloadProjectTree("clash", project, loginManager, 0, revisions));
+			}
+			out.write(JspHelper.writeDownloadProjectTree("clash", project, loginManager, 0, revisions));
 
-		Set<String> ignored = new HashSet<String>();
-		if (request.getParameter("ignore") != null) {
-			String[] ignoreSplit = request.getParameter("ignore").split(";");
-			for (String i : ignoreSplit) {
-				ignored.add(i);
-			}
+			Set<String> ignored = new HashSet<String>();
+			if (request.getParameter("ignore") != null) {
+		String[] ignoreSplit = request.getParameter("ignore").split(";");
+		for (String i : ignoreSplit) {
+			ignored.add(i);
 		}
+			}
 	%>
 </table>
 <div style="height: 220px">
@@ -54,17 +54,17 @@
 Ignored types<br/>
   <select multiple="multiple" size="10" id="ignored">
 <%
-if (ignored.size() > 1) {
+	if (ignored.size() > 1) {
 	for (String i : ignored) {
 %>
-  <option value="<%=i%>"><%=i %></option>
+  <option value="<%=i%>"><%=i%></option>
 <%
 	}
 } else {
 %>
   <option value="none">No ignored types</option>
 <%
-}
+	}
 %>
   </select>
 </div>
@@ -76,9 +76,9 @@ if (ignored.size() > 1) {
 Included types<br/>
   <select multiple="multiple" size="10" id="queried">
 <%
-for (String className : loginManager.getService().getAvailableClasses()) {
+	for (String className : loginManager.getService().getAvailableClasses()) {
 	if (!ignored.contains(className)) {
-		%><option value="<%=className%>"><%=className%></option><%
+%><option value="<%=className%>"><%=className%></option><%
 	}
 }
 %>
@@ -169,55 +169,55 @@ $(document).ready(function(){
 });
 </script>
 <%
-}
+	}
 	if (request.getParameter("action") != null && request.getParameter("action").equals("findclashes")) {
 %>		
 		  <br/>
-<%	
-		EmfSerializerFactory emfSerializerFactory = EmfSerializerFactory.getInstance();
+<%
+	EmfSerializerFactory emfSerializerFactory = EmfSerializerFactory.getInstance();
 		float margin = Float.parseFloat(request.getParameter("margin"));
 		SClashDetectionSettings sClashDetectionSettings = loginManager.getService().getClashDetectionSettings(project.getClashDetectionSettingsId());
 		sClashDetectionSettings.setMargin(margin);
 		String[] ignoredSplit = request.getParameter("ignored").split(";");
 		for (String ignore : ignoredSplit) {
-			sClashDetectionSettings.getIgnoredClasses().add(ignore);
+	sClashDetectionSettings.getIgnoredClasses().add(ignore);
 		}
 		String[] revisions = request.getParameter("revisions").split(";");
 		for (String revisionOidString : revisions) {
-			sClashDetectionSettings.getRevisions().add(Long.parseLong(revisionOidString));
+	sClashDetectionSettings.getRevisions().add(Long.parseLong(revisionOidString));
 		}
 		Map<Long, Long> revisionUsers = new HashMap<Long, Long>();
 		Map<Long, String> revisionUserNames = new HashMap<Long, String>();
 		List<SEidClash> clashes = loginManager.getService().findClashesByEid(sClashDetectionSettings);
 		if (clashes.isEmpty()) {
-			out.println("No clashes found<br/>");
+	out.println("No clashes found<br/>");
 		} else {
-			out.println("<table class=\"formatted maintable\">");
-			out.println("<tr><th>Name</th><th>Type</th><th>User</th><th></th><th>Name</th><th>Type</th><th>User</th></tr>");
-			for (SEidClash sClash : clashes) {
-				if (!revisionUsers.containsKey(sClash.getRevision1Id())) {
-					long uoid = loginManager.getService().getRevision(sClash.getRevision1Id()).getUserId();
-					revisionUsers.put(sClash.getRevision1Id(), uoid);
-					revisionUserNames.put(sClash.getRevision1Id(), loginManager.getService().getUserByUoid(uoid).getName());
-				}
-				if (!revisionUsers.containsKey(sClash.getRevision2Id())) {
-					long uoid = loginManager.getService().getRevision(sClash.getRevision2Id()).getUserId();
-					revisionUsers.put(sClash.getRevision2Id(), uoid);
-					revisionUserNames.put(sClash.getRevision2Id(), loginManager.getService().getUserByUoid(uoid).getName());
-				}
-				out.println("<tr>");
-				out.println("<td><a href=\"#\" class=\"browserlink\" browserurl=\"browser.jsp?roid=" + sClash.getRevision1Id() + "&className=" + sClash.getType1() + "&oid=" + sClash.getEid1() + "\">" + sClash.getName1() + "</a></td>");
-				out.println("<td>" + sClash.getType1() + "</td>");
-				out.println("<td><a href=\"user.jsp?uoid=" + revisionUsers.get(sClash.getRevision1Id()) + "\">" + revisionUserNames.get(sClash.getRevision1Id()) + "</a></td>");
-				out.println("<td>&nbsp;&nbsp;&nbsp;</td>");
-				out.println("<td><a href=\"#\" class=\"browserlink\" browserurl=\"browser.jsp?roid=" + sClash.getRevision2Id() + "&className=" + sClash.getType2() + "&oid=" + sClash.getEid2() + "\">" + sClash.getName2() + "</a></td>");
-				out.println("<td>" + sClash.getType2() + "</td>");
-				out.println("<td><a href=\"user.jsp?uoid=" + revisionUsers.get(sClash.getRevision2Id()) + "\">" + revisionUserNames.get(sClash.getRevision2Id()) + "</a></td>");
-				out.println("</tr>");
-			}
-			out.println("</table>");
+	out.println("<table class=\"formatted maintable\">");
+	out.println("<tr><th>Name</th><th>Type</th><th>User</th><th></th><th>Name</th><th>Type</th><th>User</th></tr>");
+	for (SEidClash sClash : clashes) {
+		if (!revisionUsers.containsKey(sClash.getRevision1Id())) {
+			long uoid = loginManager.getService().getRevision(sClash.getRevision1Id()).getUserId();
+			revisionUsers.put(sClash.getRevision1Id(), uoid);
+			revisionUserNames.put(sClash.getRevision1Id(), loginManager.getService().getUserByUoid(uoid).getName());
 		}
-		%>
+		if (!revisionUsers.containsKey(sClash.getRevision2Id())) {
+			long uoid = loginManager.getService().getRevision(sClash.getRevision2Id()).getUserId();
+			revisionUsers.put(sClash.getRevision2Id(), uoid);
+			revisionUserNames.put(sClash.getRevision2Id(), loginManager.getService().getUserByUoid(uoid).getName());
+		}
+		out.println("<tr>");
+		out.println("<td><a href=\"#\" class=\"browserlink\" browserurl=\"browser.jsp?roid=" + sClash.getRevision1Id() + "&className=" + sClash.getType1() + "&oid=" + sClash.getEid1() + "\">" + sClash.getName1() + "</a></td>");
+		out.println("<td>" + sClash.getType1() + "</td>");
+		out.println("<td><a href=\"user.jsp?uoid=" + revisionUsers.get(sClash.getRevision1Id()) + "\">" + revisionUserNames.get(sClash.getRevision1Id()) + "</a></td>");
+		out.println("<td>&nbsp;&nbsp;&nbsp;</td>");
+		out.println("<td><a href=\"#\" class=\"browserlink\" browserurl=\"browser.jsp?roid=" + sClash.getRevision2Id() + "&className=" + sClash.getType2() + "&oid=" + sClash.getEid2() + "\">" + sClash.getName2() + "</a></td>");
+		out.println("<td>" + sClash.getType2() + "</td>");
+		out.println("<td><a href=\"user.jsp?uoid=" + revisionUsers.get(sClash.getRevision2Id()) + "\">" + revisionUserNames.get(sClash.getRevision2Id()) + "</a></td>");
+		out.println("</tr>");
+	}
+	out.println("</table>");
+		}
+%>
 		  <a href="#" id="emailclasheslink">E-mail clashes</a>
 		  <div id="emailclashesform">
 			<div id="emailclashesajaxloader">

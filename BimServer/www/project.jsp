@@ -9,7 +9,7 @@
 <%@page import="java.util.Collections"%>
 <%@page import="java.util.Comparator"%>
 <%@page import="org.bimserver.shared.UserException"%>
-<%@page import="org.bimserver.EmfSerializerFactory"%>
+<%@page import="org.bimserver.serializers.EmfSerializerFactory"%>
 <%@page import="org.bimserver.shared.ResultType"%>
 <%@page import="org.bimserver.JspHelper"%>
 <%@page import="org.bimserver.rights.RightsManager"%>
@@ -48,30 +48,30 @@
 		EmfSerializerFactory emfSerializerFactory = EmfSerializerFactory.getInstance();
 		long poid = Long.parseLong(request.getParameter("poid"));
 		try {
-			SProject project = loginManager.getService().getProjectByPoid(poid);
-			SClashDetectionSettings sClashDetectionSettings = loginManager.getService().getClashDetectionSettings(project.getClashDetectionSettingsId());
-			List<SRevision> revisions = loginManager.getService().getAllRevisionsOfProject(poid);
-			Collections.sort(revisions, new SRevisionIdComparator(false));
-			List<SRevision> revisionsInc = loginManager.getService().getAllRevisionsOfProject(poid);
-			Collections.sort(revisionsInc, new SRevisionIdComparator(true));
-			List<SCheckout> checkouts = loginManager.getService().getAllCheckoutsOfProject(poid);
-			Collections.sort(checkouts, new SCheckoutDateComparator());
-			List<SCheckout> activeCheckouts = new ArrayList<SCheckout>();
-			for (SCheckout checkout : checkouts) {
-				if (checkout.isActive()) {
-					activeCheckouts.add(checkout);
-				}
-			}
-			List<SUser> users = loginManager.getService().getAllAuthorizedUsersOfProject(poid);
-			Collections.sort(users, new SUserNameComparator());
-			List<SUser> nonAuthorizedUsers = loginManager.getService().getAllNonAuthorizedUsersOfProject(poid);
-			SRevision lastRevision = null;
-			if (project.getLastRevisionId() != -1) {
-				lastRevision = loginManager.getService().getRevision(project.getLastRevisionId());
-			}
-			boolean anonymousAccess = project.getHasAuthorizedUsers().contains(loginManager.getService().getAnonymousUser().getOid());
-			boolean hasUserManagementRights = project.getHasAuthorizedUsers().contains(loginManager.getUoid());
-			boolean userHasCheckinRights = loginManager.getService().userHasCheckinRights(project.getOid());
+	SProject project = loginManager.getService().getProjectByPoid(poid);
+	SClashDetectionSettings sClashDetectionSettings = loginManager.getService().getClashDetectionSettings(project.getClashDetectionSettingsId());
+	List<SRevision> revisions = loginManager.getService().getAllRevisionsOfProject(poid);
+	Collections.sort(revisions, new SRevisionIdComparator(false));
+	List<SRevision> revisionsInc = loginManager.getService().getAllRevisionsOfProject(poid);
+	Collections.sort(revisionsInc, new SRevisionIdComparator(true));
+	List<SCheckout> checkouts = loginManager.getService().getAllCheckoutsOfProject(poid);
+	Collections.sort(checkouts, new SCheckoutDateComparator());
+	List<SCheckout> activeCheckouts = new ArrayList<SCheckout>();
+	for (SCheckout checkout : checkouts) {
+		if (checkout.isActive()) {
+			activeCheckouts.add(checkout);
+		}
+	}
+	List<SUser> users = loginManager.getService().getAllAuthorizedUsersOfProject(poid);
+	Collections.sort(users, new SUserNameComparator());
+	List<SUser> nonAuthorizedUsers = loginManager.getService().getAllNonAuthorizedUsersOfProject(poid);
+	SRevision lastRevision = null;
+	if (project.getLastRevisionId() != -1) {
+		lastRevision = loginManager.getService().getRevision(project.getLastRevisionId());
+	}
+	boolean anonymousAccess = project.getHasAuthorizedUsers().contains(loginManager.getService().getAnonymousUser().getOid());
+	boolean hasUserManagementRights = project.getHasAuthorizedUsers().contains(loginManager.getUoid());
+	boolean userHasCheckinRights = loginManager.getService().userHasCheckinRights(project.getOid());
 if (emfSerializerFactory.resultTypeEnabled(ResultType.O3D_JSON) && lastRevision != null) {
 %>
 <jsp:include page="o3d.jsp"/>

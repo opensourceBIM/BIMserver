@@ -5,7 +5,7 @@
 <%@page import="java.util.Collections"%>
 <%@page import="java.util.Comparator"%>
 <%@page import="org.bimserver.shared.UserException"%>
-<%@page import="org.bimserver.EmfSerializerFactory"%>
+<%@page import="org.bimserver.serializers.EmfSerializerFactory"%>
 <%@page import="org.bimserver.shared.ResultType"%>
 <%@page import="org.bimserver.JspHelper"%>
 <%@page import="org.bimserver.interfaces.objects.SProject"%>
@@ -32,40 +32,40 @@
 		SProject sProject = loginManager.getService().getProjectByPoid(poid);
 		boolean anonymousAccess = sProject.getHasAuthorizedUsers().contains(loginManager.getService().getAnonymousUser().getOid());
 		try {
-			SGeoTag sGeoTag = loginManager.getService().getGeoTag(sProject.getGeoTagId());
-			SClashDetectionSettings sClashDetectionSettings = loginManager.getService().getClashDetectionSettings(
-					sProject.getClashDetectionSettingsId());
-			if (request.getParameter("save") != null) {
-				try {
-					if (sProject.getParentId() == -1) {
-						sGeoTag.setEnabled(request.getParameter("coordcheck") != null);
-						sGeoTag.setX(Float.parseFloat(request.getParameter("x")));
-						sGeoTag.setY(Float.parseFloat(request.getParameter("y")));
-						sGeoTag.setZ(Float.parseFloat(request.getParameter("z")));
-						sGeoTag.setDirectionAngle(Float.parseFloat(request.getParameter("directionAngle")));
-						sGeoTag.setEpsg(Integer.parseInt(request.getParameter("epsg")));
-						loginManager.getService().updateGeoTag(sGeoTag);
-						sClashDetectionSettings.setEnabled(request.getParameter("clashdetection") != null);
-						sClashDetectionSettings.setMargin(Float.parseFloat(request.getParameter("margin")));
-						loginManager.getService().updateClashDetectionSettings(sClashDetectionSettings);
-					}
-					sProject.setName(request.getParameter("name"));
-					sProject.setDescription(request.getParameter("description"));
-					sProject.setExportLengthMeasurePrefix(SSIPrefix.values()[Integer.parseInt(request.getParameter("exportLengthMeasurePrefix"))]);
-					loginManager.getService().updateProject(sProject);
-					SUser anonymousUser = loginManager.getService().getAnonymousUser();
-					if (request.getParameter("anonymous") == null) {
-						if (anonymousAccess) {
-							loginManager.getService().removeUserFromProject(anonymousUser.getOid(), poid);
-						}
-					} else {
-						loginManager.getService().addUserToProject(anonymousUser.getOid(), poid);
-					}
-					response.sendRedirect("project.jsp?poid=" + poid);
-				} catch (UserException e) {
-					out.println("<div class=\"error\">" + e.getMessage() + "</div>");
-				}
+	SGeoTag sGeoTag = loginManager.getService().getGeoTag(sProject.getGeoTagId());
+	SClashDetectionSettings sClashDetectionSettings = loginManager.getService().getClashDetectionSettings(
+			sProject.getClashDetectionSettingsId());
+	if (request.getParameter("save") != null) {
+		try {
+			if (sProject.getParentId() == -1) {
+				sGeoTag.setEnabled(request.getParameter("coordcheck") != null);
+				sGeoTag.setX(Float.parseFloat(request.getParameter("x")));
+				sGeoTag.setY(Float.parseFloat(request.getParameter("y")));
+				sGeoTag.setZ(Float.parseFloat(request.getParameter("z")));
+				sGeoTag.setDirectionAngle(Float.parseFloat(request.getParameter("directionAngle")));
+				sGeoTag.setEpsg(Integer.parseInt(request.getParameter("epsg")));
+				loginManager.getService().updateGeoTag(sGeoTag);
+				sClashDetectionSettings.setEnabled(request.getParameter("clashdetection") != null);
+				sClashDetectionSettings.setMargin(Float.parseFloat(request.getParameter("margin")));
+				loginManager.getService().updateClashDetectionSettings(sClashDetectionSettings);
 			}
+			sProject.setName(request.getParameter("name"));
+			sProject.setDescription(request.getParameter("description"));
+			sProject.setExportLengthMeasurePrefix(SSIPrefix.values()[Integer.parseInt(request.getParameter("exportLengthMeasurePrefix"))]);
+			loginManager.getService().updateProject(sProject);
+			SUser anonymousUser = loginManager.getService().getAnonymousUser();
+			if (request.getParameter("anonymous") == null) {
+				if (anonymousAccess) {
+					loginManager.getService().removeUserFromProject(anonymousUser.getOid(), poid);
+				}
+			} else {
+				loginManager.getService().addUserToProject(anonymousUser.getOid(), poid);
+			}
+			response.sendRedirect("project.jsp?poid=" + poid);
+		} catch (UserException e) {
+			out.println("<div class=\"error\">" + e.getMessage() + "</div>");
+		}
+	}
 %>
 <div class="sidebar"></div>
 

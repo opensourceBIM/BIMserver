@@ -5,7 +5,7 @@
 <%@page import="org.bimserver.utils.Formatters"%>
 <%@page import="org.bimserver.shared.UserException"%>
 <%@page import="org.bimserver.shared.ResultType"%>
-<%@page import="org.bimserver.EmfSerializerFactory"%>
+<%@page import="org.bimserver.serializers.EmfSerializerFactory"%>
 <%@page import="org.bimserver.JspHelper"%>
 <%@page import="org.bimserver.interfaces.objects.SCheckout"%>
 <%@page import="org.bimserver.interfaces.objects.SRevision"%>
@@ -18,33 +18,35 @@
 	if (loginManager.getService().isLoggedIn()) {
 		EmfSerializerFactory emfSerializerFactory = EmfSerializerFactory.getInstance();
 		try {
-			DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
-			long roid = Long.parseLong(request.getParameter("roid"));
-			SRevision revision = loginManager.getService().getRevision(roid);
-			boolean isTagged = revision.getTag() != null;
-			SProject project = loginManager.getService().getProjectByPoid(revision.getProjectId());
-			SUser user = loginManager.getService().getUserByUoid(revision.getUserId());
-			List<SCheckout> checkouts = loginManager.getService().getAllCheckoutsOfRevision(roid);
-			Collections.sort(checkouts, new SCheckoutDateComparator());
-			List<String> classes = loginManager.getService().getAvailableClasses();
-			Collections.sort(classes);
-			boolean isAdmin = loginManager.getService().getCurrentUser().getUserType() == SUserType.ADMIN;
-			boolean isTopProject = project.getParentId() == -1L;
-			if (emfSerializerFactory.resultTypeEnabled(ResultType.O3D_JSON)) {
+	DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+	long roid = Long.parseLong(request.getParameter("roid"));
+	SRevision revision = loginManager.getService().getRevision(roid);
+	boolean isTagged = revision.getTag() != null;
+	SProject project = loginManager.getService().getProjectByPoid(revision.getProjectId());
+	SUser user = loginManager.getService().getUserByUoid(revision.getUserId());
+	List<SCheckout> checkouts = loginManager.getService().getAllCheckoutsOfRevision(roid);
+	Collections.sort(checkouts, new SCheckoutDateComparator());
+	List<String> classes = loginManager.getService().getAvailableClasses();
+	Collections.sort(classes);
+	boolean isAdmin = loginManager.getService().getCurrentUser().getUserType() == SUserType.ADMIN;
+	boolean isTopProject = project.getParentId() == -1L;
+	if (emfSerializerFactory.resultTypeEnabled(ResultType.O3D_JSON)) {
 %>
 
 <%@page import="org.bimserver.utils.WebUtils"%><jsp:include page="o3d.jsp"/>
 <%
-}
+	}
 %>
 <div class="sidebar">
  <%
-	if (emfSerializerFactory.resultTypeEnabled(ResultType.O3D_JSON)) {
-%>
+ 	if (emfSerializerFactory.resultTypeEnabled(ResultType.O3D_JSON)) {
+ %>
 <ul>
 <li>
  <a id="visualiselink" class="link">Visualise</a></li>
- <%} %> 
+ <%
+ 	}
+ %> 
  <li>
  <a id="browserlink" class="link">Browser</a></li>
 </ul>
@@ -88,15 +90,18 @@
 		<td class="first">Size</td>
 		<td><%=revision.getSize()%></td>
 	</tr>
-<% if (emfSerializerFactory.resultTypeEnabled(ResultType.KMZ)) {
+<%
+	if (emfSerializerFactory.resultTypeEnabled(ResultType.KMZ)) {
 	String url = WebUtils.getWebServer(request.getRequestURL().toString());
 	String link = "http://" + url + getServletContext().getContextPath() + "download?roid=" + revision.getOid() + "&resultType=KMZ";
 %>
 	<tr>
 		<td class="first">Google Earth Link</td>
-		<td><a href="<%=link %>"><%=link %></a></td>
+		<td><a href="<%=link%>"><%=link%></a></td>
 	</tr>
-<% } %>
+<%
+	}
+%>
 </table>
 <br />
 
@@ -179,7 +184,7 @@
 	</tr>
 	<%
 		for (SCheckout checkout : checkouts) {
-						SUser checkoutUser = loginManager.getService().getUserByUoid(checkout.getUserId());
+					SUser checkoutUser = loginManager.getService().getUserByUoid(checkout.getUserId());
 	%>
 	<tr>
 		<td><a href="user.jsp?id=<%=checkout.getUserId()%>"><%=checkoutUser.getUsername()%></a></td>
