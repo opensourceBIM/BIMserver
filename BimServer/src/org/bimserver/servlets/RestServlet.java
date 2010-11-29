@@ -1,4 +1,4 @@
-package org.bimserver;
+package org.bimserver.servlets;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;

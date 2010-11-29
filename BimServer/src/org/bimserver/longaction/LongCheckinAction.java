@@ -1,4 +1,4 @@
-package org.bimserver;
+package org.bimserver.longaction;
 
 import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
 

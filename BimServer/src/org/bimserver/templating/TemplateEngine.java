@@ -1,4 +1,4 @@
-package org.bimserver;
+package org.bimserver.templating;
 
 import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;

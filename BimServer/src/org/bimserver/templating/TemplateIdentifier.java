@@ -1,4 +1,4 @@
-package org.bimserver;
+package org.bimserver.templating;
 
 public enum TemplateIdentifier {
 	REGISTRATION_EMAIL_BODY("registration_email_body.template"),

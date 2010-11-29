@@ -1,4 +1,4 @@
-package org.bimserver;
+package org.bimserver.shared;
 
 import java.util.Comparator;
 

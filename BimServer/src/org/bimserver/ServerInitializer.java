@@ -52,12 +52,15 @@ import org.bimserver.ifc.FileFieldIgnoreMap;
 import org.bimserver.ifc.PackageDefinition;
 import org.bimserver.ifc.emf.Ifc2x3.Ifc2x3Package;
 import org.bimserver.ifcengine.IfcEngineFactory;
+import org.bimserver.longaction.LongActionManager;
 import org.bimserver.servlets.CompileServlet;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
 import org.bimserver.shared.ResourceFetcher;
 import org.bimserver.shared.ServiceInterface;
+import org.bimserver.templating.TemplateEngine;
 import org.bimserver.utils.CollectionUtils;
 import org.bimserver.utils.TempUtils;
+import org.bimserver.webservices.RestApplication;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

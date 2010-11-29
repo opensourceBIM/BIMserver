@@ -30,9 +30,9 @@ import org.apache.cxf.Bus;
 import org.apache.cxf.BusFactory;
 import org.apache.cxf.jaxws.JaxWsServerFactoryBean;
 import org.apache.cxf.transport.servlet.CXFNonSpringServlet;
-import org.bimserver.CustomInvoker;
 import org.bimserver.ServiceFactory;
 import org.bimserver.shared.ServiceInterface;
+import org.bimserver.webservices.CustomInvoker;
 
 public class WebServiceServlet extends CXFNonSpringServlet {
 

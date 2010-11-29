@@ -1,4 +1,4 @@
-package org.bimserver;
+package org.bimserver.longaction;
 
 import java.util.Set;
 

@@ -1,11 +1,7 @@
-package org.bimserver;
+package org.bimserver.cache;
 
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 import org.bimserver.database.store.ClashDetectionSettings;
@@ -14,15 +10,17 @@ import org.bimserver.database.store.Revision;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class ClashDetectionCache {
+public class ClashDetectionCache extends GenericCache<ClashDetectionCache.ClashDetectionSettingsKey, ClashDetectionCache.ClashDetectionValue> {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ClashDetectionCache.class);
+	private static final int MAX_UNACCESSED_TIME_MILLIS = 1000 * 60 * 30; // 30
 
-	public static class ClashDetectionSettingsKey {
+	public static class ClashDetectionSettingsKey extends GenericCacheKey {
 		private final float margin;
 		private final List<String> ignoredClasses = new ArrayList<String>();
 		private final List<Long> revisions = new ArrayList<Long>();
 
 		public ClashDetectionSettingsKey(ClashDetectionSettings clashDetectionSettings) {
+			super();
 			this.margin = clashDetectionSettings.getMargin();
 			for (Revision revision : clashDetectionSettings.getRevisions()) {
 				this.revisions.add(revision.getOid());
@@ -78,59 +76,35 @@ public class ClashDetectionCache {
 			return true;
 		}
 	}
-	
-	public static class ClashDetectionResult {
-		private static final int MAX_UNACCESSED_TIME_MILLIS = 1800000; // 30 minutes
+
+	public static class ClashDetectionValue extends GenericCacheValue {
 		private final Set<EidClash> clashes;
-		private Date lastAccessed;
-		
-		public ClashDetectionResult(Set<EidClash> clashes) {
+
+		public ClashDetectionValue(Set<EidClash> clashes) {
+			super(MAX_UNACCESSED_TIME_MILLIS);
 			this.clashes = clashes;
-			lastAccessed = new Date();
 		}
-		
+
 		public Set<EidClash> getClashes() {
 			return clashes;
-		}
-
-		public boolean shouldCleanUp() {
-			return new Date().getTime() - lastAccessed.getTime() > MAX_UNACCESSED_TIME_MILLIS;
-		}
-
-		public void access() {
-			lastAccessed = new Date();
 		}
 	}
 
 	private static final ClashDetectionCache INSTANCE = new ClashDetectionCache();
 
-	private final Map<ClashDetectionSettingsKey, ClashDetectionResult> clashes = new HashMap<ClashDetectionSettingsKey, ClashDetectionResult>();
-	
-	public synchronized void storeClashDetection(ClashDetectionSettings clashDetectionSettings, Set<EidClash> clashes) {
-		this.clashes.put(new ClashDetectionSettingsKey(clashDetectionSettings), new ClashDetectionResult(clashes));
+	private ClashDetectionCache() {
+		super();
 	}
-	
+
+	public synchronized void storeClashDetection(ClashDetectionSettings clashDetectionSettings, Set<EidClash> clashes) {
+		store(new ClashDetectionSettingsKey(clashDetectionSettings), new ClashDetectionValue(clashes));
+	}
+
 	public synchronized Set<EidClash> getClashDetection(ClashDetectionSettings clashDetectionSettings) {
-		ClashDetectionResult clashDetectionResult = clashes.get(new ClashDetectionSettingsKey(clashDetectionSettings));
-		if (clashDetectionResult != null) {
-			clashDetectionResult.access();
-			return clashDetectionResult.getClashes();
-		}
-		return null;
+		return getValue(new ClashDetectionSettingsKey(clashDetectionSettings)).getClashes();
 	}
 
 	public static ClashDetectionCache getInstance() {
 		return INSTANCE;
-	}
-
-	public synchronized void cleanup() {
-		Iterator<ClashDetectionSettingsKey> iterator = clashes.keySet().iterator();
-		while (iterator.hasNext()) {
-			ClashDetectionSettingsKey clashDetectionSettingsKey = iterator.next();
-			if (clashes.get(clashDetectionSettingsKey).shouldCleanUp()) {
-				LOGGER.info("Removing one clash detection cache item");
-				iterator.remove();
-			}
-		}
 	}
 }

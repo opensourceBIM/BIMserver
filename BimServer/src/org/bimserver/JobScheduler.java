@@ -2,6 +2,8 @@ package org.bimserver;
 
 import java.util.Properties;
 
+import org.bimserver.cache.ClashDetectionCache;
+import org.bimserver.cache.CompareCache;
 import org.quartz.Job;
 import org.quartz.JobDetail;
 import org.quartz.JobExecutionContext;
@@ -16,6 +18,7 @@ public class JobScheduler {
 	private SchedulerFactory sf;
 	private static final int TOKEN_CLEAN_INTERVAL_MILLIS = 60 * 60 * 1000; // 1 hour
 	private static final int CLASH_DETECTION_CLEAN_INTERVAL_MILLIS = 30 * 60 * 1000; // 30 minutes
+	private static final int COMPARE_RESULT_CLEAN_INTERVAL_MILLIS = 30 * 60 * 1000; // 30 minutes
 	private Scheduler sched;
 
 	public static class TokenCleaner implements Job {
@@ -36,6 +39,15 @@ public class JobScheduler {
 		}
 	}
 	
+	public static class CompareResultCacheCleaner implements Job {
+		@Override
+		public void execute(JobExecutionContext arg0) throws JobExecutionException {
+			if (CompareCache.getInstance() != null) {
+				CompareCache.getInstance().cleanup();
+			}
+		}
+	}
+	
 	public JobScheduler() {
 		try {
 			Properties properties = new Properties();
@@ -52,6 +64,7 @@ public class JobScheduler {
 		try {
 			addRecurringJob(TokenCleaner.class, TOKEN_CLEAN_INTERVAL_MILLIS);
 			addRecurringJob(ClashDetectionCacheCleaner.class, CLASH_DETECTION_CLEAN_INTERVAL_MILLIS);
+			addRecurringJob(CompareResultCacheCleaner.class, COMPARE_RESULT_CLEAN_INTERVAL_MILLIS);
 			sched.start();
 		} catch (SchedulerException e) {
 			e.printStackTrace();
