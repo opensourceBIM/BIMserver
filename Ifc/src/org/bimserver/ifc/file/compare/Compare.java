@@ -1,17 +1,15 @@
 package org.bimserver.ifc.file.compare;
 
 import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Set;
 
 import org.bimserver.ifc.FieldIgnoreMap;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.database.IfcDatabase;
 import org.bimserver.ifc.emf.Ifc2x3.Ifc2x3Package;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
@@ -22,7 +20,7 @@ public class Compare {
 	public Compare(FieldIgnoreMap fieldIgnoreMap) {
 		this.fieldIgnoreMap = fieldIgnoreMap;
 	}
-	
+
 	public CompareResult compare(IfcModel model1, IfcModel model2) {
 		CompareResult result = new CompareResult();
 		try {
@@ -33,7 +31,7 @@ public class Compare {
 
 			for (EClassifier eClassifier : Ifc2x3Package.eINSTANCE.getEClassifiers()) {
 				if (eClassifier instanceof EClass && Ifc2x3Package.eINSTANCE.getIfcRoot().isSuperTypeOf((EClass) eClassifier)) {
-					EClass eClass = (EClass)eClassifier;
+					EClass eClass = (EClass) eClassifier;
 					for (String guid : database1.getGuids(eClass)) {
 						EObject eObject1 = database1.getByGuid(eClass, guid);
 						EObject eObject2 = database2.getByGuid(eClass, guid);
@@ -57,11 +55,11 @@ public class Compare {
 			return;
 		}
 		if (eObject1 == null && eObject2 != null) {
-			result.add(eObject2, CompareResult.Type.ADDED);
+			result.addAdded(eObject2);
 			return;
 		}
 		if (eObject1 != null && eObject2 == null) {
-			result.add(eObject1, CompareResult.Type.DELETED);
+			result.addDeleted(eObject1);
 			return;
 		}
 		if (eObject1.eClass() != eObject2.eClass()) {
@@ -74,42 +72,64 @@ public class Compare {
 		comparing.add(eObject1);
 		for (EStructuralFeature eStructuralFeature : eClass.getEAllStructuralFeatures()) {
 			if (!fieldIgnoreMap.shouldIgnoreField(originalQueryClass, eClass, eStructuralFeature)) {
+				if (eStructuralFeature.getName().endsWith("AsString")) {
+					continue;
+				}
 				Object value1 = eObject1.eGet(eStructuralFeature);
 				Object value2 = eObject2.eGet(eStructuralFeature);
-//				System.err.println("v1 " + value1);
-//				System.err.println("v2 " + value2);
-//				System.err.println(eClass.getName() + "." + eStructuralFeature.getName());
-				if (eStructuralFeature.getUpperBound() == -1 || eStructuralFeature.getUpperBound() > 1) {
-					List<?> list1 = (EList<?>) value1;
-					List<?> list2 = (EList<?>) value2;
-					if (list1.size() == list2.size()) {
-						Iterator<?> iterator = list2.iterator();
-						for (Object o1 : list1) {
-							Object o2 = iterator.next();
-							if (o1 instanceof EObject && o2 instanceof EObject) {
-								compareEObjects(originalQueryClass, (EObject) o1, (EObject) o2, result);
-							}
-						}
-					} else {
-//						System.out.println("different " + eClass.getName() + "." + eStructuralFeature.getName() + " " + list1.size() + " " + list2.size());
-					}
+				if (eStructuralFeature.isMany()) {
+//					List<?> list1 = (EList<?>) value1;
+//					List<?> list2 = (EList<?>) value2;
+//					if (list1.size() == list2.size()) {
+//						Iterator<?> iterator = list2.iterator();
+//						for (Object o1 : list1) {
+//							Object o2 = iterator.next();
+//							if (o1 instanceof EObject && o2 instanceof EObject) {
+//								compareEObjects(originalQueryClass, (EObject) o1, (EObject) o2, result);
+//							}
+//						}
+//					} else {
+//					}
 				} else {
 					if (eStructuralFeature.getEType() instanceof EClass) {
-						if (Ifc2x3Package.eINSTANCE.getWrappedValue().isSuperTypeOf((EClass) eStructuralFeature.getEType())) {
-							EClass subClass = (EClass) eStructuralFeature.getEType();
-							if (value1 == null && value2 == null) {
-							} else if (value1 == null && value2 != null) {
-							} else if (value1 != null && value2 == null) {
-							} else {
-								Object realVal1 = ((EObject) value1).eGet(subClass.getEStructuralFeature("wrappedValue"));
-								Object realVal2 = ((EObject) value2).eGet(subClass.getEStructuralFeature("wrappedValue"));
-								if (realVal1.equals(realVal2)) {
-								} else {
-//									System.out.println("different " + eClass.getName() + "." + eStructuralFeature.getName() + " " + realVal1 + " " + realVal2);
-								}
+//						boolean processed = false;
+						if (value1 == null && value2 == null) {
+						} else if (value1 == null && value2 != null) {
+							EClass value2Class = ((EObject) value2).eClass();
+							if (Ifc2x3Package.eINSTANCE.getWrappedValue().isSuperTypeOf(value2Class)) {
+								Object realVal2 = ((EObject) value2).eGet(value2Class.getEStructuralFeature("wrappedValue"));
+								result.addModified(eObject1, eStructuralFeature, null, realVal2);
+//								processed = true;
+							}
+						} else if (value1 != null && value2 == null) {
+							EClass value1Class = ((EObject) value1).eClass();
+							if (Ifc2x3Package.eINSTANCE.getWrappedValue().isSuperTypeOf(value1Class)) {
+								Object realVal1 = ((EObject) value1).eGet(value1Class.getEStructuralFeature("wrappedValue"));
+								result.addModified(eObject1, eStructuralFeature, realVal1, null);
+//								processed = true;
 							}
 						} else {
-							compareEObjects(originalQueryClass, (EObject) value1, (EObject) value2, result);
+							EClass value1Class = ((EObject) value1).eClass();
+							if (Ifc2x3Package.eINSTANCE.getWrappedValue().isSuperTypeOf(((EObject) value1).eClass())) {
+								Object realVal1 = ((EObject) value1).eGet(value1Class.getEStructuralFeature("wrappedValue"));
+								Object realVal2 = ((EObject) value2).eGet(value1Class.getEStructuralFeature("wrappedValue"));
+								if (!realVal1.equals(realVal2)) {
+									result.addModified(eObject1, eStructuralFeature, realVal1, realVal2);
+//									processed = true;
+								}
+							}
+						}
+//						if (!processed) {
+//							compareEObjects(originalQueryClass, (EObject) value1, (EObject) value2, result);
+//						}
+					} else if (eStructuralFeature.getEType() instanceof EDataType) {
+						if (value1 == null && value2 == null) {
+						} else if (value1 == null && value2 != null) {
+							result.addModified(eObject1, eStructuralFeature, value1, value2);
+						} else if (value1 != null && value2 == null) {
+							result.addModified(eObject1, eStructuralFeature, value1, value2);
+						} else if (!value1.equals(value2)) {
+							result.addModified(eObject1, eStructuralFeature, value1, value2);
 						}
 					}
 				}
