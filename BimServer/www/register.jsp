@@ -14,17 +14,17 @@
 <%@page import="org.apache.velocity.Template"%>
 <%@page import="org.apache.velocity.VelocityContext"%>
 <%@page import="java.io.StringWriter"%>
-<%@page import="org.bimserver.TemplateEngine"%>
+<%@page import="org.bimserver.templating.TemplateEngine"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.Map"%>
-<%@page import="org.bimserver.TemplateIdentifier"%>
+<%@page import="org.bimserver.templating.TemplateIdentifier"%>
 <%@page import="org.bimserver.Settings"%>
-<%@page import="org.bimserver.MailSystem"%>
+<%@page import="org.bimserver.mail.MailSystem"%>
 <%@page import="org.slf4j.Logger"%>
 <%@page import="org.slf4j.LoggerFactory"%>
 <%@page import="org.bimserver.interfaces.objects.SUserType"%>
 <jsp:include page="htmlheader.jsp" />
-<jsp:useBean id="loginManager" scope="session" class="org.bimserver.LoginManager" />
+<jsp:useBean id="loginManager" scope="session" class="org.bimserver.web.LoginManager" />
 <%
 	Logger logger = LoggerFactory.getLogger(MailSystem.class);
 	if (ServerSettings.getSettings().isAllowSelfRegistration()) {

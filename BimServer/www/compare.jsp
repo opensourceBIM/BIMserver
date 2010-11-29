@@ -5,7 +5,7 @@
 <%@page import="java.util.Map"%>
 <%@page import="java.io.PrintStream"%>
 <%@page import="org.bimserver.ifc.file.compare.CompareResult"%>
-<%@page import="org.bimserver.JspHelper"%>
+<%@page import="org.bimserver.web.JspHelper"%>
 <%@page import="org.bimserver.shared.SCompareResult"%>
 <%@page import="org.bimserver.interfaces.objects.SProject"%>
 <%@page import="org.bimserver.interfaces.objects.SRevision"%>

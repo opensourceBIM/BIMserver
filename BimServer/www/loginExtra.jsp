@@ -1,7 +1,7 @@
 <%@page import="org.bimserver.VersionChecker"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="org.bimserver.shared.DatabaseInformation"%>
-<jsp:useBean id="loginManager" scope="session" class="org.bimserver.LoginManager" />
+<jsp:useBean id="loginManager" scope="session" class="org.bimserver.web.LoginManager" />
 <%
 	VersionChecker checkVersion = VersionChecker.getInstance();
 	SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");

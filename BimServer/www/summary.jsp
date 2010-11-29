@@ -1,8 +1,8 @@
 <%@page import="org.bimserver.shared.SRevisionSummary"%>
 <%@page import="java.util.Map"%>
-<%@page import="org.bimserver.JspHelper"%>
+<%@page import="org.bimserver.web.JspHelper"%>
 <%@page import="org.bimserver.interfaces.objects.SProject"%>
-<jsp:useBean id="loginManager" scope="session" class="org.bimserver.LoginManager" />
+<jsp:useBean id="loginManager" scope="session" class="org.bimserver.web.LoginManager" />
 <%
 long poid = Long.parseLong(request.getParameter("poid"));
 SProject project = loginManager.getService().getProjectByPoid(poid);

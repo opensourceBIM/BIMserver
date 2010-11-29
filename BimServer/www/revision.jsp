@@ -6,7 +6,7 @@
 <%@page import="org.bimserver.shared.UserException"%>
 <%@page import="org.bimserver.shared.ResultType"%>
 <%@page import="org.bimserver.serializers.EmfSerializerFactory"%>
-<%@page import="org.bimserver.JspHelper"%>
+<%@page import="org.bimserver.web.JspHelper"%>
 <%@page import="org.bimserver.interfaces.objects.SCheckout"%>
 <%@page import="org.bimserver.interfaces.objects.SRevision"%>
 <%@page import="org.bimserver.shared.SCheckoutDateComparator"%>

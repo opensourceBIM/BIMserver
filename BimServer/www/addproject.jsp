@@ -4,7 +4,7 @@
 <%@page import="org.bimserver.utils.Formatters"%>
 <%@page import="org.bimserver.shared.UserException"%>
 <%@page import="org.bimserver.database.store.GeoTag"%>
-<%@page import="org.bimserver.JspHelper"%>
+<%@page import="org.bimserver.web.JspHelper"%>
 <%@page import="org.bimserver.interfaces.objects.SGeoTag"%>
 <%@page import="org.bimserver.interfaces.objects.SClashDetectionSettings"%>
 <%@page import="org.bimserver.interfaces.objects.SProject"%>

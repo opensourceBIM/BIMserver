@@ -7,7 +7,7 @@
 <%@page import="org.bimserver.ServerSettings"%>
 <%@page import="org.bimserver.Settings"%>
 <jsp:useBean id="serverInfo" scope="application" class="org.bimserver.ServerInfo" />
-<jsp:useBean id="loginManager" scope="session" class="org.bimserver.LoginManager" />
+<jsp:useBean id="loginManager" scope="session" class="org.bimserver.web.LoginManager" />
 <jsp:useBean id="errorMessages" scope="request" class="org.bimserver.ErrorMessages" />
 <jsp:include page="htmlheader.jsp" />
 <%

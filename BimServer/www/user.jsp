@@ -7,7 +7,6 @@
 <%@page import="org.bimserver.shared.UserException"%>
 <%@page import="org.bimserver.shared.ResultType"%>
 <%@page import="org.bimserver.serializers.EmfSerializerFactory"%>
-<%@page import="org.bimserver.SRevisionDateComparator"%>
 <%@page import="org.bimserver.interfaces.objects.SUser"%>
 <%@page import="org.bimserver.interfaces.objects.SRevision"%>
 <%@page import="org.bimserver.interfaces.objects.SCheckout"%>
@@ -15,10 +14,11 @@
 <%@page import="org.bimserver.shared.SCheckoutDateComparator"%>
 <%@page import="org.bimserver.shared.SProjectNameComparator"%>
 <%@page import="org.bimserver.interfaces.objects.SUserType"%>
-<%@page import="org.bimserver.JspHelper"%>
+<%@page import="org.bimserver.web.JspHelper"%>
 <%@page import="java.util.Comparator"%>
 <%@page import="org.bimserver.SProjectComparator"%>
 <%@page import="org.bimserver.shared.ServiceInterface"%>
+<%@page import="org.bimserver.shared.SRevisionDateComparator"%>
 <%@ include file="header.jsp" %>
 <%
 	if (loginManager.getService().isLoggedIn()) {

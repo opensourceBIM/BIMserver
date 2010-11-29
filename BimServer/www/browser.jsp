@@ -4,7 +4,7 @@
 <%@page import="org.bimserver.shared.DataObject.SimpleDataValue"%>
 <%@page import="java.util.List"%>
 <%@page import="org.bimserver.shared.SRevisionSummary"%>
-<%@page import="org.bimserver.JspHelper"%>
+<%@page import="org.bimserver.web.JspHelper"%>
 <%@page import="org.bimserver.interfaces.objects.SProject"%>
 <%@page import="org.bimserver.interfaces.objects.SRevision"%>
 <div id="browser">
