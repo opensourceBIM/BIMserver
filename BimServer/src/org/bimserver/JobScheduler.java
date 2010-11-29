@@ -4,6 +4,7 @@ import java.util.Properties;
 
 import org.bimserver.cache.ClashDetectionCache;
 import org.bimserver.cache.CompareCache;
+import org.bimserver.webservices.ServiceFactory;
 import org.quartz.Job;
 import org.quartz.JobDetail;
 import org.quartz.JobExecutionContext;

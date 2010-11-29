@@ -1,6 +1,6 @@
 <%@page import="java.util.List" %>
 <%@page import="java.util.Collections"%>
-<%@page import="org.bimserver.LoginManager"%>
+<%@page import="org.bimserver.web.LoginManager"%>
 <%@page import="org.bimserver.JspHelper"%>
 <%@page import="org.bimserver.interfaces.objects.SProject"%>
 <%@page import="org.bimserver.shared.SProjectNameComparator"%>

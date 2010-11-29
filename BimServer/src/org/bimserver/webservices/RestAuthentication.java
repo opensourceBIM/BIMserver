@@ -1,4 +1,4 @@
-package org.bimserver.services;
+package org.bimserver.webservices;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -14,8 +14,6 @@ import org.apache.cxf.message.Exchange;
 import org.apache.cxf.message.Message;
 import org.apache.cxf.transport.Conduit;
 import org.apache.cxf.ws.addressing.EndpointReferenceType;
-import org.bimserver.Service;
-import org.bimserver.ServiceFactory;
 import org.bimserver.database.store.log.AccessMethod;
 import org.bimserver.shared.ServiceInterface;
 import org.bimserver.shared.Token;

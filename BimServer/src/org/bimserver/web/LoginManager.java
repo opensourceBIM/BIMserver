@@ -1,4 +1,4 @@
-package org.bimserver;
+package org.bimserver.web;
 
 /******************************************************************************
  * (c) Copyright bimserver.org 2009
@@ -24,6 +24,7 @@ import org.bimserver.database.store.log.AccessMethod;
 import org.bimserver.interfaces.objects.SUserType;
 import org.bimserver.shared.ServiceInterface;
 import org.bimserver.shared.UserException;
+import org.bimserver.webservices.ServiceFactory;
 
 public class LoginManager {
 	private static ServiceInterface adminService;

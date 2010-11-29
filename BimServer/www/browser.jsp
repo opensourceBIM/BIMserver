@@ -8,7 +8,7 @@
 <%@page import="org.bimserver.interfaces.objects.SProject"%>
 <%@page import="org.bimserver.interfaces.objects.SRevision"%>
 <div id="browser">
-<jsp:useBean id="loginManager" scope="session" class="org.bimserver.LoginManager" />
+<jsp:useBean id="loginManager" scope="session" class="org.bimserver.web.LoginManager" />
   	<%
   		long roid = Long.parseLong(request.getParameter("roid"));
   		SRevision revision = loginManager.getService().getRevision(roid);

@@ -60,7 +60,10 @@ import org.bimserver.shared.ServiceInterface;
 import org.bimserver.templating.TemplateEngine;
 import org.bimserver.utils.CollectionUtils;
 import org.bimserver.utils.TempUtils;
+import org.bimserver.web.LoginManager;
 import org.bimserver.webservices.RestApplication;
+import org.bimserver.webservices.Service;
+import org.bimserver.webservices.ServiceFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

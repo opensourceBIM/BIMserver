@@ -21,12 +21,12 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.IOUtils;
 import org.bimserver.EmfSerializerFactory;
 import org.bimserver.JarResourceFetcher;
-import org.bimserver.LoginManager;
 import org.bimserver.ServerInitializer;
 import org.bimserver.ServerSettings;
 import org.bimserver.Settings;
 import org.bimserver.WarResourceFetcher;
 import org.bimserver.interfaces.objects.SUserType;
+import org.bimserver.web.LoginManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

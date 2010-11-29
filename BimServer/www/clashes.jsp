@@ -11,7 +11,7 @@
 <%@page import="org.bimserver.interfaces.objects.SEidClash"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.Map"%>
-<jsp:useBean id="loginManager" scope="session" class="org.bimserver.LoginManager" />
+<jsp:useBean id="loginManager" scope="session" class="org.bimserver.web.LoginManager" />
 <%
 	long poid = Long.parseLong(request.getParameter("poid"));
 	SProject project = loginManager.getService().getProjectByPoid(poid);
