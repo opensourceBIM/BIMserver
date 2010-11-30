@@ -44,7 +44,7 @@ public class Server {
 		}
 		final Server server = new Server();
 		server.start(address, Integer.parseInt(port));
-		// The CommandLine seems to disrupt the database initialisation proces
+		// The CommandLine seems to disrupt the database initialization process
 		CommandLine commandLine = new CommandLine(server);
 		commandLine.start();
 	}

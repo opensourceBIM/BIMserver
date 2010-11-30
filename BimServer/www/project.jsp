@@ -419,6 +419,12 @@ for (SRevision otherRevision : revisionsInc) {
 }
 %>
 </select>
+<select name="type">
+<option value="ALL">All</option>
+<option value="ADD">Added</option>
+<option value="MODIFY">Modified</option>
+<option value="DELETE">Deleted</option>
+</select>
 <button type="submit" name="compare" value="Compare">Compare</button>
 </form>
 </fieldset>

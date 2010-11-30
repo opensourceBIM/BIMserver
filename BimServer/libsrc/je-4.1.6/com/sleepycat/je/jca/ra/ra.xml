@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE connector PUBLIC 
+          "-//Sun Microsystems, Inc.//DTD Connector 1.0//EN" 
+          "http://java.sun.com/dtd/connector_1_0.dtd">
+
+<connector>
+   <display-name>Berkeley DB Java Edition JCA Adapter</display-name>
+   <vendor-name>Oracle</vendor-name>
+   <spec-version>1.0</spec-version>
+   <eis-type>Database</eis-type>
+   <version>2.0</version>
+   <license>
+      <description>
+      Berkeley DB Java Edition; license may be required for redistribution.
+      </description>
+      <license-required>true</license-required>
+   </license>
+   <resourceadapter>
+      <managedconnectionfactory-class>com.sleepycat.je.jca.ra.JEManagedConnectionFactory
+      </managedconnectionfactory-class>
+      <connectionfactory-interface>com.sleepycat.je.jca.ra.JEConnectionFactory
+      </connectionfactory-interface>
+      <connectionfactory-impl-class>com.sleepycat.je.jca.ra.JEConnectionFactoryImpl
+      </connectionfactory-impl-class>
+      <connection-interface>com.sleepycat.je.jca.ra.JEConnection
+      </connection-interface>
+      <connection-impl-class>com.sleepycat.je.jca.ra.JEConnectionImpl
+      </connection-impl-class>
+      <transaction-support>LocalTransaction</transaction-support>
+      <!--
+      <transaction-support>NoTransaction</transaction-support>
+      <transaction-support>XATransaction</transaction-support>
+      -->
+      <config-property>
+	 <config-property-name>UserName</config-property-name>
+	 <config-property-type>java.lang.String</config-property-type>
+	 <config-property-value></config-property-value>
+      </config-property>
+      <config-property>
+	 <config-property-name>Password</config-property-name>
+	 <config-property-type>java.lang.String</config-property-type>
+	 <config-property-value></config-property-value>
+      </config-property>
+      <authentication-mechanism>
+	 <authentication-mechanism-type>BasicPassword</authentication-mechanism-type>
+	 <credential-interface>javax.resource.security.PasswordCredential</credential-interface>
+      </authentication-mechanism>
+      <reauthentication-support>true</reauthentication-support>
+      <security-permission>
+         <description>Read/Write access is required to the contents of
+         the JERootDir</description>
+         <security-permission-spec>permission java.io.FilePermission
+         "/tmp/je_store/*", "read,write";</security-permission-spec>
+      </security-permission>
+   </resourceadapter>
+</connector>

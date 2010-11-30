@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<!--
+
+ See the file LICENSE for redistribution information.
+
+ Copyright (c) 2002-2010 Oracle.  All rights reserved.
+
+
+-->
+<meta content="text/html;charset=utf-8" http-equiv="content-type"/>
+<title> JE HA </title>
+</head>
+<body>
+<div id="index">
+Berkeley DB Java Edition High Availability (JE HA) enables replication of JE
+environments.  JE HA is an embedded database management
+system designed to provide fast, reliable, and scalable data
+management. A JE environment is replicated across the nodes of a
+single read/write Master, multiple read only Replica Replication
+Group. JE HA is used to improve application availability, provide
+improved read performance, and increase data durability.
+<h3>Getting Started</h3>
+The 
+<a href="{@docRoot}/../ReplicationGuide/index.html"
+target="_top">Replication
+Guide</a> is invaluable for understanding the capabilities of JE HA
+and how best to design your replicated application.
+<blockquote>
+<p>
+The
+<a
+href="{@docRoot}/../ReplicationGuide/introduction.html"
+target="_top">Introduction</a>
+covers terminology, the replication group
+lifecycle, and the concepts of durability and consistency. Much of the
+javadoc refers to the topics covered there.
+<p>
+<a
+href="{@docRoot}/../ReplicationGuide/progoverview.html" target="_top">Replication
+API First Steps</a> explains how to configure and start a replication
+group.
+<p>
+<a
+href="{@docRoot}/../ReplicationGuide/txn-management.html" target="_top">Transaction Management
+</a> highlights the tradeoffs that must be considered in a replicated
+application and provides some use cases.
+</blockquote>
+In addition, the 
+<a href="{@docRoot}/../examples/je/rep/quote/package-summary.html">je.rep.quote</a> example
+package provides three example replication applications.
+
+<h3>What the com.sleepycat.je.rep package contains</h3>
+<h5>Replication control</h5>
+<ul>
+ <li><code>ReplicatedEnvironment</code> is the main access point to
+ replication.</li>
+ <li><code>ReplicationConfig</code> and
+ <code>ReplicationMutableConfig</code> specify attributes of the
+ replication system.</li>
+</ul>
+<h5>Administration</h5>
+<ul>
+ <li>
+ <code>ReplicationNode</code> and <code>ReplicationGroup</code> supply
+ administrative views of the replication system.
+ </li>
+</ul>
+<h5>Support</h5>
+<ul>
+ <li>
+ <code>StateChangeListener</code> and <code>StateChangeEvent</code>
+ implement a Listener pattern for tracking changes in the replication system.
+ </li>
+ <li>
+ <code>CommitPointConsistencyPolicy</code>,
+ <code>TimeConsistencyPolicy</code> and
+ <code>NoConsistencyPolicy</code> let the user control the read only
+ replica's view of the the replicated data.
+ </li>
+ <li>
+ <code>ReplicatedEnviromentStats</code> provide feedback on system execution.
+ </li>
+</ul>
+
+<h3>Related Packages</h3>
+<ul>
+<li>
+<a href="{@docRoot}/com/sleepycat/je/rep/monitor/package-summary.html">com.sleepycat.je.rep.monitor</a> lets the application track
+the replication system in order to do tasks such as load balancing and
+write request routing.
+</li>
+<li>
+<a href="{@docRoot}/com/sleepycat/je/rep/util/package-summary.html">com.sleepycat.je.rep.util</a> provides command line and
+programmatic APIs for administering and starting up a replication
+system.
+</li>
+</ul>
+<h3>Related Documentation</h3>
+@see <a href="{@docRoot}/../ReplicationGuide/index.html" target="_blank">Replication Guide</a>
+@see <a
+href="{@docRoot}/../examples/je/rep/quote/package-summary.html">
+ JE HA Examples</a>
+</body>
+
+</html>
+
+
+

@@ -19,6 +19,7 @@ import org.bimserver.shared.SProjectNameComparator;
 import org.bimserver.shared.SRevisionSummary;
 import org.bimserver.shared.ServiceInterface;
 import org.bimserver.shared.UserException;
+import org.bimserver.shared.SCompareResult.SCompareType;
 import org.bimserver.shared.SCompareResult.SObjectModified;
 
 public class JspHelper {
@@ -176,7 +177,7 @@ public class JspHelper {
 		return builder.toString();
 	}
 
-	public static String writeCompareResult(SCompareResult compareResult, long roid1, long roid2, SProject project) {
+	public static String writeCompareResult(SCompareResult compareResult, long roid1, long roid2, SCompareType sCompareType, SProject project) {
 		StringBuilder builder = new StringBuilder();
 		builder.append("<h1>Building Model Comparator</h1>");
 		builder.append("Compare results for revisions '" + roid1 + "' and '" + roid2 + "' of project '" + project.getName() + "'<br/>");
@@ -191,6 +192,22 @@ public class JspHelper {
 		builder.append("<th>Name</th>");
 		builder.append("<th>Difference</th>");
 		builder.append("</tr>");
+		
+		builder.append("<tr>");
+		builder.append("<th style=\"padding: 5px\"></th>");
+		builder.append("<th style=\"padding: 5px\"></th>");
+		builder.append("<th style=\"padding: 5px\"></th>");
+		builder.append("<th style=\"padding: 5px\"><select id=\"typeselector\" name=\"type\">");
+		for (SCompareType cr : SCompareType.values()) {
+			if (cr == sCompareType) {
+				builder.append("<option selected=\"selected\" value=\"" + cr.name() + "\">" + cr.getNiceName() + "</option>");
+			} else {
+				builder.append("<option value=\"" + cr.name() + "\">" + cr.getNiceName() + "</option>");
+			}
+		}
+		builder.append("</select></th>");
+		builder.append("</tr>");
+
 		Map<String, List<SCompareResult.SItem>> items = compareResult.getItems();
 		for (String eClass : items.keySet()) {
 			for (SCompareResult.SItem item : items.get(eClass)) {

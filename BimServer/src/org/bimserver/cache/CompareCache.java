@@ -1,6 +1,7 @@
 package org.bimserver.cache;
 
 import org.bimserver.ifc.file.compare.CompareResult;
+import org.bimserver.shared.SCompareResult.SCompareType;
 
 public class CompareCache extends GenericCache<CompareCache.CompareKey, CompareCache.CompareValue> {
 	private static final int MAX_UNACCESSED_TIME_MS = 1000 * 60 * 30; // 30 minutes
@@ -9,19 +10,13 @@ public class CompareCache extends GenericCache<CompareCache.CompareKey, CompareC
 	public static class CompareKey extends GenericCacheKey {
 		private final long roid1;
 		private final long roid2;
+		private final SCompareType sCompareType;
 
-		public CompareKey(long roid1, long roid2) {
+		public CompareKey(long roid1, long roid2, SCompareType sCompareType) {
 			super();
 			this.roid1 = roid1;
 			this.roid2 = roid2;
-		}
-
-		public long getRoid1() {
-			return roid1;
-		}
-
-		public long getRoid2() {
-			return roid2;
+			this.sCompareType = sCompareType;
 		}
 
 		@Override
@@ -30,6 +25,7 @@ public class CompareCache extends GenericCache<CompareCache.CompareKey, CompareC
 			int result = 1;
 			result = prime * result + (int) (roid1 ^ (roid1 >>> 32));
 			result = prime * result + (int) (roid2 ^ (roid2 >>> 32));
+			result = prime * result + ((sCompareType == null) ? 0 : sCompareType.hashCode());
 			return result;
 		}
 
@@ -45,6 +41,11 @@ public class CompareCache extends GenericCache<CompareCache.CompareKey, CompareC
 			if (roid1 != other.roid1)
 				return false;
 			if (roid2 != other.roid2)
+				return false;
+			if (sCompareType == null) {
+				if (other.sCompareType != null)
+					return false;
+			} else if (!sCompareType.equals(other.sCompareType))
 				return false;
 			return true;
 		}
@@ -72,8 +73,8 @@ public class CompareCache extends GenericCache<CompareCache.CompareKey, CompareC
 		return INSTANCE;
 	}
 
-	public CompareResult getCompareResults(long roid1, long roid2) {
-		CompareValue compareValue = getValue(new CompareKey(roid1, roid2));
+	public CompareResult getCompareResults(long roid1, long roid2, SCompareType sCompareType) {
+		CompareValue compareValue = getValue(new CompareKey(roid1, roid2, sCompareType));
 		if (compareValue != null) {
 			compareValue.access();
 			return compareValue.getCompareResults();
@@ -81,7 +82,7 @@ public class CompareCache extends GenericCache<CompareCache.CompareKey, CompareC
 		return null;
 	}
 
-	public void storeResults(long roid1, long roid2, CompareResult compareResults) {
-		store(new CompareKey(roid1, roid2), new CompareValue(compareResults));
+	public void storeResults(long roid1, long roid2, SCompareType sCompareType, CompareResult compareResults) {
+		store(new CompareKey(roid1, roid2, sCompareType), new CompareValue(compareResults));
 	}
 }

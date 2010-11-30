@@ -111,7 +111,8 @@ public class BerkeleyColumnDatabase implements ColumnDatabase {
 		transactionConfig.setReadCommitted(true);
 
 		cursorConfig = new CursorConfig();
-		cursorConfig.setReadCommitted(true);
+//		cursorConfig.setReadCommitted(true);
+		cursorConfig.setReadUncommitted(true);
 
 		LOGGER.info("Berkeley Database Init done " + ((e - s) / 1000000) + " ms");
 	}

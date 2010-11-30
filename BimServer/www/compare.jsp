@@ -9,6 +9,7 @@
 <%@page import="org.bimserver.shared.SCompareResult"%>
 <%@page import="org.bimserver.interfaces.objects.SProject"%>
 <%@page import="org.bimserver.interfaces.objects.SRevision"%>
+<%@page import="org.bimserver.shared.SCompareResult.SCompareType"%>
 <%@ include file="header.jsp" %>
 <%
 	if (request.getParameter("compare") != null) {
@@ -18,10 +19,10 @@
 		SProject project = loginManager.getService().getProjectByPoid(poid);
 		SRevision revision1 = loginManager.getService().getRevision(roid1);
 		SRevision revision2 = loginManager.getService().getRevision(roid2);
-		SCompareResult compareResult = loginManager.getService().compare(roid1, roid2);
+		SCompareType sCompareType = SCompareResult.SCompareType.valueOf(request.getParameter("type"));
+		SCompareResult compareResult = loginManager.getService().compare(roid1, roid2, sCompareType);
 %>
-Back to 
-<a href="project.jsp?poid=<%=poid %>">project '<%= project.getName() %>'</a><br/><br/>
+Back to <a href="project.jsp?poid=<%=poid %>">project '<%= project.getName() %>'</a><br/><br/>
   <a href="#" id="emaillink">E-mail summary</a>
   <div id="emailform">
 	<div id="emailajaxloader">
@@ -35,22 +36,25 @@ Back to
   		<input type="submit" name="email" value="Send"/>
   	</form>
   </div>
-<%= JspHelper.writeCompareResult(compareResult, revision1.getId(), revision2.getId(), project) %>
+<%= JspHelper.writeCompareResult(compareResult, revision1.getId(), revision2.getId(), sCompareType, project) %>
 <script>
 	$(document).ready(function(){
 		$("#emailform").hide();
 		$("#emailajaxloader").hide();
-	});
-	$("#emaillink").click(function(){
-		$("#emaillink").hide();
-		$("#emailform").show();
-		$("#address").focus();
-	});
-	$("#emailcompareform").submit(function(){
-		$("#emailcompareform").hide();
-		$("#emailajaxloader").show();
-		$("#emailform").load("sendcompareemail.jsp?poid=<%=poid%>&roid1=<%=roid1%>&roid2=<%=roid2%>&address=" + $("#address").val());
-		return false;
+		$("#typeselector").change(function(){
+			document.location = 'compare.jsp?roid1=<%=roid1%>&roid2=<%=roid2%>&poid=<%=poid%>&compare=Compare&type=' + $("#typeselector").val();
+		});
+		$("#emaillink").click(function(){
+			$("#emaillink").hide();
+			$("#emailform").show();
+			$("#address").focus();
+		});
+		$("#emailcompareform").submit(function(){
+			$("#emailcompareform").hide();
+			$("#emailajaxloader").show();
+			$("#emailform").load("sendcompareemail.jsp?poid=<%=poid%>&roid1=<%=roid1%>&roid2=<%=roid2%>&address=" + $("#address").val());
+			return false;
+		});
 	});
 </script>
 <%}%>

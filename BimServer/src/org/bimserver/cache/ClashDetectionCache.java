@@ -27,18 +27,6 @@ public class ClashDetectionCache extends GenericCache<ClashDetectionCache.ClashD
 			}
 		}
 
-		public float getMargin() {
-			return margin;
-		}
-
-		public List<String> getIgnoredClasses() {
-			return ignoredClasses;
-		}
-
-		public List<Long> getRevisions() {
-			return revisions;
-		}
-
 		@Override
 		public int hashCode() {
 			final int prime = 31;
@@ -98,7 +86,11 @@ public class ClashDetectionCache extends GenericCache<ClashDetectionCache.ClashD
 	}
 
 	public synchronized Set<EidClash> getClashDetection(ClashDetectionSettings clashDetectionSettings) {
-		return getValue(new ClashDetectionSettingsKey(clashDetectionSettings)).getClashes();
+		ClashDetectionValue value = getValue(new ClashDetectionSettingsKey(clashDetectionSettings));
+		if (value == null) {
+			return null;
+		}
+		return value.getClashes();
 	}
 
 	public static ClashDetectionCache getInstance() {

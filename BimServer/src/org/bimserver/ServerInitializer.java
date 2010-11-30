@@ -78,6 +78,7 @@ public class ServerInitializer implements ServletContextListener {
 	private static ResourceFetcher resourceFetcher;
 	private static ServletContext servletContext;
 	private LongActionManager longActionManager;
+	private static ServiceInterface adminService;
 
 	@Override
 	public void contextInitialized(ServletContextEvent servletContextEvent) {
@@ -127,9 +128,9 @@ public class ServerInitializer implements ServletContextListener {
 			emfSerializerFactory.init(version, schema, fieldIgnoreMap, ifcEngineFactory, colladaSettings, resourceFetcher);
 			emfSerializerFactory.initSerializers();
 			ServiceFactory.init(bimDatabase, emfSerializerFactory, schema, longActionManager, ifcEngineFactory);
-			ServiceInterface adminService = ServiceFactory.getINSTANCE().newService(AccessMethod.INTERNAL);
-			((Service)adminService).loginAsAdmin();
-			LoginManager.setAdminService(adminService);
+			setAdminService(ServiceFactory.getINSTANCE().newService(AccessMethod.INTERNAL));
+			((Service)getAdminService()).loginAsAdmin();
+			LoginManager.setAdminService(getAdminService());
 
 			RestApplication.serviceFactory = ServiceFactory.getINSTANCE();
 			
@@ -271,5 +272,13 @@ public class ServerInitializer implements ServletContextListener {
 
 	public static ServletContext getServletContext() {
 		return servletContext;
+	}
+
+	public static void setAdminService(ServiceInterface adminService) {
+		ServerInitializer.adminService = adminService;
+	}
+
+	public static ServiceInterface getAdminService() {
+		return adminService;
 	}
 }

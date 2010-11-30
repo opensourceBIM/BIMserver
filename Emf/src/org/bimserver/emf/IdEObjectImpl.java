@@ -1,8 +1,8 @@
 package org.bimserver.emf;
 
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-public class IdEObjectImpl extends EObjectImpl implements IdEObject {
+public class IdEObjectImpl extends MinimalEObjectImpl implements IdEObject {
 
 	private long oid = -1;
 	

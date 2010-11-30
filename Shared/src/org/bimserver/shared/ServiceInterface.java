@@ -50,6 +50,7 @@ import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.interfaces.objects.SUser;
 import org.bimserver.interfaces.objects.SUserType;
+import org.bimserver.shared.SCompareResult.SCompareType;
 
 //TODO: Document the rest of the interface
 /**
@@ -216,7 +217,7 @@ public interface ServiceInterface {
 	boolean undeleteUser(@WebParam(name = "uoid") long uoid) throws UserException;
 
 	@WebMethod(action = "compare")
-	SCompareResult compare(@WebParam(name = "roid1") long roid1, @WebParam(name = "roid2") long roid2)
+	SCompareResult compare(@WebParam(name = "roid1") long roid1, @WebParam(name = "roid2") long roid2, SCompareType sCompareType)
 			throws UserException;
 
 	@WebMethod(action = "getRevisionSummary")
