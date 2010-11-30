@@ -63,10 +63,10 @@
 
 	<servlet>
 		<servlet-name>RestServlet</servlet-name>
-		<servlet-class>org.bimserver.RestServlet</servlet-class>
+		<servlet-class>org.bimserver.servlets.RestServlet</servlet-class>
 		<init-param>
 			<param-name>javax.ws.rs.Application</param-name>
-			<param-value>org.bimserver.RestApplication</param-value>
+			<param-value>org.bimserver.webservices.RestApplication</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
