@@ -1,0 +1,42 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<!--
+
+ See the file LICENSE for redistribution information.
+
+ Copyright (c) 2002-2010 Oracle.  All rights reserved.
+
+
+-->
+</head>
+<body>
+Support for the Java Connector Architecture, which provides a standard
+for connecting the J2EE platform to legacy enterprise information
+systems (EIS), such as ERP systems, database systems, and legacy
+applications not written in Java.
+
+<h2>Package Specification</h2>
+
+<p>
+Users who want to run JE within a J2EE Application Server can use the
+JCA Resource Adapter to connect to JE through a standard API. The JE
+Resource Adapter supports all three J2EE application server
+transaction types:
+</p>
+
+<ul type="disc">
+<li>No transaction.
+</li><li>Local transactions.
+</li><li>XA transactions.
+</li>
+</ul>
+
+<p>
+JCA also includes the Java Transaction API (JTA), which means that JE
+supports 2 phase commit (XA).  Therefore, JE can participate
+in distributed transactions managed by either a J2EE server or
+the applications direct use of the JTA API.
+</p>
+</body>
+</html>

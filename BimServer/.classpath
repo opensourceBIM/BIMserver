@@ -115,6 +115,6 @@
 	<classpathentry kind="lib" path="lib/cxf/spring-web-3.0.4.RELEASE.jar"/>
 	<classpathentry kind="lib" path="lib/cxf/stax2-api-3.0.2.jar"/>
 	<classpathentry kind="lib" path="lib/cxf/woodstox-core-asl-4.0.8.jar"/>
-	<classpathentry kind="lib" path="lib/je-4.1.6.jar"/>
+	<classpathentry kind="lib" path="lib/je-4.1.6.jar" sourcepath="libsrc"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

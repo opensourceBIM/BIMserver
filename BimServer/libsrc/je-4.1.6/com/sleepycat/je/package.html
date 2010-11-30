@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<!--
+
+ See the file LICENSE for redistribution information.
+
+ Copyright (c) 2002-2010 Oracle.  All rights reserved.
+
+
+-->
+</head>
+<body>
+Foundation for creating environments, databases and transactions; provides
+cursor based data access.
+
+<h2>Package Specification</h2>
+This package constitutes the base public API for Berkeley DB, Java
+Edition. The classes here are used to create database
+objects, and insert and retrieve data.
+<p>
+This package provides a key/data pair model of a database
+record. Databases and database cursors are the key objects used to
+access data. An alternative collections based API is available through 
+com.sleepycat.collections.
+<p>
+The Environment class embodies the database environment and is the starting
+point for the application. Databases and transaction objects are
+created through the Environment class.
+<p>
+Data can be inserted and retrieved directly through the Database
+object, or through a Cursor obtained from the Database. A database record
+consist of a key/data pair, where key and data are each individually
+represented by a DatabaseEntry object. Classes in com.sleepycat.bind
+provide optional support for mapping a Java object to a DatabaseEntry.
+<p>
+Configuration classes are used to specify the attributes of particular
+operations. For example the attributes of a database environment are
+specified in the EnvironmentConfig class. An instance of that class is
+required for Environment construction. Likewise, the attributes of a
+database are described in DatabaseConfig, which is a parameter to the
+Environment.openDatabase() method.
+
+@see <a href="{@docRoot}/../GettingStartedGuide/index.html"
+        target="_top">[Getting Started Guide]</a>
+</body>
+</html>

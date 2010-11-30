@@ -1,7 +1,12 @@
 package org.bimserver;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Map;
-import java.util.Scanner;
+
+import org.bimserver.shared.ResultType;
+import org.bimserver.shared.UserException;
 
 public class CommandLine extends Thread {
 	private final Server server;
@@ -11,34 +16,55 @@ public class CommandLine extends Thread {
 		setDaemon(true);
 		this.server = server;
 	}
-	
+
 	@Override
 	public void run() {
-		Scanner scanner = new Scanner(System.in);
-		while (scanner.hasNextLine()) {
-			String line = scanner.nextLine();
-			if (line.equalsIgnoreCase("exit")) {
-				server.stop();
-				return;
-			} else if (line.equalsIgnoreCase("dump")) {
-				System.out.println("Dumping all thread's track traces...");
-				System.out.println();
-				Map<Thread, StackTraceElement[]> allStackTraces = Thread.getAllStackTraces();
-				for (Thread t : allStackTraces.keySet()) {
-					System.out.println(t.getName());
-					StackTraceElement[] stackTraceElements = allStackTraces.get(t);
-					for (StackTraceElement stackTraceElement : stackTraceElements) {
-						System.out.println("\t" + stackTraceElement.getClassName() + ":" + stackTraceElement.getLineNumber() + "." + stackTraceElement.getMethodName());
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		while (true) {
+			try {
+				String line = reader.readLine();
+				if (line == null) {
+					try {
+						Thread.sleep(50);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
 					}
+					continue;
+				}
+				if (line.equalsIgnoreCase("exit")) {
+					server.stop();
+					return;
+				} else if (line.equalsIgnoreCase("test")) {
+					long startTime = System.nanoTime();
+					try {
+						ServerInitializer.getAdminService().download(1051442, ResultType.IFC);
+					} catch (UserException e) {
+						e.printStackTrace();
+					}
+					long endTime = System.nanoTime();
+					System.out.println(((endTime - startTime) / 1000000) + " ms");
+				} else if (line.equalsIgnoreCase("dump")) {
+					System.out.println("Dumping all thread's track traces...");
 					System.out.println();
+					Map<Thread, StackTraceElement[]> allStackTraces = Thread.getAllStackTraces();
+					for (Thread t : allStackTraces.keySet()) {
+						System.out.println(t.getName());
+						StackTraceElement[] stackTraceElements = allStackTraces.get(t);
+						for (StackTraceElement stackTraceElement : stackTraceElements) {
+							System.out.println("\t" + stackTraceElement.getClassName() + ":" + stackTraceElement.getLineNumber() + "." + stackTraceElement.getMethodName());
+						}
+						System.out.println();
+					}
+					System.out.println("Done printing stack traces");
+					System.out.println();
+					try {
+						Thread.sleep(10000);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
 				}
-				System.out.println("Done printing stack traces");
-				System.out.println();
-				try {
-					Thread.sleep(10000);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
+			} catch (IOException e1) {
+				e1.printStackTrace();
 			}
 		}
 	}

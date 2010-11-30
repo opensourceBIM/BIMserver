@@ -7,6 +7,23 @@ import java.util.Map;
 
 public class SCompareResult {
 
+	public enum SCompareType {
+		ALL("All"),
+		ADD("Added"),
+		MODIFY("Modified"),
+		DELETE("Deleted");
+		
+		private final String niceName;
+
+		SCompareType(String niceName) {
+			this.niceName = niceName;
+		}
+		
+		public String getNiceName() {
+			return niceName;
+		}
+	}
+	
 	public static abstract class SItem {
 
 		public final DataObject dataObject;

@@ -157,6 +157,7 @@ import org.bimserver.shared.SUserSession;
 import org.bimserver.shared.ServiceInterface;
 import org.bimserver.shared.Token;
 import org.bimserver.shared.UserException;
+import org.bimserver.shared.SCompareResult.SCompareType;
 import org.bimserver.shared.SCompareResult.SObjectAdded;
 import org.bimserver.shared.SCompareResult.SObjectModified;
 import org.bimserver.shared.SCompareResult.SObjectRemoved;
@@ -1039,11 +1040,11 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public SCompareResult compare(long roid1, long roid2) throws UserException {
+	public SCompareResult compare(long roid1, long roid2, SCompareType sCompareType) throws UserException {
 		requireAuthentication();
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
-			BimDatabaseAction<CompareResult> action = new CompareDatabaseAction(accessMethod, currentUoid, roid1, roid2);
+			BimDatabaseAction<CompareResult> action = new CompareDatabaseAction(accessMethod, currentUoid, roid1, roid2, sCompareType);
 			return convert(session.executeAndCommitAction(action, DEADLOCK_RETRIES), SCompareResult.class, session);
 		} catch (BimDatabaseException e) {
 			throw new UserException("Database error", e);
