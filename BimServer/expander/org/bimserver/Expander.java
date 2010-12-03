@@ -57,8 +57,6 @@ import javax.swing.SpringLayout;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-import com.google.common.base.Charsets;
-
 public class Expander extends JFrame {
 	private static final long serialVersionUID = 5356018168589837130L;
 	private Process exec;
@@ -357,7 +355,7 @@ public class Expander extends JFrame {
 		String urlString = urlJar.getFile();
 		urlString = urlString.substring(urlString.indexOf(":") + 1, urlString.indexOf("!"));
 		try {
-			return URLDecoder.decode(urlString, Charsets.UTF_8.name());
+			return URLDecoder.decode(urlString, "UTF-8");
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
