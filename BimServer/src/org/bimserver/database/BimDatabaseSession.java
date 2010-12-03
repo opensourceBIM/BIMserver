@@ -68,6 +68,8 @@ public interface BimDatabaseSession {
 
 	void putInCache(RecordIdentifier recordIdentifier, IdEObject object);
 
+	ReadSet getMapWithOid(int pid, int id, short cid, long oid) throws BimDeadlockException, BimDatabaseException;
+
 	ReadSet getMapWithOid(int pid, int id, long oid) throws BimDeadlockException, BimDatabaseException;
 
 	<T extends IdEObject> Map <Long, T> query(int pid, int rid, Condition condition, Class<T> clazz) throws BimDatabaseException, BimDeadlockException;

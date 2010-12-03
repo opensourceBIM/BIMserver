@@ -24,6 +24,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
@@ -38,9 +39,14 @@ import org.bimserver.ifc.SerializerException;
 import org.bimserver.interfaces.objects.SClashDetectionSettings;
 import org.bimserver.interfaces.objects.SEidClash;
 import org.bimserver.shared.ResultType;
+import org.bimserver.shared.SCompareResult;
 import org.bimserver.shared.SDownloadResult;
 import org.bimserver.shared.UserException;
+import org.bimserver.shared.SCompareResult.SCompareType;
+import org.bimserver.shared.SCompareResult.SItem;
 import org.bimserver.web.LoginManager;
+
+import com.google.common.collect.Sets;
 
 public class DownloadServlet extends HttpServlet {
 	private static final long serialVersionUID = 732025375536415841L;
@@ -84,12 +90,26 @@ public class DownloadServlet extends HttpServlet {
 					sClashDetectionSettings.getRevisions().add(Long.parseLong(revisionOidString));
 				}
 				List<SEidClash> findClashes = loginManager.getService().findClashesByEid(sClashDetectionSettings);
-				Set<Long> eids = new HashSet<Long>();
+				Set<Long> oids = new HashSet<Long>();
 				for (SEidClash clash : findClashes) {
-					eids.add(clash.getEid1());
-					eids.add(clash.getEid2());
+					oids.add(clash.getEid1());
+					oids.add(clash.getEid2());
 				}
-				checkoutResult = loginManager.getService().downloadByOids(new HashSet<Long>(sClashDetectionSettings.getRevisions()), eids, resultType);
+				checkoutResult = loginManager.getService().downloadByOids(new HashSet<Long>(sClashDetectionSettings.getRevisions()), oids, resultType);
+			} else if (request.getParameter("compare") != null) {
+				SCompareType sCompareType = SCompareType.valueOf(request.getParameter("type"));
+				Long roid1 = Long.parseLong(request.getParameter("roid1"));
+				Long roid2 = Long.parseLong(request.getParameter("roid2"));
+				SCompareResult compare = loginManager.getService().compare(roid1, roid2, sCompareType);
+				Map<String, List<SItem>> items = compare.getItems();
+				Set<Long> oids = new HashSet<Long>();
+				for (String className : items.keySet()) {
+					List<SItem> list = items.get(className);
+					for (SItem item : list) {
+						oids.add(item.dataObject.getOid());
+					}
+				}
+				checkoutResult = loginManager.getService().downloadByOids(Sets.newHashSet(roid1, roid2), oids, resultType);
 			} else {
 				long roid = -1;
 				if (request.getParameter("roid") == null) {

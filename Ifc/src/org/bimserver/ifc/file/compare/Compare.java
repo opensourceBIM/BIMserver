@@ -1,5 +1,6 @@
 package org.bimserver.ifc.file.compare;
 
+import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.FieldIgnoreMap;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.database.IfcDatabase;
@@ -33,8 +34,8 @@ public class Compare {
 				if (eClassifier instanceof EClass && Ifc2x3Package.eINSTANCE.getIfcRoot().isSuperTypeOf((EClass) eClassifier)) {
 					EClass eClass = (EClass) eClassifier;
 					for (String guid : database1.getGuids(eClass)) {
-						EObject eObject1 = database1.getByGuid(eClass, guid);
-						EObject eObject2 = database2.getByGuid(eClass, guid);
+						IdEObject eObject1 = database1.getByGuid(eClass, guid);
+						IdEObject eObject2 = database2.getByGuid(eClass, guid);
 						if  (eObject2 == null) {
 							if (sCompareType == SCompareType.ALL || sCompareType == SCompareType.DELETE) {
 								result.addDeleted(eObject1);
@@ -42,8 +43,8 @@ public class Compare {
 						}
 					}
 					for (String guid : database2.getGuids(eClass)) {
-						EObject eObject1 = database1.getByGuid(eClass, guid);
-						EObject eObject2 = database2.getByGuid(eClass, guid);
+						IdEObject eObject1 = database1.getByGuid(eClass, guid);
+						IdEObject eObject2 = database2.getByGuid(eClass, guid);
 						if (eObject1 == null) {
 							if (sCompareType == SCompareType.ALL || sCompareType == SCompareType.ADD) {
 								result.addAdded(eObject2);
@@ -60,7 +61,7 @@ public class Compare {
 		return result;
 	}
 
-	private void compareEObjects(EClass originalQueryClass, EObject eObject1, EObject eObject2, CompareResult result, SCompareType sCompareType) {
+	private void compareEObjects(EClass originalQueryClass, IdEObject eObject1, IdEObject eObject2, CompareResult result, SCompareType sCompareType) {
 		if (eObject1.eClass() != eObject2.eClass()) {
 			return;
 		}

@@ -7,8 +7,8 @@
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Utils"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Emf"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Shared"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/guava-r06.jar"/>
 	<classpathentry kind="lib" path="/BimServer/lib/commons/commons-lang-2.4.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Store"/>
+	<classpathentry kind="lib" path="/BimServer/lib/guava-r07.jar" sourcepath="/BimServer/libsrc/guava-src-r07.zip"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

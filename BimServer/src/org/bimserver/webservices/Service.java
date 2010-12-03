@@ -1078,7 +1078,7 @@ public class Service implements ServiceInterface {
 		for (EClass key : items.keySet()) {
 			List<Item> list = items.get(key);
 			for (Item item : list) {
-				DataObject dataObject = new DataObject(item.eObject.eClass().getName(), 0, getGuid(item.eObject), getName(item.eObject));
+				DataObject dataObject = new DataObject(item.eObject.eClass().getName(), item.eObject.getOid(), getGuid(item.eObject), getName(item.eObject));
 				if (item instanceof ObjectAdded) {
 					sCompareResult.add(new SObjectAdded(dataObject));
 				} else if (item instanceof ObjectDeleted) {
