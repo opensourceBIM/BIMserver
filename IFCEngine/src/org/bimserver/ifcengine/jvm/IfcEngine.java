@@ -26,7 +26,7 @@ import com.sun.jna.ptr.PointerByReference;
  * @author Peter Willems
  * 
  */
-public class IfcEngineJNA {
+public class IfcEngine {
 
 	public static final int D3DFVF_XYZ = 0x002;
 	public static final int D3DFVF_XYZRHW = 0x004;
@@ -38,9 +38,9 @@ public class IfcEngineJNA {
 	
 	private final Set<StreamCallback> callBacks = new HashSet<StreamCallback>();
 
-	private IfcEngineInterface engine;
+	private final IfcEngineInterface engine;
 
-	public IfcEngineJNA() {
+	public IfcEngine() {
 		engine = IfcEngineInterface.INSTANCE;
 	}
 

@@ -14,8 +14,8 @@ import org.bimserver.database.store.GuidClash;
 import org.bimserver.ifcengine.Command;
 import org.bimserver.ifcengine.IfcEngineException;
 import org.bimserver.ifcengine.SdaiTypes;
-import org.bimserver.ifcengine.jvm.IfcEngineJNA.InstanceVisualisationProperties;
-import org.bimserver.ifcengine.jvm.IfcEngineJNA.SurfaceProperties;
+import org.bimserver.ifcengine.jvm.IfcEngine.InstanceVisualisationProperties;
+import org.bimserver.ifcengine.jvm.IfcEngine.SurfaceProperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,7 +25,7 @@ public class IfcEngineServer {
 	private static final Logger LOGGER = LoggerFactory.getLogger(IfcEngineServer.class);
 	private volatile boolean running = true;
 	private final String schemaFileName;
-	private IfcEngineJNA ifcEngine;
+	private IfcEngine ifcEngine;
 	private final Map<Integer, Pointer> pointers = new HashMap<Integer, Pointer>();
 	private int pointerCounter = 0;
 
@@ -36,7 +36,7 @@ public class IfcEngineServer {
 
 	public IfcEngineServer(String schemaFileName) {
 		this.schemaFileName = schemaFileName;
-		this.ifcEngine = new IfcEngineJNA();
+		this.ifcEngine = new IfcEngine();
 	}
 
 	public void run() {

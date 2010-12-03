@@ -1,6 +1,6 @@
 package org.bimserver.ifcengine;
 
-import org.bimserver.ifcengine.jvm.IfcEngineJNA.InstanceVisualisationProperties;
+import org.bimserver.ifcengine.jvm.IfcEngine.InstanceVisualisationProperties;
 
 public class Instance {
 	private final FailSafeIfcEngine failSafeIfcEngine;

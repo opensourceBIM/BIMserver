@@ -46,7 +46,7 @@ import org.bimserver.ifcengine.IfcEngineException;
 import org.bimserver.ifcengine.IfcEngineFactory;
 import org.bimserver.ifcengine.IfcEngineModel;
 import org.bimserver.ifcengine.Instance;
-import org.bimserver.ifcengine.jvm.IfcEngineJNA.InstanceVisualisationProperties;
+import org.bimserver.ifcengine.jvm.IfcEngine.InstanceVisualisationProperties;
 import org.bimserver.shared.ResultType;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;

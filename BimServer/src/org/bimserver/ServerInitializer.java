@@ -118,7 +118,7 @@ public class ServerInitializer implements ServletContextListener {
 			LOGGER.info("Using " + schemaFile + " as engine schema");
 
 			File nativeFolder = resourceFetcher.getFile("lib/");
-			IfcEngineFactory ifcEngineFactory = new IfcEngineFactory(schemaFile, nativeFolder, resourceFetcher);
+			IfcEngineFactory ifcEngineFactory = new IfcEngineFactory(schemaFile, nativeFolder);
 
 			CompileServlet.database = bimDatabase;
 			
