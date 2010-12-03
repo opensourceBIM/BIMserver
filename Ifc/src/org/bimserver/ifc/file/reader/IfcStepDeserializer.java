@@ -63,9 +63,12 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EClassImpl;
 import org.eclipse.emf.ecore.impl.EEnumImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class IfcStepDeserializer {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(IfcStepDeserializer.class);
 	private static final int AVERAGE_LINE_LENGTH = 58;
 
 	public enum Mode {
@@ -105,7 +108,7 @@ public class IfcStepDeserializer {
 				} catch (IncorrectIfcFileException e) {
 					throw new IncorrectIfcFileException("Error on line " + lineNumber + " (" + e.getMessage() + ") " + line, e);
 				} catch (Exception e) {
-					e.printStackTrace();
+					LOGGER.error("", e);
 					throw new Exception("Error on line " + lineNumber + " (" + e.getMessage() + ") " + line, e);
 				}
 				line = reader.readLine();
@@ -113,9 +116,9 @@ public class IfcStepDeserializer {
 			}
 			model.setChecksum(md.digest());
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 	}
 

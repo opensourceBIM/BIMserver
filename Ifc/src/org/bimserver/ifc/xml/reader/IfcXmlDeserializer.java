@@ -19,9 +19,12 @@ import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class IfcXmlDeserializer {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(IfcXmlDeserializer.class);
 	private IfcModel model = new IfcModel();
 
 	public IfcModel read(InputStream inputStream) throws IfcXmlDeserializeException {
@@ -30,7 +33,7 @@ public class IfcXmlDeserializer {
 			XMLStreamReader reader = inputFactory.createXMLStreamReader(inputStream);
 			parseDocument(reader);
 		} catch (XMLStreamException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 		return model;
 	}
