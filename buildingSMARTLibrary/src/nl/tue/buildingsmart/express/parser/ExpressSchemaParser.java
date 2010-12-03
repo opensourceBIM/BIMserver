@@ -11,7 +11,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintStream;
-import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.util.Iterator;
 
@@ -34,6 +33,8 @@ import org.slf4j.LoggerFactory;
 
 import antlr.CommonAST;
 
+import com.google.common.base.Charsets;
+
 /**
  * @author bwjakob
  * 
@@ -53,7 +54,7 @@ public class ExpressSchemaParser {
 		try {
 			this.inputStream = new FileInputStream(file);
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 	}
 	
@@ -61,7 +62,7 @@ public class ExpressSchemaParser {
 		try {
 			this.inputStream = url.openConnection().getInputStream();
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 	}
 
@@ -96,11 +97,7 @@ public class ExpressSchemaParser {
 			walker.schema.constructHirarchyMap();
 		} catch (Exception e) {
 			LOGGER.error("", e);
-			try {
-				LOGGER.error(log.toString("UTF-8"));
-			} catch (UnsupportedEncodingException e1) {
-				e1.printStackTrace();
-			}
+			LOGGER.error(new String(log.toByteArray(), Charsets.UTF_8));
 		}
 	}
 
@@ -248,8 +245,8 @@ public class ExpressSchemaParser {
 
 			// AST t = walker.getAST();
 			// LOGGER.info(t.toStringTree());
-		} catch (Exception e1) {
-			e1.printStackTrace();
+		} catch (Exception e) {
+			LOGGER.error("", e);
 		}
 		LOGGER.info("execution time: " + getStringTime(System.currentTimeMillis() - startTime));
 		// String fileName = "ifc2_2.owl";
@@ -259,7 +256,7 @@ public class ExpressSchemaParser {
 		// LOGGER.info("File saved with " + errors.size() + " errors.");
 		// LOGGER.info("execution time: "+getStringTime(System.currentTimeMillis()-startTime));
 		// } catch (java.io.IOException e) {
-		// e.printStackTrace();
+		//	LOGGER.error("", e);
 		// }
 
 	}

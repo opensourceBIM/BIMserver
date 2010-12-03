@@ -33,7 +33,12 @@ import nl.tue.buildingsmart.express.dictionary.DerivedAttribute2;
 import nl.tue.buildingsmart.express.dictionary.EntityDefinition;
 import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class DerivedReader {
+	private static final Logger LOGGER = LoggerFactory.getLogger(DerivedReader.class);
+	
 	public DerivedReader(InputStream inputStream, SchemaDefinition schema) {
 		try {
 			BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
@@ -95,9 +100,9 @@ public class DerivedReader {
 				line = reader.readLine();
 			}
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 	}
 	

@@ -71,7 +71,7 @@ public class Express2EMF {
 		try {
 			new DerivedReader(new File(schemaFileName), schema);
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 		schemaPack.setName(modelName);
 		schemaPack.setNsPrefix("iai");
@@ -694,7 +694,7 @@ public class Express2EMF {
 		try {
 			metaResource.save(null);
 		} catch (Exception e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 	}
 }

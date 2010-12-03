@@ -2,13 +2,17 @@ package nl.tue.buildingsmart.express.parser;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import net.sourceforge.osexpress.parser.EasyParser;
 import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
 import antlr.CommonAST;
 
 public class SchemaLoader {
 	private SchemaDefinition schema = null;
-
+	private static final Logger LOGGER = LoggerFactory.getLogger(SchemaLoader.class);
+	
 	public SchemaLoader (String fileName){
 		try {
 			EasyParser parser = new EasyParser(fileName);
@@ -38,7 +42,7 @@ public class SchemaLoader {
 			myErr.close();
 		}
 		catch (Exception e){
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 	}
 	public SchemaDefinition getSchema(){

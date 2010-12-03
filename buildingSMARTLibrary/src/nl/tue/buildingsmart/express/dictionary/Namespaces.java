@@ -10,7 +10,11 @@ import java.util.Set;
 import org.apache.xmlbeans.XmlException;
 import org.iai.ifcNamespaces.Namespace;
 import org.iai.ifcNamespaces.NamespacesDocument;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 public class Namespaces {
+	private static final Logger LOGGER = LoggerFactory.getLogger(Namespaces.class);
+	
 	// XML file for where the Namespaces are stored
 	private File nsConfFile;
 	// XMLBeans instance of reader/writer for config file
@@ -75,14 +79,11 @@ public class Namespaces {
 				
 				return true;
 			} catch (XmlException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				LOGGER.error("", e);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				LOGGER.error("", e);
 			}
 		}
-			
 		return false;
 	}
 	
