@@ -20,7 +20,6 @@ package org.bimserver.tools;
  * long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
@@ -31,32 +30,27 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 
-import nl.tue.buildingsmart.emf.DerivedReader;
 import nl.tue.buildingsmart.express.dictionary.Attribute;
 import nl.tue.buildingsmart.express.dictionary.EntityDefinition;
 import nl.tue.buildingsmart.express.dictionary.InverseAttribute;
 import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
-import nl.tue.buildingsmart.express.parser.ExpressSchemaParser;
 
 import org.bimserver.ifc.ClassDefinition;
 import org.bimserver.ifc.FieldDefinition;
 import org.bimserver.ifc.FieldIgnoreMap;
 import org.bimserver.ifc.PackageDefinition;
+import org.bimserver.ifc.SchemaLoader;
 import org.bimserver.ifc.emf.Ifc2x3.Ifc2x3Package;
 import org.eclipse.emf.ecore.EPackage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class SchemaFieldIgnoreMap extends FieldIgnoreMap {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(SchemaFieldIgnoreMap.class);
+	
 	public static void main(String[] args) {
-		File schemaFile = new File("../buildingSMARTLibrary/data/IFC2X3_FINAL.exp");
-		ExpressSchemaParser schemaParser = new ExpressSchemaParser(schemaFile);
-		schemaParser.parse();
-		SchemaDefinition schema = schemaParser.getSchema();
-		try {
-			new DerivedReader(schemaFile, schema);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
+		SchemaDefinition schema = SchemaLoader.loadDefaultSchema();
 		Set<EPackage> packages = new HashSet<EPackage>();
 		packages.add(Ifc2x3Package.eINSTANCE);
 		new SchemaFieldIgnoreMap(packages, schema);
@@ -85,9 +79,9 @@ public class SchemaFieldIgnoreMap extends FieldIgnoreMap {
 			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
 			marshaller.marshal(packageDefinition, new FileOutputStream("ignore.xml"));
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (JAXBException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 	}
 }

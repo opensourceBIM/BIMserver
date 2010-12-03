@@ -37,13 +37,13 @@ public class TemplateEngine {
 			velocityEngine.mergeTemplate(templateIdentifier.getFileName(), "UTF-8", velocityContext, stringWriter);
 			return stringWriter.toString();
 		} catch (ResourceNotFoundException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (ParseErrorException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (MethodInvocationException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (Exception e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 		return "";
 	}
@@ -57,13 +57,13 @@ public class TemplateEngine {
 		velocityEngine.setProperty("runtime.log.logsystem.log4j.logger", "velocity");
 		try {
 			velocityEngine.setProperty("url.resource.loader.root", URLDecoder.decode(resource.toString(), "UTF-8"));
-		} catch (UnsupportedEncodingException e1) {
-			e1.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			LOGGER.error("", e);
 		}
 		try {
 			velocityEngine.init();
 		} catch (Exception e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 	}
 }

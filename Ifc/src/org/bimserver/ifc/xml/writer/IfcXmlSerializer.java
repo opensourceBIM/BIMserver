@@ -37,9 +37,12 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class IfcXmlSerializer extends IfcSerializer {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(IfcXmlSerializer.class);
 	private PrintWriter out;
 	private final Map<EObject, Long> objectToOidMap;
 	private int tabs;
@@ -82,12 +85,8 @@ public class IfcXmlSerializer extends IfcSerializer {
 		return -1;
 	}
 
-	public void write(File file) {
-		try {
-			write(new FileOutputStream(file));
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
+	public void write(File file) throws FileNotFoundException {
+		write(new FileOutputStream(file));
 	}
 
 	/**

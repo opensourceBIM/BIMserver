@@ -30,8 +30,12 @@ import java.io.OutputStream;
 
 import javax.activation.DataSource;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public abstract class EmfSerializer implements DataSource {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(EmfSerializer.class);
 	protected final IfcModel model;
 	private final String fileName;
 
@@ -49,8 +53,8 @@ public abstract class EmfSerializer implements DataSource {
 		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 		try {
 			writeToOutputStream(outputStream);
-		} catch (SerializerException e1) {
-			e1.printStackTrace();
+		} catch (SerializerException e) {
+			LOGGER.error("", e);
 		}
 		return outputStream.toByteArray();
 	}
@@ -83,7 +87,7 @@ public abstract class EmfSerializer implements DataSource {
 //						write = write(outputStream);
 //					}
 //				} catch (SerializerException e) {
-//					e.printStackTrace();
+//					LOGGER.error("", e);
 //				}
 //			}
 			
@@ -106,10 +110,10 @@ public abstract class EmfSerializer implements DataSource {
 							write = write(outputStream);
 						}
 					} catch (SerializerException e) {
-						e.printStackTrace();
+						LOGGER.error("", e);
 					}
 				} catch (Exception e) {
-					e.printStackTrace();
+					LOGGER.error("", e);
 				}
 				return -1;
 			}
@@ -142,9 +146,9 @@ public abstract class EmfSerializer implements DataSource {
 			writeToOutputStream(fos);
 			fos.close();
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 	}
 }

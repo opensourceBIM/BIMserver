@@ -1,13 +1,10 @@
 package org.bimserver.ifc;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.Map;
 
 import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.emf.Ifc2x3.Ifc2x3Factory;
 import org.bimserver.ifc.emf.Ifc2x3.WrappedValue;
-import org.bimserver.utils.TempUtils;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -17,23 +14,10 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 
 public abstract class BimModelSerializer extends EmfSerializer {
 	private final FieldIgnoreMap fieldIgnoreMap;
-	private int convertCounter;
-	private File tempDir;
 
 	public BimModelSerializer(String fileName, IfcModel model, FieldIgnoreMap fieldIgnoreMap) {
 		super(fileName, model);
 		this.fieldIgnoreMap = fieldIgnoreMap;
-		tempDir = TempUtils.makeTempDir("bimserver" + File.separator + this.hashCode());
-	}
-
-	protected File createTempFile() {
-		File makeTempFile = TempUtils.makeTempFile(tempDir, (convertCounter++) + ".ifc");
-		try {
-			makeTempFile.createNewFile();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return makeTempFile;
 	}
 
 	@SuppressWarnings("unchecked")

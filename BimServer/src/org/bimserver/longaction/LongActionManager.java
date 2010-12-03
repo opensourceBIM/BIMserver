@@ -3,8 +3,13 @@ package org.bimserver.longaction;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
+import org.slf4j.LoggerFactory;
+
+import org.slf4j.Logger;
+
 public class LongActionManager extends Thread {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(LongActionManager.class);
 	private final BlockingQueue<LongAction> queue = new LinkedBlockingQueue<LongAction>();
 	private volatile boolean running = true;
 	private boolean finished = false;
@@ -25,12 +30,13 @@ public class LongActionManager extends Thread {
 				try {
 					longAction.execute();
 				} catch (Exception e) {
-					e.printStackTrace();
+					LOGGER.error("", e);
+
 				}
 			}
 		} catch (InterruptedException e) {
 			if (running) {
-				e.printStackTrace();
+				LOGGER.error("", e);
 			}
 		}
 		finished = true;
@@ -47,7 +53,7 @@ public class LongActionManager extends Thread {
 			try {
 				Thread.sleep(20);
 			} catch (InterruptedException e) {
-				e.printStackTrace();
+				LOGGER.error("", e);
 			}
 		}
 	}

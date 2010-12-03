@@ -40,9 +40,12 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class IfcDatabase {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(IfcDatabase.class);
 	private static final Map<Class<?>, Class<?>> interfaceClassMap = initInterfaceClassMap();
 	private final Map<Class<?>, List<? extends EObject>> index = new HashMap<Class<?>, List<? extends EObject>>();
 	private final IfcModel model;
@@ -65,7 +68,7 @@ public class IfcDatabase {
 						Class<?> implementationClass = Class.forName(eClassifier.getInstanceClass().getPackage().getName() + ".impl." + eClassifier.getInstanceClass().getSimpleName() + "Impl");
 						interfaceClassMap.put(implementationClass, eClassifier.getInstanceClass());
 					} catch (ClassNotFoundException e) {
-						e.printStackTrace();
+						LOGGER.error("", e);
 					}
 				}
 			}

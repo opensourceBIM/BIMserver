@@ -18,9 +18,12 @@ import javax.xml.bind.Unmarshaller;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import org.bimserver.shared.ResultType;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @XmlRootElement
 public class Settings {
+	private static final Logger LOGGER = LoggerFactory.getLogger(Settings.class);
 	private boolean showVersionUpgradeAvailable;
 	private boolean sendConfirmationEmailAfterRegistration;
 	private boolean useCaching;
@@ -83,22 +86,11 @@ public class Settings {
 		this.sendConfirmationEmailAfterRegistration = sendConfirmationEmailAfterRegistration;
 	}
 
-	public static Settings readFromFile(File file) {
+	public static Settings readFromFile(File file) throws FileNotFoundException, SettingsReadException {
 		if (file.exists() && file.isFile()) {
-			try {
-				JAXBContext jc = JAXBContext.newInstance(Settings.class);
-				Unmarshaller unmarshaller = jc.createUnmarshaller();
-				Object unmarshal = unmarshaller.unmarshal(new FileInputStream(file));
-				return (Settings) unmarshal;
-			} catch (JAXBException e) {
-				e.printStackTrace();
-			} catch (FileNotFoundException e) {
-				e.printStackTrace();
-			}
-			return new Settings();
-		} else {
-			return new Settings();
+			return readFromStream(new FileInputStream(file));
 		}
+		return new Settings();
 	}
 
 	public void updateEnabledResultTypes(Set<ResultType> resultTypes) {
@@ -111,46 +103,30 @@ public class Settings {
 		}
 		this.enabledExportTypes = enabledExportTypes;
 	}
-	
-	public void saveToFile(File file) {
+
+	public void saveToFile(File file) throws SettingsSaveException, FileNotFoundException {
+		FileOutputStream fos = new FileOutputStream(file);
+		saveToStream(fos);
 		try {
-			FileOutputStream fos = new FileOutputStream(file);
-			saveToStream(fos);
-			try {
-				fos.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			fos.close();
+		} catch (IOException e) {
+			LOGGER.error("", e);
 		}
 	}
 
-	public void saveToStream(OutputStream out) {
+	public void saveToStream(OutputStream out) throws SettingsSaveException {
+		JAXBContext jc;
 		try {
-			JAXBContext jc = JAXBContext.newInstance(Settings.class);
+			jc = JAXBContext.newInstance(Settings.class);
 			Marshaller marshaller = jc.createMarshaller();
 			marshaller.marshal(this, out);
 		} catch (JAXBException e) {
-			e.printStackTrace();
+			throw new SettingsSaveException(e);
 		}
 	}
 
-	public static Settings readFromUrl(URL resource) {
-		try {
-			JAXBContext jc = JAXBContext.newInstance(Settings.class);
-			Unmarshaller unmarshaller = jc.createUnmarshaller();
-			Object unmarshal = unmarshaller.unmarshal(resource.openStream());
-			Settings settings = (Settings) unmarshal;
-			return settings;
-		} catch (JAXBException e) {
-			e.printStackTrace();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return new Settings();
+	public static Settings readFromUrl(URL resource) throws SettingsReadException, IOException {
+		return readFromStream(resource.openStream());
 	}
 
 	public void setDatabaseLocation(String databaseLocation) {
@@ -177,26 +153,34 @@ public class Settings {
 		return allowSelfRegistration;
 	}
 
-	public static Settings readFromStream(InputStream inputStream) {
+	public static Settings readFromStream(InputStream inputStream) throws SettingsReadException {
 		try {
 			JAXBContext jc = JAXBContext.newInstance(Settings.class);
 			Unmarshaller unmarshaller = jc.createUnmarshaller();
 			Object unmarshal = unmarshaller.unmarshal(inputStream);
 			return (Settings) unmarshal;
 		} catch (JAXBException e) {
-			e.printStackTrace();
+			throw new SettingsReadException(e);
+		}
+	}
+
+	public void save() throws SettingsSaveException {
+		File file = ServerInitializer.getResourceFetcher().getFile("settings.xml");
+		try {
+			saveToFile(file);
+		} catch (FileNotFoundException e) {
+			LOGGER.error("", e);
+		}
+	}
+
+	public static Settings read() throws SettingsReadException {
+		File file = ServerInitializer.getResourceFetcher().getFile("settings.xml");
+		try {
+			return readFromFile(file);
+		} catch (FileNotFoundException e) {
+			LOGGER.error("", e);
 		}
 		return null;
-	}
-
-	public void save() {
-		File file = ServerInitializer.getResourceFetcher().getFile("settings.xml");
-		saveToFile(file);
-	}
-
-	public static Settings read() {
-		File file = ServerInitializer.getResourceFetcher().getFile("settings.xml");
-		return readFromFile(file);
 	}
 
 	public void setAutoTestClashes(boolean autoTestClashes) {

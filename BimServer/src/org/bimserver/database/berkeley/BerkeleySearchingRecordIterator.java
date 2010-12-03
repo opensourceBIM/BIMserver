@@ -25,6 +25,8 @@ import java.util.Arrays;
 import org.bimserver.database.BimDeadlockException;
 import org.bimserver.database.Record;
 import org.bimserver.database.SearchingRecordIterator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.sleepycat.je.Cursor;
 import com.sleepycat.je.DatabaseEntry;
@@ -35,6 +37,7 @@ import com.sleepycat.je.OperationStatus;
 
 public class BerkeleySearchingRecordIterator implements SearchingRecordIterator {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(BerkeleySearchingRecordIterator.class);
 	private final Cursor cursor;
 	private final byte[] mustStartWith;
 	private byte[] nextStartSearchingAt;
@@ -61,7 +64,7 @@ public class BerkeleySearchingRecordIterator implements SearchingRecordIterator 
 		} catch (LockConflictException e) {
 			throw new BimDeadlockException(e);
 		} catch (DatabaseException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 		return null;
 	}
@@ -85,7 +88,7 @@ public class BerkeleySearchingRecordIterator implements SearchingRecordIterator 
 		} catch (LockConflictException e) {
 			throw new BimDeadlockException(e);
 		} catch (DatabaseException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 		return null;
 	}
@@ -95,7 +98,7 @@ public class BerkeleySearchingRecordIterator implements SearchingRecordIterator 
 		try {
 			cursor.close();
 		} catch (DatabaseException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 	}
 

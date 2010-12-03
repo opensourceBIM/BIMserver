@@ -10,7 +10,6 @@ import java.io.OutputStream;
 import java.io.Reader;
 import java.io.StringReader;
 import java.io.StringWriter;
-import java.io.UnsupportedEncodingException;
 import java.io.Writer;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -30,9 +29,14 @@ import javax.tools.JavaFileObject;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.output.ByteArrayOutputStream;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.google.common.base.Charsets;
 
 public class VirtualFile implements JavaFileObject {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(VirtualFile.class);
 	private final Map<String, VirtualFile> files = new HashMap<String, VirtualFile>();
 	private final String name;
 	private byte[] data = new byte[0];
@@ -51,7 +55,7 @@ public class VirtualFile implements JavaFileObject {
 					this.uri = new URI(name);
 				}
 			} catch (URISyntaxException e) {
-				e.printStackTrace();
+				LOGGER.error("", e);
 			}
 		} else {
 			uri = null;
@@ -80,11 +84,7 @@ public class VirtualFile implements JavaFileObject {
 	}
 
 	public void setStringContent(String content) {
-		try {
-			data = content.getBytes("UTF-8");
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
+		data = content.getBytes(Charsets.UTF_8);
 	}
 
 	public OutputStream openOutputStream() {
@@ -103,7 +103,7 @@ public class VirtualFile implements JavaFileObject {
 			createJar(jarOutputStream);
 			jarOutputStream.finish();
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 	}
 
@@ -112,7 +112,7 @@ public class VirtualFile implements JavaFileObject {
 			dir.mkdir();
 			for (VirtualFile virtualFile : files.values()) {
 				virtualFile.dumpToDir(new File(dir, virtualFile.name));
-			}			
+			}
 		} else {
 			try {
 				FileOutputStream fos = new FileOutputStream(dir);
@@ -120,13 +120,13 @@ public class VirtualFile implements JavaFileObject {
 				IOUtils.copy(bais, fos);
 				fos.close();
 			} catch (FileNotFoundException e) {
-				e.printStackTrace();
+				LOGGER.error("", e);
 			} catch (IOException e) {
-				e.printStackTrace();
+				LOGGER.error("", e);
 			}
 		}
 	}
-	
+
 	private void createJar(JarOutputStream jarOutputStream) throws IOException {
 		for (VirtualFile virtualFile : files.values()) {
 			if (virtualFile.isDirectory()) {
@@ -209,8 +209,8 @@ public class VirtualFile implements JavaFileObject {
 	}
 
 	@Override
-	public CharSequence getCharContent(boolean ignoreEncodingErrors) throws IOException {
-		return new String(data, "UTF-8");
+	public CharSequence getCharContent(boolean ignoreEncodingErrors) {
+		return new String(data, Charsets.UTF_8);
 	}
 
 	@Override
@@ -219,13 +219,13 @@ public class VirtualFile implements JavaFileObject {
 	}
 
 	@Override
-	public Reader openReader(boolean ignoreEncodingErrors) throws IOException {
-		return new StringReader(new String(data, "UTF-8"));
+	public Reader openReader(boolean ignoreEncodingErrors) {
+		return new StringReader(new String(data, Charsets.UTF_8));
 	}
 
 	@Override
 	public Writer openWriter() throws IOException {
-		return new StringWriter(){
+		return new StringWriter() {
 			@Override
 			public void close() throws IOException {
 				super.close();
@@ -282,7 +282,7 @@ public class VirtualFile implements JavaFileObject {
 	private void add(VirtualFile file) {
 		files.put(file.name, file);
 	}
-	
+
 	@Override
 	public String toString() {
 		return uri.toString();

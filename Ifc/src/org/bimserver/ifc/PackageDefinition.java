@@ -34,12 +34,12 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement(name="PackageDefinition")
+@XmlRootElement(name = "PackageDefinition")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class PackageDefinition {
-	@XmlElement(name="ClassDefinition")
+	@XmlElement(name = "ClassDefinition")
 	private List<ClassDefinition> classDefinitions = new ArrayList<ClassDefinition>();
-	
+
 	public PackageDefinition() {
 	}
 
@@ -50,7 +50,7 @@ public class PackageDefinition {
 	public void setClassDefinitions(List<ClassDefinition> classDefinitions) {
 		this.classDefinitions = classDefinitions;
 	}
-	
+
 	public boolean hasClassDefinition(String name) {
 		for (ClassDefinition classDefinition : classDefinitions) {
 			if (classDefinition.getName().equals(name)) {
@@ -59,21 +59,12 @@ public class PackageDefinition {
 		}
 		return false;
 	}
-	
-	public static PackageDefinition readFromFile(URL resource) {
-		try {
-			JAXBContext jc = JAXBContext.newInstance(PackageDefinition.class);
-			Unmarshaller unmarshaller = jc.createUnmarshaller();
-			Object unmarshal = unmarshaller.unmarshal(resource.openStream());
-			PackageDefinition settings = (PackageDefinition) unmarshal;
-			return settings;
-		} catch (JAXBException e) {
-			e.printStackTrace();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return new PackageDefinition();
+
+	public static PackageDefinition readFromFile(URL resource) throws JAXBException, IOException {
+		JAXBContext jc = JAXBContext.newInstance(PackageDefinition.class);
+		Unmarshaller unmarshaller = jc.createUnmarshaller();
+		Object unmarshal = unmarshaller.unmarshal(resource.openStream());
+		PackageDefinition settings = (PackageDefinition) unmarshal;
+		return settings;
 	}
 }

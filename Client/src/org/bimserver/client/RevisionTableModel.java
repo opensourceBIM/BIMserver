@@ -35,9 +35,11 @@ import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.interfaces.objects.SUser;
 import org.bimserver.shared.SRevisionIdComparator;
 import org.bimserver.shared.UserException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class RevisionTableModel extends AbstractTableModel {
-
+	private static final Logger LOGGER = LoggerFactory.getLogger(RevisionTableModel.class);
 	private static final long serialVersionUID = -1528523705646440767L;
 	private List<SRevision> allRevisions = new ArrayList<SRevision>();
 	private final ServiceHolder serviceHolder;
@@ -65,8 +67,8 @@ public class RevisionTableModel extends AbstractTableModel {
 			return revision.getId();
 		case 1:
 			return dateFormat.format(revision.getDate());
-//		case 2:
-//			return revision.getUsername();
+			// case 2:
+			// return revision.getUsername();
 		case 3:
 			return revision.getComment();
 		case 4:
@@ -86,18 +88,23 @@ public class RevisionTableModel extends AbstractTableModel {
 			}
 			update();
 		} catch (UserException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 	}
 
 	@Override
 	public String getColumnName(int column) {
-		switch(column) {
-		case 0: return "Revision";
-		case 1: return "Date";
-		case 2: return "Author";
-		case 3: return "Comment";
-		case 4: return "Size";
+		switch (column) {
+		case 0:
+			return "Revision";
+		case 1:
+			return "Date";
+		case 2:
+			return "Author";
+		case 3:
+			return "Comment";
+		case 4:
+			return "Size";
 		}
 		return "";
 	}
@@ -123,7 +130,7 @@ public class RevisionTableModel extends AbstractTableModel {
 			}
 			update();
 		} catch (UserException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 	}
 }

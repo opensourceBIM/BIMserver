@@ -19,7 +19,10 @@ import org.bimserver.interfaces.objects.SUser;
 import org.bimserver.shared.SRevisionIdComparator;
 import org.bimserver.shared.ServiceInterface;
 import org.bimserver.shared.UserException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import com.google.common.base.Charsets;
 import com.sun.syndication.feed.synd.SyndContent;
 import com.sun.syndication.feed.synd.SyndContentImpl;
 import com.sun.syndication.feed.synd.SyndEntry;
@@ -30,6 +33,7 @@ import com.sun.syndication.io.FeedException;
 import com.sun.syndication.io.SyndFeedOutput;
 
 public class SyndicationServlet extends HttpServlet {
+	private static final Logger LOGGER = LoggerFactory.getLogger(SyndicationServlet.class);
 	private static final long serialVersionUID = -8204995157688379164L;
 	private static final String FEED_TYPE = "atom_1.0";
 
@@ -38,7 +42,7 @@ public class SyndicationServlet extends HttpServlet {
 		if (request.getHeader("Authorization") != null) {
 			String authorization = request.getHeader("Authorization");
 			String usernamePasswordEncoded = authorization.substring(6);
-			String decodeBase64 = new String(Base64.decodeBase64(usernamePasswordEncoded.getBytes("UTF-8")));
+			String decodeBase64 = new String(Base64.decodeBase64(usernamePasswordEncoded.getBytes(Charsets.UTF_8)));
 			if (decodeBase64.equals(":")) {
 				response.getWriter().print("Not authenticated");
 				return;
@@ -63,14 +67,14 @@ public class SyndicationServlet extends HttpServlet {
 						response.setContentType("text/html");
 						response.getWriter().println(e.getUserMessage());
 					} catch (FeedException e) {
-						e.printStackTrace();
+						LOGGER.error("", e);
 					}
 				} else {
 					response.setStatus(401);
 					response.setHeader("WWW-Authenticate", "Basic realm=\"Secure Area\"");
 				}
 			} catch (UserException e) {
-				e.printStackTrace();
+				LOGGER.error("", e);
 			}
 		} else {
 			response.setStatus(401);
@@ -112,7 +116,7 @@ public class SyndicationServlet extends HttpServlet {
 				entries.add(entry);
 			}
 		} catch (UserException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 		feed.setEntries(entries);
 		SyndFeedOutput output = new SyndFeedOutput();
@@ -148,7 +152,7 @@ public class SyndicationServlet extends HttpServlet {
 				entries.add(entry);
 			}
 		} catch (UserException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 		feed.setEntries(entries);
 		SyndFeedOutput output = new SyndFeedOutput();
@@ -183,7 +187,7 @@ public class SyndicationServlet extends HttpServlet {
 				entries.add(entry);
 			}
 		} catch (UserException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 		feed.setEntries(entries);
 		SyndFeedOutput output = new SyndFeedOutput();

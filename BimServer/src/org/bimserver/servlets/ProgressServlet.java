@@ -13,9 +13,12 @@ import org.bimserver.web.LoginManager;
 import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ProgressServlet extends HttpServlet {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(ProgressServlet.class);
 	private static final long serialVersionUID = -1957923502114983147L;
 
 	@Override
@@ -43,10 +46,11 @@ public class ProgressServlet extends HttpServlet {
 			}
 			result.write(response.getWriter());
 		} catch (NumberFormatException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (UserException e) {
+			LOGGER.error("", e);
 		} catch (JSONException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 	}
 }

@@ -38,9 +38,12 @@ import org.bimserver.interfaces.objects.SCheckout;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SUser;
 import org.bimserver.shared.UserException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class CheckoutsPanel extends JPanel {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(CheckoutsPanel.class);
 	private static final long serialVersionUID = -8031235575978078294L;
 
 	private CheckoutTableModel checkoutTableModel;
@@ -71,13 +74,13 @@ public class CheckoutsPanel extends JPanel {
 						try {
 							testWindow.download(checkout.getRevisionId(), new FileOutputStream(file), false);
 							Desktop.getDesktop().open(file);
-						} catch (FileNotFoundException e1) {
-							e1.printStackTrace();
+						} catch (FileNotFoundException e) {
+							LOGGER.error("", e);
 						} catch (IOException e) {
-							e.printStackTrace();
+							LOGGER.error("", e);
 						}
-					} catch (UserException e2) {
-						e2.printStackTrace();
+					} catch (UserException e) {
+						LOGGER.error("", e);
 					}
 				}
 			}

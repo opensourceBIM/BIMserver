@@ -83,7 +83,7 @@ public class ClashDetectionLongAction extends LongAction {
 					try {
 						ifcEngineModel.close();
 					} catch (IfcEngineException e) {
-						e.printStackTrace();
+						LOGGER.error("", e);
 					}
 				}
 				revision.setState(CheckinState.DONE);

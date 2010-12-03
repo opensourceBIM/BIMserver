@@ -125,7 +125,7 @@ public class BerkeleyColumnDatabase implements ColumnDatabase {
 		try {
 			return new BerkeleyTransaction(environment.beginTransaction(null, transactionConfig));
 		} catch (DatabaseException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 		return null;
 	}
@@ -141,7 +141,7 @@ public class BerkeleyColumnDatabase implements ColumnDatabase {
 						tables.put(tableName, environment.openDatabase(null, tableName, dbConfig));
 					}
 				} catch (DatabaseException e) {
-					e.printStackTrace();
+					LOGGER.error("", e);
 				}
 			}
 		}
@@ -153,14 +153,14 @@ public class BerkeleyColumnDatabase implements ColumnDatabase {
 			try {
 				database.close();
 			} catch (DatabaseException e) {
-				e.printStackTrace();
+				LOGGER.error("", e);
 			}
 		}
 		if (environment != null) {
 			try {
 				environment.close();
 			} catch (DatabaseException e) {
-				e.printStackTrace();
+				LOGGER.error("", e);
 			}
 		}
 	}
@@ -177,7 +177,7 @@ public class BerkeleyColumnDatabase implements ColumnDatabase {
 				return value.getData();
 			}
 		} catch (DatabaseException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 		return null;
 	}
@@ -191,7 +191,7 @@ public class BerkeleyColumnDatabase implements ColumnDatabase {
 			environment.sync();
 			environment.evictMemory();
 		} catch (DatabaseException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 	}
 
@@ -200,7 +200,7 @@ public class BerkeleyColumnDatabase implements ColumnDatabase {
 		try {
 			return environment.getDatabaseNames().contains(tableName);
 		} catch (DatabaseException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 		return false;
 	}
@@ -222,7 +222,7 @@ public class BerkeleyColumnDatabase implements ColumnDatabase {
 					transactional ? ((BerkeleyTransaction) databaseSession.getBimTransaction()).getTransaction() : null, cursorConfig);
 			return new BerkeleyRecordIterator(cursor);
 		} catch (DatabaseException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 		return null;
 	}
@@ -240,10 +240,10 @@ public class BerkeleyColumnDatabase implements ColumnDatabase {
 				cursor.close();
 				throw e;
 			} catch (DatabaseException e1) {
-				e1.printStackTrace();
+				LOGGER.error("", e1);
 			}
-		} catch (DatabaseException e) {
-			e.printStackTrace();
+		} catch (DatabaseException e1) {
+			LOGGER.error("", e1);
 		}
 		return null;
 	}
@@ -253,7 +253,7 @@ public class BerkeleyColumnDatabase implements ColumnDatabase {
 		try {
 			return getDatabase(tableName, null, false).count();
 		} catch (DatabaseException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 		return -1;
 	}
@@ -289,7 +289,7 @@ public class BerkeleyColumnDatabase implements ColumnDatabase {
 		} catch (LockConflictException e) {
 			throw new BimDeadlockException(e);
 		} catch (DatabaseException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 	}
 
@@ -305,7 +305,7 @@ public class BerkeleyColumnDatabase implements ColumnDatabase {
 		try {
 			return environment.getHome().getAbsolutePath();
 		} catch (DatabaseException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 		return "unknown";
 	}
@@ -315,7 +315,7 @@ public class BerkeleyColumnDatabase implements ColumnDatabase {
 		try {
 			return environment.getStats(null).toString();
 		} catch (DatabaseException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 		return null;
 	}
@@ -326,7 +326,7 @@ public class BerkeleyColumnDatabase implements ColumnDatabase {
 		try {
 			bdbTransaction.commit();
 		} catch (LockConflictException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 			throw new BimDeadlockException(e);
 		} catch (DatabaseException e) {
 			throw new BimDatabaseException("", e);
@@ -365,7 +365,7 @@ public class BerkeleyColumnDatabase implements ColumnDatabase {
 				size += file.length();
 			}
 		} catch (DatabaseException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 		return size;
 	}

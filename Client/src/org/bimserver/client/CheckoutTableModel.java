@@ -35,9 +35,11 @@ import org.bimserver.interfaces.objects.SCheckout;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SUser;
 import org.bimserver.shared.UserException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class CheckoutTableModel extends AbstractTableModel {
-
+	private static final Logger LOGGER = LoggerFactory.getLogger(CheckoutTableModel.class);
 	private static final long serialVersionUID = 7508217629889014900L;
 
 	private List<SCheckout> allCheckouts = new ArrayList<SCheckout>();
@@ -87,7 +89,7 @@ public class CheckoutTableModel extends AbstractTableModel {
 			}
 			update();
 		} catch (UserException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 	}
 
@@ -126,7 +128,7 @@ public class CheckoutTableModel extends AbstractTableModel {
 			}
 			update();
 		} catch (UserException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 	}
 }

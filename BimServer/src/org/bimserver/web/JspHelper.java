@@ -21,8 +21,12 @@ import org.bimserver.shared.ServiceInterface;
 import org.bimserver.shared.UserException;
 import org.bimserver.shared.SCompareResult.SCompareType;
 import org.bimserver.shared.SCompareResult.SObjectModified;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class JspHelper {
+	private static final Logger LOGGER = LoggerFactory.getLogger(JspHelper.class);
+	
 	public static String generateBreadCrumbPath(SRevision revision, ServiceInterface serviceWrapper) throws UserException {
 		String projectPath = generateBreadCrumbPath(serviceWrapper.getProjectByPoid(revision.getProjectId()), serviceWrapper);
 		return projectPath + " <a href=\"revision.jsp?roid=" + revision.getOid() + "\">" + revision.getId() + "</a>";
@@ -243,9 +247,13 @@ public class JspHelper {
 		return builder.toString();
 	}
 
-	public static String completeProjectName(ServiceInterface service, SProject sProject) throws UserException {
+	public static String completeProjectName(ServiceInterface service, SProject sProject) {
 		if (sProject.getParentId() != -1) {
-			return completeProjectName(service, service.getProjectByPoid(sProject.getParentId())) + "." + sProject.getName();
+			try {
+				return completeProjectName(service, service.getProjectByPoid(sProject.getParentId())) + "." + sProject.getName();
+			} catch (UserException e) {
+				LOGGER.error("", e);
+			}
 		}
 		return sProject.getName();
 	}

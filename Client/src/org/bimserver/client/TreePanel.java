@@ -51,10 +51,13 @@ import org.bimserver.interfaces.objects.SUser;
 import org.bimserver.interfaces.objects.SUserType;
 import org.bimserver.shared.UserException;
 import org.bimserver.utils.InputStreamDataSource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class TreePanel extends JPanel {
 
 	private static final long serialVersionUID = 659074905682926000L;
+	private static final Logger LOGGER = LoggerFactory.getLogger(TreePanel.class);
 	private final JTree tree;
 	private final ServiceHolder serviceHolder;
 	private final ServerTreeNode serverTreeNode;
@@ -91,9 +94,9 @@ public class TreePanel extends JPanel {
 					final ProjectTreeNode ptn = (ProjectTreeNode) dropLocation.getPath().getLastPathComponent();
 					testWindow.checkin(ptn.getProject(), new InputStreamDataSource(fis), file.length());
 				} catch (UnsupportedFlavorException e) {
-					e.printStackTrace();
+					LOGGER.error("", e);
 				} catch (IOException e) {
-					e.printStackTrace();
+					LOGGER.error("", e);
 				}
 				return true;
 			}
@@ -126,8 +129,8 @@ public class TreePanel extends JPanel {
 					if (showConfirmDialog == JOptionPane.YES_OPTION) {
 						try {
 							serviceHolder.getService().deleteUser(((UserTreeNode) lastPathComponent).getUser().getOid());
-						} catch (UserException e1) {
-							e1.printStackTrace();
+						} catch (UserException e2) {
+							LOGGER.error("", e2);
 						}
 						updateUsers(serverTreeNode);
 					}
@@ -179,14 +182,20 @@ public class TreePanel extends JPanel {
 				if (connectDisconnect.getText().equals("(Re)connect")) {
 					SettingsFrame settingsFrame = new SettingsFrame(testWindow);
 					settingsFrame.setVisible(true);
-//					if (TreePanel.this.serviceHolder.connect(testWindow.getServiceHolder().getAddress(), testWindow.getServiceHolder().getUsername(), testWindow.getServiceHolder().getPassword())) {
-//						updateProjects(serverTreeNode);
-//						updateUsers(serverTreeNode);
-//						testWindow.setTitle("BIM Server Tester - " + testWindow.getServiceHolder().getUsername());
-//						projectTree.expandRow(0);
-//					} else {
-//						JOptionPane.showMessageDialog(testWindow, "Connection failed", "Connection failed", JOptionPane.ERROR_MESSAGE);
-//					}
+					// if
+					// (TreePanel.this.serviceHolder.connect(testWindow.getServiceHolder().getAddress(),
+					// testWindow.getServiceHolder().getUsername(),
+					// testWindow.getServiceHolder().getPassword())) {
+					// updateProjects(serverTreeNode);
+					// updateUsers(serverTreeNode);
+					// testWindow.setTitle("BIM Server Tester - " +
+					// testWindow.getServiceHolder().getUsername());
+					// projectTree.expandRow(0);
+					// } else {
+					// JOptionPane.showMessageDialog(testWindow,
+					// "Connection failed", "Connection failed",
+					// JOptionPane.ERROR_MESSAGE);
+					// }
 				} else {
 					serviceHolder.disconnect();
 					serverTreeNode.clearProjects();
@@ -199,7 +208,7 @@ public class TreePanel extends JPanel {
 		});
 		serverMenu.add(connectDisconnect);
 		projectsMenu.add(addProject);
-		
+
 		final JMenuItem deleteProject = new JMenuItem("Delete");
 		deleteProject.addActionListener(new ActionListener() {
 			@Override
@@ -212,13 +221,13 @@ public class TreePanel extends JPanel {
 							serviceHolder.getService().deleteProject(((ProjectTreeNode) lastPathComponent).getProject().getId());
 							updateProjects(serverTreeNode);
 						} catch (UserException e1) {
-							e1.printStackTrace();
+							LOGGER.error("", e1);
 						}
 					}
 				}
 			}
 		});
-		
+
 		serverMenu.addPopupMenuListener(new PopupMenuListener() {
 			@Override
 			public void popupMenuCanceled(PopupMenuEvent e) {
@@ -231,23 +240,24 @@ public class TreePanel extends JPanel {
 			@Override
 			public void popupMenuWillBecomeVisible(PopupMenuEvent e) {
 				if (!serviceHolder.isConnected()) {
-//					connectDisconnect.setEnabled(true);
-//					connectDisconnect.setText("Connect");
+					// connectDisconnect.setEnabled(true);
+					// connectDisconnect.setText("Connect");
 				} else {
-//					connectDisconnect.setEnabled(false);
-//					connectDisconnect.setText("Disconnect");
+					// connectDisconnect.setEnabled(false);
+					// connectDisconnect.setText("Disconnect");
 				}
 			}
 		});
 
 		final JMenuItem processChangeSet = new JMenuItem("Process ChangeSet...");
-		processChangeSet.addActionListener(new ActionListener(){
+		processChangeSet.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				ProjectTreeNode ptn = (ProjectTreeNode) tree.getSelectionPath().getLastPathComponent();
 				testWindow.processChangeSet(ptn.getProject());
-			}});
-		
+			}
+		});
+
 		final JPopupMenu projectMenu = new JPopupMenu();
 		final JMenuItem checkin = new JMenuItem("Checkin new revision...");
 		final JMenuItem checkout = new JMenuItem("Checkout latest revision...");
@@ -259,7 +269,7 @@ public class TreePanel extends JPanel {
 					SRevision revision = serviceHolder.getService().getRevision(ptn.getProject().getLastRevisionId());
 					testWindow.checkout(revision);
 				} catch (UserException e1) {
-					e1.printStackTrace();
+					LOGGER.error("", e1);
 				}
 			}
 		});
@@ -272,7 +282,7 @@ public class TreePanel extends JPanel {
 					SRevision revision = serviceHolder.getService().getRevision(ptn.getProject().getLastRevisionId());
 					testWindow.download(revision);
 				} catch (UserException e1) {
-					e1.printStackTrace();
+					LOGGER.error("", e1);
 				}
 			}
 		});
@@ -324,7 +334,7 @@ public class TreePanel extends JPanel {
 						checkin.setText("Checkin new revision...");
 					}
 				} catch (UserException e1) {
-					e1.printStackTrace();
+					LOGGER.error("", e1);
 				}
 			}
 		});

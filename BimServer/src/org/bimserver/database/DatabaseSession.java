@@ -20,7 +20,6 @@ package org.bimserver.database;
  * long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import java.io.UnsupportedEncodingException;
 import java.nio.ByteBuffer;
 import java.util.Arrays;
 import java.util.Collection;
@@ -74,6 +73,7 @@ import org.eclipse.emf.ecore.impl.EEnumImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.google.common.base.Charsets;
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
 
@@ -138,7 +138,7 @@ public class DatabaseSession implements BimDatabaseSession {
 					try {
 						Thread.sleep(new Random().nextInt((i + 1) * 1000));
 					} catch (InterruptedException e1) {
-						e1.printStackTrace();
+						LOGGER.error("", e1);
 					}
 				}
 			} catch (BimDatabaseException e) {
@@ -168,7 +168,7 @@ public class DatabaseSession implements BimDatabaseSession {
 				try {
 					Thread.sleep(new Random().nextInt((i + 1) * 1000));
 				} catch (InterruptedException e1) {
-					e1.printStackTrace();
+					LOGGER.error("", e1);
 				}
 			}
 		}
@@ -214,7 +214,7 @@ public class DatabaseSession implements BimDatabaseSession {
 		try {
 			database.getColumnDatabase().store(className, buffer.array(), new byte[] { -1 }, this);
 		} catch (BimDatabaseException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 		return true;
 	}
@@ -290,18 +290,21 @@ public class DatabaseSession implements BimDatabaseSession {
 		virtualRevision.setState(checkinState);
 		project.setLastRevision(virtualRevision);
 		virtualRevision.setId(project.getRevisions().size() + 1);
-		// RUBEN: Commented out on 17-09-2010, looks like this should never occur
-//		if (project.getRevisions().isEmpty()) {
-//			virtualRevision.setId(1);
-//		} else {
-//			virtualRevision.setId(project.getRevisions().size() + 1);
-//			for (ConcreteRevision concreteRevision : project.getRevisions().get(0).getConcreteRevisions()) {
-//				if (concreteRevision.getProject() != project) {
-//					virtualRevision.getConcreteRevisions().add(concreteRevision);
-//					virtualRevision.setSize(virtualRevision.getSize() + concreteRevision.getSize());
-//				}
-//			}
-//		}
+		// RUBEN: Commented out on 17-09-2010, looks like this should never
+		// occur
+		// if (project.getRevisions().isEmpty()) {
+		// virtualRevision.setId(1);
+		// } else {
+		// virtualRevision.setId(project.getRevisions().size() + 1);
+		// for (ConcreteRevision concreteRevision :
+		// project.getRevisions().get(0).getConcreteRevisions()) {
+		// if (concreteRevision.getProject() != project) {
+		// virtualRevision.getConcreteRevisions().add(concreteRevision);
+		// virtualRevision.setSize(virtualRevision.getSize() +
+		// concreteRevision.getSize());
+		// }
+		// }
+		// }
 		virtualRevision.getConcreteRevisions().add(revision);
 		virtualRevision.setProject(project);
 		store(virtualRevision, new CommitSet(Database.STORE_PROJECT_ID, -1));
@@ -322,8 +325,8 @@ public class DatabaseSession implements BimDatabaseSession {
 	}
 
 	@SuppressWarnings("unchecked")
-	public IdEObject convertByteArrayToObject(EClass originalQueryClass, EClass eClass, long oid, ByteBuffer buffer, ReadSet readSet)
-			throws BimDatabaseException, BimDeadlockException {
+	public IdEObject convertByteArrayToObject(EClass originalQueryClass, EClass eClass, long oid, ByteBuffer buffer, ReadSet readSet) throws BimDatabaseException,
+			BimDeadlockException {
 		if (readSet.isReading(oid)) {
 			return readSet.get(oid);
 		}
@@ -460,8 +463,8 @@ public class DatabaseSession implements BimDatabaseSession {
 						descRid--;
 					}
 					if (referenceValue == null) {
-						throw new BimDatabaseException("Unsatisfied reference error, there is no " + classifier.getName() + " with pid " + readSet.getPid()
-								+ ", oid " + oid + ", rid <= " + readSet.getRid());
+						throw new BimDatabaseException("Unsatisfied reference error, there is no " + classifier.getName() + " with pid " + readSet.getPid() + ", oid " + oid
+								+ ", rid <= " + readSet.getRid());
 					}
 					if (referenceValue.length == 1 && referenceValue[0] == -1) {
 					} else if (referenceValue != null) {
@@ -560,8 +563,7 @@ public class DatabaseSession implements BimDatabaseSession {
 		return count;
 	}
 
-	private int getMap(EClass originalQueryClass, EClass eClass, ReadSet readSet, ByteBuffer buffer, int pid, long oid, int rid) throws BimDatabaseException,
-			BimDeadlockException {
+	private int getMap(EClass originalQueryClass, EClass eClass, ReadSet readSet, ByteBuffer buffer, int pid, long oid, int rid) throws BimDatabaseException, BimDeadlockException {
 		if (pid == readSet.getPid()) {
 			if (rid <= readSet.getRid()) {
 				RecordIdentifier recordIdentifier = new RecordIdentifier(readSet.getPid(), oid, rid);
@@ -630,7 +632,7 @@ public class DatabaseSession implements BimDatabaseSession {
 			return readSet;
 		}
 	}
-	
+
 	@Override
 	public ReadSet getMapWithOid(int pid, int rid, long oid) throws BimDatabaseException, BimDeadlockException {
 		EClass eClass = getClassOfObjectId(pid, rid, oid);
@@ -743,7 +745,7 @@ public class DatabaseSession implements BimDatabaseSession {
 			database.getColumnDatabase().store(object.eClass().getName(), keyBuffer.array(), convertObjectToByteArray(object, commitSet).array(), this);
 			return object.getOid();
 		} catch (BimDatabaseException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 		return -1;
 	}
@@ -777,7 +779,7 @@ public class DatabaseSession implements BimDatabaseSession {
 				} else {
 					Object value = object.eGet(feature);
 					if (feature.getEType() instanceof EEnum) {
-						EEnum eEnum = (EEnum)feature.getEType();
+						EEnum eEnum = (EEnum) feature.getEType();
 						EEnumLiteral eEnumLiteral = eEnum.getEEnumLiteralByLiteral(((Enum<?>) value).toString());
 						if (eEnumLiteral != null) {
 							buffer.putInt(eEnumLiteral.getValue());
@@ -858,7 +860,7 @@ public class DatabaseSession implements BimDatabaseSession {
 			try {
 				database.getColumnDatabase().store("IfcGloballyUniqueId", createKeyBuffer.array(), convertObjectToByteArray.array(), this);
 			} catch (BimDeadlockException e) {
-				e.printStackTrace();
+				LOGGER.error("", e);
 			}
 		}
 	}
@@ -869,16 +871,12 @@ public class DatabaseSession implements BimDatabaseSession {
 				buffer.putShort((short) -1);
 			} else {
 				String stringValue = (String) value;
-				try {
-					byte[] bytes = stringValue.getBytes("UTF-8");
-					if (bytes.length > Short.MAX_VALUE) {
-						throw new BimDatabaseException("String value too long");
-					}
-					buffer.putShort((short) bytes.length);
-					buffer.put(bytes);
-				} catch (UnsupportedEncodingException e) {
-					e.printStackTrace();
+				byte[] bytes = stringValue.getBytes(Charsets.UTF_8);
+				if (bytes.length > Short.MAX_VALUE) {
+					throw new BimDatabaseException("String value too long");
 				}
+				buffer.putShort((short) bytes.length);
+				buffer.put(bytes);
 			}
 		} else if (feature.getEType() == EcorePackage.eINSTANCE.getEInt()) {
 			buffer.putInt((Integer) value);
@@ -987,8 +985,7 @@ public class DatabaseSession implements BimDatabaseSession {
 
 	@Override
 	public ObjectIdentifier getOidOfGuid(String guid, int pid, int rid) throws BimDeadlockException {
-		RecordIterator recordIterator = database.getColumnDatabase().getRecordIterator("IfcGloballyUniqueId", BinUtils.intToByteArray(pid),
-				BinUtils.intToByteArray(pid), this);
+		RecordIterator recordIterator = database.getColumnDatabase().getRecordIterator("IfcGloballyUniqueId", BinUtils.intToByteArray(pid), BinUtils.intToByteArray(pid), this);
 		try {
 			Record record = recordIterator.next();
 			while (record != null) {
@@ -1039,7 +1036,7 @@ public class DatabaseSession implements BimDatabaseSession {
 			user.setLastSeen(new Date());
 			store(user, new CommitSet(Database.STORE_PROJECT_ID, -1));
 		} catch (BimDeadlockException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 	}
 
@@ -1097,9 +1094,9 @@ public class DatabaseSession implements BimDatabaseSession {
 		try {
 			return get(getCid(eClass), oid, new ReadSet(Database.STORE_PROJECT_ID, -1));
 		} catch (BimDatabaseException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (BimDeadlockException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 		return null;
 	}
