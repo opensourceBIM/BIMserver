@@ -5,8 +5,6 @@ import java.util.Date;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
-import org.bimserver.database.CommitSet;
-import org.bimserver.database.Database;
 import org.bimserver.database.store.User;
 import org.bimserver.database.store.UserType;
 import org.bimserver.database.store.log.AccessMethod;
@@ -41,9 +39,8 @@ public class ChangeUserTypeDatabaseAction extends BimDatabaseAction<Void> {
 		userChanged.setDate(new Date());
 		userChanged.setExecutor(actingUser);
 		userChanged.setUser(user);
-		CommitSet commitSet = new CommitSet(Database.STORE_PROJECT_ID, -1);
-		bimDatabaseSession.store(userChanged, commitSet);
-		bimDatabaseSession.store(user, commitSet);
+		bimDatabaseSession.store(userChanged);
+		bimDatabaseSession.store(user);
 		return null;
 	}
 }

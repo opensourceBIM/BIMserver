@@ -5,8 +5,6 @@ import java.util.Date;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
-import org.bimserver.database.CommitSet;
-import org.bimserver.database.Database;
 import org.bimserver.database.store.ObjectState;
 import org.bimserver.database.store.User;
 import org.bimserver.database.store.UserType;
@@ -42,9 +40,8 @@ public class UndeleteUserDatabaseAction extends BimDatabaseAction<Boolean> {
 		userUndeleted.setExecutor(actingUser);
 		userUndeleted.setUser(user);
 		user.setState(ObjectState.ACTIVE);
-		CommitSet commitSet = new CommitSet(Database.STORE_PROJECT_ID, -1);
-		bimDatabaseSession.store(user, commitSet);
-		bimDatabaseSession.store(userUndeleted, commitSet);
+		bimDatabaseSession.store(user);
+		bimDatabaseSession.store(userUndeleted);
 		return true;
 	}
 }

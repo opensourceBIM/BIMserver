@@ -6,7 +6,6 @@ import java.util.Map;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
-import org.bimserver.database.CommitSet;
 import org.bimserver.database.Database;
 import org.bimserver.database.ReadSet;
 import org.bimserver.database.RecordIdentifier;
@@ -56,7 +55,6 @@ public class ProcessChangeSetDatabaseAction extends BimDatabaseAction<ChangeSetR
 		ConcreteRevision oldRevision = project.getLastConcreteRevision();
 		ConcreteRevision newRevision = bimDatabaseSession.createNewConcreteRevision(0, poid, actingUoid, comment, CheckinState.STORING);
 		changeSetResult.setNewRevisionNr(newRevision.getId());
-		final CommitSet commitSet = new CommitSet(project.getId(), newRevision.getId());
 		ReadSet map = bimDatabaseSession.getMap(project.getId(), oldRevision.getId());
 		Map<Long, IdEObject> processedAdditions = new HashMap<Long, IdEObject>();
 		long newSize = 0;//oldRevision.getSize();
@@ -70,7 +68,7 @@ public class ProcessChangeSetDatabaseAction extends BimDatabaseAction<ChangeSetR
 			newSize++;
 		}
 		for (Long key : processedAdditions.keySet()) {
-			bimDatabaseSession.store(processedAdditions.get(key), commitSet);
+			bimDatabaseSession.store(processedAdditions.get(key));
 		}
 		if (project.getLastConcreteRevision() != null) {
 			ReadSet readSet = new ReadSet(project.getId(), oldRevision.getId());
@@ -83,7 +81,7 @@ public class ProcessChangeSetDatabaseAction extends BimDatabaseAction<ChangeSetR
 				// won't
 				// create a
 				// new oid
-				bimDatabaseSession.putInCache(new RecordIdentifier(commitSet.getPid(), bimDatabaseSession.getOid(originalObject), commitSet.getRid()), object);
+				bimDatabaseSession.putInCache(new RecordIdentifier(project.getPid(), bimDatabaseSession.getOid(originalObject), newRevision.getId()), object);
 				for (AbstractAttributeValuePair aavp : modification.getAttributes()) {
 					EStructuralFeature feature = object.eClass().getEStructuralFeature(aavp.getName());
 					if (aavp instanceof AttributeValuePair) {
@@ -112,11 +110,11 @@ public class ProcessChangeSetDatabaseAction extends BimDatabaseAction<ChangeSetR
 						object.eSet(feature, mapWithOid.get(attributeReferencePair.getOid()));
 					}
 				}
-				bimDatabaseSession.store(object, commitSet);
+				bimDatabaseSession.store(object);
 			}
 		}
 //		newRevision.setSize(newSize);
-		bimDatabaseSession.store(newRevision, new CommitSet(Database.STORE_PROJECT_ID, -1));
+		bimDatabaseSession.store(newRevision);
 		return changeSetResult;
 	}
 }

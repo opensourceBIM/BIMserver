@@ -74,6 +74,7 @@ public class Database implements BimDatabase {
 	private static final String CLASS_LOOKUP_TABLE = "INT-ClassLookup";
 	public static final String STORE_PROJECT_NAME = "INT-Store";
 	public static final int STORE_PROJECT_ID = 1;
+	public static final int STORE_PROJECT_REVISION_ID = -1;
 	public static final String WRAPPED_VALUE = "wrappedValue";
 	public static final String SCHEMA_VERSION = "SCHEMA_VERSION";
 	private static final String DATE_CREATED = "DATE_CREATED";
@@ -135,7 +136,7 @@ public class Database implements BimDatabase {
 			databaseCreated.setDate(new Date());
 			databaseCreated.setPath(getColumnDatabase().getLocation());
 			databaseCreated.setVersion(databaseSchemaVersion);
-			databaseSession.store(databaseCreated, new CommitSet(Database.STORE_PROJECT_ID, -1));
+			databaseSession.store(databaseCreated);
 			
 			if (getColumnDatabase().isNew()) {
 				new CreateBaseProject(AccessMethod.INTERNAL).execute(databaseSession);

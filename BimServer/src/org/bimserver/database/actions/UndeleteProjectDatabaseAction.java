@@ -5,8 +5,6 @@ import java.util.Date;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
-import org.bimserver.database.CommitSet;
-import org.bimserver.database.Database;
 import org.bimserver.database.store.ObjectState;
 import org.bimserver.database.store.Project;
 import org.bimserver.database.store.User;
@@ -38,9 +36,8 @@ public class UndeleteProjectDatabaseAction extends BimDatabaseAction<Boolean> {
 			projectUndeleted.setDate(new Date());
 			projectUndeleted.setExecutor(actingUser);
 			projectUndeleted.setProject(project);
-			CommitSet commitSet = new CommitSet(Database.STORE_PROJECT_ID, -1);
-			bimDatabaseSession.store(project, commitSet);
-			bimDatabaseSession.store(projectUndeleted, commitSet);
+			bimDatabaseSession.store(project);
+			bimDatabaseSession.store(projectUndeleted);
 			return true;
 		} else {
 			throw new UserException("No rights to undelete this project");

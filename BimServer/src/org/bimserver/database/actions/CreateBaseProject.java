@@ -5,7 +5,6 @@ import java.util.Date;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
-import org.bimserver.database.CommitSet;
 import org.bimserver.database.Database;
 import org.bimserver.database.store.Project;
 import org.bimserver.database.store.StoreFactory;
@@ -23,7 +22,7 @@ public class CreateBaseProject extends BimDatabaseAction<Project>{
 		final Project project = StoreFactory.eINSTANCE.createProject();
 		project.setName(Database.STORE_PROJECT_NAME);
 		project.setCreatedDate(new Date());
-		bimDatabaseSession.store(project, new CommitSet(Database.STORE_PROJECT_ID, -1));
+		bimDatabaseSession.store(project);
 		bimDatabaseSession.saveOidCounter();
 		bimDatabaseSession.savePidCounter();
 		return project;

@@ -13,6 +13,7 @@
 <%@page	import="org.bimserver.interfaces.objects.SClashDetectionSettings"%>
 <%@page import="org.bimserver.interfaces.objects.SUser"%>
 <%@page import="org.bimserver.interfaces.objects.SSIPrefix"%>
+<%@ include file="header.jsp"%>
 <!-- start map scripts - many thanks to Bart vd Eijnden www.osgis.nl -->
 <script type="text/javascript" src="js/adapter/ext/ext-base.js"></script>
 <script type="text/javascript" src="js/ext-all.js"></script>
@@ -23,7 +24,6 @@
 <script type="text/javascript" src="js/proj4js.js"></script>
 <script type="text/javascript" src="js/map.js"></script>
 <!-- eind mapscripts -->
-<%@ include file="header.jsp"%>
 <%
 	if (loginManager.getService().isLoggedIn()) {
 		DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");

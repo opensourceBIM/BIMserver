@@ -3,8 +3,6 @@ package org.bimserver.database.actions;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
-import org.bimserver.database.CommitSet;
-import org.bimserver.database.Database;
 import org.bimserver.database.store.CheckinState;
 import org.bimserver.database.store.ConcreteRevision;
 import org.bimserver.database.store.Revision;
@@ -38,7 +36,7 @@ public class CheckinPart2DatabaseAction extends BimDatabaseAction<Void> {
 				revision.setState(CheckinState.DONE);
 			}
 			concreteRevision.setState(CheckinState.DONE);
-			bimDatabaseSession.store(concreteRevision, new CommitSet(Database.STORE_PROJECT_ID, -1));
+			bimDatabaseSession.store(concreteRevision);
 		} catch (Throwable e) {
 			if (e instanceof BimDeadlockException) {
 				// Let this one slide

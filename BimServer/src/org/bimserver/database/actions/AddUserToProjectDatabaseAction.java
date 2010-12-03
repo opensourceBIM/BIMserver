@@ -5,8 +5,6 @@ import java.util.Date;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
-import org.bimserver.database.CommitSet;
-import org.bimserver.database.Database;
 import org.bimserver.database.store.Project;
 import org.bimserver.database.store.User;
 import org.bimserver.database.store.UserType;
@@ -42,9 +40,8 @@ public class AddUserToProjectDatabaseAction extends BimDatabaseAction<Boolean> {
 			userAddedToProject.setAccessMethod(getAccessMethod());
 			userAddedToProject.setUser(user);
 			userAddedToProject.setProject(project);
-			CommitSet commitSet = new CommitSet(Database.STORE_PROJECT_ID, -1);
-			bimDatabaseSession.store(project, commitSet);
-			bimDatabaseSession.store(userAddedToProject, commitSet);
+			bimDatabaseSession.store(project);
+			bimDatabaseSession.store(userAddedToProject);
 			return true;
 		} else {
 			throw new UserException("User has no rights to grant permission on '" + project.getName() + "'");

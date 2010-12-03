@@ -36,7 +36,9 @@ public interface BimDatabaseSession {
 
 	void saveOidCounter() throws BimDeadlockException;
 
-	long store(IdEObject eObject, CommitSet commitSet) throws BimDeadlockException;
+	long store(IdEObject eObject, int pid, int rid) throws BimDeadlockException;
+
+	long store(IdEObject eObject) throws BimDeadlockException;
 
 	void saveUidCounter() throws BimDeadlockException;
 
@@ -49,6 +51,8 @@ public interface BimDatabaseSession {
 	void clearProject(int pid, int oldRid, int newRid) throws BimDeadlockException;
 
 	void store(Collection<? extends IdEObject> values, int pid, int rid) throws BimDeadlockException;
+
+	void store(Collection<? extends IdEObject> values) throws BimDeadlockException;
 
 	ConcreteRevision getConcreteRevision(long croid) throws BimDeadlockException, BimDatabaseException;
 

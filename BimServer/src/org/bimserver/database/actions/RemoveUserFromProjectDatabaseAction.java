@@ -5,8 +5,6 @@ import java.util.Date;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
-import org.bimserver.database.CommitSet;
-import org.bimserver.database.Database;
 import org.bimserver.database.store.Project;
 import org.bimserver.database.store.User;
 import org.bimserver.database.store.UserType;
@@ -53,10 +51,9 @@ public class RemoveUserFromProjectDatabaseAction extends BimDatabaseAction<Boole
 			userRemovedFromProject.setAccessMethod(getAccessMethod());
 			userRemovedFromProject.setProject(project);
 			userRemovedFromProject.setUser(user);
-			CommitSet commitSet = new CommitSet(Database.STORE_PROJECT_ID, -1);
-			bimDatabaseSession.store(userRemovedFromProject, commitSet);
-			bimDatabaseSession.store(user, commitSet);
-			bimDatabaseSession.store(project, commitSet);
+			bimDatabaseSession.store(userRemovedFromProject);
+			bimDatabaseSession.store(user);
+			bimDatabaseSession.store(project);
 			return true;
 		} else {
 			throw new UserException("Insufficient rights to remove user from project");
