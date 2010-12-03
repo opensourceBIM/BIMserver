@@ -41,7 +41,6 @@ import nl.tue.buildingsmart.express.parser.ExpressSchemaParser;
 
 import org.bimserver.database.BimDatabase;
 import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.CommitSet;
 import org.bimserver.database.Database;
 import org.bimserver.database.berkeley.BerkeleyColumnDatabase;
 import org.bimserver.database.store.log.AccessMethod;
@@ -148,7 +147,7 @@ public class ServerInitializer implements ServletContextListener {
 			serverStarted.setExecutor(null);
 			BimDatabaseSession session = bimDatabase.createSession();
 			try {
-				session.store(serverStarted, new CommitSet(Database.STORE_PROJECT_ID, -1));
+				session.store(serverStarted);
 				session.saveOidCounter();
 				session.commit();
 			} finally {

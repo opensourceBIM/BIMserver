@@ -6,8 +6,6 @@ import org.bimserver.ServerSettings;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
-import org.bimserver.database.CommitSet;
-import org.bimserver.database.Database;
 import org.bimserver.database.store.ClashDetectionSettings;
 import org.bimserver.database.store.GeoTag;
 import org.bimserver.database.store.Project;
@@ -86,7 +84,6 @@ public class AddProjectDatabaseAction extends BimDatabaseAction<Project> {
 		project.setCreatedDate(new Date());
 		project.setDescription("");
 		project.setExportLengthMeasurePrefix(SIPrefix.METER);
-		CommitSet commitSet = new CommitSet(Database.STORE_PROJECT_ID, -1);
 		if (project.getParent() == null) {
 			GeoTag geoTag = StoreFactory.eINSTANCE.createGeoTag();
 			geoTag.setEnabled(false);
@@ -94,11 +91,11 @@ public class AddProjectDatabaseAction extends BimDatabaseAction<Project> {
 			ClashDetectionSettings clashDetectionSettings = StoreFactory.eINSTANCE.createClashDetectionSettings();
 			clashDetectionSettings.setEnabled(false);
 			project.setClashDetectionSettings(clashDetectionSettings);
-			bimDatabaseSession.store(geoTag, commitSet);
-			bimDatabaseSession.store(clashDetectionSettings, commitSet);
+			bimDatabaseSession.store(geoTag);
+			bimDatabaseSession.store(clashDetectionSettings);
 		}
-		bimDatabaseSession.store(project, commitSet);
-		bimDatabaseSession.store(newProjectAdded, commitSet);
+		bimDatabaseSession.store(project);
+		bimDatabaseSession.store(newProjectAdded);
 		bimDatabaseSession.savePidCounter();
 		bimDatabaseSession.saveOidCounter();
 		return project;

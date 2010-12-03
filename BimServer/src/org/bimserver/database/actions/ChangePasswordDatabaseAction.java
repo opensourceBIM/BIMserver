@@ -5,8 +5,6 @@ import java.util.Date;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
-import org.bimserver.database.CommitSet;
-import org.bimserver.database.Database;
 import org.bimserver.database.store.User;
 import org.bimserver.database.store.UserType;
 import org.bimserver.database.store.log.AccessMethod;
@@ -57,9 +55,8 @@ public class ChangePasswordDatabaseAction extends BimDatabaseAction<Boolean> {
 			passwordchanged.setDate(new Date());
 			passwordchanged.setExecutor(actingUser);
 			passwordchanged.setUser(user);
-			CommitSet commitSet = new CommitSet(Database.STORE_PROJECT_ID, -1);
-			bimDatabaseSession.store(user, commitSet);
-			bimDatabaseSession.store(passwordchanged, commitSet);
+			bimDatabaseSession.store(user);
+			bimDatabaseSession.store(passwordchanged);
 			return true;
 		} else {
 			throw new UserException("Old password does not match user's password");

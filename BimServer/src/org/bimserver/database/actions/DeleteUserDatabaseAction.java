@@ -3,8 +3,6 @@ package org.bimserver.database.actions;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
-import org.bimserver.database.CommitSet;
-import org.bimserver.database.Database;
 import org.bimserver.database.store.ObjectState;
 import org.bimserver.database.store.User;
 import org.bimserver.database.store.UserType;
@@ -33,7 +31,7 @@ public class DeleteUserDatabaseAction extends BimDatabaseAction<Boolean> {
 			throw new UserException("Cannot delete this user");
 		}
 		user.setState(ObjectState.DELETED);
-		bimDatabaseSession.store(user, new CommitSet(Database.STORE_PROJECT_ID, -1));
+		bimDatabaseSession.store(user);
 		return true;
 	}
 }

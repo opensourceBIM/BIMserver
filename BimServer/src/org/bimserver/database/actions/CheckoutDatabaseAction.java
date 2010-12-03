@@ -7,8 +7,6 @@ import java.util.Date;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
-import org.bimserver.database.CommitSet;
-import org.bimserver.database.Database;
 import org.bimserver.database.store.Checkout;
 import org.bimserver.database.store.Project;
 import org.bimserver.database.store.Revision;
@@ -45,7 +43,6 @@ public class CheckoutDatabaseAction extends BimDatabaseAction<IfcModel> {
 					throw new UserException("This revision has already been checked out by you on " + dateFormat.format(checkout.getDate()));
 				}
 			}
-			CommitSet commitSet = new CommitSet(Database.STORE_PROJECT_ID, -1);
 			for (Checkout checkout : project.getCheckouts()) {
 				if (checkout.getUser() == user && checkout.isActive()) {
 					checkout.setActive(false);
@@ -55,8 +52,8 @@ public class CheckoutDatabaseAction extends BimDatabaseAction<IfcModel> {
 					newCheckout.setUser(user);
 					newCheckout.setProject(project);
 					newCheckout.setRevision(revision);
-					bimDatabaseSession.store(checkout, commitSet);
-					bimDatabaseSession.store(newCheckout, commitSet);
+					bimDatabaseSession.store(checkout);
+					bimDatabaseSession.store(newCheckout);
 					bimDatabaseSession.saveOidCounter();
 					return realCheckout(project, revision, bimDatabaseSession, user);
 				}
@@ -67,7 +64,7 @@ public class CheckoutDatabaseAction extends BimDatabaseAction<IfcModel> {
 			checkout.setUser(user);
 			checkout.setProject(project);
 			checkout.setRevision(revision);
-			bimDatabaseSession.store(checkout, commitSet);
+			bimDatabaseSession.store(checkout);
 			bimDatabaseSession.saveOidCounter();
 			return realCheckout(project, revision, bimDatabaseSession, user);
 		} else {

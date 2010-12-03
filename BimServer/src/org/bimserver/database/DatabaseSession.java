@@ -83,6 +83,7 @@ public class DatabaseSession implements BimDatabaseSession {
 	private final Database database;
 	private BimTransaction bimTransaction;
 	private final boolean readOnly;
+	private final Map<EObject, Long> storing = new HashMap<EObject, Long>();
 
 	public DatabaseSession(Database database, BimTransaction bimTransaction, boolean readOnly) {
 		this.database = database;
@@ -273,7 +274,7 @@ public class DatabaseSession implements BimDatabaseSession {
 				revision.setId(parent.getLastRevision().getId() + 1);
 			}
 			parent.setLastRevision(revision);
-			store(revision, new CommitSet(Database.STORE_PROJECT_ID, -1));
+			store(revision);
 			parent = parent.getParent();
 		}
 		return concreteRevision;
@@ -307,7 +308,7 @@ public class DatabaseSession implements BimDatabaseSession {
 		// }
 		virtualRevision.getConcreteRevisions().add(revision);
 		virtualRevision.setProject(project);
-		store(virtualRevision, new CommitSet(Database.STORE_PROJECT_ID, -1));
+		store(virtualRevision);
 	}
 
 	public IdEObject get(short cid, long oid, ReadSet readSet) throws BimDatabaseException, BimDeadlockException {
@@ -336,6 +337,8 @@ public class DatabaseSession implements BimDatabaseSession {
 		}
 		IdEObject object = (IdEObject) eClass.getEPackage().getEFactoryInstance().create(eClass);
 		object.setOid(oid);
+		object.setPid(readSet.getPid());
+		object.setRid(readSet.getRid());
 		if (!(object instanceof WrappedValue) && !(object instanceof IfcGloballyUniqueId)) {
 			readSet.put(oid, object);
 		}
@@ -729,20 +732,27 @@ public class DatabaseSession implements BimDatabaseSession {
 	}
 
 	@Override
-	public long store(IdEObject object, CommitSet commitSet) throws BimDeadlockException {
-		if (!commitSet.isStoring(object)) {
+	public long store(IdEObject object) throws BimDeadlockException {
+		return store(object, Database.STORE_PROJECT_ID, Database.STORE_PROJECT_REVISION_ID);
+	}
+
+	@Override
+	public long store(IdEObject object, int pid, int rid) throws BimDeadlockException {
+		if (!storing.containsKey(object)) {
 			if (object.getOid() == -1) {
 				long newOid = database.newOid();
 				object.setOid(newOid);
 			}
-			commitSet.add(object, object.getOid());
+			object.setPid(pid);
+			object.setRid(rid);
+			storing.put(object, object.getOid());
 		} else {
 			return object.getOid();
 		}
 		try {
-			ByteBuffer keyBuffer = createKeyBuffer(commitSet.getPid(), object.getOid(), commitSet.getRid());
-			putInCache(new RecordIdentifier(commitSet.getPid(), object.getOid(), commitSet.getRid()), object);
-			database.getColumnDatabase().store(object.eClass().getName(), keyBuffer.array(), convertObjectToByteArray(object, commitSet).array(), this);
+			ByteBuffer keyBuffer = createKeyBuffer(object.getPid(), object.getOid(), object.getRid());
+			putInCache(new RecordIdentifier(object.getPid(), object.getOid(), object.getRid()), object);
+			database.getColumnDatabase().store(object.eClass().getName(), keyBuffer.array(), convertObjectToByteArray(object).array(), this);
 			return object.getOid();
 		} catch (BimDatabaseException e) {
 			LOGGER.error("", e);
@@ -750,7 +760,7 @@ public class DatabaseSession implements BimDatabaseSession {
 		return -1;
 	}
 
-	public GrowingByteBuffer convertObjectToByteArray(EObject object, CommitSet commitSet) throws BimDeadlockException, BimDatabaseException {
+	public GrowingByteBuffer convertObjectToByteArray(IdEObject object) throws BimDeadlockException, BimDatabaseException {
 		GrowingByteBuffer buffer = new GrowingByteBuffer();
 		for (EStructuralFeature feature : object.eClass().getEAllStructuralFeatures()) {
 			if (!feature.isTransient() && !feature.isVolatile()) {
@@ -764,9 +774,9 @@ public class DatabaseSession implements BimDatabaseSession {
 						boolean wrappedValue = Ifc2x3Package.eINSTANCE.getWrappedValue().isSuperTypeOf((EClass) feature.getEType());
 						for (Object o : list) {
 							if (wrappedValue) {
-								writeWrappedValue(o, buffer, commitSet);
+								writeWrappedValue(object.getPid(), object.getRid(), o, buffer);
 							} else {
-								writeReference(o, commitSet, buffer);
+								writeReference(object.getPid(), object.getRid(), o, buffer);
 							}
 						}
 					} else if (feature.getEType() instanceof EDataType) {
@@ -790,9 +800,9 @@ public class DatabaseSession implements BimDatabaseSession {
 					} else if (feature.getEType() instanceof EClass) {
 						boolean wrappedValue = Ifc2x3Package.eINSTANCE.getWrappedValue().isSuperTypeOf((EClass) feature.getEType());
 						if (wrappedValue) {
-							writeWrappedValue(value, buffer, commitSet);
+							writeWrappedValue(object.getPid(), object.getRid(), value, buffer);
 						} else {
-							writeReference(value, commitSet, buffer);
+							writeReference(object.getPid(), object.getRid(), value, buffer);
 						}
 					} else if (feature.getEType() instanceof EDataType) {
 						writePrimitiveValue(feature, value, buffer);
@@ -840,7 +850,7 @@ public class DatabaseSession implements BimDatabaseSession {
 		}
 	}
 
-	private void writeWrappedValue(Object value, GrowingByteBuffer buffer, CommitSet commitSet) throws BimDatabaseException, BimDeadlockException {
+	private void writeWrappedValue(int pid, int rid, Object value, GrowingByteBuffer buffer) throws BimDatabaseException, BimDeadlockException {
 		if (value == null) {
 			buffer.putShort((short) -1);
 			return;
@@ -855,8 +865,8 @@ public class DatabaseSession implements BimDatabaseSession {
 			writePrimitiveValue(floatValueFeature, wrappedValue.eGet(floatValueFeature), buffer);
 		}
 		if (wrappedValue instanceof IfcGloballyUniqueId) {
-			GrowingByteBuffer convertObjectToByteArray = convertObjectToByteArray(wrappedValue, commitSet);
-			ByteBuffer createKeyBuffer = createKeyBuffer(commitSet.getPid(), getReferenceOid(wrappedValue, commitSet), commitSet.getRid());
+			GrowingByteBuffer convertObjectToByteArray = convertObjectToByteArray(wrappedValue);
+			ByteBuffer createKeyBuffer = createKeyBuffer(pid, getReferenceOid(pid, rid, wrappedValue), rid);
 			try {
 				database.getColumnDatabase().store("IfcGloballyUniqueId", createKeyBuffer.array(), convertObjectToByteArray.array(), this);
 			} catch (BimDeadlockException e) {
@@ -910,22 +920,22 @@ public class DatabaseSession implements BimDatabaseSession {
 		}
 	}
 
-	private void writeReference(Object value, CommitSet commitSet, GrowingByteBuffer buffer) throws BimDeadlockException {
+	private void writeReference(int pid, int rid, Object value, GrowingByteBuffer buffer) throws BimDeadlockException {
 		if (value == null) {
 			buffer.putShort((byte) -1);
 		} else {
 			Short cid = database.getCidOfEClass(((EObject) value).eClass());
 			buffer.putShort(cid);
-			buffer.putLong(getReferenceOid((IdEObject) value, commitSet));
+			buffer.putLong(getReferenceOid(pid, rid, (IdEObject) value));
 		}
 	}
 
-	private long getReferenceOid(IdEObject object, CommitSet commitSet) throws BimDeadlockException {
-		if (commitSet.isStoring(object)) {
-			return commitSet.getOid(object);
+	private long getReferenceOid(int pid, int rid, IdEObject object) throws BimDeadlockException {
+		if (storing.containsKey(object)) {
+			return object.getOid();
 		} else {
 			if (object != null) {
-				return store(object, commitSet);
+				return store(object, pid, rid);
 			} else {
 				return -1;
 			}
@@ -933,10 +943,14 @@ public class DatabaseSession implements BimDatabaseSession {
 	}
 
 	@Override
+	public void store(Collection<? extends IdEObject> values) throws BimDeadlockException {
+		store(values, Database.STORE_PROJECT_ID, Database.STORE_PROJECT_REVISION_ID);
+	}
+
+	@Override
 	public void store(Collection<? extends IdEObject> values, int pid, int rid) throws BimDeadlockException {
-		CommitSet commitSet = new CommitSet(pid, rid);
 		for (IdEObject object : values) {
-			store(object, commitSet);
+			store(object, pid, rid);
 		}
 	}
 
@@ -1034,7 +1048,7 @@ public class DatabaseSession implements BimDatabaseSession {
 		try {
 			User user = getUserByUoid(uoid);
 			user.setLastSeen(new Date());
-			store(user, new CommitSet(Database.STORE_PROJECT_ID, -1));
+			store(user);
 		} catch (BimDeadlockException e) {
 			LOGGER.error("", e);
 		}

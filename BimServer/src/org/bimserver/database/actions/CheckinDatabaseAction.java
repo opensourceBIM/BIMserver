@@ -5,8 +5,6 @@ import java.util.Date;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
-import org.bimserver.database.CommitSet;
-import org.bimserver.database.Database;
 import org.bimserver.database.store.CheckinState;
 import org.bimserver.database.store.ConcreteRevision;
 import org.bimserver.database.store.Project;
@@ -49,24 +47,23 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 			throw new UserException("Another checkin on this project is currently running, please wait and try again");
 		}
 		checkCheckSum(project);
-		ConcreteRevision revision = bimDatabaseSession.createNewConcreteRevision(model.size(), poid, actingUoid, comment.trim(), CheckinState.STORING);
-		revision.setChecksum(model.getChecksum());
-		project.setLastConcreteRevision(revision);
-		revision.setState(CheckinState.STORING);
-		if (revision.getId() != 1) {
+		ConcreteRevision concreteRevision = bimDatabaseSession.createNewConcreteRevision(model.size(), poid, actingUoid, comment.trim(), CheckinState.STORING);
+		concreteRevision.setChecksum(model.getChecksum());
+		project.setLastConcreteRevision(concreteRevision);
+		concreteRevision.setState(CheckinState.STORING);
+		if (concreteRevision.getId() != 1) {
 			// There already was a revision, lets go delete em
-			bimDatabaseSession.clearProject(project.getId(), revision.getId() - 1, revision.getId());
+			bimDatabaseSession.clearProject(project.getId(), concreteRevision.getId() - 1, concreteRevision.getId());
 		}
 		NewRevisionAdded newRevisionAdded = LogFactory.eINSTANCE.createNewRevisionAdded();
 		newRevisionAdded.setDate(new Date());
 		newRevisionAdded.setExecutor(user);
-		newRevisionAdded.setRevision(revision.getRevisions().get(0));
+		newRevisionAdded.setRevision(concreteRevision.getRevisions().get(0));
 		newRevisionAdded.setAccessMethod(getAccessMethod());
-		CommitSet commitSet = new CommitSet(Database.STORE_PROJECT_ID, -1);
-		bimDatabaseSession.store(newRevisionAdded, commitSet);
-		bimDatabaseSession.store(model.getValues(), project.getId(), revision.getId());
-		bimDatabaseSession.store(revision, commitSet);
+		bimDatabaseSession.store(newRevisionAdded);
+		bimDatabaseSession.store(model.getValues());
+		bimDatabaseSession.store(concreteRevision, project.getId(), concreteRevision.getId());
 		bimDatabaseSession.saveOidCounter();
-		return revision;
+		return concreteRevision;
 	}
 }

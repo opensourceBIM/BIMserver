@@ -3,8 +3,6 @@ package org.bimserver.database.actions;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
-import org.bimserver.database.CommitSet;
-import org.bimserver.database.Database;
 import org.bimserver.database.store.ConcreteRevision;
 import org.bimserver.database.store.Project;
 import org.bimserver.database.store.Revision;
@@ -32,7 +30,7 @@ public class SetRevisionTagDatabaseAction extends BimDatabaseAction<String> {
 		}
 		EList<Revision> projRevs = project.getRevisions();
 		revision.setTag(trimmedTag);
-		bimDatabaseSession.store(revision, new CommitSet(Database.STORE_PROJECT_ID, -1));
+		bimDatabaseSession.store(revision);
 		EList<ConcreteRevision> concreteRevisions = revision.getConcreteRevisions();
 		for (ConcreteRevision cRev : concreteRevisions) {
 			EList<Revision> revisions = cRev.getRevisions();
@@ -41,7 +39,7 @@ public class SetRevisionTagDatabaseAction extends BimDatabaseAction<String> {
 					continue;
 				}
 				vRev.setTag(trimmedTag);
-				bimDatabaseSession.store(vRev, new CommitSet(Database.STORE_PROJECT_ID, -1));
+				bimDatabaseSession.store(vRev);
 			}
 		}
 		return null;

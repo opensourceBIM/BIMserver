@@ -6,7 +6,6 @@ import org.bimserver.database.BimDatabase;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
-import org.bimserver.database.CommitSet;
 import org.bimserver.database.Database;
 import org.bimserver.database.actions.CheckinPart2DatabaseAction;
 import org.bimserver.database.store.CheckinState;
@@ -55,7 +54,7 @@ public class LongCheckinAction extends LongAction {
 					}
 					if (latest != null) {
 						latest.getProject().setLastRevision(latest);
-						extraSession.store(latest.getProject(), new CommitSet(Database.STORE_PROJECT_ID, -1));
+						extraSession.store(latest.getProject());
 					}
 				}
 				extraSession.commit();
@@ -82,7 +81,7 @@ public class LongCheckinAction extends LongAction {
 						revision.setState(CheckinState.ERROR);
 						revision.setLastError(throwable.getMessage());
 					}
-					rollBackSession.store(concreteRevision, new CommitSet(Database.STORE_PROJECT_ID, -1));
+					rollBackSession.store(concreteRevision);
 					rollBackSession.commit();
 				} finally {
 					rollBackSession.close();

@@ -5,8 +5,6 @@ import java.util.Date;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
-import org.bimserver.database.CommitSet;
-import org.bimserver.database.Database;
 import org.bimserver.database.store.CheckinState;
 import org.bimserver.database.store.ConcreteRevision;
 import org.bimserver.database.store.Project;
@@ -58,9 +56,8 @@ public class CheckinPart1DatabaseAction extends GenericCheckinDatabaseAction {
 		newRevisionAdded.setExecutor(user);
 		newRevisionAdded.setRevision(concreteRevision.getRevisions().get(0));
 		newRevisionAdded.setAccessMethod(getAccessMethod());
-		CommitSet commitSet = new CommitSet(Database.STORE_PROJECT_ID, -1);
-		bimDatabaseSession.store(newRevisionAdded, commitSet);
-		bimDatabaseSession.store(concreteRevision, commitSet);
+		bimDatabaseSession.store(newRevisionAdded);
+		bimDatabaseSession.store(concreteRevision);
 		bimDatabaseSession.saveOidCounter();
 		return concreteRevision;
 	}

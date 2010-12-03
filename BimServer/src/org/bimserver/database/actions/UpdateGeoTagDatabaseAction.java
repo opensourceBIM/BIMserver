@@ -5,8 +5,6 @@ import java.util.Date;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
-import org.bimserver.database.CommitSet;
-import org.bimserver.database.Database;
 import org.bimserver.database.store.GeoTag;
 import org.bimserver.database.store.Project;
 import org.bimserver.database.store.StorePackage;
@@ -52,9 +50,8 @@ public class UpdateGeoTagDatabaseAction extends BimDatabaseAction<Void> {
 			geoTagUpdated.setAccessMethod(getAccessMethod());
 			geoTagUpdated.setDate(new Date());
 			geoTagUpdated.setExecutor(actingUser);
-			CommitSet commitSet = new CommitSet(Database.STORE_PROJECT_ID, -1);
-			bimDatabaseSession.store(geoTagUpdated, commitSet);
-			bimDatabaseSession.store(geoTag, commitSet);
+			bimDatabaseSession.store(geoTagUpdated);
+			bimDatabaseSession.store(geoTag);
 		} else {
 			throw new UserException("User has no rights on any projects associated with this geotag");
 		}

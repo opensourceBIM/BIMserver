@@ -5,8 +5,6 @@ import java.util.Date;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
-import org.bimserver.database.CommitSet;
-import org.bimserver.database.Database;
 import org.bimserver.database.store.Project;
 import org.bimserver.database.store.Revision;
 import org.bimserver.database.store.User;
@@ -49,9 +47,8 @@ public class UpdateRevisionDatabaseAction extends BimDatabaseAction<Void> {
 		revisionUpdated.setExecutor(actingUser);
 		revisionUpdated.setAccessMethod(getAccessMethod());
 		revision.setTag(sRevision.getTag());
-		CommitSet commitSet = new CommitSet(Database.STORE_PROJECT_ID, -1);
-		bimDatabaseSession.store(revisionUpdated, commitSet);
-		bimDatabaseSession.store(revision, commitSet);
+		bimDatabaseSession.store(revisionUpdated);
+		bimDatabaseSession.store(revision);
 		return null;
 	}
 }

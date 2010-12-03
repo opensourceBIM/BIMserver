@@ -5,8 +5,6 @@ import java.util.Date;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
-import org.bimserver.database.CommitSet;
-import org.bimserver.database.Database;
 import org.bimserver.database.store.User;
 import org.bimserver.database.store.UserType;
 import org.bimserver.database.store.log.AccessMethod;
@@ -44,9 +42,8 @@ public class ResetPasswordDatabaseAction extends BimDatabaseAction<Void> {
 		passwordReset.setUser(user);
 		String newPassword = GeneratorUtils.generateToken();
 		user.setPassword(Hashers.getSha256Hash(newPassword));
-		CommitSet commitSet = new CommitSet(Database.STORE_PROJECT_ID, -1);
-		bimDatabaseSession.store(passwordReset, commitSet);
-		bimDatabaseSession.store(user, commitSet);
+		bimDatabaseSession.store(passwordReset);
+		bimDatabaseSession.store(user);
 		return null;
 	}
 }

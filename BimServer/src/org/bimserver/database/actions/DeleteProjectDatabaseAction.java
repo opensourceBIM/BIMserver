@@ -5,8 +5,6 @@ import java.util.Date;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
-import org.bimserver.database.CommitSet;
-import org.bimserver.database.Database;
 import org.bimserver.database.store.ObjectState;
 import org.bimserver.database.store.Project;
 import org.bimserver.database.store.User;
@@ -38,7 +36,7 @@ public class DeleteProjectDatabaseAction extends BimDatabaseAction<Boolean> {
 			projectDeleted.setDate(new Date());
 			projectDeleted.setExecutor(actingUser);
 			projectDeleted.setProject(project);
-			bimDatabaseSession.store(project, new CommitSet(Database.STORE_PROJECT_ID, -1));
+			bimDatabaseSession.store(project);
 			return true;
 		} else {
 			throw new UserException("No rights to delete this project");

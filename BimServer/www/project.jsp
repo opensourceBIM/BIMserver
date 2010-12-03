@@ -684,7 +684,7 @@ for (SRevision sRevision : revisions) {
 		}
 		$("#showinactivecheckouts").change(updateInactiveCheckouts);
 		updateInactiveCheckouts();
-		window.setInterval(function() {
+		var refreshFunction = function() {
 			if (revisions.length > 0) {
 				var roids = "";
 				for (var roid in revisions) {
@@ -735,7 +735,9 @@ for (SRevision sRevision : revisions) {
 					}
 			    }});
 			}
-		}, 2000);
+		};
+		window.setInterval(refreshFunction, 2000);
+		refreshFunction();
 	});
 </script>
 <%

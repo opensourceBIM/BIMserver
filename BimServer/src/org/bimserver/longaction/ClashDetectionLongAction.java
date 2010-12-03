@@ -8,7 +8,6 @@ import org.bimserver.database.BimDatabase;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
-import org.bimserver.database.CommitSet;
 import org.bimserver.database.Database;
 import org.bimserver.database.actions.BimDatabaseAction;
 import org.bimserver.database.actions.DownloadDatabaseAction;
@@ -53,7 +52,7 @@ public class ClashDetectionLongAction extends LongAction {
 			Revision revision = project.getLastRevision();
 			revision.setState(CheckinState.SEARCHING_CLASHES);
 			roid = revision.getOid();
-			session.store(revision, new CommitSet(Database.STORE_PROJECT_ID, -1));
+			session.store(revision);
 			session.commit();
 		} catch (BimDeadlockException e) {
 			LOGGER.error("", e);
@@ -87,8 +86,7 @@ public class ClashDetectionLongAction extends LongAction {
 					}
 				}
 				revision.setState(CheckinState.DONE);
-				CommitSet commitSet = new CommitSet(Database.STORE_PROJECT_ID, -1);
-				session.store(revision, commitSet);
+				session.store(revision);
 				session.commit();
 			} finally {
 				failSafeIfcEngine.close();
@@ -105,7 +103,7 @@ public class ClashDetectionLongAction extends LongAction {
 					Revision revision = rollBackSession.getVirtualRevision(roid);
 					revision.setState(CheckinState.CLASHES_ERROR);
 					revision.setLastError(throwable.getMessage());
-					rollBackSession.store(revision, new CommitSet(Database.STORE_PROJECT_ID, -1));
+					rollBackSession.store(revision);
 					rollBackSession.commit();
 				} finally {
 					rollBackSession.close();
