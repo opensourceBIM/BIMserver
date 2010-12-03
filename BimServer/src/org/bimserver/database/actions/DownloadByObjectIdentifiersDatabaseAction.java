@@ -7,6 +7,7 @@ import java.util.Set;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.ObjectIdentifier;
 import org.bimserver.database.ReadSet;
 import org.bimserver.database.store.ConcreteRevision;
 import org.bimserver.database.store.Project;
@@ -17,13 +18,13 @@ import org.bimserver.ifc.IfcModel;
 import org.bimserver.rights.RightsManager;
 import org.bimserver.shared.UserException;
 
-public class DownloadByOidsDatabaseAction extends BimDatabaseAction<IfcModel> {
+public class DownloadByObjectIdentifiersDatabaseAction extends BimDatabaseAction<IfcModel> {
 
 	private final long actingUoid;
-	private final Set<Long> oids;
+	private final Set<ObjectIdentifier> oids;
 	private final Set<Long> roids;
 
-	public DownloadByOidsDatabaseAction(AccessMethod accessMethod, Set<Long> roids, Set<Long> oids, long actingUoid) {
+	public DownloadByObjectIdentifiersDatabaseAction(AccessMethod accessMethod, Set<Long> roids, Set<ObjectIdentifier> oids, long actingUoid) {
 		super(accessMethod);
 		this.roids = roids;
 		this.oids = oids;
@@ -42,8 +43,8 @@ public class DownloadByOidsDatabaseAction extends BimDatabaseAction<IfcModel> {
 				throw new UserException("User has insufficient rights to download revisions from this project");
 			}
 			for (ConcreteRevision concreteRevision : virtualRevision.getConcreteRevisions()) {
-				for (Long oid : oids) {
-					ReadSet mapWithOid = bimDatabaseSession.getMapWithOid(concreteRevision.getProject().getId(), concreteRevision.getId(), oid);
+				for (ObjectIdentifier objectIdentifier : oids) {
+					ReadSet mapWithOid = bimDatabaseSession.getMapWithOid(concreteRevision.getProject().getId(), concreteRevision.getId(), objectIdentifier.getCid(), objectIdentifier.getOid());
 					IfcModel subModel = new IfcModel(mapWithOid.getMap());
 					subModel.setDate(concreteRevision.getDate());
 					ifcModels.add(subModel);

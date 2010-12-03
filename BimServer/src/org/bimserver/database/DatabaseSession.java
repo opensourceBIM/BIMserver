@@ -610,10 +610,9 @@ public class DatabaseSession implements BimDatabaseSession {
 		}
 	}
 
-	@Override
-	public ReadSet getMapWithOid(int pid, int rid, long oid) throws BimDatabaseException, BimDeadlockException {
-		EClass eClass = getClassOfObjectId(pid, rid, oid);
+	public ReadSet getMapWithOid(int pid, int rid, short cid, long oid) throws BimDatabaseException, BimDeadlockException {
 		ReadSet readSet = new ReadSet(pid, rid);
+		EClass eClass = database.getEClassForCid(cid);
 		if (eClass == null) {
 			return readSet;
 		}
@@ -630,6 +629,15 @@ public class DatabaseSession implements BimDatabaseSession {
 			getMap(eClass, eClass, readSet, valueBuffer, pid, oid, rid);
 			return readSet;
 		}
+	}
+	
+	@Override
+	public ReadSet getMapWithOid(int pid, int rid, long oid) throws BimDatabaseException, BimDeadlockException {
+		EClass eClass = getClassOfObjectId(pid, rid, oid);
+		if (eClass == null) {
+			return new ReadSet(pid, rid);
+		}
+		return getMapWithOid(pid, rid, database.getCidOfEClass(eClass), oid);
 	}
 
 	private EClass getClassOfObjectId(int pid, int rid, long oid) throws BimDatabaseException, BimDeadlockException {

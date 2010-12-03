@@ -21,8 +21,11 @@
 		SRevision revision2 = loginManager.getService().getRevision(roid2);
 		SCompareType sCompareType = SCompareResult.SCompareType.valueOf(request.getParameter("type"));
 		SCompareResult compareResult = loginManager.getService().compare(roid1, roid2, sCompareType);
+		EmfSerializerFactory emfSerializerFactory = EmfSerializerFactory.getInstance();
 %>
-Back to <a href="project.jsp?poid=<%=poid %>">project '<%= project.getName() %>'</a><br/><br/>
+Back to 
+<%@page import="org.bimserver.shared.ResultType"%>
+<%@page import="org.bimserver.serializers.EmfSerializerFactory"%><a href="project.jsp?poid=<%=poid %>">project '<%= project.getName() %>'</a><br/><br/>
   <a href="#" id="emaillink">E-mail summary</a>
   <div id="emailform">
 	<div id="emailajaxloader">
@@ -37,6 +40,26 @@ Back to <a href="project.jsp?poid=<%=poid %>">project '<%= project.getName() %>'
   	</form>
   </div>
 <%= JspHelper.writeCompareResult(compareResult, revision1.getId(), revision2.getId(), sCompareType, project) %>
+
+<form action="<%=request.getContextPath() %>/download" method="get">
+Download: 
+<input type="hidden" name="compare" value="true" />
+<input type="hidden" name="type" value="<%=request.getParameter("type") %>" />
+<input type="hidden" name="roid1" value="<%=request.getParameter("roid1") %>" />
+<input type="hidden" name="roid2" value="<%=request.getParameter("roid2") %>" />
+<select name="resultType">
+	<%
+	for (ResultType resultType : emfSerializerFactory.getMultipleResultTypes()) {
+%>
+	<option value="<%=resultType.name() %>"
+		<%=resultType.isDefaultSelected() ? " SELECTED=\"SELECTED\"" : "" %>><%= resultType.getNiceName() %></option>
+	<%	
+	}
+%>
+</select> <label for="zip">Zip</label><input type="checkbox" name="zip" id="zip" />
+		<input name="download" type="submit" value="Download">
+</form>
+
 <script>
 	$(document).ready(function(){
 		$("#emailform").hide();

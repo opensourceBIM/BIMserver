@@ -28,6 +28,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
+import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.FieldIgnoreMap;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.emf.Ifc2x3.Ifc2x3Package;
@@ -45,7 +46,7 @@ public class IfcDatabase {
 	private static final Map<Class<?>, Class<?>> interfaceClassMap = initInterfaceClassMap();
 	private final Map<Class<?>, List<? extends EObject>> index = new HashMap<Class<?>, List<? extends EObject>>();
 	private final IfcModel model;
-	private final Map<EClass, Map<String, EObject>> guidIndex = new HashMap<EClass, Map<String, EObject>>();
+	private final Map<EClass, Map<String, IdEObject>> guidIndex = new HashMap<EClass, Map<String, IdEObject>>();
 	private final FieldIgnoreMap fieldIgnoreMap;
 
 	public IfcDatabase(IfcModel model, FieldIgnoreMap fieldIgnoreMap) {
@@ -89,12 +90,12 @@ public class IfcDatabase {
 	public void buildGuidIndex() {
 		for (EClassifier classifier : model.getValues().iterator().next().eClass().getEPackage().getEClassifiers()) {
 			if (classifier instanceof EClass) {
-				Map<String, EObject> map = new TreeMap<String, EObject>();
+				Map<String, IdEObject> map = new TreeMap<String, IdEObject>();
 				guidIndex.put((EClass) classifier, map);
 			}
 		}
 		for (Long key : model.keySet()) {
-			EObject value = model.get((Long) key);
+			IdEObject value = model.get((Long) key);
 			if (value instanceof IfcRoot) {
 				IfcRoot ifcRoot = (IfcRoot) value;
 				sortAllAggregates(ifcRoot);
@@ -187,7 +188,7 @@ public class IfcDatabase {
 		return guidIndex.get(eClass).keySet();
 	}
 
-	public EObject getByGuid(EClass eClass, String guid) {
+	public IdEObject getByGuid(EClass eClass, String guid) {
 		return guidIndex.get(eClass).get(guid);
 	}
 }

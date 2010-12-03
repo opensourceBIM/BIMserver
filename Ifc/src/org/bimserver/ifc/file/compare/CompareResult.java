@@ -8,9 +8,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-import org.bimserver.ifc.emf.Ifc2x3.IfcRoot;
+import org.bimserver.emf.IdEObject;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 public class CompareResult {
@@ -23,21 +22,21 @@ public class CompareResult {
 
 	public static abstract class Item {
 
-		public final EObject eObject;
+		public final IdEObject eObject;
 
-		public Item(EObject eObject) {
+		public Item(IdEObject eObject) {
 			this.eObject = eObject;
 		}
 	}
 
 	public static class ObjectAdded extends Item {
-		public ObjectAdded(EObject eObject) {
+		public ObjectAdded(IdEObject eObject) {
 			super(eObject);
 		}
 	}
 	
 	public static class ObjectDeleted extends Item {
-		public ObjectDeleted(EObject eObject) {
+		public ObjectDeleted(IdEObject eObject) {
 			super(eObject);
 		}
 	}
@@ -47,7 +46,7 @@ public class CompareResult {
 		private final Object oldValue;
 		private final Object newValue;
 
-		public ObjectModified(EObject eObject, EStructuralFeature feature, Object oldValue, Object newValue) {
+		public ObjectModified(IdEObject eObject, EStructuralFeature feature, Object oldValue, Object newValue) {
 			super(eObject);
 			this.feature = feature;
 			this.oldValue = oldValue;
@@ -67,7 +66,7 @@ public class CompareResult {
 		}
 	}
 	
-	private void checkEClass(EObject eObject) {
+	private void checkEClass(IdEObject eObject) {
 		if (!items.containsKey(eObject.eClass())) {
 			items.put(eObject.eClass(), new ArrayList<Item>());
 		}
@@ -112,17 +111,17 @@ public class CompareResult {
 		return size;
 	}
 
-	public void addAdded(EObject eObject) {
+	public void addAdded(IdEObject eObject) {
 		checkEClass(eObject);
 		items.get(eObject.eClass()).add(new ObjectAdded(eObject));
 	}
 
-	public void addDeleted(EObject eObject) {
+	public void addDeleted(IdEObject eObject) {
 		checkEClass(eObject);
 		items.get(eObject.eClass()).add(new ObjectDeleted(eObject));		
 	}
 	
-	public void addModified(EObject eObject, EStructuralFeature eStructuralFeature, Object oldValue, Object newValue) {
+	public void addModified(IdEObject eObject, EStructuralFeature eStructuralFeature, Object oldValue, Object newValue) {
 		checkEClass(eObject);
 		items.get(eObject.eClass()).add(new ObjectModified(eObject, eStructuralFeature, oldValue, newValue));
 	}
