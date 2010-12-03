@@ -45,6 +45,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.google.common.base.Charsets;
 import com.ice.tar.TarEntry;
 import com.ice.tar.TarOutputStream;
 
@@ -80,7 +81,7 @@ public class O3dTgzSerializer extends BimModelSerializer {
 				TarEntry tarEntry = new TarEntry("aaaaaaaa.o3d");
 				tarEntry.setSize(3);
 				tarOutputStream.putNextEntry(tarEntry);
-				tarOutputStream.write("o3d".getBytes("UTF-8"));
+				tarOutputStream.write("o3d".getBytes(Charsets.UTF_8));
 				tarOutputStream.closeEntry();
 				try {
 					Scene scene = createScene();

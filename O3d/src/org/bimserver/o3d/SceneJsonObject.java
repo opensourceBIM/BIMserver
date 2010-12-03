@@ -25,14 +25,10 @@ public class SceneJsonObject extends JSONObject {
 		return array;
 	}
 	
-	protected JSONArray makeFloatArray(float... floats) {
+	protected JSONArray makeFloatArray(float... floats) throws JSONException {
 		JSONArray array = new JSONArray();
 		for (float f : floats) {
-			try {
-				array.put(f);
-			} catch (JSONException e) {
-				e.printStackTrace();
-			}
+			array.put(f);
 		}
 		return array;
 	}

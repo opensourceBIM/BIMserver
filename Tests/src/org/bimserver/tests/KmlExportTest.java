@@ -9,9 +9,9 @@ import java.util.List;
 import java.util.Set;
 
 import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
-import nl.tue.buildingsmart.express.parser.ExpressSchemaParser;
 
 import org.bimserver.ifc.IfcModel;
+import org.bimserver.ifc.SchemaLoader;
 import org.bimserver.ifc.database.IfcDatabase;
 import org.bimserver.ifc.emf.Ifc2x3.IfcArbitraryClosedProfileDef;
 import org.bimserver.ifc.emf.Ifc2x3.IfcAxis2Placement3D;
@@ -35,9 +35,7 @@ public class KmlExportTest {
 	}
 
 	private void start() {
-		ExpressSchemaParser schemaParser = new ExpressSchemaParser(new File("..\\buildingSMARTLibrary\\data\\IFC2X3_FINAL.exp"));
-		schemaParser.parse();
-		SchemaDefinition schema = schemaParser.getSchema();
+		SchemaDefinition schema = SchemaLoader.loadDefaultSchema();
 		
 		File kmlFile = new File("test.kml");
 		PrintWriter out = null;

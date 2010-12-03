@@ -3,12 +3,10 @@ package org.bimserver.tests;
 import java.io.File;
 import java.io.FileNotFoundException;
 
-import nl.tue.buildingsmart.emf.DerivedReader;
 import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
-import nl.tue.buildingsmart.express.parser.ExpressSchemaParser;
 
 import org.bimserver.ifc.IfcModel;
-import org.bimserver.ifc.file.reader.IfcFileReader;
+import org.bimserver.ifc.SchemaLoader;
 import org.bimserver.ifc.file.reader.IfcStepDeserializer;
 import org.bimserver.ifc.file.reader.IncorrectIfcFileException;
 import org.bimserver.ifc.xml.writer.IfcXmlSerializer;
@@ -19,14 +17,7 @@ public class IfcXmlWriteTester {
 	}
 
 	private void start() {
-		ExpressSchemaParser schemaParser = new ExpressSchemaParser(IfcFileReader.DEFAULT_SCHEMA_FILE);
-		schemaParser.parse();
-		SchemaDefinition schema = schemaParser.getSchema();
-		try {
-			new DerivedReader(IfcFileReader.DEFAULT_SCHEMA_FILE, schema);
-		} catch (FileNotFoundException e1) {
-			e1.printStackTrace();
-		}
+		SchemaDefinition schema = SchemaLoader.loadDefaultSchema();
 		
 		IfcStepDeserializer reader = new IfcStepDeserializer(schema);
 		try {
@@ -39,6 +30,10 @@ public class IfcXmlWriteTester {
 		}
 		IfcModel model = reader.getModel();
 		IfcXmlSerializer ifcXmlWriter = new IfcXmlSerializer("", model, schema);
-		ifcXmlWriter.write(new File("test.xml"));
+		try {
+			ifcXmlWriter.write(new File("test.xml"));
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 }

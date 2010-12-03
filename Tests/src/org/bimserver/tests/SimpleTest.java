@@ -1,17 +1,14 @@
 package org.bimserver.tests;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-import nl.tue.buildingsmart.emf.DerivedReader;
 import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
-import nl.tue.buildingsmart.express.parser.ExpressSchemaParser;
 
 import org.bimserver.ifc.FileFieldIgnoreMap;
 import org.bimserver.ifc.IfcModel;
+import org.bimserver.ifc.SchemaLoader;
 import org.bimserver.ifc.database.IfcDatabase;
 import org.bimserver.ifc.emf.Ifc2x3.Ifc2x3Package;
 import org.bimserver.ifc.emf.Ifc2x3.IfcBuildingStorey;
@@ -30,15 +27,7 @@ public class SimpleTest {
 	}
 
 	private void start() {
-		File schemaFile = new File("../BimServer/deploy/shared/IFC2X3_FINAL.exp");
-		ExpressSchemaParser schemaParser = new ExpressSchemaParser(schemaFile);
-		schemaParser.parse();
-		SchemaDefinition schema = schemaParser.getSchema();
-		try {
-			new DerivedReader(schemaFile, schema);
-		} catch (FileNotFoundException e1) {
-			e1.printStackTrace();
-		}
+		SchemaDefinition schema = SchemaLoader.loadDefaultSchema();
 		IfcStepDeserializer fastIfcFileReader = new IfcStepDeserializer(schema);
 		ResourceFetcher resourceFetcher = new LocalDevelopmentResourceFetcher();
 		FileFieldIgnoreMap fieldIgnoreMap = new FileFieldIgnoreMap(CollectionUtils.singleSet(Ifc2x3Package.eINSTANCE), resourceFetcher);
