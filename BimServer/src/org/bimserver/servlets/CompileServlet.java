@@ -69,7 +69,7 @@ public class CompileServlet extends HttpServlet {
 			try {
 				loginManager.getService().loginAnonymous();
 			} catch (UserException e) {
-				e.printStackTrace();
+				LOGGER.error("", e);
 			}
 		}
 		BimDatabaseSession session = database.createSession();

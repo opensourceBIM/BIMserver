@@ -33,8 +33,12 @@ import org.bimserver.shared.Addition;
 import org.bimserver.shared.AttributeReferencePair;
 import org.bimserver.shared.AttributeValuePair;
 import org.bimserver.shared.ChangeSet;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class DumpChangeSet {
+	private static final Logger LOGGER = LoggerFactory.getLogger(DumpChangeSet.class);
+	
 	public static void main(String[] args) {
 		ChangeSet changeSet = new ChangeSet();
 		Addition addition1 = new Addition("IfcWindow");
@@ -71,11 +75,10 @@ public class DumpChangeSet {
 			marshaller.marshal(changeSet, new FileOutputStream("changeset.xml"));
 			Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
 			unmarshaller.unmarshal(new FileInputStream("changeset.xml"));
-			System.out.println();
 		} catch (JAXBException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 	}
 }

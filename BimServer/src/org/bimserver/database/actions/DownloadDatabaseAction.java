@@ -65,13 +65,13 @@ public class DownloadDatabaseAction extends BimDatabaseAction<IfcModel> {
 			// IfcModel.setLon(result[0]);
 			// IfcModel.setLat(result[1]);
 			// } catch (NoSuchAuthorityCodeException e) {
-			// e.printStackTrace();
+			// 	LOGGER.error("", e);
 			// } catch (FactoryException e) {
-			// e.printStackTrace();
+			// 	LOGGER.error("", e);
 			// } catch (MismatchedDimensionException e) {
-			// e.printStackTrace();
+			// 	LOGGER.error("", e);
 			// } catch (TransformException e) {
-			// e.printStackTrace();
+			// 	LOGGER.error("", e);
 			// }
 		}
 		return ifcModel;

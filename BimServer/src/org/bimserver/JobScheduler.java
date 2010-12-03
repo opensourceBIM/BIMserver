@@ -14,8 +14,11 @@ import org.quartz.SchedulerException;
 import org.quartz.SchedulerFactory;
 import org.quartz.SimpleTrigger;
 import org.quartz.impl.StdSchedulerFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class JobScheduler {
+	private static final Logger LOGGER = LoggerFactory.getLogger(JobScheduler.class);
 	private SchedulerFactory sf;
 	private static final int TOKEN_CLEAN_INTERVAL_MILLIS = 60 * 60 * 1000; // 1 hour
 	private static final int CLASH_DETECTION_CLEAN_INTERVAL_MILLIS = 30 * 60 * 1000; // 30 minutes
@@ -56,8 +59,8 @@ public class JobScheduler {
 			properties.setProperty("org.quartz.threadPool.threadCount", "1");
 			sf = new StdSchedulerFactory(properties);
 			sched = sf.getScheduler();
-		} catch (SchedulerException e1) {
-			e1.printStackTrace();
+		} catch (SchedulerException e) {
+			LOGGER.error("", e);
 		}
 	}
 
@@ -68,7 +71,7 @@ public class JobScheduler {
 			addRecurringJob(CompareResultCacheCleaner.class, COMPARE_RESULT_CLEAN_INTERVAL_MILLIS);
 			sched.start();
 		} catch (SchedulerException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 	}
 
@@ -80,7 +83,7 @@ public class JobScheduler {
 		try {
 			sched.shutdown();
 		} catch (SchedulerException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 	}
 }

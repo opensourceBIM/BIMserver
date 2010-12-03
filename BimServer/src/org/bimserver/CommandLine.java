@@ -7,8 +7,11 @@ import java.util.Map;
 
 import org.bimserver.shared.ResultType;
 import org.bimserver.shared.UserException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class CommandLine extends Thread {
+	private static final Logger LOGGER = LoggerFactory.getLogger(CommandLine.class);
 	private final Server server;
 
 	public CommandLine(Server server) {
@@ -27,7 +30,7 @@ public class CommandLine extends Thread {
 					try {
 						Thread.sleep(50);
 					} catch (InterruptedException e) {
-						e.printStackTrace();
+						LOGGER.error("", e);
 					}
 					continue;
 				}
@@ -39,7 +42,7 @@ public class CommandLine extends Thread {
 					try {
 						ServerInitializer.getAdminService().download(1051442, ResultType.IFC);
 					} catch (UserException e) {
-						e.printStackTrace();
+						LOGGER.error("", e);
 					}
 					long endTime = System.nanoTime();
 					System.out.println(((endTime - startTime) / 1000000) + " ms");
@@ -60,11 +63,11 @@ public class CommandLine extends Thread {
 					try {
 						Thread.sleep(10000);
 					} catch (InterruptedException e) {
-						e.printStackTrace();
+						LOGGER.error("", e);
 					}
 				}
-			} catch (IOException e1) {
-				e1.printStackTrace();
+			} catch (IOException e) {
+				LOGGER.error("", e);
 			}
 		}
 	}

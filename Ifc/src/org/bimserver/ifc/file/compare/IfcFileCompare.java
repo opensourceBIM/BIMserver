@@ -70,7 +70,7 @@ public class IfcFileCompare {
 			out.close();
 			LOGGER.info("Diffs: " + diffs);
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 	}
 }

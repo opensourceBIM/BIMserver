@@ -16,15 +16,19 @@ import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
 
 import org.bimserver.ifc.xml.writer.IfcXmlSerializer;
 import org.bimserver.shared.ResultType;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class XsltSerializer extends BimModelSerializer {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(XsltSerializer.class);
 	private final SchemaDefinition schemaDefinition;
 	private final URL xsltUrl;
 	private final XsltParameter[] parameters;
 	private final ResultType resultType;
 
-	public XsltSerializer(String fileName, IfcModel model, FieldIgnoreMap fieldIgnoreMap, SchemaDefinition schemaDefinition, URL xsltUrl, ResultType resultType, XsltParameter... parameters) {
+	public XsltSerializer(String fileName, IfcModel model, FieldIgnoreMap fieldIgnoreMap, SchemaDefinition schemaDefinition, URL xsltUrl, ResultType resultType,
+			XsltParameter... parameters) {
 		super(fileName, model, fieldIgnoreMap);
 		this.schemaDefinition = schemaDefinition;
 		this.xsltUrl = xsltUrl;
@@ -45,23 +49,22 @@ public class XsltSerializer extends BimModelSerializer {
 					transformer.setParameter(xsltParameter.getKey(), xsltParameter.getValue());
 				}
 				transformer.setErrorListener(new ErrorListener() {
-					
+
 					@Override
-					public void warning(TransformerException exception) throws TransformerException {
-//					exception.printStackTrace();
+					public void warning(TransformerException e) throws TransformerException {
 					}
-					
+
 					@Override
-					public void fatalError(TransformerException exception) throws TransformerException {
-						exception.printStackTrace();
+					public void fatalError(TransformerException e) throws TransformerException {
+						LOGGER.error("", e);
 					}
-					
+
 					@Override
-					public void error(TransformerException exception) throws TransformerException {
-						exception.printStackTrace();
+					public void error(TransformerException e) throws TransformerException {
+						LOGGER.error("", e);
 					}
 				});
-				
+
 				StreamSource in = new StreamSource(ifcXmlSerializer.getInputStream());
 				StreamResult out = new StreamResult(outputStream);
 				transformer.transform(in, out);

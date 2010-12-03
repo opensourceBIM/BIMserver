@@ -35,7 +35,7 @@ public class RestAuthentication extends SoapHeaderInterceptor {
 			try {
 				newService = ServiceFactory.getINSTANCE().getService((Token)message.getExchange().getService().get("token"));
 			} catch (UserException e) {
-				e.printStackTrace();
+				LOGGER.error("", e);
 			}
 		}
 		if (newService.isLoggedIn()) {

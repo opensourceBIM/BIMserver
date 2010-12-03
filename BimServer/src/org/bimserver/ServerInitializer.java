@@ -70,6 +70,8 @@ import org.bimserver.webservices.ServiceFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.google.common.base.Charsets;
+
 public class ServerInitializer implements ServletContextListener {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ServerInitializer.class);
 	private static GregorianCalendar serverStartTime;
@@ -174,7 +176,7 @@ public class ServerInitializer implements ServletContextListener {
 				typeString = readUrl(resource);
 			}
 		} catch (MalformedURLException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 		if (typeString == null) {
 			File file = new File("servertype.txt");
@@ -191,11 +193,11 @@ public class ServerInitializer implements ServletContextListener {
 			InputStream inputStream = resource.openStream();
 			byte[] buffer = new byte[100];
 			int red = inputStream.read(buffer);
-			String string = new String(buffer, 0, red, "UTF-8");
+			String string = new String(buffer, 0, red, Charsets.UTF_8);
 			inputStream.close();
 			return string;
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 		return null;
 	}
@@ -205,13 +207,13 @@ public class ServerInitializer implements ServletContextListener {
 			FileInputStream fis = new FileInputStream(file);
 			byte[] buffer = new byte[100];
 			int red = fis.read(buffer);
-			String string = new String(buffer, 0, red, "UTF-8");
+			String string = new String(buffer, 0, red, Charsets.UTF_8);
 			fis.close();
 			return string;
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 		return null;
 	}

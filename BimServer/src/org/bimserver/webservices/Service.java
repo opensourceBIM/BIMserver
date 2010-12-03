@@ -43,6 +43,7 @@ import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
 
 import org.bimserver.ServerInfo;
 import org.bimserver.ServerSettings;
+import org.bimserver.SettingsSaveException;
 import org.bimserver.database.BimDatabase;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
@@ -1637,6 +1638,8 @@ public class Service implements ServiceInterface {
 			}
 			ServerSettings.getSettings().updateEnabledResultTypes(resultTypes);
 			ServerSettings.getSettings().save();
+		} catch (SettingsSaveException e) {
+			LOGGER.error("", e);
 		} finally {
 			session.close();
 		}

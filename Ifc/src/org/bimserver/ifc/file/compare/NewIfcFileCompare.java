@@ -31,7 +31,11 @@ import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class NewIfcFileCompare {
+	private static final Logger LOGGER = LoggerFactory.getLogger(NewIfcFileCompare.class);
 	private final File sourceFile;
 	private final File destFile;
 	private List<String> sortFile1;
@@ -73,9 +77,9 @@ public class NewIfcFileCompare {
 					return o1.compareTo(o2);
 				}});
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 		return lines;
 	}
@@ -114,7 +118,7 @@ public class NewIfcFileCompare {
 			}
 			out.close();
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 	}
 }

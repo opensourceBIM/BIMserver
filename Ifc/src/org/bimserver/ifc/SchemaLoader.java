@@ -7,9 +7,11 @@ import nl.tue.buildingsmart.emf.DerivedReader;
 import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
 import nl.tue.buildingsmart.express.parser.ExpressSchemaParser;
 
-import org.bimserver.ifc.file.reader.IfcFileReader;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class SchemaLoader {
+	private static final Logger LOGGER = LoggerFactory.getLogger(SchemaLoader.class);
 	public static final File DEFAULT_SCHEMA_FILE = new File((".." + File.separator + "BimServer" + File.separator + "deploy" + File.separator + "shared" + File.separator + "IFC2X3_FINAL.exp"));
 
 	public static SchemaDefinition loadDefaultSchema() {
@@ -17,13 +19,13 @@ public class SchemaLoader {
 	}
 
 	public static SchemaDefinition loadSchema(File schemaFile) {
-		ExpressSchemaParser schemaParser = new ExpressSchemaParser(IfcFileReader.DEFAULT_SCHEMA_FILE);
+		ExpressSchemaParser schemaParser = new ExpressSchemaParser(DEFAULT_SCHEMA_FILE);
 		schemaParser.parse();
 		SchemaDefinition schema = schemaParser.getSchema();
 		try {
 			new DerivedReader(schemaFile, schema);
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 		return schema;
 	}

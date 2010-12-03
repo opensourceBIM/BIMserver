@@ -35,8 +35,8 @@
 //		schema = schemaParser.getSchema();
 //		try {
 //			new DerivedReader(IfcFileReader.DEFAULT_SCHEMA_FILE, schema);
-//		} catch (FileNotFoundException e1) {
-//			e1.printStackTrace();
+//		} catch (FileNotFoundException e) {
+//			LOGGER.error("", e);
 //		}
 //	}
 //	
@@ -105,9 +105,9 @@
 //			IfcStepSerializer ifcSerializer = new IfcStepSerializer("", normalize, schema);
 //			ifcSerializer.writeToFile(destFile);
 //		} catch (IncorrectIfcFileException e) {
-//			e.printStackTrace();
+//			LOGGER.error("", e);
 //		} catch (Exception e) {
-//			e.printStackTrace();
+//			LOGGER.error("", e);
 //		}
 //	}
 //}

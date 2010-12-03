@@ -28,18 +28,14 @@ import javax.servlet.jsp.JspWriter;
 
 public class ErrorMessages {
 	private List<String> messages = new ArrayList<String>();
-	
+
 	public void add(String message) {
 		messages.add(message);
 	}
-	
-	public void print(JspWriter out) {
+
+	public void print(JspWriter out) throws IOException {
 		for (String message : messages) {
-			try {
-				out.println("<div class=\"error\">" + message + "</div>");
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+			out.println("<div class=\"error\">" + message + "</div>");
 		}
 	}
 }

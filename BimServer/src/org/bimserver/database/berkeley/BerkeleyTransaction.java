@@ -3,6 +3,8 @@ package org.bimserver.database.berkeley;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDeadlockException;
 import org.bimserver.database.BimTransaction;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.sleepycat.je.DatabaseException;
 import com.sleepycat.je.LockConflictException;
@@ -10,6 +12,7 @@ import com.sleepycat.je.Transaction;
 
 public class BerkeleyTransaction implements BimTransaction {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(BerkeleyTransaction.class);
 	private final Transaction transaction;
 	private boolean transactionAlive = true;
 
@@ -39,7 +42,7 @@ public class BerkeleyTransaction implements BimTransaction {
 			transaction.abort();
 			transactionAlive = false;
 		} catch (DatabaseException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 	}
 

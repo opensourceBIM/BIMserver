@@ -66,11 +66,11 @@ public class VersionChecker {
 				lastCheck = new GregorianCalendar();
 				return onlineVersion;
 			} catch (UnmarshalException e) {
-				e.printStackTrace();
+				LOGGER.error("", e);
 			} catch (MalformedURLException e) {
-				e.printStackTrace();
+				LOGGER.error("", e);
 			} catch (JAXBException e) {
-				e.printStackTrace();
+				LOGGER.error("", e);
 			}
 			if (onlineVersion == null) {
 				onlineVersion = new Version();
@@ -98,7 +98,7 @@ public class VersionChecker {
 			Version version = (Version) unmarshaller.unmarshal(resourceFetcher.getResource("version.xml"));
 			return version;
 		} catch (JAXBException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 		return null;
 	}

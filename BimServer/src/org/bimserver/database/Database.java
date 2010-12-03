@@ -61,10 +61,12 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EClassImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Database implements BimDatabase {
 
-	public static final String DEFAULT_ENCODING = "UTF-8";
+	private static final Logger LOGGER = LoggerFactory.getLogger(Database.class);
 	public static final String OID_COUNTER = "OID_COUNTER";
 	public static final String PID_COUNTER = "PID_COUNTER";
 	public static final String UID_COUNTER = "UID_COUNTER";
@@ -152,15 +154,17 @@ public class Database implements BimDatabase {
 			}
 			databaseSession.commit();
 		} catch (BimDeadlockException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 			close();
 			throw new DatabaseInitException(e.getMessage());
 		} catch (UserException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
+
 			close();
 			throw new DatabaseInitException(e.getMessage());
 		} catch (BimDatabaseException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
+
 			close();
 			throw new DatabaseInitException(e.getMessage());
 		} finally {
@@ -181,7 +185,7 @@ public class Database implements BimDatabase {
 							columnDatabase.store(CLASS_LOOKUP_TABLE, BinUtils.shortToByteArray(tableId), BinUtils.stringToByteArray(classifier.getName()),
 									databaseSession);
 						} catch (BimDatabaseException e) {
-							e.printStackTrace();
+							LOGGER.error("", e);
 						}
 					}
 				}

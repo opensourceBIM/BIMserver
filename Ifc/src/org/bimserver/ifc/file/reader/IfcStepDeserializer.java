@@ -66,6 +66,8 @@ import org.eclipse.emf.ecore.impl.EEnumImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.google.common.base.Charsets;
+
 public class IfcStepDeserializer {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(IfcStepDeserializer.class);
@@ -90,7 +92,7 @@ public class IfcStepDeserializer {
 	}
 
 	public void read(InputStream in, long fileSize) throws IncorrectIfcFileException, Exception {
-		BufferedReader reader = new BufferedReader(new InputStreamReader(in, "UTF-8"));
+		BufferedReader reader = new BufferedReader(new InputStreamReader(in, Charsets.UTF_8));
 		int initialCapacity = (int) (fileSize / AVERAGE_LINE_LENGTH);
 		model = new IfcModel(initialCapacity);
 		int lineNumber = 0;
@@ -98,7 +100,7 @@ public class IfcStepDeserializer {
 			String line = reader.readLine();
 			MessageDigest md = MessageDigest.getInstance("MD5");
 			while (line != null) {
-				byte[] bytes = line.getBytes("UTF-8");
+				byte[] bytes = line.getBytes(Charsets.UTF_8);
 				md.update(bytes, 0, bytes.length);
 				try {
 					while (!processLine(line.trim())) {

@@ -5,9 +5,13 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import org.bimserver.shared.ResourceFetcher;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class JarResourceFetcher extends ResourceFetcher {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(JarResourceFetcher.class);
+	
 	@Override
 	public URL getResource(String name) {
 		try {
@@ -16,7 +20,7 @@ public class JarResourceFetcher extends ResourceFetcher {
 				return file.getAbsoluteFile().toURI().toURL();
 			}
 		} catch (MalformedURLException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 		return null;
 	}

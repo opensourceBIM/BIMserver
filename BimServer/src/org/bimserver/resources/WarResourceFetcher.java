@@ -7,10 +7,13 @@ import java.net.URL;
 import javax.servlet.ServletContext;
 
 import org.bimserver.shared.ResourceFetcher;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class WarResourceFetcher extends ResourceFetcher {
 
 	private final ServletContext servletContext;
+	private static final Logger LOGGER = LoggerFactory.getLogger(WarResourceFetcher.class);
 
 	public WarResourceFetcher(ServletContext servletContext) {
 		this.servletContext = servletContext;
@@ -23,7 +26,7 @@ public class WarResourceFetcher extends ResourceFetcher {
 			try {
 				return file.getAbsoluteFile().toURI().toURL();
 			} catch (MalformedURLException e) {
-				e.printStackTrace();
+				LOGGER.error("", e);
 			}
 		}
 		return null;

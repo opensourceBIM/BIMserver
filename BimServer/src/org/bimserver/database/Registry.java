@@ -1,11 +1,15 @@
 package org.bimserver.database;
 
-import java.io.UnsupportedEncodingException;
 import java.util.Date;
 
 import org.bimserver.utils.BinUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.google.common.base.Charsets;
 
 public class Registry {
+	private static final Logger LOGGER = LoggerFactory.getLogger(Registry.class);
 	public static final String REGISTRY_TABLE = "INT-Registry";
 	private final ColumnDatabase columnDatabase;
 
@@ -15,63 +19,44 @@ public class Registry {
 
 	public void save(String key, long value, DatabaseSession databaseSession) throws BimDeadlockException {
 		try {
-			columnDatabase.store(REGISTRY_TABLE, key.getBytes(Database.DEFAULT_ENCODING), BinUtils.longToByteArray(value), databaseSession);
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
+			columnDatabase.store(REGISTRY_TABLE, key.getBytes(Charsets.UTF_8), BinUtils.longToByteArray(value), databaseSession);
 		} catch (BimDatabaseException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 	}
 
 	public void save(String key, int value, DatabaseSession databaseSession) throws BimDeadlockException {
 		try {
-			columnDatabase.store(REGISTRY_TABLE, key.getBytes(Database.DEFAULT_ENCODING), BinUtils.intToByteArray(value), databaseSession);
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
+			columnDatabase.store(REGISTRY_TABLE, key.getBytes(Charsets.UTF_8), BinUtils.intToByteArray(value), databaseSession);
 		} catch (BimDatabaseException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 	}
 
 	public long readLong(String key, DatabaseSession databaseSession) throws BimDeadlockException {
-		try {
-			byte[] bytes = columnDatabase.get(REGISTRY_TABLE, key.getBytes(Database.DEFAULT_ENCODING), databaseSession);
-			if (bytes == null) {
-				return 1;
-			} else {
-				return BinUtils.byteArrayToLong(bytes);
-			}
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-			return -1;
+		byte[] bytes = columnDatabase.get(REGISTRY_TABLE, key.getBytes(Charsets.UTF_8), databaseSession);
+		if (bytes == null) {
+			return 1;
+		} else {
+			return BinUtils.byteArrayToLong(bytes);
 		}
 	}
 
 	public int readInt(String key, DatabaseSession databaseSession) throws BimDeadlockException {
-		try {
-			byte[] bytes = columnDatabase.get(REGISTRY_TABLE, key.getBytes(Database.DEFAULT_ENCODING), databaseSession);
-			if (bytes == null) {
-				return 1;
-			} else {
-				return BinUtils.byteArrayToInt(bytes);
-			}
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-			return -1;
+		byte[] bytes = columnDatabase.get(REGISTRY_TABLE, key.getBytes(Charsets.UTF_8), databaseSession);
+		if (bytes == null) {
+			return 1;
+		} else {
+			return BinUtils.byteArrayToInt(bytes);
 		}
 	}
 
 	public int readInt(String key, DatabaseSession databaseSession, int defaultValue) throws BimDeadlockException {
-		try {
-			byte[] bytes = columnDatabase.get(REGISTRY_TABLE, key.getBytes(Database.DEFAULT_ENCODING), databaseSession);
-			if (bytes == null) {
-				return defaultValue;
-			} else {
-				return BinUtils.byteArrayToInt(bytes);
-			}
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
+		byte[] bytes = columnDatabase.get(REGISTRY_TABLE, key.getBytes(Charsets.UTF_8), databaseSession);
+		if (bytes == null) {
 			return defaultValue;
+		} else {
+			return BinUtils.byteArrayToInt(bytes);
 		}
 	}
 

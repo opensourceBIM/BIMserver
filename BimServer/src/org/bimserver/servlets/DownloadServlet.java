@@ -45,11 +45,14 @@ import org.bimserver.shared.UserException;
 import org.bimserver.shared.SCompareResult.SCompareType;
 import org.bimserver.shared.SCompareResult.SItem;
 import org.bimserver.web.LoginManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.common.collect.Sets;
 
 public class DownloadServlet extends HttpServlet {
 	private static final long serialVersionUID = 732025375536415841L;
+	private static final Logger LOGGER = LoggerFactory.getLogger(DownloadServlet.class);
 
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -158,7 +161,7 @@ public class DownloadServlet extends HttpServlet {
 				try {
 					serializer.writeToOutputStream(zipOutputStream);
 				} catch (SerializerException e) {
-					e.printStackTrace();
+					LOGGER.error("", e);
 				}
 				zipOutputStream.finish();
 			} else {
@@ -167,12 +170,12 @@ public class DownloadServlet extends HttpServlet {
 				try {
 					serializer.writeToOutputStream(response.getOutputStream());
 				} catch (SerializerException e) {
-					e.printStackTrace();
+					LOGGER.error("", e);
 				}
 				response.getOutputStream().flush();
 			}
 		} catch (NumberFormatException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 			response.getWriter().println("Some number was incorrectly formatted");
 		} catch (UserException e) {
 			response.getWriter().println(e.getUserMessage());

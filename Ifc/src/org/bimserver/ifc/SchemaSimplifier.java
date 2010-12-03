@@ -5,11 +5,16 @@ import java.io.FileNotFoundException;
 import java.io.PrintStream;
 import java.util.Scanner;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /*
- * Somehow at least JAXB thinks the IFC-XML XSD is nog valid because elements have the same 
+ * Somehow at least JAXB thinks the IFC-XML XSD is not valid because elements have the same 
  * names as the simple and complex types, this code was used to try and fix that
  */
 public class SchemaSimplifier {
+	private static final Logger LOGGER = LoggerFactory.getLogger(SchemaSimplifier.class);
+	
 	public static void main(String[] args) {
 		new SchemaSimplifier().start();
 	}
@@ -51,8 +56,8 @@ public class SchemaSimplifier {
 			}
 			scanner.close();
 			out.close();
-		} catch (FileNotFoundException e1) {
-			e1.printStackTrace();
+		} catch (FileNotFoundException e) {
+			LOGGER.error("", e);
 		}
 	}
 }

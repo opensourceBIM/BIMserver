@@ -43,9 +43,12 @@ import org.bimserver.shared.ChangeSet;
 import org.bimserver.shared.UserException;
 import org.bimserver.utils.InputStreamDataSource;
 import org.bimserver.web.LoginManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class UploadServlet extends HttpServlet {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(UploadServlet.class);
 	private static final long serialVersionUID = 7852327471215749104L;
 	private DiskFileItemFactory factory;
 
@@ -124,9 +127,9 @@ public class UploadServlet extends HttpServlet {
 								loginManager.getService().processChangeSet(changeSet, poid, comment);
 								response.sendRedirect("project.jsp?poid=" + poid);
 							} catch (JAXBException e) {
-								e.printStackTrace();
+								LOGGER.error("", e);
 							} catch (UserException e) {
-								e.printStackTrace();
+								LOGGER.error("", e);
 							}
 						}
 					}
@@ -134,7 +137,7 @@ public class UploadServlet extends HttpServlet {
 					response.getWriter().println("ERROR no poid");
 				}
 			} catch (FileUploadException e) {
-				e.printStackTrace();
+				LOGGER.error("", e);
 			}
 		}
 	}

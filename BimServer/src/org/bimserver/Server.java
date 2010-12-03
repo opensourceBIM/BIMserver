@@ -77,7 +77,7 @@ public class Server {
 			server.start();
 			LOGGER.info("Webserver successfully started");
 		} catch (Exception e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 		LOGGER.info("Server started successfully, click on the \"launch webbrowser\" button, or go to: http://" + address + ":" + port);
 	}

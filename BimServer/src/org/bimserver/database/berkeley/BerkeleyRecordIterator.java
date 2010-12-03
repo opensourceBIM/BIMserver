@@ -22,6 +22,8 @@ package org.bimserver.database.berkeley;
 
 import org.bimserver.database.Record;
 import org.bimserver.database.RecordIterator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.sleepycat.je.Cursor;
 import com.sleepycat.je.DatabaseEntry;
@@ -30,6 +32,7 @@ import com.sleepycat.je.LockMode;
 import com.sleepycat.je.OperationStatus;
 
 public class BerkeleyRecordIterator implements RecordIterator {
+	private static final Logger LOGGER = LoggerFactory.getLogger(BerkeleyRecordIterator.class);
 	private final Cursor cursor;
 
 	public BerkeleyRecordIterator(Cursor cursor) {
@@ -56,7 +59,7 @@ public class BerkeleyRecordIterator implements RecordIterator {
 		try {
 			cursor.close();
 		} catch (DatabaseException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 	}
 }

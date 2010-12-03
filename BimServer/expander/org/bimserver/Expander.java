@@ -57,6 +57,8 @@ import javax.swing.SpringLayout;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
+import com.google.common.base.Charsets;
+
 public class Expander extends JFrame {
 	private static final long serialVersionUID = 5356018168589837130L;
 	private Process exec;
@@ -66,6 +68,17 @@ public class Expander extends JFrame {
 	}
 
 	private void start() {
+		final JTextArea logField = new JTextArea();
+		PrintStream out = new PrintStream(new OutputStream() {
+			@Override
+			public void write(int b) throws IOException {
+				logField.append(new String(new char[] { (char) b }));
+				logField.setCaretPosition(logField.getDocument().getLength());
+			}
+		});
+		System.setOut(out);
+		System.setErr(out);
+
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (ClassNotFoundException e) {
@@ -86,7 +99,6 @@ public class Expander extends JFrame {
 		}
 		setSize(640, 500);
 		getContentPane().setLayout(new BorderLayout());
-
 		JPanel fields = new JPanel(new SpringLayout());
 
 		JLabel jvmLabel = new JLabel("JVM");
@@ -187,7 +199,6 @@ public class Expander extends JFrame {
 		});
 		buttons.add(launchWebBrowser);
 
-		final JTextArea logField = new JTextArea();
 		logField.setEditable(true);
 		logField.addKeyListener(new KeyAdapter() {
 			@Override
@@ -206,16 +217,6 @@ public class Expander extends JFrame {
 		getContentPane().add(fields, BorderLayout.NORTH);
 		getContentPane().add(scrollPane, BorderLayout.CENTER);
 		getContentPane().add(buttons, BorderLayout.SOUTH);
-
-		PrintStream out = new PrintStream(new OutputStream() {
-			@Override
-			public void write(int b) throws IOException {
-				logField.append(new String(new char[] { (char) b }));
-				logField.setCaretPosition(logField.getDocument().getLength());
-			}
-		});
-		System.setOut(out);
-		System.setErr(out);
 
 		Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
 			@Override
@@ -356,7 +357,7 @@ public class Expander extends JFrame {
 		String urlString = urlJar.getFile();
 		urlString = urlString.substring(urlString.indexOf(":") + 1, urlString.indexOf("!"));
 		try {
-			return URLDecoder.decode(urlString, "UTF-8");
+			return URLDecoder.decode(urlString, Charsets.UTF_8.name());
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}

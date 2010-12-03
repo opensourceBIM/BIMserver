@@ -39,13 +39,13 @@ import org.slf4j.LoggerFactory;
 
 public class FileFieldIgnoreMap extends FieldIgnoreMap {
 
-	private static final Logger logger = LoggerFactory.getLogger(FileFieldIgnoreMap.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(FileFieldIgnoreMap.class);
 	private JAXBContext jaxbContext;
 
 	public FileFieldIgnoreMap(Set<? extends EPackage> packages, ResourceFetcher resourceFetcher) {
 		super(packages);
 		URL ignoreFile = resourceFetcher.getResource("ignore.xml");
-		logger.info("Reading general ignore list from \"" + StringUtils.getPrettyFileUrl(ignoreFile) + "\"");
+		LOGGER.info("Reading general ignore list from \"" + StringUtils.getPrettyFileUrl(ignoreFile) + "\"");
 		try {
 			jaxbContext = JAXBContext.newInstance(PackageDefinition.class);
 			Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
@@ -65,7 +65,7 @@ public class FileFieldIgnoreMap extends FieldIgnoreMap {
 				}
 			}
 		} catch (JAXBException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 	}
 
@@ -74,7 +74,7 @@ public class FileFieldIgnoreMap extends FieldIgnoreMap {
 		PackageDefinition packageDefinition = (PackageDefinition) unmarshaller.unmarshal(resource);
 		HashSet<StructuralFeatureIdentifier> hashSet = new HashSet<StructuralFeatureIdentifier>();
 		specificMap.put(eClass, hashSet);
-		logger.info("Reading specific non-ignore list for " + eClass.getName() + " from \"" + StringUtils.getPrettyFileUrl(resource) + "\"");
+		LOGGER.info("Reading specific non-ignore list for " + eClass.getName() + " from \"" + StringUtils.getPrettyFileUrl(resource) + "\"");
 		for (ClassDefinition classDefinition : packageDefinition.getClassDefinitions()) {
 			for (FieldDefinition fieldDefinition : classDefinition.getFieldDefinitions()) {
 				hashSet.add(new StructuralFeatureIdentifier(classDefinition.getName(), fieldDefinition.getName()));

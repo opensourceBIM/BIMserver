@@ -82,10 +82,10 @@ public class Client extends JFrame {
 		SwingUtil.setLookAndFeelToNice();
 		try {
 			setIconImage(ImageIO.read(getClass().getResource("logo_small.png")));
-		} catch (IOException e1) {
-			e1.printStackTrace();
+		} catch (IOException e) {
+			LOGGER.error("", e);
 		}
-		
+
 		revisionPanel = new RevisionPanel(serviceHolder, this);
 		revisionPanel.setMinimumSize(new Dimension(200, 150));
 		checkoutsPanel = new CheckoutsPanel(serviceHolder, this);
@@ -94,12 +94,13 @@ public class Client extends JFrame {
 
 		JMenu auth = new JMenu("File");
 		JMenuItem changeAuth = new JMenuItem("(Re)connect");
-		changeAuth.addActionListener(new ActionListener(){
+		changeAuth.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				SettingsFrame settingsFrame = new SettingsFrame(Client.this);
 				settingsFrame.setVisible(true);
-			}});
+			}
+		});
 		auth.add(changeAuth);
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.add(auth);
@@ -136,12 +137,11 @@ public class Client extends JFrame {
 	}
 
 	public void checkin(SProject project, DataSource dataSource, long fileSize) {
-		String comment = JOptionPane.showInputDialog(Client.this, "Please give a short description of you changes", "Checkin",
-				JOptionPane.OK_OPTION | JOptionPane.INFORMATION_MESSAGE);
+		String comment = JOptionPane.showInputDialog(Client.this, "Please give a short description of you changes", "Checkin", JOptionPane.OK_OPTION
+				| JOptionPane.INFORMATION_MESSAGE);
 		try {
 			SCheckinResult upload = serviceHolder.getService().checkinSync(project.getOid(), comment, fileSize, new DataHandler(dataSource));
-			JOptionPane.showMessageDialog(this, "New revision number: " + upload.getRid(), "Checkin successfull", JOptionPane.OK_OPTION
-					| JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(this, "New revision number: " + upload.getRid(), "Checkin successfull", JOptionPane.OK_OPTION | JOptionPane.INFORMATION_MESSAGE);
 			revisionPanel.showProject(project);
 		} catch (UserException e) {
 			JOptionPane.showMessageDialog(this, e.getUserMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -164,16 +164,17 @@ public class Client extends JFrame {
 				}
 				out.close();
 				if (report) {
-					JOptionPane.showMessageDialog(Client.this, "Revision: " + revision.getOid() + "\n" + totalRed + " bytes written", "Checkout successfull",
-							JOptionPane.OK_OPTION | JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(Client.this, "Revision: " + revision.getOid() + "\n" + totalRed + " bytes written", "Checkout successfull", JOptionPane.OK_OPTION
+							| JOptionPane.INFORMATION_MESSAGE);
 				}
 				SProject project = new SProject();
 				project.setName(sProject.getName());
 				checkoutsPanel.showProject(project);
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}		} catch (UserException e) {
-			e.printStackTrace();
+			} catch (IOException e) {
+				LOGGER.error("", e);
+			}
+		} catch (UserException e) {
+			LOGGER.error("", e);
 		}
 	}
 
@@ -188,7 +189,7 @@ public class Client extends JFrame {
 				fileOutputStream = new FileOutputStream(selectedFile);
 				checkout(revision, fileOutputStream, true);
 			} catch (FileNotFoundException e) {
-				e.printStackTrace();
+				LOGGER.error("", e);
 			}
 		}
 	}
@@ -213,18 +214,18 @@ public class Client extends JFrame {
 	}
 
 	private void processChangeSet(SProject project, File file) {
-		String showInputDialog = JOptionPane.showInputDialog(Client.this, "Please give a short description of you changes", "Process ChangeSet",
-				JOptionPane.OK_OPTION | JOptionPane.INFORMATION_MESSAGE);
+		String showInputDialog = JOptionPane.showInputDialog(Client.this, "Please give a short description of you changes", "Process ChangeSet", JOptionPane.OK_OPTION
+				| JOptionPane.INFORMATION_MESSAGE);
 		JAXBContext context;
 		ChangeSet changeSet = null;
 		try {
 			context = JAXBContext.newInstance(ChangeSet.class);
 			Unmarshaller unmarshaller = context.createUnmarshaller();
-			changeSet = (ChangeSet)unmarshaller.unmarshal(new FileInputStream(file));
+			changeSet = (ChangeSet) unmarshaller.unmarshal(new FileInputStream(file));
 		} catch (JAXBException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 		try {
 			ChangeSetResult upload = serviceHolder.getService().processChangeSet(changeSet, project.getId(), showInputDialog);
@@ -232,7 +233,7 @@ public class Client extends JFrame {
 					| JOptionPane.INFORMATION_MESSAGE);
 			revisionPanel.showProject(project);
 		} catch (UserException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 	}
 
@@ -246,7 +247,7 @@ public class Client extends JFrame {
 				FileOutputStream fileOutputStream = new FileOutputStream(selectedFile);
 				download(revision.getOid(), fileOutputStream, true);
 			} catch (FileNotFoundException e) {
-				e.printStackTrace();
+				LOGGER.error("", e);
 			}
 		}
 	}
@@ -259,14 +260,14 @@ public class Client extends JFrame {
 				IOUtils.copy(inputStream, out);
 				out.close();
 				if (report) {
-					JOptionPane.showMessageDialog(Client.this, "Revision: " + download.getRevisionNr() + "\n", "Download successfull",
-							JOptionPane.OK_OPTION | JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(Client.this, "Revision: " + download.getRevisionNr() + "\n", "Download successfull", JOptionPane.OK_OPTION
+							| JOptionPane.INFORMATION_MESSAGE);
 				}
-			} catch (IOException e1) {
-				e1.printStackTrace();
+			} catch (IOException e) {
+				LOGGER.error("", e);
 			}
 		} catch (UserException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 	}
 

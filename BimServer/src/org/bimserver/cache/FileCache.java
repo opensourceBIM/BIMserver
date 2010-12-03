@@ -11,10 +11,13 @@ import org.bimserver.ifc.EmfSerializer;
 import org.bimserver.ifc.SerializerException;
 import org.bimserver.shared.ResultType;
 import org.bimserver.shared.SCheckoutResult;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class FileCache {
 	private File cacheDir = new File("cache");
-
+	private static final Logger LOGGER = LoggerFactory.getLogger(FileCache.class);
+	
 	public void store(int pid, int rid, ResultType resultType, SCheckoutResult checkoutResult) {
 		try {
 			String fileName = pid + "." + rid + "." + resultType.getDefaultExtension();
@@ -24,9 +27,9 @@ public class FileCache {
 			emfSerializer.writeToOutputStream(out);
 			out.close();
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (SerializerException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 	}
 

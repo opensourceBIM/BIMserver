@@ -81,7 +81,7 @@ public class SettingsServlet extends HttpServlet {
 							}
 						}
 					} catch (FileUploadException e) {
-						e.printStackTrace();
+						LOGGER.error("", e);
 					}
 				}
 				if (request.getParameter("action") != null) {

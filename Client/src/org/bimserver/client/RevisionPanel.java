@@ -50,10 +50,13 @@ import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.interfaces.objects.SUser;
 import org.bimserver.shared.UserException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class RevisionPanel extends JPanel {
 
 	private static final long serialVersionUID = 5029176190990026107L;
+	private static final Logger LOGGER = LoggerFactory.getLogger(RevisionPanel.class);
 
 	private RevisionTableModel revisionTableModel;
 	private JPopupMenu revisionMenu;
@@ -108,13 +111,13 @@ public class RevisionPanel extends JPanel {
 						try {
 							testWindow.download(revision.getId(), new FileOutputStream(file), false);
 							Desktop.getDesktop().open(file);
-						} catch (FileNotFoundException e1) {
-							e1.printStackTrace();
+						} catch (FileNotFoundException e) {
+							LOGGER.error("", e);
 						} catch (IOException e) {
-							e.printStackTrace();
+							LOGGER.error("", e);
 						}
-					} catch (UserException e2) {
-						e2.printStackTrace();
+					} catch (UserException e) {
+						LOGGER.error("", e);
 					}
 				}
 			}
@@ -145,10 +148,10 @@ public class RevisionPanel extends JPanel {
 								try {
 									testWindow.checkout(revision, new FileOutputStream(file), false);
 								} catch (FileNotFoundException e) {
-									e.printStackTrace();
+									LOGGER.error("", e);
 								}
-							} catch (UserException e1) {
-								e1.printStackTrace();
+							} catch (UserException e) {
+								LOGGER.error("", e);
 							}
 						}
 						return list;
