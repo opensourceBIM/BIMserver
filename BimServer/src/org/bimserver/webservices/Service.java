@@ -162,6 +162,7 @@ import org.bimserver.shared.SCompareResult.SObjectAdded;
 import org.bimserver.shared.SCompareResult.SObjectModified;
 import org.bimserver.shared.SCompareResult.SObjectRemoved;
 import org.bimserver.tools.generators.GenerateUtils;
+import org.bimserver.utils.FakeClosingInputStream;
 import org.bimserver.utils.Hashers;
 import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EAttribute;
@@ -227,8 +228,14 @@ public class Service implements ServiceInterface {
 				if (nextEntry == null) {
 					throw new UserException("Zip files must contain exactly one IFC-file, this zip-file looks empty");
 				}
-				if (nextEntry.getName().toUpperCase().endsWith(".IFC")) {
-					IfcModel model = readIfcStepModel(zipInputStream, fileSize);
+				if (nextEntry.getName().toUpperCase().endsWith(".IFC") || nextEntry.getName().toUpperCase().endsWith(".IFCXML")) {
+					IfcModel model = null;
+					FakeClosingInputStream fakeClosingInputStream = new FakeClosingInputStream(zipInputStream);
+					if (nextEntry.getName().toUpperCase().endsWith(".IFC")) {
+						model = readIfcStepModel(fakeClosingInputStream, fileSize);
+					} else if (nextEntry.getName().toUpperCase().endsWith(".IFCXML")) {
+						model = readIfcXmlModel(fakeClosingInputStream, fileSize);
+					}
 					if (model.getSize() == 0) {
 						throw new UserException("Uploaded file does not seem to be a correct IFC file");
 					}
@@ -1077,8 +1084,9 @@ public class Service implements ServiceInterface {
 				} else if (item instanceof ObjectDeleted) {
 					sCompareResult.add(new SObjectRemoved(dataObject));
 				} else if (item instanceof ObjectModified) {
-					ObjectModified objectModified = (ObjectModified)item;
-					sCompareResult.add(new SObjectModified(dataObject, objectModified.getFeature().getName(), objectModified.getOldValue().toString(), objectModified.getNewValue().toString()));
+					ObjectModified objectModified = (ObjectModified) item;
+					sCompareResult.add(new SObjectModified(dataObject, objectModified.getFeature().getName(), objectModified.getOldValue().toString(), objectModified.getNewValue()
+							.toString()));
 				}
 			}
 		}
