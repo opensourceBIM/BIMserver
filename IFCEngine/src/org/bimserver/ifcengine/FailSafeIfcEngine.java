@@ -9,24 +9,64 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
-import org.bimserver.shared.ResourceFetcher;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class FailSafeIfcEngine {
 	private static final Logger LOGGER = LoggerFactory.getLogger(FailSafeIfcEngine.class);
-	private DataInputStream in;
-	private DataOutputStream out;
-	private IfcEngineProcess engineProces;
+	private Process process;
+	private final DataInputStream in;
+	private final DataOutputStream out;
+	private final File schemaFile;
+	private final File nativeBaseDir;
 
-	public FailSafeIfcEngine(final File schemaFile, final File nativeBaseDir, ResourceFetcher resourceFetcher) throws IfcEngineException {
-		engineProces = new IfcEngineProcess(this, schemaFile, nativeBaseDir);
-		engineProces.start();
-		engineProces.waitForConnection();
-		in = new DataInputStream(new BufferedInputStream(engineProces.getInputStream()));
-		out = new DataOutputStream(new BufferedOutputStream(engineProces.getOutputStream()));
+	public FailSafeIfcEngine(File schemaFile, File nativeBaseDir) throws IfcEngineException {
+		this.schemaFile = schemaFile;
+		this.nativeBaseDir = nativeBaseDir;
+		start();
+		in = new DataInputStream(new BufferedInputStream(process.getInputStream()));
+		out = new DataOutputStream(new BufferedOutputStream(process.getOutputStream()));
 	}
 
+	public void start() {
+		try {
+			File tmp = new File("tmp");
+			if (!tmp.exists()) {
+				tmp.mkdir();
+			}
+			StringBuilder command = new StringBuilder("java");
+			command.append(" -Djna.library.path=" + nativeBaseDir.toString() + File.separator + System.getProperty("sun.arch.data.model"));
+			if (tmp.getAbsolutePath().toString().contains(" ")) {
+				command.append(" -Djava.io.tmpdir=\"" + tmp.getAbsolutePath().toString() + "\"");
+			} else {
+				command.append(" -Djava.io.tmpdir=" + tmp.getAbsolutePath().toString());
+			}
+			command.append(" -classpath ");
+			String[] classpath = System.getProperty("java.class.path").split(File.pathSeparator);
+			for (String s : classpath) {
+				if (s.contains(" ")) {
+					command.append("\"" + s + "\"");
+				} else {
+					command.append(s);
+				}
+				command.append(File.pathSeparator);
+			}
+			if (command.substring(command.length()-1).equals(File.pathSeparator)) {
+				command.delete(command.length()-1, command.length());
+			}
+			command.append(" -Xmx512m");
+			command.append(" org.bimserver.ifcengine.jvm.IfcEngineServer");
+			if (schemaFile.getAbsolutePath().contains(" ")) {
+				command.append(" \"" + schemaFile.getAbsolutePath() + "\"");
+			} else {
+				command.append(" " + schemaFile.getAbsolutePath());
+			}
+			process = Runtime.getRuntime().exec(command.toString());
+		} catch (Exception e) {
+			LOGGER.error("", e);
+		}
+	}
+	
 	public synchronized IfcEngineModel openModel(File ifcFile) throws IfcEngineException {
 		writeCommand(Command.OPEN_MODEL);
 		writeUTF(ifcFile.getAbsolutePath());
@@ -69,7 +109,7 @@ public class FailSafeIfcEngine {
 		try {
 			out.flush();
 		} catch (IOException e) {
-			throw new IfcEngineException("Unknown IFC Engine error");
+//			throw new IfcEngineException("Unknown IFC Engine error");
 		}
 	}
 
@@ -90,14 +130,14 @@ public class FailSafeIfcEngine {
 	}
 
 	public synchronized void close() {
-		if (engineProces != null) {
+		if (process != null) {
 			try {
 				writeCommand(Command.CLOSE);
 				flush();
 			} catch (IfcEngineException e) {
 				LOGGER.error("", e);
 			}
-			engineProces.shutdown();
+			process.destroy();
 		}
 	}
 
@@ -123,9 +163,6 @@ public class FailSafeIfcEngine {
 		} catch (IOException e) {
 			throw new IfcEngineException("Unknown IFC Engine error");
 		}
-	}
-
-	public synchronized void engineStopped() {
 	}
 
 	public String readString() throws IfcEngineException {

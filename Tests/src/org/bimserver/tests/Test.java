@@ -5,14 +5,16 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 
+import org.bimserver.database.store.EidClash;
 import org.bimserver.ifcengine.FailSafeIfcEngine;
 import org.bimserver.ifcengine.Geometry;
 import org.bimserver.ifcengine.IfcEngineException;
 import org.bimserver.ifcengine.IfcEngineModel;
 import org.bimserver.ifcengine.Instance;
 import org.bimserver.ifcengine.SurfaceProperties;
-import org.bimserver.ifcengine.jvm.IfcEngineJNA.InstanceVisualisationProperties;
+import org.bimserver.ifcengine.jvm.IfcEngine.InstanceVisualisationProperties;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
 import org.bimserver.shared.ResourceFetcher;
 
@@ -60,35 +62,70 @@ public class Test {
 
 		ResourceFetcher resourceFetcher = new LocalDevelopmentResourceFetcher();
 
+//		testGeometry(resourceFetcher);
+		testClashes(resourceFetcher);
+	}
+
+	private static void testClashes(ResourceFetcher resourceFetcher) {
 		try {
-			FailSafeIfcEngine failSafeIfcEngine = new FailSafeIfcEngine(resourceFetcher.getFile("IFC2X3_FINAL.exp").getAbsoluteFile(), resourceFetcher.getFile("lib/"), resourceFetcher);
+			FailSafeIfcEngine failSafeIfcEngine = new FailSafeIfcEngine(resourceFetcher.getFile("IFC2X3_FINAL.exp").getAbsoluteFile(), resourceFetcher.getFile("lib/"));
 			try {
 				File file = TestFile.AC11.getFile();
 				IfcEngineModel openModel = failSafeIfcEngine.openModel(new FileInputStream(file), (int)file.length());
-				openModel.setPostProcessing(true);
-				SurfaceProperties initializeModelling2 = openModel.initializeModelling();
-				Geometry geometry = openModel.finalizeModelling(initializeModelling2);
-				if (geometry != null) {
-					List<Instance> instances = openModel.getInstances("IFCWINDOW");
-					for (Instance instance : instances) {
-						InstanceVisualisationProperties visualisationProperties = instance.getVisualisationProperties();
-						System.out.println("window");
-						for (int i = visualisationProperties.getStartIndex(); i < visualisationProperties.getPrimitiveCount() * 3 + visualisationProperties.getStartIndex(); i += 3) {
-							int i1 = geometry.getIndex(i);
-							int i2 = geometry.getIndex(i + 1);
-							int i3 = geometry.getIndex(i + 2);
-							Arrays.asList(new Double[] { (double) geometry.getVertex(i1 * 3), (double) geometry.getVertex(i1 * 3 + 1), (double) geometry.getVertex(i1 * 3 + 2),
-									(double) geometry.getVertex(i3 * 3), (double) geometry.getVertex(i3 * 3 + 1), (double) geometry.getVertex(i3 * 3 + 2),
-									(double) geometry.getVertex(i2 * 3), (double) geometry.getVertex(i2 * 3 + 1), (double) geometry.getVertex(i2 * 3 + 2),
-									(double) geometry.getVertex(i1 * 3), (double) geometry.getVertex(i1 * 3 + 1), (double) geometry.getVertex(i1 * 3 + 2) });
-						}
-					}
+				try {
+					openModel.setPostProcessing(true);
+					Set<EidClash> findClashesByEid = openModel.findClashesByEid(0.0);
+					System.out.println(findClashesByEid.size());
+				} finally {
+					openModel.close();
 				}
-				openModel.close();
 			} catch (IfcEngineException e) {
 				e.printStackTrace();
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
+			} finally {
+				failSafeIfcEngine.close();
+			}
+		} catch (IfcEngineException e1) {
+			e1.printStackTrace();
+		}
+	}
+
+	private static void testGeometry(ResourceFetcher resourceFetcher) {
+		try {
+			FailSafeIfcEngine failSafeIfcEngine = new FailSafeIfcEngine(resourceFetcher.getFile("IFC2X3_FINAL.exp").getAbsoluteFile(), resourceFetcher.getFile("lib/"));
+			try {
+				File file = TestFile.AC11.getFile();
+				IfcEngineModel openModel = failSafeIfcEngine.openModel(new FileInputStream(file), (int)file.length());
+				try {
+					openModel.setPostProcessing(true);
+					SurfaceProperties initializeModelling2 = openModel.initializeModelling();
+					Geometry geometry = openModel.finalizeModelling(initializeModelling2);
+					if (geometry != null) {
+						List<Instance> instances = openModel.getInstances("IFCWINDOW");
+						for (Instance instance : instances) {
+							InstanceVisualisationProperties visualisationProperties = instance.getVisualisationProperties();
+							System.out.println("window");
+							for (int i = visualisationProperties.getStartIndex(); i < visualisationProperties.getPrimitiveCount() * 3 + visualisationProperties.getStartIndex(); i += 3) {
+								int i1 = geometry.getIndex(i);
+								int i2 = geometry.getIndex(i + 1);
+								int i3 = geometry.getIndex(i + 2);
+								Arrays.asList(new Double[] { (double) geometry.getVertex(i1 * 3), (double) geometry.getVertex(i1 * 3 + 1), (double) geometry.getVertex(i1 * 3 + 2),
+										(double) geometry.getVertex(i3 * 3), (double) geometry.getVertex(i3 * 3 + 1), (double) geometry.getVertex(i3 * 3 + 2),
+										(double) geometry.getVertex(i2 * 3), (double) geometry.getVertex(i2 * 3 + 1), (double) geometry.getVertex(i2 * 3 + 2),
+										(double) geometry.getVertex(i1 * 3), (double) geometry.getVertex(i1 * 3 + 1), (double) geometry.getVertex(i1 * 3 + 2) });
+							}
+						}
+					}
+				} finally {
+					openModel.close();
+				}
+			} catch (IfcEngineException e) {
+				e.printStackTrace();
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			} finally {
+				failSafeIfcEngine.close();
 			}
 		} catch (IfcEngineException e1) {
 			e1.printStackTrace();

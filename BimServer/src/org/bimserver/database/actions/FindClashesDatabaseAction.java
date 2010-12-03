@@ -97,7 +97,6 @@ public class FindClashesDatabaseAction extends BimDatabaseAction<Set<? extends C
 					// Store in cache
 					ClashDetectionCache.getInstance().storeClashDetection(clashDetectionSettings, clashes);
 
-					ifcEngineModel.close();
 					for (EidClash clash : clashes) {
 						IfcRoot object1 = (IfcRoot) newModel.get(clash.getEid1());
 						clash.setName1(object1.getName());
