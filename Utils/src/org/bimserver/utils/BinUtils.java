@@ -29,6 +29,8 @@ import java.nio.LongBuffer;
 import java.nio.ShortBuffer;
 import java.util.Date;
 
+import com.google.common.base.Charsets;
+
 public class BinUtils {
 	public static byte[] longToByteArray(long inLong) {
 		byte[] bArray = new byte[8];
@@ -93,21 +95,11 @@ public class BinUtils {
 	}
 
 	public static String byteArrayToString(byte[] value) {
-		try {
-			return new String(value, "UTF-8");
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
-		return null;
+		return new String(value, Charsets.UTF_8);
 	}
 
 	public static String byteArrayToString(byte[] value, int index, int length) {
-		try {
-			return new String(value, index, length, "UTF-8");
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
-		return null;
+		return new String(value, index, length, Charsets.UTF_8);
 	}
 	
 	public static Short byteArrayToShort(byte[] data) {
@@ -124,12 +116,7 @@ public class BinUtils {
 	}
 
 	public static byte[] stringToByteArray(String value) {
-		try {
-			return value.getBytes("UTF-8");
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
-		return null;
+		return value.getBytes(Charsets.UTF_8);
 	}
 
 	public static byte[] dateToByteArray(Date value) {
@@ -176,11 +163,6 @@ public class BinUtils {
 	public static String readString(ByteBuffer buffer, short length) {
 		byte[] charBuffer = new byte[length];
 		buffer.get(charBuffer);
-		try {
-			return new String(charBuffer, "UTF-8");
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
-		return null;
+		return new String(charBuffer, Charsets.UTF_8);
 	}
 }

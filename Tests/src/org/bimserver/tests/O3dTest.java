@@ -1,14 +1,10 @@
 package org.bimserver.tests;
 
-import java.io.FileNotFoundException;
-
-import nl.tue.buildingsmart.emf.DerivedReader;
 import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
-import nl.tue.buildingsmart.express.parser.ExpressSchemaParser;
 
 import org.bimserver.ifc.FileFieldIgnoreMap;
+import org.bimserver.ifc.SchemaLoader;
 import org.bimserver.ifc.emf.Ifc2x3.Ifc2x3Package;
-import org.bimserver.ifc.file.reader.IfcFileReader;
 import org.bimserver.ifc.file.reader.IfcStepDeserializer;
 import org.bimserver.ifc.file.reader.IncorrectIfcFileException;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
@@ -21,14 +17,7 @@ public class O3dTest {
 	}
 
 	private void start() {
-		ExpressSchemaParser schemaParser = new ExpressSchemaParser(IfcFileReader.DEFAULT_SCHEMA_FILE);
-		schemaParser.parse();
-		SchemaDefinition schema = schemaParser.getSchema();
-		try {
-			new DerivedReader(IfcFileReader.DEFAULT_SCHEMA_FILE, schema);
-		} catch (FileNotFoundException e1) {
-			e1.printStackTrace();
-		}
+		SchemaDefinition schema = SchemaLoader.loadDefaultSchema();
 
 		ResourceFetcher resourceFetcher = new LocalDevelopmentResourceFetcher();
 		new FileFieldIgnoreMap(CollectionUtils.singleSet(Ifc2x3Package.eINSTANCE), resourceFetcher);

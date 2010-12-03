@@ -1,24 +1,24 @@
 package org.bimserver.utils;
 
-import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 import org.apache.commons.codec.binary.Hex;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.google.common.base.Charsets;
 
 public class Hashers {
+	private static final Logger LOGGER = LoggerFactory.getLogger(Hashers.class);
+	
 	public static String getSha256Hash(String password) {
-		MessageDigest digest;
 		try {
-			digest = MessageDigest.getInstance("SHA-256");
+			MessageDigest digest = MessageDigest.getInstance("SHA-256");
 			digest.reset();
-			try {
-				return new String(Hex.encodeHex(digest.digest(password.getBytes("UTF-8"))));
-			} catch (UnsupportedEncodingException e) {
-				e.printStackTrace();
-			}
-		} catch (NoSuchAlgorithmException e1) {
-			e1.printStackTrace();
+			return new String(Hex.encodeHex(digest.digest(password.getBytes(Charsets.UTF_8))));
+		} catch (NoSuchAlgorithmException e) {
+			LOGGER.error("", e);
 		}
 		return null;
 	}

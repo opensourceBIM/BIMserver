@@ -29,5 +29,8 @@
 	<classpathentry kind="lib" path="/BimServer/lib/cxf/xmlbeans-2.4.0.jar"/>
 	<classpathentry kind="lib" path="/BimServer/lib/cxf/XmlSchema-1.4.7.jar"/>
 	<classpathentry kind="lib" path="/BimServer/lib/cxf/xmlsec-1.4.3.jar"/>
+	<classpathentry kind="lib" path="/BimServer/lib/logging/log4j-1.2.16.jar"/>
+	<classpathentry kind="lib" path="/BimServer/lib/logging/slf4j-api-1.6.0.jar"/>
+	<classpathentry kind="lib" path="/BimServer/lib/logging/slf4j-log4j12-1.6.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

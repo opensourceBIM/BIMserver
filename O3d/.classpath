@@ -9,5 +9,6 @@
 	<classpathentry kind="lib" path="lib/tar.jar"/>
 	<classpathentry kind="lib" path="lib/json.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Ifc"/>
+	<classpathentry kind="lib" path="/BimServer/lib/guava-r07.jar" sourcepath="/BimServer/libsrc/guava-src-r07.zip"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

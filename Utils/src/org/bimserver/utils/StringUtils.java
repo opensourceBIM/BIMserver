@@ -101,7 +101,7 @@ public class StringUtils {
 			result = result.replace("/", File.separator).replace("\\", File.separator);
 			return result;
 		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
+			// Cannot happen, UTF-8 is always available
 		}
 		return url.toString();
 	}

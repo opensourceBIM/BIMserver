@@ -4,8 +4,13 @@ import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class LocalDevelopmentResourceFetcher extends ResourceFetcher {
+	
+	private static final Logger LOGGER = LoggerFactory.getLogger(LocalDevelopmentResourceFetcher.class);
+	
 	@Override
 	public URL getResource(String name) {
 		try {
@@ -14,7 +19,7 @@ public class LocalDevelopmentResourceFetcher extends ResourceFetcher {
 				return file.getAbsoluteFile().toURI().toURL();
 			}
 		} catch (MalformedURLException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 		return null;
 	}
