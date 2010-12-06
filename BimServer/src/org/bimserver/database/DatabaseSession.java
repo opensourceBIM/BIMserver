@@ -622,18 +622,14 @@ public class DatabaseSession implements BimDatabaseSession {
 			return readSet;
 		}
 		clear();
-		if (eClass == null) {
+		ByteBuffer key = createKeyBuffer(pid, oid, rid);
+		byte[] value = database.getColumnDatabase().get(eClass.getName(), key.array(), this);
+		if (value == null) {
 			return null;
-		} else {
-			ByteBuffer key = createKeyBuffer(pid, oid, rid);
-			byte[] value = database.getColumnDatabase().get(eClass.getName(), key.array(), this);
-			if (value == null) {
-				return null;
-			}
-			ByteBuffer valueBuffer = ByteBuffer.wrap(value);
-			getMap(eClass, eClass, readSet, valueBuffer, pid, oid, rid);
-			return readSet;
 		}
+		ByteBuffer valueBuffer = ByteBuffer.wrap(value);
+		getMap(eClass, eClass, readSet, valueBuffer, pid, oid, rid);
+		return readSet;
 	}
 
 	@Override
