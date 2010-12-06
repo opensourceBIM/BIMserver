@@ -5,6 +5,8 @@ import java.io.BufferedOutputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -21,28 +23,32 @@ import org.slf4j.LoggerFactory;
 
 import com.sun.jna.Pointer;
 
-public class IfcEngineServer {
+public class IfcEngineServer extends Thread {
 	private static final Logger LOGGER = LoggerFactory.getLogger(IfcEngineServer.class);
 	private volatile boolean running = true;
 	private final String schemaFileName;
 	private IfcEngine ifcEngine;
 	private final Map<Integer, Pointer> pointers = new HashMap<Integer, Pointer>();
 	private int pointerCounter = 0;
+	private final InputStream in;
+	private final OutputStream out;
 
 	public static void main(String[] args) {
-		IfcEngineServer ifcEngineServer = new IfcEngineServer(args[0]);
+		IfcEngineServer ifcEngineServer = new IfcEngineServer(args[0], System.in, System.out);
 		ifcEngineServer.run();
 	}
 
-	public IfcEngineServer(String schemaFileName) {
+	public IfcEngineServer(String schemaFileName, InputStream in, OutputStream out) {
 		this.schemaFileName = schemaFileName;
+		this.in = in;
+		this.out = out;
 		this.ifcEngine = new IfcEngine();
 	}
 
 	public void run() {
 		try {
-			DataInputStream in = new DataInputStream(new BufferedInputStream(System.in));
-			DataOutputStream out = new DataOutputStream(new BufferedOutputStream(System.out));
+			DataInputStream in = new DataInputStream(new BufferedInputStream(this.in));
+			DataOutputStream out = new DataOutputStream(new BufferedOutputStream(this.out));
 			while (running) {
 				byte commandId = in.readByte();
 				Command command = Command.getCommand(commandId);

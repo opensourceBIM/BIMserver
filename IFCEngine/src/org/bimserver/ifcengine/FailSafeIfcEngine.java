@@ -8,27 +8,46 @@ import java.io.DataOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PipedInputStream;
+import java.io.PipedOutputStream;
 
+import org.bimserver.ifcengine.jvm.IfcEngineServer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class FailSafeIfcEngine {
 	private static final Logger LOGGER = LoggerFactory.getLogger(FailSafeIfcEngine.class);
 	private Process process;
-	private final DataInputStream in;
-	private final DataOutputStream out;
+	private DataInputStream in;
+	private DataOutputStream out;
 	private final File schemaFile;
 	private final File nativeBaseDir;
+	private boolean useSecondJvm = true;
 
 	public FailSafeIfcEngine(File schemaFile, File nativeBaseDir) throws IfcEngineException {
 		this.schemaFile = schemaFile;
 		this.nativeBaseDir = nativeBaseDir;
-		start();
-		in = new DataInputStream(new BufferedInputStream(process.getInputStream()));
-		out = new DataOutputStream(new BufferedOutputStream(process.getOutputStream()));
+		if (useSecondJvm) {
+			startJvm();
+		} else {
+			startLocal();
+		}
 	}
 
-	public void start() {
+	private void startLocal() {
+		try {
+			PipedInputStream pipedInputStream = new PipedInputStream();
+			PipedOutputStream pipedOutputStream = new PipedOutputStream(pipedInputStream);
+			IfcEngineServer ifcEngineServer = new IfcEngineServer(schemaFile.getAbsolutePath(), pipedInputStream, pipedOutputStream);
+			in = new DataInputStream(new BufferedInputStream(pipedInputStream));
+			out = new DataOutputStream(new BufferedOutputStream(pipedOutputStream));
+			ifcEngineServer.start();
+		} catch (IOException e) {
+			LOGGER.error("", e);
+		}
+	}
+
+	public void startJvm() {
 		try {
 			File tmp = new File("tmp");
 			if (!tmp.exists()) {
@@ -62,6 +81,8 @@ public class FailSafeIfcEngine {
 				command.append(" " + schemaFile.getAbsolutePath());
 			}
 			process = Runtime.getRuntime().exec(command.toString());
+			in = new DataInputStream(new BufferedInputStream(process.getInputStream()));
+			out = new DataOutputStream(new BufferedOutputStream(process.getOutputStream()));
 		} catch (Exception e) {
 			LOGGER.error("", e);
 		}
