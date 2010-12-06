@@ -72,6 +72,7 @@
 	boolean anonymousAccess = project.getHasAuthorizedUsers().contains(loginManager.getService().getAnonymousUser().getOid());
 	boolean hasUserManagementRights = project.getHasAuthorizedUsers().contains(loginManager.getUoid());
 	boolean userHasCheckinRights = loginManager.getService().userHasCheckinRights(project.getOid());
+	userHasCheckinRights &= (loginManager.getUserType() == SUserType.ADMIN || ServerSettings.getSettings().isAllowUsersToCreateTopLevelProjects());
 if (emfSerializerFactory.resultTypeEnabled(ResultType.O3D_JSON) && lastRevision != null) {
 %>
 <jsp:include page="o3d.jsp"/>
@@ -282,8 +283,7 @@ Download: <select name="resultType">
 <div class="tabbertab" id="subprojectstab"
 	title="Sub Projects<%=project.getSubProjects().size() == 0 ? "" : " (" + project.getSubProjects().size() + ")" %>">
 <% if (userHasCheckinRights) { %> <a
-	href="addproject.jsp?parentoid=<%=project.getOid() %>">Add sub
-project</a><br />
+	href="addproject.jsp?parentoid=<%=project.getOid() %>">Add sub project</a><br />
 <br />
 <%
 }
