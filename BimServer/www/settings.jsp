@@ -123,7 +123,7 @@
 			<%=settings.isAutoTestClashes() ? " checked=\"checked\"" : ""%>></input></td>
 	</tr>
 	<tr>
-		<td><label for="allowUsersToCreateTopLevelProjects">Allow non-admin users to create top-level projects</label></td>
+		<td><label for="allowUsersToCreateTopLevelProjects">Allow non-admin users to create projects</label></td>
 		<td><input id="allowUsersToCreateTopLevelProjects" name="allowUsersToCreateTopLevelProjects" type="checkbox"
 			<%=settings.isAllowUsersToCreateTopLevelProjects() ? " checked=\"checked\"" : ""%>></input></td>
 	</tr>
