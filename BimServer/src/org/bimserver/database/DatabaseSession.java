@@ -99,7 +99,7 @@ public class DatabaseSession implements BimDatabaseSession {
 		return cache.inverse().containsKey(object);
 	}
 
-	public boolean containsKey(RecordIdentifier pidOidPair) {
+	public boolean cacheContains(RecordIdentifier pidOidPair) {
 		return cache.containsKey(pidOidPair);
 	}
 
@@ -275,6 +275,7 @@ public class DatabaseSession implements BimDatabaseSession {
 			}
 			parent.setLastRevision(revision);
 			store(revision);
+			store(parent);
 			parent = parent.getParent();
 		}
 		return concreteRevision;
@@ -451,7 +452,7 @@ public class DatabaseSession implements BimDatabaseSession {
 		short cid = buffer.getShort();
 		if (cid != -1) {
 			long oid = buffer.getLong();
-			if (containsKey(new RecordIdentifier(readSet.getPid(), oid, readSet.getRid()))) {
+			if (cacheContains(new RecordIdentifier(readSet.getPid(), oid, readSet.getRid()))) {
 				return getObject(new RecordIdentifier(readSet.getPid(), oid, readSet.getRid()));
 			} else {
 				if (readSet.isReading(oid)) {
@@ -570,7 +571,7 @@ public class DatabaseSession implements BimDatabaseSession {
 		if (pid == readSet.getPid()) {
 			if (rid <= readSet.getRid()) {
 				RecordIdentifier recordIdentifier = new RecordIdentifier(readSet.getPid(), oid, rid);
-				if (containsKey(recordIdentifier)) {
+				if (cacheContains(recordIdentifier)) {
 					IdEObject object = getObject(recordIdentifier);
 					if (!(object instanceof WrappedValue) && !(object instanceof IfcGloballyUniqueId)) {
 						readSet.put(oid, object);
@@ -742,8 +743,8 @@ public class DatabaseSession implements BimDatabaseSession {
 			object.setPid(pid);
 			object.setRid(rid);
 			storing.put(object, object.getOid());
-		} else {
-			return object.getOid();
+//		} else {
+//			return object.getOid();
 		}
 		try {
 			ByteBuffer keyBuffer = createKeyBuffer(object.getPid(), object.getOid(), object.getRid());
