@@ -23,7 +23,7 @@
 <script type="text/javascript" src="js/GeoExt.js"></script>
 <script type="text/javascript" src="js/proj4js.js"></script>
 <script type="text/javascript" src="js/map.js"></script>
-<!-- eind mapscripts -->
+<!-- end mapscripts -->
 <%
 	if (loginManager.getService().isLoggedIn()) {
 		DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
