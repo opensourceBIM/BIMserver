@@ -172,7 +172,7 @@ $(document).ready(function(){
 </script>
 <% } else {
 %>
-<div class="error">Only administrator can create new top-level projects</div>
+<div class="error">Only administrator can create new projects</div>
 <%
 }
 }%>
