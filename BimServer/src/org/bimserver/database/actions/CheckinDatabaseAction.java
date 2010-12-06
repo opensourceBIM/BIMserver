@@ -52,7 +52,7 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 		project.setLastConcreteRevision(concreteRevision);
 		concreteRevision.setState(CheckinState.STORING);
 		if (concreteRevision.getId() != 1) {
-			// There already was a revision, lets go delete em
+			// There already was a revision, lets go delete it
 			bimDatabaseSession.clearProject(project.getId(), concreteRevision.getId() - 1, concreteRevision.getId());
 		}
 		NewRevisionAdded newRevisionAdded = LogFactory.eINSTANCE.createNewRevisionAdded();
