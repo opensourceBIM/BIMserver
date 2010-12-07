@@ -124,6 +124,10 @@ public class DatabaseSession implements BimDatabaseSession {
 	public void close() {
 		database.unregisterSession(this);
 		bimTransaction.close();
+		if (!isReadOnly() && objects.size() == 0) {
+			LOGGER.info("No objects were changed, could have used a read-only session, printing stack trace");
+			new Exception().printStackTrace();
+		}
 	}
 
 	@Override
