@@ -6,7 +6,6 @@ import java.util.Set;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
-import org.bimserver.database.Database;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.conditions.HasReferenceToCondition;
 import org.bimserver.database.store.Checkout;
@@ -29,6 +28,6 @@ public class GetAllCheckoutsOfRevisionDatabaseAction extends BimDatabaseAction<S
 	public Set<Checkout> execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
 		Revision revision = bimDatabaseSession.getVirtualRevision(roid);
 		Condition condition = new HasReferenceToCondition(StorePackage.eINSTANCE.getCheckout_Revision(), revision);
-		return CollectionUtils.mapToSet((Map<Long, Checkout>) bimDatabaseSession.query(Database.STORE_PROJECT_ID, -1, condition, Checkout.class));
+		return CollectionUtils.mapToSet((Map<Long, Checkout>) bimDatabaseSession.query(condition, Checkout.class));
 	}
 }

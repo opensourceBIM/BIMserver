@@ -6,7 +6,6 @@ import java.util.Set;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
-import org.bimserver.database.Database;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.conditions.HasReferenceToCondition;
 import org.bimserver.database.store.Checkout;
@@ -30,7 +29,7 @@ public class GetAllCheckoutsByUserDatabaseAction extends BimDatabaseAction<Set<C
 		User user = bimDatabaseSession.getUserByUoid(uoid);
 		Condition condition = new HasReferenceToCondition(StorePackage.eINSTANCE.getCheckout_User(), user);
 //		condition = condition.and(new AttributeCondition(StorePackage.eINSTANCE.getCheckout_Active(), new BooleanLiteral(true)));
-		Map<Long, Checkout> query = (Map<Long, Checkout>) bimDatabaseSession.query(Database.STORE_PROJECT_ID, -1, condition, Checkout.class);
+		Map<Long, Checkout> query = (Map<Long, Checkout>) bimDatabaseSession.query(condition, Checkout.class);
 		return CollectionUtils.mapToSet(query);
 	}
 }

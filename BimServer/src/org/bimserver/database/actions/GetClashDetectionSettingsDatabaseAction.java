@@ -3,8 +3,6 @@ package org.bimserver.database.actions;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
-import org.bimserver.database.Database;
-import org.bimserver.database.ReadSet;
 import org.bimserver.database.store.ClashDetectionSettings;
 import org.bimserver.database.store.Project;
 import org.bimserver.database.store.StorePackage;
@@ -27,7 +25,7 @@ public class GetClashDetectionSettingsDatabaseAction extends BimDatabaseAction<C
 	@Override
 	public ClashDetectionSettings execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
 		User actingUser = bimDatabaseSession.getUserByUoid(actingUoid);
-		ClashDetectionSettings clashDetectionSettings = (ClashDetectionSettings) bimDatabaseSession.get(bimDatabaseSession.getCid(StorePackage.eINSTANCE.getClashDetectionSettings()), cdsoid, new ReadSet(Database.STORE_PROJECT_ID, -1));
+		ClashDetectionSettings clashDetectionSettings = (ClashDetectionSettings) bimDatabaseSession.get(bimDatabaseSession.getCid(StorePackage.eINSTANCE.getClashDetectionSettings()), cdsoid);
 		boolean hasRights = false;
 		for (Project project : clashDetectionSettings.getProjects()) {
 			if (RightsManager.hasRightsOnProject(actingUser, project)) {

@@ -41,7 +41,7 @@ public class GetAllProjectsDatabaseAction extends BimDatabaseAction<Set<Project>
 		if (user.getUserType() != UserType.ADMIN) {
 			condition = condition.and(new AttributeCondition(StorePackage.eINSTANCE.getProject_State(), new EnumLiteral(ObjectState.ACTIVE)));
 		}
-		Map<Long, Project> results = (Map<Long, Project>) bimDatabaseSession.query(Database.STORE_PROJECT_ID, -1, condition, Project.class);
+		Map<Long, Project> results = (Map<Long, Project>) bimDatabaseSession.query(condition, Project.class);
 		Set<Project> resultSet = CollectionUtils.mapToSet(results);
 		for (Project project : results.values()) {
 			addParentProjects(resultSet, project);

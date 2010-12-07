@@ -6,7 +6,6 @@ import java.util.Set;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
-import org.bimserver.database.Database;
 import org.bimserver.database.query.conditions.AttributeCondition;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.conditions.IsOfTypeCondition;
@@ -38,6 +37,6 @@ public class GetAllUsersDatabaseAction extends BimDatabaseAction<Set<User>> {
 		if (actingUser.getUserType() != UserType.ADMIN) {
 			condition.and(new AttributeCondition(StorePackage.eINSTANCE.getUser_State(), new EnumLiteral(ObjectState.ACTIVE)));
 		}
-		return CollectionUtils.mapToSet((Map<Long, User>) bimDatabaseSession.query(Database.STORE_PROJECT_ID, -1, condition, User.class));
+		return CollectionUtils.mapToSet((Map<Long, User>) bimDatabaseSession.query(condition, User.class));
 	}
 }

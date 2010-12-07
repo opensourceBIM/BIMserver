@@ -3,9 +3,8 @@ package org.bimserver.longaction;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
-import org.slf4j.LoggerFactory;
-
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class LongActionManager extends Thread {
 

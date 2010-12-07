@@ -31,6 +31,6 @@ public class GetAllNonAuthorizedProjectsOfUserDatabaseAction extends BimDatabase
 	public Set<Project> execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
 		Condition condition = new Not(new HasReferenceToCondition(StorePackage.eINSTANCE.getProject_HasAuthorizedUsers(), bimDatabaseSession.getUserByUoid(uoid))).and(
 				new Not(new AttributeCondition(StorePackage.eINSTANCE.getProject_Name(), new StringLiteral(Database.STORE_PROJECT_NAME))));
-		return CollectionUtils.mapToSet((Map<Long, Project>) bimDatabaseSession.query(Database.STORE_PROJECT_ID, -1, condition, Project.class));
+		return CollectionUtils.mapToSet((Map<Long, Project>) bimDatabaseSession.query(condition, Project.class));
 	}
 }
