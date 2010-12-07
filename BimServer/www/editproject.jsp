@@ -70,7 +70,6 @@
 <div class="sidebar"></div>
 
 <div class="content">
-<h1>Project details (<%=sProject.getName()%>)</h1>
 <%
 	if (request.getParameter("message") != null) {
 				out.println("<div class=\"error\">" + request.getParameter("message") + "</div>");
@@ -84,6 +83,7 @@
   </div>
 </div>
 <div id="guide_wrap_btm"></div>
+<h1>Project details (<%=sProject.getName()%>)</h1>
 <div class="tabber" id="projecttabber">
 <div class="tabbertab" id="detailstab" title="Details">
 <form method="post" action="editproject.jsp" name="form">
