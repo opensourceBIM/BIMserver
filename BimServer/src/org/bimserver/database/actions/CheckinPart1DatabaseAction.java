@@ -58,6 +58,7 @@ public class CheckinPart1DatabaseAction extends GenericCheckinDatabaseAction {
 		newRevisionAdded.setAccessMethod(getAccessMethod());
 		bimDatabaseSession.store(newRevisionAdded);
 		bimDatabaseSession.store(concreteRevision);
+		bimDatabaseSession.store(project);
 		bimDatabaseSession.saveOidCounter();
 		return concreteRevision;
 	}

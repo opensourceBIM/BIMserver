@@ -34,6 +34,7 @@ public class CheckinPart2DatabaseAction extends BimDatabaseAction<Void> {
 			bimDatabaseSession.store(getIfcModel().getValues(), concreteRevision.getProject().getId(), concreteRevision.getId());
 			for (Revision revision : concreteRevision.getRevisions()) {
 				revision.setState(CheckinState.DONE);
+				bimDatabaseSession.store(revision);
 			}
 			concreteRevision.setState(CheckinState.DONE);
 			bimDatabaseSession.store(concreteRevision);

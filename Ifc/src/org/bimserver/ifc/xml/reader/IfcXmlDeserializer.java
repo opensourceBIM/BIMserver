@@ -16,7 +16,6 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EEnumLiteral;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.slf4j.Logger;
@@ -25,7 +24,7 @@ import org.slf4j.LoggerFactory;
 public class IfcXmlDeserializer {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(IfcXmlDeserializer.class);
-	private IfcModel model = new IfcModel();
+	private final IfcModel model = new IfcModel();
 
 	public IfcModel read(InputStream inputStream) throws IfcXmlDeserializeException {
 		XMLInputFactory inputFactory = XMLInputFactory.newInstance();
@@ -155,8 +154,7 @@ public class IfcXmlDeserializer {
 								list.set(pos, reference);
 							} else {
 								for (int i = list.size() - 1; i < pos - 1; i++) {
-									EObject tmp = reference.eClass().getEPackage().getEFactoryInstance().create(reference.eClass());
-									list.add(tmp);
+									list.add(reference.eClass().getEPackage().getEFactoryInstance().create(reference.eClass()));
 								}
 								list.add(reference);
 							}
@@ -195,7 +193,8 @@ public class IfcXmlDeserializer {
 						if (realType instanceof EClass) {
 							EClass eClass = (EClass) realType;
 							if (Ifc2x3Package.eINSTANCE.getWrappedValue().isSuperTypeOf(eClass)) {
-								EObject wrappedObject = Ifc2x3Factory.eINSTANCE.create(eClass);
+								IdEObject wrappedObject = (IdEObject) Ifc2x3Factory.eINSTANCE.create(eClass);
+								model.add(wrappedObject);
 								EStructuralFeature wrappedValueFeature = eClass.getEStructuralFeature("wrappedValue");
 								wrappedObject.eSet(wrappedValueFeature, parsePrimitive(wrappedValueFeature.getEType(), text));
 								if (wrappedValueFeature.getEType() == EcorePackage.eINSTANCE.getEFloat()) {

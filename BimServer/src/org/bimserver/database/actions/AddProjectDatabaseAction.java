@@ -50,6 +50,7 @@ public class AddProjectDatabaseAction extends BimDatabaseAction<Project> {
 		if (parentPoid != -1) {
 			parentProject = bimDatabaseSession.getProjectByPoid(parentPoid);
 			project.setParent(parentProject);
+			bimDatabaseSession.store(parentProject);
 		}
 		if (parentPoid == -1 && actingUser.getUserType() != UserType.ADMIN && !ServerSettings.getSettings().isAllowUsersToCreateTopLevelProjects()) {
 			throw new UserException("Only administrators can create new projects");

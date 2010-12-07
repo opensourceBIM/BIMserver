@@ -34,7 +34,7 @@ import com.google.common.collect.HashBiMap;
 
 public class IfcModel {
 
-	private long counter = 1;
+	private long counter = Integer.MAX_VALUE / 2;
 	private final BiMap<Long, IdEObject> objects;
 	private Map<String, IfcRoot> guidIndexed;
 	private byte[] checksum;
@@ -72,6 +72,12 @@ public class IfcModel {
 	}
 	
 	public void add(Long key, IdEObject eObject) {
+		if (objects.containsKey(key)) {
+			throw new RuntimeException("Object with id " + key + " already stored in this model");
+		}
+		if (key > counter) {
+			counter = key + 1;
+		}
 		objects.put(key, eObject);
 	}
 	
