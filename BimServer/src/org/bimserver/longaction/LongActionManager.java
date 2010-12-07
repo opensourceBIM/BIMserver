@@ -1,7 +1,6 @@
 package org.bimserver.longaction;
 
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.LinkedBlockingDeque;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,7 +8,7 @@ import org.slf4j.LoggerFactory;
 public class LongActionManager extends Thread {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(LongActionManager.class);
-	private final BlockingQueue<LongAction> queue = new LinkedBlockingQueue<LongAction>();
+	private final LinkedBlockingDeque<LongAction> queue = new LinkedBlockingDeque<LongAction>();
 	private volatile boolean running = true;
 	private boolean finished = false;
 

@@ -45,7 +45,7 @@
 			}
 		<%
 			if (request.getParameter("tab") != null && request.getParameter("tab").equals("cd")) {
-				%>t.tabShow(4)<%
+				%>activateTab(t, "clashes")<%
 			}
 		%>
 		},

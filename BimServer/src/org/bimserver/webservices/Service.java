@@ -31,6 +31,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeSet;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
@@ -1284,6 +1285,9 @@ public class Service implements ServiceInterface {
 		for (String ignoredClass : sClashDetectionSettings.getIgnoredClasses()) {
 			clashDetectionSettings.getIgnoredClasses().add(ignoredClass);
 		}
+		for (Long poid : sClashDetectionSettings.getProjects()) {
+			clashDetectionSettings.getProjects().add(bimDatabaseSession.getProjectByPoid(poid));
+		}
 		for (long roid : sClashDetectionSettings.getRevisions()) {
 			clashDetectionSettings.getRevisions().add(bimDatabaseSession.getRevisionByRoid(roid));
 		}
@@ -1731,9 +1735,28 @@ public class Service implements ServiceInterface {
 		for (String cl : clashDetectionSettings.getIgnoredClasses()) {
 			clashDetectionSettings.getIgnoredClasses().add(cl);
 		}
+		for (Project project : clashDetectionSettings.getProjects()) {
+			sClashDetectionSettings.getProjects().add(project.getOid());
+		}
 		for (Revision revision : clashDetectionSettings.getRevisions()) {
 			sClashDetectionSettings.getRevisions().add(revision.getOid());
 		}
 		return sClashDetectionSettings;
+	}
+
+	@Override
+	public Set<ResultType> getEnabledResultTypes() {
+		return null;
+	}
+
+	@Override
+	public Set<ResultType> getAllResultTypes() {
+		Set<ResultType> resultTypes = new TreeSet<ResultType>(new SResultTypeComparator());
+		for (ResultType resultType : ResultType.values()) {
+			if (resultType.isUserType()) {
+				resultTypes.add(resultType);
+			}
+		}
+		return resultTypes;
 	}
 }

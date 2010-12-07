@@ -19,7 +19,7 @@ public class SConcreteRevision
 	private long projectId;
 	private SCheckinState state;
 	private byte[] checksum;
-	private List<Long> revisions;
+	private List<Long> revisions = new ArrayList<Long>();
 	private long size;
 	private java.util.Date date;
 	private java.lang.String lastError;

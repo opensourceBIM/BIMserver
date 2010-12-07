@@ -13,13 +13,11 @@
 <%@page import="org.bimserver.ServerSettings"%>
 <%@page import="org.bimserver.shared.ResultType"%>
 <%@page import="org.bimserver.Settings"%>
-<%@page import="org.bimserver.serializers.EmfSerializerFactory"%>
 <%@page import="org.apache.commons.io.IOUtils"%>
 <%@page import="org.bimserver.interfaces.objects.SUserType"%>
 <%
 	if (loginManager.getService().isLoggedIn() && loginManager.getUserType() == SUserType.ADMIN) {
 		Settings settings = ServerSettings.getSettings();
-		EmfSerializerFactory emfSerializerFactory = EmfSerializerFactory.getInstance();
 		if (request.getParameter("save") != null) {
 	settings.setAllowSelfRegistration(request.getParameter("allowSelfRegistration") != null);
 	settings.setDatabaseLocation(request.getParameter("databaselocation"));
@@ -44,7 +42,7 @@
 	settings.updateEnabledResultTypes(enabledTypes);
 	settings.save();
 	ServerSettings.setSettings(settings);
-	emfSerializerFactory.initSerializers();
+	EmfSerializerFactory.getInstance().initSerializers();
 	response.sendRedirect(getServletContext().getContextPath() + "/settings.jsp?msg=settingschangeok");
 		}
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
@@ -61,7 +59,8 @@
 		}
 %>
 
-<div class="sidebar">
+
+<%@page import="org.bimserver.serializers.EmfSerializerFactory"%><div class="sidebar">
 <ul>
 <li>
 <a href="<%=getServletContext().getContextPath()%>/settings?action=downloadsettings">Download settings</a></li>
@@ -82,6 +81,11 @@
 	<tr>
 		<td><label for="siteAddress">Site address (URL)</label></td>
 		<td><input id="siteAddress" type="text" name="siteAddress" value="<%=settings.getSiteAddress() %>"></input></td>
+	</tr>
+	<tr>
+		<td><label for="customLogo">Custom logo address</label></td>
+		<td><input id="customLogo" name="customLogo" type="text" size="80"
+			value="<%=settings.getCustomLogoAddress()%>"></input></td>
 	</tr>
 	<tr>
 		<td colspan="2" class="tabletitle">Registration</td>
@@ -145,11 +149,6 @@
 		<td><input id="intelligentMerging" name="intelligentMerging" type="checkbox"
 			<%=settings.isIntelligentMerging() ? " checked=\"checked\"" : ""%>></input></td>
 	</tr>
-	<tr>
-		<td><label for="customLogo">Custom logo address</label></td>
-		<td><input id="customLogo" name="customLogo" type="text" size="80"
-			value="<%=settings.getCustomLogoAddress()%>"></input></td>
-	</tr>
 	<!-- 
 <tr><td>Use file-level caching</td><td><input name="usecaching" type="checkbox" <%=settings.isUseCaching() ? " checked=\"checked\"" : ""%>></input></td></tr>
  -->
@@ -158,18 +157,16 @@
 		<td>
 		<table class="cleantable">
 			<%
-				for (ResultType resultType : ResultType.values()) {
-						if (resultType.isUserType()) {
+				for (ResultType resultType : loginManager.getService().getAllResultTypes()) {
 			%>
 			<tr>
 				<td><label for="<%=resultType.name()%>"><%=resultType.getNiceName()%></label></td>
 				<td><input name="<%=resultType.name()%>"
 					id="<%=resultType.name()%>" type="checkbox"
-					<%=emfSerializerFactory.getSingleResultTypes().contains(resultType) ? " checked=\"checked\"" : ""%>></input></td>
+					<%=loginManager.getService().isExportTypeEnabled(resultType) ? " checked=\"checked\"" : ""%>></input></td>
 			</tr>
 			<%
 				}
-					}
 			%>
 		</table>
 		</td>

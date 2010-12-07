@@ -52,7 +52,7 @@ public class S<%=eClass.getName()%>
 				EReference eReference = (EReference)eStructuralFeature;
 				if (eReference.isMany()) {
 %>
-	private List<Long> <%=eReference.getName()%>;
+	private List<Long> <%=eReference.getName()%> = new ArrayList<Long>();
 <%
 				} else {
 %>

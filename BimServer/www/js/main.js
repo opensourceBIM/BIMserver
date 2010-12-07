@@ -14,15 +14,19 @@ function setFocus( aForm )
 	}
 }
 
-function activateTab(tabName) {
+function activateTab(tabber, tabName) {
 	tb_remove();
-	var tabber = $(".tabberlive").attr("tabber");
 	for (i=0; i<tabber.tabs.length; i++) {
 		if (tabber.tabs[i].headingText == tabName || tabber.tabs[i].div.id == tabName) {
 			tabber.tabShow(i);
 			break;
 		}
 	}
+}
+
+function activateTab(tabName) {
+	var tabber = $(".tabberlive").attr("tabber");
+	activateTab(tabber, tabName);
 }
 
 function trim(s)

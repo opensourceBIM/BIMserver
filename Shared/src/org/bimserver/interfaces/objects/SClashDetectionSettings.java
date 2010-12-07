@@ -16,9 +16,9 @@ public class SClashDetectionSettings
 		this.oid = oid;
 	}
 	private boolean enabled;
-	private List<Long> projects;
+	private List<Long> projects = new ArrayList<Long>();
 	private float margin;
-	private List<Long> revisions;
+	private List<Long> revisions = new ArrayList<Long>();
 	private List<java.lang.String> ignoredClasses = new ArrayList<java.lang.String>();
 
 	public boolean isEnabled() {

@@ -17,17 +17,17 @@ public class SProject
 	}
 	private int id;
 	private java.lang.String name;
-	private List<Long> hasAuthorizedUsers;
-	private List<Long> concreteRevisions;
-	private List<Long> revisions;
+	private List<Long> hasAuthorizedUsers = new ArrayList<Long>();
+	private List<Long> concreteRevisions = new ArrayList<Long>();
+	private List<Long> revisions = new ArrayList<Long>();
 	private long lastConcreteRevisionId;
 	private long lastRevisionId;
-	private List<Long> checkouts;
+	private List<Long> checkouts = new ArrayList<Long>();
 	private SObjectState state;
 	private java.util.Date createdDate;
 	private long createdById;
 	private long geoTagId;
-	private List<Long> subProjects;
+	private List<Long> subProjects = new ArrayList<Long>();
 	private long parentId;
 	private java.lang.String description;
 	private long clashDetectionSettingsId;

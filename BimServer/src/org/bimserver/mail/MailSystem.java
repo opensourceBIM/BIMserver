@@ -1,8 +1,11 @@
 package org.bimserver.mail;
 
 import java.io.UnsupportedEncodingException;
+import java.util.HashSet;
 import java.util.Properties;
+import java.util.Set;
 
+import javax.mail.Address;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
@@ -11,6 +14,7 @@ import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import org.bimserver.ServerInitializer;
 import org.bimserver.ServerSettings;
 import org.bimserver.interfaces.objects.SClashDetectionSettings;
 import org.slf4j.Logger;
@@ -36,7 +40,7 @@ public class MailSystem {
 		return mailSession;
 	}
 	
-	public void sendClashDetectionEmail(String senderName, String senderAddress, String url, SClashDetectionSettings sClashDetectionSettings, String... addressesTo) {
+	public void sendClashDetectionEmail(long poid, String senderName, String senderAddress, SClashDetectionSettings sClashDetectionSettings, String... addressesTo) {
 		if (!senderAddress.contains("@") || !senderAddress.contains(".")) {
 			senderAddress = ServerSettings.getSettings().getEmailSenderAddress();
 		}
@@ -44,26 +48,22 @@ public class MailSystem {
 	
 		MimeMessage msg = new MimeMessage(mailSession);
 	
-		InternetAddress addressFrom;
 		try {
-			addressFrom = new InternetAddress(senderAddress);
+			InternetAddress addressFrom = new InternetAddress(senderAddress);
 			addressFrom.setPersonal(senderName);
 			msg.setFrom(addressFrom);
 			
-			InternetAddress[] addressesToArray = new InternetAddress[addressesTo.length];
-			int i=0;
+			Set<InternetAddress> addresses = new HashSet<InternetAddress>();
 			for (String addressTo : addressesTo) {
-				addressesToArray[i++] = new InternetAddress(addressTo);
+				if (senderAddress.contains("@") && senderAddress.contains(".")) {
+					addresses.add(new InternetAddress(addressTo));
+				}
 			}
-			msg.setRecipients(Message.RecipientType.TO, addressesToArray);
+			Address addressesArray[] = new Address[addresses.size()];
+			addresses.toArray(addressesArray);
+			msg.setRecipients(Message.RecipientType.TO, addressesArray);
 			
 			msg.setSubject("BIMserver Clash Detection");
-//		String url = WebUtils.getWebServer(request.getRequestURL().toString());
-			
-			StringBuilder poidsString = new StringBuilder();
-			for (Long poid : sClashDetectionSettings.getProjects()) {
-				poidsString.append(poid + ";");
-			}
 			
 			StringBuilder ignoreString = new StringBuilder();
 			for (String ignore : sClashDetectionSettings.getIgnoredClasses()) {
@@ -75,7 +75,7 @@ public class MailSystem {
 				revisionsString.append(roid + ";");
 			}
 			
-			msg.setContent("<a href=\"http://" + url + "project.jsp?tab=cd&poids=" + poidsString + "&margin=" + sClashDetectionSettings.getMargin() + "&revisions=" + revisionsString + "&ignore=" + ignoreString + "\">Click here for clash detection results</a>", "text/html");
+			msg.setContent("<a href=\"" + ServerSettings.getSettings().getSiteAddress() + ServerInitializer.getServletContext().getContextPath() + "/project.jsp?tab=cd&poid=" + poid + "&margin=" + sClashDetectionSettings.getMargin() + "&revisions=" + revisionsString + "&ignored=" + ignoreString + "\">Click here for clash detection results</a>", "text/html");
 			Transport.send(msg);
 		} catch (AddressException e) {
 			LOGGER.error("", e);
