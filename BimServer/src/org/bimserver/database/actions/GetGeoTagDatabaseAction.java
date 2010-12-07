@@ -3,8 +3,6 @@ package org.bimserver.database.actions;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
-import org.bimserver.database.Database;
-import org.bimserver.database.ReadSet;
 import org.bimserver.database.store.GeoTag;
 import org.bimserver.database.store.Project;
 import org.bimserver.database.store.StorePackage;
@@ -27,7 +25,7 @@ public class GetGeoTagDatabaseAction extends BimDatabaseAction<GeoTag> {
 	@Override
 	public GeoTag execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
 		User actingUser = bimDatabaseSession.getUserByUoid(actingUoid);
-		GeoTag geoTag = (GeoTag) bimDatabaseSession.get(bimDatabaseSession.getCid(StorePackage.eINSTANCE.getGeoTag()), goid, new ReadSet(Database.STORE_PROJECT_ID, -1));
+		GeoTag geoTag = (GeoTag) bimDatabaseSession.get(bimDatabaseSession.getCid(StorePackage.eINSTANCE.getGeoTag()), goid);
 		boolean hasRights = false;
 		for (Project project : geoTag.getProjects()) {
 			if (RightsManager.hasRightsOnProject(actingUser, project)) {

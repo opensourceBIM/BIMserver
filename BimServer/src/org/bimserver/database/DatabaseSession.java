@@ -312,6 +312,10 @@ public class DatabaseSession implements BimDatabaseSession {
 		store(virtualRevision);
 	}
 
+	public IdEObject get(short cid, long oid) throws BimDatabaseException, BimDeadlockException {
+		return get(cid, oid);
+	}
+	
 	public IdEObject get(short cid, long oid, ReadSet readSet) throws BimDatabaseException, BimDeadlockException {
 		ByteBuffer keyBuffer = createKeyBuffer(readSet.getPid(), oid, readSet.getRid());
 		EClass eClass = getEClassForCid(cid);
@@ -654,9 +658,13 @@ public class DatabaseSession implements BimDatabaseSession {
 	@Override
 	public Project getProjectById(int pid) throws BimDatabaseException, BimDeadlockException {
 		Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getProject_Id(), new IntegerLiteral(pid));
-		return querySingle(Database.STORE_PROJECT_ID, -1, condition, Project.class);
+		return querySingle(condition, Project.class);
 	}
-
+	
+	public <T extends IdEObject> T querySingle(Condition condition, Class<T> clazz) throws BimDatabaseException, BimDeadlockException {
+		return querySingle(Database.STORE_PROJECT_ID, Database.STORE_PROJECT_REVISION_ID, condition, clazz);
+	}
+	
 	public <T extends IdEObject> T querySingle(int pid, int rid, Condition condition, Class<T> clazz) throws BimDatabaseException, BimDeadlockException {
 		Collection<T> values = query(pid, rid, condition, clazz).values();
 		if (values.size() == 0) {
@@ -665,6 +673,10 @@ public class DatabaseSession implements BimDatabaseSession {
 		return values.iterator().next();
 	}
 
+	public <T extends IdEObject> Map<Long, T> query(Condition condition, Class<T> clazz) throws BimDatabaseException, BimDeadlockException {
+		return query(Database.STORE_PROJECT_ID, Database.STORE_PROJECT_REVISION_ID, condition, clazz);
+	}
+	
 	public <T extends IdEObject> Map<Long, T> query(int pid, int rid, Condition condition, Class<T> clazz) throws BimDatabaseException, BimDeadlockException {
 		ReadSet readSet = new ReadSet(pid, rid);
 		Map<Long, T> map = new HashMap<Long, T>();
@@ -687,13 +699,13 @@ public class DatabaseSession implements BimDatabaseSession {
 	@Override
 	public Collection<Project> getProjectsByName(String projectName) throws BimDatabaseException, BimDeadlockException {
 		Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getProject_Name(), new StringLiteral(projectName));
-		return (Collection<Project>) query(Database.STORE_PROJECT_ID, -1, condition, Project.class).values();
+		return (Collection<Project>) query(condition, Project.class).values();
 	}
 
 	@Override
 	public User getUserByUserName(String username) throws BimDatabaseException, BimDeadlockException {
 		Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getUser_Username(), new StringLiteral(username));
-		return querySingle(Database.STORE_PROJECT_ID, -1, condition, User.class);
+		return querySingle(condition, User.class);
 	}
 
 	@Override
@@ -991,7 +1003,7 @@ public class DatabaseSession implements BimDatabaseSession {
 
 	private int getObjectCount(Class<? extends IdEObject> clazz) throws BimDatabaseException, BimDeadlockException {
 		Condition condition = new IsOfTypeCondition((EClass) StorePackage.eINSTANCE.getEClassifier(clazz.getSimpleName()));
-		return query(Database.STORE_PROJECT_ID, -1, condition, clazz).size();
+		return query(condition, clazz).size();
 	}
 
 	@Override
@@ -1053,7 +1065,7 @@ public class DatabaseSession implements BimDatabaseSession {
 
 	@Override
 	public Revision getVirtualRevision(long roid) throws BimDeadlockException, BimDatabaseException {
-		IdEObject idEObject = get(database.getCidOfEClass(StorePackage.eINSTANCE.getRevision()), roid, new ReadSet(Database.STORE_PROJECT_ID, -1));
+		IdEObject idEObject = get(database.getCidOfEClass(StorePackage.eINSTANCE.getRevision()), roid);
 		return (Revision) idEObject;
 	}
 
@@ -1103,7 +1115,7 @@ public class DatabaseSession implements BimDatabaseSession {
 	@Override
 	public IdEObject get(EClass eClass, long oid) {
 		try {
-			return get(getCid(eClass), oid, new ReadSet(Database.STORE_PROJECT_ID, -1));
+			return get(getCid(eClass), oid);
 		} catch (BimDatabaseException e) {
 			LOGGER.error("", e);
 		} catch (BimDeadlockException e) {

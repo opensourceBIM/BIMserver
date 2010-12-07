@@ -6,7 +6,6 @@ import java.util.Set;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
-import org.bimserver.database.Database;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.conditions.HasReferenceToCondition;
 import org.bimserver.database.query.conditions.Not;
@@ -28,6 +27,6 @@ public class GetAllNonAuthorizedUsersOfProjectDatabaseAction extends BimDatabase
 	@Override
 	public Set<User> execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
 		Condition condition = new Not(new HasReferenceToCondition(StorePackage.eINSTANCE.getUser_HasRightsOn(), bimDatabaseSession.getProjectByPoid(poid)));
-		return CollectionUtils.mapToSet((Map<Long, User>) bimDatabaseSession.query(Database.STORE_PROJECT_ID, -1, condition, User.class));
+		return CollectionUtils.mapToSet((Map<Long, User>) bimDatabaseSession.query(condition, User.class));
 	}
 }

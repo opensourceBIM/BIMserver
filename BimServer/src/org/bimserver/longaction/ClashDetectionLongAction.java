@@ -8,7 +8,6 @@ import org.bimserver.database.BimDatabase;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
-import org.bimserver.database.Database;
 import org.bimserver.database.actions.BimDatabaseAction;
 import org.bimserver.database.actions.DownloadDatabaseAction;
 import org.bimserver.database.store.CheckinState;
@@ -77,7 +76,7 @@ public class ClashDetectionLongAction extends LongAction {
 					for (Clash clash : clashes) {
 						revision.getLastClashes().add(clash);
 					}
-					session.store(clashes, Database.STORE_PROJECT_ID, -1);
+					session.store(clashes);
 				} finally {
 					try {
 						ifcEngineModel.close();

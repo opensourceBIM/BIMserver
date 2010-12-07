@@ -64,6 +64,8 @@ public interface BimDatabaseSession {
 
 	void convertAdditionToEObject(IdEObject object, Addition addition, Map<Long, IdEObject> processedAdditions, Map<Long, IdEObject> map);
 
+	IdEObject get(short cid, long oid) throws BimDeadlockException, BimDatabaseException;
+
 	IdEObject get(short cid, long oid, ReadSet readSet) throws BimDeadlockException, BimDatabaseException;
 
 	Object convert(EClassifier type, String string);
@@ -76,7 +78,11 @@ public interface BimDatabaseSession {
 
 	ReadSet getMapWithOid(int pid, int id, long oid) throws BimDeadlockException, BimDatabaseException;
 
+	<T extends IdEObject> Map <Long, T> query(Condition condition, Class<T> clazz) throws BimDatabaseException, BimDeadlockException;
+
 	<T extends IdEObject> Map <Long, T> query(int pid, int rid, Condition condition, Class<T> clazz) throws BimDatabaseException, BimDeadlockException;
+
+	<T extends IdEObject> T querySingle(Condition condition, Class<T> clazz) throws BimDatabaseException, BimDeadlockException;
 
 	<T extends IdEObject> T querySingle(int pid, int rid, Condition condition, Class<T> clazz) throws BimDatabaseException, BimDeadlockException;
 

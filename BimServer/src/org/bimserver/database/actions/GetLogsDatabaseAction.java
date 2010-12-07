@@ -7,7 +7,6 @@ import java.util.Map;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
-import org.bimserver.database.Database;
 import org.bimserver.database.query.conditions.IsOfTypeCondition;
 import org.bimserver.database.store.User;
 import org.bimserver.database.store.UserType;
@@ -31,7 +30,7 @@ public class GetLogsDatabaseAction extends BimDatabaseAction<List<LogAction>> {
 		if (user.getUserType() != UserType.ADMIN) {
 			throw new UserException("Only admin users can retrieve log");
 		}
-		Map<Long, LogAction> query = bimDatabaseSession.query(Database.STORE_PROJECT_ID, -1, new IsOfTypeCondition(LogPackage.eINSTANCE.getLogAction()), LogAction.class);
+		Map<Long, LogAction> query = bimDatabaseSession.query(new IsOfTypeCondition(LogPackage.eINSTANCE.getLogAction()), LogAction.class);
 		ArrayList<LogAction> list = new ArrayList<LogAction>(query.values());
 		return list;
 	}

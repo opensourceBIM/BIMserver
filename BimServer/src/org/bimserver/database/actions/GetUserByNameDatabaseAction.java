@@ -3,7 +3,6 @@ package org.bimserver.database.actions;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
-import org.bimserver.database.Database;
 import org.bimserver.database.query.conditions.AttributeCondition;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.literals.StringLiteral;
@@ -24,6 +23,6 @@ public class GetUserByNameDatabaseAction extends BimDatabaseAction<User> {
 	@Override
 	public User execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
 		Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getUser_Username(), new StringLiteral(username));
-		return bimDatabaseSession.querySingle(Database.STORE_PROJECT_ID, -1, condition, User.class);
+		return bimDatabaseSession.querySingle(condition, User.class);
 	}
 }

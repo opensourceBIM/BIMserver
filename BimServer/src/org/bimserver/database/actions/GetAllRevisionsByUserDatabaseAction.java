@@ -6,7 +6,6 @@ import java.util.Set;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
-import org.bimserver.database.Database;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.conditions.HasReferenceToCondition;
 import org.bimserver.database.store.Revision;
@@ -29,6 +28,6 @@ public class GetAllRevisionsByUserDatabaseAction extends BimDatabaseAction<Set<R
 	public Set<Revision> execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
 		User user = bimDatabaseSession.getUserByUoid(uoid);
 		Condition condition = new HasReferenceToCondition(StorePackage.eINSTANCE.getRevision_User(), user);
-		return CollectionUtils.mapToSet((Map<Long, Revision>) bimDatabaseSession.query(Database.STORE_PROJECT_ID, -1, condition, Revision.class));
+		return CollectionUtils.mapToSet((Map<Long, Revision>) bimDatabaseSession.query(condition, Revision.class));
 	}
 }
