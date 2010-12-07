@@ -37,6 +37,7 @@ public class Settings {
 	private String databaseLocation;
 	private String enabledExportTypes;
 	private String customLogoAddress;
+	private String siteAddress;
 
 	public boolean isShowVersionUpgradeAvailable() {
 		return showVersionUpgradeAvailable;
@@ -222,5 +223,13 @@ public class Settings {
 			resultTypes.add(ResultType.valueOf(s));
 		}
 		return resultTypes;
+	}
+
+	public void setSiteAddress(String siteAddress) {
+		this.siteAddress = siteAddress;
+	}
+
+	public String getSiteAddress() {
+		return siteAddress;
 	}
 }

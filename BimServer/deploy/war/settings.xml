@@ -17,4 +17,5 @@
 	</allowUsersToCreateTopLevelProjects>
 	<customLogoAddress>http://www.bimserver.org/version/defaultlogo.gif
 	</customLogoAddress>
+	<siteAddress>http://localhost</siteAddress>
 </settings>

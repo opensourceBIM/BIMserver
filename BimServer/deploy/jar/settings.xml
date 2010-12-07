@@ -3,14 +3,19 @@
 	<showVersionUpgradeAvailable>false</showVersionUpgradeAvailable>
 	<registrationAddition></registrationAddition>
 	<smtpServer>smtp.xs4all.nl</smtpServer>
-	<sendConfirmationEmailAfterRegistration>true</sendConfirmationEmailAfterRegistration>
+	<sendConfirmationEmailAfterRegistration>true
+	</sendConfirmationEmailAfterRegistration>
 	<emailSenderAddress>no-reply@bimserver.org</emailSenderAddress>
-	<customLogoAddress>http://www.bimserver.org/version/defaultlogo.gif</customLogoAddress>
+	<customLogoAddress>http://www.bimserver.org/version/defaultlogo.gif
+	</customLogoAddress>
 	<databaseLocation>database</databaseLocation>
-	<enabledExportTypes>IFC, IFCXML, CITYGML, COLLADA, KML, KMZ</enabledExportTypes>
+	<enabledExportTypes>IFC, IFCXML, CITYGML, COLLADA, KML, KMZ
+	</enabledExportTypes>
 	<allowSelfRegistration>false</allowSelfRegistration>
 	<autoTestClashes>false</autoTestClashes>
 	<useSecondEngineJvm>true</useSecondEngineJvm>
 	<intelligentMerging>true</intelligentMerging>
-	<allowUsersToCreateTopLevelProjects>false</allowUsersToCreateTopLevelProjects>
+	<allowUsersToCreateTopLevelProjects>false
+	</allowUsersToCreateTopLevelProjects>
+	<siteAddress>http://localhost</siteAddress>
 </settings>

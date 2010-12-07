@@ -43,7 +43,7 @@
 			if (errorMessages.size() == 0) {
 				try {
 					if (ServerSettings.getSettings().isSendConfirmationEmailAfterRegistration()) {
-						Session mailSession = MailSystem.createMailSession();
+						Session mailSession = MailSystem.getInstance().createMailSession();
 		
 						Message msg = new MimeMessage(mailSession);
 	

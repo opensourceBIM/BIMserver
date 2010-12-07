@@ -27,7 +27,7 @@
 					Properties props = new Properties();
 					props.put("mail.smtp.host", ServerSettings.getSettings().getSmtpServer());
 
-					Session mailSession = MailSystem.createMailSession();
+					Session mailSession = MailSystem.getInstance().createMailSession();
 
 					Message msg = new MimeMessage(mailSession);
 

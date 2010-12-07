@@ -1,1 +1,21 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?><settings><allowSelfRegistration>true</allowSelfRegistration><allowUsersToCreateTopLevelProjects>true</allowUsersToCreateTopLevelProjects><autoTestClashes>false</autoTestClashes><customLogoAddress>http://www.bimserver.org/version/defaultlogo.gif 	</customLogoAddress><databaseLocation>database</databaseLocation><emailSenderAddress>leon@berlotti.com</emailSenderAddress><enabledExportTypes>COLLADA,REPORT_SPACES,REPORT_ZONES,REPORT_COMPONENTS,CITYGML,REPORT_SYSTEMS,REPORT_TYPES,COBIE2,O3D_JSON,IFCXML,TEXT,KMZ,IFC,OBJECT_INFO</enabledExportTypes><intelligentMerging>true</intelligentMerging><registrationAddition></registrationAddition><sendConfirmationEmailAfterRegistration>true</sendConfirmationEmailAfterRegistration><showVersionUpgradeAvailable>true</showVersionUpgradeAvailable><smtpServer>relay.glaslokaal.nl</smtpServer><useCaching>false</useCaching></settings>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<settings>
+	<allowSelfRegistration>true</allowSelfRegistration>
+	<allowUsersToCreateTopLevelProjects>true
+	</allowUsersToCreateTopLevelProjects>
+	<autoTestClashes>false</autoTestClashes>
+	<customLogoAddress>http://www.bimserver.org/version/defaultlogo.gif
+	</customLogoAddress>
+	<databaseLocation>database</databaseLocation>
+	<emailSenderAddress>leon@berlotti.com</emailSenderAddress>
+	<enabledExportTypes>COLLADA,REPORT_SPACES,REPORT_ZONES,REPORT_COMPONENTS,CITYGML,REPORT_SYSTEMS,REPORT_TYPES,COBIE2,O3D_JSON,IFCXML,TEXT,KMZ,IFC,OBJECT_INFO
+	</enabledExportTypes>
+	<intelligentMerging>true</intelligentMerging>
+	<registrationAddition></registrationAddition>
+	<sendConfirmationEmailAfterRegistration>true
+	</sendConfirmationEmailAfterRegistration>
+	<showVersionUpgradeAvailable>true</showVersionUpgradeAvailable>
+	<smtpServer>relay.glaslokaal.nl</smtpServer>
+	<useCaching>false</useCaching>
+	<siteAddress>http://localhost</siteAddress>
+</settings>
