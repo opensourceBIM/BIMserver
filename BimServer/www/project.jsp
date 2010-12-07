@@ -700,6 +700,7 @@ for (SRevision sRevision : revisions) {
 							$("#rev" + item.roid).children(".downloadfield").children("form").removeClass("blockinvisible");
 							$("#rev" + item.roid).children(".downloadfield").children(".statusfield").text("");
 							$("#rev" + item.roid).children(".clashesfield").children("img").hide();
+							$("#rev" + item.roid).children(".clashesfield").children(".statusfield").text(item.clashes);
 						} else if (state == "ERROR") {
 							$("#rev" + item.roid).children(".downloadfield").children("img").hide();
 							$("#rev" + item.roid).children(".downloadfield").children("form").addClass("blockinvisible");
