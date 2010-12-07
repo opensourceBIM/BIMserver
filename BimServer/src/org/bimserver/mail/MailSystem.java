@@ -55,7 +55,7 @@ public class MailSystem {
 			
 			Set<InternetAddress> addresses = new HashSet<InternetAddress>();
 			for (String addressTo : addressesTo) {
-				if (senderAddress.contains("@") && senderAddress.contains(".")) {
+				if (addressTo.contains("@") && addressTo.contains(".")) {
 					addresses.add(new InternetAddress(addressTo));
 				}
 			}
@@ -74,8 +74,10 @@ public class MailSystem {
 			for (Long roid : sClashDetectionSettings.getRevisions()) {
 				revisionsString.append(roid + ";");
 			}
-			
-			msg.setContent("<a href=\"" + ServerSettings.getSettings().getSiteAddress() + ServerInitializer.getServletContext().getContextPath() + "/project.jsp?tab=cd&poid=" + poid + "&margin=" + sClashDetectionSettings.getMargin() + "&revisions=" + revisionsString + "&ignored=" + ignoreString + "\">Click here for clash detection results</a>", "text/html");
+
+			if (!addresses.isEmpty()) {
+				msg.setContent("<a href=\"" + ServerSettings.getSettings().getSiteAddress() + ServerInitializer.getServletContext().getContextPath() + "/project.jsp?tab=cd&poid=" + poid + "&margin=" + sClashDetectionSettings.getMargin() + "&revisions=" + revisionsString + "&ignored=" + ignoreString + "\">Click here for clash detection results</a>", "text/html");
+			}
 			Transport.send(msg);
 		} catch (AddressException e) {
 			LOGGER.error("", e);

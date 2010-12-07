@@ -350,7 +350,8 @@ public class IfcStepDeserializer {
 		if (classifier != null) {
 			if (classifier instanceof EClassImpl) {
 				if (null != ((EClassImpl) classifier).getEStructuralFeature(WRAPPED_VALUE)) {
-					EObject create = ePackage.getEFactoryInstance().create((EClass) classifier);
+					IdEObject create = (IdEObject) ePackage.getEFactoryInstance().create((EClass) classifier);
+					model.add(create);
 					Class<?> instanceClass = create.eClass().getEStructuralFeature(WRAPPED_VALUE).getEType().getInstanceClass();
 					if (value.equals("")) {
 
