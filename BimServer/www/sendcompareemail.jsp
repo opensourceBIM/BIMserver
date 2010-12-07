@@ -13,7 +13,9 @@
 <%@page import="org.bimserver.mail.MailSystem"%>
 <%@page import="org.slf4j.Logger"%>
 <%@page import="org.slf4j.LoggerFactory"%>
-<jsp:useBean id="loginManager" scope="session" class="org.bimserver.web.LoginManager" />
+
+<%@page import="org.bimserver.shared.SCompareResult.SCompareType"%>
+<%@page import="org.bimserver.shared.SCompareResult.SCompareType"%><jsp:useBean id="loginManager" scope="session" class="org.bimserver.web.LoginManager" />
 <%
 	Logger logger = LoggerFactory.getLogger(MailSystem.class);
 	try {
@@ -29,7 +31,7 @@
 			senderAddress = ServerSettings.getSettings().getEmailSenderAddress();
 		}
 		
-		Session mailSession = MailSystem.createMailSession();
+		Session mailSession = MailSystem.getInstance().createMailSession();
 
 		Message msg = new MimeMessage(mailSession);
 
@@ -42,8 +44,9 @@
 		msg.setRecipients(Message.RecipientType.TO, addressTo);
 		
 		msg.setSubject("BIMserver Model Comparator");
-		SCompareResult compareResult = loginManager.getService().compare(roid1, roid2);
-		String html = JspHelper.writeCompareResult(compareResult, roid1, roid2, project);
+		SCompareResult.SCompareType sCompareType = SCompareResult.SCompareType.valueOf(request.getParameter("type"));
+		SCompareResult compareResult = loginManager.getService().compare(roid1, roid2, sCompareType);
+		String html = JspHelper.writeCompareResult(compareResult, roid1, roid2, sCompareType, project);
 		msg.setContent(html, "text/html");
 		Transport.send(msg);
 		out.append("Compare results succesfully e-mailed to " + address);

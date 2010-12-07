@@ -18,7 +18,6 @@ import org.bimserver.database.store.ConcreteRevision;
 import org.bimserver.database.store.EidClash;
 import org.bimserver.database.store.Project;
 import org.bimserver.database.store.Revision;
-import org.bimserver.database.store.StoreFactory;
 import org.bimserver.database.store.log.AccessMethod;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.IfcModel;
@@ -28,7 +27,6 @@ import org.bimserver.ifcengine.FailSafeIfcEngine;
 import org.bimserver.ifcengine.IfcEngineException;
 import org.bimserver.ifcengine.IfcEngineFactory;
 import org.bimserver.ifcengine.IfcEngineModel;
-import org.bimserver.interfaces.objects.SClashDetectionSettings;
 import org.bimserver.shared.UserException;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EAttribute;
@@ -40,15 +38,15 @@ import org.slf4j.LoggerFactory;
 
 public class FindClashesDatabaseAction extends BimDatabaseAction<Set<? extends Clash>> {
 	private static final Logger LOGGER = LoggerFactory.getLogger(FindClashesDatabaseAction.class);
-	private final SClashDetectionSettings sClashDetectionSettings;
 	private final long actingUoid;
 	private final IfcEngineFactory ifcEngineFactory;
 	private final SchemaDefinition schema;
+	private final ClashDetectionSettings clashDetectionSettings;
 
-	public FindClashesDatabaseAction(AccessMethod accessMethod, SClashDetectionSettings sClashDetectionSettings, SchemaDefinition schema, IfcEngineFactory ifcEngineFactory,
+	public FindClashesDatabaseAction(AccessMethod accessMethod, ClashDetectionSettings clashDetectionSettings, SchemaDefinition schema, IfcEngineFactory ifcEngineFactory,
 			long actingUoid) {
 		super(accessMethod);
-		this.sClashDetectionSettings = sClashDetectionSettings;
+		this.clashDetectionSettings = clashDetectionSettings;
 		this.schema = schema;
 		this.ifcEngineFactory = ifcEngineFactory;
 		this.actingUoid = actingUoid;
@@ -57,7 +55,6 @@ public class FindClashesDatabaseAction extends BimDatabaseAction<Set<? extends C
 	@Override
 	public Set<? extends Clash> execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
 		Map<Long, Revision> oidToRoidMap = new HashMap<Long, Revision>();
-		ClashDetectionSettings clashDetectionSettings = convert(sClashDetectionSettings, bimDatabaseSession);
 
 		// Look in the cache
 		Set<EidClash> clashDetection = ClashDetectionCache.getInstance().getClashDetection(clashDetectionSettings);
@@ -67,8 +64,7 @@ public class FindClashesDatabaseAction extends BimDatabaseAction<Set<? extends C
 
 		Project project = null;
 		LinkedHashSet<IfcModel> ifcModels = new LinkedHashSet<IfcModel>();
-		for (Long roid : sClashDetectionSettings.getRevisions()) {
-			Revision revision = bimDatabaseSession.getRevisionByRoid(roid);
+		for (Revision revision : clashDetectionSettings.getRevisions()) {
 			project = revision.getProject();
 			for (ConcreteRevision concreteRevision : revision.getConcreteRevisions()) {
 				IfcModel source = new IfcModel(bimDatabaseSession.getMap(concreteRevision.getProject().getId(), concreteRevision.getId()).getMap());
@@ -83,7 +79,7 @@ public class FindClashesDatabaseAction extends BimDatabaseAction<Set<? extends C
 		IfcModel newModel = new IfcModel();
 		Map<IdEObject, IdEObject> converted = new HashMap<IdEObject, IdEObject>();
 		for (IdEObject idEObject : ifcModel.getValues()) {
-			cleanupModel(idEObject, newModel, ifcModel, new HashSet<String>(sClashDetectionSettings.getIgnoredClasses()), converted);
+			cleanupModel(idEObject, newModel, ifcModel, new HashSet<String>(clashDetectionSettings.getIgnoredClasses()), converted);
 		}
 		IfcStepSerializer ifcStepSerializer = new IfcStepSerializer(null, bimDatabaseSession.getUserByUoid(actingUoid), "", newModel, schema);
 		try {
@@ -92,7 +88,7 @@ public class FindClashesDatabaseAction extends BimDatabaseAction<Set<? extends C
 			try {
 				IfcEngineModel ifcEngineModel = failSafeIfcEngine.openModel(bytes);
 				try {
-					Set<EidClash> clashes = ifcEngineModel.findClashesByEid(sClashDetectionSettings.getMargin());
+					Set<EidClash> clashes = ifcEngineModel.findClashesByEid(clashDetectionSettings.getMargin());
 
 					// Store in cache
 					ClashDetectionCache.getInstance().storeClashDetection(clashDetectionSettings, clashes);
@@ -120,18 +116,6 @@ public class FindClashesDatabaseAction extends BimDatabaseAction<Set<? extends C
 			LOGGER.error("", e);
 		}
 		return null;
-	}
-
-	private ClashDetectionSettings convert(SClashDetectionSettings sClashDetectionSettings, BimDatabaseSession bimDatabaseSession) {
-		ClashDetectionSettings clashDetectionSettings = StoreFactory.eINSTANCE.createClashDetectionSettings();
-		clashDetectionSettings.setMargin(sClashDetectionSettings.getMargin());
-		for (String ignoredClass : sClashDetectionSettings.getIgnoredClasses()) {
-			clashDetectionSettings.getIgnoredClasses().add(ignoredClass);
-		}
-		for (long roid : sClashDetectionSettings.getRevisions()) {
-			clashDetectionSettings.getRevisions().add(bimDatabaseSession.getRevisionByRoid(roid));
-		}
-		return clashDetectionSettings;
 	}
 
 	@SuppressWarnings("unchecked")

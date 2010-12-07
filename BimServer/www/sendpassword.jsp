@@ -32,7 +32,7 @@
 	String emailaddress = request.getParameter("emailaddress");
 	loginManager.getAdminService().resetPassword(emailaddress);
 
-	Session mailSession = MailSystem.createMailSession();
+	Session mailSession = MailSystem.getInstance().createMailSession();
 	
 	Message msg = new MimeMessage(mailSession);
 

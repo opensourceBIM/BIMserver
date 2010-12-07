@@ -12,34 +12,16 @@
 <%@page import="org.slf4j.Logger"%>
 <%@page import="org.slf4j.LoggerFactory"%>
 <%@page import="org.bimserver.utils.WebUtils"%>
+<%@page import="org.bimserver.interfaces.objects.SClashDetectionSettings"%>
 <jsp:useBean id="loginManager" scope="session" class="org.bimserver.web.LoginManager" />
 <%
 	Logger logger = LoggerFactory.getLogger(MailSystem.class);
 	try {
-		
 		String address = request.getParameter("address");
-		
 		String senderName = loginManager.getService().getCurrentUser().getName();
 		String senderAddress = loginManager.getService().getCurrentUser().getUsername();
-		if (!senderAddress.contains("@") || !senderAddress.contains(".")) {
-			senderAddress = ServerSettings.getSettings().getEmailSenderAddress();
-		}
-		Session mailSession = MailSystem.createMailSession();
-	
-		MimeMessage msg = new MimeMessage(mailSession);
-	
-		InternetAddress addressFrom = new InternetAddress(senderAddress);
-		addressFrom.setPersonal(senderName);
-		msg.setFrom(addressFrom);
-	
-		InternetAddress[] addressTo = new InternetAddress[1];
-		addressTo[0] = new InternetAddress(address);
-		msg.setRecipients(Message.RecipientType.TO, addressTo);
-		
-		msg.setSubject("BIMserver Clash Detection");
 		String url = WebUtils.getWebServer(request.getRequestURL().toString());
-		msg.setContent("<a href=\"http://" + url + "project.jsp?tab=cd&poid=" + request.getParameter("poid") + "&margin=" + request.getParameter("margin") + "&revisions=" + request.getParameter("revisions") + "&ignore=" + request.getParameter("ignore") + "\">Click here for clash detection results</a>", "text/html");
-		Transport.send(msg);
+		MailSystem.getInstance().sendClashDetectionEmail(senderName, senderAddress, url, JspHelper.createSClashDetectionSettings(request), address);
 		out.append("Clash detection succesfully e-mailed to " + address);
 	} catch (Exception e) {
 		logger.error("", e);

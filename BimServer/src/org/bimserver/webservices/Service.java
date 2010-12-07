@@ -109,6 +109,7 @@ import org.bimserver.database.store.GeoTag;
 import org.bimserver.database.store.ObjectState;
 import org.bimserver.database.store.Project;
 import org.bimserver.database.store.Revision;
+import org.bimserver.database.store.StoreFactory;
 import org.bimserver.database.store.User;
 import org.bimserver.database.store.UserType;
 import org.bimserver.database.store.log.AccessMethod;
@@ -1254,7 +1255,7 @@ public class Service implements ServiceInterface {
 		requireAuthentication();
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
-			return convert(session.executeAction(new FindClashesDatabaseAction(accessMethod, sClashDetectionSettings, schema, ifcEngineFactory, currentUoid), DEADLOCK_RETRIES),
+			return convert(session.executeAction(new FindClashesDatabaseAction(accessMethod, convert(sClashDetectionSettings, session), schema, ifcEngineFactory, currentUoid), DEADLOCK_RETRIES),
 					SGuidClash.class, session);
 		} catch (BimDatabaseException e) {
 			throw new UserException("Database error", e);
@@ -1268,13 +1269,25 @@ public class Service implements ServiceInterface {
 		requireAuthentication();
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
-			return convert(session.executeAction(new FindClashesDatabaseAction(accessMethod, sClashDetectionSettings, schema, ifcEngineFactory, currentUoid), DEADLOCK_RETRIES),
+			return convert(session.executeAction(new FindClashesDatabaseAction(accessMethod, convert(sClashDetectionSettings, session), schema, ifcEngineFactory, currentUoid), DEADLOCK_RETRIES),
 					SEidClash.class, session);
 		} catch (BimDatabaseException e) {
 			throw new UserException("Database error", e);
 		} finally {
 			session.close();
 		}
+	}
+
+	private ClashDetectionSettings convert(SClashDetectionSettings sClashDetectionSettings, BimDatabaseSession bimDatabaseSession) {
+		ClashDetectionSettings clashDetectionSettings = StoreFactory.eINSTANCE.createClashDetectionSettings();
+		clashDetectionSettings.setMargin(sClashDetectionSettings.getMargin());
+		for (String ignoredClass : sClashDetectionSettings.getIgnoredClasses()) {
+			clashDetectionSettings.getIgnoredClasses().add(ignoredClass);
+		}
+		for (long roid : sClashDetectionSettings.getRevisions()) {
+			clashDetectionSettings.getRevisions().add(bimDatabaseSession.getRevisionByRoid(roid));
+		}
+		return clashDetectionSettings;
 	}
 
 	@Override
@@ -1710,5 +1723,17 @@ public class Service implements ServiceInterface {
 	@Override
 	public SAccessMethod getAccessMethod() {
 		return SAccessMethod.valueOf(accessMethod.getName());
+	}
+
+	public static SClashDetectionSettings convert(ClashDetectionSettings clashDetectionSettings) {
+		SClashDetectionSettings sClashDetectionSettings = new SClashDetectionSettings();
+		sClashDetectionSettings.setMargin(clashDetectionSettings.getMargin());
+		for (String cl : clashDetectionSettings.getIgnoredClasses()) {
+			clashDetectionSettings.getIgnoredClasses().add(cl);
+		}
+		for (Revision revision : clashDetectionSettings.getRevisions()) {
+			sClashDetectionSettings.getRevisions().add(revision.getOid());
+		}
+		return sClashDetectionSettings;
 	}
 }

@@ -33,6 +33,7 @@
 	settings.setIntelligentMerging(request.getParameter("intelligentMerging") != null);
 	settings.setAutoTestClashes(request.getParameter("autoTestClashes") != null);
 	settings.setCustomLogoAddress(request.getParameter("customLogo"));
+	settings.setSiteAddress(request.getParameter("siteAddress"));
 	String enabledExportTypes = "";
 	Set<ResultType> enabledTypes = new HashSet<ResultType>();
 	for (ResultType resultType : ResultType.values()) {
@@ -75,6 +76,13 @@
 <div class="tabbertab" id="basicsettingstab" title="Basic settings">
 <form method="post">
 <table class="formatted infotable">
+	<tr>
+		<td colspan="2" class="tabletitle">Server</td>
+	</tr>
+	<tr>
+		<td><label for="siteAddress">Site address (URL)</label></td>
+		<td><input id="siteAddress" type="text" name="siteAddress" value="<%=settings.getSiteAddress() %>"></input></td>
+	</tr>
 	<tr>
 		<td colspan="2" class="tabletitle">Registration</td>
 	</tr>

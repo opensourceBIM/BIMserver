@@ -26,7 +26,7 @@
 			senderAddress = ServerSettings.getSettings().getEmailSenderAddress();
 		}
 		
-		Session mailSession = MailSystem.createMailSession();
+		Session mailSession = MailSystem.getInstance().createMailSession();
 	
 		Message msg = new MimeMessage(mailSession);
 	
