@@ -77,8 +77,8 @@ public class MailSystem {
 
 			if (!addresses.isEmpty()) {
 				msg.setContent("<a href=\"" + ServerSettings.getSettings().getSiteAddress() + ServerInitializer.getServletContext().getContextPath() + "/project.jsp?tab=cd&poid=" + poid + "&margin=" + sClashDetectionSettings.getMargin() + "&revisions=" + revisionsString + "&ignored=" + ignoreString + "\">Click here for clash detection results</a>", "text/html");
+				Transport.send(msg);
 			}
-			Transport.send(msg);
 		} catch (AddressException e) {
 			LOGGER.error("", e);
 		} catch (UnsupportedEncodingException e) {
