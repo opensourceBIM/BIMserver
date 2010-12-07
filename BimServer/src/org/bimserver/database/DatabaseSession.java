@@ -313,7 +313,7 @@ public class DatabaseSession implements BimDatabaseSession {
 	}
 
 	public IdEObject get(short cid, long oid) throws BimDatabaseException, BimDeadlockException {
-		return get(cid, oid);
+		return get(cid, oid, new ReadSet(Database.STORE_PROJECT_ID, Database.STORE_PROJECT_REVISION_ID));
 	}
 	
 	public IdEObject get(short cid, long oid, ReadSet readSet) throws BimDatabaseException, BimDeadlockException {

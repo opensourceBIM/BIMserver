@@ -16,8 +16,8 @@ public class SUser
 		this.oid = oid;
 	}
 	private java.lang.String name;
-	private List<Long> hasRightsOn;
-	private List<Long> revisions;
+	private List<Long> hasRightsOn = new ArrayList<Long>();
+	private List<Long> revisions = new ArrayList<Long>();
 	private SObjectState state;
 	private java.util.Date createdOn;
 	private long createdById;

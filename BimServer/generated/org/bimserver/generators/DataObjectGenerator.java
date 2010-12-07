@@ -31,7 +31,7 @@ public class DataObjectGenerator
   protected final String TEXT_14 = " ";
   protected final String TEXT_15 = ";";
   protected final String TEXT_16 = NL + "\tprivate List<Long> ";
-  protected final String TEXT_17 = ";";
+  protected final String TEXT_17 = " = new ArrayList<Long>();";
   protected final String TEXT_18 = NL + "\tprivate long ";
   protected final String TEXT_19 = "Id;";
   protected final String TEXT_20 = NL + "\tpublic S";

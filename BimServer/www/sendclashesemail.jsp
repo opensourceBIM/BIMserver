@@ -20,8 +20,8 @@
 		String address = request.getParameter("address");
 		String senderName = loginManager.getService().getCurrentUser().getName();
 		String senderAddress = loginManager.getService().getCurrentUser().getUsername();
-		String url = WebUtils.getWebServer(request.getRequestURL().toString());
-		MailSystem.getInstance().sendClashDetectionEmail(senderName, senderAddress, url, JspHelper.createSClashDetectionSettings(request), address);
+		long poid = Long.parseLong(request.getParameter("poid"));
+		MailSystem.getInstance().sendClashDetectionEmail(poid, senderName, senderAddress, JspHelper.createSClashDetectionSettings(request), address);
 		out.append("Clash detection succesfully e-mailed to " + address);
 	} catch (Exception e) {
 		logger.error("", e);

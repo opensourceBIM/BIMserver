@@ -20,12 +20,12 @@ public class SRevision
 	private java.util.Date date;
 	private java.lang.String comment;
 	private long size;
-	private List<Long> concreteRevisions;
+	private List<Long> concreteRevisions = new ArrayList<Long>();
 	private long lastConcreteRevisionId;
-	private List<Long> checkouts;
+	private List<Long> checkouts = new ArrayList<Long>();
 	private long projectId;
 	private SCheckinState state;
-	private List<Long> lastClashes;
+	private List<Long> lastClashes = new ArrayList<Long>();
 	private java.lang.String tag;
 	private java.lang.String lastError;
 	private int bmi;

@@ -15,7 +15,7 @@ public class SServerLog
 	public void setOid(long oid) {
 		this.oid = oid;
 	}
-	private List<Long> actions;
+	private List<Long> actions = new ArrayList<Long>();
 	public List<Long> getActions() {
 		return actions;
 	}

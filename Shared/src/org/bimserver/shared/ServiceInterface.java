@@ -326,4 +326,8 @@ public interface ServiceInterface {
 	Token getCurrentToken();
 
 	SAccessMethod getAccessMethod();
+	
+	Set<ResultType> getEnabledResultTypes();
+	
+	Set<ResultType> getAllResultTypes();
 }

@@ -2,7 +2,8 @@
 <%@page import="org.bimserver.interfaces.objects.SProject"%>
 <%@page import="org.bimserver.interfaces.objects.SRevision"%>
 <%@page import="org.bimserver.interfaces.objects.SClash"%>
-<%@page	import="org.bimserver.interfaces.objects.SClashDetectionSettings"%>
+<%@page
+	import="org.bimserver.interfaces.objects.SClashDetectionSettings"%>
 <%@page import="org.bimserver.web.JspHelper"%>
 <%@page import="java.util.Set"%>
 <%@page import="java.util.HashSet"%>
@@ -50,8 +51,8 @@
 			out.write(JspHelper.writeDownloadProjectTree("clash", project, loginManager, 0, revisions));
 
 			Set<String> ignored = new HashSet<String>();
-			if (request.getParameter("ignore") != null) {
-				String[] ignoreSplit = request.getParameter("ignore").split(";");
+			if (request.getParameter("ignored") != null) {
+				String[] ignoreSplit = request.getParameter("ignored").split(";");
 				for (String i : ignoreSplit) {
 					ignored.add(i);
 				}
@@ -180,8 +181,7 @@ $(document).ready(function(){
 <br />
 <%
 	EmfSerializerFactory emfSerializerFactory = EmfSerializerFactory.getInstance();
-		SClashDetectionSettings sClashDetectionSettings = new SClashDetectionSettings();
-		JspHelper.createSClashDetectionSettings(request);
+		SClashDetectionSettings sClashDetectionSettings = JspHelper.createSClashDetectionSettings(request);
 		Map<Long, Long> revisionUsers = new HashMap<Long, Long>();
 		Map<Long, String> revisionUserNames = new HashMap<Long, String>();
 		List<SEidClash> clashes = loginManager.getService().findClashesByEid(sClashDetectionSettings);
@@ -227,7 +227,7 @@ Send summary to <input type="text" id="address" name="address" /> <input
 	type="hidden" id="emailmargin" name="margin"
 	value="<%=request.getParameter("margin")%>" /> <input type="hidden"
 	id="emailrevisions" name="revisions"
-	value="<%=request.getParameter("revisions")%>" /> <input type="hidden"
+	value="<%=request.getParameter("revisions")%>" /><input type="hidden" name="poid" value="<%=poid %>"/> <input type="hidden"
 	id="emailignored" name="ignored"
 	value="<%=request.getParameter("ignored")%>" /> <input type="submit"
 	name="email" value="Send" /></form>
@@ -239,7 +239,7 @@ Download: <input type="hidden" name="clashes" value="true" /> <input
 	type="hidden" name="margin" value="<%=request.getParameter("margin")%>" />
 <input type="hidden" name="revisions"
 	value="<%=request.getParameter("revisions")%>" /> <input type="hidden"
-	name="ignore" value="<%=request.getParameter("ignore")%>" /> <select
+	name="ignored" value="<%=request.getParameter("ignored")%>" /> <select
 	name="resultType">
 	<%
 		for (ResultType resultType : emfSerializerFactory.getMultipleResultTypes()) {
@@ -268,7 +268,7 @@ $(document).ready(function(){
 	});
 	$("#emailclashesform").submit(function(){
 		$("#emailclashesajaxloader").show();
-		$("#emailclashesform").load("sendclashesemail.jsp?poid=" + <%=poid%> + "&address=" + $("#address").val() + "&margin=" + $("#emailmargin").val() + "&revisions=" + $("#emailrevisions").val() + "&ignore=" + $("#emailignored").val());
+		$("#emailclashesform").load("sendclashesemail.jsp?poid=" + <%=poid%> + "&address=" + $("#address").val() + "&margin=" + $("#emailmargin").val() + "&revisions=" + $("#emailrevisions").val() + "&ignored=" + $("#emailignored").val());
 		return false;
 	});
 	instrumentBrowserLinks();

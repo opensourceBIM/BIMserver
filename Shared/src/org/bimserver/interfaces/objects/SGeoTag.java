@@ -16,7 +16,7 @@ public class SGeoTag
 		this.oid = oid;
 	}
 	private boolean enabled;
-	private List<Long> projects;
+	private List<Long> projects = new ArrayList<Long>();
 	private float x;
 	private float y;
 	private float z;
