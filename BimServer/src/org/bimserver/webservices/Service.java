@@ -610,7 +610,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public boolean login(String username, String password) throws UserException {
-		BimDatabaseSession session = bimDatabase.createSession();
+		BimDatabaseSession session = bimDatabase.createReadOnlySession();
 		try {
 			BimDatabaseAction<User> action = new GetUserByNameDatabaseAction(accessMethod, username);
 			User user = session.executeAction(action, DEADLOCK_RETRIES);
@@ -1161,10 +1161,10 @@ public class Service implements ServiceInterface {
 	@Override
 	public boolean userHasRights(long poid) throws UserException {
 		requireAuthentication();
-		BimDatabaseSession session = bimDatabase.createSession();
+		BimDatabaseSession session = bimDatabase.createReadOnlySession();
 		try {
 			BimDatabaseAction<Boolean> action = new UserHasRightsDatabaseAction(accessMethod, getCurrentUser().getOid(), poid);
-			return session.executeAndCommitAction(action, DEADLOCK_RETRIES);
+			return session.executeAction(action, DEADLOCK_RETRIES);
 		} catch (BimDatabaseException e) {
 			throw new UserException("Database error", e);
 		} finally {

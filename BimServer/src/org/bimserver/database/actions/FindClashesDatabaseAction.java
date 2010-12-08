@@ -127,6 +127,7 @@ public class FindClashesDatabaseAction extends BimDatabaseAction<Set<? extends C
 			IdEObject newObject = (IdEObject) original.eClass().getEPackage().getEFactoryInstance().create(original.eClass());
 			newObject.setOid(original.getOid());
 			converted.put(original, newObject);
+			newModel.add(newObject.getOid(), newObject);
 			for (EStructuralFeature eStructuralFeature : original.eClass().getEAllStructuralFeatures()) {
 				Object get = original.eGet(eStructuralFeature);
 				if (eStructuralFeature instanceof EAttribute) {
@@ -167,7 +168,6 @@ public class FindClashesDatabaseAction extends BimDatabaseAction<Set<? extends C
 					}
 				}
 			}
-			newModel.add(newObject.getOid(), newObject);
 			return newObject;
 		}
 		return null;
