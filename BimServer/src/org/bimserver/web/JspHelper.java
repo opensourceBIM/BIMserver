@@ -305,21 +305,21 @@ public class JspHelper {
 		sb.append("<ul class=\"projectTree\">");
 		SProject mainProject = activeProject;
 		while (mainProject.getParentId() != -1) {
-			mainProject = serviceInterface.getProjectByPoid(activeProject.getParentId());
+			mainProject = serviceInterface.getProjectByPoid(mainProject.getParentId());
 		}
-		showProjectTree(sb, mainProject, activeProject, serviceInterface);
+		showProjectTree(sb, mainProject, activeProject, serviceInterface, false);
 		sb.append("</ul>");
 		return sb.toString();
 	}
 
-	private static void showProjectTree(StringBuilder sb, SProject mainProject, SProject activeProject, ServiceInterface serviceInterface) throws UserException {
-		sb.append("<li>");
+	private static void showProjectTree(StringBuilder sb, SProject mainProject, SProject activeProject, ServiceInterface serviceInterface, boolean isLast) throws UserException {
+		sb.append("<li" + (isLast ? " class=\"last\"" : "") + ">");
 		sb.append("<a class=\"projectTreeItem" + (activeProject.getOid() == mainProject.getOid() ? " activeTreeItem" : "") + "\" href=\"project.jsp?poid=" + mainProject.getOid() + "\"/>" + mainProject.getName() + "</a>");
 		if (!mainProject.getSubProjects().isEmpty()) {
 			sb.append("<ul class=\"projectTree\">");
 			for (long poid : mainProject.getSubProjects()) {
 				SProject subProject = serviceInterface.getProjectByPoid(poid);
-				showProjectTree(sb, subProject, activeProject, serviceInterface);
+				showProjectTree(sb, subProject, activeProject, serviceInterface, poid == mainProject.getSubProjects().get(mainProject.getSubProjects().size()-1));
 			}
 			sb.append("</ul>");
 		}
