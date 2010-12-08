@@ -962,7 +962,7 @@ public class Service implements ServiceInterface {
 	}
 
 	public boolean loginAsAdmin() throws UserException {
-		BimDatabaseSession session = bimDatabase.createSession();
+		BimDatabaseSession session = bimDatabase.createReadOnlySession();
 		try {
 			BimDatabaseAction<User> action = new GetUserByNameDatabaseAction(accessMethod, "admin");
 			User user = session.executeAction(action, DEADLOCK_RETRIES);
