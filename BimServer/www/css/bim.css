@@ -453,6 +453,10 @@ a.activeTreeItem {
 	font-weight: bold;
 }
 
+a.norightsTreeItem {
+	background-color: #FEE;
+}
+
 ul.projectTree, ul.projectTree ul {
 	list-style-type: none;
 	background: url(/images/vline.png) repeat-y;

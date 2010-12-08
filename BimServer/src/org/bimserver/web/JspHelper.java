@@ -314,7 +314,8 @@ public class JspHelper {
 
 	private static void showProjectTree(StringBuilder sb, SProject mainProject, SProject activeProject, ServiceInterface serviceInterface, boolean isLast) throws UserException {
 		sb.append("<li" + (isLast ? " class=\"last\"" : "") + ">");
-		sb.append("<a class=\"projectTreeItem" + (activeProject.getOid() == mainProject.getOid() ? " activeTreeItem" : "") + "\" href=\"project.jsp?poid=" + mainProject.getOid() + "\"/>" + mainProject.getName() + "</a>");
+		boolean hasRights = serviceInterface.userHasCheckinRights(mainProject.getOid());
+		sb.append("<a class=\"projectTreeItem" + (activeProject.getOid() == mainProject.getOid() ? " activeTreeItem" : "") + (hasRights ? "" : " norightsTreeItem") + "\" href=\"project.jsp?poid=" + mainProject.getOid() + "\"/>" + mainProject.getName() + "</a>");
 		if (!mainProject.getSubProjects().isEmpty()) {
 			sb.append("<ul class=\"projectTree\">");
 			for (long poid : mainProject.getSubProjects()) {
