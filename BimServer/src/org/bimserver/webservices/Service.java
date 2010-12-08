@@ -1559,7 +1559,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public boolean autologin(String username, String hash) throws UserException {
-		BimDatabaseSession session = bimDatabase.createSession();
+		BimDatabaseSession session = bimDatabase.createReadOnlySession();
 		try {
 			BimDatabaseAction<User> action = new GetUserByNameDatabaseAction(accessMethod, username);
 			User user = session.executeAction(action, DEADLOCK_RETRIES);
