@@ -410,3 +410,17 @@ label {
 .lastrevision {
 	font-weight: bold;
 }
+
+.activeTreeItem {
+	font-weight: bold;
+}
+
+.projectTreeItem {
+	font-size: small;
+	font-weight: normal;
+	text-decoration: none;
+}
+
+.projectTree {
+	margin-left: 10px;
+}

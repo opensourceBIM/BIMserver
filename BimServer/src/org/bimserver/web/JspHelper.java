@@ -299,4 +299,30 @@ public class JspHelper {
 		}
 		return sClashDetectionSettings;
 	}
+	
+	public static String showProjectTree(SProject activeProject, ServiceInterface serviceInterface) throws UserException {
+		StringBuilder sb = new StringBuilder();
+		sb.append("<ul class=\"projectTree\">");
+		SProject mainProject = activeProject;
+		while (mainProject.getParentId() != -1) {
+			mainProject = serviceInterface.getProjectByPoid(activeProject.getParentId());
+		}
+		showProjectTree(sb, mainProject, activeProject, serviceInterface);
+		sb.append("</ul>");
+		return sb.toString();
+	}
+
+	private static void showProjectTree(StringBuilder sb, SProject mainProject, SProject activeProject, ServiceInterface serviceInterface) throws UserException {
+		sb.append("<li>");
+		sb.append("<a class=\"projectTreeItem" + (activeProject.getOid() == mainProject.getOid() ? " activeTreeItem" : "") + "\" href=\"project.jsp?poid=" + mainProject.getOid() + "\"/>" + mainProject.getName() + "</a>");
+		if (!mainProject.getSubProjects().isEmpty()) {
+			sb.append("<ul class=\"projectTree\">");
+			for (long poid : mainProject.getSubProjects()) {
+				SProject subProject = serviceInterface.getProjectByPoid(poid);
+				showProjectTree(sb, subProject, activeProject, serviceInterface);
+			}
+			sb.append("</ul>");
+		}
+		sb.append("</li>");
+	}
 }

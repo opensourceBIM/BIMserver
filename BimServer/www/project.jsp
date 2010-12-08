@@ -100,30 +100,7 @@ if (lastRevision != null) {
  <li><a class="rss" href="<%=request.getContextPath() %>/syndication/checkouts?poid=<%=poid %>">Checkouts feed</a></li>
  </ul>
  <br/>
- <%
-	if (project.getSubProjects().size() == 0) {
-%> <br/> <%
-	} else {
-%>
-<br/>
-<br/>
-<h5>Subprojects:</h5>
-	<%
-	Set<SProject> subProjects = new TreeSet<SProject>(new SProjectNameComparator());
-	for (long subPoid : project.getSubProjects()) {
-		SProject subProject = loginManager.getService().getProjectByPoid(subPoid);
-		subProjects.add(subProject);
-	}
-	for (SProject subProject : subProjects) {
-		SRevision lastSubProjectRevision = null;
-		if (subProject.getLastRevisionId() != -1) {
-			lastSubProjectRevision = loginManager.getService().getRevision(subProject.getLastRevisionId());
-		}
-%>
-   <a href="project.jsp?poid=<%=subProject.getOid() %>"><%=subProject.getName() %></a><br/>	
-	<%
-	}
-  } %>
+<%=JspHelper.showProjectTree(project, loginManager.getService()) %>
 </div>
 
 <div class="content">
@@ -288,7 +265,7 @@ Download: <select name="resultType">
 <%
 }
 	if (project.getSubProjects().size() == 0) {
-%> No subprojects <%
+%> <div class="none">No subprojects</div> <%
 	} else {
 %>
 <table class="formatted">

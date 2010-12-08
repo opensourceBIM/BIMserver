@@ -40,6 +40,7 @@ public class AddUserToProjectDatabaseAction extends BimDatabaseAction<Boolean> {
 			userAddedToProject.setAccessMethod(getAccessMethod());
 			userAddedToProject.setUser(user);
 			userAddedToProject.setProject(project);
+			bimDatabaseSession.store(user);
 			bimDatabaseSession.store(project);
 			bimDatabaseSession.store(userAddedToProject);
 			return true;
