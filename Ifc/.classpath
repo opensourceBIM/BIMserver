@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/buildingSMARTLibrary"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Utils"/>
@@ -10,5 +9,6 @@
 	<classpathentry kind="lib" path="/BimServer/lib/commons/commons-lang-2.4.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Store"/>
 	<classpathentry kind="lib" path="/BimServer/lib/guava-r07.jar" sourcepath="/BimServer/libsrc/guava-src-r07.zip"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

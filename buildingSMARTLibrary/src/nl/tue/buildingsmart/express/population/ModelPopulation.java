@@ -76,7 +76,7 @@ public class ModelPopulation {
 
 	private void buildTypeNameMap() {
 		typeNameMap = new HashMap<String, Vector<EntityInstance>>();
-		for (Iterator instKeyIter = instances.keySet().iterator(); instKeyIter.hasNext();) {
+		for (Iterator<Integer> instKeyIter = instances.keySet().iterator(); instKeyIter.hasNext();) {
 			EntityInstance inst = instances.get(instKeyIter.next());
 
 			String typeName = inst.getEntityDefinition().getName();

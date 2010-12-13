@@ -5,9 +5,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 public class EntityDefinition extends nl.tue.buildingsmart.express.dictionary.NamedType {
 	// store each supertype in both a list and a hashtable for convinience
 	private ArrayList<EntityDefinition> supertypes = new ArrayList<EntityDefinition>();
@@ -21,7 +18,6 @@ public class EntityDefinition extends nl.tue.buildingsmart.express.dictionary.Na
 
 	private ArrayList<EntityDefinition> subtypes = new ArrayList<EntityDefinition>();
 	private Map<String, DerivedAttribute2> derivedAttributes = new HashMap<String, DerivedAttribute2>();
-	private static final Logger LOGGER = LoggerFactory.getLogger(EntityDefinition.class);
 	boolean complex;
 	boolean instantiable;
 	boolean independent;

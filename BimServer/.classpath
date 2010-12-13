@@ -116,5 +116,6 @@
 	<classpathentry exported="true" kind="lib" path="lib/cxf/woodstox-core-asl-4.0.8.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/je-4.1.6.jar" sourcepath="libsrc"/>
 	<classpathentry exported="true" kind="lib" path="lib/guava-r07.jar" sourcepath="libsrc/guava-src-r07.zip"/>
+	<classpathentry kind="lib" path="lib/emf/org.eclipse.emf.query_1.2.100.v200903190031.jar" sourcepath="libsrc/org.eclipse.emf.query.source_1.2.100.v200903190031.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

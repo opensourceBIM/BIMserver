@@ -7,7 +7,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintStream;
@@ -127,9 +126,8 @@ public class ExpressSchemaParser {
 		Express2DictWalker walker;
 
 		File file;
-		FileOutputStream out;
-		String commonSchemaFile = null, fileIn = null, fileOut = null;
-		long startTime, endTime;
+		String fileIn = null;
+		long startTime;
 		startTime = System.currentTimeMillis();
 		int c;
 
@@ -138,10 +136,8 @@ public class ExpressSchemaParser {
 		while ((c = g.getopt()) != -1)
 			switch (c) {
 			case 'o':
-				fileOut = g.getOptarg();
 				break;
 			case 's':
-				commonSchemaFile = g.getOptarg();
 				break;
 			case '?':
 				System.err.println(usage);
@@ -188,11 +184,11 @@ public class ExpressSchemaParser {
 			// System.setOut(stdOutOld);
 			// myErr.close();
 			SchemaDefinition schema = walker.getSchema();
-			Iterator iter = schema.getEntities().iterator();
+			Iterator<EntityDefinition> iter = schema.getEntities().iterator();
 			while (iter.hasNext()) {
 				EntityDefinition ent = (EntityDefinition) iter.next();
 				LOGGER.info(ent.getName());
-				Iterator at = ent.getAttributes().iterator();
+				Iterator<Attribute> at = ent.getAttributes().iterator();
 				while (at.hasNext()) {
 					Attribute attr = (Attribute) at.next();
 					System.out.print(ent.getName() + ":" + attr.getName());
@@ -219,7 +215,7 @@ public class ExpressSchemaParser {
 				}
 			}
 
-			Iterator ti = schema.getTypes().iterator();
+			Iterator<DefinedType> ti = schema.getTypes().iterator();
 			while (ti.hasNext()) {
 				DefinedType type = (DefinedType) ti.next();
 				UnderlyingType ut = type.getDomain();
@@ -258,7 +254,6 @@ public class ExpressSchemaParser {
 		// } catch (java.io.IOException e) {
 		//	LOGGER.error("", e);
 		// }
-
 	}
 
 	private static final String getStringTime(long millis) {

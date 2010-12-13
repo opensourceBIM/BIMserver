@@ -62,7 +62,7 @@ public class Test {
 
 		ResourceFetcher resourceFetcher = new LocalDevelopmentResourceFetcher();
 
-//		testGeometry(resourceFetcher);
+		testGeometry(resourceFetcher);
 		testClashes(resourceFetcher);
 	}
 

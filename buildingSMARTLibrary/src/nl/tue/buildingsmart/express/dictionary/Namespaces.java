@@ -68,7 +68,7 @@ public class Namespaces {
 					
 					//add all objects to HashMap for easy retrieval
 					String nsName = ns.getName();
-					Iterator iter = objects.iterator();
+					Iterator<String> iter = objects.iterator();
 					while (iter.hasNext()){
 						addNamespaceEntry((String)iter.next(),nsName);
 					}

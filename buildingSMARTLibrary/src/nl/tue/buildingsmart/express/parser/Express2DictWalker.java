@@ -32,16 +32,12 @@ import nl.tue.buildingsmart.express.dictionary.SimpleType;
 import nl.tue.buildingsmart.express.dictionary.StringType;
 import nl.tue.buildingsmart.express.dictionary.UnderlyingType;
 import nl.tue.buildingsmart.express.dictionary.VariableSizeAggregationType;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import antlr.ASTPair;
 import antlr.NoViableAltException;
 import antlr.RecognitionException;
 import antlr.collections.AST;
 
-
+@SuppressWarnings("all")
 public class Express2DictWalker extends antlr.TreeParser       implements Express2DictWalkerTokenTypes
  {
 
@@ -54,7 +50,6 @@ public class Express2DictWalker extends antlr.TreeParser       implements Expres
 	static boolean unlimited_bound=false;
 	// stores the last INTEGER_LITERAL that was parsed. Is used in bounds
 	String nextInt;
-	private static final Logger LOGGER = LoggerFactory.getLogger(Express2DictWalker.class);
 	
 	public SchemaDefinition getSchema(){
 		return schema;
@@ -80,7 +75,6 @@ public Express2DictWalker() {
 
 	public final void actual_parameter_list(AST _t) throws RecognitionException {
 		
-		AST actual_parameter_list_AST_in = (_t == ASTNULL) ? null : (AST)_t;
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST actual_parameter_list_AST = null;
@@ -88,9 +82,7 @@ public Express2DictWalker() {
 		try {      // for error handling
 			AST __t2 = _t;
 			AST tmp1_AST = null;
-			AST tmp1_AST_in = null;
 			tmp1_AST = astFactory.create((AST)_t);
-			tmp1_AST_in = (AST)_t;
 			astFactory.addASTChild(currentAST, tmp1_AST);
 			ASTPair __currentAST2 = currentAST.copy();
 			currentAST.root = currentAST.child;
@@ -130,7 +122,6 @@ public Express2DictWalker() {
 	
 	public final void parameter(AST _t) throws RecognitionException {
 		
-		AST parameter_AST_in = (_t == ASTNULL) ? null : (AST)_t;
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST parameter_AST = null;
@@ -138,9 +129,7 @@ public Express2DictWalker() {
 		try {      // for error handling
 			AST __t357 = _t;
 			AST tmp2_AST = null;
-			AST tmp2_AST_in = null;
 			tmp2_AST = astFactory.create((AST)_t);
-			tmp2_AST_in = (AST)_t;
 			astFactory.addASTChild(currentAST, tmp2_AST);
 			ASTPair __currentAST357 = currentAST.copy();
 			currentAST.root = currentAST.child;
@@ -165,7 +154,6 @@ public Express2DictWalker() {
 	
 	public final void aggregate_initializer(AST _t) throws RecognitionException {
 		
-		AST aggregate_initializer_AST_in = (_t == ASTNULL) ? null : (AST)_t;
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST aggregate_initializer_AST = null;
@@ -173,9 +161,7 @@ public Express2DictWalker() {
 		try {      // for error handling
 			AST __t6 = _t;
 			AST tmp3_AST = null;
-			AST tmp3_AST_in = null;
 			tmp3_AST = astFactory.create((AST)_t);
-			tmp3_AST_in = (AST)_t;
 			astFactory.addASTChild(currentAST, tmp3_AST);
 			ASTPair __currentAST6 = currentAST.copy();
 			currentAST.root = currentAST.child;
@@ -232,7 +218,6 @@ public Express2DictWalker() {
 	
 	public final void element(AST _t) throws RecognitionException {
 		
-		AST element_AST_in = (_t == ASTNULL) ? null : (AST)_t;
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST element_AST = null;
@@ -240,9 +225,7 @@ public Express2DictWalker() {
 		try {      // for error handling
 			AST __t99 = _t;
 			AST tmp4_AST = null;
-			AST tmp4_AST_in = null;
 			tmp4_AST = astFactory.create((AST)_t);
-			tmp4_AST_in = (AST)_t;
 			astFactory.addASTChild(currentAST, tmp4_AST);
 			ASTPair __currentAST99 = currentAST.copy();
 			currentAST.root = currentAST.child;
@@ -287,7 +270,6 @@ public Express2DictWalker() {
 	
 	public final void aggregate_source(AST _t) throws RecognitionException {
 		
-		AST aggregate_source_AST_in = (_t == ASTNULL) ? null : (AST)_t;
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST aggregate_source_AST = null;
@@ -295,9 +277,7 @@ public Express2DictWalker() {
 		try {      // for error handling
 			AST __t11 = _t;
 			AST tmp5_AST = null;
-			AST tmp5_AST_in = null;
 			tmp5_AST = astFactory.create((AST)_t);
-			tmp5_AST_in = (AST)_t;
 			astFactory.addASTChild(currentAST, tmp5_AST);
 			ASTPair __currentAST11 = currentAST.copy();
 			currentAST.root = currentAST.child;
@@ -321,8 +301,6 @@ public Express2DictWalker() {
 	}
 	
 	public final void simple_expression(AST _t) throws RecognitionException {
-		
-		AST simple_expression_AST_in = (_t == ASTNULL) ? null : (AST)_t;
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST simple_expression_AST = null;
@@ -330,9 +308,7 @@ public Express2DictWalker() {
 		try {      // for error handling
 			AST __t475 = _t;
 			AST tmp6_AST = null;
-			AST tmp6_AST_in = null;
 			tmp6_AST = astFactory.create((AST)_t);
-			tmp6_AST_in = (AST)_t;
 			astFactory.addASTChild(currentAST, tmp6_AST);
 			ASTPair __currentAST475 = currentAST.copy();
 			currentAST.root = currentAST.child;
@@ -376,7 +352,6 @@ public Express2DictWalker() {
 	public final String  aggregate_type(AST _t) throws RecognitionException {
 		String TypeName="aggregate";
 		
-		AST aggregate_type_AST_in = (_t == ASTNULL) ? null : (AST)_t;
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST aggregate_type_AST = null;
@@ -384,9 +359,7 @@ public Express2DictWalker() {
 		try {      // for error handling
 			AST __t13 = _t;
 			AST tmp7_AST = null;
-			AST tmp7_AST_in = null;
 			tmp7_AST = astFactory.create((AST)_t);
-			tmp7_AST_in = (AST)_t;
 			astFactory.addASTChild(currentAST, tmp7_AST);
 			ASTPair __currentAST13 = currentAST.copy();
 			currentAST.root = currentAST.child;
@@ -432,7 +405,6 @@ public Express2DictWalker() {
 	
 	public final void type_label(AST _t) throws RecognitionException {
 		
-		AST type_label_AST_in = (_t == ASTNULL) ? null : (AST)_t;
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST type_label_AST = null;
@@ -440,9 +412,7 @@ public Express2DictWalker() {
 		try {      // for error handling
 			AST __t576 = _t;
 			AST tmp8_AST = null;
-			AST tmp8_AST_in = null;
 			tmp8_AST = astFactory.create((AST)_t);
-			tmp8_AST_in = (AST)_t;
 			astFactory.addASTChild(currentAST, tmp8_AST);
 			ASTPair __currentAST576 = currentAST.copy();
 			currentAST.root = currentAST.child;
@@ -450,9 +420,7 @@ public Express2DictWalker() {
 			match(_t,TYPE_LABEL);
 			_t = _t.getFirstChild();
 			AST tmp9_AST = null;
-			AST tmp9_AST_in = null;
 			tmp9_AST = astFactory.create((AST)_t);
-			tmp9_AST_in = (AST)_t;
 			astFactory.addASTChild(currentAST, tmp9_AST);
 			match(_t,IDENT);
 			_t = _t.getNextSibling();
@@ -472,7 +440,6 @@ public Express2DictWalker() {
 	public final String  parameter_type(AST _t) throws RecognitionException {
 		String TypeName ="";
 		
-		AST parameter_type_AST_in = (_t == ASTNULL) ? null : (AST)_t;
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST parameter_type_AST = null;
@@ -480,9 +447,7 @@ public Express2DictWalker() {
 		try {      // for error handling
 			AST __t361 = _t;
 			AST tmp10_AST = null;
-			AST tmp10_AST_in = null;
 			tmp10_AST = astFactory.create((AST)_t);
-			tmp10_AST_in = (AST)_t;
 			astFactory.addASTChild(currentAST, tmp10_AST);
 			ASTPair __currentAST361 = currentAST.copy();
 			currentAST.root = currentAST.child;
@@ -535,8 +500,7 @@ public Express2DictWalker() {
 	
 	public final String[]  aggregation_types(AST _t) throws RecognitionException {
 		String[] TypeName=new String[4];
-		
-		AST aggregation_types_AST_in = (_t == ASTNULL) ? null : (AST)_t;
+
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST aggregation_types_AST = null;
@@ -544,9 +508,7 @@ public Express2DictWalker() {
 		try {      // for error handling
 			AST __t16 = _t;
 			AST tmp11_AST = null;
-			AST tmp11_AST_in = null;
 			tmp11_AST = astFactory.create((AST)_t);
-			tmp11_AST_in = (AST)_t;
 			astFactory.addASTChild(currentAST, tmp11_AST);
 			ASTPair __currentAST16 = currentAST.copy();
 			currentAST.root = currentAST.child;
@@ -607,7 +569,6 @@ public Express2DictWalker() {
 	public final String[]  array_type(AST _t) throws RecognitionException {
 		String[] TypeName= new String[4];
 		
-		AST array_type_AST_in = (_t == ASTNULL) ? null : (AST)_t;
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST array_type_AST = null;
@@ -619,9 +580,7 @@ public Express2DictWalker() {
 		try {      // for error handling
 			AST __t31 = _t;
 			AST tmp12_AST = null;
-			AST tmp12_AST_in = null;
 			tmp12_AST = astFactory.create((AST)_t);
-			tmp12_AST_in = (AST)_t;
 			astFactory.addASTChild(currentAST, tmp12_AST);
 			ASTPair __currentAST31 = currentAST.copy();
 			currentAST.root = currentAST.child;
@@ -655,9 +614,7 @@ public Express2DictWalker() {
 			case LITERAL_unique:
 			{
 				AST tmp13_AST = null;
-				AST tmp13_AST_in = null;
 				tmp13_AST = astFactory.create((AST)_t);
-				tmp13_AST_in = (AST)_t;
 				astFactory.addASTChild(currentAST, tmp13_AST);
 				match(_t,LITERAL_unique);
 				_t = _t.getNextSibling();
@@ -1043,7 +1000,6 @@ public Express2DictWalker() {
 	
 	public final void declaration(AST _t) throws RecognitionException {
 		
-		AST declaration_AST_in = (_t == ASTNULL) ? null : (AST)_t;
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST declaration_AST = null;
@@ -1051,9 +1007,7 @@ public Express2DictWalker() {
 		try {      // for error handling
 			AST __t93 = _t;
 			AST tmp20_AST = null;
-			AST tmp20_AST_in = null;
 			tmp20_AST = astFactory.create((AST)_t);
-			tmp20_AST_in = (AST)_t;
 			astFactory.addASTChild(currentAST, tmp20_AST);
 			ASTPair __currentAST93 = currentAST.copy();
 			currentAST.root = currentAST.child;
@@ -1118,8 +1072,6 @@ public Express2DictWalker() {
 	}
 	
 	public final void constant_decl(AST _t) throws RecognitionException {
-		
-		AST constant_decl_AST_in = (_t == ASTNULL) ? null : (AST)_t;
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST constant_decl_AST = null;
@@ -1127,9 +1079,7 @@ public Express2DictWalker() {
 		try {      // for error handling
 			AST __t84 = _t;
 			AST tmp21_AST = null;
-			AST tmp21_AST_in = null;
 			tmp21_AST = astFactory.create((AST)_t);
-			tmp21_AST_in = (AST)_t;
 			astFactory.addASTChild(currentAST, tmp21_AST);
 			ASTPair __currentAST84 = currentAST.copy();
 			currentAST.root = currentAST.child;
@@ -1168,8 +1118,6 @@ public Express2DictWalker() {
 	}
 	
 	public final void local_decl(AST _t) throws RecognitionException {
-		
-		AST local_decl_AST_in = (_t == ASTNULL) ? null : (AST)_t;
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST local_decl_AST = null;
@@ -1177,9 +1125,7 @@ public Express2DictWalker() {
 		try {      // for error handling
 			AST __t328 = _t;
 			AST tmp22_AST = null;
-			AST tmp22_AST_in = null;
 			tmp22_AST = astFactory.create((AST)_t);
-			tmp22_AST_in = (AST)_t;
 			astFactory.addASTChild(currentAST, tmp22_AST);
 			ASTPair __currentAST328 = currentAST.copy();
 			currentAST.root = currentAST.child;
@@ -1218,8 +1164,6 @@ public Express2DictWalker() {
 	}
 	
 	public final void alias_stmt(AST _t) throws RecognitionException {
-		
-		AST alias_stmt_AST_in = (_t == ASTNULL) ? null : (AST)_t;
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST alias_stmt_AST = null;
@@ -1227,9 +1171,7 @@ public Express2DictWalker() {
 		try {      // for error handling
 			AST __t25 = _t;
 			AST tmp23_AST = null;
-			AST tmp23_AST_in = null;
 			tmp23_AST = astFactory.create((AST)_t);
-			tmp23_AST_in = (AST)_t;
 			astFactory.addASTChild(currentAST, tmp23_AST);
 			ASTPair __currentAST25 = currentAST.copy();
 			currentAST.root = currentAST.child;
@@ -1289,8 +1231,6 @@ public Express2DictWalker() {
 	}
 	
 	public final void variable_id(AST _t) throws RecognitionException {
-		
-		AST variable_id_AST_in = (_t == ASTNULL) ? null : (AST)_t;
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST variable_id_AST = null;
@@ -1298,9 +1238,7 @@ public Express2DictWalker() {
 		try {      // for error handling
 			AST __t585 = _t;
 			AST tmp24_AST = null;
-			AST tmp24_AST_in = null;
 			tmp24_AST = astFactory.create((AST)_t);
-			tmp24_AST_in = (AST)_t;
 			astFactory.addASTChild(currentAST, tmp24_AST);
 			ASTPair __currentAST585 = currentAST.copy();
 			currentAST.root = currentAST.child;
@@ -1308,9 +1246,7 @@ public Express2DictWalker() {
 			match(_t,VARIABLE_ID);
 			_t = _t.getFirstChild();
 			AST tmp25_AST = null;
-			AST tmp25_AST_in = null;
 			tmp25_AST = astFactory.create((AST)_t);
-			tmp25_AST_in = (AST)_t;
 			astFactory.addASTChild(currentAST, tmp25_AST);
 			match(_t,IDENT);
 			_t = _t.getNextSibling();
@@ -1328,8 +1264,6 @@ public Express2DictWalker() {
 	}
 	
 	public final void general_ref(AST _t) throws RecognitionException {
-		
-		AST general_ref_AST_in = (_t == ASTNULL) ? null : (AST)_t;
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST general_ref_AST = null;
@@ -1337,9 +1271,7 @@ public Express2DictWalker() {
 		try {      // for error handling
 			AST __t266 = _t;
 			AST tmp26_AST = null;
-			AST tmp26_AST_in = null;
 			tmp26_AST = astFactory.create((AST)_t);
-			tmp26_AST_in = (AST)_t;
 			astFactory.addASTChild(currentAST, tmp26_AST);
 			ASTPair __currentAST266 = currentAST.copy();
 			currentAST.root = currentAST.child;
@@ -1383,8 +1315,6 @@ public Express2DictWalker() {
 	}
 	
 	public final void qualifier(AST _t) throws RecognitionException {
-		
-		AST qualifier_AST_in = (_t == ASTNULL) ? null : (AST)_t;
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST qualifier_AST = null;
@@ -1392,9 +1322,7 @@ public Express2DictWalker() {
 		try {      // for error handling
 			AST __t397 = _t;
 			AST tmp27_AST = null;
-			AST tmp27_AST_in = null;
 			tmp27_AST = astFactory.create((AST)_t);
-			tmp27_AST_in = (AST)_t;
 			astFactory.addASTChild(currentAST, tmp27_AST);
 			ASTPair __currentAST397 = currentAST.copy();
 			currentAST.root = currentAST.child;
@@ -1445,8 +1373,6 @@ public Express2DictWalker() {
 	}
 	
 	public final void stmt(AST _t) throws RecognitionException {
-		
-		AST stmt_AST_in = (_t == ASTNULL) ? null : (AST)_t;
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST stmt_AST = null;
@@ -1454,9 +1380,7 @@ public Express2DictWalker() {
 		try {      // for error handling
 			AST __t495 = _t;
 			AST tmp28_AST = null;
-			AST tmp28_AST_in = null;
 			tmp28_AST = astFactory.create((AST)_t);
-			tmp28_AST_in = (AST)_t;
 			astFactory.addASTChild(currentAST, tmp28_AST);
 			ASTPair __currentAST495 = currentAST.copy();
 			currentAST.root = currentAST.child;
@@ -1565,7 +1489,6 @@ public Express2DictWalker() {
 	public final String[]  bound_spec(AST _t) throws RecognitionException {
 		String[] bound =new String[2];
 		
-		AST bound_spec_AST_in = (_t == ASTNULL) ? null : (AST)_t;
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST bound_spec_AST = null;
@@ -1576,9 +1499,7 @@ public Express2DictWalker() {
 		try {      // for error handling
 			AST __t62 = _t;
 			AST tmp29_AST = null;
-			AST tmp29_AST_in = null;
 			tmp29_AST = astFactory.create((AST)_t);
-			tmp29_AST_in = (AST)_t;
 			astFactory.addASTChild(currentAST, tmp29_AST);
 			ASTPair __currentAST62 = currentAST.copy();
 			currentAST.root = currentAST.child;
@@ -1614,7 +1535,6 @@ public Express2DictWalker() {
 	public final String  base_type(AST _t) throws RecognitionException {
 		String TypeName="";
 		
-		AST base_type_AST_in = (_t == ASTNULL) ? null : (AST)_t;
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST base_type_AST = null;
@@ -1622,9 +1542,7 @@ public Express2DictWalker() {
 		try {      // for error handling
 			AST __t43 = _t;
 			AST tmp30_AST = null;
-			AST tmp30_AST_in = null;
 			tmp30_AST = astFactory.create((AST)_t);
-			tmp30_AST_in = (AST)_t;
 			astFactory.addASTChild(currentAST, tmp30_AST);
 			ASTPair __currentAST43 = currentAST.copy();
 			currentAST.root = currentAST.child;
@@ -1670,7 +1588,6 @@ public Express2DictWalker() {
 	
 	public final void assignment_stmt(AST _t) throws RecognitionException {
 		
-		AST assignment_stmt_AST_in = (_t == ASTNULL) ? null : (AST)_t;
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST assignment_stmt_AST = null;
@@ -1678,9 +1595,7 @@ public Express2DictWalker() {
 		try {      // for error handling
 			AST __t35 = _t;
 			AST tmp31_AST = null;
-			AST tmp31_AST_in = null;
 			tmp31_AST = astFactory.create((AST)_t);
-			tmp31_AST_in = (AST)_t;
 			astFactory.addASTChild(currentAST, tmp31_AST);
 			ASTPair __currentAST35 = currentAST.copy();
 			currentAST.root = currentAST.child;
@@ -1724,8 +1639,6 @@ public Express2DictWalker() {
 	}
 	
 	public final void expression(AST _t) throws RecognitionException {
-		
-		AST expression_AST_in = (_t == ASTNULL) ? null : (AST)_t;
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST expression_AST = null;
@@ -1733,9 +1646,7 @@ public Express2DictWalker() {
 		try {      // for error handling
 			AST __t209 = _t;
 			AST tmp32_AST = null;
-			AST tmp32_AST_in = null;
 			tmp32_AST = astFactory.create((AST)_t);
-			tmp32_AST_in = (AST)_t;
 			astFactory.addASTChild(currentAST, tmp32_AST);
 			ASTPair __currentAST209 = currentAST.copy();
 			currentAST.root = currentAST.child;
@@ -1784,7 +1695,6 @@ public Express2DictWalker() {
 	public final String  concrete_types(AST _t) throws RecognitionException {
 		String TypeName ="";
 		
-		AST concrete_types_AST_in = (_t == ASTNULL) ? null : (AST)_t;
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST concrete_types_AST = null;
@@ -1795,9 +1705,7 @@ public Express2DictWalker() {
 		try {      // for error handling
 			AST __t46 = _t;
 			AST tmp33_AST = null;
-			AST tmp33_AST_in = null;
 			tmp33_AST = astFactory.create((AST)_t);
-			tmp33_AST_in = (AST)_t;
 			astFactory.addASTChild(currentAST, tmp33_AST);
 			ASTPair __currentAST46 = currentAST.copy();
 			currentAST.root = currentAST.child;
@@ -1852,7 +1760,6 @@ public Express2DictWalker() {
 	public final String  generalized_types(AST _t) throws RecognitionException {
 		String TypeName="";
 		
-		AST generalized_types_AST_in = (_t == ASTNULL) ? null : (AST)_t;
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST generalized_types_AST = null;
@@ -1860,9 +1767,7 @@ public Express2DictWalker() {
 		try {      // for error handling
 			AST __t246 = _t;
 			AST tmp34_AST = null;
-			AST tmp34_AST_in = null;
 			tmp34_AST = astFactory.create((AST)_t);
-			tmp34_AST_in = (AST)_t;
 			astFactory.addASTChild(currentAST, tmp34_AST);
 			ASTPair __currentAST246 = currentAST.copy();
 			currentAST.root = currentAST.child;
@@ -1923,7 +1828,6 @@ public Express2DictWalker() {
 	public final String  simple_types(AST _t) throws RecognitionException {
 		String TypeName="simpleType";
 		
-		AST simple_types_AST_in = (_t == ASTNULL) ? null : (AST)_t;
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST simple_types_AST = null;
@@ -1934,9 +1838,7 @@ public Express2DictWalker() {
 		try {      // for error handling
 			AST __t487 = _t;
 			AST tmp35_AST = null;
-			AST tmp35_AST_in = null;
 			tmp35_AST = astFactory.create((AST)_t);
-			tmp35_AST_in = (AST)_t;
 			astFactory.addASTChild(currentAST, tmp35_AST);
 			ASTPair __currentAST487 = currentAST.copy();
 			currentAST.root = currentAST.child;
@@ -2017,8 +1919,7 @@ public Express2DictWalker() {
 	
 	public final String  named_types(AST _t) throws RecognitionException {
 		String TypeName="";
-		
-		AST named_types_AST_in = (_t == ASTNULL) ? null : (AST)_t;
+
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST named_types_AST = null;
@@ -2026,9 +1927,7 @@ public Express2DictWalker() {
 		try {      // for error handling
 			AST __t344 = _t;
 			AST tmp36_AST = null;
-			AST tmp36_AST_in = null;
 			tmp36_AST = astFactory.create((AST)_t);
-			tmp36_AST_in = (AST)_t;
 			astFactory.addASTChild(currentAST, tmp36_AST);
 			ASTPair __currentAST344 = currentAST.copy();
 			currentAST.root = currentAST.child;
@@ -2077,7 +1976,6 @@ public Express2DictWalker() {
 	public final String  binary_type(AST _t) throws RecognitionException {
 		String TypeName="BINARY";
 		
-		AST binary_type_AST_in = (_t == ASTNULL) ? null : (AST)_t;
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST binary_type_AST = null;
@@ -2085,9 +1983,7 @@ public Express2DictWalker() {
 		try {      // for error handling
 			AST __t49 = _t;
 			AST tmp37_AST = null;
-			AST tmp37_AST_in = null;
 			tmp37_AST = astFactory.create((AST)_t);
-			tmp37_AST_in = (AST)_t;
 			astFactory.addASTChild(currentAST, tmp37_AST);
 			ASTPair __currentAST49 = currentAST.copy();
 			currentAST.root = currentAST.child;
@@ -2130,7 +2026,6 @@ public Express2DictWalker() {
 	
 	public final void width_spec(AST _t) throws RecognitionException {
 		
-		AST width_spec_AST_in = (_t == ASTNULL) ? null : (AST)_t;
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST width_spec_AST = null;
@@ -2138,9 +2033,7 @@ public Express2DictWalker() {
 		try {      // for error handling
 			AST __t595 = _t;
 			AST tmp38_AST = null;
-			AST tmp38_AST_in = null;
 			tmp38_AST = astFactory.create((AST)_t);
-			tmp38_AST_in = (AST)_t;
 			astFactory.addASTChild(currentAST, tmp38_AST);
 			ASTPair __currentAST595 = currentAST.copy();
 			currentAST.root = currentAST.child;
@@ -2156,9 +2049,7 @@ public Express2DictWalker() {
 			case LITERAL_fixed:
 			{
 				AST tmp39_AST = null;
-				AST tmp39_AST_in = null;
 				tmp39_AST = astFactory.create((AST)_t);
-				tmp39_AST_in = (AST)_t;
 				astFactory.addASTChild(currentAST, tmp39_AST);
 				match(_t,LITERAL_fixed);
 				_t = _t.getNextSibling();
@@ -2190,7 +2081,6 @@ public Express2DictWalker() {
 	public final String  boolean_type(AST _t) throws RecognitionException {
 		String TypeName="BOOLEAN";
 		
-		AST boolean_type_AST_in = (_t == ASTNULL) ? null : (AST)_t;
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST boolean_type_AST = null;
@@ -2198,9 +2088,7 @@ public Express2DictWalker() {
 		try {      // for error handling
 			AST __t52 = _t;
 			AST tmp40_AST = null;
-			AST tmp40_AST_in = null;
 			tmp40_AST = astFactory.create((AST)_t);
-			tmp40_AST_in = (AST)_t;
 			astFactory.addASTChild(currentAST, tmp40_AST);
 			ASTPair __currentAST52 = currentAST.copy();
 			currentAST.root = currentAST.child;
@@ -2326,19 +2214,15 @@ public Express2DictWalker() {
 	public final String  numeric_expression(AST _t) throws RecognitionException {
 		String se="";
 		
-		AST numeric_expression_AST_in = (_t == ASTNULL) ? null : (AST)_t;
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST numeric_expression_AST = null;
-		AST s_AST = null;
 		AST s = null;
 		
 		try {      // for error handling
 			AST __t351 = _t;
 			AST tmp43_AST = null;
-			AST tmp43_AST_in = null;
 			tmp43_AST = astFactory.create((AST)_t);
-			tmp43_AST_in = (AST)_t;
 			astFactory.addASTChild(currentAST, tmp43_AST);
 			ASTPair __currentAST351 = currentAST.copy();
 			currentAST.root = currentAST.child;
@@ -2348,7 +2232,6 @@ public Express2DictWalker() {
 			s = _t==ASTNULL ? null : (AST)_t;
 			simple_expression(_t);
 			_t = _retTree;
-			s_AST = (AST)returnAST;
 			astFactory.addASTChild(currentAST, returnAST);
 			currentAST = __currentAST351;
 			_t = __t351;
@@ -2371,7 +2254,6 @@ public Express2DictWalker() {
 	
 	public final void unlimited_upper_bound(AST _t) throws RecognitionException {
 		
-		AST unlimited_upper_bound_AST_in = (_t == ASTNULL) ? null : (AST)_t;
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST unlimited_upper_bound_AST = null;
@@ -2379,9 +2261,7 @@ public Express2DictWalker() {
 		try {      // for error handling
 			AST __t56 = _t;
 			AST tmp44_AST = null;
-			AST tmp44_AST_in = null;
 			tmp44_AST = astFactory.create((AST)_t);
-			tmp44_AST_in = (AST)_t;
 			astFactory.addASTChild(currentAST, tmp44_AST);
 			ASTPair __currentAST56 = currentAST.copy();
 			currentAST.root = currentAST.child;
@@ -2419,7 +2299,6 @@ public Express2DictWalker() {
 	
 	public final void term(AST _t) throws RecognitionException {
 		
-		AST term_AST_in = (_t == ASTNULL) ? null : (AST)_t;
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
 		AST term_AST = null;
@@ -2427,9 +2306,7 @@ public Express2DictWalker() {
 		try {      // for error handling
 			AST __t528 = _t;
 			AST tmp45_AST = null;
-			AST tmp45_AST_in = null;
 			tmp45_AST = astFactory.create((AST)_t);
-			tmp45_AST_in = (AST)_t;
 			astFactory.addASTChild(currentAST, tmp45_AST);
 			ASTPair __currentAST528 = currentAST.copy();
 			currentAST.root = currentAST.child;
@@ -2610,9 +2487,7 @@ public Express2DictWalker() {
 			case LITERAL_pi:
 			{
 				AST tmp50_AST = null;
-				AST tmp50_AST_in = null;
 				tmp50_AST = astFactory.create((AST)_t);
-				tmp50_AST_in = (AST)_t;
 				astFactory.addASTChild(currentAST, tmp50_AST);
 				match(_t,LITERAL_pi);
 				_t = _t.getNextSibling();
@@ -2621,9 +2496,7 @@ public Express2DictWalker() {
 			case LITERAL_self:
 			{
 				AST tmp51_AST = null;
-				AST tmp51_AST_in = null;
 				tmp51_AST = astFactory.create((AST)_t);
-				tmp51_AST_in = (AST)_t;
 				astFactory.addASTChild(currentAST, tmp51_AST);
 				match(_t,LITERAL_self);
 				_t = _t.getNextSibling();

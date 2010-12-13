@@ -24,6 +24,7 @@ import java.util.Vector;
    research through the inheritance tree.
 */
 
+@SuppressWarnings("unchecked")
 public class Scope implements ExpressParserTokenTypes, Cloneable {
 
     /* scope id */
@@ -31,12 +32,12 @@ public class Scope implements ExpressParserTokenTypes, Cloneable {
     private static int globalId = 1;
 
     /* id recording */
-    private Hashtable idtable; /* ids */
+    private Hashtable<String, Integer> idtable; /* ids */
 
     /* entities management */
     private boolean entity; /* if we are in a scope defined by an entity */
-    private Hashtable entities; /* references to scopes of entities defined here */
-    private Vector superentities; /* names of super entities of this */
+    private Hashtable<String, Scope> entities; /* references to scopes of entities defined here */
+    private Vector<String> superentities; /* names of super entities of this */
 
     /* schema case:
        Only if this scope is defined by a schema. External elements
@@ -254,7 +255,7 @@ public class Scope implements ExpressParserTokenTypes, Cloneable {
 	return res;
     }
 
-    public Vector getUsedExternals() {
+	public Vector getUsedExternals() {
 	/* get all elements of this schema that can be used
 	   i.e. entity, type */
 	Enumeration e;
