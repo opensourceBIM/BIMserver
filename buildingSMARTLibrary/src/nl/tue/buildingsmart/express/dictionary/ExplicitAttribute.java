@@ -1,7 +1,5 @@
 package nl.tue.buildingsmart.express.dictionary;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class ExplicitAttribute extends nl.tue.buildingsmart.express.dictionary.Attribute implements nl.tue.buildingsmart.express.dictionary.UnderlyingType,
 		ExplicitOrDerived {
@@ -10,7 +8,6 @@ public class ExplicitAttribute extends nl.tue.buildingsmart.express.dictionary.A
 	private ExplicitOrDerived redeclares;
 	private boolean optional = false;
 	private boolean derived = false;
-	private static final Logger LOGGER = LoggerFactory.getLogger(ExplicitAttribute.class);
 
 	public ExplicitAttribute(String name, EntityDefinition parent_entity) {
 		super(name, parent_entity);

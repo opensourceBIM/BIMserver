@@ -90,11 +90,11 @@ public class SchemaDefinition {
 
 	public void constructEntityRelationsMap() {
 		entityRelations.clear();
-		Iterator ei = entities.iterator();
+		Iterator<EntityDefinition> ei = entities.iterator();
 		while (ei.hasNext()) {
 			EntityDefinition ent = (EntityDefinition) ei.next();
 			if (!ent.getAttributes().isEmpty()) {
-				Iterator ai = ent.getAttributes().iterator();
+				Iterator<Attribute> ai = ent.getAttributes().iterator();
 				while (ai.hasNext()) {
 					Attribute at = (Attribute) ai.next();
 					if (at instanceof ExplicitAttribute) {
@@ -118,11 +118,11 @@ public class SchemaDefinition {
 	public void constructHirarchyMap() {
 		parents.clear();
 		this.parents = new HashMap<EntityDefinition, ArrayList<EntityDefinition>>();
-		Iterator ei = entities.iterator();
+		Iterator<EntityDefinition> ei = entities.iterator();
 		while (ei.hasNext()) {
 			EntityDefinition ent = (EntityDefinition) ei.next();
 			if (!ent.getSupertypes().isEmpty()) {
-				Iterator iter = ent.getSupertypes().iterator();
+				Iterator<EntityDefinition> iter = ent.getSupertypes().iterator();
 
 				while (iter.hasNext()) {
 					EntityDefinition parent = (EntityDefinition) iter.next();

@@ -38,7 +38,7 @@ public class ExpressParser extends antlr.LLkParser       implements ExpressParse
 
 	/* We keep track of scopes defined by schemas. It is useful when
 	multiple schemas are parsed, to deal with external elements */
-	private Hashtable schemas;
+	private Hashtable<String, Scope> schemas;
 
 	public boolean isFirst=true; /* is the first pass running ? */
 
@@ -10401,7 +10401,6 @@ public ExpressParser(ParserSharedInputState state) {
 		ASTPair currentAST = new ASTPair();
 		AST rename_id_AST = null;
 		Token  id = null;
-		AST id_AST = null;
 		Token  nid1 = null;
 		AST nid1_AST = null;
 		Token  nid2 = null;
@@ -10419,7 +10418,7 @@ public ExpressParser(ParserSharedInputState state) {
 			case IDENT:
 			{
 				id = LT(1);
-				id_AST = astFactory.create(id);
+				astFactory.create(id);
 				match(IDENT);
 				s=id.getText();
 				break;
@@ -11841,7 +11840,7 @@ public ExpressParser(ParserSharedInputState state) {
 					rootScope = new Scope(null);
 					lastCreatedScope=rootScope;
 					currentScope=rootScope;
-					schemas = new Hashtable();
+					schemas = new Hashtable<String, Scope>();
 				}
 			
 		

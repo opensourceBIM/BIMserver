@@ -26,7 +26,7 @@ public class PopulationMetrics {
 			
 			namespaceMembers.put(ns, namespaceMembers.get(ns)+1);
 		}
-		TreeSet<String> ts = new TreeSet(namespaceMembers.keySet());
+		TreeSet<String> ts = new TreeSet<String>(namespaceMembers.keySet());
 		for (String ns:ts){
 			
 			System.out.println(ns+";"+namespaceMembers.get(ns));
