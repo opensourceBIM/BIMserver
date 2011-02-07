@@ -9,8 +9,6 @@ import java.util.TreeSet;
 
 import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
 
-import org.bimserver.ServerSettings;
-import org.bimserver.Version;
 import org.bimserver.citygml.CityGmlSerializer;
 import org.bimserver.collada.ColladaSerializer;
 import org.bimserver.collada.KmzSerializer;
@@ -28,9 +26,11 @@ import org.bimserver.ifc.file.writer.IfcStepSerializer;
 import org.bimserver.ifc.xml.writer.IfcXmlSerializer;
 import org.bimserver.ifcengine.IfcEngineFactory;
 import org.bimserver.o3d.O3dJsonSerializer;
+import org.bimserver.settings.ServerSettings;
 import org.bimserver.shared.ResourceFetcher;
 import org.bimserver.shared.ResultType;
 import org.bimserver.shared.ResultType.Type;
+import org.bimserver.version.Version;
 
 public class EmfSerializerFactory {
 	public interface EmfSerializerCreator {

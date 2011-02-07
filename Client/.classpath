@@ -8,7 +8,7 @@
 	<classpathentry kind="lib" path="/BimServer/lib/mail.jar"/>
 	<classpathentry kind="lib" path="/BimServer/lib/cxf/wsdl4j-1.6.2.jar"/>
 	<classpathentry kind="lib" path="/BimServer/lib/cxf/XmlSchema-1.4.7.jar"/>
-	<classpathentry kind="lib" path="/BimServer/lib/cxf/cxf-2.3.0.jar"/>
 	<classpathentry kind="lib" path="/BimServer/lib/commons/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="/BimServer/lib/cxf/cxf-2.3.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

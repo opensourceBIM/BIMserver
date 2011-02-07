@@ -92,7 +92,7 @@ public class IfcXmlDeserializer {
 		EClass eClass = (EClass) eClassifier;
 		long oid = Long.parseLong(id.substring(1));
 		IdEObject object;
-		if (model.containsKey(oid)) {
+		if (model.contains(oid)) {
 			object = model.get(oid);
 		} else {
 			object = (IdEObject) Ifc2x3Factory.eINSTANCE.create(eClass);
@@ -111,7 +111,7 @@ public class IfcXmlDeserializer {
 		return object;
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private void parseField(IdEObject object, XMLStreamReader reader) throws XMLStreamException, IfcXmlDeserializeException {
 		String fieldName = reader.getLocalName();
 		EStructuralFeature eStructuralFeature = object.eClass().getEStructuralFeature(fieldName);
@@ -136,7 +136,7 @@ public class IfcXmlDeserializer {
 					}
 					Long refId = Long.parseLong(ref.substring(1));
 					IdEObject reference = null;
-					if (!model.containsKey(refId)) {
+					if (!model.contains(refId)) {
 						String referenceType = reader.getLocalName();
 						reference = (IdEObject) Ifc2x3Factory.eINSTANCE.create((EClass) Ifc2x3Package.eINSTANCE.getEClassifier(referenceType));
 						model.add(refId, reference);

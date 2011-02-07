@@ -2,7 +2,6 @@ package org.bimserver.database.actions;
 
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -21,12 +20,16 @@ import org.bimserver.database.store.Revision;
 import org.bimserver.database.store.log.AccessMethod;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.IfcModel;
+import org.bimserver.ifc.IfcModelSet;
+import org.bimserver.ifc.emf.Ifc2x3.IfcGloballyUniqueId;
 import org.bimserver.ifc.emf.Ifc2x3.IfcRoot;
+import org.bimserver.ifc.emf.Ifc2x3.WrappedValue;
 import org.bimserver.ifc.file.writer.IfcStepSerializer;
 import org.bimserver.ifcengine.FailSafeIfcEngine;
 import org.bimserver.ifcengine.IfcEngineException;
 import org.bimserver.ifcengine.IfcEngineFactory;
 import org.bimserver.ifcengine.IfcEngineModel;
+import org.bimserver.merging.Merger;
 import org.bimserver.shared.UserException;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EAttribute;
@@ -63,19 +66,19 @@ public class FindClashesDatabaseAction extends BimDatabaseAction<Set<? extends C
 		}
 
 		Project project = null;
-		LinkedHashSet<IfcModel> ifcModels = new LinkedHashSet<IfcModel>();
+		IfcModelSet ifcModelSet = new IfcModelSet();
 		for (Revision revision : clashDetectionSettings.getRevisions()) {
 			project = revision.getProject();
 			for (ConcreteRevision concreteRevision : revision.getConcreteRevisions()) {
 				IfcModel source = new IfcModel(bimDatabaseSession.getMap(concreteRevision.getProject().getId(), concreteRevision.getId()).getMap());
 				source.setDate(concreteRevision.getDate());
-				ifcModels.add(source);
+				ifcModelSet.add(source);
 				for (Long oid : source.keySet()) {
 					oidToRoidMap.put(oid, revision);
 				}
 			}
 		}
-		IfcModel ifcModel = BimDatabaseAction.merge(project, ifcModels);
+		IfcModel ifcModel = new Merger().merge(project, ifcModelSet, false);
 		IfcModel newModel = new IfcModel();
 		Map<IdEObject, IdEObject> converted = new HashMap<IdEObject, IdEObject>();
 		for (IdEObject idEObject : ifcModel.getValues()) {
@@ -127,7 +130,9 @@ public class FindClashesDatabaseAction extends BimDatabaseAction<Set<? extends C
 			IdEObject newObject = (IdEObject) original.eClass().getEPackage().getEFactoryInstance().create(original.eClass());
 			newObject.setOid(original.getOid());
 			converted.put(original, newObject);
-			newModel.add(newObject.getOid(), newObject);
+			if (!(newObject instanceof WrappedValue) && !(newObject instanceof IfcGloballyUniqueId)) {
+				newModel.add(newObject.getOid(), newObject);
+			}
 			for (EStructuralFeature eStructuralFeature : original.eClass().getEAllStructuralFeatures()) {
 				Object get = original.eGet(eStructuralFeature);
 				if (eStructuralFeature instanceof EAttribute) {

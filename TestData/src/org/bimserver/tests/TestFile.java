@@ -23,6 +23,8 @@ package org.bimserver.tests;
 import java.io.File;
 
 public enum TestFile {
+	EXPORT1(new File(TestFileConstants.DATA_FOLDER, "export1.ifc")),
+	EXPORT3(new File(TestFileConstants.DATA_FOLDER, "export3.ifc")),
 	NIEDRI(new File(TestFileConstants.DATA_FOLDER, "Niedri_org.ifc")),
 	MERGE_TEST_SOURCE_FILE(new File(TestFileConstants.DATA_FOLDER, "MergeTest.ifc")), 
 	HITOS_SOURCE_FILE(new File(TestFileConstants.DATA_FOLDER, "HITOS_070308.ifc")), 
@@ -37,7 +39,8 @@ public enum TestFile {
 	BATHROOM(new File(TestFileConstants.DATA_FOLDER, "BathroomWindow.ifc")),
 	JASMIN(new File(TestFileConstants.DATA_FOLDER, "AC90R1-Jasmin-Sun-105-2x3.ifc")),
 	ADTHAUS(new File(TestFileConstants.DATA_FOLDER, "ADT-FZK-Haus-2005-2006.ifc")),
-	PAOLO(new File(TestFileConstants.DATA_FOLDER, "Paolo.ifc"));
+	PAOLO(new File(TestFileConstants.DATA_FOLDER, "Paolo.ifc")), 
+	HAUS_ALT_SOURCE_FILE(new File(TestFileConstants.DATA_FOLDER, "AC9R1-Haus-G-H-Ver2-2x3_ALT.ifc"));
 
 	private final File file;
 

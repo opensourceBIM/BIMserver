@@ -52,8 +52,8 @@
 //		}
 //
 //		private File file;
-//		private boolean readSucces;
-//		private boolean writeSucces;
+//		private boolean readSuccess;
+//		private boolean writeSuccess;
 //		private boolean compareResult;
 //		private String readError;
 //		private String writeError;
@@ -70,20 +70,20 @@
 //			this.compareResult = compareResult;
 //		}
 //
-//		public boolean isReadSucces() {
-//			return readSucces;
+//		public boolean isReadSuccess() {
+//			return readSuccess;
 //		}
 //
-//		public void setReadSucces(boolean readSucces) {
-//			this.readSucces = readSucces;
+//		public void setReadSuccess(boolean readSuccess) {
+//			this.readSuccess = readSuccess;
 //		}
 //
-//		public boolean isWriteSucces() {
-//			return writeSucces;
+//		public boolean isWriteSuccess() {
+//			return writeSuccess;
 //		}
 //
-//		public void setWriteSucces(boolean writeSucces) {
-//			this.writeSucces = writeSucces;
+//		public void setWriteSucces(boolean writeSuccess) {
+//			this.writeSuccess = writeSuccess;
 //		}
 //
 //		public String getReadError() {
@@ -161,14 +161,14 @@
 //			while (take != null) {
 //				Result result = take.get();
 //				String error = "";
-//				if (!result.isReadSucces()) {
+//				if (!result.isReadSuccess()) {
 //					error = result.getReadError();
 //				} else {
-//					if (!result.isWriteSucces()) {
+//					if (!result.isWriteSuccess()) {
 //						error = result.getWriteError();
 //					}
 //				}
-//				htmlWriter.addRow(result.getFile().getName(), "" + result.isReadSucces(), "" + result.isWriteSucces(), "" + result.isCompareResult(), error);
+//				htmlWriter.addRow(result.getFile().getName(), "" + result.isReadSuccess(), "" + result.isWriteSuccess(), "" + result.isCompareResult(), error);
 //				take = completionService.take();
 //			}
 //		} catch (InterruptedException e) {
@@ -190,7 +190,7 @@
 //			fastIfcFileReader.read(sourceFile);
 //			model = fastIfcFileReader.getModel();
 //		} catch (IncorrectIfcFileException e) {
-//			result.setReadSucces(false);
+//			result.setReadSuccess(false);
 //			result.setReadError("Incorrect IFC File " + e.getMessage());
 //			try {
 //				Thread.sleep(1000);
@@ -201,22 +201,22 @@
 //			return result;
 //		} catch (Exception e) {
 //			e.printStackTrace();
-//			result.setReadSucces(false);
+//			result.setReadSuccess(false);
 //			result.setReadError(e.getMessage());
 //			sourceFile.renameTo(new File("incorrect\\" + sourceFile.getName()));
 //			return result;
 //		}
-//		result.setReadSucces(true);
+//		result.setReadSuccess(true);
 //		try {
 //			IfcStepSerializer writer = new IfcStepSerializer(project, user, "", model, schema);
 //			writer.writeToFile(destFile);
 //		} catch (Exception e) {
-//			result.setWriteSucces(false);
+//			result.setWriteSuccess(false);
 //			result.setWriteError(e.getMessage());
 //			return result;
 //		}
 //		model = null;
-//		result.setWriteSucces(true);
+//		result.setWriteSuccess(true);
 //		try {
 //			NewIfcFileCompare compare = new NewIfcFileCompare(sourceFile, destFile);
 //			boolean compare2 = compare.compare();

@@ -49,7 +49,7 @@ import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.interfaces.objects.SUser;
 import org.bimserver.interfaces.objects.SUserType;
-import org.bimserver.shared.UserException;
+import org.bimserver.shared.ServiceException;
 import org.bimserver.utils.InputStreamDataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -129,8 +129,8 @@ public class TreePanel extends JPanel {
 					if (showConfirmDialog == JOptionPane.YES_OPTION) {
 						try {
 							serviceHolder.getService().deleteUser(((UserTreeNode) lastPathComponent).getUser().getOid());
-						} catch (UserException e2) {
-							LOGGER.error("", e2);
+						} catch (ServiceException e2) {
+							JOptionPane.showMessageDialog(testWindow, e2.getMessage());
 						}
 						updateUsers(serverTreeNode);
 					}
@@ -146,11 +146,9 @@ public class TreePanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				String newUserName = JOptionPane.showInputDialog(testWindow, "What is the name of the new user?", "Add new user", JOptionPane.OK_OPTION
 						| JOptionPane.INFORMATION_MESSAGE);
-				String newPassword = JOptionPane.showInputDialog(testWindow, "What is the password new user?", "Add new user", JOptionPane.OK_OPTION
-						| JOptionPane.INFORMATION_MESSAGE);
 				try {
-					serviceHolder.getService().addUser(newUserName, newPassword, newUserName, SUserType.USER);
-				} catch (UserException e1) {
+					serviceHolder.getService().addUser(newUserName, newUserName, SUserType.USER, false);
+				} catch (ServiceException e1) {
 					JOptionPane.showMessageDialog(testWindow, e1.getUserMessage());
 				}
 				updateUsers(serverTreeNode);
@@ -168,7 +166,7 @@ public class TreePanel extends JPanel {
 				if (newProjectName != null) {
 					try {
 						serviceHolder.getService().addProject(newProjectName);
-					} catch (UserException e1) {
+					} catch (ServiceException e1) {
 						JOptionPane.showMessageDialog(testWindow, e1.getUserMessage());
 					}
 					updateProjects(serverTreeNode);
@@ -188,7 +186,7 @@ public class TreePanel extends JPanel {
 					// testWindow.getServiceHolder().getPassword())) {
 					// updateProjects(serverTreeNode);
 					// updateUsers(serverTreeNode);
-					// testWindow.setTitle("BIM Server Tester - " +
+					// testWindow.setTitle("BIMserver Tester - " +
 					// testWindow.getServiceHolder().getUsername());
 					// projectTree.expandRow(0);
 					// } else {
@@ -201,7 +199,7 @@ public class TreePanel extends JPanel {
 					serverTreeNode.clearProjects();
 					serverTreeNode.clearUsers();
 					tree.updateUI();
-					testWindow.setTitle("BIM Server Tester - Not connected");
+					testWindow.setTitle("BIMserver Tester - Not connected");
 					tree.collapseRow(0);
 				}
 			}
@@ -220,7 +218,7 @@ public class TreePanel extends JPanel {
 						try {
 							serviceHolder.getService().deleteProject(((ProjectTreeNode) lastPathComponent).getProject().getId());
 							updateProjects(serverTreeNode);
-						} catch (UserException e1) {
+						} catch (ServiceException e1) {
 							LOGGER.error("", e1);
 						}
 					}
@@ -249,14 +247,14 @@ public class TreePanel extends JPanel {
 			}
 		});
 
-		final JMenuItem processChangeSet = new JMenuItem("Process ChangeSet...");
-		processChangeSet.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				ProjectTreeNode ptn = (ProjectTreeNode) tree.getSelectionPath().getLastPathComponent();
-				testWindow.processChangeSet(ptn.getProject());
-			}
-		});
+//		final JMenuItem processChangeSet = new JMenuItem("Process ChangeSet...");
+//		processChangeSet.addActionListener(new ActionListener() {
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				ProjectTreeNode ptn = (ProjectTreeNode) tree.getSelectionPath().getLastPathComponent();
+//				testWindow.processChangeSet(ptn.getProject());
+//			}
+//		});
 
 		final JPopupMenu projectMenu = new JPopupMenu();
 		final JMenuItem checkin = new JMenuItem("Checkin new revision...");
@@ -268,7 +266,7 @@ public class TreePanel extends JPanel {
 				try {
 					SRevision revision = serviceHolder.getService().getRevision(ptn.getProject().getLastRevisionId());
 					testWindow.checkout(revision);
-				} catch (UserException e1) {
+				} catch (ServiceException e1) {
 					LOGGER.error("", e1);
 				}
 			}
@@ -281,7 +279,7 @@ public class TreePanel extends JPanel {
 				try {
 					SRevision revision = serviceHolder.getService().getRevision(ptn.getProject().getLastRevisionId());
 					testWindow.download(revision);
-				} catch (UserException e1) {
+				} catch (ServiceException e1) {
 					LOGGER.error("", e1);
 				}
 			}
@@ -333,7 +331,7 @@ public class TreePanel extends JPanel {
 						checkout.setEnabled(true);
 						checkin.setText("Checkin new revision...");
 					}
-				} catch (UserException e1) {
+				} catch (ServiceException e1) {
 					LOGGER.error("", e1);
 				}
 			}
@@ -345,7 +343,7 @@ public class TreePanel extends JPanel {
 				testWindow.checkin(ptn.getProject());
 			}
 		});
-		projectMenu.add(processChangeSet);
+//		projectMenu.add(processChangeSet);
 		projectMenu.add(checkin);
 		projectMenu.addSeparator();
 		projectMenu.add(checkout);
@@ -365,7 +363,7 @@ public class TreePanel extends JPanel {
 				}
 			}
 			tree.updateUI();
-		} catch (UserException e) {
+		} catch (ServiceException e) {
 			JOptionPane.showMessageDialog(getRootPane(), e.getMessage());
 		}
 	}
@@ -381,7 +379,7 @@ public class TreePanel extends JPanel {
 				}
 			}
 			tree.updateUI();
-		} catch (UserException e) {
+		} catch (ServiceException e) {
 			JOptionPane.showMessageDialog(getRootPane(), e.getMessage());
 		}
 	}

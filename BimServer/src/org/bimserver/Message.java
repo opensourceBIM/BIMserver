@@ -1,7 +1,7 @@
 package org.bimserver;
 
 public enum Message {
-	PASSWORD_SUCCESFULLY_CHANGED("Password successfully changed");
+	PASSWORD_SUCCESSFULLY_CHANGED("Password successfully changed");
 	
 	private final String message;
 

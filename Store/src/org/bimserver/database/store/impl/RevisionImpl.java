@@ -50,6 +50,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.bimserver.database.store.impl.RevisionImpl#getTag <em>Tag</em>}</li>
  *   <li>{@link org.bimserver.database.store.impl.RevisionImpl#getLastError <em>Last Error</em>}</li>
  *   <li>{@link org.bimserver.database.store.impl.RevisionImpl#getBmi <em>Bmi</em>}</li>
+ *   <li>{@link org.bimserver.database.store.impl.RevisionImpl#getNrClashes <em>Nr Clashes</em>}</li>
  * </ul>
  * </p>
  *
@@ -275,6 +276,26 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * @ordered
 	 */
 	protected int bmi = BMI_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getNrClashes() <em>Nr Clashes</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getNrClashes()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int NR_CLASHES_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getNrClashes() <em>Nr Clashes</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getNrClashes()
+	 * @generated
+	 * @ordered
+	 */
+	protected int nrClashes = NR_CLASHES_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -640,6 +661,27 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public int getNrClashes() {
+		return nrClashes;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setNrClashes(int newNrClashes) {
+		int oldNrClashes = nrClashes;
+		nrClashes = newNrClashes;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.REVISION__NR_CLASHES, oldNrClashes, nrClashes));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
@@ -713,6 +755,8 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 				return getLastError();
 			case StorePackage.REVISION__BMI:
 				return getBmi();
+			case StorePackage.REVISION__NR_CLASHES:
+				return getNrClashes();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -771,6 +815,9 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 			case StorePackage.REVISION__BMI:
 				setBmi((Integer)newValue);
 				return;
+			case StorePackage.REVISION__NR_CLASHES:
+				setNrClashes((Integer)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -825,6 +872,9 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 			case StorePackage.REVISION__BMI:
 				setBmi(BMI_EDEFAULT);
 				return;
+			case StorePackage.REVISION__NR_CLASHES:
+				setNrClashes(NR_CLASHES_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -865,6 +915,8 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 				return LAST_ERROR_EDEFAULT == null ? lastError != null : !LAST_ERROR_EDEFAULT.equals(lastError);
 			case StorePackage.REVISION__BMI:
 				return bmi != BMI_EDEFAULT;
+			case StorePackage.REVISION__NR_CLASHES:
+				return nrClashes != NR_CLASHES_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -895,6 +947,8 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 		result.append(lastError);
 		result.append(", bmi: ");
 		result.append(bmi);
+		result.append(", nrClashes: ");
+		result.append(nrClashes);
 		result.append(')');
 		return result.toString();
 	}

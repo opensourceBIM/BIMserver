@@ -29,6 +29,8 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.database.store.User#getUserType <em>User Type</em>}</li>
  *   <li>{@link org.bimserver.database.store.User#getUsername <em>Username</em>}</li>
  *   <li>{@link org.bimserver.database.store.User#getLastSeen <em>Last Seen</em>}</li>
+ *   <li>{@link org.bimserver.database.store.User#getValidationToken <em>Validation Token</em>}</li>
+ *   <li>{@link org.bimserver.database.store.User#getValidationTokenCreated <em>Validation Token Created</em>}</li>
  * </ul>
  * </p>
  *
@@ -285,5 +287,57 @@ public interface User extends IdEObject {
 	 * @generated
 	 */
 	void setLastSeen(Date value);
+
+	/**
+	 * Returns the value of the '<em><b>Validation Token</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Validation Token</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Validation Token</em>' attribute.
+	 * @see #setValidationToken(String)
+	 * @see org.bimserver.database.store.StorePackage#getUser_ValidationToken()
+	 * @model
+	 * @generated
+	 */
+	String getValidationToken();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.database.store.User#getValidationToken <em>Validation Token</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Validation Token</em>' attribute.
+	 * @see #getValidationToken()
+	 * @generated
+	 */
+	void setValidationToken(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Validation Token Created</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Validation Token Created</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Validation Token Created</em>' attribute.
+	 * @see #setValidationTokenCreated(Date)
+	 * @see org.bimserver.database.store.StorePackage#getUser_ValidationTokenCreated()
+	 * @model
+	 * @generated
+	 */
+	Date getValidationTokenCreated();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.database.store.User#getValidationTokenCreated <em>Validation Token Created</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Validation Token Created</em>' attribute.
+	 * @see #getValidationTokenCreated()
+	 * @generated
+	 */
+	void setValidationTokenCreated(Date value);
 
 } // User

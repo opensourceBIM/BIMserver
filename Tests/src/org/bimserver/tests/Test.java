@@ -68,7 +68,7 @@ public class Test {
 
 	private static void testClashes(ResourceFetcher resourceFetcher) {
 		try {
-			FailSafeIfcEngine failSafeIfcEngine = new FailSafeIfcEngine(resourceFetcher.getFile("IFC2X3_FINAL.exp").getAbsoluteFile(), resourceFetcher.getFile("lib/"));
+			FailSafeIfcEngine failSafeIfcEngine = new FailSafeIfcEngine(resourceFetcher.getFile("IFC2X3_FINAL.exp").getAbsoluteFile(), resourceFetcher.getFile("lib/"), "");
 			try {
 				File file = TestFile.AC11.getFile();
 				IfcEngineModel openModel = failSafeIfcEngine.openModel(new FileInputStream(file), (int)file.length());
@@ -93,7 +93,7 @@ public class Test {
 
 	private static void testGeometry(ResourceFetcher resourceFetcher) {
 		try {
-			FailSafeIfcEngine failSafeIfcEngine = new FailSafeIfcEngine(resourceFetcher.getFile("IFC2X3_FINAL.exp").getAbsoluteFile(), resourceFetcher.getFile("lib/"));
+			FailSafeIfcEngine failSafeIfcEngine = new FailSafeIfcEngine(resourceFetcher.getFile("IFC2X3_FINAL.exp").getAbsoluteFile(), resourceFetcher.getFile("lib/"), "");
 			try {
 				File file = TestFile.AC11.getFile();
 				IfcEngineModel openModel = failSafeIfcEngine.openModel(new FileInputStream(file), (int)file.length());

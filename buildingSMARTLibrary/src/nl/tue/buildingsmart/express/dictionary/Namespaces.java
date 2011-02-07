@@ -1,4 +1,5 @@
 package nl.tue.buildingsmart.express.dictionary;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -12,71 +13,78 @@ import org.iai.ifcNamespaces.Namespace;
 import org.iai.ifcNamespaces.NamespacesDocument;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+@SuppressWarnings("all")
 public class Namespaces {
-	private static final Logger LOGGER = LoggerFactory.getLogger(Namespaces.class);
-	
+	private static final Logger LOGGER = LoggerFactory
+			.getLogger(Namespaces.class);
+
 	// XML file for where the Namespaces are stored
 	private File nsConfFile;
 	// XMLBeans instance of reader/writer for config file
 	private NamespacesDocument ifcNamespaces;
-	
-	//whether or not only on namespace for all entries exist
-	private boolean singleNamespace =false;
-	
-	// a list of namespaces with a list of Strings that 
+
+	// whether or not only on namespace for all entries exist
+	private boolean singleNamespace = false;
+
+	// a list of namespaces with a list of Strings that
 	// belong to the namespace
 	private HashMap<String, List<String>> namespaces;
-	
-	// Hashmap EXPRESS name, namespace 
-	private HashMap<String,String> EXPRESSnames;
-	
-	private String defaultNS="";
-	
-	public Namespaces(String filename){
-		EXPRESSnames= new HashMap<String,String>();
+
+	// Hashmap EXPRESS name, namespace
+	private HashMap<String, String> EXPRESSnames;
+
+	private String defaultNS = "";
+
+	public Namespaces(String filename) {
+		EXPRESSnames = new HashMap<String, String>();
 		nsConfFile = new File(filename);
-		
+
 		namespaces = new HashMap<String, List<String>>();
-		if (!nsConfFile.exists()){
-			System.out.println("no existing file provided, using '"+filename+"' as namespace");
-			singleNamespace=true;
-			defaultNS=filename;
+		if (!nsConfFile.exists()) {
+			System.out.println("no existing file provided, using '" + filename
+					+ "' as namespace");
+			singleNamespace = true;
+			defaultNS = filename;
 			namespaces.put(filename, new ArrayList<String>());
 		}
-		
+
 	}
-	
-	
-	public boolean readNSConfig(){
-		if (nsConfFile.canRead() && !singleNamespace){
+
+	public boolean readNSConfig() {
+		if (nsConfFile.canRead() && !singleNamespace) {
 			try {
-				ifcNamespaces = 
-						NamespacesDocument.Factory.parse(nsConfFile);
-				Namespace[] nsArray = ifcNamespaces.getNamespaces().getNamespaceArray();
+				ifcNamespaces = NamespacesDocument.Factory.parse(nsConfFile);
+				Namespace[] nsArray = ifcNamespaces.getNamespaces()
+						.getNamespaceArray();
 				for (int i = 0; i < nsArray.length; i++) {
 					Namespace ns = nsArray[i];
 					List<String> objects = new ArrayList<String>();
-					if (ns.getDefinedtypes()!=null)
-						objects.addAll(toStringList(ns.getDefinedtypes().getDefinedtypeArray()));
-					if (ns.getEntites()!=null)
-						objects.addAll(toStringList(ns.getEntites().getEntityArray()));
-					if (ns.getEnumerations()!=null)
-						objects.addAll(toStringList(ns.getEnumerations().getEnumerationArray()));
-					if (ns.getSelects()!=null)
-						objects.addAll(toStringList(ns.getSelects().getSelectArray()));
-					
-					
-					//add all objects to HashMap for easy retrieval
+					if (ns.getDefinedtypes() != null)
+						objects.addAll(toStringList(ns.getDefinedtypes()
+								.getDefinedtypeArray()));
+					if (ns.getEntites() != null)
+						objects.addAll(toStringList(ns.getEntites()
+								.getEntityArray()));
+					if (ns.getEnumerations() != null)
+						objects.addAll(toStringList(ns.getEnumerations()
+								.getEnumerationArray()));
+					if (ns.getSelects() != null)
+						objects.addAll(toStringList(ns.getSelects()
+								.getSelectArray()));
+
+					// add all objects to HashMap for easy retrieval
 					String nsName = ns.getName();
 					Iterator<String> iter = objects.iterator();
-					while (iter.hasNext()){
-						addNamespaceEntry((String)iter.next(),nsName);
+					while (iter.hasNext()) {
+						addNamespaceEntry((String) iter.next(), nsName);
 					}
-					
-					//store the namespace with all its contents in an convinient structure
+
+					// store the namespace with all its contents in an
+					// convinient structure
 					namespaces.put(nsName, objects);
-				}	
-				
+				}
+
 				return true;
 			} catch (XmlException e) {
 				LOGGER.error("", e);
@@ -86,34 +94,36 @@ public class Namespaces {
 		}
 		return false;
 	}
-	
-	
-	
-	/** gets the namespace for an EXPRESS object such as an ENTITY, TYPE, SELECT etc. 
-	 * @param objName name of the ENTITY/TYPE/SELECT
+
+	/**
+	 * gets the namespace for an EXPRESS object such as an ENTITY, TYPE, SELECT
+	 * etc.
+	 * 
+	 * @param objName
+	 *            name of the ENTITY/TYPE/SELECT
 	 * @return name of the namespace
 	 */
-	public String getNS(String objName){
+	public String getNS(String objName) {
 		if (singleNamespace)
 			return defaultNS;
 		return EXPRESSnames.get(objName);
 	}
-	
-	private List<String> toStringList(String[] inArray){
-		List<String> sl = new ArrayList<String>();  
+
+	private List<String> toStringList(String[] inArray) {
+		List<String> sl = new ArrayList<String>();
 		for (int i = 0; i < inArray.length; i++) {
 			sl.add(inArray[i]);
-		}		 
+		}
 		return sl;
 	}
-	
-	public void addNamespaceEntry(String EXPRESSname, String namespace){
+
+	public void addNamespaceEntry(String EXPRESSname, String namespace) {
 		EXPRESSnames.put(EXPRESSname, namespace);
-		
+
 	}
 
-	public Set<String> getNamespaces(){
+	public Set<String> getNamespaces() {
 		return namespaces.keySet();
 	}
-	
+
 }

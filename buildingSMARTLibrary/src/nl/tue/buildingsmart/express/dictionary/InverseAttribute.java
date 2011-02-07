@@ -1,10 +1,14 @@
 package nl.tue.buildingsmart.express.dictionary;
 
-public class InverseAttribute extends nl.tue.buildingsmart.express.dictionary.Attribute implements nl.tue.buildingsmart.express.dictionary.UnderlyingType {
+@SuppressWarnings("all")
+public class InverseAttribute extends
+		nl.tue.buildingsmart.express.dictionary.Attribute implements
+		nl.tue.buildingsmart.express.dictionary.UnderlyingType {
 
 	private EntityDefinition domain = null;
 	private ExplicitAttribute inverted_attr = null;
 	private Bound min_cardinality, max_cardinality;
+	private boolean duplicates;
 
 	public InverseAttribute(String name, EntityDefinition parent_entity) {
 		super(name, parent_entity);
@@ -41,4 +45,5 @@ public class InverseAttribute extends nl.tue.buildingsmart.express.dictionary.At
 	public void setMin_cardinality(Bound min_cardinality) {
 		this.min_cardinality = min_cardinality;
 	}
+
 }

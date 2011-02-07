@@ -3,10 +3,10 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
+import nl.tue.buildingsmart.express.population.ModelPopulation;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import nl.tue.buildingsmart.express.population.ModelPopulation;
 public class PopulationTest {
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(PopulationTest.class);

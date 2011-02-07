@@ -3,11 +3,11 @@ package org.bimserver;
 public class ServerInfo {
 	private static String errorMessage;
 	
-	public boolean isAvailable() {
+	public static boolean isAvailable() {
 		return errorMessage == null;
 	}
 	
-	public String getErrorMessage() {
+	public static String getErrorMessage() {
 		return errorMessage;
 	}
 	

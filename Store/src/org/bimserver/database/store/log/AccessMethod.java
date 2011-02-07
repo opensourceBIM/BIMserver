@@ -58,7 +58,15 @@ public enum AccessMethod implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	REST(3, "REST", "REST");
+	REST(3, "REST", "REST"), /**
+	 * The '<em><b>SYNDICATION</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #SYNDICATION_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	SYNDICATION(4, "SYNDICATION", "SYNDICATION");
 
 	/**
 	 * The '<em><b>SOAP</b></em>' literal value.
@@ -121,6 +129,21 @@ public enum AccessMethod implements Enumerator {
 	public static final int REST_VALUE = 3;
 
 	/**
+	 * The '<em><b>SYNDICATION</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>SYNDICATION</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #SYNDICATION
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int SYNDICATION_VALUE = 4;
+
+	/**
 	 * An array of all the '<em><b>Access Method</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -132,6 +155,7 @@ public enum AccessMethod implements Enumerator {
 			WEB_INTERFACE,
 			INTERNAL,
 			REST,
+			SYNDICATION,
 		};
 
 	/**
@@ -186,6 +210,7 @@ public enum AccessMethod implements Enumerator {
 			case WEB_INTERFACE_VALUE: return WEB_INTERFACE;
 			case INTERNAL_VALUE: return INTERNAL;
 			case REST_VALUE: return REST;
+			case SYNDICATION_VALUE: return SYNDICATION;
 		}
 		return null;
 	}

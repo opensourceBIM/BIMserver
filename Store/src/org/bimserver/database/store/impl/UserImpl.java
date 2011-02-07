@@ -44,6 +44,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.bimserver.database.store.impl.UserImpl#getUserType <em>User Type</em>}</li>
  *   <li>{@link org.bimserver.database.store.impl.UserImpl#getUsername <em>Username</em>}</li>
  *   <li>{@link org.bimserver.database.store.impl.UserImpl#getLastSeen <em>Last Seen</em>}</li>
+ *   <li>{@link org.bimserver.database.store.impl.UserImpl#getValidationToken <em>Validation Token</em>}</li>
+ *   <li>{@link org.bimserver.database.store.impl.UserImpl#getValidationTokenCreated <em>Validation Token Created</em>}</li>
  * </ul>
  * </p>
  *
@@ -219,6 +221,46 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 * @ordered
 	 */
 	protected Date lastSeen = LAST_SEEN_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getValidationToken() <em>Validation Token</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getValidationToken()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String VALIDATION_TOKEN_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getValidationToken() <em>Validation Token</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getValidationToken()
+	 * @generated
+	 * @ordered
+	 */
+	protected String validationToken = VALIDATION_TOKEN_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getValidationTokenCreated() <em>Validation Token Created</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getValidationTokenCreated()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final Date VALIDATION_TOKEN_CREATED_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getValidationTokenCreated() <em>Validation Token Created</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getValidationTokenCreated()
+	 * @generated
+	 * @ordered
+	 */
+	protected Date validationTokenCreated = VALIDATION_TOKEN_CREATED_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -453,6 +495,48 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getValidationToken() {
+		return validationToken;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setValidationToken(String newValidationToken) {
+		String oldValidationToken = validationToken;
+		validationToken = newValidationToken;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.USER__VALIDATION_TOKEN, oldValidationToken, validationToken));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Date getValidationTokenCreated() {
+		return validationTokenCreated;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setValidationTokenCreated(Date newValidationTokenCreated) {
+		Date oldValidationTokenCreated = validationTokenCreated;
+		validationTokenCreated = newValidationTokenCreated;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.USER__VALIDATION_TOKEN_CREATED, oldValidationTokenCreated, validationTokenCreated));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
@@ -506,6 +590,10 @@ public class UserImpl extends IdEObjectImpl implements User {
 				return getUsername();
 			case StorePackage.USER__LAST_SEEN:
 				return getLastSeen();
+			case StorePackage.USER__VALIDATION_TOKEN:
+				return getValidationToken();
+			case StorePackage.USER__VALIDATION_TOKEN_CREATED:
+				return getValidationTokenCreated();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -551,6 +639,12 @@ public class UserImpl extends IdEObjectImpl implements User {
 			case StorePackage.USER__LAST_SEEN:
 				setLastSeen((Date)newValue);
 				return;
+			case StorePackage.USER__VALIDATION_TOKEN:
+				setValidationToken((String)newValue);
+				return;
+			case StorePackage.USER__VALIDATION_TOKEN_CREATED:
+				setValidationTokenCreated((Date)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -593,6 +687,12 @@ public class UserImpl extends IdEObjectImpl implements User {
 			case StorePackage.USER__LAST_SEEN:
 				setLastSeen(LAST_SEEN_EDEFAULT);
 				return;
+			case StorePackage.USER__VALIDATION_TOKEN:
+				setValidationToken(VALIDATION_TOKEN_EDEFAULT);
+				return;
+			case StorePackage.USER__VALIDATION_TOKEN_CREATED:
+				setValidationTokenCreated(VALIDATION_TOKEN_CREATED_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -625,6 +725,10 @@ public class UserImpl extends IdEObjectImpl implements User {
 				return USERNAME_EDEFAULT == null ? username != null : !USERNAME_EDEFAULT.equals(username);
 			case StorePackage.USER__LAST_SEEN:
 				return LAST_SEEN_EDEFAULT == null ? lastSeen != null : !LAST_SEEN_EDEFAULT.equals(lastSeen);
+			case StorePackage.USER__VALIDATION_TOKEN:
+				return VALIDATION_TOKEN_EDEFAULT == null ? validationToken != null : !VALIDATION_TOKEN_EDEFAULT.equals(validationToken);
+			case StorePackage.USER__VALIDATION_TOKEN_CREATED:
+				return VALIDATION_TOKEN_CREATED_EDEFAULT == null ? validationTokenCreated != null : !VALIDATION_TOKEN_CREATED_EDEFAULT.equals(validationTokenCreated);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -653,6 +757,10 @@ public class UserImpl extends IdEObjectImpl implements User {
 		result.append(username);
 		result.append(", lastSeen: ");
 		result.append(lastSeen);
+		result.append(", validationToken: ");
+		result.append(validationToken);
+		result.append(", validationTokenCreated: ");
+		result.append(validationTokenCreated);
 		result.append(')');
 		return result.toString();
 	}

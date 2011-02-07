@@ -1,3 +1,4 @@
+<%@page import="org.bimserver.ServerInfo"%>
 <%@page import="java.util.List" %>
 <%@page import="java.util.Collections"%>
 <%@page import="org.bimserver.web.LoginManager"%>
@@ -6,7 +7,7 @@
 <%@page import="org.bimserver.shared.SProjectNameComparator"%>
 <%@ include file="header.jsp" %>
 <%
-if (serverInfo.isAvailable()) {
+if (ServerInfo.isAvailable()) {
 	if (loginManager.getService().isLoggedIn()) { %>
 <%@page import="org.bimserver.interfaces.objects.SUserType"%><div class="sidebar">
  <ul>

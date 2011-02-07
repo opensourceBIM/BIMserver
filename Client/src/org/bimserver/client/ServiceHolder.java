@@ -32,8 +32,8 @@ import org.apache.cxf.interceptor.LoggingInInterceptor;
 import org.apache.cxf.interceptor.LoggingOutInterceptor;
 import org.apache.cxf.jaxws.JaxWsProxyFactoryBean;
 import org.apache.cxf.transport.http.HTTPConduit;
+import org.bimserver.shared.ServiceException;
 import org.bimserver.shared.ServiceInterface;
-import org.bimserver.shared.UserException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -42,7 +42,7 @@ public class ServiceHolder {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ServiceHolder.class);
 	private String username = "anonymous";
 	private String password = "anonymous";
-	private String address = "http://localhost:8082/services/soap";
+	private String address = "http://localhost:8082/soap";
 
 	public ServiceInterface getService() {
 		return service;
@@ -52,24 +52,8 @@ public class ServiceHolder {
 		this.address = address;
 		this.username = username;
 		this.password = password;
-		JaxWsProxyFactoryBean cpfb = new JaxWsProxyFactoryBean();
 		LOGGER.info("Connecting to " + address);
-		cpfb.setServiceClass(ServiceInterface.class);
-		cpfb.setAddress(address);
-		Map<String, Object> properties = new HashMap<String, Object>();
-		properties.put("mtom-enabled", Boolean.TRUE);
-		cpfb.setProperties(properties);
-
-		service = (ServiceInterface) cpfb.create();
-
-		Client client = ClientProxy.getClient(service);
-		client.getInInterceptors().add(new LoggingInInterceptor(ConsoleAppender.getPrintWriter()));
-		client.getOutInterceptors().add(new LoggingOutInterceptor(ConsoleAppender.getPrintWriter()));
-		HTTPConduit http = (HTTPConduit) client.getConduit();
-		((BindingProvider) service).getRequestContext().put(BindingProvider.SESSION_MAINTAIN_PROPERTY, Boolean.TRUE);
-		http.getClient().setConnectionTimeout(360000);
-		http.getClient().setAllowChunking(false);
-		http.getClient().setReceiveTimeout(320000);
+		createClient(address);
 
 		boolean connected = false;
 		try {
@@ -95,13 +79,33 @@ public class ServiceHolder {
 				this.service = null;
 				LOGGER.info("Error connecting to " + address);
 				return false;
-			} catch (UserException e) {
+			} catch (ServiceException e) {
 				LOGGER.info("Error " + e.getMessage());
 				return false;
 			}
 		} else {
 			return false;
 		}
+	}
+
+	private void createClient(final String address) {
+		JaxWsProxyFactoryBean cpfb = new JaxWsProxyFactoryBean();
+		cpfb.setServiceClass(ServiceInterface.class);
+		cpfb.setAddress(address);
+		Map<String, Object> properties = new HashMap<String, Object>();
+		properties.put("mtom-enabled", Boolean.TRUE);
+		cpfb.setProperties(properties);
+
+		service = (ServiceInterface) cpfb.create();
+
+		Client client = ClientProxy.getClient(service);
+		client.getInInterceptors().add(new LoggingInInterceptor(ConsoleAppender.getPrintWriter()));
+		client.getOutInterceptors().add(new LoggingOutInterceptor(ConsoleAppender.getPrintWriter()));
+		HTTPConduit http = (HTTPConduit) client.getConduit();
+		((BindingProvider) service).getRequestContext().put(BindingProvider.SESSION_MAINTAIN_PROPERTY, Boolean.TRUE);
+		http.getClient().setConnectionTimeout(360000);
+		http.getClient().setAllowChunking(false);
+		http.getClient().setReceiveTimeout(320000);
 	}
 
 	public String getUsername() {

@@ -6,7 +6,7 @@
 <%@page import="javax.mail.Message"%>
 <%@page import="javax.mail.Session"%>
 <%@page import="java.util.Properties"%>
-<%@page import="org.bimserver.ServerSettings"%>
+<%@page import="org.bimserver.settings.ServerSettings"%>
 <%@page import="org.bimserver.interfaces.objects.SProject"%>
 <%@page import="org.bimserver.mail.MailSystem"%>
 <%@page import="org.slf4j.Logger"%>
@@ -43,7 +43,7 @@
 //		String html = JspHelper.writeSummaryTable(project, rid, revisionSummary);
 //		msg.setContent(html, "text/html");
 		Transport.send(msg);
-		out.append("Revision summary succesfully e-mailed to " + address);
+		out.append("Revision summary successfully e-mailed to " + address);
 	} catch (Exception e) {
 		logger.error("", e);
 		out.append("An error has occured while sending revision summary: " + e.getMessage());

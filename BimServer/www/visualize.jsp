@@ -13,7 +13,6 @@ $(document).ready(function(){
 		g_idOfLoader = "visualizeloader";
 		createClient(document.getElementById(o3dId), function(){
 			loadFile(o3djs.util.getCurrentURI() + 'download?roid=<%=request.getParameter("roid") %>&resultType=O3D_JSON', "visualizeloader");
-//			loadFile(o3djs.util.getCurrentURI() + 'scene.json', "visualizeloader");
 		});
 		return false;
 	});

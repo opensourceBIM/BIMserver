@@ -1,3 +1,4 @@
+<%@page import="org.bimserver.settings.ServerSettings"%>
 <%@page import="java.util.List" %>
 <%@page import="java.text.DateFormat" %>
 <%@page import="java.text.SimpleDateFormat" %>
@@ -21,6 +22,9 @@
 <script type="text/javascript" src="js/proj4js.js"></script>
 <script type="text/javascript" src="js/map.js"></script>
 <!-- end mapscripts -->
+<div class="sidebar">
+</div>
+<div class="content">
 <%
 	if (loginManager.getService().isLoggedIn()) {
 		SProject superProject = null;
@@ -73,9 +77,6 @@
 				}
 			}
 %>
-<div class="sidebar">
-</div>
-<div class="content">
 <h1>Add <%= (superProject != null) ? "sub" : "" %>project<%=superProject != null ? (" (to " + superProject.getName() + ")") : "" %></h1>
 <fieldset style="padding: 5px; margin-top: 10px">
 <form name="form" method="post" action="addproject.jsp">

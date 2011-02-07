@@ -34,6 +34,9 @@ public class UpdateProjectDatabaseAction extends BimDatabaseAction<Void> {
 		if (project == null) {
 			throw new UserException("Project with pid " + sProject.getOid() + " not found");
 		}
+		if (sProject.getName().trim().equals("")) {
+			throw new UserException("Project name cannot be empty");
+		}
 		if (actingUser.getUserType() == UserType.ANONYMOUS) {
 			throw new UserException("User anonymous cannot update project properties");
 		}
@@ -66,8 +69,6 @@ public class UpdateProjectDatabaseAction extends BimDatabaseAction<Void> {
 		projectUpdated.setProject(project);
 		bimDatabaseSession.store(projectUpdated);
 		bimDatabaseSession.store(project);
-		bimDatabaseSession.savePidCounter();
-		bimDatabaseSession.saveOidCounter();
 		return null;
 	}
 }

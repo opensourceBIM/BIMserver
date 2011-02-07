@@ -26,6 +26,8 @@ public class SUser
 	private SUserType userType;
 	private java.lang.String username;
 	private java.util.Date lastSeen;
+	private java.lang.String validationToken;
+	private java.util.Date validationTokenCreated;
 
 	public java.lang.String getName() {
 		return name;
@@ -93,6 +95,22 @@ public class SUser
 
 	public void setLastSeen(java.util.Date lastSeen) {
 		this.lastSeen = lastSeen;
+	}
+
+	public java.lang.String getValidationToken() {
+		return validationToken;
+	}
+
+	public void setValidationToken(java.lang.String validationToken) {
+		this.validationToken = validationToken;
+	}
+
+	public java.util.Date getValidationTokenCreated() {
+		return validationTokenCreated;
+	}
+
+	public void setValidationTokenCreated(java.util.Date validationTokenCreated) {
+		this.validationTokenCreated = validationTokenCreated;
 	}
 	@Override
 	public int hashCode() {

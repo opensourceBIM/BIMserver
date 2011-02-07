@@ -9,7 +9,7 @@ import org.bimserver.database.store.EidClash;
 import org.bimserver.database.store.Revision;
 
 public class ClashDetectionCache extends GenericCache<ClashDetectionCache.ClashDetectionSettingsKey, ClashDetectionCache.ClashDetectionValue> {
-	private static final int MAX_UNACCESSED_TIME_MILLIS = 1000 * 60 * 30; // 30
+	private static final int MAX_UNACCESSED_TIME_MILLIS = 1000 * 60 * 30; // 30 minutes
 
 	public static class ClashDetectionSettingsKey extends GenericCacheKey {
 		private final float margin;
@@ -27,6 +27,11 @@ public class ClashDetectionCache extends GenericCache<ClashDetectionCache.ClashD
 			}
 		}
 
+		@Override
+		public String toString() {
+			return "margin: " + margin + ", ignoredClasses: " + ignoredClasses.toString() + ", revisions: " + revisions.toString();
+		}
+		
 		@Override
 		public int hashCode() {
 			final int prime = 31;

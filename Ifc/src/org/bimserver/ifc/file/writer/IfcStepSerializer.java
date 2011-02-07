@@ -114,7 +114,9 @@ public class IfcStepSerializer extends IfcSerializer {
 		} else if (mode == Mode.BODY) {
 			if (iterator.hasNext()) {
 				long key = iterator.next();
-				write(out, key, model.get(key));
+				if (key != -1) {
+					write(out, key, model.get(key));
+				}
 			} else {
 				iterator = null;
 				mode = Mode.FOOTER;

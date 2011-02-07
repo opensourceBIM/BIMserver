@@ -31,10 +31,10 @@ public class UpdateRevisionDatabaseAction extends BimDatabaseAction<Void> {
 	public Void execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
 		User actingUser = bimDatabaseSession.getUserByUoid(actingUoid);
 		final Revision revision = bimDatabaseSession.getRevisionByRoid(sRevision.getOid());
-		Project project = revision.getProject();
 		if (revision == null) {
 			throw new UserException("Revision with pid " + sRevision.getOid() + " not found");
 		}
+		Project project = revision.getProject();
 		if (actingUser.getUserType() == UserType.ANONYMOUS) {
 			throw new UserException("User anonymous cannot update revision properties");
 		}

@@ -1,3 +1,11 @@
+<%@page import="org.bimserver.settings.ServerSettings"%>
+<%@page import="org.bimserver.web.LoginManager"%>
+<%@page import="org.bimserver.interfaces.objects.SProject"%>
+<jsp:useBean id="loginManager" scope="session" class="org.bimserver.web.LoginManager" />
+<%
+	long poid = Long.parseLong(request.getParameter("poid"));
+	SProject sProject = loginManager.getService().getProjectByPoid(poid);
+%>
 <fieldset>
 <legend>Upload IFC file</legend>
 <div id="uploadajaxloader">

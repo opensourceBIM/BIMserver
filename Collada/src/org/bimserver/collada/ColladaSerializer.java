@@ -507,7 +507,7 @@ public class ColladaSerializer extends BimModelSerializer {
 		out.println("		<material id=\"ColumnMaterial\" name=\"ColumnMaterial\">");
 		out.println("			<instance_effect url=\"#Column-fx\"/>");
 		out.println("		</material>");
-		out.println("		<material id=\"FurnishingElement\" name=\"FurnishingElement\">");
+		out.println("		<material id=\"FurnishingElementMaterial\" name=\"FurnishingElementMaterial\">");
 		out.println("			<instance_effect url=\"#FurnishingElement-fx\"/>");
 		out.println("		</material>");
 		out.println("	</library_materials>");

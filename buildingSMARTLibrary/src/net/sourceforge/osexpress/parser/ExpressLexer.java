@@ -22,6 +22,7 @@ import antlr.TokenStreamIOException;
 import antlr.TokenStreamRecognitionException;
 import antlr.collections.impl.BitSet;
 
+@SuppressWarnings("all")
 public class ExpressLexer extends antlr.CharScanner implements ExpressParserTokenTypes, TokenStream
  {
 

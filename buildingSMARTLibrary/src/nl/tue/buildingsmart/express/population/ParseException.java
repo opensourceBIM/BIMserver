@@ -9,6 +9,8 @@ package nl.tue.buildingsmart.express.population;
  * You can modify this class to customize your error reporting
  * mechanisms so long as you retain the public fields.
  */
+
+@SuppressWarnings("all")
 public class ParseException extends Exception {
 
 	private static final long serialVersionUID = 1835959973347942267L;

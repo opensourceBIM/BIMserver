@@ -2,11 +2,12 @@ package nl.tue.buildingsmart.express.parser;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
 
+import net.sourceforge.osexpress.parser.EasyParser;
+import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import net.sourceforge.osexpress.parser.EasyParser;
-import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
 import antlr.CommonAST;
 
 public class SchemaLoader {

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.cxf.binding.soap.interceptor.SoapHeaderInterceptor;
@@ -15,6 +16,7 @@ import org.apache.cxf.message.Message;
 import org.apache.cxf.transport.Conduit;
 import org.apache.cxf.ws.addressing.EndpointReferenceType;
 import org.bimserver.database.store.log.AccessMethod;
+import org.bimserver.shared.ServiceException;
 import org.bimserver.shared.ServiceInterface;
 import org.bimserver.shared.Token;
 import org.bimserver.shared.UserException;
@@ -38,8 +40,12 @@ public class RestAuthentication extends SoapHeaderInterceptor {
 				LOGGER.error("", e);
 			}
 		}
-		if (newService.isLoggedIn()) {
-			return;
+		try {
+			if (newService.isLoggedIn()) {
+				return;
+			}
+		} catch (ServiceException e1) {
+			LOGGER.error("", e1);
 		}
 		AuthorizationPolicy policy = message.get(AuthorizationPolicy.class);
 		if (policy == null) {
@@ -53,7 +59,7 @@ public class RestAuthentication extends SoapHeaderInterceptor {
 				LOGGER.warn("Invalid username or password for user: " + policy.getUserName());
 				sendErrorResponse(message, HttpURLConnection.HTTP_FORBIDDEN);
 			}
-		} catch (UserException e) {
+		} catch (ServiceException e) {
 			LOGGER.error("", e);
 		}
 	}
@@ -63,7 +69,7 @@ public class RestAuthentication extends SoapHeaderInterceptor {
 		Message outMessage = getOutMessage(message);
 		outMessage.put(Message.RESPONSE_CODE, responseCode);
 		// Set the response headers
-		Map responseHeaders = (Map) message.get(Message.PROTOCOL_HEADERS);
+		Map<String, List<String>> responseHeaders = (Map<String, List<String>>) message.get(Message.PROTOCOL_HEADERS);
 		if (responseHeaders != null) {
 			responseHeaders.put("WWW-Authenticate", Arrays.asList(new String[] { "Basic realm=realm" }));
 			responseHeaders.put("Content-Length", Arrays.asList(new String[] { "0" }));

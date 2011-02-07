@@ -1023,6 +1023,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 		addEEnumLiteral(accessMethodEEnum, AccessMethod.WEB_INTERFACE);
 		addEEnumLiteral(accessMethodEEnum, AccessMethod.INTERNAL);
 		addEEnumLiteral(accessMethodEEnum, AccessMethod.REST);
+		addEEnumLiteral(accessMethodEEnum, AccessMethod.SYNDICATION);
 	}
 
 } //LogPackageImpl

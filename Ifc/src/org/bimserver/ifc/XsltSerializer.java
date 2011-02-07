@@ -1,6 +1,5 @@
 package org.bimserver.ifc;
 
-import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URL;
 
@@ -73,7 +72,7 @@ public class XsltSerializer extends BimModelSerializer {
 			} catch (TransformerException e) {
 				throw new SerializerException(e);
 			}
-		} catch (IOException e) {
+		} catch (Throwable e) {
 			throw new SerializerException(e);
 		}
 		return -1;

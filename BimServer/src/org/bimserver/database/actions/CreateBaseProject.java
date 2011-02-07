@@ -23,8 +23,6 @@ public class CreateBaseProject extends BimDatabaseAction<Project>{
 		project.setName(Database.STORE_PROJECT_NAME);
 		project.setCreatedDate(new Date());
 		bimDatabaseSession.store(project);
-		bimDatabaseSession.saveOidCounter();
-		bimDatabaseSession.savePidCounter();
 		return project;
 	}
 }

@@ -2,8 +2,7 @@
 <%@page import="org.bimserver.interfaces.objects.SProject"%>
 <%@page import="org.bimserver.interfaces.objects.SRevision"%>
 <%@page import="org.bimserver.interfaces.objects.SClash"%>
-<%@page
-	import="org.bimserver.interfaces.objects.SClashDetectionSettings"%>
+<%@page	import="org.bimserver.interfaces.objects.SClashDetectionSettings"%>
 <%@page import="org.bimserver.web.JspHelper"%>
 <%@page import="java.util.Set"%>
 <%@page import="java.util.HashSet"%>
@@ -12,8 +11,7 @@
 <%@page import="org.bimserver.interfaces.objects.SEidClash"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.Map"%>
-<jsp:useBean id="loginManager" scope="session"
-	class="org.bimserver.web.LoginManager" />
+<jsp:useBean id="loginManager" scope="session" class="org.bimserver.web.LoginManager" />
 <%
 	long poid = Long.parseLong(request.getParameter("poid"));
 	SProject project = loginManager.getService().getProjectByPoid(poid);
@@ -148,27 +146,35 @@ $(document).ready(function(){
 	$("#moveright").click(toRight);	
 	$("#findclashesajaxloader").hide();
 	$("#findclashesajaxlink").click(function(){
-		var url = "clashes.jsp?action=findclashes&poid=<%=poid%>&margin=" + $("#margin").val() + "&ignored=";
+		var data = new Object();
+		data.action = "findclashes";
+		data.poid = <%=poid%>;
+		data.margin = $("#margin").val();
+//		var url = "clashes.jsp?action=findclashes&poid=<%=poid%>&margin=" + $("#margin").val() + "&ignored=";
 		var ignored = document.getElementById("ignored");
+		var ignoreString = "";
 		for (var i=0; i<ignored.options.length; i++) {
 			var item = ignored.options[i];
-			url += item.value + ";";
+			ignoreString += item.value + ";";
 		}
-		url += "&revisions=";
+		data.ignored = ignoreString;
+		var revisionsString = "";
+//		url += "&revisions=";
 		var revisionFound = false;
 		for (var project in projects) {
 			var val = $("#clash_" + projects[project].id).val();
 			if (val != "[off]" && val != undefined) {
-				url += val + ";";
+				revisionsString += val + ";";
 				revisionFound = true;
 			}
 		}
+		data.revisions = revisionsString;
 		if (!revisionFound) {
 			alert("At least one revision must be selected");
 		} else {
 			$("#findclashesajaxloader").show();
 			$("#clashresults").empty();
-			$("#clashresults").load(url);
+			$("#clashresults").load("clashes.jsp", data);
 		}
 	});
 	updateTreeSelectListeners();
@@ -234,7 +240,7 @@ Send summary to <input type="text" id="address" name="address" /> <input
 </div>
 <br />
 <br />
-<form action="<%=request.getContextPath()%>/download" method="get">
+<form action="<%=request.getContextPath()%>/download" method="post">
 Download: <input type="hidden" name="clashes" value="true" /> <input
 	type="hidden" name="margin" value="<%=request.getParameter("margin")%>" />
 <input type="hidden" name="revisions"
@@ -268,7 +274,13 @@ $(document).ready(function(){
 	});
 	$("#emailclashesform").submit(function(){
 		$("#emailclashesajaxloader").show();
-		$("#emailclashesform").load("sendclashesemail.jsp?poid=" + <%=poid%> + "&address=" + $("#address").val() + "&margin=" + $("#emailmargin").val() + "&revisions=" + $("#emailrevisions").val() + "&ignored=" + $("#emailignored").val());
+		var data = new Object();
+		data.poid = <%=poid%>;
+		data.address = $("#address").val();
+		data.margin = $("#emailmargin").val();
+		data.revisions = $("#emailrevisions").val();
+		data.ignored = $("#emailignored").val();
+		$("#emailclashesform").load("sendclashesemail.jsp", data);
 		return false;
 	});
 	instrumentBrowserLinks();

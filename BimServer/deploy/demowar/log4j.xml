@@ -18,8 +18,7 @@
 	</logger>
 	<logger name="org.springframework">
 		<level value="ERROR" />
-		<appender-ref ref="ErrorConsole" />
-		<appender-ref ref="OutConsole" />
+		<appender-ref ref="File" />
 	</logger>
 	<root>
 		<priority value="INFO" />

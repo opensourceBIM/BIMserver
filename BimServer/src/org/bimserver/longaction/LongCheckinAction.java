@@ -2,6 +2,7 @@ package org.bimserver.longaction;
 
 import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
 
+import org.bimserver.ServerInfo;
 import org.bimserver.database.BimDatabase;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
@@ -11,6 +12,7 @@ import org.bimserver.database.store.CheckinState;
 import org.bimserver.database.store.ConcreteRevision;
 import org.bimserver.database.store.Project;
 import org.bimserver.database.store.Revision;
+import org.bimserver.database.store.User;
 import org.bimserver.ifc.SerializerException;
 import org.bimserver.ifcengine.IfcEngineException;
 import org.bimserver.ifcengine.IfcEngineFactory;
@@ -26,8 +28,10 @@ public class LongCheckinAction extends LongAction {
 	private final SchemaDefinition schema;
 	private final IfcEngineFactory ifcEngineFactory;
 	private final LongActionManager longActionManager;
+	private final User user;
 
-	public LongCheckinAction(LongActionManager longActionManager, BimDatabase bimDatabase, SchemaDefinition schema, CheckinPart2DatabaseAction createCheckinAction, IfcEngineFactory ifcEngineFactory) {
+	public LongCheckinAction(User user, LongActionManager longActionManager, BimDatabase bimDatabase, SchemaDefinition schema, CheckinPart2DatabaseAction createCheckinAction, IfcEngineFactory ifcEngineFactory) {
+		this.user = user;
 		this.longActionManager = longActionManager;
 		this.bimDatabase = bimDatabase;
 		this.schema = schema;
@@ -63,6 +67,9 @@ public class LongCheckinAction extends LongAction {
 			
 			session = bimDatabase.createReadOnlySession();
 			startClashDetection(session);
+		} catch (OutOfMemoryError e) {
+			ServerInfo.setOutOfMemory();
+			return;
 		} catch (Exception e) {
 			LOGGER.error("", e);
 			long croid = createCheckinAction.getCroid();
@@ -103,8 +110,21 @@ public class LongCheckinAction extends LongAction {
 			mainProject = mainProject.getParent();
 		}
 		if (mainProject.getClashDetectionSettings().isEnabled()) {
-			ClashDetectionLongAction clashDetectionLongAction = new ClashDetectionLongAction(createCheckinAction.getActingUid(), schema, ifcEngineFactory, bimDatabase, mainProject.getOid());
-			longActionManager.start(clashDetectionLongAction);
+			ClashDetectionLongAction clashDetectionLongAction = new ClashDetectionLongAction(user, createCheckinAction.getActingUid(), schema, ifcEngineFactory, bimDatabase, mainProject.getOid());
+			try {
+				longActionManager.start(clashDetectionLongAction);
+			} catch (CannotBeScheduledException e) {
+				throw new UserException("Server is shutting down", e);
+			}
 		}
+	}
+
+	@Override
+	public String getIdentification() {
+		return "LongCheckinAction " + getUser().getName();
+	}
+
+	public User getUser() {
+		return user;
 	}
 }

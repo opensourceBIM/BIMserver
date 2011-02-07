@@ -40,9 +40,9 @@ public class HtmlWriter {
 		out.println("<tr>");
 		out.println("<td>" + rowNr + ".</td>");
 		for (String value : values) {
-			if (value.equals("true")) {
+			if (value.equals("true") || value.equals("OKE")) {
 				out.println("<td style=\"background-color: #00FF00\">" + value + "</td>");
-			} else if (value.equals("false")) {
+			} else if (value.equals("false") || value.equals("SERVER_COMMIT_ERROR") || value.equals("OTHER_SERVER_ERROR")) {
 				out.println("<td style=\"background-color: red\">" + value + "</td>");
 			} else {
 				out.println("<td>" + value + "</td>");

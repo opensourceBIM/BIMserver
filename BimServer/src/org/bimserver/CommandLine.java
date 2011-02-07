@@ -4,9 +4,12 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Map;
+import java.util.Set;
 
+import org.bimserver.database.ColumnDatabase;
+import org.bimserver.database.Database;
 import org.bimserver.shared.ResultType;
-import org.bimserver.shared.UserException;
+import org.bimserver.shared.ServiceException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -41,7 +44,7 @@ public class CommandLine extends Thread {
 					long startTime = System.nanoTime();
 					try {
 						ServerInitializer.getAdminService().download(1051442, ResultType.IFC);
-					} catch (UserException e) {
+					} catch (ServiceException e) {
 						LOGGER.error("", e);
 					}
 					long endTime = System.nanoTime();
@@ -65,6 +68,18 @@ public class CommandLine extends Thread {
 					} catch (InterruptedException e) {
 						LOGGER.error("", e);
 					}
+				} else if (line.startsWith("showall")) {
+					ColumnDatabase columnDatabase = ((Database)ServerInitializer.getDatabase()).getColumnDatabase();
+					Set<String> allTableNames = columnDatabase.getAllTableNames();
+					long total = 0;
+					for (String tableName : allTableNames) {
+						long size = columnDatabase.count(tableName);
+						total += size;
+						if (size != 0) {
+							System.out.println(tableName + " " + size);
+						}
+					}
+					System.out.println("total: " + total);
 				}
 			} catch (IOException e) {
 				LOGGER.error("", e);

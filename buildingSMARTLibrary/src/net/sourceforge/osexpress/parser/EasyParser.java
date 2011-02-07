@@ -52,7 +52,8 @@ public class EasyParser {
 	expin=bis;
     }
 
-    public EasyParser(Vector<?> filenames) throws IOException {
+    @SuppressWarnings("rawtypes")
+	public EasyParser(Vector filenames) throws IOException {
 	/* put all files in a single buffer and parse them as a file with
 	   multiple schemas */
 	File[] fs;

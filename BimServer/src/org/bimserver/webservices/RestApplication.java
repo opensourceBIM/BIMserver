@@ -9,18 +9,26 @@ import org.bimserver.database.store.log.AccessMethod;
 import org.bimserver.shared.ServiceInterface;
 
 public class RestApplication extends Application {
-	public static ServiceFactory serviceFactory;
+	private static ServiceFactory serviceFactory;
+
+	public static void setServiceFactory(ServiceFactory serviceFactory) {
+		RestApplication.serviceFactory = serviceFactory;
+	}
 	
 	public Set<Class<?>> getClasses() {
 		Set<Class<?>> classes = new HashSet<Class<?>>();
-		classes.add(ServiceInterface.class);
+		if (serviceFactory != null) {
+			classes.add(ServiceInterface.class);
+		}
 		return classes;
 	}
 	
 	@Override
 	public Set<Object> getSingletons() {
 		Set<Object> objects = new HashSet<Object>();
-		objects.add(serviceFactory.newService(AccessMethod.REST));
+		if (serviceFactory != null) {
+			objects.add(serviceFactory.newService(AccessMethod.REST));
+		}
 		return objects;
 	}
 }

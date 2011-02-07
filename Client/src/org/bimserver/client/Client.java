@@ -25,7 +25,6 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -45,21 +44,16 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
 
 import org.apache.commons.io.IOUtils;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.interfaces.objects.SUser;
-import org.bimserver.shared.ChangeSet;
-import org.bimserver.shared.ChangeSetResult;
 import org.bimserver.shared.ResultType;
 import org.bimserver.shared.SCheckinResult;
 import org.bimserver.shared.SCheckoutResult;
 import org.bimserver.shared.SDownloadResult;
-import org.bimserver.shared.UserException;
+import org.bimserver.shared.ServiceException;
 import org.bimserver.utils.SwingUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -137,13 +131,14 @@ public class Client extends JFrame {
 	}
 
 	public void checkin(SProject project, DataSource dataSource, long fileSize) {
-		String comment = JOptionPane.showInputDialog(Client.this, "Please give a short description of you changes", "Checkin", JOptionPane.OK_OPTION
+		String comment = JOptionPane.showInputDialog(Client.this, "Please give a short description of your changes", "Checkin", JOptionPane.OK_OPTION
 				| JOptionPane.INFORMATION_MESSAGE);
 		try {
-			SCheckinResult upload = serviceHolder.getService().checkinSync(project.getOid(), comment, fileSize, new DataHandler(dataSource));
+			DataHandler ifcFile = new DataHandler(dataSource);
+			SCheckinResult upload = serviceHolder.getService().checkinSync(project.getOid(), comment, fileSize, ifcFile, false);
 			JOptionPane.showMessageDialog(this, "New revision number: " + upload.getRid(), "Checkin successfull", JOptionPane.OK_OPTION | JOptionPane.INFORMATION_MESSAGE);
 			revisionPanel.showProject(project);
-		} catch (UserException e) {
+		} catch (ServiceException e) {
 			JOptionPane.showMessageDialog(this, e.getUserMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
@@ -173,7 +168,7 @@ public class Client extends JFrame {
 			} catch (IOException e) {
 				LOGGER.error("", e);
 			}
-		} catch (UserException e) {
+		} catch (ServiceException e) {
 			LOGGER.error("", e);
 		}
 	}
@@ -204,38 +199,38 @@ public class Client extends JFrame {
 		checkoutsPanel.showUser(user);
 	}
 
-	public void processChangeSet(SProject project) {
-		JFileChooser chooser = new JFileChooser();
-		int showOpenDialog = chooser.showOpenDialog(this);
-		if (showOpenDialog == JFileChooser.APPROVE_OPTION) {
-			File file = chooser.getSelectedFile();
-			processChangeSet(project, file);
-		}
-	}
+//	public void processChangeSet(SProject project) {
+//		JFileChooser chooser = new JFileChooser();
+//		int showOpenDialog = chooser.showOpenDialog(this);
+//		if (showOpenDialog == JFileChooser.APPROVE_OPTION) {
+//			File file = chooser.getSelectedFile();
+//			processChangeSet(project, file);
+//		}
+//	}
 
-	private void processChangeSet(SProject project, File file) {
-		String showInputDialog = JOptionPane.showInputDialog(Client.this, "Please give a short description of you changes", "Process ChangeSet", JOptionPane.OK_OPTION
-				| JOptionPane.INFORMATION_MESSAGE);
-		JAXBContext context;
-		ChangeSet changeSet = null;
-		try {
-			context = JAXBContext.newInstance(ChangeSet.class);
-			Unmarshaller unmarshaller = context.createUnmarshaller();
-			changeSet = (ChangeSet) unmarshaller.unmarshal(new FileInputStream(file));
-		} catch (JAXBException e) {
-			LOGGER.error("", e);
-		} catch (FileNotFoundException e) {
-			LOGGER.error("", e);
-		}
-		try {
-			ChangeSetResult upload = serviceHolder.getService().processChangeSet(changeSet, project.getId(), showInputDialog);
-			JOptionPane.showMessageDialog(this, "New revision number: " + upload.getNewRevisionNr(), "Processing of ChangeSet successfull", JOptionPane.OK_OPTION
-					| JOptionPane.INFORMATION_MESSAGE);
-			revisionPanel.showProject(project);
-		} catch (UserException e) {
-			LOGGER.error("", e);
-		}
-	}
+//	private void processChangeSet(SProject project, File file) {
+//		String showInputDialog = JOptionPane.showInputDialog(Client.this, "Please give a short description of you changes", "Process ChangeSet", JOptionPane.OK_OPTION
+//				| JOptionPane.INFORMATION_MESSAGE);
+//		JAXBContext context;
+//		ChangeSet changeSet = null;
+//		try {
+//			context = JAXBContext.newInstance(ChangeSet.class);
+//			Unmarshaller unmarshaller = context.createUnmarshaller();
+//			changeSet = (ChangeSet) unmarshaller.unmarshal(new FileInputStream(file));
+//		} catch (JAXBException e) {
+//			LOGGER.error("", e);
+//		} catch (FileNotFoundException e) {
+//			LOGGER.error("", e);
+//		}
+//		try {
+//			ChangeSetResult upload = serviceHolder.getService().processChangeSet(changeSet, project.getId(), showInputDialog);
+//			JOptionPane.showMessageDialog(this, "New revision number: " + upload.getNewRevisionNr(), "Processing of ChangeSet successfull", JOptionPane.OK_OPTION
+//					| JOptionPane.INFORMATION_MESSAGE);
+//			revisionPanel.showProject(project);
+//		} catch (UserException e) {
+//			LOGGER.error("", e);
+//		}
+//	}
 
 	public void download(SRevision revision) {
 		JFileChooser chooser = new JFileChooser();
@@ -266,7 +261,7 @@ public class Client extends JFrame {
 			} catch (IOException e) {
 				LOGGER.error("", e);
 			}
-		} catch (UserException e) {
+		} catch (ServiceException e) {
 			LOGGER.error("", e);
 		}
 	}

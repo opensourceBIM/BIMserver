@@ -32,6 +32,8 @@ import java.util.Set;
 import org.bimserver.database.actions.AddUserDatabaseAction;
 import org.bimserver.database.actions.CreateBaseProject;
 import org.bimserver.database.berkeley.DatabaseInitException;
+import org.bimserver.database.store.CheckinState;
+import org.bimserver.database.store.Revision;
 import org.bimserver.database.store.StorePackage;
 import org.bimserver.database.store.UserType;
 import org.bimserver.database.store.log.AccessMethod;
@@ -69,8 +71,6 @@ public class Database implements BimDatabase {
 	private static final Logger LOGGER = LoggerFactory.getLogger(Database.class);
 	public static final String OID_COUNTER = "OID_COUNTER";
 	public static final String PID_COUNTER = "PID_COUNTER";
-	public static final String UID_COUNTER = "UID_COUNTER";
-	public static final String GID_COUNTER = "GID_COUNTER";
 	private static final String CLASS_LOOKUP_TABLE = "INT-ClassLookup";
 	public static final String STORE_PROJECT_NAME = "INT-Store";
 	public static final int STORE_PROJECT_ID = 1;
@@ -84,8 +84,6 @@ public class Database implements BimDatabase {
 	private final List<String> realClasses = new ArrayList<String>();
 	private volatile long oidCounter;
 	private volatile int pidCounter = 1;
-	private volatile int gidCounter = 1;
-	private volatile int uidCounter;
 	private final FieldIgnoreMap fieldIgnoreMap;
 	private final Registry registry;
 	private Date created;
@@ -94,7 +92,7 @@ public class Database implements BimDatabase {
 	/*  This variable should be _incremented_ with every (released) database-schema change
 	 *  Do not change this variable when nothing has changed in the schema!
 	 */
-	public static final int APPLICATION_SCHEMA_VERSION = 10;
+	public static final int APPLICATION_SCHEMA_VERSION = 11;
 
 	public Database(Set<? extends EPackage> emfPackages, ColumnDatabase columnDatabase, FieldIgnoreMap fieldIgnoreMap) throws DatabaseInitException {
 		this.columnDatabase = columnDatabase;
@@ -130,29 +128,28 @@ public class Database implements BimDatabase {
 			getColumnDatabase().createTableIfNotExists(Database.STORE_PROJECT_NAME, databaseSession);
 			initInternalStructure(databaseSession);
 			
-			DatabaseCreated databaseCreated = LogFactory.eINSTANCE.createDatabaseCreated();
-			databaseCreated.setAccessMethod(AccessMethod.INTERNAL);
-			databaseCreated.setExecutor(null);
-			databaseCreated.setDate(new Date());
-			databaseCreated.setPath(getColumnDatabase().getLocation());
-			databaseCreated.setVersion(databaseSchemaVersion);
-			databaseSession.store(databaseCreated);
-			
 			if (getColumnDatabase().isNew()) {
+				DatabaseCreated databaseCreated = LogFactory.eINSTANCE.createDatabaseCreated();
+				databaseCreated.setAccessMethod(AccessMethod.INTERNAL);
+				databaseCreated.setExecutor(null);
+				databaseCreated.setDate(new Date());
+				databaseCreated.setPath(getColumnDatabase().getLocation());
+				databaseCreated.setVersion(databaseSchemaVersion);
+				databaseSession.store(databaseCreated);
+
 				new CreateBaseProject(AccessMethod.INTERNAL).execute(databaseSession);
-				new AddUserDatabaseAction(AccessMethod.INTERNAL, "admin", "admin", "Administrator", UserType.ADMIN, -1).execute(databaseSession);
-				new AddUserDatabaseAction(AccessMethod.INTERNAL, "anonymous", "anonymous", "Anonymous", UserType.ANONYMOUS, -1).execute(databaseSession);
+				new AddUserDatabaseAction(AccessMethod.INTERNAL, "admin", "admin", "Administrator", UserType.ADMIN, -1, false).execute(databaseSession);
+				new AddUserDatabaseAction(AccessMethod.INTERNAL, "anonymous", "anonymous", "Anonymous", UserType.ANONYMOUS, -1, false).execute(databaseSession);
 			} else {
 				initOidCounter(databaseSession);
 				initPidCounter(databaseSession);
-				initUidCounter(databaseSession);
-				initGidCounter(databaseSession);
 			}
 			for (EClass eClass : classifiers.keyBSet()) {
 				if (eClass.getEPackage() == Ifc2x3Package.eINSTANCE && eClass != Ifc2x3Package.eINSTANCE.getWrappedValue()) {
 					realClasses.add(eClass.getName());
 				}
 			}
+			fixCheckinStates(databaseSession);
 			databaseSession.commit();
 		} catch (BimDeadlockException e) {
 			LOGGER.error("", e);
@@ -160,16 +157,47 @@ public class Database implements BimDatabase {
 			throw new DatabaseInitException(e.getMessage());
 		} catch (UserException e) {
 			LOGGER.error("", e);
-
 			close();
 			throw new DatabaseInitException(e.getMessage());
 		} catch (BimDatabaseException e) {
 			LOGGER.error("", e);
-
 			close();
 			throw new DatabaseInitException(e.getMessage());
 		} finally {
 			databaseSession.close();
+		}
+	}
+
+	/*
+	 * This method makes sure no revision states remain in "Uploading", "Parsing", "Storing" or "Searching Clashes" 
+	 */
+	private void fixCheckinStates(DatabaseSession databaseSession) {
+		LOGGER.info("Fixing broken checkin states");
+		try {
+			IfcModel model = databaseSession.getAllOfType(StorePackage.eINSTANCE.getRevision(), Database.STORE_PROJECT_ID, Database.STORE_PROJECT_REVISION_ID);
+			for (IdEObject idEObject : model.getValues()) {
+				if (idEObject instanceof Revision) {
+					Revision revision = (Revision)idEObject;
+					if (revision.getState() == CheckinState.UPLOADING || revision.getState() == CheckinState.PARSING || revision.getState() == CheckinState.STORING) {
+						LOGGER.info("Changing " + revision.getState().getName() + " to " + CheckinState.ERROR.getName() + " for revision " + revision.getOid());
+						revision.setState(CheckinState.ERROR);
+						if (revision.getLastConcreteRevision() != null) {
+							revision.getLastConcreteRevision().setChecksum(null);
+						}
+						revision.setLastError("Server crash while uploading");
+					}
+					if (revision.getState() == CheckinState.SEARCHING_CLASHES) {
+						LOGGER.info("Changing " + revision.getState().getName() + " to " + CheckinState.CLASHES_ERROR.getName() + " for revision " + revision.getOid());
+						revision.setState(CheckinState.CLASHES_ERROR);
+						revision.setLastError("Server crash while detecting clashes");
+					}
+					databaseSession.store(revision);
+				}
+			}
+		} catch (BimDatabaseException e) {
+			LOGGER.error("", e);
+		} catch (BimDeadlockException e) {
+			LOGGER.error("", e);
 		}
 	}
 
@@ -299,14 +327,6 @@ public class Database implements BimDatabase {
 		pidCounter = registry.readInt(PID_COUNTER, databaseSession);
 	}
 
-	public void initGidCounter(DatabaseSession databaseSession) throws BimDeadlockException {
-		gidCounter = registry.readInt(GID_COUNTER, databaseSession);
-	}
-	
-	public void initUidCounter(DatabaseSession databaseSession) throws BimDeadlockException {
-		uidCounter = registry.readInt(UID_COUNTER, databaseSession);
-	}
-
 	public synchronized int newPid() {
 		return ++pidCounter;
 	}
@@ -431,7 +451,7 @@ public class Database implements BimDatabase {
 	}
 
 	public BimDatabaseSession createReadOnlySession() {
-		DatabaseSession databaseSession = new DatabaseSession(this, columnDatabase.startTransaction(), true);
+		DatabaseSession databaseSession = new DatabaseSession(this, null, true);
 		sessions.add(databaseSession);
 		return databaseSession;
 	}
@@ -459,15 +479,7 @@ public class Database implements BimDatabase {
 	public int getPidCounter() {
 		return pidCounter;
 	}
-
-	public int getGidCounter() {
-		return gidCounter;
-	}
 	
-	public int getUidCounter() {
-		return uidCounter;
-	}
-
 	public Short getCidOfEClass(EClass eClass) {
 		return classifiers.getA(eClass);
 	}

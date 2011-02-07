@@ -14,7 +14,7 @@ function setFocus( aForm )
 	}
 }
 
-function activateTab(tabber, tabName) {
+function activateTabWithTabber(tabber, tabName) {
 	tb_remove();
 	for (i=0; i<tabber.tabs.length; i++) {
 		if (tabber.tabs[i].headingText == tabName || tabber.tabs[i].div.id == tabName) {
@@ -26,7 +26,7 @@ function activateTab(tabber, tabName) {
 
 function activateTab(tabName) {
 	var tabber = $(".tabberlive").attr("tabber");
-	activateTab(tabber, tabName);
+	activateTabWithTabber(tabber, tabName);
 }
 
 function trim(s)

@@ -56,10 +56,13 @@ import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 public class Expander extends JFrame {
 	private static final long serialVersionUID = 5356018168589837130L;
 	private Process exec;
+	private JarSettings jarSettings = JarSettings.readFromFile();
 
 	public static void main(String[] args) {
 		new Expander().start();
@@ -102,7 +105,7 @@ public class Expander extends JFrame {
 		JLabel jvmLabel = new JLabel("JVM");
 		fields.add(jvmLabel);
 
-		final JTextField jvmField = new JTextField("default");
+		final JTextField jvmField = new JTextField(jarSettings.getJvm());
 		JButton browserJvm = new JButton("Browse...");
 		browserJvm.addActionListener(new ActionListener() {
 			@Override
@@ -125,25 +128,25 @@ public class Expander extends JFrame {
 		JLabel addressLabel = new JLabel("Address");
 		fields.add(addressLabel);
 
-		final JTextField addressField = new JTextField("localhost");
+		final JTextField addressField = new JTextField(jarSettings.getAddress());
 		fields.add(addressField);
 
 		JLabel portLabel = new JLabel("Port");
 		fields.add(portLabel);
 
-		final JTextField portField = new JTextField("8082");
+		final JTextField portField = new JTextField(jarSettings.getPort() + "");
 		fields.add(portField);
 
 		JLabel heapSizeLabel = new JLabel("Heap Size");
 		fields.add(heapSizeLabel);
 
-		final JTextField heapSizeField = new JTextField("1024m");
+		final JTextField heapSizeField = new JTextField(jarSettings.getHeapsize());
 		fields.add(heapSizeField);
 
 		JLabel stackSizeLabel = new JLabel("Stack Size");
 		fields.add(stackSizeLabel);
 
-		final JTextField stackSizeField = new JTextField("1024k");
+		final JTextField stackSizeField = new JTextField(jarSettings.getStacksize());
 		fields.add(stackSizeField);
 
 		SpringUtilities.makeCompactGrid(fields, 5, 2, // rows, cols
@@ -179,7 +182,43 @@ public class Expander extends JFrame {
 				}
 			}
 		});
+		
+		DocumentListener documentChangeListener = new DocumentListener() {
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				save();
+			}
+			
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				save();
+			}
+			
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				save();
+			}
 
+			private void save() {
+				try {
+					jarSettings.setAddress(addressField.getText());
+					jarSettings.setPort(Integer.parseInt(portField.getText()));
+					jarSettings.setJvm(jvmField.getText());
+					jarSettings.setStacksize(stackSizeField.getText());
+					jarSettings.setHeapsize(heapSizeField.getText());
+					jarSettings.save();
+				} catch (Exception e) {
+					// ignore
+				}
+			}
+		};
+
+		jvmField.getDocument().addDocumentListener(documentChangeListener);
+		addressField.getDocument().addDocumentListener(documentChangeListener);
+		portField.getDocument().addDocumentListener(documentChangeListener);
+		heapSizeField.getDocument().addDocumentListener(documentChangeListener);
+		stackSizeField.getDocument().addDocumentListener(documentChangeListener);
+		
 		buttons.add(startStopButton);
 
 		JButton launchWebBrowser = new JButton("Launch Webbrowser");

@@ -7,6 +7,7 @@ import nl.tue.buildingsmart.express.dictionary.Namespaces;
 import nl.tue.buildingsmart.express.population.EntityInstance;
 import nl.tue.buildingsmart.express.population.ModelPopulation;
 
+@SuppressWarnings("all")
 public class PopulationMetrics {
 	ModelPopulation pop;
 	Namespaces nsConf;

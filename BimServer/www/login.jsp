@@ -1,7 +1,7 @@
-<%@page import="org.bimserver.Version"%>
-<%@page import="org.bimserver.VersionChecker"%>
+<%@page import="org.bimserver.version.Version"%>
+<%@page import="org.bimserver.version.VersionChecker"%>
 <%@page import="org.bimserver.shared.UserException"%>
-<%@page import="org.bimserver.ServerSettings"%>
+<%@page import="org.bimserver.settings.ServerSettings"%>
 <%@page import="org.bimserver.utils.Hashers"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.Map"%>
@@ -59,7 +59,7 @@
 %>
 <div class="loginwrapper">
 <div class="header">
-<a href="main.jsp"><img src="images/fulllogo.gif" title="BIM Server <%=version.getVersion() %>"/></a>
+<a href="main.jsp"><img src="images/fulllogo.gif" title="BIMserver <%=version.getVersion() %>"/></a>
 </div>
 <br/>
 <jsp:include page="loginExtra.jsp" />
@@ -89,7 +89,7 @@ if (ServerSettings.getSettings().isAllowSelfRegistration()) {
 }
 %>
 &nbsp;&nbsp;&nbsp;&nbsp;
-<a href="sendpassword.jsp">Forgot your password?</a>
+<a href="resetpassword.jsp">Forgot your password?</a>
 </div>
 <script type="text/javascript">
 <%

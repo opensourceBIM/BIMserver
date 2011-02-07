@@ -33,6 +33,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.database.store.Revision#getTag <em>Tag</em>}</li>
  *   <li>{@link org.bimserver.database.store.Revision#getLastError <em>Last Error</em>}</li>
  *   <li>{@link org.bimserver.database.store.Revision#getBmi <em>Bmi</em>}</li>
+ *   <li>{@link org.bimserver.database.store.Revision#getNrClashes <em>Nr Clashes</em>}</li>
  * </ul>
  * </p>
  *
@@ -384,5 +385,31 @@ public interface Revision extends IdEObject {
 	 * @generated
 	 */
 	void setBmi(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Nr Clashes</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Nr Clashes</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Nr Clashes</em>' attribute.
+	 * @see #setNrClashes(int)
+	 * @see org.bimserver.database.store.StorePackage#getRevision_NrClashes()
+	 * @model
+	 * @generated
+	 */
+	int getNrClashes();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.database.store.Revision#getNrClashes <em>Nr Clashes</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Nr Clashes</em>' attribute.
+	 * @see #getNrClashes()
+	 * @generated
+	 */
+	void setNrClashes(int value);
 
 } // Revision

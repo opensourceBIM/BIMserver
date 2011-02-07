@@ -6,6 +6,9 @@
 <%@page import="org.bimserver.Message"%>
 <%@page import="org.bimserver.interfaces.objects.SUserType"%>
 <%@ include file="header.jsp" %>
+<div class="sidebar">
+</div>
+<div class="content">
 <%
 	if (loginManager.getService().isLoggedIn()) {
 		long uoid = Long.parseLong(request.getParameter("uoid"));
@@ -19,17 +22,13 @@
 					out.println("<div class=\"error\">Password and password check did not match</div>");
 				} else {
 					loginManager.getService().changePassword(uoid, oldPassword, newPassword1);
-					response.sendRedirect("user.jsp?uoid=" + uoid + "&mid=" + Message.PASSWORD_SUCCESFULLY_CHANGED.ordinal());
+					response.sendRedirect("user.jsp?uoid=" + uoid + "&mid=" + Message.PASSWORD_SUCCESSFULLY_CHANGED.ordinal());
 				}
 			} catch (UserException e) {
 				out.println("<div class=\"error\">" + e.getUserMessage() + "</div>");
 			}
 		}
 %>
-<div class="sidebar">
-</div>
-
-<div class="content">
 <h1>Change password</h1>
 <fieldset>
 <form name="form" method="post" action="changepassword.jsp">

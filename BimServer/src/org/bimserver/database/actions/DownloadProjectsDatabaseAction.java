@@ -1,6 +1,5 @@
 package org.bimserver.database.actions;
 
-import java.util.LinkedHashSet;
 import java.util.Set;
 
 import org.bimserver.database.BimDatabaseException;
@@ -13,7 +12,10 @@ import org.bimserver.database.store.Revision;
 import org.bimserver.database.store.User;
 import org.bimserver.database.store.log.AccessMethod;
 import org.bimserver.ifc.IfcModel;
+import org.bimserver.ifc.IfcModelSet;
+import org.bimserver.merging.Merger;
 import org.bimserver.rights.RightsManager;
+import org.bimserver.settings.ServerSettings;
 import org.bimserver.shared.UserException;
 
 public class DownloadProjectsDatabaseAction extends BimDatabaseAction<IfcModel> {
@@ -32,7 +34,7 @@ public class DownloadProjectsDatabaseAction extends BimDatabaseAction<IfcModel> 
 		User user = bimDatabaseSession.getUserByUoid(actingUoid);
 		Project project = null;
 		String projectName = "";
-		LinkedHashSet<IfcModel> ifcModels = new LinkedHashSet<IfcModel>();
+		IfcModelSet ifcModelSet = new IfcModelSet();
 		for (long roid : roids) {
 			Revision revision = bimDatabaseSession.getVirtualRevision(roid);
 			project = revision.getProject();
@@ -42,13 +44,13 @@ public class DownloadProjectsDatabaseAction extends BimDatabaseAction<IfcModel> 
 					projectName += concreteRevision.getProject().getName() + "-";
 					IfcModel subModel = new IfcModel(readSet.getMap());
 					subModel.setDate(concreteRevision.getDate());
-					ifcModels.add(subModel);
+					ifcModelSet.add(subModel);
 				}
 			} else {
 				throw new UserException("User has no rights on project " + project.getOid());
 			}
 		}
-		IfcModel ifcModel = merge(project, ifcModels);
+		IfcModel ifcModel = new Merger().merge(project, ifcModelSet, ServerSettings.getSettings().isIntelligentMerging());
 		if (projectName.endsWith("-")) {
 			projectName = projectName.substring(0, projectName.length()-1);
 		}
