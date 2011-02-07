@@ -194,7 +194,7 @@ public class IfcXmlDeserializer {
 							EClass eClass = (EClass) realType;
 							if (Ifc2x3Package.eINSTANCE.getWrappedValue().isSuperTypeOf(eClass)) {
 								IdEObject wrappedObject = (IdEObject) Ifc2x3Factory.eINSTANCE.create(eClass);
-								model.add(wrappedObject);
+//								model.add(wrappedObject);
 								EStructuralFeature wrappedValueFeature = eClass.getEStructuralFeature("wrappedValue");
 								wrappedObject.eSet(wrappedValueFeature, parsePrimitive(wrappedValueFeature.getEType(), text));
 								if (wrappedValueFeature.getEType() == EcorePackage.eINSTANCE.getEFloat()) {

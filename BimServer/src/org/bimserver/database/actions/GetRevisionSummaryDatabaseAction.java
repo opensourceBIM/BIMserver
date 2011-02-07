@@ -5,10 +5,10 @@ import java.util.Map;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
-import org.bimserver.database.ReadSet;
 import org.bimserver.database.store.ConcreteRevision;
 import org.bimserver.database.store.Revision;
 import org.bimserver.database.store.log.AccessMethod;
+import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.emf.Ifc2x3.Ifc2x3Package;
 import org.bimserver.shared.SRevisionSummary;
 import org.bimserver.shared.UserException;
@@ -29,7 +29,7 @@ public class GetRevisionSummaryDatabaseAction extends BimDatabaseAction<SRevisio
 		Revision revision = bimDatabaseSession.getVirtualRevision(roid);
 		for (ConcreteRevision subRevision : revision.getConcreteRevisions()) {
 			for (EClass eClass : bimDatabaseSession.getClasses()) {
-				int count = bimDatabaseSession.getCount(eClass, new ReadSet(subRevision.getProject().getId(), subRevision.getId()));
+				int count = bimDatabaseSession.getCount(eClass, new IfcModel(), subRevision.getProject().getId(), subRevision.getId());
 				add(revisionSummary, eClass, count);
 			}
 		}

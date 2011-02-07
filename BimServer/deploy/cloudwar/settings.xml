@@ -20,4 +20,5 @@
 	<customLogoAddress>http://www.bimserver.org/version/defaultlogo.gif
 	</customLogoAddress>
 	<siteAddress>http://localhost</siteAddress>
+	<checkinMergingEnabled>false</checkinMergingEnabled>
 </settings>

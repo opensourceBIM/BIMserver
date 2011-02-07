@@ -13,10 +13,17 @@ Uploading... <img src="images/ajax-loader.gif"/>
 </div>
 <form action="upload" method="post" enctype="multipart/form-data" id="uploadform">
 <table>
-<tr><td>IFC File</td><td><input id="file" type="file" name="file"/></td></tr>
-<tr><td>Comment</td><td><textarea id="comment" name="comment" cols="80" rows="4"></textarea></td></tr>
+<tr><td><label for="file">IFC File</label></td><td><input id="file" type="file" name="file"/></td></tr>
+<tr><td><label for="comment">Comment</label></td><td><textarea id="comment" name="comment" cols="80" rows="4"></textarea></td></tr>
+<%
+	if (ServerSettings.getSettings().isCheckinMergingEnabled() && sProject.getRevisions().size() > 0) {
+%>
+<tr><td><label for="merge">Merge</label></td><td><input id="merge" name="merge" type="checkbox"/></td></tr>
+<%
+	}
+%>
 </table>
-<input type="hidden" name="poid" value="<%=request.getParameter("poid") %>"/>
+<input type="hidden" name="poid" value="<%=poid %>"/>
 <input type="hidden" name="type" value="ifc"/>
 <input type="submit" name="upload" value="Upload"/>
 </form>

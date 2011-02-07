@@ -3,7 +3,6 @@ package org.bimserver.database.actions;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
-import org.bimserver.database.ReadSet;
 import org.bimserver.database.store.ConcreteRevision;
 import org.bimserver.database.store.Project;
 import org.bimserver.database.store.Revision;
@@ -39,8 +38,7 @@ public class DownloadOfTypeDatabaseAction extends BimDatabaseAction<IfcModel> {
 		}
 		IfcModelSet ifcModelSet = new IfcModelSet();
 		for (ConcreteRevision concreteRevision : virtualRevision.getConcreteRevisions()) {
-			ReadSet allOfType = bimDatabaseSession.getAllOfType(className, concreteRevision.getProject().getId(), concreteRevision.getId());
-			IfcModel subModel = new IfcModel(allOfType.getMap());
+			IfcModel subModel = bimDatabaseSession.getAllOfType(className, concreteRevision.getProject().getId(), concreteRevision.getId());
 			subModel.setDate(concreteRevision.getDate());
 			ifcModelSet.add(subModel);
 		}

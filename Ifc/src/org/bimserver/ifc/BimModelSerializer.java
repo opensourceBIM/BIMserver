@@ -4,6 +4,7 @@ import java.util.Map;
 
 import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.emf.Ifc2x3.Ifc2x3Factory;
+import org.bimserver.ifc.emf.Ifc2x3.IfcGloballyUniqueId;
 import org.bimserver.ifc.emf.Ifc2x3.WrappedValue;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EAttribute;
@@ -23,9 +24,10 @@ public abstract class BimModelSerializer extends EmfSerializer {
 	@SuppressWarnings("unchecked")
 	protected EObject convertToSubset(EClass originalClass, IdEObject ifcRootObject, IfcModel newModel, Map<EObject, EObject> converted) {
 		IdEObject newObject = (IdEObject) Ifc2x3Factory.eINSTANCE.create(ifcRootObject.eClass());
+		newObject.setOid(ifcRootObject.getOid());
 		converted.put(ifcRootObject, newObject);
-		if (!(newObject instanceof WrappedValue)) {
-			newModel.add(newObject);
+		if (!(newObject instanceof WrappedValue) && !(newObject instanceof IfcGloballyUniqueId)) {
+			newModel.add(newObject.getOid(), newObject);
 		}
 		for (EStructuralFeature eStructuralFeature : ifcRootObject.eClass().getEAllStructuralFeatures()) {
 			if (!fieldIgnoreMap.shouldIgnoreField(ifcRootObject.eClass(), ifcRootObject.eClass(), eStructuralFeature)) {

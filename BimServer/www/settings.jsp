@@ -42,6 +42,7 @@
 	settings.setAutoTestClashes(request.getParameter("autoTestClashes") != null);
 	settings.setCustomLogoAddress(request.getParameter("customLogo"));
 	settings.setSiteAddress(request.getParameter("siteAddress"));
+	settings.setCheckinMergingEnabled(request.getParameter("checkinMergingEnabled") != null);
 	String enabledExportTypes = "";
 	Set<ResultType> enabledTypes = new HashSet<ResultType>();
 	for (ResultType resultType : ResultType.values()) {
