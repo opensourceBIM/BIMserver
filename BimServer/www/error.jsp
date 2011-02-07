@@ -1,2 +1,0 @@
-<%@page import="org.bimserver.ServerInfo"%>
-<div class="error" style="margin-bottom: 1em; padding: 3px; color: red; background-color: #FFEBE8; border: 1px solid #C00;"><%=ServerInfo.getErrorMessage()%></div>
