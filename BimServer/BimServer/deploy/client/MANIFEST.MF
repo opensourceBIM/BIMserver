@@ -1,0 +1,3 @@
+Manifest-Version: 1.0
+Created-By: 1.6.0 (Sun Microsystems Inc.)
+One-Jar-Main-Class: org.bimserver.client.Client

@@ -1,0 +1,43 @@
+BIM Server 0.1RC2 (previous release: 0.1RC1)
+
+Fixed:
+[BUG]		slash to much on download objectID
+			See: https://sourceforge.net/tracker2/?func=detail&aid=2581662&group_id=224353&atid=1061305
+
+[BUG]		stopping server (jar)
+			See: https://sourceforge.net/tracker2/?func=detail&aid=2581554&group_id=224353&atid=1061305
+
+[BUG]		Client application's title now shows correct connected status
+
+[BUG]		revision.jsp showed a guid-query option that has not been implemented, removed the fields for now
+
+[BUG]		Derived attributes are now written back as *
+			See: https://sourceforge.net/tracker2/?func=detail&aid=2581448&group_id=224353&atid=1061305
+			
+[BUG]		Optional boolean values are written back as $
+
+[BUG]		Fixed several IFC reading errors (IfcLogical/IfcBoolean mixed up, extended comments support)
+
+[BUG]		Floating point numbers are internally stored as both float and string value to
+			enable returning the exact same number when writing IFC files
+
+[BUG]		Booleans are now stored as quad-state's (true, false, undefined, unset)
+
+[BUG]		IFC Files that definitely are invalid will throw meaningful exceptions now
+
+[BUG]		Curved Walls and some other entities with aggregations sometimes missed list entries
+			See: https://sourceforge.net/tracker2/?func=detail&aid=2581447&group_id=224353&atid=1061305		
+
+[BUG]		No stacktraces anymore when a non-authorized user tries to open a restricted page (usually after server restart)
+
+[FEATURE]	Standalone BIM Server jarfile now has a simple UI that makes 
+			starting/stopping the server and configuring some settings easier.
+
+[OTHER]		Copyright information improved (according gpl specifications)
+
+[OTHER]		Build process now uses shared files for both war and jar deployment
+
+
+Known issues:
+
+None
