@@ -1,0 +1,147 @@
+package org.bimserver.database.actions;
+
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.mail.Message;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+
+import org.bimserver.ServerInitializer;
+import org.bimserver.database.BimDatabaseException;
+import org.bimserver.database.BimDatabaseSession;
+import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.store.StoreFactory;
+import org.bimserver.database.store.User;
+import org.bimserver.database.store.UserType;
+import org.bimserver.database.store.log.AccessMethod;
+import org.bimserver.database.store.log.LogFactory;
+import org.bimserver.database.store.log.NewUserAdded;
+import org.bimserver.mail.MailSystem;
+import org.bimserver.settings.ServerSettings;
+import org.bimserver.shared.UserException;
+import org.bimserver.templating.TemplateEngine;
+import org.bimserver.templating.TemplateIdentifier;
+import org.bimserver.utils.GeneratorUtils;
+import org.bimserver.utils.Hashers;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+public class AddUserDatabaseAction extends BimDatabaseAction<Long> {
+	private static final Logger LOGGER = LoggerFactory.getLogger(AddUserDatabaseAction.class);
+	private final String name;
+	private final UserType userType;
+	private final String username;
+	private final long createrUoid;
+	private final boolean selfRegistration;
+	private final String password;
+
+	public AddUserDatabaseAction(AccessMethod accessMethod, String username, String name, UserType userType, long createrUoid, boolean selfRegistration) {
+		super(accessMethod);
+		this.name = name;
+		this.username = username;
+		this.userType = userType;
+		this.createrUoid = createrUoid;
+		this.selfRegistration = selfRegistration;
+		this.password = null;
+	}
+
+	public AddUserDatabaseAction(AccessMethod accessMethod, String username, String password, String name, UserType userType, long createrUoid, boolean selfRegistration) {
+		super(accessMethod);
+		this.password = password;
+		this.name = name;
+		this.username = username;
+		this.userType = userType;
+		this.createrUoid = createrUoid;
+		this.selfRegistration = selfRegistration;
+	}
+
+	public Long execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDatabaseException, BimDeadlockException {
+		String trimmedUserName = username.trim();
+		String trimmedName = name.trim();
+		if (selfRegistration && userType == UserType.ADMIN) {
+			throw new UserException("Cannot create admin user with self registration");
+		}
+		if (trimmedUserName.equals("")) {
+			throw new UserException("Invalid username");
+		}
+		if (!MailSystem.isValidEmailAddress(trimmedUserName) && !(trimmedUserName.equals("test") || trimmedUserName.equals("admin") || trimmedUserName.equals("anonymous"))) {
+			throw new UserException("Username must be a valid e-mail address");
+		}
+		if (trimmedName.equals("")) {
+			throw new UserException("Invalid name");
+		}
+		if (bimDatabaseSession.getUserByUserName(trimmedUserName) != null) {
+			throw new UserException("A user with the username " + trimmedUserName + " already exists");
+		}
+		User actingUser = bimDatabaseSession.getUserByUoid(createrUoid);
+		if (createrUoid != -1 && actingUser.getUserType() != UserType.ADMIN) {
+			throw new UserException("Only admin users can create other users");
+		}
+		final User user = StoreFactory.eINSTANCE.createUser();
+		if (password != null) {
+			user.setPassword(Hashers.getSha256Hash(password));
+		}
+		user.setName(trimmedName);
+		user.setUsername(trimmedUserName);
+		user.setCreatedOn(new Date());
+		user.setCreatedBy(bimDatabaseSession.getUserByUoid(createrUoid));
+		user.setUserType(userType);
+		user.setLastSeen(null);
+		final String token = GeneratorUtils.generateToken();
+		user.setValidationToken(Hashers.getSha256Hash(token));
+		user.setValidationTokenCreated(new Date());
+		NewUserAdded newUserAdded = LogFactory.eINSTANCE.createNewUserAdded();
+		newUserAdded.setUser(user);
+		newUserAdded.setExecutor(actingUser);
+		newUserAdded.setDate(new Date());
+		newUserAdded.setAccessMethod(getAccessMethod());
+		bimDatabaseSession.store(user);
+		bimDatabaseSession.store(newUserAdded);
+		bimDatabaseSession.addPostCommitAction(new PostCommitAction(){
+			@Override
+			public void execute() throws UserException {
+				try {
+					if (ServerSettings.getSettings().isSendConfirmationEmailAfterRegistration()) {
+						if (MailSystem.isValidEmailAddress(user.getUsername()) && createrUoid != -1) {
+							Session mailSession = MailSystem.getInstance().createMailSession();
+							
+							Message msg = new MimeMessage(mailSession);
+							
+							InternetAddress addressFrom = new InternetAddress(ServerSettings.getSettings().getEmailSenderAddress());
+							msg.setFrom(addressFrom);
+							
+							InternetAddress[] addressTo = new InternetAddress[1];
+							addressTo[0] = new InternetAddress(user.getUsername());
+							msg.setRecipients(Message.RecipientType.TO, addressTo);
+							
+							Map<String, Object> context = new HashMap<String, Object>();
+							context.put("name", user.getName());
+							context.put("username", user.getUsername());
+							context.put("siteaddress", ServerSettings.getSettings().getSiteAddress());
+							context.put("validationlink", ServerSettings.getSettings().getSiteAddress() + ServerInitializer.getServletContext().getContextPath() + "/validate.jsp?uoid=" + user.getOid() + "&token=" + token);
+							String body = null;
+							String subject = null;
+							if (selfRegistration) {
+								body = TemplateEngine.getTemplateEngine().process(context, TemplateIdentifier.SELF_REGISTRATION_EMAIL_BODY);
+								subject = TemplateEngine.getTemplateEngine().process(context, TemplateIdentifier.SELF_REGISTRATION_EMAIL_SUBJECT);
+							} else {
+								body = TemplateEngine.getTemplateEngine().process(context, TemplateIdentifier.ADMIN_REGISTRATION_EMAIL_BODY);
+								subject = TemplateEngine.getTemplateEngine().process(context, TemplateIdentifier.ADMIN_REGISTRATION_EMAIL_SUBJECT);
+							}
+							msg.setContent(body, "text/html");
+							msg.setSubject(subject.trim());
+							Transport.send(msg);
+						}
+					}
+				} catch (Exception e) {
+					LOGGER.error("", e);
+				}
+			}
+		});
+		return user.getOid();
+	}
+}
