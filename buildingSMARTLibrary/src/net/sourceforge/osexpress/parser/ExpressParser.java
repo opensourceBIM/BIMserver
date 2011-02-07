@@ -29,6 +29,7 @@ import antlr.collections.impl.BitSet;
  *   associated with its operation, modification, maintenance, and subsequent
  *   re-distribution.
  */
+@SuppressWarnings("all")
 public class ExpressParser extends antlr.LLkParser       implements ExpressParserTokenTypes
  {
 

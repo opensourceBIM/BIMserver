@@ -1,4 +1,4 @@
-<project name="BIMserver">
+<project name="BIMserver Release">
 	<target name="releaseall">
 		<ftp server="tools.bimtoolset.org" userid="${ftp_user}" password="${ftp_pass}" action="mkdir" remotedir="/httpdocs/tools/BIMserver/${version}"/>
 		<ftp server="tools.bimtoolset.org" userid="${ftp_user}" password="${ftp_pass}" action="mkdir" remotedir="/httpdocs/tools/BIMserver/cloud"/>
@@ -19,9 +19,6 @@
 			<fileset file="builds/bimserver-client-${version}.jar"/>
 		</ftp>
 		<ant antfile="common.build.xml" target="buildsource"></ant>
-		<ftp server="tools.bimtoolset.org" userid="${ftp_user}" password="${ftp_pass}" remotedir="/httpdocs/tools/BIMserver/${version}">
-			<fileset file="builds/bimserver-source-${version}.zip"/>
-		</ftp>
 		<ftp server="tools.bimtoolset.org" userid="${ftp_user}" password="${ftp_pass}" remotedir="/httpdocs/tools/BIMserver/${version}">
 			<fileset file="builds/bimserver-source-${version}.zip"/>
 		</ftp>

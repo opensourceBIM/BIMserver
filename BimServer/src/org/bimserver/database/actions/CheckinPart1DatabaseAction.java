@@ -14,6 +14,7 @@ import org.bimserver.database.store.log.AccessMethod;
 import org.bimserver.database.store.log.LogFactory;
 import org.bimserver.database.store.log.NewRevisionAdded;
 import org.bimserver.ifc.IfcModel;
+import org.bimserver.mail.MailSystem;
 import org.bimserver.rights.RightsManager;
 import org.bimserver.shared.UserException;
 
@@ -45,11 +46,14 @@ public class CheckinPart1DatabaseAction extends GenericCheckinDatabaseAction {
 		if (!RightsManager.hasRightsOnProjectOrSuperProjects(user, project)) {
 			throw new UserException("User has no rights to checkin models to this project");
 		}
+		if (!MailSystem.isValidEmailAddress(user.getUsername())) {
+			throw new UserException("Users must have a valid e-mail address to checkin");
+		}
 		checkCheckSum(project);
 		if (!project.getRevisions().isEmpty() && project.getRevisions().get(project.getRevisions().size()-1).getState() == CheckinState.STORING) {
 			throw new UserException("Another checkin on this project is currently running, please wait and try again");
 		}
-		ConcreteRevision concreteRevision = bimDatabaseSession.createNewConcreteRevision(model.getSize(), poid, actingUid, comment.trim(), CheckinState.STORING);
+		ConcreteRevision concreteRevision = createNewConcreteRevision(bimDatabaseSession, model.getSize(), poid, actingUid, comment.trim(), CheckinState.STORING);
 		concreteRevision.setChecksum(model.getChecksum());
 		NewRevisionAdded newRevisionAdded = LogFactory.eINSTANCE.createNewRevisionAdded();
 		newRevisionAdded.setDate(new Date());
@@ -59,7 +63,6 @@ public class CheckinPart1DatabaseAction extends GenericCheckinDatabaseAction {
 		bimDatabaseSession.store(newRevisionAdded);
 		bimDatabaseSession.store(concreteRevision);
 		bimDatabaseSession.store(project);
-		bimDatabaseSession.saveOidCounter();
 		return concreteRevision;
 	}
 }

@@ -20,13 +20,16 @@ public class FailSafeIfcEngine {
 	private Process process;
 	private DataInputStream in;
 	private DataOutputStream out;
+	private InputStream err;
 	private final File schemaFile;
 	private final File nativeBaseDir;
 	private boolean useSecondJvm = true;
+	private final String classPath;
 
-	public FailSafeIfcEngine(File schemaFile, File nativeBaseDir) throws IfcEngineException {
+	public FailSafeIfcEngine(File schemaFile, File nativeBaseDir, String classPath) throws IfcEngineException {
 		this.schemaFile = schemaFile;
 		this.nativeBaseDir = nativeBaseDir;
+		this.classPath = classPath;
 		if (useSecondJvm) {
 			startJvm();
 		} else {
@@ -61,18 +64,18 @@ public class FailSafeIfcEngine {
 				command.append(" -Djava.io.tmpdir=" + tmp.getAbsolutePath().toString());
 			}
 			command.append(" -classpath ");
-			String[] classpath = System.getProperty("java.class.path").split(File.pathSeparator);
-			for (String s : classpath) {
-				if (s.contains(" ")) {
-					command.append("\"" + s + "\"");
-				} else {
-					command.append(s);
+			command.append("\"");
+			command.append(System.getProperty("java.class.path"));
+			command.append(File.pathSeparator);
+			if (classPath != null) {
+				File file = new File(classPath);
+				for (File subFile : file.listFiles()) {
+					if (subFile.getName().endsWith(".jar")) {
+						command.append(subFile.getAbsolutePath() + File.pathSeparator);
+					}
 				}
-				command.append(File.pathSeparator);
 			}
-			if (command.substring(command.length()-1).equals(File.pathSeparator)) {
-				command.delete(command.length()-1, command.length());
-			}
+			command.append("\"");
 			command.append(" -Xmx512m");
 			command.append(" org.bimserver.ifcengine.jvm.IfcEngineServer");
 			if (schemaFile.getAbsolutePath().contains(" ")) {
@@ -80,14 +83,37 @@ public class FailSafeIfcEngine {
 			} else {
 				command.append(" " + schemaFile.getAbsolutePath());
 			}
+			LOGGER.info(command.toString());
 			process = Runtime.getRuntime().exec(command.toString());
 			in = new DataInputStream(new BufferedInputStream(process.getInputStream()));
 			out = new DataOutputStream(new BufferedOutputStream(process.getOutputStream()));
+			err = process.getErrorStream();
+			startErrorHandler();
 		} catch (Exception e) {
 			LOGGER.error("", e);
 		}
 	}
 	
+	private void startErrorHandler() {
+		Runnable runnable = new Runnable(){
+			@Override
+			public void run() {
+				byte[] buffer = new byte[1024];
+				int red;
+				try {
+					red = err.read(buffer);
+					while (red != -1) {
+						LOGGER.error(new String(buffer, 0, red));
+						red = err.read(buffer);
+					}
+				} catch (IOException e) {
+					LOGGER.error("", e);
+				}
+			}};
+		Thread thread = new Thread(runnable);
+		thread.start();
+	}
+
 	public synchronized IfcEngineModel openModel(File ifcFile) throws IfcEngineException {
 		writeCommand(Command.OPEN_MODEL);
 		writeUTF(ifcFile.getAbsolutePath());

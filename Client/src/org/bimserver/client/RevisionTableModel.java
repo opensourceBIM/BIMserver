@@ -34,7 +34,7 @@ import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.interfaces.objects.SUser;
 import org.bimserver.shared.SRevisionIdComparator;
-import org.bimserver.shared.UserException;
+import org.bimserver.shared.ServiceException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -87,7 +87,7 @@ public class RevisionTableModel extends AbstractTableModel {
 				this.allRevisions = revisions;
 			}
 			update();
-		} catch (UserException e) {
+		} catch (ServiceException e) {
 			LOGGER.error("", e);
 		}
 	}
@@ -129,7 +129,7 @@ public class RevisionTableModel extends AbstractTableModel {
 				this.allRevisions = revisions;
 			}
 			update();
-		} catch (UserException e) {
+		} catch (ServiceException e) {
 			LOGGER.error("", e);
 		}
 	}

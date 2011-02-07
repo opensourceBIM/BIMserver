@@ -26,10 +26,15 @@
 	</logger>
 	<logger name="org.springframework">
 		<level value="ERROR" />
-		<appender-ref ref="ErrorConsole" />
-		<appender-ref ref="OutConsole" />
+		<appender-ref ref="Console" />
+		<appender-ref ref="File" />
 	</logger>
 	<logger name="org.mortbay">
+		<level value="error" />
+		<appender-ref ref="Console" />
+		<appender-ref ref="File" />
+	</logger>
+	<logger name="org.eclipse.jetty">
 		<level value="error" />
 		<appender-ref ref="Console" />
 		<appender-ref ref="File" />

@@ -1,24 +1,27 @@
 package org.bimserver.database;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.bimserver.database.actions.BimDatabaseAction;
+import org.bimserver.database.actions.PostCommitAction;
 import org.bimserver.database.query.conditions.Condition;
-import org.bimserver.database.store.CheckinState;
 import org.bimserver.database.store.ConcreteRevision;
 import org.bimserver.database.store.Project;
 import org.bimserver.database.store.Revision;
 import org.bimserver.database.store.User;
 import org.bimserver.emf.IdEObject;
+import org.bimserver.ifc.OidProvider;
 import org.bimserver.shared.Addition;
 import org.bimserver.shared.DatabaseInformation;
 import org.bimserver.shared.UserException;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 
-public interface BimDatabaseSession {
+public interface BimDatabaseSession extends OidProvider {
 
 	<T> T executeAndCommitAction(BimDatabaseAction<T> action, int retries) throws BimDatabaseException, UserException;
 
@@ -32,27 +35,19 @@ public interface BimDatabaseSession {
 
 	User getAdminUser() throws BimDeadlockException, BimDatabaseException;
 
-	void savePidCounter() throws BimDeadlockException;
+	long store(IdEObject eObject, int pid, int rid) throws BimDeadlockException, BimDatabaseException;
 
-	void saveOidCounter() throws BimDeadlockException;
-
-	long store(IdEObject eObject, int pid, int rid) throws BimDeadlockException;
-
-	long store(IdEObject eObject) throws BimDeadlockException;
-
-	void saveUidCounter() throws BimDeadlockException;
+	long store(IdEObject eObject) throws BimDeadlockException, BimDatabaseException;
 
 	User getUserByUserName(String name) throws BimDeadlockException, BimDatabaseException;
 
 	Project getProjectById(int pid) throws BimDeadlockException, BimDatabaseException;
 
-	ConcreteRevision createNewConcreteRevision(long size, long poid, long actingUoid, String comment, CheckinState checkinState) throws BimDeadlockException, BimDatabaseException;
-
 	void clearProject(int pid, int oldRid, int newRid) throws BimDeadlockException;
 
-	void store(Collection<? extends IdEObject> values, int pid, int rid) throws BimDeadlockException;
+	void store(Collection<? extends IdEObject> values, int pid, int rid) throws BimDeadlockException, BimDatabaseException;
 
-	void store(Collection<? extends IdEObject> values) throws BimDeadlockException;
+	void store(Collection<? extends IdEObject> values) throws BimDeadlockException, BimDatabaseException;
 
 	ConcreteRevision getConcreteRevision(long croid) throws BimDeadlockException, BimDatabaseException;
 
@@ -74,9 +69,11 @@ public interface BimDatabaseSession {
 
 	void putInCache(RecordIdentifier recordIdentifier, IdEObject object);
 
-	ReadSet getMapWithOid(int pid, int id, short cid, long oid) throws BimDeadlockException, BimDatabaseException;
+	IfcModel getMapWithOid(int pid, int rid, short cid, long oid, IfcModel model) throws BimDeadlockException, BimDatabaseException;
 
-	ReadSet getMapWithOid(int pid, int id, long oid) throws BimDeadlockException, BimDatabaseException;
+	IfcModel getMapWithOids(int pid, int rid, Set<Long> oids) throws BimDeadlockException, BimDatabaseException;
+
+	IfcModel getMapWithObjectIdentifiers(int pid, int rid, Set<ObjectIdentifier> oids) throws BimDeadlockException, BimDatabaseException;
 
 	<T extends IdEObject> Map <Long, T> query(Condition condition, Class<T> clazz) throws BimDatabaseException, BimDeadlockException;
 
@@ -88,15 +85,19 @@ public interface BimDatabaseSession {
 
 	DatabaseInformation getDatabaseInformation() throws BimDatabaseException, BimDeadlockException;
 
+	Date getCreatedDate() throws BimDatabaseException, BimDeadlockException;
+
 	ObjectIdentifier getOidOfGuid(String guid, int pid, int rid) throws BimDeadlockException;
 
 	ReadSet getAllOfType(String className, int pid, int rid) throws BimDatabaseException, BimDeadlockException;
+
+	IfcModel getAllOfType(EClass eClass, int pid, int rid) throws BimDatabaseException, BimDeadlockException;
 
 	Collection<EClass> getClasses();
 
 	List<String> getClassList();
 
-	void updateLastActive(long uoid);
+	void updateLastActive(long uoid) throws BimDatabaseException;
 
 	void commit() throws BimDeadlockException, BimDatabaseException;
 
@@ -107,8 +108,6 @@ public interface BimDatabaseSession {
 	short getCidForClassName(String className);
 
 	void clearCache();
-
-	void saveGidCounter() throws BimDeadlockException;
 
 	User getUserByUoid(long uoid);
 
@@ -121,4 +120,8 @@ public interface BimDatabaseSession {
 	IdEObject get(EClass eClass, long oid);
 
 	User getAnonymousUser() throws BimDatabaseException, BimDeadlockException;
+
+	void addPostCommitAction(PostCommitAction postCommitAction);
+
+	long newOid();
 }

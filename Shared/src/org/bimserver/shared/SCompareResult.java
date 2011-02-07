@@ -26,21 +26,21 @@ public class SCompareResult {
 	
 	public static abstract class SItem {
 
-		public final DataObject dataObject;
+		public final SDataObject dataObject;
 
-		public SItem(DataObject dataObject) {
+		public SItem(SDataObject dataObject) {
 			this.dataObject = dataObject;
 		}
 	}
 
 	public static class SObjectAdded extends SItem {
-		public SObjectAdded(DataObject dataObject) {
+		public SObjectAdded(SDataObject dataObject) {
 			super(dataObject);
 		}
 	}
 	
 	public static class SObjectRemoved extends SItem {
-		public SObjectRemoved(DataObject dataObject) {
+		public SObjectRemoved(SDataObject dataObject) {
 			super(dataObject);
 		}
 	}
@@ -50,7 +50,7 @@ public class SCompareResult {
 		private final String oldValue;
 		private final String newValue;
 
-		public SObjectModified(DataObject dataObject, String fieldName, String oldValue, String newValue) {
+		public SObjectModified(SDataObject dataObject, String fieldName, String oldValue, String newValue) {
 			super(dataObject);
 			this.fieldName = fieldName;
 			this.oldValue = oldValue;

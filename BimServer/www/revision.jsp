@@ -25,7 +25,7 @@
 	SProject project = loginManager.getService().getProjectByPoid(revision.getProjectId());
 	SUser user = loginManager.getService().getUserByUoid(revision.getUserId());
 	List<SCheckout> checkouts = loginManager.getService().getAllCheckoutsOfRevision(roid);
-	Collections.sort(checkouts, new SCheckoutDateComparator());
+	Collections.sort(checkouts, new SCheckoutDateComparator(false));
 	List<String> classes = loginManager.getService().getAvailableClasses();
 	Collections.sort(classes);
 	boolean isAdmin = loginManager.getService().getCurrentUser().getUserType() == SUserType.ADMIN;
@@ -153,9 +153,14 @@
 				}
 			%>
 		</select> <label for="zip_<%=revision.getId()%>">Zip</label><input
-			type="checkbox" name="zip" id="zip_<%=revision.getId()%>" /> <input
-			name="download" type="submit" value="Download"> <input
-			name="checkout" type="submit" value="Checkout" class="checkoutbutton"></td>
+			type="checkbox" name="zip" id="zip_<%=revision.getId()%>" />
+			<input name="download" type="submit" value="Download">
+<%
+	boolean userHasCheckinRights = loginManager.getService().userHasCheckinRights(project.getOid());
+if (userHasCheckinRights) { %>
+			<input name="checkout" type="submit" value="Checkout" class="checkoutbutton">
+<% } %>
+			</td>
 </table>
 </form>
 <br />

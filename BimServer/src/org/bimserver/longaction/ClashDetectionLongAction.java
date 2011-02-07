@@ -10,15 +10,16 @@ import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
 import org.bimserver.database.actions.FindClashesDatabaseAction;
+import org.bimserver.database.actions.SendClashesEmailDatabaseAction;
 import org.bimserver.database.store.CheckinState;
 import org.bimserver.database.store.Clash;
 import org.bimserver.database.store.ClashDetectionSettings;
 import org.bimserver.database.store.Project;
 import org.bimserver.database.store.Revision;
+import org.bimserver.database.store.StoreFactory;
 import org.bimserver.database.store.User;
 import org.bimserver.database.store.log.AccessMethod;
 import org.bimserver.ifcengine.IfcEngineFactory;
-import org.bimserver.mail.MailSystem;
 import org.bimserver.webservices.Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,8 +32,10 @@ public class ClashDetectionLongAction extends LongAction {
 	private final IfcEngineFactory ifcEngineFactory;
 	private final BimDatabase bimDatabase;
 	private final long poid;
+	private final User user;
 
-	public ClashDetectionLongAction(long actingUoid, SchemaDefinition schema, IfcEngineFactory ifcEngineFactory, BimDatabase bimDatabase, long poid) {
+	public ClashDetectionLongAction(User user, long actingUoid, SchemaDefinition schema, IfcEngineFactory ifcEngineFactory, BimDatabase bimDatabase, long poid) {
+		this.user = user;
 		this.actingUoid = actingUoid;
 		this.schema = schema;
 		this.ifcEngineFactory = ifcEngineFactory;
@@ -60,33 +63,35 @@ public class ClashDetectionLongAction extends LongAction {
 		}
 		session = bimDatabase.createSession();
 		try {
-			User actingUser = session.getUserByUoid(actingUoid);
 			Project project = session.getProjectByPoid(poid);
-			ClashDetectionSettings clashDetectionSettings = project.getClashDetectionSettings();
+			ClashDetectionSettings clashDetectionSettings = StoreFactory.eINSTANCE.createClashDetectionSettings();
+			clashDetectionSettings.setMargin(project.getClashDetectionSettings().getMargin());
 			clashDetectionSettings.getRevisions().add(project.getLastRevision());
 			FindClashesDatabaseAction findClashesDatabaseAction = new FindClashesDatabaseAction(AccessMethod.INTERNAL, clashDetectionSettings, schema, ifcEngineFactory, roid);
 			Set<? extends Clash> clashes = findClashesDatabaseAction.execute(session);
 			Revision revision = project.getLastRevision();
-			for (Clash clash : clashes) {
-				revision.getLastClashes().add(clash);
-				session.store(clash);
-			}
+// Temporarily disabled, should be enabled when lazy loading is working
+//			for (Clash clash : clashes) {
+//				revision.getLastClashes().add(clash);
+//				session.store(clash);
+//			}
+			revision.setNrClashes(clashes.size());
 			revision.setState(CheckinState.DONE);
 			session.store(revision);
-			session.commit();
 
 			Set<String> emailAddresses = new HashSet<String>();
 			for (Clash clash : clashes) {
 				emailAddresses.add(clash.getRevision1().getUser().getUsername());
 				emailAddresses.add(clash.getRevision2().getUser().getUsername());
 			}
-			String senderAddress = actingUser.getUsername();
-			
 			if (!emailAddresses.isEmpty()) {
 				String[] emailAddressesArray = new String[emailAddresses.size()];
 				emailAddresses.toArray(emailAddressesArray);
-				MailSystem.getInstance().sendClashDetectionEmail(project.getOid(), actingUser.getName(), senderAddress, Service.convert(project.getClashDetectionSettings()), emailAddressesArray);
+				
+				SendClashesEmailDatabaseAction sendClashesEmailDatabaseAction = new SendClashesEmailDatabaseAction(AccessMethod.INTERNAL, actingUoid, poid, Service.convert(clashDetectionSettings), emailAddresses);
+				sendClashesEmailDatabaseAction.execute(session);
 			}
+			session.commit();
 		} catch (Throwable e) {
 			LOGGER.error("", e);
 			try {
@@ -112,5 +117,15 @@ public class ClashDetectionLongAction extends LongAction {
 		} finally {
 			session.close();
 		}
+	}
+
+	@Override
+	public String getIdentification() {
+		return "ClashDetectionLongAction " + user.getName();
+	}
+
+	@Override
+	public User getUser() {
+		return user;
 	}
 }

@@ -1,5 +1,7 @@
 package org.bimserver.database;
 
+import java.util.Set;
+
 
 /******************************************************************************
  * (c) Copyright bimserver.org 2009 Licensed under GNU GPLv3
@@ -58,4 +60,6 @@ public interface ColumnDatabase {
 	String getType();
 
 	long getDatabaseSizeInBytes();
+
+	Set<String> getAllTableNames();
 }

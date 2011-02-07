@@ -18,6 +18,7 @@ import org.bimserver.interfaces.objects.SUser;
 import org.bimserver.longaction.LongActionManager;
 import org.bimserver.serializers.EmfSerializerFactory;
 import org.bimserver.shared.SUserSession;
+import org.bimserver.shared.ServiceException;
 import org.bimserver.shared.ServiceInterface;
 import org.bimserver.shared.Token;
 import org.bimserver.shared.UserException;
@@ -90,7 +91,7 @@ public class ServiceFactory {
 		tokens.remove(token);
 	}
 
-	public List<SUserSession> getActiveUserSessions() throws UserException {
+	public List<SUserSession> getActiveUserSessions() throws ServiceException {
 		List<SUserSession> userSessions = new ArrayList<SUserSession>();
 		for (Token token : tokens.keySet()) {
 			ServiceInterface serviceInterface = tokens.get(token);

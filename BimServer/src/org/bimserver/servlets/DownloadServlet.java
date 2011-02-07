@@ -21,7 +21,6 @@ package org.bimserver.servlets;
  *****************************************************************************/
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -38,12 +37,15 @@ import org.bimserver.ifc.EmfSerializer;
 import org.bimserver.ifc.SerializerException;
 import org.bimserver.interfaces.objects.SClashDetectionSettings;
 import org.bimserver.interfaces.objects.SEidClash;
+import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.shared.ResultType;
 import org.bimserver.shared.SCompareResult;
 import org.bimserver.shared.SDownloadResult;
+import org.bimserver.shared.ServiceException;
 import org.bimserver.shared.UserException;
 import org.bimserver.shared.SCompareResult.SCompareType;
 import org.bimserver.shared.SCompareResult.SItem;
+import org.bimserver.web.JspHelper;
 import org.bimserver.web.LoginManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -81,17 +83,7 @@ public class DownloadServlet extends HttpServlet {
 				}
 				checkoutResult = loginManager.getService().downloadProjects(roids, resultType);
 			} else if (request.getParameter("clashes") != null) {
-				SClashDetectionSettings sClashDetectionSettings = new SClashDetectionSettings();
-				sClashDetectionSettings.setMargin(Float.parseFloat(request.getParameter("margin")));
-				String[] ignoredSplit = request.getParameter("ignore").split(";");
-				for (String ignore : ignoredSplit) {
-					sClashDetectionSettings.getIgnoredClasses().add(ignore);
-				}
-				String[] revisions = request.getParameter("revisions").split(";");
-				sClashDetectionSettings.setRevisions(new ArrayList<Long>());
-				for (String revisionOidString : revisions) {
-					sClashDetectionSettings.getRevisions().add(Long.parseLong(revisionOidString));
-				}
+				SClashDetectionSettings sClashDetectionSettings = JspHelper.createSClashDetectionSettings(request);
 				List<SEidClash> findClashes = loginManager.getService().findClashesByEid(sClashDetectionSettings);
 				Set<Long> oids = new HashSet<Long>();
 				for (SEidClash clash : findClashes) {
@@ -116,7 +108,19 @@ public class DownloadServlet extends HttpServlet {
 			} else {
 				long roid = -1;
 				if (request.getParameter("roid") == null) {
-					roid = loginManager.getService().getProjectByPoid(Long.parseLong(request.getParameter("poid"))).getLastRevisionId();
+					if (request.getParameter("poid") != null) {
+						long poid = Long.parseLong(request.getParameter("poid"));
+						SProject projectByPoid = loginManager.getService().getProjectByPoid(poid);
+						if (projectByPoid == null) {
+							throw new UserException("Project with oid " + poid + " not found");
+						}
+						roid = projectByPoid.getLastRevisionId();
+						if (roid == -1) {
+							throw new UserException("No revisions");
+						}
+					} else {
+						throw new UserException("A poid or roid is required for downloading");
+					}
 				} else {
 					roid = Long.parseLong(request.getParameter("roid"));
 				}
@@ -177,7 +181,8 @@ public class DownloadServlet extends HttpServlet {
 		} catch (NumberFormatException e) {
 			LOGGER.error("", e);
 			response.getWriter().println("Some number was incorrectly formatted");
-		} catch (UserException e) {
+		} catch (ServiceException e) {
+			LOGGER.error("", e);
 			response.getWriter().println(e.getUserMessage());
 		}
 	}

@@ -134,9 +134,6 @@
 		<replace file="builds/BuildWar/WEB-INF/version.xml" token="@VERSION@" value="${version}" />
 		<replace file="builds/BuildWar/WEB-INF/version.xml" token="@DATE@" value="${touch.time}" />
 		<replace file="builds/BuildWar/WEB-INF/web.xml" token="@VERSION@" value="${version}" />
-		<copy todir="builds/BuildWar/WEB-INF/classes">
-			<fileset file="../${deploydir}/log4j.xml" />
-		</copy>
 		<copy tofile="builds/BuildWar/WEB-INF/classes/org/bimserver/ifc/emf/Ifc2x3/impl/Ifc2x3.ecore">
 			<fileset file="../../Ifc/model/IFC2X3.ecore" />
 		</copy>
@@ -157,9 +154,10 @@
 				<include name="**/*.jar"/>
 				<exclude name="jetty*.jar" />
 				<exclude name="jetty/*.jar" />
+				<exclude name="jetty/jsp/*.jar" />
 				<exclude name="ant-1.6.5.jar" />
 				<exclude name="core-3.1.1.jar" />
-				<exclude name="cxf/geronimo-servlet_2.5_spec-1.2.jar" />
+				<exclude name="cxf/geronimo-servlet_3.0_spec-1.0.jar" />
 			</fileset>
 			<fileset dir="../../buildingSMARTLibrary/lib">
 				<include name="*.jar" />
@@ -196,12 +194,19 @@
 				<fileset dir="../lib/jetty">
 					<include name="*.jar" />
 				</fileset>
+				<fileset dir="../lib/jetty/jsp">
+					<include name="*.jar" />
+				</fileset>
 			</classpath>
 		</javac>
 		<jar jarfile="builds/BuildWar/WEB-INF/lib/bimserver.jar">
 			<fileset dir="builds/BuildWar/WEB-INF/classes" />
 		</jar>
 		<delete dir="builds/BuildWar/WEB-INF/classes" />
+		<mkdir dir="builds/BuildWar/WEB-INF/classes" />
+		<copy todir="builds/BuildWar/WEB-INF/classes">
+			<fileset file="../${deploydir}/log4j.xml" />
+		</copy>
 		<jar destfile="builds/bimserver-${version}.war" manifest="../www/META-INF/MANIFEST.MF">
 			<fileset dir="builds/BuildWar">
 				<exclude name="*.svn" />
@@ -218,10 +223,10 @@
 			<src path="../../Utils/src" />
 			<src path="../../Shared/src" />
 			<classpath>
-				<fileset file="../../BimServer/lib/cxf/cxf-2.3.0.jar" />
+				<fileset file="../../BimServer/lib/cxf/cxf-2.3.2.jar" />
 				<fileset file="../../BimServer/lib/cxf/jsr311-api-1.1.1.jar" />
 				<fileset file="../../BimServer/lib/cxf/XmlSchema-1.4.5.jar" />
-				<fileset file="../../BimServer/lib/cxf/jaxb-impl-2.1.13.jar" />
+				<fileset file="../../BimServer/lib/cxf/jaxb-impl-2.2.1.1.jar" />
 				<fileset file="../../BimServer/lib/cxf/wsdl4j-1.6.2.jar" />
 				<fileset file="../../BimServer/lib/cxf/xml-resolver-1.2.jar" />
 				<fileset file="../../BimServer/lib/commons/commons-io-1.4.jar" />
@@ -238,10 +243,10 @@
 				<fileset dir="builds/BuildClient" />
 			</main>
 			<lib>
-				<fileset file="../../BimServer/lib/cxf/cxf-2.3.0.jar" />
+				<fileset file="../../BimServer/lib/cxf/cxf-2.3.2.jar" />
 				<fileset file="../../BimServer/lib/cxf/jsr311-api-1.1.1.jar" />
 				<fileset file="../../BimServer/lib/cxf/XmlSchema-1.4.5.jar" />
-				<fileset file="../../BimServer/lib/cxf/jaxb-impl-2.1.13.jar" />
+				<fileset file="../../BimServer/lib/cxf/jaxb-impl-2.2.1.1.jar" />
 				<fileset file="../../BimServer/lib/cxf/wsdl4j-1.6.2.jar" />
 				<fileset file="../../BimServer/lib/cxf/xml-resolver-1.2.jar" />
 				<fileset file="../../BimServer/lib/commons/commons-io-1.4.jar" />

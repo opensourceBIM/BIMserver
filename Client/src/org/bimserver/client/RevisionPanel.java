@@ -49,7 +49,7 @@ import javax.swing.TransferHandler;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.interfaces.objects.SUser;
-import org.bimserver.shared.UserException;
+import org.bimserver.shared.ServiceException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -90,10 +90,35 @@ public class RevisionPanel extends JPanel {
 			}
 		});
 
+//		JMenuItem testItem = new JMenuItem("Test");
+//		testItem.addActionListener(new ActionListener() {
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				if (revisionTable.getSelectedRow() != -1) {
+//					SRevision revision = revisionTableModel.getRevision(revisionTable.getSelectedRow());
+//					try {
+//						List<SDataObject> dataObjectsByType = testWindow.getServiceHolder().getService().getDataObjectsByType(revision.getOid(), "IfcWindow");
+//						for (SDataObject dataObject : dataObjectsByType) {
+//							System.out.println(dataObject.getName());
+//							List<SDataValue> values = dataObject.getValues();
+//							for (SDataValue v : values) {
+//								if (v instanceof SSimpleDataValue) {
+//									System.out.println(((SSimpleDataValue)v).getStringValue());
+//								}
+//							}
+//						}
+//					} catch (UserException e1) {
+//						e1.printStackTrace();
+//					}
+//				}
+//			}
+//		});
+		
 		// JMenuItem editAsTree = new JMenuItem("Edit as tree...");
 		// revisionMenu.add(editAsTree);
 		revisionMenu.add(checkoutItem);
 		revisionMenu.add(downloadItem);
+//		revisionMenu.add(testItem);
 
 		revisionTable.addMouseListener(new MouseAdapter() {
 			@Override
@@ -116,7 +141,7 @@ public class RevisionPanel extends JPanel {
 						} catch (IOException e) {
 							LOGGER.error("", e);
 						}
-					} catch (UserException e) {
+					} catch (ServiceException e) {
 						LOGGER.error("", e);
 					}
 				}
@@ -150,7 +175,7 @@ public class RevisionPanel extends JPanel {
 								} catch (FileNotFoundException e) {
 									LOGGER.error("", e);
 								}
-							} catch (UserException e) {
+							} catch (ServiceException e) {
 								LOGGER.error("", e);
 							}
 						}

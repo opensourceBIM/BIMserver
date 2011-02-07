@@ -20,12 +20,12 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.IOUtils;
 import org.bimserver.ServerInitializer;
-import org.bimserver.ServerSettings;
-import org.bimserver.Settings;
 import org.bimserver.interfaces.objects.SUserType;
 import org.bimserver.resources.JarResourceFetcher;
 import org.bimserver.resources.WarResourceFetcher;
 import org.bimserver.serializers.EmfSerializerFactory;
+import org.bimserver.settings.ServerSettings;
+import org.bimserver.settings.Settings;
 import org.bimserver.web.LoginManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -134,6 +134,7 @@ public class SettingsServlet extends HttpServlet {
 				}
 			}
 		} catch (Exception e) {
+			response.getWriter().println(e.getMessage());
 			LOGGER.error("", e);
 		}
 	}

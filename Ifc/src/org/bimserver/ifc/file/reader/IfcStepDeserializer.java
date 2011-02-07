@@ -29,6 +29,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.security.MessageDigest;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -92,6 +93,7 @@ public class IfcStepDeserializer {
 	}
 
 	public void read(InputStream in, long fileSize) throws IncorrectIfcFileException, Exception {
+		mode = Mode.HEADER;
 		BufferedReader reader = new BufferedReader(new InputStreamReader(in, Charsets.UTF_8));
 		int initialCapacity = (int) (fileSize / AVERAGE_LINE_LENGTH);
 		model = new IfcModel(initialCapacity);
@@ -124,10 +126,12 @@ public class IfcStepDeserializer {
 		}
 	}
 
-	public void read(File sourceFile) throws IncorrectIfcFileException, Exception {
+	public IfcModel read(File sourceFile) throws IncorrectIfcFileException, Exception {
 		FileInputStream in = new FileInputStream(sourceFile);
 		read(in, sourceFile.length());
 		in.close();
+		model.setDate(new Date());
+		return model;
 	}
 
 	public IfcModel getModel() {
@@ -222,7 +226,7 @@ public class IfcStepDeserializer {
 							readList(val, object, structuralFeature);
 						} else if (firstChar == '*') {
 						} else {
-							if (structuralFeature.getUpperBound() == 1) {
+							if (!structuralFeature.isMany()) {
 								object.eSet(structuralFeature, convert(structuralFeature.getEType(), val));
 								if (structuralFeature.getEType() == EcorePackage.eINSTANCE.getEFloat() || structuralFeature.getEType() == EcorePackage.eINSTANCE.getEDouble()) {
 									EStructuralFeature floatStringFeature = classifier.getEStructuralFeature(attribute.getName() + "AsString");
@@ -245,13 +249,13 @@ public class IfcStepDeserializer {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private void readList(String val, EObject object, EStructuralFeature structuralFeature) throws IncorrectIfcFileException {
 		int index = 0;
-		if (structuralFeature.getUpperBound() == 1) {
+		if (!structuralFeature.isMany()) {
 			throw new IncorrectIfcFileException("Field " + structuralFeature.getName() + " of " + structuralFeature.getEContainingClass().getName() + " is no aggregation");
 		}
-		BasicEList list = (BasicEList<EObject>) object.eGet(structuralFeature);
+		BasicEList list = (BasicEList) object.eGet(structuralFeature);
 		String realData = val.substring(1, val.length() - 1);
 		int lastIndex = 0;
 		while (lastIndex != realData.length() + 1) {
@@ -261,7 +265,7 @@ public class IfcStepDeserializer {
 			if (a.length() > 0) {
 				if (a.charAt(0) == '#') {
 					Long referenceId = Long.parseLong(a.substring(1));
-					if (model.containsKey(referenceId)) {
+					if (model.contains(referenceId)) {
 						EObject referencedObject = model.get(referenceId);
 						if (referencedObject != null) {
 							while (list.size() <= index) {
@@ -351,7 +355,6 @@ public class IfcStepDeserializer {
 			if (classifier instanceof EClassImpl) {
 				if (null != ((EClassImpl) classifier).getEStructuralFeature(WRAPPED_VALUE)) {
 					IdEObject create = (IdEObject) ePackage.getEFactoryInstance().create((EClass) classifier);
-					model.add(create);
 					Class<?> instanceClass = create.eClass().getEStructuralFeature(WRAPPED_VALUE).getEType().getInstanceClass();
 					if (value.equals("")) {
 
@@ -492,7 +495,7 @@ public class IfcStepDeserializer {
 		} catch (NumberFormatException e) {
 			throw new IncorrectIfcFileException("'" + val + "' is not a valid reference");
 		}
-		if (model.containsKey(referenceId)) {
+		if (model.contains(referenceId)) {
 			object.eSet(structuralFeature, model.get(referenceId));
 		} else {
 			List<WaitingObject> waitingList = null;

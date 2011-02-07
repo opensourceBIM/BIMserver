@@ -7,7 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevision;
+import org.bimserver.shared.ServiceException;
 import org.bimserver.shared.UserException;
 import org.bimserver.web.LoginManager;
 import org.codehaus.jettison.json.JSONArray;
@@ -26,31 +28,39 @@ public class ProgressServlet extends HttpServlet {
 		try {
 			response.setContentType("application/json");
 			LoginManager loginManager = (LoginManager) request.getSession().getAttribute("loginManager");
-			JSONArray result = new JSONArray();
+			JSONObject result = new JSONObject();
+			JSONArray revisions = new JSONArray();
 			if (loginManager != null) {
-				String roidsString = request.getParameter("roids");
-				String[] split = roidsString.split(";");
-				for (String roidString : split) {
-					long roid = Long.parseLong(roidString);
-					SRevision revision = loginManager.getService().getRevision(roid);
-					JSONObject object = new JSONObject();
-					object.put("roid", roid);
-					object.put("state", revision.getState());
-					object.put("totalsize", revision.getSize());
-					object.put("lastError", revision.getLastError());
-					object.put("clashes", revision.getLastClashes().size());
-					object.put("islast", (loginManager.getService().getProjectByPoid(revision.getProjectId()).getLastRevisionId() == revision.getOid()));
-					result.put(object);
+				long poid = Long.parseLong(request.getParameter("poid"));
+				SProject project = loginManager.getService().getProjectByPoid(poid);
+				if (project != null) {
+					for (long roid : project.getRevisions()) {
+						try {
+							SRevision revision = loginManager.getService().getRevision(roid);
+							JSONObject object = new JSONObject();
+							object.put("roid", roid);
+							object.put("state", revision.getState());
+							object.put("totalsize", revision.getSize());
+							object.put("lastError", revision.getLastError());
+							object.put("clashes", revision.getNrClashes());
+							object.put("islast", (loginManager.getService().getProjectByPoid(revision.getProjectId()).getLastRevisionId() == revision.getOid()));
+							revisions.put(object);
+						} catch (UserException e) {
+							// This is probably a browser trying to load stuff that is not there anymore
+						}
+					}
+					result.put("lastRevision", project.getLastRevisionId());
 				}
+				result.put("revisions", revisions);
 			} else {
-				result.put("error");
+				revisions.put("error");
 			}
 			result.write(response.getWriter());
 		} catch (NumberFormatException e) {
 			LOGGER.error("", e);
-		} catch (UserException e) {
-			LOGGER.error("", e);
 		} catch (JSONException e) {
+			LOGGER.error("", e);
+		} catch (ServiceException e) {
 			LOGGER.error("", e);
 		}
 	}

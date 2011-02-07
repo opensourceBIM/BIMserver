@@ -4,11 +4,11 @@
 <%@page import="java.util.GregorianCalendar"%>
 <%@page import="org.bimserver.utils.Formatters"%>
 <%@page import="org.bimserver.shared.DatabaseInformation"%>
-<%@page import="org.bimserver.VersionChecker"%>
+<%@page import="org.bimserver.version.VersionChecker"%>
 <%@page import="java.util.Map"%>
 <%@page import="org.bimserver.ServerInitializer"%>
 <%@page import="java.text.SimpleDateFormat"%>
-<%@page import="org.bimserver.ServerSettings"%>
+<%@page import="org.bimserver.settings.ServerSettings"%>
 <%@page import="org.bimserver.database.Database"%>
 <%@page import="java.io.File"%>
 <%@page import="org.bimserver.interfaces.objects.SUserType"%>
@@ -38,7 +38,9 @@
 <%@page import="org.bimserver.interfaces.objects.SClashDetectionSettings"%>
 <%@page import="org.bimserver.interfaces.objects.SGeoTag"%>
 
-<%@page import="org.bimserver.interfaces.objects.SDatabaseCreated"%><div class="sidebar">
+<%@page import="org.bimserver.interfaces.objects.SDatabaseCreated"%>
+<%@page import="org.bimserver.shared.SLongAction"%>
+<%@page import="java.util.Date"%><div class="sidebar">
 </div>
 <div class="content">
 <h1>Info</h1>
@@ -50,7 +52,7 @@
 		if (ServerSettings.getSettings().isShowVersionUpgradeAvailable() && checkVersion.updateNeeded()) {
 %>
 <div class="error">
-A newer version of the BIM Server is available online.<br/>
+A newer version of the BIMserver is available online.<br/>
 <a href="<%= checkVersion.getOnlineVersion().getSupportUrl() %>">Support</a> | <a href="<%= checkVersion.getOnlineVersion().getDownloadUrl() %>">Download</a><br/>
 E-mail <a href="mailto:<%= checkVersion.getOnlineVersion().getSupportEmail() %>"><%= checkVersion.getOnlineVersion().getSupportEmail() %></a> for more info<br/>
 </div>
@@ -71,7 +73,7 @@ E-mail <a href="mailto:<%= checkVersion.getOnlineVersion().getSupportEmail() %>"
 	  The latest versions are available for download from <a href=" http://ifcengine.com" target="_blank">ifcengine.com</a>. <br/>
       In case of none commercial use there is no license fee and redistribution is free as long as clearly mentioned that the IFC Engine DLL is used. <br/>
       This BIMserver software is non-commercial so users of the BIMserver software can use it free of charge.<br/>
-      Within the Open Source BIM Server there is one exception to the normal conditions:<br/>
+      Within the Open Source BIMserver there is one exception to the normal conditions:<br/>
       A special version of the IFC Engine DLL is used that includes Clashdetection functionality, this version is not commercially available. For more information, please contact TNO.<br/>
       <br/>
 	</div>
@@ -131,7 +133,7 @@ E-mail <a href="mailto:<%= checkVersion.getOnlineVersion().getSupportEmail() %>"
 			<tr><td class="firstcolumn">Line separator</td><td><%=System.getProperty("line.separator") %></td></tr>
 		</table>
 	</div>
-	<div class="tabbertab" id="bimservertab" title="BIM Server">
+	<div class="tabbertab" id="bimservertab" title="BIMserver">
 		<table class="formatted infotable">
 			<tr><td colspan="2" class="tabletitle">Version</td></tr>
 			<tr><td class="firstcolumn">Local Version</td><td><%=checkVersion.getLocalVersion().getVersion() %></td></tr>
@@ -203,6 +205,32 @@ E-mail <a href="mailto:<%= checkVersion.getOnlineVersion().getSupportEmail() %>"
 %>
 		</table>
 	</div>
+	<div class="tabbertab" id="activelongactions" title="Active long actions">
+		<table class="formatted infotable">
+			<tr>
+				<th>Username</th>
+				<th>Name</th>
+				<th>Description</th>
+				<th>Started</th>
+				<th>Running</th>
+			</tr>
+<%
+	List<SLongAction> longActions = loginManager.getService().getActiveLongActions();
+	for (SLongAction longAction : longActions) {
+		long millis = System.currentTimeMillis() - longAction.getStart().getTime();		
+%>
+	<tr>
+		<td><a href="user.jsp?uoid=<%=longAction.getUserOid()%>"><%=longAction.getUsername() %></a></td>
+		<td><%=longAction.getName() %></td>
+		<td><%=longAction.getIdentification() %></td>
+		<td><%=dateFormat.format(longAction.getStart()) %></td>
+		<td><%=Formatters.millisecondsToString(millis) %></td>
+	</tr>
+<%
+	}
+%>
+		</table>
+	</div>
 	<div class="tabbertab" id="logtab" title="Log">
 		<table class="formatted infotable">
 			<tr><th>Date/Time</th><th>Type</th><th>User</th><th>Access method</th><th>Summary</th></tr>
@@ -213,14 +241,14 @@ E-mail <a href="mailto:<%= checkVersion.getOnlineVersion().getSupportEmail() %>"
 		SUser logUser = loginManager.getService().getUserByUoid(log.getExecutorId());
 %>
 	<tr>
-		<td><%=dateFormat.format(log.getDate()) %></td>
-		<td><%=log.getClass().getSimpleName().substring(1) %></td>
+		<td style="white-space:nowrap"><%=dateFormat.format(log.getDate()) %></td>
+		<td style="white-space:nowrap"><%=log.getClass().getSimpleName().substring(1) %></td>
 <% if (logUser != null) { %>
-		<td><a href="user.jsp?uoid=<%=log.getExecutorId()%>"><%=logUser.getUsername() %></a></td>
+		<td style="white-space:nowrap"><a href="user.jsp?uoid=<%=log.getExecutorId()%>"><%=logUser.getUsername() %></a></td>
 <% } else { %>
 		<td>System</td>
 <% } %>
-		<td><%=JspHelper.getNiceAccessMethodName(log.getAccessMethod()) %></td>
+		<td style="white-space:nowrap"><%=JspHelper.getNiceAccessMethodName(log.getAccessMethod()) %></td>
 		<td>
 		<%
 			if (log instanceof SUserAddedToProject) {

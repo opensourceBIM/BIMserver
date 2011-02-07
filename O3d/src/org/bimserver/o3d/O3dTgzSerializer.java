@@ -122,7 +122,6 @@ public class O3dTgzSerializer extends BimModelSerializer {
 		return -1;
 	}
 
-	@SuppressWarnings("unchecked")
 	public Scene createScene() throws JSONException {
 		JsonFactory jsonFactory = new JsonFactory();
 		Scene scene = new Scene();
@@ -148,6 +147,7 @@ public class O3dTgzSerializer extends BimModelSerializer {
 		scene.addMaterial(stairMaterial);
 		scene.addMaterial(stairFlightMaterial);
 		IfcDatabase database = new IfcDatabase(model, getFieldIgnoreMap());
+		@SuppressWarnings("rawtypes")
 		Class[] eClasses = new Class[] { IfcSlab.class, IfcRoof.class, IfcWall.class, IfcWallStandardCase.class, IfcWindow.class, IfcDoor.class, IfcColumn.class, IfcRamp.class,
 				IfcStair.class, IfcStairFlight.class };
 		try {

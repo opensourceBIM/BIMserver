@@ -2,12 +2,13 @@ package net.sourceforge.osexpress.parser;
 
 import java.util.Vector;
 
+@SuppressWarnings("all")
 class EnumerationType {
 
-	private Vector<String> ids;
-	public boolean extensible;
-	public String typename;
-	public String basedOnName;
+	private Vector ids;
+    public boolean extensible;
+    public String typename;
+    public String basedOnName;
 
 	public EnumerationType() {
 		ids = new Vector<String>();

@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ReflectionUtils {
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public static <A> List<Class<A>> getClassesAsList(String pckgname, Class<A> type)
 			throws ClassNotFoundException {
 		ArrayList<Class<A>> classes = new ArrayList<Class<A>>();

@@ -8,12 +8,14 @@ import org.bimserver.database.BimDeadlockException;
 import org.bimserver.database.store.CheckinState;
 import org.bimserver.database.store.ConcreteRevision;
 import org.bimserver.database.store.Project;
+import org.bimserver.database.store.Revision;
 import org.bimserver.database.store.User;
 import org.bimserver.database.store.UserType;
 import org.bimserver.database.store.log.AccessMethod;
 import org.bimserver.database.store.log.LogFactory;
 import org.bimserver.database.store.log.NewRevisionAdded;
 import org.bimserver.ifc.IfcModel;
+import org.bimserver.mail.MailSystem;
 import org.bimserver.rights.RightsManager;
 import org.bimserver.shared.UserException;
 
@@ -46,10 +48,15 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 		if (!project.getRevisions().isEmpty() && project.getRevisions().get(project.getRevisions().size()-1).getState() == CheckinState.STORING) {
 			throw new UserException("Another checkin on this project is currently running, please wait and try again");
 		}
+		if (!MailSystem.isValidEmailAddress(user.getUsername())) {
+			throw new UserException("Users must have a valid e-mail address to checkin");
+		}
 		checkCheckSum(project);
-		ConcreteRevision concreteRevision = bimDatabaseSession.createNewConcreteRevision(model.size(), poid, actingUoid, comment.trim(), CheckinState.STORING);
+		ConcreteRevision concreteRevision = createNewConcreteRevision(bimDatabaseSession, model.size(), poid, actingUoid, comment.trim(), CheckinState.DONE);
+		Revision virtualRevision = concreteRevision.getRevisions().get(0);
 		concreteRevision.setChecksum(model.getChecksum());
 		project.setLastConcreteRevision(concreteRevision);
+		project.setLastRevision(virtualRevision);
 		concreteRevision.setState(CheckinState.STORING);
 		if (concreteRevision.getId() != 1) {
 			// There already was a revision, lets go delete it
@@ -58,12 +65,12 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 		NewRevisionAdded newRevisionAdded = LogFactory.eINSTANCE.createNewRevisionAdded();
 		newRevisionAdded.setDate(new Date());
 		newRevisionAdded.setExecutor(user);
-		newRevisionAdded.setRevision(concreteRevision.getRevisions().get(0));
+		newRevisionAdded.setRevision(virtualRevision);
 		newRevisionAdded.setAccessMethod(getAccessMethod());
 		bimDatabaseSession.store(newRevisionAdded);
-		bimDatabaseSession.store(model.getValues());
-		bimDatabaseSession.store(concreteRevision, project.getId(), concreteRevision.getId());
-		bimDatabaseSession.saveOidCounter();
+		bimDatabaseSession.store(model.getValues(), project.getId(), concreteRevision.getId());
+		bimDatabaseSession.store(concreteRevision);
+		bimDatabaseSession.store(project);
 		return concreteRevision;
 	}
 }

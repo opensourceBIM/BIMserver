@@ -58,7 +58,6 @@ public class AttributeCondition extends Condition {
 	@Override
 	public boolean matches(EObject object) {
 		if (!attribute.getEContainingClass().isSuperTypeOf(object.eClass())) {
-//			System.out.println(attribute.getEContainingClass().getName() + " != " + object.eClass().getName());
 			return false;
 		} else {
 			return object.eGet(attribute).equals(literal.getValue());

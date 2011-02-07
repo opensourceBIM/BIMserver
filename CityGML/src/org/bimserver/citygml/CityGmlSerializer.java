@@ -608,9 +608,9 @@ public class CityGmlSerializer extends BimModelSerializer {
 	}
 
 	private void setGeometry(MultiSurface ms, IfcRoot ifcRootObject) throws SerializerException {
-		IfcModel IfcModel = new IfcModel();
-		convertToSubset(ifcRootObject.eClass(), ifcRootObject, IfcModel, new HashMap<EObject, EObject>());
-		IfcStepSerializer ifcSerializer = new IfcStepSerializer(project, user, "", IfcModel, schemaDefinition);
+		IfcModel ifcModel = new IfcModel();
+		convertToSubset(ifcRootObject.eClass(), ifcRootObject, ifcModel, new HashMap<EObject, EObject>());
+		IfcStepSerializer ifcSerializer = new IfcStepSerializer(project, user, "", ifcModel, schemaDefinition);
 		try {
 			IfcEngineModel model = ifcEngine.openModel(ifcSerializer.getBytes());
 			try {

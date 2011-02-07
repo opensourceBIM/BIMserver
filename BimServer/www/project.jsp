@@ -1,3 +1,4 @@
+<%@page import="org.bimserver.settings.ServerSettings"%>
 <%@page import="java.util.List"%>
 <%@page import="org.bimserver.interfaces.objects.SProject"%>
 <%@page import="org.bimserver.interfaces.objects.SRevision"%>
@@ -13,18 +14,6 @@
 <%@page import="org.bimserver.shared.ResultType"%>
 <%@page import="org.bimserver.web.JspHelper"%>
 <%@page import="org.bimserver.rights.RightsManager"%>
-<%@page import="org.bimserver.shared.DataObject"%>
-<%@page import="org.bimserver.shared.DataObject.SimpleDataValue"%>
-<%@page import="org.bimserver.shared.DataObject.ReferenceDataValue"%>
-<%@page import="org.bimserver.shared.DataObject.ReferenceDataValue"%>
-<%@page import="org.bimserver.shared.DataObject.ReferenceDataValue"%>
-<%@page import="org.bimserver.shared.DataObject.DataValue"%>
-<%@page import="org.bimserver.shared.DataObject.ListDataValue"%>
-<%@page import="org.bimserver.shared.DataObject.ListDataValue"%>
-<%@page import="org.bimserver.shared.DataObject.ListDataValue"%>
-<%@page import="org.bimserver.shared.DataObject.ReferenceDataValue"%>
-<%@page import="org.bimserver.shared.DataObject.ReferenceDataValue"%>
-<%@page import="org.bimserver.shared.DataObject.SimpleDataValue"%>
 <%@page import="org.bimserver.shared.SRevisionSummary"%>
 <%@page import="org.bimserver.shared.SRevisionIdComparator"%>
 <%@page import="org.bimserver.shared.SCheckoutDateComparator"%>
@@ -53,9 +42,9 @@
 	List<SRevision> revisions = loginManager.getService().getAllRevisionsOfProject(poid);
 	Collections.sort(revisions, new SRevisionIdComparator(false));
 	List<SRevision> revisionsInc = loginManager.getService().getAllRevisionsOfProject(poid);
-	Collections.sort(revisionsInc, new SRevisionIdComparator(true));
-	List<SCheckout> checkouts = loginManager.getService().getAllCheckoutsOfProject(poid);
-	Collections.sort(checkouts, new SCheckoutDateComparator());
+	Collections.sort(revisionsInc, new SRevisionIdComparator(false));
+	List<SCheckout> checkouts = loginManager.getService().getAllCheckoutsOfProjectAndSubProjects(poid);
+	Collections.sort(checkouts, new SCheckoutDateComparator(false));
 	List<SCheckout> activeCheckouts = new ArrayList<SCheckout>();
 	for (SCheckout checkout : checkouts) {
 		if (checkout.isActive()) {
@@ -65,6 +54,7 @@
 	List<SUser> users = loginManager.getService().getAllAuthorizedUsersOfProject(poid);
 	Collections.sort(users, new SUserNameComparator());
 	List<SUser> nonAuthorizedUsers = loginManager.getService().getAllNonAuthorizedUsersOfProject(poid);
+	Collections.sort(nonAuthorizedUsers, new SUserNameComparator());
 	SRevision lastRevision = null;
 	if (project.getLastRevisionId() != -1) {
 		lastRevision = loginManager.getService().getRevision(project.getLastRevisionId());
@@ -72,6 +62,7 @@
 	boolean anonymousAccess = project.getHasAuthorizedUsers().contains(loginManager.getService().getAnonymousUser().getOid());
 	boolean hasUserManagementRights = project.getHasAuthorizedUsers().contains(loginManager.getUoid());
 	boolean userHasCheckinRights = loginManager.getService().userHasCheckinRights(project.getOid());
+	boolean hasEditRights = loginManager.getService().userHasRights(project.getOid());
 	boolean hasCreateProjectRights = (loginManager.getUserType() == SUserType.ADMIN || ServerSettings.getSettings().isAllowUsersToCreateTopLevelProjects());
 if (emfSerializerFactory.resultTypeEnabled(ResultType.O3D_JSON) && lastRevision != null) {
 %>
@@ -81,11 +72,11 @@ if (emfSerializerFactory.resultTypeEnabled(ResultType.O3D_JSON) && lastRevision 
 %>
 <div class="sidebar">
 <ul>
-<% if (userHasCheckinRights) { %> <li><a class="link"
+<% if (hasEditRights) { %> <li><a class="link"
 	href="editproject.jsp?poid=<%=poid %>">Edit</a></li>
 <% } %>
 <%
-	if (emfSerializerFactory.resultTypeEnabled(ResultType.O3D_JSON) && lastRevision != null) {
+	if (loginManager.getService().isExportTypeEnabled(ResultType.O3D_JSON) && lastRevision != null) {
 %>
 <li>
  <a id="visualiselink" class="link">Visualise</a></li>
@@ -210,7 +201,7 @@ the latest revision<br />
 <p></p>
 <div class="tabber" id="downloadtabber">
 <div class="tabbertab" id="detailstab" title="Simple Download">
-<form action="<%=request.getContextPath() %>/download" method="gett">
+<form action="<%=request.getContextPath() %>/download" method="get">
 Download: <input type="hidden" name="roid"
 	value="<%=project.getLastRevisionId() %>" /> <select name="resultType" id="detailsdownloadcheckoutselect">
 	<%
@@ -223,8 +214,11 @@ Download: <input type="hidden" name="roid"
 %>
 </select> <label for="simplezip_<%=lastRevision.getId() %>">Zip </label><input
 	type="checkbox" name="zip" id="simplezip_<%=lastRevision.getId() %>" />
-<input name="download" type="submit" value="Download"> <input
-	name="checkout" type="submit" value="Checkout" id="detailscheckoutbutton"></form>
+<input name="download" type="submit" value="Download">
+<% if (userHasCheckinRights) { %>
+<input name="checkout" type="submit" value="Checkout" id="detailscheckoutbutton">
+<% } %>
+</form>
 </div>
 <div class="tabbertab" id="" title="Advanced Download">
 <script>
@@ -318,25 +312,26 @@ Download: <select name="resultType">
 <div class="tabbertab" id="revisionstab"
 	title="Revisions<%=revisions.size() == 0 ? "" : " (" + revisions.size() + ")"%>">
 <%
-	String checkoutWarning = loginManager.getService().getShowCheckoutWarning(project.getOid(), loginManager.getUoid());
-	if (checkoutWarning != null) {
-		out.write("<div class=\"warning\"><img src=\"images/warning.png\" alt=\"warning\" />" + checkoutWarning + "</div>");
+	Set<String> checkoutWarnings = loginManager.getService().getShowCheckoutWarning(project.getOid(), loginManager.getUoid());
+	for (String warning : checkoutWarnings) {
+		out.write("<div class=\"warning\"><img src=\"images/warning.png\" alt=\"warning\" />" + warning + "</div>");
 	}
 	if (userHasCheckinRights) {
 %> <a href="#" id="uploadlink">Upload (note: Subprojects present)</a>
 <div id="upload"><jsp:include page="upload.jsp">
 	<jsp:param name="poid" value="<%=poid %>" />
 </jsp:include> <%
-	List<SProject> projects = loginManager.getService().getAllProjects();
+	List<SProject> projects = loginManager.getService().getAllReadableProjects();
+	Collections.sort(projects, new SProjectNameComparator());
 	if (!projects.isEmpty() && (projects.size() > 1 || !projects.get(0).getRevisions().isEmpty())) {
-	boolean atLeastOne = false;
-	for (SProject sProject : projects) {
-		if (!sProject.getRevisions().isEmpty()) {
-			atLeastOne = true;
-			break;
+		boolean atLeastOne = false;
+		for (SProject sProject : projects) {
+			if (!sProject.getRevisions().isEmpty()) {
+				atLeastOne = true;
+				break;
+			}
 		}
-	}
-	if (atLeastOne) {
+		if (atLeastOne) {
 %>
 <form method="post" action="branch.jsp">
 <fieldset>
@@ -350,7 +345,7 @@ Download: <select name="resultType">
 	<optgroup label="<%=sProject.getName() %>">
 		<%
 		List<SRevision> checkinRevisions = loginManager.getService().getAllRevisionsOfProject(sProject.getOid());
-		Collections.sort(checkinRevisions, new SRevisionIdComparator(true));
+		Collections.sort(checkinRevisions, new SRevisionIdComparator(false));
 	for (SRevision sRevision : checkinRevisions) {
 %>
 		<option value="<%=sRevision.getOid() %>"><%=sRevision.getId() %></option>
@@ -358,7 +353,7 @@ Download: <select name="resultType">
 %>
 	</optgroup>
 	<%
-}
+	}
 }
 %>
 </select> <label>Comment</label> <input type="text" name="comment" /> <input
@@ -428,8 +423,8 @@ if (revisions.size() > 0) {
 	<tr <%=isTagged?"class=\"tagged\"":""%> id="rev<%=revision.getOid() %>"
 		<%=lastRevision != null && revision.getId() == lastRevision.getId() ? "class=\"lastrevision\"" : "" %>>
 		<td><a href="revision.jsp?roid=<%=revision.getOid() %>"><%=revision.getId() %></a></td>
-		<td><%=dateFormat.format(revision.getDate()) %></td>
-		<td><a href="user.jsp?uoid=<%=revision.getUserId() %>"><%=revisionUser.getUsername() %></a></td>
+		<td style="white-space: nowrap;"><%=dateFormat.format(revision.getDate()) %></td>
+		<td style="white-space: nowrap;"><a href="user.jsp?uoid=<%=revision.getUserId() %>"><%=revisionUser.getUsername() %></a></td>
 		<td><div class="commentbox">
 			<div><%=revision.getComment()%></div><a href="#" class="morelink">more</a>
 		</div></td>
@@ -473,8 +468,11 @@ if (revisions.size() > 0) {
 %>
 		</select> <label for="revisionzip_<%=revision.getId() %>">Zip </label><input
 			type="checkbox" name="zip" id="revisionzip_<%=revision.getId() %>" />
-		<input name="download" type="submit" value="Download" /> <input
-			name="checkout" type="submit" value="Checkout" class="revisionscheckoutbutton" /></form>
+		<input name="download" type="submit" value="Download" />
+<% if (userHasCheckinRights) { %>
+		<input name="checkout" type="submit" value="Checkout" class="revisionscheckoutbutton" />
+<% } %>
+		</form>
 		</td>
 	</tr>
 	<%
@@ -495,7 +493,7 @@ if (revisions.size() > 0) {
 will be done on the latest revision (<a
 	href="revision.jsp?roid=<%=lastRevision.getOid() %>"><%=lastRevision.getId() %></a>),
 open a specific revision to query other revisions<br />
-<br />
+<br/>
 <jsp:include page="query.jsp">
 	<jsp:param name="poid" value="<%=poid %>" />
 	<jsp:param name="roid" value="<%=lastRevision.getOid() %>" />
@@ -510,7 +508,17 @@ open a specific revision to query other revisions<br />
 %>
 <div class="tabbertab" id="checkoutstab"
 	title="Checkouts<%=checkouts.size() == 0 ? "" : " (" + activeCheckouts.size() + ")" %>">
+<%
+	boolean showCheckoutToggle = false;
+	for (SCheckout checkout : checkouts) {
+		if (!checkout.isActive()) {
+			showCheckoutToggle = true;
+		}
+	}
+	if (showCheckoutToggle) {
+%>
 <label for="showinactivecheckouts">Show inactive checkouts </label><input id="showinactivecheckouts" type="checkbox"/>
+<% } %>
 <table class="formatted">
 	<tr>
 		<th>Revision Id</th>
@@ -540,7 +548,7 @@ open a specific revision to query other revisions<br />
 			<%	
 	}
 %>
-		</select> <label for="checkoutsdownloadzip_<%=checkout.getOid() %>">Zip </label><input type="checkbox" name="zip" id="checkoutsdownloadzip_<%=checkout.getOid() %>" /> <input	name="download" type="submit" value="Download" />
+		</select> <label for="checkoutsdownloadzip_<%=checkout.getOid() %>">Zip </label><input type="checkbox" name="zip" id="checkoutsdownloadzip_<%=checkout.getOid() %>" /> <input name="download" type="submit" value="Download" />
 			</form>
 		</td>
 	</tr>
@@ -551,15 +559,6 @@ open a specific revision to query other revisions<br />
 </div>
 <%
 	}
-%> <%
-	if (false && lastRevision != null) {
-%>
-<div class="tabbertab" id="summarytab" title="Summary">
-<div id="summaryajaxloader">Retrieving summary... <img
-	src="images/ajax-loader.gif" /></div>
-<a href="#" id="summaryajaxlink">Retrieve</a></div>
-<%
-}
 %>
 <div class="tabbertab" id="authorizeduserstab"
 	title="Authorized users<%=users.size() == 0 ? "" : " (" + users.size() + ")" %>">
@@ -617,15 +616,8 @@ open a specific revision to query other revisions<br />
 </div>
 </div>
 <script>
-var revisions = new Array(<%=revisions.size()%>);
-var i =0;
-<%
-for (SRevision sRevision : revisions) {
-	%>
-		revisions[i++] = <%=sRevision.getOid()%>;
-	<%
-}
-%>
+	var poid = <%=poid%>;
+	var lastRevisionOid = <%=lastRevision == null ? -1 : lastRevision.getOid()%>;
 	$(document).ready(function(){
 		$("#revisiontablink").click(function (){
 			document.getElementById("projecttabber").tabber.tabShow(2);	
@@ -662,14 +654,13 @@ for (SRevision sRevision : revisions) {
 		$("#showinactivecheckouts").change(updateInactiveCheckouts);
 		updateInactiveCheckouts();
 		var refreshFunction = function() {
-			if (revisions.length > 0) {
-				var roids = "";
-				for (var roid in revisions) {
-					roids += revisions[roid] + ";";
-				}
-				$.ajax({ url: "/progress", cache: false, context: document.body, data: {roids: roids}, success: function(data){
-					for (result in data) {
-						var item = data[result];
+			$.ajax({ url: "/progress", cache: false, context: document.body, data: {poid: poid}, success: function(data){
+				if (data.lastRevision != lastRevisionOid) {
+					location.reload();
+				} else {
+					revisions = data.revisions;
+					for (result in revisions) {
+						var item = revisions[result];
 						var state = item.state;
 						if (state == "DONE") {
 							$("#rev" + item.roid).children(".sizefield").text(item.totalsize);
@@ -711,11 +702,11 @@ for (SRevision sRevision : revisions) {
 							$("#rev" + item.roid).removeClass("lastrevision");
 						}
 					}
-			    }});
-			}
+			    }
+			}});
 		};
-		window.setInterval(refreshFunction, 2000);
 		refreshFunction();
+		window.setInterval(refreshFunction, 2000);
 	});
 </script>
 <%
@@ -733,8 +724,8 @@ for (SRevision sRevision : revisions) {
 			if (request.getParameter("revisions") != null) {
 				clashesUrl += "&revisions=" + request.getParameter("revisions");
 			}
-			if (request.getParameter("ignore") != null) {
-				clashesUrl += "&ignore=" + request.getParameter("ignore");
+			if (request.getParameter("ignored") != null) {
+				clashesUrl += "&ignored=" + request.getParameter("ignored");
 			}
 		%>
 		$("#clashdetectiondiv").load("<%=clashesUrl%>");

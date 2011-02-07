@@ -36,10 +36,11 @@ Back to
   		<input type="hidden" name="poid" value="<%=poid %>"/>
   		<input type="hidden" name="roid1" value="<%=roid1 %>"/>
   		<input type="hidden" name="roid2" value="<%=roid2 %>"/>
+  		<input type="hidden" name="type" value="<%=request.getParameter("type") %>"/>
   		<input type="submit" name="email" value="Send"/>
   	</form>
   </div>
-<%= JspHelper.writeCompareResult(compareResult, revision1.getId(), revision2.getId(), sCompareType, project) %>
+<%= JspHelper.writeCompareResult(compareResult, revision1.getId(), revision2.getId(), sCompareType, project, true) %>
 
 <form action="<%=request.getContextPath() %>/download" method="get">
 Download: 
@@ -56,7 +57,7 @@ Download:
 	<%	
 	}
 %>
-</select> <label for="zip">Zip</label><input type="checkbox" name="zip" id="zip" />
+</select> <label for="zip">Zip</label> <input type="checkbox" name="zip" id="zip" />
 		<input name="download" type="submit" value="Download">
 </form>
 
@@ -75,7 +76,7 @@ Download:
 		$("#emailcompareform").submit(function(){
 			$("#emailcompareform").hide();
 			$("#emailajaxloader").show();
-			$("#emailform").load("sendcompareemail.jsp?poid=<%=poid%>&roid1=<%=roid1%>&roid2=<%=roid2%>&address=" + $("#address").val());
+			$("#emailform").load("sendcompareemail.jsp?type=<%=request.getParameter("type")%>&poid=<%=poid%>&roid1=<%=roid1%>&roid2=<%=roid2%>&address=" + $("#address").val());
 			return false;
 		});
 	});

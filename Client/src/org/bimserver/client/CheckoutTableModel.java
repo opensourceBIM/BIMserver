@@ -34,7 +34,7 @@ import javax.swing.table.AbstractTableModel;
 import org.bimserver.interfaces.objects.SCheckout;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SUser;
-import org.bimserver.shared.UserException;
+import org.bimserver.shared.ServiceException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -88,7 +88,7 @@ public class CheckoutTableModel extends AbstractTableModel {
 				this.allCheckouts = checkouts;
 			}
 			update();
-		} catch (UserException e) {
+		} catch (ServiceException e) {
 			LOGGER.error("", e);
 		}
 	}
@@ -127,7 +127,7 @@ public class CheckoutTableModel extends AbstractTableModel {
 				this.allCheckouts = checkouts;
 			}
 			update();
-		} catch (UserException e) {
+		} catch (ServiceException e) {
 			LOGGER.error("", e);
 		}
 	}

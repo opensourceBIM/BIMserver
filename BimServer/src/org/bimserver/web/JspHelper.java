@@ -1,7 +1,6 @@
 package org.bimserver.web;
 
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -17,9 +16,10 @@ import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.interfaces.objects.SUserType;
 import org.bimserver.shared.SCompareResult;
 import org.bimserver.shared.SProjectNameComparator;
+import org.bimserver.shared.SRevisionIdComparator;
 import org.bimserver.shared.SRevisionSummary;
+import org.bimserver.shared.ServiceException;
 import org.bimserver.shared.ServiceInterface;
-import org.bimserver.shared.UserException;
 import org.bimserver.shared.SCompareResult.SCompareType;
 import org.bimserver.shared.SCompareResult.SObjectModified;
 import org.slf4j.Logger;
@@ -27,13 +27,13 @@ import org.slf4j.LoggerFactory;
 
 public class JspHelper {
 	private static final Logger LOGGER = LoggerFactory.getLogger(JspHelper.class);
-	
-	public static String generateBreadCrumbPath(SRevision revision, ServiceInterface serviceWrapper) throws UserException {
+
+	public static String generateBreadCrumbPath(SRevision revision, ServiceInterface serviceWrapper) throws ServiceException {
 		String projectPath = generateBreadCrumbPath(serviceWrapper.getProjectByPoid(revision.getProjectId()), serviceWrapper);
 		return projectPath + " <a href=\"revision.jsp?roid=" + revision.getOid() + "\">" + revision.getId() + "</a>";
 	}
 
-	public static String generateBreadCrumbPath(SProject project, ServiceInterface serviceWrapper) throws UserException {
+	public static String generateBreadCrumbPath(SProject project, ServiceInterface serviceWrapper) throws ServiceException {
 		String path = "";
 		while (project != null) {
 			path = "<a id=\"usernav-home\" href=\"project.jsp?poid=" + project.getOid() + "\">" + project.getName() + "</a> " + path;
@@ -46,7 +46,7 @@ public class JspHelper {
 		return path;
 	}
 
-	public static String writeProjectTree(SProject project, LoginManager loginManager, int level) throws UserException {
+	public static String writeProjectTree(SProject project, LoginManager loginManager, int level) throws ServiceException {
 		StringBuilder result = new StringBuilder();
 		SRevision lastRevision = null;
 		if (project.getLastRevisionId() != -1) {
@@ -83,15 +83,15 @@ public class JspHelper {
 			subProjects.add(subProject);
 		}
 		for (SProject subProject : subProjects) {
-			if (loginManager.getService().userHasRights(subProject.getOid()) && (loginManager.getService().getProjectByPoid(subProject.getOid()).getState() != SObjectState.DELETED)
-					|| loginManager.getUserType() == SUserType.ADMIN) {
+			if (loginManager.getService().userHasRights(subProject.getOid())
+					&& (loginManager.getService().getProjectByPoid(subProject.getOid()).getState() != SObjectState.DELETED) || loginManager.getUserType() == SUserType.ADMIN) {
 				result.append(writeProjectTree(subProject, loginManager, level + 1));
 			}
 		}
 		return result.toString();
 	}
 
-	public static String writeDownloadProjectTreeJavaScript(SProject project, LoginManager loginManager) throws UserException {
+	public static String writeDownloadProjectTreeJavaScript(SProject project, LoginManager loginManager) throws ServiceException {
 		StringBuilder result = new StringBuilder();
 		result.append("projects.project" + project.getId() + " = new Object();\n");
 		result.append("projects.project" + project.getId() + ".id = " + project.getId() + ";\n");
@@ -107,7 +107,7 @@ public class JspHelper {
 		return result.toString();
 	}
 
-	public static String writeDownloadProjectTree(String baseName, SProject project, LoginManager loginManager, int level, Set<Long> revisions) throws UserException {
+	public static String writeDownloadProjectTree(String baseName, SProject project, LoginManager loginManager, int level, Set<Long> revisions) throws ServiceException {
 		StringBuilder result = new StringBuilder();
 		SRevision lastRevision = null;
 		if (project.getLastRevisionId() != -1) {
@@ -129,14 +129,9 @@ public class JspHelper {
 						: ("<a href=\"revision.jsp?roid=" + lastRevision.getOid() + "\">" + lastRevision.getId() + "</a> by <a href=\"user.jsp?uoid=" + lastRevision.getUserId()
 								+ "\">" + loginManager.getService().getUserByUoid(lastRevision.getUserId()).getUsername() + "</a>")) + "</td>");
 		result.append("<td><select class=\"treeselect\" name=\"" + baseName + "_" + project.getId() + "\" id=\"" + baseName + "_" + project.getId() + "\">");
-		result.append("<option value=\"[off]\">Off</option>");
 		List<SRevision> allRevisionsOfProject = loginManager.getService().getAllRevisionsOfProject(project.getOid());
-		Collections.sort(allRevisionsOfProject, new Comparator<SRevision>() {
-			@Override
-			public int compare(SRevision o1, SRevision o2) {
-				return o1.getId() - o2.getId();
-			}
-		});
+		Collections.sort(allRevisionsOfProject, new SRevisionIdComparator(false));
+		boolean selectedSomething = false;
 		for (SRevision revision : allRevisionsOfProject) {
 			boolean selected = false;
 			if (revisions != null) {
@@ -144,10 +139,14 @@ public class JspHelper {
 					selected = true;
 				}
 			} else {
-				selected = ((project.getParentId() == -1 || level == 0) && allRevisionsOfProject.get(allRevisionsOfProject.size() - 1) == revision);
+				selected = ((project.getParentId() == -1 || level == 0) && allRevisionsOfProject.get(0) == revision);
+			}
+			if (selected) {
+				selectedSomething = true;
 			}
 			result.append("<option value=\"" + revision.getOid() + "\"" + (selected ? " SELECTED=\"SELECTED\"" : "") + ">" + revision.getId() + "</option>");
 		}
+		result.append("<option value=\"[off]\"" + (selectedSomething ? "" : " SELECTED=\"SELECTED\"") + ">Off</option>");
 		result.append("</select></td>");
 		result.append("</tr>");
 		Set<SProject> subProjects = new TreeSet<SProject>(new SProjectNameComparator());
@@ -182,10 +181,10 @@ public class JspHelper {
 		return builder.toString();
 	}
 
-	public static String writeCompareResult(SCompareResult compareResult, long roid1, long roid2, SCompareType sCompareType, SProject project) {
+	public static String writeCompareResult(SCompareResult compareResult, int rid1, int rid2, SCompareType sCompareType, SProject project, boolean webPage) {
 		StringBuilder builder = new StringBuilder();
 		builder.append("<h1>Building Model Comparator</h1>");
-		builder.append("Compare results for revisions '" + roid1 + "' and '" + roid2 + "' of project '" + project.getName() + "'<br/>");
+		builder.append("Compare results for revisions '" + rid1 + "' and '" + rid2 + "' of project '" + project.getName() + "'<br/>");
 		builder.append("Total number of differences: " + compareResult.size() + "<br/>");
 		if (compareResult.getItems().size() == 0) {
 			return builder.toString();
@@ -197,21 +196,25 @@ public class JspHelper {
 		builder.append("<th>Name</th>");
 		builder.append("<th>Difference</th>");
 		builder.append("</tr>");
-		
-		builder.append("<tr>");
-		builder.append("<th style=\"padding: 5px\"></th>");
-		builder.append("<th style=\"padding: 5px\"></th>");
-		builder.append("<th style=\"padding: 5px\"></th>");
-		builder.append("<th style=\"padding: 5px\"><select id=\"typeselector\" name=\"type\">");
-		for (SCompareType cr : SCompareType.values()) {
-			if (cr == sCompareType) {
-				builder.append("<option selected=\"selected\" value=\"" + cr.name() + "\">" + cr.getNiceName() + "</option>");
-			} else {
-				builder.append("<option value=\"" + cr.name() + "\">" + cr.getNiceName() + "</option>");
+
+		if (webPage) {
+			builder.append("<tr>");
+			builder.append("<th style=\"padding: 5px\"></th>");
+			builder.append("<th style=\"padding: 5px\"></th>");
+			builder.append("<th style=\"padding: 5px\"></th>");
+			builder.append("<th style=\"padding: 5px\">");
+			builder.append("<select id=\"typeselector\" name=\"type\">");
+			for (SCompareType cr : SCompareType.values()) {
+				if (cr == sCompareType) {
+					builder.append("<option selected=\"selected\" value=\"" + cr.name() + "\">" + cr.getNiceName() + "</option>");
+				} else {
+					builder.append("<option value=\"" + cr.name() + "\">" + cr.getNiceName() + "</option>");
+				}
 			}
+			builder.append("</select>");
+			builder.append("</th>");
+			builder.append("</tr>");
 		}
-		builder.append("</select></th>");
-		builder.append("</tr>");
 
 		Map<String, List<SCompareResult.SItem>> items = compareResult.getItems();
 		for (String eClass : items.keySet()) {
@@ -235,7 +238,7 @@ public class JspHelper {
 					builder.append("<td>" + name + "</td>");
 					builder.append("<td>Deleted</td>");
 				} else if (item instanceof SCompareResult.SObjectModified) {
-					SObjectModified objectModified = (SObjectModified)item;
+					SObjectModified objectModified = (SObjectModified) item;
 					builder.append("<td>" + eClass + "</td>");
 					builder.append("<td>" + guid + "</td>");
 					builder.append("<td>" + name + "</td>");
@@ -252,7 +255,7 @@ public class JspHelper {
 		if (sProject.getParentId() != -1) {
 			try {
 				return completeProjectName(service, service.getProjectByPoid(sProject.getParentId())) + "." + sProject.getName();
-			} catch (UserException e) {
+			} catch (ServiceException e) {
 				LOGGER.error("", e);
 			}
 		}
@@ -281,10 +284,12 @@ public class JspHelper {
 			return "Soap";
 		case WEB_INTERFACE:
 			return "Web interface";
+		case SYNDICATION:
+			return "Syndication";
 		}
 		return "unknown";
 	}
-	
+
 	public static SClashDetectionSettings createSClashDetectionSettings(HttpServletRequest request) {
 		float margin = Float.parseFloat(request.getParameter("margin"));
 		SClashDetectionSettings sClashDetectionSettings = new SClashDetectionSettings();
@@ -299,10 +304,10 @@ public class JspHelper {
 		}
 		return sClashDetectionSettings;
 	}
-	
-	public static String showProjectTree(SProject activeProject, ServiceInterface serviceInterface) throws UserException {
+
+	public static String showProjectTree(SProject activeProject, ServiceInterface serviceInterface) throws ServiceException {
 		StringBuilder sb = new StringBuilder();
-		sb.append("<ul class=\"projectTree\">");
+		sb.append("<ul class=\"projectTreeFirst\">");
 		SProject mainProject = activeProject;
 		while (mainProject.getParentId() != -1) {
 			mainProject = serviceInterface.getProjectByPoid(mainProject.getParentId());
@@ -312,15 +317,17 @@ public class JspHelper {
 		return sb.toString();
 	}
 
-	private static void showProjectTree(StringBuilder sb, SProject mainProject, SProject activeProject, ServiceInterface serviceInterface, boolean isLast) throws UserException {
+	private static void showProjectTree(StringBuilder sb, SProject mainProject, SProject activeProject, ServiceInterface serviceInterface, boolean isLast) throws ServiceException {
 		sb.append("<li" + (isLast ? " class=\"last\"" : "") + ">");
 		boolean hasRights = serviceInterface.userHasCheckinRights(mainProject.getOid());
-		sb.append("<a class=\"projectTreeItem" + (activeProject.getOid() == mainProject.getOid() ? " activeTreeItem" : "") + (hasRights ? "" : " norightsTreeItem") + "\" href=\"project.jsp?poid=" + mainProject.getOid() + "\"/>" + mainProject.getName() + "</a>");
-		if (!mainProject.getSubProjects().isEmpty()) {
+		sb.append("<a class=\"projectTreeItem" + (activeProject.getOid() == mainProject.getOid() ? " activeTreeItem" : "") + (hasRights ? "" : " norightsTreeItem")
+				+ "\" href=\"project.jsp?poid=" + mainProject.getOid() + "\"/>" + mainProject.getName() + "</a>");
+		List<SProject> subProjects = serviceInterface.getSubProjects(mainProject.getOid());
+		Collections.sort(subProjects, new SProjectNameComparator());
+		if (!subProjects.isEmpty()) {
 			sb.append("<ul class=\"projectTree\">");
-			for (long poid : mainProject.getSubProjects()) {
-				SProject subProject = serviceInterface.getProjectByPoid(poid);
-				showProjectTree(sb, subProject, activeProject, serviceInterface, poid == mainProject.getSubProjects().get(mainProject.getSubProjects().size()-1));
+			for (SProject subProject : subProjects) {
+				showProjectTree(sb, subProject, activeProject, serviceInterface, subProject == subProjects.get(subProjects.size() - 1));
 			}
 			sb.append("</ul>");
 		}

@@ -12,13 +12,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.codec.binary.Base64;
+import org.bimserver.database.store.log.AccessMethod;
 import org.bimserver.interfaces.objects.SCheckout;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.interfaces.objects.SUser;
 import org.bimserver.shared.SRevisionIdComparator;
+import org.bimserver.shared.ServiceException;
 import org.bimserver.shared.ServiceInterface;
 import org.bimserver.shared.UserException;
+import org.bimserver.webservices.ServiceFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -51,6 +54,9 @@ public class SyndicationServlet extends HttpServlet {
 			String username = split[0];
 			String password = split[1];
 			ServiceInterface service = (ServiceInterface) getServletContext().getAttribute("service");
+			if (service == null) {
+				service = ServiceFactory.getINSTANCE().newService(AccessMethod.SYNDICATION);
+			}
 			try {
 				if (service.login(username, password)) {
 					String requestURI = request.getRequestURI();
@@ -59,11 +65,11 @@ public class SyndicationServlet extends HttpServlet {
 						if (requestURI.endsWith("/projects")) {
 							writeProjectsFeed(request, response, service);
 						} else if (requestURI.contains("/revisions")) {
-							writeRevisionsFeed(request, response);
+							writeRevisionsFeed(request, response, service);
 						} else if (requestURI.contains("/checkouts")) {
-							writeCheckoutsFeed(request, response);
+							writeCheckoutsFeed(request, response, service);
 						}
-					} catch (UserException e) {
+					} catch (ServiceException e) {
 						response.setContentType("text/html");
 						response.getWriter().println(e.getUserMessage());
 					} catch (FeedException e) {
@@ -73,7 +79,7 @@ public class SyndicationServlet extends HttpServlet {
 					response.setStatus(401);
 					response.setHeader("WWW-Authenticate", "Basic realm=\"Secure Area\"");
 				}
-			} catch (UserException e) {
+			} catch (ServiceException e) {
 				LOGGER.error("", e);
 			}
 		} else {
@@ -82,7 +88,7 @@ public class SyndicationServlet extends HttpServlet {
 		}
 	}
 
-	private void writeProjectsFeed(HttpServletRequest request, HttpServletResponse response, ServiceInterface serviceWrapper) throws UserException, IOException, FeedException {
+	private void writeProjectsFeed(HttpServletRequest request, HttpServletResponse response, ServiceInterface service) throws UserException, IOException, FeedException {
 		SyndFeed feed = new SyndFeedImpl();
 		feed.setFeedType(FEED_TYPE);
 
@@ -92,7 +98,7 @@ public class SyndicationServlet extends HttpServlet {
 
 		List<SyndEntry> entries = new ArrayList<SyndEntry>();
 		try {
-			List<SProject> allProjects = serviceWrapper.getAllProjects();
+			List<SProject> allProjects = service.getAllProjects();
 			for (SProject sProject : allProjects) {
 				SyndEntry entry = new SyndEntryImpl();
 				entry.setTitle(sProject.getName());
@@ -115,7 +121,7 @@ public class SyndicationServlet extends HttpServlet {
 				entry.setDescription(description);
 				entries.add(entry);
 			}
-		} catch (UserException e) {
+		} catch (ServiceException e) {
 			LOGGER.error("", e);
 		}
 		feed.setEntries(entries);
@@ -123,8 +129,7 @@ public class SyndicationServlet extends HttpServlet {
 		output.output(feed, response.getWriter());
 	}
 
-	private void writeRevisionsFeed(HttpServletRequest request, HttpServletResponse response) throws IOException, FeedException, UserException {
-		ServiceInterface service = (ServiceInterface) getServletContext().getAttribute("service");
+	private void writeRevisionsFeed(HttpServletRequest request, HttpServletResponse response, ServiceInterface service) throws IOException, FeedException, ServiceException {
 		long poid = Long.parseLong(request.getParameter("poid"));
 		SProject sProject = service.getProjectByPoid(poid);
 
@@ -151,7 +156,7 @@ public class SyndicationServlet extends HttpServlet {
 				entry.setDescription(description);
 				entries.add(entry);
 			}
-		} catch (UserException e) {
+		} catch (ServiceException e) {
 			LOGGER.error("", e);
 		}
 		feed.setEntries(entries);
@@ -159,8 +164,7 @@ public class SyndicationServlet extends HttpServlet {
 		output.output(feed, response.getWriter());
 	}
 
-	private void writeCheckoutsFeed(HttpServletRequest request, HttpServletResponse response) throws UserException, IOException, FeedException {
-		ServiceInterface service = (ServiceInterface) getServletContext().getAttribute("service");
+	private void writeCheckoutsFeed(HttpServletRequest request, HttpServletResponse response, ServiceInterface service) throws ServiceException, IOException, FeedException {
 		long poid = Long.parseLong(request.getParameter("poid"));
 		SProject sProject = service.getProjectByPoid(poid);
 

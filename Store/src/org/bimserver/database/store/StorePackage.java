@@ -333,13 +333,31 @@ public interface StorePackage extends EPackage {
 	int USER__LAST_SEEN = 9;
 
 	/**
+	 * The feature id for the '<em><b>Validation Token</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER__VALIDATION_TOKEN = 10;
+
+	/**
+	 * The feature id for the '<em><b>Validation Token Created</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER__VALIDATION_TOKEN_CREATED = 11;
+
+	/**
 	 * The number of structural features of the '<em>User</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int USER_FEATURE_COUNT = 10;
+	int USER_FEATURE_COUNT = 12;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.database.store.impl.CheckoutImpl <em>Checkout</em>}' class.
@@ -724,13 +742,22 @@ public interface StorePackage extends EPackage {
 	int REVISION__BMI = 13;
 
 	/**
+	 * The feature id for the '<em><b>Nr Clashes</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REVISION__NR_CLASHES = 14;
+
+	/**
 	 * The number of structural features of the '<em>Revision</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REVISION_FEATURE_COUNT = 14;
+	int REVISION_FEATURE_COUNT = 15;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.database.store.impl.ClashImpl <em>Clash</em>}' class.
@@ -1412,6 +1439,28 @@ public interface StorePackage extends EPackage {
 	EAttribute getUser_LastSeen();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.database.store.User#getValidationToken <em>Validation Token</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Validation Token</em>'.
+	 * @see org.bimserver.database.store.User#getValidationToken()
+	 * @see #getUser()
+	 * @generated
+	 */
+	EAttribute getUser_ValidationToken();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.database.store.User#getValidationTokenCreated <em>Validation Token Created</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Validation Token Created</em>'.
+	 * @see org.bimserver.database.store.User#getValidationTokenCreated()
+	 * @see #getUser()
+	 * @generated
+	 */
+	EAttribute getUser_ValidationTokenCreated();
+
+	/**
 	 * Returns the meta object for class '{@link org.bimserver.database.store.Checkout <em>Checkout</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1835,6 +1884,17 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getRevision_Bmi();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.database.store.Revision#getNrClashes <em>Nr Clashes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Nr Clashes</em>'.
+	 * @see org.bimserver.database.store.Revision#getNrClashes()
+	 * @see #getRevision()
+	 * @generated
+	 */
+	EAttribute getRevision_NrClashes();
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.database.store.GuidClash <em>Guid Clash</em>}'.
@@ -2340,6 +2400,22 @@ public interface StorePackage extends EPackage {
 		EAttribute USER__LAST_SEEN = eINSTANCE.getUser_LastSeen();
 
 		/**
+		 * The meta object literal for the '<em><b>Validation Token</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute USER__VALIDATION_TOKEN = eINSTANCE.getUser_ValidationToken();
+
+		/**
+		 * The meta object literal for the '<em><b>Validation Token Created</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute USER__VALIDATION_TOKEN_CREATED = eINSTANCE.getUser_ValidationTokenCreated();
+
+		/**
 		 * The meta object literal for the '{@link org.bimserver.database.store.impl.CheckoutImpl <em>Checkout</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2658,6 +2734,14 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute REVISION__BMI = eINSTANCE.getRevision_Bmi();
+
+		/**
+		 * The meta object literal for the '<em><b>Nr Clashes</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute REVISION__NR_CLASHES = eINSTANCE.getRevision_NrClashes();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.database.store.impl.GuidClashImpl <em>Guid Clash</em>}' class.

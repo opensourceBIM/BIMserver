@@ -16,29 +16,12 @@
 <%@page import="org.bimserver.interfaces.objects.SUserType"%>
 <%@page import="org.bimserver.web.JspHelper"%>
 <%@page import="java.util.Comparator"%>
-<%@page import="org.bimserver.SProjectComparator"%>
+<%@page import="org.bimserver.web.SProjectComparator"%>
 <%@page import="org.bimserver.shared.ServiceInterface"%>
 <%@page import="org.bimserver.shared.SRevisionDateComparator"%>
 <%@ include file="header.jsp" %>
 <%
-	if (loginManager.getService().isLoggedIn()) {
-		EmfSerializerFactory emfSerializerFactory = EmfSerializerFactory.getInstance();
-		try {
-	if (request.getParameter("mid") != null) {
-		out.println("<div class=\"succes\">" + Message.get(Integer.parseInt(request.getParameter("mid"))) + "</div>");
-	}
-	DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
 	long uoid = Long.parseLong(request.getParameter("uoid"));
-	SUser user = loginManager.getService().getUserByUoid(uoid);
-	List<SRevision> revisions = loginManager.getService().getAllRevisionsByUser(user.getOid());
-	Collections.sort(revisions, new SRevisionDateComparator(false));
-	List<SCheckout> checkouts = loginManager.getService().getAllCheckoutsByUser(user.getOid());
-	Collections.sort(checkouts, new SCheckoutDateComparator());
-	List<SProject> projects = loginManager.getService().getUsersProjects(uoid);
-	Collections.sort(projects, new SProjectComparator(loginManager.getService()));
-	List<SProject> nonAuthorizedProjects = loginManager.getService().getAllNonAuthorizedProjectsOfUser(user.getOid());
-	final ServiceInterface service = loginManager.getService();
-	Collections.sort(nonAuthorizedProjects, new SProjectComparator(loginManager.getService()));
 %>
 <div class="sidebar">
  <ul>
@@ -48,9 +31,26 @@
  <li><a href="changepassword.jsp?uoid=<%=uoid%>">Change password</a></li>
  </ul>
 </div>
-
 <div class="content">
-
+<%
+	if (loginManager.getService().isLoggedIn()) {
+		EmfSerializerFactory emfSerializerFactory = EmfSerializerFactory.getInstance();
+		try {
+	if (request.getParameter("mid") != null) {
+		out.println("<div class=\"success\">" + Message.get(Integer.parseInt(request.getParameter("mid"))) + "</div>");
+	}
+	DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+	SUser user = loginManager.getService().getUserByUoid(uoid);
+	List<SRevision> revisions = loginManager.getService().getAllRevisionsByUser(user.getOid());
+	Collections.sort(revisions, new SRevisionDateComparator(false));
+	List<SCheckout> checkouts = loginManager.getService().getAllCheckoutsByUser(user.getOid());
+	Collections.sort(checkouts, new SCheckoutDateComparator(false));
+	List<SProject> projects = loginManager.getService().getUsersProjects(uoid);
+	Collections.sort(projects, new SProjectComparator(loginManager.getService()));
+	List<SProject> nonAuthorizedProjects = loginManager.getService().getAllNonAuthorizedProjectsOfUser(user.getOid());
+	final ServiceInterface service = loginManager.getService();
+	Collections.sort(nonAuthorizedProjects, new SProjectComparator(loginManager.getService()));
+%>
 <h1>User details (<%=user.getName() %>)</h1>
 <div class="tabber" id="usertabber">
   <div class="tabbertab" id="detailstab" title="Details">
@@ -104,11 +104,17 @@ if (currentUser.getOid() == uoid || currentUser.getUserType() == SUserType.ADMIN
 <%
 	for (ResultType resultType : emfSerializerFactory.getMultipleResultTypes()) {
 %>
-	<option value="<%=resultType.name() %>"<%=resultType.isDefaultSelected() ? " SELECTED=\"SELECTED\"" : "" %>><%=resultType.name() %></option>
+	<option value="<%=resultType.name() %>"<%=resultType.isDefaultSelected() ? " SELECTED=\"SELECTED\"" : "" %>><%=resultType.getNiceName() %></option>
 <%	
 	}
 %>
-	</select> <label for="zip_<%=revision.getId() %>">Zip</label><input type="checkbox" name="zip" id="zip_<%=revision.getId() %>"/> <input name="download" type="submit" value="Download"/> <input name="checkout" type="submit" value="Checkout" class="revisionscheckoutbutton"/>
+	</select> <label for="zip_<%=revision.getId() %>">Zip</label><input type="checkbox" name="zip" id="zip_<%=revision.getId() %>"/> 
+	<input name="download" type="submit" value="Download"/>
+<% 
+	boolean userHasCheckinRights = loginManager.getService().userHasCheckinRights(sProject.getOid());
+if (userHasCheckinRights) { %>
+	<input name="checkout" type="submit" value="Checkout" class="revisionscheckoutbutton"/>
+<% } %>
 	</form>
 	</td>
 </tr>
@@ -151,7 +157,7 @@ if (currentUser.getOid() == uoid || currentUser.getUserType() == SUserType.ADMIN
 <%
 	for (ResultType resultType : emfSerializerFactory.getMultipleResultTypes()) {
 %>
-	<option value="<%=resultType.name() %>"<%=resultType.isDefaultSelected() ? " SELECTED=\"SELECTED\"" : "" %>><%=resultType.name() %></option>
+	<option value="<%=resultType.name() %>"<%=resultType.isDefaultSelected() ? " SELECTED=\"SELECTED\"" : "" %>><%=resultType.getNiceName() %></option>
 <%	
 	}
 %>
@@ -201,7 +207,7 @@ if (currentUser.getOid() == uoid || currentUser.getUserType() == SUserType.ADMIN
 %>
 <tr>
 	<td><a href="project.jsp?poid=<%=project.getOid() %>"><%=JspHelper.completeProjectName(loginManager.getService(), project) %></a></td>
-	<td><% if (user.getUserType() != SUserType.ADMIN) { %><a href="revokepermission.jsp?type=user&amp;poid=<%=project.getOid() %>&amp;uoid=<%=uoid %>">revoke</a><% } %></td>
+	<td><% if (loginManager.getUserType() == SUserType.ADMIN && user.getUserType() != SUserType.ADMIN) { %><a href="revokepermission.jsp?type=user&amp;poid=<%=project.getOid() %>&amp;uoid=<%=uoid %>">revoke</a><% } %></td>
 </tr>
 <%
 		}

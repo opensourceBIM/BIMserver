@@ -23,16 +23,16 @@ public class QueryCompiler {
 	private static final Logger LOGGER = LoggerFactory.getLogger(QueryCompiler.class);
 	private static String libPath = System.getProperty("java.class.path");
 
-//	public static void addJarFolder(File libDir) {
-//		if (libDir.exists() && libDir.isDirectory()) {
-//			for (File file : libDir.listFiles()) {
-//				if (file.getName().endsWith(".jar")) {
-//					libPath += file.getAbsolutePath() + File.pathSeparator;
-//				}
-//			}
-//		}
-//		LOGGER.info("libPath: " + libPath);
-//	}
+	public static void addJarFolder(File libDir) {
+		if (libDir.exists() && libDir.isDirectory()) {
+			for (File file : libDir.listFiles()) {
+				if (file.getName().endsWith(".jar")) {
+					libPath += file.getAbsolutePath() + File.pathSeparator;
+				}
+			}
+		}
+		LOGGER.info("libPath: " + libPath);
+	}
 	
 	private void getJavaFiles(List<VirtualFile> fileList, VirtualFile baseDir) {
 		for (VirtualFile f : baseDir.listFiles()) {
@@ -73,20 +73,20 @@ public class QueryCompiler {
 		options.add("6");
 
 		DiagnosticCollector<JavaFileObject> diagnosticsCollector = new DiagnosticCollector<JavaFileObject>();
-		boolean succes = true;
+		boolean success = true;
 		compiler.getTask(null, myFileManager, diagnosticsCollector, options, null, compilationUnits).call();
 		List<Diagnostic<? extends JavaFileObject>> diagnostics = diagnosticsCollector.getDiagnostics();
 		root.put("compileWarnings", compileWarnings);
 		root.put("compileErrors", compileErrors);
 		for (Diagnostic<? extends JavaFileObject> d : diagnostics) {
 			if (d.getKind() == Kind.ERROR) {
-				succes = false;
+				success = false;
 				compileErrors.put(d.getMessage(Locale.ENGLISH));
 			} else if (d.getKind() == Kind.WARNING) {
 				compileWarnings.put(d.getMessage(Locale.ENGLISH));
 			}
 		}
-		if (succes) {
+		if (success) {
 			VirtualClassLoader loader = new VirtualClassLoader(getClass().getClassLoader(), baseDir);
 			try {
 				Class<?> loadClass = loader.loadClass("org.bimserver.querycompiler.Query");

@@ -3,6 +3,7 @@
 <script type="text/javascript" id="o3dscript"> 
 o3djs.base.o3d = o3d;
 o3djs.require('o3djs.webgl');
+o3djs.require('o3djs.dump');
 o3djs.require('o3djs.util');
 o3djs.require('o3djs.math');
 o3djs.require('o3djs.quaternions');
@@ -31,7 +32,7 @@ var g_idOfLoader;
 var _callback;
 
 var g_camera = {
-  farPlane: 500,
+  farPlane: 5000,
   nearPlane:0.1
 };
 
@@ -172,8 +173,9 @@ function loadFile(path, idOfLoader) {
       var diag = g_math.length(g_math.subVector(bbox.maxExtent,
                                                 bbox.minExtent));
       g_camera.eye = g_math.addVector(g_camera.target, [0, 0, 1.5 * diag]);
-      g_camera.nearPlane = diag / 100;
-      g_camera.farPlane = diag * 100;
+      g_camera.nearPlane = diag / 1000;
+      g_camera.farPlane = diag * 10;
+//      g_camera.farPlane = diag * 10000; Somehow large models (by diameter) need this, so diag seems to not always be right
       setClientSize();
       updateCamera();
       updateProjection();
@@ -189,6 +191,47 @@ function loadFile(path, idOfLoader) {
       }
  
       g_finished = true;  // for selenium
+
+   // Comment out the next line to dump lots of info.
+      if (true) {
+        o3djs.dump.dump('---dumping context---\n');
+        o3djs.dump.dumpParamObject(context);
+
+        o3djs.dump.dump('---dumping root---\n');
+        o3djs.dump.dumpTransformTree(g_client.root);
+
+        o3djs.dump.dump('---dumping render root---\n');
+        o3djs.dump.dumpRenderNodeTree(g_client.renderGraphRoot);
+
+        o3djs.dump.dump('---dump g_pack shapes---\n');
+        var shapes = pack.getObjectsByClassName('o3d.Shape');
+        for (var t = 0; t < shapes.length; t++) {
+          o3djs.dump.dumpShape(shapes[t]);
+        }
+
+        o3djs.dump.dump('---dump g_pack materials---\n');
+        var materials = pack.getObjectsByClassName('o3d.Material');
+        for (var t = 0; t < materials.length; t++) {
+          o3djs.dump.dump (
+              '  ' + t + ' : ' + materials[t].className +
+              ' : "' + materials[t].name + '"\n');
+          o3djs.dump.dumpParams(materials[t], '    ');
+        }
+
+        o3djs.dump.dump('---dump g_pack textures---\n');
+        var textures = pack.getObjectsByClassName('o3d.Texture');
+        for (var t = 0; t < textures.length; t++) {
+          o3djs.dump.dumpTexture(textures[t]);
+        }
+
+        o3djs.dump.dump('---dump g_pack effects---\n');
+        var effects = pack.getObjectsByClassName('o3d.Effect');
+        for (var t = 0; t < effects.length; t++) {
+          o3djs.dump.dump ('  ' + t + ' : ' + effects[t].className +
+                  ' : "' + effects[t].name + '"\n');
+          o3djs.dump.dumpParams(effects[t], '    ');
+        }
+      }
     }
   }
 

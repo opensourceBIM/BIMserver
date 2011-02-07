@@ -38,6 +38,7 @@ import com.google.common.base.Charsets;
  * @author bwjakob
  * 
  */
+@SuppressWarnings("all")
 public class ExpressSchemaParser {
 
 	/**

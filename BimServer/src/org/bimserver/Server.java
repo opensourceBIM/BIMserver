@@ -63,7 +63,8 @@ public class Server {
 		LOGGER.info("Starting server..." + address + " " + port);
 		System.setProperty("org.apache.cxf.Logger", "org.apache.cxf.common.logging.Log4jLogger");
 		server = new org.eclipse.jetty.server.Server();
-		server.setSessionIdManager(new HashSessionIdManager(new Random()));
+		HashSessionIdManager hashSessionIdManager = new HashSessionIdManager(new Random());
+		server.setSessionIdManager(hashSessionIdManager);
 		SocketConnector socketConnector = new SocketConnector();
 		socketConnector.setPort(port);
 		socketConnector.setHost(address);

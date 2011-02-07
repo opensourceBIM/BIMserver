@@ -45,7 +45,9 @@
 			}
 		<%
 			if (request.getParameter("tab") != null && request.getParameter("tab").equals("cd")) {
-				%>activateTab(t, "clashes")<%
+				%>
+					activateTabWithTabber(t, "clashes");
+				<%
 			}
 		%>
 		},

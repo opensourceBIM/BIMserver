@@ -13,6 +13,7 @@ import java.util.Iterator;
  * @author Jakob Beetz
  * 
  */
+@SuppressWarnings("all")
 public class SchemaDefinition {
 
 	/**

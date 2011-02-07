@@ -1,10 +1,13 @@
 package nl.tue.buildingsmart.express.population;
 
+
 import java.util.ArrayList;
 import java.util.Vector;
 
 import nl.tue.buildingsmart.express.dictionary.ExplicitAttribute;
 
+
+@SuppressWarnings("all")
 public class AttributeInstance {
 	private EntityInstance attributeOf;
 	private ExplicitAttribute attributeType;
@@ -60,7 +63,6 @@ public class AttributeInstance {
 	/**
 	 * @return whether or not this points to one or more entity instances
 	 */
-	@SuppressWarnings("unchecked")
 	public boolean hasEntityInstanceValue() {
 		if (this.value instanceof String) {
 			String stringVal = (String) value;
@@ -68,7 +70,7 @@ public class AttributeInstance {
 				return true;
 		}
 		if (this.getValue() instanceof Vector) {
-			Vector<?> values = (Vector) getValue();
+			Vector values = (Vector) getValue();
 			for (int i = 0; i < values.size(); i++) {
 				String stringVal = (String) values.get(i);
 				if (stringVal.startsWith("#")) {
@@ -88,14 +90,14 @@ public class AttributeInstance {
 			String stringVal = (String) value;
 			if (stringVal.startsWith("#")) {
 				ModelPopulation pop = this.getAttributeOf().getModel();
-				return pop.getEntity(new Integer(stringVal.substring(1, stringVal.length())));
+				return pop.getEntity(new Integer(stringVal.substring(1,
+						stringVal.length())));
 			}
 
 		}
 		return null;
 	}
 
-	@SuppressWarnings("unchecked")
 	public ArrayList<EntityInstance> getEntityList() {
 		ArrayList<EntityInstance> list = new ArrayList<EntityInstance>();
 		if (this.getValue() instanceof Vector) {
@@ -104,14 +106,16 @@ public class AttributeInstance {
 				String stringVal = (String) values.get(i);
 				if (stringVal.startsWith("#")) {
 					ModelPopulation pop = this.getAttributeOf().getModel();
-					list.add(pop.getEntity(new Integer(stringVal.substring(1, stringVal.length()))));
+					list.add(pop.getEntity(new Integer(stringVal.substring(1,
+							stringVal.length()))));
 				}
 			}
 		} else if (this.value instanceof String) {
 			String stringVal = (String) value;
 			if (stringVal.startsWith("#")) {
 				ModelPopulation pop = this.getAttributeOf().getModel();
-				list.add(pop.getEntity(new Integer(stringVal.substring(1, stringVal.length()))));
+				list.add(pop.getEntity(new Integer(stringVal.substring(1,
+						stringVal.length()))));
 			}
 
 		}

@@ -4,17 +4,27 @@
 <%@page import="java.util.GregorianCalendar"%>
 <%@page import="org.bimserver.utils.Formatters"%>
 <%@page import="org.bimserver.shared.DatabaseInformation"%>
-<%@page import="org.bimserver.VersionChecker"%>
+<%@page import="org.bimserver.version.VersionChecker"%>
 <%@page import="java.util.Map"%>
 <%@page import="java.util.Set"%>
 <%@page import="java.util.HashSet"%>
 <%@page import="org.bimserver.ServerInitializer"%>
 <%@page import="java.text.SimpleDateFormat"%>
-<%@page import="org.bimserver.ServerSettings"%>
+<%@page import="org.bimserver.settings.ServerSettings"%>
 <%@page import="org.bimserver.shared.ResultType"%>
-<%@page import="org.bimserver.Settings"%>
+<%@page import="org.bimserver.settings.Settings"%>
 <%@page import="org.apache.commons.io.IOUtils"%>
 <%@page import="org.bimserver.interfaces.objects.SUserType"%>
+<%@page import="org.bimserver.serializers.EmfSerializerFactory"%>
+<div class="sidebar">
+<ul>
+<li>
+<a href="<%=getServletContext().getContextPath()%>/settings?action=downloadsettings">Download settings</a></li>
+<li>
+<a href="<%=getServletContext().getContextPath()%>/settings?action=downloadignorefile">Download ignore.xml</a></li>
+</ul>
+</div>
+<div class="content">
 <%
 	if (loginManager.getService().isLoggedIn() && loginManager.getUserType() == SUserType.ADMIN) {
 		Settings settings = ServerSettings.getSettings();
@@ -58,19 +68,6 @@
 	}
 		}
 %>
-
-
-<%@page import="org.bimserver.serializers.EmfSerializerFactory"%><div class="sidebar">
-<ul>
-<li>
-<a href="<%=getServletContext().getContextPath()%>/settings?action=downloadsettings">Download settings</a></li>
-<li>
-<a href="<%=getServletContext().getContextPath()%>/settings?action=downloadignorefile">Download ignore.xml</a></li>
-</ul>
-</div>
-
-<div class="content">
-
 <div class="tabber" id="settingstabber">
 <div class="tabbertab" id="basicsettingstab" title="Basic settings">
 <form method="post">
@@ -149,6 +146,11 @@
 		<td><input id="intelligentMerging" name="intelligentMerging" type="checkbox"
 			<%=settings.isIntelligentMerging() ? " checked=\"checked\"" : ""%>></input></td>
 	</tr>
+	<tr>
+		<td><label for="checkinMergingEnabled">Checkin merging <span style="color: red">(BETA)</span></label></td>
+		<td><input id="checkinMergingEnabled" name="checkinMergingEnabled" type="checkbox"
+			<%=settings.isCheckinMergingEnabled() ? " checked=\"checked\"" : ""%>></input> <span style="color: red">IFC models are modified on checkin!</span></td>
+	</tr>
 	<!-- 
 <tr><td>Use file-level caching</td><td><input name="usecaching" type="checkbox" <%=settings.isUseCaching() ? " checked=\"checked\"" : ""%>></input></td></tr>
  -->
@@ -212,7 +214,7 @@
 </table>
 <input type="hidden" name="action" value="uploadsettings" /></form>
 </div>
-<div class="tabbertab" id="importexport" title="Collada/KMZ">
+<div class="tabbertab" id="colladatab" title="Collada/KMZ">
 <form enctype="multipart/form-data" method="post" action="<%=getServletContext().getContextPath()%>/settings">
 <table class="formatted infotable">
 	<tr>
