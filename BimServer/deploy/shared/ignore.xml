@@ -1,0 +1,3589 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?> 
+<PackageDefinition>
+    <ClassDefinition name="Ifc2DCompositeCurve">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcActionRequest">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="Controls"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcActor">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="IsActingUpon"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcActorRole"/>
+    <ClassDefinition name="IfcActuatorType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcAddress">
+        <FieldDefinition name="OfPerson"/>
+        <FieldDefinition name="OfOrganization"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcAirTerminalBoxType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcAirTerminalType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcAirToAirHeatRecoveryType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcAlarmType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcAngularDimension">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+        <FieldDefinition name="IsRelatedFromCallout"/>
+        <FieldDefinition name="IsRelatedToCallout"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcAnnotation">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="ContainedInStructure"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcAnnotationCurveOccurrence">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcAnnotationFillArea">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcAnnotationFillAreaOccurrence">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcAnnotationOccurrence">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcAnnotationSurface">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcAnnotationSurfaceOccurrence">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcAnnotationSymbolOccurrence">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcAnnotationTextOccurrence">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcApplication"/>
+    <ClassDefinition name="IfcAppliedValue">
+        <FieldDefinition name="ValuesReferenced"/>
+        <FieldDefinition name="ValueOfComponents"/>
+        <FieldDefinition name="IsComponentIn"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcAppliedValueRelationship"/>
+    <ClassDefinition name="IfcApproval">
+        <FieldDefinition name="Actors"/>
+        <FieldDefinition name="IsRelatedWith"/>
+        <FieldDefinition name="Relates"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcApprovalActorRelationship"/>
+    <ClassDefinition name="IfcApprovalPropertyRelationship"/>
+    <ClassDefinition name="IfcApprovalRelationship"/>
+    <ClassDefinition name="IfcArbitraryClosedProfileDef"/>
+    <ClassDefinition name="IfcArbitraryOpenProfileDef"/>
+    <ClassDefinition name="IfcArbitraryProfileDefWithVoids"/>
+    <ClassDefinition name="IfcAsset">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="IsGroupedBy"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcAsymmetricIShapeProfileDef"/>
+    <ClassDefinition name="IfcAxis1Placement">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcAxis2Placement2D">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcAxis2Placement3D">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcBSplineCurve">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcBeam">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="FillsVoids"/>
+        <FieldDefinition name="ConnectedTo"/>
+        <FieldDefinition name="HasCoverings"/>
+        <FieldDefinition name="HasProjections"/>
+        <FieldDefinition name="HasStructuralMember"/>
+        <FieldDefinition name="ReferencedInStructures"/>
+        <FieldDefinition name="HasPorts"/>
+        <FieldDefinition name="IsConnectionRealization"/>
+        <FieldDefinition name="ProvidesBoundaries"/>
+        <FieldDefinition name="ConnectedFrom"/>
+        <FieldDefinition name="ContainedInStructure"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcBeamType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcBezierCurve">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcBlobTexture"/>
+    <ClassDefinition name="IfcBlock">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcBoilerType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcBooleanClippingResult">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcBooleanResult">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcBoundaryCondition"/>
+    <ClassDefinition name="IfcBoundaryEdgeCondition"/>
+    <ClassDefinition name="IfcBoundaryFaceCondition"/>
+    <ClassDefinition name="IfcBoundaryNodeCondition"/>
+    <ClassDefinition name="IfcBoundaryNodeConditionWarping"/>
+    <ClassDefinition name="IfcBoundedCurve">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcBoundedSurface">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcBoundingBox">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcBoxedHalfSpace">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcBuilding">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="ReferencesElements"/>
+        <FieldDefinition name="ServicedBySystems"/>
+        <FieldDefinition name="ContainsElements"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcBuildingElement">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="FillsVoids"/>
+        <FieldDefinition name="ConnectedTo"/>
+        <FieldDefinition name="HasCoverings"/>
+        <FieldDefinition name="HasProjections"/>
+        <FieldDefinition name="HasStructuralMember"/>
+        <FieldDefinition name="ReferencedInStructures"/>
+        <FieldDefinition name="HasPorts"/>
+        <FieldDefinition name="IsConnectionRealization"/>
+        <FieldDefinition name="ProvidesBoundaries"/>
+        <FieldDefinition name="ConnectedFrom"/>
+        <FieldDefinition name="ContainedInStructure"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcBuildingElementComponent">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="FillsVoids"/>
+        <FieldDefinition name="ConnectedTo"/>
+        <FieldDefinition name="HasCoverings"/>
+        <FieldDefinition name="HasProjections"/>
+        <FieldDefinition name="HasStructuralMember"/>
+        <FieldDefinition name="ReferencedInStructures"/>
+        <FieldDefinition name="HasPorts"/>
+        <FieldDefinition name="IsConnectionRealization"/>
+        <FieldDefinition name="ProvidesBoundaries"/>
+        <FieldDefinition name="ConnectedFrom"/>
+        <FieldDefinition name="ContainedInStructure"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcBuildingElementPart">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="FillsVoids"/>
+        <FieldDefinition name="ConnectedTo"/>
+        <FieldDefinition name="HasCoverings"/>
+        <FieldDefinition name="HasProjections"/>
+        <FieldDefinition name="HasStructuralMember"/>
+        <FieldDefinition name="ReferencedInStructures"/>
+        <FieldDefinition name="HasPorts"/>
+        <FieldDefinition name="IsConnectionRealization"/>
+        <FieldDefinition name="ProvidesBoundaries"/>
+        <FieldDefinition name="ConnectedFrom"/>
+        <FieldDefinition name="ContainedInStructure"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcBuildingElementProxy">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="FillsVoids"/>
+        <FieldDefinition name="ConnectedTo"/>
+        <FieldDefinition name="HasCoverings"/>
+        <FieldDefinition name="HasProjections"/>
+        <FieldDefinition name="HasStructuralMember"/>
+        <FieldDefinition name="ReferencedInStructures"/>
+        <FieldDefinition name="HasPorts"/>
+        <FieldDefinition name="IsConnectionRealization"/>
+        <FieldDefinition name="ProvidesBoundaries"/>
+        <FieldDefinition name="ConnectedFrom"/>
+        <FieldDefinition name="ContainedInStructure"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcBuildingElementProxyType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcBuildingElementType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcBuildingStorey">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="ReferencesElements"/>
+        <FieldDefinition name="ServicedBySystems"/>
+        <FieldDefinition name="ContainsElements"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcCShapeProfileDef"/>
+    <ClassDefinition name="IfcCableCarrierFittingType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcCableCarrierSegmentType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcCableSegmentType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcCalendarDate"/>
+    <ClassDefinition name="IfcCartesianPoint">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcCartesianTransformationOperator">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcCartesianTransformationOperator2D">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcCartesianTransformationOperator2DnonUniform">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcCartesianTransformationOperator3D">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcCartesianTransformationOperator3DnonUniform">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcCenterLineProfileDef"/>
+    <ClassDefinition name="IfcChamferEdgeFeature">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="FillsVoids"/>
+        <FieldDefinition name="ConnectedTo"/>
+        <FieldDefinition name="HasCoverings"/>
+        <FieldDefinition name="HasProjections"/>
+        <FieldDefinition name="HasStructuralMember"/>
+        <FieldDefinition name="ReferencedInStructures"/>
+        <FieldDefinition name="HasPorts"/>
+        <FieldDefinition name="IsConnectionRealization"/>
+        <FieldDefinition name="ProvidesBoundaries"/>
+        <FieldDefinition name="ConnectedFrom"/>
+        <FieldDefinition name="ContainedInStructure"/>
+        <FieldDefinition name="VoidsElements"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcChillerType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcCircle">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcCircleHollowProfileDef"/>
+    <ClassDefinition name="IfcCircleProfileDef"/>
+    <ClassDefinition name="IfcClassification">
+        <FieldDefinition name="Contains"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcClassificationItem">
+        <FieldDefinition name="IsClassifiedItemIn"/>
+        <FieldDefinition name="IsClassifyingItemIn"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcClassificationItemRelationship"/>
+    <ClassDefinition name="IfcClassificationNotation"/>
+    <ClassDefinition name="IfcClassificationNotationFacet"/>
+    <ClassDefinition name="IfcClassificationReference"/>
+    <ClassDefinition name="IfcClosedShell">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcCoilType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcColourRgb"/>
+    <ClassDefinition name="IfcColourSpecification"/>
+    <ClassDefinition name="IfcColumn">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="FillsVoids"/>
+        <FieldDefinition name="ConnectedTo"/>
+        <FieldDefinition name="HasCoverings"/>
+        <FieldDefinition name="HasProjections"/>
+        <FieldDefinition name="HasStructuralMember"/>
+        <FieldDefinition name="ReferencedInStructures"/>
+        <FieldDefinition name="HasPorts"/>
+        <FieldDefinition name="IsConnectionRealization"/>
+        <FieldDefinition name="ProvidesBoundaries"/>
+        <FieldDefinition name="ConnectedFrom"/>
+        <FieldDefinition name="ContainedInStructure"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcColumnType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcComplexProperty">
+        <FieldDefinition name="PropertyForDependance"/>
+        <FieldDefinition name="PropertyDependsOn"/>
+        <FieldDefinition name="PartOfComplex"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcCompositeCurve">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcCompositeCurveSegment">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+        <FieldDefinition name="UsingCurves"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcCompositeProfileDef"/>
+    <ClassDefinition name="IfcCompressorType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcCondenserType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcCondition">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="IsGroupedBy"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcConditionCriterion">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="Controls"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcConic">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcConnectedFaceSet">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcConnectionCurveGeometry"/>
+    <ClassDefinition name="IfcConnectionGeometry"/>
+    <ClassDefinition name="IfcConnectionPointEccentricity"/>
+    <ClassDefinition name="IfcConnectionPointGeometry"/>
+    <ClassDefinition name="IfcConnectionPortGeometry"/>
+    <ClassDefinition name="IfcConnectionSurfaceGeometry"/>
+    <ClassDefinition name="IfcConstraint">
+        <FieldDefinition name="ClassifiedAs"/>
+        <FieldDefinition name="RelatesConstraints"/>
+        <FieldDefinition name="IsRelatedWith"/>
+        <FieldDefinition name="PropertiesForConstraint"/>
+        <FieldDefinition name="Aggregates"/>
+        <FieldDefinition name="IsAggregatedIn"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcConstraintAggregationRelationship"/>
+    <ClassDefinition name="IfcConstraintClassificationRelationship"/>
+    <ClassDefinition name="IfcConstraintRelationship"/>
+    <ClassDefinition name="IfcConstructionEquipmentResource">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ResourceOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcConstructionMaterialResource">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ResourceOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcConstructionProductResource">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ResourceOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcConstructionResource">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ResourceOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcContextDependentUnit"/>
+    <ClassDefinition name="IfcControl">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="Controls"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcControllerType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcConversionBasedUnit"/>
+    <ClassDefinition name="IfcCooledBeamType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcCoolingTowerType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcCoordinatedUniversalTimeOffset"/>
+    <ClassDefinition name="IfcCostItem">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="Controls"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcCostSchedule">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="Controls"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcCostValue">
+        <FieldDefinition name="ValuesReferenced"/>
+        <FieldDefinition name="ValueOfComponents"/>
+        <FieldDefinition name="IsComponentIn"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcCovering">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="FillsVoids"/>
+        <FieldDefinition name="ConnectedTo"/>
+        <FieldDefinition name="HasCoverings"/>
+        <FieldDefinition name="HasProjections"/>
+        <FieldDefinition name="HasStructuralMember"/>
+        <FieldDefinition name="ReferencedInStructures"/>
+        <FieldDefinition name="HasPorts"/>
+        <FieldDefinition name="IsConnectionRealization"/>
+        <FieldDefinition name="ProvidesBoundaries"/>
+        <FieldDefinition name="ConnectedFrom"/>
+        <FieldDefinition name="ContainedInStructure"/>
+        <FieldDefinition name="CoversSpaces"/>
+        <FieldDefinition name="Covers"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcCoveringType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcCraneRailAShapeProfileDef"/>
+    <ClassDefinition name="IfcCraneRailFShapeProfileDef"/>
+    <ClassDefinition name="IfcCrewResource">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ResourceOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcCsgPrimitive3D">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcCsgSolid">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcCurrencyRelationship"/>
+    <ClassDefinition name="IfcCurtainWall">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="FillsVoids"/>
+        <FieldDefinition name="ConnectedTo"/>
+        <FieldDefinition name="HasCoverings"/>
+        <FieldDefinition name="HasProjections"/>
+        <FieldDefinition name="HasStructuralMember"/>
+        <FieldDefinition name="ReferencedInStructures"/>
+        <FieldDefinition name="HasPorts"/>
+        <FieldDefinition name="IsConnectionRealization"/>
+        <FieldDefinition name="ProvidesBoundaries"/>
+        <FieldDefinition name="ConnectedFrom"/>
+        <FieldDefinition name="ContainedInStructure"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcCurtainWallType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcCurve">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcCurveBoundedPlane">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcCurveStyle"/>
+    <ClassDefinition name="IfcCurveStyleFont"/>
+    <ClassDefinition name="IfcCurveStyleFontAndScaling"/>
+    <ClassDefinition name="IfcCurveStyleFontPattern"/>
+    <ClassDefinition name="IfcDamperType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcDateAndTime"/>
+    <ClassDefinition name="IfcDefinedSymbol">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcDerivedProfileDef"/>
+    <ClassDefinition name="IfcDerivedUnit"/>
+    <ClassDefinition name="IfcDerivedUnitElement"/>
+    <ClassDefinition name="IfcDiameterDimension">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+        <FieldDefinition name="IsRelatedFromCallout"/>
+        <FieldDefinition name="IsRelatedToCallout"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcDimensionCalloutRelationship"/>
+    <ClassDefinition name="IfcDimensionCurve">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+        <FieldDefinition name="AnnotatedBySymbols"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcDimensionCurveDirectedCallout">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+        <FieldDefinition name="IsRelatedFromCallout"/>
+        <FieldDefinition name="IsRelatedToCallout"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcDimensionCurveTerminator">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcDimensionPair"/>
+    <ClassDefinition name="IfcDimensionalExponents"/>
+    <ClassDefinition name="IfcDirection">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcDiscreteAccessory">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="FillsVoids"/>
+        <FieldDefinition name="ConnectedTo"/>
+        <FieldDefinition name="HasCoverings"/>
+        <FieldDefinition name="HasProjections"/>
+        <FieldDefinition name="HasStructuralMember"/>
+        <FieldDefinition name="ReferencedInStructures"/>
+        <FieldDefinition name="HasPorts"/>
+        <FieldDefinition name="IsConnectionRealization"/>
+        <FieldDefinition name="ProvidesBoundaries"/>
+        <FieldDefinition name="ConnectedFrom"/>
+        <FieldDefinition name="ContainedInStructure"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcDiscreteAccessoryType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcDistributionChamberElement">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="FillsVoids"/>
+        <FieldDefinition name="ConnectedTo"/>
+        <FieldDefinition name="HasCoverings"/>
+        <FieldDefinition name="HasProjections"/>
+        <FieldDefinition name="HasStructuralMember"/>
+        <FieldDefinition name="ReferencedInStructures"/>
+        <FieldDefinition name="HasPorts"/>
+        <FieldDefinition name="IsConnectionRealization"/>
+        <FieldDefinition name="ProvidesBoundaries"/>
+        <FieldDefinition name="ConnectedFrom"/>
+        <FieldDefinition name="ContainedInStructure"/>
+        <FieldDefinition name="HasControlElements"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcDistributionChamberElementType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcDistributionControlElement">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="FillsVoids"/>
+        <FieldDefinition name="ConnectedTo"/>
+        <FieldDefinition name="HasCoverings"/>
+        <FieldDefinition name="HasProjections"/>
+        <FieldDefinition name="HasStructuralMember"/>
+        <FieldDefinition name="ReferencedInStructures"/>
+        <FieldDefinition name="HasPorts"/>
+        <FieldDefinition name="IsConnectionRealization"/>
+        <FieldDefinition name="ProvidesBoundaries"/>
+        <FieldDefinition name="ConnectedFrom"/>
+        <FieldDefinition name="ContainedInStructure"/>
+        <FieldDefinition name="AssignedToFlowElement"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcDistributionControlElementType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcDistributionElement">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="FillsVoids"/>
+        <FieldDefinition name="ConnectedTo"/>
+        <FieldDefinition name="HasCoverings"/>
+        <FieldDefinition name="HasProjections"/>
+        <FieldDefinition name="HasStructuralMember"/>
+        <FieldDefinition name="ReferencedInStructures"/>
+        <FieldDefinition name="HasPorts"/>
+        <FieldDefinition name="IsConnectionRealization"/>
+        <FieldDefinition name="ProvidesBoundaries"/>
+        <FieldDefinition name="ConnectedFrom"/>
+        <FieldDefinition name="ContainedInStructure"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcDistributionElementType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcDistributionFlowElement">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="FillsVoids"/>
+        <FieldDefinition name="ConnectedTo"/>
+        <FieldDefinition name="HasCoverings"/>
+        <FieldDefinition name="HasProjections"/>
+        <FieldDefinition name="HasStructuralMember"/>
+        <FieldDefinition name="ReferencedInStructures"/>
+        <FieldDefinition name="HasPorts"/>
+        <FieldDefinition name="IsConnectionRealization"/>
+        <FieldDefinition name="ProvidesBoundaries"/>
+        <FieldDefinition name="ConnectedFrom"/>
+        <FieldDefinition name="ContainedInStructure"/>
+        <FieldDefinition name="HasControlElements"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcDistributionFlowElementType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcDistributionPort">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="ContainedIn"/>
+        <FieldDefinition name="ConnectedFrom"/>
+        <FieldDefinition name="ConnectedTo"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcDocumentElectronicFormat"/>
+    <ClassDefinition name="IfcDocumentInformation">
+        <FieldDefinition name="IsPointedTo"/>
+        <FieldDefinition name="IsPointer"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcDocumentInformationRelationship"/>
+    <ClassDefinition name="IfcDocumentReference">
+        <FieldDefinition name="ReferenceToDocument"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcDoor">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="FillsVoids"/>
+        <FieldDefinition name="ConnectedTo"/>
+        <FieldDefinition name="HasCoverings"/>
+        <FieldDefinition name="HasProjections"/>
+        <FieldDefinition name="HasStructuralMember"/>
+        <FieldDefinition name="ReferencedInStructures"/>
+        <FieldDefinition name="HasPorts"/>
+        <FieldDefinition name="IsConnectionRealization"/>
+        <FieldDefinition name="ProvidesBoundaries"/>
+        <FieldDefinition name="ConnectedFrom"/>
+        <FieldDefinition name="ContainedInStructure"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcDoorLiningProperties">
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="PropertyDefinitionOf"/>
+        <FieldDefinition name="DefinesType"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcDoorPanelProperties">
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="PropertyDefinitionOf"/>
+        <FieldDefinition name="DefinesType"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcDoorStyle">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcDraughtingCallout">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+        <FieldDefinition name="IsRelatedFromCallout"/>
+        <FieldDefinition name="IsRelatedToCallout"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcDraughtingCalloutRelationship"/>
+    <ClassDefinition name="IfcDraughtingPreDefinedColour"/>
+    <ClassDefinition name="IfcDraughtingPreDefinedCurveFont"/>
+    <ClassDefinition name="IfcDraughtingPreDefinedTextFont"/>
+    <ClassDefinition name="IfcDuctFittingType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcDuctSegmentType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcDuctSilencerType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcEdge">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcEdgeCurve">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcEdgeFeature">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="FillsVoids"/>
+        <FieldDefinition name="ConnectedTo"/>
+        <FieldDefinition name="HasCoverings"/>
+        <FieldDefinition name="HasProjections"/>
+        <FieldDefinition name="HasStructuralMember"/>
+        <FieldDefinition name="ReferencedInStructures"/>
+        <FieldDefinition name="HasPorts"/>
+        <FieldDefinition name="IsConnectionRealization"/>
+        <FieldDefinition name="ProvidesBoundaries"/>
+        <FieldDefinition name="ConnectedFrom"/>
+        <FieldDefinition name="ContainedInStructure"/>
+        <FieldDefinition name="VoidsElements"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcEdgeLoop">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcElectricApplianceType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcElectricDistributionPoint">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="FillsVoids"/>
+        <FieldDefinition name="ConnectedTo"/>
+        <FieldDefinition name="HasCoverings"/>
+        <FieldDefinition name="HasProjections"/>
+        <FieldDefinition name="HasStructuralMember"/>
+        <FieldDefinition name="ReferencedInStructures"/>
+        <FieldDefinition name="HasPorts"/>
+        <FieldDefinition name="IsConnectionRealization"/>
+        <FieldDefinition name="ProvidesBoundaries"/>
+        <FieldDefinition name="ConnectedFrom"/>
+        <FieldDefinition name="ContainedInStructure"/>
+        <FieldDefinition name="HasControlElements"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcElectricFlowStorageDeviceType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcElectricGeneratorType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcElectricHeaterType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcElectricMotorType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcElectricTimeControlType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcElectricalBaseProperties">
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="PropertyDefinitionOf"/>
+        <FieldDefinition name="DefinesType"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcElectricalCircuit">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="IsGroupedBy"/>
+        <FieldDefinition name="ServicesBuildings"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcElectricalElement">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="FillsVoids"/>
+        <FieldDefinition name="ConnectedTo"/>
+        <FieldDefinition name="HasCoverings"/>
+        <FieldDefinition name="HasProjections"/>
+        <FieldDefinition name="HasStructuralMember"/>
+        <FieldDefinition name="ReferencedInStructures"/>
+        <FieldDefinition name="HasPorts"/>
+        <FieldDefinition name="IsConnectionRealization"/>
+        <FieldDefinition name="ProvidesBoundaries"/>
+        <FieldDefinition name="ConnectedFrom"/>
+        <FieldDefinition name="ContainedInStructure"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcElement">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="FillsVoids"/>
+        <FieldDefinition name="ConnectedTo"/>
+        <FieldDefinition name="HasCoverings"/>
+        <FieldDefinition name="HasProjections"/>
+        <FieldDefinition name="HasStructuralMember"/>
+        <FieldDefinition name="ReferencedInStructures"/>
+        <FieldDefinition name="HasPorts"/>
+        <FieldDefinition name="IsConnectionRealization"/>
+        <FieldDefinition name="ProvidesBoundaries"/>
+        <FieldDefinition name="ConnectedFrom"/>
+        <FieldDefinition name="ContainedInStructure"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcElementAssembly">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="FillsVoids"/>
+        <FieldDefinition name="ConnectedTo"/>
+        <FieldDefinition name="HasCoverings"/>
+        <FieldDefinition name="HasProjections"/>
+        <FieldDefinition name="HasStructuralMember"/>
+        <FieldDefinition name="ReferencedInStructures"/>
+        <FieldDefinition name="HasPorts"/>
+        <FieldDefinition name="IsConnectionRealization"/>
+        <FieldDefinition name="ProvidesBoundaries"/>
+        <FieldDefinition name="ConnectedFrom"/>
+        <FieldDefinition name="ContainedInStructure"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcElementComponent">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="FillsVoids"/>
+        <FieldDefinition name="ConnectedTo"/>
+        <FieldDefinition name="HasCoverings"/>
+        <FieldDefinition name="HasProjections"/>
+        <FieldDefinition name="HasStructuralMember"/>
+        <FieldDefinition name="ReferencedInStructures"/>
+        <FieldDefinition name="HasPorts"/>
+        <FieldDefinition name="IsConnectionRealization"/>
+        <FieldDefinition name="ProvidesBoundaries"/>
+        <FieldDefinition name="ConnectedFrom"/>
+        <FieldDefinition name="ContainedInStructure"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcElementComponentType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcElementQuantity">
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="PropertyDefinitionOf"/>
+        <FieldDefinition name="DefinesType"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcElementType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcElementarySurface">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcEllipse">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcEllipseProfileDef"/>
+    <ClassDefinition name="IfcEnergyConversionDevice">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="FillsVoids"/>
+        <FieldDefinition name="ConnectedTo"/>
+        <FieldDefinition name="HasCoverings"/>
+        <FieldDefinition name="HasProjections"/>
+        <FieldDefinition name="HasStructuralMember"/>
+        <FieldDefinition name="ReferencedInStructures"/>
+        <FieldDefinition name="HasPorts"/>
+        <FieldDefinition name="IsConnectionRealization"/>
+        <FieldDefinition name="ProvidesBoundaries"/>
+        <FieldDefinition name="ConnectedFrom"/>
+        <FieldDefinition name="ContainedInStructure"/>
+        <FieldDefinition name="HasControlElements"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcEnergyConversionDeviceType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcEnergyProperties">
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="PropertyDefinitionOf"/>
+        <FieldDefinition name="DefinesType"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcEnvironmentalImpactValue">
+        <FieldDefinition name="ValuesReferenced"/>
+        <FieldDefinition name="ValueOfComponents"/>
+        <FieldDefinition name="IsComponentIn"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcEquipmentElement">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="FillsVoids"/>
+        <FieldDefinition name="ConnectedTo"/>
+        <FieldDefinition name="HasCoverings"/>
+        <FieldDefinition name="HasProjections"/>
+        <FieldDefinition name="HasStructuralMember"/>
+        <FieldDefinition name="ReferencedInStructures"/>
+        <FieldDefinition name="HasPorts"/>
+        <FieldDefinition name="IsConnectionRealization"/>
+        <FieldDefinition name="ProvidesBoundaries"/>
+        <FieldDefinition name="ConnectedFrom"/>
+        <FieldDefinition name="ContainedInStructure"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcEquipmentStandard">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="Controls"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcEvaporativeCoolerType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcEvaporatorType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcExtendedMaterialProperties"/>
+    <ClassDefinition name="IfcExternalReference"/>
+    <ClassDefinition name="IfcExternallyDefinedHatchStyle"/>
+    <ClassDefinition name="IfcExternallyDefinedSurfaceStyle"/>
+    <ClassDefinition name="IfcExternallyDefinedSymbol"/>
+    <ClassDefinition name="IfcExternallyDefinedTextFont"/>
+    <ClassDefinition name="IfcExtrudedAreaSolid">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcFace">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcFaceBasedSurfaceModel">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcFaceBound">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcFaceOuterBound">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcFaceSurface">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcFacetedBrep">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcFacetedBrepWithVoids">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcFailureConnectionCondition"/>
+    <ClassDefinition name="IfcFanType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcFastener">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="FillsVoids"/>
+        <FieldDefinition name="ConnectedTo"/>
+        <FieldDefinition name="HasCoverings"/>
+        <FieldDefinition name="HasProjections"/>
+        <FieldDefinition name="HasStructuralMember"/>
+        <FieldDefinition name="ReferencedInStructures"/>
+        <FieldDefinition name="HasPorts"/>
+        <FieldDefinition name="IsConnectionRealization"/>
+        <FieldDefinition name="ProvidesBoundaries"/>
+        <FieldDefinition name="ConnectedFrom"/>
+        <FieldDefinition name="ContainedInStructure"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcFastenerType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcFeatureElement">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="FillsVoids"/>
+        <FieldDefinition name="ConnectedTo"/>
+        <FieldDefinition name="HasCoverings"/>
+        <FieldDefinition name="HasProjections"/>
+        <FieldDefinition name="HasStructuralMember"/>
+        <FieldDefinition name="ReferencedInStructures"/>
+        <FieldDefinition name="HasPorts"/>
+        <FieldDefinition name="IsConnectionRealization"/>
+        <FieldDefinition name="ProvidesBoundaries"/>
+        <FieldDefinition name="ConnectedFrom"/>
+        <FieldDefinition name="ContainedInStructure"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcFeatureElementAddition">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="FillsVoids"/>
+        <FieldDefinition name="ConnectedTo"/>
+        <FieldDefinition name="HasCoverings"/>
+        <FieldDefinition name="HasProjections"/>
+        <FieldDefinition name="HasStructuralMember"/>
+        <FieldDefinition name="ReferencedInStructures"/>
+        <FieldDefinition name="HasPorts"/>
+        <FieldDefinition name="IsConnectionRealization"/>
+        <FieldDefinition name="ProvidesBoundaries"/>
+        <FieldDefinition name="ConnectedFrom"/>
+        <FieldDefinition name="ContainedInStructure"/>
+        <FieldDefinition name="ProjectsElements"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcFeatureElementSubtraction">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="FillsVoids"/>
+        <FieldDefinition name="ConnectedTo"/>
+        <FieldDefinition name="HasCoverings"/>
+        <FieldDefinition name="HasProjections"/>
+        <FieldDefinition name="HasStructuralMember"/>
+        <FieldDefinition name="ReferencedInStructures"/>
+        <FieldDefinition name="HasPorts"/>
+        <FieldDefinition name="IsConnectionRealization"/>
+        <FieldDefinition name="ProvidesBoundaries"/>
+        <FieldDefinition name="ConnectedFrom"/>
+        <FieldDefinition name="ContainedInStructure"/>
+        <FieldDefinition name="VoidsElements"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcFillAreaStyle"/>
+    <ClassDefinition name="IfcFillAreaStyleHatching">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcFillAreaStyleTileSymbolWithStyle">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcFillAreaStyleTiles">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcFilterType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcFireSuppressionTerminalType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcFlowController">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="FillsVoids"/>
+        <FieldDefinition name="ConnectedTo"/>
+        <FieldDefinition name="HasCoverings"/>
+        <FieldDefinition name="HasProjections"/>
+        <FieldDefinition name="HasStructuralMember"/>
+        <FieldDefinition name="ReferencedInStructures"/>
+        <FieldDefinition name="HasPorts"/>
+        <FieldDefinition name="IsConnectionRealization"/>
+        <FieldDefinition name="ProvidesBoundaries"/>
+        <FieldDefinition name="ConnectedFrom"/>
+        <FieldDefinition name="ContainedInStructure"/>
+        <FieldDefinition name="HasControlElements"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcFlowControllerType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcFlowFitting">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="FillsVoids"/>
+        <FieldDefinition name="ConnectedTo"/>
+        <FieldDefinition name="HasCoverings"/>
+        <FieldDefinition name="HasProjections"/>
+        <FieldDefinition name="HasStructuralMember"/>
+        <FieldDefinition name="ReferencedInStructures"/>
+        <FieldDefinition name="HasPorts"/>
+        <FieldDefinition name="IsConnectionRealization"/>
+        <FieldDefinition name="ProvidesBoundaries"/>
+        <FieldDefinition name="ConnectedFrom"/>
+        <FieldDefinition name="ContainedInStructure"/>
+        <FieldDefinition name="HasControlElements"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcFlowFittingType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcFlowInstrumentType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcFlowMeterType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcFlowMovingDevice">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="FillsVoids"/>
+        <FieldDefinition name="ConnectedTo"/>
+        <FieldDefinition name="HasCoverings"/>
+        <FieldDefinition name="HasProjections"/>
+        <FieldDefinition name="HasStructuralMember"/>
+        <FieldDefinition name="ReferencedInStructures"/>
+        <FieldDefinition name="HasPorts"/>
+        <FieldDefinition name="IsConnectionRealization"/>
+        <FieldDefinition name="ProvidesBoundaries"/>
+        <FieldDefinition name="ConnectedFrom"/>
+        <FieldDefinition name="ContainedInStructure"/>
+        <FieldDefinition name="HasControlElements"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcFlowMovingDeviceType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcFlowSegment">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="FillsVoids"/>
+        <FieldDefinition name="ConnectedTo"/>
+        <FieldDefinition name="HasCoverings"/>
+        <FieldDefinition name="HasProjections"/>
+        <FieldDefinition name="HasStructuralMember"/>
+        <FieldDefinition name="ReferencedInStructures"/>
+        <FieldDefinition name="HasPorts"/>
+        <FieldDefinition name="IsConnectionRealization"/>
+        <FieldDefinition name="ProvidesBoundaries"/>
+        <FieldDefinition name="ConnectedFrom"/>
+        <FieldDefinition name="ContainedInStructure"/>
+        <FieldDefinition name="HasControlElements"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcFlowSegmentType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcFlowStorageDevice">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="FillsVoids"/>
+        <FieldDefinition name="ConnectedTo"/>
+        <FieldDefinition name="HasCoverings"/>
+        <FieldDefinition name="HasProjections"/>
+        <FieldDefinition name="HasStructuralMember"/>
+        <FieldDefinition name="ReferencedInStructures"/>
+        <FieldDefinition name="HasPorts"/>
+        <FieldDefinition name="IsConnectionRealization"/>
+        <FieldDefinition name="ProvidesBoundaries"/>
+        <FieldDefinition name="ConnectedFrom"/>
+        <FieldDefinition name="ContainedInStructure"/>
+        <FieldDefinition name="HasControlElements"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcFlowStorageDeviceType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcFlowTerminal">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="FillsVoids"/>
+        <FieldDefinition name="ConnectedTo"/>
+        <FieldDefinition name="HasCoverings"/>
+        <FieldDefinition name="HasProjections"/>
+        <FieldDefinition name="HasStructuralMember"/>
+        <FieldDefinition name="ReferencedInStructures"/>
+        <FieldDefinition name="HasPorts"/>
+        <FieldDefinition name="IsConnectionRealization"/>
+        <FieldDefinition name="ProvidesBoundaries"/>
+        <FieldDefinition name="ConnectedFrom"/>
+        <FieldDefinition name="ContainedInStructure"/>
+        <FieldDefinition name="HasControlElements"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcFlowTerminalType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcFlowTreatmentDevice">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="FillsVoids"/>
+        <FieldDefinition name="ConnectedTo"/>
+        <FieldDefinition name="HasCoverings"/>
+        <FieldDefinition name="HasProjections"/>
+        <FieldDefinition name="HasStructuralMember"/>
+        <FieldDefinition name="ReferencedInStructures"/>
+        <FieldDefinition name="HasPorts"/>
+        <FieldDefinition name="IsConnectionRealization"/>
+        <FieldDefinition name="ProvidesBoundaries"/>
+        <FieldDefinition name="ConnectedFrom"/>
+        <FieldDefinition name="ContainedInStructure"/>
+        <FieldDefinition name="HasControlElements"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcFlowTreatmentDeviceType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcFluidFlowProperties">
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="PropertyDefinitionOf"/>
+        <FieldDefinition name="DefinesType"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcFooting">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="FillsVoids"/>
+        <FieldDefinition name="ConnectedTo"/>
+        <FieldDefinition name="HasCoverings"/>
+        <FieldDefinition name="HasProjections"/>
+        <FieldDefinition name="HasStructuralMember"/>
+        <FieldDefinition name="ReferencedInStructures"/>
+        <FieldDefinition name="HasPorts"/>
+        <FieldDefinition name="IsConnectionRealization"/>
+        <FieldDefinition name="ProvidesBoundaries"/>
+        <FieldDefinition name="ConnectedFrom"/>
+        <FieldDefinition name="ContainedInStructure"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcFuelProperties"/>
+    <ClassDefinition name="IfcFurnishingElement">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="FillsVoids"/>
+        <FieldDefinition name="ConnectedTo"/>
+        <FieldDefinition name="HasCoverings"/>
+        <FieldDefinition name="HasProjections"/>
+        <FieldDefinition name="HasStructuralMember"/>
+        <FieldDefinition name="ReferencedInStructures"/>
+        <FieldDefinition name="HasPorts"/>
+        <FieldDefinition name="IsConnectionRealization"/>
+        <FieldDefinition name="ProvidesBoundaries"/>
+        <FieldDefinition name="ConnectedFrom"/>
+        <FieldDefinition name="ContainedInStructure"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcFurnishingElementType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcFurnitureStandard">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="Controls"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcFurnitureType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcGasTerminalType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcGeneralMaterialProperties"/>
+    <ClassDefinition name="IfcGeneralProfileProperties"/>
+    <ClassDefinition name="IfcGeometricCurveSet">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcGeometricRepresentationContext">
+        <FieldDefinition name="RepresentationsInContext"/>
+        <FieldDefinition name="HasSubContexts"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcGeometricRepresentationItem">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcGeometricRepresentationSubContext">
+        <FieldDefinition name="RepresentationsInContext"/>
+        <FieldDefinition name="HasSubContexts"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcGeometricSet">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcGrid">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="ContainedInStructure"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcGridAxis">
+        <FieldDefinition name="PartOfW"/>
+        <FieldDefinition name="PartOfV"/>
+        <FieldDefinition name="PartOfU"/>
+        <FieldDefinition name="HasIntersections"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcGridPlacement">
+        <FieldDefinition name="PlacesObject"/>
+        <FieldDefinition name="ReferencedByPlacements"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcGroup">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="IsGroupedBy"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcHalfSpaceSolid">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcHeatExchangerType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcHumidifierType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcHygroscopicMaterialProperties"/>
+    <ClassDefinition name="IfcIShapeProfileDef"/>
+    <ClassDefinition name="IfcImageTexture"/>
+    <ClassDefinition name="IfcInventory">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="IsGroupedBy"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcIrregularTimeSeries">
+        <FieldDefinition name="DocumentedBy"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcIrregularTimeSeriesValue"/>
+    <ClassDefinition name="IfcJunctionBoxType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcLShapeProfileDef"/>
+    <ClassDefinition name="IfcLaborResource">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ResourceOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcLampType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcLibraryInformation"/>
+    <ClassDefinition name="IfcLibraryReference">
+        <FieldDefinition name="ReferenceIntoLibrary"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcLightDistributionData"/>
+    <ClassDefinition name="IfcLightFixtureType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcLightIntensityDistribution"/>
+    <ClassDefinition name="IfcLightSource">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcLightSourceAmbient">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcLightSourceDirectional">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcLightSourceGoniometric">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcLightSourcePositional">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcLightSourceSpot">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcLine">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcLinearDimension">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+        <FieldDefinition name="IsRelatedFromCallout"/>
+        <FieldDefinition name="IsRelatedToCallout"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcLocalPlacement">
+        <FieldDefinition name="PlacesObject"/>
+        <FieldDefinition name="ReferencedByPlacements"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcLocalTime"/>
+    <ClassDefinition name="IfcLoop">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcManifoldSolidBrep">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcMappedItem">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcMaterial">
+        <FieldDefinition name="HasRepresentation"/>
+        <FieldDefinition name="ClassifiedAs"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcMaterialClassificationRelationship"/>
+    <ClassDefinition name="IfcMaterialDefinitionRepresentation"/>
+    <ClassDefinition name="IfcMaterialLayer">
+        <FieldDefinition name="ToMaterialLayerSet"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcMaterialLayerSet"/>
+    <ClassDefinition name="IfcMaterialLayerSetUsage"/>
+    <ClassDefinition name="IfcMaterialList"/>
+    <ClassDefinition name="IfcMaterialProperties"/>
+    <ClassDefinition name="IfcMeasureWithUnit"/>
+    <ClassDefinition name="IfcMechanicalConcreteMaterialProperties"/>
+    <ClassDefinition name="IfcMechanicalFastener">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="FillsVoids"/>
+        <FieldDefinition name="ConnectedTo"/>
+        <FieldDefinition name="HasCoverings"/>
+        <FieldDefinition name="HasProjections"/>
+        <FieldDefinition name="HasStructuralMember"/>
+        <FieldDefinition name="ReferencedInStructures"/>
+        <FieldDefinition name="HasPorts"/>
+        <FieldDefinition name="IsConnectionRealization"/>
+        <FieldDefinition name="ProvidesBoundaries"/>
+        <FieldDefinition name="ConnectedFrom"/>
+        <FieldDefinition name="ContainedInStructure"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcMechanicalFastenerType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcMechanicalMaterialProperties"/>
+    <ClassDefinition name="IfcMechanicalSteelMaterialProperties"/>
+    <ClassDefinition name="IfcMember">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="FillsVoids"/>
+        <FieldDefinition name="ConnectedTo"/>
+        <FieldDefinition name="HasCoverings"/>
+        <FieldDefinition name="HasProjections"/>
+        <FieldDefinition name="HasStructuralMember"/>
+        <FieldDefinition name="ReferencedInStructures"/>
+        <FieldDefinition name="HasPorts"/>
+        <FieldDefinition name="IsConnectionRealization"/>
+        <FieldDefinition name="ProvidesBoundaries"/>
+        <FieldDefinition name="ConnectedFrom"/>
+        <FieldDefinition name="ContainedInStructure"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcMemberType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcMetric">
+        <FieldDefinition name="ClassifiedAs"/>
+        <FieldDefinition name="RelatesConstraints"/>
+        <FieldDefinition name="IsRelatedWith"/>
+        <FieldDefinition name="PropertiesForConstraint"/>
+        <FieldDefinition name="Aggregates"/>
+        <FieldDefinition name="IsAggregatedIn"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcMonetaryUnit"/>
+    <ClassDefinition name="IfcMotorConnectionType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcMove">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="OperatesOn"/>
+        <FieldDefinition name="IsSuccessorFrom"/>
+        <FieldDefinition name="IsPredecessorTo"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcNamedUnit"/>
+    <ClassDefinition name="IfcObject">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcObjectDefinition">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcObjectPlacement">
+        <FieldDefinition name="PlacesObject"/>
+        <FieldDefinition name="ReferencedByPlacements"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcObjective">
+        <FieldDefinition name="ClassifiedAs"/>
+        <FieldDefinition name="RelatesConstraints"/>
+        <FieldDefinition name="IsRelatedWith"/>
+        <FieldDefinition name="PropertiesForConstraint"/>
+        <FieldDefinition name="Aggregates"/>
+        <FieldDefinition name="IsAggregatedIn"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcOccupant">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="IsActingUpon"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcOffsetCurve2D">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcOffsetCurve3D">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcOneDirectionRepeatFactor">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcOpenShell">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcOpeningElement">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="FillsVoids"/>
+        <FieldDefinition name="ConnectedTo"/>
+        <FieldDefinition name="HasCoverings"/>
+        <FieldDefinition name="HasProjections"/>
+        <FieldDefinition name="HasStructuralMember"/>
+        <FieldDefinition name="ReferencedInStructures"/>
+        <FieldDefinition name="HasPorts"/>
+        <FieldDefinition name="IsConnectionRealization"/>
+        <FieldDefinition name="ProvidesBoundaries"/>
+        <FieldDefinition name="ConnectedFrom"/>
+        <FieldDefinition name="ContainedInStructure"/>
+        <FieldDefinition name="VoidsElements"/>
+        <FieldDefinition name="HasFillings"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcOpticalMaterialProperties"/>
+    <ClassDefinition name="IfcOrderAction">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="OperatesOn"/>
+        <FieldDefinition name="IsSuccessorFrom"/>
+        <FieldDefinition name="IsPredecessorTo"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcOrganization">
+        <FieldDefinition name="IsRelatedBy"/>
+        <FieldDefinition name="Relates"/>
+        <FieldDefinition name="Engages"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcOrganizationRelationship"/>
+    <ClassDefinition name="IfcOrientedEdge">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcOutletType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcOwnerHistory"/>
+    <ClassDefinition name="IfcParameterizedProfileDef"/>
+    <ClassDefinition name="IfcPath">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcPerformanceHistory">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="Controls"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcPermeableCoveringProperties">
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="PropertyDefinitionOf"/>
+        <FieldDefinition name="DefinesType"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcPermit">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="Controls"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcPerson">
+        <FieldDefinition name="EngagedIn"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcPersonAndOrganization"/>
+    <ClassDefinition name="IfcPhysicalComplexQuantity">
+        <FieldDefinition name="PartOfComplex"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcPhysicalQuantity">
+        <FieldDefinition name="PartOfComplex"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcPhysicalSimpleQuantity">
+        <FieldDefinition name="PartOfComplex"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcPile">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="FillsVoids"/>
+        <FieldDefinition name="ConnectedTo"/>
+        <FieldDefinition name="HasCoverings"/>
+        <FieldDefinition name="HasProjections"/>
+        <FieldDefinition name="HasStructuralMember"/>
+        <FieldDefinition name="ReferencedInStructures"/>
+        <FieldDefinition name="HasPorts"/>
+        <FieldDefinition name="IsConnectionRealization"/>
+        <FieldDefinition name="ProvidesBoundaries"/>
+        <FieldDefinition name="ConnectedFrom"/>
+        <FieldDefinition name="ContainedInStructure"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcPipeFittingType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcPipeSegmentType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcPixelTexture"/>
+    <ClassDefinition name="IfcPlacement">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcPlanarBox">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcPlanarExtent">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcPlane">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcPlate">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="FillsVoids"/>
+        <FieldDefinition name="ConnectedTo"/>
+        <FieldDefinition name="HasCoverings"/>
+        <FieldDefinition name="HasProjections"/>
+        <FieldDefinition name="HasStructuralMember"/>
+        <FieldDefinition name="ReferencedInStructures"/>
+        <FieldDefinition name="HasPorts"/>
+        <FieldDefinition name="IsConnectionRealization"/>
+        <FieldDefinition name="ProvidesBoundaries"/>
+        <FieldDefinition name="ConnectedFrom"/>
+        <FieldDefinition name="ContainedInStructure"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcPlateType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcPoint">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcPointOnCurve">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcPointOnSurface">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcPolyLoop">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcPolygonalBoundedHalfSpace">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcPolyline">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcPort">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="ContainedIn"/>
+        <FieldDefinition name="ConnectedFrom"/>
+        <FieldDefinition name="ConnectedTo"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcPostalAddress">
+        <FieldDefinition name="OfPerson"/>
+        <FieldDefinition name="OfOrganization"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcPreDefinedColour"/>
+    <ClassDefinition name="IfcPreDefinedCurveFont"/>
+    <ClassDefinition name="IfcPreDefinedDimensionSymbol"/>
+    <ClassDefinition name="IfcPreDefinedItem"/>
+    <ClassDefinition name="IfcPreDefinedPointMarkerSymbol"/>
+    <ClassDefinition name="IfcPreDefinedSymbol"/>
+    <ClassDefinition name="IfcPreDefinedTerminatorSymbol"/>
+    <ClassDefinition name="IfcPreDefinedTextFont"/>
+    <ClassDefinition name="IfcPresentationLayerAssignment"/>
+    <ClassDefinition name="IfcPresentationLayerWithStyle"/>
+    <ClassDefinition name="IfcPresentationStyle"/>
+    <ClassDefinition name="IfcPresentationStyleAssignment"/>
+    <ClassDefinition name="IfcProcedure">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="OperatesOn"/>
+        <FieldDefinition name="IsSuccessorFrom"/>
+        <FieldDefinition name="IsPredecessorTo"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcProcess">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="OperatesOn"/>
+        <FieldDefinition name="IsSuccessorFrom"/>
+        <FieldDefinition name="IsPredecessorTo"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcProduct">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcProductDefinitionShape">
+        <FieldDefinition name="ShapeOfProduct"/>
+        <FieldDefinition name="HasShapeAspects"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcProductRepresentation"/>
+    <ClassDefinition name="IfcProductsOfCombustionProperties"/>
+    <ClassDefinition name="IfcProfileDef"/>
+    <ClassDefinition name="IfcProfileProperties"/>
+    <ClassDefinition name="IfcProject">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcProjectOrder">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="Controls"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcProjectOrderRecord">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="Controls"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcProjectionCurve">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcProjectionElement">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="FillsVoids"/>
+        <FieldDefinition name="ConnectedTo"/>
+        <FieldDefinition name="HasCoverings"/>
+        <FieldDefinition name="HasProjections"/>
+        <FieldDefinition name="HasStructuralMember"/>
+        <FieldDefinition name="ReferencedInStructures"/>
+        <FieldDefinition name="HasPorts"/>
+        <FieldDefinition name="IsConnectionRealization"/>
+        <FieldDefinition name="ProvidesBoundaries"/>
+        <FieldDefinition name="ConnectedFrom"/>
+        <FieldDefinition name="ContainedInStructure"/>
+        <FieldDefinition name="ProjectsElements"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcProperty">
+        <FieldDefinition name="PropertyForDependance"/>
+        <FieldDefinition name="PropertyDependsOn"/>
+        <FieldDefinition name="PartOfComplex"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcPropertyBoundedValue">
+        <FieldDefinition name="PropertyForDependance"/>
+        <FieldDefinition name="PropertyDependsOn"/>
+        <FieldDefinition name="PartOfComplex"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcPropertyConstraintRelationship"/>
+    <ClassDefinition name="IfcPropertyDefinition">
+        <FieldDefinition name="HasAssociations"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcPropertyDependencyRelationship"/>
+    <ClassDefinition name="IfcPropertyEnumeratedValue">
+        <FieldDefinition name="PropertyForDependance"/>
+        <FieldDefinition name="PropertyDependsOn"/>
+        <FieldDefinition name="PartOfComplex"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcPropertyEnumeration"/>
+    <ClassDefinition name="IfcPropertyListValue">
+        <FieldDefinition name="PropertyForDependance"/>
+        <FieldDefinition name="PropertyDependsOn"/>
+        <FieldDefinition name="PartOfComplex"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcPropertyReferenceValue">
+        <FieldDefinition name="PropertyForDependance"/>
+        <FieldDefinition name="PropertyDependsOn"/>
+        <FieldDefinition name="PartOfComplex"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcPropertySet">
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="PropertyDefinitionOf"/>
+        <FieldDefinition name="DefinesType"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcPropertySetDefinition">
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="PropertyDefinitionOf"/>
+        <FieldDefinition name="DefinesType"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcPropertySingleValue">
+        <FieldDefinition name="PropertyForDependance"/>
+        <FieldDefinition name="PropertyDependsOn"/>
+        <FieldDefinition name="PartOfComplex"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcPropertyTableValue">
+        <FieldDefinition name="PropertyForDependance"/>
+        <FieldDefinition name="PropertyDependsOn"/>
+        <FieldDefinition name="PartOfComplex"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcProtectiveDeviceType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcProxy">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcPumpType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcQuantityArea">
+        <FieldDefinition name="PartOfComplex"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcQuantityCount">
+        <FieldDefinition name="PartOfComplex"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcQuantityLength">
+        <FieldDefinition name="PartOfComplex"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcQuantityTime">
+        <FieldDefinition name="PartOfComplex"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcQuantityVolume">
+        <FieldDefinition name="PartOfComplex"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcQuantityWeight">
+        <FieldDefinition name="PartOfComplex"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcRadiusDimension">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+        <FieldDefinition name="IsRelatedFromCallout"/>
+        <FieldDefinition name="IsRelatedToCallout"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcRailing">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="FillsVoids"/>
+        <FieldDefinition name="ConnectedTo"/>
+        <FieldDefinition name="HasCoverings"/>
+        <FieldDefinition name="HasProjections"/>
+        <FieldDefinition name="HasStructuralMember"/>
+        <FieldDefinition name="ReferencedInStructures"/>
+        <FieldDefinition name="HasPorts"/>
+        <FieldDefinition name="IsConnectionRealization"/>
+        <FieldDefinition name="ProvidesBoundaries"/>
+        <FieldDefinition name="ConnectedFrom"/>
+        <FieldDefinition name="ContainedInStructure"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcRailingType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcRamp">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="FillsVoids"/>
+        <FieldDefinition name="ConnectedTo"/>
+        <FieldDefinition name="HasCoverings"/>
+        <FieldDefinition name="HasProjections"/>
+        <FieldDefinition name="HasStructuralMember"/>
+        <FieldDefinition name="ReferencedInStructures"/>
+        <FieldDefinition name="HasPorts"/>
+        <FieldDefinition name="IsConnectionRealization"/>
+        <FieldDefinition name="ProvidesBoundaries"/>
+        <FieldDefinition name="ConnectedFrom"/>
+        <FieldDefinition name="ContainedInStructure"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcRampFlight">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="FillsVoids"/>
+        <FieldDefinition name="ConnectedTo"/>
+        <FieldDefinition name="HasCoverings"/>
+        <FieldDefinition name="HasProjections"/>
+        <FieldDefinition name="HasStructuralMember"/>
+        <FieldDefinition name="ReferencedInStructures"/>
+        <FieldDefinition name="HasPorts"/>
+        <FieldDefinition name="IsConnectionRealization"/>
+        <FieldDefinition name="ProvidesBoundaries"/>
+        <FieldDefinition name="ConnectedFrom"/>
+        <FieldDefinition name="ContainedInStructure"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcRampFlightType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcRationalBezierCurve">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcRectangleHollowProfileDef"/>
+    <ClassDefinition name="IfcRectangleProfileDef"/>
+    <ClassDefinition name="IfcRectangularPyramid">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcRectangularTrimmedSurface">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcReferencesValueDocument"/>
+    <ClassDefinition name="IfcRegularTimeSeries">
+        <FieldDefinition name="DocumentedBy"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcReinforcementBarProperties"/>
+    <ClassDefinition name="IfcReinforcementDefinitionProperties">
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="PropertyDefinitionOf"/>
+        <FieldDefinition name="DefinesType"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcReinforcingBar">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="FillsVoids"/>
+        <FieldDefinition name="ConnectedTo"/>
+        <FieldDefinition name="HasCoverings"/>
+        <FieldDefinition name="HasProjections"/>
+        <FieldDefinition name="HasStructuralMember"/>
+        <FieldDefinition name="ReferencedInStructures"/>
+        <FieldDefinition name="HasPorts"/>
+        <FieldDefinition name="IsConnectionRealization"/>
+        <FieldDefinition name="ProvidesBoundaries"/>
+        <FieldDefinition name="ConnectedFrom"/>
+        <FieldDefinition name="ContainedInStructure"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcReinforcingElement">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="FillsVoids"/>
+        <FieldDefinition name="ConnectedTo"/>
+        <FieldDefinition name="HasCoverings"/>
+        <FieldDefinition name="HasProjections"/>
+        <FieldDefinition name="HasStructuralMember"/>
+        <FieldDefinition name="ReferencedInStructures"/>
+        <FieldDefinition name="HasPorts"/>
+        <FieldDefinition name="IsConnectionRealization"/>
+        <FieldDefinition name="ProvidesBoundaries"/>
+        <FieldDefinition name="ConnectedFrom"/>
+        <FieldDefinition name="ContainedInStructure"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcReinforcingMesh">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="FillsVoids"/>
+        <FieldDefinition name="ConnectedTo"/>
+        <FieldDefinition name="HasCoverings"/>
+        <FieldDefinition name="HasProjections"/>
+        <FieldDefinition name="HasStructuralMember"/>
+        <FieldDefinition name="ReferencedInStructures"/>
+        <FieldDefinition name="HasPorts"/>
+        <FieldDefinition name="IsConnectionRealization"/>
+        <FieldDefinition name="ProvidesBoundaries"/>
+        <FieldDefinition name="ConnectedFrom"/>
+        <FieldDefinition name="ContainedInStructure"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcRelAggregates"/>
+    <ClassDefinition name="IfcRelAssigns"/>
+    <ClassDefinition name="IfcRelAssignsTasks"/>
+    <ClassDefinition name="IfcRelAssignsToActor"/>
+    <ClassDefinition name="IfcRelAssignsToControl"/>
+    <ClassDefinition name="IfcRelAssignsToGroup"/>
+    <ClassDefinition name="IfcRelAssignsToProcess"/>
+    <ClassDefinition name="IfcRelAssignsToProduct"/>
+    <ClassDefinition name="IfcRelAssignsToProjectOrder"/>
+    <ClassDefinition name="IfcRelAssignsToResource"/>
+    <ClassDefinition name="IfcRelAssociates"/>
+    <ClassDefinition name="IfcRelAssociatesAppliedValue"/>
+    <ClassDefinition name="IfcRelAssociatesApproval"/>
+    <ClassDefinition name="IfcRelAssociatesClassification"/>
+    <ClassDefinition name="IfcRelAssociatesConstraint"/>
+    <ClassDefinition name="IfcRelAssociatesDocument"/>
+    <ClassDefinition name="IfcRelAssociatesLibrary"/>
+    <ClassDefinition name="IfcRelAssociatesMaterial"/>
+    <ClassDefinition name="IfcRelAssociatesProfileProperties"/>
+    <ClassDefinition name="IfcRelConnects"/>
+    <ClassDefinition name="IfcRelConnectsElements"/>
+    <ClassDefinition name="IfcRelConnectsPathElements"/>
+    <ClassDefinition name="IfcRelConnectsPortToElement"/>
+    <ClassDefinition name="IfcRelConnectsPorts"/>
+    <ClassDefinition name="IfcRelConnectsStructuralActivity"/>
+    <ClassDefinition name="IfcRelConnectsStructuralElement"/>
+    <ClassDefinition name="IfcRelConnectsStructuralMember"/>
+    <ClassDefinition name="IfcRelConnectsWithEccentricity"/>
+    <ClassDefinition name="IfcRelConnectsWithRealizingElements"/>
+    <ClassDefinition name="IfcRelContainedInSpatialStructure"/>
+    <ClassDefinition name="IfcRelCoversBldgElements"/>
+    <ClassDefinition name="IfcRelCoversSpaces"/>
+    <ClassDefinition name="IfcRelDecomposes"/>
+    <ClassDefinition name="IfcRelDefines"/>
+    <ClassDefinition name="IfcRelDefinesByProperties"/>
+    <ClassDefinition name="IfcRelDefinesByType"/>
+    <ClassDefinition name="IfcRelFillsElement"/>
+    <ClassDefinition name="IfcRelFlowControlElements"/>
+    <ClassDefinition name="IfcRelInteractionRequirements"/>
+    <ClassDefinition name="IfcRelNests"/>
+    <ClassDefinition name="IfcRelOccupiesSpaces"/>
+    <ClassDefinition name="IfcRelOverridesProperties"/>
+    <ClassDefinition name="IfcRelProjectsElement"/>
+    <ClassDefinition name="IfcRelReferencedInSpatialStructure"/>
+    <ClassDefinition name="IfcRelSchedulesCostItems"/>
+    <ClassDefinition name="IfcRelSequence"/>
+    <ClassDefinition name="IfcRelServicesBuildings"/>
+    <ClassDefinition name="IfcRelSpaceBoundary"/>
+    <ClassDefinition name="IfcRelVoidsElement"/>
+    <ClassDefinition name="IfcRelationship"/>
+    <ClassDefinition name="IfcRelaxation"/>
+    <ClassDefinition name="IfcRepresentation">
+        <FieldDefinition name="RepresentationMap"/>
+        <FieldDefinition name="OfProductRepresentation"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcRepresentationContext">
+        <FieldDefinition name="RepresentationsInContext"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcRepresentationItem">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcRepresentationMap">
+        <FieldDefinition name="MapUsage"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcResource">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ResourceOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcRevolvedAreaSolid">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcRibPlateProfileProperties"/>
+    <ClassDefinition name="IfcRightCircularCone">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcRightCircularCylinder">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcRoof">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="FillsVoids"/>
+        <FieldDefinition name="ConnectedTo"/>
+        <FieldDefinition name="HasCoverings"/>
+        <FieldDefinition name="HasProjections"/>
+        <FieldDefinition name="HasStructuralMember"/>
+        <FieldDefinition name="ReferencedInStructures"/>
+        <FieldDefinition name="HasPorts"/>
+        <FieldDefinition name="IsConnectionRealization"/>
+        <FieldDefinition name="ProvidesBoundaries"/>
+        <FieldDefinition name="ConnectedFrom"/>
+        <FieldDefinition name="ContainedInStructure"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcRoot"/>
+    <ClassDefinition name="IfcRoundedEdgeFeature">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="FillsVoids"/>
+        <FieldDefinition name="ConnectedTo"/>
+        <FieldDefinition name="HasCoverings"/>
+        <FieldDefinition name="HasProjections"/>
+        <FieldDefinition name="HasStructuralMember"/>
+        <FieldDefinition name="ReferencedInStructures"/>
+        <FieldDefinition name="HasPorts"/>
+        <FieldDefinition name="IsConnectionRealization"/>
+        <FieldDefinition name="ProvidesBoundaries"/>
+        <FieldDefinition name="ConnectedFrom"/>
+        <FieldDefinition name="ContainedInStructure"/>
+        <FieldDefinition name="VoidsElements"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcRoundedRectangleProfileDef"/>
+    <ClassDefinition name="IfcSIUnit"/>
+    <ClassDefinition name="IfcSanitaryTerminalType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcScheduleTimeControl">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="Controls"/>
+        <FieldDefinition name="ScheduleTimeControlAssigned"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcSectionProperties"/>
+    <ClassDefinition name="IfcSectionReinforcementProperties"/>
+    <ClassDefinition name="IfcSectionedSpine">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcSensorType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcServiceLife">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="Controls"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcServiceLifeFactor">
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="PropertyDefinitionOf"/>
+        <FieldDefinition name="DefinesType"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcShapeAspect"/>
+    <ClassDefinition name="IfcShapeModel">
+        <FieldDefinition name="RepresentationMap"/>
+        <FieldDefinition name="OfProductRepresentation"/>
+        <FieldDefinition name="OfShapeAspect"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcShapeRepresentation">
+        <FieldDefinition name="RepresentationMap"/>
+        <FieldDefinition name="OfProductRepresentation"/>
+        <FieldDefinition name="OfShapeAspect"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcShellBasedSurfaceModel">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcSimpleProperty">
+        <FieldDefinition name="PropertyForDependance"/>
+        <FieldDefinition name="PropertyDependsOn"/>
+        <FieldDefinition name="PartOfComplex"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcSite">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="ReferencesElements"/>
+        <FieldDefinition name="ServicedBySystems"/>
+        <FieldDefinition name="ContainsElements"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcSlab">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="FillsVoids"/>
+        <FieldDefinition name="ConnectedTo"/>
+        <FieldDefinition name="HasCoverings"/>
+        <FieldDefinition name="HasProjections"/>
+        <FieldDefinition name="HasStructuralMember"/>
+        <FieldDefinition name="ReferencedInStructures"/>
+        <FieldDefinition name="HasPorts"/>
+        <FieldDefinition name="IsConnectionRealization"/>
+        <FieldDefinition name="ProvidesBoundaries"/>
+        <FieldDefinition name="ConnectedFrom"/>
+        <FieldDefinition name="ContainedInStructure"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcSlabType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcSlippageConnectionCondition"/>
+    <ClassDefinition name="IfcSolidModel">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcSoundProperties">
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="PropertyDefinitionOf"/>
+        <FieldDefinition name="DefinesType"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcSoundValue">
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="PropertyDefinitionOf"/>
+        <FieldDefinition name="DefinesType"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcSpace">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="ReferencesElements"/>
+        <FieldDefinition name="ServicedBySystems"/>
+        <FieldDefinition name="ContainsElements"/>
+        <FieldDefinition name="HasCoverings"/>
+        <FieldDefinition name="BoundedBy"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcSpaceHeaterType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcSpaceProgram">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="Controls"/>
+        <FieldDefinition name="HasInteractionReqsFrom"/>
+        <FieldDefinition name="HasInteractionReqsTo"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcSpaceThermalLoadProperties">
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="PropertyDefinitionOf"/>
+        <FieldDefinition name="DefinesType"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcSpaceType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcSpatialStructureElement">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="ReferencesElements"/>
+        <FieldDefinition name="ServicedBySystems"/>
+        <FieldDefinition name="ContainsElements"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcSpatialStructureElementType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcSphere">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcStackTerminalType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcStair">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="FillsVoids"/>
+        <FieldDefinition name="ConnectedTo"/>
+        <FieldDefinition name="HasCoverings"/>
+        <FieldDefinition name="HasProjections"/>
+        <FieldDefinition name="HasStructuralMember"/>
+        <FieldDefinition name="ReferencedInStructures"/>
+        <FieldDefinition name="HasPorts"/>
+        <FieldDefinition name="IsConnectionRealization"/>
+        <FieldDefinition name="ProvidesBoundaries"/>
+        <FieldDefinition name="ConnectedFrom"/>
+        <FieldDefinition name="ContainedInStructure"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcStairFlight">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="FillsVoids"/>
+        <FieldDefinition name="ConnectedTo"/>
+        <FieldDefinition name="HasCoverings"/>
+        <FieldDefinition name="HasProjections"/>
+        <FieldDefinition name="HasStructuralMember"/>
+        <FieldDefinition name="ReferencedInStructures"/>
+        <FieldDefinition name="HasPorts"/>
+        <FieldDefinition name="IsConnectionRealization"/>
+        <FieldDefinition name="ProvidesBoundaries"/>
+        <FieldDefinition name="ConnectedFrom"/>
+        <FieldDefinition name="ContainedInStructure"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcStairFlightType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcStructuralAction">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="AssignedToStructuralItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcStructuralActivity">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="AssignedToStructuralItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcStructuralAnalysisModel">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="IsGroupedBy"/>
+        <FieldDefinition name="ServicesBuildings"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcStructuralConnection">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="AssignedStructuralActivity"/>
+        <FieldDefinition name="ConnectsStructuralMembers"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcStructuralConnectionCondition"/>
+    <ClassDefinition name="IfcStructuralCurveConnection">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="AssignedStructuralActivity"/>
+        <FieldDefinition name="ConnectsStructuralMembers"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcStructuralCurveMember">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="AssignedStructuralActivity"/>
+        <FieldDefinition name="ReferencesElement"/>
+        <FieldDefinition name="ConnectedBy"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcStructuralCurveMemberVarying">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="AssignedStructuralActivity"/>
+        <FieldDefinition name="ReferencesElement"/>
+        <FieldDefinition name="ConnectedBy"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcStructuralItem">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="AssignedStructuralActivity"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcStructuralLinearAction">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="AssignedToStructuralItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcStructuralLinearActionVarying">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="AssignedToStructuralItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcStructuralLoad"/>
+    <ClassDefinition name="IfcStructuralLoadGroup">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="IsGroupedBy"/>
+        <FieldDefinition name="SourceOfResultGroup"/>
+        <FieldDefinition name="LoadGroupFor"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcStructuralLoadLinearForce"/>
+    <ClassDefinition name="IfcStructuralLoadPlanarForce"/>
+    <ClassDefinition name="IfcStructuralLoadSingleDisplacement"/>
+    <ClassDefinition name="IfcStructuralLoadSingleDisplacementDistortion"/>
+    <ClassDefinition name="IfcStructuralLoadSingleForce"/>
+    <ClassDefinition name="IfcStructuralLoadSingleForceWarping"/>
+    <ClassDefinition name="IfcStructuralLoadStatic"/>
+    <ClassDefinition name="IfcStructuralLoadTemperature"/>
+    <ClassDefinition name="IfcStructuralMember">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="AssignedStructuralActivity"/>
+        <FieldDefinition name="ReferencesElement"/>
+        <FieldDefinition name="ConnectedBy"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcStructuralPlanarAction">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="AssignedToStructuralItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcStructuralPlanarActionVarying">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="AssignedToStructuralItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcStructuralPointAction">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="AssignedToStructuralItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcStructuralPointConnection">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="AssignedStructuralActivity"/>
+        <FieldDefinition name="ConnectsStructuralMembers"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcStructuralPointReaction">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="AssignedToStructuralItem"/>
+        <FieldDefinition name="Causes"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcStructuralProfileProperties"/>
+    <ClassDefinition name="IfcStructuralReaction">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="AssignedToStructuralItem"/>
+        <FieldDefinition name="Causes"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcStructuralResultGroup">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="IsGroupedBy"/>
+        <FieldDefinition name="ResultGroupFor"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcStructuralSteelProfileProperties"/>
+    <ClassDefinition name="IfcStructuralSurfaceConnection">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="AssignedStructuralActivity"/>
+        <FieldDefinition name="ConnectsStructuralMembers"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcStructuralSurfaceMember">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="AssignedStructuralActivity"/>
+        <FieldDefinition name="ReferencesElement"/>
+        <FieldDefinition name="ConnectedBy"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcStructuralSurfaceMemberVarying">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="AssignedStructuralActivity"/>
+        <FieldDefinition name="ReferencesElement"/>
+        <FieldDefinition name="ConnectedBy"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcStructuredDimensionCallout">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+        <FieldDefinition name="IsRelatedFromCallout"/>
+        <FieldDefinition name="IsRelatedToCallout"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcStyleModel">
+        <FieldDefinition name="RepresentationMap"/>
+        <FieldDefinition name="OfProductRepresentation"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcStyledItem">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcStyledRepresentation">
+        <FieldDefinition name="RepresentationMap"/>
+        <FieldDefinition name="OfProductRepresentation"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcSubContractResource">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ResourceOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcSubedge">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcSurface">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcSurfaceCurveSweptAreaSolid">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcSurfaceOfLinearExtrusion">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcSurfaceOfRevolution">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcSurfaceStyle"/>
+    <ClassDefinition name="IfcSurfaceStyleLighting"/>
+    <ClassDefinition name="IfcSurfaceStyleRefraction"/>
+    <ClassDefinition name="IfcSurfaceStyleRendering"/>
+    <ClassDefinition name="IfcSurfaceStyleShading"/>
+    <ClassDefinition name="IfcSurfaceStyleWithTextures"/>
+    <ClassDefinition name="IfcSurfaceTexture"/>
+    <ClassDefinition name="IfcSweptAreaSolid">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcSweptDiskSolid">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcSweptSurface">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcSwitchingDeviceType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcSymbolStyle"/>
+    <ClassDefinition name="IfcSystem">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="IsGroupedBy"/>
+        <FieldDefinition name="ServicesBuildings"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcSystemFurnitureElementType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcTShapeProfileDef"/>
+    <ClassDefinition name="IfcTable"/>
+    <ClassDefinition name="IfcTableRow">
+        <FieldDefinition name="OfTable"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcTankType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcTask">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="OperatesOn"/>
+        <FieldDefinition name="IsSuccessorFrom"/>
+        <FieldDefinition name="IsPredecessorTo"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcTelecomAddress">
+        <FieldDefinition name="OfPerson"/>
+        <FieldDefinition name="OfOrganization"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcTendon">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="FillsVoids"/>
+        <FieldDefinition name="ConnectedTo"/>
+        <FieldDefinition name="HasCoverings"/>
+        <FieldDefinition name="HasProjections"/>
+        <FieldDefinition name="HasStructuralMember"/>
+        <FieldDefinition name="ReferencedInStructures"/>
+        <FieldDefinition name="HasPorts"/>
+        <FieldDefinition name="IsConnectionRealization"/>
+        <FieldDefinition name="ProvidesBoundaries"/>
+        <FieldDefinition name="ConnectedFrom"/>
+        <FieldDefinition name="ContainedInStructure"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcTendonAnchor">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="FillsVoids"/>
+        <FieldDefinition name="ConnectedTo"/>
+        <FieldDefinition name="HasCoverings"/>
+        <FieldDefinition name="HasProjections"/>
+        <FieldDefinition name="HasStructuralMember"/>
+        <FieldDefinition name="ReferencedInStructures"/>
+        <FieldDefinition name="HasPorts"/>
+        <FieldDefinition name="IsConnectionRealization"/>
+        <FieldDefinition name="ProvidesBoundaries"/>
+        <FieldDefinition name="ConnectedFrom"/>
+        <FieldDefinition name="ContainedInStructure"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcTerminatorSymbol">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcTextLiteral">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcTextLiteralWithExtent">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcTextStyle"/>
+    <ClassDefinition name="IfcTextStyleFontModel"/>
+    <ClassDefinition name="IfcTextStyleForDefinedFont"/>
+    <ClassDefinition name="IfcTextStyleTextModel"/>
+    <ClassDefinition name="IfcTextStyleWithBoxCharacteristics"/>
+    <ClassDefinition name="IfcTextureCoordinate">
+        <FieldDefinition name="AnnotatedSurface"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcTextureCoordinateGenerator">
+        <FieldDefinition name="AnnotatedSurface"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcTextureMap">
+        <FieldDefinition name="AnnotatedSurface"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcTextureVertex"/>
+    <ClassDefinition name="IfcThermalMaterialProperties"/>
+    <ClassDefinition name="IfcTimeSeries">
+        <FieldDefinition name="DocumentedBy"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcTimeSeriesReferenceRelationship"/>
+    <ClassDefinition name="IfcTimeSeriesSchedule">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="Controls"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcTimeSeriesValue"/>
+    <ClassDefinition name="IfcTopologicalRepresentationItem">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcTopologyRepresentation">
+        <FieldDefinition name="RepresentationMap"/>
+        <FieldDefinition name="OfProductRepresentation"/>
+        <FieldDefinition name="OfShapeAspect"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcTransformerType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcTransportElement">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="FillsVoids"/>
+        <FieldDefinition name="ConnectedTo"/>
+        <FieldDefinition name="HasCoverings"/>
+        <FieldDefinition name="HasProjections"/>
+        <FieldDefinition name="HasStructuralMember"/>
+        <FieldDefinition name="ReferencedInStructures"/>
+        <FieldDefinition name="HasPorts"/>
+        <FieldDefinition name="IsConnectionRealization"/>
+        <FieldDefinition name="ProvidesBoundaries"/>
+        <FieldDefinition name="ConnectedFrom"/>
+        <FieldDefinition name="ContainedInStructure"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcTransportElementType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcTrapeziumProfileDef"/>
+    <ClassDefinition name="IfcTrimmedCurve">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcTubeBundleType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcTwoDirectionRepeatFactor">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcTypeObject">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcTypeProduct">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcUShapeProfileDef"/>
+    <ClassDefinition name="IfcUnitAssignment"/>
+    <ClassDefinition name="IfcUnitaryEquipmentType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcValveType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcVector">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcVertex">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcVertexBasedTextureMap"/>
+    <ClassDefinition name="IfcVertexLoop">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcVertexPoint">
+        <FieldDefinition name="LayerAssignments"/>
+        <FieldDefinition name="StyledByItem"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcVibrationIsolatorType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcVirtualElement">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="FillsVoids"/>
+        <FieldDefinition name="ConnectedTo"/>
+        <FieldDefinition name="HasCoverings"/>
+        <FieldDefinition name="HasProjections"/>
+        <FieldDefinition name="HasStructuralMember"/>
+        <FieldDefinition name="ReferencedInStructures"/>
+        <FieldDefinition name="HasPorts"/>
+        <FieldDefinition name="IsConnectionRealization"/>
+        <FieldDefinition name="ProvidesBoundaries"/>
+        <FieldDefinition name="ConnectedFrom"/>
+        <FieldDefinition name="ContainedInStructure"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcVirtualGridIntersection"/>
+    <ClassDefinition name="IfcWall">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="FillsVoids"/>
+        <FieldDefinition name="ConnectedTo"/>
+        <FieldDefinition name="HasCoverings"/>
+        <FieldDefinition name="HasProjections"/>
+        <FieldDefinition name="HasStructuralMember"/>
+        <FieldDefinition name="ReferencedInStructures"/>
+        <FieldDefinition name="HasPorts"/>
+        <FieldDefinition name="IsConnectionRealization"/>
+        <FieldDefinition name="ProvidesBoundaries"/>
+        <FieldDefinition name="ConnectedFrom"/>
+        <FieldDefinition name="ContainedInStructure"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcWallStandardCase">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="FillsVoids"/>
+        <FieldDefinition name="ConnectedTo"/>
+        <FieldDefinition name="HasCoverings"/>
+        <FieldDefinition name="HasProjections"/>
+        <FieldDefinition name="HasStructuralMember"/>
+        <FieldDefinition name="ReferencedInStructures"/>
+        <FieldDefinition name="HasPorts"/>
+        <FieldDefinition name="IsConnectionRealization"/>
+        <FieldDefinition name="ProvidesBoundaries"/>
+        <FieldDefinition name="ConnectedFrom"/>
+        <FieldDefinition name="ContainedInStructure"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcWallType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcWasteTerminalType">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcWaterProperties"/>
+    <ClassDefinition name="IfcWindow">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="ReferencedBy"/>
+        <FieldDefinition name="FillsVoids"/>
+        <FieldDefinition name="ConnectedTo"/>
+        <FieldDefinition name="HasCoverings"/>
+        <FieldDefinition name="HasProjections"/>
+        <FieldDefinition name="HasStructuralMember"/>
+        <FieldDefinition name="ReferencedInStructures"/>
+        <FieldDefinition name="HasPorts"/>
+        <FieldDefinition name="IsConnectionRealization"/>
+        <FieldDefinition name="ProvidesBoundaries"/>
+        <FieldDefinition name="ConnectedFrom"/>
+        <FieldDefinition name="ContainedInStructure"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcWindowLiningProperties">
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="PropertyDefinitionOf"/>
+        <FieldDefinition name="DefinesType"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcWindowPanelProperties">
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="PropertyDefinitionOf"/>
+        <FieldDefinition name="DefinesType"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcWindowStyle">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="ObjectTypeOf"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcWorkControl">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="Controls"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcWorkPlan">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="Controls"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcWorkSchedule">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="Controls"/>
+    </ClassDefinition>
+    <ClassDefinition name="IfcZShapeProfileDef"/>
+    <ClassDefinition name="IfcZone">
+        <FieldDefinition name="HasAssignments"/>
+        <FieldDefinition name="IsDecomposedBy"/>
+        <FieldDefinition name="Decomposes"/>
+        <FieldDefinition name="HasAssociations"/>
+        <FieldDefinition name="IsDefinedBy"/>
+        <FieldDefinition name="IsGroupedBy"/>
+    </ClassDefinition>
+</PackageDefinition>

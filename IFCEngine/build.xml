@@ -1,0 +1,68 @@
+<project name="BIMserver IFCEngine">
+	<tstamp>
+		<format property="touch.time" pattern="yyyy-MM-dd'T'HH:mm:ss.S'+01:00'"/>
+	</tstamp>
+	<target name="engine">
+		<delete dir="builds"/>
+		<mkdir dir="builds" />
+		<copy todir="builds/BuildJar/lib">
+			<fileset dir="../lib">
+				<include name="*.jar" />
+			</fileset>
+			<fileset dir="../../buildingSMARTLibrary/lib">
+				<include name="*.jar" />
+			</fileset>
+			<fileset dir="../../Utils/lib">
+				<include name="*.jar" />
+			</fileset>
+			<fileset dir="../../CityGML/lib">
+				<include name="*.jar" />
+			</fileset>
+			<fileset dir="../../IFCEngine/lib">
+				<include name="**" />
+			</fileset>
+			<fileset dir="../../O3d/lib">
+				<include name="*.jar" />
+			</fileset>
+			<fileset dir="../../Emf/lib">
+				<include name="*.jar" />
+			</fileset>
+		</copy>
+		<javac srcdir="../src" destdir="builds/BuildJar/classes" debug="on" fork="true" memorymaximumsize="512m">
+			<src path="../../BimServer/generated" />
+			<src path="../../buildingSMARTLibrary/src" />
+			<src path="../../Ifc/src" />
+			<src path="../../Utils/src" />
+			<src path="../../Emf/src" />
+			<src path="../../Shared/src" />
+			<src path="../../CityGML/src" />
+			<src path="../../CityGML/src-gen" />
+			<src path="../../Collada/src" />
+			<src path="../../IFCEngine/src" />
+			<src path="../../O3d/src" />
+			<src path="../../Store/src" />
+			<classpath>
+				<fileset dir="builds/BuildJar/lib">
+					<include name="*.jar" />
+				</fileset>
+			</classpath>
+		</javac>
+		<jar jarfile="builds/BuildJar/lib/bimserver.jar" manifest="../${deploydir}/MAIN-MANIFEST.MF">
+			<fileset dir="builds/BuildJar/classes"/>
+		</jar>
+		<delete dir="builds/BuildJar/classes"/>
+		<javac destdir="builds/BuildJar" debug="on" srcdir="../expander" />
+		<copy todir="builds/BuildJar/org/bimserver">
+			<fileset dir="../expander/org/bimserver">
+				<include name="*.png" />
+			</fileset>
+		</copy>
+		<mkdir dir="builds/BuildJar/tmp"/>
+		<jar jarfile="builds/bimserver-${version}.jar" manifest="../${deploydir}/MANIFEST.MF">
+			<fileset dir="builds/BuildJar">
+				<exclude name="*.svn" />
+			</fileset>
+		</jar>
+		<delete dir="builds/BuildJar" />
+	</target>
+</project>

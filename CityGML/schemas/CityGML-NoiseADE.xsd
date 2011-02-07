@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns="http://www.citygml.org/ade/noise_de" 
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:gml="http://www.opengis.net/gml" 
+    xmlns:core="http://www.opengis.net/citygml/1.0"
+    xmlns:frn="http://www.opengis.net/citygml/cityfurniture/1.0" 
+    xmlns:tran="http://www.opengis.net/citygml/transportation/1.0"
+    xmlns:bldg="http://www.opengis.net/citygml/building/1.0"    
+    targetNamespace="http://www.citygml.org/ade/noise_de" 
+    elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xsd:import namespace="http://www.opengis.net/gml" schemaLocation="http://schemas.opengis.net/gml/3.1.1/base/gml.xsd"/>
+    <xsd:import namespace="http://www.opengis.net/citygml/1.0" schemaLocation="http://schemas.opengis.net/citygml/1.0/cityGMLBase.xsd"/>
+    <xsd:import namespace="http://www.opengis.net/citygml/transportation/1.0" schemaLocation="http://schemas.opengis.net/citygml/transportation/1.0/transportation.xsd"/>
+    <xsd:import namespace="http://www.opengis.net/citygml/building/1.0" schemaLocation="http://schemas.opengis.net/citygml/building/1.0/building.xsd"/>
+    <xsd:import namespace="http://www.opengis.net/citygml/cityfurniture/1.0" schemaLocation="http://schemas.opengis.net/citygml/cityfurniture/1.0/cityFurniture.xsd"/>
+    <!-- ==CityGML provides a mechanism to derive application schemas for specific applications, e.g. noise dispersion mapping -->
+    <!-- ==or management of monuments. For each application, a specific schema-file (xsd) has to be defined. -->
+    <!-- ==In this schema, arbitrary attributes (child elements) may be added to city objects. -->
+    <!-- ==This is enabled by adding a generic element (abstract element of type anyType beeing the root type of any xml type) -->
+    <!-- ==to each feature type in CityGML. This element is named _GenericApplicationPropertyOf<CityGMLFeature>, where -->
+    <!-- ==<CityGMLFeature> is replaced by the name of the corresponding element, e.g. CityObject. -->
+    <!-- ==By defining an element in a subschema and by adding it to the substitution group -->
+    <!-- ==_GenericApplicationPropertyOf<CityGMLFeature>, this element is added to the city object. -->
+    <!-- == this Schema uses these mechanisms of CityGML and defines a more specific application Schema for the noise protection context -->
+    <!-- ============================================================================================ -->
+    <!-- =================================== NoiseCityFurnitureSegment  ================================== -->
+    <!-- ============================================================================================ -->
+    <xsd:element name="noiseCityFurnitureSegmentProperty" type="NoiseCityFurnitureSegmentPropertyType"
+        substitutionGroup="frn:_GenericApplicationPropertyOfCityFurniture"/>
+    <!-- ============================================================================================ -->
+    <xsd:complexType name="NoiseCityFurnitureSegmentPropertyType">
+        <xsd:sequence minOccurs="0">
+            <xsd:element ref="NoiseCityFurnitureSegment" minOccurs="0"/>
+        </xsd:sequence>
+        <xsd:attributeGroup ref="gml:AssociationAttributeGroup"/>
+    </xsd:complexType>
+    <!-- ============================================================================================ -->
+    <xsd:complexType name="NoiseCityFurnitureSegmentType">
+        <xsd:complexContent>
+            <xsd:extension base="core:AbstractCityObjectType">
+                <xsd:sequence>
+                    <xsd:element name="type" type="NoiseCityFurnitureSegmentTypeType" minOccurs="0"/>
+                    <xsd:element name="reflection" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="reflectionCorrection" type="gml:MeasureType" minOccurs="0"/>
+                    <xsd:element name="height" type="gml:LengthType" minOccurs="0"/>
+                    <xsd:element name="distance" type="gml:LengthType" minOccurs="0"/>
+                    <xsd:element name="lod0BaseLine" type="gml:CurvePropertyType"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <!-- ExternalCodeList: NoiseCityFurnitureSegmentTypeType -> see NoiseCityFurnitureSegmentTypeType.xml -->
+    <!-- ============================================================================================ -->
+    <xsd:simpleType name="NoiseCityFurnitureSegmentTypeType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <!-- ============================================================================================ -->
+    <xsd:element name="NoiseCityFurnitureSegment" type="NoiseCityFurnitureSegmentType" substitutionGroup="core:_CityObject"/>
+    <!-- ============================================================================================ -->
+    <!-- =================================== NoiseRoadSegment  ===================================== -->
+    <!-- ============================================================================================ -->
+    <xsd:element name="noiseRoadSegmentProperty" type="NoiseRoadSegmentPropertyType"
+        substitutionGroup="tran:_GenericApplicationPropertyOfRoad"/>
+    <!-- ============================================================================================ -->
+    <xsd:complexType name="NoiseRoadSegmentPropertyType">
+        <xsd:sequence minOccurs="0">
+            <xsd:element ref="NoiseRoadSegment"/>
+        </xsd:sequence>
+        <xsd:attributeGroup ref="gml:AssociationAttributeGroup"/>
+    </xsd:complexType>
+    <!-- ============================================================================================ -->
+    <xsd:complexType name="NoiseRoadSegmentType">
+        <xsd:complexContent>
+            <xsd:extension base="tran:AbstractTransportationObjectType">
+                <xsd:sequence>
+                    <xsd:element name="mDay" type="gml:MeasureType" minOccurs="0"/>
+                    <xsd:element name="mEvening" type="gml:MeasureType" minOccurs="0"/>
+                    <xsd:element name="mNight" type="gml:MeasureType" minOccurs="0"/>
+                    <xsd:element name="mDay16" type="gml:MeasureType" minOccurs="0"/>
+                    <xsd:element name="pDay" type="gml:MeasureType" minOccurs="0"/>
+                    <xsd:element name="pEvening" type="gml:MeasureType" minOccurs="0"/>
+                    <xsd:element name="pNight" type="gml:MeasureType" minOccurs="0"/>
+                    <xsd:element name="pDay16" type="gml:MeasureType" minOccurs="0"/>
+                    <xsd:element name="dtv" type="gml:MeasureType" minOccurs="0"/>
+                    <xsd:element name="speedDayPkw" type="gml:SpeedType" minOccurs="0"/>
+                    <xsd:element name="speedEveningPkw" type="gml:SpeedType" minOccurs="0"/>
+                    <xsd:element name="speedNightPkw" type="gml:SpeedType" minOccurs="0"/>
+                    <xsd:element name="speedDayLkw" type="gml:SpeedType" minOccurs="0"/>
+                    <xsd:element name="speedEveningLkw" type="gml:SpeedType" minOccurs="0"/>
+                    <xsd:element name="speedNightLkw" type="gml:SpeedType" minOccurs="0"/>
+                    <xsd:element name="roadSurfaceMaterial" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="roadSurfaceCorrection" type="gml:MeasureType" minOccurs="0"/>
+                    <xsd:element name="distanceCarriageway" type="gml:LengthType" minOccurs="0"/>
+                    <xsd:element name="distanceD" type="gml:LengthType" minOccurs="0"/>
+                    <xsd:element name="bridge" type="xsd:boolean" minOccurs="0"/>
+                    <xsd:element name="tunnel" type="xsd:boolean" minOccurs="0"/>
+                    <xsd:element name="roadGradientPercent" type="gml:MeasureType" minOccurs="0"/>
+                    <xsd:element name="lod0BaseLine" type="gml:CurvePropertyType"/>
+                    <xsd:element name="lineage" type="xsd:string" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <!-- ============================================================================================ -->
+    <xsd:element name="NoiseRoadSegment" type="NoiseRoadSegmentType" substitutionGroup="core:_CityObject"/>
+    <!-- ============================================================================================ -->
+    <!-- =================================== NoiseRailwaySegment  =================================== -->
+    <!-- ============================================================================================ -->
+    <xsd:element name="noiseRailwaySegmentProperty" type="NoiseRailwaySegmentPropertyType"
+        substitutionGroup="tran:_GenericApplicationPropertyOfRailway"/>
+    <!-- ============================================================================================ -->
+    <xsd:complexType name="NoiseRailwaySegmentPropertyType">
+        <xsd:sequence minOccurs="0">
+            <xsd:element ref="NoiseRailwaySegment"/>
+        </xsd:sequence>
+        <xsd:attributeGroup ref="gml:AssociationAttributeGroup"/>
+    </xsd:complexType>
+    <!-- ============================================================================================ -->
+    <xsd:complexType name="NoiseRailwaySegmentType">
+        <xsd:complexContent>
+            <xsd:extension base="tran:AbstractTransportationObjectType">
+                <xsd:sequence>
+                    <xsd:element name="railwaySurfaceMaterial" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="railwaySurfaceCorrection" type="gml:MeasureType" minOccurs="0"/>
+                    <xsd:element name="bridge" type="xsd:boolean" minOccurs="0"/>
+                    <xsd:element name="crossing" type="xsd:boolean" minOccurs="0"/>
+                    <xsd:element name="curveRadius" type="gml:LengthType" minOccurs="0"/>
+                    <xsd:element name="additionalCorrectionSegment" type="gml:MeasureType" minOccurs="0"/>
+                    <xsd:element name="lod0BaseLine" type="gml:CurvePropertyType"/>
+                    <xsd:element name="usedBy" type="TrainPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <!-- ============================================================================================ -->
+    <xsd:element name="NoiseRailwaySegment" type="NoiseRailwaySegmentType" substitutionGroup="core:_CityObject"/>
+    <!-- ============================================================================================ -->
+    <!-- ============================================ Train  =========================================== -->
+    <!-- ============================================================================================ -->
+    <xsd:complexType name="TrainPropertyType">
+        <xsd:sequence>
+            <xsd:element name="Train" type="TrainType"/>
+        </xsd:sequence>
+        <xsd:attributeGroup ref="gml:AssociationAttributeGroup"/>
+    </xsd:complexType>
+    <!-- ============================================================================================ -->
+    <xsd:complexType name="TrainType">
+        <xsd:complexContent>
+            <xsd:extension base="gml:AbstractFeatureType">
+                <xsd:sequence>
+                    <xsd:element name="trainType" type="xsd:string"/>
+                    <xsd:element name="trainTypeCorrection" type="gml:MeasureType" minOccurs="0"/>
+                    <xsd:element name="brakePortionDay" type="gml:MeasureType" minOccurs="0"/>
+                    <xsd:element name="brakePortionEvening" type="gml:MeasureType" minOccurs="0"/>
+                    <xsd:element name="brakePortionNight" type="gml:MeasureType" minOccurs="0"/>
+                    <xsd:element name="lengthDay" type="gml:LengthType" minOccurs="0"/>
+                    <xsd:element name="lengthEvening" type="gml:LengthType" minOccurs="0"/>
+                    <xsd:element name="lengthNight" type="gml:LengthType" minOccurs="0"/>
+                    <xsd:element name="speedDay" type="gml:SpeedType" minOccurs="0"/>
+                    <xsd:element name="speedEvening" type="gml:SpeedType" minOccurs="0"/>
+                    <xsd:element name="speedNight" type="gml:SpeedType" minOccurs="0"/>
+                    <xsd:element name="additionalCorrectionTrain" type="gml:MeasureType" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <!-- ============================================================================================ -->
+    <!-- =================================== Application specific attributes for AbstractBuilding  =================== -->
+    <!-- ============================================================================================ -->
+    <xsd:element name="buildingReflection" type="xsd:string"
+        substitutionGroup="bldg:_GenericApplicationPropertyOfAbstractBuilding"/>
+    <xsd:element name="buildingReflectionCorrection" type="gml:MeasureType"
+        substitutionGroup="bldg:_GenericApplicationPropertyOfAbstractBuilding"/>
+    <xsd:element name="buildingLDenMax" type="gml:MeasureType"
+        substitutionGroup="bldg:_GenericApplicationPropertyOfAbstractBuilding"/>
+    <xsd:element name="buildingLDenMin" type="gml:MeasureType"
+        substitutionGroup="bldg:_GenericApplicationPropertyOfAbstractBuilding"/>
+    <xsd:element name="buildingLDenEq" type="gml:MeasureType"
+        substitutionGroup="bldg:_GenericApplicationPropertyOfAbstractBuilding"/>
+    <xsd:element name="buildingLNightMax" type="gml:MeasureType"
+        substitutionGroup="bldg:_GenericApplicationPropertyOfAbstractBuilding"/>
+    <xsd:element name="buildingLNightMin" type="gml:MeasureType"
+        substitutionGroup="bldg:_GenericApplicationPropertyOfAbstractBuilding"/>
+    <xsd:element name="buildingLNightEq" type="gml:MeasureType"
+        substitutionGroup="bldg:_GenericApplicationPropertyOfAbstractBuilding"/>
+    <xsd:element name="buildingHabitants" type="xsd:positiveInteger"
+        substitutionGroup="bldg:_GenericApplicationPropertyOfAbstractBuilding"/>
+    <xsd:element name="buildingAppartments" type="xsd:positiveInteger"
+        substitutionGroup="bldg:_GenericApplicationPropertyOfAbstractBuilding"/>
+    <xsd:element name="buildingImmissionPoints" type="gml:integerList"
+        substitutionGroup="bldg:_GenericApplicationPropertyOfAbstractBuilding"/>
+    <xsd:element name="remark" type="xsd:string" substitutionGroup="bldg:_GenericApplicationPropertyOfAbstractBuilding"/>
+</xsd:schema>

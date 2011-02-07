@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CityGML Version No. 1.0.0, May 19th, 2008-->
+<!-- CityGML - GML3 application schema for the 3D city model of the Special Interest Group 3D (SIG 3D) of GDI NRW-->
+<!-- Editors: PD Dr. Gerhard Groeger, Institute for Geodesy and Geoinformation, University of Bonn & -->
+<!-- Prof. Dr. Thomas H. Kolbe, Institute for Geodesy and Geoinformation Science, Technical University of Berlin -->
+<!-- For further information see: www.citygml.org -->
+<!-- For the history of changes and additions to this CityGML schema see file history.txt -->
+<xs:schema xmlns="http://www.opengis.net/citygml/transportation/1.0" xmlns:core="http://www.opengis.net/citygml/1.0"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml"
+    targetNamespace="http://www.opengis.net/citygml/transportation/1.0" elementFormDefault="qualified"
+    attributeFormDefault="unqualified">
+    <xs:import namespace="http://www.opengis.net/gml" schemaLocation="../../GML/3.1.1/base/gml.xsd"/>
+    <xs:import namespace="http://www.opengis.net/citygml/1.0" schemaLocation="cityGMLBase.xsd"/>
+    <!-- ========================================================================================= -->
+    <!-- ===========================CityGML Transportation module ===================================== -->
+    <!-- ========================================================================================= -->
+    <xs:complexType name="AbstractTransportationObjectType" abstract="true">
+        <xs:annotation>
+            <xs:documentation>Type describing the abstract superclass for transportation objects. </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="core:AbstractCityObjectType">
+                <xs:sequence>
+                    <xs:element ref="_GenericApplicationPropertyOfTransportationObject" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <!-- ========================================================================================= -->
+    <xs:element name="_TransportationObject" type="AbstractTransportationObjectType" substitutionGroup="core:_CityObject"/>
+    <!-- ========================================================================================= -->
+    <xs:element name="_GenericApplicationPropertyOfTransportationObject" type="xs:anyType" abstract="true"/>
+    <!-- ========================================================================================= -->
+    <xs:complexType name="TransportationComplexType">
+        <xs:annotation>
+            <xs:documentation>Type describing transportation complexes, which are aggregated features, e.g. roads, which consist
+                of parts (traffic areas, e.g. pedestrian path, and auxiliary traffic areas). As subclass of _CityObject, a
+                TransportationComplex inherits all attributes and relations, in particular an id, names, external references, and
+                generalization relations. </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="AbstractTransportationObjectType">
+                <xs:sequence>
+                    <xs:element name="function" type="TransportationComplexFunctionType" minOccurs="0" maxOccurs="unbounded"/>
+                    <xs:element name="usage" type="TransportationComplexUsageType" minOccurs="0" maxOccurs="unbounded"/>
+                    <xs:element name="trafficArea" type="TrafficAreaPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+                    <xs:element name="auxiliaryTrafficArea" type="AuxiliaryTrafficAreaPropertyType" minOccurs="0"
+                        maxOccurs="unbounded"/>
+                    <xs:element name="lod0Network" type="gml:GeometricComplexPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+                    <xs:element name="lod1MultiSurface" type="gml:MultiSurfacePropertyType" minOccurs="0"/>
+                    <xs:element name="lod2MultiSurface" type="gml:MultiSurfacePropertyType" minOccurs="0"/>
+                    <xs:element name="lod3MultiSurface" type="gml:MultiSurfacePropertyType" minOccurs="0"/>
+                    <xs:element name="lod4MultiSurface" type="gml:MultiSurfacePropertyType" minOccurs="0"/>
+                    <xs:element ref="_GenericApplicationPropertyOfTransportationComplex" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <!-- ========================================================================================= -->
+    <xs:element name="TransportationComplex" type="TransportationComplexType" substitutionGroup="_TransportationObject"/>
+    <!-- ========================================================================================= -->
+    <xs:element name="_GenericApplicationPropertyOfTransportationComplex" type="xs:anyType" abstract="true"/>
+    <!-- ========================================================================================= -->
+    <xs:complexType name="TrafficAreaType">
+        <xs:annotation>
+            <xs:documentation>Type describing the class for traffic Areas. Traffic areas are the surfaces where traffic actually
+                takes place. As subclass of _CityObject, a TrafficArea inherits all attributes and relations, in particular an id,
+                names, external references, and generalization relations. </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="AbstractTransportationObjectType">
+                <xs:sequence>
+                    <xs:element name="usage" type="TrafficAreaUsageType" minOccurs="0" maxOccurs="unbounded"/>
+                    <xs:element name="function" type="TrafficAreaFunctionType" minOccurs="0" maxOccurs="unbounded"/>
+                    <xs:element name="surfaceMaterial" type="TrafficSurfaceMaterialType" minOccurs="0"/>
+                    <xs:element name="lod2MultiSurface" type="gml:MultiSurfacePropertyType" minOccurs="0"/>
+                    <xs:element name="lod3MultiSurface" type="gml:MultiSurfacePropertyType" minOccurs="0"/>
+                    <xs:element name="lod4MultiSurface" type="gml:MultiSurfacePropertyType" minOccurs="0"/>
+                    <xs:element ref="_GenericApplicationPropertyOfTrafficArea" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <!-- ========================================================================================= -->
+    <xs:element name="TrafficArea" type="TrafficAreaType" substitutionGroup="_TransportationObject"/>
+    <!-- ========================================================================================= -->
+    <xs:element name="_GenericApplicationPropertyOfTrafficArea" type="xs:anyType" abstract="true"/>
+    <!-- ========================================================================================= -->
+    <xs:complexType name="AuxiliaryTrafficAreaType">
+        <xs:annotation>
+            <xs:documentation>Type describing the class for auxiliary traffic Areas. These are the surfaces where no traffic
+                actually takes place, but which belong to a transportation object. Examples are kerbstones, road markings and
+                grass stripes. As subclass of _CityObject, an AuxiliaryTrafficArea inherits all attributes and relations, in
+                particular an id, names, external references, and generalization relations. </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="AbstractTransportationObjectType">
+                <xs:sequence>
+                    <xs:element name="function" type="AuxiliaryTrafficAreaFunctionType" minOccurs="0" maxOccurs="unbounded"/>
+                    <xs:element name="surfaceMaterial" type="TrafficSurfaceMaterialType" minOccurs="0"/>
+                    <xs:element name="lod2MultiSurface" type="gml:MultiSurfacePropertyType" minOccurs="0"/>
+                    <xs:element name="lod3MultiSurface" type="gml:MultiSurfacePropertyType" minOccurs="0"/>
+                    <xs:element name="lod4MultiSurface" type="gml:MultiSurfacePropertyType" minOccurs="0"/>
+                    <xs:element ref="_GenericApplicationPropertyOfAuxiliaryTrafficArea" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <!-- ========================================================================================= -->
+    <xs:element name="AuxiliaryTrafficArea" type="AuxiliaryTrafficAreaType" substitutionGroup="_TransportationObject"/>
+    <!-- ========================================================================================= -->
+    <xs:element name="_GenericApplicationPropertyOfAuxiliaryTrafficArea" type="xs:anyType" abstract="true"/>
+    <!-- ========================================================================================= -->
+    <xs:complexType name="TrafficAreaPropertyType">
+        <xs:annotation>
+            <xs:documentation>Denotes the relation of TransportationComplex to its parts, which are traffic areas. The
+                TrafficAreaPropertyType element must either carry a reference to a TrafficArea object or contain a TrafficArea
+                object inline, but neither both nor none. </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:restriction base="gml:AssociationType">
+                <xs:sequence minOccurs="0">
+                    <xs:element ref="TrafficArea"/>
+                </xs:sequence>
+            </xs:restriction>
+        </xs:complexContent>
+    </xs:complexType>
+    <!-- ========================================================================================= -->
+    <xs:complexType name="AuxiliaryTrafficAreaPropertyType">
+        <xs:annotation>
+            <xs:documentation>Denotes the relation of TransportationComplex to its parts, which are auxiliary traffic areas. The
+                TrafficAreaPropertyType element must either carry a reference to a TrafficArea object or contain a TrafficArea
+                object inline, but neither both nor none. </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:restriction base="gml:AssociationType">
+                <xs:sequence minOccurs="0">
+                    <xs:element ref="AuxiliaryTrafficArea"/>
+                </xs:sequence>
+            </xs:restriction>
+        </xs:complexContent>
+    </xs:complexType>
+    <!-- ========================================================================================= -->
+    <!-- ============================Subtypes of Transportation Complex================================= -->
+    <!-- ========================================================================================= -->
+    <xs:complexType name="TrackType">
+        <xs:annotation>
+            <xs:documentation>Type describing the class for tracks. A track is a small path mainly used by pedestrians. As
+                subclass of _CityObject, a Track inherits all attributes and relations, in particular an id, names, external
+                references, and generalization relations. </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="TransportationComplexType">
+                <xs:sequence>
+                    <xs:element ref="_GenericApplicationPropertyOfTrack" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <!-- ========================================================================================= -->
+    <xs:element name="Track" type="TrackType" substitutionGroup="TransportationComplex"/>
+    <!-- ========================================================================================= -->
+    <xs:element name="_GenericApplicationPropertyOfTrack" type="xs:anyType" abstract="true"/>
+    <!-- ========================================================================================= -->
+    <xs:complexType name="RoadType">
+        <xs:annotation>
+            <xs:documentation>Type describing the class for roads. As subclass of _CityObject, a Road inherits all attributes and
+                relations, in particular an id, names, external references, and generalization relations. </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="TransportationComplexType">
+                <xs:sequence>
+                    <xs:element ref="_GenericApplicationPropertyOfRoad" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <!-- ========================================================================================= -->
+    <xs:element name="Road" type="RoadType" substitutionGroup="TransportationComplex"/>
+    <!-- ========================================================================================= -->
+    <xs:element name="_GenericApplicationPropertyOfRoad" type="xs:anyType" abstract="true"/>
+    <!-- ========================================================================================= -->
+    <xs:complexType name="RailwayType">
+        <xs:annotation>
+            <xs:documentation>Type describing the class for railways. As subclass of _CityObject, a Railway inherits all
+                attributes and relations, in particular an id, names, external references, and generalization relations.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="TransportationComplexType">
+                <xs:sequence>
+                    <xs:element ref="_GenericApplicationPropertyOfRailway" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <!-- ========================================================================================= -->
+    <xs:element name="Railway" type="RailwayType" substitutionGroup="TransportationComplex"/>
+    <!-- ========================================================================================= -->
+    <xs:element name="_GenericApplicationPropertyOfRailway" type="xs:anyType" abstract="true"/>
+    <!-- ========================================================================================= -->
+    <xs:complexType name="SquareType">
+        <xs:annotation>
+            <xs:documentation>Type describing the class for squares. A square is an open area commonly found in cities (like a
+                plaza). As subclass of _CityObject, a Square inherits all attributes and relations, in particular an id, names,
+                external references, and generalization relations. </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="TransportationComplexType">
+                <xs:sequence>
+                    <xs:element ref="_GenericApplicationPropertyOfSquare" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <!-- ========================================================================================= -->
+    <xs:element name="Square" type="SquareType" substitutionGroup="TransportationComplex"/>
+    <!-- ========================================================================================= -->
+    <xs:element name="_GenericApplicationPropertyOfSquare" type="xs:anyType" abstract="true"/>
+    <!-- ========================================================================================= -->
+    <xs:simpleType name="TransportationComplexFunctionType">
+        <xs:annotation>
+            <xs:documentation>Function of a transportation complex. The values of this type are defined in the XML file
+                TransportationComplexFunctionType.xml, according to the dictionary concept of GML3. </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <!-- ========================================================================================= -->
+    <xs:simpleType name="TransportationComplexUsageType">
+        <xs:annotation>
+            <xs:documentation>Actual Usage of a transportation complex. The values of this type are defined in the XML file
+                TransportationComplexUsageType.xml, according to the dictionary concept of GML3. </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <!-- ========================================================================================= -->
+    <xs:simpleType name="TrafficAreaFunctionType">
+        <xs:annotation>
+            <xs:documentation>Function of a traffic area. The values of this type are defined in the XML file
+                TrafficAreaFunctionType.xml, according to the dictionary concept of GML3. </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <!-- ========================================================================================= -->
+    <xs:simpleType name="AuxiliaryTrafficAreaFunctionType">
+        <xs:annotation>
+            <xs:documentation>Function of an auxiliary traffic area. The values of this type are defined in the XML file
+                AuxiliaryTrafficAreaFunctionType.xml, according to the dictionary concept of GML3. </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <!-- ========================================================================================= -->
+    <xs:simpleType name="TrafficAreaUsageType">
+        <xs:annotation>
+            <xs:documentation>Usage of a traffic area. The values of this type are defined in the XML file
+                TrafficAreaUsageType.xml, according to the dictionary concept of GML3. </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <!-- ========================================================================================= -->
+    <xs:simpleType name="TrafficSurfaceMaterialType">
+        <xs:annotation>
+            <xs:documentation>Type for surface materials of transportation objects. The values of this type are defined in the XML
+                file TrafficSurfaceMaterialType.xml, according to the dictionary concept of GML3. </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <!-- ========================================================================================= -->
+</xs:schema>

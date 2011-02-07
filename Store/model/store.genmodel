@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="Store/src"
+    modelPluginID="Emf2Codb" modelName="Store" modelPluginClass="" rootExtendsInterface="org.bimserver.emf.IdEObject"
+    rootExtendsClass="org.bimserver.emf.IdEObjectImpl" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="6.0" copyrightFields="false">
+  <foreignModel>store.ecore</foreignModel>
+  <genPackages prefix="Store" basePackage="org.bimserver.database" disposableProviderFactory="true"
+      ecorePackage="store.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="store.ecore#//ObjectState">
+      <genEnumLiterals ecoreEnumLiteral="store.ecore#//ObjectState/ACTIVE"/>
+      <genEnumLiterals ecoreEnumLiteral="store.ecore#//ObjectState/DELETED"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="store.ecore#//UserType">
+      <genEnumLiterals ecoreEnumLiteral="store.ecore#//UserType/ADMIN"/>
+      <genEnumLiterals ecoreEnumLiteral="store.ecore#//UserType/USER"/>
+      <genEnumLiterals ecoreEnumLiteral="store.ecore#//UserType/ANONYMOUS"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="store.ecore#//SIPrefix">
+      <genEnumLiterals ecoreEnumLiteral="store.ecore#//SIPrefix/meter"/>
+      <genEnumLiterals ecoreEnumLiteral="store.ecore#//SIPrefix/attometer"/>
+      <genEnumLiterals ecoreEnumLiteral="store.ecore#//SIPrefix/femtometer"/>
+      <genEnumLiterals ecoreEnumLiteral="store.ecore#//SIPrefix/picometer"/>
+      <genEnumLiterals ecoreEnumLiteral="store.ecore#//SIPrefix/nanometer"/>
+      <genEnumLiterals ecoreEnumLiteral="store.ecore#//SIPrefix/micrometer"/>
+      <genEnumLiterals ecoreEnumLiteral="store.ecore#//SIPrefix/millimeter"/>
+      <genEnumLiterals ecoreEnumLiteral="store.ecore#//SIPrefix/centimeter"/>
+      <genEnumLiterals ecoreEnumLiteral="store.ecore#//SIPrefix/decimeter"/>
+      <genEnumLiterals ecoreEnumLiteral="store.ecore#//SIPrefix/decameter"/>
+      <genEnumLiterals ecoreEnumLiteral="store.ecore#//SIPrefix/hectometer"/>
+      <genEnumLiterals ecoreEnumLiteral="store.ecore#//SIPrefix/kilometer"/>
+      <genEnumLiterals ecoreEnumLiteral="store.ecore#//SIPrefix/megameter"/>
+      <genEnumLiterals ecoreEnumLiteral="store.ecore#//SIPrefix/gigameter"/>
+      <genEnumLiterals ecoreEnumLiteral="store.ecore#//SIPrefix/terameter"/>
+      <genEnumLiterals ecoreEnumLiteral="store.ecore#//SIPrefix/petameter"/>
+      <genEnumLiterals ecoreEnumLiteral="store.ecore#//SIPrefix/exameter"/>
+    </genEnums>
+    <genClasses ecoreClass="store.ecore#//Project">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute store.ecore#//Project/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute store.ecore#//Project/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference store.ecore#//Project/hasAuthorizedUsers"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference store.ecore#//Project/concreteRevisions"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference store.ecore#//Project/revisions"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference store.ecore#//Project/lastConcreteRevision"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference store.ecore#//Project/lastRevision"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference store.ecore#//Project/checkouts"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute store.ecore#//Project/state"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute store.ecore#//Project/createdDate"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference store.ecore#//Project/createdBy"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference store.ecore#//Project/geoTag"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference store.ecore#//Project/subProjects"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference store.ecore#//Project/parent"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute store.ecore#//Project/description"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference store.ecore#//Project/clashDetectionSettings"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute store.ecore#//Project/exportLengthMeasurePrefix"/>
+    </genClasses>
+    <genClasses ecoreClass="store.ecore#//User">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute store.ecore#//User/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute store.ecore#//User/password"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference store.ecore#//User/hasRightsOn"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference store.ecore#//User/revisions"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute store.ecore#//User/state"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute store.ecore#//User/createdOn"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference store.ecore#//User/createdBy"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute store.ecore#//User/userType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute store.ecore#//User/username"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute store.ecore#//User/lastSeen"/>
+    </genClasses>
+    <genClasses ecoreClass="store.ecore#//Checkout">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference store.ecore#//Checkout/user"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference store.ecore#//Checkout/revision"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference store.ecore#//Checkout/project"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute store.ecore#//Checkout/date"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference store.ecore#//Checkout/checkin"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute store.ecore#//Checkout/active"/>
+    </genClasses>
+    <genClasses ecoreClass="store.ecore#//GeoTag">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute store.ecore#//GeoTag/enabled"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference store.ecore#//GeoTag/projects"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute store.ecore#//GeoTag/x"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute store.ecore#//GeoTag/y"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute store.ecore#//GeoTag/z"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute store.ecore#//GeoTag/epsg"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute store.ecore#//GeoTag/directionAngle"/>
+    </genClasses>
+    <genClasses ecoreClass="store.ecore#//ConcreteRevision">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute store.ecore#//ConcreteRevision/id"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference store.ecore#//ConcreteRevision/project"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute store.ecore#//ConcreteRevision/finalized"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute store.ecore#//ConcreteRevision/checksum"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference store.ecore#//ConcreteRevision/revisions"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute store.ecore#//ConcreteRevision/size"/>
+    </genClasses>
+    <genClasses ecoreClass="store.ecore#//Revision">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute store.ecore#//Revision/id"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference store.ecore#//Revision/user"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute store.ecore#//Revision/date"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute store.ecore#//Revision/comment"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute store.ecore#//Revision/size"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference store.ecore#//Revision/concreteRevisions"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference store.ecore#//Revision/lastConcreteRevision"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference store.ecore#//Revision/checkouts"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference store.ecore#//Revision/project"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute store.ecore#//Revision/finalized"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference store.ecore#//Revision/lastClashes"/>
+    </genClasses>
+    <genClasses ecoreClass="store.ecore#//Clash">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference store.ecore#//Clash/revision"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute store.ecore#//Clash/guid1"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute store.ecore#//Clash/guid2"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute store.ecore#//Clash/name1"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute store.ecore#//Clash/name2"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute store.ecore#//Clash/type1"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute store.ecore#//Clash/type2"/>
+    </genClasses>
+    <genClasses ecoreClass="store.ecore#//ClashDetectionSettings">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute store.ecore#//ClashDetectionSettings/enabled"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference store.ecore#//ClashDetectionSettings/projects"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute store.ecore#//ClashDetectionSettings/margin"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference store.ecore#//ClashDetectionSettings/revisions"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute store.ecore#//ClashDetectionSettings/ignoredClasses"/>
+    </genClasses>
+    <nestedGenPackages prefix="Log" disposableProviderFactory="true" ecorePackage="store.ecore#//log">
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="store.ecore#//log/AccessMethod">
+        <genEnumLiterals ecoreEnumLiteral="store.ecore#//log/AccessMethod/SOAP"/>
+        <genEnumLiterals ecoreEnumLiteral="store.ecore#//log/AccessMethod/WEB_INTERFACE"/>
+        <genEnumLiterals ecoreEnumLiteral="store.ecore#//log/AccessMethod/INTERNAL"/>
+      </genEnums>
+      <genClasses ecoreClass="store.ecore#//log/ServerLog">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference store.ecore#//log/ServerLog/actions"/>
+      </genClasses>
+      <genClasses ecoreClass="store.ecore#//log/LogAction">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute store.ecore#//log/LogAction/date"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference store.ecore#//log/LogAction/executor"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute store.ecore#//log/LogAction/accessMethod"/>
+      </genClasses>
+      <genClasses ecoreClass="store.ecore#//log/NewUserAdded">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference store.ecore#//log/NewUserAdded/user"/>
+      </genClasses>
+      <genClasses ecoreClass="store.ecore#//log/NewProjectAdded">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference store.ecore#//log/NewProjectAdded/project"/>
+      </genClasses>
+      <genClasses ecoreClass="store.ecore#//log/NewRevisionAdded">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference store.ecore#//log/NewRevisionAdded/revision"/>
+      </genClasses>
+      <genClasses ecoreClass="store.ecore#//log/NewCheckoutAdded">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference store.ecore#//log/NewCheckoutAdded/checkout"/>
+      </genClasses>
+      <genClasses ecoreClass="store.ecore#//log/SettingsSaved"/>
+      <genClasses ecoreClass="store.ecore#//log/UserAddedToProject">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference store.ecore#//log/UserAddedToProject/user"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference store.ecore#//log/UserAddedToProject/project"/>
+      </genClasses>
+      <genClasses ecoreClass="store.ecore#//log/NewIgnoreFileUploaded"/>
+      <genClasses ecoreClass="store.ecore#//log/Download">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference store.ecore#//log/Download/revision"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute store.ecore#//log/Download/type"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute store.ecore#//log/Download/zipped"/>
+      </genClasses>
+      <genClasses ecoreClass="store.ecore#//log/UserRemovedFromProject">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference store.ecore#//log/UserRemovedFromProject/user"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference store.ecore#//log/UserRemovedFromProject/project"/>
+      </genClasses>
+      <genClasses ecoreClass="store.ecore#//log/ProjectDeleted">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference store.ecore#//log/ProjectDeleted/project"/>
+      </genClasses>
+      <genClasses ecoreClass="store.ecore#//log/UserDeleted">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference store.ecore#//log/UserDeleted/user"/>
+      </genClasses>
+      <genClasses ecoreClass="store.ecore#//log/PasswordReset">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference store.ecore#//log/PasswordReset/user"/>
+      </genClasses>
+      <genClasses ecoreClass="store.ecore#//log/DatabaseCreated"/>
+      <genClasses ecoreClass="store.ecore#//log/ServerStarted"/>
+      <genClasses ecoreClass="store.ecore#//log/ProjectUpdated">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference store.ecore#//log/ProjectUpdated/project"/>
+      </genClasses>
+      <genClasses ecoreClass="store.ecore#//log/UserUndeleted">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference store.ecore#//log/UserUndeleted/user"/>
+      </genClasses>
+      <genClasses ecoreClass="store.ecore#//log/ProjectUndeleted">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference store.ecore#//log/ProjectUndeleted/project"/>
+      </genClasses>
+    </nestedGenPackages>
+  </genPackages>
+</genmodel:GenModel>
