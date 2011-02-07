@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/IFCEngine"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Shared"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Utils"/>
+	<classpathentry kind="lib" path="lib/jettison-1.0.1.jar"/>
+	<classpathentry kind="lib" path="lib/tar.jar"/>
+	<classpathentry kind="lib" path="lib/json.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Ifc"/>
+	<classpathentry kind="lib" path="/BimServer/lib/guava-r07.jar" sourcepath="/BimServer/libsrc/guava-src-r07.zip"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

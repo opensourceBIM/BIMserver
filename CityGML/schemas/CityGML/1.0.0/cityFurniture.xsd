@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CityGML Version No. 1.0.0, May 19th, 2008-->
+<!-- CityGML - GML3 application schema for the 3D city model of the Special Interest Group 3D (SIG 3D) of GDI NRW-->
+<!-- Editors: PD Dr. Gerhard Groeger, Institute for Geodesy and Geoinformation, University of Bonn & -->
+<!-- Prof. Dr. Thomas H. Kolbe, Institute for Geodesy and Geoinformation Science, Technical University of Berlin -->
+<!-- For further information see: www.citygml.org -->
+<!-- For the history of changes and additions to this CityGML schema see file history.txt -->
+<xs:schema xmlns="http://www.opengis.net/citygml/cityfurniture/1.0" xmlns:core="http://www.opengis.net/citygml/1.0"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml"
+    targetNamespace="http://www.opengis.net/citygml/cityfurniture/1.0" elementFormDefault="qualified"
+    attributeFormDefault="unqualified">
+    <xs:import namespace="http://www.opengis.net/gml" schemaLocation="../../GML/3.1.1/base/gml.xsd"/>
+    <xs:import namespace="http://www.opengis.net/citygml/1.0" schemaLocation="cityGMLBase.xsd"/>
+    <!-- ========================================================================================= -->
+    <!-- ===================================CityGML CityFurniture module ============================== -->
+    <!-- ========================================================================================= -->
+    <xs:complexType name="CityFurnitureType">
+        <xs:annotation>
+            <xs:documentation>Type describing city furnitures, like traffic lights, benches, ... As subclass of _CityObject, a
+                CityFurniture inherits all attributes and relations, in particular an id, names, external references, and
+                generalization relations. </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="core:AbstractCityObjectType">
+                <xs:sequence>
+                    <xs:element name="class" type="CityFurnitureClassType" minOccurs="0"/>
+                    <xs:element name="function" type="CityFurnitureFunctionType" minOccurs="0" maxOccurs="unbounded"/>
+                    <xs:element name="lod1Geometry" type="gml:GeometryPropertyType" minOccurs="0"/>
+                    <xs:element name="lod2Geometry" type="gml:GeometryPropertyType" minOccurs="0"/>
+                    <xs:element name="lod3Geometry" type="gml:GeometryPropertyType" minOccurs="0"/>
+                    <xs:element name="lod4Geometry" type="gml:GeometryPropertyType" minOccurs="0"/>
+                    <xs:element name="lod1TerrainIntersection" type="gml:MultiCurvePropertyType" minOccurs="0"/>
+                    <xs:element name="lod2TerrainIntersection" type="gml:MultiCurvePropertyType" minOccurs="0"/>
+                    <xs:element name="lod3TerrainIntersection" type="gml:MultiCurvePropertyType" minOccurs="0"/>
+                    <xs:element name="lod4TerrainIntersection" type="gml:MultiCurvePropertyType" minOccurs="0"/>
+                    <xs:element name="lod1ImplicitRepresentation" type="core:ImplicitRepresentationPropertyType" minOccurs="0"/>
+                    <xs:element name="lod2ImplicitRepresentation" type="core:ImplicitRepresentationPropertyType" minOccurs="0"/>
+                    <xs:element name="lod3ImplicitRepresentation" type="core:ImplicitRepresentationPropertyType" minOccurs="0"/>
+                    <xs:element name="lod4ImplicitRepresentation" type="core:ImplicitRepresentationPropertyType" minOccurs="0"/>
+                    <xs:element ref="_GenericApplicationPropertyOfCityFurniture" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <!-- ========================================================================================= -->
+    <xs:element name="CityFurniture" type="CityFurnitureType" substitutionGroup="core:_CityObject"/>
+    <!-- ========================================================================================= -->
+    <xs:element name="_GenericApplicationPropertyOfCityFurniture" type="xs:anyType" abstract="true"/>
+    <!-- ========================================================================================= -->
+    <xs:simpleType name="CityFurnitureFunctionType">
+        <xs:annotation>
+            <xs:documentation>Function of a Furniture. The values of this type are defined in the XML file
+                CityFurnitureFunctionType.xml, according to the dictionary concept of GML3. </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <!-- ========================================================================================= -->
+    <xs:simpleType name="CityFurnitureClassType">
+        <xs:annotation>
+            <xs:documentation>Class of a Furniture. The values of this type are defined in the XML file
+                CityFurnitureClassType.xml, according to the dictionary concept of GML3. </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <!-- ========================================================================================= -->
+</xs:schema>

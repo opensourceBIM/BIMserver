@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Package xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_1H_9YLsCEd6sMPjr_bhDJA" name="xbuilding">
+  <elementImport xmi:id="_1JWBMLsCEd6sMPjr_bhDJA">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+  </elementImport>
+  <elementImport xmi:id="_1JWBMbsCEd6sMPjr_bhDJA">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+  </elementImport>
+  <elementImport xmi:id="_1JWBMrsCEd6sMPjr_bhDJA">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#UnlimitedNatural"/>
+  </elementImport>
+  <elementImport xmi:id="_1JWBM7sCEd6sMPjr_bhDJA">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+  </elementImport>
+  <packagedElement xmi:type="uml:Class" xmi:id="_1wruALsCEd6sMPjr_bhDJA" name="Stair">
+    <generalization xmi:id="_PrLhILsDEd6sMPjr_bhDJA" general="_EB-pYLsDEd6sMPjr_bhDJA"/>
+    <ownedAttribute xmi:id="_A2EY0LyJEd6_68UH4ZpjUg" name="stairType" type="_vVp2ELyIEd6_68UH4ZpjUg" aggregation="composite"/>
+    <ownedAttribute xmi:id="_Lw1OcL1TEd6pBqgBmzcUIA" name="stairFlights" type="_pIsyQL1REd6pBqgBmzcUIA" aggregation="composite"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_5DY04LsCEd6sMPjr_bhDJA" name="Railing">
+    <generalization xmi:id="_MnrT4LsDEd6sMPjr_bhDJA" general="_EB-pYLsDEd6sMPjr_bhDJA"/>
+    <ownedAttribute xmi:id="_08xPkLyIEd6_68UH4ZpjUg" name="predefinedType" type="_wS5hcLyIEd6_68UH4ZpjUg" aggregation="composite"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_7OQxALsCEd6sMPjr_bhDJA" name="Annotation">
+    <generalization xmi:id="_PRZvMLsDEd6sMPjr_bhDJA" general="_EB-pYLsDEd6sMPjr_bhDJA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_77220LsCEd6sMPjr_bhDJA" name="Beam">
+    <generalization xmi:id="_M-n0QLsDEd6sMPjr_bhDJA" general="_EB-pYLsDEd6sMPjr_bhDJA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_8fB1ULsCEd6sMPjr_bhDJA" name="Column">
+    <generalization xmi:id="_NdxOYLsDEd6sMPjr_bhDJA" general="_EB-pYLsDEd6sMPjr_bhDJA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_9DFkoLsCEd6sMPjr_bhDJA" name="FlowTerminal">
+    <generalization xmi:id="_N-_sILsDEd6sMPjr_bhDJA" general="_EB-pYLsDEd6sMPjr_bhDJA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_9uTE0LsCEd6sMPjr_bhDJA" name="OpeningElement">
+    <generalization xmi:id="_O4NzILsDEd6sMPjr_bhDJA" general="_EB-pYLsDEd6sMPjr_bhDJA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_-hjtwLsCEd6sMPjr_bhDJA" name="TransportElement">
+    <generalization xmi:id="_OcNMkLsDEd6sMPjr_bhDJA" general="_EB-pYLsDEd6sMPjr_bhDJA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_BBc3oLsDEd6sMPjr_bhDJA" name="building::_AbstractBuilding"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_EB-pYLsDEd6sMPjr_bhDJA" name="VisibleElement">
+    <generalization xmi:id="_JIjpYL27Ed6LbMyEbjA-qg" general="_66_XcL26Ed6LbMyEbjA-qg"/>
+    <ownedAttribute xmi:id="_dPLRoLsDEd6sMPjr_bhDJA" name="lod3MultiSurface" aggregation="composite"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_V6h_ULsDEd6sMPjr_bhDJA" memberEnd="_V6h_UbsDEd6sMPjr_bhDJA _V6h_VLsDEd6sMPjr_bhDJA">
+    <ownedEnd xmi:id="_V6h_UbsDEd6sMPjr_bhDJA" name="genericApplicationPropertyOfBuilding" type="_BBc3oLsDEd6sMPjr_bhDJA" association="_V6h_ULsDEd6sMPjr_bhDJA">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_V6h_U7sDEd6sMPjr_bhDJA" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_V6h_UrsDEd6sMPjr_bhDJA" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_V6h_VLsDEd6sMPjr_bhDJA" name="dst" type="_EB-pYLsDEd6sMPjr_bhDJA" aggregation="composite" association="_V6h_ULsDEd6sMPjr_bhDJA">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_V6h_VrsDEd6sMPjr_bhDJA" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_V6h_VbsDEd6sMPjr_bhDJA" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_Y4O38LvyEd6iwvPvzKH67A" name="building::Room"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_dyDGkLvyEd6iwvPvzKH67A" memberEnd="_dyMQgLvyEd6iwvPvzKH67A _dyMQg7vyEd6iwvPvzKH67A">
+    <ownedEnd xmi:id="_dyMQgLvyEd6iwvPvzKH67A" name="genericApplicationPropertyOfRoom" type="_Y4O38LvyEd6iwvPvzKH67A" association="_dyDGkLvyEd6iwvPvzKH67A">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_dyMQgrvyEd6iwvPvzKH67A" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_dyMQgbvyEd6iwvPvzKH67A" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_dyMQg7vyEd6iwvPvzKH67A" name="dst" type="_EB-pYLsDEd6sMPjr_bhDJA" aggregation="composite" association="_dyDGkLvyEd6iwvPvzKH67A">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_dyMQhbvyEd6iwvPvzKH67A" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_dyMQhLvyEd6iwvPvzKH67A" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Enumeration" xmi:id="_vVp2ELyIEd6_68UH4ZpjUg" name="StairType">
+    <ownedLiteral xmi:id="_PY7BYL1REd6pBqgBmzcUIA" name="StraightRunStair"/>
+    <ownedLiteral xmi:id="_QJp6wL1REd6pBqgBmzcUIA" name="TwoStraightRunStair"/>
+    <ownedLiteral xmi:id="_RMtTML1REd6pBqgBmzcUIA" name="QuarterWindingStair"/>
+    <ownedLiteral xmi:id="_S3QJcL1REd6pBqgBmzcUIA" name="QuarterTurnStair"/>
+    <ownedLiteral xmi:id="_TkGoYL1REd6pBqgBmzcUIA" name="HalfWindingStair"/>
+    <ownedLiteral xmi:id="_UN060L1REd6pBqgBmzcUIA" name="HalfTurnStair"/>
+    <ownedLiteral xmi:id="_U2D_gL1REd6pBqgBmzcUIA" name="TwoQuarterWindingStair"/>
+    <ownedLiteral xmi:id="_VcDogL1REd6pBqgBmzcUIA" name="TwoQuarterTurnStair"/>
+    <ownedLiteral xmi:id="_WJgkYL1REd6pBqgBmzcUIA" name="ThreeQuarterWindingStair"/>
+    <ownedLiteral xmi:id="_W1KwgL1REd6pBqgBmzcUIA" name="ThreeQuarterTurnStair"/>
+    <ownedLiteral xmi:id="_Xe5C8L1REd6pBqgBmzcUIA" name="enumerationLiteral"/>
+    <ownedLiteral xmi:id="_YQNyML1REd6pBqgBmzcUIA" name="DoubleReturnStair"/>
+    <ownedLiteral xmi:id="_Y6-mcL1REd6pBqgBmzcUIA" name="CurvedRunStair"/>
+    <ownedLiteral xmi:id="_Zkju8L1REd6pBqgBmzcUIA" name="TwoCurvedRunStair"/>
+    <ownedLiteral xmi:id="_aPBoQL1REd6pBqgBmzcUIA" name="OtherOperation"/>
+    <ownedLiteral xmi:id="_aziDgL1REd6pBqgBmzcUIA" name="NotDefined"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Enumeration" xmi:id="_wS5hcLyIEd6_68UH4ZpjUg" name="RailingType">
+    <ownedLiteral xmi:id="_JdioEL1REd6pBqgBmzcUIA" name="HANDRAIL"/>
+    <ownedLiteral xmi:id="_KW6gEL1REd6pBqgBmzcUIA" name="GUARDRAIL"/>
+    <ownedLiteral xmi:id="_LFs4sL1REd6pBqgBmzcUIA" name="BALUSTRADE"/>
+    <ownedLiteral xmi:id="_L1_GIL1REd6pBqgBmzcUIA" name="USERDEFINED"/>
+    <ownedLiteral xmi:id="_MlhFoL1REd6pBqgBmzcUIA" name="NOTDEFINED"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_461noLyIEd6_68UH4ZpjUg" memberEnd="_461nobyIEd6_68UH4ZpjUg _461npLyIEd6_68UH4ZpjUg">
+    <ownedEnd xmi:id="_461nobyIEd6_68UH4ZpjUg" name="predefinedType" type="_5DY04LsCEd6sMPjr_bhDJA" association="_461noLyIEd6_68UH4ZpjUg">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_461no7yIEd6_68UH4ZpjUg" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_461noryIEd6_68UH4ZpjUg" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_461npLyIEd6_68UH4ZpjUg" name="dst" type="_wS5hcLyIEd6_68UH4ZpjUg" aggregation="composite" association="_461noLyIEd6_68UH4ZpjUg">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_461npryIEd6_68UH4ZpjUg" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_461npbyIEd6_68UH4ZpjUg" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_7iUnQLyIEd6_68UH4ZpjUg" memberEnd="_7iUnQbyIEd6_68UH4ZpjUg _7iUnRLyIEd6_68UH4ZpjUg">
+    <ownedEnd xmi:id="_7iUnQbyIEd6_68UH4ZpjUg" name="stairType" type="_1wruALsCEd6sMPjr_bhDJA" association="_7iUnQLyIEd6_68UH4ZpjUg">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_7iUnQ7yIEd6_68UH4ZpjUg" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_7iUnQryIEd6_68UH4ZpjUg" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_7iUnRLyIEd6_68UH4ZpjUg" name="dst" type="_vVp2ELyIEd6_68UH4ZpjUg" aggregation="composite" association="_7iUnQLyIEd6_68UH4ZpjUg">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_7iUnRryIEd6_68UH4ZpjUg" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_7iUnRbyIEd6_68UH4ZpjUg" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_kRiEcL1QEd6pBqgBmzcUIA" name="building::Door">
+    <ownedAttribute xmi:id="_nkiGQL1QEd6pBqgBmzcUIA" name="OverallHeight" aggregation="composite"/>
+    <ownedAttribute xmi:id="_pSy-4L1QEd6pBqgBmzcUIA" name="OverallWidth" aggregation="composite"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_maeG4L1QEd6pBqgBmzcUIA" name="building:Window">
+    <ownedAttribute xmi:id="_qPvvUL1QEd6pBqgBmzcUIA" name="OverallHeight" aggregation="composite"/>
+    <ownedAttribute xmi:id="_rKm1EL1QEd6pBqgBmzcUIA" name="OverallWidth" aggregation="composite"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_sv70IL1QEd6pBqgBmzcUIA" name="building:RoofSurface">
+    <ownedAttribute xmi:id="_uGNqkL1QEd6pBqgBmzcUIA" name="ShapeType" aggregation="composite"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Enumeration" xmi:id="_yZSCQL1QEd6pBqgBmzcUIA" name="RoofTypeEnum">
+    <ownedLiteral xmi:id="_8G9ogL1QEd6pBqgBmzcUIA" name="FLAT_ROOF"/>
+    <ownedLiteral xmi:id="_9EzJwL1QEd6pBqgBmzcUIA" name="SHED_ROOF"/>
+    <ownedLiteral xmi:id="_-YGksL1QEd6pBqgBmzcUIA" name="GABLE_ROOF"/>
+    <ownedLiteral xmi:id="__LzSgL1QEd6pBqgBmzcUIA" name="HIP_ROOF"/>
+    <ownedLiteral xmi:id="__5GdYL1QEd6pBqgBmzcUIA" name="HIPPED_GABLE_ROOF"/>
+    <ownedLiteral xmi:id="_A5LaUL1REd6pBqgBmzcUIA" name="GAMBREL_ROOF"/>
+    <ownedLiteral xmi:id="_Bj81oL1REd6pBqgBmzcUIA" name="MANSARD_ROOF"/>
+    <ownedLiteral xmi:id="_CMxwML1REd6pBqgBmzcUIA" name="BARREL_ROOF"/>
+    <ownedLiteral xmi:id="_DKeHgL1REd6pBqgBmzcUIA" name="RAINBOW_ROOF"/>
+    <ownedLiteral xmi:id="_EVRGsL1REd6pBqgBmzcUIA" name="BUTTERFLY_ROOF"/>
+    <ownedLiteral xmi:id="_FDdpcL1REd6pBqgBmzcUIA" name="PAVILION_ROOF"/>
+    <ownedLiteral xmi:id="_FuFTwL1REd6pBqgBmzcUIA" name="DOME_ROOF"/>
+    <ownedLiteral xmi:id="_GkUYML1REd6pBqgBmzcUIA" name="FREEFORM"/>
+    <ownedLiteral xmi:id="_HTaS0L1REd6pBqgBmzcUIA" name="NOTDEFINED"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_2eWaML1QEd6pBqgBmzcUIA" memberEnd="_2eWaMb1QEd6pBqgBmzcUIA _2eWaNL1QEd6pBqgBmzcUIA">
+    <ownedEnd xmi:id="_2eWaMb1QEd6pBqgBmzcUIA" name="src" type="_sv70IL1QEd6pBqgBmzcUIA" association="_2eWaML1QEd6pBqgBmzcUIA">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_2eWaM71QEd6pBqgBmzcUIA" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_2eWaMr1QEd6pBqgBmzcUIA" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_2eWaNL1QEd6pBqgBmzcUIA" name="dst" type="_yZSCQL1QEd6pBqgBmzcUIA" aggregation="composite" association="_2eWaML1QEd6pBqgBmzcUIA">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_2eWaNr1QEd6pBqgBmzcUIA" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_2eWaNb1QEd6pBqgBmzcUIA" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Enumeration" xmi:id="_h2cFkL1REd6pBqgBmzcUIA" name="StairFlightTypeEnum">
+    <ownedLiteral xmi:id="_i8B0oL1REd6pBqgBmzcUIA" name="STRAIGHT"/>
+    <ownedLiteral xmi:id="_kxJjML1REd6pBqgBmzcUIA" name="WINDER"/>
+    <ownedLiteral xmi:id="_lcEIcL1REd6pBqgBmzcUIA" name="SPIRAL"/>
+    <ownedLiteral xmi:id="_mMMk4L1REd6pBqgBmzcUIA" name="CURVED"/>
+    <ownedLiteral xmi:id="_m863ML1REd6pBqgBmzcUIA" name="FREEFORM"/>
+    <ownedLiteral xmi:id="_npBvQL1REd6pBqgBmzcUIA" name="USERDEFINED"/>
+    <ownedLiteral xmi:id="_oRHqAL1REd6pBqgBmzcUIA" name="NOTDEFINED"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_pIsyQL1REd6pBqgBmzcUIA" name="StairFlight">
+    <ownedAttribute xmi:id="_BLPlQL1SEd6pBqgBmzcUIA" name="NumberOfRiser" aggregation="composite">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_CcwQcL1SEd6pBqgBmzcUIA" name="NumberOfTreads" aggregation="composite">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_DKgHQL1SEd6pBqgBmzcUIA" name="RiserHeight" aggregation="composite"/>
+    <ownedAttribute xmi:id="_D1j2cL1SEd6pBqgBmzcUIA" name="TreadLength" aggregation="composite"/>
+    <ownedAttribute xmi:id="_Ae3yAL1TEd6pBqgBmzcUIA" name="PredefinedType" type="_h2cFkL1REd6pBqgBmzcUIA" aggregation="composite"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_DGpskL1TEd6pBqgBmzcUIA" memberEnd="_DGpskb1TEd6pBqgBmzcUIA _DGpslL1TEd6pBqgBmzcUIA">
+    <ownedEnd xmi:id="_DGpskb1TEd6pBqgBmzcUIA" name="src" type="_pIsyQL1REd6pBqgBmzcUIA" association="_DGpskL1TEd6pBqgBmzcUIA">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_DGpsk71TEd6pBqgBmzcUIA" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_DGpskr1TEd6pBqgBmzcUIA" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_DGpslL1TEd6pBqgBmzcUIA" name="dst" type="_h2cFkL1REd6pBqgBmzcUIA" aggregation="composite" association="_DGpskL1TEd6pBqgBmzcUIA">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_DGpslr1TEd6pBqgBmzcUIA" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_DGpslb1TEd6pBqgBmzcUIA" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_GTZVYL1TEd6pBqgBmzcUIA" memberEnd="_GTZVYb1TEd6pBqgBmzcUIA _GTZVZL1TEd6pBqgBmzcUIA">
+    <ownedEnd xmi:id="_GTZVYb1TEd6pBqgBmzcUIA" name="src" type="_1wruALsCEd6sMPjr_bhDJA" association="_GTZVYL1TEd6pBqgBmzcUIA">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_GTZVY71TEd6pBqgBmzcUIA" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_GTZVYr1TEd6pBqgBmzcUIA" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_GTZVZL1TEd6pBqgBmzcUIA" name="dst" type="_pIsyQL1REd6pBqgBmzcUIA" aggregation="composite" association="_GTZVYL1TEd6pBqgBmzcUIA">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_GTZVZr1TEd6pBqgBmzcUIA" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_GTZVZb1TEd6pBqgBmzcUIA" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_66_XcL26Ed6LbMyEbjA-qg" name="core:CityObject">
+    <ownedAttribute xmi:id="_A4nMcL27Ed6LbMyEbjA-qg" name="GlobalId" aggregation="composite"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="__rbAkL26Ed6LbMyEbjA-qg" name="GlobalId">
+    <ownedAttribute xmi:id="_KKkgAL27Ed6LbMyEbjA-qg" name="value" aggregation="composite"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_DYpgQL27Ed6LbMyEbjA-qg" memberEnd="_DYpgQb27Ed6LbMyEbjA-qg _DYpgRL27Ed6LbMyEbjA-qg">
+    <ownedEnd xmi:id="_DYpgQb27Ed6LbMyEbjA-qg" name="src" type="_66_XcL26Ed6LbMyEbjA-qg" association="_DYpgQL27Ed6LbMyEbjA-qg">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_DYpgQ727Ed6LbMyEbjA-qg" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_DYpgQr27Ed6LbMyEbjA-qg" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_DYpgRL27Ed6LbMyEbjA-qg" name="dst" type="__rbAkL26Ed6LbMyEbjA-qg" aggregation="composite" association="_DYpgQL27Ed6LbMyEbjA-qg">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_DYpgRr27Ed6LbMyEbjA-qg" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_DYpgRb27Ed6LbMyEbjA-qg" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+</uml:Package>

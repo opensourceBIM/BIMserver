@@ -1,0 +1,649 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CityGML Version No. 1.0.0, May 19th, 2008-->
+<!-- CityGML - GML3 application schema for the 3D city model of the Special Interest Group 3D (SIG 3D) of GDI NRW-->
+<!-- Editors: PD Dr. Gerhard Groeger, Institute for Geodesy and Geoinformation, University of Bonn & -->
+<!-- Prof. Dr. Thomas H. Kolbe, Institute for Geodesy and Geoinformation Science, Technical University of Berlin -->
+<!-- For further information see: www.citygml.org -->
+<!-- For the history of changes and additions to this CityGML schema see file history.txt -->
+<xs:schema xmlns="http://www.opengis.net/citygml/building/1.0" xmlns:core="http://www.opengis.net/citygml/1.0"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml"
+    targetNamespace="http://www.opengis.net/citygml/building/1.0" elementFormDefault="qualified"
+    attributeFormDefault="unqualified">
+    <xs:import namespace="http://www.opengis.net/gml" schemaLocation="../../GML/3.1.1/base/gml.xsd"/>
+    <xs:import namespace="http://www.opengis.net/citygml/1.0" schemaLocation="cityGMLBase.xsd"/>
+    <!-- ========================================================================================= -->
+    <!-- ===================================CityGML Building module ================================== -->
+    <!-- ========================================================================================= -->
+    <xs:complexType name="AbstractBuildingType" abstract="true">
+        <xs:annotation>
+            <xs:documentation>Type describing the thematic and geometric attributes and the associations of buildings. It is an
+                abstract type, only its subclasses Building and BuildingPart can be instantiated. An _AbstractBuilding may consist
+                of BuildingParts, which are again _AbstractBuildings by inheritance. Thus an aggregation hierarchy between
+                _AbstractBuildings of arbitrary depth may be specified. In such an hierarchy, top elements are Buildings, while
+                all other elements are BuildingParts. Each element of such a hierarchy may have all attributes and geometries of
+                _AbstractBuildings. It must, however, be assured than no inconsistencies occur (for example, if the geometry of a
+                Building does not correspond to the geometries of its parts, or if the roof type of a Building is saddle roof,
+                while its parts have an hip roof). As subclass of _CityObject, an _AbstractBuilding inherits all attributes and
+                relations, in particular an id, names, external references, and generalization relations. </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="core:AbstractSiteType">
+                <xs:sequence>
+                    <xs:annotation>
+                        <xs:documentation> The name will be represented by gml:name (inherited from _GML) . list order for
+                            storeyHeightsAboveground: first floor, second floor,... list order for storeyHeightsBelowground: first
+                            floor below ground, second floor below ground,... The lodXMultiSurface must be used, if the geometry
+                            of a building is just a collection of surfaces bounding a solid, but not a topologically clean solid
+                            boundary necessary for GML3 solid boundaries. </xs:documentation>
+                    </xs:annotation>
+                    <xs:element name="class" type="BuildingClassType" minOccurs="0"/>
+                    <xs:element name="function" type="BuildingFunctionType" minOccurs="0" maxOccurs="unbounded"/>
+                    <xs:element name="usage" type="BuildingUsageType" minOccurs="0" maxOccurs="unbounded"/>
+                    <xs:element name="yearOfConstruction" type="xs:gYear" minOccurs="0"/>
+                    <xs:element name="yearOfDemolition" type="xs:gYear" minOccurs="0"/>
+                    <xs:element name="roofType" type="RoofTypeType" minOccurs="0"/>
+                    <xs:element name="measuredHeight" type="gml:LengthType" minOccurs="0"/>
+                    <xs:element name="storeysAboveGround" type="xs:nonNegativeInteger" minOccurs="0"/>
+                    <xs:element name="storeysBelowGround" type="xs:nonNegativeInteger" minOccurs="0"/>
+                    <xs:element name="storeyHeightsAboveGround" type="gml:MeasureOrNullListType" minOccurs="0"/>
+                    <xs:element name="storeyHeightsBelowGround" type="gml:MeasureOrNullListType" minOccurs="0"/>
+                    <xs:element name="lod1Solid" type="gml:SolidPropertyType" minOccurs="0"/>
+                    <xs:element name="lod1MultiSurface" type="gml:MultiSurfacePropertyType" minOccurs="0"/>
+                    <xs:element name="lod1TerrainIntersection" type="gml:MultiCurvePropertyType" minOccurs="0"/>
+                    <xs:element name="lod2Solid" type="gml:SolidPropertyType" minOccurs="0"/>
+                    <xs:element name="lod2MultiSurface" type="gml:MultiSurfacePropertyType" minOccurs="0"/>
+                    <xs:element name="lod2MultiCurve" type="gml:MultiCurvePropertyType" minOccurs="0"/>
+                    <xs:element name="lod2TerrainIntersection" type="gml:MultiCurvePropertyType" minOccurs="0"/>
+                    <xs:element name="outerBuildingInstallation" type="BuildingInstallationPropertyType" minOccurs="0"
+                        maxOccurs="unbounded"/>
+                    <xs:element name="interiorBuildingInstallation" type="IntBuildingInstallationPropertyType" minOccurs="0"
+                        maxOccurs="unbounded"/>
+                    <xs:element name="boundedBy" type="BoundarySurfacePropertyType" minOccurs="0" maxOccurs="unbounded"/>
+                    <xs:element name="lod3Solid" type="gml:SolidPropertyType" minOccurs="0"/>
+                    <xs:element name="lod3MultiSurface" type="gml:MultiSurfacePropertyType" minOccurs="0"/>
+                    <xs:element name="lod3MultiCurve" type="gml:MultiCurvePropertyType" minOccurs="0"/>
+                    <xs:element name="lod3TerrainIntersection" type="gml:MultiCurvePropertyType" minOccurs="0"/>
+                    <xs:element name="lod4Solid" type="gml:SolidPropertyType" minOccurs="0"/>
+                    <xs:element name="lod4MultiSurface" type="gml:MultiSurfacePropertyType" minOccurs="0"/>
+                    <xs:element name="lod4MultiCurve" type="gml:MultiCurvePropertyType" minOccurs="0"/>
+                    <xs:element name="lod4TerrainIntersection" type="gml:MultiCurvePropertyType" minOccurs="0"/>
+                    <xs:element name="interiorRoom" type="InteriorRoomPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+                    <xs:element name="consistsOfBuildingPart" type="BuildingPartPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+                    <xs:element name="address" type="core:AddressPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+                    <xs:element ref="_GenericApplicationPropertyOfAbstractBuilding" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <!-- ========================================================================================= -->
+    <xs:element name="_AbstractBuilding" type="AbstractBuildingType" abstract="true" substitutionGroup="core:_Site"/>
+    <!-- ========================================================================================= -->
+    <xs:element name="_GenericApplicationPropertyOfAbstractBuilding" type="xs:anyType" abstract="true"/>
+    <!-- ========================================================================================= -->
+    <xs:simpleType name="BuildingClassType">
+        <xs:annotation>
+            <xs:documentation> Class of a building. The values of this type are defined in the XML file BuildingClassType.xml,
+                according to the dictionary concept of GML3.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <!-- ========================================================================================= -->
+    <xs:simpleType name="BuildingFunctionType">
+        <xs:annotation>
+            <xs:documentation> Intended function of a building. The values of this type are defined in the XML file
+                BuildingFunctionType.xml, according to the dictionary concept of GML3. The values may be adopted from ALKIS, the
+                german standard for cadastre modelling. If the cadastre models from other countries differ in the building
+                functions, these values may be compiled in another codelist to be used with CityGML. </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <!-- ========================================================================================= -->
+    <xs:simpleType name="BuildingUsageType">
+        <xs:annotation>
+            <xs:documentation> Actual usage of a building. The values of this type are defined in the XML file
+                BuildingUsageType.xml, according to the dictionary concept of GML3.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <!-- ========================================================================================= -->
+    <xs:simpleType name="RoofTypeType">
+        <xs:annotation>
+            <xs:documentation>Roof Types. The values of this type are defined in the XML file RoofTypeType.xml, according to the
+                dictionary concept of GML3.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <!-- ========================================================================================= -->
+    <xs:complexType name="BuildingType">
+        <xs:complexContent>
+            <xs:extension base="AbstractBuildingType">
+                <xs:sequence>
+                    <xs:element ref="_GenericApplicationPropertyOfBuilding" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <!-- ========================================================================================= -->
+    <xs:element name="Building" type="BuildingType" substitutionGroup="_AbstractBuilding"/>
+    <!-- ========================================================================================= -->
+    <xs:element name="_GenericApplicationPropertyOfBuilding" type="xs:anyType" abstract="true"/>
+    <!-- ========================================================================================= -->
+    <xs:complexType name="BuildingPartType">
+        <xs:complexContent>
+            <xs:extension base="AbstractBuildingType">
+                <xs:sequence>
+                    <xs:element ref="_GenericApplicationPropertyOfBuildingPart" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <!-- ========================================================================================= -->
+    <xs:element name="BuildingPart" type="BuildingPartType" substitutionGroup="_AbstractBuilding"/>
+    <!-- ========================================================================================= -->
+    <xs:element name="_GenericApplicationPropertyOfBuildingPart" type="xs:anyType" abstract="true"/>
+    <!-- ========================================================================================= -->
+    <xs:complexType name="BuildingPartPropertyType">
+        <xs:annotation>
+            <xs:documentation>Denotes the relation of an _AbstractBuilding to its building parts. The BuildingPartPropertyType
+                element must either carry a reference to a BuildingPart object or contain a BuildingPart object inline, but
+                neither both nor none.</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:restriction base="gml:AssociationType">
+                <xs:sequence minOccurs="0">
+                    <xs:element ref="BuildingPart"/>
+                </xs:sequence>
+            </xs:restriction>
+        </xs:complexContent>
+    </xs:complexType>
+    <!-- ========================================================================================= -->
+    <xs:complexType name="BuildingInstallationType">
+        <xs:annotation>
+            <xs:documentation>A BuildingInstallation is a part of a Building which has not the significance of a BuildingPart.
+                Examples are stairs, antennas, balconies or small roofs. As subclass of _CityObject, a BuildingInstallation
+                inherits all attributes and relations, in particular an id, names, external references, and generalization
+                relations. </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="core:AbstractCityObjectType">
+                <xs:sequence>
+                    <xs:element name="class" type="BuildingInstallationClassType" minOccurs="0"/>
+                    <xs:element name="function" type="BuildingInstallationFunctionType" minOccurs="0" maxOccurs="unbounded"/>
+                    <xs:element name="usage" type="BuildingInstallationUsageType" minOccurs="0" maxOccurs="unbounded"/>
+                    <xs:element name="lod2Geometry" type="gml:GeometryPropertyType" minOccurs="0"/>
+                    <xs:element name="lod3Geometry" type="gml:GeometryPropertyType" minOccurs="0"/>
+                    <xs:element name="lod4Geometry" type="gml:GeometryPropertyType" minOccurs="0"/>
+                    <xs:element ref="_GenericApplicationPropertyOfBuildingInstallation" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <!-- ========================================================================================= -->
+    <xs:element name="BuildingInstallation" type="BuildingInstallationType" substitutionGroup="core:_CityObject"/>
+    <!-- ========================================================================================= -->
+    <xs:element name="_GenericApplicationPropertyOfBuildingInstallation" type="xs:anyType" abstract="true"/>
+    <!-- ========================================================================================= -->
+    <xs:simpleType name="BuildingInstallationClassType">
+        <xs:annotation>
+            <xs:documentation>Class of a building installation. The values of this type are defined in the XML file
+                BuildingInstallationClassType.xml, according to the dictionary concept of GML3. </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <!-- ========================================================================================= -->
+    <xs:simpleType name="BuildingInstallationFunctionType">
+        <xs:annotation>
+            <xs:documentation>Function of a building installation. The values of this type are defined in the XML file
+                BuildingInstallationFunctionType.xml, according to the dictionary concept of GML3. </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <!-- ========================================================================================= -->
+    <xs:simpleType name="BuildingInstallationUsageType">
+        <xs:annotation>
+            <xs:documentation>Actual usage of a building installation. The values of this type are defined in the XML file
+                BuildingInstallationUsageType.xml, according to the dictionary concept of GML3. </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <!-- ========================================================================================= -->
+    <xs:complexType name="BuildingInstallationPropertyType">
+        <xs:annotation>
+            <xs:documentation>Denotes the relation of an _AbstractBuilding to its building installations. The
+                BuildingInstallationPropertyType element must either carry a reference to a BuildingInstallation object or contain
+                a BuildingInstallation object inline, but neither both nor none. </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:restriction base="gml:AssociationType">
+                <xs:sequence minOccurs="0">
+                    <xs:element ref="BuildingInstallation"/>
+                </xs:sequence>
+            </xs:restriction>
+        </xs:complexContent>
+    </xs:complexType>
+    <!-- ========================================================================================= -->
+    <xs:complexType name="IntBuildingInstallationType">
+        <xs:annotation>
+            <xs:documentation>An IntBuildingInstallation is an interior part of a Building which has a specific function or
+                semantical meaning. Examples are interior stairs, railings, radiators or pipes. As subclass of _CityObject, a
+                nIntBuildingInstallation inherits all attributes and relations, in particular an id, names, external references,
+                and generalization relations. </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="core:AbstractCityObjectType">
+                <xs:sequence>
+                    <xs:element name="class" type="IntBuildingInstallationClassType" minOccurs="0"/>
+                    <xs:element name="function" type="IntBuildingInstallationFunctionType" minOccurs="0" maxOccurs="unbounded"/>
+                    <xs:element name="usage" type="IntBuildingInstallationUsageType" minOccurs="0" maxOccurs="unbounded"/>
+                    <xs:element name="lod4Geometry" type="gml:GeometryPropertyType" minOccurs="0"/>
+                    <xs:element ref="_GenericApplicationPropertyOfIntBuildingInstallation" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <!-- ========================================================================================= -->
+    <xs:element name="IntBuildingInstallation" type="IntBuildingInstallationType" substitutionGroup="core:_CityObject"/>
+    <!-- ========================================================================================= -->
+    <xs:element name="_GenericApplicationPropertyOfIntBuildingInstallation" type="xs:anyType" abstract="true"/>
+    <!-- ========================================================================================= -->
+    <xs:simpleType name="IntBuildingInstallationClassType">
+        <xs:annotation>
+            <xs:documentation>Class of an interior building installation. The values of this type are defined in the XML file
+                IntBuildingInstallationClassType.xml, according to the dictionary concept of GML3. </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <!-- ========================================================================================= -->
+    <xs:simpleType name="IntBuildingInstallationFunctionType">
+        <xs:annotation>
+            <xs:documentation>Function of an interior building installation. The values of this type are defined in the XML file
+                IntBuildingInstallationFunctionType.xml, according to the dictionary concept of GML3. </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <!-- ========================================================================================= -->
+    <xs:simpleType name="IntBuildingInstallationUsageType">
+        <xs:annotation>
+            <xs:documentation>Actual Usage of an interior building installation. The values of this type are defined in the XML
+                file IntBuildingInstallationUsageType.xml, according to the dictionary concept of GML3. </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <!-- ========================================================================================= -->
+    <xs:complexType name="IntBuildingInstallationPropertyType">
+        <xs:annotation>
+            <xs:documentation>Denotes the relation of an _AbstractBuilding to its interior building installations. The
+                IntBuildingInstallationPropertyType element must either carry a reference to a IntBuildingInstallation object or
+                contain a IntBuildingInstallation object inline, but neither both nor none. </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:restriction base="gml:AssociationType">
+                <xs:sequence minOccurs="0">
+                    <xs:element ref="IntBuildingInstallation"/>
+                </xs:sequence>
+            </xs:restriction>
+        </xs:complexContent>
+    </xs:complexType>
+    <!-- ========================================================================================= -->
+    <!-- ========================SURFACES OF BUILDINGS AND ROOMS( LOD2 to LOD4)====================-->
+    <!-- ========================================================================================= -->
+    <xs:complexType name="AbstractBoundarySurfaceType" abstract="true">
+        <xs:annotation>
+            <xs:documentation>A BoundarySurface is a thematic object which classifies surfaces bounding a building or a room. The
+                geometry of a BoundarySurface is given by MultiSurfaces. As it is a subclass of _CityObject, it inherits all
+                atributes and relations, in particular the external references, and the generalization relations.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="core:AbstractCityObjectType">
+                <xs:sequence>
+                    <xs:element name="lod2MultiSurface" type="gml:MultiSurfacePropertyType" minOccurs="0"/>
+                    <xs:element name="lod3MultiSurface" type="gml:MultiSurfacePropertyType" minOccurs="0"/>
+                    <xs:element name="lod4MultiSurface" type="gml:MultiSurfacePropertyType" minOccurs="0"/>
+                    <xs:element name="opening" type="OpeningPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+                    <xs:element ref="_GenericApplicationPropertyOfBoundarySurface" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <!-- ========================================================================================== -->
+    <xs:element name="_BoundarySurface" type="AbstractBoundarySurfaceType" abstract="true" substitutionGroup="core:_CityObject"/>
+    <!-- ========================================================================================== -->
+    <xs:element name="_GenericApplicationPropertyOfBoundarySurface" type="xs:anyType" abstract="true"/>
+    <!-- ========================================================================================== -->
+    <xs:complexType name="RoofSurfaceType">
+        <xs:complexContent>
+            <xs:extension base="AbstractBoundarySurfaceType">
+                <xs:sequence>
+                    <xs:element ref="_GenericApplicationPropertyOfRoofSurface" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <!-- ========================================================================================== -->
+    <xs:element name="RoofSurface" type="RoofSurfaceType" substitutionGroup="_BoundarySurface"/>
+    <!-- ========================================================================================== -->
+    <xs:element name="_GenericApplicationPropertyOfRoofSurface" type="xs:anyType" abstract="true"/>
+    <!-- ========================================================================================== -->
+    <xs:complexType name="WallSurfaceType">
+        <xs:complexContent>
+            <xs:extension base="AbstractBoundarySurfaceType">
+                <xs:sequence>
+                    <xs:element ref="_GenericApplicationPropertyOfWallSurface" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <!-- ========================================================================================= -->
+    <xs:element name="WallSurface" type="WallSurfaceType" substitutionGroup="_BoundarySurface"/>
+    <!-- ========================================================================================= -->
+    <xs:element name="_GenericApplicationPropertyOfWallSurface" type="xs:anyType" abstract="true"/>
+    <!-- ========================================================================================= -->
+    <xs:complexType name="GroundSurfaceType">
+        <xs:complexContent>
+            <xs:extension base="AbstractBoundarySurfaceType">
+                <xs:sequence>
+                    <xs:element ref="_GenericApplicationPropertyOfGroundSurface" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <!-- ========================================================================================= -->
+    <xs:element name="GroundSurface" type="GroundSurfaceType" substitutionGroup="_BoundarySurface"/>
+    <!-- ========================================================================================= -->
+    <xs:element name="_GenericApplicationPropertyOfGroundSurface" type="xs:anyType" abstract="true"/>
+    <!-- ========================================================================================= -->
+    <xs:complexType name="ClosureSurfaceType">
+        <xs:complexContent>
+            <xs:extension base="AbstractBoundarySurfaceType">
+                <xs:sequence>
+                    <xs:element ref="_GenericApplicationPropertyOfClosureSurface" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <!-- ========================================================================================= -->
+    <xs:element name="ClosureSurface" type="ClosureSurfaceType" substitutionGroup="_BoundarySurface"/>
+    <!-- ========================================================================================= -->
+    <xs:element name="_GenericApplicationPropertyOfClosureSurface" type="xs:anyType" abstract="true"/>
+    <!-- ========================================================================================= -->
+    <!-- ===================================LOD4 only Surfaces======================================= -->
+    <!-- ========================================================================================= -->
+    <xs:complexType name="FloorSurfaceType">
+        <xs:complexContent>
+            <xs:extension base="AbstractBoundarySurfaceType">
+                <xs:sequence>
+                    <xs:element ref="_GenericApplicationPropertyOfFloorSurface" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <!-- ========================================================================================= -->
+    <xs:element name="FloorSurface" type="FloorSurfaceType" substitutionGroup="_BoundarySurface"/>
+    <!-- ========================================================================================= -->
+    <xs:element name="_GenericApplicationPropertyOfFloorSurface" type="xs:anyType" abstract="true"/>
+    <!-- ========================================================================================= -->
+    <xs:complexType name="InteriorWallSurfaceType">
+        <xs:complexContent>
+            <xs:extension base="AbstractBoundarySurfaceType">
+                <xs:sequence>
+                    <xs:element ref="_GenericApplicationPropertyOfInteriorWallSurface" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <!-- ========================================================================================= -->
+    <xs:element name="InteriorWallSurface" type="InteriorWallSurfaceType" substitutionGroup="_BoundarySurface"/>
+    <!-- ========================================================================================= -->
+    <xs:element name="_GenericApplicationPropertyOfInteriorWallSurface" type="xs:anyType" abstract="true"/>
+    <!-- ========================================================================================= -->
+    <xs:complexType name="CeilingSurfaceType">
+        <xs:complexContent>
+            <xs:extension base="AbstractBoundarySurfaceType">
+                <xs:sequence>
+                    <xs:element ref="_GenericApplicationPropertyOfCeilingSurface" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <!-- ========================================================================================= -->
+    <xs:element name="CeilingSurface" type="CeilingSurfaceType" substitutionGroup="_BoundarySurface"/>
+    <!-- ========================================================================================= -->
+    <xs:element name="_GenericApplicationPropertyOfCeilingSurface" type="xs:anyType" abstract="true"/>
+    <!-- ========================================================================================= -->
+    <!-- =============================Relation of Buildings/Rooms to its bounding Surfaces================== -->
+    <!-- ========================================================================================= -->
+    <xs:complexType name="BoundarySurfacePropertyType">
+        <xs:annotation>
+            <xs:documentation>Denotes the relation of an _AbstractBuilding to its bounding thematic surfaces (walls, roofs, ..).
+                The BoundarySurfacePropertyType element must either carry a reference to a _BoundarySurface object or contain a
+                _BoundarySurface object inline, but neither both nor none. There is no differentiation between interior surfaces
+                bounding rooms and outer ones bounding buildings (one reason is, that ClosureSurfaces belong to both types). It
+                has to be made sure by additional integrity constraints that, e.g. an _AbstractBuilding is not related to
+                CeilingSurfaces or a room not to RoofSurfaces. </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:restriction base="gml:AssociationType">
+                <xs:sequence minOccurs="0">
+                    <xs:element ref="_BoundarySurface"/>
+                </xs:sequence>
+            </xs:restriction>
+        </xs:complexContent>
+    </xs:complexType>
+    <!-- ========================================================================================= -->
+    <!-- ================================Openings (LOD3 and LOD4 only)================================ -->
+    <!-- ========================================================================================= -->
+    <xs:complexType name="OpeningPropertyType">
+        <xs:annotation>
+            <xs:documentation>Denotes the relation of an _BondarySurface to its openings (doors, windows). The OpeningPropertyType
+                element must either carry a reference to an _Opening object or contain an _Opening object inline, but neither both
+                nor none. </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:restriction base="gml:AssociationType">
+                <xs:sequence minOccurs="0">
+                    <xs:element ref="_Opening"/>
+                </xs:sequence>
+            </xs:restriction>
+        </xs:complexContent>
+    </xs:complexType>
+    <!-- ========================================================================================= -->
+    <xs:complexType name="AbstractOpeningType" abstract="true">
+        <xs:annotation>
+            <xs:documentation> Type for openings (doors, windows) in walls. Used in LOD3 and LOD4 only. As subclass of
+                _CityObject, an _Opening inherits all attributes and relations, in particular an id, names, external references,
+                and generalization relations. </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="core:AbstractCityObjectType">
+                <xs:sequence>
+                    <xs:element name="lod3MultiSurface" type="gml:MultiSurfacePropertyType" minOccurs="0"/>
+                    <xs:element name="lod4MultiSurface" type="gml:MultiSurfacePropertyType" minOccurs="0"/>
+                    <xs:element ref="_GenericApplicationPropertyOfOpening" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <!-- ========================================================================================= -->
+    <xs:element name="_Opening" type="AbstractOpeningType" abstract="true" substitutionGroup="core:_CityObject"/>
+    <!-- ========================================================================================= -->
+    <xs:element name="_GenericApplicationPropertyOfOpening" type="xs:anyType" abstract="true"/>
+    <!-- ========================================================================================= -->
+    <xs:complexType name="WindowType">
+        <xs:annotation>
+            <xs:documentation> Type for windows in walls. Used in LOD3 and LOD4 only . As subclass of _CityObject, a window
+                inherits all attributes and relations, in particular an id, names, external references, and generalization
+                relations. </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="AbstractOpeningType">
+                <xs:sequence>
+                    <xs:element ref="_GenericApplicationPropertyOfWindow" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <!-- ========================================================================================= -->
+    <xs:element name="Window" type="WindowType" substitutionGroup="_Opening"/>
+    <!-- ========================================================================================= -->
+    <xs:element name="_GenericApplicationPropertyOfWindow" type="xs:anyType" abstract="true"/>
+    <!-- ========================================================================================= -->
+    <xs:complexType name="DoorType">
+        <xs:annotation>
+            <xs:documentation> Type for doors in walls. Used in LOD3 and LOD4 only . As subclass of _CityObject, a Door inherits
+                all attributes and relations, in particular an id, names, external references, and generalization relations.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="AbstractOpeningType">
+                <xs:sequence>
+                    <xs:element name="address" type="core:AddressPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+                    <xs:element ref="_GenericApplicationPropertyOfDoor" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <!-- ========================================================================================= -->
+    <xs:element name="Door" type="DoorType" substitutionGroup="_Opening"/>
+    <!-- ========================================================================================= -->
+    <xs:element name="_GenericApplicationPropertyOfDoor" type="xs:anyType" abstract="true"/>
+    <!-- ========================================================================================= -->
+    <!-- ====================================ROOMS (LOD4 only)===================================== -->
+    <!-- ========================================================================================= -->
+    <xs:complexType name="RoomType">
+        <xs:annotation>
+            <xs:documentation>A Room is a thematic object for modelling the closed parts inside a building. It has to be closed,
+                if necessary by using closure surfaces. The geometry may be either a solid, or a MultiSurface if the boundary is
+                not topologically clean. The room connectivity may be derived by detecting shared thematic openings or closure
+                surfaces: two rooms are connected if both use the same opening object or the same closure surface. The thematic
+                surfaces bounding a room are referenced by the boundedBy property. As subclass of _CityObject, a Room inherits all
+                attributes and relations, in particular an id, names, external references, and generalization relations.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="core:AbstractCityObjectType">
+                <xs:sequence>
+                    <xs:element name="class" type="RoomClassType" minOccurs="0"/>
+                    <xs:element name="function" type="RoomFunctionType" minOccurs="0" maxOccurs="unbounded"/>
+                    <xs:element name="usage" type="RoomUsageType" minOccurs="0" maxOccurs="unbounded"/>
+                    <xs:element name="lod4Solid" type="gml:SolidPropertyType" minOccurs="0"/>
+                    <xs:element name="lod4MultiSurface" type="gml:MultiSurfacePropertyType" minOccurs="0"/>
+                    <xs:element name="boundedBy" type="BoundarySurfacePropertyType" minOccurs="0" maxOccurs="unbounded"/>
+                    <xs:element name="interiorFurniture" type="InteriorFurniturePropertyType" minOccurs="0" maxOccurs="unbounded"/>
+                    <xs:element name="roomInstallation" type="IntBuildingInstallationPropertyType" minOccurs="0"
+                        maxOccurs="unbounded"/>
+                    <xs:element ref="_GenericApplicationPropertyOfRoom" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <!-- ========================================================================================= -->
+    <xs:element name="Room" type="RoomType" substitutionGroup="core:_CityObject"/>
+    <!-- ========================================================================================= -->
+    <xs:element name="_GenericApplicationPropertyOfRoom" type="xs:anyType" abstract="true"/>
+    <!-- ========================================================================================= -->
+    <xs:simpleType name="RoomClassType">
+        <xs:annotation>
+            <xs:documentation>Class of a room . The values of this type are defined in the XML file RoomClassType.xml, according
+                to the dictionary concept of GML3. </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <!-- ========================================================================================= -->
+    <xs:simpleType name="RoomFunctionType">
+        <xs:annotation>
+            <xs:documentation>Function of a room. The values of this type are defined in the XML file RoomFunctionType.xml,
+                according to the dictionary concept of GML3. </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <!-- ========================================================================================= -->
+    <xs:simpleType name="RoomUsageType">
+        <xs:annotation>
+            <xs:documentation>Actual Usage of a room. The values of this type are defined in the XML file RoomUsageType.xml,
+                according to the dictionary concept of GML3. </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <!-- ========================================================================================= -->
+    <xs:complexType name="BuildingFurnitureType">
+        <xs:annotation>
+            <xs:documentation>Type for building furnitures. As subclass of _CityObject, a BuildingFurniture inherits all
+                attributes and relations, in particular an id, names, external references, and generalization relations.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="core:AbstractCityObjectType">
+                <xs:sequence>
+                    <xs:element name="class" type="BuildingFurnitureClassType" minOccurs="0"/>
+                    <xs:element name="function" type="BuildingFurnitureFunctionType" minOccurs="0" maxOccurs="unbounded"/>
+                    <xs:element name="usage" type="BuildingFurnitureUsageType" minOccurs="0" maxOccurs="unbounded"/>
+                    <xs:element name="lod4Geometry" type="gml:GeometryPropertyType" minOccurs="0"/>
+                    <xs:element name="lod4ImplicitRepresentation" type="core:ImplicitRepresentationPropertyType" minOccurs="0"/>
+                    <xs:element ref="_GenericApplicationPropertyOfBuildingFurniture" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <!-- ========================================================================================= -->
+    <xs:element name="BuildingFurniture" type="BuildingFurnitureType" substitutionGroup="core:_CityObject"/>
+    <!-- ========================================================================================= -->
+    <xs:element name="_GenericApplicationPropertyOfBuildingFurniture" type="xs:anyType" abstract="true"/>
+    <!-- ========================================================================================= -->
+    <xs:simpleType name="BuildingFurnitureClassType">
+        <xs:annotation>
+            <xs:documentation> Class of a building furniture. The values of this type are defined in the XML file
+                BuildingFurnitureClassType.xml, according to the dictionary concept of GML3. </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <!-- ========================================================================================= -->
+    <xs:simpleType name="BuildingFurnitureFunctionType">
+        <xs:annotation>
+            <xs:documentation> Function of a building furniture. The values of this type are defined in the XML file
+                BuildingFurnitureFunctionType.xml, according to the dictionary concept of GML3. </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <!-- ========================================================================================= -->
+    <xs:simpleType name="BuildingFurnitureUsageType">
+        <xs:annotation>
+            <xs:documentation> Actual Usage of a building Furniture. The values of this type are defined in the XML file
+                BuildingFurnitureUsageType.xml, according to the dictionary concept of GML3. </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <!-- ========================================================================================= -->
+    <!-- ============================Relation of Building to Rooms (LOD4 only)============================ -->
+    <!-- ========================================================================================= -->
+    <xs:complexType name="InteriorRoomPropertyType">
+        <xs:annotation>
+            <xs:documentation>Denotes the relation of an _AbstractBuilding to its rooms. The InteriorRoomPropertyType element must
+                either carry a reference to a Room object or contain a Room object inline, but neither both nor none.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:restriction base="gml:AssociationType">
+                <xs:sequence minOccurs="0">
+                    <xs:element ref="Room"/>
+                </xs:sequence>
+            </xs:restriction>
+        </xs:complexContent>
+    </xs:complexType>
+    <!-- ========================================================================================= -->
+    <xs:complexType name="InteriorFurniturePropertyType">
+        <xs:annotation>
+            <xs:documentation>Denotes the relation of a Room to its interior furnitures (movable). The
+                InteriorFurniturePropertyType element must either carry a reference to a BuildingFurniture object or contain a
+                BuildingFurniture object inline, but neither both nor none. </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:restriction base="gml:AssociationType">
+                <xs:sequence minOccurs="0">
+                    <xs:element ref="BuildingFurniture"/>
+                </xs:sequence>
+            </xs:restriction>
+        </xs:complexContent>
+    </xs:complexType>
+    <!-- ========================================================================================= -->
+</xs:schema>
