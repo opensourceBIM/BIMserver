@@ -5,7 +5,6 @@ import java.util.Set;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
-import org.bimserver.database.ReadSet;
 import org.bimserver.database.store.ConcreteRevision;
 import org.bimserver.database.store.Project;
 import org.bimserver.database.store.Revision;
@@ -40,9 +39,8 @@ public class DownloadProjectsDatabaseAction extends BimDatabaseAction<IfcModel> 
 			project = revision.getProject();
 			if (RightsManager.hasRightsOnProjectOrSuperProjectsOrSubProjects(user, project)) {
 				for (ConcreteRevision concreteRevision : revision.getConcreteRevisions()) {
-					ReadSet readSet = bimDatabaseSession.getMap(concreteRevision.getProject().getId(), concreteRevision.getId());
+					IfcModel subModel = bimDatabaseSession.getMap(concreteRevision.getProject().getId(), concreteRevision.getId());
 					projectName += concreteRevision.getProject().getName() + "-";
-					IfcModel subModel = new IfcModel(readSet.getMap());
 					subModel.setDate(concreteRevision.getDate());
 					ifcModelSet.add(subModel);
 				}

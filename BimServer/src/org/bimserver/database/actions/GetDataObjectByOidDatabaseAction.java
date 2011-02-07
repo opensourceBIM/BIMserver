@@ -3,7 +3,6 @@ package org.bimserver.database.actions;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
-import org.bimserver.database.ReadSet;
 import org.bimserver.database.store.ConcreteRevision;
 import org.bimserver.database.store.Revision;
 import org.bimserver.database.store.log.AccessMethod;
@@ -48,9 +47,8 @@ public class GetDataObjectByOidDatabaseAction extends BimDatabaseAction<SDataObj
 		EObject eObject = null;
 		IfcModelSet ifcModelSet = new IfcModelSet();
 		for (ConcreteRevision concreteRevision : virtualRevision.getConcreteRevisions()) {
-			ReadSet readSet = new ReadSet(concreteRevision.getProject().getId(), concreteRevision.getId());
-			eObject = bimDatabaseSession.get(cid, oid, readSet);
-			IfcModel subModel = new IfcModel(readSet.getMap());
+			IfcModel subModel = new IfcModel();
+			eObject = bimDatabaseSession.get(cid, oid, concreteRevision.getProject().getId(), concreteRevision.getId(), subModel);
 			subModel.setDate(concreteRevision.getDate());
 			ifcModelSet.add(subModel);
 			if (eObject != null) {

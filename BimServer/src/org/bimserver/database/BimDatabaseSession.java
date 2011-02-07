@@ -14,7 +14,12 @@ import org.bimserver.database.store.Project;
 import org.bimserver.database.store.Revision;
 import org.bimserver.database.store.User;
 import org.bimserver.emf.IdEObject;
+<<<<<<< .working
 import org.bimserver.ifc.OidProvider;
+=======
+import org.bimserver.ifc.IfcModel;
+import org.bimserver.ifc.OidProvider;
+>>>>>>> .merge-right.r524
 import org.bimserver.shared.Addition;
 import org.bimserver.shared.DatabaseInformation;
 import org.bimserver.shared.UserException;
@@ -53,15 +58,15 @@ public interface BimDatabaseSession extends OidProvider {
 
 	Revision getVirtualRevision(long roid) throws BimDeadlockException, BimDatabaseException;
 
-	ReadSet getMap(int pid, int rid) throws BimDeadlockException, BimDatabaseException;
+	IfcModel getMap(int pid, int rid) throws BimDeadlockException, BimDatabaseException;
 
 	EClass getEClassForName(String className);
 
-	void convertAdditionToEObject(IdEObject object, Addition addition, Map<Long, IdEObject> processedAdditions, Map<Long, IdEObject> map);
+	void convertAdditionToEObject(IdEObject object, Addition addition, Map<Long, IdEObject> processedAdditions, IfcModel model);
 
 	IdEObject get(short cid, long oid) throws BimDeadlockException, BimDatabaseException;
 
-	IdEObject get(short cid, long oid, ReadSet readSet) throws BimDeadlockException, BimDatabaseException;
+	IdEObject get(short cid, long oid, int pid, int rid, IfcModel model) throws BimDeadlockException, BimDatabaseException;
 
 	Object convert(EClassifier type, String string);
 
@@ -89,7 +94,9 @@ public interface BimDatabaseSession extends OidProvider {
 
 	ObjectIdentifier getOidOfGuid(String guid, int pid, int rid) throws BimDeadlockException;
 
-	ReadSet getAllOfType(String className, int pid, int rid) throws BimDatabaseException, BimDeadlockException;
+	IfcModel getAllOfType(String className, int pid, int rid) throws BimDatabaseException, BimDeadlockException;
+
+	IfcModel getAllOfType(EClass eClass, int pid, int rid) throws BimDatabaseException, BimDeadlockException;
 
 	IfcModel getAllOfType(EClass eClass, int pid, int rid) throws BimDatabaseException, BimDeadlockException;
 
@@ -101,7 +108,7 @@ public interface BimDatabaseSession extends OidProvider {
 
 	void commit() throws BimDeadlockException, BimDatabaseException;
 
-	int getCount(EClass eClass, ReadSet readSet) throws BimDatabaseException, BimDeadlockException;
+	int getCount(EClass eClass, IfcModel model, int pid, int rid) throws BimDatabaseException, BimDeadlockException;
 
 	EClass getEClassForCid(short cid);
 

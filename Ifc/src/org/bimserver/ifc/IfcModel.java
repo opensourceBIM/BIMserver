@@ -86,6 +86,7 @@ public class IfcModel {
 	
 	public void add(Long key, IdEObject eObject, boolean ignoreDuplicateOids) {
 		if (objects.containsKey(key)) {
+<<<<<<< .working
 			if (!ignoreDuplicateOids) {
 				throw new RuntimeException("Oid already stored: " + key + " " + eObject + " (old: " + objects.get(key));
 			}
@@ -97,16 +98,25 @@ public class IfcModel {
 		}
 		if (key > counter) {
 			counter = key + 1;
+=======
+			if (!ignoreDuplicateOids) {
+				throw new RuntimeException("Oid already stored: " + key + " " + eObject + " (old: " + objects.get(key));
+			}
+		} else {
+			objects.put(key, eObject);
+			if (guidIndexed != null) {
+				indexGuid(eObject);
+			}
+>>>>>>> .merge-right.r524
 		}
-		objects.put(key, eObject);
 	}
 	
 	public Map<Long, IdEObject> getObjects() {
 		return objects;
 	}
 
-	public BiMap<? extends Long, ? extends IdEObject> getMap() {
-		return (BiMap<? extends Long, ? extends IdEObject>) objects;
+	public BiMap<Long, ? extends IdEObject> getMap() {
+		return (BiMap<Long, ? extends IdEObject>) objects;
 	}
 
 	public byte[] getChecksum() {

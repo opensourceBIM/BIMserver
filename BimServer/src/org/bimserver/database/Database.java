@@ -42,6 +42,7 @@ import org.bimserver.database.store.log.LogFactory;
 import org.bimserver.database.store.log.LogPackage;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.FieldIgnoreMap;
+import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.emf.Ifc2x3.Ifc2x3Package;
 import org.bimserver.shared.AbstractAttributeValuePair;
 import org.bimserver.shared.Addition;
@@ -380,7 +381,7 @@ public class Database implements BimDatabase {
 	}
 
 	@SuppressWarnings("unchecked")
-	public EObject convertAdditionToEObject(IdEObject object, Addition addition, Map<Long, IdEObject> processedAdditions, Map<Long, IdEObject> map) {
+	public EObject convertAdditionToEObject(IdEObject object, Addition addition, Map<Long, IdEObject> processedAdditions, IfcModel model) {
 		for (AbstractAttributeValuePair aavp : addition.getAttributes()) {
 			EStructuralFeature feature = object.eClass().getEStructuralFeature(aavp.getName());
 			if (aavp instanceof AttributeValuePair) {
@@ -404,7 +405,7 @@ public class Database implements BimDatabase {
 					object.eSet(feature, item);
 				}
 			} else if (aavp instanceof AttributeReferencePair) {
-				EObject newValue = map.get(((AttributeReferencePair) aavp).getOid());
+				EObject newValue = model.get(((AttributeReferencePair) aavp).getOid());
 				object.eSet(feature, newValue);
 			} else if (aavp instanceof AttributeList) {
 				BasicEList<Object> list = new BasicEList<Object>();
@@ -424,7 +425,7 @@ public class Database implements BimDatabase {
 						}
 					} else if (pair instanceof AttributeReferencePair) {
 						AttributeReferencePair arp = (AttributeReferencePair) pair;
-						EObject object2 = map.get(arp.getOid());
+						EObject object2 = model.get(arp.getOid());
 						list.add(object2);
 					} else if (pair instanceof AttributeNewReferencePair) {
 						AttributeNewReferencePair anrp = (AttributeNewReferencePair) pair;
