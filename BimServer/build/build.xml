@@ -1,5 +1,5 @@
 <project name="BIMserver">
-	<property name="version" value="1.0RC3" />
+	<property name="version" value="trunk" />
 	<target name="war">
 		<property name="deploydir" value="deploy/war" description="Create a war file" />
 		<ant antfile="common.build.xml" target="buildwar"></ant>
