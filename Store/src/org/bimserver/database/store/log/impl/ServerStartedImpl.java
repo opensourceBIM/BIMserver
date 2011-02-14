@@ -25,7 +25,7 @@ public class ServerStartedImpl extends LogActionImpl implements ServerStarted {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ServerStartedImpl() {
+	public ServerStartedImpl() {
 		super();
 	}
 

@@ -30,21 +30,11 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class ProjectUndeletedImpl extends LogActionImpl implements ProjectUndeleted {
 	/**
-	 * The cached value of the '{@link #getProject() <em>Project</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getProject()
-	 * @generated
-	 * @ordered
-	 */
-	protected Project project;
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ProjectUndeletedImpl() {
+	public ProjectUndeletedImpl() {
 		super();
 	}
 
@@ -64,12 +54,12 @@ public class ProjectUndeletedImpl extends LogActionImpl implements ProjectUndele
 	 * @generated
 	 */
 	public Project getProject() {
+		Project project = (Project)eVirtualGet(LogPackage.PROJECT_UNDELETED__PROJECT);
 		if (project != null && ((EObject)project).eIsProxy()) {
 			InternalEObject oldProject = (InternalEObject)project;
 			project = (Project)eResolveProxy(oldProject);
 			if (project != oldProject) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, LogPackage.PROJECT_UNDELETED__PROJECT, oldProject, project));
+				eVirtualSet(LogPackage.PROJECT_UNDELETED__PROJECT, project);
 			}
 		}
 		return project;
@@ -81,7 +71,7 @@ public class ProjectUndeletedImpl extends LogActionImpl implements ProjectUndele
 	 * @generated
 	 */
 	public Project basicGetProject() {
-		return project;
+		return (Project)eVirtualGet(LogPackage.PROJECT_UNDELETED__PROJECT);
 	}
 
 	/**
@@ -90,10 +80,8 @@ public class ProjectUndeletedImpl extends LogActionImpl implements ProjectUndele
 	 * @generated
 	 */
 	public void setProject(Project newProject) {
-		Project oldProject = project;
-		project = newProject;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, LogPackage.PROJECT_UNDELETED__PROJECT, oldProject, project));
+		Project project = newProject;
+		Object oldProject = eVirtualSet(LogPackage.PROJECT_UNDELETED__PROJECT, project);
 	}
 
 	/**
@@ -150,7 +138,7 @@ public class ProjectUndeletedImpl extends LogActionImpl implements ProjectUndele
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case LogPackage.PROJECT_UNDELETED__PROJECT:
-				return project != null;
+				return eVirtualGet(LogPackage.PROJECT_UNDELETED__PROJECT) != null;
 		}
 		return super.eIsSet(featureID);
 	}

@@ -41,34 +41,20 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class CheckoutImpl extends IdEObjectImpl implements Checkout {
 	/**
-	 * The cached value of the '{@link #getUser() <em>User</em>}' reference.
+	 * An array of objects representing the values of non-primitive features.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getUser()
 	 * @generated
-	 * @ordered
 	 */
-	protected User user;
+	protected Object[] eVirtualValues;
 
 	/**
-	 * The cached value of the '{@link #getRevision() <em>Revision</em>}' reference.
+	 * A bit field representing the indices of non-primitive feature values.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getRevision()
 	 * @generated
-	 * @ordered
 	 */
-	protected Revision revision;
-
-	/**
-	 * The cached value of the '{@link #getProject() <em>Project</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getProject()
-	 * @generated
-	 * @ordered
-	 */
-	protected Project project;
+	protected int eVirtualIndexBits0;
 
 	/**
 	 * The default value of the '{@link #getDate() <em>Date</em>}' attribute.
@@ -79,26 +65,6 @@ public class CheckoutImpl extends IdEObjectImpl implements Checkout {
 	 * @ordered
 	 */
 	protected static final Date DATE_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getDate() <em>Date</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDate()
-	 * @generated
-	 * @ordered
-	 */
-	protected Date date = DATE_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getCheckin() <em>Checkin</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getCheckin()
-	 * @generated
-	 * @ordered
-	 */
-	protected Revision checkin;
 
 	/**
 	 * The default value of the '{@link #isActive() <em>Active</em>}' attribute.
@@ -125,7 +91,7 @@ public class CheckoutImpl extends IdEObjectImpl implements Checkout {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected CheckoutImpl() {
+	public CheckoutImpl() {
 		super();
 	}
 
@@ -145,12 +111,12 @@ public class CheckoutImpl extends IdEObjectImpl implements Checkout {
 	 * @generated
 	 */
 	public User getUser() {
+		User user = (User)eVirtualGet(StorePackage.CHECKOUT__USER);
 		if (user != null && ((EObject)user).eIsProxy()) {
 			InternalEObject oldUser = (InternalEObject)user;
 			user = (User)eResolveProxy(oldUser);
 			if (user != oldUser) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StorePackage.CHECKOUT__USER, oldUser, user));
+				eVirtualSet(StorePackage.CHECKOUT__USER, user);
 			}
 		}
 		return user;
@@ -162,7 +128,7 @@ public class CheckoutImpl extends IdEObjectImpl implements Checkout {
 	 * @generated
 	 */
 	public User basicGetUser() {
-		return user;
+		return (User)eVirtualGet(StorePackage.CHECKOUT__USER);
 	}
 
 	/**
@@ -171,10 +137,8 @@ public class CheckoutImpl extends IdEObjectImpl implements Checkout {
 	 * @generated
 	 */
 	public void setUser(User newUser) {
-		User oldUser = user;
-		user = newUser;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.CHECKOUT__USER, oldUser, user));
+		User user = newUser;
+		Object oldUser = eVirtualSet(StorePackage.CHECKOUT__USER, user);
 	}
 
 	/**
@@ -183,12 +147,12 @@ public class CheckoutImpl extends IdEObjectImpl implements Checkout {
 	 * @generated
 	 */
 	public Revision getRevision() {
+		Revision revision = (Revision)eVirtualGet(StorePackage.CHECKOUT__REVISION);
 		if (revision != null && ((EObject)revision).eIsProxy()) {
 			InternalEObject oldRevision = (InternalEObject)revision;
 			revision = (Revision)eResolveProxy(oldRevision);
 			if (revision != oldRevision) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StorePackage.CHECKOUT__REVISION, oldRevision, revision));
+				eVirtualSet(StorePackage.CHECKOUT__REVISION, revision);
 			}
 		}
 		return revision;
@@ -200,7 +164,7 @@ public class CheckoutImpl extends IdEObjectImpl implements Checkout {
 	 * @generated
 	 */
 	public Revision basicGetRevision() {
-		return revision;
+		return (Revision)eVirtualGet(StorePackage.CHECKOUT__REVISION);
 	}
 
 	/**
@@ -209,12 +173,7 @@ public class CheckoutImpl extends IdEObjectImpl implements Checkout {
 	 * @generated
 	 */
 	public NotificationChain basicSetRevision(Revision newRevision, NotificationChain msgs) {
-		Revision oldRevision = revision;
-		revision = newRevision;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, StorePackage.CHECKOUT__REVISION, oldRevision, newRevision);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
+		Object oldRevision = eVirtualSet(StorePackage.CHECKOUT__REVISION, newRevision);
 		return msgs;
 	}
 
@@ -224,6 +183,7 @@ public class CheckoutImpl extends IdEObjectImpl implements Checkout {
 	 * @generated
 	 */
 	public void setRevision(Revision newRevision) {
+		Revision revision = (Revision)eVirtualGet(StorePackage.CHECKOUT__REVISION);
 		if (newRevision != revision) {
 			NotificationChain msgs = null;
 			if (revision != null)
@@ -233,8 +193,6 @@ public class CheckoutImpl extends IdEObjectImpl implements Checkout {
 			msgs = basicSetRevision(newRevision, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.CHECKOUT__REVISION, newRevision, newRevision));
 	}
 
 	/**
@@ -243,12 +201,12 @@ public class CheckoutImpl extends IdEObjectImpl implements Checkout {
 	 * @generated
 	 */
 	public Project getProject() {
+		Project project = (Project)eVirtualGet(StorePackage.CHECKOUT__PROJECT);
 		if (project != null && ((EObject)project).eIsProxy()) {
 			InternalEObject oldProject = (InternalEObject)project;
 			project = (Project)eResolveProxy(oldProject);
 			if (project != oldProject) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StorePackage.CHECKOUT__PROJECT, oldProject, project));
+				eVirtualSet(StorePackage.CHECKOUT__PROJECT, project);
 			}
 		}
 		return project;
@@ -260,7 +218,7 @@ public class CheckoutImpl extends IdEObjectImpl implements Checkout {
 	 * @generated
 	 */
 	public Project basicGetProject() {
-		return project;
+		return (Project)eVirtualGet(StorePackage.CHECKOUT__PROJECT);
 	}
 
 	/**
@@ -269,12 +227,7 @@ public class CheckoutImpl extends IdEObjectImpl implements Checkout {
 	 * @generated
 	 */
 	public NotificationChain basicSetProject(Project newProject, NotificationChain msgs) {
-		Project oldProject = project;
-		project = newProject;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, StorePackage.CHECKOUT__PROJECT, oldProject, newProject);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
+		Object oldProject = eVirtualSet(StorePackage.CHECKOUT__PROJECT, newProject);
 		return msgs;
 	}
 
@@ -284,6 +237,7 @@ public class CheckoutImpl extends IdEObjectImpl implements Checkout {
 	 * @generated
 	 */
 	public void setProject(Project newProject) {
+		Project project = (Project)eVirtualGet(StorePackage.CHECKOUT__PROJECT);
 		if (newProject != project) {
 			NotificationChain msgs = null;
 			if (project != null)
@@ -293,8 +247,6 @@ public class CheckoutImpl extends IdEObjectImpl implements Checkout {
 			msgs = basicSetProject(newProject, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.CHECKOUT__PROJECT, newProject, newProject));
 	}
 
 	/**
@@ -303,7 +255,7 @@ public class CheckoutImpl extends IdEObjectImpl implements Checkout {
 	 * @generated
 	 */
 	public Date getDate() {
-		return date;
+		return (Date)eVirtualGet(StorePackage.CHECKOUT__DATE, DATE_EDEFAULT);
 	}
 
 	/**
@@ -312,10 +264,8 @@ public class CheckoutImpl extends IdEObjectImpl implements Checkout {
 	 * @generated
 	 */
 	public void setDate(Date newDate) {
-		Date oldDate = date;
-		date = newDate;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.CHECKOUT__DATE, oldDate, date));
+		Date date = newDate;
+		Object oldDate = eVirtualSet(StorePackage.CHECKOUT__DATE, date);
 	}
 
 	/**
@@ -324,12 +274,12 @@ public class CheckoutImpl extends IdEObjectImpl implements Checkout {
 	 * @generated
 	 */
 	public Revision getCheckin() {
+		Revision checkin = (Revision)eVirtualGet(StorePackage.CHECKOUT__CHECKIN);
 		if (checkin != null && ((EObject)checkin).eIsProxy()) {
 			InternalEObject oldCheckin = (InternalEObject)checkin;
 			checkin = (Revision)eResolveProxy(oldCheckin);
 			if (checkin != oldCheckin) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StorePackage.CHECKOUT__CHECKIN, oldCheckin, checkin));
+				eVirtualSet(StorePackage.CHECKOUT__CHECKIN, checkin);
 			}
 		}
 		return checkin;
@@ -341,7 +291,7 @@ public class CheckoutImpl extends IdEObjectImpl implements Checkout {
 	 * @generated
 	 */
 	public Revision basicGetCheckin() {
-		return checkin;
+		return (Revision)eVirtualGet(StorePackage.CHECKOUT__CHECKIN);
 	}
 
 	/**
@@ -350,10 +300,8 @@ public class CheckoutImpl extends IdEObjectImpl implements Checkout {
 	 * @generated
 	 */
 	public void setCheckin(Revision newCheckin) {
-		Revision oldCheckin = checkin;
-		checkin = newCheckin;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.CHECKOUT__CHECKIN, oldCheckin, checkin));
+		Revision checkin = newCheckin;
+		Object oldCheckin = eVirtualSet(StorePackage.CHECKOUT__CHECKIN, checkin);
 	}
 
 	/**
@@ -371,10 +319,7 @@ public class CheckoutImpl extends IdEObjectImpl implements Checkout {
 	 * @generated
 	 */
 	public void setActive(boolean newActive) {
-		boolean oldActive = active;
 		active = newActive;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.CHECKOUT__ACTIVE, oldActive, active));
 	}
 
 	/**
@@ -386,10 +331,12 @@ public class CheckoutImpl extends IdEObjectImpl implements Checkout {
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case StorePackage.CHECKOUT__REVISION:
+				Revision revision = (Revision)eVirtualGet(StorePackage.CHECKOUT__REVISION);
 				if (revision != null)
 					msgs = ((InternalEObject)revision).eInverseRemove(this, StorePackage.REVISION__CHECKOUTS, Revision.class, msgs);
 				return basicSetRevision((Revision)otherEnd, msgs);
 			case StorePackage.CHECKOUT__PROJECT:
+				Project project = (Project)eVirtualGet(StorePackage.CHECKOUT__PROJECT);
 				if (project != null)
 					msgs = ((InternalEObject)project).eInverseRemove(this, StorePackage.PROJECT__CHECKOUTS, Project.class, msgs);
 				return basicSetProject((Project)otherEnd, msgs);
@@ -510,19 +457,71 @@ public class CheckoutImpl extends IdEObjectImpl implements Checkout {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case StorePackage.CHECKOUT__USER:
-				return user != null;
+				return eVirtualGet(StorePackage.CHECKOUT__USER) != null;
 			case StorePackage.CHECKOUT__REVISION:
-				return revision != null;
+				return eVirtualGet(StorePackage.CHECKOUT__REVISION) != null;
 			case StorePackage.CHECKOUT__PROJECT:
-				return project != null;
+				return eVirtualGet(StorePackage.CHECKOUT__PROJECT) != null;
 			case StorePackage.CHECKOUT__DATE:
+				Date date = (Date)eVirtualGet(StorePackage.CHECKOUT__DATE, DATE_EDEFAULT);
 				return DATE_EDEFAULT == null ? date != null : !DATE_EDEFAULT.equals(date);
 			case StorePackage.CHECKOUT__CHECKIN:
-				return checkin != null;
+				return eVirtualGet(StorePackage.CHECKOUT__CHECKIN) != null;
 			case StorePackage.CHECKOUT__ACTIVE:
 				return active != ACTIVE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected Object[] eVirtualValues() {
+		return eVirtualValues;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected void eSetVirtualValues(Object[] newValues) {
+		eVirtualValues = newValues;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected int eVirtualIndexBits(int offset) {
+		switch (offset) {
+			case 0 :
+				return eVirtualIndexBits0;
+			default :
+				throw new IndexOutOfBoundsException();
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected void eSetVirtualIndexBits(int offset, int newIndexBits) {
+		switch (offset) {
+			case 0 :
+				eVirtualIndexBits0 = newIndexBits;
+				break;
+			default :
+				throw new IndexOutOfBoundsException();
+		}
 	}
 
 	/**
@@ -536,7 +535,7 @@ public class CheckoutImpl extends IdEObjectImpl implements Checkout {
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (date: ");
-		result.append(date);
+		result.append(eVirtualGet(StorePackage.CHECKOUT__DATE, DATE_EDEFAULT));
 		result.append(", active: ");
 		result.append(active);
 		result.append(')');

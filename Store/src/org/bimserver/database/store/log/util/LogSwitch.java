@@ -8,6 +8,7 @@ package org.bimserver.database.store.log.util;
 
 import java.util.List;
 
+import org.bimserver.database.store.log.*;
 import org.bimserver.database.store.log.ClashDetectionSettingsUpdated;
 import org.bimserver.database.store.log.DatabaseCreated;
 import org.bimserver.database.store.log.Download;

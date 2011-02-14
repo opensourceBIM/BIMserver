@@ -32,31 +32,11 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class UserRemovedFromProjectImpl extends LogActionImpl implements UserRemovedFromProject {
 	/**
-	 * The cached value of the '{@link #getUser() <em>User</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getUser()
-	 * @generated
-	 * @ordered
-	 */
-	protected User user;
-
-	/**
-	 * The cached value of the '{@link #getProject() <em>Project</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getProject()
-	 * @generated
-	 * @ordered
-	 */
-	protected Project project;
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected UserRemovedFromProjectImpl() {
+	public UserRemovedFromProjectImpl() {
 		super();
 	}
 
@@ -76,12 +56,12 @@ public class UserRemovedFromProjectImpl extends LogActionImpl implements UserRem
 	 * @generated
 	 */
 	public User getUser() {
+		User user = (User)eVirtualGet(LogPackage.USER_REMOVED_FROM_PROJECT__USER);
 		if (user != null && ((EObject)user).eIsProxy()) {
 			InternalEObject oldUser = (InternalEObject)user;
 			user = (User)eResolveProxy(oldUser);
 			if (user != oldUser) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, LogPackage.USER_REMOVED_FROM_PROJECT__USER, oldUser, user));
+				eVirtualSet(LogPackage.USER_REMOVED_FROM_PROJECT__USER, user);
 			}
 		}
 		return user;
@@ -93,7 +73,7 @@ public class UserRemovedFromProjectImpl extends LogActionImpl implements UserRem
 	 * @generated
 	 */
 	public User basicGetUser() {
-		return user;
+		return (User)eVirtualGet(LogPackage.USER_REMOVED_FROM_PROJECT__USER);
 	}
 
 	/**
@@ -102,10 +82,8 @@ public class UserRemovedFromProjectImpl extends LogActionImpl implements UserRem
 	 * @generated
 	 */
 	public void setUser(User newUser) {
-		User oldUser = user;
-		user = newUser;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, LogPackage.USER_REMOVED_FROM_PROJECT__USER, oldUser, user));
+		User user = newUser;
+		Object oldUser = eVirtualSet(LogPackage.USER_REMOVED_FROM_PROJECT__USER, user);
 	}
 
 	/**
@@ -114,12 +92,12 @@ public class UserRemovedFromProjectImpl extends LogActionImpl implements UserRem
 	 * @generated
 	 */
 	public Project getProject() {
+		Project project = (Project)eVirtualGet(LogPackage.USER_REMOVED_FROM_PROJECT__PROJECT);
 		if (project != null && ((EObject)project).eIsProxy()) {
 			InternalEObject oldProject = (InternalEObject)project;
 			project = (Project)eResolveProxy(oldProject);
 			if (project != oldProject) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, LogPackage.USER_REMOVED_FROM_PROJECT__PROJECT, oldProject, project));
+				eVirtualSet(LogPackage.USER_REMOVED_FROM_PROJECT__PROJECT, project);
 			}
 		}
 		return project;
@@ -131,7 +109,7 @@ public class UserRemovedFromProjectImpl extends LogActionImpl implements UserRem
 	 * @generated
 	 */
 	public Project basicGetProject() {
-		return project;
+		return (Project)eVirtualGet(LogPackage.USER_REMOVED_FROM_PROJECT__PROJECT);
 	}
 
 	/**
@@ -140,10 +118,8 @@ public class UserRemovedFromProjectImpl extends LogActionImpl implements UserRem
 	 * @generated
 	 */
 	public void setProject(Project newProject) {
-		Project oldProject = project;
-		project = newProject;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, LogPackage.USER_REMOVED_FROM_PROJECT__PROJECT, oldProject, project));
+		Project project = newProject;
+		Object oldProject = eVirtualSet(LogPackage.USER_REMOVED_FROM_PROJECT__PROJECT, project);
 	}
 
 	/**
@@ -209,9 +185,9 @@ public class UserRemovedFromProjectImpl extends LogActionImpl implements UserRem
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case LogPackage.USER_REMOVED_FROM_PROJECT__USER:
-				return user != null;
+				return eVirtualGet(LogPackage.USER_REMOVED_FROM_PROJECT__USER) != null;
 			case LogPackage.USER_REMOVED_FROM_PROJECT__PROJECT:
-				return project != null;
+				return eVirtualGet(LogPackage.USER_REMOVED_FROM_PROJECT__PROJECT) != null;
 		}
 		return super.eIsSet(featureID);
 	}

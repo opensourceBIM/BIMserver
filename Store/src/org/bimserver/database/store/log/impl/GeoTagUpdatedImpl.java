@@ -30,21 +30,11 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class GeoTagUpdatedImpl extends LogActionImpl implements GeoTagUpdated {
 	/**
-	 * The cached value of the '{@link #getGeoTag() <em>Geo Tag</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getGeoTag()
-	 * @generated
-	 * @ordered
-	 */
-	protected GeoTag geoTag;
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected GeoTagUpdatedImpl() {
+	public GeoTagUpdatedImpl() {
 		super();
 	}
 
@@ -64,12 +54,12 @@ public class GeoTagUpdatedImpl extends LogActionImpl implements GeoTagUpdated {
 	 * @generated
 	 */
 	public GeoTag getGeoTag() {
+		GeoTag geoTag = (GeoTag)eVirtualGet(LogPackage.GEO_TAG_UPDATED__GEO_TAG);
 		if (geoTag != null && ((EObject)geoTag).eIsProxy()) {
 			InternalEObject oldGeoTag = (InternalEObject)geoTag;
 			geoTag = (GeoTag)eResolveProxy(oldGeoTag);
 			if (geoTag != oldGeoTag) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, LogPackage.GEO_TAG_UPDATED__GEO_TAG, oldGeoTag, geoTag));
+				eVirtualSet(LogPackage.GEO_TAG_UPDATED__GEO_TAG, geoTag);
 			}
 		}
 		return geoTag;
@@ -81,7 +71,7 @@ public class GeoTagUpdatedImpl extends LogActionImpl implements GeoTagUpdated {
 	 * @generated
 	 */
 	public GeoTag basicGetGeoTag() {
-		return geoTag;
+		return (GeoTag)eVirtualGet(LogPackage.GEO_TAG_UPDATED__GEO_TAG);
 	}
 
 	/**
@@ -90,10 +80,8 @@ public class GeoTagUpdatedImpl extends LogActionImpl implements GeoTagUpdated {
 	 * @generated
 	 */
 	public void setGeoTag(GeoTag newGeoTag) {
-		GeoTag oldGeoTag = geoTag;
-		geoTag = newGeoTag;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, LogPackage.GEO_TAG_UPDATED__GEO_TAG, oldGeoTag, geoTag));
+		GeoTag geoTag = newGeoTag;
+		Object oldGeoTag = eVirtualSet(LogPackage.GEO_TAG_UPDATED__GEO_TAG, geoTag);
 	}
 
 	/**
@@ -150,7 +138,7 @@ public class GeoTagUpdatedImpl extends LogActionImpl implements GeoTagUpdated {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case LogPackage.GEO_TAG_UPDATED__GEO_TAG:
-				return geoTag != null;
+				return eVirtualGet(LogPackage.GEO_TAG_UPDATED__GEO_TAG) != null;
 		}
 		return super.eIsSet(featureID);
 	}

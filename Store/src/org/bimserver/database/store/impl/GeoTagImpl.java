@@ -17,6 +17,7 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.util.BasicInternalEList;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -42,6 +43,22 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class GeoTagImpl extends IdEObjectImpl implements GeoTag {
 	/**
+	 * An array of objects representing the values of non-primitive features.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected Object[] eVirtualValues;
+
+	/**
+	 * A bit field representing the indices of non-primitive feature values.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected int eVirtualIndexBits0;
+
+	/**
 	 * The default value of the '{@link #isEnabled() <em>Enabled</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,16 +77,6 @@ public class GeoTagImpl extends IdEObjectImpl implements GeoTag {
 	 * @ordered
 	 */
 	protected boolean enabled = ENABLED_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getProjects() <em>Projects</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getProjects()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Project> projects;
 
 	/**
 	 * The default value of the '{@link #getX() <em>X</em>}' attribute.
@@ -176,7 +183,7 @@ public class GeoTagImpl extends IdEObjectImpl implements GeoTag {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected GeoTagImpl() {
+	public GeoTagImpl() {
 		super();
 	}
 
@@ -205,10 +212,7 @@ public class GeoTagImpl extends IdEObjectImpl implements GeoTag {
 	 * @generated
 	 */
 	public void setEnabled(boolean newEnabled) {
-		boolean oldEnabled = enabled;
 		enabled = newEnabled;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.GEO_TAG__ENABLED, oldEnabled, enabled));
 	}
 
 	/**
@@ -216,9 +220,11 @@ public class GeoTagImpl extends IdEObjectImpl implements GeoTag {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	public EList<Project> getProjects() {
+		EList<Project> projects = (EList<Project>)eVirtualGet(StorePackage.GEO_TAG__PROJECTS);
 		if (projects == null) {
-			projects = new EObjectWithInverseResolvingEList<Project>(Project.class, this, StorePackage.GEO_TAG__PROJECTS, StorePackage.PROJECT__GEO_TAG);
+			eVirtualSet(StorePackage.GEO_TAG__PROJECTS, projects = new BasicInternalEList<Project>(Project.class));
 		}
 		return projects;
 	}
@@ -238,10 +244,7 @@ public class GeoTagImpl extends IdEObjectImpl implements GeoTag {
 	 * @generated
 	 */
 	public void setX(float newX) {
-		float oldX = x;
 		x = newX;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.GEO_TAG__X, oldX, x));
 	}
 
 	/**
@@ -259,10 +262,7 @@ public class GeoTagImpl extends IdEObjectImpl implements GeoTag {
 	 * @generated
 	 */
 	public void setY(float newY) {
-		float oldY = y;
 		y = newY;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.GEO_TAG__Y, oldY, y));
 	}
 
 	/**
@@ -280,10 +280,7 @@ public class GeoTagImpl extends IdEObjectImpl implements GeoTag {
 	 * @generated
 	 */
 	public void setZ(float newZ) {
-		float oldZ = z;
 		z = newZ;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.GEO_TAG__Z, oldZ, z));
 	}
 
 	/**
@@ -301,10 +298,7 @@ public class GeoTagImpl extends IdEObjectImpl implements GeoTag {
 	 * @generated
 	 */
 	public void setEpsg(int newEpsg) {
-		int oldEpsg = epsg;
 		epsg = newEpsg;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.GEO_TAG__EPSG, oldEpsg, epsg));
 	}
 
 	/**
@@ -322,10 +316,7 @@ public class GeoTagImpl extends IdEObjectImpl implements GeoTag {
 	 * @generated
 	 */
 	public void setDirectionAngle(float newDirectionAngle) {
-		float oldDirectionAngle = directionAngle;
 		directionAngle = newDirectionAngle;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.GEO_TAG__DIRECTION_ANGLE, oldDirectionAngle, directionAngle));
 	}
 
 	/**
@@ -456,12 +447,14 @@ public class GeoTagImpl extends IdEObjectImpl implements GeoTag {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case StorePackage.GEO_TAG__ENABLED:
 				return enabled != ENABLED_EDEFAULT;
 			case StorePackage.GEO_TAG__PROJECTS:
+				EList<Project> projects = (EList<Project>)eVirtualGet(StorePackage.GEO_TAG__PROJECTS);
 				return projects != null && !projects.isEmpty();
 			case StorePackage.GEO_TAG__X:
 				return x != X_EDEFAULT;
@@ -475,6 +468,57 @@ public class GeoTagImpl extends IdEObjectImpl implements GeoTag {
 				return directionAngle != DIRECTION_ANGLE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected Object[] eVirtualValues() {
+		return eVirtualValues;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected void eSetVirtualValues(Object[] newValues) {
+		eVirtualValues = newValues;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected int eVirtualIndexBits(int offset) {
+		switch (offset) {
+			case 0 :
+				return eVirtualIndexBits0;
+			default :
+				throw new IndexOutOfBoundsException();
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected void eSetVirtualIndexBits(int offset, int newIndexBits) {
+		switch (offset) {
+			case 0 :
+				eVirtualIndexBits0 = newIndexBits;
+				break;
+			default :
+				throw new IndexOutOfBoundsException();
+		}
 	}
 
 	/**

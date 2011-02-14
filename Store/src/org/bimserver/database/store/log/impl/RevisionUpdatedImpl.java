@@ -30,21 +30,11 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class RevisionUpdatedImpl extends LogActionImpl implements RevisionUpdated {
 	/**
-	 * The cached value of the '{@link #getRevision() <em>Revision</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getRevision()
-	 * @generated
-	 * @ordered
-	 */
-	protected Revision revision;
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected RevisionUpdatedImpl() {
+	public RevisionUpdatedImpl() {
 		super();
 	}
 
@@ -64,12 +54,12 @@ public class RevisionUpdatedImpl extends LogActionImpl implements RevisionUpdate
 	 * @generated
 	 */
 	public Revision getRevision() {
+		Revision revision = (Revision)eVirtualGet(LogPackage.REVISION_UPDATED__REVISION);
 		if (revision != null && ((EObject)revision).eIsProxy()) {
 			InternalEObject oldRevision = (InternalEObject)revision;
 			revision = (Revision)eResolveProxy(oldRevision);
 			if (revision != oldRevision) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, LogPackage.REVISION_UPDATED__REVISION, oldRevision, revision));
+				eVirtualSet(LogPackage.REVISION_UPDATED__REVISION, revision);
 			}
 		}
 		return revision;
@@ -81,7 +71,7 @@ public class RevisionUpdatedImpl extends LogActionImpl implements RevisionUpdate
 	 * @generated
 	 */
 	public Revision basicGetRevision() {
-		return revision;
+		return (Revision)eVirtualGet(LogPackage.REVISION_UPDATED__REVISION);
 	}
 
 	/**
@@ -90,10 +80,8 @@ public class RevisionUpdatedImpl extends LogActionImpl implements RevisionUpdate
 	 * @generated
 	 */
 	public void setRevision(Revision newRevision) {
-		Revision oldRevision = revision;
-		revision = newRevision;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, LogPackage.REVISION_UPDATED__REVISION, oldRevision, revision));
+		Revision revision = newRevision;
+		Object oldRevision = eVirtualSet(LogPackage.REVISION_UPDATED__REVISION, revision);
 	}
 
 	/**
@@ -150,7 +138,7 @@ public class RevisionUpdatedImpl extends LogActionImpl implements RevisionUpdate
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case LogPackage.REVISION_UPDATED__REVISION:
-				return revision != null;
+				return eVirtualGet(LogPackage.REVISION_UPDATED__REVISION) != null;
 		}
 		return super.eIsSet(featureID);
 	}

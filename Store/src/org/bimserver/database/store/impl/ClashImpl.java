@@ -36,6 +36,22 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class ClashImpl extends IdEObjectImpl implements Clash {
 	/**
+	 * An array of objects representing the values of non-primitive features.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected Object[] eVirtualValues;
+
+	/**
+	 * A bit field representing the indices of non-primitive feature values.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected int eVirtualIndexBits0;
+
+	/**
 	 * The default value of the '{@link #getName1() <em>Name1</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -44,16 +60,6 @@ public class ClashImpl extends IdEObjectImpl implements Clash {
 	 * @ordered
 	 */
 	protected static final String NAME1_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getName1() <em>Name1</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName1()
-	 * @generated
-	 * @ordered
-	 */
-	protected String name1 = NAME1_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getName2() <em>Name2</em>}' attribute.
@@ -66,16 +72,6 @@ public class ClashImpl extends IdEObjectImpl implements Clash {
 	protected static final String NAME2_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getName2() <em>Name2</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName2()
-	 * @generated
-	 * @ordered
-	 */
-	protected String name2 = NAME2_EDEFAULT;
-
-	/**
 	 * The default value of the '{@link #getType1() <em>Type1</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -84,16 +80,6 @@ public class ClashImpl extends IdEObjectImpl implements Clash {
 	 * @ordered
 	 */
 	protected static final String TYPE1_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getType1() <em>Type1</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getType1()
-	 * @generated
-	 * @ordered
-	 */
-	protected String type1 = TYPE1_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getType2() <em>Type2</em>}' attribute.
@@ -106,41 +92,11 @@ public class ClashImpl extends IdEObjectImpl implements Clash {
 	protected static final String TYPE2_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getType2() <em>Type2</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getType2()
-	 * @generated
-	 * @ordered
-	 */
-	protected String type2 = TYPE2_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getRevision1() <em>Revision1</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getRevision1()
-	 * @generated
-	 * @ordered
-	 */
-	protected Revision revision1;
-
-	/**
-	 * The cached value of the '{@link #getRevision2() <em>Revision2</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getRevision2()
-	 * @generated
-	 * @ordered
-	 */
-	protected Revision revision2;
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ClashImpl() {
+	public ClashImpl() {
 		super();
 	}
 
@@ -160,7 +116,7 @@ public class ClashImpl extends IdEObjectImpl implements Clash {
 	 * @generated
 	 */
 	public String getName1() {
-		return name1;
+		return (String)eVirtualGet(StorePackage.CLASH__NAME1, NAME1_EDEFAULT);
 	}
 
 	/**
@@ -169,10 +125,8 @@ public class ClashImpl extends IdEObjectImpl implements Clash {
 	 * @generated
 	 */
 	public void setName1(String newName1) {
-		String oldName1 = name1;
-		name1 = newName1;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.CLASH__NAME1, oldName1, name1));
+		String name1 = newName1;
+		Object oldName1 = eVirtualSet(StorePackage.CLASH__NAME1, name1);
 	}
 
 	/**
@@ -181,7 +135,7 @@ public class ClashImpl extends IdEObjectImpl implements Clash {
 	 * @generated
 	 */
 	public String getName2() {
-		return name2;
+		return (String)eVirtualGet(StorePackage.CLASH__NAME2, NAME2_EDEFAULT);
 	}
 
 	/**
@@ -190,10 +144,8 @@ public class ClashImpl extends IdEObjectImpl implements Clash {
 	 * @generated
 	 */
 	public void setName2(String newName2) {
-		String oldName2 = name2;
-		name2 = newName2;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.CLASH__NAME2, oldName2, name2));
+		String name2 = newName2;
+		Object oldName2 = eVirtualSet(StorePackage.CLASH__NAME2, name2);
 	}
 
 	/**
@@ -202,7 +154,7 @@ public class ClashImpl extends IdEObjectImpl implements Clash {
 	 * @generated
 	 */
 	public String getType1() {
-		return type1;
+		return (String)eVirtualGet(StorePackage.CLASH__TYPE1, TYPE1_EDEFAULT);
 	}
 
 	/**
@@ -211,10 +163,8 @@ public class ClashImpl extends IdEObjectImpl implements Clash {
 	 * @generated
 	 */
 	public void setType1(String newType1) {
-		String oldType1 = type1;
-		type1 = newType1;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.CLASH__TYPE1, oldType1, type1));
+		String type1 = newType1;
+		Object oldType1 = eVirtualSet(StorePackage.CLASH__TYPE1, type1);
 	}
 
 	/**
@@ -223,7 +173,7 @@ public class ClashImpl extends IdEObjectImpl implements Clash {
 	 * @generated
 	 */
 	public String getType2() {
-		return type2;
+		return (String)eVirtualGet(StorePackage.CLASH__TYPE2, TYPE2_EDEFAULT);
 	}
 
 	/**
@@ -232,10 +182,8 @@ public class ClashImpl extends IdEObjectImpl implements Clash {
 	 * @generated
 	 */
 	public void setType2(String newType2) {
-		String oldType2 = type2;
-		type2 = newType2;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.CLASH__TYPE2, oldType2, type2));
+		String type2 = newType2;
+		Object oldType2 = eVirtualSet(StorePackage.CLASH__TYPE2, type2);
 	}
 
 	/**
@@ -244,12 +192,12 @@ public class ClashImpl extends IdEObjectImpl implements Clash {
 	 * @generated
 	 */
 	public Revision getRevision1() {
+		Revision revision1 = (Revision)eVirtualGet(StorePackage.CLASH__REVISION1);
 		if (revision1 != null && ((EObject)revision1).eIsProxy()) {
 			InternalEObject oldRevision1 = (InternalEObject)revision1;
 			revision1 = (Revision)eResolveProxy(oldRevision1);
 			if (revision1 != oldRevision1) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StorePackage.CLASH__REVISION1, oldRevision1, revision1));
+				eVirtualSet(StorePackage.CLASH__REVISION1, revision1);
 			}
 		}
 		return revision1;
@@ -261,7 +209,7 @@ public class ClashImpl extends IdEObjectImpl implements Clash {
 	 * @generated
 	 */
 	public Revision basicGetRevision1() {
-		return revision1;
+		return (Revision)eVirtualGet(StorePackage.CLASH__REVISION1);
 	}
 
 	/**
@@ -270,10 +218,8 @@ public class ClashImpl extends IdEObjectImpl implements Clash {
 	 * @generated
 	 */
 	public void setRevision1(Revision newRevision1) {
-		Revision oldRevision1 = revision1;
-		revision1 = newRevision1;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.CLASH__REVISION1, oldRevision1, revision1));
+		Revision revision1 = newRevision1;
+		Object oldRevision1 = eVirtualSet(StorePackage.CLASH__REVISION1, revision1);
 	}
 
 	/**
@@ -282,12 +228,12 @@ public class ClashImpl extends IdEObjectImpl implements Clash {
 	 * @generated
 	 */
 	public Revision getRevision2() {
+		Revision revision2 = (Revision)eVirtualGet(StorePackage.CLASH__REVISION2);
 		if (revision2 != null && ((EObject)revision2).eIsProxy()) {
 			InternalEObject oldRevision2 = (InternalEObject)revision2;
 			revision2 = (Revision)eResolveProxy(oldRevision2);
 			if (revision2 != oldRevision2) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StorePackage.CLASH__REVISION2, oldRevision2, revision2));
+				eVirtualSet(StorePackage.CLASH__REVISION2, revision2);
 			}
 		}
 		return revision2;
@@ -299,7 +245,7 @@ public class ClashImpl extends IdEObjectImpl implements Clash {
 	 * @generated
 	 */
 	public Revision basicGetRevision2() {
-		return revision2;
+		return (Revision)eVirtualGet(StorePackage.CLASH__REVISION2);
 	}
 
 	/**
@@ -308,10 +254,8 @@ public class ClashImpl extends IdEObjectImpl implements Clash {
 	 * @generated
 	 */
 	public void setRevision2(Revision newRevision2) {
-		Revision oldRevision2 = revision2;
-		revision2 = newRevision2;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.CLASH__REVISION2, oldRevision2, revision2));
+		Revision revision2 = newRevision2;
+		Object oldRevision2 = eVirtualSet(StorePackage.CLASH__REVISION2, revision2);
 	}
 
 	/**
@@ -409,19 +353,74 @@ public class ClashImpl extends IdEObjectImpl implements Clash {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case StorePackage.CLASH__NAME1:
+				String name1 = (String)eVirtualGet(StorePackage.CLASH__NAME1, NAME1_EDEFAULT);
 				return NAME1_EDEFAULT == null ? name1 != null : !NAME1_EDEFAULT.equals(name1);
 			case StorePackage.CLASH__NAME2:
+				String name2 = (String)eVirtualGet(StorePackage.CLASH__NAME2, NAME2_EDEFAULT);
 				return NAME2_EDEFAULT == null ? name2 != null : !NAME2_EDEFAULT.equals(name2);
 			case StorePackage.CLASH__TYPE1:
+				String type1 = (String)eVirtualGet(StorePackage.CLASH__TYPE1, TYPE1_EDEFAULT);
 				return TYPE1_EDEFAULT == null ? type1 != null : !TYPE1_EDEFAULT.equals(type1);
 			case StorePackage.CLASH__TYPE2:
+				String type2 = (String)eVirtualGet(StorePackage.CLASH__TYPE2, TYPE2_EDEFAULT);
 				return TYPE2_EDEFAULT == null ? type2 != null : !TYPE2_EDEFAULT.equals(type2);
 			case StorePackage.CLASH__REVISION1:
-				return revision1 != null;
+				return eVirtualGet(StorePackage.CLASH__REVISION1) != null;
 			case StorePackage.CLASH__REVISION2:
-				return revision2 != null;
+				return eVirtualGet(StorePackage.CLASH__REVISION2) != null;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected Object[] eVirtualValues() {
+		return eVirtualValues;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected void eSetVirtualValues(Object[] newValues) {
+		eVirtualValues = newValues;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected int eVirtualIndexBits(int offset) {
+		switch (offset) {
+			case 0 :
+				return eVirtualIndexBits0;
+			default :
+				throw new IndexOutOfBoundsException();
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected void eSetVirtualIndexBits(int offset, int newIndexBits) {
+		switch (offset) {
+			case 0 :
+				eVirtualIndexBits0 = newIndexBits;
+				break;
+			default :
+				throw new IndexOutOfBoundsException();
+		}
 	}
 
 	/**
@@ -435,13 +434,13 @@ public class ClashImpl extends IdEObjectImpl implements Clash {
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (name1: ");
-		result.append(name1);
+		result.append(eVirtualGet(StorePackage.CLASH__NAME1, NAME1_EDEFAULT));
 		result.append(", name2: ");
-		result.append(name2);
+		result.append(eVirtualGet(StorePackage.CLASH__NAME2, NAME2_EDEFAULT));
 		result.append(", type1: ");
-		result.append(type1);
+		result.append(eVirtualGet(StorePackage.CLASH__TYPE1, TYPE1_EDEFAULT));
 		result.append(", type2: ");
-		result.append(type2);
+		result.append(eVirtualGet(StorePackage.CLASH__TYPE2, TYPE2_EDEFAULT));
 		result.append(')');
 		return result.toString();
 	}

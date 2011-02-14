@@ -37,15 +37,6 @@ public class DatabaseCreatedImpl extends LogActionImpl implements DatabaseCreate
 	 */
 	protected static final String PATH_EDEFAULT = null;
 	/**
-	 * The cached value of the '{@link #getPath() <em>Path</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getPath()
-	 * @generated
-	 * @ordered
-	 */
-	protected String path = PATH_EDEFAULT;
-	/**
 	 * The default value of the '{@link #getVersion() <em>Version</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -63,13 +54,12 @@ public class DatabaseCreatedImpl extends LogActionImpl implements DatabaseCreate
 	 * @ordered
 	 */
 	protected int version = VERSION_EDEFAULT;
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected DatabaseCreatedImpl() {
+	public DatabaseCreatedImpl() {
 		super();
 	}
 
@@ -89,7 +79,7 @@ public class DatabaseCreatedImpl extends LogActionImpl implements DatabaseCreate
 	 * @generated
 	 */
 	public String getPath() {
-		return path;
+		return (String)eVirtualGet(LogPackage.DATABASE_CREATED__PATH, PATH_EDEFAULT);
 	}
 
 	/**
@@ -98,10 +88,8 @@ public class DatabaseCreatedImpl extends LogActionImpl implements DatabaseCreate
 	 * @generated
 	 */
 	public void setPath(String newPath) {
-		String oldPath = path;
-		path = newPath;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, LogPackage.DATABASE_CREATED__PATH, oldPath, path));
+		String path = newPath;
+		Object oldPath = eVirtualSet(LogPackage.DATABASE_CREATED__PATH, path);
 	}
 
 	/**
@@ -119,10 +107,7 @@ public class DatabaseCreatedImpl extends LogActionImpl implements DatabaseCreate
 	 * @generated
 	 */
 	public void setVersion(int newVersion) {
-		int oldVersion = version;
 		version = newVersion;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, LogPackage.DATABASE_CREATED__VERSION, oldVersion, version));
 	}
 
 	/**
@@ -186,6 +171,7 @@ public class DatabaseCreatedImpl extends LogActionImpl implements DatabaseCreate
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case LogPackage.DATABASE_CREATED__PATH:
+				String path = (String)eVirtualGet(LogPackage.DATABASE_CREATED__PATH, PATH_EDEFAULT);
 				return PATH_EDEFAULT == null ? path != null : !PATH_EDEFAULT.equals(path);
 			case LogPackage.DATABASE_CREATED__VERSION:
 				return version != VERSION_EDEFAULT;
@@ -204,7 +190,7 @@ public class DatabaseCreatedImpl extends LogActionImpl implements DatabaseCreate
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (path: ");
-		result.append(path);
+		result.append(eVirtualGet(LogPackage.DATABASE_CREATED__PATH, PATH_EDEFAULT));
 		result.append(", version: ");
 		result.append(version);
 		result.append(')');

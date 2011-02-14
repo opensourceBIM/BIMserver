@@ -30,21 +30,11 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class NewCheckoutAddedImpl extends LogActionImpl implements NewCheckoutAdded {
 	/**
-	 * The cached value of the '{@link #getCheckout() <em>Checkout</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getCheckout()
-	 * @generated
-	 * @ordered
-	 */
-	protected Checkout checkout;
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected NewCheckoutAddedImpl() {
+	public NewCheckoutAddedImpl() {
 		super();
 	}
 
@@ -64,12 +54,12 @@ public class NewCheckoutAddedImpl extends LogActionImpl implements NewCheckoutAd
 	 * @generated
 	 */
 	public Checkout getCheckout() {
+		Checkout checkout = (Checkout)eVirtualGet(LogPackage.NEW_CHECKOUT_ADDED__CHECKOUT);
 		if (checkout != null && ((EObject)checkout).eIsProxy()) {
 			InternalEObject oldCheckout = (InternalEObject)checkout;
 			checkout = (Checkout)eResolveProxy(oldCheckout);
 			if (checkout != oldCheckout) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, LogPackage.NEW_CHECKOUT_ADDED__CHECKOUT, oldCheckout, checkout));
+				eVirtualSet(LogPackage.NEW_CHECKOUT_ADDED__CHECKOUT, checkout);
 			}
 		}
 		return checkout;
@@ -81,7 +71,7 @@ public class NewCheckoutAddedImpl extends LogActionImpl implements NewCheckoutAd
 	 * @generated
 	 */
 	public Checkout basicGetCheckout() {
-		return checkout;
+		return (Checkout)eVirtualGet(LogPackage.NEW_CHECKOUT_ADDED__CHECKOUT);
 	}
 
 	/**
@@ -90,10 +80,8 @@ public class NewCheckoutAddedImpl extends LogActionImpl implements NewCheckoutAd
 	 * @generated
 	 */
 	public void setCheckout(Checkout newCheckout) {
-		Checkout oldCheckout = checkout;
-		checkout = newCheckout;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, LogPackage.NEW_CHECKOUT_ADDED__CHECKOUT, oldCheckout, checkout));
+		Checkout checkout = newCheckout;
+		Object oldCheckout = eVirtualSet(LogPackage.NEW_CHECKOUT_ADDED__CHECKOUT, checkout);
 	}
 
 	/**
@@ -150,7 +138,7 @@ public class NewCheckoutAddedImpl extends LogActionImpl implements NewCheckoutAd
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case LogPackage.NEW_CHECKOUT_ADDED__CHECKOUT:
-				return checkout != null;
+				return eVirtualGet(LogPackage.NEW_CHECKOUT_ADDED__CHECKOUT) != null;
 		}
 		return super.eIsSet(featureID);
 	}

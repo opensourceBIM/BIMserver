@@ -26,6 +26,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.util.BasicInternalEList;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -61,6 +62,22 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class ProjectImpl extends IdEObjectImpl implements Project {
 	/**
+	 * An array of objects representing the values of non-primitive features.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected Object[] eVirtualValues;
+
+	/**
+	 * A bit field representing the indices of non-primitive feature values.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected int eVirtualIndexBits0;
+
+	/**
 	 * The default value of the '{@link #getId() <em>Id</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -91,76 +108,6 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	protected static final String NAME_EDEFAULT = "";
 
 	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String name = NAME_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getHasAuthorizedUsers() <em>Has Authorized Users</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getHasAuthorizedUsers()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<User> hasAuthorizedUsers;
-
-	/**
-	 * The cached value of the '{@link #getConcreteRevisions() <em>Concrete Revisions</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getConcreteRevisions()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<ConcreteRevision> concreteRevisions;
-
-	/**
-	 * The cached value of the '{@link #getRevisions() <em>Revisions</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getRevisions()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Revision> revisions;
-
-	/**
-	 * The cached value of the '{@link #getLastConcreteRevision() <em>Last Concrete Revision</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getLastConcreteRevision()
-	 * @generated
-	 * @ordered
-	 */
-	protected ConcreteRevision lastConcreteRevision;
-
-	/**
-	 * The cached value of the '{@link #getLastRevision() <em>Last Revision</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getLastRevision()
-	 * @generated
-	 * @ordered
-	 */
-	protected Revision lastRevision;
-
-	/**
-	 * The cached value of the '{@link #getCheckouts() <em>Checkouts</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getCheckouts()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Checkout> checkouts;
-
-	/**
 	 * The default value of the '{@link #getState() <em>State</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -169,16 +116,6 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 * @ordered
 	 */
 	protected static final ObjectState STATE_EDEFAULT = ObjectState.ACTIVE;
-
-	/**
-	 * The cached value of the '{@link #getState() <em>State</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getState()
-	 * @generated
-	 * @ordered
-	 */
-	protected ObjectState state = STATE_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getCreatedDate() <em>Created Date</em>}' attribute.
@@ -191,56 +128,6 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	protected static final Date CREATED_DATE_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getCreatedDate() <em>Created Date</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getCreatedDate()
-	 * @generated
-	 * @ordered
-	 */
-	protected Date createdDate = CREATED_DATE_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getCreatedBy() <em>Created By</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getCreatedBy()
-	 * @generated
-	 * @ordered
-	 */
-	protected User createdBy;
-
-	/**
-	 * The cached value of the '{@link #getGeoTag() <em>Geo Tag</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getGeoTag()
-	 * @generated
-	 * @ordered
-	 */
-	protected GeoTag geoTag;
-
-	/**
-	 * The cached value of the '{@link #getSubProjects() <em>Sub Projects</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSubProjects()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Project> subProjects;
-
-	/**
-	 * The cached value of the '{@link #getParent() <em>Parent</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getParent()
-	 * @generated
-	 * @ordered
-	 */
-	protected Project parent;
-
-	/**
 	 * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -249,26 +136,6 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 * @ordered
 	 */
 	protected static final String DESCRIPTION_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getDescription() <em>Description</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDescription()
-	 * @generated
-	 * @ordered
-	 */
-	protected String description = DESCRIPTION_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getClashDetectionSettings() <em>Clash Detection Settings</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getClashDetectionSettings()
-	 * @generated
-	 * @ordered
-	 */
-	protected ClashDetectionSettings clashDetectionSettings;
 
 	/**
 	 * The default value of the '{@link #getExportLengthMeasurePrefix() <em>Export Length Measure Prefix</em>}' attribute.
@@ -281,21 +148,11 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	protected static final SIPrefix EXPORT_LENGTH_MEASURE_PREFIX_EDEFAULT = SIPrefix.METER;
 
 	/**
-	 * The cached value of the '{@link #getExportLengthMeasurePrefix() <em>Export Length Measure Prefix</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getExportLengthMeasurePrefix()
-	 * @generated
-	 * @ordered
-	 */
-	protected SIPrefix exportLengthMeasurePrefix = EXPORT_LENGTH_MEASURE_PREFIX_EDEFAULT;
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ProjectImpl() {
+	public ProjectImpl() {
 		super();
 	}
 
@@ -324,10 +181,7 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 * @generated
 	 */
 	public void setId(int newId) {
-		int oldId = id;
 		id = newId;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.PROJECT__ID, oldId, id));
 	}
 
 	/**
@@ -336,7 +190,7 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 * @generated
 	 */
 	public String getName() {
-		return name;
+		return (String)eVirtualGet(StorePackage.PROJECT__NAME, NAME_EDEFAULT);
 	}
 
 	/**
@@ -345,10 +199,8 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 * @generated
 	 */
 	public void setName(String newName) {
-		String oldName = name;
-		name = newName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.PROJECT__NAME, oldName, name));
+		String name = newName;
+		Object oldName = eVirtualSet(StorePackage.PROJECT__NAME, name);
 	}
 
 	/**
@@ -356,9 +208,11 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	public EList<User> getHasAuthorizedUsers() {
+		EList<User> hasAuthorizedUsers = (EList<User>)eVirtualGet(StorePackage.PROJECT__HAS_AUTHORIZED_USERS);
 		if (hasAuthorizedUsers == null) {
-			hasAuthorizedUsers = new EObjectWithInverseResolvingEList.ManyInverse<User>(User.class, this, StorePackage.PROJECT__HAS_AUTHORIZED_USERS, StorePackage.USER__HAS_RIGHTS_ON);
+			eVirtualSet(StorePackage.PROJECT__HAS_AUTHORIZED_USERS, hasAuthorizedUsers = new BasicInternalEList<User>(User.class));
 		}
 		return hasAuthorizedUsers;
 	}
@@ -368,9 +222,11 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	public EList<ConcreteRevision> getConcreteRevisions() {
+		EList<ConcreteRevision> concreteRevisions = (EList<ConcreteRevision>)eVirtualGet(StorePackage.PROJECT__CONCRETE_REVISIONS);
 		if (concreteRevisions == null) {
-			concreteRevisions = new EObjectWithInverseResolvingEList<ConcreteRevision>(ConcreteRevision.class, this, StorePackage.PROJECT__CONCRETE_REVISIONS, StorePackage.CONCRETE_REVISION__PROJECT);
+			eVirtualSet(StorePackage.PROJECT__CONCRETE_REVISIONS, concreteRevisions = new BasicInternalEList<ConcreteRevision>(ConcreteRevision.class));
 		}
 		return concreteRevisions;
 	}
@@ -380,9 +236,11 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	public EList<Revision> getRevisions() {
+		EList<Revision> revisions = (EList<Revision>)eVirtualGet(StorePackage.PROJECT__REVISIONS);
 		if (revisions == null) {
-			revisions = new EObjectWithInverseResolvingEList<Revision>(Revision.class, this, StorePackage.PROJECT__REVISIONS, StorePackage.REVISION__PROJECT);
+			eVirtualSet(StorePackage.PROJECT__REVISIONS, revisions = new BasicInternalEList<Revision>(Revision.class));
 		}
 		return revisions;
 	}
@@ -393,12 +251,12 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 * @generated
 	 */
 	public ConcreteRevision getLastConcreteRevision() {
+		ConcreteRevision lastConcreteRevision = (ConcreteRevision)eVirtualGet(StorePackage.PROJECT__LAST_CONCRETE_REVISION);
 		if (lastConcreteRevision != null && ((EObject)lastConcreteRevision).eIsProxy()) {
 			InternalEObject oldLastConcreteRevision = (InternalEObject)lastConcreteRevision;
 			lastConcreteRevision = (ConcreteRevision)eResolveProxy(oldLastConcreteRevision);
 			if (lastConcreteRevision != oldLastConcreteRevision) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StorePackage.PROJECT__LAST_CONCRETE_REVISION, oldLastConcreteRevision, lastConcreteRevision));
+				eVirtualSet(StorePackage.PROJECT__LAST_CONCRETE_REVISION, lastConcreteRevision);
 			}
 		}
 		return lastConcreteRevision;
@@ -410,7 +268,7 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 * @generated
 	 */
 	public ConcreteRevision basicGetLastConcreteRevision() {
-		return lastConcreteRevision;
+		return (ConcreteRevision)eVirtualGet(StorePackage.PROJECT__LAST_CONCRETE_REVISION);
 	}
 
 	/**
@@ -419,10 +277,8 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 * @generated
 	 */
 	public void setLastConcreteRevision(ConcreteRevision newLastConcreteRevision) {
-		ConcreteRevision oldLastConcreteRevision = lastConcreteRevision;
-		lastConcreteRevision = newLastConcreteRevision;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.PROJECT__LAST_CONCRETE_REVISION, oldLastConcreteRevision, lastConcreteRevision));
+		ConcreteRevision lastConcreteRevision = newLastConcreteRevision;
+		Object oldLastConcreteRevision = eVirtualSet(StorePackage.PROJECT__LAST_CONCRETE_REVISION, lastConcreteRevision);
 	}
 
 	/**
@@ -431,12 +287,12 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 * @generated
 	 */
 	public Revision getLastRevision() {
+		Revision lastRevision = (Revision)eVirtualGet(StorePackage.PROJECT__LAST_REVISION);
 		if (lastRevision != null && ((EObject)lastRevision).eIsProxy()) {
 			InternalEObject oldLastRevision = (InternalEObject)lastRevision;
 			lastRevision = (Revision)eResolveProxy(oldLastRevision);
 			if (lastRevision != oldLastRevision) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StorePackage.PROJECT__LAST_REVISION, oldLastRevision, lastRevision));
+				eVirtualSet(StorePackage.PROJECT__LAST_REVISION, lastRevision);
 			}
 		}
 		return lastRevision;
@@ -448,7 +304,7 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 * @generated
 	 */
 	public Revision basicGetLastRevision() {
-		return lastRevision;
+		return (Revision)eVirtualGet(StorePackage.PROJECT__LAST_REVISION);
 	}
 
 	/**
@@ -457,10 +313,8 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 * @generated
 	 */
 	public void setLastRevision(Revision newLastRevision) {
-		Revision oldLastRevision = lastRevision;
-		lastRevision = newLastRevision;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.PROJECT__LAST_REVISION, oldLastRevision, lastRevision));
+		Revision lastRevision = newLastRevision;
+		Object oldLastRevision = eVirtualSet(StorePackage.PROJECT__LAST_REVISION, lastRevision);
 	}
 
 	/**
@@ -468,9 +322,11 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	public EList<Checkout> getCheckouts() {
+		EList<Checkout> checkouts = (EList<Checkout>)eVirtualGet(StorePackage.PROJECT__CHECKOUTS);
 		if (checkouts == null) {
-			checkouts = new EObjectWithInverseResolvingEList<Checkout>(Checkout.class, this, StorePackage.PROJECT__CHECKOUTS, StorePackage.CHECKOUT__PROJECT);
+			eVirtualSet(StorePackage.PROJECT__CHECKOUTS, checkouts = new BasicInternalEList<Checkout>(Checkout.class));
 		}
 		return checkouts;
 	}
@@ -481,7 +337,7 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 * @generated
 	 */
 	public ObjectState getState() {
-		return state;
+		return (ObjectState)eVirtualGet(StorePackage.PROJECT__STATE, STATE_EDEFAULT);
 	}
 
 	/**
@@ -490,10 +346,8 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 * @generated
 	 */
 	public void setState(ObjectState newState) {
-		ObjectState oldState = state;
-		state = newState == null ? STATE_EDEFAULT : newState;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.PROJECT__STATE, oldState, state));
+		ObjectState state = newState == null ? STATE_EDEFAULT : newState;
+		Object oldState = eVirtualSet(StorePackage.PROJECT__STATE, state);
 	}
 
 	/**
@@ -502,7 +356,7 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 * @generated
 	 */
 	public Date getCreatedDate() {
-		return createdDate;
+		return (Date)eVirtualGet(StorePackage.PROJECT__CREATED_DATE, CREATED_DATE_EDEFAULT);
 	}
 
 	/**
@@ -511,10 +365,8 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 * @generated
 	 */
 	public void setCreatedDate(Date newCreatedDate) {
-		Date oldCreatedDate = createdDate;
-		createdDate = newCreatedDate;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.PROJECT__CREATED_DATE, oldCreatedDate, createdDate));
+		Date createdDate = newCreatedDate;
+		Object oldCreatedDate = eVirtualSet(StorePackage.PROJECT__CREATED_DATE, createdDate);
 	}
 
 	/**
@@ -523,12 +375,12 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 * @generated
 	 */
 	public User getCreatedBy() {
+		User createdBy = (User)eVirtualGet(StorePackage.PROJECT__CREATED_BY);
 		if (createdBy != null && ((EObject)createdBy).eIsProxy()) {
 			InternalEObject oldCreatedBy = (InternalEObject)createdBy;
 			createdBy = (User)eResolveProxy(oldCreatedBy);
 			if (createdBy != oldCreatedBy) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StorePackage.PROJECT__CREATED_BY, oldCreatedBy, createdBy));
+				eVirtualSet(StorePackage.PROJECT__CREATED_BY, createdBy);
 			}
 		}
 		return createdBy;
@@ -540,7 +392,7 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 * @generated
 	 */
 	public User basicGetCreatedBy() {
-		return createdBy;
+		return (User)eVirtualGet(StorePackage.PROJECT__CREATED_BY);
 	}
 
 	/**
@@ -549,10 +401,8 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 * @generated
 	 */
 	public void setCreatedBy(User newCreatedBy) {
-		User oldCreatedBy = createdBy;
-		createdBy = newCreatedBy;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.PROJECT__CREATED_BY, oldCreatedBy, createdBy));
+		User createdBy = newCreatedBy;
+		Object oldCreatedBy = eVirtualSet(StorePackage.PROJECT__CREATED_BY, createdBy);
 	}
 
 	/**
@@ -561,12 +411,12 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 * @generated
 	 */
 	public GeoTag getGeoTag() {
+		GeoTag geoTag = (GeoTag)eVirtualGet(StorePackage.PROJECT__GEO_TAG);
 		if (geoTag != null && ((EObject)geoTag).eIsProxy()) {
 			InternalEObject oldGeoTag = (InternalEObject)geoTag;
 			geoTag = (GeoTag)eResolveProxy(oldGeoTag);
 			if (geoTag != oldGeoTag) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StorePackage.PROJECT__GEO_TAG, oldGeoTag, geoTag));
+				eVirtualSet(StorePackage.PROJECT__GEO_TAG, geoTag);
 			}
 		}
 		return geoTag;
@@ -578,7 +428,7 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 * @generated
 	 */
 	public GeoTag basicGetGeoTag() {
-		return geoTag;
+		return (GeoTag)eVirtualGet(StorePackage.PROJECT__GEO_TAG);
 	}
 
 	/**
@@ -587,12 +437,7 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 * @generated
 	 */
 	public NotificationChain basicSetGeoTag(GeoTag newGeoTag, NotificationChain msgs) {
-		GeoTag oldGeoTag = geoTag;
-		geoTag = newGeoTag;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, StorePackage.PROJECT__GEO_TAG, oldGeoTag, newGeoTag);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
+		Object oldGeoTag = eVirtualSet(StorePackage.PROJECT__GEO_TAG, newGeoTag);
 		return msgs;
 	}
 
@@ -602,6 +447,7 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 * @generated
 	 */
 	public void setGeoTag(GeoTag newGeoTag) {
+		GeoTag geoTag = (GeoTag)eVirtualGet(StorePackage.PROJECT__GEO_TAG);
 		if (newGeoTag != geoTag) {
 			NotificationChain msgs = null;
 			if (geoTag != null)
@@ -611,8 +457,6 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 			msgs = basicSetGeoTag(newGeoTag, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.PROJECT__GEO_TAG, newGeoTag, newGeoTag));
 	}
 
 	/**
@@ -620,9 +464,11 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	public EList<Project> getSubProjects() {
+		EList<Project> subProjects = (EList<Project>)eVirtualGet(StorePackage.PROJECT__SUB_PROJECTS);
 		if (subProjects == null) {
-			subProjects = new EObjectWithInverseResolvingEList<Project>(Project.class, this, StorePackage.PROJECT__SUB_PROJECTS, StorePackage.PROJECT__PARENT);
+			eVirtualSet(StorePackage.PROJECT__SUB_PROJECTS, subProjects = new BasicInternalEList<Project>(Project.class));
 		}
 		return subProjects;
 	}
@@ -633,12 +479,12 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 * @generated
 	 */
 	public Project getParent() {
+		Project parent = (Project)eVirtualGet(StorePackage.PROJECT__PARENT);
 		if (parent != null && ((EObject)parent).eIsProxy()) {
 			InternalEObject oldParent = (InternalEObject)parent;
 			parent = (Project)eResolveProxy(oldParent);
 			if (parent != oldParent) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StorePackage.PROJECT__PARENT, oldParent, parent));
+				eVirtualSet(StorePackage.PROJECT__PARENT, parent);
 			}
 		}
 		return parent;
@@ -650,7 +496,7 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 * @generated
 	 */
 	public Project basicGetParent() {
-		return parent;
+		return (Project)eVirtualGet(StorePackage.PROJECT__PARENT);
 	}
 
 	/**
@@ -659,12 +505,7 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 * @generated
 	 */
 	public NotificationChain basicSetParent(Project newParent, NotificationChain msgs) {
-		Project oldParent = parent;
-		parent = newParent;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, StorePackage.PROJECT__PARENT, oldParent, newParent);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
+		Object oldParent = eVirtualSet(StorePackage.PROJECT__PARENT, newParent);
 		return msgs;
 	}
 
@@ -674,6 +515,7 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 * @generated
 	 */
 	public void setParent(Project newParent) {
+		Project parent = (Project)eVirtualGet(StorePackage.PROJECT__PARENT);
 		if (newParent != parent) {
 			NotificationChain msgs = null;
 			if (parent != null)
@@ -683,8 +525,6 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 			msgs = basicSetParent(newParent, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.PROJECT__PARENT, newParent, newParent));
 	}
 
 	/**
@@ -693,7 +533,7 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 * @generated
 	 */
 	public String getDescription() {
-		return description;
+		return (String)eVirtualGet(StorePackage.PROJECT__DESCRIPTION, DESCRIPTION_EDEFAULT);
 	}
 
 	/**
@@ -702,10 +542,8 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 * @generated
 	 */
 	public void setDescription(String newDescription) {
-		String oldDescription = description;
-		description = newDescription;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.PROJECT__DESCRIPTION, oldDescription, description));
+		String description = newDescription;
+		Object oldDescription = eVirtualSet(StorePackage.PROJECT__DESCRIPTION, description);
 	}
 
 	/**
@@ -714,12 +552,12 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 * @generated
 	 */
 	public ClashDetectionSettings getClashDetectionSettings() {
+		ClashDetectionSettings clashDetectionSettings = (ClashDetectionSettings)eVirtualGet(StorePackage.PROJECT__CLASH_DETECTION_SETTINGS);
 		if (clashDetectionSettings != null && ((EObject)clashDetectionSettings).eIsProxy()) {
 			InternalEObject oldClashDetectionSettings = (InternalEObject)clashDetectionSettings;
 			clashDetectionSettings = (ClashDetectionSettings)eResolveProxy(oldClashDetectionSettings);
 			if (clashDetectionSettings != oldClashDetectionSettings) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StorePackage.PROJECT__CLASH_DETECTION_SETTINGS, oldClashDetectionSettings, clashDetectionSettings));
+				eVirtualSet(StorePackage.PROJECT__CLASH_DETECTION_SETTINGS, clashDetectionSettings);
 			}
 		}
 		return clashDetectionSettings;
@@ -731,7 +569,7 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 * @generated
 	 */
 	public ClashDetectionSettings basicGetClashDetectionSettings() {
-		return clashDetectionSettings;
+		return (ClashDetectionSettings)eVirtualGet(StorePackage.PROJECT__CLASH_DETECTION_SETTINGS);
 	}
 
 	/**
@@ -740,12 +578,7 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 * @generated
 	 */
 	public NotificationChain basicSetClashDetectionSettings(ClashDetectionSettings newClashDetectionSettings, NotificationChain msgs) {
-		ClashDetectionSettings oldClashDetectionSettings = clashDetectionSettings;
-		clashDetectionSettings = newClashDetectionSettings;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, StorePackage.PROJECT__CLASH_DETECTION_SETTINGS, oldClashDetectionSettings, newClashDetectionSettings);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
+		Object oldClashDetectionSettings = eVirtualSet(StorePackage.PROJECT__CLASH_DETECTION_SETTINGS, newClashDetectionSettings);
 		return msgs;
 	}
 
@@ -755,6 +588,7 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 * @generated
 	 */
 	public void setClashDetectionSettings(ClashDetectionSettings newClashDetectionSettings) {
+		ClashDetectionSettings clashDetectionSettings = (ClashDetectionSettings)eVirtualGet(StorePackage.PROJECT__CLASH_DETECTION_SETTINGS);
 		if (newClashDetectionSettings != clashDetectionSettings) {
 			NotificationChain msgs = null;
 			if (clashDetectionSettings != null)
@@ -764,8 +598,6 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 			msgs = basicSetClashDetectionSettings(newClashDetectionSettings, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.PROJECT__CLASH_DETECTION_SETTINGS, newClashDetectionSettings, newClashDetectionSettings));
 	}
 
 	/**
@@ -774,7 +606,7 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 * @generated
 	 */
 	public SIPrefix getExportLengthMeasurePrefix() {
-		return exportLengthMeasurePrefix;
+		return (SIPrefix)eVirtualGet(StorePackage.PROJECT__EXPORT_LENGTH_MEASURE_PREFIX, EXPORT_LENGTH_MEASURE_PREFIX_EDEFAULT);
 	}
 
 	/**
@@ -783,10 +615,8 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 * @generated
 	 */
 	public void setExportLengthMeasurePrefix(SIPrefix newExportLengthMeasurePrefix) {
-		SIPrefix oldExportLengthMeasurePrefix = exportLengthMeasurePrefix;
-		exportLengthMeasurePrefix = newExportLengthMeasurePrefix == null ? EXPORT_LENGTH_MEASURE_PREFIX_EDEFAULT : newExportLengthMeasurePrefix;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.PROJECT__EXPORT_LENGTH_MEASURE_PREFIX, oldExportLengthMeasurePrefix, exportLengthMeasurePrefix));
+		SIPrefix exportLengthMeasurePrefix = newExportLengthMeasurePrefix == null ? EXPORT_LENGTH_MEASURE_PREFIX_EDEFAULT : newExportLengthMeasurePrefix;
+		Object oldExportLengthMeasurePrefix = eVirtualSet(StorePackage.PROJECT__EXPORT_LENGTH_MEASURE_PREFIX, exportLengthMeasurePrefix);
 	}
 
 	/**
@@ -807,16 +637,19 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 			case StorePackage.PROJECT__CHECKOUTS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getCheckouts()).basicAdd(otherEnd, msgs);
 			case StorePackage.PROJECT__GEO_TAG:
+				GeoTag geoTag = (GeoTag)eVirtualGet(StorePackage.PROJECT__GEO_TAG);
 				if (geoTag != null)
 					msgs = ((InternalEObject)geoTag).eInverseRemove(this, StorePackage.GEO_TAG__PROJECTS, GeoTag.class, msgs);
 				return basicSetGeoTag((GeoTag)otherEnd, msgs);
 			case StorePackage.PROJECT__SUB_PROJECTS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getSubProjects()).basicAdd(otherEnd, msgs);
 			case StorePackage.PROJECT__PARENT:
+				Project parent = (Project)eVirtualGet(StorePackage.PROJECT__PARENT);
 				if (parent != null)
 					msgs = ((InternalEObject)parent).eInverseRemove(this, StorePackage.PROJECT__SUB_PROJECTS, Project.class, msgs);
 				return basicSetParent((Project)otherEnd, msgs);
 			case StorePackage.PROJECT__CLASH_DETECTION_SETTINGS:
+				ClashDetectionSettings clashDetectionSettings = (ClashDetectionSettings)eVirtualGet(StorePackage.PROJECT__CLASH_DETECTION_SETTINGS);
 				if (clashDetectionSettings != null)
 					msgs = ((InternalEObject)clashDetectionSettings).eInverseRemove(this, StorePackage.CLASH_DETECTION_SETTINGS__PROJECTS, ClashDetectionSettings.class, msgs);
 				return basicSetClashDetectionSettings((ClashDetectionSettings)otherEnd, msgs);
@@ -1041,45 +874,105 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case StorePackage.PROJECT__ID:
 				return id != ID_EDEFAULT;
 			case StorePackage.PROJECT__NAME:
+				String name = (String)eVirtualGet(StorePackage.PROJECT__NAME, NAME_EDEFAULT);
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case StorePackage.PROJECT__HAS_AUTHORIZED_USERS:
+				EList<User> hasAuthorizedUsers = (EList<User>)eVirtualGet(StorePackage.PROJECT__HAS_AUTHORIZED_USERS);
 				return hasAuthorizedUsers != null && !hasAuthorizedUsers.isEmpty();
 			case StorePackage.PROJECT__CONCRETE_REVISIONS:
+				EList<ConcreteRevision> concreteRevisions = (EList<ConcreteRevision>)eVirtualGet(StorePackage.PROJECT__CONCRETE_REVISIONS);
 				return concreteRevisions != null && !concreteRevisions.isEmpty();
 			case StorePackage.PROJECT__REVISIONS:
+				EList<Revision> revisions = (EList<Revision>)eVirtualGet(StorePackage.PROJECT__REVISIONS);
 				return revisions != null && !revisions.isEmpty();
 			case StorePackage.PROJECT__LAST_CONCRETE_REVISION:
-				return lastConcreteRevision != null;
+				return eVirtualGet(StorePackage.PROJECT__LAST_CONCRETE_REVISION) != null;
 			case StorePackage.PROJECT__LAST_REVISION:
-				return lastRevision != null;
+				return eVirtualGet(StorePackage.PROJECT__LAST_REVISION) != null;
 			case StorePackage.PROJECT__CHECKOUTS:
+				EList<Checkout> checkouts = (EList<Checkout>)eVirtualGet(StorePackage.PROJECT__CHECKOUTS);
 				return checkouts != null && !checkouts.isEmpty();
 			case StorePackage.PROJECT__STATE:
-				return state != STATE_EDEFAULT;
+				return eVirtualGet(StorePackage.PROJECT__STATE, STATE_EDEFAULT) != STATE_EDEFAULT;
 			case StorePackage.PROJECT__CREATED_DATE:
+				Date createdDate = (Date)eVirtualGet(StorePackage.PROJECT__CREATED_DATE, CREATED_DATE_EDEFAULT);
 				return CREATED_DATE_EDEFAULT == null ? createdDate != null : !CREATED_DATE_EDEFAULT.equals(createdDate);
 			case StorePackage.PROJECT__CREATED_BY:
-				return createdBy != null;
+				return eVirtualGet(StorePackage.PROJECT__CREATED_BY) != null;
 			case StorePackage.PROJECT__GEO_TAG:
-				return geoTag != null;
+				return eVirtualGet(StorePackage.PROJECT__GEO_TAG) != null;
 			case StorePackage.PROJECT__SUB_PROJECTS:
+				EList<Project> subProjects = (EList<Project>)eVirtualGet(StorePackage.PROJECT__SUB_PROJECTS);
 				return subProjects != null && !subProjects.isEmpty();
 			case StorePackage.PROJECT__PARENT:
-				return parent != null;
+				return eVirtualGet(StorePackage.PROJECT__PARENT) != null;
 			case StorePackage.PROJECT__DESCRIPTION:
+				String description = (String)eVirtualGet(StorePackage.PROJECT__DESCRIPTION, DESCRIPTION_EDEFAULT);
 				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
 			case StorePackage.PROJECT__CLASH_DETECTION_SETTINGS:
-				return clashDetectionSettings != null;
+				return eVirtualGet(StorePackage.PROJECT__CLASH_DETECTION_SETTINGS) != null;
 			case StorePackage.PROJECT__EXPORT_LENGTH_MEASURE_PREFIX:
-				return exportLengthMeasurePrefix != EXPORT_LENGTH_MEASURE_PREFIX_EDEFAULT;
+				return eVirtualGet(StorePackage.PROJECT__EXPORT_LENGTH_MEASURE_PREFIX, EXPORT_LENGTH_MEASURE_PREFIX_EDEFAULT) != EXPORT_LENGTH_MEASURE_PREFIX_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected Object[] eVirtualValues() {
+		return eVirtualValues;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected void eSetVirtualValues(Object[] newValues) {
+		eVirtualValues = newValues;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected int eVirtualIndexBits(int offset) {
+		switch (offset) {
+			case 0 :
+				return eVirtualIndexBits0;
+			default :
+				throw new IndexOutOfBoundsException();
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected void eSetVirtualIndexBits(int offset, int newIndexBits) {
+		switch (offset) {
+			case 0 :
+				eVirtualIndexBits0 = newIndexBits;
+				break;
+			default :
+				throw new IndexOutOfBoundsException();
+		}
 	}
 
 	/**
@@ -1095,15 +988,15 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 		result.append(" (id: ");
 		result.append(id);
 		result.append(", name: ");
-		result.append(name);
+		result.append(eVirtualGet(StorePackage.PROJECT__NAME, NAME_EDEFAULT));
 		result.append(", state: ");
-		result.append(state);
+		result.append(eVirtualGet(StorePackage.PROJECT__STATE, STATE_EDEFAULT));
 		result.append(", createdDate: ");
-		result.append(createdDate);
+		result.append(eVirtualGet(StorePackage.PROJECT__CREATED_DATE, CREATED_DATE_EDEFAULT));
 		result.append(", description: ");
-		result.append(description);
+		result.append(eVirtualGet(StorePackage.PROJECT__DESCRIPTION, DESCRIPTION_EDEFAULT));
 		result.append(", exportLengthMeasurePrefix: ");
-		result.append(exportLengthMeasurePrefix);
+		result.append(eVirtualGet(StorePackage.PROJECT__EXPORT_LENGTH_MEASURE_PREFIX, EXPORT_LENGTH_MEASURE_PREFIX_EDEFAULT));
 		result.append(')');
 		return result.toString();
 	}

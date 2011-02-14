@@ -38,16 +38,6 @@ public class GuidClashImpl extends ClashImpl implements GuidClash {
 	protected static final String GUID1_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getGuid1() <em>Guid1</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getGuid1()
-	 * @generated
-	 * @ordered
-	 */
-	protected String guid1 = GUID1_EDEFAULT;
-
-	/**
 	 * The default value of the '{@link #getGuid2() <em>Guid2</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -58,21 +48,11 @@ public class GuidClashImpl extends ClashImpl implements GuidClash {
 	protected static final String GUID2_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getGuid2() <em>Guid2</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getGuid2()
-	 * @generated
-	 * @ordered
-	 */
-	protected String guid2 = GUID2_EDEFAULT;
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected GuidClashImpl() {
+	public GuidClashImpl() {
 		super();
 	}
 
@@ -92,7 +72,7 @@ public class GuidClashImpl extends ClashImpl implements GuidClash {
 	 * @generated
 	 */
 	public String getGuid1() {
-		return guid1;
+		return (String)eVirtualGet(StorePackage.GUID_CLASH__GUID1, GUID1_EDEFAULT);
 	}
 
 	/**
@@ -101,10 +81,8 @@ public class GuidClashImpl extends ClashImpl implements GuidClash {
 	 * @generated
 	 */
 	public void setGuid1(String newGuid1) {
-		String oldGuid1 = guid1;
-		guid1 = newGuid1;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.GUID_CLASH__GUID1, oldGuid1, guid1));
+		String guid1 = newGuid1;
+		Object oldGuid1 = eVirtualSet(StorePackage.GUID_CLASH__GUID1, guid1);
 	}
 
 	/**
@@ -113,7 +91,7 @@ public class GuidClashImpl extends ClashImpl implements GuidClash {
 	 * @generated
 	 */
 	public String getGuid2() {
-		return guid2;
+		return (String)eVirtualGet(StorePackage.GUID_CLASH__GUID2, GUID2_EDEFAULT);
 	}
 
 	/**
@@ -122,10 +100,8 @@ public class GuidClashImpl extends ClashImpl implements GuidClash {
 	 * @generated
 	 */
 	public void setGuid2(String newGuid2) {
-		String oldGuid2 = guid2;
-		guid2 = newGuid2;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.GUID_CLASH__GUID2, oldGuid2, guid2));
+		String guid2 = newGuid2;
+		Object oldGuid2 = eVirtualSet(StorePackage.GUID_CLASH__GUID2, guid2);
 	}
 
 	/**
@@ -189,8 +165,10 @@ public class GuidClashImpl extends ClashImpl implements GuidClash {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case StorePackage.GUID_CLASH__GUID1:
+				String guid1 = (String)eVirtualGet(StorePackage.GUID_CLASH__GUID1, GUID1_EDEFAULT);
 				return GUID1_EDEFAULT == null ? guid1 != null : !GUID1_EDEFAULT.equals(guid1);
 			case StorePackage.GUID_CLASH__GUID2:
+				String guid2 = (String)eVirtualGet(StorePackage.GUID_CLASH__GUID2, GUID2_EDEFAULT);
 				return GUID2_EDEFAULT == null ? guid2 != null : !GUID2_EDEFAULT.equals(guid2);
 		}
 		return super.eIsSet(featureID);
@@ -207,9 +185,9 @@ public class GuidClashImpl extends ClashImpl implements GuidClash {
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (guid1: ");
-		result.append(guid1);
+		result.append(eVirtualGet(StorePackage.GUID_CLASH__GUID1, GUID1_EDEFAULT));
 		result.append(", guid2: ");
-		result.append(guid2);
+		result.append(eVirtualGet(StorePackage.GUID_CLASH__GUID2, GUID2_EDEFAULT));
 		result.append(')');
 		return result.toString();
 	}

@@ -31,31 +31,11 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class NewProjectAddedImpl extends LogActionImpl implements NewProjectAdded {
 	/**
-	 * The cached value of the '{@link #getProject() <em>Project</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getProject()
-	 * @generated
-	 * @ordered
-	 */
-	protected Project project;
-
-	/**
-	 * The cached value of the '{@link #getParentProject() <em>Parent Project</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getParentProject()
-	 * @generated
-	 * @ordered
-	 */
-	protected Project parentProject;
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected NewProjectAddedImpl() {
+	public NewProjectAddedImpl() {
 		super();
 	}
 
@@ -75,12 +55,12 @@ public class NewProjectAddedImpl extends LogActionImpl implements NewProjectAdde
 	 * @generated
 	 */
 	public Project getProject() {
+		Project project = (Project)eVirtualGet(LogPackage.NEW_PROJECT_ADDED__PROJECT);
 		if (project != null && ((EObject)project).eIsProxy()) {
 			InternalEObject oldProject = (InternalEObject)project;
 			project = (Project)eResolveProxy(oldProject);
 			if (project != oldProject) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, LogPackage.NEW_PROJECT_ADDED__PROJECT, oldProject, project));
+				eVirtualSet(LogPackage.NEW_PROJECT_ADDED__PROJECT, project);
 			}
 		}
 		return project;
@@ -92,7 +72,7 @@ public class NewProjectAddedImpl extends LogActionImpl implements NewProjectAdde
 	 * @generated
 	 */
 	public Project basicGetProject() {
-		return project;
+		return (Project)eVirtualGet(LogPackage.NEW_PROJECT_ADDED__PROJECT);
 	}
 
 	/**
@@ -101,10 +81,8 @@ public class NewProjectAddedImpl extends LogActionImpl implements NewProjectAdde
 	 * @generated
 	 */
 	public void setProject(Project newProject) {
-		Project oldProject = project;
-		project = newProject;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, LogPackage.NEW_PROJECT_ADDED__PROJECT, oldProject, project));
+		Project project = newProject;
+		Object oldProject = eVirtualSet(LogPackage.NEW_PROJECT_ADDED__PROJECT, project);
 	}
 
 	/**
@@ -113,12 +91,12 @@ public class NewProjectAddedImpl extends LogActionImpl implements NewProjectAdde
 	 * @generated
 	 */
 	public Project getParentProject() {
+		Project parentProject = (Project)eVirtualGet(LogPackage.NEW_PROJECT_ADDED__PARENT_PROJECT);
 		if (parentProject != null && ((EObject)parentProject).eIsProxy()) {
 			InternalEObject oldParentProject = (InternalEObject)parentProject;
 			parentProject = (Project)eResolveProxy(oldParentProject);
 			if (parentProject != oldParentProject) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, LogPackage.NEW_PROJECT_ADDED__PARENT_PROJECT, oldParentProject, parentProject));
+				eVirtualSet(LogPackage.NEW_PROJECT_ADDED__PARENT_PROJECT, parentProject);
 			}
 		}
 		return parentProject;
@@ -130,7 +108,7 @@ public class NewProjectAddedImpl extends LogActionImpl implements NewProjectAdde
 	 * @generated
 	 */
 	public Project basicGetParentProject() {
-		return parentProject;
+		return (Project)eVirtualGet(LogPackage.NEW_PROJECT_ADDED__PARENT_PROJECT);
 	}
 
 	/**
@@ -139,10 +117,8 @@ public class NewProjectAddedImpl extends LogActionImpl implements NewProjectAdde
 	 * @generated
 	 */
 	public void setParentProject(Project newParentProject) {
-		Project oldParentProject = parentProject;
-		parentProject = newParentProject;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, LogPackage.NEW_PROJECT_ADDED__PARENT_PROJECT, oldParentProject, parentProject));
+		Project parentProject = newParentProject;
+		Object oldParentProject = eVirtualSet(LogPackage.NEW_PROJECT_ADDED__PARENT_PROJECT, parentProject);
 	}
 
 	/**
@@ -208,9 +184,9 @@ public class NewProjectAddedImpl extends LogActionImpl implements NewProjectAdde
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case LogPackage.NEW_PROJECT_ADDED__PROJECT:
-				return project != null;
+				return eVirtualGet(LogPackage.NEW_PROJECT_ADDED__PROJECT) != null;
 			case LogPackage.NEW_PROJECT_ADDED__PARENT_PROJECT:
-				return parentProject != null;
+				return eVirtualGet(LogPackage.NEW_PROJECT_ADDED__PARENT_PROJECT) != null;
 		}
 		return super.eIsSet(featureID);
 	}

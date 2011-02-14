@@ -89,6 +89,7 @@ public class DatabaseSession implements BimDatabaseSession {
 	private final Set<PostCommitAction> postCommitActions = new LinkedHashSet<PostCommitAction>();
 	private boolean storeOid = false;
 	private boolean storePid = false;
+	private Store store = new Store();
 
 	public DatabaseSession(Database database, BimTransaction bimTransaction, boolean readOnly) {
 		this.database = database;
@@ -276,6 +277,7 @@ public class DatabaseSession implements BimDatabaseSession {
 			return cache.get(recordIdentifier);
 		}
 		IdEObject object = (IdEObject) eClass.getEPackage().getEFactoryInstance().create(eClass);
+		object.eSetStore(store);
 		object.setOid(oid);
 		object.setPid(pid);
 		object.setRid(rid);
