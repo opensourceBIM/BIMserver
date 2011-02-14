@@ -18,6 +18,7 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.util.BasicInternalEList;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
@@ -43,6 +44,22 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class ClashDetectionSettingsImpl extends IdEObjectImpl implements ClashDetectionSettings {
 	/**
+	 * An array of objects representing the values of non-primitive features.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected Object[] eVirtualValues;
+
+	/**
+	 * A bit field representing the indices of non-primitive feature values.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected int eVirtualIndexBits0;
+
+	/**
 	 * The default value of the '{@link #isEnabled() <em>Enabled</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -61,16 +78,6 @@ public class ClashDetectionSettingsImpl extends IdEObjectImpl implements ClashDe
 	 * @ordered
 	 */
 	protected boolean enabled = ENABLED_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getProjects() <em>Projects</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getProjects()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Project> projects;
 
 	/**
 	 * The default value of the '{@link #getMargin() <em>Margin</em>}' attribute.
@@ -93,31 +100,11 @@ public class ClashDetectionSettingsImpl extends IdEObjectImpl implements ClashDe
 	protected float margin = MARGIN_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getRevisions() <em>Revisions</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getRevisions()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Revision> revisions;
-
-	/**
-	 * The cached value of the '{@link #getIgnoredClasses() <em>Ignored Classes</em>}' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getIgnoredClasses()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<String> ignoredClasses;
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ClashDetectionSettingsImpl() {
+	public ClashDetectionSettingsImpl() {
 		super();
 	}
 
@@ -146,10 +133,7 @@ public class ClashDetectionSettingsImpl extends IdEObjectImpl implements ClashDe
 	 * @generated
 	 */
 	public void setEnabled(boolean newEnabled) {
-		boolean oldEnabled = enabled;
 		enabled = newEnabled;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.CLASH_DETECTION_SETTINGS__ENABLED, oldEnabled, enabled));
 	}
 
 	/**
@@ -167,10 +151,7 @@ public class ClashDetectionSettingsImpl extends IdEObjectImpl implements ClashDe
 	 * @generated
 	 */
 	public void setMargin(float newMargin) {
-		float oldMargin = margin;
 		margin = newMargin;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.CLASH_DETECTION_SETTINGS__MARGIN, oldMargin, margin));
 	}
 
 	/**
@@ -178,9 +159,11 @@ public class ClashDetectionSettingsImpl extends IdEObjectImpl implements ClashDe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	public EList<Project> getProjects() {
+		EList<Project> projects = (EList<Project>)eVirtualGet(StorePackage.CLASH_DETECTION_SETTINGS__PROJECTS);
 		if (projects == null) {
-			projects = new EObjectWithInverseResolvingEList<Project>(Project.class, this, StorePackage.CLASH_DETECTION_SETTINGS__PROJECTS, StorePackage.PROJECT__CLASH_DETECTION_SETTINGS);
+			eVirtualSet(StorePackage.CLASH_DETECTION_SETTINGS__PROJECTS, projects = new BasicInternalEList<Project>(Project.class));
 		}
 		return projects;
 	}
@@ -190,9 +173,11 @@ public class ClashDetectionSettingsImpl extends IdEObjectImpl implements ClashDe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	public EList<Revision> getRevisions() {
+		EList<Revision> revisions = (EList<Revision>)eVirtualGet(StorePackage.CLASH_DETECTION_SETTINGS__REVISIONS);
 		if (revisions == null) {
-			revisions = new EObjectResolvingEList<Revision>(Revision.class, this, StorePackage.CLASH_DETECTION_SETTINGS__REVISIONS);
+			eVirtualSet(StorePackage.CLASH_DETECTION_SETTINGS__REVISIONS, revisions = new BasicInternalEList<Revision>(Revision.class));
 		}
 		return revisions;
 	}
@@ -202,9 +187,11 @@ public class ClashDetectionSettingsImpl extends IdEObjectImpl implements ClashDe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	public EList<String> getIgnoredClasses() {
+		EList<String> ignoredClasses = (EList<String>)eVirtualGet(StorePackage.CLASH_DETECTION_SETTINGS__IGNORED_CLASSES);
 		if (ignoredClasses == null) {
-			ignoredClasses = new EDataTypeUniqueEList<String>(String.class, this, StorePackage.CLASH_DETECTION_SETTINGS__IGNORED_CLASSES);
+			eVirtualSet(StorePackage.CLASH_DETECTION_SETTINGS__IGNORED_CLASSES, ignoredClasses = new BasicInternalEList<String>(String.class));
 		}
 		return ignoredClasses;
 	}
@@ -323,21 +310,76 @@ public class ClashDetectionSettingsImpl extends IdEObjectImpl implements ClashDe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case StorePackage.CLASH_DETECTION_SETTINGS__ENABLED:
 				return enabled != ENABLED_EDEFAULT;
 			case StorePackage.CLASH_DETECTION_SETTINGS__PROJECTS:
+				EList<Project> projects = (EList<Project>)eVirtualGet(StorePackage.CLASH_DETECTION_SETTINGS__PROJECTS);
 				return projects != null && !projects.isEmpty();
 			case StorePackage.CLASH_DETECTION_SETTINGS__MARGIN:
 				return margin != MARGIN_EDEFAULT;
 			case StorePackage.CLASH_DETECTION_SETTINGS__REVISIONS:
+				EList<Revision> revisions = (EList<Revision>)eVirtualGet(StorePackage.CLASH_DETECTION_SETTINGS__REVISIONS);
 				return revisions != null && !revisions.isEmpty();
 			case StorePackage.CLASH_DETECTION_SETTINGS__IGNORED_CLASSES:
+				EList<String> ignoredClasses = (EList<String>)eVirtualGet(StorePackage.CLASH_DETECTION_SETTINGS__IGNORED_CLASSES);
 				return ignoredClasses != null && !ignoredClasses.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected Object[] eVirtualValues() {
+		return eVirtualValues;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected void eSetVirtualValues(Object[] newValues) {
+		eVirtualValues = newValues;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected int eVirtualIndexBits(int offset) {
+		switch (offset) {
+			case 0 :
+				return eVirtualIndexBits0;
+			default :
+				throw new IndexOutOfBoundsException();
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected void eSetVirtualIndexBits(int offset, int newIndexBits) {
+		switch (offset) {
+			case 0 :
+				eVirtualIndexBits0 = newIndexBits;
+				break;
+			default :
+				throw new IndexOutOfBoundsException();
+		}
 	}
 
 	/**
@@ -355,7 +397,7 @@ public class ClashDetectionSettingsImpl extends IdEObjectImpl implements ClashDe
 		result.append(", margin: ");
 		result.append(margin);
 		result.append(", ignoredClasses: ");
-		result.append(ignoredClasses);
+		result.append(eVirtualGet(StorePackage.CLASH_DETECTION_SETTINGS__IGNORED_CLASSES));
 		result.append(')');
 		return result.toString();
 	}

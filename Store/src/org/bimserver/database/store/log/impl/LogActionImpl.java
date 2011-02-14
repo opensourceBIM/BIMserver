@@ -36,6 +36,22 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class LogActionImpl extends IdEObjectImpl implements LogAction {
 	/**
+	 * An array of objects representing the values of non-primitive features.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected Object[] eVirtualValues;
+
+	/**
+	 * A bit field representing the indices of non-primitive feature values.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected int eVirtualIndexBits0;
+
+	/**
 	 * The default value of the '{@link #getDate() <em>Date</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -44,26 +60,6 @@ public class LogActionImpl extends IdEObjectImpl implements LogAction {
 	 * @ordered
 	 */
 	protected static final Date DATE_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getDate() <em>Date</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDate()
-	 * @generated
-	 * @ordered
-	 */
-	protected Date date = DATE_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getExecutor() <em>Executor</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getExecutor()
-	 * @generated
-	 * @ordered
-	 */
-	protected User executor;
 
 	/**
 	 * The default value of the '{@link #getAccessMethod() <em>Access Method</em>}' attribute.
@@ -76,21 +72,11 @@ public class LogActionImpl extends IdEObjectImpl implements LogAction {
 	protected static final AccessMethod ACCESS_METHOD_EDEFAULT = AccessMethod.SOAP;
 
 	/**
-	 * The cached value of the '{@link #getAccessMethod() <em>Access Method</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getAccessMethod()
-	 * @generated
-	 * @ordered
-	 */
-	protected AccessMethod accessMethod = ACCESS_METHOD_EDEFAULT;
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected LogActionImpl() {
+	public LogActionImpl() {
 		super();
 	}
 
@@ -110,7 +96,7 @@ public class LogActionImpl extends IdEObjectImpl implements LogAction {
 	 * @generated
 	 */
 	public Date getDate() {
-		return date;
+		return (Date)eVirtualGet(LogPackage.LOG_ACTION__DATE, DATE_EDEFAULT);
 	}
 
 	/**
@@ -119,10 +105,8 @@ public class LogActionImpl extends IdEObjectImpl implements LogAction {
 	 * @generated
 	 */
 	public void setDate(Date newDate) {
-		Date oldDate = date;
-		date = newDate;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, LogPackage.LOG_ACTION__DATE, oldDate, date));
+		Date date = newDate;
+		Object oldDate = eVirtualSet(LogPackage.LOG_ACTION__DATE, date);
 	}
 
 	/**
@@ -131,12 +115,12 @@ public class LogActionImpl extends IdEObjectImpl implements LogAction {
 	 * @generated
 	 */
 	public User getExecutor() {
+		User executor = (User)eVirtualGet(LogPackage.LOG_ACTION__EXECUTOR);
 		if (executor != null && ((EObject)executor).eIsProxy()) {
 			InternalEObject oldExecutor = (InternalEObject)executor;
 			executor = (User)eResolveProxy(oldExecutor);
 			if (executor != oldExecutor) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, LogPackage.LOG_ACTION__EXECUTOR, oldExecutor, executor));
+				eVirtualSet(LogPackage.LOG_ACTION__EXECUTOR, executor);
 			}
 		}
 		return executor;
@@ -148,7 +132,7 @@ public class LogActionImpl extends IdEObjectImpl implements LogAction {
 	 * @generated
 	 */
 	public User basicGetExecutor() {
-		return executor;
+		return (User)eVirtualGet(LogPackage.LOG_ACTION__EXECUTOR);
 	}
 
 	/**
@@ -157,10 +141,8 @@ public class LogActionImpl extends IdEObjectImpl implements LogAction {
 	 * @generated
 	 */
 	public void setExecutor(User newExecutor) {
-		User oldExecutor = executor;
-		executor = newExecutor;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, LogPackage.LOG_ACTION__EXECUTOR, oldExecutor, executor));
+		User executor = newExecutor;
+		Object oldExecutor = eVirtualSet(LogPackage.LOG_ACTION__EXECUTOR, executor);
 	}
 
 	/**
@@ -169,7 +151,7 @@ public class LogActionImpl extends IdEObjectImpl implements LogAction {
 	 * @generated
 	 */
 	public AccessMethod getAccessMethod() {
-		return accessMethod;
+		return (AccessMethod)eVirtualGet(LogPackage.LOG_ACTION__ACCESS_METHOD, ACCESS_METHOD_EDEFAULT);
 	}
 
 	/**
@@ -178,10 +160,8 @@ public class LogActionImpl extends IdEObjectImpl implements LogAction {
 	 * @generated
 	 */
 	public void setAccessMethod(AccessMethod newAccessMethod) {
-		AccessMethod oldAccessMethod = accessMethod;
-		accessMethod = newAccessMethod == null ? ACCESS_METHOD_EDEFAULT : newAccessMethod;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, LogPackage.LOG_ACTION__ACCESS_METHOD, oldAccessMethod, accessMethod));
+		AccessMethod accessMethod = newAccessMethod == null ? ACCESS_METHOD_EDEFAULT : newAccessMethod;
+		Object oldAccessMethod = eVirtualSet(LogPackage.LOG_ACTION__ACCESS_METHOD, accessMethod);
 	}
 
 	/**
@@ -254,13 +234,65 @@ public class LogActionImpl extends IdEObjectImpl implements LogAction {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case LogPackage.LOG_ACTION__DATE:
+				Date date = (Date)eVirtualGet(LogPackage.LOG_ACTION__DATE, DATE_EDEFAULT);
 				return DATE_EDEFAULT == null ? date != null : !DATE_EDEFAULT.equals(date);
 			case LogPackage.LOG_ACTION__EXECUTOR:
-				return executor != null;
+				return eVirtualGet(LogPackage.LOG_ACTION__EXECUTOR) != null;
 			case LogPackage.LOG_ACTION__ACCESS_METHOD:
-				return accessMethod != ACCESS_METHOD_EDEFAULT;
+				return eVirtualGet(LogPackage.LOG_ACTION__ACCESS_METHOD, ACCESS_METHOD_EDEFAULT) != ACCESS_METHOD_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected Object[] eVirtualValues() {
+		return eVirtualValues;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected void eSetVirtualValues(Object[] newValues) {
+		eVirtualValues = newValues;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected int eVirtualIndexBits(int offset) {
+		switch (offset) {
+			case 0 :
+				return eVirtualIndexBits0;
+			default :
+				throw new IndexOutOfBoundsException();
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected void eSetVirtualIndexBits(int offset, int newIndexBits) {
+		switch (offset) {
+			case 0 :
+				eVirtualIndexBits0 = newIndexBits;
+				break;
+			default :
+				throw new IndexOutOfBoundsException();
+		}
 	}
 
 	/**
@@ -274,9 +306,9 @@ public class LogActionImpl extends IdEObjectImpl implements LogAction {
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (date: ");
-		result.append(date);
+		result.append(eVirtualGet(LogPackage.LOG_ACTION__DATE, DATE_EDEFAULT));
 		result.append(", accessMethod: ");
-		result.append(accessMethod);
+		result.append(eVirtualGet(LogPackage.LOG_ACTION__ACCESS_METHOD, ACCESS_METHOD_EDEFAULT));
 		result.append(')');
 		return result.toString();
 	}

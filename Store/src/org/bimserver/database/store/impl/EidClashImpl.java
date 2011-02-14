@@ -72,7 +72,7 @@ public class EidClashImpl extends ClashImpl implements EidClash {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EidClashImpl() {
+	public EidClashImpl() {
 		super();
 	}
 
@@ -101,10 +101,7 @@ public class EidClashImpl extends ClashImpl implements EidClash {
 	 * @generated
 	 */
 	public void setEid1(long newEid1) {
-		long oldEid1 = eid1;
 		eid1 = newEid1;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.EID_CLASH__EID1, oldEid1, eid1));
 	}
 
 	/**
@@ -122,10 +119,7 @@ public class EidClashImpl extends ClashImpl implements EidClash {
 	 * @generated
 	 */
 	public void setEid2(long newEid2) {
-		long oldEid2 = eid2;
 		eid2 = newEid2;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.EID_CLASH__EID2, oldEid2, eid2));
 	}
 
 	/**

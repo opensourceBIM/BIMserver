@@ -1,5 +1,7 @@
 package org.bimserver.emf;
 
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 public class IdEObjectImpl extends MinimalEObjectImpl implements IdEObject {
@@ -7,6 +9,7 @@ public class IdEObjectImpl extends MinimalEObjectImpl implements IdEObject {
 	private long oid = -1;
 	private int rid;
 	private int pid;
+	private LazyLoader lazyLoader;
 	
 	@Override
 	public long getOid() {
@@ -36,5 +39,17 @@ public class IdEObjectImpl extends MinimalEObjectImpl implements IdEObject {
 	@Override
 	public void setRid(int rid) {
 		this.rid = rid;
+	}
+	
+	@Override
+	public Object eGet(EStructuralFeature eFeature) {
+		if (eFeature instanceof EReference) {
+			if (lazyLoader != null) {
+				if (!lazyLoader.isLoaded(this, (EReference)eFeature)) {
+					eSet(eFeature, lazyLoader.load(this, (EReference)eFeature));
+				}
+			}
+		}
+		return super.eGet(eFeature);
 	}
 }

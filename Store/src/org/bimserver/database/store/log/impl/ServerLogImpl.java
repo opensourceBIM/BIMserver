@@ -14,6 +14,7 @@ import org.bimserver.database.store.log.ServerLog;
 import org.bimserver.emf.IdEObjectImpl;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.util.BasicInternalEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 /**
@@ -31,21 +32,26 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  */
 public class ServerLogImpl extends IdEObjectImpl implements ServerLog {
 	/**
-	 * The cached value of the '{@link #getActions() <em>Actions</em>}' reference list.
+	 * An array of objects representing the values of non-primitive features.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getActions()
 	 * @generated
-	 * @ordered
 	 */
-	protected EList<LogAction> actions;
+	protected Object[] eVirtualValues;
+	/**
+	 * A bit field representing the indices of non-primitive feature values.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected int eVirtualIndexBits0;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ServerLogImpl() {
+	public ServerLogImpl() {
 		super();
 	}
 
@@ -64,9 +70,11 @@ public class ServerLogImpl extends IdEObjectImpl implements ServerLog {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	public EList<LogAction> getActions() {
+		EList<LogAction> actions = (EList<LogAction>)eVirtualGet(LogPackage.SERVER_LOG__ACTIONS);
 		if (actions == null) {
-			actions = new EObjectResolvingEList<LogAction>(LogAction.class, this, LogPackage.SERVER_LOG__ACTIONS);
+			eVirtualSet(LogPackage.SERVER_LOG__ACTIONS, actions = new BasicInternalEList<LogAction>(LogAction.class));
 		}
 		return actions;
 	}
@@ -122,13 +130,66 @@ public class ServerLogImpl extends IdEObjectImpl implements ServerLog {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case LogPackage.SERVER_LOG__ACTIONS:
+				EList<LogAction> actions = (EList<LogAction>)eVirtualGet(LogPackage.SERVER_LOG__ACTIONS);
 				return actions != null && !actions.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected Object[] eVirtualValues() {
+		return eVirtualValues;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected void eSetVirtualValues(Object[] newValues) {
+		eVirtualValues = newValues;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected int eVirtualIndexBits(int offset) {
+		switch (offset) {
+			case 0 :
+				return eVirtualIndexBits0;
+			default :
+				throw new IndexOutOfBoundsException();
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected void eSetVirtualIndexBits(int offset, int newIndexBits) {
+		switch (offset) {
+			case 0 :
+				eVirtualIndexBits0 = newIndexBits;
+				break;
+			default :
+				throw new IndexOutOfBoundsException();
+		}
 	}
 
 } //ServerLogImpl

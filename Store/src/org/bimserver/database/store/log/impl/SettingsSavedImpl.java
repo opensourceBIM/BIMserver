@@ -25,7 +25,7 @@ public class SettingsSavedImpl extends LogActionImpl implements SettingsSaved {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected SettingsSavedImpl() {
+	public SettingsSavedImpl() {
 		super();
 	}
 

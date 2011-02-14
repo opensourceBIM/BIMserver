@@ -21,6 +21,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.util.BasicInternalEList;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -47,6 +48,22 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevision {
 	/**
+	 * An array of objects representing the values of non-primitive features.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected Object[] eVirtualValues;
+
+	/**
+	 * A bit field representing the indices of non-primitive feature values.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected int eVirtualIndexBits0;
+
+	/**
 	 * The default value of the '{@link #getId() <em>Id</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -67,16 +84,6 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 	protected int id = ID_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getProject() <em>Project</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getProject()
-	 * @generated
-	 * @ordered
-	 */
-	protected Project project;
-
-	/**
 	 * The default value of the '{@link #getState() <em>State</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -87,16 +94,6 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 	protected static final CheckinState STATE_EDEFAULT = CheckinState.UPLOADING;
 
 	/**
-	 * The cached value of the '{@link #getState() <em>State</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getState()
-	 * @generated
-	 * @ordered
-	 */
-	protected CheckinState state = STATE_EDEFAULT;
-
-	/**
 	 * The default value of the '{@link #getChecksum() <em>Checksum</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -105,26 +102,6 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 	 * @ordered
 	 */
 	protected static final byte[] CHECKSUM_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getChecksum() <em>Checksum</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getChecksum()
-	 * @generated
-	 * @ordered
-	 */
-	protected byte[] checksum = CHECKSUM_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getRevisions() <em>Revisions</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getRevisions()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Revision> revisions;
 
 	/**
 	 * The default value of the '{@link #getSize() <em>Size</em>}' attribute.
@@ -157,16 +134,6 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 	protected static final Date DATE_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getDate() <em>Date</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDate()
-	 * @generated
-	 * @ordered
-	 */
-	protected Date date = DATE_EDEFAULT;
-
-	/**
 	 * The default value of the '{@link #getLastError() <em>Last Error</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -177,21 +144,11 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 	protected static final String LAST_ERROR_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getLastError() <em>Last Error</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getLastError()
-	 * @generated
-	 * @ordered
-	 */
-	protected String lastError = LAST_ERROR_EDEFAULT;
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ConcreteRevisionImpl() {
+	public ConcreteRevisionImpl() {
 		super();
 	}
 
@@ -220,10 +177,7 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 	 * @generated
 	 */
 	public void setId(int newId) {
-		int oldId = id;
 		id = newId;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.CONCRETE_REVISION__ID, oldId, id));
 	}
 
 	/**
@@ -232,12 +186,12 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 	 * @generated
 	 */
 	public Project getProject() {
+		Project project = (Project)eVirtualGet(StorePackage.CONCRETE_REVISION__PROJECT);
 		if (project != null && ((EObject)project).eIsProxy()) {
 			InternalEObject oldProject = (InternalEObject)project;
 			project = (Project)eResolveProxy(oldProject);
 			if (project != oldProject) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StorePackage.CONCRETE_REVISION__PROJECT, oldProject, project));
+				eVirtualSet(StorePackage.CONCRETE_REVISION__PROJECT, project);
 			}
 		}
 		return project;
@@ -249,7 +203,7 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 	 * @generated
 	 */
 	public Project basicGetProject() {
-		return project;
+		return (Project)eVirtualGet(StorePackage.CONCRETE_REVISION__PROJECT);
 	}
 
 	/**
@@ -258,12 +212,7 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 	 * @generated
 	 */
 	public NotificationChain basicSetProject(Project newProject, NotificationChain msgs) {
-		Project oldProject = project;
-		project = newProject;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, StorePackage.CONCRETE_REVISION__PROJECT, oldProject, newProject);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
+		Object oldProject = eVirtualSet(StorePackage.CONCRETE_REVISION__PROJECT, newProject);
 		return msgs;
 	}
 
@@ -273,6 +222,7 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 	 * @generated
 	 */
 	public void setProject(Project newProject) {
+		Project project = (Project)eVirtualGet(StorePackage.CONCRETE_REVISION__PROJECT);
 		if (newProject != project) {
 			NotificationChain msgs = null;
 			if (project != null)
@@ -282,8 +232,6 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 			msgs = basicSetProject(newProject, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.CONCRETE_REVISION__PROJECT, newProject, newProject));
 	}
 
 	/**
@@ -292,7 +240,7 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 	 * @generated
 	 */
 	public CheckinState getState() {
-		return state;
+		return (CheckinState)eVirtualGet(StorePackage.CONCRETE_REVISION__STATE, STATE_EDEFAULT);
 	}
 
 	/**
@@ -301,10 +249,8 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 	 * @generated
 	 */
 	public void setState(CheckinState newState) {
-		CheckinState oldState = state;
-		state = newState == null ? STATE_EDEFAULT : newState;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.CONCRETE_REVISION__STATE, oldState, state));
+		CheckinState state = newState == null ? STATE_EDEFAULT : newState;
+		Object oldState = eVirtualSet(StorePackage.CONCRETE_REVISION__STATE, state);
 	}
 
 	/**
@@ -313,7 +259,7 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 	 * @generated
 	 */
 	public byte[] getChecksum() {
-		return checksum;
+		return (byte[])eVirtualGet(StorePackage.CONCRETE_REVISION__CHECKSUM, CHECKSUM_EDEFAULT);
 	}
 
 	/**
@@ -322,10 +268,8 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 	 * @generated
 	 */
 	public void setChecksum(byte[] newChecksum) {
-		byte[] oldChecksum = checksum;
-		checksum = newChecksum;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.CONCRETE_REVISION__CHECKSUM, oldChecksum, checksum));
+		byte[] checksum = newChecksum;
+		Object oldChecksum = eVirtualSet(StorePackage.CONCRETE_REVISION__CHECKSUM, checksum);
 	}
 
 	/**
@@ -333,9 +277,11 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	public EList<Revision> getRevisions() {
+		EList<Revision> revisions = (EList<Revision>)eVirtualGet(StorePackage.CONCRETE_REVISION__REVISIONS);
 		if (revisions == null) {
-			revisions = new EObjectWithInverseResolvingEList.ManyInverse<Revision>(Revision.class, this, StorePackage.CONCRETE_REVISION__REVISIONS, StorePackage.REVISION__CONCRETE_REVISIONS);
+			eVirtualSet(StorePackage.CONCRETE_REVISION__REVISIONS, revisions = new BasicInternalEList<Revision>(Revision.class));
 		}
 		return revisions;
 	}
@@ -355,10 +301,7 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 	 * @generated
 	 */
 	public void setSize(long newSize) {
-		long oldSize = size;
 		size = newSize;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.CONCRETE_REVISION__SIZE, oldSize, size));
 	}
 
 	/**
@@ -367,7 +310,7 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 	 * @generated
 	 */
 	public Date getDate() {
-		return date;
+		return (Date)eVirtualGet(StorePackage.CONCRETE_REVISION__DATE, DATE_EDEFAULT);
 	}
 
 	/**
@@ -376,10 +319,8 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 	 * @generated
 	 */
 	public void setDate(Date newDate) {
-		Date oldDate = date;
-		date = newDate;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.CONCRETE_REVISION__DATE, oldDate, date));
+		Date date = newDate;
+		Object oldDate = eVirtualSet(StorePackage.CONCRETE_REVISION__DATE, date);
 	}
 
 	/**
@@ -388,7 +329,7 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 	 * @generated
 	 */
 	public String getLastError() {
-		return lastError;
+		return (String)eVirtualGet(StorePackage.CONCRETE_REVISION__LAST_ERROR, LAST_ERROR_EDEFAULT);
 	}
 
 	/**
@@ -397,10 +338,8 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 	 * @generated
 	 */
 	public void setLastError(String newLastError) {
-		String oldLastError = lastError;
-		lastError = newLastError;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.CONCRETE_REVISION__LAST_ERROR, oldLastError, lastError));
+		String lastError = newLastError;
+		Object oldLastError = eVirtualSet(StorePackage.CONCRETE_REVISION__LAST_ERROR, lastError);
 	}
 
 	/**
@@ -413,6 +352,7 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case StorePackage.CONCRETE_REVISION__PROJECT:
+				Project project = (Project)eVirtualGet(StorePackage.CONCRETE_REVISION__PROJECT);
 				if (project != null)
 					msgs = ((InternalEObject)project).eInverseRemove(this, StorePackage.PROJECT__CONCRETE_REVISIONS, Project.class, msgs);
 				return basicSetProject((Project)otherEnd, msgs);
@@ -546,27 +486,83 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case StorePackage.CONCRETE_REVISION__ID:
 				return id != ID_EDEFAULT;
 			case StorePackage.CONCRETE_REVISION__PROJECT:
-				return project != null;
+				return eVirtualGet(StorePackage.CONCRETE_REVISION__PROJECT) != null;
 			case StorePackage.CONCRETE_REVISION__STATE:
-				return state != STATE_EDEFAULT;
+				return eVirtualGet(StorePackage.CONCRETE_REVISION__STATE, STATE_EDEFAULT) != STATE_EDEFAULT;
 			case StorePackage.CONCRETE_REVISION__CHECKSUM:
+				byte[] checksum = (byte[])eVirtualGet(StorePackage.CONCRETE_REVISION__CHECKSUM, CHECKSUM_EDEFAULT);
 				return CHECKSUM_EDEFAULT == null ? checksum != null : !CHECKSUM_EDEFAULT.equals(checksum);
 			case StorePackage.CONCRETE_REVISION__REVISIONS:
+				EList<Revision> revisions = (EList<Revision>)eVirtualGet(StorePackage.CONCRETE_REVISION__REVISIONS);
 				return revisions != null && !revisions.isEmpty();
 			case StorePackage.CONCRETE_REVISION__SIZE:
 				return size != SIZE_EDEFAULT;
 			case StorePackage.CONCRETE_REVISION__DATE:
+				Date date = (Date)eVirtualGet(StorePackage.CONCRETE_REVISION__DATE, DATE_EDEFAULT);
 				return DATE_EDEFAULT == null ? date != null : !DATE_EDEFAULT.equals(date);
 			case StorePackage.CONCRETE_REVISION__LAST_ERROR:
+				String lastError = (String)eVirtualGet(StorePackage.CONCRETE_REVISION__LAST_ERROR, LAST_ERROR_EDEFAULT);
 				return LAST_ERROR_EDEFAULT == null ? lastError != null : !LAST_ERROR_EDEFAULT.equals(lastError);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected Object[] eVirtualValues() {
+		return eVirtualValues;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected void eSetVirtualValues(Object[] newValues) {
+		eVirtualValues = newValues;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected int eVirtualIndexBits(int offset) {
+		switch (offset) {
+			case 0 :
+				return eVirtualIndexBits0;
+			default :
+				throw new IndexOutOfBoundsException();
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected void eSetVirtualIndexBits(int offset, int newIndexBits) {
+		switch (offset) {
+			case 0 :
+				eVirtualIndexBits0 = newIndexBits;
+				break;
+			default :
+				throw new IndexOutOfBoundsException();
+		}
 	}
 
 	/**
@@ -582,15 +578,15 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 		result.append(" (id: ");
 		result.append(id);
 		result.append(", state: ");
-		result.append(state);
+		result.append(eVirtualGet(StorePackage.CONCRETE_REVISION__STATE, STATE_EDEFAULT));
 		result.append(", checksum: ");
-		result.append(checksum);
+		result.append(eVirtualGet(StorePackage.CONCRETE_REVISION__CHECKSUM, CHECKSUM_EDEFAULT));
 		result.append(", size: ");
 		result.append(size);
 		result.append(", date: ");
-		result.append(date);
+		result.append(eVirtualGet(StorePackage.CONCRETE_REVISION__DATE, DATE_EDEFAULT));
 		result.append(", lastError: ");
-		result.append(lastError);
+		result.append(eVirtualGet(StorePackage.CONCRETE_REVISION__LAST_ERROR, LAST_ERROR_EDEFAULT));
 		result.append(')');
 		return result.toString();
 	}

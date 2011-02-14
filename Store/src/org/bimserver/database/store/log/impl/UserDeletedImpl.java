@@ -30,21 +30,11 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class UserDeletedImpl extends LogActionImpl implements UserDeleted {
 	/**
-	 * The cached value of the '{@link #getUser() <em>User</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getUser()
-	 * @generated
-	 * @ordered
-	 */
-	protected User user;
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected UserDeletedImpl() {
+	public UserDeletedImpl() {
 		super();
 	}
 
@@ -64,12 +54,12 @@ public class UserDeletedImpl extends LogActionImpl implements UserDeleted {
 	 * @generated
 	 */
 	public User getUser() {
+		User user = (User)eVirtualGet(LogPackage.USER_DELETED__USER);
 		if (user != null && ((EObject)user).eIsProxy()) {
 			InternalEObject oldUser = (InternalEObject)user;
 			user = (User)eResolveProxy(oldUser);
 			if (user != oldUser) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, LogPackage.USER_DELETED__USER, oldUser, user));
+				eVirtualSet(LogPackage.USER_DELETED__USER, user);
 			}
 		}
 		return user;
@@ -81,7 +71,7 @@ public class UserDeletedImpl extends LogActionImpl implements UserDeleted {
 	 * @generated
 	 */
 	public User basicGetUser() {
-		return user;
+		return (User)eVirtualGet(LogPackage.USER_DELETED__USER);
 	}
 
 	/**
@@ -90,10 +80,8 @@ public class UserDeletedImpl extends LogActionImpl implements UserDeleted {
 	 * @generated
 	 */
 	public void setUser(User newUser) {
-		User oldUser = user;
-		user = newUser;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, LogPackage.USER_DELETED__USER, oldUser, user));
+		User user = newUser;
+		Object oldUser = eVirtualSet(LogPackage.USER_DELETED__USER, user);
 	}
 
 	/**
@@ -150,7 +138,7 @@ public class UserDeletedImpl extends LogActionImpl implements UserDeleted {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case LogPackage.USER_DELETED__USER:
-				return user != null;
+				return eVirtualGet(LogPackage.USER_DELETED__USER) != null;
 		}
 		return super.eIsSet(featureID);
 	}

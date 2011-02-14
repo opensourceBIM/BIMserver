@@ -24,6 +24,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.util.BasicInternalEList;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
@@ -58,6 +59,22 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class RevisionImpl extends IdEObjectImpl implements Revision {
 	/**
+	 * An array of objects representing the values of non-primitive features.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected Object[] eVirtualValues;
+
+	/**
+	 * A bit field representing the indices of non-primitive feature values.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected int eVirtualIndexBits0;
+
+	/**
 	 * The default value of the '{@link #getId() <em>Id</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -78,16 +95,6 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	protected int id = ID_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getUser() <em>User</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getUser()
-	 * @generated
-	 * @ordered
-	 */
-	protected User user;
-
-	/**
 	 * The default value of the '{@link #getDate() <em>Date</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -98,16 +105,6 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	protected static final Date DATE_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getDate() <em>Date</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDate()
-	 * @generated
-	 * @ordered
-	 */
-	protected Date date = DATE_EDEFAULT;
-
-	/**
 	 * The default value of the '{@link #getComment() <em>Comment</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -116,16 +113,6 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * @ordered
 	 */
 	protected static final String COMMENT_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getComment() <em>Comment</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getComment()
-	 * @generated
-	 * @ordered
-	 */
-	protected String comment = COMMENT_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getSize() <em>Size</em>}' attribute.
@@ -148,46 +135,6 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	protected long size = SIZE_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getConcreteRevisions() <em>Concrete Revisions</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getConcreteRevisions()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<ConcreteRevision> concreteRevisions;
-
-	/**
-	 * The cached value of the '{@link #getLastConcreteRevision() <em>Last Concrete Revision</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getLastConcreteRevision()
-	 * @generated
-	 * @ordered
-	 */
-	protected ConcreteRevision lastConcreteRevision;
-
-	/**
-	 * The cached value of the '{@link #getCheckouts() <em>Checkouts</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getCheckouts()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Checkout> checkouts;
-
-	/**
-	 * The cached value of the '{@link #getProject() <em>Project</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getProject()
-	 * @generated
-	 * @ordered
-	 */
-	protected Project project;
-
-	/**
 	 * The default value of the '{@link #getState() <em>State</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -196,26 +143,6 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * @ordered
 	 */
 	protected static final CheckinState STATE_EDEFAULT = CheckinState.UPLOADING;
-
-	/**
-	 * The cached value of the '{@link #getState() <em>State</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getState()
-	 * @generated
-	 * @ordered
-	 */
-	protected CheckinState state = STATE_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getLastClashes() <em>Last Clashes</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getLastClashes()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Clash> lastClashes;
 
 	/**
 	 * The default value of the '{@link #getTag() <em>Tag</em>}' attribute.
@@ -228,16 +155,6 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	protected static final String TAG_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getTag() <em>Tag</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTag()
-	 * @generated
-	 * @ordered
-	 */
-	protected String tag = TAG_EDEFAULT;
-
-	/**
 	 * The default value of the '{@link #getLastError() <em>Last Error</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -246,16 +163,6 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * @ordered
 	 */
 	protected static final String LAST_ERROR_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getLastError() <em>Last Error</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getLastError()
-	 * @generated
-	 * @ordered
-	 */
-	protected String lastError = LAST_ERROR_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getBmi() <em>Bmi</em>}' attribute.
@@ -302,7 +209,7 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected RevisionImpl() {
+	public RevisionImpl() {
 		super();
 	}
 
@@ -331,10 +238,7 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * @generated
 	 */
 	public void setId(int newId) {
-		int oldId = id;
 		id = newId;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.REVISION__ID, oldId, id));
 	}
 
 	/**
@@ -343,12 +247,12 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * @generated
 	 */
 	public User getUser() {
+		User user = (User)eVirtualGet(StorePackage.REVISION__USER);
 		if (user != null && ((EObject)user).eIsProxy()) {
 			InternalEObject oldUser = (InternalEObject)user;
 			user = (User)eResolveProxy(oldUser);
 			if (user != oldUser) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StorePackage.REVISION__USER, oldUser, user));
+				eVirtualSet(StorePackage.REVISION__USER, user);
 			}
 		}
 		return user;
@@ -360,7 +264,7 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * @generated
 	 */
 	public User basicGetUser() {
-		return user;
+		return (User)eVirtualGet(StorePackage.REVISION__USER);
 	}
 
 	/**
@@ -369,10 +273,8 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * @generated
 	 */
 	public void setUser(User newUser) {
-		User oldUser = user;
-		user = newUser;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.REVISION__USER, oldUser, user));
+		User user = newUser;
+		Object oldUser = eVirtualSet(StorePackage.REVISION__USER, user);
 	}
 
 	/**
@@ -381,7 +283,7 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * @generated
 	 */
 	public Date getDate() {
-		return date;
+		return (Date)eVirtualGet(StorePackage.REVISION__DATE, DATE_EDEFAULT);
 	}
 
 	/**
@@ -390,10 +292,8 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * @generated
 	 */
 	public void setDate(Date newDate) {
-		Date oldDate = date;
-		date = newDate;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.REVISION__DATE, oldDate, date));
+		Date date = newDate;
+		Object oldDate = eVirtualSet(StorePackage.REVISION__DATE, date);
 	}
 
 	/**
@@ -402,7 +302,7 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * @generated
 	 */
 	public String getComment() {
-		return comment;
+		return (String)eVirtualGet(StorePackage.REVISION__COMMENT, COMMENT_EDEFAULT);
 	}
 
 	/**
@@ -411,10 +311,8 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * @generated
 	 */
 	public void setComment(String newComment) {
-		String oldComment = comment;
-		comment = newComment;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.REVISION__COMMENT, oldComment, comment));
+		String comment = newComment;
+		Object oldComment = eVirtualSet(StorePackage.REVISION__COMMENT, comment);
 	}
 
 	/**
@@ -432,10 +330,7 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * @generated
 	 */
 	public void setSize(long newSize) {
-		long oldSize = size;
 		size = newSize;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.REVISION__SIZE, oldSize, size));
 	}
 
 	/**
@@ -443,9 +338,11 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	public EList<ConcreteRevision> getConcreteRevisions() {
+		EList<ConcreteRevision> concreteRevisions = (EList<ConcreteRevision>)eVirtualGet(StorePackage.REVISION__CONCRETE_REVISIONS);
 		if (concreteRevisions == null) {
-			concreteRevisions = new EObjectWithInverseResolvingEList.ManyInverse<ConcreteRevision>(ConcreteRevision.class, this, StorePackage.REVISION__CONCRETE_REVISIONS, StorePackage.CONCRETE_REVISION__REVISIONS);
+			eVirtualSet(StorePackage.REVISION__CONCRETE_REVISIONS, concreteRevisions = new BasicInternalEList<ConcreteRevision>(ConcreteRevision.class));
 		}
 		return concreteRevisions;
 	}
@@ -456,12 +353,12 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * @generated
 	 */
 	public ConcreteRevision getLastConcreteRevision() {
+		ConcreteRevision lastConcreteRevision = (ConcreteRevision)eVirtualGet(StorePackage.REVISION__LAST_CONCRETE_REVISION);
 		if (lastConcreteRevision != null && ((EObject)lastConcreteRevision).eIsProxy()) {
 			InternalEObject oldLastConcreteRevision = (InternalEObject)lastConcreteRevision;
 			lastConcreteRevision = (ConcreteRevision)eResolveProxy(oldLastConcreteRevision);
 			if (lastConcreteRevision != oldLastConcreteRevision) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StorePackage.REVISION__LAST_CONCRETE_REVISION, oldLastConcreteRevision, lastConcreteRevision));
+				eVirtualSet(StorePackage.REVISION__LAST_CONCRETE_REVISION, lastConcreteRevision);
 			}
 		}
 		return lastConcreteRevision;
@@ -473,7 +370,7 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * @generated
 	 */
 	public ConcreteRevision basicGetLastConcreteRevision() {
-		return lastConcreteRevision;
+		return (ConcreteRevision)eVirtualGet(StorePackage.REVISION__LAST_CONCRETE_REVISION);
 	}
 
 	/**
@@ -482,10 +379,8 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * @generated
 	 */
 	public void setLastConcreteRevision(ConcreteRevision newLastConcreteRevision) {
-		ConcreteRevision oldLastConcreteRevision = lastConcreteRevision;
-		lastConcreteRevision = newLastConcreteRevision;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.REVISION__LAST_CONCRETE_REVISION, oldLastConcreteRevision, lastConcreteRevision));
+		ConcreteRevision lastConcreteRevision = newLastConcreteRevision;
+		Object oldLastConcreteRevision = eVirtualSet(StorePackage.REVISION__LAST_CONCRETE_REVISION, lastConcreteRevision);
 	}
 
 	/**
@@ -493,9 +388,11 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	public EList<Checkout> getCheckouts() {
+		EList<Checkout> checkouts = (EList<Checkout>)eVirtualGet(StorePackage.REVISION__CHECKOUTS);
 		if (checkouts == null) {
-			checkouts = new EObjectWithInverseResolvingEList<Checkout>(Checkout.class, this, StorePackage.REVISION__CHECKOUTS, StorePackage.CHECKOUT__REVISION);
+			eVirtualSet(StorePackage.REVISION__CHECKOUTS, checkouts = new BasicInternalEList<Checkout>(Checkout.class));
 		}
 		return checkouts;
 	}
@@ -506,12 +403,12 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * @generated
 	 */
 	public Project getProject() {
+		Project project = (Project)eVirtualGet(StorePackage.REVISION__PROJECT);
 		if (project != null && ((EObject)project).eIsProxy()) {
 			InternalEObject oldProject = (InternalEObject)project;
 			project = (Project)eResolveProxy(oldProject);
 			if (project != oldProject) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StorePackage.REVISION__PROJECT, oldProject, project));
+				eVirtualSet(StorePackage.REVISION__PROJECT, project);
 			}
 		}
 		return project;
@@ -523,7 +420,7 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * @generated
 	 */
 	public Project basicGetProject() {
-		return project;
+		return (Project)eVirtualGet(StorePackage.REVISION__PROJECT);
 	}
 
 	/**
@@ -532,12 +429,7 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * @generated
 	 */
 	public NotificationChain basicSetProject(Project newProject, NotificationChain msgs) {
-		Project oldProject = project;
-		project = newProject;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, StorePackage.REVISION__PROJECT, oldProject, newProject);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
+		Object oldProject = eVirtualSet(StorePackage.REVISION__PROJECT, newProject);
 		return msgs;
 	}
 
@@ -547,6 +439,7 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * @generated
 	 */
 	public void setProject(Project newProject) {
+		Project project = (Project)eVirtualGet(StorePackage.REVISION__PROJECT);
 		if (newProject != project) {
 			NotificationChain msgs = null;
 			if (project != null)
@@ -556,8 +449,6 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 			msgs = basicSetProject(newProject, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.REVISION__PROJECT, newProject, newProject));
 	}
 
 	/**
@@ -566,7 +457,7 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * @generated
 	 */
 	public CheckinState getState() {
-		return state;
+		return (CheckinState)eVirtualGet(StorePackage.REVISION__STATE, STATE_EDEFAULT);
 	}
 
 	/**
@@ -575,10 +466,8 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * @generated
 	 */
 	public void setState(CheckinState newState) {
-		CheckinState oldState = state;
-		state = newState == null ? STATE_EDEFAULT : newState;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.REVISION__STATE, oldState, state));
+		CheckinState state = newState == null ? STATE_EDEFAULT : newState;
+		Object oldState = eVirtualSet(StorePackage.REVISION__STATE, state);
 	}
 
 	/**
@@ -586,9 +475,11 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	public EList<Clash> getLastClashes() {
+		EList<Clash> lastClashes = (EList<Clash>)eVirtualGet(StorePackage.REVISION__LAST_CLASHES);
 		if (lastClashes == null) {
-			lastClashes = new EObjectResolvingEList<Clash>(Clash.class, this, StorePackage.REVISION__LAST_CLASHES);
+			eVirtualSet(StorePackage.REVISION__LAST_CLASHES, lastClashes = new BasicInternalEList<Clash>(Clash.class));
 		}
 		return lastClashes;
 	}
@@ -599,7 +490,7 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * @generated
 	 */
 	public String getTag() {
-		return tag;
+		return (String)eVirtualGet(StorePackage.REVISION__TAG, TAG_EDEFAULT);
 	}
 
 	/**
@@ -608,10 +499,8 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * @generated
 	 */
 	public void setTag(String newTag) {
-		String oldTag = tag;
-		tag = newTag;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.REVISION__TAG, oldTag, tag));
+		String tag = newTag;
+		Object oldTag = eVirtualSet(StorePackage.REVISION__TAG, tag);
 	}
 
 	/**
@@ -620,7 +509,7 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * @generated
 	 */
 	public String getLastError() {
-		return lastError;
+		return (String)eVirtualGet(StorePackage.REVISION__LAST_ERROR, LAST_ERROR_EDEFAULT);
 	}
 
 	/**
@@ -629,10 +518,8 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * @generated
 	 */
 	public void setLastError(String newLastError) {
-		String oldLastError = lastError;
-		lastError = newLastError;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.REVISION__LAST_ERROR, oldLastError, lastError));
+		String lastError = newLastError;
+		Object oldLastError = eVirtualSet(StorePackage.REVISION__LAST_ERROR, lastError);
 	}
 
 	/**
@@ -650,10 +537,7 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * @generated
 	 */
 	public void setBmi(int newBmi) {
-		int oldBmi = bmi;
 		bmi = newBmi;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.REVISION__BMI, oldBmi, bmi));
 	}
 
 	/**
@@ -671,10 +555,7 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * @generated
 	 */
 	public void setNrClashes(int newNrClashes) {
-		int oldNrClashes = nrClashes;
 		nrClashes = newNrClashes;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.REVISION__NR_CLASHES, oldNrClashes, nrClashes));
 	}
 
 	/**
@@ -691,6 +572,7 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 			case StorePackage.REVISION__CHECKOUTS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getCheckouts()).basicAdd(otherEnd, msgs);
 			case StorePackage.REVISION__PROJECT:
+				Project project = (Project)eVirtualGet(StorePackage.REVISION__PROJECT);
 				if (project != null)
 					msgs = ((InternalEObject)project).eInverseRemove(this, StorePackage.PROJECT__REVISIONS, Project.class, msgs);
 				return basicSetProject((Project)otherEnd, msgs);
@@ -884,34 +766,42 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case StorePackage.REVISION__ID:
 				return id != ID_EDEFAULT;
 			case StorePackage.REVISION__USER:
-				return user != null;
+				return eVirtualGet(StorePackage.REVISION__USER) != null;
 			case StorePackage.REVISION__DATE:
+				Date date = (Date)eVirtualGet(StorePackage.REVISION__DATE, DATE_EDEFAULT);
 				return DATE_EDEFAULT == null ? date != null : !DATE_EDEFAULT.equals(date);
 			case StorePackage.REVISION__COMMENT:
+				String comment = (String)eVirtualGet(StorePackage.REVISION__COMMENT, COMMENT_EDEFAULT);
 				return COMMENT_EDEFAULT == null ? comment != null : !COMMENT_EDEFAULT.equals(comment);
 			case StorePackage.REVISION__SIZE:
 				return size != SIZE_EDEFAULT;
 			case StorePackage.REVISION__CONCRETE_REVISIONS:
+				EList<ConcreteRevision> concreteRevisions = (EList<ConcreteRevision>)eVirtualGet(StorePackage.REVISION__CONCRETE_REVISIONS);
 				return concreteRevisions != null && !concreteRevisions.isEmpty();
 			case StorePackage.REVISION__LAST_CONCRETE_REVISION:
-				return lastConcreteRevision != null;
+				return eVirtualGet(StorePackage.REVISION__LAST_CONCRETE_REVISION) != null;
 			case StorePackage.REVISION__CHECKOUTS:
+				EList<Checkout> checkouts = (EList<Checkout>)eVirtualGet(StorePackage.REVISION__CHECKOUTS);
 				return checkouts != null && !checkouts.isEmpty();
 			case StorePackage.REVISION__PROJECT:
-				return project != null;
+				return eVirtualGet(StorePackage.REVISION__PROJECT) != null;
 			case StorePackage.REVISION__STATE:
-				return state != STATE_EDEFAULT;
+				return eVirtualGet(StorePackage.REVISION__STATE, STATE_EDEFAULT) != STATE_EDEFAULT;
 			case StorePackage.REVISION__LAST_CLASHES:
+				EList<Clash> lastClashes = (EList<Clash>)eVirtualGet(StorePackage.REVISION__LAST_CLASHES);
 				return lastClashes != null && !lastClashes.isEmpty();
 			case StorePackage.REVISION__TAG:
+				String tag = (String)eVirtualGet(StorePackage.REVISION__TAG, TAG_EDEFAULT);
 				return TAG_EDEFAULT == null ? tag != null : !TAG_EDEFAULT.equals(tag);
 			case StorePackage.REVISION__LAST_ERROR:
+				String lastError = (String)eVirtualGet(StorePackage.REVISION__LAST_ERROR, LAST_ERROR_EDEFAULT);
 				return LAST_ERROR_EDEFAULT == null ? lastError != null : !LAST_ERROR_EDEFAULT.equals(lastError);
 			case StorePackage.REVISION__BMI:
 				return bmi != BMI_EDEFAULT;
@@ -927,6 +817,57 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * @generated
 	 */
 	@Override
+	protected Object[] eVirtualValues() {
+		return eVirtualValues;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected void eSetVirtualValues(Object[] newValues) {
+		eVirtualValues = newValues;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected int eVirtualIndexBits(int offset) {
+		switch (offset) {
+			case 0 :
+				return eVirtualIndexBits0;
+			default :
+				throw new IndexOutOfBoundsException();
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected void eSetVirtualIndexBits(int offset, int newIndexBits) {
+		switch (offset) {
+			case 0 :
+				eVirtualIndexBits0 = newIndexBits;
+				break;
+			default :
+				throw new IndexOutOfBoundsException();
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
@@ -934,17 +875,17 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 		result.append(" (id: ");
 		result.append(id);
 		result.append(", date: ");
-		result.append(date);
+		result.append(eVirtualGet(StorePackage.REVISION__DATE, DATE_EDEFAULT));
 		result.append(", comment: ");
-		result.append(comment);
+		result.append(eVirtualGet(StorePackage.REVISION__COMMENT, COMMENT_EDEFAULT));
 		result.append(", size: ");
 		result.append(size);
 		result.append(", state: ");
-		result.append(state);
+		result.append(eVirtualGet(StorePackage.REVISION__STATE, STATE_EDEFAULT));
 		result.append(", tag: ");
-		result.append(tag);
+		result.append(eVirtualGet(StorePackage.REVISION__TAG, TAG_EDEFAULT));
 		result.append(", lastError: ");
-		result.append(lastError);
+		result.append(eVirtualGet(StorePackage.REVISION__LAST_ERROR, LAST_ERROR_EDEFAULT));
 		result.append(", bmi: ");
 		result.append(bmi);
 		result.append(", nrClashes: ");

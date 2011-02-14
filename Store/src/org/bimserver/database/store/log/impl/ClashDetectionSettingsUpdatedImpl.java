@@ -30,21 +30,11 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class ClashDetectionSettingsUpdatedImpl extends LogActionImpl implements ClashDetectionSettingsUpdated {
 	/**
-	 * The cached value of the '{@link #getClashDetectionSettings() <em>Clash Detection Settings</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getClashDetectionSettings()
-	 * @generated
-	 * @ordered
-	 */
-	protected ClashDetectionSettings clashDetectionSettings;
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ClashDetectionSettingsUpdatedImpl() {
+	public ClashDetectionSettingsUpdatedImpl() {
 		super();
 	}
 
@@ -64,12 +54,12 @@ public class ClashDetectionSettingsUpdatedImpl extends LogActionImpl implements 
 	 * @generated
 	 */
 	public ClashDetectionSettings getClashDetectionSettings() {
+		ClashDetectionSettings clashDetectionSettings = (ClashDetectionSettings)eVirtualGet(LogPackage.CLASH_DETECTION_SETTINGS_UPDATED__CLASH_DETECTION_SETTINGS);
 		if (clashDetectionSettings != null && ((EObject)clashDetectionSettings).eIsProxy()) {
 			InternalEObject oldClashDetectionSettings = (InternalEObject)clashDetectionSettings;
 			clashDetectionSettings = (ClashDetectionSettings)eResolveProxy(oldClashDetectionSettings);
 			if (clashDetectionSettings != oldClashDetectionSettings) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, LogPackage.CLASH_DETECTION_SETTINGS_UPDATED__CLASH_DETECTION_SETTINGS, oldClashDetectionSettings, clashDetectionSettings));
+				eVirtualSet(LogPackage.CLASH_DETECTION_SETTINGS_UPDATED__CLASH_DETECTION_SETTINGS, clashDetectionSettings);
 			}
 		}
 		return clashDetectionSettings;
@@ -81,7 +71,7 @@ public class ClashDetectionSettingsUpdatedImpl extends LogActionImpl implements 
 	 * @generated
 	 */
 	public ClashDetectionSettings basicGetClashDetectionSettings() {
-		return clashDetectionSettings;
+		return (ClashDetectionSettings)eVirtualGet(LogPackage.CLASH_DETECTION_SETTINGS_UPDATED__CLASH_DETECTION_SETTINGS);
 	}
 
 	/**
@@ -90,10 +80,8 @@ public class ClashDetectionSettingsUpdatedImpl extends LogActionImpl implements 
 	 * @generated
 	 */
 	public void setClashDetectionSettings(ClashDetectionSettings newClashDetectionSettings) {
-		ClashDetectionSettings oldClashDetectionSettings = clashDetectionSettings;
-		clashDetectionSettings = newClashDetectionSettings;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, LogPackage.CLASH_DETECTION_SETTINGS_UPDATED__CLASH_DETECTION_SETTINGS, oldClashDetectionSettings, clashDetectionSettings));
+		ClashDetectionSettings clashDetectionSettings = newClashDetectionSettings;
+		Object oldClashDetectionSettings = eVirtualSet(LogPackage.CLASH_DETECTION_SETTINGS_UPDATED__CLASH_DETECTION_SETTINGS, clashDetectionSettings);
 	}
 
 	/**
@@ -150,7 +138,7 @@ public class ClashDetectionSettingsUpdatedImpl extends LogActionImpl implements 
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case LogPackage.CLASH_DETECTION_SETTINGS_UPDATED__CLASH_DETECTION_SETTINGS:
-				return clashDetectionSettings != null;
+				return eVirtualGet(LogPackage.CLASH_DETECTION_SETTINGS_UPDATED__CLASH_DETECTION_SETTINGS) != null;
 		}
 		return super.eIsSet(featureID);
 	}

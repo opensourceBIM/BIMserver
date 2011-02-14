@@ -30,21 +30,11 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class ProjectDeletedImpl extends LogActionImpl implements ProjectDeleted {
 	/**
-	 * The cached value of the '{@link #getProject() <em>Project</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getProject()
-	 * @generated
-	 * @ordered
-	 */
-	protected Project project;
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ProjectDeletedImpl() {
+	public ProjectDeletedImpl() {
 		super();
 	}
 
@@ -64,12 +54,12 @@ public class ProjectDeletedImpl extends LogActionImpl implements ProjectDeleted 
 	 * @generated
 	 */
 	public Project getProject() {
+		Project project = (Project)eVirtualGet(LogPackage.PROJECT_DELETED__PROJECT);
 		if (project != null && ((EObject)project).eIsProxy()) {
 			InternalEObject oldProject = (InternalEObject)project;
 			project = (Project)eResolveProxy(oldProject);
 			if (project != oldProject) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, LogPackage.PROJECT_DELETED__PROJECT, oldProject, project));
+				eVirtualSet(LogPackage.PROJECT_DELETED__PROJECT, project);
 			}
 		}
 		return project;
@@ -81,7 +71,7 @@ public class ProjectDeletedImpl extends LogActionImpl implements ProjectDeleted 
 	 * @generated
 	 */
 	public Project basicGetProject() {
-		return project;
+		return (Project)eVirtualGet(LogPackage.PROJECT_DELETED__PROJECT);
 	}
 
 	/**
@@ -90,10 +80,8 @@ public class ProjectDeletedImpl extends LogActionImpl implements ProjectDeleted 
 	 * @generated
 	 */
 	public void setProject(Project newProject) {
-		Project oldProject = project;
-		project = newProject;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, LogPackage.PROJECT_DELETED__PROJECT, oldProject, project));
+		Project project = newProject;
+		Object oldProject = eVirtualSet(LogPackage.PROJECT_DELETED__PROJECT, project);
 	}
 
 	/**
@@ -150,7 +138,7 @@ public class ProjectDeletedImpl extends LogActionImpl implements ProjectDeleted 
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case LogPackage.PROJECT_DELETED__PROJECT:
-				return project != null;
+				return eVirtualGet(LogPackage.PROJECT_DELETED__PROJECT) != null;
 		}
 		return super.eIsSet(featureID);
 	}
