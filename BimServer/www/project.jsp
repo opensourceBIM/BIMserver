@@ -583,7 +583,7 @@ open a specific revision to query other revisions<br />
 		<th>Name</th>
 		<th>Username</th>
 		<th>Type</th>
-		<% if (userHasCheckinRights) { %>
+		<% if (hasUserManagementRights) { %>
 		<th>Actions</th>
 		<% } %>
 	</tr>
@@ -594,9 +594,9 @@ open a specific revision to query other revisions<br />
 		<td><a href="user.jsp?uoid=<%=user.getOid() %>"><%=user.getName() %></a></td>
 		<td><a href="user.jsp?uoid=<%=user.getOid() %>"><%=user.getUsername() %></a></td>
 		<td><%=JspHelper.getNiceUserTypeName(user.getUserType()) %></td>
-		<% if (userHasCheckinRights) { %>
+		<% if (hasUserManagementRights) { %>
 		<td>
-		<% if (hasUserManagementRights && user.getUserType() != SUserType.ADMIN) { %><a
+		<% if (user.getUserType() != SUserType.ADMIN) { %><a
 			href="revokepermission.jsp?type=project&poid=<%=poid %>&amp;uoid=<%=user.getOid() %>">revoke</a>
 		<% } %>
 		</td>

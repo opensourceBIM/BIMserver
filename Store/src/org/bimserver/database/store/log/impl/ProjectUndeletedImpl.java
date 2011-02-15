@@ -60,6 +60,8 @@ public class ProjectUndeletedImpl extends LogActionImpl implements ProjectUndele
 			project = (Project)eResolveProxy(oldProject);
 			if (project != oldProject) {
 				eVirtualSet(LogPackage.PROJECT_UNDELETED__PROJECT, project);
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, LogPackage.PROJECT_UNDELETED__PROJECT, oldProject, project));
 			}
 		}
 		return project;
@@ -82,6 +84,8 @@ public class ProjectUndeletedImpl extends LogActionImpl implements ProjectUndele
 	public void setProject(Project newProject) {
 		Project project = newProject;
 		Object oldProject = eVirtualSet(LogPackage.PROJECT_UNDELETED__PROJECT, project);
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, LogPackage.PROJECT_UNDELETED__PROJECT, oldProject == EVIRTUAL_NO_VALUE ? null : oldProject, project));
 	}
 
 	/**

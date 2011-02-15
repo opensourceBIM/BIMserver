@@ -12,6 +12,7 @@ import org.bimserver.database.store.CheckinState;
 import org.bimserver.database.store.ConcreteRevision;
 import org.bimserver.database.store.Project;
 import org.bimserver.database.store.Revision;
+import org.bimserver.database.store.StorePackage;
 import org.bimserver.database.store.User;
 import org.bimserver.ifc.SerializerException;
 import org.bimserver.ifcengine.IfcEngineException;
@@ -42,13 +43,14 @@ public class LongCheckinAction extends LongAction {
 	public void execute() {
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
+			createCheckinAction.setDatabaseSession(session);
 			session.executeAndCommitAction(createCheckinAction, 10);
 			session.close();
 			
 			BimDatabaseSession extraSession = bimDatabase.createSession();
 			try {
-				ConcreteRevision concreteRevision2 = extraSession.getConcreteRevision(createCheckinAction.getCroid());
-				for (Revision r : concreteRevision2.getRevisions()) {
+				ConcreteRevision concreteRevision = (ConcreteRevision) extraSession.get(StorePackage.eINSTANCE.getConcreteRevision(), createCheckinAction.getCroid(), false);
+				for (Revision r : concreteRevision.getRevisions()) {
 					Revision latest = null;
 					for (Revision r2 : r.getProject().getRevisions()) {
 						if (latest == null || r2.getId() > latest.getId()) {
@@ -80,7 +82,7 @@ public class LongCheckinAction extends LongAction {
 					while (throwable.getCause() != null) {
 						throwable = throwable.getCause();
 					}
-					ConcreteRevision concreteRevision = rollBackSession.getConcreteRevision(croid);
+					ConcreteRevision concreteRevision = (ConcreteRevision) rollBackSession.get(StorePackage.eINSTANCE.getConcreteRevision(), croid, false);
 					concreteRevision.setState(CheckinState.ERROR);
 					concreteRevision.setLastError(throwable.getMessage());
 					for (Revision revision : concreteRevision.getRevisions()) {
@@ -103,7 +105,7 @@ public class LongCheckinAction extends LongAction {
 	}
 
 	private void startClashDetection(BimDatabaseSession session) throws BimDeadlockException, BimDatabaseException, UserException, IfcEngineException, SerializerException {
-		ConcreteRevision concreteRevision = session.getConcreteRevision(createCheckinAction.getCroid());
+		ConcreteRevision concreteRevision = (ConcreteRevision) session.get(StorePackage.eINSTANCE.getConcreteRevision(), createCheckinAction.getCroid(), false); 
 		Project project = concreteRevision.getProject();
 		Project mainProject = project;
 		while (mainProject.getParent() != null) {

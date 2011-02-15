@@ -26,8 +26,8 @@ public class CheckinPart2DatabaseAction extends BimDatabaseAction<Void> {
 	private final long croid;
 	private final boolean merge;
 
-	public CheckinPart2DatabaseAction(AccessMethod accessMethod, IfcModel ifcModel, long actingUoid, long croid, boolean merge) {
-		super(accessMethod);
+	public CheckinPart2DatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, IfcModel ifcModel, long actingUoid, long croid, boolean merge) {
+		super(bimDatabaseSession, accessMethod);
 		this.ifcModel = ifcModel;
 		this.actingUoid = actingUoid;
 		this.croid = croid;
@@ -35,8 +35,8 @@ public class CheckinPart2DatabaseAction extends BimDatabaseAction<Void> {
 	}
 
 	@Override
-	public Void execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
-		ConcreteRevision concreteRevision = bimDatabaseSession.getConcreteRevision(croid);
+	public Void execute() throws UserException, BimDeadlockException, BimDatabaseException {
+		ConcreteRevision concreteRevision = getConcreteRevision(croid);
 		try {
 			Project project = concreteRevision.getProject();
 			Revision lastRevision = project.getLastRevision();
@@ -44,13 +44,13 @@ public class CheckinPart2DatabaseAction extends BimDatabaseAction<Void> {
 			if (merge) {
 				IfcModelSet ifcModelSet = new IfcModelSet();
 				for (ConcreteRevision subRevision : lastRevision.getConcreteRevisions()) {
-					IfcModel subModel = bimDatabaseSession.getMap(subRevision.getProject().getId(), subRevision.getId());
+					IfcModel subModel = getDatabaseSession().getMap(subRevision.getProject().getId(), subRevision.getId(), false);
 					subModel.setDate(subRevision.getDate());
 					ifcModelSet.add(subModel);
 				}
 				getIfcModel().setDate(new Date());
 				IfcModel newModel = getIfcModel();
-				newModel.fixOids(bimDatabaseSession);
+				newModel.fixOids(getDatabaseSession());
 				IfcModel oldModel = new Merger().merge(project, ifcModelSet, ServerSettings.getSettings().isIntelligentMerging());
 				
 				oldModel.setObjectOids();
@@ -72,15 +72,15 @@ public class CheckinPart2DatabaseAction extends BimDatabaseAction<Void> {
 			}
 			if (project.getConcreteRevisions().size() != 0 && !merge) {
 				// There already was a revision, lets delete it (only when not merging)
-				bimDatabaseSession.clearProject(project.getId(), concreteRevision.getId() - 1, concreteRevision.getId());
+				getDatabaseSession().clearProject(project.getId(), concreteRevision.getId() - 1, concreteRevision.getId());
 			}
-			bimDatabaseSession.store(ifcModel.getValues(), project.getId(), concreteRevision.getId());
+			getDatabaseSession().store(ifcModel.getValues(), project.getId(), concreteRevision.getId());
 			for (Revision revision : concreteRevision.getRevisions()) {
 				revision.setState(CheckinState.DONE);
-				bimDatabaseSession.store(revision);
+				getDatabaseSession().store(revision);
 			}
 			concreteRevision.setState(CheckinState.DONE);
-			bimDatabaseSession.store(concreteRevision);
+			getDatabaseSession().store(concreteRevision);
 		} catch (Throwable e) {
 			if (e instanceof BimDeadlockException) {
 				// Let this one slide

@@ -19,16 +19,16 @@ public class DeleteProjectDatabaseAction extends BimDatabaseAction<Boolean> {
 	private final long poid;
 	private final long actingUoid;
 
-	public DeleteProjectDatabaseAction(AccessMethod accessMethod, long poid, long actingUoid) {
-		super(accessMethod);
+	public DeleteProjectDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long poid, long actingUoid) {
+		super(bimDatabaseSession, accessMethod);
 		this.poid = poid;
 		this.actingUoid = actingUoid;
 	}
 
 	@Override
-	public Boolean execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDatabaseException, BimDeadlockException {
-		User actingUser = bimDatabaseSession.getUserByUoid(actingUoid);
-		final Project project = bimDatabaseSession.getProjectByPoid(poid);
+	public Boolean execute() throws UserException, BimDatabaseException, BimDeadlockException {
+		User actingUser = getUserByUoid(actingUoid);
+		final Project project = getProjectByPoid(poid);
 		if (actingUser.getUserType() == UserType.ADMIN || actingUser.getHasRightsOn().contains(project)) {
 			delete(project);
 			ProjectDeleted projectDeleted = LogFactory.eINSTANCE.createProjectDeleted();
@@ -36,7 +36,7 @@ public class DeleteProjectDatabaseAction extends BimDatabaseAction<Boolean> {
 			projectDeleted.setDate(new Date());
 			projectDeleted.setExecutor(actingUser);
 			projectDeleted.setProject(project);
-			bimDatabaseSession.store(project);
+			getDatabaseSession().store(project);
 			return true;
 		} else {
 			throw new UserException("No rights to delete this project");

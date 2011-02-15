@@ -39,8 +39,8 @@ public class AddUserDatabaseAction extends BimDatabaseAction<Long> {
 	private final boolean selfRegistration;
 	private final String password;
 
-	public AddUserDatabaseAction(AccessMethod accessMethod, String username, String name, UserType userType, long createrUoid, boolean selfRegistration) {
-		super(accessMethod);
+	public AddUserDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, String username, String name, UserType userType, long createrUoid, boolean selfRegistration) {
+		super(bimDatabaseSession, accessMethod);
 		this.name = name;
 		this.username = username;
 		this.userType = userType;
@@ -49,8 +49,8 @@ public class AddUserDatabaseAction extends BimDatabaseAction<Long> {
 		this.password = null;
 	}
 
-	public AddUserDatabaseAction(AccessMethod accessMethod, String username, String password, String name, UserType userType, long createrUoid, boolean selfRegistration) {
-		super(accessMethod);
+	public AddUserDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, String username, String password, String name, UserType userType, long createrUoid, boolean selfRegistration) {
+		super(bimDatabaseSession, accessMethod);
 		this.password = password;
 		this.name = name;
 		this.username = username;
@@ -59,7 +59,7 @@ public class AddUserDatabaseAction extends BimDatabaseAction<Long> {
 		this.selfRegistration = selfRegistration;
 	}
 
-	public Long execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDatabaseException, BimDeadlockException {
+	public Long execute() throws UserException, BimDatabaseException, BimDeadlockException {
 		String trimmedUserName = username.trim();
 		String trimmedName = name.trim();
 		if (selfRegistration && userType == UserType.ADMIN) {
@@ -74,10 +74,10 @@ public class AddUserDatabaseAction extends BimDatabaseAction<Long> {
 		if (trimmedName.equals("")) {
 			throw new UserException("Invalid name");
 		}
-		if (bimDatabaseSession.getUserByUserName(trimmedUserName) != null) {
+		if (getUserByUserName(trimmedUserName) != null) {
 			throw new UserException("A user with the username " + trimmedUserName + " already exists");
 		}
-		User actingUser = bimDatabaseSession.getUserByUoid(createrUoid);
+		User actingUser = getUserByUoid(createrUoid);
 		if (createrUoid != -1 && actingUser.getUserType() != UserType.ADMIN) {
 			throw new UserException("Only admin users can create other users");
 		}
@@ -88,7 +88,7 @@ public class AddUserDatabaseAction extends BimDatabaseAction<Long> {
 		user.setName(trimmedName);
 		user.setUsername(trimmedUserName);
 		user.setCreatedOn(new Date());
-		user.setCreatedBy(bimDatabaseSession.getUserByUoid(createrUoid));
+		user.setCreatedBy(getUserByUoid(createrUoid));
 		user.setUserType(userType);
 		user.setLastSeen(null);
 		final String token = GeneratorUtils.generateToken();
@@ -99,9 +99,9 @@ public class AddUserDatabaseAction extends BimDatabaseAction<Long> {
 		newUserAdded.setExecutor(actingUser);
 		newUserAdded.setDate(new Date());
 		newUserAdded.setAccessMethod(getAccessMethod());
-		bimDatabaseSession.store(user);
-		bimDatabaseSession.store(newUserAdded);
-		bimDatabaseSession.addPostCommitAction(new PostCommitAction(){
+		getDatabaseSession().store(user);
+		getDatabaseSession().store(newUserAdded);
+		getDatabaseSession().addPostCommitAction(new PostCommitAction(){
 			@Override
 			public void execute() throws UserException {
 				try {

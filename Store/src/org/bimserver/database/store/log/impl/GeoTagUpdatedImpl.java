@@ -60,6 +60,8 @@ public class GeoTagUpdatedImpl extends LogActionImpl implements GeoTagUpdated {
 			geoTag = (GeoTag)eResolveProxy(oldGeoTag);
 			if (geoTag != oldGeoTag) {
 				eVirtualSet(LogPackage.GEO_TAG_UPDATED__GEO_TAG, geoTag);
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, LogPackage.GEO_TAG_UPDATED__GEO_TAG, oldGeoTag, geoTag));
 			}
 		}
 		return geoTag;
@@ -82,6 +84,8 @@ public class GeoTagUpdatedImpl extends LogActionImpl implements GeoTagUpdated {
 	public void setGeoTag(GeoTag newGeoTag) {
 		GeoTag geoTag = newGeoTag;
 		Object oldGeoTag = eVirtualSet(LogPackage.GEO_TAG_UPDATED__GEO_TAG, geoTag);
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, LogPackage.GEO_TAG_UPDATED__GEO_TAG, oldGeoTag == EVIRTUAL_NO_VALUE ? null : oldGeoTag, geoTag));
 	}
 
 	/**

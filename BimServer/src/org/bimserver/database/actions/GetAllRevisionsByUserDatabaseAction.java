@@ -19,15 +19,15 @@ public class GetAllRevisionsByUserDatabaseAction extends BimDatabaseAction<Set<R
 
 	private final long uoid;
 
-	public GetAllRevisionsByUserDatabaseAction(AccessMethod accessMethod, long uoid) {
-		super(accessMethod);
+	public GetAllRevisionsByUserDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long uoid) {
+		super(bimDatabaseSession, accessMethod);
 		this.uoid = uoid;
 	}
 
 	@Override
-	public Set<Revision> execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
-		User user = bimDatabaseSession.getUserByUoid(uoid);
+	public Set<Revision> execute() throws UserException, BimDeadlockException, BimDatabaseException {
+		User user = getUserByUoid(uoid);
 		Condition condition = new HasReferenceToCondition(StorePackage.eINSTANCE.getRevision_User(), user);
-		return CollectionUtils.mapToSet((Map<Long, Revision>) bimDatabaseSession.query(condition, Revision.class));
+		return CollectionUtils.mapToSet((Map<Long, Revision>) getDatabaseSession().query(condition, Revision.class, false));
 	}
 }

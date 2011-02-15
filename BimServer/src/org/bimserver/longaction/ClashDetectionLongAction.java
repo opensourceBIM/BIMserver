@@ -17,6 +17,7 @@ import org.bimserver.database.store.ClashDetectionSettings;
 import org.bimserver.database.store.Project;
 import org.bimserver.database.store.Revision;
 import org.bimserver.database.store.StoreFactory;
+import org.bimserver.database.store.StorePackage;
 import org.bimserver.database.store.User;
 import org.bimserver.database.store.log.AccessMethod;
 import org.bimserver.ifcengine.IfcEngineFactory;
@@ -48,7 +49,7 @@ public class ClashDetectionLongAction extends LongAction {
 		BimDatabaseSession session = bimDatabase.createSession();
 		long roid = -1;
 		try {
-			Project project = session.getProjectByPoid(poid);
+			Project project = session.get(StorePackage.eINSTANCE.getProject(), poid, false);
 			Revision revision = project.getLastRevision();
 			revision.setState(CheckinState.SEARCHING_CLASHES);
 			roid = revision.getOid();
@@ -63,12 +64,12 @@ public class ClashDetectionLongAction extends LongAction {
 		}
 		session = bimDatabase.createSession();
 		try {
-			Project project = session.getProjectByPoid(poid);
+			Project project = session.get(StorePackage.eINSTANCE.getProject(), poid, false);
 			ClashDetectionSettings clashDetectionSettings = StoreFactory.eINSTANCE.createClashDetectionSettings();
 			clashDetectionSettings.setMargin(project.getClashDetectionSettings().getMargin());
 			clashDetectionSettings.getRevisions().add(project.getLastRevision());
-			FindClashesDatabaseAction findClashesDatabaseAction = new FindClashesDatabaseAction(AccessMethod.INTERNAL, clashDetectionSettings, schema, ifcEngineFactory, roid);
-			Set<? extends Clash> clashes = findClashesDatabaseAction.execute(session);
+			FindClashesDatabaseAction findClashesDatabaseAction = new FindClashesDatabaseAction(session, AccessMethod.INTERNAL, clashDetectionSettings, schema, ifcEngineFactory, roid);
+			Set<? extends Clash> clashes = findClashesDatabaseAction.execute();
 			Revision revision = project.getLastRevision();
 // Temporarily disabled, should be enabled when lazy loading is working
 //			for (Clash clash : clashes) {
@@ -88,8 +89,8 @@ public class ClashDetectionLongAction extends LongAction {
 				String[] emailAddressesArray = new String[emailAddresses.size()];
 				emailAddresses.toArray(emailAddressesArray);
 				
-				SendClashesEmailDatabaseAction sendClashesEmailDatabaseAction = new SendClashesEmailDatabaseAction(AccessMethod.INTERNAL, actingUoid, poid, Service.convert(clashDetectionSettings), emailAddresses);
-				sendClashesEmailDatabaseAction.execute(session);
+				SendClashesEmailDatabaseAction sendClashesEmailDatabaseAction = new SendClashesEmailDatabaseAction(session, AccessMethod.INTERNAL, actingUoid, poid, Service.convert(clashDetectionSettings), emailAddresses);
+				sendClashesEmailDatabaseAction.execute();
 			}
 			session.commit();
 		} catch (Throwable e) {
@@ -101,7 +102,7 @@ public class ClashDetectionLongAction extends LongAction {
 					while (throwable.getCause() != null) {
 						throwable = throwable.getCause();
 					}
-					Revision revision = rollBackSession.getVirtualRevision(roid);
+					Revision revision = rollBackSession.get(StorePackage.eINSTANCE.getRevision(), roid, false);
 					revision.setState(CheckinState.CLASHES_ERROR);
 					revision.setLastError(throwable.getMessage());
 					rollBackSession.store(revision);

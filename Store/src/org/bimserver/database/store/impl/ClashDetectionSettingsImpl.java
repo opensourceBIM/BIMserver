@@ -133,7 +133,10 @@ public class ClashDetectionSettingsImpl extends IdEObjectImpl implements ClashDe
 	 * @generated
 	 */
 	public void setEnabled(boolean newEnabled) {
+		boolean oldEnabled = enabled;
 		enabled = newEnabled;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.CLASH_DETECTION_SETTINGS__ENABLED, oldEnabled, enabled));
 	}
 
 	/**
@@ -151,7 +154,10 @@ public class ClashDetectionSettingsImpl extends IdEObjectImpl implements ClashDe
 	 * @generated
 	 */
 	public void setMargin(float newMargin) {
+		float oldMargin = margin;
 		margin = newMargin;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.CLASH_DETECTION_SETTINGS__MARGIN, oldMargin, margin));
 	}
 
 	/**
@@ -163,7 +169,7 @@ public class ClashDetectionSettingsImpl extends IdEObjectImpl implements ClashDe
 	public EList<Project> getProjects() {
 		EList<Project> projects = (EList<Project>)eVirtualGet(StorePackage.CLASH_DETECTION_SETTINGS__PROJECTS);
 		if (projects == null) {
-			eVirtualSet(StorePackage.CLASH_DETECTION_SETTINGS__PROJECTS, projects = new BasicInternalEList<Project>(Project.class));
+			eVirtualSet(StorePackage.CLASH_DETECTION_SETTINGS__PROJECTS, projects = new EObjectWithInverseResolvingEList<Project>(Project.class, this, StorePackage.CLASH_DETECTION_SETTINGS__PROJECTS, StorePackage.PROJECT__CLASH_DETECTION_SETTINGS));
 		}
 		return projects;
 	}
@@ -177,7 +183,7 @@ public class ClashDetectionSettingsImpl extends IdEObjectImpl implements ClashDe
 	public EList<Revision> getRevisions() {
 		EList<Revision> revisions = (EList<Revision>)eVirtualGet(StorePackage.CLASH_DETECTION_SETTINGS__REVISIONS);
 		if (revisions == null) {
-			eVirtualSet(StorePackage.CLASH_DETECTION_SETTINGS__REVISIONS, revisions = new BasicInternalEList<Revision>(Revision.class));
+			eVirtualSet(StorePackage.CLASH_DETECTION_SETTINGS__REVISIONS, revisions = new EObjectResolvingEList<Revision>(Revision.class, this, StorePackage.CLASH_DETECTION_SETTINGS__REVISIONS));
 		}
 		return revisions;
 	}
@@ -191,7 +197,7 @@ public class ClashDetectionSettingsImpl extends IdEObjectImpl implements ClashDe
 	public EList<String> getIgnoredClasses() {
 		EList<String> ignoredClasses = (EList<String>)eVirtualGet(StorePackage.CLASH_DETECTION_SETTINGS__IGNORED_CLASSES);
 		if (ignoredClasses == null) {
-			eVirtualSet(StorePackage.CLASH_DETECTION_SETTINGS__IGNORED_CLASSES, ignoredClasses = new BasicInternalEList<String>(String.class));
+			eVirtualSet(StorePackage.CLASH_DETECTION_SETTINGS__IGNORED_CLASSES, ignoredClasses = new EDataTypeUniqueEList<String>(String.class, this, StorePackage.CLASH_DETECTION_SETTINGS__IGNORED_CLASSES));
 		}
 		return ignoredClasses;
 	}

@@ -25,17 +25,17 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 	private final long actingUoid;
 	private final long poid;
 
-	public CheckinDatabaseAction(AccessMethod accessMethod, IfcModel model, long poid, long actingUoid, String comment) {
-		super(accessMethod, model);
+	public CheckinDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, IfcModel model, long poid, long actingUoid, String comment) {
+		super(bimDatabaseSession, accessMethod, model);
 		this.poid = poid;
 		this.actingUoid = actingUoid;
 		this.comment = comment;
 	}
 
 	@Override
-	public ConcreteRevision execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDatabaseException, BimDeadlockException {
-		Project project = bimDatabaseSession.getProjectByPoid(poid);
-		User user = bimDatabaseSession.getUserByUoid(actingUoid);
+	public ConcreteRevision execute() throws UserException, BimDatabaseException, BimDeadlockException {
+		Project project = getProjectByPoid(poid);
+		User user = getUserByUoid(actingUoid);
 		if (user.getUserType() == UserType.ANONYMOUS) {
 			throw new UserException("User anonymous cannot create new revisions");
 		}
@@ -52,7 +52,7 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 			throw new UserException("Users must have a valid e-mail address to checkin");
 		}
 		checkCheckSum(project);
-		ConcreteRevision concreteRevision = createNewConcreteRevision(bimDatabaseSession, model.size(), poid, actingUoid, comment.trim(), CheckinState.DONE);
+		ConcreteRevision concreteRevision = createNewConcreteRevision(getDatabaseSession(), model.size(), poid, actingUoid, comment.trim(), CheckinState.DONE);
 		Revision virtualRevision = concreteRevision.getRevisions().get(0);
 		concreteRevision.setChecksum(model.getChecksum());
 		project.setLastConcreteRevision(concreteRevision);
@@ -60,17 +60,17 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 		concreteRevision.setState(CheckinState.STORING);
 		if (concreteRevision.getId() != 1) {
 			// There already was a revision, lets go delete it
-			bimDatabaseSession.clearProject(project.getId(), concreteRevision.getId() - 1, concreteRevision.getId());
+			getDatabaseSession().clearProject(project.getId(), concreteRevision.getId() - 1, concreteRevision.getId());
 		}
 		NewRevisionAdded newRevisionAdded = LogFactory.eINSTANCE.createNewRevisionAdded();
 		newRevisionAdded.setDate(new Date());
 		newRevisionAdded.setExecutor(user);
 		newRevisionAdded.setRevision(virtualRevision);
 		newRevisionAdded.setAccessMethod(getAccessMethod());
-		bimDatabaseSession.store(newRevisionAdded);
-		bimDatabaseSession.store(model.getValues(), project.getId(), concreteRevision.getId());
-		bimDatabaseSession.store(concreteRevision);
-		bimDatabaseSession.store(project);
+		getDatabaseSession().store(newRevisionAdded);
+		getDatabaseSession().store(model.getValues(), project.getId(), concreteRevision.getId());
+		getDatabaseSession().store(concreteRevision);
+		getDatabaseSession().store(project);
 		return concreteRevision;
 	}
 }

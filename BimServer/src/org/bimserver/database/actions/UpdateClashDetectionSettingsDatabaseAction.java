@@ -21,16 +21,16 @@ public class UpdateClashDetectionSettingsDatabaseAction extends BimDatabaseActio
 	private final SClashDetectionSettings sClashDetectionSettings;
 	private final long actingUoid;
 
-	public UpdateClashDetectionSettingsDatabaseAction(AccessMethod accessMethod, long actingUoid, SClashDetectionSettings sClashDetectionSettings) {
-		super(accessMethod);
+	public UpdateClashDetectionSettingsDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long actingUoid, SClashDetectionSettings sClashDetectionSettings) {
+		super(bimDatabaseSession, accessMethod);
 		this.actingUoid = actingUoid;
 		this.sClashDetectionSettings = sClashDetectionSettings;
 	}
 
 	@Override
-	public Void execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
-		User actingUser = bimDatabaseSession.getUserByUoid(actingUoid);
-		ClashDetectionSettings clashDetectionSettings = (ClashDetectionSettings) bimDatabaseSession.get(StorePackage.eINSTANCE.getClashDetectionSettings(), sClashDetectionSettings.getOid());
+	public Void execute() throws UserException, BimDeadlockException, BimDatabaseException {
+		User actingUser = getUserByUoid(actingUoid);
+		ClashDetectionSettings clashDetectionSettings = (ClashDetectionSettings) getDatabaseSession().get(StorePackage.eINSTANCE.getClashDetectionSettings(), sClashDetectionSettings.getOid(), false);
 		
 		boolean hasRights = false;
 		for (Project project : clashDetectionSettings.getProjects()) {
@@ -43,7 +43,7 @@ public class UpdateClashDetectionSettingsDatabaseAction extends BimDatabaseActio
 			clashDetectionSettings.setEnabled(sClashDetectionSettings.isEnabled());
 			clashDetectionSettings.setMargin(sClashDetectionSettings.getMargin());
 			for (long subPoid : sClashDetectionSettings.getProjects()) {
-				clashDetectionSettings.getProjects().add(bimDatabaseSession.getProjectByPoid(subPoid));
+				clashDetectionSettings.getProjects().add(getProjectByPoid(subPoid));
 			}
 			for (String ignoredClass : sClashDetectionSettings.getIgnoredClasses()) {
 				clashDetectionSettings.getIgnoredClasses().add(ignoredClass);
@@ -53,8 +53,8 @@ public class UpdateClashDetectionSettingsDatabaseAction extends BimDatabaseActio
 			clashDetectionSettingsUpdated.setAccessMethod(getAccessMethod());
 			clashDetectionSettingsUpdated.setDate(new Date());
 			clashDetectionSettingsUpdated.setExecutor(actingUser);
-			bimDatabaseSession.store(clashDetectionSettings);
-			bimDatabaseSession.store(clashDetectionSettingsUpdated);
+			getDatabaseSession().store(clashDetectionSettings);
+			getDatabaseSession().store(clashDetectionSettingsUpdated);
 		} else {
 			throw new UserException("User has no rights on any projects associated with these clash detection settings");
 		}

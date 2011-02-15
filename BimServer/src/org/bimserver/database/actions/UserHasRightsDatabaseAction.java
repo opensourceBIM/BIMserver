@@ -14,16 +14,16 @@ public class UserHasRightsDatabaseAction extends BimDatabaseAction<Boolean> {
 	private final long poid;
 	private final long uoid;
 
-	public UserHasRightsDatabaseAction(AccessMethod accessMethod, long uoid, long poid) {
-		super(accessMethod);
+	public UserHasRightsDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long uoid, long poid) {
+		super(bimDatabaseSession, accessMethod);
 		this.uoid = uoid;
 		this.poid = poid;
 	}
 
 	@Override
-	public Boolean execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
-		Project project = bimDatabaseSession.getProjectByPoid(poid);
-		User user = bimDatabaseSession.getUserByUoid(uoid);
+	public Boolean execute() throws UserException, BimDeadlockException, BimDatabaseException {
+		Project project = getProjectByPoid(poid);
+		User user = getUserByUoid(uoid);
 		return RightsManager.hasRightsOnProjectOrSuperProjectsOrSubProjects(user, project);
 	}
 }

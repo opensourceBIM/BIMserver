@@ -92,6 +92,8 @@ public class DownloadImpl extends LogActionImpl implements Download {
 			revision = (Revision)eResolveProxy(oldRevision);
 			if (revision != oldRevision) {
 				eVirtualSet(LogPackage.DOWNLOAD__REVISION, revision);
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, LogPackage.DOWNLOAD__REVISION, oldRevision, revision));
 			}
 		}
 		return revision;
@@ -114,6 +116,8 @@ public class DownloadImpl extends LogActionImpl implements Download {
 	public void setRevision(Revision newRevision) {
 		Revision revision = newRevision;
 		Object oldRevision = eVirtualSet(LogPackage.DOWNLOAD__REVISION, revision);
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, LogPackage.DOWNLOAD__REVISION, oldRevision == EVIRTUAL_NO_VALUE ? null : oldRevision, revision));
 	}
 
 	/**
@@ -133,6 +137,8 @@ public class DownloadImpl extends LogActionImpl implements Download {
 	public void setType(String newType) {
 		String type = newType;
 		Object oldType = eVirtualSet(LogPackage.DOWNLOAD__TYPE, type);
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, LogPackage.DOWNLOAD__TYPE, oldType == EVIRTUAL_NO_VALUE ? TYPE_EDEFAULT : oldType, type));
 	}
 
 	/**
@@ -150,7 +156,10 @@ public class DownloadImpl extends LogActionImpl implements Download {
 	 * @generated
 	 */
 	public void setZipped(boolean newZipped) {
+		boolean oldZipped = zipped;
 		zipped = newZipped;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, LogPackage.DOWNLOAD__ZIPPED, oldZipped, zipped));
 	}
 
 	/**

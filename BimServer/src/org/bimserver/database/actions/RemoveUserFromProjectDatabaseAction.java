@@ -19,18 +19,18 @@ public class RemoveUserFromProjectDatabaseAction extends BimDatabaseAction<Boole
 	private final long poid;
 	private final long actingUoid;
 
-	public RemoveUserFromProjectDatabaseAction(AccessMethod accessMethod, long uoid, long poid, long actingUoid) {
-		super(accessMethod);
+	public RemoveUserFromProjectDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long uoid, long poid, long actingUoid) {
+		super(bimDatabaseSession, accessMethod);
 		this.uoid = uoid;
 		this.poid = poid;
 		this.actingUoid = actingUoid;
 	}
 
 	@Override
-	public Boolean execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDatabaseException, BimDeadlockException {
-		Project project = bimDatabaseSession.getProjectByPoid(poid);
-		User user = bimDatabaseSession.getUserByUoid(uoid);
-		User actingUser = bimDatabaseSession.getUserByUoid(actingUoid);
+	public Boolean execute() throws UserException, BimDatabaseException, BimDeadlockException {
+		Project project = getProjectByPoid(poid);
+		User user = getUserByUoid(uoid);
+		User actingUser = getUserByUoid(actingUoid);
 		if (actingUser.getUserType() == UserType.ADMIN || project.getHasAuthorizedUsers().contains(actingUser)) {
 			if (user.getUserType() == UserType.ADMIN) {
 				int nrAdmins = 0;
@@ -51,9 +51,9 @@ public class RemoveUserFromProjectDatabaseAction extends BimDatabaseAction<Boole
 			userRemovedFromProject.setAccessMethod(getAccessMethod());
 			userRemovedFromProject.setProject(project);
 			userRemovedFromProject.setUser(user);
-			bimDatabaseSession.store(userRemovedFromProject);
-			bimDatabaseSession.store(user);
-			bimDatabaseSession.store(project);
+			getDatabaseSession().store(userRemovedFromProject);
+			getDatabaseSession().store(user);
+			getDatabaseSession().store(project);
 			return true;
 		} else {
 			throw new UserException("Insufficient rights to remove user from project");

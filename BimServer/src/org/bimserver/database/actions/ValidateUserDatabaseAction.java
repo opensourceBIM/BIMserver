@@ -17,16 +17,16 @@ public class ValidateUserDatabaseAction extends BimDatabaseAction<Void> {
 	private final String token;
 	private final String password;
 
-	public ValidateUserDatabaseAction(AccessMethod accessMethod, long uoid, String token, String password) {
-		super(accessMethod);
+	public ValidateUserDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long uoid, String token, String password) {
+		super(bimDatabaseSession, accessMethod);
 		this.uoid = uoid;
 		this.token = token;
 		this.password = password;
 	}
 
 	@Override
-	public Void execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
-		User user = bimDatabaseSession.getUserByUoid(uoid);
+	public Void execute() throws UserException, BimDeadlockException, BimDatabaseException {
+		User user = getUserByUoid(uoid);
 		if (user.getValidationToken() == null) {
 			throw new UserException("This account is already validated");
 		}
@@ -42,7 +42,7 @@ public class ValidateUserDatabaseAction extends BimDatabaseAction<Void> {
 		user.setPassword(Hashers.getSha256Hash(password));
 		user.setValidationToken(null);
 		user.setValidationTokenCreated(null);
-		bimDatabaseSession.store(user);
+		getDatabaseSession().store(user);
 		return null;
 	}
 }

@@ -9,12 +9,12 @@ import org.bimserver.shared.UserException;
 
 public class GetDatabaseInformationAction extends BimDatabaseAction<DatabaseInformation> {
 
-	public GetDatabaseInformationAction(AccessMethod accessMethod) {
-		super(accessMethod);
+	public GetDatabaseInformationAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod) {
+		super(bimDatabaseSession, accessMethod);
 	}
 
 	@Override
-	public DatabaseInformation execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
-		return bimDatabaseSession.getDatabaseInformation();
+	public DatabaseInformation execute() throws UserException, BimDeadlockException, BimDatabaseException {
+		return getDatabaseSession().getDatabaseInformation();
 	}
 }

@@ -1,7 +1,6 @@
 package org.bimserver.emf;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.InternalEObject.EStore;
 
 public interface IdEObject extends EObject {
 	void setOid(long oid);
@@ -10,6 +9,7 @@ public interface IdEObject extends EObject {
 	int getRid();
 	void setPid(int pid);
 	int getPid();
-	EStore eStore();
-	void eSetStore(EStore eStore);
+	void setLazyLoader(LazyLoader lazyLoader);
+	void setLoaded();
+	void load();
 }

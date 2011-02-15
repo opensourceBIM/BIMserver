@@ -14,15 +14,15 @@ public class SetRevisionTagDatabaseAction extends BimDatabaseAction<String> {
 	private final Long roid;
 	private final String tag;
 
-	public SetRevisionTagDatabaseAction(AccessMethod accessMethod, Long roid, String tag) {
-		super(accessMethod);
+	public SetRevisionTagDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, Long roid, String tag) {
+		super(bimDatabaseSession, accessMethod);
 		this.roid = roid;
 		this.tag = tag;
 	}
 
 	@Override
-	public String execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
-		Revision revision = bimDatabaseSession.getRevisionByRoid(roid);
+	public String execute() throws UserException, BimDeadlockException, BimDatabaseException {
+		Revision revision = getRevisionByRoid(roid);
 		String trimmedTag = tag.trim();
 		Project project = revision.getProject();
 		if (project.getParent() != null) {
@@ -30,7 +30,7 @@ public class SetRevisionTagDatabaseAction extends BimDatabaseAction<String> {
 		}
 		EList<Revision> projRevs = project.getRevisions();
 		revision.setTag(trimmedTag);
-		bimDatabaseSession.store(revision);
+		getDatabaseSession().store(revision);
 		EList<ConcreteRevision> concreteRevisions = revision.getConcreteRevisions();
 		for (ConcreteRevision cRev : concreteRevisions) {
 			EList<Revision> revisions = cRev.getRevisions();
@@ -39,7 +39,7 @@ public class SetRevisionTagDatabaseAction extends BimDatabaseAction<String> {
 					continue;
 				}
 				vRev.setTag(trimmedTag);
-				bimDatabaseSession.store(vRev);
+				getDatabaseSession().store(vRev);
 			}
 		}
 		return null;

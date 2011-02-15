@@ -15,20 +15,20 @@ public class GetRevisionDatabaseAction extends BimDatabaseAction<Revision> {
 	private final long roid;
 	private final long actingUoid;
 
-	public GetRevisionDatabaseAction(AccessMethod accessMethod, long roid, long actingUoid) {
-		super(accessMethod);
+	public GetRevisionDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long roid, long actingUoid) {
+		super(bimDatabaseSession, accessMethod);
 		this.roid = roid;
 		this.actingUoid = actingUoid;
 	}
 
 	@Override
-	public Revision execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
-		Revision revision = bimDatabaseSession.getRevisionByRoid(roid);
+	public Revision execute() throws UserException, BimDeadlockException, BimDatabaseException {
+		Revision revision = getRevisionByRoid(roid);
 		if (revision == null) {
 			throw new UserException("Revision does not exist");
 		}
 		Project project = revision.getProject();
-		User user = bimDatabaseSession.getUserByUoid(actingUoid);
+		User user = getUserByUoid(actingUoid);
 		if (RightsManager.hasRightsOnProjectOrSuperProjectsOrSubProjects(user, project)) {
 			return revision;
 		}

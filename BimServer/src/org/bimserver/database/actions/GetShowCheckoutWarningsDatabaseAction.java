@@ -18,16 +18,16 @@ public class GetShowCheckoutWarningsDatabaseAction extends BimDatabaseAction<Set
 	private final long poid;
 	private final long uoid;
 
-	public GetShowCheckoutWarningsDatabaseAction(AccessMethod accessMethod, long poid, long uoid) {
-		super(accessMethod);
+	public GetShowCheckoutWarningsDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long poid, long uoid) {
+		super(bimDatabaseSession, accessMethod);
 		this.poid = poid;
 		this.uoid = uoid;
 	}
 
 	@Override
-	public Set<String> execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
-		Project project = bimDatabaseSession.getProjectByPoid(poid);
-		User user = bimDatabaseSession.getUserByUoid(uoid);
+	public Set<String> execute() throws UserException, BimDeadlockException, BimDatabaseException {
+		Project project = getProjectByPoid(poid);
+		User user = getUserByUoid(uoid);
 		Set<String> warnings = new HashSet<String>();
 		checkInterleavingCommits(project, user, warnings);
 		checkOtherUsersCheckouts(project, user, warnings);

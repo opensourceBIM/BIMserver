@@ -24,20 +24,20 @@ public class AddProjectDatabaseAction extends BimDatabaseAction<Project> {
 	private final long owningUoid;
 	private final long parentPoid;
 
-	public AddProjectDatabaseAction(AccessMethod accessMethod, String name, long owningUoid) {
-		this(accessMethod, name, -1, owningUoid);
+	public AddProjectDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, String name, long owningUoid) {
+		this(bimDatabaseSession, accessMethod, name, -1, owningUoid);
 	}
 
-	public AddProjectDatabaseAction(AccessMethod accessMethod, String projectName, long parentPoid, long owningUoid) {
-		super(accessMethod);
+	public AddProjectDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, String projectName, long parentPoid, long owningUoid) {
+		super(bimDatabaseSession, accessMethod);
 		this.name = projectName;
 		this.parentPoid = parentPoid;
 		this.owningUoid = owningUoid;
 	}
 
 	@Override
-	public Project execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDatabaseException, BimDeadlockException {
-		User actingUser = bimDatabaseSession.getUserByUoid(owningUoid);
+	public Project execute() throws UserException, BimDatabaseException, BimDeadlockException {
+		User actingUser = getUserByUoid(owningUoid);
 		String trimmedName = name.trim();
 		if (actingUser.getUserType() == UserType.ANONYMOUS) {
 			throw new UserException("Anonymous user cannot create new projects");
@@ -48,15 +48,15 @@ public class AddProjectDatabaseAction extends BimDatabaseAction<Project> {
 		final Project project = StoreFactory.eINSTANCE.createProject();
 		Project parentProject = null;
 		if (parentPoid != -1) {
-			parentProject = bimDatabaseSession.getProjectByPoid(parentPoid);
+			parentProject = getProjectByPoid(parentPoid);
 			project.setParent(parentProject);
-			bimDatabaseSession.store(parentProject);
+			getDatabaseSession().store(parentProject);
 		}
 		if (parentPoid == -1 && actingUser.getUserType() != UserType.ADMIN && !ServerSettings.getSettings().isAllowUsersToCreateTopLevelProjects()) {
 			throw new UserException("Only administrators can create new projects");
 		}
 		if (project.getParent() == null) {
-			for (Project p : bimDatabaseSession.getProjectsByName(trimmedName)) {
+			for (Project p : getProjectsByName(trimmedName)) {
 				if (p.getParent() == null) {
 					throw new UserException("Project name must be unique");
 				}
@@ -77,9 +77,9 @@ public class AddProjectDatabaseAction extends BimDatabaseAction<Project> {
 		newProjectAdded.setParentProject(parentProject);
 		newProjectAdded.setProject(project);
 		newProjectAdded.setAccessMethod(getAccessMethod());
-		project.setId(bimDatabaseSession.newPid());
+		project.setId(getDatabaseSession().newPid());
 		project.setName(trimmedName);
-		project.getHasAuthorizedUsers().add(bimDatabaseSession.getAdminUser());
+		project.getHasAuthorizedUsers().add(getAdminUser());
 		project.getHasAuthorizedUsers().add(actingUser);
 		project.setCreatedBy(actingUser);
 		project.setCreatedDate(new Date());
@@ -92,11 +92,11 @@ public class AddProjectDatabaseAction extends BimDatabaseAction<Project> {
 			ClashDetectionSettings clashDetectionSettings = StoreFactory.eINSTANCE.createClashDetectionSettings();
 			clashDetectionSettings.setEnabled(false);
 			project.setClashDetectionSettings(clashDetectionSettings);
-			bimDatabaseSession.store(geoTag);
-			bimDatabaseSession.store(clashDetectionSettings);
+			getDatabaseSession().store(geoTag);
+			getDatabaseSession().store(clashDetectionSettings);
 		}
-		bimDatabaseSession.store(project);
-		bimDatabaseSession.store(newProjectAdded);
+		getDatabaseSession().store(project);
+		getDatabaseSession().store(newProjectAdded);
 		return project;
 	}
 }

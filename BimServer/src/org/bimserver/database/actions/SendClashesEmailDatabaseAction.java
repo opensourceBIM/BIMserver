@@ -34,8 +34,8 @@ public class SendClashesEmailDatabaseAction extends BimDatabaseAction<Void> {
 	private final long poid;
 	private final Set<String> addressesTo;
 
-	public SendClashesEmailDatabaseAction(AccessMethod accessMethod, long actingUoid, long poid, SClashDetectionSettings sClashDetectionSettings, Set<String> addressesTo) {
-		super(accessMethod);
+	public SendClashesEmailDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long actingUoid, long poid, SClashDetectionSettings sClashDetectionSettings, Set<String> addressesTo) {
+		super(bimDatabaseSession, accessMethod);
 		this.actingUoid = actingUoid;
 		this.poid = poid;
 		this.sClashDetectionSettings = sClashDetectionSettings;
@@ -43,9 +43,9 @@ public class SendClashesEmailDatabaseAction extends BimDatabaseAction<Void> {
 	}
 
 	@Override
-	public Void execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
+	public Void execute() throws UserException, BimDeadlockException, BimDatabaseException {
 		try {
-			User user = bimDatabaseSession.getUserByUoid(actingUoid);
+			User user = getUserByUoid(actingUoid);
 			String senderAddress = ServerSettings.getSettings().getEmailSenderAddress();
 			Session mailSession = MailSystem.getInstance().createMailSession();
 

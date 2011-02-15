@@ -212,7 +212,10 @@ public class GeoTagImpl extends IdEObjectImpl implements GeoTag {
 	 * @generated
 	 */
 	public void setEnabled(boolean newEnabled) {
+		boolean oldEnabled = enabled;
 		enabled = newEnabled;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.GEO_TAG__ENABLED, oldEnabled, enabled));
 	}
 
 	/**
@@ -224,7 +227,7 @@ public class GeoTagImpl extends IdEObjectImpl implements GeoTag {
 	public EList<Project> getProjects() {
 		EList<Project> projects = (EList<Project>)eVirtualGet(StorePackage.GEO_TAG__PROJECTS);
 		if (projects == null) {
-			eVirtualSet(StorePackage.GEO_TAG__PROJECTS, projects = new BasicInternalEList<Project>(Project.class));
+			eVirtualSet(StorePackage.GEO_TAG__PROJECTS, projects = new EObjectWithInverseResolvingEList<Project>(Project.class, this, StorePackage.GEO_TAG__PROJECTS, StorePackage.PROJECT__GEO_TAG));
 		}
 		return projects;
 	}
@@ -244,7 +247,10 @@ public class GeoTagImpl extends IdEObjectImpl implements GeoTag {
 	 * @generated
 	 */
 	public void setX(float newX) {
+		float oldX = x;
 		x = newX;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.GEO_TAG__X, oldX, x));
 	}
 
 	/**
@@ -262,7 +268,10 @@ public class GeoTagImpl extends IdEObjectImpl implements GeoTag {
 	 * @generated
 	 */
 	public void setY(float newY) {
+		float oldY = y;
 		y = newY;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.GEO_TAG__Y, oldY, y));
 	}
 
 	/**
@@ -280,7 +289,10 @@ public class GeoTagImpl extends IdEObjectImpl implements GeoTag {
 	 * @generated
 	 */
 	public void setZ(float newZ) {
+		float oldZ = z;
 		z = newZ;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.GEO_TAG__Z, oldZ, z));
 	}
 
 	/**
@@ -298,7 +310,10 @@ public class GeoTagImpl extends IdEObjectImpl implements GeoTag {
 	 * @generated
 	 */
 	public void setEpsg(int newEpsg) {
+		int oldEpsg = epsg;
 		epsg = newEpsg;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.GEO_TAG__EPSG, oldEpsg, epsg));
 	}
 
 	/**
@@ -316,7 +331,10 @@ public class GeoTagImpl extends IdEObjectImpl implements GeoTag {
 	 * @generated
 	 */
 	public void setDirectionAngle(float newDirectionAngle) {
+		float oldDirectionAngle = directionAngle;
 		directionAngle = newDirectionAngle;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.GEO_TAG__DIRECTION_ANGLE, oldDirectionAngle, directionAngle));
 	}
 
 	/**

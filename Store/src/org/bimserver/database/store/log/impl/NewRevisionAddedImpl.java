@@ -60,6 +60,8 @@ public class NewRevisionAddedImpl extends LogActionImpl implements NewRevisionAd
 			revision = (Revision)eResolveProxy(oldRevision);
 			if (revision != oldRevision) {
 				eVirtualSet(LogPackage.NEW_REVISION_ADDED__REVISION, revision);
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, LogPackage.NEW_REVISION_ADDED__REVISION, oldRevision, revision));
 			}
 		}
 		return revision;
@@ -82,6 +84,8 @@ public class NewRevisionAddedImpl extends LogActionImpl implements NewRevisionAd
 	public void setRevision(Revision newRevision) {
 		Revision revision = newRevision;
 		Object oldRevision = eVirtualSet(LogPackage.NEW_REVISION_ADDED__REVISION, revision);
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, LogPackage.NEW_REVISION_ADDED__REVISION, oldRevision == EVIRTUAL_NO_VALUE ? null : oldRevision, revision));
 	}
 
 	/**

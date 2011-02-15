@@ -19,28 +19,28 @@ public class ChangeUserTypeDatabaseAction extends BimDatabaseAction<Void> {
 	private final long uoid;
 	private final SUserType userType;
 
-	public ChangeUserTypeDatabaseAction(AccessMethod accessMethod, long actingUoid, long uoid, SUserType userType) {
-		super(accessMethod);
+	public ChangeUserTypeDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long actingUoid, long uoid, SUserType userType) {
+		super(bimDatabaseSession, accessMethod);
 		this.actingUoid = actingUoid;
 		this.uoid = uoid;
 		this.userType = userType;
 	}
 
 	@Override
-	public Void execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
-		User actingUser = bimDatabaseSession.getUserByUoid(actingUoid);
+	public Void execute() throws UserException, BimDeadlockException, BimDatabaseException {
+		User actingUser = getUserByUoid(actingUoid);
 		if (actingUser.getUserType() != UserType.ADMIN) {
 			throw new UserException("Only admin users can change other user's types");
 		}
-		User user = bimDatabaseSession.getUserByUoid(uoid);
+		User user = getUserByUoid(uoid);
 		user.setUserType(UserType.get(userType.getOrdinal()));
 		UserChanged userChanged = LogFactory.eINSTANCE.createUserChanged();
 		userChanged.setAccessMethod(getAccessMethod());
 		userChanged.setDate(new Date());
 		userChanged.setExecutor(actingUser);
 		userChanged.setUser(user);
-		bimDatabaseSession.store(userChanged);
-		bimDatabaseSession.store(user);
+		getDatabaseSession().store(userChanged);
+		getDatabaseSession().store(user);
 		return null;
 	}
 }

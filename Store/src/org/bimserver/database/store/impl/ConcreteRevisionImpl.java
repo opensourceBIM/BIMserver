@@ -177,7 +177,10 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 	 * @generated
 	 */
 	public void setId(int newId) {
+		int oldId = id;
 		id = newId;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.CONCRETE_REVISION__ID, oldId, id));
 	}
 
 	/**
@@ -192,6 +195,8 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 			project = (Project)eResolveProxy(oldProject);
 			if (project != oldProject) {
 				eVirtualSet(StorePackage.CONCRETE_REVISION__PROJECT, project);
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StorePackage.CONCRETE_REVISION__PROJECT, oldProject, project));
 			}
 		}
 		return project;
@@ -213,6 +218,10 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 	 */
 	public NotificationChain basicSetProject(Project newProject, NotificationChain msgs) {
 		Object oldProject = eVirtualSet(StorePackage.CONCRETE_REVISION__PROJECT, newProject);
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, StorePackage.CONCRETE_REVISION__PROJECT, oldProject == EVIRTUAL_NO_VALUE ? null : oldProject, newProject);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
 		return msgs;
 	}
 
@@ -232,6 +241,8 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 			msgs = basicSetProject(newProject, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.CONCRETE_REVISION__PROJECT, newProject, newProject));
 	}
 
 	/**
@@ -251,6 +262,8 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 	public void setState(CheckinState newState) {
 		CheckinState state = newState == null ? STATE_EDEFAULT : newState;
 		Object oldState = eVirtualSet(StorePackage.CONCRETE_REVISION__STATE, state);
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.CONCRETE_REVISION__STATE, oldState == EVIRTUAL_NO_VALUE ? STATE_EDEFAULT : oldState, state));
 	}
 
 	/**
@@ -270,6 +283,8 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 	public void setChecksum(byte[] newChecksum) {
 		byte[] checksum = newChecksum;
 		Object oldChecksum = eVirtualSet(StorePackage.CONCRETE_REVISION__CHECKSUM, checksum);
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.CONCRETE_REVISION__CHECKSUM, oldChecksum == EVIRTUAL_NO_VALUE ? CHECKSUM_EDEFAULT : oldChecksum, checksum));
 	}
 
 	/**
@@ -281,7 +296,7 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 	public EList<Revision> getRevisions() {
 		EList<Revision> revisions = (EList<Revision>)eVirtualGet(StorePackage.CONCRETE_REVISION__REVISIONS);
 		if (revisions == null) {
-			eVirtualSet(StorePackage.CONCRETE_REVISION__REVISIONS, revisions = new BasicInternalEList<Revision>(Revision.class));
+			eVirtualSet(StorePackage.CONCRETE_REVISION__REVISIONS, revisions = new EObjectWithInverseResolvingEList.ManyInverse<Revision>(Revision.class, this, StorePackage.CONCRETE_REVISION__REVISIONS, StorePackage.REVISION__CONCRETE_REVISIONS));
 		}
 		return revisions;
 	}
@@ -301,7 +316,10 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 	 * @generated
 	 */
 	public void setSize(long newSize) {
+		long oldSize = size;
 		size = newSize;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.CONCRETE_REVISION__SIZE, oldSize, size));
 	}
 
 	/**
@@ -321,6 +339,8 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 	public void setDate(Date newDate) {
 		Date date = newDate;
 		Object oldDate = eVirtualSet(StorePackage.CONCRETE_REVISION__DATE, date);
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.CONCRETE_REVISION__DATE, oldDate == EVIRTUAL_NO_VALUE ? DATE_EDEFAULT : oldDate, date));
 	}
 
 	/**
@@ -340,6 +360,8 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 	public void setLastError(String newLastError) {
 		String lastError = newLastError;
 		Object oldLastError = eVirtualSet(StorePackage.CONCRETE_REVISION__LAST_ERROR, lastError);
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.CONCRETE_REVISION__LAST_ERROR, oldLastError == EVIRTUAL_NO_VALUE ? LAST_ERROR_EDEFAULT : oldLastError, lastError));
 	}
 
 	/**

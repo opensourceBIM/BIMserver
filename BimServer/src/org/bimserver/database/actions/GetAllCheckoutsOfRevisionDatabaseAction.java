@@ -19,15 +19,15 @@ public class GetAllCheckoutsOfRevisionDatabaseAction extends BimDatabaseAction<S
 
 	private final long roid;
 
-	public GetAllCheckoutsOfRevisionDatabaseAction(AccessMethod accessMethod, long roid) {
-		super(accessMethod);
+	public GetAllCheckoutsOfRevisionDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long roid) {
+		super(bimDatabaseSession, accessMethod);
 		this.roid = roid;
 	}
 
 	@Override
-	public Set<Checkout> execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
-		Revision revision = bimDatabaseSession.getVirtualRevision(roid);
+	public Set<Checkout> execute() throws UserException, BimDeadlockException, BimDatabaseException {
+		Revision revision = getVirtualRevision(roid);
 		Condition condition = new HasReferenceToCondition(StorePackage.eINSTANCE.getCheckout_Revision(), revision);
-		return CollectionUtils.mapToSet((Map<Long, Checkout>) bimDatabaseSession.query(condition, Checkout.class));
+		return CollectionUtils.mapToSet((Map<Long, Checkout>) getDatabaseSession().query(condition, Checkout.class, false));
 	}
 }

@@ -22,15 +22,15 @@ public class GetAllReadableProjectsDatabaseAction extends BimDatabaseAction<Set<
 
 	private final long actingUoid;
 
-	public GetAllReadableProjectsDatabaseAction(AccessMethod accessMethod, long actingUoid) {
-		super(accessMethod);
+	public GetAllReadableProjectsDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long actingUoid) {
+		super(bimDatabaseSession, accessMethod);
 		this.actingUoid = actingUoid;
 	}
 
 	@Override
-	public Set<Project> execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
-		User user = bimDatabaseSession.getUserByUoid(actingUoid);
-		IfcModel projectsModel = bimDatabaseSession.getAllOfType(StorePackage.eINSTANCE.getProject(), Database.STORE_PROJECT_ID, Database.STORE_PROJECT_REVISION_ID);
+	public Set<Project> execute() throws UserException, BimDeadlockException, BimDatabaseException {
+		User user = getUserByUoid(actingUoid);
+		IfcModel projectsModel = getDatabaseSession().getAllOfType(StorePackage.eINSTANCE.getProject(), Database.STORE_PROJECT_ID, Database.STORE_PROJECT_REVISION_ID, false);
 		Set<Project> result = new HashSet<Project>();
 		for (IdEObject idEObject : projectsModel.getValues()) {
 			if (idEObject instanceof Project) {

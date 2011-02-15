@@ -107,6 +107,8 @@ public class LogActionImpl extends IdEObjectImpl implements LogAction {
 	public void setDate(Date newDate) {
 		Date date = newDate;
 		Object oldDate = eVirtualSet(LogPackage.LOG_ACTION__DATE, date);
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, LogPackage.LOG_ACTION__DATE, oldDate == EVIRTUAL_NO_VALUE ? DATE_EDEFAULT : oldDate, date));
 	}
 
 	/**
@@ -121,6 +123,8 @@ public class LogActionImpl extends IdEObjectImpl implements LogAction {
 			executor = (User)eResolveProxy(oldExecutor);
 			if (executor != oldExecutor) {
 				eVirtualSet(LogPackage.LOG_ACTION__EXECUTOR, executor);
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, LogPackage.LOG_ACTION__EXECUTOR, oldExecutor, executor));
 			}
 		}
 		return executor;
@@ -143,6 +147,8 @@ public class LogActionImpl extends IdEObjectImpl implements LogAction {
 	public void setExecutor(User newExecutor) {
 		User executor = newExecutor;
 		Object oldExecutor = eVirtualSet(LogPackage.LOG_ACTION__EXECUTOR, executor);
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, LogPackage.LOG_ACTION__EXECUTOR, oldExecutor == EVIRTUAL_NO_VALUE ? null : oldExecutor, executor));
 	}
 
 	/**
@@ -162,6 +168,8 @@ public class LogActionImpl extends IdEObjectImpl implements LogAction {
 	public void setAccessMethod(AccessMethod newAccessMethod) {
 		AccessMethod accessMethod = newAccessMethod == null ? ACCESS_METHOD_EDEFAULT : newAccessMethod;
 		Object oldAccessMethod = eVirtualSet(LogPackage.LOG_ACTION__ACCESS_METHOD, accessMethod);
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, LogPackage.LOG_ACTION__ACCESS_METHOD, oldAccessMethod == EVIRTUAL_NO_VALUE ? ACCESS_METHOD_EDEFAULT : oldAccessMethod, accessMethod));
 	}
 
 	/**

@@ -21,16 +21,16 @@ public class UpdateGeoTagDatabaseAction extends BimDatabaseAction<Void> {
 	private final SGeoTag sGeoTag;
 	private final long actingUoid;
 
-	public UpdateGeoTagDatabaseAction(AccessMethod accessMethod, long actingUoid, SGeoTag sGeoTag) {
-		super(accessMethod);
+	public UpdateGeoTagDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long actingUoid, SGeoTag sGeoTag) {
+		super(bimDatabaseSession, accessMethod);
 		this.actingUoid = actingUoid;
 		this.sGeoTag = sGeoTag;
 	}
 
 	@Override
-	public Void execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
-		User actingUser = bimDatabaseSession.getUserByUoid(actingUoid);
-		GeoTag geoTag = (GeoTag) bimDatabaseSession.get(StorePackage.eINSTANCE.getGeoTag(), sGeoTag.getOid());
+	public Void execute() throws UserException, BimDeadlockException, BimDatabaseException {
+		User actingUser = getUserByUoid(actingUoid);
+		GeoTag geoTag = (GeoTag) getDatabaseSession().get(StorePackage.eINSTANCE.getGeoTag(), sGeoTag.getOid(), false);
 		boolean hasRights = false;
 		for (Project project : geoTag.getProjects()) {
 			if (RightsManager.hasRightsOnProject(actingUser, project)) {
@@ -50,8 +50,8 @@ public class UpdateGeoTagDatabaseAction extends BimDatabaseAction<Void> {
 			geoTagUpdated.setAccessMethod(getAccessMethod());
 			geoTagUpdated.setDate(new Date());
 			geoTagUpdated.setExecutor(actingUser);
-			bimDatabaseSession.store(geoTagUpdated);
-			bimDatabaseSession.store(geoTag);
+			getDatabaseSession().store(geoTagUpdated);
+			getDatabaseSession().store(geoTag);
 		} else {
 			throw new UserException("User has no rights on any projects associated with this geotag");
 		}

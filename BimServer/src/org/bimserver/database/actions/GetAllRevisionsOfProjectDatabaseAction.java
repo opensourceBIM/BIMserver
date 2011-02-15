@@ -15,14 +15,14 @@ public class GetAllRevisionsOfProjectDatabaseAction extends BimDatabaseAction<Se
 
 	private final long poid;
 
-	public GetAllRevisionsOfProjectDatabaseAction(AccessMethod accessMethod, long poid) {
-		super(accessMethod);
+	public GetAllRevisionsOfProjectDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long poid) {
+		super(bimDatabaseSession, accessMethod);
 		this.poid = poid;
 	}
 
 	@Override
-	public Set<Revision> execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
-		Project project = bimDatabaseSession.getProjectByPoid(poid);
+	public Set<Revision> execute() throws UserException, BimDeadlockException, BimDatabaseException {
+		Project project = getProjectByPoid(poid);
 		return new HashSet<Revision>(project.getRevisions());
 	}
 }

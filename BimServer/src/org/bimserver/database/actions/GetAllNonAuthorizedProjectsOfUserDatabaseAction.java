@@ -22,15 +22,15 @@ public class GetAllNonAuthorizedProjectsOfUserDatabaseAction extends BimDatabase
 
 	private final long uoid;
 
-	public GetAllNonAuthorizedProjectsOfUserDatabaseAction(AccessMethod accessMethod, long uoid) {
-		super(accessMethod);
+	public GetAllNonAuthorizedProjectsOfUserDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long uoid) {
+		super(bimDatabaseSession, accessMethod);
 		this.uoid = uoid;
 	}
 
 	@Override
-	public Set<Project> execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
-		Condition condition = new Not(new HasReferenceToCondition(StorePackage.eINSTANCE.getProject_HasAuthorizedUsers(), bimDatabaseSession.getUserByUoid(uoid))).and(
+	public Set<Project> execute() throws UserException, BimDeadlockException, BimDatabaseException {
+		Condition condition = new Not(new HasReferenceToCondition(StorePackage.eINSTANCE.getProject_HasAuthorizedUsers(), getUserByUoid(uoid))).and(
 				new Not(new AttributeCondition(StorePackage.eINSTANCE.getProject_Name(), new StringLiteral(Database.STORE_PROJECT_NAME))));
-		return CollectionUtils.mapToSet((Map<Long, Project>) bimDatabaseSession.query(condition, Project.class));
+		return CollectionUtils.mapToSet((Map<Long, Project>) getDatabaseSession().query(condition, Project.class, false));
 	}
 }

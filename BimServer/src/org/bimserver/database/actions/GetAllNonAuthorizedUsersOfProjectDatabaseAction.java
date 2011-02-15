@@ -19,14 +19,14 @@ public class GetAllNonAuthorizedUsersOfProjectDatabaseAction extends BimDatabase
 
 	private final long poid;
 
-	public GetAllNonAuthorizedUsersOfProjectDatabaseAction(AccessMethod accessMethod, long poid) {
-		super(accessMethod);
+	public GetAllNonAuthorizedUsersOfProjectDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long poid) {
+		super(bimDatabaseSession, accessMethod);
 		this.poid = poid;
 	}
 	
 	@Override
-	public Set<User> execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
-		Condition condition = new Not(new HasReferenceToCondition(StorePackage.eINSTANCE.getUser_HasRightsOn(), bimDatabaseSession.getProjectByPoid(poid)));
-		return CollectionUtils.mapToSet((Map<Long, User>) bimDatabaseSession.query(condition, User.class));
+	public Set<User> execute() throws UserException, BimDeadlockException, BimDatabaseException {
+		Condition condition = new Not(new HasReferenceToCondition(StorePackage.eINSTANCE.getUser_HasRightsOn(), getProjectByPoid(poid)));
+		return CollectionUtils.mapToSet((Map<Long, User>) getDatabaseSession().query(condition, User.class, false));
 	}
 }

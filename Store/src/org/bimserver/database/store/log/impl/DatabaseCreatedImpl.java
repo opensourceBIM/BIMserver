@@ -90,6 +90,8 @@ public class DatabaseCreatedImpl extends LogActionImpl implements DatabaseCreate
 	public void setPath(String newPath) {
 		String path = newPath;
 		Object oldPath = eVirtualSet(LogPackage.DATABASE_CREATED__PATH, path);
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, LogPackage.DATABASE_CREATED__PATH, oldPath == EVIRTUAL_NO_VALUE ? PATH_EDEFAULT : oldPath, path));
 	}
 
 	/**
@@ -107,7 +109,10 @@ public class DatabaseCreatedImpl extends LogActionImpl implements DatabaseCreate
 	 * @generated
 	 */
 	public void setVersion(int newVersion) {
+		int oldVersion = version;
 		version = newVersion;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, LogPackage.DATABASE_CREATED__VERSION, oldVersion, version));
 	}
 
 	/**

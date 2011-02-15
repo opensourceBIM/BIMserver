@@ -181,7 +181,10 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 * @generated
 	 */
 	public void setId(int newId) {
+		int oldId = id;
 		id = newId;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.PROJECT__ID, oldId, id));
 	}
 
 	/**
@@ -201,6 +204,8 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	public void setName(String newName) {
 		String name = newName;
 		Object oldName = eVirtualSet(StorePackage.PROJECT__NAME, name);
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.PROJECT__NAME, oldName == EVIRTUAL_NO_VALUE ? NAME_EDEFAULT : oldName, name));
 	}
 
 	/**
@@ -212,7 +217,7 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	public EList<User> getHasAuthorizedUsers() {
 		EList<User> hasAuthorizedUsers = (EList<User>)eVirtualGet(StorePackage.PROJECT__HAS_AUTHORIZED_USERS);
 		if (hasAuthorizedUsers == null) {
-			eVirtualSet(StorePackage.PROJECT__HAS_AUTHORIZED_USERS, hasAuthorizedUsers = new BasicInternalEList<User>(User.class));
+			eVirtualSet(StorePackage.PROJECT__HAS_AUTHORIZED_USERS, hasAuthorizedUsers = new EObjectWithInverseResolvingEList.ManyInverse<User>(User.class, this, StorePackage.PROJECT__HAS_AUTHORIZED_USERS, StorePackage.USER__HAS_RIGHTS_ON));
 		}
 		return hasAuthorizedUsers;
 	}
@@ -226,7 +231,7 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	public EList<ConcreteRevision> getConcreteRevisions() {
 		EList<ConcreteRevision> concreteRevisions = (EList<ConcreteRevision>)eVirtualGet(StorePackage.PROJECT__CONCRETE_REVISIONS);
 		if (concreteRevisions == null) {
-			eVirtualSet(StorePackage.PROJECT__CONCRETE_REVISIONS, concreteRevisions = new BasicInternalEList<ConcreteRevision>(ConcreteRevision.class));
+			eVirtualSet(StorePackage.PROJECT__CONCRETE_REVISIONS, concreteRevisions = new EObjectWithInverseResolvingEList<ConcreteRevision>(ConcreteRevision.class, this, StorePackage.PROJECT__CONCRETE_REVISIONS, StorePackage.CONCRETE_REVISION__PROJECT));
 		}
 		return concreteRevisions;
 	}
@@ -240,7 +245,7 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	public EList<Revision> getRevisions() {
 		EList<Revision> revisions = (EList<Revision>)eVirtualGet(StorePackage.PROJECT__REVISIONS);
 		if (revisions == null) {
-			eVirtualSet(StorePackage.PROJECT__REVISIONS, revisions = new BasicInternalEList<Revision>(Revision.class));
+			eVirtualSet(StorePackage.PROJECT__REVISIONS, revisions = new EObjectWithInverseResolvingEList<Revision>(Revision.class, this, StorePackage.PROJECT__REVISIONS, StorePackage.REVISION__PROJECT));
 		}
 		return revisions;
 	}
@@ -257,6 +262,8 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 			lastConcreteRevision = (ConcreteRevision)eResolveProxy(oldLastConcreteRevision);
 			if (lastConcreteRevision != oldLastConcreteRevision) {
 				eVirtualSet(StorePackage.PROJECT__LAST_CONCRETE_REVISION, lastConcreteRevision);
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StorePackage.PROJECT__LAST_CONCRETE_REVISION, oldLastConcreteRevision, lastConcreteRevision));
 			}
 		}
 		return lastConcreteRevision;
@@ -279,6 +286,8 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	public void setLastConcreteRevision(ConcreteRevision newLastConcreteRevision) {
 		ConcreteRevision lastConcreteRevision = newLastConcreteRevision;
 		Object oldLastConcreteRevision = eVirtualSet(StorePackage.PROJECT__LAST_CONCRETE_REVISION, lastConcreteRevision);
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.PROJECT__LAST_CONCRETE_REVISION, oldLastConcreteRevision == EVIRTUAL_NO_VALUE ? null : oldLastConcreteRevision, lastConcreteRevision));
 	}
 
 	/**
@@ -293,6 +302,8 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 			lastRevision = (Revision)eResolveProxy(oldLastRevision);
 			if (lastRevision != oldLastRevision) {
 				eVirtualSet(StorePackage.PROJECT__LAST_REVISION, lastRevision);
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StorePackage.PROJECT__LAST_REVISION, oldLastRevision, lastRevision));
 			}
 		}
 		return lastRevision;
@@ -315,6 +326,8 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	public void setLastRevision(Revision newLastRevision) {
 		Revision lastRevision = newLastRevision;
 		Object oldLastRevision = eVirtualSet(StorePackage.PROJECT__LAST_REVISION, lastRevision);
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.PROJECT__LAST_REVISION, oldLastRevision == EVIRTUAL_NO_VALUE ? null : oldLastRevision, lastRevision));
 	}
 
 	/**
@@ -326,7 +339,7 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	public EList<Checkout> getCheckouts() {
 		EList<Checkout> checkouts = (EList<Checkout>)eVirtualGet(StorePackage.PROJECT__CHECKOUTS);
 		if (checkouts == null) {
-			eVirtualSet(StorePackage.PROJECT__CHECKOUTS, checkouts = new BasicInternalEList<Checkout>(Checkout.class));
+			eVirtualSet(StorePackage.PROJECT__CHECKOUTS, checkouts = new EObjectWithInverseResolvingEList<Checkout>(Checkout.class, this, StorePackage.PROJECT__CHECKOUTS, StorePackage.CHECKOUT__PROJECT));
 		}
 		return checkouts;
 	}
@@ -348,6 +361,8 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	public void setState(ObjectState newState) {
 		ObjectState state = newState == null ? STATE_EDEFAULT : newState;
 		Object oldState = eVirtualSet(StorePackage.PROJECT__STATE, state);
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.PROJECT__STATE, oldState == EVIRTUAL_NO_VALUE ? STATE_EDEFAULT : oldState, state));
 	}
 
 	/**
@@ -367,6 +382,8 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	public void setCreatedDate(Date newCreatedDate) {
 		Date createdDate = newCreatedDate;
 		Object oldCreatedDate = eVirtualSet(StorePackage.PROJECT__CREATED_DATE, createdDate);
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.PROJECT__CREATED_DATE, oldCreatedDate == EVIRTUAL_NO_VALUE ? CREATED_DATE_EDEFAULT : oldCreatedDate, createdDate));
 	}
 
 	/**
@@ -381,6 +398,8 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 			createdBy = (User)eResolveProxy(oldCreatedBy);
 			if (createdBy != oldCreatedBy) {
 				eVirtualSet(StorePackage.PROJECT__CREATED_BY, createdBy);
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StorePackage.PROJECT__CREATED_BY, oldCreatedBy, createdBy));
 			}
 		}
 		return createdBy;
@@ -403,6 +422,8 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	public void setCreatedBy(User newCreatedBy) {
 		User createdBy = newCreatedBy;
 		Object oldCreatedBy = eVirtualSet(StorePackage.PROJECT__CREATED_BY, createdBy);
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.PROJECT__CREATED_BY, oldCreatedBy == EVIRTUAL_NO_VALUE ? null : oldCreatedBy, createdBy));
 	}
 
 	/**
@@ -417,6 +438,8 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 			geoTag = (GeoTag)eResolveProxy(oldGeoTag);
 			if (geoTag != oldGeoTag) {
 				eVirtualSet(StorePackage.PROJECT__GEO_TAG, geoTag);
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StorePackage.PROJECT__GEO_TAG, oldGeoTag, geoTag));
 			}
 		}
 		return geoTag;
@@ -438,6 +461,10 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 */
 	public NotificationChain basicSetGeoTag(GeoTag newGeoTag, NotificationChain msgs) {
 		Object oldGeoTag = eVirtualSet(StorePackage.PROJECT__GEO_TAG, newGeoTag);
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, StorePackage.PROJECT__GEO_TAG, oldGeoTag == EVIRTUAL_NO_VALUE ? null : oldGeoTag, newGeoTag);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
 		return msgs;
 	}
 
@@ -457,6 +484,8 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 			msgs = basicSetGeoTag(newGeoTag, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.PROJECT__GEO_TAG, newGeoTag, newGeoTag));
 	}
 
 	/**
@@ -468,7 +497,7 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	public EList<Project> getSubProjects() {
 		EList<Project> subProjects = (EList<Project>)eVirtualGet(StorePackage.PROJECT__SUB_PROJECTS);
 		if (subProjects == null) {
-			eVirtualSet(StorePackage.PROJECT__SUB_PROJECTS, subProjects = new BasicInternalEList<Project>(Project.class));
+			eVirtualSet(StorePackage.PROJECT__SUB_PROJECTS, subProjects = new EObjectWithInverseResolvingEList<Project>(Project.class, this, StorePackage.PROJECT__SUB_PROJECTS, StorePackage.PROJECT__PARENT));
 		}
 		return subProjects;
 	}
@@ -485,6 +514,8 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 			parent = (Project)eResolveProxy(oldParent);
 			if (parent != oldParent) {
 				eVirtualSet(StorePackage.PROJECT__PARENT, parent);
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StorePackage.PROJECT__PARENT, oldParent, parent));
 			}
 		}
 		return parent;
@@ -506,6 +537,10 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 */
 	public NotificationChain basicSetParent(Project newParent, NotificationChain msgs) {
 		Object oldParent = eVirtualSet(StorePackage.PROJECT__PARENT, newParent);
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, StorePackage.PROJECT__PARENT, oldParent == EVIRTUAL_NO_VALUE ? null : oldParent, newParent);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
 		return msgs;
 	}
 
@@ -525,6 +560,8 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 			msgs = basicSetParent(newParent, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.PROJECT__PARENT, newParent, newParent));
 	}
 
 	/**
@@ -544,6 +581,8 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	public void setDescription(String newDescription) {
 		String description = newDescription;
 		Object oldDescription = eVirtualSet(StorePackage.PROJECT__DESCRIPTION, description);
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.PROJECT__DESCRIPTION, oldDescription == EVIRTUAL_NO_VALUE ? DESCRIPTION_EDEFAULT : oldDescription, description));
 	}
 
 	/**
@@ -558,6 +597,8 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 			clashDetectionSettings = (ClashDetectionSettings)eResolveProxy(oldClashDetectionSettings);
 			if (clashDetectionSettings != oldClashDetectionSettings) {
 				eVirtualSet(StorePackage.PROJECT__CLASH_DETECTION_SETTINGS, clashDetectionSettings);
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StorePackage.PROJECT__CLASH_DETECTION_SETTINGS, oldClashDetectionSettings, clashDetectionSettings));
 			}
 		}
 		return clashDetectionSettings;
@@ -579,6 +620,10 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 */
 	public NotificationChain basicSetClashDetectionSettings(ClashDetectionSettings newClashDetectionSettings, NotificationChain msgs) {
 		Object oldClashDetectionSettings = eVirtualSet(StorePackage.PROJECT__CLASH_DETECTION_SETTINGS, newClashDetectionSettings);
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, StorePackage.PROJECT__CLASH_DETECTION_SETTINGS, oldClashDetectionSettings == EVIRTUAL_NO_VALUE ? null : oldClashDetectionSettings, newClashDetectionSettings);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
 		return msgs;
 	}
 
@@ -598,6 +643,8 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 			msgs = basicSetClashDetectionSettings(newClashDetectionSettings, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.PROJECT__CLASH_DETECTION_SETTINGS, newClashDetectionSettings, newClashDetectionSettings));
 	}
 
 	/**
@@ -617,6 +664,8 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	public void setExportLengthMeasurePrefix(SIPrefix newExportLengthMeasurePrefix) {
 		SIPrefix exportLengthMeasurePrefix = newExportLengthMeasurePrefix == null ? EXPORT_LENGTH_MEASURE_PREFIX_EDEFAULT : newExportLengthMeasurePrefix;
 		Object oldExportLengthMeasurePrefix = eVirtualSet(StorePackage.PROJECT__EXPORT_LENGTH_MEASURE_PREFIX, exportLengthMeasurePrefix);
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.PROJECT__EXPORT_LENGTH_MEASURE_PREFIX, oldExportLengthMeasurePrefix == EVIRTUAL_NO_VALUE ? EXPORT_LENGTH_MEASURE_PREFIX_EDEFAULT : oldExportLengthMeasurePrefix, exportLengthMeasurePrefix));
 	}
 
 	/**

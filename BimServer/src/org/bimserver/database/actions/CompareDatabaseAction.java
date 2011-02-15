@@ -2,7 +2,6 @@ package org.bimserver.database.actions;
 
 import org.bimserver.cache.CompareCache;
 import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.store.log.AccessMethod;
@@ -20,7 +19,7 @@ public class CompareDatabaseAction extends BimDatabaseAction<CompareResult> {
 	private final SCompareType sCompareType;
 
 	public CompareDatabaseAction(AccessMethod accessMethod, long actingUoid, long roid1, long roid2, SCompareType sCompareType) {
-		super(accessMethod);
+		super(null, accessMethod);
 		this.actingUoid = actingUoid;
 		this.roid1 = roid1;
 		this.roid2 = roid2;
@@ -28,12 +27,12 @@ public class CompareDatabaseAction extends BimDatabaseAction<CompareResult> {
 	}
 
 	@Override
-	public CompareResult execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
-		Compare compare = new Compare(((DatabaseSession)bimDatabaseSession).getFieldIgnoreMap());
+	public CompareResult execute() throws UserException, BimDeadlockException, BimDatabaseException {
+		Compare compare = new Compare(((DatabaseSession)getDatabaseSession()).getFieldIgnoreMap());
 		CompareResult compareResults = CompareCache.getInstance().getCompareResults(roid1, roid2, sCompareType);
 		if (compareResults == null) {
-			IfcModel model1 = new DownloadDatabaseAction(getAccessMethod(), roid1, actingUoid).execute(bimDatabaseSession);
-			IfcModel model2 = new DownloadDatabaseAction(getAccessMethod(), roid2, actingUoid).execute(bimDatabaseSession);
+			IfcModel model1 = new DownloadDatabaseAction(getDatabaseSession(), getAccessMethod(), roid1, actingUoid).execute();
+			IfcModel model2 = new DownloadDatabaseAction(getDatabaseSession(), getAccessMethod(), roid2, actingUoid).execute();
 			compareResults = compare.compare(model1, model2, sCompareType);
 			CompareCache.getInstance().storeResults(roid1, roid2, sCompareType, compareResults);
 			return compareResults;

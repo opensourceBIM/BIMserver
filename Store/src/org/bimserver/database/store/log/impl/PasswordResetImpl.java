@@ -60,6 +60,8 @@ public class PasswordResetImpl extends LogActionImpl implements PasswordReset {
 			user = (User)eResolveProxy(oldUser);
 			if (user != oldUser) {
 				eVirtualSet(LogPackage.PASSWORD_RESET__USER, user);
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, LogPackage.PASSWORD_RESET__USER, oldUser, user));
 			}
 		}
 		return user;
@@ -82,6 +84,8 @@ public class PasswordResetImpl extends LogActionImpl implements PasswordReset {
 	public void setUser(User newUser) {
 		User user = newUser;
 		Object oldUser = eVirtualSet(LogPackage.PASSWORD_RESET__USER, user);
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, LogPackage.PASSWORD_RESET__USER, oldUser == EVIRTUAL_NO_VALUE ? null : oldUser, user));
 	}
 
 	/**

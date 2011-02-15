@@ -36,18 +36,15 @@ import java.util.Set;
 
 import org.bimserver.database.actions.BimDatabaseAction;
 import org.bimserver.database.actions.PostCommitAction;
-import org.bimserver.database.query.conditions.AttributeCondition;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.conditions.IsOfTypeCondition;
-import org.bimserver.database.query.literals.IntegerLiteral;
-import org.bimserver.database.query.literals.StringLiteral;
 import org.bimserver.database.store.Checkout;
 import org.bimserver.database.store.ConcreteRevision;
 import org.bimserver.database.store.Project;
-import org.bimserver.database.store.Revision;
 import org.bimserver.database.store.StorePackage;
 import org.bimserver.database.store.User;
 import org.bimserver.emf.IdEObject;
+import org.bimserver.emf.LazyLoader;
 import org.bimserver.ifc.FieldIgnoreMap;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.emf.Ifc2x3.Ifc2x3Factory;
@@ -55,7 +52,6 @@ import org.bimserver.ifc.emf.Ifc2x3.Ifc2x3Package;
 import org.bimserver.ifc.emf.Ifc2x3.IfcGloballyUniqueId;
 import org.bimserver.ifc.emf.Ifc2x3.Tristate;
 import org.bimserver.ifc.emf.Ifc2x3.WrappedValue;
-import org.bimserver.shared.Addition;
 import org.bimserver.shared.DatabaseInformation;
 import org.bimserver.shared.UserException;
 import org.bimserver.utils.BinUtils;
@@ -79,7 +75,7 @@ import com.google.common.base.Charsets;
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
 
-public class DatabaseSession implements BimDatabaseSession {
+public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 	private static final Logger LOGGER = LoggerFactory.getLogger(DatabaseSession.class);
 	private final BiMap<RecordIdentifier, IdEObject> cache = HashBiMap.create();
 	private final Database database;
@@ -89,12 +85,13 @@ public class DatabaseSession implements BimDatabaseSession {
 	private final Set<PostCommitAction> postCommitActions = new LinkedHashSet<PostCommitAction>();
 	private boolean storeOid = false;
 	private boolean storePid = false;
-	private Store store = new Store();
+	private final boolean lazyLoading;
 
-	public DatabaseSession(Database database, BimTransaction bimTransaction, boolean readOnly) {
+	public DatabaseSession(Database database, BimTransaction bimTransaction, boolean readOnly, boolean lazyLoading) {
 		this.database = database;
 		this.bimTransaction = bimTransaction;
 		this.readOnly = readOnly;
+		this.lazyLoading = lazyLoading;
 	}
 
 	public BimTransaction getBimTransaction() {
@@ -126,7 +123,7 @@ public class DatabaseSession implements BimDatabaseSession {
 	public void clear() {
 		cache.clear();
 	}
-	
+
 	public void addToObjectsToCommit(IdEObject idEObject) throws BimDatabaseException {
 		if (idEObject.getOid() == -1) {
 			throw new BimDatabaseException("Cannot store object with oid -1");
@@ -141,6 +138,7 @@ public class DatabaseSession implements BimDatabaseSession {
 		}
 		if (!isReadOnly() && objectsToCommit.size() == 0) {
 			LOGGER.warn("No objects were changed, could have used a read-only session, printing stack trace");
+			Thread.dumpStack();
 		}
 	}
 
@@ -148,7 +146,7 @@ public class DatabaseSession implements BimDatabaseSession {
 	public <T> T executeAction(BimDatabaseAction<T> action, int retries) throws BimDatabaseException, UserException {
 		for (int i = 0; i < retries; i++) {
 			try {
-				return action.execute(this);
+				return action.execute();
 			} catch (BimDeadlockException e) {
 				bimTransaction.rollback();
 				bimTransaction = database.getColumnDatabase().startTransaction();
@@ -171,7 +169,7 @@ public class DatabaseSession implements BimDatabaseSession {
 	public <T> T executeAndCommitAction(BimDatabaseAction<T> action, int retries) throws BimDatabaseException, UserException {
 		for (int i = 0; i < retries; i++) {
 			try {
-				T result = action.execute(this);
+				T result = action.execute();
 				commit();
 				return result;
 			} catch (BimDeadlockException e) {
@@ -243,16 +241,12 @@ public class DatabaseSession implements BimDatabaseSession {
 		return database.convert(type, value);
 	}
 
-	@Override
-	public void convertAdditionToEObject(IdEObject object, Addition addition, Map<Long, IdEObject> processedAdditions, IfcModel model) {
-		database.convertAdditionToEObject(object, addition, processedAdditions, model);
+
+	public IdEObject get(short cid, long oid, boolean deep) throws BimDatabaseException, BimDeadlockException {
+		return get(cid, oid, Database.STORE_PROJECT_ID, Database.STORE_PROJECT_REVISION_ID, new IfcModel(), deep);
 	}
 
-	public IdEObject get(short cid, long oid) throws BimDatabaseException, BimDeadlockException {
-		return get(cid, oid, Database.STORE_PROJECT_ID, Database.STORE_PROJECT_REVISION_ID, new IfcModel());
-	}
-
-	public IdEObject get(short cid, long oid, int pid, int rid, IfcModel model) throws BimDatabaseException, BimDeadlockException {
+	public IdEObject get(short cid, long oid, int pid, int rid, IfcModel model, boolean deep) throws BimDatabaseException, BimDeadlockException {
 		ByteBuffer keyBuffer = createKeyBuffer(pid, oid, rid);
 		EClass eClass = getEClassForCid(cid);
 		byte[] value = database.getColumnDatabase().get(eClass.getName(), keyBuffer.array(), this);
@@ -260,34 +254,15 @@ public class DatabaseSession implements BimDatabaseSession {
 			return null;
 		} else {
 			ByteBuffer buffer = ByteBuffer.wrap(value);
-			IdEObject object = convertByteArrayToObject(eClass, eClass, oid, buffer, model, pid, rid);
+			IdEObject object = convertByteArrayToObject(eClass, eClass, oid, buffer, model, pid, rid, deep);
 			putInCache(new RecordIdentifier(pid, oid, rid), object);
 			return object;
 		}
 	}
 
 	@SuppressWarnings("unchecked")
-	public IdEObject convertByteArrayToObject(EClass originalQueryClass, EClass eClass, long oid, ByteBuffer buffer, IfcModel model, int pid, int rid) throws BimDatabaseException,
-			BimDeadlockException {
-		if (model.contains(oid)) {
-			return model.get(oid);
-		}
-		RecordIdentifier recordIdentifier = new RecordIdentifier(pid, oid, rid);
-		if (cache.containsKey(recordIdentifier)) {
-			return cache.get(recordIdentifier);
-		}
-		IdEObject object = (IdEObject) eClass.getEPackage().getEFactoryInstance().create(eClass);
-		object.eSetStore(store);
-		object.setOid(oid);
-		object.setPid(pid);
-		object.setRid(rid);
-		if (!(object instanceof WrappedValue) && !(object instanceof IfcGloballyUniqueId)) {
-			model.add(oid, object);
-		}
-		if (buffer.capacity() == 1 && buffer.get(0) == -1) {
-			buffer.position(buffer.position() + 1);
-			return null;
-		}
+	public IdEObject convertByteArrayToObject(IdEObject idEObject, EClass originalQueryClass, EClass eClass, long oid, ByteBuffer buffer, IfcModel model, int pid, int rid, boolean deep)
+			throws BimDatabaseException, BimDeadlockException {
 		for (EStructuralFeature feature : eClass.getEAllStructuralFeatures()) {
 			if (!feature.isTransient() && !feature.isVolatile()) {
 				if (database.shouldIgnoreField(originalQueryClass, eClass, feature)) {
@@ -310,21 +285,23 @@ public class DatabaseSession implements BimDatabaseSession {
 								 * Only can happen with non-unique references
 								 */
 								short listSize = buffer.getShort();
-								BasicEList<Object> list = (BasicEList<Object>) object.eGet(feature);
+								BasicEList<Object> list = (BasicEList<Object>) idEObject.eGet(feature);
 								for (int i = 0; i < listSize; i++) {
 									Object reference = null;
-									
+
 									short cid = buffer.getShort();
 									if (cid == -1) {
 										// null, do nothing
 									} else if (cid < 0) {
-										// negative cid means value is embedded in record
-										EClass referenceClass = database.getEClassForCid((short)(-cid));
+										// negative cid means value is embedded
+										// in record
+										EClass referenceClass = database.getEClassForCid((short) (-cid));
 										reference = readWrappedValue(feature, buffer, referenceClass);
 									} else if (cid > 0) {
-										// positive cid means value is reference to other record
+										// positive cid means value is reference
+										// to other record
 										EClass referenceClass = database.getEClassForCid(cid);
-										reference = readReference(originalQueryClass, buffer, model, pid, rid, object, feature, referenceClass);
+										reference = readReference(originalQueryClass, buffer, model, pid, rid, idEObject, feature, referenceClass, deep);
 									}
 									if (reference != null) {
 										if (feature.isUnique()) {
@@ -347,7 +324,7 @@ public class DatabaseSession implements BimDatabaseSession {
 									list.addUnique(reference);
 								}
 							}
-							object.eSet(feature, list);
+							idEObject.eSet(feature, list);
 						}
 					} else {
 						if (feature.getEType() instanceof EEnum) {
@@ -364,25 +341,55 @@ public class DatabaseSession implements BimDatabaseSession {
 							if (cid == -1) {
 								// null, do nothing
 							} else if (cid < 0) {
-								// negative cid means value is embedded in record
-								EClass referenceClass = database.getEClassForCid((short)(-cid));
+								// negative cid means value is embedded in
+								// record
+								EClass referenceClass = database.getEClassForCid((short) (-cid));
 								newValue = readWrappedValue(feature, buffer, referenceClass);
 							} else if (cid > 0) {
-								// positive cid means value is reference to other record
+								// positive cid means value is reference to
+								// other record
 								EClass referenceClass = database.getEClassForCid(cid);
-								newValue = readReference(originalQueryClass, buffer, model, pid, rid, object, feature, referenceClass);
+								newValue = readReference(originalQueryClass, buffer, model, pid, rid, idEObject, feature, referenceClass, deep);
 							}
 						} else if (feature.getEType() instanceof EDataType) {
 							newValue = readPrimitiveValue(feature.getEType(), buffer);
 						}
 					}
 					if (newValue != null) {
-						object.eSet(feature, newValue);
+						idEObject.eSet(feature, newValue);
 					}
 				}
 			}
 		}
-		return object;
+		idEObject.setLoaded();
+		return idEObject;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public IdEObject convertByteArrayToObject(EClass originalQueryClass, EClass eClass, long oid, ByteBuffer buffer, IfcModel model, int pid, int rid, boolean deep)
+			throws BimDatabaseException, BimDeadlockException {
+		if (model.contains(oid)) {
+			return model.get(oid);
+		}
+		RecordIdentifier recordIdentifier = new RecordIdentifier(pid, oid, rid);
+		if (cache.containsKey(recordIdentifier)) {
+			return cache.get(recordIdentifier);
+		}
+		IdEObject object = (IdEObject) eClass.getEPackage().getEFactoryInstance().create(eClass);
+		object.setOid(oid);
+		object.setPid(pid);
+		object.setRid(rid);
+		if (!deep) {
+			object.setLazyLoader(this);
+		}
+		if (!(object instanceof WrappedValue) && !(object instanceof IfcGloballyUniqueId)) {
+			model.add(oid, object);
+		}
+		if (buffer.capacity() == 1 && buffer.get(0) == -1) {
+			buffer.position(buffer.position() + 1);
+			return null;
+		}
+		return convertByteArrayToObject(object, originalQueryClass, eClass, oid, buffer, model, pid, rid, deep);
 	}
 
 	private Object readWrappedValue(EStructuralFeature feature, ByteBuffer buffer, EClass eClass) {
@@ -396,8 +403,8 @@ public class DatabaseSession implements BimDatabaseSession {
 		return eObject;
 	}
 
-	private EObject readReference(EClass originalQueryClass, ByteBuffer buffer, IfcModel model, int pid, int rid, IdEObject object, EStructuralFeature feature, EClass eClass) throws BimDatabaseException,
-			BimDeadlockException {
+	private EObject readReference(EClass originalQueryClass, ByteBuffer buffer, IfcModel model, int pid, int rid, IdEObject object, EStructuralFeature feature, EClass eClass,
+			boolean deep) throws BimDatabaseException, BimDeadlockException {
 		if (buffer.capacity() == 1 && buffer.get(0) == -1) {
 			buffer.position(buffer.position() + 1);
 			return null;
@@ -409,33 +416,42 @@ public class DatabaseSession implements BimDatabaseSession {
 			if (model.contains(oid)) {
 				return model.get(oid);
 			} else {
-				int descRid = rid;
-				byte[] referenceValue = null;
-				while (referenceValue == null && (descRid > 0 || descRid == -1)) {
-					ByteBuffer pidoidrid = createKeyBuffer(pid, oid, descRid);
-					referenceValue = database.getColumnDatabase().getFirstStartingWith(eClass.getName(), pidoidrid.array(), this);
-					descRid--;
-				}
-				if (referenceValue == null) {
-					throw new BimDatabaseException("Unsatisfied reference error, there is no " + eClass.getName() + " with pid " + pid + ", oid " + oid + ", rid <= " + rid
-							+ " (referenced from " + object.eClass().getName() + " with oid " + object.getOid() + " on field " + feature.getName() + ")");
-				}
-				if (referenceValue.length == 1 && referenceValue[0] == -1) {
-				} else if (referenceValue != null) {
-					ByteBuffer referenceBuffer = ByteBuffer.wrap(referenceValue);
-					IdEObject newObject = convertByteArrayToObject(originalQueryClass, eClass, oid, referenceBuffer, model, pid, rid);
+				if (deep) {
+					int descRid = rid;
+					byte[] referenceValue = null;
+					while (referenceValue == null && (descRid > 0 || descRid == -1)) {
+						ByteBuffer pidoidrid = createKeyBuffer(pid, oid, descRid);
+						referenceValue = database.getColumnDatabase().getFirstStartingWith(eClass.getName(), pidoidrid.array(), this);
+						descRid--;
+					}
+					if (referenceValue == null) {
+						throw new BimDatabaseException("Unsatisfied reference error, there is no " + eClass.getName() + " with pid " + pid + ", oid " + oid + ", rid <= " + rid
+								+ " (referenced from " + object.eClass().getName() + " with oid " + object.getOid() + " on field " + feature.getName() + ")");
+					}
+					if (referenceValue.length == 1 && referenceValue[0] == -1) {
+					} else if (referenceValue != null) {
+						ByteBuffer referenceBuffer = ByteBuffer.wrap(referenceValue);
+						IdEObject newObject = convertByteArrayToObject(originalQueryClass, eClass, oid, referenceBuffer, model, pid, rid, deep);
+						RecordIdentifier recordIdentifier = new RecordIdentifier(pid, oid, rid);
+						putInCache(recordIdentifier, newObject);
+						return newObject;
+					}
+				} else {
+					IdEObject newObject = (IdEObject) eClass.getEPackage().getEFactoryInstance().create(eClass);
+					newObject.setLazyLoader(this);
+					newObject.setOid(oid);
+					newObject.setPid(pid);
+					newObject.setRid(rid);
 					RecordIdentifier recordIdentifier = new RecordIdentifier(pid, oid, rid);
 					putInCache(recordIdentifier, newObject);
+					if (!(object instanceof WrappedValue) && !(object instanceof IfcGloballyUniqueId)) {
+						model.add(oid, newObject);
+					}
 					return newObject;
 				}
 			}
 		}
 		return null;
-	}
-
-	@Override
-	public User getAdminUser() throws BimDatabaseException, BimDeadlockException {
-		return getUserByUserName("admin");
 	}
 
 	@Override
@@ -449,15 +465,15 @@ public class DatabaseSession implements BimDatabaseSession {
 	}
 
 	@Override
-	public IfcModel getMap(int pid, int rid) throws BimDatabaseException, BimDeadlockException {
+	public IfcModel getMap(int pid, int rid, boolean deep) throws BimDatabaseException, BimDeadlockException {
 		IfcModel ifcModel = new IfcModel();
 		for (EClass eClass : database.getClasses()) {
-			getMap(eClass, pid, rid, ifcModel);
+			getMap(eClass, pid, rid, ifcModel, deep);
 		}
 		return ifcModel;
 	}
 
-	public void getMap(EClass eClass, int pid, int rid, IfcModel ifcModel) throws BimDatabaseException, BimDeadlockException {
+	public void getMap(EClass eClass, int pid, int rid, IfcModel ifcModel, boolean deep) throws BimDatabaseException, BimDeadlockException {
 		SearchingRecordIterator recordIterator = database.getColumnDatabase().getRecordIterator(eClass.getName(), BinUtils.intToByteArray(pid), BinUtils.intToByteArray(pid), this);
 		try {
 			Record record = recordIterator.next();
@@ -468,7 +484,7 @@ public class DatabaseSession implements BimDatabaseSession {
 				long keyOid = keyBuffer.getLong();
 				int keyRid = -keyBuffer.getInt();
 				ByteBuffer valueBuffer = ByteBuffer.wrap(record.getValue());
-				int map = getMap(eClass, eClass, ifcModel, valueBuffer, keyPid, keyOid, keyRid, pid, rid);
+				int map = getMap(eClass, eClass, ifcModel, valueBuffer, keyPid, keyOid, keyRid, pid, rid, deep);
 				if (map == 1) {
 					nextKeyStart.position(0);
 					nextKeyStart.putInt(pid);
@@ -514,7 +530,7 @@ public class DatabaseSession implements BimDatabaseSession {
 		return count;
 	}
 
-	private int getMap(EClass originalQueryClass, EClass eClass, IfcModel model, ByteBuffer buffer, int keyPid, long keyOid, int keyRid, int pid, int rid)
+	private int getMap(EClass originalQueryClass, EClass eClass, IfcModel model, ByteBuffer buffer, int keyPid, long keyOid, int keyRid, int pid, int rid, boolean deep)
 			throws BimDatabaseException, BimDeadlockException {
 		if (keyPid == pid) {
 			if (keyRid <= rid) {
@@ -535,7 +551,7 @@ public class DatabaseSession implements BimDatabaseSession {
 							return 1;
 							// deleted entity
 						} else {
-							object = convertByteArrayToObject(originalQueryClass, eClass, keyOid, buffer, model, pid, rid);
+							object = convertByteArrayToObject(originalQueryClass, eClass, keyOid, buffer, model, pid, rid, deep);
 						}
 					}
 					if (object != null) {
@@ -564,7 +580,7 @@ public class DatabaseSession implements BimDatabaseSession {
 		}
 	}
 
-	public IfcModel getMapWithOid(int pid, int rid, short cid, long oid, IfcModel model) throws BimDatabaseException, BimDeadlockException {
+	public IfcModel getMapWithOid(int pid, int rid, short cid, long oid, IfcModel model, boolean deep) throws BimDatabaseException, BimDeadlockException {
 		EClass eClass = database.getEClassForCid(cid);
 		if (eClass == null) {
 			return model;
@@ -576,58 +592,52 @@ public class DatabaseSession implements BimDatabaseSession {
 			return null;
 		}
 		ByteBuffer valueBuffer = ByteBuffer.wrap(value);
-		getMap(eClass, eClass, model, valueBuffer, pid, oid, rid, pid, rid);
+		getMap(eClass, eClass, model, valueBuffer, pid, oid, rid, pid, rid, deep);
 		return model;
 	}
 
 	@Override
-	public IfcModel getMapWithOids(int pid, int rid, Set<Long> oids) throws BimDatabaseException, BimDeadlockException {
+	public IfcModel getMapWithOids(int pid, int rid, Set<Long> oids, boolean deep) throws BimDatabaseException, BimDeadlockException {
 		IfcModel model = new IfcModel();
 		for (Long oid : oids) {
-			EClass eClass = getClassOfObjectId(pid, rid, oid);
-			getMapWithOid(pid, rid, database.getCidOfEClass(eClass), oid, model);
+			EClass eClass = getClassOfObjectId(pid, rid, oid, deep);
+			getMapWithOid(pid, rid, database.getCidOfEClass(eClass), oid, model, deep);
 		}
 		return model;
 	}
 
-	private EClass getClassOfObjectId(int pid, int rid, long oid) throws BimDatabaseException, BimDeadlockException {
+	private EClass getClassOfObjectId(int pid, int rid, long oid, boolean deep) throws BimDatabaseException, BimDeadlockException {
 		for (EClass eClass : database.getClasses()) {
-			if (get(database.getCidOfEClass(eClass), oid, pid, rid, new IfcModel()) != null) {
+			if (get(database.getCidOfEClass(eClass), oid, pid, rid, new IfcModel(), deep) != null) {
 				return eClass;
 			}
 		}
 		return null;
 	}
 
-	@Override
-	public Project getProjectById(int pid) throws BimDatabaseException, BimDeadlockException {
-		Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getProject_Id(), new IntegerLiteral(pid));
-		return querySingle(condition, Project.class);
+	public <T extends IdEObject> T querySingle(Condition condition, Class<T> clazz, boolean deep) throws BimDatabaseException, BimDeadlockException {
+		return querySingle(Database.STORE_PROJECT_ID, Database.STORE_PROJECT_REVISION_ID, condition, clazz, deep);
 	}
 
-	public <T extends IdEObject> T querySingle(Condition condition, Class<T> clazz) throws BimDatabaseException, BimDeadlockException {
-		return querySingle(Database.STORE_PROJECT_ID, Database.STORE_PROJECT_REVISION_ID, condition, clazz);
-	}
-
-	public <T extends IdEObject> T querySingle(int pid, int rid, Condition condition, Class<T> clazz) throws BimDatabaseException, BimDeadlockException {
-		Collection<T> values = query(pid, rid, condition, clazz).values();
+	public <T extends IdEObject> T querySingle(int pid, int rid, Condition condition, Class<T> clazz, boolean deep) throws BimDatabaseException, BimDeadlockException {
+		Collection<T> values = query(pid, rid, condition, clazz, deep).values();
 		if (values.size() == 0) {
 			return null;
 		}
 		return values.iterator().next();
 	}
 
-	public <T extends IdEObject> Map<Long, T> query(Condition condition, Class<T> clazz) throws BimDatabaseException, BimDeadlockException {
-		return query(Database.STORE_PROJECT_ID, Database.STORE_PROJECT_REVISION_ID, condition, clazz);
+	public <T extends IdEObject> Map<Long, T> query(Condition condition, Class<T> clazz, boolean deep) throws BimDatabaseException, BimDeadlockException {
+		return query(Database.STORE_PROJECT_ID, Database.STORE_PROJECT_REVISION_ID, condition, clazz, deep);
 	}
 
-	public <T extends IdEObject> Map<Long, T> query(int pid, int rid, Condition condition, Class<T> clazz) throws BimDatabaseException, BimDeadlockException {
+	public <T extends IdEObject> Map<Long, T> query(int pid, int rid, Condition condition, Class<T> clazz, boolean deep) throws BimDatabaseException, BimDeadlockException {
 		Map<Long, T> map = new HashMap<Long, T>();
 		Set<EClass> eClasses = new HashSet<EClass>();
 		condition.getEClassRequirements(eClasses);
 		IfcModel model = new IfcModel();
 		for (EClass eClass : eClasses) {
-			getMap(eClass, pid, rid, model);
+			getMap(eClass, pid, rid, model, deep);
 			for (Long oid : model.keySet()) {
 				EObject object = model.get(oid);
 				if (clazz.isInstance(object)) {
@@ -638,18 +648,6 @@ public class DatabaseSession implements BimDatabaseSession {
 			}
 		}
 		return map;
-	}
-
-	@Override
-	public Collection<Project> getProjectsByName(String projectName) throws BimDatabaseException, BimDeadlockException {
-		Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getProject_Name(), new StringLiteral(projectName));
-		return (Collection<Project>) query(condition, Project.class).values();
-	}
-
-	@Override
-	public User getUserByUserName(String username) throws BimDatabaseException, BimDeadlockException {
-		Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getUser_Username(), new StringLiteral(username));
-		return querySingle(condition, User.class);
 	}
 
 	@Override
@@ -687,34 +685,6 @@ public class DatabaseSession implements BimDatabaseSession {
 				long newOid = newOid();
 				object.setOid(newOid);
 			}
-//			// This code is meant to create oid's for wrapped values that are not referenced as such
-//			for (EReference eReference : object.eClass().getEAllReferences()) {
-//				if (!Ifc2x3Package.eINSTANCE.getWrappedValue().isSuperTypeOf((EClass) eReference.getEType())) {
-//					Object eGet = object.eGet(eReference);
-//					if (eGet instanceof IdEObject) {
-//						IdEObject idEObject = (IdEObject)eGet;
-//						if (idEObject.getOid() == -1) {
-//							idEObject.setOid(newOid());
-//							idEObject.setPid(pid);
-//							idEObject.setRid(rid);
-//							addToObjectsToCommit(idEObject);
-//						}
-//					} else if (eGet instanceof List) {
-//						List list = (List)eGet;
-//						for (Object o : list) {
-//							IdEObject idEObject = (IdEObject)o;
-////							if (idEObject instanceof WrappedValue) {
-//								if (idEObject.getOid() == -1) {
-//									idEObject.setOid(newOid());
-//									idEObject.setPid(pid);
-//									idEObject.setRid(rid);
-//									addToObjectsToCommit(idEObject);
-//								}
-////							}
-//						}
-//					}
-//				}
-//			}
 			object.setPid(pid);
 			object.setRid(rid);
 			addToObjectsToCommit(object);
@@ -742,7 +712,7 @@ public class DatabaseSession implements BimDatabaseSession {
 							if (o == null) {
 								buffer.putShort((short) -1);
 							} else {
-								IdEObject listObject = (IdEObject)o;
+								IdEObject listObject = (IdEObject) o;
 								boolean wrappedValue = Ifc2x3Package.eINSTANCE.getWrappedValue().isSuperTypeOf(listObject.eClass());
 								if (wrappedValue) {
 									writeWrappedValue(object.getPid(), object.getRid(), o, buffer);
@@ -773,7 +743,7 @@ public class DatabaseSession implements BimDatabaseSession {
 						if (value == null) {
 							buffer.putShort((short) -1);
 						} else {
-							IdEObject referencedObject = (IdEObject)value;
+							IdEObject referencedObject = (IdEObject) value;
 							EClass referencedClass = referencedObject.eClass();
 							boolean wrappedValue = Ifc2x3Package.eINSTANCE.getWrappedValue().isSuperTypeOf(referencedClass);
 							if (wrappedValue) {
@@ -897,12 +867,14 @@ public class DatabaseSession implements BimDatabaseSession {
 		}
 	}
 
-	private void writeReference(int pid, int rid, Object value, GrowingByteBuffer buffer, IdEObject object, EStructuralFeature feature) throws BimDeadlockException, BimDatabaseException {
+	private void writeReference(int pid, int rid, Object value, GrowingByteBuffer buffer, IdEObject object, EStructuralFeature feature) throws BimDeadlockException,
+			BimDatabaseException {
 		Short cid = database.getCidOfEClass(((EObject) value).eClass());
 		buffer.putShort(cid);
 		IdEObject idEObject = (IdEObject) value;
 		if (idEObject.getOid() == -1) {
-			throw new BimDatabaseException("Cannot store reference to object " + idEObject.eClass().getName() + " with oid=" + idEObject.getOid() + ", pid=" + idEObject.getPid() + ", rid=" + idEObject.getRid() + " referenced from " + object.eClass().getName() + " with oid=" + object.getOid() + ", feature " + feature.getName());
+			throw new BimDatabaseException("Cannot store reference to object " + idEObject.eClass().getName() + " with oid=" + idEObject.getOid() + ", pid=" + idEObject.getPid()
+					+ ", rid=" + idEObject.getRid() + " referenced from " + object.eClass().getName() + " with oid=" + object.getOid() + ", feature " + feature.getName());
 		}
 		buffer.putLong(idEObject.getOid());
 	}
@@ -919,15 +891,15 @@ public class DatabaseSession implements BimDatabaseSession {
 		}
 	}
 
-	public IfcModel getAllOfType(EClass eClass, int pid, int rid) throws BimDatabaseException, BimDeadlockException {
+	public IfcModel getAllOfType(EClass eClass, int pid, int rid, boolean deep) throws BimDatabaseException, BimDeadlockException {
 		IfcModel model = new IfcModel();
-		getMap(eClass, pid, rid, model);
+		getMap(eClass, pid, rid, model, deep);
 		return model;
 	}
-	
+
 	@Override
-	public IfcModel getAllOfType(String className, int pid, int rid) throws BimDatabaseException, BimDeadlockException {
-		return getAllOfType(getEClassForName(className), pid, rid);
+	public IfcModel getAllOfType(String className, int pid, int rid, boolean deep) throws BimDatabaseException, BimDeadlockException {
+		return getAllOfType(getEClassForName(className), pid, rid, deep);
 	}
 
 	@Override
@@ -938,14 +910,14 @@ public class DatabaseSession implements BimDatabaseSession {
 	public Date getCreatedDate() {
 		return database.getCreated();
 	}
-	
+
 	@Override
 	public DatabaseInformation getDatabaseInformation() throws BimDatabaseException, BimDeadlockException {
 		DatabaseInformation databaseInformation = new DatabaseInformation();
-		databaseInformation.setNumberOfProjects(getObjectCount(Project.class));
-		databaseInformation.setNumberOfUsers(getObjectCount(User.class));
-		databaseInformation.setNumberOfCheckouts(getObjectCount(Checkout.class));
-		databaseInformation.setNumberOfRevisions(getObjectCount(ConcreteRevision.class));
+		databaseInformation.setNumberOfProjects(getObjectCount(Project.class, false));
+		databaseInformation.setNumberOfUsers(getObjectCount(User.class, false));
+		databaseInformation.setNumberOfCheckouts(getObjectCount(Checkout.class, false));
+		databaseInformation.setNumberOfRevisions(getObjectCount(ConcreteRevision.class, false));
 		databaseInformation.setType(database.getColumnDatabase().getType());
 		databaseInformation.setCreated(database.getCreated());
 		databaseInformation.setDatabaseSizeInBytes(database.getColumnDatabase().getDatabaseSizeInBytes());
@@ -965,9 +937,9 @@ public class DatabaseSession implements BimDatabaseSession {
 		return databaseInformation;
 	}
 
-	private int getObjectCount(Class<? extends IdEObject> clazz) throws BimDatabaseException, BimDeadlockException {
+	private int getObjectCount(Class<? extends IdEObject> clazz, boolean deep) throws BimDatabaseException, BimDeadlockException {
 		Condition condition = new IsOfTypeCondition((EClass) StorePackage.eINSTANCE.getEClassifier(clazz.getSimpleName()));
-		return query(condition, clazz).size();
+		return query(condition, clazz, deep).size();
 	}
 
 	@Override
@@ -1039,23 +1011,6 @@ public class DatabaseSession implements BimDatabaseSession {
 		return database.getAvailableClasses();
 	}
 
-	@Override
-	public void updateLastActive(long uoid) throws BimDatabaseException {
-		try {
-			User user = getUserByUoid(uoid);
-			user.setLastSeen(new Date());
-			store(user);
-		} catch (BimDeadlockException e) {
-			LOGGER.error("", e);
-		}
-	}
-
-	@Override
-	public Revision getVirtualRevision(long roid) throws BimDeadlockException, BimDatabaseException {
-		IdEObject idEObject = get(database.getCidOfEClass(StorePackage.eINSTANCE.getRevision()), roid);
-		return (Revision) idEObject;
-	}
-
 	public FieldIgnoreMap getFieldIgnoreMap() {
 		return database.getFieldIgnoreMap();
 	}
@@ -1075,34 +1030,15 @@ public class DatabaseSession implements BimDatabaseSession {
 	}
 
 	@Override
-	public Project getProjectByPoid(long poid) {
-		return (Project) get(StorePackage.eINSTANCE.getProject(), poid);
-	}
-
-	@Override
-	public User getUserByUoid(long uoid) {
-		return (User) get(StorePackage.eINSTANCE.getUser(), uoid);
-	}
-
-	@Override
 	public short getCid(EClass eClass) {
 		return database.getCidOfEClass(eClass);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public Revision getRevisionByRoid(long roid) {
-		return (Revision) get(StorePackage.eINSTANCE.getRevision(), roid);
-	}
-
-	@Override
-	public ConcreteRevision getConcreteRevision(long roid) throws BimDeadlockException, BimDatabaseException {
-		return (ConcreteRevision) get(StorePackage.eINSTANCE.getConcreteRevision(), roid);
-	}
-
-	@Override
-	public IdEObject get(EClass eClass, long oid) {
+	public <T extends IdEObject> T get(EClass eClass, long oid, boolean deep) {
 		try {
-			return get(getCid(eClass), oid);
+			return (T) get(getCid(eClass), oid, deep);
 		} catch (BimDatabaseException e) {
 			LOGGER.error("", e);
 		} catch (BimDeadlockException e) {
@@ -1111,20 +1047,15 @@ public class DatabaseSession implements BimDatabaseSession {
 		return null;
 	}
 
-	@Override
-	public User getAnonymousUser() throws BimDatabaseException, BimDeadlockException {
-		return getUserByUserName("anonymous");
-	}
-
 	public boolean isReadOnly() {
 		return readOnly;
 	}
 
 	@Override
-	public IfcModel getMapWithObjectIdentifiers(int pid, int rid, Set<ObjectIdentifier> oids) throws BimDeadlockException, BimDatabaseException {
+	public IfcModel getMapWithObjectIdentifiers(int pid, int rid, Set<ObjectIdentifier> oids, boolean deep) throws BimDeadlockException, BimDatabaseException {
 		IfcModel model = new IfcModel();
 		for (ObjectIdentifier objectIdentifier : oids) {
-			getMapWithOid(pid, rid, objectIdentifier.getCid(), objectIdentifier.getOid(), model);
+			getMapWithOid(pid, rid, objectIdentifier.getCid(), objectIdentifier.getOid(), model, deep);
 		}
 		return model;
 	}
@@ -1132,5 +1063,38 @@ public class DatabaseSession implements BimDatabaseSession {
 	@Override
 	public void addPostCommitAction(PostCommitAction postCommitAction) {
 		postCommitActions.add(postCommitAction);
+	}
+
+	public IdEObject lazyLoad(IdEObject idEObject, int pid, int rid) throws BimDeadlockException, BimDatabaseException {
+		IfcModel model = new IfcModel();
+		ByteBuffer keyBuffer = createKeyBuffer(pid, idEObject.getOid(), rid);
+		byte[] value = database.getColumnDatabase().get(idEObject.eClass().getName(), keyBuffer.array(), this);
+		if (value == null) {
+			return null;
+		} else {
+			ByteBuffer buffer = ByteBuffer.wrap(value);
+			IdEObject object = convertByteArrayToObject(idEObject, idEObject.eClass(), idEObject.eClass(), idEObject.getOid(), buffer, model, pid, rid, false);
+			putInCache(new RecordIdentifier(pid, idEObject.getOid(), rid), object);
+			return object;
+		}
+	}
+
+	public IdEObject lazyLoad(IdEObject idEObject) throws BimDeadlockException, BimDatabaseException {
+		return lazyLoad(idEObject, Database.STORE_PROJECT_ID, Database.STORE_PROJECT_REVISION_ID);
+	}
+
+	public short getCidOfEClass(EClass eClass) {
+		return database.getCidOfEClass(eClass);
+	}
+
+	@Override
+	public void load(IdEObject idEObject) {
+		try {
+			lazyLoad(idEObject);
+		} catch (BimDeadlockException e) {
+			e.printStackTrace();
+		} catch (BimDatabaseException e) {
+			e.printStackTrace();
+		}
 	}
 }

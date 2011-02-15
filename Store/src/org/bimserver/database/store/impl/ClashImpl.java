@@ -127,6 +127,8 @@ public class ClashImpl extends IdEObjectImpl implements Clash {
 	public void setName1(String newName1) {
 		String name1 = newName1;
 		Object oldName1 = eVirtualSet(StorePackage.CLASH__NAME1, name1);
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.CLASH__NAME1, oldName1 == EVIRTUAL_NO_VALUE ? NAME1_EDEFAULT : oldName1, name1));
 	}
 
 	/**
@@ -146,6 +148,8 @@ public class ClashImpl extends IdEObjectImpl implements Clash {
 	public void setName2(String newName2) {
 		String name2 = newName2;
 		Object oldName2 = eVirtualSet(StorePackage.CLASH__NAME2, name2);
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.CLASH__NAME2, oldName2 == EVIRTUAL_NO_VALUE ? NAME2_EDEFAULT : oldName2, name2));
 	}
 
 	/**
@@ -165,6 +169,8 @@ public class ClashImpl extends IdEObjectImpl implements Clash {
 	public void setType1(String newType1) {
 		String type1 = newType1;
 		Object oldType1 = eVirtualSet(StorePackage.CLASH__TYPE1, type1);
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.CLASH__TYPE1, oldType1 == EVIRTUAL_NO_VALUE ? TYPE1_EDEFAULT : oldType1, type1));
 	}
 
 	/**
@@ -184,6 +190,8 @@ public class ClashImpl extends IdEObjectImpl implements Clash {
 	public void setType2(String newType2) {
 		String type2 = newType2;
 		Object oldType2 = eVirtualSet(StorePackage.CLASH__TYPE2, type2);
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.CLASH__TYPE2, oldType2 == EVIRTUAL_NO_VALUE ? TYPE2_EDEFAULT : oldType2, type2));
 	}
 
 	/**
@@ -198,6 +206,8 @@ public class ClashImpl extends IdEObjectImpl implements Clash {
 			revision1 = (Revision)eResolveProxy(oldRevision1);
 			if (revision1 != oldRevision1) {
 				eVirtualSet(StorePackage.CLASH__REVISION1, revision1);
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StorePackage.CLASH__REVISION1, oldRevision1, revision1));
 			}
 		}
 		return revision1;
@@ -220,6 +230,8 @@ public class ClashImpl extends IdEObjectImpl implements Clash {
 	public void setRevision1(Revision newRevision1) {
 		Revision revision1 = newRevision1;
 		Object oldRevision1 = eVirtualSet(StorePackage.CLASH__REVISION1, revision1);
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.CLASH__REVISION1, oldRevision1 == EVIRTUAL_NO_VALUE ? null : oldRevision1, revision1));
 	}
 
 	/**
@@ -234,6 +246,8 @@ public class ClashImpl extends IdEObjectImpl implements Clash {
 			revision2 = (Revision)eResolveProxy(oldRevision2);
 			if (revision2 != oldRevision2) {
 				eVirtualSet(StorePackage.CLASH__REVISION2, revision2);
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StorePackage.CLASH__REVISION2, oldRevision2, revision2));
 			}
 		}
 		return revision2;
@@ -256,6 +270,8 @@ public class ClashImpl extends IdEObjectImpl implements Clash {
 	public void setRevision2(Revision newRevision2) {
 		Revision revision2 = newRevision2;
 		Object oldRevision2 = eVirtualSet(StorePackage.CLASH__REVISION2, revision2);
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.CLASH__REVISION2, oldRevision2 == EVIRTUAL_NO_VALUE ? null : oldRevision2, revision2));
 	}
 
 	/**

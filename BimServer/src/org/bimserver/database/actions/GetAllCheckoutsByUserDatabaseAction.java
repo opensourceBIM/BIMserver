@@ -19,17 +19,17 @@ public class GetAllCheckoutsByUserDatabaseAction extends BimDatabaseAction<Set<C
 
 	private final long uoid;
 
-	public GetAllCheckoutsByUserDatabaseAction(AccessMethod accessMethod, long uoid) {
-		super(accessMethod);
+	public GetAllCheckoutsByUserDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long uoid) {
+		super(bimDatabaseSession, accessMethod);
 		this.uoid = uoid;
 	}
 
 	@Override
-	public Set<Checkout> execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
-		User user = bimDatabaseSession.getUserByUoid(uoid);
+	public Set<Checkout> execute() throws UserException, BimDeadlockException, BimDatabaseException {
+		User user = getUserByUoid(uoid);
 		Condition condition = new HasReferenceToCondition(StorePackage.eINSTANCE.getCheckout_User(), user);
 //		condition = condition.and(new AttributeCondition(StorePackage.eINSTANCE.getCheckout_Active(), new BooleanLiteral(true)));
-		Map<Long, Checkout> query = (Map<Long, Checkout>) bimDatabaseSession.query(condition, Checkout.class);
+		Map<Long, Checkout> query = (Map<Long, Checkout>) getDatabaseSession().query(condition, Checkout.class, false);
 		return CollectionUtils.mapToSet(query);
 	}
 }

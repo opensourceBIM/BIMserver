@@ -15,14 +15,14 @@ public class GetAllAuthorizedUsersOfProjectDatabaseAction extends BimDatabaseAct
 
 	private final long poid;
 
-	public GetAllAuthorizedUsersOfProjectDatabaseAction(AccessMethod accessMethod, long poid) {
-		super(accessMethod);
+	public GetAllAuthorizedUsersOfProjectDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long poid) {
+		super(bimDatabaseSession, accessMethod);
 		this.poid = poid;
 	}
 	
 	@Override
-	public Set<User> execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
-		EList<User> users = bimDatabaseSession.getProjectByPoid(poid).getHasAuthorizedUsers();
+	public Set<User> execute() throws UserException, BimDeadlockException, BimDatabaseException {
+		EList<User> users = getProjectByPoid(poid).getHasAuthorizedUsers();
 		return new HashSet<User>(users);
 	}
 }

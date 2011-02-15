@@ -19,18 +19,18 @@ public class GetLogsDatabaseAction extends BimDatabaseAction<List<LogAction>> {
 
 	private final long actingUoid;
 
-	public GetLogsDatabaseAction(AccessMethod accessMethod, long actingUoid) {
-		super(accessMethod);
+	public GetLogsDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long actingUoid) {
+		super(bimDatabaseSession, accessMethod);
 		this.actingUoid = actingUoid;
 	}
 
 	@Override
-	public List<LogAction> execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
-		User user = bimDatabaseSession.getUserByUoid(actingUoid);
+	public List<LogAction> execute() throws UserException, BimDeadlockException, BimDatabaseException {
+		User user = getUserByUoid(actingUoid);
 		if (user.getUserType() != UserType.ADMIN) {
 			throw new UserException("Only admin users can retrieve log");
 		}
-		Map<Long, LogAction> query = bimDatabaseSession.query(new IsOfTypeCondition(LogPackage.eINSTANCE.getLogAction()), LogAction.class);
+		Map<Long, LogAction> query = getDatabaseSession().query(new IsOfTypeCondition(LogPackage.eINSTANCE.getLogAction()), LogAction.class, false);
 		ArrayList<LogAction> list = new ArrayList<LogAction>(query.values());
 		return list;
 	}
