@@ -18,18 +18,18 @@ public class GetRevisionSummaryDatabaseAction extends BimDatabaseAction<SRevisio
 
 	private final long roid;
 
-	public GetRevisionSummaryDatabaseAction(AccessMethod accessMethod, long roid) {
-		super(accessMethod);
+	public GetRevisionSummaryDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long roid) {
+		super(bimDatabaseSession, accessMethod);
 		this.roid = roid;
 	}
 
 	@Override
-	public SRevisionSummary execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
+	public SRevisionSummary execute() throws UserException, BimDeadlockException, BimDatabaseException {
 		SRevisionSummary revisionSummary = new SRevisionSummary();
-		Revision revision = bimDatabaseSession.getVirtualRevision(roid);
+		Revision revision = getVirtualRevision(roid);
 		for (ConcreteRevision subRevision : revision.getConcreteRevisions()) {
-			for (EClass eClass : bimDatabaseSession.getClasses()) {
-				int count = bimDatabaseSession.getCount(eClass, new IfcModel(), subRevision.getProject().getId(), subRevision.getId());
+			for (EClass eClass : getDatabaseSession().getClasses()) {
+				int count = getDatabaseSession().getCount(eClass, new IfcModel(), subRevision.getProject().getId(), subRevision.getId());
 				add(revisionSummary, eClass, count);
 			}
 		}

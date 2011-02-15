@@ -20,26 +20,26 @@ public class DownloadDatabaseAction extends BimDatabaseAction<IfcModel> {
 	private final long roid;
 	private final long actingUoid;
 
-	public DownloadDatabaseAction(AccessMethod accessMethod, long roid, long actingUoid) {
-		super(accessMethod);
+	public DownloadDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long roid, long actingUoid) {
+		super(bimDatabaseSession, accessMethod);
 		this.roid = roid;
 		this.actingUoid = actingUoid;
 	}
 
 	@Override
-	public IfcModel execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
-		Revision revision = bimDatabaseSession.getVirtualRevision(roid);
+	public IfcModel execute() throws UserException, BimDeadlockException, BimDatabaseException {
+		Revision revision = getVirtualRevision(roid);
 		if (revision == null) {
 			throw new UserException("Revision with oid " + roid + " not found");
 		}
 		Project project = revision.getProject();
-		User user = bimDatabaseSession.getUserByUoid(actingUoid);
+		User user = getUserByUoid(actingUoid);
 		if (!RightsManager.hasRightsOnProjectOrSuperProjectsOrSubProjects(user, project)) {
 			throw new UserException("User has insufficient rights to download revisions from this project");
 		}
 		IfcModelSet ifcModelSet = new IfcModelSet();
 		for (ConcreteRevision subRevision : revision.getConcreteRevisions()) {
-			IfcModel subModel = bimDatabaseSession.getMap(subRevision.getProject().getId(), subRevision.getId());
+			IfcModel subModel = getDatabaseSession().getMap(subRevision.getProject().getId(), subRevision.getId(), false);
 			subModel.setDate(subRevision.getDate());
 			ifcModelSet.add(subModel);
 		}

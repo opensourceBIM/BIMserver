@@ -74,7 +74,7 @@ public class ServerLogImpl extends IdEObjectImpl implements ServerLog {
 	public EList<LogAction> getActions() {
 		EList<LogAction> actions = (EList<LogAction>)eVirtualGet(LogPackage.SERVER_LOG__ACTIONS);
 		if (actions == null) {
-			eVirtualSet(LogPackage.SERVER_LOG__ACTIONS, actions = new BasicInternalEList<LogAction>(LogAction.class));
+			eVirtualSet(LogPackage.SERVER_LOG__ACTIONS, actions = new EObjectResolvingEList<LogAction>(LogAction.class, this, LogPackage.SERVER_LOG__ACTIONS));
 		}
 		return actions;
 	}

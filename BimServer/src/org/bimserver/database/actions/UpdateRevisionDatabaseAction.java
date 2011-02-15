@@ -21,16 +21,16 @@ public class UpdateRevisionDatabaseAction extends BimDatabaseAction<Void> {
 	private final SRevision sRevision;
 	private final long actingUoid;
 
-	public UpdateRevisionDatabaseAction(AccessMethod accessMethod, long actingUoid, SRevision sRevision) {
-		super(accessMethod);
+	public UpdateRevisionDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long actingUoid, SRevision sRevision) {
+		super(bimDatabaseSession, accessMethod);
 		this.actingUoid = actingUoid;
 		this.sRevision = sRevision;
 	}
 
 	@Override
-	public Void execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
-		User actingUser = bimDatabaseSession.getUserByUoid(actingUoid);
-		final Revision revision = bimDatabaseSession.getRevisionByRoid(sRevision.getOid());
+	public Void execute() throws UserException, BimDeadlockException, BimDatabaseException {
+		User actingUser = getUserByUoid(actingUoid);
+		final Revision revision = getRevisionByRoid(sRevision.getOid());
 		if (revision == null) {
 			throw new UserException("Revision with pid " + sRevision.getOid() + " not found");
 		}
@@ -47,8 +47,8 @@ public class UpdateRevisionDatabaseAction extends BimDatabaseAction<Void> {
 		revisionUpdated.setExecutor(actingUser);
 		revisionUpdated.setAccessMethod(getAccessMethod());
 		revision.setTag(sRevision.getTag());
-		bimDatabaseSession.store(revisionUpdated);
-		bimDatabaseSession.store(revision);
+		getDatabaseSession().store(revisionUpdated);
+		getDatabaseSession().store(revision);
 		return null;
 	}
 }

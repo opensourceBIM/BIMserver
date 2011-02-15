@@ -117,6 +117,8 @@ public class CheckoutImpl extends IdEObjectImpl implements Checkout {
 			user = (User)eResolveProxy(oldUser);
 			if (user != oldUser) {
 				eVirtualSet(StorePackage.CHECKOUT__USER, user);
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StorePackage.CHECKOUT__USER, oldUser, user));
 			}
 		}
 		return user;
@@ -139,6 +141,8 @@ public class CheckoutImpl extends IdEObjectImpl implements Checkout {
 	public void setUser(User newUser) {
 		User user = newUser;
 		Object oldUser = eVirtualSet(StorePackage.CHECKOUT__USER, user);
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.CHECKOUT__USER, oldUser == EVIRTUAL_NO_VALUE ? null : oldUser, user));
 	}
 
 	/**
@@ -153,6 +157,8 @@ public class CheckoutImpl extends IdEObjectImpl implements Checkout {
 			revision = (Revision)eResolveProxy(oldRevision);
 			if (revision != oldRevision) {
 				eVirtualSet(StorePackage.CHECKOUT__REVISION, revision);
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StorePackage.CHECKOUT__REVISION, oldRevision, revision));
 			}
 		}
 		return revision;
@@ -174,6 +180,10 @@ public class CheckoutImpl extends IdEObjectImpl implements Checkout {
 	 */
 	public NotificationChain basicSetRevision(Revision newRevision, NotificationChain msgs) {
 		Object oldRevision = eVirtualSet(StorePackage.CHECKOUT__REVISION, newRevision);
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, StorePackage.CHECKOUT__REVISION, oldRevision == EVIRTUAL_NO_VALUE ? null : oldRevision, newRevision);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
 		return msgs;
 	}
 
@@ -193,6 +203,8 @@ public class CheckoutImpl extends IdEObjectImpl implements Checkout {
 			msgs = basicSetRevision(newRevision, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.CHECKOUT__REVISION, newRevision, newRevision));
 	}
 
 	/**
@@ -207,6 +219,8 @@ public class CheckoutImpl extends IdEObjectImpl implements Checkout {
 			project = (Project)eResolveProxy(oldProject);
 			if (project != oldProject) {
 				eVirtualSet(StorePackage.CHECKOUT__PROJECT, project);
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StorePackage.CHECKOUT__PROJECT, oldProject, project));
 			}
 		}
 		return project;
@@ -228,6 +242,10 @@ public class CheckoutImpl extends IdEObjectImpl implements Checkout {
 	 */
 	public NotificationChain basicSetProject(Project newProject, NotificationChain msgs) {
 		Object oldProject = eVirtualSet(StorePackage.CHECKOUT__PROJECT, newProject);
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, StorePackage.CHECKOUT__PROJECT, oldProject == EVIRTUAL_NO_VALUE ? null : oldProject, newProject);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
 		return msgs;
 	}
 
@@ -247,6 +265,8 @@ public class CheckoutImpl extends IdEObjectImpl implements Checkout {
 			msgs = basicSetProject(newProject, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.CHECKOUT__PROJECT, newProject, newProject));
 	}
 
 	/**
@@ -266,6 +286,8 @@ public class CheckoutImpl extends IdEObjectImpl implements Checkout {
 	public void setDate(Date newDate) {
 		Date date = newDate;
 		Object oldDate = eVirtualSet(StorePackage.CHECKOUT__DATE, date);
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.CHECKOUT__DATE, oldDate == EVIRTUAL_NO_VALUE ? DATE_EDEFAULT : oldDate, date));
 	}
 
 	/**
@@ -280,6 +302,8 @@ public class CheckoutImpl extends IdEObjectImpl implements Checkout {
 			checkin = (Revision)eResolveProxy(oldCheckin);
 			if (checkin != oldCheckin) {
 				eVirtualSet(StorePackage.CHECKOUT__CHECKIN, checkin);
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StorePackage.CHECKOUT__CHECKIN, oldCheckin, checkin));
 			}
 		}
 		return checkin;
@@ -302,6 +326,8 @@ public class CheckoutImpl extends IdEObjectImpl implements Checkout {
 	public void setCheckin(Revision newCheckin) {
 		Revision checkin = newCheckin;
 		Object oldCheckin = eVirtualSet(StorePackage.CHECKOUT__CHECKIN, checkin);
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.CHECKOUT__CHECKIN, oldCheckin == EVIRTUAL_NO_VALUE ? null : oldCheckin, checkin));
 	}
 
 	/**
@@ -319,7 +345,10 @@ public class CheckoutImpl extends IdEObjectImpl implements Checkout {
 	 * @generated
 	 */
 	public void setActive(boolean newActive) {
+		boolean oldActive = active;
 		active = newActive;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.CHECKOUT__ACTIVE, oldActive, active));
 	}
 
 	/**

@@ -18,19 +18,19 @@ public class UndeleteUserDatabaseAction extends BimDatabaseAction<Boolean> {
 	private final long actingUoid;
 	private final long uoid;
 
-	public UndeleteUserDatabaseAction(AccessMethod accessMethod, long actingUoid, long uoid) {
-		super(accessMethod);
+	public UndeleteUserDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long actingUoid, long uoid) {
+		super(bimDatabaseSession, accessMethod);
 		this.actingUoid = actingUoid;
 		this.uoid = uoid;
 	}
 
 	@Override
-	public Boolean execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDatabaseException, BimDeadlockException {
-		User actingUser = bimDatabaseSession.getUserByUoid(actingUoid);
+	public Boolean execute() throws UserException, BimDatabaseException, BimDeadlockException {
+		User actingUser = getUserByUoid(actingUoid);
 		if (actingUser.getUserType() != UserType.ADMIN) {
 			throw new UserException("Only administrators can undelete users");
 		}
-		final User user = bimDatabaseSession.getUserByUoid(uoid);
+		final User user = getUserByUoid(uoid);
 		if (user.getUserType() == UserType.ADMIN || user.getUserType() == UserType.ANONYMOUS) {
 			throw new UserException("Cannot undelete this user");
 		}
@@ -40,8 +40,8 @@ public class UndeleteUserDatabaseAction extends BimDatabaseAction<Boolean> {
 		userUndeleted.setExecutor(actingUser);
 		userUndeleted.setUser(user);
 		user.setState(ObjectState.ACTIVE);
-		bimDatabaseSession.store(user);
-		bimDatabaseSession.store(userUndeleted);
+		getDatabaseSession().store(user);
+		getDatabaseSession().store(userUndeleted);
 		return true;
 	}
 }

@@ -34,21 +34,21 @@ public class GetDataObjectByOidDatabaseAction extends BimDatabaseAction<SDataObj
 	private final short cid;
 	private final long roid;
 
-	public GetDataObjectByOidDatabaseAction(AccessMethod accessMethod, long roid, long oid, short cid) {
-		super(accessMethod);
+	public GetDataObjectByOidDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long roid, long oid, short cid) {
+		super(bimDatabaseSession, accessMethod);
 		this.roid = roid;
 		this.oid = oid;
 		this.cid = cid;
 	}
 
 	@Override
-	public SDataObject execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
-		Revision virtualRevision = bimDatabaseSession.getVirtualRevision(roid);
+	public SDataObject execute() throws UserException, BimDeadlockException, BimDatabaseException {
+		Revision virtualRevision = getVirtualRevision(roid);
 		EObject eObject = null;
 		IfcModelSet ifcModelSet = new IfcModelSet();
 		for (ConcreteRevision concreteRevision : virtualRevision.getConcreteRevisions()) {
 			IfcModel subModel = new IfcModel();
-			eObject = bimDatabaseSession.get(cid, oid, concreteRevision.getProject().getId(), concreteRevision.getId(), subModel);
+			eObject = getDatabaseSession().get(cid, oid, concreteRevision.getProject().getId(), concreteRevision.getId(), subModel, false);
 			subModel.setDate(concreteRevision.getDate());
 			ifcModelSet.add(subModel);
 			if (eObject != null) {

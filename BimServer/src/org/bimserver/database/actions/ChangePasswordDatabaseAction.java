@@ -20,8 +20,8 @@ public class ChangePasswordDatabaseAction extends BimDatabaseAction<Boolean> {
 	private final long uoid;
 	private final long actingUoid;
 
-	public ChangePasswordDatabaseAction(AccessMethod accessMethod, long uoid, String oldPassword, String newPassword, long actingUoid) {
-		super(accessMethod);
+	public ChangePasswordDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long uoid, String oldPassword, String newPassword, long actingUoid) {
+		super(bimDatabaseSession, accessMethod);
 		this.uoid = uoid;
 		this.oldPassword = oldPassword;
 		this.newPassword = newPassword;
@@ -29,17 +29,17 @@ public class ChangePasswordDatabaseAction extends BimDatabaseAction<Boolean> {
 	}
 
 	@Override
-	public Boolean execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
-		User actingUser = bimDatabaseSession.getUserByUoid(actingUoid);
+	public Boolean execute() throws UserException, BimDeadlockException, BimDatabaseException {
+		User actingUser = getUserByUoid(actingUoid);
 		if (uoid == actingUoid) {
-			User user = bimDatabaseSession.getUserByUoid(uoid);
+			User user = getUserByUoid(uoid);
 			if (user.getUserType() == UserType.ANONYMOUS) {
 				throw new UserException("Password of anonymous user cannot be changed");
 			}
-			return changePassword(bimDatabaseSession, actingUser, false);
+			return changePassword(getDatabaseSession(), actingUser, false);
 		} else {
 			if (actingUser.getUserType() == UserType.ADMIN) {
-				return changePassword(bimDatabaseSession, actingUser, true);
+				return changePassword(getDatabaseSession(), actingUser, true);
 			} else {
 				throw new UserException("Insufficient rights to change the password of this user");
 			}
@@ -47,7 +47,7 @@ public class ChangePasswordDatabaseAction extends BimDatabaseAction<Boolean> {
 	}
 
 	private boolean changePassword(BimDatabaseSession bimDatabaseSession, User actingUser, boolean skipCheck) throws BimDeadlockException, BimDatabaseException, UserException {
-		User user = bimDatabaseSession.getUserByUoid(uoid);
+		User user = getUserByUoid(uoid);
 		if (skipCheck || Hashers.getSha256Hash(oldPassword).equals(user.getPassword())) {
 			user.setPassword(Hashers.getSha256Hash(newPassword));
 			PasswordChanged passwordchanged = LogFactory.eINSTANCE.createPasswordChanged();

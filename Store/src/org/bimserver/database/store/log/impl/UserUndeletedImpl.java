@@ -60,6 +60,8 @@ public class UserUndeletedImpl extends LogActionImpl implements UserUndeleted {
 			user = (User)eResolveProxy(oldUser);
 			if (user != oldUser) {
 				eVirtualSet(LogPackage.USER_UNDELETED__USER, user);
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, LogPackage.USER_UNDELETED__USER, oldUser, user));
 			}
 		}
 		return user;
@@ -82,6 +84,8 @@ public class UserUndeletedImpl extends LogActionImpl implements UserUndeleted {
 	public void setUser(User newUser) {
 		User user = newUser;
 		Object oldUser = eVirtualSet(LogPackage.USER_UNDELETED__USER, user);
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, LogPackage.USER_UNDELETED__USER, oldUser == EVIRTUAL_NO_VALUE ? null : oldUser, user));
 	}
 
 	/**

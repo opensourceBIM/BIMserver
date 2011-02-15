@@ -10,12 +10,12 @@ import org.bimserver.shared.UserException;
 
 public class GetAvailableClassesDatabaseAction extends BimDatabaseAction<List<String>> {
 
-	public GetAvailableClassesDatabaseAction(AccessMethod accessMethod) {
-		super(accessMethod);
+	public GetAvailableClassesDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod) {
+		super(bimDatabaseSession, accessMethod);
 	}
 
 	@Override
-	public List<String> execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
-		return bimDatabaseSession.getClassList();
+	public List<String> execute() throws UserException, BimDeadlockException, BimDatabaseException {
+		return getDatabaseSession().getClassList();
 	}
 }

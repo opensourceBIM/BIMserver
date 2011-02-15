@@ -22,20 +22,20 @@ public class CheckoutDatabaseAction extends BimDatabaseAction<IfcModel> {
 	private final long uoid;
 	private final long roid;
 
-	public CheckoutDatabaseAction(AccessMethod accessMethod, long uoid, long roid) {
-		super(accessMethod);
+	public CheckoutDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long uoid, long roid) {
+		super(null, accessMethod);
 		this.uoid = uoid;
 		this.roid = roid;
 	}
 
 	@Override
-	public IfcModel execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDatabaseException, BimDeadlockException {
+	public IfcModel execute() throws UserException, BimDatabaseException, BimDeadlockException {
 		DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
-		User user = bimDatabaseSession.getUserByUoid(uoid);
+		User user = getUserByUoid(uoid);
 		if (user.getUserType() == UserType.ANONYMOUS) {
 			throw new UserException("Anonymous user is never allowed to checkout revisions");
 		}
-		Revision revision = bimDatabaseSession.getVirtualRevision(roid);
+		Revision revision = getVirtualRevision(roid);
 		Project project = revision.getProject();
 		if (user.getHasRightsOn().contains(project)) {
 			for (Checkout checkout : revision.getCheckouts()) {
@@ -52,10 +52,10 @@ public class CheckoutDatabaseAction extends BimDatabaseAction<IfcModel> {
 					newCheckout.setUser(user);
 					newCheckout.setProject(project);
 					newCheckout.setRevision(revision);
-					bimDatabaseSession.store(checkout);
-					bimDatabaseSession.store(newCheckout);
-					bimDatabaseSession.store(project);
-					return realCheckout(project, revision, bimDatabaseSession, user);
+					getDatabaseSession().store(checkout);
+					getDatabaseSession().store(newCheckout);
+					getDatabaseSession().store(project);
+					return realCheckout(project, revision, getDatabaseSession(), user);
 				}
 			}
 			Checkout checkout = StoreFactory.eINSTANCE.createCheckout();
@@ -64,16 +64,16 @@ public class CheckoutDatabaseAction extends BimDatabaseAction<IfcModel> {
 			checkout.setUser(user);
 			checkout.setProject(project);
 			checkout.setRevision(revision);
-			bimDatabaseSession.store(checkout);
-			bimDatabaseSession.store(project);
-			return realCheckout(project, revision, bimDatabaseSession, user);
+			getDatabaseSession().store(checkout);
+			getDatabaseSession().store(project);
+			return realCheckout(project, revision, getDatabaseSession(), user);
 		} else {
 			throw new UserException("Insufficient rights to checkout this project");
 		}
 	}
 
 	private IfcModel realCheckout(Project project, Revision revision, BimDatabaseSession bimDatabaseSession, User user) throws BimDeadlockException, BimDatabaseException {
-		IfcModel IfcModel = bimDatabaseSession.getMap(project.getId(), revision.getLastConcreteRevision().getId());
+		IfcModel IfcModel = bimDatabaseSession.getMap(project.getId(), revision.getLastConcreteRevision().getId(), false);
 		IfcModel.setRevisionNr(project.getRevisions().indexOf(revision) + 1);
 		IfcModel.setAuthorizedUser(user.getName());
 		IfcModel.setDate(new Date());

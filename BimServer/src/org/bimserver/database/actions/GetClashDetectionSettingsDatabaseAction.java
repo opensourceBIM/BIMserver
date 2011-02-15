@@ -16,16 +16,16 @@ public class GetClashDetectionSettingsDatabaseAction extends BimDatabaseAction<C
 	private final long cdsoid;
 	private final long actingUoid;
 
-	public GetClashDetectionSettingsDatabaseAction(AccessMethod accessMethod, long actingUoid, long cdsoid) {
-		super(accessMethod);
+	public GetClashDetectionSettingsDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long actingUoid, long cdsoid) {
+		super(bimDatabaseSession, accessMethod);
 		this.actingUoid = actingUoid;
 		this.cdsoid = cdsoid;
 	}
 
 	@Override
-	public ClashDetectionSettings execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
-		User actingUser = bimDatabaseSession.getUserByUoid(actingUoid);
-		ClashDetectionSettings clashDetectionSettings = (ClashDetectionSettings) bimDatabaseSession.get(bimDatabaseSession.getCid(StorePackage.eINSTANCE.getClashDetectionSettings()), cdsoid);
+	public ClashDetectionSettings execute() throws UserException, BimDeadlockException, BimDatabaseException {
+		User actingUser = getUserByUoid(actingUoid);
+		ClashDetectionSettings clashDetectionSettings = (ClashDetectionSettings) getDatabaseSession().get(StorePackage.eINSTANCE.getClashDetectionSettings(), cdsoid, false);
 		boolean hasRights = false;
 		for (Project project : clashDetectionSettings.getProjects()) {
 			if (RightsManager.hasRightsOnProject(actingUser, project)) {

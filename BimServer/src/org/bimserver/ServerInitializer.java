@@ -137,7 +137,7 @@ public class ServerInitializer implements ServletContextListener {
 			if (serverType == ServerType.DEV_ENVIRONMENT && columnDatabase.isNew()) {
 				BimDatabaseSession session = bimDatabase.createSession();
 				try {
-					new AddUserDatabaseAction(AccessMethod.INTERNAL, "test@bimserver.org", "test", "Test User", UserType.USER, -1, false).execute(session);
+					new AddUserDatabaseAction(session, AccessMethod.INTERNAL, "test@bimserver.org", "test", "Test User", UserType.USER, -1, false).execute();
 					session.commit();
 				} finally {
 					session.close();

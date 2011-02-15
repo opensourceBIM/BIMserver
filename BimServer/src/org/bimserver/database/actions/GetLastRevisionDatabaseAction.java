@@ -12,14 +12,14 @@ public class GetLastRevisionDatabaseAction extends BimDatabaseAction<Revision> {
 
 	private final int pid;
 
-	public GetLastRevisionDatabaseAction(AccessMethod accessMethod, int pid) {
-		super(accessMethod);
+	public GetLastRevisionDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, int pid) {
+		super(bimDatabaseSession, accessMethod);
 		this.pid = pid;
 	}
 
 	@Override
-	public Revision execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
-		Project project = bimDatabaseSession.getProjectById(pid);
+	public Revision execute() throws UserException, BimDeadlockException, BimDatabaseException {
+		Project project = getProjectById(pid);
 		if (project != null) {
 			return project.getLastRevision();
 		} else {

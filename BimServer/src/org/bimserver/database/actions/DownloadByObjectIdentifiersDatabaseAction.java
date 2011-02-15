@@ -25,26 +25,26 @@ public class DownloadByObjectIdentifiersDatabaseAction extends BimDatabaseAction
 	private final Set<ObjectIdentifier> oids;
 	private final Set<Long> roids;
 
-	public DownloadByObjectIdentifiersDatabaseAction(AccessMethod accessMethod, Set<Long> roids, Set<ObjectIdentifier> oids, long actingUoid) {
-		super(accessMethod);
+	public DownloadByObjectIdentifiersDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, Set<Long> roids, Set<ObjectIdentifier> oids, long actingUoid) {
+		super(bimDatabaseSession, accessMethod);
 		this.roids = roids;
 		this.oids = oids;
 		this.actingUoid = actingUoid;
 	}
 	
 	@Override
-	public IfcModel execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
-		User user = bimDatabaseSession.getUserByUoid(actingUoid);
+	public IfcModel execute() throws UserException, BimDeadlockException, BimDatabaseException {
+		User user = getUserByUoid(actingUoid);
 		IfcModelSet ifcModelSet = new IfcModelSet();
 		Project project = null;
 		for (Long roid : roids) {
-			Revision virtualRevision = bimDatabaseSession.getVirtualRevision(roid);
+			Revision virtualRevision = getVirtualRevision(roid);
 			project = virtualRevision.getProject();
 			if (!RightsManager.hasRightsOnProjectOrSuperProjectsOrSubProjects(user, project)) {
 				throw new UserException("User has insufficient rights to download revisions from this project");
 			}
 			for (ConcreteRevision concreteRevision : virtualRevision.getConcreteRevisions()) {
-				IfcModel model = bimDatabaseSession.getMapWithObjectIdentifiers(concreteRevision.getProject().getId(), concreteRevision.getId(), oids);
+				IfcModel model = getDatabaseSession().getMapWithObjectIdentifiers(concreteRevision.getProject().getId(), concreteRevision.getId(), oids, false);
 				ifcModelSet.add(model);
 				model.setDate(concreteRevision.getDate());
 //				for (ObjectIdentifier objectIdentifier : oids) {
@@ -56,7 +56,7 @@ public class DownloadByObjectIdentifiersDatabaseAction extends BimDatabaseAction
 		}
 		IfcModel ifcModel = new Merger().merge(project, ifcModelSet, ServerSettings.getSettings().isIntelligentMerging());
 		ifcModel.setRevisionNr(1);
-		ifcModel.setAuthorizedUser(bimDatabaseSession.getUserByUoid(actingUoid).getName());
+		ifcModel.setAuthorizedUser(getUserByUoid(actingUoid).getName());
 		ifcModel.setDate(new Date());
 		return ifcModel;
 	}

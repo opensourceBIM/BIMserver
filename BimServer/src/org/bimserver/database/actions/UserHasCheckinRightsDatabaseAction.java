@@ -14,18 +14,18 @@ public class UserHasCheckinRightsDatabaseAction extends BimDatabaseAction<Boolea
 	private final long uoid;
 	private final long poid;
 
-	public UserHasCheckinRightsDatabaseAction(AccessMethod accessMethod, long uoid, long poid) {
-		super(accessMethod);
+	public UserHasCheckinRightsDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long uoid, long poid) {
+		super(bimDatabaseSession, accessMethod);
 		this.uoid = uoid;
 		this.poid = poid;
 	}
 
 	@Override
-	public Boolean execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
-		User user = bimDatabaseSession.getUserByUoid(uoid);
+	public Boolean execute() throws UserException, BimDeadlockException, BimDatabaseException {
+		User user = getUserByUoid(uoid);
 		if (!MailSystem.isValidEmailAddress(user.getUsername())) {
 			return false;
 		}
-		return RightsManager.hasRightsOnProject(user, bimDatabaseSession.getProjectByPoid(poid));
+		return RightsManager.hasRightsOnProject(user, getProjectByPoid(poid));
 	}
 }

@@ -21,8 +21,8 @@ public abstract class GenericCheckinDatabaseAction extends BimDatabaseAction<Con
 
 	protected final IfcModel model;
 
-	public GenericCheckinDatabaseAction(AccessMethod accessMethod, IfcModel model) {
-		super(accessMethod);
+	public GenericCheckinDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, IfcModel model) {
+		super(bimDatabaseSession, accessMethod);
 		this.model = model;
 	}
 
@@ -41,9 +41,9 @@ public abstract class GenericCheckinDatabaseAction extends BimDatabaseAction<Con
 		concreteRevision.setSize(size);
 		Date date = new Date();
 		concreteRevision.setDate(date);
-		Project project = session.getProjectByPoid(poid);
+		Project project = getProjectByPoid(poid);
 		concreteRevision.setId(project.getConcreteRevisions().size() + 1);
-		User user = session.getUserByUoid(uoid);
+		User user = getUserByUoid(uoid);
 		concreteRevision.setProject(project);
 		concreteRevision.setState(checkinState);
 		createNewVirtualRevision(session, project, concreteRevision, comment, date, user, size, checkinState);

@@ -21,16 +21,16 @@ public class UpdateProjectDatabaseAction extends BimDatabaseAction<Void> {
 	private final SProject sProject;
 	private final long actingUoid;
 
-	public UpdateProjectDatabaseAction(AccessMethod accessMethod, long actingUoid, SProject sProject) {
-		super(accessMethod);
+	public UpdateProjectDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long actingUoid, SProject sProject) {
+		super(bimDatabaseSession, accessMethod);
 		this.actingUoid = actingUoid;
 		this.sProject = sProject;
 	}
 
 	@Override
-	public Void execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
-		User actingUser = bimDatabaseSession.getUserByUoid(actingUoid);
-		final Project project = bimDatabaseSession.getProjectByPoid(sProject.getOid());
+	public Void execute() throws UserException, BimDeadlockException, BimDatabaseException {
+		User actingUser = getUserByUoid(actingUoid);
+		final Project project = getProjectByPoid(sProject.getOid());
 		if (project == null) {
 			throw new UserException("Project with pid " + sProject.getOid() + " not found");
 		}
@@ -45,7 +45,7 @@ public class UpdateProjectDatabaseAction extends BimDatabaseAction<Void> {
 		}
 		if (project.getParent() == null) {
 			if (!sProject.getName().equals(project.getName())) {
-				for (Project p : bimDatabaseSession.getProjectsByName(sProject.getName())) {
+				for (Project p : getProjectsByName(sProject.getName())) {
 					if (p.getParent() == null) {
 						throw new UserException("Project name must be unique");
 					}
@@ -67,8 +67,8 @@ public class UpdateProjectDatabaseAction extends BimDatabaseAction<Void> {
 		projectUpdated.setDate(new Date());
 		projectUpdated.setExecutor(actingUser);
 		projectUpdated.setProject(project);
-		bimDatabaseSession.store(projectUpdated);
-		bimDatabaseSession.store(project);
+		getDatabaseSession().store(projectUpdated);
+		getDatabaseSession().store(project);
 		return null;
 	}
 }

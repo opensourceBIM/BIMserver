@@ -11,20 +11,20 @@ import org.bimserver.database.store.log.AccessMethod;
 import org.bimserver.rights.RightsManager;
 import org.bimserver.shared.UserException;
 
-public class GetProjectByPoidDatabaseAction extends BimDatabaseAction<Project> {
+public class GetProjectByNameDatabaseAction extends BimDatabaseAction<Project> {
 
 	private final long actionUoid;
-	private final long poid;
+	private final String name;
 
-	public GetProjectByPoidDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long poid, long actionUoid) {
+	public GetProjectByNameDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, String name, long actionUoid) {
 		super(bimDatabaseSession, accessMethod);
-		this.poid = poid;
+		this.name = name;
 		this.actionUoid = actionUoid;
 	}
 
 	@Override
 	public Project execute() throws UserException, BimDeadlockException, BimDatabaseException {
-		Project project = getProjectByPoid(poid);
+		Project project = getProjectByName(name);
 		if (project == null) {
 			throw new UserException("Project does not exist");
 		}

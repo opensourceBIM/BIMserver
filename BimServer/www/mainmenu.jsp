@@ -1,4 +1,3 @@
-<%@page import="org.bimserver.database.store.UserType"%>
 <%@page import="org.bimserver.interfaces.objects.SUserType"%>
 <jsp:useBean id="loginManager" scope="session" class="org.bimserver.web.LoginManager" />
 <a class="menu" href="main.jsp">Projects</a>

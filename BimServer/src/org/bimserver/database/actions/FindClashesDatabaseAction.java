@@ -46,9 +46,9 @@ public class FindClashesDatabaseAction extends BimDatabaseAction<Set<? extends C
 	private final SchemaDefinition schema;
 	private final ClashDetectionSettings clashDetectionSettings;
 
-	public FindClashesDatabaseAction(AccessMethod accessMethod, ClashDetectionSettings clashDetectionSettings, SchemaDefinition schema, IfcEngineFactory ifcEngineFactory,
+	public FindClashesDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, ClashDetectionSettings clashDetectionSettings, SchemaDefinition schema, IfcEngineFactory ifcEngineFactory,
 			long actingUoid) {
-		super(accessMethod);
+		super(bimDatabaseSession, accessMethod);
 		this.clashDetectionSettings = clashDetectionSettings;
 		this.schema = schema;
 		this.ifcEngineFactory = ifcEngineFactory;
@@ -56,7 +56,7 @@ public class FindClashesDatabaseAction extends BimDatabaseAction<Set<? extends C
 	}
 
 	@Override
-	public Set<? extends Clash> execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
+	public Set<? extends Clash> execute() throws UserException, BimDeadlockException, BimDatabaseException {
 		Map<Long, Revision> oidToRoidMap = new HashMap<Long, Revision>();
 
 		// Look in the cache
@@ -70,7 +70,7 @@ public class FindClashesDatabaseAction extends BimDatabaseAction<Set<? extends C
 		for (Revision revision : clashDetectionSettings.getRevisions()) {
 			project = revision.getProject();
 			for (ConcreteRevision concreteRevision : revision.getConcreteRevisions()) {
-				IfcModel source = bimDatabaseSession.getMap(concreteRevision.getProject().getId(), concreteRevision.getId());
+				IfcModel source = getDatabaseSession().getMap(concreteRevision.getProject().getId(), concreteRevision.getId(), false);
 				source.setDate(concreteRevision.getDate());
 				ifcModelSet.add(source);
 				for (Long oid : source.keySet()) {
@@ -84,7 +84,7 @@ public class FindClashesDatabaseAction extends BimDatabaseAction<Set<? extends C
 		for (IdEObject idEObject : ifcModel.getValues()) {
 			cleanupModel(idEObject, newModel, ifcModel, new HashSet<String>(clashDetectionSettings.getIgnoredClasses()), converted);
 		}
-		IfcStepSerializer ifcStepSerializer = new IfcStepSerializer(null, bimDatabaseSession.getUserByUoid(actingUoid), "", newModel, schema);
+		IfcStepSerializer ifcStepSerializer = new IfcStepSerializer(null, getUserByUoid(actingUoid), "", newModel, schema);
 		try {
 			byte[] bytes = ifcStepSerializer.getBytes();
 			FailSafeIfcEngine failSafeIfcEngine = ifcEngineFactory.createFailSafeIfcEngine();

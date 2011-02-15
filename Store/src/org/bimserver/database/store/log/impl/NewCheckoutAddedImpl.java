@@ -60,6 +60,8 @@ public class NewCheckoutAddedImpl extends LogActionImpl implements NewCheckoutAd
 			checkout = (Checkout)eResolveProxy(oldCheckout);
 			if (checkout != oldCheckout) {
 				eVirtualSet(LogPackage.NEW_CHECKOUT_ADDED__CHECKOUT, checkout);
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, LogPackage.NEW_CHECKOUT_ADDED__CHECKOUT, oldCheckout, checkout));
 			}
 		}
 		return checkout;
@@ -82,6 +84,8 @@ public class NewCheckoutAddedImpl extends LogActionImpl implements NewCheckoutAd
 	public void setCheckout(Checkout newCheckout) {
 		Checkout checkout = newCheckout;
 		Object oldCheckout = eVirtualSet(LogPackage.NEW_CHECKOUT_ADDED__CHECKOUT, checkout);
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, LogPackage.NEW_CHECKOUT_ADDED__CHECKOUT, oldCheckout == EVIRTUAL_NO_VALUE ? null : oldCheckout, checkout));
 	}
 
 	/**

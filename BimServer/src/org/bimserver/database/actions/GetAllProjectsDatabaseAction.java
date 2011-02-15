@@ -27,21 +27,21 @@ public class GetAllProjectsDatabaseAction extends BimDatabaseAction<Set<Project>
 
 	private final long actingUoid;
 
-	public GetAllProjectsDatabaseAction(AccessMethod accessMethod, long actingUoid) {
-		super(accessMethod);
+	public GetAllProjectsDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long actingUoid) {
+		super(bimDatabaseSession, accessMethod);
 		this.actingUoid = actingUoid;
 	}
 
 	@Override
-	public Set<Project> execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
-		User user = bimDatabaseSession.getUserByUoid(actingUoid);
+	public Set<Project> execute() throws UserException, BimDeadlockException, BimDatabaseException {
+		User user = getUserByUoid(actingUoid);
 		Condition condition = new IsOfTypeCondition(StorePackage.eINSTANCE.getProject()).and(
 				new Not(new AttributeCondition(StorePackage.eINSTANCE.getProject_Name(), new StringLiteral(Database.STORE_PROJECT_NAME)))).and(
 				new HasReferenceToCondition(StorePackage.eINSTANCE.getProject_HasAuthorizedUsers(), user));
 		if (user.getUserType() != UserType.ADMIN) {
 			condition = condition.and(new AttributeCondition(StorePackage.eINSTANCE.getProject_State(), new EnumLiteral(ObjectState.ACTIVE)));
 		}
-		Map<Long, Project> results = (Map<Long, Project>) bimDatabaseSession.query(condition, Project.class);
+		Map<Long, Project> results = (Map<Long, Project>) getDatabaseSession().query(condition, Project.class, false);
 		Set<Project> resultSet = CollectionUtils.mapToSet(results);
 		for (Project project : results.values()) {
 			addParentProjects(resultSet, project);

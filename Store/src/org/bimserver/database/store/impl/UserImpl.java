@@ -195,6 +195,8 @@ public class UserImpl extends IdEObjectImpl implements User {
 	public void setName(String newName) {
 		String name = newName;
 		Object oldName = eVirtualSet(StorePackage.USER__NAME, name);
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.USER__NAME, oldName == EVIRTUAL_NO_VALUE ? NAME_EDEFAULT : oldName, name));
 	}
 
 	/**
@@ -214,6 +216,8 @@ public class UserImpl extends IdEObjectImpl implements User {
 	public void setPassword(String newPassword) {
 		String password = newPassword;
 		Object oldPassword = eVirtualSet(StorePackage.USER__PASSWORD, password);
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.USER__PASSWORD, oldPassword == EVIRTUAL_NO_VALUE ? PASSWORD_EDEFAULT : oldPassword, password));
 	}
 
 	/**
@@ -225,7 +229,7 @@ public class UserImpl extends IdEObjectImpl implements User {
 	public EList<Project> getHasRightsOn() {
 		EList<Project> hasRightsOn = (EList<Project>)eVirtualGet(StorePackage.USER__HAS_RIGHTS_ON);
 		if (hasRightsOn == null) {
-			eVirtualSet(StorePackage.USER__HAS_RIGHTS_ON, hasRightsOn = new BasicInternalEList<Project>(Project.class));
+			eVirtualSet(StorePackage.USER__HAS_RIGHTS_ON, hasRightsOn = new EObjectWithInverseResolvingEList.ManyInverse<Project>(Project.class, this, StorePackage.USER__HAS_RIGHTS_ON, StorePackage.PROJECT__HAS_AUTHORIZED_USERS));
 		}
 		return hasRightsOn;
 	}
@@ -239,7 +243,7 @@ public class UserImpl extends IdEObjectImpl implements User {
 	public EList<ConcreteRevision> getRevisions() {
 		EList<ConcreteRevision> revisions = (EList<ConcreteRevision>)eVirtualGet(StorePackage.USER__REVISIONS);
 		if (revisions == null) {
-			eVirtualSet(StorePackage.USER__REVISIONS, revisions = new BasicInternalEList<ConcreteRevision>(ConcreteRevision.class));
+			eVirtualSet(StorePackage.USER__REVISIONS, revisions = new EObjectResolvingEList<ConcreteRevision>(ConcreteRevision.class, this, StorePackage.USER__REVISIONS));
 		}
 		return revisions;
 	}
@@ -261,6 +265,8 @@ public class UserImpl extends IdEObjectImpl implements User {
 	public void setState(ObjectState newState) {
 		ObjectState state = newState == null ? STATE_EDEFAULT : newState;
 		Object oldState = eVirtualSet(StorePackage.USER__STATE, state);
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.USER__STATE, oldState == EVIRTUAL_NO_VALUE ? STATE_EDEFAULT : oldState, state));
 	}
 
 	/**
@@ -280,6 +286,8 @@ public class UserImpl extends IdEObjectImpl implements User {
 	public void setCreatedOn(Date newCreatedOn) {
 		Date createdOn = newCreatedOn;
 		Object oldCreatedOn = eVirtualSet(StorePackage.USER__CREATED_ON, createdOn);
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.USER__CREATED_ON, oldCreatedOn == EVIRTUAL_NO_VALUE ? CREATED_ON_EDEFAULT : oldCreatedOn, createdOn));
 	}
 
 	/**
@@ -294,6 +302,8 @@ public class UserImpl extends IdEObjectImpl implements User {
 			createdBy = (User)eResolveProxy(oldCreatedBy);
 			if (createdBy != oldCreatedBy) {
 				eVirtualSet(StorePackage.USER__CREATED_BY, createdBy);
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StorePackage.USER__CREATED_BY, oldCreatedBy, createdBy));
 			}
 		}
 		return createdBy;
@@ -316,6 +326,8 @@ public class UserImpl extends IdEObjectImpl implements User {
 	public void setCreatedBy(User newCreatedBy) {
 		User createdBy = newCreatedBy;
 		Object oldCreatedBy = eVirtualSet(StorePackage.USER__CREATED_BY, createdBy);
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.USER__CREATED_BY, oldCreatedBy == EVIRTUAL_NO_VALUE ? null : oldCreatedBy, createdBy));
 	}
 
 	/**
@@ -335,6 +347,8 @@ public class UserImpl extends IdEObjectImpl implements User {
 	public void setUserType(UserType newUserType) {
 		UserType userType = newUserType == null ? USER_TYPE_EDEFAULT : newUserType;
 		Object oldUserType = eVirtualSet(StorePackage.USER__USER_TYPE, userType);
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.USER__USER_TYPE, oldUserType == EVIRTUAL_NO_VALUE ? USER_TYPE_EDEFAULT : oldUserType, userType));
 	}
 
 	/**
@@ -354,6 +368,8 @@ public class UserImpl extends IdEObjectImpl implements User {
 	public void setUsername(String newUsername) {
 		String username = newUsername;
 		Object oldUsername = eVirtualSet(StorePackage.USER__USERNAME, username);
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.USER__USERNAME, oldUsername == EVIRTUAL_NO_VALUE ? USERNAME_EDEFAULT : oldUsername, username));
 	}
 
 	/**
@@ -373,6 +389,8 @@ public class UserImpl extends IdEObjectImpl implements User {
 	public void setLastSeen(Date newLastSeen) {
 		Date lastSeen = newLastSeen;
 		Object oldLastSeen = eVirtualSet(StorePackage.USER__LAST_SEEN, lastSeen);
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.USER__LAST_SEEN, oldLastSeen == EVIRTUAL_NO_VALUE ? LAST_SEEN_EDEFAULT : oldLastSeen, lastSeen));
 	}
 
 	/**
@@ -392,6 +410,8 @@ public class UserImpl extends IdEObjectImpl implements User {
 	public void setValidationToken(String newValidationToken) {
 		String validationToken = newValidationToken;
 		Object oldValidationToken = eVirtualSet(StorePackage.USER__VALIDATION_TOKEN, validationToken);
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.USER__VALIDATION_TOKEN, oldValidationToken == EVIRTUAL_NO_VALUE ? VALIDATION_TOKEN_EDEFAULT : oldValidationToken, validationToken));
 	}
 
 	/**
@@ -411,6 +431,8 @@ public class UserImpl extends IdEObjectImpl implements User {
 	public void setValidationTokenCreated(Date newValidationTokenCreated) {
 		Date validationTokenCreated = newValidationTokenCreated;
 		Object oldValidationTokenCreated = eVirtualSet(StorePackage.USER__VALIDATION_TOKEN_CREATED, validationTokenCreated);
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.USER__VALIDATION_TOKEN_CREATED, oldValidationTokenCreated == EVIRTUAL_NO_VALUE ? VALIDATION_TOKEN_CREATED_EDEFAULT : oldValidationTokenCreated, validationTokenCreated));
 	}
 
 	/**

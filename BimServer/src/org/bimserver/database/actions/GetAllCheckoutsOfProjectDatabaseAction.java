@@ -21,15 +21,15 @@ public class GetAllCheckoutsOfProjectDatabaseAction extends BimDatabaseAction<Se
 	private final long poid;
 	private final boolean checkSubProjects;
 
-	public GetAllCheckoutsOfProjectDatabaseAction(AccessMethod accessMethod, long poid, boolean checkSubProjects) {
-		super(accessMethod);
+	public GetAllCheckoutsOfProjectDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long poid, boolean checkSubProjects) {
+		super(bimDatabaseSession, accessMethod);
 		this.poid = poid;
 		this.checkSubProjects = checkSubProjects;
 	}
 
 	@Override
-	public Set<Checkout> execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
-		Project project = bimDatabaseSession.getProjectByPoid(poid);
+	public Set<Checkout> execute() throws UserException, BimDeadlockException, BimDatabaseException {
+		Project project = getProjectByPoid(poid);
 		Set<Project> projects = new HashSet<Project>();
 		if (checkSubProjects) {
 			getSubProjects(project, projects);
@@ -37,7 +37,7 @@ public class GetAllCheckoutsOfProjectDatabaseAction extends BimDatabaseAction<Se
 			projects.add(project);
 		}
 		Condition condition = new HasReferenceToInCondition(StorePackage.eINSTANCE.getCheckout_Project(), projects);
-		Map<Long, Checkout> query = (Map<Long, Checkout>) bimDatabaseSession.query(condition, Checkout.class);
+		Map<Long, Checkout> query = (Map<Long, Checkout>) getDatabaseSession().query(condition, Checkout.class, false);
 		return CollectionUtils.mapToSet(query);
 	}
 	

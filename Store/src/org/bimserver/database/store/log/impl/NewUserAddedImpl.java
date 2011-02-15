@@ -60,6 +60,8 @@ public class NewUserAddedImpl extends LogActionImpl implements NewUserAdded {
 			user = (User)eResolveProxy(oldUser);
 			if (user != oldUser) {
 				eVirtualSet(LogPackage.NEW_USER_ADDED__USER, user);
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, LogPackage.NEW_USER_ADDED__USER, oldUser, user));
 			}
 		}
 		return user;
@@ -82,6 +84,8 @@ public class NewUserAddedImpl extends LogActionImpl implements NewUserAdded {
 	public void setUser(User newUser) {
 		User user = newUser;
 		Object oldUser = eVirtualSet(LogPackage.NEW_USER_ADDED__USER, user);
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, LogPackage.NEW_USER_ADDED__USER, oldUser == EVIRTUAL_NO_VALUE ? null : oldUser, user));
 	}
 
 	/**

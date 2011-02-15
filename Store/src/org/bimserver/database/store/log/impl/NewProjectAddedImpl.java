@@ -61,6 +61,8 @@ public class NewProjectAddedImpl extends LogActionImpl implements NewProjectAdde
 			project = (Project)eResolveProxy(oldProject);
 			if (project != oldProject) {
 				eVirtualSet(LogPackage.NEW_PROJECT_ADDED__PROJECT, project);
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, LogPackage.NEW_PROJECT_ADDED__PROJECT, oldProject, project));
 			}
 		}
 		return project;
@@ -83,6 +85,8 @@ public class NewProjectAddedImpl extends LogActionImpl implements NewProjectAdde
 	public void setProject(Project newProject) {
 		Project project = newProject;
 		Object oldProject = eVirtualSet(LogPackage.NEW_PROJECT_ADDED__PROJECT, project);
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, LogPackage.NEW_PROJECT_ADDED__PROJECT, oldProject == EVIRTUAL_NO_VALUE ? null : oldProject, project));
 	}
 
 	/**
@@ -97,6 +101,8 @@ public class NewProjectAddedImpl extends LogActionImpl implements NewProjectAdde
 			parentProject = (Project)eResolveProxy(oldParentProject);
 			if (parentProject != oldParentProject) {
 				eVirtualSet(LogPackage.NEW_PROJECT_ADDED__PARENT_PROJECT, parentProject);
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, LogPackage.NEW_PROJECT_ADDED__PARENT_PROJECT, oldParentProject, parentProject));
 			}
 		}
 		return parentProject;
@@ -119,6 +125,8 @@ public class NewProjectAddedImpl extends LogActionImpl implements NewProjectAdde
 	public void setParentProject(Project newParentProject) {
 		Project parentProject = newParentProject;
 		Object oldParentProject = eVirtualSet(LogPackage.NEW_PROJECT_ADDED__PARENT_PROJECT, parentProject);
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, LogPackage.NEW_PROJECT_ADDED__PARENT_PROJECT, oldParentProject == EVIRTUAL_NO_VALUE ? null : oldParentProject, parentProject));
 	}
 
 	/**

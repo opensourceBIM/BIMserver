@@ -30,19 +30,19 @@ public class RequestPasswordChangeDatabaseAction extends BimDatabaseAction<Void>
 
 	private final long uoid;
 
-	public RequestPasswordChangeDatabaseAction(AccessMethod accessMethod, long uoid) {
-		super(accessMethod);
+	public RequestPasswordChangeDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long uoid) {
+		super(bimDatabaseSession, accessMethod);
 		this.uoid = uoid;
 	}
 
 	@Override
-	public Void execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
-		final User user = bimDatabaseSession.getUserByUoid(uoid);
+	public Void execute() throws UserException, BimDeadlockException, BimDatabaseException {
+		final User user = getUserByUoid(uoid);
 		final String token = GeneratorUtils.generateToken();
 		user.setValidationToken(Hashers.getSha256Hash(token));
 		user.setValidationTokenCreated(new Date());
-		bimDatabaseSession.store(user);
-		bimDatabaseSession.addPostCommitAction(new PostCommitAction() {
+		getDatabaseSession().store(user);
+		getDatabaseSession().addPostCommitAction(new PostCommitAction() {
 			@Override
 			public void execute() throws UserException {
 				if (MailSystem.isValidEmailAddress(user.getUsername())) {

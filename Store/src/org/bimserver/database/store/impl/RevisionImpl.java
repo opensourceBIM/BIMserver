@@ -238,7 +238,10 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * @generated
 	 */
 	public void setId(int newId) {
+		int oldId = id;
 		id = newId;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.REVISION__ID, oldId, id));
 	}
 
 	/**
@@ -253,6 +256,8 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 			user = (User)eResolveProxy(oldUser);
 			if (user != oldUser) {
 				eVirtualSet(StorePackage.REVISION__USER, user);
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StorePackage.REVISION__USER, oldUser, user));
 			}
 		}
 		return user;
@@ -275,6 +280,8 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	public void setUser(User newUser) {
 		User user = newUser;
 		Object oldUser = eVirtualSet(StorePackage.REVISION__USER, user);
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.REVISION__USER, oldUser == EVIRTUAL_NO_VALUE ? null : oldUser, user));
 	}
 
 	/**
@@ -294,6 +301,8 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	public void setDate(Date newDate) {
 		Date date = newDate;
 		Object oldDate = eVirtualSet(StorePackage.REVISION__DATE, date);
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.REVISION__DATE, oldDate == EVIRTUAL_NO_VALUE ? DATE_EDEFAULT : oldDate, date));
 	}
 
 	/**
@@ -313,6 +322,8 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	public void setComment(String newComment) {
 		String comment = newComment;
 		Object oldComment = eVirtualSet(StorePackage.REVISION__COMMENT, comment);
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.REVISION__COMMENT, oldComment == EVIRTUAL_NO_VALUE ? COMMENT_EDEFAULT : oldComment, comment));
 	}
 
 	/**
@@ -330,7 +341,10 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * @generated
 	 */
 	public void setSize(long newSize) {
+		long oldSize = size;
 		size = newSize;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.REVISION__SIZE, oldSize, size));
 	}
 
 	/**
@@ -342,7 +356,7 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	public EList<ConcreteRevision> getConcreteRevisions() {
 		EList<ConcreteRevision> concreteRevisions = (EList<ConcreteRevision>)eVirtualGet(StorePackage.REVISION__CONCRETE_REVISIONS);
 		if (concreteRevisions == null) {
-			eVirtualSet(StorePackage.REVISION__CONCRETE_REVISIONS, concreteRevisions = new BasicInternalEList<ConcreteRevision>(ConcreteRevision.class));
+			eVirtualSet(StorePackage.REVISION__CONCRETE_REVISIONS, concreteRevisions = new EObjectWithInverseResolvingEList.ManyInverse<ConcreteRevision>(ConcreteRevision.class, this, StorePackage.REVISION__CONCRETE_REVISIONS, StorePackage.CONCRETE_REVISION__REVISIONS));
 		}
 		return concreteRevisions;
 	}
@@ -359,6 +373,8 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 			lastConcreteRevision = (ConcreteRevision)eResolveProxy(oldLastConcreteRevision);
 			if (lastConcreteRevision != oldLastConcreteRevision) {
 				eVirtualSet(StorePackage.REVISION__LAST_CONCRETE_REVISION, lastConcreteRevision);
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StorePackage.REVISION__LAST_CONCRETE_REVISION, oldLastConcreteRevision, lastConcreteRevision));
 			}
 		}
 		return lastConcreteRevision;
@@ -381,6 +397,8 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	public void setLastConcreteRevision(ConcreteRevision newLastConcreteRevision) {
 		ConcreteRevision lastConcreteRevision = newLastConcreteRevision;
 		Object oldLastConcreteRevision = eVirtualSet(StorePackage.REVISION__LAST_CONCRETE_REVISION, lastConcreteRevision);
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.REVISION__LAST_CONCRETE_REVISION, oldLastConcreteRevision == EVIRTUAL_NO_VALUE ? null : oldLastConcreteRevision, lastConcreteRevision));
 	}
 
 	/**
@@ -392,7 +410,7 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	public EList<Checkout> getCheckouts() {
 		EList<Checkout> checkouts = (EList<Checkout>)eVirtualGet(StorePackage.REVISION__CHECKOUTS);
 		if (checkouts == null) {
-			eVirtualSet(StorePackage.REVISION__CHECKOUTS, checkouts = new BasicInternalEList<Checkout>(Checkout.class));
+			eVirtualSet(StorePackage.REVISION__CHECKOUTS, checkouts = new EObjectWithInverseResolvingEList<Checkout>(Checkout.class, this, StorePackage.REVISION__CHECKOUTS, StorePackage.CHECKOUT__REVISION));
 		}
 		return checkouts;
 	}
@@ -409,6 +427,8 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 			project = (Project)eResolveProxy(oldProject);
 			if (project != oldProject) {
 				eVirtualSet(StorePackage.REVISION__PROJECT, project);
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StorePackage.REVISION__PROJECT, oldProject, project));
 			}
 		}
 		return project;
@@ -430,6 +450,10 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 */
 	public NotificationChain basicSetProject(Project newProject, NotificationChain msgs) {
 		Object oldProject = eVirtualSet(StorePackage.REVISION__PROJECT, newProject);
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, StorePackage.REVISION__PROJECT, oldProject == EVIRTUAL_NO_VALUE ? null : oldProject, newProject);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
 		return msgs;
 	}
 
@@ -449,6 +473,8 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 			msgs = basicSetProject(newProject, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.REVISION__PROJECT, newProject, newProject));
 	}
 
 	/**
@@ -468,6 +494,8 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	public void setState(CheckinState newState) {
 		CheckinState state = newState == null ? STATE_EDEFAULT : newState;
 		Object oldState = eVirtualSet(StorePackage.REVISION__STATE, state);
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.REVISION__STATE, oldState == EVIRTUAL_NO_VALUE ? STATE_EDEFAULT : oldState, state));
 	}
 
 	/**
@@ -479,7 +507,7 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	public EList<Clash> getLastClashes() {
 		EList<Clash> lastClashes = (EList<Clash>)eVirtualGet(StorePackage.REVISION__LAST_CLASHES);
 		if (lastClashes == null) {
-			eVirtualSet(StorePackage.REVISION__LAST_CLASHES, lastClashes = new BasicInternalEList<Clash>(Clash.class));
+			eVirtualSet(StorePackage.REVISION__LAST_CLASHES, lastClashes = new EObjectResolvingEList<Clash>(Clash.class, this, StorePackage.REVISION__LAST_CLASHES));
 		}
 		return lastClashes;
 	}
@@ -501,6 +529,8 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	public void setTag(String newTag) {
 		String tag = newTag;
 		Object oldTag = eVirtualSet(StorePackage.REVISION__TAG, tag);
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.REVISION__TAG, oldTag == EVIRTUAL_NO_VALUE ? TAG_EDEFAULT : oldTag, tag));
 	}
 
 	/**
@@ -520,6 +550,8 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	public void setLastError(String newLastError) {
 		String lastError = newLastError;
 		Object oldLastError = eVirtualSet(StorePackage.REVISION__LAST_ERROR, lastError);
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.REVISION__LAST_ERROR, oldLastError == EVIRTUAL_NO_VALUE ? LAST_ERROR_EDEFAULT : oldLastError, lastError));
 	}
 
 	/**
@@ -537,7 +569,10 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * @generated
 	 */
 	public void setBmi(int newBmi) {
+		int oldBmi = bmi;
 		bmi = newBmi;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.REVISION__BMI, oldBmi, bmi));
 	}
 
 	/**
@@ -555,7 +590,10 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * @generated
 	 */
 	public void setNrClashes(int newNrClashes) {
+		int oldNrClashes = nrClashes;
 		nrClashes = newNrClashes;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.REVISION__NR_CLASHES, oldNrClashes, nrClashes));
 	}
 
 	/**

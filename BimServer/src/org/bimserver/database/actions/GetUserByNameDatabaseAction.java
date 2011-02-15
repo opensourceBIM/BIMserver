@@ -15,14 +15,14 @@ public class GetUserByNameDatabaseAction extends BimDatabaseAction<User> {
 
 	private final String username;
 
-	public GetUserByNameDatabaseAction(AccessMethod accessMethod, String username) {
-		super(accessMethod);
+	public GetUserByNameDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, String username) {
+		super(bimDatabaseSession, accessMethod);
 		this.username = username;
 	}
 
 	@Override
-	public User execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
+	public User execute() throws UserException, BimDeadlockException, BimDatabaseException {
 		Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getUser_Username(), new StringLiteral(username));
-		return bimDatabaseSession.querySingle(condition, User.class);
+		return getDatabaseSession().querySingle(condition, User.class, false);
 	}
 }

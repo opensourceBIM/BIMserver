@@ -62,6 +62,8 @@ public class UserRemovedFromProjectImpl extends LogActionImpl implements UserRem
 			user = (User)eResolveProxy(oldUser);
 			if (user != oldUser) {
 				eVirtualSet(LogPackage.USER_REMOVED_FROM_PROJECT__USER, user);
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, LogPackage.USER_REMOVED_FROM_PROJECT__USER, oldUser, user));
 			}
 		}
 		return user;
@@ -84,6 +86,8 @@ public class UserRemovedFromProjectImpl extends LogActionImpl implements UserRem
 	public void setUser(User newUser) {
 		User user = newUser;
 		Object oldUser = eVirtualSet(LogPackage.USER_REMOVED_FROM_PROJECT__USER, user);
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, LogPackage.USER_REMOVED_FROM_PROJECT__USER, oldUser == EVIRTUAL_NO_VALUE ? null : oldUser, user));
 	}
 
 	/**
@@ -98,6 +102,8 @@ public class UserRemovedFromProjectImpl extends LogActionImpl implements UserRem
 			project = (Project)eResolveProxy(oldProject);
 			if (project != oldProject) {
 				eVirtualSet(LogPackage.USER_REMOVED_FROM_PROJECT__PROJECT, project);
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, LogPackage.USER_REMOVED_FROM_PROJECT__PROJECT, oldProject, project));
 			}
 		}
 		return project;
@@ -120,6 +126,8 @@ public class UserRemovedFromProjectImpl extends LogActionImpl implements UserRem
 	public void setProject(Project newProject) {
 		Project project = newProject;
 		Object oldProject = eVirtualSet(LogPackage.USER_REMOVED_FROM_PROJECT__PROJECT, project);
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, LogPackage.USER_REMOVED_FROM_PROJECT__PROJECT, oldProject == EVIRTUAL_NO_VALUE ? null : oldProject, project));
 	}
 
 	/**

@@ -83,6 +83,8 @@ public class GuidClashImpl extends ClashImpl implements GuidClash {
 	public void setGuid1(String newGuid1) {
 		String guid1 = newGuid1;
 		Object oldGuid1 = eVirtualSet(StorePackage.GUID_CLASH__GUID1, guid1);
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.GUID_CLASH__GUID1, oldGuid1 == EVIRTUAL_NO_VALUE ? GUID1_EDEFAULT : oldGuid1, guid1));
 	}
 
 	/**
@@ -102,6 +104,8 @@ public class GuidClashImpl extends ClashImpl implements GuidClash {
 	public void setGuid2(String newGuid2) {
 		String guid2 = newGuid2;
 		Object oldGuid2 = eVirtualSet(StorePackage.GUID_CLASH__GUID2, guid2);
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StorePackage.GUID_CLASH__GUID2, oldGuid2 == EVIRTUAL_NO_VALUE ? GUID2_EDEFAULT : oldGuid2, guid2));
 	}
 
 	/**

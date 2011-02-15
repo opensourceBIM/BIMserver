@@ -60,6 +60,8 @@ public class PasswordChangedImpl extends LogActionImpl implements PasswordChange
 			user = (User)eResolveProxy(oldUser);
 			if (user != oldUser) {
 				eVirtualSet(LogPackage.PASSWORD_CHANGED__USER, user);
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, LogPackage.PASSWORD_CHANGED__USER, oldUser, user));
 			}
 		}
 		return user;
@@ -82,6 +84,8 @@ public class PasswordChangedImpl extends LogActionImpl implements PasswordChange
 	public void setUser(User newUser) {
 		User user = newUser;
 		Object oldUser = eVirtualSet(LogPackage.PASSWORD_CHANGED__USER, user);
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, LogPackage.PASSWORD_CHANGED__USER, oldUser == EVIRTUAL_NO_VALUE ? null : oldUser, user));
 	}
 
 	/**

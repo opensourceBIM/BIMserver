@@ -26,7 +26,6 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 import org.bimserver.database.actions.AddUserDatabaseAction;
@@ -44,17 +43,9 @@ import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.FieldIgnoreMap;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.emf.Ifc2x3.Ifc2x3Package;
-import org.bimserver.shared.AbstractAttributeValuePair;
-import org.bimserver.shared.Addition;
-import org.bimserver.shared.AttributeList;
-import org.bimserver.shared.AttributeNewReferencePair;
-import org.bimserver.shared.AttributeReferencePair;
-import org.bimserver.shared.AttributeValuePair;
 import org.bimserver.shared.UserException;
 import org.bimserver.utils.BinUtils;
 import org.bimserver.utils.DoubleHashMap;
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EDataType;
@@ -138,9 +129,9 @@ public class Database implements BimDatabase {
 				databaseCreated.setVersion(databaseSchemaVersion);
 				databaseSession.store(databaseCreated);
 
-				new CreateBaseProject(AccessMethod.INTERNAL).execute(databaseSession);
-				new AddUserDatabaseAction(AccessMethod.INTERNAL, "admin", "admin", "Administrator", UserType.ADMIN, -1, false).execute(databaseSession);
-				new AddUserDatabaseAction(AccessMethod.INTERNAL, "anonymous", "anonymous", "Anonymous", UserType.ANONYMOUS, -1, false).execute(databaseSession);
+				new CreateBaseProject(databaseSession, AccessMethod.INTERNAL).execute();
+				new AddUserDatabaseAction(databaseSession, AccessMethod.INTERNAL, "admin", "admin", "Administrator", UserType.ADMIN, -1, false).execute();
+				new AddUserDatabaseAction(databaseSession, AccessMethod.INTERNAL, "anonymous", "anonymous", "Anonymous", UserType.ANONYMOUS, -1, false).execute();
 			} else {
 				initOidCounter(databaseSession);
 				initPidCounter(databaseSession);
@@ -175,7 +166,7 @@ public class Database implements BimDatabase {
 	private void fixCheckinStates(DatabaseSession databaseSession) {
 		LOGGER.info("Fixing broken checkin states");
 		try {
-			IfcModel model = databaseSession.getAllOfType(StorePackage.eINSTANCE.getRevision(), Database.STORE_PROJECT_ID, Database.STORE_PROJECT_REVISION_ID);
+			IfcModel model = databaseSession.getAllOfType(StorePackage.eINSTANCE.getRevision(), Database.STORE_PROJECT_ID, Database.STORE_PROJECT_REVISION_ID, false);
 			for (IdEObject idEObject : model.getValues()) {
 				if (idEObject instanceof Revision) {
 					Revision revision = (Revision)idEObject;
@@ -380,79 +371,26 @@ public class Database implements BimDatabase {
 		return null;
 	}
 
-	@SuppressWarnings("unchecked")
-	public EObject convertAdditionToEObject(IdEObject object, Addition addition, Map<Long, IdEObject> processedAdditions, IfcModel model) {
-		for (AbstractAttributeValuePair aavp : addition.getAttributes()) {
-			EStructuralFeature feature = object.eClass().getEStructuralFeature(aavp.getName());
-			if (aavp instanceof AttributeValuePair) {
-				Object value = ((AttributeValuePair) aavp).getValue();
-				if (value != null) {
-					EStructuralFeature structuralFeature = ((EClass) feature.getEType()).getEStructuralFeature(WRAPPED_VALUE);
-					if (structuralFeature != null) {
-						Object convert = convert(feature.getEType(), value.toString());
-						object.eSet(feature, convert);
-					} else {
-						object.eSet(feature, value);
-					}
-				}
-			} else if (aavp instanceof AttributeNewReferencePair) {
-				AttributeNewReferencePair aavp2 = (AttributeNewReferencePair) aavp;
-				EObject item = processedAdditions.get(aavp2.getOid());
-				if (feature.getUpperBound() == -1) {
-					EList<EObject> list = (EList<EObject>) object.eGet(feature);
-					list.add(item);
-				} else {
-					object.eSet(feature, item);
-				}
-			} else if (aavp instanceof AttributeReferencePair) {
-				EObject newValue = model.get(((AttributeReferencePair) aavp).getOid());
-				object.eSet(feature, newValue);
-			} else if (aavp instanceof AttributeList) {
-				BasicEList<Object> list = new BasicEList<Object>();
-				AttributeList attributeList = (AttributeList) aavp;
-				for (AbstractAttributeValuePair pair : attributeList.getAttributes()) {
-					if (pair instanceof AttributeValuePair) {
-						AttributeValuePair avp = (AttributeValuePair) pair;
-						Object value = avp.getValue();
-						if (value != null) {
-							EStructuralFeature structuralFeature = ((EClass) feature.getEType()).getEStructuralFeature(WRAPPED_VALUE);
-							if (structuralFeature != null) {
-								Object convert = convert(feature.getEType(), value.toString());
-								list.add(convert);
-							} else {
-								list.add(value);
-							}
-						}
-					} else if (pair instanceof AttributeReferencePair) {
-						AttributeReferencePair arp = (AttributeReferencePair) pair;
-						EObject object2 = model.get(arp.getOid());
-						list.add(object2);
-					} else if (pair instanceof AttributeNewReferencePair) {
-						AttributeNewReferencePair anrp = (AttributeNewReferencePair) pair;
-						EObject object2 = processedAdditions.get(anrp.getOid());
-						if (object2 != null) {
-							list.add(object2);
-						}
-					}
-				}
-				object.eSet(feature, list);
-			}
-		}
-		return object;
-	}
-
 	public List<String> getAvailableClasses() {
 		return realClasses;
 	}
 
 	public DatabaseSession createSession() {
-		DatabaseSession databaseSession = new DatabaseSession(this, columnDatabase.startTransaction(), false);
+		return createSession(true);
+	}
+	
+	public DatabaseSession createSession(boolean lazyLoading) {
+		DatabaseSession databaseSession = new DatabaseSession(this, columnDatabase.startTransaction(), false, lazyLoading);
 		sessions.add(databaseSession);
 		return databaseSession;
 	}
 
 	public BimDatabaseSession createReadOnlySession() {
-		DatabaseSession databaseSession = new DatabaseSession(this, null, true);
+		return createReadOnlySession(true);
+	}
+	
+	public BimDatabaseSession createReadOnlySession(boolean lazyLoading) {
+		DatabaseSession databaseSession = new DatabaseSession(this, null, true, lazyLoading);
 		sessions.add(databaseSession);
 		return databaseSession;
 	}

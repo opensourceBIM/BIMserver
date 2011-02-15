@@ -18,16 +18,16 @@ public class GetSubProjectsDatabaseAction extends BimDatabaseAction<Set<Project>
 	private final long actingUoid;
 	private final long poid;
 
-	public GetSubProjectsDatabaseAction(AccessMethod accessMethod, long actingUoid, long poid) {
-		super(accessMethod);
+	public GetSubProjectsDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long actingUoid, long poid) {
+		super(bimDatabaseSession, accessMethod);
 		this.actingUoid = actingUoid;
 		this.poid = poid;
 	}
 
 	@Override
-	public Set<Project> execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
-		User user = bimDatabaseSession.getUserByUoid(actingUoid);
-		Project project = bimDatabaseSession.getProjectByPoid(poid);
+	public Set<Project> execute() throws UserException, BimDeadlockException, BimDatabaseException {
+		User user = getUserByUoid(actingUoid);
+		Project project = getProjectByPoid(poid);
 		if (!RightsManager.hasRightsOnProjectOrSuperProjectsOrSubProjects(user, project)) {
 			throw new UserException("User has no rights on project");
 		}

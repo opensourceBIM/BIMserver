@@ -22,24 +22,24 @@ public class DownloadProjectsDatabaseAction extends BimDatabaseAction<IfcModel> 
 	private final long actingUoid;
 	private final Set<Long> roids;
 
-	public DownloadProjectsDatabaseAction(AccessMethod accessMethod, Set<Long> roids, long actingUoid) {
-		super(accessMethod);
+	public DownloadProjectsDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, Set<Long> roids, long actingUoid) {
+		super(bimDatabaseSession, accessMethod);
 		this.roids = roids;
 		this.actingUoid = actingUoid;
 	}
 
 	@Override
-	public IfcModel execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
-		User user = bimDatabaseSession.getUserByUoid(actingUoid);
+	public IfcModel execute() throws UserException, BimDeadlockException, BimDatabaseException {
+		User user = getUserByUoid(actingUoid);
 		Project project = null;
 		String projectName = "";
 		IfcModelSet ifcModelSet = new IfcModelSet();
 		for (long roid : roids) {
-			Revision revision = bimDatabaseSession.getVirtualRevision(roid);
+			Revision revision = getVirtualRevision(roid);
 			project = revision.getProject();
 			if (RightsManager.hasRightsOnProjectOrSuperProjectsOrSubProjects(user, project)) {
 				for (ConcreteRevision concreteRevision : revision.getConcreteRevisions()) {
-					IfcModel subModel = bimDatabaseSession.getMap(concreteRevision.getProject().getId(), concreteRevision.getId());
+					IfcModel subModel = getDatabaseSession().getMap(concreteRevision.getProject().getId(), concreteRevision.getId(), false);
 					projectName += concreteRevision.getProject().getName() + "-";
 					subModel.setDate(concreteRevision.getDate());
 					ifcModelSet.add(subModel);

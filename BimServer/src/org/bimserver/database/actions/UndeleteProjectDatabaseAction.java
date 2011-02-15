@@ -19,16 +19,16 @@ public class UndeleteProjectDatabaseAction extends BimDatabaseAction<Boolean> {
 	private final long actingUoid;
 	private final long poid;
 
-	public UndeleteProjectDatabaseAction(AccessMethod accessMethod, long poid, long actingUoid) {
-		super(accessMethod);
+	public UndeleteProjectDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long poid, long actingUoid) {
+		super(bimDatabaseSession, accessMethod);
 		this.poid = poid;
 		this.actingUoid = actingUoid;
 	}
 
 	@Override
-	public Boolean execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDatabaseException, BimDeadlockException {
-		User actingUser = bimDatabaseSession.getUserByUoid(actingUoid);
-		final Project project = bimDatabaseSession.getProjectByPoid(poid);
+	public Boolean execute() throws UserException, BimDatabaseException, BimDeadlockException {
+		User actingUser = getUserByUoid(actingUoid);
+		final Project project = getProjectByPoid(poid);
 		if (actingUser.getUserType() == UserType.ADMIN || actingUser.getHasRightsOn().contains(project)) {
 			project.setState(ObjectState.ACTIVE);
 			ProjectUndeleted projectUndeleted = LogFactory.eINSTANCE.createProjectUndeleted();
@@ -36,8 +36,8 @@ public class UndeleteProjectDatabaseAction extends BimDatabaseAction<Boolean> {
 			projectUndeleted.setDate(new Date());
 			projectUndeleted.setExecutor(actingUser);
 			projectUndeleted.setProject(project);
-			bimDatabaseSession.store(project);
-			bimDatabaseSession.store(projectUndeleted);
+			getDatabaseSession().store(project);
+			getDatabaseSession().store(projectUndeleted);
 			return true;
 		} else {
 			throw new UserException("No rights to undelete this project");

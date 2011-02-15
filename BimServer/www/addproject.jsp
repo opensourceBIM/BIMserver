@@ -4,12 +4,10 @@
 <%@page import="java.text.SimpleDateFormat" %>
 <%@page import="org.bimserver.utils.Formatters"%>
 <%@page import="org.bimserver.shared.UserException"%>
-<%@page import="org.bimserver.database.store.GeoTag"%>
 <%@page import="org.bimserver.web.JspHelper"%>
 <%@page import="org.bimserver.interfaces.objects.SGeoTag"%>
 <%@page import="org.bimserver.interfaces.objects.SClashDetectionSettings"%>
 <%@page import="org.bimserver.interfaces.objects.SProject"%>
-<%@page import="org.bimserver.database.store.ClashDetectionSettings"%>
 <%@page import="org.bimserver.interfaces.objects.SUserType"%>
 <%@ include file="header.jsp" %>
 <!-- start map scripts - many thanks to Bart vd Eijnden www.osgis.nl -->

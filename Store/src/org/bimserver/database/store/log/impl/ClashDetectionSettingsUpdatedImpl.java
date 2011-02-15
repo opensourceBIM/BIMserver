@@ -60,6 +60,8 @@ public class ClashDetectionSettingsUpdatedImpl extends LogActionImpl implements 
 			clashDetectionSettings = (ClashDetectionSettings)eResolveProxy(oldClashDetectionSettings);
 			if (clashDetectionSettings != oldClashDetectionSettings) {
 				eVirtualSet(LogPackage.CLASH_DETECTION_SETTINGS_UPDATED__CLASH_DETECTION_SETTINGS, clashDetectionSettings);
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, LogPackage.CLASH_DETECTION_SETTINGS_UPDATED__CLASH_DETECTION_SETTINGS, oldClashDetectionSettings, clashDetectionSettings));
 			}
 		}
 		return clashDetectionSettings;
@@ -82,6 +84,8 @@ public class ClashDetectionSettingsUpdatedImpl extends LogActionImpl implements 
 	public void setClashDetectionSettings(ClashDetectionSettings newClashDetectionSettings) {
 		ClashDetectionSettings clashDetectionSettings = newClashDetectionSettings;
 		Object oldClashDetectionSettings = eVirtualSet(LogPackage.CLASH_DETECTION_SETTINGS_UPDATED__CLASH_DETECTION_SETTINGS, clashDetectionSettings);
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, LogPackage.CLASH_DETECTION_SETTINGS_UPDATED__CLASH_DETECTION_SETTINGS, oldClashDetectionSettings == EVIRTUAL_NO_VALUE ? null : oldClashDetectionSettings, clashDetectionSettings));
 	}
 
 	/**

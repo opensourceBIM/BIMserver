@@ -13,16 +13,16 @@ import org.bimserver.shared.UserException;
 
 public class CreateBaseProject extends BimDatabaseAction<Project>{
 
-	public CreateBaseProject(AccessMethod accessMethod) {
-		super(accessMethod);
+	public CreateBaseProject(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod) {
+		super(bimDatabaseSession, accessMethod);
 	}
 
 	@Override
-	public Project execute(BimDatabaseSession bimDatabaseSession) throws UserException, BimDatabaseException, BimDeadlockException {
+	public Project execute() throws UserException, BimDatabaseException, BimDeadlockException {
 		final Project project = StoreFactory.eINSTANCE.createProject();
 		project.setName(Database.STORE_PROJECT_NAME);
 		project.setCreatedDate(new Date());
-		bimDatabaseSession.store(project);
+		getDatabaseSession().store(project);
 		return project;
 	}
 }
