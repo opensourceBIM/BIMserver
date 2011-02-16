@@ -32,41 +32,11 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class DownloadImpl extends LogActionImpl implements Download {
 	/**
-	 * The default value of the '{@link #getType() <em>Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getType()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String TYPE_EDEFAULT = null;
-
-	/**
-	 * The default value of the '{@link #isZipped() <em>Zipped</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isZipped()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean ZIPPED_EDEFAULT = false;
-
-	/**
-	 * The cached value of the '{@link #isZipped() <em>Zipped</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isZipped()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean zipped = ZIPPED_EDEFAULT;
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DownloadImpl() {
+	protected DownloadImpl() {
 		super();
 	}
 
@@ -86,26 +56,7 @@ public class DownloadImpl extends LogActionImpl implements Download {
 	 * @generated
 	 */
 	public Revision getRevision() {
-		Revision revision = (Revision)eVirtualGet(LogPackage.DOWNLOAD__REVISION);
-		if (revision != null && ((EObject)revision).eIsProxy()) {
-			InternalEObject oldRevision = (InternalEObject)revision;
-			revision = (Revision)eResolveProxy(oldRevision);
-			if (revision != oldRevision) {
-				eVirtualSet(LogPackage.DOWNLOAD__REVISION, revision);
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, LogPackage.DOWNLOAD__REVISION, oldRevision, revision));
-			}
-		}
-		return revision;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Revision basicGetRevision() {
-		return (Revision)eVirtualGet(LogPackage.DOWNLOAD__REVISION);
+		return (Revision) eGet(LogPackage.Literals.DOWNLOAD__REVISION, true);
 	}
 
 	/**
@@ -114,10 +65,7 @@ public class DownloadImpl extends LogActionImpl implements Download {
 	 * @generated
 	 */
 	public void setRevision(Revision newRevision) {
-		Revision revision = newRevision;
-		Object oldRevision = eVirtualSet(LogPackage.DOWNLOAD__REVISION, revision);
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, LogPackage.DOWNLOAD__REVISION, oldRevision == EVIRTUAL_NO_VALUE ? null : oldRevision, revision));
+		eSet(LogPackage.Literals.DOWNLOAD__REVISION, newRevision);
 	}
 
 	/**
@@ -126,7 +74,7 @@ public class DownloadImpl extends LogActionImpl implements Download {
 	 * @generated
 	 */
 	public String getType() {
-		return (String)eVirtualGet(LogPackage.DOWNLOAD__TYPE, TYPE_EDEFAULT);
+		return (String) eGet(LogPackage.Literals.DOWNLOAD__TYPE, true);
 	}
 
 	/**
@@ -135,10 +83,7 @@ public class DownloadImpl extends LogActionImpl implements Download {
 	 * @generated
 	 */
 	public void setType(String newType) {
-		String type = newType;
-		Object oldType = eVirtualSet(LogPackage.DOWNLOAD__TYPE, type);
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, LogPackage.DOWNLOAD__TYPE, oldType == EVIRTUAL_NO_VALUE ? TYPE_EDEFAULT : oldType, type));
+		eSet(LogPackage.Literals.DOWNLOAD__TYPE, newType);
 	}
 
 	/**
@@ -147,7 +92,7 @@ public class DownloadImpl extends LogActionImpl implements Download {
 	 * @generated
 	 */
 	public boolean isZipped() {
-		return zipped;
+		return (Boolean) eGet(LogPackage.Literals.DOWNLOAD__ZIPPED, true);
 	}
 
 	/**
@@ -156,108 +101,7 @@ public class DownloadImpl extends LogActionImpl implements Download {
 	 * @generated
 	 */
 	public void setZipped(boolean newZipped) {
-		boolean oldZipped = zipped;
-		zipped = newZipped;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, LogPackage.DOWNLOAD__ZIPPED, oldZipped, zipped));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case LogPackage.DOWNLOAD__REVISION:
-				if (resolve) return getRevision();
-				return basicGetRevision();
-			case LogPackage.DOWNLOAD__TYPE:
-				return getType();
-			case LogPackage.DOWNLOAD__ZIPPED:
-				return isZipped();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case LogPackage.DOWNLOAD__REVISION:
-				setRevision((Revision)newValue);
-				return;
-			case LogPackage.DOWNLOAD__TYPE:
-				setType((String)newValue);
-				return;
-			case LogPackage.DOWNLOAD__ZIPPED:
-				setZipped((Boolean)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void eUnset(int featureID) {
-		switch (featureID) {
-			case LogPackage.DOWNLOAD__REVISION:
-				setRevision((Revision)null);
-				return;
-			case LogPackage.DOWNLOAD__TYPE:
-				setType(TYPE_EDEFAULT);
-				return;
-			case LogPackage.DOWNLOAD__ZIPPED:
-				setZipped(ZIPPED_EDEFAULT);
-				return;
-		}
-		super.eUnset(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case LogPackage.DOWNLOAD__REVISION:
-				return eVirtualGet(LogPackage.DOWNLOAD__REVISION) != null;
-			case LogPackage.DOWNLOAD__TYPE:
-				String type = (String)eVirtualGet(LogPackage.DOWNLOAD__TYPE, TYPE_EDEFAULT);
-				return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
-			case LogPackage.DOWNLOAD__ZIPPED:
-				return zipped != ZIPPED_EDEFAULT;
-		}
-		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (type: ");
-		result.append(eVirtualGet(LogPackage.DOWNLOAD__TYPE, TYPE_EDEFAULT));
-		result.append(", zipped: ");
-		result.append(zipped);
-		result.append(')');
-		return result.toString();
+		eSet(LogPackage.Literals.DOWNLOAD__ZIPPED, newZipped);
 	}
 
 } //DownloadImpl

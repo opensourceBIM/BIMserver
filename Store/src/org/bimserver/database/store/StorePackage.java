@@ -1098,7 +1098,6 @@ public interface StorePackage extends EPackage {
 	 */
 	int USER_TYPE = 11;
 
-
 	/**
 	 * The meta object id for the '{@link org.bimserver.database.store.SIPrefix <em>SI Prefix</em>}' enum.
 	 * <!-- begin-user-doc -->
@@ -1109,7 +1108,6 @@ public interface StorePackage extends EPackage {
 	 */
 	int SI_PREFIX = 12;
 
-
 	/**
 	 * The meta object id for the '{@link org.bimserver.database.store.CheckinState <em>Checkin State</em>}' enum.
 	 * <!-- begin-user-doc -->
@@ -1119,7 +1117,6 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 */
 	int CHECKIN_STATE = 13;
-
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.database.store.Project <em>Project</em>}'.

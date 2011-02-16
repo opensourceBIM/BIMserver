@@ -56,12 +56,11 @@ public class LogFactoryImpl extends EFactoryImpl implements LogFactory {
 	 */
 	public static LogFactory init() {
 		try {
-			LogFactory theLogFactory = (LogFactory)EPackage.Registry.INSTANCE.getEFactory("log"); 
+			LogFactory theLogFactory = (LogFactory) EPackage.Registry.INSTANCE.getEFactory("log");
 			if (theLogFactory != null) {
 				return theLogFactory;
 			}
-		}
-		catch (Exception exception) {
+		} catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new LogFactoryImpl();
@@ -85,32 +84,56 @@ public class LogFactoryImpl extends EFactoryImpl implements LogFactory {
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case LogPackage.SERVER_LOG: return (EObject)createServerLog();
-			case LogPackage.LOG_ACTION: return (EObject)createLogAction();
-			case LogPackage.NEW_USER_ADDED: return (EObject)createNewUserAdded();
-			case LogPackage.NEW_PROJECT_ADDED: return (EObject)createNewProjectAdded();
-			case LogPackage.NEW_REVISION_ADDED: return (EObject)createNewRevisionAdded();
-			case LogPackage.NEW_CHECKOUT_ADDED: return (EObject)createNewCheckoutAdded();
-			case LogPackage.SETTINGS_SAVED: return (EObject)createSettingsSaved();
-			case LogPackage.USER_ADDED_TO_PROJECT: return (EObject)createUserAddedToProject();
-			case LogPackage.NEW_IGNORE_FILE_UPLOADED: return (EObject)createNewIgnoreFileUploaded();
-			case LogPackage.DOWNLOAD: return (EObject)createDownload();
-			case LogPackage.USER_REMOVED_FROM_PROJECT: return (EObject)createUserRemovedFromProject();
-			case LogPackage.PROJECT_DELETED: return (EObject)createProjectDeleted();
-			case LogPackage.USER_DELETED: return (EObject)createUserDeleted();
-			case LogPackage.PASSWORD_RESET: return (EObject)createPasswordReset();
-			case LogPackage.DATABASE_CREATED: return (EObject)createDatabaseCreated();
-			case LogPackage.SERVER_STARTED: return (EObject)createServerStarted();
-			case LogPackage.PROJECT_UPDATED: return (EObject)createProjectUpdated();
-			case LogPackage.USER_UNDELETED: return (EObject)createUserUndeleted();
-			case LogPackage.PROJECT_UNDELETED: return (EObject)createProjectUndeleted();
-			case LogPackage.REVISION_UPDATED: return (EObject)createRevisionUpdated();
-			case LogPackage.GEO_TAG_UPDATED: return (EObject)createGeoTagUpdated();
-			case LogPackage.CLASH_DETECTION_SETTINGS_UPDATED: return (EObject)createClashDetectionSettingsUpdated();
-			case LogPackage.PASSWORD_CHANGED: return (EObject)createPasswordChanged();
-			case LogPackage.USER_CHANGED: return (EObject)createUserChanged();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		case LogPackage.SERVER_LOG:
+			return (EObject) createServerLog();
+		case LogPackage.LOG_ACTION:
+			return (EObject) createLogAction();
+		case LogPackage.NEW_USER_ADDED:
+			return (EObject) createNewUserAdded();
+		case LogPackage.NEW_PROJECT_ADDED:
+			return (EObject) createNewProjectAdded();
+		case LogPackage.NEW_REVISION_ADDED:
+			return (EObject) createNewRevisionAdded();
+		case LogPackage.NEW_CHECKOUT_ADDED:
+			return (EObject) createNewCheckoutAdded();
+		case LogPackage.SETTINGS_SAVED:
+			return (EObject) createSettingsSaved();
+		case LogPackage.USER_ADDED_TO_PROJECT:
+			return (EObject) createUserAddedToProject();
+		case LogPackage.NEW_IGNORE_FILE_UPLOADED:
+			return (EObject) createNewIgnoreFileUploaded();
+		case LogPackage.DOWNLOAD:
+			return (EObject) createDownload();
+		case LogPackage.USER_REMOVED_FROM_PROJECT:
+			return (EObject) createUserRemovedFromProject();
+		case LogPackage.PROJECT_DELETED:
+			return (EObject) createProjectDeleted();
+		case LogPackage.USER_DELETED:
+			return (EObject) createUserDeleted();
+		case LogPackage.PASSWORD_RESET:
+			return (EObject) createPasswordReset();
+		case LogPackage.DATABASE_CREATED:
+			return (EObject) createDatabaseCreated();
+		case LogPackage.SERVER_STARTED:
+			return (EObject) createServerStarted();
+		case LogPackage.PROJECT_UPDATED:
+			return (EObject) createProjectUpdated();
+		case LogPackage.USER_UNDELETED:
+			return (EObject) createUserUndeleted();
+		case LogPackage.PROJECT_UNDELETED:
+			return (EObject) createProjectUndeleted();
+		case LogPackage.REVISION_UPDATED:
+			return (EObject) createRevisionUpdated();
+		case LogPackage.GEO_TAG_UPDATED:
+			return (EObject) createGeoTagUpdated();
+		case LogPackage.CLASH_DETECTION_SETTINGS_UPDATED:
+			return (EObject) createClashDetectionSettingsUpdated();
+		case LogPackage.PASSWORD_CHANGED:
+			return (EObject) createPasswordChanged();
+		case LogPackage.USER_CHANGED:
+			return (EObject) createUserChanged();
+		default:
+			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -122,10 +145,10 @@ public class LogFactoryImpl extends EFactoryImpl implements LogFactory {
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
-			case LogPackage.ACCESS_METHOD:
-				return createAccessMethodFromString(eDataType, initialValue);
-			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		case LogPackage.ACCESS_METHOD:
+			return createAccessMethodFromString(eDataType, initialValue);
+		default:
+			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -137,10 +160,10 @@ public class LogFactoryImpl extends EFactoryImpl implements LogFactory {
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
-			case LogPackage.ACCESS_METHOD:
-				return convertAccessMethodToString(eDataType, instanceValue);
-			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		case LogPackage.ACCESS_METHOD:
+			return convertAccessMethodToString(eDataType, instanceValue);
+		default:
+			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -391,7 +414,8 @@ public class LogFactoryImpl extends EFactoryImpl implements LogFactory {
 	 */
 	public AccessMethod createAccessMethodFromString(EDataType eDataType, String initialValue) {
 		AccessMethod result = AccessMethod.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		if (result == null)
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -410,7 +434,7 @@ public class LogFactoryImpl extends EFactoryImpl implements LogFactory {
 	 * @generated
 	 */
 	public LogPackage getLogPackage() {
-		return (LogPackage)getEPackage();
+		return (LogPackage) getEPackage();
 	}
 
 	/**

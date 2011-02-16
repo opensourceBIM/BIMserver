@@ -51,21 +51,21 @@ public enum AccessMethod implements Enumerator {
 	 * @ordered
 	 */
 	INTERNAL(2, "INTERNAL", "INTERNAL"), /**
-	 * The '<em><b>REST</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #REST_VALUE
-	 * @generated
-	 * @ordered
-	 */
+											 * The '<em><b>REST</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #REST_VALUE
+											 * @generated
+											 * @ordered
+											 */
 	REST(3, "REST", "REST"), /**
-	 * The '<em><b>SYNDICATION</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SYNDICATION_VALUE
-	 * @generated
-	 * @ordered
-	 */
+								 * The '<em><b>SYNDICATION</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #SYNDICATION_VALUE
+								 * @generated
+								 * @ordered
+								 */
 	SYNDICATION(4, "SYNDICATION", "SYNDICATION");
 
 	/**
@@ -149,14 +149,7 @@ public enum AccessMethod implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final AccessMethod[] VALUES_ARRAY =
-		new AccessMethod[] {
-			SOAP,
-			WEB_INTERFACE,
-			INTERNAL,
-			REST,
-			SYNDICATION,
-		};
+	private static final AccessMethod[] VALUES_ARRAY = new AccessMethod[] { SOAP, WEB_INTERFACE, INTERNAL, REST, SYNDICATION, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Access Method</b></em>' enumerators.
@@ -206,11 +199,16 @@ public enum AccessMethod implements Enumerator {
 	 */
 	public static AccessMethod get(int value) {
 		switch (value) {
-			case SOAP_VALUE: return SOAP;
-			case WEB_INTERFACE_VALUE: return WEB_INTERFACE;
-			case INTERNAL_VALUE: return INTERNAL;
-			case REST_VALUE: return REST;
-			case SYNDICATION_VALUE: return SYNDICATION;
+		case SOAP_VALUE:
+			return SOAP;
+		case WEB_INTERFACE_VALUE:
+			return WEB_INTERFACE;
+		case INTERNAL_VALUE:
+			return INTERNAL;
+		case REST_VALUE:
+			return REST;
+		case SYNDICATION_VALUE:
+			return SYNDICATION;
 		}
 		return null;
 	}
@@ -254,7 +252,7 @@ public enum AccessMethod implements Enumerator {
 	 * @generated
 	 */
 	public int getValue() {
-	  return value;
+		return value;
 	}
 
 	/**
@@ -263,7 +261,7 @@ public enum AccessMethod implements Enumerator {
 	 * @generated
 	 */
 	public String getName() {
-	  return name;
+		return name;
 	}
 
 	/**
@@ -272,7 +270,7 @@ public enum AccessMethod implements Enumerator {
 	 * @generated
 	 */
 	public String getLiteral() {
-	  return literal;
+		return literal;
 	}
 
 	/**
@@ -285,5 +283,5 @@ public enum AccessMethod implements Enumerator {
 	public String toString() {
 		return literal;
 	}
-	
+
 } //AccessMethod

@@ -6,7 +6,6 @@
  */
 package org.bimserver.database.store.log;
 
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>New Ignore File Uploaded</b></em>'.

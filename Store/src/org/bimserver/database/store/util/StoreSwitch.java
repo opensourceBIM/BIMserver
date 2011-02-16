@@ -78,13 +78,9 @@ public class StoreSwitch<T> {
 	protected T doSwitch(EClass theEClass, EObject theEObject) {
 		if (theEClass.eContainer() == modelPackage) {
 			return doSwitch(theEClass.getClassifierID(), theEObject);
-		}
-		else {
+		} else {
 			List<EClass> eSuperTypes = theEClass.getESuperTypes();
-			return
-				eSuperTypes.isEmpty() ?
-					defaultCase(theEObject) :
-					doSwitch(eSuperTypes.get(0), theEObject);
+			return eSuperTypes.isEmpty() ? defaultCase(theEObject) : doSwitch(eSuperTypes.get(0), theEObject);
 		}
 	}
 
@@ -97,69 +93,82 @@ public class StoreSwitch<T> {
 	 */
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case StorePackage.PROJECT: {
-				Project project = (Project)theEObject;
-				T result = caseProject(project);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case StorePackage.USER: {
-				User user = (User)theEObject;
-				T result = caseUser(user);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case StorePackage.CHECKOUT: {
-				Checkout checkout = (Checkout)theEObject;
-				T result = caseCheckout(checkout);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case StorePackage.GEO_TAG: {
-				GeoTag geoTag = (GeoTag)theEObject;
-				T result = caseGeoTag(geoTag);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case StorePackage.CONCRETE_REVISION: {
-				ConcreteRevision concreteRevision = (ConcreteRevision)theEObject;
-				T result = caseConcreteRevision(concreteRevision);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case StorePackage.REVISION: {
-				Revision revision = (Revision)theEObject;
-				T result = caseRevision(revision);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case StorePackage.GUID_CLASH: {
-				GuidClash guidClash = (GuidClash)theEObject;
-				T result = caseGuidClash(guidClash);
-				if (result == null) result = caseClash(guidClash);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case StorePackage.CLASH_DETECTION_SETTINGS: {
-				ClashDetectionSettings clashDetectionSettings = (ClashDetectionSettings)theEObject;
-				T result = caseClashDetectionSettings(clashDetectionSettings);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case StorePackage.CLASH: {
-				Clash clash = (Clash)theEObject;
-				T result = caseClash(clash);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case StorePackage.EID_CLASH: {
-				EidClash eidClash = (EidClash)theEObject;
-				T result = caseEidClash(eidClash);
-				if (result == null) result = caseClash(eidClash);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			default: return defaultCase(theEObject);
+		case StorePackage.PROJECT: {
+			Project project = (Project) theEObject;
+			T result = caseProject(project);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case StorePackage.USER: {
+			User user = (User) theEObject;
+			T result = caseUser(user);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case StorePackage.CHECKOUT: {
+			Checkout checkout = (Checkout) theEObject;
+			T result = caseCheckout(checkout);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case StorePackage.GEO_TAG: {
+			GeoTag geoTag = (GeoTag) theEObject;
+			T result = caseGeoTag(geoTag);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case StorePackage.CONCRETE_REVISION: {
+			ConcreteRevision concreteRevision = (ConcreteRevision) theEObject;
+			T result = caseConcreteRevision(concreteRevision);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case StorePackage.REVISION: {
+			Revision revision = (Revision) theEObject;
+			T result = caseRevision(revision);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case StorePackage.GUID_CLASH: {
+			GuidClash guidClash = (GuidClash) theEObject;
+			T result = caseGuidClash(guidClash);
+			if (result == null)
+				result = caseClash(guidClash);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case StorePackage.CLASH_DETECTION_SETTINGS: {
+			ClashDetectionSettings clashDetectionSettings = (ClashDetectionSettings) theEObject;
+			T result = caseClashDetectionSettings(clashDetectionSettings);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case StorePackage.CLASH: {
+			Clash clash = (Clash) theEObject;
+			T result = caseClash(clash);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case StorePackage.EID_CLASH: {
+			EidClash eidClash = (EidClash) theEObject;
+			T result = caseEidClash(eidClash);
+			if (result == null)
+				result = caseClash(eidClash);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		default:
+			return defaultCase(theEObject);
 		}
 	}
 

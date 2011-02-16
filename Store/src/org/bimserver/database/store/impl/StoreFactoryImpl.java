@@ -45,12 +45,11 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	 */
 	public static StoreFactory init() {
 		try {
-			StoreFactory theStoreFactory = (StoreFactory)EPackage.Registry.INSTANCE.getEFactory("store"); 
+			StoreFactory theStoreFactory = (StoreFactory) EPackage.Registry.INSTANCE.getEFactory("store");
 			if (theStoreFactory != null) {
 				return theStoreFactory;
 			}
-		}
-		catch (Exception exception) {
+		} catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new StoreFactoryImpl();
@@ -74,18 +73,28 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case StorePackage.PROJECT: return (EObject)createProject();
-			case StorePackage.USER: return (EObject)createUser();
-			case StorePackage.CHECKOUT: return (EObject)createCheckout();
-			case StorePackage.GEO_TAG: return (EObject)createGeoTag();
-			case StorePackage.CONCRETE_REVISION: return (EObject)createConcreteRevision();
-			case StorePackage.REVISION: return (EObject)createRevision();
-			case StorePackage.GUID_CLASH: return (EObject)createGuidClash();
-			case StorePackage.CLASH_DETECTION_SETTINGS: return (EObject)createClashDetectionSettings();
-			case StorePackage.CLASH: return (EObject)createClash();
-			case StorePackage.EID_CLASH: return (EObject)createEidClash();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		case StorePackage.PROJECT:
+			return (EObject) createProject();
+		case StorePackage.USER:
+			return (EObject) createUser();
+		case StorePackage.CHECKOUT:
+			return (EObject) createCheckout();
+		case StorePackage.GEO_TAG:
+			return (EObject) createGeoTag();
+		case StorePackage.CONCRETE_REVISION:
+			return (EObject) createConcreteRevision();
+		case StorePackage.REVISION:
+			return (EObject) createRevision();
+		case StorePackage.GUID_CLASH:
+			return (EObject) createGuidClash();
+		case StorePackage.CLASH_DETECTION_SETTINGS:
+			return (EObject) createClashDetectionSettings();
+		case StorePackage.CLASH:
+			return (EObject) createClash();
+		case StorePackage.EID_CLASH:
+			return (EObject) createEidClash();
+		default:
+			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -97,16 +106,16 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
-			case StorePackage.OBJECT_STATE:
-				return createObjectStateFromString(eDataType, initialValue);
-			case StorePackage.USER_TYPE:
-				return createUserTypeFromString(eDataType, initialValue);
-			case StorePackage.SI_PREFIX:
-				return createSIPrefixFromString(eDataType, initialValue);
-			case StorePackage.CHECKIN_STATE:
-				return createCheckinStateFromString(eDataType, initialValue);
-			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		case StorePackage.OBJECT_STATE:
+			return createObjectStateFromString(eDataType, initialValue);
+		case StorePackage.USER_TYPE:
+			return createUserTypeFromString(eDataType, initialValue);
+		case StorePackage.SI_PREFIX:
+			return createSIPrefixFromString(eDataType, initialValue);
+		case StorePackage.CHECKIN_STATE:
+			return createCheckinStateFromString(eDataType, initialValue);
+		default:
+			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -118,16 +127,16 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
-			case StorePackage.OBJECT_STATE:
-				return convertObjectStateToString(eDataType, instanceValue);
-			case StorePackage.USER_TYPE:
-				return convertUserTypeToString(eDataType, instanceValue);
-			case StorePackage.SI_PREFIX:
-				return convertSIPrefixToString(eDataType, instanceValue);
-			case StorePackage.CHECKIN_STATE:
-				return convertCheckinStateToString(eDataType, instanceValue);
-			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		case StorePackage.OBJECT_STATE:
+			return convertObjectStateToString(eDataType, instanceValue);
+		case StorePackage.USER_TYPE:
+			return convertUserTypeToString(eDataType, instanceValue);
+		case StorePackage.SI_PREFIX:
+			return convertSIPrefixToString(eDataType, instanceValue);
+		case StorePackage.CHECKIN_STATE:
+			return convertCheckinStateToString(eDataType, instanceValue);
+		default:
+			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -238,7 +247,8 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	 */
 	public ObjectState createObjectStateFromString(EDataType eDataType, String initialValue) {
 		ObjectState result = ObjectState.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		if (result == null)
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -258,7 +268,8 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	 */
 	public UserType createUserTypeFromString(EDataType eDataType, String initialValue) {
 		UserType result = UserType.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		if (result == null)
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -278,7 +289,8 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	 */
 	public SIPrefix createSIPrefixFromString(EDataType eDataType, String initialValue) {
 		SIPrefix result = SIPrefix.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		if (result == null)
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -298,7 +310,8 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	 */
 	public CheckinState createCheckinStateFromString(EDataType eDataType, String initialValue) {
 		CheckinState result = CheckinState.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		if (result == null)
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -317,7 +330,7 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	 * @generated
 	 */
 	public StorePackage getStorePackage() {
-		return (StorePackage)getEPackage();
+		return (StorePackage) getEPackage();
 	}
 
 	/**

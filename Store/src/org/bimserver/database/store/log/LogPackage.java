@@ -1381,7 +1381,6 @@ public interface LogPackage extends EPackage {
 	 */
 	int ACCESS_METHOD = 24;
 
-
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.database.store.log.ServerLog <em>Server Log</em>}'.
 	 * <!-- begin-user-doc -->

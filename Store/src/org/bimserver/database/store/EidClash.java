@@ -6,7 +6,6 @@
  */
 package org.bimserver.database.store;
 
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Eid Clash</b></em>'.

@@ -92,13 +92,9 @@ public class LogSwitch<T> {
 	protected T doSwitch(EClass theEClass, EObject theEObject) {
 		if (theEClass.eContainer() == modelPackage) {
 			return doSwitch(theEClass.getClassifierID(), theEObject);
-		}
-		else {
+		} else {
 			List<EClass> eSuperTypes = theEClass.getESuperTypes();
-			return
-				eSuperTypes.isEmpty() ?
-					defaultCase(theEObject) :
-					doSwitch(eSuperTypes.get(0), theEObject);
+			return eSuperTypes.isEmpty() ? defaultCase(theEObject) : doSwitch(eSuperTypes.get(0), theEObject);
 		}
 	}
 
@@ -111,173 +107,220 @@ public class LogSwitch<T> {
 	 */
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case LogPackage.SERVER_LOG: {
-				ServerLog serverLog = (ServerLog)theEObject;
-				T result = caseServerLog(serverLog);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case LogPackage.LOG_ACTION: {
-				LogAction logAction = (LogAction)theEObject;
-				T result = caseLogAction(logAction);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case LogPackage.NEW_USER_ADDED: {
-				NewUserAdded newUserAdded = (NewUserAdded)theEObject;
-				T result = caseNewUserAdded(newUserAdded);
-				if (result == null) result = caseLogAction(newUserAdded);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case LogPackage.NEW_PROJECT_ADDED: {
-				NewProjectAdded newProjectAdded = (NewProjectAdded)theEObject;
-				T result = caseNewProjectAdded(newProjectAdded);
-				if (result == null) result = caseLogAction(newProjectAdded);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case LogPackage.NEW_REVISION_ADDED: {
-				NewRevisionAdded newRevisionAdded = (NewRevisionAdded)theEObject;
-				T result = caseNewRevisionAdded(newRevisionAdded);
-				if (result == null) result = caseLogAction(newRevisionAdded);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case LogPackage.NEW_CHECKOUT_ADDED: {
-				NewCheckoutAdded newCheckoutAdded = (NewCheckoutAdded)theEObject;
-				T result = caseNewCheckoutAdded(newCheckoutAdded);
-				if (result == null) result = caseLogAction(newCheckoutAdded);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case LogPackage.SETTINGS_SAVED: {
-				SettingsSaved settingsSaved = (SettingsSaved)theEObject;
-				T result = caseSettingsSaved(settingsSaved);
-				if (result == null) result = caseLogAction(settingsSaved);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case LogPackage.USER_ADDED_TO_PROJECT: {
-				UserAddedToProject userAddedToProject = (UserAddedToProject)theEObject;
-				T result = caseUserAddedToProject(userAddedToProject);
-				if (result == null) result = caseLogAction(userAddedToProject);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case LogPackage.NEW_IGNORE_FILE_UPLOADED: {
-				NewIgnoreFileUploaded newIgnoreFileUploaded = (NewIgnoreFileUploaded)theEObject;
-				T result = caseNewIgnoreFileUploaded(newIgnoreFileUploaded);
-				if (result == null) result = caseLogAction(newIgnoreFileUploaded);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case LogPackage.DOWNLOAD: {
-				Download download = (Download)theEObject;
-				T result = caseDownload(download);
-				if (result == null) result = caseLogAction(download);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case LogPackage.USER_REMOVED_FROM_PROJECT: {
-				UserRemovedFromProject userRemovedFromProject = (UserRemovedFromProject)theEObject;
-				T result = caseUserRemovedFromProject(userRemovedFromProject);
-				if (result == null) result = caseLogAction(userRemovedFromProject);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case LogPackage.PROJECT_DELETED: {
-				ProjectDeleted projectDeleted = (ProjectDeleted)theEObject;
-				T result = caseProjectDeleted(projectDeleted);
-				if (result == null) result = caseLogAction(projectDeleted);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case LogPackage.USER_DELETED: {
-				UserDeleted userDeleted = (UserDeleted)theEObject;
-				T result = caseUserDeleted(userDeleted);
-				if (result == null) result = caseLogAction(userDeleted);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case LogPackage.PASSWORD_RESET: {
-				PasswordReset passwordReset = (PasswordReset)theEObject;
-				T result = casePasswordReset(passwordReset);
-				if (result == null) result = caseLogAction(passwordReset);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case LogPackage.DATABASE_CREATED: {
-				DatabaseCreated databaseCreated = (DatabaseCreated)theEObject;
-				T result = caseDatabaseCreated(databaseCreated);
-				if (result == null) result = caseLogAction(databaseCreated);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case LogPackage.SERVER_STARTED: {
-				ServerStarted serverStarted = (ServerStarted)theEObject;
-				T result = caseServerStarted(serverStarted);
-				if (result == null) result = caseLogAction(serverStarted);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case LogPackage.PROJECT_UPDATED: {
-				ProjectUpdated projectUpdated = (ProjectUpdated)theEObject;
-				T result = caseProjectUpdated(projectUpdated);
-				if (result == null) result = caseLogAction(projectUpdated);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case LogPackage.USER_UNDELETED: {
-				UserUndeleted userUndeleted = (UserUndeleted)theEObject;
-				T result = caseUserUndeleted(userUndeleted);
-				if (result == null) result = caseLogAction(userUndeleted);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case LogPackage.PROJECT_UNDELETED: {
-				ProjectUndeleted projectUndeleted = (ProjectUndeleted)theEObject;
-				T result = caseProjectUndeleted(projectUndeleted);
-				if (result == null) result = caseLogAction(projectUndeleted);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case LogPackage.REVISION_UPDATED: {
-				RevisionUpdated revisionUpdated = (RevisionUpdated)theEObject;
-				T result = caseRevisionUpdated(revisionUpdated);
-				if (result == null) result = caseLogAction(revisionUpdated);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case LogPackage.GEO_TAG_UPDATED: {
-				GeoTagUpdated geoTagUpdated = (GeoTagUpdated)theEObject;
-				T result = caseGeoTagUpdated(geoTagUpdated);
-				if (result == null) result = caseLogAction(geoTagUpdated);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case LogPackage.CLASH_DETECTION_SETTINGS_UPDATED: {
-				ClashDetectionSettingsUpdated clashDetectionSettingsUpdated = (ClashDetectionSettingsUpdated)theEObject;
-				T result = caseClashDetectionSettingsUpdated(clashDetectionSettingsUpdated);
-				if (result == null) result = caseLogAction(clashDetectionSettingsUpdated);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case LogPackage.PASSWORD_CHANGED: {
-				PasswordChanged passwordChanged = (PasswordChanged)theEObject;
-				T result = casePasswordChanged(passwordChanged);
-				if (result == null) result = caseLogAction(passwordChanged);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case LogPackage.USER_CHANGED: {
-				UserChanged userChanged = (UserChanged)theEObject;
-				T result = caseUserChanged(userChanged);
-				if (result == null) result = caseLogAction(userChanged);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			default: return defaultCase(theEObject);
+		case LogPackage.SERVER_LOG: {
+			ServerLog serverLog = (ServerLog) theEObject;
+			T result = caseServerLog(serverLog);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case LogPackage.LOG_ACTION: {
+			LogAction logAction = (LogAction) theEObject;
+			T result = caseLogAction(logAction);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case LogPackage.NEW_USER_ADDED: {
+			NewUserAdded newUserAdded = (NewUserAdded) theEObject;
+			T result = caseNewUserAdded(newUserAdded);
+			if (result == null)
+				result = caseLogAction(newUserAdded);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case LogPackage.NEW_PROJECT_ADDED: {
+			NewProjectAdded newProjectAdded = (NewProjectAdded) theEObject;
+			T result = caseNewProjectAdded(newProjectAdded);
+			if (result == null)
+				result = caseLogAction(newProjectAdded);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case LogPackage.NEW_REVISION_ADDED: {
+			NewRevisionAdded newRevisionAdded = (NewRevisionAdded) theEObject;
+			T result = caseNewRevisionAdded(newRevisionAdded);
+			if (result == null)
+				result = caseLogAction(newRevisionAdded);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case LogPackage.NEW_CHECKOUT_ADDED: {
+			NewCheckoutAdded newCheckoutAdded = (NewCheckoutAdded) theEObject;
+			T result = caseNewCheckoutAdded(newCheckoutAdded);
+			if (result == null)
+				result = caseLogAction(newCheckoutAdded);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case LogPackage.SETTINGS_SAVED: {
+			SettingsSaved settingsSaved = (SettingsSaved) theEObject;
+			T result = caseSettingsSaved(settingsSaved);
+			if (result == null)
+				result = caseLogAction(settingsSaved);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case LogPackage.USER_ADDED_TO_PROJECT: {
+			UserAddedToProject userAddedToProject = (UserAddedToProject) theEObject;
+			T result = caseUserAddedToProject(userAddedToProject);
+			if (result == null)
+				result = caseLogAction(userAddedToProject);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case LogPackage.NEW_IGNORE_FILE_UPLOADED: {
+			NewIgnoreFileUploaded newIgnoreFileUploaded = (NewIgnoreFileUploaded) theEObject;
+			T result = caseNewIgnoreFileUploaded(newIgnoreFileUploaded);
+			if (result == null)
+				result = caseLogAction(newIgnoreFileUploaded);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case LogPackage.DOWNLOAD: {
+			Download download = (Download) theEObject;
+			T result = caseDownload(download);
+			if (result == null)
+				result = caseLogAction(download);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case LogPackage.USER_REMOVED_FROM_PROJECT: {
+			UserRemovedFromProject userRemovedFromProject = (UserRemovedFromProject) theEObject;
+			T result = caseUserRemovedFromProject(userRemovedFromProject);
+			if (result == null)
+				result = caseLogAction(userRemovedFromProject);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case LogPackage.PROJECT_DELETED: {
+			ProjectDeleted projectDeleted = (ProjectDeleted) theEObject;
+			T result = caseProjectDeleted(projectDeleted);
+			if (result == null)
+				result = caseLogAction(projectDeleted);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case LogPackage.USER_DELETED: {
+			UserDeleted userDeleted = (UserDeleted) theEObject;
+			T result = caseUserDeleted(userDeleted);
+			if (result == null)
+				result = caseLogAction(userDeleted);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case LogPackage.PASSWORD_RESET: {
+			PasswordReset passwordReset = (PasswordReset) theEObject;
+			T result = casePasswordReset(passwordReset);
+			if (result == null)
+				result = caseLogAction(passwordReset);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case LogPackage.DATABASE_CREATED: {
+			DatabaseCreated databaseCreated = (DatabaseCreated) theEObject;
+			T result = caseDatabaseCreated(databaseCreated);
+			if (result == null)
+				result = caseLogAction(databaseCreated);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case LogPackage.SERVER_STARTED: {
+			ServerStarted serverStarted = (ServerStarted) theEObject;
+			T result = caseServerStarted(serverStarted);
+			if (result == null)
+				result = caseLogAction(serverStarted);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case LogPackage.PROJECT_UPDATED: {
+			ProjectUpdated projectUpdated = (ProjectUpdated) theEObject;
+			T result = caseProjectUpdated(projectUpdated);
+			if (result == null)
+				result = caseLogAction(projectUpdated);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case LogPackage.USER_UNDELETED: {
+			UserUndeleted userUndeleted = (UserUndeleted) theEObject;
+			T result = caseUserUndeleted(userUndeleted);
+			if (result == null)
+				result = caseLogAction(userUndeleted);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case LogPackage.PROJECT_UNDELETED: {
+			ProjectUndeleted projectUndeleted = (ProjectUndeleted) theEObject;
+			T result = caseProjectUndeleted(projectUndeleted);
+			if (result == null)
+				result = caseLogAction(projectUndeleted);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case LogPackage.REVISION_UPDATED: {
+			RevisionUpdated revisionUpdated = (RevisionUpdated) theEObject;
+			T result = caseRevisionUpdated(revisionUpdated);
+			if (result == null)
+				result = caseLogAction(revisionUpdated);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case LogPackage.GEO_TAG_UPDATED: {
+			GeoTagUpdated geoTagUpdated = (GeoTagUpdated) theEObject;
+			T result = caseGeoTagUpdated(geoTagUpdated);
+			if (result == null)
+				result = caseLogAction(geoTagUpdated);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case LogPackage.CLASH_DETECTION_SETTINGS_UPDATED: {
+			ClashDetectionSettingsUpdated clashDetectionSettingsUpdated = (ClashDetectionSettingsUpdated) theEObject;
+			T result = caseClashDetectionSettingsUpdated(clashDetectionSettingsUpdated);
+			if (result == null)
+				result = caseLogAction(clashDetectionSettingsUpdated);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case LogPackage.PASSWORD_CHANGED: {
+			PasswordChanged passwordChanged = (PasswordChanged) theEObject;
+			T result = casePasswordChanged(passwordChanged);
+			if (result == null)
+				result = caseLogAction(passwordChanged);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case LogPackage.USER_CHANGED: {
+			UserChanged userChanged = (UserChanged) theEObject;
+			T result = caseUserChanged(userChanged);
+			if (result == null)
+				result = caseLogAction(userChanged);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		default:
+			return defaultCase(theEObject);
 		}
 	}
 

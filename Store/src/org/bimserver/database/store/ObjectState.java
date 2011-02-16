@@ -78,11 +78,7 @@ public enum ObjectState implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final ObjectState[] VALUES_ARRAY =
-		new ObjectState[] {
-			ACTIVE,
-			DELETED,
-		};
+	private static final ObjectState[] VALUES_ARRAY = new ObjectState[] { ACTIVE, DELETED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Object State</b></em>' enumerators.
@@ -132,8 +128,10 @@ public enum ObjectState implements Enumerator {
 	 */
 	public static ObjectState get(int value) {
 		switch (value) {
-			case ACTIVE_VALUE: return ACTIVE;
-			case DELETED_VALUE: return DELETED;
+		case ACTIVE_VALUE:
+			return ACTIVE;
+		case DELETED_VALUE:
+			return DELETED;
 		}
 		return null;
 	}
@@ -177,7 +175,7 @@ public enum ObjectState implements Enumerator {
 	 * @generated
 	 */
 	public int getValue() {
-	  return value;
+		return value;
 	}
 
 	/**
@@ -186,7 +184,7 @@ public enum ObjectState implements Enumerator {
 	 * @generated
 	 */
 	public String getName() {
-	  return name;
+		return name;
 	}
 
 	/**
@@ -195,7 +193,7 @@ public enum ObjectState implements Enumerator {
 	 * @generated
 	 */
 	public String getLiteral() {
-	  return literal;
+		return literal;
 	}
 
 	/**
@@ -208,5 +206,5 @@ public enum ObjectState implements Enumerator {
 	public String toString() {
 		return literal;
 	}
-	
+
 } //ObjectState
