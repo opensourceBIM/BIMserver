@@ -65,6 +65,7 @@ import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EEnumImpl;
@@ -241,7 +242,6 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 		return database.convert(type, value);
 	}
 
-
 	public IdEObject get(short cid, long oid, boolean deep) throws BimDatabaseException, BimDeadlockException {
 		return get(cid, oid, Database.STORE_PROJECT_ID, Database.STORE_PROJECT_REVISION_ID, new IfcModel(), deep);
 	}
@@ -261,8 +261,8 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 	}
 
 	@SuppressWarnings("unchecked")
-	public IdEObject convertByteArrayToObject(IdEObject idEObject, EClass originalQueryClass, EClass eClass, long oid, ByteBuffer buffer, IfcModel model, int pid, int rid, boolean deep)
-			throws BimDatabaseException, BimDeadlockException {
+	public IdEObject convertByteArrayToObject(IdEObject idEObject, EClass originalQueryClass, EClass eClass, long oid, ByteBuffer buffer, IfcModel model, int pid, int rid,
+			boolean deep) throws BimDatabaseException, BimDeadlockException {
 		for (EStructuralFeature feature : eClass.getEAllStructuralFeatures()) {
 			if (!feature.isTransient() && !feature.isVolatile()) {
 				if (database.shouldIgnoreField(originalQueryClass, eClass, feature)) {
@@ -273,6 +273,7 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 					if (feature.isMany()) {
 						if (feature.getEType() instanceof EEnum) {
 						} else if (feature.getEType() instanceof EClass) {
+//							EReference eReference = (EReference) feature;
 							if (buffer.capacity() == 1 && buffer.get(0) == -1) {
 								buffer.position(buffer.position() + 1);
 							} else {
@@ -287,7 +288,7 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 								short listSize = buffer.getShort();
 								BasicEList<Object> list = (BasicEList<Object>) idEObject.eGet(feature);
 								for (int i = 0; i < listSize; i++) {
-									Object reference = null;
+									IdEObject referencedObject = null;
 
 									short cid = buffer.getShort();
 									if (cid == -1) {
@@ -296,22 +297,24 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 										// negative cid means value is embedded
 										// in record
 										EClass referenceClass = database.getEClassForCid((short) (-cid));
-										reference = readWrappedValue(feature, buffer, referenceClass);
+										referencedObject = readWrappedValue(feature, buffer, referenceClass);
 									} else if (cid > 0) {
 										// positive cid means value is reference
 										// to other record
 										EClass referenceClass = database.getEClassForCid(cid);
-										reference = readReference(originalQueryClass, buffer, model, pid, rid, idEObject, feature, referenceClass, deep);
+										referencedObject = readReference(originalQueryClass, buffer, model, pid, rid, idEObject, feature, referenceClass, deep);
 									}
-									if (reference != null) {
-										if (feature.isUnique()) {
-											list.add(reference);
-										} else {
-											if (!feature.getEType().isInstance(reference)) {
-												throw new BimDatabaseException(reference.getClass().getSimpleName() + " cannot be stored in list of " + feature.getName());
-											}
-											list.addUnique(reference);
+									if (referencedObject != null) {
+										if (!feature.getEType().isInstance(referencedObject)) {
+											throw new BimDatabaseException(referencedObject.getClass().getSimpleName() + " cannot be stored in list of " + feature.getName());
 										}
+//										if (eReference.getEOpposite() == null || !referencedObject.isLoadedOrLoading()) {
+											if (feature.isUnique()) {
+												list.add(referencedObject);
+											} else {
+												list.addUnique(referencedObject);
+											}
+//										}
 									}
 								}
 							}
@@ -324,7 +327,7 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 									list.addUnique(reference);
 								}
 							}
-							idEObject.eSet(feature, list);
+							newValue = list;
 						}
 					} else {
 						if (feature.getEType() instanceof EEnum) {
@@ -337,6 +340,7 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 								LOGGER.error(enumOrdinal + " not found");
 							}
 						} else if (feature.getEType() instanceof EClass) {
+//							EReference eReference = (EReference) feature;
 							short cid = buffer.getShort();
 							if (cid == -1) {
 								// null, do nothing
@@ -350,6 +354,9 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 								// other record
 								EClass referenceClass = database.getEClassForCid(cid);
 								newValue = readReference(originalQueryClass, buffer, model, pid, rid, idEObject, feature, referenceClass, deep);
+//								if (eReference.getEOpposite() != null && ((IdEObject) newValue).isLoadedOrLoading()) {
+//									newValue = null;
+//								}
 							}
 						} else if (feature.getEType() instanceof EDataType) {
 							newValue = readPrimitiveValue(feature.getEType(), buffer);
@@ -364,7 +371,7 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 		idEObject.setLoaded();
 		return idEObject;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public IdEObject convertByteArrayToObject(EClass originalQueryClass, EClass eClass, long oid, ByteBuffer buffer, IfcModel model, int pid, int rid, boolean deep)
 			throws BimDatabaseException, BimDeadlockException {
@@ -381,6 +388,7 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 		object.setRid(rid);
 		if (!deep) {
 			object.setLazyLoader(this);
+			object.setLoading();
 		}
 		if (!(object instanceof WrappedValue) && !(object instanceof IfcGloballyUniqueId)) {
 			model.add(oid, object);
@@ -392,10 +400,10 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 		return convertByteArrayToObject(object, originalQueryClass, eClass, oid, buffer, model, pid, rid, deep);
 	}
 
-	private Object readWrappedValue(EStructuralFeature feature, ByteBuffer buffer, EClass eClass) {
+	private IdEObject readWrappedValue(EStructuralFeature feature, ByteBuffer buffer, EClass eClass) {
 		EStructuralFeature eStructuralFeature = eClass.getEStructuralFeature("wrappedValue");
 		Object primitiveValue = readPrimitiveValue(eStructuralFeature.getEType(), buffer);
-		EObject eObject = Ifc2x3Factory.eINSTANCE.create(eClass);
+		IdEObject eObject = (IdEObject) Ifc2x3Factory.eINSTANCE.create(eClass);
 		eObject.eSet(eStructuralFeature, primitiveValue);
 		if (eStructuralFeature.getEType() == EcorePackage.eINSTANCE.getEFloat() || eStructuralFeature.getEType() == EcorePackage.eINSTANCE.getEDouble()) {
 			eObject.eSet(eClass.getEStructuralFeature("wrappedValueAsString"), readPrimitiveValue(EcorePackage.eINSTANCE.getEString(), buffer));
@@ -403,7 +411,7 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 		return eObject;
 	}
 
-	private EObject readReference(EClass originalQueryClass, ByteBuffer buffer, IfcModel model, int pid, int rid, IdEObject object, EStructuralFeature feature, EClass eClass,
+	private IdEObject readReference(EClass originalQueryClass, ByteBuffer buffer, IfcModel model, int pid, int rid, IdEObject object, EStructuralFeature feature, EClass eClass,
 			boolean deep) throws BimDatabaseException, BimDeadlockException {
 		if (buffer.capacity() == 1 && buffer.get(0) == -1) {
 			buffer.position(buffer.position() + 1);
@@ -732,13 +740,17 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 				} else {
 					Object value = object.eGet(feature);
 					if (feature.getEType() instanceof EEnum) {
-						EEnum eEnum = (EEnum) feature.getEType();
-						EEnumLiteral eEnumLiteral = eEnum.getEEnumLiteralByLiteral(((Enum<?>) value).toString());
-						if (eEnumLiteral != null) {
-							buffer.putInt(eEnumLiteral.getValue());
-						} else {
-							LOGGER.error(((Enum<?>) value).toString() + " not found");
+						if (value == null) {
 							buffer.putInt(-1);
+						} else {
+							EEnum eEnum = (EEnum) feature.getEType();
+							EEnumLiteral eEnumLiteral = eEnum.getEEnumLiteralByLiteral(((Enum<?>) value).toString());
+							if (eEnumLiteral != null) {
+								buffer.putInt(eEnumLiteral.getValue());
+							} else {
+								LOGGER.error(((Enum<?>) value).toString() + " not found");
+								buffer.putInt(-1);
+							}
 						}
 					} else if (feature.getEType() instanceof EClass) {
 						if (value == null) {

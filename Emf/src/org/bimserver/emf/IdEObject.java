@@ -12,4 +12,6 @@ public interface IdEObject extends EObject {
 	void setLazyLoader(LazyLoader lazyLoader);
 	void setLoaded();
 	void load();
+	boolean isLoadedOrLoading();
+	void setLoading();
 }
