@@ -4,7 +4,7 @@
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/emf/org.eclipse.emf_2.5.0.v200906151043.jar"/>
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/emf/org.eclipse.emf.common_2.5.0.v200906151043.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/emf/org.eclipse.emf.ecore_2.5.0.v200906151043.jar"/>
+	<classpathentry exported="true" kind="lib" path="/BimServer/lib/emf/org.eclipse.emf.ecore_2.5.0.v200906151043.jar" sourcepath="/BimServer/libsrc/org.eclipse.emf.ecore.source_2.5.0.v200906151043.jar"/>
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/emf/org.eclipse.emf.ecore.xmi_2.5.0.v200906151043.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

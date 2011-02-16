@@ -48,127 +48,55 @@ public class IdEObjectImpl extends MinimalEObjectImpl implements IdEObject {
 	}
 
 	@Override
-	public Object eVirtualGet(int eDerivedStructuralFeatureID) {
+	public void eUnset(EStructuralFeature eFeature) {
 		load();
-		return super.eVirtualGet(eDerivedStructuralFeatureID);
+		super.eUnset(eFeature);
 	}
 	
 	@Override
-	public Object eVirtualSet(int eDerivedStructuralFeatureID, Object value) {
+	public void eSet(EStructuralFeature eFeature, Object newValue) {
 		load();
-		return super.eVirtualSet(eDerivedStructuralFeatureID, value);
+		super.eSet(eFeature, newValue);
 	}
 	
 	@Override
-	public boolean eVirtualIsSet(int eDerivedStructuralFeatureID) {
+	public Object eGet(EStructuralFeature eFeature) {
 		load();
-		return super.eVirtualIsSet(eDerivedStructuralFeatureID);
+		return super.eGet(eFeature);
 	}
 	
 	@Override
-	protected Object eSetVirtualValue(int index, Object value) {
+	public boolean eIsSet(EStructuralFeature eFeature) {
 		load();
-		return super.eSetVirtualValue(index, value);
-	}
-	
-//	@Override
-//	public void eUnset(EStructuralFeature eFeature) {
-//		load();
-//		super.eUnset(eFeature);
-//	}
-//	
-//	@Override
-//	public void eSet(EStructuralFeature eFeature, Object newValue) {
-//		load();
-//		super.eSet(eFeature, newValue);
-//	}
-//	
-//	@Override
-//	public Object eGet(EStructuralFeature eFeature) {
-//		load();
-//		return super.eGet(eFeature);
-//	}
-//	
-//	@Override
-//	public boolean eIsSet(EStructuralFeature eFeature) {
-//		load();
-//		return super.eIsSet(eFeature);
-//	}
-//	
-//	@Override
-//	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-//		load();
-//		return super.eGet(eFeature, resolve);
-//	}
-//	
-//	@Override
-//	public Object eGet(EStructuralFeature eFeature, boolean resolve, boolean coreType) {
-//		load();
-//		return super.eGet(eFeature, resolve, coreType);
-//	}
-//	
-//	@Override
-//	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-//		load();
-//		return super.eGet(featureID, resolve, coreType);
-//	}
-	
-//	@Override
-//	public Object dynamicGet(int dynamicFeatureID) {
-//		load();
-//		return super.dynamicGet(dynamicFeatureID);
-//	}
-//	
-//	@Override
-//	public void dynamicSet(int dynamicFeatureID, Object newValue) {
-//		load();
-//		super.dynamicSet(dynamicFeatureID, newValue);
-//	}
-//	
-//	@Override
-//	public void dynamicUnset(int dynamicFeatureID) {
-//		load();
-//		super.dynamicUnset(dynamicFeatureID);
-//	}
-//	
-	@Override
-	public Object eVirtualGet(int eDerivedStructuralFeatureID, Object defaultValue) {
-		load();
-		return super.eVirtualGet(eDerivedStructuralFeatureID, defaultValue);
+		return super.eIsSet(eFeature);
 	}
 	
 	@Override
-	public Object eVirtualUnset(int eDerivedStructuralFeatureID) {
+	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
 		load();
-		return super.eVirtualUnset(eDerivedStructuralFeatureID);
+		return super.eGet(eFeature, resolve);
 	}
 	
 	@Override
-	protected int eVirtualIndex(int eDerivedStructuralFeatureID, int action) {
+	public Object eGet(EStructuralFeature eFeature, boolean resolve, boolean coreType) {
 		load();
-		return super.eVirtualIndex(eDerivedStructuralFeatureID, action);
+		return super.eGet(eFeature, resolve, coreType);
 	}
 	
 	@Override
-	protected int eVirtualIndexBits(int offset) {
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		load();
-		return super.eVirtualIndexBits(offset);
+		return super.eGet(featureID, resolve, coreType);
 	}
 	
 	@Override
-	protected Object eVirtualValue(int index) {
+	public void eSet(int featureID, Object newValue) {
 		load();
-		return super.eVirtualValue(index);
+		super.eSet(featureID, newValue);
 	}
-	
-	@Override
-	protected Object[] eVirtualValues() {
-		load();
-		return super.eVirtualValues();
-	}
-	
+
 	public void load() {
-		if (state == State.NONE && lazyLoader != null) {
+		if (!isLoadedOrLoading()) {
 			state = State.LOADING;
 			lazyLoader.load(this);
 			state = State.LOADED;
@@ -183,5 +111,14 @@ public class IdEObjectImpl extends MinimalEObjectImpl implements IdEObject {
 	@Override
 	public void setLoaded() {
 		this.state = State.LOADED;
+	}
+	
+	public boolean isLoadedOrLoading() {
+		return lazyLoader == null || state != State.NONE;
+	}
+
+	@Override
+	public void setLoading() {
+		state = State.LOADING;
 	}
 }
