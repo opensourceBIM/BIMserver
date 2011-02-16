@@ -1,4 +1,4 @@
-package org.bimserver.tests;
+package org.bimserver.test.framework;
 
 import java.io.File;
 
