@@ -685,6 +685,7 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 				long newOid = newOid();
 				object.setOid(newOid);
 			}
+			object.load();
 			object.setPid(pid);
 			object.setRid(rid);
 			addToObjectsToCommit(object);
@@ -1080,7 +1081,7 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 	}
 
 	public IdEObject lazyLoad(IdEObject idEObject) throws BimDeadlockException, BimDatabaseException {
-		return lazyLoad(idEObject, Database.STORE_PROJECT_ID, Database.STORE_PROJECT_REVISION_ID);
+		return lazyLoad(idEObject, idEObject.getPid(), idEObject.getRid());
 	}
 
 	public short getCidOfEClass(EClass eClass) {
