@@ -34,7 +34,7 @@ public class PasswordResetImpl extends LogActionImpl implements PasswordReset {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PasswordResetImpl() {
+	protected PasswordResetImpl() {
 		super();
 	}
 
@@ -54,26 +54,7 @@ public class PasswordResetImpl extends LogActionImpl implements PasswordReset {
 	 * @generated
 	 */
 	public User getUser() {
-		User user = (User)eVirtualGet(LogPackage.PASSWORD_RESET__USER);
-		if (user != null && ((EObject)user).eIsProxy()) {
-			InternalEObject oldUser = (InternalEObject)user;
-			user = (User)eResolveProxy(oldUser);
-			if (user != oldUser) {
-				eVirtualSet(LogPackage.PASSWORD_RESET__USER, user);
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, LogPackage.PASSWORD_RESET__USER, oldUser, user));
-			}
-		}
-		return user;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public User basicGetUser() {
-		return (User)eVirtualGet(LogPackage.PASSWORD_RESET__USER);
+		return (User) eGet(LogPackage.Literals.PASSWORD_RESET__USER, true);
 	}
 
 	/**
@@ -82,69 +63,7 @@ public class PasswordResetImpl extends LogActionImpl implements PasswordReset {
 	 * @generated
 	 */
 	public void setUser(User newUser) {
-		User user = newUser;
-		Object oldUser = eVirtualSet(LogPackage.PASSWORD_RESET__USER, user);
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, LogPackage.PASSWORD_RESET__USER, oldUser == EVIRTUAL_NO_VALUE ? null : oldUser, user));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case LogPackage.PASSWORD_RESET__USER:
-				if (resolve) return getUser();
-				return basicGetUser();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case LogPackage.PASSWORD_RESET__USER:
-				setUser((User)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void eUnset(int featureID) {
-		switch (featureID) {
-			case LogPackage.PASSWORD_RESET__USER:
-				setUser((User)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case LogPackage.PASSWORD_RESET__USER:
-				return eVirtualGet(LogPackage.PASSWORD_RESET__USER) != null;
-		}
-		return super.eIsSet(featureID);
+		eSet(LogPackage.Literals.PASSWORD_RESET__USER, newUser);
 	}
 
 } //PasswordResetImpl

@@ -66,7 +66,7 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 			return true;
 		}
 		if (object instanceof EObject) {
-			return ((EObject)object).eClass().getEPackage() == modelPackage;
+			return ((EObject) object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
 	}
@@ -77,53 +77,62 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected StoreSwitch<Adapter> modelSwitch =
-		new StoreSwitch<Adapter>() {
-			@Override
-			public Adapter caseProject(Project object) {
-				return createProjectAdapter();
-			}
-			@Override
-			public Adapter caseUser(User object) {
-				return createUserAdapter();
-			}
-			@Override
-			public Adapter caseCheckout(Checkout object) {
-				return createCheckoutAdapter();
-			}
-			@Override
-			public Adapter caseGeoTag(GeoTag object) {
-				return createGeoTagAdapter();
-			}
-			@Override
-			public Adapter caseConcreteRevision(ConcreteRevision object) {
-				return createConcreteRevisionAdapter();
-			}
-			@Override
-			public Adapter caseRevision(Revision object) {
-				return createRevisionAdapter();
-			}
-			@Override
-			public Adapter caseGuidClash(GuidClash object) {
-				return createGuidClashAdapter();
-			}
-			@Override
-			public Adapter caseClashDetectionSettings(ClashDetectionSettings object) {
-				return createClashDetectionSettingsAdapter();
-			}
-			@Override
-			public Adapter caseClash(Clash object) {
-				return createClashAdapter();
-			}
-			@Override
-			public Adapter caseEidClash(EidClash object) {
-				return createEidClashAdapter();
-			}
-			@Override
-			public Adapter defaultCase(EObject object) {
-				return createEObjectAdapter();
-			}
-		};
+	protected StoreSwitch<Adapter> modelSwitch = new StoreSwitch<Adapter>() {
+		@Override
+		public Adapter caseProject(Project object) {
+			return createProjectAdapter();
+		}
+
+		@Override
+		public Adapter caseUser(User object) {
+			return createUserAdapter();
+		}
+
+		@Override
+		public Adapter caseCheckout(Checkout object) {
+			return createCheckoutAdapter();
+		}
+
+		@Override
+		public Adapter caseGeoTag(GeoTag object) {
+			return createGeoTagAdapter();
+		}
+
+		@Override
+		public Adapter caseConcreteRevision(ConcreteRevision object) {
+			return createConcreteRevisionAdapter();
+		}
+
+		@Override
+		public Adapter caseRevision(Revision object) {
+			return createRevisionAdapter();
+		}
+
+		@Override
+		public Adapter caseGuidClash(GuidClash object) {
+			return createGuidClashAdapter();
+		}
+
+		@Override
+		public Adapter caseClashDetectionSettings(ClashDetectionSettings object) {
+			return createClashDetectionSettingsAdapter();
+		}
+
+		@Override
+		public Adapter caseClash(Clash object) {
+			return createClashAdapter();
+		}
+
+		@Override
+		public Adapter caseEidClash(EidClash object) {
+			return createEidClashAdapter();
+		}
+
+		@Override
+		public Adapter defaultCase(EObject object) {
+			return createEObjectAdapter();
+		}
+	};
 
 	/**
 	 * Creates an adapter for the <code>target</code>.
@@ -135,9 +144,8 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 	 */
 	@Override
 	public Adapter createAdapter(Notifier target) {
-		return modelSwitch.doSwitch((EObject)target);
+		return modelSwitch.doSwitch((EObject) target);
 	}
-
 
 	/**
 	 * Creates a new adapter for an object of class '{@link org.bimserver.database.store.Project <em>Project</em>}'.

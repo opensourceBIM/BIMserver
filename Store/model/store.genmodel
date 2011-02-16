@@ -4,8 +4,9 @@
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="Store/src"
     modelPluginID="Emf2Codb" modelName="Store" modelPluginClass="" rootExtendsInterface="org.bimserver.emf.IdEObject"
     rootExtendsClass="org.bimserver.emf.IdEObjectImpl" rootImplementsInterface=""
-    importerID="org.eclipse.emf.importer.ecore" featureDelegation="Virtual" suppressContainment="true"
-    complianceLevel="6.0" copyrightFields="false" publicConstructors="true">
+    reflectiveDelegation="true" codeFormatting="true" importerID="org.eclipse.emf.importer.ecore"
+    featureDelegation="Reflective" minimalReflectiveMethods="false" suppressContainment="true"
+    complianceLevel="6.0" copyrightFields="false">
   <foreignModel>store.ecore</foreignModel>
   <genPackages prefix="Store" basePackage="org.bimserver.database" disposableProviderFactory="true"
       ecorePackage="store.ecore#/">

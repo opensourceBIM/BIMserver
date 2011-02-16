@@ -34,7 +34,7 @@ public class NewRevisionAddedImpl extends LogActionImpl implements NewRevisionAd
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NewRevisionAddedImpl() {
+	protected NewRevisionAddedImpl() {
 		super();
 	}
 
@@ -54,26 +54,7 @@ public class NewRevisionAddedImpl extends LogActionImpl implements NewRevisionAd
 	 * @generated
 	 */
 	public Revision getRevision() {
-		Revision revision = (Revision)eVirtualGet(LogPackage.NEW_REVISION_ADDED__REVISION);
-		if (revision != null && ((EObject)revision).eIsProxy()) {
-			InternalEObject oldRevision = (InternalEObject)revision;
-			revision = (Revision)eResolveProxy(oldRevision);
-			if (revision != oldRevision) {
-				eVirtualSet(LogPackage.NEW_REVISION_ADDED__REVISION, revision);
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, LogPackage.NEW_REVISION_ADDED__REVISION, oldRevision, revision));
-			}
-		}
-		return revision;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Revision basicGetRevision() {
-		return (Revision)eVirtualGet(LogPackage.NEW_REVISION_ADDED__REVISION);
+		return (Revision) eGet(LogPackage.Literals.NEW_REVISION_ADDED__REVISION, true);
 	}
 
 	/**
@@ -82,69 +63,7 @@ public class NewRevisionAddedImpl extends LogActionImpl implements NewRevisionAd
 	 * @generated
 	 */
 	public void setRevision(Revision newRevision) {
-		Revision revision = newRevision;
-		Object oldRevision = eVirtualSet(LogPackage.NEW_REVISION_ADDED__REVISION, revision);
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, LogPackage.NEW_REVISION_ADDED__REVISION, oldRevision == EVIRTUAL_NO_VALUE ? null : oldRevision, revision));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case LogPackage.NEW_REVISION_ADDED__REVISION:
-				if (resolve) return getRevision();
-				return basicGetRevision();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case LogPackage.NEW_REVISION_ADDED__REVISION:
-				setRevision((Revision)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void eUnset(int featureID) {
-		switch (featureID) {
-			case LogPackage.NEW_REVISION_ADDED__REVISION:
-				setRevision((Revision)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case LogPackage.NEW_REVISION_ADDED__REVISION:
-				return eVirtualGet(LogPackage.NEW_REVISION_ADDED__REVISION) != null;
-		}
-		return super.eIsSet(featureID);
+		eSet(LogPackage.Literals.NEW_REVISION_ADDED__REVISION, newRevision);
 	}
 
 } //NewRevisionAddedImpl

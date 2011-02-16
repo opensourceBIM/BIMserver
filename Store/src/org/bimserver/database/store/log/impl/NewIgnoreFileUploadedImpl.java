@@ -25,7 +25,7 @@ public class NewIgnoreFileUploadedImpl extends LogActionImpl implements NewIgnor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NewIgnoreFileUploadedImpl() {
+	protected NewIgnoreFileUploadedImpl() {
 		super();
 	}
 

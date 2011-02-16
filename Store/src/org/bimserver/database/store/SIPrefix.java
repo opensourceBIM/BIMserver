@@ -31,133 +31,133 @@ public enum SIPrefix implements Enumerator {
 	 * @ordered
 	 */
 	METER(0, "meter", "NULL"), /**
-	 * The '<em><b>Attometer</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ATTOMETER_VALUE
-	 * @generated
-	 * @ordered
-	 */
+								 * The '<em><b>Attometer</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #ATTOMETER_VALUE
+								 * @generated
+								 * @ordered
+								 */
 	ATTOMETER(-18, "attometer", "ATTO"), /**
-	 * The '<em><b>Femtometer</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FEMTOMETER_VALUE
-	 * @generated
-	 * @ordered
-	 */
+											 * The '<em><b>Femtometer</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #FEMTOMETER_VALUE
+											 * @generated
+											 * @ordered
+											 */
 	FEMTOMETER(-15, "femtometer", "FEMTO"), /**
-	 * The '<em><b>Picometer</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PICOMETER_VALUE
-	 * @generated
-	 * @ordered
-	 */
+											 * The '<em><b>Picometer</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #PICOMETER_VALUE
+											 * @generated
+											 * @ordered
+											 */
 	PICOMETER(-12, "picometer", "PICO"), /**
-	 * The '<em><b>Nanometer</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NANOMETER_VALUE
-	 * @generated
-	 * @ordered
-	 */
+											 * The '<em><b>Nanometer</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #NANOMETER_VALUE
+											 * @generated
+											 * @ordered
+											 */
 	NANOMETER(-9, "nanometer", "NANO"), /**
-	 * The '<em><b>Micrometer</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MICROMETER_VALUE
-	 * @generated
-	 * @ordered
-	 */
+										 * The '<em><b>Micrometer</b></em>' literal object.
+										 * <!-- begin-user-doc -->
+										 * <!-- end-user-doc -->
+										 * @see #MICROMETER_VALUE
+										 * @generated
+										 * @ordered
+										 */
 	MICROMETER(-6, "micrometer", "MICRO"), /**
-	 * The '<em><b>Millimeter</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MILLIMETER_VALUE
-	 * @generated
-	 * @ordered
-	 */
+											 * The '<em><b>Millimeter</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #MILLIMETER_VALUE
+											 * @generated
+											 * @ordered
+											 */
 	MILLIMETER(-3, "millimeter", "MILLI"), /**
-	 * The '<em><b>Centimeter</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CENTIMETER_VALUE
-	 * @generated
-	 * @ordered
-	 */
+											 * The '<em><b>Centimeter</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #CENTIMETER_VALUE
+											 * @generated
+											 * @ordered
+											 */
 	CENTIMETER(-2, "centimeter", "CENTI"), /**
-	 * The '<em><b>Decimeter</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DECIMETER_VALUE
-	 * @generated
-	 * @ordered
-	 */
+											 * The '<em><b>Decimeter</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #DECIMETER_VALUE
+											 * @generated
+											 * @ordered
+											 */
 	DECIMETER(-1, "decimeter", "DECI"), /**
-	 * The '<em><b>Decameter</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DECAMETER_VALUE
-	 * @generated
-	 * @ordered
-	 */
+										 * The '<em><b>Decameter</b></em>' literal object.
+										 * <!-- begin-user-doc -->
+										 * <!-- end-user-doc -->
+										 * @see #DECAMETER_VALUE
+										 * @generated
+										 * @ordered
+										 */
 	DECAMETER(1, "decameter", "DECA"), /**
-	 * The '<em><b>Hectometer</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #HECTOMETER_VALUE
-	 * @generated
-	 * @ordered
-	 */
+										 * The '<em><b>Hectometer</b></em>' literal object.
+										 * <!-- begin-user-doc -->
+										 * <!-- end-user-doc -->
+										 * @see #HECTOMETER_VALUE
+										 * @generated
+										 * @ordered
+										 */
 	HECTOMETER(2, "hectometer", "HECTO"), /**
-	 * The '<em><b>Kilometer</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #KILOMETER_VALUE
-	 * @generated
-	 * @ordered
-	 */
+											 * The '<em><b>Kilometer</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #KILOMETER_VALUE
+											 * @generated
+											 * @ordered
+											 */
 	KILOMETER(3, "kilometer", "KILO"), /**
-	 * The '<em><b>Megameter</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MEGAMETER_VALUE
-	 * @generated
-	 * @ordered
-	 */
+										 * The '<em><b>Megameter</b></em>' literal object.
+										 * <!-- begin-user-doc -->
+										 * <!-- end-user-doc -->
+										 * @see #MEGAMETER_VALUE
+										 * @generated
+										 * @ordered
+										 */
 	MEGAMETER(6, "megameter", "MEGA"), /**
-	 * The '<em><b>Gigameter</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #GIGAMETER_VALUE
-	 * @generated
-	 * @ordered
-	 */
+										 * The '<em><b>Gigameter</b></em>' literal object.
+										 * <!-- begin-user-doc -->
+										 * <!-- end-user-doc -->
+										 * @see #GIGAMETER_VALUE
+										 * @generated
+										 * @ordered
+										 */
 	GIGAMETER(9, "gigameter", "GIGA"), /**
-	 * The '<em><b>Terameter</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TERAMETER_VALUE
-	 * @generated
-	 * @ordered
-	 */
+										 * The '<em><b>Terameter</b></em>' literal object.
+										 * <!-- begin-user-doc -->
+										 * <!-- end-user-doc -->
+										 * @see #TERAMETER_VALUE
+										 * @generated
+										 * @ordered
+										 */
 	TERAMETER(12, "terameter", "TERA"), /**
-	 * The '<em><b>Petameter</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PETAMETER_VALUE
-	 * @generated
-	 * @ordered
-	 */
+										 * The '<em><b>Petameter</b></em>' literal object.
+										 * <!-- begin-user-doc -->
+										 * <!-- end-user-doc -->
+										 * @see #PETAMETER_VALUE
+										 * @generated
+										 * @ordered
+										 */
 	PETAMETER(15, "petameter", "PETA"), /**
-	 * The '<em><b>Exameter</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #EXAMETER_VALUE
-	 * @generated
-	 * @ordered
-	 */
+										 * The '<em><b>Exameter</b></em>' literal object.
+										 * <!-- begin-user-doc -->
+										 * <!-- end-user-doc -->
+										 * @see #EXAMETER_VALUE
+										 * @generated
+										 * @ordered
+										 */
 	EXAMETER(18, "exameter", "EXA");
 
 	/**
@@ -421,26 +421,8 @@ public enum SIPrefix implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final SIPrefix[] VALUES_ARRAY =
-		new SIPrefix[] {
-			METER,
-			ATTOMETER,
-			FEMTOMETER,
-			PICOMETER,
-			NANOMETER,
-			MICROMETER,
-			MILLIMETER,
-			CENTIMETER,
-			DECIMETER,
-			DECAMETER,
-			HECTOMETER,
-			KILOMETER,
-			MEGAMETER,
-			GIGAMETER,
-			TERAMETER,
-			PETAMETER,
-			EXAMETER,
-		};
+	private static final SIPrefix[] VALUES_ARRAY = new SIPrefix[] { METER, ATTOMETER, FEMTOMETER, PICOMETER, NANOMETER, MICROMETER, MILLIMETER, CENTIMETER, DECIMETER, DECAMETER,
+			HECTOMETER, KILOMETER, MEGAMETER, GIGAMETER, TERAMETER, PETAMETER, EXAMETER, };
 
 	/**
 	 * A public read-only list of all the '<em><b>SI Prefix</b></em>' enumerators.
@@ -490,23 +472,40 @@ public enum SIPrefix implements Enumerator {
 	 */
 	public static SIPrefix get(int value) {
 		switch (value) {
-			case METER_VALUE: return METER;
-			case ATTOMETER_VALUE: return ATTOMETER;
-			case FEMTOMETER_VALUE: return FEMTOMETER;
-			case PICOMETER_VALUE: return PICOMETER;
-			case NANOMETER_VALUE: return NANOMETER;
-			case MICROMETER_VALUE: return MICROMETER;
-			case MILLIMETER_VALUE: return MILLIMETER;
-			case CENTIMETER_VALUE: return CENTIMETER;
-			case DECIMETER_VALUE: return DECIMETER;
-			case DECAMETER_VALUE: return DECAMETER;
-			case HECTOMETER_VALUE: return HECTOMETER;
-			case KILOMETER_VALUE: return KILOMETER;
-			case MEGAMETER_VALUE: return MEGAMETER;
-			case GIGAMETER_VALUE: return GIGAMETER;
-			case TERAMETER_VALUE: return TERAMETER;
-			case PETAMETER_VALUE: return PETAMETER;
-			case EXAMETER_VALUE: return EXAMETER;
+		case METER_VALUE:
+			return METER;
+		case ATTOMETER_VALUE:
+			return ATTOMETER;
+		case FEMTOMETER_VALUE:
+			return FEMTOMETER;
+		case PICOMETER_VALUE:
+			return PICOMETER;
+		case NANOMETER_VALUE:
+			return NANOMETER;
+		case MICROMETER_VALUE:
+			return MICROMETER;
+		case MILLIMETER_VALUE:
+			return MILLIMETER;
+		case CENTIMETER_VALUE:
+			return CENTIMETER;
+		case DECIMETER_VALUE:
+			return DECIMETER;
+		case DECAMETER_VALUE:
+			return DECAMETER;
+		case HECTOMETER_VALUE:
+			return HECTOMETER;
+		case KILOMETER_VALUE:
+			return KILOMETER;
+		case MEGAMETER_VALUE:
+			return MEGAMETER;
+		case GIGAMETER_VALUE:
+			return GIGAMETER;
+		case TERAMETER_VALUE:
+			return TERAMETER;
+		case PETAMETER_VALUE:
+			return PETAMETER;
+		case EXAMETER_VALUE:
+			return EXAMETER;
 		}
 		return null;
 	}
@@ -550,7 +549,7 @@ public enum SIPrefix implements Enumerator {
 	 * @generated
 	 */
 	public int getValue() {
-	  return value;
+		return value;
 	}
 
 	/**
@@ -559,7 +558,7 @@ public enum SIPrefix implements Enumerator {
 	 * @generated
 	 */
 	public String getName() {
-	  return name;
+		return name;
 	}
 
 	/**
@@ -568,7 +567,7 @@ public enum SIPrefix implements Enumerator {
 	 * @generated
 	 */
 	public String getLiteral() {
-	  return literal;
+		return literal;
 	}
 
 	/**
@@ -581,5 +580,5 @@ public enum SIPrefix implements Enumerator {
 	public String toString() {
 		return literal;
 	}
-	
+
 } //SIPrefix

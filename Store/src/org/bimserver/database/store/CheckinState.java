@@ -81,13 +81,13 @@ public enum CheckinState implements Enumerator {
 	 * @ordered
 	 */
 	ERROR(5, "ERROR", "ERROR"), /**
-	 * The '<em><b>CLASHES ERROR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CLASHES_ERROR_VALUE
-	 * @generated
-	 * @ordered
-	 */
+								 * The '<em><b>CLASHES ERROR</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #CLASHES_ERROR_VALUE
+								 * @generated
+								 * @ordered
+								 */
 	CLASHES_ERROR(6, "CLASHES_ERROR", "CLASHES_ERROR");
 
 	/**
@@ -201,16 +201,7 @@ public enum CheckinState implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final CheckinState[] VALUES_ARRAY =
-		new CheckinState[] {
-			UPLOADING,
-			PARSING,
-			STORING,
-			SEARCHING_CLASHES,
-			DONE,
-			ERROR,
-			CLASHES_ERROR,
-		};
+	private static final CheckinState[] VALUES_ARRAY = new CheckinState[] { UPLOADING, PARSING, STORING, SEARCHING_CLASHES, DONE, ERROR, CLASHES_ERROR, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Checkin State</b></em>' enumerators.
@@ -260,13 +251,20 @@ public enum CheckinState implements Enumerator {
 	 */
 	public static CheckinState get(int value) {
 		switch (value) {
-			case UPLOADING_VALUE: return UPLOADING;
-			case PARSING_VALUE: return PARSING;
-			case STORING_VALUE: return STORING;
-			case SEARCHING_CLASHES_VALUE: return SEARCHING_CLASHES;
-			case DONE_VALUE: return DONE;
-			case ERROR_VALUE: return ERROR;
-			case CLASHES_ERROR_VALUE: return CLASHES_ERROR;
+		case UPLOADING_VALUE:
+			return UPLOADING;
+		case PARSING_VALUE:
+			return PARSING;
+		case STORING_VALUE:
+			return STORING;
+		case SEARCHING_CLASHES_VALUE:
+			return SEARCHING_CLASHES;
+		case DONE_VALUE:
+			return DONE;
+		case ERROR_VALUE:
+			return ERROR;
+		case CLASHES_ERROR_VALUE:
+			return CLASHES_ERROR;
 		}
 		return null;
 	}
@@ -310,7 +308,7 @@ public enum CheckinState implements Enumerator {
 	 * @generated
 	 */
 	public int getValue() {
-	  return value;
+		return value;
 	}
 
 	/**
@@ -319,7 +317,7 @@ public enum CheckinState implements Enumerator {
 	 * @generated
 	 */
 	public String getName() {
-	  return name;
+		return name;
 	}
 
 	/**
@@ -328,7 +326,7 @@ public enum CheckinState implements Enumerator {
 	 * @generated
 	 */
 	public String getLiteral() {
-	  return literal;
+		return literal;
 	}
 
 	/**
@@ -341,5 +339,5 @@ public enum CheckinState implements Enumerator {
 	public String toString() {
 		return literal;
 	}
-	
+
 } //CheckinState

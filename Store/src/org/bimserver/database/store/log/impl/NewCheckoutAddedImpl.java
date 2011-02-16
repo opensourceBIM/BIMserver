@@ -34,7 +34,7 @@ public class NewCheckoutAddedImpl extends LogActionImpl implements NewCheckoutAd
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NewCheckoutAddedImpl() {
+	protected NewCheckoutAddedImpl() {
 		super();
 	}
 
@@ -54,26 +54,7 @@ public class NewCheckoutAddedImpl extends LogActionImpl implements NewCheckoutAd
 	 * @generated
 	 */
 	public Checkout getCheckout() {
-		Checkout checkout = (Checkout)eVirtualGet(LogPackage.NEW_CHECKOUT_ADDED__CHECKOUT);
-		if (checkout != null && ((EObject)checkout).eIsProxy()) {
-			InternalEObject oldCheckout = (InternalEObject)checkout;
-			checkout = (Checkout)eResolveProxy(oldCheckout);
-			if (checkout != oldCheckout) {
-				eVirtualSet(LogPackage.NEW_CHECKOUT_ADDED__CHECKOUT, checkout);
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, LogPackage.NEW_CHECKOUT_ADDED__CHECKOUT, oldCheckout, checkout));
-			}
-		}
-		return checkout;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Checkout basicGetCheckout() {
-		return (Checkout)eVirtualGet(LogPackage.NEW_CHECKOUT_ADDED__CHECKOUT);
+		return (Checkout) eGet(LogPackage.Literals.NEW_CHECKOUT_ADDED__CHECKOUT, true);
 	}
 
 	/**
@@ -82,69 +63,7 @@ public class NewCheckoutAddedImpl extends LogActionImpl implements NewCheckoutAd
 	 * @generated
 	 */
 	public void setCheckout(Checkout newCheckout) {
-		Checkout checkout = newCheckout;
-		Object oldCheckout = eVirtualSet(LogPackage.NEW_CHECKOUT_ADDED__CHECKOUT, checkout);
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, LogPackage.NEW_CHECKOUT_ADDED__CHECKOUT, oldCheckout == EVIRTUAL_NO_VALUE ? null : oldCheckout, checkout));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case LogPackage.NEW_CHECKOUT_ADDED__CHECKOUT:
-				if (resolve) return getCheckout();
-				return basicGetCheckout();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case LogPackage.NEW_CHECKOUT_ADDED__CHECKOUT:
-				setCheckout((Checkout)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void eUnset(int featureID) {
-		switch (featureID) {
-			case LogPackage.NEW_CHECKOUT_ADDED__CHECKOUT:
-				setCheckout((Checkout)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case LogPackage.NEW_CHECKOUT_ADDED__CHECKOUT:
-				return eVirtualGet(LogPackage.NEW_CHECKOUT_ADDED__CHECKOUT) != null;
-		}
-		return super.eIsSet(featureID);
+		eSet(LogPackage.Literals.NEW_CHECKOUT_ADDED__CHECKOUT, newCheckout);
 	}
 
 } //NewCheckoutAddedImpl

@@ -34,7 +34,7 @@ public class ClashDetectionSettingsUpdatedImpl extends LogActionImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ClashDetectionSettingsUpdatedImpl() {
+	protected ClashDetectionSettingsUpdatedImpl() {
 		super();
 	}
 
@@ -54,26 +54,7 @@ public class ClashDetectionSettingsUpdatedImpl extends LogActionImpl implements 
 	 * @generated
 	 */
 	public ClashDetectionSettings getClashDetectionSettings() {
-		ClashDetectionSettings clashDetectionSettings = (ClashDetectionSettings)eVirtualGet(LogPackage.CLASH_DETECTION_SETTINGS_UPDATED__CLASH_DETECTION_SETTINGS);
-		if (clashDetectionSettings != null && ((EObject)clashDetectionSettings).eIsProxy()) {
-			InternalEObject oldClashDetectionSettings = (InternalEObject)clashDetectionSettings;
-			clashDetectionSettings = (ClashDetectionSettings)eResolveProxy(oldClashDetectionSettings);
-			if (clashDetectionSettings != oldClashDetectionSettings) {
-				eVirtualSet(LogPackage.CLASH_DETECTION_SETTINGS_UPDATED__CLASH_DETECTION_SETTINGS, clashDetectionSettings);
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, LogPackage.CLASH_DETECTION_SETTINGS_UPDATED__CLASH_DETECTION_SETTINGS, oldClashDetectionSettings, clashDetectionSettings));
-			}
-		}
-		return clashDetectionSettings;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ClashDetectionSettings basicGetClashDetectionSettings() {
-		return (ClashDetectionSettings)eVirtualGet(LogPackage.CLASH_DETECTION_SETTINGS_UPDATED__CLASH_DETECTION_SETTINGS);
+		return (ClashDetectionSettings) eGet(LogPackage.Literals.CLASH_DETECTION_SETTINGS_UPDATED__CLASH_DETECTION_SETTINGS, true);
 	}
 
 	/**
@@ -82,69 +63,7 @@ public class ClashDetectionSettingsUpdatedImpl extends LogActionImpl implements 
 	 * @generated
 	 */
 	public void setClashDetectionSettings(ClashDetectionSettings newClashDetectionSettings) {
-		ClashDetectionSettings clashDetectionSettings = newClashDetectionSettings;
-		Object oldClashDetectionSettings = eVirtualSet(LogPackage.CLASH_DETECTION_SETTINGS_UPDATED__CLASH_DETECTION_SETTINGS, clashDetectionSettings);
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, LogPackage.CLASH_DETECTION_SETTINGS_UPDATED__CLASH_DETECTION_SETTINGS, oldClashDetectionSettings == EVIRTUAL_NO_VALUE ? null : oldClashDetectionSettings, clashDetectionSettings));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case LogPackage.CLASH_DETECTION_SETTINGS_UPDATED__CLASH_DETECTION_SETTINGS:
-				if (resolve) return getClashDetectionSettings();
-				return basicGetClashDetectionSettings();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case LogPackage.CLASH_DETECTION_SETTINGS_UPDATED__CLASH_DETECTION_SETTINGS:
-				setClashDetectionSettings((ClashDetectionSettings)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void eUnset(int featureID) {
-		switch (featureID) {
-			case LogPackage.CLASH_DETECTION_SETTINGS_UPDATED__CLASH_DETECTION_SETTINGS:
-				setClashDetectionSettings((ClashDetectionSettings)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case LogPackage.CLASH_DETECTION_SETTINGS_UPDATED__CLASH_DETECTION_SETTINGS:
-				return eVirtualGet(LogPackage.CLASH_DETECTION_SETTINGS_UPDATED__CLASH_DETECTION_SETTINGS) != null;
-		}
-		return super.eIsSet(featureID);
+		eSet(LogPackage.Literals.CLASH_DETECTION_SETTINGS_UPDATED__CLASH_DETECTION_SETTINGS, newClashDetectionSettings);
 	}
 
 } //ClashDetectionSettingsUpdatedImpl

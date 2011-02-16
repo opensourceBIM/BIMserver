@@ -103,12 +103,7 @@ public enum UserType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final UserType[] VALUES_ARRAY =
-		new UserType[] {
-			ADMIN,
-			USER,
-			ANONYMOUS,
-		};
+	private static final UserType[] VALUES_ARRAY = new UserType[] { ADMIN, USER, ANONYMOUS, };
 
 	/**
 	 * A public read-only list of all the '<em><b>User Type</b></em>' enumerators.
@@ -158,9 +153,12 @@ public enum UserType implements Enumerator {
 	 */
 	public static UserType get(int value) {
 		switch (value) {
-			case ADMIN_VALUE: return ADMIN;
-			case USER_VALUE: return USER;
-			case ANONYMOUS_VALUE: return ANONYMOUS;
+		case ADMIN_VALUE:
+			return ADMIN;
+		case USER_VALUE:
+			return USER;
+		case ANONYMOUS_VALUE:
+			return ANONYMOUS;
 		}
 		return null;
 	}
@@ -204,7 +202,7 @@ public enum UserType implements Enumerator {
 	 * @generated
 	 */
 	public int getValue() {
-	  return value;
+		return value;
 	}
 
 	/**
@@ -213,7 +211,7 @@ public enum UserType implements Enumerator {
 	 * @generated
 	 */
 	public String getName() {
-	  return name;
+		return name;
 	}
 
 	/**
@@ -222,7 +220,7 @@ public enum UserType implements Enumerator {
 	 * @generated
 	 */
 	public String getLiteral() {
-	  return literal;
+		return literal;
 	}
 
 	/**
@@ -235,5 +233,5 @@ public enum UserType implements Enumerator {
 	public String toString() {
 		return literal;
 	}
-	
+
 } //UserType
