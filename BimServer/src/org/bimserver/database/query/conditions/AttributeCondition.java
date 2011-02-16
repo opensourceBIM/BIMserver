@@ -60,6 +60,15 @@ public class AttributeCondition extends Condition {
 		if (!attribute.getEContainingClass().isSuperTypeOf(object.eClass())) {
 			return false;
 		} else {
+			if (object.eGet(attribute) == null && literal.getValue() == null) {
+				return true;
+			}
+			if (object.eGet(attribute) == null && literal.getValue() != null) {
+				return false;
+			}
+			if (object.eGet(attribute) != null && literal.getValue() == null) {
+				return false;
+			}
 			return object.eGet(attribute).equals(literal.getValue());
 		}
 	}
