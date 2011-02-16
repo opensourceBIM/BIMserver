@@ -1,4 +1,4 @@
-package org.bimserver.tests;
+package org.bimserver.test.framework;
 
 /******************************************************************************
  * (c) Copyright bimserver.org 2009
@@ -51,7 +51,8 @@ import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SUserType;
 import org.bimserver.shared.ServiceException;
 import org.bimserver.shared.ServiceInterface;
-import org.bimserver.tests.TestResult.ResultCode;
+import org.bimserver.test.framework.TestResult.ResultCode;
+import org.bimserver.tests.HtmlWriter;
 import org.bimserver.utils.Formatters;
 
 public class BimServerTester {
@@ -69,7 +70,7 @@ public class BimServerTester {
 				new BimServerTester(new File(args[1])).start();
 			}
 		} else {
-			new BimServerTester(new File("C:\\ifc selected")).start();
+			new BimServerTester(new File("D:\\ifc selected")).start();
 		}
 	}
 
