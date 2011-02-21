@@ -268,7 +268,7 @@ public interface ServiceInterface {
 	DatabaseInformation getDatabaseInformation() throws UserException,
 			ServerException;
 
-	@WebMethod(action = "getDatabaseInformation")
+	@WebMethod(action = "getLastDatabaseReset")
 	Date getLastDatabaseReset() throws UserException, ServerException;
 
 	@WebMethod(action = "getLoggedInUser")
@@ -517,6 +517,11 @@ public interface ServiceInterface {
 			@WebParam(name = "addressesTo", partName = "sendClashesEmail.addressesTo") Set<String> addressesTo)
 			throws UserException, ServerException;
 
-	void sendCompareEmail(SCompareType sCompareType, long poid, long roid1,
-			long roid2, String address) throws UserException, ServerException;
+	@WebMethod(action = "sendCompareEmail")
+	void sendCompareEmail(
+			@WebParam(name = "sCompareType", partName = "sendClashesEmail.sCompareType") SCompareType sCompareType,
+			@WebParam(name = "poid", partName = "sendClashesEmail.poid")long poid, 
+			@WebParam(name = "roid1", partName = "sendClashesEmail.roid1")long roid1,
+			@WebParam(name = "roid2", partName = "sendClashesEmail.roid2")long roid2, 
+			@WebParam(name = "address", partName = "sendClashesEmail.address") String address) throws UserException, ServerException;
 }
