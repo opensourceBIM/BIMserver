@@ -70,7 +70,7 @@ public class FindClashesDatabaseAction extends BimDatabaseAction<Set<? extends C
 		for (Revision revision : clashDetectionSettings.getRevisions()) {
 			project = revision.getProject();
 			for (ConcreteRevision concreteRevision : revision.getConcreteRevisions()) {
-				IfcModel source = getDatabaseSession().getMap(concreteRevision.getProject().getId(), concreteRevision.getId(), false);
+				IfcModel source = getDatabaseSession().getMap(concreteRevision.getProject().getId(), concreteRevision.getId(), true);
 				source.setDate(concreteRevision.getDate());
 				ifcModelSet.add(source);
 				for (Long oid : source.keySet()) {

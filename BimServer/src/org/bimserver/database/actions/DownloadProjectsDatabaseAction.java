@@ -39,7 +39,7 @@ public class DownloadProjectsDatabaseAction extends BimDatabaseAction<IfcModel> 
 			project = revision.getProject();
 			if (RightsManager.hasRightsOnProjectOrSuperProjectsOrSubProjects(user, project)) {
 				for (ConcreteRevision concreteRevision : revision.getConcreteRevisions()) {
-					IfcModel subModel = getDatabaseSession().getMap(concreteRevision.getProject().getId(), concreteRevision.getId(), false);
+					IfcModel subModel = getDatabaseSession().getMap(concreteRevision.getProject().getId(), concreteRevision.getId(), true);
 					projectName += concreteRevision.getProject().getName() + "-";
 					subModel.setDate(concreteRevision.getDate());
 					ifcModelSet.add(subModel);

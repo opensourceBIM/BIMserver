@@ -64,7 +64,7 @@ public class DownloadByGuidsDatabaseAction extends BimDatabaseAction<IfcModel> {
 			}
 			for (ConcreteRevision concreteRevision : map.keySet()) {
 				Set<Long> oids = map.get(concreteRevision);
-				IfcModel model = getDatabaseSession().getMapWithOids(concreteRevision.getProject().getId(), concreteRevision.getId(), oids, false);
+				IfcModel model = getDatabaseSession().getMapWithOids(concreteRevision.getProject().getId(), concreteRevision.getId(), oids, true);
 				model.setDate(concreteRevision.getDate());
 				ifcModelSet.add(model);
 			}

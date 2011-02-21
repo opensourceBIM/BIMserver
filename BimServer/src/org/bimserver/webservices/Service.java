@@ -1349,7 +1349,7 @@ public class Service implements ServiceInterface {
 			}
 			IfcModelSet ifcModelSet = new IfcModelSet();
 			for (ConcreteRevision subRevision : oldRevision.getConcreteRevisions()) {
-				IfcModel subModel = session.getMap(subRevision.getProject().getId(), subRevision.getId(), false);
+				IfcModel subModel = session.getMap(subRevision.getProject().getId(), subRevision.getId(), true);
 				subModel.setDate(subRevision.getDate());
 				ifcModelSet.add(subModel);
 			}
@@ -1398,7 +1398,7 @@ public class Service implements ServiceInterface {
 			}
 			IfcModelSet ifcModelSet = new IfcModelSet();
 			for (ConcreteRevision subRevision : oldRevision.getConcreteRevisions()) {
-				IfcModel subModel = session.getMap(subRevision.getProject().getId(), subRevision.getId(), false);
+				IfcModel subModel = session.getMap(subRevision.getProject().getId(), subRevision.getId(), true);
 				subModel.setDate(subRevision.getDate());
 				ifcModelSet.add(subModel);
 			}

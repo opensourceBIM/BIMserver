@@ -376,21 +376,13 @@ public class Database implements BimDatabase {
 	}
 
 	public DatabaseSession createSession() {
-		return createSession(true);
-	}
-	
-	public DatabaseSession createSession(boolean lazyLoading) {
-		DatabaseSession databaseSession = new DatabaseSession(this, columnDatabase.startTransaction(), false, lazyLoading);
+		DatabaseSession databaseSession = new DatabaseSession(this, columnDatabase.startTransaction(), false);
 		sessions.add(databaseSession);
 		return databaseSession;
 	}
 
 	public BimDatabaseSession createReadOnlySession() {
-		return createReadOnlySession(true);
-	}
-	
-	public BimDatabaseSession createReadOnlySession(boolean lazyLoading) {
-		DatabaseSession databaseSession = new DatabaseSession(this, null, true, lazyLoading);
+		DatabaseSession databaseSession = new DatabaseSession(this, null, true);
 		sessions.add(databaseSession);
 		return databaseSession;
 	}
