@@ -17,13 +17,13 @@
 	<target name="nightlybuild">
 		<ftp server="tools.bimtoolset.org" userid="${ftp_user}" password="${ftp_pass}" action="mkdir" remotedir="/httpdocs/tools/BIMserver/nightly builds/${version}" />
 		<ant antfile="common.build.xml" target="buildwar">
-			<property name="deploydir" value="deploy/war" description="Create a war file" />
+			<property name="target" value="war" description="Create a war file" />
 		</ant>
 		<ftp server="tools.bimtoolset.org" userid="${ftp_user}" password="${ftp_pass}" remotedir="/httpdocs/tools/BIMserver/nightly builds/${version}">
 			<fileset file="builds/bimserver-${version}.war" />
 		</ftp>
 		<ant antfile="common.build.xml" target="buildjar">
-			<property name="deploydir" value="deploy/jar" description="Create a standalone jar file" />
+			<property name="target" value="jar" description="Create a standalone jar file" />
 		</ant>
 		<ftp server="tools.bimtoolset.org" userid="${ftp_user}" password="${ftp_pass}" remotedir="/httpdocs/tools/BIMserver/nightly builds/${version}">
 			<fileset file="builds/bimserver-${version}.jar" />

@@ -2,47 +2,55 @@
 	<tstamp>
 		<format property="touch.time" pattern="yyyy-MM-dd'T'HH:mm:ss.S'+01:00'" />
 	</tstamp>
+	<property name="buildtargets" value="../build/targets"/>
+	<property name="defaultsettings" value="../defaultsettings"/>
 	<target name="buildjar">
 		<delete dir="builds" />
 		<mkdir dir="builds" />
 		<copy todir="builds/BuildJar">
-			<fileset file="../deploy/shared/gpl.txt" />
+			<fileset file="${buildtargets}/shared/gpl.txt" />
 		</copy>
 		<copy todir="builds/BuildJar/www">
 			<fileset dir="../www" />
 		</copy>
 		<copy todir="builds/BuildJar/config" overwrite="true">
-			<fileset file="../deploy/shared/IFC2X3_FINAL.exp" />
-			<fileset file="../deploy/shared/version.xml" />
-			<fileset file="../deploy/shared/ignore.xml" />
-			<fileset file="../deploy/shared/web.xml" />
-			<fileset file="../deploy/shared/collada.xml" />
-			<fileset file="../deploy/shared/_asCOBie2.xml.xsl" />
-			<fileset file="../deploy/shared/_fromCOBie2.ifcxml.xsl" />
-			<fileset file="../deploy/shared/_Report1.xhtml.xsl" />
-			<fileset file="../${deploydir}/settings.xml" />
+			<fileset file="${buildtargets}/shared/IFC2X3_FINAL.exp" />
+			<fileset file="${buildtargets}/shared/version.xml" />
+			<fileset file="${buildtargets}/shared/web.xml" />
+			<fileset file="${buildtargets}/shared/_asCOBie2.xml.xsl" />
+			<fileset file="${buildtargets}/shared/_fromCOBie2.ifcxml.xsl" />
+			<fileset file="${buildtargets}/shared/_Report1.xhtml.xsl" />
+
+			<fileset file="${defaultsettings}/shared/collada.xml" />
+			<fileset file="${defaultsettings}/${target}/collada.xml" />
+
+			<fileset file="${defaultsettings}/shared/settings.xml" />
+			<fileset file="${defaultsettings}/${target}/settings.xml" />
+
+			<fileset file="${defaultsettings}/shared/ignore.xml" />
+			<fileset file="${defaultsettings}/${target}/ignore.xml" />
 		</copy>
-		<copy file="../deploy/jar/servertype.txt" todir="builds/BuildJar" />
+		<copy file="${buildtargets}/${target}/servertype.txt" todir="builds/BuildJar" />
 		<copy todir="builds/BuildJar/www/META-INF" overwrite="true">
-			<fileset file="../deploy/shared/context.xml" />
+			<fileset file="${buildtargets}/shared/context.xml" />
 		</copy>
 		<copy todir="builds/BuildJar/config/templates" overwrite="true" failonerror="false">
-			<fileset dir="../${deploydir}/templates" />
+			<fileset dir="${defaultsettings}/${target}/templates" />
 		</copy>
 		<copy todir="builds/BuildJar/www" overwrite="true" failonerror="false">
-			<fileset dir="../${deploydir}/jsp" />
+			<fileset dir="${buildtargets}/${target}/jsp" />
 		</copy>
 		<copy todir="builds/BuildJar/www/images" overwrite="true" failonerror="false">
-			<fileset dir="../${deploydir}/images" />
+			<fileset dir="${buildtargets}/${target}/images" />
 		</copy>
 		<copy todir="builds/BuildJar/config/ignoreexceptions" overwrite="true" failonerror="false">
-			<fileset dir="../deploy/shared/ignoreexceptions" />
+			<fileset dir="${defaultsettings}/shared/ignoreexceptions" />
 		</copy>
 		<replace file="builds/BuildJar/config/version.xml" token="@VERSION@" value="${version}" />
 		<replace file="builds/BuildJar/config/version.xml" token="@DATE@" value="${touch.time}" />
 		<replace file="builds/BuildJar/config/web.xml" token="@VERSION@" value="${version}" />
 		<copy todir="builds/BuildJar/lib">
-			<fileset file="../${deploydir}/log4j.xml" />
+			<fileset file="${defaultsettings}/${target}/log4j.xml" />
 		</copy>
 		<copy tofile="builds/BuildJar/classes/org/bimserver/ifc/emf/Ifc2x3/impl/Ifc2x3.ecore">
 			<fileset file="../../Ifc/model/IFC2X3.ecore" />
@@ -85,7 +93,7 @@
 				</fileset>
 			</classpath>
 		</javac>
-		<jar jarfile="builds/BuildJar/lib/bimserver.jar" manifest="../${deploydir}/MAIN-MANIFEST.MF">
+		<jar jarfile="builds/BuildJar/lib/bimserver.jar" manifest="${buildtargets}/${target}/MAIN-MANIFEST.MF">
 			<fileset dir="builds/BuildJar/classes" />
 		</jar>
 		<delete dir="builds/BuildJar/classes" />
@@ -96,7 +104,7 @@
 			</fileset>
 		</copy>
 		<mkdir dir="builds/BuildJar/tmp" />
-		<jar jarfile="builds/bimserver-${version}.jar" manifest="../${deploydir}/MANIFEST.MF">
+		<jar jarfile="builds/bimserver-${version}.jar" manifest="${buildtargets}/${target}/MANIFEST.MF">
 			<fileset dir="builds/BuildJar">
 				<exclude name="*.svn" />
 			</fileset>
@@ -108,28 +116,35 @@
 		<mkdir dir="builds" />
 		<mkdir dir="builds/BuildWar" />
 		<copy todir="builds/BuildWar">
-			<fileset file="../deploy/shared/gpl.txt" />
+			<fileset file="${buildtargets}/shared/gpl.txt" />
 		</copy>
 		<mkdir dir="builds/BuildWar/WEB-INF/classes" />
 		<copy todir="builds/BuildWar/">
 			<fileset dir="../www" />
 		</copy>
 		<copy todir="builds/BuildWar/WEB-INF" overwrite="true">
-			<fileset file="../deploy/shared/IFC2X3_FINAL.exp" />
-			<fileset file="../deploy/shared/version.xml" />
-			<fileset file="../deploy/shared/ignore.xml" />
-			<fileset file="../deploy/shared/collada.xml" />
-			<fileset file="../deploy/shared/_asCOBie2.xml.xsl" />
-			<fileset file="../deploy/shared/_fromCOBie2.ifcxml.xsl" />
-			<fileset file="../deploy/shared/_Report1.xhtml.xsl" />
-			<fileset file="../${deploydir}/web.xml" />
+			<fileset file="${buildtargets}/shared/IFC2X3_FINAL.exp" />
+			<fileset file="${buildtargets}/shared/version.xml" />
+			<fileset file="${buildtargets}/shared/web.xml" />
+			<fileset file="${buildtargets}/shared/_asCOBie2.xml.xsl" />
+			<fileset file="${buildtargets}/shared/_fromCOBie2.ifcxml.xsl" />
+			<fileset file="${buildtargets}/shared/_Report1.xhtml.xsl" />
+
+			<fileset file="${defaultsettings}/shared/collada.xml" />
+			<fileset file="${defaultsettings}/${target}/collada.xml" />
+
+			<fileset file="${defaultsettings}/shared/settings.xml" />
+			<fileset file="${defaultsettings}/${target}/settings.xml" />
+
+			<fileset file="${defaultsettings}/shared/ignore.xml" />
+			<fileset file="${defaultsettings}/${target}/ignore.xml" />
 		</copy>
-		<copy file="../deploy/war/servertype.txt" todir="builds/BuildWar" />
+		<copy file="${buildtargets}/war/servertype.txt" todir="builds/BuildWar" />
 		<copy todir="builds/BuildWar/META-INF" overwrite="true">
-			<fileset file="../deploy/shared/context.xml" />
+			<fileset file="${buildtargets}/shared/context.xml" />
 		</copy>
 		<copy todir="builds/BuildWar/META-INF" overwrite="true">
-			<fileset file="../deploy/war/MANIFEST.MF" />
+			<fileset file="${buildtargets}/${target}/MANIFEST.MF" />
 		</copy>
 		<replace file="builds/BuildWar/WEB-INF/version.xml" token="@VERSION@" value="${version}" />
 		<replace file="builds/BuildWar/WEB-INF/version.xml" token="@DATE@" value="${touch.time}" />
@@ -138,16 +153,16 @@
 			<fileset file="../../Ifc/model/IFC2X3.ecore" />
 		</copy>
 		<copy todir="builds/BuildWar" overwrite="true">
-			<fileset dir="../${deploydir}/jsp" />
+			<fileset dir="${buildtargets}/${target}/jsp" />
 		</copy>
 		<copy todir="builds/BuildWar/images" overwrite="true">
-			<fileset dir="../${deploydir}/images" />
+			<fileset dir="${buildtargets}/${target}/images" />
 		</copy>
 		<copy todir="builds/BuildWar/WEB-INF/templates" overwrite="true">
-			<fileset dir="../${deploydir}/templates" />
+			<fileset dir="${defaultsettings}/${target}/templates" />
 		</copy>
 		<copy todir="builds/BuildWar/WEB-INF" overwrite="true">
-			<fileset file="../${deploydir}/settings.xml" />
+			<fileset file="${defaultsettings}/${target}/settings.xml" />
 		</copy>
 		<copy todir="builds/BuildWar/WEB-INF/lib" flatten="true">
 			<fileset dir="../lib">
@@ -205,7 +220,7 @@
 		<delete dir="builds/BuildWar/WEB-INF/classes" />
 		<mkdir dir="builds/BuildWar/WEB-INF/classes" />
 		<copy todir="builds/BuildWar/WEB-INF/classes">
-			<fileset file="../${deploydir}/log4j.xml" />
+			<fileset file="${defaultsettings}/${target}/log4j.xml" />
 		</copy>
 		<jar destfile="builds/bimserver-${version}.war" manifest="../www/META-INF/MANIFEST.MF">
 			<fileset dir="builds/BuildWar">
@@ -281,6 +296,9 @@
 		</copy>
 		<copy todir="builds/BuildSource/BIMserver/Emf">
 			<fileset dir="../../Emf" />
+		</copy>
+		<copy todir="builds/BuildSource/BIMserver/GeneratedClient">
+			<fileset dir="../../GeneratedClient" />
 		</copy>
 		<copy todir="builds/BuildSource/BIMserver/Ifc">
 			<fileset dir="../../Ifc" />
