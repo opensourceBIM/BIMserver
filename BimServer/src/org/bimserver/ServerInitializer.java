@@ -94,11 +94,12 @@ public class ServerInitializer implements ServletContextListener {
 	public void contextInitialized(ServletContextEvent servletContextEvent) {
 		try {
 			ServerType serverType = detectServerType(servletContextEvent.getServletContext());
+			servletContext = servletContextEvent.getServletContext();
 			resourceFetcher = createResourceFetcher(serverType, servletContext);
 			URL resource = resourceFetcher.getResource("settings.xml");
 			Settings settings = Settings.readFromUrl(resource);
 
-			CustomFileAppender.location = "home/logs/bimserver.log";
+			CustomFileAppender.location = settings.getLogLocation();
 			
 			LOGGER.info("Starting ServerInitializer");
 
@@ -122,7 +123,6 @@ public class ServerInitializer implements ServletContextListener {
 				LOGGER.error("Server type not detected, stopping initialization");
 				return;
 			}
-			servletContext = servletContextEvent.getServletContext();
 			ServerSettings.setSettings(settings);
 			serverStartTime = new GregorianCalendar();
 			SchemaDefinition schema = loadIfcSchema(resourceFetcher);
