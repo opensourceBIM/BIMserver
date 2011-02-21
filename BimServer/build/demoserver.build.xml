@@ -11,6 +11,6 @@
 		<property name="target" value="demo" />
 		<ant antfile="common.build.xml" target="buildwar"></ant>
 		<undeploy url="http://demo.bimserver.org/manager" username="${tomcat_username}" password="${tomcat_password}" path="/" failonerror="false" />
-		<deploy url="http://demo.bimserver.org/manager" username="${tomcat_username}" password="${tomcat_password}" config="context.xml" path="/" war="file:builds/bimserver-${version}.war" />
+		<deploy url="http://demo.bimserver.org/manager" username="${tomcat_username}" password="${tomcat_password}" path="/" war="file:builds/bimserver-${version}.war" />
 	</target>
 </project>
