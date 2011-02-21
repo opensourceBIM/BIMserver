@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/">
+  <Parameter name="homedir" value="/opt/home"/>
+</Context>
