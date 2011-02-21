@@ -24,7 +24,48 @@ import org.slf4j.LoggerFactory;
 
 @XmlRootElement
 public class Settings {
-	private static final Logger LOGGER = LoggerFactory.getLogger(Settings.class);
+	
+	public enum SettingsParameter {
+		ShowVersionUpgradeAvailable, SendConfirmationEmailAfterRegistration, UseCaching, AllowSelfRegistration, AutoTestClashes, IntelligentMerging, AllowUsersToCreateTopLevelProjects, CheckinMergingEnabled, RegistrationAddition, SmtpServer, EmailSenderAddress, DatabaseLocation, EnabledExportTypes, CustomLogoAddress, SiteAddress;
+		public Class<?> getValueType() {
+			switch (this) {
+			case AllowSelfRegistration:
+				return Boolean.class;
+			case AllowUsersToCreateTopLevelProjects:
+				return Boolean.class;
+			case AutoTestClashes:
+				return Boolean.class;
+			case CheckinMergingEnabled:
+				return Boolean.class;
+			case CustomLogoAddress:
+				return String.class;
+			case DatabaseLocation:
+				return String.class;
+			case EmailSenderAddress:
+				return String.class;
+			case EnabledExportTypes:
+				return String.class;
+			case IntelligentMerging:
+				return Boolean.class;
+			case RegistrationAddition:
+				return String.class;
+			case SendConfirmationEmailAfterRegistration:
+				return Boolean.class;
+			case ShowVersionUpgradeAvailable:
+				return Boolean.class;
+			case SiteAddress:
+				return String.class;
+			case SmtpServer:
+				return String.class;
+			case UseCaching:
+				return Boolean.class;
+			}
+			return null;
+		}
+	};
+
+	private static final Logger LOGGER = LoggerFactory
+			.getLogger(Settings.class);
 	private boolean showVersionUpgradeAvailable;
 	private boolean sendConfirmationEmailAfterRegistration;
 	private boolean useCaching;
@@ -45,7 +86,8 @@ public class Settings {
 		return showVersionUpgradeAvailable;
 	}
 
-	public void setShowVersionUpgradeAvailable(boolean showVersionUpgradeAvailable) {
+	public void setShowVersionUpgradeAvailable(
+			boolean showVersionUpgradeAvailable) {
 		this.showVersionUpgradeAvailable = showVersionUpgradeAvailable;
 	}
 
@@ -85,11 +127,13 @@ public class Settings {
 		return sendConfirmationEmailAfterRegistration;
 	}
 
-	public void setSendConfirmationEmailAfterRegistration(boolean sendConfirmationEmailAfterRegistration) {
+	public void setSendConfirmationEmailAfterRegistration(
+			boolean sendConfirmationEmailAfterRegistration) {
 		this.sendConfirmationEmailAfterRegistration = sendConfirmationEmailAfterRegistration;
 	}
 
-	public static Settings readFromFile(File file) throws FileNotFoundException, SettingsReadException {
+	public static Settings readFromFile(File file)
+			throws FileNotFoundException, SettingsReadException {
 		if (file.exists() && file.isFile()) {
 			return readFromStream(new FileInputStream(file));
 		}
@@ -102,12 +146,14 @@ public class Settings {
 			enabledExportTypes += resultType.name() + ",";
 		}
 		if (enabledExportTypes.endsWith(",")) {
-			enabledExportTypes = enabledExportTypes.substring(0, enabledExportTypes.length() - 1);
+			enabledExportTypes = enabledExportTypes.substring(0,
+					enabledExportTypes.length() - 1);
 		}
 		this.enabledExportTypes = enabledExportTypes;
 	}
 
-	public void saveToFile(File file) throws SettingsSaveException, FileNotFoundException {
+	public void saveToFile(File file) throws SettingsSaveException,
+			FileNotFoundException {
 		FileOutputStream fos = new FileOutputStream(file);
 		saveToStream(fos);
 		try {
@@ -128,7 +174,8 @@ public class Settings {
 		}
 	}
 
-	public static Settings readFromUrl(URL resource) throws SettingsReadException, IOException {
+	public static Settings readFromUrl(URL resource)
+			throws SettingsReadException, IOException {
 		return readFromStream(resource.openStream());
 	}
 
@@ -156,7 +203,8 @@ public class Settings {
 		return allowSelfRegistration;
 	}
 
-	public static Settings readFromStream(InputStream inputStream) throws SettingsReadException {
+	public static Settings readFromStream(InputStream inputStream)
+			throws SettingsReadException {
 		try {
 			JAXBContext jc = JAXBContext.newInstance(Settings.class);
 			Unmarshaller unmarshaller = jc.createUnmarshaller();
@@ -168,7 +216,8 @@ public class Settings {
 	}
 
 	public void save() throws SettingsSaveException {
-		File file = ServerInitializer.getResourceFetcher().getFile("settings.xml");
+		File file = ServerInitializer.getResourceFetcher().getFile(
+				"settings.xml");
 		try {
 			saveToFile(file);
 		} catch (FileNotFoundException e) {
@@ -177,7 +226,8 @@ public class Settings {
 	}
 
 	public static Settings read() throws SettingsReadException {
-		File file = ServerInitializer.getResourceFetcher().getFile("settings.xml");
+		File file = ServerInitializer.getResourceFetcher().getFile(
+				"settings.xml");
 		try {
 			return readFromFile(file);
 		} catch (FileNotFoundException e) {
@@ -210,7 +260,8 @@ public class Settings {
 		this.customLogoAddress = customLogoAddress;
 	}
 
-	public void setAllowUsersToCreateTopLevelProjects(boolean allowUsersToCreateTopLevelProjects) {
+	public void setAllowUsersToCreateTopLevelProjects(
+			boolean allowUsersToCreateTopLevelProjects) {
 		this.allowUsersToCreateTopLevelProjects = allowUsersToCreateTopLevelProjects;
 	}
 
