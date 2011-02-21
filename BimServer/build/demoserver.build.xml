@@ -8,7 +8,7 @@
 	<taskdef name="stop" classname="org.apache.catalina.ant.StopTask" />
 	<taskdef name="undeploy" classname="org.apache.catalina.ant.UndeployTask" />
 	<target name="deploydemowar">
-		<property name="deploydir" value="deploy/demowar" />
+		<property name="target" value="demo" />
 		<ant antfile="common.build.xml" target="buildwar"></ant>
 		<undeploy url="http://demo.bimserver.org/manager" username="${tomcat_username}" password="${tomcat_password}" path="/" failonerror="false" />
 		<deploy url="http://demo.bimserver.org/manager" username="${tomcat_username}" password="${tomcat_password}" path="/" war="file:builds/bimserver-${version}.war" />

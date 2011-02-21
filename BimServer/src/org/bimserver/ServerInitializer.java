@@ -148,7 +148,7 @@ public class ServerInitializer implements ServletContextListener {
 			File schemaFile = resourceFetcher.getFile("IFC2X3_FINAL.exp").getAbsoluteFile();
 			LOGGER.info("Using " + schemaFile + " as engine schema");
 
-			File nativeFolder = resourceFetcher.getFile("lib/");
+			File nativeFolder = resourceFetcher.getFile("lib/" + File.separator + System.getProperty("sun.arch.data.model"));
 			String classPath = null;
 			if (serverType == ServerType.DEPLOYED_WAR) {
 				// Because servers like Tomcat use complex classloading

@@ -8,7 +8,7 @@
 	<taskdef name="stop" classname="org.apache.catalina.ant.StopTask" />
 	<taskdef name="undeploy" classname="org.apache.catalina.ant.UndeployTask" />
 	<target name="deploycloudwar">
-		<property name="deploydir" value="deploy/cloudwar" />
+		<property name="target" value="cloud" />
 		<ant antfile="common.build.xml" target="buildwar"></ant>
 		<undeploy url="http://cloud.bimserver.org/manager" username="${tomcat_username}" password="${tomcat_password}" path="/" failonerror="false" />
 		<deploy url="http://cloud.bimserver.org/manager" username="${tomcat_username}" password="${tomcat_password}" path="/" war="file:builds/bimserver-${version}.war" />

@@ -57,7 +57,7 @@ public class FailSafeIfcEngine {
 				tmp.mkdir();
 			}
 			StringBuilder command = new StringBuilder("java");
-			command.append(" -Djna.library.path=" + nativeBaseDir.toString() + File.separator + System.getProperty("sun.arch.data.model"));
+			command.append(" -Djna.library.path=" + nativeBaseDir.toString());
 			if (tmp.getAbsolutePath().toString().contains(" ")) {
 				command.append(" -Djava.io.tmpdir=\"" + tmp.getAbsolutePath().toString() + "\"");
 			} else {
