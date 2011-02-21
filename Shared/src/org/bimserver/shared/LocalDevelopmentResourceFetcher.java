@@ -5,10 +5,10 @@ import java.io.File;
 public class LocalDevelopmentResourceFetcher extends ResourceFetcher {
 
 	public LocalDevelopmentResourceFetcher() {
-		addPath(new File("../BimServer/defaultsettings" + File.separator + "local"));
-		addPath(new File("../BimServer/defaultsettings" + File.separator + "shared"));
-		addPath(new File("../BimServer/deploy" + File.separator + "local"));
-		addPath(new File("../BimServer/deploy" + File.separator + "shared"));
+		addPath(new File("../BimServer/home"));
+		addPath(new File("../BimServer/defaultsettings/" + "shared"));
+		addPath(new File("../BimServer/build/targets/" + "local"));
+		addPath(new File("../BimServer/build/targets/" + "shared"));
 	}
 
 	@Override
