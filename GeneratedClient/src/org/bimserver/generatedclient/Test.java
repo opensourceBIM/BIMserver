@@ -2,6 +2,8 @@ package org.bimserver.generatedclient;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.List;
 
 import javax.activation.DataHandler;
@@ -12,11 +14,16 @@ public class Test {
 	private Soap soapPort;
 
 	public static void main(String[] args) {
-		new Test().start();
+		try {
+			new Test().start();
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		}
 	}
 
-	private void start() {
-		service = new ServiceInterfaceService();
+	private void start() throws MalformedURLException {
+		URL url = new URL("http://localhost:8082/soap?wsdl");
+		service = new ServiceInterfaceService(url);
 		soapPort = service.getSoapPort();
 		((BindingProvider) soapPort).getRequestContext().put(BindingProvider.SESSION_MAINTAIN_PROPERTY, true);
 		try {

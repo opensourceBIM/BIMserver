@@ -5,16 +5,19 @@
 <%@page import="org.bimserver.web.JspHelper"%>
 <%@page import="org.bimserver.interfaces.objects.SProject"%>
 <%@page import="org.bimserver.shared.SProjectNameComparator"%>
+<%@page import="org.bimserver.interfaces.objects.SUserType"%>
 <%@ include file="header.jsp" %>
 <%
 if (ServerInfo.isAvailable()) {
 	if (loginManager.getService().isLoggedIn()) { %>
-<%@page import="org.bimserver.interfaces.objects.SUserType"%><div class="sidebar">
+<div class="sidebar">
  <ul>
 <% if (loginManager.getUserType() == SUserType.ADMIN || ServerSettings.getSettings().isAllowUsersToCreateTopLevelProjects()) { %>
  <li><a href="addproject.jsp">Add project</a></li>
  <li><a class="rss" href="<%=request.getContextPath() %>/syndication/projects">Projects feed</a></li>
-<% } %>
+<% }
+%>
+<jsp:include page="showdeleted.jsp"/>
  </ul>
 </div>
 <div class="content">

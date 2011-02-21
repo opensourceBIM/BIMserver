@@ -16,6 +16,7 @@
 <ul>
 <li>
 <a href="adduser.jsp">Add user</a></li>
+<jsp:include page="showdeleted.jsp"/>
 </ul>
 </div>
 

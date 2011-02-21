@@ -23,12 +23,14 @@
 <%
 	long uoid = Long.parseLong(request.getParameter("uoid"));
 %>
-<div class="sidebar">
+
+<%@page import="org.bimserver.interfaces.objects.SObjectState"%><div class="sidebar">
  <ul>
 <% if (loginManager.getUserType() == SUserType.ADMIN) { %>
  <li><a href="edituser.jsp?uoid=<%=uoid%>">Edit</a></li>
 <% } %>
  <li><a href="changepassword.jsp?uoid=<%=uoid%>">Change password</a></li>
+<jsp:include page="showdeleted.jsp"/>
  </ul>
 </div>
 <div class="content">
@@ -205,7 +207,7 @@ if (userHasCheckinRights) { %>
 <%
 		for (SProject project : projects) {
 %>
-<tr>
+<tr<%= project.getState() == SObjectState.DELETED ? " class=\"deleted\"" : "" %>>
 	<td><a href="project.jsp?poid=<%=project.getOid() %>"><%=JspHelper.completeProjectName(loginManager.getService(), project) %></a></td>
 	<td><% if (loginManager.getUserType() == SUserType.ADMIN && user.getUserType() != SUserType.ADMIN) { %><a href="revokepermission.jsp?type=user&amp;poid=<%=project.getOid() %>&amp;uoid=<%=uoid %>">revoke</a><% } %></td>
 </tr>

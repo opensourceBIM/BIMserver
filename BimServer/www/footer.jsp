@@ -9,6 +9,17 @@
 <script>
 $(document).ready(function(){
 	instrumentBrowserLinks();
+
+	var showDeleted = getCookie("showdeleted") == "true";
+	$("#showdeleted").attr("checked", showDeleted);
+	if (showDeleted) {
+		$(".deleted").show();
+	}
+	
+	$("#showdeleted").change(function(){
+		$(".deleted").toggle();
+		setCookie("showdeleted", $("#showdeleted").attr("checked"));
+	});
 });
 
 	function showOverlay(title, url) {
