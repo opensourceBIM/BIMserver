@@ -303,6 +303,7 @@ div.loginwindow {
 
 tr.deleted {
 	background-color: #FFCCCC;
+	display: none;
 }
 
 tr.checkinrights {

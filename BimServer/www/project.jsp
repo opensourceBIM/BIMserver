@@ -89,6 +89,7 @@ if (lastRevision != null) {
  <%} %>
  <li><a class="rss"	href="<%=request.getContextPath() %>/syndication/revisions?poid=<%=poid %>">Revisions feed</a></li>
  <li><a class="rss" href="<%=request.getContextPath() %>/syndication/checkouts?poid=<%=poid %>">Checkouts feed</a></li>
+<jsp:include page="showdeleted.jsp"/>
  </ul>
  <br/>
 <%=JspHelper.showProjectTree(project, loginManager.getService()) %>
@@ -590,7 +591,7 @@ open a specific revision to query other revisions<br />
 	<%
 		for (SUser user : users) {
 %>
-	<tr>
+	<tr<%= user.getState() == SObjectState.DELETED ? " class=\"deleted\"" : "" %>>
 		<td><a href="user.jsp?uoid=<%=user.getOid() %>"><%=user.getName() %></a></td>
 		<td><a href="user.jsp?uoid=<%=user.getOid() %>"><%=user.getUsername() %></a></td>
 		<td><%=JspHelper.getNiceUserTypeName(user.getUserType()) %></td>
