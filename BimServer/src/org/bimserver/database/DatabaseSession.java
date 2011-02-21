@@ -65,7 +65,6 @@ import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EEnumImpl;
@@ -86,13 +85,11 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 	private final Set<PostCommitAction> postCommitActions = new LinkedHashSet<PostCommitAction>();
 	private boolean storeOid = false;
 	private boolean storePid = false;
-	private final boolean lazyLoading;
 
-	public DatabaseSession(Database database, BimTransaction bimTransaction, boolean readOnly, boolean lazyLoading) {
+	public DatabaseSession(Database database, BimTransaction bimTransaction, boolean readOnly) {
 		this.database = database;
 		this.bimTransaction = bimTransaction;
 		this.readOnly = readOnly;
-		this.lazyLoading = lazyLoading;
 	}
 
 	public BimTransaction getBimTransaction() {
