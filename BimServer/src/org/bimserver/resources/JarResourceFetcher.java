@@ -7,6 +7,7 @@ import org.bimserver.shared.ResourceFetcher;
 public class JarResourceFetcher extends ResourceFetcher {
 	
 	public JarResourceFetcher() {
+		addPath(new File("home"));
 		addPath(new File("config"));
 	}
 	

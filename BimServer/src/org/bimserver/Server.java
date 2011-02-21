@@ -71,6 +71,7 @@ public class Server {
 		server.addConnector(socketConnector);
 
 		WebAppContext context = new WebAppContext(server, "", "/");
+		context.setAttribute("homedir", "home");
 		context.setResourceBase("www");
 
 		try {
