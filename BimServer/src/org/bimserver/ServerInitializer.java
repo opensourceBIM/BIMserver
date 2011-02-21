@@ -54,6 +54,7 @@ import org.bimserver.ifc.FileFieldIgnoreMap;
 import org.bimserver.ifc.PackageDefinition;
 import org.bimserver.ifc.emf.Ifc2x3.Ifc2x3Package;
 import org.bimserver.ifcengine.IfcEngineFactory;
+import org.bimserver.logging.CustomFileAppender;
 import org.bimserver.longaction.LongActionManager;
 import org.bimserver.querycompiler.QueryCompiler;
 import org.bimserver.resources.JarResourceFetcher;
@@ -92,6 +93,13 @@ public class ServerInitializer implements ServletContextListener {
 	@Override
 	public void contextInitialized(ServletContextEvent servletContextEvent) {
 		try {
+			ServerType serverType = detectServerType(servletContextEvent.getServletContext());
+			resourceFetcher = createResourceFetcher(serverType, servletContext);
+			URL resource = resourceFetcher.getResource("settings.xml");
+			Settings settings = Settings.readFromUrl(resource);
+
+			CustomFileAppender.location = "home/logs/bimserver.log";
+			
 			LOGGER.info("Starting ServerInitializer");
 
 			UncaughtExceptionHandler uncaughtExceptionHandler = new UncaughtExceptionHandler() {
@@ -109,16 +117,12 @@ public class ServerInitializer implements ServletContextListener {
 			
 			Thread.setDefaultUncaughtExceptionHandler(uncaughtExceptionHandler);
 			
-			ServerType serverType = detectServerType(servletContextEvent.getServletContext());
 			LOGGER.info("Detected server type: " + serverType + " (" + System.getProperty("os.name") + ", " + System.getProperty("sun.arch.data.model") + "bit)");
 			if (serverType == ServerType.UNKNOWN) {
 				LOGGER.error("Server type not detected, stopping initialization");
 				return;
 			}
 			servletContext = servletContextEvent.getServletContext();
-			resourceFetcher = createResourceFetcher(serverType, servletContext);
-			URL resource = resourceFetcher.getResource("settings.xml");
-			Settings settings = Settings.readFromUrl(resource);
 			ServerSettings.setSettings(settings);
 			serverStartTime = new GregorianCalendar();
 			SchemaDefinition schema = loadIfcSchema(resourceFetcher);
@@ -157,7 +161,7 @@ public class ServerInitializer implements ServletContextListener {
 				// IfcEngineFactory to use all jar files in the context
 				classPath = servletContext.getRealPath("/") + "WEB-INF" + File.separator + "lib";
 			}
-			IfcEngineFactory ifcEngineFactory = new IfcEngineFactory(schemaFile, nativeFolder, classPath);
+			IfcEngineFactory ifcEngineFactory = new IfcEngineFactory(schemaFile, nativeFolder, new File(settings.getTmpLocation()), classPath);
 
 			CompileServlet.database = bimDatabase;
 

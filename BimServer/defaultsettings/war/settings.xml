@@ -6,7 +6,9 @@
 	<sendConfirmationEmailAfterRegistration>true
 	</sendConfirmationEmailAfterRegistration>
 	<emailSenderAddress>no-reply@bimserver.org</emailSenderAddress>
-	<databaseLocation>database</databaseLocation>
+	<databaseLocation>/opt/home/database</databaseLocation>
+	<tmpLocation>/opt/home/tmp</tmpLocation>
+	<logLocation>/opt/home/logs</logLocation>
 	<enabledExportTypes>IFC, IFCXML, CITYGML, COLLADA, KML, KMZ
 	</enabledExportTypes>
 	<allowSelfRegistration>false</allowSelfRegistration>

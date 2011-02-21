@@ -25,10 +25,12 @@ public class FailSafeIfcEngine {
 	private final File nativeBaseDir;
 	private boolean useSecondJvm = true;
 	private final String classPath;
+	private final File tempDir;
 
-	public FailSafeIfcEngine(File schemaFile, File nativeBaseDir, String classPath) throws IfcEngineException {
+	public FailSafeIfcEngine(File schemaFile, File nativeBaseDir, File tempDir, String classPath) throws IfcEngineException {
 		this.schemaFile = schemaFile;
 		this.nativeBaseDir = nativeBaseDir;
+		this.tempDir = tempDir;
 		this.classPath = classPath;
 		if (useSecondJvm) {
 			startJvm();
@@ -52,16 +54,15 @@ public class FailSafeIfcEngine {
 
 	public void startJvm() {
 		try {
-			File tmp = new File("tmp");
-			if (!tmp.exists()) {
-				tmp.mkdir();
+			if (!tempDir.exists()) {
+				tempDir.mkdir();
 			}
 			StringBuilder command = new StringBuilder("java");
 			command.append(" -Djna.library.path=" + nativeBaseDir.toString());
-			if (tmp.getAbsolutePath().toString().contains(" ")) {
-				command.append(" -Djava.io.tmpdir=\"" + tmp.getAbsolutePath().toString() + "\"");
+			if (tempDir.getAbsolutePath().toString().contains(" ")) {
+				command.append(" -Djava.io.tmpdir=\"" + tempDir.getAbsolutePath().toString() + "\"");
 			} else {
-				command.append(" -Djava.io.tmpdir=" + tmp.getAbsolutePath().toString());
+				command.append(" -Djava.io.tmpdir=" + tempDir.getAbsolutePath().toString());
 			}
 			command.append(" -classpath ");
 			command.append("\"");

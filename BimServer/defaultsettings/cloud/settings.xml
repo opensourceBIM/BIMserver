@@ -8,7 +8,9 @@
 	<emailSenderAddress>no-reply@bimserver.org</emailSenderAddress>
 	<sendConfirmationEmailAfterRegistration>true
 	</sendConfirmationEmailAfterRegistration>
-	<databaseLocation>/var/databases/cloud.bimserver.org</databaseLocation>
+	<databaseLocation>/var/home/database/cloud.bimserver.org</databaseLocation>
+	<tmpLocation>/var/home/tmp</tmpLocation>
+	<logLocation>/var/home/logs</logLocation>
 	<enabledExportTypes>IFC, IFCXML, CITYGML, COLLADA, KML, KMZ
 	</enabledExportTypes>
 	<allowSelfRegistration>true</allowSelfRegistration>
