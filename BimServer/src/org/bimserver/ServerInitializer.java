@@ -93,9 +93,10 @@ public class ServerInitializer implements ServletContextListener {
 	@Override
 	public void contextInitialized(ServletContextEvent servletContextEvent) {
 		try {
-			ServerType serverType = detectServerType(servletContextEvent.getServletContext());
 			servletContext = servletContextEvent.getServletContext();
-			resourceFetcher = createResourceFetcher(serverType, servletContext);
+			String homeDir = (String) servletContext.getAttribute("homedir");
+			ServerType serverType = detectServerType(servletContextEvent.getServletContext());
+			resourceFetcher = createResourceFetcher(serverType, servletContext, homeDir);
 			URL resource = resourceFetcher.getResource("settings.xml");
 			Settings settings = Settings.readFromUrl(resource);
 
@@ -260,12 +261,12 @@ public class ServerInitializer implements ServletContextListener {
 		return null;
 	}
 
-	private ResourceFetcher createResourceFetcher(ServerType serverType, final ServletContext servletContext) {
+	private ResourceFetcher createResourceFetcher(ServerType serverType, final ServletContext servletContext, String homeDir) {
 		switch (serverType) {
 		case DEV_ENVIRONMENT:
 			return new LocalDevelopmentResourceFetcher();
 		case DEPLOYED_WAR:
-			return new WarResourceFetcher(servletContext);
+			return new WarResourceFetcher(servletContext, homeDir);
 		case STANDALONE_JAR:
 			return new JarResourceFetcher();
 		}
