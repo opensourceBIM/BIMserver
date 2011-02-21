@@ -208,14 +208,24 @@ $(document).ready(function(){
 					revisionUserNames.put(sClash.getRevision2Id(), loginManager.getService().getUserByUoid(uoid).getName());
 				}
 				out.println("<tr>");
-				out.println("<td><a href=\"#\" class=\"browserlink\" browserurl=\"browser.jsp?roid=" + sClash.getRevision1Id() + "&className=" + sClash.getType1()
+				if (sClash.getName1().equals("")) {
+					out.println("<td><a href=\"#\" class=\"browserlink\" browserurl=\"browser.jsp?roid=" + sClash.getRevision1Id() + "&className=" + sClash.getType1()
+							+ "&oid=" + sClash.getEid1() + "\">No name</a></td>");
+				} else {
+					out.println("<td><a href=\"#\" class=\"browserlink\" browserurl=\"browser.jsp?roid=" + sClash.getRevision1Id() + "&className=" + sClash.getType1()
 						+ "&oid=" + sClash.getEid1() + "\">" + sClash.getName1() + "</a></td>");
+				}
 				out.println("<td>" + sClash.getType1() + "</td>");
 				out.println("<td><a href=\"user.jsp?uoid=" + revisionUsers.get(sClash.getRevision1Id()) + "\">" + revisionUserNames.get(sClash.getRevision1Id())
 						+ "</a></td>");
 				out.println("<td>&nbsp;&nbsp;&nbsp;</td>");
-				out.println("<td><a href=\"#\" class=\"browserlink\" browserurl=\"browser.jsp?roid=" + sClash.getRevision2Id() + "&className=" + sClash.getType2()
-						+ "&oid=" + sClash.getEid2() + "\">" + sClash.getName2() + "</a></td>");
+				if (sClash.getName2().equals("")) {
+					out.println("<td><a href=\"#\" class=\"browserlink\" browserurl=\"browser.jsp?roid=" + sClash.getRevision2Id() + "&className=" + sClash.getType2()
+							+ "&oid=" + sClash.getEid2() + "\">No name</a></td>");
+				} else {
+					out.println("<td><a href=\"#\" class=\"browserlink\" browserurl=\"browser.jsp?roid=" + sClash.getRevision2Id() + "&className=" + sClash.getType2()
+							+ "&oid=" + sClash.getEid2() + "\">" + sClash.getName2() + "</a></td>");
+				}
 				out.println("<td>" + sClash.getType2() + "</td>");
 				out.println("<td><a href=\"user.jsp?uoid=" + revisionUsers.get(sClash.getRevision2Id()) + "\">" + revisionUserNames.get(sClash.getRevision2Id())
 						+ "</a></td>");
