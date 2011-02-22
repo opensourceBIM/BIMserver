@@ -263,7 +263,7 @@
 			</classpath>
 		</javac>
 		<copy file="../../Client/src/org/bimserver/client/logo_small.png" todir="builds/BuildClient/org/bimserver/client" />
-		<one-jar destfile="builds/bimserver-client-${version}.jar" manifest="../../BimServer/deploy/client/MANIFEST.MF">
+		<one-jar destfile="builds/bimserver-client-${version}.jar" manifest="../../BimServer/build/targets/client/MANIFEST.MF">
 			<main>
 				<fileset dir="builds/BuildClient" />
 			</main>
