@@ -235,7 +235,7 @@ public class ServerInitializer implements ServletContextListener {
 						if (sourceFile.isDirectory()) {
 							destFile.mkdir();
 							for (File f : sourceFile.listFiles()) {
-								FileUtils.copyFile(sourceFile, new File(destFile, f.getName()));
+								FileUtils.copyFile(f, new File(destFile, f.getName()));
 							}
 						} else {
 							FileUtils.copyFile(sourceFile, destFile);
