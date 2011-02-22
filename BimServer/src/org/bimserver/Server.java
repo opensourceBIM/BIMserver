@@ -35,15 +35,18 @@ public class Server {
 	public static void main(String[] args) {
 		String address = "localhost";
 		String port = "8082";
+		String homedir = "home";
 		for (String arg : args) {
 			if (arg.startsWith("address=")) {
 				address = arg.substring(8);
 			} else if (arg.startsWith("port=")) {
 				port = arg.substring(5);
+			} else if (arg.startsWith("homedir=")) {
+				homedir = arg.substring(8);
 			}
 		}
 		final Server server = new Server();
-		server.start(address, Integer.parseInt(port));
+		server.start(address, Integer.parseInt(port), homedir);
 		// The CommandLine seems to disrupt the database initialization process
 		CommandLine commandLine = new CommandLine(server);
 		commandLine.start();
@@ -59,7 +62,7 @@ public class Server {
 		LOGGER.info("Server stopped successfully");
 	}
 
-	public void start(String address, int port) {
+	public void start(String address, int port, String homedir) {
 		LOGGER.info("Starting server..." + address + " " + port);
 		System.setProperty("org.apache.cxf.Logger", "org.apache.cxf.common.logging.Log4jLogger");
 		server = new org.eclipse.jetty.server.Server();
@@ -71,7 +74,7 @@ public class Server {
 		server.addConnector(socketConnector);
 
 		WebAppContext context = new WebAppContext(server, "", "/");
-		context.setAttribute("homedir", "home");
+		context.setAttribute("homedir", homedir);
 		context.setResourceBase("www");
 
 		try {
