@@ -2,6 +2,7 @@ package org.bimserver.database.actions;
 
 import org.bimserver.cache.CompareCache;
 import org.bimserver.database.BimDatabaseException;
+import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.store.log.AccessMethod;
@@ -18,8 +19,8 @@ public class CompareDatabaseAction extends BimDatabaseAction<CompareResult> {
 	private final long roid2;
 	private final SCompareType sCompareType;
 
-	public CompareDatabaseAction(AccessMethod accessMethod, long actingUoid, long roid1, long roid2, SCompareType sCompareType) {
-		super(null, accessMethod);
+	public CompareDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long actingUoid, long roid1, long roid2, SCompareType sCompareType) {
+		super(bimDatabaseSession, accessMethod);
 		this.actingUoid = actingUoid;
 		this.roid1 = roid1;
 		this.roid2 = roid2;
