@@ -8,7 +8,7 @@
 	<emailSenderAddress>no-reply@bimserver.org</emailSenderAddress>
 	<databaseLocation>/opt/home/database</databaseLocation>
 	<tmpLocation>/opt/home/tmp</tmpLocation>
-	<logLocation>/opt/home/logs</logLocation>
+	<logLocation>/opt/home/logs/bimserver.log</logLocation>
 	<enabledExportTypes>IFC, IFCXML, CITYGML, COLLADA, KML, KMZ
 	</enabledExportTypes>
 	<allowSelfRegistration>false</allowSelfRegistration>

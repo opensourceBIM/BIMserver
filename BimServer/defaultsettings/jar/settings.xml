@@ -10,7 +10,7 @@
 	</customLogoAddress>
 	<databaseLocation>home/database</databaseLocation>
 	<tmpLocation>home/tmp</tmpLocation>
-	<logLocation>home/logs</logLocation>
+	<logLocation>home/logs/bimserver.log</logLocation>
 	<enabledExportTypes>IFC, IFCXML, CITYGML, COLLADA, KML, KMZ
 	</enabledExportTypes>
 	<allowSelfRegistration>false</allowSelfRegistration>
