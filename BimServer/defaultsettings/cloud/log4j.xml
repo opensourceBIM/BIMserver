@@ -8,9 +8,9 @@
 		<level value="error" />
 	</logger>
 	<logger name="org.springframework">
-		<level value="ERROR" />
+		<level value="error" />
 	</logger>
 	<root>
-		<priority value="INFO" />
+		<priority value="info" />
 	</root>
 </log4j:configuration>

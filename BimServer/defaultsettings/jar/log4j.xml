@@ -16,7 +16,7 @@
 		<appender-ref ref="Console" />
 	</logger>
 	<logger name="org.springframework">
-		<level value="ERROR" />
+		<level value="error" />
 		<appender-ref ref="Console" />
 	</logger>
 	<logger name="org.mortbay">
@@ -28,7 +28,7 @@
 		<appender-ref ref="Console" />
 	</logger>
 	<root>
-		<priority value="INFO" />
+		<priority value="info" />
 		<appender-ref ref="Console" />
 	</root>
 </log4j:configuration>
