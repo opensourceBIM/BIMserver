@@ -4,12 +4,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.apache.log4j.FileAppender;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class CustomFileAppender extends FileAppender {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(CustomFileAppender.class);
 	private static String location;
 	private static Set<CustomFileAppender> instances = new HashSet<CustomFileAppender>();
 	
@@ -21,7 +18,6 @@ public class CustomFileAppender extends FileAppender {
 	public static void setLocation(String location) {
 		CustomFileAppender.location = location;
 		for (CustomFileAppender customFileAppender : instances) {
-			LOGGER.info("Setting log location: " + location);
 			customFileAppender.setFile(location);
 			customFileAppender.activateOptions();
 		}
