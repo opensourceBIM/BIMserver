@@ -7,7 +7,7 @@
 			<param name="ConversionPattern" value="%d{ISO8601} %-5p %c - %m%n" />
 		</layout>
 	</appender>
-	<appender name="File" class="org.apache.log4j.FileAppender">
+	<appender name="File" class="org.bimserver.logging.CustomFileAppender">
 		<param name="File" value="[willbeoverridden]" />
 		<param name="Threshold" value="DEBUG" />
 		<layout class="org.apache.log4j.PatternLayout">
