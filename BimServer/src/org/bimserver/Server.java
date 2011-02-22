@@ -63,7 +63,6 @@ public class Server {
 	}
 
 	public void start(String address, int port, String homedir) {
-		LOGGER.info("Starting server..." + address + " " + port);
 		System.setProperty("org.apache.cxf.Logger", "org.apache.cxf.common.logging.Log4jLogger");
 		server = new org.eclipse.jetty.server.Server();
 		HashSessionIdManager hashSessionIdManager = new HashSessionIdManager(new Random());
@@ -78,9 +77,7 @@ public class Server {
 		context.setResourceBase("www");
 
 		try {
-			LOGGER.info("Starting web server...");
 			server.start();
-			LOGGER.info("Webserver successfully started");
 		} catch (Exception e) {
 			LOGGER.error("", e);
 		}

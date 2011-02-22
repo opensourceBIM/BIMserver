@@ -15,15 +15,23 @@
 		<level value="error" />
 		<appender-ref ref="Console" />
 	</logger>
-	<logger name="org.springframework">
-		<level value="error" />
-		<appender-ref ref="Console" />
-	</logger>
 	<logger name="org.mortbay">
 		<level value="error" />
 		<appender-ref ref="Console" />
 	</logger>
 	<logger name="org.eclipse.jetty">
+		<level value="error" />
+		<appender-ref ref="Console" />
+	</logger>
+	<logger name="org.springframework">
+		<level value="error" />
+		<appender-ref ref="Console" />
+	</logger>
+	<logger name="org.bimserver.ifcengine">
+		<level value="error" />
+		<appender-ref ref="Console" />
+	</logger>
+	<logger name="org.bimserver.ifcengine.jvm">
 		<level value="error" />
 		<appender-ref ref="Console" />
 	</logger>

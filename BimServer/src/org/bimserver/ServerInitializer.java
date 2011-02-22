@@ -233,7 +233,6 @@ public class ServerInitializer implements ServletContextListener {
 
 	private void fixLogging() throws IOException {
 		CustomFileAppender appender = new CustomFileAppender(new File(homeDir, "logs/bimserver.log"));
-		LogManager.getRootLogger().addAppender(appender);
 		Enumeration<?> currentLoggers = LogManager.getCurrentLoggers();
 		while  (currentLoggers.hasMoreElements()) {
 			Object nextElement = currentLoggers.nextElement();
