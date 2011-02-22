@@ -108,7 +108,7 @@ public class ServerInitializer implements ServletContextListener {
 			URL resource = resourceFetcher.getResource("settings.xml");
 			Settings settings = Settings.readFromUrl(resource);
 
-			CustomFileAppender.location = settings.getLogLocation();
+			CustomFileAppender.setLocation(settings.getLogLocation());
 
 			LOGGER.info("Starting ServerInitializer");
 			if (homeDir != null) {
