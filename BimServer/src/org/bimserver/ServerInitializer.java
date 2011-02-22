@@ -106,7 +106,11 @@ public class ServerInitializer implements ServletContextListener {
 			CustomFileAppender.location = settings.getLogLocation();
 
 			LOGGER.info("Starting ServerInitializer");
-			LOGGER.info("Using \"" + new File(homeDir).getAbsolutePath() + "\" as homedir");
+			if (homeDir != null) {
+				LOGGER.info("Using \"" + new File(homeDir).getAbsolutePath() + "\" as homedir");
+			} else {
+				LOGGER.info("Not using a homedir");
+			}
 
 			UncaughtExceptionHandler uncaughtExceptionHandler = new UncaughtExceptionHandler() {
 				@Override
