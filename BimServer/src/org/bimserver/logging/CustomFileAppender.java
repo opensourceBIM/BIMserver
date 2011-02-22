@@ -19,6 +19,7 @@ public class CustomFileAppender extends FileAppender {
 		CustomFileAppender.location = location;
 		for (CustomFileAppender customFileAppender : instances) {
 			customFileAppender.setFile(location);
+			customFileAppender.activateOptions();
 		}
 	}
 	
