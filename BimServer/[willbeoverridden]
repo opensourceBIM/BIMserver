@@ -1,0 +1,4 @@
+2011-02-22 14:49:17,334 INFO  org.bimserver.Server - Starting server...localhost 8082
+2011-02-22 14:49:17,419 INFO  org.bimserver.Server - Starting web server...
+2011-02-22 14:49:17,420 INFO  org.eclipse.jetty.util.log - jetty-7.1.6.v20100715
+2011-02-22 14:49:18,030 INFO  org.bimserver.logging.CustomFileAppender - Setting log location: C:\Users\Ruben de Laat\Workspaces\BIMserver\BimServer\home\logs\bimserver.log

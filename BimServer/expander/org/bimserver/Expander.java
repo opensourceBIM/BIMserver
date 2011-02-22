@@ -23,6 +23,7 @@ package org.bimserver;
 import java.awt.BorderLayout;
 import java.awt.Desktop;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -259,6 +260,7 @@ public class Expander extends JFrame {
 		});
 		buttons.add(launchWebBrowser);
 
+		logField.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 12));
 		logField.setEditable(true);
 		logField.addKeyListener(new KeyAdapter() {
 			@Override
@@ -331,7 +333,7 @@ public class Expander extends JFrame {
 			command += " org.bimserver.Server";
 			command += " address=" + address;
 			command += " port=" + port;
-			command += " homedir=" + homedir;
+			command += " homedir=\"" + homedir + "\"";
 			System.out.println("Running: " + command);
 			exec = Runtime.getRuntime().exec(command, null, destDir);
 

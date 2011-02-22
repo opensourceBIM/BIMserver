@@ -37,9 +37,6 @@ public class Settings {
 	private String registrationAddition;
 	private String smtpServer;
 	private String emailSenderAddress;
-	private String logLocation;
-	private String databaseLocation;
-	private String tmpLocation;
 	private String enabledExportTypes;
 	private String customLogoAddress;
 	private String siteAddress;
@@ -133,14 +130,6 @@ public class Settings {
 
 	public static Settings readFromUrl(URL resource) throws SettingsReadException, IOException {
 		return readFromStream(resource.openStream());
-	}
-
-	public void setDatabaseLocation(String databaseLocation) {
-		this.databaseLocation = databaseLocation;
-	}
-
-	public String getDatabaseLocation() {
-		return databaseLocation;
 	}
 
 	public void setEnabledExportTypes(String enabledExportTypes) {
@@ -244,21 +233,5 @@ public class Settings {
 
 	public boolean isCheckinMergingEnabled() {
 		return checkinMergingEnabled;
-	}
-
-	public void setTmpLocation(String tmpLocation) {
-		this.tmpLocation = tmpLocation;
-	}
-
-	public String getTmpLocation() {
-		return tmpLocation;
-	}
-
-	public void setLogLocation(String logLocation) {
-		this.logLocation = logLocation;
-	}
-
-	public String getLogLocation() {
-		return logLocation;
 	}
 }

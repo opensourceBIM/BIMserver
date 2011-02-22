@@ -8,9 +8,9 @@ import org.bimserver.shared.ResourceFetcher;
 
 public class WarResourceFetcher extends ResourceFetcher {
 
-	public WarResourceFetcher(ServletContext servletContext, String homeDir) {
+	public WarResourceFetcher(ServletContext servletContext, File homeDir) {
 		if (homeDir != null) {
-			addPath(new File(homeDir));
+			addPath(homeDir);
 		}
 		addPath(new File(servletContext.getRealPath("/") + "WEB-INF"));
 	}
