@@ -40,6 +40,7 @@ import nl.tue.buildingsmart.emf.DerivedReader;
 import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
 import nl.tue.buildingsmart.express.parser.ExpressSchemaParser;
 
+import org.apache.commons.io.FileUtils;
 import org.bimserver.database.BimDatabase;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.Database;
@@ -89,17 +90,21 @@ public class ServerInitializer implements ServletContextListener {
 	private static ServletContext servletContext;
 	private LongActionManager longActionManager;
 	private static ServiceInterface adminService;
+	private String homeDir;
 
 	@Override
 	public void contextInitialized(ServletContextEvent servletContextEvent) {
 		try {
 			servletContext = servletContextEvent.getServletContext();
-			String homeDir = (String) servletContext.getAttribute("homedir");
+			homeDir = (String) servletContext.getAttribute("homedir");
 			if (homeDir == null) {
 				homeDir = servletContext.getInitParameter("homedir");
 			}
 			ServerType serverType = detectServerType(servletContextEvent.getServletContext());
 			resourceFetcher = createResourceFetcher(serverType, servletContext, homeDir);
+			if (homeDir != null && serverType == ServerType.DEPLOYED_WAR) {
+				initHomeDir();
+			}
 			URL resource = resourceFetcher.getResource("settings.xml");
 			Settings settings = Settings.readFromUrl(resource);
 
@@ -208,6 +213,34 @@ public class ServerInitializer implements ServletContextListener {
 		} catch (Exception e) {
 			ServerInfo.setErrorMessage(e.getMessage());
 			LOGGER.error("", e);
+		}
+	}
+
+	private void initHomeDir() throws IOException {
+		String[] filesToCheck = new String[]{
+			"settings.xml",
+			"collada.xml",
+			"ignore.xml",
+			"ignoreexceptions",
+			"log4j.xml",
+			"templates"
+		};
+		File homeDirFile = new File(homeDir);
+		if (homeDirFile.exists() && homeDirFile.isDirectory()) {
+			for (String fileToCheck : filesToCheck) {
+				File sourceFile = resourceFetcher.getFile(fileToCheck);
+				File destFile = new File(homeDirFile, fileToCheck);
+				if (!destFile.exists()) {
+					if (sourceFile.isDirectory()) {
+						destFile.mkdir();
+						for (File f : sourceFile.listFiles()) {
+							FileUtils.copyFile(sourceFile, new File(destFile, f.getName()));
+						}
+					} else {
+						FileUtils.copyFile(sourceFile, destFile);
+					}
+				}
+			}
 		}
 	}
 
