@@ -153,6 +153,9 @@
 		<copy tofile="builds/BuildWar/WEB-INF/classes/org/bimserver/ifc/emf/Ifc2x3/impl/Ifc2x3.ecore">
 			<fileset file="../../Ifc/model/IFC2X3.ecore" />
 		</copy>
+		<copy todir="builds/BuildWar/home/WEB-INF/ignoreexceptions" overwrite="true" failonerror="false">
+			<fileset dir="${defaultsettings}/shared/ignoreexceptions" />
+		</copy>
 		<copy todir="builds/BuildWar" overwrite="true">
 			<fileset dir="${buildtargets}/${target}/jsp" />
 		</copy>
