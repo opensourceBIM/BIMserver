@@ -52,8 +52,8 @@ public class JspHelper {
 		if (project.getLastRevisionId() != -1) {
 			lastRevision = loginManager.getService().getRevision(project.getLastRevisionId());
 		}
-		result.append("<tr" + (loginManager.getService().userHasCheckinRights(project.getOid()) ? "" : " class=\"checkinrights\"")
-				+ (project.getState() == SObjectState.DELETED ? " class=\"deleted\"" : "") + ">");
+		result.append("<tr class=\"" + (loginManager.getService().userHasCheckinRights(project.getOid()) ? "" : "checkinrights")
+				+ (project.getState() == SObjectState.DELETED ? " deleted" : "") + "\">");
 		result.append("<td>");
 		for (int i = 0; i < level; i++) {
 			result.append("&nbsp;&nbsp;");
