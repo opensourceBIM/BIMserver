@@ -125,6 +125,29 @@ public class Expander extends JFrame {
 		jvmPanel.add(browserJvm, BorderLayout.EAST);
 		fields.add(jvmPanel);
 
+		JLabel homeDirLabel = new JLabel("Home directory");
+		fields.add(homeDirLabel);
+
+		final JTextField homeDirField = new JTextField(jarSettings.getHomedir());
+		JButton browserHomeDir = new JButton("Browse...");
+		browserHomeDir.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				File currentFile = new File(homeDirField.getText());
+				JFileChooser chooser = new JFileChooser(currentFile.exists() ? currentFile : new File("."));
+				chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+				int showOpenDialog = chooser.showOpenDialog(Expander.this);
+				if (showOpenDialog == JFileChooser.APPROVE_OPTION) {
+					homeDirField.setText(chooser.getSelectedFile().getAbsolutePath());
+				}
+			}
+		});
+		JPanel homeDirPanel = new JPanel();
+		homeDirPanel.setLayout(new BorderLayout());
+		homeDirPanel.add(homeDirField, BorderLayout.CENTER);
+		homeDirPanel.add(browserHomeDir, BorderLayout.EAST);
+		fields.add(homeDirPanel);
+		
 		JLabel addressLabel = new JLabel("Address");
 		fields.add(addressLabel);
 
@@ -149,7 +172,7 @@ public class Expander extends JFrame {
 		final JTextField stackSizeField = new JTextField(jarSettings.getStacksize());
 		fields.add(stackSizeField);
 
-		SpringUtilities.makeCompactGrid(fields, 5, 2, // rows, cols
+		SpringUtilities.makeCompactGrid(fields, 6, 2, // rows, cols
 				6, 6, // initX, initY
 				6, 6); // xPad, yPad
 
@@ -166,7 +189,7 @@ public class Expander extends JFrame {
 							if (jvmField.getText().equalsIgnoreCase("default") || new File(jvmField.getText()).exists()) {
 								File file = expand();
 								startStopButton.setText("Stop");
-								start(file, addressField.getText(), portField.getText(), heapSizeField.getText(), stackSizeField.getText(), jvmField.getText());
+								start(file, addressField.getText(), portField.getText(), heapSizeField.getText(), stackSizeField.getText(), jvmField.getText(), homeDirField.getText());
 							} else {
 								JOptionPane.showMessageDialog(Expander.this, "JVM field should contain a valid JVM directory, or 'default' for the default JVM");
 							}
@@ -266,7 +289,7 @@ public class Expander extends JFrame {
 		setVisible(true);
 	}
 
-	private void start(File destDir, String address, String port, String heapsize, String stacksize, String jvmPath) {
+	private void start(File destDir, String address, String port, String heapsize, String stacksize, String jvmPath, String homedir) {
 		try {
 			String command = "";
 			if (jvmPath.equalsIgnoreCase("default")) {
@@ -308,6 +331,7 @@ public class Expander extends JFrame {
 			command += " org.bimserver.Server";
 			command += " address=" + address;
 			command += " port=" + port;
+			command += " homedir=" + homedir;
 			System.out.println("Running: " + command);
 			exec = Runtime.getRuntime().exec(command, null, destDir);
 

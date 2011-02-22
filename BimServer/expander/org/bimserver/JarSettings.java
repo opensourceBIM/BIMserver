@@ -20,6 +20,9 @@ public class JarSettings {
 	private String jvm = "default";
 
 	@XmlElement
+	private String homedir = "home";
+
+	@XmlElement
 	private String address = "localhost";
 
 	@XmlElement
@@ -111,5 +114,13 @@ public class JarSettings {
 
 	public void setStacksize(String stacksize) {
 		this.stacksize = stacksize;
+	}
+
+	public void setHomedir(String homedir) {
+		this.homedir = homedir;
+	}
+
+	public String getHomedir() {
+		return homedir;
 	}
 }
