@@ -9,7 +9,7 @@
 	</customLogoAddress>
 	<databaseLocation>home/database</databaseLocation>
 	<tmpLocation>home/tmp</tmpLocation>
-	<logLocation>home/logs</logLocation>
+	<logLocation>home/logs/bimserver.log</logLocation>
 	<emailSenderAddress>leon@berlotti.com</emailSenderAddress>
 	<enabledExportTypes>CITYGML,IFCXML,REPORT_COMPONENTS,REPORT_ZONES,OBJECT_INFO,REPORT_SYSTEMS,IFC,COBIE2,REPORT_TYPES,TEXT,KMZ,REPORT_SPACES,COLLADA
 	</enabledExportTypes>

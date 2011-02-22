@@ -9,7 +9,7 @@
 	<sendConfirmationEmailAfterRegistration>true
 	</sendConfirmationEmailAfterRegistration>
 	<tmpLocation>/opt/home/tmp</tmpLocation>
-	<logLocation>/opt/home/logs</logLocation>
+	<logLocation>/opt/home/logs/bimserver.log</logLocation>
 	<databaseLocation>/opt/home/database</databaseLocation>
 	<enabledExportTypes>IFC, IFCXML, CITYGML, COLLADA, KML, KMZ
 	</enabledExportTypes>

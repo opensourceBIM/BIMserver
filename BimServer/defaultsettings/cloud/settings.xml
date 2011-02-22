@@ -10,7 +10,7 @@
 	</sendConfirmationEmailAfterRegistration>
 	<databaseLocation>/var/home/database/cloud.bimserver.org</databaseLocation>
 	<tmpLocation>/var/home/tmp</tmpLocation>
-	<logLocation>/var/home/logs</logLocation>
+	<logLocation>/var/home/logs/bimserver.log</logLocation>
 	<enabledExportTypes>IFC, IFCXML, CITYGML, COLLADA, KML, KMZ
 	</enabledExportTypes>
 	<allowSelfRegistration>true</allowSelfRegistration>
