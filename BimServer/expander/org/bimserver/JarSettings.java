@@ -32,6 +32,9 @@ public class JarSettings {
 	private String heapsize = "1024m";
 
 	@XmlElement
+	private String permsize = "128m";
+
+	@XmlElement
 	private String stacksize = "1024k";
 
 	public static JarSettings readFromFile() {
@@ -122,5 +125,13 @@ public class JarSettings {
 
 	public String getHomedir() {
 		return homedir;
+	}
+
+	public void setPermsize(String permsize) {
+		this.permsize = permsize;
+	}
+
+	public String getPermsize() {
+		return permsize;
 	}
 }

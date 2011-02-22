@@ -161,11 +161,17 @@ public class Expander extends JFrame {
 		final JTextField portField = new JTextField(jarSettings.getPort() + "");
 		fields.add(portField);
 
-		JLabel heapSizeLabel = new JLabel("Heap Size");
+		JLabel heapSizeLabel = new JLabel("Max Heap Size");
 		fields.add(heapSizeLabel);
 
 		final JTextField heapSizeField = new JTextField(jarSettings.getHeapsize());
 		fields.add(heapSizeField);
+
+		JLabel permSizeLabel = new JLabel("Max Perm Size");
+		fields.add(permSizeLabel);
+
+		final JTextField permSizeField = new JTextField(jarSettings.getPermsize());
+		fields.add(permSizeField);
 
 		JLabel stackSizeLabel = new JLabel("Stack Size");
 		fields.add(stackSizeLabel);
@@ -173,7 +179,7 @@ public class Expander extends JFrame {
 		final JTextField stackSizeField = new JTextField(jarSettings.getStacksize());
 		fields.add(stackSizeField);
 
-		SpringUtilities.makeCompactGrid(fields, 6, 2, // rows, cols
+		SpringUtilities.makeCompactGrid(fields, 7, 2, // rows, cols
 				6, 6, // initX, initY
 				6, 6); // xPad, yPad
 
@@ -190,7 +196,7 @@ public class Expander extends JFrame {
 							if (jvmField.getText().equalsIgnoreCase("default") || new File(jvmField.getText()).exists()) {
 								File file = expand();
 								startStopButton.setText("Stop");
-								start(file, addressField.getText(), portField.getText(), heapSizeField.getText(), stackSizeField.getText(), jvmField.getText(), homeDirField.getText());
+								start(file, addressField.getText(), portField.getText(), heapSizeField.getText(), stackSizeField.getText(), permSizeField.getText(), jvmField.getText(), homeDirField.getText());
 							} else {
 								JOptionPane.showMessageDialog(Expander.this, "JVM field should contain a valid JVM directory, or 'default' for the default JVM");
 							}
@@ -230,6 +236,8 @@ public class Expander extends JFrame {
 					jarSettings.setJvm(jvmField.getText());
 					jarSettings.setStacksize(stackSizeField.getText());
 					jarSettings.setHeapsize(heapSizeField.getText());
+					jarSettings.setPermsize(permSizeField.getText());
+					jarSettings.setHomedir(homeDirField.getText());
 					jarSettings.save();
 				} catch (Exception e) {
 					// ignore
@@ -291,7 +299,7 @@ public class Expander extends JFrame {
 		setVisible(true);
 	}
 
-	private void start(File destDir, String address, String port, String heapsize, String stacksize, String jvmPath, String homedir) {
+	private void start(File destDir, String address, String port, String heapsize, String stacksize, String permsize, String jvmPath, String homedir) {
 		try {
 			String command = "";
 			if (jvmPath.equalsIgnoreCase("default")) {
@@ -319,6 +327,7 @@ public class Expander extends JFrame {
 			}
 			command += " -Xmx" + heapsize;
 			command += " -Xss" + stacksize;
+			command += " -XX:MaxPermSize=" + permsize;
 			command += " -classpath";
 			command += " lib" + File.pathSeparator;
 			File dir = new File(destDir + File.separator + "lib");
