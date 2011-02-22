@@ -7,7 +7,19 @@
 	<logger name="org.apache.cxf">
 		<level value="error" />
 	</logger>
+	<logger name="org.mortbay">
+		<level value="error" />
+	</logger>
+	<logger name="org.eclipse.jetty">
+		<level value="error" />
+	</logger>
 	<logger name="org.springframework">
+		<level value="error" />
+	</logger>
+	<logger name="org.bimserver.ifcengine">
+		<level value="error" />
+	</logger>
+	<logger name="org.bimserver.ifcengine.jvm">
 		<level value="error" />
 	</logger>
 	<root>

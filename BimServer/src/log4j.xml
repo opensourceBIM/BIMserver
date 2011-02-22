@@ -23,36 +23,41 @@
         </filter>
 	</appender>
 	<logger name="org.quartz">
-		<level value="ERROR" />
+		<level value="error" />
 		<appender-ref ref="ErrorConsole" />
 		<appender-ref ref="OutConsole" />
 	</logger>
 	<logger name="org.apache.cxf">
-		<level value="ERROR" />
+		<level value="error" />
 		<appender-ref ref="ErrorConsole" />
 		<appender-ref ref="OutConsole" />
 	</logger>
 	<logger name="org.mortbay">
-		<level value="ERROR" />
+		<level value="error" />
+		<appender-ref ref="ErrorConsole" />
+		<appender-ref ref="OutConsole" />
+	</logger>
+	<logger name="org.eclipse.jetty">
+		<level value="error" />
 		<appender-ref ref="ErrorConsole" />
 		<appender-ref ref="OutConsole" />
 	</logger>
 	<logger name="org.springframework">
-		<level value="ERROR" />
+		<level value="error" />
 		<appender-ref ref="ErrorConsole" />
 		<appender-ref ref="OutConsole" />
 	</logger>
 	<logger name="org.bimserver.ifcengine">
-		<level value="DEBUG" />
+		<level value="error" />
 		<appender-ref ref="ErrorConsole" />
 		<appender-ref ref="OutConsole" />
 	</logger>
 	<logger name="org.bimserver.ifcengine.jvm">
-		<level value="ERROR" />
+		<level value="error" />
 		<appender-ref ref="ErrorConsole" />
 	</logger>
 	<root>
-		<priority value="INFO" />
+		<priority value="info" />
 		<appender-ref ref="ErrorConsole" />
 		<appender-ref ref="OutConsole" />
 	</root>
