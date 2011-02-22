@@ -229,15 +229,17 @@ public class ServerInitializer implements ServletContextListener {
 		if (homeDirFile.exists() && homeDirFile.isDirectory()) {
 			for (String fileToCheck : filesToCheck) {
 				File sourceFile = resourceFetcher.getFile(fileToCheck);
-				File destFile = new File(homeDirFile, fileToCheck);
-				if (!destFile.exists()) {
-					if (sourceFile.isDirectory()) {
-						destFile.mkdir();
-						for (File f : sourceFile.listFiles()) {
-							FileUtils.copyFile(sourceFile, new File(destFile, f.getName()));
+				if (sourceFile.exists()) {
+					File destFile = new File(homeDirFile, fileToCheck);
+					if (!destFile.exists()) {
+						if (sourceFile.isDirectory()) {
+							destFile.mkdir();
+							for (File f : sourceFile.listFiles()) {
+								FileUtils.copyFile(sourceFile, new File(destFile, f.getName()));
+							}
+						} else {
+							FileUtils.copyFile(sourceFile, destFile);
 						}
-					} else {
-						FileUtils.copyFile(sourceFile, destFile);
 					}
 				}
 			}
