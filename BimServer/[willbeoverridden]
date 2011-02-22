@@ -1,0 +1,69 @@
+2011-02-22 12:52:55,528 INFO  org.bimserver.Server - Starting server...localhost 8082
+2011-02-22 12:52:55,616 INFO  org.bimserver.Server - Starting web server...
+2011-02-22 12:52:55,617 INFO  org.eclipse.jetty.util.log - jetty-7.1.6.v20100715
+2011-02-22 12:52:56,232 INFO  org.bimserver.ServerInitializer - Starting ServerInitializer
+2011-02-22 12:52:56,233 INFO  org.bimserver.ServerInitializer - Using "C:\Users\Ruben de Laat\Workspaces\BIMserver\BimServer\home" as homedir
+2011-02-22 12:52:56,234 INFO  org.bimserver.ServerInitializer - Detected server type: DEV_ENVIRONMENT (Windows 7, 64bit)
+2011-02-22 12:52:56,234 INFO  org.bimserver.ServerInitializer - IFC-Schema file found
+2011-02-22 12:52:57,178 INFO  org.bimserver.ServerInitializer - IFC-Schema successfully loaded
+2011-02-22 12:52:58,741 INFO  org.bimserver.ifc.FileFieldIgnoreMap - Reading general ignore list from "C:\Users\Ruben de Laat\Workspaces\BIMserver\BimServer\..\BimServer\defaultsettings\shared\ignore.xml"
+2011-02-22 13:15:52,072 INFO  org.bimserver.Server - Starting server...localhost 8082
+2011-02-22 13:15:52,157 INFO  org.bimserver.Server - Starting web server...
+2011-02-22 13:15:52,158 INFO  org.eclipse.jetty.util.log - jetty-7.1.6.v20100715
+2011-02-22 13:15:52,775 INFO  org.bimserver.ServerInitializer - Starting ServerInitializer
+2011-02-22 13:15:52,775 INFO  org.bimserver.ServerInitializer - Using "C:\Users\Ruben de Laat\Workspaces\BIMserver\BimServer\home" as homedir
+2011-02-22 13:15:52,776 INFO  org.bimserver.ServerInitializer - Detected server type: DEV_ENVIRONMENT (Windows 7, 64bit)
+2011-02-22 13:15:52,776 INFO  org.bimserver.ServerInitializer - IFC-Schema file found
+2011-02-22 13:15:53,712 INFO  org.bimserver.ServerInitializer - IFC-Schema successfully loaded
+2011-02-22 13:15:55,270 INFO  org.bimserver.ifc.FileFieldIgnoreMap - Reading general ignore list from "C:\Users\Ruben de Laat\Workspaces\BIMserver\BimServer\..\BimServer\defaultsettings\shared\ignore.xml"
+2011-02-22 13:15:55,407 INFO  org.bimserver.ifc.FileFieldIgnoreMap - Reading specific non-ignore list for IfcBuildingStorey from "C:\Users\Ruben de Laat\Workspaces\BIMserver\BimServer\..\BimServer\defaultsettings\shared\ignoreexceptions\IfcBuildingStorey.xml"
+2011-02-22 13:15:55,447 INFO  org.bimserver.templating.TemplateEngine - Using "C:\Users\Ruben de Laat\Workspaces\BIMserver\BimServer\..\BimServer\home\templates\" as template dir
+2011-02-22 13:15:55,528 INFO  org.bimserver.database.berkeley.BerkeleyColumnDatabase - Non-empty database directory found "C:\Users\Ruben de Laat\Workspaces\BIMserver\BimServer\home\database"
+2011-02-22 13:15:56,208 INFO  org.bimserver.database.berkeley.BerkeleyColumnDatabase - Berkeley Database Init done 679 ms
+2011-02-22 13:15:57,154 INFO  org.bimserver.database.Database - Fixing broken checkin states
+2011-02-22 13:15:57,186 INFO  org.bimserver.ServerInitializer - Using C:\Users\Ruben de Laat\Workspaces\BIMserver\BimServer\..\BimServer\build\targets\shared\IFC2X3_FINAL.exp as engine schema
+2011-02-22 13:16:00,824 INFO  org.eclipse.jetty.util.log - Started SocketConnector@localhost:8082
+2011-02-22 13:16:00,825 INFO  org.bimserver.Server - Webserver successfully started
+2011-02-22 13:16:00,825 INFO  org.bimserver.Server - Server started successfully, click on the "launch webbrowser" button, or go to: http://localhost:8082
+2011-02-22 13:16:17,992 INFO  org.bimserver.Server - Starting server...localhost 8082
+2011-02-22 13:16:18,077 INFO  org.bimserver.Server - Starting web server...
+2011-02-22 13:16:18,079 INFO  org.eclipse.jetty.util.log - jetty-7.1.6.v20100715
+2011-02-22 13:21:41,560 INFO  org.bimserver.Server - Starting server...localhost 8082
+2011-02-22 13:21:41,649 INFO  org.bimserver.Server - Starting web server...
+2011-02-22 13:21:41,651 INFO  org.eclipse.jetty.util.log - jetty-7.1.6.v20100715
+2011-02-22 13:21:45,062 INFO  org.bimserver.ServerInitializer - Starting ServerInitializer
+2011-02-22 13:21:45,063 INFO  org.bimserver.ServerInitializer - Using "C:\Users\Ruben de Laat\Workspaces\BIMserver\BimServer\home" as homedir
+2011-02-22 13:21:45,066 INFO  org.bimserver.ServerInitializer - Detected server type: DEV_ENVIRONMENT (Windows 7, 64bit)
+2011-02-22 13:21:45,067 INFO  org.bimserver.ServerInitializer - IFC-Schema file found
+2011-02-22 13:21:46,015 INFO  org.bimserver.ServerInitializer - IFC-Schema successfully loaded
+2011-02-22 13:21:47,635 INFO  org.bimserver.ifc.FileFieldIgnoreMap - Reading general ignore list from "C:\Users\Ruben de Laat\Workspaces\BIMserver\BimServer\..\BimServer\defaultsettings\shared\ignore.xml"
+2011-02-22 13:21:47,775 INFO  org.bimserver.ifc.FileFieldIgnoreMap - Reading specific non-ignore list for IfcBuildingStorey from "C:\Users\Ruben de Laat\Workspaces\BIMserver\BimServer\..\BimServer\defaultsettings\shared\ignoreexceptions\IfcBuildingStorey.xml"
+2011-02-22 13:21:47,813 INFO  org.bimserver.templating.TemplateEngine - Using "C:\Users\Ruben de Laat\Workspaces\BIMserver\BimServer\..\BimServer\home\templates\" as template dir
+2011-02-22 13:21:47,893 INFO  org.bimserver.database.berkeley.BerkeleyColumnDatabase - Non-empty database directory found "C:\Users\Ruben de Laat\Workspaces\BIMserver\BimServer\home\database"
+2011-02-22 13:21:48,452 INFO  org.bimserver.database.berkeley.BerkeleyColumnDatabase - Berkeley Database Init done 564 ms
+2011-02-22 13:21:49,488 INFO  org.bimserver.database.Database - Fixing broken checkin states
+2011-02-22 13:21:49,525 INFO  org.bimserver.ServerInitializer - Using C:\Users\Ruben de Laat\Workspaces\BIMserver\BimServer\..\BimServer\build\targets\shared\IFC2X3_FINAL.exp as engine schema
+2011-02-22 13:21:53,162 INFO  org.eclipse.jetty.util.log - Started SocketConnector@localhost:8082
+2011-02-22 13:21:53,163 INFO  org.bimserver.Server - Webserver successfully started
+2011-02-22 13:21:53,163 INFO  org.bimserver.Server - Server started successfully, click on the "launch webbrowser" button, or go to: http://localhost:8082
+2011-02-22 13:22:43,448 INFO  org.bimserver.Server - Starting server...localhost 8082
+2011-02-22 13:22:43,537 INFO  org.bimserver.Server - Starting web server...
+2011-02-22 13:22:43,538 INFO  org.eclipse.jetty.util.log - jetty-7.1.6.v20100715
+2011-02-22 13:23:04,421 INFO  org.bimserver.ServerInitializer - Starting ServerInitializer
+2011-02-22 13:23:07,216 INFO  org.bimserver.ServerInitializer - Using "C:\Users\Ruben de Laat\Workspaces\BIMserver\BimServer\home" as homedir
+2011-02-22 13:23:10,912 INFO  org.bimserver.ServerInitializer - Detected server type: DEV_ENVIRONMENT (Windows 7, 64bit)
+2011-02-22 13:23:10,913 INFO  org.bimserver.ServerInitializer - IFC-Schema file found
+2011-02-22 13:23:11,847 INFO  org.bimserver.ServerInitializer - IFC-Schema successfully loaded
+2011-02-22 13:23:13,440 INFO  org.bimserver.ifc.FileFieldIgnoreMap - Reading general ignore list from "C:\Users\Ruben de Laat\Workspaces\BIMserver\BimServer\..\BimServer\defaultsettings\shared\ignore.xml"
+2011-02-22 13:23:13,584 INFO  org.bimserver.ifc.FileFieldIgnoreMap - Reading specific non-ignore list for IfcBuildingStorey from "C:\Users\Ruben de Laat\Workspaces\BIMserver\BimServer\..\BimServer\defaultsettings\shared\ignoreexceptions\IfcBuildingStorey.xml"
+2011-02-22 13:23:13,627 INFO  org.bimserver.templating.TemplateEngine - Using "C:\Users\Ruben de Laat\Workspaces\BIMserver\BimServer\..\BimServer\home\templates\" as template dir
+2011-02-22 13:23:13,710 INFO  org.bimserver.database.berkeley.BerkeleyColumnDatabase - Non-empty database directory found "C:\Users\Ruben de Laat\Workspaces\BIMserver\BimServer\home\database"
+2011-02-22 13:23:14,278 INFO  org.bimserver.database.berkeley.BerkeleyColumnDatabase - Berkeley Database Init done 568 ms
+2011-02-22 13:23:15,297 INFO  org.bimserver.database.Database - Fixing broken checkin states
+2011-02-22 13:23:15,329 INFO  org.bimserver.ServerInitializer - Using C:\Users\Ruben de Laat\Workspaces\BIMserver\BimServer\..\BimServer\build\targets\shared\IFC2X3_FINAL.exp as engine schema
+2011-02-22 13:23:18,883 INFO  org.eclipse.jetty.util.log - Started SocketConnector@localhost:8082
+2011-02-22 13:23:18,883 INFO  org.bimserver.Server - Webserver successfully started
+2011-02-22 13:23:18,883 INFO  org.bimserver.Server - Server started successfully, click on the "launch webbrowser" button, or go to: http://localhost:8082
+2011-02-22 13:30:27,749 INFO  org.bimserver.Server - Starting server...localhost 8082
+2011-02-22 13:30:27,834 INFO  org.bimserver.Server - Starting web server...
+2011-02-22 13:30:27,835 INFO  org.eclipse.jetty.util.log - jetty-7.1.6.v20100715
