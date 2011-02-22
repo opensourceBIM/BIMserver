@@ -23,7 +23,6 @@
         </filter>
 	</appender>
 	<appender name="File" class="org.bimserver.logging.CustomFileAppender">
-		<param name="File" value="home/logs/bimserver.log" />
 		<param name="Threshold" value="DEBUG" />
 		<layout class="org.apache.log4j.PatternLayout">
 			<param name="ConversionPattern" value="%d{ISO8601} %-5p %c - %m%n" />
