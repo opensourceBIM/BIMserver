@@ -30,7 +30,6 @@
 		Settings settings = ServerSettings.getSettings();
 		if (request.getParameter("save") != null) {
 	settings.setAllowSelfRegistration(request.getParameter("allowSelfRegistration") != null);
-	settings.setDatabaseLocation(request.getParameter("databaselocation"));
 	settings.setEmailSenderAddress(request.getParameter("emailsenderaddress"));
 	settings.setRegistrationAddition(request.getParameter("registrationAddition"));
 	settings.setSendConfirmationEmailAfterRegistration(request.getParameter("sendConfirmationEmailAfterRegistration") != null);
@@ -115,14 +114,6 @@
 		<td><label for="smtpServer">SMTP server (for outgoing e-mail)</label></td>
 		<td><input id="smtpServer" name="smtpServer" type="text"
 			value="<%=settings.getSmtpServer()%>"></input></td>
-	</tr>
-	<tr>
-		<td colspan="2" class="tabletitle">Database</td>
-	</tr>
-	<tr>
-		<td><label for="databaselocation">Database location</label></td>
-		<td><input id="databaselocation" type="text" name="databaselocation"
-			value="<%=settings.getDatabaseLocation()%>"></input></td>
 	</tr>
 	<tr>
 		<td colspan="2" class="tabletitle">Other</td>
