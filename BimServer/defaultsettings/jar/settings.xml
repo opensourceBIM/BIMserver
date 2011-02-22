@@ -8,9 +8,6 @@
 	<emailSenderAddress>no-reply@bimserver.org</emailSenderAddress>
 	<customLogoAddress>http://www.bimserver.org/version/defaultlogo.gif
 	</customLogoAddress>
-	<databaseLocation>home/database</databaseLocation>
-	<tmpLocation>home/tmp</tmpLocation>
-	<logLocation>home/logs/bimserver.log</logLocation>
 	<enabledExportTypes>IFC, IFCXML, CITYGML, COLLADA, KML, KMZ
 	</enabledExportTypes>
 	<allowSelfRegistration>false</allowSelfRegistration>
