@@ -35,6 +35,8 @@
 		<copy todir="builds/BuildJar/www/META-INF" overwrite="true">
 			<fileset file="${buildtargets}/shared/context.xml" />
 		</copy>
+		<mkdir dir="builds/BuildJar/home/logs"/>
+		<mkdir dir="builds/BuildJar/home/tmp"/>
 		<copy todir="builds/BuildJar/home/templates" overwrite="true" failonerror="false">
 			<fileset dir="${defaultsettings}/${target}/templates" />
 		</copy>
@@ -140,6 +142,10 @@
 			<fileset file="${defaultsettings}/shared/ignore.xml" />
 			<fileset file="${defaultsettings}/${target}/ignore.xml" />
 		</copy>
+
+		<mkdir dir="builds/BuildWar/WEB-INF/logs"/>
+		<mkdir dir="builds/BuildWar/WEB-INF/tmp"/>
+
 		<copy file="${buildtargets}/war/servertype.txt" todir="builds/BuildWar" />
 		<copy todir="builds/BuildWar/META-INF" overwrite="true">
 			<fileset file="${buildtargets}/shared/context.xml" />

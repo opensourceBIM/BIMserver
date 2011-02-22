@@ -20,7 +20,7 @@ public class JarSettings {
 	private String jvm = "default";
 
 	@XmlElement
-	private String homedir = "home";
+	private String homedir = new File("home").getAbsolutePath();
 
 	@XmlElement
 	private String address = "localhost";

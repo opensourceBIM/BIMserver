@@ -1772,17 +1772,6 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public String getSettingsDatabaseLocation() throws UserException, ServerException {
-		return ServerSettings.getSettings().getDatabaseLocation();
-	}
-
-	@Override
-	public void setSettingsDatabaseLocation(String databaseLocation) throws UserException, ServerException {
-		requireAuthentication();
-		ServerSettings.getSettings().setDatabaseLocation(databaseLocation);
-	}
-
-	@Override
 	public String getSettingsEmailSenderAddress() throws UserException, ServerException {
 		return ServerSettings.getSettings().getEmailSenderAddress();
 	}

@@ -90,17 +90,30 @@ public class ServerInitializer implements ServletContextListener {
 	private static ServletContext servletContext;
 	private LongActionManager longActionManager;
 	private static ServiceInterface adminService;
-	private String homeDir;
+	private File homeDir;
+	private File baseDir;
 
 	@Override
 	public void contextInitialized(ServletContextEvent servletContextEvent) {
 		try {
 			servletContext = servletContextEvent.getServletContext();
-			homeDir = (String) servletContext.getAttribute("homedir");
-			if (homeDir == null) {
-				homeDir = servletContext.getInitParameter("homedir");
+			if (servletContext.getAttribute("homedir") != null) {
+				homeDir = new File((String) servletContext.getAttribute("homedir"));
+			}
+			if (homeDir == null && servletContext.getInitParameter("homedir") != null) {
+				homeDir = new File(servletContext.getInitParameter("homedir"));
 			}
 			ServerType serverType = detectServerType(servletContextEvent.getServletContext());
+			if (serverType == ServerType.DEV_ENVIRONMENT) {
+				baseDir = new File("../BimServer/defaultsettings/" + "shared");
+			} else if (serverType == ServerType.STANDALONE_JAR) {
+				baseDir = new File("");
+			} else if (serverType == ServerType.DEPLOYED_WAR) {
+				baseDir = new File("");
+			}
+			if (homeDir == null) {
+				homeDir = baseDir;
+			}
 			resourceFetcher = createResourceFetcher(serverType, servletContext, homeDir);
 			if (homeDir != null && serverType == ServerType.DEPLOYED_WAR || serverType == ServerType.STANDALONE_JAR) {
 				initHomeDir();
@@ -108,11 +121,11 @@ public class ServerInitializer implements ServletContextListener {
 			URL resource = resourceFetcher.getResource("settings.xml");
 			Settings settings = Settings.readFromUrl(resource);
 
-			CustomFileAppender.setLocation(settings.getLogLocation());
+			CustomFileAppender.setLocation(new File(homeDir, "logs/bimserver.log").getAbsolutePath());
 
 			LOGGER.info("Starting ServerInitializer");
 			if (homeDir != null) {
-				LOGGER.info("Using \"" + new File(homeDir).getAbsolutePath() + "\" as homedir");
+				LOGGER.info("Using \"" + homeDir.getAbsolutePath() + "\" as homedir");
 			} else {
 				LOGGER.info("Not using a homedir");
 			}
@@ -149,7 +162,7 @@ public class ServerInitializer implements ServletContextListener {
 
 			FieldIgnoreMap fieldIgnoreMap = new FileFieldIgnoreMap(packages, resourceFetcher);
 			TemplateEngine.getTemplateEngine().init(resourceFetcher.getResource("templates/"));
-			File databaseDir = new File(ServerSettings.getSettings().getDatabaseLocation());
+			File databaseDir = new File(homeDir, "database");
 			BerkeleyColumnDatabase columnDatabase = new BerkeleyColumnDatabase(databaseDir);
 			bimDatabase = new Database(packages, columnDatabase, fieldIgnoreMap);
 			if (serverType == ServerType.DEV_ENVIRONMENT && columnDatabase.isNew()) {
@@ -175,7 +188,7 @@ public class ServerInitializer implements ServletContextListener {
 				// IfcEngineFactory to use all jar files in the context
 				classPath = servletContext.getRealPath("/") + "WEB-INF" + File.separator + "lib";
 			}
-			IfcEngineFactory ifcEngineFactory = new IfcEngineFactory(schemaFile, nativeFolder, new File(settings.getTmpLocation()), classPath);
+			IfcEngineFactory ifcEngineFactory = new IfcEngineFactory(schemaFile, nativeFolder, new File(homeDir, "tmp"), classPath);
 
 			CompileServlet.database = bimDatabase;
 
@@ -219,18 +232,22 @@ public class ServerInitializer implements ServletContextListener {
 	private void initHomeDir() throws IOException {
 		String[] filesToCheck = new String[]{
 			"settings.xml",
+			"logs",
+			"tmp",
 			"collada.xml",
 			"ignore.xml",
 			"ignoreexceptions",
 			"log4j.xml",
 			"templates"
 		};
-		File homeDirFile = new File(homeDir);
-		if (homeDirFile.exists() && homeDirFile.isDirectory()) {
+		if (!homeDir.exists()) {
+			homeDir.mkdir();
+		}
+		if (homeDir.exists() && homeDir.isDirectory()) {
 			for (String fileToCheck : filesToCheck) {
 				File sourceFile = resourceFetcher.getFile(fileToCheck);
 				if (sourceFile != null && sourceFile.exists()) {
-					File destFile = new File(homeDirFile, fileToCheck);
+					File destFile = new File(homeDir, fileToCheck);
 					if (!destFile.exists()) {
 						if (sourceFile.isDirectory()) {
 							destFile.mkdir();
@@ -304,7 +321,7 @@ public class ServerInitializer implements ServletContextListener {
 		return null;
 	}
 
-	private ResourceFetcher createResourceFetcher(ServerType serverType, final ServletContext servletContext, String homeDir) {
+	private ResourceFetcher createResourceFetcher(ServerType serverType, final ServletContext servletContext, File homeDir) {
 		switch (serverType) {
 		case DEV_ENVIRONMENT:
 			return new LocalDevelopmentResourceFetcher();

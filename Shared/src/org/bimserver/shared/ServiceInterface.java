@@ -274,14 +274,6 @@ public interface ServiceInterface {
 			@WebParam(name = "customLogoAddress", partName = "setSettingsCustomLogoAddress.customLogoAddress") String customLogoAddress)
 			throws UserException, ServerException;
 
-	@WebMethod(action = "getSettingsDatabaseLocation")
-	String getSettingsDatabaseLocation() throws UserException, ServerException;
-
-	@WebMethod(action = "setSettingsDatabaseLocation")
-	void setSettingsDatabaseLocation(
-			@WebParam(name = "databaseLocation", partName = "setSettingsDatabaseLocation.databaseLocation") String databaseLocation)
-			throws UserException, ServerException;
-
 	@WebMethod(action = "getSettingsEmailSenderAddress")
 	String getSettingsEmailSenderAddress() throws UserException, ServerException;
 
