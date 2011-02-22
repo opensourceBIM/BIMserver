@@ -29,6 +29,7 @@ import java.lang.Thread.UncaughtExceptionHandler;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Date;
+import java.util.Enumeration;
 import java.util.GregorianCalendar;
 import java.util.Set;
 
@@ -41,6 +42,7 @@ import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
 import nl.tue.buildingsmart.express.parser.ExpressSchemaParser;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.log4j.LogManager;
 import org.bimserver.database.BimDatabase;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.Database;
@@ -121,7 +123,7 @@ public class ServerInitializer implements ServletContextListener {
 			URL resource = resourceFetcher.getResource("settings.xml");
 			Settings settings = Settings.readFromUrl(resource);
 
-			CustomFileAppender.setLocation(new File(homeDir, "logs/bimserver.log").getAbsolutePath());
+			fixLogging();
 
 			LOGGER.info("Starting ServerInitializer");
 			if (homeDir != null) {
@@ -226,6 +228,16 @@ public class ServerInitializer implements ServletContextListener {
 		} catch (Exception e) {
 			ServerInfo.setErrorMessage(e.getMessage());
 			LOGGER.error("", e);
+		}
+	}
+
+	private void fixLogging() throws IOException {
+		CustomFileAppender appender = new CustomFileAppender(new File(homeDir, "logs/bimserver.log"));
+		LogManager.getRootLogger().addAppender(appender);
+		Enumeration<?> currentLoggers = LogManager.getCurrentLoggers();
+		while  (currentLoggers.hasMoreElements()) {
+			Object nextElement = currentLoggers.nextElement();
+			((org.apache.log4j.Logger)nextElement).addAppender(appender);
 		}
 	}
 
