@@ -22,52 +22,38 @@
             <param name="AcceptOnMatch" value="false"/>
         </filter>
 	</appender>
-	<appender name="File" class="org.bimserver.logging.CustomFileAppender">
-		<param name="File" value="[willbeoverridden]" />
-		<param name="Threshold" value="DEBUG" />
-		<layout class="org.apache.log4j.PatternLayout">
-			<param name="ConversionPattern" value="%d{ISO8601} %-5p %c - %m%n" />
-		</layout>
-	</appender>
 	<logger name="org.quartz">
 		<level value="ERROR" />
 		<appender-ref ref="ErrorConsole" />
 		<appender-ref ref="OutConsole" />
-		<appender-ref ref="File" />
 	</logger>
 	<logger name="org.apache.cxf">
 		<level value="ERROR" />
 		<appender-ref ref="ErrorConsole" />
 		<appender-ref ref="OutConsole" />
-		<appender-ref ref="File" />
 	</logger>
 	<logger name="org.mortbay">
 		<level value="ERROR" />
 		<appender-ref ref="ErrorConsole" />
 		<appender-ref ref="OutConsole" />
-		<appender-ref ref="File" />
 	</logger>
 	<logger name="org.springframework">
 		<level value="ERROR" />
 		<appender-ref ref="ErrorConsole" />
 		<appender-ref ref="OutConsole" />
-		<appender-ref ref="File" />
 	</logger>
 	<logger name="org.bimserver.ifcengine">
 		<level value="DEBUG" />
 		<appender-ref ref="ErrorConsole" />
 		<appender-ref ref="OutConsole" />
-		<appender-ref ref="File" />
 	</logger>
 	<logger name="org.bimserver.ifcengine.jvm">
 		<level value="ERROR" />
 		<appender-ref ref="ErrorConsole" />
-		<appender-ref ref="File" />
 	</logger>
 	<root>
 		<priority value="INFO" />
 		<appender-ref ref="ErrorConsole" />
 		<appender-ref ref="OutConsole" />
-		<appender-ref ref="File" />
 	</root>
 </log4j:configuration>
