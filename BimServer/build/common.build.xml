@@ -226,7 +226,6 @@
 		<copy todir="builds/BuildWar/WEB-INF/classes">
 			<fileset file="${defaultsettings}/${target}/log4j.xml" />
 		</copy>
-		<copy file="context.xml" todir="builds/BuildWar/META-INF"/>
 		<jar destfile="builds/bimserver-${version}.war" manifest="../www/META-INF/MANIFEST.MF">
 			<fileset dir="builds/BuildWar">
 				<exclude name="*.svn" />
