@@ -229,7 +229,7 @@ public class ServerInitializer implements ServletContextListener {
 		if (homeDirFile.exists() && homeDirFile.isDirectory()) {
 			for (String fileToCheck : filesToCheck) {
 				File sourceFile = resourceFetcher.getFile(fileToCheck);
-				if (sourceFile.exists()) {
+				if (sourceFile != null && sourceFile.exists()) {
 					File destFile = new File(homeDirFile, fileToCheck);
 					if (!destFile.exists()) {
 						if (sourceFile.isDirectory()) {
