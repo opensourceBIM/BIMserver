@@ -117,7 +117,7 @@ public class ServerInitializer implements ServletContextListener {
 				homeDir = baseDir;
 			}
 			resourceFetcher = createResourceFetcher(serverType, servletContext, homeDir);
-			if (homeDir != null && serverType == ServerType.DEPLOYED_WAR || serverType == ServerType.STANDALONE_JAR) {
+			if (homeDir != null) {
 				initHomeDir();
 			}
 			URL resource = resourceFetcher.getResource("settings.xml");
