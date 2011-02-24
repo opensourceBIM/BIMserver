@@ -1,7 +1,6 @@
 package org.bimserver.database.actions;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -19,6 +18,7 @@ import org.bimserver.database.store.Project;
 import org.bimserver.database.store.Revision;
 import org.bimserver.database.store.log.AccessMethod;
 import org.bimserver.emf.IdEObject;
+import org.bimserver.ifc.FieldIgnoreMap;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelSet;
 import org.bimserver.ifc.emf.Ifc2x3.IfcGloballyUniqueId;
@@ -33,6 +33,7 @@ import org.bimserver.merging.Merger;
 import org.bimserver.shared.UserException;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -45,10 +46,12 @@ public class FindClashesDatabaseAction extends BimDatabaseAction<Set<? extends C
 	private final IfcEngineFactory ifcEngineFactory;
 	private final SchemaDefinition schema;
 	private final ClashDetectionSettings clashDetectionSettings;
+	private final FieldIgnoreMap fieldIgnoreMap;
 
-	public FindClashesDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, ClashDetectionSettings clashDetectionSettings, SchemaDefinition schema, IfcEngineFactory ifcEngineFactory,
-			long actingUoid) {
+	public FindClashesDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, ClashDetectionSettings clashDetectionSettings, SchemaDefinition schema,
+			IfcEngineFactory ifcEngineFactory, FieldIgnoreMap fieldIgnoreMap, long actingUoid) {
 		super(bimDatabaseSession, accessMethod);
+		this.fieldIgnoreMap = fieldIgnoreMap;
 		this.clashDetectionSettings = clashDetectionSettings;
 		this.schema = schema;
 		this.ifcEngineFactory = ifcEngineFactory;
@@ -82,7 +85,9 @@ public class FindClashesDatabaseAction extends BimDatabaseAction<Set<? extends C
 		IfcModel newModel = new IfcModel();
 		Map<IdEObject, IdEObject> converted = new HashMap<IdEObject, IdEObject>();
 		for (IdEObject idEObject : ifcModel.getValues()) {
-			cleanupModel(idEObject, newModel, ifcModel, new HashSet<String>(clashDetectionSettings.getIgnoredClasses()), converted);
+			if (!clashDetectionSettings.getIgnoredClasses().contains(idEObject.eClass().getName())) {
+				cleanupModel(idEObject.eClass(), idEObject, newModel, ifcModel, converted);
+			}
 		}
 		IfcStepSerializer ifcStepSerializer = new IfcStepSerializer(null, getUserByUoid(actingUoid), "", newModel, schema);
 		try {
@@ -122,18 +127,18 @@ public class FindClashesDatabaseAction extends BimDatabaseAction<Set<? extends C
 	}
 
 	@SuppressWarnings("unchecked")
-	private IdEObject cleanupModel(IdEObject original, IfcModel newModel, IfcModel ifcModel, Set<String> ignoredClasses, Map<IdEObject, IdEObject> converted) {
+	private IdEObject cleanupModel(EClass originalEClass, IdEObject original, IfcModel newModel, IfcModel ifcModel, Map<IdEObject, IdEObject> converted) {
 		if (converted.containsKey(original)) {
 			return converted.get(original);
 		}
-		if (!ignoredClasses.contains(original.eClass().getName())) {
-			IdEObject newObject = (IdEObject) original.eClass().getEPackage().getEFactoryInstance().create(original.eClass());
-			newObject.setOid(original.getOid());
-			converted.put(original, newObject);
-			if (!(newObject instanceof WrappedValue) && !(newObject instanceof IfcGloballyUniqueId)) {
-				newModel.add(newObject.getOid(), newObject);
-			}
-			for (EStructuralFeature eStructuralFeature : original.eClass().getEAllStructuralFeatures()) {
+		IdEObject newObject = (IdEObject) original.eClass().getEPackage().getEFactoryInstance().create(original.eClass());
+		newObject.setOid(original.getOid());
+		converted.put(original, newObject);
+		if (!(newObject instanceof WrappedValue) && !(newObject instanceof IfcGloballyUniqueId)) {
+			newModel.add(newObject.getOid(), newObject);
+		}
+		for (EStructuralFeature eStructuralFeature : original.eClass().getEAllStructuralFeatures()) {
+			if (!fieldIgnoreMap.shouldIgnoreField(originalEClass, original.eClass(), eStructuralFeature)) {
 				Object get = original.eGet(eStructuralFeature);
 				if (eStructuralFeature instanceof EAttribute) {
 					if (get instanceof Float || get instanceof Double) {
@@ -157,7 +162,7 @@ public class FindClashesDatabaseAction extends BimDatabaseAction<Set<? extends C
 								if (converted.containsKey(o)) {
 									toList.addUnique(converted.get(o));
 								} else {
-									IdEObject result = cleanupModel((IdEObject) o, newModel, ifcModel, ignoredClasses, converted);
+									IdEObject result = cleanupModel(originalEClass, (IdEObject) o, newModel, ifcModel, converted);
 									if (result != null) {
 										toList.addUnique(result);
 									}
@@ -167,14 +172,13 @@ public class FindClashesDatabaseAction extends BimDatabaseAction<Set<? extends C
 							if (converted.containsKey(get)) {
 								newObject.eSet(eStructuralFeature, converted.get(get));
 							} else {
-								newObject.eSet(eStructuralFeature, cleanupModel((IdEObject) get, newModel, ifcModel, ignoredClasses, converted));
+								newObject.eSet(eStructuralFeature, cleanupModel(originalEClass, (IdEObject) get, newModel, ifcModel, converted));
 							}
 						}
 					}
 				}
 			}
-			return newObject;
 		}
-		return null;
+		return newObject;
 	}
 }

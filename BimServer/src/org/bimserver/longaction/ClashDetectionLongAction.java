@@ -20,6 +20,7 @@ import org.bimserver.database.store.StoreFactory;
 import org.bimserver.database.store.StorePackage;
 import org.bimserver.database.store.User;
 import org.bimserver.database.store.log.AccessMethod;
+import org.bimserver.ifc.FieldIgnoreMap;
 import org.bimserver.ifcengine.IfcEngineFactory;
 import org.bimserver.webservices.Service;
 import org.slf4j.Logger;
@@ -34,13 +35,15 @@ public class ClashDetectionLongAction extends LongAction {
 	private final BimDatabase bimDatabase;
 	private final long poid;
 	private final User user;
+	private final FieldIgnoreMap fieldIgnoreMap;
 
-	public ClashDetectionLongAction(User user, long actingUoid, SchemaDefinition schema, IfcEngineFactory ifcEngineFactory, BimDatabase bimDatabase, long poid) {
+	public ClashDetectionLongAction(User user, long actingUoid, SchemaDefinition schema, IfcEngineFactory ifcEngineFactory, BimDatabase bimDatabase, FieldIgnoreMap fieldIgnoreMap, long poid) {
 		this.user = user;
 		this.actingUoid = actingUoid;
 		this.schema = schema;
 		this.ifcEngineFactory = ifcEngineFactory;
 		this.bimDatabase = bimDatabase;
+		this.fieldIgnoreMap = fieldIgnoreMap;
 		this.poid = poid;
 	}
 
@@ -68,7 +71,7 @@ public class ClashDetectionLongAction extends LongAction {
 			ClashDetectionSettings clashDetectionSettings = StoreFactory.eINSTANCE.createClashDetectionSettings();
 			clashDetectionSettings.setMargin(project.getClashDetectionSettings().getMargin());
 			clashDetectionSettings.getRevisions().add(project.getLastRevision());
-			FindClashesDatabaseAction findClashesDatabaseAction = new FindClashesDatabaseAction(session, AccessMethod.INTERNAL, clashDetectionSettings, schema, ifcEngineFactory, roid);
+			FindClashesDatabaseAction findClashesDatabaseAction = new FindClashesDatabaseAction(session, AccessMethod.INTERNAL, clashDetectionSettings, schema, ifcEngineFactory, fieldIgnoreMap, roid);
 			Set<? extends Clash> clashes = findClashesDatabaseAction.execute();
 			Revision revision = project.getLastRevision();
 // Temporarily disabled, should be enabled when lazy loading is working

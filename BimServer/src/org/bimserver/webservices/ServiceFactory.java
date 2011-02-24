@@ -12,6 +12,7 @@ import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
 
 import org.bimserver.database.BimDatabase;
 import org.bimserver.database.store.log.AccessMethod;
+import org.bimserver.ifc.FieldIgnoreMap;
 import org.bimserver.ifcengine.IfcEngineFactory;
 import org.bimserver.interfaces.objects.SAccessMethod;
 import org.bimserver.interfaces.objects.SUser;
@@ -36,22 +37,24 @@ public class ServiceFactory {
 	private final SchemaDefinition schema;
 	private final LongActionManager longActionManager;
 	private final IfcEngineFactory ifcEngineFactory;
+	private final FieldIgnoreMap fieldIgnoreMap;
 
 	private ServiceFactory(BimDatabase bimDatabase, EmfSerializerFactory emfSerializerFactory, SchemaDefinition schema,
-			LongActionManager longActionManager, IfcEngineFactory ifcEngineFactory) {
+			LongActionManager longActionManager, IfcEngineFactory ifcEngineFactory, FieldIgnoreMap fieldIgnoreMap) {
 		this.bimDatabase = bimDatabase;
 		this.emfSerializerFactory = emfSerializerFactory;
 		this.schema = schema;
 		this.longActionManager = longActionManager;
 		this.ifcEngineFactory = ifcEngineFactory;
+		this.fieldIgnoreMap = fieldIgnoreMap;
 	}
 	
-	public static void init(BimDatabase bimDatabase, EmfSerializerFactory emfSerializerFactory, SchemaDefinition schema, LongActionManager longActionManager, IfcEngineFactory ifcEngineFactory) {
-		INSTANCE = new ServiceFactory(bimDatabase, emfSerializerFactory, schema, longActionManager, ifcEngineFactory);
+	public static void init(BimDatabase bimDatabase, EmfSerializerFactory emfSerializerFactory, SchemaDefinition schema, LongActionManager longActionManager, IfcEngineFactory ifcEngineFactory, FieldIgnoreMap fieldIgnoreMap) {
+		INSTANCE = new ServiceFactory(bimDatabase, emfSerializerFactory, schema, longActionManager, ifcEngineFactory, fieldIgnoreMap);
 	}
 
 	public ServiceInterface newService(AccessMethod accessMethod) {
-		Service service = new Service(bimDatabase, emfSerializerFactory, schema, longActionManager, accessMethod, ifcEngineFactory, this);
+		Service service = new Service(bimDatabase, emfSerializerFactory, schema, longActionManager, accessMethod, ifcEngineFactory, this, fieldIgnoreMap);
 		Date expires = new Date(new Date().getTime() + (TOKEN_TTL_SECONDS * 1000));
 		Token token = new Token(GeneratorUtils.generateToken(), expires);
 		tokens.put(token, service);
