@@ -89,6 +89,7 @@ public class IfcStepSerializer extends IfcSerializer {
 
 	private Mode mode = Mode.HEADER;
 	private Iterator<Long> iterator;
+	private UTFPrintWriter out;
 
 	public IfcStepSerializer(Project project, User user, String fileName, IfcModel model, SchemaDefinition schema) {
 		super(fileName, model, schema);
@@ -104,7 +105,9 @@ public class IfcStepSerializer extends IfcSerializer {
 	}
 
 	public int write(OutputStream outputStream) {
-		UTFPrintWriter out = new UTFPrintWriter(outputStream);
+		if (out == null) {
+			out = new UTFPrintWriter(outputStream);
+		}
 		if (mode == Mode.HEADER) {
 			writeHeader(out);
 			mode = Mode.BODY;
@@ -121,12 +124,11 @@ public class IfcStepSerializer extends IfcSerializer {
 				iterator = null;
 				mode = Mode.FOOTER;
 			}
-			out.flush();
 			return 1;
 		} else if (mode == Mode.FOOTER) {
 			writeFooter(out);
-			mode = Mode.FINISHED;
 			out.flush();
+			mode = Mode.FINISHED;
 			return 1;
 		} else if (mode == Mode.FINISHED) {
 			return -1;
