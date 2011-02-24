@@ -126,6 +126,7 @@ import org.bimserver.database.store.log.LogAction;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.exceptions.NoSerializerFoundException;
 import org.bimserver.ifc.EmfSerializer;
+import org.bimserver.ifc.FieldIgnoreMap;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelSet;
 import org.bimserver.ifc.SerializerException;
@@ -205,6 +206,7 @@ public class Service implements ServiceInterface {
 	private final LongActionManager longActionManager;
 	private final AccessMethod accessMethod;
 	private final IfcEngineFactory ifcEngineFactory;
+	private final FieldIgnoreMap fieldIgnoreMap;
 
 	private long currentUoid = -1;
 	private Date activeSince;
@@ -212,7 +214,7 @@ public class Service implements ServiceInterface {
 	private Token token;
 
 	public Service(BimDatabase bimDatabase, EmfSerializerFactory emfSerializerFactory, SchemaDefinition schema,
-			LongActionManager longActionManager, AccessMethod accessMethod, IfcEngineFactory ifcEngineFactory, ServiceFactory serviceFactory) {
+			LongActionManager longActionManager, AccessMethod accessMethod, IfcEngineFactory ifcEngineFactory, ServiceFactory serviceFactory, FieldIgnoreMap fieldIgnoreMap) {
 		this.bimDatabase = bimDatabase;
 		this.emfSerializerFactory = emfSerializerFactory;
 		this.schema = schema;
@@ -220,6 +222,7 @@ public class Service implements ServiceInterface {
 		this.accessMethod = accessMethod;
 		this.ifcEngineFactory = ifcEngineFactory;
 		this.serviceFactory = serviceFactory;
+		this.fieldIgnoreMap = fieldIgnoreMap;
 		activeSince = new Date();
 		lastActive = new Date();
 	}
@@ -386,7 +389,7 @@ public class Service implements ServiceInterface {
 			result.setPoid(revision.getProject().getOid());
 			result.setProjectName(revision.getProject().getName());
 			longActionManager.start(new LongCheckinAction(userByUoid, longActionManager, bimDatabase, schema, createCheckinAction,
-					ifcEngineFactory));
+					ifcEngineFactory, fieldIgnoreMap));
 			return result;
 		} catch (UserException e) {
 			throw e;
@@ -1318,7 +1321,7 @@ public class Service implements ServiceInterface {
 		try {
 			return convert(session.executeAction(
 					new FindClashesDatabaseAction(session, accessMethod, convert(sClashDetectionSettings, session), schema,
-							ifcEngineFactory, currentUoid), DEADLOCK_RETRIES), SGuidClash.class, session);
+							ifcEngineFactory, fieldIgnoreMap, currentUoid), DEADLOCK_RETRIES), SGuidClash.class, session);
 		} catch (Exception e) {
 			handleException(e);
 			return null;
@@ -1334,7 +1337,7 @@ public class Service implements ServiceInterface {
 		try {
 			return convert(session.executeAction(
 					new FindClashesDatabaseAction(session, accessMethod, convert(sClashDetectionSettings, session), schema,
-							ifcEngineFactory, currentUoid), DEADLOCK_RETRIES), SEidClash.class, session);
+							ifcEngineFactory, fieldIgnoreMap, currentUoid), DEADLOCK_RETRIES), SEidClash.class, session);
 		} catch (Exception e) {
 			handleException(e);
 			return null;
@@ -1397,7 +1400,7 @@ public class Service implements ServiceInterface {
 				result.setPoid(revision.getProject().getOid());
 				result.setProjectName(revision.getProject().getName());
 				longActionManager.start(new LongCheckinAction(user, longActionManager, bimDatabase, schema, createCheckinAction,
-						ifcEngineFactory));
+						ifcEngineFactory, fieldIgnoreMap));
 				return result;
 			} catch (UserException e) {
 				throw e;
@@ -1445,7 +1448,7 @@ public class Service implements ServiceInterface {
 				result.setPoid(revision.getProject().getOid());
 				result.setProjectName(revision.getProject().getName());
 				longActionManager.start(new LongCheckinAction(user, longActionManager, bimDatabase, schema, createCheckinAction,
-						ifcEngineFactory));
+						ifcEngineFactory, fieldIgnoreMap));
 				return result;
 			} catch (UserException e) {
 				throw e;

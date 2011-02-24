@@ -201,7 +201,7 @@ public class ServerInitializer implements ServletContextListener {
 			EmfSerializerFactory emfSerializerFactory = EmfSerializerFactory.getInstance();
 			emfSerializerFactory.init(version, schema, fieldIgnoreMap, ifcEngineFactory, colladaSettings, resourceFetcher);
 			emfSerializerFactory.initSerializers();
-			ServiceFactory.init(bimDatabase, emfSerializerFactory, schema, longActionManager, ifcEngineFactory);
+			ServiceFactory.init(bimDatabase, emfSerializerFactory, schema, longActionManager, ifcEngineFactory, fieldIgnoreMap);
 			setAdminService(ServiceFactory.getINSTANCE().newService(AccessMethod.INTERNAL));
 			((Service) getAdminService()).loginAsAdmin();
 			LoginManager.setAdminService(getAdminService());

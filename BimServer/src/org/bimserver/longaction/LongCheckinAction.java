@@ -14,6 +14,7 @@ import org.bimserver.database.store.Project;
 import org.bimserver.database.store.Revision;
 import org.bimserver.database.store.StorePackage;
 import org.bimserver.database.store.User;
+import org.bimserver.ifc.FieldIgnoreMap;
 import org.bimserver.ifc.SerializerException;
 import org.bimserver.ifcengine.IfcEngineException;
 import org.bimserver.ifcengine.IfcEngineFactory;
@@ -30,14 +31,16 @@ public class LongCheckinAction extends LongAction {
 	private final IfcEngineFactory ifcEngineFactory;
 	private final LongActionManager longActionManager;
 	private final User user;
+	private final FieldIgnoreMap fieldIgnoreMap;
 
-	public LongCheckinAction(User user, LongActionManager longActionManager, BimDatabase bimDatabase, SchemaDefinition schema, CheckinPart2DatabaseAction createCheckinAction, IfcEngineFactory ifcEngineFactory) {
+	public LongCheckinAction(User user, LongActionManager longActionManager, BimDatabase bimDatabase, SchemaDefinition schema, CheckinPart2DatabaseAction createCheckinAction, IfcEngineFactory ifcEngineFactory, FieldIgnoreMap fieldIgnoreMap) {
 		this.user = user;
 		this.longActionManager = longActionManager;
 		this.bimDatabase = bimDatabase;
 		this.schema = schema;
 		this.createCheckinAction = createCheckinAction;
 		this.ifcEngineFactory = ifcEngineFactory;
+		this.fieldIgnoreMap = fieldIgnoreMap;
 	}
 
 	public void execute() {
@@ -112,7 +115,7 @@ public class LongCheckinAction extends LongAction {
 			mainProject = mainProject.getParent();
 		}
 		if (mainProject.getClashDetectionSettings().isEnabled()) {
-			ClashDetectionLongAction clashDetectionLongAction = new ClashDetectionLongAction(user, createCheckinAction.getActingUid(), schema, ifcEngineFactory, bimDatabase, mainProject.getOid());
+			ClashDetectionLongAction clashDetectionLongAction = new ClashDetectionLongAction(user, createCheckinAction.getActingUid(), schema, ifcEngineFactory, bimDatabase, fieldIgnoreMap, mainProject.getOid());
 			try {
 				longActionManager.start(clashDetectionLongAction);
 			} catch (CannotBeScheduledException e) {
