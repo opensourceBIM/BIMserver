@@ -5,7 +5,7 @@ import java.io.File;
 public class LocalDevelopmentResourceFetcher extends ResourceFetcher {
 
 	public LocalDevelopmentResourceFetcher() {
-		addPath(new File("../BimServer/home"));
+		addPath(new File("../BimServer/defaultsettings/" + "local"));
 		addPath(new File("../BimServer/defaultsettings/" + "shared"));
 		addPath(new File("../BimServer/build/targets/" + "local"));
 		addPath(new File("../BimServer/build/targets/" + "shared"));
