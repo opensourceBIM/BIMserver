@@ -36,15 +36,23 @@ import org.bimserver.ifc.emf.Ifc2x3.IfcMaterialLayerSetUsage;
 import org.bimserver.ifc.emf.Ifc2x3.IfcMaterialSelect;
 import org.bimserver.ifc.emf.Ifc2x3.IfcMember;
 import org.bimserver.ifc.emf.Ifc2x3.IfcPlate;
+import org.bimserver.ifc.emf.Ifc2x3.IfcPresentationStyleAssignment;
+import org.bimserver.ifc.emf.Ifc2x3.IfcPresentationStyleSelect;
 import org.bimserver.ifc.emf.Ifc2x3.IfcProduct;
+import org.bimserver.ifc.emf.Ifc2x3.IfcProductDefinitionShape;
+import org.bimserver.ifc.emf.Ifc2x3.IfcProductRepresentation;
 import org.bimserver.ifc.emf.Ifc2x3.IfcProject;
 import org.bimserver.ifc.emf.Ifc2x3.IfcRailing;
 import org.bimserver.ifc.emf.Ifc2x3.IfcRelAssociatesMaterial;
+import org.bimserver.ifc.emf.Ifc2x3.IfcRepresentation;
+import org.bimserver.ifc.emf.Ifc2x3.IfcRepresentationItem;
 import org.bimserver.ifc.emf.Ifc2x3.IfcRoof;
 import org.bimserver.ifc.emf.Ifc2x3.IfcSIUnit;
+import org.bimserver.ifc.emf.Ifc2x3.IfcShapeRepresentation;
 import org.bimserver.ifc.emf.Ifc2x3.IfcSlab;
 import org.bimserver.ifc.emf.Ifc2x3.IfcSlabTypeEnum;
 import org.bimserver.ifc.emf.Ifc2x3.IfcStairFlight;
+import org.bimserver.ifc.emf.Ifc2x3.IfcStyledItem;
 import org.bimserver.ifc.emf.Ifc2x3.IfcSurfaceStyle;
 import org.bimserver.ifc.emf.Ifc2x3.IfcSurfaceStyleElementSelect;
 import org.bimserver.ifc.emf.Ifc2x3.IfcSurfaceStyleRendering;
@@ -257,6 +265,7 @@ public class ColladaSerializer extends BimModelSerializer {
 		id = id.replace('$', '-'); // XML QNAME may not contain a $ character.
 		id = "_" + id; // XML QNAME may not start with a digit.
 
+		boolean materialFound = false;
 		if (ifcRootObject instanceof IfcProduct) {
 			IfcProduct ifcProduct = (IfcProduct) ifcRootObject;
 
@@ -274,51 +283,52 @@ public class ColladaSerializer extends BimModelSerializer {
 				IfcMaterialLayerSetUsage mlsu = (IfcMaterialLayerSetUsage) relatingMaterial;
 				IfcMaterialLayerSet forLayerSet = mlsu.getForLayerSet();
 				if (forLayerSet != null) {
-					System.out.println(forLayerSet.getLayerSetName());
 					EList<IfcMaterialLayer> materialLayers = forLayerSet.getMaterialLayers();
 					for (IfcMaterialLayer ml : materialLayers) {
 						IfcMaterial ifcMaterial = ml.getMaterial();
 						String name = ifcMaterial.getName();
-						String filterSpaces = filterSpaces(name);
-						boolean contains = surfaceStyleIds.contains(filterSpaces);
-						if (contains) {
-							System.out.println("\"" + name + "\" found");
+						String filterSpaces = fitNameForQualifiedName(name);
+						materialFound = surfaceStyleIds.contains(filterSpaces);
+						if (materialFound) {
 							material = filterSpaces;
 						}
 					}
 				}
 			}
 
-			// IfcProductRepresentation representation =
-			// ifcRoof.getRepresentation();
-			// if (representation instanceof IfcProductDefinitionShape) {
-			// IfcProductDefinitionShape pds = (IfcProductDefinitionShape)
-			// representation;
-			// EList<IfcRepresentation> representations =
-			// pds.getRepresentations();
-			// for (IfcRepresentation rep : representations) {
-			// if (rep instanceof IfcShapeRepresentation) {
-			// IfcShapeRepresentation sRep = (IfcShapeRepresentation) rep;
-			// EList<IfcRepresentationItem> items = sRep.getItems();
-			// for (IfcRepresentationItem item : items) {
-			// EList<IfcStyledItem> styledByItem = item.getStyledByItem();
-			// for (IfcStyledItem sItem : styledByItem) {
-			// EList<IfcPresentationStyleAssignment> styles = sItem.getStyles();
-			// for (IfcPresentationStyleAssignment sa : styles) {
-			// EList<IfcPresentationStyleSelect> styles2 = sa.getStyles();
-			// for (IfcPresentationStyleSelect pss : styles2) {
-			// if (pss instanceof IfcSurfaceStyle) {
-			// IfcSurfaceStyle ss = (IfcSurfaceStyle) pss;
-			// System.out.println(ss.getName());
-			// ;
-			// }
-			// }
-			// }
-			// }
-			// }
-			// }
-			// }
-			// }
+			if (!materialFound) {
+				IfcProductRepresentation representation = ifcProduct.getRepresentation();
+				if (representation instanceof IfcProductDefinitionShape) {
+					IfcProductDefinitionShape pds = (IfcProductDefinitionShape) representation;
+					EList<IfcRepresentation> representations = pds.getRepresentations();
+					for (IfcRepresentation rep : representations) {
+						if (rep instanceof IfcShapeRepresentation) {
+							IfcShapeRepresentation sRep = (IfcShapeRepresentation) rep;
+							EList<IfcRepresentationItem> items = sRep.getItems();
+							for (IfcRepresentationItem item : items) {
+								EList<IfcStyledItem> styledByItem = item.getStyledByItem();
+								for (IfcStyledItem sItem : styledByItem) {
+									EList<IfcPresentationStyleAssignment> styles = sItem.getStyles();
+									for (IfcPresentationStyleAssignment sa : styles) {
+										EList<IfcPresentationStyleSelect> styles2 = sa.getStyles();
+										for (IfcPresentationStyleSelect pss : styles2) {
+											if (pss instanceof IfcSurfaceStyle) {
+												IfcSurfaceStyle ss = (IfcSurfaceStyle) pss;
+												String name = ss.getName();
+												String filterSpaces = fitNameForQualifiedName(name);
+												materialFound = surfaceStyleIds.contains(filterSpaces);
+												if (materialFound) {
+													material = filterSpaces;
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
 		}
 
 		if (!converted.containsKey(material)) {
@@ -485,7 +495,7 @@ public class ColladaSerializer extends BimModelSerializer {
 					if (surfaceColour instanceof IfcColourRgb) {
 						colour = (IfcColourRgb) surfaceColour;
 					}
-					String name = filterSpaces(ss.getName());
+					String name = fitNameForQualifiedName(ss.getName());
 					surfaceStyleIds.add(name);
 					writeEffect(out, name, new float[] { colour.getRed(), colour.getGreen(), colour.getBlue() },
 							(ssr.isSetTransparency() ? ssr.getTransparency() : 1.0f));
@@ -497,7 +507,7 @@ public class ColladaSerializer extends BimModelSerializer {
 		out.println("    </library_effects>");
 	}
 
-	private String filterSpaces(String name) {
+	private String fitNameForQualifiedName(String name) {
 		StringBuffer buf = new StringBuffer(name);
 		int indexOfSpace = buf.indexOf(" ");
 		while (indexOfSpace >= 0) {
@@ -510,6 +520,11 @@ public class ColladaSerializer extends BimModelSerializer {
 			indexOfSpace = buf.indexOf(",");
 		}
 		indexOfSpace = buf.indexOf("/");
+		while (indexOfSpace >= 0) {
+			buf.setCharAt(indexOfSpace, '_');
+			indexOfSpace = buf.indexOf("/");
+		}
+		indexOfSpace = buf.indexOf("*");
 		while (indexOfSpace >= 0) {
 			buf.setCharAt(indexOfSpace, '_');
 			indexOfSpace = buf.indexOf("/");
