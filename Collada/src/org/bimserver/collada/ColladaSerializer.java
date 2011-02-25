@@ -22,6 +22,7 @@ import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.PackageDefinition;
 import org.bimserver.ifc.SerializerException;
 import org.bimserver.ifc.database.IfcDatabase;
+import org.bimserver.ifc.emf.Ifc2x3.IfcBuildingElementProxy;
 import org.bimserver.ifc.emf.Ifc2x3.IfcColourOrFactor;
 import org.bimserver.ifc.emf.Ifc2x3.IfcColourRgb;
 import org.bimserver.ifc.emf.Ifc2x3.IfcColumn;
@@ -35,6 +36,7 @@ import org.bimserver.ifc.emf.Ifc2x3.IfcMaterialLayerSet;
 import org.bimserver.ifc.emf.Ifc2x3.IfcMaterialLayerSetUsage;
 import org.bimserver.ifc.emf.Ifc2x3.IfcMaterialSelect;
 import org.bimserver.ifc.emf.Ifc2x3.IfcMember;
+import org.bimserver.ifc.emf.Ifc2x3.IfcObjectDefinition;
 import org.bimserver.ifc.emf.Ifc2x3.IfcPlate;
 import org.bimserver.ifc.emf.Ifc2x3.IfcPresentationStyleAssignment;
 import org.bimserver.ifc.emf.Ifc2x3.IfcPresentationStyleSelect;
@@ -44,6 +46,7 @@ import org.bimserver.ifc.emf.Ifc2x3.IfcProductRepresentation;
 import org.bimserver.ifc.emf.Ifc2x3.IfcProject;
 import org.bimserver.ifc.emf.Ifc2x3.IfcRailing;
 import org.bimserver.ifc.emf.Ifc2x3.IfcRelAssociatesMaterial;
+import org.bimserver.ifc.emf.Ifc2x3.IfcRelDecomposes;
 import org.bimserver.ifc.emf.Ifc2x3.IfcRepresentation;
 import org.bimserver.ifc.emf.Ifc2x3.IfcRepresentationItem;
 import org.bimserver.ifc.emf.Ifc2x3.IfcRoof;
@@ -244,7 +247,7 @@ public class ColladaSerializer extends BimModelSerializer {
 		}
 		if (packageDefinition.hasClassDefinition("IfcCurtainWall")) {
 			for (IfcCurtainWall ifcCurtainWall : ifcDatabase.getAll(IfcCurtainWall.class)) {
-				setGeometry(out, ifcCurtainWall, ifcCurtainWall.getGlobalId().getWrappedValue(), "Window");
+				setGeometry(out, ifcCurtainWall, ifcCurtainWall.getGlobalId().getWrappedValue(), "CurtainWall");
 			}
 		}
 		if (packageDefinition.hasClassDefinition("IfcRailing")) {
@@ -255,6 +258,11 @@ public class ColladaSerializer extends BimModelSerializer {
 		if (packageDefinition.hasClassDefinition("IfcColumn")) {
 			for (IfcColumn ifcColumn : ifcDatabase.getAll(IfcColumn.class)) {
 				setGeometry(out, ifcColumn, ifcColumn.getGlobalId().getWrappedValue(), "Column");
+			}
+		}
+		if (packageDefinition.hasClassDefinition("IfcBuildingElementProxy")) {
+			for (IfcBuildingElementProxy ifcBuildingElementProxy : ifcDatabase.getAll(IfcBuildingElementProxy.class)) {
+				setGeometry(out, ifcBuildingElementProxy, ifcBuildingElementProxy.getGlobalId().getWrappedValue(), "BuildingElementProxy");
 			}
 		}
 		out.println("	</library_geometries>");
@@ -268,6 +276,17 @@ public class ColladaSerializer extends BimModelSerializer {
 		boolean materialFound = false;
 		if (ifcRootObject instanceof IfcProduct) {
 			IfcProduct ifcProduct = (IfcProduct) ifcRootObject;
+
+			EList<IfcRelDecomposes> isDecomposedBy = ifcProduct.getIsDecomposedBy();
+			for (IfcRelDecomposes dcmp : isDecomposedBy) {
+				EList<IfcObjectDefinition> relatedObjects = dcmp.getRelatedObjects();
+				for (IfcObjectDefinition relatedObject : relatedObjects) {
+					setGeometry(out, relatedObject, relatedObject.getGlobalId().getWrappedValue(), material);
+				}
+			}
+			if (isDecomposedBy != null && isDecomposedBy.size() > 0) {
+				return;
+			}
 
 			Iterator<IfcRelAssociatesMaterial> ramIter = ifcDatabase.getAll(IfcRelAssociatesMaterial.class).iterator();
 			boolean found = false;
@@ -293,6 +312,14 @@ public class ColladaSerializer extends BimModelSerializer {
 							material = filterSpaces;
 						}
 					}
+				}
+			} else if (found && relatingMaterial instanceof IfcMaterial) {
+				IfcMaterial ifcMaterial = (IfcMaterial) relatingMaterial;
+				String name = ifcMaterial.getName();
+				String filterSpaces = fitNameForQualifiedName(name);
+				materialFound = surfaceStyleIds.contains(filterSpaces);
+				if (materialFound) {
+					material = filterSpaces;
 				}
 			}
 
@@ -473,15 +500,17 @@ public class ColladaSerializer extends BimModelSerializer {
 
 	private void writeEffects(PrintWriter out) {
 		out.println("	<library_effects>");
-		writeEffect(out, "Space", new float[] { 0.137255f, 0.403922f, 0.870588f }, 1.0f);
-		writeEffect(out, "Roof", new float[] { 0.837255f, 0.203922f, 0.270588f }, 1.0f);
-		writeEffect(out, "Slab", new float[] { 0.637255f, 0.603922f, 0.670588f }, 1.0f);
-		writeEffect(out, "Wall", new float[] { 0.537255f, 0.337255f, 0.237255f }, 1.0f);
-		writeEffect(out, "Door", new float[] { 0.637255f, 0.603922f, 0.670588f }, 1.0f);
+		writeEffect(out, "Space", new float[] { 0.137255f, 0.403922f, 0.870588f }, 0.0f);
+		writeEffect(out, "Roof", new float[] { 0.837255f, 0.203922f, 0.270588f }, 0.0f);
+		writeEffect(out, "Slab", new float[] { 0.637255f, 0.603922f, 0.670588f }, 0.0f);
+		writeEffect(out, "Wall", new float[] { 0.537255f, 0.337255f, 0.237255f }, 0.0f);
+		writeEffect(out, "Door", new float[] { 0.637255f, 0.603922f, 0.670588f }, 0.0f);
 		writeEffect(out, "Window", new float[] { 0.2f, 0.2f, 0.8f }, 1.0f);
-		writeEffect(out, "Railing", new float[] { 0.137255f, 0.203922f, 0.270588f }, 1.0f);
-		writeEffect(out, "Column", new float[] { 0.437255f, 0.603922f, 0.370588f, }, 1.0f);
-		writeEffect(out, "FurnishingElement", new float[] { 0.437255f, 0.603922f, 0.370588f }, 1.0f);
+		writeEffect(out, "Railing", new float[] { 0.137255f, 0.203922f, 0.270588f }, 0.0f);
+		writeEffect(out, "Column", new float[] { 0.437255f, 0.603922f, 0.370588f, }, 0.0f);
+		writeEffect(out, "FurnishingElement", new float[] { 0.437255f, 0.603922f, 0.370588f }, 0.0f);
+		writeEffect(out, "CurtainWall", new float[] { 0.5f, 0.5f, 0.5f }, 0.8f);
+		writeEffect(out, "BuildingElementProxy", new float[] { 0.5f, 0.5f, 0.5f }, 0.0f);
 
 		IfcDatabase ifcDatabase = new IfcDatabase(model, null);
 		List<IfcSurfaceStyle> listSurfaceStyles = ifcDatabase.getAll(IfcSurfaceStyle.class);
@@ -544,7 +573,8 @@ public class ColladaSerializer extends BimModelSerializer {
 		out.println("                            <color>0 0 0 1</color>");
 		out.println("                        </ambient>");
 		out.println("                        <diffuse>");
-		out.println("                            <color>" + colors[0] + " " + colors[1] + " " + colors[2] + " 1</color>");
+		out.println("                            <color>" + colors[0] + " " + colors[1] + " " + colors[2] + " " + (1 - transparency)
+				+ "</color>");
 		out.println("                        </diffuse>");
 		out.println("                        <specular>");
 		out.println("                            <color>0.5 0.5 0.5 1</color>");
@@ -559,10 +589,10 @@ public class ColladaSerializer extends BimModelSerializer {
 		out.println("                            <float>0.5</float>");
 		out.println("                        </reflectivity>");
 		out.println("                        <transparent>");
-		out.println("                            <color>0 0 0 1</color>");
+		out.println("                            <color>" + transparency + " " + transparency + " " + transparency + " " + 1 + "</color>");
 		out.println("                        </transparent>");
 		out.println("                        <transparency>");
-		out.println("                            <float>" + transparency + "</float>");
+		out.println("                            <float>1.0</float>");
 		out.println("                        </transparency>");
 		out.println("                        <index_of_refraction>");
 		out.println("                            <float>0</float>");
@@ -658,6 +688,12 @@ public class ColladaSerializer extends BimModelSerializer {
 		out.println("		</material>");
 		out.println("		<material id=\"FurnishingElementMaterial\" name=\"FurnishingElementMaterial\">");
 		out.println("			<instance_effect url=\"#FurnishingElement-fx\"/>");
+		out.println("		</material>");
+		out.println("		<material id=\"CurtainWallMaterial\" name=\"CurtainWallMaterial\">");
+		out.println("			<instance_effect url=\"#CurtainWall-fx\"/>");
+		out.println("		</material>");
+		out.println("		<material id=\"BuildingElementProxyMaterial\" name=\"BuildingElementProxyMaterial\">");
+		out.println("			<instance_effect url=\"#BuildingElementProxy-fx\"/>");
 		out.println("		</material>");
 
 		for (String surfaceStyleId : surfaceStyleIds) {
