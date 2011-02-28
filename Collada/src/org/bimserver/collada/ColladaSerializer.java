@@ -54,6 +54,7 @@ import org.bimserver.ifc.emf.Ifc2x3.IfcSIUnit;
 import org.bimserver.ifc.emf.Ifc2x3.IfcShapeRepresentation;
 import org.bimserver.ifc.emf.Ifc2x3.IfcSlab;
 import org.bimserver.ifc.emf.Ifc2x3.IfcSlabTypeEnum;
+import org.bimserver.ifc.emf.Ifc2x3.IfcStair;
 import org.bimserver.ifc.emf.Ifc2x3.IfcStairFlight;
 import org.bimserver.ifc.emf.Ifc2x3.IfcStyledItem;
 import org.bimserver.ifc.emf.Ifc2x3.IfcSurfaceStyle;
@@ -215,6 +216,11 @@ public class ColladaSerializer extends BimModelSerializer {
 				setGeometry(out, ifcWall, ifcWall.getGlobalId().getWrappedValue(), "Wall");
 			}
 		}
+		if (packageDefinition.hasClassDefinition("IfcStair")) {
+			for (IfcStair ifcStair : ifcDatabase.getAll(IfcStair.class)) {
+				setGeometry(out, ifcStair, ifcStair.getGlobalId().getWrappedValue(), "Stair");
+			}
+		}
 		if (packageDefinition.hasClassDefinition("IfcStairFlight")) {
 			for (IfcStairFlight ifcStairFlight : ifcDatabase.getAll(IfcStairFlight.class)) {
 				setGeometry(out, ifcStairFlight, ifcStairFlight.getGlobalId().getWrappedValue(), "StairFlight");
@@ -222,7 +228,7 @@ public class ColladaSerializer extends BimModelSerializer {
 		}
 		if (packageDefinition.hasClassDefinition("IfcFlowSegment")) {
 			for (IfcFlowSegment ifcFlowSegment : ifcDatabase.getAll(IfcFlowSegment.class)) {
-				setGeometry(out, ifcFlowSegment, ifcFlowSegment.getGlobalId().getWrappedValue(), "Railing");
+				setGeometry(out, ifcFlowSegment, ifcFlowSegment.getGlobalId().getWrappedValue(), "FlowSegment");
 			}
 		}
 		if (packageDefinition.hasClassDefinition("IfcFurnishingElement")) {
@@ -232,7 +238,7 @@ public class ColladaSerializer extends BimModelSerializer {
 		}
 		if (packageDefinition.hasClassDefinition("IfcPlate")) {
 			for (IfcPlate ifcPlate : ifcDatabase.getAll(IfcPlate.class)) {
-				setGeometry(out, ifcPlate, ifcPlate.getGlobalId().getWrappedValue(), "Wall");
+				setGeometry(out, ifcPlate, ifcPlate.getGlobalId().getWrappedValue(), "Plate");
 			}
 		}
 		if (packageDefinition.hasClassDefinition("IfcMember")) {
@@ -242,7 +248,7 @@ public class ColladaSerializer extends BimModelSerializer {
 		}
 		if (packageDefinition.hasClassDefinition("IfcWallStandardCase")) {
 			for (IfcWallStandardCase ifcWall : ifcDatabase.getAll(IfcWallStandardCase.class)) {
-				setGeometry(out, ifcWall, ifcWall.getGlobalId().getWrappedValue(), "Wall");
+				setGeometry(out, ifcWall, ifcWall.getGlobalId().getWrappedValue(), "WallStandardCase");
 			}
 		}
 		if (packageDefinition.hasClassDefinition("IfcCurtainWall")) {
@@ -500,18 +506,19 @@ public class ColladaSerializer extends BimModelSerializer {
 
 	private void writeEffects(PrintWriter out) {
 		out.println("	<library_effects>");
-		writeEffect(out, "Space", new float[] { 0.137255f, 0.403922f, 0.870588f }, 0.0f);
-		writeEffect(out, "Roof", new float[] { 0.837255f, 0.203922f, 0.270588f }, 0.0f);
-		writeEffect(out, "Slab", new float[] { 0.637255f, 0.603922f, 0.670588f }, 0.0f);
-		writeEffect(out, "Wall", new float[] { 0.537255f, 0.337255f, 0.237255f }, 0.0f);
-		writeEffect(out, "Door", new float[] { 0.637255f, 0.603922f, 0.670588f }, 0.0f);
-		writeEffect(out, "Window", new float[] { 0.2f, 0.2f, 0.8f }, 1.0f);
-		writeEffect(out, "Railing", new float[] { 0.137255f, 0.203922f, 0.270588f }, 0.0f);
-		writeEffect(out, "Column", new float[] { 0.437255f, 0.603922f, 0.370588f, }, 0.0f);
-		writeEffect(out, "FurnishingElement", new float[] { 0.437255f, 0.603922f, 0.370588f }, 0.0f);
-		writeEffect(out, "CurtainWall", new float[] { 0.5f, 0.5f, 0.5f }, 0.8f);
-		writeEffect(out, "BuildingElementProxy", new float[] { 0.5f, 0.5f, 0.5f }, 0.0f);
-
+		writeEffect(out, "Space", new float[] { 0.137255f, 0.403922f, 0.870588f }, 1.0f);
+		writeEffect(out, "Roof", new float[] { 0.837255f, 0.203922f, 0.270588f }, 1.0f);
+		writeEffect(out, "Slab", new float[] { 0.637255f, 0.603922f, 0.670588f }, 1.0f);
+		writeEffect(out, "Wall", new float[] { 0.537255f, 0.337255f, 0.237255f }, 1.0f);
+		writeEffect(out, "Door", new float[] { 0.637255f, 0.603922f, 0.670588f }, 1.0f);
+		writeEffect(out, "Window", new float[] { 0.2f, 0.2f, 0.8f }, 0.2f);
+		writeEffect(out, "Railing", new float[] { 0.137255f, 0.203922f, 0.270588f }, 1.0f);
+		writeEffect(out, "Column", new float[] { 0.437255f, 0.603922f, 0.370588f, }, 1.0f);
+		writeEffect(out, "FurnishingElement", new float[] { 0.437255f, 0.603922f, 0.370588f }, 1.0f);
+		writeEffect(out, "CurtainWall", new float[] { 0.5f, 0.5f, 0.5f }, 0.5f);
+		writeEffect(out, "Stair", new float[] { 0.637255f, 0.603922f, 0.670588f }, 1.0f);
+		writeEffect(out, "BuildingElementProxy", new float[] { 0.5f, 0.5f, 0.5f }, 1.0f);
+		writeEffect(out, "FlowSegment", new float[] { 0.6f, 0.4f, 0.5f }, 1.0f);
 		IfcDatabase ifcDatabase = new IfcDatabase(model, null);
 		List<IfcSurfaceStyle> listSurfaceStyles = ifcDatabase.getAll(IfcSurfaceStyle.class);
 		for (IfcSurfaceStyle ss : listSurfaceStyles) {
@@ -526,8 +533,9 @@ public class ColladaSerializer extends BimModelSerializer {
 					}
 					String name = fitNameForQualifiedName(ss.getName());
 					surfaceStyleIds.add(name);
+
 					writeEffect(out, name, new float[] { colour.getRed(), colour.getGreen(), colour.getBlue() },
-							(ssr.isSetTransparency() ? ssr.getTransparency() : 1.0f));
+							(ssr.isSetTransparency() ? (ssr.getTransparency()) : 1.0f));
 					break;
 				}
 			}
@@ -573,8 +581,7 @@ public class ColladaSerializer extends BimModelSerializer {
 		out.println("                            <color>0 0 0 1</color>");
 		out.println("                        </ambient>");
 		out.println("                        <diffuse>");
-		out.println("                            <color>" + colors[0] + " " + colors[1] + " " + colors[2] + " " + (1 - transparency)
-				+ "</color>");
+		out.println("                            <color>" + colors[0] + " " + colors[1] + " " + colors[2] + " " + transparency + "</color>");
 		out.println("                        </diffuse>");
 		out.println("                        <specular>");
 		out.println("                            <color>0.5 0.5 0.5 1</color>");
@@ -592,7 +599,7 @@ public class ColladaSerializer extends BimModelSerializer {
 		out.println("                            <color>" + transparency + " " + transparency + " " + transparency + " " + 1 + "</color>");
 		out.println("                        </transparent>");
 		out.println("                        <transparency>");
-		out.println("                            <float>1.0</float>");
+		out.println("                            <float>" + transparency + "</float>");
 		out.println("                        </transparency>");
 		out.println("                        <index_of_refraction>");
 		out.println("                            <float>0</float>");
@@ -691,6 +698,12 @@ public class ColladaSerializer extends BimModelSerializer {
 		out.println("		</material>");
 		out.println("		<material id=\"CurtainWallMaterial\" name=\"CurtainWallMaterial\">");
 		out.println("			<instance_effect url=\"#CurtainWall-fx\"/>");
+		out.println("		</material>");
+		out.println("		<material id=\"StairMaterial\" name=\"StairMaterial\">");
+		out.println("			<instance_effect url=\"#Stair-fx\"/>");
+		out.println("		</material>");
+		out.println("		<material id=\"FlowSegmentMaterial\" name=\"FlowSegmentMaterial\">");
+		out.println("			<instance_effect url=\"#FlowSegment-fx\"/>");
 		out.println("		</material>");
 		out.println("		<material id=\"BuildingElementProxyMaterial\" name=\"BuildingElementProxyMaterial\">");
 		out.println("			<instance_effect url=\"#BuildingElementProxy-fx\"/>");
