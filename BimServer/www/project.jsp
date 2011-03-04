@@ -64,7 +64,7 @@
 			boolean anonymousAccess = project.getHasAuthorizedUsers().contains(
 					loginManager.getService().getAnonymousUser().getOid());
 			boolean hasUserManagementRights = project.getHasAuthorizedUsers().contains(loginManager.getUoid())
-					&& loginManager.getUserType() != SUserType.ANONYMOUS;
+					&& loginManager.getUserType() != SUserType.ANONYMOUS && loginManager.getUserType() != SUserType.USER;
 			boolean userHasCheckinRights = loginManager.getService().userHasCheckinRights(project.getOid());
 			boolean hasEditRights = loginManager.getService().userHasRights(project.getOid());
 			boolean hasCreateProjectRights = (loginManager.getUserType() == SUserType.ADMIN || ServerSettings.getSettings()
@@ -236,9 +236,8 @@ revisions tab</a> to add a first revision, or <a id="subprojecttablink"
 <br />
 <%
 	if (lastRevision != null) {
-%> Click <a
-	href="revision.jsp?roid=<%=lastRevision.getOid()%>">here</a> to go to
-the latest revision<br />
+%> Click <a href="revision.jsp?roid=<%=lastRevision.getOid()%>">here</a>
+to go to the latest revision<br />
 <br />
 <p></p>
 <div class="tabber" id="downloadtabber">
@@ -259,8 +258,7 @@ Download: <input type="hidden" name="roid"
 	type="checkbox" name="zip" id="simplezip_<%=lastRevision.getId()%>" />
 <input name="download" type="submit" value="Download"> <%
  	if (userHasCheckinRights) {
- %>
-<input name="checkout" type="submit" value="Checkout"
+ %> <input name="checkout" type="submit" value="Checkout"
 	id="detailscheckoutbutton"> <%
  	}
  %>
@@ -302,8 +300,7 @@ Download: <select name="resultType">
 	title="Sub Projects<%=project.getSubProjects().size() == 0 ? "" : " (" + project.getSubProjects().size() + ")"%>">
 <%
 	if (hasCreateProjectRights) {
-%> <a
-	href="addproject.jsp?parentoid=<%=project.getOid()%>">Add sub
+%> <a href="addproject.jsp?parentoid=<%=project.getOid()%>">Add sub
 project</a><br />
 <br />
 <%
@@ -499,7 +496,8 @@ project</a><br />
 						SUser revisionUser = loginManager.getService().getUserByUoid(revision.getUserId());
 						boolean isTagged = revision.getTag() != null;
 	%>
-	<tr <%=isTagged ? "class=\"tagged\"" : ""%> id="rev<%=revision.getOid()%>"
+	<tr <%=isTagged ? "class=\"tagged\"" : ""%>
+		id="rev<%=revision.getOid()%>"
 		<%=lastRevision != null && revision.getId() == lastRevision.getId() ? "class=\"lastrevision\"" : ""%>>
 		<td><a href="revision.jsp?roid=<%=revision.getOid()%>"><%=revision.getId()%></a></td>
 		<td style="white-space: nowrap;"><%=dateFormat.format(revision.getDate())%></td>
@@ -516,16 +514,15 @@ project</a><br />
 		<td class="clashesfield"><img src="images/ajax-loader.gif"
 			align="left"
 			style="margin-right: 5px; display: <%=revision.getState() == SCheckinState.SEARCHING_CLASHES ? "block" : "none"%>" />
-		<span class="statusfield">
-		<%
-			if (revision.getState() == SCheckinState.DONE) {
-									out.print(revision.getLastClashes().size());
-								} else if (revision.getState() == SCheckinState.SEARCHING_CLASHES) {
-									out.print("Searching clashes...");
-								} else if (revision.getState() == SCheckinState.CLASHES_ERROR) {
-									out.print("Error: " + revision.getLastError());
-								}
-		%> </span></td>
+		<span class="statusfield"> <%
+ 	if (revision.getState() == SCheckinState.DONE) {
+ 							out.print(revision.getLastClashes().size());
+ 						} else if (revision.getState() == SCheckinState.SEARCHING_CLASHES) {
+ 							out.print("Searching clashes...");
+ 						} else if (revision.getState() == SCheckinState.CLASHES_ERROR) {
+ 							out.print("Error: " + revision.getLastError());
+ 						}
+ %> </span></td>
 		<%
 			}
 		%>
@@ -560,8 +557,7 @@ project</a><br />
 			type="checkbox" name="zip" id="revisionzip_<%=revision.getId()%>" />
 		<input name="download" type="submit" value="Download" /> <%
  	if (userHasCheckinRights) {
- %>
-		<input name="checkout" type="submit" value="Checkout"
+ %> <input name="checkout" type="submit" value="Checkout"
 			class="revisionscheckoutbutton" /> <%
  	}
  %>
@@ -633,8 +629,8 @@ open a specific revision to query other revisions<br />
 		<td><%=checkout.isActive()%></td>
 		<td>
 		<form method="get" action="<%=request.getContextPath()%>/download">
-		<input type="hidden" name="roid"
-			value="<%=checkout.getRevisionId()%>" /> <select name="resultType">
+		<input type="hidden" name="roid" value="<%=checkout.getRevisionId()%>" />
+		<select name="resultType">
 			<%
 				for (ResultType resultType : emfSerializerFactory.getMultipleResultTypes()) {
 			%>
