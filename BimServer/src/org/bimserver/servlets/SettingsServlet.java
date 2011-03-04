@@ -38,6 +38,8 @@ public class SettingsServlet extends HttpServlet {
 	@SuppressWarnings("unchecked")
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		@SuppressWarnings("unused")
+		String xsltName = null;
 		try {
 			boolean isMultipart = ServletFileUpload.isMultipartContent(request);
 			LoginManager loginManager = (LoginManager) request.getSession().getAttribute("loginManager");
@@ -51,8 +53,12 @@ public class SettingsServlet extends HttpServlet {
 						Iterator<FileItem> iter = items.iterator();
 						while (iter.hasNext()) {
 							FileItem item = iter.next();
-							if (!item.isFormField()) {
-								String fieldName = item.getFieldName();
+							String fieldName = item.getFieldName();
+							if (item.isFormField()) {
+								if (fieldName.equals("xsltName")) {
+									xsltName = item.getString();
+								}
+							} else {
 								if (fieldName.equals("settings")) {
 									InputStream inputStream = item.getInputStream();
 									Settings readFromStream = Settings.readFromStream(inputStream);
@@ -75,7 +81,23 @@ public class SettingsServlet extends HttpServlet {
 									FileOutputStream fos = new FileOutputStream(file);
 									IOUtils.copy(inputStream, fos);
 									fos.close();
-									response.sendRedirect(getServletContext().getContextPath() + "/settings.jsp?msg=colladasettingsuploadok");
+									response.sendRedirect(getServletContext().getContextPath()
+											+ "/settings.jsp?msg=colladasettingsuploadok");
+									return;
+								} else if (fieldName.equals("xslt")) {
+									//TODO How to add a result type to the predefined set
+									
+									InputStream inputStream = item.getInputStream();
+									String homedir = (String) getServletContext().getAttribute("homedir");
+									File xsltdir = new File(homedir + File.separator + "xslt");
+									if (!xsltdir.exists()) {
+										xsltdir.mkdir();
+									}
+									File xsltfile = new File(xsltdir.getAbsolutePath() + File.separator + item.getName());
+									FileOutputStream fos = new FileOutputStream(xsltfile);
+									IOUtils.copy(inputStream, fos);
+									fos.close();									
+									response.sendRedirect(getServletContext().getContextPath() + "/settings.jsp?msg=xsltuploadok");
 									return;
 								}
 							}

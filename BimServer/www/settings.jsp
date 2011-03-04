@@ -18,10 +18,12 @@
 <%@page import="org.bimserver.serializers.EmfSerializerFactory"%>
 <div class="sidebar">
 <ul>
-<li>
-<a href="<%=getServletContext().getContextPath()%>/settings?action=downloadsettings">Download settings</a></li>
-<li>
-<a href="<%=getServletContext().getContextPath()%>/settings?action=downloadignorefile">Download ignore.xml</a></li>
+	<li><a
+		href="<%=getServletContext().getContextPath()%>/settings?action=downloadsettings">Download
+	settings</a></li>
+	<li><a
+		href="<%=getServletContext().getContextPath()%>/settings?action=downloadignorefile">Download
+	ignore.xml</a></li>
 </ul>
 </div>
 <div class="content">
@@ -29,43 +31,45 @@
 	if (loginManager.getService().isLoggedIn() && loginManager.getUserType() == SUserType.ADMIN) {
 		Settings settings = ServerSettings.getSettings();
 		if (request.getParameter("save") != null) {
-	settings.setAllowSelfRegistration(request.getParameter("allowSelfRegistration") != null);
-	settings.setEmailSenderAddress(request.getParameter("emailsenderaddress"));
-	settings.setRegistrationAddition(request.getParameter("registrationAddition"));
-	settings.setSendConfirmationEmailAfterRegistration(request.getParameter("sendConfirmationEmailAfterRegistration") != null);
-	settings.setShowVersionUpgradeAvailable(request.getParameter("showVersionUpgradeAvailable") != null);
-	settings.setAllowUsersToCreateTopLevelProjects(request.getParameter("allowUsersToCreateTopLevelProjects") != null);
-	settings.setSmtpServer(request.getParameter("smtpServer"));
-	settings.setUseCaching(request.getParameter("usecaching") != null);
-	settings.setIntelligentMerging(request.getParameter("intelligentMerging") != null);
-	settings.setAutoTestClashes(request.getParameter("autoTestClashes") != null);
-	settings.setCustomLogoAddress(request.getParameter("customLogo"));
-	settings.setSiteAddress(request.getParameter("siteAddress"));
-	settings.setCheckinMergingEnabled(request.getParameter("checkinMergingEnabled") != null);
-	String enabledExportTypes = "";
-	Set<ResultType> enabledTypes = new HashSet<ResultType>();
-	for (ResultType resultType : ResultType.values()) {
-		if (request.getParameter(resultType.name()) != null) {
-			enabledTypes.add(resultType);
-		}
-	}
-	settings.updateEnabledResultTypes(enabledTypes);
-	settings.save();
-	ServerSettings.setSettings(settings);
-	EmfSerializerFactory.getInstance().initSerializers();
-	response.sendRedirect(getServletContext().getContextPath() + "/settings.jsp?msg=settingschangeok");
+			settings.setAllowSelfRegistration(request.getParameter("allowSelfRegistration") != null);
+			settings.setEmailSenderAddress(request.getParameter("emailsenderaddress"));
+			settings.setRegistrationAddition(request.getParameter("registrationAddition"));
+			settings.setSendConfirmationEmailAfterRegistration(request.getParameter("sendConfirmationEmailAfterRegistration") != null);
+			settings.setShowVersionUpgradeAvailable(request.getParameter("showVersionUpgradeAvailable") != null);
+			settings.setAllowUsersToCreateTopLevelProjects(request.getParameter("allowUsersToCreateTopLevelProjects") != null);
+			settings.setSmtpServer(request.getParameter("smtpServer"));
+			settings.setUseCaching(request.getParameter("usecaching") != null);
+			settings.setIntelligentMerging(request.getParameter("intelligentMerging") != null);
+			settings.setAutoTestClashes(request.getParameter("autoTestClashes") != null);
+			settings.setCustomLogoAddress(request.getParameter("customLogo"));
+			settings.setSiteAddress(request.getParameter("siteAddress"));
+			settings.setCheckinMergingEnabled(request.getParameter("checkinMergingEnabled") != null);
+			String enabledExportTypes = "";
+			Set<ResultType> enabledTypes = new HashSet<ResultType>();
+			for (ResultType resultType : ResultType.values()) {
+				if (request.getParameter(resultType.name()) != null) {
+					enabledTypes.add(resultType);
+				}
+			}
+			settings.updateEnabledResultTypes(enabledTypes);
+			settings.save();
+			ServerSettings.setSettings(settings);
+			EmfSerializerFactory.getInstance().initSerializers();
+			response.sendRedirect(getServletContext().getContextPath() + "/settings.jsp?msg=settingschangeok");
 		}
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
 		if (request.getParameter("msg") != null) {
-	if (request.getParameter("msg").equals("ignorefileuploadok")) {
-		out.println("<div class=\"info\">New ignore file uploaded successfully, a restart of the BIMserver is required</div>");
-	} else if (request.getParameter("msg").equals("settingsfileuploadok")) {
-		out.println("<div class=\"info\">New settings uploaded successfully, a restart might be necessary</div>");
-	} else if (request.getParameter("msg").equals("settingschangeok")) {
-		out.println("<div class=\"info\">Settings successfully updated, a restart might be necessary</div>");
-	} else if (request.getParameter("msg").equals("colladasettingsuploadok")) {
-		out.println("<div class=\"info\">New collada settings successfully updated, a restart is necessary</div>");
-	}
+			if (request.getParameter("msg").equals("ignorefileuploadok")) {
+				out.println("<div class=\"info\">New ignore file uploaded successfully, a restart of the BIMserver is required</div>");
+			} else if (request.getParameter("msg").equals("settingsfileuploadok")) {
+				out.println("<div class=\"info\">New settings uploaded successfully, a restart might be necessary</div>");
+			} else if (request.getParameter("msg").equals("settingschangeok")) {
+				out.println("<div class=\"info\">Settings successfully updated, a restart might be necessary</div>");
+			} else if (request.getParameter("msg").equals("colladasettingsuploadok")) {
+				out.println("<div class=\"info\">New collada settings successfully updated, a restart is necessary</div>");
+			} else if (request.getParameter("msg").equals("xsltuploadok")) {
+				out.println("<div class=\"info\">New XSLT script successfully updated, a restart is necessary???</div>");
+			}
 		}
 %>
 <div class="tabber" id="settingstabber">
@@ -77,41 +81,50 @@
 	</tr>
 	<tr>
 		<td><label for="siteAddress">Site address (URL)</label></td>
-		<td><input id="siteAddress" type="text" name="siteAddress" value="<%=settings.getSiteAddress() %>"></input></td>
+		<td><input id="siteAddress" type="text" name="siteAddress"
+			value="<%=settings.getSiteAddress()%>"></input></td>
 	</tr>
 	<tr>
 		<td><label for="customLogo">Custom logo address</label></td>
-		<td><input id="customLogo" name="customLogo" type="text" size="80"
-			value="<%=settings.getCustomLogoAddress()%>"></input></td>
+		<td><input id="customLogo" name="customLogo" type="text"
+			size="80" value="<%=settings.getCustomLogoAddress()%>"></input></td>
 	</tr>
 	<tr>
 		<td colspan="2" class="tabletitle">Registration</td>
 	</tr>
 	<tr>
-		<td><label for="registrationAddition">Extra information when registering</label></td>
-		<td><textarea id="registrationAddition" name="registrationAddition" cols="60" rows="4"><%=settings.getRegistrationAddition()%></textarea></td>
+		<td><label for="registrationAddition">Extra information
+		when registering</label></td>
+		<td><textarea id="registrationAddition"
+			name="registrationAddition" cols="60" rows="4"><%=settings.getRegistrationAddition()%></textarea></td>
 	</tr>
 	<tr>
-		<td><label for="sendConfirmationEmailAfterRegistration">Send confirmation e-mail after registering</label></td>
-		<td><input id="sendConfirmationEmailAfterRegistration" name="sendConfirmationEmailAfterRegistration"
-			type="checkbox"
+		<td><label for="sendConfirmationEmailAfterRegistration">Send
+		confirmation e-mail after registering</label></td>
+		<td><input id="sendConfirmationEmailAfterRegistration"
+			name="sendConfirmationEmailAfterRegistration" type="checkbox"
 			<%=settings.isSendConfirmationEmailAfterRegistration() ? " checked=\"checked\"" : ""%>></input></td>
 	</tr>
 	<tr>
-		<td><label for="allowSelfRegistration">Allow self registration</label></td>
-		<td><input id="allowSelfRegistration" type="checkbox" name="allowSelfRegistration"
+		<td><label for="allowSelfRegistration">Allow self
+		registration</label></td>
+		<td><input id="allowSelfRegistration" type="checkbox"
+			name="allowSelfRegistration"
 			<%=settings.isAllowSelfRegistration() ? " checked=\"checked\"" : ""%>></input></td>
 	</tr>
 	<tr>
 		<td colspan="2" class="tabletitle">E-mail</td>
 	</tr>
 	<tr>
-		<td><label for="emailsenderaddress">Address of e-mail sender</label></td>
-		<td><input id="emailsenderaddress" type="text" name="emailsenderaddress"
+		<td><label for="emailsenderaddress">Address of e-mail
+		sender</label></td>
+		<td><input id="emailsenderaddress" type="text"
+			name="emailsenderaddress"
 			value="<%=settings.getEmailSenderAddress()%>"></input></td>
 	</tr>
 	<tr>
-		<td><label for="smtpServer">SMTP server (for outgoing e-mail)</label></td>
+		<td><label for="smtpServer">SMTP server (for outgoing
+		e-mail)</label></td>
 		<td><input id="smtpServer" name="smtpServer" type="text"
 			value="<%=settings.getSmtpServer()%>"></input></td>
 	</tr>
@@ -119,29 +132,39 @@
 		<td colspan="2" class="tabletitle">Other</td>
 	</tr>
 	<tr>
-		<td><label for="autoTestClashes">Automatic clash detection on main projects</label></td>
-		<td><input id="autoTestClashes" name="autoTestClashes" type="checkbox"
+		<td><label for="autoTestClashes">Automatic clash
+		detection on main projects</label></td>
+		<td><input id="autoTestClashes" name="autoTestClashes"
+			type="checkbox"
 			<%=settings.isAutoTestClashes() ? " checked=\"checked\"" : ""%>></input></td>
 	</tr>
 	<tr>
-		<td><label for="allowUsersToCreateTopLevelProjects">Allow non-admin users to create projects</label></td>
-		<td><input id="allowUsersToCreateTopLevelProjects" name="allowUsersToCreateTopLevelProjects" type="checkbox"
+		<td><label for="allowUsersToCreateTopLevelProjects">Allow
+		non-admin users to create projects</label></td>
+		<td><input id="allowUsersToCreateTopLevelProjects"
+			name="allowUsersToCreateTopLevelProjects" type="checkbox"
 			<%=settings.isAllowUsersToCreateTopLevelProjects() ? " checked=\"checked\"" : ""%>></input></td>
 	</tr>
 	<tr>
-		<td><label for="showVersionUpgradeAvailable">Show whether a new version is available</label></td>
-		<td><input id="showVersionUpgradeAvailable" name="showVersionUpgradeAvailable" type="checkbox"
+		<td><label for="showVersionUpgradeAvailable">Show whether
+		a new version is available</label></td>
+		<td><input id="showVersionUpgradeAvailable"
+			name="showVersionUpgradeAvailable" type="checkbox"
 			<%=settings.isShowVersionUpgradeAvailable() ? " checked=\"checked\"" : ""%>></input></td>
 	</tr>
 	<tr>
 		<td><label for="intelligentMerging">Intelligent merging</label></td>
-		<td><input id="intelligentMerging" name="intelligentMerging" type="checkbox"
+		<td><input id="intelligentMerging" name="intelligentMerging"
+			type="checkbox"
 			<%=settings.isIntelligentMerging() ? " checked=\"checked\"" : ""%>></input></td>
 	</tr>
 	<tr>
-		<td><label for="checkinMergingEnabled">Checkin merging <span style="color: red">(BETA)</span></label></td>
-		<td><input id="checkinMergingEnabled" name="checkinMergingEnabled" type="checkbox"
-			<%=settings.isCheckinMergingEnabled() ? " checked=\"checked\"" : ""%>></input> <span style="color: red">IFC models are modified on checkin!</span></td>
+		<td><label for="checkinMergingEnabled">Checkin merging <span
+			style="color: red">(BETA)</span></label></td>
+		<td><input id="checkinMergingEnabled"
+			name="checkinMergingEnabled" type="checkbox"
+			<%=settings.isCheckinMergingEnabled() ? " checked=\"checked\"" : ""%>></input>
+		<span style="color: red">IFC models are modified on checkin!</span></td>
 	</tr>
 	<!-- 
 <tr><td>Use file-level caching</td><td><input name="usecaching" type="checkbox" <%=settings.isUseCaching() ? " checked=\"checked\"" : ""%>></input></td></tr>
@@ -166,8 +189,7 @@
 		</td>
 	</tr>
 </table>
-<input name="save" type="submit" value="Save"/>
-</form>
+<input name="save" type="submit" value="Save" /></form>
 
 </div>
 <div class="tabbertab" id="importexport" title="Import/Export">
@@ -207,7 +229,8 @@
 <input type="hidden" name="action" value="uploadsettings" /></form>
 </div>
 <div class="tabbertab" id="colladatab" title="Collada/KMZ">
-<form enctype="multipart/form-data" method="post" action="<%=getServletContext().getContextPath()%>/settings">
+<form enctype="multipart/form-data" method="post"
+	action="<%=getServletContext().getContextPath()%>/settings">
 <table class="formatted infotable">
 	<tr>
 		<td>Download</td>
@@ -222,6 +245,20 @@
 	</tr>
 </table>
 <input type="hidden" name="action" value="uploadcolladasettings" /></form>
+</div>
+<div class="tabbertab" id="xsltuploadtab" title="XSLT script">
+<form enctype="multipart/form-data" method="post"
+	action="<%=getServletContext().getContextPath()%>/settings">
+<table class="formatted infotable">
+	<tr>
+		<td>Upload</td>
+		<td><label for="xsltName">XSLT script name</label></td>
+		<td><input id="xsltName" type="text" name="xsltName" ></input></td>
+		<td><input type="file" name="xslt"></input><input type="submit"
+			value="Upload"></input></td>
+	</tr>
+</table>
+<input type="hidden" name="action" value="uploadxslt" /></form>
 </div>
 </div>
 <%
