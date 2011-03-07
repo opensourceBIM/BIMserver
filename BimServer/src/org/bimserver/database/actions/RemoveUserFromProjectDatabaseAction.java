@@ -11,6 +11,7 @@ import org.bimserver.database.store.UserType;
 import org.bimserver.database.store.log.AccessMethod;
 import org.bimserver.database.store.log.LogFactory;
 import org.bimserver.database.store.log.UserRemovedFromProject;
+import org.bimserver.rights.RightsManager;
 import org.bimserver.shared.UserException;
 
 public class RemoveUserFromProjectDatabaseAction extends BimDatabaseAction<Boolean> {
@@ -19,7 +20,8 @@ public class RemoveUserFromProjectDatabaseAction extends BimDatabaseAction<Boole
 	private final long poid;
 	private final long actingUoid;
 
-	public RemoveUserFromProjectDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long uoid, long poid, long actingUoid) {
+	public RemoveUserFromProjectDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long uoid, long poid,
+			long actingUoid) {
 		super(bimDatabaseSession, accessMethod);
 		this.uoid = uoid;
 		this.poid = poid;
@@ -31,7 +33,9 @@ public class RemoveUserFromProjectDatabaseAction extends BimDatabaseAction<Boole
 		Project project = getProjectByPoid(poid);
 		User user = getUserByUoid(uoid);
 		User actingUser = getUserByUoid(actingUoid);
-		if (actingUser.getUserType() == UserType.ADMIN || project.getHasAuthorizedUsers().contains(actingUser)) {
+		if (actingUser.getUserType() == UserType.ANONYMOUS) {
+			throw new UserException("Anonymous user has no rights to remove users from any project");
+		} else if (RightsManager.hasRightsOnProject(actingUser, project)) {
 			if (user.getUserType() == UserType.ADMIN) {
 				int nrAdmins = 0;
 				for (User authUser : project.getHasAuthorizedUsers()) {
@@ -40,7 +44,8 @@ public class RemoveUserFromProjectDatabaseAction extends BimDatabaseAction<Boole
 					}
 				}
 				if (nrAdmins == 1) {
-					throw new UserException("User cannot be removed from this project because it is the only admin user with authorization on this project");
+					throw new UserException(
+							"User cannot be removed from this project because it is the only admin user with authorization on this project");
 				}
 			}
 			project.getHasAuthorizedUsers().remove(user);
