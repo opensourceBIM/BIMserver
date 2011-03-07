@@ -20,7 +20,8 @@ public class AddUserToProjectDatabaseAction extends BimDatabaseAction<Boolean> {
 	private final long poid;
 	private final long actingUoid;
 
-	public AddUserToProjectDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long actingUoid, long uoid, long poid) {
+	public AddUserToProjectDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long actingUoid, long uoid,
+			long poid) {
 		super(bimDatabaseSession, accessMethod);
 		this.actingUoid = actingUoid;
 		this.uoid = uoid;
@@ -31,7 +32,9 @@ public class AddUserToProjectDatabaseAction extends BimDatabaseAction<Boolean> {
 	public Boolean execute() throws UserException, BimDatabaseException, BimDeadlockException {
 		final Project project = getProjectByPoid(poid);
 		User actingUser = getUserByUoid(actingUoid);
-		if (RightsManager.hasRightsOnProject(actingUser, project) || actingUser.getUserType() == UserType.ADMIN) {
+		if (actingUser.getUserType() == UserType.ANONYMOUS) {
+			throw new UserException("Anonymous user has no rights to grant permission on any project");
+		} else if (RightsManager.hasRightsOnProject(actingUser, project)) {
 			User user = getUserByUoid(uoid);
 			project.getHasAuthorizedUsers().add(user);
 			UserAddedToProject userAddedToProject = LogFactory.eINSTANCE.createUserAddedToProject();
