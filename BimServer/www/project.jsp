@@ -64,7 +64,7 @@
 			boolean anonymousAccess = project.getHasAuthorizedUsers().contains(
 					loginManager.getService().getAnonymousUser().getOid());
 			boolean hasUserManagementRights = project.getHasAuthorizedUsers().contains(loginManager.getUoid())
-					&& loginManager.getUserType() != SUserType.ANONYMOUS && loginManager.getUserType() != SUserType.USER;
+					&& loginManager.getUserType() != SUserType.ANONYMOUS;
 			boolean userHasCheckinRights = loginManager.getService().userHasCheckinRights(project.getOid());
 			boolean hasEditRights = loginManager.getService().userHasRights(project.getOid());
 			boolean hasCreateProjectRights = (loginManager.getUserType() == SUserType.ADMIN || ServerSettings.getSettings()
