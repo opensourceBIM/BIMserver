@@ -50,6 +50,7 @@ public class IfcDatabase {
 	private final Map<Class<?>, List<? extends EObject>> index = new HashMap<Class<?>, List<? extends EObject>>();
 	private final IfcModel model;
 	private final Map<EClass, Map<String, IdEObject>> guidIndex = new HashMap<EClass, Map<String, IdEObject>>();
+	private final Map<EClass, Map<String, IdEObject>> nameIndex = new HashMap<EClass, Map<String, IdEObject>>();
 	private final FieldIgnoreMap fieldIgnoreMap;
 
 	public IfcDatabase(IfcModel model, FieldIgnoreMap fieldIgnoreMap) {
@@ -103,6 +104,25 @@ public class IfcDatabase {
 				IfcRoot ifcRoot = (IfcRoot) value;
 				sortAllAggregates(ifcRoot);
 				guidIndex.get(value.eClass()).put(ifcRoot.getGlobalId().getWrappedValue(), value);
+			}
+		}
+	}
+
+	public void buildNameIndex() {
+		for (EClassifier classifier : model.getValues().iterator().next().eClass().getEPackage().getEClassifiers()) {
+			if (classifier instanceof EClass) {
+				Map<String, IdEObject> map = new TreeMap<String, IdEObject>();
+				nameIndex.put((EClass) classifier, map);
+			}
+		}
+		for (Long key : model.keySet()) {
+			IdEObject value = model.get((Long) key);
+			if (value instanceof IfcRoot) {
+				IfcRoot ifcRoot = (IfcRoot) value;
+				sortAllAggregates(ifcRoot);
+				if (ifcRoot.getName() != null) {
+					nameIndex.get(value.eClass()).put(ifcRoot.getName(), value);
+				}
 			}
 		}
 	}
@@ -191,6 +211,14 @@ public class IfcDatabase {
 		return guidIndex.get(eClass).keySet();
 	}
 
+	public Set<String> getNames(EClass eClass) {
+		return nameIndex.get(eClass).keySet();
+	}
+
+	public IdEObject getByName(EClass eClass, String name) {
+		return nameIndex.get(eClass).get(name);
+	}
+	
 	public IdEObject getByGuid(EClass eClass, String guid) {
 		return guidIndex.get(eClass).get(guid);
 	}
