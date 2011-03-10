@@ -6,11 +6,11 @@ import java.util.Set;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.log.AccessMethod;
 import org.bimserver.database.store.Checkout;
 import org.bimserver.database.store.Project;
 import org.bimserver.database.store.Revision;
 import org.bimserver.database.store.User;
-import org.bimserver.database.store.log.AccessMethod;
 import org.bimserver.shared.UserException;
 
 public class GetShowCheckoutWarningsDatabaseAction extends BimDatabaseAction<Set<String>> {

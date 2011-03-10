@@ -31,7 +31,7 @@ public interface BimDatabaseSession extends OidProvider {
 
 	long store(IdEObject eObject) throws BimDeadlockException, BimDatabaseException;
 
-	void clearProject(int pid, int oldRid, int newRid) throws BimDeadlockException;
+	void clearProject(int pid, int oldRid, int newRid) throws BimDeadlockException, BimDatabaseException;
 
 	void store(Collection<? extends IdEObject> values, int pid, int rid) throws BimDeadlockException, BimDatabaseException;
 
@@ -69,7 +69,7 @@ public interface BimDatabaseSession extends OidProvider {
 
 	Date getCreatedDate() throws BimDatabaseException, BimDeadlockException;
 
-	ObjectIdentifier getOidOfGuid(String guid, int pid, int rid) throws BimDeadlockException;
+	ObjectIdentifier getOidOfGuid(String guid, int pid, int rid) throws BimDeadlockException, BimDatabaseException;
 
 	IfcModel getAllOfType(String className, int pid, int rid, boolean deep) throws BimDatabaseException, BimDeadlockException;
 

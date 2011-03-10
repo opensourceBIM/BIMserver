@@ -7,7 +7,6 @@ import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
 
-import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDeadlockException;
 import org.bimserver.database.Database;
 import org.bimserver.database.DatabaseSession;
@@ -24,8 +23,11 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Schema {
+	private static final Logger LOGGER = LoggerFactory.getLogger(Schema.class);
 	private final Map<String, EPackage> packages = new HashMap<String, EPackage>();
 	
 	private final Set<Change> changes = new LinkedHashSet<Change>();
@@ -38,6 +40,8 @@ public class Schema {
 	public EPackage createEPackage(String name) {
 		EPackage ePackage = EcoreFactory.eINSTANCE.createEPackage();
 		ePackage.setName(name);
+		ePackage.setNsPrefix(name);
+		ePackage.setNsURI(name);
 		packages.put(ePackage.getName(), ePackage);
 		return ePackage;
 	}
@@ -124,17 +128,23 @@ public class Schema {
         }
 	}
 
-	public void upgradeDatabase(Database database) {
-		DatabaseSession session = database.createSession();
+	public void upgradeDatabase(Database database, int version, DatabaseSession databaseSession) {
+		LOGGER.info("Upgrading database to version " + version);
 		for (Change change : changes) {
-			change.change(database, session);
+			change.change(database, databaseSession);
 		}
 		try {
-			session.commit();
+			database.setDatabaseVersion(version, databaseSession);
 		} catch (BimDeadlockException e) {
 			e.printStackTrace();
-		} catch (BimDatabaseException e) {
-			e.printStackTrace();
 		}
+	}
+
+	public EClass getEClass(String packageName, String name) {
+		return (EClass) packages.get(packageName).getEClassifier(name);
+	}
+
+	public void clearUpdates() {
+		changes.clear();
 	}
 }

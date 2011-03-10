@@ -3,10 +3,10 @@ package org.bimserver.database.actions;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.log.AccessMethod;
 import org.bimserver.database.store.ConcreteRevision;
 import org.bimserver.database.store.Project;
 import org.bimserver.database.store.Revision;
-import org.bimserver.database.store.log.AccessMethod;
 import org.bimserver.shared.UserException;
 import org.eclipse.emf.common.util.EList;
 

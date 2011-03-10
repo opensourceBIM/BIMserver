@@ -10,7 +10,7 @@ public class Test {
 	private void start() {
 		Schema schema = new Schema();
 		
-		Step0001 step0001 = new Step0001();
+		Step0000 step0001 = new Step0000();
 		step0001.migrate(schema);
 		
 		schema.writeToEcore(new File("model.ecore"));

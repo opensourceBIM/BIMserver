@@ -14,7 +14,7 @@ import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.actions.BimDatabaseAction;
 import org.bimserver.database.actions.DownloadDatabaseAction;
-import org.bimserver.database.store.log.AccessMethod;
+import org.bimserver.database.log.AccessMethod;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.database.IfcDatabase;
 import org.bimserver.querycompiler.CompileException;

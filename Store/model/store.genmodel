@@ -5,8 +5,8 @@
     modelPluginID="Emf2Codb" modelName="Store" modelPluginClass="" rootExtendsInterface="org.bimserver.emf.IdEObject"
     rootExtendsClass="org.bimserver.emf.IdEObjectImpl" rootImplementsInterface=""
     reflectiveDelegation="true" codeFormatting="true" importerID="org.eclipse.emf.importer.ecore"
-    featureDelegation="Reflective" minimalReflectiveMethods="false" suppressContainment="true"
-    complianceLevel="6.0" copyrightFields="false">
+    featureDelegation="Reflective" suppressContainment="true" complianceLevel="6.0"
+    copyrightFields="false">
   <foreignModel>store.ecore</foreignModel>
   <genPackages prefix="Store" basePackage="org.bimserver.database" disposableProviderFactory="true"
       ecorePackage="store.ecore#/">

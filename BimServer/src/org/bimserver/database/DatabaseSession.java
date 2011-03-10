@@ -191,7 +191,7 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 	}
 
 	@Override
-	public void clearProject(int pid, int oldRid, int newRid) throws BimDeadlockException {
+	public void clearProject(int pid, int oldRid, int newRid) throws BimDeadlockException, BimDatabaseException {
 		ByteBuffer keyBuffer = ByteBuffer.allocate(16);
 		ByteBuffer searchKeyBuffer = ByteBuffer.allocate(12);
 		for (EClass classifier : database.getClasses()) {
@@ -953,7 +953,7 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 	}
 
 	@Override
-	public ObjectIdentifier getOidOfGuid(String guid, int pid, int rid) throws BimDeadlockException {
+	public ObjectIdentifier getOidOfGuid(String guid, int pid, int rid) throws BimDeadlockException, BimDatabaseException {
 		RecordIterator recordIterator = database.getColumnDatabase().getRecordIterator("IfcGloballyUniqueId", BinUtils.intToByteArray(pid), BinUtils.intToByteArray(pid), this);
 		try {
 			Record record = recordIterator.next();

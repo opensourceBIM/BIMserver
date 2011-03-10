@@ -11,7 +11,7 @@ import java.util.List;
 import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
 
 import org.bimserver.database.BimDatabase;
-import org.bimserver.database.store.log.AccessMethod;
+import org.bimserver.database.log.AccessMethod;
 import org.bimserver.ifc.FieldIgnoreMap;
 import org.bimserver.ifcengine.IfcEngineFactory;
 import org.bimserver.interfaces.objects.SAccessMethod;

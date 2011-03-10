@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore">
+  <ecore:EPackage name="store" nsURI="store" nsPrefix="store">
+    <eClassifiers xsi:type="ecore:EEnum" name="UserType">
+      <eLiterals name="ADMIN"/>
+      <eLiterals name="USER" value="1"/>
+      <eLiterals name="ANONYMOUS" value="2"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EEnum" name="CheckinState">
+      <eLiterals name="UPLOADING"/>
+      <eLiterals name="PARSING" value="1"/>
+      <eLiterals name="STORING" value="2"/>
+      <eLiterals name="SEARCHING_CLASHES" value="3"/>
+      <eLiterals name="DONE" value="4"/>
+      <eLiterals name="ERROR" value="5"/>
+      <eLiterals name="CLASHES_ERROR" value="6"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EEnum" name="SIPrefix">
+      <eLiterals name="meter"/>
+      <eLiterals name="attometer" value="-18"/>
+      <eLiterals name="femtometer" value="-15"/>
+      <eLiterals name="picometer" value="-12"/>
+      <eLiterals name="nanometer" value="-9"/>
+      <eLiterals name="micrometer" value="-6"/>
+      <eLiterals name="millimeter" value="-3"/>
+      <eLiterals name="centimeter" value="-2"/>
+      <eLiterals name="decimeter" value="-1"/>
+      <eLiterals name="decameter" value="1"/>
+      <eLiterals name="hectometer" value="2"/>
+      <eLiterals name="kilometer" value="3"/>
+      <eLiterals name="megameter" value="6"/>
+      <eLiterals name="gigameter" value="9"/>
+      <eLiterals name="terameter" value="12"/>
+      <eLiterals name="petameter" value="15"/>
+      <eLiterals name="exameter" value="18"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EEnum" name="ObjectState">
+      <eLiterals name="ACTIVE"/>
+      <eLiterals name="DELETED" value="1"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Project">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="hasAuthorizedUsers" upperBound="-1"
+          eType="#/0/User" eOpposite="#/0/User/hasRightsOn"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="concreteRevisions" upperBound="-1"
+          eType="#/0/ConcreteRevision" eOpposite="#/0/ConcreteRevision/project"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="revisions" upperBound="-1"
+          eType="#/0/Revision" eOpposite="#/0/Revision/project"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="lastConcreteRevision"
+          eType="#/0/ConcreteRevision"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="lastRevision" eType="#/0/Revision"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="checkouts" upperBound="-1"
+          eType="#/0/Checkout" eOpposite="#/0/Checkout/project"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="state" eType="#/0/ObjectState"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="createdDate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="createdBy" eType="#/0/User"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="geoTag" eType="#/0/GeoTag"
+          eOpposite="#/0/GeoTag/projects"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="subProjects" upperBound="-1"
+          eType="#/0/Project" eOpposite="#/0/Project/parent"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="parent" eType="#/0/Project"
+          eOpposite="#/0/Project/subProjects"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="clashDetectionSettings"
+          eType="#/0/ClashDetectionSettings" eOpposite="#/0/ClashDetectionSettings/projects"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="exportLengthMeasurePrefix"
+          eType="#/0/SIPrefix"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="User">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="password" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="hasRightsOn" upperBound="-1"
+          eType="#/0/Project" eOpposite="#/0/Project/hasAuthorizedUsers"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="revisions" upperBound="-1"
+          eType="#/0/Revision"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="state" eType="#/0/ObjectState"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="createdOn" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="createdBy" eType="#/0/User"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="userType" eType="#/0/UserType"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="username" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="lastSeen" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="validationToken" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="validationTokenCreated"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="testje" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Clash">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name2" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="type1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="type2" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="revision1" eType="#/0/Revision"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="revision2" eType="#/0/Revision"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="EidClash" eSuperTypes="#/0/Clash">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="eid1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="eid2" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="GuidClash" eSuperTypes="#/0/Clash">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="guid1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="guid2" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ClashDetectionSettings">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="enabled" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="projects" upperBound="-1"
+          eType="#/0/Project" eOpposite="#/0/Project/clashDetectionSettings"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="margin" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="revisions" upperBound="-1"
+          eType="#/0/Revision"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="ignoredClasses" upperBound="-1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Revision">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="user" eType="#/0/User"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="date" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="comment" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="size" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="concreteRevisions" upperBound="-1"
+          eType="#/0/ConcreteRevision" eOpposite="#/0/ConcreteRevision/revisions"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="lastConcreteRevision"
+          eType="#/0/ConcreteRevision"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="checkouts" upperBound="-1"
+          eType="#/0/Checkout" eOpposite="#/0/Checkout/revision"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="project" eType="#/0/Project"
+          eOpposite="#/0/Project/revisions"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="state" eType="#/0/CheckinState"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="lastClashes" upperBound="-1"
+          eType="#/0/Clash"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="tag" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="lastError" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="bmi" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="nrClashes" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ConcreteRevision">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="project" eType="#/0/Project"
+          eOpposite="#/0/Project/concreteRevisions"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="state" eType="#/0/CheckinState"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="checksum" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EByteArray"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="revisions" upperBound="-1"
+          eType="#/0/Revision" eOpposite="#/0/Revision/concreteRevisions"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="size" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="date" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="lastError" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="GeoTag">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="enabled" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="projects" upperBound="-1"
+          eType="#/0/Project" eOpposite="#/0/Project/geoTag"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="x" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="y" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="z" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="epsg" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="directionAngle" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Checkout">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="user" eType="#/0/User"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="revision" eType="#/0/Revision"
+          eOpposite="#/0/Revision/checkouts"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="project" eType="#/0/Project"
+          eOpposite="#/0/Project/checkouts"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="date" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="checkin" eType="#/0/Revision"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="active" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </eClassifiers>
+  </ecore:EPackage>
+  <ecore:EPackage name="log" nsURI="log" nsPrefix="log">
+    <eClassifiers xsi:type="ecore:EEnum" name="AccessMethod">
+      <eLiterals name="SOAP"/>
+      <eLiterals name="WEB_INTERFACE" value="1"/>
+      <eLiterals name="INTERNAL" value="2"/>
+      <eLiterals name="REST" value="3"/>
+      <eLiterals name="SYNDICATION" value="4"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="LogAction">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="date" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="executor" eType="#/0/User"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="accessMethod" eType="#/1/AccessMethod"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ServerLog">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="actions" upperBound="-1"
+          eType="#/1/LogAction"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="NewUserAdded" eSuperTypes="#/1/LogAction">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="user" eType="#/0/User"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="NewProjectAdded" eSuperTypes="#/1/LogAction">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="project" eType="#/0/Project"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="parentProject" eType="#/0/Project"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="NewRevisionAdded" eSuperTypes="#/1/LogAction">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="revision" eType="#/0/Revision"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="NewCheckoutAdded" eSuperTypes="#/1/LogAction">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="checkout" eType="#/0/Checkout"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="SettingsSaved" eSuperTypes="#/1/LogAction"/>
+    <eClassifiers xsi:type="ecore:EClass" name="UserAddedToProject" eSuperTypes="#/1/LogAction">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="user" eType="#/0/User"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="project" eType="#/0/Project"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="NewIgnoreFileUploaded" eSuperTypes="#/1/LogAction"/>
+    <eClassifiers xsi:type="ecore:EClass" name="Download" eSuperTypes="#/1/LogAction"/>
+    <eClassifiers xsi:type="ecore:EClass" name="UserRemovedFromProject" eSuperTypes="#/1/LogAction">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="user" eType="#/0/User"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="project" eType="#/0/Project"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ProjectDeleted" eSuperTypes="#/1/LogAction">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="project" eType="#/0/Project"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="UserDeleted" eSuperTypes="#/1/LogAction">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="user" eType="#/0/User"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="PasswordReset" eSuperTypes="#/1/LogAction">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="user" eType="#/0/User"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="DatabaseCreated" eSuperTypes="#/1/LogAction">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="path" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="version" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ServerStarted" eSuperTypes="#/1/LogAction"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ProjectUpdated" eSuperTypes="#/1/LogAction">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="project" eType="#/0/Project"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="UserUndeleted" eSuperTypes="#/1/LogAction">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="user" eType="#/0/User"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ProjectUndeleted" eSuperTypes="#/1/LogAction">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="project" eType="#/0/Project"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="RevisionUpdated" eSuperTypes="#/1/LogAction">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="revision" eType="#/0/Revision"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="GeoTagUpdated" eSuperTypes="#/1/LogAction">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="geoTag" eType="#/0/GeoTag"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ClashDetectionSettingsUpdated" eSuperTypes="#/1/LogAction">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="clashDetectionSettings"
+          eType="#/0/ClashDetectionSettings"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="PasswordChanged" eSuperTypes="#/1/LogAction">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="user" eType="#/0/User"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="UserChanged" eSuperTypes="#/1/LogAction">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="user" eType="#/0/User"/>
+    </eClassifiers>
+  </ecore:EPackage>
+</xmi:XMI>

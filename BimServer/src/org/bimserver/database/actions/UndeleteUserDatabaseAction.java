@@ -5,12 +5,12 @@ import java.util.Date;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.log.AccessMethod;
+import org.bimserver.database.log.LogFactory;
+import org.bimserver.database.log.UserUndeleted;
 import org.bimserver.database.store.ObjectState;
 import org.bimserver.database.store.User;
 import org.bimserver.database.store.UserType;
-import org.bimserver.database.store.log.AccessMethod;
-import org.bimserver.database.store.log.LogFactory;
-import org.bimserver.database.store.log.UserUndeleted;
 import org.bimserver.shared.UserException;
 
 public class UndeleteUserDatabaseAction extends BimDatabaseAction<Boolean> {

@@ -1,6 +1,7 @@
 package org.bimserver.database.migrations;
 
 import org.bimserver.database.Database;
+import org.bimserver.database.DatabaseSession;
 import org.eclipse.emf.ecore.EEnum;
 
 public class NewEnumChange implements Change {
@@ -9,6 +10,6 @@ public class NewEnumChange implements Change {
 	}
 
 	@Override
-	public void change(Database database) {
+	public void change(Database database, DatabaseSession databaseSession) {
 	}
 }

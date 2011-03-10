@@ -5,7 +5,7 @@ import java.util.Set;
 
 import javax.ws.rs.core.Application;
 
-import org.bimserver.database.store.log.AccessMethod;
+import org.bimserver.database.log.AccessMethod;
 import org.bimserver.shared.ServiceInterface;
 
 public class RestApplication extends Application {
