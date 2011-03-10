@@ -22,7 +22,7 @@ public class Compare {
 		this.fieldIgnoreMap = fieldIgnoreMap;
 	}
 
-	public CompareResult compare(IfcModel model1, IfcModel model2, SCompareType sCompareType) {
+	public CompareResult compareOnGuids(IfcModel model1, IfcModel model2, SCompareType sCompareType) {
 		CompareResult result = new CompareResult();
 		try {
 			IfcDatabase database1 = new IfcDatabase(model1, fieldIgnoreMap);
@@ -45,6 +45,45 @@ public class Compare {
 					for (String guid : database2.getGuids(eClass)) {
 						IdEObject eObject1 = database1.getByGuid(eClass, guid);
 						IdEObject eObject2 = database2.getByGuid(eClass, guid);
+						if (eObject1 == null) {
+							if (sCompareType == SCompareType.ALL || sCompareType == SCompareType.ADD) {
+								result.addAdded(eObject2);
+							}
+						} else {
+							compareEObjects(eClass, eObject1, eObject2, result, sCompareType);
+						}
+					}
+				}
+			}
+		} catch (Exception e) {
+			LOGGER.error("", e);
+		}
+		return result;
+	}
+
+	public CompareResult compareOnNames(IfcModel model1, IfcModel model2, SCompareType sCompareType) {
+		CompareResult result = new CompareResult();
+		try {
+			IfcDatabase database1 = new IfcDatabase(model1, fieldIgnoreMap);
+			database1.buildNameIndex();
+			IfcDatabase database2 = new IfcDatabase(model2, fieldIgnoreMap);
+			database2.buildNameIndex();
+
+			for (EClassifier eClassifier : Ifc2x3Package.eINSTANCE.getEClassifiers()) {
+				if (eClassifier instanceof EClass && Ifc2x3Package.eINSTANCE.getIfcRoot().isSuperTypeOf((EClass) eClassifier)) {
+					EClass eClass = (EClass) eClassifier;
+					for (String name : database1.getNames(eClass)) {
+						IdEObject eObject1 = database1.getByName(eClass, name);
+						IdEObject eObject2 = database2.getByName(eClass, name);
+						if  (eObject2 == null) {
+							if (sCompareType == SCompareType.ALL || sCompareType == SCompareType.DELETE) {
+								result.addDeleted(eObject1);
+							}
+						}
+					}
+					for (String name : database2.getNames(eClass)) {
+						IdEObject eObject1 = database1.getByName(eClass, name);
+						IdEObject eObject2 = database2.getByName(eClass, name);
 						if (eObject1 == null) {
 							if (sCompareType == SCompareType.ALL || sCompareType == SCompareType.ADD) {
 								result.addAdded(eObject2);

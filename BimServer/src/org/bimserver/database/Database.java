@@ -31,6 +31,8 @@ import java.util.Set;
 import org.bimserver.database.actions.AddUserDatabaseAction;
 import org.bimserver.database.actions.CreateBaseProject;
 import org.bimserver.database.berkeley.DatabaseInitException;
+import org.bimserver.database.migrations.MigrationException;
+import org.bimserver.database.migrations.Migrator;
 import org.bimserver.database.store.CheckinState;
 import org.bimserver.database.store.Revision;
 import org.bimserver.database.store.StorePackage;
@@ -84,7 +86,9 @@ public class Database implements BimDatabase {
 	/*  This variable should be _incremented_ with every (released) database-schema change
 	 *  Do not change this variable when nothing has changed in the schema!
 	 */
-	public static final int APPLICATION_SCHEMA_VERSION = 11;
+	public static final int APPLICATION_SCHEMA_VERSION = 1;
+	private int databaseSchemaVersion;
+	private short tableId;
 
 	public Database(Set<? extends EPackage> emfPackages, ColumnDatabase columnDatabase, FieldIgnoreMap fieldIgnoreMap) throws DatabaseInitException {
 		this.columnDatabase = columnDatabase;
@@ -95,13 +99,21 @@ public class Database implements BimDatabase {
 		this.registry = new Registry(columnDatabase);
 		init();
 	}
+	
+	public int getApplicationSchemaVersion() {
+		return APPLICATION_SCHEMA_VERSION;
+	}
+	
+	public int getDatabaseSchemaVersion() {
+		return databaseSchemaVersion;
+	}
 
 	private void init() throws DatabaseInitException {
 		DatabaseSession databaseSession = createSession();
 		try {
-			updateAndCheckStructure(databaseSession);
+//			updateAndCheckStructure(databaseSession);
 			if (getColumnDatabase().isNew()) {
-				registry.save(SCHEMA_VERSION, APPLICATION_SCHEMA_VERSION, databaseSession);
+				registry.save(SCHEMA_VERSION, 0, databaseSession);
 				created = new Date();
 				registry.save(DATE_CREATED, created, databaseSession);
 			} else {
@@ -111,12 +123,18 @@ public class Database implements BimDatabase {
 					registry.save(DATE_CREATED, created, databaseSession);
 				}
 			}
-			int databaseSchemaVersion = registry.readInt(SCHEMA_VERSION, databaseSession, -1);
-			if (databaseSchemaVersion != APPLICATION_SCHEMA_VERSION) {
-				databaseSession.close();
-				close();
-				throw new DatabaseInitException("Database schema version (" + databaseSchemaVersion + ") does not match application schema version (" + APPLICATION_SCHEMA_VERSION + ")");
-			}
+			
+			databaseSchemaVersion = registry.readInt(SCHEMA_VERSION, databaseSession, -1);
+
+			Migrator migrator = new Migrator();
+			migrator.migrate(this);
+			
+//			if (databaseSchemaVersion != APPLICATION_SCHEMA_VERSION) {
+//				databaseSession.close();
+//				close();
+//				throw new DatabaseInitException("Database schema version (" + databaseSchemaVersion + ") does not match application schema version (" + APPLICATION_SCHEMA_VERSION + ")");
+//			}
+
 			getColumnDatabase().createTableIfNotExists(Database.STORE_PROJECT_NAME, databaseSession);
 			initInternalStructure(databaseSession);
 			
@@ -152,6 +170,10 @@ public class Database implements BimDatabase {
 			close();
 			throw new DatabaseInitException(e.getMessage());
 		} catch (BimDatabaseException e) {
+			LOGGER.error("", e);
+			close();
+			throw new DatabaseInitException(e.getMessage());
+		} catch (MigrationException e) {
 			LOGGER.error("", e);
 			close();
 			throw new DatabaseInitException(e.getMessage());
@@ -210,6 +232,17 @@ public class Database implements BimDatabase {
 						}
 					}
 				}
+			}
+		}
+	}
+
+	public void createTableIfNotExists(EClass eClass, DatabaseSession databaseSession) throws BimDeadlockException {
+		if (columnDatabase.createTableIfNotExists(eClass.getName(), databaseSession)) {
+			tableId++;
+			try {
+				columnDatabase.store(CLASS_LOOKUP_TABLE, BinUtils.shortToByteArray(tableId), BinUtils.stringToByteArray(eClass.getName()), databaseSession);
+			} catch (BimDatabaseException e) {
+				LOGGER.error("", e);
 			}
 		}
 	}
