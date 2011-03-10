@@ -10,8 +10,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.apache.commons.io.FileUtils;
+import org.bimserver.database.log.LogPackage;
 import org.bimserver.database.store.StorePackage;
-import org.bimserver.database.store.log.LogPackage;
 import org.bimserver.generators.DataObjectGenerator;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EPackage;

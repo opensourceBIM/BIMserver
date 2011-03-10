@@ -7,12 +7,12 @@ import java.util.Map;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.log.AccessMethod;
+import org.bimserver.database.log.LogAction;
+import org.bimserver.database.log.LogPackage;
 import org.bimserver.database.query.conditions.IsOfTypeCondition;
 import org.bimserver.database.store.User;
 import org.bimserver.database.store.UserType;
-import org.bimserver.database.store.log.AccessMethod;
-import org.bimserver.database.store.log.LogAction;
-import org.bimserver.database.store.log.LogPackage;
 import org.bimserver.shared.UserException;
 
 public class GetLogsDatabaseAction extends BimDatabaseAction<List<LogAction>> {

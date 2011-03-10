@@ -33,13 +33,13 @@ public interface ColumnDatabase {
 	RecordIterator getRecordIterator(String tableName, DatabaseSession databaseSession) throws BimDeadlockException;
 
 	SearchingRecordIterator getRecordIterator(String tableName, byte[] mustStartWith, byte[] startSearchingAt, DatabaseSession databaseSession)
-			throws BimDeadlockException;
+			throws BimDeadlockException, BimDatabaseException;
 
 	long count(String tableName);
 
 	byte[] get(String tableName, byte[] key, DatabaseSession databaseSession) throws BimDeadlockException;
 
-	byte[] getFirstStartingWith(String tableName, byte[] key, DatabaseSession databaseSession) throws BimDeadlockException;
+	byte[] getFirstStartingWith(String tableName, byte[] key, DatabaseSession databaseSession) throws BimDeadlockException, BimDatabaseException;
 
 	void sync();
 

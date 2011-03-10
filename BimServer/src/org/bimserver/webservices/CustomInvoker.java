@@ -2,7 +2,7 @@ package org.bimserver.webservices;
 
 import org.apache.cxf.message.Exchange;
 import org.apache.cxf.service.invoker.AbstractInvoker;
-import org.bimserver.database.store.log.AccessMethod;
+import org.bimserver.database.log.AccessMethod;
 import org.bimserver.shared.ServiceException;
 import org.bimserver.shared.ServiceInterface;
 import org.bimserver.shared.Token;

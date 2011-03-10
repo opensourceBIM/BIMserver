@@ -31,16 +31,16 @@ import java.util.Set;
 import org.bimserver.database.actions.AddUserDatabaseAction;
 import org.bimserver.database.actions.CreateBaseProject;
 import org.bimserver.database.berkeley.DatabaseInitException;
+import org.bimserver.database.log.AccessMethod;
+import org.bimserver.database.log.DatabaseCreated;
+import org.bimserver.database.log.LogFactory;
+import org.bimserver.database.log.LogPackage;
 import org.bimserver.database.migrations.MigrationException;
 import org.bimserver.database.migrations.Migrator;
 import org.bimserver.database.store.CheckinState;
 import org.bimserver.database.store.Revision;
 import org.bimserver.database.store.StorePackage;
 import org.bimserver.database.store.UserType;
-import org.bimserver.database.store.log.AccessMethod;
-import org.bimserver.database.store.log.DatabaseCreated;
-import org.bimserver.database.store.log.LogFactory;
-import org.bimserver.database.store.log.LogPackage;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.FieldIgnoreMap;
 import org.bimserver.ifc.IfcModel;
@@ -86,7 +86,7 @@ public class Database implements BimDatabase {
 	/*  This variable should be _incremented_ with every (released) database-schema change
 	 *  Do not change this variable when nothing has changed in the schema!
 	 */
-	public static final int APPLICATION_SCHEMA_VERSION = 1;
+	public static final int APPLICATION_SCHEMA_VERSION = 2;
 	private int databaseSchemaVersion;
 	private short tableId;
 
@@ -111,9 +111,9 @@ public class Database implements BimDatabase {
 	private void init() throws DatabaseInitException {
 		DatabaseSession databaseSession = createSession();
 		try {
-//			updateAndCheckStructure(databaseSession);
+			updateAndCheckStructure(databaseSession);
 			if (getColumnDatabase().isNew()) {
-				registry.save(SCHEMA_VERSION, 0, databaseSession);
+				setDatabaseVersion(-1, databaseSession);
 				created = new Date();
 				registry.save(DATE_CREATED, created, databaseSession);
 			} else {
@@ -127,14 +127,8 @@ public class Database implements BimDatabase {
 			databaseSchemaVersion = registry.readInt(SCHEMA_VERSION, databaseSession, -1);
 
 			Migrator migrator = new Migrator();
-			migrator.migrate(this);
+			migrator.migrate(this, databaseSession);
 			
-//			if (databaseSchemaVersion != APPLICATION_SCHEMA_VERSION) {
-//				databaseSession.close();
-//				close();
-//				throw new DatabaseInitException("Database schema version (" + databaseSchemaVersion + ") does not match application schema version (" + APPLICATION_SCHEMA_VERSION + ")");
-//			}
-
 			getColumnDatabase().createTableIfNotExists(Database.STORE_PROJECT_NAME, databaseSession);
 			initInternalStructure(databaseSession);
 			
@@ -218,22 +212,6 @@ public class Database implements BimDatabase {
 	public void updateAndCheckStructure(DatabaseSession databaseSession) throws BimDeadlockException {
 		columnDatabase.createTableIfNotExists(CLASS_LOOKUP_TABLE, databaseSession);
 		registry.ensureExists(databaseSession);
-		short tableId = 0;
-		for (EPackage emfPackage : emfPackages) {
-			for (EClassifier classifier : emfPackage.getEClassifiers()) {
-				if (classifier instanceof EClass) {
-					if (columnDatabase.createTableIfNotExists(classifier.getName(), databaseSession)) {
-						tableId++;
-						try {
-							columnDatabase.store(CLASS_LOOKUP_TABLE, BinUtils.shortToByteArray(tableId), BinUtils.stringToByteArray(classifier.getName()),
-									databaseSession);
-						} catch (BimDatabaseException e) {
-							LOGGER.error("", e);
-						}
-					}
-				}
-			}
-		}
 	}
 
 	public void createTableIfNotExists(EClass eClass, DatabaseSession databaseSession) throws BimDeadlockException {
@@ -335,6 +313,7 @@ public class Database implements BimDatabase {
 			while (record != null) {
 				String string = BinUtils.byteArrayToString(record.getValue());
 				EClass eClass = (EClass) getEClassifier(string);
+				columnDatabase.createTableIfNotExists(eClass.getName(), databaseSession);
 				Short cid = BinUtils.byteArrayToShort(record.getKey());
 				classifiers.put(cid, eClass);
 				record = recordIterator.next();
@@ -462,5 +441,9 @@ public class Database implements BimDatabase {
 
 	public void unregisterSession(DatabaseSession databaseSession) {
 		sessions.remove(databaseSession);
+	}
+
+	public void setDatabaseVersion(int version, DatabaseSession databaseSession) throws BimDeadlockException {
+		registry.save(SCHEMA_VERSION, version, databaseSession);
 	}
 }

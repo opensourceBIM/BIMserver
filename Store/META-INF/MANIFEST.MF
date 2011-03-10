@@ -9,9 +9,6 @@ Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: org.bimserver.database.store,
  org.bimserver.database.store.impl,
- org.bimserver.database.store.log,
- org.bimserver.database.store.log.impl,
- org.bimserver.database.store.log.util,
  org.bimserver.database.store.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport

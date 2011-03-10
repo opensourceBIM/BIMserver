@@ -20,7 +20,7 @@ package org.bimserver.web;
  * long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import org.bimserver.database.store.log.AccessMethod;
+import org.bimserver.database.log.AccessMethod;
 import org.bimserver.interfaces.objects.SUserType;
 import org.bimserver.shared.ServiceException;
 import org.bimserver.shared.ServiceInterface;

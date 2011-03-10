@@ -230,10 +230,14 @@ public class BerkeleyColumnDatabase implements ColumnDatabase {
 	}
 
 	@Override
-	public SearchingRecordIterator getRecordIterator(String tableName, byte[] mustStartWith, byte[] startSearchingAt, DatabaseSession databaseSession) throws BimDeadlockException {
+	public SearchingRecordIterator getRecordIterator(String tableName, byte[] mustStartWith, byte[] startSearchingAt, DatabaseSession databaseSession) throws BimDeadlockException, BimDatabaseException {
 		Cursor cursor = null;
 		try {
-			cursor = getDatabase(tableName, databaseSession, false).openCursor(getTransaction(databaseSession), cursorConfig);
+			Database database = getDatabase(tableName, databaseSession, false);
+			if (database == null) {
+				throw new BimDatabaseException("Table " + tableName + " not found");
+			}
+			cursor = database.openCursor(getTransaction(databaseSession), cursorConfig);
 			return new BerkeleySearchingRecordIterator(cursor, mustStartWith, startSearchingAt);
 		} catch (BimDeadlockException e) {
 			try {
@@ -259,7 +263,7 @@ public class BerkeleyColumnDatabase implements ColumnDatabase {
 	}
 
 	@Override
-	public byte[] getFirstStartingWith(String tableName, byte[] key, DatabaseSession databaseSession) throws BimDeadlockException {
+	public byte[] getFirstStartingWith(String tableName, byte[] key, DatabaseSession databaseSession) throws BimDeadlockException, BimDatabaseException {
 		SearchingRecordIterator recordIterator = getRecordIterator(tableName, key, key, databaseSession);
 		try {
 			Record record = recordIterator.next(key);
@@ -337,7 +341,11 @@ public class BerkeleyColumnDatabase implements ColumnDatabase {
 		DatabaseEntry data = new DatabaseEntry(value);
 		DatabaseEntry dbKey = new DatabaseEntry(key);
 		try {
-			getDatabase(tableName, databaseSession, false).put(getTransaction(databaseSession), dbKey, data);
+			Database database = getDatabase(tableName, databaseSession, false);
+			if (database == null) {
+				throw new BimDatabaseException("Table " + tableName + " not found");
+			}
+			database.put(getTransaction(databaseSession), dbKey, data);
 			increaseWrites();
 		} catch (LockConflictException e) {
 			throw new BimDeadlockException(e);
