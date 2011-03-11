@@ -107,9 +107,9 @@ public interface ServiceInterface {
 	@Path("/download")
 	@Produces("application/xml")
 	@WebMethod(action = "download")
-	SDownloadResult download(@QueryParam("roid") @WebParam(name = "roid", partName = "download.roid") long roid,
-			@QueryParam("resultType") @WebParam(name = "resultType", partName = "download.resultType") ResultType resultType)
-			throws UserException, ServerException;
+	String download(@QueryParam("roid") @WebParam(name = "roid", partName = "download.roid") long roid,
+			@QueryParam("resultType") @WebParam(name = "resultType", partName = "download.resultType") ResultType resultType,
+			@QueryParam("sync") @WebParam(name = "sync", partName = "download.sync") boolean sync) throws UserException, ServerException;
 
 	@WebMethod(action = "downloadByOids")
 	SDownloadResult downloadByOids(@WebParam(name = "roids", partName = "downloadByOids.roids") Set<Long> roids,
@@ -133,6 +133,10 @@ public interface ServiceInterface {
 	SDownloadResult downloadProjects(@WebParam(name = "roids", partName = "downloadProjects.roids") Set<Long> roids,
 			@WebParam(name = "resultType", partName = "downloadProjects.resultType") ResultType resultType) throws UserException,
 			ServerException;
+
+	@WebMethod(action = "getDownloadData")
+	SDownloadResult getDownloadData(@WebParam(name = "actionID", partName = "downloadProjects.actionID") String actionID)
+			throws UserException, ServerException;
 
 	@WebMethod(action = "addUser")
 	long addUser(@WebParam(name = "username", partName = "addUser.username") String username,

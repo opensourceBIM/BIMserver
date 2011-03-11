@@ -90,7 +90,8 @@ public class DownloadServlet extends HttpServlet {
 					oids.add(clash.getEid1());
 					oids.add(clash.getEid2());
 				}
-				checkoutResult = loginManager.getService().downloadByOids(new HashSet<Long>(sClashDetectionSettings.getRevisions()), oids, resultType);
+				checkoutResult = loginManager.getService().downloadByOids(new HashSet<Long>(sClashDetectionSettings.getRevisions()), oids,
+						resultType);
 			} else if (request.getParameter("compare") != null) {
 				SCompareType sCompareType = SCompareType.valueOf(request.getParameter("type"));
 				Long roid1 = Long.parseLong(request.getParameter("roid1"));
@@ -147,19 +148,22 @@ public class DownloadServlet extends HttpServlet {
 						checkoutResult = loginManager.getService().downloadByGuids(roids, guids, resultType);
 					} else if (request.getParameter("multiple") != null) {
 					} else {
-						checkoutResult = loginManager.getService().download(roid, resultType);
+						String actionID = loginManager.getService().download(roid, resultType, true);
+						checkoutResult = loginManager.getService().getDownloadData(actionID);
 					}
 				}
 			}
 			EmfSerializer serializer = (EmfSerializer) checkoutResult.getFile().getDataSource();
 			if (request.getParameter("zip") != null && request.getParameter("zip").equals("on")) {
 				if (resultType == ResultType.IFC) {
-					response.setHeader("Content-Disposition", "inline; filename=\"" + checkoutResult.getFile().getName().replace(".ifc", ".ifczip") + "\"");
+					response.setHeader("Content-Disposition",
+							"inline; filename=\"" + checkoutResult.getFile().getName().replace(".ifc", ".ifczip") + "\"");
 				} else {
 					response.setHeader("Content-Disposition", "inline; filename=\"" + checkoutResult.getFile().getName() + ".zip" + "\"");
 				}
 				response.setContentType("application/zip");
-				String name = checkoutResult.getProjectName() + "." + checkoutResult.getRevisionNr() + "." + resultType.getDefaultExtension();
+				String name = checkoutResult.getProjectName() + "." + checkoutResult.getRevisionNr() + "."
+						+ resultType.getDefaultExtension();
 				ZipOutputStream zipOutputStream = new ZipOutputStream(response.getOutputStream());
 				zipOutputStream.putNextEntry(new ZipEntry(name));
 				try {
