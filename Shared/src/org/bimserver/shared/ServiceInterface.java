@@ -138,6 +138,10 @@ public interface ServiceInterface {
 	SDownloadResult getDownloadData(@WebParam(name = "actionID", partName = "downloadProjects.actionID") String actionID)
 			throws UserException, ServerException;
 
+	@WebMethod(action = "getDownloadState")
+	String getDownloadState(@WebParam(name = "actionID", partName = "downloadProjects.actionID") String actionID)
+			throws UserException, ServerException;
+
 	@WebMethod(action = "addUser")
 	long addUser(@WebParam(name = "username", partName = "addUser.username") String username,
 			@WebParam(name = "name", partName = "addUser.name") String name,

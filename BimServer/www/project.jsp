@@ -256,7 +256,8 @@ Download: <input type="hidden" name="roid"
 	%>
 </select> <label for="simplezip_<%=lastRevision.getId()%>">Zip </label><input
 	type="checkbox" name="zip" id="simplezip_<%=lastRevision.getId()%>" />
-<input name="download" type="submit" value="Download"> <%
+<input name="download" type="submit" value="Download"><input
+	type="hidden" name="async" value="true" /> <%
  	if (userHasCheckinRights) {
  %> <input name="checkout" type="submit" value="Checkout"
 	id="detailscheckoutbutton"> <%
