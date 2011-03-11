@@ -131,12 +131,13 @@ public class Client extends JFrame {
 	}
 
 	public void checkin(SProject project, DataSource dataSource, long fileSize) {
-		String comment = JOptionPane.showInputDialog(Client.this, "Please give a short description of your changes", "Checkin", JOptionPane.OK_OPTION
-				| JOptionPane.INFORMATION_MESSAGE);
+		String comment = JOptionPane.showInputDialog(Client.this, "Please give a short description of your changes", "Checkin",
+				JOptionPane.OK_OPTION | JOptionPane.INFORMATION_MESSAGE);
 		try {
 			DataHandler ifcFile = new DataHandler(dataSource);
 			SCheckinResult upload = serviceHolder.getService().checkinSync(project.getOid(), comment, fileSize, ifcFile, false);
-			JOptionPane.showMessageDialog(this, "New revision number: " + upload.getRid(), "Checkin successfull", JOptionPane.OK_OPTION | JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(this, "New revision number: " + upload.getRid(), "Checkin successfull", JOptionPane.OK_OPTION
+					| JOptionPane.INFORMATION_MESSAGE);
 			revisionPanel.showProject(project);
 		} catch (ServiceException e) {
 			JOptionPane.showMessageDialog(this, e.getUserMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -159,8 +160,8 @@ public class Client extends JFrame {
 				}
 				out.close();
 				if (report) {
-					JOptionPane.showMessageDialog(Client.this, "Revision: " + revision.getOid() + "\n" + totalRed + " bytes written", "Checkout successfull", JOptionPane.OK_OPTION
-							| JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(Client.this, "Revision: " + revision.getOid() + "\n" + totalRed + " bytes written",
+							"Checkout successfull", JOptionPane.OK_OPTION | JOptionPane.INFORMATION_MESSAGE);
 				}
 				SProject project = new SProject();
 				project.setName(sProject.getName());
@@ -199,38 +200,45 @@ public class Client extends JFrame {
 		checkoutsPanel.showUser(user);
 	}
 
-//	public void processChangeSet(SProject project) {
-//		JFileChooser chooser = new JFileChooser();
-//		int showOpenDialog = chooser.showOpenDialog(this);
-//		if (showOpenDialog == JFileChooser.APPROVE_OPTION) {
-//			File file = chooser.getSelectedFile();
-//			processChangeSet(project, file);
-//		}
-//	}
+	// public void processChangeSet(SProject project) {
+	// JFileChooser chooser = new JFileChooser();
+	// int showOpenDialog = chooser.showOpenDialog(this);
+	// if (showOpenDialog == JFileChooser.APPROVE_OPTION) {
+	// File file = chooser.getSelectedFile();
+	// processChangeSet(project, file);
+	// }
+	// }
 
-//	private void processChangeSet(SProject project, File file) {
-//		String showInputDialog = JOptionPane.showInputDialog(Client.this, "Please give a short description of you changes", "Process ChangeSet", JOptionPane.OK_OPTION
-//				| JOptionPane.INFORMATION_MESSAGE);
-//		JAXBContext context;
-//		ChangeSet changeSet = null;
-//		try {
-//			context = JAXBContext.newInstance(ChangeSet.class);
-//			Unmarshaller unmarshaller = context.createUnmarshaller();
-//			changeSet = (ChangeSet) unmarshaller.unmarshal(new FileInputStream(file));
-//		} catch (JAXBException e) {
-//			LOGGER.error("", e);
-//		} catch (FileNotFoundException e) {
-//			LOGGER.error("", e);
-//		}
-//		try {
-//			ChangeSetResult upload = serviceHolder.getService().processChangeSet(changeSet, project.getId(), showInputDialog);
-//			JOptionPane.showMessageDialog(this, "New revision number: " + upload.getNewRevisionNr(), "Processing of ChangeSet successfull", JOptionPane.OK_OPTION
-//					| JOptionPane.INFORMATION_MESSAGE);
-//			revisionPanel.showProject(project);
-//		} catch (UserException e) {
-//			LOGGER.error("", e);
-//		}
-//	}
+	// private void processChangeSet(SProject project, File file) {
+	// String showInputDialog = JOptionPane.showInputDialog(Client.this,
+	// "Please give a short description of you changes", "Process ChangeSet",
+	// JOptionPane.OK_OPTION
+	// | JOptionPane.INFORMATION_MESSAGE);
+	// JAXBContext context;
+	// ChangeSet changeSet = null;
+	// try {
+	// context = JAXBContext.newInstance(ChangeSet.class);
+	// Unmarshaller unmarshaller = context.createUnmarshaller();
+	// changeSet = (ChangeSet) unmarshaller.unmarshal(new
+	// FileInputStream(file));
+	// } catch (JAXBException e) {
+	// LOGGER.error("", e);
+	// } catch (FileNotFoundException e) {
+	// LOGGER.error("", e);
+	// }
+	// try {
+	// ChangeSetResult upload =
+	// serviceHolder.getService().processChangeSet(changeSet, project.getId(),
+	// showInputDialog);
+	// JOptionPane.showMessageDialog(this, "New revision number: " +
+	// upload.getNewRevisionNr(), "Processing of ChangeSet successfull",
+	// JOptionPane.OK_OPTION
+	// | JOptionPane.INFORMATION_MESSAGE);
+	// revisionPanel.showProject(project);
+	// } catch (UserException e) {
+	// LOGGER.error("", e);
+	// }
+	// }
 
 	public void download(SRevision revision) {
 		JFileChooser chooser = new JFileChooser();
@@ -249,14 +257,15 @@ public class Client extends JFrame {
 
 	public void download(long roid, FileOutputStream out, boolean report) {
 		try {
-			SDownloadResult download = serviceHolder.getService().download(roid, ResultType.IFC);
+			String downloadActionID = serviceHolder.getService().download(roid, ResultType.IFC, true);
+			SDownloadResult download = serviceHolder.getService().getDownloadData(downloadActionID);
 			try {
 				InputStream inputStream = download.getFile().getInputStream();
 				IOUtils.copy(inputStream, out);
 				out.close();
 				if (report) {
-					JOptionPane.showMessageDialog(Client.this, "Revision: " + download.getRevisionNr() + "\n", "Download successfull", JOptionPane.OK_OPTION
-							| JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(Client.this, "Revision: " + download.getRevisionNr() + "\n", "Download successfull",
+							JOptionPane.OK_OPTION | JOptionPane.INFORMATION_MESSAGE);
 				}
 			} catch (IOException e) {
 				LOGGER.error("", e);

@@ -43,7 +43,7 @@ public class CommandLine extends Thread {
 				} else if (line.equalsIgnoreCase("test")) {
 					long startTime = System.nanoTime();
 					try {
-						ServerInitializer.getAdminService().download(1051442, ResultType.IFC);
+						ServerInitializer.getAdminService().download(1051442, ResultType.IFC, true);
 					} catch (ServiceException e) {
 						LOGGER.error("", e);
 					}
@@ -57,7 +57,8 @@ public class CommandLine extends Thread {
 						System.out.println(t.getName());
 						StackTraceElement[] stackTraceElements = allStackTraces.get(t);
 						for (StackTraceElement stackTraceElement : stackTraceElements) {
-							System.out.println("\t" + stackTraceElement.getClassName() + ":" + stackTraceElement.getLineNumber() + "." + stackTraceElement.getMethodName());
+							System.out.println("\t" + stackTraceElement.getClassName() + ":" + stackTraceElement.getLineNumber() + "."
+									+ stackTraceElement.getMethodName());
 						}
 						System.out.println();
 					}
@@ -69,7 +70,7 @@ public class CommandLine extends Thread {
 						LOGGER.error("", e);
 					}
 				} else if (line.startsWith("showall")) {
-					ColumnDatabase columnDatabase = ((Database)ServerInitializer.getDatabase()).getColumnDatabase();
+					ColumnDatabase columnDatabase = ((Database) ServerInitializer.getDatabase()).getColumnDatabase();
 					Set<String> allTableNames = columnDatabase.getAllTableNames();
 					long total = 0;
 					for (String tableName : allTableNames) {

@@ -66,7 +66,6 @@ import org.bimserver.database.actions.DeleteProjectDatabaseAction;
 import org.bimserver.database.actions.DeleteUserDatabaseAction;
 import org.bimserver.database.actions.DownloadByGuidsDatabaseAction;
 import org.bimserver.database.actions.DownloadByOidsDatabaseAction;
-import org.bimserver.database.actions.DownloadDatabaseAction;
 import org.bimserver.database.actions.DownloadOfTypeDatabaseAction;
 import org.bimserver.database.actions.DownloadProjectsDatabaseAction;
 import org.bimserver.database.actions.FindClashesDatabaseAction;
@@ -153,8 +152,10 @@ import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.interfaces.objects.SUser;
 import org.bimserver.interfaces.objects.SUserType;
+import org.bimserver.longaction.CannotBeScheduledException;
 import org.bimserver.longaction.LongActionManager;
 import org.bimserver.longaction.LongCheckinAction;
+import org.bimserver.longaction.LongDownloadAction;
 import org.bimserver.mail.MailSystem;
 import org.bimserver.merging.Merger;
 import org.bimserver.rights.RightsManager;
@@ -167,6 +168,7 @@ import org.bimserver.shared.SCheckinResult;
 import org.bimserver.shared.SCheckoutResult;
 import org.bimserver.shared.SCompareResult;
 import org.bimserver.shared.SDataObject;
+import org.bimserver.shared.SDownloadResult;
 import org.bimserver.shared.SLongAction;
 import org.bimserver.shared.SRevisionSummary;
 import org.bimserver.shared.SUserSession;
@@ -214,7 +216,8 @@ public class Service implements ServiceInterface {
 	private Token token;
 
 	public Service(BimDatabase bimDatabase, EmfSerializerFactory emfSerializerFactory, SchemaDefinition schema,
-			LongActionManager longActionManager, AccessMethod accessMethod, IfcEngineFactory ifcEngineFactory, ServiceFactory serviceFactory, FieldIgnoreMap fieldIgnoreMap) {
+			LongActionManager longActionManager, AccessMethod accessMethod, IfcEngineFactory ifcEngineFactory,
+			ServiceFactory serviceFactory, FieldIgnoreMap fieldIgnoreMap) {
 		this.bimDatabase = bimDatabase;
 		this.emfSerializerFactory = emfSerializerFactory;
 		this.schema = schema;
@@ -782,22 +785,39 @@ public class Service implements ServiceInterface {
 		}
 	}
 
-	public SCheckoutResult download(long roid, ResultType resultType) throws UserException, ServerException {
+	public String download(long roid, ResultType resultType, boolean sync) throws UserException, ServerException {
 		requireAuthentication();
-		BimDatabaseSession session = bimDatabase.createReadOnlySession();
+		final LongDownloadAction longDownloadAction = new LongDownloadAction(roid, currentUoid, longActionManager, bimDatabase,
+				accessMethod, emfSerializerFactory, resultType);
 		try {
-			BimDatabaseAction<IfcModel> action = new DownloadDatabaseAction(session, accessMethod, roid, currentUoid);
-			IfcModel ifcModel = session.executeAction(action, DEADLOCK_RETRIES);
-			Revision revision = session.get(StorePackage.eINSTANCE.getRevision(), roid, false);
-			User user = session.get(StorePackage.eINSTANCE.getUser(), currentUoid, false);
-			SCheckoutResult checkoutResult = convertModelToCheckoutResult(revision.getProject(), user, ifcModel, resultType);
-			return checkoutResult;
-		} catch (Exception e) {
+			longActionManager.start(longDownloadAction);
+		} catch (CannotBeScheduledException e) {
 			handleException(e);
 			return null;
-		} finally {
-			session.close();
 		}
+
+		if (sync) {
+			while (longDownloadAction.isRunning()) {
+				try {
+					Thread.sleep(1000); // Sleep for 1 sec
+				} catch (InterruptedException e) {
+					handleException(e);
+					return null;
+				}
+			}
+
+			return longDownloadAction.getIdentification();
+		} else {
+			// TODO add the asynchronous part.
+
+			return longDownloadAction.getIdentification();
+		}
+	}
+
+	@Override
+	public SDownloadResult getDownloadData(String longActionID) throws UserException, ServerException {
+		LongDownloadAction longAction = (LongDownloadAction) longActionManager.getLongAction(longActionID);
+		return longAction.getCheckoutResult();
 	}
 
 	@Override
@@ -1121,7 +1141,8 @@ public class Service implements ServiceInterface {
 		requireAuthentication();
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
-			BimDatabaseAction<CompareResult> action = new CompareDatabaseAction(session, accessMethod, currentUoid, roid1, roid2, sCompareType);
+			BimDatabaseAction<CompareResult> action = new CompareDatabaseAction(session, accessMethod, currentUoid, roid1, roid2,
+					sCompareType);
 			return convert(session.executeAndCommitAction(action, DEADLOCK_RETRIES), SCompareResult.class, session);
 		} catch (Exception e) {
 			handleException(e);

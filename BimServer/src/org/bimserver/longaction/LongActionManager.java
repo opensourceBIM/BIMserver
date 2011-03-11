@@ -12,13 +12,17 @@ import org.bimserver.shared.SLongAction;
 
 public class LongActionManager {
 
-//	private static final Logger LOGGER = LoggerFactory.getLogger(LongActionManager.class);
+	// private static final Logger LOGGER =
+	// LoggerFactory.getLogger(LongActionManager.class);
 	private final Map<LongAction, Thread> threads = new HashMap<LongAction, Thread>();
+	private final Map<String, LongAction> actions = new HashMap<String, LongAction>();
 	private volatile boolean running = true;
 
 	public synchronized void start(final LongAction longAction) throws CannotBeScheduledException {
 		if (running) {
-			Thread thread = new Thread(new Runnable(){
+			actions.put(longAction.getIdentification(), longAction);
+
+			Thread thread = new Thread(new Runnable() {
 				@Override
 				public void run() {
 					longAction.execute();
@@ -39,7 +43,7 @@ public class LongActionManager {
 	public synchronized void shutdown() {
 		running = false;
 	}
-	
+
 	public synchronized List<SLongAction> getActiveLongActions() {
 		List<SLongAction> result = new ArrayList<SLongAction>();
 		for (LongAction longAction : threads.keySet()) {
@@ -51,7 +55,7 @@ public class LongActionManager {
 			sLongAction.setName(longAction.getUser().getName());
 			result.add(sLongAction);
 		}
-		Collections.sort(result, new Comparator<SLongAction>(){
+		Collections.sort(result, new Comparator<SLongAction>() {
 			@Override
 			public int compare(SLongAction o1, SLongAction o2) {
 				return o1.getStart().compareTo(o2.getStart());
@@ -59,7 +63,11 @@ public class LongActionManager {
 		});
 		return result;
 	}
-	
+
+	public synchronized LongAction getLongAction(String longActionID) {
+		return actions.get(longActionID);
+	}
+
 	/*
 	 * Untested method
 	 */
@@ -70,5 +78,13 @@ public class LongActionManager {
 			LongAction longAction = iterator.next();
 			longAction.waitForCompletion();
 		}
+	}
+
+	public boolean isRunning(LongDownloadAction longDownloadAction) {
+		for (LongAction longAction : threads.keySet()) {
+			if (longAction.equals(longDownloadAction))
+				return true;
+		}
+		return false;
 	}
 }
