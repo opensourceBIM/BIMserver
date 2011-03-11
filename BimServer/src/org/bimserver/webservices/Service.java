@@ -808,8 +808,6 @@ public class Service implements ServiceInterface {
 
 			return longDownloadAction.getIdentification();
 		} else {
-			// TODO add the asynchronous part.
-
 			return longDownloadAction.getIdentification();
 		}
 	}
@@ -818,6 +816,19 @@ public class Service implements ServiceInterface {
 	public SDownloadResult getDownloadData(String longActionID) throws UserException, ServerException {
 		LongDownloadAction longAction = (LongDownloadAction) longActionManager.getLongAction(longActionID);
 		return longAction.getCheckoutResult();
+	}
+
+	@Override
+	public String getDownloadState(String longActionID) throws UserException, ServerException {
+		LongDownloadAction longAction = (LongDownloadAction) longActionManager.getLongAction(longActionID);
+		if (longAction != null) {
+			if (longActionManager.isRunning(longAction)) {
+				return "running";
+			} else {
+				return "ready";
+			}
+		}
+		return "Download action is expired.";
 	}
 
 	@Override
