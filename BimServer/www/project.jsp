@@ -22,8 +22,7 @@
 <%@page import="org.bimserver.interfaces.objects.SUserType"%>
 <%@page import="org.bimserver.interfaces.objects.SObjectState"%>
 <%@page import="org.bimserver.interfaces.objects.SSIPrefix"%>
-<%@page
-	import="org.bimserver.interfaces.objects.SClashDetectionSettings"%>
+<%@page	import="org.bimserver.interfaces.objects.SClashDetectionSettings"%>
 <%@page import="java.util.TreeSet"%>
 <%@page import="java.util.Set"%>
 <%@page import="org.bimserver.shared.SProjectNameComparator"%>
@@ -243,7 +242,7 @@ to go to the latest revision<br />
 <div class="tabber" id="downloadtabber">
 <div class="tabbertab" id="detailstab" title="Simple Download">
 <form action="<%=request.getContextPath()%>/download" method="get">
-Download: <input type="hidden" name="roid"
+Download: <input type="hidden" id="simpleDownloadRoid" name="roid"
 	value="<%=project.getLastRevisionId()%>" /> <select name="resultType"
 	id="detailsdownloadcheckoutselect">
 	<%
@@ -256,7 +255,7 @@ Download: <input type="hidden" name="roid"
 	%>
 </select> <label for="simplezip_<%=lastRevision.getId()%>">Zip </label><input
 	type="checkbox" name="zip" id="simplezip_<%=lastRevision.getId()%>" />
-<input name="download" type="submit" value="Download"><input
+<input id="simpleDownloadButton" name="download" type="button" value="Download"><input
 	type="hidden" name="async" value="true" /> <%
  	if (userHasCheckinRights) {
  %> <input name="checkout" type="submit" value="Checkout"
@@ -264,6 +263,7 @@ Download: <input type="hidden" name="roid"
  	}
  %>
 </form>
+<div id="simpleDownloadResult"></div>
 </div>
 <div class="tabbertab" id="" title="Advanced Download"><script>
 var projects = new Object();
@@ -817,6 +817,10 @@ open a specific revision to query other revisions<br />
  	if (lastRevision != null) {
  %> <script>
 	$(document).ready(function(){
+		$("#simpleDownloadButton").click(function(){
+			$("#simpleDownloadResult").load("initiatedownload.jsp?roid=" + $("#simpleDownloadRoid").val());
+		});
+		
 		$("#compareajaxloader").hide();
 		$("#browserajaxloader").hide();
 		<%String clashesUrl = "clashes.jsp?poid=" + poid;
@@ -859,8 +863,7 @@ open a specific revision to query other revisions<br />
 		$("#detailsdownloadcheckoutselect").change(checkDetailsCheckoutButton);
 		checkDetailsCheckoutButton();
 
-		c
-	heckRevisionsCheckoutButton = function(event) {
+		checkRevisionsCheckoutButton = function(event) {
 							$(event.target)
 									.parent()
 									.children(".revisionscheckoutbutton")
@@ -902,8 +905,7 @@ open a specific revision to query other revisions<br />
 	function setOffSubs(baseName, pid) {
 		var project = projects["project" + pid];
 		for ( var i in project.subprojects) {
-			$("#" + baseName + "_" + project.subproj
-ects[i].id).val("[off]");
+			$("#" + baseName + "_" + project.subprojects[i].id).val("[off]");
 			setOffSubs(baseName, project.subprojects[i].id);
 		}
 	}

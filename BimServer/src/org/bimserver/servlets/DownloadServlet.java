@@ -72,7 +72,9 @@ public class DownloadServlet extends HttpServlet {
 				resultType = ResultType.valueOf(request.getParameter("resultType"));
 			}
 			SDownloadResult checkoutResult = null;
-			if (request.getParameter("multiple") != null) {
+			if (request.getParameter("longActionId") != null) {
+				checkoutResult = loginManager.getService().getDownloadData(request.getParameter("longActionId"));
+			} else if (request.getParameter("multiple") != null) {
 				Set<Long> roids = new HashSet<Long>();
 				for (Object key : request.getParameterMap().keySet()) {
 					String keyString = (String) key;
@@ -149,16 +151,13 @@ public class DownloadServlet extends HttpServlet {
 						checkoutResult = loginManager.getService().downloadByGuids(roids, guids, resultType);
 					} else if (request.getParameter("multiple") != null) {
 					} else if (request.getParameter("async") != null) {
-						String actionID = loginManager.getService().download(roid, resultType, true);
+						String actionID = loginManager.getService().download(roid, resultType, false);
 						DownloadState dls = new DownloadState();
 						dls.setState(loginManager.getService().getDownloadState(actionID));
 						String contextPath = getServletContext().getContextPath();
 						request.getSession(true).setAttribute("downloadStateBean", dls);
 						getServletContext().getRequestDispatcher(contextPath + "/downloadprogress.jsp").forward(request, response);
 						return;
-					} else {
-						String actionID = loginManager.getService().download(roid, resultType, true);
-						checkoutResult = loginManager.getService().getDownloadData(actionID);
 					}
 				}
 			}

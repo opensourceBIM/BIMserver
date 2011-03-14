@@ -37,7 +37,7 @@ public interface BimDatabaseSession extends OidProvider {
 
 	void store(Collection<? extends IdEObject> values) throws BimDeadlockException, BimDatabaseException;
 
-	IfcModel getMap(int pid, int rid, boolean deep) throws BimDeadlockException, BimDatabaseException;
+	void getMap(IfcModel ifcModel, int pid, int rid, boolean deep) throws BimDeadlockException, BimDatabaseException;
 
 	EClass getEClassForName(String className);
 
