@@ -8,23 +8,22 @@
 		<jsp:param name="longActionId" value="<%=longActionId %>"/>
 	</jsp:include>
 <script>
+var downloadUpdateFunctionHandle;
+
+var downloadUpdateFunction = function() {
+	$.ajax({
+		url: "downloadprogress.jsp",
+		cache: false,
+		context: document.body,
+		success: 
+			function(data){
+				$("#downloadStateDiv").html(data);
+			},
+		data: {longActionId: '<%=longActionId%>'}
+	});
+};
+
 $(document).ready(function(){
-	var updateFunction = function() {
-		$.ajax({
-			url: "/progress",
-			cache: false,
-			context: document.body,
-			success: 
-				function(data){
-					var state = data.state;
-					$("#downloadStateDiv").html(state);
-					if (state == "ready") {
-						$("#downloadStateDiv").append("<a href=\"/download?longActionId=<%=longActionId%>\">Download</a>");
-					}
-				},
-			data: {laid: '<%=longActionId%>'}
-		});
-	};
-	window.setInterval(updateFunction, 1000);
+	downloadUpdateFunctionHandle = window.setInterval(downloadUpdateFunction, 1000);
 });
 </script>	

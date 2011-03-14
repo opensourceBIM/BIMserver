@@ -97,7 +97,7 @@ public class IfcModel {
 				indexGuid(eObject);
 			}
 		}
-		if (changeListeners.isEmpty()) {
+		if (!changeListeners.isEmpty()) {
 			for (IfcModelChangeListener ifcModelChangeListener : changeListeners) {
 				ifcModelChangeListener.objectAdded();
 			}
