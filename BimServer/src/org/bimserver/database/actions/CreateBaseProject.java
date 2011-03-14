@@ -6,9 +6,9 @@ import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
 import org.bimserver.database.Database;
-import org.bimserver.database.log.AccessMethod;
-import org.bimserver.database.store.Project;
-import org.bimserver.database.store.StoreFactory;
+import org.bimserver.models.log.AccessMethod;
+import org.bimserver.models.store.Project;
+import org.bimserver.models.store.StoreFactory;
 import org.bimserver.shared.UserException;
 
 public class CreateBaseProject extends BimDatabaseAction<Project>{

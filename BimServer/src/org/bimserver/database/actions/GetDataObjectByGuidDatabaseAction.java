@@ -4,9 +4,9 @@ import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
 import org.bimserver.database.ObjectIdentifier;
-import org.bimserver.database.log.AccessMethod;
-import org.bimserver.database.store.ConcreteRevision;
-import org.bimserver.database.store.Revision;
+import org.bimserver.models.log.AccessMethod;
+import org.bimserver.models.store.ConcreteRevision;
+import org.bimserver.models.store.Revision;
 import org.bimserver.shared.SDataObject;
 import org.bimserver.shared.UserException;
 

@@ -5,10 +5,10 @@ import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.log.AccessMethod;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.file.compare.Compare;
 import org.bimserver.ifc.file.compare.CompareResult;
+import org.bimserver.models.log.AccessMethod;
 import org.bimserver.shared.UserException;
 import org.bimserver.shared.SCompareResult.SCompareType;
 

@@ -40,7 +40,7 @@ import org.bimserver.ifc.FieldDefinition;
 import org.bimserver.ifc.FieldIgnoreMap;
 import org.bimserver.ifc.PackageDefinition;
 import org.bimserver.ifc.SchemaLoader;
-import org.bimserver.ifc.emf.Ifc2x3.Ifc2x3Package;
+import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.eclipse.emf.ecore.EPackage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

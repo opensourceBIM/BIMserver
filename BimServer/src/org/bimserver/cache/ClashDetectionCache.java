@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import org.bimserver.database.store.ClashDetectionSettings;
-import org.bimserver.database.store.EidClash;
-import org.bimserver.database.store.Revision;
+import org.bimserver.models.store.ClashDetectionSettings;
+import org.bimserver.models.store.EidClash;
+import org.bimserver.models.store.Revision;
 
 public class ClashDetectionCache extends GenericCache<ClashDetectionCache.ClashDetectionSettingsKey, ClashDetectionCache.ClashDetectionValue> {
 	private static final int MAX_UNACCESSED_TIME_MILLIS = 1000 * 60 * 30; // 30 minutes

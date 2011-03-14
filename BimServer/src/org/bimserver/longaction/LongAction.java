@@ -2,7 +2,7 @@ package org.bimserver.longaction;
 
 import java.util.Date;
 
-import org.bimserver.database.store.User;
+import org.bimserver.models.store.User;
 
 public abstract class LongAction {
 

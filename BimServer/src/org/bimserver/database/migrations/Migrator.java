@@ -5,12 +5,12 @@ import org.bimserver.database.Database;
 import org.bimserver.database.DatabaseSession;
 
 public class Migrator {
-	public Schema migrateSchemaToLatest() {
+	public Schema migrateSchemaTo(int targetVersion) {
 		Schema schema = new Schema();
 		boolean moreUpgrades = true;
 		int i = 0;
-		while (moreUpgrades) {
-			String name = "org.bimserver.database.migrations.Step" + StringUtils.leftPad("" + i, 4, "0");
+		while (moreUpgrades && i <= targetVersion) {
+			String name = "org.bimserver.database.migrations.steps.Step" + StringUtils.leftPad("" + i, 4, "0");
 			try {
 				Class<Migration> migrationClass = (Class<Migration>) Class.forName(name);
 				Migration migration = migrationClass.newInstance();
@@ -26,6 +26,25 @@ public class Migrator {
 		}
 		return schema;
 	}
+
+	public int getLatestVersion() {
+		boolean more = true;
+		int i = 0;
+		while (more) {
+			String name = "org.bimserver.database.migrations.steps.Step" + StringUtils.leftPad("" + i, 4, "0");
+			try {
+				Class<Migration> migrationClass = (Class<Migration>) Class.forName(name);
+				i++;
+			} catch (ClassNotFoundException e) {
+				more = false;
+			}
+		}
+		return i;
+	}
+	
+	public Schema migrateSchemaToLatest() {
+		return migrateSchemaTo(getLatestVersion());
+	}
 	
 	public Schema migrate(Database database, DatabaseSession databaseSession) throws MigrationException {
 		int applicationSchemaVersion = database.getApplicationSchemaVersion();
@@ -38,7 +57,7 @@ public class Migrator {
 	private Schema upgrade(Database database, DatabaseSession databaseSession, int applicationSchemaVersion, int databaseSchemaVersion) throws MigrationException {
 		Schema schema = new Schema();
 		for (int i=0; i<=applicationSchemaVersion; i++) {
-			String name = "org.bimserver.database.migrations.Step" + StringUtils.leftPad("" + i, 4, "0");
+			String name = "org.bimserver.database.migrations.steps.Step" + StringUtils.leftPad("" + i, 4, "0");
 			try {
 				Class<Migration> migrationClass = (Class<Migration>) Class.forName(name);
 				Migration migration = migrationClass.newInstance();

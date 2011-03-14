@@ -8,14 +8,14 @@ import java.util.zip.ZipOutputStream;
 
 import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
 
-import org.bimserver.database.store.Project;
-import org.bimserver.database.store.User;
 import org.bimserver.ifc.BimModelSerializer;
 import org.bimserver.ifc.FieldIgnoreMap;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.PackageDefinition;
 import org.bimserver.ifc.SerializerException;
 import org.bimserver.ifcengine.IfcEngineFactory;
+import org.bimserver.models.store.Project;
+import org.bimserver.models.store.User;
 import org.bimserver.shared.ResultType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

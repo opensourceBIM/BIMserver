@@ -8,10 +8,10 @@ import java.util.Set;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.TracingGarbageCollector;
-import org.bimserver.ifc.emf.Ifc2x3.Ifc2x3Factory;
-import org.bimserver.ifc.emf.Ifc2x3.IfcGloballyUniqueId;
-import org.bimserver.ifc.emf.Ifc2x3.IfcProject;
-import org.bimserver.ifc.emf.Ifc2x3.IfcRoot;
+import org.bimserver.models.ifc2x3.Ifc2x3Factory;
+import org.bimserver.models.ifc2x3.IfcGloballyUniqueId;
+import org.bimserver.models.ifc2x3.IfcProject;
+import org.bimserver.models.ifc2x3.IfcRoot;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EReference;
 

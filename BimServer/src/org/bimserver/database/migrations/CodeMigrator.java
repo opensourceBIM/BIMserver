@@ -20,7 +20,7 @@ public class CodeMigrator {
 
 	private void start() {
 		Migrator migrator = new Migrator();
-		Schema schema = migrator.migrateSchemaToLatest();
+		Schema schema = migrator.migrateSchemaTo(2);
 		schema.writeToEcore(new File("models/models.ecore"));
 	}
 }

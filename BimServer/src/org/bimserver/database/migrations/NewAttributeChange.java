@@ -9,7 +9,6 @@ import org.bimserver.database.Database;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Record;
 import org.bimserver.database.RecordIterator;
-import org.bimserver.ifc.emf.Ifc2x3.Ifc2x3Package;
 import org.bimserver.utils.GrowingByteBuffer;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -59,7 +58,7 @@ public class NewAttributeChange implements Change {
 								growingByteBuffer.put((byte) 0);
 							} else if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEDate()) {
 								growingByteBuffer.putLong(-1L);
-							} else if (eAttribute.getEType() == Ifc2x3Package.eINSTANCE.getTristate()) {
+							} else if (eAttribute.getEType().getName().equals("Tristate")) {
 								growingByteBuffer.putInt(0);
 							} else if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEByteArray()) {
 								growingByteBuffer.putInt(0);

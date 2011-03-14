@@ -32,10 +32,10 @@ import java.util.Set;
 import java.util.TreeMap;
 
 import org.bimserver.emf.IdEObject;
-import org.bimserver.ifc.emf.Ifc2x3.IfcGloballyUniqueId;
-import org.bimserver.ifc.emf.Ifc2x3.IfcProject;
-import org.bimserver.ifc.emf.Ifc2x3.IfcRoot;
-import org.bimserver.ifc.emf.Ifc2x3.WrappedValue;
+import org.bimserver.models.ifc2x3.IfcGloballyUniqueId;
+import org.bimserver.models.ifc2x3.IfcProject;
+import org.bimserver.models.ifc2x3.IfcRoot;
+import org.bimserver.models.ifc2x3.WrappedValue;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;

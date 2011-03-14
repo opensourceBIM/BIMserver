@@ -3,9 +3,9 @@ package org.bimserver.ifc;
 import java.util.Map;
 
 import org.bimserver.emf.IdEObject;
-import org.bimserver.ifc.emf.Ifc2x3.Ifc2x3Factory;
-import org.bimserver.ifc.emf.Ifc2x3.IfcGloballyUniqueId;
-import org.bimserver.ifc.emf.Ifc2x3.WrappedValue;
+import org.bimserver.models.ifc2x3.Ifc2x3Factory;
+import org.bimserver.models.ifc2x3.IfcGloballyUniqueId;
+import org.bimserver.models.ifc2x3.WrappedValue;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
