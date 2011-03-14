@@ -2,6 +2,8 @@ package org.bimserver.database.migrations;
 
 import java.io.File;
 
+import org.bimserver.database.migrations.steps.Step0000;
+
 public class Test {
 	public static void main(String[] args) {
 		new Test().start();

@@ -86,7 +86,7 @@ public class Database implements BimDatabase {
 	/*  This variable should be _incremented_ with every (released) database-schema change
 	 *  Do not change this variable when nothing has changed in the schema!
 	 */
-	public static final int APPLICATION_SCHEMA_VERSION = 2;
+	public static final int APPLICATION_SCHEMA_VERSION = 3;
 	private int databaseSchemaVersion;
 	private short tableId;
 
@@ -306,7 +306,7 @@ public class Database implements BimDatabase {
 		return null;
 	}
 
-	public void initInternalStructure(DatabaseSession databaseSession) throws BimDeadlockException {
+	public void initInternalStructure(DatabaseSession databaseSession) throws BimDeadlockException, BimDatabaseException {
 		RecordIterator recordIterator = columnDatabase.getRecordIterator(CLASS_LOOKUP_TABLE, databaseSession);
 		try {
 			Record record = recordIterator.next();

@@ -15,33 +15,6 @@ public class SDownload extends SLogAction
 	public void setOid(long oid) {
 		this.oid = oid;
 	}
-	private long revisionId;
-	private java.lang.String type;
-	private boolean zipped;
-	public long getRevisionId() {
-		return revisionId;
-	}
-
-	public void setRevisionId(long revisionId) {
-		this.revisionId = revisionId;
-	}
-	
-
-	public java.lang.String getType() {
-		return type;
-	}
-
-	public void setType(java.lang.String type) {
-		this.type = type;
-	}
-
-	public boolean isZipped() {
-		return zipped;
-	}
-
-	public void setZipped(boolean zipped) {
-		this.zipped = zipped;
-	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;

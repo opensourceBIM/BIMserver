@@ -31,7 +31,11 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.database.store.User#getLastSeen <em>Last Seen</em>}</li>
  *   <li>{@link org.bimserver.database.store.User#getValidationToken <em>Validation Token</em>}</li>
  *   <li>{@link org.bimserver.database.store.User#getValidationTokenCreated <em>Validation Token Created</em>}</li>
- *   <li>{@link org.bimserver.database.store.User#getTestje <em>Testje</em>}</li>
+ *   <li>{@link org.bimserver.database.store.User#getAttr1 <em>Attr1</em>}</li>
+ *   <li>{@link org.bimserver.database.store.User#getAttr2 <em>Attr2</em>}</li>
+ *   <li>{@link org.bimserver.database.store.User#getAttr3 <em>Attr3</em>}</li>
+ *   <li>{@link org.bimserver.database.store.User#getRef1 <em>Ref1</em>}</li>
+ *   <li>{@link org.bimserver.database.store.User#getRef2 <em>Ref2</em>}</li>
  * </ul>
  * </p>
  *
@@ -342,29 +346,116 @@ public interface User extends IdEObject {
 	void setValidationTokenCreated(Date value);
 
 	/**
-	 * Returns the value of the '<em><b>Testje</b></em>' attribute.
+	 * Returns the value of the '<em><b>Attr1</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Testje</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Attr1</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Testje</em>' attribute.
-	 * @see #setTestje(String)
-	 * @see org.bimserver.database.store.StorePackage#getUser_Testje()
+	 * @return the value of the '<em>Attr1</em>' attribute.
+	 * @see #setAttr1(String)
+	 * @see org.bimserver.database.store.StorePackage#getUser_Attr1()
 	 * @model
 	 * @generated
 	 */
-	String getTestje();
+	String getAttr1();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.database.store.User#getTestje <em>Testje</em>}' attribute.
+	 * Sets the value of the '{@link org.bimserver.database.store.User#getAttr1 <em>Attr1</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Testje</em>' attribute.
-	 * @see #getTestje()
+	 * @param value the new value of the '<em>Attr1</em>' attribute.
+	 * @see #getAttr1()
 	 * @generated
 	 */
-	void setTestje(String value);
+	void setAttr1(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Attr2</b></em>' attribute list.
+	 * The list contents are of type {@link java.lang.String}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Attr2</em>' attribute list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Attr2</em>' attribute list.
+	 * @see org.bimserver.database.store.StorePackage#getUser_Attr2()
+	 * @model
+	 * @generated
+	 */
+	EList<String> getAttr2();
+
+	/**
+	 * Returns the value of the '<em><b>Attr3</b></em>' attribute.
+	 * The literals are from the enumeration {@link org.bimserver.database.store.ObjectState}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Attr3</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Attr3</em>' attribute.
+	 * @see org.bimserver.database.store.ObjectState
+	 * @see #setAttr3(ObjectState)
+	 * @see org.bimserver.database.store.StorePackage#getUser_Attr3()
+	 * @model
+	 * @generated
+	 */
+	ObjectState getAttr3();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.database.store.User#getAttr3 <em>Attr3</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Attr3</em>' attribute.
+	 * @see org.bimserver.database.store.ObjectState
+	 * @see #getAttr3()
+	 * @generated
+	 */
+	void setAttr3(ObjectState value);
+
+	/**
+	 * Returns the value of the '<em><b>Ref1</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Ref1</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Ref1</em>' reference.
+	 * @see #setRef1(Project)
+	 * @see org.bimserver.database.store.StorePackage#getUser_Ref1()
+	 * @model
+	 * @generated
+	 */
+	Project getRef1();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.database.store.User#getRef1 <em>Ref1</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Ref1</em>' reference.
+	 * @see #getRef1()
+	 * @generated
+	 */
+	void setRef1(Project value);
+
+	/**
+	 * Returns the value of the '<em><b>Ref2</b></em>' reference list.
+	 * The list contents are of type {@link org.bimserver.database.store.Project}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Ref2</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Ref2</em>' reference list.
+	 * @see org.bimserver.database.store.StorePackage#getUser_Ref2()
+	 * @model
+	 * @generated
+	 */
+	EList<Project> getRef2();
 
 } // User

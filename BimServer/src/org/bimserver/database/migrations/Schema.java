@@ -4,10 +4,12 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
 
+import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDeadlockException;
 import org.bimserver.database.Database;
 import org.bimserver.database.DatabaseSession;
@@ -32,12 +34,54 @@ import org.slf4j.LoggerFactory;
 public class Schema {
 	private static final Logger LOGGER = LoggerFactory.getLogger(Schema.class);
 	private final Map<String, EPackage> packages = new HashMap<String, EPackage>();
+	private final Map<EClass, Set<EClass>> directSubClasses = new HashMap<EClass, Set<EClass>>();
+	private final Map<EClass, Set<EClass>> indirectSubClasses = new HashMap<EClass, Set<EClass>>();
 	
 	private final Set<Change> changes = new LinkedHashSet<Change>();
 	
 	public static enum Multiplicity {
 		SINGLE,
 		MANY
+	}
+
+	private void initSubClasses() {
+		for (EPackage ePackage : packages.values()) {
+			for (EClassifier eClassifier : ePackage.getEClassifiers()) {
+				if (eClassifier instanceof EClass) {
+					EClass eClass = (EClass) eClassifier;
+					initDirectSubClasses(eClass);
+					initIndirectSubClasses(eClass);
+				}
+			}
+		}
+	}
+
+	private void initDirectSubClasses(EClass eClass) {
+		HashSet<EClass> set = new HashSet<EClass>();
+		directSubClasses.put(eClass, set);
+		set.add(eClass);
+		for (EClassifier eClassifier : eClass.getEPackage().getEClassifiers()) {
+			if (eClassifier instanceof EClass) {
+				EClass e = (EClass) eClassifier;
+				if (e.getESuperTypes().contains(eClass)) {
+					set.add(e);
+				}
+			}
+		}
+	}
+
+	private void initIndirectSubClasses(EClass eClass) {
+		HashSet<EClass> set = new HashSet<EClass>();
+		indirectSubClasses.put(eClass, set);
+		set.add(eClass);
+		for (EClassifier eClassifier : eClass.getEPackage().getEClassifiers()) {
+			if (eClassifier instanceof EClass) {
+				EClass e = (EClass) eClassifier;
+				if (eClass.isSuperTypeOf(e)) {
+					set.add(e);
+				}
+			}
+		}
 	}
 	
 	public EPackage createEPackage(String name) {
@@ -100,7 +144,7 @@ public class Schema {
 		if (multiplicity == Multiplicity.MANY) {
 			eAttribute.setUpperBound(-1);
 		}
-		changes.add(new NewAttributeChange(eAttribute));
+		changes.add(new NewAttributeChange(this, eAttribute));
 		eAttribute.setEType(eDataType);
 		eClass.getEStructuralFeatures().add(eAttribute);
 		return eAttribute;
@@ -133,13 +177,20 @@ public class Schema {
 
 	public void upgradeDatabase(Database database, int version, DatabaseSession databaseSession) {
 		LOGGER.info("Upgrading database to version " + version);
+		initSubClasses();
 		for (Change change : changes) {
-			change.change(database, databaseSession);
+			try {
+				change.change(database, databaseSession);
+			} catch (NotImplementedException e) {
+				LOGGER.error("", e);
+			} catch (BimDatabaseException e) {
+				LOGGER.error("", e);
+			}
 		}
 		try {
 			database.setDatabaseVersion(version, databaseSession);
 		} catch (BimDeadlockException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 	}
 
@@ -170,6 +221,7 @@ public class Schema {
 	}
 
 	private void addEPackage(EPackage ePackage) {
+		packages.put(ePackage.getName(), ePackage);
 		changes.add(new NewPackageChange(ePackage));
 		for (EClassifier eClassifier : ePackage.getEClassifiers()) {
 			if (eClassifier instanceof EClass) {
@@ -181,5 +233,13 @@ public class Schema {
 
 	private void addEClass(EClass eClass) {
 		changes.add(new NewClassChange(eClass));
+	}
+
+	public Set<EClass> getSubClasses(EClass eClass) {
+		return indirectSubClasses.get(eClass);
+	}
+
+	public EDataType getEEnum(String packageName, String enumName) {
+		return (EEnum) packages.get(packageName).getEClassifier(enumName);
 	}
 }

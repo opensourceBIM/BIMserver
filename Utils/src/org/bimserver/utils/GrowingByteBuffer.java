@@ -5,6 +5,19 @@ import java.nio.ByteBuffer;
 public class GrowingByteBuffer {
 	private ByteBuffer byteBuffer = ByteBuffer.allocate(0);
 
+	public GrowingByteBuffer() {
+	}
+	
+	public GrowingByteBuffer(ByteBuffer buffer) {
+		buffer.position(0);
+		put(buffer);
+	}
+	
+	private void put(ByteBuffer buffer) {
+		ensureCapacity(buffer.limit());
+		byteBuffer.put(buffer);
+	}
+
 	public void putInt(int value) {
 		ensureCapacity(4);
 		byteBuffer.putInt(value);

@@ -30,7 +30,7 @@ public interface ColumnDatabase {
 
 	void store(String tableName, byte[] key, byte[] value, DatabaseSession databaseSession) throws BimDeadlockException, BimDatabaseException;
 
-	RecordIterator getRecordIterator(String tableName, DatabaseSession databaseSession) throws BimDeadlockException;
+	RecordIterator getRecordIterator(String tableName, DatabaseSession databaseSession) throws BimDeadlockException, BimDatabaseException;
 
 	SearchingRecordIterator getRecordIterator(String tableName, byte[] mustStartWith, byte[] startSearchingAt, DatabaseSession databaseSession)
 			throws BimDeadlockException, BimDatabaseException;
