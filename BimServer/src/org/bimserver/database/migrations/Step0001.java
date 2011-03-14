@@ -6,6 +6,9 @@ import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcorePackage;
 
+/*
+ * This step creates the log model
+ */
 public class Step0001 extends Migration {
 
 	private EPackage logPackage;

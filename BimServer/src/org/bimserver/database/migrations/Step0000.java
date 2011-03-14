@@ -7,6 +7,9 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
 
+/*
+ * This step creates the store model
+ */
 public class Step0000 extends Migration {
 
 	private EPackage storePackage;
@@ -41,7 +44,6 @@ public class Step0000 extends Migration {
 	private EReference revisionProject;
 	private EReference checkoutRevision;
 	private EReference checkoutProject;
-	private EReference checkoutCheckin;
 	private EReference clashDetectionSettingsProjects;
 	private EReference geoTagProjects;
 	private Schema schema;
@@ -222,7 +224,7 @@ public class Step0000 extends Migration {
 		checkoutRevision = schema.createEReference(checkoutClass, "revision", revisionClass, Multiplicity.SINGLE);
 		checkoutProject = schema.createEReference(checkoutClass, "project", projectClass, Multiplicity.SINGLE);
 		schema.createEAttribute(checkoutClass, "date", ecorePackage.getEDate(), Multiplicity.SINGLE);
-		checkoutCheckin = schema.createEReference(checkoutClass, "checkin", revisionClass, Multiplicity.SINGLE);
+		schema.createEReference(checkoutClass, "checkin", revisionClass, Multiplicity.SINGLE);
 		schema.createEAttribute(checkoutClass, "active", ecorePackage.getEBoolean(), Multiplicity.SINGLE);
 	}
 
