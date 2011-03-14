@@ -7,7 +7,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
-import org.bimserver.database.store.EidClash;
 import org.bimserver.ifcengine.FailSafeIfcEngine;
 import org.bimserver.ifcengine.Geometry;
 import org.bimserver.ifcengine.IfcEngineException;
@@ -15,6 +14,7 @@ import org.bimserver.ifcengine.IfcEngineModel;
 import org.bimserver.ifcengine.Instance;
 import org.bimserver.ifcengine.SurfaceProperties;
 import org.bimserver.ifcengine.jvm.IfcEngine.InstanceVisualisationProperties;
+import org.bimserver.models.store.EidClash;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
 import org.bimserver.shared.ResourceFetcher;
 

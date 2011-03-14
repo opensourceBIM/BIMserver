@@ -25,14 +25,14 @@ import java.util.List;
 
 import org.bimserver.ifc.SchemaLoader;
 import org.bimserver.ifc.database.IfcDatabase;
-import org.bimserver.ifc.emf.Ifc2x3.IfcDistributionPort;
-import org.bimserver.ifc.emf.Ifc2x3.IfcElement;
-import org.bimserver.ifc.emf.Ifc2x3.IfcFlowFitting;
-import org.bimserver.ifc.emf.Ifc2x3.IfcFlowSegment;
-import org.bimserver.ifc.emf.Ifc2x3.IfcFlowTerminal;
-import org.bimserver.ifc.emf.Ifc2x3.IfcPort;
-import org.bimserver.ifc.emf.Ifc2x3.IfcRelConnectsPortToElement;
 import org.bimserver.ifc.file.reader.IfcStepDeserializer;
+import org.bimserver.models.ifc2x3.IfcDistributionPort;
+import org.bimserver.models.ifc2x3.IfcElement;
+import org.bimserver.models.ifc2x3.IfcFlowFitting;
+import org.bimserver.models.ifc2x3.IfcFlowSegment;
+import org.bimserver.models.ifc2x3.IfcFlowTerminal;
+import org.bimserver.models.ifc2x3.IfcPort;
+import org.bimserver.models.ifc2x3.IfcRelConnectsPortToElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

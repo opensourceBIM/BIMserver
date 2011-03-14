@@ -9,12 +9,12 @@ import java.nio.ByteBuffer;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.bimserver.database.store.EidClash;
-import org.bimserver.database.store.GuidClash;
-import org.bimserver.database.store.StoreFactory;
 import org.bimserver.ifcengine.IfcEngineInterface;
 import org.bimserver.ifcengine.SdaiTypes;
 import org.bimserver.ifcengine.IfcEngineInterface.StreamCallback;
+import org.bimserver.models.store.EidClash;
+import org.bimserver.models.store.GuidClash;
+import org.bimserver.models.store.StoreFactory;
 
 import com.sun.jna.Memory;
 import com.sun.jna.Pointer;

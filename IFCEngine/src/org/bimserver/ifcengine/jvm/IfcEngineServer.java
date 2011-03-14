@@ -11,13 +11,13 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-import org.bimserver.database.store.EidClash;
-import org.bimserver.database.store.GuidClash;
 import org.bimserver.ifcengine.Command;
 import org.bimserver.ifcengine.IfcEngineException;
 import org.bimserver.ifcengine.SdaiTypes;
 import org.bimserver.ifcengine.jvm.IfcEngine.InstanceVisualisationProperties;
 import org.bimserver.ifcengine.jvm.IfcEngine.SurfaceProperties;
+import org.bimserver.models.store.EidClash;
+import org.bimserver.models.store.GuidClash;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

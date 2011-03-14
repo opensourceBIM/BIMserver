@@ -5,9 +5,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.bimserver.database.store.EidClash;
-import org.bimserver.database.store.GuidClash;
-import org.bimserver.database.store.StoreFactory;
+import org.bimserver.models.store.EidClash;
+import org.bimserver.models.store.GuidClash;
+import org.bimserver.models.store.StoreFactory;
 
 public class IfcEngineModel {
 	private final int modelId;
