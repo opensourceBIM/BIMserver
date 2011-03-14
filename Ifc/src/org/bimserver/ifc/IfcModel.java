@@ -25,6 +25,7 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -51,6 +52,7 @@ public class IfcModel {
 	private int revisionNr;
 	private String authorizedUser;
 	private Date date;
+	private final Set<IfcModelChangeListener> changeListeners = new LinkedHashSet<IfcModelChangeListener>();
 
 	public IfcModel(BiMap<Long, IdEObject> objects) {
 		this.objects = objects;
@@ -93,6 +95,11 @@ public class IfcModel {
 			objects.put(key, eObject);
 			if (guidIndexed != null) {
 				indexGuid(eObject);
+			}
+		}
+		if (changeListeners.isEmpty()) {
+			for (IfcModelChangeListener ifcModelChangeListener : changeListeners) {
+				ifcModelChangeListener.objectAdded();
 			}
 		}
 	}
@@ -461,5 +468,9 @@ public class IfcModel {
 				resetOids((IdEObject) val, done);
 			}
 		}
+	}
+	
+	public void addChangeListener(IfcModelChangeListener listener) {
+		changeListeners.add(listener);
 	}
 }

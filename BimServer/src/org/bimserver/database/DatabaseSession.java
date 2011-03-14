@@ -470,12 +470,10 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 	}
 
 	@Override
-	public IfcModel getMap(int pid, int rid, boolean deep) throws BimDatabaseException, BimDeadlockException {
-		IfcModel ifcModel = new IfcModel();
+	public void getMap(IfcModel ifcModel, int pid, int rid, boolean deep) throws BimDatabaseException, BimDeadlockException {
 		for (EClass eClass : database.getClasses()) {
 			getMap(eClass, pid, rid, ifcModel, deep);
 		}
-		return ifcModel;
 	}
 
 	public void getMap(EClass eClass, int pid, int rid, IfcModel ifcModel, boolean deep) throws BimDatabaseException, BimDeadlockException {

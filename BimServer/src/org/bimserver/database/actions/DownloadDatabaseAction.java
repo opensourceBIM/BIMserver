@@ -1,5 +1,7 @@
 package org.bimserver.database.actions;
 
+import java.util.concurrent.atomic.AtomicLong;
+
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
@@ -9,6 +11,7 @@ import org.bimserver.database.store.Project;
 import org.bimserver.database.store.Revision;
 import org.bimserver.database.store.User;
 import org.bimserver.ifc.IfcModel;
+import org.bimserver.ifc.IfcModelChangeListener;
 import org.bimserver.ifc.IfcModelSet;
 import org.bimserver.merging.Merger;
 import org.bimserver.rights.RightsManager;
@@ -38,8 +41,20 @@ public class DownloadDatabaseAction extends BimDatabaseAction<IfcModel> {
 			throw new UserException("User has insufficient rights to download revisions from this project");
 		}
 		IfcModelSet ifcModelSet = new IfcModelSet();
+		long totalSize = 0;
 		for (ConcreteRevision subRevision : revision.getConcreteRevisions()) {
-			IfcModel subModel = getDatabaseSession().getMap(subRevision.getProject().getId(), subRevision.getId(), true);
+			totalSize += subRevision.getSize();
+		}
+		final AtomicLong total = new AtomicLong();
+		for (ConcreteRevision subRevision : revision.getConcreteRevisions()) {
+			IfcModel subModel = new IfcModel();
+			subModel.addChangeListener(new IfcModelChangeListener() {
+				@Override
+				public void objectAdded() {
+					total.incrementAndGet();
+				}
+			});
+			getDatabaseSession().getMap(subModel, subRevision.getProject().getId(), subRevision.getId(), true);
 			subModel.setDate(subRevision.getDate());
 			ifcModelSet.add(subModel);
 		}

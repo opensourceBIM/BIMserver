@@ -73,10 +73,11 @@ public class CheckoutDatabaseAction extends BimDatabaseAction<IfcModel> {
 	}
 
 	private IfcModel realCheckout(Project project, Revision revision, BimDatabaseSession bimDatabaseSession, User user) throws BimDeadlockException, BimDatabaseException {
-		IfcModel IfcModel = bimDatabaseSession.getMap(project.getId(), revision.getLastConcreteRevision().getId(), false);
-		IfcModel.setRevisionNr(project.getRevisions().indexOf(revision) + 1);
-		IfcModel.setAuthorizedUser(user.getName());
-		IfcModel.setDate(new Date());
-		return IfcModel;
+		IfcModel ifcModel = new IfcModel();
+		bimDatabaseSession.getMap(ifcModel, project.getId(), revision.getLastConcreteRevision().getId(), false);
+		ifcModel.setRevisionNr(project.getRevisions().indexOf(revision) + 1);
+		ifcModel.setAuthorizedUser(user.getName());
+		ifcModel.setDate(new Date());
+		return ifcModel;
 	}
 }
