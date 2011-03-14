@@ -116,6 +116,7 @@ import org.bimserver.ifc.FieldIgnoreMap;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelSet;
 import org.bimserver.ifc.SerializerException;
+import org.bimserver.ifc.emf.Ifc2x3.IfcRoot;
 import org.bimserver.ifc.file.compare.CompareResult;
 import org.bimserver.ifc.file.compare.CompareResult.Item;
 import org.bimserver.ifc.file.compare.CompareResult.ObjectAdded;
@@ -144,20 +145,6 @@ import org.bimserver.longaction.LongCheckinAction;
 import org.bimserver.longaction.LongDownloadAction;
 import org.bimserver.mail.MailSystem;
 import org.bimserver.merging.Merger;
-import org.bimserver.models.ifc2x3.IfcRoot;
-import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.log.LogAction;
-import org.bimserver.models.store.Checkout;
-import org.bimserver.models.store.ClashDetectionSettings;
-import org.bimserver.models.store.ConcreteRevision;
-import org.bimserver.models.store.GeoTag;
-import org.bimserver.models.store.ObjectState;
-import org.bimserver.models.store.Project;
-import org.bimserver.models.store.Revision;
-import org.bimserver.models.store.StoreFactory;
-import org.bimserver.models.store.StorePackage;
-import org.bimserver.models.store.User;
-import org.bimserver.models.store.UserType;
 import org.bimserver.rights.RightsManager;
 import org.bimserver.serializers.EmfSerializerFactory;
 import org.bimserver.settings.ServerSettings;
@@ -167,6 +154,11 @@ import org.bimserver.shared.ResultType;
 import org.bimserver.shared.SCheckinResult;
 import org.bimserver.shared.SCheckoutResult;
 import org.bimserver.shared.SCompareResult;
+import org.bimserver.shared.SCompareResult.SCompareType;
+import org.bimserver.shared.SCompareResult.SObjectAdded;
+import org.bimserver.shared.SCompareResult.SObjectModified;
+import org.bimserver.shared.SCompareResult.SObjectRemoved;
+import org.bimserver.shared.DownloadState;
 import org.bimserver.shared.SDataObject;
 import org.bimserver.shared.SDownloadResult;
 import org.bimserver.shared.SLongAction;
@@ -177,10 +169,6 @@ import org.bimserver.shared.ServiceException;
 import org.bimserver.shared.ServiceInterface;
 import org.bimserver.shared.Token;
 import org.bimserver.shared.UserException;
-import org.bimserver.shared.SCompareResult.SCompareType;
-import org.bimserver.shared.SCompareResult.SObjectAdded;
-import org.bimserver.shared.SCompareResult.SObjectModified;
-import org.bimserver.shared.SCompareResult.SObjectRemoved;
 import org.bimserver.tools.generators.GenerateUtils;
 import org.bimserver.utils.FakeClosingInputStream;
 import org.bimserver.utils.Hashers;
@@ -819,16 +807,13 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public String getDownloadState(String longActionID) throws UserException, ServerException {
+	public DownloadState getDownloadState(String longActionID) throws UserException, ServerException {
 		LongDownloadAction longAction = (LongDownloadAction) longActionManager.getLongAction(longActionID);
 		if (longAction != null) {
-			if (longActionManager.isRunning(longAction)) {
-				return "running";
-			} else {
-				return "ready";
-			}
+			System.out.println(longAction.getState().getProgress());
+			return longAction.getState();
 		}
-		return "Download action is expired.";
+		throw new UserException("Cannot find download action, ID=" + longActionID);
 	}
 
 	@Override

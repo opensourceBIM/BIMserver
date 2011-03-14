@@ -6,7 +6,6 @@ import javax.activation.DataHandler;
 
 import org.bimserver.database.BimDatabase;
 import org.bimserver.database.BimDatabaseSession;
-import org.bimserver.database.actions.BimDatabaseAction;
 import org.bimserver.database.actions.DownloadDatabaseAction;
 import org.bimserver.exceptions.NoSerializerFoundException;
 import org.bimserver.ifc.EmfSerializer;
@@ -18,6 +17,8 @@ import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.serializers.EmfSerializerFactory;
+import org.bimserver.shared.DownloadState;
+import org.bimserver.shared.DownloadState.DownloadActionState;
 import org.bimserver.shared.ResultType;
 import org.bimserver.shared.SCheckoutResult;
 import org.bimserver.shared.UserException;
@@ -25,6 +26,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class LongDownloadAction extends LongAction {
+
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(LongDownloadAction.class);
 	private final BimDatabase bimDatabase;
@@ -34,9 +36,11 @@ public class LongDownloadAction extends LongAction {
 	private final ResultType resultType;
 	private SCheckoutResult checkoutResult;
 	private User user;
+	private DownloadDatabaseAction action;
 	private final long roid;
 	private final long currentUoid;
 	private final String id;
+	private DownloadActionState state = DownloadActionState.UNKNOWN;
 
 	public LongDownloadAction(long roid, long currentUoid, LongActionManager longActionManager, BimDatabase bimDatabase,
 			AccessMethod accessMethod, EmfSerializerFactory emfSerializerFactory, ResultType resultType) {
@@ -52,9 +56,10 @@ public class LongDownloadAction extends LongAction {
 	}
 
 	public void execute() {
+		state = DownloadActionState.STARTED;
 		BimDatabaseSession session = bimDatabase.createReadOnlySession();
 		try {
-			BimDatabaseAction<IfcModel> action = new DownloadDatabaseAction(session, accessMethod, roid, currentUoid);
+			action = new DownloadDatabaseAction(session, accessMethod, roid, currentUoid);
 			IfcModel ifcModel = session.executeAction(action, org.bimserver.webservices.Service.DEADLOCK_RETRIES);
 			Revision revision = session.get(StorePackage.eINSTANCE.getRevision(), roid, false);
 			user = session.get(StorePackage.eINSTANCE.getUser(), currentUoid, false);
@@ -63,6 +68,7 @@ public class LongDownloadAction extends LongAction {
 			LOGGER.error("", e);
 		} finally {
 			session.close();
+			state = DownloadActionState.FINISHED;
 		}
 	}
 
@@ -99,5 +105,12 @@ public class LongDownloadAction extends LongAction {
 
 	public User getUser() {
 		return user;
+	}
+
+	public synchronized DownloadState getState() {
+		DownloadState ds = new DownloadState();
+		ds.setProgress(action.getProgress());
+		ds.setState(state);
+		return ds;
 	}
 }
