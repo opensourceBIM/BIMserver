@@ -2,6 +2,7 @@ package org.bimserver.database.migrations;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.Map;
@@ -13,9 +14,11 @@ import org.bimserver.database.DatabaseSession;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EEnumLiteral;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcoreFactory;
@@ -146,5 +149,37 @@ public class Schema {
 
 	public void clearUpdates() {
 		changes.clear();
+	}
+
+	@SuppressWarnings("unchecked")
+	public void loadEcore(InputStream inputStream) {
+        ResourceSet resourceSet = new ResourceSetImpl();
+        resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("ecore", new EcoreResourceFactoryImpl());
+        Resource resource = resourceSet.createResource(URI.createURI("ifc2x3.ecore"));
+        try {
+			resource.load(inputStream, new HashMap());
+			for (EObject eObject : resource.getContents()) {
+				if (eObject instanceof EPackage) {
+					EPackage ePackage = (EPackage)eObject;
+					addEPackage(ePackage);
+				}
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void addEPackage(EPackage ePackage) {
+		changes.add(new NewPackageChange(ePackage));
+		for (EClassifier eClassifier : ePackage.getEClassifiers()) {
+			if (eClassifier instanceof EClass) {
+				EClass eClass = (EClass)eClassifier;
+				addEClass(eClass);
+			}
+		}
+	}
+
+	private void addEClass(EClass eClass) {
+		changes.add(new NewClassChange(eClass));
 	}
 }
