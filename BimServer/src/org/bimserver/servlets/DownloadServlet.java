@@ -45,7 +45,6 @@ import org.bimserver.shared.ServiceException;
 import org.bimserver.shared.UserException;
 import org.bimserver.shared.SCompareResult.SCompareType;
 import org.bimserver.shared.SCompareResult.SItem;
-import org.bimserver.web.DownloadState;
 import org.bimserver.web.JspHelper;
 import org.bimserver.web.LoginManager;
 import org.slf4j.Logger;
@@ -149,15 +148,6 @@ public class DownloadServlet extends HttpServlet {
 						Set<Long> roids = new HashSet<Long>();
 						roids.add(roid);
 						checkoutResult = loginManager.getService().downloadByGuids(roids, guids, resultType);
-					} else if (request.getParameter("multiple") != null) {
-					} else if (request.getParameter("async") != null) {
-						String actionID = loginManager.getService().download(roid, resultType, false);
-						DownloadState dls = new DownloadState();
-						dls.setState(loginManager.getService().getDownloadState(actionID));
-						String contextPath = getServletContext().getContextPath();
-						request.getSession(true).setAttribute("downloadStateBean", dls);
-						getServletContext().getRequestDispatcher(contextPath + "/downloadprogress.jsp").forward(request, response);
-						return;
 					}
 				}
 			}
