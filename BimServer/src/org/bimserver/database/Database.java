@@ -31,20 +31,20 @@ import java.util.Set;
 import org.bimserver.database.actions.AddUserDatabaseAction;
 import org.bimserver.database.actions.CreateBaseProject;
 import org.bimserver.database.berkeley.DatabaseInitException;
-import org.bimserver.database.log.AccessMethod;
-import org.bimserver.database.log.DatabaseCreated;
-import org.bimserver.database.log.LogFactory;
-import org.bimserver.database.log.LogPackage;
 import org.bimserver.database.migrations.MigrationException;
 import org.bimserver.database.migrations.Migrator;
-import org.bimserver.database.store.CheckinState;
-import org.bimserver.database.store.Revision;
-import org.bimserver.database.store.StorePackage;
-import org.bimserver.database.store.UserType;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.FieldIgnoreMap;
 import org.bimserver.ifc.IfcModel;
-import org.bimserver.ifc.emf.Ifc2x3.Ifc2x3Package;
+import org.bimserver.models.ifc2x3.Ifc2x3Package;
+import org.bimserver.models.log.AccessMethod;
+import org.bimserver.models.log.DatabaseCreated;
+import org.bimserver.models.log.LogFactory;
+import org.bimserver.models.log.LogPackage;
+import org.bimserver.models.store.CheckinState;
+import org.bimserver.models.store.Revision;
+import org.bimserver.models.store.StorePackage;
+import org.bimserver.models.store.UserType;
 import org.bimserver.shared.UserException;
 import org.bimserver.utils.BinUtils;
 import org.bimserver.utils.DoubleHashMap;
@@ -86,7 +86,7 @@ public class Database implements BimDatabase {
 	/*  This variable should be _incremented_ with every (released) database-schema change
 	 *  Do not change this variable when nothing has changed in the schema!
 	 */
-	public static final int APPLICATION_SCHEMA_VERSION = 3;
+	public static final int APPLICATION_SCHEMA_VERSION = 2;
 	private int databaseSchemaVersion;
 	private short tableId;
 

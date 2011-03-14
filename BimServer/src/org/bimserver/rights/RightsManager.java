@@ -1,8 +1,8 @@
 package org.bimserver.rights;
 
-import org.bimserver.database.store.Project;
-import org.bimserver.database.store.User;
-import org.bimserver.database.store.UserType;
+import org.bimserver.models.store.Project;
+import org.bimserver.models.store.User;
+import org.bimserver.models.store.UserType;
 
 public class RightsManager {
 	

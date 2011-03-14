@@ -5,11 +5,11 @@ import java.util.Date;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
-import org.bimserver.database.log.AccessMethod;
-import org.bimserver.database.log.LogFactory;
-import org.bimserver.database.log.PasswordChanged;
-import org.bimserver.database.store.User;
-import org.bimserver.database.store.UserType;
+import org.bimserver.models.log.AccessMethod;
+import org.bimserver.models.log.LogFactory;
+import org.bimserver.models.log.PasswordChanged;
+import org.bimserver.models.store.User;
+import org.bimserver.models.store.UserType;
 import org.bimserver.shared.UserException;
 import org.bimserver.utils.Hashers;
 

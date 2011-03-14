@@ -5,17 +5,17 @@ import java.util.Collection;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
-import org.bimserver.database.log.AccessMethod;
 import org.bimserver.database.query.conditions.AttributeCondition;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.literals.IntegerLiteral;
 import org.bimserver.database.query.literals.StringLiteral;
-import org.bimserver.database.store.ConcreteRevision;
-import org.bimserver.database.store.Project;
-import org.bimserver.database.store.Revision;
-import org.bimserver.database.store.StorePackage;
-import org.bimserver.database.store.User;
 import org.bimserver.emf.IdEObject;
+import org.bimserver.models.log.AccessMethod;
+import org.bimserver.models.store.ConcreteRevision;
+import org.bimserver.models.store.Project;
+import org.bimserver.models.store.Revision;
+import org.bimserver.models.store.StorePackage;
+import org.bimserver.models.store.User;
 import org.bimserver.shared.UserException;
 
 public abstract class BimDatabaseAction<T> {

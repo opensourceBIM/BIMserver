@@ -8,7 +8,7 @@ import nl.tue.buildingsmart.express.dictionary.EntityDefinition;
 import nl.tue.buildingsmart.express.dictionary.InverseAttribute;
 import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
 
-import org.bimserver.ifc.emf.Ifc2x3.Ifc2x3Package;
+import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EStructuralFeature;
 

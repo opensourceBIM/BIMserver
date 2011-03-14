@@ -47,11 +47,11 @@ import nl.tue.buildingsmart.express.dictionary.UnderlyingType;
 
 import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.IfcModel;
-import org.bimserver.ifc.emf.Ifc2x3.Ifc2x3Factory;
-import org.bimserver.ifc.emf.Ifc2x3.Ifc2x3Package;
-import org.bimserver.ifc.emf.Ifc2x3.IfcBoolean;
-import org.bimserver.ifc.emf.Ifc2x3.IfcLogical;
-import org.bimserver.ifc.emf.Ifc2x3.Tristate;
+import org.bimserver.models.ifc2x3.Ifc2x3Factory;
+import org.bimserver.models.ifc2x3.Ifc2x3Package;
+import org.bimserver.models.ifc2x3.IfcBoolean;
+import org.bimserver.models.ifc2x3.IfcLogical;
+import org.bimserver.models.ifc2x3.Tristate;
 import org.bimserver.utils.StringUtils;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EClass;

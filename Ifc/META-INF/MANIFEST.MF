@@ -7,9 +7,7 @@ Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Export-Package: org.bimserver.ifc.emf.Ifc2x3,
- org.bimserver.ifc.emf.Ifc2x3.impl,
- org.bimserver.ifc.emf.Ifc2x3.util
+Export-Package: 
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.emf.ecore.xmi;visibility:=reexport

@@ -4,13 +4,13 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.List;
 
-import org.bimserver.database.store.Project;
-import org.bimserver.database.store.User;
 import org.bimserver.ifc.BimModelSerializer;
 import org.bimserver.ifc.FieldIgnoreMap;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.SerializerException;
-import org.bimserver.ifc.emf.Ifc2x3.Ifc2x3Package;
+import org.bimserver.models.ifc2x3.Ifc2x3Package;
+import org.bimserver.models.store.Project;
+import org.bimserver.models.store.User;
 import org.bimserver.shared.ResultType;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;

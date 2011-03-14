@@ -1,6 +1,6 @@
 package org.bimserver.citygml.objects;
 
-import org.bimserver.ifc.emf.Ifc2x3.IfcGloballyUniqueId;
+import org.bimserver.models.ifc2x3.IfcGloballyUniqueId;
 import org.citygml4j.impl.jaxb.citygml.core._1.CityObjectImpl;
 import org.citygml4j.impl.jaxb.gml._3_1_1.MultiSurfacePropertyImpl;
 import org.citygml4j.model.citygml.CityGMLClass;

@@ -9,8 +9,8 @@ import javax.xml.stream.XMLStreamReader;
 
 import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.IfcModel;
-import org.bimserver.ifc.emf.Ifc2x3.Ifc2x3Factory;
-import org.bimserver.ifc.emf.Ifc2x3.Ifc2x3Package;
+import org.bimserver.models.ifc2x3.Ifc2x3Factory;
+import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EDataType;

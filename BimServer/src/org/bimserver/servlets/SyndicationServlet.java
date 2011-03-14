@@ -12,11 +12,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.codec.binary.Base64;
-import org.bimserver.database.log.AccessMethod;
 import org.bimserver.interfaces.objects.SCheckout;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.interfaces.objects.SUser;
+import org.bimserver.models.log.AccessMethod;
 import org.bimserver.shared.SRevisionIdComparator;
 import org.bimserver.shared.ServiceException;
 import org.bimserver.shared.ServiceInterface;
