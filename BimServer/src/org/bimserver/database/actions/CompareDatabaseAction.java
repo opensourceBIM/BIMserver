@@ -9,8 +9,8 @@ import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.file.compare.Compare;
 import org.bimserver.ifc.file.compare.CompareResult;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.shared.UserException;
 import org.bimserver.shared.SCompareResult.SCompareType;
+import org.bimserver.shared.UserException;
 
 public class CompareDatabaseAction extends BimDatabaseAction<CompareResult> {
 

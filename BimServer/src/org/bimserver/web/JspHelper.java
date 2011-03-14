@@ -15,13 +15,13 @@ import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.interfaces.objects.SUserType;
 import org.bimserver.shared.SCompareResult;
+import org.bimserver.shared.SCompareResult.SCompareType;
+import org.bimserver.shared.SCompareResult.SObjectModified;
 import org.bimserver.shared.SProjectNameComparator;
 import org.bimserver.shared.SRevisionIdComparator;
 import org.bimserver.shared.SRevisionSummary;
 import org.bimserver.shared.ServiceException;
 import org.bimserver.shared.ServiceInterface;
-import org.bimserver.shared.SCompareResult.SCompareType;
-import org.bimserver.shared.SCompareResult.SObjectModified;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
