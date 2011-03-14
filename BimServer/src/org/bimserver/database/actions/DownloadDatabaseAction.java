@@ -22,6 +22,7 @@ public class DownloadDatabaseAction extends BimDatabaseAction<IfcModel> {
 
 	private final long roid;
 	private final long actingUoid;
+	private int progress;
 
 	public DownloadDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long roid, long actingUoid) {
 		super(bimDatabaseSession, accessMethod);
@@ -41,10 +42,11 @@ public class DownloadDatabaseAction extends BimDatabaseAction<IfcModel> {
 			throw new UserException("User has insufficient rights to download revisions from this project");
 		}
 		IfcModelSet ifcModelSet = new IfcModelSet();
-		long totalSize = 0;
+		long incrSize = 0;
 		for (ConcreteRevision subRevision : revision.getConcreteRevisions()) {
-			totalSize += subRevision.getSize();
+			incrSize += subRevision.getSize();
 		}
+		final long totalSize = incrSize;
 		final AtomicLong total = new AtomicLong();
 		for (ConcreteRevision subRevision : revision.getConcreteRevisions()) {
 			IfcModel subModel = new IfcModel();
@@ -52,6 +54,7 @@ public class DownloadDatabaseAction extends BimDatabaseAction<IfcModel> {
 				@Override
 				public void objectAdded() {
 					total.incrementAndGet();
+					progress = Math.round(100L * total.get() / totalSize);
 				}
 			});
 			getDatabaseSession().getMap(subModel, subRevision.getProject().getId(), subRevision.getId(), true);
@@ -64,10 +67,11 @@ public class DownloadDatabaseAction extends BimDatabaseAction<IfcModel> {
 		ifcModel.setDate(revision.getDate());
 
 		if (revision.getProject().getGeoTag() != null) {
-//			ifcModel.setLon(revision.getProject().getGeoTag().getX());
-//			ifcModel.setLat(revision.getProject().getGeoTag().getY());
-//			ifcModel.setAltitude((int) revision.getProject().getGeoTag().getZ());
-//			ifcModel.setDirectionAngle(revision.getProject().getGeoTag().getDirectionAngle());
+			// ifcModel.setLon(revision.getProject().getGeoTag().getX());
+			// ifcModel.setLat(revision.getProject().getGeoTag().getY());
+			// ifcModel.setAltitude((int)
+			// revision.getProject().getGeoTag().getZ());
+			// ifcModel.setDirectionAngle(revision.getProject().getGeoTag().getDirectionAngle());
 			// try {
 			// CoordinateReferenceSystem sourceCRS = CRS.decode("EPSG:" +
 			// revision.getProject().getGeoTag().getEpsg());
@@ -84,15 +88,19 @@ public class DownloadDatabaseAction extends BimDatabaseAction<IfcModel> {
 			// IfcModel.setLon(result[0]);
 			// IfcModel.setLat(result[1]);
 			// } catch (NoSuchAuthorityCodeException e) {
-			// 	LOGGER.error("", e);
+			// LOGGER.error("", e);
 			// } catch (FactoryException e) {
-			// 	LOGGER.error("", e);
+			// LOGGER.error("", e);
 			// } catch (MismatchedDimensionException e) {
-			// 	LOGGER.error("", e);
+			// LOGGER.error("", e);
 			// } catch (TransformException e) {
-			// 	LOGGER.error("", e);
+			// LOGGER.error("", e);
 			// }
 		}
 		return ifcModel;
+	}
+
+	public int getProgress() {
+		return progress;
 	}
 }
