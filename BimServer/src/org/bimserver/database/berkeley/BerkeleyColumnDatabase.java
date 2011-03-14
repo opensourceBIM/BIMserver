@@ -218,10 +218,14 @@ public class BerkeleyColumnDatabase implements ColumnDatabase {
 	}
 
 	@Override
-	public RecordIterator getRecordIterator(String tableName, DatabaseSession databaseSession) {
+	public RecordIterator getRecordIterator(String tableName, DatabaseSession databaseSession) throws BimDatabaseException {
 		Cursor cursor = null;
 		try {
-			cursor = getDatabase(tableName, databaseSession, false).openCursor(getTransaction(databaseSession), cursorConfig);
+			Database database = getDatabase(tableName, databaseSession, false);
+			if (database == null) {
+				throw new BimDatabaseException("Table " + tableName + " not found");
+			}
+			cursor = database.openCursor(getTransaction(databaseSession), cursorConfig);
 			return new BerkeleyRecordIterator(cursor);
 		} catch (DatabaseException e) {
 			LOGGER.error("", e);

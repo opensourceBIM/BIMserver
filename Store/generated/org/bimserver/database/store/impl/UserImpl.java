@@ -39,7 +39,11 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.database.store.impl.UserImpl#getLastSeen <em>Last Seen</em>}</li>
  *   <li>{@link org.bimserver.database.store.impl.UserImpl#getValidationToken <em>Validation Token</em>}</li>
  *   <li>{@link org.bimserver.database.store.impl.UserImpl#getValidationTokenCreated <em>Validation Token Created</em>}</li>
- *   <li>{@link org.bimserver.database.store.impl.UserImpl#getTestje <em>Testje</em>}</li>
+ *   <li>{@link org.bimserver.database.store.impl.UserImpl#getAttr1 <em>Attr1</em>}</li>
+ *   <li>{@link org.bimserver.database.store.impl.UserImpl#getAttr2 <em>Attr2</em>}</li>
+ *   <li>{@link org.bimserver.database.store.impl.UserImpl#getAttr3 <em>Attr3</em>}</li>
+ *   <li>{@link org.bimserver.database.store.impl.UserImpl#getRef1 <em>Ref1</em>}</li>
+ *   <li>{@link org.bimserver.database.store.impl.UserImpl#getRef2 <em>Ref2</em>}</li>
  * </ul>
  * </p>
  *
@@ -280,8 +284,8 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getTestje() {
-		return (String)eGet(StorePackage.Literals.USER__TESTJE, true);
+	public String getAttr1() {
+		return (String)eGet(StorePackage.Literals.USER__ATTR1, true);
 	}
 
 	/**
@@ -289,8 +293,64 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTestje(String newTestje) {
-		eSet(StorePackage.Literals.USER__TESTJE, newTestje);
+	public void setAttr1(String newAttr1) {
+		eSet(StorePackage.Literals.USER__ATTR1, newAttr1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public EList<String> getAttr2() {
+		return (EList<String>)eGet(StorePackage.Literals.USER__ATTR2, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ObjectState getAttr3() {
+		return (ObjectState)eGet(StorePackage.Literals.USER__ATTR3, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setAttr3(ObjectState newAttr3) {
+		eSet(StorePackage.Literals.USER__ATTR3, newAttr3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Project getRef1() {
+		return (Project)eGet(StorePackage.Literals.USER__REF1, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setRef1(Project newRef1) {
+		eSet(StorePackage.Literals.USER__REF1, newRef1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public EList<Project> getRef2() {
+		return (EList<Project>)eGet(StorePackage.Literals.USER__REF2, true);
 	}
 
 } //UserImpl

@@ -351,13 +351,49 @@ public interface StorePackage extends EPackage {
 	int USER__VALIDATION_TOKEN_CREATED = 11;
 
 	/**
-	 * The feature id for the '<em><b>Testje</b></em>' attribute.
+	 * The feature id for the '<em><b>Attr1</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int USER__TESTJE = 12;
+	int USER__ATTR1 = 12;
+
+	/**
+	 * The feature id for the '<em><b>Attr2</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER__ATTR2 = 13;
+
+	/**
+	 * The feature id for the '<em><b>Attr3</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER__ATTR3 = 14;
+
+	/**
+	 * The feature id for the '<em><b>Ref1</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER__REF1 = 15;
+
+	/**
+	 * The feature id for the '<em><b>Ref2</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER__REF2 = 16;
 
 	/**
 	 * The number of structural features of the '<em>User</em>' class.
@@ -366,7 +402,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER_FEATURE_COUNT = 13;
+	int USER_FEATURE_COUNT = 17;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.database.store.impl.ClashImpl <em>Clash</em>}' class.
@@ -1468,15 +1504,59 @@ public interface StorePackage extends EPackage {
 	EAttribute getUser_ValidationTokenCreated();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.database.store.User#getTestje <em>Testje</em>}'.
+	 * Returns the meta object for the attribute '{@link org.bimserver.database.store.User#getAttr1 <em>Attr1</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Testje</em>'.
-	 * @see org.bimserver.database.store.User#getTestje()
+	 * @return the meta object for the attribute '<em>Attr1</em>'.
+	 * @see org.bimserver.database.store.User#getAttr1()
 	 * @see #getUser()
 	 * @generated
 	 */
-	EAttribute getUser_Testje();
+	EAttribute getUser_Attr1();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link org.bimserver.database.store.User#getAttr2 <em>Attr2</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Attr2</em>'.
+	 * @see org.bimserver.database.store.User#getAttr2()
+	 * @see #getUser()
+	 * @generated
+	 */
+	EAttribute getUser_Attr2();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.database.store.User#getAttr3 <em>Attr3</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Attr3</em>'.
+	 * @see org.bimserver.database.store.User#getAttr3()
+	 * @see #getUser()
+	 * @generated
+	 */
+	EAttribute getUser_Attr3();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.database.store.User#getRef1 <em>Ref1</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Ref1</em>'.
+	 * @see org.bimserver.database.store.User#getRef1()
+	 * @see #getUser()
+	 * @generated
+	 */
+	EReference getUser_Ref1();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.bimserver.database.store.User#getRef2 <em>Ref2</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Ref2</em>'.
+	 * @see org.bimserver.database.store.User#getRef2()
+	 * @see #getUser()
+	 * @generated
+	 */
+	EReference getUser_Ref2();
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.database.store.Clash <em>Clash</em>}'.
@@ -2434,12 +2514,44 @@ public interface StorePackage extends EPackage {
 		EAttribute USER__VALIDATION_TOKEN_CREATED = eINSTANCE.getUser_ValidationTokenCreated();
 
 		/**
-		 * The meta object literal for the '<em><b>Testje</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Attr1</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute USER__TESTJE = eINSTANCE.getUser_Testje();
+		EAttribute USER__ATTR1 = eINSTANCE.getUser_Attr1();
+
+		/**
+		 * The meta object literal for the '<em><b>Attr2</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute USER__ATTR2 = eINSTANCE.getUser_Attr2();
+
+		/**
+		 * The meta object literal for the '<em><b>Attr3</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute USER__ATTR3 = eINSTANCE.getUser_Attr3();
+
+		/**
+		 * The meta object literal for the '<em><b>Ref1</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference USER__REF1 = eINSTANCE.getUser_Ref1();
+
+		/**
+		 * The meta object literal for the '<em><b>Ref2</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference USER__REF2 = eINSTANCE.getUser_Ref2();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.database.store.impl.ClashImpl <em>Clash</em>}' class.

@@ -1,5 +1,7 @@
-package org.bimserver.database.migrations;
+package org.bimserver.database.migrations.steps;
 
+import org.bimserver.database.migrations.Migration;
+import org.bimserver.database.migrations.Schema;
 import org.bimserver.database.migrations.Schema.Multiplicity;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
@@ -15,7 +17,7 @@ public class Step0001 extends Migration {
 	private EClass logActionClass;
 
 	@Override
-	void migrate(Schema schema) {
+	public void migrate(Schema schema) {
 		logPackage = schema.createEPackage("log");
 		
 		EClass userClass = schema.getEClass("store", "User");

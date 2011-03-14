@@ -5,9 +5,9 @@ import org.eclipse.emf.ecore.EcorePackage;
 
 public abstract class Migration {
 	
-	protected EcorePackage ecorePackage = EcorePackage.eINSTANCE;
+	public EcorePackage ecorePackage = EcorePackage.eINSTANCE;
 
-	abstract void migrate(Schema schema);
+	public abstract void migrate(Schema schema);
 
 	public void upgrade(Database database) {
 		
