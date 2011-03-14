@@ -139,7 +139,7 @@ public interface ServiceInterface {
 			throws UserException, ServerException;
 
 	@WebMethod(action = "getDownloadState")
-	String getDownloadState(@WebParam(name = "actionID", partName = "downloadProjects.actionID") String actionID)
+	DownloadState getDownloadState(@WebParam(name = "actionID", partName = "downloadProjects.actionID") String actionID)
 			throws UserException, ServerException;
 
 	@WebMethod(action = "addUser")
