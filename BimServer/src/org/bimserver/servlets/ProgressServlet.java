@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevision;
-import org.bimserver.shared.DownloadState;
+import org.bimserver.shared.LongActionState;
 import org.bimserver.shared.ServiceException;
 import org.bimserver.shared.UserException;
 import org.bimserver.web.LoginManager;
@@ -57,7 +57,7 @@ public class ProgressServlet extends HttpServlet {
 					}
 					result.put("revisions", revisions);
 				} else if (request.getParameter("laid") != null) {
-					DownloadState downloadState = loginManager.getService().getDownloadState(request.getParameter("laid"));
+					LongActionState downloadState = loginManager.getService().getDownloadState(request.getParameter("laid"));
 					result.put("state", downloadState.getState());
 					result.put("progress", downloadState.getProgress());
 				}

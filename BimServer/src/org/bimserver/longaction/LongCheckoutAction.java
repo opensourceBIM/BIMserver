@@ -17,8 +17,8 @@ import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.serializers.EmfSerializerFactory;
-import org.bimserver.shared.DownloadState;
-import org.bimserver.shared.DownloadState.DownloadActionState;
+import org.bimserver.shared.LongActionState;
+import org.bimserver.shared.LongActionState.ActionState;
 import org.bimserver.shared.ResultType;
 import org.bimserver.shared.SCheckoutResult;
 import org.bimserver.shared.UserException;
@@ -39,7 +39,7 @@ public class LongCheckoutAction extends LongAction {
 	private final long roid;
 	private final long currentUoid;
 	private final String id;
-	private DownloadActionState state = DownloadActionState.UNKNOWN;
+	private ActionState state = ActionState.UNKNOWN;
 
 	public LongCheckoutAction(long roid, long currentUoid, LongActionManager longActionManager, BimDatabase bimDatabase,
 			AccessMethod accessMethod, EmfSerializerFactory emfSerializerFactory, ResultType resultType) {
@@ -55,8 +55,8 @@ public class LongCheckoutAction extends LongAction {
 	}
 
 	public void execute() {
-		state = DownloadActionState.STARTED;
-		BimDatabaseSession session = bimDatabase.createReadOnlySession();
+		state = ActionState.STARTED;
+		BimDatabaseSession session = bimDatabase.createSession();
 		try {
 			action = new CheckoutDatabaseAction(session, accessMethod, currentUoid, roid);
 			Revision revision = session.get(StorePackage.eINSTANCE.getRevision(), roid, false);
@@ -67,7 +67,7 @@ public class LongCheckoutAction extends LongAction {
 			LOGGER.error("", e);
 		} finally {
 			session.close();
-			state = DownloadActionState.FINISHED;
+			state = ActionState.FINISHED;
 		}
 	}
 
@@ -106,10 +106,11 @@ public class LongCheckoutAction extends LongAction {
 		return user;
 	}
 
-	public synchronized DownloadState getState() {
-		DownloadState ds = new DownloadState();
+	public synchronized LongActionState getState() {
+		LongActionState ds = new LongActionState();
 		ds.setProgress(action.getProgress());
 		ds.setState(state);
 		return ds;
 	}
+
 }

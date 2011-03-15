@@ -18,6 +18,7 @@ import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
+import org.bimserver.shared.LongActionState;
 import org.bimserver.shared.UserException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -132,4 +133,11 @@ public class LongCheckinAction extends LongAction {
 	public User getUser() {
 		return user;
 	}
+
+	@Override
+	public LongActionState getState() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 }
