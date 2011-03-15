@@ -47,6 +47,7 @@ import javax.mail.internet.MimeMessage;
 import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
 
 import org.bimserver.ServerInfo;
+import org.bimserver.ServerInfo.ServerState;
 import org.bimserver.database.BimDatabase;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
@@ -108,6 +109,8 @@ import org.bimserver.database.actions.UpdateRevisionDatabaseAction;
 import org.bimserver.database.actions.UserHasCheckinRightsDatabaseAction;
 import org.bimserver.database.actions.UserHasRightsDatabaseAction;
 import org.bimserver.database.actions.ValidateUserDatabaseAction;
+import org.bimserver.database.migrations.MigrationException;
+import org.bimserver.database.migrations.Migrator;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.exceptions.NoSerializerFoundException;
 import org.bimserver.ifc.EmfSerializer;
@@ -162,6 +165,7 @@ import org.bimserver.models.store.UserType;
 import org.bimserver.rights.RightsManager;
 import org.bimserver.serializers.EmfSerializerFactory;
 import org.bimserver.settings.ServerSettings;
+import org.bimserver.settings.Settings;
 import org.bimserver.settings.SettingsSaveException;
 import org.bimserver.shared.DatabaseInformation;
 import org.bimserver.shared.LongActionState;
@@ -169,13 +173,10 @@ import org.bimserver.shared.ResultType;
 import org.bimserver.shared.SCheckinResult;
 import org.bimserver.shared.SCheckoutResult;
 import org.bimserver.shared.SCompareResult;
-import org.bimserver.shared.SCompareResult.SCompareType;
-import org.bimserver.shared.SCompareResult.SObjectAdded;
-import org.bimserver.shared.SCompareResult.SObjectModified;
-import org.bimserver.shared.SCompareResult.SObjectRemoved;
 import org.bimserver.shared.SDataObject;
 import org.bimserver.shared.SDownloadResult;
 import org.bimserver.shared.SLongAction;
+import org.bimserver.shared.SMigration;
 import org.bimserver.shared.SRevisionSummary;
 import org.bimserver.shared.SUserSession;
 import org.bimserver.shared.ServerException;
@@ -183,6 +184,10 @@ import org.bimserver.shared.ServiceException;
 import org.bimserver.shared.ServiceInterface;
 import org.bimserver.shared.Token;
 import org.bimserver.shared.UserException;
+import org.bimserver.shared.SCompareResult.SCompareType;
+import org.bimserver.shared.SCompareResult.SObjectAdded;
+import org.bimserver.shared.SCompareResult.SObjectModified;
+import org.bimserver.shared.SCompareResult.SObjectRemoved;
 import org.bimserver.tools.generators.GenerateUtils;
 import org.bimserver.utils.FakeClosingInputStream;
 import org.bimserver.utils.Hashers;
@@ -2171,6 +2176,67 @@ public class Service implements ServiceInterface {
 			handleException(e);
 		} finally {
 			session.close();
+		}
+	}
+
+	@Override
+	public void setup(String siteAddress, String smtpServer, String adminName, String adminUsername, String adminPassword, boolean createAnonymousUser) throws UserException, ServerException {
+		if (siteAddress.trim().isEmpty()) {
+			throw new UserException("Site Address cannot be empty");
+		} else if (!siteAddress.startsWith("http://") && !(siteAddress.startsWith("https://"))) {
+			throw new UserException("Site Address must start with either \"http://\" or \"https://\"");
+		}
+		
+		if (smtpServer.trim().isEmpty()) {
+			throw new UserException("SMTP Server Address cannot be empty");
+		}
+		
+		if (adminUsername.trim().isEmpty()) {
+			throw new UserException("Admin Username cannot be empty");
+		}
+		
+		if (adminPassword.trim().isEmpty()) {
+			throw new UserException("Admin Password cannot be empty");
+		}
+		
+		Settings settings = ServerSettings.getSettings();
+		settings.setSiteAddress(siteAddress);
+		settings.setSmtpServer(smtpServer);
+		settings.setSetup(true);
+		ServerInfo.setServerState(ServerState.RUNNING);
+		try {
+			settings.save();
+		} catch (SettingsSaveException e) {
+			throw new ServerException(e);
+		}
+		
+		BimDatabaseSession session = bimDatabase.createSession();
+		try {
+			new AddUserDatabaseAction(session, AccessMethod.INTERNAL, adminUsername, adminPassword, adminName, UserType.ADMIN, -1, false).execute();
+			if (createAnonymousUser) {
+				new AddUserDatabaseAction(session, AccessMethod.INTERNAL, "anonymous", "anonymous", "Anonymous", UserType.ANONYMOUS, -1, false).execute();
+			}
+		} catch (BimDatabaseException e) {
+			e.printStackTrace();
+		} catch (BimDeadlockException e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+	}
+
+	@Override
+	public Set<SMigration> getPendingMigrations() {
+		Migrator migrator = bimDatabase.getMigrator();
+		return migrator.getPendingMigrations();
+	}
+	
+	@Override
+	public void migrateDatabase() throws ServerException {
+		try {
+			bimDatabase.getMigrator().migrate();
+		} catch (MigrationException e) {
+			throw new ServerException(e);
 		}
 	}
 }

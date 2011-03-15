@@ -1,24 +1,3 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<settings>
-	<allowSelfRegistration>true</allowSelfRegistration>
-	<allowUsersToCreateTopLevelProjects>true
-	</allowUsersToCreateTopLevelProjects>
-	<autoTestClashes>false</autoTestClashes>
-	<checkinMergingEnabled>true</checkinMergingEnabled>
-	<customLogoAddress>http://www.bimserver.org/version/defaultlogo.gif
-	</customLogoAddress>
-	<databaseLocation>home/database</databaseLocation>
-	<tmpLocation>home/tmp</tmpLocation>
-	<logLocation>home/logs/bimserver.log</logLocation>
-	<emailSenderAddress>leon@berlotti.com</emailSenderAddress>
-	<enabledExportTypes>CITYGML,IFCXML,REPORT_COMPONENTS,REPORT_ZONES,OBJECT_INFO,REPORT_SYSTEMS,IFC,COBIE2,REPORT_TYPES,TEXT,KMZ,REPORT_SPACES,COLLADA
-	</enabledExportTypes>
-	<intelligentMerging>true</intelligentMerging>
-	<registrationAddition></registrationAddition>
-	<sendConfirmationEmailAfterRegistration>false
-	</sendConfirmationEmailAfterRegistration>
-	<showVersionUpgradeAvailable>true</showVersionUpgradeAvailable>
-	<siteAddress>http://localhost:8082</siteAddress>
-	<smtpServer>relay.glaslokaal.nl</smtpServer>
-	<useCaching>false</useCaching>
-</settings>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?><settings><allowSelfRegistration>true</allowSelfRegistration><allowUsersToCreateTopLevelProjects>true</allowUsersToCreateTopLevelProjects><autoTestClashes>false</autoTestClashes><checkinMergingEnabled>true</checkinMergingEnabled><customLogoAddress>http://www.bimserver.org/version/defaultlogo.gif
+	</customLogoAddress><emailSenderAddress>leon@berlotti.com</emailSenderAddress><enabledExportTypes>CITYGML,IFCXML,REPORT_COMPONENTS,REPORT_ZONES,OBJECT_INFO,REPORT_SYSTEMS,IFC,COBIE2,REPORT_TYPES,TEXT,KMZ,REPORT_SPACES,COLLADA
+	</enabledExportTypes><intelligentMerging>true</intelligentMerging><registrationAddition></registrationAddition><sendConfirmationEmailAfterRegistration>false</sendConfirmationEmailAfterRegistration><setup>true</setup><showVersionUpgradeAvailable>true</showVersionUpgradeAvailable><siteAddress>http://localhost:8082</siteAddress><smtpServer>test</smtpServer><useCaching>false</useCaching></settings>

@@ -17,4 +17,9 @@ public class Step0003 extends Migration {
 		schema.createEReference(schema.getEClass("store", "User"), "ref1", schema.getEClass("store", "Project"), Multiplicity.SINGLE);
 		schema.createEReference(schema.getEClass("store", "User"), "ref2", schema.getEClass("store", "Project"), Multiplicity.MANY);
 	}
+
+	@Override
+	public String getDescription() {
+		return "Test migration";
+	}
 }

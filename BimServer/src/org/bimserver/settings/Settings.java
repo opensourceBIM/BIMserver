@@ -26,6 +26,7 @@ import org.slf4j.LoggerFactory;
 public class Settings {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(Settings.class);
+	private boolean setup;
 	private boolean showVersionUpgradeAvailable;
 	private boolean sendConfirmationEmailAfterRegistration;
 	private boolean useCaching;
@@ -233,5 +234,13 @@ public class Settings {
 
 	public boolean isCheckinMergingEnabled() {
 		return checkinMergingEnabled;
+	}
+
+	public void setSetup(boolean setup) {
+		this.setup = setup;
+	}
+
+	public boolean isSetup() {
+		return setup;
 	}
 }

@@ -43,6 +43,7 @@ import nl.tue.buildingsmart.express.parser.ExpressSchemaParser;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.LogManager;
+import org.bimserver.ServerInfo.ServerState;
 import org.bimserver.database.BimDatabase;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.Database;
@@ -123,6 +124,12 @@ public class ServerInitializer implements ServletContextListener {
 			URL resource = resourceFetcher.getResource("settings.xml");
 			Settings settings = Settings.readFromUrl(resource);
 
+			if (settings.isSetup()) {
+				ServerInfo.setServerState(ServerState.RUNNING);
+			} else {
+				ServerInfo.setServerState(ServerState.NOT_SETUP);
+			}
+			
 			fixLogging();
 
 			LOGGER.info("Starting ServerInitializer");
