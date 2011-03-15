@@ -95,13 +95,14 @@ public interface ServiceInterface {
 			@WebParam(name = "merge", partName = "checkinAsync.merge") boolean merge) throws UserException, ServerException;
 
 	@WebMethod(action = "checkout")
-	SCheckoutResult checkout(@WebParam(name = "roid", partName = "checkout.roid") long roid,
-			@WebParam(name = "resultType", partName = "checkout.resultType") ResultType resultType) throws UserException, ServerException;
+	String checkout(@WebParam(name = "roid", partName = "checkout.roid") long roid,
+			@WebParam(name = "resultType", partName = "checkout.resultType") ResultType resultType,
+			@QueryParam("sync") @WebParam(name = "sync", partName = "download.sync") boolean sync) throws UserException, ServerException;
 
 	@WebMethod(action = "checkoutLastRevision")
-	SCheckoutResult checkoutLastRevision(@QueryParam("poid") @WebParam(name = "poid", partName = "checkoutLastRevision.poid") long poid,
-			@QueryParam("resultType") @WebParam(name = "resultType", partName = "checkoutLastRevision.resultType") ResultType resultType)
-			throws UserException, ServerException;
+	String checkoutLastRevision(@QueryParam("poid") @WebParam(name = "poid", partName = "checkoutLastRevision.poid") long poid,
+			@QueryParam("resultType") @WebParam(name = "resultType", partName = "checkoutLastRevision.resultType") ResultType resultType,
+			@QueryParam("sync") @WebParam(name = "sync", partName = "download.sync") boolean sync) throws UserException, ServerException;
 
 	@GET
 	@Path("/download")

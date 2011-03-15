@@ -2,11 +2,22 @@
 <jsp:useBean id="loginManager" scope="session" class="org.bimserver.web.LoginManager" />
 <%
 	long roid = Long.parseLong(request.getParameter("roid"));
-	String longActionId = loginManager.getService().download(roid, ResultType.IFC, false);
+	ResultType resultType = ResultType.IFC;
+	if (request.getParameter("resultType") != null) {
+		resultType = ResultType.valueOf(request.getParameter("resultType"));
+	}
+	String longActionId = null;
+	if (request.getParameter("checkout") != null) {
+		longActionId = loginManager.getService().checkout(roid, resultType, false);
+	} else if (request.getParameter("download") != null) {
+		longActionId = loginManager.getService().download(roid, resultType, false);
+	}
 %>
-	<jsp:include page="downloadprogress.jsp">
-		<jsp:param name="longActionId" value="<%=longActionId %>"/>
-	</jsp:include>
+
+<jsp:include page="downloadprogress.jsp">
+	<jsp:param name="longActionId" value="<%=longActionId %>"/>
+</jsp:include>
+	
 <script>
 var downloadUpdateFunctionHandle;
 
@@ -17,7 +28,7 @@ var downloadUpdateFunction = function() {
 		context: document.body,
 		success: 
 			function(data){
-				$("#downloadStateDiv").html(data);
+				$("#downloadStateSpan").html(data);
 			},
 		data: {longActionId: '<%=longActionId%>'}
 	});

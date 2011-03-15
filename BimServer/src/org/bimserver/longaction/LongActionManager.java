@@ -80,9 +80,9 @@ public class LongActionManager {
 		}
 	}
 
-	public boolean isRunning(LongDownloadAction longDownloadAction) {
-		for (LongAction longAction : threads.keySet()) {
-			if (longAction.equals(longDownloadAction))
+	public boolean isRunning(LongAction longAction) {
+		for (LongAction la : threads.keySet()) {
+			if (la.equals(longAction))
 				return true;
 		}
 		return false;

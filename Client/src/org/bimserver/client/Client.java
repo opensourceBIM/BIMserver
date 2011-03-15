@@ -51,7 +51,6 @@ import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.interfaces.objects.SUser;
 import org.bimserver.shared.ResultType;
 import org.bimserver.shared.SCheckinResult;
-import org.bimserver.shared.SCheckoutResult;
 import org.bimserver.shared.SDownloadResult;
 import org.bimserver.shared.ServiceException;
 import org.bimserver.utils.SwingUtil;
@@ -147,7 +146,8 @@ public class Client extends JFrame {
 	void checkout(SRevision revision, OutputStream out, boolean report) {
 		try {
 			SProject sProject = serviceHolder.getService().getProjectByPoid(revision.getProjectId());
-			SCheckoutResult checkout = serviceHolder.getService().checkout(revision.getOid(), ResultType.IFC);
+			String longCheckoutActionId = serviceHolder.getService().checkout(revision.getOid(), ResultType.IFC, true);
+			SDownloadResult checkout = serviceHolder.getService().getDownloadData(longCheckoutActionId);
 			try {
 				InputStream inputStream = checkout.getFile().getInputStream();
 				byte[] buffer = new byte[1024];
