@@ -823,7 +823,7 @@ open a specific revision to query other revisions<br />
 		$("#simpleDownloadButton").click(function(){
 			$("#simpleDownloadButton").hide();
 			$("#detailscheckoutbutton").hide();
-			$("#simpleDownloadResult").load("initiatedownload.jsp?roid=" + $("#simpleDownloadRoid").val());
+			$("#simpleDownloadResult").load("initiatedownload.jsp?roid=" + $("#simpleDownloadRoid").val() + "+resultType=" + $("#detailsdownloadcheckoutselect").val());
 		});
 		$("#detailscheckoutbutton").click(function(){
 			$("#simpleDownloadButton").hide();
