@@ -135,7 +135,7 @@ public class Client extends JFrame {
 		try {
 			DataHandler ifcFile = new DataHandler(dataSource);
 			SCheckinResult upload = serviceHolder.getService().checkinSync(project.getOid(), comment, fileSize, ifcFile, false);
-			JOptionPane.showMessageDialog(this, "New revision number: " + upload.getRid(), "Checkin successfull", JOptionPane.OK_OPTION
+			JOptionPane.showMessageDialog(this, "New revision number: " + upload.getRid(), "Checkin successful", JOptionPane.OK_OPTION
 					| JOptionPane.INFORMATION_MESSAGE);
 			revisionPanel.showProject(project);
 		} catch (ServiceException e) {
