@@ -833,7 +833,8 @@ open a specific revision to query other revisions<br />
 		
 		$("#compareajaxloader").hide();
 		$("#browserajaxloader").hide();
-		<%String clashesUrl = "clashes.jsp?poid=" + poid;
+		<%
+			String clashesUrl = "clashes.jsp?poid=" + poid;
 						if (request.getParameter("margin") != null) {
 							clashesUrl += "&margin=" + request.getParameter("margin");
 						}
@@ -842,7 +843,8 @@ open a specific revision to query other revisions<br />
 						}
 						if (request.getParameter("ignored") != null) {
 							clashesUrl += "&ignored=" + request.getParameter("ignored");
-						}%>
+						}
+		%>
 		$("#clashdetectiondiv").load("<%=clashesUrl%>");
 		$("#compareform").submit(function(){
 			$("#compareform").hide();
