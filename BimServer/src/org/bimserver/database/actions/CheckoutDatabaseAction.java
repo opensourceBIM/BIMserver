@@ -26,7 +26,7 @@ public class CheckoutDatabaseAction extends BimDatabaseAction<IfcModel> {
 	private int progress;
 
 	public CheckoutDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long uoid, long roid) {
-		super(null, accessMethod);
+		super(bimDatabaseSession, accessMethod);
 		this.uoid = uoid;
 		this.roid = roid;
 	}

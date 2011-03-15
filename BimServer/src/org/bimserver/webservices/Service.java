@@ -138,6 +138,7 @@ import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.interfaces.objects.SUser;
 import org.bimserver.interfaces.objects.SUserType;
 import org.bimserver.longaction.CannotBeScheduledException;
+import org.bimserver.longaction.LongAction;
 import org.bimserver.longaction.LongActionManager;
 import org.bimserver.longaction.LongCheckinAction;
 import org.bimserver.longaction.LongCheckoutAction;
@@ -163,7 +164,7 @@ import org.bimserver.serializers.EmfSerializerFactory;
 import org.bimserver.settings.ServerSettings;
 import org.bimserver.settings.SettingsSaveException;
 import org.bimserver.shared.DatabaseInformation;
-import org.bimserver.shared.DownloadState;
+import org.bimserver.shared.LongActionState;
 import org.bimserver.shared.ResultType;
 import org.bimserver.shared.SCheckinResult;
 import org.bimserver.shared.SCheckoutResult;
@@ -832,8 +833,8 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public DownloadState getDownloadState(String longActionID) throws UserException, ServerException {
-		LongDownloadAction longAction = (LongDownloadAction) longActionManager.getLongAction(longActionID);
+	public LongActionState getDownloadState(String longActionID) throws UserException, ServerException {
+		LongAction longAction =  longActionManager.getLongAction(longActionID);
 		if (longAction != null) {
 			System.out.println(longAction.getState().getProgress());
 			return longAction.getState();

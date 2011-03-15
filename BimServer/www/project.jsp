@@ -823,12 +823,12 @@ open a specific revision to query other revisions<br />
 		$("#simpleDownloadButton").click(function(){
 			$("#simpleDownloadButton").hide();
 			$("#detailscheckoutbutton").hide();
-			$("#simpleDownloadResult").load("initiatedownload.jsp?roid=" + $("#simpleDownloadRoid").val() + "+resultType=" + $("#detailsdownloadcheckoutselect").val());
+			$("#simpleDownloadResult").load("initiatedownload.jsp?roid=" + $("#simpleDownloadRoid").val() + "&resultType=" + $("#detailsdownloadcheckoutselect").val()+ "&download=" + $("#simpleDownloadButton").val());
 		});
 		$("#detailscheckoutbutton").click(function(){
 			$("#simpleDownloadButton").hide();
 			$("#detailscheckoutbutton").hide();
-			$("#simpleDownloadResult").load("initiatedownload.jsp?roid=" + $("#simpleDownloadRoid").val());
+			$("#simpleDownloadResult").load("initiatedownload.jsp?roid=" + $("#simpleDownloadRoid").val()  + "&resultType=" + $("#detailsdownloadcheckoutselect").val()+ "&checkout=" + $("#detailscheckoutbutton").val());
 		});
 		
 		$("#compareajaxloader").hide();

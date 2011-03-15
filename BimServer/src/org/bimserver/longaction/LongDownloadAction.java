@@ -17,8 +17,8 @@ import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.serializers.EmfSerializerFactory;
-import org.bimserver.shared.DownloadState;
-import org.bimserver.shared.DownloadState.DownloadActionState;
+import org.bimserver.shared.LongActionState;
+import org.bimserver.shared.LongActionState.ActionState;
 import org.bimserver.shared.ResultType;
 import org.bimserver.shared.SCheckoutResult;
 import org.bimserver.shared.UserException;
@@ -40,7 +40,7 @@ public class LongDownloadAction extends LongAction {
 	private final long roid;
 	private final long currentUoid;
 	private final String id;
-	private DownloadActionState state = DownloadActionState.UNKNOWN;
+	private ActionState state = ActionState.UNKNOWN;
 
 	public LongDownloadAction(long roid, long currentUoid, LongActionManager longActionManager, BimDatabase bimDatabase,
 			AccessMethod accessMethod, EmfSerializerFactory emfSerializerFactory, ResultType resultType) {
@@ -56,7 +56,7 @@ public class LongDownloadAction extends LongAction {
 	}
 
 	public void execute() {
-		state = DownloadActionState.STARTED;
+		state = ActionState.STARTED;
 		BimDatabaseSession session = bimDatabase.createReadOnlySession();
 		try {
 			action = new DownloadDatabaseAction(session, accessMethod, roid, currentUoid);
@@ -68,7 +68,7 @@ public class LongDownloadAction extends LongAction {
 			LOGGER.error("", e);
 		} finally {
 			session.close();
-			state = DownloadActionState.FINISHED;
+			state = ActionState.FINISHED;
 		}
 	}
 
@@ -107,8 +107,9 @@ public class LongDownloadAction extends LongAction {
 		return user;
 	}
 
-	public synchronized DownloadState getState() {
-		DownloadState ds = new DownloadState();
+	@Override
+	public synchronized LongActionState getState() {
+		LongActionState ds = new LongActionState();
 		ds.setProgress(action.getProgress());
 		ds.setState(state);
 		return ds;
