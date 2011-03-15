@@ -10,6 +10,7 @@ public abstract class Migration {
 	public abstract void migrate(Schema schema);
 
 	public void upgrade(Database database) {
-		
 	}
+	
+	public abstract String getDescription();
 }

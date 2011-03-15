@@ -1,4 +1,4 @@
-body {
+body.default {
 	font-size: 12px;
 	color: #666666;
 	margin: 0px;
@@ -486,4 +486,8 @@ ul.projectTree li {
 
 ul.projectTree li.last {
 	background: url(/images/lastnode.png) no-repeat;
+}
+
+p.explain {
+	font-size: xx-small;
 }

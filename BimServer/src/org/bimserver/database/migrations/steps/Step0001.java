@@ -106,4 +106,9 @@ public class Step0001 extends Migration {
 		EClass userChangedClass = schema.createEClass(logPackage, "UserChanged", logActionClass);
 		schema.createEReference(userChangedClass, "user", userClass, Multiplicity.SINGLE);
 	}
+
+	@Override
+	public String getDescription() {
+		return "Initial log model";
+	}
 }

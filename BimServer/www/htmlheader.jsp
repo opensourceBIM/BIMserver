@@ -93,4 +93,3 @@
 </script>
 <script src="js/tabber-minimized.js" type="text/javascript" charset="utf-8"></script>
 </head>
-<body>

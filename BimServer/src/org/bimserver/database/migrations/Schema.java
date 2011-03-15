@@ -144,10 +144,24 @@ public class Schema {
 		if (multiplicity == Multiplicity.MANY) {
 			eAttribute.setUpperBound(-1);
 		}
-		changes.add(new NewAttributeChange(this, eAttribute));
+		if (!isNew(eClass)) {
+			changes.add(new NewAttributeChange(this, eAttribute));
+		}
 		eAttribute.setEType(eDataType);
 		eClass.getEStructuralFeatures().add(eAttribute);
 		return eAttribute;
+	}
+
+	private boolean isNew(EClass eClass) {
+		for (Change change : changes) {
+			if (change instanceof NewClassChange) {
+				NewClassChange newClassChange = (NewClassChange)change;
+				if (newClassChange.getEClass() == eClass) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 
 	public EReference createEReference(EClass eClass, String name, EClass type, Multiplicity multiplicity) {

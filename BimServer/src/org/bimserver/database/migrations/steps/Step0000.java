@@ -264,4 +264,9 @@ public class Step0000 extends Migration {
 		projectClashDetectionSettings = schema.createEReference(projectClass, "clashDetectionSettings", clashDetectionsSettingsClass, Multiplicity.SINGLE);
 		schema.createEAttribute(projectClass, "exportLengthMeasurePrefix", siPrefixEnum, Multiplicity.SINGLE);
 	}
+
+	@Override
+	public String getDescription() {
+		return "Initial store model";
+	}
 }

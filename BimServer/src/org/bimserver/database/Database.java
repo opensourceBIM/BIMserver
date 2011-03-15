@@ -89,6 +89,7 @@ public class Database implements BimDatabase {
 	public static final int APPLICATION_SCHEMA_VERSION = 2;
 	private int databaseSchemaVersion;
 	private short tableId;
+	private Migrator migrator;
 
 	public Database(Set<? extends EPackage> emfPackages, ColumnDatabase columnDatabase, FieldIgnoreMap fieldIgnoreMap) throws DatabaseInitException {
 		this.columnDatabase = columnDatabase;
@@ -126,8 +127,7 @@ public class Database implements BimDatabase {
 			
 			databaseSchemaVersion = registry.readInt(SCHEMA_VERSION, databaseSession, -1);
 
-			Migrator migrator = new Migrator();
-			migrator.migrate(this, databaseSession);
+			migrator = new Migrator(this);
 			
 			getColumnDatabase().createTableIfNotExists(Database.STORE_PROJECT_NAME, databaseSession);
 			initInternalStructure(databaseSession);
@@ -142,8 +142,6 @@ public class Database implements BimDatabase {
 				databaseSession.store(databaseCreated);
 
 				new CreateBaseProject(databaseSession, AccessMethod.INTERNAL).execute();
-				new AddUserDatabaseAction(databaseSession, AccessMethod.INTERNAL, "admin", "admin", "Administrator", UserType.ADMIN, -1, false).execute();
-				new AddUserDatabaseAction(databaseSession, AccessMethod.INTERNAL, "anonymous", "anonymous", "Anonymous", UserType.ANONYMOUS, -1, false).execute();
 			} else {
 				initOidCounter(databaseSession);
 				initPidCounter(databaseSession);
@@ -164,10 +162,6 @@ public class Database implements BimDatabase {
 			close();
 			throw new DatabaseInitException(e.getMessage());
 		} catch (BimDatabaseException e) {
-			LOGGER.error("", e);
-			close();
-			throw new DatabaseInitException(e.getMessage());
-		} catch (MigrationException e) {
 			LOGGER.error("", e);
 			close();
 			throw new DatabaseInitException(e.getMessage());
@@ -445,5 +439,10 @@ public class Database implements BimDatabase {
 
 	public void setDatabaseVersion(int version, DatabaseSession databaseSession) throws BimDeadlockException {
 		registry.save(SCHEMA_VERSION, version, databaseSession);
+	}
+
+	@Override
+	public Migrator getMigrator() {
+		return migrator;
 	}
 }

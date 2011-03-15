@@ -7,9 +7,12 @@
 <%@page import="java.util.Map"%>
 <%@page import="org.bimserver.interfaces.objects.SUser"%>
 <%@page import="org.bimserver.settings.Settings"%>
+<%@page import="org.bimserver.ServerInfo.ServerState"%>
+<%@page import="org.bimserver.ServerInfo.ServerState"%>
 <jsp:useBean id="loginManager" scope="session" class="org.bimserver.web.LoginManager" />
 <jsp:useBean id="errorMessages" scope="request" class="org.bimserver.ErrorMessages" />
 <jsp:include page="htmlheader.jsp" />
+<body class="default">
 <%
 	if (ServerInfo.isAvailable()) {
 %>
@@ -62,7 +65,9 @@ You are logged in as: <a href="user.jsp?uoid=<%=loginManager.getService().getLog
  				}
  			}
  		}
- 	} else {
+ 	} else if (ServerInfo.getServerState() == ServerInfo.ServerState.NOT_SETUP) {
+ 		response.sendRedirect("setup.jsp");
+ 	} else if (ServerInfo.getServerState() == ServerInfo.ServerState.FATAL_ERROR) {
  		response.sendRedirect("error.jsp");
 	}
 %>

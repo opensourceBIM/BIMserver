@@ -549,4 +549,18 @@ public interface ServiceInterface {
 			@WebParam(name = "roid1", partName = "sendClashesEmail.roid1") long roid1,
 			@WebParam(name = "roid2", partName = "sendClashesEmail.roid2") long roid2,
 			@WebParam(name = "address", partName = "sendClashesEmail.address") String address) throws UserException, ServerException;
+	
+	@WebMethod(action = "setup")
+	void setup(@WebParam(name = "siteAddress", partName = "setup.siteAddress") String siteAddress,
+			@WebParam(name = "smtpServer", partName = "setup.smtpServer") String smtpServer,
+			@WebParam(name = "adminName", partName = "setup.adminName") String adminName,
+			@WebParam(name = "adminUsername", partName = "setup.adminUsername") String adminUsername,
+			@WebParam(name = "adminPassword", partName = "setup.adminPassword") String adminPassword,
+			@WebParam(name = "createAnonymousUser", partName = "setup.createAnonymousUser") boolean createAnonymousUser) throws UserException, ServerException;
+
+	@WebMethod(action = "getPendingMigrations")
+	Set<SMigration> getPendingMigrations();
+
+	@WebMethod(action = "migrateDatabase")
+	void migrateDatabase() throws ServerException;
 }
