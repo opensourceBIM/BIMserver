@@ -26,7 +26,7 @@
 <%@page import="java.util.TreeSet"%>
 <%@page import="java.util.Set"%>
 <%@page import="org.bimserver.shared.SProjectNameComparator"%>
-<%@page import="org.bimserver.database.store.SIPrefix"%>
+<%@page import="org.bimserver.models.store.SIPrefix"%>
 <%@page import="org.bimserver.utils.WebUtils"%>
 <%@page import="org.bimserver.interfaces.objects.SCheckinState"%>
 <%@page import="java.util.ArrayList"%>
