@@ -240,11 +240,10 @@ to go to the latest revision<br />
 <br />
 <p></p>
 <div class="tabber" id="downloadtabber">
-<div class="tabbertab" id="detailstab" title="Simple Download">
-<form action="<%=request.getContextPath()%>/download" method="get">
-Download: <input type="hidden" id="simpleDownloadRoid" name="roid"
-	value="<%=project.getLastRevisionId()%>" /> <select name="resultType"
-	id="detailsdownloadcheckoutselect">
+	<div class="tabbertab" id="detailstab" title="Simple Download">
+	<form action="<%=request.getContextPath()%>/download" method="get">Download: 
+	<input type="hidden" id="simpleDownloadRoid" name="roid" value="<%=project.getLastRevisionId()%>" />
+	<select name="resultType" id="detailsdownloadcheckoutselect">
 	<%
 		for (ResultType resultType : emfSerializerFactory.getMultipleResultTypes()) {
 	%>
@@ -253,18 +252,22 @@ Download: <input type="hidden" id="simpleDownloadRoid" name="roid"
 	<%
 		}
 	%>
-</select> <label for="simplezip_<%=lastRevision.getId()%>">Zip </label><input
-	type="checkbox" name="zip" id="simplezip_<%=lastRevision.getId()%>" />
-<input id="simpleDownloadButton" name="download" type="button" value="Download"><input
-	type="hidden" name="async" value="true" /> <%
- 	if (userHasCheckinRights) {
- %> <input name="checkout" type="submit" value="Checkout"
-	id="detailscheckoutbutton"> <%
- 	}
- %>
-</form>
-<div id="simpleDownloadResult"></div>
+	</select> <label for="simplezip_<%=lastRevision.getId()%>">Zip </label>
+	<input type="checkbox" name="zip" id="simplezip_<%=lastRevision.getId()%>" />
+	<input id="simpleDownloadButton" name="download" type="button" value="Download">
+	<input type="hidden" name="async" value="true" />
+	<%
+	 	if (userHasCheckinRights) {
+	%>
+	<input id="detailscheckoutbutton" name="checkout" type="button" value="Checkout"> 
+	<%
+	 	}
+	%>
+	<span id="simpleDownloadResult"></span>
+	</form>
+	
 </div>
+
 <div class="tabbertab" id="" title="Advanced Download"><script>
 var projects = new Object();
 <%=JspHelper.writeDownloadProjectTreeJavaScript(project, loginManager)%>
@@ -818,6 +821,13 @@ open a specific revision to query other revisions<br />
  %> <script>
 	$(document).ready(function(){
 		$("#simpleDownloadButton").click(function(){
+			$("#simpleDownloadButton").hide();
+			$("#detailscheckoutbutton").hide();
+			$("#simpleDownloadResult").load("initiatedownload.jsp?roid=" + $("#simpleDownloadRoid").val());
+		});
+		$("#detailscheckoutbutton").click(function(){
+			$("#simpleDownloadButton").hide();
+			$("#detailscheckoutbutton").hide();
 			$("#simpleDownloadResult").load("initiatedownload.jsp?roid=" + $("#simpleDownloadRoid").val());
 		});
 		

@@ -128,7 +128,8 @@ public class DownloadServlet extends HttpServlet {
 					roid = Long.parseLong(request.getParameter("roid"));
 				}
 				if (request.getParameter("checkout") != null) {
-					checkoutResult = loginManager.getService().checkout(roid, resultType);
+					String longCheckoutActionId = loginManager.getService().checkout(roid, resultType, true);
+					checkoutResult = loginManager.getService().getDownloadData(longCheckoutActionId);
 				} else {
 					if (request.getParameter("class") != null) {
 						checkoutResult = loginManager.getService().downloadOfType(roid, request.getParameter("class"), resultType);

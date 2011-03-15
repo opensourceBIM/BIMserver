@@ -60,7 +60,6 @@ import org.bimserver.database.actions.ChangeUserTypeDatabaseAction;
 import org.bimserver.database.actions.CheckinDatabaseAction;
 import org.bimserver.database.actions.CheckinPart1DatabaseAction;
 import org.bimserver.database.actions.CheckinPart2DatabaseAction;
-import org.bimserver.database.actions.CheckoutDatabaseAction;
 import org.bimserver.database.actions.CompareDatabaseAction;
 import org.bimserver.database.actions.DeleteProjectDatabaseAction;
 import org.bimserver.database.actions.DeleteUserDatabaseAction;
@@ -141,6 +140,7 @@ import org.bimserver.interfaces.objects.SUserType;
 import org.bimserver.longaction.CannotBeScheduledException;
 import org.bimserver.longaction.LongActionManager;
 import org.bimserver.longaction.LongCheckinAction;
+import org.bimserver.longaction.LongCheckoutAction;
 import org.bimserver.longaction.LongDownloadAction;
 import org.bimserver.mail.MailSystem;
 import org.bimserver.merging.Merger;
@@ -405,12 +405,12 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public SCheckoutResult checkoutLastRevision(long poid, ResultType resultType) throws UserException, ServerException {
+	public String checkoutLastRevision(long poid, ResultType resultType, boolean sync) throws UserException, ServerException {
 		requireAuthentication();
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
 			Project project = session.get(StorePackage.eINSTANCE.getProject(), poid, false);
-			return checkout(project.getLastRevision().getOid(), resultType);
+			return checkout(project.getLastRevision().getOid(), resultType, sync);
 		} catch (Exception e) {
 			handleException(e);
 			return null;
@@ -420,24 +420,35 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public SCheckoutResult checkout(long roid, ResultType resultType) throws UserException, ServerException {
+	public String checkout(long roid, ResultType resultType, boolean sync) throws UserException, ServerException {
 		requireAuthentication();
 		if (resultType != ResultType.IFC && resultType != ResultType.IFCXML) {
 			throw new UserException("Only IFC or IFCXML allowed when checking out");
 		}
-		BimDatabaseSession session = bimDatabase.createSession();
+		
+		final LongCheckoutAction longCheckoutAction = new LongCheckoutAction(roid, currentUoid, longActionManager, bimDatabase,
+				accessMethod, emfSerializerFactory, resultType);
 		try {
-			BimDatabaseAction<IfcModel> action = new CheckoutDatabaseAction(session, accessMethod, currentUoid, roid);
-			Revision revision = session.get(StorePackage.eINSTANCE.getRevision(), roid, false);
-			User user = session.get(StorePackage.eINSTANCE.getUser(), currentUoid, false);
-			return convertModelToCheckoutResult(revision.getProject(), user, session.executeAndCommitAction(action, DEADLOCK_RETRIES),
-					resultType);
-		} catch (Exception e) {
+			longActionManager.start(longCheckoutAction);
+		} catch (CannotBeScheduledException e) {
 			handleException(e);
 			return null;
-		} finally {
-			session.close();
 		}
+
+		if (sync) {
+			while (longCheckoutAction.isRunning()) {
+				try {
+					Thread.sleep(1000); // Sleep for 1 sec
+				} catch (InterruptedException e) {
+					handleException(e);
+					return null;
+				}
+			}
+
+			return longCheckoutAction.getIdentification();
+		} else {
+			return longCheckoutAction.getIdentification();
+		}		
 	}
 
 	@Override
@@ -788,6 +799,7 @@ public class Service implements ServiceInterface {
 
 	public String download(long roid, ResultType resultType, boolean sync) throws UserException, ServerException {
 		requireAuthentication();
+		
 		final LongDownloadAction longDownloadAction = new LongDownloadAction(roid, currentUoid, longActionManager, bimDatabase,
 				accessMethod, emfSerializerFactory, resultType);
 		try {
