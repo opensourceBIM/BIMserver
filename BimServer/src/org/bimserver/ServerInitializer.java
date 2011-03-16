@@ -177,12 +177,18 @@ public class ServerInitializer implements ServletContextListener {
 			
 			SettingsManager settingsManager = new SettingsManager(bimDatabase);
 			MailSystem mailSystem = new MailSystem(settingsManager);
-			
-			Settings settings = settingsManager.getSettings();
-			if (settings.getSiteAddress().isEmpty() || settings.getSmtpServer().isEmpty()) {
-				ServerInfo.setServerState(ServerState.NOT_SETUP);
+
+			if (bimDatabase.getMigrator().migrationRequired()) {
+				ServerInfo.setServerState(ServerState.MIGRATION_REQUIRED);
+			} else if (bimDatabase.getMigrator().migrationImpossible()) {
+				ServerInfo.setServerState(ServerState.MIGRATION_IMPOSSIBLE);
 			} else {
-				ServerInfo.setServerState(ServerState.RUNNING);
+				Settings settings = settingsManager.getSettings();
+				if (settings.getSiteAddress().isEmpty() || settings.getSmtpServer().isEmpty()) {
+					ServerInfo.setServerState(ServerState.NOT_SETUP);
+				} else {
+					ServerInfo.setServerState(ServerState.RUNNING);
+				}
 			}
 
 			if (serverType == ServerType.DEV_ENVIRONMENT && columnDatabase.isNew()) {

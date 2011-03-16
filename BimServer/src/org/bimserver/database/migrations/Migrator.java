@@ -123,6 +123,10 @@ public class Migrator {
 	}
 
 	public boolean migrationRequired() {
-		return false;
+		return database.getApplicationSchemaVersion() > database.getDatabaseSchemaVersion();
+	}
+
+	public boolean migrationImpossible() {
+		return database.getApplicationSchemaVersion() < database.getDatabaseSchemaVersion();
 	}
 }
