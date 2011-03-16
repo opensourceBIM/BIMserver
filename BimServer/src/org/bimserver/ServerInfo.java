@@ -4,7 +4,7 @@ public class ServerInfo {
 	public static enum ServerState {
 		UNKNOWN,
 		NOT_SETUP,
-		UPGRADE_REQUIRED,
+		MIGRATION_REQUIRED,
 		FATAL_ERROR,
 		RUNNING
 	}

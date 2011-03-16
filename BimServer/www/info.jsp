@@ -8,7 +8,6 @@
 <%@page import="java.util.Map"%>
 <%@page import="org.bimserver.ServerInitializer"%>
 <%@page import="java.text.SimpleDateFormat"%>
-<%@page import="org.bimserver.settings.ServerSettings"%>
 <%@page import="org.bimserver.database.Database"%>
 <%@page import="java.io.File"%>
 <%@page import="org.bimserver.interfaces.objects.SUserType"%>
@@ -49,7 +48,7 @@
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
 		DatabaseInformation databaseInformation = loginManager.getService().getDatabaseInformation();
 		VersionChecker checkVersion = VersionChecker.getInstance();
-		if (ServerSettings.getSettings().isShowVersionUpgradeAvailable() && checkVersion.updateNeeded()) {
+		if (loginManager.getService().isSettingShowVersionUpgradeAvailable() && checkVersion.updateNeeded()) {
 %>
 <div class="error">
 A newer version of the BIMserver is available online.<br/>

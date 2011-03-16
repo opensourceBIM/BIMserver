@@ -4,7 +4,6 @@
 <%@page import="org.bimserver.utils.Formatters"%>
 <%@page import="org.bimserver.shared.UserException"%>
 <%@page import="java.util.Properties"%>
-<%@page import="org.bimserver.settings.ServerSettings"%>
 <%@page import="org.bimserver.mail.MailSystem"%>
 <%@page import="org.bimserver.web.JspHelper"%>
 <%@page import="org.bimserver.interfaces.objects.SUserType"%>

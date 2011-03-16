@@ -1036,8 +1036,12 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 	}
 
 	@Override
-	public short getCid(EClass eClass) {
-		return database.getCidOfEClass(eClass);
+	public short getCid(EClass eClass) throws BimDatabaseException {
+		Short cidOfEClass = database.getCidOfEClass(eClass);
+		if (cidOfEClass == null) {
+			throw new BimDatabaseException("EClass " + eClass.getName() + " not registered");
+		}
+		return cidOfEClass;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -1102,5 +1106,10 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 		} catch (BimDatabaseException e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public IfcModel getAllOfType(EClass eClass, boolean deep) throws BimDatabaseException, BimDeadlockException {
+		return getAllOfType(eClass, Database.STORE_PROJECT_ID, Database.STORE_PROJECT_REVISION_ID, deep);
 	}
 }

@@ -10,40 +10,35 @@
 <%@page import="java.util.HashSet"%>
 <%@page import="org.bimserver.ServerInitializer"%>
 <%@page import="java.text.SimpleDateFormat"%>
-<%@page import="org.bimserver.settings.ServerSettings"%>
 <%@page import="org.bimserver.shared.ResultType"%>
-<%@page import="org.bimserver.settings.Settings"%>
 <%@page import="org.apache.commons.io.IOUtils"%>
 <%@page import="org.bimserver.interfaces.objects.SUserType"%>
 <%@page import="org.bimserver.serializers.EmfSerializerFactory"%>
+<%@page import="org.bimserver.shared.ServiceInterface"%>
 <div class="sidebar">
 <ul>
-	<li><a
-		href="<%=getServletContext().getContextPath()%>/settings?action=downloadsettings">Download
-	settings</a></li>
-	<li><a
-		href="<%=getServletContext().getContextPath()%>/settings?action=downloadignorefile">Download
-	ignore.xml</a></li>
+	<li><a href="<%=getServletContext().getContextPath()%>/settings?action=downloadsettings">Download settings</a></li>
+	<li><a href="<%=getServletContext().getContextPath()%>/settings?action=downloadignorefile">Download ignore.xml</a></li>
 </ul>
 </div>
 <div class="content">
 <%
+	ServiceInterface service = loginManager.getService();
 	if (loginManager.getService().isLoggedIn() && loginManager.getUserType() == SUserType.ADMIN) {
-		Settings settings = ServerSettings.getSettings();
 		if (request.getParameter("save") != null) {
-			settings.setAllowSelfRegistration(request.getParameter("allowSelfRegistration") != null);
-			settings.setEmailSenderAddress(request.getParameter("emailsenderaddress"));
-			settings.setRegistrationAddition(request.getParameter("registrationAddition"));
-			settings.setSendConfirmationEmailAfterRegistration(request.getParameter("sendConfirmationEmailAfterRegistration") != null);
-			settings.setShowVersionUpgradeAvailable(request.getParameter("showVersionUpgradeAvailable") != null);
-			settings.setAllowUsersToCreateTopLevelProjects(request.getParameter("allowUsersToCreateTopLevelProjects") != null);
-			settings.setSmtpServer(request.getParameter("smtpServer"));
-			settings.setUseCaching(request.getParameter("usecaching") != null);
-			settings.setIntelligentMerging(request.getParameter("intelligentMerging") != null);
-			settings.setAutoTestClashes(request.getParameter("autoTestClashes") != null);
-			settings.setCustomLogoAddress(request.getParameter("customLogo"));
-			settings.setSiteAddress(request.getParameter("siteAddress"));
-			settings.setCheckinMergingEnabled(request.getParameter("checkinMergingEnabled") != null);
+			service.setSettingAllowSelfRegistration(request.getParameter("allowSelfRegistration") != null);
+			service.setSettingEmailSenderAddress(request.getParameter("emailsenderaddress"));
+			service.setSettingRegistrationAddition(request.getParameter("registrationAddition"));
+			service.setSettingSendConfirmationEmailAfterRegistration(request.getParameter("sendConfirmationEmailAfterRegistration") != null);
+			service.setSettingShowVersionUpgradeAvailable(request.getParameter("showVersionUpgradeAvailable") != null);
+			service.setSettingAllowUsersToCreateTopLevelProjects(request.getParameter("allowUsersToCreateTopLevelProjects") != null);
+			service.setSettingSmtpServer(request.getParameter("smtpServer"));
+			service.setSettingUseCaching(request.getParameter("usecaching") != null);
+			service.setSettingIntelligentMerging(request.getParameter("intelligentMerging") != null);
+			service.setSettingAutoTestClashes(request.getParameter("autoTestClashes") != null);
+			service.setSettingCustomLogoAddress(request.getParameter("customLogo"));
+			service.setSettingSiteAddress(request.getParameter("siteAddress"));
+			service.setSettingCheckinMergingEnabled(request.getParameter("checkinMergingEnabled") != null);
 			String enabledExportTypes = "";
 			Set<ResultType> enabledTypes = new HashSet<ResultType>();
 			for (ResultType resultType : ResultType.values()) {
@@ -51,14 +46,12 @@
 					enabledTypes.add(resultType);
 				}
 			}
-			settings.updateEnabledResultTypes(enabledTypes);
-			settings.save();
-			ServerSettings.setSettings(settings);
+			service.setSettingEnabledExportTypes(enabledTypes);
 			EmfSerializerFactory.getInstance().initSerializers();
 			response.sendRedirect(getServletContext().getContextPath() + "/settings.jsp?msg=settingschangeok");
-		}
-		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
-		if (request.getParameter("msg") != null) {
+				}
+				SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+				if (request.getParameter("msg") != null) {
 			if (request.getParameter("msg").equals("ignorefileuploadok")) {
 				out.println("<div class=\"info\">New ignore file uploaded successfully, a restart of the BIMserver is required</div>");
 			} else if (request.getParameter("msg").equals("settingsfileuploadok")) {
@@ -82,93 +75,81 @@
 	<tr>
 		<td><label for="siteAddress">Site address (URL)</label></td>
 		<td><input id="siteAddress" type="text" name="siteAddress"
-			value="<%=settings.getSiteAddress()%>"></input></td>
+			value="<%=request.getParameter("siteAddress") == null ? service.getSettingSiteAddress() : request.getParameter("siteAddress")%>"></input></td>
 	</tr>
 	<tr>
 		<td><label for="customLogo">Custom logo address</label></td>
 		<td><input id="customLogo" name="customLogo" type="text"
-			size="80" value="<%=settings.getCustomLogoAddress()%>"></input></td>
+			size="80" value="<%=request.getParameter("customLogo") == null ? service.getSettingCustomLogoAddress() : request.getParameter("customLogo")%>"></input></td>
 	</tr>
 	<tr>
 		<td colspan="2" class="tabletitle">Registration</td>
 	</tr>
 	<tr>
-		<td><label for="registrationAddition">Extra information
-		when registering</label></td>
+		<td><label for="registrationAddition">Extra information when registering</label></td>
 		<td><textarea id="registrationAddition"
-			name="registrationAddition" cols="60" rows="4"><%=settings.getRegistrationAddition()%></textarea></td>
+			name="registrationAddition" cols="60" rows="4"><%=request.getParameter("save") != null ? service.getSettingRegistrationAddition() : request.getParameter("registrationAddition")%></textarea></td>
 	</tr>
 	<tr>
-		<td><label for="sendConfirmationEmailAfterRegistration">Send
-		confirmation e-mail after registering</label></td>
+		<td><label for="sendConfirmationEmailAfterRegistration">Send confirmation e-mail after registering</label></td>
 		<td><input id="sendConfirmationEmailAfterRegistration"
 			name="sendConfirmationEmailAfterRegistration" type="checkbox"
-			<%=settings.isSendConfirmationEmailAfterRegistration() ? " checked=\"checked\"" : ""%>></input></td>
+			<%=(request.getParameter("save") == null ? service.isSettingSendConfirmationEmailAfterRegistration() : request.getParameter("sendConfirmationEmailAfterRegistration") != null) ? " checked=\"checked\"" : ""%>></input></td>
 	</tr>
 	<tr>
-		<td><label for="allowSelfRegistration">Allow self
-		registration</label></td>
+		<td><label for="allowSelfRegistration">Allow self registration</label></td>
 		<td><input id="allowSelfRegistration" type="checkbox"
 			name="allowSelfRegistration"
-			<%=settings.isAllowSelfRegistration() ? " checked=\"checked\"" : ""%>></input></td>
+			<%=(request.getParameter("save") == null ? service.isSettingAllowSelfRegistration() : request.getParameter("allowSelfRegistration") != null) ? " checked=\"checked\"" : ""%>></input></td>
 	</tr>
 	<tr>
 		<td colspan="2" class="tabletitle">E-mail</td>
 	</tr>
 	<tr>
-		<td><label for="emailsenderaddress">Address of e-mail
-		sender</label></td>
+		<td><label for="emailsenderaddress">Address of e-mail sender</label></td>
 		<td><input id="emailsenderaddress" type="text"
 			name="emailsenderaddress"
-			value="<%=settings.getEmailSenderAddress()%>"></input></td>
+			value="<%=request.getParameter("save") == null ? service.getSettingEmailSenderAddress() : request.getParameter("emailsenderaddress")%>"></input></td>
 	</tr>
 	<tr>
-		<td><label for="smtpServer">SMTP server (for outgoing
-		e-mail)</label></td>
+		<td><label for="smtpServer">SMTP server (for outgoing e-mail)</label></td>
 		<td><input id="smtpServer" name="smtpServer" type="text"
-			value="<%=settings.getSmtpServer()%>"></input></td>
+			value="<%=request.getParameter("save") == null ? service.getSettingSmtpServer() : request.getParameter("smtpServer")%>"></input></td>
 	</tr>
 	<tr>
 		<td colspan="2" class="tabletitle">Other</td>
 	</tr>
 	<tr>
-		<td><label for="autoTestClashes">Automatic clash
-		detection on main projects</label></td>
+		<td><label for="autoTestClashes">Automatic clash detection on main projects</label></td>
 		<td><input id="autoTestClashes" name="autoTestClashes"
 			type="checkbox"
-			<%=settings.isAutoTestClashes() ? " checked=\"checked\"" : ""%>></input></td>
+			<%=(request.getParameter("save") == null ? service.isSettingAutoTestClashes() : request.getParameter("autoTestClashes") != null) ? " checked=\"checked\"" : ""%>></input></td>
 	</tr>
 	<tr>
-		<td><label for="allowUsersToCreateTopLevelProjects">Allow
-		non-admin users to create projects</label></td>
+		<td><label for="allowUsersToCreateTopLevelProjects">Allow non-admin users to create projects</label></td>
 		<td><input id="allowUsersToCreateTopLevelProjects"
 			name="allowUsersToCreateTopLevelProjects" type="checkbox"
-			<%=settings.isAllowUsersToCreateTopLevelProjects() ? " checked=\"checked\"" : ""%>></input></td>
+			<%=(request.getParameter("save") == null ? service.isSettingAllowUsersToCreateTopLevelProjects() : request.getParameter("allowUsersToCreateTopLevelProjects") != null) ? " checked=\"checked\"" : ""%>></input></td>
 	</tr>
 	<tr>
-		<td><label for="showVersionUpgradeAvailable">Show whether
-		a new version is available</label></td>
+		<td><label for="showVersionUpgradeAvailable">Show whether a new version is available</label></td>
 		<td><input id="showVersionUpgradeAvailable"
 			name="showVersionUpgradeAvailable" type="checkbox"
-			<%=settings.isShowVersionUpgradeAvailable() ? " checked=\"checked\"" : ""%>></input></td>
+			<%=(request.getParameter("save") == null ? service.isSettingShowVersionUpgradeAvailable() : request.getParameter("showVersionUpgradeAvailable") != null) ? " checked=\"checked\"" : ""%>></input></td>
 	</tr>
 	<tr>
 		<td><label for="intelligentMerging">Intelligent merging</label></td>
-		<td><input id="intelligentMerging" name="intelligentMerging"
-			type="checkbox"
-			<%=settings.isIntelligentMerging() ? " checked=\"checked\"" : ""%>></input></td>
+		<td><input id="intelligentMerging" name="intelligentMerging" type="checkbox"
+			<%=(request.getParameter("save") == null ? service.isSettingIntelligentMerging() : request.getParameter("intelligentMerging") != null) ? " checked=\"checked\"" : ""%>></input></td>
 	</tr>
 	<tr>
 		<td><label for="checkinMergingEnabled">Checkin merging <span
 			style="color: red">(BETA)</span></label></td>
 		<td><input id="checkinMergingEnabled"
 			name="checkinMergingEnabled" type="checkbox"
-			<%=settings.isCheckinMergingEnabled() ? " checked=\"checked\"" : ""%>></input>
+			<%=(request.getParameter("save") == null ? service.isSettingCheckinMergingEnabled() : request.getParameter("checkinMergingEnabled") != null) ? " checked=\"checked\"" : ""%>></input>
 		<span style="color: red">IFC models are modified on checkin!</span></td>
 	</tr>
-	<!-- 
-<tr><td>Use file-level caching</td><td><input name="usecaching" type="checkbox" <%=settings.isUseCaching() ? " checked=\"checked\"" : ""%>></input></td></tr>
- -->
 	<tr>
 		<td>Enabled export types</td>
 		<td>

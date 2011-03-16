@@ -43,7 +43,7 @@ public class CommandLine extends Thread {
 				} else if (line.equalsIgnoreCase("test")) {
 					long startTime = System.nanoTime();
 					try {
-						ServerInitializer.getAdminService().download(1051442, ResultType.IFC, true);
+						ServerInitializer.getSystemService().download(1051442, ResultType.IFC, true);
 					} catch (ServiceException e) {
 						LOGGER.error("", e);
 					}

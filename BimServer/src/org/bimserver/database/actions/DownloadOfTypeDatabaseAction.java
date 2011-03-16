@@ -12,7 +12,6 @@ import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.User;
 import org.bimserver.rights.RightsManager;
-import org.bimserver.settings.ServerSettings;
 import org.bimserver.shared.UserException;
 
 public class DownloadOfTypeDatabaseAction extends BimDatabaseAction<IfcModel> {
@@ -42,7 +41,7 @@ public class DownloadOfTypeDatabaseAction extends BimDatabaseAction<IfcModel> {
 			subModel.setDate(concreteRevision.getDate());
 			ifcModelSet.add(subModel);
 		}
-		IfcModel IfcModel = new Merger().merge(project, ifcModelSet, ServerSettings.getSettings().isIntelligentMerging());
+		IfcModel IfcModel = new Merger().merge(project, ifcModelSet, getSettings().isIntelligentMerging());
 		IfcModel.setRevisionNr(project.getRevisions().indexOf(virtualRevision) + 1);
 		IfcModel.setAuthorizedUser(getUserByUoid(actingUoid).getName());
 		IfcModel.setDate(virtualRevision.getDate());

@@ -1,4 +1,3 @@
-<%@page import="org.bimserver.settings.ServerSettings"%>
 <%@page import="org.bimserver.web.LoginManager"%>
 <%@page import="org.bimserver.interfaces.objects.SProject"%>
 <jsp:useBean id="loginManager" scope="session" class="org.bimserver.web.LoginManager" />
@@ -16,7 +15,7 @@ Uploading... <img src="images/ajax-loader.gif"/>
 <tr><td><label for="file">IFC File</label></td><td><input id="file" type="file" name="file"/></td></tr>
 <tr><td><label for="comment">Comment</label></td><td><textarea id="comment" name="comment" cols="80" rows="4"></textarea></td></tr>
 <%
-	if (ServerSettings.getSettings().isCheckinMergingEnabled() && sProject.getRevisions().size() > 0) {
+	if (loginManager.getService().isSettingCheckinMergingEnabled() && sProject.getRevisions().size() > 0) {
 %>
 <tr><td><label for="merge">Merge</label></td><td><input id="merge" name="merge" type="checkbox"/></td></tr>
 <%

@@ -26,6 +26,7 @@ import org.bimserver.models.store.ObjectState;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.SIPrefix;
+import org.bimserver.models.store.Settings;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
@@ -115,6 +116,13 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * @generated
 	 */
 	private EClass checkoutEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass settingsEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1032,6 +1040,141 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getSettings() {
+		return settingsEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSettings_ShowVersionUpgradeAvailable() {
+		return (EAttribute)settingsEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSettings_SendConfirmationEmailAfterRegistration() {
+		return (EAttribute)settingsEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSettings_UseCaching() {
+		return (EAttribute)settingsEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSettings_AllowSelfRegistration() {
+		return (EAttribute)settingsEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSettings_AutoTestClashes() {
+		return (EAttribute)settingsEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSettings_IntelligentMerging() {
+		return (EAttribute)settingsEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSettings_AllowUsersToCreateTopLevelProjects() {
+		return (EAttribute)settingsEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSettings_CheckinMergingEnabled() {
+		return (EAttribute)settingsEClass.getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSettings_RegistrationAddition() {
+		return (EAttribute)settingsEClass.getEStructuralFeatures().get(8);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSettings_SmtpServer() {
+		return (EAttribute)settingsEClass.getEStructuralFeatures().get(9);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSettings_EmailSenderAddress() {
+		return (EAttribute)settingsEClass.getEStructuralFeatures().get(10);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSettings_EnabledExportTypes() {
+		return (EAttribute)settingsEClass.getEStructuralFeatures().get(11);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSettings_CustomLogoAddress() {
+		return (EAttribute)settingsEClass.getEStructuralFeatures().get(12);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSettings_SiteAddress() {
+		return (EAttribute)settingsEClass.getEStructuralFeatures().get(13);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getUserType() {
 		return userTypeEEnum;
 	}
@@ -1191,6 +1334,22 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 		createEReference(checkoutEClass, CHECKOUT__CHECKIN);
 		createEAttribute(checkoutEClass, CHECKOUT__ACTIVE);
 
+		settingsEClass = createEClass(SETTINGS);
+		createEAttribute(settingsEClass, SETTINGS__SHOW_VERSION_UPGRADE_AVAILABLE);
+		createEAttribute(settingsEClass, SETTINGS__SEND_CONFIRMATION_EMAIL_AFTER_REGISTRATION);
+		createEAttribute(settingsEClass, SETTINGS__USE_CACHING);
+		createEAttribute(settingsEClass, SETTINGS__ALLOW_SELF_REGISTRATION);
+		createEAttribute(settingsEClass, SETTINGS__AUTO_TEST_CLASHES);
+		createEAttribute(settingsEClass, SETTINGS__INTELLIGENT_MERGING);
+		createEAttribute(settingsEClass, SETTINGS__ALLOW_USERS_TO_CREATE_TOP_LEVEL_PROJECTS);
+		createEAttribute(settingsEClass, SETTINGS__CHECKIN_MERGING_ENABLED);
+		createEAttribute(settingsEClass, SETTINGS__REGISTRATION_ADDITION);
+		createEAttribute(settingsEClass, SETTINGS__SMTP_SERVER);
+		createEAttribute(settingsEClass, SETTINGS__EMAIL_SENDER_ADDRESS);
+		createEAttribute(settingsEClass, SETTINGS__ENABLED_EXPORT_TYPES);
+		createEAttribute(settingsEClass, SETTINGS__CUSTOM_LOGO_ADDRESS);
+		createEAttribute(settingsEClass, SETTINGS__SITE_ADDRESS);
+
 		// Create enums
 		userTypeEEnum = createEEnum(USER_TYPE);
 		checkinStateEEnum = createEEnum(CHECKIN_STATE);
@@ -1330,8 +1489,25 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 		initEReference(getCheckout_Checkin(), this.getRevision(), null, "checkin", null, 0, 1, Checkout.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getCheckout_Active(), ecorePackage.getEBoolean(), "active", null, 0, 1, Checkout.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		initEClass(settingsEClass, Settings.class, "Settings", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getSettings_ShowVersionUpgradeAvailable(), ecorePackage.getEBoolean(), "showVersionUpgradeAvailable", null, 0, 1, Settings.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSettings_SendConfirmationEmailAfterRegistration(), ecorePackage.getEBoolean(), "sendConfirmationEmailAfterRegistration", null, 0, 1, Settings.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSettings_UseCaching(), ecorePackage.getEBoolean(), "useCaching", null, 0, 1, Settings.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSettings_AllowSelfRegistration(), ecorePackage.getEBoolean(), "allowSelfRegistration", null, 0, 1, Settings.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSettings_AutoTestClashes(), ecorePackage.getEBoolean(), "autoTestClashes", null, 0, 1, Settings.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSettings_IntelligentMerging(), ecorePackage.getEBoolean(), "intelligentMerging", null, 0, 1, Settings.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSettings_AllowUsersToCreateTopLevelProjects(), ecorePackage.getEBoolean(), "allowUsersToCreateTopLevelProjects", null, 0, 1, Settings.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSettings_CheckinMergingEnabled(), ecorePackage.getEBoolean(), "checkinMergingEnabled", null, 0, 1, Settings.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSettings_RegistrationAddition(), ecorePackage.getEString(), "registrationAddition", null, 0, 1, Settings.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSettings_SmtpServer(), ecorePackage.getEString(), "smtpServer", null, 0, 1, Settings.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSettings_EmailSenderAddress(), ecorePackage.getEString(), "emailSenderAddress", null, 0, 1, Settings.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSettings_EnabledExportTypes(), ecorePackage.getEString(), "enabledExportTypes", null, 0, 1, Settings.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSettings_CustomLogoAddress(), ecorePackage.getEString(), "customLogoAddress", null, 0, 1, Settings.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSettings_SiteAddress(), ecorePackage.getEString(), "siteAddress", null, 0, 1, Settings.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		// Initialize enums and add enum literals
 		initEEnum(userTypeEEnum, UserType.class, "UserType");
+		addEEnumLiteral(userTypeEEnum, UserType.SYSTEM);
 		addEEnumLiteral(userTypeEEnum, UserType.ADMIN);
 		addEEnumLiteral(userTypeEEnum, UserType.USER);
 		addEEnumLiteral(userTypeEEnum, UserType.ANONYMOUS);

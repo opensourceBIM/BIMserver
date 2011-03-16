@@ -21,7 +21,6 @@ import org.bimserver.models.log.NewUserAdded;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserType;
-import org.bimserver.settings.ServerSettings;
 import org.bimserver.shared.UserException;
 import org.bimserver.templating.TemplateEngine;
 import org.bimserver.templating.TemplateIdentifier;
@@ -38,9 +37,11 @@ public class AddUserDatabaseAction extends BimDatabaseAction<Long> {
 	private final long createrUoid;
 	private final boolean selfRegistration;
 	private final String password;
+	private final MailSystem mailSystem;
 
-	public AddUserDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, String username, String name, UserType userType, long createrUoid, boolean selfRegistration) {
+	public AddUserDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, MailSystem mailSystem, String username, String name, UserType userType, long createrUoid, boolean selfRegistration) {
 		super(bimDatabaseSession, accessMethod);
+		this.mailSystem = mailSystem;
 		this.name = name;
 		this.username = username;
 		this.userType = userType;
@@ -49,8 +50,9 @@ public class AddUserDatabaseAction extends BimDatabaseAction<Long> {
 		this.password = null;
 	}
 
-	public AddUserDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, String username, String password, String name, UserType userType, long createrUoid, boolean selfRegistration) {
+	public AddUserDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, MailSystem mailSystem, String username, String password, String name, UserType userType, long createrUoid, boolean selfRegistration) {
 		super(bimDatabaseSession, accessMethod);
+		this.mailSystem = mailSystem;
 		this.password = password;
 		this.name = name;
 		this.username = username;
@@ -68,7 +70,7 @@ public class AddUserDatabaseAction extends BimDatabaseAction<Long> {
 		if (trimmedUserName.equals("")) {
 			throw new UserException("Invalid username");
 		}
-		if (!MailSystem.isValidEmailAddress(trimmedUserName) && !(trimmedUserName.equals("test") || trimmedUserName.equals("admin") || trimmedUserName.equals("anonymous"))) {
+		if (!MailSystem.isValidEmailAddress(trimmedUserName) && !(trimmedUserName.equals("test") || trimmedUserName.equals("system") || trimmedUserName.equals("anonymous"))) {
 			throw new UserException("Username must be a valid e-mail address");
 		}
 		if (trimmedName.equals("")) {
@@ -105,13 +107,13 @@ public class AddUserDatabaseAction extends BimDatabaseAction<Long> {
 			@Override
 			public void execute() throws UserException {
 				try {
-					if (ServerSettings.getSettings().isSendConfirmationEmailAfterRegistration()) {
+					if (getSettings().isSendConfirmationEmailAfterRegistration()) {
 						if (MailSystem.isValidEmailAddress(user.getUsername()) && createrUoid != -1) {
-							Session mailSession = MailSystem.getInstance().createMailSession();
+							Session mailSession = mailSystem.createMailSession();
 							
 							Message msg = new MimeMessage(mailSession);
 							
-							InternetAddress addressFrom = new InternetAddress(ServerSettings.getSettings().getEmailSenderAddress());
+							InternetAddress addressFrom = new InternetAddress(getSettings().getEmailSenderAddress());
 							msg.setFrom(addressFrom);
 							
 							InternetAddress[] addressTo = new InternetAddress[1];
@@ -121,8 +123,8 @@ public class AddUserDatabaseAction extends BimDatabaseAction<Long> {
 							Map<String, Object> context = new HashMap<String, Object>();
 							context.put("name", user.getName());
 							context.put("username", user.getUsername());
-							context.put("siteaddress", ServerSettings.getSettings().getSiteAddress());
-							context.put("validationlink", ServerSettings.getSettings().getSiteAddress() + ServerInitializer.getServletContext().getContextPath() + "/validate.jsp?uoid=" + user.getOid() + "&token=" + token);
+							context.put("siteaddress", getSettings().getSiteAddress());
+							context.put("validationlink", getSettings().getSiteAddress() + ServerInitializer.getServletContext().getContextPath() + "/validate.jsp?uoid=" + user.getOid() + "&token=" + token);
 							String body = null;
 							String subject = null;
 							if (selfRegistration) {

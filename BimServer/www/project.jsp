@@ -1,8 +1,3 @@
-<%@page import="java.text.DateFormat"%>
-<%@page import="java.text.SimpleDateFormat"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="java.util.Collections"%>
-<%@page import="java.util.Comparator"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.Set"%>
 <%@page import="java.util.TreeSet"%>
@@ -62,13 +57,17 @@
 			if (project.getLastRevisionId() != -1) {
 				lastRevision = loginManager.getService().getRevision(project.getLastRevisionId());
 			}
-			boolean anonymousAccess = project.getHasAuthorizedUsers().contains(loginManager.getService().getAnonymousUser().getOid());
+			SUser anonymousUser = null;
+			try {
+				anonymousUser = loginManager.getService().getAnonymousUser();
+			} catch (UserException e) {
+			}
+			boolean anonymousAccess = anonymousUser != null && project.getHasAuthorizedUsers().contains(anonymousUser.getOid());
 			boolean hasUserManagementRights = project.getHasAuthorizedUsers().contains(loginManager.getUoid())
 					&& loginManager.getUserType() != SUserType.ANONYMOUS;
 			boolean userHasCheckinRights = loginManager.getService().userHasCheckinRights(project.getOid());
 			boolean hasEditRights = loginManager.getService().userHasRights(project.getOid());
-			boolean hasCreateProjectRights = (loginManager.getUserType() == SUserType.ADMIN || ServerSettings.getSettings()
-					.isAllowUsersToCreateTopLevelProjects());
+			boolean hasCreateProjectRights = (loginManager.getUserType() == SUserType.ADMIN || loginManager.getService().isSettingAllowUsersToCreateTopLevelProjects());
 			if (emfSerializerFactory.resultTypeEnabled(ResultType.O3D_JSON) && lastRevision != null) {
 %>
 <jsp:include page="o3d.jsp" />

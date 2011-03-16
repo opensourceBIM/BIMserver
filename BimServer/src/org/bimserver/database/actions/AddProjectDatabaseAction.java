@@ -15,7 +15,6 @@ import org.bimserver.models.store.SIPrefix;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserType;
-import org.bimserver.settings.ServerSettings;
 import org.bimserver.shared.UserException;
 
 public class AddProjectDatabaseAction extends BimDatabaseAction<Project> {
@@ -52,7 +51,7 @@ public class AddProjectDatabaseAction extends BimDatabaseAction<Project> {
 			project.setParent(parentProject);
 			getDatabaseSession().store(parentProject);
 		}
-		if (parentPoid == -1 && actingUser.getUserType() != UserType.ADMIN && !ServerSettings.getSettings().isAllowUsersToCreateTopLevelProjects()) {
+		if (parentPoid == -1 && actingUser.getUserType() != UserType.ADMIN && !getSettings().isAllowUsersToCreateTopLevelProjects()) {
 			throw new UserException("Only administrators can create new projects");
 		}
 		if (project.getParent() == null) {
@@ -79,7 +78,7 @@ public class AddProjectDatabaseAction extends BimDatabaseAction<Project> {
 		newProjectAdded.setAccessMethod(getAccessMethod());
 		project.setId(getDatabaseSession().newPid());
 		project.setName(trimmedName);
-		project.getHasAuthorizedUsers().add(getAdminUser());
+//		project.getHasAuthorizedUsers().add(getAdminUser());
 		project.getHasAuthorizedUsers().add(actingUser);
 		project.setCreatedBy(actingUser);
 		project.setCreatedDate(new Date());

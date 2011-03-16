@@ -9,6 +9,7 @@ import java.util.TreeSet;
 
 import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
 
+import org.bimserver.SettingsManager;
 import org.bimserver.citygml.CityGmlSerializer;
 import org.bimserver.collada.ColladaSerializer;
 import org.bimserver.collada.KmzSerializer;
@@ -26,7 +27,6 @@ import org.bimserver.ifcengine.IfcEngineFactory;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.User;
 import org.bimserver.o3d.O3dJsonSerializer;
-import org.bimserver.settings.ServerSettings;
 import org.bimserver.shared.ResourceFetcher;
 import org.bimserver.shared.ResultType;
 import org.bimserver.shared.ResultType.Type;
@@ -54,6 +54,8 @@ public class EmfSerializerFactory {
 
 	private ResourceFetcher resourceFetcher;
 
+	private SettingsManager settingsManager;
+
 	private EmfSerializerFactory() {
 	}
 
@@ -61,13 +63,14 @@ public class EmfSerializerFactory {
 		return INSTANCE;
 	}
 
-	public void init(Version version, SchemaDefinition schemaDefinition, FieldIgnoreMap fieldIgnoreMap, IfcEngineFactory ifcEngineFactory, PackageDefinition colladaSettings, ResourceFetcher resourceFetcher) {
+	public void init(Version version, SchemaDefinition schemaDefinition, FieldIgnoreMap fieldIgnoreMap, IfcEngineFactory ifcEngineFactory, PackageDefinition colladaSettings, ResourceFetcher resourceFetcher, SettingsManager settingsManager) {
 		this.version = version;
 		this.schemaDefinition = schemaDefinition;
 		this.fieldIgnoreMap = fieldIgnoreMap;
 		this.ifcEngineFactory = ifcEngineFactory;
 		this.colladaSettings = colladaSettings;
 		this.resourceFetcher = resourceFetcher;
+		this.settingsManager = settingsManager;
 	}
 	
 	public void register(ResultType type, EmfSerializerCreator emfSerializerCreater) {
@@ -105,7 +108,7 @@ public class EmfSerializerFactory {
 	}
 	
 	public void initSerializers() {
-		String enabledExportTypesString = ServerSettings.getSettings().getEnabledExportTypes();
+		String enabledExportTypesString = settingsManager.getSettings().getEnabledExportTypes();
 		String[] enabledExportTypes = enabledExportTypesString.split(",");
 		EnumSet<ResultType> enabled = EnumSet.noneOf(ResultType.class);
 		for (String type : enabledExportTypes) {

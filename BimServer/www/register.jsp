@@ -4,7 +4,6 @@
 <%@page import="java.util.Properties"%>
 <%@page import="org.bimserver.version.Version"%>
 <%@page import="org.bimserver.version.VersionChecker"%>
-<%@page import="org.bimserver.settings.ServerSettings"%>
 <%@page import="org.apache.velocity.app.VelocityEngine"%>
 <%@page import="org.apache.velocity.Template"%>
 <%@page import="org.apache.velocity.VelocityContext"%>
@@ -13,7 +12,6 @@
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.Map"%>
 <%@page import="org.bimserver.templating.TemplateIdentifier"%>
-<%@page import="org.bimserver.settings.Settings"%>
 <%@page import="org.bimserver.mail.MailSystem"%>
 <%@page import="org.slf4j.Logger"%>
 <%@page import="org.slf4j.LoggerFactory"%>
@@ -21,28 +19,28 @@
 <jsp:include page="htmlheader.jsp" />
 <jsp:useBean id="loginManager" scope="session" class="org.bimserver.web.LoginManager" />
 <%
-	if (ServerSettings.getSettings().isAllowSelfRegistration()) {
+	if (loginManager.getService().isSettingAllowSelfRegistration()) {
 		List<String> errorMessages = new ArrayList<String>();
 		Version version = VersionChecker.getInstance().getLocalVersion();
 		boolean success = false;
 		if (request.getParameter("register") != null) {
-			String name = request.getParameter("register_name");
-			String username = request.getParameter("register_username");
-			try {
-				long uoid = loginManager.getAdminService().addUser(username, name, SUserType.USER, true);
-			} catch (UserException e) {
-				errorMessages.add(e.getUserMessage());
-			}
-			if (errorMessages.size() == 0) {
-				success = true;
-			}
+	String name = request.getParameter("register_name");
+	String username = request.getParameter("register_username");
+	try {
+		long uoid = loginManager.getSystemService().addUser(username, name, SUserType.USER, true);
+	} catch (UserException e) {
+		errorMessages.add(e.getUserMessage());
+	}
+	if (errorMessages.size() == 0) {
+		success = true;
+	}
 		}
 %>
 <div class="loginwrapper">
 <div class="header"><a href="main.jsp"><img src="images/fulllogo.gif" title="BIMserver <%=version.getVersion() %>"/></a></div>
 <div>
 <%
-String addition = ServerSettings.getSettings().getRegistrationAddition();
+	String addition = loginManager.getService().getSettingRegistrationAddition();
 out.print(addition + "<br/><br/>");
 if (errorMessages.size() > 0) {
 	out.println("<div class=\"error\">");

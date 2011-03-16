@@ -47,6 +47,7 @@ import org.bimserver.ServerInfo.ServerState;
 import org.bimserver.database.BimDatabase;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.Database;
+import org.bimserver.database.DatabaseRestartRequiredException;
 import org.bimserver.database.actions.AddUserDatabaseAction;
 import org.bimserver.database.berkeley.BerkeleyColumnDatabase;
 import org.bimserver.ifc.FieldIgnoreMap;
@@ -55,18 +56,18 @@ import org.bimserver.ifc.PackageDefinition;
 import org.bimserver.ifcengine.IfcEngineFactory;
 import org.bimserver.logging.CustomFileAppender;
 import org.bimserver.longaction.LongActionManager;
+import org.bimserver.mail.MailSystem;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.LogFactory;
 import org.bimserver.models.log.ServerStarted;
+import org.bimserver.models.store.Settings;
 import org.bimserver.models.store.UserType;
 import org.bimserver.querycompiler.QueryCompiler;
 import org.bimserver.resources.JarResourceFetcher;
 import org.bimserver.resources.WarResourceFetcher;
 import org.bimserver.serializers.EmfSerializerFactory;
 import org.bimserver.servlets.CompileServlet;
-import org.bimserver.settings.ServerSettings;
-import org.bimserver.settings.Settings;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
 import org.bimserver.shared.ResourceFetcher;
 import org.bimserver.shared.ServiceInterface;
@@ -92,7 +93,7 @@ public class ServerInitializer implements ServletContextListener {
 	private static ResourceFetcher resourceFetcher;
 	private static ServletContext servletContext;
 	private LongActionManager longActionManager;
-	private static ServiceInterface adminService;
+	private static ServiceInterface systemService;
 	private File homeDir;
 	private File baseDir;
 
@@ -120,14 +121,6 @@ public class ServerInitializer implements ServletContextListener {
 			resourceFetcher = createResourceFetcher(serverType, servletContext, homeDir);
 			if (homeDir != null) {
 				initHomeDir();
-			}
-			URL resource = resourceFetcher.getResource("settings.xml");
-			Settings settings = Settings.readFromUrl(resource);
-
-			if (settings.isSetup()) {
-				ServerInfo.setServerState(ServerState.RUNNING);
-			} else {
-				ServerInfo.setServerState(ServerState.NOT_SETUP);
 			}
 			
 			fixLogging();
@@ -159,7 +152,6 @@ public class ServerInitializer implements ServletContextListener {
 				LOGGER.error("Server type not detected, stopping initialization");
 				return;
 			}
-			ServerSettings.setSettings(settings);
 			serverStartTime = new GregorianCalendar();
 			SchemaDefinition schema = loadIfcSchema(resourceFetcher);
 			Set<Ifc2x3Package> packages = CollectionUtils.singleSet(Ifc2x3Package.eINSTANCE);
@@ -174,10 +166,29 @@ public class ServerInitializer implements ServletContextListener {
 			File databaseDir = new File(homeDir, "database");
 			BerkeleyColumnDatabase columnDatabase = new BerkeleyColumnDatabase(databaseDir);
 			bimDatabase = new Database(packages, columnDatabase, fieldIgnoreMap);
+			try {
+				bimDatabase.init();
+			} catch (DatabaseRestartRequiredException e) {
+				bimDatabase.close();
+				columnDatabase = new BerkeleyColumnDatabase(databaseDir);
+				bimDatabase = new Database(packages, columnDatabase, fieldIgnoreMap);
+				bimDatabase.init();
+			}
+			
+			SettingsManager settingsManager = new SettingsManager(bimDatabase);
+			MailSystem mailSystem = new MailSystem(settingsManager);
+			
+			Settings settings = settingsManager.getSettings();
+			if (settings.getSiteAddress().isEmpty() || settings.getSmtpServer().isEmpty()) {
+				ServerInfo.setServerState(ServerState.NOT_SETUP);
+			} else {
+				ServerInfo.setServerState(ServerState.RUNNING);
+			}
+
 			if (serverType == ServerType.DEV_ENVIRONMENT && columnDatabase.isNew()) {
 				BimDatabaseSession session = bimDatabase.createSession();
 				try {
-					new AddUserDatabaseAction(session, AccessMethod.INTERNAL, "test@bimserver.org", "test", "Test User", UserType.USER, -1, false).execute();
+					new AddUserDatabaseAction(session, AccessMethod.INTERNAL, mailSystem, "test@bimserver.org", "test", "Test User", UserType.USER, -1, false).execute();
 					session.commit();
 				} finally {
 					session.close();
@@ -206,12 +217,12 @@ public class ServerInitializer implements ServletContextListener {
 
 			TempUtils.makeTempDir("bimserver");
 			EmfSerializerFactory emfSerializerFactory = EmfSerializerFactory.getInstance();
-			emfSerializerFactory.init(version, schema, fieldIgnoreMap, ifcEngineFactory, colladaSettings, resourceFetcher);
+			emfSerializerFactory.init(version, schema, fieldIgnoreMap, ifcEngineFactory, colladaSettings, resourceFetcher, settingsManager);
 			emfSerializerFactory.initSerializers();
-			ServiceFactory.init(bimDatabase, emfSerializerFactory, schema, longActionManager, ifcEngineFactory, fieldIgnoreMap);
-			setAdminService(ServiceFactory.getINSTANCE().newService(AccessMethod.INTERNAL));
-			((Service) getAdminService()).loginAsAdmin();
-			LoginManager.setAdminService(getAdminService());
+			ServiceFactory.init(bimDatabase, emfSerializerFactory, schema, longActionManager, ifcEngineFactory, fieldIgnoreMap, settingsManager, mailSystem);
+			setSystemService(ServiceFactory.getINSTANCE().newService(AccessMethod.INTERNAL));
+			((Service) getSystemService()).loginAsSystem();
+			LoginManager.setSystemService(getSystemService());
 
 			RestApplication.setServiceFactory(ServiceFactory.getINSTANCE());
 
@@ -249,7 +260,6 @@ public class ServerInitializer implements ServletContextListener {
 
 	private void initHomeDir() throws IOException {
 		String[] filesToCheck = new String[]{
-			"settings.xml",
 			"logs",
 			"tmp",
 			"collada.xml",
@@ -399,11 +409,11 @@ public class ServerInitializer implements ServletContextListener {
 		return servletContext;
 	}
 
-	public static void setAdminService(ServiceInterface adminService) {
-		ServerInitializer.adminService = adminService;
+	public static void setSystemService(ServiceInterface systemService) {
+		ServerInitializer.systemService = systemService;
 	}
 
-	public static ServiceInterface getAdminService() {
-		return adminService;
+	public static ServiceInterface getSystemService() {
+		return systemService;
 	}
 }

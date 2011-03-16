@@ -10,12 +10,14 @@ import java.util.List;
 
 import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
 
+import org.bimserver.SettingsManager;
 import org.bimserver.database.BimDatabase;
 import org.bimserver.ifc.FieldIgnoreMap;
 import org.bimserver.ifcengine.IfcEngineFactory;
 import org.bimserver.interfaces.objects.SAccessMethod;
 import org.bimserver.interfaces.objects.SUser;
 import org.bimserver.longaction.LongActionManager;
+import org.bimserver.mail.MailSystem;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.serializers.EmfSerializerFactory;
 import org.bimserver.shared.SUserSession;
@@ -38,23 +40,27 @@ public class ServiceFactory {
 	private final LongActionManager longActionManager;
 	private final IfcEngineFactory ifcEngineFactory;
 	private final FieldIgnoreMap fieldIgnoreMap;
+	private final SettingsManager settingsManager;
+	private final MailSystem mailSystem;
 
 	private ServiceFactory(BimDatabase bimDatabase, EmfSerializerFactory emfSerializerFactory, SchemaDefinition schema,
-			LongActionManager longActionManager, IfcEngineFactory ifcEngineFactory, FieldIgnoreMap fieldIgnoreMap) {
+			LongActionManager longActionManager, IfcEngineFactory ifcEngineFactory, FieldIgnoreMap fieldIgnoreMap, SettingsManager settingsManager, MailSystem mailSystem) {
 		this.bimDatabase = bimDatabase;
 		this.emfSerializerFactory = emfSerializerFactory;
 		this.schema = schema;
 		this.longActionManager = longActionManager;
 		this.ifcEngineFactory = ifcEngineFactory;
 		this.fieldIgnoreMap = fieldIgnoreMap;
+		this.settingsManager = settingsManager;
+		this.mailSystem = mailSystem;
 	}
 	
-	public static void init(BimDatabase bimDatabase, EmfSerializerFactory emfSerializerFactory, SchemaDefinition schema, LongActionManager longActionManager, IfcEngineFactory ifcEngineFactory, FieldIgnoreMap fieldIgnoreMap) {
-		INSTANCE = new ServiceFactory(bimDatabase, emfSerializerFactory, schema, longActionManager, ifcEngineFactory, fieldIgnoreMap);
+	public static void init(BimDatabase bimDatabase, EmfSerializerFactory emfSerializerFactory, SchemaDefinition schema, LongActionManager longActionManager, IfcEngineFactory ifcEngineFactory, FieldIgnoreMap fieldIgnoreMap, SettingsManager settingsManager, MailSystem mailSystem) {
+		INSTANCE = new ServiceFactory(bimDatabase, emfSerializerFactory, schema, longActionManager, ifcEngineFactory, fieldIgnoreMap, settingsManager, mailSystem);
 	}
 
 	public ServiceInterface newService(AccessMethod accessMethod) {
-		Service service = new Service(bimDatabase, emfSerializerFactory, schema, longActionManager, accessMethod, ifcEngineFactory, this, fieldIgnoreMap);
+		Service service = new Service(bimDatabase, emfSerializerFactory, schema, longActionManager, accessMethod, ifcEngineFactory, this, fieldIgnoreMap, settingsManager, mailSystem);
 		Date expires = new Date(new Date().getTime() + (TOKEN_TTL_SECONDS * 1000));
 		Token token = new Token(GeneratorUtils.generateToken(), expires);
 		tokens.put(token, service);

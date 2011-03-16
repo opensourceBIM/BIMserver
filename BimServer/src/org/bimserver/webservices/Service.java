@@ -47,6 +47,7 @@ import javax.mail.internet.MimeMessage;
 import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
 
 import org.bimserver.ServerInfo;
+import org.bimserver.SettingsManager;
 import org.bimserver.ServerInfo.ServerState;
 import org.bimserver.database.BimDatabase;
 import org.bimserver.database.BimDatabaseException;
@@ -158,15 +159,13 @@ import org.bimserver.models.store.GeoTag;
 import org.bimserver.models.store.ObjectState;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
+import org.bimserver.models.store.Settings;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserType;
 import org.bimserver.rights.RightsManager;
 import org.bimserver.serializers.EmfSerializerFactory;
-import org.bimserver.settings.ServerSettings;
-import org.bimserver.settings.Settings;
-import org.bimserver.settings.SettingsSaveException;
 import org.bimserver.shared.DatabaseInformation;
 import org.bimserver.shared.LongActionState;
 import org.bimserver.shared.ResultType;
@@ -216,6 +215,8 @@ public class Service implements ServiceInterface {
 	private final AccessMethod accessMethod;
 	private final IfcEngineFactory ifcEngineFactory;
 	private final FieldIgnoreMap fieldIgnoreMap;
+	private final SettingsManager settingsManager;
+	private final MailSystem mailSystem;
 
 	private long currentUoid = -1;
 	private Date activeSince;
@@ -224,7 +225,7 @@ public class Service implements ServiceInterface {
 
 	public Service(BimDatabase bimDatabase, EmfSerializerFactory emfSerializerFactory, SchemaDefinition schema,
 			LongActionManager longActionManager, AccessMethod accessMethod, IfcEngineFactory ifcEngineFactory,
-			ServiceFactory serviceFactory, FieldIgnoreMap fieldIgnoreMap) {
+			ServiceFactory serviceFactory, FieldIgnoreMap fieldIgnoreMap, SettingsManager settingsManager, MailSystem mailSystem) {
 		this.bimDatabase = bimDatabase;
 		this.emfSerializerFactory = emfSerializerFactory;
 		this.schema = schema;
@@ -233,6 +234,8 @@ public class Service implements ServiceInterface {
 		this.ifcEngineFactory = ifcEngineFactory;
 		this.serviceFactory = serviceFactory;
 		this.fieldIgnoreMap = fieldIgnoreMap;
+		this.settingsManager = settingsManager;
+		this.mailSystem = mailSystem;
 		activeSince = new Date();
 		lastActive = new Date();
 	}
@@ -399,7 +402,7 @@ public class Service implements ServiceInterface {
 			result.setPoid(revision.getProject().getOid());
 			result.setProjectName(revision.getProject().getName());
 			longActionManager.start(new LongCheckinAction(userByUoid, longActionManager, bimDatabase, schema, createCheckinAction,
-					ifcEngineFactory, fieldIgnoreMap));
+					ifcEngineFactory, fieldIgnoreMap, mailSystem));
 			return result;
 		} catch (UserException e) {
 			throw e;
@@ -461,12 +464,12 @@ public class Service implements ServiceInterface {
 	public long addUser(String username, String name, SUserType type, boolean selfRegistration) throws UserException, ServerException {
 		if (!selfRegistration) {
 			requireAuthentication();
-		} else if (!ServerSettings.getSettings().isAllowSelfRegistration()) {
+		} else if (!settingsManager.getSettings().isAllowSelfRegistration()) {
 			requireSelfregistrationAllowed();
 		}
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
-			BimDatabaseAction<Long> action = new AddUserDatabaseAction(session, accessMethod, username, name, convert(type), currentUoid,
+			BimDatabaseAction<Long> action = new AddUserDatabaseAction(session, accessMethod, mailSystem, username, name, convert(type), currentUoid,
 					selfRegistration);
 			return session.executeAndCommitAction(action, DEADLOCK_RETRIES);
 		} catch (Exception e) {
@@ -1070,10 +1073,10 @@ public class Service implements ServiceInterface {
 		}
 	}
 
-	public boolean loginAsAdmin() throws UserException, ServerException {
+	public boolean loginAsSystem() throws UserException, ServerException {
 		BimDatabaseSession session = bimDatabase.createReadOnlySession();
 		try {
-			BimDatabaseAction<User> action = new GetUserByNameDatabaseAction(session, accessMethod, "admin");
+			BimDatabaseAction<User> action = new GetUserByNameDatabaseAction(session, accessMethod, "system");
 			User user = session.executeAction(action, DEADLOCK_RETRIES);
 			if (user != null) {
 				currentUoid = user.getOid();
@@ -1430,7 +1433,7 @@ public class Service implements ServiceInterface {
 				subModel.setDate(subRevision.getDate());
 				ifcModelSet.add(subModel);
 			}
-			IfcModel model = new Merger().merge(oldRevision.getProject(), ifcModelSet, ServerSettings.getSettings().isIntelligentMerging());
+			IfcModel model = new Merger().merge(oldRevision.getProject(), ifcModelSet, settingsManager.getSettings().isIntelligentMerging());
 			model.resetOids();
 			Project newProject = new AddProjectDatabaseAction(session, accessMethod, projectName, currentUoid).execute();
 			session.commit();
@@ -1448,7 +1451,7 @@ public class Service implements ServiceInterface {
 				result.setPoid(revision.getProject().getOid());
 				result.setProjectName(revision.getProject().getName());
 				longActionManager.start(new LongCheckinAction(user, longActionManager, bimDatabase, schema, createCheckinAction,
-						ifcEngineFactory, fieldIgnoreMap));
+						ifcEngineFactory, fieldIgnoreMap, mailSystem));
 				return result;
 			} catch (UserException e) {
 				throw e;
@@ -1483,7 +1486,7 @@ public class Service implements ServiceInterface {
 				subModel.setDate(subRevision.getDate());
 				ifcModelSet.add(subModel);
 			}
-			IfcModel model = new Merger().merge(oldRevision.getProject(), ifcModelSet, ServerSettings.getSettings().isIntelligentMerging());
+			IfcModel model = new Merger().merge(oldRevision.getProject(), ifcModelSet, settingsManager.getSettings().isIntelligentMerging());
 			model.resetOids();
 			BimDatabaseAction<ConcreteRevision> action = new CheckinPart1DatabaseAction(session, accessMethod, destPoid, currentUoid,
 					model, comment);
@@ -1497,7 +1500,7 @@ public class Service implements ServiceInterface {
 				result.setPoid(revision.getProject().getOid());
 				result.setProjectName(revision.getProject().getName());
 				longActionManager.start(new LongCheckinAction(user, longActionManager, bimDatabase, schema, createCheckinAction,
-						ifcEngineFactory, fieldIgnoreMap));
+						ifcEngineFactory, fieldIgnoreMap, mailSystem));
 				return result;
 			} catch (UserException e) {
 				throw e;
@@ -1775,16 +1778,14 @@ public class Service implements ServiceInterface {
 			if (user.getUserType() != UserType.ADMIN) {
 				throw new UserException("Only admin users can change enabled export types");
 			}
-			Set<ResultType> resultTypes = ServerSettings.getSettings().getEnabledExportTypesAsSet();
+			Set<ResultType> resultTypes = settingsManager.getEnabledExportTypesAsSet();
 			if (enabled) {
 				resultTypes.add(resultType);
 			} else {
 				resultTypes.remove(resultType);
 			}
-			ServerSettings.getSettings().updateEnabledResultTypes(resultTypes);
-			ServerSettings.getSettings().save();
-		} catch (SettingsSaveException e) {
-			LOGGER.error("", e);
+			settingsManager.updateEnabledResultTypes(resultTypes);
+			settingsManager.saveSettings();
 		} finally {
 			session.close();
 		}
@@ -1813,159 +1814,186 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public String getSettingsCustomLogoAddress() throws UserException, ServerException {
-		return ServerSettings.getSettings().getCustomLogoAddress();
+	public String getSettingCustomLogoAddress() throws UserException, ServerException {
+		Settings settings = settingsManager.getSettings();
+		return settings.getCustomLogoAddress();
 	}
 
 	@Override
-	public void setSettingsCustomLogoAddress(String customLogoAddress) throws UserException, ServerException {
+	public void setSettingCustomLogoAddress(String customLogoAddress) throws UserException, ServerException {
 		requireAuthentication();
-		ServerSettings.getSettings().setCustomLogoAddress(customLogoAddress);
+		Settings settings = settingsManager.getSettings();
+		settings.setCustomLogoAddress(customLogoAddress);
+		settingsManager.saveSettings();
 	}
 
 	@Override
-	public String getSettingsEmailSenderAddress() throws UserException, ServerException {
-		return ServerSettings.getSettings().getEmailSenderAddress();
+	public String getSettingEmailSenderAddress() throws UserException, ServerException {
+		return settingsManager.getSettings().getEmailSenderAddress();
 	}
 
 	@Override
-	public void setSettingsEmailSenderAddress(String emailSenderAddress) throws UserException, ServerException {
+	public void setSettingEmailSenderAddress(String emailSenderAddress) throws UserException, ServerException {
 		requireAuthentication();
-		ServerSettings.getSettings().setEmailSenderAddress(emailSenderAddress);
+		Settings settings = settingsManager.getSettings();
+		settings.setEmailSenderAddress(emailSenderAddress);
+		settingsManager.saveSettings();
 	}
 
 	@Override
-	public String getSettingsEnabledExportTypes() throws UserException, ServerException {
-		return ServerSettings.getSettings().getEnabledExportTypes();
+	public String getSettingEnabledExportTypes() throws UserException, ServerException {
+		return settingsManager.getSettings().getEnabledExportTypes();
 	}
 
 	@Override
-	public void setSettingsEnabledExportTypes(String enabledExportTypes) throws UserException, ServerException {
+	public void setSettingEnabledExportTypes(Set<ResultType> enabledExportTypes) throws UserException, ServerException {
 		requireAuthentication();
-		ServerSettings.getSettings().setEnabledExportTypes(enabledExportTypes);
+		settingsManager.updateEnabledResultTypes(enabledExportTypes);
 	}
 
 	@Override
-	public String getSettingsRegistrationAddition() throws UserException, ServerException {
-		return ServerSettings.getSettings().getRegistrationAddition();
+	public String getSettingRegistrationAddition() throws UserException, ServerException {
+		return settingsManager.getSettings().getRegistrationAddition();
 	}
 
 	@Override
-	public void setSettingsRegistrationAddition(String registrationAddition) throws UserException, ServerException {
+	public void setSettingRegistrationAddition(String registrationAddition) throws UserException, ServerException {
 		requireAuthentication();
-		ServerSettings.getSettings().setRegistrationAddition(registrationAddition);
+		Settings settings = settingsManager.getSettings();
+		settings.setRegistrationAddition(registrationAddition);
+		settingsManager.saveSettings();
 	}
 
 	@Override
-	public String getSettingsSiteAddress() throws UserException, ServerException {
-		return ServerSettings.getSettings().getSiteAddress();
+	public String getSettingSiteAddress() throws UserException, ServerException {
+		return settingsManager.getSettings().getSiteAddress();
 	}
 
 	@Override
-	public void setSettingsSiteAddress(String siteAddress) throws UserException, ServerException {
+	public void setSettingSiteAddress(String siteAddress) throws UserException, ServerException {
 		requireAuthentication();
-		ServerSettings.getSettings().setSiteAddress(siteAddress);
+		Settings settings = settingsManager.getSettings();
+		settings.setSiteAddress(siteAddress);
+		settingsManager.saveSettings();
 	}
 
 	@Override
-	public String getSettingsSmtpServer() throws UserException, ServerException {
-		return ServerSettings.getSettings().getSmtpServer();
+	public String getSettingSmtpServer() throws UserException, ServerException {
+		return settingsManager.getSettings().getSmtpServer();
 	}
 
 	@Override
-	public void setSettingsSmtpServer(String smtpServer) throws UserException, ServerException {
+	public void setSettingSmtpServer(String smtpServer) throws UserException, ServerException {
 		requireAuthentication();
-		ServerSettings.getSettings().setSmtpServer(smtpServer);
+		Settings settings = settingsManager.getSettings();
+		settings.setSmtpServer(smtpServer);
+		settingsManager.saveSettings();
 	}
 
 	@Override
 	public boolean isSettingAllowSelfRegistration() throws UserException, ServerException {
-		return ServerSettings.getSettings().isAllowSelfRegistration();
+		return settingsManager.getSettings().isAllowSelfRegistration();
 	}
 
 	@Override
 	public void setSettingAllowSelfRegistration(boolean allowSelfRegistration) throws UserException, ServerException {
 		requireAuthentication();
-		ServerSettings.getSettings().setAllowSelfRegistration(allowSelfRegistration);
+		Settings settings = settingsManager.getSettings();
+		settings.setAllowSelfRegistration(allowSelfRegistration);
+		settingsManager.saveSettings();
 	}
 
 	@Override
 	public boolean isSettingAllowUsersToCreateTopLevelProjects() throws UserException, ServerException {
-		return ServerSettings.getSettings().isAllowUsersToCreateTopLevelProjects();
+		return settingsManager.getSettings().isAllowUsersToCreateTopLevelProjects();
 	}
 
 	@Override
 	public void setSettingAllowUsersToCreateTopLevelProjects(boolean allowUsersToCreateTopLevelProjects) throws UserException,
 			ServerException {
 		requireAuthentication();
-		ServerSettings.getSettings().setAllowUsersToCreateTopLevelProjects(allowUsersToCreateTopLevelProjects);
+		Settings settings = settingsManager.getSettings();
+		settings.setAllowUsersToCreateTopLevelProjects(allowUsersToCreateTopLevelProjects);
+		settingsManager.saveSettings();
 	}
 
 	@Override
 	public boolean isSettingAutoTestClashes() throws UserException, ServerException {
-		return ServerSettings.getSettings().isAutoTestClashes();
+		return settingsManager.getSettings().isAutoTestClashes();
 	}
 
 	@Override
 	public void setSettingAutoTestClashes(boolean autoTestClashes) throws UserException, ServerException {
 		requireAuthentication();
-		ServerSettings.getSettings().setAutoTestClashes(autoTestClashes);
+		Settings settings = settingsManager.getSettings();
+		settings.setAutoTestClashes(autoTestClashes);
+		settingsManager.saveSettings();
 	}
 
 	@Override
 	public boolean isSettingCheckinMergingEnabled() throws UserException, ServerException {
-		return ServerSettings.getSettings().isCheckinMergingEnabled();
+		return settingsManager.getSettings().isCheckinMergingEnabled();
 	}
 
 	@Override
 	public void setSettingCheckinMergingEnabled(boolean checkinMergingEnabled) throws UserException, ServerException {
 		requireAuthentication();
-		ServerSettings.getSettings().setCheckinMergingEnabled(checkinMergingEnabled);
+		Settings settings = settingsManager.getSettings();
+		settings.setCheckinMergingEnabled(checkinMergingEnabled);
+		settingsManager.saveSettings();
 	}
 
 	@Override
 	public boolean isSettingIntelligentMerging() throws UserException, ServerException {
-		return ServerSettings.getSettings().isIntelligentMerging();
+		return settingsManager.getSettings().isIntelligentMerging();
 	}
 
 	@Override
 	public void setSettingIntelligentMerging(boolean intelligentMerging) throws UserException, ServerException {
 		requireAuthentication();
-		ServerSettings.getSettings().setIntelligentMerging(intelligentMerging);
+		Settings settings = settingsManager.getSettings();
+		settings.setIntelligentMerging(intelligentMerging);
+		settingsManager.saveSettings();
 	}
 
 	@Override
 	public boolean isSettingSendConfirmationEmailAfterRegistration() throws UserException, ServerException {
-		return ServerSettings.getSettings().isSendConfirmationEmailAfterRegistration();
+		return settingsManager.getSettings().isSendConfirmationEmailAfterRegistration();
 	}
 
 	@Override
 	public void setSettingSendConfirmationEmailAfterRegistration(boolean sendConfirmationEmailAfterRegistration) throws UserException,
 			ServerException {
 		requireAuthentication();
-		ServerSettings.getSettings().setSendConfirmationEmailAfterRegistration(sendConfirmationEmailAfterRegistration);
+		Settings settings = settingsManager.getSettings();
+		settings.setSendConfirmationEmailAfterRegistration(sendConfirmationEmailAfterRegistration);
+		settingsManager.saveSettings();
 	}
 
 	@Override
 	public boolean isSettingShowVersionUpgradeAvailable() throws UserException, ServerException {
-		return ServerSettings.getSettings().isShowVersionUpgradeAvailable();
+		return settingsManager.getSettings().isShowVersionUpgradeAvailable();
 	}
 
 	@Override
 	public void setSettingShowVersionUpgradeAvailable(boolean showVersionUpgradeAvailable) throws UserException, ServerException {
 		requireAuthentication();
-		ServerSettings.getSettings().setShowVersionUpgradeAvailable(showVersionUpgradeAvailable);
+		Settings settings = settingsManager.getSettings();
+		settings.setShowVersionUpgradeAvailable(showVersionUpgradeAvailable);
+		settingsManager.saveSettings();
 	}
 
 	@Override
 	public boolean isSettingUseCaching() throws UserException, ServerException {
-		return ServerSettings.getSettings().isUseCaching();
+		return settingsManager.getSettings().isUseCaching();
 	}
 
 	@Override
 	public void setSettingUseCaching(boolean useCaching) throws UserException, ServerException {
 		requireAuthentication();
-		ServerSettings.getSettings().setUseCaching(useCaching);
+		Settings settings = settingsManager.getSettings();
+		settings.setUseCaching(useCaching);
+		settingsManager.saveSettings();
 	}
 
 	@Override
@@ -2054,10 +2082,10 @@ public class Service implements ServiceInterface {
 			String senderName = currentUser.getName();
 			String senderAddress = currentUser.getUsername();
 			if (!senderAddress.contains("@") || !senderAddress.contains(".")) {
-				senderAddress = ServerSettings.getSettings().getEmailSenderAddress();
+				senderAddress = settingsManager.getSettings().getEmailSenderAddress();
 			}
 
-			Session mailSession = MailSystem.getInstance().createMailSession();
+			Session mailSession = mailSystem.createMailSession();
 
 			Message msg = new MimeMessage(mailSession);
 
@@ -2092,7 +2120,7 @@ public class Service implements ServiceInterface {
 	public void requestPasswordChange(long uoid) throws UserException, ServerException {
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
-			BimDatabaseAction<Void> action = new RequestPasswordChangeDatabaseAction(session, accessMethod, uoid);
+			BimDatabaseAction<Void> action = new RequestPasswordChangeDatabaseAction(session, accessMethod, mailSystem, uoid);
 			session.executeAndCommitAction(action, DEADLOCK_RETRIES);
 		} catch (Exception e) {
 			handleException(e);
@@ -2106,7 +2134,7 @@ public class Service implements ServiceInterface {
 			ServerException {
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
-			BimDatabaseAction<Void> action = new SendClashesEmailDatabaseAction(session, accessMethod, currentUoid, poid,
+			BimDatabaseAction<Void> action = new SendClashesEmailDatabaseAction(session, accessMethod, mailSystem, currentUoid, poid,
 					sClashDetectionSettings, addressesTo);
 			session.executeAndCommitAction(action, DEADLOCK_RETRIES);
 		} catch (Exception e) {
@@ -2198,23 +2226,19 @@ public class Service implements ServiceInterface {
 			throw new UserException("Admin Password cannot be empty");
 		}
 		
-		Settings settings = ServerSettings.getSettings();
+		Settings settings = settingsManager.getSettings();
 		settings.setSiteAddress(siteAddress);
 		settings.setSmtpServer(smtpServer);
-		settings.setSetup(true);
 		ServerInfo.setServerState(ServerState.RUNNING);
-		try {
-			settings.save();
-		} catch (SettingsSaveException e) {
-			throw new ServerException(e);
-		}
+		settingsManager.saveSettings();
 		
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
-			new AddUserDatabaseAction(session, AccessMethod.INTERNAL, adminUsername, adminPassword, adminName, UserType.ADMIN, -1, false).execute();
+			new AddUserDatabaseAction(session, AccessMethod.INTERNAL, mailSystem, adminUsername, adminPassword, adminName, UserType.ADMIN, -1, false).execute();
 			if (createAnonymousUser) {
-				new AddUserDatabaseAction(session, AccessMethod.INTERNAL, "anonymous", "anonymous", "Anonymous", UserType.ANONYMOUS, -1, false).execute();
+				new AddUserDatabaseAction(session, AccessMethod.INTERNAL, mailSystem, "anonymous", "anonymous", "Anonymous", UserType.ANONYMOUS, -1, false).execute();
 			}
+			session.commit();
 		} catch (BimDatabaseException e) {
 			e.printStackTrace();
 		} catch (BimDeadlockException e) {

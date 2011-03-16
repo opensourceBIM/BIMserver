@@ -6,21 +6,18 @@ import javax.mail.Session;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 
-import org.bimserver.settings.ServerSettings;
+import org.bimserver.SettingsManager;
 
 public class MailSystem {
-	private static final MailSystem INSTANCE = new MailSystem();
+	private final SettingsManager settingsManager;
 
-	private MailSystem() {
-	}
-
-	public static MailSystem getInstance() {
-		return INSTANCE;
+	public MailSystem(SettingsManager settingsManager) {
+		this.settingsManager = settingsManager;
 	}
 
 	public Session createMailSession() {
 		Properties props = new Properties();
-		props.put("mail.smtp.host", ServerSettings.getSettings().getSmtpServer());
+		props.put("mail.smtp.host", settingsManager.getSettings().getSmtpServer());
 		props.put("mail.smtp.localhost", "bimserver.org");
 
 		Session mailSession = Session.getDefaultInstance(props);
