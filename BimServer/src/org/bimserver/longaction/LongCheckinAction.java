@@ -3,6 +3,7 @@ package org.bimserver.longaction;
 import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
 
 import org.bimserver.ServerInfo;
+import org.bimserver.SettingsManager;
 import org.bimserver.database.BimDatabase;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
@@ -34,8 +35,9 @@ public class LongCheckinAction extends LongAction {
 	private final User user;
 	private final FieldIgnoreMap fieldIgnoreMap;
 	private final MailSystem mailSystem;
+	private final SettingsManager settingsManager;
 
-	public LongCheckinAction(User user, LongActionManager longActionManager, BimDatabase bimDatabase, SchemaDefinition schema, CheckinPart2DatabaseAction createCheckinAction, IfcEngineFactory ifcEngineFactory, FieldIgnoreMap fieldIgnoreMap, MailSystem mailSystem) {
+	public LongCheckinAction(User user, LongActionManager longActionManager, BimDatabase bimDatabase, SchemaDefinition schema, CheckinPart2DatabaseAction createCheckinAction, IfcEngineFactory ifcEngineFactory, FieldIgnoreMap fieldIgnoreMap, SettingsManager settingsManager, MailSystem mailSystem) {
 		this.user = user;
 		this.longActionManager = longActionManager;
 		this.bimDatabase = bimDatabase;
@@ -43,6 +45,7 @@ public class LongCheckinAction extends LongAction {
 		this.createCheckinAction = createCheckinAction;
 		this.ifcEngineFactory = ifcEngineFactory;
 		this.fieldIgnoreMap = fieldIgnoreMap;
+		this.settingsManager = settingsManager;
 		this.mailSystem = mailSystem;
 	}
 
@@ -122,7 +125,7 @@ public class LongCheckinAction extends LongAction {
 			mainProject = mainProject.getParent();
 		}
 		if (mainProject.getClashDetectionSettings().isEnabled()) {
-			ClashDetectionLongAction clashDetectionLongAction = new ClashDetectionLongAction(user, createCheckinAction.getActingUid(), schema, ifcEngineFactory, mailSystem, bimDatabase, fieldIgnoreMap, mainProject.getOid());
+			ClashDetectionLongAction clashDetectionLongAction = new ClashDetectionLongAction(user, createCheckinAction.getActingUid(), schema, settingsManager, ifcEngineFactory, mailSystem, bimDatabase, fieldIgnoreMap, mainProject.getOid());
 			try {
 				longActionManager.start(clashDetectionLongAction);
 			} catch (CannotBeScheduledException e) {

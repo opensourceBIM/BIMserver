@@ -156,7 +156,7 @@ public class Database implements BimDatabase {
 				databaseSession.store(databaseCreated);
 
 				new CreateBaseProject(databaseSession, AccessMethod.INTERNAL).execute();
-				new AddUserDatabaseAction(databaseSession, AccessMethod.INTERNAL, null, "system", "system", "System", UserType.SYSTEM, -1, false).execute();
+				new AddUserDatabaseAction(databaseSession, AccessMethod.INTERNAL, null, null, "system", "system", "System", UserType.SYSTEM, -1, false).execute();
 
 				Settings settings = SettingsManager.createDefaultSettings();
 				databaseSession.store(settings);				

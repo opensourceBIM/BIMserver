@@ -10,12 +10,10 @@ import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.literals.IntegerLiteral;
 import org.bimserver.database.query.literals.StringLiteral;
 import org.bimserver.emf.IdEObject;
-import org.bimserver.ifc.IfcModel;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
-import org.bimserver.models.store.Settings;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.shared.UserException;
@@ -49,20 +47,6 @@ public abstract class BimDatabaseAction<T> {
 	
 	public User getAdminUser() throws BimDatabaseException, BimDeadlockException {
 		return getUserByUserName("admin");
-	}
-	
-	public Settings getSettings() {
-		try {
-			IfcModel allOfType = bimDatabaseSession.getAllOfType(StorePackage.eINSTANCE.getSettings(), false);
-			if (allOfType.size() == 1) {
-				return (Settings) allOfType.getValues().iterator().next();
-			}
-		} catch (BimDatabaseException e) {
-			e.printStackTrace();
-		} catch (BimDeadlockException e) {
-			e.printStackTrace();
-		}
-		return null;
 	}
 	
 	public Project getProjectById(int pid) throws BimDatabaseException, BimDeadlockException {

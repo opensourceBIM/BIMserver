@@ -11,11 +11,11 @@ import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.shared.UserException;
 
-public class GetUserByNameDatabaseAction extends BimDatabaseAction<User> {
+public class GetUserByUserNameDatabaseAction extends BimDatabaseAction<User> {
 
 	private final String username;
 
-	public GetUserByNameDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, String username) {
+	public GetUserByUserNameDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, String username) {
 		super(bimDatabaseSession, accessMethod);
 		this.username = username;
 	}

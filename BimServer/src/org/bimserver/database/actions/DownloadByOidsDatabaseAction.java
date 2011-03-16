@@ -3,6 +3,7 @@ package org.bimserver.database.actions;
 import java.util.Date;
 import java.util.Set;
 
+import org.bimserver.SettingsManager;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
@@ -22,9 +23,11 @@ public class DownloadByOidsDatabaseAction extends BimDatabaseAction<IfcModel> {
 	private final long actingUoid;
 	private final Set<Long> oids;
 	private final Set<Long> roids;
+	private final SettingsManager settingsManager;
 
-	public DownloadByOidsDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, Set<Long> roids, Set<Long> oids, long actingUoid) {
+	public DownloadByOidsDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, SettingsManager settingsManager, Set<Long> roids, Set<Long> oids, long actingUoid) {
 		super(bimDatabaseSession, accessMethod);
+		this.settingsManager = settingsManager;
 		this.roids = roids;
 		this.oids = oids;
 		this.actingUoid = actingUoid;
@@ -52,7 +55,7 @@ public class DownloadByOidsDatabaseAction extends BimDatabaseAction<IfcModel> {
 //				}
 			}
 		}
-		IfcModel ifcModel = new Merger().merge(project, ifcModelSet, getSettings().isIntelligentMerging());
+		IfcModel ifcModel = new Merger().merge(project, ifcModelSet, settingsManager.getSettings().isIntelligentMerging());
 		ifcModel.setRevisionNr(1);
 		ifcModel.setAuthorizedUser(getUserByUoid(actingUoid).getName());
 		ifcModel.setDate(new Date());

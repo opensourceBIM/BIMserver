@@ -11,6 +11,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 import org.bimserver.ServerInitializer;
+import org.bimserver.SettingsManager;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
@@ -38,9 +39,11 @@ public class AddUserDatabaseAction extends BimDatabaseAction<Long> {
 	private final boolean selfRegistration;
 	private final String password;
 	private final MailSystem mailSystem;
+	private final SettingsManager settingsManager;
 
-	public AddUserDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, MailSystem mailSystem, String username, String name, UserType userType, long createrUoid, boolean selfRegistration) {
+	public AddUserDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, SettingsManager settingsManager, MailSystem mailSystem, String username, String name, UserType userType, long createrUoid, boolean selfRegistration) {
 		super(bimDatabaseSession, accessMethod);
+		this.settingsManager = settingsManager;
 		this.mailSystem = mailSystem;
 		this.name = name;
 		this.username = username;
@@ -50,8 +53,9 @@ public class AddUserDatabaseAction extends BimDatabaseAction<Long> {
 		this.password = null;
 	}
 
-	public AddUserDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, MailSystem mailSystem, String username, String password, String name, UserType userType, long createrUoid, boolean selfRegistration) {
+	public AddUserDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, SettingsManager settingsManager, MailSystem mailSystem, String username, String password, String name, UserType userType, long createrUoid, boolean selfRegistration) {
 		super(bimDatabaseSession, accessMethod);
+		this.settingsManager = settingsManager;
 		this.mailSystem = mailSystem;
 		this.password = password;
 		this.name = name;
@@ -107,13 +111,13 @@ public class AddUserDatabaseAction extends BimDatabaseAction<Long> {
 			@Override
 			public void execute() throws UserException {
 				try {
-					if (getSettings().isSendConfirmationEmailAfterRegistration()) {
+					if (settingsManager != null && settingsManager.getSettings().isSendConfirmationEmailAfterRegistration()) {
 						if (MailSystem.isValidEmailAddress(user.getUsername()) && createrUoid != -1) {
 							Session mailSession = mailSystem.createMailSession();
 							
 							Message msg = new MimeMessage(mailSession);
 							
-							InternetAddress addressFrom = new InternetAddress(getSettings().getEmailSenderAddress());
+							InternetAddress addressFrom = new InternetAddress(settingsManager.getSettings().getEmailSenderAddress());
 							msg.setFrom(addressFrom);
 							
 							InternetAddress[] addressTo = new InternetAddress[1];
@@ -123,8 +127,8 @@ public class AddUserDatabaseAction extends BimDatabaseAction<Long> {
 							Map<String, Object> context = new HashMap<String, Object>();
 							context.put("name", user.getName());
 							context.put("username", user.getUsername());
-							context.put("siteaddress", getSettings().getSiteAddress());
-							context.put("validationlink", getSettings().getSiteAddress() + ServerInitializer.getServletContext().getContextPath() + "/validate.jsp?uoid=" + user.getOid() + "&token=" + token);
+							context.put("siteaddress", settingsManager.getSettings().getSiteAddress());
+							context.put("validationlink", settingsManager.getSettings().getSiteAddress() + ServerInitializer.getServletContext().getContextPath() + "/validate.jsp?uoid=" + user.getOid() + "&token=" + token);
 							String body = null;
 							String subject = null;
 							if (selfRegistration) {

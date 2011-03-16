@@ -24,6 +24,10 @@
 <%@page import="org.bimserver.web.JspHelper"%>
 <%@page import="org.bimserver.utils.Formatters"%>
 <%@page import="org.bimserver.utils.WebUtils"%>
+<%@page import="java.text.DateFormat"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Collections"%>
+<%@page import="java.util.ArrayList"%>
 <%@ include file="header.jsp"%>
 <%
 	if (loginManager.getService().isLoggedIn()) {
@@ -67,11 +71,7 @@
 			boolean hasCreateProjectRights = (loginManager.getUserType() == SUserType.ADMIN || loginManager.getService().isSettingAllowUsersToCreateTopLevelProjects());
 			if (emfSerializerFactory.resultTypeEnabled(ResultType.O3D_JSON) && lastRevision != null) {
 %>
-
-<%@page import="java.text.DateFormat"%>
-<%@page import="java.text.SimpleDateFormat"%>
-<%@page import="java.util.Collections"%>
-<%@page import="java.util.ArrayList"%><jsp:include page="o3d.jsp" />
+<jsp:include page="o3d.jsp" />
 <%
 			}
 %>

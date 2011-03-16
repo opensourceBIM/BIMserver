@@ -1,5 +1,6 @@
 package org.bimserver.database.actions;
 
+import org.bimserver.SettingsManager;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
@@ -32,9 +33,11 @@ public class GetDataObjectByOidDatabaseAction extends BimDatabaseAction<SDataObj
 	private final long oid;
 	private final short cid;
 	private final long roid;
+	private final SettingsManager settingsManager;
 
-	public GetDataObjectByOidDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long roid, long oid, short cid) {
+	public GetDataObjectByOidDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, SettingsManager settingsManager, long roid, long oid, short cid) {
 		super(bimDatabaseSession, accessMethod);
+		this.settingsManager = settingsManager;
 		this.roid = roid;
 		this.oid = oid;
 		this.cid = cid;
@@ -54,7 +57,7 @@ public class GetDataObjectByOidDatabaseAction extends BimDatabaseAction<SDataObj
 				break;
 			}
 		}
-		IfcModel ifcModel = new Merger().merge(virtualRevision.getProject(), ifcModelSet, getSettings().isIntelligentMerging());
+		IfcModel ifcModel = new Merger().merge(virtualRevision.getProject(), ifcModelSet, settingsManager.getSettings().isIntelligentMerging());
 		if (eObject == null) {
 			throw new UserException("Object not found in this project/revision");
 		}

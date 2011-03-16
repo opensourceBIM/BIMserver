@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import org.bimserver.SettingsManager;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
@@ -26,9 +27,11 @@ public class DownloadByGuidsDatabaseAction extends BimDatabaseAction<IfcModel> {
 	private final long actingUoid;
 	private final Set<String> guids;
 	private final Set<Long> roids;
+	private final SettingsManager settingsManager;
 
-	public DownloadByGuidsDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, Set<Long> roids, Set<String> guids, long actingUoid) {
+	public DownloadByGuidsDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, SettingsManager settingsManager, Set<Long> roids, Set<String> guids, long actingUoid) {
 		super(bimDatabaseSession, accessMethod);
+		this.settingsManager = settingsManager;
 		this.roids = roids;
 		this.guids = guids;
 		this.actingUoid = actingUoid;
@@ -68,7 +71,7 @@ public class DownloadByGuidsDatabaseAction extends BimDatabaseAction<IfcModel> {
 				ifcModelSet.add(model);
 			}
 		}
-		IfcModel ifcModel = new Merger().merge(project, ifcModelSet, getSettings().isIntelligentMerging());
+		IfcModel ifcModel = new Merger().merge(project, ifcModelSet, settingsManager.getSettings().isIntelligentMerging());
 		for (String guid : guids) {
 			if (!foundGuids.contains(guid)) {
 				throw new UserException("Guid " + guid + " not found");

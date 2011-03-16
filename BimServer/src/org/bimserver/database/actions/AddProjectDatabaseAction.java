@@ -2,6 +2,7 @@ package org.bimserver.database.actions;
 
 import java.util.Date;
 
+import org.bimserver.SettingsManager;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
@@ -22,13 +23,15 @@ public class AddProjectDatabaseAction extends BimDatabaseAction<Project> {
 	private final String name;
 	private final long owningUoid;
 	private final long parentPoid;
+	private final SettingsManager settingsManager;
 
-	public AddProjectDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, String name, long owningUoid) {
-		this(bimDatabaseSession, accessMethod, name, -1, owningUoid);
+	public AddProjectDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, SettingsManager settingsManager, String name, long owningUoid) {
+		this(bimDatabaseSession, accessMethod, settingsManager, name, -1, owningUoid);
 	}
 
-	public AddProjectDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, String projectName, long parentPoid, long owningUoid) {
+	public AddProjectDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, SettingsManager settingsManager, String projectName, long parentPoid, long owningUoid) {
 		super(bimDatabaseSession, accessMethod);
+		this.settingsManager = settingsManager;
 		this.name = projectName;
 		this.parentPoid = parentPoid;
 		this.owningUoid = owningUoid;
@@ -51,7 +54,7 @@ public class AddProjectDatabaseAction extends BimDatabaseAction<Project> {
 			project.setParent(parentProject);
 			getDatabaseSession().store(parentProject);
 		}
-		if (parentPoid == -1 && actingUser.getUserType() != UserType.ADMIN && !getSettings().isAllowUsersToCreateTopLevelProjects()) {
+		if (parentPoid == -1 && actingUser.getUserType() != UserType.ADMIN && !settingsManager.getSettings().isAllowUsersToCreateTopLevelProjects()) {
 			throw new UserException("Only administrators can create new projects");
 		}
 		if (project.getParent() == null) {

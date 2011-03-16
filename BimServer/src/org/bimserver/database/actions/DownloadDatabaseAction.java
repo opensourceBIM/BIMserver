@@ -2,6 +2,7 @@ package org.bimserver.database.actions;
 
 import java.util.concurrent.atomic.AtomicLong;
 
+import org.bimserver.SettingsManager;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
@@ -22,9 +23,11 @@ public class DownloadDatabaseAction extends BimDatabaseAction<IfcModel> {
 	private final long roid;
 	private final long actingUoid;
 	private int progress;
+	private final SettingsManager settingsManager;
 
-	public DownloadDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long roid, long actingUoid) {
+	public DownloadDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, SettingsManager settingsManager, long roid, long actingUoid) {
 		super(bimDatabaseSession, accessMethod);
+		this.settingsManager = settingsManager;
 		this.roid = roid;
 		this.actingUoid = actingUoid;
 	}
@@ -60,7 +63,7 @@ public class DownloadDatabaseAction extends BimDatabaseAction<IfcModel> {
 			subModel.setDate(subRevision.getDate());
 			ifcModelSet.add(subModel);
 		}
-		IfcModel ifcModel = new Merger().merge(revision.getProject(), ifcModelSet, getSettings().isIntelligentMerging());
+		IfcModel ifcModel = new Merger().merge(revision.getProject(), ifcModelSet, settingsManager.getSettings().isIntelligentMerging());
 		ifcModel.setRevisionNr(project.getRevisions().indexOf(revision) + 1);
 		ifcModel.setAuthorizedUser(user.getName());
 		ifcModel.setDate(revision.getDate());

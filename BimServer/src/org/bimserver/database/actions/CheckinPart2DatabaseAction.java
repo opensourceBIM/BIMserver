@@ -2,6 +2,7 @@ package org.bimserver.database.actions;
 
 import java.util.Date;
 
+import org.bimserver.SettingsManager;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
@@ -24,9 +25,11 @@ public class CheckinPart2DatabaseAction extends BimDatabaseAction<Void> {
 	private final long actingUoid;
 	private final long croid;
 	private final boolean merge;
+	private final SettingsManager settingsManager;
 
-	public CheckinPart2DatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, IfcModel ifcModel, long actingUoid, long croid, boolean merge) {
+	public CheckinPart2DatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, SettingsManager settingsManager, IfcModel ifcModel, long actingUoid, long croid, boolean merge) {
 		super(bimDatabaseSession, accessMethod);
+		this.settingsManager = settingsManager;
 		this.ifcModel = ifcModel;
 		this.actingUoid = actingUoid;
 		this.croid = croid;
@@ -51,7 +54,7 @@ public class CheckinPart2DatabaseAction extends BimDatabaseAction<Void> {
 				getIfcModel().setDate(new Date());
 				IfcModel newModel = getIfcModel();
 				newModel.fixOids(getDatabaseSession());
-				IfcModel oldModel = new Merger().merge(project, ifcModelSet, getSettings().isIntelligentMerging());
+				IfcModel oldModel = new Merger().merge(project, ifcModelSet, settingsManager.getSettings().isIntelligentMerging());
 				
 				oldModel.setObjectOids();
 				newModel.setObjectOids();

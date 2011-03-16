@@ -8,6 +8,7 @@
 <%@page import="org.bimserver.ServerInfo"%><jsp:include page="htmlheader.jsp" />
 <jsp:useBean id="errorMessages" scope="request" class="org.bimserver.ErrorMessages" />
 <jsp:useBean id="loginManager" scope="session" class="org.bimserver.web.LoginManager" />
+<body>
 	<%
 	if (ServerInfo.isAvailable()) {
 		Version version = VersionChecker.getInstance().getLocalVersion();
