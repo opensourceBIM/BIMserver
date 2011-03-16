@@ -25,7 +25,7 @@ import org.bimserver.shared.UserException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class LongDownloadAction extends LongAction {
+public class LongDownloadAction extends LongDownloadOrCheckoutAction {
 
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(LongDownloadAction.class);
@@ -72,6 +72,7 @@ public class LongDownloadAction extends LongAction {
 		}
 	}
 
+	@Override
 	public SCheckoutResult getCheckoutResult() {
 		return checkoutResult;
 	}
@@ -103,6 +104,7 @@ public class LongDownloadAction extends LongAction {
 		return id;
 	}
 
+	@Override
 	public User getUser() {
 		return user;
 	}

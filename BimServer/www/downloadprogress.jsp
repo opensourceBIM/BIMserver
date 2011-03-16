@@ -4,28 +4,34 @@
 	<%
 		String longActionId = request.getParameter("longActionId");
 	%>
-<span id="downloadStateSpan">
+<div id="downloadStateSpan">
 	<%
 		LongActionState dls = loginManager.getService().getDownloadState(longActionId);
-	%>
-	<%=dls.getState()%> <%=dls.getProgress()%>%
-	
-	<div style="width: 100px; position: relative; border: 1px solid black;">
+	%>	
+	<div id="progressbar" style="width: 100px; position: relative; border: 1px solid black;">
 		<div style="width: <%=dls.getProgress()%>px; background-color: #0000ff; position: absolute; top: 0; left: 0; height: 100%;"></div>
 		<div style="width: 100px; text-align: center; position: relative;"><%=dls.getProgress()%>%</div>
 	</div>
 	<%
 		if (dls.getState() == ActionState.FINISHED) {
 	%>
-<a href="/download?longActionId=<%=longActionId %>">Download</a>
+<a id="downloadlink" href="/download?longActionId=<%=longActionId %>"><label id="downloadlinkclick" for="downloadlink">Download</label></a>
  
 <script>
 	window.clearInterval(downloadUpdateFunctionHandle);
-	
+	$("#progressbar").hide();	
 	$("#simpleDownloadButton").show();
 	$("#detailscheckoutbutton").show();
 </script>
 	<%
 		}
 	%>
-</span>
+</div>
+
+<script>
+	$(document).ready(function(){
+		$("#downloadlinkclick").click(function(){
+			$("#downloadlink").hide();
+		});
+	})
+</script>

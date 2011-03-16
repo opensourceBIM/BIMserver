@@ -369,7 +369,6 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 		return idEObject;
 	}
 
-	@SuppressWarnings("unchecked")
 	public IdEObject convertByteArrayToObject(EClass originalQueryClass, EClass eClass, long oid, ByteBuffer buffer, IfcModel model, int pid, int rid, boolean deep)
 			throws BimDatabaseException, BimDeadlockException {
 		if (model.contains(oid)) {
@@ -680,7 +679,6 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 		return store(object, Database.STORE_PROJECT_ID, Database.STORE_PROJECT_REVISION_ID);
 	}
 
-	@SuppressWarnings("rawtypes")
 	@Override
 	public long store(IdEObject object, int pid, int rid) throws BimDeadlockException, BimDatabaseException {
 		if (!objectsToCommit.containsKey(object)) {
