@@ -17,7 +17,6 @@
 <%@page import="org.bimserver.shared.ServiceInterface"%>
 <div class="sidebar">
 <ul>
-	<li><a href="<%=getServletContext().getContextPath()%>/settings?action=downloadsettings">Download settings</a></li>
 	<li><a href="<%=getServletContext().getContextPath()%>/settings?action=downloadignorefile">Download ignore.xml</a></li>
 </ul>
 </div>
@@ -88,7 +87,7 @@
 	<tr>
 		<td><label for="registrationAddition">Extra information when registering</label></td>
 		<td><textarea id="registrationAddition"
-			name="registrationAddition" cols="60" rows="4"><%=request.getParameter("save") != null ? service.getSettingRegistrationAddition() : request.getParameter("registrationAddition")%></textarea></td>
+			name="registrationAddition" cols="60" rows="4"><%=request.getParameter("save") == null ? service.getSettingRegistrationAddition() : request.getParameter("registrationAddition")%></textarea></td>
 	</tr>
 	<tr>
 		<td><label for="sendConfirmationEmailAfterRegistration">Send confirmation e-mail after registering</label></td>

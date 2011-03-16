@@ -5,6 +5,7 @@ import java.util.Set;
 
 import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
 
+import org.bimserver.SettingsManager;
 import org.bimserver.database.BimDatabase;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
@@ -38,11 +39,13 @@ public class ClashDetectionLongAction extends LongAction {
 	private final User user;
 	private final FieldIgnoreMap fieldIgnoreMap;
 	private final MailSystem mailSystem;
+	private final SettingsManager settingsManager;
 
-	public ClashDetectionLongAction(User user, long actingUoid, SchemaDefinition schema, IfcEngineFactory ifcEngineFactory, MailSystem mailSystem, BimDatabase bimDatabase, FieldIgnoreMap fieldIgnoreMap, long poid) {
+	public ClashDetectionLongAction(User user, long actingUoid, SchemaDefinition schema, SettingsManager settingsManager, IfcEngineFactory ifcEngineFactory, MailSystem mailSystem, BimDatabase bimDatabase, FieldIgnoreMap fieldIgnoreMap, long poid) {
 		this.user = user;
 		this.actingUoid = actingUoid;
 		this.schema = schema;
+		this.settingsManager = settingsManager;
 		this.ifcEngineFactory = ifcEngineFactory;
 		this.mailSystem = mailSystem;
 		this.bimDatabase = bimDatabase;
@@ -95,7 +98,7 @@ public class ClashDetectionLongAction extends LongAction {
 				String[] emailAddressesArray = new String[emailAddresses.size()];
 				emailAddresses.toArray(emailAddressesArray);
 				
-				SendClashesEmailDatabaseAction sendClashesEmailDatabaseAction = new SendClashesEmailDatabaseAction(session, AccessMethod.INTERNAL, mailSystem, actingUoid, poid, Service.convert(clashDetectionSettings), emailAddresses);
+				SendClashesEmailDatabaseAction sendClashesEmailDatabaseAction = new SendClashesEmailDatabaseAction(session, AccessMethod.INTERNAL, settingsManager, mailSystem, actingUoid, poid, Service.convert(clashDetectionSettings), emailAddresses);
 				sendClashesEmailDatabaseAction.execute();
 			}
 			session.commit();

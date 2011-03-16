@@ -188,7 +188,7 @@ public class ServerInitializer implements ServletContextListener {
 			if (serverType == ServerType.DEV_ENVIRONMENT && columnDatabase.isNew()) {
 				BimDatabaseSession session = bimDatabase.createSession();
 				try {
-					new AddUserDatabaseAction(session, AccessMethod.INTERNAL, mailSystem, "test@bimserver.org", "test", "Test User", UserType.USER, -1, false).execute();
+					new AddUserDatabaseAction(session, AccessMethod.INTERNAL, settingsManager, mailSystem, "test@bimserver.org", "test", "Test User", UserType.USER, -1, false).execute();
 					session.commit();
 				} finally {
 					session.close();
@@ -211,6 +211,7 @@ public class ServerInitializer implements ServletContextListener {
 			IfcEngineFactory ifcEngineFactory = new IfcEngineFactory(schemaFile, nativeFolder, new File(homeDir, "tmp"), classPath);
 
 			CompileServlet.database = bimDatabase;
+			CompileServlet.settingsManager = settingsManager;
 
 			URL colladSettingsFile = resourceFetcher.getResource("collada.xml");
 			PackageDefinition colladaSettings = PackageDefinition.readFromFile(colladSettingsFile);

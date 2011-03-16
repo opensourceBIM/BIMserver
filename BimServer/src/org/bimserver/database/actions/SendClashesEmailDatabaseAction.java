@@ -15,6 +15,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 import org.bimserver.ServerInitializer;
+import org.bimserver.SettingsManager;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
@@ -33,9 +34,11 @@ public class SendClashesEmailDatabaseAction extends BimDatabaseAction<Void> {
 	private final long poid;
 	private final Set<String> addressesTo;
 	private final MailSystem mailSystem;
+	private final SettingsManager settingsManager;
 
-	public SendClashesEmailDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, MailSystem mailSystem, long actingUoid, long poid, SClashDetectionSettings sClashDetectionSettings, Set<String> addressesTo) {
+	public SendClashesEmailDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, SettingsManager settingsManager, MailSystem mailSystem, long actingUoid, long poid, SClashDetectionSettings sClashDetectionSettings, Set<String> addressesTo) {
 		super(bimDatabaseSession, accessMethod);
+		this.settingsManager = settingsManager;
 		this.mailSystem = mailSystem;
 		this.actingUoid = actingUoid;
 		this.poid = poid;
@@ -47,7 +50,7 @@ public class SendClashesEmailDatabaseAction extends BimDatabaseAction<Void> {
 	public Void execute() throws UserException, BimDeadlockException, BimDatabaseException {
 		try {
 			User user = getUserByUoid(actingUoid);
-			String senderAddress = getSettings().getEmailSenderAddress();
+			String senderAddress = settingsManager.getSettings().getEmailSenderAddress();
 			Session mailSession = mailSystem.createMailSession();
 
 			MimeMessage msg = new MimeMessage(mailSession);
@@ -74,14 +77,14 @@ public class SendClashesEmailDatabaseAction extends BimDatabaseAction<Void> {
 				revisionsString.append(roid + ";");
 			}
 
-			String link = "<a href=\"" + getSettings().getSiteAddress() + ServerInitializer.getServletContext().getContextPath() + "/project.jsp?tab=cd&poid="
+			String link = "<a href=\"" + settingsManager.getSettings().getSiteAddress() + ServerInitializer.getServletContext().getContextPath() + "/project.jsp?tab=cd&poid="
 					+ poid + "&margin=" + sClashDetectionSettings.getMargin() + "&revisions=" + revisionsString + "&ignored=" + ignoreString
 					+ "\">Click here for clash detection results</a>";
 			
 			Map<String, Object> context = new HashMap<String, Object>();
 			context.put("name", user.getName());
 			context.put("username", user.getUsername());
-			context.put("siteaddress", getSettings().getSiteAddress());
+			context.put("siteaddress", settingsManager.getSettings().getSiteAddress());
 			context.put("url", link);
 			
 			String body = TemplateEngine.getTemplateEngine().process(context, TemplateIdentifier.CLASH_DETECTION_EMAIL_BODY);

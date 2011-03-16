@@ -95,7 +95,7 @@ import org.bimserver.database.actions.GetRevisionDatabaseAction;
 import org.bimserver.database.actions.GetRevisionSummaryDatabaseAction;
 import org.bimserver.database.actions.GetShowCheckoutWarningsDatabaseAction;
 import org.bimserver.database.actions.GetSubProjectsDatabaseAction;
-import org.bimserver.database.actions.GetUserByNameDatabaseAction;
+import org.bimserver.database.actions.GetUserByUserNameDatabaseAction;
 import org.bimserver.database.actions.GetUserByUoidDatabaseAction;
 import org.bimserver.database.actions.RemoveUserFromProjectDatabaseAction;
 import org.bimserver.database.actions.RequestPasswordChangeDatabaseAction;
@@ -395,14 +395,14 @@ public class Service implements ServiceInterface {
 			User userByUoid = session.executeAction(getUserByUoidDatabaseAction, DEADLOCK_RETRIES);
 			ConcreteRevision revision = session.executeAndCommitAction(action, DEADLOCK_RETRIES);
 			session.close();
-			CheckinPart2DatabaseAction createCheckinAction = new CheckinPart2DatabaseAction(session, accessMethod, model, currentUoid,
+			CheckinPart2DatabaseAction createCheckinAction = new CheckinPart2DatabaseAction(session, accessMethod, settingsManager, model, currentUoid,
 					revision.getOid(), merge);
 			SCheckinResult result = new SCheckinResult();
 			result.setRid(revision.getId());
 			result.setPoid(revision.getProject().getOid());
 			result.setProjectName(revision.getProject().getName());
 			longActionManager.start(new LongCheckinAction(userByUoid, longActionManager, bimDatabase, schema, createCheckinAction,
-					ifcEngineFactory, fieldIgnoreMap, mailSystem));
+					ifcEngineFactory, fieldIgnoreMap, settingsManager, mailSystem));
 			return result;
 		} catch (UserException e) {
 			throw e;
@@ -469,7 +469,7 @@ public class Service implements ServiceInterface {
 		}
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
-			BimDatabaseAction<Long> action = new AddUserDatabaseAction(session, accessMethod, mailSystem, username, name, convert(type), currentUoid,
+			BimDatabaseAction<Long> action = new AddUserDatabaseAction(session, accessMethod, settingsManager, mailSystem, username, name, convert(type), currentUoid,
 					selfRegistration);
 			return session.executeAndCommitAction(action, DEADLOCK_RETRIES);
 		} catch (Exception e) {
@@ -499,7 +499,7 @@ public class Service implements ServiceInterface {
 		requireAuthentication();
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
-			BimDatabaseAction<Project> action = new AddProjectDatabaseAction(session, accessMethod, projectName, currentUoid);
+			BimDatabaseAction<Project> action = new AddProjectDatabaseAction(session, accessMethod, settingsManager, projectName, currentUoid);
 			return convert(session.executeAndCommitAction(action, DEADLOCK_RETRIES), SProject.class, session);
 		} catch (Exception e) {
 			handleException(e);
@@ -721,7 +721,7 @@ public class Service implements ServiceInterface {
 	public boolean login(String username, String password) throws UserException, ServerException {
 		BimDatabaseSession session = bimDatabase.createReadOnlySession();
 		try {
-			BimDatabaseAction<User> action = new GetUserByNameDatabaseAction(session, accessMethod, username);
+			BimDatabaseAction<User> action = new GetUserByUserNameDatabaseAction(session, accessMethod, username);
 			User user = session.executeAction(action, DEADLOCK_RETRIES);
 			if (user != null && Hashers.getSha256Hash(password).equals(user.getPassword())) {
 				if (user.getState() == ObjectState.DELETED) {
@@ -810,7 +810,7 @@ public class Service implements ServiceInterface {
 		requireAuthentication();
 		
 		final LongDownloadAction longDownloadAction = new LongDownloadAction(roid, currentUoid, longActionManager, bimDatabase,
-				accessMethod, emfSerializerFactory, resultType);
+				accessMethod, emfSerializerFactory, settingsManager, resultType);
 		try {
 			longActionManager.start(longDownloadAction);
 		} catch (CannotBeScheduledException e) {
@@ -913,7 +913,7 @@ public class Service implements ServiceInterface {
 		requireAuthentication();
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
-			BimDatabaseAction<IfcModel> action = new DownloadByOidsDatabaseAction(session, accessMethod, roids, oids, currentUoid);
+			BimDatabaseAction<IfcModel> action = new DownloadByOidsDatabaseAction(session, accessMethod, settingsManager, roids, oids, currentUoid);
 			IfcModel ifcModel = session.executeAction(action, DEADLOCK_RETRIES);
 			Revision revision = session.get(StorePackage.eINSTANCE.getRevision(), roids.iterator().next(), false);
 			User user = session.get(StorePackage.eINSTANCE.getUser(), currentUoid, false);
@@ -950,7 +950,7 @@ public class Service implements ServiceInterface {
 		requireAuthentication();
 		BimDatabaseSession session = bimDatabase.createReadOnlySession();
 		try {
-			BimDatabaseAction<IfcModel> action = new DownloadOfTypeDatabaseAction(session, accessMethod, roid, className, currentUoid);
+			BimDatabaseAction<IfcModel> action = new DownloadOfTypeDatabaseAction(session, accessMethod, settingsManager, roid, className, currentUoid);
 			IfcModel ifcModel = session.executeAction(action, DEADLOCK_RETRIES);
 			Revision revision = session.get(StorePackage.eINSTANCE.getRevision(), roid, false);
 			User user = session.get(StorePackage.eINSTANCE.getUser(), currentUoid, false);
@@ -998,7 +998,7 @@ public class Service implements ServiceInterface {
 		requireAuthentication();
 		BimDatabaseSession session = bimDatabase.createReadOnlySession();
 		try {
-			BimDatabaseAction<IfcModel> action = new DownloadByGuidsDatabaseAction(session, accessMethod, roids, guids, currentUoid);
+			BimDatabaseAction<IfcModel> action = new DownloadByGuidsDatabaseAction(session, accessMethod, settingsManager, roids, guids, currentUoid);
 			IfcModel ifcModel = session.executeAction(action, DEADLOCK_RETRIES);
 			Revision revision = session.get(StorePackage.eINSTANCE.getRevision(), roids.iterator().next(), false);
 			User user = session.get(StorePackage.eINSTANCE.getUser(), currentUoid, false);
@@ -1059,7 +1059,7 @@ public class Service implements ServiceInterface {
 		requireAuthentication();
 		BimDatabaseSession session = bimDatabase.createReadOnlySession();
 		try {
-			BimDatabaseAction<User> action = new GetUserByNameDatabaseAction(session, accessMethod, username);
+			BimDatabaseAction<User> action = new GetUserByUserNameDatabaseAction(session, accessMethod, username);
 			SUser convert = convert(session.executeAction(action, DEADLOCK_RETRIES), SUser.class, session);
 			if (convert == null) {
 				throw new UserException("User with username \"" + username + "\" not found");
@@ -1076,7 +1076,7 @@ public class Service implements ServiceInterface {
 	public boolean loginAsSystem() throws UserException, ServerException {
 		BimDatabaseSession session = bimDatabase.createReadOnlySession();
 		try {
-			BimDatabaseAction<User> action = new GetUserByNameDatabaseAction(session, accessMethod, "system");
+			BimDatabaseAction<User> action = new GetUserByUserNameDatabaseAction(session, accessMethod, "system");
 			User user = session.executeAction(action, DEADLOCK_RETRIES);
 			if (user != null) {
 				currentUoid = user.getOid();
@@ -1127,7 +1127,7 @@ public class Service implements ServiceInterface {
 		requireAuthentication();
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
-			BimDatabaseAction<Project> action = new AddProjectDatabaseAction(session, accessMethod, projectName, parentPoid, currentUoid);
+			BimDatabaseAction<Project> action = new AddProjectDatabaseAction(session, accessMethod, settingsManager, projectName, parentPoid, currentUoid);
 			return convert(session.executeAndCommitAction(action, DEADLOCK_RETRIES), SProject.class, session);
 		} catch (Exception e) {
 			handleException(e);
@@ -1170,7 +1170,7 @@ public class Service implements ServiceInterface {
 		requireAuthentication();
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
-			BimDatabaseAction<CompareResult> action = new CompareDatabaseAction(session, accessMethod, currentUoid, roid1, roid2,
+			BimDatabaseAction<CompareResult> action = new CompareDatabaseAction(session, accessMethod, settingsManager, currentUoid, roid1, roid2,
 					sCompareType);
 			return convert(session.executeAndCommitAction(action, DEADLOCK_RETRIES), SCompareResult.class, session);
 		} catch (Exception e) {
@@ -1300,7 +1300,7 @@ public class Service implements ServiceInterface {
 		requireAuthentication();
 		BimDatabaseSession session = bimDatabase.createReadOnlySession();
 		try {
-			BimDatabaseAction<IfcModel> action = new DownloadProjectsDatabaseAction(session, accessMethod, roids, currentUoid);
+			BimDatabaseAction<IfcModel> action = new DownloadProjectsDatabaseAction(session, accessMethod, settingsManager, roids, currentUoid);
 			Revision revision = session.get(StorePackage.eINSTANCE.getRevision(), roids.iterator().next(), false);
 			Project project = revision.getProject();
 			IfcModel ifcModel = session.executeAction(action, DEADLOCK_RETRIES);
@@ -1320,7 +1320,7 @@ public class Service implements ServiceInterface {
 		requireAuthentication();
 		BimDatabaseSession session = bimDatabase.createReadOnlySession();
 		try {
-			BimDatabaseAction<SDataObject> action = new GetDataObjectByOidDatabaseAction(session, accessMethod, roid, oid,
+			BimDatabaseAction<SDataObject> action = new GetDataObjectByOidDatabaseAction(session, accessMethod, settingsManager, roid, oid,
 					session.getCidForClassName(className));
 			SDataObject dataObject = session.executeAction(action, DEADLOCK_RETRIES);
 			return dataObject;
@@ -1337,7 +1337,7 @@ public class Service implements ServiceInterface {
 		requireAuthentication();
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
-			BimDatabaseAction<SDataObject> action = new GetDataObjectByGuidDatabaseAction(session, accessMethod, roid, guid);
+			BimDatabaseAction<SDataObject> action = new GetDataObjectByGuidDatabaseAction(session, accessMethod, settingsManager, roid, guid);
 			SDataObject dataObject = session.executeAndCommitAction(action, DEADLOCK_RETRIES);
 			return dataObject;
 		} catch (Exception e) {
@@ -1352,7 +1352,7 @@ public class Service implements ServiceInterface {
 	public List<SDataObject> getDataObjectsByType(long roid, String className) throws UserException, ServerException {
 		requireAuthentication();
 		BimDatabaseSession session = bimDatabase.createReadOnlySession();
-		BimDatabaseAction<List<SDataObject>> action = new GetDataObjectsByTypeDatabaseAction(session, accessMethod, roid, className);
+		BimDatabaseAction<List<SDataObject>> action = new GetDataObjectsByTypeDatabaseAction(session, accessMethod, settingsManager, roid, className);
 		try {
 			List<SDataObject> dataObjects = session.executeAction(action, DEADLOCK_RETRIES);
 			return dataObjects;
@@ -1435,7 +1435,7 @@ public class Service implements ServiceInterface {
 			}
 			IfcModel model = new Merger().merge(oldRevision.getProject(), ifcModelSet, settingsManager.getSettings().isIntelligentMerging());
 			model.resetOids();
-			Project newProject = new AddProjectDatabaseAction(session, accessMethod, projectName, currentUoid).execute();
+			Project newProject = new AddProjectDatabaseAction(session, accessMethod, settingsManager, projectName, currentUoid).execute();
 			session.commit();
 			session.close();
 			session = bimDatabase.createSession();
@@ -1444,14 +1444,14 @@ public class Service implements ServiceInterface {
 			try {
 				ConcreteRevision revision = session.executeAndCommitAction(action, DEADLOCK_RETRIES);
 				session.close();
-				CheckinPart2DatabaseAction createCheckinAction = new CheckinPart2DatabaseAction(session, accessMethod, model, currentUoid,
+				CheckinPart2DatabaseAction createCheckinAction = new CheckinPart2DatabaseAction(session, accessMethod, settingsManager, model, currentUoid,
 						revision.getOid(), false);
 				SCheckinResult result = new SCheckinResult();
 				result.setRid(revision.getId());
 				result.setPoid(revision.getProject().getOid());
 				result.setProjectName(revision.getProject().getName());
 				longActionManager.start(new LongCheckinAction(user, longActionManager, bimDatabase, schema, createCheckinAction,
-						ifcEngineFactory, fieldIgnoreMap, mailSystem));
+						ifcEngineFactory, fieldIgnoreMap, settingsManager, mailSystem));
 				return result;
 			} catch (UserException e) {
 				throw e;
@@ -1493,14 +1493,14 @@ public class Service implements ServiceInterface {
 			try {
 				ConcreteRevision revision = session.executeAndCommitAction(action, DEADLOCK_RETRIES);
 				session.close();
-				CheckinPart2DatabaseAction createCheckinAction = new CheckinPart2DatabaseAction(session, accessMethod, model, currentUoid,
+				CheckinPart2DatabaseAction createCheckinAction = new CheckinPart2DatabaseAction(session, accessMethod, settingsManager, model, currentUoid,
 						revision.getOid(), false);
 				SCheckinResult result = new SCheckinResult();
 				result.setRid(revision.getId());
 				result.setPoid(revision.getProject().getOid());
 				result.setProjectName(revision.getProject().getName());
 				longActionManager.start(new LongCheckinAction(user, longActionManager, bimDatabase, schema, createCheckinAction,
-						ifcEngineFactory, fieldIgnoreMap, mailSystem));
+						ifcEngineFactory, fieldIgnoreMap, settingsManager, mailSystem));
 				return result;
 			} catch (UserException e) {
 				throw e;
@@ -1700,7 +1700,7 @@ public class Service implements ServiceInterface {
 	public boolean autologin(String username, String hash) throws UserException, ServerException {
 		BimDatabaseSession session = bimDatabase.createReadOnlySession();
 		try {
-			BimDatabaseAction<User> action = new GetUserByNameDatabaseAction(session, accessMethod, username);
+			BimDatabaseAction<User> action = new GetUserByUserNameDatabaseAction(session, accessMethod, username);
 			User user = session.executeAction(action, DEADLOCK_RETRIES);
 			if (user != null && hash.equals(Hashers.getSha256Hash(user.getUsername() + user.getPassword()))) {
 				if (user.getState() == ObjectState.DELETED) {
@@ -2000,7 +2000,7 @@ public class Service implements ServiceInterface {
 	public void loginAnonymous() throws UserException, ServerException {
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
-			BimDatabaseAction<User> action = new GetUserByNameDatabaseAction(session, accessMethod, "anonymous");
+			BimDatabaseAction<User> action = new GetUserByUserNameDatabaseAction(session, accessMethod, "anonymous");
 			User user = session.executeAction(action, DEADLOCK_RETRIES);
 			currentUoid = user.getOid();
 		} catch (Exception e) {
@@ -2120,7 +2120,7 @@ public class Service implements ServiceInterface {
 	public void requestPasswordChange(long uoid) throws UserException, ServerException {
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
-			BimDatabaseAction<Void> action = new RequestPasswordChangeDatabaseAction(session, accessMethod, mailSystem, uoid);
+			BimDatabaseAction<Void> action = new RequestPasswordChangeDatabaseAction(session, accessMethod, settingsManager, mailSystem, uoid);
 			session.executeAndCommitAction(action, DEADLOCK_RETRIES);
 		} catch (Exception e) {
 			handleException(e);
@@ -2134,7 +2134,7 @@ public class Service implements ServiceInterface {
 			ServerException {
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
-			BimDatabaseAction<Void> action = new SendClashesEmailDatabaseAction(session, accessMethod, mailSystem, currentUoid, poid,
+			BimDatabaseAction<Void> action = new SendClashesEmailDatabaseAction(session, accessMethod, settingsManager, mailSystem, currentUoid, poid,
 					sClashDetectionSettings, addressesTo);
 			session.executeAndCommitAction(action, DEADLOCK_RETRIES);
 		} catch (Exception e) {
@@ -2234,9 +2234,9 @@ public class Service implements ServiceInterface {
 		
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
-			new AddUserDatabaseAction(session, AccessMethod.INTERNAL, mailSystem, adminUsername, adminPassword, adminName, UserType.ADMIN, -1, false).execute();
+			new AddUserDatabaseAction(session, AccessMethod.INTERNAL, settingsManager, mailSystem, adminUsername, adminPassword, adminName, UserType.ADMIN, -1, false).execute();
 			if (createAnonymousUser) {
-				new AddUserDatabaseAction(session, AccessMethod.INTERNAL, mailSystem, "anonymous", "anonymous", "Anonymous", UserType.ANONYMOUS, -1, false).execute();
+				new AddUserDatabaseAction(session, AccessMethod.INTERNAL, settingsManager, mailSystem, "anonymous", "anonymous", "Anonymous", UserType.ANONYMOUS, -1, false).execute();
 			}
 			session.commit();
 		} catch (BimDatabaseException e) {

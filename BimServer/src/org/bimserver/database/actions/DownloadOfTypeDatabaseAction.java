@@ -1,5 +1,6 @@
 package org.bimserver.database.actions;
 
+import org.bimserver.SettingsManager;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
@@ -19,9 +20,11 @@ public class DownloadOfTypeDatabaseAction extends BimDatabaseAction<IfcModel> {
 	private final String className;
 	private final long actingUoid;
 	private final long roid;
+	private final SettingsManager settingsManager;
 
-	public DownloadOfTypeDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long roid, String className, long actingUoid) {
+	public DownloadOfTypeDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, SettingsManager settingsManager, long roid, String className, long actingUoid) {
 		super(bimDatabaseSession, accessMethod);
+		this.settingsManager = settingsManager;
 		this.roid = roid;
 		this.actingUoid = actingUoid;
 		this.className = className;
@@ -41,7 +44,7 @@ public class DownloadOfTypeDatabaseAction extends BimDatabaseAction<IfcModel> {
 			subModel.setDate(concreteRevision.getDate());
 			ifcModelSet.add(subModel);
 		}
-		IfcModel IfcModel = new Merger().merge(project, ifcModelSet, getSettings().isIntelligentMerging());
+		IfcModel IfcModel = new Merger().merge(project, ifcModelSet, settingsManager.getSettings().isIntelligentMerging());
 		IfcModel.setRevisionNr(project.getRevisions().indexOf(virtualRevision) + 1);
 		IfcModel.setAuthorizedUser(getUserByUoid(actingUoid).getName());
 		IfcModel.setDate(virtualRevision.getDate());

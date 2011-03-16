@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.bimserver.SettingsManager;
 import org.bimserver.database.BimDatabase;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
@@ -32,6 +33,7 @@ public class CompileServlet extends HttpServlet {
 	private static final Logger LOGGER = LoggerFactory.getLogger(CompileServlet.class);
 	private static final long serialVersionUID = 2409894233105690606L;
 	public static BimDatabase database;
+	public static SettingsManager settingsManager;
 
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -74,7 +76,7 @@ public class CompileServlet extends HttpServlet {
 		}
 		BimDatabaseSession session = database.createSession();
 		try {
-			BimDatabaseAction<IfcModel> action = new DownloadDatabaseAction(session, AccessMethod.INTERNAL, roid, loginManager.getUoid());
+			BimDatabaseAction<IfcModel> action = new DownloadDatabaseAction(session, AccessMethod.INTERNAL, settingsManager, roid, loginManager.getUoid());
 			IfcModel IfcModel = session.executeAndCommitAction(action, 10);
 			StringWriter out = new StringWriter();
 			queryInterface.query(new IfcDatabase(IfcModel, null), new PrintWriter(out));

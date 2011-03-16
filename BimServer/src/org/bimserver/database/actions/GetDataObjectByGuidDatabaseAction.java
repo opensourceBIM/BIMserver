@@ -1,5 +1,6 @@
 package org.bimserver.database.actions;
 
+import org.bimserver.SettingsManager;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
@@ -14,9 +15,11 @@ public class GetDataObjectByGuidDatabaseAction extends BimDatabaseAction<SDataOb
 
 	private final String guid;
 	private final long roid;
+	private final SettingsManager settingsManager;
 
-	public GetDataObjectByGuidDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long roid, String guid) {
+	public GetDataObjectByGuidDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, SettingsManager settingsManager, long roid, String guid) {
 		super(bimDatabaseSession, accessMethod);
+		this.settingsManager = settingsManager;
 		this.roid = roid;
 		this.guid = guid;
 	}
@@ -38,6 +41,6 @@ public class GetDataObjectByGuidDatabaseAction extends BimDatabaseAction<SDataOb
 			throw new UserException("Guid " + guid + " not found in this revision/project");
 		}
 		
-		return new GetDataObjectByOidDatabaseAction(getDatabaseSession(), getAccessMethod(), roid, objectIdentifier.getOid(), objectIdentifier.getCid()).execute();
+		return new GetDataObjectByOidDatabaseAction(getDatabaseSession(), getAccessMethod(), settingsManager, roid, objectIdentifier.getOid(), objectIdentifier.getCid()).execute();
 	}
 }

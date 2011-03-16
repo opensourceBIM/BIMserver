@@ -2,6 +2,7 @@ package org.bimserver.database.actions;
 
 import java.util.Set;
 
+import org.bimserver.SettingsManager;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
@@ -20,9 +21,11 @@ public class DownloadProjectsDatabaseAction extends BimDatabaseAction<IfcModel> 
 
 	private final long actingUoid;
 	private final Set<Long> roids;
+	private final SettingsManager settingsManager;
 
-	public DownloadProjectsDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, Set<Long> roids, long actingUoid) {
+	public DownloadProjectsDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, SettingsManager settingsManager, Set<Long> roids, long actingUoid) {
 		super(bimDatabaseSession, accessMethod);
+		this.settingsManager = settingsManager;
 		this.roids = roids;
 		this.actingUoid = actingUoid;
 	}
@@ -48,7 +51,7 @@ public class DownloadProjectsDatabaseAction extends BimDatabaseAction<IfcModel> 
 				throw new UserException("User has no rights on project " + project.getOid());
 			}
 		}
-		IfcModel ifcModel = new Merger().merge(project, ifcModelSet, getSettings().isIntelligentMerging());
+		IfcModel ifcModel = new Merger().merge(project, ifcModelSet, settingsManager.getSettings().isIntelligentMerging());
 		if (projectName.endsWith("-")) {
 			projectName = projectName.substring(0, projectName.length()-1);
 		}

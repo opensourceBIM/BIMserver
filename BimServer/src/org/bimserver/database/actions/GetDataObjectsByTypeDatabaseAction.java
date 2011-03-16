@@ -3,6 +3,7 @@ package org.bimserver.database.actions;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bimserver.SettingsManager;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
@@ -22,9 +23,11 @@ public class GetDataObjectsByTypeDatabaseAction extends BimDatabaseAction<List<S
 
 	private final String className;
 	private final long roid;
+	private final SettingsManager settingsManager;
 
-	public GetDataObjectsByTypeDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long roid, String className) {
+	public GetDataObjectsByTypeDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, SettingsManager settingsManager, long roid, String className) {
 		super(bimDatabaseSession, accessMethod);
+		this.settingsManager = settingsManager;
 		this.roid = roid;
 		this.className = className;
 	}
@@ -39,7 +42,7 @@ public class GetDataObjectsByTypeDatabaseAction extends BimDatabaseAction<List<S
 			subModel.setDate(concreteRevision.getDate());
 			ifcModelSet.add(subModel);
 		}
-		IfcModel ifcModel = new Merger().merge(virtualRevision.getProject(), ifcModelSet, getSettings().isIntelligentMerging());
+		IfcModel ifcModel = new Merger().merge(virtualRevision.getProject(), ifcModelSet, settingsManager.getSettings().isIntelligentMerging());
 		List<SDataObject> dataObjects = new ArrayList<SDataObject>();
 		for (Long oid : ifcModel.keySet()) {
 			EObject eObject = ifcModel.get(oid);

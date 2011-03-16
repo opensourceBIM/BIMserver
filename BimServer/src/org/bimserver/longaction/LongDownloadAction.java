@@ -4,6 +4,7 @@ import java.util.UUID;
 
 import javax.activation.DataHandler;
 
+import org.bimserver.SettingsManager;
 import org.bimserver.database.BimDatabase;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.actions.DownloadDatabaseAction;
@@ -41,14 +42,16 @@ public class LongDownloadAction extends LongDownloadOrCheckoutAction {
 	private final long currentUoid;
 	private final String id;
 	private ActionState state = ActionState.UNKNOWN;
+	private final SettingsManager settingsManager;
 
 	public LongDownloadAction(long roid, long currentUoid, LongActionManager longActionManager, BimDatabase bimDatabase,
-			AccessMethod accessMethod, EmfSerializerFactory emfSerializerFactory, ResultType resultType) {
+			AccessMethod accessMethod, EmfSerializerFactory emfSerializerFactory, SettingsManager settingsManager, ResultType resultType) {
 		super();
 		this.longActionManager = longActionManager;
 		this.bimDatabase = bimDatabase;
 		this.accessMethod = accessMethod;
 		this.emfSerializerFactory = emfSerializerFactory;
+		this.settingsManager = settingsManager;
 		this.resultType = resultType;
 		this.roid = roid;
 		this.currentUoid = currentUoid;
@@ -59,7 +62,7 @@ public class LongDownloadAction extends LongDownloadOrCheckoutAction {
 		state = ActionState.STARTED;
 		BimDatabaseSession session = bimDatabase.createReadOnlySession();
 		try {
-			action = new DownloadDatabaseAction(session, accessMethod, roid, currentUoid);
+			action = new DownloadDatabaseAction(session, accessMethod, settingsManager, roid, currentUoid);
 			IfcModel ifcModel = session.executeAction(action, org.bimserver.webservices.Service.DEADLOCK_RETRIES);
 			Revision revision = session.get(StorePackage.eINSTANCE.getRevision(), roid, false);
 			user = session.get(StorePackage.eINSTANCE.getUser(), currentUoid, false);
