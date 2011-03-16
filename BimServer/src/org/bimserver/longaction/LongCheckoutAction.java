@@ -25,7 +25,7 @@ import org.bimserver.shared.UserException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class LongCheckoutAction extends LongAction {
+public class LongCheckoutAction extends LongDownloadOrCheckoutAction {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(LongCheckoutAction.class);
 	private final BimDatabase bimDatabase;
@@ -54,6 +54,7 @@ public class LongCheckoutAction extends LongAction {
 		this.id = UUID.randomUUID().toString();
 	}
 
+	@Override
 	public void execute() {
 		state = ActionState.STARTED;
 		BimDatabaseSession session = bimDatabase.createSession();
@@ -71,6 +72,7 @@ public class LongCheckoutAction extends LongAction {
 		}
 	}
 
+	@Override
 	public SCheckoutResult getCheckoutResult() {
 		return checkoutResult;
 	}
@@ -102,10 +104,12 @@ public class LongCheckoutAction extends LongAction {
 		return id;
 	}
 
+	@Override
 	public User getUser() {
 		return user;
 	}
 
+	@Override
 	public synchronized LongActionState getState() {
 		LongActionState ds = new LongActionState();
 		ds.setProgress(action.getProgress());

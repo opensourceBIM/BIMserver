@@ -18,7 +18,6 @@ import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
-import org.bimserver.shared.LongActionState;
 import org.bimserver.shared.UserException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,7 +33,8 @@ public class LongCheckinAction extends LongAction {
 	private final User user;
 	private final FieldIgnoreMap fieldIgnoreMap;
 
-	public LongCheckinAction(User user, LongActionManager longActionManager, BimDatabase bimDatabase, SchemaDefinition schema, CheckinPart2DatabaseAction createCheckinAction, IfcEngineFactory ifcEngineFactory, FieldIgnoreMap fieldIgnoreMap) {
+	public LongCheckinAction(User user, LongActionManager longActionManager, BimDatabase bimDatabase, SchemaDefinition schema,
+			CheckinPart2DatabaseAction createCheckinAction, IfcEngineFactory ifcEngineFactory, FieldIgnoreMap fieldIgnoreMap) {
 		this.user = user;
 		this.longActionManager = longActionManager;
 		this.bimDatabase = bimDatabase;
@@ -50,10 +50,11 @@ public class LongCheckinAction extends LongAction {
 			createCheckinAction.setDatabaseSession(session);
 			session.executeAndCommitAction(createCheckinAction, 10);
 			session.close();
-			
+
 			BimDatabaseSession extraSession = bimDatabase.createSession();
 			try {
-				ConcreteRevision concreteRevision = (ConcreteRevision) extraSession.get(StorePackage.eINSTANCE.getConcreteRevision(), createCheckinAction.getCroid(), false);
+				ConcreteRevision concreteRevision = (ConcreteRevision) extraSession.get(StorePackage.eINSTANCE.getConcreteRevision(),
+						createCheckinAction.getCroid(), false);
 				for (Revision r : concreteRevision.getRevisions()) {
 					Revision latest = null;
 					for (Revision r2 : r.getProject().getRevisions()) {
@@ -70,7 +71,7 @@ public class LongCheckinAction extends LongAction {
 			} finally {
 				extraSession.close();
 			}
-			
+
 			session = bimDatabase.createReadOnlySession();
 			startClashDetection(session);
 		} catch (OutOfMemoryError e) {
@@ -86,7 +87,8 @@ public class LongCheckinAction extends LongAction {
 					while (throwable.getCause() != null) {
 						throwable = throwable.getCause();
 					}
-					ConcreteRevision concreteRevision = (ConcreteRevision) rollBackSession.get(StorePackage.eINSTANCE.getConcreteRevision(), croid, false);
+					ConcreteRevision concreteRevision = (ConcreteRevision) rollBackSession.get(
+							StorePackage.eINSTANCE.getConcreteRevision(), croid, false);
 					concreteRevision.setState(CheckinState.ERROR);
 					concreteRevision.setLastError(throwable.getMessage());
 					for (Revision revision : concreteRevision.getRevisions()) {
@@ -108,15 +110,18 @@ public class LongCheckinAction extends LongAction {
 		}
 	}
 
-	private void startClashDetection(BimDatabaseSession session) throws BimDeadlockException, BimDatabaseException, UserException, IfcEngineException, SerializerException {
-		ConcreteRevision concreteRevision = (ConcreteRevision) session.get(StorePackage.eINSTANCE.getConcreteRevision(), createCheckinAction.getCroid(), false); 
+	private void startClashDetection(BimDatabaseSession session) throws BimDeadlockException, BimDatabaseException, UserException,
+			IfcEngineException, SerializerException {
+		ConcreteRevision concreteRevision = (ConcreteRevision) session.get(StorePackage.eINSTANCE.getConcreteRevision(),
+				createCheckinAction.getCroid(), false);
 		Project project = concreteRevision.getProject();
 		Project mainProject = project;
 		while (mainProject.getParent() != null) {
 			mainProject = mainProject.getParent();
 		}
 		if (mainProject.getClashDetectionSettings().isEnabled()) {
-			ClashDetectionLongAction clashDetectionLongAction = new ClashDetectionLongAction(user, createCheckinAction.getActingUid(), schema, ifcEngineFactory, bimDatabase, fieldIgnoreMap, mainProject.getOid());
+			ClashDetectionLongAction clashDetectionLongAction = new ClashDetectionLongAction(user, createCheckinAction.getActingUid(),
+					schema, ifcEngineFactory, bimDatabase, fieldIgnoreMap, mainProject.getOid());
 			try {
 				longActionManager.start(clashDetectionLongAction);
 			} catch (CannotBeScheduledException e) {
@@ -134,10 +139,4 @@ public class LongCheckinAction extends LongAction {
 		return user;
 	}
 
-	@Override
-	public LongActionState getState() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
 }

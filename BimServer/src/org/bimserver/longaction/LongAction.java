@@ -3,7 +3,6 @@ package org.bimserver.longaction;
 import java.util.Date;
 
 import org.bimserver.models.store.User;
-import org.bimserver.shared.LongActionState;
 
 public abstract class LongAction {
 
@@ -27,5 +26,4 @@ public abstract class LongAction {
 		return start;
 	}
 
-	public abstract LongActionState getState();
 }

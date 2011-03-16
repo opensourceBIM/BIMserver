@@ -241,6 +241,34 @@ to go to the latest revision<br />
 <p></p>
 <div class="tabber" id="downloadtabber">
 	<div class="tabbertab" id="detailstab" title="Simple Download">
+	<table>
+	<tr><td>Download:</td><td>
+	<select name="resultType" id="detailsdownloadcheckoutselect">
+	<%
+		for (ResultType resultType : emfSerializerFactory.getMultipleResultTypes()) {
+	%>
+	<option value="<%=resultType.name()%>"
+		<%=resultType.isDefaultSelected() ? " SELECTED=\"SELECTED\"" : ""%>><%=resultType.getNiceName()%></option>
+	<%
+		}
+	%>
+	</select></td><td> <label for="simplezip_<%=lastRevision.getId()%>">Zip </label></td>
+	<td><input type="checkbox" name="zip" id="simplezip_<%=lastRevision.getId()%>" /></td>
+	<td><button id="simpleDownloadButton" type="button">download</button></td>
+	<%
+	 	if (userHasCheckinRights) {
+	%>
+	<td><button id="detailscheckoutbutton" type="button">checkout</button></td>
+	<%
+	 	}
+	%>
+	<td><div id="simpleDownloadResult"></div></td>
+	</tr>
+	</table>
+	
+	
+	
+<!-- 
 	<form action="<%=request.getContextPath()%>/download" method="get">Download: 
 	<input type="hidden" id="simpleDownloadRoid" name="roid" value="<%=project.getLastRevisionId()%>" />
 	<select name="resultType" id="detailsdownloadcheckoutselect">
@@ -265,7 +293,7 @@ to go to the latest revision<br />
 	%>
 	<span id="simpleDownloadResult"></span>
 	</form>
-	
+	 -->	
 </div>
 
 <div class="tabbertab" id="" title="Advanced Download"><script>
@@ -816,19 +844,21 @@ open a specific revision to query other revisions<br />
 		refreshFunction();
 		window.setInterval(refreshFunction, 2000);
 	});
-</script> <%
+</script>
+<%
  	if (lastRevision != null) {
- %> <script>
+%> 
+<script>
 	$(document).ready(function(){
 		$("#simpleDownloadButton").click(function(){
 			$("#simpleDownloadButton").hide();
 			$("#detailscheckoutbutton").hide();
-			$("#simpleDownloadResult").load("initiatedownload.jsp?roid=" + $("#simpleDownloadRoid").val() + "&resultType=" + $("#detailsdownloadcheckoutselect").val()+ "&download=" + $("#simpleDownloadButton").val());
+			$("#simpleDownloadResult").load("initiatedownload.jsp?roid=<%=lastRevision.getOid()%>" + "&resultType=" + $("#detailsdownloadcheckoutselect").val()+ "&download=Download");
 		});
 		$("#detailscheckoutbutton").click(function(){
 			$("#simpleDownloadButton").hide();
 			$("#detailscheckoutbutton").hide();
-			$("#simpleDownloadResult").load("initiatedownload.jsp?roid=" + $("#simpleDownloadRoid").val()  + "&resultType=" + $("#detailsdownloadcheckoutselect").val()+ "&checkout=" + $("#detailscheckoutbutton").val());
+			$("#simpleDownloadResult").load("initiatedownload.jsp?roid=<%=lastRevision.getOid()%>" + "&resultType=" + $("#detailsdownloadcheckoutselect").val()+ "&checkout=Checkout");
 		});
 		
 		$("#compareajaxloader").hide();
