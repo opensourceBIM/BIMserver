@@ -14,7 +14,6 @@
 <%@page import="org.bimserver.models.store.SIPrefix"%>
 <%@page import="org.bimserver.rights.RightsManager"%>
 <%@page import="org.bimserver.serializers.EmfSerializerFactory"%>
-<%@page import="org.bimserver.settings.ServerSettings"%>
 <%@page import="org.bimserver.shared.ResultType"%>
 <%@page import="org.bimserver.shared.SCheckoutDateComparator"%>
 <%@page import="org.bimserver.shared.SProjectNameComparator"%>
@@ -25,9 +24,7 @@
 <%@page import="org.bimserver.web.JspHelper"%>
 <%@page import="org.bimserver.utils.Formatters"%>
 <%@page import="org.bimserver.utils.WebUtils"%>
-
 <%@ include file="header.jsp"%>
-
 <%
 	if (loginManager.getService().isLoggedIn()) {
 		DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
@@ -70,7 +67,11 @@
 			boolean hasCreateProjectRights = (loginManager.getUserType() == SUserType.ADMIN || loginManager.getService().isSettingAllowUsersToCreateTopLevelProjects());
 			if (emfSerializerFactory.resultTypeEnabled(ResultType.O3D_JSON) && lastRevision != null) {
 %>
-<jsp:include page="o3d.jsp" />
+
+<%@page import="java.text.DateFormat"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Collections"%>
+<%@page import="java.util.ArrayList"%><jsp:include page="o3d.jsp" />
 <%
 			}
 %>
