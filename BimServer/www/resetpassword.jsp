@@ -9,8 +9,8 @@
 	boolean showForm = true;
 	if (request.getParameter("username") != null) {
 		try {
-			SUser user = loginManager.getAdminService().getUserByUserName(request.getParameter("username"));
-			loginManager.getAdminService().requestPasswordChange(user.getOid());
+			SUser user = loginManager.getSystemService().getUserByUserName(request.getParameter("username"));
+			loginManager.getSystemService().requestPasswordChange(user.getOid());
 			showForm = false;
 			out.println("An email with instructions on how to reset your password has been sent to your address");
 		} catch (UserException e) {

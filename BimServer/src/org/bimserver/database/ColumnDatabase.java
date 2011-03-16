@@ -37,7 +37,7 @@ public interface ColumnDatabase {
 
 	long count(String tableName);
 
-	byte[] get(String tableName, byte[] key, DatabaseSession databaseSession) throws BimDeadlockException;
+	byte[] get(String tableName, byte[] key, DatabaseSession databaseSession) throws BimDeadlockException, BimDatabaseException;
 
 	byte[] getFirstStartingWith(String tableName, byte[] key, DatabaseSession databaseSession) throws BimDeadlockException, BimDatabaseException;
 

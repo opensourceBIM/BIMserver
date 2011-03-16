@@ -21,11 +21,10 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.IOUtils;
 import org.bimserver.ServerInitializer;
 import org.bimserver.interfaces.objects.SUserType;
+import org.bimserver.models.store.Settings;
 import org.bimserver.resources.JarResourceFetcher;
 import org.bimserver.resources.WarResourceFetcher;
 import org.bimserver.serializers.EmfSerializerFactory;
-import org.bimserver.settings.ServerSettings;
-import org.bimserver.settings.Settings;
 import org.bimserver.web.LoginManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -60,13 +59,13 @@ public class SettingsServlet extends HttpServlet {
 								}
 							} else {
 								if (fieldName.equals("settings")) {
-									InputStream inputStream = item.getInputStream();
-									Settings readFromStream = Settings.readFromStream(inputStream);
-									readFromStream.save();
-									ServerSettings.setSettings(Settings.read());
-									EmfSerializerFactory.getInstance().initSerializers();
-									response.sendRedirect(getServletContext().getContextPath() + "/settings.jsp?msg=settingsfileuploadok");
-									return;
+//									InputStream inputStream = item.getInputStream();
+//									Settings readFromStream = Settings.readFromStream(inputStream);
+//									readFromStream.save();
+//									ServerSettings.setSettings(Settings.read());
+//									EmfSerializerFactory.getInstance().initSerializers();
+//									response.sendRedirect(getServletContext().getContextPath() + "/settings.jsp?msg=settingsfileuploadok");
+//									return;
 								} else if (fieldName.equals("ignorefile")) {
 									InputStream inputStream = item.getInputStream();
 									File file = ServerInitializer.getResourceFetcher().getFile("ignore.xml");
@@ -109,11 +108,11 @@ public class SettingsServlet extends HttpServlet {
 				if (request.getParameter("action") != null) {
 					String action = request.getParameter("action");
 					if (action.equals("downloadsettings")) {
-						Settings settings = ServerSettings.getSettings();
-						response.setContentType("text/xml");
-						response.setHeader("Content-Disposition", "attachment; filename=\"settings.xml\"");
-						settings.saveToStream(response.getOutputStream());
-						return;
+//						Settings settings = ServerSettings.getSettings();
+//						response.setContentType("text/xml");
+//						response.setHeader("Content-Disposition", "attachment; filename=\"settings.xml\"");
+//						settings.saveToStream(response.getOutputStream());
+//						return;
 					} else if (action.equals("downloadlog")) {
 						response.setContentType("text");
 						response.setHeader("Content-Disposition", "attachment; filename=\"bimserver.log\"");

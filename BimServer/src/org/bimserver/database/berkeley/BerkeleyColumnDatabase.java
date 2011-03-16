@@ -60,6 +60,7 @@ public class BerkeleyColumnDatabase implements ColumnDatabase {
 	private int writes;
 	private int reads;
 	private final DatabaseConfig dbConfig;
+	private final DatabaseConfig dbConfigAllowCreate;
 	private final Map<String, Database> tables = new HashMap<String, Database>();
 	private boolean isNew;
 	private TransactionConfig transactionConfig;
@@ -92,6 +93,7 @@ public class BerkeleyColumnDatabase implements ColumnDatabase {
 		envConfig.setLockTimeout(5, TimeUnit.SECONDS);
 		envConfig.setTxnSerializableIsolation(true);
 		dbConfig = new DatabaseConfig();
+		dbConfigAllowCreate = new DatabaseConfig();
 		try {
 			environment = new Environment(dataDir, envConfig);
 		} catch (EnvironmentLockedException e) {
@@ -102,11 +104,16 @@ public class BerkeleyColumnDatabase implements ColumnDatabase {
 			String message = "A database initialisation error has occured (" + e.getMessage() + ")";
 			throw new DatabaseInitException(message);
 		}
-		dbConfig.setAllowCreate(true);
+		dbConfig.setAllowCreate(false);
 		dbConfig.setDeferredWrite(false);
 		dbConfig.setTransactional(true);
 		dbConfig.setSortedDuplicates(false);
 
+		dbConfigAllowCreate.setAllowCreate(true);
+		dbConfigAllowCreate.setDeferredWrite(false);
+		dbConfigAllowCreate.setTransactional(true);
+		dbConfigAllowCreate.setSortedDuplicates(false);
+		
 		transactionConfig = new TransactionConfig();
 		transactionConfig.setReadCommitted(true);
 
@@ -132,13 +139,11 @@ public class BerkeleyColumnDatabase implements ColumnDatabase {
 	}
 
 	private Database getDatabase(String tableName, DatabaseSession databaseSession, boolean canCreate) {
-		if (canCreate) {
-			if (!tables.containsKey(tableName)) {
-				try {
-					tables.put(tableName, environment.openDatabase(getTransaction(databaseSession), tableName, dbConfig));
-				} catch (DatabaseException e) {
-					LOGGER.error("", e);
-				}
+		if (!tables.containsKey(tableName)) {
+			try {
+				tables.put(tableName, environment.openDatabase(getTransaction(databaseSession), tableName, canCreate ? dbConfigAllowCreate : dbConfig));
+			} catch (DatabaseException e) {
+				LOGGER.error("", e);
 			}
 		}
 		return tables.get(tableName);
@@ -169,11 +174,15 @@ public class BerkeleyColumnDatabase implements ColumnDatabase {
 	}
 
 	@Override
-	public byte[] get(String tableName, byte[] keyBytes, DatabaseSession databaseSession) {
+	public byte[] get(String tableName, byte[] keyBytes, DatabaseSession databaseSession) throws BimDatabaseException {
 		DatabaseEntry key = new DatabaseEntry(keyBytes);
 		DatabaseEntry value = new DatabaseEntry();
 		try {
-			OperationStatus operationStatus = getDatabase(tableName, databaseSession, false).get(getTransaction(databaseSession), key,
+			Database database = getDatabase(tableName, databaseSession, false);
+			if (database == null) {
+				throw new BimDatabaseException("Table " + tableName + " not found");
+			}
+			OperationStatus operationStatus = database.get(getTransaction(databaseSession), key,
 					value, LockMode.READ_UNCOMMITTED);
 			if (operationStatus == OperationStatus.SUCCESS) {
 				increaseReads();

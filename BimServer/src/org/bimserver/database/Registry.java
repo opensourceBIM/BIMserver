@@ -25,6 +25,14 @@ public class Registry {
 		}
 	}
 
+	public void save(String key, boolean value, DatabaseSession databaseSession) throws BimDeadlockException {
+		try {
+			columnDatabase.store(REGISTRY_TABLE, key.getBytes(Charsets.UTF_8), BinUtils.booleanToByteArray(value), databaseSession);
+		} catch (BimDatabaseException e) {
+			LOGGER.error("", e);
+		}
+	}
+
 	public void save(String key, int value, DatabaseSession databaseSession) throws BimDeadlockException {
 		try {
 			columnDatabase.store(REGISTRY_TABLE, key.getBytes(Charsets.UTF_8), BinUtils.intToByteArray(value), databaseSession);
@@ -33,7 +41,7 @@ public class Registry {
 		}
 	}
 
-	public long readLong(String key, DatabaseSession databaseSession) throws BimDeadlockException {
+	public long readLong(String key, DatabaseSession databaseSession) throws BimDeadlockException, BimDatabaseException {
 		byte[] bytes = columnDatabase.get(REGISTRY_TABLE, key.getBytes(Charsets.UTF_8), databaseSession);
 		if (bytes == null) {
 			return 1;
@@ -42,7 +50,7 @@ public class Registry {
 		}
 	}
 
-	public int readInt(String key, DatabaseSession databaseSession) throws BimDeadlockException {
+	public int readInt(String key, DatabaseSession databaseSession) throws BimDeadlockException, BimDatabaseException {
 		byte[] bytes = columnDatabase.get(REGISTRY_TABLE, key.getBytes(Charsets.UTF_8), databaseSession);
 		if (bytes == null) {
 			return 1;
@@ -51,7 +59,7 @@ public class Registry {
 		}
 	}
 
-	public int readInt(String key, DatabaseSession databaseSession, int defaultValue) throws BimDeadlockException {
+	public int readInt(String key, DatabaseSession databaseSession, int defaultValue) throws BimDeadlockException, BimDatabaseException {
 		byte[] bytes = columnDatabase.get(REGISTRY_TABLE, key.getBytes(Charsets.UTF_8), databaseSession);
 		if (bytes == null) {
 			return defaultValue;
@@ -64,7 +72,7 @@ public class Registry {
 		columnDatabase.createTableIfNotExists(REGISTRY_TABLE, databaseSession);
 	}
 
-	public Date readDate(String key, DatabaseSession databaseSession) throws BimDeadlockException {
+	public Date readDate(String key, DatabaseSession databaseSession) throws BimDeadlockException, BimDatabaseException {
 		long readLong = readLong(key, databaseSession);
 		if (readLong == -1) {
 			return null;
@@ -74,5 +82,14 @@ public class Registry {
 
 	public void save(String key, Date date, DatabaseSession databaseSession) throws BimDeadlockException {
 		save(key, date.getTime(), databaseSession);
+	}
+
+	public boolean readBoolean(String key, boolean defaultValue, DatabaseSession databaseSession) throws BimDeadlockException, BimDatabaseException {
+		byte[] bytes = columnDatabase.get(REGISTRY_TABLE, key.getBytes(Charsets.UTF_8), databaseSession);
+		if (bytes == null) {
+			return defaultValue;
+		} else {
+			return BinUtils.byteArrayToBoolean(bytes);
+		}
 	}
 }

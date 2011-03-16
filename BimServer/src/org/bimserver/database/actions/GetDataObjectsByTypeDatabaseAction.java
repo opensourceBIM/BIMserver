@@ -13,7 +13,6 @@ import org.bimserver.models.ifc2x3.IfcRoot;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Revision;
-import org.bimserver.settings.ServerSettings;
 import org.bimserver.shared.SDataObject;
 import org.bimserver.shared.UserException;
 import org.eclipse.emf.ecore.EClass;
@@ -40,7 +39,7 @@ public class GetDataObjectsByTypeDatabaseAction extends BimDatabaseAction<List<S
 			subModel.setDate(concreteRevision.getDate());
 			ifcModelSet.add(subModel);
 		}
-		IfcModel ifcModel = new Merger().merge(virtualRevision.getProject(), ifcModelSet, ServerSettings.getSettings().isIntelligentMerging());
+		IfcModel ifcModel = new Merger().merge(virtualRevision.getProject(), ifcModelSet, getSettings().isIntelligentMerging());
 		List<SDataObject> dataObjects = new ArrayList<SDataObject>();
 		for (Long oid : ifcModel.keySet()) {
 			EObject eObject = ifcModel.get(oid);

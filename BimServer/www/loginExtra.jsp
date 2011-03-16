@@ -5,5 +5,5 @@
 	VersionChecker checkVersion = VersionChecker.getInstance();
 	SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
 %>
-<div class="info">Last database reset: <%=dateFormat.format(loginManager.getAdminService().getLastDatabaseReset()) %><br/>
+<div class="info">Last database reset: <%=dateFormat.format(loginManager.getSystemService().getLastDatabaseReset()) %><br/>
 Version: <%=checkVersion.getLocalVersion().getVersion() + " (" + dateFormat.format(checkVersion.getLocalVersion().getDate()) + ")"%></div>

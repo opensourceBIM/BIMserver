@@ -1,8 +1,6 @@
 package org.bimserver.interfaces.objects;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import java.util.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
@@ -29,11 +27,6 @@ public class SUser
 	private java.util.Date lastSeen;
 	private java.lang.String validationToken;
 	private java.util.Date validationTokenCreated;
-	private java.lang.String attr1;
-	private List<java.lang.String> attr2 = new ArrayList<java.lang.String>();
-	private SObjectState attr3;
-	private long ref1Id;
-	private List<Long> ref2 = new ArrayList<Long>();
 
 	public java.lang.String getName() {
 		return name;
@@ -125,44 +118,6 @@ public class SUser
 
 	public void setValidationTokenCreated(java.util.Date validationTokenCreated) {
 		this.validationTokenCreated = validationTokenCreated;
-	}
-
-	public java.lang.String getAttr1() {
-		return attr1;
-	}
-
-	public void setAttr1(java.lang.String attr1) {
-		this.attr1 = attr1;
-	}
-
-	public List<java.lang.String> getAttr2() {
-		return attr2;
-	}
-
-	public void setAttr2(List<java.lang.String> attr2) {
-		this.attr2 = attr2;
-	}
-	public SObjectState getAttr3() {
-		return attr3;
-	}
-
-	public void setAttr3(SObjectState attr3) {
-		this.attr3 = attr3;
-	}
-	public long getRef1Id() {
-		return ref1Id;
-	}
-
-	public void setRef1Id(long ref1Id) {
-		this.ref1Id = ref1Id;
-	}
-	
-	public List<Long> getRef2() {
-		return ref2;
-	}
-
-	public void setRef2(List<Long> ref2) {
-		this.ref2 = ref2;
 	}
 	@Override
 	public int hashCode() {

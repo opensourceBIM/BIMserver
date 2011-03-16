@@ -15,7 +15,6 @@ import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.User;
 import org.bimserver.rights.RightsManager;
-import org.bimserver.settings.ServerSettings;
 import org.bimserver.shared.UserException;
 
 public class DownloadByOidsDatabaseAction extends BimDatabaseAction<IfcModel> {
@@ -53,7 +52,7 @@ public class DownloadByOidsDatabaseAction extends BimDatabaseAction<IfcModel> {
 //				}
 			}
 		}
-		IfcModel ifcModel = new Merger().merge(project, ifcModelSet, ServerSettings.getSettings().isIntelligentMerging());
+		IfcModel ifcModel = new Merger().merge(project, ifcModelSet, getSettings().isIntelligentMerging());
 		ifcModel.setRevisionNr(1);
 		ifcModel.setAuthorizedUser(getUserByUoid(actingUoid).getName());
 		ifcModel.setDate(new Date());

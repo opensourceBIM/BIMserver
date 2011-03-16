@@ -4,9 +4,10 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore">
   <ecore:EPackage name="store" nsURI="store" nsPrefix="store">
     <eClassifiers xsi:type="ecore:EEnum" name="UserType">
-      <eLiterals name="ADMIN"/>
-      <eLiterals name="USER" value="1"/>
-      <eLiterals name="ANONYMOUS" value="2"/>
+      <eLiterals name="SYSTEM"/>
+      <eLiterals name="ADMIN" value="1"/>
+      <eLiterals name="USER" value="2"/>
+      <eLiterals name="ANONYMOUS" value="3"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EEnum" name="CheckinState">
       <eLiterals name="UPLOADING"/>
@@ -165,6 +166,28 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="date" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="checkin" eType="#/0/Revision"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="active" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Settings">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="showVersionUpgradeAvailable"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="sendConfirmationEmailAfterRegistration"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="useCaching" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="allowSelfRegistration"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="autoTestClashes" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="intelligentMerging" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="allowUsersToCreateTopLevelProjects"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="checkinMergingEnabled"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="registrationAddition"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="smtpServer" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="emailSenderAddress" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="enabledExportTypes" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="customLogoAddress" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="siteAddress" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
   </ecore:EPackage>
   <ecore:EPackage name="log" nsURI="log" nsPrefix="log">

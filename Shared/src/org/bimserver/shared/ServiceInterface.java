@@ -276,49 +276,49 @@ public interface ServiceInterface {
 			ServerException;
 
 	@WebMethod(action = "getSettingsCustomLogoAddress")
-	String getSettingsCustomLogoAddress() throws UserException, ServerException;
+	String getSettingCustomLogoAddress() throws UserException, ServerException;
 
 	@WebMethod(action = "setSettingsCustomLogoAddress")
-	void setSettingsCustomLogoAddress(
+	void setSettingCustomLogoAddress(
 			@WebParam(name = "customLogoAddress", partName = "setSettingsCustomLogoAddress.customLogoAddress") String customLogoAddress)
 			throws UserException, ServerException;
 
 	@WebMethod(action = "getSettingsEmailSenderAddress")
-	String getSettingsEmailSenderAddress() throws UserException, ServerException;
+	String getSettingEmailSenderAddress() throws UserException, ServerException;
 
 	@WebMethod(action = "setSettingsEmailSenderAddress")
-	void setSettingsEmailSenderAddress(
+	void setSettingEmailSenderAddress(
 			@WebParam(name = "emailSenderAddress", partName = "setSettingsEmailSenderAddress.emailSenderAddress") String emailSenderAddress)
 			throws UserException, ServerException;
 
 	@WebMethod(action = "getSettingsEnabledExportTypes")
-	String getSettingsEnabledExportTypes() throws UserException, ServerException;
+	String getSettingEnabledExportTypes() throws UserException, ServerException;
 
 	@WebMethod(action = "setSettingsEnabledExportTypes")
-	void setSettingsEnabledExportTypes(
-			@WebParam(name = "enabledExportTypes", partName = "setSettingsEnabledExportTypes.enabledExportTypes") String enabledExportTypes)
+	void setSettingEnabledExportTypes(
+			@WebParam(name = "enabledExportTypes", partName = "setSettingsEnabledExportTypes.enabledExportTypes") Set<ResultType> enabledExportTypes)
 			throws UserException, ServerException;
 
 	@WebMethod(action = "getSettingsRegistrationAddition")
-	String getSettingsRegistrationAddition() throws UserException, ServerException;
+	String getSettingRegistrationAddition() throws UserException, ServerException;
 
 	@WebMethod(action = "setSettingsRegistrationAddition")
-	void setSettingsRegistrationAddition(
+	void setSettingRegistrationAddition(
 			@WebParam(name = "registrationAddition", partName = "setSettingsRegistrationAddition.registrationAddition") String registrationAddition)
 			throws UserException, ServerException;
 
 	@WebMethod(action = "getSettingsSiteAddress")
-	String getSettingsSiteAddress() throws UserException, ServerException;
+	String getSettingSiteAddress() throws UserException, ServerException;
 
 	@WebMethod(action = "setSettingsSiteAddress")
-	void setSettingsSiteAddress(@WebParam(name = "siteAddress", partName = "setSettingsSiteAddress.siteAddress") String siteAddress)
+	void setSettingSiteAddress(@WebParam(name = "siteAddress", partName = "setSettingsSiteAddress.siteAddress") String siteAddress)
 			throws UserException, ServerException;
 
 	@WebMethod(action = "getSettingsSmtpServer")
-	String getSettingsSmtpServer() throws UserException, ServerException;
+	String getSettingSmtpServer() throws UserException, ServerException;
 
 	@WebMethod(action = "setSettingsSmtpServer")
-	void setSettingsSmtpServer(@WebParam(name = "smtpServer", partName = "setSettingsSmtpServer.smtpServer") String smtpServer)
+	void setSettingSmtpServer(@WebParam(name = "smtpServer", partName = "setSettingsSmtpServer.smtpServer") String smtpServer)
 			throws UserException, ServerException;
 
 	@WebMethod(action = "isSettingAllowSelfRegistration")

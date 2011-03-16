@@ -23,6 +23,14 @@ import org.eclipse.emf.common.util.Enumerator;
  */
 public enum UserType implements Enumerator {
 	/**
+	 * The '<em><b>SYSTEM</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #SYSTEM_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	SYSTEM(0, "SYSTEM", "SYSTEM"), /**
 	 * The '<em><b>ADMIN</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -30,7 +38,7 @@ public enum UserType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	ADMIN(0, "ADMIN", "ADMIN"),
+	ADMIN(1, "ADMIN", "ADMIN"),
 
 	/**
 	 * The '<em><b>USER</b></em>' literal object.
@@ -40,7 +48,7 @@ public enum UserType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	USER(1, "USER", "USER"),
+	USER(2, "USER", "USER"),
 
 	/**
 	 * The '<em><b>ANONYMOUS</b></em>' literal object.
@@ -50,7 +58,22 @@ public enum UserType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	ANONYMOUS(2, "ANONYMOUS", "ANONYMOUS");
+	ANONYMOUS(3, "ANONYMOUS", "ANONYMOUS");
+
+	/**
+	 * The '<em><b>SYSTEM</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>SYSTEM</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #SYSTEM
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int SYSTEM_VALUE = 0;
 
 	/**
 	 * The '<em><b>ADMIN</b></em>' literal value.
@@ -65,7 +88,7 @@ public enum UserType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ADMIN_VALUE = 0;
+	public static final int ADMIN_VALUE = 1;
 
 	/**
 	 * The '<em><b>USER</b></em>' literal value.
@@ -80,7 +103,7 @@ public enum UserType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USER_VALUE = 1;
+	public static final int USER_VALUE = 2;
 
 	/**
 	 * The '<em><b>ANONYMOUS</b></em>' literal value.
@@ -95,7 +118,7 @@ public enum UserType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ANONYMOUS_VALUE = 2;
+	public static final int ANONYMOUS_VALUE = 3;
 
 	/**
 	 * An array of all the '<em><b>User Type</b></em>' enumerators.
@@ -105,6 +128,7 @@ public enum UserType implements Enumerator {
 	 */
 	private static final UserType[] VALUES_ARRAY =
 		new UserType[] {
+			SYSTEM,
 			ADMIN,
 			USER,
 			ANONYMOUS,
@@ -158,6 +182,7 @@ public enum UserType implements Enumerator {
 	 */
 	public static UserType get(int value) {
 		switch (value) {
+			case SYSTEM_VALUE: return SYSTEM;
 			case ADMIN_VALUE: return ADMIN;
 			case USER_VALUE: return USER;
 			case ANONYMOUS_VALUE: return ANONYMOUS;

@@ -14,7 +14,6 @@ import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.User;
 import org.bimserver.rights.RightsManager;
-import org.bimserver.settings.ServerSettings;
 import org.bimserver.shared.UserException;
 
 public class DownloadProjectsDatabaseAction extends BimDatabaseAction<IfcModel> {
@@ -49,7 +48,7 @@ public class DownloadProjectsDatabaseAction extends BimDatabaseAction<IfcModel> 
 				throw new UserException("User has no rights on project " + project.getOid());
 			}
 		}
-		IfcModel ifcModel = new Merger().merge(project, ifcModelSet, ServerSettings.getSettings().isIntelligentMerging());
+		IfcModel ifcModel = new Merger().merge(project, ifcModelSet, getSettings().isIntelligentMerging());
 		if (projectName.endsWith("-")) {
 			projectName = projectName.substring(0, projectName.length()-1);
 		}

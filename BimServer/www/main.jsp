@@ -12,7 +12,7 @@ if (ServerInfo.isAvailable()) {
 	if (loginManager.getService().isLoggedIn()) { %>
 <div class="sidebar">
  <ul>
-<% if (loginManager.getUserType() == SUserType.ADMIN || ServerSettings.getSettings().isAllowUsersToCreateTopLevelProjects()) { %>
+<% if (loginManager.getUserType() == SUserType.ADMIN || loginManager.getService().isSettingAllowUsersToCreateTopLevelProjects()) { %>
  <li><a href="addproject.jsp">Add project</a></li>
  <li><a class="rss" href="<%=request.getContextPath() %>/syndication/projects">Projects feed</a></li>
 <% }

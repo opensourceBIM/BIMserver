@@ -1,4 +1,3 @@
-<%@page import="org.bimserver.settings.ServerSettings"%>
 <%@page import="java.util.List" %>
 <%@page import="java.text.DateFormat" %>
 <%@page import="java.text.SimpleDateFormat" %>
@@ -29,7 +28,7 @@
 		if (request.getParameter("parentoid") != null) {
 			superProject = loginManager.getService().getProjectByPoid(Long.parseLong(request.getParameter("parentoid")));
 		}
-		if (loginManager.getUserType() == SUserType.ADMIN || ServerSettings.getSettings().isAllowUsersToCreateTopLevelProjects()) {
+		if (loginManager.getUserType() == SUserType.ADMIN || loginManager.getService().isSettingAllowUsersToCreateTopLevelProjects()) {
 			if (request.getParameter("save") != null) {
 				try {
 					SProject sProject = null;

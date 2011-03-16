@@ -27,7 +27,7 @@ import org.bimserver.shared.ServiceInterface;
 import org.bimserver.webservices.ServiceFactory;
 
 public class LoginManager {
-	private static ServiceInterface adminService;
+	private static ServiceInterface systemService;
 	private ServiceInterface service;
 
 	public LoginManager() {
@@ -36,8 +36,8 @@ public class LoginManager {
 		}
 	}
 
-	public static void setAdminService(ServiceInterface adminService) {
-		LoginManager.adminService = adminService;
+	public static void setSystemService(ServiceInterface systemService) {
+		LoginManager.systemService = systemService;
 	}
 
 	public long getUoid() throws ServiceException {
@@ -52,7 +52,7 @@ public class LoginManager {
 		return service.getCurrentUser().getUserType();
 	}
 
-	public ServiceInterface getAdminService() {
-		return adminService;
+	public ServiceInterface getSystemService() {
+		return systemService;
 	}
 }

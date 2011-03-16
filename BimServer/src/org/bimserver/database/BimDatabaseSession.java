@@ -89,7 +89,7 @@ public interface BimDatabaseSession extends OidProvider {
 
 	void clearCache();
 
-	short getCid(EClass eClass);
+	short getCid(EClass eClass) throws BimDatabaseException;
 
 	<T extends IdEObject> T get(EClass eClass, long oid, boolean deep);
 
@@ -98,4 +98,6 @@ public interface BimDatabaseSession extends OidProvider {
 	long newOid();
 
 	short getCidOfEClass(EClass revision);
+
+	IfcModel getAllOfType(EClass settings, boolean deep) throws BimDatabaseException, BimDeadlockException;
 }

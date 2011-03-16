@@ -28,6 +28,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.bimserver.SettingsManager;
 import org.bimserver.database.actions.AddUserDatabaseAction;
 import org.bimserver.database.actions.CreateBaseProject;
 import org.bimserver.database.berkeley.DatabaseInitException;
@@ -43,6 +44,8 @@ import org.bimserver.models.log.LogFactory;
 import org.bimserver.models.log.LogPackage;
 import org.bimserver.models.store.CheckinState;
 import org.bimserver.models.store.Revision;
+import org.bimserver.models.store.Settings;
+import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.UserType;
 import org.bimserver.shared.UserException;
@@ -82,9 +85,11 @@ public class Database implements BimDatabase {
 	private final Registry registry;
 	private Date created;
 	private final Set<BimDatabaseSession> sessions = new HashSet<BimDatabaseSession>();
-	
-	/*  This variable should be _incremented_ with every (released) database-schema change
-	 *  Do not change this variable when nothing has changed in the schema!
+
+	/*
+	 * This variable should be _incremented_ with every (released)
+	 * database-schema change Do not change this variable when nothing has
+	 * changed in the schema!
 	 */
 	public static final int APPLICATION_SCHEMA_VERSION = 2;
 	private int databaseSchemaVersion;
@@ -98,22 +103,23 @@ public class Database implements BimDatabase {
 		this.emfPackages.add(LogPackage.eINSTANCE);
 		this.emfPackages.addAll(emfPackages);
 		this.registry = new Registry(columnDatabase);
-		init();
 	}
-	
+
 	public int getApplicationSchemaVersion() {
 		return APPLICATION_SCHEMA_VERSION;
 	}
-	
+
 	public int getDatabaseSchemaVersion() {
 		return databaseSchemaVersion;
 	}
 
-	private void init() throws DatabaseInitException {
+	public void init() throws DatabaseInitException, DatabaseRestartRequiredException {
 		DatabaseSession databaseSession = createSession();
 		try {
-			updateAndCheckStructure(databaseSession);
 			if (getColumnDatabase().isNew()) {
+				columnDatabase.createTableIfNotExists(CLASS_LOOKUP_TABLE, databaseSession);
+				columnDatabase.createTableIfNotExists(Database.STORE_PROJECT_NAME, databaseSession);
+				registry.ensureExists(databaseSession);
 				setDatabaseVersion(-1, databaseSession);
 				created = new Date();
 				registry.save(DATE_CREATED, created, databaseSession);
@@ -124,15 +130,23 @@ public class Database implements BimDatabase {
 					registry.save(DATE_CREATED, created, databaseSession);
 				}
 			}
-			
+
 			databaseSchemaVersion = registry.readInt(SCHEMA_VERSION, databaseSession, -1);
 
 			migrator = new Migrator(this);
-			
-			getColumnDatabase().createTableIfNotExists(Database.STORE_PROJECT_NAME, databaseSession);
-			initInternalStructure(databaseSession);
-			
+
 			if (getColumnDatabase().isNew()) {
+				try {
+					migrator.migrate(databaseSession);
+				} catch (MigrationException e) {
+					LOGGER.error("", e);
+				}
+				registry.save("isnew", true, databaseSession);
+				databaseSession.commit();
+				throw new DatabaseRestartRequiredException();
+			} else if (registry.readBoolean("isnew", true, databaseSession)) {
+				initInternalStructure(databaseSession);
+
 				DatabaseCreated databaseCreated = LogFactory.eINSTANCE.createDatabaseCreated();
 				databaseCreated.setAccessMethod(AccessMethod.INTERNAL);
 				databaseCreated.setExecutor(null);
@@ -142,10 +156,17 @@ public class Database implements BimDatabase {
 				databaseSession.store(databaseCreated);
 
 				new CreateBaseProject(databaseSession, AccessMethod.INTERNAL).execute();
+				new AddUserDatabaseAction(databaseSession, AccessMethod.INTERNAL, null, "system", "system", "System", UserType.SYSTEM, -1, false).execute();
+
+				Settings settings = SettingsManager.createDefaultSettings();
+				databaseSession.store(settings);				
+				
+				registry.save("isnew", false, databaseSession);
 			} else {
-				initOidCounter(databaseSession);
-				initPidCounter(databaseSession);
+				initInternalStructure(databaseSession);
 			}
+			initOidCounter(databaseSession);
+			initPidCounter(databaseSession);
 			for (EClass eClass : classifiers.keyBSet()) {
 				if (eClass.getEPackage() == Ifc2x3Package.eINSTANCE && eClass != Ifc2x3Package.eINSTANCE.getWrappedValue()) {
 					realClasses.add(eClass.getName());
@@ -171,7 +192,8 @@ public class Database implements BimDatabase {
 	}
 
 	/*
-	 * This method makes sure no revision states remain in "Uploading", "Parsing", "Storing" or "Searching Clashes" 
+	 * This method makes sure no revision states remain in "Uploading",
+	 * "Parsing", "Storing" or "Searching Clashes"
 	 */
 	private void fixCheckinStates(DatabaseSession databaseSession) {
 		LOGGER.info("Fixing broken checkin states");
@@ -179,7 +201,7 @@ public class Database implements BimDatabase {
 			IfcModel model = databaseSession.getAllOfType(StorePackage.eINSTANCE.getRevision(), Database.STORE_PROJECT_ID, Database.STORE_PROJECT_REVISION_ID, false);
 			for (IdEObject idEObject : model.getValues()) {
 				if (idEObject instanceof Revision) {
-					Revision revision = (Revision)idEObject;
+					Revision revision = (Revision) idEObject;
 					if (revision.getState() == CheckinState.UPLOADING || revision.getState() == CheckinState.PARSING || revision.getState() == CheckinState.STORING) {
 						LOGGER.info("Changing " + revision.getState().getName() + " to " + CheckinState.ERROR.getName() + " for revision " + revision.getOid());
 						revision.setState(CheckinState.ERROR);
@@ -201,11 +223,6 @@ public class Database implements BimDatabase {
 		} catch (BimDeadlockException e) {
 			LOGGER.error("", e);
 		}
-	}
-
-	public void updateAndCheckStructure(DatabaseSession databaseSession) throws BimDeadlockException {
-		columnDatabase.createTableIfNotExists(CLASS_LOOKUP_TABLE, databaseSession);
-		registry.ensureExists(databaseSession);
 	}
 
 	public void createTableIfNotExists(EClass eClass, DatabaseSession databaseSession) throws BimDeadlockException {
@@ -317,11 +334,11 @@ public class Database implements BimDatabase {
 		}
 	}
 
-	public void initOidCounter(DatabaseSession databaseSession) throws BimDeadlockException {
+	public void initOidCounter(DatabaseSession databaseSession) throws BimDeadlockException, BimDatabaseException {
 		oidCounter = registry.readLong(OID_COUNTER, databaseSession);
 	}
 
-	public void initPidCounter(DatabaseSession databaseSession) throws BimDeadlockException {
+	public void initPidCounter(DatabaseSession databaseSession) throws BimDeadlockException, BimDatabaseException {
 		pidCounter = registry.readInt(PID_COUNTER, databaseSession);
 	}
 
@@ -392,7 +409,7 @@ public class Database implements BimDatabase {
 		sessions.add(databaseSession);
 		return databaseSession;
 	}
-	
+
 	public ColumnDatabase getColumnDatabase() {
 		return columnDatabase;
 	}
@@ -416,7 +433,7 @@ public class Database implements BimDatabase {
 	public int getPidCounter() {
 		return pidCounter;
 	}
-	
+
 	public Short getCidOfEClass(EClass eClass) {
 		return classifiers.getA(eClass);
 	}

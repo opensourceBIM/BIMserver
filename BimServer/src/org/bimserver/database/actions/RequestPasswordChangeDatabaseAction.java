@@ -19,7 +19,6 @@ import org.bimserver.database.BimDeadlockException;
 import org.bimserver.mail.MailSystem;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.User;
-import org.bimserver.settings.ServerSettings;
 import org.bimserver.shared.UserException;
 import org.bimserver.templating.TemplateEngine;
 import org.bimserver.templating.TemplateIdentifier;
@@ -29,9 +28,11 @@ import org.bimserver.utils.Hashers;
 public class RequestPasswordChangeDatabaseAction extends BimDatabaseAction<Void> {
 
 	private final long uoid;
+	private final MailSystem mailSystem;
 
-	public RequestPasswordChangeDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long uoid) {
+	public RequestPasswordChangeDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, MailSystem mailSystem, long uoid) {
 		super(bimDatabaseSession, accessMethod);
+		this.mailSystem = mailSystem;
 		this.uoid = uoid;
 	}
 
@@ -46,12 +47,12 @@ public class RequestPasswordChangeDatabaseAction extends BimDatabaseAction<Void>
 			@Override
 			public void execute() throws UserException {
 				if (MailSystem.isValidEmailAddress(user.getUsername())) {
-					Session mailSession = MailSystem.getInstance().createMailSession();
+					Session mailSession = mailSystem.createMailSession();
 					
 					Message msg = new MimeMessage(mailSession);
 					
 					try {
-						InternetAddress addressFrom = new InternetAddress(ServerSettings.getSettings().getEmailSenderAddress());
+						InternetAddress addressFrom = new InternetAddress(getSettings().getEmailSenderAddress());
 						msg.setFrom(addressFrom);
 						
 						InternetAddress[] addressTo = new InternetAddress[1];
@@ -61,8 +62,8 @@ public class RequestPasswordChangeDatabaseAction extends BimDatabaseAction<Void>
 						Map<String, Object> context = new HashMap<String, Object>();
 						context.put("name", user.getName());
 						context.put("username", user.getUsername());
-						context.put("siteaddress", ServerSettings.getSettings().getSiteAddress());
-						context.put("validationlink", ServerSettings.getSettings().getSiteAddress() + ServerInitializer.getServletContext().getContextPath() + "/validate.jsp?uoid=" + user.getOid() + "&token=" + token);
+						context.put("siteaddress", getSettings().getSiteAddress());
+						context.put("validationlink", getSettings().getSiteAddress() + ServerInitializer.getServletContext().getContextPath() + "/validate.jsp?uoid=" + user.getOid() + "&token=" + token);
 						String body = null;
 						String subject = null;
 						body = TemplateEngine.getTemplateEngine().process(context, TemplateIdentifier.PASSWORD_RESET_EMAIL_BODY);

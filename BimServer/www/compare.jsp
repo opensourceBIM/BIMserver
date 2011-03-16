@@ -1,4 +1,3 @@
-<%@page import="org.bimserver.ifc.emf.Ifc2x3.IfcRoot"%>
 <%@page import="org.bimserver.ifc.file.compare.CompareResult.Item"%>
 <%@page import="java.util.List"%>
 <%@page import="org.eclipse.emf.ecore.EClass"%>

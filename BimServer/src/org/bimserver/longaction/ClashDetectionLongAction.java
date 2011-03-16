@@ -13,6 +13,7 @@ import org.bimserver.database.actions.FindClashesDatabaseAction;
 import org.bimserver.database.actions.SendClashesEmailDatabaseAction;
 import org.bimserver.ifc.FieldIgnoreMap;
 import org.bimserver.ifcengine.IfcEngineFactory;
+import org.bimserver.mail.MailSystem;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.CheckinState;
 import org.bimserver.models.store.Clash;
@@ -36,12 +37,14 @@ public class ClashDetectionLongAction extends LongAction {
 	private final long poid;
 	private final User user;
 	private final FieldIgnoreMap fieldIgnoreMap;
+	private final MailSystem mailSystem;
 
-	public ClashDetectionLongAction(User user, long actingUoid, SchemaDefinition schema, IfcEngineFactory ifcEngineFactory, BimDatabase bimDatabase, FieldIgnoreMap fieldIgnoreMap, long poid) {
+	public ClashDetectionLongAction(User user, long actingUoid, SchemaDefinition schema, IfcEngineFactory ifcEngineFactory, MailSystem mailSystem, BimDatabase bimDatabase, FieldIgnoreMap fieldIgnoreMap, long poid) {
 		this.user = user;
 		this.actingUoid = actingUoid;
 		this.schema = schema;
 		this.ifcEngineFactory = ifcEngineFactory;
+		this.mailSystem = mailSystem;
 		this.bimDatabase = bimDatabase;
 		this.fieldIgnoreMap = fieldIgnoreMap;
 		this.poid = poid;
@@ -92,7 +95,7 @@ public class ClashDetectionLongAction extends LongAction {
 				String[] emailAddressesArray = new String[emailAddresses.size()];
 				emailAddresses.toArray(emailAddressesArray);
 				
-				SendClashesEmailDatabaseAction sendClashesEmailDatabaseAction = new SendClashesEmailDatabaseAction(session, AccessMethod.INTERNAL, actingUoid, poid, Service.convert(clashDetectionSettings), emailAddresses);
+				SendClashesEmailDatabaseAction sendClashesEmailDatabaseAction = new SendClashesEmailDatabaseAction(session, AccessMethod.INTERNAL, mailSystem, actingUoid, poid, Service.convert(clashDetectionSettings), emailAddresses);
 				sendClashesEmailDatabaseAction.execute();
 			}
 			session.commit();

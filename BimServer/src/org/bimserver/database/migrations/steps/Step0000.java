@@ -49,6 +49,7 @@ public class Step0000 extends Migration {
 	private EReference clashDetectionSettingsProjects;
 	private EReference geoTagProjects;
 	private Schema schema;
+	private EClass settingsClass;
 
 	@Override
 	public void migrate(Schema schema) {
@@ -70,6 +71,7 @@ public class Step0000 extends Migration {
 		concreteRevisionClass = schema.createEClass(storePackage, "ConcreteRevision");
 		geoTagClass = schema.createEClass(storePackage, "GeoTag");
 		checkoutClass = schema.createEClass(storePackage, "Checkout");
+		settingsClass = schema.createEClass(storePackage, "Settings");
 
 		createProjectClass();
 		createUserClass();
@@ -81,6 +83,7 @@ public class Step0000 extends Migration {
 		createClashClass();
 		createGuidClashClass();
 		createEidClashClass();
+		createSettingsClass();
 		
 		userHasRightsOn.setEOpposite(projectHasAuthorizedUsers);
 		projectHasAuthorizedUsers.setEOpposite(userHasRightsOn);
@@ -144,6 +147,7 @@ public class Step0000 extends Migration {
 
 	private void createUserTypeEnum() {
 		userTypeEnum = schema.createEEnum(storePackage, "UserType");
+		schema.createEEnumLiteral(userTypeEnum, "SYSTEM");
 		schema.createEEnumLiteral(userTypeEnum, "ADMIN");
 		schema.createEEnumLiteral(userTypeEnum, "USER");
 		schema.createEEnumLiteral(userTypeEnum, "ANONYMOUS");
@@ -245,6 +249,23 @@ public class Step0000 extends Migration {
 		schema.createEAttribute(userClass, "validationTokenCreated", ecorePackage.getEDate(), Multiplicity.SINGLE);
 	}
 
+	private void createSettingsClass() {
+		schema.createEAttribute(settingsClass, "showVersionUpgradeAvailable", ecorePackage.getEBoolean(), Multiplicity.SINGLE);
+		schema.createEAttribute(settingsClass, "sendConfirmationEmailAfterRegistration", ecorePackage.getEBoolean(), Multiplicity.SINGLE);
+		schema.createEAttribute(settingsClass, "useCaching", ecorePackage.getEBoolean(), Multiplicity.SINGLE);
+		schema.createEAttribute(settingsClass, "allowSelfRegistration", ecorePackage.getEBoolean(), Multiplicity.SINGLE);
+		schema.createEAttribute(settingsClass, "autoTestClashes", ecorePackage.getEBoolean(), Multiplicity.SINGLE);
+		schema.createEAttribute(settingsClass, "intelligentMerging", ecorePackage.getEBoolean(), Multiplicity.SINGLE);
+		schema.createEAttribute(settingsClass, "allowUsersToCreateTopLevelProjects", ecorePackage.getEBoolean(), Multiplicity.SINGLE);
+		schema.createEAttribute(settingsClass, "checkinMergingEnabled", ecorePackage.getEBoolean(), Multiplicity.SINGLE);
+		schema.createEAttribute(settingsClass, "registrationAddition", ecorePackage.getEString(), Multiplicity.SINGLE);
+		schema.createEAttribute(settingsClass, "smtpServer", ecorePackage.getEString(), Multiplicity.SINGLE);
+		schema.createEAttribute(settingsClass, "emailSenderAddress", ecorePackage.getEString(), Multiplicity.SINGLE);
+		schema.createEAttribute(settingsClass, "enabledExportTypes", ecorePackage.getEString(), Multiplicity.SINGLE);
+		schema.createEAttribute(settingsClass, "customLogoAddress", ecorePackage.getEString(), Multiplicity.SINGLE);
+		schema.createEAttribute(settingsClass, "siteAddress", ecorePackage.getEString(), Multiplicity.SINGLE);
+	}
+	
 	private void createProjectClass() {
 		schema.createEAttribute(projectClass, "id", ecorePackage.getEInt(), Multiplicity.SINGLE);
 		schema.createEAttribute(projectClass, "name", ecorePackage.getEString(), Multiplicity.SINGLE);

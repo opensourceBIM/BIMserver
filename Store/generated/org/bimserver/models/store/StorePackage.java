@@ -1079,6 +1079,151 @@ public interface StorePackage extends EPackage {
 	int CHECKOUT_FEATURE_COUNT = 6;
 
 	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.SettingsImpl <em>Settings</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.impl.SettingsImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getSettings()
+	 * @generated
+	 */
+	int SETTINGS = 10;
+
+	/**
+	 * The feature id for the '<em><b>Show Version Upgrade Available</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SETTINGS__SHOW_VERSION_UPGRADE_AVAILABLE = 0;
+
+	/**
+	 * The feature id for the '<em><b>Send Confirmation Email After Registration</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SETTINGS__SEND_CONFIRMATION_EMAIL_AFTER_REGISTRATION = 1;
+
+	/**
+	 * The feature id for the '<em><b>Use Caching</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SETTINGS__USE_CACHING = 2;
+
+	/**
+	 * The feature id for the '<em><b>Allow Self Registration</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SETTINGS__ALLOW_SELF_REGISTRATION = 3;
+
+	/**
+	 * The feature id for the '<em><b>Auto Test Clashes</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SETTINGS__AUTO_TEST_CLASHES = 4;
+
+	/**
+	 * The feature id for the '<em><b>Intelligent Merging</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SETTINGS__INTELLIGENT_MERGING = 5;
+
+	/**
+	 * The feature id for the '<em><b>Allow Users To Create Top Level Projects</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SETTINGS__ALLOW_USERS_TO_CREATE_TOP_LEVEL_PROJECTS = 6;
+
+	/**
+	 * The feature id for the '<em><b>Checkin Merging Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SETTINGS__CHECKIN_MERGING_ENABLED = 7;
+
+	/**
+	 * The feature id for the '<em><b>Registration Addition</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SETTINGS__REGISTRATION_ADDITION = 8;
+
+	/**
+	 * The feature id for the '<em><b>Smtp Server</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SETTINGS__SMTP_SERVER = 9;
+
+	/**
+	 * The feature id for the '<em><b>Email Sender Address</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SETTINGS__EMAIL_SENDER_ADDRESS = 10;
+
+	/**
+	 * The feature id for the '<em><b>Enabled Export Types</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SETTINGS__ENABLED_EXPORT_TYPES = 11;
+
+	/**
+	 * The feature id for the '<em><b>Custom Logo Address</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SETTINGS__CUSTOM_LOGO_ADDRESS = 12;
+
+	/**
+	 * The feature id for the '<em><b>Site Address</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SETTINGS__SITE_ADDRESS = 13;
+
+	/**
+	 * The number of structural features of the '<em>Settings</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SETTINGS_FEATURE_COUNT = 14;
+
+	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.UserType <em>User Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1086,7 +1231,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getUserType()
 	 * @generated
 	 */
-	int USER_TYPE = 10;
+	int USER_TYPE = 11;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.CheckinState <em>Checkin State</em>}' enum.
@@ -1096,7 +1241,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getCheckinState()
 	 * @generated
 	 */
-	int CHECKIN_STATE = 11;
+	int CHECKIN_STATE = 12;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.SIPrefix <em>SI Prefix</em>}' enum.
@@ -1106,7 +1251,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getSIPrefix()
 	 * @generated
 	 */
-	int SI_PREFIX = 12;
+	int SI_PREFIX = 13;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ObjectState <em>Object State</em>}' enum.
@@ -1116,7 +1261,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getObjectState()
 	 * @generated
 	 */
-	int OBJECT_STATE = 13;
+	int OBJECT_STATE = 14;
 
 
 	/**
@@ -2100,6 +2245,170 @@ public interface StorePackage extends EPackage {
 	EAttribute getCheckout_Active();
 
 	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.store.Settings <em>Settings</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Settings</em>'.
+	 * @see org.bimserver.models.store.Settings
+	 * @generated
+	 */
+	EClass getSettings();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Settings#isShowVersionUpgradeAvailable <em>Show Version Upgrade Available</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Show Version Upgrade Available</em>'.
+	 * @see org.bimserver.models.store.Settings#isShowVersionUpgradeAvailable()
+	 * @see #getSettings()
+	 * @generated
+	 */
+	EAttribute getSettings_ShowVersionUpgradeAvailable();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Settings#isSendConfirmationEmailAfterRegistration <em>Send Confirmation Email After Registration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Send Confirmation Email After Registration</em>'.
+	 * @see org.bimserver.models.store.Settings#isSendConfirmationEmailAfterRegistration()
+	 * @see #getSettings()
+	 * @generated
+	 */
+	EAttribute getSettings_SendConfirmationEmailAfterRegistration();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Settings#isUseCaching <em>Use Caching</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Use Caching</em>'.
+	 * @see org.bimserver.models.store.Settings#isUseCaching()
+	 * @see #getSettings()
+	 * @generated
+	 */
+	EAttribute getSettings_UseCaching();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Settings#isAllowSelfRegistration <em>Allow Self Registration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Allow Self Registration</em>'.
+	 * @see org.bimserver.models.store.Settings#isAllowSelfRegistration()
+	 * @see #getSettings()
+	 * @generated
+	 */
+	EAttribute getSettings_AllowSelfRegistration();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Settings#isAutoTestClashes <em>Auto Test Clashes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Auto Test Clashes</em>'.
+	 * @see org.bimserver.models.store.Settings#isAutoTestClashes()
+	 * @see #getSettings()
+	 * @generated
+	 */
+	EAttribute getSettings_AutoTestClashes();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Settings#isIntelligentMerging <em>Intelligent Merging</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Intelligent Merging</em>'.
+	 * @see org.bimserver.models.store.Settings#isIntelligentMerging()
+	 * @see #getSettings()
+	 * @generated
+	 */
+	EAttribute getSettings_IntelligentMerging();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Settings#isAllowUsersToCreateTopLevelProjects <em>Allow Users To Create Top Level Projects</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Allow Users To Create Top Level Projects</em>'.
+	 * @see org.bimserver.models.store.Settings#isAllowUsersToCreateTopLevelProjects()
+	 * @see #getSettings()
+	 * @generated
+	 */
+	EAttribute getSettings_AllowUsersToCreateTopLevelProjects();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Settings#isCheckinMergingEnabled <em>Checkin Merging Enabled</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Checkin Merging Enabled</em>'.
+	 * @see org.bimserver.models.store.Settings#isCheckinMergingEnabled()
+	 * @see #getSettings()
+	 * @generated
+	 */
+	EAttribute getSettings_CheckinMergingEnabled();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Settings#getRegistrationAddition <em>Registration Addition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Registration Addition</em>'.
+	 * @see org.bimserver.models.store.Settings#getRegistrationAddition()
+	 * @see #getSettings()
+	 * @generated
+	 */
+	EAttribute getSettings_RegistrationAddition();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Settings#getSmtpServer <em>Smtp Server</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Smtp Server</em>'.
+	 * @see org.bimserver.models.store.Settings#getSmtpServer()
+	 * @see #getSettings()
+	 * @generated
+	 */
+	EAttribute getSettings_SmtpServer();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Settings#getEmailSenderAddress <em>Email Sender Address</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Email Sender Address</em>'.
+	 * @see org.bimserver.models.store.Settings#getEmailSenderAddress()
+	 * @see #getSettings()
+	 * @generated
+	 */
+	EAttribute getSettings_EmailSenderAddress();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Settings#getEnabledExportTypes <em>Enabled Export Types</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Enabled Export Types</em>'.
+	 * @see org.bimserver.models.store.Settings#getEnabledExportTypes()
+	 * @see #getSettings()
+	 * @generated
+	 */
+	EAttribute getSettings_EnabledExportTypes();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Settings#getCustomLogoAddress <em>Custom Logo Address</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Custom Logo Address</em>'.
+	 * @see org.bimserver.models.store.Settings#getCustomLogoAddress()
+	 * @see #getSettings()
+	 * @generated
+	 */
+	EAttribute getSettings_CustomLogoAddress();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Settings#getSiteAddress <em>Site Address</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Site Address</em>'.
+	 * @see org.bimserver.models.store.Settings#getSiteAddress()
+	 * @see #getSettings()
+	 * @generated
+	 */
+	EAttribute getSettings_SiteAddress();
+
+	/**
 	 * Returns the meta object for enum '{@link org.bimserver.models.store.UserType <em>User Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2900,6 +3209,128 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute CHECKOUT__ACTIVE = eINSTANCE.getCheckout_Active();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.SettingsImpl <em>Settings</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.impl.SettingsImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getSettings()
+		 * @generated
+		 */
+		EClass SETTINGS = eINSTANCE.getSettings();
+
+		/**
+		 * The meta object literal for the '<em><b>Show Version Upgrade Available</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SETTINGS__SHOW_VERSION_UPGRADE_AVAILABLE = eINSTANCE.getSettings_ShowVersionUpgradeAvailable();
+
+		/**
+		 * The meta object literal for the '<em><b>Send Confirmation Email After Registration</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SETTINGS__SEND_CONFIRMATION_EMAIL_AFTER_REGISTRATION = eINSTANCE.getSettings_SendConfirmationEmailAfterRegistration();
+
+		/**
+		 * The meta object literal for the '<em><b>Use Caching</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SETTINGS__USE_CACHING = eINSTANCE.getSettings_UseCaching();
+
+		/**
+		 * The meta object literal for the '<em><b>Allow Self Registration</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SETTINGS__ALLOW_SELF_REGISTRATION = eINSTANCE.getSettings_AllowSelfRegistration();
+
+		/**
+		 * The meta object literal for the '<em><b>Auto Test Clashes</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SETTINGS__AUTO_TEST_CLASHES = eINSTANCE.getSettings_AutoTestClashes();
+
+		/**
+		 * The meta object literal for the '<em><b>Intelligent Merging</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SETTINGS__INTELLIGENT_MERGING = eINSTANCE.getSettings_IntelligentMerging();
+
+		/**
+		 * The meta object literal for the '<em><b>Allow Users To Create Top Level Projects</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SETTINGS__ALLOW_USERS_TO_CREATE_TOP_LEVEL_PROJECTS = eINSTANCE.getSettings_AllowUsersToCreateTopLevelProjects();
+
+		/**
+		 * The meta object literal for the '<em><b>Checkin Merging Enabled</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SETTINGS__CHECKIN_MERGING_ENABLED = eINSTANCE.getSettings_CheckinMergingEnabled();
+
+		/**
+		 * The meta object literal for the '<em><b>Registration Addition</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SETTINGS__REGISTRATION_ADDITION = eINSTANCE.getSettings_RegistrationAddition();
+
+		/**
+		 * The meta object literal for the '<em><b>Smtp Server</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SETTINGS__SMTP_SERVER = eINSTANCE.getSettings_SmtpServer();
+
+		/**
+		 * The meta object literal for the '<em><b>Email Sender Address</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SETTINGS__EMAIL_SENDER_ADDRESS = eINSTANCE.getSettings_EmailSenderAddress();
+
+		/**
+		 * The meta object literal for the '<em><b>Enabled Export Types</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SETTINGS__ENABLED_EXPORT_TYPES = eINSTANCE.getSettings_EnabledExportTypes();
+
+		/**
+		 * The meta object literal for the '<em><b>Custom Logo Address</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SETTINGS__CUSTOM_LOGO_ADDRESS = eINSTANCE.getSettings_CustomLogoAddress();
+
+		/**
+		 * The meta object literal for the '<em><b>Site Address</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SETTINGS__SITE_ADDRESS = eINSTANCE.getSettings_SiteAddress();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.UserType <em>User Type</em>}' enum.

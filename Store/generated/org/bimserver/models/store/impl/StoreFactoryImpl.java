@@ -71,6 +71,7 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			case StorePackage.CONCRETE_REVISION: return (EObject)createConcreteRevision();
 			case StorePackage.GEO_TAG: return (EObject)createGeoTag();
 			case StorePackage.CHECKOUT: return (EObject)createCheckout();
+			case StorePackage.SETTINGS: return (EObject)createSettings();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -216,6 +217,16 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	public Checkout createCheckout() {
 		CheckoutImpl checkout = new CheckoutImpl();
 		return checkout;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Settings createSettings() {
+		SettingsImpl settings = new SettingsImpl();
+		return settings;
 	}
 
 	/**

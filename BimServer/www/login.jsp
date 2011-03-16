@@ -1,7 +1,6 @@
 <%@page import="org.bimserver.version.Version"%>
 <%@page import="org.bimserver.version.VersionChecker"%>
 <%@page import="org.bimserver.shared.UserException"%>
-<%@page import="org.bimserver.settings.ServerSettings"%>
 <%@page import="org.bimserver.utils.Hashers"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.Map"%>
@@ -82,7 +81,7 @@
 %>
 </form>
 <%
-if (ServerSettings.getSettings().isAllowSelfRegistration()) {
+if (loginManager.getService().isSettingAllowSelfRegistration()) {
 %>
 <a href="register.jsp">Register here</a>
 <%

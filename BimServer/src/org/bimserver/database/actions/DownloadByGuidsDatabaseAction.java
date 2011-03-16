@@ -19,7 +19,6 @@ import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.User;
 import org.bimserver.rights.RightsManager;
-import org.bimserver.settings.ServerSettings;
 import org.bimserver.shared.UserException;
 
 public class DownloadByGuidsDatabaseAction extends BimDatabaseAction<IfcModel> {
@@ -69,7 +68,7 @@ public class DownloadByGuidsDatabaseAction extends BimDatabaseAction<IfcModel> {
 				ifcModelSet.add(model);
 			}
 		}
-		IfcModel ifcModel = new Merger().merge(project, ifcModelSet, ServerSettings.getSettings().isIntelligentMerging());
+		IfcModel ifcModel = new Merger().merge(project, ifcModelSet, getSettings().isIntelligentMerging());
 		for (String guid : guids) {
 			if (!foundGuids.contains(guid)) {
 				throw new UserException("Guid " + guid + " not found");

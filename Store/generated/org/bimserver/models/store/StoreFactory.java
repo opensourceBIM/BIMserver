@@ -116,6 +116,15 @@ public interface StoreFactory extends EFactory {
 	Checkout createCheckout();
 
 	/**
+	 * Returns a new object of class '<em>Settings</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Settings</em>'.
+	 * @generated
+	 */
+	Settings createSettings();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -22,7 +22,7 @@ public class Migrator {
 		String name = "org.bimserver.database.migrations.steps.Step" + StringUtils.leftPad("" + number, 4, "0");
 		try {
 			Class<Migration> migrationClass = (Class<Migration>) Class.forName(name);
-			return (Migration)migrationClass.newInstance();
+			return (Migration) migrationClass.newInstance();
 		} catch (ClassNotFoundException e) {
 			return null;
 		} catch (InstantiationException e) {
@@ -31,14 +31,14 @@ public class Migrator {
 			return null;
 		}
 	}
-	
+
 	public Schema migrateSchemaTo(int targetVersion) {
 		Schema schema = new Schema();
 		boolean moreUpgrades = true;
 		int i = 0;
 		while (moreUpgrades && i <= targetVersion) {
 			Migration migration = getMigration(i);
-			if  (migration != null) {
+			if (migration != null) {
 				migration.migrate(schema);
 				i++;
 			} else {
@@ -61,18 +61,15 @@ public class Migrator {
 		}
 		return i;
 	}
-	
+
 	public Schema migrateSchemaToLatest() {
 		return migrateSchemaTo(getLatestVersion());
 	}
-	
+
 	public Schema migrate() throws MigrationException {
 		DatabaseSession session = database.createSession();
 		try {
-			int applicationSchemaVersion = database.getApplicationSchemaVersion();
-			int databaseSchemaVersion = database.getDatabaseSchemaVersion();
-			
-			Schema schema = upgrade(session, applicationSchemaVersion, databaseSchemaVersion);
+			Schema schema = migrate(session);
 			session.commit();
 			return schema;
 		} catch (BimDeadlockException e) {
@@ -86,7 +83,7 @@ public class Migrator {
 
 	private Schema upgrade(DatabaseSession databaseSession, int applicationSchemaVersion, int databaseSchemaVersion) throws MigrationException {
 		Schema schema = new Schema();
-		for (int i=0; i<=applicationSchemaVersion; i++) {
+		for (int i = 0; i <= applicationSchemaVersion; i++) {
 			Migration migration = getMigration(i);
 			if (migration != null) {
 				migration.migrate(schema);
@@ -105,7 +102,7 @@ public class Migrator {
 		Set<SMigration> migrations = new HashSet<SMigration>();
 		int applicationSchemaVersion = database.getApplicationSchemaVersion();
 		int databaseSchemaVersion = database.getDatabaseSchemaVersion();
-		for (int i=databaseSchemaVersion+1; i<=applicationSchemaVersion; i++) {
+		for (int i = databaseSchemaVersion + 1; i <= applicationSchemaVersion; i++) {
 			Migration migration = getMigration(i);
 			if (migration != null) {
 				SMigration sMigration = new SMigration();
@@ -115,5 +112,17 @@ public class Migrator {
 			}
 		}
 		return migrations;
+	}
+
+	public Schema migrate(DatabaseSession session) throws MigrationException {
+		int applicationSchemaVersion = database.getApplicationSchemaVersion();
+		int databaseSchemaVersion = database.getDatabaseSchemaVersion();
+
+		Schema schema = upgrade(session, applicationSchemaVersion, databaseSchemaVersion);
+		return schema;
+	}
+
+	public boolean migrationRequired() {
+		return false;
 	}
 }

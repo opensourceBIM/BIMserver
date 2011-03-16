@@ -1,12 +1,10 @@
 <%@page import="org.bimserver.ServerInfo"%>
-<%@page import="org.bimserver.settings.ServerSettings"%>
 <%@page import="org.bimserver.version.VersionChecker"%>
 <%@page import="org.bimserver.version.Version"%>
 <%@page import="java.net.URLEncoder"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.Map"%>
 <%@page import="org.bimserver.interfaces.objects.SUser"%>
-<%@page import="org.bimserver.settings.Settings"%>
 <%@page import="org.bimserver.ServerInfo.ServerState"%>
 <%@page import="org.bimserver.ServerInfo.ServerState"%>
 <jsp:useBean id="loginManager" scope="session" class="org.bimserver.web.LoginManager" />
@@ -19,9 +17,8 @@
 <div class="sitewrapper">
 <div class="header"><a href="main.jsp"> <%
  	Version version = VersionChecker.getInstance().getLocalVersion();
- 		Settings settings = ServerSettings.getSettings();
  %> <img class="headerimage"
-	src="<%=settings.getCustomLogoAddress() != null ? settings.getCustomLogoAddress() : "images/logo.gif"%>" alt="BIMserver" title="BIMserver <%=version.getVersion()%>" /></a> <%
+	src="<%=loginManager.getService().getSettingCustomLogoAddress() != null ? loginManager.getService().getSettingCustomLogoAddress() : "images/logo.gif"%>" alt="BIMserver" title="BIMserver <%=version.getVersion()%>" /></a> <%
  	if (loginManager.getService().isLoggedIn()) {
  %>
 <div class="menubar">

@@ -16,7 +16,6 @@ import org.bimserver.models.store.CheckinState;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
-import org.bimserver.settings.ServerSettings;
 import org.bimserver.shared.UserException;
 
 public class CheckinPart2DatabaseAction extends BimDatabaseAction<Void> {
@@ -52,7 +51,7 @@ public class CheckinPart2DatabaseAction extends BimDatabaseAction<Void> {
 				getIfcModel().setDate(new Date());
 				IfcModel newModel = getIfcModel();
 				newModel.fixOids(getDatabaseSession());
-				IfcModel oldModel = new Merger().merge(project, ifcModelSet, ServerSettings.getSettings().isIntelligentMerging());
+				IfcModel oldModel = new Merger().merge(project, ifcModelSet, getSettings().isIntelligentMerging());
 				
 				oldModel.setObjectOids();
 				newModel.setObjectOids();
