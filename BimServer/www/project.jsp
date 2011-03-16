@@ -1,36 +1,38 @@
-<%@page import="org.bimserver.settings.ServerSettings"%>
-<%@page import="java.util.List"%>
-<%@page import="org.bimserver.interfaces.objects.SProject"%>
-<%@page import="org.bimserver.interfaces.objects.SRevision"%>
-<%@page import="org.bimserver.interfaces.objects.SCheckout"%>
-<%@page import="org.bimserver.interfaces.objects.SUser"%>
 <%@page import="java.text.DateFormat"%>
 <%@page import="java.text.SimpleDateFormat"%>
-<%@page import="org.bimserver.utils.Formatters"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="java.util.Collections"%>
 <%@page import="java.util.Comparator"%>
-<%@page import="org.bimserver.shared.UserException"%>
-<%@page import="org.bimserver.serializers.EmfSerializerFactory"%>
-<%@page import="org.bimserver.shared.ResultType"%>
-<%@page import="org.bimserver.web.JspHelper"%>
-<%@page import="org.bimserver.rights.RightsManager"%>
-<%@page import="org.bimserver.shared.SRevisionSummary"%>
-<%@page import="org.bimserver.shared.SRevisionIdComparator"%>
-<%@page import="org.bimserver.shared.SCheckoutDateComparator"%>
-<%@page import="org.bimserver.shared.SUserNameComparator"%>
-<%@page import="org.bimserver.interfaces.objects.SGeoTag"%>
-<%@page import="org.bimserver.interfaces.objects.SUserType"%>
-<%@page import="org.bimserver.interfaces.objects.SObjectState"%>
-<%@page import="org.bimserver.interfaces.objects.SSIPrefix"%>
-<%@page	import="org.bimserver.interfaces.objects.SClashDetectionSettings"%>
-<%@page import="java.util.TreeSet"%>
+<%@page import="java.util.List"%>
 <%@page import="java.util.Set"%>
-<%@page import="org.bimserver.shared.SProjectNameComparator"%>
-<%@page import="org.bimserver.models.store.SIPrefix"%>
-<%@page import="org.bimserver.utils.WebUtils"%>
+<%@page import="java.util.TreeSet"%>
 <%@page import="org.bimserver.interfaces.objects.SCheckinState"%>
-<%@page import="java.util.ArrayList"%>
+<%@page import="org.bimserver.interfaces.objects.SCheckout"%>
+<%@page	import="org.bimserver.interfaces.objects.SClashDetectionSettings"%>
+<%@page import="org.bimserver.interfaces.objects.SGeoTag"%>
+<%@page import="org.bimserver.interfaces.objects.SObjectState"%>
+<%@page import="org.bimserver.interfaces.objects.SProject"%>
+<%@page import="org.bimserver.interfaces.objects.SSIPrefix"%>
+<%@page import="org.bimserver.interfaces.objects.SRevision"%>
+<%@page import="org.bimserver.interfaces.objects.SUser"%>
+<%@page import="org.bimserver.interfaces.objects.SUserType"%>
+<%@page import="org.bimserver.models.store.SIPrefix"%>
+<%@page import="org.bimserver.rights.RightsManager"%>
+<%@page import="org.bimserver.serializers.EmfSerializerFactory"%>
+<%@page import="org.bimserver.settings.ServerSettings"%>
+<%@page import="org.bimserver.shared.ResultType"%>
+<%@page import="org.bimserver.shared.SCheckoutDateComparator"%>
+<%@page import="org.bimserver.shared.SProjectNameComparator"%>
+<%@page import="org.bimserver.shared.SRevisionIdComparator"%>
+<%@page import="org.bimserver.shared.SRevisionSummary"%>
+<%@page import="org.bimserver.shared.SUserNameComparator"%>
+<%@page import="org.bimserver.shared.UserException"%>
+<%@page import="org.bimserver.web.JspHelper"%>
+<%@page import="org.bimserver.utils.Formatters"%>
+<%@page import="org.bimserver.utils.WebUtils"%>
+
 <%@ include file="header.jsp"%>
+
 <%
 	if (loginManager.getService().isLoggedIn()) {
 		DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
@@ -60,8 +62,7 @@
 			if (project.getLastRevisionId() != -1) {
 				lastRevision = loginManager.getService().getRevision(project.getLastRevisionId());
 			}
-			boolean anonymousAccess = project.getHasAuthorizedUsers().contains(
-					loginManager.getService().getAnonymousUser().getOid());
+			boolean anonymousAccess = project.getHasAuthorizedUsers().contains(loginManager.getService().getAnonymousUser().getOid());
 			boolean hasUserManagementRights = project.getHasAuthorizedUsers().contains(loginManager.getUoid())
 					&& loginManager.getUserType() != SUserType.ANONYMOUS;
 			boolean userHasCheckinRights = loginManager.getService().userHasCheckinRights(project.getOid());
@@ -72,90 +73,83 @@
 %>
 <jsp:include page="o3d.jsp" />
 <%
-	}
+			}
 %>
 <div class="sidebar">
-<ul>
-	<%
-		if (hasEditRights) {
-	%>
-	<li><a class="link" href="editproject.jsp?poid=<%=poid%>">Edit</a></li>
-	<%
-		}
-	%>
-	<%
-		if (loginManager.getService().isExportTypeEnabled(ResultType.O3D_JSON) && lastRevision != null) {
-	%>
-	<li><a id="visualiselink" class="link">Visualise</a></li>
-	<%
-		}
-	%>
-	<%
-		if (lastRevision != null) {
-	%>
-	<li><a id="browserlink" class="link">Browser</a></li>
-	<%
-		}
-	%>
-	<li><a class="rss"
-		href="<%=request.getContextPath()%>/syndication/revisions?poid=<%=poid%>">Revisions
-	feed</a></li>
-	<li><a class="rss"
-		href="<%=request.getContextPath()%>/syndication/checkouts?poid=<%=poid%>">Checkouts
-	feed</a></li>
-	<jsp:include page="showdeleted.jsp" />
-</ul>
-<br />
-<%=JspHelper.showProjectTree(project, loginManager.getService())%></div>
+	<ul>
+<%
+			if (hasEditRights) {
+%>
+		<li><a class="link" href="editproject.jsp?poid=<%=poid%>">Edit</a></li>
+<%
+			}
+%>
+<%
+			if (loginManager.getService().isExportTypeEnabled(ResultType.O3D_JSON) && lastRevision != null) {
+%>
+		<li><a id="visualiselink" class="link">Visualise</a></li>
+<%
+			}
+%>
+<%
+			if (lastRevision != null) {
+%>
+		<li><a id="browserlink" class="link">Browser</a></li>
+<%
+			}
+%>
+		<li><a class="rss" href="<%=request.getContextPath()%>/syndication/revisions?poid=<%=poid%>">Revisions feed</a></li>
+		<li><a class="rss" href="<%=request.getContextPath()%>/syndication/checkouts?poid=<%=poid%>">Checkouts feed</a></li>
+<jsp:include page="showdeleted.jsp" />
+	</ul>
+	<br /><%=JspHelper.showProjectTree(project, loginManager.getService())%>
+</div>
 
 <div class="content">
 <%
-	if (request.getParameter("message") != null) {
+			if (request.getParameter("message") != null) {
 				out.println("<div class=\"error\">" + request.getParameter("message") + "</div>");
 			}
 %>
 <div id="guide">
 <div id="guidewrap">
-<ol id="breadcrumb">
-	<li><%=JspHelper.generateBreadCrumbPath(project, loginManager.getService())%></li>
-</ol>
+	<ol id="breadcrumb">
+		<li><%=JspHelper.generateBreadCrumbPath(project, loginManager.getService())%></li>
+	</ol>
 </div>
 </div>
+
 <h1>Project details (<%=project.getName()%>)</h1>
 <div class="tabber" id="projecttabber">
 <div class="tabbertab" id="detailstab" title="Details">
 <%
-	if (project.getRevisions().isEmpty()) {
-%> <%
- 	if (userHasCheckinRights) {
- %>
-<div class="info"><img src="images/warning.png" alt="warning" />There
-are no revisions yet, click <a id="revisiontablink" href="#">on the
-revisions tab</a> to add a first revision, or <a id="subprojecttablink"
-	href="#">add a subproject.</a></div>
+			if (project.getRevisions().isEmpty()) {
+ 					if (userHasCheckinRights) {
+%>
+<div class="info"><img src="images/warning.png" alt="warning" />There are no revisions yet, click <a id="revisiontablink" href="#">on the
+revisions tab</a> to add a first revision, or <a id="subprojecttablink" href="#">add a subproject.</a></div>
 <%
-	}
-%> <%
- 	}
- %>
+					}
+ 			}
+%>
 <table class="formtable">
 	<tr>
 		<td class="first">Name</td>
 		<td><%=project.getName()%></td>
 	</tr>
-	<%
-		if (project.getParentId() != -1) {
+<%
+			if (project.getParentId() != -1) {
 					SProject parentProject = loginManager.getService().getProjectByPoid(project.getParentId());
-	%>
+%>
 	<tr>
 		<td class="first">Parent</td>
 		<td><a href="project.jsp?poid=<%=parentProject.getOid()%>"><%=parentProject.getName()%></a></td>
 	</tr>
-	<%
-		}
-				SUser createdBy = loginManager.getService().getUserByUoid(project.getCreatedById());
-				SGeoTag geoTag = loginManager.getService().getGeoTag(project.getGeoTagId());
-	%>
+<%
+			}
+			SUser createdBy = loginManager.getService().getUserByUoid(project.getCreatedById());
+			SGeoTag geoTag = loginManager.getService().getGeoTag(project.getGeoTagId());
+%>
 	<tr>
 		<td class="first">Created on</td>
 		<td><%=dateFormat.format(project.getCreatedDate())%></td>
@@ -164,9 +158,9 @@ revisions tab</a> to add a first revision, or <a id="subprojecttablink"
 		<td class="first">Created by</td>
 		<td><a href="user.jsp?uoid=<%=createdBy.getOid()%>"><%=createdBy.getUsername()%></a></td>
 	</tr>
-	<%
-		if (lastRevision != null) {
-	%>
+<%
+			if (lastRevision != null) {
+%>
 	<tr>
 		<td class="first">Last update on</td>
 		<td><%=dateFormat.format(lastRevision.getDate())%></td>
@@ -175,9 +169,9 @@ revisions tab</a> to add a first revision, or <a id="subprojecttablink"
 		<td class="first">Last update by</td>
 		<td><a href="user.jsp?uoid=<%=lastRevision.getUserId()%>"><%=loginManager.getService().getUserByUoid(lastRevision.getUserId()).getUsername()%></a></td>
 	</tr>
-	<%
-		}
-	%>
+<%
+			}
+%>
 	<tr>
 		<td class="first">State</td>
 		<td><%=project.getState().name().toLowerCase()%></td>
@@ -190,32 +184,30 @@ revisions tab</a> to add a first revision, or <a id="subprojecttablink"
 		<td class="first">Description</td>
 		<td><%=project.getDescription()%></td>
 	</tr>
-	<%
-		if (emfSerializerFactory.resultTypeEnabled(ResultType.KMZ)) {
-					String url = WebUtils.getWebServer(request.getRequestURL().toString());
-					String link = "http://" + url + getServletContext().getContextPath() + "download?poid=" + project.getOid()
-							+ "&resultType=KMZ";
-	%>
+<%
+			if (emfSerializerFactory.resultTypeEnabled(ResultType.KMZ)) {
+				String url = WebUtils.getWebServer(request.getRequestURL().toString());
+				String link = "http://" + url + getServletContext().getContextPath() + "download?poid=" + project.getOid() + "&resultType=KMZ";
+%>
 	<tr>
 		<td class="first">Google Earth Link</td>
 		<td><a href="<%=link%>"><%=link%></a></td>
 	</tr>
-	<%
-		}
-	%>
+<%
+			}
+%>
 	<tr>
-		<td class="first">Uniform length measure unit for combined
-		revisions</td>
-		<%
+		<td class="first">Uniform length measure unit for combined revisions</td>
+<%
 			if (project.getExportLengthMeasurePrefix() == null) {
-						project.setExportLengthMeasurePrefix(SSIPrefix.meter);
-					}
-		%>
+				project.setExportLengthMeasurePrefix(SSIPrefix.meter);
+			}
+%>
 		<td><%=project.getExportLengthMeasurePrefix().name()%></td>
 	</tr>
-	<%
-		if (geoTag.isEnabled()) {
-	%>
+<%
+			if (geoTag.isEnabled()) {
+%>
 	<tr>
 		<td class="first">Coordinates</td>
 		<td><%=geoTag.getX() + "," + geoTag.getY() + "," + geoTag.getZ()%></td>
@@ -228,78 +220,54 @@ revisions tab</a> to add a first revision, or <a id="subprojecttablink"
 		<td class="first">EPSG</td>
 		<td><%=geoTag.getEpsg()%></td>
 	</tr>
-	<%
-		}
-	%>
+<%
+			}
+%>
 </table>
 <br />
 <%
-	if (lastRevision != null) {
-%> Click <a href="revision.jsp?roid=<%=lastRevision.getOid()%>">here</a>
-to go to the latest revision<br />
+			if (lastRevision != null) {
+%> 
+Click <a href="revision.jsp?roid=<%=lastRevision.getOid()%>">here</a> to go to the latest revision<br />
 <br />
 <p></p>
 <div class="tabber" id="downloadtabber">
-	<div class="tabbertab" id="detailstab" title="Simple Download">
-	<table>
-	<tr><td>Download:</td><td>
-	<select name="resultType" id="detailsdownloadcheckoutselect">
-	<%
-		for (ResultType resultType : emfSerializerFactory.getMultipleResultTypes()) {
-	%>
-	<option value="<%=resultType.name()%>"
-		<%=resultType.isDefaultSelected() ? " SELECTED=\"SELECTED\"" : ""%>><%=resultType.getNiceName()%></option>
-	<%
-		}
-	%>
-	</select></td><td> <label for="simplezip_<%=lastRevision.getId()%>">Zip </label></td>
-	<td><input type="checkbox" name="zip" id="simplezip_<%=lastRevision.getId()%>" /></td>
-	<td><button id="simpleDownloadButton" type="button">download</button></td>
-	<%
-	 	if (userHasCheckinRights) {
-	%>
-	<td><button id="detailscheckoutbutton" type="button">checkout</button></td>
-	<%
-	 	}
-	%>
-	<td><div id="simpleDownloadResult"></div></td>
+<div class="tabbertab" id="detailstab" title="Simple Download">
+<table>
+	<tr>
+		<td>Download:</td>
+		<td><select name="resultType" id="detailsdownloadcheckoutselect">
+<%
+				for (ResultType resultType: emfSerializerFactory.getMultipleResultTypes()) {
+%>
+		<option value="<%=resultType.name()%>" <%=resultType.isDefaultSelected() ? " SELECTED=\"SELECTED\"" : ""%>><%=resultType.getNiceName()%></option>
+<%
+				}
+%>
+		</select></td>
+		<td><label for="simplezip_<%=lastRevision.getId()%>">Zip </label></td>
+		<td><input type="checkbox" name="zip" id="simplezip_<%=lastRevision.getId()%>" /></td>
+		<td><button id="simpleDownloadButton" type="button">download</button></td>
+<%
+	 			if (userHasCheckinRights) {
+%>
+		<td><button id="detailscheckoutbutton" type="button">checkout</button></td>
+<%
+	 			}
+%>
+		<td><div id="simpleDownloadResult"></div></td>
 	</tr>
-	</table>
-	
-	
-	
-<!-- 
-	<form action="<%=request.getContextPath()%>/download" method="get">Download: 
-	<input type="hidden" id="simpleDownloadRoid" name="roid" value="<%=project.getLastRevisionId()%>" />
-	<select name="resultType" id="detailsdownloadcheckoutselect">
-	<%
-		for (ResultType resultType : emfSerializerFactory.getMultipleResultTypes()) {
-	%>
-	<option value="<%=resultType.name()%>"
-		<%=resultType.isDefaultSelected() ? " SELECTED=\"SELECTED\"" : ""%>><%=resultType.getNiceName()%></option>
-	<%
-		}
-	%>
-	</select> <label for="simplezip_<%=lastRevision.getId()%>">Zip </label>
-	<input type="checkbox" name="zip" id="simplezip_<%=lastRevision.getId()%>" />
-	<input id="simpleDownloadButton" name="download" type="button" value="Download">
-	<input type="hidden" name="async" value="true" />
-	<%
-	 	if (userHasCheckinRights) {
-	%>
-	<input id="detailscheckoutbutton" name="checkout" type="button" value="Checkout"> 
-	<%
-	 	}
-	%>
-	<span id="simpleDownloadResult"></span>
-	</form>
-	 -->	
+</table>
 </div>
 
-<div class="tabbertab" id="" title="Advanced Download"><script>
-var projects = new Object();
-<%=JspHelper.writeDownloadProjectTreeJavaScript(project, loginManager)%>
+<div class="tabbertab" id="" title="Advanced Download">
+
+<script>
+	var projects = new Object();
+	
+	<%=JspHelper.writeDownloadProjectTreeJavaScript(project, loginManager)%>
 </script>
+
 <form method="get" action="<%=request.getContextPath()%>/download">
 <table class="formatted maintable">
 	<tr>
@@ -310,38 +278,36 @@ var projects = new Object();
 	<%=JspHelper.writeDownloadProjectTree("download", project, loginManager, 0, null)%>
 </table>
 Download: <select name="resultType">
-	<%
-		for (ResultType resultType : emfSerializerFactory.getMultipleResultTypes()) {
-	%>
-	<option value="<%=resultType.name()%>"
-		<%=resultType.isDefaultSelected() ? " SELECTED=\"SELECTED\"" : ""%>><%=resultType.getNiceName()%></option>
-	<%
-		}
-	%>
-</select> <label for="advancedzip_<%=lastRevision.getId()%>">Zip </label><input
-	type="checkbox" name="zip" id="advancedzip_<%=lastRevision.getId()%>" />
-<input type="submit" value="Download"> <input type="hidden"
-	name="multiple" value="true" /></form>
+<%
+				for (ResultType resultType : emfSerializerFactory.getMultipleResultTypes()) {
+%>
+		<option value="<%=resultType.name()%>" <%=resultType.isDefaultSelected() ? " SELECTED=\"SELECTED\"" : ""%>><%=resultType.getNiceName()%></option>
+<%
+				}
+%>
+		</select> <label for="advancedzip_<%=lastRevision.getId()%>">Zip </label>
+		<input type="checkbox" name="zip" id="advancedzip_<%=lastRevision.getId()%>" />
+		<input type="submit" value="Download"> <input type="hidden" name="multiple" value="true" /></form>
 </div>
 </div>
 <%
-	}
+			}
 %>
 </div>
-<div class="tabbertab" id="subprojectstab"
-	title="Sub Projects<%=project.getSubProjects().size() == 0 ? "" : " (" + project.getSubProjects().size() + ")"%>">
+
+<div class="tabbertab" id="subprojectstab" title="Sub Projects<%=project.getSubProjects().size() == 0 ? "" : " (" + project.getSubProjects().size() + ")"%>">
 <%
-	if (hasCreateProjectRights) {
-%> <a href="addproject.jsp?parentoid=<%=project.getOid()%>">Add sub
-project</a><br />
+			if (hasCreateProjectRights) {
+%> 
+<a href="addproject.jsp?parentoid=<%=project.getOid()%>">Add subproject</a><br />
 <br />
 <%
-	}
+			}
 			if (project.getSubProjects().size() == 0) {
 %>
 <div class="none">No subprojects</div>
 <%
-	} else {
+			} else {
 %>
 <table class="formatted">
 	<tr>
@@ -350,16 +316,16 @@ project</a><br />
 		<th>Revisions</th>
 		<th>Checkouts</th>
 		<th>Authorized users</th>
-		<%
-			if (userHasCheckinRights) {
-		%>
+<%
+				if (userHasCheckinRights) {
+%>
 		<th>Actions</th>
-		<%
-			}
-		%>
+<%
+				}
+%>
 	</tr>
-	<%
-		Set<SProject> subProjects = new TreeSet<SProject>(new SProjectNameComparator());
+<%
+				Set<SProject> subProjects = new TreeSet<SProject>(new SProjectNameComparator());
 					for (long subPoid : project.getSubProjects()) {
 						SProject subProject = loginManager.getService().getProjectByPoid(subPoid);
 						subProjects.add(subProject);
@@ -369,10 +335,9 @@ project</a><br />
 						if (subProject.getLastRevisionId() != -1) {
 							lastSubProjectRevision = loginManager.getService().getRevision(subProject.getLastRevisionId());
 						}
-	%>
+%>
 	<tr
-		<%=(loginManager.getService().userHasCheckinRights(subProject.getOid()) == true ? ""
-									: " class=\"checkinrights\"")%>
+		<%=(loginManager.getService().userHasCheckinRights(subProject.getOid()) == true ? "" : " class=\"checkinrights\"")%>
 		<%=subProject.getState() == SObjectState.DELETED ? " class=\"deleted\"" : ""%>>
 		<td><a href="project.jsp?poid=<%=subProject.getOid()%>"><%=subProject.getName()%></a></td>
 		<td><%=lastSubProjectRevision == null ? "No revisions" : ("<a href=\"revision.jsp?roid="
@@ -382,130 +347,127 @@ project</a><br />
 		<td><%=subProject.getRevisions().size()%></td>
 		<td><%=subProject.getCheckouts().size()%></td>
 		<td><%=subProject.getHasAuthorizedUsers().size()%></td>
-		<%
-			if (userHasCheckinRights) {
-		%>
-		<%
-			if (subProject.getState() == SObjectState.ACTIVE) {
-		%>
-		<td><a
-			href="deleteproject.jsp?ppid=<%=project.getOid()%>&poid=<%=subProject.getOid()%>">delete</a></td>
-		<%
-			} else if (subProject.getState() == SObjectState.DELETED) {
-		%>
-		<td><a
-			href="undeleteproject.jsp?ppid=<%=project.getOid()%>&poid=<%=subProject.getOid()%>">undelete</a></td>
-		<%
-			}
-		%>
-		<%
-			}
-		%>
+<%
+						if (userHasCheckinRights) {
+%>
+<%
+							if (subProject.getState() == SObjectState.ACTIVE) {
+%>
+		<td><a href="deleteproject.jsp?ppid=<%=project.getOid()%>&poid=<%=subProject.getOid()%>">delete</a></td>
+<%
+							} else if (subProject.getState() == SObjectState.DELETED) {
+%>
+		<td><a href="undeleteproject.jsp?ppid=<%=project.getOid()%>&poid=<%=subProject.getOid()%>">undelete</a></td>
+<%
+							}
+%>
+<%
+						}
+%>
 	</tr>
-	<%
-		}
-	%>
+<%
+					}
+%>
 </table>
 <%
-	}
-%>
-</div>
-
-<div class="tabbertab" id="revisionstab"
-	title="Revisions<%=revisions.size() == 0 ? "" : " (" + revisions.size() + ")"%>">
-<%
-	Set<String> checkoutWarnings = loginManager.getService().getShowCheckoutWarning(project.getOid(),
-					loginManager.getUoid());
-			for (String warning : checkoutWarnings) {
-				out.write("<div class=\"warning\"><img src=\"images/warning.png\" alt=\"warning\" />" + warning + "</div>");
-			}
-			if (userHasCheckinRights) {
-%> <a href="#" id="uploadlink">Upload (note: Subprojects present)</a>
-<div id="upload"><jsp:include page="upload.jsp">
-	<jsp:param name="poid" value="<%=poid %>" />
-</jsp:include> <%
- 	List<SProject> projects = loginManager.getService().getAllReadableProjects();
- 				Collections.sort(projects, new SProjectNameComparator());
- 				if (!projects.isEmpty() && (projects.size() > 1 || !projects.get(0).getRevisions().isEmpty())) {
- 					boolean atLeastOne = false;
- 					for (SProject sProject : projects) {
- 						if (!sProject.getRevisions().isEmpty()) {
- 							atLeastOne = true;
- 							break;
- 						}
- 					}
- 					if (atLeastOne) {
- %>
-<form method="post" action="branch.jsp">
-<fieldset><legend>Checkin existing revision</legend> <label>Project/Revision</label>
-<select name="roid">
-	<%
-		for (SProject sProject : projects) {
-								if (!sProject.getRevisions().isEmpty()) {
-	%>
-	<optgroup label="<%=sProject.getName()%>">
-		<%
-			List<SRevision> checkinRevisions = loginManager.getService().getAllRevisionsOfProject(
-												sProject.getOid());
-										Collections.sort(checkinRevisions, new SRevisionIdComparator(false));
-										for (SRevision sRevision : checkinRevisions) {
-		%>
-		<option value="<%=sRevision.getOid()%>"><%=sRevision.getId()%></option>
-		<%
-			}
-		%>
-	</optgroup>
-	<%
-		}
-							}
-	%>
-</select> <label>Comment</label> <input type="text" name="comment" /> <input
-	type="submit" value="Checkin as new revision" /> <input type="hidden"
-	name="action" value="branchtoexistingproject" /> <input type="hidden"
-	name="destpoid" value="<%=poid%>" /></fieldset>
-</form>
-<%
-	}
 				}
 %>
 </div>
+
+<div class="tabbertab" id="revisionstab" title="Revisions<%=revisions.size() == 0 ? "" : " (" + revisions.size() + ")"%>">
 <%
-	}
-			if (revisions.size() > 1) {
+				Set<String> checkoutWarnings = loginManager.getService().getShowCheckoutWarning(project.getOid(), loginManager.getUoid());
+				for (String warning: checkoutWarnings) {
+					out.write("<div class=\"warning\"><img src=\"images/warning.png\" alt=\"warning\" />" + warning + "</div>");
+				}
+				if (userHasCheckinRights) {
+%>
+<a href="#" id="uploadlink">Upload (note: Subprojects present)</a>
+<div id="upload">
+<jsp:include page="upload.jsp"><jsp:param name="poid" value="<%=poid %>" /></jsp:include> 
+<%
+ 					List<SProject> projects = loginManager.getService().getAllReadableProjects();
+ 					Collections.sort(projects, new SProjectNameComparator());
+ 					if (!projects.isEmpty() && (projects.size() > 1 || !projects.get(0).getRevisions().isEmpty())) {
+ 						boolean atLeastOne = false;
+ 						for (SProject sProject : projects) {
+ 							if (!sProject.getRevisions().isEmpty()) {
+ 								atLeastOne = true;
+ 								break;
+ 							}
+ 						}
+ 						if (atLeastOne) {
+%>
+<form method="post" action="branch.jsp">
+	<fieldset><legend>Checkin existing revision</legend> <label>Project/Revision</label>
+	<select name="roid">
+<%
+							for (SProject sProject : projects) {
+								if (!sProject.getRevisions().isEmpty()) {
+%>
+	<optgroup label="<%=sProject.getName()%>">
+<%
+									List<SRevision> checkinRevisions = loginManager.getService().getAllRevisionsOfProject(sProject.getOid());
+									Collections.sort(checkinRevisions, new SRevisionIdComparator(false));
+									for (SRevision sRevision : checkinRevisions) {
+%>
+		<option value="<%=sRevision.getOid()%>"><%=sRevision.getId()%></option>
+<%
+									}
+%>
+	</optgroup>
+<%
+								}
+							}
+%>
+	</select> <label>Comment</label> <input type="text" name="comment" />
+	<input type="submit" value="Checkin as new revision" />
+	<input type="hidden" name="action" value="branchtoexistingproject" />
+	<input type="hidden" name="destpoid" value="<%=poid%>" /></fieldset>
+</form>
+<%
+						}
+					}
+%>
+</div>
+<%
+				}
+				if (revisions.size() > 1) {
 %>
 <fieldset><legend>Compare</legend>
-<div id="compareajaxloader">Comparing... <img
-	src="images/ajax-loader.gif" /></div>
-<form method="get" action="compare.jsp" id="compareform"><input
-	type="hidden" name="poid" value="<%=poid%>" /> Revision <select
-	name="roid1">
-	<%
-		for (SRevision otherRevision : revisionsInc) {
-	%>
-	<option value="<%=otherRevision.getOid()%>"><%=otherRevision.getId()%></option>
-	<%
-		}
-	%>
-</select> with Revision <select name="roid2">
-	<%
-		for (SRevision otherRevision : revisionsInc) {
-	%>
-	<option value="<%=otherRevision.getOid()%>"><%=otherRevision.getId()%></option>
-	<%
-		}
-	%>
-</select> <select name="type">
-	<option value="ALL">All</option>
-	<option value="ADD">Added</option>
-	<option value="MODIFY">Modified</option>
-	<option value="DELETE">Deleted</option>
-</select>
-<button type="submit" name="compare" value="Compare">Compare</button>
+<div id="compareajaxloader">Comparing... <img src="images/ajax-loader.gif" /></div>
+<form method="get" action="compare.jsp" id="compareform">
+	<input type="hidden" name="poid" value="<%=poid%>" /> Revision 
+	<select name="roid1">
+<%
+					for (SRevision otherRevision : revisionsInc) {
+%>
+		<option value="<%=otherRevision.getOid()%>"><%=otherRevision.getId()%></option>
+<%
+					}
+%>
+	</select> with Revision 
+	<select name="roid2">
+<%
+					for (SRevision otherRevision : revisionsInc) {
+%>
+		<option value="<%=otherRevision.getOid()%>"><%=otherRevision.getId()%></option>
+<%
+					}
+%>
+	</select>
+	<select name="type">
+		<option value="ALL">All</option>
+		<option value="ADD">Added</option>
+		<option value="MODIFY">Modified</option>
+		<option value="DELETE">Deleted</option>
+	</select>
+	<button type="submit" name="compare" value="Compare">Compare</button>
 </form>
 </fieldset>
 <%
-	}
-			if (revisions.size() > 0) {
+				}
+				if (revisions.size() > 0) {
 %>
 <table class="formatted">
 	<tr>
@@ -513,135 +475,139 @@ project</a><br />
 		<th>Date</th>
 		<th>User</th>
 		<th>Comment</th>
-		<%
-			if (project.getParentId() == -1 && sClashDetectionSettings.isEnabled()) {
-		%>
+<%
+					if (project.getParentId() == -1 && sClashDetectionSettings.isEnabled()) {
+%>
 		<th>Clashes</th>
-		<%
-			}
-		%>
+<%
+					}
+%>
 		<th>Size</th>
 		<th>Status / Actions</th>
 	</tr>
-	<%
-		for (SRevision revision : revisions) {
+<%
+					for (SRevision revision : revisions) {
 						SUser revisionUser = loginManager.getService().getUserByUoid(revision.getUserId());
 						boolean isTagged = revision.getTag() != null;
-	%>
-	<tr <%=isTagged ? "class=\"tagged\"" : ""%>
-		id="rev<%=revision.getOid()%>"
+%>
+	<tr <%=isTagged ? "class=\"tagged\"" : ""%> id="rev<%=revision.getOid()%>"
 		<%=lastRevision != null && revision.getId() == lastRevision.getId() ? "class=\"lastrevision\"" : ""%>>
 		<td><a href="revision.jsp?roid=<%=revision.getOid()%>"><%=revision.getId()%></a></td>
 		<td style="white-space: nowrap;"><%=dateFormat.format(revision.getDate())%></td>
-		<td style="white-space: nowrap;"><a
-			href="user.jsp?uoid=<%=revision.getUserId()%>"><%=revisionUser.getUsername()%></a></td>
+		<td style="white-space: nowrap;"><a href="user.jsp?uoid=<%=revision.getUserId()%>"><%=revisionUser.getUsername()%></a></td>
 		<td>
-		<div class="commentbox">
-		<div><%=revision.getComment()%></div>
-		<a href="#" class="morelink">more</a></div>
+			<div class="commentbox">
+			<div><%=revision.getComment()%></div>
+			<a href="#" class="morelink">more</a></div>
 		</td>
-		<%
-			if (project.getParentId() == -1 && sClashDetectionSettings.isEnabled()) {
-		%>
-		<td class="clashesfield"><img src="images/ajax-loader.gif"
-			align="left"
+<%
+						if (project.getParentId() == -1 && sClashDetectionSettings.isEnabled()) {
+%>
+		<td class="clashesfield"><img src="images/ajax-loader.gif" align="left"
 			style="margin-right: 5px; display: <%=revision.getState() == SCheckinState.SEARCHING_CLASHES ? "block" : "none"%>" />
-		<span class="statusfield"> <%
- 	if (revision.getState() == SCheckinState.DONE) {
- 							out.print(revision.getLastClashes().size());
- 						} else if (revision.getState() == SCheckinState.SEARCHING_CLASHES) {
- 							out.print("Searching clashes...");
- 						} else if (revision.getState() == SCheckinState.CLASHES_ERROR) {
- 							out.print("Error: " + revision.getLastError());
- 						}
- %> </span></td>
-		<%
-			}
-		%>
+			<span class="statusfield"> <%
+ 							if (revision.getState() == SCheckinState.DONE) {
+ 								out.print(revision.getLastClashes().size());
+ 							} else if (revision.getState() == SCheckinState.SEARCHING_CLASHES) {
+ 								out.print("Searching clashes...");
+ 							} else if (revision.getState() == SCheckinState.CLASHES_ERROR) {
+ 								out.print("Error: " + revision.getLastError());
+ 							}
+%> 
+			</span>
+		</td>
+<%
+						}
+%>
 		<td class="sizefield"><%=(revision.getState() == SCheckinState.DONE || revision.getState() == SCheckinState.SEARCHING_CLASHES || revision
 									.getState() == SCheckinState.CLASHES_ERROR) ? revision.getSize() : ""%></td>
-		<td class="downloadfield"><img src="images/ajax-loader.gif"
-			align="left"
+		<td class="downloadfield"><img src="images/ajax-loader.gif" align="left"
 			style="margin-right: 5px; display: <%=(revision.getState() == SCheckinState.DONE || revision.getState() == SCheckinState.ERROR
 									|| revision.getState() == SCheckinState.CLASHES_ERROR || revision.getState() == SCheckinState.SEARCHING_CLASHES) ? "none"
 									: "block"%>" />
-		<span class="statusfield"> <%
- 	if (revision.getState() == SCheckinState.ERROR) {
- 						out.print("Error: " + revision.getState().name().toLowerCase());
- 					} else if (revision.getState() == SCheckinState.STORING) {
- 						out.print("Storing...");
- 					}
- %> </span>
+			<span class="statusfield">
+<%
+ 						if (revision.getState() == SCheckinState.ERROR) {
+ 							out.print("Error: " + revision.getState().name().toLowerCase());
+ 						} else if (revision.getState() == SCheckinState.STORING) {
+ 							out.print("Storing...");
+ 						}
+%>
+			</span>
 		<form method="get" action="<%=request.getContextPath()%>/download"
 			class="<%=revision.getState() == SCheckinState.DONE || revision.getState() == SCheckinState.CLASHES_ERROR
 									|| revision.getState() == SCheckinState.SEARCHING_CLASHES ? "" : "blockinvisible"%>">
-		<input type="hidden" name="roid" value="<%=revision.getOid()%>" /> <select
-			name="resultType" class="revisionsdownloadcheckoutselect">
-			<%
-				for (ResultType resultType : emfSerializerFactory.getMultipleResultTypes()) {
-			%>
-			<option value="<%=resultType.name()%>"
-				<%=resultType.isDefaultSelected() ? " SELECTED=\"SELECTED\"" : ""%>><%=resultType.getNiceName()%></option>
-			<%
-				}
-			%>
-		</select> <label for="revisionzip_<%=revision.getId()%>">Zip </label><input
-			type="checkbox" name="zip" id="revisionzip_<%=revision.getId()%>" />
-		<input name="download" type="submit" value="Download" /> <%
- 	if (userHasCheckinRights) {
- %> <input name="checkout" type="submit" value="Checkout"
-			class="revisionscheckoutbutton" /> <%
- 	}
- %>
+			<input type="hidden" name="roid" value="<%=revision.getOid()%>" />
+			<select name="resultType" class="revisionsdownloadcheckoutselect">
+<%
+						for (ResultType resultType : emfSerializerFactory.getMultipleResultTypes()) {
+%>
+					<option value="<%=resultType.name()%>"
+						<%=resultType.isDefaultSelected() ? " SELECTED=\"SELECTED\"" : ""%>><%=resultType.getNiceName()%></option>
+<%
+						}
+%>
+			</select>
+			<label for="revisionzip_<%=revision.getId()%>">Zip </label>
+			<input type="checkbox" name="zip" id="revisionzip_<%=revision.getId()%>" />
+			<input name="download" type="submit" value="Download" />
+<%
+ 						if (userHasCheckinRights) {
+%>
+			<input name="checkout" type="submit" value="Checkout" class="revisionscheckoutbutton" />
+<%
+ 						}
+%>
 		</form>
 		</td>
 	</tr>
-	<%
-		}
-	%>
+<%
+					}
+%>
 </table>
 <%
-	} else {
+				} else {
 %>
 <div class="none">No revisions<%=userHasCheckinRights ? ", upload an IFC file" : ""%></div>
 <%
-	}
+				}
 %>
 </div>
 <%
-	if (lastRevision != null) {
+				if (lastRevision != null) {
 %>
-<div class="tabbertab" id="querytab" title="Query">Note: Queries
-will be done on the latest revision (<a
-	href="revision.jsp?roid=<%=lastRevision.getOid()%>"><%=lastRevision.getId()%></a>),
-open a specific revision to query other revisions<br />
+<div class="tabbertab" id="querytab" title="Query">Note: Queries will be done on the latest revision (
+	<a href="revision.jsp?roid=<%=lastRevision.getOid()%>"><%=lastRevision.getId()%></a>), open a specific revision to query other revisions<br />
 <br />
+
 <jsp:include page="query.jsp">
 	<jsp:param name="poid" value="<%=poid %>" />
 	<jsp:param name="roid" value="<%=lastRevision.getOid() %>" />
-</jsp:include></div>
+</jsp:include>
+</div>
 <div id="clashes" class="tabbertab" title="Clashes">
-<div id="clashdetectiondiv"></div>
+	<div id="clashdetectiondiv"></div>
 </div>
 <%
-	}
-%> <%
- 	if (checkouts.size() > 0) {
- %>
-<div class="tabbertab" id="checkoutstab"
-	title="Checkouts<%=checkouts.size() == 0 ? "" : " (" + activeCheckouts.size() + ")"%>">
-<%
-	boolean showCheckoutToggle = false;
-				for (SCheckout checkout : checkouts) {
-					if (!checkout.isActive()) {
-						showCheckoutToggle = true;
-					}
 				}
-				if (showCheckoutToggle) {
-%> <label for="showinactivecheckouts">Show inactive checkouts </label><input
-	id="showinactivecheckouts" type="checkbox" /> <%
- 	}
- %>
+%> <%
+ 				if (checkouts.size() > 0) {
+%>
+<div class="tabbertab" id="checkoutstab" title="Checkouts<%=checkouts.size() == 0 ? "" : " (" + activeCheckouts.size() + ")"%>">
+<%
+					boolean showCheckoutToggle = false;
+					for (SCheckout checkout : checkouts) {
+						if (!checkout.isActive()) {
+							showCheckoutToggle = true;
+						}
+					}
+					if (showCheckoutToggle) {
+%>
+	<label for="showinactivecheckouts">Show inactive checkouts </label>
+	<input id="showinactivecheckouts" type="checkbox" />
+<%
+ 					}
+%>
 <table class="formatted">
 	<tr>
 		<th>Revision Id</th>
@@ -650,10 +616,10 @@ open a specific revision to query other revisions<br />
 		<th>Active</th>
 		<th>Status / Actions</th>
 	</tr>
-	<%
-		for (SCheckout checkout : checkouts) {
+<%
+					for (SCheckout checkout : checkouts) {
 						SUser checkoutUser = loginManager.getService().getUserByUoid(checkout.getUserId());
-	%>
+%>
 	<tr class="<%=checkout.isActive() ? "" : "inactivecheckoutrow"%>">
 		<td><a href="revision.jsp?roid=<%=checkout.getRevisionId()%>"><%=loginManager.getService().getRevision(checkout.getRevisionId()).getId()%></a></td>
 		<td><a href="user.jsp?uoid=<%=checkout.getUserId()%>"><%=checkoutUser.getUsername()%></a></td>
@@ -661,102 +627,101 @@ open a specific revision to query other revisions<br />
 		<td><%=checkout.isActive()%></td>
 		<td>
 		<form method="get" action="<%=request.getContextPath()%>/download">
-		<input type="hidden" name="roid" value="<%=checkout.getRevisionId()%>" />
-		<select name="resultType">
-			<%
-				for (ResultType resultType : emfSerializerFactory.getMultipleResultTypes()) {
-			%>
+			<input type="hidden" name="roid" value="<%=checkout.getRevisionId()%>" />
+			<select name="resultType">
+<%
+						for (ResultType resultType : emfSerializerFactory.getMultipleResultTypes()) {
+%>
 			<option value="<%=resultType.name()%>"
 				<%=resultType.isDefaultSelected() ? " SELECTED=\"SELECTED\"" : ""%>><%=resultType.getNiceName()%></option>
-			<%
-				}
-			%>
-		</select> <label for="checkoutsdownloadzip_<%=checkout.getOid()%>">Zip
-		</label><input type="checkbox" name="zip"
-			id="checkoutsdownloadzip_<%=checkout.getOid()%>" /> <input
-			name="download" type="submit" value="Download" /></form>
+<%
+						}
+%>
+			</select>
+			<label for="checkoutsdownloadzip_<%=checkout.getOid()%>">Zip</label>
+			<input type="checkbox" name="zip" id="checkoutsdownloadzip_<%=checkout.getOid()%>" />
+			<input name="download" type="submit" value="Download" /></form>
 		</td>
 	</tr>
-	<%
-		}
-	%>
+<%
+					}
+%>
 </table>
 </div>
 <%
-	}
+				}
 %>
-<div class="tabbertab" id="authorizeduserstab"
-	title="Authorized users<%=users.size() == 0 ? "" : " (" + users.size() + ")"%>">
+<div class="tabbertab" id="authorizeduserstab" title="Authorized users<%=users.size() == 0 ? "" : " (" + users.size() + ")"%>">
 <%
-	if (nonAuthorizedUsers.size() > 0 && hasUserManagementRights) {
+				if (nonAuthorizedUsers.size() > 0 && hasUserManagementRights) {
 %>
-<form method="post" action="addusertoproject.jsp"><select
-	name="uoid">
-	<%
-		for (SUser user : nonAuthorizedUsers) {
-	%>
-	<option value="<%=user.getOid()%>"><%=user.getName() + " (" + user.getUsername() + ")"%></option>
-	<%
-		}
-	%>
-</select> <input type="hidden" name="poid" value="<%=poid%>" /> <input
-	type="hidden" name="type" value="project" /> <input type="submit"
-	value="Add" /></form>
+<form method="post" action="addusertoproject.jsp">
+	<select name="uoid">
 <%
-	}
+					for (SUser user : nonAuthorizedUsers) {
+%>
+		<option value="<%=user.getOid()%>"><%=user.getName() + " (" + user.getUsername() + ")"%></option>
+<%
+					}
+%>
+	</select> <input type="hidden" name="poid" value="<%=poid%>" />
+	<input type="hidden" name="type" value="project" /> 
+	<input type="submit" value="Add" /></form>
+<%
+				}
 %> <%
- 	if (users.size() > 0) {
+ 				if (users.size() > 0) {
  %>
 <table class="formatted">
 	<tr>
 		<th>Name</th>
 		<th>Username</th>
 		<th>Type</th>
-		<%
-			if (hasUserManagementRights) {
-		%>
+<%
+					if (hasUserManagementRights) {
+%>
 		<th>Actions</th>
-		<%
-			}
-		%>
+<%
+					}
+%>
 	</tr>
-	<%
-		for (SUser user : users) {
-	%>
-	<tr
-		<%=user.getState() == SObjectState.DELETED ? " class=\"deleted\"" : ""%>>
+<%
+					for (SUser user : users) {
+%>
+	<tr <%=user.getState() == SObjectState.DELETED ? " class=\"deleted\"" : ""%>>
 		<td><a href="user.jsp?uoid=<%=user.getOid()%>"><%=user.getName()%></a></td>
 		<td><a href="user.jsp?uoid=<%=user.getOid()%>"><%=user.getUsername()%></a></td>
 		<td><%=JspHelper.getNiceUserTypeName(user.getUserType())%></td>
-		<%
-			if (hasUserManagementRights) {
-		%>
+<%
+						if (hasUserManagementRights) {
+%>
 		<td>
-		<%
-			if (user.getUserType() != SUserType.ADMIN) {
-		%><a
-			href="revokepermission.jsp?type=project&poid=<%=poid%>&amp;uoid=<%=user.getOid()%>">revoke</a>
-		<%
-			}
-		%>
+<%
+							if (user.getUserType() != SUserType.ADMIN) {
+%>
+			<a href="revokepermission.jsp?type=project&poid=<%=poid%>&amp;uoid=<%=user.getOid()%>">revoke</a>
+<%
+							}
+%>
 		</td>
-		<%
-			}
-		%>
+<%
+						}
+%>
 	</tr>
-	<%
-		}
-	%>
+<%
+					}
+%>
 </table>
 <%
-	} else {
+				} else {
 %>
 <div class="none">None</div>
 <%
-	}
+				}
 %>
 </div>
 </div>
+
 <script>
 	var poid = <%=poid%>;
 	var lastRevisionOid = <%=lastRevision == null ? -1 : lastRevision.getOid()%>;
@@ -769,17 +734,23 @@ open a specific revision to query other revisions<br />
 			document.getElementById("projecttabber").tabber.tabShow(1);
 			return false;
 		});
-		<%if (!loginManager.getService().getSubProjects(project.getOid()).isEmpty()) {%>
+<%
+				if (!loginManager.getService().getSubProjects(project.getOid()).isEmpty()) {
+%>
 			$("#uploadlink").show();
 			$("#uploadlink").click(function(){
 				$("#upload").show();
 				$("#uploadlink").hide();
 			});
 			$("#upload").hide();
-<%} else {%>
+<%
+				} else {
+%>
 			$("#upload").show();
 			$("#uploadlink").hide();
-<%}%>
+<%
+				}
+%>
 		var updateInactiveCheckouts = function(){
 			if ($('#showinactivecheckouts').is(':checked')) {
 				$(".inactivecheckoutrow").show();
@@ -863,18 +834,18 @@ open a specific revision to query other revisions<br />
 		
 		$("#compareajaxloader").hide();
 		$("#browserajaxloader").hide();
-		<%
+<%
 			String clashesUrl = "clashes.jsp?poid=" + poid;
-						if (request.getParameter("margin") != null) {
-							clashesUrl += "&margin=" + request.getParameter("margin");
-						}
-						if (request.getParameter("revisions") != null) {
-							clashesUrl += "&revisions=" + request.getParameter("revisions");
-						}
-						if (request.getParameter("ignored") != null) {
-							clashesUrl += "&ignored=" + request.getParameter("ignored");
-						}
-		%>
+				if (request.getParameter("margin") != null) {
+					clashesUrl += "&margin=" + request.getParameter("margin");
+				}
+				if (request.getParameter("revisions") != null) {
+					clashesUrl += "&revisions=" + request.getParameter("revisions");
+				}
+				if (request.getParameter("ignored") != null) {
+					clashesUrl += "&ignored=" + request.getParameter("ignored");
+				}
+%>
 		$("#clashdetectiondiv").load("<%=clashesUrl%>");
 		$("#compareform").submit(function(){
 			$("#compareform").hide();
@@ -965,7 +936,8 @@ open a specific revision to query other revisions<br />
 			}
 		});
 	}
-</script> <%
+</script>
+<%
  	}
  		} catch (UserException e) {
  			if (e.getCause() instanceof OutOfMemoryError) {
@@ -976,6 +948,7 @@ open a specific revision to query other revisions<br />
  			}
  		}
  	}
- %>
+%>
 </div>
+
 <jsp:include page="footer.jsp" />
