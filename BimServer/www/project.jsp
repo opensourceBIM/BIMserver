@@ -277,7 +277,8 @@ Click <a href="revision.jsp?roid=<%=lastRevision.getOid()%>">here</a> to go to t
 	</tr>
 	<%=JspHelper.writeDownloadProjectTree("download", project, loginManager, 0, null)%>
 </table>
-Download: <select name="resultType">
+Download: 
+	<select name="resultType">
 <%
 				for (ResultType resultType : emfSerializerFactory.getMultipleResultTypes()) {
 %>
@@ -285,9 +286,10 @@ Download: <select name="resultType">
 <%
 				}
 %>
-		</select> <label for="advancedzip_<%=lastRevision.getId()%>">Zip </label>
-		<input type="checkbox" name="zip" id="advancedzip_<%=lastRevision.getId()%>" />
-		<input type="submit" value="Download"> <input type="hidden" name="multiple" value="true" /></form>
+	</select> <label for="advancedzip_<%=lastRevision.getId()%>">Zip </label>
+	<input type="checkbox" name="zip" id="advancedzip_<%=lastRevision.getId()%>" />
+	<input type="submit" value="Download"> <input type="hidden" name="multiple" value="true" />
+</form>
 </div>
 </div>
 <%
