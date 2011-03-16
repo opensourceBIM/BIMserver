@@ -47,7 +47,6 @@ import javax.mail.internet.MimeMessage;
 import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
 
 import org.bimserver.ServerInfo;
-import org.bimserver.ServerInfo.ServerState;
 import org.bimserver.database.BimDatabase;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
@@ -146,6 +145,7 @@ import org.bimserver.longaction.LongActionManager;
 import org.bimserver.longaction.LongCheckinAction;
 import org.bimserver.longaction.LongCheckoutAction;
 import org.bimserver.longaction.LongDownloadAction;
+import org.bimserver.longaction.LongDownloadOrCheckoutAction;
 import org.bimserver.mail.MailSystem;
 import org.bimserver.merging.Merger;
 import org.bimserver.models.ifc2x3.IfcRoot;
@@ -176,7 +176,6 @@ import org.bimserver.shared.SCompareResult;
 import org.bimserver.shared.SDataObject;
 import org.bimserver.shared.SDownloadResult;
 import org.bimserver.shared.SLongAction;
-import org.bimserver.shared.SMigration;
 import org.bimserver.shared.SRevisionSummary;
 import org.bimserver.shared.SUserSession;
 import org.bimserver.shared.ServerException;
@@ -833,15 +832,14 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public SDownloadResult getDownloadData(String longActionID) throws UserException, ServerException {
-		LongDownloadAction longAction = (LongDownloadAction) longActionManager.getLongAction(longActionID);
+		LongDownloadOrCheckoutAction longAction = (LongDownloadOrCheckoutAction) longActionManager.getLongAction(longActionID);
 		return longAction.getCheckoutResult();
 	}
 
 	@Override
 	public LongActionState getDownloadState(String longActionID) throws UserException, ServerException {
-		LongAction longAction =  longActionManager.getLongAction(longActionID);
+		LongDownloadOrCheckoutAction longAction =  (LongDownloadOrCheckoutAction) longActionManager.getLongAction(longActionID);
 		if (longAction != null) {
-			System.out.println(longAction.getState().getProgress());
 			return longAction.getState();
 		}
 		throw new UserException("Cannot find download action, ID=" + longActionID);
