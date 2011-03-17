@@ -8,6 +8,9 @@ import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDeadlockException;
 import org.bimserver.database.Database;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.models.ifc2x3.Ifc2x3Package;
+import org.bimserver.models.log.LogPackage;
+import org.bimserver.models.store.StorePackage;
 import org.bimserver.shared.SMigration;
 
 public class Migrator {
@@ -66,7 +69,7 @@ public class Migrator {
 		return migrateSchemaTo(getLatestVersion());
 	}
 
-	public Schema migrate() throws MigrationException {
+	public Schema migrate() throws MigrationException, InconsistentModelsException {
 		DatabaseSession session = database.createSession();
 		try {
 			Schema schema = migrate(session);
@@ -81,7 +84,7 @@ public class Migrator {
 		}
 	}
 
-	private Schema upgrade(DatabaseSession databaseSession, int applicationSchemaVersion, int databaseSchemaVersion) throws MigrationException {
+	private Schema upgrade(DatabaseSession databaseSession, int applicationSchemaVersion, int databaseSchemaVersion) throws MigrationException, InconsistentModelsException {
 		Schema schema = new Schema();
 		for (int i = 0; i <= applicationSchemaVersion; i++) {
 			Migration migration = getMigration(i);
@@ -95,7 +98,18 @@ public class Migrator {
 				throw new MigrationException("Required migration not found: " + i);
 			}
 		}
-		return schema;
+		
+		Schema emfSchema = new Schema();
+		emfSchema.addEPackage(StorePackage.eINSTANCE);
+		emfSchema.addEPackage(LogPackage.eINSTANCE);
+		emfSchema.addEPackage(Ifc2x3Package.eINSTANCE);
+		
+		SchemaChecker checker = new SchemaChecker(schema, emfSchema);
+		if (checker.compare()) {
+			return schema;
+		} else {
+			throw new InconsistentModelsException();
+		}
 	}
 
 	public Set<SMigration> getMigrations() {
@@ -115,7 +129,7 @@ public class Migrator {
 		return migrations;
 	}
 
-	public Schema migrate(DatabaseSession session) throws MigrationException {
+	public Schema migrate(DatabaseSession session) throws MigrationException, InconsistentModelsException {
 		int applicationSchemaVersion = database.getApplicationSchemaVersion();
 		int databaseSchemaVersion = database.getDatabaseSchemaVersion();
 
