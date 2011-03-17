@@ -90,7 +90,7 @@ public class Database implements BimDatabase {
 	 * database-schema change Do not change this variable when nothing has
 	 * changed in the schema!
 	 */
-	public static final int APPLICATION_SCHEMA_VERSION = 2;
+	public static final int APPLICATION_SCHEMA_VERSION = 3;
 	private int databaseSchemaVersion;
 	private short tableId;
 	private Migrator migrator;
@@ -456,6 +456,7 @@ public class Database implements BimDatabase {
 	}
 
 	public void setDatabaseVersion(int version, DatabaseSession databaseSession) throws BimDeadlockException {
+		databaseSchemaVersion = version;
 		registry.save(SCHEMA_VERSION, version, databaseSession);
 	}
 

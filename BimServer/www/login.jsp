@@ -104,10 +104,12 @@ if (loginManager.getService().isSettingAllowSelfRegistration()) {
 		}
  	} else if (ServerInfo.getServerState() == ServerInfo.ServerState.NOT_SETUP) {
  		response.sendRedirect("setup.jsp");
+ 	} else if (ServerInfo.getServerState() == ServerInfo.ServerState.MIGRATION_REQUIRED || ServerInfo.getServerState() == ServerInfo.ServerState.MIGRATION_IMPOSSIBLE) {
+ 		response.sendRedirect("migrations.jsp");
+ 	} else if (ServerInfo.getServerState() == ServerInfo.ServerState.FATAL_ERROR || ServerInfo.getServerState() == ServerInfo.ServerState.UNKNOWN) {
+ 		response.sendRedirect("error.jsp");
  	} else if (ServerInfo.getServerState() == ServerInfo.ServerState.FATAL_ERROR) {
-%>
-	<div class="error"><%=ServerInfo.getErrorMessage() %></div>
-<%
-}
+ 		response.sendRedirect("error.jsp");
+ 	}
 %>
 <jsp:include page="footer.jsp" />

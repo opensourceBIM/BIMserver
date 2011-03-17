@@ -2,7 +2,8 @@
 <jsp:useBean id="loginManager" scope="session" class="org.bimserver.web.LoginManager" />
 <jsp:include page="htmlheader.jsp" />
 <body>
-<div style="width: 1000px; margin-left: auto; margin-right: auto; padding-top: 10px">
+<div style="width: 1000px; margin-left: auto; margin-right: auto; padding-top: 20px">
+<a href="main.jsp"><img src="images/fulllogo.gif" title="BIMserver"/></a>
 <%
 	String siteAddress = request.getParameter("siteAddress") != null ? request.getParameter("siteAddress") : "http://localhost:8082";
 	String smtpServer = request.getParameter("smtpServer") != null ? request.getParameter("smtpServer") : "";
@@ -24,6 +25,9 @@
 <form method="post">
 <table class="formatted">
 <tr>
+	<td colspan="2" class="tabletitle">Server</td>
+</tr>
+<tr>
 	<td>
 		<label for="siteAddress">Site address</label>
 		<p class="explain">The address on which your BIMserver is going to be available, for example "http://demo.bimserver.org"</p>
@@ -36,6 +40,9 @@
 		<p class="explain">Address of the SMTP server that should be used for sending e-mail</p>
 	</td>
 	<td><input type="text" id="smtpServer" name="smtpServer" value="<%=smtpServer %>"/></td>
+</tr>
+<tr>
+	<td colspan="2" class="tabletitle">Admin user</td>
 </tr>
 <tr>
 	<td>
@@ -59,6 +66,9 @@
 	<td><input type="password" id="adminPassword" name="adminPassword" value="<%=adminPassword %>"/></td>
 </tr>
 <tr>
+	<td colspan="2" class="tabletitle">Anonymous user</td>
+</tr>
+<tr>
 	<td>
 		<label for="createAnonymousUser">Create anonymous user</label>
 		<p class="explain">Whether to create an anonymous user</p>
@@ -70,3 +80,4 @@
 </form>
 </div>
 </body>
+</html>

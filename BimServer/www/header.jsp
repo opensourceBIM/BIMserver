@@ -7,6 +7,8 @@
 <%@page import="org.bimserver.interfaces.objects.SUser"%>
 <%@page import="org.bimserver.ServerInfo.ServerState"%>
 <%@page import="org.bimserver.ServerInfo.ServerState"%>
+<%@page import="org.bimserver.ServerInfo.ServerState"%>
+<%@page import="org.bimserver.ServerInfo.ServerState"%>
 <jsp:useBean id="loginManager" scope="session" class="org.bimserver.web.LoginManager" />
 <jsp:useBean id="errorMessages" scope="request" class="org.bimserver.ErrorMessages" />
 <jsp:include page="htmlheader.jsp" />
@@ -64,7 +66,9 @@ You are logged in as: <a href="user.jsp?uoid=<%=loginManager.getService().getLog
  		}
  	} else if (ServerInfo.getServerState() == ServerInfo.ServerState.NOT_SETUP) {
  		response.sendRedirect("setup.jsp");
- 	} else if (ServerInfo.getServerState() == ServerInfo.ServerState.FATAL_ERROR) {
+ 	} else if (ServerInfo.getServerState() == ServerInfo.ServerState.MIGRATION_REQUIRED || ServerInfo.getServerState() == ServerInfo.ServerState.MIGRATION_IMPOSSIBLE) {
+ 		response.sendRedirect("migrations.jsp");
+ 	} else if (ServerInfo.getServerState() == ServerInfo.ServerState.FATAL_ERROR || ServerInfo.getServerState() == ServerInfo.ServerState.UNKNOWN) {
  		response.sendRedirect("error.jsp");
 	}
 %>

@@ -1,15 +1,20 @@
 <%@page import="java.util.Set"%>
 <%@page import="org.bimserver.shared.SMigration"%>
 <%@page import="org.bimserver.shared.ServerException"%>
+<%@page import="org.bimserver.ServerInfo"%>
+<%@page import="org.bimserver.ServerInfo.ServerState"%>
 <jsp:useBean id="loginManager" scope="session" class="org.bimserver.web.LoginManager" />
 <jsp:include page="htmlheader.jsp" />
 <body>
 <div style="width: 1000px; margin-left: auto; margin-right: auto; padding-top: 20px">
+<a href="main.jsp"><img src="images/fulllogo.gif" title="BIMserver"/></a>
 <h1>BIMserver Database Migrations</h1>
 <%
 	if (request.getParameter("migrate") != null) {
 		try {
 			loginManager.getService().migrateDatabase();
+			ServerInfo.update();
+			response.sendRedirect("main.jsp");
 		} catch (ServerException e) {
 			out.println("<div class=\"error\">" + e.getUserMessage() + "</div>");
 		}
@@ -30,7 +35,7 @@
 	}
 %>
 </table>
-<form>
+<form method="post">
 <%
 	if (!migrations.iterator().next().isExecuted()) {
 %>
@@ -45,3 +50,4 @@ No migrations required to execute
 </form>
 </div>
 </body>
+</html>
