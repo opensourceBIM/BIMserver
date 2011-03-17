@@ -228,7 +228,9 @@ public class ServerInitializer implements ServletContextListener {
 			emfSerializerFactory.initSerializers();
 			ServiceFactory.init(bimDatabase, emfSerializerFactory, schema, longActionManager, ifcEngineFactory, fieldIgnoreMap, settingsManager, mailSystem);
 			setSystemService(ServiceFactory.getINSTANCE().newService(AccessMethod.INTERNAL));
-			((Service) getSystemService()).loginAsSystem();
+			if (!((Service) getSystemService()).loginAsSystem()) {
+				throw new RuntimeException("System user not found");
+			}
 			LoginManager.setSystemService(getSystemService());
 
 			RestApplication.setServiceFactory(ServiceFactory.getINSTANCE());

@@ -1,7 +1,8 @@
 <%@page import="org.bimserver.shared.UserException"%>
 <jsp:useBean id="loginManager" scope="session" class="org.bimserver.web.LoginManager" />
 <jsp:include page="htmlheader.jsp" />
-<div style="width: 1000px; margin-left: auto; margin-right: auto;">
+<body>
+<div style="width: 1000px; margin-left: auto; margin-right: auto; padding-top: 10px">
 <%
 	String siteAddress = request.getParameter("siteAddress") != null ? request.getParameter("siteAddress") : "http://localhost:8082";
 	String smtpServer = request.getParameter("smtpServer") != null ? request.getParameter("smtpServer") : "";
@@ -68,3 +69,4 @@
 <input type="submit" name="setup" value="Setup"/>
 </form>
 </div>
+</body>

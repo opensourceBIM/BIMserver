@@ -1,6 +1,6 @@
 package org.bimserver.database.migrations;
 
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 import org.apache.commons.lang.StringUtils;
@@ -98,15 +98,16 @@ public class Migrator {
 		return schema;
 	}
 
-	public Set<SMigration> getPendingMigrations() {
-		Set<SMigration> migrations = new HashSet<SMigration>();
+	public Set<SMigration> getMigrations() {
+		Set<SMigration> migrations = new LinkedHashSet<SMigration>();
 		int applicationSchemaVersion = database.getApplicationSchemaVersion();
 		int databaseSchemaVersion = database.getDatabaseSchemaVersion();
-		for (int i = databaseSchemaVersion + 1; i <= applicationSchemaVersion; i++) {
+		for (int i = applicationSchemaVersion; i >= 0; i--) {
 			Migration migration = getMigration(i);
 			if (migration != null) {
 				SMigration sMigration = new SMigration();
 				sMigration.setNumber(i);
+				sMigration.setExecuted(i <= databaseSchemaVersion);
 				sMigration.setDescription(migration.getDescription());
 				migrations.add(sMigration);
 			}
