@@ -1873,6 +1873,9 @@ public class Service implements ServiceInterface {
 	public void setSettingSiteAddress(String siteAddress) throws UserException, ServerException {
 		requireAuthentication();
 		Settings settings = settingsManager.getSettings();
+		if (siteAddress.trim().isEmpty()) {
+			throw new UserException("Site address cannot be empty");
+		}
 		settings.setSiteAddress(siteAddress);
 		settingsManager.saveSettings();
 	}
@@ -1886,6 +1889,9 @@ public class Service implements ServiceInterface {
 	public void setSettingSmtpServer(String smtpServer) throws UserException, ServerException {
 		requireAuthentication();
 		Settings settings = settingsManager.getSettings();
+		if (smtpServer.trim().isEmpty()) {
+			throw new UserException("SMTP server address cannot be empty");
+		}
 		settings.setSmtpServer(smtpServer);
 		settingsManager.saveSettings();
 	}

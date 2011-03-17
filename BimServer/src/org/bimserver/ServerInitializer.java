@@ -43,7 +43,6 @@ import nl.tue.buildingsmart.express.parser.ExpressSchemaParser;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.LogManager;
-import org.bimserver.ServerInfo.ServerState;
 import org.bimserver.database.BimDatabase;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.Database;
@@ -61,7 +60,6 @@ import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.LogFactory;
 import org.bimserver.models.log.ServerStarted;
-import org.bimserver.models.store.Settings;
 import org.bimserver.models.store.UserType;
 import org.bimserver.querycompiler.QueryCompiler;
 import org.bimserver.resources.JarResourceFetcher;
@@ -178,18 +176,8 @@ public class ServerInitializer implements ServletContextListener {
 			SettingsManager settingsManager = new SettingsManager(bimDatabase);
 			MailSystem mailSystem = new MailSystem(settingsManager);
 
-			if (bimDatabase.getMigrator().migrationRequired()) {
-				ServerInfo.setServerState(ServerState.MIGRATION_REQUIRED);
-			} else if (bimDatabase.getMigrator().migrationImpossible()) {
-				ServerInfo.setServerState(ServerState.MIGRATION_IMPOSSIBLE);
-			} else {
-				Settings settings = settingsManager.getSettings();
-				if (settings.getSiteAddress().isEmpty() || settings.getSmtpServer().isEmpty()) {
-					ServerInfo.setServerState(ServerState.NOT_SETUP);
-				} else {
-					ServerInfo.setServerState(ServerState.RUNNING);
-				}
-			}
+			ServerInfo.init(bimDatabase, settingsManager);
+			ServerInfo.update();
 
 			if (serverType == ServerType.DEV_ENVIRONMENT && columnDatabase.isNew()) {
 				BimDatabaseSession session = bimDatabase.createSession();

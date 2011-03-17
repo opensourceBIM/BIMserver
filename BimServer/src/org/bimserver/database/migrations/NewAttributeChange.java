@@ -40,9 +40,9 @@ public class NewAttributeChange implements Change {
 					while (record != null) {
 						ByteBuffer buffer = ByteBuffer.wrap(record.getValue());
 						GrowingByteBuffer growingByteBuffer = new GrowingByteBuffer(buffer);
-						buffer.position(buffer.capacity() - 1);
+						growingByteBuffer.position(growingByteBuffer.capacity() - 1);
 						if (eAttribute.isMany()) {
-							buffer.putShort((short)0);
+							growingByteBuffer.putShort((short)0);
 						} else {
 							if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEString()) {
 								growingByteBuffer.putShort((short)-1);

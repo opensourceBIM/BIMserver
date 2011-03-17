@@ -15,7 +15,8 @@
 <%@page import="org.bimserver.interfaces.objects.SUserType"%>
 <%@page import="org.bimserver.serializers.EmfSerializerFactory"%>
 <%@page import="org.bimserver.shared.ServiceInterface"%>
-<div class="sidebar">
+
+<%@page import="org.bimserver.shared.UserException"%><div class="sidebar">
 <ul>
 	<li><a href="<%=getServletContext().getContextPath()%>/settings?action=downloadignorefile">Download ignore.xml</a></li>
 </ul>
@@ -25,32 +26,36 @@
 	ServiceInterface service = loginManager.getService();
 	if (loginManager.getService().isLoggedIn() && loginManager.getUserType() == SUserType.ADMIN) {
 		if (request.getParameter("save") != null) {
-			service.setSettingAllowSelfRegistration(request.getParameter("allowSelfRegistration") != null);
-			service.setSettingEmailSenderAddress(request.getParameter("emailsenderaddress"));
-			service.setSettingRegistrationAddition(request.getParameter("registrationAddition"));
-			service.setSettingSendConfirmationEmailAfterRegistration(request.getParameter("sendConfirmationEmailAfterRegistration") != null);
-			service.setSettingShowVersionUpgradeAvailable(request.getParameter("showVersionUpgradeAvailable") != null);
-			service.setSettingAllowUsersToCreateTopLevelProjects(request.getParameter("allowUsersToCreateTopLevelProjects") != null);
-			service.setSettingSmtpServer(request.getParameter("smtpServer"));
-			service.setSettingUseCaching(request.getParameter("usecaching") != null);
-			service.setSettingIntelligentMerging(request.getParameter("intelligentMerging") != null);
-			service.setSettingAutoTestClashes(request.getParameter("autoTestClashes") != null);
-			service.setSettingCustomLogoAddress(request.getParameter("customLogo"));
-			service.setSettingSiteAddress(request.getParameter("siteAddress"));
-			service.setSettingCheckinMergingEnabled(request.getParameter("checkinMergingEnabled") != null);
-			String enabledExportTypes = "";
-			Set<ResultType> enabledTypes = new HashSet<ResultType>();
-			for (ResultType resultType : ResultType.values()) {
-				if (request.getParameter(resultType.name()) != null) {
-					enabledTypes.add(resultType);
+			try {
+				service.setSettingAllowSelfRegistration(request.getParameter("allowSelfRegistration") != null);
+				service.setSettingEmailSenderAddress(request.getParameter("emailsenderaddress"));
+				service.setSettingRegistrationAddition(request.getParameter("registrationAddition"));
+				service.setSettingSendConfirmationEmailAfterRegistration(request.getParameter("sendConfirmationEmailAfterRegistration") != null);
+				service.setSettingShowVersionUpgradeAvailable(request.getParameter("showVersionUpgradeAvailable") != null);
+				service.setSettingAllowUsersToCreateTopLevelProjects(request.getParameter("allowUsersToCreateTopLevelProjects") != null);
+				service.setSettingSmtpServer(request.getParameter("smtpServer"));
+				service.setSettingUseCaching(request.getParameter("usecaching") != null);
+				service.setSettingIntelligentMerging(request.getParameter("intelligentMerging") != null);
+				service.setSettingAutoTestClashes(request.getParameter("autoTestClashes") != null);
+				service.setSettingCustomLogoAddress(request.getParameter("customLogo"));
+				service.setSettingSiteAddress(request.getParameter("siteAddress"));
+				service.setSettingCheckinMergingEnabled(request.getParameter("checkinMergingEnabled") != null);
+				String enabledExportTypes = "";
+				Set<ResultType> enabledTypes = new HashSet<ResultType>();
+				for (ResultType resultType : ResultType.values()) {
+					if (request.getParameter(resultType.name()) != null) {
+						enabledTypes.add(resultType);
+					}
 				}
+				service.setSettingEnabledExportTypes(enabledTypes);
+				EmfSerializerFactory.getInstance().initSerializers();
+				response.sendRedirect(getServletContext().getContextPath() + "/settings.jsp?msg=settingschangeok");
+			} catch (UserException e) {
+				out.println("<div class=\"error\">" + e.getUserMessage() + "</div>");
 			}
-			service.setSettingEnabledExportTypes(enabledTypes);
-			EmfSerializerFactory.getInstance().initSerializers();
-			response.sendRedirect(getServletContext().getContextPath() + "/settings.jsp?msg=settingschangeok");
-				}
-				SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
-				if (request.getParameter("msg") != null) {
+		}
+			SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+			if (request.getParameter("msg") != null) {
 			if (request.getParameter("msg").equals("ignorefileuploadok")) {
 				out.println("<div class=\"info\">New ignore file uploaded successfully, a restart of the BIMserver is required</div>");
 			} else if (request.getParameter("msg").equals("settingsfileuploadok")) {

@@ -87,10 +87,10 @@ public class Migrator {
 			Migration migration = getMigration(i);
 			if (migration != null) {
 				migration.migrate(schema);
-				if (i >= databaseSchemaVersion) {
+				if (i > databaseSchemaVersion) {
 					schema.upgradeDatabase(database, i, databaseSession);
-					schema.clearUpdates();
 				}
+				schema.clearUpdates();
 			} else {
 				throw new MigrationException("Required migration not found: " + i);
 			}
