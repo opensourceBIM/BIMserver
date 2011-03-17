@@ -2249,9 +2249,9 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public Set<SMigration> getPendingMigrations() {
+	public Set<SMigration> getMigrations() {
 		Migrator migrator = bimDatabase.getMigrator();
-		return migrator.getPendingMigrations();
+		return migrator.getMigrations();
 	}
 	
 	@Override

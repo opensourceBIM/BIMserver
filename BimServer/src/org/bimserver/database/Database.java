@@ -45,7 +45,6 @@ import org.bimserver.models.log.LogPackage;
 import org.bimserver.models.store.CheckinState;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.Settings;
-import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.UserType;
 import org.bimserver.shared.UserException;
@@ -146,6 +145,8 @@ public class Database implements BimDatabase {
 				throw new DatabaseRestartRequiredException();
 			} else if (registry.readBoolean("isnew", true, databaseSession)) {
 				initInternalStructure(databaseSession);
+				initOidCounter(databaseSession);
+				initPidCounter(databaseSession);
 
 				DatabaseCreated databaseCreated = LogFactory.eINSTANCE.createDatabaseCreated();
 				databaseCreated.setAccessMethod(AccessMethod.INTERNAL);
@@ -164,9 +165,9 @@ public class Database implements BimDatabase {
 				registry.save("isnew", false, databaseSession);
 			} else {
 				initInternalStructure(databaseSession);
+				initOidCounter(databaseSession);
+				initPidCounter(databaseSession);
 			}
-			initOidCounter(databaseSession);
-			initPidCounter(databaseSession);
 			for (EClass eClass : classifiers.keyBSet()) {
 				if (eClass.getEPackage() == Ifc2x3Package.eINSTANCE && eClass != Ifc2x3Package.eINSTANCE.getWrappedValue()) {
 					realClasses.add(eClass.getName());

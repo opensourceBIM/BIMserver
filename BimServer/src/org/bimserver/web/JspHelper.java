@@ -270,6 +270,8 @@ public class JspHelper {
 			return "Anonymous";
 		case USER:
 			return "User";
+		case SYSTEM:
+			return "System";
 		}
 		return "unknown";
 	}

@@ -559,7 +559,7 @@ public interface ServiceInterface {
 			@WebParam(name = "createAnonymousUser", partName = "setup.createAnonymousUser") boolean createAnonymousUser) throws UserException, ServerException;
 
 	@WebMethod(action = "getPendingMigrations")
-	Set<SMigration> getPendingMigrations();
+	Set<SMigration> getMigrations();
 
 	@WebMethod(action = "migrateDatabase")
 	void migrateDatabase() throws ServerException;
