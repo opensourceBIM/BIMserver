@@ -115,5 +115,7 @@
 	<classpathentry exported="true" kind="lib" path="lib/cxf/stringtemplate-3.2.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/wss4j-1.5.11.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/xmlsec-1.4.4.jar"/>
+	<classpathentry kind="lib" path="lib/emf/org.eclipse.emf.compare_1.0.1.v200909161031.jar"/>
+	<classpathentry kind="lib" path="lib/emf/org.eclipse.emf.compare.match_1.0.1.v200909161031.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -20,6 +20,7 @@ package org.bimserver.database;
  * long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.io.File;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Date;
@@ -28,12 +29,16 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.bimserver.ServerInfo;
 import org.bimserver.SettingsManager;
+import org.bimserver.ServerInfo.ServerState;
 import org.bimserver.database.actions.AddUserDatabaseAction;
 import org.bimserver.database.actions.CreateBaseProject;
 import org.bimserver.database.berkeley.DatabaseInitException;
+import org.bimserver.database.migrations.InconsistentModelsException;
 import org.bimserver.database.migrations.MigrationException;
 import org.bimserver.database.migrations.Migrator;
+import org.bimserver.database.migrations.Schema;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.FieldIgnoreMap;
 import org.bimserver.ifc.IfcModel;
@@ -90,7 +95,7 @@ public class Database implements BimDatabase {
 	 * database-schema change Do not change this variable when nothing has
 	 * changed in the schema!
 	 */
-	public static final int APPLICATION_SCHEMA_VERSION = 3;
+	public static final int APPLICATION_SCHEMA_VERSION = 2;
 	private int databaseSchemaVersion;
 	private short tableId;
 	private Migrator migrator;
@@ -138,6 +143,10 @@ public class Database implements BimDatabase {
 				try {
 					migrator.migrate(databaseSession);
 				} catch (MigrationException e) {
+					LOGGER.error("", e);
+				} catch (InconsistentModelsException e) {
+					ServerInfo.setServerState(ServerState.FATAL_ERROR);
+					ServerInfo.setErrorMessage("Inconsistent models");
 					LOGGER.error("", e);
 				}
 				registry.save("isnew", true, databaseSession);

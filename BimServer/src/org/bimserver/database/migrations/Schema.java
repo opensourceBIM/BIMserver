@@ -70,6 +70,10 @@ public class Schema {
 		}
 	}
 
+	public Set<EPackage> getEPackages() {
+		return new HashSet<EPackage>(packages.values());
+	}
+	
 	private void initIndirectSubClasses(EClass eClass) {
 		HashSet<EClass> set = new HashSet<EClass>();
 		indirectSubClasses.put(eClass, set);
@@ -234,7 +238,7 @@ public class Schema {
 		}
 	}
 
-	private void addEPackage(EPackage ePackage) {
+	public void addEPackage(EPackage ePackage) {
 		packages.put(ePackage.getName(), ePackage);
 		changes.add(new NewPackageChange(ePackage));
 		for (EClassifier eClassifier : ePackage.getEClassifiers()) {
