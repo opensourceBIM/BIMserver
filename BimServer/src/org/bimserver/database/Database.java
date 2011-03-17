@@ -167,13 +167,13 @@ public class Database implements BimDatabase {
 				initInternalStructure(databaseSession);
 				initOidCounter(databaseSession);
 				initPidCounter(databaseSession);
-			}
-			for (EClass eClass : classifiers.keyBSet()) {
-				if (eClass.getEPackage() == Ifc2x3Package.eINSTANCE && eClass != Ifc2x3Package.eINSTANCE.getWrappedValue()) {
-					realClasses.add(eClass.getName());
+				fixCheckinStates(databaseSession);
+				for (EClass eClass : classifiers.keyBSet()) {
+					if (eClass.getEPackage() == Ifc2x3Package.eINSTANCE && eClass != Ifc2x3Package.eINSTANCE.getWrappedValue()) {
+						realClasses.add(eClass.getName());
+					}
 				}
 			}
-			fixCheckinStates(databaseSession);
 			databaseSession.commit();
 		} catch (BimDeadlockException e) {
 			LOGGER.error("", e);
