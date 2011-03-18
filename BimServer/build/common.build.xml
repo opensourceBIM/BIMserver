@@ -89,7 +89,7 @@
 			<src path="../../Collada/src" />
 			<src path="../../IFCEngine/src" />
 			<src path="../../O3d/src" />
-			<src path="../../Store/src" />
+			<src path="../../Store/generated" />
 			<classpath>
 				<fileset dir="builds/BuildJar/lib">
 					<include name="**/*.jar" />
@@ -211,7 +211,7 @@
 			<src path="../../Collada/src" />
 			<src path="../../IFCEngine/src" />
 			<src path="../../O3d/src" />
-			<src path="../../Store/src" />
+			<src path="../../Store/generated" />
 			<classpath>
 				<fileset dir="builds/BuildWar/WEB-INF/lib">
 					<include name="**/*.jar" />
