@@ -109,4 +109,8 @@ public class StringUtils {
 	public static String firstUpperCase(String name) {
 		return name.substring(0, 1).toUpperCase() + name.substring(1);
 	}
+
+	public static String firstLowerCase(String name) {
+		return name.substring(0, 1).toLowerCase() + name.substring(1);
+	}
 }

@@ -1,5 +1,8 @@
 package org.bimserver.shared;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class LongActionState {
 	public enum ActionState {
 		UNKNOWN, STARTED, FINISHED
