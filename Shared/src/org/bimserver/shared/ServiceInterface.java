@@ -275,6 +275,171 @@ public interface ServiceInterface {
 	SRevisionSummary getRevisionSummary(@WebParam(name = "roid", partName = "getRevisionSummary.roid") long roid) throws UserException,
 			ServerException;
 
+	@WebMethod(action = "userHasCheckinRights")
+	boolean userHasCheckinRights(@WebParam(name = "poid", partName = "userHasCheckinRights.poid") long poid) throws UserException,
+			ServerException;
+
+	@WebMethod(action = "getShowCheckoutWarning")
+	Set<String> getShowCheckoutWarning(@WebParam(name = "poid", partName = "getShowCheckoutWarning.poid") long poid,
+			@WebParam(name = "uoid", partName = "getShowCheckoutWarning.uoid") long uoid) throws UserException, ServerException;
+
+	@WebMethod(action = "userHasRights")
+	boolean userHasRights(@WebParam(name = "poid", partName = "userHasRights.poid") long poid) throws UserException, ServerException;
+
+	@WebMethod(action = "getDataObjectByOid")
+	SDataObject getDataObjectByOid(@WebParam(name = "roid", partName = "getDataObjectByOid.roid") long roid,
+			@WebParam(name = "oid", partName = "getDataObjectByOid.oid") long oid,
+			@WebParam(name = "className", partName = "getDataObjectByOid.className") String className) throws UserException,
+			ServerException;
+
+	@WebMethod(action = "getDataObjectByGuid")
+	SDataObject getDataObjectByGuid(@WebParam(name = "roid", partName = "getDataObjectByGuid.roid") long roid,
+			@WebParam(name = "guid", partName = "getDataObjectByGuid.guid") String guid) throws UserException, ServerException;
+
+	@WebMethod(action = "getDataObjectsByType")
+	List<SDataObject> getDataObjectsByType(@WebParam(name = "roid", partName = "getDataObjectsByType.roid") long roid,
+			@WebParam(name = "className", partName = "getDataObjectsByType.className") String className) throws UserException,
+			ServerException;
+
+	@WebMethod(action = "findClashesByGuid")
+	List<SGuidClash> findClashesByGuid(
+			@WebParam(name = "sClashDetectionSettings", partName = "findClashesByGuid.sClashDetectionSettings") SClashDetectionSettings sClashDetectionSettings)
+			throws UserException, ServerException;
+
+	@WebMethod(action = "findClashesByEid")
+	List<SEidClash> findClashesByEid(
+			@WebParam(name = "sClashDetectionSettings", partName = "findClashesByEid.sClashDetectionSettings") SClashDetectionSettings sClashDetectionSettings)
+			throws UserException, ServerException;
+
+	@WebMethod(action = "getLastClashes")
+	List<SClash> getLastClashes(@WebParam(name = "roid", partName = "getLastClashes.roid") long roid) throws UserException, ServerException;
+
+	@WebMethod(action = "branchToNewProject")
+	SCheckinResult branchToNewProject(@WebParam(name = "roid", partName = "branchToNewProject.roid") long roid,
+			@WebParam(name = "projectName", partName = "branchToNewProject.projectName") String projectName,
+			@WebParam(name = "comment", partName = "branchToNewProject.comment") String comment) throws UserException, ServerException;
+
+	@WebMethod(action = "branchToExistingProject")
+	SCheckinResult branchToExistingProject(@WebParam(name = "roid", partName = "branchToExistingProject.roid") long roid,
+			@WebParam(name = "destPoid", partName = "branchToExistingProject.destPoid") long destPoid,
+			@WebParam(name = "comment", partName = "branchToExistingProject.comment") String comment) throws UserException, ServerException;
+
+	@WebMethod(action = "getGeoTag")
+	SGeoTag getGeoTag(@WebParam(name = "goid", partName = "getGeoTag.goid") long goid) throws UserException, ServerException;
+
+	@WebMethod(action = "updateGeoTag")
+	void updateGeoTag(@WebParam(name = "sGeoTag", partName = "updateGeoTag.sGeoTag") SGeoTag sGeoTag) throws UserException, ServerException;
+
+	@WebMethod(action = "getClashDetectionSettings")
+	SClashDetectionSettings getClashDetectionSettings(@WebParam(name = "cdsoid", partName = "getClashDetectionSettings.cdsoid") long cdsoid)
+			throws UserException, ServerException;
+
+	@WebMethod(action = "updateClashDetectionSettings")
+	void updateClashDetectionSettings(
+			@WebParam(name = "sClashDetectionSettings", partName = "updateClashDetectionSettings.sClashDetectionSettings") SClashDetectionSettings sClashDetectionSettings)
+			throws UserException, ServerException;
+
+	@WebMethod(action = "getUserByUoid")
+	SUser getUserByUoid(@WebParam(name = "uoid", partName = "getUserByUoid.uoid") long uoid) throws UserException, ServerException;
+
+	@WebMethod(action = "getAnonymousUser")
+	SUser getAnonymousUser() throws UserException, ServerException;
+
+	@WebMethod(action = "getAllNonAuthorizedUsersOfProject")
+	List<SUser> getAllNonAuthorizedUsersOfProject(@WebParam(name = "poid", partName = "getAllNonAuthorizedUsersOfProject.poid") long poid)
+			throws UserException, ServerException;
+
+	@WebMethod(action = "getAllAuthorizedUsersOfProject")
+	List<SUser> getAllAuthorizedUsersOfProject(@WebParam(name = "poid", partName = "getAllAuthorizedUsersOfProject.poid") long poid)
+			throws UserException, ServerException;
+
+	@WebMethod(action = "getUsersProjects")
+	List<SProject> getUsersProjects(@WebParam(name = "uoid", partName = "getUsersProjects.uoid") long uoid) throws UserException,
+			ServerException;
+
+	@WebMethod(action = "getProjectByName")
+	List<SProject> getProjectByName(@WebParam(name = "name", partName = "getProjectByName.name") String name) throws UserException,
+			ServerException;
+
+	@WebMethod(action = "setRevisionTag")
+	void setRevisionTag(@WebParam(name = "roid", partName = "setRevisionTag.roid") long roid,
+			@WebParam(name = "tag", partName = "setRevisionTag.tag") String tag) throws UserException, ServerException;
+
+	@WebMethod(action = "getSubProjects")
+	List<SProject> getSubProjects(@WebParam(name = "poid", partName = "getSubProjects.poid") long poid) throws UserException,
+			ServerException;
+
+	@WebMethod(action = "isExportTypeEnabled")
+	boolean isExportTypeEnabled(@WebParam(name = "resultType", partName = "isExportTypeEnabled.resultType") ResultType resultType)
+			throws UserException, ServerException;
+
+	@WebMethod(action = "setExportTypeEnabled")
+	void setExportTypeEnabled(@WebParam(name = "resultType", partName = "setExportTypeEnabled.resultType") ResultType resultType,
+			boolean enabled) throws UserException, ServerException;
+
+	@WebMethod(action = "getCurrentUser")
+	SUser getCurrentUser() throws UserException, ServerException;
+
+	@WebMethod(action = "isLoggedIn")
+	boolean isLoggedIn() throws UserException, ServerException;
+
+	@WebMethod(action = "loginAnonymous")
+	void loginAnonymous() throws UserException, ServerException;
+
+	@WebMethod(action = "getActiveSince")
+	Date getActiveSince() throws UserException, ServerException;
+
+	@WebMethod(action = "getLastActive")
+	Date getLastActive() throws UserException, ServerException;
+
+	@WebMethod(action = "getCurrentToken")
+	Token getCurrentToken() throws UserException, ServerException;
+
+	@WebMethod(action = "getAccessMethod")
+	SAccessMethod getAccessMethod() throws UserException, ServerException;
+
+	@WebMethod(action = "getEnabledResultTypes")
+	Set<ResultType> getEnabledResultTypes() throws UserException, ServerException;
+
+	@WebMethod(action = "getAllResultTypes")
+	Set<ResultType> getAllResultTypes() throws UserException, ServerException;
+
+	@WebMethod(action = "getAllCheckoutsOfProjectAndSubProjects")
+	List<SCheckout> getAllCheckoutsOfProjectAndSubProjects(
+			@WebParam(name = "poid", partName = "getAllCheckoutsOfProjectAndSubProjects.poid") long poid) throws UserException,
+			ServerException;
+
+	@WebMethod(action = "requestPasswordChange")
+	void requestPasswordChange(@WebParam(name = "uoid", partName = "requestPasswordChange.uoid") long uoid) throws UserException,
+			ServerException;
+
+	@WebMethod(action = "validateAccount")
+	void validateAccount(@WebParam(name = "uoid", partName = "validateAccount.uoid") long uoid,
+			@WebParam(name = "token", partName = "validateAccount.token") String token,
+			@WebParam(name = "password", partName = "validateAccount.password") String password) throws UserException, ServerException;
+
+	@WebMethod(action = "sendClashesEmail")
+	void sendClashesEmail(
+			@WebParam(name = "sClashDetectionSettings", partName = "sendClashesEmail.sClashDetectionSettings") SClashDetectionSettings sClashDetectionSettings,
+			@WebParam(name = "poid", partName = "sendClashesEmail.poid") long poid,
+			@WebParam(name = "addressesTo", partName = "sendClashesEmail.addressesTo") Set<String> addressesTo) throws UserException,
+			ServerException;
+
+	@WebMethod(action = "sendCompareEmail")
+	void sendCompareEmail(@WebParam(name = "sCompareType", partName = "sendClashesEmail.sCompareType") SCompareType sCompareType,
+			@WebParam(name = "poid", partName = "sendClashesEmail.poid") long poid,
+			@WebParam(name = "roid1", partName = "sendClashesEmail.roid1") long roid1,
+			@WebParam(name = "roid2", partName = "sendClashesEmail.roid2") long roid2,
+			@WebParam(name = "address", partName = "sendClashesEmail.address") String address) throws UserException, ServerException;
+	
+	@WebMethod(action = "setup")
+	void setup(@WebParam(name = "siteAddress", partName = "setup.siteAddress") String siteAddress,
+			@WebParam(name = "smtpServer", partName = "setup.smtpServer") String smtpServer,
+			@WebParam(name = "adminName", partName = "setup.adminName") String adminName,
+			@WebParam(name = "adminUsername", partName = "setup.adminUsername") String adminUsername,
+			@WebParam(name = "adminPassword", partName = "setup.adminPassword") String adminPassword,
+			@WebParam(name = "createAnonymousUser", partName = "setup.createAnonymousUser") boolean createAnonymousUser) throws UserException, ServerException;
+
 	@WebMethod(action = "getSettingsCustomLogoAddress")
 	String getSettingCustomLogoAddress() throws UserException, ServerException;
 
@@ -383,120 +548,9 @@ public interface ServiceInterface {
 	@WebMethod(action = "setSettingUseCaching")
 	void setSettingUseCaching(@WebParam(name = "useCaching", partName = "setSettingUseCaching.useCaching") boolean useCaching)
 			throws UserException, ServerException;
-
-	@WebMethod(action = "userHasCheckinRights")
-	boolean userHasCheckinRights(@WebParam(name = "poid", partName = "userHasCheckinRights.poid") long poid) throws UserException,
-			ServerException;
-
-	@WebMethod(action = "getShowCheckoutWarning")
-	Set<String> getShowCheckoutWarning(@WebParam(name = "poid", partName = "getShowCheckoutWarning.poid") long poid,
-			@WebParam(name = "uoid", partName = "getShowCheckoutWarning.uoid") long uoid) throws UserException, ServerException;
-
-	@WebMethod(action = "userHasRights")
-	boolean userHasRights(@WebParam(name = "poid", partName = "userHasRights.poid") long poid) throws UserException, ServerException;
-
-	@WebMethod(action = "getDataObjectByOid")
-	SDataObject getDataObjectByOid(@WebParam(name = "roid", partName = "getDataObjectByOid.roid") long roid,
-			@WebParam(name = "oid", partName = "getDataObjectByOid.oid") long oid,
-			@WebParam(name = "className", partName = "getDataObjectByOid.className") String className) throws UserException,
-			ServerException;
-
-	@WebMethod(action = "getDataObjectByGuid")
-	SDataObject getDataObjectByGuid(@WebParam(name = "roid", partName = "getDataObjectByGuid.roid") long roid,
-			@WebParam(name = "guid", partName = "getDataObjectByGuid.guid") String guid) throws UserException, ServerException;
-
-	@WebMethod(action = "getDataObjectsByType")
-	List<SDataObject> getDataObjectsByType(@WebParam(name = "roid", partName = "getDataObjectsByType.roid") long roid,
-			@WebParam(name = "className", partName = "getDataObjectsByType.className") String className) throws UserException,
-			ServerException;
-
-	@WebMethod(action = "findClashesByGuid")
-	List<SGuidClash> findClashesByGuid(
-			@WebParam(name = "sClashDetectionSettings", partName = "findClashesByGuid.sClashDetectionSettings") SClashDetectionSettings sClashDetectionSettings)
-			throws UserException, ServerException;
-
-	@WebMethod(action = "findClashesByEid")
-	List<SEidClash> findClashesByEid(
-			@WebParam(name = "sClashDetectionSettings", partName = "findClashesByEid.sClashDetectionSettings") SClashDetectionSettings sClashDetectionSettings)
-			throws UserException, ServerException;
-
-	@WebMethod(action = "getLastClashes")
-	List<SClash> getLastClashes(@WebParam(name = "roid", partName = "getLastClashes.roid") long roid) throws UserException, ServerException;
-
-	@WebMethod(action = "branchToNewProject")
-	SCheckinResult branchToNewProject(@WebParam(name = "roid", partName = "branchToNewProject.roid") long roid,
-			@WebParam(name = "projectName", partName = "branchToNewProject.projectName") String projectName,
-			@WebParam(name = "comment", partName = "branchToNewProject.comment") String comment) throws UserException, ServerException;
-
-	@WebMethod(action = "branchToExistingProject")
-	SCheckinResult branchToExistingProject(@WebParam(name = "roid", partName = "branchToExistingProject.roid") long roid,
-			@WebParam(name = "destPoid", partName = "branchToExistingProject.destPoid") long destPoid,
-			@WebParam(name = "comment", partName = "branchToExistingProject.comment") String comment) throws UserException, ServerException;
-
+	
 	@WebMethod(action = "getLogs")
 	List<SLogAction> getLogs() throws UserException, ServerException;
-
-	@WebMethod(action = "getGeoTag")
-	SGeoTag getGeoTag(@WebParam(name = "goid", partName = "getGeoTag.goid") long goid) throws UserException, ServerException;
-
-	@WebMethod(action = "updateGeoTag")
-	void updateGeoTag(@WebParam(name = "sGeoTag", partName = "updateGeoTag.sGeoTag") SGeoTag sGeoTag) throws UserException, ServerException;
-
-	@WebMethod(action = "getClashDetectionSettings")
-	SClashDetectionSettings getClashDetectionSettings(@WebParam(name = "cdsoid", partName = "getClashDetectionSettings.cdsoid") long cdsoid)
-			throws UserException, ServerException;
-
-	@WebMethod(action = "updateClashDetectionSettings")
-	void updateClashDetectionSettings(
-			@WebParam(name = "sClashDetectionSettings", partName = "updateClashDetectionSettings.sClashDetectionSettings") SClashDetectionSettings sClashDetectionSettings)
-			throws UserException, ServerException;
-
-	@WebMethod(action = "getUserByUoid")
-	SUser getUserByUoid(@WebParam(name = "uoid", partName = "getUserByUoid.uoid") long uoid) throws UserException, ServerException;
-
-	@WebMethod(action = "getAnonymousUser")
-	SUser getAnonymousUser() throws UserException, ServerException;
-
-	@WebMethod(action = "getAllNonAuthorizedUsersOfProject")
-	List<SUser> getAllNonAuthorizedUsersOfProject(@WebParam(name = "poid", partName = "getAllNonAuthorizedUsersOfProject.poid") long poid)
-			throws UserException, ServerException;
-
-	@WebMethod(action = "getAllAuthorizedUsersOfProject")
-	List<SUser> getAllAuthorizedUsersOfProject(@WebParam(name = "poid", partName = "getAllAuthorizedUsersOfProject.poid") long poid)
-			throws UserException, ServerException;
-
-	@WebMethod(action = "getUsersProjects")
-	List<SProject> getUsersProjects(@WebParam(name = "uoid", partName = "getUsersProjects.uoid") long uoid) throws UserException,
-			ServerException;
-
-	@WebMethod(action = "getProjectByName")
-	List<SProject> getProjectByName(@WebParam(name = "name", partName = "getProjectByName.name") String name) throws UserException,
-			ServerException;
-
-	@WebMethod(action = "setRevisionTag")
-	void setRevisionTag(@WebParam(name = "roid", partName = "setRevisionTag.roid") long roid,
-			@WebParam(name = "tag", partName = "setRevisionTag.tag") String tag) throws UserException, ServerException;
-
-	@WebMethod(action = "getSubProjects")
-	List<SProject> getSubProjects(@WebParam(name = "poid", partName = "getSubProjects.poid") long poid) throws UserException,
-			ServerException;
-
-	@WebMethod(action = "isExportTypeEnabled")
-	boolean isExportTypeEnabled(@WebParam(name = "resultType", partName = "isExportTypeEnabled.resultType") ResultType resultType)
-			throws UserException, ServerException;
-
-	@WebMethod(action = "setExportTypeEnabled")
-	void setExportTypeEnabled(@WebParam(name = "resultType", partName = "setExportTypeEnabled.resultType") ResultType resultType,
-			boolean enabled) throws UserException, ServerException;
-
-	@WebMethod(action = "getCurrentUser")
-	SUser getCurrentUser() throws UserException, ServerException;
-
-	@WebMethod(action = "isLoggedIn")
-	boolean isLoggedIn() throws UserException, ServerException;
-
-	@WebMethod(action = "loginAnonymous")
-	void loginAnonymous() throws UserException, ServerException;
 
 	@WebMethod(action = "getActiveUserSessions")
 	List<SUserSession> getActiveUserSessions() throws ServerException, ServiceException;
@@ -504,63 +558,10 @@ public interface ServiceInterface {
 	@WebMethod(action = "getActiveLongActions")
 	List<SLongAction> getActiveLongActions() throws ServerException, ServiceException;
 
-	@WebMethod(action = "getActiveSince")
-	Date getActiveSince() throws UserException, ServerException;
-
-	@WebMethod(action = "getLastActive")
-	Date getLastActive() throws UserException, ServerException;
-
-	@WebMethod(action = "getCurrentToken")
-	Token getCurrentToken() throws UserException, ServerException;
-
-	@WebMethod(action = "getAccessMethod")
-	SAccessMethod getAccessMethod() throws UserException, ServerException;
-
-	@WebMethod(action = "getEnabledResultTypes")
-	Set<ResultType> getEnabledResultTypes() throws UserException, ServerException;
-
-	@WebMethod(action = "getAllResultTypes")
-	Set<ResultType> getAllResultTypes() throws UserException, ServerException;
-
-	@WebMethod(action = "getAllCheckoutsOfProjectAndSubProjects")
-	List<SCheckout> getAllCheckoutsOfProjectAndSubProjects(
-			@WebParam(name = "poid", partName = "getAllCheckoutsOfProjectAndSubProjects.poid") long poid) throws UserException,
-			ServerException;
-
-	@WebMethod(action = "requestPasswordChange")
-	void requestPasswordChange(@WebParam(name = "uoid", partName = "requestPasswordChange.uoid") long uoid) throws UserException,
-			ServerException;
-
-	@WebMethod(action = "validateAccount")
-	void validateAccount(@WebParam(name = "uoid", partName = "validateAccount.uoid") long uoid,
-			@WebParam(name = "token", partName = "validateAccount.token") String token,
-			@WebParam(name = "password", partName = "validateAccount.password") String password) throws UserException, ServerException;
-
-	@WebMethod(action = "sendClashesEmail")
-	void sendClashesEmail(
-			@WebParam(name = "sClashDetectionSettings", partName = "sendClashesEmail.sClashDetectionSettings") SClashDetectionSettings sClashDetectionSettings,
-			@WebParam(name = "poid", partName = "sendClashesEmail.poid") long poid,
-			@WebParam(name = "addressesTo", partName = "sendClashesEmail.addressesTo") Set<String> addressesTo) throws UserException,
-			ServerException;
-
-	@WebMethod(action = "sendCompareEmail")
-	void sendCompareEmail(@WebParam(name = "sCompareType", partName = "sendClashesEmail.sCompareType") SCompareType sCompareType,
-			@WebParam(name = "poid", partName = "sendClashesEmail.poid") long poid,
-			@WebParam(name = "roid1", partName = "sendClashesEmail.roid1") long roid1,
-			@WebParam(name = "roid2", partName = "sendClashesEmail.roid2") long roid2,
-			@WebParam(name = "address", partName = "sendClashesEmail.address") String address) throws UserException, ServerException;
-	
-	@WebMethod(action = "setup")
-	void setup(@WebParam(name = "siteAddress", partName = "setup.siteAddress") String siteAddress,
-			@WebParam(name = "smtpServer", partName = "setup.smtpServer") String smtpServer,
-			@WebParam(name = "adminName", partName = "setup.adminName") String adminName,
-			@WebParam(name = "adminUsername", partName = "setup.adminUsername") String adminUsername,
-			@WebParam(name = "adminPassword", partName = "setup.adminPassword") String adminPassword,
-			@WebParam(name = "createAnonymousUser", partName = "setup.createAnonymousUser") boolean createAnonymousUser) throws UserException, ServerException;
-
 	@WebMethod(action = "getPendingMigrations")
 	Set<SMigration> getMigrations();
 
 	@WebMethod(action = "migrateDatabase")
 	void migrateDatabase() throws ServerException;
+
 }
