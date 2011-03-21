@@ -1865,7 +1865,6 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public void setSettingSiteAddress(String siteAddress) throws UserException, ServerException {
-		requireAuthenticationAndRunningServer();
 		Settings settings = settingsManager.getSettings();
 		if (siteAddress.trim().isEmpty()) {
 			throw new UserException("Site Address cannot be empty");
@@ -1883,7 +1882,6 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public void setSettingSmtpServer(String smtpServer) throws UserException, ServerException {
-		requireAuthenticationAndRunningServer();
 		Settings settings = settingsManager.getSettings();
 		if (smtpServer.trim().isEmpty()) {
 			throw new UserException("SMTP server address cannot be empty");
