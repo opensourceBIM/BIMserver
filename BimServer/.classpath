@@ -5,6 +5,7 @@
 	<classpathentry kind="src" path="build/pb"/>
 	<classpathentry kind="src" path="generated"/>
 	<classpathentry kind="src" path="expander"/>
+	<classpathentry kind="src" path="imported"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/buildingSMARTLibrary"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Ifc"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Utils"/>

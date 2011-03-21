@@ -32,6 +32,7 @@ import java.util.Date;
 import java.util.Enumeration;
 import java.util.GregorianCalendar;
 import java.util.Set;
+import java.util.concurrent.Executors;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
@@ -49,8 +50,6 @@ import org.bimserver.database.Database;
 import org.bimserver.database.DatabaseRestartRequiredException;
 import org.bimserver.database.actions.AddUserDatabaseAction;
 import org.bimserver.database.berkeley.BerkeleyColumnDatabase;
-import org.bimserver.database.migrations.Schema;
-import org.bimserver.database.migrations.SchemaChecker;
 import org.bimserver.ifc.FieldIgnoreMap;
 import org.bimserver.ifc.FileFieldIgnoreMap;
 import org.bimserver.ifc.PackageDefinition;
@@ -61,9 +60,7 @@ import org.bimserver.mail.MailSystem;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.LogFactory;
-import org.bimserver.models.log.LogPackage;
 import org.bimserver.models.log.ServerStarted;
-import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.UserType;
 import org.bimserver.querycompiler.QueryCompiler;
 import org.bimserver.resources.JarResourceFetcher;
@@ -86,6 +83,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.common.base.Charsets;
+import com.googlecode.protobuf.socketrpc.RpcServer;
+import com.googlecode.protobuf.socketrpc.SocketRpcConnectionFactories;
 
 public class ServerInitializer implements ServletContextListener {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ServerInitializer.class);
@@ -124,7 +123,7 @@ public class ServerInitializer implements ServletContextListener {
 			if (homeDir != null) {
 				initHomeDir();
 			}
-			
+
 			fixLogging();
 
 			LOGGER.info("Starting ServerInitializer");
@@ -146,9 +145,9 @@ public class ServerInitializer implements ServletContextListener {
 					}
 				}
 			};
-			
+
 			Thread.setDefaultUncaughtExceptionHandler(uncaughtExceptionHandler);
-			
+
 			LOGGER.info("Detected server type: " + serverType + " (" + System.getProperty("os.name") + ", " + System.getProperty("sun.arch.data.model") + "bit)");
 			if (serverType == ServerType.UNKNOWN) {
 				LOGGER.error("Server type not detected, stopping initialization");
@@ -176,7 +175,7 @@ public class ServerInitializer implements ServletContextListener {
 				bimDatabase = new Database(packages, columnDatabase, fieldIgnoreMap);
 				bimDatabase.init();
 			}
-			
+
 			SettingsManager settingsManager = new SettingsManager(bimDatabase);
 			MailSystem mailSystem = new MailSystem(settingsManager);
 
@@ -186,7 +185,8 @@ public class ServerInitializer implements ServletContextListener {
 			if (serverType == ServerType.DEV_ENVIRONMENT && columnDatabase.isNew()) {
 				BimDatabaseSession session = bimDatabase.createSession();
 				try {
-					new AddUserDatabaseAction(session, AccessMethod.INTERNAL, settingsManager, mailSystem, "test@bimserver.org", "test", "Test User", UserType.USER, -1, false).execute();
+					new AddUserDatabaseAction(session, AccessMethod.INTERNAL, settingsManager, mailSystem, "test@bimserver.org", "test", "Test User", UserType.USER, -1, false)
+							.execute();
 					session.commit();
 				} finally {
 					session.close();
@@ -227,6 +227,14 @@ public class ServerInitializer implements ServletContextListener {
 
 			RestApplication.setServiceFactory(ServiceFactory.getINSTANCE());
 
+			// ProtocolBuffersServer protocolBuffersServer = new
+			// ProtocolBuffersServer(8020);
+			// protocolBuffersServer.start();
+
+			RpcServer rpcServer = new RpcServer(SocketRpcConnectionFactories.createServerRpcConnectionFactory(8020), Executors.newFixedThreadPool(10), false);
+			rpcServer.registerBlockingService(org.bimserver.pb.Service.ServiceInterface.newReflectiveBlockingService(org.bimserver.pb.Service.ServiceInterface.newBlockingStub(new ReflectiveRpcChannel(ServiceFactory.getINSTANCE()))));
+			rpcServer.run();
+
 			if (serverType == ServerType.DEPLOYED_WAR) {
 				File libDir = new File(classPath);
 				LOGGER.info("adding lib dir: " + libDir.getAbsolutePath());
@@ -253,22 +261,14 @@ public class ServerInitializer implements ServletContextListener {
 	private void fixLogging() throws IOException {
 		CustomFileAppender appender = new CustomFileAppender(new File(homeDir, "logs/bimserver.log"));
 		Enumeration<?> currentLoggers = LogManager.getCurrentLoggers();
-		while  (currentLoggers.hasMoreElements()) {
+		while (currentLoggers.hasMoreElements()) {
 			Object nextElement = currentLoggers.nextElement();
-			((org.apache.log4j.Logger)nextElement).addAppender(appender);
+			((org.apache.log4j.Logger) nextElement).addAppender(appender);
 		}
 	}
 
 	private void initHomeDir() throws IOException {
-		String[] filesToCheck = new String[]{
-			"logs",
-			"tmp",
-			"collada.xml",
-			"ignore.xml",
-			"ignoreexceptions",
-			"log4j.xml",
-			"templates"
-		};
+		String[] filesToCheck = new String[] { "logs", "tmp", "collada.xml", "ignore.xml", "ignoreexceptions", "log4j.xml", "templates" };
 		if (!homeDir.exists()) {
 			homeDir.mkdir();
 		}

@@ -1,4 +1,5 @@
 package org.bimserver.pb;
+option java_generic_services = true;
 service ServiceInterface {
 	rpc ping (PingRequest) returns (PingResponse);
 
@@ -88,6 +89,84 @@ service ServiceInterface {
 
 	rpc getRevisionSummary (GetRevisionSummaryRequest) returns (GetRevisionSummaryResponse);
 
+	rpc userHasCheckinRights (UserHasCheckinRightsRequest) returns (UserHasCheckinRightsResponse);
+
+	rpc getShowCheckoutWarning (GetShowCheckoutWarningRequest) returns (GetShowCheckoutWarningResponse);
+
+	rpc userHasRights (UserHasRightsRequest) returns (UserHasRightsResponse);
+
+	rpc getDataObjectByOid (GetDataObjectByOidRequest) returns (GetDataObjectByOidResponse);
+
+	rpc getDataObjectByGuid (GetDataObjectByGuidRequest) returns (GetDataObjectByGuidResponse);
+
+	rpc getDataObjectsByType (GetDataObjectsByTypeRequest) returns (GetDataObjectsByTypeResponse);
+
+	rpc findClashesByGuid (FindClashesByGuidRequest) returns (FindClashesByGuidResponse);
+
+	rpc findClashesByEid (FindClashesByEidRequest) returns (FindClashesByEidResponse);
+
+	rpc getLastClashes (GetLastClashesRequest) returns (GetLastClashesResponse);
+
+	rpc branchToNewProject (BranchToNewProjectRequest) returns (BranchToNewProjectResponse);
+
+	rpc branchToExistingProject (BranchToExistingProjectRequest) returns (BranchToExistingProjectResponse);
+
+	rpc getGeoTag (GetGeoTagRequest) returns (GetGeoTagResponse);
+
+	rpc updateGeoTag (UpdateGeoTagRequest) returns (Void);
+
+	rpc getClashDetectionSettings (GetClashDetectionSettingsRequest) returns (GetClashDetectionSettingsResponse);
+
+	rpc updateClashDetectionSettings (UpdateClashDetectionSettingsRequest) returns (Void);
+
+	rpc getUserByUoid (GetUserByUoidRequest) returns (GetUserByUoidResponse);
+
+	rpc getAnonymousUser (GetAnonymousUserRequest) returns (GetAnonymousUserResponse);
+
+	rpc getAllNonAuthorizedUsersOfProject (GetAllNonAuthorizedUsersOfProjectRequest) returns (GetAllNonAuthorizedUsersOfProjectResponse);
+
+	rpc getAllAuthorizedUsersOfProject (GetAllAuthorizedUsersOfProjectRequest) returns (GetAllAuthorizedUsersOfProjectResponse);
+
+	rpc getUsersProjects (GetUsersProjectsRequest) returns (GetUsersProjectsResponse);
+
+	rpc getProjectByName (GetProjectByNameRequest) returns (GetProjectByNameResponse);
+
+	rpc setRevisionTag (SetRevisionTagRequest) returns (Void);
+
+	rpc getSubProjects (GetSubProjectsRequest) returns (GetSubProjectsResponse);
+
+	rpc isExportTypeEnabled (IsExportTypeEnabledRequest) returns (IsExportTypeEnabledResponse);
+
+	rpc setExportTypeEnabled (SetExportTypeEnabledRequest) returns (Void);
+
+	rpc getCurrentUser (GetCurrentUserRequest) returns (GetCurrentUserResponse);
+
+	rpc isLoggedIn (IsLoggedInRequest) returns (IsLoggedInResponse);
+
+	rpc loginAnonymous (LoginAnonymousRequest) returns (Void);
+
+	rpc getActiveSince (GetActiveSinceRequest) returns (GetActiveSinceResponse);
+
+	rpc getLastActive (GetLastActiveRequest) returns (GetLastActiveResponse);
+
+	rpc getCurrentToken (GetCurrentTokenRequest) returns (GetCurrentTokenResponse);
+
+	rpc getAccessMethod (GetAccessMethodRequest) returns (GetAccessMethodResponse);
+
+	rpc getEnabledResultTypes (GetEnabledResultTypesRequest) returns (GetEnabledResultTypesResponse);
+
+	rpc getAllResultTypes (GetAllResultTypesRequest) returns (GetAllResultTypesResponse);
+
+	rpc getAllCheckoutsOfProjectAndSubProjects (GetAllCheckoutsOfProjectAndSubProjectsRequest) returns (GetAllCheckoutsOfProjectAndSubProjectsResponse);
+
+	rpc requestPasswordChange (RequestPasswordChangeRequest) returns (Void);
+
+	rpc validateAccount (ValidateAccountRequest) returns (Void);
+
+	rpc sendClashesEmail (SendClashesEmailRequest) returns (Void);
+
+	rpc sendCompareEmail (SendCompareEmailRequest) returns (Void);
+
 	rpc getSettingCustomLogoAddress (GetSettingCustomLogoAddressRequest) returns (GetSettingCustomLogoAddressResponse);
 
 	rpc setSettingCustomLogoAddress (SetSettingCustomLogoAddressRequest) returns (Void);
@@ -144,89 +223,11 @@ service ServiceInterface {
 
 	rpc setSettingUseCaching (SetSettingUseCachingRequest) returns (Void);
 
-	rpc userHasCheckinRights (UserHasCheckinRightsRequest) returns (UserHasCheckinRightsResponse);
-
-	rpc getShowCheckoutWarning (GetShowCheckoutWarningRequest) returns (GetShowCheckoutWarningResponse);
-
-	rpc userHasRights (UserHasRightsRequest) returns (UserHasRightsResponse);
-
-	rpc getDataObjectByOid (GetDataObjectByOidRequest) returns (GetDataObjectByOidResponse);
-
-	rpc getDataObjectByGuid (GetDataObjectByGuidRequest) returns (GetDataObjectByGuidResponse);
-
-	rpc getDataObjectsByType (GetDataObjectsByTypeRequest) returns (GetDataObjectsByTypeResponse);
-
-	rpc findClashesByGuid (FindClashesByGuidRequest) returns (FindClashesByGuidResponse);
-
-	rpc findClashesByEid (FindClashesByEidRequest) returns (FindClashesByEidResponse);
-
-	rpc getLastClashes (GetLastClashesRequest) returns (GetLastClashesResponse);
-
-	rpc branchToNewProject (BranchToNewProjectRequest) returns (BranchToNewProjectResponse);
-
-	rpc branchToExistingProject (BranchToExistingProjectRequest) returns (BranchToExistingProjectResponse);
-
 	rpc getLogs (GetLogsRequest) returns (GetLogsResponse);
-
-	rpc getGeoTag (GetGeoTagRequest) returns (GetGeoTagResponse);
-
-	rpc updateGeoTag (UpdateGeoTagRequest) returns (Void);
-
-	rpc getClashDetectionSettings (GetClashDetectionSettingsRequest) returns (GetClashDetectionSettingsResponse);
-
-	rpc updateClashDetectionSettings (UpdateClashDetectionSettingsRequest) returns (Void);
-
-	rpc getUserByUoid (GetUserByUoidRequest) returns (GetUserByUoidResponse);
-
-	rpc getAnonymousUser (GetAnonymousUserRequest) returns (GetAnonymousUserResponse);
-
-	rpc getAllNonAuthorizedUsersOfProject (GetAllNonAuthorizedUsersOfProjectRequest) returns (GetAllNonAuthorizedUsersOfProjectResponse);
-
-	rpc getAllAuthorizedUsersOfProject (GetAllAuthorizedUsersOfProjectRequest) returns (GetAllAuthorizedUsersOfProjectResponse);
-
-	rpc getUsersProjects (GetUsersProjectsRequest) returns (GetUsersProjectsResponse);
-
-	rpc getProjectByName (GetProjectByNameRequest) returns (GetProjectByNameResponse);
-
-	rpc setRevisionTag (SetRevisionTagRequest) returns (Void);
-
-	rpc getSubProjects (GetSubProjectsRequest) returns (GetSubProjectsResponse);
-
-	rpc isExportTypeEnabled (IsExportTypeEnabledRequest) returns (IsExportTypeEnabledResponse);
-
-	rpc setExportTypeEnabled (SetExportTypeEnabledRequest) returns (Void);
-
-	rpc getCurrentUser (GetCurrentUserRequest) returns (GetCurrentUserResponse);
-
-	rpc isLoggedIn (IsLoggedInRequest) returns (IsLoggedInResponse);
-
-	rpc loginAnonymous (LoginAnonymousRequest) returns (Void);
 
 	rpc getActiveUserSessions (GetActiveUserSessionsRequest) returns (GetActiveUserSessionsResponse);
 
 	rpc getActiveLongActions (GetActiveLongActionsRequest) returns (GetActiveLongActionsResponse);
-
-	rpc getActiveSince (GetActiveSinceRequest) returns (GetActiveSinceResponse);
-
-	rpc getLastActive (GetLastActiveRequest) returns (GetLastActiveResponse);
-
-	rpc getCurrentToken (GetCurrentTokenRequest) returns (GetCurrentTokenResponse);
-
-	rpc getAccessMethod (GetAccessMethodRequest) returns (GetAccessMethodResponse);
-
-	rpc getEnabledResultTypes (GetEnabledResultTypesRequest) returns (GetEnabledResultTypesResponse);
-
-	rpc getAllResultTypes (GetAllResultTypesRequest) returns (GetAllResultTypesResponse);
-
-	rpc getAllCheckoutsOfProjectAndSubProjects (GetAllCheckoutsOfProjectAndSubProjectsRequest) returns (GetAllCheckoutsOfProjectAndSubProjectsResponse);
-
-	rpc requestPasswordChange (RequestPasswordChangeRequest) returns (Void);
-
-	rpc validateAccount (ValidateAccountRequest) returns (Void);
-
-	rpc sendClashesEmail (SendClashesEmailRequest) returns (Void);
-
-	rpc sendCompareEmail (SendCompareEmailRequest) returns (Void);
 
 	rpc getMigrations (GetMigrationsRequest) returns (GetMigrationsResponse);
 
@@ -772,6 +773,372 @@ message GetRevisionSummaryResponse {
 	optional SRevisionSummary value = 1;
 }
 
+message UserHasCheckinRightsRequest {
+	optional int64 poid = 1;
+}
+
+message UserHasCheckinRightsResponse {
+	optional bool value = 1;
+}
+
+message GetShowCheckoutWarningRequest {
+	optional int64 poid = 1;
+	optional int64 uoid = 2;
+}
+
+message GetShowCheckoutWarningResponse {
+	repeated string value = 1;
+}
+
+message UserHasRightsRequest {
+	optional int64 poid = 1;
+}
+
+message UserHasRightsResponse {
+	optional bool value = 1;
+}
+
+message GetDataObjectByOidRequest {
+	optional int64 roid = 1;
+	optional int64 oid = 2;
+	optional string className = 3;
+}
+
+message SDataObject {
+	optional int64 oid = 1;
+	optional string guid = 2;
+	optional string name = 3;
+	optional string type = 4;
+	repeated List values = 5;
+}
+
+message GetDataObjectByOidResponse {
+	optional SDataObject value = 1;
+}
+
+message GetDataObjectByGuidRequest {
+	optional int64 roid = 1;
+	optional string guid = 2;
+}
+
+message GetDataObjectByGuidResponse {
+	optional SDataObject value = 1;
+}
+
+message GetDataObjectsByTypeRequest {
+	optional int64 roid = 1;
+	optional string className = 2;
+}
+
+message GetDataObjectsByTypeResponse {
+	repeated SDataObject value = 1;
+}
+
+message SClashDetectionSettings {
+	optional int64 oid = 1;
+	repeated List revisions = 2;
+	repeated List projects = 3;
+	repeated List ignoredClasses = 4;
+	optional float margin = 5;
+}
+
+message FindClashesByGuidRequest {
+	optional SClashDetectionSettings sClashDetectionSettings = 1;
+}
+
+message SGuidClash {
+	optional int64 oid = 1;
+	optional string guid1 = 2;
+	optional string guid2 = 3;
+	optional string name1 = 4;
+	optional string name2 = 5;
+	optional string type1 = 6;
+	optional string type2 = 7;
+	optional int64 revision1Id = 8;
+	optional int64 revision2Id = 9;
+}
+
+message FindClashesByGuidResponse {
+	repeated SGuidClash value = 1;
+}
+
+message FindClashesByEidRequest {
+	optional SClashDetectionSettings sClashDetectionSettings = 1;
+}
+
+message SEidClash {
+	optional int64 oid = 1;
+	optional int64 eid1 = 2;
+	optional int64 eid2 = 3;
+	optional string name1 = 4;
+	optional string name2 = 5;
+	optional string type1 = 6;
+	optional string type2 = 7;
+	optional int64 revision1Id = 8;
+	optional int64 revision2Id = 9;
+}
+
+message FindClashesByEidResponse {
+	repeated SEidClash value = 1;
+}
+
+message GetLastClashesRequest {
+	optional int64 roid = 1;
+}
+
+message SClash {
+	optional int64 oid = 1;
+	optional string name1 = 2;
+	optional string name2 = 3;
+	optional string type1 = 4;
+	optional string type2 = 5;
+	optional int64 revision1Id = 6;
+	optional int64 revision2Id = 7;
+}
+
+message GetLastClashesResponse {
+	repeated SClash value = 1;
+}
+
+message BranchToNewProjectRequest {
+	optional int64 roid = 1;
+	optional string projectName = 2;
+	optional string comment = 3;
+}
+
+message BranchToNewProjectResponse {
+	optional SCheckinResult value = 1;
+}
+
+message BranchToExistingProjectRequest {
+	optional int64 roid = 1;
+	optional int64 destPoid = 2;
+	optional string comment = 3;
+}
+
+message BranchToExistingProjectResponse {
+	optional SCheckinResult value = 1;
+}
+
+message GetGeoTagRequest {
+	optional int64 goid = 1;
+}
+
+message SGeoTag {
+	optional int64 oid = 1;
+	repeated List projects = 2;
+	optional float z = 3;
+	optional int32 epsg = 4;
+	optional float directionAngle = 5;
+	optional float x = 6;
+	optional float y = 7;
+}
+
+message GetGeoTagResponse {
+	optional SGeoTag value = 1;
+}
+
+message UpdateGeoTagRequest {
+	optional SGeoTag sGeoTag = 1;
+}
+
+message GetClashDetectionSettingsRequest {
+	optional int64 cdsoid = 1;
+}
+
+message GetClashDetectionSettingsResponse {
+	optional SClashDetectionSettings value = 1;
+}
+
+message UpdateClashDetectionSettingsRequest {
+	optional SClashDetectionSettings sClashDetectionSettings = 1;
+}
+
+message GetUserByUoidRequest {
+	optional int64 uoid = 1;
+}
+
+message GetUserByUoidResponse {
+	optional SUser value = 1;
+}
+
+message GetAnonymousUserRequest {
+}
+
+message GetAnonymousUserResponse {
+	optional SUser value = 1;
+}
+
+message GetAllNonAuthorizedUsersOfProjectRequest {
+	optional int64 poid = 1;
+}
+
+message GetAllNonAuthorizedUsersOfProjectResponse {
+	repeated SUser value = 1;
+}
+
+message GetAllAuthorizedUsersOfProjectRequest {
+	optional int64 poid = 1;
+}
+
+message GetAllAuthorizedUsersOfProjectResponse {
+	repeated SUser value = 1;
+}
+
+message GetUsersProjectsRequest {
+	optional int64 uoid = 1;
+}
+
+message GetUsersProjectsResponse {
+	repeated SProject value = 1;
+}
+
+message GetProjectByNameRequest {
+	optional string name = 1;
+}
+
+message GetProjectByNameResponse {
+	repeated SProject value = 1;
+}
+
+message SetRevisionTagRequest {
+	optional int64 roid = 1;
+	optional string tag = 2;
+}
+
+message GetSubProjectsRequest {
+	optional int64 poid = 1;
+}
+
+message GetSubProjectsResponse {
+	repeated SProject value = 1;
+}
+
+message IsExportTypeEnabledRequest {
+	optional ResultType resultType = 1;
+}
+
+message IsExportTypeEnabledResponse {
+	optional bool value = 1;
+}
+
+message SetExportTypeEnabledRequest {
+	optional ResultType resultType = 1;
+	optional bool unknown = 2;
+}
+
+message GetCurrentUserRequest {
+}
+
+message GetCurrentUserResponse {
+	optional SUser value = 1;
+}
+
+message IsLoggedInRequest {
+}
+
+message IsLoggedInResponse {
+	optional bool value = 1;
+}
+
+message LoginAnonymousRequest {
+}
+
+message GetActiveSinceRequest {
+}
+
+message GetActiveSinceResponse {
+	optional int64 value = 1;
+}
+
+message GetLastActiveRequest {
+}
+
+message GetLastActiveResponse {
+	optional int64 value = 1;
+}
+
+message GetCurrentTokenRequest {
+}
+
+message Token {
+	optional string tokenString = 1;
+	optional int64 expires = 2;
+	optional int64 expiresAsDate = 3;
+}
+
+message GetCurrentTokenResponse {
+	optional Token value = 1;
+}
+
+message GetAccessMethodRequest {
+}
+
+enum SAccessMethod{
+	SOAP = 0;
+	WEB_INTERFACE = 1;
+	INTERNAL = 2;
+	REST = 3;
+	SYNDICATION = 4;
+}
+
+message GetAccessMethodResponse {
+	optional SAccessMethod value = 1;
+}
+
+message GetEnabledResultTypesRequest {
+}
+
+message GetEnabledResultTypesResponse {
+	repeated ResultType value = 1;
+}
+
+message GetAllResultTypesRequest {
+}
+
+message GetAllResultTypesResponse {
+	repeated ResultType value = 1;
+}
+
+message GetAllCheckoutsOfProjectAndSubProjectsRequest {
+	optional int64 poid = 1;
+}
+
+message GetAllCheckoutsOfProjectAndSubProjectsResponse {
+	repeated SCheckout value = 1;
+}
+
+message RequestPasswordChangeRequest {
+	optional int64 uoid = 1;
+}
+
+message ValidateAccountRequest {
+	optional int64 uoid = 1;
+	optional string token = 2;
+	optional string password = 3;
+}
+
+message SendClashesEmailRequest {
+	optional SClashDetectionSettings sClashDetectionSettings = 1;
+	optional int64 poid = 2;
+	repeated Set addressesTo = 3;
+}
+
+enum SCompareType{
+	ALL = 0;
+	ADD = 1;
+	MODIFY = 2;
+	DELETE = 3;
+}
+
+message SendCompareEmailRequest {
+	optional SCompareType sCompareType = 1;
+	optional int64 poid = 2;
+	optional int64 roid1 = 3;
+	optional int64 roid2 = 4;
+	optional string address = 5;
+}
+
 message GetSettingCustomLogoAddressRequest {
 }
 
@@ -926,165 +1293,7 @@ message SetSettingUseCachingRequest {
 	optional bool useCaching = 1;
 }
 
-message UserHasCheckinRightsRequest {
-	optional int64 poid = 1;
-}
-
-message UserHasCheckinRightsResponse {
-	optional bool value = 1;
-}
-
-message GetShowCheckoutWarningRequest {
-	optional int64 poid = 1;
-	optional int64 uoid = 2;
-}
-
-message GetShowCheckoutWarningResponse {
-	repeated string value = 1;
-}
-
-message UserHasRightsRequest {
-	optional int64 poid = 1;
-}
-
-message UserHasRightsResponse {
-	optional bool value = 1;
-}
-
-message GetDataObjectByOidRequest {
-	optional int64 roid = 1;
-	optional int64 oid = 2;
-	optional string className = 3;
-}
-
-message SDataObject {
-	optional int64 oid = 1;
-	optional string guid = 2;
-	optional string name = 3;
-	optional string type = 4;
-	repeated List values = 5;
-}
-
-message GetDataObjectByOidResponse {
-	optional SDataObject value = 1;
-}
-
-message GetDataObjectByGuidRequest {
-	optional int64 roid = 1;
-	optional string guid = 2;
-}
-
-message GetDataObjectByGuidResponse {
-	optional SDataObject value = 1;
-}
-
-message GetDataObjectsByTypeRequest {
-	optional int64 roid = 1;
-	optional string className = 2;
-}
-
-message GetDataObjectsByTypeResponse {
-	repeated SDataObject value = 1;
-}
-
-message float {
-}
-
-message SClashDetectionSettings {
-	optional int64 oid = 1;
-	repeated List revisions = 2;
-	repeated List projects = 3;
-	repeated List ignoredClasses = 4;
-	optional float margin = 5;
-}
-
-message FindClashesByGuidRequest {
-	optional SClashDetectionSettings sClashDetectionSettings = 1;
-}
-
-message SGuidClash {
-	optional int64 oid = 1;
-	optional string guid1 = 2;
-	optional string guid2 = 3;
-	optional string name1 = 4;
-	optional string name2 = 5;
-	optional string type1 = 6;
-	optional string type2 = 7;
-	optional int64 revision1Id = 8;
-	optional int64 revision2Id = 9;
-}
-
-message FindClashesByGuidResponse {
-	repeated SGuidClash value = 1;
-}
-
-message FindClashesByEidRequest {
-	optional SClashDetectionSettings sClashDetectionSettings = 1;
-}
-
-message SEidClash {
-	optional int64 oid = 1;
-	optional int64 eid1 = 2;
-	optional int64 eid2 = 3;
-	optional string name1 = 4;
-	optional string name2 = 5;
-	optional string type1 = 6;
-	optional string type2 = 7;
-	optional int64 revision1Id = 8;
-	optional int64 revision2Id = 9;
-}
-
-message FindClashesByEidResponse {
-	repeated SEidClash value = 1;
-}
-
-message GetLastClashesRequest {
-	optional int64 roid = 1;
-}
-
-message SClash {
-	optional int64 oid = 1;
-	optional string name1 = 2;
-	optional string name2 = 3;
-	optional string type1 = 4;
-	optional string type2 = 5;
-	optional int64 revision1Id = 6;
-	optional int64 revision2Id = 7;
-}
-
-message GetLastClashesResponse {
-	repeated SClash value = 1;
-}
-
-message BranchToNewProjectRequest {
-	optional int64 roid = 1;
-	optional string projectName = 2;
-	optional string comment = 3;
-}
-
-message BranchToNewProjectResponse {
-	optional SCheckinResult value = 1;
-}
-
-message BranchToExistingProjectRequest {
-	optional int64 roid = 1;
-	optional int64 destPoid = 2;
-	optional string comment = 3;
-}
-
-message BranchToExistingProjectResponse {
-	optional SCheckinResult value = 1;
-}
-
 message GetLogsRequest {
-}
-
-enum SAccessMethod{
-	SOAP = 0;
-	WEB_INTERFACE = 1;
-	INTERNAL = 2;
-	REST = 3;
-	SYNDICATION = 4;
 }
 
 message SLogAction {
@@ -1096,130 +1305,6 @@ message SLogAction {
 
 message GetLogsResponse {
 	repeated SLogAction value = 1;
-}
-
-message GetGeoTagRequest {
-	optional int64 goid = 1;
-}
-
-message SGeoTag {
-	optional int64 oid = 1;
-	repeated List projects = 2;
-	optional float z = 3;
-	optional int32 epsg = 4;
-	optional float directionAngle = 5;
-	optional float x = 6;
-	optional float y = 7;
-}
-
-message GetGeoTagResponse {
-	optional SGeoTag value = 1;
-}
-
-message UpdateGeoTagRequest {
-	optional SGeoTag sGeoTag = 1;
-}
-
-message GetClashDetectionSettingsRequest {
-	optional int64 cdsoid = 1;
-}
-
-message GetClashDetectionSettingsResponse {
-	optional SClashDetectionSettings value = 1;
-}
-
-message UpdateClashDetectionSettingsRequest {
-	optional SClashDetectionSettings sClashDetectionSettings = 1;
-}
-
-message GetUserByUoidRequest {
-	optional int64 uoid = 1;
-}
-
-message GetUserByUoidResponse {
-	optional SUser value = 1;
-}
-
-message GetAnonymousUserRequest {
-}
-
-message GetAnonymousUserResponse {
-	optional SUser value = 1;
-}
-
-message GetAllNonAuthorizedUsersOfProjectRequest {
-	optional int64 poid = 1;
-}
-
-message GetAllNonAuthorizedUsersOfProjectResponse {
-	repeated SUser value = 1;
-}
-
-message GetAllAuthorizedUsersOfProjectRequest {
-	optional int64 poid = 1;
-}
-
-message GetAllAuthorizedUsersOfProjectResponse {
-	repeated SUser value = 1;
-}
-
-message GetUsersProjectsRequest {
-	optional int64 uoid = 1;
-}
-
-message GetUsersProjectsResponse {
-	repeated SProject value = 1;
-}
-
-message GetProjectByNameRequest {
-	optional string name = 1;
-}
-
-message GetProjectByNameResponse {
-	repeated SProject value = 1;
-}
-
-message SetRevisionTagRequest {
-	optional int64 roid = 1;
-	optional string tag = 2;
-}
-
-message GetSubProjectsRequest {
-	optional int64 poid = 1;
-}
-
-message GetSubProjectsResponse {
-	repeated SProject value = 1;
-}
-
-message IsExportTypeEnabledRequest {
-	optional ResultType resultType = 1;
-}
-
-message IsExportTypeEnabledResponse {
-	optional bool value = 1;
-}
-
-message SetExportTypeEnabledRequest {
-	optional ResultType resultType = 1;
-	optional bool unknown = 2;
-}
-
-message GetCurrentUserRequest {
-}
-
-message GetCurrentUserResponse {
-	optional SUser value = 1;
-}
-
-message IsLoggedInRequest {
-}
-
-message IsLoggedInResponse {
-	optional bool value = 1;
-}
-
-message LoginAnonymousRequest {
 }
 
 message GetActiveUserSessionsRequest {
@@ -1252,93 +1337,6 @@ message SLongAction {
 
 message GetActiveLongActionsResponse {
 	repeated SLongAction value = 1;
-}
-
-message GetActiveSinceRequest {
-}
-
-message GetActiveSinceResponse {
-	optional int64 value = 1;
-}
-
-message GetLastActiveRequest {
-}
-
-message GetLastActiveResponse {
-	optional int64 value = 1;
-}
-
-message GetCurrentTokenRequest {
-}
-
-message Token {
-	optional string tokenString = 1;
-	optional int64 expires = 2;
-	optional int64 expiresAsDate = 3;
-}
-
-message GetCurrentTokenResponse {
-	optional Token value = 1;
-}
-
-message GetAccessMethodRequest {
-}
-
-message GetAccessMethodResponse {
-	optional SAccessMethod value = 1;
-}
-
-message GetEnabledResultTypesRequest {
-}
-
-message GetEnabledResultTypesResponse {
-	repeated ResultType value = 1;
-}
-
-message GetAllResultTypesRequest {
-}
-
-message GetAllResultTypesResponse {
-	repeated ResultType value = 1;
-}
-
-message GetAllCheckoutsOfProjectAndSubProjectsRequest {
-	optional int64 poid = 1;
-}
-
-message GetAllCheckoutsOfProjectAndSubProjectsResponse {
-	repeated SCheckout value = 1;
-}
-
-message RequestPasswordChangeRequest {
-	optional int64 uoid = 1;
-}
-
-message ValidateAccountRequest {
-	optional int64 uoid = 1;
-	optional string token = 2;
-	optional string password = 3;
-}
-
-message SendClashesEmailRequest {
-	optional SClashDetectionSettings sClashDetectionSettings = 1;
-	optional int64 poid = 2;
-	repeated Set addressesTo = 3;
-}
-
-enum SCompareType{
-	ALL = 0;
-	ADD = 1;
-	MODIFY = 2;
-	DELETE = 3;
-}
-
-message SendCompareEmailRequest {
-	optional SCompareType sCompareType = 1;
-	optional int64 poid = 2;
-	optional int64 roid1 = 3;
-	optional int64 roid2 = 4;
-	optional string address = 5;
 }
 
 message GetMigrationsRequest {

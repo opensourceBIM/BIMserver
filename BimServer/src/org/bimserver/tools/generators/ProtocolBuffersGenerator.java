@@ -103,6 +103,7 @@ public class ProtocolBuffersGenerator {
 		}
 		try {
 			out.println("package org.bimserver.pb;");
+			out.println("option java_generic_services = true;");
 			StringBuilder serviceBuilder = new StringBuilder();
 			StringBuilder messageBuilder = new StringBuilder();
 			serviceBuilder.append("service ServiceInterface {\n");
@@ -171,6 +172,8 @@ public class ProtocolBuffersGenerator {
 			return "bytes";
 		} else if (clazz == Integer.class | clazz == int.class) {
 			return "int32";
+		} else if (clazz == Float.class | clazz == float.class) {
+			return "float";
 		} else if (clazz.isEnum()) {
 			return createEnum(sb, clazz);
 		} else {
