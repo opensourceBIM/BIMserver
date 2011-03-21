@@ -110,6 +110,7 @@ public class Migrator {
 //		} else {
 //			throw new InconsistentModelsException();
 //		}
+		return schema;
 	}
 
 	public Set<SMigration> getMigrations() {
