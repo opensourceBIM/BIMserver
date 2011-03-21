@@ -533,7 +533,7 @@ public class Service implements ServiceInterface {
 
 	private void requireAuthenticationAndRunningServer() throws UserException {
 		requireRunningServer();
-		requireAuthenticationAndRunningServer();
+		requireAuthentication();
 	}
 	
 	private void updateLastActive() {
