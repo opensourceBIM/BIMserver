@@ -31,6 +31,9 @@ public class SchemaChecker {
 			MatchModel resourceMatch = MatchService.doResourceMatch(left, right, new HashMap<String, Object>());
 			EList<UnmatchElement> unmatchedElements = resourceMatch.getUnmatchedElements();
 			if (!unmatchedElements.isEmpty()) {
+				for (UnmatchElement unmatchElement : unmatchedElements) {
+					LOGGER.error("Unmatch in: " + unmatchElement.getElement());
+				}
 				return false;
 			} else {
 				return true;

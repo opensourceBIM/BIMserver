@@ -1,0 +1,716 @@
+service ServiceInterface {
+	rpc ping (PingRequest) returns (PingResponse);
+
+	rpc login (LoginRequest) returns (LoginResponse);
+
+	rpc autologin (AutologinRequest) returns (AutologinResponse);
+
+	rpc checkinSync (CheckinSyncRequest) returns (CheckinSyncResponse);
+
+	rpc checkinAsync (CheckinAsyncRequest) returns (CheckinAsyncResponse);
+
+	rpc checkout (CheckoutRequest) returns (CheckoutResponse);
+
+	rpc checkoutLastRevision (CheckoutLastRevisionRequest) returns (CheckoutLastRevisionResponse);
+
+	rpc downloadByOids (DownloadByOidsRequest) returns (DownloadByOidsResponse);
+
+	rpc downloadOfType (DownloadOfTypeRequest) returns (DownloadOfTypeResponse);
+
+	rpc downloadByGuids (DownloadByGuidsRequest) returns (DownloadByGuidsResponse);
+
+	rpc downloadProjects (DownloadProjectsRequest) returns (DownloadProjectsResponse);
+
+	rpc getDownloadData (GetDownloadDataRequest) returns (GetDownloadDataResponse);
+
+	rpc getDownloadState (GetDownloadStateRequest) returns (GetDownloadStateResponse);
+
+	rpc addUser (AddUserRequest) returns (AddUserResponse);
+
+	rpc changeUserType (ChangeUserTypeRequest) returns (ChangeUserTypeResponse);
+
+	rpc addProject (AddProjectRequest) returns (AddProjectResponse);
+
+	rpc addProjectAsSubProject (AddProjectAsSubProjectRequest) returns (AddProjectAsSubProjectResponse);
+
+	rpc updateProject (UpdateProjectRequest) returns (UpdateProjectResponse);
+
+	rpc updateRevision (UpdateRevisionRequest) returns (UpdateRevisionResponse);
+
+	rpc addUserToProject (AddUserToProjectRequest) returns (AddUserToProjectResponse);
+
+	rpc removeUserFromProject (RemoveUserFromProjectRequest) returns (RemoveUserFromProjectResponse);
+
+	rpc deleteProject (DeleteProjectRequest) returns (DeleteProjectResponse);
+
+	rpc deleteUser (DeleteUserRequest) returns (DeleteUserResponse);
+
+	rpc getAllProjects (GetAllProjectsRequest) returns (GetAllProjectsResponse);
+
+	rpc getAllReadableProjects (GetAllReadableProjectsRequest) returns (GetAllReadableProjectsResponse);
+
+	rpc getAllUsers (GetAllUsersRequest) returns (GetAllUsersResponse);
+
+	rpc getAllRevisionsOfProject (GetAllRevisionsOfProjectRequest) returns (GetAllRevisionsOfProjectResponse);
+
+	rpc getAllCheckoutsOfProject (GetAllCheckoutsOfProjectRequest) returns (GetAllCheckoutsOfProjectResponse);
+
+	rpc getAllRevisionsByUser (GetAllRevisionsByUserRequest) returns (GetAllRevisionsByUserResponse);
+
+	rpc getAllCheckoutsByUser (GetAllCheckoutsByUserRequest) returns (GetAllCheckoutsByUserResponse);
+
+	rpc getAllCheckoutsOfRevision (GetAllCheckoutsOfRevisionRequest) returns (GetAllCheckoutsOfRevisionResponse);
+
+	rpc getProjectByPoid (GetProjectByPoidRequest) returns (GetProjectByPoidResponse);
+
+	rpc getRevision (GetRevisionRequest) returns (GetRevisionResponse);
+
+	rpc getAvailableClasses (GetAvailableClassesRequest) returns (GetAvailableClassesResponse);
+
+	rpc getDatabaseInformation (GetDatabaseInformationRequest) returns (GetDatabaseInformationResponse);
+
+	rpc getLastDatabaseReset (GetLastDatabaseResetRequest) returns (GetLastDatabaseResetResponse);
+
+	rpc getLoggedInUser (GetLoggedInUserRequest) returns (GetLoggedInUserResponse);
+
+	rpc getAllNonAuthorizedProjectsOfUser (GetAllNonAuthorizedProjectsOfUserRequest) returns (GetAllNonAuthorizedProjectsOfUserResponse);
+
+	rpc logout (LogoutRequest) returns (LogoutResponse);
+
+	rpc changePassword (ChangePasswordRequest) returns (ChangePasswordResponse);
+
+	rpc getUserByUserName (GetUserByUserNameRequest) returns (GetUserByUserNameResponse);
+
+	rpc undeleteProject (UndeleteProjectRequest) returns (UndeleteProjectResponse);
+
+	rpc undeleteUser (UndeleteUserRequest) returns (UndeleteUserResponse);
+
+	rpc getRevisionSummary (GetRevisionSummaryRequest) returns (GetRevisionSummaryResponse);
+
+	rpc getSettingCustomLogoAddress (GetSettingCustomLogoAddressRequest) returns (GetSettingCustomLogoAddressResponse);
+
+	rpc setSettingCustomLogoAddress (SetSettingCustomLogoAddressRequest) returns (SetSettingCustomLogoAddressResponse);
+
+	rpc getSettingEmailSenderAddress (GetSettingEmailSenderAddressRequest) returns (GetSettingEmailSenderAddressResponse);
+
+	rpc setSettingEmailSenderAddress (SetSettingEmailSenderAddressRequest) returns (SetSettingEmailSenderAddressResponse);
+
+	rpc getSettingEnabledExportTypes (GetSettingEnabledExportTypesRequest) returns (GetSettingEnabledExportTypesResponse);
+
+	rpc setSettingEnabledExportTypes (SetSettingEnabledExportTypesRequest) returns (SetSettingEnabledExportTypesResponse);
+
+	rpc getSettingRegistrationAddition (GetSettingRegistrationAdditionRequest) returns (GetSettingRegistrationAdditionResponse);
+
+	rpc setSettingRegistrationAddition (SetSettingRegistrationAdditionRequest) returns (SetSettingRegistrationAdditionResponse);
+
+	rpc getSettingSiteAddress (GetSettingSiteAddressRequest) returns (GetSettingSiteAddressResponse);
+
+	rpc setSettingSiteAddress (SetSettingSiteAddressRequest) returns (SetSettingSiteAddressResponse);
+
+	rpc getSettingSmtpServer (GetSettingSmtpServerRequest) returns (GetSettingSmtpServerResponse);
+
+	rpc setSettingSmtpServer (SetSettingSmtpServerRequest) returns (SetSettingSmtpServerResponse);
+
+	rpc isSettingAllowSelfRegistration (IsSettingAllowSelfRegistrationRequest) returns (IsSettingAllowSelfRegistrationResponse);
+
+	rpc setSettingAllowSelfRegistration (SetSettingAllowSelfRegistrationRequest) returns (SetSettingAllowSelfRegistrationResponse);
+
+	rpc isSettingAllowUsersToCreateTopLevelProjects (IsSettingAllowUsersToCreateTopLevelProjectsRequest) returns (IsSettingAllowUsersToCreateTopLevelProjectsResponse);
+
+	rpc setSettingAllowUsersToCreateTopLevelProjects (SetSettingAllowUsersToCreateTopLevelProjectsRequest) returns (SetSettingAllowUsersToCreateTopLevelProjectsResponse);
+
+	rpc isSettingAutoTestClashes (IsSettingAutoTestClashesRequest) returns (IsSettingAutoTestClashesResponse);
+
+	rpc setSettingAutoTestClashes (SetSettingAutoTestClashesRequest) returns (SetSettingAutoTestClashesResponse);
+
+	rpc isSettingCheckinMergingEnabled (IsSettingCheckinMergingEnabledRequest) returns (IsSettingCheckinMergingEnabledResponse);
+
+	rpc setSettingCheckinMergingEnabled (SetSettingCheckinMergingEnabledRequest) returns (SetSettingCheckinMergingEnabledResponse);
+
+	rpc isSettingIntelligentMerging (IsSettingIntelligentMergingRequest) returns (IsSettingIntelligentMergingResponse);
+
+	rpc setSettingIntelligentMerging (SetSettingIntelligentMergingRequest) returns (SetSettingIntelligentMergingResponse);
+
+	rpc isSettingSendConfirmationEmailAfterRegistration (IsSettingSendConfirmationEmailAfterRegistrationRequest) returns (IsSettingSendConfirmationEmailAfterRegistrationResponse);
+
+	rpc setSettingSendConfirmationEmailAfterRegistration (SetSettingSendConfirmationEmailAfterRegistrationRequest) returns (SetSettingSendConfirmationEmailAfterRegistrationResponse);
+
+	rpc isSettingShowVersionUpgradeAvailable (IsSettingShowVersionUpgradeAvailableRequest) returns (IsSettingShowVersionUpgradeAvailableResponse);
+
+	rpc setSettingShowVersionUpgradeAvailable (SetSettingShowVersionUpgradeAvailableRequest) returns (SetSettingShowVersionUpgradeAvailableResponse);
+
+	rpc isSettingUseCaching (IsSettingUseCachingRequest) returns (IsSettingUseCachingResponse);
+
+	rpc setSettingUseCaching (SetSettingUseCachingRequest) returns (SetSettingUseCachingResponse);
+
+	rpc userHasCheckinRights (UserHasCheckinRightsRequest) returns (UserHasCheckinRightsResponse);
+
+	rpc getShowCheckoutWarning (GetShowCheckoutWarningRequest) returns (GetShowCheckoutWarningResponse);
+
+	rpc userHasRights (UserHasRightsRequest) returns (UserHasRightsResponse);
+
+	rpc getDataObjectByOid (GetDataObjectByOidRequest) returns (GetDataObjectByOidResponse);
+
+	rpc getDataObjectByGuid (GetDataObjectByGuidRequest) returns (GetDataObjectByGuidResponse);
+
+	rpc getDataObjectsByType (GetDataObjectsByTypeRequest) returns (GetDataObjectsByTypeResponse);
+
+	rpc findClashesByGuid (FindClashesByGuidRequest) returns (FindClashesByGuidResponse);
+
+	rpc findClashesByEid (FindClashesByEidRequest) returns (FindClashesByEidResponse);
+
+	rpc getLastClashes (GetLastClashesRequest) returns (GetLastClashesResponse);
+
+	rpc branchToNewProject (BranchToNewProjectRequest) returns (BranchToNewProjectResponse);
+
+	rpc branchToExistingProject (BranchToExistingProjectRequest) returns (BranchToExistingProjectResponse);
+
+	rpc getLogs (GetLogsRequest) returns (GetLogsResponse);
+
+	rpc getGeoTag (GetGeoTagRequest) returns (GetGeoTagResponse);
+
+	rpc updateGeoTag (UpdateGeoTagRequest) returns (UpdateGeoTagResponse);
+
+	rpc getClashDetectionSettings (GetClashDetectionSettingsRequest) returns (GetClashDetectionSettingsResponse);
+
+	rpc updateClashDetectionSettings (UpdateClashDetectionSettingsRequest) returns (UpdateClashDetectionSettingsResponse);
+
+	rpc getUserByUoid (GetUserByUoidRequest) returns (GetUserByUoidResponse);
+
+	rpc getAnonymousUser (GetAnonymousUserRequest) returns (GetAnonymousUserResponse);
+
+	rpc getAllNonAuthorizedUsersOfProject (GetAllNonAuthorizedUsersOfProjectRequest) returns (GetAllNonAuthorizedUsersOfProjectResponse);
+
+	rpc getAllAuthorizedUsersOfProject (GetAllAuthorizedUsersOfProjectRequest) returns (GetAllAuthorizedUsersOfProjectResponse);
+
+	rpc getUsersProjects (GetUsersProjectsRequest) returns (GetUsersProjectsResponse);
+
+	rpc getProjectByName (GetProjectByNameRequest) returns (GetProjectByNameResponse);
+
+	rpc setRevisionTag (SetRevisionTagRequest) returns (SetRevisionTagResponse);
+
+	rpc getSubProjects (GetSubProjectsRequest) returns (GetSubProjectsResponse);
+
+	rpc isExportTypeEnabled (IsExportTypeEnabledRequest) returns (IsExportTypeEnabledResponse);
+
+	rpc setExportTypeEnabled (SetExportTypeEnabledRequest) returns (SetExportTypeEnabledResponse);
+
+	rpc getCurrentUser (GetCurrentUserRequest) returns (GetCurrentUserResponse);
+
+	rpc isLoggedIn (IsLoggedInRequest) returns (IsLoggedInResponse);
+
+	rpc loginAnonymous (LoginAnonymousRequest) returns (LoginAnonymousResponse);
+
+	rpc getActiveUserSessions (GetActiveUserSessionsRequest) returns (GetActiveUserSessionsResponse);
+
+	rpc getActiveLongActions (GetActiveLongActionsRequest) returns (GetActiveLongActionsResponse);
+
+	rpc getActiveSince (GetActiveSinceRequest) returns (GetActiveSinceResponse);
+
+	rpc getLastActive (GetLastActiveRequest) returns (GetLastActiveResponse);
+
+	rpc getCurrentToken (GetCurrentTokenRequest) returns (GetCurrentTokenResponse);
+
+	rpc getAccessMethod (GetAccessMethodRequest) returns (GetAccessMethodResponse);
+
+	rpc getEnabledResultTypes (GetEnabledResultTypesRequest) returns (GetEnabledResultTypesResponse);
+
+	rpc getAllResultTypes (GetAllResultTypesRequest) returns (GetAllResultTypesResponse);
+
+	rpc getAllCheckoutsOfProjectAndSubProjects (GetAllCheckoutsOfProjectAndSubProjectsRequest) returns (GetAllCheckoutsOfProjectAndSubProjectsResponse);
+
+	rpc requestPasswordChange (RequestPasswordChangeRequest) returns (RequestPasswordChangeResponse);
+
+	rpc validateAccount (ValidateAccountRequest) returns (ValidateAccountResponse);
+
+	rpc sendClashesEmail (SendClashesEmailRequest) returns (SendClashesEmailResponse);
+
+	rpc sendCompareEmail (SendCompareEmailRequest) returns (SendCompareEmailResponse);
+
+	rpc getMigrations (GetMigrationsRequest) returns (GetMigrationsResponse);
+
+	rpc migrateDatabase (MigrateDatabaseRequest) returns (MigrateDatabaseResponse);
+
+	rpc compare (CompareRequest) returns (CompareResponse);
+
+	rpc setup (SetupRequest) returns (SetupResponse);
+
+	rpc download (DownloadRequest) returns (DownloadResponse);
+
+}
+message PingRequest {
+}
+message PingResponse {
+}
+message LoginRequest {
+}
+message LoginResponse {
+}
+message AutologinRequest {
+}
+message AutologinResponse {
+}
+message CheckinSyncRequest {
+}
+message CheckinSyncResponse {
+}
+message CheckinAsyncRequest {
+}
+message CheckinAsyncResponse {
+}
+message CheckoutRequest {
+}
+message CheckoutResponse {
+}
+message CheckoutLastRevisionRequest {
+}
+message CheckoutLastRevisionResponse {
+}
+message DownloadByOidsRequest {
+}
+message DownloadByOidsResponse {
+}
+message DownloadOfTypeRequest {
+}
+message DownloadOfTypeResponse {
+}
+message DownloadByGuidsRequest {
+}
+message DownloadByGuidsResponse {
+}
+message DownloadProjectsRequest {
+}
+message DownloadProjectsResponse {
+}
+message GetDownloadDataRequest {
+}
+message GetDownloadDataResponse {
+}
+message GetDownloadStateRequest {
+}
+message GetDownloadStateResponse {
+}
+message AddUserRequest {
+}
+message AddUserResponse {
+}
+message ChangeUserTypeRequest {
+}
+message ChangeUserTypeResponse {
+}
+message AddProjectRequest {
+}
+message AddProjectResponse {
+}
+message AddProjectAsSubProjectRequest {
+}
+message AddProjectAsSubProjectResponse {
+}
+message UpdateProjectRequest {
+}
+message UpdateProjectResponse {
+}
+message UpdateRevisionRequest {
+}
+message UpdateRevisionResponse {
+}
+message AddUserToProjectRequest {
+}
+message AddUserToProjectResponse {
+}
+message RemoveUserFromProjectRequest {
+}
+message RemoveUserFromProjectResponse {
+}
+message DeleteProjectRequest {
+}
+message DeleteProjectResponse {
+}
+message DeleteUserRequest {
+}
+message DeleteUserResponse {
+}
+message GetAllProjectsRequest {
+}
+message GetAllProjectsResponse {
+}
+message GetAllReadableProjectsRequest {
+}
+message GetAllReadableProjectsResponse {
+}
+message GetAllUsersRequest {
+}
+message GetAllUsersResponse {
+}
+message GetAllRevisionsOfProjectRequest {
+}
+message GetAllRevisionsOfProjectResponse {
+}
+message GetAllCheckoutsOfProjectRequest {
+}
+message GetAllCheckoutsOfProjectResponse {
+}
+message GetAllRevisionsByUserRequest {
+}
+message GetAllRevisionsByUserResponse {
+}
+message GetAllCheckoutsByUserRequest {
+}
+message GetAllCheckoutsByUserResponse {
+}
+message GetAllCheckoutsOfRevisionRequest {
+}
+message GetAllCheckoutsOfRevisionResponse {
+}
+message GetProjectByPoidRequest {
+}
+message GetProjectByPoidResponse {
+}
+message GetRevisionRequest {
+}
+message GetRevisionResponse {
+}
+message GetAvailableClassesRequest {
+}
+message GetAvailableClassesResponse {
+}
+message GetDatabaseInformationRequest {
+}
+message GetDatabaseInformationResponse {
+}
+message GetLastDatabaseResetRequest {
+}
+message GetLastDatabaseResetResponse {
+}
+message GetLoggedInUserRequest {
+}
+message GetLoggedInUserResponse {
+}
+message GetAllNonAuthorizedProjectsOfUserRequest {
+}
+message GetAllNonAuthorizedProjectsOfUserResponse {
+}
+message LogoutRequest {
+}
+message LogoutResponse {
+}
+message ChangePasswordRequest {
+}
+message ChangePasswordResponse {
+}
+message GetUserByUserNameRequest {
+}
+message GetUserByUserNameResponse {
+}
+message UndeleteProjectRequest {
+}
+message UndeleteProjectResponse {
+}
+message UndeleteUserRequest {
+}
+message UndeleteUserResponse {
+}
+message GetRevisionSummaryRequest {
+}
+message GetRevisionSummaryResponse {
+}
+message GetSettingCustomLogoAddressRequest {
+}
+message GetSettingCustomLogoAddressResponse {
+}
+message SetSettingCustomLogoAddressRequest {
+}
+message SetSettingCustomLogoAddressResponse {
+}
+message GetSettingEmailSenderAddressRequest {
+}
+message GetSettingEmailSenderAddressResponse {
+}
+message SetSettingEmailSenderAddressRequest {
+}
+message SetSettingEmailSenderAddressResponse {
+}
+message GetSettingEnabledExportTypesRequest {
+}
+message GetSettingEnabledExportTypesResponse {
+}
+message SetSettingEnabledExportTypesRequest {
+}
+message SetSettingEnabledExportTypesResponse {
+}
+message GetSettingRegistrationAdditionRequest {
+}
+message GetSettingRegistrationAdditionResponse {
+}
+message SetSettingRegistrationAdditionRequest {
+}
+message SetSettingRegistrationAdditionResponse {
+}
+message GetSettingSiteAddressRequest {
+}
+message GetSettingSiteAddressResponse {
+}
+message SetSettingSiteAddressRequest {
+}
+message SetSettingSiteAddressResponse {
+}
+message GetSettingSmtpServerRequest {
+}
+message GetSettingSmtpServerResponse {
+}
+message SetSettingSmtpServerRequest {
+}
+message SetSettingSmtpServerResponse {
+}
+message IsSettingAllowSelfRegistrationRequest {
+}
+message IsSettingAllowSelfRegistrationResponse {
+}
+message SetSettingAllowSelfRegistrationRequest {
+}
+message SetSettingAllowSelfRegistrationResponse {
+}
+message IsSettingAllowUsersToCreateTopLevelProjectsRequest {
+}
+message IsSettingAllowUsersToCreateTopLevelProjectsResponse {
+}
+message SetSettingAllowUsersToCreateTopLevelProjectsRequest {
+}
+message SetSettingAllowUsersToCreateTopLevelProjectsResponse {
+}
+message IsSettingAutoTestClashesRequest {
+}
+message IsSettingAutoTestClashesResponse {
+}
+message SetSettingAutoTestClashesRequest {
+}
+message SetSettingAutoTestClashesResponse {
+}
+message IsSettingCheckinMergingEnabledRequest {
+}
+message IsSettingCheckinMergingEnabledResponse {
+}
+message SetSettingCheckinMergingEnabledRequest {
+}
+message SetSettingCheckinMergingEnabledResponse {
+}
+message IsSettingIntelligentMergingRequest {
+}
+message IsSettingIntelligentMergingResponse {
+}
+message SetSettingIntelligentMergingRequest {
+}
+message SetSettingIntelligentMergingResponse {
+}
+message IsSettingSendConfirmationEmailAfterRegistrationRequest {
+}
+message IsSettingSendConfirmationEmailAfterRegistrationResponse {
+}
+message SetSettingSendConfirmationEmailAfterRegistrationRequest {
+}
+message SetSettingSendConfirmationEmailAfterRegistrationResponse {
+}
+message IsSettingShowVersionUpgradeAvailableRequest {
+}
+message IsSettingShowVersionUpgradeAvailableResponse {
+}
+message SetSettingShowVersionUpgradeAvailableRequest {
+}
+message SetSettingShowVersionUpgradeAvailableResponse {
+}
+message IsSettingUseCachingRequest {
+}
+message IsSettingUseCachingResponse {
+}
+message SetSettingUseCachingRequest {
+}
+message SetSettingUseCachingResponse {
+}
+message UserHasCheckinRightsRequest {
+}
+message UserHasCheckinRightsResponse {
+}
+message GetShowCheckoutWarningRequest {
+}
+message GetShowCheckoutWarningResponse {
+}
+message UserHasRightsRequest {
+}
+message UserHasRightsResponse {
+}
+message GetDataObjectByOidRequest {
+}
+message GetDataObjectByOidResponse {
+}
+message GetDataObjectByGuidRequest {
+}
+message GetDataObjectByGuidResponse {
+}
+message GetDataObjectsByTypeRequest {
+}
+message GetDataObjectsByTypeResponse {
+}
+message FindClashesByGuidRequest {
+}
+message FindClashesByGuidResponse {
+}
+message FindClashesByEidRequest {
+}
+message FindClashesByEidResponse {
+}
+message GetLastClashesRequest {
+}
+message GetLastClashesResponse {
+}
+message BranchToNewProjectRequest {
+}
+message BranchToNewProjectResponse {
+}
+message BranchToExistingProjectRequest {
+}
+message BranchToExistingProjectResponse {
+}
+message GetLogsRequest {
+}
+message GetLogsResponse {
+}
+message GetGeoTagRequest {
+}
+message GetGeoTagResponse {
+}
+message UpdateGeoTagRequest {
+}
+message UpdateGeoTagResponse {
+}
+message GetClashDetectionSettingsRequest {
+}
+message GetClashDetectionSettingsResponse {
+}
+message UpdateClashDetectionSettingsRequest {
+}
+message UpdateClashDetectionSettingsResponse {
+}
+message GetUserByUoidRequest {
+}
+message GetUserByUoidResponse {
+}
+message GetAnonymousUserRequest {
+}
+message GetAnonymousUserResponse {
+}
+message GetAllNonAuthorizedUsersOfProjectRequest {
+}
+message GetAllNonAuthorizedUsersOfProjectResponse {
+}
+message GetAllAuthorizedUsersOfProjectRequest {
+}
+message GetAllAuthorizedUsersOfProjectResponse {
+}
+message GetUsersProjectsRequest {
+}
+message GetUsersProjectsResponse {
+}
+message GetProjectByNameRequest {
+}
+message GetProjectByNameResponse {
+}
+message SetRevisionTagRequest {
+}
+message SetRevisionTagResponse {
+}
+message GetSubProjectsRequest {
+}
+message GetSubProjectsResponse {
+}
+message IsExportTypeEnabledRequest {
+}
+message IsExportTypeEnabledResponse {
+}
+message SetExportTypeEnabledRequest {
+}
+message SetExportTypeEnabledResponse {
+}
+message GetCurrentUserRequest {
+}
+message GetCurrentUserResponse {
+}
+message IsLoggedInRequest {
+}
+message IsLoggedInResponse {
+}
+message LoginAnonymousRequest {
+}
+message LoginAnonymousResponse {
+}
+message GetActiveUserSessionsRequest {
+}
+message GetActiveUserSessionsResponse {
+}
+message GetActiveLongActionsRequest {
+}
+message GetActiveLongActionsResponse {
+}
+message GetActiveSinceRequest {
+}
+message GetActiveSinceResponse {
+}
+message GetLastActiveRequest {
+}
+message GetLastActiveResponse {
+}
+message GetCurrentTokenRequest {
+}
+message GetCurrentTokenResponse {
+}
+message GetAccessMethodRequest {
+}
+message GetAccessMethodResponse {
+}
+message GetEnabledResultTypesRequest {
+}
+message GetEnabledResultTypesResponse {
+}
+message GetAllResultTypesRequest {
+}
+message GetAllResultTypesResponse {
+}
+message GetAllCheckoutsOfProjectAndSubProjectsRequest {
+}
+message GetAllCheckoutsOfProjectAndSubProjectsResponse {
+}
+message RequestPasswordChangeRequest {
+}
+message RequestPasswordChangeResponse {
+}
+message ValidateAccountRequest {
+}
+message ValidateAccountResponse {
+}
+message SendClashesEmailRequest {
+}
+message SendClashesEmailResponse {
+}
+message SendCompareEmailRequest {
+}
+message SendCompareEmailResponse {
+}
+message GetMigrationsRequest {
+}
+message GetMigrationsResponse {
+}
+message MigrateDatabaseRequest {
+}
+message MigrateDatabaseResponse {
+}
+message CompareRequest {
+}
+message CompareResponse {
+}
+message SetupRequest {
+}
+message SetupResponse {
+}
+message DownloadRequest {
+}
+message DownloadResponse {
+}

@@ -105,4 +105,8 @@ public class StringUtils {
 		}
 		return url.toString();
 	}
+
+	public static String firstUpperCase(String name) {
+		return name.substring(0, 1).toUpperCase() + name.substring(1);
+	}
 }

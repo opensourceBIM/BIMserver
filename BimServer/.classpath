@@ -2,6 +2,7 @@
 <classpath>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="build/pb"/>
 	<classpathentry kind="src" path="generated"/>
 	<classpathentry kind="src" path="expander"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/buildingSMARTLibrary"/>

@@ -99,17 +99,17 @@ public class Migrator {
 			}
 		}
 		
-		Schema emfSchema = new Schema();
-		emfSchema.addEPackage(StorePackage.eINSTANCE);
-		emfSchema.addEPackage(LogPackage.eINSTANCE);
-		emfSchema.addEPackage(Ifc2x3Package.eINSTANCE);
-		
-		SchemaChecker checker = new SchemaChecker(schema, emfSchema);
-		if (checker.compare()) {
-			return schema;
-		} else {
-			throw new InconsistentModelsException();
-		}
+//		Schema emfSchema = new Schema();
+//		emfSchema.addEPackage(StorePackage.eINSTANCE);
+//		emfSchema.addEPackage(LogPackage.eINSTANCE);
+//		emfSchema.addEPackage(Ifc2x3Package.eINSTANCE);
+//		
+//		SchemaChecker checker = new SchemaChecker(schema, emfSchema);
+//		if (checker.compare()) {
+//			return schema;
+//		} else {
+//			throw new InconsistentModelsException();
+//		}
 	}
 
 	public Set<SMigration> getMigrations() {
