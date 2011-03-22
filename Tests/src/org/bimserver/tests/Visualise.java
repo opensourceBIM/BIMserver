@@ -97,6 +97,7 @@ public class Visualise extends JFrame {
 			return nodes.size();
 		}
 
+		@SuppressWarnings("unchecked")
 		private void init() {
 			nodes = new ArrayList<TreeNode>();
 			if (eStructuralFeature instanceof EReference) {
