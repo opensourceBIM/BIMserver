@@ -5,7 +5,6 @@ import org.bimserver.pb.Service.DownloadResponse;
 import org.bimserver.pb.Service.GetAllProjectsRequest;
 import org.bimserver.pb.Service.GetAllProjectsResponse;
 import org.bimserver.pb.Service.GetDownloadDataRequest;
-import org.bimserver.pb.Service.GetDownloadDataRequestOrBuilder;
 import org.bimserver.pb.Service.GetDownloadDataResponse;
 import org.bimserver.pb.Service.GetRevisionRequest;
 import org.bimserver.pb.Service.GetRevisionResponse;
@@ -44,7 +43,7 @@ public class ProtocolBuffersClient {
 			for (long roid : firstProject.getRevisionsList()) {
 				System.out.println(roid);
 				getRevision(roid);
-				String downloadId = downloadRevision(roid);
+				downloadRevision(roid);
 			}
 		} catch (ServiceException e) {
 			e.printStackTrace();

@@ -51,6 +51,7 @@ public class RevisionMerger {
 		return resultModel;
 	}
 
+	@SuppressWarnings("unchecked")
 	public void cleanupUnmodified() {
 		Iterator<Long> iterator = resultModel.keySet().iterator();
 		while (iterator.hasNext()) {
@@ -113,6 +114,7 @@ public class RevisionMerger {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	private void fixNonGuidObjects() {
 		Set<List> clearedLists = new HashSet<List>();
 		for (IdEObject idEObject : newModel.getValues()) {
@@ -195,6 +197,7 @@ public class RevisionMerger {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	private IdEObject copy(IfcModel target, IdEObject idEObject, boolean limitToNonGuids) {
 		if (target.contains(idEObject.getOid())) {
 			return target.get(idEObject.getOid());
@@ -231,6 +234,7 @@ public class RevisionMerger {
 		return newObject;
 	}
 
+	@SuppressWarnings("unchecked")
 	private void fixExplicitNullReferences() {
 		for (IdEObject idEObject : newModel.getValues()) {
 			if (idEObject instanceof IfcRoot) {
@@ -283,6 +287,7 @@ public class RevisionMerger {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	private void updateReferences() {
 		for (IdEObject idEObject : newModel.getValues()) {
 			if (idEObject instanceof IfcRoot) {

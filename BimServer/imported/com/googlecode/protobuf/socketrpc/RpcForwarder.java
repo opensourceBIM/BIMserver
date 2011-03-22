@@ -266,7 +266,8 @@ class RpcForwarder {
    */
   static class RpcException extends Exception {
 
-    public final ErrorReason errorReason;
+	private static final long serialVersionUID = 5564350850262733223L;
+	public final ErrorReason errorReason;
     public final String msg;
 
     public RpcException(ErrorReason errorReason, String msg, Exception cause) {

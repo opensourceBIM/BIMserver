@@ -63,6 +63,7 @@ import java.util.List;
  *
  * @author jonp@google.com (Jon Perlow)
  */
+@SuppressWarnings("unchecked")
 public class RepeatedFieldBuilder
     <MType extends GeneratedMessage,
      BType extends GeneratedMessage.Builder,
@@ -259,7 +260,6 @@ public class RepeatedFieldBuilder
    * @param index the index of the message to get
    * @return the message or builder for the index as the base class interface
    */
-  @SuppressWarnings("unchecked")
   public IType getMessageOrBuilder(int index) {
     if (this.builders == null) {
       // We don't have any builders -- return the current Message.
@@ -368,7 +368,7 @@ public class RepeatedFieldBuilder
       }
     }
     if (values instanceof Collection) {
-      @SuppressWarnings("unchecked") final
+       final
       Collection<MType> collection = (Collection<MType>) values;
       if (collection.size() == 0) {
         return this;

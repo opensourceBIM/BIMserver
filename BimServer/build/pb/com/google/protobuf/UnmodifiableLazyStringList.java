@@ -31,9 +31,9 @@
 package com.google.protobuf;
 
 import java.util.AbstractList;
-import java.util.RandomAccess;
-import java.util.ListIterator;
 import java.util.Iterator;
+import java.util.ListIterator;
+import java.util.RandomAccess;
 
 /**
  * An implementation of {@link LazyStringList} that wraps another

@@ -30,12 +30,12 @@
 
 package com.google.protobuf;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.io.IOException;
 
 /**
  * A class which represents an arbitrary set of fields of some message type.
@@ -99,7 +99,6 @@ final class FieldSet<FieldDescriptorType extends
   private static final FieldSet DEFAULT_INSTANCE = new FieldSet(true);
 
   /** Make this FieldSet immutable from this point forward. */
-  @SuppressWarnings("unchecked")
   public void makeImmutable() {
     if (isImmutable) {
       return;

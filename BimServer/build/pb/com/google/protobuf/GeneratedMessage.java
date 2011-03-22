@@ -30,10 +30,6 @@
 
 package com.google.protobuf;
 
-import com.google.protobuf.Descriptors.Descriptor;
-import com.google.protobuf.Descriptors.EnumValueDescriptor;
-import com.google.protobuf.Descriptors.FieldDescriptor;
-
 import java.io.IOException;
 import java.io.ObjectStreamException;
 import java.io.Serializable;
@@ -46,6 +42,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import com.google.protobuf.Descriptors.Descriptor;
+import com.google.protobuf.Descriptors.EnumValueDescriptor;
+import com.google.protobuf.Descriptors.FieldDescriptor;
+
 /**
  * All generated protocol message classes extend this class.  This class
  * implements most of the Message and Builder interfaces using Java reflection.
@@ -54,6 +54,7 @@ import java.util.TreeMap;
  *
  * @author kenton@google.com Kenton Varda
  */
+@SuppressWarnings("unchecked")
 public abstract class GeneratedMessage extends AbstractMessage
     implements Serializable {
   private static final long serialVersionUID = 1L;
@@ -129,7 +130,7 @@ public abstract class GeneratedMessage extends AbstractMessage
       // Check that embedded messages are initialized.
       if (field.getJavaType() == FieldDescriptor.JavaType.MESSAGE) {
         if (field.isRepeated()) {
-          @SuppressWarnings("unchecked") final
+          final
           List<Message> messageList = (List<Message>) getField(field);
           for (final Message element : messageList) {
             if (!element.isInitialized()) {
@@ -204,7 +205,6 @@ public abstract class GeneratedMessage extends AbstractMessage
     void markDirty();
   }
 
-  @SuppressWarnings("unchecked")
   public abstract static class Builder <BuilderType extends Builder>
       extends AbstractMessage.Builder<BuilderType> {
 
@@ -403,7 +403,7 @@ public abstract class GeneratedMessage extends AbstractMessage
         // Check that embedded messages are initialized.
         if (field.getJavaType() == FieldDescriptor.JavaType.MESSAGE) {
           if (field.isRepeated()) {
-            @SuppressWarnings("unchecked") final
+           final
             List<Message> messageList = (List<Message>) getField(field);
             for (final Message element : messageList) {
               if (!element.isInitialized()) {
@@ -479,7 +479,7 @@ public abstract class GeneratedMessage extends AbstractMessage
   // =================================================================
   // Extensions-related stuff
 
-  public interface ExtendableMessageOrBuilder<
+public interface ExtendableMessageOrBuilder<
       MessageType extends ExtendableMessage> extends MessageOrBuilder {
 
     /** Check if a singular extension is present. */
@@ -583,7 +583,6 @@ public abstract class GeneratedMessage extends AbstractMessage
 
     /** Get the value of an extension. */
     //@Override (Java 1.6 override semantics, but we must support 1.5)
-    @SuppressWarnings("unchecked")
     public final <Type> Type getExtension(
         final GeneratedExtension<MessageType, Type> extension) {
       verifyExtensionContainingType(extension);
@@ -606,7 +605,6 @@ public abstract class GeneratedMessage extends AbstractMessage
 
     /** Get one element of a repeated extension. */
     //@Override (Java 1.6 override semantics, but we must support 1.5)
-    @SuppressWarnings("unchecked")
     public final <Type> Type getExtension(
         final GeneratedExtension<MessageType, List<Type>> extension,
         final int index) {
@@ -795,7 +793,6 @@ public abstract class GeneratedMessage extends AbstractMessage
    *
    * <p>See also {@link ExtendableMessage}.
    */
-  @SuppressWarnings("unchecked")
   public abstract static class ExtendableBuilder<
         MessageType extends ExtendableMessage,
         BuilderType extends ExtendableBuilder>
@@ -1260,7 +1257,6 @@ public abstract class GeneratedMessage extends AbstractMessage
      * EnumValueDescriptors but the native accessors use the generated enum
      * type.
      */
-    @SuppressWarnings("unchecked")
     private Object fromReflectionType(final Object value) {
       FieldDescriptor descriptor = getDescriptor();
       if (descriptor.isRepeated()) {
@@ -1313,7 +1309,6 @@ public abstract class GeneratedMessage extends AbstractMessage
      * EnumValueDescriptors but the native accessors use the generated enum
      * type.
      */
-    @SuppressWarnings("unchecked")
     private Object toReflectionType(final Object value) {
       FieldDescriptor descriptor = getDescriptor();
       if (descriptor.isRepeated()) {
@@ -1350,7 +1345,6 @@ public abstract class GeneratedMessage extends AbstractMessage
   // =================================================================
 
   /** Calls Class.getMethod and throws a RuntimeException if it fails. */
-  @SuppressWarnings("unchecked")
   private static Method getMethodOrDie(
       final Class clazz, final String name, final Class... params) {
     try {
@@ -1699,7 +1693,6 @@ public abstract class GeneratedMessage extends AbstractMessage
       private final Method getValueDescriptorMethod;
 
       @Override
-      @SuppressWarnings("unchecked")
       public Object get(final GeneratedMessage message) {
         final List newList = new ArrayList();
         for (final Object element : (List) super.get(message)) {
@@ -1709,7 +1702,6 @@ public abstract class GeneratedMessage extends AbstractMessage
       }
 
       @Override
-      @SuppressWarnings("unchecked")
       public Object get(final GeneratedMessage.Builder builder) {
         final List newList = new ArrayList();
         for (final Object element : (List) super.get(builder)) {

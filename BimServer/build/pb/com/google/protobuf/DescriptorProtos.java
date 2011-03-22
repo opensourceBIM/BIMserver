@@ -272,7 +272,6 @@ public final class DescriptorProtos {
       
       public com.google.protobuf.DescriptorProtos.FileDescriptorSet buildPartial() {
         com.google.protobuf.DescriptorProtos.FileDescriptorSet result = new com.google.protobuf.DescriptorProtos.FileDescriptorSet(this);
-        int from_bitField0_ = bitField0_;
         if (fileBuilder_ == null) {
           if (((bitField0_ & 0x00000001) == 0x00000001)) {
             file_ = java.util.Collections.unmodifiableList(file_);
@@ -12116,7 +12115,6 @@ public final class DescriptorProtos {
       
       public com.google.protobuf.DescriptorProtos.EnumOptions buildPartial() {
         com.google.protobuf.DescriptorProtos.EnumOptions result = new com.google.protobuf.DescriptorProtos.EnumOptions(this);
-        int from_bitField0_ = bitField0_;
         if (uninterpretedOptionBuilder_ == null) {
           if (((bitField0_ & 0x00000001) == 0x00000001)) {
             uninterpretedOption_ = java.util.Collections.unmodifiableList(uninterpretedOption_);
@@ -12692,7 +12690,6 @@ public final class DescriptorProtos {
       
       public com.google.protobuf.DescriptorProtos.EnumValueOptions buildPartial() {
         com.google.protobuf.DescriptorProtos.EnumValueOptions result = new com.google.protobuf.DescriptorProtos.EnumValueOptions(this);
-        int from_bitField0_ = bitField0_;
         if (uninterpretedOptionBuilder_ == null) {
           if (((bitField0_ & 0x00000001) == 0x00000001)) {
             uninterpretedOption_ = java.util.Collections.unmodifiableList(uninterpretedOption_);
@@ -13268,7 +13265,6 @@ public final class DescriptorProtos {
       
       public com.google.protobuf.DescriptorProtos.ServiceOptions buildPartial() {
         com.google.protobuf.DescriptorProtos.ServiceOptions result = new com.google.protobuf.DescriptorProtos.ServiceOptions(this);
-        int from_bitField0_ = bitField0_;
         if (uninterpretedOptionBuilder_ == null) {
           if (((bitField0_ & 0x00000001) == 0x00000001)) {
             uninterpretedOption_ = java.util.Collections.unmodifiableList(uninterpretedOption_);
@@ -13844,7 +13840,6 @@ public final class DescriptorProtos {
       
       public com.google.protobuf.DescriptorProtos.MethodOptions buildPartial() {
         com.google.protobuf.DescriptorProtos.MethodOptions result = new com.google.protobuf.DescriptorProtos.MethodOptions(this);
-        int from_bitField0_ = bitField0_;
         if (uninterpretedOptionBuilder_ == null) {
           if (((bitField0_ & 0x00000001) == 0x00000001)) {
             uninterpretedOption_ = java.util.Collections.unmodifiableList(uninterpretedOption_);
@@ -15916,7 +15911,6 @@ public final class DescriptorProtos {
         
         public com.google.protobuf.DescriptorProtos.SourceCodeInfo.Location buildPartial() {
           com.google.protobuf.DescriptorProtos.SourceCodeInfo.Location result = new com.google.protobuf.DescriptorProtos.SourceCodeInfo.Location(this);
-          int from_bitField0_ = bitField0_;
           if (((bitField0_ & 0x00000001) == 0x00000001)) {
             path_ = java.util.Collections.unmodifiableList(path_);
             bitField0_ = (bitField0_ & ~0x00000001);
@@ -16345,7 +16339,6 @@ public final class DescriptorProtos {
       
       public com.google.protobuf.DescriptorProtos.SourceCodeInfo buildPartial() {
         com.google.protobuf.DescriptorProtos.SourceCodeInfo result = new com.google.protobuf.DescriptorProtos.SourceCodeInfo(this);
-        int from_bitField0_ = bitField0_;
         if (locationBuilder_ == null) {
           if (((bitField0_ & 0x00000001) == 0x00000001)) {
             location_ = java.util.Collections.unmodifiableList(location_);
