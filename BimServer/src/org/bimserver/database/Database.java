@@ -20,7 +20,6 @@ package org.bimserver.database;
  * long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import java.io.File;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Date;
@@ -38,7 +37,6 @@ import org.bimserver.database.berkeley.DatabaseInitException;
 import org.bimserver.database.migrations.InconsistentModelsException;
 import org.bimserver.database.migrations.MigrationException;
 import org.bimserver.database.migrations.Migrator;
-import org.bimserver.database.migrations.Schema;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.FieldIgnoreMap;
 import org.bimserver.ifc.IfcModel;

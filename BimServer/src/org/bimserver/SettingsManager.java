@@ -34,7 +34,7 @@ public class SettingsManager {
 		Settings settings = StoreFactory.eINSTANCE.createSettings();
 		settings.setCustomLogoAddress("http://www.bimserver.org/version/defaultlogo.gif");
 		settings.setEmailSenderAddress("");
-		settings.setEnabledExportTypes("");
+		settings.setEnabledExportTypes("IFC,IFCXML,COLLADA,CITYGML,KMZ");
 		settings.setSiteAddress("");
 		settings.setSmtpServer("");
 		settings.setRegistrationAddition("");
