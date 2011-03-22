@@ -59,6 +59,7 @@ public class RandomIfcGenerator {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	private boolean createObject() {
 		IdEObject baseObject = objects.get(random.nextInt(objects.size()));
 		EList<EReference> eAllReferences = baseObject.eClass().getEAllReferences();
