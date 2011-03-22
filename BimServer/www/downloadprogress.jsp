@@ -20,8 +20,8 @@
 <script>
 	window.clearInterval(downloadUpdateFunctionHandle);
 	$("#progressbar").hide();	
-	$("#simpleDownloadButton").show();
-	$("#detailscheckoutbutton").show();
+	$('button[value="Download"]').show();
+	$('button[value="Checkout"]').show();
 </script>
 	<%
 		}
@@ -32,6 +32,7 @@
 	$(document).ready(function(){
 		$("#downloadlinkclick").click(function(){
 			$("#downloadlink").hide();
+			$(".downloadResult").empty();
 		});
 	})
 </script>
