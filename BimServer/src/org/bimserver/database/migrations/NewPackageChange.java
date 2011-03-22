@@ -6,10 +6,7 @@ import org.eclipse.emf.ecore.EPackage;
 
 public class NewPackageChange implements Change {
 
-	private final EPackage ePackage;
-
 	public NewPackageChange(EPackage ePackage) {
-		this.ePackage = ePackage;
 	}
 
 	@Override

@@ -56,6 +56,7 @@ package com.google.protobuf;
  *
  * @author jonp@google.com (Jon Perlow)
  */
+@SuppressWarnings("unchecked")
 public class SingleFieldBuilder
     <MType extends GeneratedMessage,
      BType extends GeneratedMessage.Builder,
@@ -105,7 +106,6 @@ public class SingleFieldBuilder
    *
    * @return the message for the field
    */
-  @SuppressWarnings("unchecked")
   public MType getMessage() {
     if (message == null) {
       // If message is null, the invariant is that we must be have a builder.
@@ -132,7 +132,6 @@ public class SingleFieldBuilder
    *
    * @return The builder for the field
    */
-  @SuppressWarnings("unchecked")
   public BType getBuilder() {
     if (builder == null) {
       // builder.mergeFrom() on a fresh builder
@@ -152,7 +151,6 @@ public class SingleFieldBuilder
    *
    * @return the message or builder for the field as the base class interface
    */
-  @SuppressWarnings("unchecked")
   public IType getMessageOrBuilder() {
     if (builder != null) {
       return  (IType) builder;
@@ -203,7 +201,6 @@ public class SingleFieldBuilder
    *
    * @return the builder
    */
-  @SuppressWarnings("unchecked")
   public SingleFieldBuilder<MType, BType, IType> clear() {
     message = (MType) (message != null ?
         message.getDefaultInstanceForType() :

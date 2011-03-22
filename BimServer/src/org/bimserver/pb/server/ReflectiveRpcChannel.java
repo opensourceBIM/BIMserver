@@ -1,4 +1,4 @@
-package org.bimserver;
+package org.bimserver.pb.server;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -15,7 +15,6 @@ import javax.activation.DataHandler;
 
 import org.apache.commons.io.IOUtils;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.pb.Service.ResultType;
 import org.bimserver.shared.ServiceInterface;
 import org.bimserver.utils.StringUtils;
 import org.bimserver.webservices.ServiceFactory;
@@ -41,13 +40,14 @@ public class ReflectiveRpcChannel implements BlockingRpcChannel {
 		this.serviceFactory = serviceFactory;
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public Message callBlockingMethod(MethodDescriptor methodDescriptor, RpcController controller, Message request, Message responsePrototype) throws ServiceException {
 		if (service == null) {
 			service = serviceFactory.newService(AccessMethod.INTERNAL);
 		}
 		Class<? extends ServiceInterface> clazz = service.getClass();
-		Class[] parameterClasses = new Class[methodDescriptor.getInputType().getFields().size()];
+		Class<?>[] parameterClasses = new Class[methodDescriptor.getInputType().getFields().size()];
 		int ci=0;
 		for (FieldDescriptor fieldDescriptor : methodDescriptor.getInputType().getFields()) {
 			parameterClasses[ci++] = convert(fieldDescriptor);
@@ -61,7 +61,6 @@ public class ReflectiveRpcChannel implements BlockingRpcChannel {
 				i++;
 			}
 			Object result = method.invoke(service, arguments);
-			Class<? extends Object> resultClass = result.getClass();
 			Builder builder = responsePrototype.newBuilderForType();
 			FieldDescriptor valueField = methodDescriptor.getOutputType().getFields().get(0);
 			if (valueField.getType().getJavaType() != JavaType.MESSAGE) {
@@ -105,6 +104,7 @@ public class ReflectiveRpcChannel implements BlockingRpcChannel {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	private Object convertObject(Map<Object, Object> convertedObjects, Descriptor descriptor, Object object) {
 		if (convertedObjects.containsKey(object)) {
 			return convertedObjects.get(object);
@@ -182,7 +182,7 @@ public class ReflectiveRpcChannel implements BlockingRpcChannel {
 		return builder.build();
 	}
 
-	private Class convert(FieldDescriptor fieldDescriptor) {
+	private Class<?> convert(FieldDescriptor fieldDescriptor) {
 		if (fieldDescriptor.getJavaType() == JavaType.BOOLEAN) {
 			return boolean.class;
 		} else if (fieldDescriptor.getJavaType() == JavaType.BYTE_STRING) {

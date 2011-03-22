@@ -35,12 +35,12 @@ import java.util.AbstractSet;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
-import java.util.TreeMap;
 import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Set;
 import java.util.SortedMap;
+import java.util.TreeMap;
 
 /**
  * A custom map implementation from FieldDescriptor to Object optimized to
@@ -385,7 +385,8 @@ class SmallSortedMap<K extends Comparable<K>, V> extends AbstractMap<K, V> {
    * Lazily creates the entry list. Any code that adds to the list must first
    * call this method.
    */
-  private void ensureEntryArrayMutable() {
+  @SuppressWarnings("unchecked")
+private void ensureEntryArrayMutable() {
     checkMutable();
     if (entryList.isEmpty() && !(entryList instanceof ArrayList)) {
       entryList = new ArrayList<Entry>(maxArraySize);
@@ -434,7 +435,8 @@ class SmallSortedMap<K extends Comparable<K>, V> extends AbstractMap<K, V> {
       return oldValue;
     }
 
-    @Override
+    @SuppressWarnings("unchecked")
+	@Override
     public boolean equals(Object o) {
       if (o == this) {
         return true;
@@ -442,7 +444,6 @@ class SmallSortedMap<K extends Comparable<K>, V> extends AbstractMap<K, V> {
       if (!(o instanceof Map.Entry)) {
         return false;
       }
-      @SuppressWarnings("unchecked")
       Map.Entry<?, ?> other = (Map.Entry<?, ?>) o;
       return equals(key, other.getKey()) && equals(value, other.getValue());
     }

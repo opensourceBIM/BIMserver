@@ -30,12 +30,12 @@
 
 package com.google.protobuf;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Map;
+
 import com.google.protobuf.Descriptors.Descriptor;
 import com.google.protobuf.Descriptors.FieldDescriptor;
-
-import java.io.InputStream;
-import java.io.IOException;
-import java.util.Map;
 
 /**
  * An implementation of {@link Message} that can represent arbitrary types,

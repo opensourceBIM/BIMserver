@@ -193,7 +193,7 @@ public class ProtocolBuffersGenerator {
 				} else {
 					messageBuilder.append("optional ");
 				}
-				Class parameterType = method.getReturnType();
+				Class<?> parameterType = method.getReturnType();
 				if (aggregate) {
 					Type genericReturnType = method.getGenericReturnType();
 					if (genericReturnType instanceof ParameterizedTypeImpl) {

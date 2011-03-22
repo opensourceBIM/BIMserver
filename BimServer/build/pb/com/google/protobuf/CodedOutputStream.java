@@ -30,10 +30,10 @@
 
 package com.google.protobuf;
 
-import java.io.OutputStream;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
 
 /**
  * Encodes and writes protocol message fields.

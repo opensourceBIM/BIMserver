@@ -45,6 +45,7 @@ import java.util.Map;
  *
  * @author kenton@google.com Kenton Varda
  */
+@SuppressWarnings("unchecked")
 public abstract class GeneratedMessageLite extends AbstractMessageLite
     implements Serializable {
   private static final long serialVersionUID = 1L;
@@ -52,10 +53,9 @@ public abstract class GeneratedMessageLite extends AbstractMessageLite
   protected GeneratedMessageLite() {
   }
 
-  protected GeneratedMessageLite(Builder builder) {
+protected GeneratedMessageLite(Builder builder) {
   }
 
-  @SuppressWarnings("unchecked")
   public abstract static class Builder<MessageType extends GeneratedMessageLite,
                                        BuilderType extends Builder>
       extends AbstractMessageLite.Builder<BuilderType> {
@@ -166,7 +166,6 @@ public abstract class GeneratedMessageLite extends AbstractMessageLite
 
     /** Get the value of an extension. */
     //@Override (Java 1.6 override semantics, but we must support 1.5)
-    @SuppressWarnings("unchecked")
     public final <Type> Type getExtension(
         final GeneratedExtension<MessageType, Type> extension) {
       verifyExtensionContainingType(extension);
@@ -180,7 +179,6 @@ public abstract class GeneratedMessageLite extends AbstractMessageLite
 
     /** Get one element of a repeated extension. */
     //@Override (Java 1.6 override semantics, but we must support 1.5)
-    @SuppressWarnings("unchecked")
     public final <Type> Type getExtension(
         final GeneratedExtension<MessageType, List<Type>> extension,
         final int index) {
@@ -255,7 +253,6 @@ public abstract class GeneratedMessageLite extends AbstractMessageLite
   /**
    * Lite equivalent of {@link GeneratedMessage.ExtendableBuilder}.
    */
-  @SuppressWarnings("unchecked")
   public abstract static class ExtendableBuilder<
         MessageType extends ExtendableMessage<MessageType>,
         BuilderType extends ExtendableBuilder<MessageType, BuilderType>>
@@ -319,7 +316,6 @@ public abstract class GeneratedMessageLite extends AbstractMessageLite
 
     /** Get the value of an extension. */
     //@Override (Java 1.6 override semantics, but we must support 1.5)
-    @SuppressWarnings("unchecked")
     public final <Type> Type getExtension(
         final GeneratedExtension<MessageType, Type> extension) {
       verifyExtensionContainingType(extension);
@@ -332,7 +328,6 @@ public abstract class GeneratedMessageLite extends AbstractMessageLite
     }
 
     /** Get one element of a repeated extension. */
-    @SuppressWarnings("unchecked")
     //@Override (Java 1.6 override semantics, but we must support 1.5)
     public final <Type> Type getExtension(
         final GeneratedExtension<MessageType, List<Type>> extension,
@@ -548,7 +543,7 @@ public abstract class GeneratedMessageLite extends AbstractMessageLite
               final int number,
               final WireFormat.FieldType type,
               final boolean isPacked) {
-    @SuppressWarnings("unchecked")  // Subclasses ensure Type is a List
+     // Subclasses ensure Type is a List
     Type emptyList = (Type) Collections.emptyList();
     return new GeneratedExtension<ContainingType, Type>(
         containingTypeDefaultInstance,
@@ -604,7 +599,6 @@ public abstract class GeneratedMessageLite extends AbstractMessageLite
       return enumTypeMap;
     }
 
-    @SuppressWarnings("unchecked")
     public MessageLite.Builder internalMergeFrom(
         MessageLite.Builder to, MessageLite from) {
       return ((Builder) to).mergeFrom((GeneratedMessageLite) from);
@@ -696,7 +690,6 @@ public abstract class GeneratedMessageLite extends AbstractMessageLite
      * back to the regular form.  Part of Java's serialization magic.
      * @return a GeneratedMessage of the type that was serialized
      */
-    @SuppressWarnings("unchecked")
     protected Object readResolve() throws ObjectStreamException {
       try {
         Class messageClass = Class.forName(messageClassName);
