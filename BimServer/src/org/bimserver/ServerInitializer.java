@@ -227,10 +227,6 @@ public class ServerInitializer implements ServletContextListener {
 
 			RestApplication.setServiceFactory(ServiceFactory.getINSTANCE());
 
-			// ProtocolBuffersServer protocolBuffersServer = new
-			// ProtocolBuffersServer(8020);
-			// protocolBuffersServer.start();
-
 			RpcServer rpcServer = new RpcServer(SocketRpcConnectionFactories.createServerRpcConnectionFactory(8020), Executors.newFixedThreadPool(10), false);
 			rpcServer.registerBlockingService(org.bimserver.pb.Service.ServiceInterface.newReflectiveBlockingService(org.bimserver.pb.Service.ServiceInterface.newBlockingStub(new ReflectiveRpcChannel(ServiceFactory.getINSTANCE()))));
 			rpcServer.startServer();

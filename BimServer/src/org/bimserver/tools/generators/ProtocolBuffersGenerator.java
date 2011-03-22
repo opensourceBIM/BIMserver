@@ -193,8 +193,17 @@ public class ProtocolBuffersGenerator {
 				} else {
 					messageBuilder.append("optional ");
 				}
+				Class parameterType = method.getReturnType();
+				if (aggregate) {
+					Type genericReturnType = method.getGenericReturnType();
+					if (genericReturnType instanceof ParameterizedTypeImpl) {
+						ParameterizedTypeImpl parameterizedTypeImpl = (ParameterizedTypeImpl)genericReturnType;
+						Type type2 = parameterizedTypeImpl.getActualTypeArguments()[0];
+						parameterType = ((Class<?>)type2);
+					}
+				}
 				String fieldName = StringUtils.firstLowerCase(method.getName().substring(3));
-				messageBuilder.append(createMessage(sb, method.getReturnType()) + " " + fieldName + " = " + (counter++) + ";\n");
+				messageBuilder.append(createMessage(sb, parameterType) + " " + fieldName + " = " + (counter++) + ";\n");
 			}
 		}
 		messageBuilder.append("}\n\n");
