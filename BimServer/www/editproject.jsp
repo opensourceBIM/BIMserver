@@ -32,42 +32,46 @@
 		EmfSerializerFactory emfSerializerFactory = EmfSerializerFactory.getInstance();
 		long poid = Long.parseLong(request.getParameter("poid"));
 		SProject sProject = loginManager.getService().getProjectByPoid(poid);
-		boolean anonymousAccess = sProject.getHasAuthorizedUsers().contains(loginManager.getService().getAnonymousUser().getOid());
+		SUser anonymousUser = null;
 		try {
-	SGeoTag sGeoTag = loginManager.getService().getGeoTag(sProject.getGeoTagId());
-	SClashDetectionSettings sClashDetectionSettings = loginManager.getService().getClashDetectionSettings(
-			sProject.getClashDetectionSettingsId());
-	if (request.getParameter("save") != null) {
-		try {
-			if (sProject.getParentId() == -1) {
-				sGeoTag.setEnabled(request.getParameter("coordcheck") != null);
-				sGeoTag.setX(Float.parseFloat(request.getParameter("x")));
-				sGeoTag.setY(Float.parseFloat(request.getParameter("y")));
-				sGeoTag.setZ(Float.parseFloat(request.getParameter("z")));
-				sGeoTag.setDirectionAngle(Float.parseFloat(request.getParameter("directionAngle")));
-				sGeoTag.setEpsg(Integer.parseInt(request.getParameter("epsg").substring(5)));
-				loginManager.getService().updateGeoTag(sGeoTag);
-				sClashDetectionSettings.setEnabled(request.getParameter("clashdetection") != null);
-				sClashDetectionSettings.setMargin(Float.parseFloat(request.getParameter("margin")));
-				loginManager.getService().updateClashDetectionSettings(sClashDetectionSettings);
-			}
-			sProject.setName(request.getParameter("name"));
-			sProject.setDescription(request.getParameter("description"));
-			sProject.setExportLengthMeasurePrefix(SSIPrefix.values()[Integer.parseInt(request.getParameter("exportLengthMeasurePrefix"))]);
-			loginManager.getService().updateProject(sProject);
-			SUser anonymousUser = loginManager.getService().getAnonymousUser();
-			if (request.getParameter("anonymous") == null) {
-				if (anonymousAccess) {
-					loginManager.getService().removeUserFromProject(anonymousUser.getOid(), poid);
-				}
-			} else {
-				loginManager.getService().addUserToProject(anonymousUser.getOid(), poid);
-			}
-			response.sendRedirect("project.jsp?poid=" + poid);
+			anonymousUser = loginManager.getService().getAnonymousUser();
 		} catch (UserException e) {
-			out.println("<div class=\"error\">" + e.getMessage() + "</div>");
 		}
-	}
+		boolean anonymousAccess = anonymousUser != null && sProject.getHasAuthorizedUsers().contains(anonymousUser.getOid());
+		try {
+			SGeoTag sGeoTag = loginManager.getService().getGeoTag(sProject.getGeoTagId());
+			SClashDetectionSettings sClashDetectionSettings = loginManager.getService().getClashDetectionSettings(
+			sProject.getClashDetectionSettingsId());
+			if (request.getParameter("save") != null) {
+				try {
+					if (sProject.getParentId() == -1) {
+						sGeoTag.setEnabled(request.getParameter("coordcheck") != null);
+						sGeoTag.setX(Float.parseFloat(request.getParameter("x")));
+						sGeoTag.setY(Float.parseFloat(request.getParameter("y")));
+						sGeoTag.setZ(Float.parseFloat(request.getParameter("z")));
+						sGeoTag.setDirectionAngle(Float.parseFloat(request.getParameter("directionAngle")));
+						sGeoTag.setEpsg(Integer.parseInt(request.getParameter("epsg").substring(5)));
+						loginManager.getService().updateGeoTag(sGeoTag);
+						sClashDetectionSettings.setEnabled(request.getParameter("clashdetection") != null);
+						sClashDetectionSettings.setMargin(Float.parseFloat(request.getParameter("margin")));
+						loginManager.getService().updateClashDetectionSettings(sClashDetectionSettings);
+					}
+					sProject.setName(request.getParameter("name"));
+					sProject.setDescription(request.getParameter("description"));
+					sProject.setExportLengthMeasurePrefix(SSIPrefix.values()[Integer.parseInt(request.getParameter("exportLengthMeasurePrefix"))]);
+					loginManager.getService().updateProject(sProject);
+					if (request.getParameter("anonymous") == null) {
+						if (anonymousAccess) {
+							loginManager.getService().removeUserFromProject(anonymousUser.getOid(), poid);
+						}
+					} else {
+						loginManager.getService().addUserToProject(anonymousUser.getOid(), poid);
+					}
+					response.sendRedirect("project.jsp?poid=" + poid);
+				} catch (UserException e) {
+					out.println("<div class=\"error\">" + e.getMessage() + "</div>");
+				}
+			}
 %>
 <%
 	if (request.getParameter("message") != null) {
@@ -96,6 +100,7 @@
 		<td class="first"><label for="description">Description</label></td>
 		<td><textarea id="description" name="description" cols="70" rows="5"><%=request.getParameter("description") != null ? request.getParameter("description") : sProject.getDescription()%></textarea></td>
 	</tr>
+<% if (anonymousUser != null) { %>
 	<tr>
 		<td class="first"><label for="anonymous" class="checkbox">Anonymous
 		access</label></td>
@@ -103,6 +108,7 @@
 			class="checkbox" <%=anonymousAccess ? "checked=\"checked\"" : ""%> /></td>
 	</tr>
 	<%
+}
 		if (sProject.getParentId() == -1) {
 	%>
 	<tr>
