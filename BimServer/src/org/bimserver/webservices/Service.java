@@ -47,6 +47,8 @@ import javax.mail.internet.MimeMessage;
 import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
 
 import org.bimserver.ServerInfo;
+import org.bimserver.ServerInitializer;
+import org.bimserver.ServerType;
 import org.bimserver.SettingsManager;
 import org.bimserver.ServerInfo.ServerState;
 import org.bimserver.database.BimDatabase;
@@ -2222,6 +2224,10 @@ public class Service implements ServiceInterface {
 			new AddUserDatabaseAction(session, AccessMethod.INTERNAL, settingsManager, mailSystem, adminUsername, adminPassword, adminName, UserType.ADMIN, -1, false).execute();
 			if (createAnonymousUser) {
 				new AddUserDatabaseAction(session, AccessMethod.INTERNAL, settingsManager, mailSystem, "anonymous", "anonymous", "Anonymous", UserType.ANONYMOUS, -1, false)
+						.execute();
+			}
+			if (ServerInitializer.getServerType() == ServerType.DEV_ENVIRONMENT) {
+				new AddUserDatabaseAction(session, AccessMethod.INTERNAL, settingsManager, mailSystem, "test@bimserver.org", "test", "Test User", UserType.USER, -1, false)
 						.execute();
 			}
 			session.commit();

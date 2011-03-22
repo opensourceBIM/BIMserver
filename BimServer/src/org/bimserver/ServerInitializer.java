@@ -97,6 +97,7 @@ public class ServerInitializer implements ServletContextListener {
 	private static ServiceInterface systemService;
 	private File homeDir;
 	private File baseDir;
+	private static ServerType serverType;
 
 	@Override
 	public void contextInitialized(ServletContextEvent servletContextEvent) {
@@ -108,7 +109,7 @@ public class ServerInitializer implements ServletContextListener {
 			if (homeDir == null && servletContext.getInitParameter("homedir") != null) {
 				homeDir = new File(servletContext.getInitParameter("homedir"));
 			}
-			ServerType serverType = detectServerType(servletContextEvent.getServletContext());
+			serverType = detectServerType(servletContextEvent.getServletContext());
 			if (serverType == ServerType.DEV_ENVIRONMENT) {
 				baseDir = new File("../BimServer/defaultsettings/" + "shared");
 			} else if (serverType == ServerType.STANDALONE_JAR) {
@@ -182,16 +183,6 @@ public class ServerInitializer implements ServletContextListener {
 			ServerInfo.init(bimDatabase, settingsManager);
 			ServerInfo.update();
 
-			if (serverType == ServerType.DEV_ENVIRONMENT && columnDatabase.isNew()) {
-				BimDatabaseSession session = bimDatabase.createSession();
-				try {
-					new AddUserDatabaseAction(session, AccessMethod.INTERNAL, settingsManager, mailSystem, "test@bimserver.org", "test", "Test User", UserType.USER, -1, false)
-							.execute();
-					session.commit();
-				} finally {
-					session.close();
-				}
-			}
 			Version version = VersionChecker.init(resourceFetcher).getLocalVersion();
 
 			File schemaFile = resourceFetcher.getFile("IFC2X3_FINAL.exp").getAbsoluteFile();
@@ -254,6 +245,10 @@ public class ServerInitializer implements ServletContextListener {
 		}
 	}
 
+	public static ServerType getServerType() {
+		return serverType;
+	}
+	
 	private void fixLogging() throws IOException {
 		CustomFileAppender appender = new CustomFileAppender(new File(homeDir, "logs/bimserver.log"));
 		Enumeration<?> currentLoggers = LogManager.getCurrentLoggers();
