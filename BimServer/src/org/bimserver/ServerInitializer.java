@@ -233,7 +233,7 @@ public class ServerInitializer implements ServletContextListener {
 
 			RpcServer rpcServer = new RpcServer(SocketRpcConnectionFactories.createServerRpcConnectionFactory(8020), Executors.newFixedThreadPool(10), false);
 			rpcServer.registerBlockingService(org.bimserver.pb.Service.ServiceInterface.newReflectiveBlockingService(org.bimserver.pb.Service.ServiceInterface.newBlockingStub(new ReflectiveRpcChannel(ServiceFactory.getINSTANCE()))));
-			rpcServer.run();
+			rpcServer.startServer();
 
 			if (serverType == ServerType.DEPLOYED_WAR) {
 				File libDir = new File(classPath);
