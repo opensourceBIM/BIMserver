@@ -27,6 +27,7 @@ public class TracingGarbageCollector {
 		this.schema = schema;
 	}
 
+	@SuppressWarnings("unchecked")
 	public void mark(Set<? extends IdEObject> rootObjects) {
 		referencedObjects.addAll(rootObjects);
 		for (IdEObject rootObject : rootObjects) {
