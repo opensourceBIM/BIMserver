@@ -119,5 +119,8 @@
 	<classpathentry exported="true" kind="lib" path="lib/cxf/xmlsec-1.4.4.jar"/>
 	<classpathentry kind="lib" path="lib/emf/org.eclipse.emf.compare_1.0.1.v200909161031.jar"/>
 	<classpathentry kind="lib" path="lib/emf/org.eclipse.emf.compare.match_1.0.1.v200909161031.jar"/>
+	<classpathentry kind="lib" path="lib/commons-beanutils-1.8.3.jar"/>
+	<classpathentry kind="lib" path="lib/commons-beanutils-bean-collections-1.8.3.jar"/>
+	<classpathentry kind="lib" path="lib/commons-beanutils-core-1.8.3.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

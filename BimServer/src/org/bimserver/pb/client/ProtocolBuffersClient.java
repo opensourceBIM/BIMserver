@@ -1,5 +1,7 @@
 package org.bimserver.pb.client;
 
+import java.util.List;
+
 import org.bimserver.pb.Service.DownloadRequest;
 import org.bimserver.pb.Service.DownloadResponse;
 import org.bimserver.pb.Service.GetAllProjectsRequest;
@@ -39,20 +41,22 @@ public class ProtocolBuffersClient {
 		service = ServiceInterface.newBlockingStub(rpcChannel);
 		try {
 			if (login("admin@logic-labs.nl", "admin")) {
-				SProject firstProject = getAllProjects();
-				for (long roid : firstProject.getRevisionsList()) {
-					System.out.println(roid);
-					getRevision(roid);
-					downloadRevision(roid);
+				for (int i=0; i<10000; i++) {
+					getAllProjects();
+					System.out.println(i);
 				}
+//				for (long roid : getAllProjects().get(0).getRevisionsList()) {
+//					System.out.println(roid);
+//					getRevision(roid);
+//					downloadRevision(roid);
+//				}
 			}
 		} catch (ServiceException e) {
 			e.printStackTrace();
 		}
-		    
+
 		if (rpcController.failed()) {
-		  System.err.println(String.format("Rpc failed %s : %s", rpcController.errorReason(),
-		      rpcController.errorText()));
+			System.err.println(String.format("Rpc failed %s : %s", rpcController.errorReason(), rpcController.errorText()));
 		}
 	}
 
@@ -66,11 +70,11 @@ public class ProtocolBuffersClient {
 			DownloadResponse downloadResponse = service.download(rpcController, downloadRequest);
 			if (downloadResponse.getErrorMessage().equals("OKE")) {
 				String downloadId = downloadResponse.getValue();
-				
+
 				org.bimserver.pb.Service.GetDownloadDataRequest.Builder getDownloadDataRequestBuilder = GetDownloadDataRequest.newBuilder();
 				getDownloadDataRequestBuilder.setActionID(downloadId);
 				GetDownloadDataRequest getDownloadDataRequest = getDownloadDataRequestBuilder.build();
-				
+
 				GetDownloadDataResponse getDownloadDataResponse = service.getDownloadData(rpcController, getDownloadDataRequest);
 				if (getDownloadDataResponse.equals("OKE")) {
 					SDownloadResult sDownloadResult = getDownloadDataResponse.getValue();
@@ -92,32 +96,26 @@ public class ProtocolBuffersClient {
 		org.bimserver.pb.Service.GetRevisionRequest.Builder getRevisionRequestBuilder = GetRevisionRequest.newBuilder();
 		getRevisionRequestBuilder.setRoid(roid);
 		GetRevisionRequest getRevisionRequest = getRevisionRequestBuilder.build();
-		
+
 		GetRevisionResponse getRevisionResponse = service.getRevision(rpcController, getRevisionRequest);
-		if  (getRevisionResponse.getErrorMessage().equals("OKE")) {
+		if (getRevisionResponse.getErrorMessage().equals("OKE")) {
 			System.out.println(getRevisionResponse.getValue().getSize());
 		} else {
 			System.err.println(getRevisionResponse.getErrorMessage());
 		}
 	}
 
-	private SProject getAllProjects() throws ServiceException {
+	private List<SProject> getAllProjects() throws ServiceException {
 		Builder getAllProjectsRequestBuilder = GetAllProjectsRequest.newBuilder();
 		GetAllProjectsRequest getAllProjectsRequest = getAllProjectsRequestBuilder.build();
-		
+
 		GetAllProjectsResponse getAllProjectsResponse = service.getAllProjects(rpcController, getAllProjectsRequest);
-		SProject firstProject = null;
 		if (getAllProjectsResponse.getErrorMessage().equals("OKE")) {
-			for (SProject sProject : getAllProjectsResponse.getValueList()) {
-				if (firstProject == null) {
-					firstProject = sProject;
-				}
-				System.out.println(sProject.getName());
-			}
+			return getAllProjectsResponse.getValueList();
 		} else {
 			System.err.println(getAllProjectsResponse.getErrorMessage());
+			return null;
 		}
-		return firstProject;
 	}
 
 	private boolean login(String username, String password) throws ServiceException {

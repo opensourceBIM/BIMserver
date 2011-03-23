@@ -20,6 +20,7 @@
 			<fileset file="${buildtargets}/shared/_asCOBie2.xml.xsl" />
 			<fileset file="${buildtargets}/shared/_fromCOBie2.ifcxml.xsl" />
 			<fileset file="${buildtargets}/shared/_Report1.xhtml.xsl" />
+			<fileset file="${buildtargets}/shared/service.proto" />
 		</copy>
 		<copy todir="builds/BuildJar/home" overwrite="true">
 			<fileset file="${defaultsettings}/shared/collada.xml" />
@@ -79,6 +80,8 @@
 		</copy>
 		<javac srcdir="../src" destdir="builds/BuildJar/classes" debug="on" fork="true" memorymaximumsize="512m">
 			<src path="../../BimServer/generated" />
+			<src path="../../BimServer/imported" />
+			<src path="../../BimServer/build/pb" />
 			<src path="../../buildingSMARTLibrary/src" />
 			<src path="../../Ifc/src" />
 			<src path="../../Utils/src" />
@@ -132,6 +135,7 @@
 			<fileset file="${buildtargets}/shared/_asCOBie2.xml.xsl" />
 			<fileset file="${buildtargets}/shared/_fromCOBie2.ifcxml.xsl" />
 			<fileset file="${buildtargets}/shared/_Report1.xhtml.xsl" />
+			<fileset file="${buildtargets}/shared/service.proto" />
 
 			<fileset file="${defaultsettings}/shared/collada.xml" />
 			<fileset file="${defaultsettings}/${target}/collada.xml" />
@@ -145,6 +149,8 @@
 
 		<mkdir dir="builds/BuildWar/WEB-INF/logs"/>
 		<mkdir dir="builds/BuildWar/WEB-INF/tmp"/>
+
+		<copy file="pb/service.proto" tofile="builds/BuildWar/WEB-INF/service.proto"/>
 
 		<copy file="${buildtargets}/war/servertype.txt" todir="builds/BuildWar" />
 		<copy todir="builds/BuildWar/META-INF" overwrite="true">
@@ -201,6 +207,8 @@
 		</copy>
 		<javac srcdir="../src" destdir="builds/BuildWar/WEB-INF/classes" debug="on" fork="true" memorymaximumsize="512m">
 			<src path="../../BimServer/generated" />
+			<src path="../../BimServer/imported" />
+			<src path="../../BimServer/build/pb" />
 			<src path="../../buildingSMARTLibrary/src" />
 			<src path="../../Ifc/src" />
 			<src path="../../Utils/src" />

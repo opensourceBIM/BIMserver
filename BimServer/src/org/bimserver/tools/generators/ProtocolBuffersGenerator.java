@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.io.PrintWriter;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
+import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.Date;
 import java.util.HashMap;
@@ -18,10 +19,9 @@ import java.util.Set;
 import javax.activation.DataHandler;
 import javax.jws.WebParam;
 
+import org.apache.commons.io.FileUtils;
 import org.bimserver.shared.ServiceInterface;
 import org.bimserver.utils.StringUtils;
-
-import sun.reflect.generics.reflectiveObjects.ParameterizedTypeImpl;
 
 public class ProtocolBuffersGenerator {
 	private final Map<Class<?>, String> generatedClasses = new HashMap<Class<?>, String>();
@@ -46,6 +46,11 @@ public class ProtocolBuffersGenerator {
 	private void start() {
 		File protoFile = new File("build/pb/service.proto");
 		generateProtoFile(protoFile);
+		try {
+			FileUtils.copyFile(protoFile, new File("build/targets/shared/service.proto"));
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
 
 		File destDir = new File("generated");
 		File protoDir = new File("build/pb");
@@ -102,8 +107,8 @@ public class ProtocolBuffersGenerator {
 			e1.printStackTrace();
 		}
 		try {
-			out.println("package org.bimserver.pb;");
-			out.println("option java_generic_services = true;");
+			out.println("package org.bimserver.pb;\n");
+			out.println("option java_generic_services = true;\n");
 			StringBuilder serviceBuilder = new StringBuilder();
 			StringBuilder messageBuilder = new StringBuilder();
 			serviceBuilder.append("service ServiceInterface {\n");
@@ -120,7 +125,7 @@ public class ProtocolBuffersGenerator {
 				serviceBuilder.append("\trpc " + method.getName() + " (" + inputObjectName + ") returns (" + outputObjectName + ");\n\n");
 			}
 			generateVoidMessage(messageBuilder);
-			serviceBuilder.append("}\n");
+			serviceBuilder.append("}\n\n");
 			out.print(serviceBuilder.toString());
 			out.print(messageBuilder.toString());
 		} catch (ClassNotFoundException e) {
@@ -149,7 +154,7 @@ public class ProtocolBuffersGenerator {
 		Class<?> returnType = method.getReturnType();
 		if (aggregate) {
 			Type genericReturnType = method.getGenericReturnType();
-			ParameterizedTypeImpl parameterizedTypeImpl = (ParameterizedTypeImpl)genericReturnType;
+			ParameterizedType parameterizedTypeImpl = (ParameterizedType)genericReturnType;
 			Type type2 = parameterizedTypeImpl.getActualTypeArguments()[0];
 			returnType = ((Class<?>)type2);
 		}
@@ -197,8 +202,8 @@ public class ProtocolBuffersGenerator {
 				Class<?> parameterType = method.getReturnType();
 				if (aggregate) {
 					Type genericReturnType = method.getGenericReturnType();
-					if (genericReturnType instanceof ParameterizedTypeImpl) {
-						ParameterizedTypeImpl parameterizedTypeImpl = (ParameterizedTypeImpl)genericReturnType;
+					if (genericReturnType instanceof ParameterizedType) {
+						ParameterizedType parameterizedTypeImpl = (ParameterizedType)genericReturnType;
 						Type type2 = parameterizedTypeImpl.getActualTypeArguments()[0];
 						parameterType = ((Class<?>)type2);
 					}
@@ -259,8 +264,8 @@ public class ProtocolBuffersGenerator {
 			}
 			if (aggregate) {
 				Type genericReturnType = method.getGenericReturnType();
-				if (genericReturnType instanceof ParameterizedTypeImpl) {
-					ParameterizedTypeImpl parameterizedTypeImpl = (ParameterizedTypeImpl)genericReturnType;
+				if (genericReturnType instanceof ParameterizedType) {
+					ParameterizedType parameterizedTypeImpl = (ParameterizedType)genericReturnType;
 					Type type2 = parameterizedTypeImpl.getActualTypeArguments()[0];
 					parameterType = ((Class<?>)type2);
 				}
