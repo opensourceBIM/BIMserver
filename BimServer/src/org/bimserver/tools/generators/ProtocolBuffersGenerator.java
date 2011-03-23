@@ -153,7 +153,8 @@ public class ProtocolBuffersGenerator {
 			Type type2 = parameterizedTypeImpl.getActualTypeArguments()[0];
 			returnType = ((Class<?>)type2);
 		}
-		messageBuilder.append(createMessage(builder, returnType) + " value = 1;\n");
+		messageBuilder.append(createMessage(builder, returnType) + " value = 2;\n");
+		messageBuilder.append("\toptional string errorMessage = 1;\n");
 		messageBuilder.append("}\n\n");
 		builder.append(messageBuilder);
 	}
