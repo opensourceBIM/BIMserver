@@ -41,15 +41,11 @@ public class ProtocolBuffersClient {
 		service = ServiceInterface.newBlockingStub(rpcChannel);
 		try {
 			if (login("admin@logic-labs.nl", "admin")) {
-				for (int i=0; i<10000; i++) {
-					getAllProjects();
-					System.out.println(i);
+				for (long roid : getAllProjects().get(0).getRevisionsList()) {
+					System.out.println(roid);
+					getRevision(roid);
+					downloadRevision(roid);
 				}
-//				for (long roid : getAllProjects().get(0).getRevisionsList()) {
-//					System.out.println(roid);
-//					getRevision(roid);
-//					downloadRevision(roid);
-//				}
 			}
 		} catch (ServiceException e) {
 			e.printStackTrace();
