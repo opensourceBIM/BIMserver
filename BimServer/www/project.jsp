@@ -877,8 +877,9 @@ open a specific revision to query other revisions<br />
 			downloadframe.find('button[value="Checkout"]').hide();
 			var roid = downloadframe.find('input[name="roid"]');
 			var resultType = downloadframe.find('select[name="resultType"]');
+			var zip = downloadframe.find('input[name="zip"]');
 			var resultDiv = downloadframe.find(".downloadResult");
-			resultDiv.load("initiatedownload.jsp?roid=" + roid.val() + "&resultType=" + resultType.val() + "&download=Download");
+			resultDiv.load("initiatedownload.jsp?roid=" + roid.val() + "&resultType=" + resultType.val() + "&zip=" + zip.val() + "&download=Download");
 		});
 		$('button[value="Checkout"]').click(function(){
 			var downloadframe = $(this).parents(".downloadframe");
@@ -886,13 +887,15 @@ open a specific revision to query other revisions<br />
 			downloadframe.find('button[value="Download"]').hide();
 			var roid = downloadframe.find('input[name="roid"]');
 			var resultType = downloadframe.find('select[name="resultType"]');
+			var zip = downloadframe.find('input[name="zip"]');
 			var resultDiv = downloadframe.find(".downloadResult");
-			resultDiv.load("initiatedownload.jsp?roid=" + roid.val() + "&resultType=" + resultType.val() + "&checkout=Checkout");
+			resultDiv.load("initiatedownload.jsp?roid=" + roid.val() + "&resultType=" + resultType.val() + "&zip=" + zip.val() + "&checkout=Checkout");
 		});
 		
 		$("#compareajaxloader").hide();
 		$("#browserajaxloader").hide();
-<%String clashesUrl = "clashes.jsp?poid=" + poid;
+<%
+	String clashesUrl = "clashes.jsp?poid=" + poid;
 						if (request.getParameter("margin") != null) {
 							clashesUrl += "&margin=" + request.getParameter("margin");
 						}
@@ -901,7 +904,8 @@ open a specific revision to query other revisions<br />
 						}
 						if (request.getParameter("ignored") != null) {
 							clashesUrl += "&ignored=" + request.getParameter("ignored");
-						}%>
+						}
+%>
 		$("#clashdetectiondiv").load("<%=clashesUrl%>");
 		$("#compareform").submit(function(){
 			$("#compareform").hide();

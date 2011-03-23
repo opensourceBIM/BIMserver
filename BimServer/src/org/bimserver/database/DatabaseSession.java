@@ -599,13 +599,11 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 	}
 
 	@Override
-	public IfcModel getMapWithOids(int pid, int rid, Set<Long> oids, boolean deep) throws BimDatabaseException, BimDeadlockException {
-		IfcModel model = new IfcModel();
+	public void getMapWithOids(IfcModel model, int pid, int rid, Set<Long> oids, boolean deep) throws BimDatabaseException, BimDeadlockException {
 		for (Long oid : oids) {
 			EClass eClass = getClassOfObjectId(pid, rid, oid, deep);
 			getMapWithOid(pid, rid, database.getCidOfEClass(eClass), oid, model, deep);
 		}
-		return model;
 	}
 
 	private EClass getClassOfObjectId(int pid, int rid, long oid, boolean deep) throws BimDatabaseException, BimDeadlockException {

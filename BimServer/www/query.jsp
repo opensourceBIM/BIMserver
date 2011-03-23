@@ -12,69 +12,107 @@
 %>
 <div class="tabber" id="querytab">
 <div class="tabbertab" title="Simple" id="simple">
-<form action="<%=request.getContextPath() %>/download" method="get">
-<input type="hidden" name="roid" value="<%=roid %>"/>
+
 <table>
-<tr>
+<tr class="downloadframe">
 	<td width="120">Object ID</td>
-	<td width="320"><input type="text" name="oids" id="oids"/></td>
-	<td>Type</td><td><select name="resultType">
+	<td width="320">
+		<input type="text" name="oids" id="oids"/>
+	</td>
+	<td>Type</td>
+	<td>
+		<select name="resultType">
 <%
 	for (ResultType resultType : emfSerializerFactory.getSingleResultTypes()) {
 %>
-	<option value="<%=resultType.name() %>"<%=resultType.isDefaultSelected() ? " SELECTED=\"SELECTED\"" : "" %>><%= resultType.getNiceName() %></option>
+		<option value="<%=resultType.name() %>"<%=resultType.isDefaultSelected() ? " SELECTED=\"SELECTED\"" : "" %>><%= resultType.getNiceName() %></option>
 <%	
 	}
 %>
-	</select></td><td> <label for="queryoidzip_<%=roid %>">Zip </label><input type="checkbox" name="zip" id="queryoidzip_<%=roid %>"/> <input type="submit" value="Query"></td>
+		</select>
+	</td>
+	<td>
+		<label for="queryoidzip_<%=roid %>">Zip </label>
+		<input type="checkbox" name="zip" id="queryoidzip_<%=roid %>"/>
+		<input type="hidden" name="roid" value="<%=roid %>"/>
+		<button id="queryoidsbutton" type="button" value="Query">Query</button>
+	</td>
+	<td>
+		<div class="downloadResult"></div>
+	</td>
 </tr>
 </table>
-</form>
-<form action="<%=request.getContextPath() %>/download" method="get">
-<input type="hidden" name="roid" value="<%=roid %>"/>
+
 <table>
-<tr>
+<tr class="downloadframe">
 	<td width="120">Globally Unique ID</td>
-	<td width="320"><input type="text" name="guids" id="guids"/></td>
-	<td>Type</td><td><select name="resultType">
+	<td width="320">
+		<input type="text" name="guids" id="guids"/>
+	</td>
+	<td>Type</td>
+	<td>
+		<select name="resultType">
 <%
 	for (ResultType resultType : emfSerializerFactory.getSingleResultTypes()) {
 %>
-	<option value="<%=resultType.name() %>"<%=resultType.isDefaultSelected() ? " SELECTED=\"SELECTED\"" : "" %>><%= resultType.getNiceName() %></option>
+		<option value="<%=resultType.name() %>"<%=resultType.isDefaultSelected() ? " SELECTED=\"SELECTED\"" : "" %>><%= resultType.getNiceName() %></option>
 <%	
 	}
 %>
-	</select></td><td> <label for="queryguidzip_<%=roid %>">Zip </label><input type="checkbox" name="zip" id="queryguidzip_<%=roid %>"/> <input type="submit" value="Query"></td>
+		</select>
+	</td>
+	<td> 
+		<label for="queryguidzip_<%=roid %>">Zip </label>
+		<input type="checkbox" name="zip" id="queryguidzip_<%=roid %>"/> 
+		<input type="hidden" name="roid" value="<%=roid %>"/>
+		<button id="queryguidsbutton" type="button" value="Query">Query</button>
+	</td>
+	<td>
+		<div class="downloadResult"></div>
+	</td>
 </tr>
 </table>
-</form>
-<form action="<%=request.getContextPath() %>/download" method="get">
-<input type="hidden" name="roid" value="<%=roid %>"/>
+
+<!--  <form action="<%=request.getContextPath() %>/download" method="get"> -->
 <table>
-<tr>
+<tr class="downloadframe">
 	<td width="120">IFC Class</td>
 	<td width="320">
 		<select name="class" id="cid">
 <%
 	for (String className : classes) {
-%><option value="<%=className%>"><%=className %></option>
+%>
+		<option value="<%=className%>"><%=className %></option>
 <%
 	}
 %>
 		</select>
 	</td>
-	<td>Type</td><td><select name="resultType">
+	<td>Type</td>
+	<td>
+		<select name="resultType">
 <%
 	for (ResultType resultType : emfSerializerFactory.getMultipleResultTypes()) {
 %>
-	<option value="<%=resultType.name() %>"<%=resultType.isDefaultSelected() ? " SELECTED=\"SELECTED\"" : "" %>><%= resultType.getNiceName() %></option>
+		<option value="<%=resultType.name() %>"<%=resultType.isDefaultSelected() ? " SELECTED=\"SELECTED\"" : "" %>><%= resultType.getNiceName() %></option>
 <%	
 	}
 %>
-	</select></td><td> <label for="querycidzip_<%=roid %>">Zip </label><input type="checkbox" name="zip" id="querycidzip_<%=roid %>"/> <input type="submit" value="Query"></td>
+		</select>
+	</td>
+	<td>
+		<label for="querycidzip_<%=roid %>">Zip </label>
+		<input type="checkbox" name="zip" id="querycidzip_<%=roid %>"/>
+		<input type="hidden" name="roid" value="<%=roid %>"/>
+		<button id="queryclassbutton" type="button" value="Query">Query</button>
+	</td>
+		<td>
+		<div class="downloadResult"></div>
+	</td>
 </tr>
 </table>
-</form>
+<!-- </form> -->
+
 </div>
 <%
 	if (loginManager.getUserType() == SUserType.ADMIN) {
@@ -254,3 +292,42 @@ Get even <a href="http://extend.bimserver.org" target="_blank">more advanced Que
 	}
 %>
 </div>
+
+<script>
+	$(document).ready(function(){
+		$("#queryoidsbutton").click(function(){
+			var downloadframe = $(this).parents(".downloadframe");
+			$(this).hide();
+			var roid = downloadframe.find('input[name="roid"]');
+			var oids = downloadframe.find('input[name="oids"]');
+			console.log(oids);
+			var resultType = downloadframe.find('select[name="resultType"]');
+			var zip = downloadframe.find('input[name="zip"]');
+			var resultDiv = downloadframe.find(".downloadResult");
+			resultDiv.load("initiatedownload.jsp?roid=" + roid.val() + "&oids=" + oids.val() + "&resultType=" + resultType.val() + "&zip=" + zip.val() + "&download=Download");
+		});
+		$("#queryguidsbutton").click(function(){
+			var downloadframe = $(this).parents(".downloadframe");
+			$(this).hide();
+			var roid = downloadframe.find('input[name="roid"]');
+			var guids = downloadframe.find('input[name="guids"]');
+			console.log(guids);
+			var resultType = downloadframe.find('select[name="resultType"]');
+			var zip = downloadframe.find('input[name="zip"]');
+			var resultDiv = downloadframe.find(".downloadResult");
+			resultDiv.load("initiatedownload.jsp?roid=" + roid.val() + "&guids=" + guids.val() + "&resultType=" + resultType.val() + "&zip=" + zip.val() + "&download=Download");
+		});
+		$("#queryclassbutton").click(function(){
+			var downloadframe = $(this).parents(".downloadframe");
+			$(this).hide();
+			var roid = downloadframe.find('input[name="roid"]');
+			var ifcClass = downloadframe.find("#cid");
+			console.log(ifcClass);
+			var resultType = downloadframe.find('select[name="resultType"]');
+			var zip = downloadframe.find('input[name="zip"]');
+			var resultDiv = downloadframe.find(".downloadResult");
+			resultDiv.load("initiatedownload.jsp?roid=" + roid.val() + "&class=" + ifcClass.val() + "&resultType=" + resultType.val() + "&zip=" + zip.val() + "&download=Download");
+		});
+	});
+</script>
+		

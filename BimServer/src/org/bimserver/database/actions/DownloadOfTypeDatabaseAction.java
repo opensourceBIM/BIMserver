@@ -20,6 +20,7 @@ public class DownloadOfTypeDatabaseAction extends BimDatabaseAction<IfcModel> {
 	private final String className;
 	private final long actingUoid;
 	private final long roid;
+	private int progress;
 	private final SettingsManager settingsManager;
 
 	public DownloadOfTypeDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, SettingsManager settingsManager, long roid, String className, long actingUoid) {
@@ -50,4 +51,9 @@ public class DownloadOfTypeDatabaseAction extends BimDatabaseAction<IfcModel> {
 		IfcModel.setDate(virtualRevision.getDate());
 		return IfcModel;
 	}
+	
+	public int getProgress() {
+		return progress;
+	}
+
 }
