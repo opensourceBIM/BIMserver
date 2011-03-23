@@ -38,12 +38,13 @@ public class ProtocolBuffersClient {
 
 		service = ServiceInterface.newBlockingStub(rpcChannel);
 		try {
-			login("admin@logic-labs.nl", "admin");
-			SProject firstProject = getAllProjects();
-			for (long roid : firstProject.getRevisionsList()) {
-				System.out.println(roid);
-				getRevision(roid);
-				downloadRevision(roid);
+			if (login("admin@logic-labs.nl", "admin")) {
+				SProject firstProject = getAllProjects();
+				for (long roid : firstProject.getRevisionsList()) {
+					System.out.println(roid);
+					getRevision(roid);
+					downloadRevision(roid);
+				}
 			}
 		} catch (ServiceException e) {
 			e.printStackTrace();
@@ -63,7 +64,7 @@ public class ProtocolBuffersClient {
 		DownloadRequest downloadRequest = downloadRequestBuilder.build();
 		try {
 			DownloadResponse downloadResponse = service.download(rpcController, downloadRequest);
-			if (downloadResponse != null) {
+			if (downloadResponse.getErrorMessage().equals("OKE")) {
 				String downloadId = downloadResponse.getValue();
 				
 				org.bimserver.pb.Service.GetDownloadDataRequest.Builder getDownloadDataRequestBuilder = GetDownloadDataRequest.newBuilder();
@@ -71,11 +72,15 @@ public class ProtocolBuffersClient {
 				GetDownloadDataRequest getDownloadDataRequest = getDownloadDataRequestBuilder.build();
 				
 				GetDownloadDataResponse getDownloadDataResponse = service.getDownloadData(rpcController, getDownloadDataRequest);
-				if (getDownloadDataResponse != null) {
+				if (getDownloadDataResponse.equals("OKE")) {
 					SDownloadResult sDownloadResult = getDownloadDataResponse.getValue();
 					ByteString file = sDownloadResult.getFile();
 					System.out.println(file.size());
+				} else {
+					System.err.println(getDownloadDataResponse.getErrorMessage());
 				}
+			} else {
+				System.err.println(downloadResponse.getErrorMessage());
 			}
 		} catch (ServiceException e) {
 			e.printStackTrace();
@@ -89,7 +94,11 @@ public class ProtocolBuffersClient {
 		GetRevisionRequest getRevisionRequest = getRevisionRequestBuilder.build();
 		
 		GetRevisionResponse getRevisionResponse = service.getRevision(rpcController, getRevisionRequest);
-		System.out.println(getRevisionResponse.getValue().getSize());
+		if  (getRevisionResponse.getErrorMessage().equals("OKE")) {
+			System.out.println(getRevisionResponse.getValue().getSize());
+		} else {
+			System.err.println(getRevisionResponse.getErrorMessage());
+		}
 	}
 
 	private SProject getAllProjects() throws ServiceException {
@@ -98,27 +107,36 @@ public class ProtocolBuffersClient {
 		
 		GetAllProjectsResponse getAllProjectsResponse = service.getAllProjects(rpcController, getAllProjectsRequest);
 		SProject firstProject = null;
-		if (getAllProjectsResponse != null) {
+		if (getAllProjectsResponse.getErrorMessage().equals("OKE")) {
 			for (SProject sProject : getAllProjectsResponse.getValueList()) {
 				if (firstProject == null) {
 					firstProject = sProject;
 				}
 				System.out.println(sProject.getName());
 			}
+		} else {
+			System.err.println(getAllProjectsResponse.getErrorMessage());
 		}
 		return firstProject;
 	}
 
-	private void login(String username, String password) throws ServiceException {
+	private boolean login(String username, String password) throws ServiceException {
 		LoginRequest.Builder loginRequestBuilder = LoginRequest.newBuilder();
 		loginRequestBuilder.setUsername(username);
 		loginRequestBuilder.setPassword(password);
 		LoginRequest loginRequest = loginRequestBuilder.build();
 		LoginResponse loginResponse = service.login(rpcController, loginRequest);
-		if (loginResponse != null && loginResponse.getValue()) {
-			System.out.println("Login successfull");
+		if (loginResponse.getErrorMessage().equals("OKE")) {
+			if (loginResponse.getValue()) {
+				System.out.println("Login successfull");
+				return true;
+			} else {
+				System.err.println("Error logging in");
+				return false;
+			}
 		} else {
-			System.out.println("Error logging in");
+			System.err.println(loginResponse.getErrorMessage());
+			return false;
 		}
 	}
 }

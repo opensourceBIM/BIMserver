@@ -63,35 +63,38 @@ public class ReflectiveRpcChannel implements BlockingRpcChannel {
 			Object result = method.invoke(service, arguments);
 			Builder builder = responsePrototype.newBuilderForType();
 			FieldDescriptor valueField = methodDescriptor.getOutputType().getFields().get(0);
-			if (valueField.getType().getJavaType() != JavaType.MESSAGE) {
-				builder.setField(valueField, result);
-			} else if (result instanceof List) {
-				Descriptor messageType = valueField.getMessageType();
-				List list = new ArrayList();
-				List originalList = (List) result;
-				for (Object object : originalList) {
-					list.add(convertObject(new HashMap(), messageType, object));
+			if (result != null) {
+				if (valueField.getType().getJavaType() != JavaType.MESSAGE) {
+					builder.setField(valueField, result);
+				} else if (result instanceof List) {
+					Descriptor messageType = valueField.getMessageType();
+					List list = new ArrayList();
+					List originalList = (List) result;
+					for (Object object : originalList) {
+						list.add(convertObject(new HashMap(), messageType, object));
+					}
+					builder.setField(valueField, list);
+				} else {
+					Descriptor messageType = valueField.getMessageType();
+					builder.setField(valueField, convertObject(new HashMap<Object, Object>(), messageType, result));
 				}
-				builder.setField(valueField, list);
-			} else {
-				Descriptor messageType = valueField.getMessageType();
-				builder.setField(valueField, convertObject(new HashMap<Object, Object>(), messageType, result));
 			}
+			builder.setField(responsePrototype.getDescriptorForType().getFields().get(1), "OKE");
 			return builder.build();
-		} catch (SecurityException e) {
-			e.printStackTrace();
-		} catch (NoSuchMethodException e) {
-			e.printStackTrace();
-		} catch (IllegalArgumentException e) {
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
 		} catch (InvocationTargetException e) {
-			e.printStackTrace();
+			Builder errorMessage = responsePrototype.newBuilderForType();
+			errorMessage.setField(responsePrototype.getDescriptorForType().getFields().get(1), e.getTargetException().getMessage());
+			return errorMessage.build();
 		} catch (Exception e) {
-			e.printStackTrace();
+			Builder errorMessage = responsePrototype.newBuilderForType();
+			if (e.getMessage() != null) {
+				errorMessage.setField(responsePrototype.getDescriptorForType().getFields().get(1), e.getMessage());
+			} else {
+				e.printStackTrace();
+				errorMessage.setField(responsePrototype.getDescriptorForType().getFields().get(1), "Unknown error");
+			}
+			return errorMessage.build();
 		}
-		return null;
 	}
 
 	private Object convertProtocolBuffersObjectToServiceObject(Object value) {
