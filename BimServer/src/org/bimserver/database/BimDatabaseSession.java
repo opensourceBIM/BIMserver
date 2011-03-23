@@ -53,7 +53,7 @@ public interface BimDatabaseSession extends OidProvider {
 
 	IfcModel getMapWithOid(int pid, int rid, short cid, long oid, IfcModel model, boolean deep) throws BimDeadlockException, BimDatabaseException;
 
-	IfcModel getMapWithOids(int pid, int rid, Set<Long> oids, boolean deep) throws BimDeadlockException, BimDatabaseException;
+	void getMapWithOids(IfcModel ifcModel, int pid, int rid, Set<Long> oids, boolean deep) throws BimDeadlockException, BimDatabaseException;
 
 	IfcModel getMapWithObjectIdentifiers(int pid, int rid, Set<ObjectIdentifier> oids, boolean deep) throws BimDeadlockException, BimDatabaseException;
 

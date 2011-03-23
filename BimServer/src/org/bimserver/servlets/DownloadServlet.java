@@ -92,8 +92,9 @@ public class DownloadServlet extends HttpServlet {
 					oids.add(clash.getEid1());
 					oids.add(clash.getEid2());
 				}
-				checkoutResult = loginManager.getService().downloadByOids(new HashSet<Long>(sClashDetectionSettings.getRevisions()), oids,
-						resultType);
+				String longCheckoutActionId = loginManager.getService().downloadByOids(
+						new HashSet<Long>(sClashDetectionSettings.getRevisions()), oids, resultType, true);
+				checkoutResult = loginManager.getService().getDownloadData(longCheckoutActionId);
 			} else if (request.getParameter("compare") != null) {
 				SCompareType sCompareType = SCompareType.valueOf(request.getParameter("type"));
 				Long roid1 = Long.parseLong(request.getParameter("roid1"));
@@ -107,7 +108,9 @@ public class DownloadServlet extends HttpServlet {
 						oids.add(item.dataObject.getOid());
 					}
 				}
-				checkoutResult = loginManager.getService().downloadByOids(Sets.newHashSet(roid1, roid2), oids, resultType);
+				String longCheckoutActionId = loginManager.getService().downloadByOids(Sets.newHashSet(roid1, roid2), oids, resultType,
+						true);
+				checkoutResult = loginManager.getService().getDownloadData(longCheckoutActionId);
 			} else {
 				long roid = -1;
 				if (request.getParameter("roid") == null) {
@@ -132,7 +135,9 @@ public class DownloadServlet extends HttpServlet {
 					checkoutResult = loginManager.getService().getDownloadData(longCheckoutActionId);
 				} else {
 					if (request.getParameter("class") != null) {
-						checkoutResult = loginManager.getService().downloadOfType(roid, request.getParameter("class"), resultType);
+						String longCheckoutActionId = loginManager.getService().downloadOfType(roid, request.getParameter("class"),
+								resultType, true);
+						checkoutResult = loginManager.getService().getDownloadData(longCheckoutActionId);
 					} else if (request.getParameter("oids") != null) {
 						Set<Long> oids = new HashSet<Long>();
 						for (String oidString : request.getParameter("oids").split(";")) {
@@ -140,7 +145,8 @@ public class DownloadServlet extends HttpServlet {
 						}
 						Set<Long> roids = new HashSet<Long>();
 						roids.add(roid);
-						checkoutResult = loginManager.getService().downloadByOids(roids, oids, resultType);
+						String longCheckoutActionId = loginManager.getService().downloadByOids(roids, oids, resultType, true);
+						checkoutResult = loginManager.getService().getDownloadData(longCheckoutActionId);
 					} else if (request.getParameter("guids") != null) {
 						Set<String> guids = new HashSet<String>();
 						for (String guid : request.getParameter("guids").split(";")) {
@@ -148,7 +154,8 @@ public class DownloadServlet extends HttpServlet {
 						}
 						Set<Long> roids = new HashSet<Long>();
 						roids.add(roid);
-						checkoutResult = loginManager.getService().downloadByGuids(roids, guids, resultType);
+						String longCheckoutActionId = loginManager.getService().downloadByGuids(roids, guids, resultType, true);
+						checkoutResult = loginManager.getService().getDownloadData(longCheckoutActionId);
 					}
 				}
 			}

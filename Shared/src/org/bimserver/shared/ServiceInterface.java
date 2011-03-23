@@ -113,21 +113,24 @@ public interface ServiceInterface {
 			@QueryParam("sync") @WebParam(name = "sync", partName = "download.sync") boolean sync) throws UserException, ServerException;
 
 	@WebMethod(action = "downloadByOids")
-	SDownloadResult downloadByOids(@WebParam(name = "roids", partName = "downloadByOids.roids") Set<Long> roids,
+	String downloadByOids(@WebParam(name = "roids", partName = "downloadByOids.roids") Set<Long> roids,
 			@WebParam(name = "oids", partName = "downloadByOids.oids") Set<Long> oids,
-			@WebParam(name = "resultType", partName = "downloadByOids.resultType") ResultType resultType) throws UserException,
+			@WebParam(name = "resultType", partName = "downloadByOids.resultType") ResultType resultType,
+			@QueryParam("sync") @WebParam(name = "sync", partName = "download.sync") boolean sync) throws UserException,
 			ServerException;
 
 	@WebMethod(action = "downloadOfType")
-	SDownloadResult downloadOfType(@WebParam(name = "roid", partName = "downloadOfType.roid") long roid,
+	String downloadOfType(@WebParam(name = "roid", partName = "downloadOfType.roid") long roid,
 			@WebParam(name = "className", partName = "downloadOfType.className") String className,
-			@WebParam(name = "resultType", partName = "downloadOfType.resultType") ResultType resultType) throws UserException,
+			@WebParam(name = "resultType", partName = "downloadOfType.resultType") ResultType resultType,
+			@QueryParam("sync") @WebParam(name = "sync", partName = "download.sync") boolean sync) throws UserException,
 			ServerException;
 
 	@WebMethod(action = "downloadByGuids")
-	SDownloadResult downloadByGuids(@WebParam(name = "roids", partName = "downloadByGuids.roids") Set<Long> roids,
+	String downloadByGuids(@WebParam(name = "roids", partName = "downloadByGuids.roids") Set<Long> roids,
 			@WebParam(name = "guids", partName = "downloadByGuids.guids") Set<String> guids,
-			@WebParam(name = "resultType", partName = "downloadByGuids.resultType") ResultType resultType) throws UserException,
+			@WebParam(name = "resultType", partName = "downloadByGuids.resultType") ResultType resultType,
+			@QueryParam("sync") @WebParam(name = "sync", partName = "download.sync") boolean sync) throws UserException,
 			ServerException;
 
 	@WebMethod(action = "downloadProjects")
