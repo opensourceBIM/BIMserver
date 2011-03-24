@@ -83,7 +83,8 @@ public class DownloadServlet extends HttpServlet {
 						}
 					}
 				}
-				checkoutResult = loginManager.getService().downloadProjects(roids, resultType);
+				String longCheckoutActionId = loginManager.getService().downloadProjects(roids, resultType, true);
+				checkoutResult = loginManager.getService().getDownloadData(longCheckoutActionId);
 			} else if (request.getParameter("clashes") != null) {
 				SClashDetectionSettings sClashDetectionSettings = JspHelper.createSClashDetectionSettings(request);
 				List<SEidClash> findClashes = loginManager.getService().findClashesByEid(sClashDetectionSettings);

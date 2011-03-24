@@ -8,6 +8,7 @@ import org.bimserver.database.actions.DownloadByGuidsDatabaseAction;
 import org.bimserver.database.actions.DownloadByOidsDatabaseAction;
 import org.bimserver.database.actions.DownloadDatabaseAction;
 import org.bimserver.database.actions.DownloadOfTypeDatabaseAction;
+import org.bimserver.database.actions.DownloadProjectsDatabaseAction;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.serializers.EmfSerializerFactory;
@@ -45,6 +46,10 @@ public class LongDownloadAction extends LongDownloadOrCheckoutAction {
 				action = new DownloadOfTypeDatabaseAction(session, accessMethod, settingsManager, downloadParameters.getRoid(),
 						downloadParameters.getClassName(), currentUoid);
 				break;
+			case DOWNLOAD_PROJECTS:
+				action = new DownloadProjectsDatabaseAction(session, accessMethod, settingsManager, downloadParameters.getRoids(),
+						currentUoid);
+				break;
 			}
 			executeAction(action, downloadParameters, session);
 		} catch (Exception e) {
@@ -70,6 +75,9 @@ public class LongDownloadAction extends LongDownloadOrCheckoutAction {
 			break;
 		case DOWNLOAD_OF_TYPE:
 			ds.setProgress(((DownloadOfTypeDatabaseAction) action).getProgress());
+			break;
+		case DOWNLOAD_PROJECTS:
+			ds.setProgress(((DownloadProjectsDatabaseAction) action).getProgress());
 			break;
 		}
 		ds.setState(state);
