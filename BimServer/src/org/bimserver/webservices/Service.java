@@ -142,6 +142,8 @@ import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.interfaces.objects.SUser;
 import org.bimserver.interfaces.objects.SUserType;
 import org.bimserver.longaction.CannotBeScheduledException;
+import org.bimserver.longaction.DownloadParameters;
+import org.bimserver.longaction.LongAction;
 import org.bimserver.longaction.LongActionManager;
 import org.bimserver.longaction.LongCheckinAction;
 import org.bimserver.longaction.LongCheckoutAction;
@@ -435,15 +437,24 @@ public class Service implements ServiceInterface {
 			throw new UserException("Only IFC or IFCXML allowed when checking out");
 		}
 
-		final LongCheckoutAction longCheckoutAction = new LongCheckoutAction(roid, currentUoid, longActionManager, bimDatabase,
-				accessMethod, emfSerializerFactory, resultType);
-		try {
-			longActionManager.start(longCheckoutAction);
-		} catch (CannotBeScheduledException e) {
-			handleException(e);
-			return null;
+		LongCheckoutAction longCheckoutAction = null;
+		DownloadParameters downloadParameters = new DownloadParameters(roid, resultType);
+		String longActionID = downloadParameters.getId();
+		LongAction longAction = longActionManager.getLongAction(longActionID);
+		if (longAction instanceof LongCheckoutAction) {
+			longCheckoutAction = (LongCheckoutAction) longAction;
 		}
+		if (longCheckoutAction == null) {
 
+			longCheckoutAction = new LongCheckoutAction(downloadParameters, currentUoid, longActionManager, bimDatabase, accessMethod,
+					emfSerializerFactory);
+			try {
+				longActionManager.start(longCheckoutAction);
+			} catch (CannotBeScheduledException e) {
+				handleException(e);
+				return null;
+			}
+		}
 		if (sync) {
 			while (longCheckoutAction.isRunning()) {
 				try {
@@ -825,15 +836,23 @@ public class Service implements ServiceInterface {
 	public String download(long roid, ResultType resultType, boolean sync) throws UserException, ServerException {
 		requireAuthenticationAndRunningServer();
 
-		final LongDownloadAction longDownloadAction = new LongDownloadAction(roid, currentUoid, longActionManager, bimDatabase,
-				accessMethod, emfSerializerFactory, settingsManager, resultType);
-		try {
-			longActionManager.start(longDownloadAction);
-		} catch (CannotBeScheduledException e) {
-			handleException(e);
-			return null;
-		}
+		DownloadParameters downloadParameters = new DownloadParameters(roid, resultType);
+		return download(downloadParameters, sync);
+	}
 
+	private String download(DownloadParameters downloadParameters, boolean sync) throws UserException, ServerException {
+		String longActionID = downloadParameters.getId();
+		LongDownloadOrCheckoutAction longDownloadAction = (LongDownloadOrCheckoutAction) longActionManager.getLongAction(longActionID);
+		if (longDownloadAction == null) {
+			longDownloadAction = new LongDownloadAction(downloadParameters, currentUoid, longActionManager, bimDatabase, accessMethod,
+					emfSerializerFactory, settingsManager);
+			try {
+				longActionManager.start(longDownloadAction);
+			} catch (CannotBeScheduledException e) {
+				handleException(e);
+				return null;
+			}
+		}
 		if (sync) {
 			while (longDownloadAction.isRunning()) {
 				try {
@@ -929,29 +948,8 @@ public class Service implements ServiceInterface {
 			ServerException {
 		requireAuthenticationAndRunningServer();
 
-		final LongDownloadAction longDownloadAction = new LongDownloadAction(roids, currentUoid, longActionManager, bimDatabase,
-				accessMethod, emfSerializerFactory, settingsManager, oids, resultType);
-		try {
-			longActionManager.start(longDownloadAction);
-		} catch (CannotBeScheduledException e) {
-			handleException(e);
-			return null;
-		}
-
-		if (sync) {
-			while (longDownloadAction.isRunning()) {
-				try {
-					Thread.sleep(1000); // Sleep for 1 sec
-				} catch (InterruptedException e) {
-					handleException(e);
-					return null;
-				}
-			}
-
-			return longDownloadAction.getIdentification();
-		} else {
-			return longDownloadAction.getIdentification();
-		}
+		DownloadParameters downloadParameters = new DownloadParameters(resultType, roids, oids);
+		return download(downloadParameters, sync);
 	}
 
 	private SCheckoutResult convertModelToCheckoutResult(Project project, User user, IfcModel model, ResultType resultType)
@@ -976,30 +974,9 @@ public class Service implements ServiceInterface {
 	@Override
 	public String downloadOfType(long roid, String className, ResultType resultType, boolean sync) throws UserException, ServerException {
 		requireAuthenticationAndRunningServer();
-		
-		final LongDownloadAction longDownloadAction = new LongDownloadAction(roid, className, currentUoid, longActionManager, bimDatabase,
-				accessMethod, emfSerializerFactory, settingsManager, resultType);
-		try {
-			longActionManager.start(longDownloadAction);
-		} catch (CannotBeScheduledException e) {
-			handleException(e);
-			return null;
-		}
 
-		if (sync) {
-			while (longDownloadAction.isRunning()) {
-				try {
-					Thread.sleep(1000); // Sleep for 1 sec
-				} catch (InterruptedException e) {
-					handleException(e);
-					return null;
-				}
-			}
-
-			return longDownloadAction.getIdentification();
-		} else {
-			return longDownloadAction.getIdentification();
-		}
+		DownloadParameters downloadParameters = new DownloadParameters(roid, className, resultType);
+		return download(downloadParameters, sync);
 	}
 
 	@Override
@@ -1037,29 +1014,8 @@ public class Service implements ServiceInterface {
 			ServerException {
 		requireAuthenticationAndRunningServer();
 
-		final LongDownloadAction longDownloadAction = new LongDownloadAction(roids, guids, currentUoid, longActionManager, bimDatabase,
-				accessMethod, emfSerializerFactory, settingsManager, resultType);
-		try {
-			longActionManager.start(longDownloadAction);
-		} catch (CannotBeScheduledException e) {
-			handleException(e);
-			return null;
-		}
-
-		if (sync) {
-			while (longDownloadAction.isRunning()) {
-				try {
-					Thread.sleep(1000); // Sleep for 1 sec
-				} catch (InterruptedException e) {
-					handleException(e);
-					return null;
-				}
-			}
-
-			return longDownloadAction.getIdentification();
-		} else {
-			return longDownloadAction.getIdentification();
-		}
+		DownloadParameters downloadParameters = new DownloadParameters(roids, guids, resultType);
+		return download(downloadParameters, sync);
 	}
 
 	@Override
