@@ -4,22 +4,17 @@ import org.bimserver.database.BimDatabase;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.actions.CheckoutDatabaseAction;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.store.Revision;
-import org.bimserver.models.store.StorePackage;
 import org.bimserver.serializers.EmfSerializerFactory;
 import org.bimserver.shared.LongActionState;
 import org.bimserver.shared.LongActionState.ActionState;
-import org.bimserver.shared.ResultType;
 
 public class LongCheckoutAction extends LongDownloadOrCheckoutAction {
 
 	private CheckoutDatabaseAction action;
 
-	public LongCheckoutAction(long roid, long currentUoid, LongActionManager longActionManager, BimDatabase bimDatabase,
-			AccessMethod accessMethod, EmfSerializerFactory emfSerializerFactory, ResultType resultType) {
-		super(bimDatabase, longActionManager, accessMethod, emfSerializerFactory, currentUoid);
-		downloadParameters.setResultType(resultType);
-		downloadParameters.setRoid(roid);
+	public LongCheckoutAction(DownloadParameters downloadParameters, long currentUoid, LongActionManager longActionManager, BimDatabase bimDatabase,
+			AccessMethod accessMethod, EmfSerializerFactory emfSerializerFactory) {
+		super(downloadParameters, bimDatabase, longActionManager, accessMethod, emfSerializerFactory, currentUoid);
 	}
 
 	@Override
@@ -28,11 +23,7 @@ public class LongCheckoutAction extends LongDownloadOrCheckoutAction {
 		BimDatabaseSession session = bimDatabase.createSession();
 		try {
 			action = new CheckoutDatabaseAction(session, accessMethod, currentUoid, downloadParameters.getRoid());
-			Revision revision = session.get(StorePackage.eINSTANCE.getRevision(), downloadParameters.getRoid(), false);
-			user = session.get(StorePackage.eINSTANCE.getUser(), currentUoid, false);
-			checkoutResult = convertModelToCheckoutResult(revision.getProject(), user,
-					session.executeAndCommitAction(action, org.bimserver.webservices.Service.DEADLOCK_RETRIES),
-					downloadParameters.getResultType());
+			executeAction(action, downloadParameters, session);
 		} catch (Exception e) {
 			LOGGER.error("", e);
 		} finally {
