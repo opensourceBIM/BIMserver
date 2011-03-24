@@ -195,7 +195,7 @@ revisions tab</a> to add a first revision, or <a id="subprojecttablink"
 	<%
 		if (emfSerializerFactory.resultTypeEnabled(ResultType.KMZ)) {
 					String url = WebUtils.getWebServer(request.getRequestURL().toString());
-					String link = "http://" + url + getServletContext().getContextPath() + "download?poid=" + project.getOid()
+					String link = "http://" + url + getServletContext().getContextPath() + "/download?poid=" + project.getOid()
 							+ "&resultType=KMZ";
 	%>
 	<tr>
