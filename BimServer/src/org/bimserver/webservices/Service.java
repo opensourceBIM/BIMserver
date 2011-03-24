@@ -439,7 +439,7 @@ public class Service implements ServiceInterface {
 		if (longAction instanceof LongCheckoutAction) {
 			longCheckoutAction = (LongCheckoutAction) longAction;
 		}
-		if (longCheckoutAction == null) {
+		if (longCheckoutAction == null || !longActionManager.isRunning(longCheckoutAction)) {
 
 			longCheckoutAction = new LongCheckoutAction(downloadParameters, currentUoid, longActionManager, bimDatabase, accessMethod,
 					emfSerializerFactory);
@@ -838,7 +838,7 @@ public class Service implements ServiceInterface {
 	private String download(DownloadParameters downloadParameters, boolean sync) throws UserException, ServerException {
 		String longActionID = downloadParameters.getId();
 		LongDownloadOrCheckoutAction longDownloadAction = (LongDownloadOrCheckoutAction) longActionManager.getLongAction(longActionID);
-		if (longDownloadAction == null) {
+		if (longDownloadAction == null || !longActionManager.isRunning(longDownloadAction)) {
 			longDownloadAction = new LongDownloadAction(downloadParameters, currentUoid, longActionManager, bimDatabase, accessMethod,
 					emfSerializerFactory, settingsManager);
 			try {
