@@ -885,7 +885,6 @@ open a specific revision to query other revisions<br />
 			if (zipbox.attr('checked')) {
 				zip = "&zip=on";
 			}
-			alert(zip);
 			var multiple = downloadframe.find('input[name="multiple"]');
 			var resultDiv = downloadframe.find(".downloadResult");
 			if (multiple.val() != "undefined") {
