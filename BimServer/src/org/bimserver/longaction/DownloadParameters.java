@@ -8,7 +8,7 @@ import org.bimserver.shared.ResultType;
 
 public class DownloadParameters {
 	public enum DownloadType {
-		DOWNLOAD, DOWNLOAD_BY_OIDS, DOWNLOAD_BY_GUIDS, DOWNLOAD_BY_TYPE
+		DOWNLOAD, DOWNLOAD_BY_OIDS, DOWNLOAD_BY_GUIDS, DOWNLOAD_OF_TYPE
 	};
 
 	private Set<Long> roids;
@@ -46,7 +46,7 @@ public class DownloadParameters {
 	public DownloadParameters(long roid, String className, ResultType resultType) {
 		setRoid(roid);
 		setClassName(className);
-		setDownloadType(DownloadType.DOWNLOAD_BY_TYPE);
+		setDownloadType(DownloadType.DOWNLOAD_OF_TYPE);
 		setResultType(resultType);
 	}
 
