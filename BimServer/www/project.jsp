@@ -696,9 +696,8 @@ open a specific revision to query other revisions<br />
 				}
 			%>
 		</select> <label for="checkoutsdownloadzip_<%=checkout.getOid()%>">Zip</label>
-		<input type="checkbox" name="zip"
-			id="checkoutsdownloadzip_<%=checkout.getOid()%>" /> <input
-			name="download" type="submit" value="Download" /></form>
+		<input type="checkbox" name="zip" id="checkoutsdownloadzip_<%=checkout.getOid()%>" /> 
+		<input name="download" type="submit" value="Download" /></form>
 		</td>
 	</tr>
 	<%
@@ -881,13 +880,18 @@ open a specific revision to query other revisions<br />
 			downloadframe.find('button[value="Checkout"]').hide();
 			var roid = downloadframe.find('input[name="roid"]');
 			var resultType = downloadframe.find('select[name="resultType"]');
-			var zip = downloadframe.find('input[name="zip"]');
+			var zipbox = downloadframe.find('input[name="zip"]');
+			var zip = "";
+			if (zipbox.attr('checked')) {
+				zip = "&zip=on";
+			}
+			alert(zip);
 			var multiple = downloadframe.find('input[name="multiple"]');
 			var resultDiv = downloadframe.find(".downloadResult");
-			if (multiple == null) {
-				resultDiv.load("initiatedownload.jsp?roid=" + roid.val() + "&resultType=" + resultType.val() + "&zip=" + zip.val() + "&download=Download");
+			if (multiple.val() != "undefined") {
+				resultDiv.load("initiatedownload.jsp?roid=" + roid.val() + "&resultType=" + resultType.val() + zip + "&download=Download");
 			} else {
-				resultDiv.load("initiatedownload.jsp?roid=" + roid.val() + "&resultType=" + resultType.val() + "&zip=" + zip.val() + "&multiple=" + multiple.val() + "&download=Download");				
+				resultDiv.load("initiatedownload.jsp?roid=" + roid.val() + "&resultType=" + resultType.val() + zip + "&multiple=" + multiple.val() + "&download=Download");				
 			}
 		});
 		$('button[value="Checkout"]').click(function(){
