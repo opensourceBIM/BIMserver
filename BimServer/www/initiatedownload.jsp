@@ -67,15 +67,13 @@ var downloadUpdateFunction = function() {
 			function(data){
 				$("#downloadStateSpan").html(data);
 			},
-		data: {	longActionId: '<%=longActionId%>' ;
+		data: {	longActionId: '<%=longActionId%>' ,
 				zip: '<%=zip%>'
 			}
 		});
 	};
 
-	$(document).ready(
-			function() {
-				downloadUpdateFunctionHandle = window.setInterval(
-						downloadUpdateFunction, 1000);
-			});
+	$(document).ready( function() {
+		downloadUpdateFunctionHandle = window.setInterval(downloadUpdateFunction, 1000);
+	});
 </script>
