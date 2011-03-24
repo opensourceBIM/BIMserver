@@ -27,72 +27,32 @@ public class LongDownloadAction extends LongDownloadOrCheckoutAction {
 
 	public void execute() {
 		state = ActionState.STARTED;
-		switch (downloadParameters.getDownloadType()) {
-		case DOWNLOAD:
-			executeDownload(downloadParameters);
-			break;
-		case DOWNLOAD_BY_OIDS:
-			executeDownloadByOids(downloadParameters);
-			break;
-		case DOWNLOAD_BY_GUIDS:
-			executeDownloadByGuids(downloadParameters);
-			break;
-		case DOWNLOAD_BY_TYPE:
-			executeDownloadByType(downloadParameters);
-			break;
+		BimDatabaseSession session = bimDatabase.createReadOnlySession();
+		try {
+			switch (downloadParameters.getDownloadType()) {
+			case DOWNLOAD:
+				action = new DownloadDatabaseAction(session, accessMethod, settingsManager, downloadParameters.getRoid(), currentUoid);
+				break;
+			case DOWNLOAD_BY_OIDS:
+				action = new DownloadByOidsDatabaseAction(session, accessMethod, settingsManager, downloadParameters.getRoids(),
+						downloadParameters.getOids(), currentUoid);
+				break;
+			case DOWNLOAD_BY_GUIDS:
+				action = new DownloadByGuidsDatabaseAction(session, accessMethod, settingsManager, downloadParameters.getRoids(),
+						downloadParameters.getGuids(), currentUoid);
+				break;
+			case DOWNLOAD_OF_TYPE:
+				action = new DownloadOfTypeDatabaseAction(session, accessMethod, settingsManager, downloadParameters.getRoid(),
+						downloadParameters.getClassName(), currentUoid);
+				break;
+			}
+			executeAction(action, downloadParameters, session);
+		} catch (Exception e) {
+			LOGGER.error("", e);
+		} finally {
+			session.close();
 		}
 		state = ActionState.FINISHED;
-	}
-
-	private void executeDownload(DownloadParameters downloadParameters) {
-		BimDatabaseSession session = bimDatabase.createReadOnlySession();
-		try {
-			action = new DownloadDatabaseAction(session, accessMethod, settingsManager, downloadParameters.getRoid(), currentUoid);
-			executeAction(action, downloadParameters, session);
-		} catch (Exception e) {
-			LOGGER.error("", e);
-		} finally {
-			session.close();
-		}
-	}
-
-	private void executeDownloadByGuids(DownloadParameters downloadParameters) {
-		BimDatabaseSession session = bimDatabase.createReadOnlySession();
-		try {
-			action = new DownloadByGuidsDatabaseAction(session, accessMethod, settingsManager, downloadParameters.getRoids(),
-					downloadParameters.getGuids(), currentUoid);
-			executeAction(action, downloadParameters, session);
-		} catch (Exception e) {
-			LOGGER.error("", e);
-		} finally {
-			session.close();
-		}
-	}
-
-	private void executeDownloadByOids(DownloadParameters downloadParameters) {
-		BimDatabaseSession session = bimDatabase.createSession();
-		try {
-			action = new DownloadByOidsDatabaseAction(session, accessMethod, settingsManager, downloadParameters.getRoids(),
-					downloadParameters.getOids(), currentUoid);
-			executeAction(action, downloadParameters, session);
-		} catch (Exception e) {
-			LOGGER.error("", e);
-		} finally {
-			session.close();
-		}
-	}
-
-	private void executeDownloadByType(DownloadParameters downloadParameters) {
-		BimDatabaseSession session = bimDatabase.createReadOnlySession();
-		try {
-			action = new DownloadOfTypeDatabaseAction(session, accessMethod, settingsManager, downloadParameters.getRoid(),
-					downloadParameters.getClassName(), currentUoid);
-			executeAction(action, downloadParameters, session);
-		} catch (Exception e) {
-			LOGGER.error("", e);
-		} finally {
-			session.close();
-		}
 	}
 
 	@Override
@@ -108,7 +68,7 @@ public class LongDownloadAction extends LongDownloadOrCheckoutAction {
 		case DOWNLOAD_BY_GUIDS:
 			ds.setProgress(((DownloadByGuidsDatabaseAction) action).getProgress());
 			break;
-		case DOWNLOAD_BY_TYPE:
+		case DOWNLOAD_OF_TYPE:
 			ds.setProgress(((DownloadOfTypeDatabaseAction) action).getProgress());
 			break;
 		}
