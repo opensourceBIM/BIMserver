@@ -134,8 +134,9 @@ public interface ServiceInterface {
 			ServerException;
 
 	@WebMethod(action = "downloadProjects")
-	SDownloadResult downloadProjects(@WebParam(name = "roids", partName = "downloadProjects.roids") Set<Long> roids,
-			@WebParam(name = "resultType", partName = "downloadProjects.resultType") ResultType resultType) throws UserException,
+	String downloadProjects(@WebParam(name = "roids", partName = "downloadProjects.roids") Set<Long> roids,
+			@WebParam(name = "resultType", partName = "downloadProjects.resultType") ResultType resultType,
+			@QueryParam("sync") @WebParam(name = "sync", partName = "download.sync") boolean sync) throws UserException,
 			ServerException;
 
 	@WebMethod(action = "getDownloadData")
