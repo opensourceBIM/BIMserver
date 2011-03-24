@@ -8,8 +8,7 @@
 %>
 <div id="downloadStateSpan">
 <%
-	LongActionState dls = loginManager.getService().getDownloadState(
-			longActionId);
+	LongActionState dls = loginManager.getService().getDownloadState(longActionId);
 %>
 	<div id="progressbar" style="width: 100px; position: relative; border: 1px solid black;">
 		<div style="width: <%=dls.getProgress()%>px; background-color: #0000ff; position: absolute; top: 0; left: 0; height: 100%;"></div>
