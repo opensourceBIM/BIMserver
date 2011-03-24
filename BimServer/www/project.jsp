@@ -299,22 +299,26 @@ to go to the latest revision<br />
 <table>
 	<tr class="downloadframe">
 		<td>Download:</td>
-		<td><select name="resultType">
+		<td>
+			<select name="resultType">
 			<%
 				for (ResultType resultType : emfSerializerFactory.getMultipleResultTypes()) {
 			%>
-			<option value="<%=resultType.name()%>"
+				<option value="<%=resultType.name()%>"
 				<%=resultType.isDefaultSelected() ? " SELECTED=\"SELECTED\"" : ""%>><%=resultType.getNiceName()%></option>
 			<%
 				}
 			%>
-		</select> <label for="advancedzip_<%=lastRevision.getId()%>">Zip </label></td>
-		<td><input type="checkbox" name="zip"
-			id="advancedzip_<%=lastRevision.getId()%>" /> <input type="hidden"
-			name="multiple" value="true"></td>
+			</select> 
+		</td>
 		<td>
-		<input type="hidden" name="roid" value="<%=lastRevision.getOid()%>" >
-		<button value="Download" type="button">Download</button>
+			<label for="advancedzip_<%=lastRevision.getId()%>">Zip </label>
+			<input type="checkbox" name="zip" id="advancedzip_<%=lastRevision.getId()%>" /> 
+		</td>
+		<td>
+			<input type="hidden" name="multiple" value="true">
+			<input type="hidden" name="roid" value="<%=lastRevision.getOid()%>" >
+			<button value="Download" type="button">Download</button>
 		</td>
 		<td>
 		<div class="downloadResult"></div>
@@ -878,8 +882,13 @@ open a specific revision to query other revisions<br />
 			var roid = downloadframe.find('input[name="roid"]');
 			var resultType = downloadframe.find('select[name="resultType"]');
 			var zip = downloadframe.find('input[name="zip"]');
+			var multiple = downloadframe.find('input[name="multiple"]');
 			var resultDiv = downloadframe.find(".downloadResult");
-			resultDiv.load("initiatedownload.jsp?roid=" + roid.val() + "&resultType=" + resultType.val() + "&zip=" + zip.val() + "&download=Download");
+			if (multiple == null) {
+				resultDiv.load("initiatedownload.jsp?roid=" + roid.val() + "&resultType=" + resultType.val() + "&zip=" + zip.val() + "&download=Download");
+			} else {
+				resultDiv.load("initiatedownload.jsp?roid=" + roid.val() + "&resultType=" + resultType.val() + "&zip=" + zip.val() + "&multiple=" + multiple.val() + "&download=Download");				
+			}
 		});
 		$('button[value="Checkout"]').click(function(){
 			var downloadframe = $(this).parents(".downloadframe");

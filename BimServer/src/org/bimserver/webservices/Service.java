@@ -67,7 +67,6 @@ import org.bimserver.database.actions.CheckinPart2DatabaseAction;
 import org.bimserver.database.actions.CompareDatabaseAction;
 import org.bimserver.database.actions.DeleteProjectDatabaseAction;
 import org.bimserver.database.actions.DeleteUserDatabaseAction;
-import org.bimserver.database.actions.DownloadProjectsDatabaseAction;
 import org.bimserver.database.actions.FindClashesDatabaseAction;
 import org.bimserver.database.actions.GetAllAuthorizedUsersOfProjectDatabaseAction;
 import org.bimserver.database.actions.GetAllCheckoutsByUserDatabaseAction;
@@ -113,12 +112,9 @@ import org.bimserver.database.migrations.InconsistentModelsException;
 import org.bimserver.database.migrations.MigrationException;
 import org.bimserver.database.migrations.Migrator;
 import org.bimserver.emf.IdEObject;
-import org.bimserver.exceptions.NoSerializerFoundException;
-import org.bimserver.ifc.EmfSerializer;
 import org.bimserver.ifc.FieldIgnoreMap;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelSet;
-import org.bimserver.ifc.SerializerException;
 import org.bimserver.ifc.file.compare.CompareResult;
 import org.bimserver.ifc.file.compare.CompareResult.Item;
 import org.bimserver.ifc.file.compare.CompareResult.ObjectAdded;
@@ -172,7 +168,6 @@ import org.bimserver.shared.DatabaseInformation;
 import org.bimserver.shared.LongActionState;
 import org.bimserver.shared.ResultType;
 import org.bimserver.shared.SCheckinResult;
-import org.bimserver.shared.SCheckoutResult;
 import org.bimserver.shared.SCompareResult;
 import org.bimserver.shared.SCompareResult.SCompareType;
 import org.bimserver.shared.SCompareResult.SObjectAdded;
@@ -952,25 +947,6 @@ public class Service implements ServiceInterface {
 		return download(downloadParameters, sync);
 	}
 
-	private SCheckoutResult convertModelToCheckoutResult(Project project, User user, IfcModel model, ResultType resultType)
-			throws UserException, NoSerializerFoundException {
-		requireAuthenticationAndRunningServer();
-		SCheckoutResult checkoutResult = new SCheckoutResult();
-		if (model.isValid()) {
-			checkoutResult.setProjectName(project.getName());
-			checkoutResult.setRevisionNr(model.getRevisionNr());
-			EmfSerializer serializer;
-			try {
-				serializer = emfSerializerFactory.create(project, user, resultType, model, checkoutResult.getProjectName() + "."
-						+ checkoutResult.getRevisionNr() + "." + resultType.getDefaultExtension());
-				checkoutResult.setFile(new DataHandler(serializer));
-			} catch (SerializerException e) {
-				LOGGER.error("", e);
-			}
-		}
-		return checkoutResult;
-	}
-
 	@Override
 	public String downloadOfType(long roid, String className, ResultType resultType, boolean sync) throws UserException, ServerException {
 		requireAuthenticationAndRunningServer();
@@ -1304,24 +1280,11 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public SCheckoutResult downloadProjects(Set<Long> roids, ResultType resultType) throws UserException, ServerException {
+	public String downloadProjects(Set<Long> roids, ResultType resultType, boolean sync) throws UserException, ServerException {
 		requireAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimDatabase.createReadOnlySession();
-		try {
-			BimDatabaseAction<IfcModel> action = new DownloadProjectsDatabaseAction(session, accessMethod, settingsManager, roids,
-					currentUoid);
-			Revision revision = session.get(StorePackage.eINSTANCE.getRevision(), roids.iterator().next(), false);
-			Project project = revision.getProject();
-			IfcModel ifcModel = session.executeAction(action, DEADLOCK_RETRIES);
-			User userByUoid = session.get(StorePackage.eINSTANCE.getUser(), currentUoid, false);
-			SCheckoutResult checkoutResult = convertModelToCheckoutResult(project, userByUoid, ifcModel, resultType);
-			return checkoutResult;
-		} catch (Exception e) {
-			handleException(e);
-			return null;
-		} finally {
-			session.close();
-		}
+
+		DownloadParameters downloadParameters = new DownloadParameters(roids, resultType);
+		return download(downloadParameters, sync);
 	}
 
 	@Override

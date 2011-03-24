@@ -34,8 +34,18 @@
 			longActionId = loginManager.getService().downloadByOids(roids, oids, resultType, false);
 		} else if (request.getParameter("class") != null){
 			longActionId = loginManager.getService().downloadOfType(roid, request.getParameter("class"), resultType, false);
-		}
-		else {
+		} else if (request.getParameter("multiple") != null){
+			Set<Long> roids = new HashSet<Long>();
+			for (Object key : request.getParameterMap().keySet()) {
+				String keyString = (String) key;
+				if (keyString.startsWith("download_")) {
+					if (!request.getParameter(keyString).equals("[off]")) {
+						roids.add(Long.parseLong(request.getParameter(keyString)));
+					}
+				}
+			}
+			longActionId = loginManager.getService().downloadProjects(roids, resultType, false);
+		} else {
 			longActionId = loginManager.getService().download(roid, resultType, false);
 		}
 	}
