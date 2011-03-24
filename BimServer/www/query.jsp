@@ -302,9 +302,13 @@ Get even <a href="http://extend.bimserver.org" target="_blank">more advanced Que
 			var oids = downloadframe.find('input[name="oids"]');
 			console.log(oids);
 			var resultType = downloadframe.find('select[name="resultType"]');
-			var zip = downloadframe.find('input[name="zip"]');
+			var zipbox = downloadframe.find('input[name="zip"]');
+			var zip = "";
+			if (zipbox.attr('checked')) {
+				zip = "&zip=on";
+			}
 			var resultDiv = downloadframe.find(".downloadResult");
-			resultDiv.load("initiatedownload.jsp?roid=" + roid.val() + "&oids=" + oids.val() + "&resultType=" + resultType.val() + "&zip=" + zip.val() + "&download=Download");
+			resultDiv.load("initiatedownload.jsp?roid=" + roid.val() + "&oids=" + oids.val() + "&resultType=" + resultType.val() + zip + "&download=Download");
 		});
 		$("#queryguidsbutton").click(function(){
 			var downloadframe = $(this).parents(".downloadframe");
@@ -313,9 +317,13 @@ Get even <a href="http://extend.bimserver.org" target="_blank">more advanced Que
 			var guids = downloadframe.find('input[name="guids"]');
 			console.log(guids);
 			var resultType = downloadframe.find('select[name="resultType"]');
-			var zip = downloadframe.find('input[name="zip"]');
+			var zipbox = downloadframe.find('input[name="zip"]');
+			var zip = "";
+			if (zipbox.attr('checked')) {
+				zip = "&zip=on";
+			}
 			var resultDiv = downloadframe.find(".downloadResult");
-			resultDiv.load("initiatedownload.jsp?roid=" + roid.val() + "&guids=" + guids.val() + "&resultType=" + resultType.val() + "&zip=" + zip.val() + "&download=Download");
+			resultDiv.load("initiatedownload.jsp?roid=" + roid.val() + "&guids=" + guids.val() + "&resultType=" + resultType.val() + zip + "&download=Download");
 		});
 		$("#queryclassbutton").click(function(){
 			var downloadframe = $(this).parents(".downloadframe");
@@ -324,9 +332,13 @@ Get even <a href="http://extend.bimserver.org" target="_blank">more advanced Que
 			var ifcClass = downloadframe.find("#cid");
 			console.log(ifcClass);
 			var resultType = downloadframe.find('select[name="resultType"]');
-			var zip = downloadframe.find('input[name="zip"]');
+			var zipbox = downloadframe.find('input[name="zip"]');
+			var zip = "";
+			if (zipbox.attr('checked')) {
+				zip = "&zip=on";
+			}
 			var resultDiv = downloadframe.find(".downloadResult");
-			resultDiv.load("initiatedownload.jsp?roid=" + roid.val() + "&class=" + ifcClass.val() + "&resultType=" + resultType.val() + "&zip=" + zip.val() + "&download=Download");
+			resultDiv.load("initiatedownload.jsp?roid=" + roid.val() + "&class=" + ifcClass.val() + "&resultType=" + resultType.val() + zip + "&download=Download");
 		});
 	});
 </script>
