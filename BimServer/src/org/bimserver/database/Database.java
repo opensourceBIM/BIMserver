@@ -175,10 +175,10 @@ public class Database implements BimDatabase {
 				initOidCounter(databaseSession);
 				initPidCounter(databaseSession);
 				fixCheckinStates(databaseSession);
-				for (EClass eClass : classifiers.keyBSet()) {
-					if (eClass.getEPackage() == Ifc2x3Package.eINSTANCE && eClass != Ifc2x3Package.eINSTANCE.getWrappedValue()) {
-						realClasses.add(eClass.getName());
-					}
+			}
+			for (EClass eClass : classifiers.keyBSet()) {
+				if (eClass.getEPackage() == Ifc2x3Package.eINSTANCE && eClass != Ifc2x3Package.eINSTANCE.getWrappedValue()) {
+					realClasses.add(eClass.getName());
 				}
 			}
 			databaseSession.commit();
