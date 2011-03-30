@@ -6,7 +6,6 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlType;
-
 import org.citygml4j.jaxb.citygml.core._1.AbstractCityObjectType;
 import org.citygml4j.jaxb.gml._3_1_1.MultiSurfacePropertyType;
 

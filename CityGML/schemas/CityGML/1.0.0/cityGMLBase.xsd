@@ -5,11 +5,13 @@
 <!-- Prof. Dr. Thomas H. Kolbe, Institute for Geodesy and Geoinformation Science, Technical University of Berlin -->
 <!-- For further information see: www.citygml.org -->
 <!-- For the history of changes and additions to this CityGML schema see file history.txt -->
-<xs:schema xmlns="http://www.opengis.net/citygml/1.0" xmlns:xAL="urn:oasis:names:tc:ciq:xsdschema:xAL:2.0"
-    xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml"
+<xs:schema xmlns="http://www.opengis.net/citygml/1.0" xmlns:xAL="urn:oasis:names:tc:ciq:xsdschema:xAL:2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:gml="http://www.opengis.net/gml" xmlns:app="http://www.opengis.net/citygml/appearance/1.0" xmlns:gen="http://www.opengis.net/citygml/generics/1.0"
     targetNamespace="http://www.opengis.net/citygml/1.0" elementFormDefault="qualified" attributeFormDefault="unqualified">
     <xs:import namespace="http://www.opengis.net/gml" schemaLocation="../../GML/3.1.1/base/gml.xsd"/>
     <xs:import namespace="urn:oasis:names:tc:ciq:xsdschema:xAL:2.0" schemaLocation="../../xAL/2.0/xAL.xsd"/>
+    <xs:import namespace="http://www.opengis.net/citygml/generics/1.0" schemaLocation="generics.xsd"/>
+    <xs:import namespace="http://www.opengis.net/citygml/appearance/1.0" schemaLocation="appearance.xsd"/>
     <!-- ========================================================================================= -->
     <!-- ======================CityGML Core module ================================================== -->
     <!-- ========================================================================================= -->
@@ -17,8 +19,8 @@
     <!-- ========================================================================================= -->
     <xs:complexType name="CityModelType">
         <xs:annotation>
-            <xs:documentation>Type describing the "root" element of any city model file. It is a collection whose members are
-                restricted to be features of a city model. All features are included as cityObjectMember. </xs:documentation>
+            <xs:documentation>Type describing the "root" element of any city model file. It is a collection whose members are restricted to be features of a
+                city model. All features are included as cityObjectMember. </xs:documentation>
         </xs:annotation>
         <xs:complexContent>
             <xs:extension base="gml:AbstractFeatureCollectionType">
@@ -41,11 +43,10 @@
     <!-- ========================================================================================= -->
     <xs:complexType name="AbstractCityObjectType" abstract="true">
         <xs:annotation>
-            <xs:documentation>Type describing the abstract superclass of most CityGML features. Its purpose is to provide a
-                creation and a termination date as well as a reference to corresponding objects in other information systems. A
-                generalization relation may be used to relate features, which represent the same real-world object in different
-                Levels-of-Detail, i.e. a feature and its generalized counterpart(s). The direction of this relation is from the
-                feature to the corresponding generalized feature.</xs:documentation>
+            <xs:documentation>Type describing the abstract superclass of most CityGML features. Its purpose is to provide a creation and a termination date as
+                well as a reference to corresponding objects in other information systems. A generalization relation may be used to relate features, which
+                represent the same real-world object in different Levels-of-Detail, i.e. a feature and its generalized counterpart(s). The direction of this
+                relation is from the feature to the corresponding generalized feature.</xs:documentation>
         </xs:annotation>
         <xs:complexContent>
             <xs:extension base="gml:AbstractFeatureType">
@@ -54,6 +55,8 @@
                     <xs:element name="terminationDate" type="xs:date" minOccurs="0"/>
                     <xs:element name="externalReference" type="ExternalReferenceType" minOccurs="0" maxOccurs="unbounded"/>
                     <xs:element name="generalizesTo" type="GeneralizationRelationType" minOccurs="0" maxOccurs="unbounded"/>
+                    <xs:element ref="gen:_genericAttribute" minOccurs="0" maxOccurs="unbounded"/>
+                    <xs:element ref="app:appearance" minOccurs="0" maxOccurs="unbounded"/>
                     <xs:element ref="_GenericApplicationPropertyOfCityObject" minOccurs="0" maxOccurs="unbounded"/>
                 </xs:sequence>
             </xs:extension>
@@ -84,10 +87,9 @@
     <!-- ========================================================================================== -->
     <xs:complexType name="AbstractSiteType" abstract="true">
         <xs:annotation>
-            <xs:documentation>Type describing the abstract superclass for buildings, facilities, etc. Future extensions of CityGML
-                like bridges and tunnels would be modelled as subclasses of _Site. As subclass of _CityObject, a _Site inherits
-                all attributes and relations, in particular an id, names, external references, and generalization relations.
-            </xs:documentation>
+            <xs:documentation>Type describing the abstract superclass for buildings, facilities, etc. Future extensions of CityGML like bridges and tunnels
+                would be modelled as subclasses of _Site. As subclass of _CityObject, a _Site inherits all attributes and relations, in particular an id, names,
+                external references, and generalization relations. </xs:documentation>
         </xs:annotation>
         <xs:complexContent>
             <xs:extension base="AbstractCityObjectType">
@@ -106,13 +108,13 @@
     <!-- ========================================================================================= -->
     <xs:complexType name="GeneralizationRelationType">
         <xs:annotation>
-            <xs:documentation>Denotes the relation of a _CityObject to its corresponding _CityObject in higher LOD, i.e. to the
-                _CityObjects representing the same real world object in higher LOD. The GeneralizationRelationType element must
-                either carry a reference to a _CityObject object or contain a _CityObject object inline, but neither both nor
-                none. </xs:documentation>
+            <xs:documentation>Denotes the relation of a _CityObject to its corresponding _CityObject in higher LOD, i.e. to the _CityObjects representing the
+                same real world object in higher LOD. The GeneralizationRelationType element must either carry a reference to a _CityObject object or contain a
+                _CityObject object inline, but neither both nor none. </xs:documentation>
         </xs:annotation>
         <xs:sequence minOccurs="0">
             <xs:element ref="_CityObject"/>
+            <xs:element ref="gml:_ADEComponent" minOccurs="0"/>
         </xs:sequence>
         <xs:attributeGroup ref="gml:AssociationAttributeGroup"/>
     </xs:complexType>
@@ -121,11 +123,10 @@
     <!-- ========================================================================================== -->
     <xs:complexType name="ExternalReferenceType">
         <xs:annotation>
-            <xs:documentation>Type describing the reference to an corresponding object in an other information system, for example
-                in the german cadastre ALKIS, the german topographic information system or ATKIS, or the OS MasterMap. The
-                reference consists of the name of the external information system, represented by an URI, and the reference of the
-                external object, given either by a string or by an URI. If the informationSystem element is missing in the
-                ExternalReference, the ExternalObjectReference must be an URI, which contains an indication of the
+            <xs:documentation>Type describing the reference to an corresponding object in an other information system, for example in the german cadastre ALKIS,
+                the german topographic information system or ATKIS, or the OS MasterMap. The reference consists of the name of the external information system,
+                represented by an URI, and the reference of the external object, given either by a string or by an URI. If the informationSystem element is
+                missing in the ExternalReference, the ExternalObjectReference must be an URI, which contains an indication of the
                 informationSystem.</xs:documentation>
         </xs:annotation>
         <xs:sequence>
@@ -146,9 +147,8 @@
     <!-- ========================================================================================== -->
     <xs:complexType name="AddressPropertyType">
         <xs:annotation>
-            <xs:documentation>Denotes the relation of an _CityObject to its addresses. The AddressPropertyType element must either
-                carry a reference to an Address object or contain an Address object inline, but neither both nor none.
-            </xs:documentation>
+            <xs:documentation>Denotes the relation of an _CityObject to its addresses. The AddressPropertyType element must either carry a reference to an
+                Address object or contain an Address object inline, but neither both nor none. </xs:documentation>
         </xs:annotation>
         <xs:complexContent>
             <xs:restriction base="gml:AssociationType">
@@ -161,9 +161,9 @@
     <!-- ========================================================================================== -->
     <xs:complexType name="AddressType">
         <xs:annotation>
-            <xs:documentation>Type for addresses. It references the xAL address standard issued by the OASIS consortium. Please
-                note, that addresses are modelled as GML features. Every address can be assigned zero or more 2D or 3D point
-                geometries (one gml:MultiPoint geometry) locating the entrance(s). </xs:documentation>
+            <xs:documentation>Type for addresses. It references the xAL address standard issued by the OASIS consortium. Please note, that addresses are
+                modelled as GML features. Every address can be assigned zero or more 2D or 3D point geometries (one gml:MultiPoint geometry) locating the
+                entrance(s). </xs:documentation>
         </xs:annotation>
         <xs:complexContent>
             <xs:extension base="gml:AbstractFeatureType">
@@ -193,18 +193,15 @@
     <!-- ========================================================================================== -->
     <xs:complexType name="ImplicitGeometryType">
         <xs:annotation>
-            <xs:documentation> Type for the implicit representation of a geometry. An implicit geometry is a geometric object,
-                where the shape is stored only once as a prototypical geometry, e.g. a tree or other vegetation object, a traffic
-                light or a traffic sign. This prototypic geometry object is re-used or referenced many times, wherever the
-                corresponding feature occurs in the 3D city model. Each occurrence is represented by a link to the prototypic
-                shape geometry (in a local cartesian coordinate system), by a transforma-tion matrix that is multiplied with each
-                3D coordinate tuple of the prototype, and by an anchor point denoting the base point of the object in the world
-                coordinate reference system. In order to determine the absolute coordinates of an implicit geometry, the anchor
-                point coordinates have to be added to the matrix multiplication results. The transformation matrix accounts for
-                the intended rotation, scaling, and local translation of the prototype. It is a 4x4 matrix that is multiplied with
-                the prototype coordinates using homogeneous coordinates, i.e. (x,y,z,1). This way even a projection might be
-                modelled by the transformation matrix. The concept of implicit geometries is an enhancement of the geometry model
-                of GML3. </xs:documentation>
+            <xs:documentation> Type for the implicit representation of a geometry. An implicit geometry is a geometric object, where the shape is stored only
+                once as a prototypical geometry, e.g. a tree or other vegetation object, a traffic light or a traffic sign. This prototypic geometry object is
+                re-used or referenced many times, wherever the corresponding feature occurs in the 3D city model. Each occurrence is represented by a link to
+                the prototypic shape geometry (in a local cartesian coordinate system), by a transforma-tion matrix that is multiplied with each 3D coordinate
+                tuple of the prototype, and by an anchor point denoting the base point of the object in the world coordinate reference system. In order to
+                determine the absolute coordinates of an implicit geometry, the anchor point coordinates have to be added to the matrix multiplication results.
+                The transformation matrix accounts for the intended rotation, scaling, and local translation of the prototype. It is a 4x4 matrix that is
+                multiplied with the prototype coordinates using homogeneous coordinates, i.e. (x,y,z,1). This way even a projection might be modelled by the
+                transformation matrix. The concept of implicit geometries is an enhancement of the geometry model of GML3. </xs:documentation>
         </xs:annotation>
         <xs:complexContent>
             <xs:extension base="gml:AbstractGMLType">
@@ -223,10 +220,9 @@
     <!-- ========================================================================================== -->
     <xs:complexType name="ImplicitRepresentationPropertyType">
         <xs:annotation>
-            <xs:documentation>Denotes the relation of a _CityObject to its implicit geometry representation, which is a
-                representation of a geometry by referencing a prototype and transforming it to its real position in space. The
-                ImplicitRepresentationPropertyType element must either carry a reference to a ImplicitGeometry object or contain a
-                ImplicitGeometry object inline, but neither both nor none. </xs:documentation>
+            <xs:documentation>Denotes the relation of a _CityObject to its implicit geometry representation, which is a representation of a geometry by
+                referencing a prototype and transforming it to its real position in space. The ImplicitRepresentationPropertyType element must either carry a
+                reference to a ImplicitGeometry object or contain a ImplicitGeometry object inline, but neither both nor none. </xs:documentation>
         </xs:annotation>
         <xs:complexContent>
             <xs:restriction base="gml:AssociationType">
@@ -241,8 +237,8 @@
     <!-- ========================================================================================= -->
     <xs:simpleType name="doubleBetween0and1">
         <xs:annotation>
-            <xs:documentation>Type for values, which are greater or equal than 0 and less or equal than 1. Used for color
-                encoding, for example. </xs:documentation>
+            <xs:documentation>Type for values, which are greater or equal than 0 and less or equal than 1. Used for color encoding, for example.
+            </xs:documentation>
         </xs:annotation>
         <xs:restriction base="xs:double">
             <xs:minInclusive value="0"/>
@@ -252,17 +248,17 @@
     <!-- ========================================================================================= -->
     <xs:simpleType name="doubleBetween0and1List">
         <xs:annotation>
-            <xs:documentation>List for double values, which are greater or equal than 0 and less or equal than 1. Used for color
-                encoding, for example. </xs:documentation>
+            <xs:documentation>List for double values, which are greater or equal than 0 and less or equal than 1. Used for color encoding, for example.
+            </xs:documentation>
         </xs:annotation>
         <xs:list itemType="doubleBetween0and1"/>
     </xs:simpleType>
     <!-- ========================================================================================= -->
     <xs:simpleType name="TransformationMatrix4x4Type">
         <xs:annotation>
-            <xs:documentation>Used for implicit geometries. The Transformation matrix is a 4 by 4 matrix, thus it must be a list
-                with 16 items. The order the matrix element are represented is row-major, i. e. the first 4 elements represent the
-                first row, the fifth to the eight element the second row,... </xs:documentation>
+            <xs:documentation>Used for implicit geometries. The Transformation matrix is a 4 by 4 matrix, thus it must be a list with 16 items. The order the
+                matrix element are represented is row-major, i. e. the first 4 elements represent the first row, the fifth to the eight element the second
+                row,... </xs:documentation>
         </xs:annotation>
         <xs:restriction base="gml:doubleList">
             <xs:length value="16"/>
@@ -271,9 +267,9 @@
     <!-- ========================================================================================= -->
     <xs:simpleType name="TransformationMatrix2x2Type">
         <xs:annotation>
-            <xs:documentation>Used for georeferencing. The Transformation matrix is a 2 by 2 matrix, thus it must be a list with 4
-                items. The order the matrix element are represented is row-major, i. e. the first 2 elements represent the first
-                row, the fifth to the eight element the second row,... </xs:documentation>
+            <xs:documentation>Used for georeferencing. The Transformation matrix is a 2 by 2 matrix, thus it must be a list with 4 items. The order the matrix
+                element are represented is row-major, i. e. the first 2 elements represent the first row, the fifth to the eight element the second row,...
+            </xs:documentation>
         </xs:annotation>
         <xs:restriction base="gml:doubleList">
             <xs:length value="4"/>
@@ -282,9 +278,9 @@
     <!-- ========================================================================================= -->
     <xs:simpleType name="TransformationMatrix3x4Type">
         <xs:annotation>
-            <xs:documentation>Used for texture parameterization. The Transformation matrix is a 3 by 4 matrix, thus it must be a
-                list with 12 items. The order the matrix element are represented is row-major, i. e. the first 4 elements
-                represent the first row, the fifth to the eight element the second row,... </xs:documentation>
+            <xs:documentation>Used for texture parameterization. The Transformation matrix is a 3 by 4 matrix, thus it must be a list with 12 items. The order
+                the matrix element are represented is row-major, i. e. the first 4 elements represent the first row, the fifth to the eight element the second
+                row,... </xs:documentation>
         </xs:annotation>
         <xs:restriction base="gml:doubleList">
             <xs:length value="12"/>
@@ -293,8 +289,8 @@
     <!-- ========================================================================================= -->
     <xs:simpleType name="integerBetween0and4">
         <xs:annotation>
-            <xs:documentation>Type for integer values, which are greater or equal than 0 and less or equal than 4. Used for
-                encoding of the LOD number. </xs:documentation>
+            <xs:documentation>Type for integer values, which are greater or equal than 0 and less or equal than 4. Used for encoding of the LOD number.
+            </xs:documentation>
         </xs:annotation>
         <xs:restriction base="xs:integer">
             <xs:minInclusive value="0"/>
@@ -304,9 +300,8 @@
     <!-- ========================================================================================= -->
     <xs:simpleType name="MimeTypeType">
         <xs:annotation>
-            <xs:documentation>MIME type of a geometry in an external library file. MIME types are defined by the IETF (Internet
-                Engineering Task Force). The values of this type are defined in the XML file MimeTypeType.xml, according to the
-                dictionary concept of GML3. </xs:documentation>
+            <xs:documentation>MIME type of a geometry in an external library file. MIME types are defined by the IETF (Internet Engineering Task Force). The
+                values of this type are defined in the XML file MimeTypeType.xml, according to the dictionary concept of GML3. </xs:documentation>
         </xs:annotation>
         <xs:restriction base="xs:string"/>
     </xs:simpleType>

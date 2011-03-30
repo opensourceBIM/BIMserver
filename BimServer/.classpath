@@ -86,9 +86,6 @@
 	<classpathentry exported="true" kind="lib" path="lib/cxf/geronimo-jaxws_2.2_spec-1.0.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/geronimo-servlet_3.0_spec-1.0.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/geronimo-ws-metadata_2.0_spec-1.1.3.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/cxf/jaxb-api-2.2.1.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/cxf/jaxb-impl-2.2.1.1.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/cxf/jaxb-xjc-2.2.1.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/jsr311-api-1.1.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/stax2-api-3.0.2.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/woodstox-core-asl-4.0.8.jar"/>
@@ -117,10 +114,13 @@
 	<classpathentry exported="true" kind="lib" path="lib/cxf/stringtemplate-3.2.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/wss4j-1.5.11.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/xmlsec-1.4.4.jar"/>
-	<classpathentry kind="lib" path="lib/emf/org.eclipse.emf.compare_1.0.1.v200909161031.jar"/>
-	<classpathentry kind="lib" path="lib/emf/org.eclipse.emf.compare.match_1.0.1.v200909161031.jar"/>
-	<classpathentry kind="lib" path="lib/commons-beanutils-1.8.3.jar"/>
-	<classpathentry kind="lib" path="lib/commons-beanutils-bean-collections-1.8.3.jar"/>
-	<classpathentry kind="lib" path="lib/commons-beanutils-core-1.8.3.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/emf/org.eclipse.emf.compare_1.0.1.v200909161031.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/emf/org.eclipse.emf.compare.match_1.0.1.v200909161031.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/commons-beanutils-1.8.3.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/commons-beanutils-bean-collections-1.8.3.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/commons-beanutils-core-1.8.3.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jaxb/jaxb-api-2.2.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jaxb/jaxb-impl-2.2.1.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jaxb/jaxb-xjc-2.2.1.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

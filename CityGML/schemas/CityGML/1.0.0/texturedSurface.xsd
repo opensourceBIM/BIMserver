@@ -6,9 +6,8 @@
 <!-- For further information see: www.citygml.org -->
 <!-- For the history of changes and additions to this CityGML schema see file history.txt -->
 <xs:schema xmlns="http://www.opengis.net/citygml/texturedsurface/1.0" xmlns:core="http://www.opengis.net/citygml/1.0"
-    xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml"
-    targetNamespace="http://www.opengis.net/citygml/texturedsurface/1.0" elementFormDefault="qualified"
-    attributeFormDefault="unqualified">
+    xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml" targetNamespace="http://www.opengis.net/citygml/texturedsurface/1.0"
+    elementFormDefault="qualified" attributeFormDefault="unqualified">
     <xs:import namespace="http://www.opengis.net/gml" schemaLocation="../../GML/3.1.1/base/gml.xsd"/>
     <xs:import namespace="http://www.opengis.net/citygml/1.0" schemaLocation="cityGMLBase.xsd"/>
     <!-- ========================================================================================= -->
@@ -23,14 +22,12 @@
     <xs:complexType name="TexturedSurfaceType">
         <xs:annotation>
             <xs:appinfo>deprecated</xs:appinfo>
-            <xs:documentation>Deprecated since CityGML version 0.4.0. Use the concepts of the CityGML Appearance module instead.
-                The concept of positioning textures on surfaces complies with the standard X3D. Because there has been no
-                appropriate texturing concept in GML3, CityGML adds the class TexturedSurface to the geometry model of GML 3. A
-                texture is specified as a raster image referenced by an URI, and can be an arbitrary resource, even in the
-                internet. Textures are positioned by employing the concept of texture coordinates, i.e. each texture coordinate
-                matches with exactly one 3D coordinate of the TexturedSurface. The use of texture coordinates allows an exact
-                positioning and trimming of the texture on the surface geometry. Each surface may be assigned one or more
-                appearances, each refering to one side of the surface. </xs:documentation>
+            <xs:documentation>Deprecated since CityGML version 0.4.0. Use the concepts of the CityGML Appearance module instead. The concept of positioning
+                textures on surfaces complies with the standard X3D. Because there has been no appropriate texturing concept in GML3, CityGML adds the class
+                TexturedSurface to the geometry model of GML 3. A texture is specified as a raster image referenced by an URI, and can be an arbitrary resource,
+                even in the internet. Textures are positioned by employing the concept of texture coordinates, i.e. each texture coordinate matches with exactly
+                one 3D coordinate of the TexturedSurface. The use of texture coordinates allows an exact positioning and trimming of the texture on the surface
+                geometry. Each surface may be assigned one or more appearances, each refering to one side of the surface. </xs:documentation>
         </xs:annotation>
         <xs:complexContent>
             <xs:extension base="gml:OrientableSurfaceType">
@@ -48,14 +45,12 @@
     <xs:complexType name="AppearancePropertyType">
         <xs:annotation>
             <xs:appinfo>deprecated</xs:appinfo>
-            <xs:documentation>Deprecated since CityGML version 0.4.0. Use the concepts of the CityGML Appearance module instead. A
-                property that has an _Appearance as its value domain, which can either be a Material (Color,...) or a Texture. The
-                _Appearance Element can either be encapsulated in an element of this type or an XLink reference to a remote
-                _Appearance element (where remote geometry elements are located in another document or elsewhere in the same
-                document). Either the reference or the contained element must be given, but neither both nor none. The side of the
-                surface the _Appearance refers to is given by the orientation attribute, which refers to the corresponding sign
-                attribute of the orientable surface: + means the side with positive orientation, and - the side with negative
-                orientation. </xs:documentation>
+            <xs:documentation>Deprecated since CityGML version 0.4.0. Use the concepts of the CityGML Appearance module instead. A property that has an
+                _Appearance as its value domain, which can either be a Material (Color,...) or a Texture. The _Appearance Element can either be encapsulated in
+                an element of this type or an XLink reference to a remote _Appearance element (where remote geometry elements are located in another document or
+                elsewhere in the same document). Either the reference or the contained element must be given, but neither both nor none. The side of the surface
+                the _Appearance refers to is given by the orientation attribute, which refers to the corresponding sign attribute of the orientable surface: +
+                means the side with positive orientation, and - the side with negative orientation. </xs:documentation>
         </xs:annotation>
         <xs:sequence minOccurs="0">
             <xs:element ref="_Appearance"/>
@@ -67,10 +62,9 @@
     <xs:complexType name="AbstractAppearanceType" abstract="true">
         <xs:annotation>
             <xs:appinfo>deprecated</xs:appinfo>
-            <xs:documentation>Deprecated since CityGML version 0.4.0. Use the concepts of the CityGML Appearance module instead.
-                This abstract type is the parent type of MaterialType and SimpleTextureType. It is derived from
-                gml:AbstractGMLType, thus it inherits the attribute gml:id and may be referenced by an appearanceProperty,
-                although it is defined elsewhere in another appearanceProperty. </xs:documentation>
+            <xs:documentation>Deprecated since CityGML version 0.4.0. Use the concepts of the CityGML Appearance module instead. This abstract type is the
+                parent type of MaterialType and SimpleTextureType. It is derived from gml:AbstractGMLType, thus it inherits the attribute gml:id and may be
+                referenced by an appearanceProperty, although it is defined elsewhere in another appearanceProperty. </xs:documentation>
         </xs:annotation>
         <xs:complexContent>
             <xs:extension base="gml:AbstractGMLType"/>
@@ -82,8 +76,8 @@
     <xs:complexType name="MaterialType">
         <xs:annotation>
             <xs:appinfo>deprecated</xs:appinfo>
-            <xs:documentation>Deprecated since CityGML version 0.4.0. Use the concepts of the CityGML Appearance module instead.
-                Adopted from X3D standard (http://www.web3d.org/x3d/) </xs:documentation>
+            <xs:documentation>Deprecated since CityGML version 0.4.0. Use the concepts of the CityGML Appearance module instead. Adopted from X3D standard
+                (http://www.web3d.org/x3d/) </xs:documentation>
         </xs:annotation>
         <xs:complexContent>
             <xs:extension base="AbstractAppearanceType">
@@ -104,8 +98,8 @@
     <xs:complexType name="SimpleTextureType">
         <xs:annotation>
             <xs:appinfo>deprecated</xs:appinfo>
-            <xs:documentation>Deprecated since CityGML version 0.4.0. Use the concepts of the CityGML Appearance module instead.
-                Adopted from X3D standard (http://www.web3d.org/x3d/). ToDo: repeat </xs:documentation>
+            <xs:documentation>Deprecated since CityGML version 0.4.0. Use the concepts of the CityGML Appearance module instead. Adopted from X3D standard
+                (http://www.web3d.org/x3d/). ToDo: repeat </xs:documentation>
         </xs:annotation>
         <xs:complexContent>
             <xs:extension base="AbstractAppearanceType">
@@ -124,11 +118,10 @@
     <xs:simpleType name="TextureTypeType">
         <xs:annotation>
             <xs:appinfo>deprecated</xs:appinfo>
-            <xs:documentation>Deprecated since CityGML version 0.4.0. Use the concepts of the CityGML Appearance module instead.
-                Textures can be qualified by the attribute textureType. The textureType differentiates between textures, which are
-                specific for a certain object and are only used for that object (specific), and prototypic textures being typical
-                for that kind of object and are used many times for all objects of that kind (typical). A typical texture may be
-                replaced by a specific, if available. Textures may also be classified as unknown. </xs:documentation>
+            <xs:documentation>Deprecated since CityGML version 0.4.0. Use the concepts of the CityGML Appearance module instead. Textures can be qualified by
+                the attribute textureType. The textureType differentiates between textures, which are specific for a certain object and are only used for that
+                object (specific), and prototypic textures being typical for that kind of object and are used many times for all objects of that kind (typical).
+                A typical texture may be replaced by a specific, if available. Textures may also be classified as unknown. </xs:documentation>
         </xs:annotation>
         <xs:restriction base="xs:string">
             <xs:enumeration value="specific"/>
@@ -140,9 +133,8 @@
     <xs:simpleType name="Color">
         <xs:annotation>
             <xs:appinfo>deprecated</xs:appinfo>
-            <xs:documentation>Deprecated since CityGML version 0.4.0. Use the concepts of the CityGML Appearance module instead.
-                List of three values (red, green, blue), separated by spaces. The values must be in the range between zero and
-                one. </xs:documentation>
+            <xs:documentation>Deprecated since CityGML version 0.4.0. Use the concepts of the CityGML Appearance module instead. List of three values (red,
+                green, blue), separated by spaces. The values must be in the range between zero and one. </xs:documentation>
         </xs:annotation>
         <xs:restriction base="core:doubleBetween0and1List">
             <xs:length value="3"/>

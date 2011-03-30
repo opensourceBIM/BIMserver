@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jaxb:bindings jaxb:version="2.1" xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<jaxb:bindings version="2.1" xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
     <!-- Specific settings for the citygml4j mapping file -->
     <jaxb:bindings schemaLocation="citygml4j_profile.xsd" node="/xs:schema">
@@ -7,7 +7,7 @@
         <!-- globalBindings do impact all schema files imported/included by the CityGML schema as well.
 			Therefore, the following settings in globalBindings also influence the mapping of
 			GML and  xAl schema files. -->
-        <jaxb:globalBindings generateIsSetMethod="true" underscoreBinding="asCharInWord" />
+        <jaxb:globalBindings generateIsSetMethod="true" underscoreBinding="asCharInWord"/>
     </jaxb:bindings>
 
     <!-- ============= -->
@@ -36,7 +36,7 @@
             a renaming is necessary -->
         <jaxb:bindings node="//xs:complexType[@name='_AbstractBuildingType']">
             <jaxb:bindings node=".//xs:element[@name='boundedBy']">
-                <jaxb:property name="boundedBySurfaces"/>
+                <jaxb:property name="boundedBySurface"/>
             </jaxb:bindings>
         </jaxb:bindings>
 
@@ -45,7 +45,7 @@
             a renaming is necessary -->
         <jaxb:bindings node="//xs:complexType[@name='RoomType']">
             <jaxb:bindings node=".//xs:element[@name='boundedBy']">
-                <jaxb:property name="boundedBySurfaces"/>
+                <jaxb:property name="boundedBySurface"/>
             </jaxb:bindings>
         </jaxb:bindings>
 
@@ -54,10 +54,10 @@
             a renaming is necessary -->
         <jaxb:bindings node="//xs:complexType[@name='WaterBodyType']">
             <jaxb:bindings node=".//xs:element[@name='boundedBy']">
-                <jaxb:property name="boundedBySurfaces"/>
+                <jaxb:property name="boundedBySurface"/>
             </jaxb:bindings>
         </jaxb:bindings>
-        
+
         <!-- changing data type of DoubleAttributeType -->
         <jaxb:bindings node="//xs:complexType[@name='DoubleAttributeType']">
             <jaxb:bindings node=".//xs:element[@name='value']">
@@ -85,20 +85,20 @@
             <jaxb:package name="org.citygml4j.jaxb.citygml.app._1"/>
         </jaxb:schemaBindings>
     </jaxb:bindings>
-    
+
     <!-- Specific settings for the CityGML Building module schema file -->
     <jaxb:bindings schemaLocation="1.0.0/building.xsd" node="/xs:schema">
         <jaxb:schemaBindings>
             <!-- set package name of the generated classes -->
             <jaxb:package name="org.citygml4j.jaxb.citygml.bldg._1"/>
         </jaxb:schemaBindings>
-        
+
         <!-- GML features do have a property called 'boundedBy'. The schema mapping mixes up
 			the property 'boundedBy' of an AbstractBuildingType with that one defined by GML. So
 			a renaming is necessary -->
         <jaxb:bindings node="//xs:complexType[@name='AbstractBuildingType']">
             <jaxb:bindings node=".//xs:element[@name='boundedBy']">
-                <jaxb:property name="boundedBySurfaces"/>
+                <jaxb:property name="boundedBySurface"/>
             </jaxb:bindings>
         </jaxb:bindings>
 
@@ -107,7 +107,7 @@
 			a renaming is necessary -->
         <jaxb:bindings node="//xs:complexType[@name='RoomType']">
             <jaxb:bindings node=".//xs:element[@name='boundedBy']">
-                <jaxb:property name="boundedBySurfaces"/>
+                <jaxb:property name="boundedBySurface"/>
             </jaxb:bindings>
         </jaxb:bindings>
     </jaxb:bindings>
@@ -119,14 +119,14 @@
             <jaxb:package name="org.citygml4j.jaxb.citygml.frn._1"/>
         </jaxb:schemaBindings>
     </jaxb:bindings>
-    
+
     <!-- Specific settings for the CityGML CityObjectGroup module schema file -->
     <jaxb:bindings schemaLocation="1.0.0/cityObjectGroup.xsd" node="/xs:schema">
         <jaxb:schemaBindings>
             <!-- set package name of the generated classes -->
             <jaxb:package name="org.citygml4j.jaxb.citygml.grp._1"/>
         </jaxb:schemaBindings>
-        
+
         <!-- correct error for 'role' attribute of CityObjectGroupMemberType. The error occurs because
 			the GML implementation of xlink also defines an attribute 'role' for this complexType. -->
         <jaxb:bindings node="//xs:complexType[@name='CityObjectGroupMemberType']">
@@ -142,7 +142,7 @@
             <!-- set package name of the generated classes -->
             <jaxb:package name="org.citygml4j.jaxb.citygml.gen._1"/>
         </jaxb:schemaBindings>
-        
+
         <!-- changing data type of DoubleAttributeType -->
         <jaxb:bindings node="//xs:complexType[@name='DoubleAttributeType']">
             <jaxb:bindings node=".//xs:element[@name='value']">
@@ -158,7 +158,7 @@
             <jaxb:package name="org.citygml4j.jaxb.citygml.luse._1"/>
         </jaxb:schemaBindings>
     </jaxb:bindings>
-    
+
     <!-- Specific settings for the CityGML Relief module schema file -->
     <jaxb:bindings schemaLocation="1.0.0/relief.xsd" node="/xs:schema">
         <jaxb:schemaBindings>
@@ -166,7 +166,7 @@
             <jaxb:package name="org.citygml4j.jaxb.citygml.dem._1"/>
         </jaxb:schemaBindings>
     </jaxb:bindings>
-    
+
     <!-- Specific settings for the CityGML TexturedSurface module schema file -->
     <jaxb:bindings schemaLocation="1.0.0/texturedSurface.xsd" node="/xs:schema">
         <jaxb:schemaBindings>
@@ -174,7 +174,7 @@
             <jaxb:package name="org.citygml4j.jaxb.citygml.tex._1"/>
         </jaxb:schemaBindings>
     </jaxb:bindings>
-    
+
     <!-- Specific settings for the CityGML Transportation module schema file -->
     <jaxb:bindings schemaLocation="1.0.0/transportation.xsd" node="/xs:schema">
         <jaxb:schemaBindings>
@@ -182,7 +182,7 @@
             <jaxb:package name="org.citygml4j.jaxb.citygml.tran._1"/>
         </jaxb:schemaBindings>
     </jaxb:bindings>
-    
+
     <!-- Specific settings for the CityGML Vegetation module schema file -->
     <jaxb:bindings schemaLocation="1.0.0/vegetation.xsd" node="/xs:schema">
         <jaxb:schemaBindings>
@@ -190,20 +190,20 @@
             <jaxb:package name="org.citygml4j.jaxb.citygml.veg._1"/>
         </jaxb:schemaBindings>
     </jaxb:bindings>
-    
+
     <!-- Specific settings for the CityGML WaterBody module schema file -->
     <jaxb:bindings schemaLocation="1.0.0/waterBody.xsd" node="/xs:schema">
         <jaxb:schemaBindings>
             <!-- set package name of the generated classes -->
             <jaxb:package name="org.citygml4j.jaxb.citygml.wtr._1"/>
         </jaxb:schemaBindings>
-        
+
         <!-- GML features do have a property called 'boundedBy'. The schema mapping mixes up
 			the property 'boundedBy' of an WaterBodyType with that one defined by GML. So
 			a renaming is necessary -->
         <jaxb:bindings node="//xs:complexType[@name='WaterBodyType']">
             <jaxb:bindings node=".//xs:element[@name='boundedBy']">
-                <jaxb:property name="boundedBySurfaces"/>
+                <jaxb:property name="boundedBySurface"/>
             </jaxb:bindings>
         </jaxb:bindings>
     </jaxb:bindings>
@@ -211,11 +211,11 @@
     <!-- ========= -->
     <!-- GML 3.1.1 -->
     <!-- ========= -->
-    
+
     <!-- Specific settings for the GML schema file -->
     <jaxb:bindings schemaLocation="../GML/3.1.1/base/gml.xsd" node="/xs:schema">
         <jaxb:schemaBindings>
-        	<!-- set package name of the generated classes -->
+            <!-- set package name of the generated classes -->
             <jaxb:package name="org.citygml4j.jaxb.gml._3_1_1"/>
         </jaxb:schemaBindings>
     </jaxb:bindings>
@@ -240,11 +240,11 @@
             <jaxb:class name="LabelStyleRef"/>
         </jaxb:bindings>
     </jaxb:bindings>
-    
+
     <!-- ======= -->
     <!-- xAL 2.0 -->
     <!-- ======= -->
-    
+
     <!-- Specific settings for the xAl schema file -->
     <jaxb:bindings schemaLocation="../xAl/2.0/xAl.xsd" node="/xs:schema">
         <jaxb:schemaBindings>
@@ -260,7 +260,7 @@
     <!-- ==== -->
     <!-- SMIL -->
     <!-- ==== -->
-    
+
     <!-- Specific settings for the SMIL schema file 'smil20.xsd' -->
     <jaxb:bindings schemaLocation="../GML/3.1.1/smil/smil20.xsd" node="/xs:schema">
         <jaxb:schemaBindings>
@@ -276,4 +276,17 @@
             <jaxb:package name="org.citygml4j.jaxb.smil20.language"/>
         </jaxb:schemaBindings>
     </jaxb:bindings>
+
+    <!-- =============== -->
+    <!-- Dummy ADE Hooks -->
+    <!-- =============== -->
+
+    <!-- Specific settings for the artifical schema file 'ade_hook.xsd' -->
+    <jaxb:bindings schemaLocation="ade_hooks/ade_hooks.xsd" node="/xs:schema">
+        <jaxb:schemaBindings>
+            <!-- set package name of the generated classes -->
+            <jaxb:package name="org.citygml4j.jaxb.ade_hooks"/>
+        </jaxb:schemaBindings>
+    </jaxb:bindings>
+
 </jaxb:bindings>

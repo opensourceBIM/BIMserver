@@ -2,7 +2,6 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.USER_LIBRARY/emf"/>
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/joda-time-1.6.jar"/>
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/logging/log4j-1.2.16.jar" sourcepath="/BimServer/libsrc/log4j.jar"/>
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/logging/slf4j-api-1.6.0.jar"/>

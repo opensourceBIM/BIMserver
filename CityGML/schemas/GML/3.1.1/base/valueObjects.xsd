@@ -22,7 +22,8 @@
 		<choice>
 			<!-- <element ref="gml:_Value"/> -->
 			<group ref="gml:ValueObject"/>
-			<element ref="gml:_Object"/>
+			<element ref="gml:_GML"/>
+		    <element ref="gml:_ADEComponent" minOccurs="0"/>
 			<!--			<element ref="gml:_Geometry"/>
 			<element ref="gml:_TimeObject"/> -->
 			<element ref="gml:Null"/>

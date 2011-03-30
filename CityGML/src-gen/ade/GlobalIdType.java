@@ -5,7 +5,6 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlType;
-
 import org.citygml4j.jaxb.gml._3_1_1.AbstractFeatureType;
 
 
@@ -32,7 +31,7 @@ public class GlobalIdType
     extends AbstractFeatureType
 {
 
-    @XmlAttribute
+    @XmlAttribute(name = "value")
     protected String value;
 
     /**

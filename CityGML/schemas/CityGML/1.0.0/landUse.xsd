@@ -5,9 +5,9 @@
 <!-- Prof. Dr. Thomas H. Kolbe, Institute for Geodesy and Geoinformation Science, Technical University of Berlin -->
 <!-- For further information see: www.citygml.org -->
 <!-- For the history of changes and additions to this CityGML schema see file history.txt -->
-<xs:schema xmlns="http://www.opengis.net/citygml/landuse/1.0" xmlns:core="http://www.opengis.net/citygml/1.0"
-    xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml"
-    targetNamespace="http://www.opengis.net/citygml/landuse/1.0" elementFormDefault="qualified" attributeFormDefault="unqualified">
+<xs:schema xmlns="http://www.opengis.net/citygml/landuse/1.0" xmlns:core="http://www.opengis.net/citygml/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:gml="http://www.opengis.net/gml" targetNamespace="http://www.opengis.net/citygml/landuse/1.0" elementFormDefault="qualified"
+    attributeFormDefault="unqualified">
     <xs:import namespace="http://www.opengis.net/gml" schemaLocation="../../GML/3.1.1/base/gml.xsd"/>
     <xs:import namespace="http://www.opengis.net/citygml/1.0" schemaLocation="cityGMLBase.xsd"/>
     <!-- ========================================================================================= -->
@@ -15,10 +15,9 @@
     <!-- ========================================================================================= -->
     <xs:complexType name="LandUseType">
         <xs:annotation>
-            <xs:documentation>Type describing the class for Land Use in all LOD. LandUse objects describe areas of the earth’s
-                surface dedicated to a specific land use. The geometry must consist of 3-D surfaces. As subclass of _CityObject, a
-                LandUse inherits all attributes and relations, in particular an id, names, external references, and generalization
-                relations. </xs:documentation>
+            <xs:documentation>Type describing the class for Land Use in all LOD. LandUse objects describe areas of the earth’s surface dedicated to a specific
+                land use. The geometry must consist of 3-D surfaces. As subclass of _CityObject, a LandUse inherits all attributes and relations, in particular
+                an id, names, external references, and generalization relations. </xs:documentation>
         </xs:annotation>
         <xs:complexContent>
             <xs:extension base="core:AbstractCityObjectType">
@@ -43,24 +42,24 @@
     <!-- ========================================================================================= -->
     <xs:simpleType name="LandUseClassType">
         <xs:annotation>
-            <xs:documentation>Class of a Landuse. The values of this type are defined in the XML file LandUseClassType.xml,
-                according to the dictionary concept of GML3. </xs:documentation>
+            <xs:documentation>Class of a Landuse. The values of this type are defined in the XML file LandUseClassType.xml, according to the dictionary concept
+                of GML3. </xs:documentation>
         </xs:annotation>
         <xs:restriction base="xs:string"/>
     </xs:simpleType>
     <!-- ========================================================================================= -->
     <xs:simpleType name="LandUseFunctionType">
         <xs:annotation>
-            <xs:documentation>Function of a Landuse. The values of this type are defined in the XML file LandUseFunctionType.xml,
-                according to the dictionary concept of GML3. </xs:documentation>
+            <xs:documentation>Function of a Landuse. The values of this type are defined in the XML file LandUseFunctionType.xml, according to the dictionary
+                concept of GML3. </xs:documentation>
         </xs:annotation>
         <xs:restriction base="xs:string"/>
     </xs:simpleType>
     <!-- ========================================================================================= -->
     <xs:simpleType name="LandUseUsageType">
         <xs:annotation>
-            <xs:documentation>Usage of a Landuse. The values of this type are defined in the XML file LandUseUsageType.xml,
-                according to the dictionary concept of GML3. </xs:documentation>
+            <xs:documentation>Usage of a Landuse. The values of this type are defined in the XML file LandUseUsageType.xml, according to the dictionary concept
+                of GML3. </xs:documentation>
         </xs:annotation>
         <xs:restriction base="xs:string"/>
     </xs:simpleType>
