@@ -20,6 +20,7 @@ package org.bimserver.database;
  * long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.nio.BufferOverflowException;
 import java.nio.ByteBuffer;
 import java.util.Arrays;
 import java.util.Collection;
@@ -55,16 +56,17 @@ import org.bimserver.models.store.User;
 import org.bimserver.shared.DatabaseInformation;
 import org.bimserver.shared.UserException;
 import org.bimserver.utils.BinUtils;
-import org.bimserver.utils.GrowingByteBuffer;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.Enumerator;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EEnumImpl;
@@ -135,8 +137,8 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 			bimTransaction.close();
 		}
 		if (!isReadOnly() && objectsToCommit.size() == 0) {
-//			LOGGER.warn("No objects were changed, could have used a read-only session, printing stack trace");
-//			Thread.dumpStack();
+			// LOGGER.warn("No objects were changed, could have used a read-only session, printing stack trace");
+			// Thread.dumpStack();
 		}
 	}
 
@@ -165,10 +167,15 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 
 	@Override
 	public <T> T executeAndCommitAction(BimDatabaseAction<T> action, int retries) throws BimDatabaseException, UserException {
+		return executeAndCommitAction(action, retries, null);
+	}
+
+	@Override
+	public <T> T executeAndCommitAction(BimDatabaseAction<T> action, int retries, ProgressHandler progressHandler) throws BimDatabaseException, UserException {
 		for (int i = 0; i < retries; i++) {
 			try {
 				T result = action.execute();
-				commit();
+				commit(progressHandler);
 				return result;
 			} catch (BimDeadlockException e) {
 				bimTransaction.rollback();
@@ -270,7 +277,7 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 					if (feature.isMany()) {
 						if (feature.getEType() instanceof EEnum) {
 						} else if (feature.getEType() instanceof EClass) {
-//							EReference eReference = (EReference) feature;
+							// EReference eReference = (EReference) feature;
 							if (buffer.capacity() == 1 && buffer.get(0) == -1) {
 								buffer.position(buffer.position() + 1);
 							} else {
@@ -305,13 +312,16 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 										if (!feature.getEType().isInstance(referencedObject)) {
 											throw new BimDatabaseException(referencedObject.getClass().getSimpleName() + " cannot be stored in list of " + feature.getName());
 										}
-//										if (eReference.getEOpposite() == null || !referencedObject.isLoadedOrLoading()) {
-											if (feature.isUnique()) {
-												list.add(referencedObject);
-											} else {
-												list.addUnique(referencedObject);
-											}
-//										}
+										// if (eReference.getEOpposite() == null
+										// ||
+										// !referencedObject.isLoadedOrLoading())
+										// {
+										if (feature.isUnique()) {
+											list.add(referencedObject);
+										} else {
+											list.addUnique(referencedObject);
+										}
+										// }
 									}
 								}
 							}
@@ -337,7 +347,7 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 								LOGGER.error(enumOrdinal + " not found");
 							}
 						} else if (feature.getEType() instanceof EClass) {
-//							EReference eReference = (EReference) feature;
+							// EReference eReference = (EReference) feature;
 							short cid = buffer.getShort();
 							if (cid == -1) {
 								// null, do nothing
@@ -351,9 +361,10 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 								// other record
 								EClass referenceClass = database.getEClassForCid(cid);
 								newValue = readReference(originalQueryClass, buffer, model, pid, rid, idEObject, feature, referenceClass, deep);
-//								if (eReference.getEOpposite() != null && ((IdEObject) newValue).isLoadedOrLoading()) {
-//									newValue = null;
-//								}
+								// if (eReference.getEOpposite() != null &&
+								// ((IdEObject) newValue).isLoadedOrLoading()) {
+								// newValue = null;
+								// }
 							}
 						} else if (feature.getEType() instanceof EDataType) {
 							newValue = readPrimitiveValue(feature.getEType(), buffer);
@@ -697,17 +708,102 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 		return database.newOid();
 	}
 
-	public GrowingByteBuffer convertObjectToByteArray(IdEObject object) throws BimDeadlockException, BimDatabaseException {
-		GrowingByteBuffer buffer = new GrowingByteBuffer();
+	private int getPrimitiveSize(EDataType eDataType, Object val) {
+		if (eDataType == EcorePackage.eINSTANCE.getEInt()) {
+			return 4;
+		} else if (eDataType == EcorePackage.eINSTANCE.getEFloat()) {
+			return 4;
+		} else if (eDataType == EcorePackage.eINSTANCE.getEBoolean()) {
+			return 1;
+		} else if (eDataType == EcorePackage.eINSTANCE.getEDate()) {
+			return 8;
+		} else if (eDataType == EcorePackage.eINSTANCE.getELong()) {
+			return 8;
+		} else if (eDataType == EcorePackage.eINSTANCE.getEDouble()) {
+			return 8;
+		} else if (eDataType == EcorePackage.eINSTANCE.getEString()) {
+			if (val != null) {
+				return 2 + ((String) val).getBytes(Charsets.UTF_8).length;
+			}
+			return 2;
+		} else if (eDataType == EcorePackage.eINSTANCE.getEByteArray()) {
+			if (val != null) {
+				return 4 + ((byte[]) val).length;
+			}
+			return 4;
+		} else if (eDataType instanceof EEnum) {
+			return 4;
+		}
+		throw new RuntimeException("Unimplemented: " + eDataType);
+	}
+
+	private int getExactSize(IdEObject idEObject) {
+		int size = 0;
+		for (EStructuralFeature eStructuralFeature : idEObject.eClass().getEAllStructuralFeatures()) {
+			Object val = idEObject.eGet(eStructuralFeature);
+			if (eStructuralFeature instanceof EAttribute) {
+				EAttribute eAttribute = (EAttribute) eStructuralFeature;
+				if (eAttribute.isMany()) {
+					size += 2;
+					for (Object v : ((List<?>) val)) {
+						size += getPrimitiveSize(eAttribute.getEAttributeType(), v);
+					}
+				} else {
+					size += getPrimitiveSize(eAttribute.getEAttributeType(), val);
+				}
+			} else if (eStructuralFeature instanceof EReference) {
+				EReference eReference = (EReference) eStructuralFeature;
+				if (val == null) {
+					size += 2;
+				} else {
+					if (eReference.isMany()) {
+						size += 2;
+						for (Object v : ((List<?>) val)) {
+							size += getWrappedValueSize(v);
+						}
+					} else {
+						size += getWrappedValueSize(val);
+					}
+				}
+			}
+		}
+		return size;
+	}
+
+	private int getWrappedValueSize(Object val) {
+		if (val instanceof EObject) {
+			EObject eObject = (EObject) val;
+			boolean isWrappedValue = Ifc2x3Package.eINSTANCE.getWrappedValue().isSuperTypeOf(eObject.eClass());
+			int refSize = 10;
+			if (isWrappedValue) {
+				WrappedValue wrappedValue = (WrappedValue) val;
+				EStructuralFeature wrappedValueFeature = wrappedValue.eClass().getEStructuralFeature("wrappedValue");
+				Object wrappedVal = eObject.eGet(wrappedValueFeature);
+				refSize = 2 + getPrimitiveSize((EDataType) wrappedValueFeature.getEType(), wrappedVal);
+				if (wrappedValueFeature.getEType() == EcorePackage.eINSTANCE.getEFloat()) {
+					EStructuralFeature floatValueFeature = wrappedValue.eClass().getEStructuralFeature("wrappedValueAsString");
+					refSize += 2 + ((String) wrappedValue.eGet(floatValueFeature)).getBytes(Charsets.UTF_8).length;
+				}
+			}
+			return refSize;
+		}
+		return 10;
+	}
+
+	public ByteBuffer convertObjectToByteArray(IdEObject object) throws BimDeadlockException, BimDatabaseException {
+		ByteBuffer buffer = ByteBuffer.allocate(getExactSize(object));
 		for (EStructuralFeature feature : object.eClass().getEAllStructuralFeatures()) {
 			if (!feature.isTransient() && !feature.isVolatile()) {
 				if (feature.isMany()) {
 					if (feature.getEType() instanceof EEnum) {
-						// Aggregate relations to enums never occur... at this
+						// Aggregate relations to enums never occur... at
+						// this
 						// moment
 					} else if (feature.getEType() instanceof EClass) {
 						EList<?> list = (EList<?>) object.eGet(feature);
 						buffer.putShort((short) list.size());
+						// database.getRecordSizeEstimater().adjustBasedOnDefault(buffer,
+						// (EClass)feature.getEType(), list.size());
 						for (Object o : list) {
 							if (o == null) {
 								buffer.putShort((short) -1);
@@ -724,6 +820,8 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 					} else if (feature.getEType() instanceof EDataType) {
 						EList<?> list = (EList<?>) object.eGet(feature);
 						buffer.putShort((short) list.size());
+						// database.getRecordSizeEstimater().adjustBasedOnDefault(buffer,
+						// (EDataType)feature.getEType(), list.size());
 						for (Object o : list) {
 							writePrimitiveValue(feature, o, buffer);
 						}
@@ -802,7 +900,7 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 		}
 	}
 
-	private void writeWrappedValue(int pid, int rid, Object value, GrowingByteBuffer buffer) throws BimDatabaseException, BimDeadlockException {
+	private void writeWrappedValue(int pid, int rid, Object value, ByteBuffer buffer) throws BimDatabaseException, BimDeadlockException {
 		WrappedValue wrappedValue = (WrappedValue) value;
 		EStructuralFeature eStructuralFeature = wrappedValue.eClass().getEStructuralFeature("wrappedValue");
 		Short cid = database.getCidOfEClass(wrappedValue.eClass());
@@ -816,7 +914,7 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 			if (wrappedValue.getOid() == -1) {
 				wrappedValue.setOid(newOid());
 			}
-			GrowingByteBuffer convertObjectToByteArray = convertObjectToByteArray(wrappedValue);
+			ByteBuffer convertObjectToByteArray = convertObjectToByteArray(wrappedValue);
 			ByteBuffer createKeyBuffer = createKeyBuffer(pid, wrappedValue.getOid(), rid);
 			try {
 				database.getColumnDatabase().store("IfcGloballyUniqueId", createKeyBuffer.array(), convertObjectToByteArray.array(), this);
@@ -826,7 +924,7 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 		}
 	}
 
-	public void writePrimitiveValue(EStructuralFeature feature, Object value, GrowingByteBuffer buffer) throws BimDatabaseException {
+	public void writePrimitiveValue(EStructuralFeature feature, Object value, ByteBuffer buffer) throws BimDatabaseException {
 		if (feature.getEType() == EcorePackage.eINSTANCE.getEString()) {
 			if (value == null) {
 				buffer.putShort((short) -1);
@@ -871,8 +969,7 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 		}
 	}
 
-	private void writeReference(int pid, int rid, Object value, GrowingByteBuffer buffer, IdEObject object, EStructuralFeature feature) throws BimDeadlockException,
-			BimDatabaseException {
+	private void writeReference(int pid, int rid, Object value, ByteBuffer buffer, IdEObject object, EStructuralFeature feature) throws BimDeadlockException, BimDatabaseException {
 		Short cid = database.getCidOfEClass(((EObject) value).eClass());
 		buffer.putShort(cid);
 		IdEObject idEObject = (IdEObject) value;
@@ -980,15 +1077,27 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 	}
 
 	public void commit() throws BimDeadlockException, BimDatabaseException {
+		commit(null);
+	}
+
+	public void commit(ProgressHandler progressHandler) throws BimDeadlockException, BimDatabaseException {
 		if (!readOnly) {
 			try {
+				if (progressHandler != null) {
+					progressHandler.progress(0, objectsToCommit.size());
+				}
+				int current = 0;
 				for (IdEObject object : objectsToCommit.keySet()) {
 					if (object.getOid() == -1) {
 						throw new BimDatabaseException("Cannot store object with oid -1");
 					}
 					ByteBuffer keyBuffer = createKeyBuffer(object.getPid(), object.getOid(), object.getRid());
-					putInCache(new RecordIdentifier(object.getPid(), object.getOid(), object.getRid()), object);
+					// putInCache(new RecordIdentifier(object.getPid(),
+					// object.getOid(), object.getRid()), object);
 					database.getColumnDatabase().store(object.eClass().getName(), keyBuffer.array(), convertObjectToByteArray(object).array(), this);
+					if (progressHandler != null) {
+						progressHandler.progress(++current, objectsToCommit.size());
+					}
 				}
 				if (storeOid) {
 					saveOidCounter();
@@ -999,7 +1108,9 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 				for (PostCommitAction postCommitAction : postCommitActions) {
 					postCommitAction.execute();
 				}
-				bimTransaction.commit();
+				if (bimTransaction != null) {
+					bimTransaction.commit();
+				}
 			} catch (BimDatabaseException e) {
 				LOGGER.error("", e);
 			} catch (UserException e) {
@@ -1109,5 +1220,10 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 	@Override
 	public IfcModel getAllOfType(EClass eClass, boolean deep) throws BimDatabaseException, BimDeadlockException {
 		return getAllOfType(eClass, Database.STORE_PROJECT_ID, Database.STORE_PROJECT_REVISION_ID, deep);
+	}
+
+	@Override
+	public BimDatabaseSession newSession(boolean useTransaction) {
+		return database.createSession(false);
 	}
 }

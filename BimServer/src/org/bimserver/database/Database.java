@@ -87,13 +87,15 @@ public class Database implements BimDatabase {
 	private final Registry registry;
 	private Date created;
 	private final Set<BimDatabaseSession> sessions = new HashSet<BimDatabaseSession>();
+	private final Set<EClass> transactionLessClasses = new HashSet<EClass>();
+	private final RecordSizeEstimater recordSizeEstimater = new RecordSizeEstimater();
 
 	/*
 	 * This variable should be _incremented_ with every (released)
 	 * database-schema change Do not change this variable when nothing has
 	 * changed in the schema!
 	 */
-	public static final int APPLICATION_SCHEMA_VERSION = 2;
+	public static final int APPLICATION_SCHEMA_VERSION = 3;
 	private int databaseSchemaVersion;
 	private short tableId;
 	private Migrator migrator;
@@ -104,6 +106,19 @@ public class Database implements BimDatabase {
 		this.emfPackages.add(StorePackage.eINSTANCE);
 		this.emfPackages.add(LogPackage.eINSTANCE);
 		this.emfPackages.addAll(emfPackages);
+
+		// All classes from the packages other than Store/Log (basically only the Ifc2x3 package at the moment) are transaction-less (faster)
+		for (EPackage ePackage : emfPackages) {
+			for (EClassifier eClassifier : ePackage.getEClassifiers()) {
+				if (eClassifier instanceof EClass) {
+					EClass eClass = (EClass)eClassifier;
+					transactionLessClasses.add(eClass);
+				}
+			}
+		}
+		
+		recordSizeEstimater.init(this.emfPackages);
+		
 		this.registry = new Registry(columnDatabase);
 	}
 
@@ -116,16 +131,19 @@ public class Database implements BimDatabase {
 	}
 
 	public void init() throws DatabaseInitException, DatabaseRestartRequiredException {
-		DatabaseSession databaseSession = createSession();
+		DatabaseSession databaseSession = createSession(true);
 		try {
 			if (getColumnDatabase().isNew()) {
-				columnDatabase.createTableIfNotExists(CLASS_LOOKUP_TABLE, databaseSession);
-				columnDatabase.createTableIfNotExists(Database.STORE_PROJECT_NAME, databaseSession);
-				registry.ensureExists(databaseSession);
+				columnDatabase.createTable(CLASS_LOOKUP_TABLE, true);
+				columnDatabase.createTable(Database.STORE_PROJECT_NAME, true);
+				columnDatabase.createTable(Registry.REGISTRY_TABLE, true);
 				setDatabaseVersion(-1, databaseSession);
 				created = new Date();
 				registry.save(DATE_CREATED, created, databaseSession);
 			} else {
+				columnDatabase.openTable(CLASS_LOOKUP_TABLE, true);
+				columnDatabase.openTable(Database.STORE_PROJECT_NAME, true);
+				columnDatabase.openTable(Registry.REGISTRY_TABLE, true);
 				created = registry.readDate(DATE_CREATED, databaseSession);
 				if (created == null) {
 					created = new Date();
@@ -233,17 +251,6 @@ public class Database implements BimDatabase {
 		}
 	}
 
-	public void createTableIfNotExists(EClass eClass, DatabaseSession databaseSession) throws BimDeadlockException {
-		if (columnDatabase.createTableIfNotExists(eClass.getName(), databaseSession)) {
-			tableId++;
-			try {
-				columnDatabase.store(CLASS_LOOKUP_TABLE, BinUtils.shortToByteArray(tableId), BinUtils.stringToByteArray(eClass.getName()), databaseSession);
-			} catch (BimDatabaseException e) {
-				LOGGER.error("", e);
-			}
-		}
-	}
-
 	public void fakeRead(ByteBuffer buffer, EStructuralFeature feature) {
 		boolean wrappedValue = Ifc2x3Package.eINSTANCE.getWrappedValue().isSuperTypeOf((EClass) feature.getEType());
 		if (feature.getUpperBound() > 1 || feature.getUpperBound() == -1) {
@@ -330,9 +337,9 @@ public class Database implements BimDatabase {
 		try {
 			Record record = recordIterator.next();
 			while (record != null) {
-				String string = BinUtils.byteArrayToString(record.getValue());
-				EClass eClass = (EClass) getEClassifier(string);
-				columnDatabase.createTableIfNotExists(eClass.getName(), databaseSession);
+				String className = BinUtils.byteArrayToString(record.getValue());
+				EClass eClass = (EClass) getEClassifier(className);
+				columnDatabase.openTable(eClass.getName(), !transactionLessClasses.contains(eClass));
 				Short cid = BinUtils.byteArrayToShort(record.getKey());
 				classifiers.put(cid, eClass);
 				record = recordIterator.next();
@@ -406,8 +413,8 @@ public class Database implements BimDatabase {
 		return realClasses;
 	}
 
-	public DatabaseSession createSession() {
-		DatabaseSession databaseSession = new DatabaseSession(this, columnDatabase.startTransaction(), false);
+	public DatabaseSession createSession(boolean useTransactions) {
+		DatabaseSession databaseSession = new DatabaseSession(this, useTransactions ? columnDatabase.startTransaction() : null, false);
 		sessions.add(databaseSession);
 		return databaseSession;
 	}
@@ -470,5 +477,23 @@ public class Database implements BimDatabase {
 	@Override
 	public Migrator getMigrator() {
 		return migrator;
+	}
+
+	public boolean useTransactionsFor(EClass eClass) {
+		return !transactionLessClasses.contains(eClass);
+	}
+
+	public void createTable(EClass eClass) throws BimDeadlockException {
+		columnDatabase.createTable(eClass.getName(), !transactionLessClasses.contains(eClass));
+		tableId++;
+		try {
+			columnDatabase.store(CLASS_LOOKUP_TABLE, BinUtils.shortToByteArray(tableId), BinUtils.stringToByteArray(eClass.getName()), null);
+		} catch (BimDatabaseException e) {
+			LOGGER.error("", e);
+		}
+	}
+
+	public RecordSizeEstimater getRecordSizeEstimater() {
+		return recordSizeEstimater;
 	}
 }

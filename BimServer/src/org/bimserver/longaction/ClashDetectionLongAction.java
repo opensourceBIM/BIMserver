@@ -55,7 +55,7 @@ public class ClashDetectionLongAction extends LongAction {
 
 	@Override
 	public void execute() {
-		BimDatabaseSession session = bimDatabase.createSession();
+		BimDatabaseSession session = bimDatabase.createSession(true);
 		long roid = -1;
 		try {
 			Project project = session.get(StorePackage.eINSTANCE.getProject(), poid, false);
@@ -71,7 +71,7 @@ public class ClashDetectionLongAction extends LongAction {
 		} finally {
 			session.close();
 		}
-		session = bimDatabase.createSession();
+		session = bimDatabase.createSession(true);
 		try {
 			Project project = session.get(StorePackage.eINSTANCE.getProject(), poid, false);
 			ClashDetectionSettings clashDetectionSettings = StoreFactory.eINSTANCE.createClashDetectionSettings();
@@ -105,7 +105,7 @@ public class ClashDetectionLongAction extends LongAction {
 		} catch (Throwable e) {
 			LOGGER.error("", e);
 			try {
-				BimDatabaseSession rollBackSession = bimDatabase.createSession();
+				BimDatabaseSession rollBackSession = bimDatabase.createSession(true);
 				try {
 					Throwable throwable = e;
 					while (throwable.getCause() != null) {

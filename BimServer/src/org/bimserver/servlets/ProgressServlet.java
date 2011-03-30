@@ -7,8 +7,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.bimserver.ServerInitializer;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevision;
+import org.bimserver.longaction.LongAction;
+import org.bimserver.longaction.LongCheckinAction;
 import org.bimserver.shared.LongActionState;
 import org.bimserver.shared.ServiceException;
 import org.bimserver.shared.UserException;
@@ -47,6 +50,11 @@ public class ProgressServlet extends HttpServlet {
 								object.put("clashes", revision.getNrClashes());
 								object.put("islast", (loginManager.getService().getProjectByPoid(revision.getProjectId())
 										.getLastRevisionId() == revision.getOid()));
+								LongAction longAction = ServerInitializer.getLongActionManager().getLongAction(LongCheckinAction.class.getSimpleName() + " " + revision.getLastConcreteRevisionId());
+								if (longAction != null && longAction instanceof LongCheckinAction) {
+									LongCheckinAction longCheckinAction = (LongCheckinAction)longAction;
+									object.put("progress", longCheckinAction.getProgress());
+								}
 								revisions.put(object);
 							} catch (UserException e) {
 								// This is probably a browser trying to load

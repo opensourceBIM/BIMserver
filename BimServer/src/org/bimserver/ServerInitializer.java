@@ -92,7 +92,7 @@ public class ServerInitializer implements ServletContextListener {
 	private JobScheduler bimScheduler;
 	private static ResourceFetcher resourceFetcher;
 	private static ServletContext servletContext;
-	private LongActionManager longActionManager;
+	private static LongActionManager longActionManager;
 	private static ServiceInterface systemService;
 	private File homeDir;
 	private File baseDir;
@@ -231,7 +231,7 @@ public class ServerInitializer implements ServletContextListener {
 			serverStarted.setDate(new Date());
 			serverStarted.setAccessMethod(AccessMethod.INTERNAL);
 			serverStarted.setExecutor(null);
-			BimDatabaseSession session = bimDatabase.createSession();
+			BimDatabaseSession session = bimDatabase.createSession(true);
 			try {
 				session.store(serverStarted);
 				session.commit();
@@ -244,6 +244,10 @@ public class ServerInitializer implements ServletContextListener {
 		}
 	}
 
+	public static LongActionManager getLongActionManager() {
+		return longActionManager;
+	}
+	
 	public static ServerType getServerType() {
 		return serverType;
 	}

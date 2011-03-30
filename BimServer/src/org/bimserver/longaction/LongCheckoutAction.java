@@ -20,7 +20,7 @@ public class LongCheckoutAction extends LongDownloadOrCheckoutAction {
 	@Override
 	public void execute() {
 		state = ActionState.STARTED;
-		BimDatabaseSession session = bimDatabase.createSession();
+		BimDatabaseSession session = bimDatabase.createSession(true);
 		try {
 			action = new CheckoutDatabaseAction(session, accessMethod, currentUoid, downloadParameters.getRoid());
 			executeAction(action, downloadParameters, session);

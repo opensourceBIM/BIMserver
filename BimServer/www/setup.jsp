@@ -14,7 +14,7 @@
 	if (request.getParameter("setup") != null) {
 		try {
 			loginManager.getService().setup(siteAddress, smtpServer, adminName, adminUsername, adminPassword, createAnonymousUser);
-			response.sendRedirect("main.jsp");
+			response.sendRedirect("login.jsp?username=" + adminUsername);
 		} catch (UserException e) {
 			out.println("<div class=\"error\">" + e.getUserMessage() + "</div>");
 		}

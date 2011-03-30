@@ -25,8 +25,10 @@ import java.util.Set;
 public interface ColumnDatabase {
 
 	boolean containsTable(String tableName);
+	
+	boolean createTable(String tableName, boolean useTransactions);
 
-	boolean createTableIfNotExists(String tableName, DatabaseSession databaseSession);
+	boolean openTable(String tableName, boolean useTransactions) throws BimDatabaseException;
 
 	void store(String tableName, byte[] key, byte[] value, DatabaseSession databaseSession) throws BimDeadlockException, BimDatabaseException;
 

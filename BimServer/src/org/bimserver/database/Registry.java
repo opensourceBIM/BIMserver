@@ -68,10 +68,6 @@ public class Registry {
 		}
 	}
 
-	public void ensureExists(DatabaseSession databaseSession) {
-		columnDatabase.createTableIfNotExists(REGISTRY_TABLE, databaseSession);
-	}
-
 	public Date readDate(String key, DatabaseSession databaseSession) throws BimDeadlockException, BimDatabaseException {
 		long readLong = readLong(key, databaseSession);
 		if (readLong == -1) {

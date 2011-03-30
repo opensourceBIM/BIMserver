@@ -25,5 +25,4 @@ public abstract class LongAction {
 	public Date getStart() {
 		return start;
 	}
-
 }

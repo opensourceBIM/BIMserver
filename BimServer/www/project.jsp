@@ -3,8 +3,7 @@
 <%@page import="java.util.TreeSet"%>
 <%@page import="org.bimserver.interfaces.objects.SCheckinState"%>
 <%@page import="org.bimserver.interfaces.objects.SCheckout"%>
-<%@page
-	import="org.bimserver.interfaces.objects.SClashDetectionSettings"%>
+<%@page	import="org.bimserver.interfaces.objects.SClashDetectionSettings"%>
 <%@page import="org.bimserver.interfaces.objects.SGeoTag"%>
 <%@page import="org.bimserver.interfaces.objects.SObjectState"%>
 <%@page import="org.bimserver.interfaces.objects.SProject"%>
@@ -850,7 +849,7 @@ open a specific revision to query other revisions<br />
 							$("#rev" + item.roid).children(".downloadfield").children("img").show();
 							$("#rev" + item.roid).children(".downloadfield").children("form").addClass("blockinvisible");
 							if (state == "STORING") {
-								$("#rev" + item.roid).children(".downloadfield").children(".statusfield").text("Storing...");
+								$("#rev" + item.roid).children(".downloadfield").children(".statusfield").text("Storing (" + item.progress + "%)");
 							} else {
 								$("#rev" + item.roid).children(".downloadfield").children(".statusfield").text("");
 							}
@@ -865,8 +864,10 @@ open a specific revision to query other revisions<br />
 			    }
 			}});
 		};
+<% if (!project.getRevisions().isEmpty()) { %>
 		refreshFunction();
-		window.setInterval(refreshFunction, 2000);
+		window.setInterval(refreshFunction, 1000);
+<% } %>
 	});
 </script> 
 <%
