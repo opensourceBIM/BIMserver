@@ -89,7 +89,7 @@
 	<classpathentry exported="true" kind="lib" path="lib/cxf/jsr311-api-1.1.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/stax2-api-3.0.2.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/woodstox-core-asl-4.0.8.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/je-4.1.6.jar" sourcepath="libsrc"/>
+	<classpathentry exported="true" kind="lib" path="lib/je-4.1.6.jar" sourcepath="libsrc/je-4.1.6.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/guava-r07.jar" sourcepath="libsrc/guava-src-r07.zip"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/antlr-3.2.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/antlr-runtime-3.2.jar"/>

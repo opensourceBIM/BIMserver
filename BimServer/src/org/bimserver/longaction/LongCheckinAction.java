@@ -8,6 +8,7 @@ import org.bimserver.database.BimDatabase;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.ProgressHandler;
 import org.bimserver.database.actions.CheckinPart2DatabaseAction;
 import org.bimserver.ifc.FieldIgnoreMap;
 import org.bimserver.ifc.SerializerException;
@@ -36,6 +37,7 @@ public class LongCheckinAction extends LongAction {
 	private final FieldIgnoreMap fieldIgnoreMap;
 	private final MailSystem mailSystem;
 	private final SettingsManager settingsManager;
+	private int progress;
 
 	public LongCheckinAction(User user, LongActionManager longActionManager, BimDatabase bimDatabase, SchemaDefinition schema, CheckinPart2DatabaseAction createCheckinAction, IfcEngineFactory ifcEngineFactory, FieldIgnoreMap fieldIgnoreMap, SettingsManager settingsManager, MailSystem mailSystem) {
 		this.user = user;
@@ -50,13 +52,17 @@ public class LongCheckinAction extends LongAction {
 	}
 
 	public void execute() {
-		BimDatabaseSession session = bimDatabase.createSession();
+		BimDatabaseSession session = bimDatabase.createSession(true);
 		try {
 			createCheckinAction.setDatabaseSession(session);
-			session.executeAndCommitAction(createCheckinAction, 10);
+			session.executeAndCommitAction(createCheckinAction, 10, new ProgressHandler(){
+				@Override
+				public void progress(int current, int max) {
+					LongCheckinAction.this.progress = current * 100 / max;
+				}});
 			session.close();
 
-			BimDatabaseSession extraSession = bimDatabase.createSession();
+			BimDatabaseSession extraSession = bimDatabase.createSession(true);
 			try {
 				ConcreteRevision concreteRevision = (ConcreteRevision) extraSession.get(StorePackage.eINSTANCE.getConcreteRevision(),
 						createCheckinAction.getCroid(), false);
@@ -86,7 +92,7 @@ public class LongCheckinAction extends LongAction {
 			LOGGER.error("", e);
 			long croid = createCheckinAction.getCroid();
 			try {
-				BimDatabaseSession rollBackSession = bimDatabase.createSession();
+				BimDatabaseSession rollBackSession = bimDatabase.createSession(true);
 				try {
 					Throwable throwable = e;
 					while (throwable.getCause() != null) {
@@ -136,11 +142,14 @@ public class LongCheckinAction extends LongAction {
 
 	@Override
 	public String getIdentification() {
-		return "LongCheckinAction " + getUser().getName();
+		return getClass().getSimpleName() + " " + createCheckinAction.getCroid();
 	}
 
 	public User getUser() {
 		return user;
 	}
 
+	public int getProgress() {
+		return progress;
+	}
 }

@@ -16,6 +16,7 @@ public class LongActionManager {
 	// LoggerFactory.getLogger(LongActionManager.class);
 	private final Map<LongAction, Thread> threads = new HashMap<LongAction, Thread>();
 	private final Map<String, LongAction> actions = new HashMap<String, LongAction>();
+	
 	private volatile boolean running = true;
 
 	public synchronized void start(final LongAction longAction) throws CannotBeScheduledException {

@@ -35,6 +35,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.Revision#getLastError <em>Last Error</em>}</li>
  *   <li>{@link org.bimserver.models.store.Revision#getBmi <em>Bmi</em>}</li>
  *   <li>{@link org.bimserver.models.store.Revision#getNrClashes <em>Nr Clashes</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Revision#getLaid <em>Laid</em>}</li>
  * </ul>
  * </p>
  *
@@ -412,5 +413,31 @@ public interface Revision extends IdEObject {
 	 * @generated
 	 */
 	void setNrClashes(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Laid</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Laid</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Laid</em>' attribute.
+	 * @see #setLaid(long)
+	 * @see org.bimserver.models.store.StorePackage#getRevision_Laid()
+	 * @model
+	 * @generated
+	 */
+	long getLaid();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.Revision#getLaid <em>Laid</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Laid</em>' attribute.
+	 * @see #getLaid()
+	 * @generated
+	 */
+	void setLaid(long value);
 
 } // Revision

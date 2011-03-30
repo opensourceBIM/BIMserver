@@ -1,8 +1,6 @@
 package org.bimserver.interfaces.objects;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import java.util.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
@@ -32,6 +30,7 @@ public class SRevision
 	private java.lang.String lastError;
 	private int bmi;
 	private int nrClashes;
+	private long laid;
 
 	public int getId() {
 		return id;
@@ -147,6 +146,14 @@ public class SRevision
 
 	public void setNrClashes(int nrClashes) {
 		this.nrClashes = nrClashes;
+	}
+
+	public long getLaid() {
+		return laid;
+	}
+
+	public void setLaid(long laid) {
+		this.laid = laid;
 	}
 	@Override
 	public int hashCode() {

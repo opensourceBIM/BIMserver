@@ -4,7 +4,7 @@ import org.bimserver.database.berkeley.DatabaseInitException;
 import org.bimserver.database.migrations.Migrator;
 
 public interface BimDatabase {
-	BimDatabaseSession createSession();
+	BimDatabaseSession createSession(boolean useTransactions);
 
 	BimDatabaseSession createReadOnlySession();
 

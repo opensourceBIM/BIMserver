@@ -74,7 +74,7 @@ public class CompileServlet extends HttpServlet {
 		} catch (ServiceException e) {
 			LOGGER.error("", e);
 		}
-		BimDatabaseSession session = database.createSession();
+		BimDatabaseSession session = database.createSession(true);
 		try {
 			BimDatabaseAction<IfcModel> action = new DownloadDatabaseAction(session, AccessMethod.INTERNAL, settingsManager, roid, loginManager.getUoid());
 			IfcModel IfcModel = session.executeAndCommitAction(action, 10);

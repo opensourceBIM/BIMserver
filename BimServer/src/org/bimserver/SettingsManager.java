@@ -42,7 +42,7 @@ public class SettingsManager {
 	}
 	
 	public synchronized void saveSettings() {
-		BimDatabaseSession session = database.createSession();
+		BimDatabaseSession session = database.createSession(true);
 		try {
 			session.store(settings);
 			session.commit();

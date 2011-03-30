@@ -18,9 +18,9 @@ public class NewClassChange implements Change {
 
 	@Override
 	public void change(Database database, DatabaseSession databaseSession) {
+		LOGGER.info("Creating table: " + getEClass().getName());
 		try {
-			LOGGER.info("Creating table: " + getEClass().getName());
-			database.createTableIfNotExists(getEClass(), databaseSession);
+			database.createTable(getEClass());
 		} catch (BimDeadlockException e) {
 			e.printStackTrace();
 		}

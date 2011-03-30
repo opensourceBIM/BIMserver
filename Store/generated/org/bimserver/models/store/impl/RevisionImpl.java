@@ -45,6 +45,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.RevisionImpl#getLastError <em>Last Error</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.RevisionImpl#getBmi <em>Bmi</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.RevisionImpl#getNrClashes <em>Nr Clashes</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.RevisionImpl#getLaid <em>Laid</em>}</li>
  * </ul>
  * </p>
  *
@@ -324,6 +325,24 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 */
 	public void setNrClashes(int newNrClashes) {
 		eSet(StorePackage.Literals.REVISION__NR_CLASHES, newNrClashes);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public long getLaid() {
+		return (Long)eGet(StorePackage.Literals.REVISION__LAID, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setLaid(long newLaid) {
+		eSet(StorePackage.Literals.REVISION__LAID, newLaid);
 	}
 
 } //RevisionImpl

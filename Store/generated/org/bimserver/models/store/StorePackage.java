@@ -824,13 +824,22 @@ public interface StorePackage extends EPackage {
 	int REVISION__NR_CLASHES = 14;
 
 	/**
+	 * The feature id for the '<em><b>Laid</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REVISION__LAID = 15;
+
+	/**
 	 * The number of structural features of the '<em>Revision</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REVISION_FEATURE_COUNT = 15;
+	int REVISION_FEATURE_COUNT = 16;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.ConcreteRevisionImpl <em>Concrete Revision</em>}' class.
@@ -1984,6 +1993,17 @@ public interface StorePackage extends EPackage {
 	EAttribute getRevision_NrClashes();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Revision#getLaid <em>Laid</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Laid</em>'.
+	 * @see org.bimserver.models.store.Revision#getLaid()
+	 * @see #getRevision()
+	 * @generated
+	 */
+	EAttribute getRevision_Laid();
+
+	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.ConcreteRevision <em>Concrete Revision</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3011,6 +3031,14 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute REVISION__NR_CLASHES = eINSTANCE.getRevision_NrClashes();
+
+		/**
+		 * The meta object literal for the '<em><b>Laid</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute REVISION__LAID = eINSTANCE.getRevision_Laid();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.ConcreteRevisionImpl <em>Concrete Revision</em>}' class.

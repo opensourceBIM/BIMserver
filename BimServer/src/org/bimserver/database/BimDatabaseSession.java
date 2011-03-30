@@ -19,6 +19,8 @@ import org.eclipse.emf.ecore.EClassifier;
 
 public interface BimDatabaseSession extends OidProvider {
 
+	<T> T executeAndCommitAction(BimDatabaseAction<T> action, int retries, ProgressHandler progressHandler) throws BimDatabaseException, UserException;
+
 	<T> T executeAndCommitAction(BimDatabaseAction<T> action, int retries) throws BimDatabaseException, UserException;
 
 	<T> T executeAction(BimDatabaseAction<T> action, int retries) throws BimDatabaseException, UserException;
@@ -79,7 +81,7 @@ public interface BimDatabaseSession extends OidProvider {
 
 	List<String> getClassList();
 
-	void commit() throws BimDeadlockException, BimDatabaseException;
+	void commit(ProgressHandler progressHandler) throws BimDeadlockException, BimDatabaseException;
 
 	int getCount(EClass eClass, IfcModel model, int pid, int rid) throws BimDatabaseException, BimDeadlockException;
 
@@ -100,4 +102,8 @@ public interface BimDatabaseSession extends OidProvider {
 	short getCidOfEClass(EClass revision);
 
 	IfcModel getAllOfType(EClass settings, boolean deep) throws BimDatabaseException, BimDeadlockException;
+
+	void commit() throws BimDeadlockException, BimDatabaseException;
+
+	BimDatabaseSession newSession(boolean useTransaction);
 }
