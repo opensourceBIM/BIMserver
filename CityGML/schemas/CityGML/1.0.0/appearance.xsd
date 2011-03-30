@@ -5,9 +5,8 @@
 <!-- Prof. Dr. Thomas H. Kolbe, Institute for Geodesy and Geoinformation Science, Technical University of Berlin -->
 <!-- For further information see: www.citygml.org -->
 <!-- For the history of changes and additions to this CityGML schema see file history.txt -->
-<xs:schema xmlns="http://www.opengis.net/citygml/appearance/1.0" xmlns:core="http://www.opengis.net/citygml/1.0"
-    xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml"
-    targetNamespace="http://www.opengis.net/citygml/appearance/1.0" elementFormDefault="qualified"
+<xs:schema xmlns="http://www.opengis.net/citygml/appearance/1.0" xmlns:core="http://www.opengis.net/citygml/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:gml="http://www.opengis.net/gml" targetNamespace="http://www.opengis.net/citygml/appearance/1.0" elementFormDefault="qualified"
     attributeFormDefault="unqualified">
     <xs:import namespace="http://www.opengis.net/gml" schemaLocation="../../GML/3.1.1/base/gml.xsd"/>
     <xs:import namespace="http://www.opengis.net/citygml/1.0" schemaLocation="cityGMLBase.xsd"/>
@@ -16,8 +15,8 @@
     <!-- ========================================================================================= -->
     <xs:complexType name="AppearanceType">
         <xs:annotation>
-            <xs:documentation> Named container for all surface data (texture/material). All appearances of the same name ("theme")
-                within a CityGML file are considered a group. </xs:documentation>
+            <xs:documentation> Named container for all surface data (texture/material). All appearances of the same name ("theme") within a CityGML file are
+                considered a group. </xs:documentation>
         </xs:annotation>
         <xs:complexContent>
             <xs:extension base="gml:AbstractFeatureType">
@@ -34,9 +33,8 @@
     <!-- ========================================================================================= -->
     <xs:complexType name="AppearancePropertyType">
         <xs:annotation>
-            <xs:documentation>Denotes the relation of a _CityObject resp. CityModel to its appearances. The AppearancePropertyType
-                element must either carry a reference to a Appearance object or contain a Appearance object inline, but neither
-                both nor none.</xs:documentation>
+            <xs:documentation>Denotes the relation of a _CityObject resp. CityModel to its appearances. The AppearancePropertyType element must either carry a
+                reference to a Appearance object or contain a Appearance object inline, but neither both nor none.</xs:documentation>
         </xs:annotation>
         <xs:complexContent>
             <xs:extension base="gml:FeaturePropertyType">
@@ -49,7 +47,7 @@
     <!-- ========================================================================================= -->
     <xs:element name="appearanceMember" type="AppearancePropertyType" substitutionGroup="gml:featureMember"/>
     <!-- ========================================================================================= -->
-    <xs:element name="appearance" type="AppearancePropertyType" substitutionGroup="core:_GenericApplicationPropertyOfCityObject"/>
+    <xs:element name="appearance" type="AppearancePropertyType"/>
     <!-- ========================================================================================= -->
     <xs:complexType name="AbstractSurfaceDataType">
         <xs:annotation>
@@ -71,21 +69,20 @@
     <!-- ========================================================================================= -->
     <xs:complexType name="SurfaceDataPropertyType">
         <xs:annotation>
-            <xs:documentation>Denotes the relation of an Appearance to its surface data. The SurfaceDataPropertyType element must
-                either carry a reference to a _SurfaceData object or contain a _SurfaceData object inline, but neither both nor
-                none.</xs:documentation>
+            <xs:documentation>Denotes the relation of an Appearance to its surface data. The SurfaceDataPropertyType element must either carry a reference to a
+                _SurfaceData object or contain a _SurfaceData object inline, but neither both nor none.</xs:documentation>
         </xs:annotation>
         <xs:sequence minOccurs="0">
             <xs:element ref="_SurfaceData" minOccurs="0"/>
+            <xs:element ref="gml:_ADEComponent" minOccurs="0"/>
         </xs:sequence>
         <xs:attributeGroup ref="gml:AssociationAttributeGroup"/>
     </xs:complexType>
     <!-- ========================================================================================= -->
     <xs:complexType name="AbstractTextureType">
         <xs:annotation>
-            <xs:documentation>Base class for textures. "imageURI" can contain any valid URI from references to a local file to
-                preformatted web service requests. The linking to geometry and texture parameterization is provided by derived
-                classes.</xs:documentation>
+            <xs:documentation>Base class for textures. "imageURI" can contain any valid URI from references to a local file to preformatted web service
+                requests. The linking to geometry and texture parameterization is provided by derived classes.</xs:documentation>
         </xs:annotation>
         <xs:complexContent>
             <xs:extension base="AbstractSurfaceDataType">
@@ -107,8 +104,8 @@
     <!-- ========================================================================================= -->
     <xs:simpleType name="WrapModeType">
         <xs:annotation>
-            <xs:documentation>Fill mode for a texture. "wrap" repeats the texture, "clamp" extends the edges of the texture, and
-                "border" fills all undefined areas with "borderColor"</xs:documentation>
+            <xs:documentation>Fill mode for a texture. "wrap" repeats the texture, "clamp" extends the edges of the texture, and "border" fills all undefined
+                areas with "borderColor"</xs:documentation>
         </xs:annotation>
         <xs:restriction base="xs:string">
             <xs:enumeration value="none"/>
@@ -121,9 +118,9 @@
     <!-- ========================================================================================= -->
     <xs:complexType name="ParameterizedTextureType">
         <xs:annotation>
-            <xs:documentation>Specialization for standard 2D textures. "target" provides the linking to surface geometry. Only
-                gml:MultiSurface and decendants of gml:AbstractSurfaceType are valid targets. As property of the link, a texture
-                parameterization either as set of texture coordinates or transformation matrix is given. </xs:documentation>
+            <xs:documentation>Specialization for standard 2D textures. "target" provides the linking to surface geometry. Only gml:MultiSurface and decendants
+                of gml:AbstractSurfaceType are valid targets. As property of the link, a texture parameterization either as set of texture coordinates or
+                transformation matrix is given. </xs:documentation>
         </xs:annotation>
         <xs:complexContent>
             <xs:extension base="AbstractTextureType">
@@ -141,16 +138,14 @@
     <!-- ========================================================================================= -->
     <xs:complexType name="GeoreferencedTextureType">
         <xs:annotation>
-            <xs:documentation>Specialization for georeferenced textures, i.e. textures using a planimetric projection. Such
-                textures contain an implicit parameterization (either stored within the image file, in an acompanying world file,
-                or using the "referencePoint" and "orientation"-elements). A georeference provided by "referencePoint" and
-                "orientation" always takes precedence. The search order for an external georeference is determined by the boolean
-                flag preferWorldFile. If this flag is set to true (its default value), a world file is looked for first and only
-                if it is not found the georeference from the image data is used. If preferWorldFile is false, the world file is
-                used only if no georeference from the image data is available. The "boundedBy"-property should contain the
-                bounding box of the projected image data. Since a georeferenced texture has a unique parameterization, "target"
-                only provides links to surface geometry without any additional texture parameterization. Only gml:MultiSurface or
-                decendants of gml:AbstractSurfaceType are valid targets.</xs:documentation>
+            <xs:documentation>Specialization for georeferenced textures, i.e. textures using a planimetric projection. Such textures contain an implicit
+                parameterization (either stored within the image file, in an acompanying world file, or using the "referencePoint" and "orientation"-elements).
+                A georeference provided by "referencePoint" and "orientation" always takes precedence. The search order for an external georeference is
+                determined by the boolean flag preferWorldFile. If this flag is set to true (its default value), a world file is looked for first and only if it
+                is not found the georeference from the image data is used. If preferWorldFile is false, the world file is used only if no georeference from the
+                image data is available. The "boundedBy"-property should contain the bounding box of the projected image data. Since a georeferenced texture has
+                a unique parameterization, "target" only provides links to surface geometry without any additional texture parameterization. Only
+                gml:MultiSurface or decendants of gml:AbstractSurfaceType are valid targets.</xs:documentation>
         </xs:annotation>
         <xs:complexContent>
             <xs:extension base="AbstractTextureType">
@@ -171,9 +166,9 @@
     <!-- ========================================================================================= -->
     <xs:complexType name="TextureAssociationType">
         <xs:annotation>
-            <xs:documentation>Denotes the relation of a texture to a surface, that is augmented by a TextureParameterization
-                object. The TextureAssociationType element must either carry a reference to a _TextureParameterization object or
-                contain a _TextureParameterization object inline, but neither both nor none.</xs:documentation>
+            <xs:documentation>Denotes the relation of a texture to a surface, that is augmented by a TextureParameterization object. The TextureAssociationType
+                element must either carry a reference to a _TextureParameterization object or contain a _TextureParameterization object inline, but neither both
+                nor none.</xs:documentation>
         </xs:annotation>
         <xs:sequence minOccurs="0">
             <xs:element ref="_TextureParameterization"/>
@@ -184,31 +179,30 @@
     <!-- ========================================================================================= -->
     <xs:complexType name="AbstractTextureParameterizationType" abstract="true">
         <xs:annotation>
-            <xs:documentation>Base class for augmenting a link "texture->surface" with texture parameterization. Subclasses of
-                this class define concrete parameterizations. Currently, texture coordinates and texture coordinate generation
-                using a transformation matrix are available. </xs:documentation>
+            <xs:documentation>Base class for augmenting a link "texture->surface" with texture parameterization. Subclasses of this class define concrete
+                parameterizations. Currently, texture coordinates and texture coordinate generation using a transformation matrix are available.
+            </xs:documentation>
         </xs:annotation>
         <xs:complexContent>
             <xs:extension base="gml:AbstractGMLType">
                 <xs:sequence>
+                    <xs:element ref="gml:_ADEComponent" minOccurs="0" maxOccurs="unbounded"/>
                     <xs:element ref="_GenericApplicationPropertyOfTextureParameterization" minOccurs="0" maxOccurs="unbounded"/>
                 </xs:sequence>
             </xs:extension>
         </xs:complexContent>
     </xs:complexType>
     <!-- ========================================================================================= -->
-    <xs:element name="_TextureParameterization" type="AbstractTextureParameterizationType" abstract="true"
-        substitutionGroup="gml:_GML"/>
+    <xs:element name="_TextureParameterization" type="AbstractTextureParameterizationType" abstract="true" substitutionGroup="gml:_GML"/>
     <!-- ========================================================================================= -->
     <xs:element name="_GenericApplicationPropertyOfTextureParameterization" type="xs:anyType" abstract="true"/>
     <!-- ========================================================================================= -->
     <xs:complexType name="TexCoordListType">
         <xs:annotation>
-            <xs:documentation>Texture parameterization using texture coordinates: Each gml:LinearRing that is part of the surface
-                requires a separate "textureCoordinates"-entry with 2 doubles per ring vertex. The "ring"- attribute provides the
-                gml:id of the target LinearRing. It is prohibited to link texture coordinates to any other object type than
-                LinearRing. Thus, surfaces not consisting of LinearRings cannot be textured this way. Use transformation matrices
-                (see below) or georeferenced textures instead. </xs:documentation>
+            <xs:documentation>Texture parameterization using texture coordinates: Each gml:LinearRing that is part of the surface requires a separate
+                "textureCoordinates"-entry with 2 doubles per ring vertex. The "ring"- attribute provides the gml:id of the target LinearRing. It is prohibited
+                to link texture coordinates to any other object type than LinearRing. Thus, surfaces not consisting of LinearRings cannot be textured this way.
+                Use transformation matrices (see below) or georeferenced textures instead. </xs:documentation>
         </xs:annotation>
         <xs:complexContent>
             <xs:extension base="AbstractTextureParameterizationType">
@@ -234,12 +228,11 @@
     <!-- ========================================================================================= -->
     <xs:complexType name="TexCoordGenType">
         <xs:annotation>
-            <xs:documentation>Texture parameterization using a transformation matrix. The transformation matrix "worldToTexture"
-                can be used to derive texture coordinates from an object's location. This 3x4 matrix T computes the coordinates
-                (s,t) from a homogeneous world position p as (s,t) = (s'/q', t'/q') with (s', t', q') = T*p. Thus, perspective
-                projections can be specified. The SRS can be specified using standard attributes. If an object is given in a
-                different reference system, it is transformed to the SRS before applying the transformation. A transformation
-                matrix can be used for whole surfaces. It is not required to specify it per LinearRing. </xs:documentation>
+            <xs:documentation>Texture parameterization using a transformation matrix. The transformation matrix "worldToTexture" can be used to derive texture
+                coordinates from an object's location. This 3x4 matrix T computes the coordinates (s,t) from a homogeneous world position p as (s,t) = (s'/q',
+                t'/q') with (s', t', q') = T*p. Thus, perspective projections can be specified. The SRS can be specified using standard attributes. If an object
+                is given in a different reference system, it is transformed to the SRS before applying the transformation. A transformation matrix can be used
+                for whole surfaces. It is not required to specify it per LinearRing. </xs:documentation>
         </xs:annotation>
         <xs:complexContent>
             <xs:extension base="AbstractTextureParameterizationType">
@@ -265,10 +258,9 @@
     <!-- ========================================================================================= -->
     <xs:complexType name="X3DMaterialType">
         <xs:annotation>
-            <xs:documentation>Class for defining constant surface properties. It is based on X3D's material definition. In
-                addition, "isSmooth" provides a hint for value interpolation. The link to surface geometry is established via the
-                "target"-property. Only gml:MultiSurface or decendants of gml:AbstractSurfaceType are valid targets.
-            </xs:documentation>
+            <xs:documentation>Class for defining constant surface properties. It is based on X3D's material definition. In addition, "isSmooth" provides a hint
+                for value interpolation. The link to surface geometry is established via the "target"-property. Only gml:MultiSurface or decendants of
+                gml:AbstractSurfaceType are valid targets. </xs:documentation>
         </xs:annotation>
         <xs:complexContent>
             <xs:extension base="AbstractSurfaceDataType">
@@ -293,11 +285,10 @@
     <!-- ========================================================================================= -->
     <xs:simpleType name="TextureTypeType">
         <xs:annotation>
-            <xs:documentation>Textures can be qualified by the attribute textureType. The textureType differentiates between
-                textures, which are specific for a certain object and are only used for that object (specific), and prototypic
-                textures being typical for that kind of object and are used many times for all objects of that kind (typical). A
-                typical texture may be replaced by a specific, if available. Textures may also be classified as unknown.
-            </xs:documentation>
+            <xs:documentation>Textures can be qualified by the attribute textureType. The textureType differentiates between textures, which are specific for a
+                certain object and are only used for that object (specific), and prototypic textures being typical for that kind of object and are used many
+                times for all objects of that kind (typical). A typical texture may be replaced by a specific, if available. Textures may also be classified as
+                unknown. </xs:documentation>
         </xs:annotation>
         <xs:restriction base="xs:string">
             <xs:enumeration value="specific"/>
@@ -308,8 +299,8 @@
     <!-- ========================================================================================= -->
     <xs:simpleType name="Color">
         <xs:annotation>
-            <xs:documentation>List of three values (red, green, blue), separated by spaces. The values must be in the range
-                between zero and one. </xs:documentation>
+            <xs:documentation>List of three values (red, green, blue), separated by spaces. The values must be in the range between zero and one.
+            </xs:documentation>
         </xs:annotation>
         <xs:restriction base="core:doubleBetween0and1List">
             <xs:length value="3"/>
@@ -318,8 +309,8 @@
     <!-- ========================================================================================= -->
     <xs:simpleType name="ColorPlusOpacity">
         <xs:annotation>
-            <xs:documentation>List of three or four values (red, green, blue, opacity), separated by spaces. The values must be in
-                the range between zero and one. If no opacity is given, it is assumed as 1.0.</xs:documentation>
+            <xs:documentation>List of three or four values (red, green, blue, opacity), separated by spaces. The values must be in the range between zero and
+                one. If no opacity is given, it is assumed as 1.0.</xs:documentation>
         </xs:annotation>
         <xs:restriction base="core:doubleBetween0and1List">
             <xs:minLength value="3"/>

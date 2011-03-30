@@ -1,0 +1,164 @@
+<xs:schema xmlns="http://www.igg.tu-berlin.de/citygml4j/ade_hooks" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://www.igg.tu-berlin.de/citygml4j/ade_hooks" xmlns:citygml="http://www.citygml.org/citygml/1/0/0"
+    xmlns:core="http://www.opengis.net/citygml/1.0" xmlns:app="http://www.opengis.net/citygml/appearance/1.0"
+    xmlns:bldg="http://www.opengis.net/citygml/building/1.0" xmlns:frn="http://www.opengis.net/citygml/cityfurniture/1.0"
+    xmlns:grp="http://www.opengis.net/citygml/cityobjectgroup/1.0" xmlns:luse="http://www.opengis.net/citygml/landuse/1.0"
+    xmlns:dem="http://www.opengis.net/citygml/relief/1.0" xmlns:tran="http://www.opengis.net/citygml/transportation/1.0"
+    xmlns:veg="http://www.opengis.net/citygml/vegetation/1.0" xmlns:wtr="http://www.opengis.net/citygml/waterbody/1.0" elementFormDefault="qualified"
+    attributeFormDefault="unqualified">
+    <xs:import namespace="http://www.citygml.org/citygml/1/0/0" schemaLocation="../0.4.0/CityGML.xsd"/>
+    <xs:import namespace="http://www.opengis.net/citygml/1.0" schemaLocation="../1.0.0/cityGMLBase.xsd"/>
+    <xs:import namespace="http://www.opengis.net/citygml/appearance/1.0" schemaLocation="../1.0.0/appearance.xsd"/>
+    <xs:import namespace="http://www.opengis.net/citygml/building/1.0" schemaLocation="../1.0.0/building.xsd"/>
+    <xs:import namespace="http://www.opengis.net/citygml/cityfurniture/1.0" schemaLocation="../1.0.0/cityFurniture.xsd"/>
+    <xs:import namespace="http://www.opengis.net/citygml/cityobjectgroup/1.0" schemaLocation="../1.0.0/cityObjectGroup.xsd"/>
+    <xs:import namespace="http://www.opengis.net/citygml/landuse/1.0" schemaLocation="../1.0.0/landUse.xsd"/>
+    <xs:import namespace="http://www.opengis.net/citygml/relief/1.0" schemaLocation="../1.0.0/relief.xsd"/>
+    <xs:import namespace="http://www.opengis.net/citygml/transportation/1.0" schemaLocation="../1.0.0/transportation.xsd"/>
+    <xs:import namespace="http://www.opengis.net/citygml/vegetation/1.0" schemaLocation="../1.0.0/vegetation.xsd"/>
+    <xs:import namespace="http://www.opengis.net/citygml/waterbody/1.0" schemaLocation="../1.0.0/waterBody.xsd"/>
+
+    <!-- dummy ade hooks for appearance -->
+    <xs:element name="ADE_Appearance_04" type="xs:anyType" abstract="true" substitutionGroup="citygml:_GenericApplicationPropertyOfAppearance"/>
+    <xs:element name="ADE_SurfaceData_04" type="xs:anyType" abstract="true" substitutionGroup="citygml:_GenericApplicationPropertyOfAbstractSurfaceData"/>
+    <xs:element name="ADE_Texture_04" type="xs:anyType" abstract="true" substitutionGroup="citygml:_GenericApplicationPropertyOfAbstractTexture"/>
+    <xs:element name="ADE_ParameterizedTexture_04" type="xs:anyType" abstract="true" substitutionGroup="citygml:_GenericApplicationPropertyOfParameterizedTexture"/>
+    <xs:element name="ADE_GeoreferencedTexture_04" type="xs:anyType" abstract="true" substitutionGroup="citygml:_GenericApplicationPropertyOfGeoreferencedTexture"/>
+    <xs:element name="ADE_TextureParameterization_04" type="xs:anyType" abstract="true" substitutionGroup="citygml:_GenericApplicationPropertyOfTextureParameterization"/>
+    <xs:element name="ADE_TexCoordList_04" type="xs:anyType" abstract="true" substitutionGroup="citygml:_GenericApplicationPropertyOfTexCoordList"/>
+    <xs:element name="ADE_TexCoordGen_04" type="xs:anyType" abstract="true" substitutionGroup="citygml:_GenericApplicationPropertyOfTexCoordGen"/>
+    <xs:element name="ADE_X3DMaterial_04" type="xs:anyType" abstract="true" substitutionGroup="citygml:_GenericApplicationPropertyOfX3DMaterial"/>
+
+    <xs:element name="ADE_Appearance_1" type="xs:anyType" abstract="true" substitutionGroup="app:_GenericApplicationPropertyOfAppearance"/>
+    <xs:element name="ADE_SurfaceData_1" type="xs:anyType" abstract="true" substitutionGroup="app:_GenericApplicationPropertyOfSurfaceData"/>
+    <xs:element name="ADE_Texture_1" type="xs:anyType" abstract="true" substitutionGroup="app:_GenericApplicationPropertyOfTexture"/>
+    <xs:element name="ADE_ParameterizedTexture_1" type="xs:anyType" abstract="true" substitutionGroup="app:_GenericApplicationPropertyOfParameterizedTexture"/>
+    <xs:element name="ADE_GeoreferencedTexture_1" type="xs:anyType" abstract="true" substitutionGroup="app:_GenericApplicationPropertyOfGeoreferencedTexture"/>
+    <xs:element name="ADE_TextureParameterization_1" type="xs:anyType" abstract="true" substitutionGroup="app:_GenericApplicationPropertyOfTextureParameterization"/>
+    <xs:element name="ADE_TexCoordList_1" type="xs:anyType" abstract="true" substitutionGroup="app:_GenericApplicationPropertyOfTexCoordList"/>
+    <xs:element name="ADE_TexCoordGen_1" type="xs:anyType" abstract="true" substitutionGroup="app:_GenericApplicationPropertyOfTexCoordGen"/>
+    <xs:element name="ADE_X3DMaterial_1" type="xs:anyType" abstract="true" substitutionGroup="app:_GenericApplicationPropertyOfX3DMaterial"/>
+
+    <!-- dummy ade hooks for building -->
+    <xs:element name="ADE_AbstractBuilding_04" type="xs:anyType" abstract="true" substitutionGroup="citygml:_GenericApplicationPropertyOfAbstractBuilding"/>
+    <xs:element name="ADE_Building_04" type="xs:anyType" abstract="true" substitutionGroup="citygml:_GenericApplicationPropertyOfBuilding"/>
+    <xs:element name="ADE_BuildingPart_04" type="xs:anyType" abstract="true" substitutionGroup="citygml:_GenericApplicationPropertyOfBuildingPart"/>
+    <xs:element name="ADE_BuildingInstallation_04" type="xs:anyType" abstract="true" substitutionGroup="citygml:_GenericApplicationPropertyOfBuildingInstallation"/>
+    <xs:element name="ADE_IntBuildingInstallation_04" type="xs:anyType" abstract="true" substitutionGroup="citygml:_GenericApplicationPropertyOfIntBuildingInstallation"/>
+    <xs:element name="ADE_BoundarySurface_04" type="xs:anyType" abstract="true" substitutionGroup="citygml:_GenericApplicationPropertyOfBoundarySurface"/>
+    <xs:element name="ADE_RoofSurface_04" type="xs:anyType" abstract="true" substitutionGroup="citygml:_GenericApplicationPropertyOfRoofSurface"/>
+    <xs:element name="ADE_WallSurface_04" type="xs:anyType" abstract="true" substitutionGroup="citygml:_GenericApplicationPropertyOfWallSurface"/>
+    <xs:element name="ADE_GroundSurface_04" type="xs:anyType" abstract="true" substitutionGroup="citygml:_GenericApplicationPropertyOfGroundSurface"/>
+    <xs:element name="ADE_ClosureSurface_04" type="xs:anyType" abstract="true" substitutionGroup="citygml:_GenericApplicationPropertyOfClosureSurface"/>
+    <xs:element name="ADE_FloorSurface_04" type="xs:anyType" abstract="true" substitutionGroup="citygml:_GenericApplicationPropertyOfFloorSurface"/>
+    <xs:element name="ADE_InteriorWallSurface_04" type="xs:anyType" abstract="true" substitutionGroup="citygml:_GenericApplicationPropertyOfInteriorWallSurface"/>
+    <xs:element name="ADE_CeilingSurface_04" type="xs:anyType" abstract="true" substitutionGroup="citygml:_GenericApplicationPropertyOfCeilingSurface"/>
+    <xs:element name="ADE_Opening_04" type="xs:anyType" abstract="true" substitutionGroup="citygml:_GenericApplicationPropertyOfOpening"/>
+    <xs:element name="ADE_Window_04" type="xs:anyType" abstract="true" substitutionGroup="citygml:_GenericApplicationPropertyOfWindow"/>
+    <xs:element name="ADE_Door_04" type="xs:anyType" abstract="true" substitutionGroup="citygml:_GenericApplicationPropertyOfDoor"/>
+    <xs:element name="ADE_Room_04" type="xs:anyType" abstract="true" substitutionGroup="citygml:_GenericApplicationPropertyOfRoom"/>
+    <xs:element name="ADE_BuildingFurniture_04" type="xs:anyType" abstract="true" substitutionGroup="citygml:_GenericApplicationPropertyOfBuildingFurniture"/>
+
+    <xs:element name="ADE_AbstractBuilding_1" type="xs:anyType" abstract="true" substitutionGroup="bldg:_GenericApplicationPropertyOfAbstractBuilding"/>
+    <xs:element name="ADE_Building_1" type="xs:anyType" abstract="true" substitutionGroup="bldg:_GenericApplicationPropertyOfBuilding"/>
+    <xs:element name="ADE_BuildingPart_1" type="xs:anyType" abstract="true" substitutionGroup="bldg:_GenericApplicationPropertyOfBuildingPart"/>
+    <xs:element name="ADE_BuildingInstallation_1" type="xs:anyType" abstract="true" substitutionGroup="bldg:_GenericApplicationPropertyOfBuildingInstallation"/>
+    <xs:element name="ADE_IntBuildingInstallation_1" type="xs:anyType" abstract="true" substitutionGroup="bldg:_GenericApplicationPropertyOfIntBuildingInstallation"/>
+    <xs:element name="ADE_BoundarySurface_1" type="xs:anyType" abstract="true" substitutionGroup="bldg:_GenericApplicationPropertyOfBoundarySurface"/>
+    <xs:element name="ADE_RoofSurface_1" type="xs:anyType" abstract="true" substitutionGroup="bldg:_GenericApplicationPropertyOfRoofSurface"/>
+    <xs:element name="ADE_WallSurface_1" type="xs:anyType" abstract="true" substitutionGroup="bldg:_GenericApplicationPropertyOfWallSurface"/>
+    <xs:element name="ADE_GroundSurface_1" type="xs:anyType" abstract="true" substitutionGroup="bldg:_GenericApplicationPropertyOfGroundSurface"/>
+    <xs:element name="ADE_ClosureSurface_1" type="xs:anyType" abstract="true" substitutionGroup="bldg:_GenericApplicationPropertyOfClosureSurface"/>
+    <xs:element name="ADE_FloorSurface_1" type="xs:anyType" abstract="true" substitutionGroup="bldg:_GenericApplicationPropertyOfFloorSurface"/>
+    <xs:element name="ADE_InteriorWallSurface_1" type="xs:anyType" abstract="true" substitutionGroup="bldg:_GenericApplicationPropertyOfInteriorWallSurface"/>
+    <xs:element name="ADE_CeilingSurface_1" type="xs:anyType" abstract="true" substitutionGroup="bldg:_GenericApplicationPropertyOfCeilingSurface"/>
+    <xs:element name="ADE_Opening_1" type="xs:anyType" abstract="true" substitutionGroup="bldg:_GenericApplicationPropertyOfOpening"/>
+    <xs:element name="ADE_Window_1" type="xs:anyType" abstract="true" substitutionGroup="bldg:_GenericApplicationPropertyOfWindow"/>
+    <xs:element name="ADE_Door_1" type="xs:anyType" abstract="true" substitutionGroup="bldg:_GenericApplicationPropertyOfDoor"/>
+    <xs:element name="ADE_Room_1" type="xs:anyType" abstract="true" substitutionGroup="bldg:_GenericApplicationPropertyOfRoom"/>
+    <xs:element name="ADE_BuildingFurniture_1" type="xs:anyType" abstract="true" substitutionGroup="bldg:_GenericApplicationPropertyOfBuildingFurniture"/>
+
+    <!-- dummy ade hooks for cityfurniture -->
+    <xs:element name="ADE_CityFurniture_04" type="xs:anyType" abstract="true" substitutionGroup="citygml:_GenericApplicationPropertyOfCityFurniture"/>
+
+    <xs:element name="ADE_CityFurniture_1" type="xs:anyType" abstract="true" substitutionGroup="frn:_GenericApplicationPropertyOfCityFurniture"/>
+
+    <!-- dummy ade hooks for core -->
+    <xs:element name="ADE_CityModel_04" type="xs:anyType" abstract="true" substitutionGroup="citygml:_GenericApplicationPropertyOfCityModel"/>
+    <xs:element name="ADE_CityObject_04" type="xs:anyType" abstract="true" substitutionGroup="citygml:_GenericApplicationPropertyOfCityObject"/>
+    <xs:element name="ADE_Site_04" type="xs:anyType" abstract="true" substitutionGroup="citygml:_GenericApplicationPropertyOfSite"/>
+    <xs:element name="ADE_Address_04" type="xs:anyType" abstract="true" substitutionGroup="citygml:_GenericApplicationPropertyOfAddress"/>
+
+    <xs:element name="ADE_CityModel_1" type="xs:anyType" abstract="true" substitutionGroup="core:_GenericApplicationPropertyOfCityModel"/>
+    <xs:element name="ADE_CityObject_1" type="xs:anyType" abstract="true" substitutionGroup="core:_GenericApplicationPropertyOfCityObject"/>
+    <xs:element name="ADE_Site_1" type="xs:anyType" abstract="true" substitutionGroup="core:_GenericApplicationPropertyOfSite"/>
+    <xs:element name="ADE_Address_1" type="xs:anyType" abstract="true" substitutionGroup="core:_GenericApplicationPropertyOfAddress"/>
+
+    <!-- dummy ade hooks for cityobjectgroup -->
+    <xs:element name="ADE_CityObjectGroup_04" type="xs:anyType" abstract="true" substitutionGroup="citygml:_GenericApplicationPropertyOfCityObjectGroup"/>
+
+    <xs:element name="ADE_CityObjectGroup_1" type="xs:anyType" abstract="true" substitutionGroup="grp:_GenericApplicationPropertyOfCityObjectGroup"/>
+
+    <!-- dummy ade hooks for landuse -->
+    <xs:element name="ADE_LandUse_04" type="xs:anyType" abstract="true" substitutionGroup="citygml:_GenericApplicationPropertyOfLandUse"/>
+
+    <xs:element name="ADE_LandUse_1" type="xs:anyType" abstract="true" substitutionGroup="luse:_GenericApplicationPropertyOfLandUse"/>
+
+    <!-- dummy ade hooks for relief -->
+    <xs:element name="ADE_ReliefFeature_04" type="xs:anyType" abstract="true" substitutionGroup="citygml:_GenericApplicationPropertyOfReliefFeature"/>
+    <xs:element name="ADE_ReliefComponent_04" type="xs:anyType" abstract="true" substitutionGroup="citygml:_GenericApplicationPropertyOfReliefComponent"/>
+    <xs:element name="ADE_TinRelief_04" type="xs:anyType" abstract="true" substitutionGroup="citygml:_GenericApplicationPropertyOfTinRelief"/>
+    <xs:element name="ADE_RasterRelief_04" type="xs:anyType" abstract="true" substitutionGroup="citygml:_GenericApplicationPropertyOfRasterRelief"/>
+    <xs:element name="ADE_MassPointRelief_04" type="xs:anyType" abstract="true" substitutionGroup="citygml:_GenericApplicationPropertyOfMassPointRelief"/>
+    <xs:element name="ADE_BreakLineRelief_04" type="xs:anyType" abstract="true" substitutionGroup="citygml:_GenericApplicationPropertyOfBreaklineRelief"/>
+
+    <xs:element name="ADE_ReliefFeature_1" type="xs:anyType" abstract="true" substitutionGroup="dem:_GenericApplicationPropertyOfReliefFeature"/>
+    <xs:element name="ADE_ReliefComponent_1" type="xs:anyType" abstract="true" substitutionGroup="dem:_GenericApplicationPropertyOfReliefComponent"/>
+    <xs:element name="ADE_TinRelief_1" type="xs:anyType" abstract="true" substitutionGroup="dem:_GenericApplicationPropertyOfTinRelief"/>
+    <xs:element name="ADE_RasterRelief_1" type="xs:anyType" abstract="true" substitutionGroup="dem:_GenericApplicationPropertyOfRasterRelief"/>
+    <xs:element name="ADE_MassPointRelief_1" type="xs:anyType" abstract="true" substitutionGroup="dem:_GenericApplicationPropertyOfMassPointRelief"/>
+    <xs:element name="ADE_BreakLineRelief_1" type="xs:anyType" abstract="true" substitutionGroup="dem:_GenericApplicationPropertyOfBreaklineRelief"/>
+
+    <!-- dummy ade hooks for transportation -->
+    <xs:element name="ADE_TransportationObject_04" type="xs:anyType" abstract="true" substitutionGroup="citygml:_GenericApplicationPropertyOfTransportationObject"/>
+    <xs:element name="ADE_TransportationComplex_04" type="xs:anyType" abstract="true" substitutionGroup="citygml:_GenericApplicationPropertyOfTransportationComplex"/>
+    <xs:element name="ADE_TrafficArea_04" type="xs:anyType" abstract="true" substitutionGroup="citygml:_GenericApplicationPropertyOfTrafficArea"/>
+    <xs:element name="ADE_AuxiliaryTrafficArea_04" type="xs:anyType" abstract="true" substitutionGroup="citygml:_GenericApplicationPropertyOfAuxiliaryTrafficArea"/>
+    <xs:element name="ADE_Track_04" type="xs:anyType" abstract="true" substitutionGroup="citygml:_GenericApplicationPropertyOfTrack"/>
+    <xs:element name="ADE_Road_04" type="xs:anyType" abstract="true" substitutionGroup="citygml:_GenericApplicationPropertyOfRoad"/>
+    <xs:element name="ADE_Railway_04" type="xs:anyType" abstract="true" substitutionGroup="citygml:_GenericApplicationPropertyOfRailway"/>
+    <xs:element name="ADE_Square_04" type="xs:anyType" abstract="true" substitutionGroup="citygml:_GenericApplicationPropertyOfSquare"/>
+
+    <xs:element name="ADE_TransportationObject_1" type="xs:anyType" abstract="true" substitutionGroup="tran:_GenericApplicationPropertyOfTransportationObject"/>
+    <xs:element name="ADE_TransportationComplex_1" type="xs:anyType" abstract="true" substitutionGroup="tran:_GenericApplicationPropertyOfTransportationComplex"/>
+    <xs:element name="ADE_TrafficArea_1" type="xs:anyType" abstract="true" substitutionGroup="tran:_GenericApplicationPropertyOfTrafficArea"/>
+    <xs:element name="ADE_AuxiliaryTrafficArea_1" type="xs:anyType" abstract="true" substitutionGroup="tran:_GenericApplicationPropertyOfAuxiliaryTrafficArea"/>
+    <xs:element name="ADE_Track_1" type="xs:anyType" abstract="true" substitutionGroup="tran:_GenericApplicationPropertyOfTrack"/>
+    <xs:element name="ADE_Road_1" type="xs:anyType" abstract="true" substitutionGroup="tran:_GenericApplicationPropertyOfRoad"/>
+    <xs:element name="ADE_Railway_1" type="xs:anyType" abstract="true" substitutionGroup="tran:_GenericApplicationPropertyOfRailway"/>
+    <xs:element name="ADE_Square_1" type="xs:anyType" abstract="true" substitutionGroup="tran:_GenericApplicationPropertyOfSquare"/>
+
+    <!-- dummy ade hooks for vegetation -->
+    <xs:element name="ADE_VegetationObject_04" type="xs:anyType" abstract="true" substitutionGroup="citygml:_GenericApplicationPropertyOfVegetationObject"/>
+    <xs:element name="ADE_PlantCover_04" type="xs:anyType" abstract="true" substitutionGroup="citygml:_GenericApplicationPropertyOfPlantCover"/>
+    <xs:element name="ADE_SolitaryVegetationObject_04" type="xs:anyType" abstract="true" substitutionGroup="citygml:_GenericApplicationPropertyOfSolitaryVegetationObject"/>
+
+    <xs:element name="ADE_VegetationObject_1" type="xs:anyType" abstract="true" substitutionGroup="veg:_GenericApplicationPropertyOfVegetationObject"/>
+    <xs:element name="ADE_PlantCover_1" type="xs:anyType" abstract="true" substitutionGroup="veg:_GenericApplicationPropertyOfPlantCover"/>
+    <xs:element name="ADE_SolitaryVegetationObject_1" type="xs:anyType" abstract="true" substitutionGroup="veg:_GenericApplicationPropertyOfSolitaryVegetationObject"/>
+
+    <!-- dummy ade hooks for waterbody -->
+    <xs:element name="ADE_WaterObject_04" type="xs:anyType" abstract="true" substitutionGroup="citygml:_GenericApplicationPropertyOfWaterObject"/>
+    <xs:element name="ADE_WaterBody_04" type="xs:anyType" abstract="true" substitutionGroup="citygml:_GenericApplicationPropertyOfWaterBody"/>
+    <xs:element name="ADE_WaterBoundarySurface_04" type="xs:anyType" abstract="true" substitutionGroup="citygml:_GenericApplicationPropertyOfWaterBoundarySurface"/>
+    <xs:element name="ADE_WaterSurface_04" type="xs:anyType" abstract="true" substitutionGroup="citygml:_GenericApplicationPropertyOfWaterSurface"/>
+    <xs:element name="ADE_WaterGroundSurface_04" type="xs:anyType" abstract="true" substitutionGroup="citygml:_GenericApplicationPropertyOfWaterGroundSurface"/>
+    <xs:element name="ADE_WateClosureSurface_04" type="xs:anyType" abstract="true" substitutionGroup="citygml:_GenericApplicationPropertyOfWaterClosureSurface"/>
+
+    <xs:element name="ADE_WaterObject_1" type="xs:anyType" abstract="true" substitutionGroup="wtr:_GenericApplicationPropertyOfWaterObject"/>
+    <xs:element name="ADE_WaterBody_1" type="xs:anyType" abstract="true" substitutionGroup="wtr:_GenericApplicationPropertyOfWaterBody"/>
+    <xs:element name="ADE_WaterBoundarySurface_1" type="xs:anyType" abstract="true" substitutionGroup="wtr:_GenericApplicationPropertyOfWaterBoundarySurface"/>
+    <xs:element name="ADE_WaterSurface_1" type="xs:anyType" abstract="true" substitutionGroup="wtr:_GenericApplicationPropertyOfWaterSurface"/>
+    <xs:element name="ADE_WaterGroundSurface_1" type="xs:anyType" abstract="true" substitutionGroup="wtr:_GenericApplicationPropertyOfWaterGroundSurface"/>
+    <xs:element name="ADE_WateClosureSurface_1" type="xs:anyType" abstract="true" substitutionGroup="wtr:_GenericApplicationPropertyOfWaterClosureSurface"/>
+</xs:schema>

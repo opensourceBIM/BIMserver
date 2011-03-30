@@ -2,13 +2,19 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="src-gen"/>
-	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
 	<classpathentry exported="true" kind="lib" path="lib/StPL96.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/citygml4j-0.2.1.jar"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Ifc"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/TestData"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Emf"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/IFCEngine"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Shared"/>
+	<classpathentry kind="lib" path="lib/citygml4j.jar" sourcepath="/BimServer/libsrc/citygml4j1.0.jar"/>
+	<classpathentry kind="lib" path="lib/activation.jar"/>
+	<classpathentry kind="lib" path="lib/jsr173_1.0_api.jar"/>
+	<classpathentry kind="lib" path="lib/sjsxp.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="/BimServer/lib/jaxb/jaxb-api-2.2.1.jar"/>
+	<classpathentry kind="lib" path="/BimServer/lib/jaxb/jaxb-impl-2.2.1.1.jar"/>
+	<classpathentry kind="lib" path="/BimServer/lib/jaxb/jaxb-xjc-2.2.1.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

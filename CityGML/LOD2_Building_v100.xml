@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="windows-1252" standalone="yes"?>
+<core:CityModel xmlns:core="http://www.opengis.net/citygml/1.0" xmlns:tran="http://www.opengis.net/citygml/transportation/1.0" xmlns:wtr="http://www.opengis.net/citygml/waterbody/1.0" xmlns:gml="http://www.opengis.net/gml" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:grp="http://www.opengis.net/citygml/cityobjectgroup/1.0" xmlns:luse="http://www.opengis.net/citygml/landuse/1.0" xmlns:frn="http://www.opengis.net/citygml/cityfurniture/1.0" xmlns:app="http://www.opengis.net/citygml/appearance/1.0" xmlns:tex="http://www.opengis.net/citygml/texturedsurface/1.0" xmlns:xal="urn:oasis:names:tc:ciq:xsdschema:xAL:2.0" xmlns:bldg="http://www.opengis.net/citygml/building/1.0" xmlns:dem="http://www.opengis.net/citygml/relief/1.0" xmlns:veg="http://www.opengis.net/citygml/vegetation/1.0" xmlns:gen="http://www.opengis.net/citygml/generics/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.opengis.net/citygml/landuse/1.0 http://schemas.opengis.net/citygml/landuse/1.0/landUse.xsd http://www.opengis.net/citygml/cityfurniture/1.0 http://schemas.opengis.net/citygml/cityfurniture/1.0/cityFurniture.xsd http://www.opengis.net/citygml/appearance/1.0 http://schemas.opengis.net/citygml/appearance/1.0/appearance.xsd http://www.opengis.net/citygml/texturedsurface/1.0 http://schemas.opengis.net/citygml/texturedsurface/1.0/texturedSurface.xsd http://www.opengis.net/citygml/transportation/1.0 http://schemas.opengis.net/citygml/transportation/1.0/transportation.xsd http://www.opengis.net/citygml/waterbody/1.0 http://schemas.opengis.net/citygml/waterbody/1.0/waterBody.xsd http://www.opengis.net/citygml/building/1.0 http://schemas.opengis.net/citygml/building/1.0/building.xsd http://www.opengis.net/citygml/relief/1.0 http://schemas.opengis.net/citygml/relief/1.0/relief.xsd http://www.opengis.net/citygml/vegetation/1.0 http://schemas.opengis.net/citygml/vegetation/1.0/vegetation.xsd http://www.opengis.net/citygml/generics/1.0 http://schemas.opengis.net/citygml/generics/1.0/generics.xsd http://www.opengis.net/citygml/cityobjectgroup/1.0 http://schemas.opengis.net/citygml/cityobjectgroup/1.0/cityObjectGroup.xsd">
+  <gml:boundedBy>
+    <gml:Envelope srsDimension="3">
+      <gml:lowerCorner>0.0 0.0 0.0</gml:lowerCorner>
+      <gml:upperCorner>6.0 12.0 9.0</gml:upperCorner>
+    </gml:Envelope>
+  </gml:boundedBy>
+  <core:cityObjectMember>
+    <bldg:Building>
+      <bldg:lod2Solid>
+        <gml:Solid>
+          <gml:exterior>
+            <gml:CompositeSurface>
+              <gml:surfaceMember xlink:href="#UUID_5b834603-a000-47c5-ae40-60b02916ddcb"/>
+              <gml:surfaceMember xlink:href="#UUID_d80d5e23-750b-4f72-8007-84b05158d25b"/>
+              <gml:surfaceMember xlink:href="#UUID_2adc25c3-631e-4f98-9d43-a7b129b47ebe"/>
+              <gml:surfaceMember xlink:href="#UUID_bc4ac298-f1d7-4add-8ddb-72305ba021b1"/>
+              <gml:surfaceMember xlink:href="#UUID_99372735-636f-4af1-b6ca-9c3790cc0c8e"/>
+              <gml:surfaceMember xlink:href="#UUID_34931fa6-9681-437b-ab77-e14f764b684f"/>
+              <gml:surfaceMember xlink:href="#UUID_bdce624d-7643-4cab-961c-ccccb31a8f2b"/>
+            </gml:CompositeSurface>
+          </gml:exterior>
+        </gml:Solid>
+      </bldg:lod2Solid>
+      <bldg:boundedBy>
+        <bldg:GroundSurface>
+          <bldg:lod2MultiSurface>
+            <gml:MultiSurface>
+              <gml:surfaceMember>
+                <gml:Polygon gml:id="UUID_5b834603-a000-47c5-ae40-60b02916ddcb">
+                  <gml:exterior>
+                    <gml:LinearRing>
+                      <gml:posList srsDimension="3">0.0 0.0 0.0 0.0 12.0 0.0 6.0 12.0 0.0 6.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0</gml:posList>
+                    </gml:LinearRing>
+                  </gml:exterior>
+                </gml:Polygon>
+              </gml:surfaceMember>
+            </gml:MultiSurface>
+          </bldg:lod2MultiSurface>
+        </bldg:GroundSurface>
+      </bldg:boundedBy>
+      <bldg:boundedBy>
+        <bldg:WallSurface>
+          <bldg:lod2MultiSurface>
+            <gml:MultiSurface>
+              <gml:surfaceMember>
+                <gml:Polygon gml:id="UUID_d80d5e23-750b-4f72-8007-84b05158d25b">
+                  <gml:exterior>
+                    <gml:LinearRing>
+                      <gml:posList srsDimension="3">6.0 0.0 0.0 6.0 12.0 0.0 6.0 12.0 6.0 6.0 0.0 6.0 6.0 0.0 0.0 6.0 0.0 0.0</gml:posList>
+                    </gml:LinearRing>
+                  </gml:exterior>
+                </gml:Polygon>
+              </gml:surfaceMember>
+            </gml:MultiSurface>
+          </bldg:lod2MultiSurface>
+        </bldg:WallSurface>
+      </bldg:boundedBy>
+      <bldg:boundedBy>
+        <bldg:WallSurface>
+          <bldg:lod2MultiSurface>
+            <gml:MultiSurface>
+              <gml:surfaceMember>
+                <gml:Polygon gml:id="UUID_2adc25c3-631e-4f98-9d43-a7b129b47ebe">
+                  <gml:exterior>
+                    <gml:LinearRing>
+                      <gml:posList srsDimension="3">0.0 0.0 0.0 0.0 0.0 6.0 0.0 12.0 6.0 0.0 12.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0</gml:posList>
+                    </gml:LinearRing>
+                  </gml:exterior>
+                </gml:Polygon>
+              </gml:surfaceMember>
+            </gml:MultiSurface>
+          </bldg:lod2MultiSurface>
+        </bldg:WallSurface>
+      </bldg:boundedBy>
+      <bldg:boundedBy>
+        <bldg:WallSurface>
+          <bldg:lod2MultiSurface>
+            <gml:MultiSurface>
+              <gml:surfaceMember>
+                <gml:Polygon gml:id="UUID_bc4ac298-f1d7-4add-8ddb-72305ba021b1">
+                  <gml:exterior>
+                    <gml:LinearRing>
+                      <gml:posList srsDimension="3">0.0 0.0 0.0 6.0 0.0 0.0 6.0 0.0 6.0 3.0 0.0 9.0 0.0 0.0 6.0 0.0 0.0 0.0 0.0 0.0 0.0</gml:posList>
+                    </gml:LinearRing>
+                  </gml:exterior>
+                </gml:Polygon>
+              </gml:surfaceMember>
+            </gml:MultiSurface>
+          </bldg:lod2MultiSurface>
+        </bldg:WallSurface>
+      </bldg:boundedBy>
+      <bldg:boundedBy>
+        <bldg:WallSurface>
+          <bldg:lod2MultiSurface>
+            <gml:MultiSurface>
+              <gml:surfaceMember>
+                <gml:Polygon gml:id="UUID_99372735-636f-4af1-b6ca-9c3790cc0c8e">
+                  <gml:exterior>
+                    <gml:LinearRing>
+                      <gml:posList srsDimension="3">6.0 12.0 0.0 0.0 12.0 0.0 0.0 12.0 6.0 3.0 12.0 9.0 6.0 12.0 6.0 6.0 12.0 0.0 6.0 12.0 0.0</gml:posList>
+                    </gml:LinearRing>
+                  </gml:exterior>
+                </gml:Polygon>
+              </gml:surfaceMember>
+            </gml:MultiSurface>
+          </bldg:lod2MultiSurface>
+        </bldg:WallSurface>
+      </bldg:boundedBy>
+      <bldg:boundedBy>
+        <bldg:RoofSurface>
+          <bldg:lod2MultiSurface>
+            <gml:MultiSurface>
+              <gml:surfaceMember>
+                <gml:Polygon gml:id="UUID_34931fa6-9681-437b-ab77-e14f764b684f">
+                  <gml:exterior>
+                    <gml:LinearRing>
+                      <gml:posList srsDimension="3">6.0 0.0 6.0 6.0 12.0 6.0 3.0 12.0 9.0 3.0 0.0 9.0 6.0 0.0 6.0 6.0 0.0 6.0</gml:posList>
+                    </gml:LinearRing>
+                  </gml:exterior>
+                </gml:Polygon>
+              </gml:surfaceMember>
+            </gml:MultiSurface>
+          </bldg:lod2MultiSurface>
+        </bldg:RoofSurface>
+      </bldg:boundedBy>
+      <bldg:boundedBy>
+        <bldg:RoofSurface>
+          <bldg:lod2MultiSurface>
+            <gml:MultiSurface>
+              <gml:surfaceMember>
+                <gml:Polygon gml:id="UUID_bdce624d-7643-4cab-961c-ccccb31a8f2b">
+                  <gml:exterior>
+                    <gml:LinearRing>
+                      <gml:posList srsDimension="3">0.0 0.0 6.0 3.0 0.0 9.0 3.0 12.0 9.0 0.0 12.0 6.0 0.0 0.0 6.0 0.0 0.0 6.0</gml:posList>
+                    </gml:LinearRing>
+                  </gml:exterior>
+                </gml:Polygon>
+              </gml:surfaceMember>
+            </gml:MultiSurface>
+          </bldg:lod2MultiSurface>
+        </bldg:RoofSurface>
+      </bldg:boundedBy>
+    </bldg:Building>
+  </core:cityObjectMember>
+</core:CityModel>

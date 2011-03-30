@@ -5,9 +5,8 @@
 <!-- Prof. Dr. Thomas H. Kolbe, Institute for Geodesy and Geoinformation Science, Technical University of Berlin -->
 <!-- For further information see: www.citygml.org -->
 <!-- For the history of changes and additions to this CityGML schema see file history.txt -->
-<xs:schema xmlns="http://www.opengis.net/citygml/vegetation/1.0" xmlns:core="http://www.opengis.net/citygml/1.0"
-    xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml"
-    targetNamespace="http://www.opengis.net/citygml/vegetation/1.0" elementFormDefault="qualified"
+<xs:schema xmlns="http://www.opengis.net/citygml/vegetation/1.0" xmlns:core="http://www.opengis.net/citygml/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:gml="http://www.opengis.net/gml" targetNamespace="http://www.opengis.net/citygml/vegetation/1.0" elementFormDefault="qualified"
     attributeFormDefault="unqualified">
     <xs:import namespace="http://www.opengis.net/gml" schemaLocation="../../GML/3.1.1/base/gml.xsd"/>
     <xs:import namespace="http://www.opengis.net/citygml/1.0" schemaLocation="cityGMLBase.xsd"/>
@@ -16,8 +15,8 @@
     <!-- ========================================================================================= -->
     <xs:complexType name="AbstractVegetationObjectType" abstract="true">
         <xs:annotation>
-            <xs:documentation>Type describing the abstract superclass for vegetation objects. A subclass is either a
-                SolitaryVegetationObject or a PlantCover. </xs:documentation>
+            <xs:documentation>Type describing the abstract superclass for vegetation objects. A subclass is either a SolitaryVegetationObject or a PlantCover.
+            </xs:documentation>
         </xs:annotation>
         <xs:complexContent>
             <xs:extension base="core:AbstractCityObjectType">
@@ -34,9 +33,8 @@
     <!-- ========================================================================================= -->
     <xs:complexType name="PlantCoverType">
         <xs:annotation>
-            <xs:documentation>Type describing Plant Covers resp. Biotopes. As subclass of _CityObject, a VegetationObject inherits
-                all attributes and relations, in particular an id, names, external references, and generalization relations.
-            </xs:documentation>
+            <xs:documentation>Type describing Plant Covers resp. Biotopes. As subclass of _CityObject, a VegetationObject inherits all attributes and relations,
+                in particular an id, names, external references, and generalization relations. </xs:documentation>
         </xs:annotation>
         <xs:complexContent>
             <xs:extension base="AbstractVegetationObjectType">
@@ -63,27 +61,26 @@
     <!-- ========================================================================================= -->
     <xs:simpleType name="PlantCoverClassType">
         <xs:annotation>
-            <xs:documentation>Class of a PlantCover. The values of this type are defined in the XML file PlantCoverClassType.xml,
-                according to the dictionary concept of GML3. </xs:documentation>
+            <xs:documentation>Class of a PlantCover. The values of this type are defined in the XML file PlantCoverClassType.xml, according to the dictionary
+                concept of GML3. </xs:documentation>
         </xs:annotation>
         <xs:restriction base="xs:string"/>
     </xs:simpleType>
     <!-- ========================================================================================= -->
     <xs:simpleType name="PlantCoverFunctionType">
         <xs:annotation>
-            <xs:documentation>Function of a PlantCover. The values of this type are defined in the XML file
-                PlantCoverFunctionType.xml, according to the dictionary concept of GML3. </xs:documentation>
+            <xs:documentation>Function of a PlantCover. The values of this type are defined in the XML file PlantCoverFunctionType.xml, according to the
+                dictionary concept of GML3. </xs:documentation>
         </xs:annotation>
         <xs:restriction base="xs:string"/>
     </xs:simpleType>
     <!-- ========================================================================================= -->
     <xs:complexType name="SolitaryVegetationObjectType">
         <xs:annotation>
-            <xs:documentation>Type describing solitary vegetation objects, e.g., trees. Its geometry is either defined explicitly
-                by a GML 3 geometry with absolute coordinates, or in the case of multiple occurences of the same vegetation
-                object, implicitly by a reference to a shape definition and a transformation. The shape definition may be given in
-                an external file. As subclass of _CityObject, a SolitaryVegetationObject inherits all attributes and relations, in
-                particular an id, names, external references, and generalization relations. </xs:documentation>
+            <xs:documentation>Type describing solitary vegetation objects, e.g., trees. Its geometry is either defined explicitly by a GML 3 geometry with
+                absolute coordinates, or in the case of multiple occurences of the same vegetation object, implicitly by a reference to a shape definition and a
+                transformation. The shape definition may be given in an external file. As subclass of _CityObject, a SolitaryVegetationObject inherits all
+                attributes and relations, in particular an id, names, external references, and generalization relations. </xs:documentation>
         </xs:annotation>
         <xs:complexContent>
             <xs:extension base="AbstractVegetationObjectType">
@@ -114,24 +111,24 @@
     <!-- ========================================================================================= -->
     <xs:simpleType name="PlantClassType">
         <xs:annotation>
-            <xs:documentation>Class of a SolitaryVegetationObject. The values of this type are defined in the XML file
-                PlantClassType.xml, according to the dictionary concept of GML3. </xs:documentation>
+            <xs:documentation>Class of a SolitaryVegetationObject. The values of this type are defined in the XML file PlantClassType.xml, according to the
+                dictionary concept of GML3. </xs:documentation>
         </xs:annotation>
         <xs:restriction base="xs:string"/>
     </xs:simpleType>
     <!-- ========================================================================================= -->
     <xs:simpleType name="PlantFunctionType">
         <xs:annotation>
-            <xs:documentation>Function of a PlantType. The values of this type are defined in the XML file PlantFunctionType.xml,
-                according to the dictionary concept of GML3. </xs:documentation>
+            <xs:documentation>Function of a PlantType. The values of this type are defined in the XML file PlantFunctionType.xml, according to the dictionary
+                concept of GML3. </xs:documentation>
         </xs:annotation>
         <xs:restriction base="xs:string"/>
     </xs:simpleType>
     <!-- ========================================================================================= -->
     <xs:simpleType name="SpeciesType">
         <xs:annotation>
-            <xs:documentation>Type of a Species. The values of this type are defined in the XML file SpeciesType.xml, according to
-                the dictionary concept of GML3. </xs:documentation>
+            <xs:documentation>Type of a Species. The values of this type are defined in the XML file SpeciesType.xml, according to the dictionary concept of
+                GML3. </xs:documentation>
         </xs:annotation>
         <xs:restriction base="xs:string"/>
     </xs:simpleType>
