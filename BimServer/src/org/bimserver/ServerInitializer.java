@@ -44,6 +44,7 @@ import nl.tue.buildingsmart.express.parser.ExpressSchemaParser;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.LogManager;
+import org.bimserver.ServerInfo.ServerState;
 import org.bimserver.database.BimDatabase;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.Database;
@@ -214,6 +215,12 @@ public class ServerInitializer implements ServletContextListener {
 				throw new RuntimeException("System user not found");
 			}
 			LoginManager.setSystemService(getSystemService());
+			
+			if (ServerInitializer.getServerType() == ServerType.DEV_ENVIRONMENT) {
+				if (ServerInfo.getServerState() == ServerState.NOT_SETUP) {
+					systemService.setup("http://localhost", "localhost", "Administrator", "admin@bimserver.org", "admin", true);
+				}
+			}
 
 			RestApplication.setServiceFactory(ServiceFactory.getINSTANCE());
 

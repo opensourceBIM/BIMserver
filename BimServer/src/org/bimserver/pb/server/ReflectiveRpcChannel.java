@@ -10,7 +10,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import javax.activation.DataHandler;
 
@@ -36,7 +35,7 @@ public class ReflectiveRpcChannel implements BlockingRpcChannel {
 
 	private final ServiceFactory serviceFactory;
 	private ServiceInterface service;
-	private final Map<Class<?>, Map<String, Set<Method>>> cachedMethods = new HashMap<Class<?>, Map<String, Set<Method>>>();
+//	private final Map<Class<?>, Map<String, Set<Method>>> cachedMethods = new HashMap<Class<?>, Map<String, Set<Method>>>();
 
 	public ReflectiveRpcChannel(ServiceFactory serviceFactory) {
 		this.serviceFactory = serviceFactory;
