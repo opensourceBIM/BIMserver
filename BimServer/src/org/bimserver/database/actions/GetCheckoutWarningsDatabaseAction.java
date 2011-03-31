@@ -13,12 +13,12 @@ import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.User;
 import org.bimserver.shared.UserException;
 
-public class GetShowCheckoutWarningsDatabaseAction extends BimDatabaseAction<Set<String>> {
+public class GetCheckoutWarningsDatabaseAction extends BimDatabaseAction<Set<String>> {
 
 	private final long poid;
 	private final long uoid;
 
-	public GetShowCheckoutWarningsDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long poid, long uoid) {
+	public GetCheckoutWarningsDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long poid, long uoid) {
 		super(bimDatabaseSession, accessMethod);
 		this.poid = poid;
 		this.uoid = uoid;
