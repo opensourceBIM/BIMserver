@@ -31,11 +31,13 @@ public class ChangePasswordDatabaseAction extends BimDatabaseAction<Boolean> {
 	@Override
 	public Boolean execute() throws UserException, BimDeadlockException, BimDatabaseException {
 		User actingUser = getUserByUoid(actingUoid);
+		User user = getUserByUoid(uoid);
+		if (user.getUserType() == UserType.ANONYMOUS) {
+			throw new UserException("Password of anonymous user cannot be changed");
+		} else if (user.getUserType() == UserType.SYSTEM) {
+			throw new UserException("Password of system user cannot be changed");
+		}
 		if (uoid == actingUoid) {
-			User user = getUserByUoid(uoid);
-			if (user.getUserType() == UserType.ANONYMOUS) {
-				throw new UserException("Password of anonymous user cannot be changed");
-			}
 			return changePassword(getDatabaseSession(), actingUser, false);
 		} else {
 			if (actingUser.getUserType() == UserType.ADMIN) {

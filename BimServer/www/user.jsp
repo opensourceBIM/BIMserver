@@ -19,17 +19,19 @@
 <%@page import="org.bimserver.web.SProjectComparator"%>
 <%@page import="org.bimserver.shared.ServiceInterface"%>
 <%@page import="org.bimserver.shared.SRevisionDateComparator"%>
+<%@page import="org.bimserver.interfaces.objects.SObjectState"%>
 <%@ include file="header.jsp" %>
 <%
 	long uoid = Long.parseLong(request.getParameter("uoid"));
+	SUser user = loginManager.getService().getUserByUoid(uoid);
+	boolean allowEdit = (loginManager.getUserType() == SUserType.ADMIN && user.getUserType() != SUserType.SYSTEM) || uoid == loginManager.getUoid();
 %>
-
-<%@page import="org.bimserver.interfaces.objects.SObjectState"%><div class="sidebar">
+<div class="sidebar">
  <ul>
-<% if (loginManager.getUserType() == SUserType.ADMIN) { %>
+<% if (allowEdit) { %>
  <li><a href="edituser.jsp?uoid=<%=uoid%>">Edit</a></li>
-<% } %>
  <li><a href="changepassword.jsp?uoid=<%=uoid%>">Change password</a></li>
+<% } %>
 <jsp:include page="showdeleted.jsp"/>
  </ul>
 </div>
@@ -42,7 +44,6 @@
 		out.println("<div class=\"success\">" + Message.get(Integer.parseInt(request.getParameter("mid"))) + "</div>");
 	}
 	DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
-	SUser user = loginManager.getService().getUserByUoid(uoid);
 	List<SRevision> revisions = loginManager.getService().getAllRevisionsByUser(user.getOid());
 	Collections.sort(revisions, new SRevisionDateComparator(false));
 	List<SCheckout> checkouts = loginManager.getService().getAllCheckoutsByUser(user.getOid());
@@ -64,7 +65,7 @@
 <tr><td class="first">State</td><td><%=user.getState().name().toLowerCase() %></td></tr>
 <tr><td class="first">Type</td><td><%=JspHelper.getNiceUserTypeName(user.getUserType()) %></td></tr>
 <% SUser currentUser = loginManager.getService().getUserByUoid(loginManager.getUoid());
-if (currentUser.getOid() == uoid || currentUser.getUserType() == SUserType.ADMIN) { %>
+if (allowEdit) { %>
 <tr><td class="first">Change password</td><td><a href="changepassword.jsp?uoid=<%=uoid%>">Change password</a></td></tr>
 <% }
 	SUser creater = loginManager.getService().getUserByUoid(user.getCreatedById());

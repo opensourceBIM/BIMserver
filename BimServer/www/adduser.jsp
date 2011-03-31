@@ -32,14 +32,16 @@
 <tr><td><label for="type">Type</label></td><td><select name="type">
 <%
 	for (SUserType sUserType : SUserType.values()) {
-		if (request.getParameter("type") != null && request.getParameter("type").equals("" + sUserType.ordinal())) {
-		%>
-		<option selected="selected" value="<%=sUserType.ordinal() %>"><%=JspHelper.getNiceUserTypeName(sUserType) %></option>
-		<%
-		} else {
-		%>
-		<option <%=(request.getParameter("type") == null && sUserType == SUserType.USER) ? "selected=\"selected\"" : "" %>value="<%=sUserType.ordinal() %>"><%=JspHelper.getNiceUserTypeName(sUserType) %></option>
-		<%
+		if (sUserType != SUserType.SYSTEM) {
+			if (request.getParameter("type") != null && request.getParameter("type").equals("" + sUserType.ordinal())) {
+			%>
+			<option selected="selected" value="<%=sUserType.ordinal() %>"><%=JspHelper.getNiceUserTypeName(sUserType) %></option>
+			<%
+			} else {
+			%>
+			<option <%=(request.getParameter("type") == null && sUserType == SUserType.USER) ? "selected=\"selected\"" : "" %>value="<%=sUserType.ordinal() %>"><%=JspHelper.getNiceUserTypeName(sUserType) %></option>
+			<%
+			}
 		}
 	}
 %>
