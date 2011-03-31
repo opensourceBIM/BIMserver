@@ -89,7 +89,7 @@ import org.bimserver.database.actions.GetProjectByNameDatabaseAction;
 import org.bimserver.database.actions.GetProjectByPoidDatabaseAction;
 import org.bimserver.database.actions.GetRevisionDatabaseAction;
 import org.bimserver.database.actions.GetRevisionSummaryDatabaseAction;
-import org.bimserver.database.actions.GetShowCheckoutWarningsDatabaseAction;
+import org.bimserver.database.actions.GetCheckoutWarningsDatabaseAction;
 import org.bimserver.database.actions.GetSubProjectsDatabaseAction;
 import org.bimserver.database.actions.GetUserByUoidDatabaseAction;
 import org.bimserver.database.actions.GetUserByUserNameDatabaseAction;
@@ -1248,11 +1248,11 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public Set<String> getShowCheckoutWarning(long poid, long uoid) throws UserException, ServerException {
+	public Set<String> getCheckoutWarnings(long poid) throws UserException, ServerException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimDatabase.createReadOnlySession();
 		try {
-			BimDatabaseAction<Set<String>> action = new GetShowCheckoutWarningsDatabaseAction(session, accessMethod, poid, uoid);
+			BimDatabaseAction<Set<String>> action = new GetCheckoutWarningsDatabaseAction(session, accessMethod, poid, currentUoid);
 			return session.executeAction(action, DEADLOCK_RETRIES);
 		} catch (Exception e) {
 			handleException(e);

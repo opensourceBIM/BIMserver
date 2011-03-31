@@ -417,8 +417,7 @@ subproject</a><br />
 
 <div class="tabbertab" id="revisionstab" title="Revisions<%=revisions.size() == 0 ? "" : " (" + revisions.size() + ")"%>">
 <%
-	Set<String> checkoutWarnings = loginManager.getService().getShowCheckoutWarning(project.getOid(),
-					loginManager.getUoid());
+	Set<String> checkoutWarnings = loginManager.getService().getCheckoutWarnings(project.getOid());
 			for (String warning : checkoutWarnings) {
 				out.write("<div class=\"warning\"><img src=\"images/warning.png\" alt=\"warning\" />" + warning + "</div>");
 			}
