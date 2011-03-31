@@ -1,6 +1,10 @@
 <%@ include file="header.jsp"%>
 <%@page import="org.bimserver.interfaces.objects.SUserType"%>
 <%@page import="org.bimserver.shared.UserException"%>
+<%@page import="org.bimserver.web.JspHelper"%>
+<div class="sidebar">
+</div>
+<div class="content">
 <%
 	long uoid = Long.parseLong(request.getParameter("uoid"));
 	if (request.getParameter("save") != null) {
@@ -9,15 +13,10 @@
 			loginManager.getService().changeUserType(uoid, userType);
 			response.sendRedirect("user.jsp?uoid=" + uoid);
 		} catch (UserException e) {
-			out.println(e.getMessage());
+			out.println("<div class=\"error\">" + e.getMessage() + "</div>");
 		}
 	}
 %>
-
-
-<%@page import="org.bimserver.web.JspHelper"%><div class="sidebar">
-</div>
-<div class="content">
 <%
 	SUser user = loginManager.getService().getUserByUoid(uoid);
 %>
@@ -33,14 +32,16 @@
 	<td><select name="type">
 <%
 	for (SUserType sUserType : SUserType.values()) {
-		if (sUserType == user.getUserType()) {
-			%>
-			<option value="<%=sUserType.ordinal() %>" selected="selected"><%=JspHelper.getNiceUserTypeName(sUserType) %></option>
-			<%
-		} else {
-			%>
-			<option value="<%=sUserType.ordinal() %>"><%=JspHelper.getNiceUserTypeName(sUserType) %></option>
-			<%
+		if (sUserType != SUserType.SYSTEM) {
+			if (sUserType == user.getUserType()) {
+				%>
+				<option value="<%=sUserType.ordinal() %>" selected="selected"><%=JspHelper.getNiceUserTypeName(sUserType) %></option>
+				<%
+			} else {
+				%>
+				<option value="<%=sUserType.ordinal() %>"><%=JspHelper.getNiceUserTypeName(sUserType) %></option>
+				<%
+			}
 		}
 	}
 %>

@@ -40,6 +40,7 @@ public class AddUserDatabaseAction extends BimDatabaseAction<Long> {
 	private final String password;
 	private final MailSystem mailSystem;
 	private final SettingsManager settingsManager;
+	private boolean createSystemUser = false;
 
 	public AddUserDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, SettingsManager settingsManager, MailSystem mailSystem, String username, String name, UserType userType, long createrUoid, boolean selfRegistration) {
 		super(bimDatabaseSession, accessMethod);
@@ -68,6 +69,9 @@ public class AddUserDatabaseAction extends BimDatabaseAction<Long> {
 	public Long execute() throws UserException, BimDatabaseException, BimDeadlockException {
 		String trimmedUserName = username.trim();
 		String trimmedName = name.trim();
+		if (userType == UserType.SYSTEM && !createSystemUser) {
+			throw new UserException("Cannot create system users");
+		}
 		if (selfRegistration && userType == UserType.ADMIN) {
 			throw new UserException("Cannot create admin user with self registration");
 		}
@@ -149,5 +153,9 @@ public class AddUserDatabaseAction extends BimDatabaseAction<Long> {
 			}
 		});
 		return user.getOid();
+	}
+	
+	public void setCreateSystemUser() {
+		createSystemUser  = true;
 	}
 }
