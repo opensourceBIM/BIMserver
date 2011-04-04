@@ -78,6 +78,7 @@ import org.bimserver.database.actions.GetAllRevisionsByUserDatabaseAction;
 import org.bimserver.database.actions.GetAllRevisionsOfProjectDatabaseAction;
 import org.bimserver.database.actions.GetAllUsersDatabaseAction;
 import org.bimserver.database.actions.GetAvailableClassesDatabaseAction;
+import org.bimserver.database.actions.GetCheckoutWarningsDatabaseAction;
 import org.bimserver.database.actions.GetClashDetectionSettingsDatabaseAction;
 import org.bimserver.database.actions.GetDataObjectByGuidDatabaseAction;
 import org.bimserver.database.actions.GetDataObjectByOidDatabaseAction;
@@ -89,7 +90,6 @@ import org.bimserver.database.actions.GetProjectByNameDatabaseAction;
 import org.bimserver.database.actions.GetProjectByPoidDatabaseAction;
 import org.bimserver.database.actions.GetRevisionDatabaseAction;
 import org.bimserver.database.actions.GetRevisionSummaryDatabaseAction;
-import org.bimserver.database.actions.GetCheckoutWarningsDatabaseAction;
 import org.bimserver.database.actions.GetSubProjectsDatabaseAction;
 import org.bimserver.database.actions.GetUserByUoidDatabaseAction;
 import org.bimserver.database.actions.GetUserByUserNameDatabaseAction;
@@ -185,6 +185,7 @@ import org.bimserver.shared.SCompareResult.SObjectRemoved;
 import org.bimserver.tools.generators.GenerateUtils;
 import org.bimserver.utils.FakeClosingInputStream;
 import org.bimserver.utils.Hashers;
+import org.bimserver.utils.StringUtils;
 import org.bimserver.web.JspHelper;
 import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EAttribute;
@@ -194,6 +195,7 @@ import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -495,7 +497,7 @@ public class Service implements ServiceInterface {
 		BimDatabaseSession session = bimDatabase.createSession(true);
 		try {
 			BimDatabaseAction<Project> action = new AddProjectDatabaseAction(session, accessMethod, settingsManager, projectName, currentUoid);
-			return convert(session.executeAndCommitAction(action, DEADLOCK_RETRIES), SProject.class, session);
+			return convert(session.executeAndCommitAction(action, DEADLOCK_RETRIES), SProject.class);
 		} catch (Exception e) {
 			handleException(e);
 			return null;
@@ -569,13 +571,44 @@ public class Service implements ServiceInterface {
 			return null;
 		}
 		for (IdEObject eObject : list) {
-			newList.add(convert(eObject, targetClass, bimDatabaseSession));
+			newList.add(convert(eObject, targetClass));
 		}
 		return newList;
 	}
 
 	@SuppressWarnings("unchecked")
-	private <T> T convert(IdEObject original, Class<T> targetClass, BimDatabaseSession bimDatabaseSession) {
+	public static <T extends IdEObject> T convert(Object original, Class<T> targetClass) {
+		if (original == null) {
+			return null;
+		}
+		EClass eClass = (EClass) StorePackage.eINSTANCE.getEClassifier(targetClass.getSimpleName());
+		IdEObject idEObject = (IdEObject) eClass.getEPackage().getEFactoryInstance().create(eClass);
+		for (EStructuralFeature eStructuralFeature : eClass.getEAllStructuralFeatures()) {
+			try {
+				String methodName = "get" + StringUtils.firstUpperCase(eStructuralFeature.getName());
+				if (eStructuralFeature.getEType() == EcorePackage.eINSTANCE.getEBoolean()) {
+					methodName = "is" + StringUtils.firstUpperCase(eStructuralFeature.getName());
+				}
+				Method method = original.getClass().getMethod(methodName);
+				Object value = method.invoke(original);
+				idEObject.eSet(eStructuralFeature, value);
+			} catch (SecurityException e) {
+				LOGGER.error("", e);
+			} catch (NoSuchMethodException e) {
+				LOGGER.error("", e);
+			} catch (IllegalArgumentException e) {
+				LOGGER.error("", e);
+			} catch (IllegalAccessException e) {
+				LOGGER.error("", e);
+			} catch (InvocationTargetException e) {
+				LOGGER.error("", e);
+			}
+		}
+		return (T) idEObject;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public static <T> T convert(IdEObject original, Class<T> targetClass) {
 		if (original == null) {
 			return null;
 		}
@@ -792,7 +825,7 @@ public class Service implements ServiceInterface {
 		BimDatabaseSession session = bimDatabase.createReadOnlySession();
 		try {
 			BimDatabaseAction<Revision> action = new GetRevisionDatabaseAction(session, accessMethod, roid, currentUoid);
-			return convert(session.executeAction(action, DEADLOCK_RETRIES), SRevision.class, session);
+			return convert(session.executeAction(action, DEADLOCK_RETRIES), SRevision.class);
 		} catch (Exception e) {
 			handleException(e);
 			return null;
@@ -1027,7 +1060,7 @@ public class Service implements ServiceInterface {
 		BimDatabaseSession session = bimDatabase.createReadOnlySession();
 		try {
 			BimDatabaseAction<User> action = new GetUserByUserNameDatabaseAction(session, accessMethod, username);
-			SUser convert = convert(session.executeAction(action, DEADLOCK_RETRIES), SUser.class, session);
+			SUser convert = convert(session.executeAction(action, DEADLOCK_RETRIES), SUser.class);
 			if (convert == null) {
 				throw new UserException("User with username \"" + username + "\" not found");
 			}
@@ -1099,7 +1132,7 @@ public class Service implements ServiceInterface {
 		BimDatabaseSession session = bimDatabase.createSession(true);
 		try {
 			BimDatabaseAction<Project> action = new AddProjectDatabaseAction(session, accessMethod, settingsManager, projectName, parentPoid, currentUoid);
-			return convert(session.executeAndCommitAction(action, DEADLOCK_RETRIES), SProject.class, session);
+			return convert(session.executeAndCommitAction(action, DEADLOCK_RETRIES), SProject.class);
 		} catch (Exception e) {
 			handleException(e);
 			return null;
@@ -1491,7 +1524,7 @@ public class Service implements ServiceInterface {
 		BimDatabaseSession session = bimDatabase.createReadOnlySession();
 		try {
 			BimDatabaseAction<GeoTag> action = new GetGeoTagDatabaseAction(session, accessMethod, currentUoid, goid);
-			return convert(session.executeAction(action, DEADLOCK_RETRIES), SGeoTag.class, session);
+			return convert(session.executeAction(action, DEADLOCK_RETRIES), SGeoTag.class);
 		} catch (Exception e) {
 			handleException(e);
 			return null;
@@ -1520,7 +1553,7 @@ public class Service implements ServiceInterface {
 		BimDatabaseSession session = bimDatabase.createReadOnlySession();
 		try {
 			BimDatabaseAction<ClashDetectionSettings> action = new GetClashDetectionSettingsDatabaseAction(session, accessMethod, currentUoid, cdsoid);
-			return convert(session.executeAction(action, DEADLOCK_RETRIES), SClashDetectionSettings.class, session);
+			return convert(session.executeAction(action, DEADLOCK_RETRIES), SClashDetectionSettings.class);
 		} catch (Exception e) {
 			handleException(e);
 			return null;
@@ -1555,7 +1588,7 @@ public class Service implements ServiceInterface {
 		BimDatabaseSession session = bimDatabase.createReadOnlySession();
 		try {
 			GetUserByUoidDatabaseAction action = new GetUserByUoidDatabaseAction(session, accessMethod, uoid);
-			return convert(session.executeAction(action, DEADLOCK_RETRIES), SUser.class, session);
+			return convert(session.executeAction(action, DEADLOCK_RETRIES), SUser.class);
 		} catch (Exception e) {
 			handleException(e);
 			return null;
@@ -1570,7 +1603,7 @@ public class Service implements ServiceInterface {
 		BimDatabaseSession session = bimDatabase.createReadOnlySession();
 		try {
 			GetProjectByPoidDatabaseAction action = new GetProjectByPoidDatabaseAction(session, accessMethod, poid, currentUoid);
-			return convert(action.execute(), SProject.class, session);
+			return convert(action.execute(), SProject.class);
 		} catch (Exception e) {
 			handleException(e);
 			return null;
@@ -1638,7 +1671,7 @@ public class Service implements ServiceInterface {
 		BimDatabaseSession session = bimDatabase.createSession(true);
 		try {
 			GetProjectByNameDatabaseAction action = new GetProjectByNameDatabaseAction(session, accessMethod, name, currentUoid);
-			return (List<SProject>) convert(session.executeAction(action, DEADLOCK_RETRIES), SProject.class, session);
+			return (List<SProject>) convert(session.executeAction(action, DEADLOCK_RETRIES), SProject.class);
 		} catch (BimDatabaseException e) {
 			throw new UserException(e);
 		} finally {
@@ -1751,7 +1784,7 @@ public class Service implements ServiceInterface {
 		BimDatabaseSession session = bimDatabase.createReadOnlySession();
 		try {
 			User user = session.get(StorePackage.eINSTANCE.getUser(), currentUoid, false);
-			return convert(user, SUser.class, session);
+			return convert(user, SUser.class);
 		} finally {
 			session.close();
 		}

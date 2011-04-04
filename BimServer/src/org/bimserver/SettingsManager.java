@@ -13,6 +13,7 @@ import org.bimserver.models.store.Settings;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.shared.ResultType;
+import org.eclipse.emf.ecore.EStructuralFeature;
 
 /*
  * This class exists for 2 purposes
@@ -95,6 +96,13 @@ public class SettingsManager {
 			enabledExportTypes = enabledExportTypes.substring(0, enabledExportTypes.length() - 1);
 		}
 		getSettings().setEnabledExportTypes(enabledExportTypes);
+		saveSettings();
+	}
+
+	public void setSettings(Settings settings) {
+		for (EStructuralFeature eStructuralFeature : settings.eClass().getEAllStructuralFeatures()) {
+			this.settings.eSet(eStructuralFeature, settings.eGet(eStructuralFeature));
+		}
 		saveSettings();
 	}
 }
