@@ -2193,13 +2193,15 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public Set<SMigration> getMigrations() {
+	public Set<SMigration> getMigrations() throws UserException {
+		requireAuthentication();
 		Migrator migrator = bimDatabase.getMigrator();
 		return migrator.getMigrations();
 	}
 
 	@Override
-	public void migrateDatabase() throws ServerException {
+	public void migrateDatabase() throws ServerException, UserException {
+		requireAuthentication();
 		try {
 			bimDatabase.getMigrator().migrate();
 			ServerInfo.update();

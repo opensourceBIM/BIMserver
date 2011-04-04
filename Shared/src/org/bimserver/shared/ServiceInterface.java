@@ -562,9 +562,9 @@ public interface ServiceInterface {
 	List<SLongAction> getActiveLongActions() throws ServerException, ServiceException;
 
 	@WebMethod(action = "getPendingMigrations")
-	Set<SMigration> getMigrations();
+	Set<SMigration> getMigrations() throws UserException;
 
 	@WebMethod(action = "migrateDatabase")
-	void migrateDatabase() throws ServerException;
+	void migrateDatabase() throws ServerException, UserException;
 
 }

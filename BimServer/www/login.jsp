@@ -5,12 +5,13 @@
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.Map"%>
 <%@page import="java.net.URLEncoder"%>
-<%@page import="org.bimserver.ServerInfo"%><jsp:include page="htmlheader.jsp" />
+<%@page import="org.bimserver.ServerInfo"%>
+<%@page import="org.bimserver.ServerInfo.ServerState"%><jsp:include page="htmlheader.jsp" />
 <jsp:useBean id="errorMessages" scope="request" class="org.bimserver.ErrorMessages" />
 <jsp:useBean id="loginManager" scope="session" class="org.bimserver.web.LoginManager" />
 <body>
 	<%
-	if (ServerInfo.isAvailable()) {
+	if (ServerInfo.isAvailable() || ServerInfo.getServerState() == ServerInfo.ServerState.MIGRATION_REQUIRED) {
 		Version version = VersionChecker.getInstance().getLocalVersion();
 		boolean redirected = false;
 		if (request.getParameter("login") != null) {

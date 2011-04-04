@@ -1,9 +1,18 @@
 <%@page import="org.bimserver.version.VersionChecker"%>
 <%@page import="java.text.SimpleDateFormat"%>
+<%@page import="org.bimserver.shared.UserException"%>
+<%@page import="java.util.Date"%>
 <jsp:useBean id="loginManager" scope="session" class="org.bimserver.web.LoginManager" />
 <%
 	VersionChecker checkVersion = VersionChecker.getInstance();
 	SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+	Date lastReset = null;
+	try {
+		lastReset = loginManager.getSystemService().getLastDatabaseReset();
+	} catch (UserException e) {
+		// Ignore		
+	}
 %>
-<div class="info">Last database reset: <%=dateFormat.format(loginManager.getAdminService().getLastDatabaseReset()) %><br/>
+
+<div class="info">Last database reset: <%=lastReset == null ? "Unknown" : dateFormat.format(lastReset) %><br/>
 Version: <%=checkVersion.getLocalVersion().getVersion() + " (" + dateFormat.format(checkVersion.getLocalVersion().getDate()) + ")"%></div>

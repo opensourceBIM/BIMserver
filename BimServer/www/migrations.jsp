@@ -4,6 +4,11 @@
 <%@page import="org.bimserver.ServerInfo"%>
 <%@page import="org.bimserver.ServerInfo.ServerState"%>
 <jsp:useBean id="loginManager" scope="session" class="org.bimserver.web.LoginManager" />
+<%
+if (!loginManager.getService().isLoggedIn()) {
+	response.sendRedirect("login.jsp");
+} else {
+%>
 <jsp:include page="htmlheader.jsp" />
 <body>
 <div style="width: 1000px; margin-left: auto; margin-right: auto; padding-top: 20px">
@@ -51,3 +56,4 @@ No migrations required to execute
 </div>
 </body>
 </html>
+<% } %>
