@@ -33,7 +33,7 @@ public class Server {
 	private static final Logger LOGGER = LoggerFactory.getLogger(Server.class);
 
 	public static void main(String[] args) {
-		String address = "192.168.1.109";
+		String address = "127.0.0.1";
 		String port = "8082";
 		String homedir = "home";
 		for (String arg : args) {
