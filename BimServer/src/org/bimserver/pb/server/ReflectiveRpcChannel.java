@@ -18,6 +18,8 @@ import org.bimserver.models.log.AccessMethod;
 import org.bimserver.shared.ServiceInterface;
 import org.bimserver.utils.StringUtils;
 import org.bimserver.webservices.ServiceFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.protobuf.BlockingRpcChannel;
 import com.google.protobuf.ByteString;
@@ -33,6 +35,7 @@ import com.google.protobuf.Message.Builder;
 
 public class ReflectiveRpcChannel implements BlockingRpcChannel {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(ReflectiveRpcChannel.class);
 	private final ServiceFactory serviceFactory;
 	private ServiceInterface service;
 //	private final Map<Class<?>, Map<String, Set<Method>>> cachedMethods = new HashMap<Class<?>, Map<String, Set<Method>>>();
@@ -45,9 +48,9 @@ public class ReflectiveRpcChannel implements BlockingRpcChannel {
 		try {
 			return clazz.getMethod(methodName, parameterClasses);
 		} catch (SecurityException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (NoSuchMethodException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 		return null;
 //		if (cachedMethods.containsKey(clazz)) {
@@ -88,8 +91,6 @@ public class ReflectiveRpcChannel implements BlockingRpcChannel {
 		}
 		try {
 			Method method = getMethod(clazz, methodDescriptor.getName(), parameterClasses);
-			// Method method = clazz.getMethod(methodDescriptor.getName(),
-			// parameterClasses);
 			Object[] arguments = new Object[methodDescriptor.getInputType().getFields().size()];
 			int i = 0;
 			for (FieldDescriptor fieldDescriptor : methodDescriptor.getInputType().getFields()) {
@@ -126,7 +127,7 @@ public class ReflectiveRpcChannel implements BlockingRpcChannel {
 			if (e.getMessage() != null) {
 				errorMessage.setField(responsePrototype.getDescriptorForType().getFields().get(1), e.getMessage());
 			} else {
-				e.printStackTrace();
+				LOGGER.error("", e);
 				errorMessage.setField(responsePrototype.getDescriptorForType().getFields().get(1), "Unknown error");
 			}
 			return errorMessage.build();
@@ -153,25 +154,22 @@ public class ReflectiveRpcChannel implements BlockingRpcChannel {
 		try {
 			Class builderClass = Class.forName("org.bimserver.pb.Service$" + descriptor.getName());
 			Method method = getMethod(builderClass, "newBuilder");
-			// Method method = builderClass.getMethod("newBuilder");
 			builder = (Builder) method.invoke(null);
 			convertedObjects.put(object, builder);
-		} catch (ClassNotFoundException e1) {
-			e1.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			LOGGER.error("", e);
 		} catch (SecurityException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (IllegalArgumentException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (IllegalAccessException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (InvocationTargetException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 		for (FieldDescriptor fieldDescriptor : descriptor.getFields()) {
 			try {
 				Method getMethod = getMethod(clazz, "get" + StringUtils.firstUpperCase(fieldDescriptor.getName()));
-				// Method getMethod = clazz.getMethod("get" +
-				// StringUtils.firstUpperCase(fieldDescriptor.getName()));
 				Object value = getMethod.invoke(object);
 				if (value != null) {
 					if (value.getClass().isPrimitive() || value.getClass() == String.class || value.getClass() == Long.class || value.getClass() == Float.class
@@ -203,19 +201,19 @@ public class ReflectiveRpcChannel implements BlockingRpcChannel {
 						}
 						builder.setField(fieldDescriptor, newList);
 					} else {
-						System.out.println("Unimplemented: " + fieldDescriptor.getName() + ": " + value);
+						LOGGER.error("Unimplemented: " + fieldDescriptor.getName() + ": " + value);
 					}
 				}
 			} catch (SecurityException e) {
-				e.printStackTrace();
+				LOGGER.error("", e);
 			} catch (IllegalArgumentException e) {
-				e.printStackTrace();
+				LOGGER.error("", e);
 			} catch (IllegalAccessException e) {
-				e.printStackTrace();
+				LOGGER.error("", e);
 			} catch (InvocationTargetException e) {
-				e.printStackTrace();
+				LOGGER.error("", e);
 			} catch (IOException e) {
-				e.printStackTrace();
+				LOGGER.error("", e);
 			}
 		}
 		return builder.build();
@@ -240,7 +238,7 @@ public class ReflectiveRpcChannel implements BlockingRpcChannel {
 			try {
 				return Class.forName("org.bimserver.shared." + fieldDescriptor.getEnumType().getName());
 			} catch (ClassNotFoundException e) {
-				e.printStackTrace();
+				LOGGER.error("", e);
 			}
 		}
 		return null;
