@@ -13,6 +13,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Marshaller;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
@@ -20,7 +22,9 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.IOUtils;
 import org.bimserver.ServerInitializer;
+import org.bimserver.interfaces.objects.SSettings;
 import org.bimserver.interfaces.objects.SUserType;
+import org.bimserver.models.store.Settings;
 import org.bimserver.resources.JarResourceFetcher;
 import org.bimserver.resources.WarResourceFetcher;
 import org.bimserver.web.LoginManager;
@@ -105,7 +109,12 @@ public class SettingsServlet extends HttpServlet {
 				}
 				if (request.getParameter("action") != null) {
 					String action = request.getParameter("action");
-					if (action.equals("downloadsettings")) {
+					if (action.equals("downloadsettingsfile")) {
+						Settings settings = ServerInitializer.getSettingsManager().getSettings();
+						JAXBContext jaxbContext = JAXBContext.newInstance(SSettings.class);
+						Marshaller marshaller = jaxbContext.createMarshaller();
+						SSettings sSettings = null;
+						marshaller.marshal(sSettings, response.getOutputStream());
 //						Settings settings = ServerSettings.getSettings();
 //						response.setContentType("text/xml");
 //						response.setHeader("Content-Disposition", "attachment; filename=\"settings.xml\"");

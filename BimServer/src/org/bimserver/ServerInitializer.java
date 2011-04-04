@@ -98,6 +98,7 @@ public class ServerInitializer implements ServletContextListener {
 	private File homeDir;
 	private File baseDir;
 	private static ServerType serverType;
+	private static SettingsManager settingsManager;
 
 	@Override
 	public void contextInitialized(ServletContextEvent servletContextEvent) {
@@ -177,7 +178,7 @@ public class ServerInitializer implements ServletContextListener {
 				bimDatabase.init();
 			}
 
-			SettingsManager settingsManager = new SettingsManager(bimDatabase);
+			settingsManager = new SettingsManager(bimDatabase);
 			MailSystem mailSystem = new MailSystem(settingsManager);
 
 			ServerInfo.init(bimDatabase, settingsManager);
@@ -251,6 +252,10 @@ public class ServerInitializer implements ServletContextListener {
 		}
 	}
 
+	public static SettingsManager getSettingsManager() {
+		return settingsManager;
+	}
+	
 	public static LongActionManager getLongActionManager() {
 		return longActionManager;
 	}

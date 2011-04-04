@@ -66,7 +66,7 @@ public class AddProjectDatabaseAction extends BimDatabaseAction<Project> {
 		} else {
 			Project parent = project.getParent();
 			for (Project subProject : parent.getSubProjects()) {
-				if (subProject.getName().equals(trimmedName) && subProject != project) {
+				if (subProject != project && subProject.getName().equals(trimmedName)) {
 					throw new UserException("Project name must be unique within parent project (" + parent.getName() + ")");
 				}
 			}
