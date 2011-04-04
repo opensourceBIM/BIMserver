@@ -1,5 +1,7 @@
 package org.bimserver.pb;
+
 option java_generic_services = true;
+
 service ServiceInterface {
 	rpc compare (CompareRequest) returns (CompareResponse);
 
@@ -97,7 +99,7 @@ service ServiceInterface {
 
 	rpc userHasCheckinRights (UserHasCheckinRightsRequest) returns (UserHasCheckinRightsResponse);
 
-	rpc getShowCheckoutWarning (GetShowCheckoutWarningRequest) returns (GetShowCheckoutWarningResponse);
+	rpc getCheckoutWarnings (GetCheckoutWarningsRequest) returns (GetCheckoutWarningsResponse);
 
 	rpc userHasRights (UserHasRightsRequest) returns (UserHasRightsResponse);
 
@@ -240,6 +242,7 @@ service ServiceInterface {
 	rpc migrateDatabase (MigrateDatabaseRequest) returns (Void);
 
 }
+
 enum SCompareType{
 	ALL = 0;
 	ADD = 1;
@@ -387,23 +390,15 @@ message CheckoutLastRevisionResponse {
 	optional string errorMessage = 1;
 }
 
-message Set {
-}
-
 message DownloadByOidsRequest {
-	repeated Set roids = 1;
-	repeated Set oids = 2;
+	repeated int64 roids = 1;
+	repeated int64 oids = 2;
 	optional ResultType resultType = 3;
-}
-
-message SDownloadResult {
-	optional bytes file = 1;
-	optional string projectName = 2;
-	optional int32 revisionNr = 3;
+	optional bool sync = 4;
 }
 
 message DownloadByOidsResponse {
-	optional SDownloadResult value = 2;
+	optional string value = 2;
 	optional string errorMessage = 1;
 }
 
@@ -411,36 +406,45 @@ message DownloadOfTypeRequest {
 	optional int64 roid = 1;
 	optional string className = 2;
 	optional ResultType resultType = 3;
+	optional bool sync = 4;
 }
 
 message DownloadOfTypeResponse {
-	optional SDownloadResult value = 2;
+	optional string value = 2;
 	optional string errorMessage = 1;
 }
 
 message DownloadByGuidsRequest {
-	repeated Set roids = 1;
-	repeated Set guids = 2;
+	repeated int64 roids = 1;
+	repeated string guids = 2;
 	optional ResultType resultType = 3;
+	optional bool sync = 4;
 }
 
 message DownloadByGuidsResponse {
-	optional SDownloadResult value = 2;
+	optional string value = 2;
 	optional string errorMessage = 1;
 }
 
 message DownloadProjectsRequest {
-	repeated Set roids = 1;
+	repeated int64 roids = 1;
 	optional ResultType resultType = 2;
+	optional bool sync = 3;
 }
 
 message DownloadProjectsResponse {
-	optional SDownloadResult value = 2;
+	optional string value = 2;
 	optional string errorMessage = 1;
 }
 
 message GetDownloadDataRequest {
 	optional string actionID = 1;
+}
+
+message SDownloadResult {
+	optional bytes file = 1;
+	optional string projectName = 2;
+	optional int32 revisionNr = 3;
 }
 
 message GetDownloadDataResponse {
@@ -588,6 +592,7 @@ message SRevision {
 	optional string lastError = 14;
 	optional int32 bmi = 15;
 	optional int32 nrClashes = 16;
+	optional int64 laid = 17;
 }
 
 message UpdateRevisionRequest {
@@ -861,12 +866,11 @@ message UserHasCheckinRightsResponse {
 	optional string errorMessage = 1;
 }
 
-message GetShowCheckoutWarningRequest {
+message GetCheckoutWarningsRequest {
 	optional int64 poid = 1;
-	optional int64 uoid = 2;
 }
 
-message GetShowCheckoutWarningResponse {
+message GetCheckoutWarningsResponse {
 	repeated string value = 2;
 	optional string errorMessage = 1;
 }
@@ -1234,7 +1238,7 @@ message ValidateAccountRequest {
 message SendClashesEmailRequest {
 	optional SClashDetectionSettings sClashDetectionSettings = 1;
 	optional int64 poid = 2;
-	repeated Set addressesTo = 3;
+	repeated string addressesTo = 3;
 }
 
 message SendCompareEmailRequest {
@@ -1278,7 +1282,7 @@ message GetSettingEnabledExportTypesResponse {
 }
 
 message SetSettingEnabledExportTypesRequest {
-	repeated Set enabledExportTypes = 1;
+	repeated ResultType enabledExportTypes = 1;
 }
 
 message GetSettingRegistrationAdditionRequest {

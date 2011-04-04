@@ -23,6 +23,8 @@ import org.apache.commons.io.FileUtils;
 import org.bimserver.shared.ServiceInterface;
 import org.bimserver.utils.StringUtils;
 
+import com.google.protobuf.ByteString;
+
 public class ProtocolBuffersGenerator {
 	private final Map<Class<?>, String> generatedClasses = new HashMap<Class<?>, String>();
 	private static final Set<String> methodsToIgnore = new HashSet<String>();
@@ -51,7 +53,6 @@ public class ProtocolBuffersGenerator {
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
-
 		File destDir = new File("generated");
 		File protoDir = new File("build/pb");
 		File execFile = new File("build/pb/protoc.exe");
@@ -95,6 +96,131 @@ public class ProtocolBuffersGenerator {
 			}).start();
 		} catch (IOException e) {
 			e.printStackTrace();
+		}
+		generateServiceInterfaceImplementation();
+	}
+
+	private void generateServiceInterfaceImplementation() {
+		File file = new File("generated/org/bimserver/pb/ProtocolBuffersServiceInterfaceImplementation.java");
+		try {
+			PrintWriter out = new PrintWriter(file);
+			out.println("package org.bimserver.pb;\n");
+			out.println("import java.util.*;");
+			out.println("import com.google.protobuf.*;");
+			out.println("import org.bimserver.utils.*;");
+			out.println("import org.bimserver.pb.Service.*;");
+			out.println("import com.google.protobuf.BlockingRpcChannel;");
+			out.println("import org.bimserver.pb.Service.ServiceInterface.BlockingInterface;");
+			out.println("import com.googlecode.protobuf.socketrpc.SocketRpcController;");
+			out.println("import com.googlecode.protobuf.socketrpc.RpcChannels;");
+			out.println("import com.googlecode.protobuf.socketrpc.SocketRpcConnectionFactories;");
+			out.println();
+			out.println("public class ProtocolBuffersServiceInterfaceImplementation implements org.bimserver.shared.ServiceInterface {\n");
+			out.println("\tprivate BlockingInterface service;\n");
+			out.println("\tprivate SocketRpcController rpcController;\n");
+			out.println("\tpublic ProtocolBuffersServiceInterfaceImplementation() {");
+			out.println("\t\tBlockingRpcChannel rpcChannel = RpcChannels.newBlockingRpcChannel(SocketRpcConnectionFactories.createRpcConnectionFactory(\"localhost\", 8020));");
+			out.println("\t\trpcController = new SocketRpcController();");
+			out.println("\t\tservice = ServiceInterface.newBlockingStub(rpcChannel);");
+			out.println("\t}\n");
+			for (Method method : ServiceInterface.class.getMethods()) {
+				boolean returnsVoid = method.getReturnType() == Void.class || method.getReturnType() == void.class;
+				if (returnsVoid) {
+					out.print("\tpublic void " + method.getName() + "(");
+				} else {
+					out.print("\tpublic " + method.getReturnType().getName() + " " + method.getName() + "(");
+				}
+				int parameterCounter = 0;
+				for (Class<?> parameterType : method.getParameterTypes()) {
+					WebParam annotation = extractAnnotation(method, parameterCounter, WebParam.class);
+					String paramName = "unknown";
+					if (annotation != null) {
+						paramName = annotation.name();
+					}
+					String typeName = parameterType.getName();
+					typeName = typeName.replace("$", ".");
+					out.print(typeName + " " + paramName + (parameterCounter < method.getParameterTypes().length - 1 ? ", " : ""));
+					parameterCounter++;
+				}
+				out.println(") {");
+				out.println("\t\ttry {");
+				String requestClassName = StringUtils.firstUpperCase(method.getName()) + "Request";
+				String responseClassName = StringUtils.firstUpperCase(method.getName()) + "Response";
+				out.println("\t\t\t" + requestClassName + ".Builder requestBuilder = " + requestClassName + ".newBuilder();");
+				parameterCounter = 0;
+				for (Class<?> parameterType : method.getParameterTypes()) {
+					WebParam annotation = extractAnnotation(method, parameterCounter, WebParam.class);
+					String paramName = "unknown";
+					if (annotation != null) {
+						paramName = annotation.name();
+					}
+					if (parameterType.isAssignableFrom(List.class) || parameterType.isAssignableFrom(Set.class)) {
+						out.println("\t\t\tfor (Object val : " + paramName + ") {");
+						out.println("\t\t\t\trequestBuilder.add" + StringUtils.firstUpperCase(paramName) + "(val);");
+						out.println("\t\t\t}");
+					} else if (parameterType.isAssignableFrom(DataHandler.class)) {
+						out.println("\t\t\tByteString bs = ByteString.copyFrom(BinUtils.readInputStream(" + paramName + ".getInputStream()));");
+						out.println("\t\t\trequestBuilder.set" + StringUtils.firstUpperCase(paramName) + "(bs);");
+					} else if (parameterType.isPrimitive()) {
+						out.println("\t\t\trequestBuilder.set" + StringUtils.firstUpperCase(paramName) + "(" + paramName + ");");
+					} else {
+						out.println("\t\t\t");
+						out.println("\t\t\trequestBuilder.set" + StringUtils.firstUpperCase(paramName) + "(" + paramName + ");");
+					}
+					parameterCounter++;
+				}
+				out.println("\t\t\t" + requestClassName + " request = requestBuilder.build();");
+				if (returnsVoid) {
+					out.println("\t\t\tservice." + method.getName() + "(rpcController, request);");
+				} else {
+					out.println("\t\t\t" + responseClassName + " response = service." + method.getName() + "(rpcController, request);");
+					if (method.getReturnType().isAssignableFrom(List.class)) {
+						out.println("\t\t\t" + method.getReturnType().getName() + " realResult = new ArrayList();");
+						out.println("\t\t\tList originalList = response.getValueList();");
+						out.println("\t\t\tfor (Object val : originalList) {");
+						out.println("\t\t\t\trealResult.add(val);");
+						out.println("\t\t\t}");
+						out.println("\t\treturn realResult;");
+					} else if (method.getReturnType().isAssignableFrom(Set.class)) {
+						out.println("\t\t\t" + method.getReturnType().getName() + " realResult = new HashSet();");
+						out.println("\t\t\tList originalList = response.getValueList();");
+						out.println("\t\t\tfor (Object val : originalList) {");
+						out.println("\t\t\t\trealResult.add(val);");
+						out.println("\t\t\t}");
+						out.println("\t\treturn realResult;");
+					} else if (method.getReturnType().isPrimitive()) {
+						out.println("\t\t\treturn response.getValue();");
+					} else if (method.getReturnType().isEnum()) {
+						out.println("\t\t\treturn null;");
+					} else {
+						out.println("\t\t\t" + method.getReturnType().getName() + " realResult = new " + method.getReturnType().getName() + "();");
+						out.println("\t\t\treturn realResult;");
+					}
+				}
+				out.println("\t\t} catch (Exception e) {}");
+				if (!returnsVoid) {
+					out.println("\t\treturn " + getDefaultLiteralCode(method.getReturnType()) + ";");
+				}
+				out.println("\t}\n");
+			}
+			out.println("}");
+			out.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private String getDefaultLiteralCode(Class type) {
+		if (type == Boolean.class || type == boolean.class) {
+			return "false";
+		} else if (type == Integer.class || type == int.class) {
+			return "0";
+		} else if (type == Long.class || type == long.class) {
+			return "0";
+		} else if (type.isEnum()) {
+			return "null";
+		} else {
+			return "null";
 		}
 	}
 
@@ -263,11 +389,13 @@ public class ProtocolBuffersGenerator {
 				messageBuilder.append("optional ");
 			}
 			if (aggregate) {
-				Type genericReturnType = method.getGenericReturnType();
+				Type genericReturnType = method.getGenericParameterTypes()[parameterCounter];
 				if (genericReturnType instanceof ParameterizedType) {
 					ParameterizedType parameterizedTypeImpl = (ParameterizedType)genericReturnType;
 					Type type2 = parameterizedTypeImpl.getActualTypeArguments()[0];
 					parameterType = ((Class<?>)type2);
+				} else if (genericReturnType instanceof Class) {
+					parameterType = (Class<?>) genericReturnType;
 				}
 			}
 			messageBuilder.append(createMessage(builder, parameterType) + " " + paramName + " = " + (counter++) + ";\n");

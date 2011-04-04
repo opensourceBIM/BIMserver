@@ -332,7 +332,7 @@ public class IfcStepDeserializer {
 		waitingObjects.remove(id);
 	}
 
-	private Object convertSimpleValue(Class<?> instanceClass, String value) {
+	private Object convertSimpleValue(Class<?> instanceClass, String value) throws IncorrectIfcFileException {
 		if (!value.equals("")) {
 			if (instanceClass == Double.class || instanceClass == double.class) {
 				return Double.parseDouble(value);
@@ -343,7 +343,11 @@ public class IfcStepDeserializer {
 			} else if (instanceClass == Boolean.class || instanceClass == boolean.class) {
 				return Boolean.parseBoolean(value);
 			} else if (instanceClass == Float.class || instanceClass == float.class) {
-				return Float.parseFloat(value);
+				try {
+					return Float.parseFloat(value);
+				} catch (NumberFormatException e) {
+					throw new IncorrectIfcFileException("Incorrent floating point value", e);
+				}
 			} else if (instanceClass == String.class) {
 				if (value.startsWith("'") && value.endsWith("'")) {
 					return value.substring(1, value.length()-1);

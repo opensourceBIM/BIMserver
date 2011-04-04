@@ -20,6 +20,9 @@ package org.bimserver.utils;
  * long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.nio.ByteBuffer;
 import java.nio.DoubleBuffer;
 import java.nio.FloatBuffer;
@@ -28,9 +31,17 @@ import java.nio.LongBuffer;
 import java.nio.ShortBuffer;
 import java.util.Date;
 
+import org.apache.commons.io.IOUtils;
+
 import com.google.common.base.Charsets;
 
 public class BinUtils {
+	public static byte[] readInputStream(InputStream in) throws IOException {
+		ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+		IOUtils.copy(in, byteArrayOutputStream);
+		return byteArrayOutputStream.toByteArray();
+	}
+	
 	public static byte[] longToByteArray(long inLong) {
 		byte[] bArray = new byte[8];
 		ByteBuffer bBuffer = ByteBuffer.wrap(bArray);
