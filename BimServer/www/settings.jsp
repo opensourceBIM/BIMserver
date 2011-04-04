@@ -15,10 +15,11 @@
 <%@page import="org.bimserver.interfaces.objects.SUserType"%>
 <%@page import="org.bimserver.serializers.EmfSerializerFactory"%>
 <%@page import="org.bimserver.shared.ServiceInterface"%>
-
-<%@page import="org.bimserver.shared.UserException"%><div class="sidebar">
+<%@page import="org.bimserver.shared.UserException"%>
+<div class="sidebar">
 <ul>
 	<li><a href="<%=getServletContext().getContextPath()%>/settings?action=downloadignorefile">Download ignore.xml</a></li>
+	<li><a href="<%=getServletContext().getContextPath()%>/migrations.jsp">Migrations</a></li>
 </ul>
 </div>
 <div class="content">
@@ -183,14 +184,11 @@
 <table class="formatted infotable">
 	<tr>
 		<td>Download</td>
-		<td><a
-			href="<%=getServletContext().getContextPath()%>/settings?action=downloadsettings">Download
-		settings.xml</a></td>
+		<td><a href="<%=getServletContext().getContextPath()%>/settings?action=downloadsettings">Download settings.xml</a></td>
 	</tr>
 	<tr>
 		<td>Upload</td>
-		<td><input type="file" name="settings"></input><input
-			type="submit" value="Upload"></input></td>
+		<td><input type="file" name="settings"></input><input type="submit" value="Upload"></input></td>
 	</tr>
 </table>
 <input type="hidden" name="action" value="uploadsettings" /></form>
