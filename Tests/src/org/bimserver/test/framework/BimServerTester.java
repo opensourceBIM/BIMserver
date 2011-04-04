@@ -70,7 +70,7 @@ public class BimServerTester {
 				new BimServerTester(new File(args[1])).start();
 			}
 		} else {
-			new BimServerTester(new File("D:\\ifc selected")).start();
+			new BimServerTester(new File("C:\\IFC\\ifc selected")).start();
 		}
 	}
 
@@ -149,7 +149,7 @@ public class BimServerTester {
 		int nr = random.nextInt(100000000);
 		String projectName = "project " + nr;
 		try {
-			client.login("admin", "admin");
+			client.login("admin@bimserver.org", "admin");
 		} catch (ServiceException e) {
 			testResult.setDescription(e.getFullMessage());
 			testResult.setResultCode(ResultCode.OTHER_SERVER_ERROR);

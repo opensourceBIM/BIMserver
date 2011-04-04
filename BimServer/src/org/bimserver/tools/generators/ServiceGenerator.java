@@ -29,10 +29,10 @@ public class ServiceGenerator {
 		Set<EPackage> ePackages = new HashSet<EPackage>();
 		ePackages.add(StorePackage.eINSTANCE);
 		ePackages.add(LogPackage.eINSTANCE);
-		new ServiceGenerator().generate(ePackages);
+		new ServiceGenerator().generateDataObjects(ePackages);
 	}
 
-	private void generate(Set<EPackage> ePackages) {
+	private void generateDataObjects(Set<EPackage> ePackages) {
 		try {
 			FileUtils.forceMkdir(packageFolder);
 		} catch (IOException e) {

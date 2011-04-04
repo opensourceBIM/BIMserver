@@ -37,7 +37,6 @@ public class ProtocolBuffersClient {
 	private void start() {
 		BlockingRpcChannel rpcChannel = RpcChannels.newBlockingRpcChannel(SocketRpcConnectionFactories.createRpcConnectionFactory("localhost", 8020));
 		rpcController = new SocketRpcController();
-
 		service = ServiceInterface.newBlockingStub(rpcChannel);
 		try {
 			if (login("admin@logic-labs.nl", "admin")) {
