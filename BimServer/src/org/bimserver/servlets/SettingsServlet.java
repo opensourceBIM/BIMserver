@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
@@ -27,7 +28,9 @@ import org.bimserver.interfaces.objects.SUserType;
 import org.bimserver.models.store.Settings;
 import org.bimserver.resources.JarResourceFetcher;
 import org.bimserver.resources.WarResourceFetcher;
+import org.bimserver.serializers.EmfSerializerFactory;
 import org.bimserver.web.LoginManager;
+import org.bimserver.webservices.Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -61,13 +64,13 @@ public class SettingsServlet extends HttpServlet {
 								}
 							} else {
 								if (fieldName.equals("settings")) {
-//									InputStream inputStream = item.getInputStream();
-//									Settings readFromStream = Settings.readFromStream(inputStream);
-//									readFromStream.save();
-//									ServerSettings.setSettings(Settings.read());
-//									EmfSerializerFactory.getInstance().initSerializers();
-//									response.sendRedirect(getServletContext().getContextPath() + "/settings.jsp?msg=settingsfileuploadok");
-//									return;
+									JAXBContext jaxbContext = JAXBContext.newInstance(SSettings.class);
+									Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+									SSettings sSettings = (SSettings) unmarshaller.unmarshal(item.getInputStream());
+									ServerInitializer.getSettingsManager().setSettings(Service.convert(sSettings, Settings.class));
+									EmfSerializerFactory.getInstance().initSerializers();
+									response.sendRedirect(getServletContext().getContextPath() + "/settings.jsp?msg=settingsfileuploadok");
+									return;
 								} else if (fieldName.equals("ignorefile")) {
 									InputStream inputStream = item.getInputStream();
 									File file = ServerInitializer.getResourceFetcher().getFile("ignore.xml");
@@ -110,16 +113,14 @@ public class SettingsServlet extends HttpServlet {
 				if (request.getParameter("action") != null) {
 					String action = request.getParameter("action");
 					if (action.equals("downloadsettingsfile")) {
+						response.setContentType("text/xml");
+						response.setHeader("Content-Disposition", "attachment; filename=\"settings.xml\"");
 						Settings settings = ServerInitializer.getSettingsManager().getSettings();
+						SSettings sSettings = Service.convert(settings, SSettings.class);
 						JAXBContext jaxbContext = JAXBContext.newInstance(SSettings.class);
 						Marshaller marshaller = jaxbContext.createMarshaller();
-						SSettings sSettings = null;
 						marshaller.marshal(sSettings, response.getOutputStream());
-//						Settings settings = ServerSettings.getSettings();
-//						response.setContentType("text/xml");
-//						response.setHeader("Content-Disposition", "attachment; filename=\"settings.xml\"");
-//						settings.saveToStream(response.getOutputStream());
-//						return;
+						return;
 					} else if (action.equals("downloadlog")) {
 						response.setContentType("text");
 						response.setHeader("Content-Disposition", "attachment; filename=\"bimserver.log\"");
