@@ -19,6 +19,7 @@
 <div class="sidebar">
 <ul>
 	<li><a href="<%=getServletContext().getContextPath()%>/settings?action=downloadignorefile">Download ignore.xml</a></li>
+	<li><a href="<%=getServletContext().getContextPath()%>/settings?action=downloadsettingsfile">Download settings.xml</a></li>
 	<li><a href="<%=getServletContext().getContextPath()%>/migrations.jsp">Migrations</a></li>
 </ul>
 </div>
@@ -184,7 +185,7 @@
 <table class="formatted infotable">
 	<tr>
 		<td>Download</td>
-		<td><a href="<%=getServletContext().getContextPath()%>/settings?action=downloadsettings">Download settings.xml</a></td>
+		<td><a href="<%=getServletContext().getContextPath()%>/settings?action=downloadsettingsfile">Download settings.xml</a></td>
 	</tr>
 	<tr>
 		<td>Upload</td>
