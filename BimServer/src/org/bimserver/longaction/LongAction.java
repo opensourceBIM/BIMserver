@@ -12,6 +12,8 @@ public abstract class LongAction {
 		start = new Date();
 	}
 
+	public abstract void init();
+
 	public abstract void execute();
 
 	public abstract String getIdentification();

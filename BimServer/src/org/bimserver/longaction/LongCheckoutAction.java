@@ -11,6 +11,7 @@ import org.bimserver.shared.LongActionState.ActionState;
 public class LongCheckoutAction extends LongDownloadOrCheckoutAction {
 
 	private CheckoutDatabaseAction action;
+	private BimDatabaseSession session;
 
 	public LongCheckoutAction(DownloadParameters downloadParameters, long currentUoid, LongActionManager longActionManager, BimDatabase bimDatabase,
 			AccessMethod accessMethod, EmfSerializerFactory emfSerializerFactory) {
@@ -20,9 +21,8 @@ public class LongCheckoutAction extends LongDownloadOrCheckoutAction {
 	@Override
 	public void execute() {
 		state = ActionState.STARTED;
-		BimDatabaseSession session = bimDatabase.createSession(true);
+		session = bimDatabase.createSession(true);
 		try {
-			action = new CheckoutDatabaseAction(session, accessMethod, currentUoid, downloadParameters.getRoid());
 			executeAction(action, downloadParameters, session);
 		} catch (Exception e) {
 			LOGGER.error("", e);
@@ -43,4 +43,8 @@ public class LongCheckoutAction extends LongDownloadOrCheckoutAction {
 		return ds;
 	}
 
+	@Override
+	public void init() {
+		action = new CheckoutDatabaseAction(session, accessMethod, currentUoid, downloadParameters.getRoid());
+	}
 }

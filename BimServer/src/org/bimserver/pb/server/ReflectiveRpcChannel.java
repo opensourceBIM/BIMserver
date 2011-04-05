@@ -123,6 +123,7 @@ public class ReflectiveRpcChannel implements BlockingRpcChannel {
 			errorMessage.setField(responsePrototype.getDescriptorForType().getFields().get(1), e.getTargetException().getMessage());
 			return errorMessage.build();
 		} catch (Exception e) {
+			LOGGER.error("", e);
 			Builder errorMessage = responsePrototype.newBuilderForType();
 			if (e.getMessage() != null) {
 				errorMessage.setField(responsePrototype.getDescriptorForType().getFields().get(1), e.getMessage());
@@ -136,6 +137,7 @@ public class ReflectiveRpcChannel implements BlockingRpcChannel {
 
 	private Object convertProtocolBuffersObjectToServiceObject(Object value) {
 		if (value instanceof EnumValueDescriptor) {
+			// This is an assumption
 			EnumValueDescriptor enumValueDescriptor = (EnumValueDescriptor) value;
 			int ordinal = enumValueDescriptor.getNumber();
 			return org.bimserver.shared.ResultType.values()[ordinal];
@@ -236,7 +238,7 @@ public class ReflectiveRpcChannel implements BlockingRpcChannel {
 			return String.class;
 		} else if (fieldDescriptor.getJavaType() == JavaType.ENUM) {
 			try {
-				return Class.forName("org.bimserver.shared." + fieldDescriptor.getEnumType().getName());
+				return Class.forName("org.bimserver.interfaces.objects." + fieldDescriptor.getEnumType().getName());
 			} catch (ClassNotFoundException e) {
 				LOGGER.error("", e);
 			}

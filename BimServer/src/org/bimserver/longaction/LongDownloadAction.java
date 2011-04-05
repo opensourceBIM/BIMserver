@@ -19,6 +19,7 @@ public class LongDownloadAction extends LongDownloadOrCheckoutAction {
 
 	private BimDatabaseAction<IfcModel> action;
 	private final SettingsManager settingsManager;
+	private BimDatabaseSession session;
 
 	public LongDownloadAction(DownloadParameters downloadParameters, long currentUoid, LongActionManager longActionManager,
 			BimDatabase bimDatabase, AccessMethod accessMethod, EmfSerializerFactory emfSerializerFactory, SettingsManager settingsManager) {
@@ -28,29 +29,7 @@ public class LongDownloadAction extends LongDownloadOrCheckoutAction {
 
 	public void execute() {
 		state = ActionState.STARTED;
-		BimDatabaseSession session = bimDatabase.createReadOnlySession();
 		try {
-			switch (downloadParameters.getDownloadType()) {
-			case DOWNLOAD:
-				action = new DownloadDatabaseAction(session, accessMethod, settingsManager, downloadParameters.getRoid(), currentUoid);
-				break;
-			case DOWNLOAD_BY_OIDS:
-				action = new DownloadByOidsDatabaseAction(session, accessMethod, settingsManager, downloadParameters.getRoids(),
-						downloadParameters.getOids(), currentUoid);
-				break;
-			case DOWNLOAD_BY_GUIDS:
-				action = new DownloadByGuidsDatabaseAction(session, accessMethod, settingsManager, downloadParameters.getRoids(),
-						downloadParameters.getGuids(), currentUoid);
-				break;
-			case DOWNLOAD_OF_TYPE:
-				action = new DownloadOfTypeDatabaseAction(session, accessMethod, settingsManager, downloadParameters.getRoid(),
-						downloadParameters.getClassName(), currentUoid);
-				break;
-			case DOWNLOAD_PROJECTS:
-				action = new DownloadProjectsDatabaseAction(session, accessMethod, settingsManager, downloadParameters.getRoids(),
-						currentUoid);
-				break;
-			}
 			executeAction(action, downloadParameters, session);
 		} catch (Exception e) {
 			LOGGER.error("", e);
@@ -58,6 +37,31 @@ public class LongDownloadAction extends LongDownloadOrCheckoutAction {
 			session.close();
 		}
 		state = ActionState.FINISHED;
+	}
+
+	public void init() {
+		session = bimDatabase.createReadOnlySession();
+		switch (downloadParameters.getDownloadType()) {
+		case DOWNLOAD:
+			action = new DownloadDatabaseAction(session, accessMethod, settingsManager, downloadParameters.getRoid(), currentUoid);
+			break;
+		case DOWNLOAD_BY_OIDS:
+			action = new DownloadByOidsDatabaseAction(session, accessMethod, settingsManager, downloadParameters.getRoids(),
+					downloadParameters.getOids(), currentUoid);
+			break;
+		case DOWNLOAD_BY_GUIDS:
+			action = new DownloadByGuidsDatabaseAction(session, accessMethod, settingsManager, downloadParameters.getRoids(),
+					downloadParameters.getGuids(), currentUoid);
+			break;
+		case DOWNLOAD_OF_TYPE:
+			action = new DownloadOfTypeDatabaseAction(session, accessMethod, settingsManager, downloadParameters.getRoid(),
+					downloadParameters.getClassName(), currentUoid);
+			break;
+		case DOWNLOAD_PROJECTS:
+			action = new DownloadProjectsDatabaseAction(session, accessMethod, settingsManager, downloadParameters.getRoids(),
+					currentUoid);
+			break;
+		}
 	}
 
 	@Override

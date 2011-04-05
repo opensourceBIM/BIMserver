@@ -57,7 +57,7 @@ public class DownloadParameters {
 	}
 
 	public String getId() {
-		return String.valueOf(this.hashCode());
+		return String.valueOf(hashCode());
 	}
 
 	public Set<Long> getRoids() {
@@ -118,5 +118,60 @@ public class DownloadParameters {
 
 	public void setDownloadType(DownloadType downloadType) {
 		this.downloadType = downloadType;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((className == null) ? 0 : className.hashCode());
+		result = prime * result + ((downloadType == null) ? 0 : downloadType.hashCode());
+		result = prime * result + ((guids == null) ? 0 : guids.hashCode());
+		result = prime * result + ((oids == null) ? 0 : oids.hashCode());
+		result = prime * result + ((resultType == null) ? 0 : resultType.hashCode());
+		result = prime * result + ((roids == null) ? 0 : roids.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		DownloadParameters other = (DownloadParameters) obj;
+		if (className == null) {
+			if (other.className != null)
+				return false;
+		} else if (!className.equals(other.className))
+			return false;
+		if (downloadType == null) {
+			if (other.downloadType != null)
+				return false;
+		} else if (!downloadType.equals(other.downloadType))
+			return false;
+		if (guids == null) {
+			if (other.guids != null)
+				return false;
+		} else if (!guids.equals(other.guids))
+			return false;
+		if (oids == null) {
+			if (other.oids != null)
+				return false;
+		} else if (!oids.equals(other.oids))
+			return false;
+		if (resultType == null) {
+			if (other.resultType != null)
+				return false;
+		} else if (!resultType.equals(other.resultType))
+			return false;
+		if (roids == null) {
+			if (other.roids != null)
+				return false;
+		} else if (!roids.equals(other.roids))
+			return false;
+		return true;
 	}
 }

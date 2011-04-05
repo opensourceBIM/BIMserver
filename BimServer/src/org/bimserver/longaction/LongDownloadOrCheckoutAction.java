@@ -90,5 +90,4 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction {
 		user = session.get(StorePackage.eINSTANCE.getUser(), currentUoid, false);
 		checkoutResult = convertModelToCheckoutResult(revision.getProject(), user, ifcModel, downloadParameters.getResultType());
 	}
-
 }

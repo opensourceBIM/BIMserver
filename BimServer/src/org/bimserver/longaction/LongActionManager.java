@@ -32,6 +32,7 @@ public class LongActionManager {
 					}
 				}
 			});
+			longAction.init();
 			thread.setDaemon(true);
 			thread.setName(longAction.getIdentification());
 			threads.put(longAction, thread);

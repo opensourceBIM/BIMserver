@@ -152,4 +152,10 @@ public class LongCheckinAction extends LongAction {
 	public int getProgress() {
 		return progress;
 	}
+
+	@Override
+	public void init() {
+		// TODO Auto-generated method stub
+		
+	}
 }

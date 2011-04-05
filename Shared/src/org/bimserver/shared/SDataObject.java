@@ -31,10 +31,10 @@ public class SDataObject {
 	}
 
 	public SDataObject(String className, long oid, String guid, String name) {
-		this.type = className;
-		this.oid = oid;
-		this.guid = guid;
-		this.name = name;
+		this.setType(className);
+		this.setOid(oid);
+		this.setGuid(guid);
+		this.setName(name);
 	}
 
 	@XmlRootElement
@@ -157,5 +157,21 @@ public class SDataObject {
 
 	public List<SDataValue> getValues() {
 		return values;
+	}
+
+	public void setOid(long oid) {
+		this.oid = oid;
+	}
+
+	public void setGuid(String guid) {
+		this.guid = guid;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 }
