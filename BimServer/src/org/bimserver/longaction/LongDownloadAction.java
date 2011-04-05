@@ -30,7 +30,7 @@ public class LongDownloadAction extends LongDownloadOrCheckoutAction {
 	public void execute() {
 		state = ActionState.STARTED;
 		try {
-			executeAction(action, downloadParameters, session);
+			executeAction(action, downloadParameters, session, false);
 		} catch (Exception e) {
 			LOGGER.error("", e);
 		} finally {

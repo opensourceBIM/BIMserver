@@ -83,11 +83,16 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction {
 		return checkoutResult;
 	}
 
-	protected void executeAction(BimDatabaseAction<IfcModel> action, DownloadParameters downloadParameters, BimDatabaseSession session)
+	protected void executeAction(BimDatabaseAction<IfcModel> action, DownloadParameters downloadParameters, BimDatabaseSession session, boolean commit)
 			throws BimDatabaseException, UserException, NoSerializerFoundException {
-		IfcModel ifcModel = session.executeAction(action, org.bimserver.webservices.Service.DEADLOCK_RETRIES);
+		IfcModel ifcModel = null;
 		Revision revision = session.get(StorePackage.eINSTANCE.getRevision(), downloadParameters.getRoid(), false);
 		user = session.get(StorePackage.eINSTANCE.getUser(), currentUoid, false);
+		if (commit) {
+			ifcModel = session.executeAndCommitAction(action, org.bimserver.webservices.Service.DEADLOCK_RETRIES);
+		} else {
+			ifcModel = session.executeAction(action, org.bimserver.webservices.Service.DEADLOCK_RETRIES);
+		}
 		checkoutResult = convertModelToCheckoutResult(revision.getProject(), user, ifcModel, downloadParameters.getResultType());
 	}
 }

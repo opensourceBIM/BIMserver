@@ -21,9 +21,8 @@ public class LongCheckoutAction extends LongDownloadOrCheckoutAction {
 	@Override
 	public void execute() {
 		state = ActionState.STARTED;
-		session = bimDatabase.createSession(true);
 		try {
-			executeAction(action, downloadParameters, session);
+			executeAction(action, downloadParameters, session, true);
 		} catch (Exception e) {
 			LOGGER.error("", e);
 		} finally {
@@ -45,6 +44,7 @@ public class LongCheckoutAction extends LongDownloadOrCheckoutAction {
 
 	@Override
 	public void init() {
+		session = bimDatabase.createSession(true);
 		action = new CheckoutDatabaseAction(session, accessMethod, currentUoid, downloadParameters.getRoid());
 	}
 }
