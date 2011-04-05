@@ -1,4 +1,4 @@
-package org.bimserver.citygml;
+package org.bimserver.tests;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -7,6 +7,7 @@ import java.io.IOException;
 
 import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
 
+import org.bimserver.citygml.CityGmlSerializer;
 import org.bimserver.ifc.FileFieldIgnoreMap;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.SchemaLoader;
@@ -20,7 +21,7 @@ import org.bimserver.shared.ResourceFetcher;
 import org.bimserver.tests.TestFile;
 import org.bimserver.utils.CollectionUtils;
 
-public class Test {
+public class CityGmlTest {
 	public static void main(String[] args) {
 		SchemaDefinition schema = SchemaLoader.loadDefaultSchema();
 		IfcStepDeserializer fastIfcFileReader = new IfcStepDeserializer(schema);

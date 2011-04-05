@@ -23,8 +23,6 @@ import org.apache.commons.io.FileUtils;
 import org.bimserver.shared.ServiceInterface;
 import org.bimserver.utils.StringUtils;
 
-import com.google.protobuf.ByteString;
-
 public class ProtocolBuffersGenerator {
 	private final Map<Class<?>, String> generatedClasses = new HashMap<Class<?>, String>();
 	private static final Set<String> methodsToIgnore = new HashSet<String>();
@@ -210,7 +208,7 @@ public class ProtocolBuffersGenerator {
 		}
 	}
 	
-	private String getDefaultLiteralCode(Class type) {
+	private String getDefaultLiteralCode(Class<?> type) {
 		if (type == Boolean.class || type == boolean.class) {
 			return "false";
 		} else if (type == Integer.class || type == int.class) {
