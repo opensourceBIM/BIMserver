@@ -49,6 +49,7 @@ import org.apache.cxf.jaxws.JaxWsProxyFactoryBean;
 import org.apache.cxf.transport.http.HTTPConduit;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SUserType;
+import org.bimserver.pb.ProtocolBuffersServiceInterfaceImplementation;
 import org.bimserver.shared.ServiceException;
 import org.bimserver.shared.ServiceInterface;
 import org.bimserver.test.framework.TestResult.ResultCode;
@@ -57,7 +58,7 @@ import org.bimserver.utils.Formatters;
 
 public class BimServerTester {
 	private final HtmlWriter htmlWriter = new HtmlWriter(new File("result.html"));
-	private final ExecutorService executorService = new ThreadPoolExecutor(3, 3, Long.MAX_VALUE, TimeUnit.SECONDS, new LinkedBlockingDeque<Runnable>());
+	private final ExecutorService executorService = new ThreadPoolExecutor(1, 1, Long.MAX_VALUE, TimeUnit.SECONDS, new LinkedBlockingDeque<Runnable>());
 	private final CompletionService<TestResult> completionService = new ExecutorCompletionService<TestResult>(executorService);
 	private final Map<Long, String> userIds = new HashMap<Long, String>();
 	private final List<Long> projectIds = new ArrayList<Long>();
@@ -70,7 +71,8 @@ public class BimServerTester {
 				new BimServerTester(new File(args[1])).start();
 			}
 		} else {
-			new BimServerTester(new File("C:\\IFC\\ifc selected")).start();
+//			new BimServerTester(new File("C:\\Users\\Ruben\\Documents\\My Dropbox\\Logic Labs\\Projecten\\TNO\\ifc selected")).start();
+			new BimServerTester(new File("C:\\Users\\Ruben\\Documents\\My Dropbox\\Logic Labs\\Projecten\\TNO\\ifc selected")).test(new File("C:\\Users\\Ruben\\Workspaces\\BIMserver\\TestData\\data\\AC11-Institute-Var-2-IFC.ifc"));
 		}
 	}
 
@@ -78,7 +80,11 @@ public class BimServerTester {
 		ifcFilesSourceDir = testFilesDir;
 	}
 
-	private ServiceInterface createClient(final String address) {
+	private ServiceInterface createProtocolBuffersClient(String address) {
+		return new ProtocolBuffersServiceInterfaceImplementation(address, 8020);
+	}
+	
+	private ServiceInterface createSoapClient(final String address) {
 		ServiceInterface service;
 		JaxWsProxyFactoryBean cpfb = new JaxWsProxyFactoryBean();
 		cpfb.setServiceClass(ServiceInterface.class);
@@ -142,7 +148,8 @@ public class BimServerTester {
 	private TestResult test(File sourceFile) {
 		Random random = new Random();
 
-		ServiceInterface client = createClient("http://localhost:8082/soap");
+		ServiceInterface client = createProtocolBuffersClient("localhost");
+//		ServiceInterface client = createSoapClient("http://localhost:8082/soap");
 
 		TestResult testResult = new TestResult(sourceFile);
 

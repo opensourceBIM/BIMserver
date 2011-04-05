@@ -139,4 +139,10 @@ public class ClashDetectionLongAction extends LongAction {
 		return user;
 	}
 
+	@Override
+	public void init() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
