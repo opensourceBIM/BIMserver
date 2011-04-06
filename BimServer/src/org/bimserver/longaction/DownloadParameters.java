@@ -57,7 +57,7 @@ public class DownloadParameters {
 	}
 
 	public String getId() {
-		return String.valueOf(hashCode());
+		return String.valueOf(((long) hashCode()) + Integer.MAX_VALUE) + "." + resultType.getDefaultExtension();
 	}
 
 	public Set<Long> getRoids() {

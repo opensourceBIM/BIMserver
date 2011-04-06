@@ -4,6 +4,7 @@ import java.io.File;
 
 import javax.activation.DataHandler;
 
+import org.bimserver.ServerInitializer;
 import org.bimserver.database.BimDatabase;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
@@ -98,12 +99,13 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction {
 		checkoutResult = convertModelToCheckoutResult(revision.getProject(), user, ifcModel, downloadParameters.getResultType());
 		if (checkoutResult != null) {
 			try {
-				File cachedir = new File("home" + File.separator + "cache");
+				File homeDir = ServerInitializer.getHomeDir();
+				File cachedir = new File(homeDir.getAbsolutePath() + File.separator + "cache");
 				if (!cachedir.exists()) {
 					cachedir.mkdir();
 				}
-				File cachefile = new File(cachedir.getAbsolutePath() + File.separator + getIdentification());
 				ResultType resultType = downloadParameters.getResultType();
+				File cachefile = new File(cachedir.getAbsolutePath() + File.separator + getIdentification());
 				EmfSerializer serializer = emfSerializerFactory.create(revision.getProject(), user, resultType, ifcModel,
 						checkoutResult.getProjectName() + "." + checkoutResult.getRevisionNr() + "." + resultType.getDefaultExtension());
 				serializer.writeToFile(cachefile);
