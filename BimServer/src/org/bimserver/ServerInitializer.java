@@ -95,7 +95,7 @@ public class ServerInitializer implements ServletContextListener {
 	private static ServletContext servletContext;
 	private static LongActionManager longActionManager;
 	private static ServiceInterface systemService;
-	private File homeDir;
+	private static File homeDir;
 	private File baseDir;
 	private static ServerType serverType;
 	private static SettingsManager settingsManager;
@@ -252,6 +252,10 @@ public class ServerInitializer implements ServletContextListener {
 		}
 	}
 
+	public static File getHomeDir() {
+		return homeDir;
+	}
+	
 	public static SettingsManager getSettingsManager() {
 		return settingsManager;
 	}
