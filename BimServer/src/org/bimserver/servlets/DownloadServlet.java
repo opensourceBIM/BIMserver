@@ -33,11 +33,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.bimserver.ifc.EmfSerializer;
-import org.bimserver.ifc.SerializerException;
 import org.bimserver.interfaces.objects.SClashDetectionSettings;
 import org.bimserver.interfaces.objects.SEidClash;
 import org.bimserver.interfaces.objects.SProject;
+import org.bimserver.longaction.CacheFileSerializer;
 import org.bimserver.shared.ResultType;
 import org.bimserver.shared.SCompareResult;
 import org.bimserver.shared.SCompareResult.SCompareType;
@@ -160,7 +159,7 @@ public class DownloadServlet extends HttpServlet {
 					}
 				}
 			}
-			EmfSerializer serializer = (EmfSerializer) checkoutResult.getFile().getDataSource();
+			CacheFileSerializer serializer = (CacheFileSerializer) checkoutResult.getFile().getDataSource();
 			if (request.getParameter("zip") != null && request.getParameter("zip").equals("on")) {
 				if (resultType == ResultType.IFC) {
 					response.setHeader("Content-Disposition",
@@ -169,24 +168,17 @@ public class DownloadServlet extends HttpServlet {
 					response.setHeader("Content-Disposition", "inline; filename=\"" + checkoutResult.getFile().getName() + ".zip" + "\"");
 				}
 				response.setContentType("application/zip");
-				String name = checkoutResult.getProjectName() + "." + checkoutResult.getRevisionNr() + "."
-						+ resultType.getDefaultExtension();
+//				String name = checkoutResult.getProjectName() + "." + checkoutResult.getRevisionNr() + "."
+//						+ resultType.getDefaultExtension();
+				String name = serializer.getName();
 				ZipOutputStream zipOutputStream = new ZipOutputStream(response.getOutputStream());
 				zipOutputStream.putNextEntry(new ZipEntry(name));
-				try {
-					serializer.writeToOutputStream(zipOutputStream);
-				} catch (SerializerException e) {
-					LOGGER.error("", e);
-				}
+				serializer.writeToOutputStream(zipOutputStream);
 				zipOutputStream.finish();
 			} else {
 				response.setContentType(resultType.getContentType());
 				response.setHeader("Content-Disposition", "inline; filename=\"" + checkoutResult.getFile().getName() + "\"");
-				try {
-					serializer.writeToOutputStream(response.getOutputStream());
-				} catch (SerializerException e) {
-					LOGGER.error("", e);
-				}
+				serializer.writeToOutputStream(response.getOutputStream());
 				response.getOutputStream().flush();
 			}
 		} catch (NumberFormatException e) {
