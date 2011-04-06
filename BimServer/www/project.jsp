@@ -899,9 +899,13 @@ open a specific revision to query other revisions<br />
 			downloadframe.find('button[value="Download"]').hide();
 			var roid = downloadframe.find('input[name="roid"]');
 			var resultType = downloadframe.find('select[name="resultType"]');
-			var zip = downloadframe.find('input[name="zip"]');
+			var zipbox = downloadframe.find('input[name="zip"]');
+			var zip = "";
+			if (zipbox.attr('checked')) {
+				zip = "&zip=on";
+			}
 			var resultDiv = downloadframe.find(".downloadResult");
-			resultDiv.load("initiatedownload.jsp?roid=" + roid.val() + "&resultType=" + resultType.val() + "&zip=" + zip.val() + "&checkout=Checkout");
+			resultDiv.load("initiatedownload.jsp?roid=" + roid.val() + "&resultType=" + resultType.val() + zip + "&checkout=Checkout");
 		});
 		
 		$("#compareajaxloader").hide();
