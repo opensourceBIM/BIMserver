@@ -21,14 +21,13 @@ public class LongActionManager {
 
 	public synchronized void start(final LongAction longAction) throws CannotBeScheduledException {
 		if (running) {
-			actions.put(longAction.getIdentification(), longAction);
-
 			Thread thread = new Thread(new Runnable() {
 				@Override
 				public void run() {
 					longAction.execute();
 					synchronized (LongActionManager.this) {
 						threads.remove(longAction);
+						actions.remove(longAction.getIdentification());
 					}
 				}
 			});
@@ -36,6 +35,7 @@ public class LongActionManager {
 			thread.setDaemon(true);
 			thread.setName(longAction.getIdentification());
 			threads.put(longAction, thread);
+			actions.put(longAction.getIdentification(), longAction);
 			thread.start();
 		} else {
 			throw new CannotBeScheduledException();

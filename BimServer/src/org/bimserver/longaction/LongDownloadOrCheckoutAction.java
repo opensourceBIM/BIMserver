@@ -111,6 +111,8 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction {
 				serializer.writeToFile(cachefile);
 			} catch (SerializerException e) {
 				LOGGER.error("", e);
+			} finally {
+				checkoutResult = null;
 			}
 		}
 	}
