@@ -926,13 +926,13 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public LongActionState getDownloadState(String longActionID) throws UserException, ServerException {
-		if (cachefileExists(longActionID)) {
+		LongDownloadOrCheckoutAction longAction = (LongDownloadOrCheckoutAction) longActionManager.getLongAction(longActionID);
+		if (longAction == null && cachefileExists(longActionID)) {
 			LongActionState longActionState = new LongActionState();
 			longActionState.setProgress(100);
 			longActionState.setState(ActionState.FINISHED);
 			return longActionState;
 		} else {
-			LongDownloadOrCheckoutAction longAction = (LongDownloadOrCheckoutAction) longActionManager.getLongAction(longActionID);
 			if (longAction != null) {
 				return longAction.getState();
 			}
