@@ -235,7 +235,45 @@ service ServiceInterface {
 
 	rpc migrateDatabase (MigrateDatabaseRequest) returns (Void);
 
+<<<<<<< .mine
+}
+
+enum SCompareType{
+	ALL = 0;
+	ADD = 1;
+	MODIFY = 2;
+	DELETE = 3;
+}
+
+message CompareRequest {
+	optional int64 roid1 = 1;
+	optional int64 roid2 = 2;
+	optional SCompareType sCompareType = 3;
+}
+
+message Map {
+}
+
+message SCompareResult {
+	optional Map items = 1;
+}
+
+message CompareResponse {
+	optional SCompareResult value = 2;
+	optional string errorMessage = 1;
+}
+
+message SetupRequest {
+	optional string siteAddress = 1;
+	optional string smtpServer = 2;
+	optional string adminName = 3;
+	optional string adminUsername = 4;
+	optional string adminPassword = 5;
+	optional bool createAnonymousUser = 6;
+}
+=======
 	rpc compare (CompareRequest) returns (CompareResponse);
+>>>>>>> .r802
 
 	rpc setup (SetupRequest) returns (Void);
 
@@ -396,12 +434,21 @@ message GetDownloadDataRequest {
 	optional string actionID = 1;
 }
 
+<<<<<<< .mine
+message SDownloadResult {
+	optional bytes file = 1;
+	optional string projectName = 2;
+	optional int32 revisionNr = 3;
+}
+
+=======
 message SDownloadResult {
 	optional string projectName = 1;
 	optional int32 revisionNr = 2;
 	optional bytes file = 3;
 }
 
+>>>>>>> .r802
 message GetDownloadDataResponse {
 	optional SDownloadResult value = 2;
 	optional string errorMessage = 1;
@@ -548,6 +595,7 @@ message SRevision {
 	optional int64 date = 15;
 	optional string comment = 16;
 	optional string tag = 17;
+	optional int64 laid = 17;
 }
 
 message UpdateRevisionRequest {
@@ -1196,6 +1244,9 @@ message ValidateAccountRequest {
 message SendClashesEmailRequest {
 	optional SClashDetectionSettings sClashDetectionSettings = 1;
 	optional int64 poid = 2;
+<<<<<<< .mine
+	repeated string addressesTo = 3;
+=======
 	repeated string addressesTo = 3;
 }
 
@@ -1204,6 +1255,7 @@ enum SCompareType{
 	ADD = 1;
 	MODIFY = 2;
 	DELETE = 3;
+>>>>>>> .r802
 }
 
 message SendCompareEmailRequest {
