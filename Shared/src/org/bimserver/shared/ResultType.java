@@ -11,7 +11,6 @@ public enum ResultType {
 	O3D_JSON("WebGL", "o3djson", "appliction/json", UseInCheckout.USE_NOT_IN_CHECKOUT, UserType.USER_TYPE, Type.MULTIPLE, DefaultSelected.FALSE),
 	OBJECT_INFO("Object Info", "html", "text/html", UseInCheckout.USE_NOT_IN_CHECKOUT, UserType.USER_TYPE, Type.SINGLE, DefaultSelected.FALSE),
 	TEXT("Plain text IFC", "txt", "text", UseInCheckout.USE_NOT_IN_CHECKOUT, UserType.USER_TYPE, Type.MULTIPLE, DefaultSelected.FALSE),
-	KML("KML", "kml", "application/vnd.google-earth.kml+xml", UseInCheckout.USE_NOT_IN_CHECKOUT, UserType.NO_USER_TYPE, Type.MULTIPLE, DefaultSelected.FALSE),
 	KMZ("KMZ", "kmz", "application/vnd.google-earth.kmz", UseInCheckout.USE_NOT_IN_CHECKOUT, UserType.USER_TYPE, Type.MULTIPLE, DefaultSelected.FALSE),
 	COBIE2("COBIE 2", "xml", "application/ms-excel", UseInCheckout.USE_NOT_IN_CHECKOUT, UserType.USER_TYPE, Type.MULTIPLE, DefaultSelected.FALSE),
 	REPORT_SPACES("Report spaces", "xml", "application/xhtml+xml", UseInCheckout.USE_NOT_IN_CHECKOUT, UserType.USER_TYPE, Type.MULTIPLE, DefaultSelected.FALSE),
