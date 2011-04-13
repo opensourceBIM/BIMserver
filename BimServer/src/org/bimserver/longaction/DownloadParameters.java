@@ -57,7 +57,7 @@ public class DownloadParameters {
 	}
 
 	public String getId() {
-		String id = String.valueOf(((long) hashCode()) + Integer.MAX_VALUE) + "." + resultType.getDefaultExtension();
+		String id = String.valueOf(((long) hashCode()) + Integer.MAX_VALUE);
 		return id;
 	}
 

@@ -26,5 +26,4 @@ public class LongActionState {
 	public void setProgress(int progress) {
 		this.progress = progress;
 	}
-
 }

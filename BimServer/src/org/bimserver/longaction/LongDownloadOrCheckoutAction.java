@@ -1,6 +1,7 @@
 package org.bimserver.longaction;
 
 import java.io.File;
+import java.util.concurrent.CountDownLatch;
 
 import javax.activation.DataHandler;
 
@@ -20,10 +21,10 @@ import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.serializers.EmfSerializerFactory;
 import org.bimserver.shared.LongActionState;
-import org.bimserver.shared.LongActionState.ActionState;
 import org.bimserver.shared.ResultType;
 import org.bimserver.shared.SCheckoutResult;
 import org.bimserver.shared.UserException;
+import org.bimserver.shared.LongActionState.ActionState;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -38,6 +39,7 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction {
 	protected ActionState state = ActionState.UNKNOWN;
 	protected SCheckoutResult checkoutResult;
 	protected User user;
+	private final CountDownLatch latch = new CountDownLatch(1);
 
 	protected LongDownloadOrCheckoutAction(DownloadParameters downloadParameters, BimDatabase bimDatabase,
 			LongActionManager longActionManager, AccessMethod accessMethod, EmfSerializerFactory emfSerializerFactory, long currentUoid) {
@@ -114,6 +116,15 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction {
 			} finally {
 				checkoutResult = null;
 			}
+		}
+		latch.countDown();
+	}
+
+	public void waitForFinish() {
+		try {
+			latch.await();
+		} catch (InterruptedException e) {
+			LOGGER.error("", e);
 		}
 	}
 }
