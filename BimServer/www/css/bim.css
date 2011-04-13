@@ -494,3 +494,8 @@ ul.projectTree li.last {
 p.explain {
 	font-size: xx-small;
 }
+
+.downloadResult {
+	width: 80px;
+	height: 14px;
+}

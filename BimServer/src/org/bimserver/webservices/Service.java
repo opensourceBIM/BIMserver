@@ -455,19 +455,9 @@ public class Service implements ServiceInterface {
 			}
 		}
 		if (sync) {
-			while (longCheckoutAction.isRunning()) {
-				try {
-					Thread.sleep(1000); // Sleep for 1 sec
-				} catch (InterruptedException e) {
-					handleException(e);
-					return null;
-				}
-			}
-
-			return longCheckoutAction.getIdentification();
-		} else {
-			return longCheckoutAction.getIdentification();
+			longCheckoutAction.waitForFinish();
 		}
+		return longCheckoutAction.getIdentification();
 	}
 
 	@Override
@@ -889,19 +879,9 @@ public class Service implements ServiceInterface {
 				}
 			}
 			if (sync) {
-				while (longDownloadAction.isRunning()) {
-					try {
-						Thread.sleep(1000); // Sleep for 1 sec
-					} catch (InterruptedException e) {
-						handleException(e);
-						return null;
-					}
-				}
-
-				return longDownloadAction.getIdentification();
-			} else {
-				return longDownloadAction.getIdentification();
+				longDownloadAction.waitForFinish();
 			}
+			return longDownloadAction.getIdentification();
 		}
 	}
 

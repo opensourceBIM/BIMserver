@@ -1,21 +1,20 @@
 <%@page import="org.bimserver.shared.ResultType"%>
 <%@page import="java.util.Set"%>
 <%@page import="java.util.HashSet"%>
-
-<%@page import="org.slf4j.LoggerFactory"%><jsp:useBean id="loginManager" scope="session" class="org.bimserver.web.LoginManager" />
+<%@page import="org.slf4j.LoggerFactory"%>
+<%@page import="org.bimserver.shared.LongActionState"%>
+<jsp:useBean id="loginManager" scope="session" class="org.bimserver.web.LoginManager" />
 <%
 	try {
 		long roid = Long.parseLong(request.getParameter("roid"));
 		ResultType resultType = ResultType.IFC;
 		if (request.getParameter("resultType") != null) {
-			resultType = ResultType.valueOf(request
-					.getParameter("resultType"));
+			resultType = ResultType.valueOf(request.getParameter("resultType"));
 		}
 		String zip = request.getParameter("zip");
 		String longActionId = null;
 		if (request.getParameter("checkout") != null) {
-			longActionId = loginManager.getService().checkout(roid,
-					resultType, false);
+			longActionId = loginManager.getService().checkout(roid,	resultType, false);
 		} else if (request.getParameter("download") != null) {
 			if (request.getParameter("guids") != null){
 				Set<String> guids = new HashSet<String>();
@@ -50,32 +49,42 @@
 				longActionId = loginManager.getService().download(roid, resultType, false);
 			}
 		}
+		LongActionState las = loginManager.getService().getDownloadState(longActionId);
 %>
 
-<jsp:include page="downloadprogress.jsp">
-	<jsp:param name="longActionId" value="<%=longActionId %>" />
-</jsp:include>
+<div id="progressBar<%=longActionId%>">
+</div>
 
 <script>
-var downloadUpdateFunctionHandle;
-
-var downloadUpdateFunction = function() {
-	$.ajax({
-		url: "downloadprogress.jsp",
-		cache: false,
-		context: document.body,
-		success: 
-			function(data){
-				$("#downloadStateSpan").html(data);
+	var downloadUpdateFunctionHandle;
+	
+	var downloadUpdateFunction = function() {
+		$.ajax({
+			url: "/progress?laid=<%=longActionId%>",
+			cache: false,
+			context: document.body,
+			error: function(){
 			},
-		data: {	longActionId: '<%=longActionId%>' ,
-				zip: '<%=zip%>'
-			}
-		});
+			success:
+				function(data){
+					$("#progressBar<%=longActionId%>").progressbar("value", data.progress);
+					if (data.progress == 100) {
+						clearInterval(downloadUpdateFunctionHandle);
+						$("#progressBar<%=longActionId%>").hide();
+						$("#progressBar<%=longActionId%>").parent().append("<a id='downloadlink' href='/download?longActionId=<%=longActionId%>&zip=<%=zip%>'><label id='downloadlinkclick' for='downloadlink'>Download</label></a>");
+						window.location = '/download?longActionId=<%=longActionId%>&zip=<%=zip%>';
+					}
+				},
+			data: {	longActionId: '<%=longActionId%>' ,
+					zip: '<%=zip%>'
+				}
+			});
 	};
 
-	$(document).ready( function() {
+	$(document).ready(function() {
+		$("#progressBar<%=longActionId%>").progressbar({value: <%=las.getProgress()%>});
 		downloadUpdateFunctionHandle = window.setInterval(downloadUpdateFunction, 1000);
+		downloadUpdateFunction();
 	});
 </script>
 <%

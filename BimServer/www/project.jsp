@@ -566,6 +566,8 @@ subproject</a><br />
 			style="margin-right: 5px; display: <%=(revision.getState() == SCheckinState.DONE || revision.getState() == SCheckinState.ERROR
 									|| revision.getState() == SCheckinState.CLASHES_ERROR || revision.getState() == SCheckinState.SEARCHING_CLASHES) ? "none"
 									: "block"%>" />
+		<div id="uploadProgressBar<%=revision.getOid() %>">
+		</div>
 		<span class="statusfield">
 <%
  	if (revision.getState() == SCheckinState.ERROR) {
@@ -845,9 +847,10 @@ open a specific revision to query other revisions<br />
 							$("#rev" + item.roid).children(".downloadfield").children("form").removeClass("blockinvisible");
 							$("#rev" + item.roid).children(".downloadfield").children("img").hide();
 						} else {
-							$("#rev" + item.roid).children(".downloadfield").children("img").show();
+							$("#rev" + item.roid).children(".downloadfield").children("img").hide();
 							$("#rev" + item.roid).children(".downloadfield").children("form").addClass("blockinvisible");
 							if (state == "STORING") {
+								$("#uploadProgressBar" + item.roid).progressbar({"value": item.progress});
 								$("#rev" + item.roid).children(".downloadfield").children(".statusfield").text("Storing (" + item.progress + "%)");
 							} else {
 								$("#rev" + item.roid).children(".downloadfield").children(".statusfield").text("");
