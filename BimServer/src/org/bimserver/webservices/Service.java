@@ -48,9 +48,9 @@ import javax.mail.internet.MimeMessage;
 import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
 
 import org.bimserver.ServerInfo;
-import org.bimserver.ServerInfo.ServerState;
 import org.bimserver.ServerInitializer;
 import org.bimserver.SettingsManager;
+import org.bimserver.ServerInfo.ServerState;
 import org.bimserver.database.BimDatabase;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
@@ -167,14 +167,9 @@ import org.bimserver.rights.RightsManager;
 import org.bimserver.serializers.EmfSerializerFactory;
 import org.bimserver.shared.DatabaseInformation;
 import org.bimserver.shared.LongActionState;
-import org.bimserver.shared.LongActionState.ActionState;
 import org.bimserver.shared.ResultType;
 import org.bimserver.shared.SCheckinResult;
 import org.bimserver.shared.SCompareResult;
-import org.bimserver.shared.SCompareResult.SCompareType;
-import org.bimserver.shared.SCompareResult.SObjectAdded;
-import org.bimserver.shared.SCompareResult.SObjectModified;
-import org.bimserver.shared.SCompareResult.SObjectRemoved;
 import org.bimserver.shared.SDataObject;
 import org.bimserver.shared.SDownloadResult;
 import org.bimserver.shared.SLongAction;
@@ -186,6 +181,11 @@ import org.bimserver.shared.ServiceException;
 import org.bimserver.shared.ServiceInterface;
 import org.bimserver.shared.Token;
 import org.bimserver.shared.UserException;
+import org.bimserver.shared.LongActionState.ActionState;
+import org.bimserver.shared.SCompareResult.SCompareType;
+import org.bimserver.shared.SCompareResult.SObjectAdded;
+import org.bimserver.shared.SCompareResult.SObjectModified;
+import org.bimserver.shared.SCompareResult.SObjectRemoved;
 import org.bimserver.tools.generators.GenerateUtils;
 import org.bimserver.utils.FakeClosingInputStream;
 import org.bimserver.utils.Hashers;
@@ -945,20 +945,6 @@ public class Service implements ServiceInterface {
 		} catch (Exception e) {
 			handleException(e);
 			return false;
-		} finally {
-			session.close();
-		}
-	}
-
-	public List<SUser> getAllNonAuthorizedUsersOfProject(int pid) throws UserException, ServerException {
-		requireAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimDatabase.createReadOnlySession();
-		try {
-			BimDatabaseAction<Set<User>> action = new GetAllNonAuthorizedUsersOfProjectDatabaseAction(session, accessMethod, pid);
-			return convert(session.executeAction(action, DEADLOCK_RETRIES), SUser.class, session);
-		} catch (Exception e) {
-			handleException(e);
-			return null;
 		} finally {
 			session.close();
 		}
