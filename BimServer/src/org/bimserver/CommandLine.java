@@ -3,13 +3,25 @@ package org.bimserver;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.bimserver.database.BimDatabaseException;
+import org.bimserver.database.BimDatabaseSession;
+import org.bimserver.database.BimDeadlockException;
 import org.bimserver.database.ColumnDatabase;
 import org.bimserver.database.Database;
-import org.bimserver.shared.ResultType;
-import org.bimserver.shared.ServiceException;
+import org.bimserver.database.actions.DownloadDatabaseAction;
+import org.bimserver.ifc.IfcModel;
+import org.bimserver.ifc.database.IfcDatabase;
+import org.bimserver.models.ifc2x3.IfcProject;
+import org.bimserver.models.ifc2x3.IfcSlab;
+import org.bimserver.models.ifc2x3.IfcWall;
+import org.bimserver.models.ifc2x3.IfcWindow;
+import org.bimserver.models.log.AccessMethod;
+import org.bimserver.shared.ServerException;
+import org.bimserver.shared.UserException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -41,14 +53,34 @@ public class CommandLine extends Thread {
 					server.stop();
 					return;
 				} else if (line.equalsIgnoreCase("test")) {
-					long startTime = System.nanoTime();
+					BimDatabaseSession bimDatabaseSession = ServerInitializer.getDatabase().createReadOnlySession();	
 					try {
-						ServerInitializer.getSystemService().download(1051442, ResultType.IFC, true);
-					} catch (ServiceException e) {
-						LOGGER.error("", e);
+						DownloadDatabaseAction downloadDatabaseAction = new DownloadDatabaseAction(bimDatabaseSession, AccessMethod.INTERNAL, ServerInitializer.getSettingsManager(), 16, ServerInitializer.getSystemService().getCurrentUser().getOid());
+						IfcModel model = downloadDatabaseAction.execute();
+						System.out.println("Model size: " + model.size());
+						
+						IfcDatabase ifcDatabase = new IfcDatabase(model, null);
+						
+						List<IfcWall> walls = ifcDatabase.getAll(IfcWall.class);
+						List<IfcProject> projects = ifcDatabase.getAll(IfcProject.class);
+						List<IfcSlab> slabs = ifcDatabase.getAll(IfcSlab.class);
+						List<IfcWindow> windows = ifcDatabase.getAll(IfcWindow.class);
+						
+						System.out.println("Walls: " + walls.size());
+						System.out.println("Windows: " + windows.size());
+						System.out.println("Projects: " + projects.size());
+						System.out.println("Slabs: " + slabs.size());
+					} catch (UserException e1) {
+						e1.printStackTrace();
+					} catch (ServerException e1) {
+						e1.printStackTrace();
+					} catch (BimDeadlockException e) {
+						e.printStackTrace();
+					} catch (BimDatabaseException e) {
+						e.printStackTrace();
+					} finally {
+						bimDatabaseSession.close();
 					}
-					long endTime = System.nanoTime();
-					System.out.println(((endTime - startTime) / 1000000) + " ms");
 				} else if (line.equalsIgnoreCase("dump")) {
 					System.out.println("Dumping all thread's track traces...");
 					System.out.println();
