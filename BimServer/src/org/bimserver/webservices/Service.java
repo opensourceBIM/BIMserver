@@ -396,7 +396,7 @@ public class Service implements ServiceInterface {
 			User userByUoid = session.executeAction(getUserByUoidDatabaseAction, DEADLOCK_RETRIES);
 			ConcreteRevision revision = session.executeAndCommitAction(action, DEADLOCK_RETRIES);
 			session.close();
-			CheckinPart2DatabaseAction createCheckinAction = new CheckinPart2DatabaseAction(session, accessMethod, settingsManager, model,
+			CheckinPart2DatabaseAction createCheckinAction = new CheckinPart2DatabaseAction(null, accessMethod, settingsManager, model,
 					currentUoid, revision.getOid(), merge);
 			SCheckinResult result = new SCheckinResult();
 			result.setRid(revision.getId());
