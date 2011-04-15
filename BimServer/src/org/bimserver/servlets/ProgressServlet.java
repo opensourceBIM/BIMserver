@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.bimserver.ServerInitializer;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevision;
-import org.bimserver.longaction.LongAction;
 import org.bimserver.longaction.LongCheckinAction;
+import org.bimserver.longaction.LongCheckinActionKey;
 import org.bimserver.shared.LongActionState;
 import org.bimserver.shared.ServiceException;
 import org.bimserver.shared.UserException;
@@ -48,11 +48,9 @@ public class ProgressServlet extends HttpServlet {
 								object.put("totalsize", revision.getSize());
 								object.put("lastError", revision.getLastError());
 								object.put("clashes", revision.getNrClashes());
-								object.put("islast", (loginManager.getService().getProjectByPoid(revision.getProjectId())
-										.getLastRevisionId() == revision.getOid()));
-								LongAction longAction = ServerInitializer.getLongActionManager().getLongAction(LongCheckinAction.class.getSimpleName() + " " + revision.getLastConcreteRevisionId());
-								if (longAction != null && longAction instanceof LongCheckinAction) {
-									LongCheckinAction longCheckinAction = (LongCheckinAction)longAction;
+								object.put("islast", (loginManager.getService().getProjectByPoid(revision.getProjectId()).getLastRevisionId() == revision.getOid()));
+								LongCheckinAction longCheckinAction = ServerInitializer.getLongActionManager().getLongAction(LongCheckinAction.class, new LongCheckinActionKey(revision.getLastConcreteRevisionId()));
+								if (longCheckinAction != null) {
 									object.put("progress", longCheckinAction.getProgress());
 								}
 								revisions.put(object);
@@ -65,7 +63,7 @@ public class ProgressServlet extends HttpServlet {
 					}
 					result.put("revisions", revisions);
 				} else if (request.getParameter("laid") != null) {
-					LongActionState downloadState = loginManager.getService().getDownloadState(request.getParameter("laid"));
+					LongActionState downloadState = loginManager.getService().getDownloadState(Integer.parseInt(request.getParameter("laid")));
 					result.put("state", downloadState.getState());
 					result.put("progress", downloadState.getProgress());
 				}

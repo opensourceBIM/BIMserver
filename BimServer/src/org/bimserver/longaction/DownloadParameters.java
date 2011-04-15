@@ -6,7 +6,7 @@ import java.util.Set;
 
 import org.bimserver.shared.ResultType;
 
-public class DownloadParameters {
+public class DownloadParameters extends LongActionKey {
 	public enum DownloadType {
 		DOWNLOAD, DOWNLOAD_BY_OIDS, DOWNLOAD_BY_GUIDS, DOWNLOAD_OF_TYPE, DOWNLOAD_PROJECTS
 	};

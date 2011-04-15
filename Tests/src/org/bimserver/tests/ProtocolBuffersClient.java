@@ -64,7 +64,7 @@ public class ProtocolBuffersClient {
 		try {
 			DownloadResponse downloadResponse = service.download(rpcController, downloadRequest);
 			if (downloadResponse.getErrorMessage().equals("OKE")) {
-				String downloadId = downloadResponse.getValue();
+				int downloadId = downloadResponse.getValue();
 
 				org.bimserver.pb.Service.GetDownloadDataRequest.Builder getDownloadDataRequestBuilder = GetDownloadDataRequest.newBuilder();
 				getDownloadDataRequestBuilder.setActionID(downloadId);

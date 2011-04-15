@@ -45,6 +45,7 @@ import nl.tue.buildingsmart.express.parser.ExpressSchemaParser;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.LogManager;
 import org.bimserver.ServerInfo.ServerState;
+import org.bimserver.cache.DiskCacheManager;
 import org.bimserver.database.BimDatabase;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.Database;
@@ -210,7 +211,10 @@ public class ServerInitializer implements ServletContextListener {
 			EmfSerializerFactory emfSerializerFactory = EmfSerializerFactory.getInstance();
 			emfSerializerFactory.init(version, schema, fieldIgnoreMap, ifcEngineFactory, colladaSettings, resourceFetcher, settingsManager);
 			emfSerializerFactory.initSerializers();
-			ServiceFactory.init(bimDatabase, emfSerializerFactory, schema, longActionManager, ifcEngineFactory, fieldIgnoreMap, settingsManager, mailSystem);
+			
+			DiskCacheManager diskCacheManager = new DiskCacheManager(new File(homeDir, "cache"));
+			
+			ServiceFactory.init(bimDatabase, emfSerializerFactory, schema, longActionManager, ifcEngineFactory, fieldIgnoreMap, settingsManager, mailSystem, diskCacheManager);
 			setSystemService(ServiceFactory.getINSTANCE().newService(AccessMethod.INTERNAL));
 			if (!((Service) getSystemService()).loginAsSystem()) {
 				throw new RuntimeException("System user not found");

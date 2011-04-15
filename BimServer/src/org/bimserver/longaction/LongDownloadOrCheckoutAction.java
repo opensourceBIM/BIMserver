@@ -1,11 +1,8 @@
 package org.bimserver.longaction;
 
-import java.io.File;
-import java.util.concurrent.CountDownLatch;
-
 import javax.activation.DataHandler;
 
-import org.bimserver.ServerInitializer;
+import org.bimserver.cache.DiskCacheManager;
 import org.bimserver.database.BimDatabase;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
@@ -28,7 +25,7 @@ import org.bimserver.shared.LongActionState.ActionState;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public abstract class LongDownloadOrCheckoutAction extends LongAction {
+public abstract class LongDownloadOrCheckoutAction extends LongAction<DownloadParameters> {
 	protected static final Logger LOGGER = LoggerFactory.getLogger(LongDownloadAction.class);
 	protected final BimDatabase bimDatabase;
 	protected final LongActionManager longActionManager;
@@ -39,10 +36,10 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction {
 	protected ActionState state = ActionState.UNKNOWN;
 	protected SCheckoutResult checkoutResult;
 	protected User user;
-	private final CountDownLatch latch = new CountDownLatch(1);
+	private final DiskCacheManager diskCacheManager;
 
 	protected LongDownloadOrCheckoutAction(DownloadParameters downloadParameters, BimDatabase bimDatabase,
-			LongActionManager longActionManager, AccessMethod accessMethod, EmfSerializerFactory emfSerializerFactory, long currentUoid) {
+			LongActionManager longActionManager, AccessMethod accessMethod, EmfSerializerFactory emfSerializerFactory, long currentUoid, DiskCacheManager diskCacheManager) {
 		super();
 		this.bimDatabase = bimDatabase;
 		this.longActionManager = longActionManager;
@@ -50,24 +47,17 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction {
 		this.emfSerializerFactory = emfSerializerFactory;
 		this.downloadParameters = downloadParameters;
 		this.currentUoid = currentUoid;
+		this.diskCacheManager = diskCacheManager;
 	}
 
 	public SCheckoutResult getCheckoutResult() {
 		return checkoutResult;
 	}
 
-	public String getIdentification() {
-		return downloadParameters.getId();
-	}
-
 	public abstract LongActionState getState();
 
 	public User getUser() {
 		return user;
-	}
-
-	public boolean isRunning() {
-		return longActionManager.isRunning(this);
 	}
 
 	protected SCheckoutResult convertModelToCheckoutResult(Project project, User user, IfcModel model, ResultType resultType)
@@ -90,41 +80,27 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction {
 
 	protected void executeAction(BimDatabaseAction<IfcModel> action, DownloadParameters downloadParameters, BimDatabaseSession session,
 			boolean commit) throws BimDatabaseException, UserException, NoSerializerFoundException {
-		IfcModel ifcModel = null;
-		Revision revision = session.get(StorePackage.eINSTANCE.getRevision(), downloadParameters.getRoid(), false);
-		user = session.get(StorePackage.eINSTANCE.getUser(), currentUoid, false);
-		if (commit) {
-			ifcModel = session.executeAndCommitAction(action, org.bimserver.webservices.Service.DEADLOCK_RETRIES);
+		if (action == null) {
+			checkoutResult = new SCheckoutResult();
+			checkoutResult.setFile(new DataHandler(getDiskCacheManager().get(downloadParameters)));
 		} else {
-			ifcModel = session.executeAction(action, org.bimserver.webservices.Service.DEADLOCK_RETRIES);
-		}
-		checkoutResult = convertModelToCheckoutResult(revision.getProject(), user, ifcModel, downloadParameters.getResultType());
-		if (checkoutResult != null) {
-			try {
-				File homeDir = ServerInitializer.getHomeDir();
-				File cachedir = new File(homeDir.getAbsolutePath() + File.separator + "cache");
-				if (!cachedir.exists()) {
-					cachedir.mkdir();
-				}
-				ResultType resultType = downloadParameters.getResultType();
-				File cachefile = new File(cachedir.getAbsolutePath() + File.separator + getIdentification());
-				EmfSerializer serializer = emfSerializerFactory.create(revision.getProject(), user, resultType, ifcModel,
-						checkoutResult.getProjectName() + "." + checkoutResult.getRevisionNr() + "." + resultType.getDefaultExtension());
-				serializer.writeToFile(cachefile);
-			} catch (SerializerException e) {
-				LOGGER.error("", e);
-			} finally {
-				checkoutResult = null;
+			IfcModel ifcModel = null;
+			Revision revision = session.get(StorePackage.eINSTANCE.getRevision(), downloadParameters.getRoid(), false);
+			user = session.get(StorePackage.eINSTANCE.getUser(), currentUoid, false);
+			if (commit) {
+				ifcModel = session.executeAndCommitAction(action, org.bimserver.webservices.Service.DEADLOCK_RETRIES);
+			} else {
+				ifcModel = session.executeAction(action, org.bimserver.webservices.Service.DEADLOCK_RETRIES);
+			}
+			checkoutResult = convertModelToCheckoutResult(revision.getProject(), user, ifcModel, downloadParameters.getResultType());
+			if (checkoutResult != null) {
+				diskCacheManager.store(downloadParameters, checkoutResult.getFile());
 			}
 		}
-		latch.countDown();
+		done();
 	}
 
-	public void waitForFinish() {
-		try {
-			latch.await();
-		} catch (InterruptedException e) {
-			LOGGER.error("", e);
-		}
+	public DiskCacheManager getDiskCacheManager() {
+		return diskCacheManager;
 	}
 }

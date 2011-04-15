@@ -38,7 +38,7 @@ public class KmzSerializer extends BimModelSerializer {
 	}
 
 	@Override
-	public int write(OutputStream out) {
+	public boolean write(OutputStream out) {
 		if (mode == SimpleMode.BUSY) {
 			try {
 				ZipOutputStream zipOutputStream = new ZipOutputStream(out);
@@ -54,11 +54,11 @@ public class KmzSerializer extends BimModelSerializer {
 				LOGGER.error("", e);
 			}
 			mode = SimpleMode.DONE;
-			return 1;
+			return true;
 		} else if (mode == SimpleMode.DONE) {
-			return -1;
+			return false;
 		}
-		return -1;
+		return false;
 	}
 
 	private void writeKmlFile(OutputStream out) {

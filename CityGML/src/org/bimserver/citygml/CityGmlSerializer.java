@@ -135,7 +135,7 @@ public class CityGmlSerializer extends BimModelSerializer {
 		return code;
 	}
 
-	public int write(OutputStream out) throws SerializerException {
+	public boolean write(OutputStream out) throws SerializerException {
 		if (mode == SimpleMode.BUSY) {
 			PrintWriter writer = new PrintWriter(out);
 			IfcDatabase ifcDatabase = new IfcDatabase(model, null);
@@ -197,11 +197,11 @@ public class CityGmlSerializer extends BimModelSerializer {
 			writer.flush();
 			mode = SimpleMode.DONE;
 			ifcEngine.close();
-			return 1;
+			return true;
 		} else if (mode == SimpleMode.DONE) {
-			return -1;
+			return false;
 		}
-		return -1;
+		return false;
 	}
 
 	private void processBuilding(CityModel cityModel, IfcBuilding ifcBuilding) throws SerializerException {

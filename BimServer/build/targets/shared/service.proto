@@ -3,6 +3,12 @@ package org.bimserver.pb;
 option java_generic_services = true;
 
 service ServiceInterface {
+	rpc compare (CompareRequest) returns (CompareResponse);
+
+	rpc setup (SetupRequest) returns (Void);
+
+	rpc download (DownloadRequest) returns (DownloadResponse);
+
 	rpc ping (PingRequest) returns (PingResponse);
 
 	rpc login (LoginRequest) returns (LoginResponse);
@@ -235,7 +241,6 @@ service ServiceInterface {
 
 	rpc migrateDatabase (MigrateDatabaseRequest) returns (Void);
 
-<<<<<<< .mine
 }
 
 enum SCompareType{
@@ -271,14 +276,33 @@ message SetupRequest {
 	optional string adminPassword = 5;
 	optional bool createAnonymousUser = 6;
 }
-=======
-	rpc compare (CompareRequest) returns (CompareResponse);
->>>>>>> .r802
 
-	rpc setup (SetupRequest) returns (Void);
+enum ResultType{
+	CITYGML = 0;
+	COLLADA = 1;
+	IFC = 2;
+	IFCXML = 3;
+	O3D_JSON = 4;
+	OBJECT_INFO = 5;
+	TEXT = 6;
+	KMZ = 7;
+	COBIE2 = 8;
+	REPORT_SPACES = 9;
+	REPORT_TYPES = 10;
+	REPORT_COMPONENTS = 11;
+	REPORT_SYSTEMS = 12;
+	REPORT_ZONES = 13;
+}
 
-	rpc download (DownloadRequest) returns (DownloadResponse);
+message DownloadRequest {
+	optional int64 roid = 1;
+	optional ResultType resultType = 2;
+	optional bool sync = 3;
+}
 
+message DownloadResponse {
+	optional int32 value = 2;
+	optional string errorMessage = 1;
 }
 
 message PingRequest {
@@ -343,24 +367,6 @@ message CheckinAsyncResponse {
 	optional string errorMessage = 1;
 }
 
-enum ResultType{
-	CITYGML = 0;
-	COLLADA = 1;
-	IFC = 2;
-	IFCXML = 3;
-	O3D_JSON = 4;
-	OBJECT_INFO = 5;
-	TEXT = 6;
-	KML = 7;
-	KMZ = 8;
-	COBIE2 = 9;
-	REPORT_SPACES = 10;
-	REPORT_TYPES = 11;
-	REPORT_COMPONENTS = 12;
-	REPORT_SYSTEMS = 13;
-	REPORT_ZONES = 14;
-}
-
 message CheckoutRequest {
 	optional int64 roid = 1;
 	optional ResultType resultType = 2;
@@ -368,7 +374,7 @@ message CheckoutRequest {
 }
 
 message CheckoutResponse {
-	optional string value = 2;
+	optional int32 value = 2;
 	optional string errorMessage = 1;
 }
 
@@ -379,7 +385,7 @@ message CheckoutLastRevisionRequest {
 }
 
 message CheckoutLastRevisionResponse {
-	optional string value = 2;
+	optional int32 value = 2;
 	optional string errorMessage = 1;
 }
 
@@ -391,7 +397,7 @@ message DownloadByOidsRequest {
 }
 
 message DownloadByOidsResponse {
-	optional string value = 2;
+	optional int32 value = 2;
 	optional string errorMessage = 1;
 }
 
@@ -403,7 +409,7 @@ message DownloadOfTypeRequest {
 }
 
 message DownloadOfTypeResponse {
-	optional string value = 2;
+	optional int32 value = 2;
 	optional string errorMessage = 1;
 }
 
@@ -415,7 +421,7 @@ message DownloadByGuidsRequest {
 }
 
 message DownloadByGuidsResponse {
-	optional string value = 2;
+	optional int32 value = 2;
 	optional string errorMessage = 1;
 }
 
@@ -426,36 +432,27 @@ message DownloadProjectsRequest {
 }
 
 message DownloadProjectsResponse {
-	optional string value = 2;
+	optional int32 value = 2;
 	optional string errorMessage = 1;
 }
 
 message GetDownloadDataRequest {
-	optional string actionID = 1;
+	optional int32 actionID = 1;
 }
 
-<<<<<<< .mine
 message SDownloadResult {
 	optional bytes file = 1;
 	optional string projectName = 2;
 	optional int32 revisionNr = 3;
 }
 
-=======
-message SDownloadResult {
-	optional string projectName = 1;
-	optional int32 revisionNr = 2;
-	optional bytes file = 3;
-}
-
->>>>>>> .r802
 message GetDownloadDataResponse {
 	optional SDownloadResult value = 2;
 	optional string errorMessage = 1;
 }
 
 message GetDownloadStateRequest {
-	optional string actionID = 1;
+	optional int32 actionID = 1;
 }
 
 enum ActionState{
@@ -502,6 +499,11 @@ message AddProjectRequest {
 	optional string projectName = 1;
 }
 
+enum SObjectState{
+	ACTIVE = 0;
+	DELETED = 1;
+}
+
 enum SSIPrefix{
 	meter = 0;
 	attometer = 1;
@@ -522,30 +524,25 @@ enum SSIPrefix{
 	exameter = 16;
 }
 
-enum SObjectState{
-	ACTIVE = 0;
-	DELETED = 1;
-}
-
 message SProject {
-	repeated int64 subProjects = 1;
-	optional int64 oid = 2;
-	repeated int64 hasAuthorizedUsers = 3;
-	repeated int64 concreteRevisions = 4;
-	repeated int64 revisions = 5;
-	optional int64 lastConcreteRevisionId = 6;
-	optional int64 lastRevisionId = 7;
-	repeated int64 checkouts = 8;
-	optional int64 createdDate = 9;
-	optional int64 createdById = 10;
-	optional int64 geoTagId = 11;
-	optional int64 parentId = 12;
-	optional int64 clashDetectionSettingsId = 13;
-	optional SSIPrefix exportLengthMeasurePrefix = 14;
-	optional string name = 15;
-	optional int32 id = 16;
-	optional SObjectState state = 17;
-	optional string description = 18;
+	optional string name = 1;
+	optional int32 id = 2;
+	optional SObjectState state = 3;
+	repeated int64 subProjects = 4;
+	optional int64 oid = 5;
+	repeated int64 hasAuthorizedUsers = 6;
+	repeated int64 concreteRevisions = 7;
+	repeated int64 revisions = 8;
+	optional int64 lastConcreteRevisionId = 9;
+	optional int64 lastRevisionId = 10;
+	repeated int64 checkouts = 11;
+	optional int64 createdDate = 12;
+	optional int64 createdById = 13;
+	optional int64 geoTagId = 14;
+	optional int64 parentId = 15;
+	optional string description = 16;
+	optional int64 clashDetectionSettingsId = 17;
+	optional SSIPrefix exportLengthMeasurePrefix = 18;
 }
 
 message AddProjectResponse {
@@ -578,23 +575,22 @@ enum SCheckinState{
 }
 
 message SRevision {
-	repeated int64 lastClashes = 1;
-	optional int64 oid = 2;
-	repeated int64 concreteRevisions = 3;
-	optional int64 lastConcreteRevisionId = 4;
-	repeated int64 checkouts = 5;
-	optional int64 userId = 6;
-	optional int64 projectId = 7;
-	optional string lastError = 8;
-	optional int32 bmi = 9;
-	optional int32 nrClashes = 10;
-	optional int64 laid = 11;
-	optional int32 id = 12;
-	optional SCheckinState state = 13;
-	optional int64 size = 14;
-	optional int64 date = 15;
-	optional string comment = 16;
-	optional string tag = 17;
+	optional int32 id = 1;
+	optional SCheckinState state = 2;
+	optional int64 size = 3;
+	optional int64 date = 4;
+	optional string comment = 5;
+	repeated int64 lastClashes = 6;
+	optional int64 oid = 7;
+	repeated int64 concreteRevisions = 8;
+	optional int64 lastConcreteRevisionId = 9;
+	repeated int64 checkouts = 10;
+	optional int64 userId = 11;
+	optional int64 projectId = 12;
+	optional string tag = 13;
+	optional string lastError = 14;
+	optional int32 bmi = 15;
+	optional int32 nrClashes = 16;
 	optional int64 laid = 17;
 }
 
@@ -660,19 +656,19 @@ message GetAllUsersRequest {
 }
 
 message SUser {
-	optional int64 oid = 1;
-	repeated int64 revisions = 2;
-	optional int64 createdById = 3;
-	repeated int64 hasRightsOn = 4;
-	optional int64 createdOn = 5;
-	optional SUserType userType = 6;
-	optional string username = 7;
-	optional int64 lastSeen = 8;
-	optional string validationToken = 9;
-	optional int64 validationTokenCreated = 10;
-	optional string name = 11;
-	optional SObjectState state = 12;
-	optional string password = 13;
+	optional string name = 1;
+	optional SObjectState state = 2;
+	optional int64 oid = 3;
+	repeated int64 revisions = 4;
+	optional int64 createdById = 5;
+	optional string password = 6;
+	repeated int64 hasRightsOn = 7;
+	optional int64 createdOn = 8;
+	optional SUserType userType = 9;
+	optional string username = 10;
+	optional int64 lastSeen = 11;
+	optional string validationToken = 12;
+	optional int64 validationTokenCreated = 13;
 }
 
 message GetAllUsersResponse {
@@ -694,12 +690,12 @@ message GetAllCheckoutsOfProjectRequest {
 }
 
 message SCheckout {
-	optional int64 oid = 1;
-	optional int64 userId = 2;
-	optional int64 projectId = 3;
-	optional int64 revisionId = 4;
-	optional int64 checkinId = 5;
-	optional int64 date = 6;
+	optional int64 date = 1;
+	optional int64 oid = 2;
+	optional int64 userId = 3;
+	optional int64 projectId = 4;
+	optional int64 revisionId = 5;
+	optional int64 checkinId = 6;
 }
 
 message GetAllCheckoutsOfProjectResponse {
@@ -763,20 +759,17 @@ message GetAvailableClassesResponse {
 message GetDatabaseInformationRequest {
 }
 
-message Map {
-}
-
 message DatabaseInformation {
-	optional int64 databaseSizeInBytes = 1;
-	optional int32 numberOfProjects = 2;
-	optional int32 numberOfUsers = 3;
-	optional int32 numberOfRevisions = 4;
-	optional int32 numberOfCheckouts = 5;
-	optional Map genericLines = 6;
-	optional int32 schemaVersion = 7;
-	optional int64 created = 8;
-	optional string location = 9;
-	optional string type = 10;
+	optional string location = 1;
+	optional string type = 2;
+	optional int64 databaseSizeInBytes = 3;
+	optional int32 numberOfProjects = 4;
+	optional int32 numberOfUsers = 5;
+	optional int32 numberOfRevisions = 6;
+	optional int32 numberOfCheckouts = 7;
+	optional Map genericLines = 8;
+	optional int32 schemaVersion = 9;
+	optional int64 created = 10;
 }
 
 message GetDatabaseInformationResponse {
@@ -901,10 +894,10 @@ message SDataValue {
 }
 
 message SDataObject {
-	optional int64 oid = 1;
-	optional string guid = 2;
-	optional string name = 3;
-	optional string type = 4;
+	optional string name = 1;
+	optional string type = 2;
+	optional int64 oid = 3;
+	optional string guid = 4;
 	repeated SDataValue values = 5;
 }
 
@@ -937,8 +930,8 @@ message SClashDetectionSettings {
 	optional int64 oid = 1;
 	repeated int64 revisions = 2;
 	repeated int64 projects = 3;
-	repeated string ignoredClasses = 4;
-	optional float margin = 5;
+	optional float margin = 4;
+	repeated string ignoredClasses = 5;
 }
 
 message FindClashesByGuidRequest {
@@ -1031,11 +1024,11 @@ message GetGeoTagRequest {
 message SGeoTag {
 	optional int64 oid = 1;
 	repeated int64 projects = 2;
-	optional float z = 3;
-	optional int32 epsg = 4;
-	optional float directionAngle = 5;
-	optional float x = 6;
-	optional float y = 7;
+	optional float x = 3;
+	optional float y = 4;
+	optional float z = 5;
+	optional int32 epsg = 6;
+	optional float directionAngle = 7;
 }
 
 message GetGeoTagResponse {
@@ -1244,18 +1237,7 @@ message ValidateAccountRequest {
 message SendClashesEmailRequest {
 	optional SClashDetectionSettings sClashDetectionSettings = 1;
 	optional int64 poid = 2;
-<<<<<<< .mine
 	repeated string addressesTo = 3;
-=======
-	repeated string addressesTo = 3;
-}
-
-enum SCompareType{
-	ALL = 0;
-	ADD = 1;
-	MODIFY = 2;
-	DELETE = 3;
->>>>>>> .r802
 }
 
 message SendCompareEmailRequest {
@@ -1438,10 +1420,10 @@ message GetLogsRequest {
 }
 
 message SLogAction {
-	optional SAccessMethod accessMethod = 1;
-	optional int64 oid = 2;
-	optional int64 executorId = 3;
-	optional int64 date = 4;
+	optional int64 date = 1;
+	optional SAccessMethod accessMethod = 2;
+	optional int64 oid = 3;
+	optional int64 executorId = 4;
 }
 
 message GetLogsResponse {
@@ -1453,13 +1435,13 @@ message GetActiveUserSessionsRequest {
 }
 
 message SUserSession {
-	optional int64 activeSince = 1;
-	optional int64 lastActive = 2;
-	optional SAccessMethod accessMethod = 3;
-	optional string username = 4;
-	optional int64 uoid = 5;
-	optional string name = 6;
-	optional SUserType type = 7;
+	optional string name = 1;
+	optional SUserType type = 2;
+	optional int64 activeSince = 3;
+	optional int64 lastActive = 4;
+	optional SAccessMethod accessMethod = 5;
+	optional string username = 6;
+	optional int64 uoid = 7;
 }
 
 message GetActiveUserSessionsResponse {
@@ -1471,11 +1453,11 @@ message GetActiveLongActionsRequest {
 }
 
 message SLongAction {
-	optional string username = 1;
-	optional string identification = 2;
-	optional int64 userOid = 3;
-	optional int64 start = 4;
-	optional string name = 5;
+	optional string name = 1;
+	optional string username = 2;
+	optional string identification = 3;
+	optional int64 userOid = 4;
+	optional int64 start = 5;
 }
 
 message GetActiveLongActionsResponse {
@@ -1497,41 +1479,6 @@ message GetMigrationsResponse {
 }
 
 message MigrateDatabaseRequest {
-}
-
-message CompareRequest {
-	optional int64 roid1 = 1;
-	optional int64 roid2 = 2;
-	optional SCompareType sCompareType = 3;
-}
-
-message SCompareResult {
-	optional Map items = 1;
-}
-
-message CompareResponse {
-	optional SCompareResult value = 2;
-	optional string errorMessage = 1;
-}
-
-message SetupRequest {
-	optional string siteAddress = 1;
-	optional string smtpServer = 2;
-	optional string adminName = 3;
-	optional string adminUsername = 4;
-	optional string adminPassword = 5;
-	optional bool createAnonymousUser = 6;
-}
-
-message DownloadRequest {
-	optional int64 roid = 1;
-	optional ResultType resultType = 2;
-	optional bool sync = 3;
-}
-
-message DownloadResponse {
-	optional string value = 2;
-	optional string errorMessage = 1;
 }
 
 message Void {

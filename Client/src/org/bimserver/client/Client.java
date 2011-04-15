@@ -146,7 +146,7 @@ public class Client extends JFrame {
 	void checkout(SRevision revision, OutputStream out, boolean report) {
 		try {
 			SProject sProject = serviceHolder.getService().getProjectByPoid(revision.getProjectId());
-			String longCheckoutActionId = serviceHolder.getService().checkout(revision.getOid(), ResultType.IFC, true);
+			int longCheckoutActionId = serviceHolder.getService().checkout(revision.getOid(), ResultType.IFC, true);
 			SDownloadResult checkout = serviceHolder.getService().getDownloadData(longCheckoutActionId);
 			try {
 				InputStream inputStream = checkout.getFile().getInputStream();
@@ -257,8 +257,8 @@ public class Client extends JFrame {
 
 	public void download(long roid, FileOutputStream out, boolean report) {
 		try {
-			String downloadActionID = serviceHolder.getService().download(roid, ResultType.IFC, true);
-			SDownloadResult download = serviceHolder.getService().getDownloadData(downloadActionID);
+			int downloadId = serviceHolder.getService().download(roid, ResultType.IFC, true);
+			SDownloadResult download = serviceHolder.getService().getDownloadData(downloadId);
 			try {
 				InputStream inputStream = download.getFile().getInputStream();
 				IOUtils.copy(inputStream, out);

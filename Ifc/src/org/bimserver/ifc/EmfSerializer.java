@@ -61,61 +61,74 @@ public abstract class EmfSerializer implements DataSource {
 	
 	@Override
 	public InputStream getInputStream() throws IOException {
+		final ByteArrayOutputStream out = new ByteArrayOutputStream();
 		InputStream in = new InputStream() {
-			byte[] buffer = new byte[0];
-			int position;
-			
-			//TODO: Implement the other two read methods, to increase performance
+			int pos = 0;
+			byte[] buffer;
 
-//			@Override
-//			public int read(byte[] b, int off, int len) throws IOException {
-//				if (position < buffer.length) {
-//					int min = Math.min(len, buffer.length - position);
-//					System.arraycopy(buffer, position, b, off, min);
-//					return min;
-//				}
-//				try {
-//					ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-//					int write = write(outputStream);
-//					buffer = new byte[0];
-//					while (write != -1 && buffer.length == 0) {
-//						position = 0;
-//						buffer = outputStream.toByteArray();
-//						if (buffer.length > 0) {
-//							return buffer[position++];
-//						}
-//						write = write(outputStream);
-//					}
-//				} catch (SerializerException e) {
-//					LOGGER.error("", e);
-//				}
-//			}
-			
 			@Override
-			public synchronized int read() throws IOException {
-				try {
-					if (position < buffer.length) {
-						return buffer[position++];
-					}
+			public int read(byte[] b, int off, int len) throws IOException {
+				int read = 0;
+				if (buffer != null && pos < buffer.length) {
+					int nrToCopy = Math.min(buffer.length - pos, len);
+					System.arraycopy(buffer, pos, b, off, nrToCopy);
+					pos += nrToCopy;
+					read += nrToCopy;
+				}
+				while (read < len) {
+					out.reset();
+					buffer = null;
+					pos = 0;
 					try {
-						ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-						int write = write(outputStream);
-						buffer = new byte[0];
-						while (write != -1 && buffer.length == 0) {
-							position = 0;
-							buffer = outputStream.toByteArray();
+						boolean write = write(out);
+						if (write) {
+							buffer = out.toByteArray();
 							if (buffer.length > 0) {
-								return buffer[position++];
+								int nrToCopy = Math.min(buffer.length, len - read);
+								System.arraycopy(buffer, pos, b, off + read, nrToCopy);
+								pos += nrToCopy;
+								read += nrToCopy;
 							}
-							write = write(outputStream);
+						} else {
+							if (read != 0) {
+								return read;
+							} else {
+								return -1;
+							}
 						}
 					} catch (SerializerException e) {
 						LOGGER.error("", e);
 					}
-				} catch (Exception e) {
+				}
+				return read;
+			}
+			
+			@Override
+			public int read() throws IOException {
+				try {
+					if (buffer != null && pos < buffer.length) {
+						return buffer[pos++];
+					} else {
+						buffer = null;
+						while (buffer == null) {
+							out.reset();
+							boolean write = write(out);
+							if (write) {
+								byte[] newBuffer = out.toByteArray();
+								if (newBuffer.length > 0) {
+									buffer = newBuffer;
+									pos = 1;
+									return buffer[0];
+								}
+							} else {
+								return -1;
+							}
+						}
+					}
+				} catch (SerializerException e) {
 					LOGGER.error("", e);
 				}
-				return -1;
+				return 0;
 			}
 		};
 		return in;
@@ -131,11 +144,11 @@ public abstract class EmfSerializer implements DataSource {
 		return null;
 	}
 
-	protected abstract int write(OutputStream outputStream) throws SerializerException;
+	protected abstract boolean write(OutputStream outputStream) throws SerializerException;
 
 	public void writeToOutputStream(OutputStream outputStream) throws SerializerException {
-		int result = write(outputStream);
-		while (result != -1) {
+		boolean result = write(outputStream);
+		while (result) {
 			result = write(outputStream);
 		}
 	}

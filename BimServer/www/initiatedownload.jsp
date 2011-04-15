@@ -12,7 +12,7 @@
 			resultType = ResultType.valueOf(request.getParameter("resultType"));
 		}
 		String zip = request.getParameter("zip");
-		String longActionId = null;
+		int longActionId = -1;
 		if (request.getParameter("checkout") != null) {
 			longActionId = loginManager.getService().checkout(roid,	resultType, false);
 		} else if (request.getParameter("download") != null) {

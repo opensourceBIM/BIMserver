@@ -112,7 +112,7 @@ public class ColladaSerializer extends BimModelSerializer {
 	}
 
 	@Override
-	public int write(OutputStream out) {
+	public boolean write(OutputStream out) {
 		if (mode == SimpleMode.BUSY) {
 			PrintWriter writer = new PrintWriter(out);
 			try {
@@ -136,11 +136,11 @@ public class ColladaSerializer extends BimModelSerializer {
 			writer.flush();
 			mode = SimpleMode.DONE;
 			ifcEngine.close();
-			return 1;
+			return true;
 		} else if (mode == SimpleMode.DONE) {
-			return -1;
+			return false;
 		}
-		return -1;
+		return false;
 	}
 
 	private void writeAssets(PrintWriter out) {

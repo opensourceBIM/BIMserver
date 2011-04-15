@@ -69,7 +69,7 @@ public class O3dJsonSerializer extends BimModelSerializer {
 	}
 
 	@Override
-	public int write(OutputStream out) {
+	public boolean write(OutputStream out) {
 		if (mode == SimpleMode.BUSY) {
 			try {
 				try {
@@ -82,14 +82,14 @@ public class O3dJsonSerializer extends BimModelSerializer {
 				out.flush();
 				mode = SimpleMode.DONE;
 				ifcEngine.close();
-				return 1;
+				return true;
 			} catch (IOException e) {
 				LOGGER.error("", e);
 			}
 		} else if (mode == SimpleMode.DONE) {
-			return -1;
+			return false;
 		}
-		return -1;
+		return false;
 	}
 
 	public Scene createScene() throws JSONException {

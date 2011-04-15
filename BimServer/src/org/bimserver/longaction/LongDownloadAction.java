@@ -1,6 +1,7 @@
 package org.bimserver.longaction;
 
 import org.bimserver.SettingsManager;
+import org.bimserver.cache.DiskCacheManager;
 import org.bimserver.database.BimDatabase;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.actions.BimDatabaseAction;
@@ -22,8 +23,8 @@ public class LongDownloadAction extends LongDownloadOrCheckoutAction {
 	private BimDatabaseSession session;
 
 	public LongDownloadAction(DownloadParameters downloadParameters, long currentUoid, LongActionManager longActionManager,
-			BimDatabase bimDatabase, AccessMethod accessMethod, EmfSerializerFactory emfSerializerFactory, SettingsManager settingsManager) {
-		super(downloadParameters, bimDatabase, longActionManager, accessMethod, emfSerializerFactory, currentUoid);
+			BimDatabase bimDatabase, AccessMethod accessMethod, EmfSerializerFactory emfSerializerFactory, SettingsManager settingsManager, DiskCacheManager diskCacheManager) {
+		super(downloadParameters, bimDatabase, longActionManager, accessMethod, emfSerializerFactory, currentUoid, diskCacheManager);
 		this.settingsManager = settingsManager;
 	}
 
@@ -40,6 +41,9 @@ public class LongDownloadAction extends LongDownloadOrCheckoutAction {
 	}
 
 	public void init() {
+		if (getDiskCacheManager().contains(downloadParameters)) {
+			return;
+		}
 		session = bimDatabase.createReadOnlySession();
 		switch (downloadParameters.getDownloadType()) {
 		case DOWNLOAD:
@@ -67,6 +71,11 @@ public class LongDownloadAction extends LongDownloadOrCheckoutAction {
 	@Override
 	public synchronized LongActionState getState() {
 		LongActionState ds = new LongActionState();
+		if (action == null) {
+			ds.setState(state);
+			ds.setProgress(100);
+			return ds; 
+		}
 		switch (downloadParameters.getDownloadType()) {
 		case DOWNLOAD:
 			ds.setProgress(((DownloadDatabaseAction) action).getProgress());
@@ -89,5 +98,15 @@ public class LongDownloadAction extends LongDownloadOrCheckoutAction {
 			ds.setProgress(100);
 		}
 		return ds;
+	}
+
+	@Override
+	public String getDescription() {
+		return "Download";
+	}
+
+	@Override
+	public DownloadParameters getKey() {
+		return downloadParameters;
 	}
 }
