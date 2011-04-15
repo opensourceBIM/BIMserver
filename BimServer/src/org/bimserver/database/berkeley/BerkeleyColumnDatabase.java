@@ -155,7 +155,7 @@ public class BerkeleyColumnDatabase implements ColumnDatabase {
 		}
 		DatabaseConfig databaseConfig = new DatabaseConfig();
 		databaseConfig.setAllowCreate(false);
-		databaseConfig.setDeferredWrite(!useTransactions);
+		databaseConfig.setDeferredWrite(false);
 		databaseConfig.setTransactional(useTransactions);
 		databaseConfig.setSortedDuplicates(false);
 		Database database = environment.openDatabase(null, tableName, databaseConfig);

@@ -25,6 +25,8 @@ import java.net.Socket;
 
 import javax.net.SocketFactory;
 
+import com.googlecode.protobuf.socketrpc.RpcConnectionFactory.Connection;
+
 /**
  * Client-side {@link RpcConnectionFactory} that creates a new socket for every
  * RPC. Use {@link SocketRpcConnectionFactories} to create instances.

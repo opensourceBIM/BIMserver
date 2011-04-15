@@ -1,5 +1,7 @@
 package org.bimserver.longaction;
 
+import org.bimserver.SettingsManager;
+import org.bimserver.cache.DiskCacheManager;
 import org.bimserver.database.BimDatabase;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.actions.CheckoutDatabaseAction;
@@ -14,8 +16,8 @@ public class LongCheckoutAction extends LongDownloadOrCheckoutAction {
 	private BimDatabaseSession session;
 
 	public LongCheckoutAction(DownloadParameters downloadParameters, long currentUoid, LongActionManager longActionManager, BimDatabase bimDatabase,
-			AccessMethod accessMethod, EmfSerializerFactory emfSerializerFactory) {
-		super(downloadParameters, bimDatabase, longActionManager, accessMethod, emfSerializerFactory, currentUoid);
+			AccessMethod accessMethod, EmfSerializerFactory emfSerializerFactory, SettingsManager settingsManager, DiskCacheManager diskCacheManager) {
+		super(downloadParameters, bimDatabase, longActionManager, accessMethod, emfSerializerFactory, currentUoid, diskCacheManager);
 	}
 
 	@Override
@@ -43,8 +45,18 @@ public class LongCheckoutAction extends LongDownloadOrCheckoutAction {
 	}
 
 	@Override
+	public String getDescription() {
+		return "Checkout";
+	}
+	
+	@Override
 	public void init() {
 		session = bimDatabase.createSession(true);
 		action = new CheckoutDatabaseAction(session, accessMethod, currentUoid, downloadParameters.getRoid());
+	}
+
+	@Override
+	public DownloadParameters getKey() {
+		return downloadParameters;
 	}
 }

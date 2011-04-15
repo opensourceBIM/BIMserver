@@ -3,7 +3,7 @@
 <jsp:useBean id="loginManager" scope="session"
 	class="org.bimserver.web.LoginManager" />
 <%
-	String longActionId = request.getParameter("longActionId");
+	int longActionId = Integer.parseInt(request.getParameter("longActionId"));
 	String zip = request.getParameter("zip");
 %>
 <div id="downloadStateSpan">

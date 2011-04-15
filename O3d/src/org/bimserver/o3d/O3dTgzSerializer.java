@@ -73,7 +73,7 @@ public class O3dTgzSerializer extends BimModelSerializer {
 	}
 
 	@Override
-	public int write(OutputStream out) {
+	public boolean write(OutputStream out) {
 		if (mode == SimpleMode.BUSY) {
 			try {
 				GZIPOutputStream gzipOutputStream = new GZIPOutputStream(out);
@@ -112,14 +112,14 @@ public class O3dTgzSerializer extends BimModelSerializer {
 				gzipOutputStream.finish();
 				mode = SimpleMode.DONE;
 				ifcEngine.close();
-				return 1;
+				return true;
 			} catch (IOException e) {
 				LOGGER.error("", e);
 			}
 		} else if (mode == SimpleMode.DONE) {
-			return -1;
+			return false;
 		}
-		return -1;
+		return false;
 	}
 
 	public Scene createScene() throws JSONException {

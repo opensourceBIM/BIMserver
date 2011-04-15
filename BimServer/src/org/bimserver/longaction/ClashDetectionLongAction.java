@@ -130,7 +130,7 @@ public class ClashDetectionLongAction extends LongAction {
 	}
 
 	@Override
-	public String getIdentification() {
+	public String getDescription() {
 		return "ClashDetectionLongAction " + user.getName();
 	}
 
@@ -141,8 +141,10 @@ public class ClashDetectionLongAction extends LongAction {
 
 	@Override
 	public void init() {
-		// TODO Auto-generated method stub
-		
 	}
 
+	@Override
+	public LongActionKey getKey() {
+		return new ClashDetectionLongActionKey(poid);
+	}
 }

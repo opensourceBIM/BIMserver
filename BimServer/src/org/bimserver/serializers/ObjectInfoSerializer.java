@@ -27,7 +27,7 @@ public class ObjectInfoSerializer extends BimModelSerializer {
 	}
 
 	@Override
-	public int write(OutputStream outputStream) throws SerializerException {
+	public boolean write(OutputStream outputStream) throws SerializerException {
 		if (mode == SimpleMode.BUSY) {
 			PrintWriter out = new PrintWriter(outputStream);
 			EObject mainObject = model.getMainObject();
@@ -40,11 +40,11 @@ public class ObjectInfoSerializer extends BimModelSerializer {
 			}
 			out.flush();
 			mode = SimpleMode.DONE;
-			return 1;
+			return true;
 		} else if (mode == SimpleMode.DONE) {
-			return -1;
+			return false;
 		}
-		return -1;
+		return false;
 	}
 
 	@SuppressWarnings("unchecked")

@@ -54,7 +54,7 @@ public class IfcXmlSerializer extends IfcSerializer {
 	}
 
 	@Override
-	public int write(OutputStream out) {
+	public boolean write(OutputStream out) {
 		if (mode == SimpleMode.BUSY) {
 			this.out = new UTFPrintWriter(out);
 			printLineTabbed("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
@@ -75,11 +75,11 @@ public class IfcXmlSerializer extends IfcSerializer {
 			printLineTabbed("</iso_10303_28>");
 			this.out.flush();
 			mode = SimpleMode.DONE;
-			return 1;
+			return true;
 		} else if (mode == SimpleMode.DONE) {
-			return -1;
+			return false;
 		}
-		return -1;
+		return false;
 	}
 
 	public void write(File file) throws FileNotFoundException {

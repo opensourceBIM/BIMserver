@@ -36,7 +36,7 @@ public class XsltSerializer extends BimModelSerializer {
 	}
 
 	@Override
-	protected int write(OutputStream outputStream) throws SerializerException {
+	protected boolean write(OutputStream outputStream) throws SerializerException {
 		IfcXmlSerializer ifcXmlSerializer = new IfcXmlSerializer(getName(), model, schemaDefinition);
 		TransformerFactory factory = TransformerFactory.newInstance();
 
@@ -75,7 +75,7 @@ public class XsltSerializer extends BimModelSerializer {
 		} catch (Throwable e) {
 			throw new SerializerException(e);
 		}
-		return -1;
+		return false;
 	}
 
 	@Override

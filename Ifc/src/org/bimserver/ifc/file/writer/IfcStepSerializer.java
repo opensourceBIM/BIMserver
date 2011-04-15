@@ -104,7 +104,7 @@ public class IfcStepSerializer extends IfcSerializer {
 		}
 	}
 
-	public int write(OutputStream outputStream) {
+	public boolean write(OutputStream outputStream) {
 		if (out == null) {
 			out = new UTFPrintWriter(outputStream);
 		}
@@ -113,7 +113,7 @@ public class IfcStepSerializer extends IfcSerializer {
 			mode = Mode.BODY;
 			iterator = model.keySet().iterator();
 			out.flush();
-			return 1;
+			return true;
 		} else if (mode == Mode.BODY) {
 			if (iterator.hasNext()) {
 				long key = iterator.next();
@@ -123,17 +123,18 @@ public class IfcStepSerializer extends IfcSerializer {
 			} else {
 				iterator = null;
 				mode = Mode.FOOTER;
+				return write(outputStream);
 			}
-			return 1;
+			return true;
 		} else if (mode == Mode.FOOTER) {
 			writeFooter(out);
 			out.flush();
 			mode = Mode.FINISHED;
-			return 1;
+			return true;
 		} else if (mode == Mode.FINISHED) {
-			return -1;
+			return false;
 		}
-		return -1;
+		return false;
 	}
 
 	public void setFileDescription(String fileDescription) {

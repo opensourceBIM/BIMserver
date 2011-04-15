@@ -95,12 +95,12 @@ public interface ServiceInterface {
 			@WebParam(name = "merge", partName = "checkinAsync.merge") boolean merge) throws UserException, ServerException;
 
 	@WebMethod(action = "checkout")
-	String checkout(@WebParam(name = "roid", partName = "checkout.roid") long roid,
+	int checkout(@WebParam(name = "roid", partName = "checkout.roid") long roid,
 			@WebParam(name = "resultType", partName = "checkout.resultType") ResultType resultType,
 			@QueryParam("sync") @WebParam(name = "sync", partName = "download.sync") boolean sync) throws UserException, ServerException;
 
 	@WebMethod(action = "checkoutLastRevision")
-	String checkoutLastRevision(@QueryParam("poid") @WebParam(name = "poid", partName = "checkoutLastRevision.poid") long poid,
+	int checkoutLastRevision(@QueryParam("poid") @WebParam(name = "poid", partName = "checkoutLastRevision.poid") long poid,
 			@QueryParam("resultType") @WebParam(name = "resultType", partName = "checkoutLastRevision.resultType") ResultType resultType,
 			@QueryParam("sync") @WebParam(name = "sync", partName = "download.sync") boolean sync) throws UserException, ServerException;
 
@@ -108,43 +108,43 @@ public interface ServiceInterface {
 	@Path("/download")
 	@Produces("application/xml")
 	@WebMethod(action = "download")
-	String download(@QueryParam("roid") @WebParam(name = "roid", partName = "download.roid") long roid,
+	int download(@QueryParam("roid") @WebParam(name = "roid", partName = "download.roid") long roid,
 			@QueryParam("resultType") @WebParam(name = "resultType", partName = "download.resultType") ResultType resultType,
 			@QueryParam("sync") @WebParam(name = "sync", partName = "download.sync") boolean sync) throws UserException, ServerException;
 
 	@WebMethod(action = "downloadByOids")
-	String downloadByOids(@WebParam(name = "roids", partName = "downloadByOids.roids") Set<Long> roids,
+	int downloadByOids(@WebParam(name = "roids", partName = "downloadByOids.roids") Set<Long> roids,
 			@WebParam(name = "oids", partName = "downloadByOids.oids") Set<Long> oids,
 			@WebParam(name = "resultType", partName = "downloadByOids.resultType") ResultType resultType,
 			@QueryParam("sync") @WebParam(name = "sync", partName = "download.sync") boolean sync) throws UserException,
 			ServerException;
 
 	@WebMethod(action = "downloadOfType")
-	String downloadOfType(@WebParam(name = "roid", partName = "downloadOfType.roid") long roid,
+	int downloadOfType(@WebParam(name = "roid", partName = "downloadOfType.roid") long roid,
 			@WebParam(name = "className", partName = "downloadOfType.className") String className,
 			@WebParam(name = "resultType", partName = "downloadOfType.resultType") ResultType resultType,
 			@QueryParam("sync") @WebParam(name = "sync", partName = "download.sync") boolean sync) throws UserException,
 			ServerException;
 
 	@WebMethod(action = "downloadByGuids")
-	String downloadByGuids(@WebParam(name = "roids", partName = "downloadByGuids.roids") Set<Long> roids,
+	int downloadByGuids(@WebParam(name = "roids", partName = "downloadByGuids.roids") Set<Long> roids,
 			@WebParam(name = "guids", partName = "downloadByGuids.guids") Set<String> guids,
 			@WebParam(name = "resultType", partName = "downloadByGuids.resultType") ResultType resultType,
 			@QueryParam("sync") @WebParam(name = "sync", partName = "download.sync") boolean sync) throws UserException,
 			ServerException;
 
 	@WebMethod(action = "downloadProjects")
-	String downloadProjects(@WebParam(name = "roids", partName = "downloadProjects.roids") Set<Long> roids,
+	int downloadProjects(@WebParam(name = "roids", partName = "downloadProjects.roids") Set<Long> roids,
 			@WebParam(name = "resultType", partName = "downloadProjects.resultType") ResultType resultType,
 			@QueryParam("sync") @WebParam(name = "sync", partName = "download.sync") boolean sync) throws UserException,
 			ServerException;
 
 	@WebMethod(action = "getDownloadData")
-	SDownloadResult getDownloadData(@WebParam(name = "actionID", partName = "downloadProjects.actionID") String actionID)
+	SDownloadResult getDownloadData(@WebParam(name = "actionID", partName = "downloadProjects.actionID") int actionId)
 			throws UserException, ServerException;
 
 	@WebMethod(action = "getDownloadState")
-	LongActionState getDownloadState(@WebParam(name = "actionID", partName = "downloadProjects.actionID") String actionID)
+	LongActionState getDownloadState(@WebParam(name = "actionID", partName = "downloadProjects.actionID") int actionId)
 			throws UserException, ServerException;
 
 	@WebMethod(action = "addUser")

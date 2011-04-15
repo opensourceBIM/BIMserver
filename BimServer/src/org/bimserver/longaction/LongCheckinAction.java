@@ -25,7 +25,7 @@ import org.bimserver.shared.UserException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class LongCheckinAction extends LongAction {
+public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(LongCheckinAction.class);
 	private final CheckinPart2DatabaseAction createCheckinAction;
@@ -141,7 +141,7 @@ public class LongCheckinAction extends LongAction {
 	}
 
 	@Override
-	public String getIdentification() {
+	public String getDescription() {
 		return getClass().getSimpleName() + " " + createCheckinAction.getCroid();
 	}
 
@@ -155,7 +155,10 @@ public class LongCheckinAction extends LongAction {
 
 	@Override
 	public void init() {
-		// TODO Auto-generated method stub
-		
+	}
+
+	@Override
+	public LongCheckinActionKey getKey() {
+		return new LongCheckinActionKey(createCheckinAction.getCroid());
 	}
 }

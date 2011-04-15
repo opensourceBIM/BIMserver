@@ -20,7 +20,6 @@ package org.bimserver.webservices;
  * long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
@@ -48,9 +47,9 @@ import javax.mail.internet.MimeMessage;
 import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
 
 import org.bimserver.ServerInfo;
-import org.bimserver.ServerInitializer;
 import org.bimserver.SettingsManager;
 import org.bimserver.ServerInfo.ServerState;
+import org.bimserver.cache.DiskCacheManager;
 import org.bimserver.database.BimDatabase;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
@@ -137,10 +136,8 @@ import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.interfaces.objects.SUser;
 import org.bimserver.interfaces.objects.SUserType;
-import org.bimserver.longaction.CacheFileSerializer;
 import org.bimserver.longaction.CannotBeScheduledException;
 import org.bimserver.longaction.DownloadParameters;
-import org.bimserver.longaction.LongAction;
 import org.bimserver.longaction.LongActionManager;
 import org.bimserver.longaction.LongCheckinAction;
 import org.bimserver.longaction.LongCheckoutAction;
@@ -181,7 +178,6 @@ import org.bimserver.shared.ServiceException;
 import org.bimserver.shared.ServiceInterface;
 import org.bimserver.shared.Token;
 import org.bimserver.shared.UserException;
-import org.bimserver.shared.LongActionState.ActionState;
 import org.bimserver.shared.SCompareResult.SCompareType;
 import org.bimserver.shared.SCompareResult.SObjectAdded;
 import org.bimserver.shared.SCompareResult.SObjectModified;
@@ -218,15 +214,16 @@ public class Service implements ServiceInterface {
 	private final FieldIgnoreMap fieldIgnoreMap;
 	private final SettingsManager settingsManager;
 	private final MailSystem mailSystem;
+	private final DiskCacheManager diskCacheManager;
 
 	private long currentUoid = -1;
 	private Date activeSince;
 	private Date lastActive;
 	private Token token;
 
-	public Service(BimDatabase bimDatabase, EmfSerializerFactory emfSerializerFactory, SchemaDefinition schema,
-			LongActionManager longActionManager, AccessMethod accessMethod, IfcEngineFactory ifcEngineFactory,
-			ServiceFactory serviceFactory, FieldIgnoreMap fieldIgnoreMap, SettingsManager settingsManager, MailSystem mailSystem) {
+	public Service(BimDatabase bimDatabase, EmfSerializerFactory emfSerializerFactory, SchemaDefinition schema, LongActionManager longActionManager, AccessMethod accessMethod,
+			IfcEngineFactory ifcEngineFactory, ServiceFactory serviceFactory, FieldIgnoreMap fieldIgnoreMap, SettingsManager settingsManager, MailSystem mailSystem,
+			DiskCacheManager diskCacheManager) {
 		this.bimDatabase = bimDatabase;
 		this.emfSerializerFactory = emfSerializerFactory;
 		this.schema = schema;
@@ -237,31 +234,29 @@ public class Service implements ServiceInterface {
 		this.fieldIgnoreMap = fieldIgnoreMap;
 		this.settingsManager = settingsManager;
 		this.mailSystem = mailSystem;
+		this.diskCacheManager = diskCacheManager;
 		activeSince = new Date();
 		lastActive = new Date();
 	}
 
 	@Override
-	public SCheckinResult checkinSync(final long poid, final String comment, long fileSize, DataHandler ifcFile, boolean merge)
-			throws UserException, ServerException {
+	public SCheckinResult checkinSync(final long poid, final String comment, long fileSize, DataHandler ifcFile, boolean merge) throws UserException, ServerException {
 		requireAuthenticationAndRunningServer();
 		return checkinInternal(poid, comment, fileSize, ifcFile, true, merge);
 	}
 
 	@Override
-	public SCheckinResult checkinAsync(final long poid, final String comment, long fileSize, DataHandler ifcFile, boolean merge)
-			throws UserException, ServerException {
+	public SCheckinResult checkinAsync(final long poid, final String comment, long fileSize, DataHandler ifcFile, boolean merge) throws UserException, ServerException {
 		requireAuthenticationAndRunningServer();
 		return checkinInternal(poid, comment, fileSize, ifcFile, false, merge);
 	}
 
-	private SCheckinResult checkinInternal(final long poid, final String comment, long fileSize, DataHandler ifcFile, boolean sync,
-			boolean merge) throws UserException, ServerException {
+	private SCheckinResult checkinInternal(final long poid, final String comment, long fileSize, DataHandler ifcFile, boolean sync, boolean merge) throws UserException,
+			ServerException {
 		final BimDatabaseSession session = bimDatabase.createSession(true);
 		try {
 			InputStream inputStream = ifcFile.getInputStream();
-			if (ifcFile.getName() != null
-					&& (ifcFile.getName().toUpperCase().endsWith(".ZIP") || ifcFile.getName().toUpperCase().endsWith(".IFCZIP"))) {
+			if (ifcFile.getName() != null && (ifcFile.getName().toUpperCase().endsWith(".ZIP") || ifcFile.getName().toUpperCase().endsWith(".IFCZIP"))) {
 				ZipInputStream zipInputStream = new ZipInputStream(inputStream);
 				ZipEntry nextEntry = zipInputStream.getNextEntry();
 				if (nextEntry == null) {
@@ -292,11 +287,9 @@ public class Service implements ServiceInterface {
 						}
 					}
 				} else {
-					throw new UserException(
-							"Zip files must contain exactly one IFC-file, this zip-file seems to have one or more non-IFC files");
+					throw new UserException("Zip files must contain exactly one IFC-file, this zip-file seems to have one or more non-IFC files");
 				}
-			} else if (ifcFile.getName() == null || ifcFile.getName().toUpperCase().endsWith(".IFC")
-					|| ifcFile.getName().toUpperCase().endsWith(".IFCXML")) {
+			} else if (ifcFile.getName() == null || ifcFile.getName().toUpperCase().endsWith(".IFC") || ifcFile.getName().toUpperCase().endsWith(".IFCXML")) {
 				IfcModel model = null;
 				if (ifcFile.getName() != null && ifcFile.getName().toUpperCase().endsWith(".IFCXML")) {
 					model = readIfcXmlModel(ifcFile.getInputStream(), fileSize);
@@ -337,28 +330,31 @@ public class Service implements ServiceInterface {
 	private IfcModel readIfcStepModel(final InputStream inputStream, long fileSize) throws UserException {
 		IfcStepDeserializer fastIfcFileReader = new IfcStepDeserializer(schema);
 		try {
-			/*
-			 * Strangest hack ever, it seems that DelegatingInputStream (when
-			 * using SOAP), sometimes gives 0 as a result of read(byte[] b, int
-			 * off, int len), which is illegal, so this code makes sure a 0 will
-			 * be interpreted as the end of the stream
-			 */
-			InputStream between = new InputStream() {
-				@Override
-				public int read() throws IOException {
-					return inputStream.read();
-				}
-
-				@Override
-				public int read(byte[] b, int off, int len) throws IOException {
-					int read = inputStream.read(b, off, len);
-					if (read == 0) {
-						return -1;
+			InputStream in = inputStream;
+			if (accessMethod == AccessMethod.SOAP) {
+				/*
+				 * Strangest hack ever, it seems that DelegatingInputStream (when
+				 * using SOAP), sometimes gives 0 as a result of read(byte[] b, int
+				 * off, int len), which is illegal, so this code makes sure a 0 will
+				 * be interpreted as the end of the stream
+				 */
+				in = new InputStream() {
+					@Override
+					public int read() throws IOException {
+						return inputStream.read();
 					}
-					return read;
-				}
-			};
-			fastIfcFileReader.read(between, fileSize);
+					
+					@Override
+					public int read(byte[] b, int off, int len) throws IOException {
+						int read = inputStream.read(b, off, len);
+						if (read == 0) {
+							return -1;
+						}
+						return read;
+					}
+				};
+			}
+			fastIfcFileReader.read(in, fileSize);
 			return fastIfcFileReader.getModel();
 		} catch (IncorrectIfcFileException e) {
 			throw new UserException("Invalid IFC file", e);
@@ -371,8 +367,8 @@ public class Service implements ServiceInterface {
 		}
 	}
 
-	private SCheckinResult processCheckinSync(final long poid, final String comment, long fileSize, final BimDatabaseSession session,
-			IfcModel model, boolean merge) throws UserException, ServerException {
+	private SCheckinResult processCheckinSync(final long poid, final String comment, long fileSize, final BimDatabaseSession session, IfcModel model, boolean merge)
+			throws UserException, ServerException {
 		BimDatabaseAction<ConcreteRevision> action = new CheckinDatabaseAction(session, accessMethod, model, poid, currentUoid, comment);
 		try {
 			ConcreteRevision revision = session.executeAndCommitAction(action, DEADLOCK_RETRIES);
@@ -387,23 +383,21 @@ public class Service implements ServiceInterface {
 		}
 	}
 
-	private SCheckinResult processCheckinAsync(final long poid, final String comment, long fileSize, final BimDatabaseSession session,
-			IfcModel model, boolean merge) throws UserException {
+	private SCheckinResult processCheckinAsync(final long poid, final String comment, long fileSize, final BimDatabaseSession session, IfcModel model, boolean merge)
+			throws UserException {
 		try {
-			BimDatabaseAction<ConcreteRevision> action = new CheckinPart1DatabaseAction(session, accessMethod, poid, currentUoid, model,
-					comment);
+			BimDatabaseAction<ConcreteRevision> action = new CheckinPart1DatabaseAction(session, accessMethod, poid, currentUoid, model, comment);
 			GetUserByUoidDatabaseAction getUserByUoidDatabaseAction = new GetUserByUoidDatabaseAction(session, accessMethod, currentUoid);
 			User userByUoid = session.executeAction(getUserByUoidDatabaseAction, DEADLOCK_RETRIES);
 			ConcreteRevision revision = session.executeAndCommitAction(action, DEADLOCK_RETRIES);
 			session.close();
-			CheckinPart2DatabaseAction createCheckinAction = new CheckinPart2DatabaseAction(null, accessMethod, settingsManager, model,
-					currentUoid, revision.getOid(), merge);
+			CheckinPart2DatabaseAction createCheckinAction = new CheckinPart2DatabaseAction(null, accessMethod, settingsManager, model, currentUoid, revision.getOid(), merge);
 			SCheckinResult result = new SCheckinResult();
 			result.setRid(revision.getId());
 			result.setPoid(revision.getProject().getOid());
 			result.setProjectName(revision.getProject().getName());
-			longActionManager.start(new LongCheckinAction(userByUoid, longActionManager, bimDatabase, schema, createCheckinAction,
-					ifcEngineFactory, fieldIgnoreMap, settingsManager, mailSystem));
+			longActionManager.start(new LongCheckinAction(userByUoid, longActionManager, bimDatabase, schema, createCheckinAction, ifcEngineFactory, fieldIgnoreMap,
+					settingsManager, mailSystem));
 			return result;
 		} catch (UserException e) {
 			throw e;
@@ -415,7 +409,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public String checkoutLastRevision(long poid, ResultType resultType, boolean sync) throws UserException, ServerException {
+	public int checkoutLastRevision(long poid, ResultType resultType, boolean sync) throws UserException, ServerException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimDatabase.createSession(true);
 		try {
@@ -423,41 +417,29 @@ public class Service implements ServiceInterface {
 			return checkout(project.getLastRevision().getOid(), resultType, sync);
 		} catch (Exception e) {
 			handleException(e);
-			return null;
+			return -1;
 		} finally {
 			session.close();
 		}
 	}
 
 	@Override
-	public String checkout(long roid, ResultType resultType, boolean sync) throws UserException, ServerException {
+	public int checkout(long roid, ResultType resultType, boolean sync) throws UserException, ServerException {
 		requireAuthenticationAndRunningServer();
 		if (resultType != ResultType.IFC && resultType != ResultType.IFCXML) {
 			throw new UserException("Only IFC or IFCXML allowed when checking out");
 		}
-
-		LongCheckoutAction longCheckoutAction = null;
 		DownloadParameters downloadParameters = new DownloadParameters(roid, resultType);
-		String longActionID = downloadParameters.getId();
-		LongAction longAction = longActionManager.getLongAction(longActionID);
-		if (longAction instanceof LongCheckoutAction) {
-			longCheckoutAction = (LongCheckoutAction) longAction;
-		}
-		if (longCheckoutAction == null || !longActionManager.isRunning(longCheckoutAction)) {
-
-			longCheckoutAction = new LongCheckoutAction(downloadParameters, currentUoid, longActionManager, bimDatabase, accessMethod,
-					emfSerializerFactory);
-			try {
-				longActionManager.start(longCheckoutAction);
-			} catch (CannotBeScheduledException e) {
-				handleException(e);
-				return null;
-			}
+		LongDownloadOrCheckoutAction longDownloadAction = new LongCheckoutAction(downloadParameters, currentUoid, longActionManager, bimDatabase, accessMethod, emfSerializerFactory, settingsManager, diskCacheManager);
+		try {
+			longActionManager.start(longDownloadAction);
+		} catch (CannotBeScheduledException e) {
+			LOGGER.error("", e);
 		}
 		if (sync) {
-			longCheckoutAction.waitForFinish();
+			longDownloadAction.waitForCompletion();
 		}
-		return longCheckoutAction.getIdentification();
+		return longDownloadAction.getId();
 	}
 
 	@Override
@@ -469,8 +451,8 @@ public class Service implements ServiceInterface {
 		}
 		BimDatabaseSession session = bimDatabase.createSession(true);
 		try {
-			BimDatabaseAction<Long> action = new AddUserDatabaseAction(session, accessMethod, settingsManager, mailSystem, username, name,
-					convert(type), currentUoid, selfRegistration);
+			BimDatabaseAction<Long> action = new AddUserDatabaseAction(session, accessMethod, settingsManager, mailSystem, username, name, convert(type), currentUoid,
+					selfRegistration);
 			return session.executeAndCommitAction(action, DEADLOCK_RETRIES);
 		} catch (Exception e) {
 			handleException(e);
@@ -499,8 +481,7 @@ public class Service implements ServiceInterface {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimDatabase.createSession(true);
 		try {
-			BimDatabaseAction<Project> action = new AddProjectDatabaseAction(session, accessMethod, settingsManager, projectName,
-					currentUoid);
+			BimDatabaseAction<Project> action = new AddProjectDatabaseAction(session, accessMethod, settingsManager, projectName, currentUoid);
 			return convert(session.executeAndCommitAction(action, DEADLOCK_RETRIES), SProject.class);
 		} catch (Exception e) {
 			handleException(e);
@@ -636,8 +617,7 @@ public class Service implements ServiceInterface {
 							Object invoke = method2.invoke(en);
 							if ((Integer) invoke == enumerator.getValue()) {
 								try {
-									Method method = realClass.getMethod(GenerateUtils.makeSetter(eStructuralFeature),
-											new Class[] { forName });
+									Method method = realClass.getMethod(GenerateUtils.makeSetter(eStructuralFeature), new Class[] { forName });
 									method.invoke(newInstance, t);
 								} catch (NoSuchMethodException e) {
 								}
@@ -650,8 +630,7 @@ public class Service implements ServiceInterface {
 						}
 					} else if (eStructuralFeature.getEType() instanceof EDataType) {
 						try {
-							Method method = realClass.getMethod(GenerateUtils.makeSetter(eStructuralFeature),
-									new Class[] { eStructuralFeature.getEType().getInstanceClass() });
+							Method method = realClass.getMethod(GenerateUtils.makeSetter(eStructuralFeature), new Class[] { eStructuralFeature.getEType().getInstanceClass() });
 							if (value != null) {
 								method.invoke(newInstance, value);
 							}
@@ -855,68 +834,42 @@ public class Service implements ServiceInterface {
 		}
 	}
 
-	public String download(long roid, ResultType resultType, boolean sync) throws UserException, ServerException {
+	public int download(long roid, ResultType resultType, boolean sync) throws UserException, ServerException {
 		requireAuthenticationAndRunningServer();
-
-		DownloadParameters downloadParameters = new DownloadParameters(roid, resultType);
-		return download(downloadParameters, sync);
+		return download(new DownloadParameters(roid, resultType), sync);
 	}
 
-	private String download(DownloadParameters downloadParameters, boolean sync) throws UserException, ServerException {
-		String longActionID = downloadParameters.getId();
-		if (cachefileExists(longActionID)) {
-			return longActionID;
-		} else {
-			LongDownloadOrCheckoutAction longDownloadAction = (LongDownloadOrCheckoutAction) longActionManager.getLongAction(longActionID);
-			if (longDownloadAction == null || !longActionManager.isRunning(longDownloadAction)) {
-				longDownloadAction = new LongDownloadAction(downloadParameters, currentUoid, longActionManager, bimDatabase, accessMethod,
-						emfSerializerFactory, settingsManager);
-				try {
-					longActionManager.start(longDownloadAction);
-				} catch (CannotBeScheduledException e) {
-					handleException(e);
-					return null;
-				}
-			}
-			if (sync) {
-				longDownloadAction.waitForFinish();
-			}
-			return longDownloadAction.getIdentification();
+	private int download(DownloadParameters downloadParameters, boolean sync) throws UserException, ServerException {
+		LongDownloadOrCheckoutAction longDownloadAction = new LongDownloadAction(downloadParameters, currentUoid, longActionManager, bimDatabase, accessMethod, emfSerializerFactory, settingsManager, diskCacheManager);
+		try {
+			longActionManager.start(longDownloadAction);
+		} catch (CannotBeScheduledException e) {
+			LOGGER.error("", e);
 		}
-	}
-
-	private boolean cachefileExists(String longActionID) {
-		File homeDir = ServerInitializer.getHomeDir();
-		File cachefile = new File(homeDir.getAbsolutePath() + File.separator + "cache" + File.separator + longActionID);
-		return cachefile.exists();
+		if (sync) {
+			longDownloadAction.waitForCompletion();
+		}
+		return longDownloadAction.getId();
 	}
 
 	@Override
-	public SDownloadResult getDownloadData(final String longActionID) throws UserException, ServerException {
-		if (cachefileExists(longActionID)) {
-			SDownloadResult sDownloadResult = new SDownloadResult();
-			CacheFileSerializer serializer = new CacheFileSerializer(longActionID) ;
-			sDownloadResult.setFile(new DataHandler(serializer));
-			return sDownloadResult;
-		} else {
-			LongDownloadOrCheckoutAction longAction = (LongDownloadOrCheckoutAction) longActionManager.getLongAction(longActionID);
+	public SDownloadResult getDownloadData(final int actionId) throws UserException, ServerException {
+		LongDownloadOrCheckoutAction longAction = (LongDownloadOrCheckoutAction) longActionManager.getLongAction(actionId);
+		if (longAction != null) {
+			longAction.waitForCompletion();
 			return longAction.getCheckoutResult();
+		} else {
+			throw new UserException("No data found for laid " + actionId);
 		}
 	}
 
 	@Override
-	public LongActionState getDownloadState(String longActionID) throws UserException, ServerException {
-		LongDownloadOrCheckoutAction longAction = (LongDownloadOrCheckoutAction) longActionManager.getLongAction(longActionID);
-		if (longAction == null && cachefileExists(longActionID)) {
-			LongActionState longActionState = new LongActionState();
-			longActionState.setProgress(100);
-			longActionState.setState(ActionState.FINISHED);
-			return longActionState;
+	public LongActionState getDownloadState(int actionId) throws UserException, ServerException {
+		LongDownloadOrCheckoutAction longAction = (LongDownloadOrCheckoutAction) longActionManager.getLongAction(actionId);
+		if (longAction != null) {
+			return longAction.getState();
 		} else {
-			if (longAction != null) {
-				return longAction.getState();
-			}
-			throw new UserException("Cannot find download action, ID=" + longActionID);
+			throw new UserException("No state found for laid " + actionId);
 		}
 	}
 
@@ -966,20 +919,15 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public String downloadByOids(Set<Long> roids, Set<Long> oids, ResultType resultType, boolean sync) throws UserException,
-			ServerException {
+	public int downloadByOids(Set<Long> roids, Set<Long> oids, ResultType resultType, boolean sync) throws UserException, ServerException {
 		requireAuthenticationAndRunningServer();
-
-		DownloadParameters downloadParameters = new DownloadParameters(resultType, roids, oids);
-		return download(downloadParameters, sync);
+		return download(new DownloadParameters(resultType, roids, oids), sync);
 	}
 
 	@Override
-	public String downloadOfType(long roid, String className, ResultType resultType, boolean sync) throws UserException, ServerException {
+	public int downloadOfType(long roid, String className, ResultType resultType, boolean sync) throws UserException, ServerException {
 		requireAuthenticationAndRunningServer();
-
-		DownloadParameters downloadParameters = new DownloadParameters(roid, className, resultType);
-		return download(downloadParameters, sync);
+		return download(new DownloadParameters(roid, className, resultType), sync);
 	}
 
 	@Override
@@ -1013,12 +961,9 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public String downloadByGuids(Set<Long> roids, Set<String> guids, ResultType resultType, boolean sync) throws UserException,
-			ServerException {
+	public int downloadByGuids(Set<Long> roids, Set<String> guids, ResultType resultType, boolean sync) throws UserException, ServerException {
 		requireAuthenticationAndRunningServer();
-
-		DownloadParameters downloadParameters = new DownloadParameters(roids, guids, resultType);
-		return download(downloadParameters, sync);
+		return download(new DownloadParameters(roids, guids, resultType), sync);
 	}
 
 	@Override
@@ -1053,8 +998,7 @@ public class Service implements ServiceInterface {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimDatabase.createSession(true);
 		try {
-			BimDatabaseAction<Boolean> action = new ChangePasswordDatabaseAction(session, accessMethod, uoid, oldPassword, newPassword,
-					currentUoid);
+			BimDatabaseAction<Boolean> action = new ChangePasswordDatabaseAction(session, accessMethod, uoid, oldPassword, newPassword, currentUoid);
 			return session.executeAndCommitAction(action, DEADLOCK_RETRIES);
 		} catch (Exception e) {
 			handleException(e);
@@ -1141,8 +1085,7 @@ public class Service implements ServiceInterface {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimDatabase.createSession(true);
 		try {
-			BimDatabaseAction<Project> action = new AddProjectDatabaseAction(session, accessMethod, settingsManager, projectName,
-					parentPoid, currentUoid);
+			BimDatabaseAction<Project> action = new AddProjectDatabaseAction(session, accessMethod, settingsManager, projectName, parentPoid, currentUoid);
 			return convert(session.executeAndCommitAction(action, DEADLOCK_RETRIES), SProject.class);
 		} catch (Exception e) {
 			handleException(e);
@@ -1185,8 +1128,7 @@ public class Service implements ServiceInterface {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimDatabase.createSession(true);
 		try {
-			BimDatabaseAction<CompareResult> action = new CompareDatabaseAction(session, accessMethod, settingsManager, currentUoid, roid1,
-					roid2, sCompareType);
+			BimDatabaseAction<CompareResult> action = new CompareDatabaseAction(session, accessMethod, settingsManager, currentUoid, roid1, roid2, sCompareType);
 			return convert(session.executeAndCommitAction(action, DEADLOCK_RETRIES), SCompareResult.class, session);
 		} catch (Exception e) {
 			handleException(e);
@@ -1214,16 +1156,15 @@ public class Service implements ServiceInterface {
 		for (EClass key : items.keySet()) {
 			List<Item> list = items.get(key);
 			for (Item item : list) {
-				SDataObject dataObject = new SDataObject(item.eObject.eClass().getName(), item.eObject.getOid(), getGuid(item.eObject),
-						getName(item.eObject));
+				SDataObject dataObject = new SDataObject(item.eObject.eClass().getName(), item.eObject.getOid(), getGuid(item.eObject), getName(item.eObject));
 				if (item instanceof ObjectAdded) {
 					sCompareResult.add(new SObjectAdded(dataObject));
 				} else if (item instanceof ObjectDeleted) {
 					sCompareResult.add(new SObjectRemoved(dataObject));
 				} else if (item instanceof ObjectModified) {
 					ObjectModified objectModified = (ObjectModified) item;
-					sCompareResult.add(new SObjectModified(dataObject, objectModified.getFeature().getName(), objectModified.getOldValue()
-							.toString(), objectModified.getNewValue().toString()));
+					sCompareResult.add(new SObjectModified(dataObject, objectModified.getFeature().getName(), objectModified.getOldValue().toString(), objectModified.getNewValue()
+							.toString()));
 				}
 			}
 		}
@@ -1311,11 +1252,9 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public String downloadProjects(Set<Long> roids, ResultType resultType, boolean sync) throws UserException, ServerException {
+	public int downloadProjects(Set<Long> roids, ResultType resultType, boolean sync) throws UserException, ServerException {
 		requireAuthenticationAndRunningServer();
-
-		DownloadParameters downloadParameters = new DownloadParameters(roids, resultType);
-		return download(downloadParameters, sync);
+		return download(new DownloadParameters(roids, resultType), sync);
 	}
 
 	@Override
@@ -1323,8 +1262,7 @@ public class Service implements ServiceInterface {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimDatabase.createReadOnlySession();
 		try {
-			BimDatabaseAction<SDataObject> action = new GetDataObjectByOidDatabaseAction(session, accessMethod, settingsManager, roid, oid,
-					session.getCidForClassName(className));
+			BimDatabaseAction<SDataObject> action = new GetDataObjectByOidDatabaseAction(session, accessMethod, settingsManager, roid, oid, session.getCidForClassName(className));
 			SDataObject dataObject = session.executeAction(action, DEADLOCK_RETRIES);
 			return dataObject;
 		} catch (Exception e) {
@@ -1340,8 +1278,7 @@ public class Service implements ServiceInterface {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimDatabase.createSession(true);
 		try {
-			BimDatabaseAction<SDataObject> action = new GetDataObjectByGuidDatabaseAction(session, accessMethod, settingsManager, roid,
-					guid);
+			BimDatabaseAction<SDataObject> action = new GetDataObjectByGuidDatabaseAction(session, accessMethod, settingsManager, roid, guid);
 			SDataObject dataObject = session.executeAndCommitAction(action, DEADLOCK_RETRIES);
 			return dataObject;
 		} catch (Exception e) {
@@ -1356,8 +1293,7 @@ public class Service implements ServiceInterface {
 	public List<SDataObject> getDataObjectsByType(long roid, String className) throws UserException, ServerException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimDatabase.createReadOnlySession();
-		BimDatabaseAction<List<SDataObject>> action = new GetDataObjectsByTypeDatabaseAction(session, accessMethod, settingsManager, roid,
-				className);
+		BimDatabaseAction<List<SDataObject>> action = new GetDataObjectsByTypeDatabaseAction(session, accessMethod, settingsManager, roid, className);
 		try {
 			List<SDataObject> dataObjects = session.executeAction(action, DEADLOCK_RETRIES);
 			return dataObjects;
@@ -1374,9 +1310,8 @@ public class Service implements ServiceInterface {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimDatabase.createSession(true);
 		try {
-			return convert(session.executeAction(
-					new FindClashesDatabaseAction(session, accessMethod, convert(sClashDetectionSettings, session), schema,
-							ifcEngineFactory, fieldIgnoreMap, currentUoid), DEADLOCK_RETRIES), SGuidClash.class, session);
+			return convert(session.executeAction(new FindClashesDatabaseAction(session, accessMethod, convert(sClashDetectionSettings, session), schema, ifcEngineFactory,
+					fieldIgnoreMap, currentUoid), DEADLOCK_RETRIES), SGuidClash.class, session);
 		} catch (Exception e) {
 			handleException(e);
 			return null;
@@ -1390,9 +1325,8 @@ public class Service implements ServiceInterface {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimDatabase.createSession(true);
 		try {
-			return convert(session.executeAction(
-					new FindClashesDatabaseAction(session, accessMethod, convert(sClashDetectionSettings, session), schema,
-							ifcEngineFactory, fieldIgnoreMap, currentUoid), DEADLOCK_RETRIES), SEidClash.class, session);
+			return convert(session.executeAction(new FindClashesDatabaseAction(session, accessMethod, convert(sClashDetectionSettings, session), schema, ifcEngineFactory,
+					fieldIgnoreMap, currentUoid), DEADLOCK_RETRIES), SEidClash.class, session);
 		} catch (Exception e) {
 			handleException(e);
 			return null;
@@ -1438,26 +1372,24 @@ public class Service implements ServiceInterface {
 				subModel.setDate(subRevision.getDate());
 				ifcModelSet.add(subModel);
 			}
-			IfcModel model = new Merger()
-					.merge(oldRevision.getProject(), ifcModelSet, settingsManager.getSettings().isIntelligentMerging());
+			IfcModel model = new Merger().merge(oldRevision.getProject(), ifcModelSet, settingsManager.getSettings().isIntelligentMerging());
 			model.resetOids();
 			Project newProject = new AddProjectDatabaseAction(session, accessMethod, settingsManager, projectName, currentUoid).execute();
 			session.commit();
 			session.close();
 			session = bimDatabase.createSession(true);
-			BimDatabaseAction<ConcreteRevision> action = new CheckinPart1DatabaseAction(session, accessMethod, newProject.getOid(),
-					currentUoid, model, comment);
+			BimDatabaseAction<ConcreteRevision> action = new CheckinPart1DatabaseAction(session, accessMethod, newProject.getOid(), currentUoid, model, comment);
 			try {
 				ConcreteRevision revision = session.executeAndCommitAction(action, DEADLOCK_RETRIES);
 				session.close();
-				CheckinPart2DatabaseAction createCheckinAction = new CheckinPart2DatabaseAction(session, accessMethod, settingsManager,
-						model, currentUoid, revision.getOid(), false);
+				CheckinPart2DatabaseAction createCheckinAction = new CheckinPart2DatabaseAction(session, accessMethod, settingsManager, model, currentUoid, revision.getOid(),
+						false);
 				SCheckinResult result = new SCheckinResult();
 				result.setRid(revision.getId());
 				result.setPoid(revision.getProject().getOid());
 				result.setProjectName(revision.getProject().getName());
-				longActionManager.start(new LongCheckinAction(user, longActionManager, bimDatabase, schema, createCheckinAction,
-						ifcEngineFactory, fieldIgnoreMap, settingsManager, mailSystem));
+				longActionManager.start(new LongCheckinAction(user, longActionManager, bimDatabase, schema, createCheckinAction, ifcEngineFactory, fieldIgnoreMap, settingsManager,
+						mailSystem));
 				return result;
 			} catch (UserException e) {
 				throw e;
@@ -1492,22 +1424,20 @@ public class Service implements ServiceInterface {
 				subModel.setDate(subRevision.getDate());
 				ifcModelSet.add(subModel);
 			}
-			IfcModel model = new Merger()
-					.merge(oldRevision.getProject(), ifcModelSet, settingsManager.getSettings().isIntelligentMerging());
+			IfcModel model = new Merger().merge(oldRevision.getProject(), ifcModelSet, settingsManager.getSettings().isIntelligentMerging());
 			model.resetOids();
-			BimDatabaseAction<ConcreteRevision> action = new CheckinPart1DatabaseAction(session, accessMethod, destPoid, currentUoid,
-					model, comment);
+			BimDatabaseAction<ConcreteRevision> action = new CheckinPart1DatabaseAction(session, accessMethod, destPoid, currentUoid, model, comment);
 			try {
 				ConcreteRevision revision = session.executeAndCommitAction(action, DEADLOCK_RETRIES);
 				session.close();
-				CheckinPart2DatabaseAction createCheckinAction = new CheckinPart2DatabaseAction(session, accessMethod, settingsManager,
-						model, currentUoid, revision.getOid(), false);
+				CheckinPart2DatabaseAction createCheckinAction = new CheckinPart2DatabaseAction(session, accessMethod, settingsManager, model, currentUoid, revision.getOid(),
+						false);
 				SCheckinResult result = new SCheckinResult();
 				result.setRid(revision.getId());
 				result.setPoid(revision.getProject().getOid());
 				result.setProjectName(revision.getProject().getName());
-				longActionManager.start(new LongCheckinAction(user, longActionManager, bimDatabase, schema, createCheckinAction,
-						ifcEngineFactory, fieldIgnoreMap, settingsManager, mailSystem));
+				longActionManager.start(new LongCheckinAction(user, longActionManager, bimDatabase, schema, createCheckinAction, ifcEngineFactory, fieldIgnoreMap, settingsManager,
+						mailSystem));
 				return result;
 			} catch (UserException e) {
 				throw e;
@@ -1574,8 +1504,7 @@ public class Service implements ServiceInterface {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimDatabase.createReadOnlySession();
 		try {
-			BimDatabaseAction<ClashDetectionSettings> action = new GetClashDetectionSettingsDatabaseAction(session, accessMethod,
-					currentUoid, cdsoid);
+			BimDatabaseAction<ClashDetectionSettings> action = new GetClashDetectionSettingsDatabaseAction(session, accessMethod, currentUoid, cdsoid);
 			return convert(session.executeAction(action, DEADLOCK_RETRIES), SClashDetectionSettings.class);
 		} catch (Exception e) {
 			handleException(e);
@@ -1590,8 +1519,7 @@ public class Service implements ServiceInterface {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimDatabase.createSession(true);
 		try {
-			BimDatabaseAction<Void> action = new UpdateClashDetectionSettingsDatabaseAction(session, accessMethod, currentUoid,
-					sClashDetectionSettings);
+			BimDatabaseAction<Void> action = new UpdateClashDetectionSettingsDatabaseAction(session, accessMethod, currentUoid, sClashDetectionSettings);
 			session.executeAndCommitAction(action, DEADLOCK_RETRIES);
 		} catch (Exception e) {
 			handleException(e);
@@ -1924,8 +1852,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public void setSettingAllowUsersToCreateTopLevelProjects(boolean allowUsersToCreateTopLevelProjects) throws UserException,
-			ServerException {
+	public void setSettingAllowUsersToCreateTopLevelProjects(boolean allowUsersToCreateTopLevelProjects) throws UserException, ServerException {
 		requireAuthenticationAndRunningServer();
 		Settings settings = settingsManager.getSettings();
 		settings.setAllowUsersToCreateTopLevelProjects(allowUsersToCreateTopLevelProjects);
@@ -1977,8 +1904,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public void setSettingSendConfirmationEmailAfterRegistration(boolean sendConfirmationEmailAfterRegistration) throws UserException,
-			ServerException {
+	public void setSettingSendConfirmationEmailAfterRegistration(boolean sendConfirmationEmailAfterRegistration) throws UserException, ServerException {
 		requireAuthenticationAndRunningServer();
 		Settings settings = settingsManager.getSettings();
 		settings.setSendConfirmationEmailAfterRegistration(sendConfirmationEmailAfterRegistration);
@@ -2087,8 +2013,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public void sendCompareEmail(SCompareType sCompareType, long poid, long roid1, long roid2, String address) throws UserException,
-			ServerException {
+	public void sendCompareEmail(SCompareType sCompareType, long poid, long roid1, long roid2, String address) throws UserException, ServerException {
 		SUser currentUser = getCurrentUser();
 		BimDatabaseSession session = bimDatabase.createSession(true);
 		try {
@@ -2115,8 +2040,7 @@ public class Service implements ServiceInterface {
 
 				msg.setSubject("BIMserver Model Comparator");
 				SCompareResult compareResult = compare(roid1, roid2, sCompareType);
-				String html = JspHelper.writeCompareResult(compareResult, revision1.getId(), revision2.getId(), sCompareType,
-						getProjectByPoid(poid), false);
+				String html = JspHelper.writeCompareResult(compareResult, revision1.getId(), revision2.getId(), sCompareType, getProjectByPoid(poid), false);
 				msg.setContent(html, "text/html");
 				Transport.send(msg);
 			} catch (AddressException e) {
@@ -2135,8 +2059,7 @@ public class Service implements ServiceInterface {
 	public void requestPasswordChange(long uoid) throws UserException, ServerException {
 		BimDatabaseSession session = bimDatabase.createSession(true);
 		try {
-			BimDatabaseAction<Void> action = new RequestPasswordChangeDatabaseAction(session, accessMethod, settingsManager, mailSystem,
-					uoid);
+			BimDatabaseAction<Void> action = new RequestPasswordChangeDatabaseAction(session, accessMethod, settingsManager, mailSystem, uoid);
 			session.executeAndCommitAction(action, DEADLOCK_RETRIES);
 		} catch (Exception e) {
 			handleException(e);
@@ -2146,12 +2069,11 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public void sendClashesEmail(SClashDetectionSettings sClashDetectionSettings, long poid, Set<String> addressesTo) throws UserException,
-			ServerException {
+	public void sendClashesEmail(SClashDetectionSettings sClashDetectionSettings, long poid, Set<String> addressesTo) throws UserException, ServerException {
 		BimDatabaseSession session = bimDatabase.createSession(true);
 		try {
-			BimDatabaseAction<Void> action = new SendClashesEmailDatabaseAction(session, accessMethod, settingsManager, mailSystem,
-					currentUoid, poid, sClashDetectionSettings, addressesTo);
+			BimDatabaseAction<Void> action = new SendClashesEmailDatabaseAction(session, accessMethod, settingsManager, mailSystem, currentUoid, poid, sClashDetectionSettings,
+					addressesTo);
 			session.executeAndCommitAction(action, DEADLOCK_RETRIES);
 		} catch (Exception e) {
 			handleException(e);
@@ -2223,8 +2145,8 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public void setup(String siteAddress, String smtpServer, String adminName, String adminUsername, String adminPassword,
-			boolean createAnonymousUser) throws UserException, ServerException {
+	public void setup(String siteAddress, String smtpServer, String adminName, String adminUsername, String adminPassword, boolean createAnonymousUser) throws UserException,
+			ServerException {
 		setSettingSmtpServer(smtpServer);
 		setSettingSiteAddress(siteAddress);
 
@@ -2240,11 +2162,10 @@ public class Service implements ServiceInterface {
 
 		BimDatabaseSession session = bimDatabase.createSession(true);
 		try {
-			new AddUserDatabaseAction(session, AccessMethod.INTERNAL, settingsManager, mailSystem, adminUsername, adminPassword, adminName,
-					UserType.ADMIN, -1, false).execute();
+			new AddUserDatabaseAction(session, AccessMethod.INTERNAL, settingsManager, mailSystem, adminUsername, adminPassword, adminName, UserType.ADMIN, -1, false).execute();
 			if (createAnonymousUser) {
-				new AddUserDatabaseAction(session, AccessMethod.INTERNAL, settingsManager, mailSystem, "anonymous", "anonymous",
-						"Anonymous", UserType.ANONYMOUS, -1, false).execute();
+				new AddUserDatabaseAction(session, AccessMethod.INTERNAL, settingsManager, mailSystem, "anonymous", "anonymous", "Anonymous", UserType.ANONYMOUS, -1, false)
+						.execute();
 			}
 			session.commit();
 		} catch (BimDatabaseException e) {

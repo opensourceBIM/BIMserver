@@ -28,22 +28,23 @@ import java.util.Set;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
+import javax.activation.DataSource;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.io.IOUtils;
 import org.bimserver.interfaces.objects.SClashDetectionSettings;
 import org.bimserver.interfaces.objects.SEidClash;
 import org.bimserver.interfaces.objects.SProject;
-import org.bimserver.longaction.CacheFileSerializer;
 import org.bimserver.shared.ResultType;
 import org.bimserver.shared.SCompareResult;
-import org.bimserver.shared.SCompareResult.SCompareType;
-import org.bimserver.shared.SCompareResult.SItem;
 import org.bimserver.shared.SDownloadResult;
 import org.bimserver.shared.ServiceException;
 import org.bimserver.shared.UserException;
+import org.bimserver.shared.SCompareResult.SCompareType;
+import org.bimserver.shared.SCompareResult.SItem;
 import org.bimserver.web.JspHelper;
 import org.bimserver.web.LoginManager;
 import org.slf4j.Logger;
@@ -71,7 +72,7 @@ public class DownloadServlet extends HttpServlet {
 			}
 			SDownloadResult checkoutResult = null;
 			if (request.getParameter("longActionId") != null) {
-				checkoutResult = loginManager.getService().getDownloadData(request.getParameter("longActionId"));
+				checkoutResult = loginManager.getService().getDownloadData(Integer.parseInt(request.getParameter("longActionId")));
 			} else if (request.getParameter("multiple") != null) {
 				Set<Long> roids = new HashSet<Long>();
 				for (Object key : request.getParameterMap().keySet()) {
@@ -82,7 +83,7 @@ public class DownloadServlet extends HttpServlet {
 						}
 					}
 				}
-				String longCheckoutActionId = loginManager.getService().downloadProjects(roids, resultType, true);
+				int longCheckoutActionId = loginManager.getService().downloadProjects(roids, resultType, true);
 				checkoutResult = loginManager.getService().getDownloadData(longCheckoutActionId);
 			} else if (request.getParameter("clashes") != null) {
 				SClashDetectionSettings sClashDetectionSettings = JspHelper.createSClashDetectionSettings(request);
@@ -92,8 +93,7 @@ public class DownloadServlet extends HttpServlet {
 					oids.add(clash.getEid1());
 					oids.add(clash.getEid2());
 				}
-				String longCheckoutActionId = loginManager.getService().downloadByOids(
-						new HashSet<Long>(sClashDetectionSettings.getRevisions()), oids, resultType, true);
+				int longCheckoutActionId = loginManager.getService().downloadByOids(new HashSet<Long>(sClashDetectionSettings.getRevisions()), oids, resultType, true);
 				checkoutResult = loginManager.getService().getDownloadData(longCheckoutActionId);
 			} else if (request.getParameter("compare") != null) {
 				SCompareType sCompareType = SCompareType.valueOf(request.getParameter("type"));
@@ -108,8 +108,7 @@ public class DownloadServlet extends HttpServlet {
 						oids.add(item.dataObject.getOid());
 					}
 				}
-				String longCheckoutActionId = loginManager.getService().downloadByOids(Sets.newHashSet(roid1, roid2), oids, resultType,
-						true);
+				int longCheckoutActionId = loginManager.getService().downloadByOids(Sets.newHashSet(roid1, roid2), oids, resultType, true);
 				checkoutResult = loginManager.getService().getDownloadData(longCheckoutActionId);
 			} else {
 				long roid = -1;
@@ -131,12 +130,11 @@ public class DownloadServlet extends HttpServlet {
 					roid = Long.parseLong(request.getParameter("roid"));
 				}
 				if (request.getParameter("checkout") != null) {
-					String longCheckoutActionId = loginManager.getService().checkout(roid, resultType, true);
+					int longCheckoutActionId = loginManager.getService().checkout(roid, resultType, true);
 					checkoutResult = loginManager.getService().getDownloadData(longCheckoutActionId);
 				} else {
 					if (request.getParameter("class") != null) {
-						String longCheckoutActionId = loginManager.getService().downloadOfType(roid, request.getParameter("class"),
-								resultType, true);
+						int longCheckoutActionId = loginManager.getService().downloadOfType(roid, request.getParameter("class"), resultType, true);
 						checkoutResult = loginManager.getService().getDownloadData(longCheckoutActionId);
 					} else if (request.getParameter("oids") != null) {
 						Set<Long> oids = new HashSet<Long>();
@@ -145,7 +143,7 @@ public class DownloadServlet extends HttpServlet {
 						}
 						Set<Long> roids = new HashSet<Long>();
 						roids.add(roid);
-						String longCheckoutActionId = loginManager.getService().downloadByOids(roids, oids, resultType, true);
+						int longCheckoutActionId = loginManager.getService().downloadByOids(roids, oids, resultType, true);
 						checkoutResult = loginManager.getService().getDownloadData(longCheckoutActionId);
 					} else if (request.getParameter("guids") != null) {
 						Set<String> guids = new HashSet<String>();
@@ -154,31 +152,31 @@ public class DownloadServlet extends HttpServlet {
 						}
 						Set<Long> roids = new HashSet<Long>();
 						roids.add(roid);
-						String longCheckoutActionId = loginManager.getService().downloadByGuids(roids, guids, resultType, true);
+						int longCheckoutActionId = loginManager.getService().downloadByGuids(roids, guids, resultType, true);
 						checkoutResult = loginManager.getService().getDownloadData(longCheckoutActionId);
 					}
 				}
 			}
-			CacheFileSerializer serializer = (CacheFileSerializer) checkoutResult.getFile().getDataSource();
+			DataSource dataSource = checkoutResult.getFile().getDataSource();
 			if (request.getParameter("zip") != null && request.getParameter("zip").equals("on")) {
 				if (resultType == ResultType.IFC) {
-					response.setHeader("Content-Disposition",
-							"inline; filename=\"" + checkoutResult.getFile().getName().replace(".ifc", ".ifczip") + "\"");
+					response.setHeader("Content-Disposition", "inline; filename=\"" + checkoutResult.getFile().getName().replace(".ifc", ".ifczip") + "\"");
 				} else {
 					response.setHeader("Content-Disposition", "inline; filename=\"" + checkoutResult.getFile().getName() + ".zip" + "\"");
 				}
 				response.setContentType("application/zip");
-//				String name = checkoutResult.getProjectName() + "." + checkoutResult.getRevisionNr() + "."
-//						+ resultType.getDefaultExtension();
-				String name = serializer.getName();
+				// String name = checkoutResult.getProjectName() + "." +
+				// checkoutResult.getRevisionNr() + "."
+				// + resultType.getDefaultExtension();
+				String name = checkoutResult.getProjectName();
 				ZipOutputStream zipOutputStream = new ZipOutputStream(response.getOutputStream());
 				zipOutputStream.putNextEntry(new ZipEntry(name));
-				serializer.writeToOutputStream(zipOutputStream);
+				IOUtils.copy(dataSource.getInputStream(), zipOutputStream);
 				zipOutputStream.finish();
 			} else {
 				response.setContentType(resultType.getContentType());
 				response.setHeader("Content-Disposition", "inline; filename=\"" + checkoutResult.getFile().getName() + "\"");
-				serializer.writeToOutputStream(response.getOutputStream());
+				IOUtils.copy(dataSource.getInputStream(), response.getOutputStream());
 				response.getOutputStream().flush();
 			}
 		} catch (NumberFormatException e) {

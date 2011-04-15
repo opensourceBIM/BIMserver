@@ -3,39 +3,42 @@ package org.bimserver.longaction;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 import org.bimserver.shared.SLongAction;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.google.common.collect.BiMap;
+import com.google.common.collect.HashBiMap;
 
 public class LongActionManager {
 
-	// private static final Logger LOGGER =
-	// LoggerFactory.getLogger(LongActionManager.class);
-	private final Map<LongAction, Thread> threads = new HashMap<LongAction, Thread>();
-	private final Map<String, LongAction> actions = new HashMap<String, LongAction>();
-	
+	private static final Logger LOGGER = LoggerFactory.getLogger(LongActionManager.class);
+
+	private final BiMap<Integer, LongAction<?>> actions = HashBiMap.create();
+
 	private volatile boolean running = true;
 
-	public synchronized void start(final LongAction longAction) throws CannotBeScheduledException {
+	private int actionNumberCounter = 0;
+
+	public synchronized void start(final LongAction<?> longAction) throws CannotBeScheduledException {
 		if (running) {
 			Thread thread = new Thread(new Runnable() {
 				@Override
 				public void run() {
 					longAction.execute();
 					synchronized (LongActionManager.this) {
-						threads.remove(longAction);
-						actions.remove(longAction.getIdentification());
+						//actions.remove(longAction.getId());
 					}
 				}
 			});
+			longAction.setId(actionNumberCounter++);
 			longAction.init();
 			thread.setDaemon(true);
-			thread.setName(longAction.getIdentification());
-			threads.put(longAction, thread);
-			actions.put(longAction.getIdentification(), longAction);
+			thread.setName(longAction.getDescription());
+			actions.put(longAction.getId(), longAction);
 			thread.start();
 		} else {
 			throw new CannotBeScheduledException();
@@ -48,9 +51,9 @@ public class LongActionManager {
 
 	public synchronized List<SLongAction> getActiveLongActions() {
 		List<SLongAction> result = new ArrayList<SLongAction>();
-		for (LongAction longAction : threads.keySet()) {
+		for (LongAction<?> longAction : actions.values()) {
 			SLongAction sLongAction = new SLongAction();
-			sLongAction.setIdentification(longAction.getIdentification());
+			sLongAction.setIdentification(longAction.getDescription());
 			sLongAction.setUserOid(longAction.getUser().getOid());
 			sLongAction.setStart(longAction.getStart());
 			sLongAction.setUsername(longAction.getUser().getUsername());
@@ -66,8 +69,20 @@ public class LongActionManager {
 		return result;
 	}
 
-	public synchronized LongAction getLongAction(String longActionID) {
-		return actions.get(longActionID);
+	public synchronized LongAction<?> getLongAction(int id) {
+		return actions.get(id);
+	}
+
+	public synchronized <T extends LongAction<?>> T getLongAction(Class<T> clazz, LongActionKey key) {
+		for (LongAction<?> longAction : actions.values()) {
+			if (clazz.isInstance(longAction)) {
+				LongActionKey longActionKey = longAction.getKey();
+				if (longActionKey.equals(key)) {
+					return (T) longAction;
+				}
+			}
+		}
+		return null;
 	}
 
 	/*
@@ -75,18 +90,10 @@ public class LongActionManager {
 	 */
 	public synchronized void shutdownGracefully() {
 		running = false;
-		Iterator<LongAction> iterator = threads.keySet().iterator();
+		Iterator<LongAction<?>> iterator = actions.values().iterator();
 		while (iterator.hasNext()) {
-			LongAction longAction = iterator.next();
+			LongAction<?> longAction = iterator.next();
 			longAction.waitForCompletion();
 		}
-	}
-
-	public boolean isRunning(LongAction longAction) {
-		for (LongAction la : threads.keySet()) {
-			if (la.equals(longAction))
-				return true;
-		}
-		return false;
 	}
 }
