@@ -22,8 +22,8 @@ public class LongDownloadAction extends LongDownloadOrCheckoutAction {
 	private final SettingsManager settingsManager;
 	private BimDatabaseSession session;
 
-	public LongDownloadAction(DownloadParameters downloadParameters, long currentUoid, LongActionManager longActionManager,
-			BimDatabase bimDatabase, AccessMethod accessMethod, EmfSerializerFactory emfSerializerFactory, SettingsManager settingsManager, DiskCacheManager diskCacheManager) {
+	public LongDownloadAction(DownloadParameters downloadParameters, long currentUoid, LongActionManager longActionManager, BimDatabase bimDatabase, AccessMethod accessMethod,
+			EmfSerializerFactory emfSerializerFactory, SettingsManager settingsManager, DiskCacheManager diskCacheManager) {
 		super(downloadParameters, bimDatabase, longActionManager, accessMethod, emfSerializerFactory, currentUoid, diskCacheManager);
 		this.settingsManager = settingsManager;
 	}
@@ -35,7 +35,9 @@ public class LongDownloadAction extends LongDownloadOrCheckoutAction {
 		} catch (Exception e) {
 			LOGGER.error("", e);
 		} finally {
-			session.close();
+			if (session != null) {
+				session.close();
+			}
 		}
 		state = ActionState.FINISHED;
 	}
@@ -50,20 +52,16 @@ public class LongDownloadAction extends LongDownloadOrCheckoutAction {
 			action = new DownloadDatabaseAction(session, accessMethod, settingsManager, downloadParameters.getRoid(), currentUoid);
 			break;
 		case DOWNLOAD_BY_OIDS:
-			action = new DownloadByOidsDatabaseAction(session, accessMethod, settingsManager, downloadParameters.getRoids(),
-					downloadParameters.getOids(), currentUoid);
+			action = new DownloadByOidsDatabaseAction(session, accessMethod, settingsManager, downloadParameters.getRoids(), downloadParameters.getOids(), currentUoid);
 			break;
 		case DOWNLOAD_BY_GUIDS:
-			action = new DownloadByGuidsDatabaseAction(session, accessMethod, settingsManager, downloadParameters.getRoids(),
-					downloadParameters.getGuids(), currentUoid);
+			action = new DownloadByGuidsDatabaseAction(session, accessMethod, settingsManager, downloadParameters.getRoids(), downloadParameters.getGuids(), currentUoid);
 			break;
 		case DOWNLOAD_OF_TYPE:
-			action = new DownloadOfTypeDatabaseAction(session, accessMethod, settingsManager, downloadParameters.getRoid(),
-					downloadParameters.getClassName(), currentUoid);
+			action = new DownloadOfTypeDatabaseAction(session, accessMethod, settingsManager, downloadParameters.getRoid(), downloadParameters.getClassName(), currentUoid);
 			break;
 		case DOWNLOAD_PROJECTS:
-			action = new DownloadProjectsDatabaseAction(session, accessMethod, settingsManager, downloadParameters.getRoids(),
-					currentUoid);
+			action = new DownloadProjectsDatabaseAction(session, accessMethod, settingsManager, downloadParameters.getRoids(), currentUoid);
 			break;
 		}
 	}
@@ -74,7 +72,7 @@ public class LongDownloadAction extends LongDownloadOrCheckoutAction {
 		if (action == null) {
 			ds.setState(state);
 			ds.setProgress(100);
-			return ds; 
+			return ds;
 		}
 		switch (downloadParameters.getDownloadType()) {
 		case DOWNLOAD:

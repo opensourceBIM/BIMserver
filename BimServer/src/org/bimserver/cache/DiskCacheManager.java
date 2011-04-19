@@ -19,7 +19,7 @@ import org.slf4j.LoggerFactory;
 public class DiskCacheManager {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(DiskCacheManager.class);
-	private boolean enabled = false;
+	private boolean enabled = true;
 	private final File cacheDir;
 
 	public DiskCacheManager(File cacheDir) {
@@ -59,11 +59,9 @@ public class DiskCacheManager {
 
 	public DataSource get(DownloadParameters downloadParameters) {
 		if (enabled) {
-			try {
-				return new InputStreamDataSource(new FileInputStream(new File(cacheDir, downloadParameters.getId())));
-			} catch (FileNotFoundException e) {
-				LOGGER.error("", e);
-			}
+			FileInputStreamDataSource fileInputStreamDataSource = new FileInputStreamDataSource(new File(cacheDir, downloadParameters.getId()));
+			fileInputStreamDataSource.setName(downloadParameters.getFileName());
+			return fileInputStreamDataSource;
 		}
 		return null;
 	}
