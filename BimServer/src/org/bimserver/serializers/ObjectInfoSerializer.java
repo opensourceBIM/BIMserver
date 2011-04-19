@@ -11,7 +11,7 @@ import org.bimserver.ifc.SerializerException;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.User;
-import org.bimserver.shared.ResultType;
+import org.bimserver.pb.Service.ResultType;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -97,10 +97,5 @@ public class ObjectInfoSerializer extends BimModelSerializer {
 			out.println("</tr>");
 		}
 		out.println("</table>");
-	}
-
-	@Override
-	public String getContentType() {
-		return ResultType.OBJECT_INFO.getContentType();
 	}
 }

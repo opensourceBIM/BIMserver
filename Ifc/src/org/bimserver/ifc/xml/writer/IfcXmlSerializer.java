@@ -25,7 +25,6 @@ import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcSerializer;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.Tristate;
-import org.bimserver.shared.ResultType;
 import org.bimserver.utils.UTFPrintWriter;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.Enumerator;
@@ -275,10 +274,5 @@ public class IfcXmlSerializer extends IfcSerializer {
 
 	private void printLine(String str) {
 		out.println(str);
-	}
-
-	@Override
-	public String getContentType() {
-		return ResultType.IFCXML.getContentType();
 	}
 }

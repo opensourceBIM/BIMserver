@@ -5,7 +5,6 @@
 <%@page import="org.bimserver.utils.Formatters"%>
 <%@page import="org.bimserver.shared.UserException"%>
 <%@page import="org.bimserver.shared.ResultType"%>
-<%@page import="org.bimserver.serializers.EmfSerializerFactory"%>
 <%@page import="org.bimserver.web.JspHelper"%>
 <%@page import="org.bimserver.interfaces.objects.SCheckout"%>
 <%@page import="org.bimserver.interfaces.objects.SRevision"%>
@@ -16,7 +15,6 @@
 <%@ include file="header.jsp"%>
 <%
 	if (loginManager.getService().isLoggedIn()) {
-		EmfSerializerFactory emfSerializerFactory = EmfSerializerFactory.getInstance();
 		try {
 	DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
 	long roid = Long.parseLong(request.getParameter("roid"));
@@ -30,7 +28,9 @@
 	Collections.sort(classes);
 	boolean isAdmin = loginManager.getService().getCurrentUser().getUserType() == SUserType.ADMIN;
 	boolean isTopProject = project.getParentId() == -1L;
-	if (emfSerializerFactory.resultTypeEnabled(ResultType.O3D_JSON)) {
+	boolean o3dEnabled = loginManager.getService().isResultTypeEnabled("O3D_JSON");
+	boolean kmzEnabled = loginManager.getService().isResultTypeEnabled("KMZ");
+	if (o3dEnabled) {
 %>
 
 <%@page import="org.bimserver.utils.WebUtils"%><jsp:include page="o3d.jsp"/>
@@ -39,7 +39,7 @@
 %>
 <div class="sidebar">
  <%
- 	if (emfSerializerFactory.resultTypeEnabled(ResultType.O3D_JSON)) {
+ 	if (o3dEnabled) {
  %>
 <ul>
 <li>
@@ -91,7 +91,7 @@
 		<td><%=revision.getSize()%></td>
 	</tr>
 <%
-	if (emfSerializerFactory.resultTypeEnabled(ResultType.KMZ)) {
+	if (kmzEnabled) {
 	String url = WebUtils.getWebServer(request.getRequestURL().toString());
 	String link = "http://" + url + getServletContext().getContextPath() + "download?roid=" + revision.getOid() + "&resultType=KMZ";
 %>
@@ -145,9 +145,9 @@
 		<td class="first" width="100">Download:</td>
 		<td><select name="resultType" id="downloadcheckoutselect">
 			<%
-				for (ResultType resultType : EmfSerializerFactory.getInstance().getMultipleResultTypes()) {
+				for (ResultType resultType : loginManager.getService().getEnabledResultTypes()) {
 			%>
-			<option value="<%=resultType.name()%>"
+			<option value="<%=resultType.getName()%>"
 				<%=resultType.isDefaultSelected() ? " SELECTED=\"SELECTED\"" : ""%>><%=resultType.getNiceName()%></option>
 			<%
 				}
@@ -199,10 +199,10 @@ if (userHasCheckinRights) { %>
 		<input type="hidden" name="roid" value="<%=checkout.getRevisionId()%>" />
 		<select name="resultType">
 			<%
-				for (ResultType resultType : EmfSerializerFactory.getInstance().getMultipleResultTypes()) {
+				for (ResultType resultType : loginManager.getService().getEnabledResultTypes()) {
 			%>
-			<option value="<%=resultType.name()%>"
-				<%=resultType.isDefaultSelected() ? " SELECTED=\"SELECTED\"" : ""%>><%=resultType.name()%></option>
+			<option value="<%=resultType.getName()%>"
+				<%=resultType.isDefaultSelected() ? " SELECTED=\"SELECTED\"" : ""%>><%=resultType.getNiceName()%></option>
 			<%
 				}
 			%>

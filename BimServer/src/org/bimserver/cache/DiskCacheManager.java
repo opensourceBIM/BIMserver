@@ -1,18 +1,15 @@
 package org.bimserver.cache;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
 
-import org.bimserver.ifc.EmfSerializer;
+import org.bimserver.ifc.EmfSerializerDataSource;
 import org.bimserver.ifc.SerializerException;
 import org.bimserver.longaction.DownloadParameters;
-import org.bimserver.utils.InputStreamDataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -45,9 +42,9 @@ public class DiskCacheManager {
 	public void store(DownloadParameters downloadParameters, DataHandler dataHandler) {
 		if (enabled) {
 			try {
-				EmfSerializer emfSerializer = (EmfSerializer)dataHandler.getDataSource();
+				EmfSerializerDataSource emfSerializerDataSource = (EmfSerializerDataSource)dataHandler.getDataSource();
 				FileOutputStream fileOutputStream = new FileOutputStream(new File(cacheDir, downloadParameters.getId()));
-				emfSerializer.writeToOutputStream(fileOutputStream);
+				emfSerializerDataSource.getSerializer().writeToOutputStream(fileOutputStream);
 				fileOutputStream.close();
 			} catch (IOException e) {
 				LOGGER.error("", e);

@@ -7,7 +7,6 @@
 <%@page import="java.util.Set"%>
 <%@page import="java.util.HashSet"%>
 <%@page import="org.bimserver.shared.ResultType"%>
-<%@page import="org.bimserver.serializers.EmfSerializerFactory"%>
 <%@page import="org.bimserver.interfaces.objects.SEidClash"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.Map"%>
@@ -186,7 +185,6 @@ $(document).ready(function(){
 %>
 <br />
 <%
-	EmfSerializerFactory emfSerializerFactory = EmfSerializerFactory.getInstance();
 		SClashDetectionSettings sClashDetectionSettings = JspHelper.createSClashDetectionSettings(request);
 		Map<Long, Long> revisionUsers = new HashMap<Long, Long>();
 		Map<Long, String> revisionUserNames = new HashMap<Long, String>();
@@ -258,9 +256,9 @@ Download: <input type="hidden" name="clashes" value="true" /> <input
 	name="ignored" value="<%=request.getParameter("ignored")%>" /> <select
 	name="resultType">
 	<%
-		for (ResultType resultType : emfSerializerFactory.getMultipleResultTypes()) {
+		for (ResultType resultType : loginManager.getService().getEnabledResultTypes()) {
 	%>
-	<option value="<%=resultType.name()%>"
+	<option value="<%=resultType.getName()%>"
 		<%=resultType.isDefaultSelected() ? " SELECTED=\"SELECTED\"" : ""%>><%=resultType.getNiceName()%></option>
 	<%
 		}

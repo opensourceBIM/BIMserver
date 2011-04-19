@@ -82,9 +82,4 @@ public class XsltSerializer extends BimModelSerializer {
 		}
 		return false;
 	}
-
-	@Override
-	public String getContentType() {
-		return resultType.getContentType();
-	}
 }

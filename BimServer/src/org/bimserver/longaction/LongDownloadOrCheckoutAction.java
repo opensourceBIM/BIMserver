@@ -9,6 +9,7 @@ import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.actions.BimDatabaseAction;
 import org.bimserver.exceptions.NoSerializerFoundException;
 import org.bimserver.ifc.EmfSerializer;
+import org.bimserver.ifc.EmfSerializerDataSource;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.SerializerException;
 import org.bimserver.models.log.AccessMethod;
@@ -68,8 +69,8 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction<DownloadPa
 			checkoutResult.setRevisionNr(model.getRevisionNr());
 			try {
 				EmfSerializer serializer = emfSerializerFactory.create(project, user, resultType, model, checkoutResult.getProjectName() + "."
-						+ checkoutResult.getRevisionNr() + "." + resultType.getDefaultExtension());
-				checkoutResult.setFile(new DataHandler(serializer));
+						+ checkoutResult.getRevisionNr() + "." + resultType.getExtension());
+				checkoutResult.setFile(new DataHandler(new EmfSerializerDataSource(serializer)));
 			} catch (SerializerException e) {
 				LOGGER.error("", e);
 			}
@@ -91,7 +92,7 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction<DownloadPa
 			} else {
 				ifcModel = session.executeAction(action, org.bimserver.webservices.Service.DEADLOCK_RETRIES);
 			}
-			checkoutResult = convertModelToCheckoutResult(revision.getProject(), user, ifcModel, downloadParameters.getResultType());
+			checkoutResult = convertModelToCheckoutResult(revision.getProject(), user, ifcModel, EmfSerializerFactory.getInstance().getResultType(downloadParameters.getResultTypeName()));
 			if (checkoutResult != null) {
 				diskCacheManager.store(downloadParameters, checkoutResult.getFile());
 			}

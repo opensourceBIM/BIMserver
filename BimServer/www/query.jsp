@@ -1,11 +1,9 @@
 <%@page import="org.bimserver.shared.ResultType"%>
-<%@page import="org.bimserver.serializers.EmfSerializerFactory"%>
 <%@page import="java.util.Collections"%>
 <%@page import="java.util.List"%>
 <%@page import="org.bimserver.interfaces.objects.SUserType"%>
 <jsp:useBean id="loginManager" scope="session" class="org.bimserver.web.LoginManager" />
 <%
-	EmfSerializerFactory emfSerializerFactory = EmfSerializerFactory.getInstance();
 	long roid = Long.parseLong(request.getParameter("roid"));
 	List<String> classes = loginManager.getService().getAvailableClasses();
 	Collections.sort(classes);
@@ -23,9 +21,9 @@
 	<td>
 		<select name="resultType">
 <%
-	for (ResultType resultType : emfSerializerFactory.getSingleResultTypes()) {
+	for (ResultType resultType : loginManager.getService().getEnabledResultTypes()) {
 %>
-		<option value="<%=resultType.name() %>"<%=resultType.isDefaultSelected() ? " SELECTED=\"SELECTED\"" : "" %>><%= resultType.getNiceName() %></option>
+		<option value="<%=resultType.getName() %>"<%=resultType.isDefaultSelected() ? " SELECTED=\"SELECTED\"" : "" %>><%= resultType.getNiceName() %></option>
 <%	
 	}
 %>
@@ -53,9 +51,9 @@
 	<td>
 		<select name="resultType">
 <%
-	for (ResultType resultType : emfSerializerFactory.getSingleResultTypes()) {
+	for (ResultType resultType : loginManager.getService().getEnabledResultTypes()) {
 %>
-		<option value="<%=resultType.name() %>"<%=resultType.isDefaultSelected() ? " SELECTED=\"SELECTED\"" : "" %>><%= resultType.getNiceName() %></option>
+		<option value="<%=resultType.getName() %>"<%=resultType.isDefaultSelected() ? " SELECTED=\"SELECTED\"" : "" %>><%= resultType.getNiceName() %></option>
 <%	
 	}
 %>
@@ -92,9 +90,9 @@
 	<td>
 		<select name="resultType">
 <%
-	for (ResultType resultType : emfSerializerFactory.getMultipleResultTypes()) {
+	for (ResultType resultType : loginManager.getService().getEnabledResultTypes()) {
 %>
-		<option value="<%=resultType.name() %>"<%=resultType.isDefaultSelected() ? " SELECTED=\"SELECTED\"" : "" %>><%= resultType.getNiceName() %></option>
+		<option value="<%=resultType.getName() %>"<%=resultType.isDefaultSelected() ? " SELECTED=\"SELECTED\"" : "" %>><%= resultType.getNiceName() %></option>
 <%	
 	}
 %>

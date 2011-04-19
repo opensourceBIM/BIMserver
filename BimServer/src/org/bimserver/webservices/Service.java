@@ -31,7 +31,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.TreeSet;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
@@ -121,8 +120,10 @@ import org.bimserver.ifc.file.compare.CompareResult.ObjectDeleted;
 import org.bimserver.ifc.file.compare.CompareResult.ObjectModified;
 import org.bimserver.ifc.file.reader.IfcStepDeserializer;
 import org.bimserver.ifc.file.reader.IncorrectIfcFileException;
+import org.bimserver.ifc.file.writer.IfcStepSerializer;
 import org.bimserver.ifc.xml.reader.IfcXmlDeserializeException;
 import org.bimserver.ifc.xml.reader.IfcXmlDeserializer;
+import org.bimserver.ifc.xml.writer.IfcXmlSerializer;
 import org.bimserver.ifcengine.IfcEngineFactory;
 import org.bimserver.interfaces.objects.SAccessMethod;
 import org.bimserver.interfaces.objects.SCheckout;
@@ -409,12 +410,12 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public int checkoutLastRevision(long poid, ResultType resultType, boolean sync) throws UserException, ServerException {
+	public int checkoutLastRevision(long poid, String formatIdentifier, boolean sync) throws UserException, ServerException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimDatabase.createSession(true);
 		try {
 			Project project = session.get(StorePackage.eINSTANCE.getProject(), poid, false);
-			return checkout(project.getLastRevision().getOid(), resultType, sync);
+			return checkout(project.getLastRevision().getOid(), formatIdentifier, sync);
 		} catch (Exception e) {
 			handleException(e);
 			return -1;
@@ -424,12 +425,13 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public int checkout(long roid, ResultType resultType, boolean sync) throws UserException, ServerException {
+	public int checkout(long roid, String resultTypeName, boolean sync) throws UserException, ServerException {
 		requireAuthenticationAndRunningServer();
-		if (resultType != ResultType.IFC && resultType != ResultType.IFCXML) {
+		ResultType serializerDescriptor = EmfSerializerFactory.getInstance().getResultType(resultTypeName);
+		if (serializerDescriptor.getSerializerClass() != IfcStepSerializer.class && serializerDescriptor.getSerializerClass() != IfcXmlSerializer.class) {
 			throw new UserException("Only IFC or IFCXML allowed when checking out");
 		}
-		DownloadParameters downloadParameters = new DownloadParameters(roid, resultType);
+		DownloadParameters downloadParameters = new DownloadParameters(roid, resultTypeName);
 		LongDownloadOrCheckoutAction longDownloadAction = new LongCheckoutAction(downloadParameters, currentUoid, longActionManager, bimDatabase, accessMethod, emfSerializerFactory, settingsManager, diskCacheManager);
 		try {
 			longActionManager.start(longDownloadAction);
@@ -833,9 +835,9 @@ public class Service implements ServiceInterface {
 		}
 	}
 
-	public int download(long roid, ResultType resultType, boolean sync) throws UserException, ServerException {
+	public int download(long roid, String resultTypeName, boolean sync) throws UserException, ServerException {
 		requireAuthenticationAndRunningServer();
-		return download(new DownloadParameters(roid, resultType), sync);
+		return download(new DownloadParameters(roid, resultTypeName), sync);
 	}
 
 	private int download(DownloadParameters downloadParameters, boolean sync) throws UserException, ServerException {
@@ -918,15 +920,15 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public int downloadByOids(Set<Long> roids, Set<Long> oids, ResultType resultType, boolean sync) throws UserException, ServerException {
+	public int downloadByOids(Set<Long> roids, Set<Long> oids, String resultTypeName, boolean sync) throws UserException, ServerException {
 		requireAuthenticationAndRunningServer();
-		return download(new DownloadParameters(resultType, roids, oids), sync);
+		return download(new DownloadParameters(resultTypeName, roids, oids), sync);
 	}
 
 	@Override
-	public int downloadOfType(long roid, String className, ResultType resultType, boolean sync) throws UserException, ServerException {
+	public int downloadOfType(long roid, String className, String resultTypeName, boolean sync) throws UserException, ServerException {
 		requireAuthenticationAndRunningServer();
-		return download(new DownloadParameters(roid, className, resultType), sync);
+		return download(new DownloadParameters(roid, className, resultTypeName), sync);
 	}
 
 	@Override
@@ -960,9 +962,9 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public int downloadByGuids(Set<Long> roids, Set<String> guids, ResultType resultType, boolean sync) throws UserException, ServerException {
+	public int downloadByGuids(Set<Long> roids, Set<String> guids, String resultTypeName, boolean sync) throws UserException, ServerException {
 		requireAuthenticationAndRunningServer();
-		return download(new DownloadParameters(roids, guids, resultType), sync);
+		return download(new DownloadParameters(roids, guids, resultTypeName), sync);
 	}
 
 	@Override
@@ -1251,9 +1253,9 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public int downloadProjects(Set<Long> roids, ResultType resultType, boolean sync) throws UserException, ServerException {
+	public int downloadProjects(Set<Long> roids, String resultTypeName, boolean sync) throws UserException, ServerException {
 		requireAuthenticationAndRunningServer();
-		return download(new DownloadParameters(roids, resultType), sync);
+		return download(new DownloadParameters(roids, resultTypeName), sync);
 	}
 
 	@Override
@@ -1700,13 +1702,13 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public boolean isExportTypeEnabled(ResultType resultType) throws UserException {
+	public boolean isResultTypeEnabled(String resultTypeName) throws UserException {
 		requireAuthenticationAndRunningServer();
-		return emfSerializerFactory.resultTypeEnabled(resultType);
+		return emfSerializerFactory.resultTypeEnabled(resultTypeName);
 	}
 
 	@Override
-	public void setExportTypeEnabled(ResultType resultType, boolean enabled) throws UserException {
+	public void setExportTypeEnabled(String resultTypeName, boolean enabled) throws UserException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimDatabase.createSession(true);
 		try {
@@ -1714,11 +1716,11 @@ public class Service implements ServiceInterface {
 			if (user.getUserType() != UserType.ADMIN) {
 				throw new UserException("Only admin users can change enabled export types");
 			}
-			Set<ResultType> resultTypes = settingsManager.getEnabledExportTypesAsSet();
+			Set<String> resultTypes = settingsManager.getEnabledExportTypesAsSet();
 			if (enabled) {
-				resultTypes.add(resultType);
+				resultTypes.add(resultTypeName);
 			} else {
-				resultTypes.remove(resultType);
+				resultTypes.remove(resultTypeName);
 			}
 			settingsManager.updateEnabledResultTypes(resultTypes);
 			settingsManager.saveSettings();
@@ -1782,9 +1784,9 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public void setSettingEnabledExportTypes(Set<ResultType> enabledExportTypes) throws UserException, ServerException {
+	public void setSettingEnabledExportTypes(Set<String> enabledExportTypeNames) throws UserException, ServerException {
 		requireAuthenticationAndRunningServer();
-		settingsManager.updateEnabledResultTypes(enabledExportTypes);
+		settingsManager.updateEnabledResultTypes(enabledExportTypeNames);
 	}
 
 	@Override
@@ -1997,17 +1999,12 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public Set<ResultType> getEnabledResultTypes() {
-		return null;
+		return EmfSerializerFactory.getInstance().getMultipleResultTypes();
 	}
 
 	@Override
 	public Set<ResultType> getAllResultTypes() {
-		Set<ResultType> resultTypes = new TreeSet<ResultType>(new SResultTypeComparator());
-		for (ResultType resultType : ResultType.values()) {
-			if (resultType.isUserType()) {
-				resultTypes.add(resultType);
-			}
-		}
+		Set<ResultType> resultTypes = null;
 		return resultTypes;
 	}
 
@@ -2195,5 +2192,10 @@ public class Service implements ServiceInterface {
 			LOGGER.error("", e);
 			throw new ServerException(e);
 		}
+	}
+
+	@Override
+	public ResultType getResultTypeByName(String resultTypeName) {
+		return EmfSerializerFactory.getInstance().getResultType(resultTypeName);
 	}
 }

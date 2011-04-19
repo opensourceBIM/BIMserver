@@ -1,7 +1,8 @@
 package org.bimserver.serializers;
 
 import java.util.Comparator;
-import java.util.EnumSet;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
@@ -19,8 +20,6 @@ import org.bimserver.ifc.FieldIgnoreMap;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.PackageDefinition;
 import org.bimserver.ifc.SerializerException;
-import org.bimserver.ifc.XsltParameter;
-import org.bimserver.ifc.XsltSerializer;
 import org.bimserver.ifc.file.writer.IfcStepSerializer;
 import org.bimserver.ifc.xml.writer.IfcXmlSerializer;
 import org.bimserver.ifcengine.IfcEngineFactory;
@@ -29,31 +28,34 @@ import org.bimserver.models.store.User;
 import org.bimserver.o3d.O3dJsonSerializer;
 import org.bimserver.shared.ResourceFetcher;
 import org.bimserver.shared.ResultType;
+import org.bimserver.shared.ResultType.DefaultSelected;
 import org.bimserver.shared.ResultType.Type;
+import org.bimserver.shared.ResultType.UseInCheckout;
+import org.bimserver.shared.ResultType.UserType;
 import org.bimserver.version.Version;
 
 public class EmfSerializerFactory {
-	public interface EmfSerializerCreator {
-		EmfSerializer create(Project project, User user, IfcModel model, String name) throws SerializerException;
+	
+	public abstract class EmfSerializerCreator {
+		public abstract EmfSerializer create(Project project, User user, IfcModel model, String fileName) throws SerializerException;
 	}
 
 	Comparator<ResultType> resultTypeComparator = new Comparator<ResultType>(){
 		@Override
 		public int compare(ResultType o1, ResultType o2) {
-			return o1.getNiceName().compareTo(o2.getNiceName());
+			return o1.compareTo(o2);
 		}};
 	
-	private final Map<ResultType, EmfSerializerCreator> emfSerializerCreators = new TreeMap<ResultType, EmfSerializerCreator>(resultTypeComparator);
 	private static final EmfSerializerFactory INSTANCE = new EmfSerializerFactory();
+	private final Map<String, ResultType> resultTypes = new TreeMap<String, ResultType>();
+	private final Map<ResultType, EmfSerializerCreator> serializerCreators = new HashMap<ResultType, EmfSerializerCreator>();
 	private FieldIgnoreMap fieldIgnoreMap;
 	private PackageDefinition colladaSettings;
 	private SchemaDefinition schemaDefinition;
 	private Version version;
 
 	private IfcEngineFactory ifcEngineFactory;
-
 	private ResourceFetcher resourceFetcher;
-
 	private SettingsManager settingsManager;
 
 	private EmfSerializerFactory() {
@@ -73,29 +75,27 @@ public class EmfSerializerFactory {
 		this.settingsManager = settingsManager;
 	}
 	
-	public void register(ResultType type, EmfSerializerCreator emfSerializerCreater) {
-		emfSerializerCreators.put(type, emfSerializerCreater);
+	public void register(ResultType resultType, EmfSerializerCreator emfSerializerCreator) {
+		resultTypes.put(resultType.getName(), resultType);
+		serializerCreators.put(resultType, emfSerializerCreator);
 	}
 
-	public void unregister(ResultType type) {
-		emfSerializerCreators.remove(type);
+	public void unregister(ResultType resultType, EmfSerializerCreator emfSerializerCreator) {
+		resultTypes.remove(resultType.getName());
+		serializerCreators.remove(resultType);
 	}
 	
 	public EmfSerializer create(Project project, User user, ResultType resultType, IfcModel model, String name) throws NoSerializerFoundException, SerializerException {
-		EmfSerializerCreator emfSerializerCreator = emfSerializerCreators.get(resultType);
+		EmfSerializerCreator emfSerializerCreator = serializerCreators.get(resultType);
 		if (emfSerializerCreator == null) {
 			throw new NoSerializerFoundException("Serializer for type " + resultType.getNiceName() + " not found or not enabled");
 		}
 		return emfSerializerCreator.create(project, user, model, name);
 	}
 
-	public boolean resultTypeEnabled(ResultType resultType) {
-		return emfSerializerCreators.containsKey(resultType);
-	}
-	
 	public Set<ResultType> getMultipleResultTypes() {
 		Set<ResultType> result = new TreeSet<ResultType>(resultTypeComparator);
-		for (ResultType resultType : emfSerializerCreators.keySet()) {
+		for (ResultType resultType : resultTypes.values()) {
 			if (resultType.getType() == Type.MULTIPLE) {
 				result.add(resultType);
 			}
@@ -104,164 +104,86 @@ public class EmfSerializerFactory {
 	}
 
 	public Set<ResultType> getSingleResultTypes() {
-		return emfSerializerCreators.keySet();
+		Set<ResultType> result = new TreeSet<ResultType>(resultTypeComparator);
+		for (ResultType resultType : resultTypes.values()) {
+			if (resultType.getType() == Type.SINGLE) {
+				result.add(resultType);
+			}
+		}
+		return result;
 	}
-	
+
 	public void initSerializers() {
 		String enabledExportTypesString = settingsManager.getSettings().getEnabledExportTypes();
 		String[] enabledExportTypes = enabledExportTypesString.split(",");
-		EnumSet<ResultType> enabled = EnumSet.noneOf(ResultType.class);
+		Set<String> enabled = new HashSet<String>();
 		for (String type : enabledExportTypes) {
 			String upperCase = type.trim().toUpperCase();
 			if (!upperCase.equals("")) {
-				enabled.add(ResultType.valueOf(upperCase));
+				enabled.add(upperCase);
 			}
 		}
-		if (enabled.contains(ResultType.IFC)) {
-			register(ResultType.IFC, new EmfSerializerCreator() {
-				@Override
-				public EmfSerializer create(Project project, User user, IfcModel model, String fileName) {
-					IfcStepSerializer ifcSerializer = new IfcStepSerializer(project, user, fileName, model, schemaDefinition);
-					ifcSerializer.setFileDescription("Bimserver.org " + version.getVersion() + " generated IFC file");
-					ifcSerializer.setPreProcessorVersion("Bimserver.org " + version.getVersion());
-					return ifcSerializer;
-				}
-			});
-		} else {
-			unregister(ResultType.IFC);
-		}
-		if (enabled.contains(ResultType.IFCXML)) {
-			register(ResultType.IFCXML, new EmfSerializerCreator() {
-				@Override
-				public EmfSerializer create(Project project, User user, IfcModel model, String fileName) {
-					return new IfcXmlSerializer(fileName, model, schemaDefinition);
-				}
-			});
-		} else {
-			unregister(ResultType.IFCXML);
-		}
-		if (enabled.contains(ResultType.TEXT)) {
-			register(ResultType.TEXT, new EmfSerializerCreator() {
-				@Override
-				public EmfSerializer create(Project project, User user, IfcModel model, String fileName) {
-					IfcStepSerializer ifcSerializer = new IfcStepSerializer(project, user, fileName, model, schemaDefinition);
-					ifcSerializer.setFileDescription("Bimserver.org " + version.getVersion() + " generated IFC file");
-					ifcSerializer.setPreProcessorVersion("Bimserver.org " + version.getVersion());
-					return ifcSerializer;
-				}
-			});
-		} else {
-			unregister(ResultType.TEXT);
-		}
-		if (enabled.contains(ResultType.CITYGML)) {
-			register(ResultType.CITYGML, new EmfSerializerCreator() {
-				@Override
-				public EmfSerializer create(Project project, User user, IfcModel model, String fileName) throws SerializerException {
-					return new CityGmlSerializer(project, user, fileName, model, schemaDefinition, fieldIgnoreMap, ifcEngineFactory);
-				}
-			});
-		} else {
-			unregister(ResultType.CITYGML);
-		}
-		if (enabled.contains(ResultType.COLLADA)) {
-			register(ResultType.COLLADA, new EmfSerializerCreator() {
-				@Override
-				public EmfSerializer create(Project project, User user, IfcModel model, String fileName) throws SerializerException {
-					return new ColladaSerializer(project, user, fileName, model, schemaDefinition, fieldIgnoreMap, ifcEngineFactory, colladaSettings);
-				}
-			});
-		} else {
-			unregister(ResultType.COLLADA);
-		}
-		if (enabled.contains(ResultType.REPORT_SPACES)) {
-			register(ResultType.REPORT_SPACES, new EmfSerializerCreator() {
-				@Override
-				public EmfSerializer create(Project project, User user, IfcModel model, String fileName) throws SerializerException {
-					return new XsltSerializer(fileName, model, fieldIgnoreMap, schemaDefinition, resourceFetcher.getResource("_Report1.xhtml.xsl"), ResultType.REPORT_SPACES, new XsltParameter("topic", "space"));
-				}
-			});
-		} else {
-			unregister(ResultType.REPORT_SPACES);
-		}
-		if (enabled.contains(ResultType.REPORT_COMPONENTS)) {
-			register(ResultType.REPORT_COMPONENTS, new EmfSerializerCreator() {
-				@Override
-				public EmfSerializer create(Project project, User user, IfcModel model, String fileName) throws SerializerException {
-					return new XsltSerializer(fileName, model, fieldIgnoreMap, schemaDefinition, resourceFetcher.getResource("_Report1.xhtml.xsl"), ResultType.REPORT_COMPONENTS, new XsltParameter("topic", "component"));
-				}
-			});
-		} else {
-			unregister(ResultType.REPORT_COMPONENTS);
-		}
-		if (enabled.contains(ResultType.REPORT_SYSTEMS)) {
-			register(ResultType.REPORT_SYSTEMS, new EmfSerializerCreator() {
-				@Override
-				public EmfSerializer create(Project project, User user, IfcModel model, String fileName) throws SerializerException {
-					return new XsltSerializer(fileName, model, fieldIgnoreMap, schemaDefinition, resourceFetcher.getResource("_Report1.xhtml.xsl"), ResultType.REPORT_SYSTEMS, new XsltParameter("topic", "system"));
-				}
-			});
-		} else {
-			unregister(ResultType.REPORT_SYSTEMS);
-		}
-		if (enabled.contains(ResultType.REPORT_TYPES)) {
-			register(ResultType.REPORT_TYPES, new EmfSerializerCreator() {
-				@Override
-				public EmfSerializer create(Project project, User user, IfcModel model, String fileName) throws SerializerException {
-					return new XsltSerializer(fileName, model, fieldIgnoreMap, schemaDefinition, resourceFetcher.getResource("_Report1.xhtml.xsl"), ResultType.REPORT_TYPES, new XsltParameter("topic", "type"));
-				}
-			});
-		} else {
-			unregister(ResultType.REPORT_TYPES);
-		}
-		if (enabled.contains(ResultType.REPORT_ZONES)) {
-			register(ResultType.REPORT_ZONES, new EmfSerializerCreator() {
-				@Override
-				public EmfSerializer create(Project project, User user, IfcModel model, String fileName) throws SerializerException {
-					return new XsltSerializer(fileName, model, fieldIgnoreMap, schemaDefinition, resourceFetcher.getResource("_Report1.xhtml.xsl"), ResultType.REPORT_ZONES, new XsltParameter("topic", "zone"));
-				}
-			});
-		} else {
-			unregister(ResultType.REPORT_ZONES);
-		}
-		if (enabled.contains(ResultType.COBIE2)) {
-			register(ResultType.COBIE2, new EmfSerializerCreator() {
-				@Override
-				public EmfSerializer create(Project project, User user, IfcModel model, String fileName) throws SerializerException {
-					return new XsltSerializer(fileName, model, fieldIgnoreMap, schemaDefinition, resourceFetcher.getResource("_asCOBie2.xml.xsl"), ResultType.COBIE2);
-				}
-			});
-		} else {
-			unregister(ResultType.COBIE2);
-		}
-		if (enabled.contains(ResultType.KMZ)) {
-			register(ResultType.KMZ, new EmfSerializerCreator() {
-				@Override
-				public EmfSerializer create(Project project, User user, IfcModel model, String fileName) throws SerializerException {
-					return new KmzSerializer(project, user, fileName, model, schemaDefinition, fieldIgnoreMap, ifcEngineFactory, colladaSettings);
-				}
-			});
-		} else {
-			unregister(ResultType.KMZ);
-		}
-		if (enabled.contains(ResultType.O3D_JSON)) {
-			register(ResultType.O3D_JSON, new EmfSerializerCreator() {
-				@Override
-				public EmfSerializer create(Project project, User user, IfcModel model, String fileName) throws SerializerException {
-					return new O3dJsonSerializer(project, user, fileName, model, fieldIgnoreMap, schemaDefinition, ifcEngineFactory);
-				}
-			});
-		} else {
-			unregister(ResultType.O3D_JSON);
-		}
-		if (enabled.contains(ResultType.OBJECT_INFO)) {
-			register(ResultType.OBJECT_INFO, new EmfSerializerCreator() {
-				@Override
-				public EmfSerializer create(Project project, User user, IfcModel model, String fileName) {
-					return new ObjectInfoSerializer(project, user, fileName, model, fieldIgnoreMap);
-				}
-			});
-		} else {
-			unregister(ResultType.OBJECT_INFO);
-		}
+		register(new ResultType("IFC", "IFC2x3", "ifc", "application/ifc", UseInCheckout.USE_IN_CHECKOUT, UserType.USER_TYPE, Type.MULTIPLE, DefaultSelected.TRUE, enabled.contains("IFC")), new EmfSerializerCreator(){
+			@Override
+			public EmfSerializer create(Project project, User user, IfcModel model, String fileName) {
+				IfcStepSerializer ifcSerializer = new IfcStepSerializer(project, user, fileName, model, schemaDefinition);
+				ifcSerializer.setFileDescription("Bimserver.org " + version.getVersion() + " generated IFC file");
+				ifcSerializer.setPreProcessorVersion("Bimserver.org " + version.getVersion());
+				return ifcSerializer;
+			}
+		});
+		register(new ResultType("IFCXML", "IFCXML2x3", "ifcxml", "application/ifcxml", UseInCheckout.USE_IN_CHECKOUT, UserType.USER_TYPE, Type.MULTIPLE, DefaultSelected.FALSE, enabled.contains("IFCXML")), new EmfSerializerCreator() {
+			@Override
+			public EmfSerializer create(Project project, User user, IfcModel model, String fileName) throws SerializerException {
+				return new IfcXmlSerializer(fileName, model, schemaDefinition);
+			}
+		});
+		register(new ResultType("IFCTXT", "Plain text IFC", "txt", "text", UseInCheckout.USE_NOT_IN_CHECKOUT, UserType.USER_TYPE, Type.MULTIPLE, DefaultSelected.FALSE, enabled.contains("IFCTXT")), new EmfSerializerCreator() {
+			@Override
+			public EmfSerializer create(Project project, User user, IfcModel model, String fileName) throws SerializerException {
+				IfcStepSerializer ifcSerializer = new IfcStepSerializer(project, user, fileName, model, schemaDefinition);
+				ifcSerializer.setFileDescription("Bimserver.org " + version.getVersion() + " generated IFC file");
+				ifcSerializer.setPreProcessorVersion("Bimserver.org " + version.getVersion());
+				return ifcSerializer;
+			}
+		});
+		register(new ResultType("CITYGML", "City GML 1.0.0", "gml", "application/gml", UseInCheckout.USE_NOT_IN_CHECKOUT, UserType.USER_TYPE, Type.MULTIPLE, DefaultSelected.FALSE, enabled.contains("CITYGML")), new EmfSerializerCreator() {
+			@Override
+			public EmfSerializer create(Project project, User user, IfcModel model, String fileName) throws SerializerException {
+				return new CityGmlSerializer(project, user, fileName, model, schemaDefinition, fieldIgnoreMap, ifcEngineFactory);
+			}
+		});
+		register(new ResultType("COLLADA", "Collada", "dae", "appliction/collada", UseInCheckout.USE_NOT_IN_CHECKOUT, UserType.USER_TYPE, Type.MULTIPLE, DefaultSelected.FALSE, enabled.contains("COLLADA")), new EmfSerializerCreator() {
+			@Override
+			public EmfSerializer create(Project project, User user, IfcModel model, String fileName) throws SerializerException {
+				return new ColladaSerializer(project, user, fileName, model, schemaDefinition, fieldIgnoreMap, ifcEngineFactory, colladaSettings);
+			}
+		});
+		register(new ResultType("KMZ", "KMZ", "kmz", "application/vnd.google-earth.kmz", UseInCheckout.USE_NOT_IN_CHECKOUT, UserType.USER_TYPE, Type.MULTIPLE, DefaultSelected.FALSE, enabled.contains("KMZ")), new EmfSerializerCreator() {
+			@Override
+			public EmfSerializer create(Project project, User user, IfcModel model, String fileName) throws SerializerException {
+				return new KmzSerializer(project, user, fileName, model, schemaDefinition, fieldIgnoreMap, ifcEngineFactory, colladaSettings);
+			}
+		});
+		register(new ResultType("O3D_JSON", "WebGL", "o3djson", "appliction/json", UseInCheckout.USE_NOT_IN_CHECKOUT, UserType.USER_TYPE, Type.MULTIPLE, DefaultSelected.FALSE, enabled.contains("O3D_JSON")), new EmfSerializerCreator() {
+			@Override
+			public EmfSerializer create(Project project, User user, IfcModel model, String fileName) throws SerializerException {
+				return new O3dJsonSerializer(project, user, fileName, model, fieldIgnoreMap, schemaDefinition, ifcEngineFactory);
+			}
+		});
+		register(new ResultType("OBJECT_INFO", "Object Info", "html", "text/html", UseInCheckout.USE_NOT_IN_CHECKOUT, UserType.USER_TYPE, Type.SINGLE, DefaultSelected.FALSE, enabled.contains("OBJECT_INFO")), new EmfSerializerCreator() {
+			@Override
+			public EmfSerializer create(Project project, User user, IfcModel model, String fileName) {
+				return new ObjectInfoSerializer(project, user, fileName, model, fieldIgnoreMap);
+			}
+		});
+	}
+
+	public ResultType getResultType(String resultTypeName) {
+		return resultTypes.get(resultTypeName);
+	}
+
+	public boolean resultTypeEnabled(String resultTypeName) {
+		return getResultType(resultTypeName).isEnabled();
 	}
 }

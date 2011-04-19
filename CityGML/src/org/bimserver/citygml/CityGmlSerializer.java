@@ -50,7 +50,6 @@ import org.bimserver.models.ifc2x3.IfcWall;
 import org.bimserver.models.ifc2x3.IfcWindow;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.User;
-import org.bimserver.shared.ResultType;
 import org.citygml4j.CityGMLContext;
 import org.citygml4j.builder.jaxb.JAXBBuilder;
 import org.citygml4j.factory.CityGMLFactory;
@@ -662,10 +661,5 @@ public class CityGmlSerializer extends BimModelSerializer {
 		surfaceProperty.setSurface(polygon);
 
 		return surfaceProperty;
-	}
-
-	@Override
-	public String getContentType() {
-		return ResultType.CITYGML.getContentType();
 	}
 }

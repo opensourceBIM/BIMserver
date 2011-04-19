@@ -28,12 +28,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-import javax.activation.DataSource;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public abstract class EmfSerializer implements DataSource {
+public abstract class EmfSerializer {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(EmfSerializer.class);
 	protected final IfcModel model;
@@ -71,7 +69,6 @@ public abstract class EmfSerializer implements DataSource {
 		return outputStream.toByteArray();
 	}
 
-	@Override
 	public InputStream getInputStream() throws IOException {
 		reset();
 		final ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -149,14 +146,8 @@ public abstract class EmfSerializer implements DataSource {
 
 	protected abstract void reset();
 
-	@Override
 	public String getName() {
 		return fileName;
-	}
-
-	@Override
-	public OutputStream getOutputStream() throws IOException {
-		return null;
 	}
 
 	protected abstract boolean write(OutputStream outputStream) throws SerializerException;
