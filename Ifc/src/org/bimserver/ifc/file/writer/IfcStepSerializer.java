@@ -80,14 +80,6 @@ public class IfcStepSerializer extends IfcSerializer {
 	private String preProcessorVersion = "";
 	private Date date = new Date();
 
-	public enum Mode {
-		HEADER,
-		BODY,
-		FOOTER,
-		FINISHED
-	}
-
-	private Mode mode = Mode.HEADER;
 	private Iterator<Long> iterator;
 	private UTFPrintWriter out;
 
@@ -104,17 +96,23 @@ public class IfcStepSerializer extends IfcSerializer {
 		}
 	}
 
+	@Override
+	protected void reset() {
+		setMode(Mode.HEADER);
+		out = null;
+	}
+	
 	public boolean write(OutputStream outputStream) {
 		if (out == null) {
 			out = new UTFPrintWriter(outputStream);
 		}
-		if (mode == Mode.HEADER) {
+		if (getMode() == Mode.HEADER) {
 			writeHeader(out);
-			mode = Mode.BODY;
+			setMode(Mode.BODY);
 			iterator = model.keySet().iterator();
 			out.flush();
 			return true;
-		} else if (mode == Mode.BODY) {
+		} else if (getMode() == Mode.BODY) {
 			if (iterator.hasNext()) {
 				long key = iterator.next();
 				if (key != -1) {
@@ -122,16 +120,16 @@ public class IfcStepSerializer extends IfcSerializer {
 				}
 			} else {
 				iterator = null;
-				mode = Mode.FOOTER;
+				setMode(Mode.FOOTER);
 				return write(outputStream);
 			}
 			return true;
-		} else if (mode == Mode.FOOTER) {
+		} else if (getMode() == Mode.FOOTER) {
 			writeFooter(out);
 			out.flush();
-			mode = Mode.FINISHED;
+			setMode(Mode.FINISHED);
 			return true;
-		} else if (mode == Mode.FINISHED) {
+		} else if (getMode() == Mode.FINISHED) {
 			return false;
 		}
 		return false;

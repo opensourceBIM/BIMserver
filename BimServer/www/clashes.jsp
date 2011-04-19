@@ -265,8 +265,7 @@ Download: <input type="hidden" name="clashes" value="true" /> <input
 	<%
 		}
 	%>
-</select> <label for="clasheszip_<%=lastRevision.getId()%>">Zip</label><input
-	type="checkbox" name="zip" id="clasheszip_<%=lastRevision.getId()%>" />
+</select> <label for="clasheszip_<%=lastRevision.getId()%>">Zip</label> <input type="checkbox" name="zip" id="clasheszip_<%=lastRevision.getId()%>" />
 <input name="download" type="submit" value="Download"></form>
 <script>
 $(document).ready(function(){

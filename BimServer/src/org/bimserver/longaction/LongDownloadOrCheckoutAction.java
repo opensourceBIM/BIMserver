@@ -66,9 +66,8 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction<DownloadPa
 		if (model.isValid()) {
 			checkoutResult.setProjectName(project.getName());
 			checkoutResult.setRevisionNr(model.getRevisionNr());
-			EmfSerializer serializer;
 			try {
-				serializer = emfSerializerFactory.create(project, user, resultType, model, checkoutResult.getProjectName() + "."
+				EmfSerializer serializer = emfSerializerFactory.create(project, user, resultType, model, checkoutResult.getProjectName() + "."
 						+ checkoutResult.getRevisionNr() + "." + resultType.getDefaultExtension());
 				checkoutResult.setFile(new DataHandler(serializer));
 			} catch (SerializerException e) {

@@ -52,7 +52,6 @@ public class O3dJsonSerializer extends BimModelSerializer {
 	private final SchemaDefinition schemaDefinition;
 	private final FailSafeIfcEngine ifcEngine;
 	private int convertCounter;
-	private SimpleMode mode = SimpleMode.BUSY;
 	private final Project project;
 	private final User user;
 
@@ -69,8 +68,13 @@ public class O3dJsonSerializer extends BimModelSerializer {
 	}
 
 	@Override
+	protected void reset() {
+		setMode(Mode.BODY);
+	}
+	
+	@Override
 	public boolean write(OutputStream out) {
-		if (mode == SimpleMode.BUSY) {
+		if (getMode() == Mode.BODY) {
 			try {
 				try {
 					Scene scene = createScene();
@@ -80,13 +84,13 @@ public class O3dJsonSerializer extends BimModelSerializer {
 					LOGGER.error("", e);
 				}
 				out.flush();
-				mode = SimpleMode.DONE;
+				setMode(Mode.FINISHED);
 				ifcEngine.close();
 				return true;
 			} catch (IOException e) {
 				LOGGER.error("", e);
 			}
-		} else if (mode == SimpleMode.DONE) {
+		} else if (getMode() == Mode.FINISHED) {
 			return false;
 		}
 		return false;

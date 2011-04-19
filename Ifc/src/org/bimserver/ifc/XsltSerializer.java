@@ -36,6 +36,11 @@ public class XsltSerializer extends BimModelSerializer {
 	}
 
 	@Override
+	protected void reset() {
+		setMode(Mode.BODY);
+	}
+	
+	@Override
 	protected boolean write(OutputStream outputStream) throws SerializerException {
 		IfcXmlSerializer ifcXmlSerializer = new IfcXmlSerializer(getName(), model, schemaDefinition);
 		TransformerFactory factory = TransformerFactory.newInstance();

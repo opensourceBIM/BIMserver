@@ -20,15 +20,18 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 
 public class ObjectInfoSerializer extends BimModelSerializer {
 
-	private SimpleMode mode = SimpleMode.BUSY;
-	
 	public ObjectInfoSerializer(Project project, User user, String fileName, IfcModel model, FieldIgnoreMap fieldIgnoreMap) {
 		super(fileName, model, fieldIgnoreMap);
 	}
 
 	@Override
+	protected void reset() {
+		setMode(Mode.BODY);
+	}
+	
+	@Override
 	public boolean write(OutputStream outputStream) throws SerializerException {
-		if (mode == SimpleMode.BUSY) {
+		if (getMode() == Mode.BODY) {
 			PrintWriter out = new PrintWriter(outputStream);
 			EObject mainObject = model.getMainObject();
 			if (mainObject != null) {
@@ -39,9 +42,9 @@ public class ObjectInfoSerializer extends BimModelSerializer {
 				}
 			}
 			out.flush();
-			mode = SimpleMode.DONE;
+			setMode(Mode.FINISHED);
 			return true;
-		} else if (mode == SimpleMode.DONE) {
+		} else if (getMode() == Mode.FINISHED) {
 			return false;
 		}
 		return false;

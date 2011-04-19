@@ -730,7 +730,6 @@ public class Service implements ServiceInterface {
 	@Override
 	public List<SUser> getAllUsers() throws UserException, ServerException {
 		requireAuthenticationAndRunningServer();
-		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimDatabase.createReadOnlySession();
 		try {
 			BimDatabaseAction<Set<User>> action = new GetAllUsersDatabaseAction(session, accessMethod, currentUoid);

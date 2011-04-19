@@ -38,7 +38,7 @@ public class DownloadParameters extends LongActionKey {
 
 	public DownloadParameters(ResultType resultType, Set<Long> roids, Set<Long> oids) {
 		setRoids(roids);
-		setGuids(guids);
+		setOids(oids);
 		setDownloadType(DownloadType.DOWNLOAD_BY_OIDS);
 		setResultType(resultType);
 	}
