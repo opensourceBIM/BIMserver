@@ -36,7 +36,6 @@
 <%@page import="org.bimserver.interfaces.objects.SPasswordChanged"%>
 <%@page import="org.bimserver.interfaces.objects.SClashDetectionSettings"%>
 <%@page import="org.bimserver.interfaces.objects.SGeoTag"%>
-
 <%@page import="org.bimserver.interfaces.objects.SDatabaseCreated"%>
 <%@page import="org.bimserver.shared.SLongAction"%>
 <%@page import="java.util.Date"%><div class="sidebar">
