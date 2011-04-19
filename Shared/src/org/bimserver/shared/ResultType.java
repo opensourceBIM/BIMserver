@@ -50,11 +50,11 @@ public class ResultType {
 		this.niceName = niceName;
 		this.extension = defaultExtension;
 		this.contentType = contentType;
-		this.useInCheckout = useInCheckout;
-		this.userType = userType;
-		this.multiple = multiple;
-		this.defaultSelected = defaultSelected;
-		this.enabled = enabled;
+		this.setUseInCheckout(useInCheckout);
+		this.setUserType(userType);
+		this.setMultiple(multiple);
+		this.setDefaultSelected(defaultSelected);
+		this.setEnabled(enabled);
 	}
 
 	public int compareTo(ResultType o2) {
@@ -63,10 +63,6 @@ public class ResultType {
 
 	public String getNiceName() {
 		return niceName;
-	}
-
-	public Type getType() {
-		return multiple;
 	}
 
 	public Class<?> getSerializerClass() {
@@ -102,6 +98,46 @@ public class ResultType {
 	}
 	
 	public boolean isDefaultSelected() {
-		return defaultSelected == DefaultSelected.TRUE;
+		return getDefaultSelected() == DefaultSelected.TRUE;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setContentType(String contentType) {
+		this.contentType = contentType;
+	}
+
+	public void setNiceName(String niceName) {
+		this.niceName = niceName;
+	}
+
+	public void setExtension(String extension) {
+		this.extension = extension;
+	}
+
+	public void setUseInCheckout(UseInCheckout useInCheckout) {
+		this.useInCheckout = useInCheckout;
+	}
+
+	public void setUserType(UserType userType) {
+		this.userType = userType;
+	}
+
+	public void setMultiple(Type multiple) {
+		this.multiple = multiple;
+	}
+
+	public Type getMultiple() {
+		return multiple;
+	}
+
+	public void setDefaultSelected(DefaultSelected defaultSelected) {
+		this.defaultSelected = defaultSelected;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
 	}
 }

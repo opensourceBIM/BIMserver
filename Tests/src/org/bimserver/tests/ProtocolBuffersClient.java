@@ -58,7 +58,7 @@ public class ProtocolBuffersClient {
 	private String downloadRevision(long roid) {
 		org.bimserver.pb.Service.DownloadRequest.Builder downloadRequestBuilder = DownloadRequest.newBuilder();
 		downloadRequestBuilder.setRoid(roid);
-		downloadRequestBuilder.setResultType(ResultType.O3D_JSON);
+		downloadRequestBuilder.setFormatIdentifier("O3D_JSON");
 		downloadRequestBuilder.setSync(true);
 		DownloadRequest downloadRequest = downloadRequestBuilder.build();
 		try {

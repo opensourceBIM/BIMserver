@@ -1187,199 +1187,9 @@ message GetAccessMethodResponse {
 message GetEnabledResultTypesRequest {
 }
 
-enum Type{
-	SINGLE = 0;
-	MULTIPLE = 1;
-}
-
 enum UserType{
 	USER_TYPE = 0;
 	NO_USER_TYPE = 1;
-}
-
-message Annotation[] {
-}
-
-message Object {
-}
-
-message URL {
-	optional string authority = 1;
-	optional string path = 2;
-	optional string query = 3;
-	optional string file = 4;
-	optional string host = 5;
-	optional string protocol = 6;
-	repeated Object content = 7;
-	repeated Object content = 8;
-	optional int32 defaultPort = 9;
-	optional int32 port = 10;
-	optional string ref = 11;
-	optional string userInfo = 12;
-}
-
-message InputStream {
-}
-
-message Enumeration {
-}
-
-message ClassLoader {
-	optional ClassLoader systemClassLoader = 1;
-	optional URL resource = 2;
-	optional InputStream resourceAsStream = 3;
-	optional URL systemResource = 4;
-	optional InputStream systemResourceAsStream = 5;
-	optional ClassLoader parent = 6;
-	optional Enumeration resources = 7;
-	optional Enumeration systemResources = 8;
-}
-
-message Class[] {
-}
-
-message Constructor {
-	optional int32 modifiers = 1;
-	optional string name = 2;
-	optional Class declaringClass = 3;
-	optional Class[] parameterTypes = 4;
-	optional Annotation[] annotations = 5;
-}
-
-message Constructor[] {
-}
-
-message byte {
-}
-
-message short {
-}
-
-message char {
-}
-
-message double {
-}
-
-message Type {
-}
-
-message Field {
-	optional int32 modifiers = 1;
-	optional bool boolean = 2;
-	optional byte byte = 3;
-	optional short short = 4;
-	optional char char = 5;
-	optional int32 int = 6;
-	optional int64 long = 7;
-	optional float float = 8;
-	optional double double = 9;
-	optional string name = 10;
-	optional Class declaringClass = 11;
-	optional Type genericType = 12;
-	optional Class type = 13;
-	optional Annotation[] annotations = 14;
-}
-
-message Field[] {
-}
-
-message Method {
-	optional int32 modifiers = 1;
-	optional string name = 2;
-	optional Class declaringClass = 3;
-	optional Class[] parameterTypes = 4;
-	optional Class returnType = 5;
-	repeated Object defaultValue = 6;
-	optional Type genericReturnType = 7;
-	optional Annotation[] annotations = 8;
-}
-
-message Method[] {
-}
-
-message Object[] {
-}
-
-message Type[] {
-}
-
-message Package[] {
-}
-
-message Package {
-	optional string name = 1;
-	optional Annotation[] annotations = 2;
-	optional Package package = 3;
-	optional Package[] packages = 4;
-	optional string implementationTitle = 5;
-	optional string implementationVendor = 6;
-	optional string implementationVersion = 7;
-	optional string specificationTitle = 8;
-	optional string specificationVendor = 9;
-	optional string specificationVersion = 10;
-}
-
-message Certificate[] {
-}
-
-message CodeSigner[] {
-}
-
-message CodeSource {
-	optional Certificate[] certificates = 1;
-	optional URL location = 2;
-	optional CodeSigner[] codeSigners = 3;
-}
-
-message PermissionCollection {
-}
-
-message Principal[] {
-}
-
-message ProtectionDomain {
-	optional ClassLoader classLoader = 1;
-	optional CodeSource codeSource = 2;
-	optional PermissionCollection permissions = 3;
-	optional Principal[] principals = 4;
-}
-
-message Class {
-	optional int32 modifiers = 1;
-	optional Class superclass = 2;
-	optional Class componentType = 3;
-	optional string name = 4;
-	optional Annotation[] annotations = 5;
-	optional string canonicalName = 6;
-	optional ClassLoader classLoader = 7;
-	optional Class[] classes = 8;
-	optional Constructor constructor = 9;
-	optional Class[] declaredClasses = 10;
-	optional Constructor declaredConstructor = 11;
-	optional Constructor[] declaredConstructors = 12;
-	optional Field declaredField = 13;
-	optional Field[] declaredFields = 14;
-	optional Method declaredMethod = 15;
-	optional Method[] declaredMethods = 16;
-	optional Class declaringClass = 17;
-	optional Class enclosingClass = 18;
-	optional Constructor enclosingConstructor = 19;
-	optional Method enclosingMethod = 20;
-	optional Object[] enumConstants = 21;
-	optional Field field = 22;
-	optional Field[] fields = 23;
-	optional Type[] genericInterfaces = 24;
-	optional Type genericSuperclass = 25;
-	optional Class[] interfaces = 26;
-	optional Method method = 27;
-	optional Method[] methods = 28;
-	optional Package package = 29;
-	optional ProtectionDomain protectionDomain = 30;
-	optional URL resource = 31;
-	optional InputStream resourceAsStream = 32;
-	optional Object[] signers = 33;
-	optional string simpleName = 34;
 }
 
 enum DefaultSelected{
@@ -1392,16 +1202,21 @@ enum UseInCheckout{
 	USE_NOT_IN_CHECKOUT = 1;
 }
 
+enum Type{
+	SINGLE = 0;
+	MULTIPLE = 1;
+}
+
 message ResultType {
 	optional string name = 1;
-	optional Type type = 2;
-	optional string contentType = 3;
-	optional string niceName = 4;
-	optional UserType userType = 5;
-	optional Class serializerClass = 6;
-	optional string extension = 7;
-	optional DefaultSelected defaultSelected = 8;
-	optional UseInCheckout useInCheckout = 9;
+	optional string contentType = 2;
+	optional string niceName = 3;
+	optional UserType userType = 4;
+	optional string serializerClass = 5;
+	optional string extension = 6;
+	optional DefaultSelected defaultSelected = 7;
+	optional UseInCheckout useInCheckout = 8;
+	optional Type multiple = 9;
 }
 
 message GetEnabledResultTypesResponse {
