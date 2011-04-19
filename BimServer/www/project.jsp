@@ -13,7 +13,6 @@
 <%@page import="org.bimserver.interfaces.objects.SUserType"%>
 <%@page import="org.bimserver.models.store.SIPrefix"%>
 <%@page import="org.bimserver.rights.RightsManager"%>
-<%@page import="org.bimserver.serializers.EmfSerializerFactory"%>
 <%@page import="org.bimserver.shared.ResultType"%>
 <%@page import="org.bimserver.shared.SCheckoutDateComparator"%>
 <%@page import="org.bimserver.shared.SProjectNameComparator"%>
@@ -32,7 +31,6 @@
 <%
 	if (loginManager.getService().isLoggedIn()) {
 		DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
-		EmfSerializerFactory emfSerializerFactory = EmfSerializerFactory.getInstance();
 		long poid = Long.parseLong(request.getParameter("poid"));
 		try {
 			SProject project = loginManager.getService().getProjectByPoid(poid);
@@ -70,9 +68,12 @@
 			boolean hasEditRights = loginManager.getService().userHasRights(project.getOid());
 			boolean hasCreateProjectRights = (loginManager.getUserType() == SUserType.ADMIN || loginManager.getService()
 					.isSettingAllowUsersToCreateTopLevelProjects());
-			if (emfSerializerFactory.resultTypeEnabled(ResultType.O3D_JSON) && lastRevision != null) {
+			boolean o3dEnabled = loginManager.getService().isResultTypeEnabled("O3D_JSON");
+			boolean kmzEnabled = loginManager.getService().isResultTypeEnabled("KMZ");
+			if (o3dEnabled && lastRevision != null) {
 %>
-<jsp:include page="o3d.jsp" />
+
+<%@page import="org.slf4j.LoggerFactory"%><jsp:include page="o3d.jsp" />
 <%
 	}
 %>
@@ -86,7 +87,7 @@
 		}
 	%>
 	<%
-		if (loginManager.getService().isExportTypeEnabled(ResultType.O3D_JSON) && lastRevision != null) {
+		if (loginManager.getService().isResultTypeEnabled("O3D_JSON") && lastRevision != null) {
 	%>
 	<li><a id="visualiselink" class="link">Visualise</a></li>
 	<%
@@ -192,7 +193,7 @@ revisions tab</a> to add a first revision, or <a id="subprojecttablink"
 		<td><%=project.getDescription()%></td>
 	</tr>
 	<%
-		if (emfSerializerFactory.resultTypeEnabled(ResultType.KMZ)) {
+		if (kmzEnabled) {
 					String url = WebUtils.getWebServer(request.getRequestURL().toString());
 					String link = "http://" + url + getServletContext().getContextPath() + "/download?poid=" + project.getOid()
 							+ "&resultType=KMZ";
@@ -247,9 +248,9 @@ to go to the latest revision<br />
 		<td>Download:</td>
 		<td><select name="resultType" id="detailsdownloadcheckoutselect">
 			<%
-				for (ResultType resultType : emfSerializerFactory.getMultipleResultTypes()) {
+				for (ResultType resultType : loginManager.getService().getEnabledResultTypes()) {
 			%>
-			<option value="<%=resultType.name()%>"
+			<option value="<%=resultType.getName()%>"
 				<%=resultType.isDefaultSelected() ? " SELECTED=\"SELECTED\"" : ""%>><%=resultType.getNiceName()%></option>
 			<%
 				}
@@ -301,9 +302,9 @@ to go to the latest revision<br />
 		<td>
 			<select name="resultType">
 			<%
-				for (ResultType resultType : emfSerializerFactory.getMultipleResultTypes()) {
+				for (ResultType resultType : loginManager.getService().getEnabledResultTypes()) {
 			%>
-				<option value="<%=resultType.name()%>"
+				<option value="<%=resultType.getName()%>"
 				<%=resultType.isDefaultSelected() ? " SELECTED=\"SELECTED\"" : ""%>><%=resultType.getNiceName()%></option>
 			<%
 				}
@@ -585,9 +586,9 @@ subproject</a><br />
 		<input type="hidden" name="roid" value="<%=revision.getOid()%>" />
 		<select name="resultType" class="revisionsdownloadcheckoutselect">
 <%
-				for (ResultType resultType : emfSerializerFactory.getMultipleResultTypes()) {
+				for (ResultType resultType : loginManager.getService().getEnabledResultTypes()) {
 %>
-			<option value="<%=resultType.name()%>"
+			<option value="<%=resultType.getName()%>"
 				<%=resultType.isDefaultSelected() ? " SELECTED=\"SELECTED\"" : ""%>><%=resultType.getNiceName()%>
 			</option>
 <%
@@ -687,9 +688,9 @@ open a specific revision to query other revisions<br />
 		<input type="hidden" name="roid" value="<%=checkout.getRevisionId()%>" />
 		<select name="resultType">
 			<%
-				for (ResultType resultType : emfSerializerFactory.getMultipleResultTypes()) {
+				for (ResultType resultType : loginManager.getService().getEnabledResultTypes()) {
 			%>
-			<option value="<%=resultType.name()%>"
+			<option value="<%=resultType.getName()%>"
 				<%=resultType.isDefaultSelected() ? " SELECTED=\"SELECTED\"" : ""%>><%=resultType.getNiceName()%></option>
 			<%
 				}
@@ -1023,6 +1024,8 @@ open a specific revision to query other revisions<br />
  				e.printStackTrace();
  				out.println(e.getUserMessage());
  			}
+ 		} catch (Exception e) {
+ 			LoggerFactory.getLogger("project.jsp").error("", e);
  		}
  	}
  %>

@@ -64,7 +64,7 @@ for (SRevision sRevision : revisionsInc) {
 	  				}
 	  			}
 	  			out.println("</table>");
-	if (loginManager.getService().isExportTypeEnabled(ResultType.O3D_JSON)) {
+	if (loginManager.getService().isResultTypeEnabled("O3D_JSON")) {
 %>
 	<br/>
 	<div id="browservisualizeloader">

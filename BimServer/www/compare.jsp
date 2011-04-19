@@ -20,11 +20,10 @@
 		SRevision revision2 = loginManager.getService().getRevision(roid2);
 		SCompareType sCompareType = SCompareResult.SCompareType.valueOf(request.getParameter("type"));
 		SCompareResult compareResult = loginManager.getService().compare(roid1, roid2, sCompareType);
-		EmfSerializerFactory emfSerializerFactory = EmfSerializerFactory.getInstance();
 %>
 Back to 
 <%@page import="org.bimserver.shared.ResultType"%>
-<%@page import="org.bimserver.serializers.EmfSerializerFactory"%><a href="project.jsp?poid=<%=poid %>">project '<%= project.getName() %>'</a><br/><br/>
+<a href="project.jsp?poid=<%=poid %>">project '<%= project.getName() %>'</a><br/><br/>
   <a href="#" id="emaillink">E-mail summary</a>
   <div id="emailform">
 	<div id="emailajaxloader">
@@ -49,9 +48,9 @@ Download:
 <input type="hidden" name="roid2" value="<%=request.getParameter("roid2") %>" />
 <select name="resultType">
 	<%
-	for (ResultType resultType : emfSerializerFactory.getMultipleResultTypes()) {
+	for (ResultType resultType : loginManager.getService().getEnabledResultTypes()) {
 %>
-	<option value="<%=resultType.name() %>"
+	<option value="<%=resultType.getName() %>"
 		<%=resultType.isDefaultSelected() ? " SELECTED=\"SELECTED\"" : "" %>><%= resultType.getNiceName() %></option>
 	<%	
 	}

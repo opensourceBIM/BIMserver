@@ -1,19 +1,14 @@
 package org.bimserver.pb;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-
+import java.util.*;
+import com.google.protobuf.*;
+import org.bimserver.utils.*;
 import org.bimserver.pb.Service.*;
-import org.bimserver.pb.Service.ServiceInterface.BlockingInterface;
-import org.bimserver.utils.BinUtils;
-
 import com.google.protobuf.BlockingRpcChannel;
-import com.google.protobuf.ByteString;
+import org.bimserver.pb.Service.ServiceInterface.BlockingInterface;
+import com.googlecode.protobuf.socketrpc.SocketRpcController;
 import com.googlecode.protobuf.socketrpc.RpcChannels;
 import com.googlecode.protobuf.socketrpc.SocketRpcConnectionFactories;
-import com.googlecode.protobuf.socketrpc.SocketRpcController;
 
 public class ProtocolBuffersServiceInterfaceImplementation implements org.bimserver.shared.ServiceInterface {
 
@@ -56,12 +51,11 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 		} catch (Exception e) {}
 	}
 
-	public int download(long roid, org.bimserver.shared.ResultType resultType, boolean sync) {
+	public int download(long roid, java.lang.String formatIdentifier, boolean sync) {
 		try {
 			DownloadRequest.Builder requestBuilder = DownloadRequest.newBuilder();
 			requestBuilder.setRoid(roid);
-			Service.ResultType newEnum = Service.ResultType.values()[resultType.ordinal()];
-			requestBuilder.setResultType(newEnum);
+			requestBuilder.setFormatIdentifier(formatIdentifier);
 			requestBuilder.setSync(sync);
 			DownloadRequest request = requestBuilder.build();
 			DownloadResponse response = service.download(rpcController, request);
@@ -139,12 +133,11 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 		return null;
 	}
 
-	public int checkout(long roid, org.bimserver.shared.ResultType resultType, boolean sync) {
+	public int checkout(long roid, java.lang.String formatIdentifier, boolean sync) {
 		try {
 			CheckoutRequest.Builder requestBuilder = CheckoutRequest.newBuilder();
 			requestBuilder.setRoid(roid);
-			Service.ResultType newEnum = Service.ResultType.values()[resultType.ordinal()];
-			requestBuilder.setResultType(newEnum);
+			requestBuilder.setFormatIdentifier(formatIdentifier);
 			requestBuilder.setSync(sync);
 			CheckoutRequest request = requestBuilder.build();
 			CheckoutResponse response = service.checkout(rpcController, request);
@@ -153,12 +146,11 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 		return 0;
 	}
 
-	public int checkoutLastRevision(long poid, org.bimserver.shared.ResultType resultType, boolean sync) {
+	public int checkoutLastRevision(long poid, java.lang.String formatIdentifier, boolean sync) {
 		try {
 			CheckoutLastRevisionRequest.Builder requestBuilder = CheckoutLastRevisionRequest.newBuilder();
 			requestBuilder.setPoid(poid);
-			Service.ResultType newEnum = Service.ResultType.values()[resultType.ordinal()];
-			requestBuilder.setResultType(newEnum);
+			requestBuilder.setFormatIdentifier(formatIdentifier);
 			requestBuilder.setSync(sync);
 			CheckoutLastRevisionRequest request = requestBuilder.build();
 			CheckoutLastRevisionResponse response = service.checkoutLastRevision(rpcController, request);
@@ -167,7 +159,7 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 		return 0;
 	}
 
-	public int downloadByOids(java.util.Set<java.lang.Long> roids, java.util.Set<java.lang.Long> oids, org.bimserver.shared.ResultType resultType, boolean sync) {
+	public int downloadByOids(java.util.Set<java.lang.Long> roids, java.util.Set<java.lang.Long> oids, java.lang.String formatIdentifier, boolean sync) {
 		try {
 			DownloadByOidsRequest.Builder requestBuilder = DownloadByOidsRequest.newBuilder();
 			for (java.lang.Long val : roids) {
@@ -178,8 +170,7 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 				Long v = val;
 				requestBuilder.addOids(v);
 			}
-			Service.ResultType newEnum = Service.ResultType.values()[resultType.ordinal()];
-			requestBuilder.setResultType(newEnum);
+			requestBuilder.setFormatIdentifier(formatIdentifier);
 			requestBuilder.setSync(sync);
 			DownloadByOidsRequest request = requestBuilder.build();
 			DownloadByOidsResponse response = service.downloadByOids(rpcController, request);
@@ -188,13 +179,12 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 		return 0;
 	}
 
-	public int downloadOfType(long roid, java.lang.String className, org.bimserver.shared.ResultType resultType, boolean sync) {
+	public int downloadOfType(long roid, java.lang.String className, java.lang.String formatIdentifier, boolean sync) {
 		try {
 			DownloadOfTypeRequest.Builder requestBuilder = DownloadOfTypeRequest.newBuilder();
 			requestBuilder.setRoid(roid);
 			requestBuilder.setClassName(className);
-			Service.ResultType newEnum = Service.ResultType.values()[resultType.ordinal()];
-			requestBuilder.setResultType(newEnum);
+			requestBuilder.setFormatIdentifier(formatIdentifier);
 			requestBuilder.setSync(sync);
 			DownloadOfTypeRequest request = requestBuilder.build();
 			DownloadOfTypeResponse response = service.downloadOfType(rpcController, request);
@@ -203,7 +193,7 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 		return 0;
 	}
 
-	public int downloadByGuids(java.util.Set<java.lang.Long> roids, java.util.Set<java.lang.String> guids, org.bimserver.shared.ResultType resultType, boolean sync) {
+	public int downloadByGuids(java.util.Set<java.lang.Long> roids, java.util.Set<java.lang.String> guids, java.lang.String formatIdentifier, boolean sync) {
 		try {
 			DownloadByGuidsRequest.Builder requestBuilder = DownloadByGuidsRequest.newBuilder();
 			for (java.lang.Long val : roids) {
@@ -214,8 +204,7 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 				String v = val;
 				requestBuilder.addGuids(v);
 			}
-			Service.ResultType newEnum = Service.ResultType.values()[resultType.ordinal()];
-			requestBuilder.setResultType(newEnum);
+			requestBuilder.setFormatIdentifier(formatIdentifier);
 			requestBuilder.setSync(sync);
 			DownloadByGuidsRequest request = requestBuilder.build();
 			DownloadByGuidsResponse response = service.downloadByGuids(rpcController, request);
@@ -224,15 +213,14 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 		return 0;
 	}
 
-	public int downloadProjects(java.util.Set<java.lang.Long> roids, org.bimserver.shared.ResultType resultType, boolean sync) {
+	public int downloadProjects(java.util.Set<java.lang.Long> roids, java.lang.String formatIdentifier, boolean sync) {
 		try {
 			DownloadProjectsRequest.Builder requestBuilder = DownloadProjectsRequest.newBuilder();
 			for (java.lang.Long val : roids) {
 				Long v = val;
 				requestBuilder.addRoids(v);
 			}
-			Service.ResultType newEnum = Service.ResultType.values()[resultType.ordinal()];
-			requestBuilder.setResultType(newEnum);
+			requestBuilder.setFormatIdentifier(formatIdentifier);
 			requestBuilder.setSync(sync);
 			DownloadProjectsRequest request = requestBuilder.build();
 			DownloadProjectsResponse response = service.downloadProjects(rpcController, request);
@@ -967,6 +955,9 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 				v.setType(val.getType());
 				v.setOid(val.getOid());
 				v.setGuid(val.getGuid());
+				for (org.bimserver.shared.SDataObject$SDataValue o : val.getValuesList()) {
+					v.getValues().add(o);
+				}
 				realResult.add(v);
 			}
 		return realResult;
@@ -1402,23 +1393,21 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 		return null;
 	}
 
-	public boolean isExportTypeEnabled(org.bimserver.shared.ResultType resultType) {
+	public boolean isResultTypeEnabled(java.lang.String resultType) {
 		try {
-			IsExportTypeEnabledRequest.Builder requestBuilder = IsExportTypeEnabledRequest.newBuilder();
-			Service.ResultType newEnum = Service.ResultType.values()[resultType.ordinal()];
-			requestBuilder.setResultType(newEnum);
-			IsExportTypeEnabledRequest request = requestBuilder.build();
-			IsExportTypeEnabledResponse response = service.isExportTypeEnabled(rpcController, request);
+			IsResultTypeEnabledRequest.Builder requestBuilder = IsResultTypeEnabledRequest.newBuilder();
+			requestBuilder.setResultType(resultType);
+			IsResultTypeEnabledRequest request = requestBuilder.build();
+			IsResultTypeEnabledResponse response = service.isResultTypeEnabled(rpcController, request);
 			return response.getValue();
 		} catch (Exception e) {}
 		return false;
 	}
 
-	public void setExportTypeEnabled(org.bimserver.shared.ResultType resultType, boolean unknown) {
+	public void setExportTypeEnabled(java.lang.String resultTypeName, boolean unknown) {
 		try {
 			SetExportTypeEnabledRequest.Builder requestBuilder = SetExportTypeEnabledRequest.newBuilder();
-			Service.ResultType newEnum = Service.ResultType.values()[resultType.ordinal()];
-			requestBuilder.setResultType(newEnum);
+			requestBuilder.setResultTypeName(resultTypeName);
 			requestBuilder.setUnknown(unknown);
 			SetExportTypeEnabledRequest request = requestBuilder.build();
 			service.setExportTypeEnabled(rpcController, request);
@@ -1505,7 +1494,17 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 			java.util.Set<org.bimserver.shared.ResultType> realResult = new HashSet<org.bimserver.shared.ResultType>();
 			List<Service.ResultType> originalList = response.getValueList();
 			for (Service.ResultType val : originalList) {
-				realResult.add(org.bimserver.shared.ResultType.values()[val.ordinal()]);
+				org.bimserver.shared.ResultType v = new org.bimserver.shared.ResultType();
+				v.setName(val.getName());
+				v.setType(org.bimserver.shared.ResultType$Type.values()[val.getType().ordinal()]);
+				v.setContentType(val.getContentType());
+				v.setNiceName(val.getNiceName());
+				v.setUserType(org.bimserver.shared.ResultType$UserType.values()[val.getUserType().ordinal()]);
+				v.setSerializerClass(val.getSerializerClass());
+				v.setExtension(val.getExtension());
+				v.setDefaultSelected(org.bimserver.shared.ResultType$DefaultSelected.values()[val.getDefaultSelected().ordinal()]);
+				v.setUseInCheckout(org.bimserver.shared.ResultType$UseInCheckout.values()[val.getUseInCheckout().ordinal()]);
+				realResult.add(v);
 			}
 		return realResult;
 		} catch (Exception e) {}
@@ -1520,7 +1519,17 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 			java.util.Set<org.bimserver.shared.ResultType> realResult = new HashSet<org.bimserver.shared.ResultType>();
 			List<Service.ResultType> originalList = response.getValueList();
 			for (Service.ResultType val : originalList) {
-				realResult.add(org.bimserver.shared.ResultType.values()[val.ordinal()]);
+				org.bimserver.shared.ResultType v = new org.bimserver.shared.ResultType();
+				v.setName(val.getName());
+				v.setType(org.bimserver.shared.ResultType$Type.values()[val.getType().ordinal()]);
+				v.setContentType(val.getContentType());
+				v.setNiceName(val.getNiceName());
+				v.setUserType(org.bimserver.shared.ResultType$UserType.values()[val.getUserType().ordinal()]);
+				v.setSerializerClass(val.getSerializerClass());
+				v.setExtension(val.getExtension());
+				v.setDefaultSelected(org.bimserver.shared.ResultType$DefaultSelected.values()[val.getDefaultSelected().ordinal()]);
+				v.setUseInCheckout(org.bimserver.shared.ResultType$UseInCheckout.values()[val.getUseInCheckout().ordinal()]);
+				realResult.add(v);
 			}
 		return realResult;
 		} catch (Exception e) {}
@@ -1658,12 +1667,12 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 		return null;
 	}
 
-	public void setSettingEnabledExportTypes(java.util.Set<org.bimserver.shared.ResultType> enabledExportTypes) {
+	public void setSettingEnabledExportTypes(java.util.Set<java.lang.String> enabledExportTypeNames) {
 		try {
 			SetSettingEnabledExportTypesRequest.Builder requestBuilder = SetSettingEnabledExportTypesRequest.newBuilder();
-			for (org.bimserver.shared.ResultType val : enabledExportTypes) {
-				Service.ResultType v = null;
-				requestBuilder.addEnabledExportTypes(v);
+			for (java.lang.String val : enabledExportTypeNames) {
+				String v = val;
+				requestBuilder.addEnabledExportTypeNames(v);
 			}
 			SetSettingEnabledExportTypesRequest request = requestBuilder.build();
 			service.setSettingEnabledExportTypes(rpcController, request);
@@ -1967,6 +1976,18 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 			MigrateDatabaseRequest request = requestBuilder.build();
 			service.migrateDatabase(rpcController, request);
 		} catch (Exception e) {}
+	}
+
+	public org.bimserver.shared.ResultType getResultTypeByName(java.lang.String unknown) {
+		try {
+			GetResultTypeByNameRequest.Builder requestBuilder = GetResultTypeByNameRequest.newBuilder();
+			requestBuilder.setUnknown(unknown);
+			GetResultTypeByNameRequest request = requestBuilder.build();
+			GetResultTypeByNameResponse response = service.getResultTypeByName(rpcController, request);
+			org.bimserver.shared.ResultType realResult = new org.bimserver.shared.ResultType();
+			return realResult;
+		} catch (Exception e) {}
+		return null;
 	}
 
 }

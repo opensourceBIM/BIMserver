@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
-import org.bimserver.shared.ResultType;
+import org.bimserver.serializers.EmfSerializerFactory;
 
 public class DownloadParameters extends LongActionKey {
 	public enum DownloadType {
@@ -15,45 +15,44 @@ public class DownloadParameters extends LongActionKey {
 	private Set<Long> oids;
 	private Set<String> guids;
 	private String className;
-	private ResultType resultType;
+	private String resultTypeName;
 	private DownloadType downloadType;
 
 	public DownloadParameters() {
 		downloadType = DownloadType.DOWNLOAD;
-		resultType = ResultType.IFC;
 	}
 
-	public DownloadParameters(long roid, ResultType resultType) {
+	public DownloadParameters(long roid, String formatIdentifier) {
 		setRoid(roid);
 		setDownloadType(DownloadType.DOWNLOAD);
-		setResultType(resultType);
+		setFormatIdentifier(formatIdentifier);
 	}
 
-	public DownloadParameters(Set<Long> roids, Set<String> guids, ResultType resultType) {
+	public DownloadParameters(Set<Long> roids, Set<String> guids, String formatIdentifier) {
 		setRoids(roids);
 		setGuids(guids);
 		setDownloadType(DownloadType.DOWNLOAD_BY_GUIDS);
-		setResultType(resultType);
+		setFormatIdentifier(formatIdentifier);
 	}
 
-	public DownloadParameters(ResultType resultType, Set<Long> roids, Set<Long> oids) {
+	public DownloadParameters(String formatIdentifier, Set<Long> roids, Set<Long> oids) {
 		setRoids(roids);
 		setOids(oids);
 		setDownloadType(DownloadType.DOWNLOAD_BY_OIDS);
-		setResultType(resultType);
+		setFormatIdentifier(formatIdentifier);
 	}
 
-	public DownloadParameters(long roid, String className, ResultType resultType) {
+	public DownloadParameters(long roid, String className, String formatIdentifier) {
 		setRoid(roid);
 		setClassName(className);
 		setDownloadType(DownloadType.DOWNLOAD_OF_TYPE);
-		setResultType(resultType);
+		setFormatIdentifier(formatIdentifier);
 	}
 
-	public DownloadParameters(Set<Long> roids, ResultType resultType) {
+	public DownloadParameters(Set<Long> roids, String formatIdentifier) {
 		setRoids(roids);
 		setDownloadType(DownloadType.DOWNLOAD_PROJECTS);
-		setResultType(resultType);
+		setFormatIdentifier(formatIdentifier);
 	}
 
 	public String getId() {
@@ -97,12 +96,12 @@ public class DownloadParameters extends LongActionKey {
 		this.guids = guids;
 	}
 
-	public ResultType getResultType() {
-		return resultType;
+	public String getResultTypeName() {
+		return resultTypeName;
 	}
 
-	public void setResultType(ResultType resultType) {
-		this.resultType = resultType;
+	public void setFormatIdentifier(String formatIdentifier) {
+		this.resultTypeName = formatIdentifier;
 	}
 
 	public String getClassName() {
@@ -133,7 +132,7 @@ public class DownloadParameters extends LongActionKey {
 		result = prime * result + ((downloadType == null) ? 0 : downloadType.ordinal());
 		result = prime * result + ((guids == null) ? 0 : guids.hashCode());
 		result = prime * result + ((oids == null) ? 0 : oids.hashCode());
-		result = prime * result + ((resultType == null) ? 0 : resultType.ordinal());
+		result = prime * result + ((resultTypeName == null) ? 0 : resultTypeName.hashCode());
 		result = prime * result + ((roids == null) ? 0 : roids.hashCode());
 		return result;
 	}
@@ -167,10 +166,10 @@ public class DownloadParameters extends LongActionKey {
 				return false;
 		} else if (!oids.equals(other.oids))
 			return false;
-		if (resultType == null) {
-			if (other.resultType != null)
+		if (resultTypeName == null) {
+			if (other.resultTypeName != null)
 				return false;
-		} else if (!resultType.equals(other.resultType))
+		} else if (!resultTypeName.equals(other.resultTypeName))
 			return false;
 		if (roids == null) {
 			if (other.roids != null)
@@ -229,17 +228,18 @@ public class DownloadParameters extends LongActionKey {
 	}
 
 	public String getFileName() {
+		String extension = EmfSerializerFactory.getInstance().getResultType(resultTypeName).getExtension();
 		switch (downloadType) {
 		case DOWNLOAD:
-			return getRoidsString() + "." + resultType.getDefaultExtension();
+			return getRoidsString() + "." + extension;
 		case DOWNLOAD_BY_GUIDS:
-			return getRoidsString() + "-" + getGuidsString() + "." + resultType.getDefaultExtension();
+			return getRoidsString() + "-" + getGuidsString() + "." + extension;
 		case DOWNLOAD_BY_OIDS:
-			return getRoidsString() + "-" + getOidsString() + "." + resultType.getDefaultExtension();
+			return getRoidsString() + "-" + getOidsString() + "." + extension;
 		case DOWNLOAD_OF_TYPE:
-			return getRoidsString() + "-" + className + "." + resultType.getDefaultExtension();
+			return getRoidsString() + "-" + className + "." + extension;
 		case DOWNLOAD_PROJECTS:
-			return getRoidsString() + "." + resultType.getDefaultExtension();
+			return getRoidsString() + "." + extension;
 		}
 		return "unknown";
 	}

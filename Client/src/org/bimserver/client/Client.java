@@ -49,7 +49,6 @@ import org.apache.commons.io.IOUtils;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.interfaces.objects.SUser;
-import org.bimserver.shared.ResultType;
 import org.bimserver.shared.SCheckinResult;
 import org.bimserver.shared.SDownloadResult;
 import org.bimserver.shared.ServiceException;
@@ -146,7 +145,7 @@ public class Client extends JFrame {
 	void checkout(SRevision revision, OutputStream out, boolean report) {
 		try {
 			SProject sProject = serviceHolder.getService().getProjectByPoid(revision.getProjectId());
-			int longCheckoutActionId = serviceHolder.getService().checkout(revision.getOid(), ResultType.IFC, true);
+			int longCheckoutActionId = serviceHolder.getService().checkout(revision.getOid(), "IFC", true);
 			SDownloadResult checkout = serviceHolder.getService().getDownloadData(longCheckoutActionId);
 			try {
 				InputStream inputStream = checkout.getFile().getInputStream();
@@ -257,7 +256,7 @@ public class Client extends JFrame {
 
 	public void download(long roid, FileOutputStream out, boolean report) {
 		try {
-			int downloadId = serviceHolder.getService().download(roid, ResultType.IFC, true);
+			int downloadId = serviceHolder.getService().download(roid, "IFC", true);
 			SDownloadResult download = serviceHolder.getService().getDownloadData(downloadId);
 			try {
 				InputStream inputStream = download.getFile().getInputStream();

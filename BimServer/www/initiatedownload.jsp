@@ -7,14 +7,14 @@
 <%
 	try {
 		long roid = Long.parseLong(request.getParameter("roid"));
-		ResultType resultType = ResultType.IFC;
+		String resultTypeName = "IFC";
 		if (request.getParameter("resultType") != null) {
-			resultType = ResultType.valueOf(request.getParameter("resultType"));
+			resultTypeName = request.getParameter("resultType");
 		}
 		String zip = request.getParameter("zip");
 		int longActionId = -1;
 		if (request.getParameter("checkout") != null) {
-			longActionId = loginManager.getService().checkout(roid,	resultType, false);
+			longActionId = loginManager.getService().checkout(roid,	resultTypeName, false);
 		} else if (request.getParameter("download") != null) {
 			if (request.getParameter("guids") != null){
 				Set<String> guids = new HashSet<String>();
@@ -23,7 +23,7 @@
 				}
 				Set<Long> roids = new HashSet<Long>();
 				roids.add(roid);
-				longActionId = loginManager.getService().downloadByGuids(roids, guids, resultType, false);
+				longActionId = loginManager.getService().downloadByGuids(roids, guids, resultTypeName, false);
 			} else if (request.getParameter("oids") != null) {
 				Set<Long> oids = new HashSet<Long>();
 				for (String oidString : request.getParameter("oids").split(";")) {
@@ -31,9 +31,9 @@
 				}
 				Set<Long> roids = new HashSet<Long>();
 				roids.add(roid);
-				longActionId = loginManager.getService().downloadByOids(roids, oids, resultType, false);
+				longActionId = loginManager.getService().downloadByOids(roids, oids, resultTypeName, false);
 			} else if (request.getParameter("class") != null){
-				longActionId = loginManager.getService().downloadOfType(roid, request.getParameter("class"), resultType, false);
+				longActionId = loginManager.getService().downloadOfType(roid, request.getParameter("class"), resultTypeName, false);
 			} else if (request.getParameter("multiple") != null){
 				Set<Long> roids = new HashSet<Long>();
 				for (Object key : request.getParameterMap().keySet()) {
@@ -44,9 +44,9 @@
 						}
 					}
 				}
-				longActionId = loginManager.getService().downloadProjects(roids, resultType, false);
+				longActionId = loginManager.getService().downloadProjects(roids, resultTypeName, false);
 			} else {
-				longActionId = loginManager.getService().download(roid, resultType, false);
+				longActionId = loginManager.getService().download(roid, resultTypeName, false);
 			}
 		}
 		LongActionState las = loginManager.getService().getDownloadState(longActionId);

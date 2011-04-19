@@ -96,12 +96,12 @@ public interface ServiceInterface {
 
 	@WebMethod(action = "checkout")
 	int checkout(@WebParam(name = "roid", partName = "checkout.roid") long roid,
-			@WebParam(name = "resultType", partName = "checkout.resultType") ResultType resultType,
+			@WebParam(name = "formatIdentifier", partName = "checkout.formatIdentifier") String formatIdentifier,
 			@QueryParam("sync") @WebParam(name = "sync", partName = "download.sync") boolean sync) throws UserException, ServerException;
 
 	@WebMethod(action = "checkoutLastRevision")
 	int checkoutLastRevision(@QueryParam("poid") @WebParam(name = "poid", partName = "checkoutLastRevision.poid") long poid,
-			@QueryParam("resultType") @WebParam(name = "resultType", partName = "checkoutLastRevision.resultType") ResultType resultType,
+			@QueryParam("resultType") @WebParam(name = "formatIdentifier", partName = "checkoutLastRevision.formatIdentifier") String formatIdentifier,
 			@QueryParam("sync") @WebParam(name = "sync", partName = "download.sync") boolean sync) throws UserException, ServerException;
 
 	@GET
@@ -109,33 +109,33 @@ public interface ServiceInterface {
 	@Produces("application/xml")
 	@WebMethod(action = "download")
 	int download(@QueryParam("roid") @WebParam(name = "roid", partName = "download.roid") long roid,
-			@QueryParam("resultType") @WebParam(name = "resultType", partName = "download.resultType") ResultType resultType,
+			@QueryParam("resultType") @WebParam(name = "formatIdentifier", partName = "download.formatIdentifier") String formatIdentifier,
 			@QueryParam("sync") @WebParam(name = "sync", partName = "download.sync") boolean sync) throws UserException, ServerException;
 
 	@WebMethod(action = "downloadByOids")
 	int downloadByOids(@WebParam(name = "roids", partName = "downloadByOids.roids") Set<Long> roids,
 			@WebParam(name = "oids", partName = "downloadByOids.oids") Set<Long> oids,
-			@WebParam(name = "resultType", partName = "downloadByOids.resultType") ResultType resultType,
+			@WebParam(name = "formatIdentifier", partName = "downloadByOids.formatIdentifier") String formatIdentifier,
 			@QueryParam("sync") @WebParam(name = "sync", partName = "download.sync") boolean sync) throws UserException,
 			ServerException;
 
 	@WebMethod(action = "downloadOfType")
 	int downloadOfType(@WebParam(name = "roid", partName = "downloadOfType.roid") long roid,
 			@WebParam(name = "className", partName = "downloadOfType.className") String className,
-			@WebParam(name = "resultType", partName = "downloadOfType.resultType") ResultType resultType,
+			@WebParam(name = "formatIdentifier", partName = "downloadOfType.formatIdentifier") String formatIdentifier,
 			@QueryParam("sync") @WebParam(name = "sync", partName = "download.sync") boolean sync) throws UserException,
 			ServerException;
 
 	@WebMethod(action = "downloadByGuids")
 	int downloadByGuids(@WebParam(name = "roids", partName = "downloadByGuids.roids") Set<Long> roids,
 			@WebParam(name = "guids", partName = "downloadByGuids.guids") Set<String> guids,
-			@WebParam(name = "resultType", partName = "downloadByGuids.resultType") ResultType resultType,
+			@WebParam(name = "formatIdentifier", partName = "downloadByGuids.formatIdentifier") String formatIdentifier,
 			@QueryParam("sync") @WebParam(name = "sync", partName = "download.sync") boolean sync) throws UserException,
 			ServerException;
 
 	@WebMethod(action = "downloadProjects")
 	int downloadProjects(@WebParam(name = "roids", partName = "downloadProjects.roids") Set<Long> roids,
-			@WebParam(name = "resultType", partName = "downloadProjects.resultType") ResultType resultType,
+			@WebParam(name = "formatIdentifier", partName = "downloadProjects.formatIdentifier") String formatIdentifier,
 			@QueryParam("sync") @WebParam(name = "sync", partName = "download.sync") boolean sync) throws UserException,
 			ServerException;
 
@@ -372,12 +372,12 @@ public interface ServiceInterface {
 	List<SProject> getSubProjects(@WebParam(name = "poid", partName = "getSubProjects.poid") long poid) throws UserException,
 			ServerException;
 
-	@WebMethod(action = "isExportTypeEnabled")
-	boolean isExportTypeEnabled(@WebParam(name = "resultType", partName = "isExportTypeEnabled.resultType") ResultType resultType)
+	@WebMethod(action = "isResultTypeEnabled")
+	boolean isResultTypeEnabled(@WebParam(name = "resultType", partName = "isExportTypeEnabled.resultType") String resultTypeName)
 			throws UserException, ServerException;
 
 	@WebMethod(action = "setExportTypeEnabled")
-	void setExportTypeEnabled(@WebParam(name = "resultType", partName = "setExportTypeEnabled.resultType") ResultType resultType,
+	void setExportTypeEnabled(@WebParam(name = "resultTypeName", partName = "setExportTypeEnabled.resultTypeName") String resultTypeName,
 			boolean enabled) throws UserException, ServerException;
 
 	@WebMethod(action = "getCurrentUser")
@@ -464,7 +464,7 @@ public interface ServiceInterface {
 
 	@WebMethod(action = "setSettingsEnabledExportTypes")
 	void setSettingEnabledExportTypes(
-			@WebParam(name = "enabledExportTypes", partName = "setSettingsEnabledExportTypes.enabledExportTypes") Set<ResultType> enabledExportTypes)
+			@WebParam(name = "enabledExportTypeNames", partName = "setSettingsEnabledExportTypes.enabledExportTypeNames") Set<String> enabledExportTypeNames)
 			throws UserException, ServerException;
 
 	@WebMethod(action = "getSettingsRegistrationAddition")
@@ -567,4 +567,6 @@ public interface ServiceInterface {
 	@WebMethod(action = "migrateDatabase")
 	void migrateDatabase() throws ServerException, UserException;
 
+	@WebMethod(action = "getResultTypeByName")
+	ResultType getResultTypeByName(String resultTypeName);
 }

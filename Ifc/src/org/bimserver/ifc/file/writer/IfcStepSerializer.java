@@ -39,7 +39,6 @@ import org.bimserver.models.ifc2x3.Tristate;
 import org.bimserver.models.ifc2x3.WrappedValue;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.User;
-import org.bimserver.shared.ResultType;
 import org.bimserver.utils.UTFPrintWriter;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
@@ -479,10 +478,5 @@ public class IfcStepSerializer extends IfcSerializer {
 				}
 			}
 		}
-	}
-
-	@Override
-	public String getContentType() {
-		return ResultType.IFC.getContentType();
 	}
 }

@@ -13,7 +13,6 @@
 <%@page import="org.bimserver.shared.ResultType"%>
 <%@page import="org.apache.commons.io.IOUtils"%>
 <%@page import="org.bimserver.interfaces.objects.SUserType"%>
-<%@page import="org.bimserver.serializers.EmfSerializerFactory"%>
 <%@page import="org.bimserver.shared.ServiceInterface"%>
 <%@page import="org.bimserver.shared.UserException"%>
 <div class="sidebar">
@@ -43,14 +42,13 @@
 				service.setSettingSiteAddress(request.getParameter("siteAddress"));
 				service.setSettingCheckinMergingEnabled(request.getParameter("checkinMergingEnabled") != null);
 				String enabledExportTypes = "";
-				Set<ResultType> enabledTypes = new HashSet<ResultType>();
-				for (ResultType resultType : ResultType.values()) {
-					if (request.getParameter(resultType.name()) != null) {
-						enabledTypes.add(resultType);
+				Set<String> enabledTypes = new HashSet<String>();
+				for (ResultType resultType : loginManager.getService().getAllResultTypes()) {
+					if (request.getParameter(resultType.getName()) != null) {
+						enabledTypes.add(resultType.getName());
 					}
 				}
 				service.setSettingEnabledExportTypes(enabledTypes);
-				EmfSerializerFactory.getInstance().initSerializers();
 				response.sendRedirect(getServletContext().getContextPath() + "/settings.jsp?msg=settingschangeok");
 			} catch (UserException e) {
 				out.println("<div class=\"error\">" + e.getUserMessage() + "</div>");
@@ -164,10 +162,10 @@
 				for (ResultType resultType : loginManager.getService().getAllResultTypes()) {
 			%>
 			<tr>
-				<td><label for="<%=resultType.name()%>"><%=resultType.getNiceName()%></label></td>
-				<td><input name="<%=resultType.name()%>"
-					id="<%=resultType.name()%>" type="checkbox"
-					<%=loginManager.getService().isExportTypeEnabled(resultType) ? " checked=\"checked\"" : ""%>></input></td>
+				<td><label for="<%=resultType.getName()%>"><%=resultType.getNiceName()%></label></td>
+				<td><input name="<%=resultType.getName()%>"
+					id="<%=resultType.getName()%>" type="checkbox"
+					<%=loginManager.getService().isResultTypeEnabled(resultType.getName()) ? " checked=\"checked\"" : ""%>></input></td>
 			</tr>
 			<%
 				}

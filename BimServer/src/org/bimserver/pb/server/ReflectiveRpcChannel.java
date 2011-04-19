@@ -94,7 +94,7 @@ public class ReflectiveRpcChannel implements BlockingRpcChannel {
 			Object[] arguments = new Object[methodDescriptor.getInputType().getFields().size()];
 			int i = 0;
 			for (FieldDescriptor fieldDescriptor : methodDescriptor.getInputType().getFields()) {
-				arguments[i] = convertProtocolBuffersObjectToServiceObject(request.getField(fieldDescriptor));
+				arguments[i] = request.getField(fieldDescriptor);
 				i++;
 			}
 			Object result = method.invoke(service, arguments);
@@ -132,17 +132,6 @@ public class ReflectiveRpcChannel implements BlockingRpcChannel {
 				errorMessage.setField(responsePrototype.getDescriptorForType().getFields().get(1), "Unknown error");
 			}
 			return errorMessage.build();
-		}
-	}
-
-	private Object convertProtocolBuffersObjectToServiceObject(Object value) {
-		if (value instanceof EnumValueDescriptor) {
-			// This is an assumption
-			EnumValueDescriptor enumValueDescriptor = (EnumValueDescriptor) value;
-			int ordinal = enumValueDescriptor.getNumber();
-			return org.bimserver.shared.ResultType.values()[ordinal];
-		} else {
-			return value;
 		}
 	}
 

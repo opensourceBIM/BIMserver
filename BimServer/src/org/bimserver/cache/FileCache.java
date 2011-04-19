@@ -20,7 +20,7 @@ public class FileCache {
 	
 	public void store(int pid, int rid, ResultType resultType, SCheckoutResult checkoutResult) {
 		try {
-			String fileName = pid + "." + rid + "." + resultType.getDefaultExtension();
+			String fileName = pid + "." + rid + "." + resultType.getExtension();
 			File file = new File(cacheDir, fileName);
 			EmfSerializer emfSerializer = (EmfSerializer) checkoutResult.getFile().getDataSource();
 			FileOutputStream out = new FileOutputStream(file);
@@ -34,7 +34,7 @@ public class FileCache {
 	}
 
 	public SCheckoutResult get(int pid, int rid, ResultType resultType) {
-		String fileName = pid + "." + rid + "." + resultType.getDefaultExtension();
+		String fileName = pid + "." + rid + "." + resultType.getExtension();
 		File file = new File(cacheDir, fileName);
 		SCheckoutResult checkoutResult = new SCheckoutResult();
 		checkoutResult.setProjectName("" + pid);
@@ -44,7 +44,7 @@ public class FileCache {
 	}
 
 	public boolean contains(int pid, int rid, ResultType resultType) {
-		String fileName = pid + "." + rid + "." + resultType.getDefaultExtension();
+		String fileName = pid + "." + rid + "." + resultType.getExtension();
 		File file = new File(cacheDir, fileName);
 		return file.exists() && file.isFile();
 	}

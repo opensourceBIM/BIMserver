@@ -16,7 +16,6 @@ import org.bimserver.ifc.SerializerException;
 import org.bimserver.ifcengine.IfcEngineFactory;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.User;
-import org.bimserver.shared.ResultType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -105,10 +104,4 @@ public class KmzSerializer extends BimModelSerializer {
 		writer.println("</kml>");
 		writer.flush();
 	}
-
-	@Override
-	public String getContentType() {
-		return ResultType.KMZ.getContentType();
-	}
-
 }

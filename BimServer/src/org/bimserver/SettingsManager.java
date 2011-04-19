@@ -12,7 +12,6 @@ import org.bimserver.ifc.IfcModel;
 import org.bimserver.models.store.Settings;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StorePackage;
-import org.bimserver.shared.ResultType;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 /*
@@ -78,19 +77,19 @@ public class SettingsManager {
 		return settings;
 	}
 
-	public Set<ResultType> getEnabledExportTypesAsSet() {
-		Set<ResultType> resultTypes = new HashSet<ResultType>();
+	public Set<String> getEnabledExportTypesAsSet() {
+		Set<String> resultTypes = new HashSet<String>();
 		String[] split = getSettings().getEnabledExportTypes().split(",");
 		for (String s : split) {
-			resultTypes.add(ResultType.valueOf(s));
+			resultTypes.add(s);
 		}
 		return resultTypes;
 	}
 
-	public void updateEnabledResultTypes(Set<ResultType> resultTypes) {
+	public void updateEnabledResultTypes(Set<String> resultTypes) {
 		String enabledExportTypes = "";
-		for (ResultType resultType : resultTypes) {
-			enabledExportTypes += resultType.name() + ",";
+		for (String resultType : resultTypes) {
+			enabledExportTypes += resultType + ",";
 		}
 		if (enabledExportTypes.endsWith(",")) {
 			enabledExportTypes = enabledExportTypes.substring(0, enabledExportTypes.length() - 1);

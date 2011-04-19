@@ -74,7 +74,6 @@ import org.bimserver.models.ifc2x3.IfcWindow;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.SIPrefix;
 import org.bimserver.models.store.User;
-import org.bimserver.shared.ResultType;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.slf4j.Logger;
@@ -720,11 +719,6 @@ public class ColladaSerializer extends BimModelSerializer {
 		}
 
 		out.println("	</library_materials>");
-	}
-
-	@Override
-	public String getContentType() {
-		return ResultType.COLLADA.getContentType();
 	}
 
 	private static SIPrefix getLengthUnitPrefix(IfcModel model) {

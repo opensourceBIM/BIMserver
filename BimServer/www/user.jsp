@@ -6,7 +6,6 @@
 <%@page import="org.bimserver.Message"%>
 <%@page import="org.bimserver.shared.UserException"%>
 <%@page import="org.bimserver.shared.ResultType"%>
-<%@page import="org.bimserver.serializers.EmfSerializerFactory"%>
 <%@page import="org.bimserver.interfaces.objects.SUser"%>
 <%@page import="org.bimserver.interfaces.objects.SRevision"%>
 <%@page import="org.bimserver.interfaces.objects.SCheckout"%>
@@ -38,7 +37,6 @@
 <div class="content">
 <%
 	if (loginManager.getService().isLoggedIn()) {
-		EmfSerializerFactory emfSerializerFactory = EmfSerializerFactory.getInstance();
 		try {
 	if (request.getParameter("mid") != null) {
 		out.println("<div class=\"success\">" + Message.get(Integer.parseInt(request.getParameter("mid"))) + "</div>");
@@ -105,9 +103,9 @@ if (allowEdit) { %>
 	<input type="hidden" name="roid" value="<%=revision.getOid() %>"/>
 	<select name="resultType" class="revisionsdownloadcheckoutselect">
 <%
-	for (ResultType resultType : emfSerializerFactory.getMultipleResultTypes()) {
+	for (ResultType resultType : loginManager.getService().getEnabledResultTypes()) {
 %>
-	<option value="<%=resultType.name() %>"<%=resultType.isDefaultSelected() ? " SELECTED=\"SELECTED\"" : "" %>><%=resultType.getNiceName() %></option>
+	<option value="<%=resultType.getName() %>"<%=resultType.isDefaultSelected() ? " SELECTED=\"SELECTED\"" : "" %>><%=resultType.getNiceName() %></option>
 <%	
 	}
 %>
@@ -158,9 +156,9 @@ if (userHasCheckinRights) { %>
 	<input type="hidden" name="roid" value="<%=checkout.getRevisionId() %>"/>
 	<select name="resultType">
 <%
-	for (ResultType resultType : emfSerializerFactory.getMultipleResultTypes()) {
+	for (ResultType resultType : loginManager.getService().getEnabledResultTypes()) {
 %>
-	<option value="<%=resultType.name() %>"<%=resultType.isDefaultSelected() ? " SELECTED=\"SELECTED\"" : "" %>><%=resultType.getNiceName() %></option>
+	<option value="<%=resultType.getName() %>"<%=resultType.isDefaultSelected() ? " SELECTED=\"SELECTED\"" : "" %>><%=resultType.getNiceName() %></option>
 <%	
 	}
 %>
