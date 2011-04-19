@@ -179,4 +179,68 @@ public class DownloadParameters extends LongActionKey {
 			return false;
 		return true;
 	}
+
+	private String getRoidsString() {
+		StringBuilder sb = new StringBuilder();
+		int i=0;
+		for (Long roid : roids) {
+			sb.append(roid + "-");
+			i++;
+			if (i > 5) {
+				break;
+			}
+		}
+		if (sb.length() > 0) {
+			sb.delete(sb.length()-1, sb.length());
+		}
+		return sb.toString();
+	}
+	
+	private String getOidsString() {
+		StringBuilder sb = new StringBuilder();
+		int i=0;
+		for (Long oid : oids) {
+			sb.append(oid + "-");
+			i++;
+			if (i > 5) {
+				break;
+			}
+		}
+		if (sb.length() > 0) {
+			sb.delete(sb.length()-1, sb.length());
+		}
+		return sb.toString();
+	}
+
+	private String getGuidsString() {
+		StringBuilder sb = new StringBuilder();
+		int i=0;
+		for (String guid : guids) {
+			sb.append(guid + "-");
+			i++;
+			if (i > 5) {
+				break;
+			}
+		}
+		if (sb.length() > 0) {
+			sb.delete(sb.length()-1, sb.length());
+		}
+		return sb.toString();
+	}
+
+	public String getFileName() {
+		switch (downloadType) {
+		case DOWNLOAD:
+			return getRoidsString() + "." + resultType.getDefaultExtension();
+		case DOWNLOAD_BY_GUIDS:
+			return getRoidsString() + "-" + getGuidsString() + "." + resultType.getDefaultExtension();
+		case DOWNLOAD_BY_OIDS:
+			return getRoidsString() + "-" + getOidsString() + "." + resultType.getDefaultExtension();
+		case DOWNLOAD_OF_TYPE:
+			return getRoidsString() + "-" + className + "." + resultType.getDefaultExtension();
+		case DOWNLOAD_PROJECTS:
+			return getRoidsString() + "." + resultType.getDefaultExtension();
+		}
+		return "unknown";
+	}
 }
