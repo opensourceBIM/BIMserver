@@ -955,9 +955,9 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 				v.setType(val.getType());
 				v.setOid(val.getOid());
 				v.setGuid(val.getGuid());
-				for (org.bimserver.shared.SDataObject$SDataValue o : val.getValuesList()) {
-					v.getValues().add(o);
-				}
+//				for (org.bimserver.shared.SDataObject$SDataValue o : val.getValuesList()) {
+//					v.getValues().add(o);
+//				}
 				realResult.add(v);
 			}
 		return realResult;
@@ -1496,14 +1496,14 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 			for (Service.ResultType val : originalList) {
 				org.bimserver.shared.ResultType v = new org.bimserver.shared.ResultType();
 				v.setName(val.getName());
-				v.setType(org.bimserver.shared.ResultType$Type.values()[val.getType().ordinal()]);
 				v.setContentType(val.getContentType());
 				v.setNiceName(val.getNiceName());
-				v.setUserType(org.bimserver.shared.ResultType$UserType.values()[val.getUserType().ordinal()]);
-				v.setSerializerClass(val.getSerializerClass());
+				v.setUserType(org.bimserver.shared.ResultType.UserType.values()[val.getUserType().ordinal()]);
+//				v.setSerializerClass(val.getSerializerClass());
 				v.setExtension(val.getExtension());
-				v.setDefaultSelected(org.bimserver.shared.ResultType$DefaultSelected.values()[val.getDefaultSelected().ordinal()]);
-				v.setUseInCheckout(org.bimserver.shared.ResultType$UseInCheckout.values()[val.getUseInCheckout().ordinal()]);
+				v.setDefaultSelected(org.bimserver.shared.ResultType.DefaultSelected.values()[val.getDefaultSelected().ordinal()]);
+				v.setUseInCheckout(org.bimserver.shared.ResultType.UseInCheckout.values()[val.getUseInCheckout().ordinal()]);
+				v.setMultiple(org.bimserver.shared.ResultType.Type.values()[val.getMultiple().ordinal()]);
 				realResult.add(v);
 			}
 		return realResult;
@@ -1521,14 +1521,14 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 			for (Service.ResultType val : originalList) {
 				org.bimserver.shared.ResultType v = new org.bimserver.shared.ResultType();
 				v.setName(val.getName());
-				v.setType(org.bimserver.shared.ResultType$Type.values()[val.getType().ordinal()]);
 				v.setContentType(val.getContentType());
 				v.setNiceName(val.getNiceName());
-				v.setUserType(org.bimserver.shared.ResultType$UserType.values()[val.getUserType().ordinal()]);
-				v.setSerializerClass(val.getSerializerClass());
+				v.setUserType(org.bimserver.shared.ResultType.UserType.values()[val.getUserType().ordinal()]);
+//				v.setSerializerClass(val.getSerializerClass());
 				v.setExtension(val.getExtension());
-				v.setDefaultSelected(org.bimserver.shared.ResultType$DefaultSelected.values()[val.getDefaultSelected().ordinal()]);
-				v.setUseInCheckout(org.bimserver.shared.ResultType$UseInCheckout.values()[val.getUseInCheckout().ordinal()]);
+				v.setDefaultSelected(org.bimserver.shared.ResultType.DefaultSelected.values()[val.getDefaultSelected().ordinal()]);
+				v.setUseInCheckout(org.bimserver.shared.ResultType.UseInCheckout.values()[val.getUseInCheckout().ordinal()]);
+				v.setMultiple(org.bimserver.shared.ResultType.Type.values()[val.getMultiple().ordinal()]);
 				realResult.add(v);
 			}
 		return realResult;

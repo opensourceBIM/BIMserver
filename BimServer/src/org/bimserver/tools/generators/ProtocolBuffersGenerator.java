@@ -273,7 +273,7 @@ public class ProtocolBuffersGenerator {
 				} else if (method.getReturnType() == Date.class) {
 					out.println("\t\t\t\t" + targetName + ".set" + fName + "(new Date(" + sourceName + "." + method.getName() + "()));");
 				} else if (method.getReturnType().isEnum()) {
-					out.println("\t\t\t\t" + targetName + ".set" + fName + "(" + method.getReturnType().getName() + ".values()[" + sourceName + "." + method.getName() + "().ordinal()]);");
+					out.println("\t\t\t\t" + targetName + ".set" + fName + "(" + method.getReturnType().getName().replace("$", ".") + ".values()[" + sourceName + "." + method.getName() + "().ordinal()]);");
 				} else {
 					out.println("\t\t\t\t" + targetName + ".set" + fName + "(" + sourceName + "." + method.getName() + "());");
 				}
@@ -412,6 +412,9 @@ public class ProtocolBuffersGenerator {
 	}
 	
 	private String createMessage(StringBuilder sb, Class<?> clazz) {
+		if (clazz == Class.class) {
+			return "string";
+		}
 		StringBuilder messageBuilder = new StringBuilder();
 		if (clazz == boolean.class || clazz == Boolean.class) {
 			return "bool";

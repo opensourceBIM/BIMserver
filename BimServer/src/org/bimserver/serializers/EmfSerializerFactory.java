@@ -96,7 +96,7 @@ public class EmfSerializerFactory {
 	public Set<ResultType> getMultipleResultTypes() {
 		Set<ResultType> result = new TreeSet<ResultType>(resultTypeComparator);
 		for (ResultType resultType : resultTypes.values()) {
-			if (resultType.getType() == Type.MULTIPLE) {
+			if (resultType.getMultiple() == Type.MULTIPLE) {
 				result.add(resultType);
 			}
 		}
@@ -106,7 +106,7 @@ public class EmfSerializerFactory {
 	public Set<ResultType> getSingleResultTypes() {
 		Set<ResultType> result = new TreeSet<ResultType>(resultTypeComparator);
 		for (ResultType resultType : resultTypes.values()) {
-			if (resultType.getType() == Type.SINGLE) {
+			if (resultType.getMultiple() == Type.SINGLE) {
 				result.add(resultType);
 			}
 		}
