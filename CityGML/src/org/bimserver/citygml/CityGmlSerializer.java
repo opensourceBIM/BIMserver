@@ -107,7 +107,6 @@ public class CityGmlSerializer extends BimModelSerializer {
 	private final CityGMLContext ctx;
 	private final IfcModel model;
 	private final SchemaDefinition schemaDefinition;
-	private SimpleMode mode = SimpleMode.BUSY;
 	private final Project project;
 	private final User user;
 	
@@ -135,8 +134,13 @@ public class CityGmlSerializer extends BimModelSerializer {
 		return code;
 	}
 
+	@Override
+	protected void reset() {
+		setMode(Mode.BODY);
+	}
+	
 	public boolean write(OutputStream out) throws SerializerException {
-		if (mode == SimpleMode.BUSY) {
+		if (getMode() == Mode.BODY) {
 			PrintWriter writer = new PrintWriter(out);
 			IfcDatabase ifcDatabase = new IfcDatabase(model, null);
 			CityModel cityModel = citygml.createCityModel();
@@ -195,10 +199,10 @@ public class CityGmlSerializer extends BimModelSerializer {
 				e.printStackTrace();
 			}
 			writer.flush();
-			mode = SimpleMode.DONE;
+			setMode(Mode.FINISHED);
 			ifcEngine.close();
 			return true;
-		} else if (mode == SimpleMode.DONE) {
+		} else if (getMode() == Mode.FINISHED) {
 			return false;
 		}
 		return false;

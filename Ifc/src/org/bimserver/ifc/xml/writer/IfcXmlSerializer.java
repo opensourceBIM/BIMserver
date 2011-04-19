@@ -43,7 +43,6 @@ public class IfcXmlSerializer extends IfcSerializer {
 	private PrintWriter out;
 	private final Map<EObject, Long> objectToOidMap;
 	private int tabs;
-	private SimpleMode mode = SimpleMode.BUSY;
 
 	public IfcXmlSerializer(String fileName, IfcModel model, SchemaDefinition schemaDefinition) {
 		super(fileName, model, schemaDefinition);
@@ -54,8 +53,13 @@ public class IfcXmlSerializer extends IfcSerializer {
 	}
 
 	@Override
+	protected void reset() {
+		setMode(Mode.BODY);
+	}
+	
+	@Override
 	public boolean write(OutputStream out) {
-		if (mode == SimpleMode.BUSY) {
+		if (getMode() == Mode.BODY) {
 			this.out = new UTFPrintWriter(out);
 			printLineTabbed("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
 			tabs = 0;
@@ -74,9 +78,9 @@ public class IfcXmlSerializer extends IfcSerializer {
 			tabs--;
 			printLineTabbed("</iso_10303_28>");
 			this.out.flush();
-			mode = SimpleMode.DONE;
+			setMode(Mode.FINISHED);
 			return true;
-		} else if (mode == SimpleMode.DONE) {
+		} else if (getMode() == Mode.FINISHED) {
 			return false;
 		}
 		return false;

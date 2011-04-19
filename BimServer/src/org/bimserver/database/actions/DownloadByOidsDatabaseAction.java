@@ -83,5 +83,4 @@ public class DownloadByOidsDatabaseAction extends BimDatabaseAction<IfcModel> {
 	public int getProgress() {
 		return progress;
 	}
-
 }

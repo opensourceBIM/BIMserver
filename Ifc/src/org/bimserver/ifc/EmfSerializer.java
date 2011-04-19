@@ -38,17 +38,29 @@ public abstract class EmfSerializer implements DataSource {
 	private static final Logger LOGGER = LoggerFactory.getLogger(EmfSerializer.class);
 	protected final IfcModel model;
 	private final String fileName;
+	private Mode mode;
 
-	protected static enum SimpleMode {
-		BUSY,
-		DONE;
+	protected static enum Mode {
+		HEADER,
+		BODY,
+		FOOTER,
+		FINISHED
 	}
 
 	public EmfSerializer(String fileName, IfcModel model) {
 		this.fileName = fileName;
 		this.model = model;
+		reset();
 	}
 
+	protected Mode getMode() {
+		return mode;
+	}
+	
+	protected void setMode(Mode mode) {
+		this.mode = mode;
+	}
+	
 	public byte[] getBytes() {
 		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 		try {
@@ -58,9 +70,10 @@ public abstract class EmfSerializer implements DataSource {
 		}
 		return outputStream.toByteArray();
 	}
-	
+
 	@Override
 	public InputStream getInputStream() throws IOException {
+		reset();
 		final ByteArrayOutputStream out = new ByteArrayOutputStream();
 		InputStream in = new InputStream() {
 			int pos = 0;
@@ -133,6 +146,8 @@ public abstract class EmfSerializer implements DataSource {
 		};
 		return in;
 	}
+
+	protected abstract void reset();
 
 	@Override
 	public String getName() {

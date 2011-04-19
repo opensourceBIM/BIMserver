@@ -635,8 +635,7 @@ subproject</a><br />
 	if (lastRevision != null) {
 %>
 <div class="tabbertab" id="querytab" title="Query">Note: Queries
-will be done on the latest revision ( <a
-	href="revision.jsp?roid=<%=lastRevision.getOid()%>"><%=lastRevision.getId()%></a>),
+will be done on the latest revision (<a href="revision.jsp?roid=<%=lastRevision.getOid()%>"><%=lastRevision.getId()%></a>),
 open a specific revision to query other revisions<br />
 <br />
 

@@ -24,7 +24,6 @@ public class KmzSerializer extends BimModelSerializer {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(KmzSerializer.class);
 	private final ColladaSerializer ifcToCollada;
-	private SimpleMode mode = SimpleMode.BUSY;
 	private final Project project;
 
 	public KmzSerializer(Project project, User user, String fileName, IfcModel model, SchemaDefinition schemaDefinition, FieldIgnoreMap fieldIgnoreMap, IfcEngineFactory ifcEngineFactory, PackageDefinition packageDefinition) throws SerializerException {
@@ -38,8 +37,13 @@ public class KmzSerializer extends BimModelSerializer {
 	}
 
 	@Override
+	protected void reset() {
+		setMode(Mode.BODY);
+	}
+	
+	@Override
 	public boolean write(OutputStream out) {
-		if (mode == SimpleMode.BUSY) {
+		if (getMode() == Mode.BODY) {
 			try {
 				ZipOutputStream zipOutputStream = new ZipOutputStream(out);
 				zipOutputStream.putNextEntry(new ZipEntry("doc.kml"));
@@ -53,9 +57,9 @@ public class KmzSerializer extends BimModelSerializer {
 			} catch (IOException e) {
 				LOGGER.error("", e);
 			}
-			mode = SimpleMode.DONE;
+			setMode(Mode.FINISHED);
 			return true;
-		} else if (mode == SimpleMode.DONE) {
+		} else if (getMode() == Mode.FINISHED) {
 			return false;
 		}
 		return false;
