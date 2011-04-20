@@ -2004,8 +2004,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public Set<ResultType> getAllResultTypes() {
-		Set<ResultType> resultTypes = null;
-		return resultTypes;
+		return EmfSerializerFactory.getInstance().getMultipleResultTypes();
 	}
 
 	@Override
