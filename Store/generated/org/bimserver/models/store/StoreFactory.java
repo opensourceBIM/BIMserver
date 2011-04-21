@@ -125,6 +125,24 @@ public interface StoreFactory extends EFactory {
 	Settings createSettings();
 
 	/**
+	 * Returns a new object of class '<em>Serializer</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Serializer</em>'.
+	 * @generated
+	 */
+	Serializer createSerializer();
+
+	/**
+	 * Returns a new object of class '<em>Ignore File</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Ignore File</em>'.
+	 * @generated
+	 */
+	IgnoreFile createIgnoreFile();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

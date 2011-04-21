@@ -72,6 +72,8 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			case StorePackage.GEO_TAG: return (EObject)createGeoTag();
 			case StorePackage.CHECKOUT: return (EObject)createCheckout();
 			case StorePackage.SETTINGS: return (EObject)createSettings();
+			case StorePackage.SERIALIZER: return (EObject)createSerializer();
+			case StorePackage.IGNORE_FILE: return (EObject)createIgnoreFile();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -227,6 +229,26 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	public Settings createSettings() {
 		SettingsImpl settings = new SettingsImpl();
 		return settings;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Serializer createSerializer() {
+		SerializerImpl serializer = new SerializerImpl();
+		return serializer;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IgnoreFile createIgnoreFile() {
+		IgnoreFileImpl ignoreFile = new IgnoreFileImpl();
+		return ignoreFile;
 	}
 
 	/**

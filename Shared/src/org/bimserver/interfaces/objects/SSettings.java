@@ -29,6 +29,8 @@ public class SSettings
 	private java.lang.String enabledExportTypes;
 	private java.lang.String customLogoAddress;
 	private java.lang.String siteAddress;
+	private List<Long> serializers = new ArrayList<Long>();
+	private List<Long> ignoreFiles = new ArrayList<Long>();
 
 	public boolean isShowVersionUpgradeAvailable() {
 		return showVersionUpgradeAvailable;
@@ -140,6 +142,20 @@ public class SSettings
 
 	public void setSiteAddress(java.lang.String siteAddress) {
 		this.siteAddress = siteAddress;
+	}
+	public List<Long> getSerializers() {
+		return serializers;
+	}
+
+	public void setSerializers(List<Long> serializers) {
+		this.serializers = serializers;
+	}
+	public List<Long> getIgnoreFiles() {
+		return ignoreFiles;
+	}
+
+	public void setIgnoreFiles(List<Long> ignoreFiles) {
+		this.ignoreFiles = ignoreFiles;
 	}
 	@Override
 	public int hashCode() {

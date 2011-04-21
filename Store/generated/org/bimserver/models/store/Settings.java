@@ -7,6 +7,7 @@
 package org.bimserver.models.store;
 
 import org.bimserver.emf.IdEObject;
+import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,6 +31,8 @@ import org.bimserver.emf.IdEObject;
  *   <li>{@link org.bimserver.models.store.Settings#getEnabledExportTypes <em>Enabled Export Types</em>}</li>
  *   <li>{@link org.bimserver.models.store.Settings#getCustomLogoAddress <em>Custom Logo Address</em>}</li>
  *   <li>{@link org.bimserver.models.store.Settings#getSiteAddress <em>Site Address</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Settings#getSerializers <em>Serializers</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Settings#getIgnoreFiles <em>Ignore Files</em>}</li>
  * </ul>
  * </p>
  *
@@ -402,5 +405,41 @@ public interface Settings extends IdEObject {
 	 * @generated
 	 */
 	void setSiteAddress(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Serializers</b></em>' reference list.
+	 * The list contents are of type {@link org.bimserver.models.store.Serializer}.
+	 * It is bidirectional and its opposite is '{@link org.bimserver.models.store.Serializer#getSettings <em>Settings</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Serializers</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Serializers</em>' reference list.
+	 * @see org.bimserver.models.store.StorePackage#getSettings_Serializers()
+	 * @see org.bimserver.models.store.Serializer#getSettings
+	 * @model opposite="settings"
+	 * @generated
+	 */
+	EList<Serializer> getSerializers();
+
+	/**
+	 * Returns the value of the '<em><b>Ignore Files</b></em>' reference list.
+	 * The list contents are of type {@link org.bimserver.models.store.IgnoreFile}.
+	 * It is bidirectional and its opposite is '{@link org.bimserver.models.store.IgnoreFile#getSettings <em>Settings</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Ignore Files</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Ignore Files</em>' reference list.
+	 * @see org.bimserver.models.store.StorePackage#getSettings_IgnoreFiles()
+	 * @see org.bimserver.models.store.IgnoreFile#getSettings
+	 * @model opposite="settings"
+	 * @generated
+	 */
+	EList<IgnoreFile> getIgnoreFiles();
 
 } // Settings

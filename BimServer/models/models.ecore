@@ -189,6 +189,28 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="enabledExportTypes" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="customLogoAddress" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="siteAddress" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="serializers" upperBound="-1"
+          eType="#/0/Serializer" eOpposite="#/0/Serializer/settings"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="ignoreFiles" upperBound="-1"
+          eType="#/0/IgnoreFile" eOpposite="#/0/IgnoreFile/settings"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Serializer">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="className" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="enabled" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="ignoreFile" eType="#/0/IgnoreFile"
+          eOpposite="#/0/IgnoreFile/serializers"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="settings" eType="#/0/Settings"
+          eOpposite="#/0/Settings/serializers"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="IgnoreFile">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="data" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EByteArray"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="serializers" upperBound="-1"
+          eType="#/0/Serializer" eOpposite="#/0/Serializer/ignoreFile"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="settings" eType="#/0/Settings"
+          eOpposite="#/0/Settings/ignoreFiles"/>
     </eClassifiers>
   </ecore:EPackage>
   <ecore:EPackage name="log" nsURI="log" nsPrefix="log">

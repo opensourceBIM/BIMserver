@@ -8,9 +8,12 @@ package org.bimserver.models.store.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
 
+import org.bimserver.models.store.IgnoreFile;
+import org.bimserver.models.store.Serializer;
 import org.bimserver.models.store.Settings;
 import org.bimserver.models.store.StorePackage;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -34,6 +37,8 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getEnabledExportTypes <em>Enabled Export Types</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getCustomLogoAddress <em>Custom Logo Address</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getSiteAddress <em>Site Address</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getSerializers <em>Serializers</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getIgnoreFiles <em>Ignore Files</em>}</li>
  * </ul>
  * </p>
  *
@@ -319,6 +324,26 @@ public class SettingsImpl extends IdEObjectImpl implements Settings {
 	 */
 	public void setSiteAddress(String newSiteAddress) {
 		eSet(StorePackage.Literals.SETTINGS__SITE_ADDRESS, newSiteAddress);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public EList<Serializer> getSerializers() {
+		return (EList<Serializer>)eGet(StorePackage.Literals.SETTINGS__SERIALIZERS, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public EList<IgnoreFile> getIgnoreFiles() {
+		return (EList<IgnoreFile>)eGet(StorePackage.Literals.SETTINGS__IGNORE_FILES, true);
 	}
 
 } //SettingsImpl

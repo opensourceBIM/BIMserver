@@ -1224,13 +1224,159 @@ public interface StorePackage extends EPackage {
 	int SETTINGS__SITE_ADDRESS = 13;
 
 	/**
+	 * The feature id for the '<em><b>Serializers</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SETTINGS__SERIALIZERS = 14;
+
+	/**
+	 * The feature id for the '<em><b>Ignore Files</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SETTINGS__IGNORE_FILES = 15;
+
+	/**
 	 * The number of structural features of the '<em>Settings</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SETTINGS_FEATURE_COUNT = 14;
+	int SETTINGS_FEATURE_COUNT = 16;
+
+	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.SerializerImpl <em>Serializer</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.impl.SerializerImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getSerializer()
+	 * @generated
+	 */
+	int SERIALIZER = 11;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERIALIZER__NAME = 0;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERIALIZER__DESCRIPTION = 1;
+
+	/**
+	 * The feature id for the '<em><b>Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERIALIZER__CLASS_NAME = 2;
+
+	/**
+	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERIALIZER__ENABLED = 3;
+
+	/**
+	 * The feature id for the '<em><b>Ignore File</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERIALIZER__IGNORE_FILE = 4;
+
+	/**
+	 * The feature id for the '<em><b>Settings</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERIALIZER__SETTINGS = 5;
+
+	/**
+	 * The number of structural features of the '<em>Serializer</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERIALIZER_FEATURE_COUNT = 6;
+
+	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.IgnoreFileImpl <em>Ignore File</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.impl.IgnoreFileImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getIgnoreFile()
+	 * @generated
+	 */
+	int IGNORE_FILE = 12;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IGNORE_FILE__NAME = 0;
+
+	/**
+	 * The feature id for the '<em><b>Data</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IGNORE_FILE__DATA = 1;
+
+	/**
+	 * The feature id for the '<em><b>Serializers</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IGNORE_FILE__SERIALIZERS = 2;
+
+	/**
+	 * The feature id for the '<em><b>Settings</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IGNORE_FILE__SETTINGS = 3;
+
+	/**
+	 * The number of structural features of the '<em>Ignore File</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IGNORE_FILE_FEATURE_COUNT = 4;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.UserType <em>User Type</em>}' enum.
@@ -1240,7 +1386,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getUserType()
 	 * @generated
 	 */
-	int USER_TYPE = 11;
+	int USER_TYPE = 13;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.CheckinState <em>Checkin State</em>}' enum.
@@ -1250,7 +1396,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getCheckinState()
 	 * @generated
 	 */
-	int CHECKIN_STATE = 12;
+	int CHECKIN_STATE = 14;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.SIPrefix <em>SI Prefix</em>}' enum.
@@ -1260,7 +1406,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getSIPrefix()
 	 * @generated
 	 */
-	int SI_PREFIX = 13;
+	int SI_PREFIX = 15;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ObjectState <em>Object State</em>}' enum.
@@ -1270,7 +1416,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getObjectState()
 	 * @generated
 	 */
-	int OBJECT_STATE = 14;
+	int OBJECT_STATE = 16;
 
 
 	/**
@@ -2429,6 +2575,158 @@ public interface StorePackage extends EPackage {
 	EAttribute getSettings_SiteAddress();
 
 	/**
+	 * Returns the meta object for the reference list '{@link org.bimserver.models.store.Settings#getSerializers <em>Serializers</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Serializers</em>'.
+	 * @see org.bimserver.models.store.Settings#getSerializers()
+	 * @see #getSettings()
+	 * @generated
+	 */
+	EReference getSettings_Serializers();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.bimserver.models.store.Settings#getIgnoreFiles <em>Ignore Files</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Ignore Files</em>'.
+	 * @see org.bimserver.models.store.Settings#getIgnoreFiles()
+	 * @see #getSettings()
+	 * @generated
+	 */
+	EReference getSettings_IgnoreFiles();
+
+	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.store.Serializer <em>Serializer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Serializer</em>'.
+	 * @see org.bimserver.models.store.Serializer
+	 * @generated
+	 */
+	EClass getSerializer();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Serializer#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see org.bimserver.models.store.Serializer#getName()
+	 * @see #getSerializer()
+	 * @generated
+	 */
+	EAttribute getSerializer_Name();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Serializer#getDescription <em>Description</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Description</em>'.
+	 * @see org.bimserver.models.store.Serializer#getDescription()
+	 * @see #getSerializer()
+	 * @generated
+	 */
+	EAttribute getSerializer_Description();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Serializer#getClassName <em>Class Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Class Name</em>'.
+	 * @see org.bimserver.models.store.Serializer#getClassName()
+	 * @see #getSerializer()
+	 * @generated
+	 */
+	EAttribute getSerializer_ClassName();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Serializer#isEnabled <em>Enabled</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Enabled</em>'.
+	 * @see org.bimserver.models.store.Serializer#isEnabled()
+	 * @see #getSerializer()
+	 * @generated
+	 */
+	EAttribute getSerializer_Enabled();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.store.Serializer#getIgnoreFile <em>Ignore File</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Ignore File</em>'.
+	 * @see org.bimserver.models.store.Serializer#getIgnoreFile()
+	 * @see #getSerializer()
+	 * @generated
+	 */
+	EReference getSerializer_IgnoreFile();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.store.Serializer#getSettings <em>Settings</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Settings</em>'.
+	 * @see org.bimserver.models.store.Serializer#getSettings()
+	 * @see #getSerializer()
+	 * @generated
+	 */
+	EReference getSerializer_Settings();
+
+	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.store.IgnoreFile <em>Ignore File</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Ignore File</em>'.
+	 * @see org.bimserver.models.store.IgnoreFile
+	 * @generated
+	 */
+	EClass getIgnoreFile();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.IgnoreFile#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see org.bimserver.models.store.IgnoreFile#getName()
+	 * @see #getIgnoreFile()
+	 * @generated
+	 */
+	EAttribute getIgnoreFile_Name();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.IgnoreFile#getData <em>Data</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Data</em>'.
+	 * @see org.bimserver.models.store.IgnoreFile#getData()
+	 * @see #getIgnoreFile()
+	 * @generated
+	 */
+	EAttribute getIgnoreFile_Data();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.bimserver.models.store.IgnoreFile#getSerializers <em>Serializers</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Serializers</em>'.
+	 * @see org.bimserver.models.store.IgnoreFile#getSerializers()
+	 * @see #getIgnoreFile()
+	 * @generated
+	 */
+	EReference getIgnoreFile_Serializers();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.store.IgnoreFile#getSettings <em>Settings</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Settings</em>'.
+	 * @see org.bimserver.models.store.IgnoreFile#getSettings()
+	 * @see #getIgnoreFile()
+	 * @generated
+	 */
+	EReference getIgnoreFile_Settings();
+
+	/**
 	 * Returns the meta object for enum '{@link org.bimserver.models.store.UserType <em>User Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3359,6 +3657,122 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute SETTINGS__SITE_ADDRESS = eINSTANCE.getSettings_SiteAddress();
+
+		/**
+		 * The meta object literal for the '<em><b>Serializers</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SETTINGS__SERIALIZERS = eINSTANCE.getSettings_Serializers();
+
+		/**
+		 * The meta object literal for the '<em><b>Ignore Files</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SETTINGS__IGNORE_FILES = eINSTANCE.getSettings_IgnoreFiles();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.SerializerImpl <em>Serializer</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.impl.SerializerImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getSerializer()
+		 * @generated
+		 */
+		EClass SERIALIZER = eINSTANCE.getSerializer();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SERIALIZER__NAME = eINSTANCE.getSerializer_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SERIALIZER__DESCRIPTION = eINSTANCE.getSerializer_Description();
+
+		/**
+		 * The meta object literal for the '<em><b>Class Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SERIALIZER__CLASS_NAME = eINSTANCE.getSerializer_ClassName();
+
+		/**
+		 * The meta object literal for the '<em><b>Enabled</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SERIALIZER__ENABLED = eINSTANCE.getSerializer_Enabled();
+
+		/**
+		 * The meta object literal for the '<em><b>Ignore File</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SERIALIZER__IGNORE_FILE = eINSTANCE.getSerializer_IgnoreFile();
+
+		/**
+		 * The meta object literal for the '<em><b>Settings</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SERIALIZER__SETTINGS = eINSTANCE.getSerializer_Settings();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.IgnoreFileImpl <em>Ignore File</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.impl.IgnoreFileImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getIgnoreFile()
+		 * @generated
+		 */
+		EClass IGNORE_FILE = eINSTANCE.getIgnoreFile();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute IGNORE_FILE__NAME = eINSTANCE.getIgnoreFile_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Data</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute IGNORE_FILE__DATA = eINSTANCE.getIgnoreFile_Data();
+
+		/**
+		 * The meta object literal for the '<em><b>Serializers</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference IGNORE_FILE__SERIALIZERS = eINSTANCE.getIgnoreFile_Serializers();
+
+		/**
+		 * The meta object literal for the '<em><b>Settings</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference IGNORE_FILE__SETTINGS = eINSTANCE.getIgnoreFile_Settings();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.UserType <em>User Type</em>}' enum.
