@@ -12,13 +12,13 @@
         <gml:Solid>
           <gml:exterior>
             <gml:CompositeSurface>
-              <gml:surfaceMember xlink:href="#UUID_5b834603-a000-47c5-ae40-60b02916ddcb"/>
-              <gml:surfaceMember xlink:href="#UUID_d80d5e23-750b-4f72-8007-84b05158d25b"/>
-              <gml:surfaceMember xlink:href="#UUID_2adc25c3-631e-4f98-9d43-a7b129b47ebe"/>
-              <gml:surfaceMember xlink:href="#UUID_bc4ac298-f1d7-4add-8ddb-72305ba021b1"/>
-              <gml:surfaceMember xlink:href="#UUID_99372735-636f-4af1-b6ca-9c3790cc0c8e"/>
-              <gml:surfaceMember xlink:href="#UUID_34931fa6-9681-437b-ab77-e14f764b684f"/>
-              <gml:surfaceMember xlink:href="#UUID_bdce624d-7643-4cab-961c-ccccb31a8f2b"/>
+              <gml:surfaceMember xlink:href="#UUID_40b5f295-065e-43c9-afde-faa867d3fa89"/>
+              <gml:surfaceMember xlink:href="#UUID_d28377d9-3a14-4d9a-afe1-22407d28012e"/>
+              <gml:surfaceMember xlink:href="#UUID_39fe8e5d-d45a-4b38-b5d5-41cf2181abf5"/>
+              <gml:surfaceMember xlink:href="#UUID_36400d20-7025-451f-9243-c5a306b28b12"/>
+              <gml:surfaceMember xlink:href="#UUID_9dbe825d-9142-4dac-9476-08548cc18963"/>
+              <gml:surfaceMember xlink:href="#UUID_0479feaf-2430-4fb2-b370-01b62a6900c4"/>
+              <gml:surfaceMember xlink:href="#UUID_d88eee3e-e1e4-43e4-b07e-7e6f0d9ae36f"/>
             </gml:CompositeSurface>
           </gml:exterior>
         </gml:Solid>
@@ -28,7 +28,7 @@
           <bldg:lod2MultiSurface>
             <gml:MultiSurface>
               <gml:surfaceMember>
-                <gml:Polygon gml:id="UUID_5b834603-a000-47c5-ae40-60b02916ddcb">
+                <gml:Polygon gml:id="UUID_40b5f295-065e-43c9-afde-faa867d3fa89">
                   <gml:exterior>
                     <gml:LinearRing>
                       <gml:posList srsDimension="3">0.0 0.0 0.0 0.0 12.0 0.0 6.0 12.0 0.0 6.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0</gml:posList>
@@ -45,7 +45,7 @@
           <bldg:lod2MultiSurface>
             <gml:MultiSurface>
               <gml:surfaceMember>
-                <gml:Polygon gml:id="UUID_d80d5e23-750b-4f72-8007-84b05158d25b">
+                <gml:Polygon gml:id="UUID_d28377d9-3a14-4d9a-afe1-22407d28012e">
                   <gml:exterior>
                     <gml:LinearRing>
                       <gml:posList srsDimension="3">6.0 0.0 0.0 6.0 12.0 0.0 6.0 12.0 6.0 6.0 0.0 6.0 6.0 0.0 0.0 6.0 0.0 0.0</gml:posList>
@@ -62,7 +62,7 @@
           <bldg:lod2MultiSurface>
             <gml:MultiSurface>
               <gml:surfaceMember>
-                <gml:Polygon gml:id="UUID_2adc25c3-631e-4f98-9d43-a7b129b47ebe">
+                <gml:Polygon gml:id="UUID_39fe8e5d-d45a-4b38-b5d5-41cf2181abf5">
                   <gml:exterior>
                     <gml:LinearRing>
                       <gml:posList srsDimension="3">0.0 0.0 0.0 0.0 0.0 6.0 0.0 12.0 6.0 0.0 12.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0</gml:posList>
@@ -79,7 +79,7 @@
           <bldg:lod2MultiSurface>
             <gml:MultiSurface>
               <gml:surfaceMember>
-                <gml:Polygon gml:id="UUID_bc4ac298-f1d7-4add-8ddb-72305ba021b1">
+                <gml:Polygon gml:id="UUID_36400d20-7025-451f-9243-c5a306b28b12">
                   <gml:exterior>
                     <gml:LinearRing>
                       <gml:posList srsDimension="3">0.0 0.0 0.0 6.0 0.0 0.0 6.0 0.0 6.0 3.0 0.0 9.0 0.0 0.0 6.0 0.0 0.0 0.0 0.0 0.0 0.0</gml:posList>
@@ -96,7 +96,7 @@
           <bldg:lod2MultiSurface>
             <gml:MultiSurface>
               <gml:surfaceMember>
-                <gml:Polygon gml:id="UUID_99372735-636f-4af1-b6ca-9c3790cc0c8e">
+                <gml:Polygon gml:id="UUID_9dbe825d-9142-4dac-9476-08548cc18963">
                   <gml:exterior>
                     <gml:LinearRing>
                       <gml:posList srsDimension="3">6.0 12.0 0.0 0.0 12.0 0.0 0.0 12.0 6.0 3.0 12.0 9.0 6.0 12.0 6.0 6.0 12.0 0.0 6.0 12.0 0.0</gml:posList>
@@ -113,7 +113,7 @@
           <bldg:lod2MultiSurface>
             <gml:MultiSurface>
               <gml:surfaceMember>
-                <gml:Polygon gml:id="UUID_34931fa6-9681-437b-ab77-e14f764b684f">
+                <gml:Polygon gml:id="UUID_0479feaf-2430-4fb2-b370-01b62a6900c4">
                   <gml:exterior>
                     <gml:LinearRing>
                       <gml:posList srsDimension="3">6.0 0.0 6.0 6.0 12.0 6.0 3.0 12.0 9.0 3.0 0.0 9.0 6.0 0.0 6.0 6.0 0.0 6.0</gml:posList>
@@ -130,7 +130,7 @@
           <bldg:lod2MultiSurface>
             <gml:MultiSurface>
               <gml:surfaceMember>
-                <gml:Polygon gml:id="UUID_bdce624d-7643-4cab-961c-ccccb31a8f2b">
+                <gml:Polygon gml:id="UUID_d88eee3e-e1e4-43e4-b07e-7e6f0d9ae36f">
                   <gml:exterior>
                     <gml:LinearRing>
                       <gml:posList srsDimension="3">0.0 0.0 6.0 3.0 0.0 9.0 3.0 12.0 9.0 0.0 12.0 6.0 0.0 0.0 6.0 0.0 0.0 6.0</gml:posList>

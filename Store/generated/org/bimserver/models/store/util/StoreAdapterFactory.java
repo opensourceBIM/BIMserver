@@ -116,6 +116,14 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 				return createSettingsAdapter();
 			}
 			@Override
+			public Adapter caseSerializer(Serializer object) {
+				return createSerializerAdapter();
+			}
+			@Override
+			public Adapter caseIgnoreFile(IgnoreFile object) {
+				return createIgnoreFileAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -286,6 +294,34 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createSettingsAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.Serializer <em>Serializer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.Serializer
+	 * @generated
+	 */
+	public Adapter createSerializerAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.IgnoreFile <em>Ignore File</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.IgnoreFile
+	 * @generated
+	 */
+	public Adapter createIgnoreFileAdapter() {
 		return null;
 	}
 

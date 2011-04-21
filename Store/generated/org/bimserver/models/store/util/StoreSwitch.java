@@ -155,6 +155,18 @@ public class StoreSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case StorePackage.SERIALIZER: {
+				Serializer serializer = (Serializer)theEObject;
+				T result = caseSerializer(serializer);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case StorePackage.IGNORE_FILE: {
+				IgnoreFile ignoreFile = (IgnoreFile)theEObject;
+				T result = caseIgnoreFile(ignoreFile);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -321,6 +333,36 @@ public class StoreSwitch<T> {
 	 * @generated
 	 */
 	public T caseSettings(Settings object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Serializer</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Serializer</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSerializer(Serializer object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Ignore File</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ignore File</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIgnoreFile(IgnoreFile object) {
 		return null;
 	}
 

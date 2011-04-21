@@ -88,6 +88,10 @@ public class Schema {
 		}
 	}
 	
+	public EPackage getEPackage(String name) {
+		return packages.get(name);
+	}
+	
 	public EPackage createEPackage(String name) {
 		EPackage ePackage = EcoreFactory.eINSTANCE.createEPackage();
 		ePackage.setName(name);
