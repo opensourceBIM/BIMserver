@@ -243,6 +243,22 @@ service ServiceInterface {
 
 	rpc getResultTypeByName (GetResultTypeByNameRequest) returns (GetResultTypeByNameResponse);
 
+	rpc getAllSerializers (GetAllSerializersRequest) returns (GetAllSerializersResponse);
+
+	rpc getSerializerById (GetSerializerByIdRequest) returns (GetSerializerByIdResponse);
+
+	rpc addSerializer (AddSerializerRequest) returns (Void);
+
+	rpc updateSerializer (UpdateSerializerRequest) returns (Void);
+
+	rpc getAllIgnoreFiles (GetAllIgnoreFilesRequest) returns (GetAllIgnoreFilesResponse);
+
+	rpc getIgnoreFileById (GetIgnoreFileByIdRequest) returns (GetIgnoreFileByIdResponse);
+
+	rpc addIgnoreFile (AddIgnoreFileRequest) returns (Void);
+
+	rpc updateIgnoreFile (UpdateIgnoreFileRequest) returns (Void);
+
 }
 
 enum SCompareType{
@@ -563,8 +579,8 @@ message SRevision {
 	optional int32 id = 1;
 	optional SCheckinState state = 2;
 	optional int64 size = 3;
-	optional int64 date = 4;
-	optional string comment = 5;
+	optional string comment = 4;
+	optional int64 date = 5;
 	repeated int64 lastClashes = 6;
 	optional int64 oid = 7;
 	repeated int64 concreteRevisions = 8;
@@ -1505,6 +1521,73 @@ message GetResultTypeByNameRequest {
 message GetResultTypeByNameResponse {
 	optional ResultType value = 2;
 	optional string errorMessage = 1;
+}
+
+message GetAllSerializersRequest {
+}
+
+message SSerializer {
+	optional string name = 1;
+	optional string className = 2;
+	optional int64 oid = 3;
+	optional string description = 4;
+	optional int64 ignoreFileId = 5;
+	optional int64 settingsId = 6;
+}
+
+message GetAllSerializersResponse {
+	repeated SSerializer value = 2;
+	optional string errorMessage = 1;
+}
+
+message GetSerializerByIdRequest {
+	optional int64 unknown = 1;
+}
+
+message GetSerializerByIdResponse {
+	optional SSerializer value = 2;
+	optional string errorMessage = 1;
+}
+
+message AddSerializerRequest {
+	optional SSerializer unknown = 1;
+}
+
+message UpdateSerializerRequest {
+	optional SSerializer unknown = 1;
+}
+
+message GetAllIgnoreFilesRequest {
+}
+
+message SIgnoreFile {
+	optional string name = 1;
+	optional int64 oid = 2;
+	optional int64 settingsId = 3;
+	optional bytes data = 4;
+	repeated int64 serializers = 5;
+}
+
+message GetAllIgnoreFilesResponse {
+	repeated SIgnoreFile value = 2;
+	optional string errorMessage = 1;
+}
+
+message GetIgnoreFileByIdRequest {
+	optional int64 unknown = 1;
+}
+
+message GetIgnoreFileByIdResponse {
+	optional SIgnoreFile value = 2;
+	optional string errorMessage = 1;
+}
+
+message AddIgnoreFileRequest {
+	optional SIgnoreFile unknown = 1;
+}
+
+message UpdateIgnoreFileRequest {
+	optional SIgnoreFile unknown = 1;
 }
 
 message Void {

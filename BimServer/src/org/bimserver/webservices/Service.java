@@ -46,14 +46,16 @@ import javax.mail.internet.MimeMessage;
 import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
 
 import org.bimserver.ServerInfo;
-import org.bimserver.SettingsManager;
 import org.bimserver.ServerInfo.ServerState;
+import org.bimserver.SettingsManager;
 import org.bimserver.cache.DiskCacheManager;
 import org.bimserver.database.BimDatabase;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
+import org.bimserver.database.actions.AddIgnoreFileDatabaseAction;
 import org.bimserver.database.actions.AddProjectDatabaseAction;
+import org.bimserver.database.actions.AddSerializerDatabaseAction;
 import org.bimserver.database.actions.AddUserDatabaseAction;
 import org.bimserver.database.actions.AddUserToProjectDatabaseAction;
 import org.bimserver.database.actions.BimDatabaseAction;
@@ -70,12 +72,14 @@ import org.bimserver.database.actions.GetAllAuthorizedUsersOfProjectDatabaseActi
 import org.bimserver.database.actions.GetAllCheckoutsByUserDatabaseAction;
 import org.bimserver.database.actions.GetAllCheckoutsOfProjectDatabaseAction;
 import org.bimserver.database.actions.GetAllCheckoutsOfRevisionDatabaseAction;
+import org.bimserver.database.actions.GetAllIgnoreFilesDatabaseAction;
 import org.bimserver.database.actions.GetAllNonAuthorizedProjectsOfUserDatabaseAction;
 import org.bimserver.database.actions.GetAllNonAuthorizedUsersOfProjectDatabaseAction;
 import org.bimserver.database.actions.GetAllProjectsDatabaseAction;
 import org.bimserver.database.actions.GetAllReadableProjectsDatabaseAction;
 import org.bimserver.database.actions.GetAllRevisionsByUserDatabaseAction;
 import org.bimserver.database.actions.GetAllRevisionsOfProjectDatabaseAction;
+import org.bimserver.database.actions.GetAllSerializersDatabaseAction;
 import org.bimserver.database.actions.GetAllUsersDatabaseAction;
 import org.bimserver.database.actions.GetAvailableClassesDatabaseAction;
 import org.bimserver.database.actions.GetCheckoutWarningsDatabaseAction;
@@ -85,11 +89,13 @@ import org.bimserver.database.actions.GetDataObjectByOidDatabaseAction;
 import org.bimserver.database.actions.GetDataObjectsByTypeDatabaseAction;
 import org.bimserver.database.actions.GetDatabaseInformationAction;
 import org.bimserver.database.actions.GetGeoTagDatabaseAction;
+import org.bimserver.database.actions.GetIgnoreFileByIdDatabaseAction;
 import org.bimserver.database.actions.GetLogsDatabaseAction;
 import org.bimserver.database.actions.GetProjectByNameDatabaseAction;
 import org.bimserver.database.actions.GetProjectByPoidDatabaseAction;
 import org.bimserver.database.actions.GetRevisionDatabaseAction;
 import org.bimserver.database.actions.GetRevisionSummaryDatabaseAction;
+import org.bimserver.database.actions.GetSerializerByIdDatabaseAction;
 import org.bimserver.database.actions.GetSubProjectsDatabaseAction;
 import org.bimserver.database.actions.GetUserByUoidDatabaseAction;
 import org.bimserver.database.actions.GetUserByUserNameDatabaseAction;
@@ -101,8 +107,10 @@ import org.bimserver.database.actions.UndeleteProjectDatabaseAction;
 import org.bimserver.database.actions.UndeleteUserDatabaseAction;
 import org.bimserver.database.actions.UpdateClashDetectionSettingsDatabaseAction;
 import org.bimserver.database.actions.UpdateGeoTagDatabaseAction;
+import org.bimserver.database.actions.UpdateIgnoreFileDatabaseAction;
 import org.bimserver.database.actions.UpdateProjectDatabaseAction;
 import org.bimserver.database.actions.UpdateRevisionDatabaseAction;
+import org.bimserver.database.actions.UpdateSerializerDatabaseAction;
 import org.bimserver.database.actions.UserHasCheckinRightsDatabaseAction;
 import org.bimserver.database.actions.UserHasRightsDatabaseAction;
 import org.bimserver.database.actions.ValidateUserDatabaseAction;
@@ -132,9 +140,11 @@ import org.bimserver.interfaces.objects.SClashDetectionSettings;
 import org.bimserver.interfaces.objects.SEidClash;
 import org.bimserver.interfaces.objects.SGeoTag;
 import org.bimserver.interfaces.objects.SGuidClash;
+import org.bimserver.interfaces.objects.SIgnoreFile;
 import org.bimserver.interfaces.objects.SLogAction;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevision;
+import org.bimserver.interfaces.objects.SSerializer;
 import org.bimserver.interfaces.objects.SUser;
 import org.bimserver.interfaces.objects.SUserType;
 import org.bimserver.longaction.CannotBeScheduledException;
@@ -153,9 +163,11 @@ import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.ClashDetectionSettings;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.GeoTag;
+import org.bimserver.models.store.IgnoreFile;
 import org.bimserver.models.store.ObjectState;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
+import org.bimserver.models.store.Serializer;
 import org.bimserver.models.store.Settings;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StorePackage;
@@ -168,6 +180,10 @@ import org.bimserver.shared.LongActionState;
 import org.bimserver.shared.ResultType;
 import org.bimserver.shared.SCheckinResult;
 import org.bimserver.shared.SCompareResult;
+import org.bimserver.shared.SCompareResult.SCompareType;
+import org.bimserver.shared.SCompareResult.SObjectAdded;
+import org.bimserver.shared.SCompareResult.SObjectModified;
+import org.bimserver.shared.SCompareResult.SObjectRemoved;
 import org.bimserver.shared.SDataObject;
 import org.bimserver.shared.SDownloadResult;
 import org.bimserver.shared.SLongAction;
@@ -179,10 +195,6 @@ import org.bimserver.shared.ServiceException;
 import org.bimserver.shared.ServiceInterface;
 import org.bimserver.shared.Token;
 import org.bimserver.shared.UserException;
-import org.bimserver.shared.SCompareResult.SCompareType;
-import org.bimserver.shared.SCompareResult.SObjectAdded;
-import org.bimserver.shared.SCompareResult.SObjectModified;
-import org.bimserver.shared.SCompareResult.SObjectRemoved;
 import org.bimserver.tools.generators.GenerateUtils;
 import org.bimserver.utils.FakeClosingInputStream;
 import org.bimserver.utils.Hashers;
@@ -514,7 +526,7 @@ public class Service implements ServiceInterface {
 		BimDatabaseSession session = bimDatabase.createReadOnlySession();
 		try {
 			BimDatabaseAction<Set<Project>> action = new GetAllProjectsDatabaseAction(session, accessMethod, currentUoid);
-			return convert(session.executeAction(action, DEADLOCK_RETRIES), SProject.class, session);
+			return convert(session.executeAction(action, DEADLOCK_RETRIES), SProject.class);
 		} catch (Exception e) {
 			handleException(e);
 			return null;
@@ -552,7 +564,7 @@ public class Service implements ServiceInterface {
 		}
 	}
 
-	private <T> List<T> convert(Collection<? extends IdEObject> list, Class<T> targetClass, BimDatabaseSession bimDatabaseSession) {
+	private <T> List<T> convert(Collection<? extends IdEObject> list, Class<T> targetClass) {
 		List<T> newList = new ArrayList<T>();
 		if (list == null) {
 			return null;
@@ -690,7 +702,7 @@ public class Service implements ServiceInterface {
 		BimDatabaseSession session = bimDatabase.createReadOnlySession();
 		try {
 			BimDatabaseAction<Set<Revision>> action = new GetAllRevisionsOfProjectDatabaseAction(session, accessMethod, poid);
-			return convert(session.executeAction(action, DEADLOCK_RETRIES), SRevision.class, session);
+			return convert(session.executeAction(action, DEADLOCK_RETRIES), SRevision.class);
 		} catch (Exception e) {
 			handleException(e);
 			return null;
@@ -705,7 +717,7 @@ public class Service implements ServiceInterface {
 		BimDatabaseSession session = bimDatabase.createReadOnlySession();
 		try {
 			BimDatabaseAction<Set<Checkout>> action = new GetAllCheckoutsOfProjectDatabaseAction(session, accessMethod, poid, false);
-			return convert(session.executeAction(action, DEADLOCK_RETRIES), SCheckout.class, session);
+			return convert(session.executeAction(action, DEADLOCK_RETRIES), SCheckout.class);
 		} catch (Exception e) {
 			handleException(e);
 			return null;
@@ -720,7 +732,7 @@ public class Service implements ServiceInterface {
 		BimDatabaseSession session = bimDatabase.createReadOnlySession();
 		try {
 			BimDatabaseAction<Set<Checkout>> action = new GetAllCheckoutsOfProjectDatabaseAction(session, accessMethod, poid, true);
-			return convert(session.executeAction(action, DEADLOCK_RETRIES), SCheckout.class, session);
+			return convert(session.executeAction(action, DEADLOCK_RETRIES), SCheckout.class);
 		} catch (Exception e) {
 			handleException(e);
 			return null;
@@ -735,7 +747,7 @@ public class Service implements ServiceInterface {
 		BimDatabaseSession session = bimDatabase.createReadOnlySession();
 		try {
 			BimDatabaseAction<Set<User>> action = new GetAllUsersDatabaseAction(session, accessMethod, currentUoid);
-			return convert(session.executeAction(action, DEADLOCK_RETRIES), SUser.class, session);
+			return convert(session.executeAction(action, DEADLOCK_RETRIES), SUser.class);
 		} catch (Exception e) {
 			handleException(e);
 			return null;
@@ -781,7 +793,7 @@ public class Service implements ServiceInterface {
 		BimDatabaseSession session = bimDatabase.createReadOnlySession();
 		try {
 			BimDatabaseAction<Set<Checkout>> action = new GetAllCheckoutsByUserDatabaseAction(session, accessMethod, uoid);
-			return convert(session.executeAction(action, DEADLOCK_RETRIES), SCheckout.class, session);
+			return convert(session.executeAction(action, DEADLOCK_RETRIES), SCheckout.class);
 		} catch (Exception e) {
 			handleException(e);
 			return null;
@@ -796,7 +808,7 @@ public class Service implements ServiceInterface {
 		BimDatabaseSession session = bimDatabase.createReadOnlySession();
 		try {
 			BimDatabaseAction<Set<Revision>> action = new GetAllRevisionsByUserDatabaseAction(session, accessMethod, uoid);
-			return convert(session.executeAction(action, DEADLOCK_RETRIES), SRevision.class, session);
+			return convert(session.executeAction(action, DEADLOCK_RETRIES), SRevision.class);
 		} catch (Exception e) {
 			handleException(e);
 			return null;
@@ -826,7 +838,7 @@ public class Service implements ServiceInterface {
 		BimDatabaseSession session = bimDatabase.createReadOnlySession();
 		try {
 			BimDatabaseAction<Set<Checkout>> action = new GetAllCheckoutsOfRevisionDatabaseAction(session, accessMethod, roid);
-			return convert(session.executeAction(action, DEADLOCK_RETRIES), SCheckout.class, session);
+			return convert(session.executeAction(action, DEADLOCK_RETRIES), SCheckout.class);
 		} catch (Exception e) {
 			handleException(e);
 			return null;
@@ -979,7 +991,7 @@ public class Service implements ServiceInterface {
 		BimDatabaseSession session = bimDatabase.createReadOnlySession();
 		try {
 			BimDatabaseAction<Set<Project>> action = new GetAllNonAuthorizedProjectsOfUserDatabaseAction(session, accessMethod, uoid);
-			return convert(session.executeAction(action, DEADLOCK_RETRIES), SProject.class, session);
+			return convert(session.executeAction(action, DEADLOCK_RETRIES), SProject.class);
 		} catch (Exception e) {
 			handleException(e);
 			return null;
@@ -1312,7 +1324,7 @@ public class Service implements ServiceInterface {
 		BimDatabaseSession session = bimDatabase.createSession(true);
 		try {
 			return convert(session.executeAction(new FindClashesDatabaseAction(session, accessMethod, convert(sClashDetectionSettings, session), schema, ifcEngineFactory,
-					fieldIgnoreMap, currentUoid), DEADLOCK_RETRIES), SGuidClash.class, session);
+					fieldIgnoreMap, currentUoid), DEADLOCK_RETRIES), SGuidClash.class);
 		} catch (Exception e) {
 			handleException(e);
 			return null;
@@ -1327,7 +1339,7 @@ public class Service implements ServiceInterface {
 		BimDatabaseSession session = bimDatabase.createSession(true);
 		try {
 			return convert(session.executeAction(new FindClashesDatabaseAction(session, accessMethod, convert(sClashDetectionSettings, session), schema, ifcEngineFactory,
-					fieldIgnoreMap, currentUoid), DEADLOCK_RETRIES), SEidClash.class, session);
+					fieldIgnoreMap, currentUoid), DEADLOCK_RETRIES), SEidClash.class);
 		} catch (Exception e) {
 			handleException(e);
 			return null;
@@ -1462,7 +1474,7 @@ public class Service implements ServiceInterface {
 		try {
 			BimDatabaseAction<List<LogAction>> action = new GetLogsDatabaseAction(session, accessMethod, currentUoid);
 			List<LogAction> logs = session.executeAction(action, DEADLOCK_RETRIES);
-			return convert(logs, SLogAction.class, session);
+			return convert(logs, SLogAction.class);
 		} catch (Exception e) {
 			handleException(e);
 			return null;
@@ -1581,7 +1593,7 @@ public class Service implements ServiceInterface {
 		BimDatabaseSession session = bimDatabase.createReadOnlySession();
 		try {
 			BimDatabaseAction<Set<User>> action = new GetAllNonAuthorizedUsersOfProjectDatabaseAction(session, accessMethod, poid);
-			return convert(session.executeAction(action, DEADLOCK_RETRIES), SUser.class, session);
+			return convert(session.executeAction(action, DEADLOCK_RETRIES), SUser.class);
 		} catch (Exception e) {
 			handleException(e);
 			return null;
@@ -1596,7 +1608,7 @@ public class Service implements ServiceInterface {
 		BimDatabaseSession session = bimDatabase.createReadOnlySession();
 		try {
 			BimDatabaseAction<Set<User>> action = new GetAllAuthorizedUsersOfProjectDatabaseAction(session, accessMethod, poid);
-			return convert(session.executeAction(action, DEADLOCK_RETRIES), SUser.class, session);
+			return convert(session.executeAction(action, DEADLOCK_RETRIES), SUser.class);
 		} catch (Exception e) {
 			handleException(e);
 			return null;
@@ -1611,7 +1623,7 @@ public class Service implements ServiceInterface {
 		BimDatabaseSession session = bimDatabase.createReadOnlySession();
 		try {
 			User user = session.get(StorePackage.eINSTANCE.getUser(), uoid, false);
-			return convert(user.getHasRightsOn(), SProject.class, session);
+			return convert(user.getHasRightsOn(), SProject.class);
 		} finally {
 			session.close();
 		}
@@ -1678,7 +1690,7 @@ public class Service implements ServiceInterface {
 		BimDatabaseSession session = bimDatabase.createReadOnlySession();
 		try {
 			BimDatabaseAction<Set<Project>> action = new GetSubProjectsDatabaseAction(session, accessMethod, currentUoid, poid);
-			return convert(session.executeAction(action, DEADLOCK_RETRIES), SProject.class, session);
+			return convert(session.executeAction(action, DEADLOCK_RETRIES), SProject.class);
 		} catch (Exception e) {
 			handleException(e);
 			return null;
@@ -2102,7 +2114,7 @@ public class Service implements ServiceInterface {
 		BimDatabaseSession session = bimDatabase.createReadOnlySession();
 		try {
 			BimDatabaseAction<Set<Project>> action = new GetAllReadableProjectsDatabaseAction(session, accessMethod, currentUoid);
-			return convert(session.executeAction(action, DEADLOCK_RETRIES), SProject.class, session);
+			return convert(session.executeAction(action, DEADLOCK_RETRIES), SProject.class);
 		} catch (Exception e) {
 			handleException(e);
 			return null;
@@ -2196,5 +2208,105 @@ public class Service implements ServiceInterface {
 	@Override
 	public ResultType getResultTypeByName(String resultTypeName) {
 		return EmfSerializerFactory.getInstance().getResultType(resultTypeName);
+	}
+
+	@Override
+	public List<SSerializer> getAllSerializers() throws UserException, ServerException {
+		BimDatabaseSession session = bimDatabase.createReadOnlySession();
+		try {
+			return convert(session.executeAction(new GetAllSerializersDatabaseAction(session, accessMethod), DEADLOCK_RETRIES), SSerializer.class);
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+		return null;
+	}
+
+	@Override
+	public void addSerializer(SSerializer serializer) throws UserException, ServerException {
+		BimDatabaseSession session = bimDatabase.createSession(true);
+		try {
+			session.executeAction(new AddSerializerDatabaseAction(session, accessMethod, convert(serializer, Serializer.class)), DEADLOCK_RETRIES);
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+
+	@Override
+	public void updateSerializer(SSerializer serializer) throws UserException, ServerException {
+		BimDatabaseSession session = bimDatabase.createSession(true);
+		try {
+			session.executeAction(new UpdateSerializerDatabaseAction(session, accessMethod, convert(serializer, Serializer.class)), DEADLOCK_RETRIES);
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}		
+	}
+
+	@Override
+	public List<SIgnoreFile> getAllIgnoreFiles() throws UserException, ServerException {
+		BimDatabaseSession session = bimDatabase.createReadOnlySession();
+		try {
+			return convert(session.executeAction(new GetAllIgnoreFilesDatabaseAction(session, accessMethod), DEADLOCK_RETRIES), SIgnoreFile.class);
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+		return null;
+	}
+
+	@Override
+	public void addIgnoreFile(SIgnoreFile ignoreFile) throws UserException, ServerException {
+		BimDatabaseSession session = bimDatabase.createSession(true);
+		try {
+			session.executeAction(new AddIgnoreFileDatabaseAction(session, accessMethod, convert(ignoreFile, IgnoreFile.class)), DEADLOCK_RETRIES);
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+
+	@Override
+	public void updateIgnoreFile(SIgnoreFile ignoreFile) throws UserException, ServerException {
+		BimDatabaseSession session = bimDatabase.createSession(true);
+		try {
+			session.executeAction(new UpdateIgnoreFileDatabaseAction(session, accessMethod, convert(ignoreFile, IgnoreFile.class)), DEADLOCK_RETRIES);
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}		
+	}
+
+	@Override
+	public SSerializer getSerializerById(long oid) throws UserException, ServerException {
+		BimDatabaseSession session = bimDatabase.createReadOnlySession();
+		try {
+			return convert(session.executeAction(new GetSerializerByIdDatabaseAction(session, accessMethod, oid), DEADLOCK_RETRIES), SSerializer.class);
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+		return null;
+	}
+
+	@Override
+	public SIgnoreFile getIgnoreFileById(long oid) throws UserException, ServerException {
+		BimDatabaseSession session = bimDatabase.createReadOnlySession();
+		try {
+			return convert(session.executeAction(new GetIgnoreFileByIdDatabaseAction(session, accessMethod, oid), DEADLOCK_RETRIES), SIgnoreFile.class);
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+		return null;
 	}
 }

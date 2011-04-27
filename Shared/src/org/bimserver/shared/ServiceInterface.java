@@ -45,9 +45,11 @@ import org.bimserver.interfaces.objects.SClashDetectionSettings;
 import org.bimserver.interfaces.objects.SEidClash;
 import org.bimserver.interfaces.objects.SGeoTag;
 import org.bimserver.interfaces.objects.SGuidClash;
+import org.bimserver.interfaces.objects.SIgnoreFile;
 import org.bimserver.interfaces.objects.SLogAction;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevision;
+import org.bimserver.interfaces.objects.SSerializer;
 import org.bimserver.interfaces.objects.SUser;
 import org.bimserver.interfaces.objects.SUserType;
 import org.bimserver.shared.SCompareResult.SCompareType;
@@ -569,4 +571,28 @@ public interface ServiceInterface {
 
 	@WebMethod(action = "getResultTypeByName")
 	ResultType getResultTypeByName(String resultTypeName);
+	
+	@WebMethod(action = "getAllSerializers")
+	List<SSerializer> getAllSerializers() throws UserException, ServerException;
+	
+	@WebMethod(action = "getSerializerById")
+	SSerializer getSerializerById(long oid) throws UserException, ServerException;
+	
+	@WebMethod(action = "addSerializer")
+	void addSerializer(SSerializer serializer) throws UserException, ServerException;
+	
+	@WebMethod(action = "updateSerializer")
+	void updateSerializer(SSerializer serializer) throws UserException, ServerException;
+	
+	@WebMethod(action = "getAllIgnoreFiles")
+	List<SIgnoreFile> getAllIgnoreFiles() throws UserException, ServerException;
+	
+	@WebMethod(action = "getIgnoreFileById")
+	SIgnoreFile getIgnoreFileById(long oid) throws UserException, ServerException;
+	
+	@WebMethod(action = "addIgnoreFile")
+	void addIgnoreFile(SIgnoreFile ignoreFile) throws UserException, ServerException;
+	
+	@WebMethod(action = "updateIgnoreFile")
+	void updateIgnoreFile(SIgnoreFile ignoreFile) throws UserException, ServerException;
 }

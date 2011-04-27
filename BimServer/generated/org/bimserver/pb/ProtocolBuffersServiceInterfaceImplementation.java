@@ -349,8 +349,8 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 			newVal.setId(sRevision.getId());
 			newVal.setState(SCheckinState.values()[sRevision.getState().ordinal()]);
 			newVal.setSize(sRevision.getSize());
-			newVal.setDate(sRevision.getDate().getTime());
 			newVal.setComment(sRevision.getComment());
+			newVal.setDate(sRevision.getDate().getTime());
 			for (java.lang.Long o : sRevision.getLastClashes()) {
 				newVal.addLastClashes(o);
 			}
@@ -555,8 +555,8 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 				v.setId(val.getId());
 				v.setState(org.bimserver.interfaces.objects.SCheckinState.values()[val.getState().ordinal()]);
 				v.setSize(val.getSize());
-				v.setDate(new Date(val.getDate()));
 				v.setComment(val.getComment());
+				v.setDate(new Date(val.getDate()));
 				for (java.lang.Long o : val.getLastClashesList()) {
 					v.getLastClashes().add(o);
 				}
@@ -618,8 +618,8 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 				v.setId(val.getId());
 				v.setState(org.bimserver.interfaces.objects.SCheckinState.values()[val.getState().ordinal()]);
 				v.setSize(val.getSize());
-				v.setDate(new Date(val.getDate()));
 				v.setComment(val.getComment());
+				v.setDate(new Date(val.getDate()));
 				for (java.lang.Long o : val.getLastClashesList()) {
 					v.getLastClashes().add(o);
 				}
@@ -1988,6 +1988,141 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 			return realResult;
 		} catch (Exception e) {}
 		return null;
+	}
+
+	public java.util.List<org.bimserver.interfaces.objects.SSerializer> getAllSerializers() {
+		try {
+			GetAllSerializersRequest.Builder requestBuilder = GetAllSerializersRequest.newBuilder();
+			GetAllSerializersRequest request = requestBuilder.build();
+			GetAllSerializersResponse response = service.getAllSerializers(rpcController, request);
+			java.util.List<org.bimserver.interfaces.objects.SSerializer> realResult = new ArrayList<org.bimserver.interfaces.objects.SSerializer>();
+			List<Service.SSerializer> originalList = response.getValueList();
+			for (Service.SSerializer val : originalList) {
+				org.bimserver.interfaces.objects.SSerializer v = new org.bimserver.interfaces.objects.SSerializer();
+				v.setName(val.getName());
+				v.setClassName(val.getClassName());
+				v.setOid(val.getOid());
+				v.setDescription(val.getDescription());
+				v.setIgnoreFileId(val.getIgnoreFileId());
+				v.setSettingsId(val.getSettingsId());
+				realResult.add(v);
+			}
+		return realResult;
+		} catch (Exception e) {}
+		return null;
+	}
+
+	public org.bimserver.interfaces.objects.SSerializer getSerializerById(long unknown) {
+		try {
+			GetSerializerByIdRequest.Builder requestBuilder = GetSerializerByIdRequest.newBuilder();
+			requestBuilder.setUnknown(unknown);
+			GetSerializerByIdRequest request = requestBuilder.build();
+			GetSerializerByIdResponse response = service.getSerializerById(rpcController, request);
+			org.bimserver.interfaces.objects.SSerializer realResult = new org.bimserver.interfaces.objects.SSerializer();
+			return realResult;
+		} catch (Exception e) {}
+		return null;
+	}
+
+	public void addSerializer(org.bimserver.interfaces.objects.SSerializer unknown) {
+		try {
+			AddSerializerRequest.Builder requestBuilder = AddSerializerRequest.newBuilder();
+			Service.SSerializer.Builder newVal = SSerializer.newBuilder();
+			newVal.setName(unknown.getName());
+			newVal.setClassName(unknown.getClassName());
+			newVal.setOid(unknown.getOid());
+			newVal.setDescription(unknown.getDescription());
+			newVal.setIgnoreFileId(unknown.getIgnoreFileId());
+			newVal.setSettingsId(unknown.getSettingsId());
+			requestBuilder.setUnknown(newVal.build());
+			AddSerializerRequest request = requestBuilder.build();
+			service.addSerializer(rpcController, request);
+		} catch (Exception e) {}
+	}
+
+	public void updateSerializer(org.bimserver.interfaces.objects.SSerializer unknown) {
+		try {
+			UpdateSerializerRequest.Builder requestBuilder = UpdateSerializerRequest.newBuilder();
+			Service.SSerializer.Builder newVal = SSerializer.newBuilder();
+			newVal.setName(unknown.getName());
+			newVal.setClassName(unknown.getClassName());
+			newVal.setOid(unknown.getOid());
+			newVal.setDescription(unknown.getDescription());
+			newVal.setIgnoreFileId(unknown.getIgnoreFileId());
+			newVal.setSettingsId(unknown.getSettingsId());
+			requestBuilder.setUnknown(newVal.build());
+			UpdateSerializerRequest request = requestBuilder.build();
+			service.updateSerializer(rpcController, request);
+		} catch (Exception e) {}
+	}
+
+	public java.util.List<org.bimserver.interfaces.objects.SIgnoreFile> getAllIgnoreFiles() {
+		try {
+			GetAllIgnoreFilesRequest.Builder requestBuilder = GetAllIgnoreFilesRequest.newBuilder();
+			GetAllIgnoreFilesRequest request = requestBuilder.build();
+			GetAllIgnoreFilesResponse response = service.getAllIgnoreFiles(rpcController, request);
+			java.util.List<org.bimserver.interfaces.objects.SIgnoreFile> realResult = new ArrayList<org.bimserver.interfaces.objects.SIgnoreFile>();
+			List<Service.SIgnoreFile> originalList = response.getValueList();
+			for (Service.SIgnoreFile val : originalList) {
+				org.bimserver.interfaces.objects.SIgnoreFile v = new org.bimserver.interfaces.objects.SIgnoreFile();
+				v.setName(val.getName());
+				v.setOid(val.getOid());
+				v.setSettingsId(val.getSettingsId());
+//				v.setData(val.getData());
+				for (java.lang.Long o : val.getSerializersList()) {
+					v.getSerializers().add(o);
+				}
+				realResult.add(v);
+			}
+		return realResult;
+		} catch (Exception e) {}
+		return null;
+	}
+
+	public org.bimserver.interfaces.objects.SIgnoreFile getIgnoreFileById(long unknown) {
+		try {
+			GetIgnoreFileByIdRequest.Builder requestBuilder = GetIgnoreFileByIdRequest.newBuilder();
+			requestBuilder.setUnknown(unknown);
+			GetIgnoreFileByIdRequest request = requestBuilder.build();
+			GetIgnoreFileByIdResponse response = service.getIgnoreFileById(rpcController, request);
+			org.bimserver.interfaces.objects.SIgnoreFile realResult = new org.bimserver.interfaces.objects.SIgnoreFile();
+			return realResult;
+		} catch (Exception e) {}
+		return null;
+	}
+
+	public void addIgnoreFile(org.bimserver.interfaces.objects.SIgnoreFile unknown) {
+		try {
+			AddIgnoreFileRequest.Builder requestBuilder = AddIgnoreFileRequest.newBuilder();
+			Service.SIgnoreFile.Builder newVal = SIgnoreFile.newBuilder();
+			newVal.setName(unknown.getName());
+			newVal.setOid(unknown.getOid());
+			newVal.setSettingsId(unknown.getSettingsId());
+//			newVal.setData(unknown.getData());
+			for (java.lang.Long o : unknown.getSerializers()) {
+				newVal.addSerializers(o);
+			}
+			requestBuilder.setUnknown(newVal.build());
+			AddIgnoreFileRequest request = requestBuilder.build();
+			service.addIgnoreFile(rpcController, request);
+		} catch (Exception e) {}
+	}
+
+	public void updateIgnoreFile(org.bimserver.interfaces.objects.SIgnoreFile unknown) {
+		try {
+			UpdateIgnoreFileRequest.Builder requestBuilder = UpdateIgnoreFileRequest.newBuilder();
+			Service.SIgnoreFile.Builder newVal = SIgnoreFile.newBuilder();
+			newVal.setName(unknown.getName());
+			newVal.setOid(unknown.getOid());
+			newVal.setSettingsId(unknown.getSettingsId());
+//			newVal.setData(unknown.getData());
+			for (java.lang.Long o : unknown.getSerializers()) {
+				newVal.addSerializers(o);
+			}
+			requestBuilder.setUnknown(newVal.build());
+			UpdateIgnoreFileRequest request = requestBuilder.build();
+			service.updateIgnoreFile(rpcController, request);
+		} catch (Exception e) {}
 	}
 
 }
