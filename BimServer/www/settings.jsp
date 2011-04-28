@@ -29,7 +29,7 @@
 %>
 <div class="tabber" id="settingstabber">
 <div class="tabbertab" id="ignorefilestab" title="Ignore files">
-<form enctype="multipart/form-data" method="post" action="<%=getServletContext().getContextPath()%>/serversettings.jsp">
+<form enctype="multipart/form-data" method="post" action="<%=getServletContext().getContextPath()%>/settings.jsp">
 <table class="formatted infotable">
 	<tr>
 		<td>Download</td>
@@ -43,6 +43,7 @@
 <input type="hidden" name="action" value="uploadsettings" /></form>
 </div>
 <div class="tabbertab" id="serializerstab" title="Serializers">
+<a href="addserializer.jsp">Add Serializer</a>
 <table>
 <tr><th>Name</th><th>Description</th><th>Type</th><th>Ignore file</th></tr>
 <%
