@@ -48,4 +48,12 @@ public class CollectionUtils {
 		}
 		return list;
 	}
+
+	public static <K, V> List<V> mapToList(Map<K, V> result) {
+		List<V> list = new ArrayList<V>();
+		for (V v : result.values()) {
+			list.add(v);
+		}
+		return list;
+	}
 }
