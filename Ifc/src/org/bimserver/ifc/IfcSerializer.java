@@ -17,10 +17,10 @@ public abstract class IfcSerializer extends EmfSerializer {
 	protected static final Ifc2x3Package IFC_PACKAGE_INSTANCE = Ifc2x3Package.eINSTANCE;
 	protected static final Map<EClassifier, String> upperCases = initUpperCases();
 	private static final Map<EStructuralFeature, Boolean> inverseCache = new HashMap<EStructuralFeature, Boolean>();
-	protected final SchemaDefinition schema;
+	protected SchemaDefinition schema;
 
-	public IfcSerializer(String fileName, IfcModel model, SchemaDefinition schema) {
-		super(fileName, model);
+	public void init(String fileName, IfcModel model, SchemaDefinition schema) {
+		super.init(fileName, model);
 		this.schema = schema;
 	}
 

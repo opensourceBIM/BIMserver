@@ -21,6 +21,7 @@ import nl.tue.buildingsmart.express.dictionary.SetType;
 import nl.tue.buildingsmart.express.dictionary.StringType;
 
 import org.apache.commons.lang.StringEscapeUtils;
+import org.bimserver.ifc.EmfSerializer;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcSerializer;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
@@ -36,15 +37,24 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
+import org.mangosdk.spi.ProviderFor;
 
+@ProviderFor(value=EmfSerializer.class)
 public class IfcXmlSerializer extends IfcSerializer {
 
 	private PrintWriter out;
-	private final Map<EObject, Long> objectToOidMap;
+	private Map<EObject, Long> objectToOidMap;
 	private int tabs;
 
+	public IfcXmlSerializer() {
+	}
+
 	public IfcXmlSerializer(String fileName, IfcModel model, SchemaDefinition schemaDefinition) {
-		super(fileName, model, schemaDefinition);
+		init(fileName, model, schemaDefinition);
+	}
+
+	public void init(String fileName, IfcModel model, SchemaDefinition schemaDefinition) {
+		super.init(fileName, model, schemaDefinition);
 		objectToOidMap = new HashMap<EObject, Long>((int) model.size());
 		for (Long key : model.keySet()) {
 			objectToOidMap.put(model.get(key), key);

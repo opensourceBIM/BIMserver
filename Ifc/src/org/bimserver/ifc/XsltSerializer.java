@@ -15,20 +15,22 @@ import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
 
 import org.bimserver.ifc.xml.writer.IfcXmlSerializer;
 import org.bimserver.shared.ResultType;
+import org.mangosdk.spi.ProviderFor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+@ProviderFor(value=EmfSerializer.class)
 public class XsltSerializer extends BimModelSerializer {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(XsltSerializer.class);
-	private final SchemaDefinition schemaDefinition;
-	private final URL xsltUrl;
-	private final XsltParameter[] parameters;
-	private final ResultType resultType;
+	private SchemaDefinition schemaDefinition;
+	private URL xsltUrl;
+	private XsltParameter[] parameters;
+	private ResultType resultType;
 
-	public XsltSerializer(String fileName, IfcModel model, FieldIgnoreMap fieldIgnoreMap, SchemaDefinition schemaDefinition, URL xsltUrl, ResultType resultType,
+	public void init(String fileName, IfcModel model, FieldIgnoreMap fieldIgnoreMap, SchemaDefinition schemaDefinition, URL xsltUrl, ResultType resultType,
 			XsltParameter... parameters) {
-		super(fileName, model, fieldIgnoreMap);
+		super.init(fileName, model, fieldIgnoreMap);
 		this.schemaDefinition = schemaDefinition;
 		this.xsltUrl = xsltUrl;
 		this.resultType = resultType;
