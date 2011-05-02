@@ -12,6 +12,7 @@ import javax.xml.bind.JAXBException;
 import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
 
 import org.bimserver.ifc.BimModelSerializer;
+import org.bimserver.ifc.EmfSerializer;
 import org.bimserver.ifc.FieldIgnoreMap;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.SerializerException;
@@ -90,27 +91,29 @@ import org.citygml4j.xml.io.reader.CityGMLReadException;
 import org.citygml4j.xml.io.writer.CityGMLWriteException;
 import org.citygml4j.xml.io.writer.CityGMLWriter;
 import org.eclipse.emf.ecore.EObject;
+import org.mangosdk.spi.ProviderFor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.w3c.dom.Element;
 
 import ade.GlobalIdType;
 
+@ProviderFor(value=EmfSerializer.class)
 public class CityGmlSerializer extends BimModelSerializer {
 	private static final Logger LOGGER = LoggerFactory.getLogger(CityGmlSerializer.class);
-	private final FailSafeIfcEngine ifcEngine;
-	private final GMLFactory gml;
-	private final XALFactory xal;
-	private final CityGMLFactory citygml;
-	private final Map<EObject, AbstractCityObject> convertedObjects;
-	private final CityGMLContext ctx;
-	private final IfcModel model;
-	private final SchemaDefinition schemaDefinition;
-	private final Project project;
-	private final User user;
+	private FailSafeIfcEngine ifcEngine;
+	private GMLFactory gml;
+	private XALFactory xal;
+	private CityGMLFactory citygml;
+	private Map<EObject, AbstractCityObject> convertedObjects;
+	private CityGMLContext ctx;
+	private IfcModel model;
+	private SchemaDefinition schemaDefinition;
+	private Project project;
+	private User user;
 	
-	public CityGmlSerializer(Project project, User user, String fileName, IfcModel ifcModel, SchemaDefinition schemaDefinition, FieldIgnoreMap fieldIgnoreMap, IfcEngineFactory ifcEngineFactory) throws SerializerException {
-		super(fileName, ifcModel, fieldIgnoreMap);
+	public void init(Project project, User user, String fileName, IfcModel ifcModel, SchemaDefinition schemaDefinition, FieldIgnoreMap fieldIgnoreMap, IfcEngineFactory ifcEngineFactory) throws SerializerException {
+		super.init(fileName, ifcModel, fieldIgnoreMap);
 		this.project = project;
 		this.user = user;
 		try {
