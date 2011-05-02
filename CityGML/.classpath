@@ -16,5 +16,10 @@
 	<classpathentry kind="lib" path="/BimServer/lib/jaxb/jaxb-impl-2.2.1.1.jar"/>
 	<classpathentry kind="lib" path="/BimServer/lib/jaxb/jaxb-xjc-2.2.1.1.jar"/>
 	<classpathentry kind="lib" path="/BimServer/lib/activation.jar"/>
+	<classpathentry kind="src" path=".apt_generated">
+		<attributes>
+			<attribute name="optional" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
