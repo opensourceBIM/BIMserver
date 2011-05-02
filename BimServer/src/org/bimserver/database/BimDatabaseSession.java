@@ -106,4 +106,6 @@ public interface BimDatabaseSession extends OidProvider {
 	void commit() throws BimDeadlockException, BimDatabaseException;
 
 	BimDatabaseSession newSession(boolean useTransaction);
+
+	void delete(IdEObject object);
 }

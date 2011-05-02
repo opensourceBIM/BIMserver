@@ -46,8 +46,8 @@ import javax.mail.internet.MimeMessage;
 import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
 
 import org.bimserver.ServerInfo;
-import org.bimserver.ServerInfo.ServerState;
 import org.bimserver.SettingsManager;
+import org.bimserver.ServerInfo.ServerState;
 import org.bimserver.cache.DiskCacheManager;
 import org.bimserver.database.BimDatabase;
 import org.bimserver.database.BimDatabaseException;
@@ -65,7 +65,9 @@ import org.bimserver.database.actions.CheckinDatabaseAction;
 import org.bimserver.database.actions.CheckinPart1DatabaseAction;
 import org.bimserver.database.actions.CheckinPart2DatabaseAction;
 import org.bimserver.database.actions.CompareDatabaseAction;
+import org.bimserver.database.actions.DeleteIgnoreFileDatabaseAction;
 import org.bimserver.database.actions.DeleteProjectDatabaseAction;
+import org.bimserver.database.actions.DeleteSerializerDatabaseAction;
 import org.bimserver.database.actions.DeleteUserDatabaseAction;
 import org.bimserver.database.actions.FindClashesDatabaseAction;
 import org.bimserver.database.actions.GetAllAuthorizedUsersOfProjectDatabaseAction;
@@ -180,10 +182,6 @@ import org.bimserver.shared.LongActionState;
 import org.bimserver.shared.ResultType;
 import org.bimserver.shared.SCheckinResult;
 import org.bimserver.shared.SCompareResult;
-import org.bimserver.shared.SCompareResult.SCompareType;
-import org.bimserver.shared.SCompareResult.SObjectAdded;
-import org.bimserver.shared.SCompareResult.SObjectModified;
-import org.bimserver.shared.SCompareResult.SObjectRemoved;
 import org.bimserver.shared.SDataObject;
 import org.bimserver.shared.SDownloadResult;
 import org.bimserver.shared.SLongAction;
@@ -195,6 +193,10 @@ import org.bimserver.shared.ServiceException;
 import org.bimserver.shared.ServiceInterface;
 import org.bimserver.shared.Token;
 import org.bimserver.shared.UserException;
+import org.bimserver.shared.SCompareResult.SCompareType;
+import org.bimserver.shared.SCompareResult.SObjectAdded;
+import org.bimserver.shared.SCompareResult.SObjectModified;
+import org.bimserver.shared.SCompareResult.SObjectRemoved;
 import org.bimserver.tools.generators.GenerateUtils;
 import org.bimserver.utils.FakeClosingInputStream;
 import org.bimserver.utils.Hashers;
@@ -576,7 +578,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@SuppressWarnings("unchecked")
-	public static <T extends IdEObject> T convert(Object original, Class<T> targetClass) {
+	public static <T extends IdEObject> T convert(Object original, Class<T> targetClass, BimDatabaseSession session) {
 		if (original == null) {
 			return null;
 		}
@@ -588,9 +590,17 @@ public class Service implements ServiceInterface {
 				if (eStructuralFeature.getEType() == EcorePackage.eINSTANCE.getEBoolean()) {
 					methodName = "is" + StringUtils.firstUpperCase(eStructuralFeature.getName());
 				}
+				if (eStructuralFeature instanceof EReference) {
+					methodName += "Id";
+				}
 				Method method = original.getClass().getMethod(methodName);
 				Object value = method.invoke(original);
-				idEObject.eSet(eStructuralFeature, value);
+				if (eStructuralFeature instanceof EReference) {
+					Long oid = (Long)value;
+					idEObject.eSet(eStructuralFeature, session.get((EClass)eStructuralFeature.getEType(), oid, false));
+				} else {
+					idEObject.eSet(eStructuralFeature, value);
+				}
 			} catch (SecurityException e) {
 				LOGGER.error("", e);
 			} catch (NoSuchMethodException e) {
@@ -2198,6 +2208,7 @@ public class Service implements ServiceInterface {
 			bimDatabase.getMigrator().migrate();
 			ServerInfo.update();
 		} catch (MigrationException e) {
+			LOGGER.error("", e);
 			throw new ServerException(e);
 		} catch (InconsistentModelsException e) {
 			LOGGER.error("", e);
@@ -2206,12 +2217,14 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public ResultType getResultTypeByName(String resultTypeName) {
+	public ResultType getResultTypeByName(String resultTypeName) throws UserException {
+		requireAuthenticationAndRunningServer();
 		return EmfSerializerFactory.getInstance().getResultType(resultTypeName);
 	}
 
 	@Override
 	public List<SSerializer> getAllSerializers() throws UserException, ServerException {
+		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimDatabase.createReadOnlySession();
 		try {
 			return convert(session.executeAction(new GetAllSerializersDatabaseAction(session, accessMethod), DEADLOCK_RETRIES), SSerializer.class);
@@ -2225,9 +2238,10 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public void addSerializer(SSerializer serializer) throws UserException, ServerException {
+		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimDatabase.createSession(true);
 		try {
-			session.executeAction(new AddSerializerDatabaseAction(session, accessMethod, convert(serializer, Serializer.class)), DEADLOCK_RETRIES);
+			session.executeAndCommitAction(new AddSerializerDatabaseAction(session, accessMethod, convert(serializer, Serializer.class, session)), DEADLOCK_RETRIES);
 		} catch (Exception e) {
 			handleException(e);
 		} finally {
@@ -2237,9 +2251,10 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public void updateSerializer(SSerializer serializer) throws UserException, ServerException {
+		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimDatabase.createSession(true);
 		try {
-			session.executeAction(new UpdateSerializerDatabaseAction(session, accessMethod, convert(serializer, Serializer.class)), DEADLOCK_RETRIES);
+			session.executeAndCommitAction(new UpdateSerializerDatabaseAction(session, accessMethod, convert(serializer, Serializer.class, session)), DEADLOCK_RETRIES);
 		} catch (Exception e) {
 			handleException(e);
 		} finally {
@@ -2249,6 +2264,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public List<SIgnoreFile> getAllIgnoreFiles() throws UserException, ServerException {
+		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimDatabase.createReadOnlySession();
 		try {
 			return convert(session.executeAction(new GetAllIgnoreFilesDatabaseAction(session, accessMethod), DEADLOCK_RETRIES), SIgnoreFile.class);
@@ -2262,9 +2278,10 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public void addIgnoreFile(SIgnoreFile ignoreFile) throws UserException, ServerException {
+		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimDatabase.createSession(true);
 		try {
-			session.executeAction(new AddIgnoreFileDatabaseAction(session, accessMethod, convert(ignoreFile, IgnoreFile.class)), DEADLOCK_RETRIES);
+			session.executeAndCommitAction(new AddIgnoreFileDatabaseAction(session, accessMethod, convert(ignoreFile, IgnoreFile.class, session)), DEADLOCK_RETRIES);
 		} catch (Exception e) {
 			handleException(e);
 		} finally {
@@ -2274,9 +2291,10 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public void updateIgnoreFile(SIgnoreFile ignoreFile) throws UserException, ServerException {
+		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimDatabase.createSession(true);
 		try {
-			session.executeAction(new UpdateIgnoreFileDatabaseAction(session, accessMethod, convert(ignoreFile, IgnoreFile.class)), DEADLOCK_RETRIES);
+			session.executeAndCommitAction(new UpdateIgnoreFileDatabaseAction(session, accessMethod, convert(ignoreFile, IgnoreFile.class, session)), DEADLOCK_RETRIES);
 		} catch (Exception e) {
 			handleException(e);
 		} finally {
@@ -2286,6 +2304,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public SSerializer getSerializerById(long oid) throws UserException, ServerException {
+		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimDatabase.createReadOnlySession();
 		try {
 			return convert(session.executeAction(new GetSerializerByIdDatabaseAction(session, accessMethod, oid), DEADLOCK_RETRIES), SSerializer.class);
@@ -2299,6 +2318,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public SIgnoreFile getIgnoreFileById(long oid) throws UserException, ServerException {
+		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimDatabase.createReadOnlySession();
 		try {
 			return convert(session.executeAction(new GetIgnoreFileByIdDatabaseAction(session, accessMethod, oid), DEADLOCK_RETRIES), SIgnoreFile.class);
@@ -2308,5 +2328,67 @@ public class Service implements ServiceInterface {
 			session.close();
 		}
 		return null;
+	}
+
+	@Override
+	public Set<String> getAllSerializerClassNames() throws UserException {
+		requireAuthenticationAndRunningServer();
+		return emfSerializerFactory.getAllSerializerClassNames();
+	}
+
+	@Override
+	public void deleteIgnoreFile(long ifid) throws UserException, ServerException {
+		requireAuthenticationAndRunningServer();
+		BimDatabaseSession session = bimDatabase.createSession(true);
+		try {
+			BimDatabaseAction<Void> action = new DeleteIgnoreFileDatabaseAction(session, accessMethod, ifid);
+			session.executeAndCommitAction(action, DEADLOCK_RETRIES);
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+
+	@Override
+	public void deleteSerializer(long sid) throws UserException, ServerException {
+		requireAuthenticationAndRunningServer();
+		BimDatabaseSession session = bimDatabase.createSession(true);
+		try {
+			BimDatabaseAction<Void> action = new DeleteSerializerDatabaseAction(session, accessMethod, sid);
+			session.executeAndCommitAction(action, DEADLOCK_RETRIES);
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+
+	@Override
+	public void setSettingFooterAddition(String footerAddition) throws UserException, ServerException {
+		requireAuthenticationAndRunningServer();
+		Settings settings = settingsManager.getSettings();
+		settings.setFooterAddition(footerAddition);
+		settingsManager.saveSettings();
+	}
+
+	@Override
+	public void setSettingHeaderAddition(String headerAddition) throws UserException, ServerException {
+		requireAuthenticationAndRunningServer();
+		Settings settings = settingsManager.getSettings();
+		settings.setHeaderAddition(headerAddition);
+		settingsManager.saveSettings();
+	}
+
+	@Override
+	public String getSettingFooterAddition() throws UserException, ServerException {
+		Settings settings = settingsManager.getSettings();
+		return settings.getFooterAddition();
+	}
+
+	@Override
+	public String getSettingHeaderAddition() throws UserException, ServerException {
+		Settings settings = settingsManager.getSettings();
+		return settings.getHeaderAddition();
 	}
 }

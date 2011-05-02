@@ -5,24 +5,18 @@ import java.io.PrintWriter;
 import java.util.List;
 
 import org.bimserver.ifc.BimModelSerializer;
-import org.bimserver.ifc.FieldIgnoreMap;
-import org.bimserver.ifc.IfcModel;
+import org.bimserver.ifc.EmfSerializer;
 import org.bimserver.ifc.SerializerException;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
-import org.bimserver.models.store.Project;
-import org.bimserver.models.store.User;
-import org.bimserver.pb.Service.ResultType;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.mangosdk.spi.ProviderFor;
 
+@ProviderFor(value=EmfSerializer.class)
 public class ObjectInfoSerializer extends BimModelSerializer {
-
-	public ObjectInfoSerializer(Project project, User user, String fileName, IfcModel model, FieldIgnoreMap fieldIgnoreMap) {
-		super(fileName, model, fieldIgnoreMap);
-	}
 
 	@Override
 	protected void reset() {

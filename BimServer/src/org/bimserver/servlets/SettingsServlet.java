@@ -1,5 +1,6 @@
 package org.bimserver.servlets;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -23,6 +24,7 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.IOUtils;
 import org.bimserver.ServerInitializer;
+import org.bimserver.interfaces.objects.SIgnoreFile;
 import org.bimserver.interfaces.objects.SSettings;
 import org.bimserver.interfaces.objects.SUserType;
 import org.bimserver.models.store.Settings;
@@ -50,7 +52,7 @@ public class SettingsServlet extends HttpServlet {
 			if (loginManager.getUserType() == SUserType.ADMIN) {
 				if (isMultipart) {
 					DiskFileItemFactory factory = new DiskFileItemFactory();
-					factory.setSizeThreshold(1024 * 1024 * 100); // 100 MB
+					factory.setSizeThreshold(1024 * 1024 * 300); // 300 MB
 					ServletFileUpload upload = new ServletFileUpload(factory);
 					try {
 						List<FileItem> items = (List<FileItem>) upload.parseRequest(request);
@@ -67,17 +69,20 @@ public class SettingsServlet extends HttpServlet {
 									JAXBContext jaxbContext = JAXBContext.newInstance(SSettings.class);
 									Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
 									SSettings sSettings = (SSettings) unmarshaller.unmarshal(item.getInputStream());
-									ServerInitializer.getSettingsManager().setSettings(Service.convert(sSettings, Settings.class));
+									ServerInitializer.getSettingsManager().setSettings(Service.convert(sSettings, Settings.class, null));
 									EmfSerializerFactory.getInstance().initSerializers();
 									response.sendRedirect(getServletContext().getContextPath() + "/settings.jsp?msg=settingsfileuploadok");
 									return;
 								} else if (fieldName.equals("ignorefile")) {
 									InputStream inputStream = item.getInputStream();
 									File file = ServerInitializer.getResourceFetcher().getFile("ignore.xml");
-									FileOutputStream fos = new FileOutputStream(file);
-									IOUtils.copy(inputStream, fos);
-									fos.close();
-									response.sendRedirect(getServletContext().getContextPath() + "/settings.jsp?msg=ignorefileuploadok");
+									ByteArrayOutputStream baos = new ByteArrayOutputStream();
+									IOUtils.copy(inputStream, baos);
+									SIgnoreFile ignoreFile = new SIgnoreFile();
+//									ignoreFile.setName(name);
+									ignoreFile.setData(baos.toByteArray());
+									loginManager.getService().addIgnoreFile(ignoreFile);
+									response.sendRedirect(getServletContext().getContextPath() + "/settings.jsp");
 									return;
 								} else if (fieldName.equals("colladasettings")) {
 									InputStream inputStream = item.getInputStream();

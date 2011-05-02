@@ -100,6 +100,12 @@ public class ServerInitializer implements ServletContextListener {
 	private File baseDir;
 	private static ServerType serverType;
 	private static SettingsManager settingsManager;
+	private Version version;
+	private SchemaDefinition schema;
+	private FieldIgnoreMap fieldIgnoreMap;
+	private IfcEngineFactory ifcEngineFactory;
+	private PackageDefinition colladaSettings;
+	private EmfSerializerFactory emfSerializerFactory;
 
 	@Override
 	public void contextInitialized(ServletContextEvent servletContextEvent) {
@@ -157,7 +163,7 @@ public class ServerInitializer implements ServletContextListener {
 				return;
 			}
 			serverStartTime = new GregorianCalendar();
-			SchemaDefinition schema = loadIfcSchema(resourceFetcher);
+			schema = loadIfcSchema(resourceFetcher);
 			Set<Ifc2x3Package> packages = CollectionUtils.singleSet(Ifc2x3Package.eINSTANCE);
 
 			bimScheduler = new JobScheduler();
@@ -165,7 +171,7 @@ public class ServerInitializer implements ServletContextListener {
 
 			longActionManager = new LongActionManager();
 
-			FieldIgnoreMap fieldIgnoreMap = new FileFieldIgnoreMap(packages, resourceFetcher);
+			fieldIgnoreMap = new FileFieldIgnoreMap(packages, resourceFetcher);
 			TemplateEngine.getTemplateEngine().init(resourceFetcher.getResource("templates/"));
 			File databaseDir = new File(homeDir, "database");
 			BerkeleyColumnDatabase columnDatabase = new BerkeleyColumnDatabase(databaseDir);
@@ -180,12 +186,27 @@ public class ServerInitializer implements ServletContextListener {
 			}
 
 			settingsManager = new SettingsManager(bimDatabase);
-			MailSystem mailSystem = new MailSystem(settingsManager);
-
 			ServerInfo.init(bimDatabase, settingsManager);
 			ServerInfo.update();
 
-			Version version = VersionChecker.init(resourceFetcher).getLocalVersion();
+			emfSerializerFactory = EmfSerializerFactory.getInstance();
+
+			version = VersionChecker.init(resourceFetcher).getLocalVersion();
+
+			if (ServerInfo.getServerState() == ServerState.MIGRATION_REQUIRED) {
+				ServerInfo.registerStateChangeListener(new StateChangeListener() {
+					@Override
+					public void stateChanged(ServerState oldState, ServerState newState) {
+						if (oldState == ServerState.MIGRATION_REQUIRED && newState == ServerState.RUNNING) {
+							initDatabaseDependantItems();
+						}
+					}
+				});
+			} else {
+				initDatabaseDependantItems();
+			}
+
+			MailSystem mailSystem = new MailSystem(settingsManager);
 
 			File schemaFile = resourceFetcher.getFile("IFC2X3_FINAL.exp").getAbsoluteFile();
 			LOGGER.info("Using " + schemaFile + " as engine schema");
@@ -199,21 +220,19 @@ public class ServerInitializer implements ServletContextListener {
 				// IfcEngineFactory to use all jar files in the context
 				classPath = servletContext.getRealPath("/") + "WEB-INF" + File.separator + "lib";
 			}
-			IfcEngineFactory ifcEngineFactory = new IfcEngineFactory(schemaFile, nativeFolder, new File(homeDir, "tmp"), classPath);
+			ifcEngineFactory = new IfcEngineFactory(schemaFile, nativeFolder, new File(homeDir, "tmp"), classPath);
 
 			CompileServlet.database = bimDatabase;
 			CompileServlet.settingsManager = settingsManager;
 
 			URL colladSettingsFile = resourceFetcher.getResource("collada.xml");
-			PackageDefinition colladaSettings = PackageDefinition.readFromFile(colladSettingsFile);
+			colladaSettings = PackageDefinition.readFromFile(colladSettingsFile);
 
 			TempUtils.makeTempDir("bimserver");
-			EmfSerializerFactory emfSerializerFactory = EmfSerializerFactory.getInstance();
-			emfSerializerFactory.init(version, schema, fieldIgnoreMap, ifcEngineFactory, colladaSettings, resourceFetcher, settingsManager);
-			emfSerializerFactory.initSerializers();
 			
 			DiskCacheManager diskCacheManager = new DiskCacheManager(new File(homeDir, "cache"));
 			
+
 			ServiceFactory.init(bimDatabase, emfSerializerFactory, schema, longActionManager, ifcEngineFactory, fieldIgnoreMap, settingsManager, mailSystem, diskCacheManager);
 			setSystemService(ServiceFactory.getINSTANCE().newService(AccessMethod.INTERNAL));
 			if (!((Service) getSystemService()).loginAsSystem()) {
@@ -256,6 +275,11 @@ public class ServerInitializer implements ServletContextListener {
 		}
 	}
 
+	private void initDatabaseDependantItems() {
+		emfSerializerFactory.init(version, schema, fieldIgnoreMap, ifcEngineFactory, colladaSettings, resourceFetcher, settingsManager);
+		emfSerializerFactory.initSerializers();
+	}
+	
 	public static File getHomeDir() {
 		return homeDir;
 	}

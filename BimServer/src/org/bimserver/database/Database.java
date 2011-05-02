@@ -95,7 +95,7 @@ public class Database implements BimDatabase {
 	 * database-schema change Do not change this variable when nothing has
 	 * changed in the schema!
 	 */
-	public static final int APPLICATION_SCHEMA_VERSION = 4;
+	public static final int APPLICATION_SCHEMA_VERSION = 5;
 	private int databaseSchemaVersion;
 	private short tableId;
 	private Migrator migrator;
@@ -261,7 +261,7 @@ public class Database implements BimDatabase {
 				if (buffer.capacity() == 1 && buffer.get(0) == -1) {
 					buffer.position(buffer.position() + 1);
 				} else {
-					short listSize = buffer.getShort();
+					int listSize = buffer.getInt();
 					for (int i = 0; i < listSize; i++) {
 						short cid = buffer.getShort();
 						if (cid != -1) {
@@ -275,7 +275,7 @@ public class Database implements BimDatabase {
 					}
 				}
 			} else if (feature.getEType() instanceof EDataType) {
-				short listSize = buffer.getShort();
+				int listSize = buffer.getInt();
 				for (int i = 0; i < listSize; i++) {
 					fakePrimitiveRead(feature.getEType(), buffer);
 				}

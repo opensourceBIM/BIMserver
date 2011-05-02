@@ -29,23 +29,23 @@
 %>
 <div class="tabber" id="settingstabber">
 <div class="tabbertab" id="ignorefilestab" title="Ignore files">
-<form enctype="multipart/form-data" method="post" action="<%=getServletContext().getContextPath()%>/settings.jsp">
-<table class="formatted infotable">
-	<tr>
-		<td>Download</td>
-		<td><a href="<%=getServletContext().getContextPath()%>/settings?action=downloadignorefile">Download ignore.xml</a></td>
-	</tr>
-	<tr>
-		<td>Upload</td>
-		<td><input type="file" name="ignorefile"></input><input type="submit" value="Upload"></input></td>
-	</tr>
+<a href="addignorefile.jsp">Add Ignore File</a>
+<table class="formatted">
+<tr><th>Name</th><th>Serializers</th><th>Actions</th></tr>
+<%
+	List<SIgnoreFile> ignoreFiles = service.getAllIgnoreFiles();
+	for (SIgnoreFile ignoreFile : ignoreFiles) {
+%>
+	<tr><td><%=ignoreFile.getName() %></td><td><%=ignoreFile.getSerializers().size() %></td><td><a href="editignorefile.jsp?ifid=<%=ignoreFile.getOid()%>">Edit</a> <a href="deleteignorefile.jsp?ifid=<%=ignoreFile.getOid()%>">Delete</a></td></tr>
+<%
+	}
+%>
 </table>
-<input type="hidden" name="action" value="uploadsettings" /></form>
 </div>
 <div class="tabbertab" id="serializerstab" title="Serializers">
 <a href="addserializer.jsp">Add Serializer</a>
-<table>
-<tr><th>Name</th><th>Description</th><th>Type</th><th>Ignore file</th></tr>
+<table class="formatted">
+<tr><th>Name</th><th>Description</th><th>Type</th><th>Ignore file</th><th>Actions</th></tr>
 <%
 	List<SSerializer> serializers = service.getAllSerializers();
 	for (SSerializer serializer : serializers) {
@@ -54,25 +54,11 @@
 			ignoreFile = service.getIgnoreFileById(serializer.getIgnoreFileId());
 		}
 %>
-	<tr><td><%=serializer.getName() %></td><td><%=serializer.getDescription() %></td><td><%=serializer.getClassName() %></td><td><%=ignoreFile == null ? "none" : ignoreFile.getName() %></td></tr>
+	<tr><td><%=serializer.getName() %></td><td><%=serializer.getDescription() %></td><td><%=serializer.getClassName() %></td><td><%=ignoreFile == null ? "none" : ignoreFile.getName() %></td><td><a href="deleteserializer.jsp?sid=<%=serializer.getOid()%>">Delete</a></td></tr>
 <%
 	}
 %>
 </table>
-<form enctype="multipart/form-data" method="post"
-	action="<%=getServletContext().getContextPath()%>/settings">
-<table class="formatted infotable">
-	<tr>
-		<td>Download</td>
-		<td><a
-			href="<%=getServletContext().getContextPath()%>/settings?action=downloadcolladasettings">Download collada.xml</a></td>
-	</tr>
-	<tr>
-		<td>Upload</td>
-		<td><input type="file" name="colladasettings"></input><input type="submit" value="Upload"></input></td>
-	</tr>
-</table>
-<input type="hidden" name="action" value="uploadcolladasettings" /></form>
 </div>
 </div>
 <%@ include file="footer.jsp"%>

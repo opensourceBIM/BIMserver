@@ -38,6 +38,8 @@ public class SettingsManager {
 		settings.setSiteAddress("");
 		settings.setSmtpServer("");
 		settings.setRegistrationAddition("");
+		settings.setHeaderAddition("");
+		settings.setFooterAddition("");
 		return settings;
 	}
 	

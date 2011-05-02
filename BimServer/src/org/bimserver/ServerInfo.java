@@ -1,5 +1,8 @@
 package org.bimserver;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.bimserver.database.BimDatabase;
 import org.bimserver.models.store.Settings;
 import org.slf4j.Logger;
@@ -20,6 +23,17 @@ public class ServerInfo {
 	private static ServerState serverState = ServerState.UNKNOWN;
 	private static BimDatabase bimDatabase;
 	private static SettingsManager settingsManager;
+	private static Set<StateChangeListener> stateChangeListeners = new HashSet<StateChangeListener>();
+
+	public static void registerStateChangeListener(StateChangeListener stateChangeListener) {
+		stateChangeListeners.add(stateChangeListener);
+	}
+	
+	private static void notifyStateChangeListeners(ServerState oldState, ServerState newState) {
+		for (StateChangeListener stateChangeListener : stateChangeListeners) {
+			stateChangeListener.stateChanged(oldState, newState);
+		}
+	}
 	
 	public static void update() {
 		if (bimDatabase.getMigrator().migrationRequired()) {
@@ -53,8 +67,10 @@ public class ServerInfo {
 	}
 
 	public static void setServerState(ServerState serverState) {
+		ServerState oldState = ServerInfo.serverState;
 		ServerInfo.serverState = serverState;
 		LOGGER.info("Changing server state to " + serverState);
+		notifyStateChangeListeners(oldState, serverState);
 	}
 
 	public static ServerState getServerState() {

@@ -288,7 +288,7 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 								 * 
 								 * Only can happen with non-unique references
 								 */
-								short listSize = buffer.getShort();
+								int listSize = buffer.getInt();
 								BasicEList<Object> list = (BasicEList<Object>) idEObject.eGet(feature);
 								for (int i = 0; i < listSize; i++) {
 									IdEObject referencedObject = null;
@@ -325,7 +325,7 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 								}
 							}
 						} else if (feature.getEType() instanceof EDataType) {
-							short listSize = buffer.getShort();
+							int listSize = buffer.getInt();
 							BasicEList<Object> list = new BasicEList<Object>(listSize);
 							for (int i = 0; i < listSize; i++) {
 								Object reference = readPrimitiveValue(feature.getEType(), buffer);
@@ -743,7 +743,7 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 			if (eStructuralFeature instanceof EAttribute) {
 				EAttribute eAttribute = (EAttribute) eStructuralFeature;
 				if (eAttribute.isMany()) {
-					size += 2;
+					size += 4;
 					for (Object v : ((List<?>) val)) {
 						size += getPrimitiveSize(eAttribute.getEAttributeType(), v);
 					}
@@ -756,7 +756,7 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 					size += 2;
 				} else {
 					if (eReference.isMany()) {
-						size += 2;
+						size += 4;
 						for (Object v : ((List<?>) val)) {
 							size += getWrappedValueSize(v);
 						}
@@ -800,7 +800,7 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 						// moment
 					} else if (feature.getEType() instanceof EClass) {
 						EList<?> list = (EList<?>) object.eGet(feature);
-						buffer.putShort((short) list.size());
+						buffer.putInt(list.size());
 						// database.getRecordSizeEstimater().adjustBasedOnDefault(buffer,
 						// (EClass)feature.getEType(), list.size());
 						for (Object o : list) {
@@ -818,7 +818,7 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 						}
 					} else if (feature.getEType() instanceof EDataType) {
 						EList<?> list = (EList<?>) object.eGet(feature);
-						buffer.putShort((short) list.size());
+						buffer.putInt(list.size());
 						// database.getRecordSizeEstimater().adjustBasedOnDefault(buffer,
 						// (EDataType)feature.getEType(), list.size());
 						for (Object o : list) {
@@ -1224,5 +1224,18 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 	@Override
 	public BimDatabaseSession newSession(boolean useTransaction) {
 		return database.createSession(false);
+	}
+
+	@Override
+	public void delete(IdEObject object) {
+		try {
+			database.getColumnDatabase().delete(object.eClass().getName(), createKeyBuffer(object).array(), this);
+		} catch (BimDeadlockException e) {
+			LOGGER.error("", e);
+		}
+	}
+
+	private ByteBuffer createKeyBuffer(IdEObject object) {
+		return createKeyBuffer(object.getPid(), object.getOid(), object.getRid());
 	}
 }

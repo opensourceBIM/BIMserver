@@ -3,7 +3,9 @@ package org.bimserver.serializers;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.ServiceLoader;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
@@ -150,31 +152,41 @@ public class EmfSerializerFactory {
 		register(new ResultType("CITYGML", "City GML 1.0.0", "gml", "application/gml", UseInCheckout.USE_NOT_IN_CHECKOUT, UserType.USER_TYPE, Type.MULTIPLE, DefaultSelected.FALSE, enabled.contains("CITYGML")), new EmfSerializerCreator() {
 			@Override
 			public EmfSerializer create(Project project, User user, IfcModel model, String fileName) throws SerializerException {
-				return new CityGmlSerializer(project, user, fileName, model, schemaDefinition, fieldIgnoreMap, ifcEngineFactory);
+				CityGmlSerializer cityGmlSerializer = new CityGmlSerializer();
+				cityGmlSerializer.init(project, user, fileName, model, schemaDefinition, fieldIgnoreMap, ifcEngineFactory);
+				return cityGmlSerializer;
 			}
 		});
 		register(new ResultType("COLLADA", "Collada", "dae", "appliction/collada", UseInCheckout.USE_NOT_IN_CHECKOUT, UserType.USER_TYPE, Type.MULTIPLE, DefaultSelected.FALSE, enabled.contains("COLLADA")), new EmfSerializerCreator() {
 			@Override
 			public EmfSerializer create(Project project, User user, IfcModel model, String fileName) throws SerializerException {
-				return new ColladaSerializer(project, user, fileName, model, schemaDefinition, fieldIgnoreMap, ifcEngineFactory, colladaSettings);
+				ColladaSerializer colladaSerializer = new ColladaSerializer();
+				colladaSerializer.init(project, user, fileName, model, schemaDefinition, fieldIgnoreMap, ifcEngineFactory, colladaSettings);
+				return colladaSerializer;
 			}
 		});
 		register(new ResultType("KMZ", "KMZ", "kmz", "application/vnd.google-earth.kmz", UseInCheckout.USE_NOT_IN_CHECKOUT, UserType.USER_TYPE, Type.MULTIPLE, DefaultSelected.FALSE, enabled.contains("KMZ")), new EmfSerializerCreator() {
 			@Override
 			public EmfSerializer create(Project project, User user, IfcModel model, String fileName) throws SerializerException {
-				return new KmzSerializer(project, user, fileName, model, schemaDefinition, fieldIgnoreMap, ifcEngineFactory, colladaSettings);
+				KmzSerializer kmzSerializer = new KmzSerializer();
+				kmzSerializer.init(project, user, fileName, model, schemaDefinition, fieldIgnoreMap, ifcEngineFactory, colladaSettings);
+				return kmzSerializer;
 			}
 		});
 		register(new ResultType("O3D_JSON", "WebGL", "o3djson", "appliction/json", UseInCheckout.USE_NOT_IN_CHECKOUT, UserType.USER_TYPE, Type.MULTIPLE, DefaultSelected.FALSE, enabled.contains("O3D_JSON")), new EmfSerializerCreator() {
 			@Override
 			public EmfSerializer create(Project project, User user, IfcModel model, String fileName) throws SerializerException {
-				return new O3dJsonSerializer(project, user, fileName, model, fieldIgnoreMap, schemaDefinition, ifcEngineFactory);
+				O3dJsonSerializer o3dJsonSerializer = new O3dJsonSerializer();
+				o3dJsonSerializer.init(project, user, fileName, model, fieldIgnoreMap, schemaDefinition, ifcEngineFactory);
+				return o3dJsonSerializer;
 			}
 		});
 		register(new ResultType("OBJECT_INFO", "Object Info", "html", "text/html", UseInCheckout.USE_NOT_IN_CHECKOUT, UserType.USER_TYPE, Type.SINGLE, DefaultSelected.FALSE, enabled.contains("OBJECT_INFO")), new EmfSerializerCreator() {
 			@Override
 			public EmfSerializer create(Project project, User user, IfcModel model, String fileName) {
-				return new ObjectInfoSerializer(project, user, fileName, model, fieldIgnoreMap);
+				ObjectInfoSerializer objectInfoSerializer = new ObjectInfoSerializer();
+				objectInfoSerializer.init(fileName, model);
+				return objectInfoSerializer;
 			}
 		});
 	}
@@ -185,5 +197,16 @@ public class EmfSerializerFactory {
 
 	public boolean resultTypeEnabled(String resultTypeName) {
 		return getResultType(resultTypeName).isEnabled();
+	}
+
+	public Set<String> getAllSerializerClassNames() {
+		Set<String> classNames = new HashSet<String>();
+		ServiceLoader<EmfSerializer> loader = ServiceLoader.load(EmfSerializer.class);
+		Iterator<EmfSerializer> iterator = loader.iterator();
+		while (iterator.hasNext()) {
+			EmfSerializer next = iterator.next();
+			classNames.add(next.getClass().getSimpleName());
+		}
+		return classNames;
 	}
 }
