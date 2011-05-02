@@ -14,10 +14,10 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 public abstract class BimModelSerializer extends EmfSerializer {
-	private final FieldIgnoreMap fieldIgnoreMap;
+	private FieldIgnoreMap fieldIgnoreMap;
 
-	public BimModelSerializer(String fileName, IfcModel model, FieldIgnoreMap fieldIgnoreMap) {
-		super(fileName, model);
+	public void init(String fileName, IfcModel model, FieldIgnoreMap fieldIgnoreMap) {
+		super.init(fileName, model);
 		this.fieldIgnoreMap = fieldIgnoreMap;
 	}
 

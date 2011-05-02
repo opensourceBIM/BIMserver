@@ -31,6 +31,7 @@ import nl.tue.buildingsmart.express.dictionary.EntityDefinition;
 import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
 
 import org.bimserver.emf.IdEObject;
+import org.bimserver.ifc.EmfSerializer;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcSerializer;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
@@ -48,7 +49,9 @@ import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
+import org.mangosdk.spi.ProviderFor;
 
+@ProviderFor(value=EmfSerializer.class)
 public class IfcStepSerializer extends IfcSerializer {
 	private static final EcorePackage ECORE_PACKAGE_INSTANCE = EcorePackage.eINSTANCE;
 	private static final String NULL = "NULL";
@@ -82,8 +85,15 @@ public class IfcStepSerializer extends IfcSerializer {
 	private Iterator<Long> iterator;
 	private UTFPrintWriter out;
 
+	public IfcStepSerializer() {
+	}
+	
 	public IfcStepSerializer(Project project, User user, String fileName, IfcModel model, SchemaDefinition schema) {
-		super(fileName, model, schema);
+		init(project, user, fileName, model, schema);
+	}
+	
+	public void init(Project project, User user, String fileName, IfcModel model, SchemaDefinition schema) {
+		super.init(fileName, model, schema);
 		if (user != null) {
 			setAuthor(user.getName());
 		}

@@ -34,8 +34,8 @@ import org.slf4j.LoggerFactory;
 public abstract class EmfSerializer {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(EmfSerializer.class);
-	protected final IfcModel model;
-	private final String fileName;
+	protected IfcModel model;
+	private String fileName;
 	private Mode mode;
 
 	protected static enum Mode {
@@ -45,7 +45,7 @@ public abstract class EmfSerializer {
 		FINISHED
 	}
 
-	public EmfSerializer(String fileName, IfcModel model) {
+	public void init(String fileName, IfcModel model) {
 		this.fileName = fileName;
 		this.model = model;
 		reset();
