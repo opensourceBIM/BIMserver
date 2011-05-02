@@ -193,6 +193,8 @@
           eType="#/0/Serializer" eOpposite="#/0/Serializer/settings"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="ignoreFiles" upperBound="-1"
           eType="#/0/IgnoreFile" eOpposite="#/0/IgnoreFile/settings"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="headerAddition" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="footerAddition" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Serializer">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

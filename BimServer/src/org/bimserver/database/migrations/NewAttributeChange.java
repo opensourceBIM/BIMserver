@@ -42,7 +42,7 @@ public class NewAttributeChange implements Change {
 						GrowingByteBuffer growingByteBuffer = new GrowingByteBuffer(buffer);
 						growingByteBuffer.position(growingByteBuffer.capacity() - 1);
 						if (eAttribute.isMany()) {
-							growingByteBuffer.putShort((short)0);
+							growingByteBuffer.putInt((short)0);
 						} else {
 							if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEString()) {
 								growingByteBuffer.putShort((short)-1);

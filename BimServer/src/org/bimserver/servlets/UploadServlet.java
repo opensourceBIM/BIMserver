@@ -65,7 +65,7 @@ public class UploadServlet extends HttpServlet {
 		String comment = null;
 		String type = null;
 		if (isMultipart) {
-			factory.setSizeThreshold(1024 * 1024 * 100); // 100 MB
+			factory.setSizeThreshold(1024 * 1024 * 300); // 300 MB
 			ServletFileUpload upload = new ServletFileUpload(factory);
 			try {
 				List<FileItem> items = (List<FileItem>) upload.parseRequest(request);

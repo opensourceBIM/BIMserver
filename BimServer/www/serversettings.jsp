@@ -39,6 +39,8 @@
 				service.setSettingCustomLogoAddress(request.getParameter("customLogo"));
 				service.setSettingSiteAddress(request.getParameter("siteAddress"));
 				service.setSettingCheckinMergingEnabled(request.getParameter("checkinMergingEnabled") != null);
+				service.setSettingHeaderAddition(request.getParameter("headerAddition"));
+				service.setSettingFooterAddition(request.getParameter("footerAddition"));
 				String enabledExportTypes = "";
 				Set<String> enabledTypes = new HashSet<String>();
 				for (ResultType resultType : loginManager.getService().getAllResultTypes()) {
@@ -77,6 +79,14 @@
 		<td><label for="customLogo">Custom logo address</label></td>
 		<td><input id="customLogo" name="customLogo" type="text"
 			size="80" value="<%=request.getParameter("customLogo") == null ? service.getSettingCustomLogoAddress() : request.getParameter("customLogo")%>"></input></td>
+	</tr>
+	<tr>
+		<td><label for="headerAddition">Header addition</label></td>
+		<td><textarea cols="60" rows="5" id="headerAddition" name="headerAddition"><%=request.getParameter("headerAddition") == null ? service.getSettingHeaderAddition() : request.getParameter("headerAddition")%></textarea></td>
+	</tr>
+	<tr>
+		<td><label for="footerAddition">Footer addition</label></td>
+		<td><textarea cols="60" rows="5" id="footerAddition" name="footerAddition"><%=request.getParameter("footerAddition") == null ? service.getSettingFooterAddition() : request.getParameter("footerAddition")%></textarea></td>
 	</tr>
 	<tr>
 		<td colspan="2" class="tabletitle">Registration</td>

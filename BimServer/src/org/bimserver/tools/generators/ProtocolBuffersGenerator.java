@@ -23,6 +23,8 @@ import org.apache.commons.io.FileUtils;
 import org.bimserver.shared.ServiceInterface;
 import org.bimserver.utils.StringUtils;
 
+import com.google.protobuf.ByteString;
+
 public class ProtocolBuffersGenerator {
 	private final Map<Class<?>, String> generatedClasses = new HashMap<Class<?>, String>();
 	private static final Set<String> methodsToIgnore = new HashSet<String>();
@@ -43,7 +45,7 @@ public class ProtocolBuffersGenerator {
 		new ProtocolBuffersGenerator().start();
 	}
 
-	private void start() {
+	public void start() {
 		File protoFile = new File("build/pb/service.proto");
 		generateProtoFile(protoFile);
 		try {
@@ -266,12 +268,16 @@ public class ProtocolBuffersGenerator {
 				if (method.getReturnType().isAssignableFrom(List.class)) {
 					Class<?> genericReturnType = getGenericReturnType(method);
 					if (genericReturnType != null) {
-						out.println("\t\t\t\tfor (" + genericReturnType.getName() + " o : " + sourceName + "." + method.getName() + "List()) {");
-						out.println("\t\t\t\t\t" + targetName + ".get" + fName + "().add(o);");
-						out.println("\t\t\t\t}");
+//						out.println("\t\t\t\tfor (" + genericReturnType.getName() + " o : " + sourceName + "." + method.getName() + "List()) {");
+//						out.println("\t\t\t\t\t" + targetName + ".get" + fName + "().add(o);");
+//						out.println("\t\t\t\t}");
 					}
 				} else if (method.getReturnType() == Date.class) {
 					out.println("\t\t\t\t" + targetName + ".set" + fName + "(new Date(" + sourceName + "." + method.getName() + "()));");
+				} else if (method.getReturnType() == Class.class) {
+					out.println("\t\t\t\t" + targetName + ".set" + fName + "(Class.forName(" + sourceName + "." + method.getName() + "()));");
+				} else if (method.getReturnType() == byte[].class) {
+					out.println("\t\t\t\t" + targetName + ".set" + fName + "(" + sourceName + "." + method.getName() + "().toByteArray());");
 				} else if (method.getReturnType().isEnum()) {
 					out.println("\t\t\t\t" + targetName + ".set" + fName + "(" + method.getReturnType().getName().replace("$", ".") + ".values()[" + sourceName + "." + method.getName() + "().ordinal()]);");
 				} else {
@@ -292,6 +298,8 @@ public class ProtocolBuffersGenerator {
 					out.println("\t\t\t}");
 				} else if (method.getReturnType() == Date.class) {
 					out.println("\t\t\t" + targetName + ".set" + fName + "(" + sourceName + "." + method.getName() + "().getTime());");
+				} else if (method.getReturnType() == byte[].class) {
+					out.println("\t\t\t" + targetName + ".set" + fName + "(ByteString.copyFrom(" + sourceName + "." + method.getName() + "()));");
 				} else if (method.getReturnType().isEnum()) {
 					out.println("\t\t\t" + targetName + ".set" + fName + "(" + method.getReturnType().getSimpleName() + ".values()[" + sourceName + "." + method.getName() + "().ordinal()]);");
 				} else {

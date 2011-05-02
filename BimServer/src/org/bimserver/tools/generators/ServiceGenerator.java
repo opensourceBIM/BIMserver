@@ -10,7 +10,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.apache.commons.io.FileUtils;
-import org.bimserver.generators.DataObjectGenerator;
+import org.bimserver.database.migrations.Schema;
 import org.bimserver.models.log.LogPackage;
 import org.bimserver.models.store.StorePackage;
 import org.eclipse.emf.ecore.EClassifier;
@@ -22,7 +22,7 @@ import com.google.common.base.Charsets;
 
 public class ServiceGenerator {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ServiceGenerator.class);
-	private File sourceFolder = new File("../Shared/src");
+	private File sourceFolder = new File("../Shared/generated");
 	private File packageFolder = new File(sourceFolder, "org" + File.separator + "bimserver" + File.separator + "interfaces" + File.separator + "objects");
 
 	public static void main(String[] args) {
@@ -32,13 +32,13 @@ public class ServiceGenerator {
 		new ServiceGenerator().generateDataObjects(ePackages);
 	}
 
-	private void generateDataObjects(Set<EPackage> ePackages) {
+	public void generateDataObjects(Set<EPackage> ePackages) {
 		try {
 			FileUtils.forceMkdir(packageFolder);
 		} catch (IOException e) {
 			LOGGER.error("", e);
 		}
-		DataObjectGenerator dataObjectGenerator = new DataObjectGenerator();
+		ServiceInterfaceObjectGenerator dataObjectGenerator = new ServiceInterfaceObjectGenerator();
 		for (EPackage ePackage : ePackages) {
 			for (EClassifier eClassifier : ePackage.getEClassifiers()) {
 				String generated = dataObjectGenerator.generate(eClassifier);

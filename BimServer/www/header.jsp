@@ -74,3 +74,4 @@ You are logged in as: <a href="user.jsp?uoid=<%=loginManager.getService().getLog
 %>
 </div>
 <div class="main">
+<%=loginManager.getService().getSettingHeaderAddition() %>
