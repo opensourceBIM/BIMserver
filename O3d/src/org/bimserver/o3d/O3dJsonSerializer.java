@@ -11,6 +11,7 @@ import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
 
 import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.BimModelSerializer;
+import org.bimserver.ifc.EmfSerializer;
 import org.bimserver.ifc.FieldIgnoreMap;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.SerializerException;
@@ -41,21 +42,23 @@ import org.bimserver.models.store.Project;
 import org.bimserver.models.store.User;
 import org.codehaus.jettison.json.JSONException;
 import org.eclipse.emf.ecore.EObject;
+import org.mangosdk.spi.ProviderFor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.common.base.Charsets;
 
+@ProviderFor(value=EmfSerializer.class)
 public class O3dJsonSerializer extends BimModelSerializer {
 	private static final Logger LOGGER = LoggerFactory.getLogger(O3dJsonSerializer.class);
-	private final SchemaDefinition schemaDefinition;
-	private final FailSafeIfcEngine ifcEngine;
+	private SchemaDefinition schemaDefinition;
+	private FailSafeIfcEngine ifcEngine;
 	private int convertCounter;
-	private final Project project;
-	private final User user;
+	private Project project;
+	private User user;
 
-	public O3dJsonSerializer(Project project, User user, String fileName, IfcModel model, FieldIgnoreMap fieldIgnoreMap, SchemaDefinition schemaDefinition, IfcEngineFactory ifcEngineFactory) throws SerializerException {
-		super(fileName, model, fieldIgnoreMap);
+	public void init(Project project, User user, String fileName, IfcModel model, FieldIgnoreMap fieldIgnoreMap, SchemaDefinition schemaDefinition, IfcEngineFactory ifcEngineFactory) throws SerializerException {
+		super.init(fileName, model, fieldIgnoreMap);
 		this.project = project;
 		this.user = user;
 		this.schemaDefinition = schemaDefinition;
