@@ -21,6 +21,7 @@ public class ResultType {
 	private String name;
 
 	private boolean enabled;
+	private Class<?> serializerClass;
 
 	public ResultType() {
 	}
@@ -66,7 +67,7 @@ public class ResultType {
 	}
 
 	public Class<?> getSerializerClass() {
-		return null;
+		return serializerClass;
 	}
 
 	public String getExtension() {
@@ -139,5 +140,9 @@ public class ResultType {
 
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
+	}
+
+	public void setSerializerClass(Class<?> serializerClass) {
+		this.serializerClass = serializerClass;
 	}
 }
