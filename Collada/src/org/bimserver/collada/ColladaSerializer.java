@@ -14,6 +14,7 @@ import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
 
 import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.BimModelSerializer;
+import org.bimserver.ifc.EmfSerializer;
 import org.bimserver.ifc.FieldIgnoreMap;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.PackageDefinition;
@@ -76,25 +77,26 @@ import org.bimserver.models.store.SIPrefix;
 import org.bimserver.models.store.User;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.mangosdk.spi.ProviderFor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+@ProviderFor(value=EmfSerializer.class)
 public class ColladaSerializer extends BimModelSerializer {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ColladaSerializer.class);
-	private final FailSafeIfcEngine ifcEngine;
-	private final SchemaDefinition schemaDefinition;
-	private final Map<String, Set<String>> converted = new HashMap<String, Set<String>>();
-	private final Project project;
-	private final User user;
-	private final SIPrefix lengthUnitPrefix;
-	private final PackageDefinition packageDefinition;
+	private FailSafeIfcEngine ifcEngine;
+	private SchemaDefinition schemaDefinition;
+	private Map<String, Set<String>> converted = new HashMap<String, Set<String>>();
+	private Project project;
+	private User user;
+	private SIPrefix lengthUnitPrefix;
+	private PackageDefinition packageDefinition;
+	private List<String> surfaceStyleIds;
 
-	private final List<String> surfaceStyleIds;
-
-	public ColladaSerializer(Project project, User user, String fileName, IfcModel model, SchemaDefinition schemaDefinition,
+	public void init(Project project, User user, String fileName, IfcModel model, SchemaDefinition schemaDefinition,
 			FieldIgnoreMap fieldIgnoreMap, IfcEngineFactory ifcEngineFactory, PackageDefinition packageDefinition)
 			throws SerializerException {
-		super(fileName, model, fieldIgnoreMap);
+		super.init(fileName, model, fieldIgnoreMap);
 		this.project = project;
 		this.user = user;
 		this.schemaDefinition = schemaDefinition;

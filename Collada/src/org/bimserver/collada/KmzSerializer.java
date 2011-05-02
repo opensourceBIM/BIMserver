@@ -9,6 +9,7 @@ import java.util.zip.ZipOutputStream;
 import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
 
 import org.bimserver.ifc.BimModelSerializer;
+import org.bimserver.ifc.EmfSerializer;
 import org.bimserver.ifc.FieldIgnoreMap;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.PackageDefinition;
@@ -16,20 +17,23 @@ import org.bimserver.ifc.SerializerException;
 import org.bimserver.ifcengine.IfcEngineFactory;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.User;
+import org.mangosdk.spi.ProviderFor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+@ProviderFor(value=EmfSerializer.class)
 public class KmzSerializer extends BimModelSerializer {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(KmzSerializer.class);
-	private final ColladaSerializer ifcToCollada;
-	private final Project project;
+	private ColladaSerializer ifcToCollada;
+	private Project project;
 
-	public KmzSerializer(Project project, User user, String fileName, IfcModel model, SchemaDefinition schemaDefinition, FieldIgnoreMap fieldIgnoreMap, IfcEngineFactory ifcEngineFactory, PackageDefinition packageDefinition) throws SerializerException {
-		super(fileName, model, fieldIgnoreMap);
+	public void init(Project project, User user, String fileName, IfcModel model, SchemaDefinition schemaDefinition, FieldIgnoreMap fieldIgnoreMap, IfcEngineFactory ifcEngineFactory, PackageDefinition packageDefinition) throws SerializerException {
+		super.init(fileName, model, fieldIgnoreMap);
 		this.project = project;
 		try {
-			ifcToCollada = new ColladaSerializer(project, user, fileName, model, schemaDefinition, fieldIgnoreMap, ifcEngineFactory, packageDefinition);
+			ifcToCollada = new ColladaSerializer();
+			ifcToCollada.init(project, user, fileName, model, schemaDefinition, fieldIgnoreMap, ifcEngineFactory, packageDefinition);
 		} catch (SerializerException e) {
 			throw new SerializerException(e);
 		}
