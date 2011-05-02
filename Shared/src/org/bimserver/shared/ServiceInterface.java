@@ -448,9 +448,25 @@ public interface ServiceInterface {
 	@WebMethod(action = "getSettingsCustomLogoAddress")
 	String getSettingCustomLogoAddress() throws UserException, ServerException;
 
+	@WebMethod(action = "getSettingHeaderAddition")
+	String getSettingHeaderAddition() throws UserException, ServerException;
+
+	@WebMethod(action = "getSettingFooterAddition")
+	String getSettingFooterAddition() throws UserException, ServerException;
+
 	@WebMethod(action = "setSettingsCustomLogoAddress")
 	void setSettingCustomLogoAddress(
 			@WebParam(name = "customLogoAddress", partName = "setSettingsCustomLogoAddress.customLogoAddress") String customLogoAddress)
+			throws UserException, ServerException;
+
+	@WebMethod(action = "setSettingHeaderAddition")
+	void setSettingHeaderAddition (
+			@WebParam(name = "headerAddition", partName = "setSettingHeaderAddition.headerAddition") String headerAddition)
+			throws UserException, ServerException;
+
+	@WebMethod(action = "setSettingFooterAddition")
+	void setSettingFooterAddition(
+			@WebParam(name = "footerAddition", partName = "setSettingFooterAddition.footerAddition") String footerAddition)
 			throws UserException, ServerException;
 
 	@WebMethod(action = "getSettingsEmailSenderAddress")
@@ -570,7 +586,7 @@ public interface ServiceInterface {
 	void migrateDatabase() throws ServerException, UserException;
 
 	@WebMethod(action = "getResultTypeByName")
-	ResultType getResultTypeByName(String resultTypeName);
+	ResultType getResultTypeByName(String resultTypeName) throws UserException;
 	
 	@WebMethod(action = "getAllSerializers")
 	List<SSerializer> getAllSerializers() throws UserException, ServerException;
@@ -595,4 +611,13 @@ public interface ServiceInterface {
 	
 	@WebMethod(action = "updateIgnoreFile")
 	void updateIgnoreFile(SIgnoreFile ignoreFile) throws UserException, ServerException;
+	
+	@WebMethod(action = "deleteIgnoreFile")
+	void deleteIgnoreFile(long ifid) throws UserException, ServerException;
+
+	@WebMethod(action = "deleteSerializer")
+	void deleteSerializer(long sid) throws UserException, ServerException;
+	
+	@WebMethod(action = "getAllSerializerClassNames")
+	Set<String> getAllSerializerClassNames() throws UserException;
 }
