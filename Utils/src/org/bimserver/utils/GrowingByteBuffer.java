@@ -10,11 +10,11 @@ public class GrowingByteBuffer {
 	}
 	
 	public GrowingByteBuffer(ByteBuffer buffer) {
+		byteBuffer = ByteBuffer.wrap(buffer.array());
 		buffer.position(0);
-		put(buffer);
 	}
 	
-	private void put(ByteBuffer buffer) {
+	public void put(ByteBuffer buffer) {
 		ensureExtraCapacity(buffer.limit());
 		byteBuffer.put(buffer);
 	}
