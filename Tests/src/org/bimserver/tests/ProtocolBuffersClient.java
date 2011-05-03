@@ -12,7 +12,6 @@ import org.bimserver.pb.Service.GetRevisionRequest;
 import org.bimserver.pb.Service.GetRevisionResponse;
 import org.bimserver.pb.Service.LoginRequest;
 import org.bimserver.pb.Service.LoginResponse;
-import org.bimserver.pb.Service.ResultType;
 import org.bimserver.pb.Service.SDownloadResult;
 import org.bimserver.pb.Service.SProject;
 import org.bimserver.pb.Service.ServiceInterface;

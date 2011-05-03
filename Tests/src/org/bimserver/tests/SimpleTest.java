@@ -9,7 +9,6 @@ import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
 import org.bimserver.ifc.FileFieldIgnoreMap;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.SchemaLoader;
-import org.bimserver.ifc.database.IfcDatabase;
 import org.bimserver.ifc.file.reader.IfcStepDeserializer;
 import org.bimserver.ifc.file.reader.IncorrectIfcFileException;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
@@ -34,8 +33,7 @@ public class SimpleTest {
 		try {
 			fastIfcFileReader.read(TestFile.HAUS_SOURCE_FILE.getFile());
 			IfcModel model = fastIfcFileReader.getModel();
-			IfcDatabase database = new IfcDatabase(model, fieldIgnoreMap);
-            List<IfcBuildingStorey> stories = database.getAll(IfcBuildingStorey.class);
+            List<IfcBuildingStorey> stories = model.getAll(IfcBuildingStorey.class);
             Map<Float, IfcBuildingStorey> orderedStories = new TreeMap<Float, IfcBuildingStorey>();
             for (IfcBuildingStorey storey : stories) {
                 orderedStories.put(storey.getElevation(), storey);
