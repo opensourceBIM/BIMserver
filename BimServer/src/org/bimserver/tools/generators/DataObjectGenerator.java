@@ -88,7 +88,12 @@ public class DataObjectGenerator {
 		for (GenPackage genPackage : genPackages) {
 			genPackage.prepareCache();
 
-			generateFile(genModel, basedir, genPackage);
+			genModel.setImportManager(new ImportManager("org.bimserver.models"));
+			
+			String packageClassPathImpl = MODEL_PACKAGE + genPackage.getPackageName() + ".impl.";
+			packageClassPathImpl = packageClassPathImpl.replace(".", File.separator) + genPackage.getPackageClassName() + ".java";
+			VirtualFile packageVirtualFileImpl = basedir.createFile(packageClassPathImpl);
+			packageVirtualFileImpl.setStringContent(new PackageClass().generate(new Object[] { genPackage, false, true }));
 
 			genModel.setImportManager(new ImportManager("org.bimserver.models"));
 
@@ -179,15 +184,6 @@ public class DataObjectGenerator {
 		}
 	}
 
-	private void generateFile(GenModel genModel, VirtualFile basedir, GenPackage genPackage) {
-		genModel.setImportManager(new ImportManager("org.bimserver.models"));
-
-		String packageClassPathImpl = MODEL_PACKAGE + genPackage.getPackageName() + ".impl.";
-		packageClassPathImpl = packageClassPathImpl.replace(".", File.separator) + genPackage.getPackageClassName() + ".java";
-		VirtualFile packageVirtualFileImpl = basedir.createFile(packageClassPathImpl);
-		packageVirtualFileImpl.setStringContent(new PackageClass().generate(new Object[] { genPackage, false, true }));
-	}
-
 	private Set<GenPackage> createGenPackages(GenModel genModel, VirtualFile basedir) throws DatabaseException {
 		Set<GenPackage> result = new HashSet<GenPackage>();
 		ResourceSetImpl resourceSet = new ResourceSetImpl();
@@ -198,9 +194,9 @@ public class DataObjectGenerator {
 			result.add(genPackage);
 			genPackage.setPrefix(StringUtils.firstUpperCase(ePackage.getName()));
 			genPackage.setBasePackage("org.bimserver.models");
-			genPackage.setEcorePackage(ePackage);
-			genPackage.setLoadInitialization(true);
 			genModel.getGenPackages().add(genPackage);
+			genPackage.initialize(ePackage);
+			genPackage.setLoadInitialization(true);
 
 			genPackage.setResource(GenResourceKind.NONE_LITERAL);
 			for (EClassifier eClassifier : ePackage.getEClassifiers()) {
@@ -230,7 +226,7 @@ public class DataObjectGenerator {
 					genPackage.getGenDataTypes().add(genDataType);
 				}
 			}
-			Resource resource = resourceSet.createResource(URI.createURI("file.ecore"));
+			Resource resource = resourceSet.createResource(URI.createURI(ePackage.getName() + ".ecore"));
 			resource.getContents().add(ePackage);
 			VirtualFile ecoreFile = basedir.createFile(MODEL_PACKAGE.replace(".", "/") + ePackage.getName() + "/impl/" + ePackage.getName() + ".ecore");
 			resources.put(ecoreFile, resource);

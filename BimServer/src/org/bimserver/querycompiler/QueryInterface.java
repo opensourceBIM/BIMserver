@@ -2,8 +2,8 @@ package org.bimserver.querycompiler;
 
 import java.io.PrintWriter;
 
-import org.bimserver.ifc.database.IfcDatabase;
+import org.bimserver.ifc.IfcModel;
 
 public interface QueryInterface {
-	void query(IfcDatabase model, PrintWriter out);
+	void query(IfcModel model, PrintWriter out);
 }
