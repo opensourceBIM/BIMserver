@@ -16,7 +16,6 @@ import org.bimserver.ifc.EmfSerializer;
 import org.bimserver.ifc.FieldIgnoreMap;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.SerializerException;
-import org.bimserver.ifc.database.IfcDatabase;
 import org.bimserver.ifc.file.writer.IfcStepSerializer;
 import org.bimserver.ifcengine.FailSafeIfcEngine;
 import org.bimserver.ifcengine.Geometry;
@@ -152,13 +151,12 @@ public class O3dTgzSerializer extends BimModelSerializer {
 		scene.addMaterial(rampMaterial);
 		scene.addMaterial(stairMaterial);
 		scene.addMaterial(stairFlightMaterial);
-		IfcDatabase database = new IfcDatabase(model, getFieldIgnoreMap());
 		@SuppressWarnings("rawtypes")
 		Class[] eClasses = new Class[] { IfcSlab.class, IfcRoof.class, IfcWall.class, IfcWallStandardCase.class, IfcWindow.class, IfcDoor.class, IfcColumn.class, IfcRamp.class,
 				IfcStair.class, IfcStairFlight.class };
 		try {
 			for (Class<? extends EObject> eClass : eClasses) {
-				for (Object object : database.getAll(eClass)) {
+				for (Object object : model.getAll(eClass)) {
 					int fieldId1 = jsonFactory.incCounter();
 					int fieldId2 = jsonFactory.incCounter();
 					int fieldId3 = jsonFactory.incCounter();
