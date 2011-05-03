@@ -1,9 +1,14 @@
 package org.bimserver.utils;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.net.URLDecoder;
+
+import com.google.common.base.Charsets;
 
 /******************************************************************************
  * (c) Copyright bimserver.org 2009
@@ -112,5 +117,25 @@ public class StringUtils {
 
 	public static String firstLowerCase(String name) {
 		return name.substring(0, 1).toLowerCase() + name.substring(1);
+	}
+
+	public static String readFromFile(File file) {
+		try {
+			StringBuilder sb = new StringBuilder();
+			FileInputStream fis = new FileInputStream(file);
+			byte[] buffer = new byte[1024];
+			int red = fis.read(buffer);
+			while (red != -1) {
+				sb.append(new String(buffer, 0, red, Charsets.UTF_8));
+				red = fis.read(buffer);
+			}
+			fis.close();
+			return sb.toString();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 }
