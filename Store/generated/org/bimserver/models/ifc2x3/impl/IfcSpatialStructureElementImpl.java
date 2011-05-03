@@ -56,13 +56,6 @@ public class IfcSpatialStructureElementImpl extends IfcProductImpl implements If
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	protected IfcSpatialStructureElementImpl()
 	{
 		super();
@@ -76,7 +69,7 @@ public class IfcSpatialStructureElementImpl extends IfcProductImpl implements If
 	@Override
 	protected EClass eStaticClass()
 	{
-		return Ifc2x3Package.Literals.IFC_SPATIAL_STRUCTURE_ELEMENT;
+		return Ifc2x3Package.eINSTANCE.getIfcSpatialStructureElement();
 	}
 
 	/**
@@ -86,7 +79,7 @@ public class IfcSpatialStructureElementImpl extends IfcProductImpl implements If
 	 */
 	public String getLongName()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_SPATIAL_STRUCTURE_ELEMENT__LONG_NAME, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcSpatialStructureElement_LongName(), true);
 	}
 
 	/**
@@ -96,7 +89,7 @@ public class IfcSpatialStructureElementImpl extends IfcProductImpl implements If
 	 */
 	public void setLongName(String newLongName)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_SPATIAL_STRUCTURE_ELEMENT__LONG_NAME, newLongName);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcSpatialStructureElement_LongName(), newLongName);
 	}
 
 	/**
@@ -106,7 +99,7 @@ public class IfcSpatialStructureElementImpl extends IfcProductImpl implements If
 	 */
 	public void unsetLongName()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_SPATIAL_STRUCTURE_ELEMENT__LONG_NAME);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcSpatialStructureElement_LongName());
 	}
 
 	/**
@@ -116,7 +109,7 @@ public class IfcSpatialStructureElementImpl extends IfcProductImpl implements If
 	 */
 	public boolean isSetLongName()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_SPATIAL_STRUCTURE_ELEMENT__LONG_NAME);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcSpatialStructureElement_LongName());
 	}
 
 	/**
@@ -126,7 +119,7 @@ public class IfcSpatialStructureElementImpl extends IfcProductImpl implements If
 	 */
 	public IfcElementCompositionEnum getCompositionType()
 	{
-		return (IfcElementCompositionEnum)eGet(Ifc2x3Package.Literals.IFC_SPATIAL_STRUCTURE_ELEMENT__COMPOSITION_TYPE, true);
+		return (IfcElementCompositionEnum)eGet(Ifc2x3Package.eINSTANCE.getIfcSpatialStructureElement_CompositionType(), true);
 	}
 
 	/**
@@ -136,7 +129,7 @@ public class IfcSpatialStructureElementImpl extends IfcProductImpl implements If
 	 */
 	public void setCompositionType(IfcElementCompositionEnum newCompositionType)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_SPATIAL_STRUCTURE_ELEMENT__COMPOSITION_TYPE, newCompositionType);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcSpatialStructureElement_CompositionType(), newCompositionType);
 	}
 
 	/**
@@ -147,7 +140,7 @@ public class IfcSpatialStructureElementImpl extends IfcProductImpl implements If
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelReferencedInSpatialStructure> getReferencesElements()
 	{
-		return (EList<IfcRelReferencedInSpatialStructure>)eGet(Ifc2x3Package.Literals.IFC_SPATIAL_STRUCTURE_ELEMENT__REFERENCES_ELEMENTS, true);
+		return (EList<IfcRelReferencedInSpatialStructure>)eGet(Ifc2x3Package.eINSTANCE.getIfcSpatialStructureElement_ReferencesElements(), true);
 	}
 
 	/**
@@ -158,7 +151,7 @@ public class IfcSpatialStructureElementImpl extends IfcProductImpl implements If
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelServicesBuildings> getServicedBySystems()
 	{
-		return (EList<IfcRelServicesBuildings>)eGet(Ifc2x3Package.Literals.IFC_SPATIAL_STRUCTURE_ELEMENT__SERVICED_BY_SYSTEMS, true);
+		return (EList<IfcRelServicesBuildings>)eGet(Ifc2x3Package.eINSTANCE.getIfcSpatialStructureElement_ServicedBySystems(), true);
 	}
 
 	/**
@@ -169,7 +162,7 @@ public class IfcSpatialStructureElementImpl extends IfcProductImpl implements If
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelContainedInSpatialStructure> getContainsElements()
 	{
-		return (EList<IfcRelContainedInSpatialStructure>)eGet(Ifc2x3Package.Literals.IFC_SPATIAL_STRUCTURE_ELEMENT__CONTAINS_ELEMENTS, true);
+		return (EList<IfcRelContainedInSpatialStructure>)eGet(Ifc2x3Package.eINSTANCE.getIfcSpatialStructureElement_ContainsElements(), true);
 	}
 
 } //IfcSpatialStructureElementImpl

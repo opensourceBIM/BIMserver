@@ -51,13 +51,6 @@ public class IfcTextStyleImpl extends IfcPresentationStyleImpl implements IfcTex
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	protected IfcTextStyleImpl()
 	{
 		super();
@@ -71,7 +64,7 @@ public class IfcTextStyleImpl extends IfcPresentationStyleImpl implements IfcTex
 	@Override
 	protected EClass eStaticClass()
 	{
-		return Ifc2x3Package.Literals.IFC_TEXT_STYLE;
+		return Ifc2x3Package.eINSTANCE.getIfcTextStyle();
 	}
 
 	/**
@@ -81,7 +74,7 @@ public class IfcTextStyleImpl extends IfcPresentationStyleImpl implements IfcTex
 	 */
 	public IfcCharacterStyleSelect getTextCharacterAppearance()
 	{
-		return (IfcCharacterStyleSelect)eGet(Ifc2x3Package.Literals.IFC_TEXT_STYLE__TEXT_CHARACTER_APPEARANCE, true);
+		return (IfcCharacterStyleSelect)eGet(Ifc2x3Package.eINSTANCE.getIfcTextStyle_TextCharacterAppearance(), true);
 	}
 
 	/**
@@ -91,7 +84,7 @@ public class IfcTextStyleImpl extends IfcPresentationStyleImpl implements IfcTex
 	 */
 	public void setTextCharacterAppearance(IfcCharacterStyleSelect newTextCharacterAppearance)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_TEXT_STYLE__TEXT_CHARACTER_APPEARANCE, newTextCharacterAppearance);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcTextStyle_TextCharacterAppearance(), newTextCharacterAppearance);
 	}
 
 	/**
@@ -101,7 +94,7 @@ public class IfcTextStyleImpl extends IfcPresentationStyleImpl implements IfcTex
 	 */
 	public void unsetTextCharacterAppearance()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_TEXT_STYLE__TEXT_CHARACTER_APPEARANCE);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcTextStyle_TextCharacterAppearance());
 	}
 
 	/**
@@ -111,7 +104,7 @@ public class IfcTextStyleImpl extends IfcPresentationStyleImpl implements IfcTex
 	 */
 	public boolean isSetTextCharacterAppearance()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_TEXT_STYLE__TEXT_CHARACTER_APPEARANCE);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcTextStyle_TextCharacterAppearance());
 	}
 
 	/**
@@ -121,7 +114,7 @@ public class IfcTextStyleImpl extends IfcPresentationStyleImpl implements IfcTex
 	 */
 	public IfcTextStyleSelect getTextStyle()
 	{
-		return (IfcTextStyleSelect)eGet(Ifc2x3Package.Literals.IFC_TEXT_STYLE__TEXT_STYLE, true);
+		return (IfcTextStyleSelect)eGet(Ifc2x3Package.eINSTANCE.getIfcTextStyle_TextStyle(), true);
 	}
 
 	/**
@@ -131,7 +124,7 @@ public class IfcTextStyleImpl extends IfcPresentationStyleImpl implements IfcTex
 	 */
 	public void setTextStyle(IfcTextStyleSelect newTextStyle)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_TEXT_STYLE__TEXT_STYLE, newTextStyle);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcTextStyle_TextStyle(), newTextStyle);
 	}
 
 	/**
@@ -141,7 +134,7 @@ public class IfcTextStyleImpl extends IfcPresentationStyleImpl implements IfcTex
 	 */
 	public void unsetTextStyle()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_TEXT_STYLE__TEXT_STYLE);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcTextStyle_TextStyle());
 	}
 
 	/**
@@ -151,7 +144,7 @@ public class IfcTextStyleImpl extends IfcPresentationStyleImpl implements IfcTex
 	 */
 	public boolean isSetTextStyle()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_TEXT_STYLE__TEXT_STYLE);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcTextStyle_TextStyle());
 	}
 
 	/**
@@ -161,7 +154,7 @@ public class IfcTextStyleImpl extends IfcPresentationStyleImpl implements IfcTex
 	 */
 	public IfcTextFontSelect getTextFontStyle()
 	{
-		return (IfcTextFontSelect)eGet(Ifc2x3Package.Literals.IFC_TEXT_STYLE__TEXT_FONT_STYLE, true);
+		return (IfcTextFontSelect)eGet(Ifc2x3Package.eINSTANCE.getIfcTextStyle_TextFontStyle(), true);
 	}
 
 	/**
@@ -171,7 +164,7 @@ public class IfcTextStyleImpl extends IfcPresentationStyleImpl implements IfcTex
 	 */
 	public void setTextFontStyle(IfcTextFontSelect newTextFontStyle)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_TEXT_STYLE__TEXT_FONT_STYLE, newTextFontStyle);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcTextStyle_TextFontStyle(), newTextFontStyle);
 	}
 
 } //IfcTextStyleImpl

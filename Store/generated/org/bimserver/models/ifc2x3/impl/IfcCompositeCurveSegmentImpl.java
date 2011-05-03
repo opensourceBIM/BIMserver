@@ -56,13 +56,6 @@ public class IfcCompositeCurveSegmentImpl extends IfcGeometricRepresentationItem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	protected IfcCompositeCurveSegmentImpl()
 	{
 		super();
@@ -76,7 +69,7 @@ public class IfcCompositeCurveSegmentImpl extends IfcGeometricRepresentationItem
 	@Override
 	protected EClass eStaticClass()
 	{
-		return Ifc2x3Package.Literals.IFC_COMPOSITE_CURVE_SEGMENT;
+		return Ifc2x3Package.eINSTANCE.getIfcCompositeCurveSegment();
 	}
 
 	/**
@@ -86,7 +79,7 @@ public class IfcCompositeCurveSegmentImpl extends IfcGeometricRepresentationItem
 	 */
 	public IfcTransitionCode getTransition()
 	{
-		return (IfcTransitionCode)eGet(Ifc2x3Package.Literals.IFC_COMPOSITE_CURVE_SEGMENT__TRANSITION, true);
+		return (IfcTransitionCode)eGet(Ifc2x3Package.eINSTANCE.getIfcCompositeCurveSegment_Transition(), true);
 	}
 
 	/**
@@ -96,7 +89,7 @@ public class IfcCompositeCurveSegmentImpl extends IfcGeometricRepresentationItem
 	 */
 	public void setTransition(IfcTransitionCode newTransition)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_COMPOSITE_CURVE_SEGMENT__TRANSITION, newTransition);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcCompositeCurveSegment_Transition(), newTransition);
 	}
 
 	/**
@@ -106,7 +99,7 @@ public class IfcCompositeCurveSegmentImpl extends IfcGeometricRepresentationItem
 	 */
 	public Tristate getSameSense()
 	{
-		return (Tristate)eGet(Ifc2x3Package.Literals.IFC_COMPOSITE_CURVE_SEGMENT__SAME_SENSE, true);
+		return (Tristate)eGet(Ifc2x3Package.eINSTANCE.getIfcCompositeCurveSegment_SameSense(), true);
 	}
 
 	/**
@@ -116,7 +109,7 @@ public class IfcCompositeCurveSegmentImpl extends IfcGeometricRepresentationItem
 	 */
 	public void setSameSense(Tristate newSameSense)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_COMPOSITE_CURVE_SEGMENT__SAME_SENSE, newSameSense);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcCompositeCurveSegment_SameSense(), newSameSense);
 	}
 
 	/**
@@ -126,7 +119,7 @@ public class IfcCompositeCurveSegmentImpl extends IfcGeometricRepresentationItem
 	 */
 	public IfcCurve getParentCurve()
 	{
-		return (IfcCurve)eGet(Ifc2x3Package.Literals.IFC_COMPOSITE_CURVE_SEGMENT__PARENT_CURVE, true);
+		return (IfcCurve)eGet(Ifc2x3Package.eINSTANCE.getIfcCompositeCurveSegment_ParentCurve(), true);
 	}
 
 	/**
@@ -136,7 +129,7 @@ public class IfcCompositeCurveSegmentImpl extends IfcGeometricRepresentationItem
 	 */
 	public void setParentCurve(IfcCurve newParentCurve)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_COMPOSITE_CURVE_SEGMENT__PARENT_CURVE, newParentCurve);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcCompositeCurveSegment_ParentCurve(), newParentCurve);
 	}
 
 	/**
@@ -147,7 +140,7 @@ public class IfcCompositeCurveSegmentImpl extends IfcGeometricRepresentationItem
 	@SuppressWarnings("unchecked")
 	public EList<IfcCompositeCurve> getUsingCurves()
 	{
-		return (EList<IfcCompositeCurve>)eGet(Ifc2x3Package.Literals.IFC_COMPOSITE_CURVE_SEGMENT__USING_CURVES, true);
+		return (EList<IfcCompositeCurve>)eGet(Ifc2x3Package.eINSTANCE.getIfcCompositeCurveSegment_UsingCurves(), true);
 	}
 
 	/**
@@ -157,7 +150,7 @@ public class IfcCompositeCurveSegmentImpl extends IfcGeometricRepresentationItem
 	 */
 	public int getDim()
 	{
-		return (Integer)eGet(Ifc2x3Package.Literals.IFC_COMPOSITE_CURVE_SEGMENT__DIM, true);
+		return (Integer)eGet(Ifc2x3Package.eINSTANCE.getIfcCompositeCurveSegment_Dim(), true);
 	}
 
 	/**
@@ -167,7 +160,7 @@ public class IfcCompositeCurveSegmentImpl extends IfcGeometricRepresentationItem
 	 */
 	public void setDim(int newDim)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_COMPOSITE_CURVE_SEGMENT__DIM, newDim);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcCompositeCurveSegment_Dim(), newDim);
 	}
 
 } //IfcCompositeCurveSegmentImpl

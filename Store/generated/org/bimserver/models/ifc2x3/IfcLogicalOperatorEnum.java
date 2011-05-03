@@ -40,38 +40,31 @@ public enum IfcLogicalOperatorEnum implements Enumerator
 	 * The '<em><b>NULL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NULL
+	 * @see #NULL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NULL_LITERAL(0, "NULL", "NULL"),
+	NULL(0, "NULL", "NULL"),
 
 	/**
 	 * The '<em><b>LOGICALOR</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #LOGICALOR
+	 * @see #LOGICALOR_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	LOGICALOR_LITERAL(1, "LOGICALOR", "LOGICALOR"),
+	LOGICALOR(1, "LOGICALOR", "LOGICALOR"),
 
 	/**
 	 * The '<em><b>LOGICALAND</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #LOGICALAND
+	 * @see #LOGICALAND_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	LOGICALAND_LITERAL(2, "LOGICALAND", "LOGICALAND");
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
+	LOGICALAND(2, "LOGICALAND", "LOGICALAND");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -81,12 +74,12 @@ public enum IfcLogicalOperatorEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NULL_LITERAL
+	 * @see #NULL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NULL = 0;
+	public static final int NULL_VALUE = 0;
 
 	/**
 	 * The '<em><b>LOGICALOR</b></em>' literal value.
@@ -96,12 +89,12 @@ public enum IfcLogicalOperatorEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #LOGICALOR_LITERAL
+	 * @see #LOGICALOR
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int LOGICALOR = 1;
+	public static final int LOGICALOR_VALUE = 1;
 
 	/**
 	 * The '<em><b>LOGICALAND</b></em>' literal value.
@@ -111,12 +104,12 @@ public enum IfcLogicalOperatorEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #LOGICALAND_LITERAL
+	 * @see #LOGICALAND
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int LOGICALAND = 2;
+	public static final int LOGICALAND_VALUE = 2;
 
 	/**
 	 * An array of all the '<em><b>Ifc Logical Operator Enum</b></em>' enumerators.
@@ -125,11 +118,10 @@ public enum IfcLogicalOperatorEnum implements Enumerator
 	 * @generated
 	 */
 	private static final IfcLogicalOperatorEnum[] VALUES_ARRAY =
-		new IfcLogicalOperatorEnum[]
-		{
-			NULL_LITERAL,
-			LOGICALOR_LITERAL,
-			LOGICALAND_LITERAL,
+		new IfcLogicalOperatorEnum[] {
+			NULL,
+			LOGICALOR,
+			LOGICALAND,
 		};
 
 	/**
@@ -148,11 +140,9 @@ public enum IfcLogicalOperatorEnum implements Enumerator
 	 */
 	public static IfcLogicalOperatorEnum get(String literal)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcLogicalOperatorEnum result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal))
-			{
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -167,11 +157,9 @@ public enum IfcLogicalOperatorEnum implements Enumerator
 	 */
 	public static IfcLogicalOperatorEnum getByName(String name)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcLogicalOperatorEnum result = VALUES_ARRAY[i];
-			if (result.getName().equals(name))
-			{
+			if (result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -186,11 +174,10 @@ public enum IfcLogicalOperatorEnum implements Enumerator
 	 */
 	public static IfcLogicalOperatorEnum get(int value)
 	{
-		switch (value)
-		{
-			case NULL: return NULL_LITERAL;
-			case LOGICALOR: return LOGICALOR_LITERAL;
-			case LOGICALAND: return LOGICALAND_LITERAL;
+		switch (value) {
+			case NULL_VALUE: return NULL;
+			case LOGICALOR_VALUE: return LOGICALOR;
+			case LOGICALAND_VALUE: return LOGICALAND;
 		}
 		return null;
 	}

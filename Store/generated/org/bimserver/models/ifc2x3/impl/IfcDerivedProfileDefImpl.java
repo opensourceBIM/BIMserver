@@ -50,13 +50,6 @@ public class IfcDerivedProfileDefImpl extends IfcProfileDefImpl implements IfcDe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	protected IfcDerivedProfileDefImpl()
 	{
 		super();
@@ -70,7 +63,7 @@ public class IfcDerivedProfileDefImpl extends IfcProfileDefImpl implements IfcDe
 	@Override
 	protected EClass eStaticClass()
 	{
-		return Ifc2x3Package.Literals.IFC_DERIVED_PROFILE_DEF;
+		return Ifc2x3Package.eINSTANCE.getIfcDerivedProfileDef();
 	}
 
 	/**
@@ -80,7 +73,7 @@ public class IfcDerivedProfileDefImpl extends IfcProfileDefImpl implements IfcDe
 	 */
 	public IfcProfileDef getParentProfile()
 	{
-		return (IfcProfileDef)eGet(Ifc2x3Package.Literals.IFC_DERIVED_PROFILE_DEF__PARENT_PROFILE, true);
+		return (IfcProfileDef)eGet(Ifc2x3Package.eINSTANCE.getIfcDerivedProfileDef_ParentProfile(), true);
 	}
 
 	/**
@@ -90,7 +83,7 @@ public class IfcDerivedProfileDefImpl extends IfcProfileDefImpl implements IfcDe
 	 */
 	public void setParentProfile(IfcProfileDef newParentProfile)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_DERIVED_PROFILE_DEF__PARENT_PROFILE, newParentProfile);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcDerivedProfileDef_ParentProfile(), newParentProfile);
 	}
 
 	/**
@@ -100,7 +93,7 @@ public class IfcDerivedProfileDefImpl extends IfcProfileDefImpl implements IfcDe
 	 */
 	public IfcCartesianTransformationOperator2D getOperator()
 	{
-		return (IfcCartesianTransformationOperator2D)eGet(Ifc2x3Package.Literals.IFC_DERIVED_PROFILE_DEF__OPERATOR, true);
+		return (IfcCartesianTransformationOperator2D)eGet(Ifc2x3Package.eINSTANCE.getIfcDerivedProfileDef_Operator(), true);
 	}
 
 	/**
@@ -110,7 +103,7 @@ public class IfcDerivedProfileDefImpl extends IfcProfileDefImpl implements IfcDe
 	 */
 	public void setOperator(IfcCartesianTransformationOperator2D newOperator)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_DERIVED_PROFILE_DEF__OPERATOR, newOperator);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcDerivedProfileDef_Operator(), newOperator);
 	}
 
 	/**
@@ -120,7 +113,7 @@ public class IfcDerivedProfileDefImpl extends IfcProfileDefImpl implements IfcDe
 	 */
 	public String getLabel()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_DERIVED_PROFILE_DEF__LABEL, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcDerivedProfileDef_Label(), true);
 	}
 
 	/**
@@ -130,7 +123,7 @@ public class IfcDerivedProfileDefImpl extends IfcProfileDefImpl implements IfcDe
 	 */
 	public void setLabel(String newLabel)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_DERIVED_PROFILE_DEF__LABEL, newLabel);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcDerivedProfileDef_Label(), newLabel);
 	}
 
 	/**
@@ -140,7 +133,7 @@ public class IfcDerivedProfileDefImpl extends IfcProfileDefImpl implements IfcDe
 	 */
 	public void unsetLabel()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_DERIVED_PROFILE_DEF__LABEL);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcDerivedProfileDef_Label());
 	}
 
 	/**
@@ -150,7 +143,7 @@ public class IfcDerivedProfileDefImpl extends IfcProfileDefImpl implements IfcDe
 	 */
 	public boolean isSetLabel()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_DERIVED_PROFILE_DEF__LABEL);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcDerivedProfileDef_Label());
 	}
 
 } //IfcDerivedProfileDefImpl

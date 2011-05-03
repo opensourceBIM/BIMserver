@@ -12,74 +12,74 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LogAction">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="date" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="executor" eType="ecore:EClass file.ecore#//User"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="accessMethod" eType="ecore:EEnum file.ecore#//AccessMethod"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="executor" eType="ecore:EClass store.ecore#//User"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="accessMethod" eType="ecore:EEnum log.ecore#//AccessMethod"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ServerLog">
     <eStructuralFeatures xsi:type="ecore:EReference" name="actions" upperBound="-1"
-        eType="ecore:EClass file.ecore#//LogAction"/>
+        eType="ecore:EClass log.ecore#//LogAction"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="NewUserAdded" eSuperTypes="file.ecore#//LogAction">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="user" eType="ecore:EClass file.ecore#//User"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NewUserAdded" eSuperTypes="log.ecore#//LogAction">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="user" eType="ecore:EClass store.ecore#//User"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="NewProjectAdded" eSuperTypes="file.ecore#//LogAction">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="project" eType="ecore:EClass file.ecore#//Project"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="parentProject" eType="ecore:EClass file.ecore#//Project"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NewProjectAdded" eSuperTypes="log.ecore#//LogAction">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="project" eType="ecore:EClass store.ecore#//Project"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parentProject" eType="ecore:EClass store.ecore#//Project"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="NewRevisionAdded" eSuperTypes="file.ecore#//LogAction">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="revision" eType="ecore:EClass file.ecore#//Revision"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NewRevisionAdded" eSuperTypes="log.ecore#//LogAction">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="revision" eType="ecore:EClass store.ecore#//Revision"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="NewCheckoutAdded" eSuperTypes="file.ecore#//LogAction">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="checkout" eType="ecore:EClass file.ecore#//Checkout"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NewCheckoutAdded" eSuperTypes="log.ecore#//LogAction">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="checkout" eType="ecore:EClass store.ecore#//Checkout"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SettingsSaved" eSuperTypes="file.ecore#//LogAction"/>
-  <eClassifiers xsi:type="ecore:EClass" name="UserAddedToProject" eSuperTypes="file.ecore#//LogAction">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="user" eType="ecore:EClass file.ecore#//User"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="project" eType="ecore:EClass file.ecore#//Project"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SettingsSaved" eSuperTypes="log.ecore#//LogAction"/>
+  <eClassifiers xsi:type="ecore:EClass" name="UserAddedToProject" eSuperTypes="log.ecore#//LogAction">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="user" eType="ecore:EClass store.ecore#//User"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="project" eType="ecore:EClass store.ecore#//Project"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="NewIgnoreFileUploaded" eSuperTypes="file.ecore#//LogAction"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Download" eSuperTypes="file.ecore#//LogAction"/>
-  <eClassifiers xsi:type="ecore:EClass" name="UserRemovedFromProject" eSuperTypes="file.ecore#//LogAction">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="user" eType="ecore:EClass file.ecore#//User"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="project" eType="ecore:EClass file.ecore#//Project"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NewIgnoreFileUploaded" eSuperTypes="log.ecore#//LogAction"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Download" eSuperTypes="log.ecore#//LogAction"/>
+  <eClassifiers xsi:type="ecore:EClass" name="UserRemovedFromProject" eSuperTypes="log.ecore#//LogAction">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="user" eType="ecore:EClass store.ecore#//User"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="project" eType="ecore:EClass store.ecore#//Project"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ProjectDeleted" eSuperTypes="file.ecore#//LogAction">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="project" eType="ecore:EClass file.ecore#//Project"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ProjectDeleted" eSuperTypes="log.ecore#//LogAction">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="project" eType="ecore:EClass store.ecore#//Project"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="UserDeleted" eSuperTypes="file.ecore#//LogAction">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="user" eType="ecore:EClass file.ecore#//User"/>
+  <eClassifiers xsi:type="ecore:EClass" name="UserDeleted" eSuperTypes="log.ecore#//LogAction">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="user" eType="ecore:EClass store.ecore#//User"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PasswordReset" eSuperTypes="file.ecore#//LogAction">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="user" eType="ecore:EClass file.ecore#//User"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PasswordReset" eSuperTypes="log.ecore#//LogAction">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="user" eType="ecore:EClass store.ecore#//User"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DatabaseCreated" eSuperTypes="file.ecore#//LogAction">
+  <eClassifiers xsi:type="ecore:EClass" name="DatabaseCreated" eSuperTypes="log.ecore#//LogAction">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="path" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="version" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ServerStarted" eSuperTypes="file.ecore#//LogAction"/>
-  <eClassifiers xsi:type="ecore:EClass" name="ProjectUpdated" eSuperTypes="file.ecore#//LogAction">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="project" eType="ecore:EClass file.ecore#//Project"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ServerStarted" eSuperTypes="log.ecore#//LogAction"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ProjectUpdated" eSuperTypes="log.ecore#//LogAction">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="project" eType="ecore:EClass store.ecore#//Project"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="UserUndeleted" eSuperTypes="file.ecore#//LogAction">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="user" eType="ecore:EClass file.ecore#//User"/>
+  <eClassifiers xsi:type="ecore:EClass" name="UserUndeleted" eSuperTypes="log.ecore#//LogAction">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="user" eType="ecore:EClass store.ecore#//User"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ProjectUndeleted" eSuperTypes="file.ecore#//LogAction">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="project" eType="ecore:EClass file.ecore#//Project"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ProjectUndeleted" eSuperTypes="log.ecore#//LogAction">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="project" eType="ecore:EClass store.ecore#//Project"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="RevisionUpdated" eSuperTypes="file.ecore#//LogAction">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="revision" eType="ecore:EClass file.ecore#//Revision"/>
+  <eClassifiers xsi:type="ecore:EClass" name="RevisionUpdated" eSuperTypes="log.ecore#//LogAction">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="revision" eType="ecore:EClass store.ecore#//Revision"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="GeoTagUpdated" eSuperTypes="file.ecore#//LogAction">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="geoTag" eType="ecore:EClass file.ecore#//GeoTag"/>
+  <eClassifiers xsi:type="ecore:EClass" name="GeoTagUpdated" eSuperTypes="log.ecore#//LogAction">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="geoTag" eType="ecore:EClass store.ecore#//GeoTag"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ClashDetectionSettingsUpdated" eSuperTypes="file.ecore#//LogAction">
+  <eClassifiers xsi:type="ecore:EClass" name="ClashDetectionSettingsUpdated" eSuperTypes="log.ecore#//LogAction">
     <eStructuralFeatures xsi:type="ecore:EReference" name="clashDetectionSettings"
-        eType="ecore:EClass file.ecore#//ClashDetectionSettings"/>
+        eType="ecore:EClass store.ecore#//ClashDetectionSettings"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PasswordChanged" eSuperTypes="file.ecore#//LogAction">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="user" eType="ecore:EClass file.ecore#//User"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PasswordChanged" eSuperTypes="log.ecore#//LogAction">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="user" eType="ecore:EClass store.ecore#//User"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="UserChanged" eSuperTypes="file.ecore#//LogAction">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="user" eType="ecore:EClass file.ecore#//User"/>
+  <eClassifiers xsi:type="ecore:EClass" name="UserChanged" eSuperTypes="log.ecore#//LogAction">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="user" eType="ecore:EClass store.ecore#//User"/>
   </eClassifiers>
 </ecore:EPackage>

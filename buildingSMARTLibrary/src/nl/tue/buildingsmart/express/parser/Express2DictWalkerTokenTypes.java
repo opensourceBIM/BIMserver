@@ -110,13 +110,13 @@ public interface Express2DictWalkerTokenTypes {
 	int LABEL = 104;
 	int LIST_TYPE = 105;
 	int LITERAL = 106;
-	int REAL_LITERAL = 107;
-	int INTEGER_LITERAL = 108;
+	int REAL = 107;
+	int INTEGER = 108;
 	int STRING_LITERAL = 109;
 	int LOCAL_DECL = 110;
 	int LOCAL_VARIABLE = 111;
 	int LOGICAL_EXPRESSION = 112;
-	int LOGICAL_LITERAL = 113;
+	int LOGICAL = 113;
 	int LOGICAL_TYPE = 114;
 	int MULTIPLICATION_LIKE_OP = 115;
 	int NAMED_TYPES = 116;

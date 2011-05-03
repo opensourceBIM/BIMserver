@@ -40,118 +40,111 @@ public enum IfcCoveringTypeEnum implements Enumerator
 	 * The '<em><b>NULL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NULL
+	 * @see #NULL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NULL_LITERAL(0, "NULL", "NULL"),
+	NULL(0, "NULL", "NULL"),
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED
+	 * @see #NOTDEFINED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED_LITERAL(1, "NOTDEFINED", "NOTDEFINED"),
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>CEILING</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #CEILING
+	 * @see #CEILING_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	CEILING_LITERAL(2, "CEILING", "CEILING"),
+	CEILING(2, "CEILING", "CEILING"),
 
 	/**
 	 * The '<em><b>MEMBRANE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #MEMBRANE
+	 * @see #MEMBRANE_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	MEMBRANE_LITERAL(3, "MEMBRANE", "MEMBRANE"),
+	MEMBRANE(3, "MEMBRANE", "MEMBRANE"),
 
 	/**
 	 * The '<em><b>ROOFING</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #ROOFING
+	 * @see #ROOFING_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	ROOFING_LITERAL(4, "ROOFING", "ROOFING"),
+	ROOFING(4, "ROOFING", "ROOFING"),
 
 	/**
 	 * The '<em><b>CLADDING</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #CLADDING
+	 * @see #CLADDING_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	CLADDING_LITERAL(5, "CLADDING", "CLADDING"),
+	CLADDING(5, "CLADDING", "CLADDING"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
+	 * @see #USERDEFINED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	USERDEFINED_LITERAL(6, "USERDEFINED", "USERDEFINED"),
+	USERDEFINED(6, "USERDEFINED", "USERDEFINED"),
 
 	/**
 	 * The '<em><b>WRAPPING</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #WRAPPING
+	 * @see #WRAPPING_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	WRAPPING_LITERAL(7, "WRAPPING", "WRAPPING"),
+	WRAPPING(7, "WRAPPING", "WRAPPING"),
 
 	/**
 	 * The '<em><b>FLOORING</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #FLOORING
+	 * @see #FLOORING_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	FLOORING_LITERAL(8, "FLOORING", "FLOORING"),
+	FLOORING(8, "FLOORING", "FLOORING"),
 
 	/**
 	 * The '<em><b>SLEEVING</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #SLEEVING
+	 * @see #SLEEVING_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	SLEEVING_LITERAL(9, "SLEEVING", "SLEEVING"),
+	SLEEVING(9, "SLEEVING", "SLEEVING"),
 
 	/**
 	 * The '<em><b>INSULATION</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #INSULATION
+	 * @see #INSULATION_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	INSULATION_LITERAL(10, "INSULATION", "INSULATION");
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
+	INSULATION(10, "INSULATION", "INSULATION");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -161,12 +154,12 @@ public enum IfcCoveringTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NULL_LITERAL
+	 * @see #NULL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NULL = 0;
+	public static final int NULL_VALUE = 0;
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
@@ -176,12 +169,12 @@ public enum IfcCoveringTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_LITERAL
+	 * @see #NOTDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED = 1;
+	public static final int NOTDEFINED_VALUE = 1;
 
 	/**
 	 * The '<em><b>CEILING</b></em>' literal value.
@@ -191,12 +184,12 @@ public enum IfcCoveringTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #CEILING_LITERAL
+	 * @see #CEILING
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int CEILING = 2;
+	public static final int CEILING_VALUE = 2;
 
 	/**
 	 * The '<em><b>MEMBRANE</b></em>' literal value.
@@ -206,12 +199,12 @@ public enum IfcCoveringTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #MEMBRANE_LITERAL
+	 * @see #MEMBRANE
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MEMBRANE = 3;
+	public static final int MEMBRANE_VALUE = 3;
 
 	/**
 	 * The '<em><b>ROOFING</b></em>' literal value.
@@ -221,12 +214,12 @@ public enum IfcCoveringTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ROOFING_LITERAL
+	 * @see #ROOFING
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ROOFING = 4;
+	public static final int ROOFING_VALUE = 4;
 
 	/**
 	 * The '<em><b>CLADDING</b></em>' literal value.
@@ -236,12 +229,12 @@ public enum IfcCoveringTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #CLADDING_LITERAL
+	 * @see #CLADDING
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int CLADDING = 5;
+	public static final int CLADDING_VALUE = 5;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -251,12 +244,12 @@ public enum IfcCoveringTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_LITERAL
+	 * @see #USERDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED = 6;
+	public static final int USERDEFINED_VALUE = 6;
 
 	/**
 	 * The '<em><b>WRAPPING</b></em>' literal value.
@@ -266,12 +259,12 @@ public enum IfcCoveringTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #WRAPPING_LITERAL
+	 * @see #WRAPPING
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int WRAPPING = 7;
+	public static final int WRAPPING_VALUE = 7;
 
 	/**
 	 * The '<em><b>FLOORING</b></em>' literal value.
@@ -281,12 +274,12 @@ public enum IfcCoveringTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #FLOORING_LITERAL
+	 * @see #FLOORING
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int FLOORING = 8;
+	public static final int FLOORING_VALUE = 8;
 
 	/**
 	 * The '<em><b>SLEEVING</b></em>' literal value.
@@ -296,12 +289,12 @@ public enum IfcCoveringTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #SLEEVING_LITERAL
+	 * @see #SLEEVING
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SLEEVING = 9;
+	public static final int SLEEVING_VALUE = 9;
 
 	/**
 	 * The '<em><b>INSULATION</b></em>' literal value.
@@ -311,12 +304,12 @@ public enum IfcCoveringTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #INSULATION_LITERAL
+	 * @see #INSULATION
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int INSULATION = 10;
+	public static final int INSULATION_VALUE = 10;
 
 	/**
 	 * An array of all the '<em><b>Ifc Covering Type Enum</b></em>' enumerators.
@@ -325,19 +318,18 @@ public enum IfcCoveringTypeEnum implements Enumerator
 	 * @generated
 	 */
 	private static final IfcCoveringTypeEnum[] VALUES_ARRAY =
-		new IfcCoveringTypeEnum[]
-		{
-			NULL_LITERAL,
-			NOTDEFINED_LITERAL,
-			CEILING_LITERAL,
-			MEMBRANE_LITERAL,
-			ROOFING_LITERAL,
-			CLADDING_LITERAL,
-			USERDEFINED_LITERAL,
-			WRAPPING_LITERAL,
-			FLOORING_LITERAL,
-			SLEEVING_LITERAL,
-			INSULATION_LITERAL,
+		new IfcCoveringTypeEnum[] {
+			NULL,
+			NOTDEFINED,
+			CEILING,
+			MEMBRANE,
+			ROOFING,
+			CLADDING,
+			USERDEFINED,
+			WRAPPING,
+			FLOORING,
+			SLEEVING,
+			INSULATION,
 		};
 
 	/**
@@ -356,11 +348,9 @@ public enum IfcCoveringTypeEnum implements Enumerator
 	 */
 	public static IfcCoveringTypeEnum get(String literal)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcCoveringTypeEnum result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal))
-			{
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -375,11 +365,9 @@ public enum IfcCoveringTypeEnum implements Enumerator
 	 */
 	public static IfcCoveringTypeEnum getByName(String name)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcCoveringTypeEnum result = VALUES_ARRAY[i];
-			if (result.getName().equals(name))
-			{
+			if (result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -394,19 +382,18 @@ public enum IfcCoveringTypeEnum implements Enumerator
 	 */
 	public static IfcCoveringTypeEnum get(int value)
 	{
-		switch (value)
-		{
-			case NULL: return NULL_LITERAL;
-			case NOTDEFINED: return NOTDEFINED_LITERAL;
-			case CEILING: return CEILING_LITERAL;
-			case MEMBRANE: return MEMBRANE_LITERAL;
-			case ROOFING: return ROOFING_LITERAL;
-			case CLADDING: return CLADDING_LITERAL;
-			case USERDEFINED: return USERDEFINED_LITERAL;
-			case WRAPPING: return WRAPPING_LITERAL;
-			case FLOORING: return FLOORING_LITERAL;
-			case SLEEVING: return SLEEVING_LITERAL;
-			case INSULATION: return INSULATION_LITERAL;
+		switch (value) {
+			case NULL_VALUE: return NULL;
+			case NOTDEFINED_VALUE: return NOTDEFINED;
+			case CEILING_VALUE: return CEILING;
+			case MEMBRANE_VALUE: return MEMBRANE;
+			case ROOFING_VALUE: return ROOFING;
+			case CLADDING_VALUE: return CLADDING;
+			case USERDEFINED_VALUE: return USERDEFINED;
+			case WRAPPING_VALUE: return WRAPPING;
+			case FLOORING_VALUE: return FLOORING;
+			case SLEEVING_VALUE: return SLEEVING;
+			case INSULATION_VALUE: return INSULATION;
 		}
 		return null;
 	}

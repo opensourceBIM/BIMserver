@@ -55,13 +55,6 @@ public class IfcAddressImpl extends IdEObjectImpl implements IfcAddress
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	protected IfcAddressImpl()
 	{
 		super();
@@ -75,7 +68,7 @@ public class IfcAddressImpl extends IdEObjectImpl implements IfcAddress
 	@Override
 	protected EClass eStaticClass()
 	{
-		return Ifc2x3Package.Literals.IFC_ADDRESS;
+		return Ifc2x3Package.eINSTANCE.getIfcAddress();
 	}
 
 	/**
@@ -96,7 +89,7 @@ public class IfcAddressImpl extends IdEObjectImpl implements IfcAddress
 	 */
 	public IfcAddressTypeEnum getPurpose()
 	{
-		return (IfcAddressTypeEnum)eGet(Ifc2x3Package.Literals.IFC_ADDRESS__PURPOSE, true);
+		return (IfcAddressTypeEnum)eGet(Ifc2x3Package.eINSTANCE.getIfcAddress_Purpose(), true);
 	}
 
 	/**
@@ -106,7 +99,7 @@ public class IfcAddressImpl extends IdEObjectImpl implements IfcAddress
 	 */
 	public void setPurpose(IfcAddressTypeEnum newPurpose)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_ADDRESS__PURPOSE, newPurpose);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcAddress_Purpose(), newPurpose);
 	}
 
 	/**
@@ -116,7 +109,7 @@ public class IfcAddressImpl extends IdEObjectImpl implements IfcAddress
 	 */
 	public String getDescription()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_ADDRESS__DESCRIPTION, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcAddress_Description(), true);
 	}
 
 	/**
@@ -126,7 +119,7 @@ public class IfcAddressImpl extends IdEObjectImpl implements IfcAddress
 	 */
 	public void setDescription(String newDescription)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_ADDRESS__DESCRIPTION, newDescription);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcAddress_Description(), newDescription);
 	}
 
 	/**
@@ -136,7 +129,7 @@ public class IfcAddressImpl extends IdEObjectImpl implements IfcAddress
 	 */
 	public void unsetDescription()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_ADDRESS__DESCRIPTION);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcAddress_Description());
 	}
 
 	/**
@@ -146,7 +139,7 @@ public class IfcAddressImpl extends IdEObjectImpl implements IfcAddress
 	 */
 	public boolean isSetDescription()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_ADDRESS__DESCRIPTION);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcAddress_Description());
 	}
 
 	/**
@@ -156,7 +149,7 @@ public class IfcAddressImpl extends IdEObjectImpl implements IfcAddress
 	 */
 	public String getUserDefinedPurpose()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_ADDRESS__USER_DEFINED_PURPOSE, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcAddress_UserDefinedPurpose(), true);
 	}
 
 	/**
@@ -166,7 +159,7 @@ public class IfcAddressImpl extends IdEObjectImpl implements IfcAddress
 	 */
 	public void setUserDefinedPurpose(String newUserDefinedPurpose)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_ADDRESS__USER_DEFINED_PURPOSE, newUserDefinedPurpose);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcAddress_UserDefinedPurpose(), newUserDefinedPurpose);
 	}
 
 	/**
@@ -176,7 +169,7 @@ public class IfcAddressImpl extends IdEObjectImpl implements IfcAddress
 	 */
 	public void unsetUserDefinedPurpose()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_ADDRESS__USER_DEFINED_PURPOSE);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcAddress_UserDefinedPurpose());
 	}
 
 	/**
@@ -186,7 +179,7 @@ public class IfcAddressImpl extends IdEObjectImpl implements IfcAddress
 	 */
 	public boolean isSetUserDefinedPurpose()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_ADDRESS__USER_DEFINED_PURPOSE);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcAddress_UserDefinedPurpose());
 	}
 
 	/**
@@ -197,7 +190,7 @@ public class IfcAddressImpl extends IdEObjectImpl implements IfcAddress
 	@SuppressWarnings("unchecked")
 	public EList<IfcPerson> getOfPerson()
 	{
-		return (EList<IfcPerson>)eGet(Ifc2x3Package.Literals.IFC_ADDRESS__OF_PERSON, true);
+		return (EList<IfcPerson>)eGet(Ifc2x3Package.eINSTANCE.getIfcAddress_OfPerson(), true);
 	}
 
 	/**
@@ -208,7 +201,7 @@ public class IfcAddressImpl extends IdEObjectImpl implements IfcAddress
 	@SuppressWarnings("unchecked")
 	public EList<IfcOrganization> getOfOrganization()
 	{
-		return (EList<IfcOrganization>)eGet(Ifc2x3Package.Literals.IFC_ADDRESS__OF_ORGANIZATION, true);
+		return (EList<IfcOrganization>)eGet(Ifc2x3Package.eINSTANCE.getIfcAddress_OfOrganization(), true);
 	}
 
 } //IfcAddressImpl

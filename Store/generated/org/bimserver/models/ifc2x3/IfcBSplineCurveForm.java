@@ -40,78 +40,71 @@ public enum IfcBSplineCurveForm implements Enumerator
 	 * The '<em><b>NULL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NULL
+	 * @see #NULL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NULL_LITERAL(0, "NULL", "NULL"),
+	NULL(0, "NULL", "NULL"),
 
 	/**
 	 * The '<em><b>PARABOLIC ARC</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #PARABOLIC_ARC
+	 * @see #PARABOLIC_ARC_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	PARABOLIC_ARC_LITERAL(1, "PARABOLIC_ARC", "PARABOLIC_ARC"),
+	PARABOLIC_ARC(1, "PARABOLIC_ARC", "PARABOLIC_ARC"),
 
 	/**
 	 * The '<em><b>ELLIPTIC ARC</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #ELLIPTIC_ARC
+	 * @see #ELLIPTIC_ARC_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	ELLIPTIC_ARC_LITERAL(2, "ELLIPTIC_ARC", "ELLIPTIC_ARC"),
+	ELLIPTIC_ARC(2, "ELLIPTIC_ARC", "ELLIPTIC_ARC"),
 
 	/**
 	 * The '<em><b>HYPERBOLIC ARC</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #HYPERBOLIC_ARC
+	 * @see #HYPERBOLIC_ARC_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	HYPERBOLIC_ARC_LITERAL(3, "HYPERBOLIC_ARC", "HYPERBOLIC_ARC"),
+	HYPERBOLIC_ARC(3, "HYPERBOLIC_ARC", "HYPERBOLIC_ARC"),
 
 	/**
 	 * The '<em><b>UNSPECIFIED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #UNSPECIFIED
+	 * @see #UNSPECIFIED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	UNSPECIFIED_LITERAL(4, "UNSPECIFIED", "UNSPECIFIED"),
+	UNSPECIFIED(4, "UNSPECIFIED", "UNSPECIFIED"),
 
 	/**
 	 * The '<em><b>POLYLINE FORM</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #POLYLINE_FORM
+	 * @see #POLYLINE_FORM_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	POLYLINE_FORM_LITERAL(5, "POLYLINE_FORM", "POLYLINE_FORM"),
+	POLYLINE_FORM(5, "POLYLINE_FORM", "POLYLINE_FORM"),
 
 	/**
 	 * The '<em><b>CIRCULAR ARC</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #CIRCULAR_ARC
+	 * @see #CIRCULAR_ARC_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	CIRCULAR_ARC_LITERAL(6, "CIRCULAR_ARC", "CIRCULAR_ARC");
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
+	CIRCULAR_ARC(6, "CIRCULAR_ARC", "CIRCULAR_ARC");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -121,12 +114,12 @@ public enum IfcBSplineCurveForm implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NULL_LITERAL
+	 * @see #NULL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NULL = 0;
+	public static final int NULL_VALUE = 0;
 
 	/**
 	 * The '<em><b>PARABOLIC ARC</b></em>' literal value.
@@ -136,12 +129,12 @@ public enum IfcBSplineCurveForm implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #PARABOLIC_ARC_LITERAL
+	 * @see #PARABOLIC_ARC
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PARABOLIC_ARC = 1;
+	public static final int PARABOLIC_ARC_VALUE = 1;
 
 	/**
 	 * The '<em><b>ELLIPTIC ARC</b></em>' literal value.
@@ -151,12 +144,12 @@ public enum IfcBSplineCurveForm implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ELLIPTIC_ARC_LITERAL
+	 * @see #ELLIPTIC_ARC
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ELLIPTIC_ARC = 2;
+	public static final int ELLIPTIC_ARC_VALUE = 2;
 
 	/**
 	 * The '<em><b>HYPERBOLIC ARC</b></em>' literal value.
@@ -166,12 +159,12 @@ public enum IfcBSplineCurveForm implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #HYPERBOLIC_ARC_LITERAL
+	 * @see #HYPERBOLIC_ARC
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int HYPERBOLIC_ARC = 3;
+	public static final int HYPERBOLIC_ARC_VALUE = 3;
 
 	/**
 	 * The '<em><b>UNSPECIFIED</b></em>' literal value.
@@ -181,12 +174,12 @@ public enum IfcBSplineCurveForm implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #UNSPECIFIED_LITERAL
+	 * @see #UNSPECIFIED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int UNSPECIFIED = 4;
+	public static final int UNSPECIFIED_VALUE = 4;
 
 	/**
 	 * The '<em><b>POLYLINE FORM</b></em>' literal value.
@@ -196,12 +189,12 @@ public enum IfcBSplineCurveForm implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #POLYLINE_FORM_LITERAL
+	 * @see #POLYLINE_FORM
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int POLYLINE_FORM = 5;
+	public static final int POLYLINE_FORM_VALUE = 5;
 
 	/**
 	 * The '<em><b>CIRCULAR ARC</b></em>' literal value.
@@ -211,12 +204,12 @@ public enum IfcBSplineCurveForm implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #CIRCULAR_ARC_LITERAL
+	 * @see #CIRCULAR_ARC
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int CIRCULAR_ARC = 6;
+	public static final int CIRCULAR_ARC_VALUE = 6;
 
 	/**
 	 * An array of all the '<em><b>Ifc BSpline Curve Form</b></em>' enumerators.
@@ -225,15 +218,14 @@ public enum IfcBSplineCurveForm implements Enumerator
 	 * @generated
 	 */
 	private static final IfcBSplineCurveForm[] VALUES_ARRAY =
-		new IfcBSplineCurveForm[]
-		{
-			NULL_LITERAL,
-			PARABOLIC_ARC_LITERAL,
-			ELLIPTIC_ARC_LITERAL,
-			HYPERBOLIC_ARC_LITERAL,
-			UNSPECIFIED_LITERAL,
-			POLYLINE_FORM_LITERAL,
-			CIRCULAR_ARC_LITERAL,
+		new IfcBSplineCurveForm[] {
+			NULL,
+			PARABOLIC_ARC,
+			ELLIPTIC_ARC,
+			HYPERBOLIC_ARC,
+			UNSPECIFIED,
+			POLYLINE_FORM,
+			CIRCULAR_ARC,
 		};
 
 	/**
@@ -252,11 +244,9 @@ public enum IfcBSplineCurveForm implements Enumerator
 	 */
 	public static IfcBSplineCurveForm get(String literal)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcBSplineCurveForm result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal))
-			{
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -271,11 +261,9 @@ public enum IfcBSplineCurveForm implements Enumerator
 	 */
 	public static IfcBSplineCurveForm getByName(String name)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcBSplineCurveForm result = VALUES_ARRAY[i];
-			if (result.getName().equals(name))
-			{
+			if (result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -290,15 +278,14 @@ public enum IfcBSplineCurveForm implements Enumerator
 	 */
 	public static IfcBSplineCurveForm get(int value)
 	{
-		switch (value)
-		{
-			case NULL: return NULL_LITERAL;
-			case PARABOLIC_ARC: return PARABOLIC_ARC_LITERAL;
-			case ELLIPTIC_ARC: return ELLIPTIC_ARC_LITERAL;
-			case HYPERBOLIC_ARC: return HYPERBOLIC_ARC_LITERAL;
-			case UNSPECIFIED: return UNSPECIFIED_LITERAL;
-			case POLYLINE_FORM: return POLYLINE_FORM_LITERAL;
-			case CIRCULAR_ARC: return CIRCULAR_ARC_LITERAL;
+		switch (value) {
+			case NULL_VALUE: return NULL;
+			case PARABOLIC_ARC_VALUE: return PARABOLIC_ARC;
+			case ELLIPTIC_ARC_VALUE: return ELLIPTIC_ARC;
+			case HYPERBOLIC_ARC_VALUE: return HYPERBOLIC_ARC;
+			case UNSPECIFIED_VALUE: return UNSPECIFIED;
+			case POLYLINE_FORM_VALUE: return POLYLINE_FORM;
+			case CIRCULAR_ARC_VALUE: return CIRCULAR_ARC;
 		}
 		return null;
 	}

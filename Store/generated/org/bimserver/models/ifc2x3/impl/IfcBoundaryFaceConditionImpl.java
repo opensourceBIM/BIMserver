@@ -51,13 +51,6 @@ public class IfcBoundaryFaceConditionImpl extends IfcBoundaryConditionImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	protected IfcBoundaryFaceConditionImpl()
 	{
 		super();
@@ -71,7 +64,7 @@ public class IfcBoundaryFaceConditionImpl extends IfcBoundaryConditionImpl imple
 	@Override
 	protected EClass eStaticClass()
 	{
-		return Ifc2x3Package.Literals.IFC_BOUNDARY_FACE_CONDITION;
+		return Ifc2x3Package.eINSTANCE.getIfcBoundaryFaceCondition();
 	}
 
 	/**
@@ -81,7 +74,7 @@ public class IfcBoundaryFaceConditionImpl extends IfcBoundaryConditionImpl imple
 	 */
 	public float getLinearStiffnessByAreaX()
 	{
-		return (Float)eGet(Ifc2x3Package.Literals.IFC_BOUNDARY_FACE_CONDITION__LINEAR_STIFFNESS_BY_AREA_X, true);
+		return (Float)eGet(Ifc2x3Package.eINSTANCE.getIfcBoundaryFaceCondition_LinearStiffnessByAreaX(), true);
 	}
 
 	/**
@@ -91,7 +84,7 @@ public class IfcBoundaryFaceConditionImpl extends IfcBoundaryConditionImpl imple
 	 */
 	public void setLinearStiffnessByAreaX(float newLinearStiffnessByAreaX)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_BOUNDARY_FACE_CONDITION__LINEAR_STIFFNESS_BY_AREA_X, newLinearStiffnessByAreaX);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcBoundaryFaceCondition_LinearStiffnessByAreaX(), newLinearStiffnessByAreaX);
 	}
 
 	/**
@@ -101,7 +94,7 @@ public class IfcBoundaryFaceConditionImpl extends IfcBoundaryConditionImpl imple
 	 */
 	public void unsetLinearStiffnessByAreaX()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_BOUNDARY_FACE_CONDITION__LINEAR_STIFFNESS_BY_AREA_X);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcBoundaryFaceCondition_LinearStiffnessByAreaX());
 	}
 
 	/**
@@ -111,7 +104,7 @@ public class IfcBoundaryFaceConditionImpl extends IfcBoundaryConditionImpl imple
 	 */
 	public boolean isSetLinearStiffnessByAreaX()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_BOUNDARY_FACE_CONDITION__LINEAR_STIFFNESS_BY_AREA_X);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcBoundaryFaceCondition_LinearStiffnessByAreaX());
 	}
 
 	/**
@@ -121,7 +114,7 @@ public class IfcBoundaryFaceConditionImpl extends IfcBoundaryConditionImpl imple
 	 */
 	public String getLinearStiffnessByAreaXAsString()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_BOUNDARY_FACE_CONDITION__LINEAR_STIFFNESS_BY_AREA_XAS_STRING, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcBoundaryFaceCondition_LinearStiffnessByAreaXAsString(), true);
 	}
 
 	/**
@@ -131,7 +124,7 @@ public class IfcBoundaryFaceConditionImpl extends IfcBoundaryConditionImpl imple
 	 */
 	public void setLinearStiffnessByAreaXAsString(String newLinearStiffnessByAreaXAsString)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_BOUNDARY_FACE_CONDITION__LINEAR_STIFFNESS_BY_AREA_XAS_STRING, newLinearStiffnessByAreaXAsString);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcBoundaryFaceCondition_LinearStiffnessByAreaXAsString(), newLinearStiffnessByAreaXAsString);
 	}
 
 	/**
@@ -141,7 +134,7 @@ public class IfcBoundaryFaceConditionImpl extends IfcBoundaryConditionImpl imple
 	 */
 	public void unsetLinearStiffnessByAreaXAsString()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_BOUNDARY_FACE_CONDITION__LINEAR_STIFFNESS_BY_AREA_XAS_STRING);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcBoundaryFaceCondition_LinearStiffnessByAreaXAsString());
 	}
 
 	/**
@@ -151,7 +144,7 @@ public class IfcBoundaryFaceConditionImpl extends IfcBoundaryConditionImpl imple
 	 */
 	public boolean isSetLinearStiffnessByAreaXAsString()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_BOUNDARY_FACE_CONDITION__LINEAR_STIFFNESS_BY_AREA_XAS_STRING);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcBoundaryFaceCondition_LinearStiffnessByAreaXAsString());
 	}
 
 	/**
@@ -161,7 +154,7 @@ public class IfcBoundaryFaceConditionImpl extends IfcBoundaryConditionImpl imple
 	 */
 	public float getLinearStiffnessByAreaY()
 	{
-		return (Float)eGet(Ifc2x3Package.Literals.IFC_BOUNDARY_FACE_CONDITION__LINEAR_STIFFNESS_BY_AREA_Y, true);
+		return (Float)eGet(Ifc2x3Package.eINSTANCE.getIfcBoundaryFaceCondition_LinearStiffnessByAreaY(), true);
 	}
 
 	/**
@@ -171,7 +164,7 @@ public class IfcBoundaryFaceConditionImpl extends IfcBoundaryConditionImpl imple
 	 */
 	public void setLinearStiffnessByAreaY(float newLinearStiffnessByAreaY)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_BOUNDARY_FACE_CONDITION__LINEAR_STIFFNESS_BY_AREA_Y, newLinearStiffnessByAreaY);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcBoundaryFaceCondition_LinearStiffnessByAreaY(), newLinearStiffnessByAreaY);
 	}
 
 	/**
@@ -181,7 +174,7 @@ public class IfcBoundaryFaceConditionImpl extends IfcBoundaryConditionImpl imple
 	 */
 	public void unsetLinearStiffnessByAreaY()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_BOUNDARY_FACE_CONDITION__LINEAR_STIFFNESS_BY_AREA_Y);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcBoundaryFaceCondition_LinearStiffnessByAreaY());
 	}
 
 	/**
@@ -191,7 +184,7 @@ public class IfcBoundaryFaceConditionImpl extends IfcBoundaryConditionImpl imple
 	 */
 	public boolean isSetLinearStiffnessByAreaY()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_BOUNDARY_FACE_CONDITION__LINEAR_STIFFNESS_BY_AREA_Y);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcBoundaryFaceCondition_LinearStiffnessByAreaY());
 	}
 
 	/**
@@ -201,7 +194,7 @@ public class IfcBoundaryFaceConditionImpl extends IfcBoundaryConditionImpl imple
 	 */
 	public String getLinearStiffnessByAreaYAsString()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_BOUNDARY_FACE_CONDITION__LINEAR_STIFFNESS_BY_AREA_YAS_STRING, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcBoundaryFaceCondition_LinearStiffnessByAreaYAsString(), true);
 	}
 
 	/**
@@ -211,7 +204,7 @@ public class IfcBoundaryFaceConditionImpl extends IfcBoundaryConditionImpl imple
 	 */
 	public void setLinearStiffnessByAreaYAsString(String newLinearStiffnessByAreaYAsString)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_BOUNDARY_FACE_CONDITION__LINEAR_STIFFNESS_BY_AREA_YAS_STRING, newLinearStiffnessByAreaYAsString);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcBoundaryFaceCondition_LinearStiffnessByAreaYAsString(), newLinearStiffnessByAreaYAsString);
 	}
 
 	/**
@@ -221,7 +214,7 @@ public class IfcBoundaryFaceConditionImpl extends IfcBoundaryConditionImpl imple
 	 */
 	public void unsetLinearStiffnessByAreaYAsString()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_BOUNDARY_FACE_CONDITION__LINEAR_STIFFNESS_BY_AREA_YAS_STRING);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcBoundaryFaceCondition_LinearStiffnessByAreaYAsString());
 	}
 
 	/**
@@ -231,7 +224,7 @@ public class IfcBoundaryFaceConditionImpl extends IfcBoundaryConditionImpl imple
 	 */
 	public boolean isSetLinearStiffnessByAreaYAsString()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_BOUNDARY_FACE_CONDITION__LINEAR_STIFFNESS_BY_AREA_YAS_STRING);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcBoundaryFaceCondition_LinearStiffnessByAreaYAsString());
 	}
 
 	/**
@@ -241,7 +234,7 @@ public class IfcBoundaryFaceConditionImpl extends IfcBoundaryConditionImpl imple
 	 */
 	public float getLinearStiffnessByAreaZ()
 	{
-		return (Float)eGet(Ifc2x3Package.Literals.IFC_BOUNDARY_FACE_CONDITION__LINEAR_STIFFNESS_BY_AREA_Z, true);
+		return (Float)eGet(Ifc2x3Package.eINSTANCE.getIfcBoundaryFaceCondition_LinearStiffnessByAreaZ(), true);
 	}
 
 	/**
@@ -251,7 +244,7 @@ public class IfcBoundaryFaceConditionImpl extends IfcBoundaryConditionImpl imple
 	 */
 	public void setLinearStiffnessByAreaZ(float newLinearStiffnessByAreaZ)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_BOUNDARY_FACE_CONDITION__LINEAR_STIFFNESS_BY_AREA_Z, newLinearStiffnessByAreaZ);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcBoundaryFaceCondition_LinearStiffnessByAreaZ(), newLinearStiffnessByAreaZ);
 	}
 
 	/**
@@ -261,7 +254,7 @@ public class IfcBoundaryFaceConditionImpl extends IfcBoundaryConditionImpl imple
 	 */
 	public void unsetLinearStiffnessByAreaZ()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_BOUNDARY_FACE_CONDITION__LINEAR_STIFFNESS_BY_AREA_Z);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcBoundaryFaceCondition_LinearStiffnessByAreaZ());
 	}
 
 	/**
@@ -271,7 +264,7 @@ public class IfcBoundaryFaceConditionImpl extends IfcBoundaryConditionImpl imple
 	 */
 	public boolean isSetLinearStiffnessByAreaZ()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_BOUNDARY_FACE_CONDITION__LINEAR_STIFFNESS_BY_AREA_Z);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcBoundaryFaceCondition_LinearStiffnessByAreaZ());
 	}
 
 	/**
@@ -281,7 +274,7 @@ public class IfcBoundaryFaceConditionImpl extends IfcBoundaryConditionImpl imple
 	 */
 	public String getLinearStiffnessByAreaZAsString()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_BOUNDARY_FACE_CONDITION__LINEAR_STIFFNESS_BY_AREA_ZAS_STRING, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcBoundaryFaceCondition_LinearStiffnessByAreaZAsString(), true);
 	}
 
 	/**
@@ -291,7 +284,7 @@ public class IfcBoundaryFaceConditionImpl extends IfcBoundaryConditionImpl imple
 	 */
 	public void setLinearStiffnessByAreaZAsString(String newLinearStiffnessByAreaZAsString)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_BOUNDARY_FACE_CONDITION__LINEAR_STIFFNESS_BY_AREA_ZAS_STRING, newLinearStiffnessByAreaZAsString);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcBoundaryFaceCondition_LinearStiffnessByAreaZAsString(), newLinearStiffnessByAreaZAsString);
 	}
 
 	/**
@@ -301,7 +294,7 @@ public class IfcBoundaryFaceConditionImpl extends IfcBoundaryConditionImpl imple
 	 */
 	public void unsetLinearStiffnessByAreaZAsString()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_BOUNDARY_FACE_CONDITION__LINEAR_STIFFNESS_BY_AREA_ZAS_STRING);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcBoundaryFaceCondition_LinearStiffnessByAreaZAsString());
 	}
 
 	/**
@@ -311,7 +304,7 @@ public class IfcBoundaryFaceConditionImpl extends IfcBoundaryConditionImpl imple
 	 */
 	public boolean isSetLinearStiffnessByAreaZAsString()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_BOUNDARY_FACE_CONDITION__LINEAR_STIFFNESS_BY_AREA_ZAS_STRING);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcBoundaryFaceCondition_LinearStiffnessByAreaZAsString());
 	}
 
 } //IfcBoundaryFaceConditionImpl

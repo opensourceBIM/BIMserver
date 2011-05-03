@@ -51,13 +51,6 @@ public class IfcTaskImpl extends IfcProcessImpl implements IfcTask
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	protected IfcTaskImpl()
 	{
 		super();
@@ -71,7 +64,7 @@ public class IfcTaskImpl extends IfcProcessImpl implements IfcTask
 	@Override
 	protected EClass eStaticClass()
 	{
-		return Ifc2x3Package.Literals.IFC_TASK;
+		return Ifc2x3Package.eINSTANCE.getIfcTask();
 	}
 
 	/**
@@ -81,7 +74,7 @@ public class IfcTaskImpl extends IfcProcessImpl implements IfcTask
 	 */
 	public String getTaskId()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_TASK__TASK_ID, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcTask_TaskId(), true);
 	}
 
 	/**
@@ -91,7 +84,7 @@ public class IfcTaskImpl extends IfcProcessImpl implements IfcTask
 	 */
 	public void setTaskId(String newTaskId)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_TASK__TASK_ID, newTaskId);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcTask_TaskId(), newTaskId);
 	}
 
 	/**
@@ -101,7 +94,7 @@ public class IfcTaskImpl extends IfcProcessImpl implements IfcTask
 	 */
 	public String getStatus()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_TASK__STATUS, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcTask_Status(), true);
 	}
 
 	/**
@@ -111,7 +104,7 @@ public class IfcTaskImpl extends IfcProcessImpl implements IfcTask
 	 */
 	public void setStatus(String newStatus)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_TASK__STATUS, newStatus);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcTask_Status(), newStatus);
 	}
 
 	/**
@@ -121,7 +114,7 @@ public class IfcTaskImpl extends IfcProcessImpl implements IfcTask
 	 */
 	public void unsetStatus()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_TASK__STATUS);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcTask_Status());
 	}
 
 	/**
@@ -131,7 +124,7 @@ public class IfcTaskImpl extends IfcProcessImpl implements IfcTask
 	 */
 	public boolean isSetStatus()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_TASK__STATUS);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcTask_Status());
 	}
 
 	/**
@@ -141,7 +134,7 @@ public class IfcTaskImpl extends IfcProcessImpl implements IfcTask
 	 */
 	public String getWorkMethod()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_TASK__WORK_METHOD, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcTask_WorkMethod(), true);
 	}
 
 	/**
@@ -151,7 +144,7 @@ public class IfcTaskImpl extends IfcProcessImpl implements IfcTask
 	 */
 	public void setWorkMethod(String newWorkMethod)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_TASK__WORK_METHOD, newWorkMethod);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcTask_WorkMethod(), newWorkMethod);
 	}
 
 	/**
@@ -161,7 +154,7 @@ public class IfcTaskImpl extends IfcProcessImpl implements IfcTask
 	 */
 	public void unsetWorkMethod()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_TASK__WORK_METHOD);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcTask_WorkMethod());
 	}
 
 	/**
@@ -171,7 +164,7 @@ public class IfcTaskImpl extends IfcProcessImpl implements IfcTask
 	 */
 	public boolean isSetWorkMethod()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_TASK__WORK_METHOD);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcTask_WorkMethod());
 	}
 
 	/**
@@ -181,7 +174,7 @@ public class IfcTaskImpl extends IfcProcessImpl implements IfcTask
 	 */
 	public Tristate getIsMilestone()
 	{
-		return (Tristate)eGet(Ifc2x3Package.Literals.IFC_TASK__IS_MILESTONE, true);
+		return (Tristate)eGet(Ifc2x3Package.eINSTANCE.getIfcTask_IsMilestone(), true);
 	}
 
 	/**
@@ -191,7 +184,7 @@ public class IfcTaskImpl extends IfcProcessImpl implements IfcTask
 	 */
 	public void setIsMilestone(Tristate newIsMilestone)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_TASK__IS_MILESTONE, newIsMilestone);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcTask_IsMilestone(), newIsMilestone);
 	}
 
 	/**
@@ -201,7 +194,7 @@ public class IfcTaskImpl extends IfcProcessImpl implements IfcTask
 	 */
 	public int getPriority()
 	{
-		return (Integer)eGet(Ifc2x3Package.Literals.IFC_TASK__PRIORITY, true);
+		return (Integer)eGet(Ifc2x3Package.eINSTANCE.getIfcTask_Priority(), true);
 	}
 
 	/**
@@ -211,7 +204,7 @@ public class IfcTaskImpl extends IfcProcessImpl implements IfcTask
 	 */
 	public void setPriority(int newPriority)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_TASK__PRIORITY, newPriority);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcTask_Priority(), newPriority);
 	}
 
 } //IfcTaskImpl

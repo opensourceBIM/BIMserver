@@ -40,68 +40,61 @@ public enum IfcElectricHeaterTypeEnum implements Enumerator
 	 * The '<em><b>NULL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NULL
+	 * @see #NULL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NULL_LITERAL(0, "NULL", "NULL"),
+	NULL(0, "NULL", "NULL"),
 
 	/**
 	 * The '<em><b>ELECTRICMATHEATER</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #ELECTRICMATHEATER
+	 * @see #ELECTRICMATHEATER_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	ELECTRICMATHEATER_LITERAL(1, "ELECTRICMATHEATER", "ELECTRICMATHEATER"),
+	ELECTRICMATHEATER(1, "ELECTRICMATHEATER", "ELECTRICMATHEATER"),
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED
+	 * @see #NOTDEFINED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED_LITERAL(2, "NOTDEFINED", "NOTDEFINED"),
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>ELECTRICCABLEHEATER</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #ELECTRICCABLEHEATER
+	 * @see #ELECTRICCABLEHEATER_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	ELECTRICCABLEHEATER_LITERAL(3, "ELECTRICCABLEHEATER", "ELECTRICCABLEHEATER"),
+	ELECTRICCABLEHEATER(3, "ELECTRICCABLEHEATER", "ELECTRICCABLEHEATER"),
 
 	/**
 	 * The '<em><b>ELECTRICPOINTHEATER</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #ELECTRICPOINTHEATER
+	 * @see #ELECTRICPOINTHEATER_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	ELECTRICPOINTHEATER_LITERAL(4, "ELECTRICPOINTHEATER", "ELECTRICPOINTHEATER"),
+	ELECTRICPOINTHEATER(4, "ELECTRICPOINTHEATER", "ELECTRICPOINTHEATER"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
+	 * @see #USERDEFINED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	USERDEFINED_LITERAL(5, "USERDEFINED", "USERDEFINED");
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
+	USERDEFINED(5, "USERDEFINED", "USERDEFINED");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -111,12 +104,12 @@ public enum IfcElectricHeaterTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NULL_LITERAL
+	 * @see #NULL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NULL = 0;
+	public static final int NULL_VALUE = 0;
 
 	/**
 	 * The '<em><b>ELECTRICMATHEATER</b></em>' literal value.
@@ -126,12 +119,12 @@ public enum IfcElectricHeaterTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ELECTRICMATHEATER_LITERAL
+	 * @see #ELECTRICMATHEATER
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ELECTRICMATHEATER = 1;
+	public static final int ELECTRICMATHEATER_VALUE = 1;
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
@@ -141,12 +134,12 @@ public enum IfcElectricHeaterTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_LITERAL
+	 * @see #NOTDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED = 2;
+	public static final int NOTDEFINED_VALUE = 2;
 
 	/**
 	 * The '<em><b>ELECTRICCABLEHEATER</b></em>' literal value.
@@ -156,12 +149,12 @@ public enum IfcElectricHeaterTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ELECTRICCABLEHEATER_LITERAL
+	 * @see #ELECTRICCABLEHEATER
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ELECTRICCABLEHEATER = 3;
+	public static final int ELECTRICCABLEHEATER_VALUE = 3;
 
 	/**
 	 * The '<em><b>ELECTRICPOINTHEATER</b></em>' literal value.
@@ -171,12 +164,12 @@ public enum IfcElectricHeaterTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ELECTRICPOINTHEATER_LITERAL
+	 * @see #ELECTRICPOINTHEATER
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ELECTRICPOINTHEATER = 4;
+	public static final int ELECTRICPOINTHEATER_VALUE = 4;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -186,12 +179,12 @@ public enum IfcElectricHeaterTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_LITERAL
+	 * @see #USERDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED = 5;
+	public static final int USERDEFINED_VALUE = 5;
 
 	/**
 	 * An array of all the '<em><b>Ifc Electric Heater Type Enum</b></em>' enumerators.
@@ -200,14 +193,13 @@ public enum IfcElectricHeaterTypeEnum implements Enumerator
 	 * @generated
 	 */
 	private static final IfcElectricHeaterTypeEnum[] VALUES_ARRAY =
-		new IfcElectricHeaterTypeEnum[]
-		{
-			NULL_LITERAL,
-			ELECTRICMATHEATER_LITERAL,
-			NOTDEFINED_LITERAL,
-			ELECTRICCABLEHEATER_LITERAL,
-			ELECTRICPOINTHEATER_LITERAL,
-			USERDEFINED_LITERAL,
+		new IfcElectricHeaterTypeEnum[] {
+			NULL,
+			ELECTRICMATHEATER,
+			NOTDEFINED,
+			ELECTRICCABLEHEATER,
+			ELECTRICPOINTHEATER,
+			USERDEFINED,
 		};
 
 	/**
@@ -226,11 +218,9 @@ public enum IfcElectricHeaterTypeEnum implements Enumerator
 	 */
 	public static IfcElectricHeaterTypeEnum get(String literal)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcElectricHeaterTypeEnum result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal))
-			{
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -245,11 +235,9 @@ public enum IfcElectricHeaterTypeEnum implements Enumerator
 	 */
 	public static IfcElectricHeaterTypeEnum getByName(String name)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcElectricHeaterTypeEnum result = VALUES_ARRAY[i];
-			if (result.getName().equals(name))
-			{
+			if (result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -264,14 +252,13 @@ public enum IfcElectricHeaterTypeEnum implements Enumerator
 	 */
 	public static IfcElectricHeaterTypeEnum get(int value)
 	{
-		switch (value)
-		{
-			case NULL: return NULL_LITERAL;
-			case ELECTRICMATHEATER: return ELECTRICMATHEATER_LITERAL;
-			case NOTDEFINED: return NOTDEFINED_LITERAL;
-			case ELECTRICCABLEHEATER: return ELECTRICCABLEHEATER_LITERAL;
-			case ELECTRICPOINTHEATER: return ELECTRICPOINTHEATER_LITERAL;
-			case USERDEFINED: return USERDEFINED_LITERAL;
+		switch (value) {
+			case NULL_VALUE: return NULL;
+			case ELECTRICMATHEATER_VALUE: return ELECTRICMATHEATER;
+			case NOTDEFINED_VALUE: return NOTDEFINED;
+			case ELECTRICCABLEHEATER_VALUE: return ELECTRICCABLEHEATER;
+			case ELECTRICPOINTHEATER_VALUE: return ELECTRICPOINTHEATER;
+			case USERDEFINED_VALUE: return USERDEFINED;
 		}
 		return null;
 	}

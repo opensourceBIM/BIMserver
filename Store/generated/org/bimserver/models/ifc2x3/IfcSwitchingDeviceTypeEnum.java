@@ -40,88 +40,81 @@ public enum IfcSwitchingDeviceTypeEnum implements Enumerator
 	 * The '<em><b>NULL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NULL
+	 * @see #NULL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NULL_LITERAL(0, "NULL", "NULL"),
+	NULL(0, "NULL", "NULL"),
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED
+	 * @see #NOTDEFINED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED_LITERAL(1, "NOTDEFINED", "NOTDEFINED"),
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>CONTACTOR</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #CONTACTOR
+	 * @see #CONTACTOR_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	CONTACTOR_LITERAL(2, "CONTACTOR", "CONTACTOR"),
+	CONTACTOR(2, "CONTACTOR", "CONTACTOR"),
 
 	/**
 	 * The '<em><b>SWITCHDISCONNECTOR</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #SWITCHDISCONNECTOR
+	 * @see #SWITCHDISCONNECTOR_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	SWITCHDISCONNECTOR_LITERAL(3, "SWITCHDISCONNECTOR", "SWITCHDISCONNECTOR"),
+	SWITCHDISCONNECTOR(3, "SWITCHDISCONNECTOR", "SWITCHDISCONNECTOR"),
 
 	/**
 	 * The '<em><b>STARTER</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #STARTER
+	 * @see #STARTER_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	STARTER_LITERAL(4, "STARTER", "STARTER"),
+	STARTER(4, "STARTER", "STARTER"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
+	 * @see #USERDEFINED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	USERDEFINED_LITERAL(5, "USERDEFINED", "USERDEFINED"),
+	USERDEFINED(5, "USERDEFINED", "USERDEFINED"),
 
 	/**
 	 * The '<em><b>EMERGENCYSTOP</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #EMERGENCYSTOP
+	 * @see #EMERGENCYSTOP_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	EMERGENCYSTOP_LITERAL(6, "EMERGENCYSTOP", "EMERGENCYSTOP"),
+	EMERGENCYSTOP(6, "EMERGENCYSTOP", "EMERGENCYSTOP"),
 
 	/**
 	 * The '<em><b>TOGGLESWITCH</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #TOGGLESWITCH
+	 * @see #TOGGLESWITCH_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	TOGGLESWITCH_LITERAL(7, "TOGGLESWITCH", "TOGGLESWITCH");
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
+	TOGGLESWITCH(7, "TOGGLESWITCH", "TOGGLESWITCH");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -131,12 +124,12 @@ public enum IfcSwitchingDeviceTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NULL_LITERAL
+	 * @see #NULL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NULL = 0;
+	public static final int NULL_VALUE = 0;
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
@@ -146,12 +139,12 @@ public enum IfcSwitchingDeviceTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_LITERAL
+	 * @see #NOTDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED = 1;
+	public static final int NOTDEFINED_VALUE = 1;
 
 	/**
 	 * The '<em><b>CONTACTOR</b></em>' literal value.
@@ -161,12 +154,12 @@ public enum IfcSwitchingDeviceTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #CONTACTOR_LITERAL
+	 * @see #CONTACTOR
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int CONTACTOR = 2;
+	public static final int CONTACTOR_VALUE = 2;
 
 	/**
 	 * The '<em><b>SWITCHDISCONNECTOR</b></em>' literal value.
@@ -176,12 +169,12 @@ public enum IfcSwitchingDeviceTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #SWITCHDISCONNECTOR_LITERAL
+	 * @see #SWITCHDISCONNECTOR
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SWITCHDISCONNECTOR = 3;
+	public static final int SWITCHDISCONNECTOR_VALUE = 3;
 
 	/**
 	 * The '<em><b>STARTER</b></em>' literal value.
@@ -191,12 +184,12 @@ public enum IfcSwitchingDeviceTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #STARTER_LITERAL
+	 * @see #STARTER
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int STARTER = 4;
+	public static final int STARTER_VALUE = 4;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -206,12 +199,12 @@ public enum IfcSwitchingDeviceTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_LITERAL
+	 * @see #USERDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED = 5;
+	public static final int USERDEFINED_VALUE = 5;
 
 	/**
 	 * The '<em><b>EMERGENCYSTOP</b></em>' literal value.
@@ -221,12 +214,12 @@ public enum IfcSwitchingDeviceTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #EMERGENCYSTOP_LITERAL
+	 * @see #EMERGENCYSTOP
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int EMERGENCYSTOP = 6;
+	public static final int EMERGENCYSTOP_VALUE = 6;
 
 	/**
 	 * The '<em><b>TOGGLESWITCH</b></em>' literal value.
@@ -236,12 +229,12 @@ public enum IfcSwitchingDeviceTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #TOGGLESWITCH_LITERAL
+	 * @see #TOGGLESWITCH
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int TOGGLESWITCH = 7;
+	public static final int TOGGLESWITCH_VALUE = 7;
 
 	/**
 	 * An array of all the '<em><b>Ifc Switching Device Type Enum</b></em>' enumerators.
@@ -250,16 +243,15 @@ public enum IfcSwitchingDeviceTypeEnum implements Enumerator
 	 * @generated
 	 */
 	private static final IfcSwitchingDeviceTypeEnum[] VALUES_ARRAY =
-		new IfcSwitchingDeviceTypeEnum[]
-		{
-			NULL_LITERAL,
-			NOTDEFINED_LITERAL,
-			CONTACTOR_LITERAL,
-			SWITCHDISCONNECTOR_LITERAL,
-			STARTER_LITERAL,
-			USERDEFINED_LITERAL,
-			EMERGENCYSTOP_LITERAL,
-			TOGGLESWITCH_LITERAL,
+		new IfcSwitchingDeviceTypeEnum[] {
+			NULL,
+			NOTDEFINED,
+			CONTACTOR,
+			SWITCHDISCONNECTOR,
+			STARTER,
+			USERDEFINED,
+			EMERGENCYSTOP,
+			TOGGLESWITCH,
 		};
 
 	/**
@@ -278,11 +270,9 @@ public enum IfcSwitchingDeviceTypeEnum implements Enumerator
 	 */
 	public static IfcSwitchingDeviceTypeEnum get(String literal)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcSwitchingDeviceTypeEnum result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal))
-			{
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -297,11 +287,9 @@ public enum IfcSwitchingDeviceTypeEnum implements Enumerator
 	 */
 	public static IfcSwitchingDeviceTypeEnum getByName(String name)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcSwitchingDeviceTypeEnum result = VALUES_ARRAY[i];
-			if (result.getName().equals(name))
-			{
+			if (result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -316,16 +304,15 @@ public enum IfcSwitchingDeviceTypeEnum implements Enumerator
 	 */
 	public static IfcSwitchingDeviceTypeEnum get(int value)
 	{
-		switch (value)
-		{
-			case NULL: return NULL_LITERAL;
-			case NOTDEFINED: return NOTDEFINED_LITERAL;
-			case CONTACTOR: return CONTACTOR_LITERAL;
-			case SWITCHDISCONNECTOR: return SWITCHDISCONNECTOR_LITERAL;
-			case STARTER: return STARTER_LITERAL;
-			case USERDEFINED: return USERDEFINED_LITERAL;
-			case EMERGENCYSTOP: return EMERGENCYSTOP_LITERAL;
-			case TOGGLESWITCH: return TOGGLESWITCH_LITERAL;
+		switch (value) {
+			case NULL_VALUE: return NULL;
+			case NOTDEFINED_VALUE: return NOTDEFINED;
+			case CONTACTOR_VALUE: return CONTACTOR;
+			case SWITCHDISCONNECTOR_VALUE: return SWITCHDISCONNECTOR;
+			case STARTER_VALUE: return STARTER;
+			case USERDEFINED_VALUE: return USERDEFINED;
+			case EMERGENCYSTOP_VALUE: return EMERGENCYSTOP;
+			case TOGGLESWITCH_VALUE: return TOGGLESWITCH;
 		}
 		return null;
 	}

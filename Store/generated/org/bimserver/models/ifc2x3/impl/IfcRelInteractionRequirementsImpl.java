@@ -54,13 +54,6 @@ public class IfcRelInteractionRequirementsImpl extends IfcRelConnectsImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	protected IfcRelInteractionRequirementsImpl()
 	{
 		super();
@@ -74,7 +67,7 @@ public class IfcRelInteractionRequirementsImpl extends IfcRelConnectsImpl implem
 	@Override
 	protected EClass eStaticClass()
 	{
-		return Ifc2x3Package.Literals.IFC_REL_INTERACTION_REQUIREMENTS;
+		return Ifc2x3Package.eINSTANCE.getIfcRelInteractionRequirements();
 	}
 
 	/**
@@ -84,7 +77,7 @@ public class IfcRelInteractionRequirementsImpl extends IfcRelConnectsImpl implem
 	 */
 	public float getDailyInteraction()
 	{
-		return (Float)eGet(Ifc2x3Package.Literals.IFC_REL_INTERACTION_REQUIREMENTS__DAILY_INTERACTION, true);
+		return (Float)eGet(Ifc2x3Package.eINSTANCE.getIfcRelInteractionRequirements_DailyInteraction(), true);
 	}
 
 	/**
@@ -94,7 +87,7 @@ public class IfcRelInteractionRequirementsImpl extends IfcRelConnectsImpl implem
 	 */
 	public void setDailyInteraction(float newDailyInteraction)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_REL_INTERACTION_REQUIREMENTS__DAILY_INTERACTION, newDailyInteraction);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcRelInteractionRequirements_DailyInteraction(), newDailyInteraction);
 	}
 
 	/**
@@ -104,7 +97,7 @@ public class IfcRelInteractionRequirementsImpl extends IfcRelConnectsImpl implem
 	 */
 	public void unsetDailyInteraction()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_REL_INTERACTION_REQUIREMENTS__DAILY_INTERACTION);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcRelInteractionRequirements_DailyInteraction());
 	}
 
 	/**
@@ -114,7 +107,7 @@ public class IfcRelInteractionRequirementsImpl extends IfcRelConnectsImpl implem
 	 */
 	public boolean isSetDailyInteraction()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_REL_INTERACTION_REQUIREMENTS__DAILY_INTERACTION);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcRelInteractionRequirements_DailyInteraction());
 	}
 
 	/**
@@ -124,7 +117,7 @@ public class IfcRelInteractionRequirementsImpl extends IfcRelConnectsImpl implem
 	 */
 	public String getDailyInteractionAsString()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_REL_INTERACTION_REQUIREMENTS__DAILY_INTERACTION_AS_STRING, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcRelInteractionRequirements_DailyInteractionAsString(), true);
 	}
 
 	/**
@@ -134,7 +127,7 @@ public class IfcRelInteractionRequirementsImpl extends IfcRelConnectsImpl implem
 	 */
 	public void setDailyInteractionAsString(String newDailyInteractionAsString)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_REL_INTERACTION_REQUIREMENTS__DAILY_INTERACTION_AS_STRING, newDailyInteractionAsString);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcRelInteractionRequirements_DailyInteractionAsString(), newDailyInteractionAsString);
 	}
 
 	/**
@@ -144,7 +137,7 @@ public class IfcRelInteractionRequirementsImpl extends IfcRelConnectsImpl implem
 	 */
 	public void unsetDailyInteractionAsString()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_REL_INTERACTION_REQUIREMENTS__DAILY_INTERACTION_AS_STRING);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcRelInteractionRequirements_DailyInteractionAsString());
 	}
 
 	/**
@@ -154,7 +147,7 @@ public class IfcRelInteractionRequirementsImpl extends IfcRelConnectsImpl implem
 	 */
 	public boolean isSetDailyInteractionAsString()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_REL_INTERACTION_REQUIREMENTS__DAILY_INTERACTION_AS_STRING);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcRelInteractionRequirements_DailyInteractionAsString());
 	}
 
 	/**
@@ -164,7 +157,7 @@ public class IfcRelInteractionRequirementsImpl extends IfcRelConnectsImpl implem
 	 */
 	public float getImportanceRating()
 	{
-		return (Float)eGet(Ifc2x3Package.Literals.IFC_REL_INTERACTION_REQUIREMENTS__IMPORTANCE_RATING, true);
+		return (Float)eGet(Ifc2x3Package.eINSTANCE.getIfcRelInteractionRequirements_ImportanceRating(), true);
 	}
 
 	/**
@@ -174,7 +167,7 @@ public class IfcRelInteractionRequirementsImpl extends IfcRelConnectsImpl implem
 	 */
 	public void setImportanceRating(float newImportanceRating)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_REL_INTERACTION_REQUIREMENTS__IMPORTANCE_RATING, newImportanceRating);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcRelInteractionRequirements_ImportanceRating(), newImportanceRating);
 	}
 
 	/**
@@ -184,7 +177,7 @@ public class IfcRelInteractionRequirementsImpl extends IfcRelConnectsImpl implem
 	 */
 	public void unsetImportanceRating()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_REL_INTERACTION_REQUIREMENTS__IMPORTANCE_RATING);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcRelInteractionRequirements_ImportanceRating());
 	}
 
 	/**
@@ -194,7 +187,7 @@ public class IfcRelInteractionRequirementsImpl extends IfcRelConnectsImpl implem
 	 */
 	public boolean isSetImportanceRating()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_REL_INTERACTION_REQUIREMENTS__IMPORTANCE_RATING);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcRelInteractionRequirements_ImportanceRating());
 	}
 
 	/**
@@ -204,7 +197,7 @@ public class IfcRelInteractionRequirementsImpl extends IfcRelConnectsImpl implem
 	 */
 	public String getImportanceRatingAsString()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_REL_INTERACTION_REQUIREMENTS__IMPORTANCE_RATING_AS_STRING, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcRelInteractionRequirements_ImportanceRatingAsString(), true);
 	}
 
 	/**
@@ -214,7 +207,7 @@ public class IfcRelInteractionRequirementsImpl extends IfcRelConnectsImpl implem
 	 */
 	public void setImportanceRatingAsString(String newImportanceRatingAsString)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_REL_INTERACTION_REQUIREMENTS__IMPORTANCE_RATING_AS_STRING, newImportanceRatingAsString);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcRelInteractionRequirements_ImportanceRatingAsString(), newImportanceRatingAsString);
 	}
 
 	/**
@@ -224,7 +217,7 @@ public class IfcRelInteractionRequirementsImpl extends IfcRelConnectsImpl implem
 	 */
 	public void unsetImportanceRatingAsString()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_REL_INTERACTION_REQUIREMENTS__IMPORTANCE_RATING_AS_STRING);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcRelInteractionRequirements_ImportanceRatingAsString());
 	}
 
 	/**
@@ -234,7 +227,7 @@ public class IfcRelInteractionRequirementsImpl extends IfcRelConnectsImpl implem
 	 */
 	public boolean isSetImportanceRatingAsString()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_REL_INTERACTION_REQUIREMENTS__IMPORTANCE_RATING_AS_STRING);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcRelInteractionRequirements_ImportanceRatingAsString());
 	}
 
 	/**
@@ -244,7 +237,7 @@ public class IfcRelInteractionRequirementsImpl extends IfcRelConnectsImpl implem
 	 */
 	public IfcSpatialStructureElement getLocationOfInteraction()
 	{
-		return (IfcSpatialStructureElement)eGet(Ifc2x3Package.Literals.IFC_REL_INTERACTION_REQUIREMENTS__LOCATION_OF_INTERACTION, true);
+		return (IfcSpatialStructureElement)eGet(Ifc2x3Package.eINSTANCE.getIfcRelInteractionRequirements_LocationOfInteraction(), true);
 	}
 
 	/**
@@ -254,7 +247,7 @@ public class IfcRelInteractionRequirementsImpl extends IfcRelConnectsImpl implem
 	 */
 	public void setLocationOfInteraction(IfcSpatialStructureElement newLocationOfInteraction)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_REL_INTERACTION_REQUIREMENTS__LOCATION_OF_INTERACTION, newLocationOfInteraction);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcRelInteractionRequirements_LocationOfInteraction(), newLocationOfInteraction);
 	}
 
 	/**
@@ -264,7 +257,7 @@ public class IfcRelInteractionRequirementsImpl extends IfcRelConnectsImpl implem
 	 */
 	public void unsetLocationOfInteraction()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_REL_INTERACTION_REQUIREMENTS__LOCATION_OF_INTERACTION);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcRelInteractionRequirements_LocationOfInteraction());
 	}
 
 	/**
@@ -274,7 +267,7 @@ public class IfcRelInteractionRequirementsImpl extends IfcRelConnectsImpl implem
 	 */
 	public boolean isSetLocationOfInteraction()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_REL_INTERACTION_REQUIREMENTS__LOCATION_OF_INTERACTION);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcRelInteractionRequirements_LocationOfInteraction());
 	}
 
 	/**
@@ -284,7 +277,7 @@ public class IfcRelInteractionRequirementsImpl extends IfcRelConnectsImpl implem
 	 */
 	public IfcSpaceProgram getRelatedSpaceProgram()
 	{
-		return (IfcSpaceProgram)eGet(Ifc2x3Package.Literals.IFC_REL_INTERACTION_REQUIREMENTS__RELATED_SPACE_PROGRAM, true);
+		return (IfcSpaceProgram)eGet(Ifc2x3Package.eINSTANCE.getIfcRelInteractionRequirements_RelatedSpaceProgram(), true);
 	}
 
 	/**
@@ -294,7 +287,7 @@ public class IfcRelInteractionRequirementsImpl extends IfcRelConnectsImpl implem
 	 */
 	public void setRelatedSpaceProgram(IfcSpaceProgram newRelatedSpaceProgram)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_REL_INTERACTION_REQUIREMENTS__RELATED_SPACE_PROGRAM, newRelatedSpaceProgram);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcRelInteractionRequirements_RelatedSpaceProgram(), newRelatedSpaceProgram);
 	}
 
 	/**
@@ -304,7 +297,7 @@ public class IfcRelInteractionRequirementsImpl extends IfcRelConnectsImpl implem
 	 */
 	public IfcSpaceProgram getRelatingSpaceProgram()
 	{
-		return (IfcSpaceProgram)eGet(Ifc2x3Package.Literals.IFC_REL_INTERACTION_REQUIREMENTS__RELATING_SPACE_PROGRAM, true);
+		return (IfcSpaceProgram)eGet(Ifc2x3Package.eINSTANCE.getIfcRelInteractionRequirements_RelatingSpaceProgram(), true);
 	}
 
 	/**
@@ -314,7 +307,7 @@ public class IfcRelInteractionRequirementsImpl extends IfcRelConnectsImpl implem
 	 */
 	public void setRelatingSpaceProgram(IfcSpaceProgram newRelatingSpaceProgram)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_REL_INTERACTION_REQUIREMENTS__RELATING_SPACE_PROGRAM, newRelatingSpaceProgram);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcRelInteractionRequirements_RelatingSpaceProgram(), newRelatingSpaceProgram);
 	}
 
 } //IfcRelInteractionRequirementsImpl

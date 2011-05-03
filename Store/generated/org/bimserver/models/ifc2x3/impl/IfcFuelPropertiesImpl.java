@@ -53,13 +53,6 @@ public class IfcFuelPropertiesImpl extends IfcMaterialPropertiesImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	protected IfcFuelPropertiesImpl()
 	{
 		super();
@@ -73,7 +66,7 @@ public class IfcFuelPropertiesImpl extends IfcMaterialPropertiesImpl implements 
 	@Override
 	protected EClass eStaticClass()
 	{
-		return Ifc2x3Package.Literals.IFC_FUEL_PROPERTIES;
+		return Ifc2x3Package.eINSTANCE.getIfcFuelProperties();
 	}
 
 	/**
@@ -83,7 +76,7 @@ public class IfcFuelPropertiesImpl extends IfcMaterialPropertiesImpl implements 
 	 */
 	public float getCombustionTemperature()
 	{
-		return (Float)eGet(Ifc2x3Package.Literals.IFC_FUEL_PROPERTIES__COMBUSTION_TEMPERATURE, true);
+		return (Float)eGet(Ifc2x3Package.eINSTANCE.getIfcFuelProperties_CombustionTemperature(), true);
 	}
 
 	/**
@@ -93,7 +86,7 @@ public class IfcFuelPropertiesImpl extends IfcMaterialPropertiesImpl implements 
 	 */
 	public void setCombustionTemperature(float newCombustionTemperature)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_FUEL_PROPERTIES__COMBUSTION_TEMPERATURE, newCombustionTemperature);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcFuelProperties_CombustionTemperature(), newCombustionTemperature);
 	}
 
 	/**
@@ -103,7 +96,7 @@ public class IfcFuelPropertiesImpl extends IfcMaterialPropertiesImpl implements 
 	 */
 	public void unsetCombustionTemperature()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_FUEL_PROPERTIES__COMBUSTION_TEMPERATURE);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcFuelProperties_CombustionTemperature());
 	}
 
 	/**
@@ -113,7 +106,7 @@ public class IfcFuelPropertiesImpl extends IfcMaterialPropertiesImpl implements 
 	 */
 	public boolean isSetCombustionTemperature()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_FUEL_PROPERTIES__COMBUSTION_TEMPERATURE);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcFuelProperties_CombustionTemperature());
 	}
 
 	/**
@@ -123,7 +116,7 @@ public class IfcFuelPropertiesImpl extends IfcMaterialPropertiesImpl implements 
 	 */
 	public String getCombustionTemperatureAsString()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_FUEL_PROPERTIES__COMBUSTION_TEMPERATURE_AS_STRING, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcFuelProperties_CombustionTemperatureAsString(), true);
 	}
 
 	/**
@@ -133,7 +126,7 @@ public class IfcFuelPropertiesImpl extends IfcMaterialPropertiesImpl implements 
 	 */
 	public void setCombustionTemperatureAsString(String newCombustionTemperatureAsString)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_FUEL_PROPERTIES__COMBUSTION_TEMPERATURE_AS_STRING, newCombustionTemperatureAsString);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcFuelProperties_CombustionTemperatureAsString(), newCombustionTemperatureAsString);
 	}
 
 	/**
@@ -143,7 +136,7 @@ public class IfcFuelPropertiesImpl extends IfcMaterialPropertiesImpl implements 
 	 */
 	public void unsetCombustionTemperatureAsString()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_FUEL_PROPERTIES__COMBUSTION_TEMPERATURE_AS_STRING);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcFuelProperties_CombustionTemperatureAsString());
 	}
 
 	/**
@@ -153,7 +146,7 @@ public class IfcFuelPropertiesImpl extends IfcMaterialPropertiesImpl implements 
 	 */
 	public boolean isSetCombustionTemperatureAsString()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_FUEL_PROPERTIES__COMBUSTION_TEMPERATURE_AS_STRING);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcFuelProperties_CombustionTemperatureAsString());
 	}
 
 	/**
@@ -163,7 +156,7 @@ public class IfcFuelPropertiesImpl extends IfcMaterialPropertiesImpl implements 
 	 */
 	public float getCarbonContent()
 	{
-		return (Float)eGet(Ifc2x3Package.Literals.IFC_FUEL_PROPERTIES__CARBON_CONTENT, true);
+		return (Float)eGet(Ifc2x3Package.eINSTANCE.getIfcFuelProperties_CarbonContent(), true);
 	}
 
 	/**
@@ -173,7 +166,7 @@ public class IfcFuelPropertiesImpl extends IfcMaterialPropertiesImpl implements 
 	 */
 	public void setCarbonContent(float newCarbonContent)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_FUEL_PROPERTIES__CARBON_CONTENT, newCarbonContent);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcFuelProperties_CarbonContent(), newCarbonContent);
 	}
 
 	/**
@@ -183,7 +176,7 @@ public class IfcFuelPropertiesImpl extends IfcMaterialPropertiesImpl implements 
 	 */
 	public void unsetCarbonContent()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_FUEL_PROPERTIES__CARBON_CONTENT);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcFuelProperties_CarbonContent());
 	}
 
 	/**
@@ -193,7 +186,7 @@ public class IfcFuelPropertiesImpl extends IfcMaterialPropertiesImpl implements 
 	 */
 	public boolean isSetCarbonContent()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_FUEL_PROPERTIES__CARBON_CONTENT);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcFuelProperties_CarbonContent());
 	}
 
 	/**
@@ -203,7 +196,7 @@ public class IfcFuelPropertiesImpl extends IfcMaterialPropertiesImpl implements 
 	 */
 	public String getCarbonContentAsString()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_FUEL_PROPERTIES__CARBON_CONTENT_AS_STRING, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcFuelProperties_CarbonContentAsString(), true);
 	}
 
 	/**
@@ -213,7 +206,7 @@ public class IfcFuelPropertiesImpl extends IfcMaterialPropertiesImpl implements 
 	 */
 	public void setCarbonContentAsString(String newCarbonContentAsString)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_FUEL_PROPERTIES__CARBON_CONTENT_AS_STRING, newCarbonContentAsString);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcFuelProperties_CarbonContentAsString(), newCarbonContentAsString);
 	}
 
 	/**
@@ -223,7 +216,7 @@ public class IfcFuelPropertiesImpl extends IfcMaterialPropertiesImpl implements 
 	 */
 	public void unsetCarbonContentAsString()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_FUEL_PROPERTIES__CARBON_CONTENT_AS_STRING);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcFuelProperties_CarbonContentAsString());
 	}
 
 	/**
@@ -233,7 +226,7 @@ public class IfcFuelPropertiesImpl extends IfcMaterialPropertiesImpl implements 
 	 */
 	public boolean isSetCarbonContentAsString()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_FUEL_PROPERTIES__CARBON_CONTENT_AS_STRING);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcFuelProperties_CarbonContentAsString());
 	}
 
 	/**
@@ -243,7 +236,7 @@ public class IfcFuelPropertiesImpl extends IfcMaterialPropertiesImpl implements 
 	 */
 	public float getLowerHeatingValue()
 	{
-		return (Float)eGet(Ifc2x3Package.Literals.IFC_FUEL_PROPERTIES__LOWER_HEATING_VALUE, true);
+		return (Float)eGet(Ifc2x3Package.eINSTANCE.getIfcFuelProperties_LowerHeatingValue(), true);
 	}
 
 	/**
@@ -253,7 +246,7 @@ public class IfcFuelPropertiesImpl extends IfcMaterialPropertiesImpl implements 
 	 */
 	public void setLowerHeatingValue(float newLowerHeatingValue)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_FUEL_PROPERTIES__LOWER_HEATING_VALUE, newLowerHeatingValue);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcFuelProperties_LowerHeatingValue(), newLowerHeatingValue);
 	}
 
 	/**
@@ -263,7 +256,7 @@ public class IfcFuelPropertiesImpl extends IfcMaterialPropertiesImpl implements 
 	 */
 	public void unsetLowerHeatingValue()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_FUEL_PROPERTIES__LOWER_HEATING_VALUE);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcFuelProperties_LowerHeatingValue());
 	}
 
 	/**
@@ -273,7 +266,7 @@ public class IfcFuelPropertiesImpl extends IfcMaterialPropertiesImpl implements 
 	 */
 	public boolean isSetLowerHeatingValue()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_FUEL_PROPERTIES__LOWER_HEATING_VALUE);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcFuelProperties_LowerHeatingValue());
 	}
 
 	/**
@@ -283,7 +276,7 @@ public class IfcFuelPropertiesImpl extends IfcMaterialPropertiesImpl implements 
 	 */
 	public String getLowerHeatingValueAsString()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_FUEL_PROPERTIES__LOWER_HEATING_VALUE_AS_STRING, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcFuelProperties_LowerHeatingValueAsString(), true);
 	}
 
 	/**
@@ -293,7 +286,7 @@ public class IfcFuelPropertiesImpl extends IfcMaterialPropertiesImpl implements 
 	 */
 	public void setLowerHeatingValueAsString(String newLowerHeatingValueAsString)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_FUEL_PROPERTIES__LOWER_HEATING_VALUE_AS_STRING, newLowerHeatingValueAsString);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcFuelProperties_LowerHeatingValueAsString(), newLowerHeatingValueAsString);
 	}
 
 	/**
@@ -303,7 +296,7 @@ public class IfcFuelPropertiesImpl extends IfcMaterialPropertiesImpl implements 
 	 */
 	public void unsetLowerHeatingValueAsString()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_FUEL_PROPERTIES__LOWER_HEATING_VALUE_AS_STRING);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcFuelProperties_LowerHeatingValueAsString());
 	}
 
 	/**
@@ -313,7 +306,7 @@ public class IfcFuelPropertiesImpl extends IfcMaterialPropertiesImpl implements 
 	 */
 	public boolean isSetLowerHeatingValueAsString()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_FUEL_PROPERTIES__LOWER_HEATING_VALUE_AS_STRING);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcFuelProperties_LowerHeatingValueAsString());
 	}
 
 	/**
@@ -323,7 +316,7 @@ public class IfcFuelPropertiesImpl extends IfcMaterialPropertiesImpl implements 
 	 */
 	public float getHigherHeatingValue()
 	{
-		return (Float)eGet(Ifc2x3Package.Literals.IFC_FUEL_PROPERTIES__HIGHER_HEATING_VALUE, true);
+		return (Float)eGet(Ifc2x3Package.eINSTANCE.getIfcFuelProperties_HigherHeatingValue(), true);
 	}
 
 	/**
@@ -333,7 +326,7 @@ public class IfcFuelPropertiesImpl extends IfcMaterialPropertiesImpl implements 
 	 */
 	public void setHigherHeatingValue(float newHigherHeatingValue)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_FUEL_PROPERTIES__HIGHER_HEATING_VALUE, newHigherHeatingValue);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcFuelProperties_HigherHeatingValue(), newHigherHeatingValue);
 	}
 
 	/**
@@ -343,7 +336,7 @@ public class IfcFuelPropertiesImpl extends IfcMaterialPropertiesImpl implements 
 	 */
 	public void unsetHigherHeatingValue()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_FUEL_PROPERTIES__HIGHER_HEATING_VALUE);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcFuelProperties_HigherHeatingValue());
 	}
 
 	/**
@@ -353,7 +346,7 @@ public class IfcFuelPropertiesImpl extends IfcMaterialPropertiesImpl implements 
 	 */
 	public boolean isSetHigherHeatingValue()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_FUEL_PROPERTIES__HIGHER_HEATING_VALUE);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcFuelProperties_HigherHeatingValue());
 	}
 
 	/**
@@ -363,7 +356,7 @@ public class IfcFuelPropertiesImpl extends IfcMaterialPropertiesImpl implements 
 	 */
 	public String getHigherHeatingValueAsString()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_FUEL_PROPERTIES__HIGHER_HEATING_VALUE_AS_STRING, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcFuelProperties_HigherHeatingValueAsString(), true);
 	}
 
 	/**
@@ -373,7 +366,7 @@ public class IfcFuelPropertiesImpl extends IfcMaterialPropertiesImpl implements 
 	 */
 	public void setHigherHeatingValueAsString(String newHigherHeatingValueAsString)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_FUEL_PROPERTIES__HIGHER_HEATING_VALUE_AS_STRING, newHigherHeatingValueAsString);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcFuelProperties_HigherHeatingValueAsString(), newHigherHeatingValueAsString);
 	}
 
 	/**
@@ -383,7 +376,7 @@ public class IfcFuelPropertiesImpl extends IfcMaterialPropertiesImpl implements 
 	 */
 	public void unsetHigherHeatingValueAsString()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_FUEL_PROPERTIES__HIGHER_HEATING_VALUE_AS_STRING);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcFuelProperties_HigherHeatingValueAsString());
 	}
 
 	/**
@@ -393,7 +386,7 @@ public class IfcFuelPropertiesImpl extends IfcMaterialPropertiesImpl implements 
 	 */
 	public boolean isSetHigherHeatingValueAsString()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_FUEL_PROPERTIES__HIGHER_HEATING_VALUE_AS_STRING);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcFuelProperties_HigherHeatingValueAsString());
 	}
 
 } //IfcFuelPropertiesImpl

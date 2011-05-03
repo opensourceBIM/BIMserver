@@ -40,118 +40,111 @@ public enum IfcDistributionChamberElementTypeEnum implements Enumerator
 	 * The '<em><b>NULL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NULL
+	 * @see #NULL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NULL_LITERAL(0, "NULL", "NULL"),
+	NULL(0, "NULL", "NULL"),
 
 	/**
 	 * The '<em><b>METERCHAMBER</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #METERCHAMBER
+	 * @see #METERCHAMBER_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	METERCHAMBER_LITERAL(1, "METERCHAMBER", "METERCHAMBER"),
+	METERCHAMBER(1, "METERCHAMBER", "METERCHAMBER"),
 
 	/**
 	 * The '<em><b>MANHOLE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #MANHOLE
+	 * @see #MANHOLE_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	MANHOLE_LITERAL(2, "MANHOLE", "MANHOLE"),
+	MANHOLE(2, "MANHOLE", "MANHOLE"),
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED
+	 * @see #NOTDEFINED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED_LITERAL(3, "NOTDEFINED", "NOTDEFINED"),
+	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>VALVECHAMBER</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #VALVECHAMBER
+	 * @see #VALVECHAMBER_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	VALVECHAMBER_LITERAL(4, "VALVECHAMBER", "VALVECHAMBER"),
+	VALVECHAMBER(4, "VALVECHAMBER", "VALVECHAMBER"),
 
 	/**
 	 * The '<em><b>INSPECTIONPIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #INSPECTIONPIT
+	 * @see #INSPECTIONPIT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	INSPECTIONPIT_LITERAL(5, "INSPECTIONPIT", "INSPECTIONPIT"),
+	INSPECTIONPIT(5, "INSPECTIONPIT", "INSPECTIONPIT"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
+	 * @see #USERDEFINED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	USERDEFINED_LITERAL(6, "USERDEFINED", "USERDEFINED"),
+	USERDEFINED(6, "USERDEFINED", "USERDEFINED"),
 
 	/**
 	 * The '<em><b>SUMP</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #SUMP
+	 * @see #SUMP_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	SUMP_LITERAL(7, "SUMP", "SUMP"),
+	SUMP(7, "SUMP", "SUMP"),
 
 	/**
 	 * The '<em><b>TRENCH</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #TRENCH
+	 * @see #TRENCH_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	TRENCH_LITERAL(8, "TRENCH", "TRENCH"),
+	TRENCH(8, "TRENCH", "TRENCH"),
 
 	/**
 	 * The '<em><b>INSPECTIONCHAMBER</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #INSPECTIONCHAMBER
+	 * @see #INSPECTIONCHAMBER_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	INSPECTIONCHAMBER_LITERAL(9, "INSPECTIONCHAMBER", "INSPECTIONCHAMBER"),
+	INSPECTIONCHAMBER(9, "INSPECTIONCHAMBER", "INSPECTIONCHAMBER"),
 
 	/**
 	 * The '<em><b>FORMEDDUCT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #FORMEDDUCT
+	 * @see #FORMEDDUCT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	FORMEDDUCT_LITERAL(10, "FORMEDDUCT", "FORMEDDUCT");
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
+	FORMEDDUCT(10, "FORMEDDUCT", "FORMEDDUCT");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -161,12 +154,12 @@ public enum IfcDistributionChamberElementTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NULL_LITERAL
+	 * @see #NULL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NULL = 0;
+	public static final int NULL_VALUE = 0;
 
 	/**
 	 * The '<em><b>METERCHAMBER</b></em>' literal value.
@@ -176,12 +169,12 @@ public enum IfcDistributionChamberElementTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #METERCHAMBER_LITERAL
+	 * @see #METERCHAMBER
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int METERCHAMBER = 1;
+	public static final int METERCHAMBER_VALUE = 1;
 
 	/**
 	 * The '<em><b>MANHOLE</b></em>' literal value.
@@ -191,12 +184,12 @@ public enum IfcDistributionChamberElementTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #MANHOLE_LITERAL
+	 * @see #MANHOLE
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MANHOLE = 2;
+	public static final int MANHOLE_VALUE = 2;
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
@@ -206,12 +199,12 @@ public enum IfcDistributionChamberElementTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_LITERAL
+	 * @see #NOTDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED = 3;
+	public static final int NOTDEFINED_VALUE = 3;
 
 	/**
 	 * The '<em><b>VALVECHAMBER</b></em>' literal value.
@@ -221,12 +214,12 @@ public enum IfcDistributionChamberElementTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #VALVECHAMBER_LITERAL
+	 * @see #VALVECHAMBER
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int VALVECHAMBER = 4;
+	public static final int VALVECHAMBER_VALUE = 4;
 
 	/**
 	 * The '<em><b>INSPECTIONPIT</b></em>' literal value.
@@ -236,12 +229,12 @@ public enum IfcDistributionChamberElementTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #INSPECTIONPIT_LITERAL
+	 * @see #INSPECTIONPIT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int INSPECTIONPIT = 5;
+	public static final int INSPECTIONPIT_VALUE = 5;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -251,12 +244,12 @@ public enum IfcDistributionChamberElementTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_LITERAL
+	 * @see #USERDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED = 6;
+	public static final int USERDEFINED_VALUE = 6;
 
 	/**
 	 * The '<em><b>SUMP</b></em>' literal value.
@@ -266,12 +259,12 @@ public enum IfcDistributionChamberElementTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #SUMP_LITERAL
+	 * @see #SUMP
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SUMP = 7;
+	public static final int SUMP_VALUE = 7;
 
 	/**
 	 * The '<em><b>TRENCH</b></em>' literal value.
@@ -281,12 +274,12 @@ public enum IfcDistributionChamberElementTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #TRENCH_LITERAL
+	 * @see #TRENCH
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int TRENCH = 8;
+	public static final int TRENCH_VALUE = 8;
 
 	/**
 	 * The '<em><b>INSPECTIONCHAMBER</b></em>' literal value.
@@ -296,12 +289,12 @@ public enum IfcDistributionChamberElementTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #INSPECTIONCHAMBER_LITERAL
+	 * @see #INSPECTIONCHAMBER
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int INSPECTIONCHAMBER = 9;
+	public static final int INSPECTIONCHAMBER_VALUE = 9;
 
 	/**
 	 * The '<em><b>FORMEDDUCT</b></em>' literal value.
@@ -311,12 +304,12 @@ public enum IfcDistributionChamberElementTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #FORMEDDUCT_LITERAL
+	 * @see #FORMEDDUCT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int FORMEDDUCT = 10;
+	public static final int FORMEDDUCT_VALUE = 10;
 
 	/**
 	 * An array of all the '<em><b>Ifc Distribution Chamber Element Type Enum</b></em>' enumerators.
@@ -325,19 +318,18 @@ public enum IfcDistributionChamberElementTypeEnum implements Enumerator
 	 * @generated
 	 */
 	private static final IfcDistributionChamberElementTypeEnum[] VALUES_ARRAY =
-		new IfcDistributionChamberElementTypeEnum[]
-		{
-			NULL_LITERAL,
-			METERCHAMBER_LITERAL,
-			MANHOLE_LITERAL,
-			NOTDEFINED_LITERAL,
-			VALVECHAMBER_LITERAL,
-			INSPECTIONPIT_LITERAL,
-			USERDEFINED_LITERAL,
-			SUMP_LITERAL,
-			TRENCH_LITERAL,
-			INSPECTIONCHAMBER_LITERAL,
-			FORMEDDUCT_LITERAL,
+		new IfcDistributionChamberElementTypeEnum[] {
+			NULL,
+			METERCHAMBER,
+			MANHOLE,
+			NOTDEFINED,
+			VALVECHAMBER,
+			INSPECTIONPIT,
+			USERDEFINED,
+			SUMP,
+			TRENCH,
+			INSPECTIONCHAMBER,
+			FORMEDDUCT,
 		};
 
 	/**
@@ -356,11 +348,9 @@ public enum IfcDistributionChamberElementTypeEnum implements Enumerator
 	 */
 	public static IfcDistributionChamberElementTypeEnum get(String literal)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcDistributionChamberElementTypeEnum result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal))
-			{
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -375,11 +365,9 @@ public enum IfcDistributionChamberElementTypeEnum implements Enumerator
 	 */
 	public static IfcDistributionChamberElementTypeEnum getByName(String name)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcDistributionChamberElementTypeEnum result = VALUES_ARRAY[i];
-			if (result.getName().equals(name))
-			{
+			if (result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -394,19 +382,18 @@ public enum IfcDistributionChamberElementTypeEnum implements Enumerator
 	 */
 	public static IfcDistributionChamberElementTypeEnum get(int value)
 	{
-		switch (value)
-		{
-			case NULL: return NULL_LITERAL;
-			case METERCHAMBER: return METERCHAMBER_LITERAL;
-			case MANHOLE: return MANHOLE_LITERAL;
-			case NOTDEFINED: return NOTDEFINED_LITERAL;
-			case VALVECHAMBER: return VALVECHAMBER_LITERAL;
-			case INSPECTIONPIT: return INSPECTIONPIT_LITERAL;
-			case USERDEFINED: return USERDEFINED_LITERAL;
-			case SUMP: return SUMP_LITERAL;
-			case TRENCH: return TRENCH_LITERAL;
-			case INSPECTIONCHAMBER: return INSPECTIONCHAMBER_LITERAL;
-			case FORMEDDUCT: return FORMEDDUCT_LITERAL;
+		switch (value) {
+			case NULL_VALUE: return NULL;
+			case METERCHAMBER_VALUE: return METERCHAMBER;
+			case MANHOLE_VALUE: return MANHOLE;
+			case NOTDEFINED_VALUE: return NOTDEFINED;
+			case VALVECHAMBER_VALUE: return VALVECHAMBER;
+			case INSPECTIONPIT_VALUE: return INSPECTIONPIT;
+			case USERDEFINED_VALUE: return USERDEFINED;
+			case SUMP_VALUE: return SUMP;
+			case TRENCH_VALUE: return TRENCH;
+			case INSPECTIONCHAMBER_VALUE: return INSPECTIONCHAMBER;
+			case FORMEDDUCT_VALUE: return FORMEDDUCT;
 		}
 		return null;
 	}

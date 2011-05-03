@@ -40,38 +40,31 @@ public enum Tristate implements Enumerator
 	 * The '<em><b>TRUE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #TRUE
+	 * @see #TRUE_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	TRUE_LITERAL(0, "TRUE", "TRUE"),
+	TRUE(0, "TRUE", "TRUE"),
 
 	/**
 	 * The '<em><b>FALSE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #FALSE
+	 * @see #FALSE_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	FALSE_LITERAL(1, "FALSE", "FALSE"),
+	FALSE(1, "FALSE", "FALSE"),
 
 	/**
 	 * The '<em><b>UNDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #UNDEFINED
+	 * @see #UNDEFINED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	UNDEFINED_LITERAL(2, "UNDEFINED", "UNDEFINED");
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
+	UNDEFINED(2, "UNDEFINED", "UNDEFINED");
 
 	/**
 	 * The '<em><b>TRUE</b></em>' literal value.
@@ -81,12 +74,12 @@ public enum Tristate implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #TRUE_LITERAL
+	 * @see #TRUE
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int TRUE = 0;
+	public static final int TRUE_VALUE = 0;
 
 	/**
 	 * The '<em><b>FALSE</b></em>' literal value.
@@ -96,12 +89,12 @@ public enum Tristate implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #FALSE_LITERAL
+	 * @see #FALSE
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int FALSE = 1;
+	public static final int FALSE_VALUE = 1;
 
 	/**
 	 * The '<em><b>UNDEFINED</b></em>' literal value.
@@ -111,12 +104,12 @@ public enum Tristate implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #UNDEFINED_LITERAL
+	 * @see #UNDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int UNDEFINED = 2;
+	public static final int UNDEFINED_VALUE = 2;
 
 	/**
 	 * An array of all the '<em><b>Tristate</b></em>' enumerators.
@@ -125,11 +118,10 @@ public enum Tristate implements Enumerator
 	 * @generated
 	 */
 	private static final Tristate[] VALUES_ARRAY =
-		new Tristate[]
-		{
-			TRUE_LITERAL,
-			FALSE_LITERAL,
-			UNDEFINED_LITERAL,
+		new Tristate[] {
+			TRUE,
+			FALSE,
+			UNDEFINED,
 		};
 
 	/**
@@ -148,11 +140,9 @@ public enum Tristate implements Enumerator
 	 */
 	public static Tristate get(String literal)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			Tristate result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal))
-			{
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -167,11 +157,9 @@ public enum Tristate implements Enumerator
 	 */
 	public static Tristate getByName(String name)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			Tristate result = VALUES_ARRAY[i];
-			if (result.getName().equals(name))
-			{
+			if (result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -186,11 +174,10 @@ public enum Tristate implements Enumerator
 	 */
 	public static Tristate get(int value)
 	{
-		switch (value)
-		{
-			case TRUE: return TRUE_LITERAL;
-			case FALSE: return FALSE_LITERAL;
-			case UNDEFINED: return UNDEFINED_LITERAL;
+		switch (value) {
+			case TRUE_VALUE: return TRUE;
+			case FALSE_VALUE: return FALSE;
+			case UNDEFINED_VALUE: return UNDEFINED;
 		}
 		return null;
 	}

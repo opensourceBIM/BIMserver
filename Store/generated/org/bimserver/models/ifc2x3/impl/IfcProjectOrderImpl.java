@@ -49,13 +49,6 @@ public class IfcProjectOrderImpl extends IfcControlImpl implements IfcProjectOrd
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	protected IfcProjectOrderImpl()
 	{
 		super();
@@ -69,7 +62,7 @@ public class IfcProjectOrderImpl extends IfcControlImpl implements IfcProjectOrd
 	@Override
 	protected EClass eStaticClass()
 	{
-		return Ifc2x3Package.Literals.IFC_PROJECT_ORDER;
+		return Ifc2x3Package.eINSTANCE.getIfcProjectOrder();
 	}
 
 	/**
@@ -79,7 +72,7 @@ public class IfcProjectOrderImpl extends IfcControlImpl implements IfcProjectOrd
 	 */
 	public String getID()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_PROJECT_ORDER__ID, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcProjectOrder_ID(), true);
 	}
 
 	/**
@@ -89,7 +82,7 @@ public class IfcProjectOrderImpl extends IfcControlImpl implements IfcProjectOrd
 	 */
 	public void setID(String newID)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_PROJECT_ORDER__ID, newID);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcProjectOrder_ID(), newID);
 	}
 
 	/**
@@ -99,7 +92,7 @@ public class IfcProjectOrderImpl extends IfcControlImpl implements IfcProjectOrd
 	 */
 	public IfcProjectOrderTypeEnum getPredefinedType()
 	{
-		return (IfcProjectOrderTypeEnum)eGet(Ifc2x3Package.Literals.IFC_PROJECT_ORDER__PREDEFINED_TYPE, true);
+		return (IfcProjectOrderTypeEnum)eGet(Ifc2x3Package.eINSTANCE.getIfcProjectOrder_PredefinedType(), true);
 	}
 
 	/**
@@ -109,7 +102,7 @@ public class IfcProjectOrderImpl extends IfcControlImpl implements IfcProjectOrd
 	 */
 	public void setPredefinedType(IfcProjectOrderTypeEnum newPredefinedType)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_PROJECT_ORDER__PREDEFINED_TYPE, newPredefinedType);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcProjectOrder_PredefinedType(), newPredefinedType);
 	}
 
 	/**
@@ -119,7 +112,7 @@ public class IfcProjectOrderImpl extends IfcControlImpl implements IfcProjectOrd
 	 */
 	public String getStatus()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_PROJECT_ORDER__STATUS, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcProjectOrder_Status(), true);
 	}
 
 	/**
@@ -129,7 +122,7 @@ public class IfcProjectOrderImpl extends IfcControlImpl implements IfcProjectOrd
 	 */
 	public void setStatus(String newStatus)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_PROJECT_ORDER__STATUS, newStatus);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcProjectOrder_Status(), newStatus);
 	}
 
 	/**
@@ -139,7 +132,7 @@ public class IfcProjectOrderImpl extends IfcControlImpl implements IfcProjectOrd
 	 */
 	public void unsetStatus()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_PROJECT_ORDER__STATUS);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcProjectOrder_Status());
 	}
 
 	/**
@@ -149,7 +142,7 @@ public class IfcProjectOrderImpl extends IfcControlImpl implements IfcProjectOrd
 	 */
 	public boolean isSetStatus()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_PROJECT_ORDER__STATUS);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcProjectOrder_Status());
 	}
 
 } //IfcProjectOrderImpl

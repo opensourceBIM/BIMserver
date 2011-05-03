@@ -51,13 +51,6 @@ public class IfcDocumentInformationRelationshipImpl extends IdEObjectImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	protected IfcDocumentInformationRelationshipImpl()
 	{
 		super();
@@ -71,7 +64,7 @@ public class IfcDocumentInformationRelationshipImpl extends IdEObjectImpl implem
 	@Override
 	protected EClass eStaticClass()
 	{
-		return Ifc2x3Package.Literals.IFC_DOCUMENT_INFORMATION_RELATIONSHIP;
+		return Ifc2x3Package.eINSTANCE.getIfcDocumentInformationRelationship();
 	}
 
 	/**
@@ -92,7 +85,7 @@ public class IfcDocumentInformationRelationshipImpl extends IdEObjectImpl implem
 	 */
 	public IfcDocumentInformation getRelatingDocument()
 	{
-		return (IfcDocumentInformation)eGet(Ifc2x3Package.Literals.IFC_DOCUMENT_INFORMATION_RELATIONSHIP__RELATING_DOCUMENT, true);
+		return (IfcDocumentInformation)eGet(Ifc2x3Package.eINSTANCE.getIfcDocumentInformationRelationship_RelatingDocument(), true);
 	}
 
 	/**
@@ -102,7 +95,7 @@ public class IfcDocumentInformationRelationshipImpl extends IdEObjectImpl implem
 	 */
 	public void setRelatingDocument(IfcDocumentInformation newRelatingDocument)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_DOCUMENT_INFORMATION_RELATIONSHIP__RELATING_DOCUMENT, newRelatingDocument);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcDocumentInformationRelationship_RelatingDocument(), newRelatingDocument);
 	}
 
 	/**
@@ -113,7 +106,7 @@ public class IfcDocumentInformationRelationshipImpl extends IdEObjectImpl implem
 	@SuppressWarnings("unchecked")
 	public EList<IfcDocumentInformation> getRelatedDocuments()
 	{
-		return (EList<IfcDocumentInformation>)eGet(Ifc2x3Package.Literals.IFC_DOCUMENT_INFORMATION_RELATIONSHIP__RELATED_DOCUMENTS, true);
+		return (EList<IfcDocumentInformation>)eGet(Ifc2x3Package.eINSTANCE.getIfcDocumentInformationRelationship_RelatedDocuments(), true);
 	}
 
 	/**
@@ -123,7 +116,7 @@ public class IfcDocumentInformationRelationshipImpl extends IdEObjectImpl implem
 	 */
 	public String getRelationshipType()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_DOCUMENT_INFORMATION_RELATIONSHIP__RELATIONSHIP_TYPE, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcDocumentInformationRelationship_RelationshipType(), true);
 	}
 
 	/**
@@ -133,7 +126,7 @@ public class IfcDocumentInformationRelationshipImpl extends IdEObjectImpl implem
 	 */
 	public void setRelationshipType(String newRelationshipType)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_DOCUMENT_INFORMATION_RELATIONSHIP__RELATIONSHIP_TYPE, newRelationshipType);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcDocumentInformationRelationship_RelationshipType(), newRelationshipType);
 	}
 
 	/**
@@ -143,7 +136,7 @@ public class IfcDocumentInformationRelationshipImpl extends IdEObjectImpl implem
 	 */
 	public void unsetRelationshipType()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_DOCUMENT_INFORMATION_RELATIONSHIP__RELATIONSHIP_TYPE);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcDocumentInformationRelationship_RelationshipType());
 	}
 
 	/**
@@ -153,7 +146,7 @@ public class IfcDocumentInformationRelationshipImpl extends IdEObjectImpl implem
 	 */
 	public boolean isSetRelationshipType()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_DOCUMENT_INFORMATION_RELATIONSHIP__RELATIONSHIP_TYPE);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcDocumentInformationRelationship_RelationshipType());
 	}
 
 } //IfcDocumentInformationRelationshipImpl

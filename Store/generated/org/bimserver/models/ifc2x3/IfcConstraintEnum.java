@@ -40,68 +40,61 @@ public enum IfcConstraintEnum implements Enumerator
 	 * The '<em><b>NULL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NULL
+	 * @see #NULL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NULL_LITERAL(0, "NULL", "NULL"),
+	NULL(0, "NULL", "NULL"),
 
 	/**
 	 * The '<em><b>ADVISORY</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #ADVISORY
+	 * @see #ADVISORY_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	ADVISORY_LITERAL(1, "ADVISORY", "ADVISORY"),
+	ADVISORY(1, "ADVISORY", "ADVISORY"),
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED
+	 * @see #NOTDEFINED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED_LITERAL(2, "NOTDEFINED", "NOTDEFINED"),
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>HARD</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #HARD
+	 * @see #HARD_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	HARD_LITERAL(3, "HARD", "HARD"),
+	HARD(3, "HARD", "HARD"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
+	 * @see #USERDEFINED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	USERDEFINED_LITERAL(4, "USERDEFINED", "USERDEFINED"),
+	USERDEFINED(4, "USERDEFINED", "USERDEFINED"),
 
 	/**
 	 * The '<em><b>SOFT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #SOFT
+	 * @see #SOFT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	SOFT_LITERAL(5, "SOFT", "SOFT");
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
+	SOFT(5, "SOFT", "SOFT");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -111,12 +104,12 @@ public enum IfcConstraintEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NULL_LITERAL
+	 * @see #NULL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NULL = 0;
+	public static final int NULL_VALUE = 0;
 
 	/**
 	 * The '<em><b>ADVISORY</b></em>' literal value.
@@ -126,12 +119,12 @@ public enum IfcConstraintEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ADVISORY_LITERAL
+	 * @see #ADVISORY
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ADVISORY = 1;
+	public static final int ADVISORY_VALUE = 1;
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
@@ -141,12 +134,12 @@ public enum IfcConstraintEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_LITERAL
+	 * @see #NOTDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED = 2;
+	public static final int NOTDEFINED_VALUE = 2;
 
 	/**
 	 * The '<em><b>HARD</b></em>' literal value.
@@ -156,12 +149,12 @@ public enum IfcConstraintEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #HARD_LITERAL
+	 * @see #HARD
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int HARD = 3;
+	public static final int HARD_VALUE = 3;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -171,12 +164,12 @@ public enum IfcConstraintEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_LITERAL
+	 * @see #USERDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED = 4;
+	public static final int USERDEFINED_VALUE = 4;
 
 	/**
 	 * The '<em><b>SOFT</b></em>' literal value.
@@ -186,12 +179,12 @@ public enum IfcConstraintEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #SOFT_LITERAL
+	 * @see #SOFT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SOFT = 5;
+	public static final int SOFT_VALUE = 5;
 
 	/**
 	 * An array of all the '<em><b>Ifc Constraint Enum</b></em>' enumerators.
@@ -200,14 +193,13 @@ public enum IfcConstraintEnum implements Enumerator
 	 * @generated
 	 */
 	private static final IfcConstraintEnum[] VALUES_ARRAY =
-		new IfcConstraintEnum[]
-		{
-			NULL_LITERAL,
-			ADVISORY_LITERAL,
-			NOTDEFINED_LITERAL,
-			HARD_LITERAL,
-			USERDEFINED_LITERAL,
-			SOFT_LITERAL,
+		new IfcConstraintEnum[] {
+			NULL,
+			ADVISORY,
+			NOTDEFINED,
+			HARD,
+			USERDEFINED,
+			SOFT,
 		};
 
 	/**
@@ -226,11 +218,9 @@ public enum IfcConstraintEnum implements Enumerator
 	 */
 	public static IfcConstraintEnum get(String literal)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcConstraintEnum result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal))
-			{
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -245,11 +235,9 @@ public enum IfcConstraintEnum implements Enumerator
 	 */
 	public static IfcConstraintEnum getByName(String name)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcConstraintEnum result = VALUES_ARRAY[i];
-			if (result.getName().equals(name))
-			{
+			if (result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -264,14 +252,13 @@ public enum IfcConstraintEnum implements Enumerator
 	 */
 	public static IfcConstraintEnum get(int value)
 	{
-		switch (value)
-		{
-			case NULL: return NULL_LITERAL;
-			case ADVISORY: return ADVISORY_LITERAL;
-			case NOTDEFINED: return NOTDEFINED_LITERAL;
-			case HARD: return HARD_LITERAL;
-			case USERDEFINED: return USERDEFINED_LITERAL;
-			case SOFT: return SOFT_LITERAL;
+		switch (value) {
+			case NULL_VALUE: return NULL;
+			case ADVISORY_VALUE: return ADVISORY;
+			case NOTDEFINED_VALUE: return NOTDEFINED;
+			case HARD_VALUE: return HARD;
+			case USERDEFINED_VALUE: return USERDEFINED;
+			case SOFT_VALUE: return SOFT;
 		}
 		return null;
 	}

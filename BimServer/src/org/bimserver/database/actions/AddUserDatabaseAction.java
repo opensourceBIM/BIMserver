@@ -69,10 +69,10 @@ public class AddUserDatabaseAction extends BimDatabaseAction<Long> {
 	public Long execute() throws UserException, BimDatabaseException, BimDeadlockException {
 		String trimmedUserName = username.trim();
 		String trimmedName = name.trim();
-		if (userType == UserType.SYSTEM_LITERAL && !createSystemUser) {
+		if (userType == UserType.SYSTEM && !createSystemUser) {
 			throw new UserException("Cannot create system users");
 		}
-		if (selfRegistration && userType == UserType.ADMIN_LITERAL) {
+		if (selfRegistration && userType == UserType.ADMIN) {
 			throw new UserException("Cannot create admin user with self registration");
 		}
 		if (trimmedUserName.equals("")) {
@@ -88,7 +88,7 @@ public class AddUserDatabaseAction extends BimDatabaseAction<Long> {
 			throw new UserException("A user with the username " + trimmedUserName + " already exists");
 		}
 		User actingUser = getUserByUoid(createrUoid);
-		if (createrUoid != -1 && actingUser.getUserType() != UserType.ADMIN_LITERAL) {
+		if (createrUoid != -1 && actingUser.getUserType() != UserType.ADMIN) {
 			throw new UserException("Only admin users can create other users");
 		}
 		final User user = StoreFactory.eINSTANCE.createUser();

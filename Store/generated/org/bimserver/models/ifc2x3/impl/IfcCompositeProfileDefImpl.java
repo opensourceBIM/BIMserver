@@ -50,13 +50,6 @@ public class IfcCompositeProfileDefImpl extends IfcProfileDefImpl implements Ifc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	protected IfcCompositeProfileDefImpl()
 	{
 		super();
@@ -70,7 +63,7 @@ public class IfcCompositeProfileDefImpl extends IfcProfileDefImpl implements Ifc
 	@Override
 	protected EClass eStaticClass()
 	{
-		return Ifc2x3Package.Literals.IFC_COMPOSITE_PROFILE_DEF;
+		return Ifc2x3Package.eINSTANCE.getIfcCompositeProfileDef();
 	}
 
 	/**
@@ -81,7 +74,7 @@ public class IfcCompositeProfileDefImpl extends IfcProfileDefImpl implements Ifc
 	@SuppressWarnings("unchecked")
 	public EList<IfcProfileDef> getProfiles()
 	{
-		return (EList<IfcProfileDef>)eGet(Ifc2x3Package.Literals.IFC_COMPOSITE_PROFILE_DEF__PROFILES, true);
+		return (EList<IfcProfileDef>)eGet(Ifc2x3Package.eINSTANCE.getIfcCompositeProfileDef_Profiles(), true);
 	}
 
 	/**
@@ -91,7 +84,7 @@ public class IfcCompositeProfileDefImpl extends IfcProfileDefImpl implements Ifc
 	 */
 	public String getLabel()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_COMPOSITE_PROFILE_DEF__LABEL, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcCompositeProfileDef_Label(), true);
 	}
 
 	/**
@@ -101,7 +94,7 @@ public class IfcCompositeProfileDefImpl extends IfcProfileDefImpl implements Ifc
 	 */
 	public void setLabel(String newLabel)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_COMPOSITE_PROFILE_DEF__LABEL, newLabel);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcCompositeProfileDef_Label(), newLabel);
 	}
 
 	/**
@@ -111,7 +104,7 @@ public class IfcCompositeProfileDefImpl extends IfcProfileDefImpl implements Ifc
 	 */
 	public void unsetLabel()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_COMPOSITE_PROFILE_DEF__LABEL);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcCompositeProfileDef_Label());
 	}
 
 	/**
@@ -121,7 +114,7 @@ public class IfcCompositeProfileDefImpl extends IfcProfileDefImpl implements Ifc
 	 */
 	public boolean isSetLabel()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_COMPOSITE_PROFILE_DEF__LABEL);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcCompositeProfileDef_Label());
 	}
 
 } //IfcCompositeProfileDefImpl

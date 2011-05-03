@@ -51,13 +51,6 @@ public class IfcColourRgbImpl extends IfcColourSpecificationImpl implements IfcC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	protected IfcColourRgbImpl()
 	{
 		super();
@@ -71,7 +64,7 @@ public class IfcColourRgbImpl extends IfcColourSpecificationImpl implements IfcC
 	@Override
 	protected EClass eStaticClass()
 	{
-		return Ifc2x3Package.Literals.IFC_COLOUR_RGB;
+		return Ifc2x3Package.eINSTANCE.getIfcColourRgb();
 	}
 
 	/**
@@ -81,7 +74,7 @@ public class IfcColourRgbImpl extends IfcColourSpecificationImpl implements IfcC
 	 */
 	public float getRed()
 	{
-		return (Float)eGet(Ifc2x3Package.Literals.IFC_COLOUR_RGB__RED, true);
+		return (Float)eGet(Ifc2x3Package.eINSTANCE.getIfcColourRgb_Red(), true);
 	}
 
 	/**
@@ -91,7 +84,7 @@ public class IfcColourRgbImpl extends IfcColourSpecificationImpl implements IfcC
 	 */
 	public void setRed(float newRed)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_COLOUR_RGB__RED, newRed);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcColourRgb_Red(), newRed);
 	}
 
 	/**
@@ -101,7 +94,7 @@ public class IfcColourRgbImpl extends IfcColourSpecificationImpl implements IfcC
 	 */
 	public String getRedAsString()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_COLOUR_RGB__RED_AS_STRING, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcColourRgb_RedAsString(), true);
 	}
 
 	/**
@@ -111,7 +104,7 @@ public class IfcColourRgbImpl extends IfcColourSpecificationImpl implements IfcC
 	 */
 	public void setRedAsString(String newRedAsString)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_COLOUR_RGB__RED_AS_STRING, newRedAsString);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcColourRgb_RedAsString(), newRedAsString);
 	}
 
 	/**
@@ -121,7 +114,7 @@ public class IfcColourRgbImpl extends IfcColourSpecificationImpl implements IfcC
 	 */
 	public float getGreen()
 	{
-		return (Float)eGet(Ifc2x3Package.Literals.IFC_COLOUR_RGB__GREEN, true);
+		return (Float)eGet(Ifc2x3Package.eINSTANCE.getIfcColourRgb_Green(), true);
 	}
 
 	/**
@@ -131,7 +124,7 @@ public class IfcColourRgbImpl extends IfcColourSpecificationImpl implements IfcC
 	 */
 	public void setGreen(float newGreen)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_COLOUR_RGB__GREEN, newGreen);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcColourRgb_Green(), newGreen);
 	}
 
 	/**
@@ -141,7 +134,7 @@ public class IfcColourRgbImpl extends IfcColourSpecificationImpl implements IfcC
 	 */
 	public String getGreenAsString()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_COLOUR_RGB__GREEN_AS_STRING, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcColourRgb_GreenAsString(), true);
 	}
 
 	/**
@@ -151,7 +144,7 @@ public class IfcColourRgbImpl extends IfcColourSpecificationImpl implements IfcC
 	 */
 	public void setGreenAsString(String newGreenAsString)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_COLOUR_RGB__GREEN_AS_STRING, newGreenAsString);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcColourRgb_GreenAsString(), newGreenAsString);
 	}
 
 	/**
@@ -161,7 +154,7 @@ public class IfcColourRgbImpl extends IfcColourSpecificationImpl implements IfcC
 	 */
 	public float getBlue()
 	{
-		return (Float)eGet(Ifc2x3Package.Literals.IFC_COLOUR_RGB__BLUE, true);
+		return (Float)eGet(Ifc2x3Package.eINSTANCE.getIfcColourRgb_Blue(), true);
 	}
 
 	/**
@@ -171,7 +164,7 @@ public class IfcColourRgbImpl extends IfcColourSpecificationImpl implements IfcC
 	 */
 	public void setBlue(float newBlue)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_COLOUR_RGB__BLUE, newBlue);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcColourRgb_Blue(), newBlue);
 	}
 
 	/**
@@ -181,7 +174,7 @@ public class IfcColourRgbImpl extends IfcColourSpecificationImpl implements IfcC
 	 */
 	public String getBlueAsString()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_COLOUR_RGB__BLUE_AS_STRING, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcColourRgb_BlueAsString(), true);
 	}
 
 	/**
@@ -191,7 +184,7 @@ public class IfcColourRgbImpl extends IfcColourSpecificationImpl implements IfcC
 	 */
 	public void setBlueAsString(String newBlueAsString)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_COLOUR_RGB__BLUE_AS_STRING, newBlueAsString);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcColourRgb_BlueAsString(), newBlueAsString);
 	}
 
 } //IfcColourRgbImpl

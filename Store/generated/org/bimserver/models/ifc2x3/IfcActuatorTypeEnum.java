@@ -40,88 +40,81 @@ public enum IfcActuatorTypeEnum implements Enumerator
 	 * The '<em><b>NULL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NULL
+	 * @see #NULL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NULL_LITERAL(0, "NULL", "NULL"),
+	NULL(0, "NULL", "NULL"),
 
 	/**
 	 * The '<em><b>ELECTRICACTUATOR</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #ELECTRICACTUATOR
+	 * @see #ELECTRICACTUATOR_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	ELECTRICACTUATOR_LITERAL(1, "ELECTRICACTUATOR", "ELECTRICACTUATOR"),
+	ELECTRICACTUATOR(1, "ELECTRICACTUATOR", "ELECTRICACTUATOR"),
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED
+	 * @see #NOTDEFINED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED_LITERAL(2, "NOTDEFINED", "NOTDEFINED"),
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>PNEUMATICACTUATOR</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #PNEUMATICACTUATOR
+	 * @see #PNEUMATICACTUATOR_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	PNEUMATICACTUATOR_LITERAL(3, "PNEUMATICACTUATOR", "PNEUMATICACTUATOR"),
+	PNEUMATICACTUATOR(3, "PNEUMATICACTUATOR", "PNEUMATICACTUATOR"),
 
 	/**
 	 * The '<em><b>HANDOPERATEDACTUATOR</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #HANDOPERATEDACTUATOR
+	 * @see #HANDOPERATEDACTUATOR_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	HANDOPERATEDACTUATOR_LITERAL(4, "HANDOPERATEDACTUATOR", "HANDOPERATEDACTUATOR"),
+	HANDOPERATEDACTUATOR(4, "HANDOPERATEDACTUATOR", "HANDOPERATEDACTUATOR"),
 
 	/**
 	 * The '<em><b>THERMOSTATICACTUATOR</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #THERMOSTATICACTUATOR
+	 * @see #THERMOSTATICACTUATOR_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	THERMOSTATICACTUATOR_LITERAL(5, "THERMOSTATICACTUATOR", "THERMOSTATICACTUATOR"),
+	THERMOSTATICACTUATOR(5, "THERMOSTATICACTUATOR", "THERMOSTATICACTUATOR"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
+	 * @see #USERDEFINED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	USERDEFINED_LITERAL(6, "USERDEFINED", "USERDEFINED"),
+	USERDEFINED(6, "USERDEFINED", "USERDEFINED"),
 
 	/**
 	 * The '<em><b>HYDRAULICACTUATOR</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #HYDRAULICACTUATOR
+	 * @see #HYDRAULICACTUATOR_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	HYDRAULICACTUATOR_LITERAL(7, "HYDRAULICACTUATOR", "HYDRAULICACTUATOR");
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
+	HYDRAULICACTUATOR(7, "HYDRAULICACTUATOR", "HYDRAULICACTUATOR");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -131,12 +124,12 @@ public enum IfcActuatorTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NULL_LITERAL
+	 * @see #NULL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NULL = 0;
+	public static final int NULL_VALUE = 0;
 
 	/**
 	 * The '<em><b>ELECTRICACTUATOR</b></em>' literal value.
@@ -146,12 +139,12 @@ public enum IfcActuatorTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ELECTRICACTUATOR_LITERAL
+	 * @see #ELECTRICACTUATOR
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ELECTRICACTUATOR = 1;
+	public static final int ELECTRICACTUATOR_VALUE = 1;
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
@@ -161,12 +154,12 @@ public enum IfcActuatorTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_LITERAL
+	 * @see #NOTDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED = 2;
+	public static final int NOTDEFINED_VALUE = 2;
 
 	/**
 	 * The '<em><b>PNEUMATICACTUATOR</b></em>' literal value.
@@ -176,12 +169,12 @@ public enum IfcActuatorTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #PNEUMATICACTUATOR_LITERAL
+	 * @see #PNEUMATICACTUATOR
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PNEUMATICACTUATOR = 3;
+	public static final int PNEUMATICACTUATOR_VALUE = 3;
 
 	/**
 	 * The '<em><b>HANDOPERATEDACTUATOR</b></em>' literal value.
@@ -191,12 +184,12 @@ public enum IfcActuatorTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #HANDOPERATEDACTUATOR_LITERAL
+	 * @see #HANDOPERATEDACTUATOR
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int HANDOPERATEDACTUATOR = 4;
+	public static final int HANDOPERATEDACTUATOR_VALUE = 4;
 
 	/**
 	 * The '<em><b>THERMOSTATICACTUATOR</b></em>' literal value.
@@ -206,12 +199,12 @@ public enum IfcActuatorTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #THERMOSTATICACTUATOR_LITERAL
+	 * @see #THERMOSTATICACTUATOR
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int THERMOSTATICACTUATOR = 5;
+	public static final int THERMOSTATICACTUATOR_VALUE = 5;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -221,12 +214,12 @@ public enum IfcActuatorTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_LITERAL
+	 * @see #USERDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED = 6;
+	public static final int USERDEFINED_VALUE = 6;
 
 	/**
 	 * The '<em><b>HYDRAULICACTUATOR</b></em>' literal value.
@@ -236,12 +229,12 @@ public enum IfcActuatorTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #HYDRAULICACTUATOR_LITERAL
+	 * @see #HYDRAULICACTUATOR
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int HYDRAULICACTUATOR = 7;
+	public static final int HYDRAULICACTUATOR_VALUE = 7;
 
 	/**
 	 * An array of all the '<em><b>Ifc Actuator Type Enum</b></em>' enumerators.
@@ -250,16 +243,15 @@ public enum IfcActuatorTypeEnum implements Enumerator
 	 * @generated
 	 */
 	private static final IfcActuatorTypeEnum[] VALUES_ARRAY =
-		new IfcActuatorTypeEnum[]
-		{
-			NULL_LITERAL,
-			ELECTRICACTUATOR_LITERAL,
-			NOTDEFINED_LITERAL,
-			PNEUMATICACTUATOR_LITERAL,
-			HANDOPERATEDACTUATOR_LITERAL,
-			THERMOSTATICACTUATOR_LITERAL,
-			USERDEFINED_LITERAL,
-			HYDRAULICACTUATOR_LITERAL,
+		new IfcActuatorTypeEnum[] {
+			NULL,
+			ELECTRICACTUATOR,
+			NOTDEFINED,
+			PNEUMATICACTUATOR,
+			HANDOPERATEDACTUATOR,
+			THERMOSTATICACTUATOR,
+			USERDEFINED,
+			HYDRAULICACTUATOR,
 		};
 
 	/**
@@ -278,11 +270,9 @@ public enum IfcActuatorTypeEnum implements Enumerator
 	 */
 	public static IfcActuatorTypeEnum get(String literal)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcActuatorTypeEnum result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal))
-			{
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -297,11 +287,9 @@ public enum IfcActuatorTypeEnum implements Enumerator
 	 */
 	public static IfcActuatorTypeEnum getByName(String name)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcActuatorTypeEnum result = VALUES_ARRAY[i];
-			if (result.getName().equals(name))
-			{
+			if (result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -316,16 +304,15 @@ public enum IfcActuatorTypeEnum implements Enumerator
 	 */
 	public static IfcActuatorTypeEnum get(int value)
 	{
-		switch (value)
-		{
-			case NULL: return NULL_LITERAL;
-			case ELECTRICACTUATOR: return ELECTRICACTUATOR_LITERAL;
-			case NOTDEFINED: return NOTDEFINED_LITERAL;
-			case PNEUMATICACTUATOR: return PNEUMATICACTUATOR_LITERAL;
-			case HANDOPERATEDACTUATOR: return HANDOPERATEDACTUATOR_LITERAL;
-			case THERMOSTATICACTUATOR: return THERMOSTATICACTUATOR_LITERAL;
-			case USERDEFINED: return USERDEFINED_LITERAL;
-			case HYDRAULICACTUATOR: return HYDRAULICACTUATOR_LITERAL;
+		switch (value) {
+			case NULL_VALUE: return NULL;
+			case ELECTRICACTUATOR_VALUE: return ELECTRICACTUATOR;
+			case NOTDEFINED_VALUE: return NOTDEFINED;
+			case PNEUMATICACTUATOR_VALUE: return PNEUMATICACTUATOR;
+			case HANDOPERATEDACTUATOR_VALUE: return HANDOPERATEDACTUATOR;
+			case THERMOSTATICACTUATOR_VALUE: return THERMOSTATICACTUATOR;
+			case USERDEFINED_VALUE: return USERDEFINED;
+			case HYDRAULICACTUATOR_VALUE: return HYDRAULICACTUATOR;
 		}
 		return null;
 	}

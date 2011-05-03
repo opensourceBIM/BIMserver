@@ -40,68 +40,61 @@ public enum IfcMotorConnectionTypeEnum implements Enumerator
 	 * The '<em><b>NULL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NULL
+	 * @see #NULL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NULL_LITERAL(0, "NULL", "NULL"),
+	NULL(0, "NULL", "NULL"),
 
 	/**
 	 * The '<em><b>BELTDRIVE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #BELTDRIVE
+	 * @see #BELTDRIVE_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	BELTDRIVE_LITERAL(1, "BELTDRIVE", "BELTDRIVE"),
+	BELTDRIVE(1, "BELTDRIVE", "BELTDRIVE"),
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED
+	 * @see #NOTDEFINED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED_LITERAL(2, "NOTDEFINED", "NOTDEFINED"),
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
+	 * @see #USERDEFINED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	USERDEFINED_LITERAL(3, "USERDEFINED", "USERDEFINED"),
+	USERDEFINED(3, "USERDEFINED", "USERDEFINED"),
 
 	/**
 	 * The '<em><b>COUPLING</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #COUPLING
+	 * @see #COUPLING_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	COUPLING_LITERAL(4, "COUPLING", "COUPLING"),
+	COUPLING(4, "COUPLING", "COUPLING"),
 
 	/**
 	 * The '<em><b>DIRECTDRIVE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #DIRECTDRIVE
+	 * @see #DIRECTDRIVE_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	DIRECTDRIVE_LITERAL(5, "DIRECTDRIVE", "DIRECTDRIVE");
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
+	DIRECTDRIVE(5, "DIRECTDRIVE", "DIRECTDRIVE");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -111,12 +104,12 @@ public enum IfcMotorConnectionTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NULL_LITERAL
+	 * @see #NULL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NULL = 0;
+	public static final int NULL_VALUE = 0;
 
 	/**
 	 * The '<em><b>BELTDRIVE</b></em>' literal value.
@@ -126,12 +119,12 @@ public enum IfcMotorConnectionTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #BELTDRIVE_LITERAL
+	 * @see #BELTDRIVE
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int BELTDRIVE = 1;
+	public static final int BELTDRIVE_VALUE = 1;
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
@@ -141,12 +134,12 @@ public enum IfcMotorConnectionTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_LITERAL
+	 * @see #NOTDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED = 2;
+	public static final int NOTDEFINED_VALUE = 2;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -156,12 +149,12 @@ public enum IfcMotorConnectionTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_LITERAL
+	 * @see #USERDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED = 3;
+	public static final int USERDEFINED_VALUE = 3;
 
 	/**
 	 * The '<em><b>COUPLING</b></em>' literal value.
@@ -171,12 +164,12 @@ public enum IfcMotorConnectionTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #COUPLING_LITERAL
+	 * @see #COUPLING
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int COUPLING = 4;
+	public static final int COUPLING_VALUE = 4;
 
 	/**
 	 * The '<em><b>DIRECTDRIVE</b></em>' literal value.
@@ -186,12 +179,12 @@ public enum IfcMotorConnectionTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #DIRECTDRIVE_LITERAL
+	 * @see #DIRECTDRIVE
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int DIRECTDRIVE = 5;
+	public static final int DIRECTDRIVE_VALUE = 5;
 
 	/**
 	 * An array of all the '<em><b>Ifc Motor Connection Type Enum</b></em>' enumerators.
@@ -200,14 +193,13 @@ public enum IfcMotorConnectionTypeEnum implements Enumerator
 	 * @generated
 	 */
 	private static final IfcMotorConnectionTypeEnum[] VALUES_ARRAY =
-		new IfcMotorConnectionTypeEnum[]
-		{
-			NULL_LITERAL,
-			BELTDRIVE_LITERAL,
-			NOTDEFINED_LITERAL,
-			USERDEFINED_LITERAL,
-			COUPLING_LITERAL,
-			DIRECTDRIVE_LITERAL,
+		new IfcMotorConnectionTypeEnum[] {
+			NULL,
+			BELTDRIVE,
+			NOTDEFINED,
+			USERDEFINED,
+			COUPLING,
+			DIRECTDRIVE,
 		};
 
 	/**
@@ -226,11 +218,9 @@ public enum IfcMotorConnectionTypeEnum implements Enumerator
 	 */
 	public static IfcMotorConnectionTypeEnum get(String literal)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcMotorConnectionTypeEnum result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal))
-			{
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -245,11 +235,9 @@ public enum IfcMotorConnectionTypeEnum implements Enumerator
 	 */
 	public static IfcMotorConnectionTypeEnum getByName(String name)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcMotorConnectionTypeEnum result = VALUES_ARRAY[i];
-			if (result.getName().equals(name))
-			{
+			if (result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -264,14 +252,13 @@ public enum IfcMotorConnectionTypeEnum implements Enumerator
 	 */
 	public static IfcMotorConnectionTypeEnum get(int value)
 	{
-		switch (value)
-		{
-			case NULL: return NULL_LITERAL;
-			case BELTDRIVE: return BELTDRIVE_LITERAL;
-			case NOTDEFINED: return NOTDEFINED_LITERAL;
-			case USERDEFINED: return USERDEFINED_LITERAL;
-			case COUPLING: return COUPLING_LITERAL;
-			case DIRECTDRIVE: return DIRECTDRIVE_LITERAL;
+		switch (value) {
+			case NULL_VALUE: return NULL;
+			case BELTDRIVE_VALUE: return BELTDRIVE;
+			case NOTDEFINED_VALUE: return NOTDEFINED;
+			case USERDEFINED_VALUE: return USERDEFINED;
+			case COUPLING_VALUE: return COUPLING;
+			case DIRECTDRIVE_VALUE: return DIRECTDRIVE;
 		}
 		return null;
 	}

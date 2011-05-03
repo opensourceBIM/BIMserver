@@ -40,38 +40,31 @@ public enum IfcProjectedOrTrueLengthEnum implements Enumerator
 	 * The '<em><b>NULL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NULL
+	 * @see #NULL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NULL_LITERAL(0, "NULL", "NULL"),
+	NULL(0, "NULL", "NULL"),
 
 	/**
 	 * The '<em><b>TRUE LENGTH</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #TRUE_LENGTH
+	 * @see #TRUE_LENGTH_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	TRUE_LENGTH_LITERAL(1, "TRUE_LENGTH", "TRUE_LENGTH"),
+	TRUE_LENGTH(1, "TRUE_LENGTH", "TRUE_LENGTH"),
 
 	/**
 	 * The '<em><b>PROJECTED LENGTH</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #PROJECTED_LENGTH
+	 * @see #PROJECTED_LENGTH_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	PROJECTED_LENGTH_LITERAL(2, "PROJECTED_LENGTH", "PROJECTED_LENGTH");
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
+	PROJECTED_LENGTH(2, "PROJECTED_LENGTH", "PROJECTED_LENGTH");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -81,12 +74,12 @@ public enum IfcProjectedOrTrueLengthEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NULL_LITERAL
+	 * @see #NULL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NULL = 0;
+	public static final int NULL_VALUE = 0;
 
 	/**
 	 * The '<em><b>TRUE LENGTH</b></em>' literal value.
@@ -96,12 +89,12 @@ public enum IfcProjectedOrTrueLengthEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #TRUE_LENGTH_LITERAL
+	 * @see #TRUE_LENGTH
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int TRUE_LENGTH = 1;
+	public static final int TRUE_LENGTH_VALUE = 1;
 
 	/**
 	 * The '<em><b>PROJECTED LENGTH</b></em>' literal value.
@@ -111,12 +104,12 @@ public enum IfcProjectedOrTrueLengthEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #PROJECTED_LENGTH_LITERAL
+	 * @see #PROJECTED_LENGTH
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PROJECTED_LENGTH = 2;
+	public static final int PROJECTED_LENGTH_VALUE = 2;
 
 	/**
 	 * An array of all the '<em><b>Ifc Projected Or True Length Enum</b></em>' enumerators.
@@ -125,11 +118,10 @@ public enum IfcProjectedOrTrueLengthEnum implements Enumerator
 	 * @generated
 	 */
 	private static final IfcProjectedOrTrueLengthEnum[] VALUES_ARRAY =
-		new IfcProjectedOrTrueLengthEnum[]
-		{
-			NULL_LITERAL,
-			TRUE_LENGTH_LITERAL,
-			PROJECTED_LENGTH_LITERAL,
+		new IfcProjectedOrTrueLengthEnum[] {
+			NULL,
+			TRUE_LENGTH,
+			PROJECTED_LENGTH,
 		};
 
 	/**
@@ -148,11 +140,9 @@ public enum IfcProjectedOrTrueLengthEnum implements Enumerator
 	 */
 	public static IfcProjectedOrTrueLengthEnum get(String literal)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcProjectedOrTrueLengthEnum result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal))
-			{
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -167,11 +157,9 @@ public enum IfcProjectedOrTrueLengthEnum implements Enumerator
 	 */
 	public static IfcProjectedOrTrueLengthEnum getByName(String name)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcProjectedOrTrueLengthEnum result = VALUES_ARRAY[i];
-			if (result.getName().equals(name))
-			{
+			if (result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -186,11 +174,10 @@ public enum IfcProjectedOrTrueLengthEnum implements Enumerator
 	 */
 	public static IfcProjectedOrTrueLengthEnum get(int value)
 	{
-		switch (value)
-		{
-			case NULL: return NULL_LITERAL;
-			case TRUE_LENGTH: return TRUE_LENGTH_LITERAL;
-			case PROJECTED_LENGTH: return PROJECTED_LENGTH_LITERAL;
+		switch (value) {
+			case NULL_VALUE: return NULL;
+			case TRUE_LENGTH_VALUE: return TRUE_LENGTH;
+			case PROJECTED_LENGTH_VALUE: return PROJECTED_LENGTH;
 		}
 		return null;
 	}

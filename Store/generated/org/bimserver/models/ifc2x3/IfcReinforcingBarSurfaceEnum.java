@@ -40,38 +40,31 @@ public enum IfcReinforcingBarSurfaceEnum implements Enumerator
 	 * The '<em><b>NULL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NULL
+	 * @see #NULL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NULL_LITERAL(0, "NULL", "NULL"),
+	NULL(0, "NULL", "NULL"),
 
 	/**
 	 * The '<em><b>TEXTURED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #TEXTURED
+	 * @see #TEXTURED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	TEXTURED_LITERAL(1, "TEXTURED", "TEXTURED"),
+	TEXTURED(1, "TEXTURED", "TEXTURED"),
 
 	/**
 	 * The '<em><b>PLAIN</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #PLAIN
+	 * @see #PLAIN_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	PLAIN_LITERAL(2, "PLAIN", "PLAIN");
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
+	PLAIN(2, "PLAIN", "PLAIN");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -81,12 +74,12 @@ public enum IfcReinforcingBarSurfaceEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NULL_LITERAL
+	 * @see #NULL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NULL = 0;
+	public static final int NULL_VALUE = 0;
 
 	/**
 	 * The '<em><b>TEXTURED</b></em>' literal value.
@@ -96,12 +89,12 @@ public enum IfcReinforcingBarSurfaceEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #TEXTURED_LITERAL
+	 * @see #TEXTURED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int TEXTURED = 1;
+	public static final int TEXTURED_VALUE = 1;
 
 	/**
 	 * The '<em><b>PLAIN</b></em>' literal value.
@@ -111,12 +104,12 @@ public enum IfcReinforcingBarSurfaceEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #PLAIN_LITERAL
+	 * @see #PLAIN
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PLAIN = 2;
+	public static final int PLAIN_VALUE = 2;
 
 	/**
 	 * An array of all the '<em><b>Ifc Reinforcing Bar Surface Enum</b></em>' enumerators.
@@ -125,11 +118,10 @@ public enum IfcReinforcingBarSurfaceEnum implements Enumerator
 	 * @generated
 	 */
 	private static final IfcReinforcingBarSurfaceEnum[] VALUES_ARRAY =
-		new IfcReinforcingBarSurfaceEnum[]
-		{
-			NULL_LITERAL,
-			TEXTURED_LITERAL,
-			PLAIN_LITERAL,
+		new IfcReinforcingBarSurfaceEnum[] {
+			NULL,
+			TEXTURED,
+			PLAIN,
 		};
 
 	/**
@@ -148,11 +140,9 @@ public enum IfcReinforcingBarSurfaceEnum implements Enumerator
 	 */
 	public static IfcReinforcingBarSurfaceEnum get(String literal)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcReinforcingBarSurfaceEnum result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal))
-			{
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -167,11 +157,9 @@ public enum IfcReinforcingBarSurfaceEnum implements Enumerator
 	 */
 	public static IfcReinforcingBarSurfaceEnum getByName(String name)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcReinforcingBarSurfaceEnum result = VALUES_ARRAY[i];
-			if (result.getName().equals(name))
-			{
+			if (result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -186,11 +174,10 @@ public enum IfcReinforcingBarSurfaceEnum implements Enumerator
 	 */
 	public static IfcReinforcingBarSurfaceEnum get(int value)
 	{
-		switch (value)
-		{
-			case NULL: return NULL_LITERAL;
-			case TEXTURED: return TEXTURED_LITERAL;
-			case PLAIN: return PLAIN_LITERAL;
+		switch (value) {
+			case NULL_VALUE: return NULL;
+			case TEXTURED_VALUE: return TEXTURED;
+			case PLAIN_VALUE: return PLAIN;
 		}
 		return null;
 	}

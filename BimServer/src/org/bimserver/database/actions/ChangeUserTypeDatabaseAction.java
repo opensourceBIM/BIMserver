@@ -29,11 +29,11 @@ public class ChangeUserTypeDatabaseAction extends BimDatabaseAction<Void> {
 	@Override
 	public Void execute() throws UserException, BimDeadlockException, BimDatabaseException {
 		User actingUser = getUserByUoid(actingUoid);
-		if (actingUser.getUserType() != UserType.ADMIN_LITERAL) {
+		if (actingUser.getUserType() != UserType.ADMIN) {
 			throw new UserException("Only admin users can change other user's types");
 		}
 		User user = getUserByUoid(uoid);
-		if (user.getUserType() == UserType.SYSTEM_LITERAL) {
+		if (user.getUserType() == UserType.SYSTEM) {
 			throw new UserException("Type of system user cannot be changed");
 		}
 		user.setUserType(UserType.get(userType.getOrdinal()));

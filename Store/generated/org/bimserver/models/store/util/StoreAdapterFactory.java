@@ -39,13 +39,6 @@ import org.eclipse.emf.ecore.EObject;
 public class StoreAdapterFactory extends AdapterFactoryImpl
 {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
-
-	/**
 	 * The cached model package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -61,8 +54,7 @@ public class StoreAdapterFactory extends AdapterFactoryImpl
 	 */
 	public StoreAdapterFactory()
 	{
-		if (modelPackage == null)
-		{
+		if (modelPackage == null) {
 			modelPackage = StorePackage.eINSTANCE;
 		}
 	}
@@ -78,12 +70,10 @@ public class StoreAdapterFactory extends AdapterFactoryImpl
 	@Override
 	public boolean isFactoryForType(Object object)
 	{
-		if (object == modelPackage)
-		{
+		if (object == modelPackage) {
 			return true;
 		}
-		if (object instanceof EObject)
-		{
+		if (object instanceof EObject) {
 			return ((EObject)object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
@@ -96,76 +86,61 @@ public class StoreAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	protected StoreSwitch<Adapter> modelSwitch =
-		new StoreSwitch<Adapter>()
-		{
+		new StoreSwitch<Adapter>() {
 			@Override
-			public Adapter caseProject(Project object)
-			{
+			public Adapter caseProject(Project object) {
 				return createProjectAdapter();
 			}
 			@Override
-			public Adapter caseUser(User object)
-			{
+			public Adapter caseUser(User object) {
 				return createUserAdapter();
 			}
 			@Override
-			public Adapter caseClash(Clash object)
-			{
+			public Adapter caseClash(Clash object) {
 				return createClashAdapter();
 			}
 			@Override
-			public Adapter caseEidClash(EidClash object)
-			{
+			public Adapter caseEidClash(EidClash object) {
 				return createEidClashAdapter();
 			}
 			@Override
-			public Adapter caseGuidClash(GuidClash object)
-			{
+			public Adapter caseGuidClash(GuidClash object) {
 				return createGuidClashAdapter();
 			}
 			@Override
-			public Adapter caseClashDetectionSettings(ClashDetectionSettings object)
-			{
+			public Adapter caseClashDetectionSettings(ClashDetectionSettings object) {
 				return createClashDetectionSettingsAdapter();
 			}
 			@Override
-			public Adapter caseRevision(Revision object)
-			{
+			public Adapter caseRevision(Revision object) {
 				return createRevisionAdapter();
 			}
 			@Override
-			public Adapter caseConcreteRevision(ConcreteRevision object)
-			{
+			public Adapter caseConcreteRevision(ConcreteRevision object) {
 				return createConcreteRevisionAdapter();
 			}
 			@Override
-			public Adapter caseGeoTag(GeoTag object)
-			{
+			public Adapter caseGeoTag(GeoTag object) {
 				return createGeoTagAdapter();
 			}
 			@Override
-			public Adapter caseCheckout(Checkout object)
-			{
+			public Adapter caseCheckout(Checkout object) {
 				return createCheckoutAdapter();
 			}
 			@Override
-			public Adapter caseSettings(Settings object)
-			{
+			public Adapter caseSettings(Settings object) {
 				return createSettingsAdapter();
 			}
 			@Override
-			public Adapter caseSerializer(Serializer object)
-			{
+			public Adapter caseSerializer(Serializer object) {
 				return createSerializerAdapter();
 			}
 			@Override
-			public Adapter caseIgnoreFile(IgnoreFile object)
-			{
+			public Adapter caseIgnoreFile(IgnoreFile object) {
 				return createIgnoreFileAdapter();
 			}
 			@Override
-			public Adapter defaultCase(EObject object)
-			{
+			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
 		};

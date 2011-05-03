@@ -200,11 +200,11 @@ public class IfcStepSerializer extends IfcSerializer {
 	private void writePrimitive(PrintWriter out, Object val) {
 		if (val instanceof Tristate) {
 			Tristate bool = (Tristate) val;
-			if (bool == Tristate.TRUE_LITERAL) {
+			if (bool == Tristate.TRUE) {
 				out.print(BOOLEAN_TRUE);
-			} else if (bool == Tristate.FALSE_LITERAL) {
+			} else if (bool == Tristate.FALSE) {
 				out.print(BOOLEAN_FALSE);
-			} else if (bool == Tristate.UNDEFINED_LITERAL) {
+			} else if (bool == Tristate.UNDEFINED) {
 				out.print(BOOLEAN_UNDEFINED);
 			}
 		} else if (val instanceof Float || val instanceof Double) {

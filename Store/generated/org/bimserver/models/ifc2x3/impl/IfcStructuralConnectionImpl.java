@@ -51,13 +51,6 @@ public class IfcStructuralConnectionImpl extends IfcStructuralItemImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	protected IfcStructuralConnectionImpl()
 	{
 		super();
@@ -71,7 +64,7 @@ public class IfcStructuralConnectionImpl extends IfcStructuralItemImpl implement
 	@Override
 	protected EClass eStaticClass()
 	{
-		return Ifc2x3Package.Literals.IFC_STRUCTURAL_CONNECTION;
+		return Ifc2x3Package.eINSTANCE.getIfcStructuralConnection();
 	}
 
 	/**
@@ -81,7 +74,7 @@ public class IfcStructuralConnectionImpl extends IfcStructuralItemImpl implement
 	 */
 	public IfcBoundaryCondition getAppliedCondition()
 	{
-		return (IfcBoundaryCondition)eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_CONNECTION__APPLIED_CONDITION, true);
+		return (IfcBoundaryCondition)eGet(Ifc2x3Package.eINSTANCE.getIfcStructuralConnection_AppliedCondition(), true);
 	}
 
 	/**
@@ -91,7 +84,7 @@ public class IfcStructuralConnectionImpl extends IfcStructuralItemImpl implement
 	 */
 	public void setAppliedCondition(IfcBoundaryCondition newAppliedCondition)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_CONNECTION__APPLIED_CONDITION, newAppliedCondition);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcStructuralConnection_AppliedCondition(), newAppliedCondition);
 	}
 
 	/**
@@ -101,7 +94,7 @@ public class IfcStructuralConnectionImpl extends IfcStructuralItemImpl implement
 	 */
 	public void unsetAppliedCondition()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_STRUCTURAL_CONNECTION__APPLIED_CONDITION);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcStructuralConnection_AppliedCondition());
 	}
 
 	/**
@@ -111,7 +104,7 @@ public class IfcStructuralConnectionImpl extends IfcStructuralItemImpl implement
 	 */
 	public boolean isSetAppliedCondition()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_CONNECTION__APPLIED_CONDITION);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcStructuralConnection_AppliedCondition());
 	}
 
 	/**
@@ -122,7 +115,7 @@ public class IfcStructuralConnectionImpl extends IfcStructuralItemImpl implement
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelConnectsStructuralMember> getConnectsStructuralMembers()
 	{
-		return (EList<IfcRelConnectsStructuralMember>)eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_CONNECTION__CONNECTS_STRUCTURAL_MEMBERS, true);
+		return (EList<IfcRelConnectsStructuralMember>)eGet(Ifc2x3Package.eINSTANCE.getIfcStructuralConnection_ConnectsStructuralMembers(), true);
 	}
 
 } //IfcStructuralConnectionImpl

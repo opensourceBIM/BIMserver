@@ -55,13 +55,6 @@ public class IfcWindowPanelPropertiesImpl extends IfcPropertySetDefinitionImpl i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	protected IfcWindowPanelPropertiesImpl()
 	{
 		super();
@@ -75,7 +68,7 @@ public class IfcWindowPanelPropertiesImpl extends IfcPropertySetDefinitionImpl i
 	@Override
 	protected EClass eStaticClass()
 	{
-		return Ifc2x3Package.Literals.IFC_WINDOW_PANEL_PROPERTIES;
+		return Ifc2x3Package.eINSTANCE.getIfcWindowPanelProperties();
 	}
 
 	/**
@@ -85,7 +78,7 @@ public class IfcWindowPanelPropertiesImpl extends IfcPropertySetDefinitionImpl i
 	 */
 	public IfcWindowPanelOperationEnum getOperationType()
 	{
-		return (IfcWindowPanelOperationEnum)eGet(Ifc2x3Package.Literals.IFC_WINDOW_PANEL_PROPERTIES__OPERATION_TYPE, true);
+		return (IfcWindowPanelOperationEnum)eGet(Ifc2x3Package.eINSTANCE.getIfcWindowPanelProperties_OperationType(), true);
 	}
 
 	/**
@@ -95,7 +88,7 @@ public class IfcWindowPanelPropertiesImpl extends IfcPropertySetDefinitionImpl i
 	 */
 	public void setOperationType(IfcWindowPanelOperationEnum newOperationType)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_WINDOW_PANEL_PROPERTIES__OPERATION_TYPE, newOperationType);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcWindowPanelProperties_OperationType(), newOperationType);
 	}
 
 	/**
@@ -105,7 +98,7 @@ public class IfcWindowPanelPropertiesImpl extends IfcPropertySetDefinitionImpl i
 	 */
 	public IfcWindowPanelPositionEnum getPanelPosition()
 	{
-		return (IfcWindowPanelPositionEnum)eGet(Ifc2x3Package.Literals.IFC_WINDOW_PANEL_PROPERTIES__PANEL_POSITION, true);
+		return (IfcWindowPanelPositionEnum)eGet(Ifc2x3Package.eINSTANCE.getIfcWindowPanelProperties_PanelPosition(), true);
 	}
 
 	/**
@@ -115,7 +108,7 @@ public class IfcWindowPanelPropertiesImpl extends IfcPropertySetDefinitionImpl i
 	 */
 	public void setPanelPosition(IfcWindowPanelPositionEnum newPanelPosition)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_WINDOW_PANEL_PROPERTIES__PANEL_POSITION, newPanelPosition);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcWindowPanelProperties_PanelPosition(), newPanelPosition);
 	}
 
 	/**
@@ -125,7 +118,7 @@ public class IfcWindowPanelPropertiesImpl extends IfcPropertySetDefinitionImpl i
 	 */
 	public float getFrameDepth()
 	{
-		return (Float)eGet(Ifc2x3Package.Literals.IFC_WINDOW_PANEL_PROPERTIES__FRAME_DEPTH, true);
+		return (Float)eGet(Ifc2x3Package.eINSTANCE.getIfcWindowPanelProperties_FrameDepth(), true);
 	}
 
 	/**
@@ -135,7 +128,7 @@ public class IfcWindowPanelPropertiesImpl extends IfcPropertySetDefinitionImpl i
 	 */
 	public void setFrameDepth(float newFrameDepth)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_WINDOW_PANEL_PROPERTIES__FRAME_DEPTH, newFrameDepth);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcWindowPanelProperties_FrameDepth(), newFrameDepth);
 	}
 
 	/**
@@ -145,7 +138,7 @@ public class IfcWindowPanelPropertiesImpl extends IfcPropertySetDefinitionImpl i
 	 */
 	public void unsetFrameDepth()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_WINDOW_PANEL_PROPERTIES__FRAME_DEPTH);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcWindowPanelProperties_FrameDepth());
 	}
 
 	/**
@@ -155,7 +148,7 @@ public class IfcWindowPanelPropertiesImpl extends IfcPropertySetDefinitionImpl i
 	 */
 	public boolean isSetFrameDepth()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_WINDOW_PANEL_PROPERTIES__FRAME_DEPTH);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcWindowPanelProperties_FrameDepth());
 	}
 
 	/**
@@ -165,7 +158,7 @@ public class IfcWindowPanelPropertiesImpl extends IfcPropertySetDefinitionImpl i
 	 */
 	public String getFrameDepthAsString()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_WINDOW_PANEL_PROPERTIES__FRAME_DEPTH_AS_STRING, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcWindowPanelProperties_FrameDepthAsString(), true);
 	}
 
 	/**
@@ -175,7 +168,7 @@ public class IfcWindowPanelPropertiesImpl extends IfcPropertySetDefinitionImpl i
 	 */
 	public void setFrameDepthAsString(String newFrameDepthAsString)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_WINDOW_PANEL_PROPERTIES__FRAME_DEPTH_AS_STRING, newFrameDepthAsString);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcWindowPanelProperties_FrameDepthAsString(), newFrameDepthAsString);
 	}
 
 	/**
@@ -185,7 +178,7 @@ public class IfcWindowPanelPropertiesImpl extends IfcPropertySetDefinitionImpl i
 	 */
 	public void unsetFrameDepthAsString()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_WINDOW_PANEL_PROPERTIES__FRAME_DEPTH_AS_STRING);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcWindowPanelProperties_FrameDepthAsString());
 	}
 
 	/**
@@ -195,7 +188,7 @@ public class IfcWindowPanelPropertiesImpl extends IfcPropertySetDefinitionImpl i
 	 */
 	public boolean isSetFrameDepthAsString()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_WINDOW_PANEL_PROPERTIES__FRAME_DEPTH_AS_STRING);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcWindowPanelProperties_FrameDepthAsString());
 	}
 
 	/**
@@ -205,7 +198,7 @@ public class IfcWindowPanelPropertiesImpl extends IfcPropertySetDefinitionImpl i
 	 */
 	public float getFrameThickness()
 	{
-		return (Float)eGet(Ifc2x3Package.Literals.IFC_WINDOW_PANEL_PROPERTIES__FRAME_THICKNESS, true);
+		return (Float)eGet(Ifc2x3Package.eINSTANCE.getIfcWindowPanelProperties_FrameThickness(), true);
 	}
 
 	/**
@@ -215,7 +208,7 @@ public class IfcWindowPanelPropertiesImpl extends IfcPropertySetDefinitionImpl i
 	 */
 	public void setFrameThickness(float newFrameThickness)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_WINDOW_PANEL_PROPERTIES__FRAME_THICKNESS, newFrameThickness);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcWindowPanelProperties_FrameThickness(), newFrameThickness);
 	}
 
 	/**
@@ -225,7 +218,7 @@ public class IfcWindowPanelPropertiesImpl extends IfcPropertySetDefinitionImpl i
 	 */
 	public void unsetFrameThickness()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_WINDOW_PANEL_PROPERTIES__FRAME_THICKNESS);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcWindowPanelProperties_FrameThickness());
 	}
 
 	/**
@@ -235,7 +228,7 @@ public class IfcWindowPanelPropertiesImpl extends IfcPropertySetDefinitionImpl i
 	 */
 	public boolean isSetFrameThickness()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_WINDOW_PANEL_PROPERTIES__FRAME_THICKNESS);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcWindowPanelProperties_FrameThickness());
 	}
 
 	/**
@@ -245,7 +238,7 @@ public class IfcWindowPanelPropertiesImpl extends IfcPropertySetDefinitionImpl i
 	 */
 	public String getFrameThicknessAsString()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_WINDOW_PANEL_PROPERTIES__FRAME_THICKNESS_AS_STRING, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcWindowPanelProperties_FrameThicknessAsString(), true);
 	}
 
 	/**
@@ -255,7 +248,7 @@ public class IfcWindowPanelPropertiesImpl extends IfcPropertySetDefinitionImpl i
 	 */
 	public void setFrameThicknessAsString(String newFrameThicknessAsString)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_WINDOW_PANEL_PROPERTIES__FRAME_THICKNESS_AS_STRING, newFrameThicknessAsString);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcWindowPanelProperties_FrameThicknessAsString(), newFrameThicknessAsString);
 	}
 
 	/**
@@ -265,7 +258,7 @@ public class IfcWindowPanelPropertiesImpl extends IfcPropertySetDefinitionImpl i
 	 */
 	public void unsetFrameThicknessAsString()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_WINDOW_PANEL_PROPERTIES__FRAME_THICKNESS_AS_STRING);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcWindowPanelProperties_FrameThicknessAsString());
 	}
 
 	/**
@@ -275,7 +268,7 @@ public class IfcWindowPanelPropertiesImpl extends IfcPropertySetDefinitionImpl i
 	 */
 	public boolean isSetFrameThicknessAsString()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_WINDOW_PANEL_PROPERTIES__FRAME_THICKNESS_AS_STRING);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcWindowPanelProperties_FrameThicknessAsString());
 	}
 
 	/**
@@ -285,7 +278,7 @@ public class IfcWindowPanelPropertiesImpl extends IfcPropertySetDefinitionImpl i
 	 */
 	public IfcShapeAspect getShapeAspectStyle()
 	{
-		return (IfcShapeAspect)eGet(Ifc2x3Package.Literals.IFC_WINDOW_PANEL_PROPERTIES__SHAPE_ASPECT_STYLE, true);
+		return (IfcShapeAspect)eGet(Ifc2x3Package.eINSTANCE.getIfcWindowPanelProperties_ShapeAspectStyle(), true);
 	}
 
 	/**
@@ -295,7 +288,7 @@ public class IfcWindowPanelPropertiesImpl extends IfcPropertySetDefinitionImpl i
 	 */
 	public void setShapeAspectStyle(IfcShapeAspect newShapeAspectStyle)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_WINDOW_PANEL_PROPERTIES__SHAPE_ASPECT_STYLE, newShapeAspectStyle);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcWindowPanelProperties_ShapeAspectStyle(), newShapeAspectStyle);
 	}
 
 	/**
@@ -305,7 +298,7 @@ public class IfcWindowPanelPropertiesImpl extends IfcPropertySetDefinitionImpl i
 	 */
 	public void unsetShapeAspectStyle()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_WINDOW_PANEL_PROPERTIES__SHAPE_ASPECT_STYLE);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcWindowPanelProperties_ShapeAspectStyle());
 	}
 
 	/**
@@ -315,7 +308,7 @@ public class IfcWindowPanelPropertiesImpl extends IfcPropertySetDefinitionImpl i
 	 */
 	public boolean isSetShapeAspectStyle()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_WINDOW_PANEL_PROPERTIES__SHAPE_ASPECT_STYLE);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcWindowPanelProperties_ShapeAspectStyle());
 	}
 
 } //IfcWindowPanelPropertiesImpl

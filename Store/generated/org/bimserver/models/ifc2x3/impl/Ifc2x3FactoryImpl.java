@@ -791,13 +791,6 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
 public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory
 {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
-
-	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -805,16 +798,13 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory
 	 */
 	public static Ifc2x3Factory init()
 	{
-		try
-		{
+		try {
 			Ifc2x3Factory theIfc2x3Factory = (Ifc2x3Factory)EPackage.Registry.INSTANCE.getEFactory("http:///buildingsmart.ifc.ecore"); 
-			if (theIfc2x3Factory != null)
-			{
+			if (theIfc2x3Factory != null) {
 				return theIfc2x3Factory;
 			}
 		}
-		catch (Exception exception)
-		{
+		catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new Ifc2x3FactoryImpl();
@@ -839,8 +829,7 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory
 	@Override
 	public EObject create(EClass eClass)
 	{
-		switch (eClass.getClassifierID())
-		{
+		switch (eClass.getClassifierID()) {
 			case Ifc2x3Package.IFC_ABSORBED_DOSE_MEASURE: return (EObject)createIfcAbsorbedDoseMeasure();
 			case Ifc2x3Package.IFC_ACCELERATION_MEASURE: return (EObject)createIfcAccelerationMeasure();
 			case Ifc2x3Package.IFC_AMOUNT_OF_SUBSTANCE_MEASURE: return (EObject)createIfcAmountOfSubstanceMeasure();
@@ -1605,8 +1594,7 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue)
 	{
-		switch (eDataType.getClassifierID())
-		{
+		switch (eDataType.getClassifierID()) {
 			case Ifc2x3Package.TRISTATE:
 				return createTristateFromString(eDataType, initialValue);
 			case Ifc2x3Package.IFC_ACTION_SOURCE_TYPE_ENUM:
@@ -1950,8 +1938,7 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue)
 	{
-		switch (eDataType.getClassifierID())
-		{
+		switch (eDataType.getClassifierID()) {
 			case Ifc2x3Package.TRISTATE:
 				return convertTristateToString(eDataType, instanceValue);
 			case Ifc2x3Package.IFC_ACTION_SOURCE_TYPE_ENUM:

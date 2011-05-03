@@ -40,848 +40,841 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * The '<em><b>NULL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NULL
+	 * @see #NULL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NULL_LITERAL(0, "NULL", "NULL"),
+	NULL(0, "NULL", "NULL"),
 
 	/**
 	 * The '<em><b>CNY</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #CNY
+	 * @see #CNY_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	CNY_LITERAL(1, "CNY", "CNY"),
+	CNY(1, "CNY", "CNY"),
 
 	/**
 	 * The '<em><b>JPY</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #JPY
+	 * @see #JPY_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	JPY_LITERAL(2, "JPY", "JPY"),
+	JPY(2, "JPY", "JPY"),
 
 	/**
 	 * The '<em><b>KYD</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #KYD
+	 * @see #KYD_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	KYD_LITERAL(3, "KYD", "KYD"),
+	KYD(3, "KYD", "KYD"),
 
 	/**
 	 * The '<em><b>TTD</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #TTD
+	 * @see #TTD_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	TTD_LITERAL(4, "TTD", "TTD"),
+	TTD(4, "TTD", "TTD"),
 
 	/**
 	 * The '<em><b>LKR</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #LKR
+	 * @see #LKR_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	LKR_LITERAL(5, "LKR", "LKR"),
+	LKR(5, "LKR", "LKR"),
 
 	/**
 	 * The '<em><b>MXN</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #MXN
+	 * @see #MXN_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	MXN_LITERAL(6, "MXN", "MXN"),
+	MXN(6, "MXN", "MXN"),
 
 	/**
 	 * The '<em><b>XEU</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #XEU
+	 * @see #XEU_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	XEU_LITERAL(7, "XEU", "XEU"),
+	XEU(7, "XEU", "XEU"),
 
 	/**
 	 * The '<em><b>CAD</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #CAD
+	 * @see #CAD_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	CAD_LITERAL(8, "CAD", "CAD"),
+	CAD(8, "CAD", "CAD"),
 
 	/**
 	 * The '<em><b>ZAR</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #ZAR
+	 * @see #ZAR_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	ZAR_LITERAL(9, "ZAR", "ZAR"),
+	ZAR(9, "ZAR", "ZAR"),
 
 	/**
 	 * The '<em><b>AUD</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #AUD
+	 * @see #AUD_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	AUD_LITERAL(10, "AUD", "AUD"),
+	AUD(10, "AUD", "AUD"),
 
 	/**
 	 * The '<em><b>DEM</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #DEM
+	 * @see #DEM_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	DEM_LITERAL(11, "DEM", "DEM"),
+	DEM(11, "DEM", "DEM"),
 
 	/**
 	 * The '<em><b>NOK</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NOK
+	 * @see #NOK_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NOK_LITERAL(12, "NOK", "NOK"),
+	NOK(12, "NOK", "NOK"),
 
 	/**
 	 * The '<em><b>ILS</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #ILS
+	 * @see #ILS_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	ILS_LITERAL(13, "ILS", "ILS"),
+	ILS(13, "ILS", "ILS"),
 
 	/**
 	 * The '<em><b>AES</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #AES
+	 * @see #AES_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	AES_LITERAL(14, "AES", "AES"),
+	AES(14, "AES", "AES"),
 
 	/**
 	 * The '<em><b>FAK</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #FAK
+	 * @see #FAK_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	FAK_LITERAL(15, "FAK", "FAK"),
+	FAK(15, "FAK", "FAK"),
 
 	/**
 	 * The '<em><b>PKR</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #PKR
+	 * @see #PKR_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	PKR_LITERAL(16, "PKR", "PKR"),
+	PKR(16, "PKR", "PKR"),
 
 	/**
 	 * The '<em><b>BBD</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #BBD
+	 * @see #BBD_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	BBD_LITERAL(17, "BBD", "BBD"),
+	BBD(17, "BBD", "BBD"),
 
 	/**
 	 * The '<em><b>THB</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #THB
+	 * @see #THB_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	THB_LITERAL(18, "THB", "THB"),
+	THB(18, "THB", "THB"),
 
 	/**
 	 * The '<em><b>SCR</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #SCR
+	 * @see #SCR_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	SCR_LITERAL(19, "SCR", "SCR"),
+	SCR(19, "SCR", "SCR"),
 
 	/**
 	 * The '<em><b>FKP</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #FKP
+	 * @see #FKP_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	FKP_LITERAL(20, "FKP", "FKP"),
+	FKP(20, "FKP", "FKP"),
 
 	/**
 	 * The '<em><b>ATS</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #ATS
+	 * @see #ATS_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	ATS_LITERAL(21, "ATS", "ATS"),
+	ATS(21, "ATS", "ATS"),
 
 	/**
 	 * The '<em><b>FIM</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #FIM
+	 * @see #FIM_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	FIM_LITERAL(22, "FIM", "FIM"),
+	FIM(22, "FIM", "FIM"),
 
 	/**
 	 * The '<em><b>IDR</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #IDR
+	 * @see #IDR_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	IDR_LITERAL(23, "IDR", "IDR"),
+	IDR(23, "IDR", "IDR"),
 
 	/**
 	 * The '<em><b>AED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #AED
+	 * @see #AED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	AED_LITERAL(24, "AED", "AED"),
+	AED(24, "AED", "AED"),
 
 	/**
 	 * The '<em><b>PGK</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #PGK
+	 * @see #PGK_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	PGK_LITERAL(25, "PGK", "PGK"),
+	PGK(25, "PGK", "PGK"),
 
 	/**
 	 * The '<em><b>GIP</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #GIP
+	 * @see #GIP_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	GIP_LITERAL(26, "GIP", "GIP"),
+	GIP(26, "GIP", "GIP"),
 
 	/**
 	 * The '<em><b>QAR</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #QAR
+	 * @see #QAR_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	QAR_LITERAL(27, "QAR", "QAR"),
+	QAR(27, "QAR", "QAR"),
 
 	/**
 	 * The '<em><b>BHD</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #BHD
+	 * @see #BHD_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	BHD_LITERAL(28, "BHD", "BHD"),
+	BHD(28, "BHD", "BHD"),
 
 	/**
 	 * The '<em><b>BWP</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #BWP
+	 * @see #BWP_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	BWP_LITERAL(29, "BWP", "BWP"),
+	BWP(29, "BWP", "BWP"),
 
 	/**
 	 * The '<em><b>BSD</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #BSD
+	 * @see #BSD_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	BSD_LITERAL(30, "BSD", "BSD"),
+	BSD(30, "BSD", "BSD"),
 
 	/**
 	 * The '<em><b>IRP</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #IRP
+	 * @see #IRP_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	IRP_LITERAL(31, "IRP", "IRP"),
+	IRP(31, "IRP", "IRP"),
 
 	/**
 	 * The '<em><b>DKK</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #DKK
+	 * @see #DKK_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	DKK_LITERAL(32, "DKK", "DKK"),
+	DKK(32, "DKK", "DKK"),
 
 	/**
 	 * The '<em><b>SEK</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #SEK
+	 * @see #SEK_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	SEK_LITERAL(33, "SEK", "SEK"),
+	SEK(33, "SEK", "SEK"),
 
 	/**
 	 * The '<em><b>MYR</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #MYR
+	 * @see #MYR_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	MYR_LITERAL(34, "MYR", "MYR"),
+	MYR(34, "MYR", "MYR"),
 
 	/**
 	 * The '<em><b>FJD</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #FJD
+	 * @see #FJD_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	FJD_LITERAL(35, "FJD", "FJD"),
+	FJD(35, "FJD", "FJD"),
 
 	/**
 	 * The '<em><b>DDP</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #DDP
+	 * @see #DDP_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	DDP_LITERAL(36, "DDP", "DDP"),
+	DDP(36, "DDP", "DDP"),
 
 	/**
 	 * The '<em><b>GRX</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #GRX
+	 * @see #GRX_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	GRX_LITERAL(37, "GRX", "GRX"),
+	GRX(37, "GRX", "GRX"),
 
 	/**
 	 * The '<em><b>JMD</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #JMD
+	 * @see #JMD_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	JMD_LITERAL(38, "JMD", "JMD"),
+	JMD(38, "JMD", "JMD"),
 
 	/**
 	 * The '<em><b>KRW</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #KRW
+	 * @see #KRW_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	KRW_LITERAL(39, "KRW", "KRW"),
+	KRW(39, "KRW", "KRW"),
 
 	/**
 	 * The '<em><b>EST</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #EST
+	 * @see #EST_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	EST_LITERAL(40, "EST", "EST"),
+	EST(40, "EST", "EST"),
 
 	/**
 	 * The '<em><b>BGL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #BGL
+	 * @see #BGL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	BGL_LITERAL(41, "BGL", "BGL"),
+	BGL(41, "BGL", "BGL"),
 
 	/**
 	 * The '<em><b>ZWD</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #ZWD
+	 * @see #ZWD_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	ZWD_LITERAL(42, "ZWD", "ZWD"),
+	ZWD(42, "ZWD", "ZWD"),
 
 	/**
 	 * The '<em><b>CZK</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #CZK
+	 * @see #CZK_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	CZK_LITERAL(43, "CZK", "CZK"),
+	CZK(43, "CZK", "CZK"),
 
 	/**
 	 * The '<em><b>FRF</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #FRF
+	 * @see #FRF_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	FRF_LITERAL(44, "FRF", "FRF"),
+	FRF(44, "FRF", "FRF"),
 
 	/**
 	 * The '<em><b>KWD</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #KWD
+	 * @see #KWD_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	KWD_LITERAL(45, "KWD", "KWD"),
+	KWD(45, "KWD", "KWD"),
 
 	/**
 	 * The '<em><b>VEB</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #VEB
+	 * @see #VEB_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	VEB_LITERAL(46, "VEB", "VEB"),
+	VEB(46, "VEB", "VEB"),
 
 	/**
 	 * The '<em><b>VND</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #VND
+	 * @see #VND_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	VND_LITERAL(47, "VND", "VND"),
+	VND(47, "VND", "VND"),
 
 	/**
 	 * The '<em><b>TRL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #TRL
+	 * @see #TRL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	TRL_LITERAL(48, "TRL", "TRL"),
+	TRL(48, "TRL", "TRL"),
 
 	/**
 	 * The '<em><b>JOD</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #JOD
+	 * @see #JOD_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	JOD_LITERAL(49, "JOD", "JOD"),
+	JOD(49, "JOD", "JOD"),
 
 	/**
 	 * The '<em><b>NZD</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NZD
+	 * @see #NZD_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NZD_LITERAL(50, "NZD", "NZD"),
+	NZD(50, "NZD", "NZD"),
 
 	/**
 	 * The '<em><b>CLP</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #CLP
+	 * @see #CLP_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	CLP_LITERAL(51, "CLP", "CLP"),
+	CLP(51, "CLP", "CLP"),
 
 	/**
 	 * The '<em><b>GBP</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #GBP
+	 * @see #GBP_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	GBP_LITERAL(52, "GBP", "GBP"),
+	GBP(52, "GBP", "GBP"),
 
 	/**
 	 * The '<em><b>KES</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #KES
+	 * @see #KES_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	KES_LITERAL(53, "KES", "KES"),
+	KES(53, "KES", "KES"),
 
 	/**
 	 * The '<em><b>CHF</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #CHF
+	 * @see #CHF_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	CHF_LITERAL(54, "CHF", "CHF"),
+	CHF(54, "CHF", "CHF"),
 
 	/**
 	 * The '<em><b>EGL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #EGL
+	 * @see #EGL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	EGL_LITERAL(55, "EGL", "EGL"),
+	EGL(55, "EGL", "EGL"),
 
 	/**
 	 * The '<em><b>MUR</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #MUR
+	 * @see #MUR_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	MUR_LITERAL(56, "MUR", "MUR"),
+	MUR(56, "MUR", "MUR"),
 
 	/**
 	 * The '<em><b>SAR</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #SAR
+	 * @see #SAR_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	SAR_LITERAL(57, "SAR", "SAR"),
+	SAR(57, "SAR", "SAR"),
 
 	/**
 	 * The '<em><b>BZD</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #BZD
+	 * @see #BZD_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	BZD_LITERAL(58, "BZD", "BZD"),
+	BZD(58, "BZD", "BZD"),
 
 	/**
 	 * The '<em><b>INR</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #INR
+	 * @see #INR_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	INR_LITERAL(59, "INR", "INR"),
+	INR(59, "INR", "INR"),
 
 	/**
 	 * The '<em><b>PTN</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #PTN
+	 * @see #PTN_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	PTN_LITERAL(60, "PTN", "PTN"),
+	PTN(60, "PTN", "PTN"),
 
 	/**
 	 * The '<em><b>TWD</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #TWD
+	 * @see #TWD_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	TWD_LITERAL(61, "TWD", "TWD"),
+	TWD(61, "TWD", "TWD"),
 
 	/**
 	 * The '<em><b>BMD</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #BMD
+	 * @see #BMD_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	BMD_LITERAL(62, "BMD", "BMD"),
+	BMD(62, "BMD", "BMD"),
 
 	/**
 	 * The '<em><b>ITL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #ITL
+	 * @see #ITL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	ITL_LITERAL(63, "ITL", "ITL"),
+	ITL(63, "ITL", "ITL"),
 
 	/**
 	 * The '<em><b>OMR</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #OMR
+	 * @see #OMR_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	OMR_LITERAL(64, "OMR", "OMR"),
+	OMR(64, "OMR", "OMR"),
 
 	/**
 	 * The '<em><b>SGD</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #SGD
+	 * @see #SGD_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	SGD_LITERAL(65, "SGD", "SGD"),
+	SGD(65, "SGD", "SGD"),
 
 	/**
 	 * The '<em><b>NLG</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NLG
+	 * @see #NLG_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NLG_LITERAL(66, "NLG", "NLG"),
+	NLG(66, "NLG", "NLG"),
 
 	/**
 	 * The '<em><b>SKP</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #SKP
+	 * @see #SKP_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	SKP_LITERAL(67, "SKP", "SKP"),
+	SKP(67, "SKP", "SKP"),
 
 	/**
 	 * The '<em><b>HKD</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #HKD
+	 * @see #HKD_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	HKD_LITERAL(68, "HKD", "HKD"),
+	HKD(68, "HKD", "HKD"),
 
 	/**
 	 * The '<em><b>RUR</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #RUR
+	 * @see #RUR_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	RUR_LITERAL(69, "RUR", "RUR"),
+	RUR(69, "RUR", "RUR"),
 
 	/**
 	 * The '<em><b>GMD</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #GMD
+	 * @see #GMD_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	GMD_LITERAL(70, "GMD", "GMD"),
+	GMD(70, "GMD", "GMD"),
 
 	/**
 	 * The '<em><b>CYS</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #CYS
+	 * @see #CYS_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	CYS_LITERAL(71, "CYS", "CYS"),
+	CYS(71, "CYS", "CYS"),
 
 	/**
 	 * The '<em><b>CBD</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #CBD
+	 * @see #CBD_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	CBD_LITERAL(72, "CBD", "CBD"),
+	CBD(72, "CBD", "CBD"),
 
 	/**
 	 * The '<em><b>BRL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #BRL
+	 * @see #BRL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	BRL_LITERAL(73, "BRL", "BRL"),
+	BRL(73, "BRL", "BRL"),
 
 	/**
 	 * The '<em><b>EUR</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #EUR
+	 * @see #EUR_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	EUR_LITERAL(74, "EUR", "EUR"),
+	EUR(74, "EUR", "EUR"),
 
 	/**
 	 * The '<em><b>ICK</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #ICK
+	 * @see #ICK_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	ICK_LITERAL(75, "ICK", "ICK"),
+	ICK(75, "ICK", "ICK"),
 
 	/**
 	 * The '<em><b>BEG</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #BEG
+	 * @see #BEG_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	BEG_LITERAL(76, "BEG", "BEG"),
+	BEG(76, "BEG", "BEG"),
 
 	/**
 	 * The '<em><b>PHP</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #PHP
+	 * @see #PHP_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	PHP_LITERAL(77, "PHP", "PHP"),
+	PHP(77, "PHP", "PHP"),
 
 	/**
 	 * The '<em><b>HUF</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #HUF
+	 * @see #HUF_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	HUF_LITERAL(78, "HUF", "HUF"),
+	HUF(78, "HUF", "HUF"),
 
 	/**
 	 * The '<em><b>PLN</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #PLN
+	 * @see #PLN_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	PLN_LITERAL(79, "PLN", "PLN"),
+	PLN(79, "PLN", "PLN"),
 
 	/**
 	 * The '<em><b>USD</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #USD
+	 * @see #USD_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	USD_LITERAL(80, "USD", "USD"),
+	USD(80, "USD", "USD"),
 
 	/**
 	 * The '<em><b>MTL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #MTL
+	 * @see #MTL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	MTL_LITERAL(81, "MTL", "MTL"),
+	MTL(81, "MTL", "MTL"),
 
 	/**
 	 * The '<em><b>LUF</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #LUF
+	 * @see #LUF_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	LUF_LITERAL(82, "LUF", "LUF"),
+	LUF(82, "LUF", "LUF"),
 
 	/**
 	 * The '<em><b>BND</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #BND
+	 * @see #BND_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	BND_LITERAL(83, "BND", "BND");
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
+	BND(83, "BND", "BND");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -891,12 +884,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NULL_LITERAL
+	 * @see #NULL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NULL = 0;
+	public static final int NULL_VALUE = 0;
 
 	/**
 	 * The '<em><b>CNY</b></em>' literal value.
@@ -906,12 +899,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #CNY_LITERAL
+	 * @see #CNY
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int CNY = 1;
+	public static final int CNY_VALUE = 1;
 
 	/**
 	 * The '<em><b>JPY</b></em>' literal value.
@@ -921,12 +914,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #JPY_LITERAL
+	 * @see #JPY
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int JPY = 2;
+	public static final int JPY_VALUE = 2;
 
 	/**
 	 * The '<em><b>KYD</b></em>' literal value.
@@ -936,12 +929,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #KYD_LITERAL
+	 * @see #KYD
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int KYD = 3;
+	public static final int KYD_VALUE = 3;
 
 	/**
 	 * The '<em><b>TTD</b></em>' literal value.
@@ -951,12 +944,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #TTD_LITERAL
+	 * @see #TTD
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int TTD = 4;
+	public static final int TTD_VALUE = 4;
 
 	/**
 	 * The '<em><b>LKR</b></em>' literal value.
@@ -966,12 +959,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #LKR_LITERAL
+	 * @see #LKR
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int LKR = 5;
+	public static final int LKR_VALUE = 5;
 
 	/**
 	 * The '<em><b>MXN</b></em>' literal value.
@@ -981,12 +974,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #MXN_LITERAL
+	 * @see #MXN
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MXN = 6;
+	public static final int MXN_VALUE = 6;
 
 	/**
 	 * The '<em><b>XEU</b></em>' literal value.
@@ -996,12 +989,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #XEU_LITERAL
+	 * @see #XEU
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int XEU = 7;
+	public static final int XEU_VALUE = 7;
 
 	/**
 	 * The '<em><b>CAD</b></em>' literal value.
@@ -1011,12 +1004,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #CAD_LITERAL
+	 * @see #CAD
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int CAD = 8;
+	public static final int CAD_VALUE = 8;
 
 	/**
 	 * The '<em><b>ZAR</b></em>' literal value.
@@ -1026,12 +1019,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ZAR_LITERAL
+	 * @see #ZAR
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ZAR = 9;
+	public static final int ZAR_VALUE = 9;
 
 	/**
 	 * The '<em><b>AUD</b></em>' literal value.
@@ -1041,12 +1034,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #AUD_LITERAL
+	 * @see #AUD
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int AUD = 10;
+	public static final int AUD_VALUE = 10;
 
 	/**
 	 * The '<em><b>DEM</b></em>' literal value.
@@ -1056,12 +1049,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #DEM_LITERAL
+	 * @see #DEM
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int DEM = 11;
+	public static final int DEM_VALUE = 11;
 
 	/**
 	 * The '<em><b>NOK</b></em>' literal value.
@@ -1071,12 +1064,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NOK_LITERAL
+	 * @see #NOK
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOK = 12;
+	public static final int NOK_VALUE = 12;
 
 	/**
 	 * The '<em><b>ILS</b></em>' literal value.
@@ -1086,12 +1079,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ILS_LITERAL
+	 * @see #ILS
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ILS = 13;
+	public static final int ILS_VALUE = 13;
 
 	/**
 	 * The '<em><b>AES</b></em>' literal value.
@@ -1101,12 +1094,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #AES_LITERAL
+	 * @see #AES
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int AES = 14;
+	public static final int AES_VALUE = 14;
 
 	/**
 	 * The '<em><b>FAK</b></em>' literal value.
@@ -1116,12 +1109,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #FAK_LITERAL
+	 * @see #FAK
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int FAK = 15;
+	public static final int FAK_VALUE = 15;
 
 	/**
 	 * The '<em><b>PKR</b></em>' literal value.
@@ -1131,12 +1124,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #PKR_LITERAL
+	 * @see #PKR
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PKR = 16;
+	public static final int PKR_VALUE = 16;
 
 	/**
 	 * The '<em><b>BBD</b></em>' literal value.
@@ -1146,12 +1139,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #BBD_LITERAL
+	 * @see #BBD
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int BBD = 17;
+	public static final int BBD_VALUE = 17;
 
 	/**
 	 * The '<em><b>THB</b></em>' literal value.
@@ -1161,12 +1154,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #THB_LITERAL
+	 * @see #THB
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int THB = 18;
+	public static final int THB_VALUE = 18;
 
 	/**
 	 * The '<em><b>SCR</b></em>' literal value.
@@ -1176,12 +1169,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #SCR_LITERAL
+	 * @see #SCR
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SCR = 19;
+	public static final int SCR_VALUE = 19;
 
 	/**
 	 * The '<em><b>FKP</b></em>' literal value.
@@ -1191,12 +1184,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #FKP_LITERAL
+	 * @see #FKP
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int FKP = 20;
+	public static final int FKP_VALUE = 20;
 
 	/**
 	 * The '<em><b>ATS</b></em>' literal value.
@@ -1206,12 +1199,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ATS_LITERAL
+	 * @see #ATS
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ATS = 21;
+	public static final int ATS_VALUE = 21;
 
 	/**
 	 * The '<em><b>FIM</b></em>' literal value.
@@ -1221,12 +1214,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #FIM_LITERAL
+	 * @see #FIM
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int FIM = 22;
+	public static final int FIM_VALUE = 22;
 
 	/**
 	 * The '<em><b>IDR</b></em>' literal value.
@@ -1236,12 +1229,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #IDR_LITERAL
+	 * @see #IDR
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int IDR = 23;
+	public static final int IDR_VALUE = 23;
 
 	/**
 	 * The '<em><b>AED</b></em>' literal value.
@@ -1251,12 +1244,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #AED_LITERAL
+	 * @see #AED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int AED = 24;
+	public static final int AED_VALUE = 24;
 
 	/**
 	 * The '<em><b>PGK</b></em>' literal value.
@@ -1266,12 +1259,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #PGK_LITERAL
+	 * @see #PGK
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PGK = 25;
+	public static final int PGK_VALUE = 25;
 
 	/**
 	 * The '<em><b>GIP</b></em>' literal value.
@@ -1281,12 +1274,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #GIP_LITERAL
+	 * @see #GIP
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int GIP = 26;
+	public static final int GIP_VALUE = 26;
 
 	/**
 	 * The '<em><b>QAR</b></em>' literal value.
@@ -1296,12 +1289,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #QAR_LITERAL
+	 * @see #QAR
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int QAR = 27;
+	public static final int QAR_VALUE = 27;
 
 	/**
 	 * The '<em><b>BHD</b></em>' literal value.
@@ -1311,12 +1304,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #BHD_LITERAL
+	 * @see #BHD
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int BHD = 28;
+	public static final int BHD_VALUE = 28;
 
 	/**
 	 * The '<em><b>BWP</b></em>' literal value.
@@ -1326,12 +1319,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #BWP_LITERAL
+	 * @see #BWP
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int BWP = 29;
+	public static final int BWP_VALUE = 29;
 
 	/**
 	 * The '<em><b>BSD</b></em>' literal value.
@@ -1341,12 +1334,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #BSD_LITERAL
+	 * @see #BSD
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int BSD = 30;
+	public static final int BSD_VALUE = 30;
 
 	/**
 	 * The '<em><b>IRP</b></em>' literal value.
@@ -1356,12 +1349,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #IRP_LITERAL
+	 * @see #IRP
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int IRP = 31;
+	public static final int IRP_VALUE = 31;
 
 	/**
 	 * The '<em><b>DKK</b></em>' literal value.
@@ -1371,12 +1364,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #DKK_LITERAL
+	 * @see #DKK
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int DKK = 32;
+	public static final int DKK_VALUE = 32;
 
 	/**
 	 * The '<em><b>SEK</b></em>' literal value.
@@ -1386,12 +1379,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #SEK_LITERAL
+	 * @see #SEK
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SEK = 33;
+	public static final int SEK_VALUE = 33;
 
 	/**
 	 * The '<em><b>MYR</b></em>' literal value.
@@ -1401,12 +1394,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #MYR_LITERAL
+	 * @see #MYR
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MYR = 34;
+	public static final int MYR_VALUE = 34;
 
 	/**
 	 * The '<em><b>FJD</b></em>' literal value.
@@ -1416,12 +1409,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #FJD_LITERAL
+	 * @see #FJD
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int FJD = 35;
+	public static final int FJD_VALUE = 35;
 
 	/**
 	 * The '<em><b>DDP</b></em>' literal value.
@@ -1431,12 +1424,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #DDP_LITERAL
+	 * @see #DDP
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int DDP = 36;
+	public static final int DDP_VALUE = 36;
 
 	/**
 	 * The '<em><b>GRX</b></em>' literal value.
@@ -1446,12 +1439,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #GRX_LITERAL
+	 * @see #GRX
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int GRX = 37;
+	public static final int GRX_VALUE = 37;
 
 	/**
 	 * The '<em><b>JMD</b></em>' literal value.
@@ -1461,12 +1454,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #JMD_LITERAL
+	 * @see #JMD
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int JMD = 38;
+	public static final int JMD_VALUE = 38;
 
 	/**
 	 * The '<em><b>KRW</b></em>' literal value.
@@ -1476,12 +1469,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #KRW_LITERAL
+	 * @see #KRW
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int KRW = 39;
+	public static final int KRW_VALUE = 39;
 
 	/**
 	 * The '<em><b>EST</b></em>' literal value.
@@ -1491,12 +1484,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #EST_LITERAL
+	 * @see #EST
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int EST = 40;
+	public static final int EST_VALUE = 40;
 
 	/**
 	 * The '<em><b>BGL</b></em>' literal value.
@@ -1506,12 +1499,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #BGL_LITERAL
+	 * @see #BGL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int BGL = 41;
+	public static final int BGL_VALUE = 41;
 
 	/**
 	 * The '<em><b>ZWD</b></em>' literal value.
@@ -1521,12 +1514,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ZWD_LITERAL
+	 * @see #ZWD
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ZWD = 42;
+	public static final int ZWD_VALUE = 42;
 
 	/**
 	 * The '<em><b>CZK</b></em>' literal value.
@@ -1536,12 +1529,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #CZK_LITERAL
+	 * @see #CZK
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int CZK = 43;
+	public static final int CZK_VALUE = 43;
 
 	/**
 	 * The '<em><b>FRF</b></em>' literal value.
@@ -1551,12 +1544,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #FRF_LITERAL
+	 * @see #FRF
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int FRF = 44;
+	public static final int FRF_VALUE = 44;
 
 	/**
 	 * The '<em><b>KWD</b></em>' literal value.
@@ -1566,12 +1559,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #KWD_LITERAL
+	 * @see #KWD
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int KWD = 45;
+	public static final int KWD_VALUE = 45;
 
 	/**
 	 * The '<em><b>VEB</b></em>' literal value.
@@ -1581,12 +1574,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #VEB_LITERAL
+	 * @see #VEB
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int VEB = 46;
+	public static final int VEB_VALUE = 46;
 
 	/**
 	 * The '<em><b>VND</b></em>' literal value.
@@ -1596,12 +1589,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #VND_LITERAL
+	 * @see #VND
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int VND = 47;
+	public static final int VND_VALUE = 47;
 
 	/**
 	 * The '<em><b>TRL</b></em>' literal value.
@@ -1611,12 +1604,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #TRL_LITERAL
+	 * @see #TRL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int TRL = 48;
+	public static final int TRL_VALUE = 48;
 
 	/**
 	 * The '<em><b>JOD</b></em>' literal value.
@@ -1626,12 +1619,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #JOD_LITERAL
+	 * @see #JOD
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int JOD = 49;
+	public static final int JOD_VALUE = 49;
 
 	/**
 	 * The '<em><b>NZD</b></em>' literal value.
@@ -1641,12 +1634,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NZD_LITERAL
+	 * @see #NZD
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NZD = 50;
+	public static final int NZD_VALUE = 50;
 
 	/**
 	 * The '<em><b>CLP</b></em>' literal value.
@@ -1656,12 +1649,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #CLP_LITERAL
+	 * @see #CLP
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int CLP = 51;
+	public static final int CLP_VALUE = 51;
 
 	/**
 	 * The '<em><b>GBP</b></em>' literal value.
@@ -1671,12 +1664,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #GBP_LITERAL
+	 * @see #GBP
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int GBP = 52;
+	public static final int GBP_VALUE = 52;
 
 	/**
 	 * The '<em><b>KES</b></em>' literal value.
@@ -1686,12 +1679,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #KES_LITERAL
+	 * @see #KES
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int KES = 53;
+	public static final int KES_VALUE = 53;
 
 	/**
 	 * The '<em><b>CHF</b></em>' literal value.
@@ -1701,12 +1694,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #CHF_LITERAL
+	 * @see #CHF
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int CHF = 54;
+	public static final int CHF_VALUE = 54;
 
 	/**
 	 * The '<em><b>EGL</b></em>' literal value.
@@ -1716,12 +1709,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #EGL_LITERAL
+	 * @see #EGL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int EGL = 55;
+	public static final int EGL_VALUE = 55;
 
 	/**
 	 * The '<em><b>MUR</b></em>' literal value.
@@ -1731,12 +1724,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #MUR_LITERAL
+	 * @see #MUR
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MUR = 56;
+	public static final int MUR_VALUE = 56;
 
 	/**
 	 * The '<em><b>SAR</b></em>' literal value.
@@ -1746,12 +1739,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #SAR_LITERAL
+	 * @see #SAR
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SAR = 57;
+	public static final int SAR_VALUE = 57;
 
 	/**
 	 * The '<em><b>BZD</b></em>' literal value.
@@ -1761,12 +1754,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #BZD_LITERAL
+	 * @see #BZD
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int BZD = 58;
+	public static final int BZD_VALUE = 58;
 
 	/**
 	 * The '<em><b>INR</b></em>' literal value.
@@ -1776,12 +1769,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #INR_LITERAL
+	 * @see #INR
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int INR = 59;
+	public static final int INR_VALUE = 59;
 
 	/**
 	 * The '<em><b>PTN</b></em>' literal value.
@@ -1791,12 +1784,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #PTN_LITERAL
+	 * @see #PTN
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PTN = 60;
+	public static final int PTN_VALUE = 60;
 
 	/**
 	 * The '<em><b>TWD</b></em>' literal value.
@@ -1806,12 +1799,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #TWD_LITERAL
+	 * @see #TWD
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int TWD = 61;
+	public static final int TWD_VALUE = 61;
 
 	/**
 	 * The '<em><b>BMD</b></em>' literal value.
@@ -1821,12 +1814,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #BMD_LITERAL
+	 * @see #BMD
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int BMD = 62;
+	public static final int BMD_VALUE = 62;
 
 	/**
 	 * The '<em><b>ITL</b></em>' literal value.
@@ -1836,12 +1829,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ITL_LITERAL
+	 * @see #ITL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ITL = 63;
+	public static final int ITL_VALUE = 63;
 
 	/**
 	 * The '<em><b>OMR</b></em>' literal value.
@@ -1851,12 +1844,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #OMR_LITERAL
+	 * @see #OMR
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int OMR = 64;
+	public static final int OMR_VALUE = 64;
 
 	/**
 	 * The '<em><b>SGD</b></em>' literal value.
@@ -1866,12 +1859,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #SGD_LITERAL
+	 * @see #SGD
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SGD = 65;
+	public static final int SGD_VALUE = 65;
 
 	/**
 	 * The '<em><b>NLG</b></em>' literal value.
@@ -1881,12 +1874,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NLG_LITERAL
+	 * @see #NLG
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NLG = 66;
+	public static final int NLG_VALUE = 66;
 
 	/**
 	 * The '<em><b>SKP</b></em>' literal value.
@@ -1896,12 +1889,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #SKP_LITERAL
+	 * @see #SKP
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SKP = 67;
+	public static final int SKP_VALUE = 67;
 
 	/**
 	 * The '<em><b>HKD</b></em>' literal value.
@@ -1911,12 +1904,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #HKD_LITERAL
+	 * @see #HKD
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int HKD = 68;
+	public static final int HKD_VALUE = 68;
 
 	/**
 	 * The '<em><b>RUR</b></em>' literal value.
@@ -1926,12 +1919,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #RUR_LITERAL
+	 * @see #RUR
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int RUR = 69;
+	public static final int RUR_VALUE = 69;
 
 	/**
 	 * The '<em><b>GMD</b></em>' literal value.
@@ -1941,12 +1934,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #GMD_LITERAL
+	 * @see #GMD
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int GMD = 70;
+	public static final int GMD_VALUE = 70;
 
 	/**
 	 * The '<em><b>CYS</b></em>' literal value.
@@ -1956,12 +1949,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #CYS_LITERAL
+	 * @see #CYS
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int CYS = 71;
+	public static final int CYS_VALUE = 71;
 
 	/**
 	 * The '<em><b>CBD</b></em>' literal value.
@@ -1971,12 +1964,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #CBD_LITERAL
+	 * @see #CBD
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int CBD = 72;
+	public static final int CBD_VALUE = 72;
 
 	/**
 	 * The '<em><b>BRL</b></em>' literal value.
@@ -1986,12 +1979,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #BRL_LITERAL
+	 * @see #BRL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int BRL = 73;
+	public static final int BRL_VALUE = 73;
 
 	/**
 	 * The '<em><b>EUR</b></em>' literal value.
@@ -2001,12 +1994,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #EUR_LITERAL
+	 * @see #EUR
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int EUR = 74;
+	public static final int EUR_VALUE = 74;
 
 	/**
 	 * The '<em><b>ICK</b></em>' literal value.
@@ -2016,12 +2009,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ICK_LITERAL
+	 * @see #ICK
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ICK = 75;
+	public static final int ICK_VALUE = 75;
 
 	/**
 	 * The '<em><b>BEG</b></em>' literal value.
@@ -2031,12 +2024,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #BEG_LITERAL
+	 * @see #BEG
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int BEG = 76;
+	public static final int BEG_VALUE = 76;
 
 	/**
 	 * The '<em><b>PHP</b></em>' literal value.
@@ -2046,12 +2039,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #PHP_LITERAL
+	 * @see #PHP
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PHP = 77;
+	public static final int PHP_VALUE = 77;
 
 	/**
 	 * The '<em><b>HUF</b></em>' literal value.
@@ -2061,12 +2054,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #HUF_LITERAL
+	 * @see #HUF
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int HUF = 78;
+	public static final int HUF_VALUE = 78;
 
 	/**
 	 * The '<em><b>PLN</b></em>' literal value.
@@ -2076,12 +2069,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #PLN_LITERAL
+	 * @see #PLN
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PLN = 79;
+	public static final int PLN_VALUE = 79;
 
 	/**
 	 * The '<em><b>USD</b></em>' literal value.
@@ -2091,12 +2084,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #USD_LITERAL
+	 * @see #USD
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USD = 80;
+	public static final int USD_VALUE = 80;
 
 	/**
 	 * The '<em><b>MTL</b></em>' literal value.
@@ -2106,12 +2099,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #MTL_LITERAL
+	 * @see #MTL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MTL = 81;
+	public static final int MTL_VALUE = 81;
 
 	/**
 	 * The '<em><b>LUF</b></em>' literal value.
@@ -2121,12 +2114,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #LUF_LITERAL
+	 * @see #LUF
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int LUF = 82;
+	public static final int LUF_VALUE = 82;
 
 	/**
 	 * The '<em><b>BND</b></em>' literal value.
@@ -2136,12 +2129,12 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #BND_LITERAL
+	 * @see #BND
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int BND = 83;
+	public static final int BND_VALUE = 83;
 
 	/**
 	 * An array of all the '<em><b>Ifc Currency Enum</b></em>' enumerators.
@@ -2150,92 +2143,91 @@ public enum IfcCurrencyEnum implements Enumerator
 	 * @generated
 	 */
 	private static final IfcCurrencyEnum[] VALUES_ARRAY =
-		new IfcCurrencyEnum[]
-		{
-			NULL_LITERAL,
-			CNY_LITERAL,
-			JPY_LITERAL,
-			KYD_LITERAL,
-			TTD_LITERAL,
-			LKR_LITERAL,
-			MXN_LITERAL,
-			XEU_LITERAL,
-			CAD_LITERAL,
-			ZAR_LITERAL,
-			AUD_LITERAL,
-			DEM_LITERAL,
-			NOK_LITERAL,
-			ILS_LITERAL,
-			AES_LITERAL,
-			FAK_LITERAL,
-			PKR_LITERAL,
-			BBD_LITERAL,
-			THB_LITERAL,
-			SCR_LITERAL,
-			FKP_LITERAL,
-			ATS_LITERAL,
-			FIM_LITERAL,
-			IDR_LITERAL,
-			AED_LITERAL,
-			PGK_LITERAL,
-			GIP_LITERAL,
-			QAR_LITERAL,
-			BHD_LITERAL,
-			BWP_LITERAL,
-			BSD_LITERAL,
-			IRP_LITERAL,
-			DKK_LITERAL,
-			SEK_LITERAL,
-			MYR_LITERAL,
-			FJD_LITERAL,
-			DDP_LITERAL,
-			GRX_LITERAL,
-			JMD_LITERAL,
-			KRW_LITERAL,
-			EST_LITERAL,
-			BGL_LITERAL,
-			ZWD_LITERAL,
-			CZK_LITERAL,
-			FRF_LITERAL,
-			KWD_LITERAL,
-			VEB_LITERAL,
-			VND_LITERAL,
-			TRL_LITERAL,
-			JOD_LITERAL,
-			NZD_LITERAL,
-			CLP_LITERAL,
-			GBP_LITERAL,
-			KES_LITERAL,
-			CHF_LITERAL,
-			EGL_LITERAL,
-			MUR_LITERAL,
-			SAR_LITERAL,
-			BZD_LITERAL,
-			INR_LITERAL,
-			PTN_LITERAL,
-			TWD_LITERAL,
-			BMD_LITERAL,
-			ITL_LITERAL,
-			OMR_LITERAL,
-			SGD_LITERAL,
-			NLG_LITERAL,
-			SKP_LITERAL,
-			HKD_LITERAL,
-			RUR_LITERAL,
-			GMD_LITERAL,
-			CYS_LITERAL,
-			CBD_LITERAL,
-			BRL_LITERAL,
-			EUR_LITERAL,
-			ICK_LITERAL,
-			BEG_LITERAL,
-			PHP_LITERAL,
-			HUF_LITERAL,
-			PLN_LITERAL,
-			USD_LITERAL,
-			MTL_LITERAL,
-			LUF_LITERAL,
-			BND_LITERAL,
+		new IfcCurrencyEnum[] {
+			NULL,
+			CNY,
+			JPY,
+			KYD,
+			TTD,
+			LKR,
+			MXN,
+			XEU,
+			CAD,
+			ZAR,
+			AUD,
+			DEM,
+			NOK,
+			ILS,
+			AES,
+			FAK,
+			PKR,
+			BBD,
+			THB,
+			SCR,
+			FKP,
+			ATS,
+			FIM,
+			IDR,
+			AED,
+			PGK,
+			GIP,
+			QAR,
+			BHD,
+			BWP,
+			BSD,
+			IRP,
+			DKK,
+			SEK,
+			MYR,
+			FJD,
+			DDP,
+			GRX,
+			JMD,
+			KRW,
+			EST,
+			BGL,
+			ZWD,
+			CZK,
+			FRF,
+			KWD,
+			VEB,
+			VND,
+			TRL,
+			JOD,
+			NZD,
+			CLP,
+			GBP,
+			KES,
+			CHF,
+			EGL,
+			MUR,
+			SAR,
+			BZD,
+			INR,
+			PTN,
+			TWD,
+			BMD,
+			ITL,
+			OMR,
+			SGD,
+			NLG,
+			SKP,
+			HKD,
+			RUR,
+			GMD,
+			CYS,
+			CBD,
+			BRL,
+			EUR,
+			ICK,
+			BEG,
+			PHP,
+			HUF,
+			PLN,
+			USD,
+			MTL,
+			LUF,
+			BND,
 		};
 
 	/**
@@ -2254,11 +2246,9 @@ public enum IfcCurrencyEnum implements Enumerator
 	 */
 	public static IfcCurrencyEnum get(String literal)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcCurrencyEnum result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal))
-			{
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -2273,11 +2263,9 @@ public enum IfcCurrencyEnum implements Enumerator
 	 */
 	public static IfcCurrencyEnum getByName(String name)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcCurrencyEnum result = VALUES_ARRAY[i];
-			if (result.getName().equals(name))
-			{
+			if (result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -2292,92 +2280,91 @@ public enum IfcCurrencyEnum implements Enumerator
 	 */
 	public static IfcCurrencyEnum get(int value)
 	{
-		switch (value)
-		{
-			case NULL: return NULL_LITERAL;
-			case CNY: return CNY_LITERAL;
-			case JPY: return JPY_LITERAL;
-			case KYD: return KYD_LITERAL;
-			case TTD: return TTD_LITERAL;
-			case LKR: return LKR_LITERAL;
-			case MXN: return MXN_LITERAL;
-			case XEU: return XEU_LITERAL;
-			case CAD: return CAD_LITERAL;
-			case ZAR: return ZAR_LITERAL;
-			case AUD: return AUD_LITERAL;
-			case DEM: return DEM_LITERAL;
-			case NOK: return NOK_LITERAL;
-			case ILS: return ILS_LITERAL;
-			case AES: return AES_LITERAL;
-			case FAK: return FAK_LITERAL;
-			case PKR: return PKR_LITERAL;
-			case BBD: return BBD_LITERAL;
-			case THB: return THB_LITERAL;
-			case SCR: return SCR_LITERAL;
-			case FKP: return FKP_LITERAL;
-			case ATS: return ATS_LITERAL;
-			case FIM: return FIM_LITERAL;
-			case IDR: return IDR_LITERAL;
-			case AED: return AED_LITERAL;
-			case PGK: return PGK_LITERAL;
-			case GIP: return GIP_LITERAL;
-			case QAR: return QAR_LITERAL;
-			case BHD: return BHD_LITERAL;
-			case BWP: return BWP_LITERAL;
-			case BSD: return BSD_LITERAL;
-			case IRP: return IRP_LITERAL;
-			case DKK: return DKK_LITERAL;
-			case SEK: return SEK_LITERAL;
-			case MYR: return MYR_LITERAL;
-			case FJD: return FJD_LITERAL;
-			case DDP: return DDP_LITERAL;
-			case GRX: return GRX_LITERAL;
-			case JMD: return JMD_LITERAL;
-			case KRW: return KRW_LITERAL;
-			case EST: return EST_LITERAL;
-			case BGL: return BGL_LITERAL;
-			case ZWD: return ZWD_LITERAL;
-			case CZK: return CZK_LITERAL;
-			case FRF: return FRF_LITERAL;
-			case KWD: return KWD_LITERAL;
-			case VEB: return VEB_LITERAL;
-			case VND: return VND_LITERAL;
-			case TRL: return TRL_LITERAL;
-			case JOD: return JOD_LITERAL;
-			case NZD: return NZD_LITERAL;
-			case CLP: return CLP_LITERAL;
-			case GBP: return GBP_LITERAL;
-			case KES: return KES_LITERAL;
-			case CHF: return CHF_LITERAL;
-			case EGL: return EGL_LITERAL;
-			case MUR: return MUR_LITERAL;
-			case SAR: return SAR_LITERAL;
-			case BZD: return BZD_LITERAL;
-			case INR: return INR_LITERAL;
-			case PTN: return PTN_LITERAL;
-			case TWD: return TWD_LITERAL;
-			case BMD: return BMD_LITERAL;
-			case ITL: return ITL_LITERAL;
-			case OMR: return OMR_LITERAL;
-			case SGD: return SGD_LITERAL;
-			case NLG: return NLG_LITERAL;
-			case SKP: return SKP_LITERAL;
-			case HKD: return HKD_LITERAL;
-			case RUR: return RUR_LITERAL;
-			case GMD: return GMD_LITERAL;
-			case CYS: return CYS_LITERAL;
-			case CBD: return CBD_LITERAL;
-			case BRL: return BRL_LITERAL;
-			case EUR: return EUR_LITERAL;
-			case ICK: return ICK_LITERAL;
-			case BEG: return BEG_LITERAL;
-			case PHP: return PHP_LITERAL;
-			case HUF: return HUF_LITERAL;
-			case PLN: return PLN_LITERAL;
-			case USD: return USD_LITERAL;
-			case MTL: return MTL_LITERAL;
-			case LUF: return LUF_LITERAL;
-			case BND: return BND_LITERAL;
+		switch (value) {
+			case NULL_VALUE: return NULL;
+			case CNY_VALUE: return CNY;
+			case JPY_VALUE: return JPY;
+			case KYD_VALUE: return KYD;
+			case TTD_VALUE: return TTD;
+			case LKR_VALUE: return LKR;
+			case MXN_VALUE: return MXN;
+			case XEU_VALUE: return XEU;
+			case CAD_VALUE: return CAD;
+			case ZAR_VALUE: return ZAR;
+			case AUD_VALUE: return AUD;
+			case DEM_VALUE: return DEM;
+			case NOK_VALUE: return NOK;
+			case ILS_VALUE: return ILS;
+			case AES_VALUE: return AES;
+			case FAK_VALUE: return FAK;
+			case PKR_VALUE: return PKR;
+			case BBD_VALUE: return BBD;
+			case THB_VALUE: return THB;
+			case SCR_VALUE: return SCR;
+			case FKP_VALUE: return FKP;
+			case ATS_VALUE: return ATS;
+			case FIM_VALUE: return FIM;
+			case IDR_VALUE: return IDR;
+			case AED_VALUE: return AED;
+			case PGK_VALUE: return PGK;
+			case GIP_VALUE: return GIP;
+			case QAR_VALUE: return QAR;
+			case BHD_VALUE: return BHD;
+			case BWP_VALUE: return BWP;
+			case BSD_VALUE: return BSD;
+			case IRP_VALUE: return IRP;
+			case DKK_VALUE: return DKK;
+			case SEK_VALUE: return SEK;
+			case MYR_VALUE: return MYR;
+			case FJD_VALUE: return FJD;
+			case DDP_VALUE: return DDP;
+			case GRX_VALUE: return GRX;
+			case JMD_VALUE: return JMD;
+			case KRW_VALUE: return KRW;
+			case EST_VALUE: return EST;
+			case BGL_VALUE: return BGL;
+			case ZWD_VALUE: return ZWD;
+			case CZK_VALUE: return CZK;
+			case FRF_VALUE: return FRF;
+			case KWD_VALUE: return KWD;
+			case VEB_VALUE: return VEB;
+			case VND_VALUE: return VND;
+			case TRL_VALUE: return TRL;
+			case JOD_VALUE: return JOD;
+			case NZD_VALUE: return NZD;
+			case CLP_VALUE: return CLP;
+			case GBP_VALUE: return GBP;
+			case KES_VALUE: return KES;
+			case CHF_VALUE: return CHF;
+			case EGL_VALUE: return EGL;
+			case MUR_VALUE: return MUR;
+			case SAR_VALUE: return SAR;
+			case BZD_VALUE: return BZD;
+			case INR_VALUE: return INR;
+			case PTN_VALUE: return PTN;
+			case TWD_VALUE: return TWD;
+			case BMD_VALUE: return BMD;
+			case ITL_VALUE: return ITL;
+			case OMR_VALUE: return OMR;
+			case SGD_VALUE: return SGD;
+			case NLG_VALUE: return NLG;
+			case SKP_VALUE: return SKP;
+			case HKD_VALUE: return HKD;
+			case RUR_VALUE: return RUR;
+			case GMD_VALUE: return GMD;
+			case CYS_VALUE: return CYS;
+			case CBD_VALUE: return CBD;
+			case BRL_VALUE: return BRL;
+			case EUR_VALUE: return EUR;
+			case ICK_VALUE: return ICK;
+			case BEG_VALUE: return BEG;
+			case PHP_VALUE: return PHP;
+			case HUF_VALUE: return HUF;
+			case PLN_VALUE: return PLN;
+			case USD_VALUE: return USD;
+			case MTL_VALUE: return MTL;
+			case LUF_VALUE: return LUF;
+			case BND_VALUE: return BND;
 		}
 		return null;
 	}

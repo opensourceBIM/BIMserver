@@ -40,68 +40,61 @@ public enum IfcStateEnum implements Enumerator
 	 * The '<em><b>NULL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NULL
+	 * @see #NULL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NULL_LITERAL(0, "NULL", "NULL"),
+	NULL(0, "NULL", "NULL"),
 
 	/**
 	 * The '<em><b>READONLYLOCKED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #READONLYLOCKED
+	 * @see #READONLYLOCKED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	READONLYLOCKED_LITERAL(1, "READONLYLOCKED", "READONLYLOCKED"),
+	READONLYLOCKED(1, "READONLYLOCKED", "READONLYLOCKED"),
 
 	/**
 	 * The '<em><b>READWRITELOCKED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #READWRITELOCKED
+	 * @see #READWRITELOCKED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	READWRITELOCKED_LITERAL(2, "READWRITELOCKED", "READWRITELOCKED"),
+	READWRITELOCKED(2, "READWRITELOCKED", "READWRITELOCKED"),
 
 	/**
 	 * The '<em><b>READONLY</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #READONLY
+	 * @see #READONLY_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	READONLY_LITERAL(3, "READONLY", "READONLY"),
+	READONLY(3, "READONLY", "READONLY"),
 
 	/**
 	 * The '<em><b>READWRITE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #READWRITE
+	 * @see #READWRITE_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	READWRITE_LITERAL(4, "READWRITE", "READWRITE"),
+	READWRITE(4, "READWRITE", "READWRITE"),
 
 	/**
 	 * The '<em><b>LOCKED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #LOCKED
+	 * @see #LOCKED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	LOCKED_LITERAL(5, "LOCKED", "LOCKED");
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
+	LOCKED(5, "LOCKED", "LOCKED");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -111,12 +104,12 @@ public enum IfcStateEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NULL_LITERAL
+	 * @see #NULL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NULL = 0;
+	public static final int NULL_VALUE = 0;
 
 	/**
 	 * The '<em><b>READONLYLOCKED</b></em>' literal value.
@@ -126,12 +119,12 @@ public enum IfcStateEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #READONLYLOCKED_LITERAL
+	 * @see #READONLYLOCKED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int READONLYLOCKED = 1;
+	public static final int READONLYLOCKED_VALUE = 1;
 
 	/**
 	 * The '<em><b>READWRITELOCKED</b></em>' literal value.
@@ -141,12 +134,12 @@ public enum IfcStateEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #READWRITELOCKED_LITERAL
+	 * @see #READWRITELOCKED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int READWRITELOCKED = 2;
+	public static final int READWRITELOCKED_VALUE = 2;
 
 	/**
 	 * The '<em><b>READONLY</b></em>' literal value.
@@ -156,12 +149,12 @@ public enum IfcStateEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #READONLY_LITERAL
+	 * @see #READONLY
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int READONLY = 3;
+	public static final int READONLY_VALUE = 3;
 
 	/**
 	 * The '<em><b>READWRITE</b></em>' literal value.
@@ -171,12 +164,12 @@ public enum IfcStateEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #READWRITE_LITERAL
+	 * @see #READWRITE
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int READWRITE = 4;
+	public static final int READWRITE_VALUE = 4;
 
 	/**
 	 * The '<em><b>LOCKED</b></em>' literal value.
@@ -186,12 +179,12 @@ public enum IfcStateEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #LOCKED_LITERAL
+	 * @see #LOCKED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int LOCKED = 5;
+	public static final int LOCKED_VALUE = 5;
 
 	/**
 	 * An array of all the '<em><b>Ifc State Enum</b></em>' enumerators.
@@ -200,14 +193,13 @@ public enum IfcStateEnum implements Enumerator
 	 * @generated
 	 */
 	private static final IfcStateEnum[] VALUES_ARRAY =
-		new IfcStateEnum[]
-		{
-			NULL_LITERAL,
-			READONLYLOCKED_LITERAL,
-			READWRITELOCKED_LITERAL,
-			READONLY_LITERAL,
-			READWRITE_LITERAL,
-			LOCKED_LITERAL,
+		new IfcStateEnum[] {
+			NULL,
+			READONLYLOCKED,
+			READWRITELOCKED,
+			READONLY,
+			READWRITE,
+			LOCKED,
 		};
 
 	/**
@@ -226,11 +218,9 @@ public enum IfcStateEnum implements Enumerator
 	 */
 	public static IfcStateEnum get(String literal)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcStateEnum result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal))
-			{
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -245,11 +235,9 @@ public enum IfcStateEnum implements Enumerator
 	 */
 	public static IfcStateEnum getByName(String name)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcStateEnum result = VALUES_ARRAY[i];
-			if (result.getName().equals(name))
-			{
+			if (result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -264,14 +252,13 @@ public enum IfcStateEnum implements Enumerator
 	 */
 	public static IfcStateEnum get(int value)
 	{
-		switch (value)
-		{
-			case NULL: return NULL_LITERAL;
-			case READONLYLOCKED: return READONLYLOCKED_LITERAL;
-			case READWRITELOCKED: return READWRITELOCKED_LITERAL;
-			case READONLY: return READONLY_LITERAL;
-			case READWRITE: return READWRITE_LITERAL;
-			case LOCKED: return LOCKED_LITERAL;
+		switch (value) {
+			case NULL_VALUE: return NULL;
+			case READONLYLOCKED_VALUE: return READONLYLOCKED;
+			case READWRITELOCKED_VALUE: return READWRITELOCKED;
+			case READONLY_VALUE: return READONLY;
+			case READWRITE_VALUE: return READWRITE;
+			case LOCKED_VALUE: return LOCKED;
 		}
 		return null;
 	}

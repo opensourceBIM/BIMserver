@@ -53,13 +53,6 @@ public class IfcCurveBoundedPlaneImpl extends IfcBoundedSurfaceImpl implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	protected IfcCurveBoundedPlaneImpl()
 	{
 		super();
@@ -73,7 +66,7 @@ public class IfcCurveBoundedPlaneImpl extends IfcBoundedSurfaceImpl implements I
 	@Override
 	protected EClass eStaticClass()
 	{
-		return Ifc2x3Package.Literals.IFC_CURVE_BOUNDED_PLANE;
+		return Ifc2x3Package.eINSTANCE.getIfcCurveBoundedPlane();
 	}
 
 	/**
@@ -83,7 +76,7 @@ public class IfcCurveBoundedPlaneImpl extends IfcBoundedSurfaceImpl implements I
 	 */
 	public IfcPlane getBasisSurface()
 	{
-		return (IfcPlane)eGet(Ifc2x3Package.Literals.IFC_CURVE_BOUNDED_PLANE__BASIS_SURFACE, true);
+		return (IfcPlane)eGet(Ifc2x3Package.eINSTANCE.getIfcCurveBoundedPlane_BasisSurface(), true);
 	}
 
 	/**
@@ -93,7 +86,7 @@ public class IfcCurveBoundedPlaneImpl extends IfcBoundedSurfaceImpl implements I
 	 */
 	public void setBasisSurface(IfcPlane newBasisSurface)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_CURVE_BOUNDED_PLANE__BASIS_SURFACE, newBasisSurface);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcCurveBoundedPlane_BasisSurface(), newBasisSurface);
 	}
 
 	/**
@@ -103,7 +96,7 @@ public class IfcCurveBoundedPlaneImpl extends IfcBoundedSurfaceImpl implements I
 	 */
 	public IfcCurve getOuterBoundary()
 	{
-		return (IfcCurve)eGet(Ifc2x3Package.Literals.IFC_CURVE_BOUNDED_PLANE__OUTER_BOUNDARY, true);
+		return (IfcCurve)eGet(Ifc2x3Package.eINSTANCE.getIfcCurveBoundedPlane_OuterBoundary(), true);
 	}
 
 	/**
@@ -113,7 +106,7 @@ public class IfcCurveBoundedPlaneImpl extends IfcBoundedSurfaceImpl implements I
 	 */
 	public void setOuterBoundary(IfcCurve newOuterBoundary)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_CURVE_BOUNDED_PLANE__OUTER_BOUNDARY, newOuterBoundary);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcCurveBoundedPlane_OuterBoundary(), newOuterBoundary);
 	}
 
 	/**
@@ -124,7 +117,7 @@ public class IfcCurveBoundedPlaneImpl extends IfcBoundedSurfaceImpl implements I
 	@SuppressWarnings("unchecked")
 	public EList<IfcCurve> getInnerBoundaries()
 	{
-		return (EList<IfcCurve>)eGet(Ifc2x3Package.Literals.IFC_CURVE_BOUNDED_PLANE__INNER_BOUNDARIES, true);
+		return (EList<IfcCurve>)eGet(Ifc2x3Package.eINSTANCE.getIfcCurveBoundedPlane_InnerBoundaries(), true);
 	}
 
 	/**
@@ -134,7 +127,7 @@ public class IfcCurveBoundedPlaneImpl extends IfcBoundedSurfaceImpl implements I
 	 */
 	public int getDim()
 	{
-		return (Integer)eGet(Ifc2x3Package.Literals.IFC_CURVE_BOUNDED_PLANE__DIM, true);
+		return (Integer)eGet(Ifc2x3Package.eINSTANCE.getIfcCurveBoundedPlane_Dim(), true);
 	}
 
 	/**
@@ -144,7 +137,7 @@ public class IfcCurveBoundedPlaneImpl extends IfcBoundedSurfaceImpl implements I
 	 */
 	public void setDim(int newDim)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_CURVE_BOUNDED_PLANE__DIM, newDim);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcCurveBoundedPlane_Dim(), newDim);
 	}
 
 } //IfcCurveBoundedPlaneImpl

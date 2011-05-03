@@ -40,58 +40,51 @@ public enum IfcThermalLoadTypeEnum implements Enumerator
 	 * The '<em><b>NULL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NULL
+	 * @see #NULL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NULL_LITERAL(0, "NULL", "NULL"),
+	NULL(0, "NULL", "NULL"),
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED
+	 * @see #NOTDEFINED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED_LITERAL(1, "NOTDEFINED", "NOTDEFINED"),
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>RADIANT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #RADIANT
+	 * @see #RADIANT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	RADIANT_LITERAL(2, "RADIANT", "RADIANT"),
+	RADIANT(2, "RADIANT", "RADIANT"),
 
 	/**
 	 * The '<em><b>LATENT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #LATENT
+	 * @see #LATENT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	LATENT_LITERAL(3, "LATENT", "LATENT"),
+	LATENT(3, "LATENT", "LATENT"),
 
 	/**
 	 * The '<em><b>SENSIBLE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #SENSIBLE
+	 * @see #SENSIBLE_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	SENSIBLE_LITERAL(4, "SENSIBLE", "SENSIBLE");
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
+	SENSIBLE(4, "SENSIBLE", "SENSIBLE");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -101,12 +94,12 @@ public enum IfcThermalLoadTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NULL_LITERAL
+	 * @see #NULL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NULL = 0;
+	public static final int NULL_VALUE = 0;
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
@@ -116,12 +109,12 @@ public enum IfcThermalLoadTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_LITERAL
+	 * @see #NOTDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED = 1;
+	public static final int NOTDEFINED_VALUE = 1;
 
 	/**
 	 * The '<em><b>RADIANT</b></em>' literal value.
@@ -131,12 +124,12 @@ public enum IfcThermalLoadTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #RADIANT_LITERAL
+	 * @see #RADIANT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int RADIANT = 2;
+	public static final int RADIANT_VALUE = 2;
 
 	/**
 	 * The '<em><b>LATENT</b></em>' literal value.
@@ -146,12 +139,12 @@ public enum IfcThermalLoadTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #LATENT_LITERAL
+	 * @see #LATENT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int LATENT = 3;
+	public static final int LATENT_VALUE = 3;
 
 	/**
 	 * The '<em><b>SENSIBLE</b></em>' literal value.
@@ -161,12 +154,12 @@ public enum IfcThermalLoadTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #SENSIBLE_LITERAL
+	 * @see #SENSIBLE
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SENSIBLE = 4;
+	public static final int SENSIBLE_VALUE = 4;
 
 	/**
 	 * An array of all the '<em><b>Ifc Thermal Load Type Enum</b></em>' enumerators.
@@ -175,13 +168,12 @@ public enum IfcThermalLoadTypeEnum implements Enumerator
 	 * @generated
 	 */
 	private static final IfcThermalLoadTypeEnum[] VALUES_ARRAY =
-		new IfcThermalLoadTypeEnum[]
-		{
-			NULL_LITERAL,
-			NOTDEFINED_LITERAL,
-			RADIANT_LITERAL,
-			LATENT_LITERAL,
-			SENSIBLE_LITERAL,
+		new IfcThermalLoadTypeEnum[] {
+			NULL,
+			NOTDEFINED,
+			RADIANT,
+			LATENT,
+			SENSIBLE,
 		};
 
 	/**
@@ -200,11 +192,9 @@ public enum IfcThermalLoadTypeEnum implements Enumerator
 	 */
 	public static IfcThermalLoadTypeEnum get(String literal)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcThermalLoadTypeEnum result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal))
-			{
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -219,11 +209,9 @@ public enum IfcThermalLoadTypeEnum implements Enumerator
 	 */
 	public static IfcThermalLoadTypeEnum getByName(String name)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcThermalLoadTypeEnum result = VALUES_ARRAY[i];
-			if (result.getName().equals(name))
-			{
+			if (result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -238,13 +226,12 @@ public enum IfcThermalLoadTypeEnum implements Enumerator
 	 */
 	public static IfcThermalLoadTypeEnum get(int value)
 	{
-		switch (value)
-		{
-			case NULL: return NULL_LITERAL;
-			case NOTDEFINED: return NOTDEFINED_LITERAL;
-			case RADIANT: return RADIANT_LITERAL;
-			case LATENT: return LATENT_LITERAL;
-			case SENSIBLE: return SENSIBLE_LITERAL;
+		switch (value) {
+			case NULL_VALUE: return NULL;
+			case NOTDEFINED_VALUE: return NOTDEFINED;
+			case RADIANT_VALUE: return RADIANT;
+			case LATENT_VALUE: return LATENT;
+			case SENSIBLE_VALUE: return SENSIBLE;
 		}
 		return null;
 	}

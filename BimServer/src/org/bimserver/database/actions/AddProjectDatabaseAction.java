@@ -41,7 +41,7 @@ public class AddProjectDatabaseAction extends BimDatabaseAction<Project> {
 	public Project execute() throws UserException, BimDatabaseException, BimDeadlockException {
 		User actingUser = getUserByUoid(owningUoid);
 		String trimmedName = name.trim();
-		if (actingUser.getUserType() == UserType.ANONYMOUS_LITERAL) {
+		if (actingUser.getUserType() == UserType.ANONYMOUS) {
 			throw new UserException("Anonymous user cannot create new projects");
 		}
 		if (trimmedName.equals("")) {
@@ -54,7 +54,7 @@ public class AddProjectDatabaseAction extends BimDatabaseAction<Project> {
 			project.setParent(parentProject);
 			getDatabaseSession().store(parentProject);
 		}
-		if (parentPoid == -1 && actingUser.getUserType() != UserType.ADMIN_LITERAL && !settingsManager.getSettings().isAllowUsersToCreateTopLevelProjects()) {
+		if (parentPoid == -1 && actingUser.getUserType() != UserType.ADMIN && !settingsManager.getSettings().isAllowUsersToCreateTopLevelProjects()) {
 			throw new UserException("Only administrators can create new projects");
 		}
 		if (project.getParent() == null) {
@@ -86,7 +86,7 @@ public class AddProjectDatabaseAction extends BimDatabaseAction<Project> {
 		project.setCreatedBy(actingUser);
 		project.setCreatedDate(new Date());
 		project.setDescription("");
-		project.setExportLengthMeasurePrefix(SIPrefix.METER_LITERAL);
+		project.setExportLengthMeasurePrefix(SIPrefix.METER);
 		if (project.getParent() == null) {
 			GeoTag geoTag = StoreFactory.eINSTANCE.createGeoTag();
 			geoTag.setEnabled(false);

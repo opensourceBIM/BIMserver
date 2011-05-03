@@ -49,13 +49,6 @@ public class IfcSurfaceOfLinearExtrusionImpl extends IfcSweptSurfaceImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	protected IfcSurfaceOfLinearExtrusionImpl()
 	{
 		super();
@@ -69,7 +62,7 @@ public class IfcSurfaceOfLinearExtrusionImpl extends IfcSweptSurfaceImpl impleme
 	@Override
 	protected EClass eStaticClass()
 	{
-		return Ifc2x3Package.Literals.IFC_SURFACE_OF_LINEAR_EXTRUSION;
+		return Ifc2x3Package.eINSTANCE.getIfcSurfaceOfLinearExtrusion();
 	}
 
 	/**
@@ -79,7 +72,7 @@ public class IfcSurfaceOfLinearExtrusionImpl extends IfcSweptSurfaceImpl impleme
 	 */
 	public IfcDirection getExtrudedDirection()
 	{
-		return (IfcDirection)eGet(Ifc2x3Package.Literals.IFC_SURFACE_OF_LINEAR_EXTRUSION__EXTRUDED_DIRECTION, true);
+		return (IfcDirection)eGet(Ifc2x3Package.eINSTANCE.getIfcSurfaceOfLinearExtrusion_ExtrudedDirection(), true);
 	}
 
 	/**
@@ -89,7 +82,7 @@ public class IfcSurfaceOfLinearExtrusionImpl extends IfcSweptSurfaceImpl impleme
 	 */
 	public void setExtrudedDirection(IfcDirection newExtrudedDirection)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_SURFACE_OF_LINEAR_EXTRUSION__EXTRUDED_DIRECTION, newExtrudedDirection);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcSurfaceOfLinearExtrusion_ExtrudedDirection(), newExtrudedDirection);
 	}
 
 	/**
@@ -99,7 +92,7 @@ public class IfcSurfaceOfLinearExtrusionImpl extends IfcSweptSurfaceImpl impleme
 	 */
 	public float getDepth()
 	{
-		return (Float)eGet(Ifc2x3Package.Literals.IFC_SURFACE_OF_LINEAR_EXTRUSION__DEPTH, true);
+		return (Float)eGet(Ifc2x3Package.eINSTANCE.getIfcSurfaceOfLinearExtrusion_Depth(), true);
 	}
 
 	/**
@@ -109,7 +102,7 @@ public class IfcSurfaceOfLinearExtrusionImpl extends IfcSweptSurfaceImpl impleme
 	 */
 	public void setDepth(float newDepth)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_SURFACE_OF_LINEAR_EXTRUSION__DEPTH, newDepth);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcSurfaceOfLinearExtrusion_Depth(), newDepth);
 	}
 
 	/**
@@ -119,7 +112,7 @@ public class IfcSurfaceOfLinearExtrusionImpl extends IfcSweptSurfaceImpl impleme
 	 */
 	public String getDepthAsString()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_SURFACE_OF_LINEAR_EXTRUSION__DEPTH_AS_STRING, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcSurfaceOfLinearExtrusion_DepthAsString(), true);
 	}
 
 	/**
@@ -129,7 +122,7 @@ public class IfcSurfaceOfLinearExtrusionImpl extends IfcSweptSurfaceImpl impleme
 	 */
 	public void setDepthAsString(String newDepthAsString)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_SURFACE_OF_LINEAR_EXTRUSION__DEPTH_AS_STRING, newDepthAsString);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcSurfaceOfLinearExtrusion_DepthAsString(), newDepthAsString);
 	}
 
 } //IfcSurfaceOfLinearExtrusionImpl

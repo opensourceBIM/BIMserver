@@ -40,88 +40,81 @@ public enum IfcProjectOrderTypeEnum implements Enumerator
 	 * The '<em><b>NULL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NULL
+	 * @see #NULL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NULL_LITERAL(0, "NULL", "NULL"),
+	NULL(0, "NULL", "NULL"),
 
 	/**
 	 * The '<em><b>PURCHASEORDER</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #PURCHASEORDER
+	 * @see #PURCHASEORDER_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	PURCHASEORDER_LITERAL(1, "PURCHASEORDER", "PURCHASEORDER"),
+	PURCHASEORDER(1, "PURCHASEORDER", "PURCHASEORDER"),
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED
+	 * @see #NOTDEFINED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED_LITERAL(2, "NOTDEFINED", "NOTDEFINED"),
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>MOVEORDER</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #MOVEORDER
+	 * @see #MOVEORDER_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	MOVEORDER_LITERAL(3, "MOVEORDER", "MOVEORDER"),
+	MOVEORDER(3, "MOVEORDER", "MOVEORDER"),
 
 	/**
 	 * The '<em><b>MAINTENANCEWORKORDER</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #MAINTENANCEWORKORDER
+	 * @see #MAINTENANCEWORKORDER_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	MAINTENANCEWORKORDER_LITERAL(4, "MAINTENANCEWORKORDER", "MAINTENANCEWORKORDER"),
+	MAINTENANCEWORKORDER(4, "MAINTENANCEWORKORDER", "MAINTENANCEWORKORDER"),
 
 	/**
 	 * The '<em><b>WORKORDER</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #WORKORDER
+	 * @see #WORKORDER_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	WORKORDER_LITERAL(5, "WORKORDER", "WORKORDER"),
+	WORKORDER(5, "WORKORDER", "WORKORDER"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
+	 * @see #USERDEFINED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	USERDEFINED_LITERAL(6, "USERDEFINED", "USERDEFINED"),
+	USERDEFINED(6, "USERDEFINED", "USERDEFINED"),
 
 	/**
 	 * The '<em><b>CHANGEORDER</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #CHANGEORDER
+	 * @see #CHANGEORDER_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	CHANGEORDER_LITERAL(7, "CHANGEORDER", "CHANGEORDER");
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
+	CHANGEORDER(7, "CHANGEORDER", "CHANGEORDER");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -131,12 +124,12 @@ public enum IfcProjectOrderTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NULL_LITERAL
+	 * @see #NULL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NULL = 0;
+	public static final int NULL_VALUE = 0;
 
 	/**
 	 * The '<em><b>PURCHASEORDER</b></em>' literal value.
@@ -146,12 +139,12 @@ public enum IfcProjectOrderTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #PURCHASEORDER_LITERAL
+	 * @see #PURCHASEORDER
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PURCHASEORDER = 1;
+	public static final int PURCHASEORDER_VALUE = 1;
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
@@ -161,12 +154,12 @@ public enum IfcProjectOrderTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_LITERAL
+	 * @see #NOTDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED = 2;
+	public static final int NOTDEFINED_VALUE = 2;
 
 	/**
 	 * The '<em><b>MOVEORDER</b></em>' literal value.
@@ -176,12 +169,12 @@ public enum IfcProjectOrderTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #MOVEORDER_LITERAL
+	 * @see #MOVEORDER
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MOVEORDER = 3;
+	public static final int MOVEORDER_VALUE = 3;
 
 	/**
 	 * The '<em><b>MAINTENANCEWORKORDER</b></em>' literal value.
@@ -191,12 +184,12 @@ public enum IfcProjectOrderTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #MAINTENANCEWORKORDER_LITERAL
+	 * @see #MAINTENANCEWORKORDER
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MAINTENANCEWORKORDER = 4;
+	public static final int MAINTENANCEWORKORDER_VALUE = 4;
 
 	/**
 	 * The '<em><b>WORKORDER</b></em>' literal value.
@@ -206,12 +199,12 @@ public enum IfcProjectOrderTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #WORKORDER_LITERAL
+	 * @see #WORKORDER
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int WORKORDER = 5;
+	public static final int WORKORDER_VALUE = 5;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -221,12 +214,12 @@ public enum IfcProjectOrderTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_LITERAL
+	 * @see #USERDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED = 6;
+	public static final int USERDEFINED_VALUE = 6;
 
 	/**
 	 * The '<em><b>CHANGEORDER</b></em>' literal value.
@@ -236,12 +229,12 @@ public enum IfcProjectOrderTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #CHANGEORDER_LITERAL
+	 * @see #CHANGEORDER
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int CHANGEORDER = 7;
+	public static final int CHANGEORDER_VALUE = 7;
 
 	/**
 	 * An array of all the '<em><b>Ifc Project Order Type Enum</b></em>' enumerators.
@@ -250,16 +243,15 @@ public enum IfcProjectOrderTypeEnum implements Enumerator
 	 * @generated
 	 */
 	private static final IfcProjectOrderTypeEnum[] VALUES_ARRAY =
-		new IfcProjectOrderTypeEnum[]
-		{
-			NULL_LITERAL,
-			PURCHASEORDER_LITERAL,
-			NOTDEFINED_LITERAL,
-			MOVEORDER_LITERAL,
-			MAINTENANCEWORKORDER_LITERAL,
-			WORKORDER_LITERAL,
-			USERDEFINED_LITERAL,
-			CHANGEORDER_LITERAL,
+		new IfcProjectOrderTypeEnum[] {
+			NULL,
+			PURCHASEORDER,
+			NOTDEFINED,
+			MOVEORDER,
+			MAINTENANCEWORKORDER,
+			WORKORDER,
+			USERDEFINED,
+			CHANGEORDER,
 		};
 
 	/**
@@ -278,11 +270,9 @@ public enum IfcProjectOrderTypeEnum implements Enumerator
 	 */
 	public static IfcProjectOrderTypeEnum get(String literal)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcProjectOrderTypeEnum result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal))
-			{
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -297,11 +287,9 @@ public enum IfcProjectOrderTypeEnum implements Enumerator
 	 */
 	public static IfcProjectOrderTypeEnum getByName(String name)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcProjectOrderTypeEnum result = VALUES_ARRAY[i];
-			if (result.getName().equals(name))
-			{
+			if (result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -316,16 +304,15 @@ public enum IfcProjectOrderTypeEnum implements Enumerator
 	 */
 	public static IfcProjectOrderTypeEnum get(int value)
 	{
-		switch (value)
-		{
-			case NULL: return NULL_LITERAL;
-			case PURCHASEORDER: return PURCHASEORDER_LITERAL;
-			case NOTDEFINED: return NOTDEFINED_LITERAL;
-			case MOVEORDER: return MOVEORDER_LITERAL;
-			case MAINTENANCEWORKORDER: return MAINTENANCEWORKORDER_LITERAL;
-			case WORKORDER: return WORKORDER_LITERAL;
-			case USERDEFINED: return USERDEFINED_LITERAL;
-			case CHANGEORDER: return CHANGEORDER_LITERAL;
+		switch (value) {
+			case NULL_VALUE: return NULL;
+			case PURCHASEORDER_VALUE: return PURCHASEORDER;
+			case NOTDEFINED_VALUE: return NOTDEFINED;
+			case MOVEORDER_VALUE: return MOVEORDER;
+			case MAINTENANCEWORKORDER_VALUE: return MAINTENANCEWORKORDER;
+			case WORKORDER_VALUE: return WORKORDER;
+			case USERDEFINED_VALUE: return USERDEFINED;
+			case CHANGEORDER_VALUE: return CHANGEORDER;
 		}
 		return null;
 	}

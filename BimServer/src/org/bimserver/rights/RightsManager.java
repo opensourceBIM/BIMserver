@@ -7,7 +7,7 @@ import org.bimserver.models.store.UserType;
 public class RightsManager {
 	
 	public static boolean hasRightsOnProjectOrSuperProjectsOrSubProjects(User user, Project project) {
-		if (user.getUserType() == UserType.ADMIN_LITERAL || user.getUserType() == UserType.SYSTEM_LITERAL) {
+		if (user.getUserType() == UserType.ADMIN || user.getUserType() == UserType.SYSTEM) {
 			return true;
 		}
 		while (project != null) {
@@ -20,7 +20,7 @@ public class RightsManager {
 	}
 	
 	public static boolean hasRightsOnProjectOrSuperProjects(User user, Project project) {
-		if (user.getUserType() == UserType.ADMIN_LITERAL || user.getUserType() == UserType.SYSTEM_LITERAL) {
+		if (user.getUserType() == UserType.ADMIN || user.getUserType() == UserType.SYSTEM) {
 			return true;
 		}
 		if (hasRightsOnProject(user, project)) {
@@ -35,7 +35,7 @@ public class RightsManager {
 	}
 	
 	public static boolean hasRightsOnProjectOrSubProjects(User user, Project project) {
-		if (user.getUserType() == UserType.ADMIN_LITERAL || user.getUserType() == UserType.SYSTEM_LITERAL) {
+		if (user.getUserType() == UserType.ADMIN || user.getUserType() == UserType.SYSTEM) {
 			return true;
 		}
 		if (hasRightsOnProject(user, project)) {
@@ -50,7 +50,7 @@ public class RightsManager {
 	}
 	
 	public static boolean hasRightsOnProject(User user, Project project) {
-		if (user.getUserType() == UserType.ADMIN_LITERAL || user.getUserType() == UserType.SYSTEM_LITERAL) {
+		if (user.getUserType() == UserType.ADMIN || user.getUserType() == UserType.SYSTEM) {
 			return true;
 		}
 		for (User authorizedUser : project.getHasAuthorizedUsers()) {

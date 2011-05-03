@@ -40,108 +40,101 @@ public enum IfcFanTypeEnum implements Enumerator
 	 * The '<em><b>NULL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NULL
+	 * @see #NULL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NULL_LITERAL(0, "NULL", "NULL"),
+	NULL(0, "NULL", "NULL"),
 
 	/**
 	 * The '<em><b>CENTRIFUGALAIRFOIL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #CENTRIFUGALAIRFOIL
+	 * @see #CENTRIFUGALAIRFOIL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	CENTRIFUGALAIRFOIL_LITERAL(1, "CENTRIFUGALAIRFOIL", "CENTRIFUGALAIRFOIL"),
+	CENTRIFUGALAIRFOIL(1, "CENTRIFUGALAIRFOIL", "CENTRIFUGALAIRFOIL"),
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED
+	 * @see #NOTDEFINED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED_LITERAL(2, "NOTDEFINED", "NOTDEFINED"),
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>CENTRIFUGALRADIAL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #CENTRIFUGALRADIAL
+	 * @see #CENTRIFUGALRADIAL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	CENTRIFUGALRADIAL_LITERAL(3, "CENTRIFUGALRADIAL", "CENTRIFUGALRADIAL"),
+	CENTRIFUGALRADIAL(3, "CENTRIFUGALRADIAL", "CENTRIFUGALRADIAL"),
 
 	/**
 	 * The '<em><b>CENTRIFUGALBACKWARDINCLINEDCURVED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #CENTRIFUGALBACKWARDINCLINEDCURVED
+	 * @see #CENTRIFUGALBACKWARDINCLINEDCURVED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	CENTRIFUGALBACKWARDINCLINEDCURVED_LITERAL(4, "CENTRIFUGALBACKWARDINCLINEDCURVED", "CENTRIFUGALBACKWARDINCLINEDCURVED"),
+	CENTRIFUGALBACKWARDINCLINEDCURVED(4, "CENTRIFUGALBACKWARDINCLINEDCURVED", "CENTRIFUGALBACKWARDINCLINEDCURVED"),
 
 	/**
 	 * The '<em><b>TUBEAXIAL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #TUBEAXIAL
+	 * @see #TUBEAXIAL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	TUBEAXIAL_LITERAL(5, "TUBEAXIAL", "TUBEAXIAL"),
+	TUBEAXIAL(5, "TUBEAXIAL", "TUBEAXIAL"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
+	 * @see #USERDEFINED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	USERDEFINED_LITERAL(6, "USERDEFINED", "USERDEFINED"),
+	USERDEFINED(6, "USERDEFINED", "USERDEFINED"),
 
 	/**
 	 * The '<em><b>CENTRIFUGALFORWARDCURVED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #CENTRIFUGALFORWARDCURVED
+	 * @see #CENTRIFUGALFORWARDCURVED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	CENTRIFUGALFORWARDCURVED_LITERAL(7, "CENTRIFUGALFORWARDCURVED", "CENTRIFUGALFORWARDCURVED"),
+	CENTRIFUGALFORWARDCURVED(7, "CENTRIFUGALFORWARDCURVED", "CENTRIFUGALFORWARDCURVED"),
 
 	/**
 	 * The '<em><b>PROPELLORAXIAL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #PROPELLORAXIAL
+	 * @see #PROPELLORAXIAL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	PROPELLORAXIAL_LITERAL(8, "PROPELLORAXIAL", "PROPELLORAXIAL"),
+	PROPELLORAXIAL(8, "PROPELLORAXIAL", "PROPELLORAXIAL"),
 
 	/**
 	 * The '<em><b>VANEAXIAL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #VANEAXIAL
+	 * @see #VANEAXIAL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	VANEAXIAL_LITERAL(9, "VANEAXIAL", "VANEAXIAL");
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
+	VANEAXIAL(9, "VANEAXIAL", "VANEAXIAL");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -151,12 +144,12 @@ public enum IfcFanTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NULL_LITERAL
+	 * @see #NULL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NULL = 0;
+	public static final int NULL_VALUE = 0;
 
 	/**
 	 * The '<em><b>CENTRIFUGALAIRFOIL</b></em>' literal value.
@@ -166,12 +159,12 @@ public enum IfcFanTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #CENTRIFUGALAIRFOIL_LITERAL
+	 * @see #CENTRIFUGALAIRFOIL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int CENTRIFUGALAIRFOIL = 1;
+	public static final int CENTRIFUGALAIRFOIL_VALUE = 1;
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
@@ -181,12 +174,12 @@ public enum IfcFanTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_LITERAL
+	 * @see #NOTDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED = 2;
+	public static final int NOTDEFINED_VALUE = 2;
 
 	/**
 	 * The '<em><b>CENTRIFUGALRADIAL</b></em>' literal value.
@@ -196,12 +189,12 @@ public enum IfcFanTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #CENTRIFUGALRADIAL_LITERAL
+	 * @see #CENTRIFUGALRADIAL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int CENTRIFUGALRADIAL = 3;
+	public static final int CENTRIFUGALRADIAL_VALUE = 3;
 
 	/**
 	 * The '<em><b>CENTRIFUGALBACKWARDINCLINEDCURVED</b></em>' literal value.
@@ -211,12 +204,12 @@ public enum IfcFanTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #CENTRIFUGALBACKWARDINCLINEDCURVED_LITERAL
+	 * @see #CENTRIFUGALBACKWARDINCLINEDCURVED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int CENTRIFUGALBACKWARDINCLINEDCURVED = 4;
+	public static final int CENTRIFUGALBACKWARDINCLINEDCURVED_VALUE = 4;
 
 	/**
 	 * The '<em><b>TUBEAXIAL</b></em>' literal value.
@@ -226,12 +219,12 @@ public enum IfcFanTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #TUBEAXIAL_LITERAL
+	 * @see #TUBEAXIAL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int TUBEAXIAL = 5;
+	public static final int TUBEAXIAL_VALUE = 5;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -241,12 +234,12 @@ public enum IfcFanTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_LITERAL
+	 * @see #USERDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED = 6;
+	public static final int USERDEFINED_VALUE = 6;
 
 	/**
 	 * The '<em><b>CENTRIFUGALFORWARDCURVED</b></em>' literal value.
@@ -256,12 +249,12 @@ public enum IfcFanTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #CENTRIFUGALFORWARDCURVED_LITERAL
+	 * @see #CENTRIFUGALFORWARDCURVED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int CENTRIFUGALFORWARDCURVED = 7;
+	public static final int CENTRIFUGALFORWARDCURVED_VALUE = 7;
 
 	/**
 	 * The '<em><b>PROPELLORAXIAL</b></em>' literal value.
@@ -271,12 +264,12 @@ public enum IfcFanTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #PROPELLORAXIAL_LITERAL
+	 * @see #PROPELLORAXIAL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PROPELLORAXIAL = 8;
+	public static final int PROPELLORAXIAL_VALUE = 8;
 
 	/**
 	 * The '<em><b>VANEAXIAL</b></em>' literal value.
@@ -286,12 +279,12 @@ public enum IfcFanTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #VANEAXIAL_LITERAL
+	 * @see #VANEAXIAL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int VANEAXIAL = 9;
+	public static final int VANEAXIAL_VALUE = 9;
 
 	/**
 	 * An array of all the '<em><b>Ifc Fan Type Enum</b></em>' enumerators.
@@ -300,18 +293,17 @@ public enum IfcFanTypeEnum implements Enumerator
 	 * @generated
 	 */
 	private static final IfcFanTypeEnum[] VALUES_ARRAY =
-		new IfcFanTypeEnum[]
-		{
-			NULL_LITERAL,
-			CENTRIFUGALAIRFOIL_LITERAL,
-			NOTDEFINED_LITERAL,
-			CENTRIFUGALRADIAL_LITERAL,
-			CENTRIFUGALBACKWARDINCLINEDCURVED_LITERAL,
-			TUBEAXIAL_LITERAL,
-			USERDEFINED_LITERAL,
-			CENTRIFUGALFORWARDCURVED_LITERAL,
-			PROPELLORAXIAL_LITERAL,
-			VANEAXIAL_LITERAL,
+		new IfcFanTypeEnum[] {
+			NULL,
+			CENTRIFUGALAIRFOIL,
+			NOTDEFINED,
+			CENTRIFUGALRADIAL,
+			CENTRIFUGALBACKWARDINCLINEDCURVED,
+			TUBEAXIAL,
+			USERDEFINED,
+			CENTRIFUGALFORWARDCURVED,
+			PROPELLORAXIAL,
+			VANEAXIAL,
 		};
 
 	/**
@@ -330,11 +322,9 @@ public enum IfcFanTypeEnum implements Enumerator
 	 */
 	public static IfcFanTypeEnum get(String literal)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcFanTypeEnum result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal))
-			{
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -349,11 +339,9 @@ public enum IfcFanTypeEnum implements Enumerator
 	 */
 	public static IfcFanTypeEnum getByName(String name)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcFanTypeEnum result = VALUES_ARRAY[i];
-			if (result.getName().equals(name))
-			{
+			if (result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -368,18 +356,17 @@ public enum IfcFanTypeEnum implements Enumerator
 	 */
 	public static IfcFanTypeEnum get(int value)
 	{
-		switch (value)
-		{
-			case NULL: return NULL_LITERAL;
-			case CENTRIFUGALAIRFOIL: return CENTRIFUGALAIRFOIL_LITERAL;
-			case NOTDEFINED: return NOTDEFINED_LITERAL;
-			case CENTRIFUGALRADIAL: return CENTRIFUGALRADIAL_LITERAL;
-			case CENTRIFUGALBACKWARDINCLINEDCURVED: return CENTRIFUGALBACKWARDINCLINEDCURVED_LITERAL;
-			case TUBEAXIAL: return TUBEAXIAL_LITERAL;
-			case USERDEFINED: return USERDEFINED_LITERAL;
-			case CENTRIFUGALFORWARDCURVED: return CENTRIFUGALFORWARDCURVED_LITERAL;
-			case PROPELLORAXIAL: return PROPELLORAXIAL_LITERAL;
-			case VANEAXIAL: return VANEAXIAL_LITERAL;
+		switch (value) {
+			case NULL_VALUE: return NULL;
+			case CENTRIFUGALAIRFOIL_VALUE: return CENTRIFUGALAIRFOIL;
+			case NOTDEFINED_VALUE: return NOTDEFINED;
+			case CENTRIFUGALRADIAL_VALUE: return CENTRIFUGALRADIAL;
+			case CENTRIFUGALBACKWARDINCLINEDCURVED_VALUE: return CENTRIFUGALBACKWARDINCLINEDCURVED;
+			case TUBEAXIAL_VALUE: return TUBEAXIAL;
+			case USERDEFINED_VALUE: return USERDEFINED;
+			case CENTRIFUGALFORWARDCURVED_VALUE: return CENTRIFUGALFORWARDCURVED;
+			case PROPELLORAXIAL_VALUE: return PROPELLORAXIAL;
+			case VANEAXIAL_VALUE: return VANEAXIAL;
 		}
 		return null;
 	}

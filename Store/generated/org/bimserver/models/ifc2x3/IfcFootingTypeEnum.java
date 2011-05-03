@@ -40,78 +40,71 @@ public enum IfcFootingTypeEnum implements Enumerator
 	 * The '<em><b>NULL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NULL
+	 * @see #NULL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NULL_LITERAL(0, "NULL", "NULL"),
+	NULL(0, "NULL", "NULL"),
 
 	/**
 	 * The '<em><b>STRIP FOOTING</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #STRIP_FOOTING
+	 * @see #STRIP_FOOTING_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	STRIP_FOOTING_LITERAL(1, "STRIP_FOOTING", "STRIP_FOOTING"),
+	STRIP_FOOTING(1, "STRIP_FOOTING", "STRIP_FOOTING"),
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED
+	 * @see #NOTDEFINED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED_LITERAL(2, "NOTDEFINED", "NOTDEFINED"),
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>FOOTING BEAM</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #FOOTING_BEAM
+	 * @see #FOOTING_BEAM_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	FOOTING_BEAM_LITERAL(3, "FOOTING_BEAM", "FOOTING_BEAM"),
+	FOOTING_BEAM(3, "FOOTING_BEAM", "FOOTING_BEAM"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
+	 * @see #USERDEFINED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	USERDEFINED_LITERAL(4, "USERDEFINED", "USERDEFINED"),
+	USERDEFINED(4, "USERDEFINED", "USERDEFINED"),
 
 	/**
 	 * The '<em><b>PILE CAP</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #PILE_CAP
+	 * @see #PILE_CAP_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	PILE_CAP_LITERAL(5, "PILE_CAP", "PILE_CAP"),
+	PILE_CAP(5, "PILE_CAP", "PILE_CAP"),
 
 	/**
 	 * The '<em><b>PAD FOOTING</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #PAD_FOOTING
+	 * @see #PAD_FOOTING_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	PAD_FOOTING_LITERAL(6, "PAD_FOOTING", "PAD_FOOTING");
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
+	PAD_FOOTING(6, "PAD_FOOTING", "PAD_FOOTING");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -121,12 +114,12 @@ public enum IfcFootingTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NULL_LITERAL
+	 * @see #NULL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NULL = 0;
+	public static final int NULL_VALUE = 0;
 
 	/**
 	 * The '<em><b>STRIP FOOTING</b></em>' literal value.
@@ -136,12 +129,12 @@ public enum IfcFootingTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #STRIP_FOOTING_LITERAL
+	 * @see #STRIP_FOOTING
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int STRIP_FOOTING = 1;
+	public static final int STRIP_FOOTING_VALUE = 1;
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
@@ -151,12 +144,12 @@ public enum IfcFootingTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_LITERAL
+	 * @see #NOTDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED = 2;
+	public static final int NOTDEFINED_VALUE = 2;
 
 	/**
 	 * The '<em><b>FOOTING BEAM</b></em>' literal value.
@@ -166,12 +159,12 @@ public enum IfcFootingTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #FOOTING_BEAM_LITERAL
+	 * @see #FOOTING_BEAM
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int FOOTING_BEAM = 3;
+	public static final int FOOTING_BEAM_VALUE = 3;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -181,12 +174,12 @@ public enum IfcFootingTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_LITERAL
+	 * @see #USERDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED = 4;
+	public static final int USERDEFINED_VALUE = 4;
 
 	/**
 	 * The '<em><b>PILE CAP</b></em>' literal value.
@@ -196,12 +189,12 @@ public enum IfcFootingTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #PILE_CAP_LITERAL
+	 * @see #PILE_CAP
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PILE_CAP = 5;
+	public static final int PILE_CAP_VALUE = 5;
 
 	/**
 	 * The '<em><b>PAD FOOTING</b></em>' literal value.
@@ -211,12 +204,12 @@ public enum IfcFootingTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #PAD_FOOTING_LITERAL
+	 * @see #PAD_FOOTING
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PAD_FOOTING = 6;
+	public static final int PAD_FOOTING_VALUE = 6;
 
 	/**
 	 * An array of all the '<em><b>Ifc Footing Type Enum</b></em>' enumerators.
@@ -225,15 +218,14 @@ public enum IfcFootingTypeEnum implements Enumerator
 	 * @generated
 	 */
 	private static final IfcFootingTypeEnum[] VALUES_ARRAY =
-		new IfcFootingTypeEnum[]
-		{
-			NULL_LITERAL,
-			STRIP_FOOTING_LITERAL,
-			NOTDEFINED_LITERAL,
-			FOOTING_BEAM_LITERAL,
-			USERDEFINED_LITERAL,
-			PILE_CAP_LITERAL,
-			PAD_FOOTING_LITERAL,
+		new IfcFootingTypeEnum[] {
+			NULL,
+			STRIP_FOOTING,
+			NOTDEFINED,
+			FOOTING_BEAM,
+			USERDEFINED,
+			PILE_CAP,
+			PAD_FOOTING,
 		};
 
 	/**
@@ -252,11 +244,9 @@ public enum IfcFootingTypeEnum implements Enumerator
 	 */
 	public static IfcFootingTypeEnum get(String literal)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcFootingTypeEnum result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal))
-			{
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -271,11 +261,9 @@ public enum IfcFootingTypeEnum implements Enumerator
 	 */
 	public static IfcFootingTypeEnum getByName(String name)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcFootingTypeEnum result = VALUES_ARRAY[i];
-			if (result.getName().equals(name))
-			{
+			if (result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -290,15 +278,14 @@ public enum IfcFootingTypeEnum implements Enumerator
 	 */
 	public static IfcFootingTypeEnum get(int value)
 	{
-		switch (value)
-		{
-			case NULL: return NULL_LITERAL;
-			case STRIP_FOOTING: return STRIP_FOOTING_LITERAL;
-			case NOTDEFINED: return NOTDEFINED_LITERAL;
-			case FOOTING_BEAM: return FOOTING_BEAM_LITERAL;
-			case USERDEFINED: return USERDEFINED_LITERAL;
-			case PILE_CAP: return PILE_CAP_LITERAL;
-			case PAD_FOOTING: return PAD_FOOTING_LITERAL;
+		switch (value) {
+			case NULL_VALUE: return NULL;
+			case STRIP_FOOTING_VALUE: return STRIP_FOOTING;
+			case NOTDEFINED_VALUE: return NOTDEFINED;
+			case FOOTING_BEAM_VALUE: return FOOTING_BEAM;
+			case USERDEFINED_VALUE: return USERDEFINED;
+			case PILE_CAP_VALUE: return PILE_CAP;
+			case PAD_FOOTING_VALUE: return PAD_FOOTING;
 		}
 		return null;
 	}

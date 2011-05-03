@@ -40,68 +40,61 @@ public enum IfcGasTerminalTypeEnum implements Enumerator
 	 * The '<em><b>NULL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NULL
+	 * @see #NULL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NULL_LITERAL(0, "NULL", "NULL"),
+	NULL(0, "NULL", "NULL"),
 
 	/**
 	 * The '<em><b>GASBURNER</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #GASBURNER
+	 * @see #GASBURNER_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	GASBURNER_LITERAL(1, "GASBURNER", "GASBURNER"),
+	GASBURNER(1, "GASBURNER", "GASBURNER"),
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED
+	 * @see #NOTDEFINED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED_LITERAL(2, "NOTDEFINED", "NOTDEFINED"),
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>GASBOOSTER</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #GASBOOSTER
+	 * @see #GASBOOSTER_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	GASBOOSTER_LITERAL(3, "GASBOOSTER", "GASBOOSTER"),
+	GASBOOSTER(3, "GASBOOSTER", "GASBOOSTER"),
 
 	/**
 	 * The '<em><b>GASAPPLIANCE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #GASAPPLIANCE
+	 * @see #GASAPPLIANCE_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	GASAPPLIANCE_LITERAL(4, "GASAPPLIANCE", "GASAPPLIANCE"),
+	GASAPPLIANCE(4, "GASAPPLIANCE", "GASAPPLIANCE"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
+	 * @see #USERDEFINED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	USERDEFINED_LITERAL(5, "USERDEFINED", "USERDEFINED");
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
+	USERDEFINED(5, "USERDEFINED", "USERDEFINED");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -111,12 +104,12 @@ public enum IfcGasTerminalTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NULL_LITERAL
+	 * @see #NULL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NULL = 0;
+	public static final int NULL_VALUE = 0;
 
 	/**
 	 * The '<em><b>GASBURNER</b></em>' literal value.
@@ -126,12 +119,12 @@ public enum IfcGasTerminalTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #GASBURNER_LITERAL
+	 * @see #GASBURNER
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int GASBURNER = 1;
+	public static final int GASBURNER_VALUE = 1;
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
@@ -141,12 +134,12 @@ public enum IfcGasTerminalTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_LITERAL
+	 * @see #NOTDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED = 2;
+	public static final int NOTDEFINED_VALUE = 2;
 
 	/**
 	 * The '<em><b>GASBOOSTER</b></em>' literal value.
@@ -156,12 +149,12 @@ public enum IfcGasTerminalTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #GASBOOSTER_LITERAL
+	 * @see #GASBOOSTER
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int GASBOOSTER = 3;
+	public static final int GASBOOSTER_VALUE = 3;
 
 	/**
 	 * The '<em><b>GASAPPLIANCE</b></em>' literal value.
@@ -171,12 +164,12 @@ public enum IfcGasTerminalTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #GASAPPLIANCE_LITERAL
+	 * @see #GASAPPLIANCE
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int GASAPPLIANCE = 4;
+	public static final int GASAPPLIANCE_VALUE = 4;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -186,12 +179,12 @@ public enum IfcGasTerminalTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_LITERAL
+	 * @see #USERDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED = 5;
+	public static final int USERDEFINED_VALUE = 5;
 
 	/**
 	 * An array of all the '<em><b>Ifc Gas Terminal Type Enum</b></em>' enumerators.
@@ -200,14 +193,13 @@ public enum IfcGasTerminalTypeEnum implements Enumerator
 	 * @generated
 	 */
 	private static final IfcGasTerminalTypeEnum[] VALUES_ARRAY =
-		new IfcGasTerminalTypeEnum[]
-		{
-			NULL_LITERAL,
-			GASBURNER_LITERAL,
-			NOTDEFINED_LITERAL,
-			GASBOOSTER_LITERAL,
-			GASAPPLIANCE_LITERAL,
-			USERDEFINED_LITERAL,
+		new IfcGasTerminalTypeEnum[] {
+			NULL,
+			GASBURNER,
+			NOTDEFINED,
+			GASBOOSTER,
+			GASAPPLIANCE,
+			USERDEFINED,
 		};
 
 	/**
@@ -226,11 +218,9 @@ public enum IfcGasTerminalTypeEnum implements Enumerator
 	 */
 	public static IfcGasTerminalTypeEnum get(String literal)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcGasTerminalTypeEnum result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal))
-			{
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -245,11 +235,9 @@ public enum IfcGasTerminalTypeEnum implements Enumerator
 	 */
 	public static IfcGasTerminalTypeEnum getByName(String name)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcGasTerminalTypeEnum result = VALUES_ARRAY[i];
-			if (result.getName().equals(name))
-			{
+			if (result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -264,14 +252,13 @@ public enum IfcGasTerminalTypeEnum implements Enumerator
 	 */
 	public static IfcGasTerminalTypeEnum get(int value)
 	{
-		switch (value)
-		{
-			case NULL: return NULL_LITERAL;
-			case GASBURNER: return GASBURNER_LITERAL;
-			case NOTDEFINED: return NOTDEFINED_LITERAL;
-			case GASBOOSTER: return GASBOOSTER_LITERAL;
-			case GASAPPLIANCE: return GASAPPLIANCE_LITERAL;
-			case USERDEFINED: return USERDEFINED_LITERAL;
+		switch (value) {
+			case NULL_VALUE: return NULL;
+			case GASBURNER_VALUE: return GASBURNER;
+			case NOTDEFINED_VALUE: return NOTDEFINED;
+			case GASBOOSTER_VALUE: return GASBOOSTER;
+			case GASAPPLIANCE_VALUE: return GASAPPLIANCE;
+			case USERDEFINED_VALUE: return USERDEFINED;
 		}
 		return null;
 	}

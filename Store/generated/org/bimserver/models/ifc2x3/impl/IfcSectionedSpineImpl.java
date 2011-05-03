@@ -54,13 +54,6 @@ public class IfcSectionedSpineImpl extends IfcGeometricRepresentationItemImpl im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	protected IfcSectionedSpineImpl()
 	{
 		super();
@@ -74,7 +67,7 @@ public class IfcSectionedSpineImpl extends IfcGeometricRepresentationItemImpl im
 	@Override
 	protected EClass eStaticClass()
 	{
-		return Ifc2x3Package.Literals.IFC_SECTIONED_SPINE;
+		return Ifc2x3Package.eINSTANCE.getIfcSectionedSpine();
 	}
 
 	/**
@@ -84,7 +77,7 @@ public class IfcSectionedSpineImpl extends IfcGeometricRepresentationItemImpl im
 	 */
 	public IfcCompositeCurve getSpineCurve()
 	{
-		return (IfcCompositeCurve)eGet(Ifc2x3Package.Literals.IFC_SECTIONED_SPINE__SPINE_CURVE, true);
+		return (IfcCompositeCurve)eGet(Ifc2x3Package.eINSTANCE.getIfcSectionedSpine_SpineCurve(), true);
 	}
 
 	/**
@@ -94,7 +87,7 @@ public class IfcSectionedSpineImpl extends IfcGeometricRepresentationItemImpl im
 	 */
 	public void setSpineCurve(IfcCompositeCurve newSpineCurve)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_SECTIONED_SPINE__SPINE_CURVE, newSpineCurve);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcSectionedSpine_SpineCurve(), newSpineCurve);
 	}
 
 	/**
@@ -105,7 +98,7 @@ public class IfcSectionedSpineImpl extends IfcGeometricRepresentationItemImpl im
 	@SuppressWarnings("unchecked")
 	public EList<IfcProfileDef> getCrossSections()
 	{
-		return (EList<IfcProfileDef>)eGet(Ifc2x3Package.Literals.IFC_SECTIONED_SPINE__CROSS_SECTIONS, true);
+		return (EList<IfcProfileDef>)eGet(Ifc2x3Package.eINSTANCE.getIfcSectionedSpine_CrossSections(), true);
 	}
 
 	/**
@@ -116,7 +109,7 @@ public class IfcSectionedSpineImpl extends IfcGeometricRepresentationItemImpl im
 	@SuppressWarnings("unchecked")
 	public EList<IfcAxis2Placement3D> getCrossSectionPositions()
 	{
-		return (EList<IfcAxis2Placement3D>)eGet(Ifc2x3Package.Literals.IFC_SECTIONED_SPINE__CROSS_SECTION_POSITIONS, true);
+		return (EList<IfcAxis2Placement3D>)eGet(Ifc2x3Package.eINSTANCE.getIfcSectionedSpine_CrossSectionPositions(), true);
 	}
 
 	/**
@@ -126,7 +119,7 @@ public class IfcSectionedSpineImpl extends IfcGeometricRepresentationItemImpl im
 	 */
 	public int getDim()
 	{
-		return (Integer)eGet(Ifc2x3Package.Literals.IFC_SECTIONED_SPINE__DIM, true);
+		return (Integer)eGet(Ifc2x3Package.eINSTANCE.getIfcSectionedSpine_Dim(), true);
 	}
 
 	/**
@@ -136,7 +129,7 @@ public class IfcSectionedSpineImpl extends IfcGeometricRepresentationItemImpl im
 	 */
 	public void setDim(int newDim)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_SECTIONED_SPINE__DIM, newDim);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcSectionedSpine_Dim(), newDim);
 	}
 
 } //IfcSectionedSpineImpl

@@ -49,13 +49,6 @@ public class IfcRevolvedAreaSolidImpl extends IfcSweptAreaSolidImpl implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	protected IfcRevolvedAreaSolidImpl()
 	{
 		super();
@@ -69,7 +62,7 @@ public class IfcRevolvedAreaSolidImpl extends IfcSweptAreaSolidImpl implements I
 	@Override
 	protected EClass eStaticClass()
 	{
-		return Ifc2x3Package.Literals.IFC_REVOLVED_AREA_SOLID;
+		return Ifc2x3Package.eINSTANCE.getIfcRevolvedAreaSolid();
 	}
 
 	/**
@@ -79,7 +72,7 @@ public class IfcRevolvedAreaSolidImpl extends IfcSweptAreaSolidImpl implements I
 	 */
 	public IfcAxis1Placement getAxis()
 	{
-		return (IfcAxis1Placement)eGet(Ifc2x3Package.Literals.IFC_REVOLVED_AREA_SOLID__AXIS, true);
+		return (IfcAxis1Placement)eGet(Ifc2x3Package.eINSTANCE.getIfcRevolvedAreaSolid_Axis(), true);
 	}
 
 	/**
@@ -89,7 +82,7 @@ public class IfcRevolvedAreaSolidImpl extends IfcSweptAreaSolidImpl implements I
 	 */
 	public void setAxis(IfcAxis1Placement newAxis)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_REVOLVED_AREA_SOLID__AXIS, newAxis);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcRevolvedAreaSolid_Axis(), newAxis);
 	}
 
 	/**
@@ -99,7 +92,7 @@ public class IfcRevolvedAreaSolidImpl extends IfcSweptAreaSolidImpl implements I
 	 */
 	public float getAngle()
 	{
-		return (Float)eGet(Ifc2x3Package.Literals.IFC_REVOLVED_AREA_SOLID__ANGLE, true);
+		return (Float)eGet(Ifc2x3Package.eINSTANCE.getIfcRevolvedAreaSolid_Angle(), true);
 	}
 
 	/**
@@ -109,7 +102,7 @@ public class IfcRevolvedAreaSolidImpl extends IfcSweptAreaSolidImpl implements I
 	 */
 	public void setAngle(float newAngle)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_REVOLVED_AREA_SOLID__ANGLE, newAngle);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcRevolvedAreaSolid_Angle(), newAngle);
 	}
 
 	/**
@@ -119,7 +112,7 @@ public class IfcRevolvedAreaSolidImpl extends IfcSweptAreaSolidImpl implements I
 	 */
 	public String getAngleAsString()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_REVOLVED_AREA_SOLID__ANGLE_AS_STRING, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcRevolvedAreaSolid_AngleAsString(), true);
 	}
 
 	/**
@@ -129,7 +122,7 @@ public class IfcRevolvedAreaSolidImpl extends IfcSweptAreaSolidImpl implements I
 	 */
 	public void setAngleAsString(String newAngleAsString)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_REVOLVED_AREA_SOLID__ANGLE_AS_STRING, newAngleAsString);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcRevolvedAreaSolid_AngleAsString(), newAngleAsString);
 	}
 
 } //IfcRevolvedAreaSolidImpl

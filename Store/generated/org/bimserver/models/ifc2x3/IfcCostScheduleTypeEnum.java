@@ -40,108 +40,101 @@ public enum IfcCostScheduleTypeEnum implements Enumerator
 	 * The '<em><b>NULL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NULL
+	 * @see #NULL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NULL_LITERAL(0, "NULL", "NULL"),
+	NULL(0, "NULL", "NULL"),
 
 	/**
 	 * The '<em><b>TENDER</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #TENDER
+	 * @see #TENDER_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	TENDER_LITERAL(1, "TENDER", "TENDER"),
+	TENDER(1, "TENDER", "TENDER"),
 
 	/**
 	 * The '<em><b>BUDGET</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #BUDGET
+	 * @see #BUDGET_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	BUDGET_LITERAL(2, "BUDGET", "BUDGET"),
+	BUDGET(2, "BUDGET", "BUDGET"),
 
 	/**
 	 * The '<em><b>COSTPLAN</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #COSTPLAN
+	 * @see #COSTPLAN_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	COSTPLAN_LITERAL(3, "COSTPLAN", "COSTPLAN"),
+	COSTPLAN(3, "COSTPLAN", "COSTPLAN"),
 
 	/**
 	 * The '<em><b>PRICEDBILLOFQUANTITIES</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #PRICEDBILLOFQUANTITIES
+	 * @see #PRICEDBILLOFQUANTITIES_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	PRICEDBILLOFQUANTITIES_LITERAL(4, "PRICEDBILLOFQUANTITIES", "PRICEDBILLOFQUANTITIES"),
+	PRICEDBILLOFQUANTITIES(4, "PRICEDBILLOFQUANTITIES", "PRICEDBILLOFQUANTITIES"),
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED
+	 * @see #NOTDEFINED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED_LITERAL(5, "NOTDEFINED", "NOTDEFINED"),
+	NOTDEFINED(5, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
+	 * @see #USERDEFINED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	USERDEFINED_LITERAL(6, "USERDEFINED", "USERDEFINED"),
+	USERDEFINED(6, "USERDEFINED", "USERDEFINED"),
 
 	/**
 	 * The '<em><b>UNPRICEDBILLOFQUANTITIES</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #UNPRICEDBILLOFQUANTITIES
+	 * @see #UNPRICEDBILLOFQUANTITIES_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	UNPRICEDBILLOFQUANTITIES_LITERAL(7, "UNPRICEDBILLOFQUANTITIES", "UNPRICEDBILLOFQUANTITIES"),
+	UNPRICEDBILLOFQUANTITIES(7, "UNPRICEDBILLOFQUANTITIES", "UNPRICEDBILLOFQUANTITIES"),
 
 	/**
 	 * The '<em><b>SCHEDULEOFRATES</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #SCHEDULEOFRATES
+	 * @see #SCHEDULEOFRATES_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	SCHEDULEOFRATES_LITERAL(8, "SCHEDULEOFRATES", "SCHEDULEOFRATES"),
+	SCHEDULEOFRATES(8, "SCHEDULEOFRATES", "SCHEDULEOFRATES"),
 
 	/**
 	 * The '<em><b>ESTIMATE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #ESTIMATE
+	 * @see #ESTIMATE_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	ESTIMATE_LITERAL(9, "ESTIMATE", "ESTIMATE");
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
+	ESTIMATE(9, "ESTIMATE", "ESTIMATE");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -151,12 +144,12 @@ public enum IfcCostScheduleTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NULL_LITERAL
+	 * @see #NULL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NULL = 0;
+	public static final int NULL_VALUE = 0;
 
 	/**
 	 * The '<em><b>TENDER</b></em>' literal value.
@@ -166,12 +159,12 @@ public enum IfcCostScheduleTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #TENDER_LITERAL
+	 * @see #TENDER
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int TENDER = 1;
+	public static final int TENDER_VALUE = 1;
 
 	/**
 	 * The '<em><b>BUDGET</b></em>' literal value.
@@ -181,12 +174,12 @@ public enum IfcCostScheduleTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #BUDGET_LITERAL
+	 * @see #BUDGET
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int BUDGET = 2;
+	public static final int BUDGET_VALUE = 2;
 
 	/**
 	 * The '<em><b>COSTPLAN</b></em>' literal value.
@@ -196,12 +189,12 @@ public enum IfcCostScheduleTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #COSTPLAN_LITERAL
+	 * @see #COSTPLAN
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int COSTPLAN = 3;
+	public static final int COSTPLAN_VALUE = 3;
 
 	/**
 	 * The '<em><b>PRICEDBILLOFQUANTITIES</b></em>' literal value.
@@ -211,12 +204,12 @@ public enum IfcCostScheduleTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #PRICEDBILLOFQUANTITIES_LITERAL
+	 * @see #PRICEDBILLOFQUANTITIES
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PRICEDBILLOFQUANTITIES = 4;
+	public static final int PRICEDBILLOFQUANTITIES_VALUE = 4;
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
@@ -226,12 +219,12 @@ public enum IfcCostScheduleTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_LITERAL
+	 * @see #NOTDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED = 5;
+	public static final int NOTDEFINED_VALUE = 5;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -241,12 +234,12 @@ public enum IfcCostScheduleTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_LITERAL
+	 * @see #USERDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED = 6;
+	public static final int USERDEFINED_VALUE = 6;
 
 	/**
 	 * The '<em><b>UNPRICEDBILLOFQUANTITIES</b></em>' literal value.
@@ -256,12 +249,12 @@ public enum IfcCostScheduleTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #UNPRICEDBILLOFQUANTITIES_LITERAL
+	 * @see #UNPRICEDBILLOFQUANTITIES
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int UNPRICEDBILLOFQUANTITIES = 7;
+	public static final int UNPRICEDBILLOFQUANTITIES_VALUE = 7;
 
 	/**
 	 * The '<em><b>SCHEDULEOFRATES</b></em>' literal value.
@@ -271,12 +264,12 @@ public enum IfcCostScheduleTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #SCHEDULEOFRATES_LITERAL
+	 * @see #SCHEDULEOFRATES
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SCHEDULEOFRATES = 8;
+	public static final int SCHEDULEOFRATES_VALUE = 8;
 
 	/**
 	 * The '<em><b>ESTIMATE</b></em>' literal value.
@@ -286,12 +279,12 @@ public enum IfcCostScheduleTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ESTIMATE_LITERAL
+	 * @see #ESTIMATE
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ESTIMATE = 9;
+	public static final int ESTIMATE_VALUE = 9;
 
 	/**
 	 * An array of all the '<em><b>Ifc Cost Schedule Type Enum</b></em>' enumerators.
@@ -300,18 +293,17 @@ public enum IfcCostScheduleTypeEnum implements Enumerator
 	 * @generated
 	 */
 	private static final IfcCostScheduleTypeEnum[] VALUES_ARRAY =
-		new IfcCostScheduleTypeEnum[]
-		{
-			NULL_LITERAL,
-			TENDER_LITERAL,
-			BUDGET_LITERAL,
-			COSTPLAN_LITERAL,
-			PRICEDBILLOFQUANTITIES_LITERAL,
-			NOTDEFINED_LITERAL,
-			USERDEFINED_LITERAL,
-			UNPRICEDBILLOFQUANTITIES_LITERAL,
-			SCHEDULEOFRATES_LITERAL,
-			ESTIMATE_LITERAL,
+		new IfcCostScheduleTypeEnum[] {
+			NULL,
+			TENDER,
+			BUDGET,
+			COSTPLAN,
+			PRICEDBILLOFQUANTITIES,
+			NOTDEFINED,
+			USERDEFINED,
+			UNPRICEDBILLOFQUANTITIES,
+			SCHEDULEOFRATES,
+			ESTIMATE,
 		};
 
 	/**
@@ -330,11 +322,9 @@ public enum IfcCostScheduleTypeEnum implements Enumerator
 	 */
 	public static IfcCostScheduleTypeEnum get(String literal)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcCostScheduleTypeEnum result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal))
-			{
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -349,11 +339,9 @@ public enum IfcCostScheduleTypeEnum implements Enumerator
 	 */
 	public static IfcCostScheduleTypeEnum getByName(String name)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcCostScheduleTypeEnum result = VALUES_ARRAY[i];
-			if (result.getName().equals(name))
-			{
+			if (result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -368,18 +356,17 @@ public enum IfcCostScheduleTypeEnum implements Enumerator
 	 */
 	public static IfcCostScheduleTypeEnum get(int value)
 	{
-		switch (value)
-		{
-			case NULL: return NULL_LITERAL;
-			case TENDER: return TENDER_LITERAL;
-			case BUDGET: return BUDGET_LITERAL;
-			case COSTPLAN: return COSTPLAN_LITERAL;
-			case PRICEDBILLOFQUANTITIES: return PRICEDBILLOFQUANTITIES_LITERAL;
-			case NOTDEFINED: return NOTDEFINED_LITERAL;
-			case USERDEFINED: return USERDEFINED_LITERAL;
-			case UNPRICEDBILLOFQUANTITIES: return UNPRICEDBILLOFQUANTITIES_LITERAL;
-			case SCHEDULEOFRATES: return SCHEDULEOFRATES_LITERAL;
-			case ESTIMATE: return ESTIMATE_LITERAL;
+		switch (value) {
+			case NULL_VALUE: return NULL;
+			case TENDER_VALUE: return TENDER;
+			case BUDGET_VALUE: return BUDGET;
+			case COSTPLAN_VALUE: return COSTPLAN;
+			case PRICEDBILLOFQUANTITIES_VALUE: return PRICEDBILLOFQUANTITIES;
+			case NOTDEFINED_VALUE: return NOTDEFINED;
+			case USERDEFINED_VALUE: return USERDEFINED;
+			case UNPRICEDBILLOFQUANTITIES_VALUE: return UNPRICEDBILLOFQUANTITIES;
+			case SCHEDULEOFRATES_VALUE: return SCHEDULEOFRATES;
+			case ESTIMATE_VALUE: return ESTIMATE;
 		}
 		return null;
 	}

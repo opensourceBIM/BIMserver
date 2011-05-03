@@ -42,13 +42,6 @@ import org.eclipse.emf.ecore.EObject;
 public class Ifc2x3Switch<T>
 {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
-
-	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -64,8 +57,7 @@ public class Ifc2x3Switch<T>
 	 */
 	public Ifc2x3Switch()
 	{
-		if (modelPackage == null)
-		{
+		if (modelPackage == null) {
 			modelPackage = Ifc2x3Package.eINSTANCE;
 		}
 	}
@@ -91,12 +83,10 @@ public class Ifc2x3Switch<T>
 	 */
 	protected T doSwitch(EClass theEClass, EObject theEObject)
 	{
-		if (theEClass.eContainer() == modelPackage)
-		{
+		if (theEClass.eContainer() == modelPackage) {
 			return doSwitch(theEClass.getClassifierID(), theEObject);
 		}
-		else
-		{
+		else {
 			List<EClass> eSuperTypes = theEClass.getESuperTypes();
 			return
 				eSuperTypes.isEmpty() ?
@@ -114,17 +104,14 @@ public class Ifc2x3Switch<T>
 	 */
 	protected T doSwitch(int classifierID, EObject theEObject)
 	{
-		switch (classifierID)
-		{
-			case Ifc2x3Package.WRAPPED_VALUE:
-			{
+		switch (classifierID) {
+			case Ifc2x3Package.WRAPPED_VALUE: {
 				WrappedValue wrappedValue = (WrappedValue)theEObject;
 				T result = caseWrappedValue(wrappedValue);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_ABSORBED_DOSE_MEASURE:
-			{
+			case Ifc2x3Package.IFC_ABSORBED_DOSE_MEASURE: {
 				IfcAbsorbedDoseMeasure ifcAbsorbedDoseMeasure = (IfcAbsorbedDoseMeasure)theEObject;
 				T result = caseIfcAbsorbedDoseMeasure(ifcAbsorbedDoseMeasure);
 				if (result == null) result = caseWrappedValue(ifcAbsorbedDoseMeasure);
@@ -133,8 +120,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_ACCELERATION_MEASURE:
-			{
+			case Ifc2x3Package.IFC_ACCELERATION_MEASURE: {
 				IfcAccelerationMeasure ifcAccelerationMeasure = (IfcAccelerationMeasure)theEObject;
 				T result = caseIfcAccelerationMeasure(ifcAccelerationMeasure);
 				if (result == null) result = caseWrappedValue(ifcAccelerationMeasure);
@@ -143,8 +129,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_AMOUNT_OF_SUBSTANCE_MEASURE:
-			{
+			case Ifc2x3Package.IFC_AMOUNT_OF_SUBSTANCE_MEASURE: {
 				IfcAmountOfSubstanceMeasure ifcAmountOfSubstanceMeasure = (IfcAmountOfSubstanceMeasure)theEObject;
 				T result = caseIfcAmountOfSubstanceMeasure(ifcAmountOfSubstanceMeasure);
 				if (result == null) result = caseWrappedValue(ifcAmountOfSubstanceMeasure);
@@ -153,8 +138,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_ANGULAR_VELOCITY_MEASURE:
-			{
+			case Ifc2x3Package.IFC_ANGULAR_VELOCITY_MEASURE: {
 				IfcAngularVelocityMeasure ifcAngularVelocityMeasure = (IfcAngularVelocityMeasure)theEObject;
 				T result = caseIfcAngularVelocityMeasure(ifcAngularVelocityMeasure);
 				if (result == null) result = caseWrappedValue(ifcAngularVelocityMeasure);
@@ -163,8 +147,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_AREA_MEASURE:
-			{
+			case Ifc2x3Package.IFC_AREA_MEASURE: {
 				IfcAreaMeasure ifcAreaMeasure = (IfcAreaMeasure)theEObject;
 				T result = caseIfcAreaMeasure(ifcAreaMeasure);
 				if (result == null) result = caseWrappedValue(ifcAreaMeasure);
@@ -173,8 +156,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_BOOLEAN:
-			{
+			case Ifc2x3Package.IFC_BOOLEAN: {
 				IfcBoolean ifcBoolean = (IfcBoolean)theEObject;
 				T result = caseIfcBoolean(ifcBoolean);
 				if (result == null) result = caseWrappedValue(ifcBoolean);
@@ -182,8 +164,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_CONTEXT_DEPENDENT_MEASURE:
-			{
+			case Ifc2x3Package.IFC_CONTEXT_DEPENDENT_MEASURE: {
 				IfcContextDependentMeasure ifcContextDependentMeasure = (IfcContextDependentMeasure)theEObject;
 				T result = caseIfcContextDependentMeasure(ifcContextDependentMeasure);
 				if (result == null) result = caseWrappedValue(ifcContextDependentMeasure);
@@ -192,8 +173,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_COUNT_MEASURE:
-			{
+			case Ifc2x3Package.IFC_COUNT_MEASURE: {
 				IfcCountMeasure ifcCountMeasure = (IfcCountMeasure)theEObject;
 				T result = caseIfcCountMeasure(ifcCountMeasure);
 				if (result == null) result = caseWrappedValue(ifcCountMeasure);
@@ -202,8 +182,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_CURVATURE_MEASURE:
-			{
+			case Ifc2x3Package.IFC_CURVATURE_MEASURE: {
 				IfcCurvatureMeasure ifcCurvatureMeasure = (IfcCurvatureMeasure)theEObject;
 				T result = caseIfcCurvatureMeasure(ifcCurvatureMeasure);
 				if (result == null) result = caseWrappedValue(ifcCurvatureMeasure);
@@ -212,8 +191,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_DESCRIPTIVE_MEASURE:
-			{
+			case Ifc2x3Package.IFC_DESCRIPTIVE_MEASURE: {
 				IfcDescriptiveMeasure ifcDescriptiveMeasure = (IfcDescriptiveMeasure)theEObject;
 				T result = caseIfcDescriptiveMeasure(ifcDescriptiveMeasure);
 				if (result == null) result = caseWrappedValue(ifcDescriptiveMeasure);
@@ -223,8 +201,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_DOSE_EQUIVALENT_MEASURE:
-			{
+			case Ifc2x3Package.IFC_DOSE_EQUIVALENT_MEASURE: {
 				IfcDoseEquivalentMeasure ifcDoseEquivalentMeasure = (IfcDoseEquivalentMeasure)theEObject;
 				T result = caseIfcDoseEquivalentMeasure(ifcDoseEquivalentMeasure);
 				if (result == null) result = caseWrappedValue(ifcDoseEquivalentMeasure);
@@ -233,8 +210,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_DYNAMIC_VISCOSITY_MEASURE:
-			{
+			case Ifc2x3Package.IFC_DYNAMIC_VISCOSITY_MEASURE: {
 				IfcDynamicViscosityMeasure ifcDynamicViscosityMeasure = (IfcDynamicViscosityMeasure)theEObject;
 				T result = caseIfcDynamicViscosityMeasure(ifcDynamicViscosityMeasure);
 				if (result == null) result = caseWrappedValue(ifcDynamicViscosityMeasure);
@@ -243,8 +219,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_ELECTRIC_CAPACITANCE_MEASURE:
-			{
+			case Ifc2x3Package.IFC_ELECTRIC_CAPACITANCE_MEASURE: {
 				IfcElectricCapacitanceMeasure ifcElectricCapacitanceMeasure = (IfcElectricCapacitanceMeasure)theEObject;
 				T result = caseIfcElectricCapacitanceMeasure(ifcElectricCapacitanceMeasure);
 				if (result == null) result = caseWrappedValue(ifcElectricCapacitanceMeasure);
@@ -253,8 +228,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_ELECTRIC_CHARGE_MEASURE:
-			{
+			case Ifc2x3Package.IFC_ELECTRIC_CHARGE_MEASURE: {
 				IfcElectricChargeMeasure ifcElectricChargeMeasure = (IfcElectricChargeMeasure)theEObject;
 				T result = caseIfcElectricChargeMeasure(ifcElectricChargeMeasure);
 				if (result == null) result = caseWrappedValue(ifcElectricChargeMeasure);
@@ -263,8 +237,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_ELECTRIC_CONDUCTANCE_MEASURE:
-			{
+			case Ifc2x3Package.IFC_ELECTRIC_CONDUCTANCE_MEASURE: {
 				IfcElectricConductanceMeasure ifcElectricConductanceMeasure = (IfcElectricConductanceMeasure)theEObject;
 				T result = caseIfcElectricConductanceMeasure(ifcElectricConductanceMeasure);
 				if (result == null) result = caseWrappedValue(ifcElectricConductanceMeasure);
@@ -273,8 +246,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_ELECTRIC_CURRENT_MEASURE:
-			{
+			case Ifc2x3Package.IFC_ELECTRIC_CURRENT_MEASURE: {
 				IfcElectricCurrentMeasure ifcElectricCurrentMeasure = (IfcElectricCurrentMeasure)theEObject;
 				T result = caseIfcElectricCurrentMeasure(ifcElectricCurrentMeasure);
 				if (result == null) result = caseWrappedValue(ifcElectricCurrentMeasure);
@@ -283,8 +255,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_ELECTRIC_RESISTANCE_MEASURE:
-			{
+			case Ifc2x3Package.IFC_ELECTRIC_RESISTANCE_MEASURE: {
 				IfcElectricResistanceMeasure ifcElectricResistanceMeasure = (IfcElectricResistanceMeasure)theEObject;
 				T result = caseIfcElectricResistanceMeasure(ifcElectricResistanceMeasure);
 				if (result == null) result = caseWrappedValue(ifcElectricResistanceMeasure);
@@ -293,8 +264,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_ELECTRIC_VOLTAGE_MEASURE:
-			{
+			case Ifc2x3Package.IFC_ELECTRIC_VOLTAGE_MEASURE: {
 				IfcElectricVoltageMeasure ifcElectricVoltageMeasure = (IfcElectricVoltageMeasure)theEObject;
 				T result = caseIfcElectricVoltageMeasure(ifcElectricVoltageMeasure);
 				if (result == null) result = caseWrappedValue(ifcElectricVoltageMeasure);
@@ -303,8 +273,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_ENERGY_MEASURE:
-			{
+			case Ifc2x3Package.IFC_ENERGY_MEASURE: {
 				IfcEnergyMeasure ifcEnergyMeasure = (IfcEnergyMeasure)theEObject;
 				T result = caseIfcEnergyMeasure(ifcEnergyMeasure);
 				if (result == null) result = caseWrappedValue(ifcEnergyMeasure);
@@ -313,8 +282,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_FORCE_MEASURE:
-			{
+			case Ifc2x3Package.IFC_FORCE_MEASURE: {
 				IfcForceMeasure ifcForceMeasure = (IfcForceMeasure)theEObject;
 				T result = caseIfcForceMeasure(ifcForceMeasure);
 				if (result == null) result = caseWrappedValue(ifcForceMeasure);
@@ -323,8 +291,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_FREQUENCY_MEASURE:
-			{
+			case Ifc2x3Package.IFC_FREQUENCY_MEASURE: {
 				IfcFrequencyMeasure ifcFrequencyMeasure = (IfcFrequencyMeasure)theEObject;
 				T result = caseIfcFrequencyMeasure(ifcFrequencyMeasure);
 				if (result == null) result = caseWrappedValue(ifcFrequencyMeasure);
@@ -333,16 +300,14 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_GLOBALLY_UNIQUE_ID:
-			{
+			case Ifc2x3Package.IFC_GLOBALLY_UNIQUE_ID: {
 				IfcGloballyUniqueId ifcGloballyUniqueId = (IfcGloballyUniqueId)theEObject;
 				T result = caseIfcGloballyUniqueId(ifcGloballyUniqueId);
 				if (result == null) result = caseWrappedValue(ifcGloballyUniqueId);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_HEAT_FLUX_DENSITY_MEASURE:
-			{
+			case Ifc2x3Package.IFC_HEAT_FLUX_DENSITY_MEASURE: {
 				IfcHeatFluxDensityMeasure ifcHeatFluxDensityMeasure = (IfcHeatFluxDensityMeasure)theEObject;
 				T result = caseIfcHeatFluxDensityMeasure(ifcHeatFluxDensityMeasure);
 				if (result == null) result = caseWrappedValue(ifcHeatFluxDensityMeasure);
@@ -351,8 +316,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_HEATING_VALUE_MEASURE:
-			{
+			case Ifc2x3Package.IFC_HEATING_VALUE_MEASURE: {
 				IfcHeatingValueMeasure ifcHeatingValueMeasure = (IfcHeatingValueMeasure)theEObject;
 				T result = caseIfcHeatingValueMeasure(ifcHeatingValueMeasure);
 				if (result == null) result = caseWrappedValue(ifcHeatingValueMeasure);
@@ -361,8 +325,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_IDENTIFIER:
-			{
+			case Ifc2x3Package.IFC_IDENTIFIER: {
 				IfcIdentifier ifcIdentifier = (IfcIdentifier)theEObject;
 				T result = caseIfcIdentifier(ifcIdentifier);
 				if (result == null) result = caseWrappedValue(ifcIdentifier);
@@ -371,8 +334,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_ILLUMINANCE_MEASURE:
-			{
+			case Ifc2x3Package.IFC_ILLUMINANCE_MEASURE: {
 				IfcIlluminanceMeasure ifcIlluminanceMeasure = (IfcIlluminanceMeasure)theEObject;
 				T result = caseIfcIlluminanceMeasure(ifcIlluminanceMeasure);
 				if (result == null) result = caseWrappedValue(ifcIlluminanceMeasure);
@@ -381,8 +343,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_INDUCTANCE_MEASURE:
-			{
+			case Ifc2x3Package.IFC_INDUCTANCE_MEASURE: {
 				IfcInductanceMeasure ifcInductanceMeasure = (IfcInductanceMeasure)theEObject;
 				T result = caseIfcInductanceMeasure(ifcInductanceMeasure);
 				if (result == null) result = caseWrappedValue(ifcInductanceMeasure);
@@ -391,8 +352,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_INTEGER:
-			{
+			case Ifc2x3Package.IFC_INTEGER: {
 				IfcInteger ifcInteger = (IfcInteger)theEObject;
 				T result = caseIfcInteger(ifcInteger);
 				if (result == null) result = caseWrappedValue(ifcInteger);
@@ -401,8 +361,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_INTEGER_COUNT_RATE_MEASURE:
-			{
+			case Ifc2x3Package.IFC_INTEGER_COUNT_RATE_MEASURE: {
 				IfcIntegerCountRateMeasure ifcIntegerCountRateMeasure = (IfcIntegerCountRateMeasure)theEObject;
 				T result = caseIfcIntegerCountRateMeasure(ifcIntegerCountRateMeasure);
 				if (result == null) result = caseWrappedValue(ifcIntegerCountRateMeasure);
@@ -411,8 +370,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_ION_CONCENTRATION_MEASURE:
-			{
+			case Ifc2x3Package.IFC_ION_CONCENTRATION_MEASURE: {
 				IfcIonConcentrationMeasure ifcIonConcentrationMeasure = (IfcIonConcentrationMeasure)theEObject;
 				T result = caseIfcIonConcentrationMeasure(ifcIonConcentrationMeasure);
 				if (result == null) result = caseWrappedValue(ifcIonConcentrationMeasure);
@@ -421,8 +379,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_ISOTHERMAL_MOISTURE_CAPACITY_MEASURE:
-			{
+			case Ifc2x3Package.IFC_ISOTHERMAL_MOISTURE_CAPACITY_MEASURE: {
 				IfcIsothermalMoistureCapacityMeasure ifcIsothermalMoistureCapacityMeasure = (IfcIsothermalMoistureCapacityMeasure)theEObject;
 				T result = caseIfcIsothermalMoistureCapacityMeasure(ifcIsothermalMoistureCapacityMeasure);
 				if (result == null) result = caseWrappedValue(ifcIsothermalMoistureCapacityMeasure);
@@ -431,8 +388,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_KINEMATIC_VISCOSITY_MEASURE:
-			{
+			case Ifc2x3Package.IFC_KINEMATIC_VISCOSITY_MEASURE: {
 				IfcKinematicViscosityMeasure ifcKinematicViscosityMeasure = (IfcKinematicViscosityMeasure)theEObject;
 				T result = caseIfcKinematicViscosityMeasure(ifcKinematicViscosityMeasure);
 				if (result == null) result = caseWrappedValue(ifcKinematicViscosityMeasure);
@@ -441,8 +397,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_LABEL:
-			{
+			case Ifc2x3Package.IFC_LABEL: {
 				IfcLabel ifcLabel = (IfcLabel)theEObject;
 				T result = caseIfcLabel(ifcLabel);
 				if (result == null) result = caseWrappedValue(ifcLabel);
@@ -452,8 +407,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_LENGTH_MEASURE:
-			{
+			case Ifc2x3Package.IFC_LENGTH_MEASURE: {
 				IfcLengthMeasure ifcLengthMeasure = (IfcLengthMeasure)theEObject;
 				T result = caseIfcLengthMeasure(ifcLengthMeasure);
 				if (result == null) result = caseWrappedValue(ifcLengthMeasure);
@@ -463,8 +417,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_LINEAR_FORCE_MEASURE:
-			{
+			case Ifc2x3Package.IFC_LINEAR_FORCE_MEASURE: {
 				IfcLinearForceMeasure ifcLinearForceMeasure = (IfcLinearForceMeasure)theEObject;
 				T result = caseIfcLinearForceMeasure(ifcLinearForceMeasure);
 				if (result == null) result = caseWrappedValue(ifcLinearForceMeasure);
@@ -473,8 +426,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_LINEAR_MOMENT_MEASURE:
-			{
+			case Ifc2x3Package.IFC_LINEAR_MOMENT_MEASURE: {
 				IfcLinearMomentMeasure ifcLinearMomentMeasure = (IfcLinearMomentMeasure)theEObject;
 				T result = caseIfcLinearMomentMeasure(ifcLinearMomentMeasure);
 				if (result == null) result = caseWrappedValue(ifcLinearMomentMeasure);
@@ -483,8 +435,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_LINEAR_STIFFNESS_MEASURE:
-			{
+			case Ifc2x3Package.IFC_LINEAR_STIFFNESS_MEASURE: {
 				IfcLinearStiffnessMeasure ifcLinearStiffnessMeasure = (IfcLinearStiffnessMeasure)theEObject;
 				T result = caseIfcLinearStiffnessMeasure(ifcLinearStiffnessMeasure);
 				if (result == null) result = caseWrappedValue(ifcLinearStiffnessMeasure);
@@ -493,8 +444,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_LINEAR_VELOCITY_MEASURE:
-			{
+			case Ifc2x3Package.IFC_LINEAR_VELOCITY_MEASURE: {
 				IfcLinearVelocityMeasure ifcLinearVelocityMeasure = (IfcLinearVelocityMeasure)theEObject;
 				T result = caseIfcLinearVelocityMeasure(ifcLinearVelocityMeasure);
 				if (result == null) result = caseWrappedValue(ifcLinearVelocityMeasure);
@@ -503,8 +453,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_LOGICAL:
-			{
+			case Ifc2x3Package.IFC_LOGICAL: {
 				IfcLogical ifcLogical = (IfcLogical)theEObject;
 				T result = caseIfcLogical(ifcLogical);
 				if (result == null) result = caseWrappedValue(ifcLogical);
@@ -513,8 +462,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_LUMINOUS_FLUX_MEASURE:
-			{
+			case Ifc2x3Package.IFC_LUMINOUS_FLUX_MEASURE: {
 				IfcLuminousFluxMeasure ifcLuminousFluxMeasure = (IfcLuminousFluxMeasure)theEObject;
 				T result = caseIfcLuminousFluxMeasure(ifcLuminousFluxMeasure);
 				if (result == null) result = caseWrappedValue(ifcLuminousFluxMeasure);
@@ -523,8 +471,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_LUMINOUS_INTENSITY_DISTRIBUTION_MEASURE:
-			{
+			case Ifc2x3Package.IFC_LUMINOUS_INTENSITY_DISTRIBUTION_MEASURE: {
 				IfcLuminousIntensityDistributionMeasure ifcLuminousIntensityDistributionMeasure = (IfcLuminousIntensityDistributionMeasure)theEObject;
 				T result = caseIfcLuminousIntensityDistributionMeasure(ifcLuminousIntensityDistributionMeasure);
 				if (result == null) result = caseWrappedValue(ifcLuminousIntensityDistributionMeasure);
@@ -533,8 +480,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_LUMINOUS_INTENSITY_MEASURE:
-			{
+			case Ifc2x3Package.IFC_LUMINOUS_INTENSITY_MEASURE: {
 				IfcLuminousIntensityMeasure ifcLuminousIntensityMeasure = (IfcLuminousIntensityMeasure)theEObject;
 				T result = caseIfcLuminousIntensityMeasure(ifcLuminousIntensityMeasure);
 				if (result == null) result = caseWrappedValue(ifcLuminousIntensityMeasure);
@@ -543,8 +489,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_MAGNETIC_FLUX_DENSITY_MEASURE:
-			{
+			case Ifc2x3Package.IFC_MAGNETIC_FLUX_DENSITY_MEASURE: {
 				IfcMagneticFluxDensityMeasure ifcMagneticFluxDensityMeasure = (IfcMagneticFluxDensityMeasure)theEObject;
 				T result = caseIfcMagneticFluxDensityMeasure(ifcMagneticFluxDensityMeasure);
 				if (result == null) result = caseWrappedValue(ifcMagneticFluxDensityMeasure);
@@ -553,8 +498,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_MAGNETIC_FLUX_MEASURE:
-			{
+			case Ifc2x3Package.IFC_MAGNETIC_FLUX_MEASURE: {
 				IfcMagneticFluxMeasure ifcMagneticFluxMeasure = (IfcMagneticFluxMeasure)theEObject;
 				T result = caseIfcMagneticFluxMeasure(ifcMagneticFluxMeasure);
 				if (result == null) result = caseWrappedValue(ifcMagneticFluxMeasure);
@@ -563,8 +507,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_MASS_DENSITY_MEASURE:
-			{
+			case Ifc2x3Package.IFC_MASS_DENSITY_MEASURE: {
 				IfcMassDensityMeasure ifcMassDensityMeasure = (IfcMassDensityMeasure)theEObject;
 				T result = caseIfcMassDensityMeasure(ifcMassDensityMeasure);
 				if (result == null) result = caseWrappedValue(ifcMassDensityMeasure);
@@ -573,8 +516,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_MASS_FLOW_RATE_MEASURE:
-			{
+			case Ifc2x3Package.IFC_MASS_FLOW_RATE_MEASURE: {
 				IfcMassFlowRateMeasure ifcMassFlowRateMeasure = (IfcMassFlowRateMeasure)theEObject;
 				T result = caseIfcMassFlowRateMeasure(ifcMassFlowRateMeasure);
 				if (result == null) result = caseWrappedValue(ifcMassFlowRateMeasure);
@@ -583,8 +525,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_MASS_MEASURE:
-			{
+			case Ifc2x3Package.IFC_MASS_MEASURE: {
 				IfcMassMeasure ifcMassMeasure = (IfcMassMeasure)theEObject;
 				T result = caseIfcMassMeasure(ifcMassMeasure);
 				if (result == null) result = caseWrappedValue(ifcMassMeasure);
@@ -593,8 +534,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_MASS_PER_LENGTH_MEASURE:
-			{
+			case Ifc2x3Package.IFC_MASS_PER_LENGTH_MEASURE: {
 				IfcMassPerLengthMeasure ifcMassPerLengthMeasure = (IfcMassPerLengthMeasure)theEObject;
 				T result = caseIfcMassPerLengthMeasure(ifcMassPerLengthMeasure);
 				if (result == null) result = caseWrappedValue(ifcMassPerLengthMeasure);
@@ -603,8 +543,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_MODULUS_OF_ELASTICITY_MEASURE:
-			{
+			case Ifc2x3Package.IFC_MODULUS_OF_ELASTICITY_MEASURE: {
 				IfcModulusOfElasticityMeasure ifcModulusOfElasticityMeasure = (IfcModulusOfElasticityMeasure)theEObject;
 				T result = caseIfcModulusOfElasticityMeasure(ifcModulusOfElasticityMeasure);
 				if (result == null) result = caseWrappedValue(ifcModulusOfElasticityMeasure);
@@ -613,8 +552,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_MODULUS_OF_LINEAR_SUBGRADE_REACTION_MEASURE:
-			{
+			case Ifc2x3Package.IFC_MODULUS_OF_LINEAR_SUBGRADE_REACTION_MEASURE: {
 				IfcModulusOfLinearSubgradeReactionMeasure ifcModulusOfLinearSubgradeReactionMeasure = (IfcModulusOfLinearSubgradeReactionMeasure)theEObject;
 				T result = caseIfcModulusOfLinearSubgradeReactionMeasure(ifcModulusOfLinearSubgradeReactionMeasure);
 				if (result == null) result = caseWrappedValue(ifcModulusOfLinearSubgradeReactionMeasure);
@@ -623,8 +561,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_MODULUS_OF_ROTATIONAL_SUBGRADE_REACTION_MEASURE:
-			{
+			case Ifc2x3Package.IFC_MODULUS_OF_ROTATIONAL_SUBGRADE_REACTION_MEASURE: {
 				IfcModulusOfRotationalSubgradeReactionMeasure ifcModulusOfRotationalSubgradeReactionMeasure = (IfcModulusOfRotationalSubgradeReactionMeasure)theEObject;
 				T result = caseIfcModulusOfRotationalSubgradeReactionMeasure(ifcModulusOfRotationalSubgradeReactionMeasure);
 				if (result == null) result = caseWrappedValue(ifcModulusOfRotationalSubgradeReactionMeasure);
@@ -633,8 +570,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_MODULUS_OF_SUBGRADE_REACTION_MEASURE:
-			{
+			case Ifc2x3Package.IFC_MODULUS_OF_SUBGRADE_REACTION_MEASURE: {
 				IfcModulusOfSubgradeReactionMeasure ifcModulusOfSubgradeReactionMeasure = (IfcModulusOfSubgradeReactionMeasure)theEObject;
 				T result = caseIfcModulusOfSubgradeReactionMeasure(ifcModulusOfSubgradeReactionMeasure);
 				if (result == null) result = caseWrappedValue(ifcModulusOfSubgradeReactionMeasure);
@@ -643,8 +579,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_MOISTURE_DIFFUSIVITY_MEASURE:
-			{
+			case Ifc2x3Package.IFC_MOISTURE_DIFFUSIVITY_MEASURE: {
 				IfcMoistureDiffusivityMeasure ifcMoistureDiffusivityMeasure = (IfcMoistureDiffusivityMeasure)theEObject;
 				T result = caseIfcMoistureDiffusivityMeasure(ifcMoistureDiffusivityMeasure);
 				if (result == null) result = caseWrappedValue(ifcMoistureDiffusivityMeasure);
@@ -653,8 +588,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_MOLECULAR_WEIGHT_MEASURE:
-			{
+			case Ifc2x3Package.IFC_MOLECULAR_WEIGHT_MEASURE: {
 				IfcMolecularWeightMeasure ifcMolecularWeightMeasure = (IfcMolecularWeightMeasure)theEObject;
 				T result = caseIfcMolecularWeightMeasure(ifcMolecularWeightMeasure);
 				if (result == null) result = caseWrappedValue(ifcMolecularWeightMeasure);
@@ -663,8 +597,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_MOMENT_OF_INERTIA_MEASURE:
-			{
+			case Ifc2x3Package.IFC_MOMENT_OF_INERTIA_MEASURE: {
 				IfcMomentOfInertiaMeasure ifcMomentOfInertiaMeasure = (IfcMomentOfInertiaMeasure)theEObject;
 				T result = caseIfcMomentOfInertiaMeasure(ifcMomentOfInertiaMeasure);
 				if (result == null) result = caseWrappedValue(ifcMomentOfInertiaMeasure);
@@ -673,8 +606,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_MONETARY_MEASURE:
-			{
+			case Ifc2x3Package.IFC_MONETARY_MEASURE: {
 				IfcMonetaryMeasure ifcMonetaryMeasure = (IfcMonetaryMeasure)theEObject;
 				T result = caseIfcMonetaryMeasure(ifcMonetaryMeasure);
 				if (result == null) result = caseWrappedValue(ifcMonetaryMeasure);
@@ -684,8 +616,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_NUMERIC_MEASURE:
-			{
+			case Ifc2x3Package.IFC_NUMERIC_MEASURE: {
 				IfcNumericMeasure ifcNumericMeasure = (IfcNumericMeasure)theEObject;
 				T result = caseIfcNumericMeasure(ifcNumericMeasure);
 				if (result == null) result = caseWrappedValue(ifcNumericMeasure);
@@ -694,8 +625,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_PH_MEASURE:
-			{
+			case Ifc2x3Package.IFC_PH_MEASURE: {
 				IfcPHMeasure ifcPHMeasure = (IfcPHMeasure)theEObject;
 				T result = caseIfcPHMeasure(ifcPHMeasure);
 				if (result == null) result = caseWrappedValue(ifcPHMeasure);
@@ -704,8 +634,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_PARAMETER_VALUE:
-			{
+			case Ifc2x3Package.IFC_PARAMETER_VALUE: {
 				IfcParameterValue ifcParameterValue = (IfcParameterValue)theEObject;
 				T result = caseIfcParameterValue(ifcParameterValue);
 				if (result == null) result = caseWrappedValue(ifcParameterValue);
@@ -715,8 +644,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_PLANAR_FORCE_MEASURE:
-			{
+			case Ifc2x3Package.IFC_PLANAR_FORCE_MEASURE: {
 				IfcPlanarForceMeasure ifcPlanarForceMeasure = (IfcPlanarForceMeasure)theEObject;
 				T result = caseIfcPlanarForceMeasure(ifcPlanarForceMeasure);
 				if (result == null) result = caseWrappedValue(ifcPlanarForceMeasure);
@@ -725,8 +653,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_PLANE_ANGLE_MEASURE:
-			{
+			case Ifc2x3Package.IFC_PLANE_ANGLE_MEASURE: {
 				IfcPlaneAngleMeasure ifcPlaneAngleMeasure = (IfcPlaneAngleMeasure)theEObject;
 				T result = caseIfcPlaneAngleMeasure(ifcPlaneAngleMeasure);
 				if (result == null) result = caseWrappedValue(ifcPlaneAngleMeasure);
@@ -736,8 +663,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_POWER_MEASURE:
-			{
+			case Ifc2x3Package.IFC_POWER_MEASURE: {
 				IfcPowerMeasure ifcPowerMeasure = (IfcPowerMeasure)theEObject;
 				T result = caseIfcPowerMeasure(ifcPowerMeasure);
 				if (result == null) result = caseWrappedValue(ifcPowerMeasure);
@@ -746,8 +672,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_PRESSURE_MEASURE:
-			{
+			case Ifc2x3Package.IFC_PRESSURE_MEASURE: {
 				IfcPressureMeasure ifcPressureMeasure = (IfcPressureMeasure)theEObject;
 				T result = caseIfcPressureMeasure(ifcPressureMeasure);
 				if (result == null) result = caseWrappedValue(ifcPressureMeasure);
@@ -756,8 +681,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_RADIO_ACTIVITY_MEASURE:
-			{
+			case Ifc2x3Package.IFC_RADIO_ACTIVITY_MEASURE: {
 				IfcRadioActivityMeasure ifcRadioActivityMeasure = (IfcRadioActivityMeasure)theEObject;
 				T result = caseIfcRadioActivityMeasure(ifcRadioActivityMeasure);
 				if (result == null) result = caseWrappedValue(ifcRadioActivityMeasure);
@@ -766,8 +690,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_RATIO_MEASURE:
-			{
+			case Ifc2x3Package.IFC_RATIO_MEASURE: {
 				IfcRatioMeasure ifcRatioMeasure = (IfcRatioMeasure)theEObject;
 				T result = caseIfcRatioMeasure(ifcRatioMeasure);
 				if (result == null) result = caseWrappedValue(ifcRatioMeasure);
@@ -778,8 +701,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_REAL:
-			{
+			case Ifc2x3Package.IFC_REAL: {
 				IfcReal ifcReal = (IfcReal)theEObject;
 				T result = caseIfcReal(ifcReal);
 				if (result == null) result = caseWrappedValue(ifcReal);
@@ -788,8 +710,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_ROTATIONAL_FREQUENCY_MEASURE:
-			{
+			case Ifc2x3Package.IFC_ROTATIONAL_FREQUENCY_MEASURE: {
 				IfcRotationalFrequencyMeasure ifcRotationalFrequencyMeasure = (IfcRotationalFrequencyMeasure)theEObject;
 				T result = caseIfcRotationalFrequencyMeasure(ifcRotationalFrequencyMeasure);
 				if (result == null) result = caseWrappedValue(ifcRotationalFrequencyMeasure);
@@ -798,8 +719,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_ROTATIONAL_MASS_MEASURE:
-			{
+			case Ifc2x3Package.IFC_ROTATIONAL_MASS_MEASURE: {
 				IfcRotationalMassMeasure ifcRotationalMassMeasure = (IfcRotationalMassMeasure)theEObject;
 				T result = caseIfcRotationalMassMeasure(ifcRotationalMassMeasure);
 				if (result == null) result = caseWrappedValue(ifcRotationalMassMeasure);
@@ -808,8 +728,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_ROTATIONAL_STIFFNESS_MEASURE:
-			{
+			case Ifc2x3Package.IFC_ROTATIONAL_STIFFNESS_MEASURE: {
 				IfcRotationalStiffnessMeasure ifcRotationalStiffnessMeasure = (IfcRotationalStiffnessMeasure)theEObject;
 				T result = caseIfcRotationalStiffnessMeasure(ifcRotationalStiffnessMeasure);
 				if (result == null) result = caseWrappedValue(ifcRotationalStiffnessMeasure);
@@ -818,8 +737,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_SECTION_MODULUS_MEASURE:
-			{
+			case Ifc2x3Package.IFC_SECTION_MODULUS_MEASURE: {
 				IfcSectionModulusMeasure ifcSectionModulusMeasure = (IfcSectionModulusMeasure)theEObject;
 				T result = caseIfcSectionModulusMeasure(ifcSectionModulusMeasure);
 				if (result == null) result = caseWrappedValue(ifcSectionModulusMeasure);
@@ -828,8 +746,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_SECTIONAL_AREA_INTEGRAL_MEASURE:
-			{
+			case Ifc2x3Package.IFC_SECTIONAL_AREA_INTEGRAL_MEASURE: {
 				IfcSectionalAreaIntegralMeasure ifcSectionalAreaIntegralMeasure = (IfcSectionalAreaIntegralMeasure)theEObject;
 				T result = caseIfcSectionalAreaIntegralMeasure(ifcSectionalAreaIntegralMeasure);
 				if (result == null) result = caseWrappedValue(ifcSectionalAreaIntegralMeasure);
@@ -838,8 +755,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_SHEAR_MODULUS_MEASURE:
-			{
+			case Ifc2x3Package.IFC_SHEAR_MODULUS_MEASURE: {
 				IfcShearModulusMeasure ifcShearModulusMeasure = (IfcShearModulusMeasure)theEObject;
 				T result = caseIfcShearModulusMeasure(ifcShearModulusMeasure);
 				if (result == null) result = caseWrappedValue(ifcShearModulusMeasure);
@@ -848,8 +764,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_SOLID_ANGLE_MEASURE:
-			{
+			case Ifc2x3Package.IFC_SOLID_ANGLE_MEASURE: {
 				IfcSolidAngleMeasure ifcSolidAngleMeasure = (IfcSolidAngleMeasure)theEObject;
 				T result = caseIfcSolidAngleMeasure(ifcSolidAngleMeasure);
 				if (result == null) result = caseWrappedValue(ifcSolidAngleMeasure);
@@ -858,8 +773,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_SOUND_POWER_MEASURE:
-			{
+			case Ifc2x3Package.IFC_SOUND_POWER_MEASURE: {
 				IfcSoundPowerMeasure ifcSoundPowerMeasure = (IfcSoundPowerMeasure)theEObject;
 				T result = caseIfcSoundPowerMeasure(ifcSoundPowerMeasure);
 				if (result == null) result = caseWrappedValue(ifcSoundPowerMeasure);
@@ -868,8 +782,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_SOUND_PRESSURE_MEASURE:
-			{
+			case Ifc2x3Package.IFC_SOUND_PRESSURE_MEASURE: {
 				IfcSoundPressureMeasure ifcSoundPressureMeasure = (IfcSoundPressureMeasure)theEObject;
 				T result = caseIfcSoundPressureMeasure(ifcSoundPressureMeasure);
 				if (result == null) result = caseWrappedValue(ifcSoundPressureMeasure);
@@ -878,8 +791,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_SPECIFIC_HEAT_CAPACITY_MEASURE:
-			{
+			case Ifc2x3Package.IFC_SPECIFIC_HEAT_CAPACITY_MEASURE: {
 				IfcSpecificHeatCapacityMeasure ifcSpecificHeatCapacityMeasure = (IfcSpecificHeatCapacityMeasure)theEObject;
 				T result = caseIfcSpecificHeatCapacityMeasure(ifcSpecificHeatCapacityMeasure);
 				if (result == null) result = caseWrappedValue(ifcSpecificHeatCapacityMeasure);
@@ -888,8 +800,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_SPECULAR_EXPONENT:
-			{
+			case Ifc2x3Package.IFC_SPECULAR_EXPONENT: {
 				IfcSpecularExponent ifcSpecularExponent = (IfcSpecularExponent)theEObject;
 				T result = caseIfcSpecularExponent(ifcSpecularExponent);
 				if (result == null) result = caseWrappedValue(ifcSpecularExponent);
@@ -897,8 +808,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_SPECULAR_ROUGHNESS:
-			{
+			case Ifc2x3Package.IFC_SPECULAR_ROUGHNESS: {
 				IfcSpecularRoughness ifcSpecularRoughness = (IfcSpecularRoughness)theEObject;
 				T result = caseIfcSpecularRoughness(ifcSpecularRoughness);
 				if (result == null) result = caseWrappedValue(ifcSpecularRoughness);
@@ -906,8 +816,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_TEMPERATURE_GRADIENT_MEASURE:
-			{
+			case Ifc2x3Package.IFC_TEMPERATURE_GRADIENT_MEASURE: {
 				IfcTemperatureGradientMeasure ifcTemperatureGradientMeasure = (IfcTemperatureGradientMeasure)theEObject;
 				T result = caseIfcTemperatureGradientMeasure(ifcTemperatureGradientMeasure);
 				if (result == null) result = caseWrappedValue(ifcTemperatureGradientMeasure);
@@ -916,8 +825,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_TEXT:
-			{
+			case Ifc2x3Package.IFC_TEXT: {
 				IfcText ifcText = (IfcText)theEObject;
 				T result = caseIfcText(ifcText);
 				if (result == null) result = caseWrappedValue(ifcText);
@@ -927,8 +835,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_THERMAL_ADMITTANCE_MEASURE:
-			{
+			case Ifc2x3Package.IFC_THERMAL_ADMITTANCE_MEASURE: {
 				IfcThermalAdmittanceMeasure ifcThermalAdmittanceMeasure = (IfcThermalAdmittanceMeasure)theEObject;
 				T result = caseIfcThermalAdmittanceMeasure(ifcThermalAdmittanceMeasure);
 				if (result == null) result = caseWrappedValue(ifcThermalAdmittanceMeasure);
@@ -937,8 +844,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_THERMAL_CONDUCTIVITY_MEASURE:
-			{
+			case Ifc2x3Package.IFC_THERMAL_CONDUCTIVITY_MEASURE: {
 				IfcThermalConductivityMeasure ifcThermalConductivityMeasure = (IfcThermalConductivityMeasure)theEObject;
 				T result = caseIfcThermalConductivityMeasure(ifcThermalConductivityMeasure);
 				if (result == null) result = caseWrappedValue(ifcThermalConductivityMeasure);
@@ -947,8 +853,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_THERMAL_EXPANSION_COEFFICIENT_MEASURE:
-			{
+			case Ifc2x3Package.IFC_THERMAL_EXPANSION_COEFFICIENT_MEASURE: {
 				IfcThermalExpansionCoefficientMeasure ifcThermalExpansionCoefficientMeasure = (IfcThermalExpansionCoefficientMeasure)theEObject;
 				T result = caseIfcThermalExpansionCoefficientMeasure(ifcThermalExpansionCoefficientMeasure);
 				if (result == null) result = caseWrappedValue(ifcThermalExpansionCoefficientMeasure);
@@ -957,8 +862,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_THERMAL_RESISTANCE_MEASURE:
-			{
+			case Ifc2x3Package.IFC_THERMAL_RESISTANCE_MEASURE: {
 				IfcThermalResistanceMeasure ifcThermalResistanceMeasure = (IfcThermalResistanceMeasure)theEObject;
 				T result = caseIfcThermalResistanceMeasure(ifcThermalResistanceMeasure);
 				if (result == null) result = caseWrappedValue(ifcThermalResistanceMeasure);
@@ -967,8 +871,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_THERMAL_TRANSMITTANCE_MEASURE:
-			{
+			case Ifc2x3Package.IFC_THERMAL_TRANSMITTANCE_MEASURE: {
 				IfcThermalTransmittanceMeasure ifcThermalTransmittanceMeasure = (IfcThermalTransmittanceMeasure)theEObject;
 				T result = caseIfcThermalTransmittanceMeasure(ifcThermalTransmittanceMeasure);
 				if (result == null) result = caseWrappedValue(ifcThermalTransmittanceMeasure);
@@ -977,8 +880,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_THERMODYNAMIC_TEMPERATURE_MEASURE:
-			{
+			case Ifc2x3Package.IFC_THERMODYNAMIC_TEMPERATURE_MEASURE: {
 				IfcThermodynamicTemperatureMeasure ifcThermodynamicTemperatureMeasure = (IfcThermodynamicTemperatureMeasure)theEObject;
 				T result = caseIfcThermodynamicTemperatureMeasure(ifcThermodynamicTemperatureMeasure);
 				if (result == null) result = caseWrappedValue(ifcThermodynamicTemperatureMeasure);
@@ -987,8 +889,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_TIME_MEASURE:
-			{
+			case Ifc2x3Package.IFC_TIME_MEASURE: {
 				IfcTimeMeasure ifcTimeMeasure = (IfcTimeMeasure)theEObject;
 				T result = caseIfcTimeMeasure(ifcTimeMeasure);
 				if (result == null) result = caseWrappedValue(ifcTimeMeasure);
@@ -997,8 +898,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_TIME_STAMP:
-			{
+			case Ifc2x3Package.IFC_TIME_STAMP: {
 				IfcTimeStamp ifcTimeStamp = (IfcTimeStamp)theEObject;
 				T result = caseIfcTimeStamp(ifcTimeStamp);
 				if (result == null) result = caseWrappedValue(ifcTimeStamp);
@@ -1007,8 +907,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_TORQUE_MEASURE:
-			{
+			case Ifc2x3Package.IFC_TORQUE_MEASURE: {
 				IfcTorqueMeasure ifcTorqueMeasure = (IfcTorqueMeasure)theEObject;
 				T result = caseIfcTorqueMeasure(ifcTorqueMeasure);
 				if (result == null) result = caseWrappedValue(ifcTorqueMeasure);
@@ -1017,8 +916,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_VAPOR_PERMEABILITY_MEASURE:
-			{
+			case Ifc2x3Package.IFC_VAPOR_PERMEABILITY_MEASURE: {
 				IfcVaporPermeabilityMeasure ifcVaporPermeabilityMeasure = (IfcVaporPermeabilityMeasure)theEObject;
 				T result = caseIfcVaporPermeabilityMeasure(ifcVaporPermeabilityMeasure);
 				if (result == null) result = caseWrappedValue(ifcVaporPermeabilityMeasure);
@@ -1027,8 +925,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_VOLUME_MEASURE:
-			{
+			case Ifc2x3Package.IFC_VOLUME_MEASURE: {
 				IfcVolumeMeasure ifcVolumeMeasure = (IfcVolumeMeasure)theEObject;
 				T result = caseIfcVolumeMeasure(ifcVolumeMeasure);
 				if (result == null) result = caseWrappedValue(ifcVolumeMeasure);
@@ -1037,8 +934,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_VOLUMETRIC_FLOW_RATE_MEASURE:
-			{
+			case Ifc2x3Package.IFC_VOLUMETRIC_FLOW_RATE_MEASURE: {
 				IfcVolumetricFlowRateMeasure ifcVolumetricFlowRateMeasure = (IfcVolumetricFlowRateMeasure)theEObject;
 				T result = caseIfcVolumetricFlowRateMeasure(ifcVolumetricFlowRateMeasure);
 				if (result == null) result = caseWrappedValue(ifcVolumetricFlowRateMeasure);
@@ -1047,8 +943,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_WARPING_CONSTANT_MEASURE:
-			{
+			case Ifc2x3Package.IFC_WARPING_CONSTANT_MEASURE: {
 				IfcWarpingConstantMeasure ifcWarpingConstantMeasure = (IfcWarpingConstantMeasure)theEObject;
 				T result = caseIfcWarpingConstantMeasure(ifcWarpingConstantMeasure);
 				if (result == null) result = caseWrappedValue(ifcWarpingConstantMeasure);
@@ -1057,8 +952,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_WARPING_MOMENT_MEASURE:
-			{
+			case Ifc2x3Package.IFC_WARPING_MOMENT_MEASURE: {
 				IfcWarpingMomentMeasure ifcWarpingMomentMeasure = (IfcWarpingMomentMeasure)theEObject;
 				T result = caseIfcWarpingMomentMeasure(ifcWarpingMomentMeasure);
 				if (result == null) result = caseWrappedValue(ifcWarpingMomentMeasure);
@@ -1067,8 +961,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_NORMALISED_RATIO_MEASURE:
-			{
+			case Ifc2x3Package.IFC_NORMALISED_RATIO_MEASURE: {
 				IfcNormalisedRatioMeasure ifcNormalisedRatioMeasure = (IfcNormalisedRatioMeasure)theEObject;
 				T result = caseIfcNormalisedRatioMeasure(ifcNormalisedRatioMeasure);
 				if (result == null) result = caseIfcRatioMeasure(ifcNormalisedRatioMeasure);
@@ -1081,8 +974,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_POSITIVE_LENGTH_MEASURE:
-			{
+			case Ifc2x3Package.IFC_POSITIVE_LENGTH_MEASURE: {
 				IfcPositiveLengthMeasure ifcPositiveLengthMeasure = (IfcPositiveLengthMeasure)theEObject;
 				T result = caseIfcPositiveLengthMeasure(ifcPositiveLengthMeasure);
 				if (result == null) result = caseIfcLengthMeasure(ifcPositiveLengthMeasure);
@@ -1094,8 +986,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_POSITIVE_PLANE_ANGLE_MEASURE:
-			{
+			case Ifc2x3Package.IFC_POSITIVE_PLANE_ANGLE_MEASURE: {
 				IfcPositivePlaneAngleMeasure ifcPositivePlaneAngleMeasure = (IfcPositivePlaneAngleMeasure)theEObject;
 				T result = caseIfcPositivePlaneAngleMeasure(ifcPositivePlaneAngleMeasure);
 				if (result == null) result = caseIfcPlaneAngleMeasure(ifcPositivePlaneAngleMeasure);
@@ -1106,8 +997,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_POSITIVE_RATIO_MEASURE:
-			{
+			case Ifc2x3Package.IFC_POSITIVE_RATIO_MEASURE: {
 				IfcPositiveRatioMeasure ifcPositiveRatioMeasure = (IfcPositiveRatioMeasure)theEObject;
 				T result = caseIfcPositiveRatioMeasure(ifcPositiveRatioMeasure);
 				if (result == null) result = caseIfcRatioMeasure(ifcPositiveRatioMeasure);
@@ -1119,8 +1009,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC2_DCOMPOSITE_CURVE:
-			{
+			case Ifc2x3Package.IFC2_DCOMPOSITE_CURVE: {
 				Ifc2DCompositeCurve ifc2DCompositeCurve = (Ifc2DCompositeCurve)theEObject;
 				T result = caseIfc2DCompositeCurve(ifc2DCompositeCurve);
 				if (result == null) result = caseIfcCompositeCurve(ifc2DCompositeCurve);
@@ -1134,8 +1023,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_ACTION_REQUEST:
-			{
+			case Ifc2x3Package.IFC_ACTION_REQUEST: {
 				IfcActionRequest ifcActionRequest = (IfcActionRequest)theEObject;
 				T result = caseIfcActionRequest(ifcActionRequest);
 				if (result == null) result = caseIfcControl(ifcActionRequest);
@@ -1145,8 +1033,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_ACTOR:
-			{
+			case Ifc2x3Package.IFC_ACTOR: {
 				IfcActor ifcActor = (IfcActor)theEObject;
 				T result = caseIfcActor(ifcActor);
 				if (result == null) result = caseIfcObject(ifcActor);
@@ -1155,15 +1042,13 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_ACTOR_ROLE:
-			{
+			case Ifc2x3Package.IFC_ACTOR_ROLE: {
 				IfcActorRole ifcActorRole = (IfcActorRole)theEObject;
 				T result = caseIfcActorRole(ifcActorRole);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_ACTUATOR_TYPE:
-			{
+			case Ifc2x3Package.IFC_ACTUATOR_TYPE: {
 				IfcActuatorType ifcActuatorType = (IfcActuatorType)theEObject;
 				T result = caseIfcActuatorType(ifcActuatorType);
 				if (result == null) result = caseIfcDistributionControlElementType(ifcActuatorType);
@@ -1176,16 +1061,14 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_ADDRESS:
-			{
+			case Ifc2x3Package.IFC_ADDRESS: {
 				IfcAddress ifcAddress = (IfcAddress)theEObject;
 				T result = caseIfcAddress(ifcAddress);
 				if (result == null) result = caseIfcObjectReferenceSelect(ifcAddress);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_AIR_TERMINAL_BOX_TYPE:
-			{
+			case Ifc2x3Package.IFC_AIR_TERMINAL_BOX_TYPE: {
 				IfcAirTerminalBoxType ifcAirTerminalBoxType = (IfcAirTerminalBoxType)theEObject;
 				T result = caseIfcAirTerminalBoxType(ifcAirTerminalBoxType);
 				if (result == null) result = caseIfcFlowControllerType(ifcAirTerminalBoxType);
@@ -1199,8 +1082,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_AIR_TERMINAL_TYPE:
-			{
+			case Ifc2x3Package.IFC_AIR_TERMINAL_TYPE: {
 				IfcAirTerminalType ifcAirTerminalType = (IfcAirTerminalType)theEObject;
 				T result = caseIfcAirTerminalType(ifcAirTerminalType);
 				if (result == null) result = caseIfcFlowTerminalType(ifcAirTerminalType);
@@ -1214,8 +1096,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_AIR_TO_AIR_HEAT_RECOVERY_TYPE:
-			{
+			case Ifc2x3Package.IFC_AIR_TO_AIR_HEAT_RECOVERY_TYPE: {
 				IfcAirToAirHeatRecoveryType ifcAirToAirHeatRecoveryType = (IfcAirToAirHeatRecoveryType)theEObject;
 				T result = caseIfcAirToAirHeatRecoveryType(ifcAirToAirHeatRecoveryType);
 				if (result == null) result = caseIfcEnergyConversionDeviceType(ifcAirToAirHeatRecoveryType);
@@ -1229,8 +1110,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_ALARM_TYPE:
-			{
+			case Ifc2x3Package.IFC_ALARM_TYPE: {
 				IfcAlarmType ifcAlarmType = (IfcAlarmType)theEObject;
 				T result = caseIfcAlarmType(ifcAlarmType);
 				if (result == null) result = caseIfcDistributionControlElementType(ifcAlarmType);
@@ -1243,8 +1123,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_ANGULAR_DIMENSION:
-			{
+			case Ifc2x3Package.IFC_ANGULAR_DIMENSION: {
 				IfcAngularDimension ifcAngularDimension = (IfcAngularDimension)theEObject;
 				T result = caseIfcAngularDimension(ifcAngularDimension);
 				if (result == null) result = caseIfcDimensionCurveDirectedCallout(ifcAngularDimension);
@@ -1255,8 +1134,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_ANNOTATION:
-			{
+			case Ifc2x3Package.IFC_ANNOTATION: {
 				IfcAnnotation ifcAnnotation = (IfcAnnotation)theEObject;
 				T result = caseIfcAnnotation(ifcAnnotation);
 				if (result == null) result = caseIfcProduct(ifcAnnotation);
@@ -1266,8 +1144,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_ANNOTATION_CURVE_OCCURRENCE:
-			{
+			case Ifc2x3Package.IFC_ANNOTATION_CURVE_OCCURRENCE: {
 				IfcAnnotationCurveOccurrence ifcAnnotationCurveOccurrence = (IfcAnnotationCurveOccurrence)theEObject;
 				T result = caseIfcAnnotationCurveOccurrence(ifcAnnotationCurveOccurrence);
 				if (result == null) result = caseIfcAnnotationOccurrence(ifcAnnotationCurveOccurrence);
@@ -1278,8 +1155,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_ANNOTATION_FILL_AREA:
-			{
+			case Ifc2x3Package.IFC_ANNOTATION_FILL_AREA: {
 				IfcAnnotationFillArea ifcAnnotationFillArea = (IfcAnnotationFillArea)theEObject;
 				T result = caseIfcAnnotationFillArea(ifcAnnotationFillArea);
 				if (result == null) result = caseIfcGeometricRepresentationItem(ifcAnnotationFillArea);
@@ -1288,8 +1164,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_ANNOTATION_FILL_AREA_OCCURRENCE:
-			{
+			case Ifc2x3Package.IFC_ANNOTATION_FILL_AREA_OCCURRENCE: {
 				IfcAnnotationFillAreaOccurrence ifcAnnotationFillAreaOccurrence = (IfcAnnotationFillAreaOccurrence)theEObject;
 				T result = caseIfcAnnotationFillAreaOccurrence(ifcAnnotationFillAreaOccurrence);
 				if (result == null) result = caseIfcAnnotationOccurrence(ifcAnnotationFillAreaOccurrence);
@@ -1299,8 +1174,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_ANNOTATION_OCCURRENCE:
-			{
+			case Ifc2x3Package.IFC_ANNOTATION_OCCURRENCE: {
 				IfcAnnotationOccurrence ifcAnnotationOccurrence = (IfcAnnotationOccurrence)theEObject;
 				T result = caseIfcAnnotationOccurrence(ifcAnnotationOccurrence);
 				if (result == null) result = caseIfcStyledItem(ifcAnnotationOccurrence);
@@ -1309,8 +1183,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_ANNOTATION_SURFACE:
-			{
+			case Ifc2x3Package.IFC_ANNOTATION_SURFACE: {
 				IfcAnnotationSurface ifcAnnotationSurface = (IfcAnnotationSurface)theEObject;
 				T result = caseIfcAnnotationSurface(ifcAnnotationSurface);
 				if (result == null) result = caseIfcGeometricRepresentationItem(ifcAnnotationSurface);
@@ -1319,8 +1192,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_ANNOTATION_SURFACE_OCCURRENCE:
-			{
+			case Ifc2x3Package.IFC_ANNOTATION_SURFACE_OCCURRENCE: {
 				IfcAnnotationSurfaceOccurrence ifcAnnotationSurfaceOccurrence = (IfcAnnotationSurfaceOccurrence)theEObject;
 				T result = caseIfcAnnotationSurfaceOccurrence(ifcAnnotationSurfaceOccurrence);
 				if (result == null) result = caseIfcAnnotationOccurrence(ifcAnnotationSurfaceOccurrence);
@@ -1330,8 +1202,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_ANNOTATION_SYMBOL_OCCURRENCE:
-			{
+			case Ifc2x3Package.IFC_ANNOTATION_SYMBOL_OCCURRENCE: {
 				IfcAnnotationSymbolOccurrence ifcAnnotationSymbolOccurrence = (IfcAnnotationSymbolOccurrence)theEObject;
 				T result = caseIfcAnnotationSymbolOccurrence(ifcAnnotationSymbolOccurrence);
 				if (result == null) result = caseIfcAnnotationOccurrence(ifcAnnotationSymbolOccurrence);
@@ -1342,8 +1213,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_ANNOTATION_TEXT_OCCURRENCE:
-			{
+			case Ifc2x3Package.IFC_ANNOTATION_TEXT_OCCURRENCE: {
 				IfcAnnotationTextOccurrence ifcAnnotationTextOccurrence = (IfcAnnotationTextOccurrence)theEObject;
 				T result = caseIfcAnnotationTextOccurrence(ifcAnnotationTextOccurrence);
 				if (result == null) result = caseIfcAnnotationOccurrence(ifcAnnotationTextOccurrence);
@@ -1354,74 +1224,64 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_APPLICATION:
-			{
+			case Ifc2x3Package.IFC_APPLICATION: {
 				IfcApplication ifcApplication = (IfcApplication)theEObject;
 				T result = caseIfcApplication(ifcApplication);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_APPLIED_VALUE:
-			{
+			case Ifc2x3Package.IFC_APPLIED_VALUE: {
 				IfcAppliedValue ifcAppliedValue = (IfcAppliedValue)theEObject;
 				T result = caseIfcAppliedValue(ifcAppliedValue);
 				if (result == null) result = caseIfcObjectReferenceSelect(ifcAppliedValue);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_APPLIED_VALUE_RELATIONSHIP:
-			{
+			case Ifc2x3Package.IFC_APPLIED_VALUE_RELATIONSHIP: {
 				IfcAppliedValueRelationship ifcAppliedValueRelationship = (IfcAppliedValueRelationship)theEObject;
 				T result = caseIfcAppliedValueRelationship(ifcAppliedValueRelationship);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_APPROVAL:
-			{
+			case Ifc2x3Package.IFC_APPROVAL: {
 				IfcApproval ifcApproval = (IfcApproval)theEObject;
 				T result = caseIfcApproval(ifcApproval);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_APPROVAL_ACTOR_RELATIONSHIP:
-			{
+			case Ifc2x3Package.IFC_APPROVAL_ACTOR_RELATIONSHIP: {
 				IfcApprovalActorRelationship ifcApprovalActorRelationship = (IfcApprovalActorRelationship)theEObject;
 				T result = caseIfcApprovalActorRelationship(ifcApprovalActorRelationship);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_APPROVAL_PROPERTY_RELATIONSHIP:
-			{
+			case Ifc2x3Package.IFC_APPROVAL_PROPERTY_RELATIONSHIP: {
 				IfcApprovalPropertyRelationship ifcApprovalPropertyRelationship = (IfcApprovalPropertyRelationship)theEObject;
 				T result = caseIfcApprovalPropertyRelationship(ifcApprovalPropertyRelationship);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_APPROVAL_RELATIONSHIP:
-			{
+			case Ifc2x3Package.IFC_APPROVAL_RELATIONSHIP: {
 				IfcApprovalRelationship ifcApprovalRelationship = (IfcApprovalRelationship)theEObject;
 				T result = caseIfcApprovalRelationship(ifcApprovalRelationship);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_ARBITRARY_CLOSED_PROFILE_DEF:
-			{
+			case Ifc2x3Package.IFC_ARBITRARY_CLOSED_PROFILE_DEF: {
 				IfcArbitraryClosedProfileDef ifcArbitraryClosedProfileDef = (IfcArbitraryClosedProfileDef)theEObject;
 				T result = caseIfcArbitraryClosedProfileDef(ifcArbitraryClosedProfileDef);
 				if (result == null) result = caseIfcProfileDef(ifcArbitraryClosedProfileDef);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_ARBITRARY_OPEN_PROFILE_DEF:
-			{
+			case Ifc2x3Package.IFC_ARBITRARY_OPEN_PROFILE_DEF: {
 				IfcArbitraryOpenProfileDef ifcArbitraryOpenProfileDef = (IfcArbitraryOpenProfileDef)theEObject;
 				T result = caseIfcArbitraryOpenProfileDef(ifcArbitraryOpenProfileDef);
 				if (result == null) result = caseIfcProfileDef(ifcArbitraryOpenProfileDef);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_ARBITRARY_PROFILE_DEF_WITH_VOIDS:
-			{
+			case Ifc2x3Package.IFC_ARBITRARY_PROFILE_DEF_WITH_VOIDS: {
 				IfcArbitraryProfileDefWithVoids ifcArbitraryProfileDefWithVoids = (IfcArbitraryProfileDefWithVoids)theEObject;
 				T result = caseIfcArbitraryProfileDefWithVoids(ifcArbitraryProfileDefWithVoids);
 				if (result == null) result = caseIfcArbitraryClosedProfileDef(ifcArbitraryProfileDefWithVoids);
@@ -1429,8 +1289,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_ASSET:
-			{
+			case Ifc2x3Package.IFC_ASSET: {
 				IfcAsset ifcAsset = (IfcAsset)theEObject;
 				T result = caseIfcAsset(ifcAsset);
 				if (result == null) result = caseIfcGroup(ifcAsset);
@@ -1440,8 +1299,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_ASYMMETRIC_ISHAPE_PROFILE_DEF:
-			{
+			case Ifc2x3Package.IFC_ASYMMETRIC_ISHAPE_PROFILE_DEF: {
 				IfcAsymmetricIShapeProfileDef ifcAsymmetricIShapeProfileDef = (IfcAsymmetricIShapeProfileDef)theEObject;
 				T result = caseIfcAsymmetricIShapeProfileDef(ifcAsymmetricIShapeProfileDef);
 				if (result == null) result = caseIfcIShapeProfileDef(ifcAsymmetricIShapeProfileDef);
@@ -1450,8 +1308,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_AXIS1_PLACEMENT:
-			{
+			case Ifc2x3Package.IFC_AXIS1_PLACEMENT: {
 				IfcAxis1Placement ifcAxis1Placement = (IfcAxis1Placement)theEObject;
 				T result = caseIfcAxis1Placement(ifcAxis1Placement);
 				if (result == null) result = caseIfcPlacement(ifcAxis1Placement);
@@ -1461,8 +1318,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_AXIS2_PLACEMENT2_D:
-			{
+			case Ifc2x3Package.IFC_AXIS2_PLACEMENT2_D: {
 				IfcAxis2Placement2D ifcAxis2Placement2D = (IfcAxis2Placement2D)theEObject;
 				T result = caseIfcAxis2Placement2D(ifcAxis2Placement2D);
 				if (result == null) result = caseIfcPlacement(ifcAxis2Placement2D);
@@ -1473,8 +1329,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_AXIS2_PLACEMENT3_D:
-			{
+			case Ifc2x3Package.IFC_AXIS2_PLACEMENT3_D: {
 				IfcAxis2Placement3D ifcAxis2Placement3D = (IfcAxis2Placement3D)theEObject;
 				T result = caseIfcAxis2Placement3D(ifcAxis2Placement3D);
 				if (result == null) result = caseIfcPlacement(ifcAxis2Placement3D);
@@ -1485,8 +1340,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_BSPLINE_CURVE:
-			{
+			case Ifc2x3Package.IFC_BSPLINE_CURVE: {
 				IfcBSplineCurve ifcBSplineCurve = (IfcBSplineCurve)theEObject;
 				T result = caseIfcBSplineCurve(ifcBSplineCurve);
 				if (result == null) result = caseIfcBoundedCurve(ifcBSplineCurve);
@@ -1499,8 +1353,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_BEAM:
-			{
+			case Ifc2x3Package.IFC_BEAM: {
 				IfcBeam ifcBeam = (IfcBeam)theEObject;
 				T result = caseIfcBeam(ifcBeam);
 				if (result == null) result = caseIfcBuildingElement(ifcBeam);
@@ -1513,8 +1366,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_BEAM_TYPE:
-			{
+			case Ifc2x3Package.IFC_BEAM_TYPE: {
 				IfcBeamType ifcBeamType = (IfcBeamType)theEObject;
 				T result = caseIfcBeamType(ifcBeamType);
 				if (result == null) result = caseIfcBuildingElementType(ifcBeamType);
@@ -1526,8 +1378,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_BEZIER_CURVE:
-			{
+			case Ifc2x3Package.IFC_BEZIER_CURVE: {
 				IfcBezierCurve ifcBezierCurve = (IfcBezierCurve)theEObject;
 				T result = caseIfcBezierCurve(ifcBezierCurve);
 				if (result == null) result = caseIfcBSplineCurve(ifcBezierCurve);
@@ -1541,16 +1392,14 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_BLOB_TEXTURE:
-			{
+			case Ifc2x3Package.IFC_BLOB_TEXTURE: {
 				IfcBlobTexture ifcBlobTexture = (IfcBlobTexture)theEObject;
 				T result = caseIfcBlobTexture(ifcBlobTexture);
 				if (result == null) result = caseIfcSurfaceTexture(ifcBlobTexture);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_BLOCK:
-			{
+			case Ifc2x3Package.IFC_BLOCK: {
 				IfcBlock ifcBlock = (IfcBlock)theEObject;
 				T result = caseIfcBlock(ifcBlock);
 				if (result == null) result = caseIfcCsgPrimitive3D(ifcBlock);
@@ -1562,8 +1411,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_BOILER_TYPE:
-			{
+			case Ifc2x3Package.IFC_BOILER_TYPE: {
 				IfcBoilerType ifcBoilerType = (IfcBoilerType)theEObject;
 				T result = caseIfcBoilerType(ifcBoilerType);
 				if (result == null) result = caseIfcEnergyConversionDeviceType(ifcBoilerType);
@@ -1577,8 +1425,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_BOOLEAN_CLIPPING_RESULT:
-			{
+			case Ifc2x3Package.IFC_BOOLEAN_CLIPPING_RESULT: {
 				IfcBooleanClippingResult ifcBooleanClippingResult = (IfcBooleanClippingResult)theEObject;
 				T result = caseIfcBooleanClippingResult(ifcBooleanClippingResult);
 				if (result == null) result = caseIfcBooleanResult(ifcBooleanClippingResult);
@@ -1590,8 +1437,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_BOOLEAN_RESULT:
-			{
+			case Ifc2x3Package.IFC_BOOLEAN_RESULT: {
 				IfcBooleanResult ifcBooleanResult = (IfcBooleanResult)theEObject;
 				T result = caseIfcBooleanResult(ifcBooleanResult);
 				if (result == null) result = caseIfcGeometricRepresentationItem(ifcBooleanResult);
@@ -1602,39 +1448,34 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_BOUNDARY_CONDITION:
-			{
+			case Ifc2x3Package.IFC_BOUNDARY_CONDITION: {
 				IfcBoundaryCondition ifcBoundaryCondition = (IfcBoundaryCondition)theEObject;
 				T result = caseIfcBoundaryCondition(ifcBoundaryCondition);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_BOUNDARY_EDGE_CONDITION:
-			{
+			case Ifc2x3Package.IFC_BOUNDARY_EDGE_CONDITION: {
 				IfcBoundaryEdgeCondition ifcBoundaryEdgeCondition = (IfcBoundaryEdgeCondition)theEObject;
 				T result = caseIfcBoundaryEdgeCondition(ifcBoundaryEdgeCondition);
 				if (result == null) result = caseIfcBoundaryCondition(ifcBoundaryEdgeCondition);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_BOUNDARY_FACE_CONDITION:
-			{
+			case Ifc2x3Package.IFC_BOUNDARY_FACE_CONDITION: {
 				IfcBoundaryFaceCondition ifcBoundaryFaceCondition = (IfcBoundaryFaceCondition)theEObject;
 				T result = caseIfcBoundaryFaceCondition(ifcBoundaryFaceCondition);
 				if (result == null) result = caseIfcBoundaryCondition(ifcBoundaryFaceCondition);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_BOUNDARY_NODE_CONDITION:
-			{
+			case Ifc2x3Package.IFC_BOUNDARY_NODE_CONDITION: {
 				IfcBoundaryNodeCondition ifcBoundaryNodeCondition = (IfcBoundaryNodeCondition)theEObject;
 				T result = caseIfcBoundaryNodeCondition(ifcBoundaryNodeCondition);
 				if (result == null) result = caseIfcBoundaryCondition(ifcBoundaryNodeCondition);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_BOUNDARY_NODE_CONDITION_WARPING:
-			{
+			case Ifc2x3Package.IFC_BOUNDARY_NODE_CONDITION_WARPING: {
 				IfcBoundaryNodeConditionWarping ifcBoundaryNodeConditionWarping = (IfcBoundaryNodeConditionWarping)theEObject;
 				T result = caseIfcBoundaryNodeConditionWarping(ifcBoundaryNodeConditionWarping);
 				if (result == null) result = caseIfcBoundaryNodeCondition(ifcBoundaryNodeConditionWarping);
@@ -1642,8 +1483,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_BOUNDED_CURVE:
-			{
+			case Ifc2x3Package.IFC_BOUNDED_CURVE: {
 				IfcBoundedCurve ifcBoundedCurve = (IfcBoundedCurve)theEObject;
 				T result = caseIfcBoundedCurve(ifcBoundedCurve);
 				if (result == null) result = caseIfcCurve(ifcBoundedCurve);
@@ -1655,8 +1495,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_BOUNDED_SURFACE:
-			{
+			case Ifc2x3Package.IFC_BOUNDED_SURFACE: {
 				IfcBoundedSurface ifcBoundedSurface = (IfcBoundedSurface)theEObject;
 				T result = caseIfcBoundedSurface(ifcBoundedSurface);
 				if (result == null) result = caseIfcSurface(ifcBoundedSurface);
@@ -1668,8 +1507,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_BOUNDING_BOX:
-			{
+			case Ifc2x3Package.IFC_BOUNDING_BOX: {
 				IfcBoundingBox ifcBoundingBox = (IfcBoundingBox)theEObject;
 				T result = caseIfcBoundingBox(ifcBoundingBox);
 				if (result == null) result = caseIfcGeometricRepresentationItem(ifcBoundingBox);
@@ -1678,8 +1516,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_BOXED_HALF_SPACE:
-			{
+			case Ifc2x3Package.IFC_BOXED_HALF_SPACE: {
 				IfcBoxedHalfSpace ifcBoxedHalfSpace = (IfcBoxedHalfSpace)theEObject;
 				T result = caseIfcBoxedHalfSpace(ifcBoxedHalfSpace);
 				if (result == null) result = caseIfcHalfSpaceSolid(ifcBoxedHalfSpace);
@@ -1690,8 +1527,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_BUILDING:
-			{
+			case Ifc2x3Package.IFC_BUILDING: {
 				IfcBuilding ifcBuilding = (IfcBuilding)theEObject;
 				T result = caseIfcBuilding(ifcBuilding);
 				if (result == null) result = caseIfcSpatialStructureElement(ifcBuilding);
@@ -1702,8 +1538,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_BUILDING_ELEMENT:
-			{
+			case Ifc2x3Package.IFC_BUILDING_ELEMENT: {
 				IfcBuildingElement ifcBuildingElement = (IfcBuildingElement)theEObject;
 				T result = caseIfcBuildingElement(ifcBuildingElement);
 				if (result == null) result = caseIfcElement(ifcBuildingElement);
@@ -1715,8 +1550,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_BUILDING_ELEMENT_COMPONENT:
-			{
+			case Ifc2x3Package.IFC_BUILDING_ELEMENT_COMPONENT: {
 				IfcBuildingElementComponent ifcBuildingElementComponent = (IfcBuildingElementComponent)theEObject;
 				T result = caseIfcBuildingElementComponent(ifcBuildingElementComponent);
 				if (result == null) result = caseIfcBuildingElement(ifcBuildingElementComponent);
@@ -1729,8 +1563,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_BUILDING_ELEMENT_PART:
-			{
+			case Ifc2x3Package.IFC_BUILDING_ELEMENT_PART: {
 				IfcBuildingElementPart ifcBuildingElementPart = (IfcBuildingElementPart)theEObject;
 				T result = caseIfcBuildingElementPart(ifcBuildingElementPart);
 				if (result == null) result = caseIfcBuildingElementComponent(ifcBuildingElementPart);
@@ -1744,8 +1577,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_BUILDING_ELEMENT_PROXY:
-			{
+			case Ifc2x3Package.IFC_BUILDING_ELEMENT_PROXY: {
 				IfcBuildingElementProxy ifcBuildingElementProxy = (IfcBuildingElementProxy)theEObject;
 				T result = caseIfcBuildingElementProxy(ifcBuildingElementProxy);
 				if (result == null) result = caseIfcBuildingElement(ifcBuildingElementProxy);
@@ -1758,8 +1590,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_BUILDING_ELEMENT_PROXY_TYPE:
-			{
+			case Ifc2x3Package.IFC_BUILDING_ELEMENT_PROXY_TYPE: {
 				IfcBuildingElementProxyType ifcBuildingElementProxyType = (IfcBuildingElementProxyType)theEObject;
 				T result = caseIfcBuildingElementProxyType(ifcBuildingElementProxyType);
 				if (result == null) result = caseIfcBuildingElementType(ifcBuildingElementProxyType);
@@ -1771,8 +1602,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_BUILDING_ELEMENT_TYPE:
-			{
+			case Ifc2x3Package.IFC_BUILDING_ELEMENT_TYPE: {
 				IfcBuildingElementType ifcBuildingElementType = (IfcBuildingElementType)theEObject;
 				T result = caseIfcBuildingElementType(ifcBuildingElementType);
 				if (result == null) result = caseIfcElementType(ifcBuildingElementType);
@@ -1783,8 +1613,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_BUILDING_STOREY:
-			{
+			case Ifc2x3Package.IFC_BUILDING_STOREY: {
 				IfcBuildingStorey ifcBuildingStorey = (IfcBuildingStorey)theEObject;
 				T result = caseIfcBuildingStorey(ifcBuildingStorey);
 				if (result == null) result = caseIfcSpatialStructureElement(ifcBuildingStorey);
@@ -1795,8 +1624,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_CSHAPE_PROFILE_DEF:
-			{
+			case Ifc2x3Package.IFC_CSHAPE_PROFILE_DEF: {
 				IfcCShapeProfileDef ifcCShapeProfileDef = (IfcCShapeProfileDef)theEObject;
 				T result = caseIfcCShapeProfileDef(ifcCShapeProfileDef);
 				if (result == null) result = caseIfcParameterizedProfileDef(ifcCShapeProfileDef);
@@ -1804,8 +1632,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_CABLE_CARRIER_FITTING_TYPE:
-			{
+			case Ifc2x3Package.IFC_CABLE_CARRIER_FITTING_TYPE: {
 				IfcCableCarrierFittingType ifcCableCarrierFittingType = (IfcCableCarrierFittingType)theEObject;
 				T result = caseIfcCableCarrierFittingType(ifcCableCarrierFittingType);
 				if (result == null) result = caseIfcFlowFittingType(ifcCableCarrierFittingType);
@@ -1819,8 +1646,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_CABLE_CARRIER_SEGMENT_TYPE:
-			{
+			case Ifc2x3Package.IFC_CABLE_CARRIER_SEGMENT_TYPE: {
 				IfcCableCarrierSegmentType ifcCableCarrierSegmentType = (IfcCableCarrierSegmentType)theEObject;
 				T result = caseIfcCableCarrierSegmentType(ifcCableCarrierSegmentType);
 				if (result == null) result = caseIfcFlowSegmentType(ifcCableCarrierSegmentType);
@@ -1834,8 +1660,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_CABLE_SEGMENT_TYPE:
-			{
+			case Ifc2x3Package.IFC_CABLE_SEGMENT_TYPE: {
 				IfcCableSegmentType ifcCableSegmentType = (IfcCableSegmentType)theEObject;
 				T result = caseIfcCableSegmentType(ifcCableSegmentType);
 				if (result == null) result = caseIfcFlowSegmentType(ifcCableSegmentType);
@@ -1849,8 +1674,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_CALENDAR_DATE:
-			{
+			case Ifc2x3Package.IFC_CALENDAR_DATE: {
 				IfcCalendarDate ifcCalendarDate = (IfcCalendarDate)theEObject;
 				T result = caseIfcCalendarDate(ifcCalendarDate);
 				if (result == null) result = caseIfcDateTimeSelect(ifcCalendarDate);
@@ -1859,8 +1683,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_CARTESIAN_POINT:
-			{
+			case Ifc2x3Package.IFC_CARTESIAN_POINT: {
 				IfcCartesianPoint ifcCartesianPoint = (IfcCartesianPoint)theEObject;
 				T result = caseIfcCartesianPoint(ifcCartesianPoint);
 				if (result == null) result = caseIfcPoint(ifcCartesianPoint);
@@ -1873,8 +1696,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_CARTESIAN_TRANSFORMATION_OPERATOR:
-			{
+			case Ifc2x3Package.IFC_CARTESIAN_TRANSFORMATION_OPERATOR: {
 				IfcCartesianTransformationOperator ifcCartesianTransformationOperator = (IfcCartesianTransformationOperator)theEObject;
 				T result = caseIfcCartesianTransformationOperator(ifcCartesianTransformationOperator);
 				if (result == null) result = caseIfcGeometricRepresentationItem(ifcCartesianTransformationOperator);
@@ -1883,8 +1705,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_CARTESIAN_TRANSFORMATION_OPERATOR2_D:
-			{
+			case Ifc2x3Package.IFC_CARTESIAN_TRANSFORMATION_OPERATOR2_D: {
 				IfcCartesianTransformationOperator2D ifcCartesianTransformationOperator2D = (IfcCartesianTransformationOperator2D)theEObject;
 				T result = caseIfcCartesianTransformationOperator2D(ifcCartesianTransformationOperator2D);
 				if (result == null) result = caseIfcCartesianTransformationOperator(ifcCartesianTransformationOperator2D);
@@ -1894,8 +1715,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_CARTESIAN_TRANSFORMATION_OPERATOR2_DNON_UNIFORM:
-			{
+			case Ifc2x3Package.IFC_CARTESIAN_TRANSFORMATION_OPERATOR2_DNON_UNIFORM: {
 				IfcCartesianTransformationOperator2DnonUniform ifcCartesianTransformationOperator2DnonUniform = (IfcCartesianTransformationOperator2DnonUniform)theEObject;
 				T result = caseIfcCartesianTransformationOperator2DnonUniform(ifcCartesianTransformationOperator2DnonUniform);
 				if (result == null) result = caseIfcCartesianTransformationOperator2D(ifcCartesianTransformationOperator2DnonUniform);
@@ -1906,8 +1726,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_CARTESIAN_TRANSFORMATION_OPERATOR3_D:
-			{
+			case Ifc2x3Package.IFC_CARTESIAN_TRANSFORMATION_OPERATOR3_D: {
 				IfcCartesianTransformationOperator3D ifcCartesianTransformationOperator3D = (IfcCartesianTransformationOperator3D)theEObject;
 				T result = caseIfcCartesianTransformationOperator3D(ifcCartesianTransformationOperator3D);
 				if (result == null) result = caseIfcCartesianTransformationOperator(ifcCartesianTransformationOperator3D);
@@ -1917,8 +1736,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_CARTESIAN_TRANSFORMATION_OPERATOR3_DNON_UNIFORM:
-			{
+			case Ifc2x3Package.IFC_CARTESIAN_TRANSFORMATION_OPERATOR3_DNON_UNIFORM: {
 				IfcCartesianTransformationOperator3DnonUniform ifcCartesianTransformationOperator3DnonUniform = (IfcCartesianTransformationOperator3DnonUniform)theEObject;
 				T result = caseIfcCartesianTransformationOperator3DnonUniform(ifcCartesianTransformationOperator3DnonUniform);
 				if (result == null) result = caseIfcCartesianTransformationOperator3D(ifcCartesianTransformationOperator3DnonUniform);
@@ -1929,8 +1747,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_CENTER_LINE_PROFILE_DEF:
-			{
+			case Ifc2x3Package.IFC_CENTER_LINE_PROFILE_DEF: {
 				IfcCenterLineProfileDef ifcCenterLineProfileDef = (IfcCenterLineProfileDef)theEObject;
 				T result = caseIfcCenterLineProfileDef(ifcCenterLineProfileDef);
 				if (result == null) result = caseIfcArbitraryOpenProfileDef(ifcCenterLineProfileDef);
@@ -1938,8 +1755,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_CHAMFER_EDGE_FEATURE:
-			{
+			case Ifc2x3Package.IFC_CHAMFER_EDGE_FEATURE: {
 				IfcChamferEdgeFeature ifcChamferEdgeFeature = (IfcChamferEdgeFeature)theEObject;
 				T result = caseIfcChamferEdgeFeature(ifcChamferEdgeFeature);
 				if (result == null) result = caseIfcEdgeFeature(ifcChamferEdgeFeature);
@@ -1954,8 +1770,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_CHILLER_TYPE:
-			{
+			case Ifc2x3Package.IFC_CHILLER_TYPE: {
 				IfcChillerType ifcChillerType = (IfcChillerType)theEObject;
 				T result = caseIfcChillerType(ifcChillerType);
 				if (result == null) result = caseIfcEnergyConversionDeviceType(ifcChillerType);
@@ -1969,8 +1784,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_CIRCLE:
-			{
+			case Ifc2x3Package.IFC_CIRCLE: {
 				IfcCircle ifcCircle = (IfcCircle)theEObject;
 				T result = caseIfcCircle(ifcCircle);
 				if (result == null) result = caseIfcConic(ifcCircle);
@@ -1982,8 +1796,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_CIRCLE_HOLLOW_PROFILE_DEF:
-			{
+			case Ifc2x3Package.IFC_CIRCLE_HOLLOW_PROFILE_DEF: {
 				IfcCircleHollowProfileDef ifcCircleHollowProfileDef = (IfcCircleHollowProfileDef)theEObject;
 				T result = caseIfcCircleHollowProfileDef(ifcCircleHollowProfileDef);
 				if (result == null) result = caseIfcCircleProfileDef(ifcCircleHollowProfileDef);
@@ -1992,8 +1805,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_CIRCLE_PROFILE_DEF:
-			{
+			case Ifc2x3Package.IFC_CIRCLE_PROFILE_DEF: {
 				IfcCircleProfileDef ifcCircleProfileDef = (IfcCircleProfileDef)theEObject;
 				T result = caseIfcCircleProfileDef(ifcCircleProfileDef);
 				if (result == null) result = caseIfcParameterizedProfileDef(ifcCircleProfileDef);
@@ -2001,44 +1813,38 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_CLASSIFICATION:
-			{
+			case Ifc2x3Package.IFC_CLASSIFICATION: {
 				IfcClassification ifcClassification = (IfcClassification)theEObject;
 				T result = caseIfcClassification(ifcClassification);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_CLASSIFICATION_ITEM:
-			{
+			case Ifc2x3Package.IFC_CLASSIFICATION_ITEM: {
 				IfcClassificationItem ifcClassificationItem = (IfcClassificationItem)theEObject;
 				T result = caseIfcClassificationItem(ifcClassificationItem);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_CLASSIFICATION_ITEM_RELATIONSHIP:
-			{
+			case Ifc2x3Package.IFC_CLASSIFICATION_ITEM_RELATIONSHIP: {
 				IfcClassificationItemRelationship ifcClassificationItemRelationship = (IfcClassificationItemRelationship)theEObject;
 				T result = caseIfcClassificationItemRelationship(ifcClassificationItemRelationship);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_CLASSIFICATION_NOTATION:
-			{
+			case Ifc2x3Package.IFC_CLASSIFICATION_NOTATION: {
 				IfcClassificationNotation ifcClassificationNotation = (IfcClassificationNotation)theEObject;
 				T result = caseIfcClassificationNotation(ifcClassificationNotation);
 				if (result == null) result = caseIfcClassificationNotationSelect(ifcClassificationNotation);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_CLASSIFICATION_NOTATION_FACET:
-			{
+			case Ifc2x3Package.IFC_CLASSIFICATION_NOTATION_FACET: {
 				IfcClassificationNotationFacet ifcClassificationNotationFacet = (IfcClassificationNotationFacet)theEObject;
 				T result = caseIfcClassificationNotationFacet(ifcClassificationNotationFacet);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_CLASSIFICATION_REFERENCE:
-			{
+			case Ifc2x3Package.IFC_CLASSIFICATION_REFERENCE: {
 				IfcClassificationReference ifcClassificationReference = (IfcClassificationReference)theEObject;
 				T result = caseIfcClassificationReference(ifcClassificationReference);
 				if (result == null) result = caseIfcExternalReference(ifcClassificationReference);
@@ -2048,8 +1854,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_CLOSED_SHELL:
-			{
+			case Ifc2x3Package.IFC_CLOSED_SHELL: {
 				IfcClosedShell ifcClosedShell = (IfcClosedShell)theEObject;
 				T result = caseIfcClosedShell(ifcClosedShell);
 				if (result == null) result = caseIfcConnectedFaceSet(ifcClosedShell);
@@ -2060,8 +1865,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_COIL_TYPE:
-			{
+			case Ifc2x3Package.IFC_COIL_TYPE: {
 				IfcCoilType ifcCoilType = (IfcCoilType)theEObject;
 				T result = caseIfcCoilType(ifcCoilType);
 				if (result == null) result = caseIfcEnergyConversionDeviceType(ifcCoilType);
@@ -2075,8 +1879,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_COLOUR_RGB:
-			{
+			case Ifc2x3Package.IFC_COLOUR_RGB: {
 				IfcColourRgb ifcColourRgb = (IfcColourRgb)theEObject;
 				T result = caseIfcColourRgb(ifcColourRgb);
 				if (result == null) result = caseIfcColourSpecification(ifcColourRgb);
@@ -2087,8 +1890,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_COLOUR_SPECIFICATION:
-			{
+			case Ifc2x3Package.IFC_COLOUR_SPECIFICATION: {
 				IfcColourSpecification ifcColourSpecification = (IfcColourSpecification)theEObject;
 				T result = caseIfcColourSpecification(ifcColourSpecification);
 				if (result == null) result = caseIfcColour(ifcColourSpecification);
@@ -2097,8 +1899,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_COLUMN:
-			{
+			case Ifc2x3Package.IFC_COLUMN: {
 				IfcColumn ifcColumn = (IfcColumn)theEObject;
 				T result = caseIfcColumn(ifcColumn);
 				if (result == null) result = caseIfcBuildingElement(ifcColumn);
@@ -2111,8 +1912,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_COLUMN_TYPE:
-			{
+			case Ifc2x3Package.IFC_COLUMN_TYPE: {
 				IfcColumnType ifcColumnType = (IfcColumnType)theEObject;
 				T result = caseIfcColumnType(ifcColumnType);
 				if (result == null) result = caseIfcBuildingElementType(ifcColumnType);
@@ -2124,16 +1924,14 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_COMPLEX_PROPERTY:
-			{
+			case Ifc2x3Package.IFC_COMPLEX_PROPERTY: {
 				IfcComplexProperty ifcComplexProperty = (IfcComplexProperty)theEObject;
 				T result = caseIfcComplexProperty(ifcComplexProperty);
 				if (result == null) result = caseIfcProperty(ifcComplexProperty);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_COMPOSITE_CURVE:
-			{
+			case Ifc2x3Package.IFC_COMPOSITE_CURVE: {
 				IfcCompositeCurve ifcCompositeCurve = (IfcCompositeCurve)theEObject;
 				T result = caseIfcCompositeCurve(ifcCompositeCurve);
 				if (result == null) result = caseIfcBoundedCurve(ifcCompositeCurve);
@@ -2146,8 +1944,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_COMPOSITE_CURVE_SEGMENT:
-			{
+			case Ifc2x3Package.IFC_COMPOSITE_CURVE_SEGMENT: {
 				IfcCompositeCurveSegment ifcCompositeCurveSegment = (IfcCompositeCurveSegment)theEObject;
 				T result = caseIfcCompositeCurveSegment(ifcCompositeCurveSegment);
 				if (result == null) result = caseIfcGeometricRepresentationItem(ifcCompositeCurveSegment);
@@ -2156,16 +1953,14 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_COMPOSITE_PROFILE_DEF:
-			{
+			case Ifc2x3Package.IFC_COMPOSITE_PROFILE_DEF: {
 				IfcCompositeProfileDef ifcCompositeProfileDef = (IfcCompositeProfileDef)theEObject;
 				T result = caseIfcCompositeProfileDef(ifcCompositeProfileDef);
 				if (result == null) result = caseIfcProfileDef(ifcCompositeProfileDef);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_COMPRESSOR_TYPE:
-			{
+			case Ifc2x3Package.IFC_COMPRESSOR_TYPE: {
 				IfcCompressorType ifcCompressorType = (IfcCompressorType)theEObject;
 				T result = caseIfcCompressorType(ifcCompressorType);
 				if (result == null) result = caseIfcFlowMovingDeviceType(ifcCompressorType);
@@ -2179,8 +1974,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_CONDENSER_TYPE:
-			{
+			case Ifc2x3Package.IFC_CONDENSER_TYPE: {
 				IfcCondenserType ifcCondenserType = (IfcCondenserType)theEObject;
 				T result = caseIfcCondenserType(ifcCondenserType);
 				if (result == null) result = caseIfcEnergyConversionDeviceType(ifcCondenserType);
@@ -2194,8 +1988,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_CONDITION:
-			{
+			case Ifc2x3Package.IFC_CONDITION: {
 				IfcCondition ifcCondition = (IfcCondition)theEObject;
 				T result = caseIfcCondition(ifcCondition);
 				if (result == null) result = caseIfcGroup(ifcCondition);
@@ -2205,8 +1998,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_CONDITION_CRITERION:
-			{
+			case Ifc2x3Package.IFC_CONDITION_CRITERION: {
 				IfcConditionCriterion ifcConditionCriterion = (IfcConditionCriterion)theEObject;
 				T result = caseIfcConditionCriterion(ifcConditionCriterion);
 				if (result == null) result = caseIfcControl(ifcConditionCriterion);
@@ -2216,8 +2008,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_CONIC:
-			{
+			case Ifc2x3Package.IFC_CONIC: {
 				IfcConic ifcConic = (IfcConic)theEObject;
 				T result = caseIfcConic(ifcConic);
 				if (result == null) result = caseIfcCurve(ifcConic);
@@ -2228,8 +2019,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_CONNECTED_FACE_SET:
-			{
+			case Ifc2x3Package.IFC_CONNECTED_FACE_SET: {
 				IfcConnectedFaceSet ifcConnectedFaceSet = (IfcConnectedFaceSet)theEObject;
 				T result = caseIfcConnectedFaceSet(ifcConnectedFaceSet);
 				if (result == null) result = caseIfcTopologicalRepresentationItem(ifcConnectedFaceSet);
@@ -2238,23 +2028,20 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_CONNECTION_CURVE_GEOMETRY:
-			{
+			case Ifc2x3Package.IFC_CONNECTION_CURVE_GEOMETRY: {
 				IfcConnectionCurveGeometry ifcConnectionCurveGeometry = (IfcConnectionCurveGeometry)theEObject;
 				T result = caseIfcConnectionCurveGeometry(ifcConnectionCurveGeometry);
 				if (result == null) result = caseIfcConnectionGeometry(ifcConnectionCurveGeometry);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_CONNECTION_GEOMETRY:
-			{
+			case Ifc2x3Package.IFC_CONNECTION_GEOMETRY: {
 				IfcConnectionGeometry ifcConnectionGeometry = (IfcConnectionGeometry)theEObject;
 				T result = caseIfcConnectionGeometry(ifcConnectionGeometry);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_CONNECTION_POINT_ECCENTRICITY:
-			{
+			case Ifc2x3Package.IFC_CONNECTION_POINT_ECCENTRICITY: {
 				IfcConnectionPointEccentricity ifcConnectionPointEccentricity = (IfcConnectionPointEccentricity)theEObject;
 				T result = caseIfcConnectionPointEccentricity(ifcConnectionPointEccentricity);
 				if (result == null) result = caseIfcConnectionPointGeometry(ifcConnectionPointEccentricity);
@@ -2262,60 +2049,52 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_CONNECTION_POINT_GEOMETRY:
-			{
+			case Ifc2x3Package.IFC_CONNECTION_POINT_GEOMETRY: {
 				IfcConnectionPointGeometry ifcConnectionPointGeometry = (IfcConnectionPointGeometry)theEObject;
 				T result = caseIfcConnectionPointGeometry(ifcConnectionPointGeometry);
 				if (result == null) result = caseIfcConnectionGeometry(ifcConnectionPointGeometry);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_CONNECTION_PORT_GEOMETRY:
-			{
+			case Ifc2x3Package.IFC_CONNECTION_PORT_GEOMETRY: {
 				IfcConnectionPortGeometry ifcConnectionPortGeometry = (IfcConnectionPortGeometry)theEObject;
 				T result = caseIfcConnectionPortGeometry(ifcConnectionPortGeometry);
 				if (result == null) result = caseIfcConnectionGeometry(ifcConnectionPortGeometry);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_CONNECTION_SURFACE_GEOMETRY:
-			{
+			case Ifc2x3Package.IFC_CONNECTION_SURFACE_GEOMETRY: {
 				IfcConnectionSurfaceGeometry ifcConnectionSurfaceGeometry = (IfcConnectionSurfaceGeometry)theEObject;
 				T result = caseIfcConnectionSurfaceGeometry(ifcConnectionSurfaceGeometry);
 				if (result == null) result = caseIfcConnectionGeometry(ifcConnectionSurfaceGeometry);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_CONSTRAINT:
-			{
+			case Ifc2x3Package.IFC_CONSTRAINT: {
 				IfcConstraint ifcConstraint = (IfcConstraint)theEObject;
 				T result = caseIfcConstraint(ifcConstraint);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_CONSTRAINT_AGGREGATION_RELATIONSHIP:
-			{
+			case Ifc2x3Package.IFC_CONSTRAINT_AGGREGATION_RELATIONSHIP: {
 				IfcConstraintAggregationRelationship ifcConstraintAggregationRelationship = (IfcConstraintAggregationRelationship)theEObject;
 				T result = caseIfcConstraintAggregationRelationship(ifcConstraintAggregationRelationship);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_CONSTRAINT_CLASSIFICATION_RELATIONSHIP:
-			{
+			case Ifc2x3Package.IFC_CONSTRAINT_CLASSIFICATION_RELATIONSHIP: {
 				IfcConstraintClassificationRelationship ifcConstraintClassificationRelationship = (IfcConstraintClassificationRelationship)theEObject;
 				T result = caseIfcConstraintClassificationRelationship(ifcConstraintClassificationRelationship);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_CONSTRAINT_RELATIONSHIP:
-			{
+			case Ifc2x3Package.IFC_CONSTRAINT_RELATIONSHIP: {
 				IfcConstraintRelationship ifcConstraintRelationship = (IfcConstraintRelationship)theEObject;
 				T result = caseIfcConstraintRelationship(ifcConstraintRelationship);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_CONSTRUCTION_EQUIPMENT_RESOURCE:
-			{
+			case Ifc2x3Package.IFC_CONSTRUCTION_EQUIPMENT_RESOURCE: {
 				IfcConstructionEquipmentResource ifcConstructionEquipmentResource = (IfcConstructionEquipmentResource)theEObject;
 				T result = caseIfcConstructionEquipmentResource(ifcConstructionEquipmentResource);
 				if (result == null) result = caseIfcConstructionResource(ifcConstructionEquipmentResource);
@@ -2326,8 +2105,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_CONSTRUCTION_MATERIAL_RESOURCE:
-			{
+			case Ifc2x3Package.IFC_CONSTRUCTION_MATERIAL_RESOURCE: {
 				IfcConstructionMaterialResource ifcConstructionMaterialResource = (IfcConstructionMaterialResource)theEObject;
 				T result = caseIfcConstructionMaterialResource(ifcConstructionMaterialResource);
 				if (result == null) result = caseIfcConstructionResource(ifcConstructionMaterialResource);
@@ -2338,8 +2116,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_CONSTRUCTION_PRODUCT_RESOURCE:
-			{
+			case Ifc2x3Package.IFC_CONSTRUCTION_PRODUCT_RESOURCE: {
 				IfcConstructionProductResource ifcConstructionProductResource = (IfcConstructionProductResource)theEObject;
 				T result = caseIfcConstructionProductResource(ifcConstructionProductResource);
 				if (result == null) result = caseIfcConstructionResource(ifcConstructionProductResource);
@@ -2350,8 +2127,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_CONSTRUCTION_RESOURCE:
-			{
+			case Ifc2x3Package.IFC_CONSTRUCTION_RESOURCE: {
 				IfcConstructionResource ifcConstructionResource = (IfcConstructionResource)theEObject;
 				T result = caseIfcConstructionResource(ifcConstructionResource);
 				if (result == null) result = caseIfcResource(ifcConstructionResource);
@@ -2361,8 +2137,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_CONTEXT_DEPENDENT_UNIT:
-			{
+			case Ifc2x3Package.IFC_CONTEXT_DEPENDENT_UNIT: {
 				IfcContextDependentUnit ifcContextDependentUnit = (IfcContextDependentUnit)theEObject;
 				T result = caseIfcContextDependentUnit(ifcContextDependentUnit);
 				if (result == null) result = caseIfcNamedUnit(ifcContextDependentUnit);
@@ -2370,8 +2145,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_CONTROL:
-			{
+			case Ifc2x3Package.IFC_CONTROL: {
 				IfcControl ifcControl = (IfcControl)theEObject;
 				T result = caseIfcControl(ifcControl);
 				if (result == null) result = caseIfcObject(ifcControl);
@@ -2380,8 +2154,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_CONTROLLER_TYPE:
-			{
+			case Ifc2x3Package.IFC_CONTROLLER_TYPE: {
 				IfcControllerType ifcControllerType = (IfcControllerType)theEObject;
 				T result = caseIfcControllerType(ifcControllerType);
 				if (result == null) result = caseIfcDistributionControlElementType(ifcControllerType);
@@ -2394,8 +2167,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_CONVERSION_BASED_UNIT:
-			{
+			case Ifc2x3Package.IFC_CONVERSION_BASED_UNIT: {
 				IfcConversionBasedUnit ifcConversionBasedUnit = (IfcConversionBasedUnit)theEObject;
 				T result = caseIfcConversionBasedUnit(ifcConversionBasedUnit);
 				if (result == null) result = caseIfcNamedUnit(ifcConversionBasedUnit);
@@ -2403,8 +2175,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_COOLED_BEAM_TYPE:
-			{
+			case Ifc2x3Package.IFC_COOLED_BEAM_TYPE: {
 				IfcCooledBeamType ifcCooledBeamType = (IfcCooledBeamType)theEObject;
 				T result = caseIfcCooledBeamType(ifcCooledBeamType);
 				if (result == null) result = caseIfcEnergyConversionDeviceType(ifcCooledBeamType);
@@ -2418,8 +2189,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_COOLING_TOWER_TYPE:
-			{
+			case Ifc2x3Package.IFC_COOLING_TOWER_TYPE: {
 				IfcCoolingTowerType ifcCoolingTowerType = (IfcCoolingTowerType)theEObject;
 				T result = caseIfcCoolingTowerType(ifcCoolingTowerType);
 				if (result == null) result = caseIfcEnergyConversionDeviceType(ifcCoolingTowerType);
@@ -2433,15 +2203,13 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_COORDINATED_UNIVERSAL_TIME_OFFSET:
-			{
+			case Ifc2x3Package.IFC_COORDINATED_UNIVERSAL_TIME_OFFSET: {
 				IfcCoordinatedUniversalTimeOffset ifcCoordinatedUniversalTimeOffset = (IfcCoordinatedUniversalTimeOffset)theEObject;
 				T result = caseIfcCoordinatedUniversalTimeOffset(ifcCoordinatedUniversalTimeOffset);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_COST_ITEM:
-			{
+			case Ifc2x3Package.IFC_COST_ITEM: {
 				IfcCostItem ifcCostItem = (IfcCostItem)theEObject;
 				T result = caseIfcCostItem(ifcCostItem);
 				if (result == null) result = caseIfcControl(ifcCostItem);
@@ -2451,8 +2219,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_COST_SCHEDULE:
-			{
+			case Ifc2x3Package.IFC_COST_SCHEDULE: {
 				IfcCostSchedule ifcCostSchedule = (IfcCostSchedule)theEObject;
 				T result = caseIfcCostSchedule(ifcCostSchedule);
 				if (result == null) result = caseIfcControl(ifcCostSchedule);
@@ -2462,8 +2229,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_COST_VALUE:
-			{
+			case Ifc2x3Package.IFC_COST_VALUE: {
 				IfcCostValue ifcCostValue = (IfcCostValue)theEObject;
 				T result = caseIfcCostValue(ifcCostValue);
 				if (result == null) result = caseIfcAppliedValue(ifcCostValue);
@@ -2472,8 +2238,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_COVERING:
-			{
+			case Ifc2x3Package.IFC_COVERING: {
 				IfcCovering ifcCovering = (IfcCovering)theEObject;
 				T result = caseIfcCovering(ifcCovering);
 				if (result == null) result = caseIfcBuildingElement(ifcCovering);
@@ -2486,8 +2251,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_COVERING_TYPE:
-			{
+			case Ifc2x3Package.IFC_COVERING_TYPE: {
 				IfcCoveringType ifcCoveringType = (IfcCoveringType)theEObject;
 				T result = caseIfcCoveringType(ifcCoveringType);
 				if (result == null) result = caseIfcBuildingElementType(ifcCoveringType);
@@ -2499,8 +2263,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF:
-			{
+			case Ifc2x3Package.IFC_CRANE_RAIL_ASHAPE_PROFILE_DEF: {
 				IfcCraneRailAShapeProfileDef ifcCraneRailAShapeProfileDef = (IfcCraneRailAShapeProfileDef)theEObject;
 				T result = caseIfcCraneRailAShapeProfileDef(ifcCraneRailAShapeProfileDef);
 				if (result == null) result = caseIfcParameterizedProfileDef(ifcCraneRailAShapeProfileDef);
@@ -2508,8 +2271,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_CRANE_RAIL_FSHAPE_PROFILE_DEF:
-			{
+			case Ifc2x3Package.IFC_CRANE_RAIL_FSHAPE_PROFILE_DEF: {
 				IfcCraneRailFShapeProfileDef ifcCraneRailFShapeProfileDef = (IfcCraneRailFShapeProfileDef)theEObject;
 				T result = caseIfcCraneRailFShapeProfileDef(ifcCraneRailFShapeProfileDef);
 				if (result == null) result = caseIfcParameterizedProfileDef(ifcCraneRailFShapeProfileDef);
@@ -2517,8 +2279,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_CREW_RESOURCE:
-			{
+			case Ifc2x3Package.IFC_CREW_RESOURCE: {
 				IfcCrewResource ifcCrewResource = (IfcCrewResource)theEObject;
 				T result = caseIfcCrewResource(ifcCrewResource);
 				if (result == null) result = caseIfcConstructionResource(ifcCrewResource);
@@ -2529,8 +2290,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_CSG_PRIMITIVE3_D:
-			{
+			case Ifc2x3Package.IFC_CSG_PRIMITIVE3_D: {
 				IfcCsgPrimitive3D ifcCsgPrimitive3D = (IfcCsgPrimitive3D)theEObject;
 				T result = caseIfcCsgPrimitive3D(ifcCsgPrimitive3D);
 				if (result == null) result = caseIfcGeometricRepresentationItem(ifcCsgPrimitive3D);
@@ -2541,8 +2301,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_CSG_SOLID:
-			{
+			case Ifc2x3Package.IFC_CSG_SOLID: {
 				IfcCsgSolid ifcCsgSolid = (IfcCsgSolid)theEObject;
 				T result = caseIfcCsgSolid(ifcCsgSolid);
 				if (result == null) result = caseIfcSolidModel(ifcCsgSolid);
@@ -2553,15 +2312,13 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_CURRENCY_RELATIONSHIP:
-			{
+			case Ifc2x3Package.IFC_CURRENCY_RELATIONSHIP: {
 				IfcCurrencyRelationship ifcCurrencyRelationship = (IfcCurrencyRelationship)theEObject;
 				T result = caseIfcCurrencyRelationship(ifcCurrencyRelationship);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_CURTAIN_WALL:
-			{
+			case Ifc2x3Package.IFC_CURTAIN_WALL: {
 				IfcCurtainWall ifcCurtainWall = (IfcCurtainWall)theEObject;
 				T result = caseIfcCurtainWall(ifcCurtainWall);
 				if (result == null) result = caseIfcBuildingElement(ifcCurtainWall);
@@ -2574,8 +2331,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_CURTAIN_WALL_TYPE:
-			{
+			case Ifc2x3Package.IFC_CURTAIN_WALL_TYPE: {
 				IfcCurtainWallType ifcCurtainWallType = (IfcCurtainWallType)theEObject;
 				T result = caseIfcCurtainWallType(ifcCurtainWallType);
 				if (result == null) result = caseIfcBuildingElementType(ifcCurtainWallType);
@@ -2587,8 +2343,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_CURVE:
-			{
+			case Ifc2x3Package.IFC_CURVE: {
 				IfcCurve ifcCurve = (IfcCurve)theEObject;
 				T result = caseIfcCurve(ifcCurve);
 				if (result == null) result = caseIfcGeometricRepresentationItem(ifcCurve);
@@ -2598,8 +2353,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_CURVE_BOUNDED_PLANE:
-			{
+			case Ifc2x3Package.IFC_CURVE_BOUNDED_PLANE: {
 				IfcCurveBoundedPlane ifcCurveBoundedPlane = (IfcCurveBoundedPlane)theEObject;
 				T result = caseIfcCurveBoundedPlane(ifcCurveBoundedPlane);
 				if (result == null) result = caseIfcBoundedSurface(ifcCurveBoundedPlane);
@@ -2612,8 +2366,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_CURVE_STYLE:
-			{
+			case Ifc2x3Package.IFC_CURVE_STYLE: {
 				IfcCurveStyle ifcCurveStyle = (IfcCurveStyle)theEObject;
 				T result = caseIfcCurveStyle(ifcCurveStyle);
 				if (result == null) result = caseIfcPresentationStyle(ifcCurveStyle);
@@ -2621,8 +2374,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_CURVE_STYLE_FONT:
-			{
+			case Ifc2x3Package.IFC_CURVE_STYLE_FONT: {
 				IfcCurveStyleFont ifcCurveStyleFont = (IfcCurveStyleFont)theEObject;
 				T result = caseIfcCurveStyleFont(ifcCurveStyleFont);
 				if (result == null) result = caseIfcCurveStyleFontSelect(ifcCurveStyleFont);
@@ -2630,23 +2382,20 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_CURVE_STYLE_FONT_AND_SCALING:
-			{
+			case Ifc2x3Package.IFC_CURVE_STYLE_FONT_AND_SCALING: {
 				IfcCurveStyleFontAndScaling ifcCurveStyleFontAndScaling = (IfcCurveStyleFontAndScaling)theEObject;
 				T result = caseIfcCurveStyleFontAndScaling(ifcCurveStyleFontAndScaling);
 				if (result == null) result = caseIfcCurveFontOrScaledCurveFontSelect(ifcCurveStyleFontAndScaling);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_CURVE_STYLE_FONT_PATTERN:
-			{
+			case Ifc2x3Package.IFC_CURVE_STYLE_FONT_PATTERN: {
 				IfcCurveStyleFontPattern ifcCurveStyleFontPattern = (IfcCurveStyleFontPattern)theEObject;
 				T result = caseIfcCurveStyleFontPattern(ifcCurveStyleFontPattern);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_DAMPER_TYPE:
-			{
+			case Ifc2x3Package.IFC_DAMPER_TYPE: {
 				IfcDamperType ifcDamperType = (IfcDamperType)theEObject;
 				T result = caseIfcDamperType(ifcDamperType);
 				if (result == null) result = caseIfcFlowControllerType(ifcDamperType);
@@ -2660,8 +2409,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_DATE_AND_TIME:
-			{
+			case Ifc2x3Package.IFC_DATE_AND_TIME: {
 				IfcDateAndTime ifcDateAndTime = (IfcDateAndTime)theEObject;
 				T result = caseIfcDateAndTime(ifcDateAndTime);
 				if (result == null) result = caseIfcDateTimeSelect(ifcDateAndTime);
@@ -2670,8 +2418,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_DEFINED_SYMBOL:
-			{
+			case Ifc2x3Package.IFC_DEFINED_SYMBOL: {
 				IfcDefinedSymbol ifcDefinedSymbol = (IfcDefinedSymbol)theEObject;
 				T result = caseIfcDefinedSymbol(ifcDefinedSymbol);
 				if (result == null) result = caseIfcGeometricRepresentationItem(ifcDefinedSymbol);
@@ -2680,31 +2427,27 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_DERIVED_PROFILE_DEF:
-			{
+			case Ifc2x3Package.IFC_DERIVED_PROFILE_DEF: {
 				IfcDerivedProfileDef ifcDerivedProfileDef = (IfcDerivedProfileDef)theEObject;
 				T result = caseIfcDerivedProfileDef(ifcDerivedProfileDef);
 				if (result == null) result = caseIfcProfileDef(ifcDerivedProfileDef);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_DERIVED_UNIT:
-			{
+			case Ifc2x3Package.IFC_DERIVED_UNIT: {
 				IfcDerivedUnit ifcDerivedUnit = (IfcDerivedUnit)theEObject;
 				T result = caseIfcDerivedUnit(ifcDerivedUnit);
 				if (result == null) result = caseIfcUnit(ifcDerivedUnit);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_DERIVED_UNIT_ELEMENT:
-			{
+			case Ifc2x3Package.IFC_DERIVED_UNIT_ELEMENT: {
 				IfcDerivedUnitElement ifcDerivedUnitElement = (IfcDerivedUnitElement)theEObject;
 				T result = caseIfcDerivedUnitElement(ifcDerivedUnitElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_DIAMETER_DIMENSION:
-			{
+			case Ifc2x3Package.IFC_DIAMETER_DIMENSION: {
 				IfcDiameterDimension ifcDiameterDimension = (IfcDiameterDimension)theEObject;
 				T result = caseIfcDiameterDimension(ifcDiameterDimension);
 				if (result == null) result = caseIfcDimensionCurveDirectedCallout(ifcDiameterDimension);
@@ -2715,16 +2458,14 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_DIMENSION_CALLOUT_RELATIONSHIP:
-			{
+			case Ifc2x3Package.IFC_DIMENSION_CALLOUT_RELATIONSHIP: {
 				IfcDimensionCalloutRelationship ifcDimensionCalloutRelationship = (IfcDimensionCalloutRelationship)theEObject;
 				T result = caseIfcDimensionCalloutRelationship(ifcDimensionCalloutRelationship);
 				if (result == null) result = caseIfcDraughtingCalloutRelationship(ifcDimensionCalloutRelationship);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_DIMENSION_CURVE:
-			{
+			case Ifc2x3Package.IFC_DIMENSION_CURVE: {
 				IfcDimensionCurve ifcDimensionCurve = (IfcDimensionCurve)theEObject;
 				T result = caseIfcDimensionCurve(ifcDimensionCurve);
 				if (result == null) result = caseIfcAnnotationCurveOccurrence(ifcDimensionCurve);
@@ -2736,8 +2477,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_DIMENSION_CURVE_DIRECTED_CALLOUT:
-			{
+			case Ifc2x3Package.IFC_DIMENSION_CURVE_DIRECTED_CALLOUT: {
 				IfcDimensionCurveDirectedCallout ifcDimensionCurveDirectedCallout = (IfcDimensionCurveDirectedCallout)theEObject;
 				T result = caseIfcDimensionCurveDirectedCallout(ifcDimensionCurveDirectedCallout);
 				if (result == null) result = caseIfcDraughtingCallout(ifcDimensionCurveDirectedCallout);
@@ -2747,8 +2487,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_DIMENSION_CURVE_TERMINATOR:
-			{
+			case Ifc2x3Package.IFC_DIMENSION_CURVE_TERMINATOR: {
 				IfcDimensionCurveTerminator ifcDimensionCurveTerminator = (IfcDimensionCurveTerminator)theEObject;
 				T result = caseIfcDimensionCurveTerminator(ifcDimensionCurveTerminator);
 				if (result == null) result = caseIfcTerminatorSymbol(ifcDimensionCurveTerminator);
@@ -2761,23 +2500,20 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_DIMENSION_PAIR:
-			{
+			case Ifc2x3Package.IFC_DIMENSION_PAIR: {
 				IfcDimensionPair ifcDimensionPair = (IfcDimensionPair)theEObject;
 				T result = caseIfcDimensionPair(ifcDimensionPair);
 				if (result == null) result = caseIfcDraughtingCalloutRelationship(ifcDimensionPair);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_DIMENSIONAL_EXPONENTS:
-			{
+			case Ifc2x3Package.IFC_DIMENSIONAL_EXPONENTS: {
 				IfcDimensionalExponents ifcDimensionalExponents = (IfcDimensionalExponents)theEObject;
 				T result = caseIfcDimensionalExponents(ifcDimensionalExponents);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_DIRECTION:
-			{
+			case Ifc2x3Package.IFC_DIRECTION: {
 				IfcDirection ifcDirection = (IfcDirection)theEObject;
 				T result = caseIfcDirection(ifcDirection);
 				if (result == null) result = caseIfcGeometricRepresentationItem(ifcDirection);
@@ -2788,8 +2524,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_DISCRETE_ACCESSORY:
-			{
+			case Ifc2x3Package.IFC_DISCRETE_ACCESSORY: {
 				IfcDiscreteAccessory ifcDiscreteAccessory = (IfcDiscreteAccessory)theEObject;
 				T result = caseIfcDiscreteAccessory(ifcDiscreteAccessory);
 				if (result == null) result = caseIfcElementComponent(ifcDiscreteAccessory);
@@ -2802,8 +2537,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_DISCRETE_ACCESSORY_TYPE:
-			{
+			case Ifc2x3Package.IFC_DISCRETE_ACCESSORY_TYPE: {
 				IfcDiscreteAccessoryType ifcDiscreteAccessoryType = (IfcDiscreteAccessoryType)theEObject;
 				T result = caseIfcDiscreteAccessoryType(ifcDiscreteAccessoryType);
 				if (result == null) result = caseIfcElementComponentType(ifcDiscreteAccessoryType);
@@ -2815,8 +2549,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_DISTRIBUTION_CHAMBER_ELEMENT:
-			{
+			case Ifc2x3Package.IFC_DISTRIBUTION_CHAMBER_ELEMENT: {
 				IfcDistributionChamberElement ifcDistributionChamberElement = (IfcDistributionChamberElement)theEObject;
 				T result = caseIfcDistributionChamberElement(ifcDistributionChamberElement);
 				if (result == null) result = caseIfcDistributionFlowElement(ifcDistributionChamberElement);
@@ -2830,8 +2563,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_DISTRIBUTION_CHAMBER_ELEMENT_TYPE:
-			{
+			case Ifc2x3Package.IFC_DISTRIBUTION_CHAMBER_ELEMENT_TYPE: {
 				IfcDistributionChamberElementType ifcDistributionChamberElementType = (IfcDistributionChamberElementType)theEObject;
 				T result = caseIfcDistributionChamberElementType(ifcDistributionChamberElementType);
 				if (result == null) result = caseIfcDistributionFlowElementType(ifcDistributionChamberElementType);
@@ -2844,8 +2576,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_DISTRIBUTION_CONTROL_ELEMENT:
-			{
+			case Ifc2x3Package.IFC_DISTRIBUTION_CONTROL_ELEMENT: {
 				IfcDistributionControlElement ifcDistributionControlElement = (IfcDistributionControlElement)theEObject;
 				T result = caseIfcDistributionControlElement(ifcDistributionControlElement);
 				if (result == null) result = caseIfcDistributionElement(ifcDistributionControlElement);
@@ -2858,8 +2589,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_DISTRIBUTION_CONTROL_ELEMENT_TYPE:
-			{
+			case Ifc2x3Package.IFC_DISTRIBUTION_CONTROL_ELEMENT_TYPE: {
 				IfcDistributionControlElementType ifcDistributionControlElementType = (IfcDistributionControlElementType)theEObject;
 				T result = caseIfcDistributionControlElementType(ifcDistributionControlElementType);
 				if (result == null) result = caseIfcDistributionElementType(ifcDistributionControlElementType);
@@ -2871,8 +2601,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_DISTRIBUTION_ELEMENT:
-			{
+			case Ifc2x3Package.IFC_DISTRIBUTION_ELEMENT: {
 				IfcDistributionElement ifcDistributionElement = (IfcDistributionElement)theEObject;
 				T result = caseIfcDistributionElement(ifcDistributionElement);
 				if (result == null) result = caseIfcElement(ifcDistributionElement);
@@ -2884,8 +2613,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_DISTRIBUTION_ELEMENT_TYPE:
-			{
+			case Ifc2x3Package.IFC_DISTRIBUTION_ELEMENT_TYPE: {
 				IfcDistributionElementType ifcDistributionElementType = (IfcDistributionElementType)theEObject;
 				T result = caseIfcDistributionElementType(ifcDistributionElementType);
 				if (result == null) result = caseIfcElementType(ifcDistributionElementType);
@@ -2896,8 +2624,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_DISTRIBUTION_FLOW_ELEMENT:
-			{
+			case Ifc2x3Package.IFC_DISTRIBUTION_FLOW_ELEMENT: {
 				IfcDistributionFlowElement ifcDistributionFlowElement = (IfcDistributionFlowElement)theEObject;
 				T result = caseIfcDistributionFlowElement(ifcDistributionFlowElement);
 				if (result == null) result = caseIfcDistributionElement(ifcDistributionFlowElement);
@@ -2910,8 +2637,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_DISTRIBUTION_FLOW_ELEMENT_TYPE:
-			{
+			case Ifc2x3Package.IFC_DISTRIBUTION_FLOW_ELEMENT_TYPE: {
 				IfcDistributionFlowElementType ifcDistributionFlowElementType = (IfcDistributionFlowElementType)theEObject;
 				T result = caseIfcDistributionFlowElementType(ifcDistributionFlowElementType);
 				if (result == null) result = caseIfcDistributionElementType(ifcDistributionFlowElementType);
@@ -2923,8 +2649,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_DISTRIBUTION_PORT:
-			{
+			case Ifc2x3Package.IFC_DISTRIBUTION_PORT: {
 				IfcDistributionPort ifcDistributionPort = (IfcDistributionPort)theEObject;
 				T result = caseIfcDistributionPort(ifcDistributionPort);
 				if (result == null) result = caseIfcPort(ifcDistributionPort);
@@ -2935,30 +2660,26 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_DOCUMENT_ELECTRONIC_FORMAT:
-			{
+			case Ifc2x3Package.IFC_DOCUMENT_ELECTRONIC_FORMAT: {
 				IfcDocumentElectronicFormat ifcDocumentElectronicFormat = (IfcDocumentElectronicFormat)theEObject;
 				T result = caseIfcDocumentElectronicFormat(ifcDocumentElectronicFormat);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_DOCUMENT_INFORMATION:
-			{
+			case Ifc2x3Package.IFC_DOCUMENT_INFORMATION: {
 				IfcDocumentInformation ifcDocumentInformation = (IfcDocumentInformation)theEObject;
 				T result = caseIfcDocumentInformation(ifcDocumentInformation);
 				if (result == null) result = caseIfcDocumentSelect(ifcDocumentInformation);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_DOCUMENT_INFORMATION_RELATIONSHIP:
-			{
+			case Ifc2x3Package.IFC_DOCUMENT_INFORMATION_RELATIONSHIP: {
 				IfcDocumentInformationRelationship ifcDocumentInformationRelationship = (IfcDocumentInformationRelationship)theEObject;
 				T result = caseIfcDocumentInformationRelationship(ifcDocumentInformationRelationship);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_DOCUMENT_REFERENCE:
-			{
+			case Ifc2x3Package.IFC_DOCUMENT_REFERENCE: {
 				IfcDocumentReference ifcDocumentReference = (IfcDocumentReference)theEObject;
 				T result = caseIfcDocumentReference(ifcDocumentReference);
 				if (result == null) result = caseIfcExternalReference(ifcDocumentReference);
@@ -2968,8 +2689,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_DOOR:
-			{
+			case Ifc2x3Package.IFC_DOOR: {
 				IfcDoor ifcDoor = (IfcDoor)theEObject;
 				T result = caseIfcDoor(ifcDoor);
 				if (result == null) result = caseIfcBuildingElement(ifcDoor);
@@ -2982,8 +2702,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_DOOR_LINING_PROPERTIES:
-			{
+			case Ifc2x3Package.IFC_DOOR_LINING_PROPERTIES: {
 				IfcDoorLiningProperties ifcDoorLiningProperties = (IfcDoorLiningProperties)theEObject;
 				T result = caseIfcDoorLiningProperties(ifcDoorLiningProperties);
 				if (result == null) result = caseIfcPropertySetDefinition(ifcDoorLiningProperties);
@@ -2992,8 +2711,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_DOOR_PANEL_PROPERTIES:
-			{
+			case Ifc2x3Package.IFC_DOOR_PANEL_PROPERTIES: {
 				IfcDoorPanelProperties ifcDoorPanelProperties = (IfcDoorPanelProperties)theEObject;
 				T result = caseIfcDoorPanelProperties(ifcDoorPanelProperties);
 				if (result == null) result = caseIfcPropertySetDefinition(ifcDoorPanelProperties);
@@ -3002,8 +2720,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_DOOR_STYLE:
-			{
+			case Ifc2x3Package.IFC_DOOR_STYLE: {
 				IfcDoorStyle ifcDoorStyle = (IfcDoorStyle)theEObject;
 				T result = caseIfcDoorStyle(ifcDoorStyle);
 				if (result == null) result = caseIfcTypeProduct(ifcDoorStyle);
@@ -3013,8 +2730,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_DRAUGHTING_CALLOUT:
-			{
+			case Ifc2x3Package.IFC_DRAUGHTING_CALLOUT: {
 				IfcDraughtingCallout ifcDraughtingCallout = (IfcDraughtingCallout)theEObject;
 				T result = caseIfcDraughtingCallout(ifcDraughtingCallout);
 				if (result == null) result = caseIfcGeometricRepresentationItem(ifcDraughtingCallout);
@@ -3023,15 +2739,13 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_DRAUGHTING_CALLOUT_RELATIONSHIP:
-			{
+			case Ifc2x3Package.IFC_DRAUGHTING_CALLOUT_RELATIONSHIP: {
 				IfcDraughtingCalloutRelationship ifcDraughtingCalloutRelationship = (IfcDraughtingCalloutRelationship)theEObject;
 				T result = caseIfcDraughtingCalloutRelationship(ifcDraughtingCalloutRelationship);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_DRAUGHTING_PRE_DEFINED_COLOUR:
-			{
+			case Ifc2x3Package.IFC_DRAUGHTING_PRE_DEFINED_COLOUR: {
 				IfcDraughtingPreDefinedColour ifcDraughtingPreDefinedColour = (IfcDraughtingPreDefinedColour)theEObject;
 				T result = caseIfcDraughtingPreDefinedColour(ifcDraughtingPreDefinedColour);
 				if (result == null) result = caseIfcPreDefinedColour(ifcDraughtingPreDefinedColour);
@@ -3042,8 +2756,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_DRAUGHTING_PRE_DEFINED_CURVE_FONT:
-			{
+			case Ifc2x3Package.IFC_DRAUGHTING_PRE_DEFINED_CURVE_FONT: {
 				IfcDraughtingPreDefinedCurveFont ifcDraughtingPreDefinedCurveFont = (IfcDraughtingPreDefinedCurveFont)theEObject;
 				T result = caseIfcDraughtingPreDefinedCurveFont(ifcDraughtingPreDefinedCurveFont);
 				if (result == null) result = caseIfcPreDefinedCurveFont(ifcDraughtingPreDefinedCurveFont);
@@ -3053,8 +2766,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_DRAUGHTING_PRE_DEFINED_TEXT_FONT:
-			{
+			case Ifc2x3Package.IFC_DRAUGHTING_PRE_DEFINED_TEXT_FONT: {
 				IfcDraughtingPreDefinedTextFont ifcDraughtingPreDefinedTextFont = (IfcDraughtingPreDefinedTextFont)theEObject;
 				T result = caseIfcDraughtingPreDefinedTextFont(ifcDraughtingPreDefinedTextFont);
 				if (result == null) result = caseIfcPreDefinedTextFont(ifcDraughtingPreDefinedTextFont);
@@ -3063,8 +2775,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_DUCT_FITTING_TYPE:
-			{
+			case Ifc2x3Package.IFC_DUCT_FITTING_TYPE: {
 				IfcDuctFittingType ifcDuctFittingType = (IfcDuctFittingType)theEObject;
 				T result = caseIfcDuctFittingType(ifcDuctFittingType);
 				if (result == null) result = caseIfcFlowFittingType(ifcDuctFittingType);
@@ -3078,8 +2789,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_DUCT_SEGMENT_TYPE:
-			{
+			case Ifc2x3Package.IFC_DUCT_SEGMENT_TYPE: {
 				IfcDuctSegmentType ifcDuctSegmentType = (IfcDuctSegmentType)theEObject;
 				T result = caseIfcDuctSegmentType(ifcDuctSegmentType);
 				if (result == null) result = caseIfcFlowSegmentType(ifcDuctSegmentType);
@@ -3093,8 +2803,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_DUCT_SILENCER_TYPE:
-			{
+			case Ifc2x3Package.IFC_DUCT_SILENCER_TYPE: {
 				IfcDuctSilencerType ifcDuctSilencerType = (IfcDuctSilencerType)theEObject;
 				T result = caseIfcDuctSilencerType(ifcDuctSilencerType);
 				if (result == null) result = caseIfcFlowTreatmentDeviceType(ifcDuctSilencerType);
@@ -3108,8 +2817,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_EDGE:
-			{
+			case Ifc2x3Package.IFC_EDGE: {
 				IfcEdge ifcEdge = (IfcEdge)theEObject;
 				T result = caseIfcEdge(ifcEdge);
 				if (result == null) result = caseIfcTopologicalRepresentationItem(ifcEdge);
@@ -3118,8 +2826,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_EDGE_CURVE:
-			{
+			case Ifc2x3Package.IFC_EDGE_CURVE: {
 				IfcEdgeCurve ifcEdgeCurve = (IfcEdgeCurve)theEObject;
 				T result = caseIfcEdgeCurve(ifcEdgeCurve);
 				if (result == null) result = caseIfcEdge(ifcEdgeCurve);
@@ -3130,8 +2837,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_EDGE_FEATURE:
-			{
+			case Ifc2x3Package.IFC_EDGE_FEATURE: {
 				IfcEdgeFeature ifcEdgeFeature = (IfcEdgeFeature)theEObject;
 				T result = caseIfcEdgeFeature(ifcEdgeFeature);
 				if (result == null) result = caseIfcFeatureElementSubtraction(ifcEdgeFeature);
@@ -3145,8 +2851,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_EDGE_LOOP:
-			{
+			case Ifc2x3Package.IFC_EDGE_LOOP: {
 				IfcEdgeLoop ifcEdgeLoop = (IfcEdgeLoop)theEObject;
 				T result = caseIfcEdgeLoop(ifcEdgeLoop);
 				if (result == null) result = caseIfcLoop(ifcEdgeLoop);
@@ -3156,8 +2861,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_ELECTRIC_APPLIANCE_TYPE:
-			{
+			case Ifc2x3Package.IFC_ELECTRIC_APPLIANCE_TYPE: {
 				IfcElectricApplianceType ifcElectricApplianceType = (IfcElectricApplianceType)theEObject;
 				T result = caseIfcElectricApplianceType(ifcElectricApplianceType);
 				if (result == null) result = caseIfcFlowTerminalType(ifcElectricApplianceType);
@@ -3171,8 +2875,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_ELECTRIC_DISTRIBUTION_POINT:
-			{
+			case Ifc2x3Package.IFC_ELECTRIC_DISTRIBUTION_POINT: {
 				IfcElectricDistributionPoint ifcElectricDistributionPoint = (IfcElectricDistributionPoint)theEObject;
 				T result = caseIfcElectricDistributionPoint(ifcElectricDistributionPoint);
 				if (result == null) result = caseIfcFlowController(ifcElectricDistributionPoint);
@@ -3187,8 +2890,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_ELECTRIC_FLOW_STORAGE_DEVICE_TYPE:
-			{
+			case Ifc2x3Package.IFC_ELECTRIC_FLOW_STORAGE_DEVICE_TYPE: {
 				IfcElectricFlowStorageDeviceType ifcElectricFlowStorageDeviceType = (IfcElectricFlowStorageDeviceType)theEObject;
 				T result = caseIfcElectricFlowStorageDeviceType(ifcElectricFlowStorageDeviceType);
 				if (result == null) result = caseIfcFlowStorageDeviceType(ifcElectricFlowStorageDeviceType);
@@ -3202,8 +2904,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_ELECTRIC_GENERATOR_TYPE:
-			{
+			case Ifc2x3Package.IFC_ELECTRIC_GENERATOR_TYPE: {
 				IfcElectricGeneratorType ifcElectricGeneratorType = (IfcElectricGeneratorType)theEObject;
 				T result = caseIfcElectricGeneratorType(ifcElectricGeneratorType);
 				if (result == null) result = caseIfcEnergyConversionDeviceType(ifcElectricGeneratorType);
@@ -3217,8 +2918,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_ELECTRIC_HEATER_TYPE:
-			{
+			case Ifc2x3Package.IFC_ELECTRIC_HEATER_TYPE: {
 				IfcElectricHeaterType ifcElectricHeaterType = (IfcElectricHeaterType)theEObject;
 				T result = caseIfcElectricHeaterType(ifcElectricHeaterType);
 				if (result == null) result = caseIfcFlowTerminalType(ifcElectricHeaterType);
@@ -3232,8 +2932,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_ELECTRIC_MOTOR_TYPE:
-			{
+			case Ifc2x3Package.IFC_ELECTRIC_MOTOR_TYPE: {
 				IfcElectricMotorType ifcElectricMotorType = (IfcElectricMotorType)theEObject;
 				T result = caseIfcElectricMotorType(ifcElectricMotorType);
 				if (result == null) result = caseIfcEnergyConversionDeviceType(ifcElectricMotorType);
@@ -3247,8 +2946,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_ELECTRIC_TIME_CONTROL_TYPE:
-			{
+			case Ifc2x3Package.IFC_ELECTRIC_TIME_CONTROL_TYPE: {
 				IfcElectricTimeControlType ifcElectricTimeControlType = (IfcElectricTimeControlType)theEObject;
 				T result = caseIfcElectricTimeControlType(ifcElectricTimeControlType);
 				if (result == null) result = caseIfcFlowControllerType(ifcElectricTimeControlType);
@@ -3262,8 +2960,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_ELECTRICAL_BASE_PROPERTIES:
-			{
+			case Ifc2x3Package.IFC_ELECTRICAL_BASE_PROPERTIES: {
 				IfcElectricalBaseProperties ifcElectricalBaseProperties = (IfcElectricalBaseProperties)theEObject;
 				T result = caseIfcElectricalBaseProperties(ifcElectricalBaseProperties);
 				if (result == null) result = caseIfcEnergyProperties(ifcElectricalBaseProperties);
@@ -3273,8 +2970,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_ELECTRICAL_CIRCUIT:
-			{
+			case Ifc2x3Package.IFC_ELECTRICAL_CIRCUIT: {
 				IfcElectricalCircuit ifcElectricalCircuit = (IfcElectricalCircuit)theEObject;
 				T result = caseIfcElectricalCircuit(ifcElectricalCircuit);
 				if (result == null) result = caseIfcSystem(ifcElectricalCircuit);
@@ -3285,8 +2981,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_ELECTRICAL_ELEMENT:
-			{
+			case Ifc2x3Package.IFC_ELECTRICAL_ELEMENT: {
 				IfcElectricalElement ifcElectricalElement = (IfcElectricalElement)theEObject;
 				T result = caseIfcElectricalElement(ifcElectricalElement);
 				if (result == null) result = caseIfcElement(ifcElectricalElement);
@@ -3298,8 +2993,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_ELEMENT:
-			{
+			case Ifc2x3Package.IFC_ELEMENT: {
 				IfcElement ifcElement = (IfcElement)theEObject;
 				T result = caseIfcElement(ifcElement);
 				if (result == null) result = caseIfcProduct(ifcElement);
@@ -3310,8 +3004,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_ELEMENT_ASSEMBLY:
-			{
+			case Ifc2x3Package.IFC_ELEMENT_ASSEMBLY: {
 				IfcElementAssembly ifcElementAssembly = (IfcElementAssembly)theEObject;
 				T result = caseIfcElementAssembly(ifcElementAssembly);
 				if (result == null) result = caseIfcElement(ifcElementAssembly);
@@ -3323,8 +3016,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_ELEMENT_COMPONENT:
-			{
+			case Ifc2x3Package.IFC_ELEMENT_COMPONENT: {
 				IfcElementComponent ifcElementComponent = (IfcElementComponent)theEObject;
 				T result = caseIfcElementComponent(ifcElementComponent);
 				if (result == null) result = caseIfcElement(ifcElementComponent);
@@ -3336,8 +3028,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_ELEMENT_COMPONENT_TYPE:
-			{
+			case Ifc2x3Package.IFC_ELEMENT_COMPONENT_TYPE: {
 				IfcElementComponentType ifcElementComponentType = (IfcElementComponentType)theEObject;
 				T result = caseIfcElementComponentType(ifcElementComponentType);
 				if (result == null) result = caseIfcElementType(ifcElementComponentType);
@@ -3348,8 +3039,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_ELEMENT_QUANTITY:
-			{
+			case Ifc2x3Package.IFC_ELEMENT_QUANTITY: {
 				IfcElementQuantity ifcElementQuantity = (IfcElementQuantity)theEObject;
 				T result = caseIfcElementQuantity(ifcElementQuantity);
 				if (result == null) result = caseIfcPropertySetDefinition(ifcElementQuantity);
@@ -3358,8 +3048,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_ELEMENT_TYPE:
-			{
+			case Ifc2x3Package.IFC_ELEMENT_TYPE: {
 				IfcElementType ifcElementType = (IfcElementType)theEObject;
 				T result = caseIfcElementType(ifcElementType);
 				if (result == null) result = caseIfcTypeProduct(ifcElementType);
@@ -3369,8 +3058,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_ELEMENTARY_SURFACE:
-			{
+			case Ifc2x3Package.IFC_ELEMENTARY_SURFACE: {
 				IfcElementarySurface ifcElementarySurface = (IfcElementarySurface)theEObject;
 				T result = caseIfcElementarySurface(ifcElementarySurface);
 				if (result == null) result = caseIfcSurface(ifcElementarySurface);
@@ -3382,8 +3070,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_ELLIPSE:
-			{
+			case Ifc2x3Package.IFC_ELLIPSE: {
 				IfcEllipse ifcEllipse = (IfcEllipse)theEObject;
 				T result = caseIfcEllipse(ifcEllipse);
 				if (result == null) result = caseIfcConic(ifcEllipse);
@@ -3395,8 +3082,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_ELLIPSE_PROFILE_DEF:
-			{
+			case Ifc2x3Package.IFC_ELLIPSE_PROFILE_DEF: {
 				IfcEllipseProfileDef ifcEllipseProfileDef = (IfcEllipseProfileDef)theEObject;
 				T result = caseIfcEllipseProfileDef(ifcEllipseProfileDef);
 				if (result == null) result = caseIfcParameterizedProfileDef(ifcEllipseProfileDef);
@@ -3404,8 +3090,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_ENERGY_CONVERSION_DEVICE:
-			{
+			case Ifc2x3Package.IFC_ENERGY_CONVERSION_DEVICE: {
 				IfcEnergyConversionDevice ifcEnergyConversionDevice = (IfcEnergyConversionDevice)theEObject;
 				T result = caseIfcEnergyConversionDevice(ifcEnergyConversionDevice);
 				if (result == null) result = caseIfcDistributionFlowElement(ifcEnergyConversionDevice);
@@ -3419,8 +3104,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_ENERGY_CONVERSION_DEVICE_TYPE:
-			{
+			case Ifc2x3Package.IFC_ENERGY_CONVERSION_DEVICE_TYPE: {
 				IfcEnergyConversionDeviceType ifcEnergyConversionDeviceType = (IfcEnergyConversionDeviceType)theEObject;
 				T result = caseIfcEnergyConversionDeviceType(ifcEnergyConversionDeviceType);
 				if (result == null) result = caseIfcDistributionFlowElementType(ifcEnergyConversionDeviceType);
@@ -3433,8 +3117,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_ENERGY_PROPERTIES:
-			{
+			case Ifc2x3Package.IFC_ENERGY_PROPERTIES: {
 				IfcEnergyProperties ifcEnergyProperties = (IfcEnergyProperties)theEObject;
 				T result = caseIfcEnergyProperties(ifcEnergyProperties);
 				if (result == null) result = caseIfcPropertySetDefinition(ifcEnergyProperties);
@@ -3443,8 +3126,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_ENVIRONMENTAL_IMPACT_VALUE:
-			{
+			case Ifc2x3Package.IFC_ENVIRONMENTAL_IMPACT_VALUE: {
 				IfcEnvironmentalImpactValue ifcEnvironmentalImpactValue = (IfcEnvironmentalImpactValue)theEObject;
 				T result = caseIfcEnvironmentalImpactValue(ifcEnvironmentalImpactValue);
 				if (result == null) result = caseIfcAppliedValue(ifcEnvironmentalImpactValue);
@@ -3452,8 +3134,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_EQUIPMENT_ELEMENT:
-			{
+			case Ifc2x3Package.IFC_EQUIPMENT_ELEMENT: {
 				IfcEquipmentElement ifcEquipmentElement = (IfcEquipmentElement)theEObject;
 				T result = caseIfcEquipmentElement(ifcEquipmentElement);
 				if (result == null) result = caseIfcElement(ifcEquipmentElement);
@@ -3465,8 +3146,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_EQUIPMENT_STANDARD:
-			{
+			case Ifc2x3Package.IFC_EQUIPMENT_STANDARD: {
 				IfcEquipmentStandard ifcEquipmentStandard = (IfcEquipmentStandard)theEObject;
 				T result = caseIfcEquipmentStandard(ifcEquipmentStandard);
 				if (result == null) result = caseIfcControl(ifcEquipmentStandard);
@@ -3476,8 +3156,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_EVAPORATIVE_COOLER_TYPE:
-			{
+			case Ifc2x3Package.IFC_EVAPORATIVE_COOLER_TYPE: {
 				IfcEvaporativeCoolerType ifcEvaporativeCoolerType = (IfcEvaporativeCoolerType)theEObject;
 				T result = caseIfcEvaporativeCoolerType(ifcEvaporativeCoolerType);
 				if (result == null) result = caseIfcEnergyConversionDeviceType(ifcEvaporativeCoolerType);
@@ -3491,8 +3170,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_EVAPORATOR_TYPE:
-			{
+			case Ifc2x3Package.IFC_EVAPORATOR_TYPE: {
 				IfcEvaporatorType ifcEvaporatorType = (IfcEvaporatorType)theEObject;
 				T result = caseIfcEvaporatorType(ifcEvaporatorType);
 				if (result == null) result = caseIfcEnergyConversionDeviceType(ifcEvaporatorType);
@@ -3506,16 +3184,14 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_EXTENDED_MATERIAL_PROPERTIES:
-			{
+			case Ifc2x3Package.IFC_EXTENDED_MATERIAL_PROPERTIES: {
 				IfcExtendedMaterialProperties ifcExtendedMaterialProperties = (IfcExtendedMaterialProperties)theEObject;
 				T result = caseIfcExtendedMaterialProperties(ifcExtendedMaterialProperties);
 				if (result == null) result = caseIfcMaterialProperties(ifcExtendedMaterialProperties);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_EXTERNAL_REFERENCE:
-			{
+			case Ifc2x3Package.IFC_EXTERNAL_REFERENCE: {
 				IfcExternalReference ifcExternalReference = (IfcExternalReference)theEObject;
 				T result = caseIfcExternalReference(ifcExternalReference);
 				if (result == null) result = caseIfcLightDistributionDataSourceSelect(ifcExternalReference);
@@ -3523,8 +3199,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_EXTERNALLY_DEFINED_HATCH_STYLE:
-			{
+			case Ifc2x3Package.IFC_EXTERNALLY_DEFINED_HATCH_STYLE: {
 				IfcExternallyDefinedHatchStyle ifcExternallyDefinedHatchStyle = (IfcExternallyDefinedHatchStyle)theEObject;
 				T result = caseIfcExternallyDefinedHatchStyle(ifcExternallyDefinedHatchStyle);
 				if (result == null) result = caseIfcExternalReference(ifcExternallyDefinedHatchStyle);
@@ -3534,8 +3209,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_EXTERNALLY_DEFINED_SURFACE_STYLE:
-			{
+			case Ifc2x3Package.IFC_EXTERNALLY_DEFINED_SURFACE_STYLE: {
 				IfcExternallyDefinedSurfaceStyle ifcExternallyDefinedSurfaceStyle = (IfcExternallyDefinedSurfaceStyle)theEObject;
 				T result = caseIfcExternallyDefinedSurfaceStyle(ifcExternallyDefinedSurfaceStyle);
 				if (result == null) result = caseIfcExternalReference(ifcExternallyDefinedSurfaceStyle);
@@ -3545,8 +3219,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_EXTERNALLY_DEFINED_SYMBOL:
-			{
+			case Ifc2x3Package.IFC_EXTERNALLY_DEFINED_SYMBOL: {
 				IfcExternallyDefinedSymbol ifcExternallyDefinedSymbol = (IfcExternallyDefinedSymbol)theEObject;
 				T result = caseIfcExternallyDefinedSymbol(ifcExternallyDefinedSymbol);
 				if (result == null) result = caseIfcExternalReference(ifcExternallyDefinedSymbol);
@@ -3556,8 +3229,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_EXTERNALLY_DEFINED_TEXT_FONT:
-			{
+			case Ifc2x3Package.IFC_EXTERNALLY_DEFINED_TEXT_FONT: {
 				IfcExternallyDefinedTextFont ifcExternallyDefinedTextFont = (IfcExternallyDefinedTextFont)theEObject;
 				T result = caseIfcExternallyDefinedTextFont(ifcExternallyDefinedTextFont);
 				if (result == null) result = caseIfcExternalReference(ifcExternallyDefinedTextFont);
@@ -3567,8 +3239,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_EXTRUDED_AREA_SOLID:
-			{
+			case Ifc2x3Package.IFC_EXTRUDED_AREA_SOLID: {
 				IfcExtrudedAreaSolid ifcExtrudedAreaSolid = (IfcExtrudedAreaSolid)theEObject;
 				T result = caseIfcExtrudedAreaSolid(ifcExtrudedAreaSolid);
 				if (result == null) result = caseIfcSweptAreaSolid(ifcExtrudedAreaSolid);
@@ -3580,8 +3251,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_FACE:
-			{
+			case Ifc2x3Package.IFC_FACE: {
 				IfcFace ifcFace = (IfcFace)theEObject;
 				T result = caseIfcFace(ifcFace);
 				if (result == null) result = caseIfcTopologicalRepresentationItem(ifcFace);
@@ -3590,8 +3260,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_FACE_BASED_SURFACE_MODEL:
-			{
+			case Ifc2x3Package.IFC_FACE_BASED_SURFACE_MODEL: {
 				IfcFaceBasedSurfaceModel ifcFaceBasedSurfaceModel = (IfcFaceBasedSurfaceModel)theEObject;
 				T result = caseIfcFaceBasedSurfaceModel(ifcFaceBasedSurfaceModel);
 				if (result == null) result = caseIfcGeometricRepresentationItem(ifcFaceBasedSurfaceModel);
@@ -3601,8 +3270,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_FACE_BOUND:
-			{
+			case Ifc2x3Package.IFC_FACE_BOUND: {
 				IfcFaceBound ifcFaceBound = (IfcFaceBound)theEObject;
 				T result = caseIfcFaceBound(ifcFaceBound);
 				if (result == null) result = caseIfcTopologicalRepresentationItem(ifcFaceBound);
@@ -3611,8 +3279,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_FACE_OUTER_BOUND:
-			{
+			case Ifc2x3Package.IFC_FACE_OUTER_BOUND: {
 				IfcFaceOuterBound ifcFaceOuterBound = (IfcFaceOuterBound)theEObject;
 				T result = caseIfcFaceOuterBound(ifcFaceOuterBound);
 				if (result == null) result = caseIfcFaceBound(ifcFaceOuterBound);
@@ -3622,8 +3289,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_FACE_SURFACE:
-			{
+			case Ifc2x3Package.IFC_FACE_SURFACE: {
 				IfcFaceSurface ifcFaceSurface = (IfcFaceSurface)theEObject;
 				T result = caseIfcFaceSurface(ifcFaceSurface);
 				if (result == null) result = caseIfcFace(ifcFaceSurface);
@@ -3634,8 +3300,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_FACETED_BREP:
-			{
+			case Ifc2x3Package.IFC_FACETED_BREP: {
 				IfcFacetedBrep ifcFacetedBrep = (IfcFacetedBrep)theEObject;
 				T result = caseIfcFacetedBrep(ifcFacetedBrep);
 				if (result == null) result = caseIfcManifoldSolidBrep(ifcFacetedBrep);
@@ -3647,8 +3312,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_FACETED_BREP_WITH_VOIDS:
-			{
+			case Ifc2x3Package.IFC_FACETED_BREP_WITH_VOIDS: {
 				IfcFacetedBrepWithVoids ifcFacetedBrepWithVoids = (IfcFacetedBrepWithVoids)theEObject;
 				T result = caseIfcFacetedBrepWithVoids(ifcFacetedBrepWithVoids);
 				if (result == null) result = caseIfcManifoldSolidBrep(ifcFacetedBrepWithVoids);
@@ -3660,16 +3324,14 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_FAILURE_CONNECTION_CONDITION:
-			{
+			case Ifc2x3Package.IFC_FAILURE_CONNECTION_CONDITION: {
 				IfcFailureConnectionCondition ifcFailureConnectionCondition = (IfcFailureConnectionCondition)theEObject;
 				T result = caseIfcFailureConnectionCondition(ifcFailureConnectionCondition);
 				if (result == null) result = caseIfcStructuralConnectionCondition(ifcFailureConnectionCondition);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_FAN_TYPE:
-			{
+			case Ifc2x3Package.IFC_FAN_TYPE: {
 				IfcFanType ifcFanType = (IfcFanType)theEObject;
 				T result = caseIfcFanType(ifcFanType);
 				if (result == null) result = caseIfcFlowMovingDeviceType(ifcFanType);
@@ -3683,8 +3345,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_FASTENER:
-			{
+			case Ifc2x3Package.IFC_FASTENER: {
 				IfcFastener ifcFastener = (IfcFastener)theEObject;
 				T result = caseIfcFastener(ifcFastener);
 				if (result == null) result = caseIfcElementComponent(ifcFastener);
@@ -3697,8 +3358,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_FASTENER_TYPE:
-			{
+			case Ifc2x3Package.IFC_FASTENER_TYPE: {
 				IfcFastenerType ifcFastenerType = (IfcFastenerType)theEObject;
 				T result = caseIfcFastenerType(ifcFastenerType);
 				if (result == null) result = caseIfcElementComponentType(ifcFastenerType);
@@ -3710,8 +3370,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_FEATURE_ELEMENT:
-			{
+			case Ifc2x3Package.IFC_FEATURE_ELEMENT: {
 				IfcFeatureElement ifcFeatureElement = (IfcFeatureElement)theEObject;
 				T result = caseIfcFeatureElement(ifcFeatureElement);
 				if (result == null) result = caseIfcElement(ifcFeatureElement);
@@ -3723,8 +3382,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_FEATURE_ELEMENT_ADDITION:
-			{
+			case Ifc2x3Package.IFC_FEATURE_ELEMENT_ADDITION: {
 				IfcFeatureElementAddition ifcFeatureElementAddition = (IfcFeatureElementAddition)theEObject;
 				T result = caseIfcFeatureElementAddition(ifcFeatureElementAddition);
 				if (result == null) result = caseIfcFeatureElement(ifcFeatureElementAddition);
@@ -3737,8 +3395,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_FEATURE_ELEMENT_SUBTRACTION:
-			{
+			case Ifc2x3Package.IFC_FEATURE_ELEMENT_SUBTRACTION: {
 				IfcFeatureElementSubtraction ifcFeatureElementSubtraction = (IfcFeatureElementSubtraction)theEObject;
 				T result = caseIfcFeatureElementSubtraction(ifcFeatureElementSubtraction);
 				if (result == null) result = caseIfcFeatureElement(ifcFeatureElementSubtraction);
@@ -3751,8 +3408,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_FILL_AREA_STYLE:
-			{
+			case Ifc2x3Package.IFC_FILL_AREA_STYLE: {
 				IfcFillAreaStyle ifcFillAreaStyle = (IfcFillAreaStyle)theEObject;
 				T result = caseIfcFillAreaStyle(ifcFillAreaStyle);
 				if (result == null) result = caseIfcPresentationStyle(ifcFillAreaStyle);
@@ -3760,8 +3416,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_FILL_AREA_STYLE_HATCHING:
-			{
+			case Ifc2x3Package.IFC_FILL_AREA_STYLE_HATCHING: {
 				IfcFillAreaStyleHatching ifcFillAreaStyleHatching = (IfcFillAreaStyleHatching)theEObject;
 				T result = caseIfcFillAreaStyleHatching(ifcFillAreaStyleHatching);
 				if (result == null) result = caseIfcGeometricRepresentationItem(ifcFillAreaStyleHatching);
@@ -3771,8 +3426,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_FILL_AREA_STYLE_TILE_SYMBOL_WITH_STYLE:
-			{
+			case Ifc2x3Package.IFC_FILL_AREA_STYLE_TILE_SYMBOL_WITH_STYLE: {
 				IfcFillAreaStyleTileSymbolWithStyle ifcFillAreaStyleTileSymbolWithStyle = (IfcFillAreaStyleTileSymbolWithStyle)theEObject;
 				T result = caseIfcFillAreaStyleTileSymbolWithStyle(ifcFillAreaStyleTileSymbolWithStyle);
 				if (result == null) result = caseIfcGeometricRepresentationItem(ifcFillAreaStyleTileSymbolWithStyle);
@@ -3782,8 +3436,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_FILL_AREA_STYLE_TILES:
-			{
+			case Ifc2x3Package.IFC_FILL_AREA_STYLE_TILES: {
 				IfcFillAreaStyleTiles ifcFillAreaStyleTiles = (IfcFillAreaStyleTiles)theEObject;
 				T result = caseIfcFillAreaStyleTiles(ifcFillAreaStyleTiles);
 				if (result == null) result = caseIfcGeometricRepresentationItem(ifcFillAreaStyleTiles);
@@ -3793,8 +3446,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_FILTER_TYPE:
-			{
+			case Ifc2x3Package.IFC_FILTER_TYPE: {
 				IfcFilterType ifcFilterType = (IfcFilterType)theEObject;
 				T result = caseIfcFilterType(ifcFilterType);
 				if (result == null) result = caseIfcFlowTreatmentDeviceType(ifcFilterType);
@@ -3808,8 +3460,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_FIRE_SUPPRESSION_TERMINAL_TYPE:
-			{
+			case Ifc2x3Package.IFC_FIRE_SUPPRESSION_TERMINAL_TYPE: {
 				IfcFireSuppressionTerminalType ifcFireSuppressionTerminalType = (IfcFireSuppressionTerminalType)theEObject;
 				T result = caseIfcFireSuppressionTerminalType(ifcFireSuppressionTerminalType);
 				if (result == null) result = caseIfcFlowTerminalType(ifcFireSuppressionTerminalType);
@@ -3823,8 +3474,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_FLOW_CONTROLLER:
-			{
+			case Ifc2x3Package.IFC_FLOW_CONTROLLER: {
 				IfcFlowController ifcFlowController = (IfcFlowController)theEObject;
 				T result = caseIfcFlowController(ifcFlowController);
 				if (result == null) result = caseIfcDistributionFlowElement(ifcFlowController);
@@ -3838,8 +3488,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_FLOW_CONTROLLER_TYPE:
-			{
+			case Ifc2x3Package.IFC_FLOW_CONTROLLER_TYPE: {
 				IfcFlowControllerType ifcFlowControllerType = (IfcFlowControllerType)theEObject;
 				T result = caseIfcFlowControllerType(ifcFlowControllerType);
 				if (result == null) result = caseIfcDistributionFlowElementType(ifcFlowControllerType);
@@ -3852,8 +3501,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_FLOW_FITTING:
-			{
+			case Ifc2x3Package.IFC_FLOW_FITTING: {
 				IfcFlowFitting ifcFlowFitting = (IfcFlowFitting)theEObject;
 				T result = caseIfcFlowFitting(ifcFlowFitting);
 				if (result == null) result = caseIfcDistributionFlowElement(ifcFlowFitting);
@@ -3867,8 +3515,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_FLOW_FITTING_TYPE:
-			{
+			case Ifc2x3Package.IFC_FLOW_FITTING_TYPE: {
 				IfcFlowFittingType ifcFlowFittingType = (IfcFlowFittingType)theEObject;
 				T result = caseIfcFlowFittingType(ifcFlowFittingType);
 				if (result == null) result = caseIfcDistributionFlowElementType(ifcFlowFittingType);
@@ -3881,8 +3528,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_FLOW_INSTRUMENT_TYPE:
-			{
+			case Ifc2x3Package.IFC_FLOW_INSTRUMENT_TYPE: {
 				IfcFlowInstrumentType ifcFlowInstrumentType = (IfcFlowInstrumentType)theEObject;
 				T result = caseIfcFlowInstrumentType(ifcFlowInstrumentType);
 				if (result == null) result = caseIfcDistributionControlElementType(ifcFlowInstrumentType);
@@ -3895,8 +3541,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_FLOW_METER_TYPE:
-			{
+			case Ifc2x3Package.IFC_FLOW_METER_TYPE: {
 				IfcFlowMeterType ifcFlowMeterType = (IfcFlowMeterType)theEObject;
 				T result = caseIfcFlowMeterType(ifcFlowMeterType);
 				if (result == null) result = caseIfcFlowControllerType(ifcFlowMeterType);
@@ -3910,8 +3555,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_FLOW_MOVING_DEVICE:
-			{
+			case Ifc2x3Package.IFC_FLOW_MOVING_DEVICE: {
 				IfcFlowMovingDevice ifcFlowMovingDevice = (IfcFlowMovingDevice)theEObject;
 				T result = caseIfcFlowMovingDevice(ifcFlowMovingDevice);
 				if (result == null) result = caseIfcDistributionFlowElement(ifcFlowMovingDevice);
@@ -3925,8 +3569,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_FLOW_MOVING_DEVICE_TYPE:
-			{
+			case Ifc2x3Package.IFC_FLOW_MOVING_DEVICE_TYPE: {
 				IfcFlowMovingDeviceType ifcFlowMovingDeviceType = (IfcFlowMovingDeviceType)theEObject;
 				T result = caseIfcFlowMovingDeviceType(ifcFlowMovingDeviceType);
 				if (result == null) result = caseIfcDistributionFlowElementType(ifcFlowMovingDeviceType);
@@ -3939,8 +3582,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_FLOW_SEGMENT:
-			{
+			case Ifc2x3Package.IFC_FLOW_SEGMENT: {
 				IfcFlowSegment ifcFlowSegment = (IfcFlowSegment)theEObject;
 				T result = caseIfcFlowSegment(ifcFlowSegment);
 				if (result == null) result = caseIfcDistributionFlowElement(ifcFlowSegment);
@@ -3954,8 +3596,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_FLOW_SEGMENT_TYPE:
-			{
+			case Ifc2x3Package.IFC_FLOW_SEGMENT_TYPE: {
 				IfcFlowSegmentType ifcFlowSegmentType = (IfcFlowSegmentType)theEObject;
 				T result = caseIfcFlowSegmentType(ifcFlowSegmentType);
 				if (result == null) result = caseIfcDistributionFlowElementType(ifcFlowSegmentType);
@@ -3968,8 +3609,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_FLOW_STORAGE_DEVICE:
-			{
+			case Ifc2x3Package.IFC_FLOW_STORAGE_DEVICE: {
 				IfcFlowStorageDevice ifcFlowStorageDevice = (IfcFlowStorageDevice)theEObject;
 				T result = caseIfcFlowStorageDevice(ifcFlowStorageDevice);
 				if (result == null) result = caseIfcDistributionFlowElement(ifcFlowStorageDevice);
@@ -3983,8 +3623,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_FLOW_STORAGE_DEVICE_TYPE:
-			{
+			case Ifc2x3Package.IFC_FLOW_STORAGE_DEVICE_TYPE: {
 				IfcFlowStorageDeviceType ifcFlowStorageDeviceType = (IfcFlowStorageDeviceType)theEObject;
 				T result = caseIfcFlowStorageDeviceType(ifcFlowStorageDeviceType);
 				if (result == null) result = caseIfcDistributionFlowElementType(ifcFlowStorageDeviceType);
@@ -3997,8 +3636,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_FLOW_TERMINAL:
-			{
+			case Ifc2x3Package.IFC_FLOW_TERMINAL: {
 				IfcFlowTerminal ifcFlowTerminal = (IfcFlowTerminal)theEObject;
 				T result = caseIfcFlowTerminal(ifcFlowTerminal);
 				if (result == null) result = caseIfcDistributionFlowElement(ifcFlowTerminal);
@@ -4012,8 +3650,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_FLOW_TERMINAL_TYPE:
-			{
+			case Ifc2x3Package.IFC_FLOW_TERMINAL_TYPE: {
 				IfcFlowTerminalType ifcFlowTerminalType = (IfcFlowTerminalType)theEObject;
 				T result = caseIfcFlowTerminalType(ifcFlowTerminalType);
 				if (result == null) result = caseIfcDistributionFlowElementType(ifcFlowTerminalType);
@@ -4026,8 +3663,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_FLOW_TREATMENT_DEVICE:
-			{
+			case Ifc2x3Package.IFC_FLOW_TREATMENT_DEVICE: {
 				IfcFlowTreatmentDevice ifcFlowTreatmentDevice = (IfcFlowTreatmentDevice)theEObject;
 				T result = caseIfcFlowTreatmentDevice(ifcFlowTreatmentDevice);
 				if (result == null) result = caseIfcDistributionFlowElement(ifcFlowTreatmentDevice);
@@ -4041,8 +3677,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_FLOW_TREATMENT_DEVICE_TYPE:
-			{
+			case Ifc2x3Package.IFC_FLOW_TREATMENT_DEVICE_TYPE: {
 				IfcFlowTreatmentDeviceType ifcFlowTreatmentDeviceType = (IfcFlowTreatmentDeviceType)theEObject;
 				T result = caseIfcFlowTreatmentDeviceType(ifcFlowTreatmentDeviceType);
 				if (result == null) result = caseIfcDistributionFlowElementType(ifcFlowTreatmentDeviceType);
@@ -4055,8 +3690,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_FLUID_FLOW_PROPERTIES:
-			{
+			case Ifc2x3Package.IFC_FLUID_FLOW_PROPERTIES: {
 				IfcFluidFlowProperties ifcFluidFlowProperties = (IfcFluidFlowProperties)theEObject;
 				T result = caseIfcFluidFlowProperties(ifcFluidFlowProperties);
 				if (result == null) result = caseIfcPropertySetDefinition(ifcFluidFlowProperties);
@@ -4065,8 +3699,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_FOOTING:
-			{
+			case Ifc2x3Package.IFC_FOOTING: {
 				IfcFooting ifcFooting = (IfcFooting)theEObject;
 				T result = caseIfcFooting(ifcFooting);
 				if (result == null) result = caseIfcBuildingElement(ifcFooting);
@@ -4079,16 +3712,14 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_FUEL_PROPERTIES:
-			{
+			case Ifc2x3Package.IFC_FUEL_PROPERTIES: {
 				IfcFuelProperties ifcFuelProperties = (IfcFuelProperties)theEObject;
 				T result = caseIfcFuelProperties(ifcFuelProperties);
 				if (result == null) result = caseIfcMaterialProperties(ifcFuelProperties);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_FURNISHING_ELEMENT:
-			{
+			case Ifc2x3Package.IFC_FURNISHING_ELEMENT: {
 				IfcFurnishingElement ifcFurnishingElement = (IfcFurnishingElement)theEObject;
 				T result = caseIfcFurnishingElement(ifcFurnishingElement);
 				if (result == null) result = caseIfcElement(ifcFurnishingElement);
@@ -4100,8 +3731,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_FURNISHING_ELEMENT_TYPE:
-			{
+			case Ifc2x3Package.IFC_FURNISHING_ELEMENT_TYPE: {
 				IfcFurnishingElementType ifcFurnishingElementType = (IfcFurnishingElementType)theEObject;
 				T result = caseIfcFurnishingElementType(ifcFurnishingElementType);
 				if (result == null) result = caseIfcElementType(ifcFurnishingElementType);
@@ -4112,8 +3742,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_FURNITURE_STANDARD:
-			{
+			case Ifc2x3Package.IFC_FURNITURE_STANDARD: {
 				IfcFurnitureStandard ifcFurnitureStandard = (IfcFurnitureStandard)theEObject;
 				T result = caseIfcFurnitureStandard(ifcFurnitureStandard);
 				if (result == null) result = caseIfcControl(ifcFurnitureStandard);
@@ -4123,8 +3752,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_FURNITURE_TYPE:
-			{
+			case Ifc2x3Package.IFC_FURNITURE_TYPE: {
 				IfcFurnitureType ifcFurnitureType = (IfcFurnitureType)theEObject;
 				T result = caseIfcFurnitureType(ifcFurnitureType);
 				if (result == null) result = caseIfcFurnishingElementType(ifcFurnitureType);
@@ -4136,8 +3764,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_GAS_TERMINAL_TYPE:
-			{
+			case Ifc2x3Package.IFC_GAS_TERMINAL_TYPE: {
 				IfcGasTerminalType ifcGasTerminalType = (IfcGasTerminalType)theEObject;
 				T result = caseIfcGasTerminalType(ifcGasTerminalType);
 				if (result == null) result = caseIfcFlowTerminalType(ifcGasTerminalType);
@@ -4151,24 +3778,21 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_GENERAL_MATERIAL_PROPERTIES:
-			{
+			case Ifc2x3Package.IFC_GENERAL_MATERIAL_PROPERTIES: {
 				IfcGeneralMaterialProperties ifcGeneralMaterialProperties = (IfcGeneralMaterialProperties)theEObject;
 				T result = caseIfcGeneralMaterialProperties(ifcGeneralMaterialProperties);
 				if (result == null) result = caseIfcMaterialProperties(ifcGeneralMaterialProperties);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_GENERAL_PROFILE_PROPERTIES:
-			{
+			case Ifc2x3Package.IFC_GENERAL_PROFILE_PROPERTIES: {
 				IfcGeneralProfileProperties ifcGeneralProfileProperties = (IfcGeneralProfileProperties)theEObject;
 				T result = caseIfcGeneralProfileProperties(ifcGeneralProfileProperties);
 				if (result == null) result = caseIfcProfileProperties(ifcGeneralProfileProperties);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_GEOMETRIC_CURVE_SET:
-			{
+			case Ifc2x3Package.IFC_GEOMETRIC_CURVE_SET: {
 				IfcGeometricCurveSet ifcGeometricCurveSet = (IfcGeometricCurveSet)theEObject;
 				T result = caseIfcGeometricCurveSet(ifcGeometricCurveSet);
 				if (result == null) result = caseIfcGeometricSet(ifcGeometricCurveSet);
@@ -4178,16 +3802,14 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_GEOMETRIC_REPRESENTATION_CONTEXT:
-			{
+			case Ifc2x3Package.IFC_GEOMETRIC_REPRESENTATION_CONTEXT: {
 				IfcGeometricRepresentationContext ifcGeometricRepresentationContext = (IfcGeometricRepresentationContext)theEObject;
 				T result = caseIfcGeometricRepresentationContext(ifcGeometricRepresentationContext);
 				if (result == null) result = caseIfcRepresentationContext(ifcGeometricRepresentationContext);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_GEOMETRIC_REPRESENTATION_ITEM:
-			{
+			case Ifc2x3Package.IFC_GEOMETRIC_REPRESENTATION_ITEM: {
 				IfcGeometricRepresentationItem ifcGeometricRepresentationItem = (IfcGeometricRepresentationItem)theEObject;
 				T result = caseIfcGeometricRepresentationItem(ifcGeometricRepresentationItem);
 				if (result == null) result = caseIfcRepresentationItem(ifcGeometricRepresentationItem);
@@ -4195,8 +3817,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_GEOMETRIC_REPRESENTATION_SUB_CONTEXT:
-			{
+			case Ifc2x3Package.IFC_GEOMETRIC_REPRESENTATION_SUB_CONTEXT: {
 				IfcGeometricRepresentationSubContext ifcGeometricRepresentationSubContext = (IfcGeometricRepresentationSubContext)theEObject;
 				T result = caseIfcGeometricRepresentationSubContext(ifcGeometricRepresentationSubContext);
 				if (result == null) result = caseIfcGeometricRepresentationContext(ifcGeometricRepresentationSubContext);
@@ -4204,8 +3825,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_GEOMETRIC_SET:
-			{
+			case Ifc2x3Package.IFC_GEOMETRIC_SET: {
 				IfcGeometricSet ifcGeometricSet = (IfcGeometricSet)theEObject;
 				T result = caseIfcGeometricSet(ifcGeometricSet);
 				if (result == null) result = caseIfcGeometricRepresentationItem(ifcGeometricSet);
@@ -4214,8 +3834,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_GRID:
-			{
+			case Ifc2x3Package.IFC_GRID: {
 				IfcGrid ifcGrid = (IfcGrid)theEObject;
 				T result = caseIfcGrid(ifcGrid);
 				if (result == null) result = caseIfcProduct(ifcGrid);
@@ -4225,23 +3844,20 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_GRID_AXIS:
-			{
+			case Ifc2x3Package.IFC_GRID_AXIS: {
 				IfcGridAxis ifcGridAxis = (IfcGridAxis)theEObject;
 				T result = caseIfcGridAxis(ifcGridAxis);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_GRID_PLACEMENT:
-			{
+			case Ifc2x3Package.IFC_GRID_PLACEMENT: {
 				IfcGridPlacement ifcGridPlacement = (IfcGridPlacement)theEObject;
 				T result = caseIfcGridPlacement(ifcGridPlacement);
 				if (result == null) result = caseIfcObjectPlacement(ifcGridPlacement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_GROUP:
-			{
+			case Ifc2x3Package.IFC_GROUP: {
 				IfcGroup ifcGroup = (IfcGroup)theEObject;
 				T result = caseIfcGroup(ifcGroup);
 				if (result == null) result = caseIfcObject(ifcGroup);
@@ -4250,8 +3866,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_HALF_SPACE_SOLID:
-			{
+			case Ifc2x3Package.IFC_HALF_SPACE_SOLID: {
 				IfcHalfSpaceSolid ifcHalfSpaceSolid = (IfcHalfSpaceSolid)theEObject;
 				T result = caseIfcHalfSpaceSolid(ifcHalfSpaceSolid);
 				if (result == null) result = caseIfcGeometricRepresentationItem(ifcHalfSpaceSolid);
@@ -4261,8 +3876,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_HEAT_EXCHANGER_TYPE:
-			{
+			case Ifc2x3Package.IFC_HEAT_EXCHANGER_TYPE: {
 				IfcHeatExchangerType ifcHeatExchangerType = (IfcHeatExchangerType)theEObject;
 				T result = caseIfcHeatExchangerType(ifcHeatExchangerType);
 				if (result == null) result = caseIfcEnergyConversionDeviceType(ifcHeatExchangerType);
@@ -4276,8 +3890,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_HUMIDIFIER_TYPE:
-			{
+			case Ifc2x3Package.IFC_HUMIDIFIER_TYPE: {
 				IfcHumidifierType ifcHumidifierType = (IfcHumidifierType)theEObject;
 				T result = caseIfcHumidifierType(ifcHumidifierType);
 				if (result == null) result = caseIfcEnergyConversionDeviceType(ifcHumidifierType);
@@ -4291,16 +3904,14 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_HYGROSCOPIC_MATERIAL_PROPERTIES:
-			{
+			case Ifc2x3Package.IFC_HYGROSCOPIC_MATERIAL_PROPERTIES: {
 				IfcHygroscopicMaterialProperties ifcHygroscopicMaterialProperties = (IfcHygroscopicMaterialProperties)theEObject;
 				T result = caseIfcHygroscopicMaterialProperties(ifcHygroscopicMaterialProperties);
 				if (result == null) result = caseIfcMaterialProperties(ifcHygroscopicMaterialProperties);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_ISHAPE_PROFILE_DEF:
-			{
+			case Ifc2x3Package.IFC_ISHAPE_PROFILE_DEF: {
 				IfcIShapeProfileDef ifcIShapeProfileDef = (IfcIShapeProfileDef)theEObject;
 				T result = caseIfcIShapeProfileDef(ifcIShapeProfileDef);
 				if (result == null) result = caseIfcParameterizedProfileDef(ifcIShapeProfileDef);
@@ -4308,16 +3919,14 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_IMAGE_TEXTURE:
-			{
+			case Ifc2x3Package.IFC_IMAGE_TEXTURE: {
 				IfcImageTexture ifcImageTexture = (IfcImageTexture)theEObject;
 				T result = caseIfcImageTexture(ifcImageTexture);
 				if (result == null) result = caseIfcSurfaceTexture(ifcImageTexture);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_INVENTORY:
-			{
+			case Ifc2x3Package.IFC_INVENTORY: {
 				IfcInventory ifcInventory = (IfcInventory)theEObject;
 				T result = caseIfcInventory(ifcInventory);
 				if (result == null) result = caseIfcGroup(ifcInventory);
@@ -4327,8 +3936,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_IRREGULAR_TIME_SERIES:
-			{
+			case Ifc2x3Package.IFC_IRREGULAR_TIME_SERIES: {
 				IfcIrregularTimeSeries ifcIrregularTimeSeries = (IfcIrregularTimeSeries)theEObject;
 				T result = caseIfcIrregularTimeSeries(ifcIrregularTimeSeries);
 				if (result == null) result = caseIfcTimeSeries(ifcIrregularTimeSeries);
@@ -4337,15 +3945,13 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_IRREGULAR_TIME_SERIES_VALUE:
-			{
+			case Ifc2x3Package.IFC_IRREGULAR_TIME_SERIES_VALUE: {
 				IfcIrregularTimeSeriesValue ifcIrregularTimeSeriesValue = (IfcIrregularTimeSeriesValue)theEObject;
 				T result = caseIfcIrregularTimeSeriesValue(ifcIrregularTimeSeriesValue);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_JUNCTION_BOX_TYPE:
-			{
+			case Ifc2x3Package.IFC_JUNCTION_BOX_TYPE: {
 				IfcJunctionBoxType ifcJunctionBoxType = (IfcJunctionBoxType)theEObject;
 				T result = caseIfcJunctionBoxType(ifcJunctionBoxType);
 				if (result == null) result = caseIfcFlowFittingType(ifcJunctionBoxType);
@@ -4359,8 +3965,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_LSHAPE_PROFILE_DEF:
-			{
+			case Ifc2x3Package.IFC_LSHAPE_PROFILE_DEF: {
 				IfcLShapeProfileDef ifcLShapeProfileDef = (IfcLShapeProfileDef)theEObject;
 				T result = caseIfcLShapeProfileDef(ifcLShapeProfileDef);
 				if (result == null) result = caseIfcParameterizedProfileDef(ifcLShapeProfileDef);
@@ -4368,8 +3973,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_LABOR_RESOURCE:
-			{
+			case Ifc2x3Package.IFC_LABOR_RESOURCE: {
 				IfcLaborResource ifcLaborResource = (IfcLaborResource)theEObject;
 				T result = caseIfcLaborResource(ifcLaborResource);
 				if (result == null) result = caseIfcConstructionResource(ifcLaborResource);
@@ -4380,8 +3984,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_LAMP_TYPE:
-			{
+			case Ifc2x3Package.IFC_LAMP_TYPE: {
 				IfcLampType ifcLampType = (IfcLampType)theEObject;
 				T result = caseIfcLampType(ifcLampType);
 				if (result == null) result = caseIfcFlowTerminalType(ifcLampType);
@@ -4395,16 +3998,14 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_LIBRARY_INFORMATION:
-			{
+			case Ifc2x3Package.IFC_LIBRARY_INFORMATION: {
 				IfcLibraryInformation ifcLibraryInformation = (IfcLibraryInformation)theEObject;
 				T result = caseIfcLibraryInformation(ifcLibraryInformation);
 				if (result == null) result = caseIfcLibrarySelect(ifcLibraryInformation);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_LIBRARY_REFERENCE:
-			{
+			case Ifc2x3Package.IFC_LIBRARY_REFERENCE: {
 				IfcLibraryReference ifcLibraryReference = (IfcLibraryReference)theEObject;
 				T result = caseIfcLibraryReference(ifcLibraryReference);
 				if (result == null) result = caseIfcExternalReference(ifcLibraryReference);
@@ -4414,15 +4015,13 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_LIGHT_DISTRIBUTION_DATA:
-			{
+			case Ifc2x3Package.IFC_LIGHT_DISTRIBUTION_DATA: {
 				IfcLightDistributionData ifcLightDistributionData = (IfcLightDistributionData)theEObject;
 				T result = caseIfcLightDistributionData(ifcLightDistributionData);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_LIGHT_FIXTURE_TYPE:
-			{
+			case Ifc2x3Package.IFC_LIGHT_FIXTURE_TYPE: {
 				IfcLightFixtureType ifcLightFixtureType = (IfcLightFixtureType)theEObject;
 				T result = caseIfcLightFixtureType(ifcLightFixtureType);
 				if (result == null) result = caseIfcFlowTerminalType(ifcLightFixtureType);
@@ -4436,16 +4035,14 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_LIGHT_INTENSITY_DISTRIBUTION:
-			{
+			case Ifc2x3Package.IFC_LIGHT_INTENSITY_DISTRIBUTION: {
 				IfcLightIntensityDistribution ifcLightIntensityDistribution = (IfcLightIntensityDistribution)theEObject;
 				T result = caseIfcLightIntensityDistribution(ifcLightIntensityDistribution);
 				if (result == null) result = caseIfcLightDistributionDataSourceSelect(ifcLightIntensityDistribution);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_LIGHT_SOURCE:
-			{
+			case Ifc2x3Package.IFC_LIGHT_SOURCE: {
 				IfcLightSource ifcLightSource = (IfcLightSource)theEObject;
 				T result = caseIfcLightSource(ifcLightSource);
 				if (result == null) result = caseIfcGeometricRepresentationItem(ifcLightSource);
@@ -4454,8 +4051,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_LIGHT_SOURCE_AMBIENT:
-			{
+			case Ifc2x3Package.IFC_LIGHT_SOURCE_AMBIENT: {
 				IfcLightSourceAmbient ifcLightSourceAmbient = (IfcLightSourceAmbient)theEObject;
 				T result = caseIfcLightSourceAmbient(ifcLightSourceAmbient);
 				if (result == null) result = caseIfcLightSource(ifcLightSourceAmbient);
@@ -4465,8 +4061,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_LIGHT_SOURCE_DIRECTIONAL:
-			{
+			case Ifc2x3Package.IFC_LIGHT_SOURCE_DIRECTIONAL: {
 				IfcLightSourceDirectional ifcLightSourceDirectional = (IfcLightSourceDirectional)theEObject;
 				T result = caseIfcLightSourceDirectional(ifcLightSourceDirectional);
 				if (result == null) result = caseIfcLightSource(ifcLightSourceDirectional);
@@ -4476,8 +4071,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_LIGHT_SOURCE_GONIOMETRIC:
-			{
+			case Ifc2x3Package.IFC_LIGHT_SOURCE_GONIOMETRIC: {
 				IfcLightSourceGoniometric ifcLightSourceGoniometric = (IfcLightSourceGoniometric)theEObject;
 				T result = caseIfcLightSourceGoniometric(ifcLightSourceGoniometric);
 				if (result == null) result = caseIfcLightSource(ifcLightSourceGoniometric);
@@ -4487,8 +4081,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_LIGHT_SOURCE_POSITIONAL:
-			{
+			case Ifc2x3Package.IFC_LIGHT_SOURCE_POSITIONAL: {
 				IfcLightSourcePositional ifcLightSourcePositional = (IfcLightSourcePositional)theEObject;
 				T result = caseIfcLightSourcePositional(ifcLightSourcePositional);
 				if (result == null) result = caseIfcLightSource(ifcLightSourcePositional);
@@ -4498,8 +4091,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_LIGHT_SOURCE_SPOT:
-			{
+			case Ifc2x3Package.IFC_LIGHT_SOURCE_SPOT: {
 				IfcLightSourceSpot ifcLightSourceSpot = (IfcLightSourceSpot)theEObject;
 				T result = caseIfcLightSourceSpot(ifcLightSourceSpot);
 				if (result == null) result = caseIfcLightSourcePositional(ifcLightSourceSpot);
@@ -4510,8 +4102,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_LINE:
-			{
+			case Ifc2x3Package.IFC_LINE: {
 				IfcLine ifcLine = (IfcLine)theEObject;
 				T result = caseIfcLine(ifcLine);
 				if (result == null) result = caseIfcCurve(ifcLine);
@@ -4522,8 +4113,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_LINEAR_DIMENSION:
-			{
+			case Ifc2x3Package.IFC_LINEAR_DIMENSION: {
 				IfcLinearDimension ifcLinearDimension = (IfcLinearDimension)theEObject;
 				T result = caseIfcLinearDimension(ifcLinearDimension);
 				if (result == null) result = caseIfcDimensionCurveDirectedCallout(ifcLinearDimension);
@@ -4534,16 +4124,14 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_LOCAL_PLACEMENT:
-			{
+			case Ifc2x3Package.IFC_LOCAL_PLACEMENT: {
 				IfcLocalPlacement ifcLocalPlacement = (IfcLocalPlacement)theEObject;
 				T result = caseIfcLocalPlacement(ifcLocalPlacement);
 				if (result == null) result = caseIfcObjectPlacement(ifcLocalPlacement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_LOCAL_TIME:
-			{
+			case Ifc2x3Package.IFC_LOCAL_TIME: {
 				IfcLocalTime ifcLocalTime = (IfcLocalTime)theEObject;
 				T result = caseIfcLocalTime(ifcLocalTime);
 				if (result == null) result = caseIfcDateTimeSelect(ifcLocalTime);
@@ -4552,8 +4140,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_LOOP:
-			{
+			case Ifc2x3Package.IFC_LOOP: {
 				IfcLoop ifcLoop = (IfcLoop)theEObject;
 				T result = caseIfcLoop(ifcLoop);
 				if (result == null) result = caseIfcTopologicalRepresentationItem(ifcLoop);
@@ -4562,8 +4149,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_MANIFOLD_SOLID_BREP:
-			{
+			case Ifc2x3Package.IFC_MANIFOLD_SOLID_BREP: {
 				IfcManifoldSolidBrep ifcManifoldSolidBrep = (IfcManifoldSolidBrep)theEObject;
 				T result = caseIfcManifoldSolidBrep(ifcManifoldSolidBrep);
 				if (result == null) result = caseIfcSolidModel(ifcManifoldSolidBrep);
@@ -4574,8 +4160,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_MAPPED_ITEM:
-			{
+			case Ifc2x3Package.IFC_MAPPED_ITEM: {
 				IfcMappedItem ifcMappedItem = (IfcMappedItem)theEObject;
 				T result = caseIfcMappedItem(ifcMappedItem);
 				if (result == null) result = caseIfcRepresentationItem(ifcMappedItem);
@@ -4583,8 +4168,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_MATERIAL:
-			{
+			case Ifc2x3Package.IFC_MATERIAL: {
 				IfcMaterial ifcMaterial = (IfcMaterial)theEObject;
 				T result = caseIfcMaterial(ifcMaterial);
 				if (result == null) result = caseIfcMaterialSelect(ifcMaterial);
@@ -4592,23 +4176,20 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_MATERIAL_CLASSIFICATION_RELATIONSHIP:
-			{
+			case Ifc2x3Package.IFC_MATERIAL_CLASSIFICATION_RELATIONSHIP: {
 				IfcMaterialClassificationRelationship ifcMaterialClassificationRelationship = (IfcMaterialClassificationRelationship)theEObject;
 				T result = caseIfcMaterialClassificationRelationship(ifcMaterialClassificationRelationship);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_MATERIAL_DEFINITION_REPRESENTATION:
-			{
+			case Ifc2x3Package.IFC_MATERIAL_DEFINITION_REPRESENTATION: {
 				IfcMaterialDefinitionRepresentation ifcMaterialDefinitionRepresentation = (IfcMaterialDefinitionRepresentation)theEObject;
 				T result = caseIfcMaterialDefinitionRepresentation(ifcMaterialDefinitionRepresentation);
 				if (result == null) result = caseIfcProductRepresentation(ifcMaterialDefinitionRepresentation);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_MATERIAL_LAYER:
-			{
+			case Ifc2x3Package.IFC_MATERIAL_LAYER: {
 				IfcMaterialLayer ifcMaterialLayer = (IfcMaterialLayer)theEObject;
 				T result = caseIfcMaterialLayer(ifcMaterialLayer);
 				if (result == null) result = caseIfcMaterialSelect(ifcMaterialLayer);
@@ -4616,24 +4197,21 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_MATERIAL_LAYER_SET:
-			{
+			case Ifc2x3Package.IFC_MATERIAL_LAYER_SET: {
 				IfcMaterialLayerSet ifcMaterialLayerSet = (IfcMaterialLayerSet)theEObject;
 				T result = caseIfcMaterialLayerSet(ifcMaterialLayerSet);
 				if (result == null) result = caseIfcMaterialSelect(ifcMaterialLayerSet);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_MATERIAL_LAYER_SET_USAGE:
-			{
+			case Ifc2x3Package.IFC_MATERIAL_LAYER_SET_USAGE: {
 				IfcMaterialLayerSetUsage ifcMaterialLayerSetUsage = (IfcMaterialLayerSetUsage)theEObject;
 				T result = caseIfcMaterialLayerSetUsage(ifcMaterialLayerSetUsage);
 				if (result == null) result = caseIfcMaterialSelect(ifcMaterialLayerSetUsage);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_MATERIAL_LIST:
-			{
+			case Ifc2x3Package.IFC_MATERIAL_LIST: {
 				IfcMaterialList ifcMaterialList = (IfcMaterialList)theEObject;
 				T result = caseIfcMaterialList(ifcMaterialList);
 				if (result == null) result = caseIfcMaterialSelect(ifcMaterialList);
@@ -4641,15 +4219,13 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_MATERIAL_PROPERTIES:
-			{
+			case Ifc2x3Package.IFC_MATERIAL_PROPERTIES: {
 				IfcMaterialProperties ifcMaterialProperties = (IfcMaterialProperties)theEObject;
 				T result = caseIfcMaterialProperties(ifcMaterialProperties);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_MEASURE_WITH_UNIT:
-			{
+			case Ifc2x3Package.IFC_MEASURE_WITH_UNIT: {
 				IfcMeasureWithUnit ifcMeasureWithUnit = (IfcMeasureWithUnit)theEObject;
 				T result = caseIfcMeasureWithUnit(ifcMeasureWithUnit);
 				if (result == null) result = caseIfcAppliedValueSelect(ifcMeasureWithUnit);
@@ -4658,8 +4234,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_MECHANICAL_CONCRETE_MATERIAL_PROPERTIES:
-			{
+			case Ifc2x3Package.IFC_MECHANICAL_CONCRETE_MATERIAL_PROPERTIES: {
 				IfcMechanicalConcreteMaterialProperties ifcMechanicalConcreteMaterialProperties = (IfcMechanicalConcreteMaterialProperties)theEObject;
 				T result = caseIfcMechanicalConcreteMaterialProperties(ifcMechanicalConcreteMaterialProperties);
 				if (result == null) result = caseIfcMechanicalMaterialProperties(ifcMechanicalConcreteMaterialProperties);
@@ -4667,8 +4242,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_MECHANICAL_FASTENER:
-			{
+			case Ifc2x3Package.IFC_MECHANICAL_FASTENER: {
 				IfcMechanicalFastener ifcMechanicalFastener = (IfcMechanicalFastener)theEObject;
 				T result = caseIfcMechanicalFastener(ifcMechanicalFastener);
 				if (result == null) result = caseIfcFastener(ifcMechanicalFastener);
@@ -4682,8 +4256,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_MECHANICAL_FASTENER_TYPE:
-			{
+			case Ifc2x3Package.IFC_MECHANICAL_FASTENER_TYPE: {
 				IfcMechanicalFastenerType ifcMechanicalFastenerType = (IfcMechanicalFastenerType)theEObject;
 				T result = caseIfcMechanicalFastenerType(ifcMechanicalFastenerType);
 				if (result == null) result = caseIfcFastenerType(ifcMechanicalFastenerType);
@@ -4696,16 +4269,14 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_MECHANICAL_MATERIAL_PROPERTIES:
-			{
+			case Ifc2x3Package.IFC_MECHANICAL_MATERIAL_PROPERTIES: {
 				IfcMechanicalMaterialProperties ifcMechanicalMaterialProperties = (IfcMechanicalMaterialProperties)theEObject;
 				T result = caseIfcMechanicalMaterialProperties(ifcMechanicalMaterialProperties);
 				if (result == null) result = caseIfcMaterialProperties(ifcMechanicalMaterialProperties);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_MECHANICAL_STEEL_MATERIAL_PROPERTIES:
-			{
+			case Ifc2x3Package.IFC_MECHANICAL_STEEL_MATERIAL_PROPERTIES: {
 				IfcMechanicalSteelMaterialProperties ifcMechanicalSteelMaterialProperties = (IfcMechanicalSteelMaterialProperties)theEObject;
 				T result = caseIfcMechanicalSteelMaterialProperties(ifcMechanicalSteelMaterialProperties);
 				if (result == null) result = caseIfcMechanicalMaterialProperties(ifcMechanicalSteelMaterialProperties);
@@ -4713,8 +4284,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_MEMBER:
-			{
+			case Ifc2x3Package.IFC_MEMBER: {
 				IfcMember ifcMember = (IfcMember)theEObject;
 				T result = caseIfcMember(ifcMember);
 				if (result == null) result = caseIfcBuildingElement(ifcMember);
@@ -4727,8 +4297,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_MEMBER_TYPE:
-			{
+			case Ifc2x3Package.IFC_MEMBER_TYPE: {
 				IfcMemberType ifcMemberType = (IfcMemberType)theEObject;
 				T result = caseIfcMemberType(ifcMemberType);
 				if (result == null) result = caseIfcBuildingElementType(ifcMemberType);
@@ -4740,24 +4309,21 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_METRIC:
-			{
+			case Ifc2x3Package.IFC_METRIC: {
 				IfcMetric ifcMetric = (IfcMetric)theEObject;
 				T result = caseIfcMetric(ifcMetric);
 				if (result == null) result = caseIfcConstraint(ifcMetric);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_MONETARY_UNIT:
-			{
+			case Ifc2x3Package.IFC_MONETARY_UNIT: {
 				IfcMonetaryUnit ifcMonetaryUnit = (IfcMonetaryUnit)theEObject;
 				T result = caseIfcMonetaryUnit(ifcMonetaryUnit);
 				if (result == null) result = caseIfcUnit(ifcMonetaryUnit);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_MOTOR_CONNECTION_TYPE:
-			{
+			case Ifc2x3Package.IFC_MOTOR_CONNECTION_TYPE: {
 				IfcMotorConnectionType ifcMotorConnectionType = (IfcMotorConnectionType)theEObject;
 				T result = caseIfcMotorConnectionType(ifcMotorConnectionType);
 				if (result == null) result = caseIfcEnergyConversionDeviceType(ifcMotorConnectionType);
@@ -4771,8 +4337,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_MOVE:
-			{
+			case Ifc2x3Package.IFC_MOVE: {
 				IfcMove ifcMove = (IfcMove)theEObject;
 				T result = caseIfcMove(ifcMove);
 				if (result == null) result = caseIfcTask(ifcMove);
@@ -4783,16 +4348,14 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_NAMED_UNIT:
-			{
+			case Ifc2x3Package.IFC_NAMED_UNIT: {
 				IfcNamedUnit ifcNamedUnit = (IfcNamedUnit)theEObject;
 				T result = caseIfcNamedUnit(ifcNamedUnit);
 				if (result == null) result = caseIfcUnit(ifcNamedUnit);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_OBJECT:
-			{
+			case Ifc2x3Package.IFC_OBJECT: {
 				IfcObject ifcObject = (IfcObject)theEObject;
 				T result = caseIfcObject(ifcObject);
 				if (result == null) result = caseIfcObjectDefinition(ifcObject);
@@ -4800,31 +4363,27 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_OBJECT_DEFINITION:
-			{
+			case Ifc2x3Package.IFC_OBJECT_DEFINITION: {
 				IfcObjectDefinition ifcObjectDefinition = (IfcObjectDefinition)theEObject;
 				T result = caseIfcObjectDefinition(ifcObjectDefinition);
 				if (result == null) result = caseIfcRoot(ifcObjectDefinition);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_OBJECT_PLACEMENT:
-			{
+			case Ifc2x3Package.IFC_OBJECT_PLACEMENT: {
 				IfcObjectPlacement ifcObjectPlacement = (IfcObjectPlacement)theEObject;
 				T result = caseIfcObjectPlacement(ifcObjectPlacement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_OBJECTIVE:
-			{
+			case Ifc2x3Package.IFC_OBJECTIVE: {
 				IfcObjective ifcObjective = (IfcObjective)theEObject;
 				T result = caseIfcObjective(ifcObjective);
 				if (result == null) result = caseIfcConstraint(ifcObjective);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_OCCUPANT:
-			{
+			case Ifc2x3Package.IFC_OCCUPANT: {
 				IfcOccupant ifcOccupant = (IfcOccupant)theEObject;
 				T result = caseIfcOccupant(ifcOccupant);
 				if (result == null) result = caseIfcActor(ifcOccupant);
@@ -4834,8 +4393,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_OFFSET_CURVE2_D:
-			{
+			case Ifc2x3Package.IFC_OFFSET_CURVE2_D: {
 				IfcOffsetCurve2D ifcOffsetCurve2D = (IfcOffsetCurve2D)theEObject;
 				T result = caseIfcOffsetCurve2D(ifcOffsetCurve2D);
 				if (result == null) result = caseIfcCurve(ifcOffsetCurve2D);
@@ -4846,8 +4404,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_OFFSET_CURVE3_D:
-			{
+			case Ifc2x3Package.IFC_OFFSET_CURVE3_D: {
 				IfcOffsetCurve3D ifcOffsetCurve3D = (IfcOffsetCurve3D)theEObject;
 				T result = caseIfcOffsetCurve3D(ifcOffsetCurve3D);
 				if (result == null) result = caseIfcCurve(ifcOffsetCurve3D);
@@ -4858,8 +4415,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_ONE_DIRECTION_REPEAT_FACTOR:
-			{
+			case Ifc2x3Package.IFC_ONE_DIRECTION_REPEAT_FACTOR: {
 				IfcOneDirectionRepeatFactor ifcOneDirectionRepeatFactor = (IfcOneDirectionRepeatFactor)theEObject;
 				T result = caseIfcOneDirectionRepeatFactor(ifcOneDirectionRepeatFactor);
 				if (result == null) result = caseIfcGeometricRepresentationItem(ifcOneDirectionRepeatFactor);
@@ -4869,8 +4425,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_OPEN_SHELL:
-			{
+			case Ifc2x3Package.IFC_OPEN_SHELL: {
 				IfcOpenShell ifcOpenShell = (IfcOpenShell)theEObject;
 				T result = caseIfcOpenShell(ifcOpenShell);
 				if (result == null) result = caseIfcConnectedFaceSet(ifcOpenShell);
@@ -4881,8 +4436,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_OPENING_ELEMENT:
-			{
+			case Ifc2x3Package.IFC_OPENING_ELEMENT: {
 				IfcOpeningElement ifcOpeningElement = (IfcOpeningElement)theEObject;
 				T result = caseIfcOpeningElement(ifcOpeningElement);
 				if (result == null) result = caseIfcFeatureElementSubtraction(ifcOpeningElement);
@@ -4896,16 +4450,14 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_OPTICAL_MATERIAL_PROPERTIES:
-			{
+			case Ifc2x3Package.IFC_OPTICAL_MATERIAL_PROPERTIES: {
 				IfcOpticalMaterialProperties ifcOpticalMaterialProperties = (IfcOpticalMaterialProperties)theEObject;
 				T result = caseIfcOpticalMaterialProperties(ifcOpticalMaterialProperties);
 				if (result == null) result = caseIfcMaterialProperties(ifcOpticalMaterialProperties);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_ORDER_ACTION:
-			{
+			case Ifc2x3Package.IFC_ORDER_ACTION: {
 				IfcOrderAction ifcOrderAction = (IfcOrderAction)theEObject;
 				T result = caseIfcOrderAction(ifcOrderAction);
 				if (result == null) result = caseIfcTask(ifcOrderAction);
@@ -4916,8 +4468,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_ORGANIZATION:
-			{
+			case Ifc2x3Package.IFC_ORGANIZATION: {
 				IfcOrganization ifcOrganization = (IfcOrganization)theEObject;
 				T result = caseIfcOrganization(ifcOrganization);
 				if (result == null) result = caseIfcActorSelect(ifcOrganization);
@@ -4925,15 +4476,13 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_ORGANIZATION_RELATIONSHIP:
-			{
+			case Ifc2x3Package.IFC_ORGANIZATION_RELATIONSHIP: {
 				IfcOrganizationRelationship ifcOrganizationRelationship = (IfcOrganizationRelationship)theEObject;
 				T result = caseIfcOrganizationRelationship(ifcOrganizationRelationship);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_ORIENTED_EDGE:
-			{
+			case Ifc2x3Package.IFC_ORIENTED_EDGE: {
 				IfcOrientedEdge ifcOrientedEdge = (IfcOrientedEdge)theEObject;
 				T result = caseIfcOrientedEdge(ifcOrientedEdge);
 				if (result == null) result = caseIfcEdge(ifcOrientedEdge);
@@ -4943,8 +4492,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_OUTLET_TYPE:
-			{
+			case Ifc2x3Package.IFC_OUTLET_TYPE: {
 				IfcOutletType ifcOutletType = (IfcOutletType)theEObject;
 				T result = caseIfcOutletType(ifcOutletType);
 				if (result == null) result = caseIfcFlowTerminalType(ifcOutletType);
@@ -4958,23 +4506,20 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_OWNER_HISTORY:
-			{
+			case Ifc2x3Package.IFC_OWNER_HISTORY: {
 				IfcOwnerHistory ifcOwnerHistory = (IfcOwnerHistory)theEObject;
 				T result = caseIfcOwnerHistory(ifcOwnerHistory);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_PARAMETERIZED_PROFILE_DEF:
-			{
+			case Ifc2x3Package.IFC_PARAMETERIZED_PROFILE_DEF: {
 				IfcParameterizedProfileDef ifcParameterizedProfileDef = (IfcParameterizedProfileDef)theEObject;
 				T result = caseIfcParameterizedProfileDef(ifcParameterizedProfileDef);
 				if (result == null) result = caseIfcProfileDef(ifcParameterizedProfileDef);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_PATH:
-			{
+			case Ifc2x3Package.IFC_PATH: {
 				IfcPath ifcPath = (IfcPath)theEObject;
 				T result = caseIfcPath(ifcPath);
 				if (result == null) result = caseIfcTopologicalRepresentationItem(ifcPath);
@@ -4983,8 +4528,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_PERFORMANCE_HISTORY:
-			{
+			case Ifc2x3Package.IFC_PERFORMANCE_HISTORY: {
 				IfcPerformanceHistory ifcPerformanceHistory = (IfcPerformanceHistory)theEObject;
 				T result = caseIfcPerformanceHistory(ifcPerformanceHistory);
 				if (result == null) result = caseIfcControl(ifcPerformanceHistory);
@@ -4994,8 +4538,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_PERMEABLE_COVERING_PROPERTIES:
-			{
+			case Ifc2x3Package.IFC_PERMEABLE_COVERING_PROPERTIES: {
 				IfcPermeableCoveringProperties ifcPermeableCoveringProperties = (IfcPermeableCoveringProperties)theEObject;
 				T result = caseIfcPermeableCoveringProperties(ifcPermeableCoveringProperties);
 				if (result == null) result = caseIfcPropertySetDefinition(ifcPermeableCoveringProperties);
@@ -5004,8 +4547,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_PERMIT:
-			{
+			case Ifc2x3Package.IFC_PERMIT: {
 				IfcPermit ifcPermit = (IfcPermit)theEObject;
 				T result = caseIfcPermit(ifcPermit);
 				if (result == null) result = caseIfcControl(ifcPermit);
@@ -5015,8 +4557,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_PERSON:
-			{
+			case Ifc2x3Package.IFC_PERSON: {
 				IfcPerson ifcPerson = (IfcPerson)theEObject;
 				T result = caseIfcPerson(ifcPerson);
 				if (result == null) result = caseIfcActorSelect(ifcPerson);
@@ -5024,8 +4565,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_PERSON_AND_ORGANIZATION:
-			{
+			case Ifc2x3Package.IFC_PERSON_AND_ORGANIZATION: {
 				IfcPersonAndOrganization ifcPersonAndOrganization = (IfcPersonAndOrganization)theEObject;
 				T result = caseIfcPersonAndOrganization(ifcPersonAndOrganization);
 				if (result == null) result = caseIfcActorSelect(ifcPersonAndOrganization);
@@ -5033,31 +4573,27 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_PHYSICAL_COMPLEX_QUANTITY:
-			{
+			case Ifc2x3Package.IFC_PHYSICAL_COMPLEX_QUANTITY: {
 				IfcPhysicalComplexQuantity ifcPhysicalComplexQuantity = (IfcPhysicalComplexQuantity)theEObject;
 				T result = caseIfcPhysicalComplexQuantity(ifcPhysicalComplexQuantity);
 				if (result == null) result = caseIfcPhysicalQuantity(ifcPhysicalComplexQuantity);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_PHYSICAL_QUANTITY:
-			{
+			case Ifc2x3Package.IFC_PHYSICAL_QUANTITY: {
 				IfcPhysicalQuantity ifcPhysicalQuantity = (IfcPhysicalQuantity)theEObject;
 				T result = caseIfcPhysicalQuantity(ifcPhysicalQuantity);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_PHYSICAL_SIMPLE_QUANTITY:
-			{
+			case Ifc2x3Package.IFC_PHYSICAL_SIMPLE_QUANTITY: {
 				IfcPhysicalSimpleQuantity ifcPhysicalSimpleQuantity = (IfcPhysicalSimpleQuantity)theEObject;
 				T result = caseIfcPhysicalSimpleQuantity(ifcPhysicalSimpleQuantity);
 				if (result == null) result = caseIfcPhysicalQuantity(ifcPhysicalSimpleQuantity);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_PILE:
-			{
+			case Ifc2x3Package.IFC_PILE: {
 				IfcPile ifcPile = (IfcPile)theEObject;
 				T result = caseIfcPile(ifcPile);
 				if (result == null) result = caseIfcBuildingElement(ifcPile);
@@ -5070,8 +4606,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_PIPE_FITTING_TYPE:
-			{
+			case Ifc2x3Package.IFC_PIPE_FITTING_TYPE: {
 				IfcPipeFittingType ifcPipeFittingType = (IfcPipeFittingType)theEObject;
 				T result = caseIfcPipeFittingType(ifcPipeFittingType);
 				if (result == null) result = caseIfcFlowFittingType(ifcPipeFittingType);
@@ -5085,8 +4620,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_PIPE_SEGMENT_TYPE:
-			{
+			case Ifc2x3Package.IFC_PIPE_SEGMENT_TYPE: {
 				IfcPipeSegmentType ifcPipeSegmentType = (IfcPipeSegmentType)theEObject;
 				T result = caseIfcPipeSegmentType(ifcPipeSegmentType);
 				if (result == null) result = caseIfcFlowSegmentType(ifcPipeSegmentType);
@@ -5100,16 +4634,14 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_PIXEL_TEXTURE:
-			{
+			case Ifc2x3Package.IFC_PIXEL_TEXTURE: {
 				IfcPixelTexture ifcPixelTexture = (IfcPixelTexture)theEObject;
 				T result = caseIfcPixelTexture(ifcPixelTexture);
 				if (result == null) result = caseIfcSurfaceTexture(ifcPixelTexture);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_PLACEMENT:
-			{
+			case Ifc2x3Package.IFC_PLACEMENT: {
 				IfcPlacement ifcPlacement = (IfcPlacement)theEObject;
 				T result = caseIfcPlacement(ifcPlacement);
 				if (result == null) result = caseIfcGeometricRepresentationItem(ifcPlacement);
@@ -5118,8 +4650,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_PLANAR_BOX:
-			{
+			case Ifc2x3Package.IFC_PLANAR_BOX: {
 				IfcPlanarBox ifcPlanarBox = (IfcPlanarBox)theEObject;
 				T result = caseIfcPlanarBox(ifcPlanarBox);
 				if (result == null) result = caseIfcPlanarExtent(ifcPlanarBox);
@@ -5129,8 +4660,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_PLANAR_EXTENT:
-			{
+			case Ifc2x3Package.IFC_PLANAR_EXTENT: {
 				IfcPlanarExtent ifcPlanarExtent = (IfcPlanarExtent)theEObject;
 				T result = caseIfcPlanarExtent(ifcPlanarExtent);
 				if (result == null) result = caseIfcGeometricRepresentationItem(ifcPlanarExtent);
@@ -5139,8 +4669,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_PLANE:
-			{
+			case Ifc2x3Package.IFC_PLANE: {
 				IfcPlane ifcPlane = (IfcPlane)theEObject;
 				T result = caseIfcPlane(ifcPlane);
 				if (result == null) result = caseIfcElementarySurface(ifcPlane);
@@ -5153,8 +4682,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_PLATE:
-			{
+			case Ifc2x3Package.IFC_PLATE: {
 				IfcPlate ifcPlate = (IfcPlate)theEObject;
 				T result = caseIfcPlate(ifcPlate);
 				if (result == null) result = caseIfcBuildingElement(ifcPlate);
@@ -5167,8 +4695,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_PLATE_TYPE:
-			{
+			case Ifc2x3Package.IFC_PLATE_TYPE: {
 				IfcPlateType ifcPlateType = (IfcPlateType)theEObject;
 				T result = caseIfcPlateType(ifcPlateType);
 				if (result == null) result = caseIfcBuildingElementType(ifcPlateType);
@@ -5180,8 +4707,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_POINT:
-			{
+			case Ifc2x3Package.IFC_POINT: {
 				IfcPoint ifcPoint = (IfcPoint)theEObject;
 				T result = caseIfcPoint(ifcPoint);
 				if (result == null) result = caseIfcGeometricRepresentationItem(ifcPoint);
@@ -5192,8 +4718,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_POINT_ON_CURVE:
-			{
+			case Ifc2x3Package.IFC_POINT_ON_CURVE: {
 				IfcPointOnCurve ifcPointOnCurve = (IfcPointOnCurve)theEObject;
 				T result = caseIfcPointOnCurve(ifcPointOnCurve);
 				if (result == null) result = caseIfcPoint(ifcPointOnCurve);
@@ -5205,8 +4730,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_POINT_ON_SURFACE:
-			{
+			case Ifc2x3Package.IFC_POINT_ON_SURFACE: {
 				IfcPointOnSurface ifcPointOnSurface = (IfcPointOnSurface)theEObject;
 				T result = caseIfcPointOnSurface(ifcPointOnSurface);
 				if (result == null) result = caseIfcPoint(ifcPointOnSurface);
@@ -5218,8 +4742,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_POLY_LOOP:
-			{
+			case Ifc2x3Package.IFC_POLY_LOOP: {
 				IfcPolyLoop ifcPolyLoop = (IfcPolyLoop)theEObject;
 				T result = caseIfcPolyLoop(ifcPolyLoop);
 				if (result == null) result = caseIfcLoop(ifcPolyLoop);
@@ -5229,8 +4752,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_POLYGONAL_BOUNDED_HALF_SPACE:
-			{
+			case Ifc2x3Package.IFC_POLYGONAL_BOUNDED_HALF_SPACE: {
 				IfcPolygonalBoundedHalfSpace ifcPolygonalBoundedHalfSpace = (IfcPolygonalBoundedHalfSpace)theEObject;
 				T result = caseIfcPolygonalBoundedHalfSpace(ifcPolygonalBoundedHalfSpace);
 				if (result == null) result = caseIfcHalfSpaceSolid(ifcPolygonalBoundedHalfSpace);
@@ -5241,8 +4763,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_POLYLINE:
-			{
+			case Ifc2x3Package.IFC_POLYLINE: {
 				IfcPolyline ifcPolyline = (IfcPolyline)theEObject;
 				T result = caseIfcPolyline(ifcPolyline);
 				if (result == null) result = caseIfcBoundedCurve(ifcPolyline);
@@ -5255,8 +4776,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_PORT:
-			{
+			case Ifc2x3Package.IFC_PORT: {
 				IfcPort ifcPort = (IfcPort)theEObject;
 				T result = caseIfcPort(ifcPort);
 				if (result == null) result = caseIfcProduct(ifcPort);
@@ -5266,8 +4786,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_POSTAL_ADDRESS:
-			{
+			case Ifc2x3Package.IFC_POSTAL_ADDRESS: {
 				IfcPostalAddress ifcPostalAddress = (IfcPostalAddress)theEObject;
 				T result = caseIfcPostalAddress(ifcPostalAddress);
 				if (result == null) result = caseIfcAddress(ifcPostalAddress);
@@ -5275,8 +4794,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_PRE_DEFINED_COLOUR:
-			{
+			case Ifc2x3Package.IFC_PRE_DEFINED_COLOUR: {
 				IfcPreDefinedColour ifcPreDefinedColour = (IfcPreDefinedColour)theEObject;
 				T result = caseIfcPreDefinedColour(ifcPreDefinedColour);
 				if (result == null) result = caseIfcPreDefinedItem(ifcPreDefinedColour);
@@ -5286,8 +4804,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_PRE_DEFINED_CURVE_FONT:
-			{
+			case Ifc2x3Package.IFC_PRE_DEFINED_CURVE_FONT: {
 				IfcPreDefinedCurveFont ifcPreDefinedCurveFont = (IfcPreDefinedCurveFont)theEObject;
 				T result = caseIfcPreDefinedCurveFont(ifcPreDefinedCurveFont);
 				if (result == null) result = caseIfcPreDefinedItem(ifcPreDefinedCurveFont);
@@ -5296,8 +4813,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_PRE_DEFINED_DIMENSION_SYMBOL:
-			{
+			case Ifc2x3Package.IFC_PRE_DEFINED_DIMENSION_SYMBOL: {
 				IfcPreDefinedDimensionSymbol ifcPreDefinedDimensionSymbol = (IfcPreDefinedDimensionSymbol)theEObject;
 				T result = caseIfcPreDefinedDimensionSymbol(ifcPreDefinedDimensionSymbol);
 				if (result == null) result = caseIfcPreDefinedSymbol(ifcPreDefinedDimensionSymbol);
@@ -5306,15 +4822,13 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_PRE_DEFINED_ITEM:
-			{
+			case Ifc2x3Package.IFC_PRE_DEFINED_ITEM: {
 				IfcPreDefinedItem ifcPreDefinedItem = (IfcPreDefinedItem)theEObject;
 				T result = caseIfcPreDefinedItem(ifcPreDefinedItem);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_PRE_DEFINED_POINT_MARKER_SYMBOL:
-			{
+			case Ifc2x3Package.IFC_PRE_DEFINED_POINT_MARKER_SYMBOL: {
 				IfcPreDefinedPointMarkerSymbol ifcPreDefinedPointMarkerSymbol = (IfcPreDefinedPointMarkerSymbol)theEObject;
 				T result = caseIfcPreDefinedPointMarkerSymbol(ifcPreDefinedPointMarkerSymbol);
 				if (result == null) result = caseIfcPreDefinedSymbol(ifcPreDefinedPointMarkerSymbol);
@@ -5323,8 +4837,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_PRE_DEFINED_SYMBOL:
-			{
+			case Ifc2x3Package.IFC_PRE_DEFINED_SYMBOL: {
 				IfcPreDefinedSymbol ifcPreDefinedSymbol = (IfcPreDefinedSymbol)theEObject;
 				T result = caseIfcPreDefinedSymbol(ifcPreDefinedSymbol);
 				if (result == null) result = caseIfcPreDefinedItem(ifcPreDefinedSymbol);
@@ -5332,8 +4845,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_PRE_DEFINED_TERMINATOR_SYMBOL:
-			{
+			case Ifc2x3Package.IFC_PRE_DEFINED_TERMINATOR_SYMBOL: {
 				IfcPreDefinedTerminatorSymbol ifcPreDefinedTerminatorSymbol = (IfcPreDefinedTerminatorSymbol)theEObject;
 				T result = caseIfcPreDefinedTerminatorSymbol(ifcPreDefinedTerminatorSymbol);
 				if (result == null) result = caseIfcPreDefinedSymbol(ifcPreDefinedTerminatorSymbol);
@@ -5342,8 +4854,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_PRE_DEFINED_TEXT_FONT:
-			{
+			case Ifc2x3Package.IFC_PRE_DEFINED_TEXT_FONT: {
 				IfcPreDefinedTextFont ifcPreDefinedTextFont = (IfcPreDefinedTextFont)theEObject;
 				T result = caseIfcPreDefinedTextFont(ifcPreDefinedTextFont);
 				if (result == null) result = caseIfcPreDefinedItem(ifcPreDefinedTextFont);
@@ -5351,37 +4862,32 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_PRESENTATION_LAYER_ASSIGNMENT:
-			{
+			case Ifc2x3Package.IFC_PRESENTATION_LAYER_ASSIGNMENT: {
 				IfcPresentationLayerAssignment ifcPresentationLayerAssignment = (IfcPresentationLayerAssignment)theEObject;
 				T result = caseIfcPresentationLayerAssignment(ifcPresentationLayerAssignment);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_PRESENTATION_LAYER_WITH_STYLE:
-			{
+			case Ifc2x3Package.IFC_PRESENTATION_LAYER_WITH_STYLE: {
 				IfcPresentationLayerWithStyle ifcPresentationLayerWithStyle = (IfcPresentationLayerWithStyle)theEObject;
 				T result = caseIfcPresentationLayerWithStyle(ifcPresentationLayerWithStyle);
 				if (result == null) result = caseIfcPresentationLayerAssignment(ifcPresentationLayerWithStyle);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_PRESENTATION_STYLE:
-			{
+			case Ifc2x3Package.IFC_PRESENTATION_STYLE: {
 				IfcPresentationStyle ifcPresentationStyle = (IfcPresentationStyle)theEObject;
 				T result = caseIfcPresentationStyle(ifcPresentationStyle);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_PRESENTATION_STYLE_ASSIGNMENT:
-			{
+			case Ifc2x3Package.IFC_PRESENTATION_STYLE_ASSIGNMENT: {
 				IfcPresentationStyleAssignment ifcPresentationStyleAssignment = (IfcPresentationStyleAssignment)theEObject;
 				T result = caseIfcPresentationStyleAssignment(ifcPresentationStyleAssignment);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_PROCEDURE:
-			{
+			case Ifc2x3Package.IFC_PROCEDURE: {
 				IfcProcedure ifcProcedure = (IfcProcedure)theEObject;
 				T result = caseIfcProcedure(ifcProcedure);
 				if (result == null) result = caseIfcProcess(ifcProcedure);
@@ -5391,8 +4897,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_PROCESS:
-			{
+			case Ifc2x3Package.IFC_PROCESS: {
 				IfcProcess ifcProcess = (IfcProcess)theEObject;
 				T result = caseIfcProcess(ifcProcess);
 				if (result == null) result = caseIfcObject(ifcProcess);
@@ -5401,8 +4906,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_PRODUCT:
-			{
+			case Ifc2x3Package.IFC_PRODUCT: {
 				IfcProduct ifcProduct = (IfcProduct)theEObject;
 				T result = caseIfcProduct(ifcProduct);
 				if (result == null) result = caseIfcObject(ifcProduct);
@@ -5411,45 +4915,39 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_PRODUCT_DEFINITION_SHAPE:
-			{
+			case Ifc2x3Package.IFC_PRODUCT_DEFINITION_SHAPE: {
 				IfcProductDefinitionShape ifcProductDefinitionShape = (IfcProductDefinitionShape)theEObject;
 				T result = caseIfcProductDefinitionShape(ifcProductDefinitionShape);
 				if (result == null) result = caseIfcProductRepresentation(ifcProductDefinitionShape);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_PRODUCT_REPRESENTATION:
-			{
+			case Ifc2x3Package.IFC_PRODUCT_REPRESENTATION: {
 				IfcProductRepresentation ifcProductRepresentation = (IfcProductRepresentation)theEObject;
 				T result = caseIfcProductRepresentation(ifcProductRepresentation);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_PRODUCTS_OF_COMBUSTION_PROPERTIES:
-			{
+			case Ifc2x3Package.IFC_PRODUCTS_OF_COMBUSTION_PROPERTIES: {
 				IfcProductsOfCombustionProperties ifcProductsOfCombustionProperties = (IfcProductsOfCombustionProperties)theEObject;
 				T result = caseIfcProductsOfCombustionProperties(ifcProductsOfCombustionProperties);
 				if (result == null) result = caseIfcMaterialProperties(ifcProductsOfCombustionProperties);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_PROFILE_DEF:
-			{
+			case Ifc2x3Package.IFC_PROFILE_DEF: {
 				IfcProfileDef ifcProfileDef = (IfcProfileDef)theEObject;
 				T result = caseIfcProfileDef(ifcProfileDef);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_PROFILE_PROPERTIES:
-			{
+			case Ifc2x3Package.IFC_PROFILE_PROPERTIES: {
 				IfcProfileProperties ifcProfileProperties = (IfcProfileProperties)theEObject;
 				T result = caseIfcProfileProperties(ifcProfileProperties);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_PROJECT:
-			{
+			case Ifc2x3Package.IFC_PROJECT: {
 				IfcProject ifcProject = (IfcProject)theEObject;
 				T result = caseIfcProject(ifcProject);
 				if (result == null) result = caseIfcObject(ifcProject);
@@ -5458,8 +4956,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_PROJECT_ORDER:
-			{
+			case Ifc2x3Package.IFC_PROJECT_ORDER: {
 				IfcProjectOrder ifcProjectOrder = (IfcProjectOrder)theEObject;
 				T result = caseIfcProjectOrder(ifcProjectOrder);
 				if (result == null) result = caseIfcControl(ifcProjectOrder);
@@ -5469,8 +4966,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_PROJECT_ORDER_RECORD:
-			{
+			case Ifc2x3Package.IFC_PROJECT_ORDER_RECORD: {
 				IfcProjectOrderRecord ifcProjectOrderRecord = (IfcProjectOrderRecord)theEObject;
 				T result = caseIfcProjectOrderRecord(ifcProjectOrderRecord);
 				if (result == null) result = caseIfcControl(ifcProjectOrderRecord);
@@ -5480,8 +4976,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_PROJECTION_CURVE:
-			{
+			case Ifc2x3Package.IFC_PROJECTION_CURVE: {
 				IfcProjectionCurve ifcProjectionCurve = (IfcProjectionCurve)theEObject;
 				T result = caseIfcProjectionCurve(ifcProjectionCurve);
 				if (result == null) result = caseIfcAnnotationCurveOccurrence(ifcProjectionCurve);
@@ -5493,8 +4988,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_PROJECTION_ELEMENT:
-			{
+			case Ifc2x3Package.IFC_PROJECTION_ELEMENT: {
 				IfcProjectionElement ifcProjectionElement = (IfcProjectionElement)theEObject;
 				T result = caseIfcProjectionElement(ifcProjectionElement);
 				if (result == null) result = caseIfcFeatureElementAddition(ifcProjectionElement);
@@ -5508,15 +5002,13 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_PROPERTY:
-			{
+			case Ifc2x3Package.IFC_PROPERTY: {
 				IfcProperty ifcProperty = (IfcProperty)theEObject;
 				T result = caseIfcProperty(ifcProperty);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_PROPERTY_BOUNDED_VALUE:
-			{
+			case Ifc2x3Package.IFC_PROPERTY_BOUNDED_VALUE: {
 				IfcPropertyBoundedValue ifcPropertyBoundedValue = (IfcPropertyBoundedValue)theEObject;
 				T result = caseIfcPropertyBoundedValue(ifcPropertyBoundedValue);
 				if (result == null) result = caseIfcSimpleProperty(ifcPropertyBoundedValue);
@@ -5524,30 +5016,26 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_PROPERTY_CONSTRAINT_RELATIONSHIP:
-			{
+			case Ifc2x3Package.IFC_PROPERTY_CONSTRAINT_RELATIONSHIP: {
 				IfcPropertyConstraintRelationship ifcPropertyConstraintRelationship = (IfcPropertyConstraintRelationship)theEObject;
 				T result = caseIfcPropertyConstraintRelationship(ifcPropertyConstraintRelationship);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_PROPERTY_DEFINITION:
-			{
+			case Ifc2x3Package.IFC_PROPERTY_DEFINITION: {
 				IfcPropertyDefinition ifcPropertyDefinition = (IfcPropertyDefinition)theEObject;
 				T result = caseIfcPropertyDefinition(ifcPropertyDefinition);
 				if (result == null) result = caseIfcRoot(ifcPropertyDefinition);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_PROPERTY_DEPENDENCY_RELATIONSHIP:
-			{
+			case Ifc2x3Package.IFC_PROPERTY_DEPENDENCY_RELATIONSHIP: {
 				IfcPropertyDependencyRelationship ifcPropertyDependencyRelationship = (IfcPropertyDependencyRelationship)theEObject;
 				T result = caseIfcPropertyDependencyRelationship(ifcPropertyDependencyRelationship);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_PROPERTY_ENUMERATED_VALUE:
-			{
+			case Ifc2x3Package.IFC_PROPERTY_ENUMERATED_VALUE: {
 				IfcPropertyEnumeratedValue ifcPropertyEnumeratedValue = (IfcPropertyEnumeratedValue)theEObject;
 				T result = caseIfcPropertyEnumeratedValue(ifcPropertyEnumeratedValue);
 				if (result == null) result = caseIfcSimpleProperty(ifcPropertyEnumeratedValue);
@@ -5555,15 +5043,13 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_PROPERTY_ENUMERATION:
-			{
+			case Ifc2x3Package.IFC_PROPERTY_ENUMERATION: {
 				IfcPropertyEnumeration ifcPropertyEnumeration = (IfcPropertyEnumeration)theEObject;
 				T result = caseIfcPropertyEnumeration(ifcPropertyEnumeration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_PROPERTY_LIST_VALUE:
-			{
+			case Ifc2x3Package.IFC_PROPERTY_LIST_VALUE: {
 				IfcPropertyListValue ifcPropertyListValue = (IfcPropertyListValue)theEObject;
 				T result = caseIfcPropertyListValue(ifcPropertyListValue);
 				if (result == null) result = caseIfcSimpleProperty(ifcPropertyListValue);
@@ -5571,8 +5057,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_PROPERTY_REFERENCE_VALUE:
-			{
+			case Ifc2x3Package.IFC_PROPERTY_REFERENCE_VALUE: {
 				IfcPropertyReferenceValue ifcPropertyReferenceValue = (IfcPropertyReferenceValue)theEObject;
 				T result = caseIfcPropertyReferenceValue(ifcPropertyReferenceValue);
 				if (result == null) result = caseIfcSimpleProperty(ifcPropertyReferenceValue);
@@ -5580,8 +5065,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_PROPERTY_SET:
-			{
+			case Ifc2x3Package.IFC_PROPERTY_SET: {
 				IfcPropertySet ifcPropertySet = (IfcPropertySet)theEObject;
 				T result = caseIfcPropertySet(ifcPropertySet);
 				if (result == null) result = caseIfcPropertySetDefinition(ifcPropertySet);
@@ -5590,8 +5074,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_PROPERTY_SET_DEFINITION:
-			{
+			case Ifc2x3Package.IFC_PROPERTY_SET_DEFINITION: {
 				IfcPropertySetDefinition ifcPropertySetDefinition = (IfcPropertySetDefinition)theEObject;
 				T result = caseIfcPropertySetDefinition(ifcPropertySetDefinition);
 				if (result == null) result = caseIfcPropertyDefinition(ifcPropertySetDefinition);
@@ -5599,8 +5082,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_PROPERTY_SINGLE_VALUE:
-			{
+			case Ifc2x3Package.IFC_PROPERTY_SINGLE_VALUE: {
 				IfcPropertySingleValue ifcPropertySingleValue = (IfcPropertySingleValue)theEObject;
 				T result = caseIfcPropertySingleValue(ifcPropertySingleValue);
 				if (result == null) result = caseIfcSimpleProperty(ifcPropertySingleValue);
@@ -5608,8 +5090,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_PROPERTY_TABLE_VALUE:
-			{
+			case Ifc2x3Package.IFC_PROPERTY_TABLE_VALUE: {
 				IfcPropertyTableValue ifcPropertyTableValue = (IfcPropertyTableValue)theEObject;
 				T result = caseIfcPropertyTableValue(ifcPropertyTableValue);
 				if (result == null) result = caseIfcSimpleProperty(ifcPropertyTableValue);
@@ -5617,8 +5098,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_PROTECTIVE_DEVICE_TYPE:
-			{
+			case Ifc2x3Package.IFC_PROTECTIVE_DEVICE_TYPE: {
 				IfcProtectiveDeviceType ifcProtectiveDeviceType = (IfcProtectiveDeviceType)theEObject;
 				T result = caseIfcProtectiveDeviceType(ifcProtectiveDeviceType);
 				if (result == null) result = caseIfcFlowControllerType(ifcProtectiveDeviceType);
@@ -5632,8 +5112,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_PROXY:
-			{
+			case Ifc2x3Package.IFC_PROXY: {
 				IfcProxy ifcProxy = (IfcProxy)theEObject;
 				T result = caseIfcProxy(ifcProxy);
 				if (result == null) result = caseIfcProduct(ifcProxy);
@@ -5643,8 +5122,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_PUMP_TYPE:
-			{
+			case Ifc2x3Package.IFC_PUMP_TYPE: {
 				IfcPumpType ifcPumpType = (IfcPumpType)theEObject;
 				T result = caseIfcPumpType(ifcPumpType);
 				if (result == null) result = caseIfcFlowMovingDeviceType(ifcPumpType);
@@ -5658,8 +5136,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_QUANTITY_AREA:
-			{
+			case Ifc2x3Package.IFC_QUANTITY_AREA: {
 				IfcQuantityArea ifcQuantityArea = (IfcQuantityArea)theEObject;
 				T result = caseIfcQuantityArea(ifcQuantityArea);
 				if (result == null) result = caseIfcPhysicalSimpleQuantity(ifcQuantityArea);
@@ -5667,8 +5144,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_QUANTITY_COUNT:
-			{
+			case Ifc2x3Package.IFC_QUANTITY_COUNT: {
 				IfcQuantityCount ifcQuantityCount = (IfcQuantityCount)theEObject;
 				T result = caseIfcQuantityCount(ifcQuantityCount);
 				if (result == null) result = caseIfcPhysicalSimpleQuantity(ifcQuantityCount);
@@ -5676,8 +5152,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_QUANTITY_LENGTH:
-			{
+			case Ifc2x3Package.IFC_QUANTITY_LENGTH: {
 				IfcQuantityLength ifcQuantityLength = (IfcQuantityLength)theEObject;
 				T result = caseIfcQuantityLength(ifcQuantityLength);
 				if (result == null) result = caseIfcPhysicalSimpleQuantity(ifcQuantityLength);
@@ -5685,8 +5160,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_QUANTITY_TIME:
-			{
+			case Ifc2x3Package.IFC_QUANTITY_TIME: {
 				IfcQuantityTime ifcQuantityTime = (IfcQuantityTime)theEObject;
 				T result = caseIfcQuantityTime(ifcQuantityTime);
 				if (result == null) result = caseIfcPhysicalSimpleQuantity(ifcQuantityTime);
@@ -5694,8 +5168,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_QUANTITY_VOLUME:
-			{
+			case Ifc2x3Package.IFC_QUANTITY_VOLUME: {
 				IfcQuantityVolume ifcQuantityVolume = (IfcQuantityVolume)theEObject;
 				T result = caseIfcQuantityVolume(ifcQuantityVolume);
 				if (result == null) result = caseIfcPhysicalSimpleQuantity(ifcQuantityVolume);
@@ -5703,8 +5176,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_QUANTITY_WEIGHT:
-			{
+			case Ifc2x3Package.IFC_QUANTITY_WEIGHT: {
 				IfcQuantityWeight ifcQuantityWeight = (IfcQuantityWeight)theEObject;
 				T result = caseIfcQuantityWeight(ifcQuantityWeight);
 				if (result == null) result = caseIfcPhysicalSimpleQuantity(ifcQuantityWeight);
@@ -5712,8 +5184,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_RADIUS_DIMENSION:
-			{
+			case Ifc2x3Package.IFC_RADIUS_DIMENSION: {
 				IfcRadiusDimension ifcRadiusDimension = (IfcRadiusDimension)theEObject;
 				T result = caseIfcRadiusDimension(ifcRadiusDimension);
 				if (result == null) result = caseIfcDimensionCurveDirectedCallout(ifcRadiusDimension);
@@ -5724,8 +5195,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_RAILING:
-			{
+			case Ifc2x3Package.IFC_RAILING: {
 				IfcRailing ifcRailing = (IfcRailing)theEObject;
 				T result = caseIfcRailing(ifcRailing);
 				if (result == null) result = caseIfcBuildingElement(ifcRailing);
@@ -5738,8 +5208,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_RAILING_TYPE:
-			{
+			case Ifc2x3Package.IFC_RAILING_TYPE: {
 				IfcRailingType ifcRailingType = (IfcRailingType)theEObject;
 				T result = caseIfcRailingType(ifcRailingType);
 				if (result == null) result = caseIfcBuildingElementType(ifcRailingType);
@@ -5751,8 +5220,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_RAMP:
-			{
+			case Ifc2x3Package.IFC_RAMP: {
 				IfcRamp ifcRamp = (IfcRamp)theEObject;
 				T result = caseIfcRamp(ifcRamp);
 				if (result == null) result = caseIfcBuildingElement(ifcRamp);
@@ -5765,8 +5233,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_RAMP_FLIGHT:
-			{
+			case Ifc2x3Package.IFC_RAMP_FLIGHT: {
 				IfcRampFlight ifcRampFlight = (IfcRampFlight)theEObject;
 				T result = caseIfcRampFlight(ifcRampFlight);
 				if (result == null) result = caseIfcBuildingElement(ifcRampFlight);
@@ -5779,8 +5246,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_RAMP_FLIGHT_TYPE:
-			{
+			case Ifc2x3Package.IFC_RAMP_FLIGHT_TYPE: {
 				IfcRampFlightType ifcRampFlightType = (IfcRampFlightType)theEObject;
 				T result = caseIfcRampFlightType(ifcRampFlightType);
 				if (result == null) result = caseIfcBuildingElementType(ifcRampFlightType);
@@ -5792,8 +5258,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_RATIONAL_BEZIER_CURVE:
-			{
+			case Ifc2x3Package.IFC_RATIONAL_BEZIER_CURVE: {
 				IfcRationalBezierCurve ifcRationalBezierCurve = (IfcRationalBezierCurve)theEObject;
 				T result = caseIfcRationalBezierCurve(ifcRationalBezierCurve);
 				if (result == null) result = caseIfcBezierCurve(ifcRationalBezierCurve);
@@ -5808,8 +5273,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_RECTANGLE_HOLLOW_PROFILE_DEF:
-			{
+			case Ifc2x3Package.IFC_RECTANGLE_HOLLOW_PROFILE_DEF: {
 				IfcRectangleHollowProfileDef ifcRectangleHollowProfileDef = (IfcRectangleHollowProfileDef)theEObject;
 				T result = caseIfcRectangleHollowProfileDef(ifcRectangleHollowProfileDef);
 				if (result == null) result = caseIfcRectangleProfileDef(ifcRectangleHollowProfileDef);
@@ -5818,8 +5282,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_RECTANGLE_PROFILE_DEF:
-			{
+			case Ifc2x3Package.IFC_RECTANGLE_PROFILE_DEF: {
 				IfcRectangleProfileDef ifcRectangleProfileDef = (IfcRectangleProfileDef)theEObject;
 				T result = caseIfcRectangleProfileDef(ifcRectangleProfileDef);
 				if (result == null) result = caseIfcParameterizedProfileDef(ifcRectangleProfileDef);
@@ -5827,8 +5290,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_RECTANGULAR_PYRAMID:
-			{
+			case Ifc2x3Package.IFC_RECTANGULAR_PYRAMID: {
 				IfcRectangularPyramid ifcRectangularPyramid = (IfcRectangularPyramid)theEObject;
 				T result = caseIfcRectangularPyramid(ifcRectangularPyramid);
 				if (result == null) result = caseIfcCsgPrimitive3D(ifcRectangularPyramid);
@@ -5840,8 +5302,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_RECTANGULAR_TRIMMED_SURFACE:
-			{
+			case Ifc2x3Package.IFC_RECTANGULAR_TRIMMED_SURFACE: {
 				IfcRectangularTrimmedSurface ifcRectangularTrimmedSurface = (IfcRectangularTrimmedSurface)theEObject;
 				T result = caseIfcRectangularTrimmedSurface(ifcRectangularTrimmedSurface);
 				if (result == null) result = caseIfcBoundedSurface(ifcRectangularTrimmedSurface);
@@ -5854,15 +5315,13 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_REFERENCES_VALUE_DOCUMENT:
-			{
+			case Ifc2x3Package.IFC_REFERENCES_VALUE_DOCUMENT: {
 				IfcReferencesValueDocument ifcReferencesValueDocument = (IfcReferencesValueDocument)theEObject;
 				T result = caseIfcReferencesValueDocument(ifcReferencesValueDocument);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_REGULAR_TIME_SERIES:
-			{
+			case Ifc2x3Package.IFC_REGULAR_TIME_SERIES: {
 				IfcRegularTimeSeries ifcRegularTimeSeries = (IfcRegularTimeSeries)theEObject;
 				T result = caseIfcRegularTimeSeries(ifcRegularTimeSeries);
 				if (result == null) result = caseIfcTimeSeries(ifcRegularTimeSeries);
@@ -5871,15 +5330,13 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_REINFORCEMENT_BAR_PROPERTIES:
-			{
+			case Ifc2x3Package.IFC_REINFORCEMENT_BAR_PROPERTIES: {
 				IfcReinforcementBarProperties ifcReinforcementBarProperties = (IfcReinforcementBarProperties)theEObject;
 				T result = caseIfcReinforcementBarProperties(ifcReinforcementBarProperties);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_REINFORCEMENT_DEFINITION_PROPERTIES:
-			{
+			case Ifc2x3Package.IFC_REINFORCEMENT_DEFINITION_PROPERTIES: {
 				IfcReinforcementDefinitionProperties ifcReinforcementDefinitionProperties = (IfcReinforcementDefinitionProperties)theEObject;
 				T result = caseIfcReinforcementDefinitionProperties(ifcReinforcementDefinitionProperties);
 				if (result == null) result = caseIfcPropertySetDefinition(ifcReinforcementDefinitionProperties);
@@ -5888,8 +5345,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_REINFORCING_BAR:
-			{
+			case Ifc2x3Package.IFC_REINFORCING_BAR: {
 				IfcReinforcingBar ifcReinforcingBar = (IfcReinforcingBar)theEObject;
 				T result = caseIfcReinforcingBar(ifcReinforcingBar);
 				if (result == null) result = caseIfcReinforcingElement(ifcReinforcingBar);
@@ -5904,8 +5360,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_REINFORCING_ELEMENT:
-			{
+			case Ifc2x3Package.IFC_REINFORCING_ELEMENT: {
 				IfcReinforcingElement ifcReinforcingElement = (IfcReinforcingElement)theEObject;
 				T result = caseIfcReinforcingElement(ifcReinforcingElement);
 				if (result == null) result = caseIfcBuildingElementComponent(ifcReinforcingElement);
@@ -5919,8 +5374,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_REINFORCING_MESH:
-			{
+			case Ifc2x3Package.IFC_REINFORCING_MESH: {
 				IfcReinforcingMesh ifcReinforcingMesh = (IfcReinforcingMesh)theEObject;
 				T result = caseIfcReinforcingMesh(ifcReinforcingMesh);
 				if (result == null) result = caseIfcReinforcingElement(ifcReinforcingMesh);
@@ -5935,8 +5389,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_REL_AGGREGATES:
-			{
+			case Ifc2x3Package.IFC_REL_AGGREGATES: {
 				IfcRelAggregates ifcRelAggregates = (IfcRelAggregates)theEObject;
 				T result = caseIfcRelAggregates(ifcRelAggregates);
 				if (result == null) result = caseIfcRelDecomposes(ifcRelAggregates);
@@ -5945,8 +5398,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_REL_ASSIGNS:
-			{
+			case Ifc2x3Package.IFC_REL_ASSIGNS: {
 				IfcRelAssigns ifcRelAssigns = (IfcRelAssigns)theEObject;
 				T result = caseIfcRelAssigns(ifcRelAssigns);
 				if (result == null) result = caseIfcRelationship(ifcRelAssigns);
@@ -5954,8 +5406,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_REL_ASSIGNS_TASKS:
-			{
+			case Ifc2x3Package.IFC_REL_ASSIGNS_TASKS: {
 				IfcRelAssignsTasks ifcRelAssignsTasks = (IfcRelAssignsTasks)theEObject;
 				T result = caseIfcRelAssignsTasks(ifcRelAssignsTasks);
 				if (result == null) result = caseIfcRelAssignsToControl(ifcRelAssignsTasks);
@@ -5965,8 +5416,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_REL_ASSIGNS_TO_ACTOR:
-			{
+			case Ifc2x3Package.IFC_REL_ASSIGNS_TO_ACTOR: {
 				IfcRelAssignsToActor ifcRelAssignsToActor = (IfcRelAssignsToActor)theEObject;
 				T result = caseIfcRelAssignsToActor(ifcRelAssignsToActor);
 				if (result == null) result = caseIfcRelAssigns(ifcRelAssignsToActor);
@@ -5975,8 +5425,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_REL_ASSIGNS_TO_CONTROL:
-			{
+			case Ifc2x3Package.IFC_REL_ASSIGNS_TO_CONTROL: {
 				IfcRelAssignsToControl ifcRelAssignsToControl = (IfcRelAssignsToControl)theEObject;
 				T result = caseIfcRelAssignsToControl(ifcRelAssignsToControl);
 				if (result == null) result = caseIfcRelAssigns(ifcRelAssignsToControl);
@@ -5985,8 +5434,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_REL_ASSIGNS_TO_GROUP:
-			{
+			case Ifc2x3Package.IFC_REL_ASSIGNS_TO_GROUP: {
 				IfcRelAssignsToGroup ifcRelAssignsToGroup = (IfcRelAssignsToGroup)theEObject;
 				T result = caseIfcRelAssignsToGroup(ifcRelAssignsToGroup);
 				if (result == null) result = caseIfcRelAssigns(ifcRelAssignsToGroup);
@@ -5995,8 +5443,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_REL_ASSIGNS_TO_PROCESS:
-			{
+			case Ifc2x3Package.IFC_REL_ASSIGNS_TO_PROCESS: {
 				IfcRelAssignsToProcess ifcRelAssignsToProcess = (IfcRelAssignsToProcess)theEObject;
 				T result = caseIfcRelAssignsToProcess(ifcRelAssignsToProcess);
 				if (result == null) result = caseIfcRelAssigns(ifcRelAssignsToProcess);
@@ -6005,8 +5452,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_REL_ASSIGNS_TO_PRODUCT:
-			{
+			case Ifc2x3Package.IFC_REL_ASSIGNS_TO_PRODUCT: {
 				IfcRelAssignsToProduct ifcRelAssignsToProduct = (IfcRelAssignsToProduct)theEObject;
 				T result = caseIfcRelAssignsToProduct(ifcRelAssignsToProduct);
 				if (result == null) result = caseIfcRelAssigns(ifcRelAssignsToProduct);
@@ -6015,8 +5461,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_REL_ASSIGNS_TO_PROJECT_ORDER:
-			{
+			case Ifc2x3Package.IFC_REL_ASSIGNS_TO_PROJECT_ORDER: {
 				IfcRelAssignsToProjectOrder ifcRelAssignsToProjectOrder = (IfcRelAssignsToProjectOrder)theEObject;
 				T result = caseIfcRelAssignsToProjectOrder(ifcRelAssignsToProjectOrder);
 				if (result == null) result = caseIfcRelAssignsToControl(ifcRelAssignsToProjectOrder);
@@ -6026,8 +5471,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_REL_ASSIGNS_TO_RESOURCE:
-			{
+			case Ifc2x3Package.IFC_REL_ASSIGNS_TO_RESOURCE: {
 				IfcRelAssignsToResource ifcRelAssignsToResource = (IfcRelAssignsToResource)theEObject;
 				T result = caseIfcRelAssignsToResource(ifcRelAssignsToResource);
 				if (result == null) result = caseIfcRelAssigns(ifcRelAssignsToResource);
@@ -6036,8 +5480,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_REL_ASSOCIATES:
-			{
+			case Ifc2x3Package.IFC_REL_ASSOCIATES: {
 				IfcRelAssociates ifcRelAssociates = (IfcRelAssociates)theEObject;
 				T result = caseIfcRelAssociates(ifcRelAssociates);
 				if (result == null) result = caseIfcRelationship(ifcRelAssociates);
@@ -6045,8 +5488,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_REL_ASSOCIATES_APPLIED_VALUE:
-			{
+			case Ifc2x3Package.IFC_REL_ASSOCIATES_APPLIED_VALUE: {
 				IfcRelAssociatesAppliedValue ifcRelAssociatesAppliedValue = (IfcRelAssociatesAppliedValue)theEObject;
 				T result = caseIfcRelAssociatesAppliedValue(ifcRelAssociatesAppliedValue);
 				if (result == null) result = caseIfcRelAssociates(ifcRelAssociatesAppliedValue);
@@ -6055,8 +5497,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_REL_ASSOCIATES_APPROVAL:
-			{
+			case Ifc2x3Package.IFC_REL_ASSOCIATES_APPROVAL: {
 				IfcRelAssociatesApproval ifcRelAssociatesApproval = (IfcRelAssociatesApproval)theEObject;
 				T result = caseIfcRelAssociatesApproval(ifcRelAssociatesApproval);
 				if (result == null) result = caseIfcRelAssociates(ifcRelAssociatesApproval);
@@ -6065,8 +5506,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_REL_ASSOCIATES_CLASSIFICATION:
-			{
+			case Ifc2x3Package.IFC_REL_ASSOCIATES_CLASSIFICATION: {
 				IfcRelAssociatesClassification ifcRelAssociatesClassification = (IfcRelAssociatesClassification)theEObject;
 				T result = caseIfcRelAssociatesClassification(ifcRelAssociatesClassification);
 				if (result == null) result = caseIfcRelAssociates(ifcRelAssociatesClassification);
@@ -6075,8 +5515,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_REL_ASSOCIATES_CONSTRAINT:
-			{
+			case Ifc2x3Package.IFC_REL_ASSOCIATES_CONSTRAINT: {
 				IfcRelAssociatesConstraint ifcRelAssociatesConstraint = (IfcRelAssociatesConstraint)theEObject;
 				T result = caseIfcRelAssociatesConstraint(ifcRelAssociatesConstraint);
 				if (result == null) result = caseIfcRelAssociates(ifcRelAssociatesConstraint);
@@ -6085,8 +5524,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_REL_ASSOCIATES_DOCUMENT:
-			{
+			case Ifc2x3Package.IFC_REL_ASSOCIATES_DOCUMENT: {
 				IfcRelAssociatesDocument ifcRelAssociatesDocument = (IfcRelAssociatesDocument)theEObject;
 				T result = caseIfcRelAssociatesDocument(ifcRelAssociatesDocument);
 				if (result == null) result = caseIfcRelAssociates(ifcRelAssociatesDocument);
@@ -6095,8 +5533,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_REL_ASSOCIATES_LIBRARY:
-			{
+			case Ifc2x3Package.IFC_REL_ASSOCIATES_LIBRARY: {
 				IfcRelAssociatesLibrary ifcRelAssociatesLibrary = (IfcRelAssociatesLibrary)theEObject;
 				T result = caseIfcRelAssociatesLibrary(ifcRelAssociatesLibrary);
 				if (result == null) result = caseIfcRelAssociates(ifcRelAssociatesLibrary);
@@ -6105,8 +5542,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_REL_ASSOCIATES_MATERIAL:
-			{
+			case Ifc2x3Package.IFC_REL_ASSOCIATES_MATERIAL: {
 				IfcRelAssociatesMaterial ifcRelAssociatesMaterial = (IfcRelAssociatesMaterial)theEObject;
 				T result = caseIfcRelAssociatesMaterial(ifcRelAssociatesMaterial);
 				if (result == null) result = caseIfcRelAssociates(ifcRelAssociatesMaterial);
@@ -6115,8 +5551,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_REL_ASSOCIATES_PROFILE_PROPERTIES:
-			{
+			case Ifc2x3Package.IFC_REL_ASSOCIATES_PROFILE_PROPERTIES: {
 				IfcRelAssociatesProfileProperties ifcRelAssociatesProfileProperties = (IfcRelAssociatesProfileProperties)theEObject;
 				T result = caseIfcRelAssociatesProfileProperties(ifcRelAssociatesProfileProperties);
 				if (result == null) result = caseIfcRelAssociates(ifcRelAssociatesProfileProperties);
@@ -6125,8 +5560,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_REL_CONNECTS:
-			{
+			case Ifc2x3Package.IFC_REL_CONNECTS: {
 				IfcRelConnects ifcRelConnects = (IfcRelConnects)theEObject;
 				T result = caseIfcRelConnects(ifcRelConnects);
 				if (result == null) result = caseIfcRelationship(ifcRelConnects);
@@ -6134,8 +5568,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_REL_CONNECTS_ELEMENTS:
-			{
+			case Ifc2x3Package.IFC_REL_CONNECTS_ELEMENTS: {
 				IfcRelConnectsElements ifcRelConnectsElements = (IfcRelConnectsElements)theEObject;
 				T result = caseIfcRelConnectsElements(ifcRelConnectsElements);
 				if (result == null) result = caseIfcRelConnects(ifcRelConnectsElements);
@@ -6144,8 +5577,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_REL_CONNECTS_PATH_ELEMENTS:
-			{
+			case Ifc2x3Package.IFC_REL_CONNECTS_PATH_ELEMENTS: {
 				IfcRelConnectsPathElements ifcRelConnectsPathElements = (IfcRelConnectsPathElements)theEObject;
 				T result = caseIfcRelConnectsPathElements(ifcRelConnectsPathElements);
 				if (result == null) result = caseIfcRelConnectsElements(ifcRelConnectsPathElements);
@@ -6155,8 +5587,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_REL_CONNECTS_PORT_TO_ELEMENT:
-			{
+			case Ifc2x3Package.IFC_REL_CONNECTS_PORT_TO_ELEMENT: {
 				IfcRelConnectsPortToElement ifcRelConnectsPortToElement = (IfcRelConnectsPortToElement)theEObject;
 				T result = caseIfcRelConnectsPortToElement(ifcRelConnectsPortToElement);
 				if (result == null) result = caseIfcRelConnects(ifcRelConnectsPortToElement);
@@ -6165,8 +5596,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_REL_CONNECTS_PORTS:
-			{
+			case Ifc2x3Package.IFC_REL_CONNECTS_PORTS: {
 				IfcRelConnectsPorts ifcRelConnectsPorts = (IfcRelConnectsPorts)theEObject;
 				T result = caseIfcRelConnectsPorts(ifcRelConnectsPorts);
 				if (result == null) result = caseIfcRelConnects(ifcRelConnectsPorts);
@@ -6175,8 +5605,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_REL_CONNECTS_STRUCTURAL_ACTIVITY:
-			{
+			case Ifc2x3Package.IFC_REL_CONNECTS_STRUCTURAL_ACTIVITY: {
 				IfcRelConnectsStructuralActivity ifcRelConnectsStructuralActivity = (IfcRelConnectsStructuralActivity)theEObject;
 				T result = caseIfcRelConnectsStructuralActivity(ifcRelConnectsStructuralActivity);
 				if (result == null) result = caseIfcRelConnects(ifcRelConnectsStructuralActivity);
@@ -6185,8 +5614,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_REL_CONNECTS_STRUCTURAL_ELEMENT:
-			{
+			case Ifc2x3Package.IFC_REL_CONNECTS_STRUCTURAL_ELEMENT: {
 				IfcRelConnectsStructuralElement ifcRelConnectsStructuralElement = (IfcRelConnectsStructuralElement)theEObject;
 				T result = caseIfcRelConnectsStructuralElement(ifcRelConnectsStructuralElement);
 				if (result == null) result = caseIfcRelConnects(ifcRelConnectsStructuralElement);
@@ -6195,8 +5623,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_REL_CONNECTS_STRUCTURAL_MEMBER:
-			{
+			case Ifc2x3Package.IFC_REL_CONNECTS_STRUCTURAL_MEMBER: {
 				IfcRelConnectsStructuralMember ifcRelConnectsStructuralMember = (IfcRelConnectsStructuralMember)theEObject;
 				T result = caseIfcRelConnectsStructuralMember(ifcRelConnectsStructuralMember);
 				if (result == null) result = caseIfcRelConnects(ifcRelConnectsStructuralMember);
@@ -6205,8 +5632,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_REL_CONNECTS_WITH_ECCENTRICITY:
-			{
+			case Ifc2x3Package.IFC_REL_CONNECTS_WITH_ECCENTRICITY: {
 				IfcRelConnectsWithEccentricity ifcRelConnectsWithEccentricity = (IfcRelConnectsWithEccentricity)theEObject;
 				T result = caseIfcRelConnectsWithEccentricity(ifcRelConnectsWithEccentricity);
 				if (result == null) result = caseIfcRelConnectsStructuralMember(ifcRelConnectsWithEccentricity);
@@ -6216,8 +5642,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_REL_CONNECTS_WITH_REALIZING_ELEMENTS:
-			{
+			case Ifc2x3Package.IFC_REL_CONNECTS_WITH_REALIZING_ELEMENTS: {
 				IfcRelConnectsWithRealizingElements ifcRelConnectsWithRealizingElements = (IfcRelConnectsWithRealizingElements)theEObject;
 				T result = caseIfcRelConnectsWithRealizingElements(ifcRelConnectsWithRealizingElements);
 				if (result == null) result = caseIfcRelConnectsElements(ifcRelConnectsWithRealizingElements);
@@ -6227,8 +5652,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_REL_CONTAINED_IN_SPATIAL_STRUCTURE:
-			{
+			case Ifc2x3Package.IFC_REL_CONTAINED_IN_SPATIAL_STRUCTURE: {
 				IfcRelContainedInSpatialStructure ifcRelContainedInSpatialStructure = (IfcRelContainedInSpatialStructure)theEObject;
 				T result = caseIfcRelContainedInSpatialStructure(ifcRelContainedInSpatialStructure);
 				if (result == null) result = caseIfcRelConnects(ifcRelContainedInSpatialStructure);
@@ -6237,8 +5661,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_REL_COVERS_BLDG_ELEMENTS:
-			{
+			case Ifc2x3Package.IFC_REL_COVERS_BLDG_ELEMENTS: {
 				IfcRelCoversBldgElements ifcRelCoversBldgElements = (IfcRelCoversBldgElements)theEObject;
 				T result = caseIfcRelCoversBldgElements(ifcRelCoversBldgElements);
 				if (result == null) result = caseIfcRelConnects(ifcRelCoversBldgElements);
@@ -6247,8 +5670,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_REL_COVERS_SPACES:
-			{
+			case Ifc2x3Package.IFC_REL_COVERS_SPACES: {
 				IfcRelCoversSpaces ifcRelCoversSpaces = (IfcRelCoversSpaces)theEObject;
 				T result = caseIfcRelCoversSpaces(ifcRelCoversSpaces);
 				if (result == null) result = caseIfcRelConnects(ifcRelCoversSpaces);
@@ -6257,8 +5679,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_REL_DECOMPOSES:
-			{
+			case Ifc2x3Package.IFC_REL_DECOMPOSES: {
 				IfcRelDecomposes ifcRelDecomposes = (IfcRelDecomposes)theEObject;
 				T result = caseIfcRelDecomposes(ifcRelDecomposes);
 				if (result == null) result = caseIfcRelationship(ifcRelDecomposes);
@@ -6266,8 +5687,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_REL_DEFINES:
-			{
+			case Ifc2x3Package.IFC_REL_DEFINES: {
 				IfcRelDefines ifcRelDefines = (IfcRelDefines)theEObject;
 				T result = caseIfcRelDefines(ifcRelDefines);
 				if (result == null) result = caseIfcRelationship(ifcRelDefines);
@@ -6275,8 +5695,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_REL_DEFINES_BY_PROPERTIES:
-			{
+			case Ifc2x3Package.IFC_REL_DEFINES_BY_PROPERTIES: {
 				IfcRelDefinesByProperties ifcRelDefinesByProperties = (IfcRelDefinesByProperties)theEObject;
 				T result = caseIfcRelDefinesByProperties(ifcRelDefinesByProperties);
 				if (result == null) result = caseIfcRelDefines(ifcRelDefinesByProperties);
@@ -6285,8 +5704,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_REL_DEFINES_BY_TYPE:
-			{
+			case Ifc2x3Package.IFC_REL_DEFINES_BY_TYPE: {
 				IfcRelDefinesByType ifcRelDefinesByType = (IfcRelDefinesByType)theEObject;
 				T result = caseIfcRelDefinesByType(ifcRelDefinesByType);
 				if (result == null) result = caseIfcRelDefines(ifcRelDefinesByType);
@@ -6295,8 +5713,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_REL_FILLS_ELEMENT:
-			{
+			case Ifc2x3Package.IFC_REL_FILLS_ELEMENT: {
 				IfcRelFillsElement ifcRelFillsElement = (IfcRelFillsElement)theEObject;
 				T result = caseIfcRelFillsElement(ifcRelFillsElement);
 				if (result == null) result = caseIfcRelConnects(ifcRelFillsElement);
@@ -6305,8 +5722,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_REL_FLOW_CONTROL_ELEMENTS:
-			{
+			case Ifc2x3Package.IFC_REL_FLOW_CONTROL_ELEMENTS: {
 				IfcRelFlowControlElements ifcRelFlowControlElements = (IfcRelFlowControlElements)theEObject;
 				T result = caseIfcRelFlowControlElements(ifcRelFlowControlElements);
 				if (result == null) result = caseIfcRelConnects(ifcRelFlowControlElements);
@@ -6315,8 +5731,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_REL_INTERACTION_REQUIREMENTS:
-			{
+			case Ifc2x3Package.IFC_REL_INTERACTION_REQUIREMENTS: {
 				IfcRelInteractionRequirements ifcRelInteractionRequirements = (IfcRelInteractionRequirements)theEObject;
 				T result = caseIfcRelInteractionRequirements(ifcRelInteractionRequirements);
 				if (result == null) result = caseIfcRelConnects(ifcRelInteractionRequirements);
@@ -6325,8 +5740,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_REL_NESTS:
-			{
+			case Ifc2x3Package.IFC_REL_NESTS: {
 				IfcRelNests ifcRelNests = (IfcRelNests)theEObject;
 				T result = caseIfcRelNests(ifcRelNests);
 				if (result == null) result = caseIfcRelDecomposes(ifcRelNests);
@@ -6335,8 +5749,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_REL_OCCUPIES_SPACES:
-			{
+			case Ifc2x3Package.IFC_REL_OCCUPIES_SPACES: {
 				IfcRelOccupiesSpaces ifcRelOccupiesSpaces = (IfcRelOccupiesSpaces)theEObject;
 				T result = caseIfcRelOccupiesSpaces(ifcRelOccupiesSpaces);
 				if (result == null) result = caseIfcRelAssignsToActor(ifcRelOccupiesSpaces);
@@ -6346,8 +5759,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_REL_OVERRIDES_PROPERTIES:
-			{
+			case Ifc2x3Package.IFC_REL_OVERRIDES_PROPERTIES: {
 				IfcRelOverridesProperties ifcRelOverridesProperties = (IfcRelOverridesProperties)theEObject;
 				T result = caseIfcRelOverridesProperties(ifcRelOverridesProperties);
 				if (result == null) result = caseIfcRelDefinesByProperties(ifcRelOverridesProperties);
@@ -6357,8 +5769,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_REL_PROJECTS_ELEMENT:
-			{
+			case Ifc2x3Package.IFC_REL_PROJECTS_ELEMENT: {
 				IfcRelProjectsElement ifcRelProjectsElement = (IfcRelProjectsElement)theEObject;
 				T result = caseIfcRelProjectsElement(ifcRelProjectsElement);
 				if (result == null) result = caseIfcRelConnects(ifcRelProjectsElement);
@@ -6367,8 +5778,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_REL_REFERENCED_IN_SPATIAL_STRUCTURE:
-			{
+			case Ifc2x3Package.IFC_REL_REFERENCED_IN_SPATIAL_STRUCTURE: {
 				IfcRelReferencedInSpatialStructure ifcRelReferencedInSpatialStructure = (IfcRelReferencedInSpatialStructure)theEObject;
 				T result = caseIfcRelReferencedInSpatialStructure(ifcRelReferencedInSpatialStructure);
 				if (result == null) result = caseIfcRelConnects(ifcRelReferencedInSpatialStructure);
@@ -6377,8 +5787,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_REL_SCHEDULES_COST_ITEMS:
-			{
+			case Ifc2x3Package.IFC_REL_SCHEDULES_COST_ITEMS: {
 				IfcRelSchedulesCostItems ifcRelSchedulesCostItems = (IfcRelSchedulesCostItems)theEObject;
 				T result = caseIfcRelSchedulesCostItems(ifcRelSchedulesCostItems);
 				if (result == null) result = caseIfcRelAssignsToControl(ifcRelSchedulesCostItems);
@@ -6388,8 +5797,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_REL_SEQUENCE:
-			{
+			case Ifc2x3Package.IFC_REL_SEQUENCE: {
 				IfcRelSequence ifcRelSequence = (IfcRelSequence)theEObject;
 				T result = caseIfcRelSequence(ifcRelSequence);
 				if (result == null) result = caseIfcRelConnects(ifcRelSequence);
@@ -6398,8 +5806,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_REL_SERVICES_BUILDINGS:
-			{
+			case Ifc2x3Package.IFC_REL_SERVICES_BUILDINGS: {
 				IfcRelServicesBuildings ifcRelServicesBuildings = (IfcRelServicesBuildings)theEObject;
 				T result = caseIfcRelServicesBuildings(ifcRelServicesBuildings);
 				if (result == null) result = caseIfcRelConnects(ifcRelServicesBuildings);
@@ -6408,8 +5815,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_REL_SPACE_BOUNDARY:
-			{
+			case Ifc2x3Package.IFC_REL_SPACE_BOUNDARY: {
 				IfcRelSpaceBoundary ifcRelSpaceBoundary = (IfcRelSpaceBoundary)theEObject;
 				T result = caseIfcRelSpaceBoundary(ifcRelSpaceBoundary);
 				if (result == null) result = caseIfcRelConnects(ifcRelSpaceBoundary);
@@ -6418,8 +5824,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_REL_VOIDS_ELEMENT:
-			{
+			case Ifc2x3Package.IFC_REL_VOIDS_ELEMENT: {
 				IfcRelVoidsElement ifcRelVoidsElement = (IfcRelVoidsElement)theEObject;
 				T result = caseIfcRelVoidsElement(ifcRelVoidsElement);
 				if (result == null) result = caseIfcRelConnects(ifcRelVoidsElement);
@@ -6428,53 +5833,46 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_RELATIONSHIP:
-			{
+			case Ifc2x3Package.IFC_RELATIONSHIP: {
 				IfcRelationship ifcRelationship = (IfcRelationship)theEObject;
 				T result = caseIfcRelationship(ifcRelationship);
 				if (result == null) result = caseIfcRoot(ifcRelationship);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_RELAXATION:
-			{
+			case Ifc2x3Package.IFC_RELAXATION: {
 				IfcRelaxation ifcRelaxation = (IfcRelaxation)theEObject;
 				T result = caseIfcRelaxation(ifcRelaxation);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_REPRESENTATION:
-			{
+			case Ifc2x3Package.IFC_REPRESENTATION: {
 				IfcRepresentation ifcRepresentation = (IfcRepresentation)theEObject;
 				T result = caseIfcRepresentation(ifcRepresentation);
 				if (result == null) result = caseIfcLayeredItem(ifcRepresentation);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_REPRESENTATION_CONTEXT:
-			{
+			case Ifc2x3Package.IFC_REPRESENTATION_CONTEXT: {
 				IfcRepresentationContext ifcRepresentationContext = (IfcRepresentationContext)theEObject;
 				T result = caseIfcRepresentationContext(ifcRepresentationContext);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_REPRESENTATION_ITEM:
-			{
+			case Ifc2x3Package.IFC_REPRESENTATION_ITEM: {
 				IfcRepresentationItem ifcRepresentationItem = (IfcRepresentationItem)theEObject;
 				T result = caseIfcRepresentationItem(ifcRepresentationItem);
 				if (result == null) result = caseIfcLayeredItem(ifcRepresentationItem);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_REPRESENTATION_MAP:
-			{
+			case Ifc2x3Package.IFC_REPRESENTATION_MAP: {
 				IfcRepresentationMap ifcRepresentationMap = (IfcRepresentationMap)theEObject;
 				T result = caseIfcRepresentationMap(ifcRepresentationMap);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_RESOURCE:
-			{
+			case Ifc2x3Package.IFC_RESOURCE: {
 				IfcResource ifcResource = (IfcResource)theEObject;
 				T result = caseIfcResource(ifcResource);
 				if (result == null) result = caseIfcObject(ifcResource);
@@ -6483,8 +5881,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_REVOLVED_AREA_SOLID:
-			{
+			case Ifc2x3Package.IFC_REVOLVED_AREA_SOLID: {
 				IfcRevolvedAreaSolid ifcRevolvedAreaSolid = (IfcRevolvedAreaSolid)theEObject;
 				T result = caseIfcRevolvedAreaSolid(ifcRevolvedAreaSolid);
 				if (result == null) result = caseIfcSweptAreaSolid(ifcRevolvedAreaSolid);
@@ -6496,16 +5893,14 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_RIB_PLATE_PROFILE_PROPERTIES:
-			{
+			case Ifc2x3Package.IFC_RIB_PLATE_PROFILE_PROPERTIES: {
 				IfcRibPlateProfileProperties ifcRibPlateProfileProperties = (IfcRibPlateProfileProperties)theEObject;
 				T result = caseIfcRibPlateProfileProperties(ifcRibPlateProfileProperties);
 				if (result == null) result = caseIfcProfileProperties(ifcRibPlateProfileProperties);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_RIGHT_CIRCULAR_CONE:
-			{
+			case Ifc2x3Package.IFC_RIGHT_CIRCULAR_CONE: {
 				IfcRightCircularCone ifcRightCircularCone = (IfcRightCircularCone)theEObject;
 				T result = caseIfcRightCircularCone(ifcRightCircularCone);
 				if (result == null) result = caseIfcCsgPrimitive3D(ifcRightCircularCone);
@@ -6517,8 +5912,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_RIGHT_CIRCULAR_CYLINDER:
-			{
+			case Ifc2x3Package.IFC_RIGHT_CIRCULAR_CYLINDER: {
 				IfcRightCircularCylinder ifcRightCircularCylinder = (IfcRightCircularCylinder)theEObject;
 				T result = caseIfcRightCircularCylinder(ifcRightCircularCylinder);
 				if (result == null) result = caseIfcCsgPrimitive3D(ifcRightCircularCylinder);
@@ -6530,8 +5924,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_ROOF:
-			{
+			case Ifc2x3Package.IFC_ROOF: {
 				IfcRoof ifcRoof = (IfcRoof)theEObject;
 				T result = caseIfcRoof(ifcRoof);
 				if (result == null) result = caseIfcBuildingElement(ifcRoof);
@@ -6544,15 +5937,13 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_ROOT:
-			{
+			case Ifc2x3Package.IFC_ROOT: {
 				IfcRoot ifcRoot = (IfcRoot)theEObject;
 				T result = caseIfcRoot(ifcRoot);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_ROUNDED_EDGE_FEATURE:
-			{
+			case Ifc2x3Package.IFC_ROUNDED_EDGE_FEATURE: {
 				IfcRoundedEdgeFeature ifcRoundedEdgeFeature = (IfcRoundedEdgeFeature)theEObject;
 				T result = caseIfcRoundedEdgeFeature(ifcRoundedEdgeFeature);
 				if (result == null) result = caseIfcEdgeFeature(ifcRoundedEdgeFeature);
@@ -6567,8 +5958,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_ROUNDED_RECTANGLE_PROFILE_DEF:
-			{
+			case Ifc2x3Package.IFC_ROUNDED_RECTANGLE_PROFILE_DEF: {
 				IfcRoundedRectangleProfileDef ifcRoundedRectangleProfileDef = (IfcRoundedRectangleProfileDef)theEObject;
 				T result = caseIfcRoundedRectangleProfileDef(ifcRoundedRectangleProfileDef);
 				if (result == null) result = caseIfcRectangleProfileDef(ifcRoundedRectangleProfileDef);
@@ -6577,8 +5967,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_SI_UNIT:
-			{
+			case Ifc2x3Package.IFC_SI_UNIT: {
 				IfcSIUnit ifcSIUnit = (IfcSIUnit)theEObject;
 				T result = caseIfcSIUnit(ifcSIUnit);
 				if (result == null) result = caseIfcNamedUnit(ifcSIUnit);
@@ -6586,8 +5975,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_SANITARY_TERMINAL_TYPE:
-			{
+			case Ifc2x3Package.IFC_SANITARY_TERMINAL_TYPE: {
 				IfcSanitaryTerminalType ifcSanitaryTerminalType = (IfcSanitaryTerminalType)theEObject;
 				T result = caseIfcSanitaryTerminalType(ifcSanitaryTerminalType);
 				if (result == null) result = caseIfcFlowTerminalType(ifcSanitaryTerminalType);
@@ -6601,8 +5989,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_SCHEDULE_TIME_CONTROL:
-			{
+			case Ifc2x3Package.IFC_SCHEDULE_TIME_CONTROL: {
 				IfcScheduleTimeControl ifcScheduleTimeControl = (IfcScheduleTimeControl)theEObject;
 				T result = caseIfcScheduleTimeControl(ifcScheduleTimeControl);
 				if (result == null) result = caseIfcControl(ifcScheduleTimeControl);
@@ -6612,22 +5999,19 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_SECTION_PROPERTIES:
-			{
+			case Ifc2x3Package.IFC_SECTION_PROPERTIES: {
 				IfcSectionProperties ifcSectionProperties = (IfcSectionProperties)theEObject;
 				T result = caseIfcSectionProperties(ifcSectionProperties);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_SECTION_REINFORCEMENT_PROPERTIES:
-			{
+			case Ifc2x3Package.IFC_SECTION_REINFORCEMENT_PROPERTIES: {
 				IfcSectionReinforcementProperties ifcSectionReinforcementProperties = (IfcSectionReinforcementProperties)theEObject;
 				T result = caseIfcSectionReinforcementProperties(ifcSectionReinforcementProperties);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_SECTIONED_SPINE:
-			{
+			case Ifc2x3Package.IFC_SECTIONED_SPINE: {
 				IfcSectionedSpine ifcSectionedSpine = (IfcSectionedSpine)theEObject;
 				T result = caseIfcSectionedSpine(ifcSectionedSpine);
 				if (result == null) result = caseIfcGeometricRepresentationItem(ifcSectionedSpine);
@@ -6636,8 +6020,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_SENSOR_TYPE:
-			{
+			case Ifc2x3Package.IFC_SENSOR_TYPE: {
 				IfcSensorType ifcSensorType = (IfcSensorType)theEObject;
 				T result = caseIfcSensorType(ifcSensorType);
 				if (result == null) result = caseIfcDistributionControlElementType(ifcSensorType);
@@ -6650,8 +6033,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_SERVICE_LIFE:
-			{
+			case Ifc2x3Package.IFC_SERVICE_LIFE: {
 				IfcServiceLife ifcServiceLife = (IfcServiceLife)theEObject;
 				T result = caseIfcServiceLife(ifcServiceLife);
 				if (result == null) result = caseIfcControl(ifcServiceLife);
@@ -6661,8 +6043,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_SERVICE_LIFE_FACTOR:
-			{
+			case Ifc2x3Package.IFC_SERVICE_LIFE_FACTOR: {
 				IfcServiceLifeFactor ifcServiceLifeFactor = (IfcServiceLifeFactor)theEObject;
 				T result = caseIfcServiceLifeFactor(ifcServiceLifeFactor);
 				if (result == null) result = caseIfcPropertySetDefinition(ifcServiceLifeFactor);
@@ -6671,15 +6052,13 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_SHAPE_ASPECT:
-			{
+			case Ifc2x3Package.IFC_SHAPE_ASPECT: {
 				IfcShapeAspect ifcShapeAspect = (IfcShapeAspect)theEObject;
 				T result = caseIfcShapeAspect(ifcShapeAspect);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_SHAPE_MODEL:
-			{
+			case Ifc2x3Package.IFC_SHAPE_MODEL: {
 				IfcShapeModel ifcShapeModel = (IfcShapeModel)theEObject;
 				T result = caseIfcShapeModel(ifcShapeModel);
 				if (result == null) result = caseIfcRepresentation(ifcShapeModel);
@@ -6687,8 +6066,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_SHAPE_REPRESENTATION:
-			{
+			case Ifc2x3Package.IFC_SHAPE_REPRESENTATION: {
 				IfcShapeRepresentation ifcShapeRepresentation = (IfcShapeRepresentation)theEObject;
 				T result = caseIfcShapeRepresentation(ifcShapeRepresentation);
 				if (result == null) result = caseIfcShapeModel(ifcShapeRepresentation);
@@ -6697,8 +6075,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_SHELL_BASED_SURFACE_MODEL:
-			{
+			case Ifc2x3Package.IFC_SHELL_BASED_SURFACE_MODEL: {
 				IfcShellBasedSurfaceModel ifcShellBasedSurfaceModel = (IfcShellBasedSurfaceModel)theEObject;
 				T result = caseIfcShellBasedSurfaceModel(ifcShellBasedSurfaceModel);
 				if (result == null) result = caseIfcGeometricRepresentationItem(ifcShellBasedSurfaceModel);
@@ -6707,16 +6084,14 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_SIMPLE_PROPERTY:
-			{
+			case Ifc2x3Package.IFC_SIMPLE_PROPERTY: {
 				IfcSimpleProperty ifcSimpleProperty = (IfcSimpleProperty)theEObject;
 				T result = caseIfcSimpleProperty(ifcSimpleProperty);
 				if (result == null) result = caseIfcProperty(ifcSimpleProperty);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_SITE:
-			{
+			case Ifc2x3Package.IFC_SITE: {
 				IfcSite ifcSite = (IfcSite)theEObject;
 				T result = caseIfcSite(ifcSite);
 				if (result == null) result = caseIfcSpatialStructureElement(ifcSite);
@@ -6727,8 +6102,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_SLAB:
-			{
+			case Ifc2x3Package.IFC_SLAB: {
 				IfcSlab ifcSlab = (IfcSlab)theEObject;
 				T result = caseIfcSlab(ifcSlab);
 				if (result == null) result = caseIfcBuildingElement(ifcSlab);
@@ -6741,8 +6115,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_SLAB_TYPE:
-			{
+			case Ifc2x3Package.IFC_SLAB_TYPE: {
 				IfcSlabType ifcSlabType = (IfcSlabType)theEObject;
 				T result = caseIfcSlabType(ifcSlabType);
 				if (result == null) result = caseIfcBuildingElementType(ifcSlabType);
@@ -6754,16 +6127,14 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_SLIPPAGE_CONNECTION_CONDITION:
-			{
+			case Ifc2x3Package.IFC_SLIPPAGE_CONNECTION_CONDITION: {
 				IfcSlippageConnectionCondition ifcSlippageConnectionCondition = (IfcSlippageConnectionCondition)theEObject;
 				T result = caseIfcSlippageConnectionCondition(ifcSlippageConnectionCondition);
 				if (result == null) result = caseIfcStructuralConnectionCondition(ifcSlippageConnectionCondition);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_SOLID_MODEL:
-			{
+			case Ifc2x3Package.IFC_SOLID_MODEL: {
 				IfcSolidModel ifcSolidModel = (IfcSolidModel)theEObject;
 				T result = caseIfcSolidModel(ifcSolidModel);
 				if (result == null) result = caseIfcGeometricRepresentationItem(ifcSolidModel);
@@ -6773,8 +6144,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_SOUND_PROPERTIES:
-			{
+			case Ifc2x3Package.IFC_SOUND_PROPERTIES: {
 				IfcSoundProperties ifcSoundProperties = (IfcSoundProperties)theEObject;
 				T result = caseIfcSoundProperties(ifcSoundProperties);
 				if (result == null) result = caseIfcPropertySetDefinition(ifcSoundProperties);
@@ -6783,8 +6153,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_SOUND_VALUE:
-			{
+			case Ifc2x3Package.IFC_SOUND_VALUE: {
 				IfcSoundValue ifcSoundValue = (IfcSoundValue)theEObject;
 				T result = caseIfcSoundValue(ifcSoundValue);
 				if (result == null) result = caseIfcPropertySetDefinition(ifcSoundValue);
@@ -6793,8 +6162,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_SPACE:
-			{
+			case Ifc2x3Package.IFC_SPACE: {
 				IfcSpace ifcSpace = (IfcSpace)theEObject;
 				T result = caseIfcSpace(ifcSpace);
 				if (result == null) result = caseIfcSpatialStructureElement(ifcSpace);
@@ -6805,8 +6173,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_SPACE_HEATER_TYPE:
-			{
+			case Ifc2x3Package.IFC_SPACE_HEATER_TYPE: {
 				IfcSpaceHeaterType ifcSpaceHeaterType = (IfcSpaceHeaterType)theEObject;
 				T result = caseIfcSpaceHeaterType(ifcSpaceHeaterType);
 				if (result == null) result = caseIfcEnergyConversionDeviceType(ifcSpaceHeaterType);
@@ -6820,8 +6187,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_SPACE_PROGRAM:
-			{
+			case Ifc2x3Package.IFC_SPACE_PROGRAM: {
 				IfcSpaceProgram ifcSpaceProgram = (IfcSpaceProgram)theEObject;
 				T result = caseIfcSpaceProgram(ifcSpaceProgram);
 				if (result == null) result = caseIfcControl(ifcSpaceProgram);
@@ -6831,8 +6197,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_SPACE_THERMAL_LOAD_PROPERTIES:
-			{
+			case Ifc2x3Package.IFC_SPACE_THERMAL_LOAD_PROPERTIES: {
 				IfcSpaceThermalLoadProperties ifcSpaceThermalLoadProperties = (IfcSpaceThermalLoadProperties)theEObject;
 				T result = caseIfcSpaceThermalLoadProperties(ifcSpaceThermalLoadProperties);
 				if (result == null) result = caseIfcPropertySetDefinition(ifcSpaceThermalLoadProperties);
@@ -6841,8 +6206,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_SPACE_TYPE:
-			{
+			case Ifc2x3Package.IFC_SPACE_TYPE: {
 				IfcSpaceType ifcSpaceType = (IfcSpaceType)theEObject;
 				T result = caseIfcSpaceType(ifcSpaceType);
 				if (result == null) result = caseIfcSpatialStructureElementType(ifcSpaceType);
@@ -6854,8 +6218,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_SPATIAL_STRUCTURE_ELEMENT:
-			{
+			case Ifc2x3Package.IFC_SPATIAL_STRUCTURE_ELEMENT: {
 				IfcSpatialStructureElement ifcSpatialStructureElement = (IfcSpatialStructureElement)theEObject;
 				T result = caseIfcSpatialStructureElement(ifcSpatialStructureElement);
 				if (result == null) result = caseIfcProduct(ifcSpatialStructureElement);
@@ -6865,8 +6228,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_SPATIAL_STRUCTURE_ELEMENT_TYPE:
-			{
+			case Ifc2x3Package.IFC_SPATIAL_STRUCTURE_ELEMENT_TYPE: {
 				IfcSpatialStructureElementType ifcSpatialStructureElementType = (IfcSpatialStructureElementType)theEObject;
 				T result = caseIfcSpatialStructureElementType(ifcSpatialStructureElementType);
 				if (result == null) result = caseIfcElementType(ifcSpatialStructureElementType);
@@ -6877,8 +6239,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_SPHERE:
-			{
+			case Ifc2x3Package.IFC_SPHERE: {
 				IfcSphere ifcSphere = (IfcSphere)theEObject;
 				T result = caseIfcSphere(ifcSphere);
 				if (result == null) result = caseIfcCsgPrimitive3D(ifcSphere);
@@ -6890,8 +6251,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_STACK_TERMINAL_TYPE:
-			{
+			case Ifc2x3Package.IFC_STACK_TERMINAL_TYPE: {
 				IfcStackTerminalType ifcStackTerminalType = (IfcStackTerminalType)theEObject;
 				T result = caseIfcStackTerminalType(ifcStackTerminalType);
 				if (result == null) result = caseIfcFlowTerminalType(ifcStackTerminalType);
@@ -6905,8 +6265,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_STAIR:
-			{
+			case Ifc2x3Package.IFC_STAIR: {
 				IfcStair ifcStair = (IfcStair)theEObject;
 				T result = caseIfcStair(ifcStair);
 				if (result == null) result = caseIfcBuildingElement(ifcStair);
@@ -6919,8 +6278,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_STAIR_FLIGHT:
-			{
+			case Ifc2x3Package.IFC_STAIR_FLIGHT: {
 				IfcStairFlight ifcStairFlight = (IfcStairFlight)theEObject;
 				T result = caseIfcStairFlight(ifcStairFlight);
 				if (result == null) result = caseIfcBuildingElement(ifcStairFlight);
@@ -6933,8 +6291,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_STAIR_FLIGHT_TYPE:
-			{
+			case Ifc2x3Package.IFC_STAIR_FLIGHT_TYPE: {
 				IfcStairFlightType ifcStairFlightType = (IfcStairFlightType)theEObject;
 				T result = caseIfcStairFlightType(ifcStairFlightType);
 				if (result == null) result = caseIfcBuildingElementType(ifcStairFlightType);
@@ -6946,8 +6303,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_STRUCTURAL_ACTION:
-			{
+			case Ifc2x3Package.IFC_STRUCTURAL_ACTION: {
 				IfcStructuralAction ifcStructuralAction = (IfcStructuralAction)theEObject;
 				T result = caseIfcStructuralAction(ifcStructuralAction);
 				if (result == null) result = caseIfcStructuralActivity(ifcStructuralAction);
@@ -6958,8 +6314,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_STRUCTURAL_ACTIVITY:
-			{
+			case Ifc2x3Package.IFC_STRUCTURAL_ACTIVITY: {
 				IfcStructuralActivity ifcStructuralActivity = (IfcStructuralActivity)theEObject;
 				T result = caseIfcStructuralActivity(ifcStructuralActivity);
 				if (result == null) result = caseIfcProduct(ifcStructuralActivity);
@@ -6969,8 +6324,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_STRUCTURAL_ANALYSIS_MODEL:
-			{
+			case Ifc2x3Package.IFC_STRUCTURAL_ANALYSIS_MODEL: {
 				IfcStructuralAnalysisModel ifcStructuralAnalysisModel = (IfcStructuralAnalysisModel)theEObject;
 				T result = caseIfcStructuralAnalysisModel(ifcStructuralAnalysisModel);
 				if (result == null) result = caseIfcSystem(ifcStructuralAnalysisModel);
@@ -6981,8 +6335,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_STRUCTURAL_CONNECTION:
-			{
+			case Ifc2x3Package.IFC_STRUCTURAL_CONNECTION: {
 				IfcStructuralConnection ifcStructuralConnection = (IfcStructuralConnection)theEObject;
 				T result = caseIfcStructuralConnection(ifcStructuralConnection);
 				if (result == null) result = caseIfcStructuralItem(ifcStructuralConnection);
@@ -6994,15 +6347,13 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_STRUCTURAL_CONNECTION_CONDITION:
-			{
+			case Ifc2x3Package.IFC_STRUCTURAL_CONNECTION_CONDITION: {
 				IfcStructuralConnectionCondition ifcStructuralConnectionCondition = (IfcStructuralConnectionCondition)theEObject;
 				T result = caseIfcStructuralConnectionCondition(ifcStructuralConnectionCondition);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_STRUCTURAL_CURVE_CONNECTION:
-			{
+			case Ifc2x3Package.IFC_STRUCTURAL_CURVE_CONNECTION: {
 				IfcStructuralCurveConnection ifcStructuralCurveConnection = (IfcStructuralCurveConnection)theEObject;
 				T result = caseIfcStructuralCurveConnection(ifcStructuralCurveConnection);
 				if (result == null) result = caseIfcStructuralConnection(ifcStructuralCurveConnection);
@@ -7015,8 +6366,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_STRUCTURAL_CURVE_MEMBER:
-			{
+			case Ifc2x3Package.IFC_STRUCTURAL_CURVE_MEMBER: {
 				IfcStructuralCurveMember ifcStructuralCurveMember = (IfcStructuralCurveMember)theEObject;
 				T result = caseIfcStructuralCurveMember(ifcStructuralCurveMember);
 				if (result == null) result = caseIfcStructuralMember(ifcStructuralCurveMember);
@@ -7029,8 +6379,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_STRUCTURAL_CURVE_MEMBER_VARYING:
-			{
+			case Ifc2x3Package.IFC_STRUCTURAL_CURVE_MEMBER_VARYING: {
 				IfcStructuralCurveMemberVarying ifcStructuralCurveMemberVarying = (IfcStructuralCurveMemberVarying)theEObject;
 				T result = caseIfcStructuralCurveMemberVarying(ifcStructuralCurveMemberVarying);
 				if (result == null) result = caseIfcStructuralCurveMember(ifcStructuralCurveMemberVarying);
@@ -7044,8 +6393,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_STRUCTURAL_ITEM:
-			{
+			case Ifc2x3Package.IFC_STRUCTURAL_ITEM: {
 				IfcStructuralItem ifcStructuralItem = (IfcStructuralItem)theEObject;
 				T result = caseIfcStructuralItem(ifcStructuralItem);
 				if (result == null) result = caseIfcProduct(ifcStructuralItem);
@@ -7056,8 +6404,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_STRUCTURAL_LINEAR_ACTION:
-			{
+			case Ifc2x3Package.IFC_STRUCTURAL_LINEAR_ACTION: {
 				IfcStructuralLinearAction ifcStructuralLinearAction = (IfcStructuralLinearAction)theEObject;
 				T result = caseIfcStructuralLinearAction(ifcStructuralLinearAction);
 				if (result == null) result = caseIfcStructuralAction(ifcStructuralLinearAction);
@@ -7069,8 +6416,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_STRUCTURAL_LINEAR_ACTION_VARYING:
-			{
+			case Ifc2x3Package.IFC_STRUCTURAL_LINEAR_ACTION_VARYING: {
 				IfcStructuralLinearActionVarying ifcStructuralLinearActionVarying = (IfcStructuralLinearActionVarying)theEObject;
 				T result = caseIfcStructuralLinearActionVarying(ifcStructuralLinearActionVarying);
 				if (result == null) result = caseIfcStructuralLinearAction(ifcStructuralLinearActionVarying);
@@ -7083,15 +6429,13 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_STRUCTURAL_LOAD:
-			{
+			case Ifc2x3Package.IFC_STRUCTURAL_LOAD: {
 				IfcStructuralLoad ifcStructuralLoad = (IfcStructuralLoad)theEObject;
 				T result = caseIfcStructuralLoad(ifcStructuralLoad);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_STRUCTURAL_LOAD_GROUP:
-			{
+			case Ifc2x3Package.IFC_STRUCTURAL_LOAD_GROUP: {
 				IfcStructuralLoadGroup ifcStructuralLoadGroup = (IfcStructuralLoadGroup)theEObject;
 				T result = caseIfcStructuralLoadGroup(ifcStructuralLoadGroup);
 				if (result == null) result = caseIfcGroup(ifcStructuralLoadGroup);
@@ -7101,8 +6445,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_STRUCTURAL_LOAD_LINEAR_FORCE:
-			{
+			case Ifc2x3Package.IFC_STRUCTURAL_LOAD_LINEAR_FORCE: {
 				IfcStructuralLoadLinearForce ifcStructuralLoadLinearForce = (IfcStructuralLoadLinearForce)theEObject;
 				T result = caseIfcStructuralLoadLinearForce(ifcStructuralLoadLinearForce);
 				if (result == null) result = caseIfcStructuralLoadStatic(ifcStructuralLoadLinearForce);
@@ -7110,8 +6453,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_STRUCTURAL_LOAD_PLANAR_FORCE:
-			{
+			case Ifc2x3Package.IFC_STRUCTURAL_LOAD_PLANAR_FORCE: {
 				IfcStructuralLoadPlanarForce ifcStructuralLoadPlanarForce = (IfcStructuralLoadPlanarForce)theEObject;
 				T result = caseIfcStructuralLoadPlanarForce(ifcStructuralLoadPlanarForce);
 				if (result == null) result = caseIfcStructuralLoadStatic(ifcStructuralLoadPlanarForce);
@@ -7119,8 +6461,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_STRUCTURAL_LOAD_SINGLE_DISPLACEMENT:
-			{
+			case Ifc2x3Package.IFC_STRUCTURAL_LOAD_SINGLE_DISPLACEMENT: {
 				IfcStructuralLoadSingleDisplacement ifcStructuralLoadSingleDisplacement = (IfcStructuralLoadSingleDisplacement)theEObject;
 				T result = caseIfcStructuralLoadSingleDisplacement(ifcStructuralLoadSingleDisplacement);
 				if (result == null) result = caseIfcStructuralLoadStatic(ifcStructuralLoadSingleDisplacement);
@@ -7128,8 +6469,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_STRUCTURAL_LOAD_SINGLE_DISPLACEMENT_DISTORTION:
-			{
+			case Ifc2x3Package.IFC_STRUCTURAL_LOAD_SINGLE_DISPLACEMENT_DISTORTION: {
 				IfcStructuralLoadSingleDisplacementDistortion ifcStructuralLoadSingleDisplacementDistortion = (IfcStructuralLoadSingleDisplacementDistortion)theEObject;
 				T result = caseIfcStructuralLoadSingleDisplacementDistortion(ifcStructuralLoadSingleDisplacementDistortion);
 				if (result == null) result = caseIfcStructuralLoadSingleDisplacement(ifcStructuralLoadSingleDisplacementDistortion);
@@ -7138,8 +6478,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_STRUCTURAL_LOAD_SINGLE_FORCE:
-			{
+			case Ifc2x3Package.IFC_STRUCTURAL_LOAD_SINGLE_FORCE: {
 				IfcStructuralLoadSingleForce ifcStructuralLoadSingleForce = (IfcStructuralLoadSingleForce)theEObject;
 				T result = caseIfcStructuralLoadSingleForce(ifcStructuralLoadSingleForce);
 				if (result == null) result = caseIfcStructuralLoadStatic(ifcStructuralLoadSingleForce);
@@ -7147,8 +6486,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_STRUCTURAL_LOAD_SINGLE_FORCE_WARPING:
-			{
+			case Ifc2x3Package.IFC_STRUCTURAL_LOAD_SINGLE_FORCE_WARPING: {
 				IfcStructuralLoadSingleForceWarping ifcStructuralLoadSingleForceWarping = (IfcStructuralLoadSingleForceWarping)theEObject;
 				T result = caseIfcStructuralLoadSingleForceWarping(ifcStructuralLoadSingleForceWarping);
 				if (result == null) result = caseIfcStructuralLoadSingleForce(ifcStructuralLoadSingleForceWarping);
@@ -7157,16 +6495,14 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_STRUCTURAL_LOAD_STATIC:
-			{
+			case Ifc2x3Package.IFC_STRUCTURAL_LOAD_STATIC: {
 				IfcStructuralLoadStatic ifcStructuralLoadStatic = (IfcStructuralLoadStatic)theEObject;
 				T result = caseIfcStructuralLoadStatic(ifcStructuralLoadStatic);
 				if (result == null) result = caseIfcStructuralLoad(ifcStructuralLoadStatic);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_STRUCTURAL_LOAD_TEMPERATURE:
-			{
+			case Ifc2x3Package.IFC_STRUCTURAL_LOAD_TEMPERATURE: {
 				IfcStructuralLoadTemperature ifcStructuralLoadTemperature = (IfcStructuralLoadTemperature)theEObject;
 				T result = caseIfcStructuralLoadTemperature(ifcStructuralLoadTemperature);
 				if (result == null) result = caseIfcStructuralLoadStatic(ifcStructuralLoadTemperature);
@@ -7174,8 +6510,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_STRUCTURAL_MEMBER:
-			{
+			case Ifc2x3Package.IFC_STRUCTURAL_MEMBER: {
 				IfcStructuralMember ifcStructuralMember = (IfcStructuralMember)theEObject;
 				T result = caseIfcStructuralMember(ifcStructuralMember);
 				if (result == null) result = caseIfcStructuralItem(ifcStructuralMember);
@@ -7187,8 +6522,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_STRUCTURAL_PLANAR_ACTION:
-			{
+			case Ifc2x3Package.IFC_STRUCTURAL_PLANAR_ACTION: {
 				IfcStructuralPlanarAction ifcStructuralPlanarAction = (IfcStructuralPlanarAction)theEObject;
 				T result = caseIfcStructuralPlanarAction(ifcStructuralPlanarAction);
 				if (result == null) result = caseIfcStructuralAction(ifcStructuralPlanarAction);
@@ -7200,8 +6534,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_STRUCTURAL_PLANAR_ACTION_VARYING:
-			{
+			case Ifc2x3Package.IFC_STRUCTURAL_PLANAR_ACTION_VARYING: {
 				IfcStructuralPlanarActionVarying ifcStructuralPlanarActionVarying = (IfcStructuralPlanarActionVarying)theEObject;
 				T result = caseIfcStructuralPlanarActionVarying(ifcStructuralPlanarActionVarying);
 				if (result == null) result = caseIfcStructuralPlanarAction(ifcStructuralPlanarActionVarying);
@@ -7214,8 +6547,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_STRUCTURAL_POINT_ACTION:
-			{
+			case Ifc2x3Package.IFC_STRUCTURAL_POINT_ACTION: {
 				IfcStructuralPointAction ifcStructuralPointAction = (IfcStructuralPointAction)theEObject;
 				T result = caseIfcStructuralPointAction(ifcStructuralPointAction);
 				if (result == null) result = caseIfcStructuralAction(ifcStructuralPointAction);
@@ -7227,8 +6559,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_STRUCTURAL_POINT_CONNECTION:
-			{
+			case Ifc2x3Package.IFC_STRUCTURAL_POINT_CONNECTION: {
 				IfcStructuralPointConnection ifcStructuralPointConnection = (IfcStructuralPointConnection)theEObject;
 				T result = caseIfcStructuralPointConnection(ifcStructuralPointConnection);
 				if (result == null) result = caseIfcStructuralConnection(ifcStructuralPointConnection);
@@ -7241,8 +6572,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_STRUCTURAL_POINT_REACTION:
-			{
+			case Ifc2x3Package.IFC_STRUCTURAL_POINT_REACTION: {
 				IfcStructuralPointReaction ifcStructuralPointReaction = (IfcStructuralPointReaction)theEObject;
 				T result = caseIfcStructuralPointReaction(ifcStructuralPointReaction);
 				if (result == null) result = caseIfcStructuralReaction(ifcStructuralPointReaction);
@@ -7254,8 +6584,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_STRUCTURAL_PROFILE_PROPERTIES:
-			{
+			case Ifc2x3Package.IFC_STRUCTURAL_PROFILE_PROPERTIES: {
 				IfcStructuralProfileProperties ifcStructuralProfileProperties = (IfcStructuralProfileProperties)theEObject;
 				T result = caseIfcStructuralProfileProperties(ifcStructuralProfileProperties);
 				if (result == null) result = caseIfcGeneralProfileProperties(ifcStructuralProfileProperties);
@@ -7263,8 +6592,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_STRUCTURAL_REACTION:
-			{
+			case Ifc2x3Package.IFC_STRUCTURAL_REACTION: {
 				IfcStructuralReaction ifcStructuralReaction = (IfcStructuralReaction)theEObject;
 				T result = caseIfcStructuralReaction(ifcStructuralReaction);
 				if (result == null) result = caseIfcStructuralActivity(ifcStructuralReaction);
@@ -7275,8 +6603,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_STRUCTURAL_RESULT_GROUP:
-			{
+			case Ifc2x3Package.IFC_STRUCTURAL_RESULT_GROUP: {
 				IfcStructuralResultGroup ifcStructuralResultGroup = (IfcStructuralResultGroup)theEObject;
 				T result = caseIfcStructuralResultGroup(ifcStructuralResultGroup);
 				if (result == null) result = caseIfcGroup(ifcStructuralResultGroup);
@@ -7286,8 +6613,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_STRUCTURAL_STEEL_PROFILE_PROPERTIES:
-			{
+			case Ifc2x3Package.IFC_STRUCTURAL_STEEL_PROFILE_PROPERTIES: {
 				IfcStructuralSteelProfileProperties ifcStructuralSteelProfileProperties = (IfcStructuralSteelProfileProperties)theEObject;
 				T result = caseIfcStructuralSteelProfileProperties(ifcStructuralSteelProfileProperties);
 				if (result == null) result = caseIfcStructuralProfileProperties(ifcStructuralSteelProfileProperties);
@@ -7296,8 +6622,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_STRUCTURAL_SURFACE_CONNECTION:
-			{
+			case Ifc2x3Package.IFC_STRUCTURAL_SURFACE_CONNECTION: {
 				IfcStructuralSurfaceConnection ifcStructuralSurfaceConnection = (IfcStructuralSurfaceConnection)theEObject;
 				T result = caseIfcStructuralSurfaceConnection(ifcStructuralSurfaceConnection);
 				if (result == null) result = caseIfcStructuralConnection(ifcStructuralSurfaceConnection);
@@ -7310,8 +6635,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_STRUCTURAL_SURFACE_MEMBER:
-			{
+			case Ifc2x3Package.IFC_STRUCTURAL_SURFACE_MEMBER: {
 				IfcStructuralSurfaceMember ifcStructuralSurfaceMember = (IfcStructuralSurfaceMember)theEObject;
 				T result = caseIfcStructuralSurfaceMember(ifcStructuralSurfaceMember);
 				if (result == null) result = caseIfcStructuralMember(ifcStructuralSurfaceMember);
@@ -7324,8 +6648,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_STRUCTURAL_SURFACE_MEMBER_VARYING:
-			{
+			case Ifc2x3Package.IFC_STRUCTURAL_SURFACE_MEMBER_VARYING: {
 				IfcStructuralSurfaceMemberVarying ifcStructuralSurfaceMemberVarying = (IfcStructuralSurfaceMemberVarying)theEObject;
 				T result = caseIfcStructuralSurfaceMemberVarying(ifcStructuralSurfaceMemberVarying);
 				if (result == null) result = caseIfcStructuralSurfaceMember(ifcStructuralSurfaceMemberVarying);
@@ -7339,8 +6662,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_STRUCTURED_DIMENSION_CALLOUT:
-			{
+			case Ifc2x3Package.IFC_STRUCTURED_DIMENSION_CALLOUT: {
 				IfcStructuredDimensionCallout ifcStructuredDimensionCallout = (IfcStructuredDimensionCallout)theEObject;
 				T result = caseIfcStructuredDimensionCallout(ifcStructuredDimensionCallout);
 				if (result == null) result = caseIfcDraughtingCallout(ifcStructuredDimensionCallout);
@@ -7350,8 +6672,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_STYLE_MODEL:
-			{
+			case Ifc2x3Package.IFC_STYLE_MODEL: {
 				IfcStyleModel ifcStyleModel = (IfcStyleModel)theEObject;
 				T result = caseIfcStyleModel(ifcStyleModel);
 				if (result == null) result = caseIfcRepresentation(ifcStyleModel);
@@ -7359,8 +6680,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_STYLED_ITEM:
-			{
+			case Ifc2x3Package.IFC_STYLED_ITEM: {
 				IfcStyledItem ifcStyledItem = (IfcStyledItem)theEObject;
 				T result = caseIfcStyledItem(ifcStyledItem);
 				if (result == null) result = caseIfcRepresentationItem(ifcStyledItem);
@@ -7368,8 +6688,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_STYLED_REPRESENTATION:
-			{
+			case Ifc2x3Package.IFC_STYLED_REPRESENTATION: {
 				IfcStyledRepresentation ifcStyledRepresentation = (IfcStyledRepresentation)theEObject;
 				T result = caseIfcStyledRepresentation(ifcStyledRepresentation);
 				if (result == null) result = caseIfcStyleModel(ifcStyledRepresentation);
@@ -7378,8 +6697,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_SUB_CONTRACT_RESOURCE:
-			{
+			case Ifc2x3Package.IFC_SUB_CONTRACT_RESOURCE: {
 				IfcSubContractResource ifcSubContractResource = (IfcSubContractResource)theEObject;
 				T result = caseIfcSubContractResource(ifcSubContractResource);
 				if (result == null) result = caseIfcConstructionResource(ifcSubContractResource);
@@ -7390,8 +6708,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_SUBEDGE:
-			{
+			case Ifc2x3Package.IFC_SUBEDGE: {
 				IfcSubedge ifcSubedge = (IfcSubedge)theEObject;
 				T result = caseIfcSubedge(ifcSubedge);
 				if (result == null) result = caseIfcEdge(ifcSubedge);
@@ -7401,8 +6718,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_SURFACE:
-			{
+			case Ifc2x3Package.IFC_SURFACE: {
 				IfcSurface ifcSurface = (IfcSurface)theEObject;
 				T result = caseIfcSurface(ifcSurface);
 				if (result == null) result = caseIfcGeometricRepresentationItem(ifcSurface);
@@ -7413,8 +6729,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_SURFACE_CURVE_SWEPT_AREA_SOLID:
-			{
+			case Ifc2x3Package.IFC_SURFACE_CURVE_SWEPT_AREA_SOLID: {
 				IfcSurfaceCurveSweptAreaSolid ifcSurfaceCurveSweptAreaSolid = (IfcSurfaceCurveSweptAreaSolid)theEObject;
 				T result = caseIfcSurfaceCurveSweptAreaSolid(ifcSurfaceCurveSweptAreaSolid);
 				if (result == null) result = caseIfcSweptAreaSolid(ifcSurfaceCurveSweptAreaSolid);
@@ -7426,8 +6741,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_SURFACE_OF_LINEAR_EXTRUSION:
-			{
+			case Ifc2x3Package.IFC_SURFACE_OF_LINEAR_EXTRUSION: {
 				IfcSurfaceOfLinearExtrusion ifcSurfaceOfLinearExtrusion = (IfcSurfaceOfLinearExtrusion)theEObject;
 				T result = caseIfcSurfaceOfLinearExtrusion(ifcSurfaceOfLinearExtrusion);
 				if (result == null) result = caseIfcSweptSurface(ifcSurfaceOfLinearExtrusion);
@@ -7440,8 +6754,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_SURFACE_OF_REVOLUTION:
-			{
+			case Ifc2x3Package.IFC_SURFACE_OF_REVOLUTION: {
 				IfcSurfaceOfRevolution ifcSurfaceOfRevolution = (IfcSurfaceOfRevolution)theEObject;
 				T result = caseIfcSurfaceOfRevolution(ifcSurfaceOfRevolution);
 				if (result == null) result = caseIfcSweptSurface(ifcSurfaceOfRevolution);
@@ -7454,8 +6767,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_SURFACE_STYLE:
-			{
+			case Ifc2x3Package.IFC_SURFACE_STYLE: {
 				IfcSurfaceStyle ifcSurfaceStyle = (IfcSurfaceStyle)theEObject;
 				T result = caseIfcSurfaceStyle(ifcSurfaceStyle);
 				if (result == null) result = caseIfcPresentationStyle(ifcSurfaceStyle);
@@ -7463,24 +6775,21 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_SURFACE_STYLE_LIGHTING:
-			{
+			case Ifc2x3Package.IFC_SURFACE_STYLE_LIGHTING: {
 				IfcSurfaceStyleLighting ifcSurfaceStyleLighting = (IfcSurfaceStyleLighting)theEObject;
 				T result = caseIfcSurfaceStyleLighting(ifcSurfaceStyleLighting);
 				if (result == null) result = caseIfcSurfaceStyleElementSelect(ifcSurfaceStyleLighting);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_SURFACE_STYLE_REFRACTION:
-			{
+			case Ifc2x3Package.IFC_SURFACE_STYLE_REFRACTION: {
 				IfcSurfaceStyleRefraction ifcSurfaceStyleRefraction = (IfcSurfaceStyleRefraction)theEObject;
 				T result = caseIfcSurfaceStyleRefraction(ifcSurfaceStyleRefraction);
 				if (result == null) result = caseIfcSurfaceStyleElementSelect(ifcSurfaceStyleRefraction);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_SURFACE_STYLE_RENDERING:
-			{
+			case Ifc2x3Package.IFC_SURFACE_STYLE_RENDERING: {
 				IfcSurfaceStyleRendering ifcSurfaceStyleRendering = (IfcSurfaceStyleRendering)theEObject;
 				T result = caseIfcSurfaceStyleRendering(ifcSurfaceStyleRendering);
 				if (result == null) result = caseIfcSurfaceStyleShading(ifcSurfaceStyleRendering);
@@ -7488,31 +6797,27 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_SURFACE_STYLE_SHADING:
-			{
+			case Ifc2x3Package.IFC_SURFACE_STYLE_SHADING: {
 				IfcSurfaceStyleShading ifcSurfaceStyleShading = (IfcSurfaceStyleShading)theEObject;
 				T result = caseIfcSurfaceStyleShading(ifcSurfaceStyleShading);
 				if (result == null) result = caseIfcSurfaceStyleElementSelect(ifcSurfaceStyleShading);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_SURFACE_STYLE_WITH_TEXTURES:
-			{
+			case Ifc2x3Package.IFC_SURFACE_STYLE_WITH_TEXTURES: {
 				IfcSurfaceStyleWithTextures ifcSurfaceStyleWithTextures = (IfcSurfaceStyleWithTextures)theEObject;
 				T result = caseIfcSurfaceStyleWithTextures(ifcSurfaceStyleWithTextures);
 				if (result == null) result = caseIfcSurfaceStyleElementSelect(ifcSurfaceStyleWithTextures);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_SURFACE_TEXTURE:
-			{
+			case Ifc2x3Package.IFC_SURFACE_TEXTURE: {
 				IfcSurfaceTexture ifcSurfaceTexture = (IfcSurfaceTexture)theEObject;
 				T result = caseIfcSurfaceTexture(ifcSurfaceTexture);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_SWEPT_AREA_SOLID:
-			{
+			case Ifc2x3Package.IFC_SWEPT_AREA_SOLID: {
 				IfcSweptAreaSolid ifcSweptAreaSolid = (IfcSweptAreaSolid)theEObject;
 				T result = caseIfcSweptAreaSolid(ifcSweptAreaSolid);
 				if (result == null) result = caseIfcSolidModel(ifcSweptAreaSolid);
@@ -7523,8 +6828,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_SWEPT_DISK_SOLID:
-			{
+			case Ifc2x3Package.IFC_SWEPT_DISK_SOLID: {
 				IfcSweptDiskSolid ifcSweptDiskSolid = (IfcSweptDiskSolid)theEObject;
 				T result = caseIfcSweptDiskSolid(ifcSweptDiskSolid);
 				if (result == null) result = caseIfcSolidModel(ifcSweptDiskSolid);
@@ -7535,8 +6839,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_SWEPT_SURFACE:
-			{
+			case Ifc2x3Package.IFC_SWEPT_SURFACE: {
 				IfcSweptSurface ifcSweptSurface = (IfcSweptSurface)theEObject;
 				T result = caseIfcSweptSurface(ifcSweptSurface);
 				if (result == null) result = caseIfcSurface(ifcSweptSurface);
@@ -7548,8 +6851,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_SWITCHING_DEVICE_TYPE:
-			{
+			case Ifc2x3Package.IFC_SWITCHING_DEVICE_TYPE: {
 				IfcSwitchingDeviceType ifcSwitchingDeviceType = (IfcSwitchingDeviceType)theEObject;
 				T result = caseIfcSwitchingDeviceType(ifcSwitchingDeviceType);
 				if (result == null) result = caseIfcFlowControllerType(ifcSwitchingDeviceType);
@@ -7563,8 +6865,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_SYMBOL_STYLE:
-			{
+			case Ifc2x3Package.IFC_SYMBOL_STYLE: {
 				IfcSymbolStyle ifcSymbolStyle = (IfcSymbolStyle)theEObject;
 				T result = caseIfcSymbolStyle(ifcSymbolStyle);
 				if (result == null) result = caseIfcPresentationStyle(ifcSymbolStyle);
@@ -7572,8 +6873,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_SYSTEM:
-			{
+			case Ifc2x3Package.IFC_SYSTEM: {
 				IfcSystem ifcSystem = (IfcSystem)theEObject;
 				T result = caseIfcSystem(ifcSystem);
 				if (result == null) result = caseIfcGroup(ifcSystem);
@@ -7583,8 +6883,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_SYSTEM_FURNITURE_ELEMENT_TYPE:
-			{
+			case Ifc2x3Package.IFC_SYSTEM_FURNITURE_ELEMENT_TYPE: {
 				IfcSystemFurnitureElementType ifcSystemFurnitureElementType = (IfcSystemFurnitureElementType)theEObject;
 				T result = caseIfcSystemFurnitureElementType(ifcSystemFurnitureElementType);
 				if (result == null) result = caseIfcFurnishingElementType(ifcSystemFurnitureElementType);
@@ -7596,8 +6895,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_TSHAPE_PROFILE_DEF:
-			{
+			case Ifc2x3Package.IFC_TSHAPE_PROFILE_DEF: {
 				IfcTShapeProfileDef ifcTShapeProfileDef = (IfcTShapeProfileDef)theEObject;
 				T result = caseIfcTShapeProfileDef(ifcTShapeProfileDef);
 				if (result == null) result = caseIfcParameterizedProfileDef(ifcTShapeProfileDef);
@@ -7605,23 +6903,20 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_TABLE:
-			{
+			case Ifc2x3Package.IFC_TABLE: {
 				IfcTable ifcTable = (IfcTable)theEObject;
 				T result = caseIfcTable(ifcTable);
 				if (result == null) result = caseIfcMetricValueSelect(ifcTable);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_TABLE_ROW:
-			{
+			case Ifc2x3Package.IFC_TABLE_ROW: {
 				IfcTableRow ifcTableRow = (IfcTableRow)theEObject;
 				T result = caseIfcTableRow(ifcTableRow);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_TANK_TYPE:
-			{
+			case Ifc2x3Package.IFC_TANK_TYPE: {
 				IfcTankType ifcTankType = (IfcTankType)theEObject;
 				T result = caseIfcTankType(ifcTankType);
 				if (result == null) result = caseIfcFlowStorageDeviceType(ifcTankType);
@@ -7635,8 +6930,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_TASK:
-			{
+			case Ifc2x3Package.IFC_TASK: {
 				IfcTask ifcTask = (IfcTask)theEObject;
 				T result = caseIfcTask(ifcTask);
 				if (result == null) result = caseIfcProcess(ifcTask);
@@ -7646,8 +6940,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_TELECOM_ADDRESS:
-			{
+			case Ifc2x3Package.IFC_TELECOM_ADDRESS: {
 				IfcTelecomAddress ifcTelecomAddress = (IfcTelecomAddress)theEObject;
 				T result = caseIfcTelecomAddress(ifcTelecomAddress);
 				if (result == null) result = caseIfcAddress(ifcTelecomAddress);
@@ -7655,8 +6948,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_TENDON:
-			{
+			case Ifc2x3Package.IFC_TENDON: {
 				IfcTendon ifcTendon = (IfcTendon)theEObject;
 				T result = caseIfcTendon(ifcTendon);
 				if (result == null) result = caseIfcReinforcingElement(ifcTendon);
@@ -7671,8 +6963,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_TENDON_ANCHOR:
-			{
+			case Ifc2x3Package.IFC_TENDON_ANCHOR: {
 				IfcTendonAnchor ifcTendonAnchor = (IfcTendonAnchor)theEObject;
 				T result = caseIfcTendonAnchor(ifcTendonAnchor);
 				if (result == null) result = caseIfcReinforcingElement(ifcTendonAnchor);
@@ -7687,8 +6978,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_TERMINATOR_SYMBOL:
-			{
+			case Ifc2x3Package.IFC_TERMINATOR_SYMBOL: {
 				IfcTerminatorSymbol ifcTerminatorSymbol = (IfcTerminatorSymbol)theEObject;
 				T result = caseIfcTerminatorSymbol(ifcTerminatorSymbol);
 				if (result == null) result = caseIfcAnnotationSymbolOccurrence(ifcTerminatorSymbol);
@@ -7700,8 +6990,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_TEXT_LITERAL:
-			{
+			case Ifc2x3Package.IFC_TEXT_LITERAL: {
 				IfcTextLiteral ifcTextLiteral = (IfcTextLiteral)theEObject;
 				T result = caseIfcTextLiteral(ifcTextLiteral);
 				if (result == null) result = caseIfcGeometricRepresentationItem(ifcTextLiteral);
@@ -7710,8 +6999,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_TEXT_LITERAL_WITH_EXTENT:
-			{
+			case Ifc2x3Package.IFC_TEXT_LITERAL_WITH_EXTENT: {
 				IfcTextLiteralWithExtent ifcTextLiteralWithExtent = (IfcTextLiteralWithExtent)theEObject;
 				T result = caseIfcTextLiteralWithExtent(ifcTextLiteralWithExtent);
 				if (result == null) result = caseIfcTextLiteral(ifcTextLiteralWithExtent);
@@ -7721,8 +7009,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_TEXT_STYLE:
-			{
+			case Ifc2x3Package.IFC_TEXT_STYLE: {
 				IfcTextStyle ifcTextStyle = (IfcTextStyle)theEObject;
 				T result = caseIfcTextStyle(ifcTextStyle);
 				if (result == null) result = caseIfcPresentationStyle(ifcTextStyle);
@@ -7730,8 +7017,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_TEXT_STYLE_FONT_MODEL:
-			{
+			case Ifc2x3Package.IFC_TEXT_STYLE_FONT_MODEL: {
 				IfcTextStyleFontModel ifcTextStyleFontModel = (IfcTextStyleFontModel)theEObject;
 				T result = caseIfcTextStyleFontModel(ifcTextStyleFontModel);
 				if (result == null) result = caseIfcPreDefinedTextFont(ifcTextStyleFontModel);
@@ -7740,70 +7026,61 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_TEXT_STYLE_FOR_DEFINED_FONT:
-			{
+			case Ifc2x3Package.IFC_TEXT_STYLE_FOR_DEFINED_FONT: {
 				IfcTextStyleForDefinedFont ifcTextStyleForDefinedFont = (IfcTextStyleForDefinedFont)theEObject;
 				T result = caseIfcTextStyleForDefinedFont(ifcTextStyleForDefinedFont);
 				if (result == null) result = caseIfcCharacterStyleSelect(ifcTextStyleForDefinedFont);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_TEXT_STYLE_TEXT_MODEL:
-			{
+			case Ifc2x3Package.IFC_TEXT_STYLE_TEXT_MODEL: {
 				IfcTextStyleTextModel ifcTextStyleTextModel = (IfcTextStyleTextModel)theEObject;
 				T result = caseIfcTextStyleTextModel(ifcTextStyleTextModel);
 				if (result == null) result = caseIfcTextStyleSelect(ifcTextStyleTextModel);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_TEXT_STYLE_WITH_BOX_CHARACTERISTICS:
-			{
+			case Ifc2x3Package.IFC_TEXT_STYLE_WITH_BOX_CHARACTERISTICS: {
 				IfcTextStyleWithBoxCharacteristics ifcTextStyleWithBoxCharacteristics = (IfcTextStyleWithBoxCharacteristics)theEObject;
 				T result = caseIfcTextStyleWithBoxCharacteristics(ifcTextStyleWithBoxCharacteristics);
 				if (result == null) result = caseIfcTextStyleSelect(ifcTextStyleWithBoxCharacteristics);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_TEXTURE_COORDINATE:
-			{
+			case Ifc2x3Package.IFC_TEXTURE_COORDINATE: {
 				IfcTextureCoordinate ifcTextureCoordinate = (IfcTextureCoordinate)theEObject;
 				T result = caseIfcTextureCoordinate(ifcTextureCoordinate);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_TEXTURE_COORDINATE_GENERATOR:
-			{
+			case Ifc2x3Package.IFC_TEXTURE_COORDINATE_GENERATOR: {
 				IfcTextureCoordinateGenerator ifcTextureCoordinateGenerator = (IfcTextureCoordinateGenerator)theEObject;
 				T result = caseIfcTextureCoordinateGenerator(ifcTextureCoordinateGenerator);
 				if (result == null) result = caseIfcTextureCoordinate(ifcTextureCoordinateGenerator);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_TEXTURE_MAP:
-			{
+			case Ifc2x3Package.IFC_TEXTURE_MAP: {
 				IfcTextureMap ifcTextureMap = (IfcTextureMap)theEObject;
 				T result = caseIfcTextureMap(ifcTextureMap);
 				if (result == null) result = caseIfcTextureCoordinate(ifcTextureMap);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_TEXTURE_VERTEX:
-			{
+			case Ifc2x3Package.IFC_TEXTURE_VERTEX: {
 				IfcTextureVertex ifcTextureVertex = (IfcTextureVertex)theEObject;
 				T result = caseIfcTextureVertex(ifcTextureVertex);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_THERMAL_MATERIAL_PROPERTIES:
-			{
+			case Ifc2x3Package.IFC_THERMAL_MATERIAL_PROPERTIES: {
 				IfcThermalMaterialProperties ifcThermalMaterialProperties = (IfcThermalMaterialProperties)theEObject;
 				T result = caseIfcThermalMaterialProperties(ifcThermalMaterialProperties);
 				if (result == null) result = caseIfcMaterialProperties(ifcThermalMaterialProperties);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_TIME_SERIES:
-			{
+			case Ifc2x3Package.IFC_TIME_SERIES: {
 				IfcTimeSeries ifcTimeSeries = (IfcTimeSeries)theEObject;
 				T result = caseIfcTimeSeries(ifcTimeSeries);
 				if (result == null) result = caseIfcMetricValueSelect(ifcTimeSeries);
@@ -7811,15 +7088,13 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_TIME_SERIES_REFERENCE_RELATIONSHIP:
-			{
+			case Ifc2x3Package.IFC_TIME_SERIES_REFERENCE_RELATIONSHIP: {
 				IfcTimeSeriesReferenceRelationship ifcTimeSeriesReferenceRelationship = (IfcTimeSeriesReferenceRelationship)theEObject;
 				T result = caseIfcTimeSeriesReferenceRelationship(ifcTimeSeriesReferenceRelationship);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_TIME_SERIES_SCHEDULE:
-			{
+			case Ifc2x3Package.IFC_TIME_SERIES_SCHEDULE: {
 				IfcTimeSeriesSchedule ifcTimeSeriesSchedule = (IfcTimeSeriesSchedule)theEObject;
 				T result = caseIfcTimeSeriesSchedule(ifcTimeSeriesSchedule);
 				if (result == null) result = caseIfcControl(ifcTimeSeriesSchedule);
@@ -7829,15 +7104,13 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_TIME_SERIES_VALUE:
-			{
+			case Ifc2x3Package.IFC_TIME_SERIES_VALUE: {
 				IfcTimeSeriesValue ifcTimeSeriesValue = (IfcTimeSeriesValue)theEObject;
 				T result = caseIfcTimeSeriesValue(ifcTimeSeriesValue);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_TOPOLOGICAL_REPRESENTATION_ITEM:
-			{
+			case Ifc2x3Package.IFC_TOPOLOGICAL_REPRESENTATION_ITEM: {
 				IfcTopologicalRepresentationItem ifcTopologicalRepresentationItem = (IfcTopologicalRepresentationItem)theEObject;
 				T result = caseIfcTopologicalRepresentationItem(ifcTopologicalRepresentationItem);
 				if (result == null) result = caseIfcRepresentationItem(ifcTopologicalRepresentationItem);
@@ -7845,8 +7118,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_TOPOLOGY_REPRESENTATION:
-			{
+			case Ifc2x3Package.IFC_TOPOLOGY_REPRESENTATION: {
 				IfcTopologyRepresentation ifcTopologyRepresentation = (IfcTopologyRepresentation)theEObject;
 				T result = caseIfcTopologyRepresentation(ifcTopologyRepresentation);
 				if (result == null) result = caseIfcShapeModel(ifcTopologyRepresentation);
@@ -7855,8 +7127,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_TRANSFORMER_TYPE:
-			{
+			case Ifc2x3Package.IFC_TRANSFORMER_TYPE: {
 				IfcTransformerType ifcTransformerType = (IfcTransformerType)theEObject;
 				T result = caseIfcTransformerType(ifcTransformerType);
 				if (result == null) result = caseIfcEnergyConversionDeviceType(ifcTransformerType);
@@ -7870,8 +7141,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_TRANSPORT_ELEMENT:
-			{
+			case Ifc2x3Package.IFC_TRANSPORT_ELEMENT: {
 				IfcTransportElement ifcTransportElement = (IfcTransportElement)theEObject;
 				T result = caseIfcTransportElement(ifcTransportElement);
 				if (result == null) result = caseIfcElement(ifcTransportElement);
@@ -7883,8 +7153,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_TRANSPORT_ELEMENT_TYPE:
-			{
+			case Ifc2x3Package.IFC_TRANSPORT_ELEMENT_TYPE: {
 				IfcTransportElementType ifcTransportElementType = (IfcTransportElementType)theEObject;
 				T result = caseIfcTransportElementType(ifcTransportElementType);
 				if (result == null) result = caseIfcElementType(ifcTransportElementType);
@@ -7895,8 +7164,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_TRAPEZIUM_PROFILE_DEF:
-			{
+			case Ifc2x3Package.IFC_TRAPEZIUM_PROFILE_DEF: {
 				IfcTrapeziumProfileDef ifcTrapeziumProfileDef = (IfcTrapeziumProfileDef)theEObject;
 				T result = caseIfcTrapeziumProfileDef(ifcTrapeziumProfileDef);
 				if (result == null) result = caseIfcParameterizedProfileDef(ifcTrapeziumProfileDef);
@@ -7904,8 +7172,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_TRIMMED_CURVE:
-			{
+			case Ifc2x3Package.IFC_TRIMMED_CURVE: {
 				IfcTrimmedCurve ifcTrimmedCurve = (IfcTrimmedCurve)theEObject;
 				T result = caseIfcTrimmedCurve(ifcTrimmedCurve);
 				if (result == null) result = caseIfcBoundedCurve(ifcTrimmedCurve);
@@ -7918,8 +7185,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_TUBE_BUNDLE_TYPE:
-			{
+			case Ifc2x3Package.IFC_TUBE_BUNDLE_TYPE: {
 				IfcTubeBundleType ifcTubeBundleType = (IfcTubeBundleType)theEObject;
 				T result = caseIfcTubeBundleType(ifcTubeBundleType);
 				if (result == null) result = caseIfcEnergyConversionDeviceType(ifcTubeBundleType);
@@ -7933,8 +7199,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_TWO_DIRECTION_REPEAT_FACTOR:
-			{
+			case Ifc2x3Package.IFC_TWO_DIRECTION_REPEAT_FACTOR: {
 				IfcTwoDirectionRepeatFactor ifcTwoDirectionRepeatFactor = (IfcTwoDirectionRepeatFactor)theEObject;
 				T result = caseIfcTwoDirectionRepeatFactor(ifcTwoDirectionRepeatFactor);
 				if (result == null) result = caseIfcOneDirectionRepeatFactor(ifcTwoDirectionRepeatFactor);
@@ -7945,8 +7210,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_TYPE_OBJECT:
-			{
+			case Ifc2x3Package.IFC_TYPE_OBJECT: {
 				IfcTypeObject ifcTypeObject = (IfcTypeObject)theEObject;
 				T result = caseIfcTypeObject(ifcTypeObject);
 				if (result == null) result = caseIfcObjectDefinition(ifcTypeObject);
@@ -7954,8 +7218,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_TYPE_PRODUCT:
-			{
+			case Ifc2x3Package.IFC_TYPE_PRODUCT: {
 				IfcTypeProduct ifcTypeProduct = (IfcTypeProduct)theEObject;
 				T result = caseIfcTypeProduct(ifcTypeProduct);
 				if (result == null) result = caseIfcTypeObject(ifcTypeProduct);
@@ -7964,8 +7227,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_USHAPE_PROFILE_DEF:
-			{
+			case Ifc2x3Package.IFC_USHAPE_PROFILE_DEF: {
 				IfcUShapeProfileDef ifcUShapeProfileDef = (IfcUShapeProfileDef)theEObject;
 				T result = caseIfcUShapeProfileDef(ifcUShapeProfileDef);
 				if (result == null) result = caseIfcParameterizedProfileDef(ifcUShapeProfileDef);
@@ -7973,15 +7235,13 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_UNIT_ASSIGNMENT:
-			{
+			case Ifc2x3Package.IFC_UNIT_ASSIGNMENT: {
 				IfcUnitAssignment ifcUnitAssignment = (IfcUnitAssignment)theEObject;
 				T result = caseIfcUnitAssignment(ifcUnitAssignment);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_UNITARY_EQUIPMENT_TYPE:
-			{
+			case Ifc2x3Package.IFC_UNITARY_EQUIPMENT_TYPE: {
 				IfcUnitaryEquipmentType ifcUnitaryEquipmentType = (IfcUnitaryEquipmentType)theEObject;
 				T result = caseIfcUnitaryEquipmentType(ifcUnitaryEquipmentType);
 				if (result == null) result = caseIfcEnergyConversionDeviceType(ifcUnitaryEquipmentType);
@@ -7995,8 +7255,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_VALVE_TYPE:
-			{
+			case Ifc2x3Package.IFC_VALVE_TYPE: {
 				IfcValveType ifcValveType = (IfcValveType)theEObject;
 				T result = caseIfcValveType(ifcValveType);
 				if (result == null) result = caseIfcFlowControllerType(ifcValveType);
@@ -8010,8 +7269,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_VECTOR:
-			{
+			case Ifc2x3Package.IFC_VECTOR: {
 				IfcVector ifcVector = (IfcVector)theEObject;
 				T result = caseIfcVector(ifcVector);
 				if (result == null) result = caseIfcGeometricRepresentationItem(ifcVector);
@@ -8021,8 +7279,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_VERTEX:
-			{
+			case Ifc2x3Package.IFC_VERTEX: {
 				IfcVertex ifcVertex = (IfcVertex)theEObject;
 				T result = caseIfcVertex(ifcVertex);
 				if (result == null) result = caseIfcTopologicalRepresentationItem(ifcVertex);
@@ -8031,15 +7288,13 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_VERTEX_BASED_TEXTURE_MAP:
-			{
+			case Ifc2x3Package.IFC_VERTEX_BASED_TEXTURE_MAP: {
 				IfcVertexBasedTextureMap ifcVertexBasedTextureMap = (IfcVertexBasedTextureMap)theEObject;
 				T result = caseIfcVertexBasedTextureMap(ifcVertexBasedTextureMap);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_VERTEX_LOOP:
-			{
+			case Ifc2x3Package.IFC_VERTEX_LOOP: {
 				IfcVertexLoop ifcVertexLoop = (IfcVertexLoop)theEObject;
 				T result = caseIfcVertexLoop(ifcVertexLoop);
 				if (result == null) result = caseIfcLoop(ifcVertexLoop);
@@ -8049,8 +7304,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_VERTEX_POINT:
-			{
+			case Ifc2x3Package.IFC_VERTEX_POINT: {
 				IfcVertexPoint ifcVertexPoint = (IfcVertexPoint)theEObject;
 				T result = caseIfcVertexPoint(ifcVertexPoint);
 				if (result == null) result = caseIfcVertex(ifcVertexPoint);
@@ -8061,8 +7315,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_VIBRATION_ISOLATOR_TYPE:
-			{
+			case Ifc2x3Package.IFC_VIBRATION_ISOLATOR_TYPE: {
 				IfcVibrationIsolatorType ifcVibrationIsolatorType = (IfcVibrationIsolatorType)theEObject;
 				T result = caseIfcVibrationIsolatorType(ifcVibrationIsolatorType);
 				if (result == null) result = caseIfcDiscreteAccessoryType(ifcVibrationIsolatorType);
@@ -8075,8 +7328,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_VIRTUAL_ELEMENT:
-			{
+			case Ifc2x3Package.IFC_VIRTUAL_ELEMENT: {
 				IfcVirtualElement ifcVirtualElement = (IfcVirtualElement)theEObject;
 				T result = caseIfcVirtualElement(ifcVirtualElement);
 				if (result == null) result = caseIfcElement(ifcVirtualElement);
@@ -8088,15 +7340,13 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_VIRTUAL_GRID_INTERSECTION:
-			{
+			case Ifc2x3Package.IFC_VIRTUAL_GRID_INTERSECTION: {
 				IfcVirtualGridIntersection ifcVirtualGridIntersection = (IfcVirtualGridIntersection)theEObject;
 				T result = caseIfcVirtualGridIntersection(ifcVirtualGridIntersection);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_WALL:
-			{
+			case Ifc2x3Package.IFC_WALL: {
 				IfcWall ifcWall = (IfcWall)theEObject;
 				T result = caseIfcWall(ifcWall);
 				if (result == null) result = caseIfcBuildingElement(ifcWall);
@@ -8109,8 +7359,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_WALL_STANDARD_CASE:
-			{
+			case Ifc2x3Package.IFC_WALL_STANDARD_CASE: {
 				IfcWallStandardCase ifcWallStandardCase = (IfcWallStandardCase)theEObject;
 				T result = caseIfcWallStandardCase(ifcWallStandardCase);
 				if (result == null) result = caseIfcWall(ifcWallStandardCase);
@@ -8124,8 +7373,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_WALL_TYPE:
-			{
+			case Ifc2x3Package.IFC_WALL_TYPE: {
 				IfcWallType ifcWallType = (IfcWallType)theEObject;
 				T result = caseIfcWallType(ifcWallType);
 				if (result == null) result = caseIfcBuildingElementType(ifcWallType);
@@ -8137,8 +7385,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_WASTE_TERMINAL_TYPE:
-			{
+			case Ifc2x3Package.IFC_WASTE_TERMINAL_TYPE: {
 				IfcWasteTerminalType ifcWasteTerminalType = (IfcWasteTerminalType)theEObject;
 				T result = caseIfcWasteTerminalType(ifcWasteTerminalType);
 				if (result == null) result = caseIfcFlowTerminalType(ifcWasteTerminalType);
@@ -8152,16 +7399,14 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_WATER_PROPERTIES:
-			{
+			case Ifc2x3Package.IFC_WATER_PROPERTIES: {
 				IfcWaterProperties ifcWaterProperties = (IfcWaterProperties)theEObject;
 				T result = caseIfcWaterProperties(ifcWaterProperties);
 				if (result == null) result = caseIfcMaterialProperties(ifcWaterProperties);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_WINDOW:
-			{
+			case Ifc2x3Package.IFC_WINDOW: {
 				IfcWindow ifcWindow = (IfcWindow)theEObject;
 				T result = caseIfcWindow(ifcWindow);
 				if (result == null) result = caseIfcBuildingElement(ifcWindow);
@@ -8174,8 +7419,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_WINDOW_LINING_PROPERTIES:
-			{
+			case Ifc2x3Package.IFC_WINDOW_LINING_PROPERTIES: {
 				IfcWindowLiningProperties ifcWindowLiningProperties = (IfcWindowLiningProperties)theEObject;
 				T result = caseIfcWindowLiningProperties(ifcWindowLiningProperties);
 				if (result == null) result = caseIfcPropertySetDefinition(ifcWindowLiningProperties);
@@ -8184,8 +7428,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_WINDOW_PANEL_PROPERTIES:
-			{
+			case Ifc2x3Package.IFC_WINDOW_PANEL_PROPERTIES: {
 				IfcWindowPanelProperties ifcWindowPanelProperties = (IfcWindowPanelProperties)theEObject;
 				T result = caseIfcWindowPanelProperties(ifcWindowPanelProperties);
 				if (result == null) result = caseIfcPropertySetDefinition(ifcWindowPanelProperties);
@@ -8194,8 +7437,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_WINDOW_STYLE:
-			{
+			case Ifc2x3Package.IFC_WINDOW_STYLE: {
 				IfcWindowStyle ifcWindowStyle = (IfcWindowStyle)theEObject;
 				T result = caseIfcWindowStyle(ifcWindowStyle);
 				if (result == null) result = caseIfcTypeProduct(ifcWindowStyle);
@@ -8205,8 +7447,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_WORK_CONTROL:
-			{
+			case Ifc2x3Package.IFC_WORK_CONTROL: {
 				IfcWorkControl ifcWorkControl = (IfcWorkControl)theEObject;
 				T result = caseIfcWorkControl(ifcWorkControl);
 				if (result == null) result = caseIfcControl(ifcWorkControl);
@@ -8216,8 +7457,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_WORK_PLAN:
-			{
+			case Ifc2x3Package.IFC_WORK_PLAN: {
 				IfcWorkPlan ifcWorkPlan = (IfcWorkPlan)theEObject;
 				T result = caseIfcWorkPlan(ifcWorkPlan);
 				if (result == null) result = caseIfcWorkControl(ifcWorkPlan);
@@ -8228,8 +7468,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_WORK_SCHEDULE:
-			{
+			case Ifc2x3Package.IFC_WORK_SCHEDULE: {
 				IfcWorkSchedule ifcWorkSchedule = (IfcWorkSchedule)theEObject;
 				T result = caseIfcWorkSchedule(ifcWorkSchedule);
 				if (result == null) result = caseIfcWorkControl(ifcWorkSchedule);
@@ -8240,8 +7479,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_ZSHAPE_PROFILE_DEF:
-			{
+			case Ifc2x3Package.IFC_ZSHAPE_PROFILE_DEF: {
 				IfcZShapeProfileDef ifcZShapeProfileDef = (IfcZShapeProfileDef)theEObject;
 				T result = caseIfcZShapeProfileDef(ifcZShapeProfileDef);
 				if (result == null) result = caseIfcParameterizedProfileDef(ifcZShapeProfileDef);
@@ -8249,8 +7487,7 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_ZONE:
-			{
+			case Ifc2x3Package.IFC_ZONE: {
 				IfcZone ifcZone = (IfcZone)theEObject;
 				T result = caseIfcZone(ifcZone);
 				if (result == null) result = caseIfcGroup(ifcZone);
@@ -8260,50 +7497,43 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_ACTOR_SELECT:
-			{
+			case Ifc2x3Package.IFC_ACTOR_SELECT: {
 				IfcActorSelect ifcActorSelect = (IfcActorSelect)theEObject;
 				T result = caseIfcActorSelect(ifcActorSelect);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_APPLIED_VALUE_SELECT:
-			{
+			case Ifc2x3Package.IFC_APPLIED_VALUE_SELECT: {
 				IfcAppliedValueSelect ifcAppliedValueSelect = (IfcAppliedValueSelect)theEObject;
 				T result = caseIfcAppliedValueSelect(ifcAppliedValueSelect);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_AXIS2_PLACEMENT:
-			{
+			case Ifc2x3Package.IFC_AXIS2_PLACEMENT: {
 				IfcAxis2Placement ifcAxis2Placement = (IfcAxis2Placement)theEObject;
 				T result = caseIfcAxis2Placement(ifcAxis2Placement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_BOOLEAN_OPERAND:
-			{
+			case Ifc2x3Package.IFC_BOOLEAN_OPERAND: {
 				IfcBooleanOperand ifcBooleanOperand = (IfcBooleanOperand)theEObject;
 				T result = caseIfcBooleanOperand(ifcBooleanOperand);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_CHARACTER_STYLE_SELECT:
-			{
+			case Ifc2x3Package.IFC_CHARACTER_STYLE_SELECT: {
 				IfcCharacterStyleSelect ifcCharacterStyleSelect = (IfcCharacterStyleSelect)theEObject;
 				T result = caseIfcCharacterStyleSelect(ifcCharacterStyleSelect);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_CLASSIFICATION_NOTATION_SELECT:
-			{
+			case Ifc2x3Package.IFC_CLASSIFICATION_NOTATION_SELECT: {
 				IfcClassificationNotationSelect ifcClassificationNotationSelect = (IfcClassificationNotationSelect)theEObject;
 				T result = caseIfcClassificationNotationSelect(ifcClassificationNotationSelect);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_COLOUR:
-			{
+			case Ifc2x3Package.IFC_COLOUR: {
 				IfcColour ifcColour = (IfcColour)theEObject;
 				T result = caseIfcColour(ifcColour);
 				if (result == null) result = caseIfcFillStyleSelect(ifcColour);
@@ -8311,279 +7541,240 @@ public class Ifc2x3Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_COLOUR_OR_FACTOR:
-			{
+			case Ifc2x3Package.IFC_COLOUR_OR_FACTOR: {
 				IfcColourOrFactor ifcColourOrFactor = (IfcColourOrFactor)theEObject;
 				T result = caseIfcColourOrFactor(ifcColourOrFactor);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_CONDITION_CRITERION_SELECT:
-			{
+			case Ifc2x3Package.IFC_CONDITION_CRITERION_SELECT: {
 				IfcConditionCriterionSelect ifcConditionCriterionSelect = (IfcConditionCriterionSelect)theEObject;
 				T result = caseIfcConditionCriterionSelect(ifcConditionCriterionSelect);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_CSG_SELECT:
-			{
+			case Ifc2x3Package.IFC_CSG_SELECT: {
 				IfcCsgSelect ifcCsgSelect = (IfcCsgSelect)theEObject;
 				T result = caseIfcCsgSelect(ifcCsgSelect);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_CURVE_FONT_OR_SCALED_CURVE_FONT_SELECT:
-			{
+			case Ifc2x3Package.IFC_CURVE_FONT_OR_SCALED_CURVE_FONT_SELECT: {
 				IfcCurveFontOrScaledCurveFontSelect ifcCurveFontOrScaledCurveFontSelect = (IfcCurveFontOrScaledCurveFontSelect)theEObject;
 				T result = caseIfcCurveFontOrScaledCurveFontSelect(ifcCurveFontOrScaledCurveFontSelect);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_CURVE_OR_EDGE_CURVE:
-			{
+			case Ifc2x3Package.IFC_CURVE_OR_EDGE_CURVE: {
 				IfcCurveOrEdgeCurve ifcCurveOrEdgeCurve = (IfcCurveOrEdgeCurve)theEObject;
 				T result = caseIfcCurveOrEdgeCurve(ifcCurveOrEdgeCurve);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_CURVE_STYLE_FONT_SELECT:
-			{
+			case Ifc2x3Package.IFC_CURVE_STYLE_FONT_SELECT: {
 				IfcCurveStyleFontSelect ifcCurveStyleFontSelect = (IfcCurveStyleFontSelect)theEObject;
 				T result = caseIfcCurveStyleFontSelect(ifcCurveStyleFontSelect);
 				if (result == null) result = caseIfcCurveFontOrScaledCurveFontSelect(ifcCurveStyleFontSelect);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_DATE_TIME_SELECT:
-			{
+			case Ifc2x3Package.IFC_DATE_TIME_SELECT: {
 				IfcDateTimeSelect ifcDateTimeSelect = (IfcDateTimeSelect)theEObject;
 				T result = caseIfcDateTimeSelect(ifcDateTimeSelect);
 				if (result == null) result = caseIfcMetricValueSelect(ifcDateTimeSelect);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_DEFINED_SYMBOL_SELECT:
-			{
+			case Ifc2x3Package.IFC_DEFINED_SYMBOL_SELECT: {
 				IfcDefinedSymbolSelect ifcDefinedSymbolSelect = (IfcDefinedSymbolSelect)theEObject;
 				T result = caseIfcDefinedSymbolSelect(ifcDefinedSymbolSelect);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_DERIVED_MEASURE_VALUE:
-			{
+			case Ifc2x3Package.IFC_DERIVED_MEASURE_VALUE: {
 				IfcDerivedMeasureValue ifcDerivedMeasureValue = (IfcDerivedMeasureValue)theEObject;
 				T result = caseIfcDerivedMeasureValue(ifcDerivedMeasureValue);
 				if (result == null) result = caseIfcValue(ifcDerivedMeasureValue);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_DOCUMENT_SELECT:
-			{
+			case Ifc2x3Package.IFC_DOCUMENT_SELECT: {
 				IfcDocumentSelect ifcDocumentSelect = (IfcDocumentSelect)theEObject;
 				T result = caseIfcDocumentSelect(ifcDocumentSelect);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_DRAUGHTING_CALLOUT_ELEMENT:
-			{
+			case Ifc2x3Package.IFC_DRAUGHTING_CALLOUT_ELEMENT: {
 				IfcDraughtingCalloutElement ifcDraughtingCalloutElement = (IfcDraughtingCalloutElement)theEObject;
 				T result = caseIfcDraughtingCalloutElement(ifcDraughtingCalloutElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_FILL_AREA_STYLE_TILE_SHAPE_SELECT:
-			{
+			case Ifc2x3Package.IFC_FILL_AREA_STYLE_TILE_SHAPE_SELECT: {
 				IfcFillAreaStyleTileShapeSelect ifcFillAreaStyleTileShapeSelect = (IfcFillAreaStyleTileShapeSelect)theEObject;
 				T result = caseIfcFillAreaStyleTileShapeSelect(ifcFillAreaStyleTileShapeSelect);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_FILL_STYLE_SELECT:
-			{
+			case Ifc2x3Package.IFC_FILL_STYLE_SELECT: {
 				IfcFillStyleSelect ifcFillStyleSelect = (IfcFillStyleSelect)theEObject;
 				T result = caseIfcFillStyleSelect(ifcFillStyleSelect);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_GEOMETRIC_SET_SELECT:
-			{
+			case Ifc2x3Package.IFC_GEOMETRIC_SET_SELECT: {
 				IfcGeometricSetSelect ifcGeometricSetSelect = (IfcGeometricSetSelect)theEObject;
 				T result = caseIfcGeometricSetSelect(ifcGeometricSetSelect);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_HATCH_LINE_DISTANCE_SELECT:
-			{
+			case Ifc2x3Package.IFC_HATCH_LINE_DISTANCE_SELECT: {
 				IfcHatchLineDistanceSelect ifcHatchLineDistanceSelect = (IfcHatchLineDistanceSelect)theEObject;
 				T result = caseIfcHatchLineDistanceSelect(ifcHatchLineDistanceSelect);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_LAYERED_ITEM:
-			{
+			case Ifc2x3Package.IFC_LAYERED_ITEM: {
 				IfcLayeredItem ifcLayeredItem = (IfcLayeredItem)theEObject;
 				T result = caseIfcLayeredItem(ifcLayeredItem);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_LIBRARY_SELECT:
-			{
+			case Ifc2x3Package.IFC_LIBRARY_SELECT: {
 				IfcLibrarySelect ifcLibrarySelect = (IfcLibrarySelect)theEObject;
 				T result = caseIfcLibrarySelect(ifcLibrarySelect);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_LIGHT_DISTRIBUTION_DATA_SOURCE_SELECT:
-			{
+			case Ifc2x3Package.IFC_LIGHT_DISTRIBUTION_DATA_SOURCE_SELECT: {
 				IfcLightDistributionDataSourceSelect ifcLightDistributionDataSourceSelect = (IfcLightDistributionDataSourceSelect)theEObject;
 				T result = caseIfcLightDistributionDataSourceSelect(ifcLightDistributionDataSourceSelect);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_MATERIAL_SELECT:
-			{
+			case Ifc2x3Package.IFC_MATERIAL_SELECT: {
 				IfcMaterialSelect ifcMaterialSelect = (IfcMaterialSelect)theEObject;
 				T result = caseIfcMaterialSelect(ifcMaterialSelect);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_MEASURE_VALUE:
-			{
+			case Ifc2x3Package.IFC_MEASURE_VALUE: {
 				IfcMeasureValue ifcMeasureValue = (IfcMeasureValue)theEObject;
 				T result = caseIfcMeasureValue(ifcMeasureValue);
 				if (result == null) result = caseIfcValue(ifcMeasureValue);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_METRIC_VALUE_SELECT:
-			{
+			case Ifc2x3Package.IFC_METRIC_VALUE_SELECT: {
 				IfcMetricValueSelect ifcMetricValueSelect = (IfcMetricValueSelect)theEObject;
 				T result = caseIfcMetricValueSelect(ifcMetricValueSelect);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_OBJECT_REFERENCE_SELECT:
-			{
+			case Ifc2x3Package.IFC_OBJECT_REFERENCE_SELECT: {
 				IfcObjectReferenceSelect ifcObjectReferenceSelect = (IfcObjectReferenceSelect)theEObject;
 				T result = caseIfcObjectReferenceSelect(ifcObjectReferenceSelect);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_ORIENTATION_SELECT:
-			{
+			case Ifc2x3Package.IFC_ORIENTATION_SELECT: {
 				IfcOrientationSelect ifcOrientationSelect = (IfcOrientationSelect)theEObject;
 				T result = caseIfcOrientationSelect(ifcOrientationSelect);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_POINT_OR_VERTEX_POINT:
-			{
+			case Ifc2x3Package.IFC_POINT_OR_VERTEX_POINT: {
 				IfcPointOrVertexPoint ifcPointOrVertexPoint = (IfcPointOrVertexPoint)theEObject;
 				T result = caseIfcPointOrVertexPoint(ifcPointOrVertexPoint);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_PRESENTATION_STYLE_SELECT:
-			{
+			case Ifc2x3Package.IFC_PRESENTATION_STYLE_SELECT: {
 				IfcPresentationStyleSelect ifcPresentationStyleSelect = (IfcPresentationStyleSelect)theEObject;
 				T result = caseIfcPresentationStyleSelect(ifcPresentationStyleSelect);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_SHELL:
-			{
+			case Ifc2x3Package.IFC_SHELL: {
 				IfcShell ifcShell = (IfcShell)theEObject;
 				T result = caseIfcShell(ifcShell);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_SIMPLE_VALUE:
-			{
+			case Ifc2x3Package.IFC_SIMPLE_VALUE: {
 				IfcSimpleValue ifcSimpleValue = (IfcSimpleValue)theEObject;
 				T result = caseIfcSimpleValue(ifcSimpleValue);
 				if (result == null) result = caseIfcValue(ifcSimpleValue);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_SIZE_SELECT:
-			{
+			case Ifc2x3Package.IFC_SIZE_SELECT: {
 				IfcSizeSelect ifcSizeSelect = (IfcSizeSelect)theEObject;
 				T result = caseIfcSizeSelect(ifcSizeSelect);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_SPECULAR_HIGHLIGHT_SELECT:
-			{
+			case Ifc2x3Package.IFC_SPECULAR_HIGHLIGHT_SELECT: {
 				IfcSpecularHighlightSelect ifcSpecularHighlightSelect = (IfcSpecularHighlightSelect)theEObject;
 				T result = caseIfcSpecularHighlightSelect(ifcSpecularHighlightSelect);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_STRUCTURAL_ACTIVITY_ASSIGNMENT_SELECT:
-			{
+			case Ifc2x3Package.IFC_STRUCTURAL_ACTIVITY_ASSIGNMENT_SELECT: {
 				IfcStructuralActivityAssignmentSelect ifcStructuralActivityAssignmentSelect = (IfcStructuralActivityAssignmentSelect)theEObject;
 				T result = caseIfcStructuralActivityAssignmentSelect(ifcStructuralActivityAssignmentSelect);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_SURFACE_OR_FACE_SURFACE:
-			{
+			case Ifc2x3Package.IFC_SURFACE_OR_FACE_SURFACE: {
 				IfcSurfaceOrFaceSurface ifcSurfaceOrFaceSurface = (IfcSurfaceOrFaceSurface)theEObject;
 				T result = caseIfcSurfaceOrFaceSurface(ifcSurfaceOrFaceSurface);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_SURFACE_STYLE_ELEMENT_SELECT:
-			{
+			case Ifc2x3Package.IFC_SURFACE_STYLE_ELEMENT_SELECT: {
 				IfcSurfaceStyleElementSelect ifcSurfaceStyleElementSelect = (IfcSurfaceStyleElementSelect)theEObject;
 				T result = caseIfcSurfaceStyleElementSelect(ifcSurfaceStyleElementSelect);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_SYMBOL_STYLE_SELECT:
-			{
+			case Ifc2x3Package.IFC_SYMBOL_STYLE_SELECT: {
 				IfcSymbolStyleSelect ifcSymbolStyleSelect = (IfcSymbolStyleSelect)theEObject;
 				T result = caseIfcSymbolStyleSelect(ifcSymbolStyleSelect);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_TEXT_FONT_SELECT:
-			{
+			case Ifc2x3Package.IFC_TEXT_FONT_SELECT: {
 				IfcTextFontSelect ifcTextFontSelect = (IfcTextFontSelect)theEObject;
 				T result = caseIfcTextFontSelect(ifcTextFontSelect);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_TEXT_STYLE_SELECT:
-			{
+			case Ifc2x3Package.IFC_TEXT_STYLE_SELECT: {
 				IfcTextStyleSelect ifcTextStyleSelect = (IfcTextStyleSelect)theEObject;
 				T result = caseIfcTextStyleSelect(ifcTextStyleSelect);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_TRIMMING_SELECT:
-			{
+			case Ifc2x3Package.IFC_TRIMMING_SELECT: {
 				IfcTrimmingSelect ifcTrimmingSelect = (IfcTrimmingSelect)theEObject;
 				T result = caseIfcTrimmingSelect(ifcTrimmingSelect);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_UNIT:
-			{
+			case Ifc2x3Package.IFC_UNIT: {
 				IfcUnit ifcUnit = (IfcUnit)theEObject;
 				T result = caseIfcUnit(ifcUnit);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_VALUE:
-			{
+			case Ifc2x3Package.IFC_VALUE: {
 				IfcValue ifcValue = (IfcValue)theEObject;
 				T result = caseIfcValue(ifcValue);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Ifc2x3Package.IFC_VECTOR_OR_DIRECTION:
-			{
+			case Ifc2x3Package.IFC_VECTOR_OR_DIRECTION: {
 				IfcVectorOrDirection ifcVectorOrDirection = (IfcVectorOrDirection)theEObject;
 				T result = caseIfcVectorOrDirection(ifcVectorOrDirection);
 				if (result == null) result = defaultCase(theEObject);

@@ -52,13 +52,6 @@ public class IfcLocalTimeImpl extends IdEObjectImpl implements IfcLocalTime
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	protected IfcLocalTimeImpl()
 	{
 		super();
@@ -72,7 +65,7 @@ public class IfcLocalTimeImpl extends IdEObjectImpl implements IfcLocalTime
 	@Override
 	protected EClass eStaticClass()
 	{
-		return Ifc2x3Package.Literals.IFC_LOCAL_TIME;
+		return Ifc2x3Package.eINSTANCE.getIfcLocalTime();
 	}
 
 	/**
@@ -93,7 +86,7 @@ public class IfcLocalTimeImpl extends IdEObjectImpl implements IfcLocalTime
 	 */
 	public int getHourComponent()
 	{
-		return (Integer)eGet(Ifc2x3Package.Literals.IFC_LOCAL_TIME__HOUR_COMPONENT, true);
+		return (Integer)eGet(Ifc2x3Package.eINSTANCE.getIfcLocalTime_HourComponent(), true);
 	}
 
 	/**
@@ -103,7 +96,7 @@ public class IfcLocalTimeImpl extends IdEObjectImpl implements IfcLocalTime
 	 */
 	public void setHourComponent(int newHourComponent)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_LOCAL_TIME__HOUR_COMPONENT, newHourComponent);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcLocalTime_HourComponent(), newHourComponent);
 	}
 
 	/**
@@ -113,7 +106,7 @@ public class IfcLocalTimeImpl extends IdEObjectImpl implements IfcLocalTime
 	 */
 	public int getMinuteComponent()
 	{
-		return (Integer)eGet(Ifc2x3Package.Literals.IFC_LOCAL_TIME__MINUTE_COMPONENT, true);
+		return (Integer)eGet(Ifc2x3Package.eINSTANCE.getIfcLocalTime_MinuteComponent(), true);
 	}
 
 	/**
@@ -123,7 +116,7 @@ public class IfcLocalTimeImpl extends IdEObjectImpl implements IfcLocalTime
 	 */
 	public void setMinuteComponent(int newMinuteComponent)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_LOCAL_TIME__MINUTE_COMPONENT, newMinuteComponent);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcLocalTime_MinuteComponent(), newMinuteComponent);
 	}
 
 	/**
@@ -133,7 +126,7 @@ public class IfcLocalTimeImpl extends IdEObjectImpl implements IfcLocalTime
 	 */
 	public void unsetMinuteComponent()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_LOCAL_TIME__MINUTE_COMPONENT);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcLocalTime_MinuteComponent());
 	}
 
 	/**
@@ -143,7 +136,7 @@ public class IfcLocalTimeImpl extends IdEObjectImpl implements IfcLocalTime
 	 */
 	public boolean isSetMinuteComponent()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_LOCAL_TIME__MINUTE_COMPONENT);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcLocalTime_MinuteComponent());
 	}
 
 	/**
@@ -153,7 +146,7 @@ public class IfcLocalTimeImpl extends IdEObjectImpl implements IfcLocalTime
 	 */
 	public float getSecondComponent()
 	{
-		return (Float)eGet(Ifc2x3Package.Literals.IFC_LOCAL_TIME__SECOND_COMPONENT, true);
+		return (Float)eGet(Ifc2x3Package.eINSTANCE.getIfcLocalTime_SecondComponent(), true);
 	}
 
 	/**
@@ -163,7 +156,7 @@ public class IfcLocalTimeImpl extends IdEObjectImpl implements IfcLocalTime
 	 */
 	public void setSecondComponent(float newSecondComponent)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_LOCAL_TIME__SECOND_COMPONENT, newSecondComponent);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcLocalTime_SecondComponent(), newSecondComponent);
 	}
 
 	/**
@@ -173,7 +166,7 @@ public class IfcLocalTimeImpl extends IdEObjectImpl implements IfcLocalTime
 	 */
 	public void unsetSecondComponent()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_LOCAL_TIME__SECOND_COMPONENT);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcLocalTime_SecondComponent());
 	}
 
 	/**
@@ -183,7 +176,7 @@ public class IfcLocalTimeImpl extends IdEObjectImpl implements IfcLocalTime
 	 */
 	public boolean isSetSecondComponent()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_LOCAL_TIME__SECOND_COMPONENT);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcLocalTime_SecondComponent());
 	}
 
 	/**
@@ -193,7 +186,7 @@ public class IfcLocalTimeImpl extends IdEObjectImpl implements IfcLocalTime
 	 */
 	public String getSecondComponentAsString()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_LOCAL_TIME__SECOND_COMPONENT_AS_STRING, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcLocalTime_SecondComponentAsString(), true);
 	}
 
 	/**
@@ -203,7 +196,7 @@ public class IfcLocalTimeImpl extends IdEObjectImpl implements IfcLocalTime
 	 */
 	public void setSecondComponentAsString(String newSecondComponentAsString)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_LOCAL_TIME__SECOND_COMPONENT_AS_STRING, newSecondComponentAsString);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcLocalTime_SecondComponentAsString(), newSecondComponentAsString);
 	}
 
 	/**
@@ -213,7 +206,7 @@ public class IfcLocalTimeImpl extends IdEObjectImpl implements IfcLocalTime
 	 */
 	public void unsetSecondComponentAsString()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_LOCAL_TIME__SECOND_COMPONENT_AS_STRING);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcLocalTime_SecondComponentAsString());
 	}
 
 	/**
@@ -223,7 +216,7 @@ public class IfcLocalTimeImpl extends IdEObjectImpl implements IfcLocalTime
 	 */
 	public boolean isSetSecondComponentAsString()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_LOCAL_TIME__SECOND_COMPONENT_AS_STRING);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcLocalTime_SecondComponentAsString());
 	}
 
 	/**
@@ -233,7 +226,7 @@ public class IfcLocalTimeImpl extends IdEObjectImpl implements IfcLocalTime
 	 */
 	public IfcCoordinatedUniversalTimeOffset getZone()
 	{
-		return (IfcCoordinatedUniversalTimeOffset)eGet(Ifc2x3Package.Literals.IFC_LOCAL_TIME__ZONE, true);
+		return (IfcCoordinatedUniversalTimeOffset)eGet(Ifc2x3Package.eINSTANCE.getIfcLocalTime_Zone(), true);
 	}
 
 	/**
@@ -243,7 +236,7 @@ public class IfcLocalTimeImpl extends IdEObjectImpl implements IfcLocalTime
 	 */
 	public void setZone(IfcCoordinatedUniversalTimeOffset newZone)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_LOCAL_TIME__ZONE, newZone);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcLocalTime_Zone(), newZone);
 	}
 
 	/**
@@ -253,7 +246,7 @@ public class IfcLocalTimeImpl extends IdEObjectImpl implements IfcLocalTime
 	 */
 	public void unsetZone()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_LOCAL_TIME__ZONE);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcLocalTime_Zone());
 	}
 
 	/**
@@ -263,7 +256,7 @@ public class IfcLocalTimeImpl extends IdEObjectImpl implements IfcLocalTime
 	 */
 	public boolean isSetZone()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_LOCAL_TIME__ZONE);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcLocalTime_Zone());
 	}
 
 	/**
@@ -273,7 +266,7 @@ public class IfcLocalTimeImpl extends IdEObjectImpl implements IfcLocalTime
 	 */
 	public int getDaylightSavingOffset()
 	{
-		return (Integer)eGet(Ifc2x3Package.Literals.IFC_LOCAL_TIME__DAYLIGHT_SAVING_OFFSET, true);
+		return (Integer)eGet(Ifc2x3Package.eINSTANCE.getIfcLocalTime_DaylightSavingOffset(), true);
 	}
 
 	/**
@@ -283,7 +276,7 @@ public class IfcLocalTimeImpl extends IdEObjectImpl implements IfcLocalTime
 	 */
 	public void setDaylightSavingOffset(int newDaylightSavingOffset)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_LOCAL_TIME__DAYLIGHT_SAVING_OFFSET, newDaylightSavingOffset);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcLocalTime_DaylightSavingOffset(), newDaylightSavingOffset);
 	}
 
 	/**
@@ -293,7 +286,7 @@ public class IfcLocalTimeImpl extends IdEObjectImpl implements IfcLocalTime
 	 */
 	public void unsetDaylightSavingOffset()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_LOCAL_TIME__DAYLIGHT_SAVING_OFFSET);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcLocalTime_DaylightSavingOffset());
 	}
 
 	/**
@@ -303,7 +296,7 @@ public class IfcLocalTimeImpl extends IdEObjectImpl implements IfcLocalTime
 	 */
 	public boolean isSetDaylightSavingOffset()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_LOCAL_TIME__DAYLIGHT_SAVING_OFFSET);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcLocalTime_DaylightSavingOffset());
 	}
 
 } //IfcLocalTimeImpl

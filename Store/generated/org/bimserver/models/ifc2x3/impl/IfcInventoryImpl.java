@@ -58,13 +58,6 @@ public class IfcInventoryImpl extends IfcGroupImpl implements IfcInventory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	protected IfcInventoryImpl()
 	{
 		super();
@@ -78,7 +71,7 @@ public class IfcInventoryImpl extends IfcGroupImpl implements IfcInventory
 	@Override
 	protected EClass eStaticClass()
 	{
-		return Ifc2x3Package.Literals.IFC_INVENTORY;
+		return Ifc2x3Package.eINSTANCE.getIfcInventory();
 	}
 
 	/**
@@ -88,7 +81,7 @@ public class IfcInventoryImpl extends IfcGroupImpl implements IfcInventory
 	 */
 	public IfcInventoryTypeEnum getInventoryType()
 	{
-		return (IfcInventoryTypeEnum)eGet(Ifc2x3Package.Literals.IFC_INVENTORY__INVENTORY_TYPE, true);
+		return (IfcInventoryTypeEnum)eGet(Ifc2x3Package.eINSTANCE.getIfcInventory_InventoryType(), true);
 	}
 
 	/**
@@ -98,7 +91,7 @@ public class IfcInventoryImpl extends IfcGroupImpl implements IfcInventory
 	 */
 	public void setInventoryType(IfcInventoryTypeEnum newInventoryType)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_INVENTORY__INVENTORY_TYPE, newInventoryType);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcInventory_InventoryType(), newInventoryType);
 	}
 
 	/**
@@ -108,7 +101,7 @@ public class IfcInventoryImpl extends IfcGroupImpl implements IfcInventory
 	 */
 	public IfcActorSelect getJurisdiction()
 	{
-		return (IfcActorSelect)eGet(Ifc2x3Package.Literals.IFC_INVENTORY__JURISDICTION, true);
+		return (IfcActorSelect)eGet(Ifc2x3Package.eINSTANCE.getIfcInventory_Jurisdiction(), true);
 	}
 
 	/**
@@ -118,7 +111,7 @@ public class IfcInventoryImpl extends IfcGroupImpl implements IfcInventory
 	 */
 	public void setJurisdiction(IfcActorSelect newJurisdiction)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_INVENTORY__JURISDICTION, newJurisdiction);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcInventory_Jurisdiction(), newJurisdiction);
 	}
 
 	/**
@@ -129,7 +122,7 @@ public class IfcInventoryImpl extends IfcGroupImpl implements IfcInventory
 	@SuppressWarnings("unchecked")
 	public EList<IfcPerson> getResponsiblePersons()
 	{
-		return (EList<IfcPerson>)eGet(Ifc2x3Package.Literals.IFC_INVENTORY__RESPONSIBLE_PERSONS, true);
+		return (EList<IfcPerson>)eGet(Ifc2x3Package.eINSTANCE.getIfcInventory_ResponsiblePersons(), true);
 	}
 
 	/**
@@ -139,7 +132,7 @@ public class IfcInventoryImpl extends IfcGroupImpl implements IfcInventory
 	 */
 	public IfcCalendarDate getLastUpdateDate()
 	{
-		return (IfcCalendarDate)eGet(Ifc2x3Package.Literals.IFC_INVENTORY__LAST_UPDATE_DATE, true);
+		return (IfcCalendarDate)eGet(Ifc2x3Package.eINSTANCE.getIfcInventory_LastUpdateDate(), true);
 	}
 
 	/**
@@ -149,7 +142,7 @@ public class IfcInventoryImpl extends IfcGroupImpl implements IfcInventory
 	 */
 	public void setLastUpdateDate(IfcCalendarDate newLastUpdateDate)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_INVENTORY__LAST_UPDATE_DATE, newLastUpdateDate);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcInventory_LastUpdateDate(), newLastUpdateDate);
 	}
 
 	/**
@@ -159,7 +152,7 @@ public class IfcInventoryImpl extends IfcGroupImpl implements IfcInventory
 	 */
 	public IfcCostValue getCurrentValue()
 	{
-		return (IfcCostValue)eGet(Ifc2x3Package.Literals.IFC_INVENTORY__CURRENT_VALUE, true);
+		return (IfcCostValue)eGet(Ifc2x3Package.eINSTANCE.getIfcInventory_CurrentValue(), true);
 	}
 
 	/**
@@ -169,7 +162,7 @@ public class IfcInventoryImpl extends IfcGroupImpl implements IfcInventory
 	 */
 	public void setCurrentValue(IfcCostValue newCurrentValue)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_INVENTORY__CURRENT_VALUE, newCurrentValue);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcInventory_CurrentValue(), newCurrentValue);
 	}
 
 	/**
@@ -179,7 +172,7 @@ public class IfcInventoryImpl extends IfcGroupImpl implements IfcInventory
 	 */
 	public void unsetCurrentValue()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_INVENTORY__CURRENT_VALUE);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcInventory_CurrentValue());
 	}
 
 	/**
@@ -189,7 +182,7 @@ public class IfcInventoryImpl extends IfcGroupImpl implements IfcInventory
 	 */
 	public boolean isSetCurrentValue()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_INVENTORY__CURRENT_VALUE);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcInventory_CurrentValue());
 	}
 
 	/**
@@ -199,7 +192,7 @@ public class IfcInventoryImpl extends IfcGroupImpl implements IfcInventory
 	 */
 	public IfcCostValue getOriginalValue()
 	{
-		return (IfcCostValue)eGet(Ifc2x3Package.Literals.IFC_INVENTORY__ORIGINAL_VALUE, true);
+		return (IfcCostValue)eGet(Ifc2x3Package.eINSTANCE.getIfcInventory_OriginalValue(), true);
 	}
 
 	/**
@@ -209,7 +202,7 @@ public class IfcInventoryImpl extends IfcGroupImpl implements IfcInventory
 	 */
 	public void setOriginalValue(IfcCostValue newOriginalValue)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_INVENTORY__ORIGINAL_VALUE, newOriginalValue);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcInventory_OriginalValue(), newOriginalValue);
 	}
 
 	/**
@@ -219,7 +212,7 @@ public class IfcInventoryImpl extends IfcGroupImpl implements IfcInventory
 	 */
 	public void unsetOriginalValue()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_INVENTORY__ORIGINAL_VALUE);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcInventory_OriginalValue());
 	}
 
 	/**
@@ -229,7 +222,7 @@ public class IfcInventoryImpl extends IfcGroupImpl implements IfcInventory
 	 */
 	public boolean isSetOriginalValue()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_INVENTORY__ORIGINAL_VALUE);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcInventory_OriginalValue());
 	}
 
 } //IfcInventoryImpl

@@ -40,108 +40,101 @@ public enum IfcAirTerminalTypeEnum implements Enumerator
 	 * The '<em><b>NULL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NULL
+	 * @see #NULL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NULL_LITERAL(0, "NULL", "NULL"),
+	NULL(0, "NULL", "NULL"),
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED
+	 * @see #NOTDEFINED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED_LITERAL(1, "NOTDEFINED", "NOTDEFINED"),
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>GRILLE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #GRILLE
+	 * @see #GRILLE_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	GRILLE_LITERAL(2, "GRILLE", "GRILLE"),
+	GRILLE(2, "GRILLE", "GRILLE"),
 
 	/**
 	 * The '<em><b>LINEARGRILLE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #LINEARGRILLE
+	 * @see #LINEARGRILLE_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	LINEARGRILLE_LITERAL(3, "LINEARGRILLE", "LINEARGRILLE"),
+	LINEARGRILLE(3, "LINEARGRILLE", "LINEARGRILLE"),
 
 	/**
 	 * The '<em><b>IRIS</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #IRIS
+	 * @see #IRIS_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	IRIS_LITERAL(4, "IRIS", "IRIS"),
+	IRIS(4, "IRIS", "IRIS"),
 
 	/**
 	 * The '<em><b>DIFFUSER</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #DIFFUSER
+	 * @see #DIFFUSER_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	DIFFUSER_LITERAL(5, "DIFFUSER", "DIFFUSER"),
+	DIFFUSER(5, "DIFFUSER", "DIFFUSER"),
 
 	/**
 	 * The '<em><b>LINEARDIFFUSER</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #LINEARDIFFUSER
+	 * @see #LINEARDIFFUSER_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	LINEARDIFFUSER_LITERAL(6, "LINEARDIFFUSER", "LINEARDIFFUSER"),
+	LINEARDIFFUSER(6, "LINEARDIFFUSER", "LINEARDIFFUSER"),
 
 	/**
 	 * The '<em><b>REGISTER</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #REGISTER
+	 * @see #REGISTER_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	REGISTER_LITERAL(7, "REGISTER", "REGISTER"),
+	REGISTER(7, "REGISTER", "REGISTER"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
+	 * @see #USERDEFINED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	USERDEFINED_LITERAL(8, "USERDEFINED", "USERDEFINED"),
+	USERDEFINED(8, "USERDEFINED", "USERDEFINED"),
 
 	/**
 	 * The '<em><b>EYEBALL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #EYEBALL
+	 * @see #EYEBALL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	EYEBALL_LITERAL(9, "EYEBALL", "EYEBALL");
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
+	EYEBALL(9, "EYEBALL", "EYEBALL");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -151,12 +144,12 @@ public enum IfcAirTerminalTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NULL_LITERAL
+	 * @see #NULL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NULL = 0;
+	public static final int NULL_VALUE = 0;
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
@@ -166,12 +159,12 @@ public enum IfcAirTerminalTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_LITERAL
+	 * @see #NOTDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED = 1;
+	public static final int NOTDEFINED_VALUE = 1;
 
 	/**
 	 * The '<em><b>GRILLE</b></em>' literal value.
@@ -181,12 +174,12 @@ public enum IfcAirTerminalTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #GRILLE_LITERAL
+	 * @see #GRILLE
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int GRILLE = 2;
+	public static final int GRILLE_VALUE = 2;
 
 	/**
 	 * The '<em><b>LINEARGRILLE</b></em>' literal value.
@@ -196,12 +189,12 @@ public enum IfcAirTerminalTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #LINEARGRILLE_LITERAL
+	 * @see #LINEARGRILLE
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int LINEARGRILLE = 3;
+	public static final int LINEARGRILLE_VALUE = 3;
 
 	/**
 	 * The '<em><b>IRIS</b></em>' literal value.
@@ -211,12 +204,12 @@ public enum IfcAirTerminalTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #IRIS_LITERAL
+	 * @see #IRIS
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int IRIS = 4;
+	public static final int IRIS_VALUE = 4;
 
 	/**
 	 * The '<em><b>DIFFUSER</b></em>' literal value.
@@ -226,12 +219,12 @@ public enum IfcAirTerminalTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #DIFFUSER_LITERAL
+	 * @see #DIFFUSER
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int DIFFUSER = 5;
+	public static final int DIFFUSER_VALUE = 5;
 
 	/**
 	 * The '<em><b>LINEARDIFFUSER</b></em>' literal value.
@@ -241,12 +234,12 @@ public enum IfcAirTerminalTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #LINEARDIFFUSER_LITERAL
+	 * @see #LINEARDIFFUSER
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int LINEARDIFFUSER = 6;
+	public static final int LINEARDIFFUSER_VALUE = 6;
 
 	/**
 	 * The '<em><b>REGISTER</b></em>' literal value.
@@ -256,12 +249,12 @@ public enum IfcAirTerminalTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #REGISTER_LITERAL
+	 * @see #REGISTER
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int REGISTER = 7;
+	public static final int REGISTER_VALUE = 7;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -271,12 +264,12 @@ public enum IfcAirTerminalTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_LITERAL
+	 * @see #USERDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED = 8;
+	public static final int USERDEFINED_VALUE = 8;
 
 	/**
 	 * The '<em><b>EYEBALL</b></em>' literal value.
@@ -286,12 +279,12 @@ public enum IfcAirTerminalTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #EYEBALL_LITERAL
+	 * @see #EYEBALL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int EYEBALL = 9;
+	public static final int EYEBALL_VALUE = 9;
 
 	/**
 	 * An array of all the '<em><b>Ifc Air Terminal Type Enum</b></em>' enumerators.
@@ -300,18 +293,17 @@ public enum IfcAirTerminalTypeEnum implements Enumerator
 	 * @generated
 	 */
 	private static final IfcAirTerminalTypeEnum[] VALUES_ARRAY =
-		new IfcAirTerminalTypeEnum[]
-		{
-			NULL_LITERAL,
-			NOTDEFINED_LITERAL,
-			GRILLE_LITERAL,
-			LINEARGRILLE_LITERAL,
-			IRIS_LITERAL,
-			DIFFUSER_LITERAL,
-			LINEARDIFFUSER_LITERAL,
-			REGISTER_LITERAL,
-			USERDEFINED_LITERAL,
-			EYEBALL_LITERAL,
+		new IfcAirTerminalTypeEnum[] {
+			NULL,
+			NOTDEFINED,
+			GRILLE,
+			LINEARGRILLE,
+			IRIS,
+			DIFFUSER,
+			LINEARDIFFUSER,
+			REGISTER,
+			USERDEFINED,
+			EYEBALL,
 		};
 
 	/**
@@ -330,11 +322,9 @@ public enum IfcAirTerminalTypeEnum implements Enumerator
 	 */
 	public static IfcAirTerminalTypeEnum get(String literal)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcAirTerminalTypeEnum result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal))
-			{
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -349,11 +339,9 @@ public enum IfcAirTerminalTypeEnum implements Enumerator
 	 */
 	public static IfcAirTerminalTypeEnum getByName(String name)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcAirTerminalTypeEnum result = VALUES_ARRAY[i];
-			if (result.getName().equals(name))
-			{
+			if (result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -368,18 +356,17 @@ public enum IfcAirTerminalTypeEnum implements Enumerator
 	 */
 	public static IfcAirTerminalTypeEnum get(int value)
 	{
-		switch (value)
-		{
-			case NULL: return NULL_LITERAL;
-			case NOTDEFINED: return NOTDEFINED_LITERAL;
-			case GRILLE: return GRILLE_LITERAL;
-			case LINEARGRILLE: return LINEARGRILLE_LITERAL;
-			case IRIS: return IRIS_LITERAL;
-			case DIFFUSER: return DIFFUSER_LITERAL;
-			case LINEARDIFFUSER: return LINEARDIFFUSER_LITERAL;
-			case REGISTER: return REGISTER_LITERAL;
-			case USERDEFINED: return USERDEFINED_LITERAL;
-			case EYEBALL: return EYEBALL_LITERAL;
+		switch (value) {
+			case NULL_VALUE: return NULL;
+			case NOTDEFINED_VALUE: return NOTDEFINED;
+			case GRILLE_VALUE: return GRILLE;
+			case LINEARGRILLE_VALUE: return LINEARGRILLE;
+			case IRIS_VALUE: return IRIS;
+			case DIFFUSER_VALUE: return DIFFUSER;
+			case LINEARDIFFUSER_VALUE: return LINEARDIFFUSER;
+			case REGISTER_VALUE: return REGISTER;
+			case USERDEFINED_VALUE: return USERDEFINED;
+			case EYEBALL_VALUE: return EYEBALL;
 		}
 		return null;
 	}

@@ -40,38 +40,31 @@ public enum IfcProfileTypeEnum implements Enumerator
 	 * The '<em><b>NULL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NULL
+	 * @see #NULL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NULL_LITERAL(0, "NULL", "NULL"),
+	NULL(0, "NULL", "NULL"),
 
 	/**
 	 * The '<em><b>AREA</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #AREA
+	 * @see #AREA_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	AREA_LITERAL(1, "AREA", "AREA"),
+	AREA(1, "AREA", "AREA"),
 
 	/**
 	 * The '<em><b>CURVE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #CURVE
+	 * @see #CURVE_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	CURVE_LITERAL(2, "CURVE", "CURVE");
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
+	CURVE(2, "CURVE", "CURVE");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -81,12 +74,12 @@ public enum IfcProfileTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NULL_LITERAL
+	 * @see #NULL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NULL = 0;
+	public static final int NULL_VALUE = 0;
 
 	/**
 	 * The '<em><b>AREA</b></em>' literal value.
@@ -96,12 +89,12 @@ public enum IfcProfileTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #AREA_LITERAL
+	 * @see #AREA
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int AREA = 1;
+	public static final int AREA_VALUE = 1;
 
 	/**
 	 * The '<em><b>CURVE</b></em>' literal value.
@@ -111,12 +104,12 @@ public enum IfcProfileTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #CURVE_LITERAL
+	 * @see #CURVE
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int CURVE = 2;
+	public static final int CURVE_VALUE = 2;
 
 	/**
 	 * An array of all the '<em><b>Ifc Profile Type Enum</b></em>' enumerators.
@@ -125,11 +118,10 @@ public enum IfcProfileTypeEnum implements Enumerator
 	 * @generated
 	 */
 	private static final IfcProfileTypeEnum[] VALUES_ARRAY =
-		new IfcProfileTypeEnum[]
-		{
-			NULL_LITERAL,
-			AREA_LITERAL,
-			CURVE_LITERAL,
+		new IfcProfileTypeEnum[] {
+			NULL,
+			AREA,
+			CURVE,
 		};
 
 	/**
@@ -148,11 +140,9 @@ public enum IfcProfileTypeEnum implements Enumerator
 	 */
 	public static IfcProfileTypeEnum get(String literal)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcProfileTypeEnum result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal))
-			{
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -167,11 +157,9 @@ public enum IfcProfileTypeEnum implements Enumerator
 	 */
 	public static IfcProfileTypeEnum getByName(String name)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcProfileTypeEnum result = VALUES_ARRAY[i];
-			if (result.getName().equals(name))
-			{
+			if (result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -186,11 +174,10 @@ public enum IfcProfileTypeEnum implements Enumerator
 	 */
 	public static IfcProfileTypeEnum get(int value)
 	{
-		switch (value)
-		{
-			case NULL: return NULL_LITERAL;
-			case AREA: return AREA_LITERAL;
-			case CURVE: return CURVE_LITERAL;
+		switch (value) {
+			case NULL_VALUE: return NULL;
+			case AREA_VALUE: return AREA;
+			case CURVE_VALUE: return CURVE;
 		}
 		return null;
 	}

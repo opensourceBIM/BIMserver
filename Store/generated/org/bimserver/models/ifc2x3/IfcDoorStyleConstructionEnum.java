@@ -40,108 +40,101 @@ public enum IfcDoorStyleConstructionEnum implements Enumerator
 	 * The '<em><b>NULL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NULL
+	 * @see #NULL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NULL_LITERAL(0, "NULL", "NULL"),
+	NULL(0, "NULL", "NULL"),
 
 	/**
 	 * The '<em><b>ALUMINIUM WOOD</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #ALUMINIUM_WOOD
+	 * @see #ALUMINIUM_WOOD_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	ALUMINIUM_WOOD_LITERAL(1, "ALUMINIUM_WOOD", "ALUMINIUM_WOOD"),
+	ALUMINIUM_WOOD(1, "ALUMINIUM_WOOD", "ALUMINIUM_WOOD"),
 
 	/**
 	 * The '<em><b>HIGH GRADE STEEL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #HIGH_GRADE_STEEL
+	 * @see #HIGH_GRADE_STEEL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	HIGH_GRADE_STEEL_LITERAL(2, "HIGH_GRADE_STEEL", "HIGH_GRADE_STEEL"),
+	HIGH_GRADE_STEEL(2, "HIGH_GRADE_STEEL", "HIGH_GRADE_STEEL"),
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED
+	 * @see #NOTDEFINED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED_LITERAL(3, "NOTDEFINED", "NOTDEFINED"),
+	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>ALUMINIUM PLASTIC</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #ALUMINIUM_PLASTIC
+	 * @see #ALUMINIUM_PLASTIC_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	ALUMINIUM_PLASTIC_LITERAL(4, "ALUMINIUM_PLASTIC", "ALUMINIUM_PLASTIC"),
+	ALUMINIUM_PLASTIC(4, "ALUMINIUM_PLASTIC", "ALUMINIUM_PLASTIC"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
+	 * @see #USERDEFINED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	USERDEFINED_LITERAL(5, "USERDEFINED", "USERDEFINED"),
+	USERDEFINED(5, "USERDEFINED", "USERDEFINED"),
 
 	/**
 	 * The '<em><b>PLASTIC</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #PLASTIC
+	 * @see #PLASTIC_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	PLASTIC_LITERAL(6, "PLASTIC", "PLASTIC"),
+	PLASTIC(6, "PLASTIC", "PLASTIC"),
 
 	/**
 	 * The '<em><b>WOOD</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #WOOD
+	 * @see #WOOD_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	WOOD_LITERAL(7, "WOOD", "WOOD"),
+	WOOD(7, "WOOD", "WOOD"),
 
 	/**
 	 * The '<em><b>ALUMINIUM</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #ALUMINIUM
+	 * @see #ALUMINIUM_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	ALUMINIUM_LITERAL(8, "ALUMINIUM", "ALUMINIUM"),
+	ALUMINIUM(8, "ALUMINIUM", "ALUMINIUM"),
 
 	/**
 	 * The '<em><b>STEEL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #STEEL
+	 * @see #STEEL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	STEEL_LITERAL(9, "STEEL", "STEEL");
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
+	STEEL(9, "STEEL", "STEEL");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -151,12 +144,12 @@ public enum IfcDoorStyleConstructionEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NULL_LITERAL
+	 * @see #NULL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NULL = 0;
+	public static final int NULL_VALUE = 0;
 
 	/**
 	 * The '<em><b>ALUMINIUM WOOD</b></em>' literal value.
@@ -166,12 +159,12 @@ public enum IfcDoorStyleConstructionEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ALUMINIUM_WOOD_LITERAL
+	 * @see #ALUMINIUM_WOOD
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ALUMINIUM_WOOD = 1;
+	public static final int ALUMINIUM_WOOD_VALUE = 1;
 
 	/**
 	 * The '<em><b>HIGH GRADE STEEL</b></em>' literal value.
@@ -181,12 +174,12 @@ public enum IfcDoorStyleConstructionEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #HIGH_GRADE_STEEL_LITERAL
+	 * @see #HIGH_GRADE_STEEL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int HIGH_GRADE_STEEL = 2;
+	public static final int HIGH_GRADE_STEEL_VALUE = 2;
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
@@ -196,12 +189,12 @@ public enum IfcDoorStyleConstructionEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_LITERAL
+	 * @see #NOTDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED = 3;
+	public static final int NOTDEFINED_VALUE = 3;
 
 	/**
 	 * The '<em><b>ALUMINIUM PLASTIC</b></em>' literal value.
@@ -211,12 +204,12 @@ public enum IfcDoorStyleConstructionEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ALUMINIUM_PLASTIC_LITERAL
+	 * @see #ALUMINIUM_PLASTIC
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ALUMINIUM_PLASTIC = 4;
+	public static final int ALUMINIUM_PLASTIC_VALUE = 4;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -226,12 +219,12 @@ public enum IfcDoorStyleConstructionEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_LITERAL
+	 * @see #USERDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED = 5;
+	public static final int USERDEFINED_VALUE = 5;
 
 	/**
 	 * The '<em><b>PLASTIC</b></em>' literal value.
@@ -241,12 +234,12 @@ public enum IfcDoorStyleConstructionEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #PLASTIC_LITERAL
+	 * @see #PLASTIC
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PLASTIC = 6;
+	public static final int PLASTIC_VALUE = 6;
 
 	/**
 	 * The '<em><b>WOOD</b></em>' literal value.
@@ -256,12 +249,12 @@ public enum IfcDoorStyleConstructionEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #WOOD_LITERAL
+	 * @see #WOOD
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int WOOD = 7;
+	public static final int WOOD_VALUE = 7;
 
 	/**
 	 * The '<em><b>ALUMINIUM</b></em>' literal value.
@@ -271,12 +264,12 @@ public enum IfcDoorStyleConstructionEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ALUMINIUM_LITERAL
+	 * @see #ALUMINIUM
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ALUMINIUM = 8;
+	public static final int ALUMINIUM_VALUE = 8;
 
 	/**
 	 * The '<em><b>STEEL</b></em>' literal value.
@@ -286,12 +279,12 @@ public enum IfcDoorStyleConstructionEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #STEEL_LITERAL
+	 * @see #STEEL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int STEEL = 9;
+	public static final int STEEL_VALUE = 9;
 
 	/**
 	 * An array of all the '<em><b>Ifc Door Style Construction Enum</b></em>' enumerators.
@@ -300,18 +293,17 @@ public enum IfcDoorStyleConstructionEnum implements Enumerator
 	 * @generated
 	 */
 	private static final IfcDoorStyleConstructionEnum[] VALUES_ARRAY =
-		new IfcDoorStyleConstructionEnum[]
-		{
-			NULL_LITERAL,
-			ALUMINIUM_WOOD_LITERAL,
-			HIGH_GRADE_STEEL_LITERAL,
-			NOTDEFINED_LITERAL,
-			ALUMINIUM_PLASTIC_LITERAL,
-			USERDEFINED_LITERAL,
-			PLASTIC_LITERAL,
-			WOOD_LITERAL,
-			ALUMINIUM_LITERAL,
-			STEEL_LITERAL,
+		new IfcDoorStyleConstructionEnum[] {
+			NULL,
+			ALUMINIUM_WOOD,
+			HIGH_GRADE_STEEL,
+			NOTDEFINED,
+			ALUMINIUM_PLASTIC,
+			USERDEFINED,
+			PLASTIC,
+			WOOD,
+			ALUMINIUM,
+			STEEL,
 		};
 
 	/**
@@ -330,11 +322,9 @@ public enum IfcDoorStyleConstructionEnum implements Enumerator
 	 */
 	public static IfcDoorStyleConstructionEnum get(String literal)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcDoorStyleConstructionEnum result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal))
-			{
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -349,11 +339,9 @@ public enum IfcDoorStyleConstructionEnum implements Enumerator
 	 */
 	public static IfcDoorStyleConstructionEnum getByName(String name)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcDoorStyleConstructionEnum result = VALUES_ARRAY[i];
-			if (result.getName().equals(name))
-			{
+			if (result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -368,18 +356,17 @@ public enum IfcDoorStyleConstructionEnum implements Enumerator
 	 */
 	public static IfcDoorStyleConstructionEnum get(int value)
 	{
-		switch (value)
-		{
-			case NULL: return NULL_LITERAL;
-			case ALUMINIUM_WOOD: return ALUMINIUM_WOOD_LITERAL;
-			case HIGH_GRADE_STEEL: return HIGH_GRADE_STEEL_LITERAL;
-			case NOTDEFINED: return NOTDEFINED_LITERAL;
-			case ALUMINIUM_PLASTIC: return ALUMINIUM_PLASTIC_LITERAL;
-			case USERDEFINED: return USERDEFINED_LITERAL;
-			case PLASTIC: return PLASTIC_LITERAL;
-			case WOOD: return WOOD_LITERAL;
-			case ALUMINIUM: return ALUMINIUM_LITERAL;
-			case STEEL: return STEEL_LITERAL;
+		switch (value) {
+			case NULL_VALUE: return NULL;
+			case ALUMINIUM_WOOD_VALUE: return ALUMINIUM_WOOD;
+			case HIGH_GRADE_STEEL_VALUE: return HIGH_GRADE_STEEL;
+			case NOTDEFINED_VALUE: return NOTDEFINED;
+			case ALUMINIUM_PLASTIC_VALUE: return ALUMINIUM_PLASTIC;
+			case USERDEFINED_VALUE: return USERDEFINED;
+			case PLASTIC_VALUE: return PLASTIC;
+			case WOOD_VALUE: return WOOD;
+			case ALUMINIUM_VALUE: return ALUMINIUM;
+			case STEEL_VALUE: return STEEL;
 		}
 		return null;
 	}

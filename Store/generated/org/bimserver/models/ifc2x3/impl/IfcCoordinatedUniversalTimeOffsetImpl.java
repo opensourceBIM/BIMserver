@@ -49,13 +49,6 @@ public class IfcCoordinatedUniversalTimeOffsetImpl extends IdEObjectImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	protected IfcCoordinatedUniversalTimeOffsetImpl()
 	{
 		super();
@@ -69,7 +62,7 @@ public class IfcCoordinatedUniversalTimeOffsetImpl extends IdEObjectImpl impleme
 	@Override
 	protected EClass eStaticClass()
 	{
-		return Ifc2x3Package.Literals.IFC_COORDINATED_UNIVERSAL_TIME_OFFSET;
+		return Ifc2x3Package.eINSTANCE.getIfcCoordinatedUniversalTimeOffset();
 	}
 
 	/**
@@ -90,7 +83,7 @@ public class IfcCoordinatedUniversalTimeOffsetImpl extends IdEObjectImpl impleme
 	 */
 	public int getHourOffset()
 	{
-		return (Integer)eGet(Ifc2x3Package.Literals.IFC_COORDINATED_UNIVERSAL_TIME_OFFSET__HOUR_OFFSET, true);
+		return (Integer)eGet(Ifc2x3Package.eINSTANCE.getIfcCoordinatedUniversalTimeOffset_HourOffset(), true);
 	}
 
 	/**
@@ -100,7 +93,7 @@ public class IfcCoordinatedUniversalTimeOffsetImpl extends IdEObjectImpl impleme
 	 */
 	public void setHourOffset(int newHourOffset)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_COORDINATED_UNIVERSAL_TIME_OFFSET__HOUR_OFFSET, newHourOffset);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcCoordinatedUniversalTimeOffset_HourOffset(), newHourOffset);
 	}
 
 	/**
@@ -110,7 +103,7 @@ public class IfcCoordinatedUniversalTimeOffsetImpl extends IdEObjectImpl impleme
 	 */
 	public int getMinuteOffset()
 	{
-		return (Integer)eGet(Ifc2x3Package.Literals.IFC_COORDINATED_UNIVERSAL_TIME_OFFSET__MINUTE_OFFSET, true);
+		return (Integer)eGet(Ifc2x3Package.eINSTANCE.getIfcCoordinatedUniversalTimeOffset_MinuteOffset(), true);
 	}
 
 	/**
@@ -120,7 +113,7 @@ public class IfcCoordinatedUniversalTimeOffsetImpl extends IdEObjectImpl impleme
 	 */
 	public void setMinuteOffset(int newMinuteOffset)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_COORDINATED_UNIVERSAL_TIME_OFFSET__MINUTE_OFFSET, newMinuteOffset);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcCoordinatedUniversalTimeOffset_MinuteOffset(), newMinuteOffset);
 	}
 
 	/**
@@ -130,7 +123,7 @@ public class IfcCoordinatedUniversalTimeOffsetImpl extends IdEObjectImpl impleme
 	 */
 	public void unsetMinuteOffset()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_COORDINATED_UNIVERSAL_TIME_OFFSET__MINUTE_OFFSET);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcCoordinatedUniversalTimeOffset_MinuteOffset());
 	}
 
 	/**
@@ -140,7 +133,7 @@ public class IfcCoordinatedUniversalTimeOffsetImpl extends IdEObjectImpl impleme
 	 */
 	public boolean isSetMinuteOffset()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_COORDINATED_UNIVERSAL_TIME_OFFSET__MINUTE_OFFSET);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcCoordinatedUniversalTimeOffset_MinuteOffset());
 	}
 
 	/**
@@ -150,7 +143,7 @@ public class IfcCoordinatedUniversalTimeOffsetImpl extends IdEObjectImpl impleme
 	 */
 	public IfcAheadOrBehind getSense()
 	{
-		return (IfcAheadOrBehind)eGet(Ifc2x3Package.Literals.IFC_COORDINATED_UNIVERSAL_TIME_OFFSET__SENSE, true);
+		return (IfcAheadOrBehind)eGet(Ifc2x3Package.eINSTANCE.getIfcCoordinatedUniversalTimeOffset_Sense(), true);
 	}
 
 	/**
@@ -160,7 +153,7 @@ public class IfcCoordinatedUniversalTimeOffsetImpl extends IdEObjectImpl impleme
 	 */
 	public void setSense(IfcAheadOrBehind newSense)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_COORDINATED_UNIVERSAL_TIME_OFFSET__SENSE, newSense);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcCoordinatedUniversalTimeOffset_Sense(), newSense);
 	}
 
 } //IfcCoordinatedUniversalTimeOffsetImpl

@@ -54,13 +54,6 @@ public class IfcBoundingBoxImpl extends IfcGeometricRepresentationItemImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	protected IfcBoundingBoxImpl()
 	{
 		super();
@@ -74,7 +67,7 @@ public class IfcBoundingBoxImpl extends IfcGeometricRepresentationItemImpl imple
 	@Override
 	protected EClass eStaticClass()
 	{
-		return Ifc2x3Package.Literals.IFC_BOUNDING_BOX;
+		return Ifc2x3Package.eINSTANCE.getIfcBoundingBox();
 	}
 
 	/**
@@ -84,7 +77,7 @@ public class IfcBoundingBoxImpl extends IfcGeometricRepresentationItemImpl imple
 	 */
 	public IfcCartesianPoint getCorner()
 	{
-		return (IfcCartesianPoint)eGet(Ifc2x3Package.Literals.IFC_BOUNDING_BOX__CORNER, true);
+		return (IfcCartesianPoint)eGet(Ifc2x3Package.eINSTANCE.getIfcBoundingBox_Corner(), true);
 	}
 
 	/**
@@ -94,7 +87,7 @@ public class IfcBoundingBoxImpl extends IfcGeometricRepresentationItemImpl imple
 	 */
 	public void setCorner(IfcCartesianPoint newCorner)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_BOUNDING_BOX__CORNER, newCorner);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcBoundingBox_Corner(), newCorner);
 	}
 
 	/**
@@ -104,7 +97,7 @@ public class IfcBoundingBoxImpl extends IfcGeometricRepresentationItemImpl imple
 	 */
 	public float getXDim()
 	{
-		return (Float)eGet(Ifc2x3Package.Literals.IFC_BOUNDING_BOX__XDIM, true);
+		return (Float)eGet(Ifc2x3Package.eINSTANCE.getIfcBoundingBox_XDim(), true);
 	}
 
 	/**
@@ -114,7 +107,7 @@ public class IfcBoundingBoxImpl extends IfcGeometricRepresentationItemImpl imple
 	 */
 	public void setXDim(float newXDim)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_BOUNDING_BOX__XDIM, newXDim);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcBoundingBox_XDim(), newXDim);
 	}
 
 	/**
@@ -124,7 +117,7 @@ public class IfcBoundingBoxImpl extends IfcGeometricRepresentationItemImpl imple
 	 */
 	public String getXDimAsString()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_BOUNDING_BOX__XDIM_AS_STRING, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcBoundingBox_XDimAsString(), true);
 	}
 
 	/**
@@ -134,7 +127,7 @@ public class IfcBoundingBoxImpl extends IfcGeometricRepresentationItemImpl imple
 	 */
 	public void setXDimAsString(String newXDimAsString)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_BOUNDING_BOX__XDIM_AS_STRING, newXDimAsString);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcBoundingBox_XDimAsString(), newXDimAsString);
 	}
 
 	/**
@@ -144,7 +137,7 @@ public class IfcBoundingBoxImpl extends IfcGeometricRepresentationItemImpl imple
 	 */
 	public float getYDim()
 	{
-		return (Float)eGet(Ifc2x3Package.Literals.IFC_BOUNDING_BOX__YDIM, true);
+		return (Float)eGet(Ifc2x3Package.eINSTANCE.getIfcBoundingBox_YDim(), true);
 	}
 
 	/**
@@ -154,7 +147,7 @@ public class IfcBoundingBoxImpl extends IfcGeometricRepresentationItemImpl imple
 	 */
 	public void setYDim(float newYDim)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_BOUNDING_BOX__YDIM, newYDim);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcBoundingBox_YDim(), newYDim);
 	}
 
 	/**
@@ -164,7 +157,7 @@ public class IfcBoundingBoxImpl extends IfcGeometricRepresentationItemImpl imple
 	 */
 	public String getYDimAsString()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_BOUNDING_BOX__YDIM_AS_STRING, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcBoundingBox_YDimAsString(), true);
 	}
 
 	/**
@@ -174,7 +167,7 @@ public class IfcBoundingBoxImpl extends IfcGeometricRepresentationItemImpl imple
 	 */
 	public void setYDimAsString(String newYDimAsString)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_BOUNDING_BOX__YDIM_AS_STRING, newYDimAsString);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcBoundingBox_YDimAsString(), newYDimAsString);
 	}
 
 	/**
@@ -184,7 +177,7 @@ public class IfcBoundingBoxImpl extends IfcGeometricRepresentationItemImpl imple
 	 */
 	public float getZDim()
 	{
-		return (Float)eGet(Ifc2x3Package.Literals.IFC_BOUNDING_BOX__ZDIM, true);
+		return (Float)eGet(Ifc2x3Package.eINSTANCE.getIfcBoundingBox_ZDim(), true);
 	}
 
 	/**
@@ -194,7 +187,7 @@ public class IfcBoundingBoxImpl extends IfcGeometricRepresentationItemImpl imple
 	 */
 	public void setZDim(float newZDim)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_BOUNDING_BOX__ZDIM, newZDim);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcBoundingBox_ZDim(), newZDim);
 	}
 
 	/**
@@ -204,7 +197,7 @@ public class IfcBoundingBoxImpl extends IfcGeometricRepresentationItemImpl imple
 	 */
 	public String getZDimAsString()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_BOUNDING_BOX__ZDIM_AS_STRING, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcBoundingBox_ZDimAsString(), true);
 	}
 
 	/**
@@ -214,7 +207,7 @@ public class IfcBoundingBoxImpl extends IfcGeometricRepresentationItemImpl imple
 	 */
 	public void setZDimAsString(String newZDimAsString)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_BOUNDING_BOX__ZDIM_AS_STRING, newZDimAsString);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcBoundingBox_ZDimAsString(), newZDimAsString);
 	}
 
 	/**
@@ -224,7 +217,7 @@ public class IfcBoundingBoxImpl extends IfcGeometricRepresentationItemImpl imple
 	 */
 	public int getDim()
 	{
-		return (Integer)eGet(Ifc2x3Package.Literals.IFC_BOUNDING_BOX__DIM, true);
+		return (Integer)eGet(Ifc2x3Package.eINSTANCE.getIfcBoundingBox_Dim(), true);
 	}
 
 	/**
@@ -234,7 +227,7 @@ public class IfcBoundingBoxImpl extends IfcGeometricRepresentationItemImpl imple
 	 */
 	public void setDim(int newDim)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_BOUNDING_BOX__DIM, newDim);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcBoundingBox_Dim(), newDim);
 	}
 
 } //IfcBoundingBoxImpl

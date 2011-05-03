@@ -48,13 +48,6 @@ public class IfcTextStyleForDefinedFontImpl extends IdEObjectImpl implements Ifc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	protected IfcTextStyleForDefinedFontImpl()
 	{
 		super();
@@ -68,7 +61,7 @@ public class IfcTextStyleForDefinedFontImpl extends IdEObjectImpl implements Ifc
 	@Override
 	protected EClass eStaticClass()
 	{
-		return Ifc2x3Package.Literals.IFC_TEXT_STYLE_FOR_DEFINED_FONT;
+		return Ifc2x3Package.eINSTANCE.getIfcTextStyleForDefinedFont();
 	}
 
 	/**
@@ -89,7 +82,7 @@ public class IfcTextStyleForDefinedFontImpl extends IdEObjectImpl implements Ifc
 	 */
 	public IfcColour getColour()
 	{
-		return (IfcColour)eGet(Ifc2x3Package.Literals.IFC_TEXT_STYLE_FOR_DEFINED_FONT__COLOUR, true);
+		return (IfcColour)eGet(Ifc2x3Package.eINSTANCE.getIfcTextStyleForDefinedFont_Colour(), true);
 	}
 
 	/**
@@ -99,7 +92,7 @@ public class IfcTextStyleForDefinedFontImpl extends IdEObjectImpl implements Ifc
 	 */
 	public void setColour(IfcColour newColour)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_TEXT_STYLE_FOR_DEFINED_FONT__COLOUR, newColour);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcTextStyleForDefinedFont_Colour(), newColour);
 	}
 
 	/**
@@ -109,7 +102,7 @@ public class IfcTextStyleForDefinedFontImpl extends IdEObjectImpl implements Ifc
 	 */
 	public IfcColour getBackgroundColour()
 	{
-		return (IfcColour)eGet(Ifc2x3Package.Literals.IFC_TEXT_STYLE_FOR_DEFINED_FONT__BACKGROUND_COLOUR, true);
+		return (IfcColour)eGet(Ifc2x3Package.eINSTANCE.getIfcTextStyleForDefinedFont_BackgroundColour(), true);
 	}
 
 	/**
@@ -119,7 +112,7 @@ public class IfcTextStyleForDefinedFontImpl extends IdEObjectImpl implements Ifc
 	 */
 	public void setBackgroundColour(IfcColour newBackgroundColour)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_TEXT_STYLE_FOR_DEFINED_FONT__BACKGROUND_COLOUR, newBackgroundColour);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcTextStyleForDefinedFont_BackgroundColour(), newBackgroundColour);
 	}
 
 	/**
@@ -129,7 +122,7 @@ public class IfcTextStyleForDefinedFontImpl extends IdEObjectImpl implements Ifc
 	 */
 	public void unsetBackgroundColour()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_TEXT_STYLE_FOR_DEFINED_FONT__BACKGROUND_COLOUR);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcTextStyleForDefinedFont_BackgroundColour());
 	}
 
 	/**
@@ -139,7 +132,7 @@ public class IfcTextStyleForDefinedFontImpl extends IdEObjectImpl implements Ifc
 	 */
 	public boolean isSetBackgroundColour()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_TEXT_STYLE_FOR_DEFINED_FONT__BACKGROUND_COLOUR);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcTextStyleForDefinedFont_BackgroundColour());
 	}
 
 } //IfcTextStyleForDefinedFontImpl

@@ -54,13 +54,6 @@ public class IfcPropertyTableValueImpl extends IfcSimplePropertyImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	protected IfcPropertyTableValueImpl()
 	{
 		super();
@@ -74,7 +67,7 @@ public class IfcPropertyTableValueImpl extends IfcSimplePropertyImpl implements 
 	@Override
 	protected EClass eStaticClass()
 	{
-		return Ifc2x3Package.Literals.IFC_PROPERTY_TABLE_VALUE;
+		return Ifc2x3Package.eINSTANCE.getIfcPropertyTableValue();
 	}
 
 	/**
@@ -85,7 +78,7 @@ public class IfcPropertyTableValueImpl extends IfcSimplePropertyImpl implements 
 	@SuppressWarnings("unchecked")
 	public EList<IfcValue> getDefiningValues()
 	{
-		return (EList<IfcValue>)eGet(Ifc2x3Package.Literals.IFC_PROPERTY_TABLE_VALUE__DEFINING_VALUES, true);
+		return (EList<IfcValue>)eGet(Ifc2x3Package.eINSTANCE.getIfcPropertyTableValue_DefiningValues(), true);
 	}
 
 	/**
@@ -96,7 +89,7 @@ public class IfcPropertyTableValueImpl extends IfcSimplePropertyImpl implements 
 	@SuppressWarnings("unchecked")
 	public EList<IfcValue> getDefinedValues()
 	{
-		return (EList<IfcValue>)eGet(Ifc2x3Package.Literals.IFC_PROPERTY_TABLE_VALUE__DEFINED_VALUES, true);
+		return (EList<IfcValue>)eGet(Ifc2x3Package.eINSTANCE.getIfcPropertyTableValue_DefinedValues(), true);
 	}
 
 	/**
@@ -106,7 +99,7 @@ public class IfcPropertyTableValueImpl extends IfcSimplePropertyImpl implements 
 	 */
 	public String getExpression()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_PROPERTY_TABLE_VALUE__EXPRESSION, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcPropertyTableValue_Expression(), true);
 	}
 
 	/**
@@ -116,7 +109,7 @@ public class IfcPropertyTableValueImpl extends IfcSimplePropertyImpl implements 
 	 */
 	public void setExpression(String newExpression)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_PROPERTY_TABLE_VALUE__EXPRESSION, newExpression);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcPropertyTableValue_Expression(), newExpression);
 	}
 
 	/**
@@ -126,7 +119,7 @@ public class IfcPropertyTableValueImpl extends IfcSimplePropertyImpl implements 
 	 */
 	public void unsetExpression()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_PROPERTY_TABLE_VALUE__EXPRESSION);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcPropertyTableValue_Expression());
 	}
 
 	/**
@@ -136,7 +129,7 @@ public class IfcPropertyTableValueImpl extends IfcSimplePropertyImpl implements 
 	 */
 	public boolean isSetExpression()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_PROPERTY_TABLE_VALUE__EXPRESSION);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcPropertyTableValue_Expression());
 	}
 
 	/**
@@ -146,7 +139,7 @@ public class IfcPropertyTableValueImpl extends IfcSimplePropertyImpl implements 
 	 */
 	public IfcUnit getDefiningUnit()
 	{
-		return (IfcUnit)eGet(Ifc2x3Package.Literals.IFC_PROPERTY_TABLE_VALUE__DEFINING_UNIT, true);
+		return (IfcUnit)eGet(Ifc2x3Package.eINSTANCE.getIfcPropertyTableValue_DefiningUnit(), true);
 	}
 
 	/**
@@ -156,7 +149,7 @@ public class IfcPropertyTableValueImpl extends IfcSimplePropertyImpl implements 
 	 */
 	public void setDefiningUnit(IfcUnit newDefiningUnit)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_PROPERTY_TABLE_VALUE__DEFINING_UNIT, newDefiningUnit);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcPropertyTableValue_DefiningUnit(), newDefiningUnit);
 	}
 
 	/**
@@ -166,7 +159,7 @@ public class IfcPropertyTableValueImpl extends IfcSimplePropertyImpl implements 
 	 */
 	public void unsetDefiningUnit()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_PROPERTY_TABLE_VALUE__DEFINING_UNIT);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcPropertyTableValue_DefiningUnit());
 	}
 
 	/**
@@ -176,7 +169,7 @@ public class IfcPropertyTableValueImpl extends IfcSimplePropertyImpl implements 
 	 */
 	public boolean isSetDefiningUnit()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_PROPERTY_TABLE_VALUE__DEFINING_UNIT);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcPropertyTableValue_DefiningUnit());
 	}
 
 	/**
@@ -186,7 +179,7 @@ public class IfcPropertyTableValueImpl extends IfcSimplePropertyImpl implements 
 	 */
 	public IfcUnit getDefinedUnit()
 	{
-		return (IfcUnit)eGet(Ifc2x3Package.Literals.IFC_PROPERTY_TABLE_VALUE__DEFINED_UNIT, true);
+		return (IfcUnit)eGet(Ifc2x3Package.eINSTANCE.getIfcPropertyTableValue_DefinedUnit(), true);
 	}
 
 	/**
@@ -196,7 +189,7 @@ public class IfcPropertyTableValueImpl extends IfcSimplePropertyImpl implements 
 	 */
 	public void setDefinedUnit(IfcUnit newDefinedUnit)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_PROPERTY_TABLE_VALUE__DEFINED_UNIT, newDefinedUnit);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcPropertyTableValue_DefinedUnit(), newDefinedUnit);
 	}
 
 	/**
@@ -206,7 +199,7 @@ public class IfcPropertyTableValueImpl extends IfcSimplePropertyImpl implements 
 	 */
 	public void unsetDefinedUnit()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_PROPERTY_TABLE_VALUE__DEFINED_UNIT);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcPropertyTableValue_DefinedUnit());
 	}
 
 	/**
@@ -216,7 +209,7 @@ public class IfcPropertyTableValueImpl extends IfcSimplePropertyImpl implements 
 	 */
 	public boolean isSetDefinedUnit()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_PROPERTY_TABLE_VALUE__DEFINED_UNIT);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcPropertyTableValue_DefinedUnit());
 	}
 
 } //IfcPropertyTableValueImpl

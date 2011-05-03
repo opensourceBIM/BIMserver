@@ -40,38 +40,31 @@ public enum IfcSectionTypeEnum implements Enumerator
 	 * The '<em><b>NULL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NULL
+	 * @see #NULL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NULL_LITERAL(0, "NULL", "NULL"),
+	NULL(0, "NULL", "NULL"),
 
 	/**
 	 * The '<em><b>UNIFORM</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #UNIFORM
+	 * @see #UNIFORM_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	UNIFORM_LITERAL(1, "UNIFORM", "UNIFORM"),
+	UNIFORM(1, "UNIFORM", "UNIFORM"),
 
 	/**
 	 * The '<em><b>TAPERED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #TAPERED
+	 * @see #TAPERED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	TAPERED_LITERAL(2, "TAPERED", "TAPERED");
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
+	TAPERED(2, "TAPERED", "TAPERED");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -81,12 +74,12 @@ public enum IfcSectionTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NULL_LITERAL
+	 * @see #NULL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NULL = 0;
+	public static final int NULL_VALUE = 0;
 
 	/**
 	 * The '<em><b>UNIFORM</b></em>' literal value.
@@ -96,12 +89,12 @@ public enum IfcSectionTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #UNIFORM_LITERAL
+	 * @see #UNIFORM
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int UNIFORM = 1;
+	public static final int UNIFORM_VALUE = 1;
 
 	/**
 	 * The '<em><b>TAPERED</b></em>' literal value.
@@ -111,12 +104,12 @@ public enum IfcSectionTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #TAPERED_LITERAL
+	 * @see #TAPERED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int TAPERED = 2;
+	public static final int TAPERED_VALUE = 2;
 
 	/**
 	 * An array of all the '<em><b>Ifc Section Type Enum</b></em>' enumerators.
@@ -125,11 +118,10 @@ public enum IfcSectionTypeEnum implements Enumerator
 	 * @generated
 	 */
 	private static final IfcSectionTypeEnum[] VALUES_ARRAY =
-		new IfcSectionTypeEnum[]
-		{
-			NULL_LITERAL,
-			UNIFORM_LITERAL,
-			TAPERED_LITERAL,
+		new IfcSectionTypeEnum[] {
+			NULL,
+			UNIFORM,
+			TAPERED,
 		};
 
 	/**
@@ -148,11 +140,9 @@ public enum IfcSectionTypeEnum implements Enumerator
 	 */
 	public static IfcSectionTypeEnum get(String literal)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcSectionTypeEnum result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal))
-			{
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -167,11 +157,9 @@ public enum IfcSectionTypeEnum implements Enumerator
 	 */
 	public static IfcSectionTypeEnum getByName(String name)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcSectionTypeEnum result = VALUES_ARRAY[i];
-			if (result.getName().equals(name))
-			{
+			if (result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -186,11 +174,10 @@ public enum IfcSectionTypeEnum implements Enumerator
 	 */
 	public static IfcSectionTypeEnum get(int value)
 	{
-		switch (value)
-		{
-			case NULL: return NULL_LITERAL;
-			case UNIFORM: return UNIFORM_LITERAL;
-			case TAPERED: return TAPERED_LITERAL;
+		switch (value) {
+			case NULL_VALUE: return NULL;
+			case UNIFORM_VALUE: return UNIFORM;
+			case TAPERED_VALUE: return TAPERED;
 		}
 		return null;
 	}

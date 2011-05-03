@@ -51,13 +51,6 @@ public class IfcObjectiveImpl extends IfcConstraintImpl implements IfcObjective
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	protected IfcObjectiveImpl()
 	{
 		super();
@@ -71,7 +64,7 @@ public class IfcObjectiveImpl extends IfcConstraintImpl implements IfcObjective
 	@Override
 	protected EClass eStaticClass()
 	{
-		return Ifc2x3Package.Literals.IFC_OBJECTIVE;
+		return Ifc2x3Package.eINSTANCE.getIfcObjective();
 	}
 
 	/**
@@ -81,7 +74,7 @@ public class IfcObjectiveImpl extends IfcConstraintImpl implements IfcObjective
 	 */
 	public IfcMetric getBenchmarkValues()
 	{
-		return (IfcMetric)eGet(Ifc2x3Package.Literals.IFC_OBJECTIVE__BENCHMARK_VALUES, true);
+		return (IfcMetric)eGet(Ifc2x3Package.eINSTANCE.getIfcObjective_BenchmarkValues(), true);
 	}
 
 	/**
@@ -91,7 +84,7 @@ public class IfcObjectiveImpl extends IfcConstraintImpl implements IfcObjective
 	 */
 	public void setBenchmarkValues(IfcMetric newBenchmarkValues)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_OBJECTIVE__BENCHMARK_VALUES, newBenchmarkValues);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcObjective_BenchmarkValues(), newBenchmarkValues);
 	}
 
 	/**
@@ -101,7 +94,7 @@ public class IfcObjectiveImpl extends IfcConstraintImpl implements IfcObjective
 	 */
 	public void unsetBenchmarkValues()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_OBJECTIVE__BENCHMARK_VALUES);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcObjective_BenchmarkValues());
 	}
 
 	/**
@@ -111,7 +104,7 @@ public class IfcObjectiveImpl extends IfcConstraintImpl implements IfcObjective
 	 */
 	public boolean isSetBenchmarkValues()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_OBJECTIVE__BENCHMARK_VALUES);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcObjective_BenchmarkValues());
 	}
 
 	/**
@@ -121,7 +114,7 @@ public class IfcObjectiveImpl extends IfcConstraintImpl implements IfcObjective
 	 */
 	public IfcMetric getResultValues()
 	{
-		return (IfcMetric)eGet(Ifc2x3Package.Literals.IFC_OBJECTIVE__RESULT_VALUES, true);
+		return (IfcMetric)eGet(Ifc2x3Package.eINSTANCE.getIfcObjective_ResultValues(), true);
 	}
 
 	/**
@@ -131,7 +124,7 @@ public class IfcObjectiveImpl extends IfcConstraintImpl implements IfcObjective
 	 */
 	public void setResultValues(IfcMetric newResultValues)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_OBJECTIVE__RESULT_VALUES, newResultValues);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcObjective_ResultValues(), newResultValues);
 	}
 
 	/**
@@ -141,7 +134,7 @@ public class IfcObjectiveImpl extends IfcConstraintImpl implements IfcObjective
 	 */
 	public void unsetResultValues()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_OBJECTIVE__RESULT_VALUES);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcObjective_ResultValues());
 	}
 
 	/**
@@ -151,7 +144,7 @@ public class IfcObjectiveImpl extends IfcConstraintImpl implements IfcObjective
 	 */
 	public boolean isSetResultValues()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_OBJECTIVE__RESULT_VALUES);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcObjective_ResultValues());
 	}
 
 	/**
@@ -161,7 +154,7 @@ public class IfcObjectiveImpl extends IfcConstraintImpl implements IfcObjective
 	 */
 	public IfcObjectiveEnum getObjectiveQualifier()
 	{
-		return (IfcObjectiveEnum)eGet(Ifc2x3Package.Literals.IFC_OBJECTIVE__OBJECTIVE_QUALIFIER, true);
+		return (IfcObjectiveEnum)eGet(Ifc2x3Package.eINSTANCE.getIfcObjective_ObjectiveQualifier(), true);
 	}
 
 	/**
@@ -171,7 +164,7 @@ public class IfcObjectiveImpl extends IfcConstraintImpl implements IfcObjective
 	 */
 	public void setObjectiveQualifier(IfcObjectiveEnum newObjectiveQualifier)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_OBJECTIVE__OBJECTIVE_QUALIFIER, newObjectiveQualifier);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcObjective_ObjectiveQualifier(), newObjectiveQualifier);
 	}
 
 	/**
@@ -181,7 +174,7 @@ public class IfcObjectiveImpl extends IfcConstraintImpl implements IfcObjective
 	 */
 	public String getUserDefinedQualifier()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_OBJECTIVE__USER_DEFINED_QUALIFIER, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcObjective_UserDefinedQualifier(), true);
 	}
 
 	/**
@@ -191,7 +184,7 @@ public class IfcObjectiveImpl extends IfcConstraintImpl implements IfcObjective
 	 */
 	public void setUserDefinedQualifier(String newUserDefinedQualifier)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_OBJECTIVE__USER_DEFINED_QUALIFIER, newUserDefinedQualifier);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcObjective_UserDefinedQualifier(), newUserDefinedQualifier);
 	}
 
 	/**
@@ -201,7 +194,7 @@ public class IfcObjectiveImpl extends IfcConstraintImpl implements IfcObjective
 	 */
 	public void unsetUserDefinedQualifier()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_OBJECTIVE__USER_DEFINED_QUALIFIER);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcObjective_UserDefinedQualifier());
 	}
 
 	/**
@@ -211,7 +204,7 @@ public class IfcObjectiveImpl extends IfcConstraintImpl implements IfcObjective
 	 */
 	public boolean isSetUserDefinedQualifier()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_OBJECTIVE__USER_DEFINED_QUALIFIER);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcObjective_UserDefinedQualifier());
 	}
 
 } //IfcObjectiveImpl

@@ -51,13 +51,6 @@ public class IfcProductRepresentationImpl extends IdEObjectImpl implements IfcPr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	protected IfcProductRepresentationImpl()
 	{
 		super();
@@ -71,7 +64,7 @@ public class IfcProductRepresentationImpl extends IdEObjectImpl implements IfcPr
 	@Override
 	protected EClass eStaticClass()
 	{
-		return Ifc2x3Package.Literals.IFC_PRODUCT_REPRESENTATION;
+		return Ifc2x3Package.eINSTANCE.getIfcProductRepresentation();
 	}
 
 	/**
@@ -92,7 +85,7 @@ public class IfcProductRepresentationImpl extends IdEObjectImpl implements IfcPr
 	 */
 	public String getName()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_PRODUCT_REPRESENTATION__NAME, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcProductRepresentation_Name(), true);
 	}
 
 	/**
@@ -102,7 +95,7 @@ public class IfcProductRepresentationImpl extends IdEObjectImpl implements IfcPr
 	 */
 	public void setName(String newName)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_PRODUCT_REPRESENTATION__NAME, newName);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcProductRepresentation_Name(), newName);
 	}
 
 	/**
@@ -112,7 +105,7 @@ public class IfcProductRepresentationImpl extends IdEObjectImpl implements IfcPr
 	 */
 	public void unsetName()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_PRODUCT_REPRESENTATION__NAME);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcProductRepresentation_Name());
 	}
 
 	/**
@@ -122,7 +115,7 @@ public class IfcProductRepresentationImpl extends IdEObjectImpl implements IfcPr
 	 */
 	public boolean isSetName()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_PRODUCT_REPRESENTATION__NAME);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcProductRepresentation_Name());
 	}
 
 	/**
@@ -132,7 +125,7 @@ public class IfcProductRepresentationImpl extends IdEObjectImpl implements IfcPr
 	 */
 	public String getDescription()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_PRODUCT_REPRESENTATION__DESCRIPTION, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcProductRepresentation_Description(), true);
 	}
 
 	/**
@@ -142,7 +135,7 @@ public class IfcProductRepresentationImpl extends IdEObjectImpl implements IfcPr
 	 */
 	public void setDescription(String newDescription)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_PRODUCT_REPRESENTATION__DESCRIPTION, newDescription);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcProductRepresentation_Description(), newDescription);
 	}
 
 	/**
@@ -152,7 +145,7 @@ public class IfcProductRepresentationImpl extends IdEObjectImpl implements IfcPr
 	 */
 	public void unsetDescription()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_PRODUCT_REPRESENTATION__DESCRIPTION);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcProductRepresentation_Description());
 	}
 
 	/**
@@ -162,7 +155,7 @@ public class IfcProductRepresentationImpl extends IdEObjectImpl implements IfcPr
 	 */
 	public boolean isSetDescription()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_PRODUCT_REPRESENTATION__DESCRIPTION);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcProductRepresentation_Description());
 	}
 
 	/**
@@ -173,7 +166,7 @@ public class IfcProductRepresentationImpl extends IdEObjectImpl implements IfcPr
 	@SuppressWarnings("unchecked")
 	public EList<IfcRepresentation> getRepresentations()
 	{
-		return (EList<IfcRepresentation>)eGet(Ifc2x3Package.Literals.IFC_PRODUCT_REPRESENTATION__REPRESENTATIONS, true);
+		return (EList<IfcRepresentation>)eGet(Ifc2x3Package.eINSTANCE.getIfcProductRepresentation_Representations(), true);
 	}
 
 } //IfcProductRepresentationImpl

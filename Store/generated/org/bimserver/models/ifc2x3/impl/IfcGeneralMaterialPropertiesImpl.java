@@ -51,13 +51,6 @@ public class IfcGeneralMaterialPropertiesImpl extends IfcMaterialPropertiesImpl 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	protected IfcGeneralMaterialPropertiesImpl()
 	{
 		super();
@@ -71,7 +64,7 @@ public class IfcGeneralMaterialPropertiesImpl extends IfcMaterialPropertiesImpl 
 	@Override
 	protected EClass eStaticClass()
 	{
-		return Ifc2x3Package.Literals.IFC_GENERAL_MATERIAL_PROPERTIES;
+		return Ifc2x3Package.eINSTANCE.getIfcGeneralMaterialProperties();
 	}
 
 	/**
@@ -81,7 +74,7 @@ public class IfcGeneralMaterialPropertiesImpl extends IfcMaterialPropertiesImpl 
 	 */
 	public float getMolecularWeight()
 	{
-		return (Float)eGet(Ifc2x3Package.Literals.IFC_GENERAL_MATERIAL_PROPERTIES__MOLECULAR_WEIGHT, true);
+		return (Float)eGet(Ifc2x3Package.eINSTANCE.getIfcGeneralMaterialProperties_MolecularWeight(), true);
 	}
 
 	/**
@@ -91,7 +84,7 @@ public class IfcGeneralMaterialPropertiesImpl extends IfcMaterialPropertiesImpl 
 	 */
 	public void setMolecularWeight(float newMolecularWeight)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_GENERAL_MATERIAL_PROPERTIES__MOLECULAR_WEIGHT, newMolecularWeight);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcGeneralMaterialProperties_MolecularWeight(), newMolecularWeight);
 	}
 
 	/**
@@ -101,7 +94,7 @@ public class IfcGeneralMaterialPropertiesImpl extends IfcMaterialPropertiesImpl 
 	 */
 	public void unsetMolecularWeight()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_GENERAL_MATERIAL_PROPERTIES__MOLECULAR_WEIGHT);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcGeneralMaterialProperties_MolecularWeight());
 	}
 
 	/**
@@ -111,7 +104,7 @@ public class IfcGeneralMaterialPropertiesImpl extends IfcMaterialPropertiesImpl 
 	 */
 	public boolean isSetMolecularWeight()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_GENERAL_MATERIAL_PROPERTIES__MOLECULAR_WEIGHT);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcGeneralMaterialProperties_MolecularWeight());
 	}
 
 	/**
@@ -121,7 +114,7 @@ public class IfcGeneralMaterialPropertiesImpl extends IfcMaterialPropertiesImpl 
 	 */
 	public String getMolecularWeightAsString()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_GENERAL_MATERIAL_PROPERTIES__MOLECULAR_WEIGHT_AS_STRING, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcGeneralMaterialProperties_MolecularWeightAsString(), true);
 	}
 
 	/**
@@ -131,7 +124,7 @@ public class IfcGeneralMaterialPropertiesImpl extends IfcMaterialPropertiesImpl 
 	 */
 	public void setMolecularWeightAsString(String newMolecularWeightAsString)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_GENERAL_MATERIAL_PROPERTIES__MOLECULAR_WEIGHT_AS_STRING, newMolecularWeightAsString);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcGeneralMaterialProperties_MolecularWeightAsString(), newMolecularWeightAsString);
 	}
 
 	/**
@@ -141,7 +134,7 @@ public class IfcGeneralMaterialPropertiesImpl extends IfcMaterialPropertiesImpl 
 	 */
 	public void unsetMolecularWeightAsString()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_GENERAL_MATERIAL_PROPERTIES__MOLECULAR_WEIGHT_AS_STRING);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcGeneralMaterialProperties_MolecularWeightAsString());
 	}
 
 	/**
@@ -151,7 +144,7 @@ public class IfcGeneralMaterialPropertiesImpl extends IfcMaterialPropertiesImpl 
 	 */
 	public boolean isSetMolecularWeightAsString()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_GENERAL_MATERIAL_PROPERTIES__MOLECULAR_WEIGHT_AS_STRING);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcGeneralMaterialProperties_MolecularWeightAsString());
 	}
 
 	/**
@@ -161,7 +154,7 @@ public class IfcGeneralMaterialPropertiesImpl extends IfcMaterialPropertiesImpl 
 	 */
 	public float getPorosity()
 	{
-		return (Float)eGet(Ifc2x3Package.Literals.IFC_GENERAL_MATERIAL_PROPERTIES__POROSITY, true);
+		return (Float)eGet(Ifc2x3Package.eINSTANCE.getIfcGeneralMaterialProperties_Porosity(), true);
 	}
 
 	/**
@@ -171,7 +164,7 @@ public class IfcGeneralMaterialPropertiesImpl extends IfcMaterialPropertiesImpl 
 	 */
 	public void setPorosity(float newPorosity)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_GENERAL_MATERIAL_PROPERTIES__POROSITY, newPorosity);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcGeneralMaterialProperties_Porosity(), newPorosity);
 	}
 
 	/**
@@ -181,7 +174,7 @@ public class IfcGeneralMaterialPropertiesImpl extends IfcMaterialPropertiesImpl 
 	 */
 	public void unsetPorosity()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_GENERAL_MATERIAL_PROPERTIES__POROSITY);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcGeneralMaterialProperties_Porosity());
 	}
 
 	/**
@@ -191,7 +184,7 @@ public class IfcGeneralMaterialPropertiesImpl extends IfcMaterialPropertiesImpl 
 	 */
 	public boolean isSetPorosity()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_GENERAL_MATERIAL_PROPERTIES__POROSITY);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcGeneralMaterialProperties_Porosity());
 	}
 
 	/**
@@ -201,7 +194,7 @@ public class IfcGeneralMaterialPropertiesImpl extends IfcMaterialPropertiesImpl 
 	 */
 	public String getPorosityAsString()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_GENERAL_MATERIAL_PROPERTIES__POROSITY_AS_STRING, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcGeneralMaterialProperties_PorosityAsString(), true);
 	}
 
 	/**
@@ -211,7 +204,7 @@ public class IfcGeneralMaterialPropertiesImpl extends IfcMaterialPropertiesImpl 
 	 */
 	public void setPorosityAsString(String newPorosityAsString)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_GENERAL_MATERIAL_PROPERTIES__POROSITY_AS_STRING, newPorosityAsString);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcGeneralMaterialProperties_PorosityAsString(), newPorosityAsString);
 	}
 
 	/**
@@ -221,7 +214,7 @@ public class IfcGeneralMaterialPropertiesImpl extends IfcMaterialPropertiesImpl 
 	 */
 	public void unsetPorosityAsString()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_GENERAL_MATERIAL_PROPERTIES__POROSITY_AS_STRING);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcGeneralMaterialProperties_PorosityAsString());
 	}
 
 	/**
@@ -231,7 +224,7 @@ public class IfcGeneralMaterialPropertiesImpl extends IfcMaterialPropertiesImpl 
 	 */
 	public boolean isSetPorosityAsString()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_GENERAL_MATERIAL_PROPERTIES__POROSITY_AS_STRING);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcGeneralMaterialProperties_PorosityAsString());
 	}
 
 	/**
@@ -241,7 +234,7 @@ public class IfcGeneralMaterialPropertiesImpl extends IfcMaterialPropertiesImpl 
 	 */
 	public float getMassDensity()
 	{
-		return (Float)eGet(Ifc2x3Package.Literals.IFC_GENERAL_MATERIAL_PROPERTIES__MASS_DENSITY, true);
+		return (Float)eGet(Ifc2x3Package.eINSTANCE.getIfcGeneralMaterialProperties_MassDensity(), true);
 	}
 
 	/**
@@ -251,7 +244,7 @@ public class IfcGeneralMaterialPropertiesImpl extends IfcMaterialPropertiesImpl 
 	 */
 	public void setMassDensity(float newMassDensity)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_GENERAL_MATERIAL_PROPERTIES__MASS_DENSITY, newMassDensity);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcGeneralMaterialProperties_MassDensity(), newMassDensity);
 	}
 
 	/**
@@ -261,7 +254,7 @@ public class IfcGeneralMaterialPropertiesImpl extends IfcMaterialPropertiesImpl 
 	 */
 	public void unsetMassDensity()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_GENERAL_MATERIAL_PROPERTIES__MASS_DENSITY);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcGeneralMaterialProperties_MassDensity());
 	}
 
 	/**
@@ -271,7 +264,7 @@ public class IfcGeneralMaterialPropertiesImpl extends IfcMaterialPropertiesImpl 
 	 */
 	public boolean isSetMassDensity()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_GENERAL_MATERIAL_PROPERTIES__MASS_DENSITY);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcGeneralMaterialProperties_MassDensity());
 	}
 
 	/**
@@ -281,7 +274,7 @@ public class IfcGeneralMaterialPropertiesImpl extends IfcMaterialPropertiesImpl 
 	 */
 	public String getMassDensityAsString()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_GENERAL_MATERIAL_PROPERTIES__MASS_DENSITY_AS_STRING, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcGeneralMaterialProperties_MassDensityAsString(), true);
 	}
 
 	/**
@@ -291,7 +284,7 @@ public class IfcGeneralMaterialPropertiesImpl extends IfcMaterialPropertiesImpl 
 	 */
 	public void setMassDensityAsString(String newMassDensityAsString)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_GENERAL_MATERIAL_PROPERTIES__MASS_DENSITY_AS_STRING, newMassDensityAsString);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcGeneralMaterialProperties_MassDensityAsString(), newMassDensityAsString);
 	}
 
 	/**
@@ -301,7 +294,7 @@ public class IfcGeneralMaterialPropertiesImpl extends IfcMaterialPropertiesImpl 
 	 */
 	public void unsetMassDensityAsString()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_GENERAL_MATERIAL_PROPERTIES__MASS_DENSITY_AS_STRING);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcGeneralMaterialProperties_MassDensityAsString());
 	}
 
 	/**
@@ -311,7 +304,7 @@ public class IfcGeneralMaterialPropertiesImpl extends IfcMaterialPropertiesImpl 
 	 */
 	public boolean isSetMassDensityAsString()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_GENERAL_MATERIAL_PROPERTIES__MASS_DENSITY_AS_STRING);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcGeneralMaterialProperties_MassDensityAsString());
 	}
 
 } //IfcGeneralMaterialPropertiesImpl

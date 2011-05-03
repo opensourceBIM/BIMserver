@@ -8891,9 +8891,9 @@ public ExpressParser(ParserSharedInputState state) {
 				literal_AST = (AST)currentAST.root;
 				if (fl) {
 								f_AST.setText(i.getText()+f.getText());
-								literal_AST = (AST)astFactory.make( (new ASTArray(2)).add(astFactory.create(LITERAL,"LITERAL")).add((AST)astFactory.make( (new ASTArray(2)).add(astFactory.create(REAL_LITERAL,"REAL_LITERAL")).add(f_AST))));
+								literal_AST = (AST)astFactory.make( (new ASTArray(2)).add(astFactory.create(LITERAL,"LITERAL")).add((AST)astFactory.make( (new ASTArray(2)).add(astFactory.create(REAL,"REAL")).add(f_AST))));
 								}
-							  else literal_AST = (AST)astFactory.make( (new ASTArray(2)).add(astFactory.create(LITERAL,"LITERAL")).add((AST)astFactory.make( (new ASTArray(2)).add(astFactory.create(INTEGER_LITERAL,"INTEGER_LITERAL")).add(i_AST))));
+							  else literal_AST = (AST)astFactory.make( (new ASTArray(2)).add(astFactory.create(LITERAL,"LITERAL")).add((AST)astFactory.make( (new ASTArray(2)).add(astFactory.create(INTEGER,"INTEGER")).add(i_AST))));
 							
 				currentAST.root = literal_AST;
 				currentAST.child = literal_AST!=null &&literal_AST.getFirstChild()!=null ?
@@ -8905,7 +8905,7 @@ public ExpressParser(ParserSharedInputState state) {
 			case LITERAL_true:
 			case LITERAL_unknown:
 			{
-				logical_literal();
+				logical();
 				ll_AST = (AST)returnAST;
 				literal_AST = (AST)currentAST.root;
 				literal_AST = (AST)astFactory.make( (new ASTArray(2)).add(astFactory.create(LITERAL,"LITERAL")).add(ll_AST));
@@ -8921,7 +8921,7 @@ public ExpressParser(ParserSharedInputState state) {
 				sl_AST = astFactory.create(sl);
 				match(STRING);
 				literal_AST = (AST)currentAST.root;
-				literal_AST = (AST)astFactory.make( (new ASTArray(2)).add(astFactory.create(LITERAL,"LITERAL")).add((AST)astFactory.make( (new ASTArray(2)).add(astFactory.create(STRING_LITERAL,"STRING_LITERAL")).add(sl_AST))));
+				literal_AST = (AST)astFactory.make( (new ASTArray(2)).add(astFactory.create(LITERAL,"LITERAL")).add((AST)astFactory.make( (new ASTArray(2)).add(astFactory.create(STRING,"STRING")).add(sl_AST))));
 				currentAST.root = literal_AST;
 				currentAST.child = literal_AST!=null &&literal_AST.getFirstChild()!=null ?
 					literal_AST.getFirstChild() : literal_AST;
@@ -8941,11 +8941,11 @@ public ExpressParser(ParserSharedInputState state) {
 		returnAST = literal_AST;
 	}
 	
-	public final void logical_literal() throws RecognitionException, TokenStreamException {
+	public final void logical() throws RecognitionException, TokenStreamException {
 		
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
-		AST logical_literal_AST = null;
+		AST logical_AST = null;
 		
 		try {      // for error handling
 			switch ( LA(1)) {
@@ -8955,13 +8955,13 @@ public ExpressParser(ParserSharedInputState state) {
 				tmp274_AST = astFactory.create(LT(1));
 				astFactory.addASTChild(currentAST, tmp274_AST);
 				match(LITERAL_false);
-				logical_literal_AST = (AST)currentAST.root;
-				logical_literal_AST = (AST)astFactory.make( (new ASTArray(2)).add(astFactory.create(LOGICAL_LITERAL,"LOGICAL_LITERAL")).add(logical_literal_AST));
-				currentAST.root = logical_literal_AST;
-				currentAST.child = logical_literal_AST!=null &&logical_literal_AST.getFirstChild()!=null ?
-					logical_literal_AST.getFirstChild() : logical_literal_AST;
+				logical_AST = (AST)currentAST.root;
+				logical_AST = (AST)astFactory.make( (new ASTArray(2)).add(astFactory.create(LOGICAL,"LOGICAL")).add(logical_AST));
+				currentAST.root = logical_AST;
+				currentAST.child = logical_AST!=null &&logical_AST.getFirstChild()!=null ?
+					logical_AST.getFirstChild() : logical_AST;
 				currentAST.advanceChildToEnd();
-				logical_literal_AST = (AST)currentAST.root;
+				logical_AST = (AST)currentAST.root;
 				break;
 			}
 			case LITERAL_true:
@@ -8970,13 +8970,13 @@ public ExpressParser(ParserSharedInputState state) {
 				tmp275_AST = astFactory.create(LT(1));
 				astFactory.addASTChild(currentAST, tmp275_AST);
 				match(LITERAL_true);
-				logical_literal_AST = (AST)currentAST.root;
-				logical_literal_AST = (AST)astFactory.make( (new ASTArray(2)).add(astFactory.create(LOGICAL_LITERAL,"LOGICAL_LITERAL")).add(logical_literal_AST));
-				currentAST.root = logical_literal_AST;
-				currentAST.child = logical_literal_AST!=null &&logical_literal_AST.getFirstChild()!=null ?
-					logical_literal_AST.getFirstChild() : logical_literal_AST;
+				logical_AST = (AST)currentAST.root;
+				logical_AST = (AST)astFactory.make( (new ASTArray(2)).add(astFactory.create(LOGICAL,"LOGICAL")).add(logical_AST));
+				currentAST.root = logical_AST;
+				currentAST.child = logical_AST!=null &&logical_AST.getFirstChild()!=null ?
+					logical_AST.getFirstChild() : logical_AST;
 				currentAST.advanceChildToEnd();
-				logical_literal_AST = (AST)currentAST.root;
+				logical_AST = (AST)currentAST.root;
 				break;
 			}
 			case LITERAL_unknown:
@@ -8985,13 +8985,13 @@ public ExpressParser(ParserSharedInputState state) {
 				tmp276_AST = astFactory.create(LT(1));
 				astFactory.addASTChild(currentAST, tmp276_AST);
 				match(LITERAL_unknown);
-				logical_literal_AST = (AST)currentAST.root;
-				logical_literal_AST = (AST)astFactory.make( (new ASTArray(2)).add(astFactory.create(LOGICAL_LITERAL,"LOGICAL_LITERAL")).add(logical_literal_AST));
-				currentAST.root = logical_literal_AST;
-				currentAST.child = logical_literal_AST!=null &&logical_literal_AST.getFirstChild()!=null ?
-					logical_literal_AST.getFirstChild() : logical_literal_AST;
+				logical_AST = (AST)currentAST.root;
+				logical_AST = (AST)astFactory.make( (new ASTArray(2)).add(astFactory.create(LOGICAL,"LOGICAL")).add(logical_AST));
+				currentAST.root = logical_AST;
+				currentAST.child = logical_AST!=null &&logical_AST.getFirstChild()!=null ?
+					logical_AST.getFirstChild() : logical_AST;
 				currentAST.advanceChildToEnd();
-				logical_literal_AST = (AST)currentAST.root;
+				logical_AST = (AST)currentAST.root;
 				break;
 			}
 			default:
@@ -9004,7 +9004,7 @@ public ExpressParser(ParserSharedInputState state) {
 			reportError(ex);
 			recover(ex,_tokenSet_3);
 		}
-		returnAST = logical_literal_AST;
+		returnAST = logical_AST;
 	}
 	
 	public final void local_variable() throws RecognitionException, TokenStreamException {
@@ -12775,13 +12775,13 @@ public ExpressParser(ParserSharedInputState state) {
 		"LABEL",
 		"LIST_TYPE",
 		"LITERAL",
-		"REAL_LITERAL",
-		"INTEGER_LITERAL",
-		"STRING_LITERAL",
+		"REAL",
+		"INTEGER",
+		"STRING",
 		"LOCAL_DECL",
 		"LOCAL_VARIABLE",
 		"LOGICAL_EXPRESSION",
-		"LOGICAL_LITERAL",
+		"LOGICAL",
 		"LOGICAL_TYPE",
 		"MULTIPLICATION_LIKE_OP",
 		"NAMED_TYPES",

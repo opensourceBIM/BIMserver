@@ -40,78 +40,71 @@ public enum CheckinState implements Enumerator
 	 * The '<em><b>UPLOADING</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #UPLOADING
+	 * @see #UPLOADING_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	UPLOADING_LITERAL(0, "UPLOADING", "UPLOADING"),
+	UPLOADING(0, "UPLOADING", "UPLOADING"),
 
 	/**
 	 * The '<em><b>PARSING</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #PARSING
+	 * @see #PARSING_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	PARSING_LITERAL(1, "PARSING", "PARSING"),
+	PARSING(1, "PARSING", "PARSING"),
 
 	/**
 	 * The '<em><b>STORING</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #STORING
+	 * @see #STORING_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	STORING_LITERAL(2, "STORING", "STORING"),
+	STORING(2, "STORING", "STORING"),
 
 	/**
 	 * The '<em><b>SEARCHING CLASHES</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #SEARCHING_CLASHES
+	 * @see #SEARCHING_CLASHES_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	SEARCHING_CLASHES_LITERAL(3, "SEARCHING_CLASHES", "SEARCHING_CLASHES"),
+	SEARCHING_CLASHES(3, "SEARCHING_CLASHES", "SEARCHING_CLASHES"),
 
 	/**
 	 * The '<em><b>DONE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #DONE
+	 * @see #DONE_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	DONE_LITERAL(4, "DONE", "DONE"),
+	DONE(4, "DONE", "DONE"),
 
 	/**
 	 * The '<em><b>ERROR</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #ERROR
+	 * @see #ERROR_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	ERROR_LITERAL(5, "ERROR", "ERROR"),
+	ERROR(5, "ERROR", "ERROR"),
 
 	/**
 	 * The '<em><b>CLASHES ERROR</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #CLASHES_ERROR
+	 * @see #CLASHES_ERROR_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	CLASHES_ERROR_LITERAL(6, "CLASHES_ERROR", "CLASHES_ERROR");
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
+	CLASHES_ERROR(6, "CLASHES_ERROR", "CLASHES_ERROR");
 
 	/**
 	 * The '<em><b>UPLOADING</b></em>' literal value.
@@ -121,12 +114,12 @@ public enum CheckinState implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #UPLOADING_LITERAL
+	 * @see #UPLOADING
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int UPLOADING = 0;
+	public static final int UPLOADING_VALUE = 0;
 
 	/**
 	 * The '<em><b>PARSING</b></em>' literal value.
@@ -136,12 +129,12 @@ public enum CheckinState implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #PARSING_LITERAL
+	 * @see #PARSING
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PARSING = 1;
+	public static final int PARSING_VALUE = 1;
 
 	/**
 	 * The '<em><b>STORING</b></em>' literal value.
@@ -151,12 +144,12 @@ public enum CheckinState implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #STORING_LITERAL
+	 * @see #STORING
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int STORING = 2;
+	public static final int STORING_VALUE = 2;
 
 	/**
 	 * The '<em><b>SEARCHING CLASHES</b></em>' literal value.
@@ -166,12 +159,12 @@ public enum CheckinState implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #SEARCHING_CLASHES_LITERAL
+	 * @see #SEARCHING_CLASHES
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SEARCHING_CLASHES = 3;
+	public static final int SEARCHING_CLASHES_VALUE = 3;
 
 	/**
 	 * The '<em><b>DONE</b></em>' literal value.
@@ -181,12 +174,12 @@ public enum CheckinState implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #DONE_LITERAL
+	 * @see #DONE
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int DONE = 4;
+	public static final int DONE_VALUE = 4;
 
 	/**
 	 * The '<em><b>ERROR</b></em>' literal value.
@@ -196,12 +189,12 @@ public enum CheckinState implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ERROR_LITERAL
+	 * @see #ERROR
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ERROR = 5;
+	public static final int ERROR_VALUE = 5;
 
 	/**
 	 * The '<em><b>CLASHES ERROR</b></em>' literal value.
@@ -211,12 +204,12 @@ public enum CheckinState implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #CLASHES_ERROR_LITERAL
+	 * @see #CLASHES_ERROR
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int CLASHES_ERROR = 6;
+	public static final int CLASHES_ERROR_VALUE = 6;
 
 	/**
 	 * An array of all the '<em><b>Checkin State</b></em>' enumerators.
@@ -225,15 +218,14 @@ public enum CheckinState implements Enumerator
 	 * @generated
 	 */
 	private static final CheckinState[] VALUES_ARRAY =
-		new CheckinState[]
-		{
-			UPLOADING_LITERAL,
-			PARSING_LITERAL,
-			STORING_LITERAL,
-			SEARCHING_CLASHES_LITERAL,
-			DONE_LITERAL,
-			ERROR_LITERAL,
-			CLASHES_ERROR_LITERAL,
+		new CheckinState[] {
+			UPLOADING,
+			PARSING,
+			STORING,
+			SEARCHING_CLASHES,
+			DONE,
+			ERROR,
+			CLASHES_ERROR,
 		};
 
 	/**
@@ -252,11 +244,9 @@ public enum CheckinState implements Enumerator
 	 */
 	public static CheckinState get(String literal)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			CheckinState result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal))
-			{
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -271,11 +261,9 @@ public enum CheckinState implements Enumerator
 	 */
 	public static CheckinState getByName(String name)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			CheckinState result = VALUES_ARRAY[i];
-			if (result.getName().equals(name))
-			{
+			if (result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -290,15 +278,14 @@ public enum CheckinState implements Enumerator
 	 */
 	public static CheckinState get(int value)
 	{
-		switch (value)
-		{
-			case UPLOADING: return UPLOADING_LITERAL;
-			case PARSING: return PARSING_LITERAL;
-			case STORING: return STORING_LITERAL;
-			case SEARCHING_CLASHES: return SEARCHING_CLASHES_LITERAL;
-			case DONE: return DONE_LITERAL;
-			case ERROR: return ERROR_LITERAL;
-			case CLASHES_ERROR: return CLASHES_ERROR_LITERAL;
+		switch (value) {
+			case UPLOADING_VALUE: return UPLOADING;
+			case PARSING_VALUE: return PARSING;
+			case STORING_VALUE: return STORING;
+			case SEARCHING_CLASHES_VALUE: return SEARCHING_CLASHES;
+			case DONE_VALUE: return DONE;
+			case ERROR_VALUE: return ERROR;
+			case CLASHES_ERROR_VALUE: return CLASHES_ERROR;
 		}
 		return null;
 	}

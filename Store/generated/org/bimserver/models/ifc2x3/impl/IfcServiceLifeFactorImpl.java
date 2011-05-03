@@ -51,13 +51,6 @@ public class IfcServiceLifeFactorImpl extends IfcPropertySetDefinitionImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	protected IfcServiceLifeFactorImpl()
 	{
 		super();
@@ -71,7 +64,7 @@ public class IfcServiceLifeFactorImpl extends IfcPropertySetDefinitionImpl imple
 	@Override
 	protected EClass eStaticClass()
 	{
-		return Ifc2x3Package.Literals.IFC_SERVICE_LIFE_FACTOR;
+		return Ifc2x3Package.eINSTANCE.getIfcServiceLifeFactor();
 	}
 
 	/**
@@ -81,7 +74,7 @@ public class IfcServiceLifeFactorImpl extends IfcPropertySetDefinitionImpl imple
 	 */
 	public IfcServiceLifeFactorTypeEnum getPredefinedType()
 	{
-		return (IfcServiceLifeFactorTypeEnum)eGet(Ifc2x3Package.Literals.IFC_SERVICE_LIFE_FACTOR__PREDEFINED_TYPE, true);
+		return (IfcServiceLifeFactorTypeEnum)eGet(Ifc2x3Package.eINSTANCE.getIfcServiceLifeFactor_PredefinedType(), true);
 	}
 
 	/**
@@ -91,7 +84,7 @@ public class IfcServiceLifeFactorImpl extends IfcPropertySetDefinitionImpl imple
 	 */
 	public void setPredefinedType(IfcServiceLifeFactorTypeEnum newPredefinedType)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_SERVICE_LIFE_FACTOR__PREDEFINED_TYPE, newPredefinedType);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcServiceLifeFactor_PredefinedType(), newPredefinedType);
 	}
 
 	/**
@@ -101,7 +94,7 @@ public class IfcServiceLifeFactorImpl extends IfcPropertySetDefinitionImpl imple
 	 */
 	public IfcMeasureValue getUpperValue()
 	{
-		return (IfcMeasureValue)eGet(Ifc2x3Package.Literals.IFC_SERVICE_LIFE_FACTOR__UPPER_VALUE, true);
+		return (IfcMeasureValue)eGet(Ifc2x3Package.eINSTANCE.getIfcServiceLifeFactor_UpperValue(), true);
 	}
 
 	/**
@@ -111,7 +104,7 @@ public class IfcServiceLifeFactorImpl extends IfcPropertySetDefinitionImpl imple
 	 */
 	public void setUpperValue(IfcMeasureValue newUpperValue)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_SERVICE_LIFE_FACTOR__UPPER_VALUE, newUpperValue);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcServiceLifeFactor_UpperValue(), newUpperValue);
 	}
 
 	/**
@@ -121,7 +114,7 @@ public class IfcServiceLifeFactorImpl extends IfcPropertySetDefinitionImpl imple
 	 */
 	public void unsetUpperValue()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_SERVICE_LIFE_FACTOR__UPPER_VALUE);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcServiceLifeFactor_UpperValue());
 	}
 
 	/**
@@ -131,7 +124,7 @@ public class IfcServiceLifeFactorImpl extends IfcPropertySetDefinitionImpl imple
 	 */
 	public boolean isSetUpperValue()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_SERVICE_LIFE_FACTOR__UPPER_VALUE);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcServiceLifeFactor_UpperValue());
 	}
 
 	/**
@@ -141,7 +134,7 @@ public class IfcServiceLifeFactorImpl extends IfcPropertySetDefinitionImpl imple
 	 */
 	public IfcMeasureValue getMostUsedValue()
 	{
-		return (IfcMeasureValue)eGet(Ifc2x3Package.Literals.IFC_SERVICE_LIFE_FACTOR__MOST_USED_VALUE, true);
+		return (IfcMeasureValue)eGet(Ifc2x3Package.eINSTANCE.getIfcServiceLifeFactor_MostUsedValue(), true);
 	}
 
 	/**
@@ -151,7 +144,7 @@ public class IfcServiceLifeFactorImpl extends IfcPropertySetDefinitionImpl imple
 	 */
 	public void setMostUsedValue(IfcMeasureValue newMostUsedValue)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_SERVICE_LIFE_FACTOR__MOST_USED_VALUE, newMostUsedValue);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcServiceLifeFactor_MostUsedValue(), newMostUsedValue);
 	}
 
 	/**
@@ -161,7 +154,7 @@ public class IfcServiceLifeFactorImpl extends IfcPropertySetDefinitionImpl imple
 	 */
 	public IfcMeasureValue getLowerValue()
 	{
-		return (IfcMeasureValue)eGet(Ifc2x3Package.Literals.IFC_SERVICE_LIFE_FACTOR__LOWER_VALUE, true);
+		return (IfcMeasureValue)eGet(Ifc2x3Package.eINSTANCE.getIfcServiceLifeFactor_LowerValue(), true);
 	}
 
 	/**
@@ -171,7 +164,7 @@ public class IfcServiceLifeFactorImpl extends IfcPropertySetDefinitionImpl imple
 	 */
 	public void setLowerValue(IfcMeasureValue newLowerValue)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_SERVICE_LIFE_FACTOR__LOWER_VALUE, newLowerValue);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcServiceLifeFactor_LowerValue(), newLowerValue);
 	}
 
 	/**
@@ -181,7 +174,7 @@ public class IfcServiceLifeFactorImpl extends IfcPropertySetDefinitionImpl imple
 	 */
 	public void unsetLowerValue()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_SERVICE_LIFE_FACTOR__LOWER_VALUE);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcServiceLifeFactor_LowerValue());
 	}
 
 	/**
@@ -191,7 +184,7 @@ public class IfcServiceLifeFactorImpl extends IfcPropertySetDefinitionImpl imple
 	 */
 	public boolean isSetLowerValue()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_SERVICE_LIFE_FACTOR__LOWER_VALUE);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcServiceLifeFactor_LowerValue());
 	}
 
 } //IfcServiceLifeFactorImpl

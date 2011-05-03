@@ -40,28 +40,21 @@ public enum ObjectState implements Enumerator
 	 * The '<em><b>ACTIVE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #ACTIVE
+	 * @see #ACTIVE_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	ACTIVE_LITERAL(0, "ACTIVE", "ACTIVE"),
+	ACTIVE(0, "ACTIVE", "ACTIVE"),
 
 	/**
 	 * The '<em><b>DELETED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #DELETED
+	 * @see #DELETED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	DELETED_LITERAL(1, "DELETED", "DELETED");
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
+	DELETED(1, "DELETED", "DELETED");
 
 	/**
 	 * The '<em><b>ACTIVE</b></em>' literal value.
@@ -71,12 +64,12 @@ public enum ObjectState implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ACTIVE_LITERAL
+	 * @see #ACTIVE
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ACTIVE = 0;
+	public static final int ACTIVE_VALUE = 0;
 
 	/**
 	 * The '<em><b>DELETED</b></em>' literal value.
@@ -86,12 +79,12 @@ public enum ObjectState implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #DELETED_LITERAL
+	 * @see #DELETED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int DELETED = 1;
+	public static final int DELETED_VALUE = 1;
 
 	/**
 	 * An array of all the '<em><b>Object State</b></em>' enumerators.
@@ -100,10 +93,9 @@ public enum ObjectState implements Enumerator
 	 * @generated
 	 */
 	private static final ObjectState[] VALUES_ARRAY =
-		new ObjectState[]
-		{
-			ACTIVE_LITERAL,
-			DELETED_LITERAL,
+		new ObjectState[] {
+			ACTIVE,
+			DELETED,
 		};
 
 	/**
@@ -122,11 +114,9 @@ public enum ObjectState implements Enumerator
 	 */
 	public static ObjectState get(String literal)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			ObjectState result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal))
-			{
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -141,11 +131,9 @@ public enum ObjectState implements Enumerator
 	 */
 	public static ObjectState getByName(String name)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			ObjectState result = VALUES_ARRAY[i];
-			if (result.getName().equals(name))
-			{
+			if (result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -160,10 +148,9 @@ public enum ObjectState implements Enumerator
 	 */
 	public static ObjectState get(int value)
 	{
-		switch (value)
-		{
-			case ACTIVE: return ACTIVE_LITERAL;
-			case DELETED: return DELETED_LITERAL;
+		switch (value) {
+			case ACTIVE_VALUE: return ACTIVE;
+			case DELETED_VALUE: return DELETED;
 		}
 		return null;
 	}

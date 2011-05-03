@@ -47,13 +47,6 @@ public class IfcCostValueImpl extends IfcAppliedValueImpl implements IfcCostValu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	protected IfcCostValueImpl()
 	{
 		super();
@@ -67,7 +60,7 @@ public class IfcCostValueImpl extends IfcAppliedValueImpl implements IfcCostValu
 	@Override
 	protected EClass eStaticClass()
 	{
-		return Ifc2x3Package.Literals.IFC_COST_VALUE;
+		return Ifc2x3Package.eINSTANCE.getIfcCostValue();
 	}
 
 	/**
@@ -77,7 +70,7 @@ public class IfcCostValueImpl extends IfcAppliedValueImpl implements IfcCostValu
 	 */
 	public String getCostType()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_COST_VALUE__COST_TYPE, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcCostValue_CostType(), true);
 	}
 
 	/**
@@ -87,7 +80,7 @@ public class IfcCostValueImpl extends IfcAppliedValueImpl implements IfcCostValu
 	 */
 	public void setCostType(String newCostType)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_COST_VALUE__COST_TYPE, newCostType);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcCostValue_CostType(), newCostType);
 	}
 
 	/**
@@ -97,7 +90,7 @@ public class IfcCostValueImpl extends IfcAppliedValueImpl implements IfcCostValu
 	 */
 	public String getCondition()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_COST_VALUE__CONDITION, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcCostValue_Condition(), true);
 	}
 
 	/**
@@ -107,7 +100,7 @@ public class IfcCostValueImpl extends IfcAppliedValueImpl implements IfcCostValu
 	 */
 	public void setCondition(String newCondition)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_COST_VALUE__CONDITION, newCondition);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcCostValue_Condition(), newCondition);
 	}
 
 	/**
@@ -117,7 +110,7 @@ public class IfcCostValueImpl extends IfcAppliedValueImpl implements IfcCostValu
 	 */
 	public void unsetCondition()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_COST_VALUE__CONDITION);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcCostValue_Condition());
 	}
 
 	/**
@@ -127,7 +120,7 @@ public class IfcCostValueImpl extends IfcAppliedValueImpl implements IfcCostValu
 	 */
 	public boolean isSetCondition()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_COST_VALUE__CONDITION);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcCostValue_Condition());
 	}
 
 } //IfcCostValueImpl

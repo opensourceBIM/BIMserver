@@ -49,13 +49,6 @@ public class IfcEnvironmentalImpactValueImpl extends IfcAppliedValueImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	protected IfcEnvironmentalImpactValueImpl()
 	{
 		super();
@@ -69,7 +62,7 @@ public class IfcEnvironmentalImpactValueImpl extends IfcAppliedValueImpl impleme
 	@Override
 	protected EClass eStaticClass()
 	{
-		return Ifc2x3Package.Literals.IFC_ENVIRONMENTAL_IMPACT_VALUE;
+		return Ifc2x3Package.eINSTANCE.getIfcEnvironmentalImpactValue();
 	}
 
 	/**
@@ -79,7 +72,7 @@ public class IfcEnvironmentalImpactValueImpl extends IfcAppliedValueImpl impleme
 	 */
 	public String getImpactType()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_ENVIRONMENTAL_IMPACT_VALUE__IMPACT_TYPE, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcEnvironmentalImpactValue_ImpactType(), true);
 	}
 
 	/**
@@ -89,7 +82,7 @@ public class IfcEnvironmentalImpactValueImpl extends IfcAppliedValueImpl impleme
 	 */
 	public void setImpactType(String newImpactType)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_ENVIRONMENTAL_IMPACT_VALUE__IMPACT_TYPE, newImpactType);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcEnvironmentalImpactValue_ImpactType(), newImpactType);
 	}
 
 	/**
@@ -99,7 +92,7 @@ public class IfcEnvironmentalImpactValueImpl extends IfcAppliedValueImpl impleme
 	 */
 	public IfcEnvironmentalImpactCategoryEnum getCategory()
 	{
-		return (IfcEnvironmentalImpactCategoryEnum)eGet(Ifc2x3Package.Literals.IFC_ENVIRONMENTAL_IMPACT_VALUE__CATEGORY, true);
+		return (IfcEnvironmentalImpactCategoryEnum)eGet(Ifc2x3Package.eINSTANCE.getIfcEnvironmentalImpactValue_Category(), true);
 	}
 
 	/**
@@ -109,7 +102,7 @@ public class IfcEnvironmentalImpactValueImpl extends IfcAppliedValueImpl impleme
 	 */
 	public void setCategory(IfcEnvironmentalImpactCategoryEnum newCategory)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_ENVIRONMENTAL_IMPACT_VALUE__CATEGORY, newCategory);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcEnvironmentalImpactValue_Category(), newCategory);
 	}
 
 	/**
@@ -119,7 +112,7 @@ public class IfcEnvironmentalImpactValueImpl extends IfcAppliedValueImpl impleme
 	 */
 	public String getUserDefinedCategory()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_ENVIRONMENTAL_IMPACT_VALUE__USER_DEFINED_CATEGORY, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcEnvironmentalImpactValue_UserDefinedCategory(), true);
 	}
 
 	/**
@@ -129,7 +122,7 @@ public class IfcEnvironmentalImpactValueImpl extends IfcAppliedValueImpl impleme
 	 */
 	public void setUserDefinedCategory(String newUserDefinedCategory)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_ENVIRONMENTAL_IMPACT_VALUE__USER_DEFINED_CATEGORY, newUserDefinedCategory);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcEnvironmentalImpactValue_UserDefinedCategory(), newUserDefinedCategory);
 	}
 
 	/**
@@ -139,7 +132,7 @@ public class IfcEnvironmentalImpactValueImpl extends IfcAppliedValueImpl impleme
 	 */
 	public void unsetUserDefinedCategory()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_ENVIRONMENTAL_IMPACT_VALUE__USER_DEFINED_CATEGORY);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcEnvironmentalImpactValue_UserDefinedCategory());
 	}
 
 	/**
@@ -149,7 +142,7 @@ public class IfcEnvironmentalImpactValueImpl extends IfcAppliedValueImpl impleme
 	 */
 	public boolean isSetUserDefinedCategory()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_ENVIRONMENTAL_IMPACT_VALUE__USER_DEFINED_CATEGORY);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcEnvironmentalImpactValue_UserDefinedCategory());
 	}
 
 } //IfcEnvironmentalImpactValueImpl

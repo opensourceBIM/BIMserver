@@ -40,68 +40,61 @@ public enum IfcAddressTypeEnum implements Enumerator
 	 * The '<em><b>NULL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NULL
+	 * @see #NULL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NULL_LITERAL(0, "NULL", "NULL"),
+	NULL(0, "NULL", "NULL"),
 
 	/**
 	 * The '<em><b>SITE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #SITE
+	 * @see #SITE_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	SITE_LITERAL(1, "SITE", "SITE"),
+	SITE(1, "SITE", "SITE"),
 
 	/**
 	 * The '<em><b>HOME</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #HOME
+	 * @see #HOME_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	HOME_LITERAL(2, "HOME", "HOME"),
+	HOME(2, "HOME", "HOME"),
 
 	/**
 	 * The '<em><b>OFFICE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #OFFICE
+	 * @see #OFFICE_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	OFFICE_LITERAL(3, "OFFICE", "OFFICE"),
+	OFFICE(3, "OFFICE", "OFFICE"),
 
 	/**
 	 * The '<em><b>DISTRIBUTIONPOINT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #DISTRIBUTIONPOINT
+	 * @see #DISTRIBUTIONPOINT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	DISTRIBUTIONPOINT_LITERAL(4, "DISTRIBUTIONPOINT", "DISTRIBUTIONPOINT"),
+	DISTRIBUTIONPOINT(4, "DISTRIBUTIONPOINT", "DISTRIBUTIONPOINT"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
+	 * @see #USERDEFINED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	USERDEFINED_LITERAL(5, "USERDEFINED", "USERDEFINED");
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
+	USERDEFINED(5, "USERDEFINED", "USERDEFINED");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -111,12 +104,12 @@ public enum IfcAddressTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NULL_LITERAL
+	 * @see #NULL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NULL = 0;
+	public static final int NULL_VALUE = 0;
 
 	/**
 	 * The '<em><b>SITE</b></em>' literal value.
@@ -126,12 +119,12 @@ public enum IfcAddressTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #SITE_LITERAL
+	 * @see #SITE
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SITE = 1;
+	public static final int SITE_VALUE = 1;
 
 	/**
 	 * The '<em><b>HOME</b></em>' literal value.
@@ -141,12 +134,12 @@ public enum IfcAddressTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #HOME_LITERAL
+	 * @see #HOME
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int HOME = 2;
+	public static final int HOME_VALUE = 2;
 
 	/**
 	 * The '<em><b>OFFICE</b></em>' literal value.
@@ -156,12 +149,12 @@ public enum IfcAddressTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #OFFICE_LITERAL
+	 * @see #OFFICE
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int OFFICE = 3;
+	public static final int OFFICE_VALUE = 3;
 
 	/**
 	 * The '<em><b>DISTRIBUTIONPOINT</b></em>' literal value.
@@ -171,12 +164,12 @@ public enum IfcAddressTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #DISTRIBUTIONPOINT_LITERAL
+	 * @see #DISTRIBUTIONPOINT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int DISTRIBUTIONPOINT = 4;
+	public static final int DISTRIBUTIONPOINT_VALUE = 4;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -186,12 +179,12 @@ public enum IfcAddressTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_LITERAL
+	 * @see #USERDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED = 5;
+	public static final int USERDEFINED_VALUE = 5;
 
 	/**
 	 * An array of all the '<em><b>Ifc Address Type Enum</b></em>' enumerators.
@@ -200,14 +193,13 @@ public enum IfcAddressTypeEnum implements Enumerator
 	 * @generated
 	 */
 	private static final IfcAddressTypeEnum[] VALUES_ARRAY =
-		new IfcAddressTypeEnum[]
-		{
-			NULL_LITERAL,
-			SITE_LITERAL,
-			HOME_LITERAL,
-			OFFICE_LITERAL,
-			DISTRIBUTIONPOINT_LITERAL,
-			USERDEFINED_LITERAL,
+		new IfcAddressTypeEnum[] {
+			NULL,
+			SITE,
+			HOME,
+			OFFICE,
+			DISTRIBUTIONPOINT,
+			USERDEFINED,
 		};
 
 	/**
@@ -226,11 +218,9 @@ public enum IfcAddressTypeEnum implements Enumerator
 	 */
 	public static IfcAddressTypeEnum get(String literal)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcAddressTypeEnum result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal))
-			{
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -245,11 +235,9 @@ public enum IfcAddressTypeEnum implements Enumerator
 	 */
 	public static IfcAddressTypeEnum getByName(String name)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcAddressTypeEnum result = VALUES_ARRAY[i];
-			if (result.getName().equals(name))
-			{
+			if (result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -264,14 +252,13 @@ public enum IfcAddressTypeEnum implements Enumerator
 	 */
 	public static IfcAddressTypeEnum get(int value)
 	{
-		switch (value)
-		{
-			case NULL: return NULL_LITERAL;
-			case SITE: return SITE_LITERAL;
-			case HOME: return HOME_LITERAL;
-			case OFFICE: return OFFICE_LITERAL;
-			case DISTRIBUTIONPOINT: return DISTRIBUTIONPOINT_LITERAL;
-			case USERDEFINED: return USERDEFINED_LITERAL;
+		switch (value) {
+			case NULL_VALUE: return NULL;
+			case SITE_VALUE: return SITE;
+			case HOME_VALUE: return HOME;
+			case OFFICE_VALUE: return OFFICE;
+			case DISTRIBUTIONPOINT_VALUE: return DISTRIBUTIONPOINT;
+			case USERDEFINED_VALUE: return USERDEFINED;
 		}
 		return null;
 	}

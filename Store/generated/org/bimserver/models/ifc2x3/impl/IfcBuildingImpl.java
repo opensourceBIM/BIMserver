@@ -51,13 +51,6 @@ public class IfcBuildingImpl extends IfcSpatialStructureElementImpl implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	protected IfcBuildingImpl()
 	{
 		super();
@@ -71,7 +64,7 @@ public class IfcBuildingImpl extends IfcSpatialStructureElementImpl implements I
 	@Override
 	protected EClass eStaticClass()
 	{
-		return Ifc2x3Package.Literals.IFC_BUILDING;
+		return Ifc2x3Package.eINSTANCE.getIfcBuilding();
 	}
 
 	/**
@@ -81,7 +74,7 @@ public class IfcBuildingImpl extends IfcSpatialStructureElementImpl implements I
 	 */
 	public float getElevationOfRefHeight()
 	{
-		return (Float)eGet(Ifc2x3Package.Literals.IFC_BUILDING__ELEVATION_OF_REF_HEIGHT, true);
+		return (Float)eGet(Ifc2x3Package.eINSTANCE.getIfcBuilding_ElevationOfRefHeight(), true);
 	}
 
 	/**
@@ -91,7 +84,7 @@ public class IfcBuildingImpl extends IfcSpatialStructureElementImpl implements I
 	 */
 	public void setElevationOfRefHeight(float newElevationOfRefHeight)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_BUILDING__ELEVATION_OF_REF_HEIGHT, newElevationOfRefHeight);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcBuilding_ElevationOfRefHeight(), newElevationOfRefHeight);
 	}
 
 	/**
@@ -101,7 +94,7 @@ public class IfcBuildingImpl extends IfcSpatialStructureElementImpl implements I
 	 */
 	public void unsetElevationOfRefHeight()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_BUILDING__ELEVATION_OF_REF_HEIGHT);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcBuilding_ElevationOfRefHeight());
 	}
 
 	/**
@@ -111,7 +104,7 @@ public class IfcBuildingImpl extends IfcSpatialStructureElementImpl implements I
 	 */
 	public boolean isSetElevationOfRefHeight()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_BUILDING__ELEVATION_OF_REF_HEIGHT);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcBuilding_ElevationOfRefHeight());
 	}
 
 	/**
@@ -121,7 +114,7 @@ public class IfcBuildingImpl extends IfcSpatialStructureElementImpl implements I
 	 */
 	public String getElevationOfRefHeightAsString()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_BUILDING__ELEVATION_OF_REF_HEIGHT_AS_STRING, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcBuilding_ElevationOfRefHeightAsString(), true);
 	}
 
 	/**
@@ -131,7 +124,7 @@ public class IfcBuildingImpl extends IfcSpatialStructureElementImpl implements I
 	 */
 	public void setElevationOfRefHeightAsString(String newElevationOfRefHeightAsString)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_BUILDING__ELEVATION_OF_REF_HEIGHT_AS_STRING, newElevationOfRefHeightAsString);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcBuilding_ElevationOfRefHeightAsString(), newElevationOfRefHeightAsString);
 	}
 
 	/**
@@ -141,7 +134,7 @@ public class IfcBuildingImpl extends IfcSpatialStructureElementImpl implements I
 	 */
 	public void unsetElevationOfRefHeightAsString()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_BUILDING__ELEVATION_OF_REF_HEIGHT_AS_STRING);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcBuilding_ElevationOfRefHeightAsString());
 	}
 
 	/**
@@ -151,7 +144,7 @@ public class IfcBuildingImpl extends IfcSpatialStructureElementImpl implements I
 	 */
 	public boolean isSetElevationOfRefHeightAsString()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_BUILDING__ELEVATION_OF_REF_HEIGHT_AS_STRING);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcBuilding_ElevationOfRefHeightAsString());
 	}
 
 	/**
@@ -161,7 +154,7 @@ public class IfcBuildingImpl extends IfcSpatialStructureElementImpl implements I
 	 */
 	public float getElevationOfTerrain()
 	{
-		return (Float)eGet(Ifc2x3Package.Literals.IFC_BUILDING__ELEVATION_OF_TERRAIN, true);
+		return (Float)eGet(Ifc2x3Package.eINSTANCE.getIfcBuilding_ElevationOfTerrain(), true);
 	}
 
 	/**
@@ -171,7 +164,7 @@ public class IfcBuildingImpl extends IfcSpatialStructureElementImpl implements I
 	 */
 	public void setElevationOfTerrain(float newElevationOfTerrain)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_BUILDING__ELEVATION_OF_TERRAIN, newElevationOfTerrain);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcBuilding_ElevationOfTerrain(), newElevationOfTerrain);
 	}
 
 	/**
@@ -181,7 +174,7 @@ public class IfcBuildingImpl extends IfcSpatialStructureElementImpl implements I
 	 */
 	public void unsetElevationOfTerrain()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_BUILDING__ELEVATION_OF_TERRAIN);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcBuilding_ElevationOfTerrain());
 	}
 
 	/**
@@ -191,7 +184,7 @@ public class IfcBuildingImpl extends IfcSpatialStructureElementImpl implements I
 	 */
 	public boolean isSetElevationOfTerrain()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_BUILDING__ELEVATION_OF_TERRAIN);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcBuilding_ElevationOfTerrain());
 	}
 
 	/**
@@ -201,7 +194,7 @@ public class IfcBuildingImpl extends IfcSpatialStructureElementImpl implements I
 	 */
 	public String getElevationOfTerrainAsString()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_BUILDING__ELEVATION_OF_TERRAIN_AS_STRING, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcBuilding_ElevationOfTerrainAsString(), true);
 	}
 
 	/**
@@ -211,7 +204,7 @@ public class IfcBuildingImpl extends IfcSpatialStructureElementImpl implements I
 	 */
 	public void setElevationOfTerrainAsString(String newElevationOfTerrainAsString)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_BUILDING__ELEVATION_OF_TERRAIN_AS_STRING, newElevationOfTerrainAsString);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcBuilding_ElevationOfTerrainAsString(), newElevationOfTerrainAsString);
 	}
 
 	/**
@@ -221,7 +214,7 @@ public class IfcBuildingImpl extends IfcSpatialStructureElementImpl implements I
 	 */
 	public void unsetElevationOfTerrainAsString()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_BUILDING__ELEVATION_OF_TERRAIN_AS_STRING);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcBuilding_ElevationOfTerrainAsString());
 	}
 
 	/**
@@ -231,7 +224,7 @@ public class IfcBuildingImpl extends IfcSpatialStructureElementImpl implements I
 	 */
 	public boolean isSetElevationOfTerrainAsString()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_BUILDING__ELEVATION_OF_TERRAIN_AS_STRING);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcBuilding_ElevationOfTerrainAsString());
 	}
 
 	/**
@@ -241,7 +234,7 @@ public class IfcBuildingImpl extends IfcSpatialStructureElementImpl implements I
 	 */
 	public IfcPostalAddress getBuildingAddress()
 	{
-		return (IfcPostalAddress)eGet(Ifc2x3Package.Literals.IFC_BUILDING__BUILDING_ADDRESS, true);
+		return (IfcPostalAddress)eGet(Ifc2x3Package.eINSTANCE.getIfcBuilding_BuildingAddress(), true);
 	}
 
 	/**
@@ -251,7 +244,7 @@ public class IfcBuildingImpl extends IfcSpatialStructureElementImpl implements I
 	 */
 	public void setBuildingAddress(IfcPostalAddress newBuildingAddress)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_BUILDING__BUILDING_ADDRESS, newBuildingAddress);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcBuilding_BuildingAddress(), newBuildingAddress);
 	}
 
 	/**
@@ -261,7 +254,7 @@ public class IfcBuildingImpl extends IfcSpatialStructureElementImpl implements I
 	 */
 	public void unsetBuildingAddress()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_BUILDING__BUILDING_ADDRESS);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcBuilding_BuildingAddress());
 	}
 
 	/**
@@ -271,7 +264,7 @@ public class IfcBuildingImpl extends IfcSpatialStructureElementImpl implements I
 	 */
 	public boolean isSetBuildingAddress()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_BUILDING__BUILDING_ADDRESS);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcBuilding_BuildingAddress());
 	}
 
 } //IfcBuildingImpl

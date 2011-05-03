@@ -40,38 +40,31 @@ public enum IfcAheadOrBehind implements Enumerator
 	 * The '<em><b>NULL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NULL
+	 * @see #NULL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NULL_LITERAL(0, "NULL", "NULL"),
+	NULL(0, "NULL", "NULL"),
 
 	/**
 	 * The '<em><b>AHEAD</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #AHEAD
+	 * @see #AHEAD_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	AHEAD_LITERAL(1, "AHEAD", "AHEAD"),
+	AHEAD(1, "AHEAD", "AHEAD"),
 
 	/**
 	 * The '<em><b>BEHIND</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #BEHIND
+	 * @see #BEHIND_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	BEHIND_LITERAL(2, "BEHIND", "BEHIND");
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
+	BEHIND(2, "BEHIND", "BEHIND");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -81,12 +74,12 @@ public enum IfcAheadOrBehind implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NULL_LITERAL
+	 * @see #NULL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NULL = 0;
+	public static final int NULL_VALUE = 0;
 
 	/**
 	 * The '<em><b>AHEAD</b></em>' literal value.
@@ -96,12 +89,12 @@ public enum IfcAheadOrBehind implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #AHEAD_LITERAL
+	 * @see #AHEAD
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int AHEAD = 1;
+	public static final int AHEAD_VALUE = 1;
 
 	/**
 	 * The '<em><b>BEHIND</b></em>' literal value.
@@ -111,12 +104,12 @@ public enum IfcAheadOrBehind implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #BEHIND_LITERAL
+	 * @see #BEHIND
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int BEHIND = 2;
+	public static final int BEHIND_VALUE = 2;
 
 	/**
 	 * An array of all the '<em><b>Ifc Ahead Or Behind</b></em>' enumerators.
@@ -125,11 +118,10 @@ public enum IfcAheadOrBehind implements Enumerator
 	 * @generated
 	 */
 	private static final IfcAheadOrBehind[] VALUES_ARRAY =
-		new IfcAheadOrBehind[]
-		{
-			NULL_LITERAL,
-			AHEAD_LITERAL,
-			BEHIND_LITERAL,
+		new IfcAheadOrBehind[] {
+			NULL,
+			AHEAD,
+			BEHIND,
 		};
 
 	/**
@@ -148,11 +140,9 @@ public enum IfcAheadOrBehind implements Enumerator
 	 */
 	public static IfcAheadOrBehind get(String literal)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcAheadOrBehind result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal))
-			{
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -167,11 +157,9 @@ public enum IfcAheadOrBehind implements Enumerator
 	 */
 	public static IfcAheadOrBehind getByName(String name)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcAheadOrBehind result = VALUES_ARRAY[i];
-			if (result.getName().equals(name))
-			{
+			if (result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -186,11 +174,10 @@ public enum IfcAheadOrBehind implements Enumerator
 	 */
 	public static IfcAheadOrBehind get(int value)
 	{
-		switch (value)
-		{
-			case NULL: return NULL_LITERAL;
-			case AHEAD: return AHEAD_LITERAL;
-			case BEHIND: return BEHIND_LITERAL;
+		switch (value) {
+			case NULL_VALUE: return NULL;
+			case AHEAD_VALUE: return AHEAD;
+			case BEHIND_VALUE: return BEHIND;
 		}
 		return null;
 	}

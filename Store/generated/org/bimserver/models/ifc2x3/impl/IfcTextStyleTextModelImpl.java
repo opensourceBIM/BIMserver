@@ -53,13 +53,6 @@ public class IfcTextStyleTextModelImpl extends IdEObjectImpl implements IfcTextS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	protected IfcTextStyleTextModelImpl()
 	{
 		super();
@@ -73,7 +66,7 @@ public class IfcTextStyleTextModelImpl extends IdEObjectImpl implements IfcTextS
 	@Override
 	protected EClass eStaticClass()
 	{
-		return Ifc2x3Package.Literals.IFC_TEXT_STYLE_TEXT_MODEL;
+		return Ifc2x3Package.eINSTANCE.getIfcTextStyleTextModel();
 	}
 
 	/**
@@ -94,7 +87,7 @@ public class IfcTextStyleTextModelImpl extends IdEObjectImpl implements IfcTextS
 	 */
 	public IfcSizeSelect getTextIndent()
 	{
-		return (IfcSizeSelect)eGet(Ifc2x3Package.Literals.IFC_TEXT_STYLE_TEXT_MODEL__TEXT_INDENT, true);
+		return (IfcSizeSelect)eGet(Ifc2x3Package.eINSTANCE.getIfcTextStyleTextModel_TextIndent(), true);
 	}
 
 	/**
@@ -104,7 +97,7 @@ public class IfcTextStyleTextModelImpl extends IdEObjectImpl implements IfcTextS
 	 */
 	public void setTextIndent(IfcSizeSelect newTextIndent)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_TEXT_STYLE_TEXT_MODEL__TEXT_INDENT, newTextIndent);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcTextStyleTextModel_TextIndent(), newTextIndent);
 	}
 
 	/**
@@ -114,7 +107,7 @@ public class IfcTextStyleTextModelImpl extends IdEObjectImpl implements IfcTextS
 	 */
 	public void unsetTextIndent()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_TEXT_STYLE_TEXT_MODEL__TEXT_INDENT);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcTextStyleTextModel_TextIndent());
 	}
 
 	/**
@@ -124,7 +117,7 @@ public class IfcTextStyleTextModelImpl extends IdEObjectImpl implements IfcTextS
 	 */
 	public boolean isSetTextIndent()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_TEXT_STYLE_TEXT_MODEL__TEXT_INDENT);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcTextStyleTextModel_TextIndent());
 	}
 
 	/**
@@ -134,7 +127,7 @@ public class IfcTextStyleTextModelImpl extends IdEObjectImpl implements IfcTextS
 	 */
 	public String getTextAlign()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_TEXT_STYLE_TEXT_MODEL__TEXT_ALIGN, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcTextStyleTextModel_TextAlign(), true);
 	}
 
 	/**
@@ -144,7 +137,7 @@ public class IfcTextStyleTextModelImpl extends IdEObjectImpl implements IfcTextS
 	 */
 	public void setTextAlign(String newTextAlign)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_TEXT_STYLE_TEXT_MODEL__TEXT_ALIGN, newTextAlign);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcTextStyleTextModel_TextAlign(), newTextAlign);
 	}
 
 	/**
@@ -154,7 +147,7 @@ public class IfcTextStyleTextModelImpl extends IdEObjectImpl implements IfcTextS
 	 */
 	public void unsetTextAlign()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_TEXT_STYLE_TEXT_MODEL__TEXT_ALIGN);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcTextStyleTextModel_TextAlign());
 	}
 
 	/**
@@ -164,7 +157,7 @@ public class IfcTextStyleTextModelImpl extends IdEObjectImpl implements IfcTextS
 	 */
 	public boolean isSetTextAlign()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_TEXT_STYLE_TEXT_MODEL__TEXT_ALIGN);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcTextStyleTextModel_TextAlign());
 	}
 
 	/**
@@ -174,7 +167,7 @@ public class IfcTextStyleTextModelImpl extends IdEObjectImpl implements IfcTextS
 	 */
 	public String getTextDecoration()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_TEXT_STYLE_TEXT_MODEL__TEXT_DECORATION, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcTextStyleTextModel_TextDecoration(), true);
 	}
 
 	/**
@@ -184,7 +177,7 @@ public class IfcTextStyleTextModelImpl extends IdEObjectImpl implements IfcTextS
 	 */
 	public void setTextDecoration(String newTextDecoration)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_TEXT_STYLE_TEXT_MODEL__TEXT_DECORATION, newTextDecoration);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcTextStyleTextModel_TextDecoration(), newTextDecoration);
 	}
 
 	/**
@@ -194,7 +187,7 @@ public class IfcTextStyleTextModelImpl extends IdEObjectImpl implements IfcTextS
 	 */
 	public void unsetTextDecoration()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_TEXT_STYLE_TEXT_MODEL__TEXT_DECORATION);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcTextStyleTextModel_TextDecoration());
 	}
 
 	/**
@@ -204,7 +197,7 @@ public class IfcTextStyleTextModelImpl extends IdEObjectImpl implements IfcTextS
 	 */
 	public boolean isSetTextDecoration()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_TEXT_STYLE_TEXT_MODEL__TEXT_DECORATION);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcTextStyleTextModel_TextDecoration());
 	}
 
 	/**
@@ -214,7 +207,7 @@ public class IfcTextStyleTextModelImpl extends IdEObjectImpl implements IfcTextS
 	 */
 	public IfcSizeSelect getLetterSpacing()
 	{
-		return (IfcSizeSelect)eGet(Ifc2x3Package.Literals.IFC_TEXT_STYLE_TEXT_MODEL__LETTER_SPACING, true);
+		return (IfcSizeSelect)eGet(Ifc2x3Package.eINSTANCE.getIfcTextStyleTextModel_LetterSpacing(), true);
 	}
 
 	/**
@@ -224,7 +217,7 @@ public class IfcTextStyleTextModelImpl extends IdEObjectImpl implements IfcTextS
 	 */
 	public void setLetterSpacing(IfcSizeSelect newLetterSpacing)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_TEXT_STYLE_TEXT_MODEL__LETTER_SPACING, newLetterSpacing);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcTextStyleTextModel_LetterSpacing(), newLetterSpacing);
 	}
 
 	/**
@@ -234,7 +227,7 @@ public class IfcTextStyleTextModelImpl extends IdEObjectImpl implements IfcTextS
 	 */
 	public void unsetLetterSpacing()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_TEXT_STYLE_TEXT_MODEL__LETTER_SPACING);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcTextStyleTextModel_LetterSpacing());
 	}
 
 	/**
@@ -244,7 +237,7 @@ public class IfcTextStyleTextModelImpl extends IdEObjectImpl implements IfcTextS
 	 */
 	public boolean isSetLetterSpacing()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_TEXT_STYLE_TEXT_MODEL__LETTER_SPACING);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcTextStyleTextModel_LetterSpacing());
 	}
 
 	/**
@@ -254,7 +247,7 @@ public class IfcTextStyleTextModelImpl extends IdEObjectImpl implements IfcTextS
 	 */
 	public IfcSizeSelect getWordSpacing()
 	{
-		return (IfcSizeSelect)eGet(Ifc2x3Package.Literals.IFC_TEXT_STYLE_TEXT_MODEL__WORD_SPACING, true);
+		return (IfcSizeSelect)eGet(Ifc2x3Package.eINSTANCE.getIfcTextStyleTextModel_WordSpacing(), true);
 	}
 
 	/**
@@ -264,7 +257,7 @@ public class IfcTextStyleTextModelImpl extends IdEObjectImpl implements IfcTextS
 	 */
 	public void setWordSpacing(IfcSizeSelect newWordSpacing)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_TEXT_STYLE_TEXT_MODEL__WORD_SPACING, newWordSpacing);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcTextStyleTextModel_WordSpacing(), newWordSpacing);
 	}
 
 	/**
@@ -274,7 +267,7 @@ public class IfcTextStyleTextModelImpl extends IdEObjectImpl implements IfcTextS
 	 */
 	public void unsetWordSpacing()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_TEXT_STYLE_TEXT_MODEL__WORD_SPACING);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcTextStyleTextModel_WordSpacing());
 	}
 
 	/**
@@ -284,7 +277,7 @@ public class IfcTextStyleTextModelImpl extends IdEObjectImpl implements IfcTextS
 	 */
 	public boolean isSetWordSpacing()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_TEXT_STYLE_TEXT_MODEL__WORD_SPACING);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcTextStyleTextModel_WordSpacing());
 	}
 
 	/**
@@ -294,7 +287,7 @@ public class IfcTextStyleTextModelImpl extends IdEObjectImpl implements IfcTextS
 	 */
 	public String getTextTransform()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_TEXT_STYLE_TEXT_MODEL__TEXT_TRANSFORM, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcTextStyleTextModel_TextTransform(), true);
 	}
 
 	/**
@@ -304,7 +297,7 @@ public class IfcTextStyleTextModelImpl extends IdEObjectImpl implements IfcTextS
 	 */
 	public void setTextTransform(String newTextTransform)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_TEXT_STYLE_TEXT_MODEL__TEXT_TRANSFORM, newTextTransform);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcTextStyleTextModel_TextTransform(), newTextTransform);
 	}
 
 	/**
@@ -314,7 +307,7 @@ public class IfcTextStyleTextModelImpl extends IdEObjectImpl implements IfcTextS
 	 */
 	public void unsetTextTransform()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_TEXT_STYLE_TEXT_MODEL__TEXT_TRANSFORM);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcTextStyleTextModel_TextTransform());
 	}
 
 	/**
@@ -324,7 +317,7 @@ public class IfcTextStyleTextModelImpl extends IdEObjectImpl implements IfcTextS
 	 */
 	public boolean isSetTextTransform()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_TEXT_STYLE_TEXT_MODEL__TEXT_TRANSFORM);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcTextStyleTextModel_TextTransform());
 	}
 
 	/**
@@ -334,7 +327,7 @@ public class IfcTextStyleTextModelImpl extends IdEObjectImpl implements IfcTextS
 	 */
 	public IfcSizeSelect getLineHeight()
 	{
-		return (IfcSizeSelect)eGet(Ifc2x3Package.Literals.IFC_TEXT_STYLE_TEXT_MODEL__LINE_HEIGHT, true);
+		return (IfcSizeSelect)eGet(Ifc2x3Package.eINSTANCE.getIfcTextStyleTextModel_LineHeight(), true);
 	}
 
 	/**
@@ -344,7 +337,7 @@ public class IfcTextStyleTextModelImpl extends IdEObjectImpl implements IfcTextS
 	 */
 	public void setLineHeight(IfcSizeSelect newLineHeight)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_TEXT_STYLE_TEXT_MODEL__LINE_HEIGHT, newLineHeight);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcTextStyleTextModel_LineHeight(), newLineHeight);
 	}
 
 	/**
@@ -354,7 +347,7 @@ public class IfcTextStyleTextModelImpl extends IdEObjectImpl implements IfcTextS
 	 */
 	public void unsetLineHeight()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_TEXT_STYLE_TEXT_MODEL__LINE_HEIGHT);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcTextStyleTextModel_LineHeight());
 	}
 
 	/**
@@ -364,7 +357,7 @@ public class IfcTextStyleTextModelImpl extends IdEObjectImpl implements IfcTextS
 	 */
 	public boolean isSetLineHeight()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_TEXT_STYLE_TEXT_MODEL__LINE_HEIGHT);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcTextStyleTextModel_LineHeight());
 	}
 
 } //IfcTextStyleTextModelImpl
