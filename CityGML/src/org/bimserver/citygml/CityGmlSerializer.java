@@ -474,11 +474,11 @@ public class CityGmlSerializer extends BimModelSerializer {
 		} else if (ifcElement instanceof IfcSlab) {
 			if (!convertedObjects.containsKey(ifcElement)) {
 				IfcSlab ifcSlab = (IfcSlab) ifcElement;
-				if (ifcSlab.getPredefinedType() == IfcSlabTypeEnum.ROOF) {
+				if (ifcSlab.getPredefinedType() == IfcSlabTypeEnum.ROOF_LITERAL) {
 					RoofSurface roofSurface = createRoof(building, ifcSlab);
 					convertedObjects.put(ifcElement, roofSurface);
-				} else if (ifcSlab.getPredefinedType() == IfcSlabTypeEnum.FLOOR || ifcSlab.getPredefinedType() == IfcSlabTypeEnum.BASESLAB
-						|| ifcSlab.getPredefinedType() == IfcSlabTypeEnum.LANDING || ifcSlab.getPredefinedType() == IfcSlabTypeEnum.NULL) {
+				} else if (ifcSlab.getPredefinedType() == IfcSlabTypeEnum.FLOOR_LITERAL || ifcSlab.getPredefinedType() == IfcSlabTypeEnum.BASESLAB_LITERAL
+						|| ifcSlab.getPredefinedType() == IfcSlabTypeEnum.LANDING_LITERAL || ifcSlab.getPredefinedType() == IfcSlabTypeEnum.NULL_LITERAL) {
 					FloorSurface floorSurface = createFloor(room, ifcElement, ifcSlab);
 					convertedObjects.put(ifcElement, floorSurface);
 				}
