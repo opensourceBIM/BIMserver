@@ -122,7 +122,5 @@
 	<classpathentry exported="true" kind="lib" path="lib/jaxb/jaxb-api-2.2.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/jaxb/jaxb-impl-2.2.1.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/jaxb/jaxb-xjc-2.2.1.1.jar"/>
-	<classpathentry kind="lib" path="lib/emf/org.eclipse.emf.codegen_2.5.0.v200906151043.jar"/>
-	<classpathentry kind="lib" path="lib/emf/org.eclipse.emf.codegen.ecore_2.5.0.v200906151043.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

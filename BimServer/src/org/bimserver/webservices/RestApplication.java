@@ -27,7 +27,7 @@ public class RestApplication extends Application {
 	public Set<Object> getSingletons() {
 		Set<Object> objects = new HashSet<Object>();
 		if (serviceFactory != null) {
-			objects.add(serviceFactory.newService(AccessMethod.REST));
+			objects.add(serviceFactory.newService(AccessMethod.REST_LITERAL));
 		}
 		return objects;
 	}

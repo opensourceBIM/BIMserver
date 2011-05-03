@@ -36,7 +36,7 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 	public ConcreteRevision execute() throws UserException, BimDatabaseException, BimDeadlockException {
 		Project project = getProjectByPoid(poid);
 		User user = getUserByUoid(actingUoid);
-		if (user.getUserType() == UserType.ANONYMOUS) {
+		if (user.getUserType() == UserType.ANONYMOUS_LITERAL) {
 			throw new UserException("User anonymous cannot create new revisions");
 		}
 		if (project == null) {
@@ -45,19 +45,19 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 		if (!RightsManager.hasRightsOnProjectOrSuperProjects(user, project)) {
 			throw new UserException("User has no rights to checkin models to this project");
 		}
-		if (!project.getRevisions().isEmpty() && project.getRevisions().get(project.getRevisions().size()-1).getState() == CheckinState.STORING) {
+		if (!project.getRevisions().isEmpty() && project.getRevisions().get(project.getRevisions().size()-1).getState() == CheckinState.STORING_LITERAL) {
 			throw new UserException("Another checkin on this project is currently running, please wait and try again");
 		}
 		if (!MailSystem.isValidEmailAddress(user.getUsername())) {
 			throw new UserException("Users must have a valid e-mail address to checkin");
 		}
 		checkCheckSum(project);
-		ConcreteRevision concreteRevision = createNewConcreteRevision(getDatabaseSession(), model.size(), poid, actingUoid, comment.trim(), CheckinState.DONE);
+		ConcreteRevision concreteRevision = createNewConcreteRevision(getDatabaseSession(), model.size(), poid, actingUoid, comment.trim(), CheckinState.DONE_LITERAL);
 		Revision virtualRevision = concreteRevision.getRevisions().get(0);
 		concreteRevision.setChecksum(model.getChecksum());
 		project.setLastConcreteRevision(concreteRevision);
 		project.setLastRevision(virtualRevision);
-		concreteRevision.setState(CheckinState.STORING);
+		concreteRevision.setState(CheckinState.STORING_LITERAL);
 		if (concreteRevision.getId() != 1) {
 			// There already was a revision, lets go delete it
 			getDatabaseSession().clearProject(project.getId(), concreteRevision.getId() - 1, concreteRevision.getId());

@@ -33,7 +33,7 @@ public class GetSubProjectsDatabaseAction extends BimDatabaseAction<Set<Project>
 		}
 		Set<Project> subProjects = new HashSet<Project>();
 		for (Project subProject : project.getSubProjects()) {
-			if (subProject.getState() == ObjectState.ACTIVE) {
+			if (subProject.getState() == ObjectState.ACTIVE_LITERAL) {
 				subProjects.add(subProject);
 			}
 		}

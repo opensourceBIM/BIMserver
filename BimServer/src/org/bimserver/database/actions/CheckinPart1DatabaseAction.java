@@ -40,7 +40,7 @@ public class CheckinPart1DatabaseAction extends GenericCheckinDatabaseAction {
 		if (project == null) {
 			throw new UserException("Project with poid " + poid + " not found");
 		}
-		if (user.getUserType() == UserType.ANONYMOUS) {
+		if (user.getUserType() == UserType.ANONYMOUS_LITERAL) {
 			throw new UserException("User anonymous cannot create new revisions");
 		}
 		if (!RightsManager.hasRightsOnProjectOrSuperProjects(user, project)) {
@@ -50,10 +50,10 @@ public class CheckinPart1DatabaseAction extends GenericCheckinDatabaseAction {
 			throw new UserException("Users must have a valid e-mail address to checkin");
 		}
 		checkCheckSum(project);
-		if (!project.getRevisions().isEmpty() && project.getRevisions().get(project.getRevisions().size()-1).getState() == CheckinState.STORING) {
+		if (!project.getRevisions().isEmpty() && project.getRevisions().get(project.getRevisions().size()-1).getState() == CheckinState.STORING_LITERAL) {
 			throw new UserException("Another checkin on this project is currently running, please wait and try again");
 		}
-		ConcreteRevision concreteRevision = createNewConcreteRevision(getDatabaseSession(), model.getSize(), poid, actingUid, comment.trim(), CheckinState.STORING);
+		ConcreteRevision concreteRevision = createNewConcreteRevision(getDatabaseSession(), model.getSize(), poid, actingUid, comment.trim(), CheckinState.STORING_LITERAL);
 		concreteRevision.setChecksum(model.getChecksum());
 		NewRevisionAdded newRevisionAdded = LogFactory.eINSTANCE.createNewRevisionAdded();
 		newRevisionAdded.setDate(new Date());

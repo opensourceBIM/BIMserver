@@ -38,8 +38,8 @@ public class GetAllProjectsDatabaseAction extends BimDatabaseAction<Set<Project>
 		Condition condition = new IsOfTypeCondition(StorePackage.eINSTANCE.getProject()).and(
 				new Not(new AttributeCondition(StorePackage.eINSTANCE.getProject_Name(), new StringLiteral(Database.STORE_PROJECT_NAME)))).and(
 				new HasReferenceToCondition(StorePackage.eINSTANCE.getProject_HasAuthorizedUsers(), user));
-		if (user.getUserType() != UserType.ADMIN) {
-			condition = condition.and(new AttributeCondition(StorePackage.eINSTANCE.getProject_State(), new EnumLiteral(ObjectState.ACTIVE)));
+		if (user.getUserType() != UserType.ADMIN_LITERAL) {
+			condition = condition.and(new AttributeCondition(StorePackage.eINSTANCE.getProject_State(), new EnumLiteral(ObjectState.ACTIVE_LITERAL)));
 		}
 		Map<Long, Project> results = (Map<Long, Project>) getDatabaseSession().query(condition, Project.class, false);
 		Set<Project> resultSet = CollectionUtils.mapToSet(results);

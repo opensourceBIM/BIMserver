@@ -234,7 +234,7 @@ public class ServerInitializer implements ServletContextListener {
 			
 
 			ServiceFactory.init(bimDatabase, emfSerializerFactory, schema, longActionManager, ifcEngineFactory, fieldIgnoreMap, settingsManager, mailSystem, diskCacheManager);
-			setSystemService(ServiceFactory.getINSTANCE().newService(AccessMethod.INTERNAL));
+			setSystemService(ServiceFactory.getINSTANCE().newService(AccessMethod.INTERNAL_LITERAL));
 			if (!((Service) getSystemService()).loginAsSystem()) {
 				throw new RuntimeException("System user not found");
 			}
@@ -260,7 +260,7 @@ public class ServerInitializer implements ServletContextListener {
 
 			ServerStarted serverStarted = LogFactory.eINSTANCE.createServerStarted();
 			serverStarted.setDate(new Date());
-			serverStarted.setAccessMethod(AccessMethod.INTERNAL);
+			serverStarted.setAccessMethod(AccessMethod.INTERNAL_LITERAL);
 			serverStarted.setExecutor(null);
 			BimDatabaseSession session = bimDatabase.createSession(true);
 			try {

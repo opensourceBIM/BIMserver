@@ -55,7 +55,7 @@ public class SyndicationServlet extends HttpServlet {
 			String password = split[1];
 			ServiceInterface service = (ServiceInterface) getServletContext().getAttribute("service");
 			if (service == null) {
-				service = ServiceFactory.getINSTANCE().newService(AccessMethod.SYNDICATION);
+				service = ServiceFactory.getINSTANCE().newService(AccessMethod.SYNDICATION_LITERAL);
 			}
 			try {
 				if (service.login(username, password)) {

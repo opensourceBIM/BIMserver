@@ -33,13 +33,13 @@ public class RemoveUserFromProjectDatabaseAction extends BimDatabaseAction<Boole
 		Project project = getProjectByPoid(poid);
 		User user = getUserByUoid(uoid);
 		User actingUser = getUserByUoid(actingUoid);
-		if (actingUser.getUserType() == UserType.ANONYMOUS) {
+		if (actingUser.getUserType() == UserType.ANONYMOUS_LITERAL) {
 			throw new UserException("Anonymous user has no rights to remove users from any project");
 		} else if (RightsManager.hasRightsOnProject(actingUser, project)) {
-			if (user.getUserType() == UserType.ADMIN) {
+			if (user.getUserType() == UserType.ADMIN_LITERAL) {
 				int nrAdmins = 0;
 				for (User authUser : project.getHasAuthorizedUsers()) {
-					if (authUser.getUserType() == UserType.ADMIN) {
+					if (authUser.getUserType() == UserType.ADMIN_LITERAL) {
 						nrAdmins++;
 					}
 				}
