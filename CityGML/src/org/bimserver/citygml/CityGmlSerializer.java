@@ -16,7 +16,6 @@ import org.bimserver.ifc.EmfSerializer;
 import org.bimserver.ifc.FieldIgnoreMap;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.SerializerException;
-import org.bimserver.ifc.database.IfcDatabase;
 import org.bimserver.ifc.file.writer.IfcStepSerializer;
 import org.bimserver.ifcengine.FailSafeIfcEngine;
 import org.bimserver.ifcengine.Geometry;
@@ -144,7 +143,6 @@ public class CityGmlSerializer extends BimModelSerializer {
 	public boolean write(OutputStream out) throws SerializerException {
 		if (getMode() == Mode.BODY) {
 			PrintWriter writer = new PrintWriter(out);
-			IfcDatabase ifcDatabase = new IfcDatabase(model, null);
 			CityModel cityModel = citygml.createCityModel();
 			JAXBBuilder builder = null;
 			try {
