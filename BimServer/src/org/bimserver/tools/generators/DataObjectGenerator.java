@@ -47,107 +47,145 @@ import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import com.sleepycat.je.DatabaseException;
 
 public class DataObjectGenerator {
-	
+
 	private static final String MODEL_PACKAGE = "org.bimserver.models.";
 	private final Schema schema;
 
 	public DataObjectGenerator(Schema schema) {
 		this.schema = schema;
 	}
-	
+
 	public VirtualFile generate(VirtualFile basedir) throws DatabaseException {
 		GenModel genModel = GenModelFactory.eINSTANCE.createGenModel();
-		genModel.setRuntimeVersion(GenRuntimeVersion.EMF25);
+		genModel.setRuntimeVersion(GenRuntimeVersion.EMF26);
 		genModel.setComplianceLevel(GenJDKLevel.JDK60_LITERAL);
 		genModel.setFeatureDelegation(GenDelegationKind.REFLECTIVE_LITERAL);
 		genModel.setRootExtendsClass("org.bimserver.emf.IdEObjectImpl");
 		genModel.setRootExtendsInterface("org.bimserver.emf.IdEObject");
 		genModel.setSuppressContainment(true);
+		genModel.setCodeFormatting(true);
+		genModel.setCopyrightText(StringUtils.readFromFile(new File("copyright.txt")));
 		genModel.setCanGenerate(true);
 		genModel.setModelDirectory("test");
 		genModel.setModelName("model name");
 		genModel.setForceOverwrite(true);
+		genModel.setSuppressNotification(true);
+		genModel.setContainmentProxies(false);
+		genModel.setBinaryCompatibleReflectiveMethods(false);
+		genModel.setPublicConstructors(false);
+		genModel.setMinimalReflectiveMethods(false); // More code, but faster
 
 		Set<GenPackage> genPackages = createGenPackages(genModel, basedir);
-		for (GenPackage genPackage : genPackages) {
-			genModel.getUsedGenPackages().add(genPackage);
-		}
-		generatePackages(genPackages, basedir);
-		
+		// for (GenPackage genPackage : genPackages) {
+		// genModel.getUsedGenPackages().add(genPackage);
+		// }
+		generatePackages(genModel, genPackages, basedir);
+
 		return basedir;
 	}
 
-	private void generatePackages(Set<GenPackage> genPackages, VirtualFile basedir) {
+	private void generatePackages(GenModel genModel, Set<GenPackage> genPackages, VirtualFile basedir) {
 		for (GenPackage genPackage : genPackages) {
 			genPackage.prepareCache();
-			
-			String packageClassPathImpl = MODEL_PACKAGE + genPackage.getPackageName() + ".impl.";
-			packageClassPathImpl = packageClassPathImpl.replace(".", File.separator) + genPackage.getPackageClassName() + ".java";
-			VirtualFile packageVirtualFileImpl = basedir.createFile(packageClassPathImpl);
-			packageVirtualFileImpl.setStringContent(new PackageClass().generate(new Object[] { genPackage, false, true }));
-			
+
+			generateFile(genModel, basedir, genPackage);
+
+			genModel.setImportManager(new ImportManager("org.bimserver.models"));
+
 			String packageClassPathInterface = MODEL_PACKAGE + genPackage.getPackageName() + ".";
 			packageClassPathInterface = packageClassPathInterface.replace(".", File.separator) + genPackage.getPackageInterfaceName() + ".java";
 			VirtualFile packageVirtualFileInterface = basedir.createFile(packageClassPathInterface);
 			packageVirtualFileInterface.setStringContent(new PackageClass().generate(new Object[] { genPackage, true, false }));
-			
+
+			genModel.setImportManager(new ImportManager("org.bimserver.models"));
+
 			String factoryClassPathImpl = MODEL_PACKAGE + genPackage.getPackageName() + ".impl.";
 			factoryClassPathImpl = factoryClassPathImpl.replace(".", File.separator) + genPackage.getFactoryClassName() + ".java";
 			VirtualFile factoryVirtualFileImpl = basedir.createFile(factoryClassPathImpl);
 			factoryVirtualFileImpl.setStringContent(new FactoryClass().generate(new Object[] { genPackage, false, true }));
-			
+
+			genModel.setImportManager(new ImportManager("org.bimserver.models"));
+
 			String factoryClassPathInterface = MODEL_PACKAGE + genPackage.getPackageName() + ".";
 			factoryClassPathInterface = factoryClassPathInterface.replace(".", File.separator) + genPackage.getFactoryInterfaceName() + ".java";
 			VirtualFile factoryVirtualFileInterface = basedir.createFile(factoryClassPathInterface);
 			factoryVirtualFileInterface.setStringContent(new FactoryClass().generate(new Object[] { genPackage, true, false }));
-			
+
+			genModel.setImportManager(new ImportManager("org.bimserver.models"));
+
 			String adapterFactoryClassPath = MODEL_PACKAGE + genPackage.getPackageName() + ".util.";
 			adapterFactoryClassPath = adapterFactoryClassPath.replace(".", File.separator) + genPackage.getAdapterFactoryClassName() + ".java";
 			VirtualFile adapterFactoryVirtualFile = basedir.createFile(adapterFactoryClassPath);
 			adapterFactoryVirtualFile.setStringContent(new AdapterFactoryClass().generate(genPackage));
-			
+
+			genModel.setImportManager(new ImportManager("org.bimserver.models"));
+
 			String switchClassPath = MODEL_PACKAGE + genPackage.getPackageName() + ".util.";
 			switchClassPath = switchClassPath.replace(".", File.separator) + genPackage.getSwitchClassName() + ".java";
 			VirtualFile switchClassVirtualFile = basedir.createFile(switchClassPath);
 			switchClassVirtualFile.setStringContent(new SwitchClass().generate(genPackage));
-			
+
+			genModel.setImportManager(new ImportManager("org.bimserver.models"));
+
 			String xmlClassPath = MODEL_PACKAGE + genPackage.getPackageName() + ".util.";
 			xmlClassPath = xmlClassPath.replace(".", File.separator) + genPackage.getXMLProcessorClassName() + ".java";
 			VirtualFile xmlClassVirtualFile = basedir.createFile(xmlClassPath);
 			xmlClassVirtualFile.setStringContent(new XMLProcessorClass().generate(genPackage));
+
+			genModel.setImportManager(new ImportManager("org.bimserver.models"));
 
 			String resourceFactoryClassPath = MODEL_PACKAGE + genPackage.getPackageName() + ".util.";
 			resourceFactoryClassPath = resourceFactoryClassPath.replace(".", File.separator) + genPackage.getResourceFactoryClassName() + ".java";
 			VirtualFile resourceFactoryClassVirtualFile = basedir.createFile(resourceFactoryClassPath);
 			resourceFactoryClassVirtualFile.setStringContent(new ResourceFactoryClass().generate(genPackage));
 
+			genModel.setImportManager(new ImportManager("org.bimserver.models"));
+
 			String resourceClassPath = MODEL_PACKAGE + genPackage.getPackageName() + ".util.";
 			resourceClassPath = resourceClassPath.replace(".", File.separator) + genPackage.getResourceClassName() + ".java";
 			VirtualFile resourceClassVirtualFile = basedir.createFile(resourceClassPath);
 			resourceClassVirtualFile.setStringContent(new ResourceClass().generate(genPackage));
 
-//			String validatorClassPath = "com.logiclabs.streamdb.models." + genPackage.getPackageName() + ".util.";
-//			validatorClassPath = validatorClassPath.replace(".", File.separator) + genPackage.getValidatorClassName() + ".java";
-//			VirtualFile validatorClassVirtualFile = basedir.createFile(validatorClassPath);
-//			validatorClassVirtualFile.setStringContent(new ValidatorClass().generate(genPackage));
-			
+			// String validatorClassPath = "com.logiclabs.streamdb.models." +
+			// genPackage.getPackageName() + ".util.";
+			// validatorClassPath = validatorClassPath.replace(".",
+			// File.separator) + genPackage.getValidatorClassName() + ".java";
+			// VirtualFile validatorClassVirtualFile =
+			// basedir.createFile(validatorClassPath);
+			// validatorClassVirtualFile.setStringContent(new
+			// ValidatorClass().generate(genPackage));
+
 			for (GenClass genClass : genPackage.getGenClasses()) {
+				genModel.setImportManager(new ImportManager("org.bimserver.models"));
 				String implFileName = MODEL_PACKAGE + genPackage.getPackageName() + ".impl.";
 				implFileName = implFileName.replace(".", File.separator) + genClass.getName() + "Impl.java";
+				VirtualFile implVirtualFile = basedir.createFile(implFileName);
+				implVirtualFile.setStringContent(new org.eclipse.emf.codegen.ecore.templates.model.Class().generate(new Object[] { genClass, false, true }));
+
+				genModel.setImportManager(new ImportManager("org.bimserver.models"));
 				String interfaceFileName = MODEL_PACKAGE + genPackage.getPackageName() + ".";
 				interfaceFileName = interfaceFileName.replace(".", File.separator) + genClass.getName() + ".java";
-				VirtualFile implVirtualFile = basedir.createFile(implFileName);
 				VirtualFile interfaceVirtualFile = basedir.createFile(interfaceFileName);
-				implVirtualFile.setStringContent(new org.eclipse.emf.codegen.ecore.templates.model.Class().generate(new Object[] { genClass, false, true }));
 				interfaceVirtualFile.setStringContent(new org.eclipse.emf.codegen.ecore.templates.model.Class().generate(new Object[] { genClass, true, false }));
 			}
 			for (GenEnum genEnum : genPackage.getGenEnums()) {
+				genModel.setImportManager(new ImportManager("org.bimserver.models"));
+
 				String enumFileName = MODEL_PACKAGE + genPackage.getPackageName() + ".";
 				enumFileName = enumFileName.replace(".", File.separator) + genEnum.getName() + ".java";
 				VirtualFile enumVirtualFile = basedir.createFile(enumFileName);
 				enumVirtualFile.setStringContent(new EnumClass().generate(genEnum));
 			}
 		}
+	}
+
+	private void generateFile(GenModel genModel, VirtualFile basedir, GenPackage genPackage) {
+		genModel.setImportManager(new ImportManager("org.bimserver.models"));
+
+		String packageClassPathImpl = MODEL_PACKAGE + genPackage.getPackageName() + ".impl.";
+		packageClassPathImpl = packageClassPathImpl.replace(".", File.separator) + genPackage.getPackageClassName() + ".java";
+		VirtualFile packageVirtualFileImpl = basedir.createFile(packageClassPathImpl);
+		packageVirtualFileImpl.setStringContent(new PackageClass().generate(new Object[] { genPackage, false, true }));
 	}
 
 	private Set<GenPackage> createGenPackages(GenModel genModel, VirtualFile basedir) throws DatabaseException {
@@ -163,10 +201,8 @@ public class DataObjectGenerator {
 			genPackage.setEcorePackage(ePackage);
 			genPackage.setLoadInitialization(true);
 			genModel.getGenPackages().add(genPackage);
-			
-			ImportManager importManager = new ImportManager("org.bimserver.models");
-			genModel.setImportManager(importManager);
-			genPackage.setResource(GenResourceKind.XMI_LITERAL);
+
+			genPackage.setResource(GenResourceKind.NONE_LITERAL);
 			for (EClassifier eClassifier : ePackage.getEClassifiers()) {
 				if (eClassifier instanceof EClass) {
 					EClass eClass = (EClass) eClassifier;
