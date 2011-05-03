@@ -3,7 +3,7 @@ package org.bimserver.querycompiler;
 import java.io.PrintWriter;
 import java.util.List;
 
-import org.bimserver.ifc.database.IfcDatabase;
+import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.emf.Ifc2x3.IfcDistributionPort;
 import org.bimserver.ifc.emf.Ifc2x3.IfcElement;
 import org.bimserver.ifc.emf.Ifc2x3.IfcFlowFitting;
@@ -14,11 +14,11 @@ import org.bimserver.ifc.emf.Ifc2x3.IfcRelConnectsPortToElement;
 
 public class Query implements QueryInterface {
 
-	private IfcDatabase model;
+	private IfcModel model;
 	private PrintWriter out;
 
 	@Override
-	public void query(IfcDatabase model, PrintWriter out) {
+	public void query(IfcModel model, PrintWriter out) {
 		this.model = model;
 		this.out = out;
 		step1();

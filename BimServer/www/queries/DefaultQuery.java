@@ -1,14 +1,14 @@
 package org.bimserver.querycompiler;
 
 import java.io.PrintWriter;
-import org.bimserver.ifc.database.IfcDatabase;
+import org.bimserver.ifc.IfcModel;
 
 public class Query implements QueryInterface {
 
-	private IfcDatabase model;
+	private IfcModel model;
 	private PrintWriter out;
 
 	@Override
-	public void query(IfcDatabase model, PrintWriter out) {
+	public void query(IfcModel model, PrintWriter out) {
 	}
 }
