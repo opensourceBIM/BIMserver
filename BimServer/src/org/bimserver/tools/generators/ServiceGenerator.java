@@ -10,7 +10,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.apache.commons.io.FileUtils;
-import org.bimserver.database.migrations.Schema;
 import org.bimserver.models.log.LogPackage;
 import org.bimserver.models.store.StorePackage;
 import org.eclipse.emf.ecore.EClassifier;

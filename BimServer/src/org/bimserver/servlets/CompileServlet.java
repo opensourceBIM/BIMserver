@@ -16,7 +16,6 @@ import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.actions.BimDatabaseAction;
 import org.bimserver.database.actions.DownloadDatabaseAction;
 import org.bimserver.ifc.IfcModel;
-import org.bimserver.ifc.database.IfcDatabase;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.querycompiler.CompileException;
 import org.bimserver.querycompiler.QueryCompiler;
@@ -79,7 +78,7 @@ public class CompileServlet extends HttpServlet {
 			BimDatabaseAction<IfcModel> action = new DownloadDatabaseAction(session, AccessMethod.INTERNAL_LITERAL, settingsManager, roid, loginManager.getUoid());
 			IfcModel IfcModel = session.executeAndCommitAction(action, 10);
 			StringWriter out = new StringWriter();
-			queryInterface.query(new IfcDatabase(IfcModel, null), new PrintWriter(out));
+			queryInterface.query(IfcModel, new PrintWriter(out));
 			try {
 				root.put("output", root.getString("output") + "\n" + "Executing...\n\n" + out + "\n" + "Execution complete");
 			} catch (JSONException e) {

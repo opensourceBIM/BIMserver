@@ -14,7 +14,6 @@ import org.bimserver.database.ColumnDatabase;
 import org.bimserver.database.Database;
 import org.bimserver.database.actions.DownloadDatabaseAction;
 import org.bimserver.ifc.IfcModel;
-import org.bimserver.ifc.database.IfcDatabase;
 import org.bimserver.models.ifc2x3.IfcProject;
 import org.bimserver.models.ifc2x3.IfcSlab;
 import org.bimserver.models.ifc2x3.IfcWall;
@@ -59,12 +58,10 @@ public class CommandLine extends Thread {
 						IfcModel model = downloadDatabaseAction.execute();
 						System.out.println("Model size: " + model.size());
 						
-						IfcDatabase ifcDatabase = new IfcDatabase(model, null);
-						
-						List<IfcWall> walls = ifcDatabase.getAll(IfcWall.class);
-						List<IfcProject> projects = ifcDatabase.getAll(IfcProject.class);
-						List<IfcSlab> slabs = ifcDatabase.getAll(IfcSlab.class);
-						List<IfcWindow> windows = ifcDatabase.getAll(IfcWindow.class);
+						List<IfcWall> walls = model.getAll(IfcWall.class);
+						List<IfcProject> projects = model.getAll(IfcProject.class);
+						List<IfcSlab> slabs = model.getAll(IfcSlab.class);
+						List<IfcWindow> windows = model.getAll(IfcWindow.class);
 						
 						System.out.println("Walls: " + walls.size());
 						System.out.println("Windows: " + windows.size());
