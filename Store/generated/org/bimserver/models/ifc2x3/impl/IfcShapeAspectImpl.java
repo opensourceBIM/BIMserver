@@ -54,13 +54,6 @@ public class IfcShapeAspectImpl extends IdEObjectImpl implements IfcShapeAspect
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	protected IfcShapeAspectImpl()
 	{
 		super();
@@ -74,7 +67,7 @@ public class IfcShapeAspectImpl extends IdEObjectImpl implements IfcShapeAspect
 	@Override
 	protected EClass eStaticClass()
 	{
-		return Ifc2x3Package.Literals.IFC_SHAPE_ASPECT;
+		return Ifc2x3Package.eINSTANCE.getIfcShapeAspect();
 	}
 
 	/**
@@ -96,7 +89,7 @@ public class IfcShapeAspectImpl extends IdEObjectImpl implements IfcShapeAspect
 	@SuppressWarnings("unchecked")
 	public EList<IfcShapeModel> getShapeRepresentations()
 	{
-		return (EList<IfcShapeModel>)eGet(Ifc2x3Package.Literals.IFC_SHAPE_ASPECT__SHAPE_REPRESENTATIONS, true);
+		return (EList<IfcShapeModel>)eGet(Ifc2x3Package.eINSTANCE.getIfcShapeAspect_ShapeRepresentations(), true);
 	}
 
 	/**
@@ -106,7 +99,7 @@ public class IfcShapeAspectImpl extends IdEObjectImpl implements IfcShapeAspect
 	 */
 	public String getName()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_SHAPE_ASPECT__NAME, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcShapeAspect_Name(), true);
 	}
 
 	/**
@@ -116,7 +109,7 @@ public class IfcShapeAspectImpl extends IdEObjectImpl implements IfcShapeAspect
 	 */
 	public void setName(String newName)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_SHAPE_ASPECT__NAME, newName);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcShapeAspect_Name(), newName);
 	}
 
 	/**
@@ -126,7 +119,7 @@ public class IfcShapeAspectImpl extends IdEObjectImpl implements IfcShapeAspect
 	 */
 	public void unsetName()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_SHAPE_ASPECT__NAME);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcShapeAspect_Name());
 	}
 
 	/**
@@ -136,7 +129,7 @@ public class IfcShapeAspectImpl extends IdEObjectImpl implements IfcShapeAspect
 	 */
 	public boolean isSetName()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_SHAPE_ASPECT__NAME);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcShapeAspect_Name());
 	}
 
 	/**
@@ -146,7 +139,7 @@ public class IfcShapeAspectImpl extends IdEObjectImpl implements IfcShapeAspect
 	 */
 	public String getDescription()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_SHAPE_ASPECT__DESCRIPTION, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcShapeAspect_Description(), true);
 	}
 
 	/**
@@ -156,7 +149,7 @@ public class IfcShapeAspectImpl extends IdEObjectImpl implements IfcShapeAspect
 	 */
 	public void setDescription(String newDescription)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_SHAPE_ASPECT__DESCRIPTION, newDescription);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcShapeAspect_Description(), newDescription);
 	}
 
 	/**
@@ -166,7 +159,7 @@ public class IfcShapeAspectImpl extends IdEObjectImpl implements IfcShapeAspect
 	 */
 	public void unsetDescription()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_SHAPE_ASPECT__DESCRIPTION);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcShapeAspect_Description());
 	}
 
 	/**
@@ -176,7 +169,7 @@ public class IfcShapeAspectImpl extends IdEObjectImpl implements IfcShapeAspect
 	 */
 	public boolean isSetDescription()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_SHAPE_ASPECT__DESCRIPTION);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcShapeAspect_Description());
 	}
 
 	/**
@@ -186,7 +179,7 @@ public class IfcShapeAspectImpl extends IdEObjectImpl implements IfcShapeAspect
 	 */
 	public boolean isProductDefinitional()
 	{
-		return (Boolean)eGet(Ifc2x3Package.Literals.IFC_SHAPE_ASPECT__PRODUCT_DEFINITIONAL, true);
+		return (Boolean)eGet(Ifc2x3Package.eINSTANCE.getIfcShapeAspect_ProductDefinitional(), true);
 	}
 
 	/**
@@ -196,7 +189,7 @@ public class IfcShapeAspectImpl extends IdEObjectImpl implements IfcShapeAspect
 	 */
 	public void setProductDefinitional(boolean newProductDefinitional)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_SHAPE_ASPECT__PRODUCT_DEFINITIONAL, newProductDefinitional);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcShapeAspect_ProductDefinitional(), newProductDefinitional);
 	}
 
 	/**
@@ -206,7 +199,7 @@ public class IfcShapeAspectImpl extends IdEObjectImpl implements IfcShapeAspect
 	 */
 	public IfcProductDefinitionShape getPartOfProductDefinitionShape()
 	{
-		return (IfcProductDefinitionShape)eGet(Ifc2x3Package.Literals.IFC_SHAPE_ASPECT__PART_OF_PRODUCT_DEFINITION_SHAPE, true);
+		return (IfcProductDefinitionShape)eGet(Ifc2x3Package.eINSTANCE.getIfcShapeAspect_PartOfProductDefinitionShape(), true);
 	}
 
 	/**
@@ -216,7 +209,7 @@ public class IfcShapeAspectImpl extends IdEObjectImpl implements IfcShapeAspect
 	 */
 	public void setPartOfProductDefinitionShape(IfcProductDefinitionShape newPartOfProductDefinitionShape)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_SHAPE_ASPECT__PART_OF_PRODUCT_DEFINITION_SHAPE, newPartOfProductDefinitionShape);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcShapeAspect_PartOfProductDefinitionShape(), newPartOfProductDefinitionShape);
 	}
 
 } //IfcShapeAspectImpl

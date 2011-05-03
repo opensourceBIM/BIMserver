@@ -19,10 +19,6 @@
  */
 package org.bimserver.models.store.impl;
 
-import java.io.IOException;
-
-import java.net.URL;
-
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 
 import org.bimserver.models.ifc2x3.impl.Ifc2x3PackageImpl;
@@ -31,24 +27,33 @@ import org.bimserver.models.log.LogPackage;
 
 import org.bimserver.models.log.impl.LogPackageImpl;
 
+import org.bimserver.models.store.CheckinState;
+import org.bimserver.models.store.Checkout;
+import org.bimserver.models.store.Clash;
+import org.bimserver.models.store.ClashDetectionSettings;
+import org.bimserver.models.store.ConcreteRevision;
+import org.bimserver.models.store.EidClash;
+import org.bimserver.models.store.GeoTag;
+import org.bimserver.models.store.GuidClash;
+import org.bimserver.models.store.IgnoreFile;
+import org.bimserver.models.store.ObjectState;
+import org.bimserver.models.store.Project;
+import org.bimserver.models.store.Revision;
+import org.bimserver.models.store.SIPrefix;
+import org.bimserver.models.store.Serializer;
+import org.bimserver.models.store.Settings;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StorePackage;
-
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.common.util.WrappedException;
+import org.bimserver.models.store.User;
+import org.bimserver.models.store.UserType;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
-import org.eclipse.emf.ecore.resource.Resource;
-
-import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -58,20 +63,6 @@ import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
  */
 public class StorePackageImpl extends EPackageImpl implements StorePackage
 {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected String packageFilename = "store.ecore";
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -226,6 +217,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #eNS_URI
+	 * @see #createPackageContents()
+	 * @see #initializePackageContents()
 	 * @generated
 	 */
 	public static StorePackage init()
@@ -242,13 +235,17 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 		Ifc2x3PackageImpl theIfc2x3Package = (Ifc2x3PackageImpl)(EPackage.Registry.INSTANCE.getEPackage(Ifc2x3Package.eNS_URI) instanceof Ifc2x3PackageImpl ? EPackage.Registry.INSTANCE.getEPackage(Ifc2x3Package.eNS_URI) : Ifc2x3Package.eINSTANCE);
 
 		// Load packages
-		theStorePackage.loadPackage();
-		theLogPackage.loadPackage();
 		theIfc2x3Package.loadPackage();
 
+		// Create package meta-data objects
+		theStorePackage.createPackageContents();
+		theLogPackage.createPackageContents();
+
+		// Initialize created meta-data
+		theStorePackage.initializePackageContents();
+		theLogPackage.initializePackageContents();
+
 		// Fix loaded packages
-		theStorePackage.fixPackageContents();
-		theLogPackage.fixPackageContents();
 		theIfc2x3Package.fixPackageContents();
 
 		// Mark meta-data to indicate it can't be changed
@@ -267,10 +264,6 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EClass getProject()
 	{
-		if (projectEClass == null)
-		{
-			projectEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(4);
-		}
 		return projectEClass;
 	}
 
@@ -281,7 +274,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EAttribute getProject_Id()
 	{
-        return (EAttribute)getProject().getEStructuralFeatures().get(0);
+		return (EAttribute)projectEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -291,7 +284,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EAttribute getProject_Name()
 	{
-        return (EAttribute)getProject().getEStructuralFeatures().get(1);
+		return (EAttribute)projectEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -301,7 +294,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EReference getProject_HasAuthorizedUsers()
 	{
-        return (EReference)getProject().getEStructuralFeatures().get(2);
+		return (EReference)projectEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -311,7 +304,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EReference getProject_ConcreteRevisions()
 	{
-        return (EReference)getProject().getEStructuralFeatures().get(3);
+		return (EReference)projectEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -321,7 +314,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EReference getProject_Revisions()
 	{
-        return (EReference)getProject().getEStructuralFeatures().get(4);
+		return (EReference)projectEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -331,7 +324,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EReference getProject_LastConcreteRevision()
 	{
-        return (EReference)getProject().getEStructuralFeatures().get(5);
+		return (EReference)projectEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -341,7 +334,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EReference getProject_LastRevision()
 	{
-        return (EReference)getProject().getEStructuralFeatures().get(6);
+		return (EReference)projectEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -351,7 +344,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EReference getProject_Checkouts()
 	{
-        return (EReference)getProject().getEStructuralFeatures().get(7);
+		return (EReference)projectEClass.getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -361,7 +354,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EAttribute getProject_State()
 	{
-        return (EAttribute)getProject().getEStructuralFeatures().get(8);
+		return (EAttribute)projectEClass.getEStructuralFeatures().get(8);
 	}
 
 	/**
@@ -371,7 +364,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EAttribute getProject_CreatedDate()
 	{
-        return (EAttribute)getProject().getEStructuralFeatures().get(9);
+		return (EAttribute)projectEClass.getEStructuralFeatures().get(9);
 	}
 
 	/**
@@ -381,7 +374,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EReference getProject_CreatedBy()
 	{
-        return (EReference)getProject().getEStructuralFeatures().get(10);
+		return (EReference)projectEClass.getEStructuralFeatures().get(10);
 	}
 
 	/**
@@ -391,7 +384,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EReference getProject_GeoTag()
 	{
-        return (EReference)getProject().getEStructuralFeatures().get(11);
+		return (EReference)projectEClass.getEStructuralFeatures().get(11);
 	}
 
 	/**
@@ -401,7 +394,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EReference getProject_SubProjects()
 	{
-        return (EReference)getProject().getEStructuralFeatures().get(12);
+		return (EReference)projectEClass.getEStructuralFeatures().get(12);
 	}
 
 	/**
@@ -411,7 +404,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EReference getProject_Parent()
 	{
-        return (EReference)getProject().getEStructuralFeatures().get(13);
+		return (EReference)projectEClass.getEStructuralFeatures().get(13);
 	}
 
 	/**
@@ -421,7 +414,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EAttribute getProject_Description()
 	{
-        return (EAttribute)getProject().getEStructuralFeatures().get(14);
+		return (EAttribute)projectEClass.getEStructuralFeatures().get(14);
 	}
 
 	/**
@@ -431,7 +424,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EReference getProject_ClashDetectionSettings()
 	{
-        return (EReference)getProject().getEStructuralFeatures().get(15);
+		return (EReference)projectEClass.getEStructuralFeatures().get(15);
 	}
 
 	/**
@@ -441,7 +434,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EAttribute getProject_ExportLengthMeasurePrefix()
 	{
-        return (EAttribute)getProject().getEStructuralFeatures().get(16);
+		return (EAttribute)projectEClass.getEStructuralFeatures().get(16);
 	}
 
 	/**
@@ -451,10 +444,6 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EClass getUser()
 	{
-		if (userEClass == null)
-		{
-			userEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(5);
-		}
 		return userEClass;
 	}
 
@@ -465,7 +454,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EAttribute getUser_Name()
 	{
-        return (EAttribute)getUser().getEStructuralFeatures().get(0);
+		return (EAttribute)userEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -475,7 +464,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EAttribute getUser_Password()
 	{
-        return (EAttribute)getUser().getEStructuralFeatures().get(1);
+		return (EAttribute)userEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -485,7 +474,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EReference getUser_HasRightsOn()
 	{
-        return (EReference)getUser().getEStructuralFeatures().get(2);
+		return (EReference)userEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -495,7 +484,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EReference getUser_Revisions()
 	{
-        return (EReference)getUser().getEStructuralFeatures().get(3);
+		return (EReference)userEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -505,7 +494,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EAttribute getUser_State()
 	{
-        return (EAttribute)getUser().getEStructuralFeatures().get(4);
+		return (EAttribute)userEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -515,7 +504,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EAttribute getUser_CreatedOn()
 	{
-        return (EAttribute)getUser().getEStructuralFeatures().get(5);
+		return (EAttribute)userEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -525,7 +514,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EReference getUser_CreatedBy()
 	{
-        return (EReference)getUser().getEStructuralFeatures().get(6);
+		return (EReference)userEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -535,7 +524,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EAttribute getUser_UserType()
 	{
-        return (EAttribute)getUser().getEStructuralFeatures().get(7);
+		return (EAttribute)userEClass.getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -545,7 +534,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EAttribute getUser_Username()
 	{
-        return (EAttribute)getUser().getEStructuralFeatures().get(8);
+		return (EAttribute)userEClass.getEStructuralFeatures().get(8);
 	}
 
 	/**
@@ -555,7 +544,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EAttribute getUser_LastSeen()
 	{
-        return (EAttribute)getUser().getEStructuralFeatures().get(9);
+		return (EAttribute)userEClass.getEStructuralFeatures().get(9);
 	}
 
 	/**
@@ -565,7 +554,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EAttribute getUser_ValidationToken()
 	{
-        return (EAttribute)getUser().getEStructuralFeatures().get(10);
+		return (EAttribute)userEClass.getEStructuralFeatures().get(10);
 	}
 
 	/**
@@ -575,7 +564,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EAttribute getUser_ValidationTokenCreated()
 	{
-        return (EAttribute)getUser().getEStructuralFeatures().get(11);
+		return (EAttribute)userEClass.getEStructuralFeatures().get(11);
 	}
 
 	/**
@@ -585,10 +574,6 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EClass getClash()
 	{
-		if (clashEClass == null)
-		{
-			clashEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(6);
-		}
 		return clashEClass;
 	}
 
@@ -599,7 +584,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EAttribute getClash_Name1()
 	{
-        return (EAttribute)getClash().getEStructuralFeatures().get(0);
+		return (EAttribute)clashEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -609,7 +594,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EAttribute getClash_Name2()
 	{
-        return (EAttribute)getClash().getEStructuralFeatures().get(1);
+		return (EAttribute)clashEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -619,7 +604,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EAttribute getClash_Type1()
 	{
-        return (EAttribute)getClash().getEStructuralFeatures().get(2);
+		return (EAttribute)clashEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -629,7 +614,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EAttribute getClash_Type2()
 	{
-        return (EAttribute)getClash().getEStructuralFeatures().get(3);
+		return (EAttribute)clashEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -639,7 +624,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EReference getClash_Revision1()
 	{
-        return (EReference)getClash().getEStructuralFeatures().get(4);
+		return (EReference)clashEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -649,7 +634,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EReference getClash_Revision2()
 	{
-        return (EReference)getClash().getEStructuralFeatures().get(5);
+		return (EReference)clashEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -659,10 +644,6 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EClass getEidClash()
 	{
-		if (eidClashEClass == null)
-		{
-			eidClashEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(7);
-		}
 		return eidClashEClass;
 	}
 
@@ -673,7 +654,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EAttribute getEidClash_Eid1()
 	{
-        return (EAttribute)getEidClash().getEStructuralFeatures().get(0);
+		return (EAttribute)eidClashEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -683,7 +664,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EAttribute getEidClash_Eid2()
 	{
-        return (EAttribute)getEidClash().getEStructuralFeatures().get(1);
+		return (EAttribute)eidClashEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -693,10 +674,6 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EClass getGuidClash()
 	{
-		if (guidClashEClass == null)
-		{
-			guidClashEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(8);
-		}
 		return guidClashEClass;
 	}
 
@@ -707,7 +684,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EAttribute getGuidClash_Guid1()
 	{
-        return (EAttribute)getGuidClash().getEStructuralFeatures().get(0);
+		return (EAttribute)guidClashEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -717,7 +694,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EAttribute getGuidClash_Guid2()
 	{
-        return (EAttribute)getGuidClash().getEStructuralFeatures().get(1);
+		return (EAttribute)guidClashEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -727,10 +704,6 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EClass getClashDetectionSettings()
 	{
-		if (clashDetectionSettingsEClass == null)
-		{
-			clashDetectionSettingsEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(9);
-		}
 		return clashDetectionSettingsEClass;
 	}
 
@@ -741,7 +714,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EAttribute getClashDetectionSettings_Enabled()
 	{
-        return (EAttribute)getClashDetectionSettings().getEStructuralFeatures().get(0);
+		return (EAttribute)clashDetectionSettingsEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -751,7 +724,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EReference getClashDetectionSettings_Projects()
 	{
-        return (EReference)getClashDetectionSettings().getEStructuralFeatures().get(1);
+		return (EReference)clashDetectionSettingsEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -761,7 +734,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EAttribute getClashDetectionSettings_Margin()
 	{
-        return (EAttribute)getClashDetectionSettings().getEStructuralFeatures().get(2);
+		return (EAttribute)clashDetectionSettingsEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -771,7 +744,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EReference getClashDetectionSettings_Revisions()
 	{
-        return (EReference)getClashDetectionSettings().getEStructuralFeatures().get(3);
+		return (EReference)clashDetectionSettingsEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -781,7 +754,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EAttribute getClashDetectionSettings_IgnoredClasses()
 	{
-        return (EAttribute)getClashDetectionSettings().getEStructuralFeatures().get(4);
+		return (EAttribute)clashDetectionSettingsEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -791,10 +764,6 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EClass getRevision()
 	{
-		if (revisionEClass == null)
-		{
-			revisionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(10);
-		}
 		return revisionEClass;
 	}
 
@@ -805,7 +774,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EAttribute getRevision_Id()
 	{
-        return (EAttribute)getRevision().getEStructuralFeatures().get(0);
+		return (EAttribute)revisionEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -815,7 +784,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EReference getRevision_User()
 	{
-        return (EReference)getRevision().getEStructuralFeatures().get(1);
+		return (EReference)revisionEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -825,7 +794,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EAttribute getRevision_Date()
 	{
-        return (EAttribute)getRevision().getEStructuralFeatures().get(2);
+		return (EAttribute)revisionEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -835,7 +804,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EAttribute getRevision_Comment()
 	{
-        return (EAttribute)getRevision().getEStructuralFeatures().get(3);
+		return (EAttribute)revisionEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -845,7 +814,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EAttribute getRevision_Size()
 	{
-        return (EAttribute)getRevision().getEStructuralFeatures().get(4);
+		return (EAttribute)revisionEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -855,7 +824,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EReference getRevision_ConcreteRevisions()
 	{
-        return (EReference)getRevision().getEStructuralFeatures().get(5);
+		return (EReference)revisionEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -865,7 +834,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EReference getRevision_LastConcreteRevision()
 	{
-        return (EReference)getRevision().getEStructuralFeatures().get(6);
+		return (EReference)revisionEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -875,7 +844,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EReference getRevision_Checkouts()
 	{
-        return (EReference)getRevision().getEStructuralFeatures().get(7);
+		return (EReference)revisionEClass.getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -885,7 +854,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EReference getRevision_Project()
 	{
-        return (EReference)getRevision().getEStructuralFeatures().get(8);
+		return (EReference)revisionEClass.getEStructuralFeatures().get(8);
 	}
 
 	/**
@@ -895,7 +864,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EAttribute getRevision_State()
 	{
-        return (EAttribute)getRevision().getEStructuralFeatures().get(9);
+		return (EAttribute)revisionEClass.getEStructuralFeatures().get(9);
 	}
 
 	/**
@@ -905,7 +874,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EReference getRevision_LastClashes()
 	{
-        return (EReference)getRevision().getEStructuralFeatures().get(10);
+		return (EReference)revisionEClass.getEStructuralFeatures().get(10);
 	}
 
 	/**
@@ -915,7 +884,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EAttribute getRevision_Tag()
 	{
-        return (EAttribute)getRevision().getEStructuralFeatures().get(11);
+		return (EAttribute)revisionEClass.getEStructuralFeatures().get(11);
 	}
 
 	/**
@@ -925,7 +894,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EAttribute getRevision_LastError()
 	{
-        return (EAttribute)getRevision().getEStructuralFeatures().get(12);
+		return (EAttribute)revisionEClass.getEStructuralFeatures().get(12);
 	}
 
 	/**
@@ -935,7 +904,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EAttribute getRevision_Bmi()
 	{
-        return (EAttribute)getRevision().getEStructuralFeatures().get(13);
+		return (EAttribute)revisionEClass.getEStructuralFeatures().get(13);
 	}
 
 	/**
@@ -945,7 +914,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EAttribute getRevision_NrClashes()
 	{
-        return (EAttribute)getRevision().getEStructuralFeatures().get(14);
+		return (EAttribute)revisionEClass.getEStructuralFeatures().get(14);
 	}
 
 	/**
@@ -955,7 +924,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EAttribute getRevision_Laid()
 	{
-        return (EAttribute)getRevision().getEStructuralFeatures().get(15);
+		return (EAttribute)revisionEClass.getEStructuralFeatures().get(15);
 	}
 
 	/**
@@ -965,10 +934,6 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EClass getConcreteRevision()
 	{
-		if (concreteRevisionEClass == null)
-		{
-			concreteRevisionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(11);
-		}
 		return concreteRevisionEClass;
 	}
 
@@ -979,7 +944,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EAttribute getConcreteRevision_Id()
 	{
-        return (EAttribute)getConcreteRevision().getEStructuralFeatures().get(0);
+		return (EAttribute)concreteRevisionEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -989,7 +954,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EReference getConcreteRevision_Project()
 	{
-        return (EReference)getConcreteRevision().getEStructuralFeatures().get(1);
+		return (EReference)concreteRevisionEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -999,7 +964,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EAttribute getConcreteRevision_State()
 	{
-        return (EAttribute)getConcreteRevision().getEStructuralFeatures().get(2);
+		return (EAttribute)concreteRevisionEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -1009,7 +974,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EAttribute getConcreteRevision_Checksum()
 	{
-        return (EAttribute)getConcreteRevision().getEStructuralFeatures().get(3);
+		return (EAttribute)concreteRevisionEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -1019,7 +984,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EReference getConcreteRevision_Revisions()
 	{
-        return (EReference)getConcreteRevision().getEStructuralFeatures().get(4);
+		return (EReference)concreteRevisionEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -1029,7 +994,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EAttribute getConcreteRevision_Size()
 	{
-        return (EAttribute)getConcreteRevision().getEStructuralFeatures().get(5);
+		return (EAttribute)concreteRevisionEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -1039,7 +1004,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EAttribute getConcreteRevision_Date()
 	{
-        return (EAttribute)getConcreteRevision().getEStructuralFeatures().get(6);
+		return (EAttribute)concreteRevisionEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -1049,7 +1014,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EAttribute getConcreteRevision_LastError()
 	{
-        return (EAttribute)getConcreteRevision().getEStructuralFeatures().get(7);
+		return (EAttribute)concreteRevisionEClass.getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -1059,10 +1024,6 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EClass getGeoTag()
 	{
-		if (geoTagEClass == null)
-		{
-			geoTagEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(12);
-		}
 		return geoTagEClass;
 	}
 
@@ -1073,7 +1034,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EAttribute getGeoTag_Enabled()
 	{
-        return (EAttribute)getGeoTag().getEStructuralFeatures().get(0);
+		return (EAttribute)geoTagEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1083,7 +1044,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EReference getGeoTag_Projects()
 	{
-        return (EReference)getGeoTag().getEStructuralFeatures().get(1);
+		return (EReference)geoTagEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1093,7 +1054,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EAttribute getGeoTag_X()
 	{
-        return (EAttribute)getGeoTag().getEStructuralFeatures().get(2);
+		return (EAttribute)geoTagEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -1103,7 +1064,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EAttribute getGeoTag_Y()
 	{
-        return (EAttribute)getGeoTag().getEStructuralFeatures().get(3);
+		return (EAttribute)geoTagEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -1113,7 +1074,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EAttribute getGeoTag_Z()
 	{
-        return (EAttribute)getGeoTag().getEStructuralFeatures().get(4);
+		return (EAttribute)geoTagEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -1123,7 +1084,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EAttribute getGeoTag_Epsg()
 	{
-        return (EAttribute)getGeoTag().getEStructuralFeatures().get(5);
+		return (EAttribute)geoTagEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -1133,7 +1094,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EAttribute getGeoTag_DirectionAngle()
 	{
-        return (EAttribute)getGeoTag().getEStructuralFeatures().get(6);
+		return (EAttribute)geoTagEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -1143,10 +1104,6 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EClass getCheckout()
 	{
-		if (checkoutEClass == null)
-		{
-			checkoutEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(13);
-		}
 		return checkoutEClass;
 	}
 
@@ -1157,7 +1114,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EReference getCheckout_User()
 	{
-        return (EReference)getCheckout().getEStructuralFeatures().get(0);
+		return (EReference)checkoutEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1167,7 +1124,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EReference getCheckout_Revision()
 	{
-        return (EReference)getCheckout().getEStructuralFeatures().get(1);
+		return (EReference)checkoutEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1177,7 +1134,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EReference getCheckout_Project()
 	{
-        return (EReference)getCheckout().getEStructuralFeatures().get(2);
+		return (EReference)checkoutEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -1187,7 +1144,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EAttribute getCheckout_Date()
 	{
-        return (EAttribute)getCheckout().getEStructuralFeatures().get(3);
+		return (EAttribute)checkoutEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -1197,7 +1154,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EReference getCheckout_Checkin()
 	{
-        return (EReference)getCheckout().getEStructuralFeatures().get(4);
+		return (EReference)checkoutEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -1207,7 +1164,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EAttribute getCheckout_Active()
 	{
-        return (EAttribute)getCheckout().getEStructuralFeatures().get(5);
+		return (EAttribute)checkoutEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -1217,10 +1174,6 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EClass getSettings()
 	{
-		if (settingsEClass == null)
-		{
-			settingsEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(14);
-		}
 		return settingsEClass;
 	}
 
@@ -1231,7 +1184,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EAttribute getSettings_ShowVersionUpgradeAvailable()
 	{
-        return (EAttribute)getSettings().getEStructuralFeatures().get(0);
+		return (EAttribute)settingsEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1241,7 +1194,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EAttribute getSettings_SendConfirmationEmailAfterRegistration()
 	{
-        return (EAttribute)getSettings().getEStructuralFeatures().get(1);
+		return (EAttribute)settingsEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1251,7 +1204,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EAttribute getSettings_UseCaching()
 	{
-        return (EAttribute)getSettings().getEStructuralFeatures().get(2);
+		return (EAttribute)settingsEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -1261,7 +1214,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EAttribute getSettings_AllowSelfRegistration()
 	{
-        return (EAttribute)getSettings().getEStructuralFeatures().get(3);
+		return (EAttribute)settingsEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -1271,7 +1224,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EAttribute getSettings_AutoTestClashes()
 	{
-        return (EAttribute)getSettings().getEStructuralFeatures().get(4);
+		return (EAttribute)settingsEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -1281,7 +1234,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EAttribute getSettings_IntelligentMerging()
 	{
-        return (EAttribute)getSettings().getEStructuralFeatures().get(5);
+		return (EAttribute)settingsEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -1291,7 +1244,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EAttribute getSettings_AllowUsersToCreateTopLevelProjects()
 	{
-        return (EAttribute)getSettings().getEStructuralFeatures().get(6);
+		return (EAttribute)settingsEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -1301,7 +1254,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EAttribute getSettings_CheckinMergingEnabled()
 	{
-        return (EAttribute)getSettings().getEStructuralFeatures().get(7);
+		return (EAttribute)settingsEClass.getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -1311,7 +1264,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EAttribute getSettings_RegistrationAddition()
 	{
-        return (EAttribute)getSettings().getEStructuralFeatures().get(8);
+		return (EAttribute)settingsEClass.getEStructuralFeatures().get(8);
 	}
 
 	/**
@@ -1321,7 +1274,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EAttribute getSettings_SmtpServer()
 	{
-        return (EAttribute)getSettings().getEStructuralFeatures().get(9);
+		return (EAttribute)settingsEClass.getEStructuralFeatures().get(9);
 	}
 
 	/**
@@ -1331,7 +1284,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EAttribute getSettings_EmailSenderAddress()
 	{
-        return (EAttribute)getSettings().getEStructuralFeatures().get(10);
+		return (EAttribute)settingsEClass.getEStructuralFeatures().get(10);
 	}
 
 	/**
@@ -1341,7 +1294,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EAttribute getSettings_EnabledExportTypes()
 	{
-        return (EAttribute)getSettings().getEStructuralFeatures().get(11);
+		return (EAttribute)settingsEClass.getEStructuralFeatures().get(11);
 	}
 
 	/**
@@ -1351,7 +1304,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EAttribute getSettings_CustomLogoAddress()
 	{
-        return (EAttribute)getSettings().getEStructuralFeatures().get(12);
+		return (EAttribute)settingsEClass.getEStructuralFeatures().get(12);
 	}
 
 	/**
@@ -1361,7 +1314,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EAttribute getSettings_SiteAddress()
 	{
-        return (EAttribute)getSettings().getEStructuralFeatures().get(13);
+		return (EAttribute)settingsEClass.getEStructuralFeatures().get(13);
 	}
 
 	/**
@@ -1371,7 +1324,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EReference getSettings_Serializers()
 	{
-        return (EReference)getSettings().getEStructuralFeatures().get(14);
+		return (EReference)settingsEClass.getEStructuralFeatures().get(14);
 	}
 
 	/**
@@ -1381,7 +1334,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EReference getSettings_IgnoreFiles()
 	{
-        return (EReference)getSettings().getEStructuralFeatures().get(15);
+		return (EReference)settingsEClass.getEStructuralFeatures().get(15);
 	}
 
 	/**
@@ -1391,7 +1344,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EAttribute getSettings_HeaderAddition()
 	{
-        return (EAttribute)getSettings().getEStructuralFeatures().get(16);
+		return (EAttribute)settingsEClass.getEStructuralFeatures().get(16);
 	}
 
 	/**
@@ -1401,7 +1354,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EAttribute getSettings_FooterAddition()
 	{
-        return (EAttribute)getSettings().getEStructuralFeatures().get(17);
+		return (EAttribute)settingsEClass.getEStructuralFeatures().get(17);
 	}
 
 	/**
@@ -1411,10 +1364,6 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EClass getSerializer()
 	{
-		if (serializerEClass == null)
-		{
-			serializerEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(15);
-		}
 		return serializerEClass;
 	}
 
@@ -1425,7 +1374,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EAttribute getSerializer_Name()
 	{
-        return (EAttribute)getSerializer().getEStructuralFeatures().get(0);
+		return (EAttribute)serializerEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1435,7 +1384,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EAttribute getSerializer_Description()
 	{
-        return (EAttribute)getSerializer().getEStructuralFeatures().get(1);
+		return (EAttribute)serializerEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1445,7 +1394,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EAttribute getSerializer_ClassName()
 	{
-        return (EAttribute)getSerializer().getEStructuralFeatures().get(2);
+		return (EAttribute)serializerEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -1455,7 +1404,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EAttribute getSerializer_Enabled()
 	{
-        return (EAttribute)getSerializer().getEStructuralFeatures().get(3);
+		return (EAttribute)serializerEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -1465,7 +1414,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EReference getSerializer_IgnoreFile()
 	{
-        return (EReference)getSerializer().getEStructuralFeatures().get(4);
+		return (EReference)serializerEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -1475,7 +1424,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EReference getSerializer_Settings()
 	{
-        return (EReference)getSerializer().getEStructuralFeatures().get(5);
+		return (EReference)serializerEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -1485,10 +1434,6 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EClass getIgnoreFile()
 	{
-		if (ignoreFileEClass == null)
-		{
-			ignoreFileEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(16);
-		}
 		return ignoreFileEClass;
 	}
 
@@ -1499,7 +1444,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EAttribute getIgnoreFile_Name()
 	{
-        return (EAttribute)getIgnoreFile().getEStructuralFeatures().get(0);
+		return (EAttribute)ignoreFileEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1509,7 +1454,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EAttribute getIgnoreFile_Data()
 	{
-        return (EAttribute)getIgnoreFile().getEStructuralFeatures().get(1);
+		return (EAttribute)ignoreFileEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1519,7 +1464,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EReference getIgnoreFile_Serializers()
 	{
-        return (EReference)getIgnoreFile().getEStructuralFeatures().get(2);
+		return (EReference)ignoreFileEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -1529,7 +1474,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EReference getIgnoreFile_Settings()
 	{
-        return (EReference)getIgnoreFile().getEStructuralFeatures().get(3);
+		return (EReference)ignoreFileEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -1539,10 +1484,6 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EEnum getUserType()
 	{
-		if (userTypeEEnum == null)
-		{
-			userTypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(0);
-		}
 		return userTypeEEnum;
 	}
 
@@ -1553,10 +1494,6 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EEnum getCheckinState()
 	{
-		if (checkinStateEEnum == null)
-		{
-			checkinStateEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(1);
-		}
 		return checkinStateEEnum;
 	}
 
@@ -1567,10 +1504,6 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EEnum getSIPrefix()
 	{
-		if (siPrefixEEnum == null)
-		{
-			siPrefixEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(2);
-		}
 		return siPrefixEEnum;
 	}
 
@@ -1581,10 +1514,6 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EEnum getObjectState()
 	{
-		if (objectStateEEnum == null)
-		{
-			objectStateEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(3);
-		}
 		return objectStateEEnum;
 	}
 
@@ -1603,73 +1532,372 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private boolean isLoaded = false;
+	private boolean isCreated = false;
 
 	/**
-	 * Laods the package and any sub-packages from their serialized form.
+	 * Creates the meta-model objects for the package.  This method is
+	 * guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void loadPackage()
+	public void createPackageContents()
 	{
-		if (isLoaded) return;
-		isLoaded = true;
+		if (isCreated) return;
+		isCreated = true;
 
-		URL url = getClass().getResource(packageFilename);
-		if (url == null)
-		{
-			throw new RuntimeException("Missing serialized package: " + packageFilename);
-		}
-		URI uri = URI.createURI(url.toString());
-		Resource resource = new EcoreResourceFactoryImpl().createResource(uri);
-		try
-		{
-			resource.load(null);
-		}
-		catch (IOException exception)
-		{
-			throw new WrappedException(exception);
-		}
-		initializeFromLoadedEPackage(this, (EPackage)resource.getContents().get(0));
+		// Create classes and their features
+		projectEClass = createEClass(PROJECT);
+		createEAttribute(projectEClass, PROJECT__ID);
+		createEAttribute(projectEClass, PROJECT__NAME);
+		createEReference(projectEClass, PROJECT__HAS_AUTHORIZED_USERS);
+		createEReference(projectEClass, PROJECT__CONCRETE_REVISIONS);
+		createEReference(projectEClass, PROJECT__REVISIONS);
+		createEReference(projectEClass, PROJECT__LAST_CONCRETE_REVISION);
+		createEReference(projectEClass, PROJECT__LAST_REVISION);
+		createEReference(projectEClass, PROJECT__CHECKOUTS);
+		createEAttribute(projectEClass, PROJECT__STATE);
+		createEAttribute(projectEClass, PROJECT__CREATED_DATE);
+		createEReference(projectEClass, PROJECT__CREATED_BY);
+		createEReference(projectEClass, PROJECT__GEO_TAG);
+		createEReference(projectEClass, PROJECT__SUB_PROJECTS);
+		createEReference(projectEClass, PROJECT__PARENT);
+		createEAttribute(projectEClass, PROJECT__DESCRIPTION);
+		createEReference(projectEClass, PROJECT__CLASH_DETECTION_SETTINGS);
+		createEAttribute(projectEClass, PROJECT__EXPORT_LENGTH_MEASURE_PREFIX);
+
+		userEClass = createEClass(USER);
+		createEAttribute(userEClass, USER__NAME);
+		createEAttribute(userEClass, USER__PASSWORD);
+		createEReference(userEClass, USER__HAS_RIGHTS_ON);
+		createEReference(userEClass, USER__REVISIONS);
+		createEAttribute(userEClass, USER__STATE);
+		createEAttribute(userEClass, USER__CREATED_ON);
+		createEReference(userEClass, USER__CREATED_BY);
+		createEAttribute(userEClass, USER__USER_TYPE);
+		createEAttribute(userEClass, USER__USERNAME);
+		createEAttribute(userEClass, USER__LAST_SEEN);
+		createEAttribute(userEClass, USER__VALIDATION_TOKEN);
+		createEAttribute(userEClass, USER__VALIDATION_TOKEN_CREATED);
+
+		clashEClass = createEClass(CLASH);
+		createEAttribute(clashEClass, CLASH__NAME1);
+		createEAttribute(clashEClass, CLASH__NAME2);
+		createEAttribute(clashEClass, CLASH__TYPE1);
+		createEAttribute(clashEClass, CLASH__TYPE2);
+		createEReference(clashEClass, CLASH__REVISION1);
+		createEReference(clashEClass, CLASH__REVISION2);
+
+		eidClashEClass = createEClass(EID_CLASH);
+		createEAttribute(eidClashEClass, EID_CLASH__EID1);
+		createEAttribute(eidClashEClass, EID_CLASH__EID2);
+
+		guidClashEClass = createEClass(GUID_CLASH);
+		createEAttribute(guidClashEClass, GUID_CLASH__GUID1);
+		createEAttribute(guidClashEClass, GUID_CLASH__GUID2);
+
+		clashDetectionSettingsEClass = createEClass(CLASH_DETECTION_SETTINGS);
+		createEAttribute(clashDetectionSettingsEClass, CLASH_DETECTION_SETTINGS__ENABLED);
+		createEReference(clashDetectionSettingsEClass, CLASH_DETECTION_SETTINGS__PROJECTS);
+		createEAttribute(clashDetectionSettingsEClass, CLASH_DETECTION_SETTINGS__MARGIN);
+		createEReference(clashDetectionSettingsEClass, CLASH_DETECTION_SETTINGS__REVISIONS);
+		createEAttribute(clashDetectionSettingsEClass, CLASH_DETECTION_SETTINGS__IGNORED_CLASSES);
+
+		revisionEClass = createEClass(REVISION);
+		createEAttribute(revisionEClass, REVISION__ID);
+		createEReference(revisionEClass, REVISION__USER);
+		createEAttribute(revisionEClass, REVISION__DATE);
+		createEAttribute(revisionEClass, REVISION__COMMENT);
+		createEAttribute(revisionEClass, REVISION__SIZE);
+		createEReference(revisionEClass, REVISION__CONCRETE_REVISIONS);
+		createEReference(revisionEClass, REVISION__LAST_CONCRETE_REVISION);
+		createEReference(revisionEClass, REVISION__CHECKOUTS);
+		createEReference(revisionEClass, REVISION__PROJECT);
+		createEAttribute(revisionEClass, REVISION__STATE);
+		createEReference(revisionEClass, REVISION__LAST_CLASHES);
+		createEAttribute(revisionEClass, REVISION__TAG);
+		createEAttribute(revisionEClass, REVISION__LAST_ERROR);
+		createEAttribute(revisionEClass, REVISION__BMI);
+		createEAttribute(revisionEClass, REVISION__NR_CLASHES);
+		createEAttribute(revisionEClass, REVISION__LAID);
+
+		concreteRevisionEClass = createEClass(CONCRETE_REVISION);
+		createEAttribute(concreteRevisionEClass, CONCRETE_REVISION__ID);
+		createEReference(concreteRevisionEClass, CONCRETE_REVISION__PROJECT);
+		createEAttribute(concreteRevisionEClass, CONCRETE_REVISION__STATE);
+		createEAttribute(concreteRevisionEClass, CONCRETE_REVISION__CHECKSUM);
+		createEReference(concreteRevisionEClass, CONCRETE_REVISION__REVISIONS);
+		createEAttribute(concreteRevisionEClass, CONCRETE_REVISION__SIZE);
+		createEAttribute(concreteRevisionEClass, CONCRETE_REVISION__DATE);
+		createEAttribute(concreteRevisionEClass, CONCRETE_REVISION__LAST_ERROR);
+
+		geoTagEClass = createEClass(GEO_TAG);
+		createEAttribute(geoTagEClass, GEO_TAG__ENABLED);
+		createEReference(geoTagEClass, GEO_TAG__PROJECTS);
+		createEAttribute(geoTagEClass, GEO_TAG__X);
+		createEAttribute(geoTagEClass, GEO_TAG__Y);
+		createEAttribute(geoTagEClass, GEO_TAG__Z);
+		createEAttribute(geoTagEClass, GEO_TAG__EPSG);
+		createEAttribute(geoTagEClass, GEO_TAG__DIRECTION_ANGLE);
+
+		checkoutEClass = createEClass(CHECKOUT);
+		createEReference(checkoutEClass, CHECKOUT__USER);
+		createEReference(checkoutEClass, CHECKOUT__REVISION);
+		createEReference(checkoutEClass, CHECKOUT__PROJECT);
+		createEAttribute(checkoutEClass, CHECKOUT__DATE);
+		createEReference(checkoutEClass, CHECKOUT__CHECKIN);
+		createEAttribute(checkoutEClass, CHECKOUT__ACTIVE);
+
+		settingsEClass = createEClass(SETTINGS);
+		createEAttribute(settingsEClass, SETTINGS__SHOW_VERSION_UPGRADE_AVAILABLE);
+		createEAttribute(settingsEClass, SETTINGS__SEND_CONFIRMATION_EMAIL_AFTER_REGISTRATION);
+		createEAttribute(settingsEClass, SETTINGS__USE_CACHING);
+		createEAttribute(settingsEClass, SETTINGS__ALLOW_SELF_REGISTRATION);
+		createEAttribute(settingsEClass, SETTINGS__AUTO_TEST_CLASHES);
+		createEAttribute(settingsEClass, SETTINGS__INTELLIGENT_MERGING);
+		createEAttribute(settingsEClass, SETTINGS__ALLOW_USERS_TO_CREATE_TOP_LEVEL_PROJECTS);
+		createEAttribute(settingsEClass, SETTINGS__CHECKIN_MERGING_ENABLED);
+		createEAttribute(settingsEClass, SETTINGS__REGISTRATION_ADDITION);
+		createEAttribute(settingsEClass, SETTINGS__SMTP_SERVER);
+		createEAttribute(settingsEClass, SETTINGS__EMAIL_SENDER_ADDRESS);
+		createEAttribute(settingsEClass, SETTINGS__ENABLED_EXPORT_TYPES);
+		createEAttribute(settingsEClass, SETTINGS__CUSTOM_LOGO_ADDRESS);
+		createEAttribute(settingsEClass, SETTINGS__SITE_ADDRESS);
+		createEReference(settingsEClass, SETTINGS__SERIALIZERS);
+		createEReference(settingsEClass, SETTINGS__IGNORE_FILES);
+		createEAttribute(settingsEClass, SETTINGS__HEADER_ADDITION);
+		createEAttribute(settingsEClass, SETTINGS__FOOTER_ADDITION);
+
+		serializerEClass = createEClass(SERIALIZER);
+		createEAttribute(serializerEClass, SERIALIZER__NAME);
+		createEAttribute(serializerEClass, SERIALIZER__DESCRIPTION);
+		createEAttribute(serializerEClass, SERIALIZER__CLASS_NAME);
+		createEAttribute(serializerEClass, SERIALIZER__ENABLED);
+		createEReference(serializerEClass, SERIALIZER__IGNORE_FILE);
+		createEReference(serializerEClass, SERIALIZER__SETTINGS);
+
+		ignoreFileEClass = createEClass(IGNORE_FILE);
+		createEAttribute(ignoreFileEClass, IGNORE_FILE__NAME);
+		createEAttribute(ignoreFileEClass, IGNORE_FILE__DATA);
+		createEReference(ignoreFileEClass, IGNORE_FILE__SERIALIZERS);
+		createEReference(ignoreFileEClass, IGNORE_FILE__SETTINGS);
+
+		// Create enums
+		userTypeEEnum = createEEnum(USER_TYPE);
+		checkinStateEEnum = createEEnum(CHECKIN_STATE);
+		siPrefixEEnum = createEEnum(SI_PREFIX);
+		objectStateEEnum = createEEnum(OBJECT_STATE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private boolean isInitialized = false;
+
+	/**
+	 * Complete the initialization of the package and its meta-model.  This
+	 * method is guarded to have no affect on any invocation but its first.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void initializePackageContents()
+	{
+		if (isInitialized) return;
+		isInitialized = true;
+
+		// Initialize package
+		setName(eNAME);
+		setNsPrefix(eNS_PREFIX);
+		setNsURI(eNS_URI);
+
+		// Create type parameters
+
+		// Set bounds for type parameters
+
+		// Add supertypes to classes
+		eidClashEClass.getESuperTypes().add(this.getClash());
+		guidClashEClass.getESuperTypes().add(this.getClash());
+
+		// Initialize classes and features; add operations and parameters
+		initEClass(projectEClass, Project.class, "Project", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getProject_Id(), ecorePackage.getEInt(), "id", null, 0, 1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getProject_Name(), ecorePackage.getEString(), "name", null, 0, 1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProject_HasAuthorizedUsers(), this.getUser(), this.getUser_HasRightsOn(), "hasAuthorizedUsers", null, 0, -1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProject_ConcreteRevisions(), this.getConcreteRevision(), this.getConcreteRevision_Project(), "concreteRevisions", null, 0, -1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProject_Revisions(), this.getRevision(), this.getRevision_Project(), "revisions", null, 0, -1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProject_LastConcreteRevision(), this.getConcreteRevision(), null, "lastConcreteRevision", null, 0, 1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProject_LastRevision(), this.getRevision(), null, "lastRevision", null, 0, 1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProject_Checkouts(), this.getCheckout(), this.getCheckout_Project(), "checkouts", null, 0, -1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getProject_State(), this.getObjectState(), "state", null, 0, 1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getProject_CreatedDate(), ecorePackage.getEDate(), "createdDate", null, 0, 1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProject_CreatedBy(), this.getUser(), null, "createdBy", null, 0, 1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProject_GeoTag(), this.getGeoTag(), this.getGeoTag_Projects(), "geoTag", null, 0, 1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProject_SubProjects(), this.getProject(), this.getProject_Parent(), "subProjects", null, 0, -1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProject_Parent(), this.getProject(), this.getProject_SubProjects(), "parent", null, 0, 1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getProject_Description(), ecorePackage.getEString(), "description", null, 0, 1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProject_ClashDetectionSettings(), this.getClashDetectionSettings(), this.getClashDetectionSettings_Projects(), "clashDetectionSettings", null, 0, 1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getProject_ExportLengthMeasurePrefix(), this.getSIPrefix(), "exportLengthMeasurePrefix", null, 0, 1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(userEClass, User.class, "User", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getUser_Name(), ecorePackage.getEString(), "name", null, 0, 1, User.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getUser_Password(), ecorePackage.getEString(), "password", null, 0, 1, User.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getUser_HasRightsOn(), this.getProject(), this.getProject_HasAuthorizedUsers(), "hasRightsOn", null, 0, -1, User.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getUser_Revisions(), this.getRevision(), null, "revisions", null, 0, -1, User.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getUser_State(), this.getObjectState(), "state", null, 0, 1, User.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getUser_CreatedOn(), ecorePackage.getEDate(), "createdOn", null, 0, 1, User.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getUser_CreatedBy(), this.getUser(), null, "createdBy", null, 0, 1, User.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getUser_UserType(), this.getUserType(), "userType", null, 0, 1, User.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getUser_Username(), ecorePackage.getEString(), "username", null, 0, 1, User.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getUser_LastSeen(), ecorePackage.getEDate(), "lastSeen", null, 0, 1, User.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getUser_ValidationToken(), ecorePackage.getEString(), "validationToken", null, 0, 1, User.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getUser_ValidationTokenCreated(), ecorePackage.getEDate(), "validationTokenCreated", null, 0, 1, User.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(clashEClass, Clash.class, "Clash", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getClash_Name1(), ecorePackage.getEString(), "name1", null, 0, 1, Clash.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getClash_Name2(), ecorePackage.getEString(), "name2", null, 0, 1, Clash.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getClash_Type1(), ecorePackage.getEString(), "type1", null, 0, 1, Clash.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getClash_Type2(), ecorePackage.getEString(), "type2", null, 0, 1, Clash.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getClash_Revision1(), this.getRevision(), null, "revision1", null, 0, 1, Clash.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getClash_Revision2(), this.getRevision(), null, "revision2", null, 0, 1, Clash.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(eidClashEClass, EidClash.class, "EidClash", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getEidClash_Eid1(), ecorePackage.getELong(), "eid1", null, 0, 1, EidClash.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getEidClash_Eid2(), ecorePackage.getELong(), "eid2", null, 0, 1, EidClash.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(guidClashEClass, GuidClash.class, "GuidClash", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getGuidClash_Guid1(), ecorePackage.getEString(), "guid1", null, 0, 1, GuidClash.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getGuidClash_Guid2(), ecorePackage.getEString(), "guid2", null, 0, 1, GuidClash.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(clashDetectionSettingsEClass, ClashDetectionSettings.class, "ClashDetectionSettings", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getClashDetectionSettings_Enabled(), ecorePackage.getEBoolean(), "enabled", null, 0, 1, ClashDetectionSettings.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getClashDetectionSettings_Projects(), this.getProject(), this.getProject_ClashDetectionSettings(), "projects", null, 0, -1, ClashDetectionSettings.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getClashDetectionSettings_Margin(), ecorePackage.getEFloat(), "margin", null, 0, 1, ClashDetectionSettings.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getClashDetectionSettings_Revisions(), this.getRevision(), null, "revisions", null, 0, -1, ClashDetectionSettings.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getClashDetectionSettings_IgnoredClasses(), ecorePackage.getEString(), "ignoredClasses", null, 0, -1, ClashDetectionSettings.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(revisionEClass, Revision.class, "Revision", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getRevision_Id(), ecorePackage.getEInt(), "id", null, 0, 1, Revision.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getRevision_User(), this.getUser(), null, "user", null, 0, 1, Revision.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getRevision_Date(), ecorePackage.getEDate(), "date", null, 0, 1, Revision.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getRevision_Comment(), ecorePackage.getEString(), "comment", null, 0, 1, Revision.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getRevision_Size(), ecorePackage.getELong(), "size", null, 0, 1, Revision.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getRevision_ConcreteRevisions(), this.getConcreteRevision(), this.getConcreteRevision_Revisions(), "concreteRevisions", null, 0, -1, Revision.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getRevision_LastConcreteRevision(), this.getConcreteRevision(), null, "lastConcreteRevision", null, 0, 1, Revision.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getRevision_Checkouts(), this.getCheckout(), this.getCheckout_Revision(), "checkouts", null, 0, -1, Revision.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getRevision_Project(), this.getProject(), this.getProject_Revisions(), "project", null, 0, 1, Revision.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getRevision_State(), this.getCheckinState(), "state", null, 0, 1, Revision.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getRevision_LastClashes(), this.getClash(), null, "lastClashes", null, 0, -1, Revision.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getRevision_Tag(), ecorePackage.getEString(), "tag", null, 0, 1, Revision.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getRevision_LastError(), ecorePackage.getEString(), "lastError", null, 0, 1, Revision.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getRevision_Bmi(), ecorePackage.getEInt(), "bmi", null, 0, 1, Revision.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getRevision_NrClashes(), ecorePackage.getEInt(), "nrClashes", null, 0, 1, Revision.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getRevision_Laid(), ecorePackage.getELong(), "laid", null, 0, 1, Revision.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(concreteRevisionEClass, ConcreteRevision.class, "ConcreteRevision", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getConcreteRevision_Id(), ecorePackage.getEInt(), "id", null, 0, 1, ConcreteRevision.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getConcreteRevision_Project(), this.getProject(), this.getProject_ConcreteRevisions(), "project", null, 0, 1, ConcreteRevision.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getConcreteRevision_State(), this.getCheckinState(), "state", null, 0, 1, ConcreteRevision.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getConcreteRevision_Checksum(), ecorePackage.getEByteArray(), "checksum", null, 0, 1, ConcreteRevision.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getConcreteRevision_Revisions(), this.getRevision(), this.getRevision_ConcreteRevisions(), "revisions", null, 0, -1, ConcreteRevision.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getConcreteRevision_Size(), ecorePackage.getELong(), "size", null, 0, 1, ConcreteRevision.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getConcreteRevision_Date(), ecorePackage.getEDate(), "date", null, 0, 1, ConcreteRevision.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getConcreteRevision_LastError(), ecorePackage.getEString(), "lastError", null, 0, 1, ConcreteRevision.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(geoTagEClass, GeoTag.class, "GeoTag", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getGeoTag_Enabled(), ecorePackage.getEBoolean(), "enabled", null, 0, 1, GeoTag.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getGeoTag_Projects(), this.getProject(), this.getProject_GeoTag(), "projects", null, 0, -1, GeoTag.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getGeoTag_X(), ecorePackage.getEFloat(), "x", null, 0, 1, GeoTag.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getGeoTag_Y(), ecorePackage.getEFloat(), "y", null, 0, 1, GeoTag.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getGeoTag_Z(), ecorePackage.getEFloat(), "z", null, 0, 1, GeoTag.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getGeoTag_Epsg(), ecorePackage.getEInt(), "epsg", null, 0, 1, GeoTag.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getGeoTag_DirectionAngle(), ecorePackage.getEFloat(), "directionAngle", null, 0, 1, GeoTag.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(checkoutEClass, Checkout.class, "Checkout", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getCheckout_User(), this.getUser(), null, "user", null, 0, 1, Checkout.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCheckout_Revision(), this.getRevision(), this.getRevision_Checkouts(), "revision", null, 0, 1, Checkout.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCheckout_Project(), this.getProject(), this.getProject_Checkouts(), "project", null, 0, 1, Checkout.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getCheckout_Date(), ecorePackage.getEDate(), "date", null, 0, 1, Checkout.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCheckout_Checkin(), this.getRevision(), null, "checkin", null, 0, 1, Checkout.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getCheckout_Active(), ecorePackage.getEBoolean(), "active", null, 0, 1, Checkout.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(settingsEClass, Settings.class, "Settings", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getSettings_ShowVersionUpgradeAvailable(), ecorePackage.getEBoolean(), "showVersionUpgradeAvailable", null, 0, 1, Settings.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSettings_SendConfirmationEmailAfterRegistration(), ecorePackage.getEBoolean(), "sendConfirmationEmailAfterRegistration", null, 0, 1, Settings.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSettings_UseCaching(), ecorePackage.getEBoolean(), "useCaching", null, 0, 1, Settings.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSettings_AllowSelfRegistration(), ecorePackage.getEBoolean(), "allowSelfRegistration", null, 0, 1, Settings.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSettings_AutoTestClashes(), ecorePackage.getEBoolean(), "autoTestClashes", null, 0, 1, Settings.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSettings_IntelligentMerging(), ecorePackage.getEBoolean(), "intelligentMerging", null, 0, 1, Settings.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSettings_AllowUsersToCreateTopLevelProjects(), ecorePackage.getEBoolean(), "allowUsersToCreateTopLevelProjects", null, 0, 1, Settings.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSettings_CheckinMergingEnabled(), ecorePackage.getEBoolean(), "checkinMergingEnabled", null, 0, 1, Settings.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSettings_RegistrationAddition(), ecorePackage.getEString(), "registrationAddition", null, 0, 1, Settings.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSettings_SmtpServer(), ecorePackage.getEString(), "smtpServer", null, 0, 1, Settings.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSettings_EmailSenderAddress(), ecorePackage.getEString(), "emailSenderAddress", null, 0, 1, Settings.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSettings_EnabledExportTypes(), ecorePackage.getEString(), "enabledExportTypes", null, 0, 1, Settings.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSettings_CustomLogoAddress(), ecorePackage.getEString(), "customLogoAddress", null, 0, 1, Settings.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSettings_SiteAddress(), ecorePackage.getEString(), "siteAddress", null, 0, 1, Settings.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSettings_Serializers(), this.getSerializer(), this.getSerializer_Settings(), "serializers", null, 0, -1, Settings.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSettings_IgnoreFiles(), this.getIgnoreFile(), this.getIgnoreFile_Settings(), "ignoreFiles", null, 0, -1, Settings.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSettings_HeaderAddition(), ecorePackage.getEString(), "headerAddition", null, 0, 1, Settings.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSettings_FooterAddition(), ecorePackage.getEString(), "footerAddition", null, 0, 1, Settings.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(serializerEClass, Serializer.class, "Serializer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getSerializer_Name(), ecorePackage.getEString(), "name", null, 0, 1, Serializer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSerializer_Description(), ecorePackage.getEString(), "description", null, 0, 1, Serializer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSerializer_ClassName(), ecorePackage.getEString(), "className", null, 0, 1, Serializer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSerializer_Enabled(), ecorePackage.getEBoolean(), "enabled", null, 0, 1, Serializer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSerializer_IgnoreFile(), this.getIgnoreFile(), this.getIgnoreFile_Serializers(), "ignoreFile", null, 0, 1, Serializer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSerializer_Settings(), this.getSettings(), this.getSettings_Serializers(), "settings", null, 0, 1, Serializer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(ignoreFileEClass, IgnoreFile.class, "IgnoreFile", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getIgnoreFile_Name(), ecorePackage.getEString(), "name", null, 0, 1, IgnoreFile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getIgnoreFile_Data(), ecorePackage.getEByteArray(), "data", null, 0, 1, IgnoreFile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getIgnoreFile_Serializers(), this.getSerializer(), this.getSerializer_IgnoreFile(), "serializers", null, 0, -1, IgnoreFile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getIgnoreFile_Settings(), this.getSettings(), this.getSettings_IgnoreFiles(), "settings", null, 0, 1, IgnoreFile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		// Initialize enums and add enum literals
+		initEEnum(userTypeEEnum, UserType.class, "UserType");
+		addEEnumLiteral(userTypeEEnum, UserType.SYSTEM);
+		addEEnumLiteral(userTypeEEnum, UserType.ADMIN);
+		addEEnumLiteral(userTypeEEnum, UserType.USER);
+		addEEnumLiteral(userTypeEEnum, UserType.ANONYMOUS);
+
+		initEEnum(checkinStateEEnum, CheckinState.class, "CheckinState");
+		addEEnumLiteral(checkinStateEEnum, CheckinState.UPLOADING);
+		addEEnumLiteral(checkinStateEEnum, CheckinState.PARSING);
+		addEEnumLiteral(checkinStateEEnum, CheckinState.STORING);
+		addEEnumLiteral(checkinStateEEnum, CheckinState.SEARCHING_CLASHES);
+		addEEnumLiteral(checkinStateEEnum, CheckinState.DONE);
+		addEEnumLiteral(checkinStateEEnum, CheckinState.ERROR);
+		addEEnumLiteral(checkinStateEEnum, CheckinState.CLASHES_ERROR);
+
+		initEEnum(siPrefixEEnum, SIPrefix.class, "SIPrefix");
+		addEEnumLiteral(siPrefixEEnum, SIPrefix.METER);
+		addEEnumLiteral(siPrefixEEnum, SIPrefix.ATTOMETER);
+		addEEnumLiteral(siPrefixEEnum, SIPrefix.FEMTOMETER);
+		addEEnumLiteral(siPrefixEEnum, SIPrefix.PICOMETER);
+		addEEnumLiteral(siPrefixEEnum, SIPrefix.NANOMETER);
+		addEEnumLiteral(siPrefixEEnum, SIPrefix.MICROMETER);
+		addEEnumLiteral(siPrefixEEnum, SIPrefix.MILLIMETER);
+		addEEnumLiteral(siPrefixEEnum, SIPrefix.CENTIMETER);
+		addEEnumLiteral(siPrefixEEnum, SIPrefix.DECIMETER);
+		addEEnumLiteral(siPrefixEEnum, SIPrefix.DECAMETER);
+		addEEnumLiteral(siPrefixEEnum, SIPrefix.HECTOMETER);
+		addEEnumLiteral(siPrefixEEnum, SIPrefix.KILOMETER);
+		addEEnumLiteral(siPrefixEEnum, SIPrefix.MEGAMETER);
+		addEEnumLiteral(siPrefixEEnum, SIPrefix.GIGAMETER);
+		addEEnumLiteral(siPrefixEEnum, SIPrefix.TERAMETER);
+		addEEnumLiteral(siPrefixEEnum, SIPrefix.PETAMETER);
+		addEEnumLiteral(siPrefixEEnum, SIPrefix.EXAMETER);
+
+		initEEnum(objectStateEEnum, ObjectState.class, "ObjectState");
+		addEEnumLiteral(objectStateEEnum, ObjectState.ACTIVE);
+		addEEnumLiteral(objectStateEEnum, ObjectState.DELETED);
+
+		// Create resource
 		createResource(eNS_URI);
-	}
-
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private boolean isFixed = false;
-
-	/**
-	 * Fixes up the loaded package, to make it appear as if it had been programmatically built.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void fixPackageContents()
-	{
-		if (isFixed) return;
-		isFixed = true;
-		fixEClassifiers();
-	}
-
-	/**
-	 * Sets the instance class on the given classifier.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected void fixInstanceClass(EClassifier eClassifier)
-	{
-		if (eClassifier.getInstanceClassName() == null)
-		{
-			eClassifier.setInstanceClassName("org.bimserver.models.store." + eClassifier.getName());
-			setGeneratedClassName(eClassifier);
-		}
 	}
 
 } //StorePackageImpl

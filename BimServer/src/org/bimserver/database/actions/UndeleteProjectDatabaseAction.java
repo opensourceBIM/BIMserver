@@ -29,8 +29,8 @@ public class UndeleteProjectDatabaseAction extends BimDatabaseAction<Boolean> {
 	public Boolean execute() throws UserException, BimDatabaseException, BimDeadlockException {
 		User actingUser = getUserByUoid(actingUoid);
 		final Project project = getProjectByPoid(poid);
-		if (actingUser.getUserType() == UserType.ADMIN_LITERAL || actingUser.getHasRightsOn().contains(project)) {
-			project.setState(ObjectState.ACTIVE_LITERAL);
+		if (actingUser.getUserType() == UserType.ADMIN || actingUser.getHasRightsOn().contains(project)) {
+			project.setState(ObjectState.ACTIVE);
 			ProjectUndeleted projectUndeleted = LogFactory.eINSTANCE.createProjectUndeleted();
 			projectUndeleted.setAccessMethod(getAccessMethod());
 			projectUndeleted.setDate(new Date());

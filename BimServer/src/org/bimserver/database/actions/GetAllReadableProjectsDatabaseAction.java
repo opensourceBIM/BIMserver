@@ -35,7 +35,7 @@ public class GetAllReadableProjectsDatabaseAction extends BimDatabaseAction<Set<
 		for (IdEObject idEObject : projectsModel.getValues()) {
 			if (idEObject instanceof Project) {
 				Project project = (Project)idEObject;
-				if ((user.getUserType() == UserType.ADMIN_LITERAL || (project.getState() == ObjectState.ACTIVE_LITERAL) && RightsManager.hasRightsOnProjectOrSuperProjectsOrSubProjects(user, project))) {
+				if ((user.getUserType() == UserType.ADMIN || (project.getState() == ObjectState.ACTIVE) && RightsManager.hasRightsOnProjectOrSuperProjectsOrSubProjects(user, project))) {
 					result.add(project);
 				}
 			}

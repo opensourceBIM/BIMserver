@@ -39,13 +39,6 @@ import org.eclipse.emf.ecore.EObject;
 public class LogAdapterFactory extends AdapterFactoryImpl
 {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
-
-	/**
 	 * The cached model package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -61,8 +54,7 @@ public class LogAdapterFactory extends AdapterFactoryImpl
 	 */
 	public LogAdapterFactory()
 	{
-		if (modelPackage == null)
-		{
+		if (modelPackage == null) {
 			modelPackage = LogPackage.eINSTANCE;
 		}
 	}
@@ -78,12 +70,10 @@ public class LogAdapterFactory extends AdapterFactoryImpl
 	@Override
 	public boolean isFactoryForType(Object object)
 	{
-		if (object == modelPackage)
-		{
+		if (object == modelPackage) {
 			return true;
 		}
-		if (object instanceof EObject)
-		{
+		if (object instanceof EObject) {
 			return ((EObject)object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
@@ -96,131 +86,105 @@ public class LogAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	protected LogSwitch<Adapter> modelSwitch =
-		new LogSwitch<Adapter>()
-		{
+		new LogSwitch<Adapter>() {
 			@Override
-			public Adapter caseLogAction(LogAction object)
-			{
+			public Adapter caseLogAction(LogAction object) {
 				return createLogActionAdapter();
 			}
 			@Override
-			public Adapter caseServerLog(ServerLog object)
-			{
+			public Adapter caseServerLog(ServerLog object) {
 				return createServerLogAdapter();
 			}
 			@Override
-			public Adapter caseNewUserAdded(NewUserAdded object)
-			{
+			public Adapter caseNewUserAdded(NewUserAdded object) {
 				return createNewUserAddedAdapter();
 			}
 			@Override
-			public Adapter caseNewProjectAdded(NewProjectAdded object)
-			{
+			public Adapter caseNewProjectAdded(NewProjectAdded object) {
 				return createNewProjectAddedAdapter();
 			}
 			@Override
-			public Adapter caseNewRevisionAdded(NewRevisionAdded object)
-			{
+			public Adapter caseNewRevisionAdded(NewRevisionAdded object) {
 				return createNewRevisionAddedAdapter();
 			}
 			@Override
-			public Adapter caseNewCheckoutAdded(NewCheckoutAdded object)
-			{
+			public Adapter caseNewCheckoutAdded(NewCheckoutAdded object) {
 				return createNewCheckoutAddedAdapter();
 			}
 			@Override
-			public Adapter caseSettingsSaved(SettingsSaved object)
-			{
+			public Adapter caseSettingsSaved(SettingsSaved object) {
 				return createSettingsSavedAdapter();
 			}
 			@Override
-			public Adapter caseUserAddedToProject(UserAddedToProject object)
-			{
+			public Adapter caseUserAddedToProject(UserAddedToProject object) {
 				return createUserAddedToProjectAdapter();
 			}
 			@Override
-			public Adapter caseNewIgnoreFileUploaded(NewIgnoreFileUploaded object)
-			{
+			public Adapter caseNewIgnoreFileUploaded(NewIgnoreFileUploaded object) {
 				return createNewIgnoreFileUploadedAdapter();
 			}
 			@Override
-			public Adapter caseDownload(Download object)
-			{
+			public Adapter caseDownload(Download object) {
 				return createDownloadAdapter();
 			}
 			@Override
-			public Adapter caseUserRemovedFromProject(UserRemovedFromProject object)
-			{
+			public Adapter caseUserRemovedFromProject(UserRemovedFromProject object) {
 				return createUserRemovedFromProjectAdapter();
 			}
 			@Override
-			public Adapter caseProjectDeleted(ProjectDeleted object)
-			{
+			public Adapter caseProjectDeleted(ProjectDeleted object) {
 				return createProjectDeletedAdapter();
 			}
 			@Override
-			public Adapter caseUserDeleted(UserDeleted object)
-			{
+			public Adapter caseUserDeleted(UserDeleted object) {
 				return createUserDeletedAdapter();
 			}
 			@Override
-			public Adapter casePasswordReset(PasswordReset object)
-			{
+			public Adapter casePasswordReset(PasswordReset object) {
 				return createPasswordResetAdapter();
 			}
 			@Override
-			public Adapter caseDatabaseCreated(DatabaseCreated object)
-			{
+			public Adapter caseDatabaseCreated(DatabaseCreated object) {
 				return createDatabaseCreatedAdapter();
 			}
 			@Override
-			public Adapter caseServerStarted(ServerStarted object)
-			{
+			public Adapter caseServerStarted(ServerStarted object) {
 				return createServerStartedAdapter();
 			}
 			@Override
-			public Adapter caseProjectUpdated(ProjectUpdated object)
-			{
+			public Adapter caseProjectUpdated(ProjectUpdated object) {
 				return createProjectUpdatedAdapter();
 			}
 			@Override
-			public Adapter caseUserUndeleted(UserUndeleted object)
-			{
+			public Adapter caseUserUndeleted(UserUndeleted object) {
 				return createUserUndeletedAdapter();
 			}
 			@Override
-			public Adapter caseProjectUndeleted(ProjectUndeleted object)
-			{
+			public Adapter caseProjectUndeleted(ProjectUndeleted object) {
 				return createProjectUndeletedAdapter();
 			}
 			@Override
-			public Adapter caseRevisionUpdated(RevisionUpdated object)
-			{
+			public Adapter caseRevisionUpdated(RevisionUpdated object) {
 				return createRevisionUpdatedAdapter();
 			}
 			@Override
-			public Adapter caseGeoTagUpdated(GeoTagUpdated object)
-			{
+			public Adapter caseGeoTagUpdated(GeoTagUpdated object) {
 				return createGeoTagUpdatedAdapter();
 			}
 			@Override
-			public Adapter caseClashDetectionSettingsUpdated(ClashDetectionSettingsUpdated object)
-			{
+			public Adapter caseClashDetectionSettingsUpdated(ClashDetectionSettingsUpdated object) {
 				return createClashDetectionSettingsUpdatedAdapter();
 			}
 			@Override
-			public Adapter casePasswordChanged(PasswordChanged object)
-			{
+			public Adapter casePasswordChanged(PasswordChanged object) {
 				return createPasswordChangedAdapter();
 			}
 			@Override
-			public Adapter caseUserChanged(UserChanged object)
-			{
+			public Adapter caseUserChanged(UserChanged object) {
 				return createUserChangedAdapter();
 			}
 			@Override
-			public Adapter defaultCase(EObject object)
-			{
+			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
 		};

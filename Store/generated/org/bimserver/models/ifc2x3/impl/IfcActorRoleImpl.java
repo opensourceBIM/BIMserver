@@ -49,13 +49,6 @@ public class IfcActorRoleImpl extends IdEObjectImpl implements IfcActorRole
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	protected IfcActorRoleImpl()
 	{
 		super();
@@ -69,7 +62,7 @@ public class IfcActorRoleImpl extends IdEObjectImpl implements IfcActorRole
 	@Override
 	protected EClass eStaticClass()
 	{
-		return Ifc2x3Package.Literals.IFC_ACTOR_ROLE;
+		return Ifc2x3Package.eINSTANCE.getIfcActorRole();
 	}
 
 	/**
@@ -90,7 +83,7 @@ public class IfcActorRoleImpl extends IdEObjectImpl implements IfcActorRole
 	 */
 	public IfcRoleEnum getRole()
 	{
-		return (IfcRoleEnum)eGet(Ifc2x3Package.Literals.IFC_ACTOR_ROLE__ROLE, true);
+		return (IfcRoleEnum)eGet(Ifc2x3Package.eINSTANCE.getIfcActorRole_Role(), true);
 	}
 
 	/**
@@ -100,7 +93,7 @@ public class IfcActorRoleImpl extends IdEObjectImpl implements IfcActorRole
 	 */
 	public void setRole(IfcRoleEnum newRole)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_ACTOR_ROLE__ROLE, newRole);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcActorRole_Role(), newRole);
 	}
 
 	/**
@@ -110,7 +103,7 @@ public class IfcActorRoleImpl extends IdEObjectImpl implements IfcActorRole
 	 */
 	public String getUserDefinedRole()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_ACTOR_ROLE__USER_DEFINED_ROLE, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcActorRole_UserDefinedRole(), true);
 	}
 
 	/**
@@ -120,7 +113,7 @@ public class IfcActorRoleImpl extends IdEObjectImpl implements IfcActorRole
 	 */
 	public void setUserDefinedRole(String newUserDefinedRole)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_ACTOR_ROLE__USER_DEFINED_ROLE, newUserDefinedRole);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcActorRole_UserDefinedRole(), newUserDefinedRole);
 	}
 
 	/**
@@ -130,7 +123,7 @@ public class IfcActorRoleImpl extends IdEObjectImpl implements IfcActorRole
 	 */
 	public void unsetUserDefinedRole()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_ACTOR_ROLE__USER_DEFINED_ROLE);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcActorRole_UserDefinedRole());
 	}
 
 	/**
@@ -140,7 +133,7 @@ public class IfcActorRoleImpl extends IdEObjectImpl implements IfcActorRole
 	 */
 	public boolean isSetUserDefinedRole()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_ACTOR_ROLE__USER_DEFINED_ROLE);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcActorRole_UserDefinedRole());
 	}
 
 	/**
@@ -150,7 +143,7 @@ public class IfcActorRoleImpl extends IdEObjectImpl implements IfcActorRole
 	 */
 	public String getDescription()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_ACTOR_ROLE__DESCRIPTION, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcActorRole_Description(), true);
 	}
 
 	/**
@@ -160,7 +153,7 @@ public class IfcActorRoleImpl extends IdEObjectImpl implements IfcActorRole
 	 */
 	public void setDescription(String newDescription)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_ACTOR_ROLE__DESCRIPTION, newDescription);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcActorRole_Description(), newDescription);
 	}
 
 	/**
@@ -170,7 +163,7 @@ public class IfcActorRoleImpl extends IdEObjectImpl implements IfcActorRole
 	 */
 	public void unsetDescription()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_ACTOR_ROLE__DESCRIPTION);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcActorRole_Description());
 	}
 
 	/**
@@ -180,7 +173,7 @@ public class IfcActorRoleImpl extends IdEObjectImpl implements IfcActorRole
 	 */
 	public boolean isSetDescription()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_ACTOR_ROLE__DESCRIPTION);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcActorRole_Description());
 	}
 
 } //IfcActorRoleImpl

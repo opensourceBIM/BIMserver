@@ -29,7 +29,7 @@ public class DeleteProjectDatabaseAction extends BimDatabaseAction<Boolean> {
 	public Boolean execute() throws UserException, BimDatabaseException, BimDeadlockException {
 		User actingUser = getUserByUoid(actingUoid);
 		final Project project = getProjectByPoid(poid);
-		if (actingUser.getUserType() == UserType.ADMIN_LITERAL || actingUser.getHasRightsOn().contains(project)) {
+		if (actingUser.getUserType() == UserType.ADMIN || actingUser.getHasRightsOn().contains(project)) {
 			delete(project);
 			ProjectDeleted projectDeleted = LogFactory.eINSTANCE.createProjectDeleted();
 			projectDeleted.setAccessMethod(getAccessMethod());
@@ -44,7 +44,7 @@ public class DeleteProjectDatabaseAction extends BimDatabaseAction<Boolean> {
 	}
 	
 	private void delete(Project project) {
-		project.setState(ObjectState.DELETED_LITERAL);
+		project.setState(ObjectState.DELETED);
 		for (Project subProject : project.getSubProjects()) {
 			delete(subProject);
 		}

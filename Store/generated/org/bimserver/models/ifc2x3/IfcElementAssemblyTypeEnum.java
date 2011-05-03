@@ -40,128 +40,121 @@ public enum IfcElementAssemblyTypeEnum implements Enumerator
 	 * The '<em><b>NULL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NULL
+	 * @see #NULL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NULL_LITERAL(0, "NULL", "NULL"),
+	NULL(0, "NULL", "NULL"),
 
 	/**
 	 * The '<em><b>SLAB FIELD</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #SLAB_FIELD
+	 * @see #SLAB_FIELD_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	SLAB_FIELD_LITERAL(1, "SLAB_FIELD", "SLAB_FIELD"),
+	SLAB_FIELD(1, "SLAB_FIELD", "SLAB_FIELD"),
 
 	/**
 	 * The '<em><b>BEAM GRID</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #BEAM_GRID
+	 * @see #BEAM_GRID_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	BEAM_GRID_LITERAL(2, "BEAM_GRID", "BEAM_GRID"),
+	BEAM_GRID(2, "BEAM_GRID", "BEAM_GRID"),
 
 	/**
 	 * The '<em><b>ARCH</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #ARCH
+	 * @see #ARCH_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	ARCH_LITERAL(3, "ARCH", "ARCH"),
+	ARCH(3, "ARCH", "ARCH"),
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED
+	 * @see #NOTDEFINED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED_LITERAL(4, "NOTDEFINED", "NOTDEFINED"),
+	NOTDEFINED(4, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>REINFORCEMENT UNIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #REINFORCEMENT_UNIT
+	 * @see #REINFORCEMENT_UNIT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	REINFORCEMENT_UNIT_LITERAL(5, "REINFORCEMENT_UNIT", "REINFORCEMENT_UNIT"),
+	REINFORCEMENT_UNIT(5, "REINFORCEMENT_UNIT", "REINFORCEMENT_UNIT"),
 
 	/**
 	 * The '<em><b>BRACED FRAME</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #BRACED_FRAME
+	 * @see #BRACED_FRAME_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	BRACED_FRAME_LITERAL(6, "BRACED_FRAME", "BRACED_FRAME"),
+	BRACED_FRAME(6, "BRACED_FRAME", "BRACED_FRAME"),
 
 	/**
 	 * The '<em><b>GIRDER</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #GIRDER
+	 * @see #GIRDER_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	GIRDER_LITERAL(7, "GIRDER", "GIRDER"),
+	GIRDER(7, "GIRDER", "GIRDER"),
 
 	/**
 	 * The '<em><b>RIGID FRAME</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #RIGID_FRAME
+	 * @see #RIGID_FRAME_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	RIGID_FRAME_LITERAL(8, "RIGID_FRAME", "RIGID_FRAME"),
+	RIGID_FRAME(8, "RIGID_FRAME", "RIGID_FRAME"),
 
 	/**
 	 * The '<em><b>TRUSS</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #TRUSS
+	 * @see #TRUSS_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	TRUSS_LITERAL(9, "TRUSS", "TRUSS"),
+	TRUSS(9, "TRUSS", "TRUSS"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
+	 * @see #USERDEFINED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	USERDEFINED_LITERAL(10, "USERDEFINED", "USERDEFINED"),
+	USERDEFINED(10, "USERDEFINED", "USERDEFINED"),
 
 	/**
 	 * The '<em><b>ACCESSORY ASSEMBLY</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #ACCESSORY_ASSEMBLY
+	 * @see #ACCESSORY_ASSEMBLY_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	ACCESSORY_ASSEMBLY_LITERAL(11, "ACCESSORY_ASSEMBLY", "ACCESSORY_ASSEMBLY");
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
+	ACCESSORY_ASSEMBLY(11, "ACCESSORY_ASSEMBLY", "ACCESSORY_ASSEMBLY");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -171,12 +164,12 @@ public enum IfcElementAssemblyTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NULL_LITERAL
+	 * @see #NULL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NULL = 0;
+	public static final int NULL_VALUE = 0;
 
 	/**
 	 * The '<em><b>SLAB FIELD</b></em>' literal value.
@@ -186,12 +179,12 @@ public enum IfcElementAssemblyTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #SLAB_FIELD_LITERAL
+	 * @see #SLAB_FIELD
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SLAB_FIELD = 1;
+	public static final int SLAB_FIELD_VALUE = 1;
 
 	/**
 	 * The '<em><b>BEAM GRID</b></em>' literal value.
@@ -201,12 +194,12 @@ public enum IfcElementAssemblyTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #BEAM_GRID_LITERAL
+	 * @see #BEAM_GRID
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int BEAM_GRID = 2;
+	public static final int BEAM_GRID_VALUE = 2;
 
 	/**
 	 * The '<em><b>ARCH</b></em>' literal value.
@@ -216,12 +209,12 @@ public enum IfcElementAssemblyTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ARCH_LITERAL
+	 * @see #ARCH
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ARCH = 3;
+	public static final int ARCH_VALUE = 3;
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
@@ -231,12 +224,12 @@ public enum IfcElementAssemblyTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_LITERAL
+	 * @see #NOTDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED = 4;
+	public static final int NOTDEFINED_VALUE = 4;
 
 	/**
 	 * The '<em><b>REINFORCEMENT UNIT</b></em>' literal value.
@@ -246,12 +239,12 @@ public enum IfcElementAssemblyTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #REINFORCEMENT_UNIT_LITERAL
+	 * @see #REINFORCEMENT_UNIT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int REINFORCEMENT_UNIT = 5;
+	public static final int REINFORCEMENT_UNIT_VALUE = 5;
 
 	/**
 	 * The '<em><b>BRACED FRAME</b></em>' literal value.
@@ -261,12 +254,12 @@ public enum IfcElementAssemblyTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #BRACED_FRAME_LITERAL
+	 * @see #BRACED_FRAME
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int BRACED_FRAME = 6;
+	public static final int BRACED_FRAME_VALUE = 6;
 
 	/**
 	 * The '<em><b>GIRDER</b></em>' literal value.
@@ -276,12 +269,12 @@ public enum IfcElementAssemblyTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #GIRDER_LITERAL
+	 * @see #GIRDER
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int GIRDER = 7;
+	public static final int GIRDER_VALUE = 7;
 
 	/**
 	 * The '<em><b>RIGID FRAME</b></em>' literal value.
@@ -291,12 +284,12 @@ public enum IfcElementAssemblyTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #RIGID_FRAME_LITERAL
+	 * @see #RIGID_FRAME
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int RIGID_FRAME = 8;
+	public static final int RIGID_FRAME_VALUE = 8;
 
 	/**
 	 * The '<em><b>TRUSS</b></em>' literal value.
@@ -306,12 +299,12 @@ public enum IfcElementAssemblyTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #TRUSS_LITERAL
+	 * @see #TRUSS
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int TRUSS = 9;
+	public static final int TRUSS_VALUE = 9;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -321,12 +314,12 @@ public enum IfcElementAssemblyTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_LITERAL
+	 * @see #USERDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED = 10;
+	public static final int USERDEFINED_VALUE = 10;
 
 	/**
 	 * The '<em><b>ACCESSORY ASSEMBLY</b></em>' literal value.
@@ -336,12 +329,12 @@ public enum IfcElementAssemblyTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ACCESSORY_ASSEMBLY_LITERAL
+	 * @see #ACCESSORY_ASSEMBLY
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ACCESSORY_ASSEMBLY = 11;
+	public static final int ACCESSORY_ASSEMBLY_VALUE = 11;
 
 	/**
 	 * An array of all the '<em><b>Ifc Element Assembly Type Enum</b></em>' enumerators.
@@ -350,20 +343,19 @@ public enum IfcElementAssemblyTypeEnum implements Enumerator
 	 * @generated
 	 */
 	private static final IfcElementAssemblyTypeEnum[] VALUES_ARRAY =
-		new IfcElementAssemblyTypeEnum[]
-		{
-			NULL_LITERAL,
-			SLAB_FIELD_LITERAL,
-			BEAM_GRID_LITERAL,
-			ARCH_LITERAL,
-			NOTDEFINED_LITERAL,
-			REINFORCEMENT_UNIT_LITERAL,
-			BRACED_FRAME_LITERAL,
-			GIRDER_LITERAL,
-			RIGID_FRAME_LITERAL,
-			TRUSS_LITERAL,
-			USERDEFINED_LITERAL,
-			ACCESSORY_ASSEMBLY_LITERAL,
+		new IfcElementAssemblyTypeEnum[] {
+			NULL,
+			SLAB_FIELD,
+			BEAM_GRID,
+			ARCH,
+			NOTDEFINED,
+			REINFORCEMENT_UNIT,
+			BRACED_FRAME,
+			GIRDER,
+			RIGID_FRAME,
+			TRUSS,
+			USERDEFINED,
+			ACCESSORY_ASSEMBLY,
 		};
 
 	/**
@@ -382,11 +374,9 @@ public enum IfcElementAssemblyTypeEnum implements Enumerator
 	 */
 	public static IfcElementAssemblyTypeEnum get(String literal)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcElementAssemblyTypeEnum result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal))
-			{
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -401,11 +391,9 @@ public enum IfcElementAssemblyTypeEnum implements Enumerator
 	 */
 	public static IfcElementAssemblyTypeEnum getByName(String name)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcElementAssemblyTypeEnum result = VALUES_ARRAY[i];
-			if (result.getName().equals(name))
-			{
+			if (result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -420,20 +408,19 @@ public enum IfcElementAssemblyTypeEnum implements Enumerator
 	 */
 	public static IfcElementAssemblyTypeEnum get(int value)
 	{
-		switch (value)
-		{
-			case NULL: return NULL_LITERAL;
-			case SLAB_FIELD: return SLAB_FIELD_LITERAL;
-			case BEAM_GRID: return BEAM_GRID_LITERAL;
-			case ARCH: return ARCH_LITERAL;
-			case NOTDEFINED: return NOTDEFINED_LITERAL;
-			case REINFORCEMENT_UNIT: return REINFORCEMENT_UNIT_LITERAL;
-			case BRACED_FRAME: return BRACED_FRAME_LITERAL;
-			case GIRDER: return GIRDER_LITERAL;
-			case RIGID_FRAME: return RIGID_FRAME_LITERAL;
-			case TRUSS: return TRUSS_LITERAL;
-			case USERDEFINED: return USERDEFINED_LITERAL;
-			case ACCESSORY_ASSEMBLY: return ACCESSORY_ASSEMBLY_LITERAL;
+		switch (value) {
+			case NULL_VALUE: return NULL;
+			case SLAB_FIELD_VALUE: return SLAB_FIELD;
+			case BEAM_GRID_VALUE: return BEAM_GRID;
+			case ARCH_VALUE: return ARCH;
+			case NOTDEFINED_VALUE: return NOTDEFINED;
+			case REINFORCEMENT_UNIT_VALUE: return REINFORCEMENT_UNIT;
+			case BRACED_FRAME_VALUE: return BRACED_FRAME;
+			case GIRDER_VALUE: return GIRDER;
+			case RIGID_FRAME_VALUE: return RIGID_FRAME;
+			case TRUSS_VALUE: return TRUSS;
+			case USERDEFINED_VALUE: return USERDEFINED;
+			case ACCESSORY_ASSEMBLY_VALUE: return ACCESSORY_ASSEMBLY;
 		}
 		return null;
 	}

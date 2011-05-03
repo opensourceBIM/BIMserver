@@ -40,88 +40,81 @@ public enum IfcElectricMotorTypeEnum implements Enumerator
 	 * The '<em><b>NULL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NULL
+	 * @see #NULL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NULL_LITERAL(0, "NULL", "NULL"),
+	NULL(0, "NULL", "NULL"),
 
 	/**
 	 * The '<em><b>RELUCTANCESYNCHRONOUS</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #RELUCTANCESYNCHRONOUS
+	 * @see #RELUCTANCESYNCHRONOUS_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	RELUCTANCESYNCHRONOUS_LITERAL(1, "RELUCTANCESYNCHRONOUS", "RELUCTANCESYNCHRONOUS"),
+	RELUCTANCESYNCHRONOUS(1, "RELUCTANCESYNCHRONOUS", "RELUCTANCESYNCHRONOUS"),
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED
+	 * @see #NOTDEFINED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED_LITERAL(2, "NOTDEFINED", "NOTDEFINED"),
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>SYNCHRONOUS</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #SYNCHRONOUS
+	 * @see #SYNCHRONOUS_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	SYNCHRONOUS_LITERAL(3, "SYNCHRONOUS", "SYNCHRONOUS"),
+	SYNCHRONOUS(3, "SYNCHRONOUS", "SYNCHRONOUS"),
 
 	/**
 	 * The '<em><b>INDUCTION</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #INDUCTION
+	 * @see #INDUCTION_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	INDUCTION_LITERAL(4, "INDUCTION", "INDUCTION"),
+	INDUCTION(4, "INDUCTION", "INDUCTION"),
 
 	/**
 	 * The '<em><b>POLYPHASE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #POLYPHASE
+	 * @see #POLYPHASE_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	POLYPHASE_LITERAL(5, "POLYPHASE", "POLYPHASE"),
+	POLYPHASE(5, "POLYPHASE", "POLYPHASE"),
 
 	/**
 	 * The '<em><b>DC</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #DC
+	 * @see #DC_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	DC_LITERAL(6, "DC", "DC"),
+	DC(6, "DC", "DC"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
+	 * @see #USERDEFINED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	USERDEFINED_LITERAL(7, "USERDEFINED", "USERDEFINED");
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
+	USERDEFINED(7, "USERDEFINED", "USERDEFINED");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -131,12 +124,12 @@ public enum IfcElectricMotorTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NULL_LITERAL
+	 * @see #NULL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NULL = 0;
+	public static final int NULL_VALUE = 0;
 
 	/**
 	 * The '<em><b>RELUCTANCESYNCHRONOUS</b></em>' literal value.
@@ -146,12 +139,12 @@ public enum IfcElectricMotorTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #RELUCTANCESYNCHRONOUS_LITERAL
+	 * @see #RELUCTANCESYNCHRONOUS
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int RELUCTANCESYNCHRONOUS = 1;
+	public static final int RELUCTANCESYNCHRONOUS_VALUE = 1;
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
@@ -161,12 +154,12 @@ public enum IfcElectricMotorTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_LITERAL
+	 * @see #NOTDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED = 2;
+	public static final int NOTDEFINED_VALUE = 2;
 
 	/**
 	 * The '<em><b>SYNCHRONOUS</b></em>' literal value.
@@ -176,12 +169,12 @@ public enum IfcElectricMotorTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #SYNCHRONOUS_LITERAL
+	 * @see #SYNCHRONOUS
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SYNCHRONOUS = 3;
+	public static final int SYNCHRONOUS_VALUE = 3;
 
 	/**
 	 * The '<em><b>INDUCTION</b></em>' literal value.
@@ -191,12 +184,12 @@ public enum IfcElectricMotorTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #INDUCTION_LITERAL
+	 * @see #INDUCTION
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int INDUCTION = 4;
+	public static final int INDUCTION_VALUE = 4;
 
 	/**
 	 * The '<em><b>POLYPHASE</b></em>' literal value.
@@ -206,12 +199,12 @@ public enum IfcElectricMotorTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #POLYPHASE_LITERAL
+	 * @see #POLYPHASE
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int POLYPHASE = 5;
+	public static final int POLYPHASE_VALUE = 5;
 
 	/**
 	 * The '<em><b>DC</b></em>' literal value.
@@ -221,12 +214,12 @@ public enum IfcElectricMotorTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #DC_LITERAL
+	 * @see #DC
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int DC = 6;
+	public static final int DC_VALUE = 6;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -236,12 +229,12 @@ public enum IfcElectricMotorTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_LITERAL
+	 * @see #USERDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED = 7;
+	public static final int USERDEFINED_VALUE = 7;
 
 	/**
 	 * An array of all the '<em><b>Ifc Electric Motor Type Enum</b></em>' enumerators.
@@ -250,16 +243,15 @@ public enum IfcElectricMotorTypeEnum implements Enumerator
 	 * @generated
 	 */
 	private static final IfcElectricMotorTypeEnum[] VALUES_ARRAY =
-		new IfcElectricMotorTypeEnum[]
-		{
-			NULL_LITERAL,
-			RELUCTANCESYNCHRONOUS_LITERAL,
-			NOTDEFINED_LITERAL,
-			SYNCHRONOUS_LITERAL,
-			INDUCTION_LITERAL,
-			POLYPHASE_LITERAL,
-			DC_LITERAL,
-			USERDEFINED_LITERAL,
+		new IfcElectricMotorTypeEnum[] {
+			NULL,
+			RELUCTANCESYNCHRONOUS,
+			NOTDEFINED,
+			SYNCHRONOUS,
+			INDUCTION,
+			POLYPHASE,
+			DC,
+			USERDEFINED,
 		};
 
 	/**
@@ -278,11 +270,9 @@ public enum IfcElectricMotorTypeEnum implements Enumerator
 	 */
 	public static IfcElectricMotorTypeEnum get(String literal)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcElectricMotorTypeEnum result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal))
-			{
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -297,11 +287,9 @@ public enum IfcElectricMotorTypeEnum implements Enumerator
 	 */
 	public static IfcElectricMotorTypeEnum getByName(String name)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcElectricMotorTypeEnum result = VALUES_ARRAY[i];
-			if (result.getName().equals(name))
-			{
+			if (result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -316,16 +304,15 @@ public enum IfcElectricMotorTypeEnum implements Enumerator
 	 */
 	public static IfcElectricMotorTypeEnum get(int value)
 	{
-		switch (value)
-		{
-			case NULL: return NULL_LITERAL;
-			case RELUCTANCESYNCHRONOUS: return RELUCTANCESYNCHRONOUS_LITERAL;
-			case NOTDEFINED: return NOTDEFINED_LITERAL;
-			case SYNCHRONOUS: return SYNCHRONOUS_LITERAL;
-			case INDUCTION: return INDUCTION_LITERAL;
-			case POLYPHASE: return POLYPHASE_LITERAL;
-			case DC: return DC_LITERAL;
-			case USERDEFINED: return USERDEFINED_LITERAL;
+		switch (value) {
+			case NULL_VALUE: return NULL;
+			case RELUCTANCESYNCHRONOUS_VALUE: return RELUCTANCESYNCHRONOUS;
+			case NOTDEFINED_VALUE: return NOTDEFINED;
+			case SYNCHRONOUS_VALUE: return SYNCHRONOUS;
+			case INDUCTION_VALUE: return INDUCTION;
+			case POLYPHASE_VALUE: return POLYPHASE;
+			case DC_VALUE: return DC;
+			case USERDEFINED_VALUE: return USERDEFINED;
 		}
 		return null;
 	}

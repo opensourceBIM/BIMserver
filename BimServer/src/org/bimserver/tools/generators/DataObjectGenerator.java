@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -12,16 +13,12 @@ import org.bimserver.database.migrations.Schema;
 import org.bimserver.querycompiler.VirtualFile;
 import org.bimserver.utils.StringUtils;
 import org.eclipse.emf.codegen.ecore.genmodel.GenClass;
-import org.eclipse.emf.codegen.ecore.genmodel.GenDataType;
 import org.eclipse.emf.codegen.ecore.genmodel.GenDelegationKind;
 import org.eclipse.emf.codegen.ecore.genmodel.GenEnum;
-import org.eclipse.emf.codegen.ecore.genmodel.GenEnumLiteral;
-import org.eclipse.emf.codegen.ecore.genmodel.GenFeature;
 import org.eclipse.emf.codegen.ecore.genmodel.GenJDKLevel;
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
 import org.eclipse.emf.codegen.ecore.genmodel.GenModelFactory;
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
-import org.eclipse.emf.codegen.ecore.genmodel.GenResourceKind;
 import org.eclipse.emf.codegen.ecore.genmodel.GenRuntimeVersion;
 import org.eclipse.emf.codegen.ecore.templates.model.AdapterFactoryClass;
 import org.eclipse.emf.codegen.ecore.templates.model.EnumClass;
@@ -33,13 +30,7 @@ import org.eclipse.emf.codegen.ecore.templates.model.SwitchClass;
 import org.eclipse.emf.codegen.ecore.templates.model.XMLProcessorClass;
 import org.eclipse.emf.codegen.util.ImportManager;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EDataType;
-import org.eclipse.emf.ecore.EEnum;
-import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
@@ -69,22 +60,19 @@ public class DataObjectGenerator {
 		genModel.setModelDirectory("test");
 		genModel.setModelName("model name");
 		genModel.setForceOverwrite(true);
-		genModel.setSuppressNotification(true);
+		genModel.setSuppressNotification(false);
 		genModel.setContainmentProxies(false);
 		genModel.setBinaryCompatibleReflectiveMethods(false);
 		genModel.setPublicConstructors(false);
-		genModel.setMinimalReflectiveMethods(false); // More code, but faster
+		genModel.setMinimalReflectiveMethods(true); // More code, but faster
 
-		Set<GenPackage> genPackages = createGenPackages(genModel, basedir);
-		// for (GenPackage genPackage : genPackages) {
-		// genModel.getUsedGenPackages().add(genPackage);
-		// }
+		List<GenPackage> genPackages = createGenPackages(genModel, basedir);
 		generatePackages(genModel, genPackages, basedir);
 
 		return basedir;
 	}
 
-	private void generatePackages(GenModel genModel, Set<GenPackage> genPackages, VirtualFile basedir) {
+	private void generatePackages(GenModel genModel, List<GenPackage> genPackages, VirtualFile basedir) {
 		for (GenPackage genPackage : genPackages) {
 			genPackage.prepareCache();
 
@@ -184,48 +172,47 @@ public class DataObjectGenerator {
 		}
 	}
 
-	private Set<GenPackage> createGenPackages(GenModel genModel, VirtualFile basedir) throws DatabaseException {
-		Set<GenPackage> result = new HashSet<GenPackage>();
+	private List<GenPackage> createGenPackages(GenModel genModel, VirtualFile basedir) throws DatabaseException {
 		ResourceSetImpl resourceSet = new ResourceSetImpl();
 		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("ecore", new EcoreResourceFactoryImpl());
 		Map<VirtualFile, Resource> resources = new HashMap<VirtualFile, Resource>();
-		for (EPackage ePackage : schema.getEPackages()) {
-			GenPackage genPackage = GenModelFactory.eINSTANCE.createGenPackage();
-			result.add(genPackage);
-			genPackage.setPrefix(StringUtils.firstUpperCase(ePackage.getName()));
+		genModel.initialize(schema.getEPackages());
+		for (GenPackage genPackage : genModel.getGenPackages()) {
 			genPackage.setBasePackage("org.bimserver.models");
-			genModel.getGenPackages().add(genPackage);
-			genPackage.initialize(ePackage);
-			genPackage.setLoadInitialization(true);
-
-			genPackage.setResource(GenResourceKind.NONE_LITERAL);
-			for (EClassifier eClassifier : ePackage.getEClassifiers()) {
-				if (eClassifier instanceof EClass) {
-					EClass eClass = (EClass) eClassifier;
-					GenClass genClass = GenModelFactory.eINSTANCE.createGenClass();
-					genClass.setEcoreClass(eClass);
-					genPackage.getGenClasses().add(genClass);
-					for (EStructuralFeature eStructuralFeature : eClass.getEStructuralFeatures()) {
-						GenFeature genFeature = GenModelFactory.eINSTANCE.createGenFeature();
-						genFeature.setEcoreFeature(eStructuralFeature);
-						genClass.getGenFeatures().add(genFeature);
-					}
-				} else if (eClassifier instanceof EEnum) {
-					EEnum eEnum = (EEnum) eClassifier;
-					GenEnum genEnum = GenModelFactory.eINSTANCE.createGenEnum();
-					genEnum.setEcoreEnum(eEnum);
-					genPackage.getGenEnums().add(genEnum);
-					for (EEnumLiteral eEnumLiteral : eEnum.getELiterals()) {
-						GenEnumLiteral genEnumLiteral = GenModelFactory.eINSTANCE.createGenEnumLiteral();
-						genEnumLiteral.setEcoreEnumLiteral(eEnumLiteral);
-						genEnum.getGenEnumLiterals().add(genEnumLiteral);
-					}
-				} else if (eClassifier instanceof EDataType) {
-					GenDataType genDataType = GenModelFactory.eINSTANCE.createGenDataType();
-					genDataType.setEcoreDataType((EDataType) eClassifier);
-					genPackage.getGenDataTypes().add(genDataType);
-				}
-			}
+		}
+		for (EPackage ePackage : schema.getEPackages()) {
+//			GenPackage genPackage = genModel.get
+//			result.add(genPackage);
+//			genModel.getGenPackages().add(genPackage);
+//			genPackage.initialize(ePackage);
+//			for (EClassifier eClassifier : ePackage.getEClassifiers()) {
+//				if (eClassifier instanceof EClass) {
+//					EClass eClass = (EClass) eClassifier;
+//					GenClass genClass = GenModelFactory.eINSTANCE.createGenClass();
+//					genClass.initialize(eClass);
+//					genPackage.getGenClasses().add(genClass);
+//					for (EStructuralFeature eStructuralFeature : eClass.getEStructuralFeatures()) {
+//						GenFeature genFeature = GenModelFactory.eINSTANCE.createGenFeature();
+//						genFeature.initialize(eStructuralFeature);
+//						genFeature.setEcoreFeature(eStructuralFeature);
+//						genClass.getGenFeatures().add(genFeature);
+//					}
+//				} else if (eClassifier instanceof EEnum) {
+//					EEnum eEnum = (EEnum) eClassifier;
+//					GenEnum genEnum = GenModelFactory.eINSTANCE.createGenEnum();
+//					genEnum.setEcoreEnum(eEnum);
+//					genPackage.getGenEnums().add(genEnum);
+//					for (EEnumLiteral eEnumLiteral : eEnum.getELiterals()) {
+//						GenEnumLiteral genEnumLiteral = GenModelFactory.eINSTANCE.createGenEnumLiteral();
+//						genEnumLiteral.setEcoreEnumLiteral(eEnumLiteral);
+//						genEnum.getGenEnumLiterals().add(genEnumLiteral);
+//					}
+//				} else if (eClassifier instanceof EDataType) {
+//					GenDataType genDataType = GenModelFactory.eINSTANCE.createGenDataType();
+//					genDataType.setEcoreDataType((EDataType) eClassifier);
+//					genPackage.getGenDataTypes().add(genDataType);
+//				}
+//			}
 			Resource resource = resourceSet.createResource(URI.createURI(ePackage.getName() + ".ecore"));
 			resource.getContents().add(ePackage);
 			VirtualFile ecoreFile = basedir.createFile(MODEL_PACKAGE.replace(".", "/") + ePackage.getName() + "/impl/" + ePackage.getName() + ".ecore");
@@ -241,6 +228,6 @@ public class DataObjectGenerator {
 				e.printStackTrace();
 			}
 		}
-		return result;
+		return genModel.getGenPackages();
 	}
 }

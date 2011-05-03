@@ -40,508 +40,501 @@ public enum IfcDerivedUnitEnum implements Enumerator
 	 * The '<em><b>NULL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NULL
+	 * @see #NULL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NULL_LITERAL(0, "NULL", "NULL"),
+	NULL(0, "NULL", "NULL"),
 
 	/**
 	 * The '<em><b>MOMENTOFINERTIAUNIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #MOMENTOFINERTIAUNIT
+	 * @see #MOMENTOFINERTIAUNIT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	MOMENTOFINERTIAUNIT_LITERAL(1, "MOMENTOFINERTIAUNIT", "MOMENTOFINERTIAUNIT"),
+	MOMENTOFINERTIAUNIT(1, "MOMENTOFINERTIAUNIT", "MOMENTOFINERTIAUNIT"),
 
 	/**
 	 * The '<em><b>MOLECULARWEIGHTUNIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #MOLECULARWEIGHTUNIT
+	 * @see #MOLECULARWEIGHTUNIT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	MOLECULARWEIGHTUNIT_LITERAL(2, "MOLECULARWEIGHTUNIT", "MOLECULARWEIGHTUNIT"),
+	MOLECULARWEIGHTUNIT(2, "MOLECULARWEIGHTUNIT", "MOLECULARWEIGHTUNIT"),
 
 	/**
 	 * The '<em><b>SECTIONMODULUSUNIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #SECTIONMODULUSUNIT
+	 * @see #SECTIONMODULUSUNIT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	SECTIONMODULUSUNIT_LITERAL(3, "SECTIONMODULUSUNIT", "SECTIONMODULUSUNIT"),
+	SECTIONMODULUSUNIT(3, "SECTIONMODULUSUNIT", "SECTIONMODULUSUNIT"),
 
 	/**
 	 * The '<em><b>HEATFLUXDENSITYUNIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #HEATFLUXDENSITYUNIT
+	 * @see #HEATFLUXDENSITYUNIT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	HEATFLUXDENSITYUNIT_LITERAL(4, "HEATFLUXDENSITYUNIT", "HEATFLUXDENSITYUNIT"),
+	HEATFLUXDENSITYUNIT(4, "HEATFLUXDENSITYUNIT", "HEATFLUXDENSITYUNIT"),
 
 	/**
 	 * The '<em><b>ROTATIONALFREQUENCYUNIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #ROTATIONALFREQUENCYUNIT
+	 * @see #ROTATIONALFREQUENCYUNIT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	ROTATIONALFREQUENCYUNIT_LITERAL(5, "ROTATIONALFREQUENCYUNIT", "ROTATIONALFREQUENCYUNIT"),
+	ROTATIONALFREQUENCYUNIT(5, "ROTATIONALFREQUENCYUNIT", "ROTATIONALFREQUENCYUNIT"),
 
 	/**
 	 * The '<em><b>THERMALTRANSMITTANCEUNIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #THERMALTRANSMITTANCEUNIT
+	 * @see #THERMALTRANSMITTANCEUNIT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	THERMALTRANSMITTANCEUNIT_LITERAL(6, "THERMALTRANSMITTANCEUNIT", "THERMALTRANSMITTANCEUNIT"),
+	THERMALTRANSMITTANCEUNIT(6, "THERMALTRANSMITTANCEUNIT", "THERMALTRANSMITTANCEUNIT"),
 
 	/**
 	 * The '<em><b>KINEMATICVISCOSITYUNIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #KINEMATICVISCOSITYUNIT
+	 * @see #KINEMATICVISCOSITYUNIT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	KINEMATICVISCOSITYUNIT_LITERAL(7, "KINEMATICVISCOSITYUNIT", "KINEMATICVISCOSITYUNIT"),
+	KINEMATICVISCOSITYUNIT(7, "KINEMATICVISCOSITYUNIT", "KINEMATICVISCOSITYUNIT"),
 
 	/**
 	 * The '<em><b>VOLUMETRICFLOWRATEUNIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #VOLUMETRICFLOWRATEUNIT
+	 * @see #VOLUMETRICFLOWRATEUNIT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	VOLUMETRICFLOWRATEUNIT_LITERAL(8, "VOLUMETRICFLOWRATEUNIT", "VOLUMETRICFLOWRATEUNIT"),
+	VOLUMETRICFLOWRATEUNIT(8, "VOLUMETRICFLOWRATEUNIT", "VOLUMETRICFLOWRATEUNIT"),
 
 	/**
 	 * The '<em><b>SPECIFICHEATCAPACITYUNIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #SPECIFICHEATCAPACITYUNIT
+	 * @see #SPECIFICHEATCAPACITYUNIT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	SPECIFICHEATCAPACITYUNIT_LITERAL(9, "SPECIFICHEATCAPACITYUNIT", "SPECIFICHEATCAPACITYUNIT"),
+	SPECIFICHEATCAPACITYUNIT(9, "SPECIFICHEATCAPACITYUNIT", "SPECIFICHEATCAPACITYUNIT"),
 
 	/**
 	 * The '<em><b>HEATINGVALUEUNIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #HEATINGVALUEUNIT
+	 * @see #HEATINGVALUEUNIT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	HEATINGVALUEUNIT_LITERAL(10, "HEATINGVALUEUNIT", "HEATINGVALUEUNIT"),
+	HEATINGVALUEUNIT(10, "HEATINGVALUEUNIT", "HEATINGVALUEUNIT"),
 
 	/**
 	 * The '<em><b>TORQUEUNIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #TORQUEUNIT
+	 * @see #TORQUEUNIT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	TORQUEUNIT_LITERAL(11, "TORQUEUNIT", "TORQUEUNIT"),
+	TORQUEUNIT(11, "TORQUEUNIT", "TORQUEUNIT"),
 
 	/**
 	 * The '<em><b>THERMALRESISTANCEUNIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #THERMALRESISTANCEUNIT
+	 * @see #THERMALRESISTANCEUNIT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	THERMALRESISTANCEUNIT_LITERAL(12, "THERMALRESISTANCEUNIT", "THERMALRESISTANCEUNIT"),
+	THERMALRESISTANCEUNIT(12, "THERMALRESISTANCEUNIT", "THERMALRESISTANCEUNIT"),
 
 	/**
 	 * The '<em><b>SHEARMODULUSUNIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #SHEARMODULUSUNIT
+	 * @see #SHEARMODULUSUNIT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	SHEARMODULUSUNIT_LITERAL(13, "SHEARMODULUSUNIT", "SHEARMODULUSUNIT"),
+	SHEARMODULUSUNIT(13, "SHEARMODULUSUNIT", "SHEARMODULUSUNIT"),
 
 	/**
 	 * The '<em><b>MODULUSOFSUBGRADEREACTIONUNIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #MODULUSOFSUBGRADEREACTIONUNIT
+	 * @see #MODULUSOFSUBGRADEREACTIONUNIT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	MODULUSOFSUBGRADEREACTIONUNIT_LITERAL(14, "MODULUSOFSUBGRADEREACTIONUNIT", "MODULUSOFSUBGRADEREACTIONUNIT"),
+	MODULUSOFSUBGRADEREACTIONUNIT(14, "MODULUSOFSUBGRADEREACTIONUNIT", "MODULUSOFSUBGRADEREACTIONUNIT"),
 
 	/**
 	 * The '<em><b>DYNAMICVISCOSITYUNIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #DYNAMICVISCOSITYUNIT
+	 * @see #DYNAMICVISCOSITYUNIT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	DYNAMICVISCOSITYUNIT_LITERAL(15, "DYNAMICVISCOSITYUNIT", "DYNAMICVISCOSITYUNIT"),
+	DYNAMICVISCOSITYUNIT(15, "DYNAMICVISCOSITYUNIT", "DYNAMICVISCOSITYUNIT"),
 
 	/**
 	 * The '<em><b>ROTATIONALSTIFFNESSUNIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #ROTATIONALSTIFFNESSUNIT
+	 * @see #ROTATIONALSTIFFNESSUNIT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	ROTATIONALSTIFFNESSUNIT_LITERAL(16, "ROTATIONALSTIFFNESSUNIT", "ROTATIONALSTIFFNESSUNIT"),
+	ROTATIONALSTIFFNESSUNIT(16, "ROTATIONALSTIFFNESSUNIT", "ROTATIONALSTIFFNESSUNIT"),
 
 	/**
 	 * The '<em><b>MASSDENSITYUNIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #MASSDENSITYUNIT
+	 * @see #MASSDENSITYUNIT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	MASSDENSITYUNIT_LITERAL(17, "MASSDENSITYUNIT", "MASSDENSITYUNIT"),
+	MASSDENSITYUNIT(17, "MASSDENSITYUNIT", "MASSDENSITYUNIT"),
 
 	/**
 	 * The '<em><b>LINEARSTIFFNESSUNIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #LINEARSTIFFNESSUNIT
+	 * @see #LINEARSTIFFNESSUNIT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	LINEARSTIFFNESSUNIT_LITERAL(18, "LINEARSTIFFNESSUNIT", "LINEARSTIFFNESSUNIT"),
+	LINEARSTIFFNESSUNIT(18, "LINEARSTIFFNESSUNIT", "LINEARSTIFFNESSUNIT"),
 
 	/**
 	 * The '<em><b>VAPORPERMEABILITYUNIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #VAPORPERMEABILITYUNIT
+	 * @see #VAPORPERMEABILITYUNIT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	VAPORPERMEABILITYUNIT_LITERAL(19, "VAPORPERMEABILITYUNIT", "VAPORPERMEABILITYUNIT"),
+	VAPORPERMEABILITYUNIT(19, "VAPORPERMEABILITYUNIT", "VAPORPERMEABILITYUNIT"),
 
 	/**
 	 * The '<em><b>TEMPERATUREGRADIENTUNIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #TEMPERATUREGRADIENTUNIT
+	 * @see #TEMPERATUREGRADIENTUNIT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	TEMPERATUREGRADIENTUNIT_LITERAL(20, "TEMPERATUREGRADIENTUNIT", "TEMPERATUREGRADIENTUNIT"),
+	TEMPERATUREGRADIENTUNIT(20, "TEMPERATUREGRADIENTUNIT", "TEMPERATUREGRADIENTUNIT"),
 
 	/**
 	 * The '<em><b>ANGULARVELOCITYUNIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #ANGULARVELOCITYUNIT
+	 * @see #ANGULARVELOCITYUNIT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	ANGULARVELOCITYUNIT_LITERAL(21, "ANGULARVELOCITYUNIT", "ANGULARVELOCITYUNIT"),
+	ANGULARVELOCITYUNIT(21, "ANGULARVELOCITYUNIT", "ANGULARVELOCITYUNIT"),
 
 	/**
 	 * The '<em><b>CURVATUREUNIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #CURVATUREUNIT
+	 * @see #CURVATUREUNIT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	CURVATUREUNIT_LITERAL(22, "CURVATUREUNIT", "CURVATUREUNIT"),
+	CURVATUREUNIT(22, "CURVATUREUNIT", "CURVATUREUNIT"),
 
 	/**
 	 * The '<em><b>WARPINGMOMENTUNIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #WARPINGMOMENTUNIT
+	 * @see #WARPINGMOMENTUNIT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	WARPINGMOMENTUNIT_LITERAL(23, "WARPINGMOMENTUNIT", "WARPINGMOMENTUNIT"),
+	WARPINGMOMENTUNIT(23, "WARPINGMOMENTUNIT", "WARPINGMOMENTUNIT"),
 
 	/**
 	 * The '<em><b>ROTATIONALMASSUNIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #ROTATIONALMASSUNIT
+	 * @see #ROTATIONALMASSUNIT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	ROTATIONALMASSUNIT_LITERAL(24, "ROTATIONALMASSUNIT", "ROTATIONALMASSUNIT"),
+	ROTATIONALMASSUNIT(24, "ROTATIONALMASSUNIT", "ROTATIONALMASSUNIT"),
 
 	/**
 	 * The '<em><b>THERMALADMITTANCEUNIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #THERMALADMITTANCEUNIT
+	 * @see #THERMALADMITTANCEUNIT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	THERMALADMITTANCEUNIT_LITERAL(25, "THERMALADMITTANCEUNIT", "THERMALADMITTANCEUNIT"),
+	THERMALADMITTANCEUNIT(25, "THERMALADMITTANCEUNIT", "THERMALADMITTANCEUNIT"),
 
 	/**
 	 * The '<em><b>MASSFLOWRATEUNIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #MASSFLOWRATEUNIT
+	 * @see #MASSFLOWRATEUNIT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	MASSFLOWRATEUNIT_LITERAL(26, "MASSFLOWRATEUNIT", "MASSFLOWRATEUNIT"),
+	MASSFLOWRATEUNIT(26, "MASSFLOWRATEUNIT", "MASSFLOWRATEUNIT"),
 
 	/**
 	 * The '<em><b>SOUNDPOWERUNIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #SOUNDPOWERUNIT
+	 * @see #SOUNDPOWERUNIT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	SOUNDPOWERUNIT_LITERAL(27, "SOUNDPOWERUNIT", "SOUNDPOWERUNIT"),
+	SOUNDPOWERUNIT(27, "SOUNDPOWERUNIT", "SOUNDPOWERUNIT"),
 
 	/**
 	 * The '<em><b>COMPOUNDPLANEANGLEUNIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #COMPOUNDPLANEANGLEUNIT
+	 * @see #COMPOUNDPLANEANGLEUNIT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	COMPOUNDPLANEANGLEUNIT_LITERAL(28, "COMPOUNDPLANEANGLEUNIT", "COMPOUNDPLANEANGLEUNIT"),
+	COMPOUNDPLANEANGLEUNIT(28, "COMPOUNDPLANEANGLEUNIT", "COMPOUNDPLANEANGLEUNIT"),
 
 	/**
 	 * The '<em><b>ISOTHERMALMOISTURECAPACITYUNIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #ISOTHERMALMOISTURECAPACITYUNIT
+	 * @see #ISOTHERMALMOISTURECAPACITYUNIT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	ISOTHERMALMOISTURECAPACITYUNIT_LITERAL(29, "ISOTHERMALMOISTURECAPACITYUNIT", "ISOTHERMALMOISTURECAPACITYUNIT"),
+	ISOTHERMALMOISTURECAPACITYUNIT(29, "ISOTHERMALMOISTURECAPACITYUNIT", "ISOTHERMALMOISTURECAPACITYUNIT"),
 
 	/**
 	 * The '<em><b>IONCONCENTRATIONUNIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #IONCONCENTRATIONUNIT
+	 * @see #IONCONCENTRATIONUNIT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	IONCONCENTRATIONUNIT_LITERAL(30, "IONCONCENTRATIONUNIT", "IONCONCENTRATIONUNIT"),
+	IONCONCENTRATIONUNIT(30, "IONCONCENTRATIONUNIT", "IONCONCENTRATIONUNIT"),
 
 	/**
 	 * The '<em><b>ACCELERATIONUNIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #ACCELERATIONUNIT
+	 * @see #ACCELERATIONUNIT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	ACCELERATIONUNIT_LITERAL(31, "ACCELERATIONUNIT", "ACCELERATIONUNIT"),
+	ACCELERATIONUNIT(31, "ACCELERATIONUNIT", "ACCELERATIONUNIT"),
 
 	/**
 	 * The '<em><b>MODULUSOFROTATIONALSUBGRADEREACTIONUNIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #MODULUSOFROTATIONALSUBGRADEREACTIONUNIT
+	 * @see #MODULUSOFROTATIONALSUBGRADEREACTIONUNIT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	MODULUSOFROTATIONALSUBGRADEREACTIONUNIT_LITERAL(32, "MODULUSOFROTATIONALSUBGRADEREACTIONUNIT", "MODULUSOFROTATIONALSUBGRADEREACTIONUNIT"),
+	MODULUSOFROTATIONALSUBGRADEREACTIONUNIT(32, "MODULUSOFROTATIONALSUBGRADEREACTIONUNIT", "MODULUSOFROTATIONALSUBGRADEREACTIONUNIT"),
 
 	/**
 	 * The '<em><b>PLANARFORCEUNIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #PLANARFORCEUNIT
+	 * @see #PLANARFORCEUNIT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	PLANARFORCEUNIT_LITERAL(33, "PLANARFORCEUNIT", "PLANARFORCEUNIT"),
+	PLANARFORCEUNIT(33, "PLANARFORCEUNIT", "PLANARFORCEUNIT"),
 
 	/**
 	 * The '<em><b>MOISTUREDIFFUSIVITYUNIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #MOISTUREDIFFUSIVITYUNIT
+	 * @see #MOISTUREDIFFUSIVITYUNIT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	MOISTUREDIFFUSIVITYUNIT_LITERAL(34, "MOISTUREDIFFUSIVITYUNIT", "MOISTUREDIFFUSIVITYUNIT"),
+	MOISTUREDIFFUSIVITYUNIT(34, "MOISTUREDIFFUSIVITYUNIT", "MOISTUREDIFFUSIVITYUNIT"),
 
 	/**
 	 * The '<em><b>SECTIONAREAINTEGRALUNIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #SECTIONAREAINTEGRALUNIT
+	 * @see #SECTIONAREAINTEGRALUNIT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	SECTIONAREAINTEGRALUNIT_LITERAL(35, "SECTIONAREAINTEGRALUNIT", "SECTIONAREAINTEGRALUNIT"),
+	SECTIONAREAINTEGRALUNIT(35, "SECTIONAREAINTEGRALUNIT", "SECTIONAREAINTEGRALUNIT"),
 
 	/**
 	 * The '<em><b>MODULUSOFELASTICITYUNIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #MODULUSOFELASTICITYUNIT
+	 * @see #MODULUSOFELASTICITYUNIT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	MODULUSOFELASTICITYUNIT_LITERAL(36, "MODULUSOFELASTICITYUNIT", "MODULUSOFELASTICITYUNIT"),
+	MODULUSOFELASTICITYUNIT(36, "MODULUSOFELASTICITYUNIT", "MODULUSOFELASTICITYUNIT"),
 
 	/**
 	 * The '<em><b>LINEARVELOCITYUNIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #LINEARVELOCITYUNIT
+	 * @see #LINEARVELOCITYUNIT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	LINEARVELOCITYUNIT_LITERAL(37, "LINEARVELOCITYUNIT", "LINEARVELOCITYUNIT"),
+	LINEARVELOCITYUNIT(37, "LINEARVELOCITYUNIT", "LINEARVELOCITYUNIT"),
 
 	/**
 	 * The '<em><b>MASSPERLENGTHUNIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #MASSPERLENGTHUNIT
+	 * @see #MASSPERLENGTHUNIT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	MASSPERLENGTHUNIT_LITERAL(38, "MASSPERLENGTHUNIT", "MASSPERLENGTHUNIT"),
+	MASSPERLENGTHUNIT(38, "MASSPERLENGTHUNIT", "MASSPERLENGTHUNIT"),
 
 	/**
 	 * The '<em><b>INTEGERCOUNTRATEUNIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #INTEGERCOUNTRATEUNIT
+	 * @see #INTEGERCOUNTRATEUNIT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	INTEGERCOUNTRATEUNIT_LITERAL(39, "INTEGERCOUNTRATEUNIT", "INTEGERCOUNTRATEUNIT"),
+	INTEGERCOUNTRATEUNIT(39, "INTEGERCOUNTRATEUNIT", "INTEGERCOUNTRATEUNIT"),
 
 	/**
 	 * The '<em><b>LINEARMOMENTUNIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #LINEARMOMENTUNIT
+	 * @see #LINEARMOMENTUNIT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	LINEARMOMENTUNIT_LITERAL(40, "LINEARMOMENTUNIT", "LINEARMOMENTUNIT"),
+	LINEARMOMENTUNIT(40, "LINEARMOMENTUNIT", "LINEARMOMENTUNIT"),
 
 	/**
 	 * The '<em><b>SOUNDPRESSUREUNIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #SOUNDPRESSUREUNIT
+	 * @see #SOUNDPRESSUREUNIT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	SOUNDPRESSUREUNIT_LITERAL(41, "SOUNDPRESSUREUNIT", "SOUNDPRESSUREUNIT"),
+	SOUNDPRESSUREUNIT(41, "SOUNDPRESSUREUNIT", "SOUNDPRESSUREUNIT"),
 
 	/**
 	 * The '<em><b>LINEARFORCEUNIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #LINEARFORCEUNIT
+	 * @see #LINEARFORCEUNIT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	LINEARFORCEUNIT_LITERAL(42, "LINEARFORCEUNIT", "LINEARFORCEUNIT"),
+	LINEARFORCEUNIT(42, "LINEARFORCEUNIT", "LINEARFORCEUNIT"),
 
 	/**
 	 * The '<em><b>LUMINOUSINTENSITYDISTRIBUTIONUNIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #LUMINOUSINTENSITYDISTRIBUTIONUNIT
+	 * @see #LUMINOUSINTENSITYDISTRIBUTIONUNIT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	LUMINOUSINTENSITYDISTRIBUTIONUNIT_LITERAL(43, "LUMINOUSINTENSITYDISTRIBUTIONUNIT", "LUMINOUSINTENSITYDISTRIBUTIONUNIT"),
+	LUMINOUSINTENSITYDISTRIBUTIONUNIT(43, "LUMINOUSINTENSITYDISTRIBUTIONUNIT", "LUMINOUSINTENSITYDISTRIBUTIONUNIT"),
 
 	/**
 	 * The '<em><b>PHUNIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #PHUNIT
+	 * @see #PHUNIT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	PHUNIT_LITERAL(44, "PHUNIT", "PHUNIT"),
+	PHUNIT(44, "PHUNIT", "PHUNIT"),
 
 	/**
 	 * The '<em><b>THERMALEXPANSIONCOEFFICIENTUNIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #THERMALEXPANSIONCOEFFICIENTUNIT
+	 * @see #THERMALEXPANSIONCOEFFICIENTUNIT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	THERMALEXPANSIONCOEFFICIENTUNIT_LITERAL(45, "THERMALEXPANSIONCOEFFICIENTUNIT", "THERMALEXPANSIONCOEFFICIENTUNIT"),
+	THERMALEXPANSIONCOEFFICIENTUNIT(45, "THERMALEXPANSIONCOEFFICIENTUNIT", "THERMALEXPANSIONCOEFFICIENTUNIT"),
 
 	/**
 	 * The '<em><b>MODULUSOFLINEARSUBGRADEREACTIONUNIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #MODULUSOFLINEARSUBGRADEREACTIONUNIT
+	 * @see #MODULUSOFLINEARSUBGRADEREACTIONUNIT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	MODULUSOFLINEARSUBGRADEREACTIONUNIT_LITERAL(46, "MODULUSOFLINEARSUBGRADEREACTIONUNIT", "MODULUSOFLINEARSUBGRADEREACTIONUNIT"),
+	MODULUSOFLINEARSUBGRADEREACTIONUNIT(46, "MODULUSOFLINEARSUBGRADEREACTIONUNIT", "MODULUSOFLINEARSUBGRADEREACTIONUNIT"),
 
 	/**
 	 * The '<em><b>WARPINGCONSTANTUNIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #WARPINGCONSTANTUNIT
+	 * @see #WARPINGCONSTANTUNIT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	WARPINGCONSTANTUNIT_LITERAL(47, "WARPINGCONSTANTUNIT", "WARPINGCONSTANTUNIT"),
+	WARPINGCONSTANTUNIT(47, "WARPINGCONSTANTUNIT", "WARPINGCONSTANTUNIT"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
+	 * @see #USERDEFINED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	USERDEFINED_LITERAL(48, "USERDEFINED", "USERDEFINED"),
+	USERDEFINED(48, "USERDEFINED", "USERDEFINED"),
 
 	/**
 	 * The '<em><b>THERMALCONDUCTANCEUNIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #THERMALCONDUCTANCEUNIT
+	 * @see #THERMALCONDUCTANCEUNIT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	THERMALCONDUCTANCEUNIT_LITERAL(49, "THERMALCONDUCTANCEUNIT", "THERMALCONDUCTANCEUNIT");
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
+	THERMALCONDUCTANCEUNIT(49, "THERMALCONDUCTANCEUNIT", "THERMALCONDUCTANCEUNIT");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -551,12 +544,12 @@ public enum IfcDerivedUnitEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NULL_LITERAL
+	 * @see #NULL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NULL = 0;
+	public static final int NULL_VALUE = 0;
 
 	/**
 	 * The '<em><b>MOMENTOFINERTIAUNIT</b></em>' literal value.
@@ -566,12 +559,12 @@ public enum IfcDerivedUnitEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #MOMENTOFINERTIAUNIT_LITERAL
+	 * @see #MOMENTOFINERTIAUNIT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MOMENTOFINERTIAUNIT = 1;
+	public static final int MOMENTOFINERTIAUNIT_VALUE = 1;
 
 	/**
 	 * The '<em><b>MOLECULARWEIGHTUNIT</b></em>' literal value.
@@ -581,12 +574,12 @@ public enum IfcDerivedUnitEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #MOLECULARWEIGHTUNIT_LITERAL
+	 * @see #MOLECULARWEIGHTUNIT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MOLECULARWEIGHTUNIT = 2;
+	public static final int MOLECULARWEIGHTUNIT_VALUE = 2;
 
 	/**
 	 * The '<em><b>SECTIONMODULUSUNIT</b></em>' literal value.
@@ -596,12 +589,12 @@ public enum IfcDerivedUnitEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #SECTIONMODULUSUNIT_LITERAL
+	 * @see #SECTIONMODULUSUNIT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SECTIONMODULUSUNIT = 3;
+	public static final int SECTIONMODULUSUNIT_VALUE = 3;
 
 	/**
 	 * The '<em><b>HEATFLUXDENSITYUNIT</b></em>' literal value.
@@ -611,12 +604,12 @@ public enum IfcDerivedUnitEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #HEATFLUXDENSITYUNIT_LITERAL
+	 * @see #HEATFLUXDENSITYUNIT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int HEATFLUXDENSITYUNIT = 4;
+	public static final int HEATFLUXDENSITYUNIT_VALUE = 4;
 
 	/**
 	 * The '<em><b>ROTATIONALFREQUENCYUNIT</b></em>' literal value.
@@ -626,12 +619,12 @@ public enum IfcDerivedUnitEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ROTATIONALFREQUENCYUNIT_LITERAL
+	 * @see #ROTATIONALFREQUENCYUNIT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ROTATIONALFREQUENCYUNIT = 5;
+	public static final int ROTATIONALFREQUENCYUNIT_VALUE = 5;
 
 	/**
 	 * The '<em><b>THERMALTRANSMITTANCEUNIT</b></em>' literal value.
@@ -641,12 +634,12 @@ public enum IfcDerivedUnitEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #THERMALTRANSMITTANCEUNIT_LITERAL
+	 * @see #THERMALTRANSMITTANCEUNIT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int THERMALTRANSMITTANCEUNIT = 6;
+	public static final int THERMALTRANSMITTANCEUNIT_VALUE = 6;
 
 	/**
 	 * The '<em><b>KINEMATICVISCOSITYUNIT</b></em>' literal value.
@@ -656,12 +649,12 @@ public enum IfcDerivedUnitEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #KINEMATICVISCOSITYUNIT_LITERAL
+	 * @see #KINEMATICVISCOSITYUNIT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int KINEMATICVISCOSITYUNIT = 7;
+	public static final int KINEMATICVISCOSITYUNIT_VALUE = 7;
 
 	/**
 	 * The '<em><b>VOLUMETRICFLOWRATEUNIT</b></em>' literal value.
@@ -671,12 +664,12 @@ public enum IfcDerivedUnitEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #VOLUMETRICFLOWRATEUNIT_LITERAL
+	 * @see #VOLUMETRICFLOWRATEUNIT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int VOLUMETRICFLOWRATEUNIT = 8;
+	public static final int VOLUMETRICFLOWRATEUNIT_VALUE = 8;
 
 	/**
 	 * The '<em><b>SPECIFICHEATCAPACITYUNIT</b></em>' literal value.
@@ -686,12 +679,12 @@ public enum IfcDerivedUnitEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #SPECIFICHEATCAPACITYUNIT_LITERAL
+	 * @see #SPECIFICHEATCAPACITYUNIT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SPECIFICHEATCAPACITYUNIT = 9;
+	public static final int SPECIFICHEATCAPACITYUNIT_VALUE = 9;
 
 	/**
 	 * The '<em><b>HEATINGVALUEUNIT</b></em>' literal value.
@@ -701,12 +694,12 @@ public enum IfcDerivedUnitEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #HEATINGVALUEUNIT_LITERAL
+	 * @see #HEATINGVALUEUNIT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int HEATINGVALUEUNIT = 10;
+	public static final int HEATINGVALUEUNIT_VALUE = 10;
 
 	/**
 	 * The '<em><b>TORQUEUNIT</b></em>' literal value.
@@ -716,12 +709,12 @@ public enum IfcDerivedUnitEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #TORQUEUNIT_LITERAL
+	 * @see #TORQUEUNIT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int TORQUEUNIT = 11;
+	public static final int TORQUEUNIT_VALUE = 11;
 
 	/**
 	 * The '<em><b>THERMALRESISTANCEUNIT</b></em>' literal value.
@@ -731,12 +724,12 @@ public enum IfcDerivedUnitEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #THERMALRESISTANCEUNIT_LITERAL
+	 * @see #THERMALRESISTANCEUNIT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int THERMALRESISTANCEUNIT = 12;
+	public static final int THERMALRESISTANCEUNIT_VALUE = 12;
 
 	/**
 	 * The '<em><b>SHEARMODULUSUNIT</b></em>' literal value.
@@ -746,12 +739,12 @@ public enum IfcDerivedUnitEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #SHEARMODULUSUNIT_LITERAL
+	 * @see #SHEARMODULUSUNIT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SHEARMODULUSUNIT = 13;
+	public static final int SHEARMODULUSUNIT_VALUE = 13;
 
 	/**
 	 * The '<em><b>MODULUSOFSUBGRADEREACTIONUNIT</b></em>' literal value.
@@ -761,12 +754,12 @@ public enum IfcDerivedUnitEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #MODULUSOFSUBGRADEREACTIONUNIT_LITERAL
+	 * @see #MODULUSOFSUBGRADEREACTIONUNIT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MODULUSOFSUBGRADEREACTIONUNIT = 14;
+	public static final int MODULUSOFSUBGRADEREACTIONUNIT_VALUE = 14;
 
 	/**
 	 * The '<em><b>DYNAMICVISCOSITYUNIT</b></em>' literal value.
@@ -776,12 +769,12 @@ public enum IfcDerivedUnitEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #DYNAMICVISCOSITYUNIT_LITERAL
+	 * @see #DYNAMICVISCOSITYUNIT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int DYNAMICVISCOSITYUNIT = 15;
+	public static final int DYNAMICVISCOSITYUNIT_VALUE = 15;
 
 	/**
 	 * The '<em><b>ROTATIONALSTIFFNESSUNIT</b></em>' literal value.
@@ -791,12 +784,12 @@ public enum IfcDerivedUnitEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ROTATIONALSTIFFNESSUNIT_LITERAL
+	 * @see #ROTATIONALSTIFFNESSUNIT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ROTATIONALSTIFFNESSUNIT = 16;
+	public static final int ROTATIONALSTIFFNESSUNIT_VALUE = 16;
 
 	/**
 	 * The '<em><b>MASSDENSITYUNIT</b></em>' literal value.
@@ -806,12 +799,12 @@ public enum IfcDerivedUnitEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #MASSDENSITYUNIT_LITERAL
+	 * @see #MASSDENSITYUNIT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MASSDENSITYUNIT = 17;
+	public static final int MASSDENSITYUNIT_VALUE = 17;
 
 	/**
 	 * The '<em><b>LINEARSTIFFNESSUNIT</b></em>' literal value.
@@ -821,12 +814,12 @@ public enum IfcDerivedUnitEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #LINEARSTIFFNESSUNIT_LITERAL
+	 * @see #LINEARSTIFFNESSUNIT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int LINEARSTIFFNESSUNIT = 18;
+	public static final int LINEARSTIFFNESSUNIT_VALUE = 18;
 
 	/**
 	 * The '<em><b>VAPORPERMEABILITYUNIT</b></em>' literal value.
@@ -836,12 +829,12 @@ public enum IfcDerivedUnitEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #VAPORPERMEABILITYUNIT_LITERAL
+	 * @see #VAPORPERMEABILITYUNIT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int VAPORPERMEABILITYUNIT = 19;
+	public static final int VAPORPERMEABILITYUNIT_VALUE = 19;
 
 	/**
 	 * The '<em><b>TEMPERATUREGRADIENTUNIT</b></em>' literal value.
@@ -851,12 +844,12 @@ public enum IfcDerivedUnitEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #TEMPERATUREGRADIENTUNIT_LITERAL
+	 * @see #TEMPERATUREGRADIENTUNIT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int TEMPERATUREGRADIENTUNIT = 20;
+	public static final int TEMPERATUREGRADIENTUNIT_VALUE = 20;
 
 	/**
 	 * The '<em><b>ANGULARVELOCITYUNIT</b></em>' literal value.
@@ -866,12 +859,12 @@ public enum IfcDerivedUnitEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ANGULARVELOCITYUNIT_LITERAL
+	 * @see #ANGULARVELOCITYUNIT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ANGULARVELOCITYUNIT = 21;
+	public static final int ANGULARVELOCITYUNIT_VALUE = 21;
 
 	/**
 	 * The '<em><b>CURVATUREUNIT</b></em>' literal value.
@@ -881,12 +874,12 @@ public enum IfcDerivedUnitEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #CURVATUREUNIT_LITERAL
+	 * @see #CURVATUREUNIT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int CURVATUREUNIT = 22;
+	public static final int CURVATUREUNIT_VALUE = 22;
 
 	/**
 	 * The '<em><b>WARPINGMOMENTUNIT</b></em>' literal value.
@@ -896,12 +889,12 @@ public enum IfcDerivedUnitEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #WARPINGMOMENTUNIT_LITERAL
+	 * @see #WARPINGMOMENTUNIT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int WARPINGMOMENTUNIT = 23;
+	public static final int WARPINGMOMENTUNIT_VALUE = 23;
 
 	/**
 	 * The '<em><b>ROTATIONALMASSUNIT</b></em>' literal value.
@@ -911,12 +904,12 @@ public enum IfcDerivedUnitEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ROTATIONALMASSUNIT_LITERAL
+	 * @see #ROTATIONALMASSUNIT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ROTATIONALMASSUNIT = 24;
+	public static final int ROTATIONALMASSUNIT_VALUE = 24;
 
 	/**
 	 * The '<em><b>THERMALADMITTANCEUNIT</b></em>' literal value.
@@ -926,12 +919,12 @@ public enum IfcDerivedUnitEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #THERMALADMITTANCEUNIT_LITERAL
+	 * @see #THERMALADMITTANCEUNIT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int THERMALADMITTANCEUNIT = 25;
+	public static final int THERMALADMITTANCEUNIT_VALUE = 25;
 
 	/**
 	 * The '<em><b>MASSFLOWRATEUNIT</b></em>' literal value.
@@ -941,12 +934,12 @@ public enum IfcDerivedUnitEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #MASSFLOWRATEUNIT_LITERAL
+	 * @see #MASSFLOWRATEUNIT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MASSFLOWRATEUNIT = 26;
+	public static final int MASSFLOWRATEUNIT_VALUE = 26;
 
 	/**
 	 * The '<em><b>SOUNDPOWERUNIT</b></em>' literal value.
@@ -956,12 +949,12 @@ public enum IfcDerivedUnitEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #SOUNDPOWERUNIT_LITERAL
+	 * @see #SOUNDPOWERUNIT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SOUNDPOWERUNIT = 27;
+	public static final int SOUNDPOWERUNIT_VALUE = 27;
 
 	/**
 	 * The '<em><b>COMPOUNDPLANEANGLEUNIT</b></em>' literal value.
@@ -971,12 +964,12 @@ public enum IfcDerivedUnitEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #COMPOUNDPLANEANGLEUNIT_LITERAL
+	 * @see #COMPOUNDPLANEANGLEUNIT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int COMPOUNDPLANEANGLEUNIT = 28;
+	public static final int COMPOUNDPLANEANGLEUNIT_VALUE = 28;
 
 	/**
 	 * The '<em><b>ISOTHERMALMOISTURECAPACITYUNIT</b></em>' literal value.
@@ -986,12 +979,12 @@ public enum IfcDerivedUnitEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ISOTHERMALMOISTURECAPACITYUNIT_LITERAL
+	 * @see #ISOTHERMALMOISTURECAPACITYUNIT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ISOTHERMALMOISTURECAPACITYUNIT = 29;
+	public static final int ISOTHERMALMOISTURECAPACITYUNIT_VALUE = 29;
 
 	/**
 	 * The '<em><b>IONCONCENTRATIONUNIT</b></em>' literal value.
@@ -1001,12 +994,12 @@ public enum IfcDerivedUnitEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #IONCONCENTRATIONUNIT_LITERAL
+	 * @see #IONCONCENTRATIONUNIT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int IONCONCENTRATIONUNIT = 30;
+	public static final int IONCONCENTRATIONUNIT_VALUE = 30;
 
 	/**
 	 * The '<em><b>ACCELERATIONUNIT</b></em>' literal value.
@@ -1016,12 +1009,12 @@ public enum IfcDerivedUnitEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ACCELERATIONUNIT_LITERAL
+	 * @see #ACCELERATIONUNIT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ACCELERATIONUNIT = 31;
+	public static final int ACCELERATIONUNIT_VALUE = 31;
 
 	/**
 	 * The '<em><b>MODULUSOFROTATIONALSUBGRADEREACTIONUNIT</b></em>' literal value.
@@ -1031,12 +1024,12 @@ public enum IfcDerivedUnitEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #MODULUSOFROTATIONALSUBGRADEREACTIONUNIT_LITERAL
+	 * @see #MODULUSOFROTATIONALSUBGRADEREACTIONUNIT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MODULUSOFROTATIONALSUBGRADEREACTIONUNIT = 32;
+	public static final int MODULUSOFROTATIONALSUBGRADEREACTIONUNIT_VALUE = 32;
 
 	/**
 	 * The '<em><b>PLANARFORCEUNIT</b></em>' literal value.
@@ -1046,12 +1039,12 @@ public enum IfcDerivedUnitEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #PLANARFORCEUNIT_LITERAL
+	 * @see #PLANARFORCEUNIT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PLANARFORCEUNIT = 33;
+	public static final int PLANARFORCEUNIT_VALUE = 33;
 
 	/**
 	 * The '<em><b>MOISTUREDIFFUSIVITYUNIT</b></em>' literal value.
@@ -1061,12 +1054,12 @@ public enum IfcDerivedUnitEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #MOISTUREDIFFUSIVITYUNIT_LITERAL
+	 * @see #MOISTUREDIFFUSIVITYUNIT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MOISTUREDIFFUSIVITYUNIT = 34;
+	public static final int MOISTUREDIFFUSIVITYUNIT_VALUE = 34;
 
 	/**
 	 * The '<em><b>SECTIONAREAINTEGRALUNIT</b></em>' literal value.
@@ -1076,12 +1069,12 @@ public enum IfcDerivedUnitEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #SECTIONAREAINTEGRALUNIT_LITERAL
+	 * @see #SECTIONAREAINTEGRALUNIT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SECTIONAREAINTEGRALUNIT = 35;
+	public static final int SECTIONAREAINTEGRALUNIT_VALUE = 35;
 
 	/**
 	 * The '<em><b>MODULUSOFELASTICITYUNIT</b></em>' literal value.
@@ -1091,12 +1084,12 @@ public enum IfcDerivedUnitEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #MODULUSOFELASTICITYUNIT_LITERAL
+	 * @see #MODULUSOFELASTICITYUNIT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MODULUSOFELASTICITYUNIT = 36;
+	public static final int MODULUSOFELASTICITYUNIT_VALUE = 36;
 
 	/**
 	 * The '<em><b>LINEARVELOCITYUNIT</b></em>' literal value.
@@ -1106,12 +1099,12 @@ public enum IfcDerivedUnitEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #LINEARVELOCITYUNIT_LITERAL
+	 * @see #LINEARVELOCITYUNIT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int LINEARVELOCITYUNIT = 37;
+	public static final int LINEARVELOCITYUNIT_VALUE = 37;
 
 	/**
 	 * The '<em><b>MASSPERLENGTHUNIT</b></em>' literal value.
@@ -1121,12 +1114,12 @@ public enum IfcDerivedUnitEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #MASSPERLENGTHUNIT_LITERAL
+	 * @see #MASSPERLENGTHUNIT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MASSPERLENGTHUNIT = 38;
+	public static final int MASSPERLENGTHUNIT_VALUE = 38;
 
 	/**
 	 * The '<em><b>INTEGERCOUNTRATEUNIT</b></em>' literal value.
@@ -1136,12 +1129,12 @@ public enum IfcDerivedUnitEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #INTEGERCOUNTRATEUNIT_LITERAL
+	 * @see #INTEGERCOUNTRATEUNIT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int INTEGERCOUNTRATEUNIT = 39;
+	public static final int INTEGERCOUNTRATEUNIT_VALUE = 39;
 
 	/**
 	 * The '<em><b>LINEARMOMENTUNIT</b></em>' literal value.
@@ -1151,12 +1144,12 @@ public enum IfcDerivedUnitEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #LINEARMOMENTUNIT_LITERAL
+	 * @see #LINEARMOMENTUNIT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int LINEARMOMENTUNIT = 40;
+	public static final int LINEARMOMENTUNIT_VALUE = 40;
 
 	/**
 	 * The '<em><b>SOUNDPRESSUREUNIT</b></em>' literal value.
@@ -1166,12 +1159,12 @@ public enum IfcDerivedUnitEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #SOUNDPRESSUREUNIT_LITERAL
+	 * @see #SOUNDPRESSUREUNIT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SOUNDPRESSUREUNIT = 41;
+	public static final int SOUNDPRESSUREUNIT_VALUE = 41;
 
 	/**
 	 * The '<em><b>LINEARFORCEUNIT</b></em>' literal value.
@@ -1181,12 +1174,12 @@ public enum IfcDerivedUnitEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #LINEARFORCEUNIT_LITERAL
+	 * @see #LINEARFORCEUNIT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int LINEARFORCEUNIT = 42;
+	public static final int LINEARFORCEUNIT_VALUE = 42;
 
 	/**
 	 * The '<em><b>LUMINOUSINTENSITYDISTRIBUTIONUNIT</b></em>' literal value.
@@ -1196,12 +1189,12 @@ public enum IfcDerivedUnitEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #LUMINOUSINTENSITYDISTRIBUTIONUNIT_LITERAL
+	 * @see #LUMINOUSINTENSITYDISTRIBUTIONUNIT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int LUMINOUSINTENSITYDISTRIBUTIONUNIT = 43;
+	public static final int LUMINOUSINTENSITYDISTRIBUTIONUNIT_VALUE = 43;
 
 	/**
 	 * The '<em><b>PHUNIT</b></em>' literal value.
@@ -1211,12 +1204,12 @@ public enum IfcDerivedUnitEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #PHUNIT_LITERAL
+	 * @see #PHUNIT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PHUNIT = 44;
+	public static final int PHUNIT_VALUE = 44;
 
 	/**
 	 * The '<em><b>THERMALEXPANSIONCOEFFICIENTUNIT</b></em>' literal value.
@@ -1226,12 +1219,12 @@ public enum IfcDerivedUnitEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #THERMALEXPANSIONCOEFFICIENTUNIT_LITERAL
+	 * @see #THERMALEXPANSIONCOEFFICIENTUNIT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int THERMALEXPANSIONCOEFFICIENTUNIT = 45;
+	public static final int THERMALEXPANSIONCOEFFICIENTUNIT_VALUE = 45;
 
 	/**
 	 * The '<em><b>MODULUSOFLINEARSUBGRADEREACTIONUNIT</b></em>' literal value.
@@ -1241,12 +1234,12 @@ public enum IfcDerivedUnitEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #MODULUSOFLINEARSUBGRADEREACTIONUNIT_LITERAL
+	 * @see #MODULUSOFLINEARSUBGRADEREACTIONUNIT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MODULUSOFLINEARSUBGRADEREACTIONUNIT = 46;
+	public static final int MODULUSOFLINEARSUBGRADEREACTIONUNIT_VALUE = 46;
 
 	/**
 	 * The '<em><b>WARPINGCONSTANTUNIT</b></em>' literal value.
@@ -1256,12 +1249,12 @@ public enum IfcDerivedUnitEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #WARPINGCONSTANTUNIT_LITERAL
+	 * @see #WARPINGCONSTANTUNIT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int WARPINGCONSTANTUNIT = 47;
+	public static final int WARPINGCONSTANTUNIT_VALUE = 47;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -1271,12 +1264,12 @@ public enum IfcDerivedUnitEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_LITERAL
+	 * @see #USERDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED = 48;
+	public static final int USERDEFINED_VALUE = 48;
 
 	/**
 	 * The '<em><b>THERMALCONDUCTANCEUNIT</b></em>' literal value.
@@ -1286,12 +1279,12 @@ public enum IfcDerivedUnitEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #THERMALCONDUCTANCEUNIT_LITERAL
+	 * @see #THERMALCONDUCTANCEUNIT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int THERMALCONDUCTANCEUNIT = 49;
+	public static final int THERMALCONDUCTANCEUNIT_VALUE = 49;
 
 	/**
 	 * An array of all the '<em><b>Ifc Derived Unit Enum</b></em>' enumerators.
@@ -1300,58 +1293,57 @@ public enum IfcDerivedUnitEnum implements Enumerator
 	 * @generated
 	 */
 	private static final IfcDerivedUnitEnum[] VALUES_ARRAY =
-		new IfcDerivedUnitEnum[]
-		{
-			NULL_LITERAL,
-			MOMENTOFINERTIAUNIT_LITERAL,
-			MOLECULARWEIGHTUNIT_LITERAL,
-			SECTIONMODULUSUNIT_LITERAL,
-			HEATFLUXDENSITYUNIT_LITERAL,
-			ROTATIONALFREQUENCYUNIT_LITERAL,
-			THERMALTRANSMITTANCEUNIT_LITERAL,
-			KINEMATICVISCOSITYUNIT_LITERAL,
-			VOLUMETRICFLOWRATEUNIT_LITERAL,
-			SPECIFICHEATCAPACITYUNIT_LITERAL,
-			HEATINGVALUEUNIT_LITERAL,
-			TORQUEUNIT_LITERAL,
-			THERMALRESISTANCEUNIT_LITERAL,
-			SHEARMODULUSUNIT_LITERAL,
-			MODULUSOFSUBGRADEREACTIONUNIT_LITERAL,
-			DYNAMICVISCOSITYUNIT_LITERAL,
-			ROTATIONALSTIFFNESSUNIT_LITERAL,
-			MASSDENSITYUNIT_LITERAL,
-			LINEARSTIFFNESSUNIT_LITERAL,
-			VAPORPERMEABILITYUNIT_LITERAL,
-			TEMPERATUREGRADIENTUNIT_LITERAL,
-			ANGULARVELOCITYUNIT_LITERAL,
-			CURVATUREUNIT_LITERAL,
-			WARPINGMOMENTUNIT_LITERAL,
-			ROTATIONALMASSUNIT_LITERAL,
-			THERMALADMITTANCEUNIT_LITERAL,
-			MASSFLOWRATEUNIT_LITERAL,
-			SOUNDPOWERUNIT_LITERAL,
-			COMPOUNDPLANEANGLEUNIT_LITERAL,
-			ISOTHERMALMOISTURECAPACITYUNIT_LITERAL,
-			IONCONCENTRATIONUNIT_LITERAL,
-			ACCELERATIONUNIT_LITERAL,
-			MODULUSOFROTATIONALSUBGRADEREACTIONUNIT_LITERAL,
-			PLANARFORCEUNIT_LITERAL,
-			MOISTUREDIFFUSIVITYUNIT_LITERAL,
-			SECTIONAREAINTEGRALUNIT_LITERAL,
-			MODULUSOFELASTICITYUNIT_LITERAL,
-			LINEARVELOCITYUNIT_LITERAL,
-			MASSPERLENGTHUNIT_LITERAL,
-			INTEGERCOUNTRATEUNIT_LITERAL,
-			LINEARMOMENTUNIT_LITERAL,
-			SOUNDPRESSUREUNIT_LITERAL,
-			LINEARFORCEUNIT_LITERAL,
-			LUMINOUSINTENSITYDISTRIBUTIONUNIT_LITERAL,
-			PHUNIT_LITERAL,
-			THERMALEXPANSIONCOEFFICIENTUNIT_LITERAL,
-			MODULUSOFLINEARSUBGRADEREACTIONUNIT_LITERAL,
-			WARPINGCONSTANTUNIT_LITERAL,
-			USERDEFINED_LITERAL,
-			THERMALCONDUCTANCEUNIT_LITERAL,
+		new IfcDerivedUnitEnum[] {
+			NULL,
+			MOMENTOFINERTIAUNIT,
+			MOLECULARWEIGHTUNIT,
+			SECTIONMODULUSUNIT,
+			HEATFLUXDENSITYUNIT,
+			ROTATIONALFREQUENCYUNIT,
+			THERMALTRANSMITTANCEUNIT,
+			KINEMATICVISCOSITYUNIT,
+			VOLUMETRICFLOWRATEUNIT,
+			SPECIFICHEATCAPACITYUNIT,
+			HEATINGVALUEUNIT,
+			TORQUEUNIT,
+			THERMALRESISTANCEUNIT,
+			SHEARMODULUSUNIT,
+			MODULUSOFSUBGRADEREACTIONUNIT,
+			DYNAMICVISCOSITYUNIT,
+			ROTATIONALSTIFFNESSUNIT,
+			MASSDENSITYUNIT,
+			LINEARSTIFFNESSUNIT,
+			VAPORPERMEABILITYUNIT,
+			TEMPERATUREGRADIENTUNIT,
+			ANGULARVELOCITYUNIT,
+			CURVATUREUNIT,
+			WARPINGMOMENTUNIT,
+			ROTATIONALMASSUNIT,
+			THERMALADMITTANCEUNIT,
+			MASSFLOWRATEUNIT,
+			SOUNDPOWERUNIT,
+			COMPOUNDPLANEANGLEUNIT,
+			ISOTHERMALMOISTURECAPACITYUNIT,
+			IONCONCENTRATIONUNIT,
+			ACCELERATIONUNIT,
+			MODULUSOFROTATIONALSUBGRADEREACTIONUNIT,
+			PLANARFORCEUNIT,
+			MOISTUREDIFFUSIVITYUNIT,
+			SECTIONAREAINTEGRALUNIT,
+			MODULUSOFELASTICITYUNIT,
+			LINEARVELOCITYUNIT,
+			MASSPERLENGTHUNIT,
+			INTEGERCOUNTRATEUNIT,
+			LINEARMOMENTUNIT,
+			SOUNDPRESSUREUNIT,
+			LINEARFORCEUNIT,
+			LUMINOUSINTENSITYDISTRIBUTIONUNIT,
+			PHUNIT,
+			THERMALEXPANSIONCOEFFICIENTUNIT,
+			MODULUSOFLINEARSUBGRADEREACTIONUNIT,
+			WARPINGCONSTANTUNIT,
+			USERDEFINED,
+			THERMALCONDUCTANCEUNIT,
 		};
 
 	/**
@@ -1370,11 +1362,9 @@ public enum IfcDerivedUnitEnum implements Enumerator
 	 */
 	public static IfcDerivedUnitEnum get(String literal)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcDerivedUnitEnum result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal))
-			{
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -1389,11 +1379,9 @@ public enum IfcDerivedUnitEnum implements Enumerator
 	 */
 	public static IfcDerivedUnitEnum getByName(String name)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcDerivedUnitEnum result = VALUES_ARRAY[i];
-			if (result.getName().equals(name))
-			{
+			if (result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -1408,58 +1396,57 @@ public enum IfcDerivedUnitEnum implements Enumerator
 	 */
 	public static IfcDerivedUnitEnum get(int value)
 	{
-		switch (value)
-		{
-			case NULL: return NULL_LITERAL;
-			case MOMENTOFINERTIAUNIT: return MOMENTOFINERTIAUNIT_LITERAL;
-			case MOLECULARWEIGHTUNIT: return MOLECULARWEIGHTUNIT_LITERAL;
-			case SECTIONMODULUSUNIT: return SECTIONMODULUSUNIT_LITERAL;
-			case HEATFLUXDENSITYUNIT: return HEATFLUXDENSITYUNIT_LITERAL;
-			case ROTATIONALFREQUENCYUNIT: return ROTATIONALFREQUENCYUNIT_LITERAL;
-			case THERMALTRANSMITTANCEUNIT: return THERMALTRANSMITTANCEUNIT_LITERAL;
-			case KINEMATICVISCOSITYUNIT: return KINEMATICVISCOSITYUNIT_LITERAL;
-			case VOLUMETRICFLOWRATEUNIT: return VOLUMETRICFLOWRATEUNIT_LITERAL;
-			case SPECIFICHEATCAPACITYUNIT: return SPECIFICHEATCAPACITYUNIT_LITERAL;
-			case HEATINGVALUEUNIT: return HEATINGVALUEUNIT_LITERAL;
-			case TORQUEUNIT: return TORQUEUNIT_LITERAL;
-			case THERMALRESISTANCEUNIT: return THERMALRESISTANCEUNIT_LITERAL;
-			case SHEARMODULUSUNIT: return SHEARMODULUSUNIT_LITERAL;
-			case MODULUSOFSUBGRADEREACTIONUNIT: return MODULUSOFSUBGRADEREACTIONUNIT_LITERAL;
-			case DYNAMICVISCOSITYUNIT: return DYNAMICVISCOSITYUNIT_LITERAL;
-			case ROTATIONALSTIFFNESSUNIT: return ROTATIONALSTIFFNESSUNIT_LITERAL;
-			case MASSDENSITYUNIT: return MASSDENSITYUNIT_LITERAL;
-			case LINEARSTIFFNESSUNIT: return LINEARSTIFFNESSUNIT_LITERAL;
-			case VAPORPERMEABILITYUNIT: return VAPORPERMEABILITYUNIT_LITERAL;
-			case TEMPERATUREGRADIENTUNIT: return TEMPERATUREGRADIENTUNIT_LITERAL;
-			case ANGULARVELOCITYUNIT: return ANGULARVELOCITYUNIT_LITERAL;
-			case CURVATUREUNIT: return CURVATUREUNIT_LITERAL;
-			case WARPINGMOMENTUNIT: return WARPINGMOMENTUNIT_LITERAL;
-			case ROTATIONALMASSUNIT: return ROTATIONALMASSUNIT_LITERAL;
-			case THERMALADMITTANCEUNIT: return THERMALADMITTANCEUNIT_LITERAL;
-			case MASSFLOWRATEUNIT: return MASSFLOWRATEUNIT_LITERAL;
-			case SOUNDPOWERUNIT: return SOUNDPOWERUNIT_LITERAL;
-			case COMPOUNDPLANEANGLEUNIT: return COMPOUNDPLANEANGLEUNIT_LITERAL;
-			case ISOTHERMALMOISTURECAPACITYUNIT: return ISOTHERMALMOISTURECAPACITYUNIT_LITERAL;
-			case IONCONCENTRATIONUNIT: return IONCONCENTRATIONUNIT_LITERAL;
-			case ACCELERATIONUNIT: return ACCELERATIONUNIT_LITERAL;
-			case MODULUSOFROTATIONALSUBGRADEREACTIONUNIT: return MODULUSOFROTATIONALSUBGRADEREACTIONUNIT_LITERAL;
-			case PLANARFORCEUNIT: return PLANARFORCEUNIT_LITERAL;
-			case MOISTUREDIFFUSIVITYUNIT: return MOISTUREDIFFUSIVITYUNIT_LITERAL;
-			case SECTIONAREAINTEGRALUNIT: return SECTIONAREAINTEGRALUNIT_LITERAL;
-			case MODULUSOFELASTICITYUNIT: return MODULUSOFELASTICITYUNIT_LITERAL;
-			case LINEARVELOCITYUNIT: return LINEARVELOCITYUNIT_LITERAL;
-			case MASSPERLENGTHUNIT: return MASSPERLENGTHUNIT_LITERAL;
-			case INTEGERCOUNTRATEUNIT: return INTEGERCOUNTRATEUNIT_LITERAL;
-			case LINEARMOMENTUNIT: return LINEARMOMENTUNIT_LITERAL;
-			case SOUNDPRESSUREUNIT: return SOUNDPRESSUREUNIT_LITERAL;
-			case LINEARFORCEUNIT: return LINEARFORCEUNIT_LITERAL;
-			case LUMINOUSINTENSITYDISTRIBUTIONUNIT: return LUMINOUSINTENSITYDISTRIBUTIONUNIT_LITERAL;
-			case PHUNIT: return PHUNIT_LITERAL;
-			case THERMALEXPANSIONCOEFFICIENTUNIT: return THERMALEXPANSIONCOEFFICIENTUNIT_LITERAL;
-			case MODULUSOFLINEARSUBGRADEREACTIONUNIT: return MODULUSOFLINEARSUBGRADEREACTIONUNIT_LITERAL;
-			case WARPINGCONSTANTUNIT: return WARPINGCONSTANTUNIT_LITERAL;
-			case USERDEFINED: return USERDEFINED_LITERAL;
-			case THERMALCONDUCTANCEUNIT: return THERMALCONDUCTANCEUNIT_LITERAL;
+		switch (value) {
+			case NULL_VALUE: return NULL;
+			case MOMENTOFINERTIAUNIT_VALUE: return MOMENTOFINERTIAUNIT;
+			case MOLECULARWEIGHTUNIT_VALUE: return MOLECULARWEIGHTUNIT;
+			case SECTIONMODULUSUNIT_VALUE: return SECTIONMODULUSUNIT;
+			case HEATFLUXDENSITYUNIT_VALUE: return HEATFLUXDENSITYUNIT;
+			case ROTATIONALFREQUENCYUNIT_VALUE: return ROTATIONALFREQUENCYUNIT;
+			case THERMALTRANSMITTANCEUNIT_VALUE: return THERMALTRANSMITTANCEUNIT;
+			case KINEMATICVISCOSITYUNIT_VALUE: return KINEMATICVISCOSITYUNIT;
+			case VOLUMETRICFLOWRATEUNIT_VALUE: return VOLUMETRICFLOWRATEUNIT;
+			case SPECIFICHEATCAPACITYUNIT_VALUE: return SPECIFICHEATCAPACITYUNIT;
+			case HEATINGVALUEUNIT_VALUE: return HEATINGVALUEUNIT;
+			case TORQUEUNIT_VALUE: return TORQUEUNIT;
+			case THERMALRESISTANCEUNIT_VALUE: return THERMALRESISTANCEUNIT;
+			case SHEARMODULUSUNIT_VALUE: return SHEARMODULUSUNIT;
+			case MODULUSOFSUBGRADEREACTIONUNIT_VALUE: return MODULUSOFSUBGRADEREACTIONUNIT;
+			case DYNAMICVISCOSITYUNIT_VALUE: return DYNAMICVISCOSITYUNIT;
+			case ROTATIONALSTIFFNESSUNIT_VALUE: return ROTATIONALSTIFFNESSUNIT;
+			case MASSDENSITYUNIT_VALUE: return MASSDENSITYUNIT;
+			case LINEARSTIFFNESSUNIT_VALUE: return LINEARSTIFFNESSUNIT;
+			case VAPORPERMEABILITYUNIT_VALUE: return VAPORPERMEABILITYUNIT;
+			case TEMPERATUREGRADIENTUNIT_VALUE: return TEMPERATUREGRADIENTUNIT;
+			case ANGULARVELOCITYUNIT_VALUE: return ANGULARVELOCITYUNIT;
+			case CURVATUREUNIT_VALUE: return CURVATUREUNIT;
+			case WARPINGMOMENTUNIT_VALUE: return WARPINGMOMENTUNIT;
+			case ROTATIONALMASSUNIT_VALUE: return ROTATIONALMASSUNIT;
+			case THERMALADMITTANCEUNIT_VALUE: return THERMALADMITTANCEUNIT;
+			case MASSFLOWRATEUNIT_VALUE: return MASSFLOWRATEUNIT;
+			case SOUNDPOWERUNIT_VALUE: return SOUNDPOWERUNIT;
+			case COMPOUNDPLANEANGLEUNIT_VALUE: return COMPOUNDPLANEANGLEUNIT;
+			case ISOTHERMALMOISTURECAPACITYUNIT_VALUE: return ISOTHERMALMOISTURECAPACITYUNIT;
+			case IONCONCENTRATIONUNIT_VALUE: return IONCONCENTRATIONUNIT;
+			case ACCELERATIONUNIT_VALUE: return ACCELERATIONUNIT;
+			case MODULUSOFROTATIONALSUBGRADEREACTIONUNIT_VALUE: return MODULUSOFROTATIONALSUBGRADEREACTIONUNIT;
+			case PLANARFORCEUNIT_VALUE: return PLANARFORCEUNIT;
+			case MOISTUREDIFFUSIVITYUNIT_VALUE: return MOISTUREDIFFUSIVITYUNIT;
+			case SECTIONAREAINTEGRALUNIT_VALUE: return SECTIONAREAINTEGRALUNIT;
+			case MODULUSOFELASTICITYUNIT_VALUE: return MODULUSOFELASTICITYUNIT;
+			case LINEARVELOCITYUNIT_VALUE: return LINEARVELOCITYUNIT;
+			case MASSPERLENGTHUNIT_VALUE: return MASSPERLENGTHUNIT;
+			case INTEGERCOUNTRATEUNIT_VALUE: return INTEGERCOUNTRATEUNIT;
+			case LINEARMOMENTUNIT_VALUE: return LINEARMOMENTUNIT;
+			case SOUNDPRESSUREUNIT_VALUE: return SOUNDPRESSUREUNIT;
+			case LINEARFORCEUNIT_VALUE: return LINEARFORCEUNIT;
+			case LUMINOUSINTENSITYDISTRIBUTIONUNIT_VALUE: return LUMINOUSINTENSITYDISTRIBUTIONUNIT;
+			case PHUNIT_VALUE: return PHUNIT;
+			case THERMALEXPANSIONCOEFFICIENTUNIT_VALUE: return THERMALEXPANSIONCOEFFICIENTUNIT;
+			case MODULUSOFLINEARSUBGRADEREACTIONUNIT_VALUE: return MODULUSOFLINEARSUBGRADEREACTIONUNIT;
+			case WARPINGCONSTANTUNIT_VALUE: return WARPINGCONSTANTUNIT;
+			case USERDEFINED_VALUE: return USERDEFINED;
+			case THERMALCONDUCTANCEUNIT_VALUE: return THERMALCONDUCTANCEUNIT;
 		}
 		return null;
 	}

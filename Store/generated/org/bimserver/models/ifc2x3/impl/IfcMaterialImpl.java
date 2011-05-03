@@ -52,13 +52,6 @@ public class IfcMaterialImpl extends IdEObjectImpl implements IfcMaterial
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	protected IfcMaterialImpl()
 	{
 		super();
@@ -72,7 +65,7 @@ public class IfcMaterialImpl extends IdEObjectImpl implements IfcMaterial
 	@Override
 	protected EClass eStaticClass()
 	{
-		return Ifc2x3Package.Literals.IFC_MATERIAL;
+		return Ifc2x3Package.eINSTANCE.getIfcMaterial();
 	}
 
 	/**
@@ -93,7 +86,7 @@ public class IfcMaterialImpl extends IdEObjectImpl implements IfcMaterial
 	 */
 	public String getName()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_MATERIAL__NAME, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcMaterial_Name(), true);
 	}
 
 	/**
@@ -103,7 +96,7 @@ public class IfcMaterialImpl extends IdEObjectImpl implements IfcMaterial
 	 */
 	public void setName(String newName)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_MATERIAL__NAME, newName);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcMaterial_Name(), newName);
 	}
 
 	/**
@@ -114,7 +107,7 @@ public class IfcMaterialImpl extends IdEObjectImpl implements IfcMaterial
 	@SuppressWarnings("unchecked")
 	public EList<IfcMaterialDefinitionRepresentation> getHasRepresentation()
 	{
-		return (EList<IfcMaterialDefinitionRepresentation>)eGet(Ifc2x3Package.Literals.IFC_MATERIAL__HAS_REPRESENTATION, true);
+		return (EList<IfcMaterialDefinitionRepresentation>)eGet(Ifc2x3Package.eINSTANCE.getIfcMaterial_HasRepresentation(), true);
 	}
 
 	/**
@@ -125,7 +118,7 @@ public class IfcMaterialImpl extends IdEObjectImpl implements IfcMaterial
 	@SuppressWarnings("unchecked")
 	public EList<IfcMaterialClassificationRelationship> getClassifiedAs()
 	{
-		return (EList<IfcMaterialClassificationRelationship>)eGet(Ifc2x3Package.Literals.IFC_MATERIAL__CLASSIFIED_AS, true);
+		return (EList<IfcMaterialClassificationRelationship>)eGet(Ifc2x3Package.eINSTANCE.getIfcMaterial_ClassifiedAs(), true);
 	}
 
 } //IfcMaterialImpl

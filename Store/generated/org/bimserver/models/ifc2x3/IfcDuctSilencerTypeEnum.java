@@ -40,68 +40,61 @@ public enum IfcDuctSilencerTypeEnum implements Enumerator
 	 * The '<em><b>NULL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NULL
+	 * @see #NULL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NULL_LITERAL(0, "NULL", "NULL"),
+	NULL(0, "NULL", "NULL"),
 
 	/**
 	 * The '<em><b>ROUND</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #ROUND
+	 * @see #ROUND_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	ROUND_LITERAL(1, "ROUND", "ROUND"),
+	ROUND(1, "ROUND", "ROUND"),
 
 	/**
 	 * The '<em><b>FLATOVAL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #FLATOVAL
+	 * @see #FLATOVAL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	FLATOVAL_LITERAL(2, "FLATOVAL", "FLATOVAL"),
+	FLATOVAL(2, "FLATOVAL", "FLATOVAL"),
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED
+	 * @see #NOTDEFINED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED_LITERAL(3, "NOTDEFINED", "NOTDEFINED"),
+	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
+	 * @see #USERDEFINED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	USERDEFINED_LITERAL(4, "USERDEFINED", "USERDEFINED"),
+	USERDEFINED(4, "USERDEFINED", "USERDEFINED"),
 
 	/**
 	 * The '<em><b>RECTANGULAR</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #RECTANGULAR
+	 * @see #RECTANGULAR_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	RECTANGULAR_LITERAL(5, "RECTANGULAR", "RECTANGULAR");
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
+	RECTANGULAR(5, "RECTANGULAR", "RECTANGULAR");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -111,12 +104,12 @@ public enum IfcDuctSilencerTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NULL_LITERAL
+	 * @see #NULL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NULL = 0;
+	public static final int NULL_VALUE = 0;
 
 	/**
 	 * The '<em><b>ROUND</b></em>' literal value.
@@ -126,12 +119,12 @@ public enum IfcDuctSilencerTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ROUND_LITERAL
+	 * @see #ROUND
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ROUND = 1;
+	public static final int ROUND_VALUE = 1;
 
 	/**
 	 * The '<em><b>FLATOVAL</b></em>' literal value.
@@ -141,12 +134,12 @@ public enum IfcDuctSilencerTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #FLATOVAL_LITERAL
+	 * @see #FLATOVAL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int FLATOVAL = 2;
+	public static final int FLATOVAL_VALUE = 2;
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
@@ -156,12 +149,12 @@ public enum IfcDuctSilencerTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_LITERAL
+	 * @see #NOTDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED = 3;
+	public static final int NOTDEFINED_VALUE = 3;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -171,12 +164,12 @@ public enum IfcDuctSilencerTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_LITERAL
+	 * @see #USERDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED = 4;
+	public static final int USERDEFINED_VALUE = 4;
 
 	/**
 	 * The '<em><b>RECTANGULAR</b></em>' literal value.
@@ -186,12 +179,12 @@ public enum IfcDuctSilencerTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #RECTANGULAR_LITERAL
+	 * @see #RECTANGULAR
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int RECTANGULAR = 5;
+	public static final int RECTANGULAR_VALUE = 5;
 
 	/**
 	 * An array of all the '<em><b>Ifc Duct Silencer Type Enum</b></em>' enumerators.
@@ -200,14 +193,13 @@ public enum IfcDuctSilencerTypeEnum implements Enumerator
 	 * @generated
 	 */
 	private static final IfcDuctSilencerTypeEnum[] VALUES_ARRAY =
-		new IfcDuctSilencerTypeEnum[]
-		{
-			NULL_LITERAL,
-			ROUND_LITERAL,
-			FLATOVAL_LITERAL,
-			NOTDEFINED_LITERAL,
-			USERDEFINED_LITERAL,
-			RECTANGULAR_LITERAL,
+		new IfcDuctSilencerTypeEnum[] {
+			NULL,
+			ROUND,
+			FLATOVAL,
+			NOTDEFINED,
+			USERDEFINED,
+			RECTANGULAR,
 		};
 
 	/**
@@ -226,11 +218,9 @@ public enum IfcDuctSilencerTypeEnum implements Enumerator
 	 */
 	public static IfcDuctSilencerTypeEnum get(String literal)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcDuctSilencerTypeEnum result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal))
-			{
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -245,11 +235,9 @@ public enum IfcDuctSilencerTypeEnum implements Enumerator
 	 */
 	public static IfcDuctSilencerTypeEnum getByName(String name)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcDuctSilencerTypeEnum result = VALUES_ARRAY[i];
-			if (result.getName().equals(name))
-			{
+			if (result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -264,14 +252,13 @@ public enum IfcDuctSilencerTypeEnum implements Enumerator
 	 */
 	public static IfcDuctSilencerTypeEnum get(int value)
 	{
-		switch (value)
-		{
-			case NULL: return NULL_LITERAL;
-			case ROUND: return ROUND_LITERAL;
-			case FLATOVAL: return FLATOVAL_LITERAL;
-			case NOTDEFINED: return NOTDEFINED_LITERAL;
-			case USERDEFINED: return USERDEFINED_LITERAL;
-			case RECTANGULAR: return RECTANGULAR_LITERAL;
+		switch (value) {
+			case NULL_VALUE: return NULL;
+			case ROUND_VALUE: return ROUND;
+			case FLATOVAL_VALUE: return FLATOVAL;
+			case NOTDEFINED_VALUE: return NOTDEFINED;
+			case USERDEFINED_VALUE: return USERDEFINED;
+			case RECTANGULAR_VALUE: return RECTANGULAR;
 		}
 		return null;
 	}

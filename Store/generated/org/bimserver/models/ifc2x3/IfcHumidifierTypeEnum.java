@@ -40,168 +40,161 @@ public enum IfcHumidifierTypeEnum implements Enumerator
 	 * The '<em><b>NULL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NULL
+	 * @see #NULL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NULL_LITERAL(0, "NULL", "NULL"),
+	NULL(0, "NULL", "NULL"),
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED
+	 * @see #NOTDEFINED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED_LITERAL(1, "NOTDEFINED", "NOTDEFINED"),
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>ADIABATICULTRASONIC</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #ADIABATICULTRASONIC
+	 * @see #ADIABATICULTRASONIC_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	ADIABATICULTRASONIC_LITERAL(2, "ADIABATICULTRASONIC", "ADIABATICULTRASONIC"),
+	ADIABATICULTRASONIC(2, "ADIABATICULTRASONIC", "ADIABATICULTRASONIC"),
 
 	/**
 	 * The '<em><b>STEAMINJECTION</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #STEAMINJECTION
+	 * @see #STEAMINJECTION_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	STEAMINJECTION_LITERAL(3, "STEAMINJECTION", "STEAMINJECTION"),
+	STEAMINJECTION(3, "STEAMINJECTION", "STEAMINJECTION"),
 
 	/**
 	 * The '<em><b>ADIABATICWETTEDELEMENT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #ADIABATICWETTEDELEMENT
+	 * @see #ADIABATICWETTEDELEMENT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	ADIABATICWETTEDELEMENT_LITERAL(4, "ADIABATICWETTEDELEMENT", "ADIABATICWETTEDELEMENT"),
+	ADIABATICWETTEDELEMENT(4, "ADIABATICWETTEDELEMENT", "ADIABATICWETTEDELEMENT"),
 
 	/**
 	 * The '<em><b>ASSISTEDSTEAM</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #ASSISTEDSTEAM
+	 * @see #ASSISTEDSTEAM_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	ASSISTEDSTEAM_LITERAL(5, "ASSISTEDSTEAM", "ASSISTEDSTEAM"),
+	ASSISTEDSTEAM(5, "ASSISTEDSTEAM", "ASSISTEDSTEAM"),
 
 	/**
 	 * The '<em><b>ADIABATICATOMIZING</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #ADIABATICATOMIZING
+	 * @see #ADIABATICATOMIZING_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	ADIABATICATOMIZING_LITERAL(6, "ADIABATICATOMIZING", "ADIABATICATOMIZING"),
+	ADIABATICATOMIZING(6, "ADIABATICATOMIZING", "ADIABATICATOMIZING"),
 
 	/**
 	 * The '<em><b>ADIABATICPAN</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #ADIABATICPAN
+	 * @see #ADIABATICPAN_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	ADIABATICPAN_LITERAL(7, "ADIABATICPAN", "ADIABATICPAN"),
+	ADIABATICPAN(7, "ADIABATICPAN", "ADIABATICPAN"),
 
 	/**
 	 * The '<em><b>ASSISTEDELECTRIC</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #ASSISTEDELECTRIC
+	 * @see #ASSISTEDELECTRIC_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	ASSISTEDELECTRIC_LITERAL(8, "ASSISTEDELECTRIC", "ASSISTEDELECTRIC"),
+	ASSISTEDELECTRIC(8, "ASSISTEDELECTRIC", "ASSISTEDELECTRIC"),
 
 	/**
 	 * The '<em><b>ASSISTEDBUTANE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #ASSISTEDBUTANE
+	 * @see #ASSISTEDBUTANE_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	ASSISTEDBUTANE_LITERAL(9, "ASSISTEDBUTANE", "ASSISTEDBUTANE"),
+	ASSISTEDBUTANE(9, "ASSISTEDBUTANE", "ASSISTEDBUTANE"),
 
 	/**
 	 * The '<em><b>ASSISTEDPROPANE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #ASSISTEDPROPANE
+	 * @see #ASSISTEDPROPANE_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	ASSISTEDPROPANE_LITERAL(10, "ASSISTEDPROPANE", "ASSISTEDPROPANE"),
+	ASSISTEDPROPANE(10, "ASSISTEDPROPANE", "ASSISTEDPROPANE"),
 
 	/**
 	 * The '<em><b>ADIABATICRIGIDMEDIA</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #ADIABATICRIGIDMEDIA
+	 * @see #ADIABATICRIGIDMEDIA_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	ADIABATICRIGIDMEDIA_LITERAL(11, "ADIABATICRIGIDMEDIA", "ADIABATICRIGIDMEDIA"),
+	ADIABATICRIGIDMEDIA(11, "ADIABATICRIGIDMEDIA", "ADIABATICRIGIDMEDIA"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
+	 * @see #USERDEFINED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	USERDEFINED_LITERAL(12, "USERDEFINED", "USERDEFINED"),
+	USERDEFINED(12, "USERDEFINED", "USERDEFINED"),
 
 	/**
 	 * The '<em><b>ADIABATICCOMPRESSEDAIRNOZZLE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #ADIABATICCOMPRESSEDAIRNOZZLE
+	 * @see #ADIABATICCOMPRESSEDAIRNOZZLE_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	ADIABATICCOMPRESSEDAIRNOZZLE_LITERAL(13, "ADIABATICCOMPRESSEDAIRNOZZLE", "ADIABATICCOMPRESSEDAIRNOZZLE"),
+	ADIABATICCOMPRESSEDAIRNOZZLE(13, "ADIABATICCOMPRESSEDAIRNOZZLE", "ADIABATICCOMPRESSEDAIRNOZZLE"),
 
 	/**
 	 * The '<em><b>ADIABATICAIRWASHER</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #ADIABATICAIRWASHER
+	 * @see #ADIABATICAIRWASHER_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	ADIABATICAIRWASHER_LITERAL(14, "ADIABATICAIRWASHER", "ADIABATICAIRWASHER"),
+	ADIABATICAIRWASHER(14, "ADIABATICAIRWASHER", "ADIABATICAIRWASHER"),
 
 	/**
 	 * The '<em><b>ASSISTEDNATURALGAS</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #ASSISTEDNATURALGAS
+	 * @see #ASSISTEDNATURALGAS_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	ASSISTEDNATURALGAS_LITERAL(15, "ASSISTEDNATURALGAS", "ASSISTEDNATURALGAS");
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
+	ASSISTEDNATURALGAS(15, "ASSISTEDNATURALGAS", "ASSISTEDNATURALGAS");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -211,12 +204,12 @@ public enum IfcHumidifierTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NULL_LITERAL
+	 * @see #NULL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NULL = 0;
+	public static final int NULL_VALUE = 0;
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
@@ -226,12 +219,12 @@ public enum IfcHumidifierTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_LITERAL
+	 * @see #NOTDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED = 1;
+	public static final int NOTDEFINED_VALUE = 1;
 
 	/**
 	 * The '<em><b>ADIABATICULTRASONIC</b></em>' literal value.
@@ -241,12 +234,12 @@ public enum IfcHumidifierTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ADIABATICULTRASONIC_LITERAL
+	 * @see #ADIABATICULTRASONIC
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ADIABATICULTRASONIC = 2;
+	public static final int ADIABATICULTRASONIC_VALUE = 2;
 
 	/**
 	 * The '<em><b>STEAMINJECTION</b></em>' literal value.
@@ -256,12 +249,12 @@ public enum IfcHumidifierTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #STEAMINJECTION_LITERAL
+	 * @see #STEAMINJECTION
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int STEAMINJECTION = 3;
+	public static final int STEAMINJECTION_VALUE = 3;
 
 	/**
 	 * The '<em><b>ADIABATICWETTEDELEMENT</b></em>' literal value.
@@ -271,12 +264,12 @@ public enum IfcHumidifierTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ADIABATICWETTEDELEMENT_LITERAL
+	 * @see #ADIABATICWETTEDELEMENT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ADIABATICWETTEDELEMENT = 4;
+	public static final int ADIABATICWETTEDELEMENT_VALUE = 4;
 
 	/**
 	 * The '<em><b>ASSISTEDSTEAM</b></em>' literal value.
@@ -286,12 +279,12 @@ public enum IfcHumidifierTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ASSISTEDSTEAM_LITERAL
+	 * @see #ASSISTEDSTEAM
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ASSISTEDSTEAM = 5;
+	public static final int ASSISTEDSTEAM_VALUE = 5;
 
 	/**
 	 * The '<em><b>ADIABATICATOMIZING</b></em>' literal value.
@@ -301,12 +294,12 @@ public enum IfcHumidifierTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ADIABATICATOMIZING_LITERAL
+	 * @see #ADIABATICATOMIZING
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ADIABATICATOMIZING = 6;
+	public static final int ADIABATICATOMIZING_VALUE = 6;
 
 	/**
 	 * The '<em><b>ADIABATICPAN</b></em>' literal value.
@@ -316,12 +309,12 @@ public enum IfcHumidifierTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ADIABATICPAN_LITERAL
+	 * @see #ADIABATICPAN
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ADIABATICPAN = 7;
+	public static final int ADIABATICPAN_VALUE = 7;
 
 	/**
 	 * The '<em><b>ASSISTEDELECTRIC</b></em>' literal value.
@@ -331,12 +324,12 @@ public enum IfcHumidifierTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ASSISTEDELECTRIC_LITERAL
+	 * @see #ASSISTEDELECTRIC
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ASSISTEDELECTRIC = 8;
+	public static final int ASSISTEDELECTRIC_VALUE = 8;
 
 	/**
 	 * The '<em><b>ASSISTEDBUTANE</b></em>' literal value.
@@ -346,12 +339,12 @@ public enum IfcHumidifierTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ASSISTEDBUTANE_LITERAL
+	 * @see #ASSISTEDBUTANE
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ASSISTEDBUTANE = 9;
+	public static final int ASSISTEDBUTANE_VALUE = 9;
 
 	/**
 	 * The '<em><b>ASSISTEDPROPANE</b></em>' literal value.
@@ -361,12 +354,12 @@ public enum IfcHumidifierTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ASSISTEDPROPANE_LITERAL
+	 * @see #ASSISTEDPROPANE
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ASSISTEDPROPANE = 10;
+	public static final int ASSISTEDPROPANE_VALUE = 10;
 
 	/**
 	 * The '<em><b>ADIABATICRIGIDMEDIA</b></em>' literal value.
@@ -376,12 +369,12 @@ public enum IfcHumidifierTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ADIABATICRIGIDMEDIA_LITERAL
+	 * @see #ADIABATICRIGIDMEDIA
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ADIABATICRIGIDMEDIA = 11;
+	public static final int ADIABATICRIGIDMEDIA_VALUE = 11;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -391,12 +384,12 @@ public enum IfcHumidifierTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_LITERAL
+	 * @see #USERDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED = 12;
+	public static final int USERDEFINED_VALUE = 12;
 
 	/**
 	 * The '<em><b>ADIABATICCOMPRESSEDAIRNOZZLE</b></em>' literal value.
@@ -406,12 +399,12 @@ public enum IfcHumidifierTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ADIABATICCOMPRESSEDAIRNOZZLE_LITERAL
+	 * @see #ADIABATICCOMPRESSEDAIRNOZZLE
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ADIABATICCOMPRESSEDAIRNOZZLE = 13;
+	public static final int ADIABATICCOMPRESSEDAIRNOZZLE_VALUE = 13;
 
 	/**
 	 * The '<em><b>ADIABATICAIRWASHER</b></em>' literal value.
@@ -421,12 +414,12 @@ public enum IfcHumidifierTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ADIABATICAIRWASHER_LITERAL
+	 * @see #ADIABATICAIRWASHER
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ADIABATICAIRWASHER = 14;
+	public static final int ADIABATICAIRWASHER_VALUE = 14;
 
 	/**
 	 * The '<em><b>ASSISTEDNATURALGAS</b></em>' literal value.
@@ -436,12 +429,12 @@ public enum IfcHumidifierTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ASSISTEDNATURALGAS_LITERAL
+	 * @see #ASSISTEDNATURALGAS
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ASSISTEDNATURALGAS = 15;
+	public static final int ASSISTEDNATURALGAS_VALUE = 15;
 
 	/**
 	 * An array of all the '<em><b>Ifc Humidifier Type Enum</b></em>' enumerators.
@@ -450,24 +443,23 @@ public enum IfcHumidifierTypeEnum implements Enumerator
 	 * @generated
 	 */
 	private static final IfcHumidifierTypeEnum[] VALUES_ARRAY =
-		new IfcHumidifierTypeEnum[]
-		{
-			NULL_LITERAL,
-			NOTDEFINED_LITERAL,
-			ADIABATICULTRASONIC_LITERAL,
-			STEAMINJECTION_LITERAL,
-			ADIABATICWETTEDELEMENT_LITERAL,
-			ASSISTEDSTEAM_LITERAL,
-			ADIABATICATOMIZING_LITERAL,
-			ADIABATICPAN_LITERAL,
-			ASSISTEDELECTRIC_LITERAL,
-			ASSISTEDBUTANE_LITERAL,
-			ASSISTEDPROPANE_LITERAL,
-			ADIABATICRIGIDMEDIA_LITERAL,
-			USERDEFINED_LITERAL,
-			ADIABATICCOMPRESSEDAIRNOZZLE_LITERAL,
-			ADIABATICAIRWASHER_LITERAL,
-			ASSISTEDNATURALGAS_LITERAL,
+		new IfcHumidifierTypeEnum[] {
+			NULL,
+			NOTDEFINED,
+			ADIABATICULTRASONIC,
+			STEAMINJECTION,
+			ADIABATICWETTEDELEMENT,
+			ASSISTEDSTEAM,
+			ADIABATICATOMIZING,
+			ADIABATICPAN,
+			ASSISTEDELECTRIC,
+			ASSISTEDBUTANE,
+			ASSISTEDPROPANE,
+			ADIABATICRIGIDMEDIA,
+			USERDEFINED,
+			ADIABATICCOMPRESSEDAIRNOZZLE,
+			ADIABATICAIRWASHER,
+			ASSISTEDNATURALGAS,
 		};
 
 	/**
@@ -486,11 +478,9 @@ public enum IfcHumidifierTypeEnum implements Enumerator
 	 */
 	public static IfcHumidifierTypeEnum get(String literal)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcHumidifierTypeEnum result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal))
-			{
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -505,11 +495,9 @@ public enum IfcHumidifierTypeEnum implements Enumerator
 	 */
 	public static IfcHumidifierTypeEnum getByName(String name)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcHumidifierTypeEnum result = VALUES_ARRAY[i];
-			if (result.getName().equals(name))
-			{
+			if (result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -524,24 +512,23 @@ public enum IfcHumidifierTypeEnum implements Enumerator
 	 */
 	public static IfcHumidifierTypeEnum get(int value)
 	{
-		switch (value)
-		{
-			case NULL: return NULL_LITERAL;
-			case NOTDEFINED: return NOTDEFINED_LITERAL;
-			case ADIABATICULTRASONIC: return ADIABATICULTRASONIC_LITERAL;
-			case STEAMINJECTION: return STEAMINJECTION_LITERAL;
-			case ADIABATICWETTEDELEMENT: return ADIABATICWETTEDELEMENT_LITERAL;
-			case ASSISTEDSTEAM: return ASSISTEDSTEAM_LITERAL;
-			case ADIABATICATOMIZING: return ADIABATICATOMIZING_LITERAL;
-			case ADIABATICPAN: return ADIABATICPAN_LITERAL;
-			case ASSISTEDELECTRIC: return ASSISTEDELECTRIC_LITERAL;
-			case ASSISTEDBUTANE: return ASSISTEDBUTANE_LITERAL;
-			case ASSISTEDPROPANE: return ASSISTEDPROPANE_LITERAL;
-			case ADIABATICRIGIDMEDIA: return ADIABATICRIGIDMEDIA_LITERAL;
-			case USERDEFINED: return USERDEFINED_LITERAL;
-			case ADIABATICCOMPRESSEDAIRNOZZLE: return ADIABATICCOMPRESSEDAIRNOZZLE_LITERAL;
-			case ADIABATICAIRWASHER: return ADIABATICAIRWASHER_LITERAL;
-			case ASSISTEDNATURALGAS: return ASSISTEDNATURALGAS_LITERAL;
+		switch (value) {
+			case NULL_VALUE: return NULL;
+			case NOTDEFINED_VALUE: return NOTDEFINED;
+			case ADIABATICULTRASONIC_VALUE: return ADIABATICULTRASONIC;
+			case STEAMINJECTION_VALUE: return STEAMINJECTION;
+			case ADIABATICWETTEDELEMENT_VALUE: return ADIABATICWETTEDELEMENT;
+			case ASSISTEDSTEAM_VALUE: return ASSISTEDSTEAM;
+			case ADIABATICATOMIZING_VALUE: return ADIABATICATOMIZING;
+			case ADIABATICPAN_VALUE: return ADIABATICPAN;
+			case ASSISTEDELECTRIC_VALUE: return ASSISTEDELECTRIC;
+			case ASSISTEDBUTANE_VALUE: return ASSISTEDBUTANE;
+			case ASSISTEDPROPANE_VALUE: return ASSISTEDPROPANE;
+			case ADIABATICRIGIDMEDIA_VALUE: return ADIABATICRIGIDMEDIA;
+			case USERDEFINED_VALUE: return USERDEFINED;
+			case ADIABATICCOMPRESSEDAIRNOZZLE_VALUE: return ADIABATICCOMPRESSEDAIRNOZZLE;
+			case ADIABATICAIRWASHER_VALUE: return ADIABATICAIRWASHER;
+			case ASSISTEDNATURALGAS_VALUE: return ASSISTEDNATURALGAS;
 		}
 		return null;
 	}

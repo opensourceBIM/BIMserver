@@ -40,118 +40,111 @@ public enum IfcReflectanceMethodEnum implements Enumerator
 	 * The '<em><b>NULL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NULL
+	 * @see #NULL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NULL_LITERAL(0, "NULL", "NULL"),
+	NULL(0, "NULL", "NULL"),
 
 	/**
 	 * The '<em><b>METAL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #METAL
+	 * @see #METAL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	METAL_LITERAL(1, "METAL", "METAL"),
+	METAL(1, "METAL", "METAL"),
 
 	/**
 	 * The '<em><b>MATT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #MATT
+	 * @see #MATT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	MATT_LITERAL(2, "MATT", "MATT"),
+	MATT(2, "MATT", "MATT"),
 
 	/**
 	 * The '<em><b>MIRROR</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #MIRROR
+	 * @see #MIRROR_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	MIRROR_LITERAL(3, "MIRROR", "MIRROR"),
+	MIRROR(3, "MIRROR", "MIRROR"),
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED
+	 * @see #NOTDEFINED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED_LITERAL(4, "NOTDEFINED", "NOTDEFINED"),
+	NOTDEFINED(4, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>FLAT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #FLAT
+	 * @see #FLAT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	FLAT_LITERAL(5, "FLAT", "FLAT"),
+	FLAT(5, "FLAT", "FLAT"),
 
 	/**
 	 * The '<em><b>STRAUSS</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #STRAUSS
+	 * @see #STRAUSS_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	STRAUSS_LITERAL(6, "STRAUSS", "STRAUSS"),
+	STRAUSS(6, "STRAUSS", "STRAUSS"),
 
 	/**
 	 * The '<em><b>BLINN</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #BLINN
+	 * @see #BLINN_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	BLINN_LITERAL(7, "BLINN", "BLINN"),
+	BLINN(7, "BLINN", "BLINN"),
 
 	/**
 	 * The '<em><b>PLASTIC</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #PLASTIC
+	 * @see #PLASTIC_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	PLASTIC_LITERAL(8, "PLASTIC", "PLASTIC"),
+	PLASTIC(8, "PLASTIC", "PLASTIC"),
 
 	/**
 	 * The '<em><b>GLASS</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #GLASS
+	 * @see #GLASS_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	GLASS_LITERAL(9, "GLASS", "GLASS"),
+	GLASS(9, "GLASS", "GLASS"),
 
 	/**
 	 * The '<em><b>PHONG</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #PHONG
+	 * @see #PHONG_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	PHONG_LITERAL(10, "PHONG", "PHONG");
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
+	PHONG(10, "PHONG", "PHONG");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -161,12 +154,12 @@ public enum IfcReflectanceMethodEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NULL_LITERAL
+	 * @see #NULL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NULL = 0;
+	public static final int NULL_VALUE = 0;
 
 	/**
 	 * The '<em><b>METAL</b></em>' literal value.
@@ -176,12 +169,12 @@ public enum IfcReflectanceMethodEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #METAL_LITERAL
+	 * @see #METAL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int METAL = 1;
+	public static final int METAL_VALUE = 1;
 
 	/**
 	 * The '<em><b>MATT</b></em>' literal value.
@@ -191,12 +184,12 @@ public enum IfcReflectanceMethodEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #MATT_LITERAL
+	 * @see #MATT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MATT = 2;
+	public static final int MATT_VALUE = 2;
 
 	/**
 	 * The '<em><b>MIRROR</b></em>' literal value.
@@ -206,12 +199,12 @@ public enum IfcReflectanceMethodEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #MIRROR_LITERAL
+	 * @see #MIRROR
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MIRROR = 3;
+	public static final int MIRROR_VALUE = 3;
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
@@ -221,12 +214,12 @@ public enum IfcReflectanceMethodEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_LITERAL
+	 * @see #NOTDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED = 4;
+	public static final int NOTDEFINED_VALUE = 4;
 
 	/**
 	 * The '<em><b>FLAT</b></em>' literal value.
@@ -236,12 +229,12 @@ public enum IfcReflectanceMethodEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #FLAT_LITERAL
+	 * @see #FLAT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int FLAT = 5;
+	public static final int FLAT_VALUE = 5;
 
 	/**
 	 * The '<em><b>STRAUSS</b></em>' literal value.
@@ -251,12 +244,12 @@ public enum IfcReflectanceMethodEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #STRAUSS_LITERAL
+	 * @see #STRAUSS
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int STRAUSS = 6;
+	public static final int STRAUSS_VALUE = 6;
 
 	/**
 	 * The '<em><b>BLINN</b></em>' literal value.
@@ -266,12 +259,12 @@ public enum IfcReflectanceMethodEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #BLINN_LITERAL
+	 * @see #BLINN
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int BLINN = 7;
+	public static final int BLINN_VALUE = 7;
 
 	/**
 	 * The '<em><b>PLASTIC</b></em>' literal value.
@@ -281,12 +274,12 @@ public enum IfcReflectanceMethodEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #PLASTIC_LITERAL
+	 * @see #PLASTIC
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PLASTIC = 8;
+	public static final int PLASTIC_VALUE = 8;
 
 	/**
 	 * The '<em><b>GLASS</b></em>' literal value.
@@ -296,12 +289,12 @@ public enum IfcReflectanceMethodEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #GLASS_LITERAL
+	 * @see #GLASS
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int GLASS = 9;
+	public static final int GLASS_VALUE = 9;
 
 	/**
 	 * The '<em><b>PHONG</b></em>' literal value.
@@ -311,12 +304,12 @@ public enum IfcReflectanceMethodEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #PHONG_LITERAL
+	 * @see #PHONG
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PHONG = 10;
+	public static final int PHONG_VALUE = 10;
 
 	/**
 	 * An array of all the '<em><b>Ifc Reflectance Method Enum</b></em>' enumerators.
@@ -325,19 +318,18 @@ public enum IfcReflectanceMethodEnum implements Enumerator
 	 * @generated
 	 */
 	private static final IfcReflectanceMethodEnum[] VALUES_ARRAY =
-		new IfcReflectanceMethodEnum[]
-		{
-			NULL_LITERAL,
-			METAL_LITERAL,
-			MATT_LITERAL,
-			MIRROR_LITERAL,
-			NOTDEFINED_LITERAL,
-			FLAT_LITERAL,
-			STRAUSS_LITERAL,
-			BLINN_LITERAL,
-			PLASTIC_LITERAL,
-			GLASS_LITERAL,
-			PHONG_LITERAL,
+		new IfcReflectanceMethodEnum[] {
+			NULL,
+			METAL,
+			MATT,
+			MIRROR,
+			NOTDEFINED,
+			FLAT,
+			STRAUSS,
+			BLINN,
+			PLASTIC,
+			GLASS,
+			PHONG,
 		};
 
 	/**
@@ -356,11 +348,9 @@ public enum IfcReflectanceMethodEnum implements Enumerator
 	 */
 	public static IfcReflectanceMethodEnum get(String literal)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcReflectanceMethodEnum result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal))
-			{
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -375,11 +365,9 @@ public enum IfcReflectanceMethodEnum implements Enumerator
 	 */
 	public static IfcReflectanceMethodEnum getByName(String name)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcReflectanceMethodEnum result = VALUES_ARRAY[i];
-			if (result.getName().equals(name))
-			{
+			if (result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -394,19 +382,18 @@ public enum IfcReflectanceMethodEnum implements Enumerator
 	 */
 	public static IfcReflectanceMethodEnum get(int value)
 	{
-		switch (value)
-		{
-			case NULL: return NULL_LITERAL;
-			case METAL: return METAL_LITERAL;
-			case MATT: return MATT_LITERAL;
-			case MIRROR: return MIRROR_LITERAL;
-			case NOTDEFINED: return NOTDEFINED_LITERAL;
-			case FLAT: return FLAT_LITERAL;
-			case STRAUSS: return STRAUSS_LITERAL;
-			case BLINN: return BLINN_LITERAL;
-			case PLASTIC: return PLASTIC_LITERAL;
-			case GLASS: return GLASS_LITERAL;
-			case PHONG: return PHONG_LITERAL;
+		switch (value) {
+			case NULL_VALUE: return NULL;
+			case METAL_VALUE: return METAL;
+			case MATT_VALUE: return MATT;
+			case MIRROR_VALUE: return MIRROR;
+			case NOTDEFINED_VALUE: return NOTDEFINED;
+			case FLAT_VALUE: return FLAT;
+			case STRAUSS_VALUE: return STRAUSS;
+			case BLINN_VALUE: return BLINN;
+			case PLASTIC_VALUE: return PLASTIC;
+			case GLASS_VALUE: return GLASS;
+			case PHONG_VALUE: return PHONG;
 		}
 		return null;
 	}

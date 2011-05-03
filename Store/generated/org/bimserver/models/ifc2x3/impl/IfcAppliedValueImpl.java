@@ -61,13 +61,6 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	protected IfcAppliedValueImpl()
 	{
 		super();
@@ -81,7 +74,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	@Override
 	protected EClass eStaticClass()
 	{
-		return Ifc2x3Package.Literals.IFC_APPLIED_VALUE;
+		return Ifc2x3Package.eINSTANCE.getIfcAppliedValue();
 	}
 
 	/**
@@ -102,7 +95,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 */
 	public String getName()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_APPLIED_VALUE__NAME, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcAppliedValue_Name(), true);
 	}
 
 	/**
@@ -112,7 +105,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 */
 	public void setName(String newName)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_APPLIED_VALUE__NAME, newName);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcAppliedValue_Name(), newName);
 	}
 
 	/**
@@ -122,7 +115,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 */
 	public void unsetName()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_APPLIED_VALUE__NAME);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcAppliedValue_Name());
 	}
 
 	/**
@@ -132,7 +125,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 */
 	public boolean isSetName()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_APPLIED_VALUE__NAME);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcAppliedValue_Name());
 	}
 
 	/**
@@ -142,7 +135,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 */
 	public String getDescription()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_APPLIED_VALUE__DESCRIPTION, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcAppliedValue_Description(), true);
 	}
 
 	/**
@@ -152,7 +145,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 */
 	public void setDescription(String newDescription)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_APPLIED_VALUE__DESCRIPTION, newDescription);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcAppliedValue_Description(), newDescription);
 	}
 
 	/**
@@ -162,7 +155,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 */
 	public void unsetDescription()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_APPLIED_VALUE__DESCRIPTION);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcAppliedValue_Description());
 	}
 
 	/**
@@ -172,7 +165,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 */
 	public boolean isSetDescription()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_APPLIED_VALUE__DESCRIPTION);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcAppliedValue_Description());
 	}
 
 	/**
@@ -182,7 +175,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 */
 	public IfcAppliedValueSelect getAppliedValue()
 	{
-		return (IfcAppliedValueSelect)eGet(Ifc2x3Package.Literals.IFC_APPLIED_VALUE__APPLIED_VALUE, true);
+		return (IfcAppliedValueSelect)eGet(Ifc2x3Package.eINSTANCE.getIfcAppliedValue_AppliedValue(), true);
 	}
 
 	/**
@@ -192,7 +185,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 */
 	public void setAppliedValue(IfcAppliedValueSelect newAppliedValue)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_APPLIED_VALUE__APPLIED_VALUE, newAppliedValue);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcAppliedValue_AppliedValue(), newAppliedValue);
 	}
 
 	/**
@@ -202,7 +195,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 */
 	public void unsetAppliedValue()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_APPLIED_VALUE__APPLIED_VALUE);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcAppliedValue_AppliedValue());
 	}
 
 	/**
@@ -212,7 +205,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 */
 	public boolean isSetAppliedValue()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_APPLIED_VALUE__APPLIED_VALUE);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcAppliedValue_AppliedValue());
 	}
 
 	/**
@@ -222,7 +215,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 */
 	public IfcMeasureWithUnit getUnitBasis()
 	{
-		return (IfcMeasureWithUnit)eGet(Ifc2x3Package.Literals.IFC_APPLIED_VALUE__UNIT_BASIS, true);
+		return (IfcMeasureWithUnit)eGet(Ifc2x3Package.eINSTANCE.getIfcAppliedValue_UnitBasis(), true);
 	}
 
 	/**
@@ -232,7 +225,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 */
 	public void setUnitBasis(IfcMeasureWithUnit newUnitBasis)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_APPLIED_VALUE__UNIT_BASIS, newUnitBasis);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcAppliedValue_UnitBasis(), newUnitBasis);
 	}
 
 	/**
@@ -242,7 +235,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 */
 	public void unsetUnitBasis()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_APPLIED_VALUE__UNIT_BASIS);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcAppliedValue_UnitBasis());
 	}
 
 	/**
@@ -252,7 +245,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 */
 	public boolean isSetUnitBasis()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_APPLIED_VALUE__UNIT_BASIS);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcAppliedValue_UnitBasis());
 	}
 
 	/**
@@ -262,7 +255,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 */
 	public IfcDateTimeSelect getApplicableDate()
 	{
-		return (IfcDateTimeSelect)eGet(Ifc2x3Package.Literals.IFC_APPLIED_VALUE__APPLICABLE_DATE, true);
+		return (IfcDateTimeSelect)eGet(Ifc2x3Package.eINSTANCE.getIfcAppliedValue_ApplicableDate(), true);
 	}
 
 	/**
@@ -272,7 +265,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 */
 	public void setApplicableDate(IfcDateTimeSelect newApplicableDate)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_APPLIED_VALUE__APPLICABLE_DATE, newApplicableDate);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcAppliedValue_ApplicableDate(), newApplicableDate);
 	}
 
 	/**
@@ -282,7 +275,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 */
 	public void unsetApplicableDate()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_APPLIED_VALUE__APPLICABLE_DATE);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcAppliedValue_ApplicableDate());
 	}
 
 	/**
@@ -292,7 +285,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 */
 	public boolean isSetApplicableDate()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_APPLIED_VALUE__APPLICABLE_DATE);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcAppliedValue_ApplicableDate());
 	}
 
 	/**
@@ -302,7 +295,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 */
 	public IfcDateTimeSelect getFixedUntilDate()
 	{
-		return (IfcDateTimeSelect)eGet(Ifc2x3Package.Literals.IFC_APPLIED_VALUE__FIXED_UNTIL_DATE, true);
+		return (IfcDateTimeSelect)eGet(Ifc2x3Package.eINSTANCE.getIfcAppliedValue_FixedUntilDate(), true);
 	}
 
 	/**
@@ -312,7 +305,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 */
 	public void setFixedUntilDate(IfcDateTimeSelect newFixedUntilDate)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_APPLIED_VALUE__FIXED_UNTIL_DATE, newFixedUntilDate);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcAppliedValue_FixedUntilDate(), newFixedUntilDate);
 	}
 
 	/**
@@ -322,7 +315,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 */
 	public void unsetFixedUntilDate()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_APPLIED_VALUE__FIXED_UNTIL_DATE);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcAppliedValue_FixedUntilDate());
 	}
 
 	/**
@@ -332,7 +325,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 */
 	public boolean isSetFixedUntilDate()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_APPLIED_VALUE__FIXED_UNTIL_DATE);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcAppliedValue_FixedUntilDate());
 	}
 
 	/**
@@ -343,7 +336,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	@SuppressWarnings("unchecked")
 	public EList<IfcReferencesValueDocument> getValuesReferenced()
 	{
-		return (EList<IfcReferencesValueDocument>)eGet(Ifc2x3Package.Literals.IFC_APPLIED_VALUE__VALUES_REFERENCED, true);
+		return (EList<IfcReferencesValueDocument>)eGet(Ifc2x3Package.eINSTANCE.getIfcAppliedValue_ValuesReferenced(), true);
 	}
 
 	/**
@@ -354,7 +347,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	@SuppressWarnings("unchecked")
 	public EList<IfcAppliedValueRelationship> getValueOfComponents()
 	{
-		return (EList<IfcAppliedValueRelationship>)eGet(Ifc2x3Package.Literals.IFC_APPLIED_VALUE__VALUE_OF_COMPONENTS, true);
+		return (EList<IfcAppliedValueRelationship>)eGet(Ifc2x3Package.eINSTANCE.getIfcAppliedValue_ValueOfComponents(), true);
 	}
 
 	/**
@@ -365,7 +358,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	@SuppressWarnings("unchecked")
 	public EList<IfcAppliedValueRelationship> getIsComponentIn()
 	{
-		return (EList<IfcAppliedValueRelationship>)eGet(Ifc2x3Package.Literals.IFC_APPLIED_VALUE__IS_COMPONENT_IN, true);
+		return (EList<IfcAppliedValueRelationship>)eGet(Ifc2x3Package.eINSTANCE.getIfcAppliedValue_IsComponentIn(), true);
 	}
 
 } //IfcAppliedValueImpl

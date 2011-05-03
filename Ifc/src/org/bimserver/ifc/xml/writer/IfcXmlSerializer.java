@@ -251,7 +251,7 @@ public class IfcXmlSerializer extends IfcSerializer {
 	}
 
 	private void writeValue(Object value) {
-		if (value instanceof Tristate && value == Tristate.UNDEFINED_LITERAL) {
+		if (value instanceof Tristate && value == Tristate.UNDEFINED) {
 			print("unknown");
 		} else {
 			print(value.toString().toLowerCase());

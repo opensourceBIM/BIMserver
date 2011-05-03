@@ -52,13 +52,6 @@ public class IfcStyledItemImpl extends IfcRepresentationItemImpl implements IfcS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	protected IfcStyledItemImpl()
 	{
 		super();
@@ -72,7 +65,7 @@ public class IfcStyledItemImpl extends IfcRepresentationItemImpl implements IfcS
 	@Override
 	protected EClass eStaticClass()
 	{
-		return Ifc2x3Package.Literals.IFC_STYLED_ITEM;
+		return Ifc2x3Package.eINSTANCE.getIfcStyledItem();
 	}
 
 	/**
@@ -82,7 +75,7 @@ public class IfcStyledItemImpl extends IfcRepresentationItemImpl implements IfcS
 	 */
 	public IfcRepresentationItem getItem()
 	{
-		return (IfcRepresentationItem)eGet(Ifc2x3Package.Literals.IFC_STYLED_ITEM__ITEM, true);
+		return (IfcRepresentationItem)eGet(Ifc2x3Package.eINSTANCE.getIfcStyledItem_Item(), true);
 	}
 
 	/**
@@ -92,7 +85,7 @@ public class IfcStyledItemImpl extends IfcRepresentationItemImpl implements IfcS
 	 */
 	public void setItem(IfcRepresentationItem newItem)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_STYLED_ITEM__ITEM, newItem);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcStyledItem_Item(), newItem);
 	}
 
 	/**
@@ -102,7 +95,7 @@ public class IfcStyledItemImpl extends IfcRepresentationItemImpl implements IfcS
 	 */
 	public void unsetItem()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_STYLED_ITEM__ITEM);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcStyledItem_Item());
 	}
 
 	/**
@@ -112,7 +105,7 @@ public class IfcStyledItemImpl extends IfcRepresentationItemImpl implements IfcS
 	 */
 	public boolean isSetItem()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_STYLED_ITEM__ITEM);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcStyledItem_Item());
 	}
 
 	/**
@@ -123,7 +116,7 @@ public class IfcStyledItemImpl extends IfcRepresentationItemImpl implements IfcS
 	@SuppressWarnings("unchecked")
 	public EList<IfcPresentationStyleAssignment> getStyles()
 	{
-		return (EList<IfcPresentationStyleAssignment>)eGet(Ifc2x3Package.Literals.IFC_STYLED_ITEM__STYLES, true);
+		return (EList<IfcPresentationStyleAssignment>)eGet(Ifc2x3Package.eINSTANCE.getIfcStyledItem_Styles(), true);
 	}
 
 	/**
@@ -133,7 +126,7 @@ public class IfcStyledItemImpl extends IfcRepresentationItemImpl implements IfcS
 	 */
 	public String getName()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_STYLED_ITEM__NAME, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcStyledItem_Name(), true);
 	}
 
 	/**
@@ -143,7 +136,7 @@ public class IfcStyledItemImpl extends IfcRepresentationItemImpl implements IfcS
 	 */
 	public void setName(String newName)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_STYLED_ITEM__NAME, newName);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcStyledItem_Name(), newName);
 	}
 
 	/**
@@ -153,7 +146,7 @@ public class IfcStyledItemImpl extends IfcRepresentationItemImpl implements IfcS
 	 */
 	public void unsetName()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_STYLED_ITEM__NAME);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcStyledItem_Name());
 	}
 
 	/**
@@ -163,7 +156,7 @@ public class IfcStyledItemImpl extends IfcRepresentationItemImpl implements IfcS
 	 */
 	public boolean isSetName()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_STYLED_ITEM__NAME);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcStyledItem_Name());
 	}
 
 } //IfcStyledItemImpl

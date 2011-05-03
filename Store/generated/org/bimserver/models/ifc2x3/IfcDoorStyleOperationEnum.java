@@ -40,198 +40,191 @@ public enum IfcDoorStyleOperationEnum implements Enumerator
 	 * The '<em><b>NULL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NULL
+	 * @see #NULL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NULL_LITERAL(0, "NULL", "NULL"),
+	NULL(0, "NULL", "NULL"),
 
 	/**
 	 * The '<em><b>SINGLE SWING LEFT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #SINGLE_SWING_LEFT
+	 * @see #SINGLE_SWING_LEFT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	SINGLE_SWING_LEFT_LITERAL(1, "SINGLE_SWING_LEFT", "SINGLE_SWING_LEFT"),
+	SINGLE_SWING_LEFT(1, "SINGLE_SWING_LEFT", "SINGLE_SWING_LEFT"),
 
 	/**
 	 * The '<em><b>FOLDING TO LEFT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #FOLDING_TO_LEFT
+	 * @see #FOLDING_TO_LEFT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	FOLDING_TO_LEFT_LITERAL(2, "FOLDING_TO_LEFT", "FOLDING_TO_LEFT"),
+	FOLDING_TO_LEFT(2, "FOLDING_TO_LEFT", "FOLDING_TO_LEFT"),
 
 	/**
 	 * The '<em><b>SINGLE SWING RIGHT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #SINGLE_SWING_RIGHT
+	 * @see #SINGLE_SWING_RIGHT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	SINGLE_SWING_RIGHT_LITERAL(3, "SINGLE_SWING_RIGHT", "SINGLE_SWING_RIGHT"),
+	SINGLE_SWING_RIGHT(3, "SINGLE_SWING_RIGHT", "SINGLE_SWING_RIGHT"),
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED
+	 * @see #NOTDEFINED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED_LITERAL(4, "NOTDEFINED", "NOTDEFINED"),
+	NOTDEFINED(4, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>ROLLINGUP</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #ROLLINGUP
+	 * @see #ROLLINGUP_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	ROLLINGUP_LITERAL(5, "ROLLINGUP", "ROLLINGUP"),
+	ROLLINGUP(5, "ROLLINGUP", "ROLLINGUP"),
 
 	/**
 	 * The '<em><b>DOUBLE DOOR FOLDING</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #DOUBLE_DOOR_FOLDING
+	 * @see #DOUBLE_DOOR_FOLDING_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	DOUBLE_DOOR_FOLDING_LITERAL(6, "DOUBLE_DOOR_FOLDING", "DOUBLE_DOOR_FOLDING"),
+	DOUBLE_DOOR_FOLDING(6, "DOUBLE_DOOR_FOLDING", "DOUBLE_DOOR_FOLDING"),
 
 	/**
 	 * The '<em><b>DOUBLE DOOR DOUBLE SWING</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #DOUBLE_DOOR_DOUBLE_SWING
+	 * @see #DOUBLE_DOOR_DOUBLE_SWING_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	DOUBLE_DOOR_DOUBLE_SWING_LITERAL(7, "DOUBLE_DOOR_DOUBLE_SWING", "DOUBLE_DOOR_DOUBLE_SWING"),
+	DOUBLE_DOOR_DOUBLE_SWING(7, "DOUBLE_DOOR_DOUBLE_SWING", "DOUBLE_DOOR_DOUBLE_SWING"),
 
 	/**
 	 * The '<em><b>DOUBLE DOOR SINGLE SWING</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #DOUBLE_DOOR_SINGLE_SWING
+	 * @see #DOUBLE_DOOR_SINGLE_SWING_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	DOUBLE_DOOR_SINGLE_SWING_LITERAL(8, "DOUBLE_DOOR_SINGLE_SWING", "DOUBLE_DOOR_SINGLE_SWING"),
+	DOUBLE_DOOR_SINGLE_SWING(8, "DOUBLE_DOOR_SINGLE_SWING", "DOUBLE_DOOR_SINGLE_SWING"),
 
 	/**
 	 * The '<em><b>SLIDING TO LEFT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #SLIDING_TO_LEFT
+	 * @see #SLIDING_TO_LEFT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	SLIDING_TO_LEFT_LITERAL(9, "SLIDING_TO_LEFT", "SLIDING_TO_LEFT"),
+	SLIDING_TO_LEFT(9, "SLIDING_TO_LEFT", "SLIDING_TO_LEFT"),
 
 	/**
 	 * The '<em><b>DOUBLE DOOR SLIDING</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #DOUBLE_DOOR_SLIDING
+	 * @see #DOUBLE_DOOR_SLIDING_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	DOUBLE_DOOR_SLIDING_LITERAL(10, "DOUBLE_DOOR_SLIDING", "DOUBLE_DOOR_SLIDING"),
+	DOUBLE_DOOR_SLIDING(10, "DOUBLE_DOOR_SLIDING", "DOUBLE_DOOR_SLIDING"),
 
 	/**
 	 * The '<em><b>DOUBLE DOOR SINGLE SWING OPPOSITE RIGHT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_RIGHT
+	 * @see #DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_RIGHT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_RIGHT_LITERAL(11, "DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_RIGHT", "DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_RIGHT"),
+	DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_RIGHT(11, "DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_RIGHT", "DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_RIGHT"),
 
 	/**
 	 * The '<em><b>FOLDING TO RIGHT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #FOLDING_TO_RIGHT
+	 * @see #FOLDING_TO_RIGHT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	FOLDING_TO_RIGHT_LITERAL(12, "FOLDING_TO_RIGHT", "FOLDING_TO_RIGHT"),
+	FOLDING_TO_RIGHT(12, "FOLDING_TO_RIGHT", "FOLDING_TO_RIGHT"),
 
 	/**
 	 * The '<em><b>REVOLVING</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #REVOLVING
+	 * @see #REVOLVING_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	REVOLVING_LITERAL(13, "REVOLVING", "REVOLVING"),
+	REVOLVING(13, "REVOLVING", "REVOLVING"),
 
 	/**
 	 * The '<em><b>DOUBLE DOOR SINGLE SWING OPPOSITE LEFT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_LEFT
+	 * @see #DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_LEFT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_LEFT_LITERAL(14, "DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_LEFT", "DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_LEFT"),
+	DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_LEFT(14, "DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_LEFT", "DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_LEFT"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
+	 * @see #USERDEFINED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	USERDEFINED_LITERAL(15, "USERDEFINED", "USERDEFINED"),
+	USERDEFINED(15, "USERDEFINED", "USERDEFINED"),
 
 	/**
 	 * The '<em><b>SLIDING TO RIGHT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #SLIDING_TO_RIGHT
+	 * @see #SLIDING_TO_RIGHT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	SLIDING_TO_RIGHT_LITERAL(16, "SLIDING_TO_RIGHT", "SLIDING_TO_RIGHT"),
+	SLIDING_TO_RIGHT(16, "SLIDING_TO_RIGHT", "SLIDING_TO_RIGHT"),
 
 	/**
 	 * The '<em><b>DOUBLE SWING LEFT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #DOUBLE_SWING_LEFT
+	 * @see #DOUBLE_SWING_LEFT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	DOUBLE_SWING_LEFT_LITERAL(17, "DOUBLE_SWING_LEFT", "DOUBLE_SWING_LEFT"),
+	DOUBLE_SWING_LEFT(17, "DOUBLE_SWING_LEFT", "DOUBLE_SWING_LEFT"),
 
 	/**
 	 * The '<em><b>DOUBLE SWING RIGHT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #DOUBLE_SWING_RIGHT
+	 * @see #DOUBLE_SWING_RIGHT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	DOUBLE_SWING_RIGHT_LITERAL(18, "DOUBLE_SWING_RIGHT", "DOUBLE_SWING_RIGHT");
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
+	DOUBLE_SWING_RIGHT(18, "DOUBLE_SWING_RIGHT", "DOUBLE_SWING_RIGHT");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -241,12 +234,12 @@ public enum IfcDoorStyleOperationEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NULL_LITERAL
+	 * @see #NULL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NULL = 0;
+	public static final int NULL_VALUE = 0;
 
 	/**
 	 * The '<em><b>SINGLE SWING LEFT</b></em>' literal value.
@@ -256,12 +249,12 @@ public enum IfcDoorStyleOperationEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #SINGLE_SWING_LEFT_LITERAL
+	 * @see #SINGLE_SWING_LEFT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SINGLE_SWING_LEFT = 1;
+	public static final int SINGLE_SWING_LEFT_VALUE = 1;
 
 	/**
 	 * The '<em><b>FOLDING TO LEFT</b></em>' literal value.
@@ -271,12 +264,12 @@ public enum IfcDoorStyleOperationEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #FOLDING_TO_LEFT_LITERAL
+	 * @see #FOLDING_TO_LEFT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int FOLDING_TO_LEFT = 2;
+	public static final int FOLDING_TO_LEFT_VALUE = 2;
 
 	/**
 	 * The '<em><b>SINGLE SWING RIGHT</b></em>' literal value.
@@ -286,12 +279,12 @@ public enum IfcDoorStyleOperationEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #SINGLE_SWING_RIGHT_LITERAL
+	 * @see #SINGLE_SWING_RIGHT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SINGLE_SWING_RIGHT = 3;
+	public static final int SINGLE_SWING_RIGHT_VALUE = 3;
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
@@ -301,12 +294,12 @@ public enum IfcDoorStyleOperationEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_LITERAL
+	 * @see #NOTDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED = 4;
+	public static final int NOTDEFINED_VALUE = 4;
 
 	/**
 	 * The '<em><b>ROLLINGUP</b></em>' literal value.
@@ -316,12 +309,12 @@ public enum IfcDoorStyleOperationEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ROLLINGUP_LITERAL
+	 * @see #ROLLINGUP
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ROLLINGUP = 5;
+	public static final int ROLLINGUP_VALUE = 5;
 
 	/**
 	 * The '<em><b>DOUBLE DOOR FOLDING</b></em>' literal value.
@@ -331,12 +324,12 @@ public enum IfcDoorStyleOperationEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #DOUBLE_DOOR_FOLDING_LITERAL
+	 * @see #DOUBLE_DOOR_FOLDING
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int DOUBLE_DOOR_FOLDING = 6;
+	public static final int DOUBLE_DOOR_FOLDING_VALUE = 6;
 
 	/**
 	 * The '<em><b>DOUBLE DOOR DOUBLE SWING</b></em>' literal value.
@@ -346,12 +339,12 @@ public enum IfcDoorStyleOperationEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #DOUBLE_DOOR_DOUBLE_SWING_LITERAL
+	 * @see #DOUBLE_DOOR_DOUBLE_SWING
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int DOUBLE_DOOR_DOUBLE_SWING = 7;
+	public static final int DOUBLE_DOOR_DOUBLE_SWING_VALUE = 7;
 
 	/**
 	 * The '<em><b>DOUBLE DOOR SINGLE SWING</b></em>' literal value.
@@ -361,12 +354,12 @@ public enum IfcDoorStyleOperationEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #DOUBLE_DOOR_SINGLE_SWING_LITERAL
+	 * @see #DOUBLE_DOOR_SINGLE_SWING
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int DOUBLE_DOOR_SINGLE_SWING = 8;
+	public static final int DOUBLE_DOOR_SINGLE_SWING_VALUE = 8;
 
 	/**
 	 * The '<em><b>SLIDING TO LEFT</b></em>' literal value.
@@ -376,12 +369,12 @@ public enum IfcDoorStyleOperationEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #SLIDING_TO_LEFT_LITERAL
+	 * @see #SLIDING_TO_LEFT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SLIDING_TO_LEFT = 9;
+	public static final int SLIDING_TO_LEFT_VALUE = 9;
 
 	/**
 	 * The '<em><b>DOUBLE DOOR SLIDING</b></em>' literal value.
@@ -391,12 +384,12 @@ public enum IfcDoorStyleOperationEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #DOUBLE_DOOR_SLIDING_LITERAL
+	 * @see #DOUBLE_DOOR_SLIDING
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int DOUBLE_DOOR_SLIDING = 10;
+	public static final int DOUBLE_DOOR_SLIDING_VALUE = 10;
 
 	/**
 	 * The '<em><b>DOUBLE DOOR SINGLE SWING OPPOSITE RIGHT</b></em>' literal value.
@@ -406,12 +399,12 @@ public enum IfcDoorStyleOperationEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_RIGHT_LITERAL
+	 * @see #DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_RIGHT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_RIGHT = 11;
+	public static final int DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_RIGHT_VALUE = 11;
 
 	/**
 	 * The '<em><b>FOLDING TO RIGHT</b></em>' literal value.
@@ -421,12 +414,12 @@ public enum IfcDoorStyleOperationEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #FOLDING_TO_RIGHT_LITERAL
+	 * @see #FOLDING_TO_RIGHT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int FOLDING_TO_RIGHT = 12;
+	public static final int FOLDING_TO_RIGHT_VALUE = 12;
 
 	/**
 	 * The '<em><b>REVOLVING</b></em>' literal value.
@@ -436,12 +429,12 @@ public enum IfcDoorStyleOperationEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #REVOLVING_LITERAL
+	 * @see #REVOLVING
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int REVOLVING = 13;
+	public static final int REVOLVING_VALUE = 13;
 
 	/**
 	 * The '<em><b>DOUBLE DOOR SINGLE SWING OPPOSITE LEFT</b></em>' literal value.
@@ -451,12 +444,12 @@ public enum IfcDoorStyleOperationEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_LEFT_LITERAL
+	 * @see #DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_LEFT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_LEFT = 14;
+	public static final int DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_LEFT_VALUE = 14;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -466,12 +459,12 @@ public enum IfcDoorStyleOperationEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_LITERAL
+	 * @see #USERDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED = 15;
+	public static final int USERDEFINED_VALUE = 15;
 
 	/**
 	 * The '<em><b>SLIDING TO RIGHT</b></em>' literal value.
@@ -481,12 +474,12 @@ public enum IfcDoorStyleOperationEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #SLIDING_TO_RIGHT_LITERAL
+	 * @see #SLIDING_TO_RIGHT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SLIDING_TO_RIGHT = 16;
+	public static final int SLIDING_TO_RIGHT_VALUE = 16;
 
 	/**
 	 * The '<em><b>DOUBLE SWING LEFT</b></em>' literal value.
@@ -496,12 +489,12 @@ public enum IfcDoorStyleOperationEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #DOUBLE_SWING_LEFT_LITERAL
+	 * @see #DOUBLE_SWING_LEFT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int DOUBLE_SWING_LEFT = 17;
+	public static final int DOUBLE_SWING_LEFT_VALUE = 17;
 
 	/**
 	 * The '<em><b>DOUBLE SWING RIGHT</b></em>' literal value.
@@ -511,12 +504,12 @@ public enum IfcDoorStyleOperationEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #DOUBLE_SWING_RIGHT_LITERAL
+	 * @see #DOUBLE_SWING_RIGHT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int DOUBLE_SWING_RIGHT = 18;
+	public static final int DOUBLE_SWING_RIGHT_VALUE = 18;
 
 	/**
 	 * An array of all the '<em><b>Ifc Door Style Operation Enum</b></em>' enumerators.
@@ -525,27 +518,26 @@ public enum IfcDoorStyleOperationEnum implements Enumerator
 	 * @generated
 	 */
 	private static final IfcDoorStyleOperationEnum[] VALUES_ARRAY =
-		new IfcDoorStyleOperationEnum[]
-		{
-			NULL_LITERAL,
-			SINGLE_SWING_LEFT_LITERAL,
-			FOLDING_TO_LEFT_LITERAL,
-			SINGLE_SWING_RIGHT_LITERAL,
-			NOTDEFINED_LITERAL,
-			ROLLINGUP_LITERAL,
-			DOUBLE_DOOR_FOLDING_LITERAL,
-			DOUBLE_DOOR_DOUBLE_SWING_LITERAL,
-			DOUBLE_DOOR_SINGLE_SWING_LITERAL,
-			SLIDING_TO_LEFT_LITERAL,
-			DOUBLE_DOOR_SLIDING_LITERAL,
-			DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_RIGHT_LITERAL,
-			FOLDING_TO_RIGHT_LITERAL,
-			REVOLVING_LITERAL,
-			DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_LEFT_LITERAL,
-			USERDEFINED_LITERAL,
-			SLIDING_TO_RIGHT_LITERAL,
-			DOUBLE_SWING_LEFT_LITERAL,
-			DOUBLE_SWING_RIGHT_LITERAL,
+		new IfcDoorStyleOperationEnum[] {
+			NULL,
+			SINGLE_SWING_LEFT,
+			FOLDING_TO_LEFT,
+			SINGLE_SWING_RIGHT,
+			NOTDEFINED,
+			ROLLINGUP,
+			DOUBLE_DOOR_FOLDING,
+			DOUBLE_DOOR_DOUBLE_SWING,
+			DOUBLE_DOOR_SINGLE_SWING,
+			SLIDING_TO_LEFT,
+			DOUBLE_DOOR_SLIDING,
+			DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_RIGHT,
+			FOLDING_TO_RIGHT,
+			REVOLVING,
+			DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_LEFT,
+			USERDEFINED,
+			SLIDING_TO_RIGHT,
+			DOUBLE_SWING_LEFT,
+			DOUBLE_SWING_RIGHT,
 		};
 
 	/**
@@ -564,11 +556,9 @@ public enum IfcDoorStyleOperationEnum implements Enumerator
 	 */
 	public static IfcDoorStyleOperationEnum get(String literal)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcDoorStyleOperationEnum result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal))
-			{
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -583,11 +573,9 @@ public enum IfcDoorStyleOperationEnum implements Enumerator
 	 */
 	public static IfcDoorStyleOperationEnum getByName(String name)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcDoorStyleOperationEnum result = VALUES_ARRAY[i];
-			if (result.getName().equals(name))
-			{
+			if (result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -602,27 +590,26 @@ public enum IfcDoorStyleOperationEnum implements Enumerator
 	 */
 	public static IfcDoorStyleOperationEnum get(int value)
 	{
-		switch (value)
-		{
-			case NULL: return NULL_LITERAL;
-			case SINGLE_SWING_LEFT: return SINGLE_SWING_LEFT_LITERAL;
-			case FOLDING_TO_LEFT: return FOLDING_TO_LEFT_LITERAL;
-			case SINGLE_SWING_RIGHT: return SINGLE_SWING_RIGHT_LITERAL;
-			case NOTDEFINED: return NOTDEFINED_LITERAL;
-			case ROLLINGUP: return ROLLINGUP_LITERAL;
-			case DOUBLE_DOOR_FOLDING: return DOUBLE_DOOR_FOLDING_LITERAL;
-			case DOUBLE_DOOR_DOUBLE_SWING: return DOUBLE_DOOR_DOUBLE_SWING_LITERAL;
-			case DOUBLE_DOOR_SINGLE_SWING: return DOUBLE_DOOR_SINGLE_SWING_LITERAL;
-			case SLIDING_TO_LEFT: return SLIDING_TO_LEFT_LITERAL;
-			case DOUBLE_DOOR_SLIDING: return DOUBLE_DOOR_SLIDING_LITERAL;
-			case DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_RIGHT: return DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_RIGHT_LITERAL;
-			case FOLDING_TO_RIGHT: return FOLDING_TO_RIGHT_LITERAL;
-			case REVOLVING: return REVOLVING_LITERAL;
-			case DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_LEFT: return DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_LEFT_LITERAL;
-			case USERDEFINED: return USERDEFINED_LITERAL;
-			case SLIDING_TO_RIGHT: return SLIDING_TO_RIGHT_LITERAL;
-			case DOUBLE_SWING_LEFT: return DOUBLE_SWING_LEFT_LITERAL;
-			case DOUBLE_SWING_RIGHT: return DOUBLE_SWING_RIGHT_LITERAL;
+		switch (value) {
+			case NULL_VALUE: return NULL;
+			case SINGLE_SWING_LEFT_VALUE: return SINGLE_SWING_LEFT;
+			case FOLDING_TO_LEFT_VALUE: return FOLDING_TO_LEFT;
+			case SINGLE_SWING_RIGHT_VALUE: return SINGLE_SWING_RIGHT;
+			case NOTDEFINED_VALUE: return NOTDEFINED;
+			case ROLLINGUP_VALUE: return ROLLINGUP;
+			case DOUBLE_DOOR_FOLDING_VALUE: return DOUBLE_DOOR_FOLDING;
+			case DOUBLE_DOOR_DOUBLE_SWING_VALUE: return DOUBLE_DOOR_DOUBLE_SWING;
+			case DOUBLE_DOOR_SINGLE_SWING_VALUE: return DOUBLE_DOOR_SINGLE_SWING;
+			case SLIDING_TO_LEFT_VALUE: return SLIDING_TO_LEFT;
+			case DOUBLE_DOOR_SLIDING_VALUE: return DOUBLE_DOOR_SLIDING;
+			case DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_RIGHT_VALUE: return DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_RIGHT;
+			case FOLDING_TO_RIGHT_VALUE: return FOLDING_TO_RIGHT;
+			case REVOLVING_VALUE: return REVOLVING;
+			case DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_LEFT_VALUE: return DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_LEFT;
+			case USERDEFINED_VALUE: return USERDEFINED;
+			case SLIDING_TO_RIGHT_VALUE: return SLIDING_TO_RIGHT;
+			case DOUBLE_SWING_LEFT_VALUE: return DOUBLE_SWING_LEFT;
+			case DOUBLE_SWING_RIGHT_VALUE: return DOUBLE_SWING_RIGHT;
 		}
 		return null;
 	}

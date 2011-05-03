@@ -1,6 +1,9 @@
 package org.bimserver.database.migrations;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -34,6 +37,8 @@ public class CodeMigrator {
 	}
 
 	private void start() {
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		
 		LOGGER.info("Starting code migrator...");
 		Migrator migrator = new Migrator(null);
 		int latestVersion = migrator.getLatestVersion();
@@ -42,12 +47,20 @@ public class CodeMigrator {
 		schema.writeToEcore(new File("models/models.ecore"));
 		LOGGER.info("Model migrated to version " + latestVersion);
 
-		LOGGER.info("Generating EMF classes...");
-		DataObjectGenerator dataObjectGenerator = new DataObjectGenerator(schema);
-		VirtualFile basedir = new VirtualFile(null, null);
-		VirtualFile generate = dataObjectGenerator.generate(basedir);
-		generate.dumpToDir(new File("../Store/generated"));
-		LOGGER.info("EMF classes successfully generated");
+		LOGGER.info("Choose \"auto\" or \"manual\"");
+		try {
+			String type = reader.readLine();
+			if (type.equalsIgnoreCase("auto")) {
+				LOGGER.info("Generating EMF classes...");
+				DataObjectGenerator dataObjectGenerator = new DataObjectGenerator(schema);
+				VirtualFile basedir = new VirtualFile(null, null);
+				VirtualFile generate = dataObjectGenerator.generate(basedir);
+				generate.dumpToDir(new File("../Store/generated"));
+				LOGGER.info("EMF classes successfully generated");
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
 		LOGGER.info("Generating ServiceInterface objects...");
 		ServiceGenerator serviceGenerator = new ServiceGenerator();

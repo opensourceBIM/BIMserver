@@ -48,13 +48,6 @@ public class IfcConnectionSurfaceGeometryImpl extends IfcConnectionGeometryImpl 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	protected IfcConnectionSurfaceGeometryImpl()
 	{
 		super();
@@ -68,7 +61,7 @@ public class IfcConnectionSurfaceGeometryImpl extends IfcConnectionGeometryImpl 
 	@Override
 	protected EClass eStaticClass()
 	{
-		return Ifc2x3Package.Literals.IFC_CONNECTION_SURFACE_GEOMETRY;
+		return Ifc2x3Package.eINSTANCE.getIfcConnectionSurfaceGeometry();
 	}
 
 	/**
@@ -78,7 +71,7 @@ public class IfcConnectionSurfaceGeometryImpl extends IfcConnectionGeometryImpl 
 	 */
 	public IfcSurfaceOrFaceSurface getSurfaceOnRelatingElement()
 	{
-		return (IfcSurfaceOrFaceSurface)eGet(Ifc2x3Package.Literals.IFC_CONNECTION_SURFACE_GEOMETRY__SURFACE_ON_RELATING_ELEMENT, true);
+		return (IfcSurfaceOrFaceSurface)eGet(Ifc2x3Package.eINSTANCE.getIfcConnectionSurfaceGeometry_SurfaceOnRelatingElement(), true);
 	}
 
 	/**
@@ -88,7 +81,7 @@ public class IfcConnectionSurfaceGeometryImpl extends IfcConnectionGeometryImpl 
 	 */
 	public void setSurfaceOnRelatingElement(IfcSurfaceOrFaceSurface newSurfaceOnRelatingElement)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_CONNECTION_SURFACE_GEOMETRY__SURFACE_ON_RELATING_ELEMENT, newSurfaceOnRelatingElement);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcConnectionSurfaceGeometry_SurfaceOnRelatingElement(), newSurfaceOnRelatingElement);
 	}
 
 	/**
@@ -98,7 +91,7 @@ public class IfcConnectionSurfaceGeometryImpl extends IfcConnectionGeometryImpl 
 	 */
 	public IfcSurfaceOrFaceSurface getSurfaceOnRelatedElement()
 	{
-		return (IfcSurfaceOrFaceSurface)eGet(Ifc2x3Package.Literals.IFC_CONNECTION_SURFACE_GEOMETRY__SURFACE_ON_RELATED_ELEMENT, true);
+		return (IfcSurfaceOrFaceSurface)eGet(Ifc2x3Package.eINSTANCE.getIfcConnectionSurfaceGeometry_SurfaceOnRelatedElement(), true);
 	}
 
 	/**
@@ -108,7 +101,7 @@ public class IfcConnectionSurfaceGeometryImpl extends IfcConnectionGeometryImpl 
 	 */
 	public void setSurfaceOnRelatedElement(IfcSurfaceOrFaceSurface newSurfaceOnRelatedElement)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_CONNECTION_SURFACE_GEOMETRY__SURFACE_ON_RELATED_ELEMENT, newSurfaceOnRelatedElement);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcConnectionSurfaceGeometry_SurfaceOnRelatedElement(), newSurfaceOnRelatedElement);
 	}
 
 	/**
@@ -118,7 +111,7 @@ public class IfcConnectionSurfaceGeometryImpl extends IfcConnectionGeometryImpl 
 	 */
 	public void unsetSurfaceOnRelatedElement()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_CONNECTION_SURFACE_GEOMETRY__SURFACE_ON_RELATED_ELEMENT);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcConnectionSurfaceGeometry_SurfaceOnRelatedElement());
 	}
 
 	/**
@@ -128,7 +121,7 @@ public class IfcConnectionSurfaceGeometryImpl extends IfcConnectionGeometryImpl 
 	 */
 	public boolean isSetSurfaceOnRelatedElement()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_CONNECTION_SURFACE_GEOMETRY__SURFACE_ON_RELATED_ELEMENT);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcConnectionSurfaceGeometry_SurfaceOnRelatedElement());
 	}
 
 } //IfcConnectionSurfaceGeometryImpl

@@ -50,13 +50,6 @@ public class IfcRelConnectsWithRealizingElementsImpl extends IfcRelConnectsEleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	protected IfcRelConnectsWithRealizingElementsImpl()
 	{
 		super();
@@ -70,7 +63,7 @@ public class IfcRelConnectsWithRealizingElementsImpl extends IfcRelConnectsEleme
 	@Override
 	protected EClass eStaticClass()
 	{
-		return Ifc2x3Package.Literals.IFC_REL_CONNECTS_WITH_REALIZING_ELEMENTS;
+		return Ifc2x3Package.eINSTANCE.getIfcRelConnectsWithRealizingElements();
 	}
 
 	/**
@@ -81,7 +74,7 @@ public class IfcRelConnectsWithRealizingElementsImpl extends IfcRelConnectsEleme
 	@SuppressWarnings("unchecked")
 	public EList<IfcElement> getRealizingElements()
 	{
-		return (EList<IfcElement>)eGet(Ifc2x3Package.Literals.IFC_REL_CONNECTS_WITH_REALIZING_ELEMENTS__REALIZING_ELEMENTS, true);
+		return (EList<IfcElement>)eGet(Ifc2x3Package.eINSTANCE.getIfcRelConnectsWithRealizingElements_RealizingElements(), true);
 	}
 
 	/**
@@ -91,7 +84,7 @@ public class IfcRelConnectsWithRealizingElementsImpl extends IfcRelConnectsEleme
 	 */
 	public String getConnectionType()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_REL_CONNECTS_WITH_REALIZING_ELEMENTS__CONNECTION_TYPE, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcRelConnectsWithRealizingElements_ConnectionType(), true);
 	}
 
 	/**
@@ -101,7 +94,7 @@ public class IfcRelConnectsWithRealizingElementsImpl extends IfcRelConnectsEleme
 	 */
 	public void setConnectionType(String newConnectionType)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_REL_CONNECTS_WITH_REALIZING_ELEMENTS__CONNECTION_TYPE, newConnectionType);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcRelConnectsWithRealizingElements_ConnectionType(), newConnectionType);
 	}
 
 	/**
@@ -111,7 +104,7 @@ public class IfcRelConnectsWithRealizingElementsImpl extends IfcRelConnectsEleme
 	 */
 	public void unsetConnectionType()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_REL_CONNECTS_WITH_REALIZING_ELEMENTS__CONNECTION_TYPE);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcRelConnectsWithRealizingElements_ConnectionType());
 	}
 
 	/**
@@ -121,7 +114,7 @@ public class IfcRelConnectsWithRealizingElementsImpl extends IfcRelConnectsEleme
 	 */
 	public boolean isSetConnectionType()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_REL_CONNECTS_WITH_REALIZING_ELEMENTS__CONNECTION_TYPE);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcRelConnectsWithRealizingElements_ConnectionType());
 	}
 
 } //IfcRelConnectsWithRealizingElementsImpl

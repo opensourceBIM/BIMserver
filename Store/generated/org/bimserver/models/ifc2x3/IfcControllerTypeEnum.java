@@ -40,98 +40,91 @@ public enum IfcControllerTypeEnum implements Enumerator
 	 * The '<em><b>NULL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NULL
+	 * @see #NULL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NULL_LITERAL(0, "NULL", "NULL"),
+	NULL(0, "NULL", "NULL"),
 
 	/**
 	 * The '<em><b>TWOPOSITION</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #TWOPOSITION
+	 * @see #TWOPOSITION_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	TWOPOSITION_LITERAL(1, "TWOPOSITION", "TWOPOSITION"),
+	TWOPOSITION(1, "TWOPOSITION", "TWOPOSITION"),
 
 	/**
 	 * The '<em><b>PROPORTIONALINTEGRALDERIVATIVE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #PROPORTIONALINTEGRALDERIVATIVE
+	 * @see #PROPORTIONALINTEGRALDERIVATIVE_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	PROPORTIONALINTEGRALDERIVATIVE_LITERAL(2, "PROPORTIONALINTEGRALDERIVATIVE", "PROPORTIONALINTEGRALDERIVATIVE"),
+	PROPORTIONALINTEGRALDERIVATIVE(2, "PROPORTIONALINTEGRALDERIVATIVE", "PROPORTIONALINTEGRALDERIVATIVE"),
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED
+	 * @see #NOTDEFINED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED_LITERAL(3, "NOTDEFINED", "NOTDEFINED"),
+	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>FLOATING</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #FLOATING
+	 * @see #FLOATING_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	FLOATING_LITERAL(4, "FLOATING", "FLOATING"),
+	FLOATING(4, "FLOATING", "FLOATING"),
 
 	/**
 	 * The '<em><b>PROPORTIONAL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #PROPORTIONAL
+	 * @see #PROPORTIONAL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	PROPORTIONAL_LITERAL(5, "PROPORTIONAL", "PROPORTIONAL"),
+	PROPORTIONAL(5, "PROPORTIONAL", "PROPORTIONAL"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
+	 * @see #USERDEFINED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	USERDEFINED_LITERAL(6, "USERDEFINED", "USERDEFINED"),
+	USERDEFINED(6, "USERDEFINED", "USERDEFINED"),
 
 	/**
 	 * The '<em><b>TIMEDTWOPOSITION</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #TIMEDTWOPOSITION
+	 * @see #TIMEDTWOPOSITION_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	TIMEDTWOPOSITION_LITERAL(7, "TIMEDTWOPOSITION", "TIMEDTWOPOSITION"),
+	TIMEDTWOPOSITION(7, "TIMEDTWOPOSITION", "TIMEDTWOPOSITION"),
 
 	/**
 	 * The '<em><b>PROPORTIONALINTEGRAL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #PROPORTIONALINTEGRAL
+	 * @see #PROPORTIONALINTEGRAL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	PROPORTIONALINTEGRAL_LITERAL(8, "PROPORTIONALINTEGRAL", "PROPORTIONALINTEGRAL");
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
+	PROPORTIONALINTEGRAL(8, "PROPORTIONALINTEGRAL", "PROPORTIONALINTEGRAL");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -141,12 +134,12 @@ public enum IfcControllerTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NULL_LITERAL
+	 * @see #NULL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NULL = 0;
+	public static final int NULL_VALUE = 0;
 
 	/**
 	 * The '<em><b>TWOPOSITION</b></em>' literal value.
@@ -156,12 +149,12 @@ public enum IfcControllerTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #TWOPOSITION_LITERAL
+	 * @see #TWOPOSITION
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int TWOPOSITION = 1;
+	public static final int TWOPOSITION_VALUE = 1;
 
 	/**
 	 * The '<em><b>PROPORTIONALINTEGRALDERIVATIVE</b></em>' literal value.
@@ -171,12 +164,12 @@ public enum IfcControllerTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #PROPORTIONALINTEGRALDERIVATIVE_LITERAL
+	 * @see #PROPORTIONALINTEGRALDERIVATIVE
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PROPORTIONALINTEGRALDERIVATIVE = 2;
+	public static final int PROPORTIONALINTEGRALDERIVATIVE_VALUE = 2;
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
@@ -186,12 +179,12 @@ public enum IfcControllerTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_LITERAL
+	 * @see #NOTDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED = 3;
+	public static final int NOTDEFINED_VALUE = 3;
 
 	/**
 	 * The '<em><b>FLOATING</b></em>' literal value.
@@ -201,12 +194,12 @@ public enum IfcControllerTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #FLOATING_LITERAL
+	 * @see #FLOATING
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int FLOATING = 4;
+	public static final int FLOATING_VALUE = 4;
 
 	/**
 	 * The '<em><b>PROPORTIONAL</b></em>' literal value.
@@ -216,12 +209,12 @@ public enum IfcControllerTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #PROPORTIONAL_LITERAL
+	 * @see #PROPORTIONAL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PROPORTIONAL = 5;
+	public static final int PROPORTIONAL_VALUE = 5;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -231,12 +224,12 @@ public enum IfcControllerTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_LITERAL
+	 * @see #USERDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED = 6;
+	public static final int USERDEFINED_VALUE = 6;
 
 	/**
 	 * The '<em><b>TIMEDTWOPOSITION</b></em>' literal value.
@@ -246,12 +239,12 @@ public enum IfcControllerTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #TIMEDTWOPOSITION_LITERAL
+	 * @see #TIMEDTWOPOSITION
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int TIMEDTWOPOSITION = 7;
+	public static final int TIMEDTWOPOSITION_VALUE = 7;
 
 	/**
 	 * The '<em><b>PROPORTIONALINTEGRAL</b></em>' literal value.
@@ -261,12 +254,12 @@ public enum IfcControllerTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #PROPORTIONALINTEGRAL_LITERAL
+	 * @see #PROPORTIONALINTEGRAL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PROPORTIONALINTEGRAL = 8;
+	public static final int PROPORTIONALINTEGRAL_VALUE = 8;
 
 	/**
 	 * An array of all the '<em><b>Ifc Controller Type Enum</b></em>' enumerators.
@@ -275,17 +268,16 @@ public enum IfcControllerTypeEnum implements Enumerator
 	 * @generated
 	 */
 	private static final IfcControllerTypeEnum[] VALUES_ARRAY =
-		new IfcControllerTypeEnum[]
-		{
-			NULL_LITERAL,
-			TWOPOSITION_LITERAL,
-			PROPORTIONALINTEGRALDERIVATIVE_LITERAL,
-			NOTDEFINED_LITERAL,
-			FLOATING_LITERAL,
-			PROPORTIONAL_LITERAL,
-			USERDEFINED_LITERAL,
-			TIMEDTWOPOSITION_LITERAL,
-			PROPORTIONALINTEGRAL_LITERAL,
+		new IfcControllerTypeEnum[] {
+			NULL,
+			TWOPOSITION,
+			PROPORTIONALINTEGRALDERIVATIVE,
+			NOTDEFINED,
+			FLOATING,
+			PROPORTIONAL,
+			USERDEFINED,
+			TIMEDTWOPOSITION,
+			PROPORTIONALINTEGRAL,
 		};
 
 	/**
@@ -304,11 +296,9 @@ public enum IfcControllerTypeEnum implements Enumerator
 	 */
 	public static IfcControllerTypeEnum get(String literal)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcControllerTypeEnum result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal))
-			{
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -323,11 +313,9 @@ public enum IfcControllerTypeEnum implements Enumerator
 	 */
 	public static IfcControllerTypeEnum getByName(String name)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcControllerTypeEnum result = VALUES_ARRAY[i];
-			if (result.getName().equals(name))
-			{
+			if (result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -342,17 +330,16 @@ public enum IfcControllerTypeEnum implements Enumerator
 	 */
 	public static IfcControllerTypeEnum get(int value)
 	{
-		switch (value)
-		{
-			case NULL: return NULL_LITERAL;
-			case TWOPOSITION: return TWOPOSITION_LITERAL;
-			case PROPORTIONALINTEGRALDERIVATIVE: return PROPORTIONALINTEGRALDERIVATIVE_LITERAL;
-			case NOTDEFINED: return NOTDEFINED_LITERAL;
-			case FLOATING: return FLOATING_LITERAL;
-			case PROPORTIONAL: return PROPORTIONAL_LITERAL;
-			case USERDEFINED: return USERDEFINED_LITERAL;
-			case TIMEDTWOPOSITION: return TIMEDTWOPOSITION_LITERAL;
-			case PROPORTIONALINTEGRAL: return PROPORTIONALINTEGRAL_LITERAL;
+		switch (value) {
+			case NULL_VALUE: return NULL;
+			case TWOPOSITION_VALUE: return TWOPOSITION;
+			case PROPORTIONALINTEGRALDERIVATIVE_VALUE: return PROPORTIONALINTEGRALDERIVATIVE;
+			case NOTDEFINED_VALUE: return NOTDEFINED;
+			case FLOATING_VALUE: return FLOATING;
+			case PROPORTIONAL_VALUE: return PROPORTIONAL;
+			case USERDEFINED_VALUE: return USERDEFINED;
+			case TIMEDTWOPOSITION_VALUE: return TIMEDTWOPOSITION;
+			case PROPORTIONALINTEGRAL_VALUE: return PROPORTIONALINTEGRAL;
 		}
 		return null;
 	}

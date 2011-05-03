@@ -51,13 +51,6 @@ public class IfcBlockImpl extends IfcCsgPrimitive3DImpl implements IfcBlock
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	protected IfcBlockImpl()
 	{
 		super();
@@ -71,7 +64,7 @@ public class IfcBlockImpl extends IfcCsgPrimitive3DImpl implements IfcBlock
 	@Override
 	protected EClass eStaticClass()
 	{
-		return Ifc2x3Package.Literals.IFC_BLOCK;
+		return Ifc2x3Package.eINSTANCE.getIfcBlock();
 	}
 
 	/**
@@ -81,7 +74,7 @@ public class IfcBlockImpl extends IfcCsgPrimitive3DImpl implements IfcBlock
 	 */
 	public float getXLength()
 	{
-		return (Float)eGet(Ifc2x3Package.Literals.IFC_BLOCK__XLENGTH, true);
+		return (Float)eGet(Ifc2x3Package.eINSTANCE.getIfcBlock_XLength(), true);
 	}
 
 	/**
@@ -91,7 +84,7 @@ public class IfcBlockImpl extends IfcCsgPrimitive3DImpl implements IfcBlock
 	 */
 	public void setXLength(float newXLength)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_BLOCK__XLENGTH, newXLength);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcBlock_XLength(), newXLength);
 	}
 
 	/**
@@ -101,7 +94,7 @@ public class IfcBlockImpl extends IfcCsgPrimitive3DImpl implements IfcBlock
 	 */
 	public String getXLengthAsString()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_BLOCK__XLENGTH_AS_STRING, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcBlock_XLengthAsString(), true);
 	}
 
 	/**
@@ -111,7 +104,7 @@ public class IfcBlockImpl extends IfcCsgPrimitive3DImpl implements IfcBlock
 	 */
 	public void setXLengthAsString(String newXLengthAsString)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_BLOCK__XLENGTH_AS_STRING, newXLengthAsString);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcBlock_XLengthAsString(), newXLengthAsString);
 	}
 
 	/**
@@ -121,7 +114,7 @@ public class IfcBlockImpl extends IfcCsgPrimitive3DImpl implements IfcBlock
 	 */
 	public float getYLength()
 	{
-		return (Float)eGet(Ifc2x3Package.Literals.IFC_BLOCK__YLENGTH, true);
+		return (Float)eGet(Ifc2x3Package.eINSTANCE.getIfcBlock_YLength(), true);
 	}
 
 	/**
@@ -131,7 +124,7 @@ public class IfcBlockImpl extends IfcCsgPrimitive3DImpl implements IfcBlock
 	 */
 	public void setYLength(float newYLength)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_BLOCK__YLENGTH, newYLength);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcBlock_YLength(), newYLength);
 	}
 
 	/**
@@ -141,7 +134,7 @@ public class IfcBlockImpl extends IfcCsgPrimitive3DImpl implements IfcBlock
 	 */
 	public String getYLengthAsString()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_BLOCK__YLENGTH_AS_STRING, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcBlock_YLengthAsString(), true);
 	}
 
 	/**
@@ -151,7 +144,7 @@ public class IfcBlockImpl extends IfcCsgPrimitive3DImpl implements IfcBlock
 	 */
 	public void setYLengthAsString(String newYLengthAsString)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_BLOCK__YLENGTH_AS_STRING, newYLengthAsString);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcBlock_YLengthAsString(), newYLengthAsString);
 	}
 
 	/**
@@ -161,7 +154,7 @@ public class IfcBlockImpl extends IfcCsgPrimitive3DImpl implements IfcBlock
 	 */
 	public float getZLength()
 	{
-		return (Float)eGet(Ifc2x3Package.Literals.IFC_BLOCK__ZLENGTH, true);
+		return (Float)eGet(Ifc2x3Package.eINSTANCE.getIfcBlock_ZLength(), true);
 	}
 
 	/**
@@ -171,7 +164,7 @@ public class IfcBlockImpl extends IfcCsgPrimitive3DImpl implements IfcBlock
 	 */
 	public void setZLength(float newZLength)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_BLOCK__ZLENGTH, newZLength);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcBlock_ZLength(), newZLength);
 	}
 
 	/**
@@ -181,7 +174,7 @@ public class IfcBlockImpl extends IfcCsgPrimitive3DImpl implements IfcBlock
 	 */
 	public String getZLengthAsString()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_BLOCK__ZLENGTH_AS_STRING, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcBlock_ZLengthAsString(), true);
 	}
 
 	/**
@@ -191,7 +184,7 @@ public class IfcBlockImpl extends IfcCsgPrimitive3DImpl implements IfcBlock
 	 */
 	public void setZLengthAsString(String newZLengthAsString)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_BLOCK__ZLENGTH_AS_STRING, newZLengthAsString);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcBlock_ZLengthAsString(), newZLengthAsString);
 	}
 
 } //IfcBlockImpl

@@ -40,128 +40,121 @@ public enum IfcEvaporativeCoolerTypeEnum implements Enumerator
 	 * The '<em><b>NULL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NULL
+	 * @see #NULL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NULL_LITERAL(0, "NULL", "NULL"),
+	NULL(0, "NULL", "NULL"),
 
 	/**
 	 * The '<em><b>DIRECTEVAPORATIVERANDOMMEDIAAIRCOOLER</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #DIRECTEVAPORATIVERANDOMMEDIAAIRCOOLER
+	 * @see #DIRECTEVAPORATIVERANDOMMEDIAAIRCOOLER_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	DIRECTEVAPORATIVERANDOMMEDIAAIRCOOLER_LITERAL(1, "DIRECTEVAPORATIVERANDOMMEDIAAIRCOOLER", "DIRECTEVAPORATIVERANDOMMEDIAAIRCOOLER"),
+	DIRECTEVAPORATIVERANDOMMEDIAAIRCOOLER(1, "DIRECTEVAPORATIVERANDOMMEDIAAIRCOOLER", "DIRECTEVAPORATIVERANDOMMEDIAAIRCOOLER"),
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED
+	 * @see #NOTDEFINED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED_LITERAL(2, "NOTDEFINED", "NOTDEFINED"),
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>INDIRECTDIRECTCOMBINATION</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #INDIRECTDIRECTCOMBINATION
+	 * @see #INDIRECTDIRECTCOMBINATION_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	INDIRECTDIRECTCOMBINATION_LITERAL(3, "INDIRECTDIRECTCOMBINATION", "INDIRECTDIRECTCOMBINATION"),
+	INDIRECTDIRECTCOMBINATION(3, "INDIRECTDIRECTCOMBINATION", "INDIRECTDIRECTCOMBINATION"),
 
 	/**
 	 * The '<em><b>DIRECTEVAPORATIVERIGIDMEDIAAIRCOOLER</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #DIRECTEVAPORATIVERIGIDMEDIAAIRCOOLER
+	 * @see #DIRECTEVAPORATIVERIGIDMEDIAAIRCOOLER_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	DIRECTEVAPORATIVERIGIDMEDIAAIRCOOLER_LITERAL(4, "DIRECTEVAPORATIVERIGIDMEDIAAIRCOOLER", "DIRECTEVAPORATIVERIGIDMEDIAAIRCOOLER"),
+	DIRECTEVAPORATIVERIGIDMEDIAAIRCOOLER(4, "DIRECTEVAPORATIVERIGIDMEDIAAIRCOOLER", "DIRECTEVAPORATIVERIGIDMEDIAAIRCOOLER"),
 
 	/**
 	 * The '<em><b>DIRECTEVAPORATIVESLINGERSPACKAGEDAIRCOOLER</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #DIRECTEVAPORATIVESLINGERSPACKAGEDAIRCOOLER
+	 * @see #DIRECTEVAPORATIVESLINGERSPACKAGEDAIRCOOLER_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	DIRECTEVAPORATIVESLINGERSPACKAGEDAIRCOOLER_LITERAL(5, "DIRECTEVAPORATIVESLINGERSPACKAGEDAIRCOOLER", "DIRECTEVAPORATIVESLINGERSPACKAGEDAIRCOOLER"),
+	DIRECTEVAPORATIVESLINGERSPACKAGEDAIRCOOLER(5, "DIRECTEVAPORATIVESLINGERSPACKAGEDAIRCOOLER", "DIRECTEVAPORATIVESLINGERSPACKAGEDAIRCOOLER"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
+	 * @see #USERDEFINED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	USERDEFINED_LITERAL(6, "USERDEFINED", "USERDEFINED"),
+	USERDEFINED(6, "USERDEFINED", "USERDEFINED"),
 
 	/**
 	 * The '<em><b>INDIRECTEVAPORATIVEPACKAGEAIRCOOLER</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #INDIRECTEVAPORATIVEPACKAGEAIRCOOLER
+	 * @see #INDIRECTEVAPORATIVEPACKAGEAIRCOOLER_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	INDIRECTEVAPORATIVEPACKAGEAIRCOOLER_LITERAL(7, "INDIRECTEVAPORATIVEPACKAGEAIRCOOLER", "INDIRECTEVAPORATIVEPACKAGEAIRCOOLER"),
+	INDIRECTEVAPORATIVEPACKAGEAIRCOOLER(7, "INDIRECTEVAPORATIVEPACKAGEAIRCOOLER", "INDIRECTEVAPORATIVEPACKAGEAIRCOOLER"),
 
 	/**
 	 * The '<em><b>INDIRECTEVAPORATIVECOOLINGTOWERORCOILCOOLER</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #INDIRECTEVAPORATIVECOOLINGTOWERORCOILCOOLER
+	 * @see #INDIRECTEVAPORATIVECOOLINGTOWERORCOILCOOLER_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	INDIRECTEVAPORATIVECOOLINGTOWERORCOILCOOLER_LITERAL(8, "INDIRECTEVAPORATIVECOOLINGTOWERORCOILCOOLER", "INDIRECTEVAPORATIVECOOLINGTOWERORCOILCOOLER"),
+	INDIRECTEVAPORATIVECOOLINGTOWERORCOILCOOLER(8, "INDIRECTEVAPORATIVECOOLINGTOWERORCOILCOOLER", "INDIRECTEVAPORATIVECOOLINGTOWERORCOILCOOLER"),
 
 	/**
 	 * The '<em><b>INDIRECTEVAPORATIVEWETCOIL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #INDIRECTEVAPORATIVEWETCOIL
+	 * @see #INDIRECTEVAPORATIVEWETCOIL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	INDIRECTEVAPORATIVEWETCOIL_LITERAL(9, "INDIRECTEVAPORATIVEWETCOIL", "INDIRECTEVAPORATIVEWETCOIL"),
+	INDIRECTEVAPORATIVEWETCOIL(9, "INDIRECTEVAPORATIVEWETCOIL", "INDIRECTEVAPORATIVEWETCOIL"),
 
 	/**
 	 * The '<em><b>DIRECTEVAPORATIVEAIRWASHER</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #DIRECTEVAPORATIVEAIRWASHER
+	 * @see #DIRECTEVAPORATIVEAIRWASHER_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	DIRECTEVAPORATIVEAIRWASHER_LITERAL(10, "DIRECTEVAPORATIVEAIRWASHER", "DIRECTEVAPORATIVEAIRWASHER"),
+	DIRECTEVAPORATIVEAIRWASHER(10, "DIRECTEVAPORATIVEAIRWASHER", "DIRECTEVAPORATIVEAIRWASHER"),
 
 	/**
 	 * The '<em><b>DIRECTEVAPORATIVEPACKAGEDROTARYAIRCOOLER</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #DIRECTEVAPORATIVEPACKAGEDROTARYAIRCOOLER
+	 * @see #DIRECTEVAPORATIVEPACKAGEDROTARYAIRCOOLER_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	DIRECTEVAPORATIVEPACKAGEDROTARYAIRCOOLER_LITERAL(11, "DIRECTEVAPORATIVEPACKAGEDROTARYAIRCOOLER", "DIRECTEVAPORATIVEPACKAGEDROTARYAIRCOOLER");
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
+	DIRECTEVAPORATIVEPACKAGEDROTARYAIRCOOLER(11, "DIRECTEVAPORATIVEPACKAGEDROTARYAIRCOOLER", "DIRECTEVAPORATIVEPACKAGEDROTARYAIRCOOLER");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -171,12 +164,12 @@ public enum IfcEvaporativeCoolerTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NULL_LITERAL
+	 * @see #NULL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NULL = 0;
+	public static final int NULL_VALUE = 0;
 
 	/**
 	 * The '<em><b>DIRECTEVAPORATIVERANDOMMEDIAAIRCOOLER</b></em>' literal value.
@@ -186,12 +179,12 @@ public enum IfcEvaporativeCoolerTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #DIRECTEVAPORATIVERANDOMMEDIAAIRCOOLER_LITERAL
+	 * @see #DIRECTEVAPORATIVERANDOMMEDIAAIRCOOLER
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int DIRECTEVAPORATIVERANDOMMEDIAAIRCOOLER = 1;
+	public static final int DIRECTEVAPORATIVERANDOMMEDIAAIRCOOLER_VALUE = 1;
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
@@ -201,12 +194,12 @@ public enum IfcEvaporativeCoolerTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_LITERAL
+	 * @see #NOTDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED = 2;
+	public static final int NOTDEFINED_VALUE = 2;
 
 	/**
 	 * The '<em><b>INDIRECTDIRECTCOMBINATION</b></em>' literal value.
@@ -216,12 +209,12 @@ public enum IfcEvaporativeCoolerTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #INDIRECTDIRECTCOMBINATION_LITERAL
+	 * @see #INDIRECTDIRECTCOMBINATION
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int INDIRECTDIRECTCOMBINATION = 3;
+	public static final int INDIRECTDIRECTCOMBINATION_VALUE = 3;
 
 	/**
 	 * The '<em><b>DIRECTEVAPORATIVERIGIDMEDIAAIRCOOLER</b></em>' literal value.
@@ -231,12 +224,12 @@ public enum IfcEvaporativeCoolerTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #DIRECTEVAPORATIVERIGIDMEDIAAIRCOOLER_LITERAL
+	 * @see #DIRECTEVAPORATIVERIGIDMEDIAAIRCOOLER
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int DIRECTEVAPORATIVERIGIDMEDIAAIRCOOLER = 4;
+	public static final int DIRECTEVAPORATIVERIGIDMEDIAAIRCOOLER_VALUE = 4;
 
 	/**
 	 * The '<em><b>DIRECTEVAPORATIVESLINGERSPACKAGEDAIRCOOLER</b></em>' literal value.
@@ -246,12 +239,12 @@ public enum IfcEvaporativeCoolerTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #DIRECTEVAPORATIVESLINGERSPACKAGEDAIRCOOLER_LITERAL
+	 * @see #DIRECTEVAPORATIVESLINGERSPACKAGEDAIRCOOLER
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int DIRECTEVAPORATIVESLINGERSPACKAGEDAIRCOOLER = 5;
+	public static final int DIRECTEVAPORATIVESLINGERSPACKAGEDAIRCOOLER_VALUE = 5;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -261,12 +254,12 @@ public enum IfcEvaporativeCoolerTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_LITERAL
+	 * @see #USERDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED = 6;
+	public static final int USERDEFINED_VALUE = 6;
 
 	/**
 	 * The '<em><b>INDIRECTEVAPORATIVEPACKAGEAIRCOOLER</b></em>' literal value.
@@ -276,12 +269,12 @@ public enum IfcEvaporativeCoolerTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #INDIRECTEVAPORATIVEPACKAGEAIRCOOLER_LITERAL
+	 * @see #INDIRECTEVAPORATIVEPACKAGEAIRCOOLER
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int INDIRECTEVAPORATIVEPACKAGEAIRCOOLER = 7;
+	public static final int INDIRECTEVAPORATIVEPACKAGEAIRCOOLER_VALUE = 7;
 
 	/**
 	 * The '<em><b>INDIRECTEVAPORATIVECOOLINGTOWERORCOILCOOLER</b></em>' literal value.
@@ -291,12 +284,12 @@ public enum IfcEvaporativeCoolerTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #INDIRECTEVAPORATIVECOOLINGTOWERORCOILCOOLER_LITERAL
+	 * @see #INDIRECTEVAPORATIVECOOLINGTOWERORCOILCOOLER
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int INDIRECTEVAPORATIVECOOLINGTOWERORCOILCOOLER = 8;
+	public static final int INDIRECTEVAPORATIVECOOLINGTOWERORCOILCOOLER_VALUE = 8;
 
 	/**
 	 * The '<em><b>INDIRECTEVAPORATIVEWETCOIL</b></em>' literal value.
@@ -306,12 +299,12 @@ public enum IfcEvaporativeCoolerTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #INDIRECTEVAPORATIVEWETCOIL_LITERAL
+	 * @see #INDIRECTEVAPORATIVEWETCOIL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int INDIRECTEVAPORATIVEWETCOIL = 9;
+	public static final int INDIRECTEVAPORATIVEWETCOIL_VALUE = 9;
 
 	/**
 	 * The '<em><b>DIRECTEVAPORATIVEAIRWASHER</b></em>' literal value.
@@ -321,12 +314,12 @@ public enum IfcEvaporativeCoolerTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #DIRECTEVAPORATIVEAIRWASHER_LITERAL
+	 * @see #DIRECTEVAPORATIVEAIRWASHER
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int DIRECTEVAPORATIVEAIRWASHER = 10;
+	public static final int DIRECTEVAPORATIVEAIRWASHER_VALUE = 10;
 
 	/**
 	 * The '<em><b>DIRECTEVAPORATIVEPACKAGEDROTARYAIRCOOLER</b></em>' literal value.
@@ -336,12 +329,12 @@ public enum IfcEvaporativeCoolerTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #DIRECTEVAPORATIVEPACKAGEDROTARYAIRCOOLER_LITERAL
+	 * @see #DIRECTEVAPORATIVEPACKAGEDROTARYAIRCOOLER
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int DIRECTEVAPORATIVEPACKAGEDROTARYAIRCOOLER = 11;
+	public static final int DIRECTEVAPORATIVEPACKAGEDROTARYAIRCOOLER_VALUE = 11;
 
 	/**
 	 * An array of all the '<em><b>Ifc Evaporative Cooler Type Enum</b></em>' enumerators.
@@ -350,20 +343,19 @@ public enum IfcEvaporativeCoolerTypeEnum implements Enumerator
 	 * @generated
 	 */
 	private static final IfcEvaporativeCoolerTypeEnum[] VALUES_ARRAY =
-		new IfcEvaporativeCoolerTypeEnum[]
-		{
-			NULL_LITERAL,
-			DIRECTEVAPORATIVERANDOMMEDIAAIRCOOLER_LITERAL,
-			NOTDEFINED_LITERAL,
-			INDIRECTDIRECTCOMBINATION_LITERAL,
-			DIRECTEVAPORATIVERIGIDMEDIAAIRCOOLER_LITERAL,
-			DIRECTEVAPORATIVESLINGERSPACKAGEDAIRCOOLER_LITERAL,
-			USERDEFINED_LITERAL,
-			INDIRECTEVAPORATIVEPACKAGEAIRCOOLER_LITERAL,
-			INDIRECTEVAPORATIVECOOLINGTOWERORCOILCOOLER_LITERAL,
-			INDIRECTEVAPORATIVEWETCOIL_LITERAL,
-			DIRECTEVAPORATIVEAIRWASHER_LITERAL,
-			DIRECTEVAPORATIVEPACKAGEDROTARYAIRCOOLER_LITERAL,
+		new IfcEvaporativeCoolerTypeEnum[] {
+			NULL,
+			DIRECTEVAPORATIVERANDOMMEDIAAIRCOOLER,
+			NOTDEFINED,
+			INDIRECTDIRECTCOMBINATION,
+			DIRECTEVAPORATIVERIGIDMEDIAAIRCOOLER,
+			DIRECTEVAPORATIVESLINGERSPACKAGEDAIRCOOLER,
+			USERDEFINED,
+			INDIRECTEVAPORATIVEPACKAGEAIRCOOLER,
+			INDIRECTEVAPORATIVECOOLINGTOWERORCOILCOOLER,
+			INDIRECTEVAPORATIVEWETCOIL,
+			DIRECTEVAPORATIVEAIRWASHER,
+			DIRECTEVAPORATIVEPACKAGEDROTARYAIRCOOLER,
 		};
 
 	/**
@@ -382,11 +374,9 @@ public enum IfcEvaporativeCoolerTypeEnum implements Enumerator
 	 */
 	public static IfcEvaporativeCoolerTypeEnum get(String literal)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcEvaporativeCoolerTypeEnum result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal))
-			{
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -401,11 +391,9 @@ public enum IfcEvaporativeCoolerTypeEnum implements Enumerator
 	 */
 	public static IfcEvaporativeCoolerTypeEnum getByName(String name)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcEvaporativeCoolerTypeEnum result = VALUES_ARRAY[i];
-			if (result.getName().equals(name))
-			{
+			if (result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -420,20 +408,19 @@ public enum IfcEvaporativeCoolerTypeEnum implements Enumerator
 	 */
 	public static IfcEvaporativeCoolerTypeEnum get(int value)
 	{
-		switch (value)
-		{
-			case NULL: return NULL_LITERAL;
-			case DIRECTEVAPORATIVERANDOMMEDIAAIRCOOLER: return DIRECTEVAPORATIVERANDOMMEDIAAIRCOOLER_LITERAL;
-			case NOTDEFINED: return NOTDEFINED_LITERAL;
-			case INDIRECTDIRECTCOMBINATION: return INDIRECTDIRECTCOMBINATION_LITERAL;
-			case DIRECTEVAPORATIVERIGIDMEDIAAIRCOOLER: return DIRECTEVAPORATIVERIGIDMEDIAAIRCOOLER_LITERAL;
-			case DIRECTEVAPORATIVESLINGERSPACKAGEDAIRCOOLER: return DIRECTEVAPORATIVESLINGERSPACKAGEDAIRCOOLER_LITERAL;
-			case USERDEFINED: return USERDEFINED_LITERAL;
-			case INDIRECTEVAPORATIVEPACKAGEAIRCOOLER: return INDIRECTEVAPORATIVEPACKAGEAIRCOOLER_LITERAL;
-			case INDIRECTEVAPORATIVECOOLINGTOWERORCOILCOOLER: return INDIRECTEVAPORATIVECOOLINGTOWERORCOILCOOLER_LITERAL;
-			case INDIRECTEVAPORATIVEWETCOIL: return INDIRECTEVAPORATIVEWETCOIL_LITERAL;
-			case DIRECTEVAPORATIVEAIRWASHER: return DIRECTEVAPORATIVEAIRWASHER_LITERAL;
-			case DIRECTEVAPORATIVEPACKAGEDROTARYAIRCOOLER: return DIRECTEVAPORATIVEPACKAGEDROTARYAIRCOOLER_LITERAL;
+		switch (value) {
+			case NULL_VALUE: return NULL;
+			case DIRECTEVAPORATIVERANDOMMEDIAAIRCOOLER_VALUE: return DIRECTEVAPORATIVERANDOMMEDIAAIRCOOLER;
+			case NOTDEFINED_VALUE: return NOTDEFINED;
+			case INDIRECTDIRECTCOMBINATION_VALUE: return INDIRECTDIRECTCOMBINATION;
+			case DIRECTEVAPORATIVERIGIDMEDIAAIRCOOLER_VALUE: return DIRECTEVAPORATIVERIGIDMEDIAAIRCOOLER;
+			case DIRECTEVAPORATIVESLINGERSPACKAGEDAIRCOOLER_VALUE: return DIRECTEVAPORATIVESLINGERSPACKAGEDAIRCOOLER;
+			case USERDEFINED_VALUE: return USERDEFINED;
+			case INDIRECTEVAPORATIVEPACKAGEAIRCOOLER_VALUE: return INDIRECTEVAPORATIVEPACKAGEAIRCOOLER;
+			case INDIRECTEVAPORATIVECOOLINGTOWERORCOILCOOLER_VALUE: return INDIRECTEVAPORATIVECOOLINGTOWERORCOILCOOLER;
+			case INDIRECTEVAPORATIVEWETCOIL_VALUE: return INDIRECTEVAPORATIVEWETCOIL;
+			case DIRECTEVAPORATIVEAIRWASHER_VALUE: return DIRECTEVAPORATIVEAIRWASHER;
+			case DIRECTEVAPORATIVEPACKAGEDROTARYAIRCOOLER_VALUE: return DIRECTEVAPORATIVEPACKAGEDROTARYAIRCOOLER;
 		}
 		return null;
 	}

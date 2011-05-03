@@ -48,13 +48,6 @@ public class IfcEnergyPropertiesImpl extends IfcPropertySetDefinitionImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	protected IfcEnergyPropertiesImpl()
 	{
 		super();
@@ -68,7 +61,7 @@ public class IfcEnergyPropertiesImpl extends IfcPropertySetDefinitionImpl implem
 	@Override
 	protected EClass eStaticClass()
 	{
-		return Ifc2x3Package.Literals.IFC_ENERGY_PROPERTIES;
+		return Ifc2x3Package.eINSTANCE.getIfcEnergyProperties();
 	}
 
 	/**
@@ -78,7 +71,7 @@ public class IfcEnergyPropertiesImpl extends IfcPropertySetDefinitionImpl implem
 	 */
 	public IfcEnergySequenceEnum getEnergySequence()
 	{
-		return (IfcEnergySequenceEnum)eGet(Ifc2x3Package.Literals.IFC_ENERGY_PROPERTIES__ENERGY_SEQUENCE, true);
+		return (IfcEnergySequenceEnum)eGet(Ifc2x3Package.eINSTANCE.getIfcEnergyProperties_EnergySequence(), true);
 	}
 
 	/**
@@ -88,7 +81,7 @@ public class IfcEnergyPropertiesImpl extends IfcPropertySetDefinitionImpl implem
 	 */
 	public void setEnergySequence(IfcEnergySequenceEnum newEnergySequence)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_ENERGY_PROPERTIES__ENERGY_SEQUENCE, newEnergySequence);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcEnergyProperties_EnergySequence(), newEnergySequence);
 	}
 
 	/**
@@ -98,7 +91,7 @@ public class IfcEnergyPropertiesImpl extends IfcPropertySetDefinitionImpl implem
 	 */
 	public String getUserDefinedEnergySequence()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_ENERGY_PROPERTIES__USER_DEFINED_ENERGY_SEQUENCE, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcEnergyProperties_UserDefinedEnergySequence(), true);
 	}
 
 	/**
@@ -108,7 +101,7 @@ public class IfcEnergyPropertiesImpl extends IfcPropertySetDefinitionImpl implem
 	 */
 	public void setUserDefinedEnergySequence(String newUserDefinedEnergySequence)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_ENERGY_PROPERTIES__USER_DEFINED_ENERGY_SEQUENCE, newUserDefinedEnergySequence);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcEnergyProperties_UserDefinedEnergySequence(), newUserDefinedEnergySequence);
 	}
 
 	/**
@@ -118,7 +111,7 @@ public class IfcEnergyPropertiesImpl extends IfcPropertySetDefinitionImpl implem
 	 */
 	public void unsetUserDefinedEnergySequence()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_ENERGY_PROPERTIES__USER_DEFINED_ENERGY_SEQUENCE);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcEnergyProperties_UserDefinedEnergySequence());
 	}
 
 	/**
@@ -128,7 +121,7 @@ public class IfcEnergyPropertiesImpl extends IfcPropertySetDefinitionImpl implem
 	 */
 	public boolean isSetUserDefinedEnergySequence()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_ENERGY_PROPERTIES__USER_DEFINED_ENERGY_SEQUENCE);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcEnergyProperties_UserDefinedEnergySequence());
 	}
 
 } //IfcEnergyPropertiesImpl

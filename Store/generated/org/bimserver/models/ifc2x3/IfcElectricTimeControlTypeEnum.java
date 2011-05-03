@@ -40,68 +40,61 @@ public enum IfcElectricTimeControlTypeEnum implements Enumerator
 	 * The '<em><b>NULL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NULL
+	 * @see #NULL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NULL_LITERAL(0, "NULL", "NULL"),
+	NULL(0, "NULL", "NULL"),
 
 	/**
 	 * The '<em><b>TIMEDELAY</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #TIMEDELAY
+	 * @see #TIMEDELAY_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	TIMEDELAY_LITERAL(1, "TIMEDELAY", "TIMEDELAY"),
+	TIMEDELAY(1, "TIMEDELAY", "TIMEDELAY"),
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED
+	 * @see #NOTDEFINED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED_LITERAL(2, "NOTDEFINED", "NOTDEFINED"),
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
+	 * @see #USERDEFINED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	USERDEFINED_LITERAL(3, "USERDEFINED", "USERDEFINED"),
+	USERDEFINED(3, "USERDEFINED", "USERDEFINED"),
 
 	/**
 	 * The '<em><b>TIMECLOCK</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #TIMECLOCK
+	 * @see #TIMECLOCK_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	TIMECLOCK_LITERAL(4, "TIMECLOCK", "TIMECLOCK"),
+	TIMECLOCK(4, "TIMECLOCK", "TIMECLOCK"),
 
 	/**
 	 * The '<em><b>RELAY</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #RELAY
+	 * @see #RELAY_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	RELAY_LITERAL(5, "RELAY", "RELAY");
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
+	RELAY(5, "RELAY", "RELAY");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -111,12 +104,12 @@ public enum IfcElectricTimeControlTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NULL_LITERAL
+	 * @see #NULL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NULL = 0;
+	public static final int NULL_VALUE = 0;
 
 	/**
 	 * The '<em><b>TIMEDELAY</b></em>' literal value.
@@ -126,12 +119,12 @@ public enum IfcElectricTimeControlTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #TIMEDELAY_LITERAL
+	 * @see #TIMEDELAY
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int TIMEDELAY = 1;
+	public static final int TIMEDELAY_VALUE = 1;
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
@@ -141,12 +134,12 @@ public enum IfcElectricTimeControlTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_LITERAL
+	 * @see #NOTDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED = 2;
+	public static final int NOTDEFINED_VALUE = 2;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -156,12 +149,12 @@ public enum IfcElectricTimeControlTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_LITERAL
+	 * @see #USERDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED = 3;
+	public static final int USERDEFINED_VALUE = 3;
 
 	/**
 	 * The '<em><b>TIMECLOCK</b></em>' literal value.
@@ -171,12 +164,12 @@ public enum IfcElectricTimeControlTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #TIMECLOCK_LITERAL
+	 * @see #TIMECLOCK
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int TIMECLOCK = 4;
+	public static final int TIMECLOCK_VALUE = 4;
 
 	/**
 	 * The '<em><b>RELAY</b></em>' literal value.
@@ -186,12 +179,12 @@ public enum IfcElectricTimeControlTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #RELAY_LITERAL
+	 * @see #RELAY
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int RELAY = 5;
+	public static final int RELAY_VALUE = 5;
 
 	/**
 	 * An array of all the '<em><b>Ifc Electric Time Control Type Enum</b></em>' enumerators.
@@ -200,14 +193,13 @@ public enum IfcElectricTimeControlTypeEnum implements Enumerator
 	 * @generated
 	 */
 	private static final IfcElectricTimeControlTypeEnum[] VALUES_ARRAY =
-		new IfcElectricTimeControlTypeEnum[]
-		{
-			NULL_LITERAL,
-			TIMEDELAY_LITERAL,
-			NOTDEFINED_LITERAL,
-			USERDEFINED_LITERAL,
-			TIMECLOCK_LITERAL,
-			RELAY_LITERAL,
+		new IfcElectricTimeControlTypeEnum[] {
+			NULL,
+			TIMEDELAY,
+			NOTDEFINED,
+			USERDEFINED,
+			TIMECLOCK,
+			RELAY,
 		};
 
 	/**
@@ -226,11 +218,9 @@ public enum IfcElectricTimeControlTypeEnum implements Enumerator
 	 */
 	public static IfcElectricTimeControlTypeEnum get(String literal)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcElectricTimeControlTypeEnum result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal))
-			{
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -245,11 +235,9 @@ public enum IfcElectricTimeControlTypeEnum implements Enumerator
 	 */
 	public static IfcElectricTimeControlTypeEnum getByName(String name)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcElectricTimeControlTypeEnum result = VALUES_ARRAY[i];
-			if (result.getName().equals(name))
-			{
+			if (result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -264,14 +252,13 @@ public enum IfcElectricTimeControlTypeEnum implements Enumerator
 	 */
 	public static IfcElectricTimeControlTypeEnum get(int value)
 	{
-		switch (value)
-		{
-			case NULL: return NULL_LITERAL;
-			case TIMEDELAY: return TIMEDELAY_LITERAL;
-			case NOTDEFINED: return NOTDEFINED_LITERAL;
-			case USERDEFINED: return USERDEFINED_LITERAL;
-			case TIMECLOCK: return TIMECLOCK_LITERAL;
-			case RELAY: return RELAY_LITERAL;
+		switch (value) {
+			case NULL_VALUE: return NULL;
+			case TIMEDELAY_VALUE: return TIMEDELAY;
+			case NOTDEFINED_VALUE: return NOTDEFINED;
+			case USERDEFINED_VALUE: return USERDEFINED;
+			case TIMECLOCK_VALUE: return TIMECLOCK;
+			case RELAY_VALUE: return RELAY;
 		}
 		return null;
 	}

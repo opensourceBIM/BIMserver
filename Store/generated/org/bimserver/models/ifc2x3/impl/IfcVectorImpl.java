@@ -50,13 +50,6 @@ public class IfcVectorImpl extends IfcGeometricRepresentationItemImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	protected IfcVectorImpl()
 	{
 		super();
@@ -70,7 +63,7 @@ public class IfcVectorImpl extends IfcGeometricRepresentationItemImpl implements
 	@Override
 	protected EClass eStaticClass()
 	{
-		return Ifc2x3Package.Literals.IFC_VECTOR;
+		return Ifc2x3Package.eINSTANCE.getIfcVector();
 	}
 
 	/**
@@ -80,7 +73,7 @@ public class IfcVectorImpl extends IfcGeometricRepresentationItemImpl implements
 	 */
 	public IfcDirection getOrientation()
 	{
-		return (IfcDirection)eGet(Ifc2x3Package.Literals.IFC_VECTOR__ORIENTATION, true);
+		return (IfcDirection)eGet(Ifc2x3Package.eINSTANCE.getIfcVector_Orientation(), true);
 	}
 
 	/**
@@ -90,7 +83,7 @@ public class IfcVectorImpl extends IfcGeometricRepresentationItemImpl implements
 	 */
 	public void setOrientation(IfcDirection newOrientation)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_VECTOR__ORIENTATION, newOrientation);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcVector_Orientation(), newOrientation);
 	}
 
 	/**
@@ -100,7 +93,7 @@ public class IfcVectorImpl extends IfcGeometricRepresentationItemImpl implements
 	 */
 	public float getMagnitude()
 	{
-		return (Float)eGet(Ifc2x3Package.Literals.IFC_VECTOR__MAGNITUDE, true);
+		return (Float)eGet(Ifc2x3Package.eINSTANCE.getIfcVector_Magnitude(), true);
 	}
 
 	/**
@@ -110,7 +103,7 @@ public class IfcVectorImpl extends IfcGeometricRepresentationItemImpl implements
 	 */
 	public void setMagnitude(float newMagnitude)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_VECTOR__MAGNITUDE, newMagnitude);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcVector_Magnitude(), newMagnitude);
 	}
 
 	/**
@@ -120,7 +113,7 @@ public class IfcVectorImpl extends IfcGeometricRepresentationItemImpl implements
 	 */
 	public String getMagnitudeAsString()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_VECTOR__MAGNITUDE_AS_STRING, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcVector_MagnitudeAsString(), true);
 	}
 
 	/**
@@ -130,7 +123,7 @@ public class IfcVectorImpl extends IfcGeometricRepresentationItemImpl implements
 	 */
 	public void setMagnitudeAsString(String newMagnitudeAsString)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_VECTOR__MAGNITUDE_AS_STRING, newMagnitudeAsString);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcVector_MagnitudeAsString(), newMagnitudeAsString);
 	}
 
 	/**
@@ -140,7 +133,7 @@ public class IfcVectorImpl extends IfcGeometricRepresentationItemImpl implements
 	 */
 	public int getDim()
 	{
-		return (Integer)eGet(Ifc2x3Package.Literals.IFC_VECTOR__DIM, true);
+		return (Integer)eGet(Ifc2x3Package.eINSTANCE.getIfcVector_Dim(), true);
 	}
 
 	/**
@@ -150,7 +143,7 @@ public class IfcVectorImpl extends IfcGeometricRepresentationItemImpl implements
 	 */
 	public void setDim(int newDim)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_VECTOR__DIM, newDim);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcVector_Dim(), newDim);
 	}
 
 } //IfcVectorImpl

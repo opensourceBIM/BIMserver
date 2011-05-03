@@ -55,13 +55,6 @@ public class IfcReinforcingBarImpl extends IfcReinforcingElementImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	protected IfcReinforcingBarImpl()
 	{
 		super();
@@ -75,7 +68,7 @@ public class IfcReinforcingBarImpl extends IfcReinforcingElementImpl implements 
 	@Override
 	protected EClass eStaticClass()
 	{
-		return Ifc2x3Package.Literals.IFC_REINFORCING_BAR;
+		return Ifc2x3Package.eINSTANCE.getIfcReinforcingBar();
 	}
 
 	/**
@@ -85,7 +78,7 @@ public class IfcReinforcingBarImpl extends IfcReinforcingElementImpl implements 
 	 */
 	public float getNominalDiameter()
 	{
-		return (Float)eGet(Ifc2x3Package.Literals.IFC_REINFORCING_BAR__NOMINAL_DIAMETER, true);
+		return (Float)eGet(Ifc2x3Package.eINSTANCE.getIfcReinforcingBar_NominalDiameter(), true);
 	}
 
 	/**
@@ -95,7 +88,7 @@ public class IfcReinforcingBarImpl extends IfcReinforcingElementImpl implements 
 	 */
 	public void setNominalDiameter(float newNominalDiameter)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_REINFORCING_BAR__NOMINAL_DIAMETER, newNominalDiameter);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcReinforcingBar_NominalDiameter(), newNominalDiameter);
 	}
 
 	/**
@@ -105,7 +98,7 @@ public class IfcReinforcingBarImpl extends IfcReinforcingElementImpl implements 
 	 */
 	public String getNominalDiameterAsString()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_REINFORCING_BAR__NOMINAL_DIAMETER_AS_STRING, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcReinforcingBar_NominalDiameterAsString(), true);
 	}
 
 	/**
@@ -115,7 +108,7 @@ public class IfcReinforcingBarImpl extends IfcReinforcingElementImpl implements 
 	 */
 	public void setNominalDiameterAsString(String newNominalDiameterAsString)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_REINFORCING_BAR__NOMINAL_DIAMETER_AS_STRING, newNominalDiameterAsString);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcReinforcingBar_NominalDiameterAsString(), newNominalDiameterAsString);
 	}
 
 	/**
@@ -125,7 +118,7 @@ public class IfcReinforcingBarImpl extends IfcReinforcingElementImpl implements 
 	 */
 	public float getCrossSectionArea()
 	{
-		return (Float)eGet(Ifc2x3Package.Literals.IFC_REINFORCING_BAR__CROSS_SECTION_AREA, true);
+		return (Float)eGet(Ifc2x3Package.eINSTANCE.getIfcReinforcingBar_CrossSectionArea(), true);
 	}
 
 	/**
@@ -135,7 +128,7 @@ public class IfcReinforcingBarImpl extends IfcReinforcingElementImpl implements 
 	 */
 	public void setCrossSectionArea(float newCrossSectionArea)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_REINFORCING_BAR__CROSS_SECTION_AREA, newCrossSectionArea);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcReinforcingBar_CrossSectionArea(), newCrossSectionArea);
 	}
 
 	/**
@@ -145,7 +138,7 @@ public class IfcReinforcingBarImpl extends IfcReinforcingElementImpl implements 
 	 */
 	public String getCrossSectionAreaAsString()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_REINFORCING_BAR__CROSS_SECTION_AREA_AS_STRING, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcReinforcingBar_CrossSectionAreaAsString(), true);
 	}
 
 	/**
@@ -155,7 +148,7 @@ public class IfcReinforcingBarImpl extends IfcReinforcingElementImpl implements 
 	 */
 	public void setCrossSectionAreaAsString(String newCrossSectionAreaAsString)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_REINFORCING_BAR__CROSS_SECTION_AREA_AS_STRING, newCrossSectionAreaAsString);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcReinforcingBar_CrossSectionAreaAsString(), newCrossSectionAreaAsString);
 	}
 
 	/**
@@ -165,7 +158,7 @@ public class IfcReinforcingBarImpl extends IfcReinforcingElementImpl implements 
 	 */
 	public float getBarLength()
 	{
-		return (Float)eGet(Ifc2x3Package.Literals.IFC_REINFORCING_BAR__BAR_LENGTH, true);
+		return (Float)eGet(Ifc2x3Package.eINSTANCE.getIfcReinforcingBar_BarLength(), true);
 	}
 
 	/**
@@ -175,7 +168,7 @@ public class IfcReinforcingBarImpl extends IfcReinforcingElementImpl implements 
 	 */
 	public void setBarLength(float newBarLength)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_REINFORCING_BAR__BAR_LENGTH, newBarLength);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcReinforcingBar_BarLength(), newBarLength);
 	}
 
 	/**
@@ -185,7 +178,7 @@ public class IfcReinforcingBarImpl extends IfcReinforcingElementImpl implements 
 	 */
 	public void unsetBarLength()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_REINFORCING_BAR__BAR_LENGTH);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcReinforcingBar_BarLength());
 	}
 
 	/**
@@ -195,7 +188,7 @@ public class IfcReinforcingBarImpl extends IfcReinforcingElementImpl implements 
 	 */
 	public boolean isSetBarLength()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_REINFORCING_BAR__BAR_LENGTH);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcReinforcingBar_BarLength());
 	}
 
 	/**
@@ -205,7 +198,7 @@ public class IfcReinforcingBarImpl extends IfcReinforcingElementImpl implements 
 	 */
 	public String getBarLengthAsString()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_REINFORCING_BAR__BAR_LENGTH_AS_STRING, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcReinforcingBar_BarLengthAsString(), true);
 	}
 
 	/**
@@ -215,7 +208,7 @@ public class IfcReinforcingBarImpl extends IfcReinforcingElementImpl implements 
 	 */
 	public void setBarLengthAsString(String newBarLengthAsString)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_REINFORCING_BAR__BAR_LENGTH_AS_STRING, newBarLengthAsString);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcReinforcingBar_BarLengthAsString(), newBarLengthAsString);
 	}
 
 	/**
@@ -225,7 +218,7 @@ public class IfcReinforcingBarImpl extends IfcReinforcingElementImpl implements 
 	 */
 	public void unsetBarLengthAsString()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_REINFORCING_BAR__BAR_LENGTH_AS_STRING);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcReinforcingBar_BarLengthAsString());
 	}
 
 	/**
@@ -235,7 +228,7 @@ public class IfcReinforcingBarImpl extends IfcReinforcingElementImpl implements 
 	 */
 	public boolean isSetBarLengthAsString()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_REINFORCING_BAR__BAR_LENGTH_AS_STRING);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcReinforcingBar_BarLengthAsString());
 	}
 
 	/**
@@ -245,7 +238,7 @@ public class IfcReinforcingBarImpl extends IfcReinforcingElementImpl implements 
 	 */
 	public IfcReinforcingBarRoleEnum getBarRole()
 	{
-		return (IfcReinforcingBarRoleEnum)eGet(Ifc2x3Package.Literals.IFC_REINFORCING_BAR__BAR_ROLE, true);
+		return (IfcReinforcingBarRoleEnum)eGet(Ifc2x3Package.eINSTANCE.getIfcReinforcingBar_BarRole(), true);
 	}
 
 	/**
@@ -255,7 +248,7 @@ public class IfcReinforcingBarImpl extends IfcReinforcingElementImpl implements 
 	 */
 	public void setBarRole(IfcReinforcingBarRoleEnum newBarRole)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_REINFORCING_BAR__BAR_ROLE, newBarRole);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcReinforcingBar_BarRole(), newBarRole);
 	}
 
 	/**
@@ -265,7 +258,7 @@ public class IfcReinforcingBarImpl extends IfcReinforcingElementImpl implements 
 	 */
 	public IfcReinforcingBarSurfaceEnum getBarSurface()
 	{
-		return (IfcReinforcingBarSurfaceEnum)eGet(Ifc2x3Package.Literals.IFC_REINFORCING_BAR__BAR_SURFACE, true);
+		return (IfcReinforcingBarSurfaceEnum)eGet(Ifc2x3Package.eINSTANCE.getIfcReinforcingBar_BarSurface(), true);
 	}
 
 	/**
@@ -275,7 +268,7 @@ public class IfcReinforcingBarImpl extends IfcReinforcingElementImpl implements 
 	 */
 	public void setBarSurface(IfcReinforcingBarSurfaceEnum newBarSurface)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_REINFORCING_BAR__BAR_SURFACE, newBarSurface);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcReinforcingBar_BarSurface(), newBarSurface);
 	}
 
 } //IfcReinforcingBarImpl

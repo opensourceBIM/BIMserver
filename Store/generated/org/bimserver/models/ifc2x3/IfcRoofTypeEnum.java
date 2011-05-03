@@ -40,158 +40,151 @@ public enum IfcRoofTypeEnum implements Enumerator
 	 * The '<em><b>NULL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NULL
+	 * @see #NULL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NULL_LITERAL(0, "NULL", "NULL"),
+	NULL(0, "NULL", "NULL"),
 
 	/**
 	 * The '<em><b>HIPPED GABLE ROOF</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #HIPPED_GABLE_ROOF
+	 * @see #HIPPED_GABLE_ROOF_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	HIPPED_GABLE_ROOF_LITERAL(1, "HIPPED_GABLE_ROOF", "HIPPED_GABLE_ROOF"),
+	HIPPED_GABLE_ROOF(1, "HIPPED_GABLE_ROOF", "HIPPED_GABLE_ROOF"),
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED
+	 * @see #NOTDEFINED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED_LITERAL(2, "NOTDEFINED", "NOTDEFINED"),
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>SHED ROOF</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #SHED_ROOF
+	 * @see #SHED_ROOF_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	SHED_ROOF_LITERAL(3, "SHED_ROOF", "SHED_ROOF"),
+	SHED_ROOF(3, "SHED_ROOF", "SHED_ROOF"),
 
 	/**
 	 * The '<em><b>HIP ROOF</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #HIP_ROOF
+	 * @see #HIP_ROOF_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	HIP_ROOF_LITERAL(4, "HIP_ROOF", "HIP_ROOF"),
+	HIP_ROOF(4, "HIP_ROOF", "HIP_ROOF"),
 
 	/**
 	 * The '<em><b>DOME ROOF</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #DOME_ROOF
+	 * @see #DOME_ROOF_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	DOME_ROOF_LITERAL(5, "DOME_ROOF", "DOME_ROOF"),
+	DOME_ROOF(5, "DOME_ROOF", "DOME_ROOF"),
 
 	/**
 	 * The '<em><b>PAVILION ROOF</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #PAVILION_ROOF
+	 * @see #PAVILION_ROOF_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	PAVILION_ROOF_LITERAL(6, "PAVILION_ROOF", "PAVILION_ROOF"),
+	PAVILION_ROOF(6, "PAVILION_ROOF", "PAVILION_ROOF"),
 
 	/**
 	 * The '<em><b>GABLE ROOF</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #GABLE_ROOF
+	 * @see #GABLE_ROOF_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	GABLE_ROOF_LITERAL(7, "GABLE_ROOF", "GABLE_ROOF"),
+	GABLE_ROOF(7, "GABLE_ROOF", "GABLE_ROOF"),
 
 	/**
 	 * The '<em><b>BARREL ROOF</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #BARREL_ROOF
+	 * @see #BARREL_ROOF_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	BARREL_ROOF_LITERAL(8, "BARREL_ROOF", "BARREL_ROOF"),
+	BARREL_ROOF(8, "BARREL_ROOF", "BARREL_ROOF"),
 
 	/**
 	 * The '<em><b>FREEFORM</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #FREEFORM
+	 * @see #FREEFORM_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	FREEFORM_LITERAL(9, "FREEFORM", "FREEFORM"),
+	FREEFORM(9, "FREEFORM", "FREEFORM"),
 
 	/**
 	 * The '<em><b>MANSARD ROOF</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #MANSARD_ROOF
+	 * @see #MANSARD_ROOF_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	MANSARD_ROOF_LITERAL(10, "MANSARD_ROOF", "MANSARD_ROOF"),
+	MANSARD_ROOF(10, "MANSARD_ROOF", "MANSARD_ROOF"),
 
 	/**
 	 * The '<em><b>FLAT ROOF</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #FLAT_ROOF
+	 * @see #FLAT_ROOF_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	FLAT_ROOF_LITERAL(11, "FLAT_ROOF", "FLAT_ROOF"),
+	FLAT_ROOF(11, "FLAT_ROOF", "FLAT_ROOF"),
 
 	/**
 	 * The '<em><b>RAINBOW ROOF</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #RAINBOW_ROOF
+	 * @see #RAINBOW_ROOF_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	RAINBOW_ROOF_LITERAL(12, "RAINBOW_ROOF", "RAINBOW_ROOF"),
+	RAINBOW_ROOF(12, "RAINBOW_ROOF", "RAINBOW_ROOF"),
 
 	/**
 	 * The '<em><b>GAMBREL ROOF</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #GAMBREL_ROOF
+	 * @see #GAMBREL_ROOF_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	GAMBREL_ROOF_LITERAL(13, "GAMBREL_ROOF", "GAMBREL_ROOF"),
+	GAMBREL_ROOF(13, "GAMBREL_ROOF", "GAMBREL_ROOF"),
 
 	/**
 	 * The '<em><b>BUTTERFLY ROOF</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #BUTTERFLY_ROOF
+	 * @see #BUTTERFLY_ROOF_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	BUTTERFLY_ROOF_LITERAL(14, "BUTTERFLY_ROOF", "BUTTERFLY_ROOF");
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
+	BUTTERFLY_ROOF(14, "BUTTERFLY_ROOF", "BUTTERFLY_ROOF");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -201,12 +194,12 @@ public enum IfcRoofTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NULL_LITERAL
+	 * @see #NULL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NULL = 0;
+	public static final int NULL_VALUE = 0;
 
 	/**
 	 * The '<em><b>HIPPED GABLE ROOF</b></em>' literal value.
@@ -216,12 +209,12 @@ public enum IfcRoofTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #HIPPED_GABLE_ROOF_LITERAL
+	 * @see #HIPPED_GABLE_ROOF
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int HIPPED_GABLE_ROOF = 1;
+	public static final int HIPPED_GABLE_ROOF_VALUE = 1;
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
@@ -231,12 +224,12 @@ public enum IfcRoofTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_LITERAL
+	 * @see #NOTDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED = 2;
+	public static final int NOTDEFINED_VALUE = 2;
 
 	/**
 	 * The '<em><b>SHED ROOF</b></em>' literal value.
@@ -246,12 +239,12 @@ public enum IfcRoofTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #SHED_ROOF_LITERAL
+	 * @see #SHED_ROOF
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SHED_ROOF = 3;
+	public static final int SHED_ROOF_VALUE = 3;
 
 	/**
 	 * The '<em><b>HIP ROOF</b></em>' literal value.
@@ -261,12 +254,12 @@ public enum IfcRoofTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #HIP_ROOF_LITERAL
+	 * @see #HIP_ROOF
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int HIP_ROOF = 4;
+	public static final int HIP_ROOF_VALUE = 4;
 
 	/**
 	 * The '<em><b>DOME ROOF</b></em>' literal value.
@@ -276,12 +269,12 @@ public enum IfcRoofTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #DOME_ROOF_LITERAL
+	 * @see #DOME_ROOF
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int DOME_ROOF = 5;
+	public static final int DOME_ROOF_VALUE = 5;
 
 	/**
 	 * The '<em><b>PAVILION ROOF</b></em>' literal value.
@@ -291,12 +284,12 @@ public enum IfcRoofTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #PAVILION_ROOF_LITERAL
+	 * @see #PAVILION_ROOF
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PAVILION_ROOF = 6;
+	public static final int PAVILION_ROOF_VALUE = 6;
 
 	/**
 	 * The '<em><b>GABLE ROOF</b></em>' literal value.
@@ -306,12 +299,12 @@ public enum IfcRoofTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #GABLE_ROOF_LITERAL
+	 * @see #GABLE_ROOF
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int GABLE_ROOF = 7;
+	public static final int GABLE_ROOF_VALUE = 7;
 
 	/**
 	 * The '<em><b>BARREL ROOF</b></em>' literal value.
@@ -321,12 +314,12 @@ public enum IfcRoofTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #BARREL_ROOF_LITERAL
+	 * @see #BARREL_ROOF
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int BARREL_ROOF = 8;
+	public static final int BARREL_ROOF_VALUE = 8;
 
 	/**
 	 * The '<em><b>FREEFORM</b></em>' literal value.
@@ -336,12 +329,12 @@ public enum IfcRoofTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #FREEFORM_LITERAL
+	 * @see #FREEFORM
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int FREEFORM = 9;
+	public static final int FREEFORM_VALUE = 9;
 
 	/**
 	 * The '<em><b>MANSARD ROOF</b></em>' literal value.
@@ -351,12 +344,12 @@ public enum IfcRoofTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #MANSARD_ROOF_LITERAL
+	 * @see #MANSARD_ROOF
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MANSARD_ROOF = 10;
+	public static final int MANSARD_ROOF_VALUE = 10;
 
 	/**
 	 * The '<em><b>FLAT ROOF</b></em>' literal value.
@@ -366,12 +359,12 @@ public enum IfcRoofTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #FLAT_ROOF_LITERAL
+	 * @see #FLAT_ROOF
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int FLAT_ROOF = 11;
+	public static final int FLAT_ROOF_VALUE = 11;
 
 	/**
 	 * The '<em><b>RAINBOW ROOF</b></em>' literal value.
@@ -381,12 +374,12 @@ public enum IfcRoofTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #RAINBOW_ROOF_LITERAL
+	 * @see #RAINBOW_ROOF
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int RAINBOW_ROOF = 12;
+	public static final int RAINBOW_ROOF_VALUE = 12;
 
 	/**
 	 * The '<em><b>GAMBREL ROOF</b></em>' literal value.
@@ -396,12 +389,12 @@ public enum IfcRoofTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #GAMBREL_ROOF_LITERAL
+	 * @see #GAMBREL_ROOF
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int GAMBREL_ROOF = 13;
+	public static final int GAMBREL_ROOF_VALUE = 13;
 
 	/**
 	 * The '<em><b>BUTTERFLY ROOF</b></em>' literal value.
@@ -411,12 +404,12 @@ public enum IfcRoofTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #BUTTERFLY_ROOF_LITERAL
+	 * @see #BUTTERFLY_ROOF
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int BUTTERFLY_ROOF = 14;
+	public static final int BUTTERFLY_ROOF_VALUE = 14;
 
 	/**
 	 * An array of all the '<em><b>Ifc Roof Type Enum</b></em>' enumerators.
@@ -425,23 +418,22 @@ public enum IfcRoofTypeEnum implements Enumerator
 	 * @generated
 	 */
 	private static final IfcRoofTypeEnum[] VALUES_ARRAY =
-		new IfcRoofTypeEnum[]
-		{
-			NULL_LITERAL,
-			HIPPED_GABLE_ROOF_LITERAL,
-			NOTDEFINED_LITERAL,
-			SHED_ROOF_LITERAL,
-			HIP_ROOF_LITERAL,
-			DOME_ROOF_LITERAL,
-			PAVILION_ROOF_LITERAL,
-			GABLE_ROOF_LITERAL,
-			BARREL_ROOF_LITERAL,
-			FREEFORM_LITERAL,
-			MANSARD_ROOF_LITERAL,
-			FLAT_ROOF_LITERAL,
-			RAINBOW_ROOF_LITERAL,
-			GAMBREL_ROOF_LITERAL,
-			BUTTERFLY_ROOF_LITERAL,
+		new IfcRoofTypeEnum[] {
+			NULL,
+			HIPPED_GABLE_ROOF,
+			NOTDEFINED,
+			SHED_ROOF,
+			HIP_ROOF,
+			DOME_ROOF,
+			PAVILION_ROOF,
+			GABLE_ROOF,
+			BARREL_ROOF,
+			FREEFORM,
+			MANSARD_ROOF,
+			FLAT_ROOF,
+			RAINBOW_ROOF,
+			GAMBREL_ROOF,
+			BUTTERFLY_ROOF,
 		};
 
 	/**
@@ -460,11 +452,9 @@ public enum IfcRoofTypeEnum implements Enumerator
 	 */
 	public static IfcRoofTypeEnum get(String literal)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcRoofTypeEnum result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal))
-			{
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -479,11 +469,9 @@ public enum IfcRoofTypeEnum implements Enumerator
 	 */
 	public static IfcRoofTypeEnum getByName(String name)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcRoofTypeEnum result = VALUES_ARRAY[i];
-			if (result.getName().equals(name))
-			{
+			if (result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -498,23 +486,22 @@ public enum IfcRoofTypeEnum implements Enumerator
 	 */
 	public static IfcRoofTypeEnum get(int value)
 	{
-		switch (value)
-		{
-			case NULL: return NULL_LITERAL;
-			case HIPPED_GABLE_ROOF: return HIPPED_GABLE_ROOF_LITERAL;
-			case NOTDEFINED: return NOTDEFINED_LITERAL;
-			case SHED_ROOF: return SHED_ROOF_LITERAL;
-			case HIP_ROOF: return HIP_ROOF_LITERAL;
-			case DOME_ROOF: return DOME_ROOF_LITERAL;
-			case PAVILION_ROOF: return PAVILION_ROOF_LITERAL;
-			case GABLE_ROOF: return GABLE_ROOF_LITERAL;
-			case BARREL_ROOF: return BARREL_ROOF_LITERAL;
-			case FREEFORM: return FREEFORM_LITERAL;
-			case MANSARD_ROOF: return MANSARD_ROOF_LITERAL;
-			case FLAT_ROOF: return FLAT_ROOF_LITERAL;
-			case RAINBOW_ROOF: return RAINBOW_ROOF_LITERAL;
-			case GAMBREL_ROOF: return GAMBREL_ROOF_LITERAL;
-			case BUTTERFLY_ROOF: return BUTTERFLY_ROOF_LITERAL;
+		switch (value) {
+			case NULL_VALUE: return NULL;
+			case HIPPED_GABLE_ROOF_VALUE: return HIPPED_GABLE_ROOF;
+			case NOTDEFINED_VALUE: return NOTDEFINED;
+			case SHED_ROOF_VALUE: return SHED_ROOF;
+			case HIP_ROOF_VALUE: return HIP_ROOF;
+			case DOME_ROOF_VALUE: return DOME_ROOF;
+			case PAVILION_ROOF_VALUE: return PAVILION_ROOF;
+			case GABLE_ROOF_VALUE: return GABLE_ROOF;
+			case BARREL_ROOF_VALUE: return BARREL_ROOF;
+			case FREEFORM_VALUE: return FREEFORM;
+			case MANSARD_ROOF_VALUE: return MANSARD_ROOF;
+			case FLAT_ROOF_VALUE: return FLAT_ROOF;
+			case RAINBOW_ROOF_VALUE: return RAINBOW_ROOF;
+			case GAMBREL_ROOF_VALUE: return GAMBREL_ROOF;
+			case BUTTERFLY_ROOF_VALUE: return BUTTERFLY_ROOF;
 		}
 		return null;
 	}

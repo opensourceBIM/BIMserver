@@ -40,78 +40,71 @@ public enum IfcChangeActionEnum implements Enumerator
 	 * The '<em><b>NULL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NULL
+	 * @see #NULL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NULL_LITERAL(0, "NULL", "NULL"),
+	NULL(0, "NULL", "NULL"),
 
 	/**
 	 * The '<em><b>NOCHANGE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NOCHANGE
+	 * @see #NOCHANGE_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NOCHANGE_LITERAL(1, "NOCHANGE", "NOCHANGE"),
+	NOCHANGE(1, "NOCHANGE", "NOCHANGE"),
 
 	/**
 	 * The '<em><b>MODIFIEDADDED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #MODIFIEDADDED
+	 * @see #MODIFIEDADDED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	MODIFIEDADDED_LITERAL(2, "MODIFIEDADDED", "MODIFIEDADDED"),
+	MODIFIEDADDED(2, "MODIFIEDADDED", "MODIFIEDADDED"),
 
 	/**
 	 * The '<em><b>MODIFIED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #MODIFIED
+	 * @see #MODIFIED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	MODIFIED_LITERAL(3, "MODIFIED", "MODIFIED"),
+	MODIFIED(3, "MODIFIED", "MODIFIED"),
 
 	/**
 	 * The '<em><b>MODIFIEDDELETED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #MODIFIEDDELETED
+	 * @see #MODIFIEDDELETED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	MODIFIEDDELETED_LITERAL(4, "MODIFIEDDELETED", "MODIFIEDDELETED"),
+	MODIFIEDDELETED(4, "MODIFIEDDELETED", "MODIFIEDDELETED"),
 
 	/**
 	 * The '<em><b>ADDED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #ADDED
+	 * @see #ADDED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	ADDED_LITERAL(5, "ADDED", "ADDED"),
+	ADDED(5, "ADDED", "ADDED"),
 
 	/**
 	 * The '<em><b>DELETED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #DELETED
+	 * @see #DELETED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	DELETED_LITERAL(6, "DELETED", "DELETED");
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
+	DELETED(6, "DELETED", "DELETED");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -121,12 +114,12 @@ public enum IfcChangeActionEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NULL_LITERAL
+	 * @see #NULL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NULL = 0;
+	public static final int NULL_VALUE = 0;
 
 	/**
 	 * The '<em><b>NOCHANGE</b></em>' literal value.
@@ -136,12 +129,12 @@ public enum IfcChangeActionEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NOCHANGE_LITERAL
+	 * @see #NOCHANGE
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOCHANGE = 1;
+	public static final int NOCHANGE_VALUE = 1;
 
 	/**
 	 * The '<em><b>MODIFIEDADDED</b></em>' literal value.
@@ -151,12 +144,12 @@ public enum IfcChangeActionEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #MODIFIEDADDED_LITERAL
+	 * @see #MODIFIEDADDED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MODIFIEDADDED = 2;
+	public static final int MODIFIEDADDED_VALUE = 2;
 
 	/**
 	 * The '<em><b>MODIFIED</b></em>' literal value.
@@ -166,12 +159,12 @@ public enum IfcChangeActionEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #MODIFIED_LITERAL
+	 * @see #MODIFIED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MODIFIED = 3;
+	public static final int MODIFIED_VALUE = 3;
 
 	/**
 	 * The '<em><b>MODIFIEDDELETED</b></em>' literal value.
@@ -181,12 +174,12 @@ public enum IfcChangeActionEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #MODIFIEDDELETED_LITERAL
+	 * @see #MODIFIEDDELETED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MODIFIEDDELETED = 4;
+	public static final int MODIFIEDDELETED_VALUE = 4;
 
 	/**
 	 * The '<em><b>ADDED</b></em>' literal value.
@@ -196,12 +189,12 @@ public enum IfcChangeActionEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ADDED_LITERAL
+	 * @see #ADDED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ADDED = 5;
+	public static final int ADDED_VALUE = 5;
 
 	/**
 	 * The '<em><b>DELETED</b></em>' literal value.
@@ -211,12 +204,12 @@ public enum IfcChangeActionEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #DELETED_LITERAL
+	 * @see #DELETED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int DELETED = 6;
+	public static final int DELETED_VALUE = 6;
 
 	/**
 	 * An array of all the '<em><b>Ifc Change Action Enum</b></em>' enumerators.
@@ -225,15 +218,14 @@ public enum IfcChangeActionEnum implements Enumerator
 	 * @generated
 	 */
 	private static final IfcChangeActionEnum[] VALUES_ARRAY =
-		new IfcChangeActionEnum[]
-		{
-			NULL_LITERAL,
-			NOCHANGE_LITERAL,
-			MODIFIEDADDED_LITERAL,
-			MODIFIED_LITERAL,
-			MODIFIEDDELETED_LITERAL,
-			ADDED_LITERAL,
-			DELETED_LITERAL,
+		new IfcChangeActionEnum[] {
+			NULL,
+			NOCHANGE,
+			MODIFIEDADDED,
+			MODIFIED,
+			MODIFIEDDELETED,
+			ADDED,
+			DELETED,
 		};
 
 	/**
@@ -252,11 +244,9 @@ public enum IfcChangeActionEnum implements Enumerator
 	 */
 	public static IfcChangeActionEnum get(String literal)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcChangeActionEnum result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal))
-			{
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -271,11 +261,9 @@ public enum IfcChangeActionEnum implements Enumerator
 	 */
 	public static IfcChangeActionEnum getByName(String name)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcChangeActionEnum result = VALUES_ARRAY[i];
-			if (result.getName().equals(name))
-			{
+			if (result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -290,15 +278,14 @@ public enum IfcChangeActionEnum implements Enumerator
 	 */
 	public static IfcChangeActionEnum get(int value)
 	{
-		switch (value)
-		{
-			case NULL: return NULL_LITERAL;
-			case NOCHANGE: return NOCHANGE_LITERAL;
-			case MODIFIEDADDED: return MODIFIEDADDED_LITERAL;
-			case MODIFIED: return MODIFIED_LITERAL;
-			case MODIFIEDDELETED: return MODIFIEDDELETED_LITERAL;
-			case ADDED: return ADDED_LITERAL;
-			case DELETED: return DELETED_LITERAL;
+		switch (value) {
+			case NULL_VALUE: return NULL;
+			case NOCHANGE_VALUE: return NOCHANGE;
+			case MODIFIEDADDED_VALUE: return MODIFIEDADDED;
+			case MODIFIED_VALUE: return MODIFIED;
+			case MODIFIEDDELETED_VALUE: return MODIFIEDDELETED;
+			case ADDED_VALUE: return ADDED;
+			case DELETED_VALUE: return DELETED;
 		}
 		return null;
 	}

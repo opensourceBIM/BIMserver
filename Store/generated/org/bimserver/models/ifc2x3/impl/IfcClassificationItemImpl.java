@@ -55,13 +55,6 @@ public class IfcClassificationItemImpl extends IdEObjectImpl implements IfcClass
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	protected IfcClassificationItemImpl()
 	{
 		super();
@@ -75,7 +68,7 @@ public class IfcClassificationItemImpl extends IdEObjectImpl implements IfcClass
 	@Override
 	protected EClass eStaticClass()
 	{
-		return Ifc2x3Package.Literals.IFC_CLASSIFICATION_ITEM;
+		return Ifc2x3Package.eINSTANCE.getIfcClassificationItem();
 	}
 
 	/**
@@ -96,7 +89,7 @@ public class IfcClassificationItemImpl extends IdEObjectImpl implements IfcClass
 	 */
 	public IfcClassificationNotationFacet getNotation()
 	{
-		return (IfcClassificationNotationFacet)eGet(Ifc2x3Package.Literals.IFC_CLASSIFICATION_ITEM__NOTATION, true);
+		return (IfcClassificationNotationFacet)eGet(Ifc2x3Package.eINSTANCE.getIfcClassificationItem_Notation(), true);
 	}
 
 	/**
@@ -106,7 +99,7 @@ public class IfcClassificationItemImpl extends IdEObjectImpl implements IfcClass
 	 */
 	public void setNotation(IfcClassificationNotationFacet newNotation)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_CLASSIFICATION_ITEM__NOTATION, newNotation);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcClassificationItem_Notation(), newNotation);
 	}
 
 	/**
@@ -116,7 +109,7 @@ public class IfcClassificationItemImpl extends IdEObjectImpl implements IfcClass
 	 */
 	public IfcClassification getItemOf()
 	{
-		return (IfcClassification)eGet(Ifc2x3Package.Literals.IFC_CLASSIFICATION_ITEM__ITEM_OF, true);
+		return (IfcClassification)eGet(Ifc2x3Package.eINSTANCE.getIfcClassificationItem_ItemOf(), true);
 	}
 
 	/**
@@ -126,7 +119,7 @@ public class IfcClassificationItemImpl extends IdEObjectImpl implements IfcClass
 	 */
 	public void setItemOf(IfcClassification newItemOf)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_CLASSIFICATION_ITEM__ITEM_OF, newItemOf);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcClassificationItem_ItemOf(), newItemOf);
 	}
 
 	/**
@@ -136,7 +129,7 @@ public class IfcClassificationItemImpl extends IdEObjectImpl implements IfcClass
 	 */
 	public void unsetItemOf()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_CLASSIFICATION_ITEM__ITEM_OF);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcClassificationItem_ItemOf());
 	}
 
 	/**
@@ -146,7 +139,7 @@ public class IfcClassificationItemImpl extends IdEObjectImpl implements IfcClass
 	 */
 	public boolean isSetItemOf()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_CLASSIFICATION_ITEM__ITEM_OF);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcClassificationItem_ItemOf());
 	}
 
 	/**
@@ -156,7 +149,7 @@ public class IfcClassificationItemImpl extends IdEObjectImpl implements IfcClass
 	 */
 	public String getTitle()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_CLASSIFICATION_ITEM__TITLE, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcClassificationItem_Title(), true);
 	}
 
 	/**
@@ -166,7 +159,7 @@ public class IfcClassificationItemImpl extends IdEObjectImpl implements IfcClass
 	 */
 	public void setTitle(String newTitle)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_CLASSIFICATION_ITEM__TITLE, newTitle);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcClassificationItem_Title(), newTitle);
 	}
 
 	/**
@@ -177,7 +170,7 @@ public class IfcClassificationItemImpl extends IdEObjectImpl implements IfcClass
 	@SuppressWarnings("unchecked")
 	public EList<IfcClassificationItemRelationship> getIsClassifiedItemIn()
 	{
-		return (EList<IfcClassificationItemRelationship>)eGet(Ifc2x3Package.Literals.IFC_CLASSIFICATION_ITEM__IS_CLASSIFIED_ITEM_IN, true);
+		return (EList<IfcClassificationItemRelationship>)eGet(Ifc2x3Package.eINSTANCE.getIfcClassificationItem_IsClassifiedItemIn(), true);
 	}
 
 	/**
@@ -188,7 +181,7 @@ public class IfcClassificationItemImpl extends IdEObjectImpl implements IfcClass
 	@SuppressWarnings("unchecked")
 	public EList<IfcClassificationItemRelationship> getIsClassifyingItemIn()
 	{
-		return (EList<IfcClassificationItemRelationship>)eGet(Ifc2x3Package.Literals.IFC_CLASSIFICATION_ITEM__IS_CLASSIFYING_ITEM_IN, true);
+		return (EList<IfcClassificationItemRelationship>)eGet(Ifc2x3Package.eINSTANCE.getIfcClassificationItem_IsClassifyingItemIn(), true);
 	}
 
 } //IfcClassificationItemImpl

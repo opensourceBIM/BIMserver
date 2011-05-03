@@ -40,78 +40,71 @@ public enum IfcEnergySequenceEnum implements Enumerator
 	 * The '<em><b>NULL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NULL
+	 * @see #NULL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NULL_LITERAL(0, "NULL", "NULL"),
+	NULL(0, "NULL", "NULL"),
 
 	/**
 	 * The '<em><b>SECONDARY</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #SECONDARY
+	 * @see #SECONDARY_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	SECONDARY_LITERAL(1, "SECONDARY", "SECONDARY"),
+	SECONDARY(1, "SECONDARY", "SECONDARY"),
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED
+	 * @see #NOTDEFINED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED_LITERAL(2, "NOTDEFINED", "NOTDEFINED"),
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>PRIMARY</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #PRIMARY
+	 * @see #PRIMARY_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	PRIMARY_LITERAL(3, "PRIMARY", "PRIMARY"),
+	PRIMARY(3, "PRIMARY", "PRIMARY"),
 
 	/**
 	 * The '<em><b>TERTIARY</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #TERTIARY
+	 * @see #TERTIARY_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	TERTIARY_LITERAL(4, "TERTIARY", "TERTIARY"),
+	TERTIARY(4, "TERTIARY", "TERTIARY"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
+	 * @see #USERDEFINED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	USERDEFINED_LITERAL(5, "USERDEFINED", "USERDEFINED"),
+	USERDEFINED(5, "USERDEFINED", "USERDEFINED"),
 
 	/**
 	 * The '<em><b>AUXILIARY</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #AUXILIARY
+	 * @see #AUXILIARY_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	AUXILIARY_LITERAL(6, "AUXILIARY", "AUXILIARY");
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
+	AUXILIARY(6, "AUXILIARY", "AUXILIARY");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -121,12 +114,12 @@ public enum IfcEnergySequenceEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NULL_LITERAL
+	 * @see #NULL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NULL = 0;
+	public static final int NULL_VALUE = 0;
 
 	/**
 	 * The '<em><b>SECONDARY</b></em>' literal value.
@@ -136,12 +129,12 @@ public enum IfcEnergySequenceEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #SECONDARY_LITERAL
+	 * @see #SECONDARY
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SECONDARY = 1;
+	public static final int SECONDARY_VALUE = 1;
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
@@ -151,12 +144,12 @@ public enum IfcEnergySequenceEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_LITERAL
+	 * @see #NOTDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED = 2;
+	public static final int NOTDEFINED_VALUE = 2;
 
 	/**
 	 * The '<em><b>PRIMARY</b></em>' literal value.
@@ -166,12 +159,12 @@ public enum IfcEnergySequenceEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #PRIMARY_LITERAL
+	 * @see #PRIMARY
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PRIMARY = 3;
+	public static final int PRIMARY_VALUE = 3;
 
 	/**
 	 * The '<em><b>TERTIARY</b></em>' literal value.
@@ -181,12 +174,12 @@ public enum IfcEnergySequenceEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #TERTIARY_LITERAL
+	 * @see #TERTIARY
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int TERTIARY = 4;
+	public static final int TERTIARY_VALUE = 4;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -196,12 +189,12 @@ public enum IfcEnergySequenceEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_LITERAL
+	 * @see #USERDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED = 5;
+	public static final int USERDEFINED_VALUE = 5;
 
 	/**
 	 * The '<em><b>AUXILIARY</b></em>' literal value.
@@ -211,12 +204,12 @@ public enum IfcEnergySequenceEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #AUXILIARY_LITERAL
+	 * @see #AUXILIARY
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int AUXILIARY = 6;
+	public static final int AUXILIARY_VALUE = 6;
 
 	/**
 	 * An array of all the '<em><b>Ifc Energy Sequence Enum</b></em>' enumerators.
@@ -225,15 +218,14 @@ public enum IfcEnergySequenceEnum implements Enumerator
 	 * @generated
 	 */
 	private static final IfcEnergySequenceEnum[] VALUES_ARRAY =
-		new IfcEnergySequenceEnum[]
-		{
-			NULL_LITERAL,
-			SECONDARY_LITERAL,
-			NOTDEFINED_LITERAL,
-			PRIMARY_LITERAL,
-			TERTIARY_LITERAL,
-			USERDEFINED_LITERAL,
-			AUXILIARY_LITERAL,
+		new IfcEnergySequenceEnum[] {
+			NULL,
+			SECONDARY,
+			NOTDEFINED,
+			PRIMARY,
+			TERTIARY,
+			USERDEFINED,
+			AUXILIARY,
 		};
 
 	/**
@@ -252,11 +244,9 @@ public enum IfcEnergySequenceEnum implements Enumerator
 	 */
 	public static IfcEnergySequenceEnum get(String literal)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcEnergySequenceEnum result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal))
-			{
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -271,11 +261,9 @@ public enum IfcEnergySequenceEnum implements Enumerator
 	 */
 	public static IfcEnergySequenceEnum getByName(String name)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcEnergySequenceEnum result = VALUES_ARRAY[i];
-			if (result.getName().equals(name))
-			{
+			if (result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -290,15 +278,14 @@ public enum IfcEnergySequenceEnum implements Enumerator
 	 */
 	public static IfcEnergySequenceEnum get(int value)
 	{
-		switch (value)
-		{
-			case NULL: return NULL_LITERAL;
-			case SECONDARY: return SECONDARY_LITERAL;
-			case NOTDEFINED: return NOTDEFINED_LITERAL;
-			case PRIMARY: return PRIMARY_LITERAL;
-			case TERTIARY: return TERTIARY_LITERAL;
-			case USERDEFINED: return USERDEFINED_LITERAL;
-			case AUXILIARY: return AUXILIARY_LITERAL;
+		switch (value) {
+			case NULL_VALUE: return NULL;
+			case SECONDARY_VALUE: return SECONDARY;
+			case NOTDEFINED_VALUE: return NOTDEFINED;
+			case PRIMARY_VALUE: return PRIMARY;
+			case TERTIARY_VALUE: return TERTIARY;
+			case USERDEFINED_VALUE: return USERDEFINED;
+			case AUXILIARY_VALUE: return AUXILIARY;
 		}
 		return null;
 	}

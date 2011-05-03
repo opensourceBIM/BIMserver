@@ -55,13 +55,6 @@ public class IfcIShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	protected IfcIShapeProfileDefImpl()
 	{
 		super();
@@ -75,7 +68,7 @@ public class IfcIShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	@Override
 	protected EClass eStaticClass()
 	{
-		return Ifc2x3Package.Literals.IFC_ISHAPE_PROFILE_DEF;
+		return Ifc2x3Package.eINSTANCE.getIfcIShapeProfileDef();
 	}
 
 	/**
@@ -85,7 +78,7 @@ public class IfcIShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 */
 	public float getOverallWidth()
 	{
-		return (Float)eGet(Ifc2x3Package.Literals.IFC_ISHAPE_PROFILE_DEF__OVERALL_WIDTH, true);
+		return (Float)eGet(Ifc2x3Package.eINSTANCE.getIfcIShapeProfileDef_OverallWidth(), true);
 	}
 
 	/**
@@ -95,7 +88,7 @@ public class IfcIShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 */
 	public void setOverallWidth(float newOverallWidth)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_ISHAPE_PROFILE_DEF__OVERALL_WIDTH, newOverallWidth);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcIShapeProfileDef_OverallWidth(), newOverallWidth);
 	}
 
 	/**
@@ -105,7 +98,7 @@ public class IfcIShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 */
 	public String getOverallWidthAsString()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_ISHAPE_PROFILE_DEF__OVERALL_WIDTH_AS_STRING, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcIShapeProfileDef_OverallWidthAsString(), true);
 	}
 
 	/**
@@ -115,7 +108,7 @@ public class IfcIShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 */
 	public void setOverallWidthAsString(String newOverallWidthAsString)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_ISHAPE_PROFILE_DEF__OVERALL_WIDTH_AS_STRING, newOverallWidthAsString);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcIShapeProfileDef_OverallWidthAsString(), newOverallWidthAsString);
 	}
 
 	/**
@@ -125,7 +118,7 @@ public class IfcIShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 */
 	public float getOverallDepth()
 	{
-		return (Float)eGet(Ifc2x3Package.Literals.IFC_ISHAPE_PROFILE_DEF__OVERALL_DEPTH, true);
+		return (Float)eGet(Ifc2x3Package.eINSTANCE.getIfcIShapeProfileDef_OverallDepth(), true);
 	}
 
 	/**
@@ -135,7 +128,7 @@ public class IfcIShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 */
 	public void setOverallDepth(float newOverallDepth)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_ISHAPE_PROFILE_DEF__OVERALL_DEPTH, newOverallDepth);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcIShapeProfileDef_OverallDepth(), newOverallDepth);
 	}
 
 	/**
@@ -145,7 +138,7 @@ public class IfcIShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 */
 	public String getOverallDepthAsString()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_ISHAPE_PROFILE_DEF__OVERALL_DEPTH_AS_STRING, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcIShapeProfileDef_OverallDepthAsString(), true);
 	}
 
 	/**
@@ -155,7 +148,7 @@ public class IfcIShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 */
 	public void setOverallDepthAsString(String newOverallDepthAsString)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_ISHAPE_PROFILE_DEF__OVERALL_DEPTH_AS_STRING, newOverallDepthAsString);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcIShapeProfileDef_OverallDepthAsString(), newOverallDepthAsString);
 	}
 
 	/**
@@ -165,7 +158,7 @@ public class IfcIShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 */
 	public float getWebThickness()
 	{
-		return (Float)eGet(Ifc2x3Package.Literals.IFC_ISHAPE_PROFILE_DEF__WEB_THICKNESS, true);
+		return (Float)eGet(Ifc2x3Package.eINSTANCE.getIfcIShapeProfileDef_WebThickness(), true);
 	}
 
 	/**
@@ -175,7 +168,7 @@ public class IfcIShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 */
 	public void setWebThickness(float newWebThickness)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_ISHAPE_PROFILE_DEF__WEB_THICKNESS, newWebThickness);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcIShapeProfileDef_WebThickness(), newWebThickness);
 	}
 
 	/**
@@ -185,7 +178,7 @@ public class IfcIShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 */
 	public String getWebThicknessAsString()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_ISHAPE_PROFILE_DEF__WEB_THICKNESS_AS_STRING, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcIShapeProfileDef_WebThicknessAsString(), true);
 	}
 
 	/**
@@ -195,7 +188,7 @@ public class IfcIShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 */
 	public void setWebThicknessAsString(String newWebThicknessAsString)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_ISHAPE_PROFILE_DEF__WEB_THICKNESS_AS_STRING, newWebThicknessAsString);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcIShapeProfileDef_WebThicknessAsString(), newWebThicknessAsString);
 	}
 
 	/**
@@ -205,7 +198,7 @@ public class IfcIShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 */
 	public float getFlangeThickness()
 	{
-		return (Float)eGet(Ifc2x3Package.Literals.IFC_ISHAPE_PROFILE_DEF__FLANGE_THICKNESS, true);
+		return (Float)eGet(Ifc2x3Package.eINSTANCE.getIfcIShapeProfileDef_FlangeThickness(), true);
 	}
 
 	/**
@@ -215,7 +208,7 @@ public class IfcIShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 */
 	public void setFlangeThickness(float newFlangeThickness)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_ISHAPE_PROFILE_DEF__FLANGE_THICKNESS, newFlangeThickness);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcIShapeProfileDef_FlangeThickness(), newFlangeThickness);
 	}
 
 	/**
@@ -225,7 +218,7 @@ public class IfcIShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 */
 	public String getFlangeThicknessAsString()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_ISHAPE_PROFILE_DEF__FLANGE_THICKNESS_AS_STRING, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcIShapeProfileDef_FlangeThicknessAsString(), true);
 	}
 
 	/**
@@ -235,7 +228,7 @@ public class IfcIShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 */
 	public void setFlangeThicknessAsString(String newFlangeThicknessAsString)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_ISHAPE_PROFILE_DEF__FLANGE_THICKNESS_AS_STRING, newFlangeThicknessAsString);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcIShapeProfileDef_FlangeThicknessAsString(), newFlangeThicknessAsString);
 	}
 
 	/**
@@ -245,7 +238,7 @@ public class IfcIShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 */
 	public float getFilletRadius()
 	{
-		return (Float)eGet(Ifc2x3Package.Literals.IFC_ISHAPE_PROFILE_DEF__FILLET_RADIUS, true);
+		return (Float)eGet(Ifc2x3Package.eINSTANCE.getIfcIShapeProfileDef_FilletRadius(), true);
 	}
 
 	/**
@@ -255,7 +248,7 @@ public class IfcIShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 */
 	public void setFilletRadius(float newFilletRadius)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_ISHAPE_PROFILE_DEF__FILLET_RADIUS, newFilletRadius);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcIShapeProfileDef_FilletRadius(), newFilletRadius);
 	}
 
 	/**
@@ -265,7 +258,7 @@ public class IfcIShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 */
 	public void unsetFilletRadius()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_ISHAPE_PROFILE_DEF__FILLET_RADIUS);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcIShapeProfileDef_FilletRadius());
 	}
 
 	/**
@@ -275,7 +268,7 @@ public class IfcIShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 */
 	public boolean isSetFilletRadius()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_ISHAPE_PROFILE_DEF__FILLET_RADIUS);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcIShapeProfileDef_FilletRadius());
 	}
 
 	/**
@@ -285,7 +278,7 @@ public class IfcIShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 */
 	public String getFilletRadiusAsString()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_ISHAPE_PROFILE_DEF__FILLET_RADIUS_AS_STRING, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcIShapeProfileDef_FilletRadiusAsString(), true);
 	}
 
 	/**
@@ -295,7 +288,7 @@ public class IfcIShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 */
 	public void setFilletRadiusAsString(String newFilletRadiusAsString)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_ISHAPE_PROFILE_DEF__FILLET_RADIUS_AS_STRING, newFilletRadiusAsString);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcIShapeProfileDef_FilletRadiusAsString(), newFilletRadiusAsString);
 	}
 
 	/**
@@ -305,7 +298,7 @@ public class IfcIShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 */
 	public void unsetFilletRadiusAsString()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_ISHAPE_PROFILE_DEF__FILLET_RADIUS_AS_STRING);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcIShapeProfileDef_FilletRadiusAsString());
 	}
 
 	/**
@@ -315,7 +308,7 @@ public class IfcIShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 */
 	public boolean isSetFilletRadiusAsString()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_ISHAPE_PROFILE_DEF__FILLET_RADIUS_AS_STRING);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcIShapeProfileDef_FilletRadiusAsString());
 	}
 
 } //IfcIShapeProfileDefImpl

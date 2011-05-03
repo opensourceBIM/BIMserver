@@ -40,68 +40,61 @@ public enum IfcSequenceEnum implements Enumerator
 	 * The '<em><b>NULL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NULL
+	 * @see #NULL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NULL_LITERAL(0, "NULL", "NULL"),
+	NULL(0, "NULL", "NULL"),
 
 	/**
 	 * The '<em><b>FINISH START</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #FINISH_START
+	 * @see #FINISH_START_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	FINISH_START_LITERAL(1, "FINISH_START", "FINISH_START"),
+	FINISH_START(1, "FINISH_START", "FINISH_START"),
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED
+	 * @see #NOTDEFINED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED_LITERAL(2, "NOTDEFINED", "NOTDEFINED"),
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>FINISH FINISH</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #FINISH_FINISH
+	 * @see #FINISH_FINISH_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	FINISH_FINISH_LITERAL(3, "FINISH_FINISH", "FINISH_FINISH"),
+	FINISH_FINISH(3, "FINISH_FINISH", "FINISH_FINISH"),
 
 	/**
 	 * The '<em><b>START START</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #START_START
+	 * @see #START_START_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	START_START_LITERAL(4, "START_START", "START_START"),
+	START_START(4, "START_START", "START_START"),
 
 	/**
 	 * The '<em><b>START FINISH</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #START_FINISH
+	 * @see #START_FINISH_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	START_FINISH_LITERAL(5, "START_FINISH", "START_FINISH");
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
+	START_FINISH(5, "START_FINISH", "START_FINISH");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -111,12 +104,12 @@ public enum IfcSequenceEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NULL_LITERAL
+	 * @see #NULL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NULL = 0;
+	public static final int NULL_VALUE = 0;
 
 	/**
 	 * The '<em><b>FINISH START</b></em>' literal value.
@@ -126,12 +119,12 @@ public enum IfcSequenceEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #FINISH_START_LITERAL
+	 * @see #FINISH_START
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int FINISH_START = 1;
+	public static final int FINISH_START_VALUE = 1;
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
@@ -141,12 +134,12 @@ public enum IfcSequenceEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_LITERAL
+	 * @see #NOTDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED = 2;
+	public static final int NOTDEFINED_VALUE = 2;
 
 	/**
 	 * The '<em><b>FINISH FINISH</b></em>' literal value.
@@ -156,12 +149,12 @@ public enum IfcSequenceEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #FINISH_FINISH_LITERAL
+	 * @see #FINISH_FINISH
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int FINISH_FINISH = 3;
+	public static final int FINISH_FINISH_VALUE = 3;
 
 	/**
 	 * The '<em><b>START START</b></em>' literal value.
@@ -171,12 +164,12 @@ public enum IfcSequenceEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #START_START_LITERAL
+	 * @see #START_START
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int START_START = 4;
+	public static final int START_START_VALUE = 4;
 
 	/**
 	 * The '<em><b>START FINISH</b></em>' literal value.
@@ -186,12 +179,12 @@ public enum IfcSequenceEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #START_FINISH_LITERAL
+	 * @see #START_FINISH
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int START_FINISH = 5;
+	public static final int START_FINISH_VALUE = 5;
 
 	/**
 	 * An array of all the '<em><b>Ifc Sequence Enum</b></em>' enumerators.
@@ -200,14 +193,13 @@ public enum IfcSequenceEnum implements Enumerator
 	 * @generated
 	 */
 	private static final IfcSequenceEnum[] VALUES_ARRAY =
-		new IfcSequenceEnum[]
-		{
-			NULL_LITERAL,
-			FINISH_START_LITERAL,
-			NOTDEFINED_LITERAL,
-			FINISH_FINISH_LITERAL,
-			START_START_LITERAL,
-			START_FINISH_LITERAL,
+		new IfcSequenceEnum[] {
+			NULL,
+			FINISH_START,
+			NOTDEFINED,
+			FINISH_FINISH,
+			START_START,
+			START_FINISH,
 		};
 
 	/**
@@ -226,11 +218,9 @@ public enum IfcSequenceEnum implements Enumerator
 	 */
 	public static IfcSequenceEnum get(String literal)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcSequenceEnum result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal))
-			{
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -245,11 +235,9 @@ public enum IfcSequenceEnum implements Enumerator
 	 */
 	public static IfcSequenceEnum getByName(String name)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcSequenceEnum result = VALUES_ARRAY[i];
-			if (result.getName().equals(name))
-			{
+			if (result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -264,14 +252,13 @@ public enum IfcSequenceEnum implements Enumerator
 	 */
 	public static IfcSequenceEnum get(int value)
 	{
-		switch (value)
-		{
-			case NULL: return NULL_LITERAL;
-			case FINISH_START: return FINISH_START_LITERAL;
-			case NOTDEFINED: return NOTDEFINED_LITERAL;
-			case FINISH_FINISH: return FINISH_FINISH_LITERAL;
-			case START_START: return START_START_LITERAL;
-			case START_FINISH: return START_FINISH_LITERAL;
+		switch (value) {
+			case NULL_VALUE: return NULL;
+			case FINISH_START_VALUE: return FINISH_START;
+			case NOTDEFINED_VALUE: return NOTDEFINED;
+			case FINISH_FINISH_VALUE: return FINISH_FINISH;
+			case START_START_VALUE: return START_START;
+			case START_FINISH_VALUE: return START_FINISH;
 		}
 		return null;
 	}

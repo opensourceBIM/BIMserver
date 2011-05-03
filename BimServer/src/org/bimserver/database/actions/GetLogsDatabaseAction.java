@@ -27,7 +27,7 @@ public class GetLogsDatabaseAction extends BimDatabaseAction<List<LogAction>> {
 	@Override
 	public List<LogAction> execute() throws UserException, BimDeadlockException, BimDatabaseException {
 		User user = getUserByUoid(actingUoid);
-		if (user.getUserType() != UserType.ADMIN_LITERAL) {
+		if (user.getUserType() != UserType.ADMIN) {
 			throw new UserException("Only admin users can retrieve log");
 		}
 		Map<Long, LogAction> query = getDatabaseSession().query(new IsOfTypeCondition(LogPackage.eINSTANCE.getLogAction()), LogAction.class, false);

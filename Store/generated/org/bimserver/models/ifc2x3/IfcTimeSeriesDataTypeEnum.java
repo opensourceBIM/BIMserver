@@ -40,88 +40,81 @@ public enum IfcTimeSeriesDataTypeEnum implements Enumerator
 	 * The '<em><b>NULL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NULL
+	 * @see #NULL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NULL_LITERAL(0, "NULL", "NULL"),
+	NULL(0, "NULL", "NULL"),
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED
+	 * @see #NOTDEFINED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED_LITERAL(1, "NOTDEFINED", "NOTDEFINED"),
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>CONTINUOUS</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #CONTINUOUS
+	 * @see #CONTINUOUS_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	CONTINUOUS_LITERAL(2, "CONTINUOUS", "CONTINUOUS"),
+	CONTINUOUS(2, "CONTINUOUS", "CONTINUOUS"),
 
 	/**
 	 * The '<em><b>DISCRETE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #DISCRETE
+	 * @see #DISCRETE_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	DISCRETE_LITERAL(3, "DISCRETE", "DISCRETE"),
+	DISCRETE(3, "DISCRETE", "DISCRETE"),
 
 	/**
 	 * The '<em><b>DISCRETEBINARY</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #DISCRETEBINARY
+	 * @see #DISCRETEBINARY_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	DISCRETEBINARY_LITERAL(4, "DISCRETEBINARY", "DISCRETEBINARY"),
+	DISCRETEBINARY(4, "DISCRETEBINARY", "DISCRETEBINARY"),
 
 	/**
 	 * The '<em><b>PIECEWISEBINARY</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #PIECEWISEBINARY
+	 * @see #PIECEWISEBINARY_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	PIECEWISEBINARY_LITERAL(5, "PIECEWISEBINARY", "PIECEWISEBINARY"),
+	PIECEWISEBINARY(5, "PIECEWISEBINARY", "PIECEWISEBINARY"),
 
 	/**
 	 * The '<em><b>PIECEWISECONSTANT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #PIECEWISECONSTANT
+	 * @see #PIECEWISECONSTANT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	PIECEWISECONSTANT_LITERAL(6, "PIECEWISECONSTANT", "PIECEWISECONSTANT"),
+	PIECEWISECONSTANT(6, "PIECEWISECONSTANT", "PIECEWISECONSTANT"),
 
 	/**
 	 * The '<em><b>PIECEWISECONTINUOUS</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #PIECEWISECONTINUOUS
+	 * @see #PIECEWISECONTINUOUS_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	PIECEWISECONTINUOUS_LITERAL(7, "PIECEWISECONTINUOUS", "PIECEWISECONTINUOUS");
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
+	PIECEWISECONTINUOUS(7, "PIECEWISECONTINUOUS", "PIECEWISECONTINUOUS");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -131,12 +124,12 @@ public enum IfcTimeSeriesDataTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NULL_LITERAL
+	 * @see #NULL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NULL = 0;
+	public static final int NULL_VALUE = 0;
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
@@ -146,12 +139,12 @@ public enum IfcTimeSeriesDataTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_LITERAL
+	 * @see #NOTDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED = 1;
+	public static final int NOTDEFINED_VALUE = 1;
 
 	/**
 	 * The '<em><b>CONTINUOUS</b></em>' literal value.
@@ -161,12 +154,12 @@ public enum IfcTimeSeriesDataTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #CONTINUOUS_LITERAL
+	 * @see #CONTINUOUS
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int CONTINUOUS = 2;
+	public static final int CONTINUOUS_VALUE = 2;
 
 	/**
 	 * The '<em><b>DISCRETE</b></em>' literal value.
@@ -176,12 +169,12 @@ public enum IfcTimeSeriesDataTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #DISCRETE_LITERAL
+	 * @see #DISCRETE
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int DISCRETE = 3;
+	public static final int DISCRETE_VALUE = 3;
 
 	/**
 	 * The '<em><b>DISCRETEBINARY</b></em>' literal value.
@@ -191,12 +184,12 @@ public enum IfcTimeSeriesDataTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #DISCRETEBINARY_LITERAL
+	 * @see #DISCRETEBINARY
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int DISCRETEBINARY = 4;
+	public static final int DISCRETEBINARY_VALUE = 4;
 
 	/**
 	 * The '<em><b>PIECEWISEBINARY</b></em>' literal value.
@@ -206,12 +199,12 @@ public enum IfcTimeSeriesDataTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #PIECEWISEBINARY_LITERAL
+	 * @see #PIECEWISEBINARY
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PIECEWISEBINARY = 5;
+	public static final int PIECEWISEBINARY_VALUE = 5;
 
 	/**
 	 * The '<em><b>PIECEWISECONSTANT</b></em>' literal value.
@@ -221,12 +214,12 @@ public enum IfcTimeSeriesDataTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #PIECEWISECONSTANT_LITERAL
+	 * @see #PIECEWISECONSTANT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PIECEWISECONSTANT = 6;
+	public static final int PIECEWISECONSTANT_VALUE = 6;
 
 	/**
 	 * The '<em><b>PIECEWISECONTINUOUS</b></em>' literal value.
@@ -236,12 +229,12 @@ public enum IfcTimeSeriesDataTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #PIECEWISECONTINUOUS_LITERAL
+	 * @see #PIECEWISECONTINUOUS
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PIECEWISECONTINUOUS = 7;
+	public static final int PIECEWISECONTINUOUS_VALUE = 7;
 
 	/**
 	 * An array of all the '<em><b>Ifc Time Series Data Type Enum</b></em>' enumerators.
@@ -250,16 +243,15 @@ public enum IfcTimeSeriesDataTypeEnum implements Enumerator
 	 * @generated
 	 */
 	private static final IfcTimeSeriesDataTypeEnum[] VALUES_ARRAY =
-		new IfcTimeSeriesDataTypeEnum[]
-		{
-			NULL_LITERAL,
-			NOTDEFINED_LITERAL,
-			CONTINUOUS_LITERAL,
-			DISCRETE_LITERAL,
-			DISCRETEBINARY_LITERAL,
-			PIECEWISEBINARY_LITERAL,
-			PIECEWISECONSTANT_LITERAL,
-			PIECEWISECONTINUOUS_LITERAL,
+		new IfcTimeSeriesDataTypeEnum[] {
+			NULL,
+			NOTDEFINED,
+			CONTINUOUS,
+			DISCRETE,
+			DISCRETEBINARY,
+			PIECEWISEBINARY,
+			PIECEWISECONSTANT,
+			PIECEWISECONTINUOUS,
 		};
 
 	/**
@@ -278,11 +270,9 @@ public enum IfcTimeSeriesDataTypeEnum implements Enumerator
 	 */
 	public static IfcTimeSeriesDataTypeEnum get(String literal)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcTimeSeriesDataTypeEnum result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal))
-			{
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -297,11 +287,9 @@ public enum IfcTimeSeriesDataTypeEnum implements Enumerator
 	 */
 	public static IfcTimeSeriesDataTypeEnum getByName(String name)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcTimeSeriesDataTypeEnum result = VALUES_ARRAY[i];
-			if (result.getName().equals(name))
-			{
+			if (result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -316,16 +304,15 @@ public enum IfcTimeSeriesDataTypeEnum implements Enumerator
 	 */
 	public static IfcTimeSeriesDataTypeEnum get(int value)
 	{
-		switch (value)
-		{
-			case NULL: return NULL_LITERAL;
-			case NOTDEFINED: return NOTDEFINED_LITERAL;
-			case CONTINUOUS: return CONTINUOUS_LITERAL;
-			case DISCRETE: return DISCRETE_LITERAL;
-			case DISCRETEBINARY: return DISCRETEBINARY_LITERAL;
-			case PIECEWISEBINARY: return PIECEWISEBINARY_LITERAL;
-			case PIECEWISECONSTANT: return PIECEWISECONSTANT_LITERAL;
-			case PIECEWISECONTINUOUS: return PIECEWISECONTINUOUS_LITERAL;
+		switch (value) {
+			case NULL_VALUE: return NULL;
+			case NOTDEFINED_VALUE: return NOTDEFINED;
+			case CONTINUOUS_VALUE: return CONTINUOUS;
+			case DISCRETE_VALUE: return DISCRETE;
+			case DISCRETEBINARY_VALUE: return DISCRETEBINARY;
+			case PIECEWISEBINARY_VALUE: return PIECEWISEBINARY;
+			case PIECEWISECONSTANT_VALUE: return PIECEWISECONSTANT;
+			case PIECEWISECONTINUOUS_VALUE: return PIECEWISECONTINUOUS;
 		}
 		return null;
 	}

@@ -29,7 +29,7 @@ public class GetProjectByNameDatabaseAction extends BimDatabaseAction<Project> {
 			throw new UserException("Project does not exist");
 		}
 		User user = getUserByUoid(actionUoid);
-		if (project.getState() == ObjectState.DELETED_LITERAL && user.getUserType() != UserType.ADMIN_LITERAL) {
+		if (project.getState() == ObjectState.DELETED && user.getUserType() != UserType.ADMIN) {
 			throw new UserException("Project has been deleted");
 		}
 		if (RightsManager.hasRightsOnProjectOrSuperProjectsOrSubProjects(user, project)) {

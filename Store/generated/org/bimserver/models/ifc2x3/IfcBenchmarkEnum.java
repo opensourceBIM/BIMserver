@@ -40,78 +40,71 @@ public enum IfcBenchmarkEnum implements Enumerator
 	 * The '<em><b>NULL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NULL
+	 * @see #NULL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NULL_LITERAL(0, "NULL", "NULL"),
+	NULL(0, "NULL", "NULL"),
 
 	/**
 	 * The '<em><b>LESSTHAN</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #LESSTHAN
+	 * @see #LESSTHAN_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	LESSTHAN_LITERAL(1, "LESSTHAN", "LESSTHAN"),
+	LESSTHAN(1, "LESSTHAN", "LESSTHAN"),
 
 	/**
 	 * The '<em><b>GREATERTHANOREQUALTO</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #GREATERTHANOREQUALTO
+	 * @see #GREATERTHANOREQUALTO_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	GREATERTHANOREQUALTO_LITERAL(2, "GREATERTHANOREQUALTO", "GREATERTHANOREQUALTO"),
+	GREATERTHANOREQUALTO(2, "GREATERTHANOREQUALTO", "GREATERTHANOREQUALTO"),
 
 	/**
 	 * The '<em><b>EQUALTO</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #EQUALTO
+	 * @see #EQUALTO_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	EQUALTO_LITERAL(3, "EQUALTO", "EQUALTO"),
+	EQUALTO(3, "EQUALTO", "EQUALTO"),
 
 	/**
 	 * The '<em><b>LESSTHANOREQUALTO</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #LESSTHANOREQUALTO
+	 * @see #LESSTHANOREQUALTO_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	LESSTHANOREQUALTO_LITERAL(4, "LESSTHANOREQUALTO", "LESSTHANOREQUALTO"),
+	LESSTHANOREQUALTO(4, "LESSTHANOREQUALTO", "LESSTHANOREQUALTO"),
 
 	/**
 	 * The '<em><b>NOTEQUALTO</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NOTEQUALTO
+	 * @see #NOTEQUALTO_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NOTEQUALTO_LITERAL(5, "NOTEQUALTO", "NOTEQUALTO"),
+	NOTEQUALTO(5, "NOTEQUALTO", "NOTEQUALTO"),
 
 	/**
 	 * The '<em><b>GREATERTHAN</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #GREATERTHAN
+	 * @see #GREATERTHAN_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	GREATERTHAN_LITERAL(6, "GREATERTHAN", "GREATERTHAN");
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
+	GREATERTHAN(6, "GREATERTHAN", "GREATERTHAN");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -121,12 +114,12 @@ public enum IfcBenchmarkEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NULL_LITERAL
+	 * @see #NULL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NULL = 0;
+	public static final int NULL_VALUE = 0;
 
 	/**
 	 * The '<em><b>LESSTHAN</b></em>' literal value.
@@ -136,12 +129,12 @@ public enum IfcBenchmarkEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #LESSTHAN_LITERAL
+	 * @see #LESSTHAN
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int LESSTHAN = 1;
+	public static final int LESSTHAN_VALUE = 1;
 
 	/**
 	 * The '<em><b>GREATERTHANOREQUALTO</b></em>' literal value.
@@ -151,12 +144,12 @@ public enum IfcBenchmarkEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #GREATERTHANOREQUALTO_LITERAL
+	 * @see #GREATERTHANOREQUALTO
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int GREATERTHANOREQUALTO = 2;
+	public static final int GREATERTHANOREQUALTO_VALUE = 2;
 
 	/**
 	 * The '<em><b>EQUALTO</b></em>' literal value.
@@ -166,12 +159,12 @@ public enum IfcBenchmarkEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #EQUALTO_LITERAL
+	 * @see #EQUALTO
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int EQUALTO = 3;
+	public static final int EQUALTO_VALUE = 3;
 
 	/**
 	 * The '<em><b>LESSTHANOREQUALTO</b></em>' literal value.
@@ -181,12 +174,12 @@ public enum IfcBenchmarkEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #LESSTHANOREQUALTO_LITERAL
+	 * @see #LESSTHANOREQUALTO
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int LESSTHANOREQUALTO = 4;
+	public static final int LESSTHANOREQUALTO_VALUE = 4;
 
 	/**
 	 * The '<em><b>NOTEQUALTO</b></em>' literal value.
@@ -196,12 +189,12 @@ public enum IfcBenchmarkEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NOTEQUALTO_LITERAL
+	 * @see #NOTEQUALTO
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTEQUALTO = 5;
+	public static final int NOTEQUALTO_VALUE = 5;
 
 	/**
 	 * The '<em><b>GREATERTHAN</b></em>' literal value.
@@ -211,12 +204,12 @@ public enum IfcBenchmarkEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #GREATERTHAN_LITERAL
+	 * @see #GREATERTHAN
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int GREATERTHAN = 6;
+	public static final int GREATERTHAN_VALUE = 6;
 
 	/**
 	 * An array of all the '<em><b>Ifc Benchmark Enum</b></em>' enumerators.
@@ -225,15 +218,14 @@ public enum IfcBenchmarkEnum implements Enumerator
 	 * @generated
 	 */
 	private static final IfcBenchmarkEnum[] VALUES_ARRAY =
-		new IfcBenchmarkEnum[]
-		{
-			NULL_LITERAL,
-			LESSTHAN_LITERAL,
-			GREATERTHANOREQUALTO_LITERAL,
-			EQUALTO_LITERAL,
-			LESSTHANOREQUALTO_LITERAL,
-			NOTEQUALTO_LITERAL,
-			GREATERTHAN_LITERAL,
+		new IfcBenchmarkEnum[] {
+			NULL,
+			LESSTHAN,
+			GREATERTHANOREQUALTO,
+			EQUALTO,
+			LESSTHANOREQUALTO,
+			NOTEQUALTO,
+			GREATERTHAN,
 		};
 
 	/**
@@ -252,11 +244,9 @@ public enum IfcBenchmarkEnum implements Enumerator
 	 */
 	public static IfcBenchmarkEnum get(String literal)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcBenchmarkEnum result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal))
-			{
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -271,11 +261,9 @@ public enum IfcBenchmarkEnum implements Enumerator
 	 */
 	public static IfcBenchmarkEnum getByName(String name)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcBenchmarkEnum result = VALUES_ARRAY[i];
-			if (result.getName().equals(name))
-			{
+			if (result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -290,15 +278,14 @@ public enum IfcBenchmarkEnum implements Enumerator
 	 */
 	public static IfcBenchmarkEnum get(int value)
 	{
-		switch (value)
-		{
-			case NULL: return NULL_LITERAL;
-			case LESSTHAN: return LESSTHAN_LITERAL;
-			case GREATERTHANOREQUALTO: return GREATERTHANOREQUALTO_LITERAL;
-			case EQUALTO: return EQUALTO_LITERAL;
-			case LESSTHANOREQUALTO: return LESSTHANOREQUALTO_LITERAL;
-			case NOTEQUALTO: return NOTEQUALTO_LITERAL;
-			case GREATERTHAN: return GREATERTHAN_LITERAL;
+		switch (value) {
+			case NULL_VALUE: return NULL;
+			case LESSTHAN_VALUE: return LESSTHAN;
+			case GREATERTHANOREQUALTO_VALUE: return GREATERTHANOREQUALTO;
+			case EQUALTO_VALUE: return EQUALTO;
+			case LESSTHANOREQUALTO_VALUE: return LESSTHANOREQUALTO;
+			case NOTEQUALTO_VALUE: return NOTEQUALTO;
+			case GREATERTHAN_VALUE: return GREATERTHAN;
 		}
 		return null;
 	}

@@ -60,7 +60,7 @@ public class ClashDetectionLongAction extends LongAction {
 		try {
 			Project project = session.get(StorePackage.eINSTANCE.getProject(), poid, false);
 			Revision revision = project.getLastRevision();
-			revision.setState(CheckinState.SEARCHING_CLASHES_LITERAL);
+			revision.setState(CheckinState.SEARCHING_CLASHES);
 			roid = revision.getOid();
 			session.store(revision);
 			session.commit();
@@ -77,7 +77,7 @@ public class ClashDetectionLongAction extends LongAction {
 			ClashDetectionSettings clashDetectionSettings = StoreFactory.eINSTANCE.createClashDetectionSettings();
 			clashDetectionSettings.setMargin(project.getClashDetectionSettings().getMargin());
 			clashDetectionSettings.getRevisions().add(project.getLastRevision());
-			FindClashesDatabaseAction findClashesDatabaseAction = new FindClashesDatabaseAction(session, AccessMethod.INTERNAL_LITERAL, clashDetectionSettings, schema, ifcEngineFactory, fieldIgnoreMap, roid);
+			FindClashesDatabaseAction findClashesDatabaseAction = new FindClashesDatabaseAction(session, AccessMethod.INTERNAL, clashDetectionSettings, schema, ifcEngineFactory, fieldIgnoreMap, roid);
 			Set<? extends Clash> clashes = findClashesDatabaseAction.execute();
 			Revision revision = project.getLastRevision();
 // Temporarily disabled, should be enabled when lazy loading is working
@@ -86,7 +86,7 @@ public class ClashDetectionLongAction extends LongAction {
 //				session.store(clash);
 //			}
 			revision.setNrClashes(clashes.size());
-			revision.setState(CheckinState.DONE_LITERAL);
+			revision.setState(CheckinState.DONE);
 			session.store(revision);
 
 			Set<String> emailAddresses = new HashSet<String>();
@@ -98,7 +98,7 @@ public class ClashDetectionLongAction extends LongAction {
 				String[] emailAddressesArray = new String[emailAddresses.size()];
 				emailAddresses.toArray(emailAddressesArray);
 				
-				SendClashesEmailDatabaseAction sendClashesEmailDatabaseAction = new SendClashesEmailDatabaseAction(session, AccessMethod.INTERNAL_LITERAL, settingsManager, mailSystem, actingUoid, poid, Service.convert(clashDetectionSettings), emailAddresses);
+				SendClashesEmailDatabaseAction sendClashesEmailDatabaseAction = new SendClashesEmailDatabaseAction(session, AccessMethod.INTERNAL, settingsManager, mailSystem, actingUoid, poid, Service.convert(clashDetectionSettings), emailAddresses);
 				sendClashesEmailDatabaseAction.execute();
 			}
 			session.commit();
@@ -112,7 +112,7 @@ public class ClashDetectionLongAction extends LongAction {
 						throwable = throwable.getCause();
 					}
 					Revision revision = rollBackSession.get(StorePackage.eINSTANCE.getRevision(), roid, false);
-					revision.setState(CheckinState.CLASHES_ERROR_LITERAL);
+					revision.setState(CheckinState.CLASHES_ERROR);
 					revision.setLastError(throwable.getMessage());
 					rollBackSession.store(revision);
 					rollBackSession.commit();

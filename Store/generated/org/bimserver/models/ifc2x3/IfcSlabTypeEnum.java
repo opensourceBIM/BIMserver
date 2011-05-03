@@ -40,78 +40,71 @@ public enum IfcSlabTypeEnum implements Enumerator
 	 * The '<em><b>NULL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NULL
+	 * @see #NULL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NULL_LITERAL(0, "NULL", "NULL"),
+	NULL(0, "NULL", "NULL"),
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED
+	 * @see #NOTDEFINED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED_LITERAL(1, "NOTDEFINED", "NOTDEFINED"),
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>BASESLAB</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #BASESLAB
+	 * @see #BASESLAB_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	BASESLAB_LITERAL(2, "BASESLAB", "BASESLAB"),
+	BASESLAB(2, "BASESLAB", "BASESLAB"),
 
 	/**
 	 * The '<em><b>FLOOR</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #FLOOR
+	 * @see #FLOOR_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	FLOOR_LITERAL(3, "FLOOR", "FLOOR"),
+	FLOOR(3, "FLOOR", "FLOOR"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
+	 * @see #USERDEFINED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	USERDEFINED_LITERAL(4, "USERDEFINED", "USERDEFINED"),
+	USERDEFINED(4, "USERDEFINED", "USERDEFINED"),
 
 	/**
 	 * The '<em><b>LANDING</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #LANDING
+	 * @see #LANDING_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	LANDING_LITERAL(5, "LANDING", "LANDING"),
+	LANDING(5, "LANDING", "LANDING"),
 
 	/**
 	 * The '<em><b>ROOF</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #ROOF
+	 * @see #ROOF_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	ROOF_LITERAL(6, "ROOF", "ROOF");
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
+	ROOF(6, "ROOF", "ROOF");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -121,12 +114,12 @@ public enum IfcSlabTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NULL_LITERAL
+	 * @see #NULL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NULL = 0;
+	public static final int NULL_VALUE = 0;
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
@@ -136,12 +129,12 @@ public enum IfcSlabTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_LITERAL
+	 * @see #NOTDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED = 1;
+	public static final int NOTDEFINED_VALUE = 1;
 
 	/**
 	 * The '<em><b>BASESLAB</b></em>' literal value.
@@ -151,12 +144,12 @@ public enum IfcSlabTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #BASESLAB_LITERAL
+	 * @see #BASESLAB
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int BASESLAB = 2;
+	public static final int BASESLAB_VALUE = 2;
 
 	/**
 	 * The '<em><b>FLOOR</b></em>' literal value.
@@ -166,12 +159,12 @@ public enum IfcSlabTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #FLOOR_LITERAL
+	 * @see #FLOOR
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int FLOOR = 3;
+	public static final int FLOOR_VALUE = 3;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -181,12 +174,12 @@ public enum IfcSlabTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_LITERAL
+	 * @see #USERDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED = 4;
+	public static final int USERDEFINED_VALUE = 4;
 
 	/**
 	 * The '<em><b>LANDING</b></em>' literal value.
@@ -196,12 +189,12 @@ public enum IfcSlabTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #LANDING_LITERAL
+	 * @see #LANDING
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int LANDING = 5;
+	public static final int LANDING_VALUE = 5;
 
 	/**
 	 * The '<em><b>ROOF</b></em>' literal value.
@@ -211,12 +204,12 @@ public enum IfcSlabTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ROOF_LITERAL
+	 * @see #ROOF
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ROOF = 6;
+	public static final int ROOF_VALUE = 6;
 
 	/**
 	 * An array of all the '<em><b>Ifc Slab Type Enum</b></em>' enumerators.
@@ -225,15 +218,14 @@ public enum IfcSlabTypeEnum implements Enumerator
 	 * @generated
 	 */
 	private static final IfcSlabTypeEnum[] VALUES_ARRAY =
-		new IfcSlabTypeEnum[]
-		{
-			NULL_LITERAL,
-			NOTDEFINED_LITERAL,
-			BASESLAB_LITERAL,
-			FLOOR_LITERAL,
-			USERDEFINED_LITERAL,
-			LANDING_LITERAL,
-			ROOF_LITERAL,
+		new IfcSlabTypeEnum[] {
+			NULL,
+			NOTDEFINED,
+			BASESLAB,
+			FLOOR,
+			USERDEFINED,
+			LANDING,
+			ROOF,
 		};
 
 	/**
@@ -252,11 +244,9 @@ public enum IfcSlabTypeEnum implements Enumerator
 	 */
 	public static IfcSlabTypeEnum get(String literal)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcSlabTypeEnum result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal))
-			{
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -271,11 +261,9 @@ public enum IfcSlabTypeEnum implements Enumerator
 	 */
 	public static IfcSlabTypeEnum getByName(String name)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcSlabTypeEnum result = VALUES_ARRAY[i];
-			if (result.getName().equals(name))
-			{
+			if (result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -290,15 +278,14 @@ public enum IfcSlabTypeEnum implements Enumerator
 	 */
 	public static IfcSlabTypeEnum get(int value)
 	{
-		switch (value)
-		{
-			case NULL: return NULL_LITERAL;
-			case NOTDEFINED: return NOTDEFINED_LITERAL;
-			case BASESLAB: return BASESLAB_LITERAL;
-			case FLOOR: return FLOOR_LITERAL;
-			case USERDEFINED: return USERDEFINED_LITERAL;
-			case LANDING: return LANDING_LITERAL;
-			case ROOF: return ROOF_LITERAL;
+		switch (value) {
+			case NULL_VALUE: return NULL;
+			case NOTDEFINED_VALUE: return NOTDEFINED;
+			case BASESLAB_VALUE: return BASESLAB;
+			case FLOOR_VALUE: return FLOOR;
+			case USERDEFINED_VALUE: return USERDEFINED;
+			case LANDING_VALUE: return LANDING;
+			case ROOF_VALUE: return ROOF;
 		}
 		return null;
 	}

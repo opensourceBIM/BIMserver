@@ -52,13 +52,6 @@ public class IfcTypeObjectImpl extends IfcObjectDefinitionImpl implements IfcTyp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	protected IfcTypeObjectImpl()
 	{
 		super();
@@ -72,7 +65,7 @@ public class IfcTypeObjectImpl extends IfcObjectDefinitionImpl implements IfcTyp
 	@Override
 	protected EClass eStaticClass()
 	{
-		return Ifc2x3Package.Literals.IFC_TYPE_OBJECT;
+		return Ifc2x3Package.eINSTANCE.getIfcTypeObject();
 	}
 
 	/**
@@ -82,7 +75,7 @@ public class IfcTypeObjectImpl extends IfcObjectDefinitionImpl implements IfcTyp
 	 */
 	public String getApplicableOccurrence()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_TYPE_OBJECT__APPLICABLE_OCCURRENCE, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcTypeObject_ApplicableOccurrence(), true);
 	}
 
 	/**
@@ -92,7 +85,7 @@ public class IfcTypeObjectImpl extends IfcObjectDefinitionImpl implements IfcTyp
 	 */
 	public void setApplicableOccurrence(String newApplicableOccurrence)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_TYPE_OBJECT__APPLICABLE_OCCURRENCE, newApplicableOccurrence);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcTypeObject_ApplicableOccurrence(), newApplicableOccurrence);
 	}
 
 	/**
@@ -102,7 +95,7 @@ public class IfcTypeObjectImpl extends IfcObjectDefinitionImpl implements IfcTyp
 	 */
 	public void unsetApplicableOccurrence()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_TYPE_OBJECT__APPLICABLE_OCCURRENCE);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcTypeObject_ApplicableOccurrence());
 	}
 
 	/**
@@ -112,7 +105,7 @@ public class IfcTypeObjectImpl extends IfcObjectDefinitionImpl implements IfcTyp
 	 */
 	public boolean isSetApplicableOccurrence()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_TYPE_OBJECT__APPLICABLE_OCCURRENCE);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcTypeObject_ApplicableOccurrence());
 	}
 
 	/**
@@ -123,7 +116,7 @@ public class IfcTypeObjectImpl extends IfcObjectDefinitionImpl implements IfcTyp
 	@SuppressWarnings("unchecked")
 	public EList<IfcPropertySetDefinition> getHasPropertySets()
 	{
-		return (EList<IfcPropertySetDefinition>)eGet(Ifc2x3Package.Literals.IFC_TYPE_OBJECT__HAS_PROPERTY_SETS, true);
+		return (EList<IfcPropertySetDefinition>)eGet(Ifc2x3Package.eINSTANCE.getIfcTypeObject_HasPropertySets(), true);
 	}
 
 	/**
@@ -133,7 +126,7 @@ public class IfcTypeObjectImpl extends IfcObjectDefinitionImpl implements IfcTyp
 	 */
 	public void unsetHasPropertySets()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_TYPE_OBJECT__HAS_PROPERTY_SETS);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcTypeObject_HasPropertySets());
 	}
 
 	/**
@@ -143,7 +136,7 @@ public class IfcTypeObjectImpl extends IfcObjectDefinitionImpl implements IfcTyp
 	 */
 	public boolean isSetHasPropertySets()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_TYPE_OBJECT__HAS_PROPERTY_SETS);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcTypeObject_HasPropertySets());
 	}
 
 	/**
@@ -154,7 +147,7 @@ public class IfcTypeObjectImpl extends IfcObjectDefinitionImpl implements IfcTyp
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelDefinesByType> getObjectTypeOf()
 	{
-		return (EList<IfcRelDefinesByType>)eGet(Ifc2x3Package.Literals.IFC_TYPE_OBJECT__OBJECT_TYPE_OF, true);
+		return (EList<IfcRelDefinesByType>)eGet(Ifc2x3Package.eINSTANCE.getIfcTypeObject_ObjectTypeOf(), true);
 	}
 
 } //IfcTypeObjectImpl

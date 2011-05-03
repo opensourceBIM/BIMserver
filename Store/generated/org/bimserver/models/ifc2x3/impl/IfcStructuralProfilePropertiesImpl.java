@@ -77,13 +77,6 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	protected IfcStructuralProfilePropertiesImpl()
 	{
 		super();
@@ -97,7 +90,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	@Override
 	protected EClass eStaticClass()
 	{
-		return Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES;
+		return Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties();
 	}
 
 	/**
@@ -107,7 +100,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public float getTorsionalConstantX()
 	{
-		return (Float)eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__TORSIONAL_CONSTANT_X, true);
+		return (Float)eGet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_TorsionalConstantX(), true);
 	}
 
 	/**
@@ -117,7 +110,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public void setTorsionalConstantX(float newTorsionalConstantX)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__TORSIONAL_CONSTANT_X, newTorsionalConstantX);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_TorsionalConstantX(), newTorsionalConstantX);
 	}
 
 	/**
@@ -127,7 +120,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public void unsetTorsionalConstantX()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__TORSIONAL_CONSTANT_X);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_TorsionalConstantX());
 	}
 
 	/**
@@ -137,7 +130,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public boolean isSetTorsionalConstantX()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__TORSIONAL_CONSTANT_X);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_TorsionalConstantX());
 	}
 
 	/**
@@ -147,7 +140,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public String getTorsionalConstantXAsString()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__TORSIONAL_CONSTANT_XAS_STRING, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_TorsionalConstantXAsString(), true);
 	}
 
 	/**
@@ -157,7 +150,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public void setTorsionalConstantXAsString(String newTorsionalConstantXAsString)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__TORSIONAL_CONSTANT_XAS_STRING, newTorsionalConstantXAsString);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_TorsionalConstantXAsString(), newTorsionalConstantXAsString);
 	}
 
 	/**
@@ -167,7 +160,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public void unsetTorsionalConstantXAsString()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__TORSIONAL_CONSTANT_XAS_STRING);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_TorsionalConstantXAsString());
 	}
 
 	/**
@@ -177,7 +170,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public boolean isSetTorsionalConstantXAsString()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__TORSIONAL_CONSTANT_XAS_STRING);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_TorsionalConstantXAsString());
 	}
 
 	/**
@@ -187,7 +180,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public float getMomentOfInertiaYZ()
 	{
-		return (Float)eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__MOMENT_OF_INERTIA_YZ, true);
+		return (Float)eGet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_MomentOfInertiaYZ(), true);
 	}
 
 	/**
@@ -197,7 +190,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public void setMomentOfInertiaYZ(float newMomentOfInertiaYZ)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__MOMENT_OF_INERTIA_YZ, newMomentOfInertiaYZ);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_MomentOfInertiaYZ(), newMomentOfInertiaYZ);
 	}
 
 	/**
@@ -207,7 +200,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public void unsetMomentOfInertiaYZ()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__MOMENT_OF_INERTIA_YZ);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_MomentOfInertiaYZ());
 	}
 
 	/**
@@ -217,7 +210,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public boolean isSetMomentOfInertiaYZ()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__MOMENT_OF_INERTIA_YZ);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_MomentOfInertiaYZ());
 	}
 
 	/**
@@ -227,7 +220,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public String getMomentOfInertiaYZAsString()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__MOMENT_OF_INERTIA_YZ_AS_STRING, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_MomentOfInertiaYZAsString(), true);
 	}
 
 	/**
@@ -237,7 +230,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public void setMomentOfInertiaYZAsString(String newMomentOfInertiaYZAsString)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__MOMENT_OF_INERTIA_YZ_AS_STRING, newMomentOfInertiaYZAsString);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_MomentOfInertiaYZAsString(), newMomentOfInertiaYZAsString);
 	}
 
 	/**
@@ -247,7 +240,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public void unsetMomentOfInertiaYZAsString()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__MOMENT_OF_INERTIA_YZ_AS_STRING);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_MomentOfInertiaYZAsString());
 	}
 
 	/**
@@ -257,7 +250,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public boolean isSetMomentOfInertiaYZAsString()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__MOMENT_OF_INERTIA_YZ_AS_STRING);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_MomentOfInertiaYZAsString());
 	}
 
 	/**
@@ -267,7 +260,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public float getMomentOfInertiaY()
 	{
-		return (Float)eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__MOMENT_OF_INERTIA_Y, true);
+		return (Float)eGet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_MomentOfInertiaY(), true);
 	}
 
 	/**
@@ -277,7 +270,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public void setMomentOfInertiaY(float newMomentOfInertiaY)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__MOMENT_OF_INERTIA_Y, newMomentOfInertiaY);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_MomentOfInertiaY(), newMomentOfInertiaY);
 	}
 
 	/**
@@ -287,7 +280,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public void unsetMomentOfInertiaY()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__MOMENT_OF_INERTIA_Y);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_MomentOfInertiaY());
 	}
 
 	/**
@@ -297,7 +290,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public boolean isSetMomentOfInertiaY()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__MOMENT_OF_INERTIA_Y);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_MomentOfInertiaY());
 	}
 
 	/**
@@ -307,7 +300,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public String getMomentOfInertiaYAsString()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__MOMENT_OF_INERTIA_YAS_STRING, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_MomentOfInertiaYAsString(), true);
 	}
 
 	/**
@@ -317,7 +310,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public void setMomentOfInertiaYAsString(String newMomentOfInertiaYAsString)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__MOMENT_OF_INERTIA_YAS_STRING, newMomentOfInertiaYAsString);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_MomentOfInertiaYAsString(), newMomentOfInertiaYAsString);
 	}
 
 	/**
@@ -327,7 +320,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public void unsetMomentOfInertiaYAsString()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__MOMENT_OF_INERTIA_YAS_STRING);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_MomentOfInertiaYAsString());
 	}
 
 	/**
@@ -337,7 +330,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public boolean isSetMomentOfInertiaYAsString()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__MOMENT_OF_INERTIA_YAS_STRING);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_MomentOfInertiaYAsString());
 	}
 
 	/**
@@ -347,7 +340,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public float getMomentOfInertiaZ()
 	{
-		return (Float)eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__MOMENT_OF_INERTIA_Z, true);
+		return (Float)eGet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_MomentOfInertiaZ(), true);
 	}
 
 	/**
@@ -357,7 +350,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public void setMomentOfInertiaZ(float newMomentOfInertiaZ)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__MOMENT_OF_INERTIA_Z, newMomentOfInertiaZ);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_MomentOfInertiaZ(), newMomentOfInertiaZ);
 	}
 
 	/**
@@ -367,7 +360,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public void unsetMomentOfInertiaZ()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__MOMENT_OF_INERTIA_Z);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_MomentOfInertiaZ());
 	}
 
 	/**
@@ -377,7 +370,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public boolean isSetMomentOfInertiaZ()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__MOMENT_OF_INERTIA_Z);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_MomentOfInertiaZ());
 	}
 
 	/**
@@ -387,7 +380,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public String getMomentOfInertiaZAsString()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__MOMENT_OF_INERTIA_ZAS_STRING, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_MomentOfInertiaZAsString(), true);
 	}
 
 	/**
@@ -397,7 +390,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public void setMomentOfInertiaZAsString(String newMomentOfInertiaZAsString)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__MOMENT_OF_INERTIA_ZAS_STRING, newMomentOfInertiaZAsString);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_MomentOfInertiaZAsString(), newMomentOfInertiaZAsString);
 	}
 
 	/**
@@ -407,7 +400,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public void unsetMomentOfInertiaZAsString()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__MOMENT_OF_INERTIA_ZAS_STRING);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_MomentOfInertiaZAsString());
 	}
 
 	/**
@@ -417,7 +410,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public boolean isSetMomentOfInertiaZAsString()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__MOMENT_OF_INERTIA_ZAS_STRING);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_MomentOfInertiaZAsString());
 	}
 
 	/**
@@ -427,7 +420,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public float getWarpingConstant()
 	{
-		return (Float)eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__WARPING_CONSTANT, true);
+		return (Float)eGet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_WarpingConstant(), true);
 	}
 
 	/**
@@ -437,7 +430,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public void setWarpingConstant(float newWarpingConstant)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__WARPING_CONSTANT, newWarpingConstant);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_WarpingConstant(), newWarpingConstant);
 	}
 
 	/**
@@ -447,7 +440,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public void unsetWarpingConstant()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__WARPING_CONSTANT);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_WarpingConstant());
 	}
 
 	/**
@@ -457,7 +450,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public boolean isSetWarpingConstant()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__WARPING_CONSTANT);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_WarpingConstant());
 	}
 
 	/**
@@ -467,7 +460,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public String getWarpingConstantAsString()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__WARPING_CONSTANT_AS_STRING, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_WarpingConstantAsString(), true);
 	}
 
 	/**
@@ -477,7 +470,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public void setWarpingConstantAsString(String newWarpingConstantAsString)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__WARPING_CONSTANT_AS_STRING, newWarpingConstantAsString);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_WarpingConstantAsString(), newWarpingConstantAsString);
 	}
 
 	/**
@@ -487,7 +480,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public void unsetWarpingConstantAsString()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__WARPING_CONSTANT_AS_STRING);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_WarpingConstantAsString());
 	}
 
 	/**
@@ -497,7 +490,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public boolean isSetWarpingConstantAsString()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__WARPING_CONSTANT_AS_STRING);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_WarpingConstantAsString());
 	}
 
 	/**
@@ -507,7 +500,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public float getShearCentreZ()
 	{
-		return (Float)eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__SHEAR_CENTRE_Z, true);
+		return (Float)eGet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_ShearCentreZ(), true);
 	}
 
 	/**
@@ -517,7 +510,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public void setShearCentreZ(float newShearCentreZ)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__SHEAR_CENTRE_Z, newShearCentreZ);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_ShearCentreZ(), newShearCentreZ);
 	}
 
 	/**
@@ -527,7 +520,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public void unsetShearCentreZ()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__SHEAR_CENTRE_Z);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_ShearCentreZ());
 	}
 
 	/**
@@ -537,7 +530,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public boolean isSetShearCentreZ()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__SHEAR_CENTRE_Z);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_ShearCentreZ());
 	}
 
 	/**
@@ -547,7 +540,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public String getShearCentreZAsString()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__SHEAR_CENTRE_ZAS_STRING, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_ShearCentreZAsString(), true);
 	}
 
 	/**
@@ -557,7 +550,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public void setShearCentreZAsString(String newShearCentreZAsString)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__SHEAR_CENTRE_ZAS_STRING, newShearCentreZAsString);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_ShearCentreZAsString(), newShearCentreZAsString);
 	}
 
 	/**
@@ -567,7 +560,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public void unsetShearCentreZAsString()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__SHEAR_CENTRE_ZAS_STRING);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_ShearCentreZAsString());
 	}
 
 	/**
@@ -577,7 +570,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public boolean isSetShearCentreZAsString()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__SHEAR_CENTRE_ZAS_STRING);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_ShearCentreZAsString());
 	}
 
 	/**
@@ -587,7 +580,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public float getShearCentreY()
 	{
-		return (Float)eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__SHEAR_CENTRE_Y, true);
+		return (Float)eGet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_ShearCentreY(), true);
 	}
 
 	/**
@@ -597,7 +590,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public void setShearCentreY(float newShearCentreY)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__SHEAR_CENTRE_Y, newShearCentreY);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_ShearCentreY(), newShearCentreY);
 	}
 
 	/**
@@ -607,7 +600,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public void unsetShearCentreY()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__SHEAR_CENTRE_Y);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_ShearCentreY());
 	}
 
 	/**
@@ -617,7 +610,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public boolean isSetShearCentreY()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__SHEAR_CENTRE_Y);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_ShearCentreY());
 	}
 
 	/**
@@ -627,7 +620,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public String getShearCentreYAsString()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__SHEAR_CENTRE_YAS_STRING, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_ShearCentreYAsString(), true);
 	}
 
 	/**
@@ -637,7 +630,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public void setShearCentreYAsString(String newShearCentreYAsString)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__SHEAR_CENTRE_YAS_STRING, newShearCentreYAsString);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_ShearCentreYAsString(), newShearCentreYAsString);
 	}
 
 	/**
@@ -647,7 +640,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public void unsetShearCentreYAsString()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__SHEAR_CENTRE_YAS_STRING);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_ShearCentreYAsString());
 	}
 
 	/**
@@ -657,7 +650,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public boolean isSetShearCentreYAsString()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__SHEAR_CENTRE_YAS_STRING);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_ShearCentreYAsString());
 	}
 
 	/**
@@ -667,7 +660,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public float getShearDeformationAreaZ()
 	{
-		return (Float)eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__SHEAR_DEFORMATION_AREA_Z, true);
+		return (Float)eGet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_ShearDeformationAreaZ(), true);
 	}
 
 	/**
@@ -677,7 +670,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public void setShearDeformationAreaZ(float newShearDeformationAreaZ)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__SHEAR_DEFORMATION_AREA_Z, newShearDeformationAreaZ);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_ShearDeformationAreaZ(), newShearDeformationAreaZ);
 	}
 
 	/**
@@ -687,7 +680,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public void unsetShearDeformationAreaZ()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__SHEAR_DEFORMATION_AREA_Z);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_ShearDeformationAreaZ());
 	}
 
 	/**
@@ -697,7 +690,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public boolean isSetShearDeformationAreaZ()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__SHEAR_DEFORMATION_AREA_Z);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_ShearDeformationAreaZ());
 	}
 
 	/**
@@ -707,7 +700,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public String getShearDeformationAreaZAsString()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__SHEAR_DEFORMATION_AREA_ZAS_STRING, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_ShearDeformationAreaZAsString(), true);
 	}
 
 	/**
@@ -717,7 +710,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public void setShearDeformationAreaZAsString(String newShearDeformationAreaZAsString)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__SHEAR_DEFORMATION_AREA_ZAS_STRING, newShearDeformationAreaZAsString);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_ShearDeformationAreaZAsString(), newShearDeformationAreaZAsString);
 	}
 
 	/**
@@ -727,7 +720,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public void unsetShearDeformationAreaZAsString()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__SHEAR_DEFORMATION_AREA_ZAS_STRING);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_ShearDeformationAreaZAsString());
 	}
 
 	/**
@@ -737,7 +730,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public boolean isSetShearDeformationAreaZAsString()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__SHEAR_DEFORMATION_AREA_ZAS_STRING);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_ShearDeformationAreaZAsString());
 	}
 
 	/**
@@ -747,7 +740,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public float getShearDeformationAreaY()
 	{
-		return (Float)eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__SHEAR_DEFORMATION_AREA_Y, true);
+		return (Float)eGet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_ShearDeformationAreaY(), true);
 	}
 
 	/**
@@ -757,7 +750,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public void setShearDeformationAreaY(float newShearDeformationAreaY)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__SHEAR_DEFORMATION_AREA_Y, newShearDeformationAreaY);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_ShearDeformationAreaY(), newShearDeformationAreaY);
 	}
 
 	/**
@@ -767,7 +760,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public void unsetShearDeformationAreaY()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__SHEAR_DEFORMATION_AREA_Y);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_ShearDeformationAreaY());
 	}
 
 	/**
@@ -777,7 +770,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public boolean isSetShearDeformationAreaY()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__SHEAR_DEFORMATION_AREA_Y);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_ShearDeformationAreaY());
 	}
 
 	/**
@@ -787,7 +780,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public String getShearDeformationAreaYAsString()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__SHEAR_DEFORMATION_AREA_YAS_STRING, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_ShearDeformationAreaYAsString(), true);
 	}
 
 	/**
@@ -797,7 +790,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public void setShearDeformationAreaYAsString(String newShearDeformationAreaYAsString)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__SHEAR_DEFORMATION_AREA_YAS_STRING, newShearDeformationAreaYAsString);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_ShearDeformationAreaYAsString(), newShearDeformationAreaYAsString);
 	}
 
 	/**
@@ -807,7 +800,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public void unsetShearDeformationAreaYAsString()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__SHEAR_DEFORMATION_AREA_YAS_STRING);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_ShearDeformationAreaYAsString());
 	}
 
 	/**
@@ -817,7 +810,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public boolean isSetShearDeformationAreaYAsString()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__SHEAR_DEFORMATION_AREA_YAS_STRING);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_ShearDeformationAreaYAsString());
 	}
 
 	/**
@@ -827,7 +820,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public float getMaximumSectionModulusY()
 	{
-		return (Float)eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__MAXIMUM_SECTION_MODULUS_Y, true);
+		return (Float)eGet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_MaximumSectionModulusY(), true);
 	}
 
 	/**
@@ -837,7 +830,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public void setMaximumSectionModulusY(float newMaximumSectionModulusY)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__MAXIMUM_SECTION_MODULUS_Y, newMaximumSectionModulusY);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_MaximumSectionModulusY(), newMaximumSectionModulusY);
 	}
 
 	/**
@@ -847,7 +840,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public void unsetMaximumSectionModulusY()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__MAXIMUM_SECTION_MODULUS_Y);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_MaximumSectionModulusY());
 	}
 
 	/**
@@ -857,7 +850,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public boolean isSetMaximumSectionModulusY()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__MAXIMUM_SECTION_MODULUS_Y);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_MaximumSectionModulusY());
 	}
 
 	/**
@@ -867,7 +860,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public String getMaximumSectionModulusYAsString()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__MAXIMUM_SECTION_MODULUS_YAS_STRING, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_MaximumSectionModulusYAsString(), true);
 	}
 
 	/**
@@ -877,7 +870,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public void setMaximumSectionModulusYAsString(String newMaximumSectionModulusYAsString)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__MAXIMUM_SECTION_MODULUS_YAS_STRING, newMaximumSectionModulusYAsString);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_MaximumSectionModulusYAsString(), newMaximumSectionModulusYAsString);
 	}
 
 	/**
@@ -887,7 +880,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public void unsetMaximumSectionModulusYAsString()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__MAXIMUM_SECTION_MODULUS_YAS_STRING);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_MaximumSectionModulusYAsString());
 	}
 
 	/**
@@ -897,7 +890,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public boolean isSetMaximumSectionModulusYAsString()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__MAXIMUM_SECTION_MODULUS_YAS_STRING);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_MaximumSectionModulusYAsString());
 	}
 
 	/**
@@ -907,7 +900,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public float getMinimumSectionModulusY()
 	{
-		return (Float)eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__MINIMUM_SECTION_MODULUS_Y, true);
+		return (Float)eGet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_MinimumSectionModulusY(), true);
 	}
 
 	/**
@@ -917,7 +910,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public void setMinimumSectionModulusY(float newMinimumSectionModulusY)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__MINIMUM_SECTION_MODULUS_Y, newMinimumSectionModulusY);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_MinimumSectionModulusY(), newMinimumSectionModulusY);
 	}
 
 	/**
@@ -927,7 +920,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public void unsetMinimumSectionModulusY()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__MINIMUM_SECTION_MODULUS_Y);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_MinimumSectionModulusY());
 	}
 
 	/**
@@ -937,7 +930,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public boolean isSetMinimumSectionModulusY()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__MINIMUM_SECTION_MODULUS_Y);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_MinimumSectionModulusY());
 	}
 
 	/**
@@ -947,7 +940,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public String getMinimumSectionModulusYAsString()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__MINIMUM_SECTION_MODULUS_YAS_STRING, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_MinimumSectionModulusYAsString(), true);
 	}
 
 	/**
@@ -957,7 +950,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public void setMinimumSectionModulusYAsString(String newMinimumSectionModulusYAsString)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__MINIMUM_SECTION_MODULUS_YAS_STRING, newMinimumSectionModulusYAsString);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_MinimumSectionModulusYAsString(), newMinimumSectionModulusYAsString);
 	}
 
 	/**
@@ -967,7 +960,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public void unsetMinimumSectionModulusYAsString()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__MINIMUM_SECTION_MODULUS_YAS_STRING);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_MinimumSectionModulusYAsString());
 	}
 
 	/**
@@ -977,7 +970,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public boolean isSetMinimumSectionModulusYAsString()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__MINIMUM_SECTION_MODULUS_YAS_STRING);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_MinimumSectionModulusYAsString());
 	}
 
 	/**
@@ -987,7 +980,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public float getMaximumSectionModulusZ()
 	{
-		return (Float)eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__MAXIMUM_SECTION_MODULUS_Z, true);
+		return (Float)eGet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_MaximumSectionModulusZ(), true);
 	}
 
 	/**
@@ -997,7 +990,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public void setMaximumSectionModulusZ(float newMaximumSectionModulusZ)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__MAXIMUM_SECTION_MODULUS_Z, newMaximumSectionModulusZ);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_MaximumSectionModulusZ(), newMaximumSectionModulusZ);
 	}
 
 	/**
@@ -1007,7 +1000,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public void unsetMaximumSectionModulusZ()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__MAXIMUM_SECTION_MODULUS_Z);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_MaximumSectionModulusZ());
 	}
 
 	/**
@@ -1017,7 +1010,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public boolean isSetMaximumSectionModulusZ()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__MAXIMUM_SECTION_MODULUS_Z);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_MaximumSectionModulusZ());
 	}
 
 	/**
@@ -1027,7 +1020,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public String getMaximumSectionModulusZAsString()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__MAXIMUM_SECTION_MODULUS_ZAS_STRING, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_MaximumSectionModulusZAsString(), true);
 	}
 
 	/**
@@ -1037,7 +1030,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public void setMaximumSectionModulusZAsString(String newMaximumSectionModulusZAsString)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__MAXIMUM_SECTION_MODULUS_ZAS_STRING, newMaximumSectionModulusZAsString);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_MaximumSectionModulusZAsString(), newMaximumSectionModulusZAsString);
 	}
 
 	/**
@@ -1047,7 +1040,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public void unsetMaximumSectionModulusZAsString()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__MAXIMUM_SECTION_MODULUS_ZAS_STRING);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_MaximumSectionModulusZAsString());
 	}
 
 	/**
@@ -1057,7 +1050,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public boolean isSetMaximumSectionModulusZAsString()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__MAXIMUM_SECTION_MODULUS_ZAS_STRING);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_MaximumSectionModulusZAsString());
 	}
 
 	/**
@@ -1067,7 +1060,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public float getMinimumSectionModulusZ()
 	{
-		return (Float)eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__MINIMUM_SECTION_MODULUS_Z, true);
+		return (Float)eGet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_MinimumSectionModulusZ(), true);
 	}
 
 	/**
@@ -1077,7 +1070,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public void setMinimumSectionModulusZ(float newMinimumSectionModulusZ)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__MINIMUM_SECTION_MODULUS_Z, newMinimumSectionModulusZ);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_MinimumSectionModulusZ(), newMinimumSectionModulusZ);
 	}
 
 	/**
@@ -1087,7 +1080,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public void unsetMinimumSectionModulusZ()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__MINIMUM_SECTION_MODULUS_Z);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_MinimumSectionModulusZ());
 	}
 
 	/**
@@ -1097,7 +1090,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public boolean isSetMinimumSectionModulusZ()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__MINIMUM_SECTION_MODULUS_Z);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_MinimumSectionModulusZ());
 	}
 
 	/**
@@ -1107,7 +1100,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public String getMinimumSectionModulusZAsString()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__MINIMUM_SECTION_MODULUS_ZAS_STRING, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_MinimumSectionModulusZAsString(), true);
 	}
 
 	/**
@@ -1117,7 +1110,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public void setMinimumSectionModulusZAsString(String newMinimumSectionModulusZAsString)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__MINIMUM_SECTION_MODULUS_ZAS_STRING, newMinimumSectionModulusZAsString);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_MinimumSectionModulusZAsString(), newMinimumSectionModulusZAsString);
 	}
 
 	/**
@@ -1127,7 +1120,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public void unsetMinimumSectionModulusZAsString()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__MINIMUM_SECTION_MODULUS_ZAS_STRING);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_MinimumSectionModulusZAsString());
 	}
 
 	/**
@@ -1137,7 +1130,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public boolean isSetMinimumSectionModulusZAsString()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__MINIMUM_SECTION_MODULUS_ZAS_STRING);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_MinimumSectionModulusZAsString());
 	}
 
 	/**
@@ -1147,7 +1140,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public float getTorsionalSectionModulus()
 	{
-		return (Float)eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__TORSIONAL_SECTION_MODULUS, true);
+		return (Float)eGet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_TorsionalSectionModulus(), true);
 	}
 
 	/**
@@ -1157,7 +1150,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public void setTorsionalSectionModulus(float newTorsionalSectionModulus)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__TORSIONAL_SECTION_MODULUS, newTorsionalSectionModulus);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_TorsionalSectionModulus(), newTorsionalSectionModulus);
 	}
 
 	/**
@@ -1167,7 +1160,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public void unsetTorsionalSectionModulus()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__TORSIONAL_SECTION_MODULUS);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_TorsionalSectionModulus());
 	}
 
 	/**
@@ -1177,7 +1170,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public boolean isSetTorsionalSectionModulus()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__TORSIONAL_SECTION_MODULUS);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_TorsionalSectionModulus());
 	}
 
 	/**
@@ -1187,7 +1180,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public String getTorsionalSectionModulusAsString()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__TORSIONAL_SECTION_MODULUS_AS_STRING, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_TorsionalSectionModulusAsString(), true);
 	}
 
 	/**
@@ -1197,7 +1190,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public void setTorsionalSectionModulusAsString(String newTorsionalSectionModulusAsString)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__TORSIONAL_SECTION_MODULUS_AS_STRING, newTorsionalSectionModulusAsString);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_TorsionalSectionModulusAsString(), newTorsionalSectionModulusAsString);
 	}
 
 	/**
@@ -1207,7 +1200,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public void unsetTorsionalSectionModulusAsString()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__TORSIONAL_SECTION_MODULUS_AS_STRING);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_TorsionalSectionModulusAsString());
 	}
 
 	/**
@@ -1217,7 +1210,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public boolean isSetTorsionalSectionModulusAsString()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__TORSIONAL_SECTION_MODULUS_AS_STRING);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_TorsionalSectionModulusAsString());
 	}
 
 	/**
@@ -1227,7 +1220,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public float getCentreOfGravityInX()
 	{
-		return (Float)eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__CENTRE_OF_GRAVITY_IN_X, true);
+		return (Float)eGet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_CentreOfGravityInX(), true);
 	}
 
 	/**
@@ -1237,7 +1230,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public void setCentreOfGravityInX(float newCentreOfGravityInX)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__CENTRE_OF_GRAVITY_IN_X, newCentreOfGravityInX);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_CentreOfGravityInX(), newCentreOfGravityInX);
 	}
 
 	/**
@@ -1247,7 +1240,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public void unsetCentreOfGravityInX()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__CENTRE_OF_GRAVITY_IN_X);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_CentreOfGravityInX());
 	}
 
 	/**
@@ -1257,7 +1250,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public boolean isSetCentreOfGravityInX()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__CENTRE_OF_GRAVITY_IN_X);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_CentreOfGravityInX());
 	}
 
 	/**
@@ -1267,7 +1260,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public String getCentreOfGravityInXAsString()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__CENTRE_OF_GRAVITY_IN_XAS_STRING, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_CentreOfGravityInXAsString(), true);
 	}
 
 	/**
@@ -1277,7 +1270,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public void setCentreOfGravityInXAsString(String newCentreOfGravityInXAsString)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__CENTRE_OF_GRAVITY_IN_XAS_STRING, newCentreOfGravityInXAsString);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_CentreOfGravityInXAsString(), newCentreOfGravityInXAsString);
 	}
 
 	/**
@@ -1287,7 +1280,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public void unsetCentreOfGravityInXAsString()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__CENTRE_OF_GRAVITY_IN_XAS_STRING);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_CentreOfGravityInXAsString());
 	}
 
 	/**
@@ -1297,7 +1290,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public boolean isSetCentreOfGravityInXAsString()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__CENTRE_OF_GRAVITY_IN_XAS_STRING);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_CentreOfGravityInXAsString());
 	}
 
 	/**
@@ -1307,7 +1300,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public float getCentreOfGravityInY()
 	{
-		return (Float)eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__CENTRE_OF_GRAVITY_IN_Y, true);
+		return (Float)eGet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_CentreOfGravityInY(), true);
 	}
 
 	/**
@@ -1317,7 +1310,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public void setCentreOfGravityInY(float newCentreOfGravityInY)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__CENTRE_OF_GRAVITY_IN_Y, newCentreOfGravityInY);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_CentreOfGravityInY(), newCentreOfGravityInY);
 	}
 
 	/**
@@ -1327,7 +1320,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public void unsetCentreOfGravityInY()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__CENTRE_OF_GRAVITY_IN_Y);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_CentreOfGravityInY());
 	}
 
 	/**
@@ -1337,7 +1330,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public boolean isSetCentreOfGravityInY()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__CENTRE_OF_GRAVITY_IN_Y);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_CentreOfGravityInY());
 	}
 
 	/**
@@ -1347,7 +1340,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public String getCentreOfGravityInYAsString()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__CENTRE_OF_GRAVITY_IN_YAS_STRING, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_CentreOfGravityInYAsString(), true);
 	}
 
 	/**
@@ -1357,7 +1350,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public void setCentreOfGravityInYAsString(String newCentreOfGravityInYAsString)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__CENTRE_OF_GRAVITY_IN_YAS_STRING, newCentreOfGravityInYAsString);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_CentreOfGravityInYAsString(), newCentreOfGravityInYAsString);
 	}
 
 	/**
@@ -1367,7 +1360,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public void unsetCentreOfGravityInYAsString()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__CENTRE_OF_GRAVITY_IN_YAS_STRING);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_CentreOfGravityInYAsString());
 	}
 
 	/**
@@ -1377,7 +1370,7 @@ public class IfcStructuralProfilePropertiesImpl extends IfcGeneralProfilePropert
 	 */
 	public boolean isSetCentreOfGravityInYAsString()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_STRUCTURAL_PROFILE_PROPERTIES__CENTRE_OF_GRAVITY_IN_YAS_STRING);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcStructuralProfileProperties_CentreOfGravityInYAsString());
 	}
 
 } //IfcStructuralProfilePropertiesImpl

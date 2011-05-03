@@ -100,10 +100,10 @@ public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 					}
 					ConcreteRevision concreteRevision = (ConcreteRevision) rollBackSession.get(
 							StorePackage.eINSTANCE.getConcreteRevision(), croid, false);
-					concreteRevision.setState(CheckinState.ERROR_LITERAL);
+					concreteRevision.setState(CheckinState.ERROR);
 					concreteRevision.setLastError(throwable.getMessage());
 					for (Revision revision : concreteRevision.getRevisions()) {
-						revision.setState(CheckinState.ERROR_LITERAL);
+						revision.setState(CheckinState.ERROR);
 						revision.setLastError(throwable.getMessage());
 					}
 					rollBackSession.store(concreteRevision);

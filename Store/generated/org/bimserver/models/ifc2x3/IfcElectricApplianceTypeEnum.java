@@ -40,278 +40,271 @@ public enum IfcElectricApplianceTypeEnum implements Enumerator
 	 * The '<em><b>NULL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NULL
+	 * @see #NULL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NULL_LITERAL(0, "NULL", "NULL"),
+	NULL(0, "NULL", "NULL"),
 
 	/**
 	 * The '<em><b>FRIDGE FREEZER</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #FRIDGE_FREEZER
+	 * @see #FRIDGE_FREEZER_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	FRIDGE_FREEZER_LITERAL(1, "FRIDGE_FREEZER", "FRIDGE_FREEZER"),
+	FRIDGE_FREEZER(1, "FRIDGE_FREEZER", "FRIDGE_FREEZER"),
 
 	/**
 	 * The '<em><b>REFRIGERATOR</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #REFRIGERATOR
+	 * @see #REFRIGERATOR_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	REFRIGERATOR_LITERAL(2, "REFRIGERATOR", "REFRIGERATOR"),
+	REFRIGERATOR(2, "REFRIGERATOR", "REFRIGERATOR"),
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED
+	 * @see #NOTDEFINED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED_LITERAL(3, "NOTDEFINED", "NOTDEFINED"),
+	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>WASHINGMACHINE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #WASHINGMACHINE
+	 * @see #WASHINGMACHINE_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	WASHINGMACHINE_LITERAL(4, "WASHINGMACHINE", "WASHINGMACHINE"),
+	WASHINGMACHINE(4, "WASHINGMACHINE", "WASHINGMACHINE"),
 
 	/**
 	 * The '<em><b>SCANNER</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #SCANNER
+	 * @see #SCANNER_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	SCANNER_LITERAL(5, "SCANNER", "SCANNER"),
+	SCANNER(5, "SCANNER", "SCANNER"),
 
 	/**
 	 * The '<em><b>FREEZER</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #FREEZER
+	 * @see #FREEZER_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	FREEZER_LITERAL(6, "FREEZER", "FREEZER"),
+	FREEZER(6, "FREEZER", "FREEZER"),
 
 	/**
 	 * The '<em><b>COMPUTER</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #COMPUTER
+	 * @see #COMPUTER_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	COMPUTER_LITERAL(7, "COMPUTER", "COMPUTER"),
+	COMPUTER(7, "COMPUTER", "COMPUTER"),
 
 	/**
 	 * The '<em><b>PHOTOCOPIER</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #PHOTOCOPIER
+	 * @see #PHOTOCOPIER_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	PHOTOCOPIER_LITERAL(8, "PHOTOCOPIER", "PHOTOCOPIER"),
+	PHOTOCOPIER(8, "PHOTOCOPIER", "PHOTOCOPIER"),
 
 	/**
 	 * The '<em><b>INDIRECTWATERHEATER</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #INDIRECTWATERHEATER
+	 * @see #INDIRECTWATERHEATER_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	INDIRECTWATERHEATER_LITERAL(9, "INDIRECTWATERHEATER", "INDIRECTWATERHEATER"),
+	INDIRECTWATERHEATER(9, "INDIRECTWATERHEATER", "INDIRECTWATERHEATER"),
 
 	/**
 	 * The '<em><b>FACSIMILE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #FACSIMILE
+	 * @see #FACSIMILE_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	FACSIMILE_LITERAL(10, "FACSIMILE", "FACSIMILE"),
+	FACSIMILE(10, "FACSIMILE", "FACSIMILE"),
 
 	/**
 	 * The '<em><b>VENDINGMACHINE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #VENDINGMACHINE
+	 * @see #VENDINGMACHINE_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	VENDINGMACHINE_LITERAL(11, "VENDINGMACHINE", "VENDINGMACHINE"),
+	VENDINGMACHINE(11, "VENDINGMACHINE", "VENDINGMACHINE"),
 
 	/**
 	 * The '<em><b>DISHWASHER</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #DISHWASHER
+	 * @see #DISHWASHER_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	DISHWASHER_LITERAL(12, "DISHWASHER", "DISHWASHER"),
+	DISHWASHER(12, "DISHWASHER", "DISHWASHER"),
 
 	/**
 	 * The '<em><b>HANDDRYER</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #HANDDRYER
+	 * @see #HANDDRYER_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	HANDDRYER_LITERAL(13, "HANDDRYER", "HANDDRYER"),
+	HANDDRYER(13, "HANDDRYER", "HANDDRYER"),
 
 	/**
 	 * The '<em><b>MICROWAVE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #MICROWAVE
+	 * @see #MICROWAVE_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	MICROWAVE_LITERAL(14, "MICROWAVE", "MICROWAVE"),
+	MICROWAVE(14, "MICROWAVE", "MICROWAVE"),
 
 	/**
 	 * The '<em><b>FREESTANDINGFAN</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #FREESTANDINGFAN
+	 * @see #FREESTANDINGFAN_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	FREESTANDINGFAN_LITERAL(15, "FREESTANDINGFAN", "FREESTANDINGFAN"),
+	FREESTANDINGFAN(15, "FREESTANDINGFAN", "FREESTANDINGFAN"),
 
 	/**
 	 * The '<em><b>PRINTER</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #PRINTER
+	 * @see #PRINTER_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	PRINTER_LITERAL(16, "PRINTER", "PRINTER"),
+	PRINTER(16, "PRINTER", "PRINTER"),
 
 	/**
 	 * The '<em><b>RADIANTHEATER</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #RADIANTHEATER
+	 * @see #RADIANTHEATER_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	RADIANTHEATER_LITERAL(17, "RADIANTHEATER", "RADIANTHEATER"),
+	RADIANTHEATER(17, "RADIANTHEATER", "RADIANTHEATER"),
 
 	/**
 	 * The '<em><b>ELECTRICHEATER</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #ELECTRICHEATER
+	 * @see #ELECTRICHEATER_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	ELECTRICHEATER_LITERAL(18, "ELECTRICHEATER", "ELECTRICHEATER"),
+	ELECTRICHEATER(18, "ELECTRICHEATER", "ELECTRICHEATER"),
 
 	/**
 	 * The '<em><b>WATERCOOLER</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #WATERCOOLER
+	 * @see #WATERCOOLER_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	WATERCOOLER_LITERAL(19, "WATERCOOLER", "WATERCOOLER"),
+	WATERCOOLER(19, "WATERCOOLER", "WATERCOOLER"),
 
 	/**
 	 * The '<em><b>TELEPHONE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #TELEPHONE
+	 * @see #TELEPHONE_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	TELEPHONE_LITERAL(20, "TELEPHONE", "TELEPHONE"),
+	TELEPHONE(20, "TELEPHONE", "TELEPHONE"),
 
 	/**
 	 * The '<em><b>WATERHEATER</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #WATERHEATER
+	 * @see #WATERHEATER_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	WATERHEATER_LITERAL(21, "WATERHEATER", "WATERHEATER"),
+	WATERHEATER(21, "WATERHEATER", "WATERHEATER"),
 
 	/**
 	 * The '<em><b>DIRECTWATERHEATER</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #DIRECTWATERHEATER
+	 * @see #DIRECTWATERHEATER_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	DIRECTWATERHEATER_LITERAL(22, "DIRECTWATERHEATER", "DIRECTWATERHEATER"),
+	DIRECTWATERHEATER(22, "DIRECTWATERHEATER", "DIRECTWATERHEATER"),
 
 	/**
 	 * The '<em><b>TUMBLEDRYER</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #TUMBLEDRYER
+	 * @see #TUMBLEDRYER_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	TUMBLEDRYER_LITERAL(23, "TUMBLEDRYER", "TUMBLEDRYER"),
+	TUMBLEDRYER(23, "TUMBLEDRYER", "TUMBLEDRYER"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
+	 * @see #USERDEFINED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	USERDEFINED_LITERAL(24, "USERDEFINED", "USERDEFINED"),
+	USERDEFINED(24, "USERDEFINED", "USERDEFINED"),
 
 	/**
 	 * The '<em><b>ELECTRICCOOKER</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #ELECTRICCOOKER
+	 * @see #ELECTRICCOOKER_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	ELECTRICCOOKER_LITERAL(25, "ELECTRICCOOKER", "ELECTRICCOOKER"),
+	ELECTRICCOOKER(25, "ELECTRICCOOKER", "ELECTRICCOOKER"),
 
 	/**
 	 * The '<em><b>TV</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #TV
+	 * @see #TV_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	TV_LITERAL(26, "TV", "TV");
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
+	TV(26, "TV", "TV");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -321,12 +314,12 @@ public enum IfcElectricApplianceTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NULL_LITERAL
+	 * @see #NULL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NULL = 0;
+	public static final int NULL_VALUE = 0;
 
 	/**
 	 * The '<em><b>FRIDGE FREEZER</b></em>' literal value.
@@ -336,12 +329,12 @@ public enum IfcElectricApplianceTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #FRIDGE_FREEZER_LITERAL
+	 * @see #FRIDGE_FREEZER
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int FRIDGE_FREEZER = 1;
+	public static final int FRIDGE_FREEZER_VALUE = 1;
 
 	/**
 	 * The '<em><b>REFRIGERATOR</b></em>' literal value.
@@ -351,12 +344,12 @@ public enum IfcElectricApplianceTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #REFRIGERATOR_LITERAL
+	 * @see #REFRIGERATOR
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int REFRIGERATOR = 2;
+	public static final int REFRIGERATOR_VALUE = 2;
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
@@ -366,12 +359,12 @@ public enum IfcElectricApplianceTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_LITERAL
+	 * @see #NOTDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED = 3;
+	public static final int NOTDEFINED_VALUE = 3;
 
 	/**
 	 * The '<em><b>WASHINGMACHINE</b></em>' literal value.
@@ -381,12 +374,12 @@ public enum IfcElectricApplianceTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #WASHINGMACHINE_LITERAL
+	 * @see #WASHINGMACHINE
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int WASHINGMACHINE = 4;
+	public static final int WASHINGMACHINE_VALUE = 4;
 
 	/**
 	 * The '<em><b>SCANNER</b></em>' literal value.
@@ -396,12 +389,12 @@ public enum IfcElectricApplianceTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #SCANNER_LITERAL
+	 * @see #SCANNER
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SCANNER = 5;
+	public static final int SCANNER_VALUE = 5;
 
 	/**
 	 * The '<em><b>FREEZER</b></em>' literal value.
@@ -411,12 +404,12 @@ public enum IfcElectricApplianceTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #FREEZER_LITERAL
+	 * @see #FREEZER
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int FREEZER = 6;
+	public static final int FREEZER_VALUE = 6;
 
 	/**
 	 * The '<em><b>COMPUTER</b></em>' literal value.
@@ -426,12 +419,12 @@ public enum IfcElectricApplianceTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #COMPUTER_LITERAL
+	 * @see #COMPUTER
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int COMPUTER = 7;
+	public static final int COMPUTER_VALUE = 7;
 
 	/**
 	 * The '<em><b>PHOTOCOPIER</b></em>' literal value.
@@ -441,12 +434,12 @@ public enum IfcElectricApplianceTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #PHOTOCOPIER_LITERAL
+	 * @see #PHOTOCOPIER
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PHOTOCOPIER = 8;
+	public static final int PHOTOCOPIER_VALUE = 8;
 
 	/**
 	 * The '<em><b>INDIRECTWATERHEATER</b></em>' literal value.
@@ -456,12 +449,12 @@ public enum IfcElectricApplianceTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #INDIRECTWATERHEATER_LITERAL
+	 * @see #INDIRECTWATERHEATER
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int INDIRECTWATERHEATER = 9;
+	public static final int INDIRECTWATERHEATER_VALUE = 9;
 
 	/**
 	 * The '<em><b>FACSIMILE</b></em>' literal value.
@@ -471,12 +464,12 @@ public enum IfcElectricApplianceTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #FACSIMILE_LITERAL
+	 * @see #FACSIMILE
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int FACSIMILE = 10;
+	public static final int FACSIMILE_VALUE = 10;
 
 	/**
 	 * The '<em><b>VENDINGMACHINE</b></em>' literal value.
@@ -486,12 +479,12 @@ public enum IfcElectricApplianceTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #VENDINGMACHINE_LITERAL
+	 * @see #VENDINGMACHINE
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int VENDINGMACHINE = 11;
+	public static final int VENDINGMACHINE_VALUE = 11;
 
 	/**
 	 * The '<em><b>DISHWASHER</b></em>' literal value.
@@ -501,12 +494,12 @@ public enum IfcElectricApplianceTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #DISHWASHER_LITERAL
+	 * @see #DISHWASHER
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int DISHWASHER = 12;
+	public static final int DISHWASHER_VALUE = 12;
 
 	/**
 	 * The '<em><b>HANDDRYER</b></em>' literal value.
@@ -516,12 +509,12 @@ public enum IfcElectricApplianceTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #HANDDRYER_LITERAL
+	 * @see #HANDDRYER
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int HANDDRYER = 13;
+	public static final int HANDDRYER_VALUE = 13;
 
 	/**
 	 * The '<em><b>MICROWAVE</b></em>' literal value.
@@ -531,12 +524,12 @@ public enum IfcElectricApplianceTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #MICROWAVE_LITERAL
+	 * @see #MICROWAVE
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MICROWAVE = 14;
+	public static final int MICROWAVE_VALUE = 14;
 
 	/**
 	 * The '<em><b>FREESTANDINGFAN</b></em>' literal value.
@@ -546,12 +539,12 @@ public enum IfcElectricApplianceTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #FREESTANDINGFAN_LITERAL
+	 * @see #FREESTANDINGFAN
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int FREESTANDINGFAN = 15;
+	public static final int FREESTANDINGFAN_VALUE = 15;
 
 	/**
 	 * The '<em><b>PRINTER</b></em>' literal value.
@@ -561,12 +554,12 @@ public enum IfcElectricApplianceTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #PRINTER_LITERAL
+	 * @see #PRINTER
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PRINTER = 16;
+	public static final int PRINTER_VALUE = 16;
 
 	/**
 	 * The '<em><b>RADIANTHEATER</b></em>' literal value.
@@ -576,12 +569,12 @@ public enum IfcElectricApplianceTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #RADIANTHEATER_LITERAL
+	 * @see #RADIANTHEATER
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int RADIANTHEATER = 17;
+	public static final int RADIANTHEATER_VALUE = 17;
 
 	/**
 	 * The '<em><b>ELECTRICHEATER</b></em>' literal value.
@@ -591,12 +584,12 @@ public enum IfcElectricApplianceTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ELECTRICHEATER_LITERAL
+	 * @see #ELECTRICHEATER
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ELECTRICHEATER = 18;
+	public static final int ELECTRICHEATER_VALUE = 18;
 
 	/**
 	 * The '<em><b>WATERCOOLER</b></em>' literal value.
@@ -606,12 +599,12 @@ public enum IfcElectricApplianceTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #WATERCOOLER_LITERAL
+	 * @see #WATERCOOLER
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int WATERCOOLER = 19;
+	public static final int WATERCOOLER_VALUE = 19;
 
 	/**
 	 * The '<em><b>TELEPHONE</b></em>' literal value.
@@ -621,12 +614,12 @@ public enum IfcElectricApplianceTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #TELEPHONE_LITERAL
+	 * @see #TELEPHONE
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int TELEPHONE = 20;
+	public static final int TELEPHONE_VALUE = 20;
 
 	/**
 	 * The '<em><b>WATERHEATER</b></em>' literal value.
@@ -636,12 +629,12 @@ public enum IfcElectricApplianceTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #WATERHEATER_LITERAL
+	 * @see #WATERHEATER
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int WATERHEATER = 21;
+	public static final int WATERHEATER_VALUE = 21;
 
 	/**
 	 * The '<em><b>DIRECTWATERHEATER</b></em>' literal value.
@@ -651,12 +644,12 @@ public enum IfcElectricApplianceTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #DIRECTWATERHEATER_LITERAL
+	 * @see #DIRECTWATERHEATER
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int DIRECTWATERHEATER = 22;
+	public static final int DIRECTWATERHEATER_VALUE = 22;
 
 	/**
 	 * The '<em><b>TUMBLEDRYER</b></em>' literal value.
@@ -666,12 +659,12 @@ public enum IfcElectricApplianceTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #TUMBLEDRYER_LITERAL
+	 * @see #TUMBLEDRYER
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int TUMBLEDRYER = 23;
+	public static final int TUMBLEDRYER_VALUE = 23;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -681,12 +674,12 @@ public enum IfcElectricApplianceTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_LITERAL
+	 * @see #USERDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED = 24;
+	public static final int USERDEFINED_VALUE = 24;
 
 	/**
 	 * The '<em><b>ELECTRICCOOKER</b></em>' literal value.
@@ -696,12 +689,12 @@ public enum IfcElectricApplianceTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ELECTRICCOOKER_LITERAL
+	 * @see #ELECTRICCOOKER
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ELECTRICCOOKER = 25;
+	public static final int ELECTRICCOOKER_VALUE = 25;
 
 	/**
 	 * The '<em><b>TV</b></em>' literal value.
@@ -711,12 +704,12 @@ public enum IfcElectricApplianceTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #TV_LITERAL
+	 * @see #TV
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int TV = 26;
+	public static final int TV_VALUE = 26;
 
 	/**
 	 * An array of all the '<em><b>Ifc Electric Appliance Type Enum</b></em>' enumerators.
@@ -725,35 +718,34 @@ public enum IfcElectricApplianceTypeEnum implements Enumerator
 	 * @generated
 	 */
 	private static final IfcElectricApplianceTypeEnum[] VALUES_ARRAY =
-		new IfcElectricApplianceTypeEnum[]
-		{
-			NULL_LITERAL,
-			FRIDGE_FREEZER_LITERAL,
-			REFRIGERATOR_LITERAL,
-			NOTDEFINED_LITERAL,
-			WASHINGMACHINE_LITERAL,
-			SCANNER_LITERAL,
-			FREEZER_LITERAL,
-			COMPUTER_LITERAL,
-			PHOTOCOPIER_LITERAL,
-			INDIRECTWATERHEATER_LITERAL,
-			FACSIMILE_LITERAL,
-			VENDINGMACHINE_LITERAL,
-			DISHWASHER_LITERAL,
-			HANDDRYER_LITERAL,
-			MICROWAVE_LITERAL,
-			FREESTANDINGFAN_LITERAL,
-			PRINTER_LITERAL,
-			RADIANTHEATER_LITERAL,
-			ELECTRICHEATER_LITERAL,
-			WATERCOOLER_LITERAL,
-			TELEPHONE_LITERAL,
-			WATERHEATER_LITERAL,
-			DIRECTWATERHEATER_LITERAL,
-			TUMBLEDRYER_LITERAL,
-			USERDEFINED_LITERAL,
-			ELECTRICCOOKER_LITERAL,
-			TV_LITERAL,
+		new IfcElectricApplianceTypeEnum[] {
+			NULL,
+			FRIDGE_FREEZER,
+			REFRIGERATOR,
+			NOTDEFINED,
+			WASHINGMACHINE,
+			SCANNER,
+			FREEZER,
+			COMPUTER,
+			PHOTOCOPIER,
+			INDIRECTWATERHEATER,
+			FACSIMILE,
+			VENDINGMACHINE,
+			DISHWASHER,
+			HANDDRYER,
+			MICROWAVE,
+			FREESTANDINGFAN,
+			PRINTER,
+			RADIANTHEATER,
+			ELECTRICHEATER,
+			WATERCOOLER,
+			TELEPHONE,
+			WATERHEATER,
+			DIRECTWATERHEATER,
+			TUMBLEDRYER,
+			USERDEFINED,
+			ELECTRICCOOKER,
+			TV,
 		};
 
 	/**
@@ -772,11 +764,9 @@ public enum IfcElectricApplianceTypeEnum implements Enumerator
 	 */
 	public static IfcElectricApplianceTypeEnum get(String literal)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcElectricApplianceTypeEnum result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal))
-			{
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -791,11 +781,9 @@ public enum IfcElectricApplianceTypeEnum implements Enumerator
 	 */
 	public static IfcElectricApplianceTypeEnum getByName(String name)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcElectricApplianceTypeEnum result = VALUES_ARRAY[i];
-			if (result.getName().equals(name))
-			{
+			if (result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -810,35 +798,34 @@ public enum IfcElectricApplianceTypeEnum implements Enumerator
 	 */
 	public static IfcElectricApplianceTypeEnum get(int value)
 	{
-		switch (value)
-		{
-			case NULL: return NULL_LITERAL;
-			case FRIDGE_FREEZER: return FRIDGE_FREEZER_LITERAL;
-			case REFRIGERATOR: return REFRIGERATOR_LITERAL;
-			case NOTDEFINED: return NOTDEFINED_LITERAL;
-			case WASHINGMACHINE: return WASHINGMACHINE_LITERAL;
-			case SCANNER: return SCANNER_LITERAL;
-			case FREEZER: return FREEZER_LITERAL;
-			case COMPUTER: return COMPUTER_LITERAL;
-			case PHOTOCOPIER: return PHOTOCOPIER_LITERAL;
-			case INDIRECTWATERHEATER: return INDIRECTWATERHEATER_LITERAL;
-			case FACSIMILE: return FACSIMILE_LITERAL;
-			case VENDINGMACHINE: return VENDINGMACHINE_LITERAL;
-			case DISHWASHER: return DISHWASHER_LITERAL;
-			case HANDDRYER: return HANDDRYER_LITERAL;
-			case MICROWAVE: return MICROWAVE_LITERAL;
-			case FREESTANDINGFAN: return FREESTANDINGFAN_LITERAL;
-			case PRINTER: return PRINTER_LITERAL;
-			case RADIANTHEATER: return RADIANTHEATER_LITERAL;
-			case ELECTRICHEATER: return ELECTRICHEATER_LITERAL;
-			case WATERCOOLER: return WATERCOOLER_LITERAL;
-			case TELEPHONE: return TELEPHONE_LITERAL;
-			case WATERHEATER: return WATERHEATER_LITERAL;
-			case DIRECTWATERHEATER: return DIRECTWATERHEATER_LITERAL;
-			case TUMBLEDRYER: return TUMBLEDRYER_LITERAL;
-			case USERDEFINED: return USERDEFINED_LITERAL;
-			case ELECTRICCOOKER: return ELECTRICCOOKER_LITERAL;
-			case TV: return TV_LITERAL;
+		switch (value) {
+			case NULL_VALUE: return NULL;
+			case FRIDGE_FREEZER_VALUE: return FRIDGE_FREEZER;
+			case REFRIGERATOR_VALUE: return REFRIGERATOR;
+			case NOTDEFINED_VALUE: return NOTDEFINED;
+			case WASHINGMACHINE_VALUE: return WASHINGMACHINE;
+			case SCANNER_VALUE: return SCANNER;
+			case FREEZER_VALUE: return FREEZER;
+			case COMPUTER_VALUE: return COMPUTER;
+			case PHOTOCOPIER_VALUE: return PHOTOCOPIER;
+			case INDIRECTWATERHEATER_VALUE: return INDIRECTWATERHEATER;
+			case FACSIMILE_VALUE: return FACSIMILE;
+			case VENDINGMACHINE_VALUE: return VENDINGMACHINE;
+			case DISHWASHER_VALUE: return DISHWASHER;
+			case HANDDRYER_VALUE: return HANDDRYER;
+			case MICROWAVE_VALUE: return MICROWAVE;
+			case FREESTANDINGFAN_VALUE: return FREESTANDINGFAN;
+			case PRINTER_VALUE: return PRINTER;
+			case RADIANTHEATER_VALUE: return RADIANTHEATER;
+			case ELECTRICHEATER_VALUE: return ELECTRICHEATER;
+			case WATERCOOLER_VALUE: return WATERCOOLER;
+			case TELEPHONE_VALUE: return TELEPHONE;
+			case WATERHEATER_VALUE: return WATERHEATER;
+			case DIRECTWATERHEATER_VALUE: return DIRECTWATERHEATER;
+			case TUMBLEDRYER_VALUE: return TUMBLEDRYER;
+			case USERDEFINED_VALUE: return USERDEFINED;
+			case ELECTRICCOOKER_VALUE: return ELECTRICCOOKER;
+			case TV_VALUE: return TV;
 		}
 		return null;
 	}

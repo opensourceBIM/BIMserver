@@ -40,68 +40,61 @@ public enum IfcTransportElementTypeEnum implements Enumerator
 	 * The '<em><b>NULL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NULL
+	 * @see #NULL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NULL_LITERAL(0, "NULL", "NULL"),
+	NULL(0, "NULL", "NULL"),
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED
+	 * @see #NOTDEFINED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED_LITERAL(1, "NOTDEFINED", "NOTDEFINED"),
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>ESCALATOR</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #ESCALATOR
+	 * @see #ESCALATOR_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	ESCALATOR_LITERAL(2, "ESCALATOR", "ESCALATOR"),
+	ESCALATOR(2, "ESCALATOR", "ESCALATOR"),
 
 	/**
 	 * The '<em><b>MOVINGWALKWAY</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #MOVINGWALKWAY
+	 * @see #MOVINGWALKWAY_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	MOVINGWALKWAY_LITERAL(3, "MOVINGWALKWAY", "MOVINGWALKWAY"),
+	MOVINGWALKWAY(3, "MOVINGWALKWAY", "MOVINGWALKWAY"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
+	 * @see #USERDEFINED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	USERDEFINED_LITERAL(4, "USERDEFINED", "USERDEFINED"),
+	USERDEFINED(4, "USERDEFINED", "USERDEFINED"),
 
 	/**
 	 * The '<em><b>ELEVATOR</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #ELEVATOR
+	 * @see #ELEVATOR_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	ELEVATOR_LITERAL(5, "ELEVATOR", "ELEVATOR");
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
+	ELEVATOR(5, "ELEVATOR", "ELEVATOR");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -111,12 +104,12 @@ public enum IfcTransportElementTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NULL_LITERAL
+	 * @see #NULL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NULL = 0;
+	public static final int NULL_VALUE = 0;
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
@@ -126,12 +119,12 @@ public enum IfcTransportElementTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_LITERAL
+	 * @see #NOTDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED = 1;
+	public static final int NOTDEFINED_VALUE = 1;
 
 	/**
 	 * The '<em><b>ESCALATOR</b></em>' literal value.
@@ -141,12 +134,12 @@ public enum IfcTransportElementTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ESCALATOR_LITERAL
+	 * @see #ESCALATOR
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ESCALATOR = 2;
+	public static final int ESCALATOR_VALUE = 2;
 
 	/**
 	 * The '<em><b>MOVINGWALKWAY</b></em>' literal value.
@@ -156,12 +149,12 @@ public enum IfcTransportElementTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #MOVINGWALKWAY_LITERAL
+	 * @see #MOVINGWALKWAY
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MOVINGWALKWAY = 3;
+	public static final int MOVINGWALKWAY_VALUE = 3;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -171,12 +164,12 @@ public enum IfcTransportElementTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_LITERAL
+	 * @see #USERDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED = 4;
+	public static final int USERDEFINED_VALUE = 4;
 
 	/**
 	 * The '<em><b>ELEVATOR</b></em>' literal value.
@@ -186,12 +179,12 @@ public enum IfcTransportElementTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ELEVATOR_LITERAL
+	 * @see #ELEVATOR
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ELEVATOR = 5;
+	public static final int ELEVATOR_VALUE = 5;
 
 	/**
 	 * An array of all the '<em><b>Ifc Transport Element Type Enum</b></em>' enumerators.
@@ -200,14 +193,13 @@ public enum IfcTransportElementTypeEnum implements Enumerator
 	 * @generated
 	 */
 	private static final IfcTransportElementTypeEnum[] VALUES_ARRAY =
-		new IfcTransportElementTypeEnum[]
-		{
-			NULL_LITERAL,
-			NOTDEFINED_LITERAL,
-			ESCALATOR_LITERAL,
-			MOVINGWALKWAY_LITERAL,
-			USERDEFINED_LITERAL,
-			ELEVATOR_LITERAL,
+		new IfcTransportElementTypeEnum[] {
+			NULL,
+			NOTDEFINED,
+			ESCALATOR,
+			MOVINGWALKWAY,
+			USERDEFINED,
+			ELEVATOR,
 		};
 
 	/**
@@ -226,11 +218,9 @@ public enum IfcTransportElementTypeEnum implements Enumerator
 	 */
 	public static IfcTransportElementTypeEnum get(String literal)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcTransportElementTypeEnum result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal))
-			{
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -245,11 +235,9 @@ public enum IfcTransportElementTypeEnum implements Enumerator
 	 */
 	public static IfcTransportElementTypeEnum getByName(String name)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcTransportElementTypeEnum result = VALUES_ARRAY[i];
-			if (result.getName().equals(name))
-			{
+			if (result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -264,14 +252,13 @@ public enum IfcTransportElementTypeEnum implements Enumerator
 	 */
 	public static IfcTransportElementTypeEnum get(int value)
 	{
-		switch (value)
-		{
-			case NULL: return NULL_LITERAL;
-			case NOTDEFINED: return NOTDEFINED_LITERAL;
-			case ESCALATOR: return ESCALATOR_LITERAL;
-			case MOVINGWALKWAY: return MOVINGWALKWAY_LITERAL;
-			case USERDEFINED: return USERDEFINED_LITERAL;
-			case ELEVATOR: return ELEVATOR_LITERAL;
+		switch (value) {
+			case NULL_VALUE: return NULL;
+			case NOTDEFINED_VALUE: return NOTDEFINED;
+			case ESCALATOR_VALUE: return ESCALATOR;
+			case MOVINGWALKWAY_VALUE: return MOVINGWALKWAY;
+			case USERDEFINED_VALUE: return USERDEFINED;
+			case ELEVATOR_VALUE: return ELEVATOR;
 		}
 		return null;
 	}

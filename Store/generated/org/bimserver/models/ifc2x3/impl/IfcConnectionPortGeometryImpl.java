@@ -50,13 +50,6 @@ public class IfcConnectionPortGeometryImpl extends IfcConnectionGeometryImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	protected IfcConnectionPortGeometryImpl()
 	{
 		super();
@@ -70,7 +63,7 @@ public class IfcConnectionPortGeometryImpl extends IfcConnectionGeometryImpl imp
 	@Override
 	protected EClass eStaticClass()
 	{
-		return Ifc2x3Package.Literals.IFC_CONNECTION_PORT_GEOMETRY;
+		return Ifc2x3Package.eINSTANCE.getIfcConnectionPortGeometry();
 	}
 
 	/**
@@ -80,7 +73,7 @@ public class IfcConnectionPortGeometryImpl extends IfcConnectionGeometryImpl imp
 	 */
 	public IfcAxis2Placement getLocationAtRelatingElement()
 	{
-		return (IfcAxis2Placement)eGet(Ifc2x3Package.Literals.IFC_CONNECTION_PORT_GEOMETRY__LOCATION_AT_RELATING_ELEMENT, true);
+		return (IfcAxis2Placement)eGet(Ifc2x3Package.eINSTANCE.getIfcConnectionPortGeometry_LocationAtRelatingElement(), true);
 	}
 
 	/**
@@ -90,7 +83,7 @@ public class IfcConnectionPortGeometryImpl extends IfcConnectionGeometryImpl imp
 	 */
 	public void setLocationAtRelatingElement(IfcAxis2Placement newLocationAtRelatingElement)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_CONNECTION_PORT_GEOMETRY__LOCATION_AT_RELATING_ELEMENT, newLocationAtRelatingElement);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcConnectionPortGeometry_LocationAtRelatingElement(), newLocationAtRelatingElement);
 	}
 
 	/**
@@ -100,7 +93,7 @@ public class IfcConnectionPortGeometryImpl extends IfcConnectionGeometryImpl imp
 	 */
 	public IfcAxis2Placement getLocationAtRelatedElement()
 	{
-		return (IfcAxis2Placement)eGet(Ifc2x3Package.Literals.IFC_CONNECTION_PORT_GEOMETRY__LOCATION_AT_RELATED_ELEMENT, true);
+		return (IfcAxis2Placement)eGet(Ifc2x3Package.eINSTANCE.getIfcConnectionPortGeometry_LocationAtRelatedElement(), true);
 	}
 
 	/**
@@ -110,7 +103,7 @@ public class IfcConnectionPortGeometryImpl extends IfcConnectionGeometryImpl imp
 	 */
 	public void setLocationAtRelatedElement(IfcAxis2Placement newLocationAtRelatedElement)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_CONNECTION_PORT_GEOMETRY__LOCATION_AT_RELATED_ELEMENT, newLocationAtRelatedElement);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcConnectionPortGeometry_LocationAtRelatedElement(), newLocationAtRelatedElement);
 	}
 
 	/**
@@ -120,7 +113,7 @@ public class IfcConnectionPortGeometryImpl extends IfcConnectionGeometryImpl imp
 	 */
 	public void unsetLocationAtRelatedElement()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_CONNECTION_PORT_GEOMETRY__LOCATION_AT_RELATED_ELEMENT);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcConnectionPortGeometry_LocationAtRelatedElement());
 	}
 
 	/**
@@ -130,7 +123,7 @@ public class IfcConnectionPortGeometryImpl extends IfcConnectionGeometryImpl imp
 	 */
 	public boolean isSetLocationAtRelatedElement()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_CONNECTION_PORT_GEOMETRY__LOCATION_AT_RELATED_ELEMENT);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcConnectionPortGeometry_LocationAtRelatedElement());
 	}
 
 	/**
@@ -140,7 +133,7 @@ public class IfcConnectionPortGeometryImpl extends IfcConnectionGeometryImpl imp
 	 */
 	public IfcProfileDef getProfileOfPort()
 	{
-		return (IfcProfileDef)eGet(Ifc2x3Package.Literals.IFC_CONNECTION_PORT_GEOMETRY__PROFILE_OF_PORT, true);
+		return (IfcProfileDef)eGet(Ifc2x3Package.eINSTANCE.getIfcConnectionPortGeometry_ProfileOfPort(), true);
 	}
 
 	/**
@@ -150,7 +143,7 @@ public class IfcConnectionPortGeometryImpl extends IfcConnectionGeometryImpl imp
 	 */
 	public void setProfileOfPort(IfcProfileDef newProfileOfPort)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_CONNECTION_PORT_GEOMETRY__PROFILE_OF_PORT, newProfileOfPort);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcConnectionPortGeometry_ProfileOfPort(), newProfileOfPort);
 	}
 
 } //IfcConnectionPortGeometryImpl

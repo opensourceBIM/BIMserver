@@ -52,13 +52,6 @@ public class IfcPresentationLayerWithStyleImpl extends IfcPresentationLayerAssig
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	protected IfcPresentationLayerWithStyleImpl()
 	{
 		super();
@@ -72,7 +65,7 @@ public class IfcPresentationLayerWithStyleImpl extends IfcPresentationLayerAssig
 	@Override
 	protected EClass eStaticClass()
 	{
-		return Ifc2x3Package.Literals.IFC_PRESENTATION_LAYER_WITH_STYLE;
+		return Ifc2x3Package.eINSTANCE.getIfcPresentationLayerWithStyle();
 	}
 
 	/**
@@ -82,7 +75,7 @@ public class IfcPresentationLayerWithStyleImpl extends IfcPresentationLayerAssig
 	 */
 	public boolean isLayerOn()
 	{
-		return (Boolean)eGet(Ifc2x3Package.Literals.IFC_PRESENTATION_LAYER_WITH_STYLE__LAYER_ON, true);
+		return (Boolean)eGet(Ifc2x3Package.eINSTANCE.getIfcPresentationLayerWithStyle_LayerOn(), true);
 	}
 
 	/**
@@ -92,7 +85,7 @@ public class IfcPresentationLayerWithStyleImpl extends IfcPresentationLayerAssig
 	 */
 	public void setLayerOn(boolean newLayerOn)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_PRESENTATION_LAYER_WITH_STYLE__LAYER_ON, newLayerOn);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcPresentationLayerWithStyle_LayerOn(), newLayerOn);
 	}
 
 	/**
@@ -102,7 +95,7 @@ public class IfcPresentationLayerWithStyleImpl extends IfcPresentationLayerAssig
 	 */
 	public boolean isLayerFrozen()
 	{
-		return (Boolean)eGet(Ifc2x3Package.Literals.IFC_PRESENTATION_LAYER_WITH_STYLE__LAYER_FROZEN, true);
+		return (Boolean)eGet(Ifc2x3Package.eINSTANCE.getIfcPresentationLayerWithStyle_LayerFrozen(), true);
 	}
 
 	/**
@@ -112,7 +105,7 @@ public class IfcPresentationLayerWithStyleImpl extends IfcPresentationLayerAssig
 	 */
 	public void setLayerFrozen(boolean newLayerFrozen)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_PRESENTATION_LAYER_WITH_STYLE__LAYER_FROZEN, newLayerFrozen);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcPresentationLayerWithStyle_LayerFrozen(), newLayerFrozen);
 	}
 
 	/**
@@ -122,7 +115,7 @@ public class IfcPresentationLayerWithStyleImpl extends IfcPresentationLayerAssig
 	 */
 	public boolean isLayerBlocked()
 	{
-		return (Boolean)eGet(Ifc2x3Package.Literals.IFC_PRESENTATION_LAYER_WITH_STYLE__LAYER_BLOCKED, true);
+		return (Boolean)eGet(Ifc2x3Package.eINSTANCE.getIfcPresentationLayerWithStyle_LayerBlocked(), true);
 	}
 
 	/**
@@ -132,7 +125,7 @@ public class IfcPresentationLayerWithStyleImpl extends IfcPresentationLayerAssig
 	 */
 	public void setLayerBlocked(boolean newLayerBlocked)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_PRESENTATION_LAYER_WITH_STYLE__LAYER_BLOCKED, newLayerBlocked);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcPresentationLayerWithStyle_LayerBlocked(), newLayerBlocked);
 	}
 
 	/**
@@ -143,7 +136,7 @@ public class IfcPresentationLayerWithStyleImpl extends IfcPresentationLayerAssig
 	@SuppressWarnings("unchecked")
 	public EList<IfcPresentationStyleSelect> getLayerStyles()
 	{
-		return (EList<IfcPresentationStyleSelect>)eGet(Ifc2x3Package.Literals.IFC_PRESENTATION_LAYER_WITH_STYLE__LAYER_STYLES, true);
+		return (EList<IfcPresentationStyleSelect>)eGet(Ifc2x3Package.eINSTANCE.getIfcPresentationLayerWithStyle_LayerStyles(), true);
 	}
 
 } //IfcPresentationLayerWithStyleImpl

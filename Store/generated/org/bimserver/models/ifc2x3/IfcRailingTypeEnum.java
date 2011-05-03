@@ -40,68 +40,61 @@ public enum IfcRailingTypeEnum implements Enumerator
 	 * The '<em><b>NULL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NULL
+	 * @see #NULL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NULL_LITERAL(0, "NULL", "NULL"),
+	NULL(0, "NULL", "NULL"),
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED
+	 * @see #NOTDEFINED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED_LITERAL(1, "NOTDEFINED", "NOTDEFINED"),
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>HANDRAIL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #HANDRAIL
+	 * @see #HANDRAIL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	HANDRAIL_LITERAL(2, "HANDRAIL", "HANDRAIL"),
+	HANDRAIL(2, "HANDRAIL", "HANDRAIL"),
 
 	/**
 	 * The '<em><b>GUARDRAIL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #GUARDRAIL
+	 * @see #GUARDRAIL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	GUARDRAIL_LITERAL(3, "GUARDRAIL", "GUARDRAIL"),
+	GUARDRAIL(3, "GUARDRAIL", "GUARDRAIL"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
+	 * @see #USERDEFINED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	USERDEFINED_LITERAL(4, "USERDEFINED", "USERDEFINED"),
+	USERDEFINED(4, "USERDEFINED", "USERDEFINED"),
 
 	/**
 	 * The '<em><b>BALUSTRADE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #BALUSTRADE
+	 * @see #BALUSTRADE_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	BALUSTRADE_LITERAL(5, "BALUSTRADE", "BALUSTRADE");
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
+	BALUSTRADE(5, "BALUSTRADE", "BALUSTRADE");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -111,12 +104,12 @@ public enum IfcRailingTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NULL_LITERAL
+	 * @see #NULL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NULL = 0;
+	public static final int NULL_VALUE = 0;
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
@@ -126,12 +119,12 @@ public enum IfcRailingTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_LITERAL
+	 * @see #NOTDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED = 1;
+	public static final int NOTDEFINED_VALUE = 1;
 
 	/**
 	 * The '<em><b>HANDRAIL</b></em>' literal value.
@@ -141,12 +134,12 @@ public enum IfcRailingTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #HANDRAIL_LITERAL
+	 * @see #HANDRAIL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int HANDRAIL = 2;
+	public static final int HANDRAIL_VALUE = 2;
 
 	/**
 	 * The '<em><b>GUARDRAIL</b></em>' literal value.
@@ -156,12 +149,12 @@ public enum IfcRailingTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #GUARDRAIL_LITERAL
+	 * @see #GUARDRAIL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int GUARDRAIL = 3;
+	public static final int GUARDRAIL_VALUE = 3;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -171,12 +164,12 @@ public enum IfcRailingTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_LITERAL
+	 * @see #USERDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED = 4;
+	public static final int USERDEFINED_VALUE = 4;
 
 	/**
 	 * The '<em><b>BALUSTRADE</b></em>' literal value.
@@ -186,12 +179,12 @@ public enum IfcRailingTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #BALUSTRADE_LITERAL
+	 * @see #BALUSTRADE
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int BALUSTRADE = 5;
+	public static final int BALUSTRADE_VALUE = 5;
 
 	/**
 	 * An array of all the '<em><b>Ifc Railing Type Enum</b></em>' enumerators.
@@ -200,14 +193,13 @@ public enum IfcRailingTypeEnum implements Enumerator
 	 * @generated
 	 */
 	private static final IfcRailingTypeEnum[] VALUES_ARRAY =
-		new IfcRailingTypeEnum[]
-		{
-			NULL_LITERAL,
-			NOTDEFINED_LITERAL,
-			HANDRAIL_LITERAL,
-			GUARDRAIL_LITERAL,
-			USERDEFINED_LITERAL,
-			BALUSTRADE_LITERAL,
+		new IfcRailingTypeEnum[] {
+			NULL,
+			NOTDEFINED,
+			HANDRAIL,
+			GUARDRAIL,
+			USERDEFINED,
+			BALUSTRADE,
 		};
 
 	/**
@@ -226,11 +218,9 @@ public enum IfcRailingTypeEnum implements Enumerator
 	 */
 	public static IfcRailingTypeEnum get(String literal)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcRailingTypeEnum result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal))
-			{
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -245,11 +235,9 @@ public enum IfcRailingTypeEnum implements Enumerator
 	 */
 	public static IfcRailingTypeEnum getByName(String name)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcRailingTypeEnum result = VALUES_ARRAY[i];
-			if (result.getName().equals(name))
-			{
+			if (result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -264,14 +252,13 @@ public enum IfcRailingTypeEnum implements Enumerator
 	 */
 	public static IfcRailingTypeEnum get(int value)
 	{
-		switch (value)
-		{
-			case NULL: return NULL_LITERAL;
-			case NOTDEFINED: return NOTDEFINED_LITERAL;
-			case HANDRAIL: return HANDRAIL_LITERAL;
-			case GUARDRAIL: return GUARDRAIL_LITERAL;
-			case USERDEFINED: return USERDEFINED_LITERAL;
-			case BALUSTRADE: return BALUSTRADE_LITERAL;
+		switch (value) {
+			case NULL_VALUE: return NULL;
+			case NOTDEFINED_VALUE: return NOTDEFINED;
+			case HANDRAIL_VALUE: return HANDRAIL;
+			case GUARDRAIL_VALUE: return GUARDRAIL;
+			case USERDEFINED_VALUE: return USERDEFINED;
+			case BALUSTRADE_VALUE: return BALUSTRADE;
 		}
 		return null;
 	}

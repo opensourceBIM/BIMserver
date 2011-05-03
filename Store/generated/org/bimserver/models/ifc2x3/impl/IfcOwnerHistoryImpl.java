@@ -57,13 +57,6 @@ public class IfcOwnerHistoryImpl extends IdEObjectImpl implements IfcOwnerHistor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	protected IfcOwnerHistoryImpl()
 	{
 		super();
@@ -77,7 +70,7 @@ public class IfcOwnerHistoryImpl extends IdEObjectImpl implements IfcOwnerHistor
 	@Override
 	protected EClass eStaticClass()
 	{
-		return Ifc2x3Package.Literals.IFC_OWNER_HISTORY;
+		return Ifc2x3Package.eINSTANCE.getIfcOwnerHistory();
 	}
 
 	/**
@@ -98,7 +91,7 @@ public class IfcOwnerHistoryImpl extends IdEObjectImpl implements IfcOwnerHistor
 	 */
 	public IfcPersonAndOrganization getOwningUser()
 	{
-		return (IfcPersonAndOrganization)eGet(Ifc2x3Package.Literals.IFC_OWNER_HISTORY__OWNING_USER, true);
+		return (IfcPersonAndOrganization)eGet(Ifc2x3Package.eINSTANCE.getIfcOwnerHistory_OwningUser(), true);
 	}
 
 	/**
@@ -108,7 +101,7 @@ public class IfcOwnerHistoryImpl extends IdEObjectImpl implements IfcOwnerHistor
 	 */
 	public void setOwningUser(IfcPersonAndOrganization newOwningUser)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_OWNER_HISTORY__OWNING_USER, newOwningUser);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcOwnerHistory_OwningUser(), newOwningUser);
 	}
 
 	/**
@@ -118,7 +111,7 @@ public class IfcOwnerHistoryImpl extends IdEObjectImpl implements IfcOwnerHistor
 	 */
 	public IfcApplication getOwningApplication()
 	{
-		return (IfcApplication)eGet(Ifc2x3Package.Literals.IFC_OWNER_HISTORY__OWNING_APPLICATION, true);
+		return (IfcApplication)eGet(Ifc2x3Package.eINSTANCE.getIfcOwnerHistory_OwningApplication(), true);
 	}
 
 	/**
@@ -128,7 +121,7 @@ public class IfcOwnerHistoryImpl extends IdEObjectImpl implements IfcOwnerHistor
 	 */
 	public void setOwningApplication(IfcApplication newOwningApplication)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_OWNER_HISTORY__OWNING_APPLICATION, newOwningApplication);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcOwnerHistory_OwningApplication(), newOwningApplication);
 	}
 
 	/**
@@ -138,7 +131,7 @@ public class IfcOwnerHistoryImpl extends IdEObjectImpl implements IfcOwnerHistor
 	 */
 	public IfcStateEnum getState()
 	{
-		return (IfcStateEnum)eGet(Ifc2x3Package.Literals.IFC_OWNER_HISTORY__STATE, true);
+		return (IfcStateEnum)eGet(Ifc2x3Package.eINSTANCE.getIfcOwnerHistory_State(), true);
 	}
 
 	/**
@@ -148,7 +141,7 @@ public class IfcOwnerHistoryImpl extends IdEObjectImpl implements IfcOwnerHistor
 	 */
 	public void setState(IfcStateEnum newState)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_OWNER_HISTORY__STATE, newState);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcOwnerHistory_State(), newState);
 	}
 
 	/**
@@ -158,7 +151,7 @@ public class IfcOwnerHistoryImpl extends IdEObjectImpl implements IfcOwnerHistor
 	 */
 	public IfcChangeActionEnum getChangeAction()
 	{
-		return (IfcChangeActionEnum)eGet(Ifc2x3Package.Literals.IFC_OWNER_HISTORY__CHANGE_ACTION, true);
+		return (IfcChangeActionEnum)eGet(Ifc2x3Package.eINSTANCE.getIfcOwnerHistory_ChangeAction(), true);
 	}
 
 	/**
@@ -168,7 +161,7 @@ public class IfcOwnerHistoryImpl extends IdEObjectImpl implements IfcOwnerHistor
 	 */
 	public void setChangeAction(IfcChangeActionEnum newChangeAction)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_OWNER_HISTORY__CHANGE_ACTION, newChangeAction);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcOwnerHistory_ChangeAction(), newChangeAction);
 	}
 
 	/**
@@ -178,7 +171,7 @@ public class IfcOwnerHistoryImpl extends IdEObjectImpl implements IfcOwnerHistor
 	 */
 	public int getLastModifiedDate()
 	{
-		return (Integer)eGet(Ifc2x3Package.Literals.IFC_OWNER_HISTORY__LAST_MODIFIED_DATE, true);
+		return (Integer)eGet(Ifc2x3Package.eINSTANCE.getIfcOwnerHistory_LastModifiedDate(), true);
 	}
 
 	/**
@@ -188,7 +181,7 @@ public class IfcOwnerHistoryImpl extends IdEObjectImpl implements IfcOwnerHistor
 	 */
 	public void setLastModifiedDate(int newLastModifiedDate)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_OWNER_HISTORY__LAST_MODIFIED_DATE, newLastModifiedDate);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcOwnerHistory_LastModifiedDate(), newLastModifiedDate);
 	}
 
 	/**
@@ -198,7 +191,7 @@ public class IfcOwnerHistoryImpl extends IdEObjectImpl implements IfcOwnerHistor
 	 */
 	public void unsetLastModifiedDate()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_OWNER_HISTORY__LAST_MODIFIED_DATE);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcOwnerHistory_LastModifiedDate());
 	}
 
 	/**
@@ -208,7 +201,7 @@ public class IfcOwnerHistoryImpl extends IdEObjectImpl implements IfcOwnerHistor
 	 */
 	public boolean isSetLastModifiedDate()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_OWNER_HISTORY__LAST_MODIFIED_DATE);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcOwnerHistory_LastModifiedDate());
 	}
 
 	/**
@@ -218,7 +211,7 @@ public class IfcOwnerHistoryImpl extends IdEObjectImpl implements IfcOwnerHistor
 	 */
 	public IfcPersonAndOrganization getLastModifyingUser()
 	{
-		return (IfcPersonAndOrganization)eGet(Ifc2x3Package.Literals.IFC_OWNER_HISTORY__LAST_MODIFYING_USER, true);
+		return (IfcPersonAndOrganization)eGet(Ifc2x3Package.eINSTANCE.getIfcOwnerHistory_LastModifyingUser(), true);
 	}
 
 	/**
@@ -228,7 +221,7 @@ public class IfcOwnerHistoryImpl extends IdEObjectImpl implements IfcOwnerHistor
 	 */
 	public void setLastModifyingUser(IfcPersonAndOrganization newLastModifyingUser)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_OWNER_HISTORY__LAST_MODIFYING_USER, newLastModifyingUser);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcOwnerHistory_LastModifyingUser(), newLastModifyingUser);
 	}
 
 	/**
@@ -238,7 +231,7 @@ public class IfcOwnerHistoryImpl extends IdEObjectImpl implements IfcOwnerHistor
 	 */
 	public void unsetLastModifyingUser()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_OWNER_HISTORY__LAST_MODIFYING_USER);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcOwnerHistory_LastModifyingUser());
 	}
 
 	/**
@@ -248,7 +241,7 @@ public class IfcOwnerHistoryImpl extends IdEObjectImpl implements IfcOwnerHistor
 	 */
 	public boolean isSetLastModifyingUser()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_OWNER_HISTORY__LAST_MODIFYING_USER);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcOwnerHistory_LastModifyingUser());
 	}
 
 	/**
@@ -258,7 +251,7 @@ public class IfcOwnerHistoryImpl extends IdEObjectImpl implements IfcOwnerHistor
 	 */
 	public IfcApplication getLastModifyingApplication()
 	{
-		return (IfcApplication)eGet(Ifc2x3Package.Literals.IFC_OWNER_HISTORY__LAST_MODIFYING_APPLICATION, true);
+		return (IfcApplication)eGet(Ifc2x3Package.eINSTANCE.getIfcOwnerHistory_LastModifyingApplication(), true);
 	}
 
 	/**
@@ -268,7 +261,7 @@ public class IfcOwnerHistoryImpl extends IdEObjectImpl implements IfcOwnerHistor
 	 */
 	public void setLastModifyingApplication(IfcApplication newLastModifyingApplication)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_OWNER_HISTORY__LAST_MODIFYING_APPLICATION, newLastModifyingApplication);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcOwnerHistory_LastModifyingApplication(), newLastModifyingApplication);
 	}
 
 	/**
@@ -278,7 +271,7 @@ public class IfcOwnerHistoryImpl extends IdEObjectImpl implements IfcOwnerHistor
 	 */
 	public void unsetLastModifyingApplication()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_OWNER_HISTORY__LAST_MODIFYING_APPLICATION);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcOwnerHistory_LastModifyingApplication());
 	}
 
 	/**
@@ -288,7 +281,7 @@ public class IfcOwnerHistoryImpl extends IdEObjectImpl implements IfcOwnerHistor
 	 */
 	public boolean isSetLastModifyingApplication()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_OWNER_HISTORY__LAST_MODIFYING_APPLICATION);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcOwnerHistory_LastModifyingApplication());
 	}
 
 	/**
@@ -298,7 +291,7 @@ public class IfcOwnerHistoryImpl extends IdEObjectImpl implements IfcOwnerHistor
 	 */
 	public int getCreationDate()
 	{
-		return (Integer)eGet(Ifc2x3Package.Literals.IFC_OWNER_HISTORY__CREATION_DATE, true);
+		return (Integer)eGet(Ifc2x3Package.eINSTANCE.getIfcOwnerHistory_CreationDate(), true);
 	}
 
 	/**
@@ -308,7 +301,7 @@ public class IfcOwnerHistoryImpl extends IdEObjectImpl implements IfcOwnerHistor
 	 */
 	public void setCreationDate(int newCreationDate)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_OWNER_HISTORY__CREATION_DATE, newCreationDate);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcOwnerHistory_CreationDate(), newCreationDate);
 	}
 
 } //IfcOwnerHistoryImpl

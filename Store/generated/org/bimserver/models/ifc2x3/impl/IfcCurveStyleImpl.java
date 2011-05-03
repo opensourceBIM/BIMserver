@@ -51,13 +51,6 @@ public class IfcCurveStyleImpl extends IfcPresentationStyleImpl implements IfcCu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	protected IfcCurveStyleImpl()
 	{
 		super();
@@ -71,7 +64,7 @@ public class IfcCurveStyleImpl extends IfcPresentationStyleImpl implements IfcCu
 	@Override
 	protected EClass eStaticClass()
 	{
-		return Ifc2x3Package.Literals.IFC_CURVE_STYLE;
+		return Ifc2x3Package.eINSTANCE.getIfcCurveStyle();
 	}
 
 	/**
@@ -81,7 +74,7 @@ public class IfcCurveStyleImpl extends IfcPresentationStyleImpl implements IfcCu
 	 */
 	public IfcCurveFontOrScaledCurveFontSelect getCurveFont()
 	{
-		return (IfcCurveFontOrScaledCurveFontSelect)eGet(Ifc2x3Package.Literals.IFC_CURVE_STYLE__CURVE_FONT, true);
+		return (IfcCurveFontOrScaledCurveFontSelect)eGet(Ifc2x3Package.eINSTANCE.getIfcCurveStyle_CurveFont(), true);
 	}
 
 	/**
@@ -91,7 +84,7 @@ public class IfcCurveStyleImpl extends IfcPresentationStyleImpl implements IfcCu
 	 */
 	public void setCurveFont(IfcCurveFontOrScaledCurveFontSelect newCurveFont)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_CURVE_STYLE__CURVE_FONT, newCurveFont);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcCurveStyle_CurveFont(), newCurveFont);
 	}
 
 	/**
@@ -101,7 +94,7 @@ public class IfcCurveStyleImpl extends IfcPresentationStyleImpl implements IfcCu
 	 */
 	public void unsetCurveFont()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_CURVE_STYLE__CURVE_FONT);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcCurveStyle_CurveFont());
 	}
 
 	/**
@@ -111,7 +104,7 @@ public class IfcCurveStyleImpl extends IfcPresentationStyleImpl implements IfcCu
 	 */
 	public boolean isSetCurveFont()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_CURVE_STYLE__CURVE_FONT);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcCurveStyle_CurveFont());
 	}
 
 	/**
@@ -121,7 +114,7 @@ public class IfcCurveStyleImpl extends IfcPresentationStyleImpl implements IfcCu
 	 */
 	public IfcSizeSelect getCurveWidth()
 	{
-		return (IfcSizeSelect)eGet(Ifc2x3Package.Literals.IFC_CURVE_STYLE__CURVE_WIDTH, true);
+		return (IfcSizeSelect)eGet(Ifc2x3Package.eINSTANCE.getIfcCurveStyle_CurveWidth(), true);
 	}
 
 	/**
@@ -131,7 +124,7 @@ public class IfcCurveStyleImpl extends IfcPresentationStyleImpl implements IfcCu
 	 */
 	public void setCurveWidth(IfcSizeSelect newCurveWidth)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_CURVE_STYLE__CURVE_WIDTH, newCurveWidth);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcCurveStyle_CurveWidth(), newCurveWidth);
 	}
 
 	/**
@@ -141,7 +134,7 @@ public class IfcCurveStyleImpl extends IfcPresentationStyleImpl implements IfcCu
 	 */
 	public void unsetCurveWidth()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_CURVE_STYLE__CURVE_WIDTH);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcCurveStyle_CurveWidth());
 	}
 
 	/**
@@ -151,7 +144,7 @@ public class IfcCurveStyleImpl extends IfcPresentationStyleImpl implements IfcCu
 	 */
 	public boolean isSetCurveWidth()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_CURVE_STYLE__CURVE_WIDTH);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcCurveStyle_CurveWidth());
 	}
 
 	/**
@@ -161,7 +154,7 @@ public class IfcCurveStyleImpl extends IfcPresentationStyleImpl implements IfcCu
 	 */
 	public IfcColour getCurveColour()
 	{
-		return (IfcColour)eGet(Ifc2x3Package.Literals.IFC_CURVE_STYLE__CURVE_COLOUR, true);
+		return (IfcColour)eGet(Ifc2x3Package.eINSTANCE.getIfcCurveStyle_CurveColour(), true);
 	}
 
 	/**
@@ -171,7 +164,7 @@ public class IfcCurveStyleImpl extends IfcPresentationStyleImpl implements IfcCu
 	 */
 	public void setCurveColour(IfcColour newCurveColour)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_CURVE_STYLE__CURVE_COLOUR, newCurveColour);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcCurveStyle_CurveColour(), newCurveColour);
 	}
 
 	/**
@@ -181,7 +174,7 @@ public class IfcCurveStyleImpl extends IfcPresentationStyleImpl implements IfcCu
 	 */
 	public void unsetCurveColour()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_CURVE_STYLE__CURVE_COLOUR);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcCurveStyle_CurveColour());
 	}
 
 	/**
@@ -191,7 +184,7 @@ public class IfcCurveStyleImpl extends IfcPresentationStyleImpl implements IfcCu
 	 */
 	public boolean isSetCurveColour()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_CURVE_STYLE__CURVE_COLOUR);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcCurveStyle_CurveColour());
 	}
 
 } //IfcCurveStyleImpl

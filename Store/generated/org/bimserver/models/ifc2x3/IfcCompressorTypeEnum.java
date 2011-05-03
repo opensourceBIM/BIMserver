@@ -40,188 +40,181 @@ public enum IfcCompressorTypeEnum implements Enumerator
 	 * The '<em><b>NULL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NULL
+	 * @see #NULL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NULL_LITERAL(0, "NULL", "NULL"),
+	NULL(0, "NULL", "NULL"),
 
 	/**
 	 * The '<em><b>BOOSTER</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #BOOSTER
+	 * @see #BOOSTER_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	BOOSTER_LITERAL(1, "BOOSTER", "BOOSTER"),
+	BOOSTER(1, "BOOSTER", "BOOSTER"),
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED
+	 * @see #NOTDEFINED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED_LITERAL(2, "NOTDEFINED", "NOTDEFINED"),
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>SINGLESCREW</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #SINGLESCREW
+	 * @see #SINGLESCREW_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	SINGLESCREW_LITERAL(3, "SINGLESCREW", "SINGLESCREW"),
+	SINGLESCREW(3, "SINGLESCREW", "SINGLESCREW"),
 
 	/**
 	 * The '<em><b>ROTARYVANE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #ROTARYVANE
+	 * @see #ROTARYVANE_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	ROTARYVANE_LITERAL(4, "ROTARYVANE", "ROTARYVANE"),
+	ROTARYVANE(4, "ROTARYVANE", "ROTARYVANE"),
 
 	/**
 	 * The '<em><b>OPENTYPE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #OPENTYPE
+	 * @see #OPENTYPE_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	OPENTYPE_LITERAL(5, "OPENTYPE", "OPENTYPE"),
+	OPENTYPE(5, "OPENTYPE", "OPENTYPE"),
 
 	/**
 	 * The '<em><b>SINGLESTAGE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #SINGLESTAGE
+	 * @see #SINGLESTAGE_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	SINGLESTAGE_LITERAL(6, "SINGLESTAGE", "SINGLESTAGE"),
+	SINGLESTAGE(6, "SINGLESTAGE", "SINGLESTAGE"),
 
 	/**
 	 * The '<em><b>HERMETIC</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #HERMETIC
+	 * @see #HERMETIC_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	HERMETIC_LITERAL(7, "HERMETIC", "HERMETIC"),
+	HERMETIC(7, "HERMETIC", "HERMETIC"),
 
 	/**
 	 * The '<em><b>SEMIHERMETIC</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #SEMIHERMETIC
+	 * @see #SEMIHERMETIC_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	SEMIHERMETIC_LITERAL(8, "SEMIHERMETIC", "SEMIHERMETIC"),
+	SEMIHERMETIC(8, "SEMIHERMETIC", "SEMIHERMETIC"),
 
 	/**
 	 * The '<em><b>TWINSCREW</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #TWINSCREW
+	 * @see #TWINSCREW_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	TWINSCREW_LITERAL(9, "TWINSCREW", "TWINSCREW"),
+	TWINSCREW(9, "TWINSCREW", "TWINSCREW"),
 
 	/**
 	 * The '<em><b>ROTARY</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #ROTARY
+	 * @see #ROTARY_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	ROTARY_LITERAL(10, "ROTARY", "ROTARY"),
+	ROTARY(10, "ROTARY", "ROTARY"),
 
 	/**
 	 * The '<em><b>SCROLL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #SCROLL
+	 * @see #SCROLL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	SCROLL_LITERAL(11, "SCROLL", "SCROLL"),
+	SCROLL(11, "SCROLL", "SCROLL"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
+	 * @see #USERDEFINED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	USERDEFINED_LITERAL(12, "USERDEFINED", "USERDEFINED"),
+	USERDEFINED(12, "USERDEFINED", "USERDEFINED"),
 
 	/**
 	 * The '<em><b>ROLLINGPISTON</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #ROLLINGPISTON
+	 * @see #ROLLINGPISTON_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	ROLLINGPISTON_LITERAL(13, "ROLLINGPISTON", "ROLLINGPISTON"),
+	ROLLINGPISTON(13, "ROLLINGPISTON", "ROLLINGPISTON"),
 
 	/**
 	 * The '<em><b>WELDEDSHELLHERMETIC</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #WELDEDSHELLHERMETIC
+	 * @see #WELDEDSHELLHERMETIC_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	WELDEDSHELLHERMETIC_LITERAL(14, "WELDEDSHELLHERMETIC", "WELDEDSHELLHERMETIC"),
+	WELDEDSHELLHERMETIC(14, "WELDEDSHELLHERMETIC", "WELDEDSHELLHERMETIC"),
 
 	/**
 	 * The '<em><b>DYNAMIC</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #DYNAMIC
+	 * @see #DYNAMIC_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	DYNAMIC_LITERAL(15, "DYNAMIC", "DYNAMIC"),
+	DYNAMIC(15, "DYNAMIC", "DYNAMIC"),
 
 	/**
 	 * The '<em><b>RECIPROCATING</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #RECIPROCATING
+	 * @see #RECIPROCATING_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	RECIPROCATING_LITERAL(16, "RECIPROCATING", "RECIPROCATING"),
+	RECIPROCATING(16, "RECIPROCATING", "RECIPROCATING"),
 
 	/**
 	 * The '<em><b>TROCHOIDAL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #TROCHOIDAL
+	 * @see #TROCHOIDAL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	TROCHOIDAL_LITERAL(17, "TROCHOIDAL", "TROCHOIDAL");
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
+	TROCHOIDAL(17, "TROCHOIDAL", "TROCHOIDAL");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -231,12 +224,12 @@ public enum IfcCompressorTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NULL_LITERAL
+	 * @see #NULL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NULL = 0;
+	public static final int NULL_VALUE = 0;
 
 	/**
 	 * The '<em><b>BOOSTER</b></em>' literal value.
@@ -246,12 +239,12 @@ public enum IfcCompressorTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #BOOSTER_LITERAL
+	 * @see #BOOSTER
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int BOOSTER = 1;
+	public static final int BOOSTER_VALUE = 1;
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
@@ -261,12 +254,12 @@ public enum IfcCompressorTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_LITERAL
+	 * @see #NOTDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED = 2;
+	public static final int NOTDEFINED_VALUE = 2;
 
 	/**
 	 * The '<em><b>SINGLESCREW</b></em>' literal value.
@@ -276,12 +269,12 @@ public enum IfcCompressorTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #SINGLESCREW_LITERAL
+	 * @see #SINGLESCREW
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SINGLESCREW = 3;
+	public static final int SINGLESCREW_VALUE = 3;
 
 	/**
 	 * The '<em><b>ROTARYVANE</b></em>' literal value.
@@ -291,12 +284,12 @@ public enum IfcCompressorTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ROTARYVANE_LITERAL
+	 * @see #ROTARYVANE
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ROTARYVANE = 4;
+	public static final int ROTARYVANE_VALUE = 4;
 
 	/**
 	 * The '<em><b>OPENTYPE</b></em>' literal value.
@@ -306,12 +299,12 @@ public enum IfcCompressorTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #OPENTYPE_LITERAL
+	 * @see #OPENTYPE
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int OPENTYPE = 5;
+	public static final int OPENTYPE_VALUE = 5;
 
 	/**
 	 * The '<em><b>SINGLESTAGE</b></em>' literal value.
@@ -321,12 +314,12 @@ public enum IfcCompressorTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #SINGLESTAGE_LITERAL
+	 * @see #SINGLESTAGE
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SINGLESTAGE = 6;
+	public static final int SINGLESTAGE_VALUE = 6;
 
 	/**
 	 * The '<em><b>HERMETIC</b></em>' literal value.
@@ -336,12 +329,12 @@ public enum IfcCompressorTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #HERMETIC_LITERAL
+	 * @see #HERMETIC
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int HERMETIC = 7;
+	public static final int HERMETIC_VALUE = 7;
 
 	/**
 	 * The '<em><b>SEMIHERMETIC</b></em>' literal value.
@@ -351,12 +344,12 @@ public enum IfcCompressorTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #SEMIHERMETIC_LITERAL
+	 * @see #SEMIHERMETIC
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SEMIHERMETIC = 8;
+	public static final int SEMIHERMETIC_VALUE = 8;
 
 	/**
 	 * The '<em><b>TWINSCREW</b></em>' literal value.
@@ -366,12 +359,12 @@ public enum IfcCompressorTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #TWINSCREW_LITERAL
+	 * @see #TWINSCREW
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int TWINSCREW = 9;
+	public static final int TWINSCREW_VALUE = 9;
 
 	/**
 	 * The '<em><b>ROTARY</b></em>' literal value.
@@ -381,12 +374,12 @@ public enum IfcCompressorTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ROTARY_LITERAL
+	 * @see #ROTARY
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ROTARY = 10;
+	public static final int ROTARY_VALUE = 10;
 
 	/**
 	 * The '<em><b>SCROLL</b></em>' literal value.
@@ -396,12 +389,12 @@ public enum IfcCompressorTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #SCROLL_LITERAL
+	 * @see #SCROLL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SCROLL = 11;
+	public static final int SCROLL_VALUE = 11;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -411,12 +404,12 @@ public enum IfcCompressorTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_LITERAL
+	 * @see #USERDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED = 12;
+	public static final int USERDEFINED_VALUE = 12;
 
 	/**
 	 * The '<em><b>ROLLINGPISTON</b></em>' literal value.
@@ -426,12 +419,12 @@ public enum IfcCompressorTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ROLLINGPISTON_LITERAL
+	 * @see #ROLLINGPISTON
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ROLLINGPISTON = 13;
+	public static final int ROLLINGPISTON_VALUE = 13;
 
 	/**
 	 * The '<em><b>WELDEDSHELLHERMETIC</b></em>' literal value.
@@ -441,12 +434,12 @@ public enum IfcCompressorTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #WELDEDSHELLHERMETIC_LITERAL
+	 * @see #WELDEDSHELLHERMETIC
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int WELDEDSHELLHERMETIC = 14;
+	public static final int WELDEDSHELLHERMETIC_VALUE = 14;
 
 	/**
 	 * The '<em><b>DYNAMIC</b></em>' literal value.
@@ -456,12 +449,12 @@ public enum IfcCompressorTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #DYNAMIC_LITERAL
+	 * @see #DYNAMIC
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int DYNAMIC = 15;
+	public static final int DYNAMIC_VALUE = 15;
 
 	/**
 	 * The '<em><b>RECIPROCATING</b></em>' literal value.
@@ -471,12 +464,12 @@ public enum IfcCompressorTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #RECIPROCATING_LITERAL
+	 * @see #RECIPROCATING
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int RECIPROCATING = 16;
+	public static final int RECIPROCATING_VALUE = 16;
 
 	/**
 	 * The '<em><b>TROCHOIDAL</b></em>' literal value.
@@ -486,12 +479,12 @@ public enum IfcCompressorTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #TROCHOIDAL_LITERAL
+	 * @see #TROCHOIDAL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int TROCHOIDAL = 17;
+	public static final int TROCHOIDAL_VALUE = 17;
 
 	/**
 	 * An array of all the '<em><b>Ifc Compressor Type Enum</b></em>' enumerators.
@@ -500,26 +493,25 @@ public enum IfcCompressorTypeEnum implements Enumerator
 	 * @generated
 	 */
 	private static final IfcCompressorTypeEnum[] VALUES_ARRAY =
-		new IfcCompressorTypeEnum[]
-		{
-			NULL_LITERAL,
-			BOOSTER_LITERAL,
-			NOTDEFINED_LITERAL,
-			SINGLESCREW_LITERAL,
-			ROTARYVANE_LITERAL,
-			OPENTYPE_LITERAL,
-			SINGLESTAGE_LITERAL,
-			HERMETIC_LITERAL,
-			SEMIHERMETIC_LITERAL,
-			TWINSCREW_LITERAL,
-			ROTARY_LITERAL,
-			SCROLL_LITERAL,
-			USERDEFINED_LITERAL,
-			ROLLINGPISTON_LITERAL,
-			WELDEDSHELLHERMETIC_LITERAL,
-			DYNAMIC_LITERAL,
-			RECIPROCATING_LITERAL,
-			TROCHOIDAL_LITERAL,
+		new IfcCompressorTypeEnum[] {
+			NULL,
+			BOOSTER,
+			NOTDEFINED,
+			SINGLESCREW,
+			ROTARYVANE,
+			OPENTYPE,
+			SINGLESTAGE,
+			HERMETIC,
+			SEMIHERMETIC,
+			TWINSCREW,
+			ROTARY,
+			SCROLL,
+			USERDEFINED,
+			ROLLINGPISTON,
+			WELDEDSHELLHERMETIC,
+			DYNAMIC,
+			RECIPROCATING,
+			TROCHOIDAL,
 		};
 
 	/**
@@ -538,11 +530,9 @@ public enum IfcCompressorTypeEnum implements Enumerator
 	 */
 	public static IfcCompressorTypeEnum get(String literal)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcCompressorTypeEnum result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal))
-			{
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -557,11 +547,9 @@ public enum IfcCompressorTypeEnum implements Enumerator
 	 */
 	public static IfcCompressorTypeEnum getByName(String name)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcCompressorTypeEnum result = VALUES_ARRAY[i];
-			if (result.getName().equals(name))
-			{
+			if (result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -576,26 +564,25 @@ public enum IfcCompressorTypeEnum implements Enumerator
 	 */
 	public static IfcCompressorTypeEnum get(int value)
 	{
-		switch (value)
-		{
-			case NULL: return NULL_LITERAL;
-			case BOOSTER: return BOOSTER_LITERAL;
-			case NOTDEFINED: return NOTDEFINED_LITERAL;
-			case SINGLESCREW: return SINGLESCREW_LITERAL;
-			case ROTARYVANE: return ROTARYVANE_LITERAL;
-			case OPENTYPE: return OPENTYPE_LITERAL;
-			case SINGLESTAGE: return SINGLESTAGE_LITERAL;
-			case HERMETIC: return HERMETIC_LITERAL;
-			case SEMIHERMETIC: return SEMIHERMETIC_LITERAL;
-			case TWINSCREW: return TWINSCREW_LITERAL;
-			case ROTARY: return ROTARY_LITERAL;
-			case SCROLL: return SCROLL_LITERAL;
-			case USERDEFINED: return USERDEFINED_LITERAL;
-			case ROLLINGPISTON: return ROLLINGPISTON_LITERAL;
-			case WELDEDSHELLHERMETIC: return WELDEDSHELLHERMETIC_LITERAL;
-			case DYNAMIC: return DYNAMIC_LITERAL;
-			case RECIPROCATING: return RECIPROCATING_LITERAL;
-			case TROCHOIDAL: return TROCHOIDAL_LITERAL;
+		switch (value) {
+			case NULL_VALUE: return NULL;
+			case BOOSTER_VALUE: return BOOSTER;
+			case NOTDEFINED_VALUE: return NOTDEFINED;
+			case SINGLESCREW_VALUE: return SINGLESCREW;
+			case ROTARYVANE_VALUE: return ROTARYVANE;
+			case OPENTYPE_VALUE: return OPENTYPE;
+			case SINGLESTAGE_VALUE: return SINGLESTAGE;
+			case HERMETIC_VALUE: return HERMETIC;
+			case SEMIHERMETIC_VALUE: return SEMIHERMETIC;
+			case TWINSCREW_VALUE: return TWINSCREW;
+			case ROTARY_VALUE: return ROTARY;
+			case SCROLL_VALUE: return SCROLL;
+			case USERDEFINED_VALUE: return USERDEFINED;
+			case ROLLINGPISTON_VALUE: return ROLLINGPISTON;
+			case WELDEDSHELLHERMETIC_VALUE: return WELDEDSHELLHERMETIC;
+			case DYNAMIC_VALUE: return DYNAMIC;
+			case RECIPROCATING_VALUE: return RECIPROCATING;
+			case TROCHOIDAL_VALUE: return TROCHOIDAL;
 		}
 		return null;
 	}

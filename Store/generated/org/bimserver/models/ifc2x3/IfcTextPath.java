@@ -40,58 +40,51 @@ public enum IfcTextPath implements Enumerator
 	 * The '<em><b>NULL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NULL
+	 * @see #NULL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NULL_LITERAL(0, "NULL", "NULL"),
+	NULL(0, "NULL", "NULL"),
 
 	/**
 	 * The '<em><b>RIGHT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #RIGHT
+	 * @see #RIGHT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	RIGHT_LITERAL(1, "RIGHT", "RIGHT"),
+	RIGHT(1, "RIGHT", "RIGHT"),
 
 	/**
 	 * The '<em><b>DOWN</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #DOWN
+	 * @see #DOWN_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	DOWN_LITERAL(2, "DOWN", "DOWN"),
+	DOWN(2, "DOWN", "DOWN"),
 
 	/**
 	 * The '<em><b>UP</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #UP
+	 * @see #UP_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	UP_LITERAL(3, "UP", "UP"),
+	UP(3, "UP", "UP"),
 
 	/**
 	 * The '<em><b>LEFT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #LEFT
+	 * @see #LEFT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	LEFT_LITERAL(4, "LEFT", "LEFT");
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
+	LEFT(4, "LEFT", "LEFT");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -101,12 +94,12 @@ public enum IfcTextPath implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NULL_LITERAL
+	 * @see #NULL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NULL = 0;
+	public static final int NULL_VALUE = 0;
 
 	/**
 	 * The '<em><b>RIGHT</b></em>' literal value.
@@ -116,12 +109,12 @@ public enum IfcTextPath implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #RIGHT_LITERAL
+	 * @see #RIGHT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int RIGHT = 1;
+	public static final int RIGHT_VALUE = 1;
 
 	/**
 	 * The '<em><b>DOWN</b></em>' literal value.
@@ -131,12 +124,12 @@ public enum IfcTextPath implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #DOWN_LITERAL
+	 * @see #DOWN
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int DOWN = 2;
+	public static final int DOWN_VALUE = 2;
 
 	/**
 	 * The '<em><b>UP</b></em>' literal value.
@@ -146,12 +139,12 @@ public enum IfcTextPath implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #UP_LITERAL
+	 * @see #UP
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int UP = 3;
+	public static final int UP_VALUE = 3;
 
 	/**
 	 * The '<em><b>LEFT</b></em>' literal value.
@@ -161,12 +154,12 @@ public enum IfcTextPath implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #LEFT_LITERAL
+	 * @see #LEFT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int LEFT = 4;
+	public static final int LEFT_VALUE = 4;
 
 	/**
 	 * An array of all the '<em><b>Ifc Text Path</b></em>' enumerators.
@@ -175,13 +168,12 @@ public enum IfcTextPath implements Enumerator
 	 * @generated
 	 */
 	private static final IfcTextPath[] VALUES_ARRAY =
-		new IfcTextPath[]
-		{
-			NULL_LITERAL,
-			RIGHT_LITERAL,
-			DOWN_LITERAL,
-			UP_LITERAL,
-			LEFT_LITERAL,
+		new IfcTextPath[] {
+			NULL,
+			RIGHT,
+			DOWN,
+			UP,
+			LEFT,
 		};
 
 	/**
@@ -200,11 +192,9 @@ public enum IfcTextPath implements Enumerator
 	 */
 	public static IfcTextPath get(String literal)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcTextPath result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal))
-			{
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -219,11 +209,9 @@ public enum IfcTextPath implements Enumerator
 	 */
 	public static IfcTextPath getByName(String name)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcTextPath result = VALUES_ARRAY[i];
-			if (result.getName().equals(name))
-			{
+			if (result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -238,13 +226,12 @@ public enum IfcTextPath implements Enumerator
 	 */
 	public static IfcTextPath get(int value)
 	{
-		switch (value)
-		{
-			case NULL: return NULL_LITERAL;
-			case RIGHT: return RIGHT_LITERAL;
-			case DOWN: return DOWN_LITERAL;
-			case UP: return UP_LITERAL;
-			case LEFT: return LEFT_LITERAL;
+		switch (value) {
+			case NULL_VALUE: return NULL;
+			case RIGHT_VALUE: return RIGHT;
+			case DOWN_VALUE: return DOWN;
+			case UP_VALUE: return UP;
+			case LEFT_VALUE: return LEFT;
 		}
 		return null;
 	}

@@ -48,13 +48,6 @@ public class IfcTextLiteralWithExtentImpl extends IfcTextLiteralImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	protected IfcTextLiteralWithExtentImpl()
 	{
 		super();
@@ -68,7 +61,7 @@ public class IfcTextLiteralWithExtentImpl extends IfcTextLiteralImpl implements 
 	@Override
 	protected EClass eStaticClass()
 	{
-		return Ifc2x3Package.Literals.IFC_TEXT_LITERAL_WITH_EXTENT;
+		return Ifc2x3Package.eINSTANCE.getIfcTextLiteralWithExtent();
 	}
 
 	/**
@@ -78,7 +71,7 @@ public class IfcTextLiteralWithExtentImpl extends IfcTextLiteralImpl implements 
 	 */
 	public IfcPlanarExtent getExtent()
 	{
-		return (IfcPlanarExtent)eGet(Ifc2x3Package.Literals.IFC_TEXT_LITERAL_WITH_EXTENT__EXTENT, true);
+		return (IfcPlanarExtent)eGet(Ifc2x3Package.eINSTANCE.getIfcTextLiteralWithExtent_Extent(), true);
 	}
 
 	/**
@@ -88,7 +81,7 @@ public class IfcTextLiteralWithExtentImpl extends IfcTextLiteralImpl implements 
 	 */
 	public void setExtent(IfcPlanarExtent newExtent)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_TEXT_LITERAL_WITH_EXTENT__EXTENT, newExtent);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcTextLiteralWithExtent_Extent(), newExtent);
 	}
 
 	/**
@@ -98,7 +91,7 @@ public class IfcTextLiteralWithExtentImpl extends IfcTextLiteralImpl implements 
 	 */
 	public String getBoxAlignment()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_TEXT_LITERAL_WITH_EXTENT__BOX_ALIGNMENT, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcTextLiteralWithExtent_BoxAlignment(), true);
 	}
 
 	/**
@@ -108,7 +101,7 @@ public class IfcTextLiteralWithExtentImpl extends IfcTextLiteralImpl implements 
 	 */
 	public void setBoxAlignment(String newBoxAlignment)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_TEXT_LITERAL_WITH_EXTENT__BOX_ALIGNMENT, newBoxAlignment);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcTextLiteralWithExtent_BoxAlignment(), newBoxAlignment);
 	}
 
 } //IfcTextLiteralWithExtentImpl

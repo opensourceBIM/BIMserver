@@ -40,58 +40,51 @@ public enum IfcRampFlightTypeEnum implements Enumerator
 	 * The '<em><b>NULL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NULL
+	 * @see #NULL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NULL_LITERAL(0, "NULL", "NULL"),
+	NULL(0, "NULL", "NULL"),
 
 	/**
 	 * The '<em><b>SPIRAL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #SPIRAL
+	 * @see #SPIRAL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	SPIRAL_LITERAL(1, "SPIRAL", "SPIRAL"),
+	SPIRAL(1, "SPIRAL", "SPIRAL"),
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED
+	 * @see #NOTDEFINED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED_LITERAL(2, "NOTDEFINED", "NOTDEFINED"),
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>STRAIGHT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #STRAIGHT
+	 * @see #STRAIGHT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	STRAIGHT_LITERAL(3, "STRAIGHT", "STRAIGHT"),
+	STRAIGHT(3, "STRAIGHT", "STRAIGHT"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
+	 * @see #USERDEFINED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	USERDEFINED_LITERAL(4, "USERDEFINED", "USERDEFINED");
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
+	USERDEFINED(4, "USERDEFINED", "USERDEFINED");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -101,12 +94,12 @@ public enum IfcRampFlightTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NULL_LITERAL
+	 * @see #NULL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NULL = 0;
+	public static final int NULL_VALUE = 0;
 
 	/**
 	 * The '<em><b>SPIRAL</b></em>' literal value.
@@ -116,12 +109,12 @@ public enum IfcRampFlightTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #SPIRAL_LITERAL
+	 * @see #SPIRAL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SPIRAL = 1;
+	public static final int SPIRAL_VALUE = 1;
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
@@ -131,12 +124,12 @@ public enum IfcRampFlightTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_LITERAL
+	 * @see #NOTDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED = 2;
+	public static final int NOTDEFINED_VALUE = 2;
 
 	/**
 	 * The '<em><b>STRAIGHT</b></em>' literal value.
@@ -146,12 +139,12 @@ public enum IfcRampFlightTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #STRAIGHT_LITERAL
+	 * @see #STRAIGHT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int STRAIGHT = 3;
+	public static final int STRAIGHT_VALUE = 3;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -161,12 +154,12 @@ public enum IfcRampFlightTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_LITERAL
+	 * @see #USERDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED = 4;
+	public static final int USERDEFINED_VALUE = 4;
 
 	/**
 	 * An array of all the '<em><b>Ifc Ramp Flight Type Enum</b></em>' enumerators.
@@ -175,13 +168,12 @@ public enum IfcRampFlightTypeEnum implements Enumerator
 	 * @generated
 	 */
 	private static final IfcRampFlightTypeEnum[] VALUES_ARRAY =
-		new IfcRampFlightTypeEnum[]
-		{
-			NULL_LITERAL,
-			SPIRAL_LITERAL,
-			NOTDEFINED_LITERAL,
-			STRAIGHT_LITERAL,
-			USERDEFINED_LITERAL,
+		new IfcRampFlightTypeEnum[] {
+			NULL,
+			SPIRAL,
+			NOTDEFINED,
+			STRAIGHT,
+			USERDEFINED,
 		};
 
 	/**
@@ -200,11 +192,9 @@ public enum IfcRampFlightTypeEnum implements Enumerator
 	 */
 	public static IfcRampFlightTypeEnum get(String literal)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcRampFlightTypeEnum result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal))
-			{
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -219,11 +209,9 @@ public enum IfcRampFlightTypeEnum implements Enumerator
 	 */
 	public static IfcRampFlightTypeEnum getByName(String name)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcRampFlightTypeEnum result = VALUES_ARRAY[i];
-			if (result.getName().equals(name))
-			{
+			if (result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -238,13 +226,12 @@ public enum IfcRampFlightTypeEnum implements Enumerator
 	 */
 	public static IfcRampFlightTypeEnum get(int value)
 	{
-		switch (value)
-		{
-			case NULL: return NULL_LITERAL;
-			case SPIRAL: return SPIRAL_LITERAL;
-			case NOTDEFINED: return NOTDEFINED_LITERAL;
-			case STRAIGHT: return STRAIGHT_LITERAL;
-			case USERDEFINED: return USERDEFINED_LITERAL;
+		switch (value) {
+			case NULL_VALUE: return NULL;
+			case SPIRAL_VALUE: return SPIRAL;
+			case NOTDEFINED_VALUE: return NOTDEFINED;
+			case STRAIGHT_VALUE: return STRAIGHT;
+			case USERDEFINED_VALUE: return USERDEFINED;
 		}
 		return null;
 	}

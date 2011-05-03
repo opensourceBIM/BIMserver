@@ -39,13 +39,6 @@ import org.eclipse.emf.ecore.EObject;
 public class Ifc2x3AdapterFactory extends AdapterFactoryImpl
 {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
-
-	/**
 	 * The cached model package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -61,8 +54,7 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl
 	 */
 	public Ifc2x3AdapterFactory()
 	{
-		if (modelPackage == null)
-		{
+		if (modelPackage == null) {
 			modelPackage = Ifc2x3Package.eINSTANCE;
 		}
 	}
@@ -78,12 +70,10 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl
 	@Override
 	public boolean isFactoryForType(Object object)
 	{
-		if (object == modelPackage)
-		{
+		if (object == modelPackage) {
 			return true;
 		}
-		if (object instanceof EObject)
-		{
+		if (object instanceof EObject) {
 			return ((EObject)object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
@@ -96,4001 +86,3201 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	protected Ifc2x3Switch<Adapter> modelSwitch =
-		new Ifc2x3Switch<Adapter>()
-		{
+		new Ifc2x3Switch<Adapter>() {
 			@Override
-			public Adapter caseWrappedValue(WrappedValue object)
-			{
+			public Adapter caseWrappedValue(WrappedValue object) {
 				return createWrappedValueAdapter();
 			}
 			@Override
-			public Adapter caseIfcAbsorbedDoseMeasure(IfcAbsorbedDoseMeasure object)
-			{
+			public Adapter caseIfcAbsorbedDoseMeasure(IfcAbsorbedDoseMeasure object) {
 				return createIfcAbsorbedDoseMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcAccelerationMeasure(IfcAccelerationMeasure object)
-			{
+			public Adapter caseIfcAccelerationMeasure(IfcAccelerationMeasure object) {
 				return createIfcAccelerationMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcAmountOfSubstanceMeasure(IfcAmountOfSubstanceMeasure object)
-			{
+			public Adapter caseIfcAmountOfSubstanceMeasure(IfcAmountOfSubstanceMeasure object) {
 				return createIfcAmountOfSubstanceMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcAngularVelocityMeasure(IfcAngularVelocityMeasure object)
-			{
+			public Adapter caseIfcAngularVelocityMeasure(IfcAngularVelocityMeasure object) {
 				return createIfcAngularVelocityMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcAreaMeasure(IfcAreaMeasure object)
-			{
+			public Adapter caseIfcAreaMeasure(IfcAreaMeasure object) {
 				return createIfcAreaMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcBoolean(IfcBoolean object)
-			{
+			public Adapter caseIfcBoolean(IfcBoolean object) {
 				return createIfcBooleanAdapter();
 			}
 			@Override
-			public Adapter caseIfcContextDependentMeasure(IfcContextDependentMeasure object)
-			{
+			public Adapter caseIfcContextDependentMeasure(IfcContextDependentMeasure object) {
 				return createIfcContextDependentMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcCountMeasure(IfcCountMeasure object)
-			{
+			public Adapter caseIfcCountMeasure(IfcCountMeasure object) {
 				return createIfcCountMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcCurvatureMeasure(IfcCurvatureMeasure object)
-			{
+			public Adapter caseIfcCurvatureMeasure(IfcCurvatureMeasure object) {
 				return createIfcCurvatureMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcDescriptiveMeasure(IfcDescriptiveMeasure object)
-			{
+			public Adapter caseIfcDescriptiveMeasure(IfcDescriptiveMeasure object) {
 				return createIfcDescriptiveMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcDoseEquivalentMeasure(IfcDoseEquivalentMeasure object)
-			{
+			public Adapter caseIfcDoseEquivalentMeasure(IfcDoseEquivalentMeasure object) {
 				return createIfcDoseEquivalentMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcDynamicViscosityMeasure(IfcDynamicViscosityMeasure object)
-			{
+			public Adapter caseIfcDynamicViscosityMeasure(IfcDynamicViscosityMeasure object) {
 				return createIfcDynamicViscosityMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcElectricCapacitanceMeasure(IfcElectricCapacitanceMeasure object)
-			{
+			public Adapter caseIfcElectricCapacitanceMeasure(IfcElectricCapacitanceMeasure object) {
 				return createIfcElectricCapacitanceMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcElectricChargeMeasure(IfcElectricChargeMeasure object)
-			{
+			public Adapter caseIfcElectricChargeMeasure(IfcElectricChargeMeasure object) {
 				return createIfcElectricChargeMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcElectricConductanceMeasure(IfcElectricConductanceMeasure object)
-			{
+			public Adapter caseIfcElectricConductanceMeasure(IfcElectricConductanceMeasure object) {
 				return createIfcElectricConductanceMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcElectricCurrentMeasure(IfcElectricCurrentMeasure object)
-			{
+			public Adapter caseIfcElectricCurrentMeasure(IfcElectricCurrentMeasure object) {
 				return createIfcElectricCurrentMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcElectricResistanceMeasure(IfcElectricResistanceMeasure object)
-			{
+			public Adapter caseIfcElectricResistanceMeasure(IfcElectricResistanceMeasure object) {
 				return createIfcElectricResistanceMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcElectricVoltageMeasure(IfcElectricVoltageMeasure object)
-			{
+			public Adapter caseIfcElectricVoltageMeasure(IfcElectricVoltageMeasure object) {
 				return createIfcElectricVoltageMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcEnergyMeasure(IfcEnergyMeasure object)
-			{
+			public Adapter caseIfcEnergyMeasure(IfcEnergyMeasure object) {
 				return createIfcEnergyMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcForceMeasure(IfcForceMeasure object)
-			{
+			public Adapter caseIfcForceMeasure(IfcForceMeasure object) {
 				return createIfcForceMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcFrequencyMeasure(IfcFrequencyMeasure object)
-			{
+			public Adapter caseIfcFrequencyMeasure(IfcFrequencyMeasure object) {
 				return createIfcFrequencyMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcGloballyUniqueId(IfcGloballyUniqueId object)
-			{
+			public Adapter caseIfcGloballyUniqueId(IfcGloballyUniqueId object) {
 				return createIfcGloballyUniqueIdAdapter();
 			}
 			@Override
-			public Adapter caseIfcHeatFluxDensityMeasure(IfcHeatFluxDensityMeasure object)
-			{
+			public Adapter caseIfcHeatFluxDensityMeasure(IfcHeatFluxDensityMeasure object) {
 				return createIfcHeatFluxDensityMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcHeatingValueMeasure(IfcHeatingValueMeasure object)
-			{
+			public Adapter caseIfcHeatingValueMeasure(IfcHeatingValueMeasure object) {
 				return createIfcHeatingValueMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcIdentifier(IfcIdentifier object)
-			{
+			public Adapter caseIfcIdentifier(IfcIdentifier object) {
 				return createIfcIdentifierAdapter();
 			}
 			@Override
-			public Adapter caseIfcIlluminanceMeasure(IfcIlluminanceMeasure object)
-			{
+			public Adapter caseIfcIlluminanceMeasure(IfcIlluminanceMeasure object) {
 				return createIfcIlluminanceMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcInductanceMeasure(IfcInductanceMeasure object)
-			{
+			public Adapter caseIfcInductanceMeasure(IfcInductanceMeasure object) {
 				return createIfcInductanceMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcInteger(IfcInteger object)
-			{
+			public Adapter caseIfcInteger(IfcInteger object) {
 				return createIfcIntegerAdapter();
 			}
 			@Override
-			public Adapter caseIfcIntegerCountRateMeasure(IfcIntegerCountRateMeasure object)
-			{
+			public Adapter caseIfcIntegerCountRateMeasure(IfcIntegerCountRateMeasure object) {
 				return createIfcIntegerCountRateMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcIonConcentrationMeasure(IfcIonConcentrationMeasure object)
-			{
+			public Adapter caseIfcIonConcentrationMeasure(IfcIonConcentrationMeasure object) {
 				return createIfcIonConcentrationMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcIsothermalMoistureCapacityMeasure(IfcIsothermalMoistureCapacityMeasure object)
-			{
+			public Adapter caseIfcIsothermalMoistureCapacityMeasure(IfcIsothermalMoistureCapacityMeasure object) {
 				return createIfcIsothermalMoistureCapacityMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcKinematicViscosityMeasure(IfcKinematicViscosityMeasure object)
-			{
+			public Adapter caseIfcKinematicViscosityMeasure(IfcKinematicViscosityMeasure object) {
 				return createIfcKinematicViscosityMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcLabel(IfcLabel object)
-			{
+			public Adapter caseIfcLabel(IfcLabel object) {
 				return createIfcLabelAdapter();
 			}
 			@Override
-			public Adapter caseIfcLengthMeasure(IfcLengthMeasure object)
-			{
+			public Adapter caseIfcLengthMeasure(IfcLengthMeasure object) {
 				return createIfcLengthMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcLinearForceMeasure(IfcLinearForceMeasure object)
-			{
+			public Adapter caseIfcLinearForceMeasure(IfcLinearForceMeasure object) {
 				return createIfcLinearForceMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcLinearMomentMeasure(IfcLinearMomentMeasure object)
-			{
+			public Adapter caseIfcLinearMomentMeasure(IfcLinearMomentMeasure object) {
 				return createIfcLinearMomentMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcLinearStiffnessMeasure(IfcLinearStiffnessMeasure object)
-			{
+			public Adapter caseIfcLinearStiffnessMeasure(IfcLinearStiffnessMeasure object) {
 				return createIfcLinearStiffnessMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcLinearVelocityMeasure(IfcLinearVelocityMeasure object)
-			{
+			public Adapter caseIfcLinearVelocityMeasure(IfcLinearVelocityMeasure object) {
 				return createIfcLinearVelocityMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcLogical(IfcLogical object)
-			{
+			public Adapter caseIfcLogical(IfcLogical object) {
 				return createIfcLogicalAdapter();
 			}
 			@Override
-			public Adapter caseIfcLuminousFluxMeasure(IfcLuminousFluxMeasure object)
-			{
+			public Adapter caseIfcLuminousFluxMeasure(IfcLuminousFluxMeasure object) {
 				return createIfcLuminousFluxMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcLuminousIntensityDistributionMeasure(IfcLuminousIntensityDistributionMeasure object)
-			{
+			public Adapter caseIfcLuminousIntensityDistributionMeasure(IfcLuminousIntensityDistributionMeasure object) {
 				return createIfcLuminousIntensityDistributionMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcLuminousIntensityMeasure(IfcLuminousIntensityMeasure object)
-			{
+			public Adapter caseIfcLuminousIntensityMeasure(IfcLuminousIntensityMeasure object) {
 				return createIfcLuminousIntensityMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcMagneticFluxDensityMeasure(IfcMagneticFluxDensityMeasure object)
-			{
+			public Adapter caseIfcMagneticFluxDensityMeasure(IfcMagneticFluxDensityMeasure object) {
 				return createIfcMagneticFluxDensityMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcMagneticFluxMeasure(IfcMagneticFluxMeasure object)
-			{
+			public Adapter caseIfcMagneticFluxMeasure(IfcMagneticFluxMeasure object) {
 				return createIfcMagneticFluxMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcMassDensityMeasure(IfcMassDensityMeasure object)
-			{
+			public Adapter caseIfcMassDensityMeasure(IfcMassDensityMeasure object) {
 				return createIfcMassDensityMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcMassFlowRateMeasure(IfcMassFlowRateMeasure object)
-			{
+			public Adapter caseIfcMassFlowRateMeasure(IfcMassFlowRateMeasure object) {
 				return createIfcMassFlowRateMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcMassMeasure(IfcMassMeasure object)
-			{
+			public Adapter caseIfcMassMeasure(IfcMassMeasure object) {
 				return createIfcMassMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcMassPerLengthMeasure(IfcMassPerLengthMeasure object)
-			{
+			public Adapter caseIfcMassPerLengthMeasure(IfcMassPerLengthMeasure object) {
 				return createIfcMassPerLengthMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcModulusOfElasticityMeasure(IfcModulusOfElasticityMeasure object)
-			{
+			public Adapter caseIfcModulusOfElasticityMeasure(IfcModulusOfElasticityMeasure object) {
 				return createIfcModulusOfElasticityMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcModulusOfLinearSubgradeReactionMeasure(IfcModulusOfLinearSubgradeReactionMeasure object)
-			{
+			public Adapter caseIfcModulusOfLinearSubgradeReactionMeasure(IfcModulusOfLinearSubgradeReactionMeasure object) {
 				return createIfcModulusOfLinearSubgradeReactionMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcModulusOfRotationalSubgradeReactionMeasure(IfcModulusOfRotationalSubgradeReactionMeasure object)
-			{
+			public Adapter caseIfcModulusOfRotationalSubgradeReactionMeasure(IfcModulusOfRotationalSubgradeReactionMeasure object) {
 				return createIfcModulusOfRotationalSubgradeReactionMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcModulusOfSubgradeReactionMeasure(IfcModulusOfSubgradeReactionMeasure object)
-			{
+			public Adapter caseIfcModulusOfSubgradeReactionMeasure(IfcModulusOfSubgradeReactionMeasure object) {
 				return createIfcModulusOfSubgradeReactionMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcMoistureDiffusivityMeasure(IfcMoistureDiffusivityMeasure object)
-			{
+			public Adapter caseIfcMoistureDiffusivityMeasure(IfcMoistureDiffusivityMeasure object) {
 				return createIfcMoistureDiffusivityMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcMolecularWeightMeasure(IfcMolecularWeightMeasure object)
-			{
+			public Adapter caseIfcMolecularWeightMeasure(IfcMolecularWeightMeasure object) {
 				return createIfcMolecularWeightMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcMomentOfInertiaMeasure(IfcMomentOfInertiaMeasure object)
-			{
+			public Adapter caseIfcMomentOfInertiaMeasure(IfcMomentOfInertiaMeasure object) {
 				return createIfcMomentOfInertiaMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcMonetaryMeasure(IfcMonetaryMeasure object)
-			{
+			public Adapter caseIfcMonetaryMeasure(IfcMonetaryMeasure object) {
 				return createIfcMonetaryMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcNumericMeasure(IfcNumericMeasure object)
-			{
+			public Adapter caseIfcNumericMeasure(IfcNumericMeasure object) {
 				return createIfcNumericMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcPHMeasure(IfcPHMeasure object)
-			{
+			public Adapter caseIfcPHMeasure(IfcPHMeasure object) {
 				return createIfcPHMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcParameterValue(IfcParameterValue object)
-			{
+			public Adapter caseIfcParameterValue(IfcParameterValue object) {
 				return createIfcParameterValueAdapter();
 			}
 			@Override
-			public Adapter caseIfcPlanarForceMeasure(IfcPlanarForceMeasure object)
-			{
+			public Adapter caseIfcPlanarForceMeasure(IfcPlanarForceMeasure object) {
 				return createIfcPlanarForceMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcPlaneAngleMeasure(IfcPlaneAngleMeasure object)
-			{
+			public Adapter caseIfcPlaneAngleMeasure(IfcPlaneAngleMeasure object) {
 				return createIfcPlaneAngleMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcPowerMeasure(IfcPowerMeasure object)
-			{
+			public Adapter caseIfcPowerMeasure(IfcPowerMeasure object) {
 				return createIfcPowerMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcPressureMeasure(IfcPressureMeasure object)
-			{
+			public Adapter caseIfcPressureMeasure(IfcPressureMeasure object) {
 				return createIfcPressureMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcRadioActivityMeasure(IfcRadioActivityMeasure object)
-			{
+			public Adapter caseIfcRadioActivityMeasure(IfcRadioActivityMeasure object) {
 				return createIfcRadioActivityMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcRatioMeasure(IfcRatioMeasure object)
-			{
+			public Adapter caseIfcRatioMeasure(IfcRatioMeasure object) {
 				return createIfcRatioMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcReal(IfcReal object)
-			{
+			public Adapter caseIfcReal(IfcReal object) {
 				return createIfcRealAdapter();
 			}
 			@Override
-			public Adapter caseIfcRotationalFrequencyMeasure(IfcRotationalFrequencyMeasure object)
-			{
+			public Adapter caseIfcRotationalFrequencyMeasure(IfcRotationalFrequencyMeasure object) {
 				return createIfcRotationalFrequencyMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcRotationalMassMeasure(IfcRotationalMassMeasure object)
-			{
+			public Adapter caseIfcRotationalMassMeasure(IfcRotationalMassMeasure object) {
 				return createIfcRotationalMassMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcRotationalStiffnessMeasure(IfcRotationalStiffnessMeasure object)
-			{
+			public Adapter caseIfcRotationalStiffnessMeasure(IfcRotationalStiffnessMeasure object) {
 				return createIfcRotationalStiffnessMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcSectionModulusMeasure(IfcSectionModulusMeasure object)
-			{
+			public Adapter caseIfcSectionModulusMeasure(IfcSectionModulusMeasure object) {
 				return createIfcSectionModulusMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcSectionalAreaIntegralMeasure(IfcSectionalAreaIntegralMeasure object)
-			{
+			public Adapter caseIfcSectionalAreaIntegralMeasure(IfcSectionalAreaIntegralMeasure object) {
 				return createIfcSectionalAreaIntegralMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcShearModulusMeasure(IfcShearModulusMeasure object)
-			{
+			public Adapter caseIfcShearModulusMeasure(IfcShearModulusMeasure object) {
 				return createIfcShearModulusMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcSolidAngleMeasure(IfcSolidAngleMeasure object)
-			{
+			public Adapter caseIfcSolidAngleMeasure(IfcSolidAngleMeasure object) {
 				return createIfcSolidAngleMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcSoundPowerMeasure(IfcSoundPowerMeasure object)
-			{
+			public Adapter caseIfcSoundPowerMeasure(IfcSoundPowerMeasure object) {
 				return createIfcSoundPowerMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcSoundPressureMeasure(IfcSoundPressureMeasure object)
-			{
+			public Adapter caseIfcSoundPressureMeasure(IfcSoundPressureMeasure object) {
 				return createIfcSoundPressureMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcSpecificHeatCapacityMeasure(IfcSpecificHeatCapacityMeasure object)
-			{
+			public Adapter caseIfcSpecificHeatCapacityMeasure(IfcSpecificHeatCapacityMeasure object) {
 				return createIfcSpecificHeatCapacityMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcSpecularExponent(IfcSpecularExponent object)
-			{
+			public Adapter caseIfcSpecularExponent(IfcSpecularExponent object) {
 				return createIfcSpecularExponentAdapter();
 			}
 			@Override
-			public Adapter caseIfcSpecularRoughness(IfcSpecularRoughness object)
-			{
+			public Adapter caseIfcSpecularRoughness(IfcSpecularRoughness object) {
 				return createIfcSpecularRoughnessAdapter();
 			}
 			@Override
-			public Adapter caseIfcTemperatureGradientMeasure(IfcTemperatureGradientMeasure object)
-			{
+			public Adapter caseIfcTemperatureGradientMeasure(IfcTemperatureGradientMeasure object) {
 				return createIfcTemperatureGradientMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcText(IfcText object)
-			{
+			public Adapter caseIfcText(IfcText object) {
 				return createIfcTextAdapter();
 			}
 			@Override
-			public Adapter caseIfcThermalAdmittanceMeasure(IfcThermalAdmittanceMeasure object)
-			{
+			public Adapter caseIfcThermalAdmittanceMeasure(IfcThermalAdmittanceMeasure object) {
 				return createIfcThermalAdmittanceMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcThermalConductivityMeasure(IfcThermalConductivityMeasure object)
-			{
+			public Adapter caseIfcThermalConductivityMeasure(IfcThermalConductivityMeasure object) {
 				return createIfcThermalConductivityMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcThermalExpansionCoefficientMeasure(IfcThermalExpansionCoefficientMeasure object)
-			{
+			public Adapter caseIfcThermalExpansionCoefficientMeasure(IfcThermalExpansionCoefficientMeasure object) {
 				return createIfcThermalExpansionCoefficientMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcThermalResistanceMeasure(IfcThermalResistanceMeasure object)
-			{
+			public Adapter caseIfcThermalResistanceMeasure(IfcThermalResistanceMeasure object) {
 				return createIfcThermalResistanceMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcThermalTransmittanceMeasure(IfcThermalTransmittanceMeasure object)
-			{
+			public Adapter caseIfcThermalTransmittanceMeasure(IfcThermalTransmittanceMeasure object) {
 				return createIfcThermalTransmittanceMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcThermodynamicTemperatureMeasure(IfcThermodynamicTemperatureMeasure object)
-			{
+			public Adapter caseIfcThermodynamicTemperatureMeasure(IfcThermodynamicTemperatureMeasure object) {
 				return createIfcThermodynamicTemperatureMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcTimeMeasure(IfcTimeMeasure object)
-			{
+			public Adapter caseIfcTimeMeasure(IfcTimeMeasure object) {
 				return createIfcTimeMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcTimeStamp(IfcTimeStamp object)
-			{
+			public Adapter caseIfcTimeStamp(IfcTimeStamp object) {
 				return createIfcTimeStampAdapter();
 			}
 			@Override
-			public Adapter caseIfcTorqueMeasure(IfcTorqueMeasure object)
-			{
+			public Adapter caseIfcTorqueMeasure(IfcTorqueMeasure object) {
 				return createIfcTorqueMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcVaporPermeabilityMeasure(IfcVaporPermeabilityMeasure object)
-			{
+			public Adapter caseIfcVaporPermeabilityMeasure(IfcVaporPermeabilityMeasure object) {
 				return createIfcVaporPermeabilityMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcVolumeMeasure(IfcVolumeMeasure object)
-			{
+			public Adapter caseIfcVolumeMeasure(IfcVolumeMeasure object) {
 				return createIfcVolumeMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcVolumetricFlowRateMeasure(IfcVolumetricFlowRateMeasure object)
-			{
+			public Adapter caseIfcVolumetricFlowRateMeasure(IfcVolumetricFlowRateMeasure object) {
 				return createIfcVolumetricFlowRateMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcWarpingConstantMeasure(IfcWarpingConstantMeasure object)
-			{
+			public Adapter caseIfcWarpingConstantMeasure(IfcWarpingConstantMeasure object) {
 				return createIfcWarpingConstantMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcWarpingMomentMeasure(IfcWarpingMomentMeasure object)
-			{
+			public Adapter caseIfcWarpingMomentMeasure(IfcWarpingMomentMeasure object) {
 				return createIfcWarpingMomentMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcNormalisedRatioMeasure(IfcNormalisedRatioMeasure object)
-			{
+			public Adapter caseIfcNormalisedRatioMeasure(IfcNormalisedRatioMeasure object) {
 				return createIfcNormalisedRatioMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcPositiveLengthMeasure(IfcPositiveLengthMeasure object)
-			{
+			public Adapter caseIfcPositiveLengthMeasure(IfcPositiveLengthMeasure object) {
 				return createIfcPositiveLengthMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcPositivePlaneAngleMeasure(IfcPositivePlaneAngleMeasure object)
-			{
+			public Adapter caseIfcPositivePlaneAngleMeasure(IfcPositivePlaneAngleMeasure object) {
 				return createIfcPositivePlaneAngleMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcPositiveRatioMeasure(IfcPositiveRatioMeasure object)
-			{
+			public Adapter caseIfcPositiveRatioMeasure(IfcPositiveRatioMeasure object) {
 				return createIfcPositiveRatioMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfc2DCompositeCurve(Ifc2DCompositeCurve object)
-			{
+			public Adapter caseIfc2DCompositeCurve(Ifc2DCompositeCurve object) {
 				return createIfc2DCompositeCurveAdapter();
 			}
 			@Override
-			public Adapter caseIfcActionRequest(IfcActionRequest object)
-			{
+			public Adapter caseIfcActionRequest(IfcActionRequest object) {
 				return createIfcActionRequestAdapter();
 			}
 			@Override
-			public Adapter caseIfcActor(IfcActor object)
-			{
+			public Adapter caseIfcActor(IfcActor object) {
 				return createIfcActorAdapter();
 			}
 			@Override
-			public Adapter caseIfcActorRole(IfcActorRole object)
-			{
+			public Adapter caseIfcActorRole(IfcActorRole object) {
 				return createIfcActorRoleAdapter();
 			}
 			@Override
-			public Adapter caseIfcActuatorType(IfcActuatorType object)
-			{
+			public Adapter caseIfcActuatorType(IfcActuatorType object) {
 				return createIfcActuatorTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcAddress(IfcAddress object)
-			{
+			public Adapter caseIfcAddress(IfcAddress object) {
 				return createIfcAddressAdapter();
 			}
 			@Override
-			public Adapter caseIfcAirTerminalBoxType(IfcAirTerminalBoxType object)
-			{
+			public Adapter caseIfcAirTerminalBoxType(IfcAirTerminalBoxType object) {
 				return createIfcAirTerminalBoxTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcAirTerminalType(IfcAirTerminalType object)
-			{
+			public Adapter caseIfcAirTerminalType(IfcAirTerminalType object) {
 				return createIfcAirTerminalTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcAirToAirHeatRecoveryType(IfcAirToAirHeatRecoveryType object)
-			{
+			public Adapter caseIfcAirToAirHeatRecoveryType(IfcAirToAirHeatRecoveryType object) {
 				return createIfcAirToAirHeatRecoveryTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcAlarmType(IfcAlarmType object)
-			{
+			public Adapter caseIfcAlarmType(IfcAlarmType object) {
 				return createIfcAlarmTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcAngularDimension(IfcAngularDimension object)
-			{
+			public Adapter caseIfcAngularDimension(IfcAngularDimension object) {
 				return createIfcAngularDimensionAdapter();
 			}
 			@Override
-			public Adapter caseIfcAnnotation(IfcAnnotation object)
-			{
+			public Adapter caseIfcAnnotation(IfcAnnotation object) {
 				return createIfcAnnotationAdapter();
 			}
 			@Override
-			public Adapter caseIfcAnnotationCurveOccurrence(IfcAnnotationCurveOccurrence object)
-			{
+			public Adapter caseIfcAnnotationCurveOccurrence(IfcAnnotationCurveOccurrence object) {
 				return createIfcAnnotationCurveOccurrenceAdapter();
 			}
 			@Override
-			public Adapter caseIfcAnnotationFillArea(IfcAnnotationFillArea object)
-			{
+			public Adapter caseIfcAnnotationFillArea(IfcAnnotationFillArea object) {
 				return createIfcAnnotationFillAreaAdapter();
 			}
 			@Override
-			public Adapter caseIfcAnnotationFillAreaOccurrence(IfcAnnotationFillAreaOccurrence object)
-			{
+			public Adapter caseIfcAnnotationFillAreaOccurrence(IfcAnnotationFillAreaOccurrence object) {
 				return createIfcAnnotationFillAreaOccurrenceAdapter();
 			}
 			@Override
-			public Adapter caseIfcAnnotationOccurrence(IfcAnnotationOccurrence object)
-			{
+			public Adapter caseIfcAnnotationOccurrence(IfcAnnotationOccurrence object) {
 				return createIfcAnnotationOccurrenceAdapter();
 			}
 			@Override
-			public Adapter caseIfcAnnotationSurface(IfcAnnotationSurface object)
-			{
+			public Adapter caseIfcAnnotationSurface(IfcAnnotationSurface object) {
 				return createIfcAnnotationSurfaceAdapter();
 			}
 			@Override
-			public Adapter caseIfcAnnotationSurfaceOccurrence(IfcAnnotationSurfaceOccurrence object)
-			{
+			public Adapter caseIfcAnnotationSurfaceOccurrence(IfcAnnotationSurfaceOccurrence object) {
 				return createIfcAnnotationSurfaceOccurrenceAdapter();
 			}
 			@Override
-			public Adapter caseIfcAnnotationSymbolOccurrence(IfcAnnotationSymbolOccurrence object)
-			{
+			public Adapter caseIfcAnnotationSymbolOccurrence(IfcAnnotationSymbolOccurrence object) {
 				return createIfcAnnotationSymbolOccurrenceAdapter();
 			}
 			@Override
-			public Adapter caseIfcAnnotationTextOccurrence(IfcAnnotationTextOccurrence object)
-			{
+			public Adapter caseIfcAnnotationTextOccurrence(IfcAnnotationTextOccurrence object) {
 				return createIfcAnnotationTextOccurrenceAdapter();
 			}
 			@Override
-			public Adapter caseIfcApplication(IfcApplication object)
-			{
+			public Adapter caseIfcApplication(IfcApplication object) {
 				return createIfcApplicationAdapter();
 			}
 			@Override
-			public Adapter caseIfcAppliedValue(IfcAppliedValue object)
-			{
+			public Adapter caseIfcAppliedValue(IfcAppliedValue object) {
 				return createIfcAppliedValueAdapter();
 			}
 			@Override
-			public Adapter caseIfcAppliedValueRelationship(IfcAppliedValueRelationship object)
-			{
+			public Adapter caseIfcAppliedValueRelationship(IfcAppliedValueRelationship object) {
 				return createIfcAppliedValueRelationshipAdapter();
 			}
 			@Override
-			public Adapter caseIfcApproval(IfcApproval object)
-			{
+			public Adapter caseIfcApproval(IfcApproval object) {
 				return createIfcApprovalAdapter();
 			}
 			@Override
-			public Adapter caseIfcApprovalActorRelationship(IfcApprovalActorRelationship object)
-			{
+			public Adapter caseIfcApprovalActorRelationship(IfcApprovalActorRelationship object) {
 				return createIfcApprovalActorRelationshipAdapter();
 			}
 			@Override
-			public Adapter caseIfcApprovalPropertyRelationship(IfcApprovalPropertyRelationship object)
-			{
+			public Adapter caseIfcApprovalPropertyRelationship(IfcApprovalPropertyRelationship object) {
 				return createIfcApprovalPropertyRelationshipAdapter();
 			}
 			@Override
-			public Adapter caseIfcApprovalRelationship(IfcApprovalRelationship object)
-			{
+			public Adapter caseIfcApprovalRelationship(IfcApprovalRelationship object) {
 				return createIfcApprovalRelationshipAdapter();
 			}
 			@Override
-			public Adapter caseIfcArbitraryClosedProfileDef(IfcArbitraryClosedProfileDef object)
-			{
+			public Adapter caseIfcArbitraryClosedProfileDef(IfcArbitraryClosedProfileDef object) {
 				return createIfcArbitraryClosedProfileDefAdapter();
 			}
 			@Override
-			public Adapter caseIfcArbitraryOpenProfileDef(IfcArbitraryOpenProfileDef object)
-			{
+			public Adapter caseIfcArbitraryOpenProfileDef(IfcArbitraryOpenProfileDef object) {
 				return createIfcArbitraryOpenProfileDefAdapter();
 			}
 			@Override
-			public Adapter caseIfcArbitraryProfileDefWithVoids(IfcArbitraryProfileDefWithVoids object)
-			{
+			public Adapter caseIfcArbitraryProfileDefWithVoids(IfcArbitraryProfileDefWithVoids object) {
 				return createIfcArbitraryProfileDefWithVoidsAdapter();
 			}
 			@Override
-			public Adapter caseIfcAsset(IfcAsset object)
-			{
+			public Adapter caseIfcAsset(IfcAsset object) {
 				return createIfcAssetAdapter();
 			}
 			@Override
-			public Adapter caseIfcAsymmetricIShapeProfileDef(IfcAsymmetricIShapeProfileDef object)
-			{
+			public Adapter caseIfcAsymmetricIShapeProfileDef(IfcAsymmetricIShapeProfileDef object) {
 				return createIfcAsymmetricIShapeProfileDefAdapter();
 			}
 			@Override
-			public Adapter caseIfcAxis1Placement(IfcAxis1Placement object)
-			{
+			public Adapter caseIfcAxis1Placement(IfcAxis1Placement object) {
 				return createIfcAxis1PlacementAdapter();
 			}
 			@Override
-			public Adapter caseIfcAxis2Placement2D(IfcAxis2Placement2D object)
-			{
+			public Adapter caseIfcAxis2Placement2D(IfcAxis2Placement2D object) {
 				return createIfcAxis2Placement2DAdapter();
 			}
 			@Override
-			public Adapter caseIfcAxis2Placement3D(IfcAxis2Placement3D object)
-			{
+			public Adapter caseIfcAxis2Placement3D(IfcAxis2Placement3D object) {
 				return createIfcAxis2Placement3DAdapter();
 			}
 			@Override
-			public Adapter caseIfcBSplineCurve(IfcBSplineCurve object)
-			{
+			public Adapter caseIfcBSplineCurve(IfcBSplineCurve object) {
 				return createIfcBSplineCurveAdapter();
 			}
 			@Override
-			public Adapter caseIfcBeam(IfcBeam object)
-			{
+			public Adapter caseIfcBeam(IfcBeam object) {
 				return createIfcBeamAdapter();
 			}
 			@Override
-			public Adapter caseIfcBeamType(IfcBeamType object)
-			{
+			public Adapter caseIfcBeamType(IfcBeamType object) {
 				return createIfcBeamTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcBezierCurve(IfcBezierCurve object)
-			{
+			public Adapter caseIfcBezierCurve(IfcBezierCurve object) {
 				return createIfcBezierCurveAdapter();
 			}
 			@Override
-			public Adapter caseIfcBlobTexture(IfcBlobTexture object)
-			{
+			public Adapter caseIfcBlobTexture(IfcBlobTexture object) {
 				return createIfcBlobTextureAdapter();
 			}
 			@Override
-			public Adapter caseIfcBlock(IfcBlock object)
-			{
+			public Adapter caseIfcBlock(IfcBlock object) {
 				return createIfcBlockAdapter();
 			}
 			@Override
-			public Adapter caseIfcBoilerType(IfcBoilerType object)
-			{
+			public Adapter caseIfcBoilerType(IfcBoilerType object) {
 				return createIfcBoilerTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcBooleanClippingResult(IfcBooleanClippingResult object)
-			{
+			public Adapter caseIfcBooleanClippingResult(IfcBooleanClippingResult object) {
 				return createIfcBooleanClippingResultAdapter();
 			}
 			@Override
-			public Adapter caseIfcBooleanResult(IfcBooleanResult object)
-			{
+			public Adapter caseIfcBooleanResult(IfcBooleanResult object) {
 				return createIfcBooleanResultAdapter();
 			}
 			@Override
-			public Adapter caseIfcBoundaryCondition(IfcBoundaryCondition object)
-			{
+			public Adapter caseIfcBoundaryCondition(IfcBoundaryCondition object) {
 				return createIfcBoundaryConditionAdapter();
 			}
 			@Override
-			public Adapter caseIfcBoundaryEdgeCondition(IfcBoundaryEdgeCondition object)
-			{
+			public Adapter caseIfcBoundaryEdgeCondition(IfcBoundaryEdgeCondition object) {
 				return createIfcBoundaryEdgeConditionAdapter();
 			}
 			@Override
-			public Adapter caseIfcBoundaryFaceCondition(IfcBoundaryFaceCondition object)
-			{
+			public Adapter caseIfcBoundaryFaceCondition(IfcBoundaryFaceCondition object) {
 				return createIfcBoundaryFaceConditionAdapter();
 			}
 			@Override
-			public Adapter caseIfcBoundaryNodeCondition(IfcBoundaryNodeCondition object)
-			{
+			public Adapter caseIfcBoundaryNodeCondition(IfcBoundaryNodeCondition object) {
 				return createIfcBoundaryNodeConditionAdapter();
 			}
 			@Override
-			public Adapter caseIfcBoundaryNodeConditionWarping(IfcBoundaryNodeConditionWarping object)
-			{
+			public Adapter caseIfcBoundaryNodeConditionWarping(IfcBoundaryNodeConditionWarping object) {
 				return createIfcBoundaryNodeConditionWarpingAdapter();
 			}
 			@Override
-			public Adapter caseIfcBoundedCurve(IfcBoundedCurve object)
-			{
+			public Adapter caseIfcBoundedCurve(IfcBoundedCurve object) {
 				return createIfcBoundedCurveAdapter();
 			}
 			@Override
-			public Adapter caseIfcBoundedSurface(IfcBoundedSurface object)
-			{
+			public Adapter caseIfcBoundedSurface(IfcBoundedSurface object) {
 				return createIfcBoundedSurfaceAdapter();
 			}
 			@Override
-			public Adapter caseIfcBoundingBox(IfcBoundingBox object)
-			{
+			public Adapter caseIfcBoundingBox(IfcBoundingBox object) {
 				return createIfcBoundingBoxAdapter();
 			}
 			@Override
-			public Adapter caseIfcBoxedHalfSpace(IfcBoxedHalfSpace object)
-			{
+			public Adapter caseIfcBoxedHalfSpace(IfcBoxedHalfSpace object) {
 				return createIfcBoxedHalfSpaceAdapter();
 			}
 			@Override
-			public Adapter caseIfcBuilding(IfcBuilding object)
-			{
+			public Adapter caseIfcBuilding(IfcBuilding object) {
 				return createIfcBuildingAdapter();
 			}
 			@Override
-			public Adapter caseIfcBuildingElement(IfcBuildingElement object)
-			{
+			public Adapter caseIfcBuildingElement(IfcBuildingElement object) {
 				return createIfcBuildingElementAdapter();
 			}
 			@Override
-			public Adapter caseIfcBuildingElementComponent(IfcBuildingElementComponent object)
-			{
+			public Adapter caseIfcBuildingElementComponent(IfcBuildingElementComponent object) {
 				return createIfcBuildingElementComponentAdapter();
 			}
 			@Override
-			public Adapter caseIfcBuildingElementPart(IfcBuildingElementPart object)
-			{
+			public Adapter caseIfcBuildingElementPart(IfcBuildingElementPart object) {
 				return createIfcBuildingElementPartAdapter();
 			}
 			@Override
-			public Adapter caseIfcBuildingElementProxy(IfcBuildingElementProxy object)
-			{
+			public Adapter caseIfcBuildingElementProxy(IfcBuildingElementProxy object) {
 				return createIfcBuildingElementProxyAdapter();
 			}
 			@Override
-			public Adapter caseIfcBuildingElementProxyType(IfcBuildingElementProxyType object)
-			{
+			public Adapter caseIfcBuildingElementProxyType(IfcBuildingElementProxyType object) {
 				return createIfcBuildingElementProxyTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcBuildingElementType(IfcBuildingElementType object)
-			{
+			public Adapter caseIfcBuildingElementType(IfcBuildingElementType object) {
 				return createIfcBuildingElementTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcBuildingStorey(IfcBuildingStorey object)
-			{
+			public Adapter caseIfcBuildingStorey(IfcBuildingStorey object) {
 				return createIfcBuildingStoreyAdapter();
 			}
 			@Override
-			public Adapter caseIfcCShapeProfileDef(IfcCShapeProfileDef object)
-			{
+			public Adapter caseIfcCShapeProfileDef(IfcCShapeProfileDef object) {
 				return createIfcCShapeProfileDefAdapter();
 			}
 			@Override
-			public Adapter caseIfcCableCarrierFittingType(IfcCableCarrierFittingType object)
-			{
+			public Adapter caseIfcCableCarrierFittingType(IfcCableCarrierFittingType object) {
 				return createIfcCableCarrierFittingTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcCableCarrierSegmentType(IfcCableCarrierSegmentType object)
-			{
+			public Adapter caseIfcCableCarrierSegmentType(IfcCableCarrierSegmentType object) {
 				return createIfcCableCarrierSegmentTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcCableSegmentType(IfcCableSegmentType object)
-			{
+			public Adapter caseIfcCableSegmentType(IfcCableSegmentType object) {
 				return createIfcCableSegmentTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcCalendarDate(IfcCalendarDate object)
-			{
+			public Adapter caseIfcCalendarDate(IfcCalendarDate object) {
 				return createIfcCalendarDateAdapter();
 			}
 			@Override
-			public Adapter caseIfcCartesianPoint(IfcCartesianPoint object)
-			{
+			public Adapter caseIfcCartesianPoint(IfcCartesianPoint object) {
 				return createIfcCartesianPointAdapter();
 			}
 			@Override
-			public Adapter caseIfcCartesianTransformationOperator(IfcCartesianTransformationOperator object)
-			{
+			public Adapter caseIfcCartesianTransformationOperator(IfcCartesianTransformationOperator object) {
 				return createIfcCartesianTransformationOperatorAdapter();
 			}
 			@Override
-			public Adapter caseIfcCartesianTransformationOperator2D(IfcCartesianTransformationOperator2D object)
-			{
+			public Adapter caseIfcCartesianTransformationOperator2D(IfcCartesianTransformationOperator2D object) {
 				return createIfcCartesianTransformationOperator2DAdapter();
 			}
 			@Override
-			public Adapter caseIfcCartesianTransformationOperator2DnonUniform(IfcCartesianTransformationOperator2DnonUniform object)
-			{
+			public Adapter caseIfcCartesianTransformationOperator2DnonUniform(IfcCartesianTransformationOperator2DnonUniform object) {
 				return createIfcCartesianTransformationOperator2DnonUniformAdapter();
 			}
 			@Override
-			public Adapter caseIfcCartesianTransformationOperator3D(IfcCartesianTransformationOperator3D object)
-			{
+			public Adapter caseIfcCartesianTransformationOperator3D(IfcCartesianTransformationOperator3D object) {
 				return createIfcCartesianTransformationOperator3DAdapter();
 			}
 			@Override
-			public Adapter caseIfcCartesianTransformationOperator3DnonUniform(IfcCartesianTransformationOperator3DnonUniform object)
-			{
+			public Adapter caseIfcCartesianTransformationOperator3DnonUniform(IfcCartesianTransformationOperator3DnonUniform object) {
 				return createIfcCartesianTransformationOperator3DnonUniformAdapter();
 			}
 			@Override
-			public Adapter caseIfcCenterLineProfileDef(IfcCenterLineProfileDef object)
-			{
+			public Adapter caseIfcCenterLineProfileDef(IfcCenterLineProfileDef object) {
 				return createIfcCenterLineProfileDefAdapter();
 			}
 			@Override
-			public Adapter caseIfcChamferEdgeFeature(IfcChamferEdgeFeature object)
-			{
+			public Adapter caseIfcChamferEdgeFeature(IfcChamferEdgeFeature object) {
 				return createIfcChamferEdgeFeatureAdapter();
 			}
 			@Override
-			public Adapter caseIfcChillerType(IfcChillerType object)
-			{
+			public Adapter caseIfcChillerType(IfcChillerType object) {
 				return createIfcChillerTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcCircle(IfcCircle object)
-			{
+			public Adapter caseIfcCircle(IfcCircle object) {
 				return createIfcCircleAdapter();
 			}
 			@Override
-			public Adapter caseIfcCircleHollowProfileDef(IfcCircleHollowProfileDef object)
-			{
+			public Adapter caseIfcCircleHollowProfileDef(IfcCircleHollowProfileDef object) {
 				return createIfcCircleHollowProfileDefAdapter();
 			}
 			@Override
-			public Adapter caseIfcCircleProfileDef(IfcCircleProfileDef object)
-			{
+			public Adapter caseIfcCircleProfileDef(IfcCircleProfileDef object) {
 				return createIfcCircleProfileDefAdapter();
 			}
 			@Override
-			public Adapter caseIfcClassification(IfcClassification object)
-			{
+			public Adapter caseIfcClassification(IfcClassification object) {
 				return createIfcClassificationAdapter();
 			}
 			@Override
-			public Adapter caseIfcClassificationItem(IfcClassificationItem object)
-			{
+			public Adapter caseIfcClassificationItem(IfcClassificationItem object) {
 				return createIfcClassificationItemAdapter();
 			}
 			@Override
-			public Adapter caseIfcClassificationItemRelationship(IfcClassificationItemRelationship object)
-			{
+			public Adapter caseIfcClassificationItemRelationship(IfcClassificationItemRelationship object) {
 				return createIfcClassificationItemRelationshipAdapter();
 			}
 			@Override
-			public Adapter caseIfcClassificationNotation(IfcClassificationNotation object)
-			{
+			public Adapter caseIfcClassificationNotation(IfcClassificationNotation object) {
 				return createIfcClassificationNotationAdapter();
 			}
 			@Override
-			public Adapter caseIfcClassificationNotationFacet(IfcClassificationNotationFacet object)
-			{
+			public Adapter caseIfcClassificationNotationFacet(IfcClassificationNotationFacet object) {
 				return createIfcClassificationNotationFacetAdapter();
 			}
 			@Override
-			public Adapter caseIfcClassificationReference(IfcClassificationReference object)
-			{
+			public Adapter caseIfcClassificationReference(IfcClassificationReference object) {
 				return createIfcClassificationReferenceAdapter();
 			}
 			@Override
-			public Adapter caseIfcClosedShell(IfcClosedShell object)
-			{
+			public Adapter caseIfcClosedShell(IfcClosedShell object) {
 				return createIfcClosedShellAdapter();
 			}
 			@Override
-			public Adapter caseIfcCoilType(IfcCoilType object)
-			{
+			public Adapter caseIfcCoilType(IfcCoilType object) {
 				return createIfcCoilTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcColourRgb(IfcColourRgb object)
-			{
+			public Adapter caseIfcColourRgb(IfcColourRgb object) {
 				return createIfcColourRgbAdapter();
 			}
 			@Override
-			public Adapter caseIfcColourSpecification(IfcColourSpecification object)
-			{
+			public Adapter caseIfcColourSpecification(IfcColourSpecification object) {
 				return createIfcColourSpecificationAdapter();
 			}
 			@Override
-			public Adapter caseIfcColumn(IfcColumn object)
-			{
+			public Adapter caseIfcColumn(IfcColumn object) {
 				return createIfcColumnAdapter();
 			}
 			@Override
-			public Adapter caseIfcColumnType(IfcColumnType object)
-			{
+			public Adapter caseIfcColumnType(IfcColumnType object) {
 				return createIfcColumnTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcComplexProperty(IfcComplexProperty object)
-			{
+			public Adapter caseIfcComplexProperty(IfcComplexProperty object) {
 				return createIfcComplexPropertyAdapter();
 			}
 			@Override
-			public Adapter caseIfcCompositeCurve(IfcCompositeCurve object)
-			{
+			public Adapter caseIfcCompositeCurve(IfcCompositeCurve object) {
 				return createIfcCompositeCurveAdapter();
 			}
 			@Override
-			public Adapter caseIfcCompositeCurveSegment(IfcCompositeCurveSegment object)
-			{
+			public Adapter caseIfcCompositeCurveSegment(IfcCompositeCurveSegment object) {
 				return createIfcCompositeCurveSegmentAdapter();
 			}
 			@Override
-			public Adapter caseIfcCompositeProfileDef(IfcCompositeProfileDef object)
-			{
+			public Adapter caseIfcCompositeProfileDef(IfcCompositeProfileDef object) {
 				return createIfcCompositeProfileDefAdapter();
 			}
 			@Override
-			public Adapter caseIfcCompressorType(IfcCompressorType object)
-			{
+			public Adapter caseIfcCompressorType(IfcCompressorType object) {
 				return createIfcCompressorTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcCondenserType(IfcCondenserType object)
-			{
+			public Adapter caseIfcCondenserType(IfcCondenserType object) {
 				return createIfcCondenserTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcCondition(IfcCondition object)
-			{
+			public Adapter caseIfcCondition(IfcCondition object) {
 				return createIfcConditionAdapter();
 			}
 			@Override
-			public Adapter caseIfcConditionCriterion(IfcConditionCriterion object)
-			{
+			public Adapter caseIfcConditionCriterion(IfcConditionCriterion object) {
 				return createIfcConditionCriterionAdapter();
 			}
 			@Override
-			public Adapter caseIfcConic(IfcConic object)
-			{
+			public Adapter caseIfcConic(IfcConic object) {
 				return createIfcConicAdapter();
 			}
 			@Override
-			public Adapter caseIfcConnectedFaceSet(IfcConnectedFaceSet object)
-			{
+			public Adapter caseIfcConnectedFaceSet(IfcConnectedFaceSet object) {
 				return createIfcConnectedFaceSetAdapter();
 			}
 			@Override
-			public Adapter caseIfcConnectionCurveGeometry(IfcConnectionCurveGeometry object)
-			{
+			public Adapter caseIfcConnectionCurveGeometry(IfcConnectionCurveGeometry object) {
 				return createIfcConnectionCurveGeometryAdapter();
 			}
 			@Override
-			public Adapter caseIfcConnectionGeometry(IfcConnectionGeometry object)
-			{
+			public Adapter caseIfcConnectionGeometry(IfcConnectionGeometry object) {
 				return createIfcConnectionGeometryAdapter();
 			}
 			@Override
-			public Adapter caseIfcConnectionPointEccentricity(IfcConnectionPointEccentricity object)
-			{
+			public Adapter caseIfcConnectionPointEccentricity(IfcConnectionPointEccentricity object) {
 				return createIfcConnectionPointEccentricityAdapter();
 			}
 			@Override
-			public Adapter caseIfcConnectionPointGeometry(IfcConnectionPointGeometry object)
-			{
+			public Adapter caseIfcConnectionPointGeometry(IfcConnectionPointGeometry object) {
 				return createIfcConnectionPointGeometryAdapter();
 			}
 			@Override
-			public Adapter caseIfcConnectionPortGeometry(IfcConnectionPortGeometry object)
-			{
+			public Adapter caseIfcConnectionPortGeometry(IfcConnectionPortGeometry object) {
 				return createIfcConnectionPortGeometryAdapter();
 			}
 			@Override
-			public Adapter caseIfcConnectionSurfaceGeometry(IfcConnectionSurfaceGeometry object)
-			{
+			public Adapter caseIfcConnectionSurfaceGeometry(IfcConnectionSurfaceGeometry object) {
 				return createIfcConnectionSurfaceGeometryAdapter();
 			}
 			@Override
-			public Adapter caseIfcConstraint(IfcConstraint object)
-			{
+			public Adapter caseIfcConstraint(IfcConstraint object) {
 				return createIfcConstraintAdapter();
 			}
 			@Override
-			public Adapter caseIfcConstraintAggregationRelationship(IfcConstraintAggregationRelationship object)
-			{
+			public Adapter caseIfcConstraintAggregationRelationship(IfcConstraintAggregationRelationship object) {
 				return createIfcConstraintAggregationRelationshipAdapter();
 			}
 			@Override
-			public Adapter caseIfcConstraintClassificationRelationship(IfcConstraintClassificationRelationship object)
-			{
+			public Adapter caseIfcConstraintClassificationRelationship(IfcConstraintClassificationRelationship object) {
 				return createIfcConstraintClassificationRelationshipAdapter();
 			}
 			@Override
-			public Adapter caseIfcConstraintRelationship(IfcConstraintRelationship object)
-			{
+			public Adapter caseIfcConstraintRelationship(IfcConstraintRelationship object) {
 				return createIfcConstraintRelationshipAdapter();
 			}
 			@Override
-			public Adapter caseIfcConstructionEquipmentResource(IfcConstructionEquipmentResource object)
-			{
+			public Adapter caseIfcConstructionEquipmentResource(IfcConstructionEquipmentResource object) {
 				return createIfcConstructionEquipmentResourceAdapter();
 			}
 			@Override
-			public Adapter caseIfcConstructionMaterialResource(IfcConstructionMaterialResource object)
-			{
+			public Adapter caseIfcConstructionMaterialResource(IfcConstructionMaterialResource object) {
 				return createIfcConstructionMaterialResourceAdapter();
 			}
 			@Override
-			public Adapter caseIfcConstructionProductResource(IfcConstructionProductResource object)
-			{
+			public Adapter caseIfcConstructionProductResource(IfcConstructionProductResource object) {
 				return createIfcConstructionProductResourceAdapter();
 			}
 			@Override
-			public Adapter caseIfcConstructionResource(IfcConstructionResource object)
-			{
+			public Adapter caseIfcConstructionResource(IfcConstructionResource object) {
 				return createIfcConstructionResourceAdapter();
 			}
 			@Override
-			public Adapter caseIfcContextDependentUnit(IfcContextDependentUnit object)
-			{
+			public Adapter caseIfcContextDependentUnit(IfcContextDependentUnit object) {
 				return createIfcContextDependentUnitAdapter();
 			}
 			@Override
-			public Adapter caseIfcControl(IfcControl object)
-			{
+			public Adapter caseIfcControl(IfcControl object) {
 				return createIfcControlAdapter();
 			}
 			@Override
-			public Adapter caseIfcControllerType(IfcControllerType object)
-			{
+			public Adapter caseIfcControllerType(IfcControllerType object) {
 				return createIfcControllerTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcConversionBasedUnit(IfcConversionBasedUnit object)
-			{
+			public Adapter caseIfcConversionBasedUnit(IfcConversionBasedUnit object) {
 				return createIfcConversionBasedUnitAdapter();
 			}
 			@Override
-			public Adapter caseIfcCooledBeamType(IfcCooledBeamType object)
-			{
+			public Adapter caseIfcCooledBeamType(IfcCooledBeamType object) {
 				return createIfcCooledBeamTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcCoolingTowerType(IfcCoolingTowerType object)
-			{
+			public Adapter caseIfcCoolingTowerType(IfcCoolingTowerType object) {
 				return createIfcCoolingTowerTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcCoordinatedUniversalTimeOffset(IfcCoordinatedUniversalTimeOffset object)
-			{
+			public Adapter caseIfcCoordinatedUniversalTimeOffset(IfcCoordinatedUniversalTimeOffset object) {
 				return createIfcCoordinatedUniversalTimeOffsetAdapter();
 			}
 			@Override
-			public Adapter caseIfcCostItem(IfcCostItem object)
-			{
+			public Adapter caseIfcCostItem(IfcCostItem object) {
 				return createIfcCostItemAdapter();
 			}
 			@Override
-			public Adapter caseIfcCostSchedule(IfcCostSchedule object)
-			{
+			public Adapter caseIfcCostSchedule(IfcCostSchedule object) {
 				return createIfcCostScheduleAdapter();
 			}
 			@Override
-			public Adapter caseIfcCostValue(IfcCostValue object)
-			{
+			public Adapter caseIfcCostValue(IfcCostValue object) {
 				return createIfcCostValueAdapter();
 			}
 			@Override
-			public Adapter caseIfcCovering(IfcCovering object)
-			{
+			public Adapter caseIfcCovering(IfcCovering object) {
 				return createIfcCoveringAdapter();
 			}
 			@Override
-			public Adapter caseIfcCoveringType(IfcCoveringType object)
-			{
+			public Adapter caseIfcCoveringType(IfcCoveringType object) {
 				return createIfcCoveringTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcCraneRailAShapeProfileDef(IfcCraneRailAShapeProfileDef object)
-			{
+			public Adapter caseIfcCraneRailAShapeProfileDef(IfcCraneRailAShapeProfileDef object) {
 				return createIfcCraneRailAShapeProfileDefAdapter();
 			}
 			@Override
-			public Adapter caseIfcCraneRailFShapeProfileDef(IfcCraneRailFShapeProfileDef object)
-			{
+			public Adapter caseIfcCraneRailFShapeProfileDef(IfcCraneRailFShapeProfileDef object) {
 				return createIfcCraneRailFShapeProfileDefAdapter();
 			}
 			@Override
-			public Adapter caseIfcCrewResource(IfcCrewResource object)
-			{
+			public Adapter caseIfcCrewResource(IfcCrewResource object) {
 				return createIfcCrewResourceAdapter();
 			}
 			@Override
-			public Adapter caseIfcCsgPrimitive3D(IfcCsgPrimitive3D object)
-			{
+			public Adapter caseIfcCsgPrimitive3D(IfcCsgPrimitive3D object) {
 				return createIfcCsgPrimitive3DAdapter();
 			}
 			@Override
-			public Adapter caseIfcCsgSolid(IfcCsgSolid object)
-			{
+			public Adapter caseIfcCsgSolid(IfcCsgSolid object) {
 				return createIfcCsgSolidAdapter();
 			}
 			@Override
-			public Adapter caseIfcCurrencyRelationship(IfcCurrencyRelationship object)
-			{
+			public Adapter caseIfcCurrencyRelationship(IfcCurrencyRelationship object) {
 				return createIfcCurrencyRelationshipAdapter();
 			}
 			@Override
-			public Adapter caseIfcCurtainWall(IfcCurtainWall object)
-			{
+			public Adapter caseIfcCurtainWall(IfcCurtainWall object) {
 				return createIfcCurtainWallAdapter();
 			}
 			@Override
-			public Adapter caseIfcCurtainWallType(IfcCurtainWallType object)
-			{
+			public Adapter caseIfcCurtainWallType(IfcCurtainWallType object) {
 				return createIfcCurtainWallTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcCurve(IfcCurve object)
-			{
+			public Adapter caseIfcCurve(IfcCurve object) {
 				return createIfcCurveAdapter();
 			}
 			@Override
-			public Adapter caseIfcCurveBoundedPlane(IfcCurveBoundedPlane object)
-			{
+			public Adapter caseIfcCurveBoundedPlane(IfcCurveBoundedPlane object) {
 				return createIfcCurveBoundedPlaneAdapter();
 			}
 			@Override
-			public Adapter caseIfcCurveStyle(IfcCurveStyle object)
-			{
+			public Adapter caseIfcCurveStyle(IfcCurveStyle object) {
 				return createIfcCurveStyleAdapter();
 			}
 			@Override
-			public Adapter caseIfcCurveStyleFont(IfcCurveStyleFont object)
-			{
+			public Adapter caseIfcCurveStyleFont(IfcCurveStyleFont object) {
 				return createIfcCurveStyleFontAdapter();
 			}
 			@Override
-			public Adapter caseIfcCurveStyleFontAndScaling(IfcCurveStyleFontAndScaling object)
-			{
+			public Adapter caseIfcCurveStyleFontAndScaling(IfcCurveStyleFontAndScaling object) {
 				return createIfcCurveStyleFontAndScalingAdapter();
 			}
 			@Override
-			public Adapter caseIfcCurveStyleFontPattern(IfcCurveStyleFontPattern object)
-			{
+			public Adapter caseIfcCurveStyleFontPattern(IfcCurveStyleFontPattern object) {
 				return createIfcCurveStyleFontPatternAdapter();
 			}
 			@Override
-			public Adapter caseIfcDamperType(IfcDamperType object)
-			{
+			public Adapter caseIfcDamperType(IfcDamperType object) {
 				return createIfcDamperTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcDateAndTime(IfcDateAndTime object)
-			{
+			public Adapter caseIfcDateAndTime(IfcDateAndTime object) {
 				return createIfcDateAndTimeAdapter();
 			}
 			@Override
-			public Adapter caseIfcDefinedSymbol(IfcDefinedSymbol object)
-			{
+			public Adapter caseIfcDefinedSymbol(IfcDefinedSymbol object) {
 				return createIfcDefinedSymbolAdapter();
 			}
 			@Override
-			public Adapter caseIfcDerivedProfileDef(IfcDerivedProfileDef object)
-			{
+			public Adapter caseIfcDerivedProfileDef(IfcDerivedProfileDef object) {
 				return createIfcDerivedProfileDefAdapter();
 			}
 			@Override
-			public Adapter caseIfcDerivedUnit(IfcDerivedUnit object)
-			{
+			public Adapter caseIfcDerivedUnit(IfcDerivedUnit object) {
 				return createIfcDerivedUnitAdapter();
 			}
 			@Override
-			public Adapter caseIfcDerivedUnitElement(IfcDerivedUnitElement object)
-			{
+			public Adapter caseIfcDerivedUnitElement(IfcDerivedUnitElement object) {
 				return createIfcDerivedUnitElementAdapter();
 			}
 			@Override
-			public Adapter caseIfcDiameterDimension(IfcDiameterDimension object)
-			{
+			public Adapter caseIfcDiameterDimension(IfcDiameterDimension object) {
 				return createIfcDiameterDimensionAdapter();
 			}
 			@Override
-			public Adapter caseIfcDimensionCalloutRelationship(IfcDimensionCalloutRelationship object)
-			{
+			public Adapter caseIfcDimensionCalloutRelationship(IfcDimensionCalloutRelationship object) {
 				return createIfcDimensionCalloutRelationshipAdapter();
 			}
 			@Override
-			public Adapter caseIfcDimensionCurve(IfcDimensionCurve object)
-			{
+			public Adapter caseIfcDimensionCurve(IfcDimensionCurve object) {
 				return createIfcDimensionCurveAdapter();
 			}
 			@Override
-			public Adapter caseIfcDimensionCurveDirectedCallout(IfcDimensionCurveDirectedCallout object)
-			{
+			public Adapter caseIfcDimensionCurveDirectedCallout(IfcDimensionCurveDirectedCallout object) {
 				return createIfcDimensionCurveDirectedCalloutAdapter();
 			}
 			@Override
-			public Adapter caseIfcDimensionCurveTerminator(IfcDimensionCurveTerminator object)
-			{
+			public Adapter caseIfcDimensionCurveTerminator(IfcDimensionCurveTerminator object) {
 				return createIfcDimensionCurveTerminatorAdapter();
 			}
 			@Override
-			public Adapter caseIfcDimensionPair(IfcDimensionPair object)
-			{
+			public Adapter caseIfcDimensionPair(IfcDimensionPair object) {
 				return createIfcDimensionPairAdapter();
 			}
 			@Override
-			public Adapter caseIfcDimensionalExponents(IfcDimensionalExponents object)
-			{
+			public Adapter caseIfcDimensionalExponents(IfcDimensionalExponents object) {
 				return createIfcDimensionalExponentsAdapter();
 			}
 			@Override
-			public Adapter caseIfcDirection(IfcDirection object)
-			{
+			public Adapter caseIfcDirection(IfcDirection object) {
 				return createIfcDirectionAdapter();
 			}
 			@Override
-			public Adapter caseIfcDiscreteAccessory(IfcDiscreteAccessory object)
-			{
+			public Adapter caseIfcDiscreteAccessory(IfcDiscreteAccessory object) {
 				return createIfcDiscreteAccessoryAdapter();
 			}
 			@Override
-			public Adapter caseIfcDiscreteAccessoryType(IfcDiscreteAccessoryType object)
-			{
+			public Adapter caseIfcDiscreteAccessoryType(IfcDiscreteAccessoryType object) {
 				return createIfcDiscreteAccessoryTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcDistributionChamberElement(IfcDistributionChamberElement object)
-			{
+			public Adapter caseIfcDistributionChamberElement(IfcDistributionChamberElement object) {
 				return createIfcDistributionChamberElementAdapter();
 			}
 			@Override
-			public Adapter caseIfcDistributionChamberElementType(IfcDistributionChamberElementType object)
-			{
+			public Adapter caseIfcDistributionChamberElementType(IfcDistributionChamberElementType object) {
 				return createIfcDistributionChamberElementTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcDistributionControlElement(IfcDistributionControlElement object)
-			{
+			public Adapter caseIfcDistributionControlElement(IfcDistributionControlElement object) {
 				return createIfcDistributionControlElementAdapter();
 			}
 			@Override
-			public Adapter caseIfcDistributionControlElementType(IfcDistributionControlElementType object)
-			{
+			public Adapter caseIfcDistributionControlElementType(IfcDistributionControlElementType object) {
 				return createIfcDistributionControlElementTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcDistributionElement(IfcDistributionElement object)
-			{
+			public Adapter caseIfcDistributionElement(IfcDistributionElement object) {
 				return createIfcDistributionElementAdapter();
 			}
 			@Override
-			public Adapter caseIfcDistributionElementType(IfcDistributionElementType object)
-			{
+			public Adapter caseIfcDistributionElementType(IfcDistributionElementType object) {
 				return createIfcDistributionElementTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcDistributionFlowElement(IfcDistributionFlowElement object)
-			{
+			public Adapter caseIfcDistributionFlowElement(IfcDistributionFlowElement object) {
 				return createIfcDistributionFlowElementAdapter();
 			}
 			@Override
-			public Adapter caseIfcDistributionFlowElementType(IfcDistributionFlowElementType object)
-			{
+			public Adapter caseIfcDistributionFlowElementType(IfcDistributionFlowElementType object) {
 				return createIfcDistributionFlowElementTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcDistributionPort(IfcDistributionPort object)
-			{
+			public Adapter caseIfcDistributionPort(IfcDistributionPort object) {
 				return createIfcDistributionPortAdapter();
 			}
 			@Override
-			public Adapter caseIfcDocumentElectronicFormat(IfcDocumentElectronicFormat object)
-			{
+			public Adapter caseIfcDocumentElectronicFormat(IfcDocumentElectronicFormat object) {
 				return createIfcDocumentElectronicFormatAdapter();
 			}
 			@Override
-			public Adapter caseIfcDocumentInformation(IfcDocumentInformation object)
-			{
+			public Adapter caseIfcDocumentInformation(IfcDocumentInformation object) {
 				return createIfcDocumentInformationAdapter();
 			}
 			@Override
-			public Adapter caseIfcDocumentInformationRelationship(IfcDocumentInformationRelationship object)
-			{
+			public Adapter caseIfcDocumentInformationRelationship(IfcDocumentInformationRelationship object) {
 				return createIfcDocumentInformationRelationshipAdapter();
 			}
 			@Override
-			public Adapter caseIfcDocumentReference(IfcDocumentReference object)
-			{
+			public Adapter caseIfcDocumentReference(IfcDocumentReference object) {
 				return createIfcDocumentReferenceAdapter();
 			}
 			@Override
-			public Adapter caseIfcDoor(IfcDoor object)
-			{
+			public Adapter caseIfcDoor(IfcDoor object) {
 				return createIfcDoorAdapter();
 			}
 			@Override
-			public Adapter caseIfcDoorLiningProperties(IfcDoorLiningProperties object)
-			{
+			public Adapter caseIfcDoorLiningProperties(IfcDoorLiningProperties object) {
 				return createIfcDoorLiningPropertiesAdapter();
 			}
 			@Override
-			public Adapter caseIfcDoorPanelProperties(IfcDoorPanelProperties object)
-			{
+			public Adapter caseIfcDoorPanelProperties(IfcDoorPanelProperties object) {
 				return createIfcDoorPanelPropertiesAdapter();
 			}
 			@Override
-			public Adapter caseIfcDoorStyle(IfcDoorStyle object)
-			{
+			public Adapter caseIfcDoorStyle(IfcDoorStyle object) {
 				return createIfcDoorStyleAdapter();
 			}
 			@Override
-			public Adapter caseIfcDraughtingCallout(IfcDraughtingCallout object)
-			{
+			public Adapter caseIfcDraughtingCallout(IfcDraughtingCallout object) {
 				return createIfcDraughtingCalloutAdapter();
 			}
 			@Override
-			public Adapter caseIfcDraughtingCalloutRelationship(IfcDraughtingCalloutRelationship object)
-			{
+			public Adapter caseIfcDraughtingCalloutRelationship(IfcDraughtingCalloutRelationship object) {
 				return createIfcDraughtingCalloutRelationshipAdapter();
 			}
 			@Override
-			public Adapter caseIfcDraughtingPreDefinedColour(IfcDraughtingPreDefinedColour object)
-			{
+			public Adapter caseIfcDraughtingPreDefinedColour(IfcDraughtingPreDefinedColour object) {
 				return createIfcDraughtingPreDefinedColourAdapter();
 			}
 			@Override
-			public Adapter caseIfcDraughtingPreDefinedCurveFont(IfcDraughtingPreDefinedCurveFont object)
-			{
+			public Adapter caseIfcDraughtingPreDefinedCurveFont(IfcDraughtingPreDefinedCurveFont object) {
 				return createIfcDraughtingPreDefinedCurveFontAdapter();
 			}
 			@Override
-			public Adapter caseIfcDraughtingPreDefinedTextFont(IfcDraughtingPreDefinedTextFont object)
-			{
+			public Adapter caseIfcDraughtingPreDefinedTextFont(IfcDraughtingPreDefinedTextFont object) {
 				return createIfcDraughtingPreDefinedTextFontAdapter();
 			}
 			@Override
-			public Adapter caseIfcDuctFittingType(IfcDuctFittingType object)
-			{
+			public Adapter caseIfcDuctFittingType(IfcDuctFittingType object) {
 				return createIfcDuctFittingTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcDuctSegmentType(IfcDuctSegmentType object)
-			{
+			public Adapter caseIfcDuctSegmentType(IfcDuctSegmentType object) {
 				return createIfcDuctSegmentTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcDuctSilencerType(IfcDuctSilencerType object)
-			{
+			public Adapter caseIfcDuctSilencerType(IfcDuctSilencerType object) {
 				return createIfcDuctSilencerTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcEdge(IfcEdge object)
-			{
+			public Adapter caseIfcEdge(IfcEdge object) {
 				return createIfcEdgeAdapter();
 			}
 			@Override
-			public Adapter caseIfcEdgeCurve(IfcEdgeCurve object)
-			{
+			public Adapter caseIfcEdgeCurve(IfcEdgeCurve object) {
 				return createIfcEdgeCurveAdapter();
 			}
 			@Override
-			public Adapter caseIfcEdgeFeature(IfcEdgeFeature object)
-			{
+			public Adapter caseIfcEdgeFeature(IfcEdgeFeature object) {
 				return createIfcEdgeFeatureAdapter();
 			}
 			@Override
-			public Adapter caseIfcEdgeLoop(IfcEdgeLoop object)
-			{
+			public Adapter caseIfcEdgeLoop(IfcEdgeLoop object) {
 				return createIfcEdgeLoopAdapter();
 			}
 			@Override
-			public Adapter caseIfcElectricApplianceType(IfcElectricApplianceType object)
-			{
+			public Adapter caseIfcElectricApplianceType(IfcElectricApplianceType object) {
 				return createIfcElectricApplianceTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcElectricDistributionPoint(IfcElectricDistributionPoint object)
-			{
+			public Adapter caseIfcElectricDistributionPoint(IfcElectricDistributionPoint object) {
 				return createIfcElectricDistributionPointAdapter();
 			}
 			@Override
-			public Adapter caseIfcElectricFlowStorageDeviceType(IfcElectricFlowStorageDeviceType object)
-			{
+			public Adapter caseIfcElectricFlowStorageDeviceType(IfcElectricFlowStorageDeviceType object) {
 				return createIfcElectricFlowStorageDeviceTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcElectricGeneratorType(IfcElectricGeneratorType object)
-			{
+			public Adapter caseIfcElectricGeneratorType(IfcElectricGeneratorType object) {
 				return createIfcElectricGeneratorTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcElectricHeaterType(IfcElectricHeaterType object)
-			{
+			public Adapter caseIfcElectricHeaterType(IfcElectricHeaterType object) {
 				return createIfcElectricHeaterTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcElectricMotorType(IfcElectricMotorType object)
-			{
+			public Adapter caseIfcElectricMotorType(IfcElectricMotorType object) {
 				return createIfcElectricMotorTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcElectricTimeControlType(IfcElectricTimeControlType object)
-			{
+			public Adapter caseIfcElectricTimeControlType(IfcElectricTimeControlType object) {
 				return createIfcElectricTimeControlTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcElectricalBaseProperties(IfcElectricalBaseProperties object)
-			{
+			public Adapter caseIfcElectricalBaseProperties(IfcElectricalBaseProperties object) {
 				return createIfcElectricalBasePropertiesAdapter();
 			}
 			@Override
-			public Adapter caseIfcElectricalCircuit(IfcElectricalCircuit object)
-			{
+			public Adapter caseIfcElectricalCircuit(IfcElectricalCircuit object) {
 				return createIfcElectricalCircuitAdapter();
 			}
 			@Override
-			public Adapter caseIfcElectricalElement(IfcElectricalElement object)
-			{
+			public Adapter caseIfcElectricalElement(IfcElectricalElement object) {
 				return createIfcElectricalElementAdapter();
 			}
 			@Override
-			public Adapter caseIfcElement(IfcElement object)
-			{
+			public Adapter caseIfcElement(IfcElement object) {
 				return createIfcElementAdapter();
 			}
 			@Override
-			public Adapter caseIfcElementAssembly(IfcElementAssembly object)
-			{
+			public Adapter caseIfcElementAssembly(IfcElementAssembly object) {
 				return createIfcElementAssemblyAdapter();
 			}
 			@Override
-			public Adapter caseIfcElementComponent(IfcElementComponent object)
-			{
+			public Adapter caseIfcElementComponent(IfcElementComponent object) {
 				return createIfcElementComponentAdapter();
 			}
 			@Override
-			public Adapter caseIfcElementComponentType(IfcElementComponentType object)
-			{
+			public Adapter caseIfcElementComponentType(IfcElementComponentType object) {
 				return createIfcElementComponentTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcElementQuantity(IfcElementQuantity object)
-			{
+			public Adapter caseIfcElementQuantity(IfcElementQuantity object) {
 				return createIfcElementQuantityAdapter();
 			}
 			@Override
-			public Adapter caseIfcElementType(IfcElementType object)
-			{
+			public Adapter caseIfcElementType(IfcElementType object) {
 				return createIfcElementTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcElementarySurface(IfcElementarySurface object)
-			{
+			public Adapter caseIfcElementarySurface(IfcElementarySurface object) {
 				return createIfcElementarySurfaceAdapter();
 			}
 			@Override
-			public Adapter caseIfcEllipse(IfcEllipse object)
-			{
+			public Adapter caseIfcEllipse(IfcEllipse object) {
 				return createIfcEllipseAdapter();
 			}
 			@Override
-			public Adapter caseIfcEllipseProfileDef(IfcEllipseProfileDef object)
-			{
+			public Adapter caseIfcEllipseProfileDef(IfcEllipseProfileDef object) {
 				return createIfcEllipseProfileDefAdapter();
 			}
 			@Override
-			public Adapter caseIfcEnergyConversionDevice(IfcEnergyConversionDevice object)
-			{
+			public Adapter caseIfcEnergyConversionDevice(IfcEnergyConversionDevice object) {
 				return createIfcEnergyConversionDeviceAdapter();
 			}
 			@Override
-			public Adapter caseIfcEnergyConversionDeviceType(IfcEnergyConversionDeviceType object)
-			{
+			public Adapter caseIfcEnergyConversionDeviceType(IfcEnergyConversionDeviceType object) {
 				return createIfcEnergyConversionDeviceTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcEnergyProperties(IfcEnergyProperties object)
-			{
+			public Adapter caseIfcEnergyProperties(IfcEnergyProperties object) {
 				return createIfcEnergyPropertiesAdapter();
 			}
 			@Override
-			public Adapter caseIfcEnvironmentalImpactValue(IfcEnvironmentalImpactValue object)
-			{
+			public Adapter caseIfcEnvironmentalImpactValue(IfcEnvironmentalImpactValue object) {
 				return createIfcEnvironmentalImpactValueAdapter();
 			}
 			@Override
-			public Adapter caseIfcEquipmentElement(IfcEquipmentElement object)
-			{
+			public Adapter caseIfcEquipmentElement(IfcEquipmentElement object) {
 				return createIfcEquipmentElementAdapter();
 			}
 			@Override
-			public Adapter caseIfcEquipmentStandard(IfcEquipmentStandard object)
-			{
+			public Adapter caseIfcEquipmentStandard(IfcEquipmentStandard object) {
 				return createIfcEquipmentStandardAdapter();
 			}
 			@Override
-			public Adapter caseIfcEvaporativeCoolerType(IfcEvaporativeCoolerType object)
-			{
+			public Adapter caseIfcEvaporativeCoolerType(IfcEvaporativeCoolerType object) {
 				return createIfcEvaporativeCoolerTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcEvaporatorType(IfcEvaporatorType object)
-			{
+			public Adapter caseIfcEvaporatorType(IfcEvaporatorType object) {
 				return createIfcEvaporatorTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcExtendedMaterialProperties(IfcExtendedMaterialProperties object)
-			{
+			public Adapter caseIfcExtendedMaterialProperties(IfcExtendedMaterialProperties object) {
 				return createIfcExtendedMaterialPropertiesAdapter();
 			}
 			@Override
-			public Adapter caseIfcExternalReference(IfcExternalReference object)
-			{
+			public Adapter caseIfcExternalReference(IfcExternalReference object) {
 				return createIfcExternalReferenceAdapter();
 			}
 			@Override
-			public Adapter caseIfcExternallyDefinedHatchStyle(IfcExternallyDefinedHatchStyle object)
-			{
+			public Adapter caseIfcExternallyDefinedHatchStyle(IfcExternallyDefinedHatchStyle object) {
 				return createIfcExternallyDefinedHatchStyleAdapter();
 			}
 			@Override
-			public Adapter caseIfcExternallyDefinedSurfaceStyle(IfcExternallyDefinedSurfaceStyle object)
-			{
+			public Adapter caseIfcExternallyDefinedSurfaceStyle(IfcExternallyDefinedSurfaceStyle object) {
 				return createIfcExternallyDefinedSurfaceStyleAdapter();
 			}
 			@Override
-			public Adapter caseIfcExternallyDefinedSymbol(IfcExternallyDefinedSymbol object)
-			{
+			public Adapter caseIfcExternallyDefinedSymbol(IfcExternallyDefinedSymbol object) {
 				return createIfcExternallyDefinedSymbolAdapter();
 			}
 			@Override
-			public Adapter caseIfcExternallyDefinedTextFont(IfcExternallyDefinedTextFont object)
-			{
+			public Adapter caseIfcExternallyDefinedTextFont(IfcExternallyDefinedTextFont object) {
 				return createIfcExternallyDefinedTextFontAdapter();
 			}
 			@Override
-			public Adapter caseIfcExtrudedAreaSolid(IfcExtrudedAreaSolid object)
-			{
+			public Adapter caseIfcExtrudedAreaSolid(IfcExtrudedAreaSolid object) {
 				return createIfcExtrudedAreaSolidAdapter();
 			}
 			@Override
-			public Adapter caseIfcFace(IfcFace object)
-			{
+			public Adapter caseIfcFace(IfcFace object) {
 				return createIfcFaceAdapter();
 			}
 			@Override
-			public Adapter caseIfcFaceBasedSurfaceModel(IfcFaceBasedSurfaceModel object)
-			{
+			public Adapter caseIfcFaceBasedSurfaceModel(IfcFaceBasedSurfaceModel object) {
 				return createIfcFaceBasedSurfaceModelAdapter();
 			}
 			@Override
-			public Adapter caseIfcFaceBound(IfcFaceBound object)
-			{
+			public Adapter caseIfcFaceBound(IfcFaceBound object) {
 				return createIfcFaceBoundAdapter();
 			}
 			@Override
-			public Adapter caseIfcFaceOuterBound(IfcFaceOuterBound object)
-			{
+			public Adapter caseIfcFaceOuterBound(IfcFaceOuterBound object) {
 				return createIfcFaceOuterBoundAdapter();
 			}
 			@Override
-			public Adapter caseIfcFaceSurface(IfcFaceSurface object)
-			{
+			public Adapter caseIfcFaceSurface(IfcFaceSurface object) {
 				return createIfcFaceSurfaceAdapter();
 			}
 			@Override
-			public Adapter caseIfcFacetedBrep(IfcFacetedBrep object)
-			{
+			public Adapter caseIfcFacetedBrep(IfcFacetedBrep object) {
 				return createIfcFacetedBrepAdapter();
 			}
 			@Override
-			public Adapter caseIfcFacetedBrepWithVoids(IfcFacetedBrepWithVoids object)
-			{
+			public Adapter caseIfcFacetedBrepWithVoids(IfcFacetedBrepWithVoids object) {
 				return createIfcFacetedBrepWithVoidsAdapter();
 			}
 			@Override
-			public Adapter caseIfcFailureConnectionCondition(IfcFailureConnectionCondition object)
-			{
+			public Adapter caseIfcFailureConnectionCondition(IfcFailureConnectionCondition object) {
 				return createIfcFailureConnectionConditionAdapter();
 			}
 			@Override
-			public Adapter caseIfcFanType(IfcFanType object)
-			{
+			public Adapter caseIfcFanType(IfcFanType object) {
 				return createIfcFanTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcFastener(IfcFastener object)
-			{
+			public Adapter caseIfcFastener(IfcFastener object) {
 				return createIfcFastenerAdapter();
 			}
 			@Override
-			public Adapter caseIfcFastenerType(IfcFastenerType object)
-			{
+			public Adapter caseIfcFastenerType(IfcFastenerType object) {
 				return createIfcFastenerTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcFeatureElement(IfcFeatureElement object)
-			{
+			public Adapter caseIfcFeatureElement(IfcFeatureElement object) {
 				return createIfcFeatureElementAdapter();
 			}
 			@Override
-			public Adapter caseIfcFeatureElementAddition(IfcFeatureElementAddition object)
-			{
+			public Adapter caseIfcFeatureElementAddition(IfcFeatureElementAddition object) {
 				return createIfcFeatureElementAdditionAdapter();
 			}
 			@Override
-			public Adapter caseIfcFeatureElementSubtraction(IfcFeatureElementSubtraction object)
-			{
+			public Adapter caseIfcFeatureElementSubtraction(IfcFeatureElementSubtraction object) {
 				return createIfcFeatureElementSubtractionAdapter();
 			}
 			@Override
-			public Adapter caseIfcFillAreaStyle(IfcFillAreaStyle object)
-			{
+			public Adapter caseIfcFillAreaStyle(IfcFillAreaStyle object) {
 				return createIfcFillAreaStyleAdapter();
 			}
 			@Override
-			public Adapter caseIfcFillAreaStyleHatching(IfcFillAreaStyleHatching object)
-			{
+			public Adapter caseIfcFillAreaStyleHatching(IfcFillAreaStyleHatching object) {
 				return createIfcFillAreaStyleHatchingAdapter();
 			}
 			@Override
-			public Adapter caseIfcFillAreaStyleTileSymbolWithStyle(IfcFillAreaStyleTileSymbolWithStyle object)
-			{
+			public Adapter caseIfcFillAreaStyleTileSymbolWithStyle(IfcFillAreaStyleTileSymbolWithStyle object) {
 				return createIfcFillAreaStyleTileSymbolWithStyleAdapter();
 			}
 			@Override
-			public Adapter caseIfcFillAreaStyleTiles(IfcFillAreaStyleTiles object)
-			{
+			public Adapter caseIfcFillAreaStyleTiles(IfcFillAreaStyleTiles object) {
 				return createIfcFillAreaStyleTilesAdapter();
 			}
 			@Override
-			public Adapter caseIfcFilterType(IfcFilterType object)
-			{
+			public Adapter caseIfcFilterType(IfcFilterType object) {
 				return createIfcFilterTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcFireSuppressionTerminalType(IfcFireSuppressionTerminalType object)
-			{
+			public Adapter caseIfcFireSuppressionTerminalType(IfcFireSuppressionTerminalType object) {
 				return createIfcFireSuppressionTerminalTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcFlowController(IfcFlowController object)
-			{
+			public Adapter caseIfcFlowController(IfcFlowController object) {
 				return createIfcFlowControllerAdapter();
 			}
 			@Override
-			public Adapter caseIfcFlowControllerType(IfcFlowControllerType object)
-			{
+			public Adapter caseIfcFlowControllerType(IfcFlowControllerType object) {
 				return createIfcFlowControllerTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcFlowFitting(IfcFlowFitting object)
-			{
+			public Adapter caseIfcFlowFitting(IfcFlowFitting object) {
 				return createIfcFlowFittingAdapter();
 			}
 			@Override
-			public Adapter caseIfcFlowFittingType(IfcFlowFittingType object)
-			{
+			public Adapter caseIfcFlowFittingType(IfcFlowFittingType object) {
 				return createIfcFlowFittingTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcFlowInstrumentType(IfcFlowInstrumentType object)
-			{
+			public Adapter caseIfcFlowInstrumentType(IfcFlowInstrumentType object) {
 				return createIfcFlowInstrumentTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcFlowMeterType(IfcFlowMeterType object)
-			{
+			public Adapter caseIfcFlowMeterType(IfcFlowMeterType object) {
 				return createIfcFlowMeterTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcFlowMovingDevice(IfcFlowMovingDevice object)
-			{
+			public Adapter caseIfcFlowMovingDevice(IfcFlowMovingDevice object) {
 				return createIfcFlowMovingDeviceAdapter();
 			}
 			@Override
-			public Adapter caseIfcFlowMovingDeviceType(IfcFlowMovingDeviceType object)
-			{
+			public Adapter caseIfcFlowMovingDeviceType(IfcFlowMovingDeviceType object) {
 				return createIfcFlowMovingDeviceTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcFlowSegment(IfcFlowSegment object)
-			{
+			public Adapter caseIfcFlowSegment(IfcFlowSegment object) {
 				return createIfcFlowSegmentAdapter();
 			}
 			@Override
-			public Adapter caseIfcFlowSegmentType(IfcFlowSegmentType object)
-			{
+			public Adapter caseIfcFlowSegmentType(IfcFlowSegmentType object) {
 				return createIfcFlowSegmentTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcFlowStorageDevice(IfcFlowStorageDevice object)
-			{
+			public Adapter caseIfcFlowStorageDevice(IfcFlowStorageDevice object) {
 				return createIfcFlowStorageDeviceAdapter();
 			}
 			@Override
-			public Adapter caseIfcFlowStorageDeviceType(IfcFlowStorageDeviceType object)
-			{
+			public Adapter caseIfcFlowStorageDeviceType(IfcFlowStorageDeviceType object) {
 				return createIfcFlowStorageDeviceTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcFlowTerminal(IfcFlowTerminal object)
-			{
+			public Adapter caseIfcFlowTerminal(IfcFlowTerminal object) {
 				return createIfcFlowTerminalAdapter();
 			}
 			@Override
-			public Adapter caseIfcFlowTerminalType(IfcFlowTerminalType object)
-			{
+			public Adapter caseIfcFlowTerminalType(IfcFlowTerminalType object) {
 				return createIfcFlowTerminalTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcFlowTreatmentDevice(IfcFlowTreatmentDevice object)
-			{
+			public Adapter caseIfcFlowTreatmentDevice(IfcFlowTreatmentDevice object) {
 				return createIfcFlowTreatmentDeviceAdapter();
 			}
 			@Override
-			public Adapter caseIfcFlowTreatmentDeviceType(IfcFlowTreatmentDeviceType object)
-			{
+			public Adapter caseIfcFlowTreatmentDeviceType(IfcFlowTreatmentDeviceType object) {
 				return createIfcFlowTreatmentDeviceTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcFluidFlowProperties(IfcFluidFlowProperties object)
-			{
+			public Adapter caseIfcFluidFlowProperties(IfcFluidFlowProperties object) {
 				return createIfcFluidFlowPropertiesAdapter();
 			}
 			@Override
-			public Adapter caseIfcFooting(IfcFooting object)
-			{
+			public Adapter caseIfcFooting(IfcFooting object) {
 				return createIfcFootingAdapter();
 			}
 			@Override
-			public Adapter caseIfcFuelProperties(IfcFuelProperties object)
-			{
+			public Adapter caseIfcFuelProperties(IfcFuelProperties object) {
 				return createIfcFuelPropertiesAdapter();
 			}
 			@Override
-			public Adapter caseIfcFurnishingElement(IfcFurnishingElement object)
-			{
+			public Adapter caseIfcFurnishingElement(IfcFurnishingElement object) {
 				return createIfcFurnishingElementAdapter();
 			}
 			@Override
-			public Adapter caseIfcFurnishingElementType(IfcFurnishingElementType object)
-			{
+			public Adapter caseIfcFurnishingElementType(IfcFurnishingElementType object) {
 				return createIfcFurnishingElementTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcFurnitureStandard(IfcFurnitureStandard object)
-			{
+			public Adapter caseIfcFurnitureStandard(IfcFurnitureStandard object) {
 				return createIfcFurnitureStandardAdapter();
 			}
 			@Override
-			public Adapter caseIfcFurnitureType(IfcFurnitureType object)
-			{
+			public Adapter caseIfcFurnitureType(IfcFurnitureType object) {
 				return createIfcFurnitureTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcGasTerminalType(IfcGasTerminalType object)
-			{
+			public Adapter caseIfcGasTerminalType(IfcGasTerminalType object) {
 				return createIfcGasTerminalTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcGeneralMaterialProperties(IfcGeneralMaterialProperties object)
-			{
+			public Adapter caseIfcGeneralMaterialProperties(IfcGeneralMaterialProperties object) {
 				return createIfcGeneralMaterialPropertiesAdapter();
 			}
 			@Override
-			public Adapter caseIfcGeneralProfileProperties(IfcGeneralProfileProperties object)
-			{
+			public Adapter caseIfcGeneralProfileProperties(IfcGeneralProfileProperties object) {
 				return createIfcGeneralProfilePropertiesAdapter();
 			}
 			@Override
-			public Adapter caseIfcGeometricCurveSet(IfcGeometricCurveSet object)
-			{
+			public Adapter caseIfcGeometricCurveSet(IfcGeometricCurveSet object) {
 				return createIfcGeometricCurveSetAdapter();
 			}
 			@Override
-			public Adapter caseIfcGeometricRepresentationContext(IfcGeometricRepresentationContext object)
-			{
+			public Adapter caseIfcGeometricRepresentationContext(IfcGeometricRepresentationContext object) {
 				return createIfcGeometricRepresentationContextAdapter();
 			}
 			@Override
-			public Adapter caseIfcGeometricRepresentationItem(IfcGeometricRepresentationItem object)
-			{
+			public Adapter caseIfcGeometricRepresentationItem(IfcGeometricRepresentationItem object) {
 				return createIfcGeometricRepresentationItemAdapter();
 			}
 			@Override
-			public Adapter caseIfcGeometricRepresentationSubContext(IfcGeometricRepresentationSubContext object)
-			{
+			public Adapter caseIfcGeometricRepresentationSubContext(IfcGeometricRepresentationSubContext object) {
 				return createIfcGeometricRepresentationSubContextAdapter();
 			}
 			@Override
-			public Adapter caseIfcGeometricSet(IfcGeometricSet object)
-			{
+			public Adapter caseIfcGeometricSet(IfcGeometricSet object) {
 				return createIfcGeometricSetAdapter();
 			}
 			@Override
-			public Adapter caseIfcGrid(IfcGrid object)
-			{
+			public Adapter caseIfcGrid(IfcGrid object) {
 				return createIfcGridAdapter();
 			}
 			@Override
-			public Adapter caseIfcGridAxis(IfcGridAxis object)
-			{
+			public Adapter caseIfcGridAxis(IfcGridAxis object) {
 				return createIfcGridAxisAdapter();
 			}
 			@Override
-			public Adapter caseIfcGridPlacement(IfcGridPlacement object)
-			{
+			public Adapter caseIfcGridPlacement(IfcGridPlacement object) {
 				return createIfcGridPlacementAdapter();
 			}
 			@Override
-			public Adapter caseIfcGroup(IfcGroup object)
-			{
+			public Adapter caseIfcGroup(IfcGroup object) {
 				return createIfcGroupAdapter();
 			}
 			@Override
-			public Adapter caseIfcHalfSpaceSolid(IfcHalfSpaceSolid object)
-			{
+			public Adapter caseIfcHalfSpaceSolid(IfcHalfSpaceSolid object) {
 				return createIfcHalfSpaceSolidAdapter();
 			}
 			@Override
-			public Adapter caseIfcHeatExchangerType(IfcHeatExchangerType object)
-			{
+			public Adapter caseIfcHeatExchangerType(IfcHeatExchangerType object) {
 				return createIfcHeatExchangerTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcHumidifierType(IfcHumidifierType object)
-			{
+			public Adapter caseIfcHumidifierType(IfcHumidifierType object) {
 				return createIfcHumidifierTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcHygroscopicMaterialProperties(IfcHygroscopicMaterialProperties object)
-			{
+			public Adapter caseIfcHygroscopicMaterialProperties(IfcHygroscopicMaterialProperties object) {
 				return createIfcHygroscopicMaterialPropertiesAdapter();
 			}
 			@Override
-			public Adapter caseIfcIShapeProfileDef(IfcIShapeProfileDef object)
-			{
+			public Adapter caseIfcIShapeProfileDef(IfcIShapeProfileDef object) {
 				return createIfcIShapeProfileDefAdapter();
 			}
 			@Override
-			public Adapter caseIfcImageTexture(IfcImageTexture object)
-			{
+			public Adapter caseIfcImageTexture(IfcImageTexture object) {
 				return createIfcImageTextureAdapter();
 			}
 			@Override
-			public Adapter caseIfcInventory(IfcInventory object)
-			{
+			public Adapter caseIfcInventory(IfcInventory object) {
 				return createIfcInventoryAdapter();
 			}
 			@Override
-			public Adapter caseIfcIrregularTimeSeries(IfcIrregularTimeSeries object)
-			{
+			public Adapter caseIfcIrregularTimeSeries(IfcIrregularTimeSeries object) {
 				return createIfcIrregularTimeSeriesAdapter();
 			}
 			@Override
-			public Adapter caseIfcIrregularTimeSeriesValue(IfcIrregularTimeSeriesValue object)
-			{
+			public Adapter caseIfcIrregularTimeSeriesValue(IfcIrregularTimeSeriesValue object) {
 				return createIfcIrregularTimeSeriesValueAdapter();
 			}
 			@Override
-			public Adapter caseIfcJunctionBoxType(IfcJunctionBoxType object)
-			{
+			public Adapter caseIfcJunctionBoxType(IfcJunctionBoxType object) {
 				return createIfcJunctionBoxTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcLShapeProfileDef(IfcLShapeProfileDef object)
-			{
+			public Adapter caseIfcLShapeProfileDef(IfcLShapeProfileDef object) {
 				return createIfcLShapeProfileDefAdapter();
 			}
 			@Override
-			public Adapter caseIfcLaborResource(IfcLaborResource object)
-			{
+			public Adapter caseIfcLaborResource(IfcLaborResource object) {
 				return createIfcLaborResourceAdapter();
 			}
 			@Override
-			public Adapter caseIfcLampType(IfcLampType object)
-			{
+			public Adapter caseIfcLampType(IfcLampType object) {
 				return createIfcLampTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcLibraryInformation(IfcLibraryInformation object)
-			{
+			public Adapter caseIfcLibraryInformation(IfcLibraryInformation object) {
 				return createIfcLibraryInformationAdapter();
 			}
 			@Override
-			public Adapter caseIfcLibraryReference(IfcLibraryReference object)
-			{
+			public Adapter caseIfcLibraryReference(IfcLibraryReference object) {
 				return createIfcLibraryReferenceAdapter();
 			}
 			@Override
-			public Adapter caseIfcLightDistributionData(IfcLightDistributionData object)
-			{
+			public Adapter caseIfcLightDistributionData(IfcLightDistributionData object) {
 				return createIfcLightDistributionDataAdapter();
 			}
 			@Override
-			public Adapter caseIfcLightFixtureType(IfcLightFixtureType object)
-			{
+			public Adapter caseIfcLightFixtureType(IfcLightFixtureType object) {
 				return createIfcLightFixtureTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcLightIntensityDistribution(IfcLightIntensityDistribution object)
-			{
+			public Adapter caseIfcLightIntensityDistribution(IfcLightIntensityDistribution object) {
 				return createIfcLightIntensityDistributionAdapter();
 			}
 			@Override
-			public Adapter caseIfcLightSource(IfcLightSource object)
-			{
+			public Adapter caseIfcLightSource(IfcLightSource object) {
 				return createIfcLightSourceAdapter();
 			}
 			@Override
-			public Adapter caseIfcLightSourceAmbient(IfcLightSourceAmbient object)
-			{
+			public Adapter caseIfcLightSourceAmbient(IfcLightSourceAmbient object) {
 				return createIfcLightSourceAmbientAdapter();
 			}
 			@Override
-			public Adapter caseIfcLightSourceDirectional(IfcLightSourceDirectional object)
-			{
+			public Adapter caseIfcLightSourceDirectional(IfcLightSourceDirectional object) {
 				return createIfcLightSourceDirectionalAdapter();
 			}
 			@Override
-			public Adapter caseIfcLightSourceGoniometric(IfcLightSourceGoniometric object)
-			{
+			public Adapter caseIfcLightSourceGoniometric(IfcLightSourceGoniometric object) {
 				return createIfcLightSourceGoniometricAdapter();
 			}
 			@Override
-			public Adapter caseIfcLightSourcePositional(IfcLightSourcePositional object)
-			{
+			public Adapter caseIfcLightSourcePositional(IfcLightSourcePositional object) {
 				return createIfcLightSourcePositionalAdapter();
 			}
 			@Override
-			public Adapter caseIfcLightSourceSpot(IfcLightSourceSpot object)
-			{
+			public Adapter caseIfcLightSourceSpot(IfcLightSourceSpot object) {
 				return createIfcLightSourceSpotAdapter();
 			}
 			@Override
-			public Adapter caseIfcLine(IfcLine object)
-			{
+			public Adapter caseIfcLine(IfcLine object) {
 				return createIfcLineAdapter();
 			}
 			@Override
-			public Adapter caseIfcLinearDimension(IfcLinearDimension object)
-			{
+			public Adapter caseIfcLinearDimension(IfcLinearDimension object) {
 				return createIfcLinearDimensionAdapter();
 			}
 			@Override
-			public Adapter caseIfcLocalPlacement(IfcLocalPlacement object)
-			{
+			public Adapter caseIfcLocalPlacement(IfcLocalPlacement object) {
 				return createIfcLocalPlacementAdapter();
 			}
 			@Override
-			public Adapter caseIfcLocalTime(IfcLocalTime object)
-			{
+			public Adapter caseIfcLocalTime(IfcLocalTime object) {
 				return createIfcLocalTimeAdapter();
 			}
 			@Override
-			public Adapter caseIfcLoop(IfcLoop object)
-			{
+			public Adapter caseIfcLoop(IfcLoop object) {
 				return createIfcLoopAdapter();
 			}
 			@Override
-			public Adapter caseIfcManifoldSolidBrep(IfcManifoldSolidBrep object)
-			{
+			public Adapter caseIfcManifoldSolidBrep(IfcManifoldSolidBrep object) {
 				return createIfcManifoldSolidBrepAdapter();
 			}
 			@Override
-			public Adapter caseIfcMappedItem(IfcMappedItem object)
-			{
+			public Adapter caseIfcMappedItem(IfcMappedItem object) {
 				return createIfcMappedItemAdapter();
 			}
 			@Override
-			public Adapter caseIfcMaterial(IfcMaterial object)
-			{
+			public Adapter caseIfcMaterial(IfcMaterial object) {
 				return createIfcMaterialAdapter();
 			}
 			@Override
-			public Adapter caseIfcMaterialClassificationRelationship(IfcMaterialClassificationRelationship object)
-			{
+			public Adapter caseIfcMaterialClassificationRelationship(IfcMaterialClassificationRelationship object) {
 				return createIfcMaterialClassificationRelationshipAdapter();
 			}
 			@Override
-			public Adapter caseIfcMaterialDefinitionRepresentation(IfcMaterialDefinitionRepresentation object)
-			{
+			public Adapter caseIfcMaterialDefinitionRepresentation(IfcMaterialDefinitionRepresentation object) {
 				return createIfcMaterialDefinitionRepresentationAdapter();
 			}
 			@Override
-			public Adapter caseIfcMaterialLayer(IfcMaterialLayer object)
-			{
+			public Adapter caseIfcMaterialLayer(IfcMaterialLayer object) {
 				return createIfcMaterialLayerAdapter();
 			}
 			@Override
-			public Adapter caseIfcMaterialLayerSet(IfcMaterialLayerSet object)
-			{
+			public Adapter caseIfcMaterialLayerSet(IfcMaterialLayerSet object) {
 				return createIfcMaterialLayerSetAdapter();
 			}
 			@Override
-			public Adapter caseIfcMaterialLayerSetUsage(IfcMaterialLayerSetUsage object)
-			{
+			public Adapter caseIfcMaterialLayerSetUsage(IfcMaterialLayerSetUsage object) {
 				return createIfcMaterialLayerSetUsageAdapter();
 			}
 			@Override
-			public Adapter caseIfcMaterialList(IfcMaterialList object)
-			{
+			public Adapter caseIfcMaterialList(IfcMaterialList object) {
 				return createIfcMaterialListAdapter();
 			}
 			@Override
-			public Adapter caseIfcMaterialProperties(IfcMaterialProperties object)
-			{
+			public Adapter caseIfcMaterialProperties(IfcMaterialProperties object) {
 				return createIfcMaterialPropertiesAdapter();
 			}
 			@Override
-			public Adapter caseIfcMeasureWithUnit(IfcMeasureWithUnit object)
-			{
+			public Adapter caseIfcMeasureWithUnit(IfcMeasureWithUnit object) {
 				return createIfcMeasureWithUnitAdapter();
 			}
 			@Override
-			public Adapter caseIfcMechanicalConcreteMaterialProperties(IfcMechanicalConcreteMaterialProperties object)
-			{
+			public Adapter caseIfcMechanicalConcreteMaterialProperties(IfcMechanicalConcreteMaterialProperties object) {
 				return createIfcMechanicalConcreteMaterialPropertiesAdapter();
 			}
 			@Override
-			public Adapter caseIfcMechanicalFastener(IfcMechanicalFastener object)
-			{
+			public Adapter caseIfcMechanicalFastener(IfcMechanicalFastener object) {
 				return createIfcMechanicalFastenerAdapter();
 			}
 			@Override
-			public Adapter caseIfcMechanicalFastenerType(IfcMechanicalFastenerType object)
-			{
+			public Adapter caseIfcMechanicalFastenerType(IfcMechanicalFastenerType object) {
 				return createIfcMechanicalFastenerTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcMechanicalMaterialProperties(IfcMechanicalMaterialProperties object)
-			{
+			public Adapter caseIfcMechanicalMaterialProperties(IfcMechanicalMaterialProperties object) {
 				return createIfcMechanicalMaterialPropertiesAdapter();
 			}
 			@Override
-			public Adapter caseIfcMechanicalSteelMaterialProperties(IfcMechanicalSteelMaterialProperties object)
-			{
+			public Adapter caseIfcMechanicalSteelMaterialProperties(IfcMechanicalSteelMaterialProperties object) {
 				return createIfcMechanicalSteelMaterialPropertiesAdapter();
 			}
 			@Override
-			public Adapter caseIfcMember(IfcMember object)
-			{
+			public Adapter caseIfcMember(IfcMember object) {
 				return createIfcMemberAdapter();
 			}
 			@Override
-			public Adapter caseIfcMemberType(IfcMemberType object)
-			{
+			public Adapter caseIfcMemberType(IfcMemberType object) {
 				return createIfcMemberTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcMetric(IfcMetric object)
-			{
+			public Adapter caseIfcMetric(IfcMetric object) {
 				return createIfcMetricAdapter();
 			}
 			@Override
-			public Adapter caseIfcMonetaryUnit(IfcMonetaryUnit object)
-			{
+			public Adapter caseIfcMonetaryUnit(IfcMonetaryUnit object) {
 				return createIfcMonetaryUnitAdapter();
 			}
 			@Override
-			public Adapter caseIfcMotorConnectionType(IfcMotorConnectionType object)
-			{
+			public Adapter caseIfcMotorConnectionType(IfcMotorConnectionType object) {
 				return createIfcMotorConnectionTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcMove(IfcMove object)
-			{
+			public Adapter caseIfcMove(IfcMove object) {
 				return createIfcMoveAdapter();
 			}
 			@Override
-			public Adapter caseIfcNamedUnit(IfcNamedUnit object)
-			{
+			public Adapter caseIfcNamedUnit(IfcNamedUnit object) {
 				return createIfcNamedUnitAdapter();
 			}
 			@Override
-			public Adapter caseIfcObject(IfcObject object)
-			{
+			public Adapter caseIfcObject(IfcObject object) {
 				return createIfcObjectAdapter();
 			}
 			@Override
-			public Adapter caseIfcObjectDefinition(IfcObjectDefinition object)
-			{
+			public Adapter caseIfcObjectDefinition(IfcObjectDefinition object) {
 				return createIfcObjectDefinitionAdapter();
 			}
 			@Override
-			public Adapter caseIfcObjectPlacement(IfcObjectPlacement object)
-			{
+			public Adapter caseIfcObjectPlacement(IfcObjectPlacement object) {
 				return createIfcObjectPlacementAdapter();
 			}
 			@Override
-			public Adapter caseIfcObjective(IfcObjective object)
-			{
+			public Adapter caseIfcObjective(IfcObjective object) {
 				return createIfcObjectiveAdapter();
 			}
 			@Override
-			public Adapter caseIfcOccupant(IfcOccupant object)
-			{
+			public Adapter caseIfcOccupant(IfcOccupant object) {
 				return createIfcOccupantAdapter();
 			}
 			@Override
-			public Adapter caseIfcOffsetCurve2D(IfcOffsetCurve2D object)
-			{
+			public Adapter caseIfcOffsetCurve2D(IfcOffsetCurve2D object) {
 				return createIfcOffsetCurve2DAdapter();
 			}
 			@Override
-			public Adapter caseIfcOffsetCurve3D(IfcOffsetCurve3D object)
-			{
+			public Adapter caseIfcOffsetCurve3D(IfcOffsetCurve3D object) {
 				return createIfcOffsetCurve3DAdapter();
 			}
 			@Override
-			public Adapter caseIfcOneDirectionRepeatFactor(IfcOneDirectionRepeatFactor object)
-			{
+			public Adapter caseIfcOneDirectionRepeatFactor(IfcOneDirectionRepeatFactor object) {
 				return createIfcOneDirectionRepeatFactorAdapter();
 			}
 			@Override
-			public Adapter caseIfcOpenShell(IfcOpenShell object)
-			{
+			public Adapter caseIfcOpenShell(IfcOpenShell object) {
 				return createIfcOpenShellAdapter();
 			}
 			@Override
-			public Adapter caseIfcOpeningElement(IfcOpeningElement object)
-			{
+			public Adapter caseIfcOpeningElement(IfcOpeningElement object) {
 				return createIfcOpeningElementAdapter();
 			}
 			@Override
-			public Adapter caseIfcOpticalMaterialProperties(IfcOpticalMaterialProperties object)
-			{
+			public Adapter caseIfcOpticalMaterialProperties(IfcOpticalMaterialProperties object) {
 				return createIfcOpticalMaterialPropertiesAdapter();
 			}
 			@Override
-			public Adapter caseIfcOrderAction(IfcOrderAction object)
-			{
+			public Adapter caseIfcOrderAction(IfcOrderAction object) {
 				return createIfcOrderActionAdapter();
 			}
 			@Override
-			public Adapter caseIfcOrganization(IfcOrganization object)
-			{
+			public Adapter caseIfcOrganization(IfcOrganization object) {
 				return createIfcOrganizationAdapter();
 			}
 			@Override
-			public Adapter caseIfcOrganizationRelationship(IfcOrganizationRelationship object)
-			{
+			public Adapter caseIfcOrganizationRelationship(IfcOrganizationRelationship object) {
 				return createIfcOrganizationRelationshipAdapter();
 			}
 			@Override
-			public Adapter caseIfcOrientedEdge(IfcOrientedEdge object)
-			{
+			public Adapter caseIfcOrientedEdge(IfcOrientedEdge object) {
 				return createIfcOrientedEdgeAdapter();
 			}
 			@Override
-			public Adapter caseIfcOutletType(IfcOutletType object)
-			{
+			public Adapter caseIfcOutletType(IfcOutletType object) {
 				return createIfcOutletTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcOwnerHistory(IfcOwnerHistory object)
-			{
+			public Adapter caseIfcOwnerHistory(IfcOwnerHistory object) {
 				return createIfcOwnerHistoryAdapter();
 			}
 			@Override
-			public Adapter caseIfcParameterizedProfileDef(IfcParameterizedProfileDef object)
-			{
+			public Adapter caseIfcParameterizedProfileDef(IfcParameterizedProfileDef object) {
 				return createIfcParameterizedProfileDefAdapter();
 			}
 			@Override
-			public Adapter caseIfcPath(IfcPath object)
-			{
+			public Adapter caseIfcPath(IfcPath object) {
 				return createIfcPathAdapter();
 			}
 			@Override
-			public Adapter caseIfcPerformanceHistory(IfcPerformanceHistory object)
-			{
+			public Adapter caseIfcPerformanceHistory(IfcPerformanceHistory object) {
 				return createIfcPerformanceHistoryAdapter();
 			}
 			@Override
-			public Adapter caseIfcPermeableCoveringProperties(IfcPermeableCoveringProperties object)
-			{
+			public Adapter caseIfcPermeableCoveringProperties(IfcPermeableCoveringProperties object) {
 				return createIfcPermeableCoveringPropertiesAdapter();
 			}
 			@Override
-			public Adapter caseIfcPermit(IfcPermit object)
-			{
+			public Adapter caseIfcPermit(IfcPermit object) {
 				return createIfcPermitAdapter();
 			}
 			@Override
-			public Adapter caseIfcPerson(IfcPerson object)
-			{
+			public Adapter caseIfcPerson(IfcPerson object) {
 				return createIfcPersonAdapter();
 			}
 			@Override
-			public Adapter caseIfcPersonAndOrganization(IfcPersonAndOrganization object)
-			{
+			public Adapter caseIfcPersonAndOrganization(IfcPersonAndOrganization object) {
 				return createIfcPersonAndOrganizationAdapter();
 			}
 			@Override
-			public Adapter caseIfcPhysicalComplexQuantity(IfcPhysicalComplexQuantity object)
-			{
+			public Adapter caseIfcPhysicalComplexQuantity(IfcPhysicalComplexQuantity object) {
 				return createIfcPhysicalComplexQuantityAdapter();
 			}
 			@Override
-			public Adapter caseIfcPhysicalQuantity(IfcPhysicalQuantity object)
-			{
+			public Adapter caseIfcPhysicalQuantity(IfcPhysicalQuantity object) {
 				return createIfcPhysicalQuantityAdapter();
 			}
 			@Override
-			public Adapter caseIfcPhysicalSimpleQuantity(IfcPhysicalSimpleQuantity object)
-			{
+			public Adapter caseIfcPhysicalSimpleQuantity(IfcPhysicalSimpleQuantity object) {
 				return createIfcPhysicalSimpleQuantityAdapter();
 			}
 			@Override
-			public Adapter caseIfcPile(IfcPile object)
-			{
+			public Adapter caseIfcPile(IfcPile object) {
 				return createIfcPileAdapter();
 			}
 			@Override
-			public Adapter caseIfcPipeFittingType(IfcPipeFittingType object)
-			{
+			public Adapter caseIfcPipeFittingType(IfcPipeFittingType object) {
 				return createIfcPipeFittingTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcPipeSegmentType(IfcPipeSegmentType object)
-			{
+			public Adapter caseIfcPipeSegmentType(IfcPipeSegmentType object) {
 				return createIfcPipeSegmentTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcPixelTexture(IfcPixelTexture object)
-			{
+			public Adapter caseIfcPixelTexture(IfcPixelTexture object) {
 				return createIfcPixelTextureAdapter();
 			}
 			@Override
-			public Adapter caseIfcPlacement(IfcPlacement object)
-			{
+			public Adapter caseIfcPlacement(IfcPlacement object) {
 				return createIfcPlacementAdapter();
 			}
 			@Override
-			public Adapter caseIfcPlanarBox(IfcPlanarBox object)
-			{
+			public Adapter caseIfcPlanarBox(IfcPlanarBox object) {
 				return createIfcPlanarBoxAdapter();
 			}
 			@Override
-			public Adapter caseIfcPlanarExtent(IfcPlanarExtent object)
-			{
+			public Adapter caseIfcPlanarExtent(IfcPlanarExtent object) {
 				return createIfcPlanarExtentAdapter();
 			}
 			@Override
-			public Adapter caseIfcPlane(IfcPlane object)
-			{
+			public Adapter caseIfcPlane(IfcPlane object) {
 				return createIfcPlaneAdapter();
 			}
 			@Override
-			public Adapter caseIfcPlate(IfcPlate object)
-			{
+			public Adapter caseIfcPlate(IfcPlate object) {
 				return createIfcPlateAdapter();
 			}
 			@Override
-			public Adapter caseIfcPlateType(IfcPlateType object)
-			{
+			public Adapter caseIfcPlateType(IfcPlateType object) {
 				return createIfcPlateTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcPoint(IfcPoint object)
-			{
+			public Adapter caseIfcPoint(IfcPoint object) {
 				return createIfcPointAdapter();
 			}
 			@Override
-			public Adapter caseIfcPointOnCurve(IfcPointOnCurve object)
-			{
+			public Adapter caseIfcPointOnCurve(IfcPointOnCurve object) {
 				return createIfcPointOnCurveAdapter();
 			}
 			@Override
-			public Adapter caseIfcPointOnSurface(IfcPointOnSurface object)
-			{
+			public Adapter caseIfcPointOnSurface(IfcPointOnSurface object) {
 				return createIfcPointOnSurfaceAdapter();
 			}
 			@Override
-			public Adapter caseIfcPolyLoop(IfcPolyLoop object)
-			{
+			public Adapter caseIfcPolyLoop(IfcPolyLoop object) {
 				return createIfcPolyLoopAdapter();
 			}
 			@Override
-			public Adapter caseIfcPolygonalBoundedHalfSpace(IfcPolygonalBoundedHalfSpace object)
-			{
+			public Adapter caseIfcPolygonalBoundedHalfSpace(IfcPolygonalBoundedHalfSpace object) {
 				return createIfcPolygonalBoundedHalfSpaceAdapter();
 			}
 			@Override
-			public Adapter caseIfcPolyline(IfcPolyline object)
-			{
+			public Adapter caseIfcPolyline(IfcPolyline object) {
 				return createIfcPolylineAdapter();
 			}
 			@Override
-			public Adapter caseIfcPort(IfcPort object)
-			{
+			public Adapter caseIfcPort(IfcPort object) {
 				return createIfcPortAdapter();
 			}
 			@Override
-			public Adapter caseIfcPostalAddress(IfcPostalAddress object)
-			{
+			public Adapter caseIfcPostalAddress(IfcPostalAddress object) {
 				return createIfcPostalAddressAdapter();
 			}
 			@Override
-			public Adapter caseIfcPreDefinedColour(IfcPreDefinedColour object)
-			{
+			public Adapter caseIfcPreDefinedColour(IfcPreDefinedColour object) {
 				return createIfcPreDefinedColourAdapter();
 			}
 			@Override
-			public Adapter caseIfcPreDefinedCurveFont(IfcPreDefinedCurveFont object)
-			{
+			public Adapter caseIfcPreDefinedCurveFont(IfcPreDefinedCurveFont object) {
 				return createIfcPreDefinedCurveFontAdapter();
 			}
 			@Override
-			public Adapter caseIfcPreDefinedDimensionSymbol(IfcPreDefinedDimensionSymbol object)
-			{
+			public Adapter caseIfcPreDefinedDimensionSymbol(IfcPreDefinedDimensionSymbol object) {
 				return createIfcPreDefinedDimensionSymbolAdapter();
 			}
 			@Override
-			public Adapter caseIfcPreDefinedItem(IfcPreDefinedItem object)
-			{
+			public Adapter caseIfcPreDefinedItem(IfcPreDefinedItem object) {
 				return createIfcPreDefinedItemAdapter();
 			}
 			@Override
-			public Adapter caseIfcPreDefinedPointMarkerSymbol(IfcPreDefinedPointMarkerSymbol object)
-			{
+			public Adapter caseIfcPreDefinedPointMarkerSymbol(IfcPreDefinedPointMarkerSymbol object) {
 				return createIfcPreDefinedPointMarkerSymbolAdapter();
 			}
 			@Override
-			public Adapter caseIfcPreDefinedSymbol(IfcPreDefinedSymbol object)
-			{
+			public Adapter caseIfcPreDefinedSymbol(IfcPreDefinedSymbol object) {
 				return createIfcPreDefinedSymbolAdapter();
 			}
 			@Override
-			public Adapter caseIfcPreDefinedTerminatorSymbol(IfcPreDefinedTerminatorSymbol object)
-			{
+			public Adapter caseIfcPreDefinedTerminatorSymbol(IfcPreDefinedTerminatorSymbol object) {
 				return createIfcPreDefinedTerminatorSymbolAdapter();
 			}
 			@Override
-			public Adapter caseIfcPreDefinedTextFont(IfcPreDefinedTextFont object)
-			{
+			public Adapter caseIfcPreDefinedTextFont(IfcPreDefinedTextFont object) {
 				return createIfcPreDefinedTextFontAdapter();
 			}
 			@Override
-			public Adapter caseIfcPresentationLayerAssignment(IfcPresentationLayerAssignment object)
-			{
+			public Adapter caseIfcPresentationLayerAssignment(IfcPresentationLayerAssignment object) {
 				return createIfcPresentationLayerAssignmentAdapter();
 			}
 			@Override
-			public Adapter caseIfcPresentationLayerWithStyle(IfcPresentationLayerWithStyle object)
-			{
+			public Adapter caseIfcPresentationLayerWithStyle(IfcPresentationLayerWithStyle object) {
 				return createIfcPresentationLayerWithStyleAdapter();
 			}
 			@Override
-			public Adapter caseIfcPresentationStyle(IfcPresentationStyle object)
-			{
+			public Adapter caseIfcPresentationStyle(IfcPresentationStyle object) {
 				return createIfcPresentationStyleAdapter();
 			}
 			@Override
-			public Adapter caseIfcPresentationStyleAssignment(IfcPresentationStyleAssignment object)
-			{
+			public Adapter caseIfcPresentationStyleAssignment(IfcPresentationStyleAssignment object) {
 				return createIfcPresentationStyleAssignmentAdapter();
 			}
 			@Override
-			public Adapter caseIfcProcedure(IfcProcedure object)
-			{
+			public Adapter caseIfcProcedure(IfcProcedure object) {
 				return createIfcProcedureAdapter();
 			}
 			@Override
-			public Adapter caseIfcProcess(IfcProcess object)
-			{
+			public Adapter caseIfcProcess(IfcProcess object) {
 				return createIfcProcessAdapter();
 			}
 			@Override
-			public Adapter caseIfcProduct(IfcProduct object)
-			{
+			public Adapter caseIfcProduct(IfcProduct object) {
 				return createIfcProductAdapter();
 			}
 			@Override
-			public Adapter caseIfcProductDefinitionShape(IfcProductDefinitionShape object)
-			{
+			public Adapter caseIfcProductDefinitionShape(IfcProductDefinitionShape object) {
 				return createIfcProductDefinitionShapeAdapter();
 			}
 			@Override
-			public Adapter caseIfcProductRepresentation(IfcProductRepresentation object)
-			{
+			public Adapter caseIfcProductRepresentation(IfcProductRepresentation object) {
 				return createIfcProductRepresentationAdapter();
 			}
 			@Override
-			public Adapter caseIfcProductsOfCombustionProperties(IfcProductsOfCombustionProperties object)
-			{
+			public Adapter caseIfcProductsOfCombustionProperties(IfcProductsOfCombustionProperties object) {
 				return createIfcProductsOfCombustionPropertiesAdapter();
 			}
 			@Override
-			public Adapter caseIfcProfileDef(IfcProfileDef object)
-			{
+			public Adapter caseIfcProfileDef(IfcProfileDef object) {
 				return createIfcProfileDefAdapter();
 			}
 			@Override
-			public Adapter caseIfcProfileProperties(IfcProfileProperties object)
-			{
+			public Adapter caseIfcProfileProperties(IfcProfileProperties object) {
 				return createIfcProfilePropertiesAdapter();
 			}
 			@Override
-			public Adapter caseIfcProject(IfcProject object)
-			{
+			public Adapter caseIfcProject(IfcProject object) {
 				return createIfcProjectAdapter();
 			}
 			@Override
-			public Adapter caseIfcProjectOrder(IfcProjectOrder object)
-			{
+			public Adapter caseIfcProjectOrder(IfcProjectOrder object) {
 				return createIfcProjectOrderAdapter();
 			}
 			@Override
-			public Adapter caseIfcProjectOrderRecord(IfcProjectOrderRecord object)
-			{
+			public Adapter caseIfcProjectOrderRecord(IfcProjectOrderRecord object) {
 				return createIfcProjectOrderRecordAdapter();
 			}
 			@Override
-			public Adapter caseIfcProjectionCurve(IfcProjectionCurve object)
-			{
+			public Adapter caseIfcProjectionCurve(IfcProjectionCurve object) {
 				return createIfcProjectionCurveAdapter();
 			}
 			@Override
-			public Adapter caseIfcProjectionElement(IfcProjectionElement object)
-			{
+			public Adapter caseIfcProjectionElement(IfcProjectionElement object) {
 				return createIfcProjectionElementAdapter();
 			}
 			@Override
-			public Adapter caseIfcProperty(IfcProperty object)
-			{
+			public Adapter caseIfcProperty(IfcProperty object) {
 				return createIfcPropertyAdapter();
 			}
 			@Override
-			public Adapter caseIfcPropertyBoundedValue(IfcPropertyBoundedValue object)
-			{
+			public Adapter caseIfcPropertyBoundedValue(IfcPropertyBoundedValue object) {
 				return createIfcPropertyBoundedValueAdapter();
 			}
 			@Override
-			public Adapter caseIfcPropertyConstraintRelationship(IfcPropertyConstraintRelationship object)
-			{
+			public Adapter caseIfcPropertyConstraintRelationship(IfcPropertyConstraintRelationship object) {
 				return createIfcPropertyConstraintRelationshipAdapter();
 			}
 			@Override
-			public Adapter caseIfcPropertyDefinition(IfcPropertyDefinition object)
-			{
+			public Adapter caseIfcPropertyDefinition(IfcPropertyDefinition object) {
 				return createIfcPropertyDefinitionAdapter();
 			}
 			@Override
-			public Adapter caseIfcPropertyDependencyRelationship(IfcPropertyDependencyRelationship object)
-			{
+			public Adapter caseIfcPropertyDependencyRelationship(IfcPropertyDependencyRelationship object) {
 				return createIfcPropertyDependencyRelationshipAdapter();
 			}
 			@Override
-			public Adapter caseIfcPropertyEnumeratedValue(IfcPropertyEnumeratedValue object)
-			{
+			public Adapter caseIfcPropertyEnumeratedValue(IfcPropertyEnumeratedValue object) {
 				return createIfcPropertyEnumeratedValueAdapter();
 			}
 			@Override
-			public Adapter caseIfcPropertyEnumeration(IfcPropertyEnumeration object)
-			{
+			public Adapter caseIfcPropertyEnumeration(IfcPropertyEnumeration object) {
 				return createIfcPropertyEnumerationAdapter();
 			}
 			@Override
-			public Adapter caseIfcPropertyListValue(IfcPropertyListValue object)
-			{
+			public Adapter caseIfcPropertyListValue(IfcPropertyListValue object) {
 				return createIfcPropertyListValueAdapter();
 			}
 			@Override
-			public Adapter caseIfcPropertyReferenceValue(IfcPropertyReferenceValue object)
-			{
+			public Adapter caseIfcPropertyReferenceValue(IfcPropertyReferenceValue object) {
 				return createIfcPropertyReferenceValueAdapter();
 			}
 			@Override
-			public Adapter caseIfcPropertySet(IfcPropertySet object)
-			{
+			public Adapter caseIfcPropertySet(IfcPropertySet object) {
 				return createIfcPropertySetAdapter();
 			}
 			@Override
-			public Adapter caseIfcPropertySetDefinition(IfcPropertySetDefinition object)
-			{
+			public Adapter caseIfcPropertySetDefinition(IfcPropertySetDefinition object) {
 				return createIfcPropertySetDefinitionAdapter();
 			}
 			@Override
-			public Adapter caseIfcPropertySingleValue(IfcPropertySingleValue object)
-			{
+			public Adapter caseIfcPropertySingleValue(IfcPropertySingleValue object) {
 				return createIfcPropertySingleValueAdapter();
 			}
 			@Override
-			public Adapter caseIfcPropertyTableValue(IfcPropertyTableValue object)
-			{
+			public Adapter caseIfcPropertyTableValue(IfcPropertyTableValue object) {
 				return createIfcPropertyTableValueAdapter();
 			}
 			@Override
-			public Adapter caseIfcProtectiveDeviceType(IfcProtectiveDeviceType object)
-			{
+			public Adapter caseIfcProtectiveDeviceType(IfcProtectiveDeviceType object) {
 				return createIfcProtectiveDeviceTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcProxy(IfcProxy object)
-			{
+			public Adapter caseIfcProxy(IfcProxy object) {
 				return createIfcProxyAdapter();
 			}
 			@Override
-			public Adapter caseIfcPumpType(IfcPumpType object)
-			{
+			public Adapter caseIfcPumpType(IfcPumpType object) {
 				return createIfcPumpTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcQuantityArea(IfcQuantityArea object)
-			{
+			public Adapter caseIfcQuantityArea(IfcQuantityArea object) {
 				return createIfcQuantityAreaAdapter();
 			}
 			@Override
-			public Adapter caseIfcQuantityCount(IfcQuantityCount object)
-			{
+			public Adapter caseIfcQuantityCount(IfcQuantityCount object) {
 				return createIfcQuantityCountAdapter();
 			}
 			@Override
-			public Adapter caseIfcQuantityLength(IfcQuantityLength object)
-			{
+			public Adapter caseIfcQuantityLength(IfcQuantityLength object) {
 				return createIfcQuantityLengthAdapter();
 			}
 			@Override
-			public Adapter caseIfcQuantityTime(IfcQuantityTime object)
-			{
+			public Adapter caseIfcQuantityTime(IfcQuantityTime object) {
 				return createIfcQuantityTimeAdapter();
 			}
 			@Override
-			public Adapter caseIfcQuantityVolume(IfcQuantityVolume object)
-			{
+			public Adapter caseIfcQuantityVolume(IfcQuantityVolume object) {
 				return createIfcQuantityVolumeAdapter();
 			}
 			@Override
-			public Adapter caseIfcQuantityWeight(IfcQuantityWeight object)
-			{
+			public Adapter caseIfcQuantityWeight(IfcQuantityWeight object) {
 				return createIfcQuantityWeightAdapter();
 			}
 			@Override
-			public Adapter caseIfcRadiusDimension(IfcRadiusDimension object)
-			{
+			public Adapter caseIfcRadiusDimension(IfcRadiusDimension object) {
 				return createIfcRadiusDimensionAdapter();
 			}
 			@Override
-			public Adapter caseIfcRailing(IfcRailing object)
-			{
+			public Adapter caseIfcRailing(IfcRailing object) {
 				return createIfcRailingAdapter();
 			}
 			@Override
-			public Adapter caseIfcRailingType(IfcRailingType object)
-			{
+			public Adapter caseIfcRailingType(IfcRailingType object) {
 				return createIfcRailingTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcRamp(IfcRamp object)
-			{
+			public Adapter caseIfcRamp(IfcRamp object) {
 				return createIfcRampAdapter();
 			}
 			@Override
-			public Adapter caseIfcRampFlight(IfcRampFlight object)
-			{
+			public Adapter caseIfcRampFlight(IfcRampFlight object) {
 				return createIfcRampFlightAdapter();
 			}
 			@Override
-			public Adapter caseIfcRampFlightType(IfcRampFlightType object)
-			{
+			public Adapter caseIfcRampFlightType(IfcRampFlightType object) {
 				return createIfcRampFlightTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcRationalBezierCurve(IfcRationalBezierCurve object)
-			{
+			public Adapter caseIfcRationalBezierCurve(IfcRationalBezierCurve object) {
 				return createIfcRationalBezierCurveAdapter();
 			}
 			@Override
-			public Adapter caseIfcRectangleHollowProfileDef(IfcRectangleHollowProfileDef object)
-			{
+			public Adapter caseIfcRectangleHollowProfileDef(IfcRectangleHollowProfileDef object) {
 				return createIfcRectangleHollowProfileDefAdapter();
 			}
 			@Override
-			public Adapter caseIfcRectangleProfileDef(IfcRectangleProfileDef object)
-			{
+			public Adapter caseIfcRectangleProfileDef(IfcRectangleProfileDef object) {
 				return createIfcRectangleProfileDefAdapter();
 			}
 			@Override
-			public Adapter caseIfcRectangularPyramid(IfcRectangularPyramid object)
-			{
+			public Adapter caseIfcRectangularPyramid(IfcRectangularPyramid object) {
 				return createIfcRectangularPyramidAdapter();
 			}
 			@Override
-			public Adapter caseIfcRectangularTrimmedSurface(IfcRectangularTrimmedSurface object)
-			{
+			public Adapter caseIfcRectangularTrimmedSurface(IfcRectangularTrimmedSurface object) {
 				return createIfcRectangularTrimmedSurfaceAdapter();
 			}
 			@Override
-			public Adapter caseIfcReferencesValueDocument(IfcReferencesValueDocument object)
-			{
+			public Adapter caseIfcReferencesValueDocument(IfcReferencesValueDocument object) {
 				return createIfcReferencesValueDocumentAdapter();
 			}
 			@Override
-			public Adapter caseIfcRegularTimeSeries(IfcRegularTimeSeries object)
-			{
+			public Adapter caseIfcRegularTimeSeries(IfcRegularTimeSeries object) {
 				return createIfcRegularTimeSeriesAdapter();
 			}
 			@Override
-			public Adapter caseIfcReinforcementBarProperties(IfcReinforcementBarProperties object)
-			{
+			public Adapter caseIfcReinforcementBarProperties(IfcReinforcementBarProperties object) {
 				return createIfcReinforcementBarPropertiesAdapter();
 			}
 			@Override
-			public Adapter caseIfcReinforcementDefinitionProperties(IfcReinforcementDefinitionProperties object)
-			{
+			public Adapter caseIfcReinforcementDefinitionProperties(IfcReinforcementDefinitionProperties object) {
 				return createIfcReinforcementDefinitionPropertiesAdapter();
 			}
 			@Override
-			public Adapter caseIfcReinforcingBar(IfcReinforcingBar object)
-			{
+			public Adapter caseIfcReinforcingBar(IfcReinforcingBar object) {
 				return createIfcReinforcingBarAdapter();
 			}
 			@Override
-			public Adapter caseIfcReinforcingElement(IfcReinforcingElement object)
-			{
+			public Adapter caseIfcReinforcingElement(IfcReinforcingElement object) {
 				return createIfcReinforcingElementAdapter();
 			}
 			@Override
-			public Adapter caseIfcReinforcingMesh(IfcReinforcingMesh object)
-			{
+			public Adapter caseIfcReinforcingMesh(IfcReinforcingMesh object) {
 				return createIfcReinforcingMeshAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelAggregates(IfcRelAggregates object)
-			{
+			public Adapter caseIfcRelAggregates(IfcRelAggregates object) {
 				return createIfcRelAggregatesAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelAssigns(IfcRelAssigns object)
-			{
+			public Adapter caseIfcRelAssigns(IfcRelAssigns object) {
 				return createIfcRelAssignsAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelAssignsTasks(IfcRelAssignsTasks object)
-			{
+			public Adapter caseIfcRelAssignsTasks(IfcRelAssignsTasks object) {
 				return createIfcRelAssignsTasksAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelAssignsToActor(IfcRelAssignsToActor object)
-			{
+			public Adapter caseIfcRelAssignsToActor(IfcRelAssignsToActor object) {
 				return createIfcRelAssignsToActorAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelAssignsToControl(IfcRelAssignsToControl object)
-			{
+			public Adapter caseIfcRelAssignsToControl(IfcRelAssignsToControl object) {
 				return createIfcRelAssignsToControlAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelAssignsToGroup(IfcRelAssignsToGroup object)
-			{
+			public Adapter caseIfcRelAssignsToGroup(IfcRelAssignsToGroup object) {
 				return createIfcRelAssignsToGroupAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelAssignsToProcess(IfcRelAssignsToProcess object)
-			{
+			public Adapter caseIfcRelAssignsToProcess(IfcRelAssignsToProcess object) {
 				return createIfcRelAssignsToProcessAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelAssignsToProduct(IfcRelAssignsToProduct object)
-			{
+			public Adapter caseIfcRelAssignsToProduct(IfcRelAssignsToProduct object) {
 				return createIfcRelAssignsToProductAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelAssignsToProjectOrder(IfcRelAssignsToProjectOrder object)
-			{
+			public Adapter caseIfcRelAssignsToProjectOrder(IfcRelAssignsToProjectOrder object) {
 				return createIfcRelAssignsToProjectOrderAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelAssignsToResource(IfcRelAssignsToResource object)
-			{
+			public Adapter caseIfcRelAssignsToResource(IfcRelAssignsToResource object) {
 				return createIfcRelAssignsToResourceAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelAssociates(IfcRelAssociates object)
-			{
+			public Adapter caseIfcRelAssociates(IfcRelAssociates object) {
 				return createIfcRelAssociatesAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelAssociatesAppliedValue(IfcRelAssociatesAppliedValue object)
-			{
+			public Adapter caseIfcRelAssociatesAppliedValue(IfcRelAssociatesAppliedValue object) {
 				return createIfcRelAssociatesAppliedValueAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelAssociatesApproval(IfcRelAssociatesApproval object)
-			{
+			public Adapter caseIfcRelAssociatesApproval(IfcRelAssociatesApproval object) {
 				return createIfcRelAssociatesApprovalAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelAssociatesClassification(IfcRelAssociatesClassification object)
-			{
+			public Adapter caseIfcRelAssociatesClassification(IfcRelAssociatesClassification object) {
 				return createIfcRelAssociatesClassificationAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelAssociatesConstraint(IfcRelAssociatesConstraint object)
-			{
+			public Adapter caseIfcRelAssociatesConstraint(IfcRelAssociatesConstraint object) {
 				return createIfcRelAssociatesConstraintAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelAssociatesDocument(IfcRelAssociatesDocument object)
-			{
+			public Adapter caseIfcRelAssociatesDocument(IfcRelAssociatesDocument object) {
 				return createIfcRelAssociatesDocumentAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelAssociatesLibrary(IfcRelAssociatesLibrary object)
-			{
+			public Adapter caseIfcRelAssociatesLibrary(IfcRelAssociatesLibrary object) {
 				return createIfcRelAssociatesLibraryAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelAssociatesMaterial(IfcRelAssociatesMaterial object)
-			{
+			public Adapter caseIfcRelAssociatesMaterial(IfcRelAssociatesMaterial object) {
 				return createIfcRelAssociatesMaterialAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelAssociatesProfileProperties(IfcRelAssociatesProfileProperties object)
-			{
+			public Adapter caseIfcRelAssociatesProfileProperties(IfcRelAssociatesProfileProperties object) {
 				return createIfcRelAssociatesProfilePropertiesAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelConnects(IfcRelConnects object)
-			{
+			public Adapter caseIfcRelConnects(IfcRelConnects object) {
 				return createIfcRelConnectsAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelConnectsElements(IfcRelConnectsElements object)
-			{
+			public Adapter caseIfcRelConnectsElements(IfcRelConnectsElements object) {
 				return createIfcRelConnectsElementsAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelConnectsPathElements(IfcRelConnectsPathElements object)
-			{
+			public Adapter caseIfcRelConnectsPathElements(IfcRelConnectsPathElements object) {
 				return createIfcRelConnectsPathElementsAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelConnectsPortToElement(IfcRelConnectsPortToElement object)
-			{
+			public Adapter caseIfcRelConnectsPortToElement(IfcRelConnectsPortToElement object) {
 				return createIfcRelConnectsPortToElementAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelConnectsPorts(IfcRelConnectsPorts object)
-			{
+			public Adapter caseIfcRelConnectsPorts(IfcRelConnectsPorts object) {
 				return createIfcRelConnectsPortsAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelConnectsStructuralActivity(IfcRelConnectsStructuralActivity object)
-			{
+			public Adapter caseIfcRelConnectsStructuralActivity(IfcRelConnectsStructuralActivity object) {
 				return createIfcRelConnectsStructuralActivityAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelConnectsStructuralElement(IfcRelConnectsStructuralElement object)
-			{
+			public Adapter caseIfcRelConnectsStructuralElement(IfcRelConnectsStructuralElement object) {
 				return createIfcRelConnectsStructuralElementAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelConnectsStructuralMember(IfcRelConnectsStructuralMember object)
-			{
+			public Adapter caseIfcRelConnectsStructuralMember(IfcRelConnectsStructuralMember object) {
 				return createIfcRelConnectsStructuralMemberAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelConnectsWithEccentricity(IfcRelConnectsWithEccentricity object)
-			{
+			public Adapter caseIfcRelConnectsWithEccentricity(IfcRelConnectsWithEccentricity object) {
 				return createIfcRelConnectsWithEccentricityAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelConnectsWithRealizingElements(IfcRelConnectsWithRealizingElements object)
-			{
+			public Adapter caseIfcRelConnectsWithRealizingElements(IfcRelConnectsWithRealizingElements object) {
 				return createIfcRelConnectsWithRealizingElementsAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelContainedInSpatialStructure(IfcRelContainedInSpatialStructure object)
-			{
+			public Adapter caseIfcRelContainedInSpatialStructure(IfcRelContainedInSpatialStructure object) {
 				return createIfcRelContainedInSpatialStructureAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelCoversBldgElements(IfcRelCoversBldgElements object)
-			{
+			public Adapter caseIfcRelCoversBldgElements(IfcRelCoversBldgElements object) {
 				return createIfcRelCoversBldgElementsAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelCoversSpaces(IfcRelCoversSpaces object)
-			{
+			public Adapter caseIfcRelCoversSpaces(IfcRelCoversSpaces object) {
 				return createIfcRelCoversSpacesAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelDecomposes(IfcRelDecomposes object)
-			{
+			public Adapter caseIfcRelDecomposes(IfcRelDecomposes object) {
 				return createIfcRelDecomposesAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelDefines(IfcRelDefines object)
-			{
+			public Adapter caseIfcRelDefines(IfcRelDefines object) {
 				return createIfcRelDefinesAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelDefinesByProperties(IfcRelDefinesByProperties object)
-			{
+			public Adapter caseIfcRelDefinesByProperties(IfcRelDefinesByProperties object) {
 				return createIfcRelDefinesByPropertiesAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelDefinesByType(IfcRelDefinesByType object)
-			{
+			public Adapter caseIfcRelDefinesByType(IfcRelDefinesByType object) {
 				return createIfcRelDefinesByTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelFillsElement(IfcRelFillsElement object)
-			{
+			public Adapter caseIfcRelFillsElement(IfcRelFillsElement object) {
 				return createIfcRelFillsElementAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelFlowControlElements(IfcRelFlowControlElements object)
-			{
+			public Adapter caseIfcRelFlowControlElements(IfcRelFlowControlElements object) {
 				return createIfcRelFlowControlElementsAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelInteractionRequirements(IfcRelInteractionRequirements object)
-			{
+			public Adapter caseIfcRelInteractionRequirements(IfcRelInteractionRequirements object) {
 				return createIfcRelInteractionRequirementsAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelNests(IfcRelNests object)
-			{
+			public Adapter caseIfcRelNests(IfcRelNests object) {
 				return createIfcRelNestsAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelOccupiesSpaces(IfcRelOccupiesSpaces object)
-			{
+			public Adapter caseIfcRelOccupiesSpaces(IfcRelOccupiesSpaces object) {
 				return createIfcRelOccupiesSpacesAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelOverridesProperties(IfcRelOverridesProperties object)
-			{
+			public Adapter caseIfcRelOverridesProperties(IfcRelOverridesProperties object) {
 				return createIfcRelOverridesPropertiesAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelProjectsElement(IfcRelProjectsElement object)
-			{
+			public Adapter caseIfcRelProjectsElement(IfcRelProjectsElement object) {
 				return createIfcRelProjectsElementAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelReferencedInSpatialStructure(IfcRelReferencedInSpatialStructure object)
-			{
+			public Adapter caseIfcRelReferencedInSpatialStructure(IfcRelReferencedInSpatialStructure object) {
 				return createIfcRelReferencedInSpatialStructureAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelSchedulesCostItems(IfcRelSchedulesCostItems object)
-			{
+			public Adapter caseIfcRelSchedulesCostItems(IfcRelSchedulesCostItems object) {
 				return createIfcRelSchedulesCostItemsAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelSequence(IfcRelSequence object)
-			{
+			public Adapter caseIfcRelSequence(IfcRelSequence object) {
 				return createIfcRelSequenceAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelServicesBuildings(IfcRelServicesBuildings object)
-			{
+			public Adapter caseIfcRelServicesBuildings(IfcRelServicesBuildings object) {
 				return createIfcRelServicesBuildingsAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelSpaceBoundary(IfcRelSpaceBoundary object)
-			{
+			public Adapter caseIfcRelSpaceBoundary(IfcRelSpaceBoundary object) {
 				return createIfcRelSpaceBoundaryAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelVoidsElement(IfcRelVoidsElement object)
-			{
+			public Adapter caseIfcRelVoidsElement(IfcRelVoidsElement object) {
 				return createIfcRelVoidsElementAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelationship(IfcRelationship object)
-			{
+			public Adapter caseIfcRelationship(IfcRelationship object) {
 				return createIfcRelationshipAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelaxation(IfcRelaxation object)
-			{
+			public Adapter caseIfcRelaxation(IfcRelaxation object) {
 				return createIfcRelaxationAdapter();
 			}
 			@Override
-			public Adapter caseIfcRepresentation(IfcRepresentation object)
-			{
+			public Adapter caseIfcRepresentation(IfcRepresentation object) {
 				return createIfcRepresentationAdapter();
 			}
 			@Override
-			public Adapter caseIfcRepresentationContext(IfcRepresentationContext object)
-			{
+			public Adapter caseIfcRepresentationContext(IfcRepresentationContext object) {
 				return createIfcRepresentationContextAdapter();
 			}
 			@Override
-			public Adapter caseIfcRepresentationItem(IfcRepresentationItem object)
-			{
+			public Adapter caseIfcRepresentationItem(IfcRepresentationItem object) {
 				return createIfcRepresentationItemAdapter();
 			}
 			@Override
-			public Adapter caseIfcRepresentationMap(IfcRepresentationMap object)
-			{
+			public Adapter caseIfcRepresentationMap(IfcRepresentationMap object) {
 				return createIfcRepresentationMapAdapter();
 			}
 			@Override
-			public Adapter caseIfcResource(IfcResource object)
-			{
+			public Adapter caseIfcResource(IfcResource object) {
 				return createIfcResourceAdapter();
 			}
 			@Override
-			public Adapter caseIfcRevolvedAreaSolid(IfcRevolvedAreaSolid object)
-			{
+			public Adapter caseIfcRevolvedAreaSolid(IfcRevolvedAreaSolid object) {
 				return createIfcRevolvedAreaSolidAdapter();
 			}
 			@Override
-			public Adapter caseIfcRibPlateProfileProperties(IfcRibPlateProfileProperties object)
-			{
+			public Adapter caseIfcRibPlateProfileProperties(IfcRibPlateProfileProperties object) {
 				return createIfcRibPlateProfilePropertiesAdapter();
 			}
 			@Override
-			public Adapter caseIfcRightCircularCone(IfcRightCircularCone object)
-			{
+			public Adapter caseIfcRightCircularCone(IfcRightCircularCone object) {
 				return createIfcRightCircularConeAdapter();
 			}
 			@Override
-			public Adapter caseIfcRightCircularCylinder(IfcRightCircularCylinder object)
-			{
+			public Adapter caseIfcRightCircularCylinder(IfcRightCircularCylinder object) {
 				return createIfcRightCircularCylinderAdapter();
 			}
 			@Override
-			public Adapter caseIfcRoof(IfcRoof object)
-			{
+			public Adapter caseIfcRoof(IfcRoof object) {
 				return createIfcRoofAdapter();
 			}
 			@Override
-			public Adapter caseIfcRoot(IfcRoot object)
-			{
+			public Adapter caseIfcRoot(IfcRoot object) {
 				return createIfcRootAdapter();
 			}
 			@Override
-			public Adapter caseIfcRoundedEdgeFeature(IfcRoundedEdgeFeature object)
-			{
+			public Adapter caseIfcRoundedEdgeFeature(IfcRoundedEdgeFeature object) {
 				return createIfcRoundedEdgeFeatureAdapter();
 			}
 			@Override
-			public Adapter caseIfcRoundedRectangleProfileDef(IfcRoundedRectangleProfileDef object)
-			{
+			public Adapter caseIfcRoundedRectangleProfileDef(IfcRoundedRectangleProfileDef object) {
 				return createIfcRoundedRectangleProfileDefAdapter();
 			}
 			@Override
-			public Adapter caseIfcSIUnit(IfcSIUnit object)
-			{
+			public Adapter caseIfcSIUnit(IfcSIUnit object) {
 				return createIfcSIUnitAdapter();
 			}
 			@Override
-			public Adapter caseIfcSanitaryTerminalType(IfcSanitaryTerminalType object)
-			{
+			public Adapter caseIfcSanitaryTerminalType(IfcSanitaryTerminalType object) {
 				return createIfcSanitaryTerminalTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcScheduleTimeControl(IfcScheduleTimeControl object)
-			{
+			public Adapter caseIfcScheduleTimeControl(IfcScheduleTimeControl object) {
 				return createIfcScheduleTimeControlAdapter();
 			}
 			@Override
-			public Adapter caseIfcSectionProperties(IfcSectionProperties object)
-			{
+			public Adapter caseIfcSectionProperties(IfcSectionProperties object) {
 				return createIfcSectionPropertiesAdapter();
 			}
 			@Override
-			public Adapter caseIfcSectionReinforcementProperties(IfcSectionReinforcementProperties object)
-			{
+			public Adapter caseIfcSectionReinforcementProperties(IfcSectionReinforcementProperties object) {
 				return createIfcSectionReinforcementPropertiesAdapter();
 			}
 			@Override
-			public Adapter caseIfcSectionedSpine(IfcSectionedSpine object)
-			{
+			public Adapter caseIfcSectionedSpine(IfcSectionedSpine object) {
 				return createIfcSectionedSpineAdapter();
 			}
 			@Override
-			public Adapter caseIfcSensorType(IfcSensorType object)
-			{
+			public Adapter caseIfcSensorType(IfcSensorType object) {
 				return createIfcSensorTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcServiceLife(IfcServiceLife object)
-			{
+			public Adapter caseIfcServiceLife(IfcServiceLife object) {
 				return createIfcServiceLifeAdapter();
 			}
 			@Override
-			public Adapter caseIfcServiceLifeFactor(IfcServiceLifeFactor object)
-			{
+			public Adapter caseIfcServiceLifeFactor(IfcServiceLifeFactor object) {
 				return createIfcServiceLifeFactorAdapter();
 			}
 			@Override
-			public Adapter caseIfcShapeAspect(IfcShapeAspect object)
-			{
+			public Adapter caseIfcShapeAspect(IfcShapeAspect object) {
 				return createIfcShapeAspectAdapter();
 			}
 			@Override
-			public Adapter caseIfcShapeModel(IfcShapeModel object)
-			{
+			public Adapter caseIfcShapeModel(IfcShapeModel object) {
 				return createIfcShapeModelAdapter();
 			}
 			@Override
-			public Adapter caseIfcShapeRepresentation(IfcShapeRepresentation object)
-			{
+			public Adapter caseIfcShapeRepresentation(IfcShapeRepresentation object) {
 				return createIfcShapeRepresentationAdapter();
 			}
 			@Override
-			public Adapter caseIfcShellBasedSurfaceModel(IfcShellBasedSurfaceModel object)
-			{
+			public Adapter caseIfcShellBasedSurfaceModel(IfcShellBasedSurfaceModel object) {
 				return createIfcShellBasedSurfaceModelAdapter();
 			}
 			@Override
-			public Adapter caseIfcSimpleProperty(IfcSimpleProperty object)
-			{
+			public Adapter caseIfcSimpleProperty(IfcSimpleProperty object) {
 				return createIfcSimplePropertyAdapter();
 			}
 			@Override
-			public Adapter caseIfcSite(IfcSite object)
-			{
+			public Adapter caseIfcSite(IfcSite object) {
 				return createIfcSiteAdapter();
 			}
 			@Override
-			public Adapter caseIfcSlab(IfcSlab object)
-			{
+			public Adapter caseIfcSlab(IfcSlab object) {
 				return createIfcSlabAdapter();
 			}
 			@Override
-			public Adapter caseIfcSlabType(IfcSlabType object)
-			{
+			public Adapter caseIfcSlabType(IfcSlabType object) {
 				return createIfcSlabTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcSlippageConnectionCondition(IfcSlippageConnectionCondition object)
-			{
+			public Adapter caseIfcSlippageConnectionCondition(IfcSlippageConnectionCondition object) {
 				return createIfcSlippageConnectionConditionAdapter();
 			}
 			@Override
-			public Adapter caseIfcSolidModel(IfcSolidModel object)
-			{
+			public Adapter caseIfcSolidModel(IfcSolidModel object) {
 				return createIfcSolidModelAdapter();
 			}
 			@Override
-			public Adapter caseIfcSoundProperties(IfcSoundProperties object)
-			{
+			public Adapter caseIfcSoundProperties(IfcSoundProperties object) {
 				return createIfcSoundPropertiesAdapter();
 			}
 			@Override
-			public Adapter caseIfcSoundValue(IfcSoundValue object)
-			{
+			public Adapter caseIfcSoundValue(IfcSoundValue object) {
 				return createIfcSoundValueAdapter();
 			}
 			@Override
-			public Adapter caseIfcSpace(IfcSpace object)
-			{
+			public Adapter caseIfcSpace(IfcSpace object) {
 				return createIfcSpaceAdapter();
 			}
 			@Override
-			public Adapter caseIfcSpaceHeaterType(IfcSpaceHeaterType object)
-			{
+			public Adapter caseIfcSpaceHeaterType(IfcSpaceHeaterType object) {
 				return createIfcSpaceHeaterTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcSpaceProgram(IfcSpaceProgram object)
-			{
+			public Adapter caseIfcSpaceProgram(IfcSpaceProgram object) {
 				return createIfcSpaceProgramAdapter();
 			}
 			@Override
-			public Adapter caseIfcSpaceThermalLoadProperties(IfcSpaceThermalLoadProperties object)
-			{
+			public Adapter caseIfcSpaceThermalLoadProperties(IfcSpaceThermalLoadProperties object) {
 				return createIfcSpaceThermalLoadPropertiesAdapter();
 			}
 			@Override
-			public Adapter caseIfcSpaceType(IfcSpaceType object)
-			{
+			public Adapter caseIfcSpaceType(IfcSpaceType object) {
 				return createIfcSpaceTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcSpatialStructureElement(IfcSpatialStructureElement object)
-			{
+			public Adapter caseIfcSpatialStructureElement(IfcSpatialStructureElement object) {
 				return createIfcSpatialStructureElementAdapter();
 			}
 			@Override
-			public Adapter caseIfcSpatialStructureElementType(IfcSpatialStructureElementType object)
-			{
+			public Adapter caseIfcSpatialStructureElementType(IfcSpatialStructureElementType object) {
 				return createIfcSpatialStructureElementTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcSphere(IfcSphere object)
-			{
+			public Adapter caseIfcSphere(IfcSphere object) {
 				return createIfcSphereAdapter();
 			}
 			@Override
-			public Adapter caseIfcStackTerminalType(IfcStackTerminalType object)
-			{
+			public Adapter caseIfcStackTerminalType(IfcStackTerminalType object) {
 				return createIfcStackTerminalTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcStair(IfcStair object)
-			{
+			public Adapter caseIfcStair(IfcStair object) {
 				return createIfcStairAdapter();
 			}
 			@Override
-			public Adapter caseIfcStairFlight(IfcStairFlight object)
-			{
+			public Adapter caseIfcStairFlight(IfcStairFlight object) {
 				return createIfcStairFlightAdapter();
 			}
 			@Override
-			public Adapter caseIfcStairFlightType(IfcStairFlightType object)
-			{
+			public Adapter caseIfcStairFlightType(IfcStairFlightType object) {
 				return createIfcStairFlightTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcStructuralAction(IfcStructuralAction object)
-			{
+			public Adapter caseIfcStructuralAction(IfcStructuralAction object) {
 				return createIfcStructuralActionAdapter();
 			}
 			@Override
-			public Adapter caseIfcStructuralActivity(IfcStructuralActivity object)
-			{
+			public Adapter caseIfcStructuralActivity(IfcStructuralActivity object) {
 				return createIfcStructuralActivityAdapter();
 			}
 			@Override
-			public Adapter caseIfcStructuralAnalysisModel(IfcStructuralAnalysisModel object)
-			{
+			public Adapter caseIfcStructuralAnalysisModel(IfcStructuralAnalysisModel object) {
 				return createIfcStructuralAnalysisModelAdapter();
 			}
 			@Override
-			public Adapter caseIfcStructuralConnection(IfcStructuralConnection object)
-			{
+			public Adapter caseIfcStructuralConnection(IfcStructuralConnection object) {
 				return createIfcStructuralConnectionAdapter();
 			}
 			@Override
-			public Adapter caseIfcStructuralConnectionCondition(IfcStructuralConnectionCondition object)
-			{
+			public Adapter caseIfcStructuralConnectionCondition(IfcStructuralConnectionCondition object) {
 				return createIfcStructuralConnectionConditionAdapter();
 			}
 			@Override
-			public Adapter caseIfcStructuralCurveConnection(IfcStructuralCurveConnection object)
-			{
+			public Adapter caseIfcStructuralCurveConnection(IfcStructuralCurveConnection object) {
 				return createIfcStructuralCurveConnectionAdapter();
 			}
 			@Override
-			public Adapter caseIfcStructuralCurveMember(IfcStructuralCurveMember object)
-			{
+			public Adapter caseIfcStructuralCurveMember(IfcStructuralCurveMember object) {
 				return createIfcStructuralCurveMemberAdapter();
 			}
 			@Override
-			public Adapter caseIfcStructuralCurveMemberVarying(IfcStructuralCurveMemberVarying object)
-			{
+			public Adapter caseIfcStructuralCurveMemberVarying(IfcStructuralCurveMemberVarying object) {
 				return createIfcStructuralCurveMemberVaryingAdapter();
 			}
 			@Override
-			public Adapter caseIfcStructuralItem(IfcStructuralItem object)
-			{
+			public Adapter caseIfcStructuralItem(IfcStructuralItem object) {
 				return createIfcStructuralItemAdapter();
 			}
 			@Override
-			public Adapter caseIfcStructuralLinearAction(IfcStructuralLinearAction object)
-			{
+			public Adapter caseIfcStructuralLinearAction(IfcStructuralLinearAction object) {
 				return createIfcStructuralLinearActionAdapter();
 			}
 			@Override
-			public Adapter caseIfcStructuralLinearActionVarying(IfcStructuralLinearActionVarying object)
-			{
+			public Adapter caseIfcStructuralLinearActionVarying(IfcStructuralLinearActionVarying object) {
 				return createIfcStructuralLinearActionVaryingAdapter();
 			}
 			@Override
-			public Adapter caseIfcStructuralLoad(IfcStructuralLoad object)
-			{
+			public Adapter caseIfcStructuralLoad(IfcStructuralLoad object) {
 				return createIfcStructuralLoadAdapter();
 			}
 			@Override
-			public Adapter caseIfcStructuralLoadGroup(IfcStructuralLoadGroup object)
-			{
+			public Adapter caseIfcStructuralLoadGroup(IfcStructuralLoadGroup object) {
 				return createIfcStructuralLoadGroupAdapter();
 			}
 			@Override
-			public Adapter caseIfcStructuralLoadLinearForce(IfcStructuralLoadLinearForce object)
-			{
+			public Adapter caseIfcStructuralLoadLinearForce(IfcStructuralLoadLinearForce object) {
 				return createIfcStructuralLoadLinearForceAdapter();
 			}
 			@Override
-			public Adapter caseIfcStructuralLoadPlanarForce(IfcStructuralLoadPlanarForce object)
-			{
+			public Adapter caseIfcStructuralLoadPlanarForce(IfcStructuralLoadPlanarForce object) {
 				return createIfcStructuralLoadPlanarForceAdapter();
 			}
 			@Override
-			public Adapter caseIfcStructuralLoadSingleDisplacement(IfcStructuralLoadSingleDisplacement object)
-			{
+			public Adapter caseIfcStructuralLoadSingleDisplacement(IfcStructuralLoadSingleDisplacement object) {
 				return createIfcStructuralLoadSingleDisplacementAdapter();
 			}
 			@Override
-			public Adapter caseIfcStructuralLoadSingleDisplacementDistortion(IfcStructuralLoadSingleDisplacementDistortion object)
-			{
+			public Adapter caseIfcStructuralLoadSingleDisplacementDistortion(IfcStructuralLoadSingleDisplacementDistortion object) {
 				return createIfcStructuralLoadSingleDisplacementDistortionAdapter();
 			}
 			@Override
-			public Adapter caseIfcStructuralLoadSingleForce(IfcStructuralLoadSingleForce object)
-			{
+			public Adapter caseIfcStructuralLoadSingleForce(IfcStructuralLoadSingleForce object) {
 				return createIfcStructuralLoadSingleForceAdapter();
 			}
 			@Override
-			public Adapter caseIfcStructuralLoadSingleForceWarping(IfcStructuralLoadSingleForceWarping object)
-			{
+			public Adapter caseIfcStructuralLoadSingleForceWarping(IfcStructuralLoadSingleForceWarping object) {
 				return createIfcStructuralLoadSingleForceWarpingAdapter();
 			}
 			@Override
-			public Adapter caseIfcStructuralLoadStatic(IfcStructuralLoadStatic object)
-			{
+			public Adapter caseIfcStructuralLoadStatic(IfcStructuralLoadStatic object) {
 				return createIfcStructuralLoadStaticAdapter();
 			}
 			@Override
-			public Adapter caseIfcStructuralLoadTemperature(IfcStructuralLoadTemperature object)
-			{
+			public Adapter caseIfcStructuralLoadTemperature(IfcStructuralLoadTemperature object) {
 				return createIfcStructuralLoadTemperatureAdapter();
 			}
 			@Override
-			public Adapter caseIfcStructuralMember(IfcStructuralMember object)
-			{
+			public Adapter caseIfcStructuralMember(IfcStructuralMember object) {
 				return createIfcStructuralMemberAdapter();
 			}
 			@Override
-			public Adapter caseIfcStructuralPlanarAction(IfcStructuralPlanarAction object)
-			{
+			public Adapter caseIfcStructuralPlanarAction(IfcStructuralPlanarAction object) {
 				return createIfcStructuralPlanarActionAdapter();
 			}
 			@Override
-			public Adapter caseIfcStructuralPlanarActionVarying(IfcStructuralPlanarActionVarying object)
-			{
+			public Adapter caseIfcStructuralPlanarActionVarying(IfcStructuralPlanarActionVarying object) {
 				return createIfcStructuralPlanarActionVaryingAdapter();
 			}
 			@Override
-			public Adapter caseIfcStructuralPointAction(IfcStructuralPointAction object)
-			{
+			public Adapter caseIfcStructuralPointAction(IfcStructuralPointAction object) {
 				return createIfcStructuralPointActionAdapter();
 			}
 			@Override
-			public Adapter caseIfcStructuralPointConnection(IfcStructuralPointConnection object)
-			{
+			public Adapter caseIfcStructuralPointConnection(IfcStructuralPointConnection object) {
 				return createIfcStructuralPointConnectionAdapter();
 			}
 			@Override
-			public Adapter caseIfcStructuralPointReaction(IfcStructuralPointReaction object)
-			{
+			public Adapter caseIfcStructuralPointReaction(IfcStructuralPointReaction object) {
 				return createIfcStructuralPointReactionAdapter();
 			}
 			@Override
-			public Adapter caseIfcStructuralProfileProperties(IfcStructuralProfileProperties object)
-			{
+			public Adapter caseIfcStructuralProfileProperties(IfcStructuralProfileProperties object) {
 				return createIfcStructuralProfilePropertiesAdapter();
 			}
 			@Override
-			public Adapter caseIfcStructuralReaction(IfcStructuralReaction object)
-			{
+			public Adapter caseIfcStructuralReaction(IfcStructuralReaction object) {
 				return createIfcStructuralReactionAdapter();
 			}
 			@Override
-			public Adapter caseIfcStructuralResultGroup(IfcStructuralResultGroup object)
-			{
+			public Adapter caseIfcStructuralResultGroup(IfcStructuralResultGroup object) {
 				return createIfcStructuralResultGroupAdapter();
 			}
 			@Override
-			public Adapter caseIfcStructuralSteelProfileProperties(IfcStructuralSteelProfileProperties object)
-			{
+			public Adapter caseIfcStructuralSteelProfileProperties(IfcStructuralSteelProfileProperties object) {
 				return createIfcStructuralSteelProfilePropertiesAdapter();
 			}
 			@Override
-			public Adapter caseIfcStructuralSurfaceConnection(IfcStructuralSurfaceConnection object)
-			{
+			public Adapter caseIfcStructuralSurfaceConnection(IfcStructuralSurfaceConnection object) {
 				return createIfcStructuralSurfaceConnectionAdapter();
 			}
 			@Override
-			public Adapter caseIfcStructuralSurfaceMember(IfcStructuralSurfaceMember object)
-			{
+			public Adapter caseIfcStructuralSurfaceMember(IfcStructuralSurfaceMember object) {
 				return createIfcStructuralSurfaceMemberAdapter();
 			}
 			@Override
-			public Adapter caseIfcStructuralSurfaceMemberVarying(IfcStructuralSurfaceMemberVarying object)
-			{
+			public Adapter caseIfcStructuralSurfaceMemberVarying(IfcStructuralSurfaceMemberVarying object) {
 				return createIfcStructuralSurfaceMemberVaryingAdapter();
 			}
 			@Override
-			public Adapter caseIfcStructuredDimensionCallout(IfcStructuredDimensionCallout object)
-			{
+			public Adapter caseIfcStructuredDimensionCallout(IfcStructuredDimensionCallout object) {
 				return createIfcStructuredDimensionCalloutAdapter();
 			}
 			@Override
-			public Adapter caseIfcStyleModel(IfcStyleModel object)
-			{
+			public Adapter caseIfcStyleModel(IfcStyleModel object) {
 				return createIfcStyleModelAdapter();
 			}
 			@Override
-			public Adapter caseIfcStyledItem(IfcStyledItem object)
-			{
+			public Adapter caseIfcStyledItem(IfcStyledItem object) {
 				return createIfcStyledItemAdapter();
 			}
 			@Override
-			public Adapter caseIfcStyledRepresentation(IfcStyledRepresentation object)
-			{
+			public Adapter caseIfcStyledRepresentation(IfcStyledRepresentation object) {
 				return createIfcStyledRepresentationAdapter();
 			}
 			@Override
-			public Adapter caseIfcSubContractResource(IfcSubContractResource object)
-			{
+			public Adapter caseIfcSubContractResource(IfcSubContractResource object) {
 				return createIfcSubContractResourceAdapter();
 			}
 			@Override
-			public Adapter caseIfcSubedge(IfcSubedge object)
-			{
+			public Adapter caseIfcSubedge(IfcSubedge object) {
 				return createIfcSubedgeAdapter();
 			}
 			@Override
-			public Adapter caseIfcSurface(IfcSurface object)
-			{
+			public Adapter caseIfcSurface(IfcSurface object) {
 				return createIfcSurfaceAdapter();
 			}
 			@Override
-			public Adapter caseIfcSurfaceCurveSweptAreaSolid(IfcSurfaceCurveSweptAreaSolid object)
-			{
+			public Adapter caseIfcSurfaceCurveSweptAreaSolid(IfcSurfaceCurveSweptAreaSolid object) {
 				return createIfcSurfaceCurveSweptAreaSolidAdapter();
 			}
 			@Override
-			public Adapter caseIfcSurfaceOfLinearExtrusion(IfcSurfaceOfLinearExtrusion object)
-			{
+			public Adapter caseIfcSurfaceOfLinearExtrusion(IfcSurfaceOfLinearExtrusion object) {
 				return createIfcSurfaceOfLinearExtrusionAdapter();
 			}
 			@Override
-			public Adapter caseIfcSurfaceOfRevolution(IfcSurfaceOfRevolution object)
-			{
+			public Adapter caseIfcSurfaceOfRevolution(IfcSurfaceOfRevolution object) {
 				return createIfcSurfaceOfRevolutionAdapter();
 			}
 			@Override
-			public Adapter caseIfcSurfaceStyle(IfcSurfaceStyle object)
-			{
+			public Adapter caseIfcSurfaceStyle(IfcSurfaceStyle object) {
 				return createIfcSurfaceStyleAdapter();
 			}
 			@Override
-			public Adapter caseIfcSurfaceStyleLighting(IfcSurfaceStyleLighting object)
-			{
+			public Adapter caseIfcSurfaceStyleLighting(IfcSurfaceStyleLighting object) {
 				return createIfcSurfaceStyleLightingAdapter();
 			}
 			@Override
-			public Adapter caseIfcSurfaceStyleRefraction(IfcSurfaceStyleRefraction object)
-			{
+			public Adapter caseIfcSurfaceStyleRefraction(IfcSurfaceStyleRefraction object) {
 				return createIfcSurfaceStyleRefractionAdapter();
 			}
 			@Override
-			public Adapter caseIfcSurfaceStyleRendering(IfcSurfaceStyleRendering object)
-			{
+			public Adapter caseIfcSurfaceStyleRendering(IfcSurfaceStyleRendering object) {
 				return createIfcSurfaceStyleRenderingAdapter();
 			}
 			@Override
-			public Adapter caseIfcSurfaceStyleShading(IfcSurfaceStyleShading object)
-			{
+			public Adapter caseIfcSurfaceStyleShading(IfcSurfaceStyleShading object) {
 				return createIfcSurfaceStyleShadingAdapter();
 			}
 			@Override
-			public Adapter caseIfcSurfaceStyleWithTextures(IfcSurfaceStyleWithTextures object)
-			{
+			public Adapter caseIfcSurfaceStyleWithTextures(IfcSurfaceStyleWithTextures object) {
 				return createIfcSurfaceStyleWithTexturesAdapter();
 			}
 			@Override
-			public Adapter caseIfcSurfaceTexture(IfcSurfaceTexture object)
-			{
+			public Adapter caseIfcSurfaceTexture(IfcSurfaceTexture object) {
 				return createIfcSurfaceTextureAdapter();
 			}
 			@Override
-			public Adapter caseIfcSweptAreaSolid(IfcSweptAreaSolid object)
-			{
+			public Adapter caseIfcSweptAreaSolid(IfcSweptAreaSolid object) {
 				return createIfcSweptAreaSolidAdapter();
 			}
 			@Override
-			public Adapter caseIfcSweptDiskSolid(IfcSweptDiskSolid object)
-			{
+			public Adapter caseIfcSweptDiskSolid(IfcSweptDiskSolid object) {
 				return createIfcSweptDiskSolidAdapter();
 			}
 			@Override
-			public Adapter caseIfcSweptSurface(IfcSweptSurface object)
-			{
+			public Adapter caseIfcSweptSurface(IfcSweptSurface object) {
 				return createIfcSweptSurfaceAdapter();
 			}
 			@Override
-			public Adapter caseIfcSwitchingDeviceType(IfcSwitchingDeviceType object)
-			{
+			public Adapter caseIfcSwitchingDeviceType(IfcSwitchingDeviceType object) {
 				return createIfcSwitchingDeviceTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcSymbolStyle(IfcSymbolStyle object)
-			{
+			public Adapter caseIfcSymbolStyle(IfcSymbolStyle object) {
 				return createIfcSymbolStyleAdapter();
 			}
 			@Override
-			public Adapter caseIfcSystem(IfcSystem object)
-			{
+			public Adapter caseIfcSystem(IfcSystem object) {
 				return createIfcSystemAdapter();
 			}
 			@Override
-			public Adapter caseIfcSystemFurnitureElementType(IfcSystemFurnitureElementType object)
-			{
+			public Adapter caseIfcSystemFurnitureElementType(IfcSystemFurnitureElementType object) {
 				return createIfcSystemFurnitureElementTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcTShapeProfileDef(IfcTShapeProfileDef object)
-			{
+			public Adapter caseIfcTShapeProfileDef(IfcTShapeProfileDef object) {
 				return createIfcTShapeProfileDefAdapter();
 			}
 			@Override
-			public Adapter caseIfcTable(IfcTable object)
-			{
+			public Adapter caseIfcTable(IfcTable object) {
 				return createIfcTableAdapter();
 			}
 			@Override
-			public Adapter caseIfcTableRow(IfcTableRow object)
-			{
+			public Adapter caseIfcTableRow(IfcTableRow object) {
 				return createIfcTableRowAdapter();
 			}
 			@Override
-			public Adapter caseIfcTankType(IfcTankType object)
-			{
+			public Adapter caseIfcTankType(IfcTankType object) {
 				return createIfcTankTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcTask(IfcTask object)
-			{
+			public Adapter caseIfcTask(IfcTask object) {
 				return createIfcTaskAdapter();
 			}
 			@Override
-			public Adapter caseIfcTelecomAddress(IfcTelecomAddress object)
-			{
+			public Adapter caseIfcTelecomAddress(IfcTelecomAddress object) {
 				return createIfcTelecomAddressAdapter();
 			}
 			@Override
-			public Adapter caseIfcTendon(IfcTendon object)
-			{
+			public Adapter caseIfcTendon(IfcTendon object) {
 				return createIfcTendonAdapter();
 			}
 			@Override
-			public Adapter caseIfcTendonAnchor(IfcTendonAnchor object)
-			{
+			public Adapter caseIfcTendonAnchor(IfcTendonAnchor object) {
 				return createIfcTendonAnchorAdapter();
 			}
 			@Override
-			public Adapter caseIfcTerminatorSymbol(IfcTerminatorSymbol object)
-			{
+			public Adapter caseIfcTerminatorSymbol(IfcTerminatorSymbol object) {
 				return createIfcTerminatorSymbolAdapter();
 			}
 			@Override
-			public Adapter caseIfcTextLiteral(IfcTextLiteral object)
-			{
+			public Adapter caseIfcTextLiteral(IfcTextLiteral object) {
 				return createIfcTextLiteralAdapter();
 			}
 			@Override
-			public Adapter caseIfcTextLiteralWithExtent(IfcTextLiteralWithExtent object)
-			{
+			public Adapter caseIfcTextLiteralWithExtent(IfcTextLiteralWithExtent object) {
 				return createIfcTextLiteralWithExtentAdapter();
 			}
 			@Override
-			public Adapter caseIfcTextStyle(IfcTextStyle object)
-			{
+			public Adapter caseIfcTextStyle(IfcTextStyle object) {
 				return createIfcTextStyleAdapter();
 			}
 			@Override
-			public Adapter caseIfcTextStyleFontModel(IfcTextStyleFontModel object)
-			{
+			public Adapter caseIfcTextStyleFontModel(IfcTextStyleFontModel object) {
 				return createIfcTextStyleFontModelAdapter();
 			}
 			@Override
-			public Adapter caseIfcTextStyleForDefinedFont(IfcTextStyleForDefinedFont object)
-			{
+			public Adapter caseIfcTextStyleForDefinedFont(IfcTextStyleForDefinedFont object) {
 				return createIfcTextStyleForDefinedFontAdapter();
 			}
 			@Override
-			public Adapter caseIfcTextStyleTextModel(IfcTextStyleTextModel object)
-			{
+			public Adapter caseIfcTextStyleTextModel(IfcTextStyleTextModel object) {
 				return createIfcTextStyleTextModelAdapter();
 			}
 			@Override
-			public Adapter caseIfcTextStyleWithBoxCharacteristics(IfcTextStyleWithBoxCharacteristics object)
-			{
+			public Adapter caseIfcTextStyleWithBoxCharacteristics(IfcTextStyleWithBoxCharacteristics object) {
 				return createIfcTextStyleWithBoxCharacteristicsAdapter();
 			}
 			@Override
-			public Adapter caseIfcTextureCoordinate(IfcTextureCoordinate object)
-			{
+			public Adapter caseIfcTextureCoordinate(IfcTextureCoordinate object) {
 				return createIfcTextureCoordinateAdapter();
 			}
 			@Override
-			public Adapter caseIfcTextureCoordinateGenerator(IfcTextureCoordinateGenerator object)
-			{
+			public Adapter caseIfcTextureCoordinateGenerator(IfcTextureCoordinateGenerator object) {
 				return createIfcTextureCoordinateGeneratorAdapter();
 			}
 			@Override
-			public Adapter caseIfcTextureMap(IfcTextureMap object)
-			{
+			public Adapter caseIfcTextureMap(IfcTextureMap object) {
 				return createIfcTextureMapAdapter();
 			}
 			@Override
-			public Adapter caseIfcTextureVertex(IfcTextureVertex object)
-			{
+			public Adapter caseIfcTextureVertex(IfcTextureVertex object) {
 				return createIfcTextureVertexAdapter();
 			}
 			@Override
-			public Adapter caseIfcThermalMaterialProperties(IfcThermalMaterialProperties object)
-			{
+			public Adapter caseIfcThermalMaterialProperties(IfcThermalMaterialProperties object) {
 				return createIfcThermalMaterialPropertiesAdapter();
 			}
 			@Override
-			public Adapter caseIfcTimeSeries(IfcTimeSeries object)
-			{
+			public Adapter caseIfcTimeSeries(IfcTimeSeries object) {
 				return createIfcTimeSeriesAdapter();
 			}
 			@Override
-			public Adapter caseIfcTimeSeriesReferenceRelationship(IfcTimeSeriesReferenceRelationship object)
-			{
+			public Adapter caseIfcTimeSeriesReferenceRelationship(IfcTimeSeriesReferenceRelationship object) {
 				return createIfcTimeSeriesReferenceRelationshipAdapter();
 			}
 			@Override
-			public Adapter caseIfcTimeSeriesSchedule(IfcTimeSeriesSchedule object)
-			{
+			public Adapter caseIfcTimeSeriesSchedule(IfcTimeSeriesSchedule object) {
 				return createIfcTimeSeriesScheduleAdapter();
 			}
 			@Override
-			public Adapter caseIfcTimeSeriesValue(IfcTimeSeriesValue object)
-			{
+			public Adapter caseIfcTimeSeriesValue(IfcTimeSeriesValue object) {
 				return createIfcTimeSeriesValueAdapter();
 			}
 			@Override
-			public Adapter caseIfcTopologicalRepresentationItem(IfcTopologicalRepresentationItem object)
-			{
+			public Adapter caseIfcTopologicalRepresentationItem(IfcTopologicalRepresentationItem object) {
 				return createIfcTopologicalRepresentationItemAdapter();
 			}
 			@Override
-			public Adapter caseIfcTopologyRepresentation(IfcTopologyRepresentation object)
-			{
+			public Adapter caseIfcTopologyRepresentation(IfcTopologyRepresentation object) {
 				return createIfcTopologyRepresentationAdapter();
 			}
 			@Override
-			public Adapter caseIfcTransformerType(IfcTransformerType object)
-			{
+			public Adapter caseIfcTransformerType(IfcTransformerType object) {
 				return createIfcTransformerTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcTransportElement(IfcTransportElement object)
-			{
+			public Adapter caseIfcTransportElement(IfcTransportElement object) {
 				return createIfcTransportElementAdapter();
 			}
 			@Override
-			public Adapter caseIfcTransportElementType(IfcTransportElementType object)
-			{
+			public Adapter caseIfcTransportElementType(IfcTransportElementType object) {
 				return createIfcTransportElementTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcTrapeziumProfileDef(IfcTrapeziumProfileDef object)
-			{
+			public Adapter caseIfcTrapeziumProfileDef(IfcTrapeziumProfileDef object) {
 				return createIfcTrapeziumProfileDefAdapter();
 			}
 			@Override
-			public Adapter caseIfcTrimmedCurve(IfcTrimmedCurve object)
-			{
+			public Adapter caseIfcTrimmedCurve(IfcTrimmedCurve object) {
 				return createIfcTrimmedCurveAdapter();
 			}
 			@Override
-			public Adapter caseIfcTubeBundleType(IfcTubeBundleType object)
-			{
+			public Adapter caseIfcTubeBundleType(IfcTubeBundleType object) {
 				return createIfcTubeBundleTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcTwoDirectionRepeatFactor(IfcTwoDirectionRepeatFactor object)
-			{
+			public Adapter caseIfcTwoDirectionRepeatFactor(IfcTwoDirectionRepeatFactor object) {
 				return createIfcTwoDirectionRepeatFactorAdapter();
 			}
 			@Override
-			public Adapter caseIfcTypeObject(IfcTypeObject object)
-			{
+			public Adapter caseIfcTypeObject(IfcTypeObject object) {
 				return createIfcTypeObjectAdapter();
 			}
 			@Override
-			public Adapter caseIfcTypeProduct(IfcTypeProduct object)
-			{
+			public Adapter caseIfcTypeProduct(IfcTypeProduct object) {
 				return createIfcTypeProductAdapter();
 			}
 			@Override
-			public Adapter caseIfcUShapeProfileDef(IfcUShapeProfileDef object)
-			{
+			public Adapter caseIfcUShapeProfileDef(IfcUShapeProfileDef object) {
 				return createIfcUShapeProfileDefAdapter();
 			}
 			@Override
-			public Adapter caseIfcUnitAssignment(IfcUnitAssignment object)
-			{
+			public Adapter caseIfcUnitAssignment(IfcUnitAssignment object) {
 				return createIfcUnitAssignmentAdapter();
 			}
 			@Override
-			public Adapter caseIfcUnitaryEquipmentType(IfcUnitaryEquipmentType object)
-			{
+			public Adapter caseIfcUnitaryEquipmentType(IfcUnitaryEquipmentType object) {
 				return createIfcUnitaryEquipmentTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcValveType(IfcValveType object)
-			{
+			public Adapter caseIfcValveType(IfcValveType object) {
 				return createIfcValveTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcVector(IfcVector object)
-			{
+			public Adapter caseIfcVector(IfcVector object) {
 				return createIfcVectorAdapter();
 			}
 			@Override
-			public Adapter caseIfcVertex(IfcVertex object)
-			{
+			public Adapter caseIfcVertex(IfcVertex object) {
 				return createIfcVertexAdapter();
 			}
 			@Override
-			public Adapter caseIfcVertexBasedTextureMap(IfcVertexBasedTextureMap object)
-			{
+			public Adapter caseIfcVertexBasedTextureMap(IfcVertexBasedTextureMap object) {
 				return createIfcVertexBasedTextureMapAdapter();
 			}
 			@Override
-			public Adapter caseIfcVertexLoop(IfcVertexLoop object)
-			{
+			public Adapter caseIfcVertexLoop(IfcVertexLoop object) {
 				return createIfcVertexLoopAdapter();
 			}
 			@Override
-			public Adapter caseIfcVertexPoint(IfcVertexPoint object)
-			{
+			public Adapter caseIfcVertexPoint(IfcVertexPoint object) {
 				return createIfcVertexPointAdapter();
 			}
 			@Override
-			public Adapter caseIfcVibrationIsolatorType(IfcVibrationIsolatorType object)
-			{
+			public Adapter caseIfcVibrationIsolatorType(IfcVibrationIsolatorType object) {
 				return createIfcVibrationIsolatorTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcVirtualElement(IfcVirtualElement object)
-			{
+			public Adapter caseIfcVirtualElement(IfcVirtualElement object) {
 				return createIfcVirtualElementAdapter();
 			}
 			@Override
-			public Adapter caseIfcVirtualGridIntersection(IfcVirtualGridIntersection object)
-			{
+			public Adapter caseIfcVirtualGridIntersection(IfcVirtualGridIntersection object) {
 				return createIfcVirtualGridIntersectionAdapter();
 			}
 			@Override
-			public Adapter caseIfcWall(IfcWall object)
-			{
+			public Adapter caseIfcWall(IfcWall object) {
 				return createIfcWallAdapter();
 			}
 			@Override
-			public Adapter caseIfcWallStandardCase(IfcWallStandardCase object)
-			{
+			public Adapter caseIfcWallStandardCase(IfcWallStandardCase object) {
 				return createIfcWallStandardCaseAdapter();
 			}
 			@Override
-			public Adapter caseIfcWallType(IfcWallType object)
-			{
+			public Adapter caseIfcWallType(IfcWallType object) {
 				return createIfcWallTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcWasteTerminalType(IfcWasteTerminalType object)
-			{
+			public Adapter caseIfcWasteTerminalType(IfcWasteTerminalType object) {
 				return createIfcWasteTerminalTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcWaterProperties(IfcWaterProperties object)
-			{
+			public Adapter caseIfcWaterProperties(IfcWaterProperties object) {
 				return createIfcWaterPropertiesAdapter();
 			}
 			@Override
-			public Adapter caseIfcWindow(IfcWindow object)
-			{
+			public Adapter caseIfcWindow(IfcWindow object) {
 				return createIfcWindowAdapter();
 			}
 			@Override
-			public Adapter caseIfcWindowLiningProperties(IfcWindowLiningProperties object)
-			{
+			public Adapter caseIfcWindowLiningProperties(IfcWindowLiningProperties object) {
 				return createIfcWindowLiningPropertiesAdapter();
 			}
 			@Override
-			public Adapter caseIfcWindowPanelProperties(IfcWindowPanelProperties object)
-			{
+			public Adapter caseIfcWindowPanelProperties(IfcWindowPanelProperties object) {
 				return createIfcWindowPanelPropertiesAdapter();
 			}
 			@Override
-			public Adapter caseIfcWindowStyle(IfcWindowStyle object)
-			{
+			public Adapter caseIfcWindowStyle(IfcWindowStyle object) {
 				return createIfcWindowStyleAdapter();
 			}
 			@Override
-			public Adapter caseIfcWorkControl(IfcWorkControl object)
-			{
+			public Adapter caseIfcWorkControl(IfcWorkControl object) {
 				return createIfcWorkControlAdapter();
 			}
 			@Override
-			public Adapter caseIfcWorkPlan(IfcWorkPlan object)
-			{
+			public Adapter caseIfcWorkPlan(IfcWorkPlan object) {
 				return createIfcWorkPlanAdapter();
 			}
 			@Override
-			public Adapter caseIfcWorkSchedule(IfcWorkSchedule object)
-			{
+			public Adapter caseIfcWorkSchedule(IfcWorkSchedule object) {
 				return createIfcWorkScheduleAdapter();
 			}
 			@Override
-			public Adapter caseIfcZShapeProfileDef(IfcZShapeProfileDef object)
-			{
+			public Adapter caseIfcZShapeProfileDef(IfcZShapeProfileDef object) {
 				return createIfcZShapeProfileDefAdapter();
 			}
 			@Override
-			public Adapter caseIfcZone(IfcZone object)
-			{
+			public Adapter caseIfcZone(IfcZone object) {
 				return createIfcZoneAdapter();
 			}
 			@Override
-			public Adapter caseIfcActorSelect(IfcActorSelect object)
-			{
+			public Adapter caseIfcActorSelect(IfcActorSelect object) {
 				return createIfcActorSelectAdapter();
 			}
 			@Override
-			public Adapter caseIfcAppliedValueSelect(IfcAppliedValueSelect object)
-			{
+			public Adapter caseIfcAppliedValueSelect(IfcAppliedValueSelect object) {
 				return createIfcAppliedValueSelectAdapter();
 			}
 			@Override
-			public Adapter caseIfcAxis2Placement(IfcAxis2Placement object)
-			{
+			public Adapter caseIfcAxis2Placement(IfcAxis2Placement object) {
 				return createIfcAxis2PlacementAdapter();
 			}
 			@Override
-			public Adapter caseIfcBooleanOperand(IfcBooleanOperand object)
-			{
+			public Adapter caseIfcBooleanOperand(IfcBooleanOperand object) {
 				return createIfcBooleanOperandAdapter();
 			}
 			@Override
-			public Adapter caseIfcCharacterStyleSelect(IfcCharacterStyleSelect object)
-			{
+			public Adapter caseIfcCharacterStyleSelect(IfcCharacterStyleSelect object) {
 				return createIfcCharacterStyleSelectAdapter();
 			}
 			@Override
-			public Adapter caseIfcClassificationNotationSelect(IfcClassificationNotationSelect object)
-			{
+			public Adapter caseIfcClassificationNotationSelect(IfcClassificationNotationSelect object) {
 				return createIfcClassificationNotationSelectAdapter();
 			}
 			@Override
-			public Adapter caseIfcColour(IfcColour object)
-			{
+			public Adapter caseIfcColour(IfcColour object) {
 				return createIfcColourAdapter();
 			}
 			@Override
-			public Adapter caseIfcColourOrFactor(IfcColourOrFactor object)
-			{
+			public Adapter caseIfcColourOrFactor(IfcColourOrFactor object) {
 				return createIfcColourOrFactorAdapter();
 			}
 			@Override
-			public Adapter caseIfcConditionCriterionSelect(IfcConditionCriterionSelect object)
-			{
+			public Adapter caseIfcConditionCriterionSelect(IfcConditionCriterionSelect object) {
 				return createIfcConditionCriterionSelectAdapter();
 			}
 			@Override
-			public Adapter caseIfcCsgSelect(IfcCsgSelect object)
-			{
+			public Adapter caseIfcCsgSelect(IfcCsgSelect object) {
 				return createIfcCsgSelectAdapter();
 			}
 			@Override
-			public Adapter caseIfcCurveFontOrScaledCurveFontSelect(IfcCurveFontOrScaledCurveFontSelect object)
-			{
+			public Adapter caseIfcCurveFontOrScaledCurveFontSelect(IfcCurveFontOrScaledCurveFontSelect object) {
 				return createIfcCurveFontOrScaledCurveFontSelectAdapter();
 			}
 			@Override
-			public Adapter caseIfcCurveOrEdgeCurve(IfcCurveOrEdgeCurve object)
-			{
+			public Adapter caseIfcCurveOrEdgeCurve(IfcCurveOrEdgeCurve object) {
 				return createIfcCurveOrEdgeCurveAdapter();
 			}
 			@Override
-			public Adapter caseIfcCurveStyleFontSelect(IfcCurveStyleFontSelect object)
-			{
+			public Adapter caseIfcCurveStyleFontSelect(IfcCurveStyleFontSelect object) {
 				return createIfcCurveStyleFontSelectAdapter();
 			}
 			@Override
-			public Adapter caseIfcDateTimeSelect(IfcDateTimeSelect object)
-			{
+			public Adapter caseIfcDateTimeSelect(IfcDateTimeSelect object) {
 				return createIfcDateTimeSelectAdapter();
 			}
 			@Override
-			public Adapter caseIfcDefinedSymbolSelect(IfcDefinedSymbolSelect object)
-			{
+			public Adapter caseIfcDefinedSymbolSelect(IfcDefinedSymbolSelect object) {
 				return createIfcDefinedSymbolSelectAdapter();
 			}
 			@Override
-			public Adapter caseIfcDerivedMeasureValue(IfcDerivedMeasureValue object)
-			{
+			public Adapter caseIfcDerivedMeasureValue(IfcDerivedMeasureValue object) {
 				return createIfcDerivedMeasureValueAdapter();
 			}
 			@Override
-			public Adapter caseIfcDocumentSelect(IfcDocumentSelect object)
-			{
+			public Adapter caseIfcDocumentSelect(IfcDocumentSelect object) {
 				return createIfcDocumentSelectAdapter();
 			}
 			@Override
-			public Adapter caseIfcDraughtingCalloutElement(IfcDraughtingCalloutElement object)
-			{
+			public Adapter caseIfcDraughtingCalloutElement(IfcDraughtingCalloutElement object) {
 				return createIfcDraughtingCalloutElementAdapter();
 			}
 			@Override
-			public Adapter caseIfcFillAreaStyleTileShapeSelect(IfcFillAreaStyleTileShapeSelect object)
-			{
+			public Adapter caseIfcFillAreaStyleTileShapeSelect(IfcFillAreaStyleTileShapeSelect object) {
 				return createIfcFillAreaStyleTileShapeSelectAdapter();
 			}
 			@Override
-			public Adapter caseIfcFillStyleSelect(IfcFillStyleSelect object)
-			{
+			public Adapter caseIfcFillStyleSelect(IfcFillStyleSelect object) {
 				return createIfcFillStyleSelectAdapter();
 			}
 			@Override
-			public Adapter caseIfcGeometricSetSelect(IfcGeometricSetSelect object)
-			{
+			public Adapter caseIfcGeometricSetSelect(IfcGeometricSetSelect object) {
 				return createIfcGeometricSetSelectAdapter();
 			}
 			@Override
-			public Adapter caseIfcHatchLineDistanceSelect(IfcHatchLineDistanceSelect object)
-			{
+			public Adapter caseIfcHatchLineDistanceSelect(IfcHatchLineDistanceSelect object) {
 				return createIfcHatchLineDistanceSelectAdapter();
 			}
 			@Override
-			public Adapter caseIfcLayeredItem(IfcLayeredItem object)
-			{
+			public Adapter caseIfcLayeredItem(IfcLayeredItem object) {
 				return createIfcLayeredItemAdapter();
 			}
 			@Override
-			public Adapter caseIfcLibrarySelect(IfcLibrarySelect object)
-			{
+			public Adapter caseIfcLibrarySelect(IfcLibrarySelect object) {
 				return createIfcLibrarySelectAdapter();
 			}
 			@Override
-			public Adapter caseIfcLightDistributionDataSourceSelect(IfcLightDistributionDataSourceSelect object)
-			{
+			public Adapter caseIfcLightDistributionDataSourceSelect(IfcLightDistributionDataSourceSelect object) {
 				return createIfcLightDistributionDataSourceSelectAdapter();
 			}
 			@Override
-			public Adapter caseIfcMaterialSelect(IfcMaterialSelect object)
-			{
+			public Adapter caseIfcMaterialSelect(IfcMaterialSelect object) {
 				return createIfcMaterialSelectAdapter();
 			}
 			@Override
-			public Adapter caseIfcMeasureValue(IfcMeasureValue object)
-			{
+			public Adapter caseIfcMeasureValue(IfcMeasureValue object) {
 				return createIfcMeasureValueAdapter();
 			}
 			@Override
-			public Adapter caseIfcMetricValueSelect(IfcMetricValueSelect object)
-			{
+			public Adapter caseIfcMetricValueSelect(IfcMetricValueSelect object) {
 				return createIfcMetricValueSelectAdapter();
 			}
 			@Override
-			public Adapter caseIfcObjectReferenceSelect(IfcObjectReferenceSelect object)
-			{
+			public Adapter caseIfcObjectReferenceSelect(IfcObjectReferenceSelect object) {
 				return createIfcObjectReferenceSelectAdapter();
 			}
 			@Override
-			public Adapter caseIfcOrientationSelect(IfcOrientationSelect object)
-			{
+			public Adapter caseIfcOrientationSelect(IfcOrientationSelect object) {
 				return createIfcOrientationSelectAdapter();
 			}
 			@Override
-			public Adapter caseIfcPointOrVertexPoint(IfcPointOrVertexPoint object)
-			{
+			public Adapter caseIfcPointOrVertexPoint(IfcPointOrVertexPoint object) {
 				return createIfcPointOrVertexPointAdapter();
 			}
 			@Override
-			public Adapter caseIfcPresentationStyleSelect(IfcPresentationStyleSelect object)
-			{
+			public Adapter caseIfcPresentationStyleSelect(IfcPresentationStyleSelect object) {
 				return createIfcPresentationStyleSelectAdapter();
 			}
 			@Override
-			public Adapter caseIfcShell(IfcShell object)
-			{
+			public Adapter caseIfcShell(IfcShell object) {
 				return createIfcShellAdapter();
 			}
 			@Override
-			public Adapter caseIfcSimpleValue(IfcSimpleValue object)
-			{
+			public Adapter caseIfcSimpleValue(IfcSimpleValue object) {
 				return createIfcSimpleValueAdapter();
 			}
 			@Override
-			public Adapter caseIfcSizeSelect(IfcSizeSelect object)
-			{
+			public Adapter caseIfcSizeSelect(IfcSizeSelect object) {
 				return createIfcSizeSelectAdapter();
 			}
 			@Override
-			public Adapter caseIfcSpecularHighlightSelect(IfcSpecularHighlightSelect object)
-			{
+			public Adapter caseIfcSpecularHighlightSelect(IfcSpecularHighlightSelect object) {
 				return createIfcSpecularHighlightSelectAdapter();
 			}
 			@Override
-			public Adapter caseIfcStructuralActivityAssignmentSelect(IfcStructuralActivityAssignmentSelect object)
-			{
+			public Adapter caseIfcStructuralActivityAssignmentSelect(IfcStructuralActivityAssignmentSelect object) {
 				return createIfcStructuralActivityAssignmentSelectAdapter();
 			}
 			@Override
-			public Adapter caseIfcSurfaceOrFaceSurface(IfcSurfaceOrFaceSurface object)
-			{
+			public Adapter caseIfcSurfaceOrFaceSurface(IfcSurfaceOrFaceSurface object) {
 				return createIfcSurfaceOrFaceSurfaceAdapter();
 			}
 			@Override
-			public Adapter caseIfcSurfaceStyleElementSelect(IfcSurfaceStyleElementSelect object)
-			{
+			public Adapter caseIfcSurfaceStyleElementSelect(IfcSurfaceStyleElementSelect object) {
 				return createIfcSurfaceStyleElementSelectAdapter();
 			}
 			@Override
-			public Adapter caseIfcSymbolStyleSelect(IfcSymbolStyleSelect object)
-			{
+			public Adapter caseIfcSymbolStyleSelect(IfcSymbolStyleSelect object) {
 				return createIfcSymbolStyleSelectAdapter();
 			}
 			@Override
-			public Adapter caseIfcTextFontSelect(IfcTextFontSelect object)
-			{
+			public Adapter caseIfcTextFontSelect(IfcTextFontSelect object) {
 				return createIfcTextFontSelectAdapter();
 			}
 			@Override
-			public Adapter caseIfcTextStyleSelect(IfcTextStyleSelect object)
-			{
+			public Adapter caseIfcTextStyleSelect(IfcTextStyleSelect object) {
 				return createIfcTextStyleSelectAdapter();
 			}
 			@Override
-			public Adapter caseIfcTrimmingSelect(IfcTrimmingSelect object)
-			{
+			public Adapter caseIfcTrimmingSelect(IfcTrimmingSelect object) {
 				return createIfcTrimmingSelectAdapter();
 			}
 			@Override
-			public Adapter caseIfcUnit(IfcUnit object)
-			{
+			public Adapter caseIfcUnit(IfcUnit object) {
 				return createIfcUnitAdapter();
 			}
 			@Override
-			public Adapter caseIfcValue(IfcValue object)
-			{
+			public Adapter caseIfcValue(IfcValue object) {
 				return createIfcValueAdapter();
 			}
 			@Override
-			public Adapter caseIfcVectorOrDirection(IfcVectorOrDirection object)
-			{
+			public Adapter caseIfcVectorOrDirection(IfcVectorOrDirection object) {
 				return createIfcVectorOrDirectionAdapter();
 			}
 			@Override
-			public Adapter defaultCase(EObject object)
-			{
+			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
 		};

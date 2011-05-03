@@ -346,7 +346,7 @@ public class Service implements ServiceInterface {
 		IfcStepDeserializer fastIfcFileReader = new IfcStepDeserializer(schema);
 		try {
 			InputStream in = inputStream;
-			if (accessMethod == AccessMethod.SOAP_LITERAL) {
+			if (accessMethod == AccessMethod.SOAP) {
 				/*
 				 * Strangest hack ever, it seems that DelegatingInputStream (when
 				 * using SOAP), sometimes gives 0 as a result of read(byte[] b, int
@@ -773,9 +773,9 @@ public class Service implements ServiceInterface {
 			BimDatabaseAction<User> action = new GetUserByUserNameDatabaseAction(session, accessMethod, username);
 			User user = session.executeAction(action, DEADLOCK_RETRIES);
 			if (user != null && Hashers.getSha256Hash(password).equals(user.getPassword())) {
-				if (user.getState() == ObjectState.DELETED_LITERAL) {
+				if (user.getState() == ObjectState.DELETED) {
 					throw new UserException("User account has been deleted");
-				} else if (user.getUserType() == UserType.SYSTEM_LITERAL) {
+				} else if (user.getUserType() == UserType.SYSTEM) {
 					throw new UserException("System user cannot login");
 				}
 				this.currentUoid = user.getOid();
@@ -1164,11 +1164,11 @@ public class Service implements ServiceInterface {
 	private static UserType convert(SUserType sUserType) {
 		switch (sUserType) {
 		case ADMIN:
-			return UserType.ADMIN_LITERAL;
+			return UserType.ADMIN;
 		case ANONYMOUS:
-			return UserType.ANONYMOUS_LITERAL;
+			return UserType.ANONYMOUS;
 		case USER:
-			return UserType.USER_LITERAL;
+			return UserType.USER;
 		}
 		return null;
 	}
@@ -1661,9 +1661,9 @@ public class Service implements ServiceInterface {
 			BimDatabaseAction<User> action = new GetUserByUserNameDatabaseAction(session, accessMethod, username);
 			User user = session.executeAction(action, DEADLOCK_RETRIES);
 			if (user != null && hash.equals(Hashers.getSha256Hash(user.getUsername() + user.getPassword()))) {
-				if (user.getState() == ObjectState.DELETED_LITERAL) {
+				if (user.getState() == ObjectState.DELETED) {
 					throw new UserException("User account has been deleted");
-				} else if (user.getUserType() == UserType.SYSTEM_LITERAL) {
+				} else if (user.getUserType() == UserType.SYSTEM) {
 					throw new UserException("System user cannot login");
 				}
 				currentUoid = user.getOid();
@@ -1735,7 +1735,7 @@ public class Service implements ServiceInterface {
 		BimDatabaseSession session = bimDatabase.createSession(true);
 		try {
 			User user = session.get(StorePackage.eINSTANCE.getUser(), currentUoid, false);
-			if (user.getUserType() != UserType.ADMIN_LITERAL) {
+			if (user.getUserType() != UserType.ADMIN) {
 				throw new UserException("Only admin users can change enabled export types");
 			}
 			Set<String> resultTypes = settingsManager.getEnabledExportTypesAsSet();
@@ -2179,9 +2179,9 @@ public class Service implements ServiceInterface {
 
 		BimDatabaseSession session = bimDatabase.createSession(true);
 		try {
-			new AddUserDatabaseAction(session, AccessMethod.INTERNAL_LITERAL, settingsManager, mailSystem, adminUsername, adminPassword, adminName, UserType.ADMIN_LITERAL, -1, false).execute();
+			new AddUserDatabaseAction(session, AccessMethod.INTERNAL, settingsManager, mailSystem, adminUsername, adminPassword, adminName, UserType.ADMIN, -1, false).execute();
 			if (createAnonymousUser) {
-				new AddUserDatabaseAction(session, AccessMethod.INTERNAL_LITERAL, settingsManager, mailSystem, "anonymous", "anonymous", "Anonymous", UserType.ANONYMOUS_LITERAL, -1, false)
+				new AddUserDatabaseAction(session, AccessMethod.INTERNAL, settingsManager, mailSystem, "anonymous", "anonymous", "Anonymous", UserType.ANONYMOUS, -1, false)
 						.execute();
 			}
 			session.commit();

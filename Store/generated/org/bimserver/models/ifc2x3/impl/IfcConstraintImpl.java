@@ -67,13 +67,6 @@ public class IfcConstraintImpl extends IdEObjectImpl implements IfcConstraint
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	protected IfcConstraintImpl()
 	{
 		super();
@@ -87,7 +80,7 @@ public class IfcConstraintImpl extends IdEObjectImpl implements IfcConstraint
 	@Override
 	protected EClass eStaticClass()
 	{
-		return Ifc2x3Package.Literals.IFC_CONSTRAINT;
+		return Ifc2x3Package.eINSTANCE.getIfcConstraint();
 	}
 
 	/**
@@ -108,7 +101,7 @@ public class IfcConstraintImpl extends IdEObjectImpl implements IfcConstraint
 	 */
 	public String getName()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_CONSTRAINT__NAME, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcConstraint_Name(), true);
 	}
 
 	/**
@@ -118,7 +111,7 @@ public class IfcConstraintImpl extends IdEObjectImpl implements IfcConstraint
 	 */
 	public void setName(String newName)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_CONSTRAINT__NAME, newName);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcConstraint_Name(), newName);
 	}
 
 	/**
@@ -128,7 +121,7 @@ public class IfcConstraintImpl extends IdEObjectImpl implements IfcConstraint
 	 */
 	public String getDescription()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_CONSTRAINT__DESCRIPTION, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcConstraint_Description(), true);
 	}
 
 	/**
@@ -138,7 +131,7 @@ public class IfcConstraintImpl extends IdEObjectImpl implements IfcConstraint
 	 */
 	public void setDescription(String newDescription)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_CONSTRAINT__DESCRIPTION, newDescription);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcConstraint_Description(), newDescription);
 	}
 
 	/**
@@ -148,7 +141,7 @@ public class IfcConstraintImpl extends IdEObjectImpl implements IfcConstraint
 	 */
 	public void unsetDescription()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_CONSTRAINT__DESCRIPTION);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcConstraint_Description());
 	}
 
 	/**
@@ -158,7 +151,7 @@ public class IfcConstraintImpl extends IdEObjectImpl implements IfcConstraint
 	 */
 	public boolean isSetDescription()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_CONSTRAINT__DESCRIPTION);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcConstraint_Description());
 	}
 
 	/**
@@ -168,7 +161,7 @@ public class IfcConstraintImpl extends IdEObjectImpl implements IfcConstraint
 	 */
 	public IfcConstraintEnum getConstraintGrade()
 	{
-		return (IfcConstraintEnum)eGet(Ifc2x3Package.Literals.IFC_CONSTRAINT__CONSTRAINT_GRADE, true);
+		return (IfcConstraintEnum)eGet(Ifc2x3Package.eINSTANCE.getIfcConstraint_ConstraintGrade(), true);
 	}
 
 	/**
@@ -178,7 +171,7 @@ public class IfcConstraintImpl extends IdEObjectImpl implements IfcConstraint
 	 */
 	public void setConstraintGrade(IfcConstraintEnum newConstraintGrade)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_CONSTRAINT__CONSTRAINT_GRADE, newConstraintGrade);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcConstraint_ConstraintGrade(), newConstraintGrade);
 	}
 
 	/**
@@ -188,7 +181,7 @@ public class IfcConstraintImpl extends IdEObjectImpl implements IfcConstraint
 	 */
 	public String getConstraintSource()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_CONSTRAINT__CONSTRAINT_SOURCE, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcConstraint_ConstraintSource(), true);
 	}
 
 	/**
@@ -198,7 +191,7 @@ public class IfcConstraintImpl extends IdEObjectImpl implements IfcConstraint
 	 */
 	public void setConstraintSource(String newConstraintSource)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_CONSTRAINT__CONSTRAINT_SOURCE, newConstraintSource);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcConstraint_ConstraintSource(), newConstraintSource);
 	}
 
 	/**
@@ -208,7 +201,7 @@ public class IfcConstraintImpl extends IdEObjectImpl implements IfcConstraint
 	 */
 	public void unsetConstraintSource()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_CONSTRAINT__CONSTRAINT_SOURCE);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcConstraint_ConstraintSource());
 	}
 
 	/**
@@ -218,7 +211,7 @@ public class IfcConstraintImpl extends IdEObjectImpl implements IfcConstraint
 	 */
 	public boolean isSetConstraintSource()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_CONSTRAINT__CONSTRAINT_SOURCE);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcConstraint_ConstraintSource());
 	}
 
 	/**
@@ -228,7 +221,7 @@ public class IfcConstraintImpl extends IdEObjectImpl implements IfcConstraint
 	 */
 	public IfcActorSelect getCreatingActor()
 	{
-		return (IfcActorSelect)eGet(Ifc2x3Package.Literals.IFC_CONSTRAINT__CREATING_ACTOR, true);
+		return (IfcActorSelect)eGet(Ifc2x3Package.eINSTANCE.getIfcConstraint_CreatingActor(), true);
 	}
 
 	/**
@@ -238,7 +231,7 @@ public class IfcConstraintImpl extends IdEObjectImpl implements IfcConstraint
 	 */
 	public void setCreatingActor(IfcActorSelect newCreatingActor)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_CONSTRAINT__CREATING_ACTOR, newCreatingActor);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcConstraint_CreatingActor(), newCreatingActor);
 	}
 
 	/**
@@ -248,7 +241,7 @@ public class IfcConstraintImpl extends IdEObjectImpl implements IfcConstraint
 	 */
 	public void unsetCreatingActor()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_CONSTRAINT__CREATING_ACTOR);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcConstraint_CreatingActor());
 	}
 
 	/**
@@ -258,7 +251,7 @@ public class IfcConstraintImpl extends IdEObjectImpl implements IfcConstraint
 	 */
 	public boolean isSetCreatingActor()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_CONSTRAINT__CREATING_ACTOR);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcConstraint_CreatingActor());
 	}
 
 	/**
@@ -268,7 +261,7 @@ public class IfcConstraintImpl extends IdEObjectImpl implements IfcConstraint
 	 */
 	public IfcDateTimeSelect getCreationTime()
 	{
-		return (IfcDateTimeSelect)eGet(Ifc2x3Package.Literals.IFC_CONSTRAINT__CREATION_TIME, true);
+		return (IfcDateTimeSelect)eGet(Ifc2x3Package.eINSTANCE.getIfcConstraint_CreationTime(), true);
 	}
 
 	/**
@@ -278,7 +271,7 @@ public class IfcConstraintImpl extends IdEObjectImpl implements IfcConstraint
 	 */
 	public void setCreationTime(IfcDateTimeSelect newCreationTime)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_CONSTRAINT__CREATION_TIME, newCreationTime);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcConstraint_CreationTime(), newCreationTime);
 	}
 
 	/**
@@ -288,7 +281,7 @@ public class IfcConstraintImpl extends IdEObjectImpl implements IfcConstraint
 	 */
 	public void unsetCreationTime()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_CONSTRAINT__CREATION_TIME);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcConstraint_CreationTime());
 	}
 
 	/**
@@ -298,7 +291,7 @@ public class IfcConstraintImpl extends IdEObjectImpl implements IfcConstraint
 	 */
 	public boolean isSetCreationTime()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_CONSTRAINT__CREATION_TIME);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcConstraint_CreationTime());
 	}
 
 	/**
@@ -308,7 +301,7 @@ public class IfcConstraintImpl extends IdEObjectImpl implements IfcConstraint
 	 */
 	public String getUserDefinedGrade()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_CONSTRAINT__USER_DEFINED_GRADE, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcConstraint_UserDefinedGrade(), true);
 	}
 
 	/**
@@ -318,7 +311,7 @@ public class IfcConstraintImpl extends IdEObjectImpl implements IfcConstraint
 	 */
 	public void setUserDefinedGrade(String newUserDefinedGrade)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_CONSTRAINT__USER_DEFINED_GRADE, newUserDefinedGrade);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcConstraint_UserDefinedGrade(), newUserDefinedGrade);
 	}
 
 	/**
@@ -328,7 +321,7 @@ public class IfcConstraintImpl extends IdEObjectImpl implements IfcConstraint
 	 */
 	public void unsetUserDefinedGrade()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_CONSTRAINT__USER_DEFINED_GRADE);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcConstraint_UserDefinedGrade());
 	}
 
 	/**
@@ -338,7 +331,7 @@ public class IfcConstraintImpl extends IdEObjectImpl implements IfcConstraint
 	 */
 	public boolean isSetUserDefinedGrade()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_CONSTRAINT__USER_DEFINED_GRADE);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcConstraint_UserDefinedGrade());
 	}
 
 	/**
@@ -349,7 +342,7 @@ public class IfcConstraintImpl extends IdEObjectImpl implements IfcConstraint
 	@SuppressWarnings("unchecked")
 	public EList<IfcConstraintClassificationRelationship> getClassifiedAs()
 	{
-		return (EList<IfcConstraintClassificationRelationship>)eGet(Ifc2x3Package.Literals.IFC_CONSTRAINT__CLASSIFIED_AS, true);
+		return (EList<IfcConstraintClassificationRelationship>)eGet(Ifc2x3Package.eINSTANCE.getIfcConstraint_ClassifiedAs(), true);
 	}
 
 	/**
@@ -360,7 +353,7 @@ public class IfcConstraintImpl extends IdEObjectImpl implements IfcConstraint
 	@SuppressWarnings("unchecked")
 	public EList<IfcConstraintRelationship> getRelatesConstraints()
 	{
-		return (EList<IfcConstraintRelationship>)eGet(Ifc2x3Package.Literals.IFC_CONSTRAINT__RELATES_CONSTRAINTS, true);
+		return (EList<IfcConstraintRelationship>)eGet(Ifc2x3Package.eINSTANCE.getIfcConstraint_RelatesConstraints(), true);
 	}
 
 	/**
@@ -371,7 +364,7 @@ public class IfcConstraintImpl extends IdEObjectImpl implements IfcConstraint
 	@SuppressWarnings("unchecked")
 	public EList<IfcConstraintRelationship> getIsRelatedWith()
 	{
-		return (EList<IfcConstraintRelationship>)eGet(Ifc2x3Package.Literals.IFC_CONSTRAINT__IS_RELATED_WITH, true);
+		return (EList<IfcConstraintRelationship>)eGet(Ifc2x3Package.eINSTANCE.getIfcConstraint_IsRelatedWith(), true);
 	}
 
 	/**
@@ -382,7 +375,7 @@ public class IfcConstraintImpl extends IdEObjectImpl implements IfcConstraint
 	@SuppressWarnings("unchecked")
 	public EList<IfcPropertyConstraintRelationship> getPropertiesForConstraint()
 	{
-		return (EList<IfcPropertyConstraintRelationship>)eGet(Ifc2x3Package.Literals.IFC_CONSTRAINT__PROPERTIES_FOR_CONSTRAINT, true);
+		return (EList<IfcPropertyConstraintRelationship>)eGet(Ifc2x3Package.eINSTANCE.getIfcConstraint_PropertiesForConstraint(), true);
 	}
 
 	/**
@@ -393,7 +386,7 @@ public class IfcConstraintImpl extends IdEObjectImpl implements IfcConstraint
 	@SuppressWarnings("unchecked")
 	public EList<IfcConstraintAggregationRelationship> getAggregates()
 	{
-		return (EList<IfcConstraintAggregationRelationship>)eGet(Ifc2x3Package.Literals.IFC_CONSTRAINT__AGGREGATES, true);
+		return (EList<IfcConstraintAggregationRelationship>)eGet(Ifc2x3Package.eINSTANCE.getIfcConstraint_Aggregates(), true);
 	}
 
 	/**
@@ -404,7 +397,7 @@ public class IfcConstraintImpl extends IdEObjectImpl implements IfcConstraint
 	@SuppressWarnings("unchecked")
 	public EList<IfcConstraintAggregationRelationship> getIsAggregatedIn()
 	{
-		return (EList<IfcConstraintAggregationRelationship>)eGet(Ifc2x3Package.Literals.IFC_CONSTRAINT__IS_AGGREGATED_IN, true);
+		return (EList<IfcConstraintAggregationRelationship>)eGet(Ifc2x3Package.eINSTANCE.getIfcConstraint_IsAggregatedIn(), true);
 	}
 
 } //IfcConstraintImpl

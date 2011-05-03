@@ -32,7 +32,7 @@ public class AddUserToProjectDatabaseAction extends BimDatabaseAction<Boolean> {
 	public Boolean execute() throws UserException, BimDatabaseException, BimDeadlockException {
 		final Project project = getProjectByPoid(poid);
 		User actingUser = getUserByUoid(actingUoid);
-		if (actingUser.getUserType() == UserType.ANONYMOUS_LITERAL) {
+		if (actingUser.getUserType() == UserType.ANONYMOUS) {
 			throw new UserException("Anonymous user has no rights to grant permission on any project");
 		} else if (RightsManager.hasRightsOnProject(actingUser, project)) {
 			User user = getUserByUoid(uoid);

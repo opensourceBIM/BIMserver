@@ -61,13 +61,6 @@ public class IfcTimeSeriesImpl extends IdEObjectImpl implements IfcTimeSeries
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	protected IfcTimeSeriesImpl()
 	{
 		super();
@@ -81,7 +74,7 @@ public class IfcTimeSeriesImpl extends IdEObjectImpl implements IfcTimeSeries
 	@Override
 	protected EClass eStaticClass()
 	{
-		return Ifc2x3Package.Literals.IFC_TIME_SERIES;
+		return Ifc2x3Package.eINSTANCE.getIfcTimeSeries();
 	}
 
 	/**
@@ -102,7 +95,7 @@ public class IfcTimeSeriesImpl extends IdEObjectImpl implements IfcTimeSeries
 	 */
 	public String getName()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_TIME_SERIES__NAME, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcTimeSeries_Name(), true);
 	}
 
 	/**
@@ -112,7 +105,7 @@ public class IfcTimeSeriesImpl extends IdEObjectImpl implements IfcTimeSeries
 	 */
 	public void setName(String newName)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_TIME_SERIES__NAME, newName);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcTimeSeries_Name(), newName);
 	}
 
 	/**
@@ -122,7 +115,7 @@ public class IfcTimeSeriesImpl extends IdEObjectImpl implements IfcTimeSeries
 	 */
 	public String getDescription()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_TIME_SERIES__DESCRIPTION, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcTimeSeries_Description(), true);
 	}
 
 	/**
@@ -132,7 +125,7 @@ public class IfcTimeSeriesImpl extends IdEObjectImpl implements IfcTimeSeries
 	 */
 	public void setDescription(String newDescription)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_TIME_SERIES__DESCRIPTION, newDescription);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcTimeSeries_Description(), newDescription);
 	}
 
 	/**
@@ -142,7 +135,7 @@ public class IfcTimeSeriesImpl extends IdEObjectImpl implements IfcTimeSeries
 	 */
 	public void unsetDescription()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_TIME_SERIES__DESCRIPTION);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcTimeSeries_Description());
 	}
 
 	/**
@@ -152,7 +145,7 @@ public class IfcTimeSeriesImpl extends IdEObjectImpl implements IfcTimeSeries
 	 */
 	public boolean isSetDescription()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_TIME_SERIES__DESCRIPTION);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcTimeSeries_Description());
 	}
 
 	/**
@@ -162,7 +155,7 @@ public class IfcTimeSeriesImpl extends IdEObjectImpl implements IfcTimeSeries
 	 */
 	public IfcDateTimeSelect getStartTime()
 	{
-		return (IfcDateTimeSelect)eGet(Ifc2x3Package.Literals.IFC_TIME_SERIES__START_TIME, true);
+		return (IfcDateTimeSelect)eGet(Ifc2x3Package.eINSTANCE.getIfcTimeSeries_StartTime(), true);
 	}
 
 	/**
@@ -172,7 +165,7 @@ public class IfcTimeSeriesImpl extends IdEObjectImpl implements IfcTimeSeries
 	 */
 	public void setStartTime(IfcDateTimeSelect newStartTime)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_TIME_SERIES__START_TIME, newStartTime);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcTimeSeries_StartTime(), newStartTime);
 	}
 
 	/**
@@ -182,7 +175,7 @@ public class IfcTimeSeriesImpl extends IdEObjectImpl implements IfcTimeSeries
 	 */
 	public IfcDateTimeSelect getEndTime()
 	{
-		return (IfcDateTimeSelect)eGet(Ifc2x3Package.Literals.IFC_TIME_SERIES__END_TIME, true);
+		return (IfcDateTimeSelect)eGet(Ifc2x3Package.eINSTANCE.getIfcTimeSeries_EndTime(), true);
 	}
 
 	/**
@@ -192,7 +185,7 @@ public class IfcTimeSeriesImpl extends IdEObjectImpl implements IfcTimeSeries
 	 */
 	public void setEndTime(IfcDateTimeSelect newEndTime)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_TIME_SERIES__END_TIME, newEndTime);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcTimeSeries_EndTime(), newEndTime);
 	}
 
 	/**
@@ -202,7 +195,7 @@ public class IfcTimeSeriesImpl extends IdEObjectImpl implements IfcTimeSeries
 	 */
 	public IfcTimeSeriesDataTypeEnum getTimeSeriesDataType()
 	{
-		return (IfcTimeSeriesDataTypeEnum)eGet(Ifc2x3Package.Literals.IFC_TIME_SERIES__TIME_SERIES_DATA_TYPE, true);
+		return (IfcTimeSeriesDataTypeEnum)eGet(Ifc2x3Package.eINSTANCE.getIfcTimeSeries_TimeSeriesDataType(), true);
 	}
 
 	/**
@@ -212,7 +205,7 @@ public class IfcTimeSeriesImpl extends IdEObjectImpl implements IfcTimeSeries
 	 */
 	public void setTimeSeriesDataType(IfcTimeSeriesDataTypeEnum newTimeSeriesDataType)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_TIME_SERIES__TIME_SERIES_DATA_TYPE, newTimeSeriesDataType);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcTimeSeries_TimeSeriesDataType(), newTimeSeriesDataType);
 	}
 
 	/**
@@ -222,7 +215,7 @@ public class IfcTimeSeriesImpl extends IdEObjectImpl implements IfcTimeSeries
 	 */
 	public IfcDataOriginEnum getDataOrigin()
 	{
-		return (IfcDataOriginEnum)eGet(Ifc2x3Package.Literals.IFC_TIME_SERIES__DATA_ORIGIN, true);
+		return (IfcDataOriginEnum)eGet(Ifc2x3Package.eINSTANCE.getIfcTimeSeries_DataOrigin(), true);
 	}
 
 	/**
@@ -232,7 +225,7 @@ public class IfcTimeSeriesImpl extends IdEObjectImpl implements IfcTimeSeries
 	 */
 	public void setDataOrigin(IfcDataOriginEnum newDataOrigin)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_TIME_SERIES__DATA_ORIGIN, newDataOrigin);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcTimeSeries_DataOrigin(), newDataOrigin);
 	}
 
 	/**
@@ -242,7 +235,7 @@ public class IfcTimeSeriesImpl extends IdEObjectImpl implements IfcTimeSeries
 	 */
 	public String getUserDefinedDataOrigin()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_TIME_SERIES__USER_DEFINED_DATA_ORIGIN, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcTimeSeries_UserDefinedDataOrigin(), true);
 	}
 
 	/**
@@ -252,7 +245,7 @@ public class IfcTimeSeriesImpl extends IdEObjectImpl implements IfcTimeSeries
 	 */
 	public void setUserDefinedDataOrigin(String newUserDefinedDataOrigin)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_TIME_SERIES__USER_DEFINED_DATA_ORIGIN, newUserDefinedDataOrigin);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcTimeSeries_UserDefinedDataOrigin(), newUserDefinedDataOrigin);
 	}
 
 	/**
@@ -262,7 +255,7 @@ public class IfcTimeSeriesImpl extends IdEObjectImpl implements IfcTimeSeries
 	 */
 	public void unsetUserDefinedDataOrigin()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_TIME_SERIES__USER_DEFINED_DATA_ORIGIN);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcTimeSeries_UserDefinedDataOrigin());
 	}
 
 	/**
@@ -272,7 +265,7 @@ public class IfcTimeSeriesImpl extends IdEObjectImpl implements IfcTimeSeries
 	 */
 	public boolean isSetUserDefinedDataOrigin()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_TIME_SERIES__USER_DEFINED_DATA_ORIGIN);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcTimeSeries_UserDefinedDataOrigin());
 	}
 
 	/**
@@ -282,7 +275,7 @@ public class IfcTimeSeriesImpl extends IdEObjectImpl implements IfcTimeSeries
 	 */
 	public IfcUnit getUnit()
 	{
-		return (IfcUnit)eGet(Ifc2x3Package.Literals.IFC_TIME_SERIES__UNIT, true);
+		return (IfcUnit)eGet(Ifc2x3Package.eINSTANCE.getIfcTimeSeries_Unit(), true);
 	}
 
 	/**
@@ -292,7 +285,7 @@ public class IfcTimeSeriesImpl extends IdEObjectImpl implements IfcTimeSeries
 	 */
 	public void setUnit(IfcUnit newUnit)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_TIME_SERIES__UNIT, newUnit);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcTimeSeries_Unit(), newUnit);
 	}
 
 	/**
@@ -302,7 +295,7 @@ public class IfcTimeSeriesImpl extends IdEObjectImpl implements IfcTimeSeries
 	 */
 	public void unsetUnit()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_TIME_SERIES__UNIT);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcTimeSeries_Unit());
 	}
 
 	/**
@@ -312,7 +305,7 @@ public class IfcTimeSeriesImpl extends IdEObjectImpl implements IfcTimeSeries
 	 */
 	public boolean isSetUnit()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_TIME_SERIES__UNIT);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcTimeSeries_Unit());
 	}
 
 	/**
@@ -323,7 +316,7 @@ public class IfcTimeSeriesImpl extends IdEObjectImpl implements IfcTimeSeries
 	@SuppressWarnings("unchecked")
 	public EList<IfcTimeSeriesReferenceRelationship> getDocumentedBy()
 	{
-		return (EList<IfcTimeSeriesReferenceRelationship>)eGet(Ifc2x3Package.Literals.IFC_TIME_SERIES__DOCUMENTED_BY, true);
+		return (EList<IfcTimeSeriesReferenceRelationship>)eGet(Ifc2x3Package.eINSTANCE.getIfcTimeSeries_DocumentedBy(), true);
 	}
 
 } //IfcTimeSeriesImpl

@@ -40,318 +40,311 @@ public enum IfcUnitEnum implements Enumerator
 	 * The '<em><b>NULL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NULL
+	 * @see #NULL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NULL_LITERAL(0, "NULL", "NULL"),
+	NULL(0, "NULL", "NULL"),
 
 	/**
 	 * The '<em><b>ELECTRICRESISTANCEUNIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #ELECTRICRESISTANCEUNIT
+	 * @see #ELECTRICRESISTANCEUNIT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	ELECTRICRESISTANCEUNIT_LITERAL(1, "ELECTRICRESISTANCEUNIT", "ELECTRICRESISTANCEUNIT"),
+	ELECTRICRESISTANCEUNIT(1, "ELECTRICRESISTANCEUNIT", "ELECTRICRESISTANCEUNIT"),
 
 	/**
 	 * The '<em><b>ELECTRICCURRENTUNIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #ELECTRICCURRENTUNIT
+	 * @see #ELECTRICCURRENTUNIT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	ELECTRICCURRENTUNIT_LITERAL(2, "ELECTRICCURRENTUNIT", "ELECTRICCURRENTUNIT"),
+	ELECTRICCURRENTUNIT(2, "ELECTRICCURRENTUNIT", "ELECTRICCURRENTUNIT"),
 
 	/**
 	 * The '<em><b>ILLUMINANCEUNIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #ILLUMINANCEUNIT
+	 * @see #ILLUMINANCEUNIT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	ILLUMINANCEUNIT_LITERAL(3, "ILLUMINANCEUNIT", "ILLUMINANCEUNIT"),
+	ILLUMINANCEUNIT(3, "ILLUMINANCEUNIT", "ILLUMINANCEUNIT"),
 
 	/**
 	 * The '<em><b>FREQUENCYUNIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #FREQUENCYUNIT
+	 * @see #FREQUENCYUNIT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	FREQUENCYUNIT_LITERAL(4, "FREQUENCYUNIT", "FREQUENCYUNIT"),
+	FREQUENCYUNIT(4, "FREQUENCYUNIT", "FREQUENCYUNIT"),
 
 	/**
 	 * The '<em><b>AREAUNIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #AREAUNIT
+	 * @see #AREAUNIT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	AREAUNIT_LITERAL(5, "AREAUNIT", "AREAUNIT"),
+	AREAUNIT(5, "AREAUNIT", "AREAUNIT"),
 
 	/**
 	 * The '<em><b>TIMEUNIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #TIMEUNIT
+	 * @see #TIMEUNIT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	TIMEUNIT_LITERAL(6, "TIMEUNIT", "TIMEUNIT"),
+	TIMEUNIT(6, "TIMEUNIT", "TIMEUNIT"),
 
 	/**
 	 * The '<em><b>ELECTRICCHARGEUNIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #ELECTRICCHARGEUNIT
+	 * @see #ELECTRICCHARGEUNIT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	ELECTRICCHARGEUNIT_LITERAL(7, "ELECTRICCHARGEUNIT", "ELECTRICCHARGEUNIT"),
+	ELECTRICCHARGEUNIT(7, "ELECTRICCHARGEUNIT", "ELECTRICCHARGEUNIT"),
 
 	/**
 	 * The '<em><b>FORCEUNIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #FORCEUNIT
+	 * @see #FORCEUNIT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	FORCEUNIT_LITERAL(8, "FORCEUNIT", "FORCEUNIT"),
+	FORCEUNIT(8, "FORCEUNIT", "FORCEUNIT"),
 
 	/**
 	 * The '<em><b>LENGTHUNIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #LENGTHUNIT
+	 * @see #LENGTHUNIT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	LENGTHUNIT_LITERAL(9, "LENGTHUNIT", "LENGTHUNIT"),
+	LENGTHUNIT(9, "LENGTHUNIT", "LENGTHUNIT"),
 
 	/**
 	 * The '<em><b>RADIOACTIVITYUNIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #RADIOACTIVITYUNIT
+	 * @see #RADIOACTIVITYUNIT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	RADIOACTIVITYUNIT_LITERAL(10, "RADIOACTIVITYUNIT", "RADIOACTIVITYUNIT"),
+	RADIOACTIVITYUNIT(10, "RADIOACTIVITYUNIT", "RADIOACTIVITYUNIT"),
 
 	/**
 	 * The '<em><b>DOSEEQUIVALENTUNIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #DOSEEQUIVALENTUNIT
+	 * @see #DOSEEQUIVALENTUNIT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	DOSEEQUIVALENTUNIT_LITERAL(11, "DOSEEQUIVALENTUNIT", "DOSEEQUIVALENTUNIT"),
+	DOSEEQUIVALENTUNIT(11, "DOSEEQUIVALENTUNIT", "DOSEEQUIVALENTUNIT"),
 
 	/**
 	 * The '<em><b>INDUCTANCEUNIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #INDUCTANCEUNIT
+	 * @see #INDUCTANCEUNIT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	INDUCTANCEUNIT_LITERAL(12, "INDUCTANCEUNIT", "INDUCTANCEUNIT"),
+	INDUCTANCEUNIT(12, "INDUCTANCEUNIT", "INDUCTANCEUNIT"),
 
 	/**
 	 * The '<em><b>MAGNETICFLUXDENSITYUNIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #MAGNETICFLUXDENSITYUNIT
+	 * @see #MAGNETICFLUXDENSITYUNIT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	MAGNETICFLUXDENSITYUNIT_LITERAL(13, "MAGNETICFLUXDENSITYUNIT", "MAGNETICFLUXDENSITYUNIT"),
+	MAGNETICFLUXDENSITYUNIT(13, "MAGNETICFLUXDENSITYUNIT", "MAGNETICFLUXDENSITYUNIT"),
 
 	/**
 	 * The '<em><b>LUMINOUSINTENSITYUNIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #LUMINOUSINTENSITYUNIT
+	 * @see #LUMINOUSINTENSITYUNIT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	LUMINOUSINTENSITYUNIT_LITERAL(14, "LUMINOUSINTENSITYUNIT", "LUMINOUSINTENSITYUNIT"),
+	LUMINOUSINTENSITYUNIT(14, "LUMINOUSINTENSITYUNIT", "LUMINOUSINTENSITYUNIT"),
 
 	/**
 	 * The '<em><b>LUMINOUSFLUXUNIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #LUMINOUSFLUXUNIT
+	 * @see #LUMINOUSFLUXUNIT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	LUMINOUSFLUXUNIT_LITERAL(15, "LUMINOUSFLUXUNIT", "LUMINOUSFLUXUNIT"),
+	LUMINOUSFLUXUNIT(15, "LUMINOUSFLUXUNIT", "LUMINOUSFLUXUNIT"),
 
 	/**
 	 * The '<em><b>VOLUMEUNIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #VOLUMEUNIT
+	 * @see #VOLUMEUNIT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	VOLUMEUNIT_LITERAL(16, "VOLUMEUNIT", "VOLUMEUNIT"),
+	VOLUMEUNIT(16, "VOLUMEUNIT", "VOLUMEUNIT"),
 
 	/**
 	 * The '<em><b>ELECTRICCONDUCTANCEUNIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #ELECTRICCONDUCTANCEUNIT
+	 * @see #ELECTRICCONDUCTANCEUNIT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	ELECTRICCONDUCTANCEUNIT_LITERAL(17, "ELECTRICCONDUCTANCEUNIT", "ELECTRICCONDUCTANCEUNIT"),
+	ELECTRICCONDUCTANCEUNIT(17, "ELECTRICCONDUCTANCEUNIT", "ELECTRICCONDUCTANCEUNIT"),
 
 	/**
 	 * The '<em><b>AMOUNTOFSUBSTANCEUNIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #AMOUNTOFSUBSTANCEUNIT
+	 * @see #AMOUNTOFSUBSTANCEUNIT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	AMOUNTOFSUBSTANCEUNIT_LITERAL(18, "AMOUNTOFSUBSTANCEUNIT", "AMOUNTOFSUBSTANCEUNIT"),
+	AMOUNTOFSUBSTANCEUNIT(18, "AMOUNTOFSUBSTANCEUNIT", "AMOUNTOFSUBSTANCEUNIT"),
 
 	/**
 	 * The '<em><b>ENERGYUNIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #ENERGYUNIT
+	 * @see #ENERGYUNIT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	ENERGYUNIT_LITERAL(19, "ENERGYUNIT", "ENERGYUNIT"),
+	ENERGYUNIT(19, "ENERGYUNIT", "ENERGYUNIT"),
 
 	/**
 	 * The '<em><b>POWERUNIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #POWERUNIT
+	 * @see #POWERUNIT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	POWERUNIT_LITERAL(20, "POWERUNIT", "POWERUNIT"),
+	POWERUNIT(20, "POWERUNIT", "POWERUNIT"),
 
 	/**
 	 * The '<em><b>SOLIDANGLEUNIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #SOLIDANGLEUNIT
+	 * @see #SOLIDANGLEUNIT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	SOLIDANGLEUNIT_LITERAL(21, "SOLIDANGLEUNIT", "SOLIDANGLEUNIT"),
+	SOLIDANGLEUNIT(21, "SOLIDANGLEUNIT", "SOLIDANGLEUNIT"),
 
 	/**
 	 * The '<em><b>ELECTRICVOLTAGEUNIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #ELECTRICVOLTAGEUNIT
+	 * @see #ELECTRICVOLTAGEUNIT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	ELECTRICVOLTAGEUNIT_LITERAL(22, "ELECTRICVOLTAGEUNIT", "ELECTRICVOLTAGEUNIT"),
+	ELECTRICVOLTAGEUNIT(22, "ELECTRICVOLTAGEUNIT", "ELECTRICVOLTAGEUNIT"),
 
 	/**
 	 * The '<em><b>ELECTRICCAPACITANCEUNIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #ELECTRICCAPACITANCEUNIT
+	 * @see #ELECTRICCAPACITANCEUNIT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	ELECTRICCAPACITANCEUNIT_LITERAL(23, "ELECTRICCAPACITANCEUNIT", "ELECTRICCAPACITANCEUNIT"),
+	ELECTRICCAPACITANCEUNIT(23, "ELECTRICCAPACITANCEUNIT", "ELECTRICCAPACITANCEUNIT"),
 
 	/**
 	 * The '<em><b>PRESSUREUNIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #PRESSUREUNIT
+	 * @see #PRESSUREUNIT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	PRESSUREUNIT_LITERAL(24, "PRESSUREUNIT", "PRESSUREUNIT"),
+	PRESSUREUNIT(24, "PRESSUREUNIT", "PRESSUREUNIT"),
 
 	/**
 	 * The '<em><b>THERMODYNAMICTEMPERATUREUNIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #THERMODYNAMICTEMPERATUREUNIT
+	 * @see #THERMODYNAMICTEMPERATUREUNIT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	THERMODYNAMICTEMPERATUREUNIT_LITERAL(25, "THERMODYNAMICTEMPERATUREUNIT", "THERMODYNAMICTEMPERATUREUNIT"),
+	THERMODYNAMICTEMPERATUREUNIT(25, "THERMODYNAMICTEMPERATUREUNIT", "THERMODYNAMICTEMPERATUREUNIT"),
 
 	/**
 	 * The '<em><b>MASSUNIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #MASSUNIT
+	 * @see #MASSUNIT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	MASSUNIT_LITERAL(26, "MASSUNIT", "MASSUNIT"),
+	MASSUNIT(26, "MASSUNIT", "MASSUNIT"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
+	 * @see #USERDEFINED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	USERDEFINED_LITERAL(27, "USERDEFINED", "USERDEFINED"),
+	USERDEFINED(27, "USERDEFINED", "USERDEFINED"),
 
 	/**
 	 * The '<em><b>ABSORBEDDOSEUNIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #ABSORBEDDOSEUNIT
+	 * @see #ABSORBEDDOSEUNIT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	ABSORBEDDOSEUNIT_LITERAL(28, "ABSORBEDDOSEUNIT", "ABSORBEDDOSEUNIT"),
+	ABSORBEDDOSEUNIT(28, "ABSORBEDDOSEUNIT", "ABSORBEDDOSEUNIT"),
 
 	/**
 	 * The '<em><b>MAGNETICFLUXUNIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #MAGNETICFLUXUNIT
+	 * @see #MAGNETICFLUXUNIT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	MAGNETICFLUXUNIT_LITERAL(29, "MAGNETICFLUXUNIT", "MAGNETICFLUXUNIT"),
+	MAGNETICFLUXUNIT(29, "MAGNETICFLUXUNIT", "MAGNETICFLUXUNIT"),
 
 	/**
 	 * The '<em><b>PLANEANGLEUNIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #PLANEANGLEUNIT
+	 * @see #PLANEANGLEUNIT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	PLANEANGLEUNIT_LITERAL(30, "PLANEANGLEUNIT", "PLANEANGLEUNIT");
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
+	PLANEANGLEUNIT(30, "PLANEANGLEUNIT", "PLANEANGLEUNIT");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -361,12 +354,12 @@ public enum IfcUnitEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NULL_LITERAL
+	 * @see #NULL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NULL = 0;
+	public static final int NULL_VALUE = 0;
 
 	/**
 	 * The '<em><b>ELECTRICRESISTANCEUNIT</b></em>' literal value.
@@ -376,12 +369,12 @@ public enum IfcUnitEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ELECTRICRESISTANCEUNIT_LITERAL
+	 * @see #ELECTRICRESISTANCEUNIT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ELECTRICRESISTANCEUNIT = 1;
+	public static final int ELECTRICRESISTANCEUNIT_VALUE = 1;
 
 	/**
 	 * The '<em><b>ELECTRICCURRENTUNIT</b></em>' literal value.
@@ -391,12 +384,12 @@ public enum IfcUnitEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ELECTRICCURRENTUNIT_LITERAL
+	 * @see #ELECTRICCURRENTUNIT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ELECTRICCURRENTUNIT = 2;
+	public static final int ELECTRICCURRENTUNIT_VALUE = 2;
 
 	/**
 	 * The '<em><b>ILLUMINANCEUNIT</b></em>' literal value.
@@ -406,12 +399,12 @@ public enum IfcUnitEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ILLUMINANCEUNIT_LITERAL
+	 * @see #ILLUMINANCEUNIT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ILLUMINANCEUNIT = 3;
+	public static final int ILLUMINANCEUNIT_VALUE = 3;
 
 	/**
 	 * The '<em><b>FREQUENCYUNIT</b></em>' literal value.
@@ -421,12 +414,12 @@ public enum IfcUnitEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #FREQUENCYUNIT_LITERAL
+	 * @see #FREQUENCYUNIT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int FREQUENCYUNIT = 4;
+	public static final int FREQUENCYUNIT_VALUE = 4;
 
 	/**
 	 * The '<em><b>AREAUNIT</b></em>' literal value.
@@ -436,12 +429,12 @@ public enum IfcUnitEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #AREAUNIT_LITERAL
+	 * @see #AREAUNIT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int AREAUNIT = 5;
+	public static final int AREAUNIT_VALUE = 5;
 
 	/**
 	 * The '<em><b>TIMEUNIT</b></em>' literal value.
@@ -451,12 +444,12 @@ public enum IfcUnitEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #TIMEUNIT_LITERAL
+	 * @see #TIMEUNIT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int TIMEUNIT = 6;
+	public static final int TIMEUNIT_VALUE = 6;
 
 	/**
 	 * The '<em><b>ELECTRICCHARGEUNIT</b></em>' literal value.
@@ -466,12 +459,12 @@ public enum IfcUnitEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ELECTRICCHARGEUNIT_LITERAL
+	 * @see #ELECTRICCHARGEUNIT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ELECTRICCHARGEUNIT = 7;
+	public static final int ELECTRICCHARGEUNIT_VALUE = 7;
 
 	/**
 	 * The '<em><b>FORCEUNIT</b></em>' literal value.
@@ -481,12 +474,12 @@ public enum IfcUnitEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #FORCEUNIT_LITERAL
+	 * @see #FORCEUNIT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int FORCEUNIT = 8;
+	public static final int FORCEUNIT_VALUE = 8;
 
 	/**
 	 * The '<em><b>LENGTHUNIT</b></em>' literal value.
@@ -496,12 +489,12 @@ public enum IfcUnitEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #LENGTHUNIT_LITERAL
+	 * @see #LENGTHUNIT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int LENGTHUNIT = 9;
+	public static final int LENGTHUNIT_VALUE = 9;
 
 	/**
 	 * The '<em><b>RADIOACTIVITYUNIT</b></em>' literal value.
@@ -511,12 +504,12 @@ public enum IfcUnitEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #RADIOACTIVITYUNIT_LITERAL
+	 * @see #RADIOACTIVITYUNIT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int RADIOACTIVITYUNIT = 10;
+	public static final int RADIOACTIVITYUNIT_VALUE = 10;
 
 	/**
 	 * The '<em><b>DOSEEQUIVALENTUNIT</b></em>' literal value.
@@ -526,12 +519,12 @@ public enum IfcUnitEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #DOSEEQUIVALENTUNIT_LITERAL
+	 * @see #DOSEEQUIVALENTUNIT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int DOSEEQUIVALENTUNIT = 11;
+	public static final int DOSEEQUIVALENTUNIT_VALUE = 11;
 
 	/**
 	 * The '<em><b>INDUCTANCEUNIT</b></em>' literal value.
@@ -541,12 +534,12 @@ public enum IfcUnitEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #INDUCTANCEUNIT_LITERAL
+	 * @see #INDUCTANCEUNIT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int INDUCTANCEUNIT = 12;
+	public static final int INDUCTANCEUNIT_VALUE = 12;
 
 	/**
 	 * The '<em><b>MAGNETICFLUXDENSITYUNIT</b></em>' literal value.
@@ -556,12 +549,12 @@ public enum IfcUnitEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #MAGNETICFLUXDENSITYUNIT_LITERAL
+	 * @see #MAGNETICFLUXDENSITYUNIT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MAGNETICFLUXDENSITYUNIT = 13;
+	public static final int MAGNETICFLUXDENSITYUNIT_VALUE = 13;
 
 	/**
 	 * The '<em><b>LUMINOUSINTENSITYUNIT</b></em>' literal value.
@@ -571,12 +564,12 @@ public enum IfcUnitEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #LUMINOUSINTENSITYUNIT_LITERAL
+	 * @see #LUMINOUSINTENSITYUNIT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int LUMINOUSINTENSITYUNIT = 14;
+	public static final int LUMINOUSINTENSITYUNIT_VALUE = 14;
 
 	/**
 	 * The '<em><b>LUMINOUSFLUXUNIT</b></em>' literal value.
@@ -586,12 +579,12 @@ public enum IfcUnitEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #LUMINOUSFLUXUNIT_LITERAL
+	 * @see #LUMINOUSFLUXUNIT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int LUMINOUSFLUXUNIT = 15;
+	public static final int LUMINOUSFLUXUNIT_VALUE = 15;
 
 	/**
 	 * The '<em><b>VOLUMEUNIT</b></em>' literal value.
@@ -601,12 +594,12 @@ public enum IfcUnitEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #VOLUMEUNIT_LITERAL
+	 * @see #VOLUMEUNIT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int VOLUMEUNIT = 16;
+	public static final int VOLUMEUNIT_VALUE = 16;
 
 	/**
 	 * The '<em><b>ELECTRICCONDUCTANCEUNIT</b></em>' literal value.
@@ -616,12 +609,12 @@ public enum IfcUnitEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ELECTRICCONDUCTANCEUNIT_LITERAL
+	 * @see #ELECTRICCONDUCTANCEUNIT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ELECTRICCONDUCTANCEUNIT = 17;
+	public static final int ELECTRICCONDUCTANCEUNIT_VALUE = 17;
 
 	/**
 	 * The '<em><b>AMOUNTOFSUBSTANCEUNIT</b></em>' literal value.
@@ -631,12 +624,12 @@ public enum IfcUnitEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #AMOUNTOFSUBSTANCEUNIT_LITERAL
+	 * @see #AMOUNTOFSUBSTANCEUNIT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int AMOUNTOFSUBSTANCEUNIT = 18;
+	public static final int AMOUNTOFSUBSTANCEUNIT_VALUE = 18;
 
 	/**
 	 * The '<em><b>ENERGYUNIT</b></em>' literal value.
@@ -646,12 +639,12 @@ public enum IfcUnitEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ENERGYUNIT_LITERAL
+	 * @see #ENERGYUNIT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ENERGYUNIT = 19;
+	public static final int ENERGYUNIT_VALUE = 19;
 
 	/**
 	 * The '<em><b>POWERUNIT</b></em>' literal value.
@@ -661,12 +654,12 @@ public enum IfcUnitEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #POWERUNIT_LITERAL
+	 * @see #POWERUNIT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int POWERUNIT = 20;
+	public static final int POWERUNIT_VALUE = 20;
 
 	/**
 	 * The '<em><b>SOLIDANGLEUNIT</b></em>' literal value.
@@ -676,12 +669,12 @@ public enum IfcUnitEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #SOLIDANGLEUNIT_LITERAL
+	 * @see #SOLIDANGLEUNIT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SOLIDANGLEUNIT = 21;
+	public static final int SOLIDANGLEUNIT_VALUE = 21;
 
 	/**
 	 * The '<em><b>ELECTRICVOLTAGEUNIT</b></em>' literal value.
@@ -691,12 +684,12 @@ public enum IfcUnitEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ELECTRICVOLTAGEUNIT_LITERAL
+	 * @see #ELECTRICVOLTAGEUNIT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ELECTRICVOLTAGEUNIT = 22;
+	public static final int ELECTRICVOLTAGEUNIT_VALUE = 22;
 
 	/**
 	 * The '<em><b>ELECTRICCAPACITANCEUNIT</b></em>' literal value.
@@ -706,12 +699,12 @@ public enum IfcUnitEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ELECTRICCAPACITANCEUNIT_LITERAL
+	 * @see #ELECTRICCAPACITANCEUNIT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ELECTRICCAPACITANCEUNIT = 23;
+	public static final int ELECTRICCAPACITANCEUNIT_VALUE = 23;
 
 	/**
 	 * The '<em><b>PRESSUREUNIT</b></em>' literal value.
@@ -721,12 +714,12 @@ public enum IfcUnitEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #PRESSUREUNIT_LITERAL
+	 * @see #PRESSUREUNIT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PRESSUREUNIT = 24;
+	public static final int PRESSUREUNIT_VALUE = 24;
 
 	/**
 	 * The '<em><b>THERMODYNAMICTEMPERATUREUNIT</b></em>' literal value.
@@ -736,12 +729,12 @@ public enum IfcUnitEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #THERMODYNAMICTEMPERATUREUNIT_LITERAL
+	 * @see #THERMODYNAMICTEMPERATUREUNIT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int THERMODYNAMICTEMPERATUREUNIT = 25;
+	public static final int THERMODYNAMICTEMPERATUREUNIT_VALUE = 25;
 
 	/**
 	 * The '<em><b>MASSUNIT</b></em>' literal value.
@@ -751,12 +744,12 @@ public enum IfcUnitEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #MASSUNIT_LITERAL
+	 * @see #MASSUNIT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MASSUNIT = 26;
+	public static final int MASSUNIT_VALUE = 26;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -766,12 +759,12 @@ public enum IfcUnitEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_LITERAL
+	 * @see #USERDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED = 27;
+	public static final int USERDEFINED_VALUE = 27;
 
 	/**
 	 * The '<em><b>ABSORBEDDOSEUNIT</b></em>' literal value.
@@ -781,12 +774,12 @@ public enum IfcUnitEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ABSORBEDDOSEUNIT_LITERAL
+	 * @see #ABSORBEDDOSEUNIT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ABSORBEDDOSEUNIT = 28;
+	public static final int ABSORBEDDOSEUNIT_VALUE = 28;
 
 	/**
 	 * The '<em><b>MAGNETICFLUXUNIT</b></em>' literal value.
@@ -796,12 +789,12 @@ public enum IfcUnitEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #MAGNETICFLUXUNIT_LITERAL
+	 * @see #MAGNETICFLUXUNIT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MAGNETICFLUXUNIT = 29;
+	public static final int MAGNETICFLUXUNIT_VALUE = 29;
 
 	/**
 	 * The '<em><b>PLANEANGLEUNIT</b></em>' literal value.
@@ -811,12 +804,12 @@ public enum IfcUnitEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #PLANEANGLEUNIT_LITERAL
+	 * @see #PLANEANGLEUNIT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PLANEANGLEUNIT = 30;
+	public static final int PLANEANGLEUNIT_VALUE = 30;
 
 	/**
 	 * An array of all the '<em><b>Ifc Unit Enum</b></em>' enumerators.
@@ -825,39 +818,38 @@ public enum IfcUnitEnum implements Enumerator
 	 * @generated
 	 */
 	private static final IfcUnitEnum[] VALUES_ARRAY =
-		new IfcUnitEnum[]
-		{
-			NULL_LITERAL,
-			ELECTRICRESISTANCEUNIT_LITERAL,
-			ELECTRICCURRENTUNIT_LITERAL,
-			ILLUMINANCEUNIT_LITERAL,
-			FREQUENCYUNIT_LITERAL,
-			AREAUNIT_LITERAL,
-			TIMEUNIT_LITERAL,
-			ELECTRICCHARGEUNIT_LITERAL,
-			FORCEUNIT_LITERAL,
-			LENGTHUNIT_LITERAL,
-			RADIOACTIVITYUNIT_LITERAL,
-			DOSEEQUIVALENTUNIT_LITERAL,
-			INDUCTANCEUNIT_LITERAL,
-			MAGNETICFLUXDENSITYUNIT_LITERAL,
-			LUMINOUSINTENSITYUNIT_LITERAL,
-			LUMINOUSFLUXUNIT_LITERAL,
-			VOLUMEUNIT_LITERAL,
-			ELECTRICCONDUCTANCEUNIT_LITERAL,
-			AMOUNTOFSUBSTANCEUNIT_LITERAL,
-			ENERGYUNIT_LITERAL,
-			POWERUNIT_LITERAL,
-			SOLIDANGLEUNIT_LITERAL,
-			ELECTRICVOLTAGEUNIT_LITERAL,
-			ELECTRICCAPACITANCEUNIT_LITERAL,
-			PRESSUREUNIT_LITERAL,
-			THERMODYNAMICTEMPERATUREUNIT_LITERAL,
-			MASSUNIT_LITERAL,
-			USERDEFINED_LITERAL,
-			ABSORBEDDOSEUNIT_LITERAL,
-			MAGNETICFLUXUNIT_LITERAL,
-			PLANEANGLEUNIT_LITERAL,
+		new IfcUnitEnum[] {
+			NULL,
+			ELECTRICRESISTANCEUNIT,
+			ELECTRICCURRENTUNIT,
+			ILLUMINANCEUNIT,
+			FREQUENCYUNIT,
+			AREAUNIT,
+			TIMEUNIT,
+			ELECTRICCHARGEUNIT,
+			FORCEUNIT,
+			LENGTHUNIT,
+			RADIOACTIVITYUNIT,
+			DOSEEQUIVALENTUNIT,
+			INDUCTANCEUNIT,
+			MAGNETICFLUXDENSITYUNIT,
+			LUMINOUSINTENSITYUNIT,
+			LUMINOUSFLUXUNIT,
+			VOLUMEUNIT,
+			ELECTRICCONDUCTANCEUNIT,
+			AMOUNTOFSUBSTANCEUNIT,
+			ENERGYUNIT,
+			POWERUNIT,
+			SOLIDANGLEUNIT,
+			ELECTRICVOLTAGEUNIT,
+			ELECTRICCAPACITANCEUNIT,
+			PRESSUREUNIT,
+			THERMODYNAMICTEMPERATUREUNIT,
+			MASSUNIT,
+			USERDEFINED,
+			ABSORBEDDOSEUNIT,
+			MAGNETICFLUXUNIT,
+			PLANEANGLEUNIT,
 		};
 
 	/**
@@ -876,11 +868,9 @@ public enum IfcUnitEnum implements Enumerator
 	 */
 	public static IfcUnitEnum get(String literal)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcUnitEnum result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal))
-			{
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -895,11 +885,9 @@ public enum IfcUnitEnum implements Enumerator
 	 */
 	public static IfcUnitEnum getByName(String name)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcUnitEnum result = VALUES_ARRAY[i];
-			if (result.getName().equals(name))
-			{
+			if (result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -914,39 +902,38 @@ public enum IfcUnitEnum implements Enumerator
 	 */
 	public static IfcUnitEnum get(int value)
 	{
-		switch (value)
-		{
-			case NULL: return NULL_LITERAL;
-			case ELECTRICRESISTANCEUNIT: return ELECTRICRESISTANCEUNIT_LITERAL;
-			case ELECTRICCURRENTUNIT: return ELECTRICCURRENTUNIT_LITERAL;
-			case ILLUMINANCEUNIT: return ILLUMINANCEUNIT_LITERAL;
-			case FREQUENCYUNIT: return FREQUENCYUNIT_LITERAL;
-			case AREAUNIT: return AREAUNIT_LITERAL;
-			case TIMEUNIT: return TIMEUNIT_LITERAL;
-			case ELECTRICCHARGEUNIT: return ELECTRICCHARGEUNIT_LITERAL;
-			case FORCEUNIT: return FORCEUNIT_LITERAL;
-			case LENGTHUNIT: return LENGTHUNIT_LITERAL;
-			case RADIOACTIVITYUNIT: return RADIOACTIVITYUNIT_LITERAL;
-			case DOSEEQUIVALENTUNIT: return DOSEEQUIVALENTUNIT_LITERAL;
-			case INDUCTANCEUNIT: return INDUCTANCEUNIT_LITERAL;
-			case MAGNETICFLUXDENSITYUNIT: return MAGNETICFLUXDENSITYUNIT_LITERAL;
-			case LUMINOUSINTENSITYUNIT: return LUMINOUSINTENSITYUNIT_LITERAL;
-			case LUMINOUSFLUXUNIT: return LUMINOUSFLUXUNIT_LITERAL;
-			case VOLUMEUNIT: return VOLUMEUNIT_LITERAL;
-			case ELECTRICCONDUCTANCEUNIT: return ELECTRICCONDUCTANCEUNIT_LITERAL;
-			case AMOUNTOFSUBSTANCEUNIT: return AMOUNTOFSUBSTANCEUNIT_LITERAL;
-			case ENERGYUNIT: return ENERGYUNIT_LITERAL;
-			case POWERUNIT: return POWERUNIT_LITERAL;
-			case SOLIDANGLEUNIT: return SOLIDANGLEUNIT_LITERAL;
-			case ELECTRICVOLTAGEUNIT: return ELECTRICVOLTAGEUNIT_LITERAL;
-			case ELECTRICCAPACITANCEUNIT: return ELECTRICCAPACITANCEUNIT_LITERAL;
-			case PRESSUREUNIT: return PRESSUREUNIT_LITERAL;
-			case THERMODYNAMICTEMPERATUREUNIT: return THERMODYNAMICTEMPERATUREUNIT_LITERAL;
-			case MASSUNIT: return MASSUNIT_LITERAL;
-			case USERDEFINED: return USERDEFINED_LITERAL;
-			case ABSORBEDDOSEUNIT: return ABSORBEDDOSEUNIT_LITERAL;
-			case MAGNETICFLUXUNIT: return MAGNETICFLUXUNIT_LITERAL;
-			case PLANEANGLEUNIT: return PLANEANGLEUNIT_LITERAL;
+		switch (value) {
+			case NULL_VALUE: return NULL;
+			case ELECTRICRESISTANCEUNIT_VALUE: return ELECTRICRESISTANCEUNIT;
+			case ELECTRICCURRENTUNIT_VALUE: return ELECTRICCURRENTUNIT;
+			case ILLUMINANCEUNIT_VALUE: return ILLUMINANCEUNIT;
+			case FREQUENCYUNIT_VALUE: return FREQUENCYUNIT;
+			case AREAUNIT_VALUE: return AREAUNIT;
+			case TIMEUNIT_VALUE: return TIMEUNIT;
+			case ELECTRICCHARGEUNIT_VALUE: return ELECTRICCHARGEUNIT;
+			case FORCEUNIT_VALUE: return FORCEUNIT;
+			case LENGTHUNIT_VALUE: return LENGTHUNIT;
+			case RADIOACTIVITYUNIT_VALUE: return RADIOACTIVITYUNIT;
+			case DOSEEQUIVALENTUNIT_VALUE: return DOSEEQUIVALENTUNIT;
+			case INDUCTANCEUNIT_VALUE: return INDUCTANCEUNIT;
+			case MAGNETICFLUXDENSITYUNIT_VALUE: return MAGNETICFLUXDENSITYUNIT;
+			case LUMINOUSINTENSITYUNIT_VALUE: return LUMINOUSINTENSITYUNIT;
+			case LUMINOUSFLUXUNIT_VALUE: return LUMINOUSFLUXUNIT;
+			case VOLUMEUNIT_VALUE: return VOLUMEUNIT;
+			case ELECTRICCONDUCTANCEUNIT_VALUE: return ELECTRICCONDUCTANCEUNIT;
+			case AMOUNTOFSUBSTANCEUNIT_VALUE: return AMOUNTOFSUBSTANCEUNIT;
+			case ENERGYUNIT_VALUE: return ENERGYUNIT;
+			case POWERUNIT_VALUE: return POWERUNIT;
+			case SOLIDANGLEUNIT_VALUE: return SOLIDANGLEUNIT;
+			case ELECTRICVOLTAGEUNIT_VALUE: return ELECTRICVOLTAGEUNIT;
+			case ELECTRICCAPACITANCEUNIT_VALUE: return ELECTRICCAPACITANCEUNIT;
+			case PRESSUREUNIT_VALUE: return PRESSUREUNIT;
+			case THERMODYNAMICTEMPERATUREUNIT_VALUE: return THERMODYNAMICTEMPERATUREUNIT;
+			case MASSUNIT_VALUE: return MASSUNIT;
+			case USERDEFINED_VALUE: return USERDEFINED;
+			case ABSORBEDDOSEUNIT_VALUE: return ABSORBEDDOSEUNIT;
+			case MAGNETICFLUXUNIT_VALUE: return MAGNETICFLUXUNIT;
+			case PLANEANGLEUNIT_VALUE: return PLANEANGLEUNIT;
 		}
 		return null;
 	}

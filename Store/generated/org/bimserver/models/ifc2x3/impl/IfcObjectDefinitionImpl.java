@@ -54,13 +54,6 @@ public class IfcObjectDefinitionImpl extends IfcRootImpl implements IfcObjectDef
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	protected IfcObjectDefinitionImpl()
 	{
 		super();
@@ -74,7 +67,7 @@ public class IfcObjectDefinitionImpl extends IfcRootImpl implements IfcObjectDef
 	@Override
 	protected EClass eStaticClass()
 	{
-		return Ifc2x3Package.Literals.IFC_OBJECT_DEFINITION;
+		return Ifc2x3Package.eINSTANCE.getIfcObjectDefinition();
 	}
 
 	/**
@@ -85,7 +78,7 @@ public class IfcObjectDefinitionImpl extends IfcRootImpl implements IfcObjectDef
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelAssigns> getHasAssignments()
 	{
-		return (EList<IfcRelAssigns>)eGet(Ifc2x3Package.Literals.IFC_OBJECT_DEFINITION__HAS_ASSIGNMENTS, true);
+		return (EList<IfcRelAssigns>)eGet(Ifc2x3Package.eINSTANCE.getIfcObjectDefinition_HasAssignments(), true);
 	}
 
 	/**
@@ -96,7 +89,7 @@ public class IfcObjectDefinitionImpl extends IfcRootImpl implements IfcObjectDef
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelDecomposes> getIsDecomposedBy()
 	{
-		return (EList<IfcRelDecomposes>)eGet(Ifc2x3Package.Literals.IFC_OBJECT_DEFINITION__IS_DECOMPOSED_BY, true);
+		return (EList<IfcRelDecomposes>)eGet(Ifc2x3Package.eINSTANCE.getIfcObjectDefinition_IsDecomposedBy(), true);
 	}
 
 	/**
@@ -107,7 +100,7 @@ public class IfcObjectDefinitionImpl extends IfcRootImpl implements IfcObjectDef
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelDecomposes> getDecomposes()
 	{
-		return (EList<IfcRelDecomposes>)eGet(Ifc2x3Package.Literals.IFC_OBJECT_DEFINITION__DECOMPOSES, true);
+		return (EList<IfcRelDecomposes>)eGet(Ifc2x3Package.eINSTANCE.getIfcObjectDefinition_Decomposes(), true);
 	}
 
 	/**
@@ -118,7 +111,7 @@ public class IfcObjectDefinitionImpl extends IfcRootImpl implements IfcObjectDef
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelAssociates> getHasAssociations()
 	{
-		return (EList<IfcRelAssociates>)eGet(Ifc2x3Package.Literals.IFC_OBJECT_DEFINITION__HAS_ASSOCIATIONS, true);
+		return (EList<IfcRelAssociates>)eGet(Ifc2x3Package.eINSTANCE.getIfcObjectDefinition_HasAssociations(), true);
 	}
 
 } //IfcObjectDefinitionImpl

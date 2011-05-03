@@ -61,13 +61,6 @@ public class IfcTendonImpl extends IfcReinforcingElementImpl implements IfcTendo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	protected IfcTendonImpl()
 	{
 		super();
@@ -81,7 +74,7 @@ public class IfcTendonImpl extends IfcReinforcingElementImpl implements IfcTendo
 	@Override
 	protected EClass eStaticClass()
 	{
-		return Ifc2x3Package.Literals.IFC_TENDON;
+		return Ifc2x3Package.eINSTANCE.getIfcTendon();
 	}
 
 	/**
@@ -91,7 +84,7 @@ public class IfcTendonImpl extends IfcReinforcingElementImpl implements IfcTendo
 	 */
 	public IfcTendonTypeEnum getPredefinedType()
 	{
-		return (IfcTendonTypeEnum)eGet(Ifc2x3Package.Literals.IFC_TENDON__PREDEFINED_TYPE, true);
+		return (IfcTendonTypeEnum)eGet(Ifc2x3Package.eINSTANCE.getIfcTendon_PredefinedType(), true);
 	}
 
 	/**
@@ -101,7 +94,7 @@ public class IfcTendonImpl extends IfcReinforcingElementImpl implements IfcTendo
 	 */
 	public void setPredefinedType(IfcTendonTypeEnum newPredefinedType)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_TENDON__PREDEFINED_TYPE, newPredefinedType);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcTendon_PredefinedType(), newPredefinedType);
 	}
 
 	/**
@@ -111,7 +104,7 @@ public class IfcTendonImpl extends IfcReinforcingElementImpl implements IfcTendo
 	 */
 	public float getNominalDiameter()
 	{
-		return (Float)eGet(Ifc2x3Package.Literals.IFC_TENDON__NOMINAL_DIAMETER, true);
+		return (Float)eGet(Ifc2x3Package.eINSTANCE.getIfcTendon_NominalDiameter(), true);
 	}
 
 	/**
@@ -121,7 +114,7 @@ public class IfcTendonImpl extends IfcReinforcingElementImpl implements IfcTendo
 	 */
 	public void setNominalDiameter(float newNominalDiameter)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_TENDON__NOMINAL_DIAMETER, newNominalDiameter);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcTendon_NominalDiameter(), newNominalDiameter);
 	}
 
 	/**
@@ -131,7 +124,7 @@ public class IfcTendonImpl extends IfcReinforcingElementImpl implements IfcTendo
 	 */
 	public String getNominalDiameterAsString()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_TENDON__NOMINAL_DIAMETER_AS_STRING, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcTendon_NominalDiameterAsString(), true);
 	}
 
 	/**
@@ -141,7 +134,7 @@ public class IfcTendonImpl extends IfcReinforcingElementImpl implements IfcTendo
 	 */
 	public void setNominalDiameterAsString(String newNominalDiameterAsString)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_TENDON__NOMINAL_DIAMETER_AS_STRING, newNominalDiameterAsString);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcTendon_NominalDiameterAsString(), newNominalDiameterAsString);
 	}
 
 	/**
@@ -151,7 +144,7 @@ public class IfcTendonImpl extends IfcReinforcingElementImpl implements IfcTendo
 	 */
 	public float getCrossSectionArea()
 	{
-		return (Float)eGet(Ifc2x3Package.Literals.IFC_TENDON__CROSS_SECTION_AREA, true);
+		return (Float)eGet(Ifc2x3Package.eINSTANCE.getIfcTendon_CrossSectionArea(), true);
 	}
 
 	/**
@@ -161,7 +154,7 @@ public class IfcTendonImpl extends IfcReinforcingElementImpl implements IfcTendo
 	 */
 	public void setCrossSectionArea(float newCrossSectionArea)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_TENDON__CROSS_SECTION_AREA, newCrossSectionArea);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcTendon_CrossSectionArea(), newCrossSectionArea);
 	}
 
 	/**
@@ -171,7 +164,7 @@ public class IfcTendonImpl extends IfcReinforcingElementImpl implements IfcTendo
 	 */
 	public String getCrossSectionAreaAsString()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_TENDON__CROSS_SECTION_AREA_AS_STRING, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcTendon_CrossSectionAreaAsString(), true);
 	}
 
 	/**
@@ -181,7 +174,7 @@ public class IfcTendonImpl extends IfcReinforcingElementImpl implements IfcTendo
 	 */
 	public void setCrossSectionAreaAsString(String newCrossSectionAreaAsString)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_TENDON__CROSS_SECTION_AREA_AS_STRING, newCrossSectionAreaAsString);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcTendon_CrossSectionAreaAsString(), newCrossSectionAreaAsString);
 	}
 
 	/**
@@ -191,7 +184,7 @@ public class IfcTendonImpl extends IfcReinforcingElementImpl implements IfcTendo
 	 */
 	public float getTensionForce()
 	{
-		return (Float)eGet(Ifc2x3Package.Literals.IFC_TENDON__TENSION_FORCE, true);
+		return (Float)eGet(Ifc2x3Package.eINSTANCE.getIfcTendon_TensionForce(), true);
 	}
 
 	/**
@@ -201,7 +194,7 @@ public class IfcTendonImpl extends IfcReinforcingElementImpl implements IfcTendo
 	 */
 	public void setTensionForce(float newTensionForce)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_TENDON__TENSION_FORCE, newTensionForce);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcTendon_TensionForce(), newTensionForce);
 	}
 
 	/**
@@ -211,7 +204,7 @@ public class IfcTendonImpl extends IfcReinforcingElementImpl implements IfcTendo
 	 */
 	public void unsetTensionForce()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_TENDON__TENSION_FORCE);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcTendon_TensionForce());
 	}
 
 	/**
@@ -221,7 +214,7 @@ public class IfcTendonImpl extends IfcReinforcingElementImpl implements IfcTendo
 	 */
 	public boolean isSetTensionForce()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_TENDON__TENSION_FORCE);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcTendon_TensionForce());
 	}
 
 	/**
@@ -231,7 +224,7 @@ public class IfcTendonImpl extends IfcReinforcingElementImpl implements IfcTendo
 	 */
 	public String getTensionForceAsString()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_TENDON__TENSION_FORCE_AS_STRING, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcTendon_TensionForceAsString(), true);
 	}
 
 	/**
@@ -241,7 +234,7 @@ public class IfcTendonImpl extends IfcReinforcingElementImpl implements IfcTendo
 	 */
 	public void setTensionForceAsString(String newTensionForceAsString)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_TENDON__TENSION_FORCE_AS_STRING, newTensionForceAsString);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcTendon_TensionForceAsString(), newTensionForceAsString);
 	}
 
 	/**
@@ -251,7 +244,7 @@ public class IfcTendonImpl extends IfcReinforcingElementImpl implements IfcTendo
 	 */
 	public void unsetTensionForceAsString()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_TENDON__TENSION_FORCE_AS_STRING);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcTendon_TensionForceAsString());
 	}
 
 	/**
@@ -261,7 +254,7 @@ public class IfcTendonImpl extends IfcReinforcingElementImpl implements IfcTendo
 	 */
 	public boolean isSetTensionForceAsString()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_TENDON__TENSION_FORCE_AS_STRING);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcTendon_TensionForceAsString());
 	}
 
 	/**
@@ -271,7 +264,7 @@ public class IfcTendonImpl extends IfcReinforcingElementImpl implements IfcTendo
 	 */
 	public float getPreStress()
 	{
-		return (Float)eGet(Ifc2x3Package.Literals.IFC_TENDON__PRE_STRESS, true);
+		return (Float)eGet(Ifc2x3Package.eINSTANCE.getIfcTendon_PreStress(), true);
 	}
 
 	/**
@@ -281,7 +274,7 @@ public class IfcTendonImpl extends IfcReinforcingElementImpl implements IfcTendo
 	 */
 	public void setPreStress(float newPreStress)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_TENDON__PRE_STRESS, newPreStress);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcTendon_PreStress(), newPreStress);
 	}
 
 	/**
@@ -291,7 +284,7 @@ public class IfcTendonImpl extends IfcReinforcingElementImpl implements IfcTendo
 	 */
 	public void unsetPreStress()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_TENDON__PRE_STRESS);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcTendon_PreStress());
 	}
 
 	/**
@@ -301,7 +294,7 @@ public class IfcTendonImpl extends IfcReinforcingElementImpl implements IfcTendo
 	 */
 	public boolean isSetPreStress()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_TENDON__PRE_STRESS);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcTendon_PreStress());
 	}
 
 	/**
@@ -311,7 +304,7 @@ public class IfcTendonImpl extends IfcReinforcingElementImpl implements IfcTendo
 	 */
 	public String getPreStressAsString()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_TENDON__PRE_STRESS_AS_STRING, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcTendon_PreStressAsString(), true);
 	}
 
 	/**
@@ -321,7 +314,7 @@ public class IfcTendonImpl extends IfcReinforcingElementImpl implements IfcTendo
 	 */
 	public void setPreStressAsString(String newPreStressAsString)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_TENDON__PRE_STRESS_AS_STRING, newPreStressAsString);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcTendon_PreStressAsString(), newPreStressAsString);
 	}
 
 	/**
@@ -331,7 +324,7 @@ public class IfcTendonImpl extends IfcReinforcingElementImpl implements IfcTendo
 	 */
 	public void unsetPreStressAsString()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_TENDON__PRE_STRESS_AS_STRING);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcTendon_PreStressAsString());
 	}
 
 	/**
@@ -341,7 +334,7 @@ public class IfcTendonImpl extends IfcReinforcingElementImpl implements IfcTendo
 	 */
 	public boolean isSetPreStressAsString()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_TENDON__PRE_STRESS_AS_STRING);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcTendon_PreStressAsString());
 	}
 
 	/**
@@ -351,7 +344,7 @@ public class IfcTendonImpl extends IfcReinforcingElementImpl implements IfcTendo
 	 */
 	public float getFrictionCoefficient()
 	{
-		return (Float)eGet(Ifc2x3Package.Literals.IFC_TENDON__FRICTION_COEFFICIENT, true);
+		return (Float)eGet(Ifc2x3Package.eINSTANCE.getIfcTendon_FrictionCoefficient(), true);
 	}
 
 	/**
@@ -361,7 +354,7 @@ public class IfcTendonImpl extends IfcReinforcingElementImpl implements IfcTendo
 	 */
 	public void setFrictionCoefficient(float newFrictionCoefficient)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_TENDON__FRICTION_COEFFICIENT, newFrictionCoefficient);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcTendon_FrictionCoefficient(), newFrictionCoefficient);
 	}
 
 	/**
@@ -371,7 +364,7 @@ public class IfcTendonImpl extends IfcReinforcingElementImpl implements IfcTendo
 	 */
 	public void unsetFrictionCoefficient()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_TENDON__FRICTION_COEFFICIENT);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcTendon_FrictionCoefficient());
 	}
 
 	/**
@@ -381,7 +374,7 @@ public class IfcTendonImpl extends IfcReinforcingElementImpl implements IfcTendo
 	 */
 	public boolean isSetFrictionCoefficient()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_TENDON__FRICTION_COEFFICIENT);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcTendon_FrictionCoefficient());
 	}
 
 	/**
@@ -391,7 +384,7 @@ public class IfcTendonImpl extends IfcReinforcingElementImpl implements IfcTendo
 	 */
 	public String getFrictionCoefficientAsString()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_TENDON__FRICTION_COEFFICIENT_AS_STRING, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcTendon_FrictionCoefficientAsString(), true);
 	}
 
 	/**
@@ -401,7 +394,7 @@ public class IfcTendonImpl extends IfcReinforcingElementImpl implements IfcTendo
 	 */
 	public void setFrictionCoefficientAsString(String newFrictionCoefficientAsString)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_TENDON__FRICTION_COEFFICIENT_AS_STRING, newFrictionCoefficientAsString);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcTendon_FrictionCoefficientAsString(), newFrictionCoefficientAsString);
 	}
 
 	/**
@@ -411,7 +404,7 @@ public class IfcTendonImpl extends IfcReinforcingElementImpl implements IfcTendo
 	 */
 	public void unsetFrictionCoefficientAsString()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_TENDON__FRICTION_COEFFICIENT_AS_STRING);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcTendon_FrictionCoefficientAsString());
 	}
 
 	/**
@@ -421,7 +414,7 @@ public class IfcTendonImpl extends IfcReinforcingElementImpl implements IfcTendo
 	 */
 	public boolean isSetFrictionCoefficientAsString()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_TENDON__FRICTION_COEFFICIENT_AS_STRING);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcTendon_FrictionCoefficientAsString());
 	}
 
 	/**
@@ -431,7 +424,7 @@ public class IfcTendonImpl extends IfcReinforcingElementImpl implements IfcTendo
 	 */
 	public float getAnchorageSlip()
 	{
-		return (Float)eGet(Ifc2x3Package.Literals.IFC_TENDON__ANCHORAGE_SLIP, true);
+		return (Float)eGet(Ifc2x3Package.eINSTANCE.getIfcTendon_AnchorageSlip(), true);
 	}
 
 	/**
@@ -441,7 +434,7 @@ public class IfcTendonImpl extends IfcReinforcingElementImpl implements IfcTendo
 	 */
 	public void setAnchorageSlip(float newAnchorageSlip)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_TENDON__ANCHORAGE_SLIP, newAnchorageSlip);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcTendon_AnchorageSlip(), newAnchorageSlip);
 	}
 
 	/**
@@ -451,7 +444,7 @@ public class IfcTendonImpl extends IfcReinforcingElementImpl implements IfcTendo
 	 */
 	public void unsetAnchorageSlip()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_TENDON__ANCHORAGE_SLIP);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcTendon_AnchorageSlip());
 	}
 
 	/**
@@ -461,7 +454,7 @@ public class IfcTendonImpl extends IfcReinforcingElementImpl implements IfcTendo
 	 */
 	public boolean isSetAnchorageSlip()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_TENDON__ANCHORAGE_SLIP);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcTendon_AnchorageSlip());
 	}
 
 	/**
@@ -471,7 +464,7 @@ public class IfcTendonImpl extends IfcReinforcingElementImpl implements IfcTendo
 	 */
 	public String getAnchorageSlipAsString()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_TENDON__ANCHORAGE_SLIP_AS_STRING, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcTendon_AnchorageSlipAsString(), true);
 	}
 
 	/**
@@ -481,7 +474,7 @@ public class IfcTendonImpl extends IfcReinforcingElementImpl implements IfcTendo
 	 */
 	public void setAnchorageSlipAsString(String newAnchorageSlipAsString)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_TENDON__ANCHORAGE_SLIP_AS_STRING, newAnchorageSlipAsString);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcTendon_AnchorageSlipAsString(), newAnchorageSlipAsString);
 	}
 
 	/**
@@ -491,7 +484,7 @@ public class IfcTendonImpl extends IfcReinforcingElementImpl implements IfcTendo
 	 */
 	public void unsetAnchorageSlipAsString()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_TENDON__ANCHORAGE_SLIP_AS_STRING);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcTendon_AnchorageSlipAsString());
 	}
 
 	/**
@@ -501,7 +494,7 @@ public class IfcTendonImpl extends IfcReinforcingElementImpl implements IfcTendo
 	 */
 	public boolean isSetAnchorageSlipAsString()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_TENDON__ANCHORAGE_SLIP_AS_STRING);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcTendon_AnchorageSlipAsString());
 	}
 
 	/**
@@ -511,7 +504,7 @@ public class IfcTendonImpl extends IfcReinforcingElementImpl implements IfcTendo
 	 */
 	public float getMinCurvatureRadius()
 	{
-		return (Float)eGet(Ifc2x3Package.Literals.IFC_TENDON__MIN_CURVATURE_RADIUS, true);
+		return (Float)eGet(Ifc2x3Package.eINSTANCE.getIfcTendon_MinCurvatureRadius(), true);
 	}
 
 	/**
@@ -521,7 +514,7 @@ public class IfcTendonImpl extends IfcReinforcingElementImpl implements IfcTendo
 	 */
 	public void setMinCurvatureRadius(float newMinCurvatureRadius)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_TENDON__MIN_CURVATURE_RADIUS, newMinCurvatureRadius);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcTendon_MinCurvatureRadius(), newMinCurvatureRadius);
 	}
 
 	/**
@@ -531,7 +524,7 @@ public class IfcTendonImpl extends IfcReinforcingElementImpl implements IfcTendo
 	 */
 	public void unsetMinCurvatureRadius()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_TENDON__MIN_CURVATURE_RADIUS);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcTendon_MinCurvatureRadius());
 	}
 
 	/**
@@ -541,7 +534,7 @@ public class IfcTendonImpl extends IfcReinforcingElementImpl implements IfcTendo
 	 */
 	public boolean isSetMinCurvatureRadius()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_TENDON__MIN_CURVATURE_RADIUS);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcTendon_MinCurvatureRadius());
 	}
 
 	/**
@@ -551,7 +544,7 @@ public class IfcTendonImpl extends IfcReinforcingElementImpl implements IfcTendo
 	 */
 	public String getMinCurvatureRadiusAsString()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_TENDON__MIN_CURVATURE_RADIUS_AS_STRING, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcTendon_MinCurvatureRadiusAsString(), true);
 	}
 
 	/**
@@ -561,7 +554,7 @@ public class IfcTendonImpl extends IfcReinforcingElementImpl implements IfcTendo
 	 */
 	public void setMinCurvatureRadiusAsString(String newMinCurvatureRadiusAsString)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_TENDON__MIN_CURVATURE_RADIUS_AS_STRING, newMinCurvatureRadiusAsString);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcTendon_MinCurvatureRadiusAsString(), newMinCurvatureRadiusAsString);
 	}
 
 	/**
@@ -571,7 +564,7 @@ public class IfcTendonImpl extends IfcReinforcingElementImpl implements IfcTendo
 	 */
 	public void unsetMinCurvatureRadiusAsString()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_TENDON__MIN_CURVATURE_RADIUS_AS_STRING);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcTendon_MinCurvatureRadiusAsString());
 	}
 
 	/**
@@ -581,7 +574,7 @@ public class IfcTendonImpl extends IfcReinforcingElementImpl implements IfcTendo
 	 */
 	public boolean isSetMinCurvatureRadiusAsString()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_TENDON__MIN_CURVATURE_RADIUS_AS_STRING);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcTendon_MinCurvatureRadiusAsString());
 	}
 
 } //IfcTendonImpl

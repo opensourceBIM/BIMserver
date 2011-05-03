@@ -40,108 +40,101 @@ public enum IfcSpaceHeaterTypeEnum implements Enumerator
 	 * The '<em><b>NULL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NULL
+	 * @see #NULL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NULL_LITERAL(0, "NULL", "NULL"),
+	NULL(0, "NULL", "NULL"),
 
 	/**
 	 * The '<em><b>UNITHEATER</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #UNITHEATER
+	 * @see #UNITHEATER_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	UNITHEATER_LITERAL(1, "UNITHEATER", "UNITHEATER"),
+	UNITHEATER(1, "UNITHEATER", "UNITHEATER"),
 
 	/**
 	 * The '<em><b>BASEBOARDHEATER</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #BASEBOARDHEATER
+	 * @see #BASEBOARDHEATER_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	BASEBOARDHEATER_LITERAL(2, "BASEBOARDHEATER", "BASEBOARDHEATER"),
+	BASEBOARDHEATER(2, "BASEBOARDHEATER", "BASEBOARDHEATER"),
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED
+	 * @see #NOTDEFINED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED_LITERAL(3, "NOTDEFINED", "NOTDEFINED"),
+	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>PANELRADIATOR</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #PANELRADIATOR
+	 * @see #PANELRADIATOR_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	PANELRADIATOR_LITERAL(4, "PANELRADIATOR", "PANELRADIATOR"),
+	PANELRADIATOR(4, "PANELRADIATOR", "PANELRADIATOR"),
 
 	/**
 	 * The '<em><b>CONVECTOR</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #CONVECTOR
+	 * @see #CONVECTOR_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	CONVECTOR_LITERAL(5, "CONVECTOR", "CONVECTOR"),
+	CONVECTOR(5, "CONVECTOR", "CONVECTOR"),
 
 	/**
 	 * The '<em><b>TUBULARRADIATOR</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #TUBULARRADIATOR
+	 * @see #TUBULARRADIATOR_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	TUBULARRADIATOR_LITERAL(6, "TUBULARRADIATOR", "TUBULARRADIATOR"),
+	TUBULARRADIATOR(6, "TUBULARRADIATOR", "TUBULARRADIATOR"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
+	 * @see #USERDEFINED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	USERDEFINED_LITERAL(7, "USERDEFINED", "USERDEFINED"),
+	USERDEFINED(7, "USERDEFINED", "USERDEFINED"),
 
 	/**
 	 * The '<em><b>FINNEDTUBEUNIT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #FINNEDTUBEUNIT
+	 * @see #FINNEDTUBEUNIT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	FINNEDTUBEUNIT_LITERAL(8, "FINNEDTUBEUNIT", "FINNEDTUBEUNIT"),
+	FINNEDTUBEUNIT(8, "FINNEDTUBEUNIT", "FINNEDTUBEUNIT"),
 
 	/**
 	 * The '<em><b>SECTIONALRADIATOR</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #SECTIONALRADIATOR
+	 * @see #SECTIONALRADIATOR_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	SECTIONALRADIATOR_LITERAL(9, "SECTIONALRADIATOR", "SECTIONALRADIATOR");
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
+	SECTIONALRADIATOR(9, "SECTIONALRADIATOR", "SECTIONALRADIATOR");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -151,12 +144,12 @@ public enum IfcSpaceHeaterTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NULL_LITERAL
+	 * @see #NULL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NULL = 0;
+	public static final int NULL_VALUE = 0;
 
 	/**
 	 * The '<em><b>UNITHEATER</b></em>' literal value.
@@ -166,12 +159,12 @@ public enum IfcSpaceHeaterTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #UNITHEATER_LITERAL
+	 * @see #UNITHEATER
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int UNITHEATER = 1;
+	public static final int UNITHEATER_VALUE = 1;
 
 	/**
 	 * The '<em><b>BASEBOARDHEATER</b></em>' literal value.
@@ -181,12 +174,12 @@ public enum IfcSpaceHeaterTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #BASEBOARDHEATER_LITERAL
+	 * @see #BASEBOARDHEATER
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int BASEBOARDHEATER = 2;
+	public static final int BASEBOARDHEATER_VALUE = 2;
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
@@ -196,12 +189,12 @@ public enum IfcSpaceHeaterTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_LITERAL
+	 * @see #NOTDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED = 3;
+	public static final int NOTDEFINED_VALUE = 3;
 
 	/**
 	 * The '<em><b>PANELRADIATOR</b></em>' literal value.
@@ -211,12 +204,12 @@ public enum IfcSpaceHeaterTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #PANELRADIATOR_LITERAL
+	 * @see #PANELRADIATOR
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PANELRADIATOR = 4;
+	public static final int PANELRADIATOR_VALUE = 4;
 
 	/**
 	 * The '<em><b>CONVECTOR</b></em>' literal value.
@@ -226,12 +219,12 @@ public enum IfcSpaceHeaterTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #CONVECTOR_LITERAL
+	 * @see #CONVECTOR
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int CONVECTOR = 5;
+	public static final int CONVECTOR_VALUE = 5;
 
 	/**
 	 * The '<em><b>TUBULARRADIATOR</b></em>' literal value.
@@ -241,12 +234,12 @@ public enum IfcSpaceHeaterTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #TUBULARRADIATOR_LITERAL
+	 * @see #TUBULARRADIATOR
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int TUBULARRADIATOR = 6;
+	public static final int TUBULARRADIATOR_VALUE = 6;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -256,12 +249,12 @@ public enum IfcSpaceHeaterTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_LITERAL
+	 * @see #USERDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED = 7;
+	public static final int USERDEFINED_VALUE = 7;
 
 	/**
 	 * The '<em><b>FINNEDTUBEUNIT</b></em>' literal value.
@@ -271,12 +264,12 @@ public enum IfcSpaceHeaterTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #FINNEDTUBEUNIT_LITERAL
+	 * @see #FINNEDTUBEUNIT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int FINNEDTUBEUNIT = 8;
+	public static final int FINNEDTUBEUNIT_VALUE = 8;
 
 	/**
 	 * The '<em><b>SECTIONALRADIATOR</b></em>' literal value.
@@ -286,12 +279,12 @@ public enum IfcSpaceHeaterTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #SECTIONALRADIATOR_LITERAL
+	 * @see #SECTIONALRADIATOR
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SECTIONALRADIATOR = 9;
+	public static final int SECTIONALRADIATOR_VALUE = 9;
 
 	/**
 	 * An array of all the '<em><b>Ifc Space Heater Type Enum</b></em>' enumerators.
@@ -300,18 +293,17 @@ public enum IfcSpaceHeaterTypeEnum implements Enumerator
 	 * @generated
 	 */
 	private static final IfcSpaceHeaterTypeEnum[] VALUES_ARRAY =
-		new IfcSpaceHeaterTypeEnum[]
-		{
-			NULL_LITERAL,
-			UNITHEATER_LITERAL,
-			BASEBOARDHEATER_LITERAL,
-			NOTDEFINED_LITERAL,
-			PANELRADIATOR_LITERAL,
-			CONVECTOR_LITERAL,
-			TUBULARRADIATOR_LITERAL,
-			USERDEFINED_LITERAL,
-			FINNEDTUBEUNIT_LITERAL,
-			SECTIONALRADIATOR_LITERAL,
+		new IfcSpaceHeaterTypeEnum[] {
+			NULL,
+			UNITHEATER,
+			BASEBOARDHEATER,
+			NOTDEFINED,
+			PANELRADIATOR,
+			CONVECTOR,
+			TUBULARRADIATOR,
+			USERDEFINED,
+			FINNEDTUBEUNIT,
+			SECTIONALRADIATOR,
 		};
 
 	/**
@@ -330,11 +322,9 @@ public enum IfcSpaceHeaterTypeEnum implements Enumerator
 	 */
 	public static IfcSpaceHeaterTypeEnum get(String literal)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcSpaceHeaterTypeEnum result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal))
-			{
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -349,11 +339,9 @@ public enum IfcSpaceHeaterTypeEnum implements Enumerator
 	 */
 	public static IfcSpaceHeaterTypeEnum getByName(String name)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcSpaceHeaterTypeEnum result = VALUES_ARRAY[i];
-			if (result.getName().equals(name))
-			{
+			if (result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -368,18 +356,17 @@ public enum IfcSpaceHeaterTypeEnum implements Enumerator
 	 */
 	public static IfcSpaceHeaterTypeEnum get(int value)
 	{
-		switch (value)
-		{
-			case NULL: return NULL_LITERAL;
-			case UNITHEATER: return UNITHEATER_LITERAL;
-			case BASEBOARDHEATER: return BASEBOARDHEATER_LITERAL;
-			case NOTDEFINED: return NOTDEFINED_LITERAL;
-			case PANELRADIATOR: return PANELRADIATOR_LITERAL;
-			case CONVECTOR: return CONVECTOR_LITERAL;
-			case TUBULARRADIATOR: return TUBULARRADIATOR_LITERAL;
-			case USERDEFINED: return USERDEFINED_LITERAL;
-			case FINNEDTUBEUNIT: return FINNEDTUBEUNIT_LITERAL;
-			case SECTIONALRADIATOR: return SECTIONALRADIATOR_LITERAL;
+		switch (value) {
+			case NULL_VALUE: return NULL;
+			case UNITHEATER_VALUE: return UNITHEATER;
+			case BASEBOARDHEATER_VALUE: return BASEBOARDHEATER;
+			case NOTDEFINED_VALUE: return NOTDEFINED;
+			case PANELRADIATOR_VALUE: return PANELRADIATOR;
+			case CONVECTOR_VALUE: return CONVECTOR;
+			case TUBULARRADIATOR_VALUE: return TUBULARRADIATOR;
+			case USERDEFINED_VALUE: return USERDEFINED;
+			case FINNEDTUBEUNIT_VALUE: return FINNEDTUBEUNIT;
+			case SECTIONALRADIATOR_VALUE: return SECTIONALRADIATOR;
 		}
 		return null;
 	}

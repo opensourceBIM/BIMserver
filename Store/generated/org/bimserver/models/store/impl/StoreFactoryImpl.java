@@ -53,13 +53,6 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
 public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory
 {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
-
-	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -67,16 +60,13 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory
 	 */
 	public static StoreFactory init()
 	{
-		try
-		{
+		try {
 			StoreFactory theStoreFactory = (StoreFactory)EPackage.Registry.INSTANCE.getEFactory("store"); 
-			if (theStoreFactory != null)
-			{
+			if (theStoreFactory != null) {
 				return theStoreFactory;
 			}
 		}
-		catch (Exception exception)
-		{
+		catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new StoreFactoryImpl();
@@ -101,8 +91,7 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory
 	@Override
 	public EObject create(EClass eClass)
 	{
-		switch (eClass.getClassifierID())
-		{
+		switch (eClass.getClassifierID()) {
 			case StorePackage.PROJECT: return (EObject)createProject();
 			case StorePackage.USER: return (EObject)createUser();
 			case StorePackage.CLASH: return (EObject)createClash();
@@ -129,8 +118,7 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue)
 	{
-		switch (eDataType.getClassifierID())
-		{
+		switch (eDataType.getClassifierID()) {
 			case StorePackage.USER_TYPE:
 				return createUserTypeFromString(eDataType, initialValue);
 			case StorePackage.CHECKIN_STATE:
@@ -152,8 +140,7 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue)
 	{
-		switch (eDataType.getClassifierID())
-		{
+		switch (eDataType.getClassifierID()) {
 			case StorePackage.USER_TYPE:
 				return convertUserTypeToString(eDataType, instanceValue);
 			case StorePackage.CHECKIN_STATE:

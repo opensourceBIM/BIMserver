@@ -53,13 +53,6 @@ public class IfcGridImpl extends IfcProductImpl implements IfcGrid
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	protected IfcGridImpl()
 	{
 		super();
@@ -73,7 +66,7 @@ public class IfcGridImpl extends IfcProductImpl implements IfcGrid
 	@Override
 	protected EClass eStaticClass()
 	{
-		return Ifc2x3Package.Literals.IFC_GRID;
+		return Ifc2x3Package.eINSTANCE.getIfcGrid();
 	}
 
 	/**
@@ -84,7 +77,7 @@ public class IfcGridImpl extends IfcProductImpl implements IfcGrid
 	@SuppressWarnings("unchecked")
 	public EList<IfcGridAxis> getUAxes()
 	{
-		return (EList<IfcGridAxis>)eGet(Ifc2x3Package.Literals.IFC_GRID__UAXES, true);
+		return (EList<IfcGridAxis>)eGet(Ifc2x3Package.eINSTANCE.getIfcGrid_UAxes(), true);
 	}
 
 	/**
@@ -95,7 +88,7 @@ public class IfcGridImpl extends IfcProductImpl implements IfcGrid
 	@SuppressWarnings("unchecked")
 	public EList<IfcGridAxis> getVAxes()
 	{
-		return (EList<IfcGridAxis>)eGet(Ifc2x3Package.Literals.IFC_GRID__VAXES, true);
+		return (EList<IfcGridAxis>)eGet(Ifc2x3Package.eINSTANCE.getIfcGrid_VAxes(), true);
 	}
 
 	/**
@@ -106,7 +99,7 @@ public class IfcGridImpl extends IfcProductImpl implements IfcGrid
 	@SuppressWarnings("unchecked")
 	public EList<IfcGridAxis> getWAxes()
 	{
-		return (EList<IfcGridAxis>)eGet(Ifc2x3Package.Literals.IFC_GRID__WAXES, true);
+		return (EList<IfcGridAxis>)eGet(Ifc2x3Package.eINSTANCE.getIfcGrid_WAxes(), true);
 	}
 
 	/**
@@ -116,7 +109,7 @@ public class IfcGridImpl extends IfcProductImpl implements IfcGrid
 	 */
 	public void unsetWAxes()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_GRID__WAXES);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcGrid_WAxes());
 	}
 
 	/**
@@ -126,7 +119,7 @@ public class IfcGridImpl extends IfcProductImpl implements IfcGrid
 	 */
 	public boolean isSetWAxes()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_GRID__WAXES);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcGrid_WAxes());
 	}
 
 	/**
@@ -137,7 +130,7 @@ public class IfcGridImpl extends IfcProductImpl implements IfcGrid
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelContainedInSpatialStructure> getContainedInStructure()
 	{
-		return (EList<IfcRelContainedInSpatialStructure>)eGet(Ifc2x3Package.Literals.IFC_GRID__CONTAINED_IN_STRUCTURE, true);
+		return (EList<IfcRelContainedInSpatialStructure>)eGet(Ifc2x3Package.eINSTANCE.getIfcGrid_ContainedInStructure(), true);
 	}
 
 } //IfcGridImpl

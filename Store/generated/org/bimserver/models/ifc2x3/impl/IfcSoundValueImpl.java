@@ -51,13 +51,6 @@ public class IfcSoundValueImpl extends IfcPropertySetDefinitionImpl implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	protected IfcSoundValueImpl()
 	{
 		super();
@@ -71,7 +64,7 @@ public class IfcSoundValueImpl extends IfcPropertySetDefinitionImpl implements I
 	@Override
 	protected EClass eStaticClass()
 	{
-		return Ifc2x3Package.Literals.IFC_SOUND_VALUE;
+		return Ifc2x3Package.eINSTANCE.getIfcSoundValue();
 	}
 
 	/**
@@ -81,7 +74,7 @@ public class IfcSoundValueImpl extends IfcPropertySetDefinitionImpl implements I
 	 */
 	public IfcTimeSeries getSoundLevelTimeSeries()
 	{
-		return (IfcTimeSeries)eGet(Ifc2x3Package.Literals.IFC_SOUND_VALUE__SOUND_LEVEL_TIME_SERIES, true);
+		return (IfcTimeSeries)eGet(Ifc2x3Package.eINSTANCE.getIfcSoundValue_SoundLevelTimeSeries(), true);
 	}
 
 	/**
@@ -91,7 +84,7 @@ public class IfcSoundValueImpl extends IfcPropertySetDefinitionImpl implements I
 	 */
 	public void setSoundLevelTimeSeries(IfcTimeSeries newSoundLevelTimeSeries)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_SOUND_VALUE__SOUND_LEVEL_TIME_SERIES, newSoundLevelTimeSeries);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcSoundValue_SoundLevelTimeSeries(), newSoundLevelTimeSeries);
 	}
 
 	/**
@@ -101,7 +94,7 @@ public class IfcSoundValueImpl extends IfcPropertySetDefinitionImpl implements I
 	 */
 	public void unsetSoundLevelTimeSeries()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_SOUND_VALUE__SOUND_LEVEL_TIME_SERIES);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcSoundValue_SoundLevelTimeSeries());
 	}
 
 	/**
@@ -111,7 +104,7 @@ public class IfcSoundValueImpl extends IfcPropertySetDefinitionImpl implements I
 	 */
 	public boolean isSetSoundLevelTimeSeries()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_SOUND_VALUE__SOUND_LEVEL_TIME_SERIES);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcSoundValue_SoundLevelTimeSeries());
 	}
 
 	/**
@@ -121,7 +114,7 @@ public class IfcSoundValueImpl extends IfcPropertySetDefinitionImpl implements I
 	 */
 	public float getFrequency()
 	{
-		return (Float)eGet(Ifc2x3Package.Literals.IFC_SOUND_VALUE__FREQUENCY, true);
+		return (Float)eGet(Ifc2x3Package.eINSTANCE.getIfcSoundValue_Frequency(), true);
 	}
 
 	/**
@@ -131,7 +124,7 @@ public class IfcSoundValueImpl extends IfcPropertySetDefinitionImpl implements I
 	 */
 	public void setFrequency(float newFrequency)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_SOUND_VALUE__FREQUENCY, newFrequency);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcSoundValue_Frequency(), newFrequency);
 	}
 
 	/**
@@ -141,7 +134,7 @@ public class IfcSoundValueImpl extends IfcPropertySetDefinitionImpl implements I
 	 */
 	public String getFrequencyAsString()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_SOUND_VALUE__FREQUENCY_AS_STRING, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcSoundValue_FrequencyAsString(), true);
 	}
 
 	/**
@@ -151,7 +144,7 @@ public class IfcSoundValueImpl extends IfcPropertySetDefinitionImpl implements I
 	 */
 	public void setFrequencyAsString(String newFrequencyAsString)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_SOUND_VALUE__FREQUENCY_AS_STRING, newFrequencyAsString);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcSoundValue_FrequencyAsString(), newFrequencyAsString);
 	}
 
 	/**
@@ -161,7 +154,7 @@ public class IfcSoundValueImpl extends IfcPropertySetDefinitionImpl implements I
 	 */
 	public IfcDerivedMeasureValue getSoundLevelSingleValue()
 	{
-		return (IfcDerivedMeasureValue)eGet(Ifc2x3Package.Literals.IFC_SOUND_VALUE__SOUND_LEVEL_SINGLE_VALUE, true);
+		return (IfcDerivedMeasureValue)eGet(Ifc2x3Package.eINSTANCE.getIfcSoundValue_SoundLevelSingleValue(), true);
 	}
 
 	/**
@@ -171,7 +164,7 @@ public class IfcSoundValueImpl extends IfcPropertySetDefinitionImpl implements I
 	 */
 	public void setSoundLevelSingleValue(IfcDerivedMeasureValue newSoundLevelSingleValue)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_SOUND_VALUE__SOUND_LEVEL_SINGLE_VALUE, newSoundLevelSingleValue);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcSoundValue_SoundLevelSingleValue(), newSoundLevelSingleValue);
 	}
 
 	/**
@@ -181,7 +174,7 @@ public class IfcSoundValueImpl extends IfcPropertySetDefinitionImpl implements I
 	 */
 	public void unsetSoundLevelSingleValue()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_SOUND_VALUE__SOUND_LEVEL_SINGLE_VALUE);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcSoundValue_SoundLevelSingleValue());
 	}
 
 	/**
@@ -191,7 +184,7 @@ public class IfcSoundValueImpl extends IfcPropertySetDefinitionImpl implements I
 	 */
 	public boolean isSetSoundLevelSingleValue()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_SOUND_VALUE__SOUND_LEVEL_SINGLE_VALUE);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcSoundValue_SoundLevelSingleValue());
 	}
 
 } //IfcSoundValueImpl

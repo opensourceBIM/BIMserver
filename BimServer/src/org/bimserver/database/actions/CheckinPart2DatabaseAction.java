@@ -79,10 +79,10 @@ public class CheckinPart2DatabaseAction extends BimDatabaseAction<Void> {
 			}
 			getDatabaseSession().store(ifcModel.getValues(), project.getId(), concreteRevision.getId());
 			for (Revision revision : concreteRevision.getRevisions()) {
-				revision.setState(CheckinState.DONE_LITERAL);
+				revision.setState(CheckinState.DONE);
 				getDatabaseSession().store(revision);
 			}
-			concreteRevision.setState(CheckinState.DONE_LITERAL);
+			concreteRevision.setState(CheckinState.DONE);
 			getDatabaseSession().store(concreteRevision);
 		} catch (Throwable e) {
 			if (e instanceof BimDeadlockException) {
@@ -90,7 +90,7 @@ public class CheckinPart2DatabaseAction extends BimDatabaseAction<Void> {
 				throw (BimDeadlockException)e;
 			}
 			for (Revision revision : concreteRevision.getRevisions()) {
-				revision.setState(CheckinState.ERROR_LITERAL);
+				revision.setState(CheckinState.ERROR);
 				revision.setLastError(e.getMessage());
 			}
 			throw new UserException(e);

@@ -81,7 +81,7 @@ public class ReflectiveRpcChannel implements BlockingRpcChannel {
 	@Override
 	public Message callBlockingMethod(MethodDescriptor methodDescriptor, RpcController controller, Message request, Message responsePrototype) throws ServiceException {
 		if (service == null) {
-			service = serviceFactory.newService(AccessMethod.INTERNAL_LITERAL);
+			service = serviceFactory.newService(AccessMethod.INTERNAL);
 		}
 		Class<? extends ServiceInterface> clazz = service.getClass();
 		Class<?>[] parameterClasses = new Class[methodDescriptor.getInputType().getFields().size()];

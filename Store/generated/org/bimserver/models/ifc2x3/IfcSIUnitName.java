@@ -40,318 +40,311 @@ public enum IfcSIUnitName implements Enumerator
 	 * The '<em><b>NULL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NULL
+	 * @see #NULL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NULL_LITERAL(0, "NULL", "NULL"),
+	NULL(0, "NULL", "NULL"),
 
 	/**
 	 * The '<em><b>TESLA</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #TESLA
+	 * @see #TESLA_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	TESLA_LITERAL(1, "TESLA", "TESLA"),
+	TESLA(1, "TESLA", "TESLA"),
 
 	/**
 	 * The '<em><b>HENRY</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #HENRY
+	 * @see #HENRY_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	HENRY_LITERAL(2, "HENRY", "HENRY"),
+	HENRY(2, "HENRY", "HENRY"),
 
 	/**
 	 * The '<em><b>METRE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #METRE
+	 * @see #METRE_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	METRE_LITERAL(3, "METRE", "METRE"),
+	METRE(3, "METRE", "METRE"),
 
 	/**
 	 * The '<em><b>SECOND</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #SECOND
+	 * @see #SECOND_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	SECOND_LITERAL(4, "SECOND", "SECOND"),
+	SECOND(4, "SECOND", "SECOND"),
 
 	/**
 	 * The '<em><b>AMPERE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #AMPERE
+	 * @see #AMPERE_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	AMPERE_LITERAL(5, "AMPERE", "AMPERE"),
+	AMPERE(5, "AMPERE", "AMPERE"),
 
 	/**
 	 * The '<em><b>JOULE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #JOULE
+	 * @see #JOULE_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	JOULE_LITERAL(6, "JOULE", "JOULE"),
+	JOULE(6, "JOULE", "JOULE"),
 
 	/**
 	 * The '<em><b>KELVIN</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #KELVIN
+	 * @see #KELVIN_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	KELVIN_LITERAL(7, "KELVIN", "KELVIN"),
+	KELVIN(7, "KELVIN", "KELVIN"),
 
 	/**
 	 * The '<em><b>GRAM</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #GRAM
+	 * @see #GRAM_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	GRAM_LITERAL(8, "GRAM", "GRAM"),
+	GRAM(8, "GRAM", "GRAM"),
 
 	/**
 	 * The '<em><b>LUMEN</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #LUMEN
+	 * @see #LUMEN_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	LUMEN_LITERAL(9, "LUMEN", "LUMEN"),
+	LUMEN(9, "LUMEN", "LUMEN"),
 
 	/**
 	 * The '<em><b>FARAD</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #FARAD
+	 * @see #FARAD_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	FARAD_LITERAL(10, "FARAD", "FARAD"),
+	FARAD(10, "FARAD", "FARAD"),
 
 	/**
 	 * The '<em><b>STERADIAN</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #STERADIAN
+	 * @see #STERADIAN_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	STERADIAN_LITERAL(11, "STERADIAN", "STERADIAN"),
+	STERADIAN(11, "STERADIAN", "STERADIAN"),
 
 	/**
 	 * The '<em><b>LUX</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #LUX
+	 * @see #LUX_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	LUX_LITERAL(12, "LUX", "LUX"),
+	LUX(12, "LUX", "LUX"),
 
 	/**
 	 * The '<em><b>DEGREE CELSIUS</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #DEGREE_CELSIUS
+	 * @see #DEGREE_CELSIUS_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	DEGREE_CELSIUS_LITERAL(13, "DEGREE_CELSIUS", "DEGREE_CELSIUS"),
+	DEGREE_CELSIUS(13, "DEGREE_CELSIUS", "DEGREE_CELSIUS"),
 
 	/**
 	 * The '<em><b>SIEVERT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #SIEVERT
+	 * @see #SIEVERT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	SIEVERT_LITERAL(14, "SIEVERT", "SIEVERT"),
+	SIEVERT(14, "SIEVERT", "SIEVERT"),
 
 	/**
 	 * The '<em><b>CUBIC METRE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #CUBIC_METRE
+	 * @see #CUBIC_METRE_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	CUBIC_METRE_LITERAL(15, "CUBIC_METRE", "CUBIC_METRE"),
+	CUBIC_METRE(15, "CUBIC_METRE", "CUBIC_METRE"),
 
 	/**
 	 * The '<em><b>NEWTON</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NEWTON
+	 * @see #NEWTON_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NEWTON_LITERAL(16, "NEWTON", "NEWTON"),
+	NEWTON(16, "NEWTON", "NEWTON"),
 
 	/**
 	 * The '<em><b>WATT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #WATT
+	 * @see #WATT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	WATT_LITERAL(17, "WATT", "WATT"),
+	WATT(17, "WATT", "WATT"),
 
 	/**
 	 * The '<em><b>CANDELA</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #CANDELA
+	 * @see #CANDELA_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	CANDELA_LITERAL(18, "CANDELA", "CANDELA"),
+	CANDELA(18, "CANDELA", "CANDELA"),
 
 	/**
 	 * The '<em><b>RADIAN</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #RADIAN
+	 * @see #RADIAN_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	RADIAN_LITERAL(19, "RADIAN", "RADIAN"),
+	RADIAN(19, "RADIAN", "RADIAN"),
 
 	/**
 	 * The '<em><b>PASCAL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #PASCAL
+	 * @see #PASCAL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	PASCAL_LITERAL(20, "PASCAL", "PASCAL"),
+	PASCAL(20, "PASCAL", "PASCAL"),
 
 	/**
 	 * The '<em><b>VOLT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #VOLT
+	 * @see #VOLT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	VOLT_LITERAL(21, "VOLT", "VOLT"),
+	VOLT(21, "VOLT", "VOLT"),
 
 	/**
 	 * The '<em><b>WEBER</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #WEBER
+	 * @see #WEBER_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	WEBER_LITERAL(22, "WEBER", "WEBER"),
+	WEBER(22, "WEBER", "WEBER"),
 
 	/**
 	 * The '<em><b>COULOMB</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #COULOMB
+	 * @see #COULOMB_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	COULOMB_LITERAL(23, "COULOMB", "COULOMB"),
+	COULOMB(23, "COULOMB", "COULOMB"),
 
 	/**
 	 * The '<em><b>SQUARE METRE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #SQUARE_METRE
+	 * @see #SQUARE_METRE_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	SQUARE_METRE_LITERAL(24, "SQUARE_METRE", "SQUARE_METRE"),
+	SQUARE_METRE(24, "SQUARE_METRE", "SQUARE_METRE"),
 
 	/**
 	 * The '<em><b>HERTZ</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #HERTZ
+	 * @see #HERTZ_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	HERTZ_LITERAL(25, "HERTZ", "HERTZ"),
+	HERTZ(25, "HERTZ", "HERTZ"),
 
 	/**
 	 * The '<em><b>SIEMENS</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #SIEMENS
+	 * @see #SIEMENS_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	SIEMENS_LITERAL(26, "SIEMENS", "SIEMENS"),
+	SIEMENS(26, "SIEMENS", "SIEMENS"),
 
 	/**
 	 * The '<em><b>BECQUEREL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #BECQUEREL
+	 * @see #BECQUEREL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	BECQUEREL_LITERAL(27, "BECQUEREL", "BECQUEREL"),
+	BECQUEREL(27, "BECQUEREL", "BECQUEREL"),
 
 	/**
 	 * The '<em><b>MOLE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #MOLE
+	 * @see #MOLE_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	MOLE_LITERAL(28, "MOLE", "MOLE"),
+	MOLE(28, "MOLE", "MOLE"),
 
 	/**
 	 * The '<em><b>OHM</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #OHM
+	 * @see #OHM_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	OHM_LITERAL(29, "OHM", "OHM"),
+	OHM(29, "OHM", "OHM"),
 
 	/**
 	 * The '<em><b>GRAY</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #GRAY
+	 * @see #GRAY_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	GRAY_LITERAL(30, "GRAY", "GRAY");
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
+	GRAY(30, "GRAY", "GRAY");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -361,12 +354,12 @@ public enum IfcSIUnitName implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NULL_LITERAL
+	 * @see #NULL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NULL = 0;
+	public static final int NULL_VALUE = 0;
 
 	/**
 	 * The '<em><b>TESLA</b></em>' literal value.
@@ -376,12 +369,12 @@ public enum IfcSIUnitName implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #TESLA_LITERAL
+	 * @see #TESLA
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int TESLA = 1;
+	public static final int TESLA_VALUE = 1;
 
 	/**
 	 * The '<em><b>HENRY</b></em>' literal value.
@@ -391,12 +384,12 @@ public enum IfcSIUnitName implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #HENRY_LITERAL
+	 * @see #HENRY
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int HENRY = 2;
+	public static final int HENRY_VALUE = 2;
 
 	/**
 	 * The '<em><b>METRE</b></em>' literal value.
@@ -406,12 +399,12 @@ public enum IfcSIUnitName implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #METRE_LITERAL
+	 * @see #METRE
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int METRE = 3;
+	public static final int METRE_VALUE = 3;
 
 	/**
 	 * The '<em><b>SECOND</b></em>' literal value.
@@ -421,12 +414,12 @@ public enum IfcSIUnitName implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #SECOND_LITERAL
+	 * @see #SECOND
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SECOND = 4;
+	public static final int SECOND_VALUE = 4;
 
 	/**
 	 * The '<em><b>AMPERE</b></em>' literal value.
@@ -436,12 +429,12 @@ public enum IfcSIUnitName implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #AMPERE_LITERAL
+	 * @see #AMPERE
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int AMPERE = 5;
+	public static final int AMPERE_VALUE = 5;
 
 	/**
 	 * The '<em><b>JOULE</b></em>' literal value.
@@ -451,12 +444,12 @@ public enum IfcSIUnitName implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #JOULE_LITERAL
+	 * @see #JOULE
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int JOULE = 6;
+	public static final int JOULE_VALUE = 6;
 
 	/**
 	 * The '<em><b>KELVIN</b></em>' literal value.
@@ -466,12 +459,12 @@ public enum IfcSIUnitName implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #KELVIN_LITERAL
+	 * @see #KELVIN
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int KELVIN = 7;
+	public static final int KELVIN_VALUE = 7;
 
 	/**
 	 * The '<em><b>GRAM</b></em>' literal value.
@@ -481,12 +474,12 @@ public enum IfcSIUnitName implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #GRAM_LITERAL
+	 * @see #GRAM
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int GRAM = 8;
+	public static final int GRAM_VALUE = 8;
 
 	/**
 	 * The '<em><b>LUMEN</b></em>' literal value.
@@ -496,12 +489,12 @@ public enum IfcSIUnitName implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #LUMEN_LITERAL
+	 * @see #LUMEN
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int LUMEN = 9;
+	public static final int LUMEN_VALUE = 9;
 
 	/**
 	 * The '<em><b>FARAD</b></em>' literal value.
@@ -511,12 +504,12 @@ public enum IfcSIUnitName implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #FARAD_LITERAL
+	 * @see #FARAD
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int FARAD = 10;
+	public static final int FARAD_VALUE = 10;
 
 	/**
 	 * The '<em><b>STERADIAN</b></em>' literal value.
@@ -526,12 +519,12 @@ public enum IfcSIUnitName implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #STERADIAN_LITERAL
+	 * @see #STERADIAN
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int STERADIAN = 11;
+	public static final int STERADIAN_VALUE = 11;
 
 	/**
 	 * The '<em><b>LUX</b></em>' literal value.
@@ -541,12 +534,12 @@ public enum IfcSIUnitName implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #LUX_LITERAL
+	 * @see #LUX
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int LUX = 12;
+	public static final int LUX_VALUE = 12;
 
 	/**
 	 * The '<em><b>DEGREE CELSIUS</b></em>' literal value.
@@ -556,12 +549,12 @@ public enum IfcSIUnitName implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #DEGREE_CELSIUS_LITERAL
+	 * @see #DEGREE_CELSIUS
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int DEGREE_CELSIUS = 13;
+	public static final int DEGREE_CELSIUS_VALUE = 13;
 
 	/**
 	 * The '<em><b>SIEVERT</b></em>' literal value.
@@ -571,12 +564,12 @@ public enum IfcSIUnitName implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #SIEVERT_LITERAL
+	 * @see #SIEVERT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SIEVERT = 14;
+	public static final int SIEVERT_VALUE = 14;
 
 	/**
 	 * The '<em><b>CUBIC METRE</b></em>' literal value.
@@ -586,12 +579,12 @@ public enum IfcSIUnitName implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #CUBIC_METRE_LITERAL
+	 * @see #CUBIC_METRE
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int CUBIC_METRE = 15;
+	public static final int CUBIC_METRE_VALUE = 15;
 
 	/**
 	 * The '<em><b>NEWTON</b></em>' literal value.
@@ -601,12 +594,12 @@ public enum IfcSIUnitName implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NEWTON_LITERAL
+	 * @see #NEWTON
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NEWTON = 16;
+	public static final int NEWTON_VALUE = 16;
 
 	/**
 	 * The '<em><b>WATT</b></em>' literal value.
@@ -616,12 +609,12 @@ public enum IfcSIUnitName implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #WATT_LITERAL
+	 * @see #WATT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int WATT = 17;
+	public static final int WATT_VALUE = 17;
 
 	/**
 	 * The '<em><b>CANDELA</b></em>' literal value.
@@ -631,12 +624,12 @@ public enum IfcSIUnitName implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #CANDELA_LITERAL
+	 * @see #CANDELA
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int CANDELA = 18;
+	public static final int CANDELA_VALUE = 18;
 
 	/**
 	 * The '<em><b>RADIAN</b></em>' literal value.
@@ -646,12 +639,12 @@ public enum IfcSIUnitName implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #RADIAN_LITERAL
+	 * @see #RADIAN
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int RADIAN = 19;
+	public static final int RADIAN_VALUE = 19;
 
 	/**
 	 * The '<em><b>PASCAL</b></em>' literal value.
@@ -661,12 +654,12 @@ public enum IfcSIUnitName implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #PASCAL_LITERAL
+	 * @see #PASCAL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PASCAL = 20;
+	public static final int PASCAL_VALUE = 20;
 
 	/**
 	 * The '<em><b>VOLT</b></em>' literal value.
@@ -676,12 +669,12 @@ public enum IfcSIUnitName implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #VOLT_LITERAL
+	 * @see #VOLT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int VOLT = 21;
+	public static final int VOLT_VALUE = 21;
 
 	/**
 	 * The '<em><b>WEBER</b></em>' literal value.
@@ -691,12 +684,12 @@ public enum IfcSIUnitName implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #WEBER_LITERAL
+	 * @see #WEBER
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int WEBER = 22;
+	public static final int WEBER_VALUE = 22;
 
 	/**
 	 * The '<em><b>COULOMB</b></em>' literal value.
@@ -706,12 +699,12 @@ public enum IfcSIUnitName implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #COULOMB_LITERAL
+	 * @see #COULOMB
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int COULOMB = 23;
+	public static final int COULOMB_VALUE = 23;
 
 	/**
 	 * The '<em><b>SQUARE METRE</b></em>' literal value.
@@ -721,12 +714,12 @@ public enum IfcSIUnitName implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #SQUARE_METRE_LITERAL
+	 * @see #SQUARE_METRE
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SQUARE_METRE = 24;
+	public static final int SQUARE_METRE_VALUE = 24;
 
 	/**
 	 * The '<em><b>HERTZ</b></em>' literal value.
@@ -736,12 +729,12 @@ public enum IfcSIUnitName implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #HERTZ_LITERAL
+	 * @see #HERTZ
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int HERTZ = 25;
+	public static final int HERTZ_VALUE = 25;
 
 	/**
 	 * The '<em><b>SIEMENS</b></em>' literal value.
@@ -751,12 +744,12 @@ public enum IfcSIUnitName implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #SIEMENS_LITERAL
+	 * @see #SIEMENS
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SIEMENS = 26;
+	public static final int SIEMENS_VALUE = 26;
 
 	/**
 	 * The '<em><b>BECQUEREL</b></em>' literal value.
@@ -766,12 +759,12 @@ public enum IfcSIUnitName implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #BECQUEREL_LITERAL
+	 * @see #BECQUEREL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int BECQUEREL = 27;
+	public static final int BECQUEREL_VALUE = 27;
 
 	/**
 	 * The '<em><b>MOLE</b></em>' literal value.
@@ -781,12 +774,12 @@ public enum IfcSIUnitName implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #MOLE_LITERAL
+	 * @see #MOLE
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MOLE = 28;
+	public static final int MOLE_VALUE = 28;
 
 	/**
 	 * The '<em><b>OHM</b></em>' literal value.
@@ -796,12 +789,12 @@ public enum IfcSIUnitName implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #OHM_LITERAL
+	 * @see #OHM
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int OHM = 29;
+	public static final int OHM_VALUE = 29;
 
 	/**
 	 * The '<em><b>GRAY</b></em>' literal value.
@@ -811,12 +804,12 @@ public enum IfcSIUnitName implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #GRAY_LITERAL
+	 * @see #GRAY
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int GRAY = 30;
+	public static final int GRAY_VALUE = 30;
 
 	/**
 	 * An array of all the '<em><b>Ifc SI Unit Name</b></em>' enumerators.
@@ -825,39 +818,38 @@ public enum IfcSIUnitName implements Enumerator
 	 * @generated
 	 */
 	private static final IfcSIUnitName[] VALUES_ARRAY =
-		new IfcSIUnitName[]
-		{
-			NULL_LITERAL,
-			TESLA_LITERAL,
-			HENRY_LITERAL,
-			METRE_LITERAL,
-			SECOND_LITERAL,
-			AMPERE_LITERAL,
-			JOULE_LITERAL,
-			KELVIN_LITERAL,
-			GRAM_LITERAL,
-			LUMEN_LITERAL,
-			FARAD_LITERAL,
-			STERADIAN_LITERAL,
-			LUX_LITERAL,
-			DEGREE_CELSIUS_LITERAL,
-			SIEVERT_LITERAL,
-			CUBIC_METRE_LITERAL,
-			NEWTON_LITERAL,
-			WATT_LITERAL,
-			CANDELA_LITERAL,
-			RADIAN_LITERAL,
-			PASCAL_LITERAL,
-			VOLT_LITERAL,
-			WEBER_LITERAL,
-			COULOMB_LITERAL,
-			SQUARE_METRE_LITERAL,
-			HERTZ_LITERAL,
-			SIEMENS_LITERAL,
-			BECQUEREL_LITERAL,
-			MOLE_LITERAL,
-			OHM_LITERAL,
-			GRAY_LITERAL,
+		new IfcSIUnitName[] {
+			NULL,
+			TESLA,
+			HENRY,
+			METRE,
+			SECOND,
+			AMPERE,
+			JOULE,
+			KELVIN,
+			GRAM,
+			LUMEN,
+			FARAD,
+			STERADIAN,
+			LUX,
+			DEGREE_CELSIUS,
+			SIEVERT,
+			CUBIC_METRE,
+			NEWTON,
+			WATT,
+			CANDELA,
+			RADIAN,
+			PASCAL,
+			VOLT,
+			WEBER,
+			COULOMB,
+			SQUARE_METRE,
+			HERTZ,
+			SIEMENS,
+			BECQUEREL,
+			MOLE,
+			OHM,
+			GRAY,
 		};
 
 	/**
@@ -876,11 +868,9 @@ public enum IfcSIUnitName implements Enumerator
 	 */
 	public static IfcSIUnitName get(String literal)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcSIUnitName result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal))
-			{
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -895,11 +885,9 @@ public enum IfcSIUnitName implements Enumerator
 	 */
 	public static IfcSIUnitName getByName(String name)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcSIUnitName result = VALUES_ARRAY[i];
-			if (result.getName().equals(name))
-			{
+			if (result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -914,39 +902,38 @@ public enum IfcSIUnitName implements Enumerator
 	 */
 	public static IfcSIUnitName get(int value)
 	{
-		switch (value)
-		{
-			case NULL: return NULL_LITERAL;
-			case TESLA: return TESLA_LITERAL;
-			case HENRY: return HENRY_LITERAL;
-			case METRE: return METRE_LITERAL;
-			case SECOND: return SECOND_LITERAL;
-			case AMPERE: return AMPERE_LITERAL;
-			case JOULE: return JOULE_LITERAL;
-			case KELVIN: return KELVIN_LITERAL;
-			case GRAM: return GRAM_LITERAL;
-			case LUMEN: return LUMEN_LITERAL;
-			case FARAD: return FARAD_LITERAL;
-			case STERADIAN: return STERADIAN_LITERAL;
-			case LUX: return LUX_LITERAL;
-			case DEGREE_CELSIUS: return DEGREE_CELSIUS_LITERAL;
-			case SIEVERT: return SIEVERT_LITERAL;
-			case CUBIC_METRE: return CUBIC_METRE_LITERAL;
-			case NEWTON: return NEWTON_LITERAL;
-			case WATT: return WATT_LITERAL;
-			case CANDELA: return CANDELA_LITERAL;
-			case RADIAN: return RADIAN_LITERAL;
-			case PASCAL: return PASCAL_LITERAL;
-			case VOLT: return VOLT_LITERAL;
-			case WEBER: return WEBER_LITERAL;
-			case COULOMB: return COULOMB_LITERAL;
-			case SQUARE_METRE: return SQUARE_METRE_LITERAL;
-			case HERTZ: return HERTZ_LITERAL;
-			case SIEMENS: return SIEMENS_LITERAL;
-			case BECQUEREL: return BECQUEREL_LITERAL;
-			case MOLE: return MOLE_LITERAL;
-			case OHM: return OHM_LITERAL;
-			case GRAY: return GRAY_LITERAL;
+		switch (value) {
+			case NULL_VALUE: return NULL;
+			case TESLA_VALUE: return TESLA;
+			case HENRY_VALUE: return HENRY;
+			case METRE_VALUE: return METRE;
+			case SECOND_VALUE: return SECOND;
+			case AMPERE_VALUE: return AMPERE;
+			case JOULE_VALUE: return JOULE;
+			case KELVIN_VALUE: return KELVIN;
+			case GRAM_VALUE: return GRAM;
+			case LUMEN_VALUE: return LUMEN;
+			case FARAD_VALUE: return FARAD;
+			case STERADIAN_VALUE: return STERADIAN;
+			case LUX_VALUE: return LUX;
+			case DEGREE_CELSIUS_VALUE: return DEGREE_CELSIUS;
+			case SIEVERT_VALUE: return SIEVERT;
+			case CUBIC_METRE_VALUE: return CUBIC_METRE;
+			case NEWTON_VALUE: return NEWTON;
+			case WATT_VALUE: return WATT;
+			case CANDELA_VALUE: return CANDELA;
+			case RADIAN_VALUE: return RADIAN;
+			case PASCAL_VALUE: return PASCAL;
+			case VOLT_VALUE: return VOLT;
+			case WEBER_VALUE: return WEBER;
+			case COULOMB_VALUE: return COULOMB;
+			case SQUARE_METRE_VALUE: return SQUARE_METRE;
+			case HERTZ_VALUE: return HERTZ;
+			case SIEMENS_VALUE: return SIEMENS;
+			case BECQUEREL_VALUE: return BECQUEREL;
+			case MOLE_VALUE: return MOLE;
+			case OHM_VALUE: return OHM;
+			case GRAY_VALUE: return GRAY;
 		}
 		return null;
 	}

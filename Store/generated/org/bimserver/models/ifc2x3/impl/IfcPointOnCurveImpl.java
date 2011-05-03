@@ -50,13 +50,6 @@ public class IfcPointOnCurveImpl extends IfcPointImpl implements IfcPointOnCurve
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	protected IfcPointOnCurveImpl()
 	{
 		super();
@@ -70,7 +63,7 @@ public class IfcPointOnCurveImpl extends IfcPointImpl implements IfcPointOnCurve
 	@Override
 	protected EClass eStaticClass()
 	{
-		return Ifc2x3Package.Literals.IFC_POINT_ON_CURVE;
+		return Ifc2x3Package.eINSTANCE.getIfcPointOnCurve();
 	}
 
 	/**
@@ -80,7 +73,7 @@ public class IfcPointOnCurveImpl extends IfcPointImpl implements IfcPointOnCurve
 	 */
 	public IfcCurve getBasisCurve()
 	{
-		return (IfcCurve)eGet(Ifc2x3Package.Literals.IFC_POINT_ON_CURVE__BASIS_CURVE, true);
+		return (IfcCurve)eGet(Ifc2x3Package.eINSTANCE.getIfcPointOnCurve_BasisCurve(), true);
 	}
 
 	/**
@@ -90,7 +83,7 @@ public class IfcPointOnCurveImpl extends IfcPointImpl implements IfcPointOnCurve
 	 */
 	public void setBasisCurve(IfcCurve newBasisCurve)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_POINT_ON_CURVE__BASIS_CURVE, newBasisCurve);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcPointOnCurve_BasisCurve(), newBasisCurve);
 	}
 
 	/**
@@ -100,7 +93,7 @@ public class IfcPointOnCurveImpl extends IfcPointImpl implements IfcPointOnCurve
 	 */
 	public float getPointParameter()
 	{
-		return (Float)eGet(Ifc2x3Package.Literals.IFC_POINT_ON_CURVE__POINT_PARAMETER, true);
+		return (Float)eGet(Ifc2x3Package.eINSTANCE.getIfcPointOnCurve_PointParameter(), true);
 	}
 
 	/**
@@ -110,7 +103,7 @@ public class IfcPointOnCurveImpl extends IfcPointImpl implements IfcPointOnCurve
 	 */
 	public void setPointParameter(float newPointParameter)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_POINT_ON_CURVE__POINT_PARAMETER, newPointParameter);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcPointOnCurve_PointParameter(), newPointParameter);
 	}
 
 	/**
@@ -120,7 +113,7 @@ public class IfcPointOnCurveImpl extends IfcPointImpl implements IfcPointOnCurve
 	 */
 	public String getPointParameterAsString()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_POINT_ON_CURVE__POINT_PARAMETER_AS_STRING, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcPointOnCurve_PointParameterAsString(), true);
 	}
 
 	/**
@@ -130,7 +123,7 @@ public class IfcPointOnCurveImpl extends IfcPointImpl implements IfcPointOnCurve
 	 */
 	public void setPointParameterAsString(String newPointParameterAsString)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_POINT_ON_CURVE__POINT_PARAMETER_AS_STRING, newPointParameterAsString);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcPointOnCurve_PointParameterAsString(), newPointParameterAsString);
 	}
 
 	/**
@@ -140,7 +133,7 @@ public class IfcPointOnCurveImpl extends IfcPointImpl implements IfcPointOnCurve
 	 */
 	public int getDim()
 	{
-		return (Integer)eGet(Ifc2x3Package.Literals.IFC_POINT_ON_CURVE__DIM, true);
+		return (Integer)eGet(Ifc2x3Package.eINSTANCE.getIfcPointOnCurve_Dim(), true);
 	}
 
 	/**
@@ -150,7 +143,7 @@ public class IfcPointOnCurveImpl extends IfcPointImpl implements IfcPointOnCurve
 	 */
 	public void setDim(int newDim)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_POINT_ON_CURVE__DIM, newDim);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcPointOnCurve_Dim(), newDim);
 	}
 
 } //IfcPointOnCurveImpl

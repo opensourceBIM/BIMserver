@@ -40,58 +40,51 @@ public enum IfcDoorPanelPositionEnum implements Enumerator
 	 * The '<em><b>NULL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NULL
+	 * @see #NULL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NULL_LITERAL(0, "NULL", "NULL"),
+	NULL(0, "NULL", "NULL"),
 
 	/**
 	 * The '<em><b>RIGHT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #RIGHT
+	 * @see #RIGHT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	RIGHT_LITERAL(1, "RIGHT", "RIGHT"),
+	RIGHT(1, "RIGHT", "RIGHT"),
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED
+	 * @see #NOTDEFINED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED_LITERAL(2, "NOTDEFINED", "NOTDEFINED"),
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>LEFT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #LEFT
+	 * @see #LEFT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	LEFT_LITERAL(3, "LEFT", "LEFT"),
+	LEFT(3, "LEFT", "LEFT"),
 
 	/**
 	 * The '<em><b>MIDDLE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #MIDDLE
+	 * @see #MIDDLE_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	MIDDLE_LITERAL(4, "MIDDLE", "MIDDLE");
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
+	MIDDLE(4, "MIDDLE", "MIDDLE");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -101,12 +94,12 @@ public enum IfcDoorPanelPositionEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NULL_LITERAL
+	 * @see #NULL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NULL = 0;
+	public static final int NULL_VALUE = 0;
 
 	/**
 	 * The '<em><b>RIGHT</b></em>' literal value.
@@ -116,12 +109,12 @@ public enum IfcDoorPanelPositionEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #RIGHT_LITERAL
+	 * @see #RIGHT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int RIGHT = 1;
+	public static final int RIGHT_VALUE = 1;
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
@@ -131,12 +124,12 @@ public enum IfcDoorPanelPositionEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_LITERAL
+	 * @see #NOTDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED = 2;
+	public static final int NOTDEFINED_VALUE = 2;
 
 	/**
 	 * The '<em><b>LEFT</b></em>' literal value.
@@ -146,12 +139,12 @@ public enum IfcDoorPanelPositionEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #LEFT_LITERAL
+	 * @see #LEFT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int LEFT = 3;
+	public static final int LEFT_VALUE = 3;
 
 	/**
 	 * The '<em><b>MIDDLE</b></em>' literal value.
@@ -161,12 +154,12 @@ public enum IfcDoorPanelPositionEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #MIDDLE_LITERAL
+	 * @see #MIDDLE
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MIDDLE = 4;
+	public static final int MIDDLE_VALUE = 4;
 
 	/**
 	 * An array of all the '<em><b>Ifc Door Panel Position Enum</b></em>' enumerators.
@@ -175,13 +168,12 @@ public enum IfcDoorPanelPositionEnum implements Enumerator
 	 * @generated
 	 */
 	private static final IfcDoorPanelPositionEnum[] VALUES_ARRAY =
-		new IfcDoorPanelPositionEnum[]
-		{
-			NULL_LITERAL,
-			RIGHT_LITERAL,
-			NOTDEFINED_LITERAL,
-			LEFT_LITERAL,
-			MIDDLE_LITERAL,
+		new IfcDoorPanelPositionEnum[] {
+			NULL,
+			RIGHT,
+			NOTDEFINED,
+			LEFT,
+			MIDDLE,
 		};
 
 	/**
@@ -200,11 +192,9 @@ public enum IfcDoorPanelPositionEnum implements Enumerator
 	 */
 	public static IfcDoorPanelPositionEnum get(String literal)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcDoorPanelPositionEnum result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal))
-			{
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -219,11 +209,9 @@ public enum IfcDoorPanelPositionEnum implements Enumerator
 	 */
 	public static IfcDoorPanelPositionEnum getByName(String name)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcDoorPanelPositionEnum result = VALUES_ARRAY[i];
-			if (result.getName().equals(name))
-			{
+			if (result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -238,13 +226,12 @@ public enum IfcDoorPanelPositionEnum implements Enumerator
 	 */
 	public static IfcDoorPanelPositionEnum get(int value)
 	{
-		switch (value)
-		{
-			case NULL: return NULL_LITERAL;
-			case RIGHT: return RIGHT_LITERAL;
-			case NOTDEFINED: return NOTDEFINED_LITERAL;
-			case LEFT: return LEFT_LITERAL;
-			case MIDDLE: return MIDDLE_LITERAL;
+		switch (value) {
+			case NULL_VALUE: return NULL;
+			case RIGHT_VALUE: return RIGHT;
+			case NOTDEFINED_VALUE: return NOTDEFINED;
+			case LEFT_VALUE: return LEFT;
+			case MIDDLE_VALUE: return MIDDLE;
 		}
 		return null;
 	}

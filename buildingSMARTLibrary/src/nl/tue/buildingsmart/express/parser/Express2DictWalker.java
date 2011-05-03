@@ -48,7 +48,7 @@ public class Express2DictWalker extends antlr.TreeParser       implements Expres
 	
 	//this is a very, very ugly shortcut to the unlimited bounds "?" token
 	static boolean unlimited_bound=false;
-	// stores the last INTEGER_LITERAL that was parsed. Is used in bounds
+	// stores the last INTEGER that was parsed. Is used in bounds
 	String nextInt;
 	
 	public SchemaDefinition getSchema(){
@@ -8286,30 +8286,30 @@ public Express2DictWalker() {
 			{
 			if (_t==null) _t=ASTNULL;
 			switch ( _t.getType()) {
-			case REAL_LITERAL:
+			case REAL:
 			{
-				real_literal(_t);
+				real(_t);
 				_t = _retTree;
 				astFactory.addASTChild(currentAST, returnAST);
 				break;
 			}
-			case INTEGER_LITERAL:
+			case INTEGER:
 			{
-				integer_literal(_t);
+				integer(_t);
 				_t = _retTree;
 				astFactory.addASTChild(currentAST, returnAST);
 				break;
 			}
-			case LOGICAL_LITERAL:
+			case LOGICAL:
 			{
-				logical_literal(_t);
+				logical(_t);
 				_t = _retTree;
 				astFactory.addASTChild(currentAST, returnAST);
 				break;
 			}
-			case STRING_LITERAL:
+			case STRING:
 			{
-				string_literal(_t);
+				string(_t);
 				_t = _retTree;
 				astFactory.addASTChild(currentAST, returnAST);
 				break;
@@ -8333,12 +8333,12 @@ public Express2DictWalker() {
 		_retTree = _t;
 	}
 	
-	public final void real_literal(AST _t) throws RecognitionException {
+	public final void real(AST _t) throws RecognitionException {
 		
-		AST real_literal_AST_in = (_t == ASTNULL) ? null : (AST)_t;
+		AST real_AST_in = (_t == ASTNULL) ? null : (AST)_t;
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
-		AST real_literal_AST = null;
+		AST real_AST = null;
 		
 		try {      // for error handling
 			AST __t324 = _t;
@@ -8350,7 +8350,7 @@ public Express2DictWalker() {
 			ASTPair __currentAST324 = currentAST.copy();
 			currentAST.root = currentAST.child;
 			currentAST.child = null;
-			match(_t,REAL_LITERAL);
+			match(_t,REAL);
 			_t = _t.getFirstChild();
 			AST tmp208_AST = null;
 			AST tmp208_AST_in = null;
@@ -8362,22 +8362,22 @@ public Express2DictWalker() {
 			currentAST = __currentAST324;
 			_t = __t324;
 			_t = _t.getNextSibling();
-			real_literal_AST = (AST)currentAST.root;
+			real_AST = (AST)currentAST.root;
 		}
 		catch (RecognitionException ex) {
 			reportError(ex);
 			if (_t!=null) {_t = _t.getNextSibling();}
 		}
-		returnAST = real_literal_AST;
+		returnAST = real_AST;
 		_retTree = _t;
 	}
 	
-	public final void integer_literal(AST _t) throws RecognitionException {
+	public final void integer(AST _t) throws RecognitionException {
 		
-		AST integer_literal_AST_in = (_t == ASTNULL) ? null : (AST)_t;
+		AST integer_AST_in = (_t == ASTNULL) ? null : (AST)_t;
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
-		AST integer_literal_AST = null;
+		AST integer_AST = null;
 		AST i = null;
 		AST i_AST = null;
 		
@@ -8391,7 +8391,7 @@ public Express2DictWalker() {
 			ASTPair __currentAST322 = currentAST.copy();
 			currentAST.root = currentAST.child;
 			currentAST.child = null;
-			match(_t,INTEGER_LITERAL);
+			match(_t,INTEGER);
 			_t = _t.getFirstChild();
 			i = (AST)_t;
 			AST i_AST_in = null;
@@ -8405,22 +8405,22 @@ public Express2DictWalker() {
 			
 				     	nextInt=i.getText();
 				
-			integer_literal_AST = (AST)currentAST.root;
+			integer_AST = (AST)currentAST.root;
 		}
 		catch (RecognitionException ex) {
 			reportError(ex);
 			if (_t!=null) {_t = _t.getNextSibling();}
 		}
-		returnAST = integer_literal_AST;
+		returnAST = integer_AST;
 		_retTree = _t;
 	}
 	
-	public final void logical_literal(AST _t) throws RecognitionException {
+	public final void logical(AST _t) throws RecognitionException {
 		
-		AST logical_literal_AST_in = (_t == ASTNULL) ? null : (AST)_t;
+		AST logical_AST_in = (_t == ASTNULL) ? null : (AST)_t;
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
-		AST logical_literal_AST = null;
+		AST logical_AST = null;
 		
 		try {      // for error handling
 			AST __t339 = _t;
@@ -8432,7 +8432,7 @@ public Express2DictWalker() {
 			ASTPair __currentAST339 = currentAST.copy();
 			currentAST.root = currentAST.child;
 			currentAST.child = null;
-			match(_t,LOGICAL_LITERAL);
+			match(_t,LOGICAL);
 			_t = _t.getFirstChild();
 			{
 			if (_t==null) _t=ASTNULL;
@@ -8479,22 +8479,22 @@ public Express2DictWalker() {
 			currentAST = __currentAST339;
 			_t = __t339;
 			_t = _t.getNextSibling();
-			logical_literal_AST = (AST)currentAST.root;
+			logical_AST = (AST)currentAST.root;
 		}
 		catch (RecognitionException ex) {
 			reportError(ex);
 			if (_t!=null) {_t = _t.getNextSibling();}
 		}
-		returnAST = logical_literal_AST;
+		returnAST = logical_AST;
 		_retTree = _t;
 	}
 	
-	public final void string_literal(AST _t) throws RecognitionException {
+	public final void string(AST _t) throws RecognitionException {
 		
-		AST string_literal_AST_in = (_t == ASTNULL) ? null : (AST)_t;
+		AST string_AST_in = (_t == ASTNULL) ? null : (AST)_t;
 		returnAST = null;
 		ASTPair currentAST = new ASTPair();
-		AST string_literal_AST = null;
+		AST string_AST = null;
 		
 		try {      // for error handling
 			AST __t326 = _t;
@@ -8506,7 +8506,7 @@ public Express2DictWalker() {
 			ASTPair __currentAST326 = currentAST.copy();
 			currentAST.root = currentAST.child;
 			currentAST.child = null;
-			match(_t,STRING_LITERAL);
+			match(_t,STRING);
 			_t = _t.getFirstChild();
 			AST tmp215_AST = null;
 			AST tmp215_AST_in = null;
@@ -8518,13 +8518,13 @@ public Express2DictWalker() {
 			currentAST = __currentAST326;
 			_t = __t326;
 			_t = _t.getNextSibling();
-			string_literal_AST = (AST)currentAST.root;
+			string_AST = (AST)currentAST.root;
 		}
 		catch (RecognitionException ex) {
 			reportError(ex);
 			if (_t!=null) {_t = _t.getNextSibling();}
 		}
-		returnAST = string_literal_AST;
+		returnAST = string_AST;
 		_retTree = _t;
 	}
 	
@@ -10502,7 +10502,7 @@ public Express2DictWalker() {
 			currentAST.child = null;
 			match(_t,SCHEMA_VERSION_ID);
 			_t = _t.getFirstChild();
-			string_literal(_t);
+			string(_t);
 			_t = _retTree;
 			astFactory.addASTChild(currentAST, returnAST);
 			currentAST = __currentAST456;
@@ -12431,13 +12431,13 @@ public Express2DictWalker() {
 		"LABEL",
 		"LIST_TYPE",
 		"LITERAL",
-		"REAL_LITERAL",
-		"INTEGER_LITERAL",
-		"STRING_LITERAL",
+		"REAL",
+		"INTEGER",
+		"STRING",
 		"LOCAL_DECL",
 		"LOCAL_VARIABLE",
 		"LOGICAL_EXPRESSION",
-		"LOGICAL_LITERAL",
+		"LOGICAL",
 		"LOGICAL_TYPE",
 		"MULTIPLICATION_LIKE_OP",
 		"NAMED_TYPES",

@@ -40,78 +40,71 @@ public enum IfcTankTypeEnum implements Enumerator
 	 * The '<em><b>NULL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NULL
+	 * @see #NULL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NULL_LITERAL(0, "NULL", "NULL"),
+	NULL(0, "NULL", "NULL"),
 
 	/**
 	 * The '<em><b>PREFORMED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #PREFORMED
+	 * @see #PREFORMED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	PREFORMED_LITERAL(1, "PREFORMED", "PREFORMED"),
+	PREFORMED(1, "PREFORMED", "PREFORMED"),
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED
+	 * @see #NOTDEFINED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED_LITERAL(2, "NOTDEFINED", "NOTDEFINED"),
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>PRESSUREVESSEL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #PRESSUREVESSEL
+	 * @see #PRESSUREVESSEL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	PRESSUREVESSEL_LITERAL(3, "PRESSUREVESSEL", "PRESSUREVESSEL"),
+	PRESSUREVESSEL(3, "PRESSUREVESSEL", "PRESSUREVESSEL"),
 
 	/**
 	 * The '<em><b>SECTIONAL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #SECTIONAL
+	 * @see #SECTIONAL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	SECTIONAL_LITERAL(4, "SECTIONAL", "SECTIONAL"),
+	SECTIONAL(4, "SECTIONAL", "SECTIONAL"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
+	 * @see #USERDEFINED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	USERDEFINED_LITERAL(5, "USERDEFINED", "USERDEFINED"),
+	USERDEFINED(5, "USERDEFINED", "USERDEFINED"),
 
 	/**
 	 * The '<em><b>EXPANSION</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #EXPANSION
+	 * @see #EXPANSION_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	EXPANSION_LITERAL(6, "EXPANSION", "EXPANSION");
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
+	EXPANSION(6, "EXPANSION", "EXPANSION");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -121,12 +114,12 @@ public enum IfcTankTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NULL_LITERAL
+	 * @see #NULL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NULL = 0;
+	public static final int NULL_VALUE = 0;
 
 	/**
 	 * The '<em><b>PREFORMED</b></em>' literal value.
@@ -136,12 +129,12 @@ public enum IfcTankTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #PREFORMED_LITERAL
+	 * @see #PREFORMED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PREFORMED = 1;
+	public static final int PREFORMED_VALUE = 1;
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
@@ -151,12 +144,12 @@ public enum IfcTankTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_LITERAL
+	 * @see #NOTDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED = 2;
+	public static final int NOTDEFINED_VALUE = 2;
 
 	/**
 	 * The '<em><b>PRESSUREVESSEL</b></em>' literal value.
@@ -166,12 +159,12 @@ public enum IfcTankTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #PRESSUREVESSEL_LITERAL
+	 * @see #PRESSUREVESSEL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PRESSUREVESSEL = 3;
+	public static final int PRESSUREVESSEL_VALUE = 3;
 
 	/**
 	 * The '<em><b>SECTIONAL</b></em>' literal value.
@@ -181,12 +174,12 @@ public enum IfcTankTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #SECTIONAL_LITERAL
+	 * @see #SECTIONAL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SECTIONAL = 4;
+	public static final int SECTIONAL_VALUE = 4;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -196,12 +189,12 @@ public enum IfcTankTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_LITERAL
+	 * @see #USERDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED = 5;
+	public static final int USERDEFINED_VALUE = 5;
 
 	/**
 	 * The '<em><b>EXPANSION</b></em>' literal value.
@@ -211,12 +204,12 @@ public enum IfcTankTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #EXPANSION_LITERAL
+	 * @see #EXPANSION
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int EXPANSION = 6;
+	public static final int EXPANSION_VALUE = 6;
 
 	/**
 	 * An array of all the '<em><b>Ifc Tank Type Enum</b></em>' enumerators.
@@ -225,15 +218,14 @@ public enum IfcTankTypeEnum implements Enumerator
 	 * @generated
 	 */
 	private static final IfcTankTypeEnum[] VALUES_ARRAY =
-		new IfcTankTypeEnum[]
-		{
-			NULL_LITERAL,
-			PREFORMED_LITERAL,
-			NOTDEFINED_LITERAL,
-			PRESSUREVESSEL_LITERAL,
-			SECTIONAL_LITERAL,
-			USERDEFINED_LITERAL,
-			EXPANSION_LITERAL,
+		new IfcTankTypeEnum[] {
+			NULL,
+			PREFORMED,
+			NOTDEFINED,
+			PRESSUREVESSEL,
+			SECTIONAL,
+			USERDEFINED,
+			EXPANSION,
 		};
 
 	/**
@@ -252,11 +244,9 @@ public enum IfcTankTypeEnum implements Enumerator
 	 */
 	public static IfcTankTypeEnum get(String literal)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcTankTypeEnum result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal))
-			{
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -271,11 +261,9 @@ public enum IfcTankTypeEnum implements Enumerator
 	 */
 	public static IfcTankTypeEnum getByName(String name)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcTankTypeEnum result = VALUES_ARRAY[i];
-			if (result.getName().equals(name))
-			{
+			if (result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -290,15 +278,14 @@ public enum IfcTankTypeEnum implements Enumerator
 	 */
 	public static IfcTankTypeEnum get(int value)
 	{
-		switch (value)
-		{
-			case NULL: return NULL_LITERAL;
-			case PREFORMED: return PREFORMED_LITERAL;
-			case NOTDEFINED: return NOTDEFINED_LITERAL;
-			case PRESSUREVESSEL: return PRESSUREVESSEL_LITERAL;
-			case SECTIONAL: return SECTIONAL_LITERAL;
-			case USERDEFINED: return USERDEFINED_LITERAL;
-			case EXPANSION: return EXPANSION_LITERAL;
+		switch (value) {
+			case NULL_VALUE: return NULL;
+			case PREFORMED_VALUE: return PREFORMED;
+			case NOTDEFINED_VALUE: return NOTDEFINED;
+			case PRESSUREVESSEL_VALUE: return PRESSUREVESSEL;
+			case SECTIONAL_VALUE: return SECTIONAL;
+			case USERDEFINED_VALUE: return USERDEFINED;
+			case EXPANSION_VALUE: return EXPANSION;
 		}
 		return null;
 	}

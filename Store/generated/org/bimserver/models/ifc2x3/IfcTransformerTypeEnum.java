@@ -40,68 +40,61 @@ public enum IfcTransformerTypeEnum implements Enumerator
 	 * The '<em><b>NULL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NULL
+	 * @see #NULL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NULL_LITERAL(0, "NULL", "NULL"),
+	NULL(0, "NULL", "NULL"),
 
 	/**
 	 * The '<em><b>FREQUENCY</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #FREQUENCY
+	 * @see #FREQUENCY_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	FREQUENCY_LITERAL(1, "FREQUENCY", "FREQUENCY"),
+	FREQUENCY(1, "FREQUENCY", "FREQUENCY"),
 
 	/**
 	 * The '<em><b>VOLTAGE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #VOLTAGE
+	 * @see #VOLTAGE_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	VOLTAGE_LITERAL(2, "VOLTAGE", "VOLTAGE"),
+	VOLTAGE(2, "VOLTAGE", "VOLTAGE"),
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED
+	 * @see #NOTDEFINED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED_LITERAL(3, "NOTDEFINED", "NOTDEFINED"),
+	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
+	 * @see #USERDEFINED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	USERDEFINED_LITERAL(4, "USERDEFINED", "USERDEFINED"),
+	USERDEFINED(4, "USERDEFINED", "USERDEFINED"),
 
 	/**
 	 * The '<em><b>CURRENT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #CURRENT
+	 * @see #CURRENT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	CURRENT_LITERAL(5, "CURRENT", "CURRENT");
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
+	CURRENT(5, "CURRENT", "CURRENT");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -111,12 +104,12 @@ public enum IfcTransformerTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NULL_LITERAL
+	 * @see #NULL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NULL = 0;
+	public static final int NULL_VALUE = 0;
 
 	/**
 	 * The '<em><b>FREQUENCY</b></em>' literal value.
@@ -126,12 +119,12 @@ public enum IfcTransformerTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #FREQUENCY_LITERAL
+	 * @see #FREQUENCY
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int FREQUENCY = 1;
+	public static final int FREQUENCY_VALUE = 1;
 
 	/**
 	 * The '<em><b>VOLTAGE</b></em>' literal value.
@@ -141,12 +134,12 @@ public enum IfcTransformerTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #VOLTAGE_LITERAL
+	 * @see #VOLTAGE
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int VOLTAGE = 2;
+	public static final int VOLTAGE_VALUE = 2;
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
@@ -156,12 +149,12 @@ public enum IfcTransformerTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_LITERAL
+	 * @see #NOTDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED = 3;
+	public static final int NOTDEFINED_VALUE = 3;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -171,12 +164,12 @@ public enum IfcTransformerTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_LITERAL
+	 * @see #USERDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED = 4;
+	public static final int USERDEFINED_VALUE = 4;
 
 	/**
 	 * The '<em><b>CURRENT</b></em>' literal value.
@@ -186,12 +179,12 @@ public enum IfcTransformerTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #CURRENT_LITERAL
+	 * @see #CURRENT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int CURRENT = 5;
+	public static final int CURRENT_VALUE = 5;
 
 	/**
 	 * An array of all the '<em><b>Ifc Transformer Type Enum</b></em>' enumerators.
@@ -200,14 +193,13 @@ public enum IfcTransformerTypeEnum implements Enumerator
 	 * @generated
 	 */
 	private static final IfcTransformerTypeEnum[] VALUES_ARRAY =
-		new IfcTransformerTypeEnum[]
-		{
-			NULL_LITERAL,
-			FREQUENCY_LITERAL,
-			VOLTAGE_LITERAL,
-			NOTDEFINED_LITERAL,
-			USERDEFINED_LITERAL,
-			CURRENT_LITERAL,
+		new IfcTransformerTypeEnum[] {
+			NULL,
+			FREQUENCY,
+			VOLTAGE,
+			NOTDEFINED,
+			USERDEFINED,
+			CURRENT,
 		};
 
 	/**
@@ -226,11 +218,9 @@ public enum IfcTransformerTypeEnum implements Enumerator
 	 */
 	public static IfcTransformerTypeEnum get(String literal)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcTransformerTypeEnum result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal))
-			{
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -245,11 +235,9 @@ public enum IfcTransformerTypeEnum implements Enumerator
 	 */
 	public static IfcTransformerTypeEnum getByName(String name)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcTransformerTypeEnum result = VALUES_ARRAY[i];
-			if (result.getName().equals(name))
-			{
+			if (result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -264,14 +252,13 @@ public enum IfcTransformerTypeEnum implements Enumerator
 	 */
 	public static IfcTransformerTypeEnum get(int value)
 	{
-		switch (value)
-		{
-			case NULL: return NULL_LITERAL;
-			case FREQUENCY: return FREQUENCY_LITERAL;
-			case VOLTAGE: return VOLTAGE_LITERAL;
-			case NOTDEFINED: return NOTDEFINED_LITERAL;
-			case USERDEFINED: return USERDEFINED_LITERAL;
-			case CURRENT: return CURRENT_LITERAL;
+		switch (value) {
+			case NULL_VALUE: return NULL;
+			case FREQUENCY_VALUE: return FREQUENCY;
+			case VOLTAGE_VALUE: return VOLTAGE;
+			case NOTDEFINED_VALUE: return NOTDEFINED;
+			case USERDEFINED_VALUE: return USERDEFINED;
+			case CURRENT_VALUE: return CURRENT;
 		}
 		return null;
 	}

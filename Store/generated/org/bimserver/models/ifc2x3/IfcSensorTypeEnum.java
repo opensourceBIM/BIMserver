@@ -40,168 +40,161 @@ public enum IfcSensorTypeEnum implements Enumerator
 	 * The '<em><b>NULL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NULL
+	 * @see #NULL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NULL_LITERAL(0, "NULL", "NULL"),
+	NULL(0, "NULL", "NULL"),
 
 	/**
 	 * The '<em><b>FIRESENSOR</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #FIRESENSOR
+	 * @see #FIRESENSOR_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	FIRESENSOR_LITERAL(1, "FIRESENSOR", "FIRESENSOR"),
+	FIRESENSOR(1, "FIRESENSOR", "FIRESENSOR"),
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED
+	 * @see #NOTDEFINED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED_LITERAL(2, "NOTDEFINED", "NOTDEFINED"),
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>HEATSENSOR</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #HEATSENSOR
+	 * @see #HEATSENSOR_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	HEATSENSOR_LITERAL(3, "HEATSENSOR", "HEATSENSOR"),
+	HEATSENSOR(3, "HEATSENSOR", "HEATSENSOR"),
 
 	/**
 	 * The '<em><b>MOVEMENTSENSOR</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #MOVEMENTSENSOR
+	 * @see #MOVEMENTSENSOR_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	MOVEMENTSENSOR_LITERAL(4, "MOVEMENTSENSOR", "MOVEMENTSENSOR"),
+	MOVEMENTSENSOR(4, "MOVEMENTSENSOR", "MOVEMENTSENSOR"),
 
 	/**
 	 * The '<em><b>FLOWSENSOR</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #FLOWSENSOR
+	 * @see #FLOWSENSOR_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	FLOWSENSOR_LITERAL(5, "FLOWSENSOR", "FLOWSENSOR"),
+	FLOWSENSOR(5, "FLOWSENSOR", "FLOWSENSOR"),
 
 	/**
 	 * The '<em><b>MOISTURESENSOR</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #MOISTURESENSOR
+	 * @see #MOISTURESENSOR_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	MOISTURESENSOR_LITERAL(6, "MOISTURESENSOR", "MOISTURESENSOR"),
+	MOISTURESENSOR(6, "MOISTURESENSOR", "MOISTURESENSOR"),
 
 	/**
 	 * The '<em><b>LIGHTSENSOR</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #LIGHTSENSOR
+	 * @see #LIGHTSENSOR_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	LIGHTSENSOR_LITERAL(7, "LIGHTSENSOR", "LIGHTSENSOR"),
+	LIGHTSENSOR(7, "LIGHTSENSOR", "LIGHTSENSOR"),
 
 	/**
 	 * The '<em><b>SMOKESENSOR</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #SMOKESENSOR
+	 * @see #SMOKESENSOR_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	SMOKESENSOR_LITERAL(8, "SMOKESENSOR", "SMOKESENSOR"),
+	SMOKESENSOR(8, "SMOKESENSOR", "SMOKESENSOR"),
 
 	/**
 	 * The '<em><b>GASSENSOR</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #GASSENSOR
+	 * @see #GASSENSOR_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	GASSENSOR_LITERAL(9, "GASSENSOR", "GASSENSOR"),
+	GASSENSOR(9, "GASSENSOR", "GASSENSOR"),
 
 	/**
 	 * The '<em><b>TEMPERATURESENSOR</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #TEMPERATURESENSOR
+	 * @see #TEMPERATURESENSOR_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	TEMPERATURESENSOR_LITERAL(10, "TEMPERATURESENSOR", "TEMPERATURESENSOR"),
+	TEMPERATURESENSOR(10, "TEMPERATURESENSOR", "TEMPERATURESENSOR"),
 
 	/**
 	 * The '<em><b>PRESSURESENSOR</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #PRESSURESENSOR
+	 * @see #PRESSURESENSOR_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	PRESSURESENSOR_LITERAL(11, "PRESSURESENSOR", "PRESSURESENSOR"),
+	PRESSURESENSOR(11, "PRESSURESENSOR", "PRESSURESENSOR"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
+	 * @see #USERDEFINED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	USERDEFINED_LITERAL(12, "USERDEFINED", "USERDEFINED"),
+	USERDEFINED(12, "USERDEFINED", "USERDEFINED"),
 
 	/**
 	 * The '<em><b>HUMIDITYSENSOR</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #HUMIDITYSENSOR
+	 * @see #HUMIDITYSENSOR_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	HUMIDITYSENSOR_LITERAL(13, "HUMIDITYSENSOR", "HUMIDITYSENSOR"),
+	HUMIDITYSENSOR(13, "HUMIDITYSENSOR", "HUMIDITYSENSOR"),
 
 	/**
 	 * The '<em><b>CO2SENSOR</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #CO2SENSOR
+	 * @see #CO2SENSOR_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	CO2SENSOR_LITERAL(14, "CO2SENSOR", "CO2SENSOR"),
+	CO2SENSOR(14, "CO2SENSOR", "CO2SENSOR"),
 
 	/**
 	 * The '<em><b>SOUNDSENSOR</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #SOUNDSENSOR
+	 * @see #SOUNDSENSOR_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	SOUNDSENSOR_LITERAL(15, "SOUNDSENSOR", "SOUNDSENSOR");
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
+	SOUNDSENSOR(15, "SOUNDSENSOR", "SOUNDSENSOR");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -211,12 +204,12 @@ public enum IfcSensorTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NULL_LITERAL
+	 * @see #NULL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NULL = 0;
+	public static final int NULL_VALUE = 0;
 
 	/**
 	 * The '<em><b>FIRESENSOR</b></em>' literal value.
@@ -226,12 +219,12 @@ public enum IfcSensorTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #FIRESENSOR_LITERAL
+	 * @see #FIRESENSOR
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int FIRESENSOR = 1;
+	public static final int FIRESENSOR_VALUE = 1;
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
@@ -241,12 +234,12 @@ public enum IfcSensorTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_LITERAL
+	 * @see #NOTDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED = 2;
+	public static final int NOTDEFINED_VALUE = 2;
 
 	/**
 	 * The '<em><b>HEATSENSOR</b></em>' literal value.
@@ -256,12 +249,12 @@ public enum IfcSensorTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #HEATSENSOR_LITERAL
+	 * @see #HEATSENSOR
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int HEATSENSOR = 3;
+	public static final int HEATSENSOR_VALUE = 3;
 
 	/**
 	 * The '<em><b>MOVEMENTSENSOR</b></em>' literal value.
@@ -271,12 +264,12 @@ public enum IfcSensorTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #MOVEMENTSENSOR_LITERAL
+	 * @see #MOVEMENTSENSOR
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MOVEMENTSENSOR = 4;
+	public static final int MOVEMENTSENSOR_VALUE = 4;
 
 	/**
 	 * The '<em><b>FLOWSENSOR</b></em>' literal value.
@@ -286,12 +279,12 @@ public enum IfcSensorTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #FLOWSENSOR_LITERAL
+	 * @see #FLOWSENSOR
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int FLOWSENSOR = 5;
+	public static final int FLOWSENSOR_VALUE = 5;
 
 	/**
 	 * The '<em><b>MOISTURESENSOR</b></em>' literal value.
@@ -301,12 +294,12 @@ public enum IfcSensorTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #MOISTURESENSOR_LITERAL
+	 * @see #MOISTURESENSOR
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MOISTURESENSOR = 6;
+	public static final int MOISTURESENSOR_VALUE = 6;
 
 	/**
 	 * The '<em><b>LIGHTSENSOR</b></em>' literal value.
@@ -316,12 +309,12 @@ public enum IfcSensorTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #LIGHTSENSOR_LITERAL
+	 * @see #LIGHTSENSOR
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int LIGHTSENSOR = 7;
+	public static final int LIGHTSENSOR_VALUE = 7;
 
 	/**
 	 * The '<em><b>SMOKESENSOR</b></em>' literal value.
@@ -331,12 +324,12 @@ public enum IfcSensorTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #SMOKESENSOR_LITERAL
+	 * @see #SMOKESENSOR
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SMOKESENSOR = 8;
+	public static final int SMOKESENSOR_VALUE = 8;
 
 	/**
 	 * The '<em><b>GASSENSOR</b></em>' literal value.
@@ -346,12 +339,12 @@ public enum IfcSensorTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #GASSENSOR_LITERAL
+	 * @see #GASSENSOR
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int GASSENSOR = 9;
+	public static final int GASSENSOR_VALUE = 9;
 
 	/**
 	 * The '<em><b>TEMPERATURESENSOR</b></em>' literal value.
@@ -361,12 +354,12 @@ public enum IfcSensorTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #TEMPERATURESENSOR_LITERAL
+	 * @see #TEMPERATURESENSOR
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int TEMPERATURESENSOR = 10;
+	public static final int TEMPERATURESENSOR_VALUE = 10;
 
 	/**
 	 * The '<em><b>PRESSURESENSOR</b></em>' literal value.
@@ -376,12 +369,12 @@ public enum IfcSensorTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #PRESSURESENSOR_LITERAL
+	 * @see #PRESSURESENSOR
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PRESSURESENSOR = 11;
+	public static final int PRESSURESENSOR_VALUE = 11;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -391,12 +384,12 @@ public enum IfcSensorTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_LITERAL
+	 * @see #USERDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED = 12;
+	public static final int USERDEFINED_VALUE = 12;
 
 	/**
 	 * The '<em><b>HUMIDITYSENSOR</b></em>' literal value.
@@ -406,12 +399,12 @@ public enum IfcSensorTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #HUMIDITYSENSOR_LITERAL
+	 * @see #HUMIDITYSENSOR
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int HUMIDITYSENSOR = 13;
+	public static final int HUMIDITYSENSOR_VALUE = 13;
 
 	/**
 	 * The '<em><b>CO2SENSOR</b></em>' literal value.
@@ -421,12 +414,12 @@ public enum IfcSensorTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #CO2SENSOR_LITERAL
+	 * @see #CO2SENSOR
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int CO2SENSOR = 14;
+	public static final int CO2SENSOR_VALUE = 14;
 
 	/**
 	 * The '<em><b>SOUNDSENSOR</b></em>' literal value.
@@ -436,12 +429,12 @@ public enum IfcSensorTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #SOUNDSENSOR_LITERAL
+	 * @see #SOUNDSENSOR
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SOUNDSENSOR = 15;
+	public static final int SOUNDSENSOR_VALUE = 15;
 
 	/**
 	 * An array of all the '<em><b>Ifc Sensor Type Enum</b></em>' enumerators.
@@ -450,24 +443,23 @@ public enum IfcSensorTypeEnum implements Enumerator
 	 * @generated
 	 */
 	private static final IfcSensorTypeEnum[] VALUES_ARRAY =
-		new IfcSensorTypeEnum[]
-		{
-			NULL_LITERAL,
-			FIRESENSOR_LITERAL,
-			NOTDEFINED_LITERAL,
-			HEATSENSOR_LITERAL,
-			MOVEMENTSENSOR_LITERAL,
-			FLOWSENSOR_LITERAL,
-			MOISTURESENSOR_LITERAL,
-			LIGHTSENSOR_LITERAL,
-			SMOKESENSOR_LITERAL,
-			GASSENSOR_LITERAL,
-			TEMPERATURESENSOR_LITERAL,
-			PRESSURESENSOR_LITERAL,
-			USERDEFINED_LITERAL,
-			HUMIDITYSENSOR_LITERAL,
-			CO2SENSOR_LITERAL,
-			SOUNDSENSOR_LITERAL,
+		new IfcSensorTypeEnum[] {
+			NULL,
+			FIRESENSOR,
+			NOTDEFINED,
+			HEATSENSOR,
+			MOVEMENTSENSOR,
+			FLOWSENSOR,
+			MOISTURESENSOR,
+			LIGHTSENSOR,
+			SMOKESENSOR,
+			GASSENSOR,
+			TEMPERATURESENSOR,
+			PRESSURESENSOR,
+			USERDEFINED,
+			HUMIDITYSENSOR,
+			CO2SENSOR,
+			SOUNDSENSOR,
 		};
 
 	/**
@@ -486,11 +478,9 @@ public enum IfcSensorTypeEnum implements Enumerator
 	 */
 	public static IfcSensorTypeEnum get(String literal)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcSensorTypeEnum result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal))
-			{
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -505,11 +495,9 @@ public enum IfcSensorTypeEnum implements Enumerator
 	 */
 	public static IfcSensorTypeEnum getByName(String name)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcSensorTypeEnum result = VALUES_ARRAY[i];
-			if (result.getName().equals(name))
-			{
+			if (result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -524,24 +512,23 @@ public enum IfcSensorTypeEnum implements Enumerator
 	 */
 	public static IfcSensorTypeEnum get(int value)
 	{
-		switch (value)
-		{
-			case NULL: return NULL_LITERAL;
-			case FIRESENSOR: return FIRESENSOR_LITERAL;
-			case NOTDEFINED: return NOTDEFINED_LITERAL;
-			case HEATSENSOR: return HEATSENSOR_LITERAL;
-			case MOVEMENTSENSOR: return MOVEMENTSENSOR_LITERAL;
-			case FLOWSENSOR: return FLOWSENSOR_LITERAL;
-			case MOISTURESENSOR: return MOISTURESENSOR_LITERAL;
-			case LIGHTSENSOR: return LIGHTSENSOR_LITERAL;
-			case SMOKESENSOR: return SMOKESENSOR_LITERAL;
-			case GASSENSOR: return GASSENSOR_LITERAL;
-			case TEMPERATURESENSOR: return TEMPERATURESENSOR_LITERAL;
-			case PRESSURESENSOR: return PRESSURESENSOR_LITERAL;
-			case USERDEFINED: return USERDEFINED_LITERAL;
-			case HUMIDITYSENSOR: return HUMIDITYSENSOR_LITERAL;
-			case CO2SENSOR: return CO2SENSOR_LITERAL;
-			case SOUNDSENSOR: return SOUNDSENSOR_LITERAL;
+		switch (value) {
+			case NULL_VALUE: return NULL;
+			case FIRESENSOR_VALUE: return FIRESENSOR;
+			case NOTDEFINED_VALUE: return NOTDEFINED;
+			case HEATSENSOR_VALUE: return HEATSENSOR;
+			case MOVEMENTSENSOR_VALUE: return MOVEMENTSENSOR;
+			case FLOWSENSOR_VALUE: return FLOWSENSOR;
+			case MOISTURESENSOR_VALUE: return MOISTURESENSOR;
+			case LIGHTSENSOR_VALUE: return LIGHTSENSOR;
+			case SMOKESENSOR_VALUE: return SMOKESENSOR;
+			case GASSENSOR_VALUE: return GASSENSOR;
+			case TEMPERATURESENSOR_VALUE: return TEMPERATURESENSOR;
+			case PRESSURESENSOR_VALUE: return PRESSURESENSOR;
+			case USERDEFINED_VALUE: return USERDEFINED;
+			case HUMIDITYSENSOR_VALUE: return HUMIDITYSENSOR;
+			case CO2SENSOR_VALUE: return CO2SENSOR;
+			case SOUNDSENSOR_VALUE: return SOUNDSENSOR;
 		}
 		return null;
 	}

@@ -47,13 +47,6 @@ public class IfcBoundaryNodeConditionWarpingImpl extends IfcBoundaryNodeConditio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	protected IfcBoundaryNodeConditionWarpingImpl()
 	{
 		super();
@@ -67,7 +60,7 @@ public class IfcBoundaryNodeConditionWarpingImpl extends IfcBoundaryNodeConditio
 	@Override
 	protected EClass eStaticClass()
 	{
-		return Ifc2x3Package.Literals.IFC_BOUNDARY_NODE_CONDITION_WARPING;
+		return Ifc2x3Package.eINSTANCE.getIfcBoundaryNodeConditionWarping();
 	}
 
 	/**
@@ -77,7 +70,7 @@ public class IfcBoundaryNodeConditionWarpingImpl extends IfcBoundaryNodeConditio
 	 */
 	public float getWarpingStiffness()
 	{
-		return (Float)eGet(Ifc2x3Package.Literals.IFC_BOUNDARY_NODE_CONDITION_WARPING__WARPING_STIFFNESS, true);
+		return (Float)eGet(Ifc2x3Package.eINSTANCE.getIfcBoundaryNodeConditionWarping_WarpingStiffness(), true);
 	}
 
 	/**
@@ -87,7 +80,7 @@ public class IfcBoundaryNodeConditionWarpingImpl extends IfcBoundaryNodeConditio
 	 */
 	public void setWarpingStiffness(float newWarpingStiffness)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_BOUNDARY_NODE_CONDITION_WARPING__WARPING_STIFFNESS, newWarpingStiffness);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcBoundaryNodeConditionWarping_WarpingStiffness(), newWarpingStiffness);
 	}
 
 	/**
@@ -97,7 +90,7 @@ public class IfcBoundaryNodeConditionWarpingImpl extends IfcBoundaryNodeConditio
 	 */
 	public void unsetWarpingStiffness()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_BOUNDARY_NODE_CONDITION_WARPING__WARPING_STIFFNESS);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcBoundaryNodeConditionWarping_WarpingStiffness());
 	}
 
 	/**
@@ -107,7 +100,7 @@ public class IfcBoundaryNodeConditionWarpingImpl extends IfcBoundaryNodeConditio
 	 */
 	public boolean isSetWarpingStiffness()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_BOUNDARY_NODE_CONDITION_WARPING__WARPING_STIFFNESS);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcBoundaryNodeConditionWarping_WarpingStiffness());
 	}
 
 	/**
@@ -117,7 +110,7 @@ public class IfcBoundaryNodeConditionWarpingImpl extends IfcBoundaryNodeConditio
 	 */
 	public String getWarpingStiffnessAsString()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_BOUNDARY_NODE_CONDITION_WARPING__WARPING_STIFFNESS_AS_STRING, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcBoundaryNodeConditionWarping_WarpingStiffnessAsString(), true);
 	}
 
 	/**
@@ -127,7 +120,7 @@ public class IfcBoundaryNodeConditionWarpingImpl extends IfcBoundaryNodeConditio
 	 */
 	public void setWarpingStiffnessAsString(String newWarpingStiffnessAsString)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_BOUNDARY_NODE_CONDITION_WARPING__WARPING_STIFFNESS_AS_STRING, newWarpingStiffnessAsString);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcBoundaryNodeConditionWarping_WarpingStiffnessAsString(), newWarpingStiffnessAsString);
 	}
 
 	/**
@@ -137,7 +130,7 @@ public class IfcBoundaryNodeConditionWarpingImpl extends IfcBoundaryNodeConditio
 	 */
 	public void unsetWarpingStiffnessAsString()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_BOUNDARY_NODE_CONDITION_WARPING__WARPING_STIFFNESS_AS_STRING);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcBoundaryNodeConditionWarping_WarpingStiffnessAsString());
 	}
 
 	/**
@@ -147,7 +140,7 @@ public class IfcBoundaryNodeConditionWarpingImpl extends IfcBoundaryNodeConditio
 	 */
 	public boolean isSetWarpingStiffnessAsString()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_BOUNDARY_NODE_CONDITION_WARPING__WARPING_STIFFNESS_AS_STRING);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcBoundaryNodeConditionWarping_WarpingStiffnessAsString());
 	}
 
 } //IfcBoundaryNodeConditionWarpingImpl

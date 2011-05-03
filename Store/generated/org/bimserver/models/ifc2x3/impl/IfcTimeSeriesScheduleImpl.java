@@ -53,13 +53,6 @@ public class IfcTimeSeriesScheduleImpl extends IfcControlImpl implements IfcTime
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	protected IfcTimeSeriesScheduleImpl()
 	{
 		super();
@@ -73,7 +66,7 @@ public class IfcTimeSeriesScheduleImpl extends IfcControlImpl implements IfcTime
 	@Override
 	protected EClass eStaticClass()
 	{
-		return Ifc2x3Package.Literals.IFC_TIME_SERIES_SCHEDULE;
+		return Ifc2x3Package.eINSTANCE.getIfcTimeSeriesSchedule();
 	}
 
 	/**
@@ -84,7 +77,7 @@ public class IfcTimeSeriesScheduleImpl extends IfcControlImpl implements IfcTime
 	@SuppressWarnings("unchecked")
 	public EList<IfcDateTimeSelect> getApplicableDates()
 	{
-		return (EList<IfcDateTimeSelect>)eGet(Ifc2x3Package.Literals.IFC_TIME_SERIES_SCHEDULE__APPLICABLE_DATES, true);
+		return (EList<IfcDateTimeSelect>)eGet(Ifc2x3Package.eINSTANCE.getIfcTimeSeriesSchedule_ApplicableDates(), true);
 	}
 
 	/**
@@ -94,7 +87,7 @@ public class IfcTimeSeriesScheduleImpl extends IfcControlImpl implements IfcTime
 	 */
 	public void unsetApplicableDates()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_TIME_SERIES_SCHEDULE__APPLICABLE_DATES);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcTimeSeriesSchedule_ApplicableDates());
 	}
 
 	/**
@@ -104,7 +97,7 @@ public class IfcTimeSeriesScheduleImpl extends IfcControlImpl implements IfcTime
 	 */
 	public boolean isSetApplicableDates()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_TIME_SERIES_SCHEDULE__APPLICABLE_DATES);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcTimeSeriesSchedule_ApplicableDates());
 	}
 
 	/**
@@ -114,7 +107,7 @@ public class IfcTimeSeriesScheduleImpl extends IfcControlImpl implements IfcTime
 	 */
 	public IfcTimeSeriesScheduleTypeEnum getTimeSeriesScheduleType()
 	{
-		return (IfcTimeSeriesScheduleTypeEnum)eGet(Ifc2x3Package.Literals.IFC_TIME_SERIES_SCHEDULE__TIME_SERIES_SCHEDULE_TYPE, true);
+		return (IfcTimeSeriesScheduleTypeEnum)eGet(Ifc2x3Package.eINSTANCE.getIfcTimeSeriesSchedule_TimeSeriesScheduleType(), true);
 	}
 
 	/**
@@ -124,7 +117,7 @@ public class IfcTimeSeriesScheduleImpl extends IfcControlImpl implements IfcTime
 	 */
 	public void setTimeSeriesScheduleType(IfcTimeSeriesScheduleTypeEnum newTimeSeriesScheduleType)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_TIME_SERIES_SCHEDULE__TIME_SERIES_SCHEDULE_TYPE, newTimeSeriesScheduleType);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcTimeSeriesSchedule_TimeSeriesScheduleType(), newTimeSeriesScheduleType);
 	}
 
 	/**
@@ -134,7 +127,7 @@ public class IfcTimeSeriesScheduleImpl extends IfcControlImpl implements IfcTime
 	 */
 	public IfcTimeSeries getTimeSeries()
 	{
-		return (IfcTimeSeries)eGet(Ifc2x3Package.Literals.IFC_TIME_SERIES_SCHEDULE__TIME_SERIES, true);
+		return (IfcTimeSeries)eGet(Ifc2x3Package.eINSTANCE.getIfcTimeSeriesSchedule_TimeSeries(), true);
 	}
 
 	/**
@@ -144,7 +137,7 @@ public class IfcTimeSeriesScheduleImpl extends IfcControlImpl implements IfcTime
 	 */
 	public void setTimeSeries(IfcTimeSeries newTimeSeries)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_TIME_SERIES_SCHEDULE__TIME_SERIES, newTimeSeries);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcTimeSeriesSchedule_TimeSeries(), newTimeSeries);
 	}
 
 } //IfcTimeSeriesScheduleImpl

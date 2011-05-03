@@ -40,98 +40,91 @@ public enum IfcFlowMeterTypeEnum implements Enumerator
 	 * The '<em><b>NULL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NULL
+	 * @see #NULL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NULL_LITERAL(0, "NULL", "NULL"),
+	NULL(0, "NULL", "NULL"),
 
 	/**
 	 * The '<em><b>WATERMETER</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #WATERMETER
+	 * @see #WATERMETER_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	WATERMETER_LITERAL(1, "WATERMETER", "WATERMETER"),
+	WATERMETER(1, "WATERMETER", "WATERMETER"),
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED
+	 * @see #NOTDEFINED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED_LITERAL(2, "NOTDEFINED", "NOTDEFINED"),
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>GASMETER</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #GASMETER
+	 * @see #GASMETER_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	GASMETER_LITERAL(3, "GASMETER", "GASMETER"),
+	GASMETER(3, "GASMETER", "GASMETER"),
 
 	/**
 	 * The '<em><b>ELECTRICMETER</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #ELECTRICMETER
+	 * @see #ELECTRICMETER_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	ELECTRICMETER_LITERAL(4, "ELECTRICMETER", "ELECTRICMETER"),
+	ELECTRICMETER(4, "ELECTRICMETER", "ELECTRICMETER"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
+	 * @see #USERDEFINED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	USERDEFINED_LITERAL(5, "USERDEFINED", "USERDEFINED"),
+	USERDEFINED(5, "USERDEFINED", "USERDEFINED"),
 
 	/**
 	 * The '<em><b>FLOWMETER</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #FLOWMETER
+	 * @see #FLOWMETER_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	FLOWMETER_LITERAL(6, "FLOWMETER", "FLOWMETER"),
+	FLOWMETER(6, "FLOWMETER", "FLOWMETER"),
 
 	/**
 	 * The '<em><b>ENERGYMETER</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #ENERGYMETER
+	 * @see #ENERGYMETER_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	ENERGYMETER_LITERAL(7, "ENERGYMETER", "ENERGYMETER"),
+	ENERGYMETER(7, "ENERGYMETER", "ENERGYMETER"),
 
 	/**
 	 * The '<em><b>OILMETER</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #OILMETER
+	 * @see #OILMETER_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	OILMETER_LITERAL(8, "OILMETER", "OILMETER");
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
+	OILMETER(8, "OILMETER", "OILMETER");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -141,12 +134,12 @@ public enum IfcFlowMeterTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NULL_LITERAL
+	 * @see #NULL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NULL = 0;
+	public static final int NULL_VALUE = 0;
 
 	/**
 	 * The '<em><b>WATERMETER</b></em>' literal value.
@@ -156,12 +149,12 @@ public enum IfcFlowMeterTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #WATERMETER_LITERAL
+	 * @see #WATERMETER
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int WATERMETER = 1;
+	public static final int WATERMETER_VALUE = 1;
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
@@ -171,12 +164,12 @@ public enum IfcFlowMeterTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_LITERAL
+	 * @see #NOTDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED = 2;
+	public static final int NOTDEFINED_VALUE = 2;
 
 	/**
 	 * The '<em><b>GASMETER</b></em>' literal value.
@@ -186,12 +179,12 @@ public enum IfcFlowMeterTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #GASMETER_LITERAL
+	 * @see #GASMETER
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int GASMETER = 3;
+	public static final int GASMETER_VALUE = 3;
 
 	/**
 	 * The '<em><b>ELECTRICMETER</b></em>' literal value.
@@ -201,12 +194,12 @@ public enum IfcFlowMeterTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ELECTRICMETER_LITERAL
+	 * @see #ELECTRICMETER
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ELECTRICMETER = 4;
+	public static final int ELECTRICMETER_VALUE = 4;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -216,12 +209,12 @@ public enum IfcFlowMeterTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_LITERAL
+	 * @see #USERDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED = 5;
+	public static final int USERDEFINED_VALUE = 5;
 
 	/**
 	 * The '<em><b>FLOWMETER</b></em>' literal value.
@@ -231,12 +224,12 @@ public enum IfcFlowMeterTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #FLOWMETER_LITERAL
+	 * @see #FLOWMETER
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int FLOWMETER = 6;
+	public static final int FLOWMETER_VALUE = 6;
 
 	/**
 	 * The '<em><b>ENERGYMETER</b></em>' literal value.
@@ -246,12 +239,12 @@ public enum IfcFlowMeterTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ENERGYMETER_LITERAL
+	 * @see #ENERGYMETER
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ENERGYMETER = 7;
+	public static final int ENERGYMETER_VALUE = 7;
 
 	/**
 	 * The '<em><b>OILMETER</b></em>' literal value.
@@ -261,12 +254,12 @@ public enum IfcFlowMeterTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #OILMETER_LITERAL
+	 * @see #OILMETER
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int OILMETER = 8;
+	public static final int OILMETER_VALUE = 8;
 
 	/**
 	 * An array of all the '<em><b>Ifc Flow Meter Type Enum</b></em>' enumerators.
@@ -275,17 +268,16 @@ public enum IfcFlowMeterTypeEnum implements Enumerator
 	 * @generated
 	 */
 	private static final IfcFlowMeterTypeEnum[] VALUES_ARRAY =
-		new IfcFlowMeterTypeEnum[]
-		{
-			NULL_LITERAL,
-			WATERMETER_LITERAL,
-			NOTDEFINED_LITERAL,
-			GASMETER_LITERAL,
-			ELECTRICMETER_LITERAL,
-			USERDEFINED_LITERAL,
-			FLOWMETER_LITERAL,
-			ENERGYMETER_LITERAL,
-			OILMETER_LITERAL,
+		new IfcFlowMeterTypeEnum[] {
+			NULL,
+			WATERMETER,
+			NOTDEFINED,
+			GASMETER,
+			ELECTRICMETER,
+			USERDEFINED,
+			FLOWMETER,
+			ENERGYMETER,
+			OILMETER,
 		};
 
 	/**
@@ -304,11 +296,9 @@ public enum IfcFlowMeterTypeEnum implements Enumerator
 	 */
 	public static IfcFlowMeterTypeEnum get(String literal)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcFlowMeterTypeEnum result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal))
-			{
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -323,11 +313,9 @@ public enum IfcFlowMeterTypeEnum implements Enumerator
 	 */
 	public static IfcFlowMeterTypeEnum getByName(String name)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcFlowMeterTypeEnum result = VALUES_ARRAY[i];
-			if (result.getName().equals(name))
-			{
+			if (result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -342,17 +330,16 @@ public enum IfcFlowMeterTypeEnum implements Enumerator
 	 */
 	public static IfcFlowMeterTypeEnum get(int value)
 	{
-		switch (value)
-		{
-			case NULL: return NULL_LITERAL;
-			case WATERMETER: return WATERMETER_LITERAL;
-			case NOTDEFINED: return NOTDEFINED_LITERAL;
-			case GASMETER: return GASMETER_LITERAL;
-			case ELECTRICMETER: return ELECTRICMETER_LITERAL;
-			case USERDEFINED: return USERDEFINED_LITERAL;
-			case FLOWMETER: return FLOWMETER_LITERAL;
-			case ENERGYMETER: return ENERGYMETER_LITERAL;
-			case OILMETER: return OILMETER_LITERAL;
+		switch (value) {
+			case NULL_VALUE: return NULL;
+			case WATERMETER_VALUE: return WATERMETER;
+			case NOTDEFINED_VALUE: return NOTDEFINED;
+			case GASMETER_VALUE: return GASMETER;
+			case ELECTRICMETER_VALUE: return ELECTRICMETER;
+			case USERDEFINED_VALUE: return USERDEFINED;
+			case FLOWMETER_VALUE: return FLOWMETER;
+			case ENERGYMETER_VALUE: return ENERGYMETER;
+			case OILMETER_VALUE: return OILMETER;
 		}
 		return null;
 	}

@@ -50,13 +50,6 @@ public class IfcOffsetCurve2DImpl extends IfcCurveImpl implements IfcOffsetCurve
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	protected IfcOffsetCurve2DImpl()
 	{
 		super();
@@ -70,7 +63,7 @@ public class IfcOffsetCurve2DImpl extends IfcCurveImpl implements IfcOffsetCurve
 	@Override
 	protected EClass eStaticClass()
 	{
-		return Ifc2x3Package.Literals.IFC_OFFSET_CURVE2_D;
+		return Ifc2x3Package.eINSTANCE.getIfcOffsetCurve2D();
 	}
 
 	/**
@@ -80,7 +73,7 @@ public class IfcOffsetCurve2DImpl extends IfcCurveImpl implements IfcOffsetCurve
 	 */
 	public IfcCurve getBasisCurve()
 	{
-		return (IfcCurve)eGet(Ifc2x3Package.Literals.IFC_OFFSET_CURVE2_D__BASIS_CURVE, true);
+		return (IfcCurve)eGet(Ifc2x3Package.eINSTANCE.getIfcOffsetCurve2D_BasisCurve(), true);
 	}
 
 	/**
@@ -90,7 +83,7 @@ public class IfcOffsetCurve2DImpl extends IfcCurveImpl implements IfcOffsetCurve
 	 */
 	public void setBasisCurve(IfcCurve newBasisCurve)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_OFFSET_CURVE2_D__BASIS_CURVE, newBasisCurve);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcOffsetCurve2D_BasisCurve(), newBasisCurve);
 	}
 
 	/**
@@ -100,7 +93,7 @@ public class IfcOffsetCurve2DImpl extends IfcCurveImpl implements IfcOffsetCurve
 	 */
 	public float getDistance()
 	{
-		return (Float)eGet(Ifc2x3Package.Literals.IFC_OFFSET_CURVE2_D__DISTANCE, true);
+		return (Float)eGet(Ifc2x3Package.eINSTANCE.getIfcOffsetCurve2D_Distance(), true);
 	}
 
 	/**
@@ -110,7 +103,7 @@ public class IfcOffsetCurve2DImpl extends IfcCurveImpl implements IfcOffsetCurve
 	 */
 	public void setDistance(float newDistance)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_OFFSET_CURVE2_D__DISTANCE, newDistance);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcOffsetCurve2D_Distance(), newDistance);
 	}
 
 	/**
@@ -120,7 +113,7 @@ public class IfcOffsetCurve2DImpl extends IfcCurveImpl implements IfcOffsetCurve
 	 */
 	public String getDistanceAsString()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_OFFSET_CURVE2_D__DISTANCE_AS_STRING, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcOffsetCurve2D_DistanceAsString(), true);
 	}
 
 	/**
@@ -130,7 +123,7 @@ public class IfcOffsetCurve2DImpl extends IfcCurveImpl implements IfcOffsetCurve
 	 */
 	public void setDistanceAsString(String newDistanceAsString)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_OFFSET_CURVE2_D__DISTANCE_AS_STRING, newDistanceAsString);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcOffsetCurve2D_DistanceAsString(), newDistanceAsString);
 	}
 
 	/**
@@ -140,7 +133,7 @@ public class IfcOffsetCurve2DImpl extends IfcCurveImpl implements IfcOffsetCurve
 	 */
 	public boolean isSelfIntersect()
 	{
-		return (Boolean)eGet(Ifc2x3Package.Literals.IFC_OFFSET_CURVE2_D__SELF_INTERSECT, true);
+		return (Boolean)eGet(Ifc2x3Package.eINSTANCE.getIfcOffsetCurve2D_SelfIntersect(), true);
 	}
 
 	/**
@@ -150,7 +143,7 @@ public class IfcOffsetCurve2DImpl extends IfcCurveImpl implements IfcOffsetCurve
 	 */
 	public void setSelfIntersect(boolean newSelfIntersect)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_OFFSET_CURVE2_D__SELF_INTERSECT, newSelfIntersect);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcOffsetCurve2D_SelfIntersect(), newSelfIntersect);
 	}
 
 } //IfcOffsetCurve2DImpl

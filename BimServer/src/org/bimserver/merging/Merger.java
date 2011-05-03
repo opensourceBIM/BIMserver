@@ -1116,60 +1116,60 @@ public class Merger {
 						if (unit instanceof IfcSIUnit) {
 							IfcSIUnit ifcSIUnit = (IfcSIUnit) unit;
 							IfcUnitEnum unitType = ifcSIUnit.getUnitType();
-							if (unitType == IfcUnitEnum.LENGTHUNIT_LITERAL) {
+							if (unitType == IfcUnitEnum.LENGTHUNIT) {
 								IfcSIPrefix prefix = ifcSIUnit.getPrefix();
 								if (prefix != null) {
 									prefixFound = true;
 									switch (prefix) {
-									case EXA_LITERAL:
+									case EXA:
 										lengthUnitPrefix = 1.0e18f;
 										break;
-									case PETA_LITERAL:
+									case PETA:
 										lengthUnitPrefix = 1.0e15f;
 										break;
-									case TERA_LITERAL:
+									case TERA:
 										lengthUnitPrefix = 1.0e12f;
 										break;
-									case GIGA_LITERAL:
+									case GIGA:
 										lengthUnitPrefix = 1.0e9f;
 										break;
-									case MEGA_LITERAL:
+									case MEGA:
 										lengthUnitPrefix = 1.0e6f;
 										break;
-									case KILO_LITERAL:
+									case KILO:
 										lengthUnitPrefix = 1.0e3f;
 										break;
-									case HECTO_LITERAL:
+									case HECTO:
 										lengthUnitPrefix = 1.0e2f;
 										break;
-									case DECA_LITERAL:
+									case DECA:
 										lengthUnitPrefix = 1.0e1f;
 										break;
-									case DECI_LITERAL:
+									case DECI:
 										lengthUnitPrefix = 1.0e-1f;
 										break;
-									case CENTI_LITERAL:
+									case CENTI:
 										lengthUnitPrefix = 1.0e-2f;
 										break;
-									case MILLI_LITERAL:
+									case MILLI:
 										lengthUnitPrefix = 1.0e-3f;
 										break;
-									case MICRO_LITERAL:
+									case MICRO:
 										lengthUnitPrefix = 1.0e-6f;
 										break;
-									case NANO_LITERAL:
+									case NANO:
 										lengthUnitPrefix = 1.0e-9f;
 										break;
-									case PICO_LITERAL:
+									case PICO:
 										lengthUnitPrefix = 1.0e-12f;
 										break;
-									case FEMTO_LITERAL:
+									case FEMTO:
 										lengthUnitPrefix = 1.0e-15f;
 										break;
-									case ATTO_LITERAL:
+									case ATTO:
 										lengthUnitPrefix = 1.0e-18f;
 										break;
-									case NULL_LITERAL:
+									case NULL:
 										break;
 									}
 									break;
@@ -1196,7 +1196,7 @@ public class Merger {
 					if (unit instanceof IfcSIUnit) {
 						IfcSIUnit ifcSIUnit = (IfcSIUnit) unit;
 						IfcUnitEnum unitType = ifcSIUnit.getUnitType();
-						if (unitType == IfcUnitEnum.LENGTHUNIT_LITERAL) {
+						if (unitType == IfcUnitEnum.LENGTHUNIT) {
 							prefixFound = true;
 							ifcSIUnit.setPrefix(IfcSIPrefix.valueOf(prefix.getLiteral()));
 							break;

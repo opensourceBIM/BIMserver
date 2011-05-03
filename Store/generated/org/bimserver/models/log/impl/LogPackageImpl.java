@@ -19,36 +19,49 @@
  */
 package org.bimserver.models.log.impl;
 
-import java.io.IOException;
-
-import java.net.URL;
-
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 
 import org.bimserver.models.ifc2x3.impl.Ifc2x3PackageImpl;
 
+import org.bimserver.models.log.AccessMethod;
+import org.bimserver.models.log.ClashDetectionSettingsUpdated;
+import org.bimserver.models.log.DatabaseCreated;
+import org.bimserver.models.log.Download;
+import org.bimserver.models.log.GeoTagUpdated;
+import org.bimserver.models.log.LogAction;
 import org.bimserver.models.log.LogFactory;
 import org.bimserver.models.log.LogPackage;
+import org.bimserver.models.log.NewCheckoutAdded;
+import org.bimserver.models.log.NewIgnoreFileUploaded;
+import org.bimserver.models.log.NewProjectAdded;
+import org.bimserver.models.log.NewRevisionAdded;
+import org.bimserver.models.log.NewUserAdded;
+import org.bimserver.models.log.PasswordChanged;
+import org.bimserver.models.log.PasswordReset;
+import org.bimserver.models.log.ProjectDeleted;
+import org.bimserver.models.log.ProjectUndeleted;
+import org.bimserver.models.log.ProjectUpdated;
+import org.bimserver.models.log.RevisionUpdated;
+import org.bimserver.models.log.ServerLog;
+import org.bimserver.models.log.ServerStarted;
+import org.bimserver.models.log.SettingsSaved;
+import org.bimserver.models.log.UserAddedToProject;
+import org.bimserver.models.log.UserChanged;
+import org.bimserver.models.log.UserDeleted;
+import org.bimserver.models.log.UserRemovedFromProject;
+import org.bimserver.models.log.UserUndeleted;
 
 import org.bimserver.models.store.StorePackage;
 
 import org.bimserver.models.store.impl.StorePackageImpl;
 
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.common.util.WrappedException;
-
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
-import org.eclipse.emf.ecore.resource.Resource;
-
-import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -58,20 +71,6 @@ import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
  */
 public class LogPackageImpl extends EPackageImpl implements LogPackage
 {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected String packageFilename = "log.ecore";
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -282,6 +281,8 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #eNS_URI
+	 * @see #createPackageContents()
+	 * @see #initializePackageContents()
 	 * @generated
 	 */
 	public static LogPackage init()
@@ -294,18 +295,22 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage
 		isInited = true;
 
 		// Obtain or create and register interdependencies
-		Ifc2x3PackageImpl theIfc2x3Package = (Ifc2x3PackageImpl)(EPackage.Registry.INSTANCE.getEPackage(Ifc2x3Package.eNS_URI) instanceof Ifc2x3PackageImpl ? EPackage.Registry.INSTANCE.getEPackage(Ifc2x3Package.eNS_URI) : Ifc2x3Package.eINSTANCE);
 		StorePackageImpl theStorePackage = (StorePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI) instanceof StorePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI) : StorePackage.eINSTANCE);
+		Ifc2x3PackageImpl theIfc2x3Package = (Ifc2x3PackageImpl)(EPackage.Registry.INSTANCE.getEPackage(Ifc2x3Package.eNS_URI) instanceof Ifc2x3PackageImpl ? EPackage.Registry.INSTANCE.getEPackage(Ifc2x3Package.eNS_URI) : Ifc2x3Package.eINSTANCE);
 
 		// Load packages
-		theLogPackage.loadPackage();
 		theIfc2x3Package.loadPackage();
-		theStorePackage.loadPackage();
+
+		// Create package meta-data objects
+		theLogPackage.createPackageContents();
+		theStorePackage.createPackageContents();
+
+		// Initialize created meta-data
+		theLogPackage.initializePackageContents();
+		theStorePackage.initializePackageContents();
 
 		// Fix loaded packages
-		theLogPackage.fixPackageContents();
 		theIfc2x3Package.fixPackageContents();
-		theStorePackage.fixPackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theLogPackage.freeze();
@@ -323,10 +328,6 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage
 	 */
 	public EClass getLogAction()
 	{
-		if (logActionEClass == null)
-		{
-			logActionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(1);
-		}
 		return logActionEClass;
 	}
 
@@ -337,7 +338,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage
 	 */
 	public EAttribute getLogAction_Date()
 	{
-        return (EAttribute)getLogAction().getEStructuralFeatures().get(0);
+		return (EAttribute)logActionEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -347,7 +348,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage
 	 */
 	public EReference getLogAction_Executor()
 	{
-        return (EReference)getLogAction().getEStructuralFeatures().get(1);
+		return (EReference)logActionEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -357,7 +358,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage
 	 */
 	public EAttribute getLogAction_AccessMethod()
 	{
-        return (EAttribute)getLogAction().getEStructuralFeatures().get(2);
+		return (EAttribute)logActionEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -367,10 +368,6 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage
 	 */
 	public EClass getServerLog()
 	{
-		if (serverLogEClass == null)
-		{
-			serverLogEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(2);
-		}
 		return serverLogEClass;
 	}
 
@@ -381,7 +378,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage
 	 */
 	public EReference getServerLog_Actions()
 	{
-        return (EReference)getServerLog().getEStructuralFeatures().get(0);
+		return (EReference)serverLogEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -391,10 +388,6 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage
 	 */
 	public EClass getNewUserAdded()
 	{
-		if (newUserAddedEClass == null)
-		{
-			newUserAddedEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(3);
-		}
 		return newUserAddedEClass;
 	}
 
@@ -405,7 +398,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage
 	 */
 	public EReference getNewUserAdded_User()
 	{
-        return (EReference)getNewUserAdded().getEStructuralFeatures().get(0);
+		return (EReference)newUserAddedEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -415,10 +408,6 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage
 	 */
 	public EClass getNewProjectAdded()
 	{
-		if (newProjectAddedEClass == null)
-		{
-			newProjectAddedEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(4);
-		}
 		return newProjectAddedEClass;
 	}
 
@@ -429,7 +418,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage
 	 */
 	public EReference getNewProjectAdded_Project()
 	{
-        return (EReference)getNewProjectAdded().getEStructuralFeatures().get(0);
+		return (EReference)newProjectAddedEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -439,7 +428,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage
 	 */
 	public EReference getNewProjectAdded_ParentProject()
 	{
-        return (EReference)getNewProjectAdded().getEStructuralFeatures().get(1);
+		return (EReference)newProjectAddedEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -449,10 +438,6 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage
 	 */
 	public EClass getNewRevisionAdded()
 	{
-		if (newRevisionAddedEClass == null)
-		{
-			newRevisionAddedEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(5);
-		}
 		return newRevisionAddedEClass;
 	}
 
@@ -463,7 +448,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage
 	 */
 	public EReference getNewRevisionAdded_Revision()
 	{
-        return (EReference)getNewRevisionAdded().getEStructuralFeatures().get(0);
+		return (EReference)newRevisionAddedEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -473,10 +458,6 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage
 	 */
 	public EClass getNewCheckoutAdded()
 	{
-		if (newCheckoutAddedEClass == null)
-		{
-			newCheckoutAddedEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(6);
-		}
 		return newCheckoutAddedEClass;
 	}
 
@@ -487,7 +468,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage
 	 */
 	public EReference getNewCheckoutAdded_Checkout()
 	{
-        return (EReference)getNewCheckoutAdded().getEStructuralFeatures().get(0);
+		return (EReference)newCheckoutAddedEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -497,10 +478,6 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage
 	 */
 	public EClass getSettingsSaved()
 	{
-		if (settingsSavedEClass == null)
-		{
-			settingsSavedEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(7);
-		}
 		return settingsSavedEClass;
 	}
 
@@ -511,10 +488,6 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage
 	 */
 	public EClass getUserAddedToProject()
 	{
-		if (userAddedToProjectEClass == null)
-		{
-			userAddedToProjectEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(8);
-		}
 		return userAddedToProjectEClass;
 	}
 
@@ -525,7 +498,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage
 	 */
 	public EReference getUserAddedToProject_User()
 	{
-        return (EReference)getUserAddedToProject().getEStructuralFeatures().get(0);
+		return (EReference)userAddedToProjectEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -535,7 +508,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage
 	 */
 	public EReference getUserAddedToProject_Project()
 	{
-        return (EReference)getUserAddedToProject().getEStructuralFeatures().get(1);
+		return (EReference)userAddedToProjectEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -545,10 +518,6 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage
 	 */
 	public EClass getNewIgnoreFileUploaded()
 	{
-		if (newIgnoreFileUploadedEClass == null)
-		{
-			newIgnoreFileUploadedEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(9);
-		}
 		return newIgnoreFileUploadedEClass;
 	}
 
@@ -559,10 +528,6 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage
 	 */
 	public EClass getDownload()
 	{
-		if (downloadEClass == null)
-		{
-			downloadEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(10);
-		}
 		return downloadEClass;
 	}
 
@@ -573,10 +538,6 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage
 	 */
 	public EClass getUserRemovedFromProject()
 	{
-		if (userRemovedFromProjectEClass == null)
-		{
-			userRemovedFromProjectEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(11);
-		}
 		return userRemovedFromProjectEClass;
 	}
 
@@ -587,7 +548,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage
 	 */
 	public EReference getUserRemovedFromProject_User()
 	{
-        return (EReference)getUserRemovedFromProject().getEStructuralFeatures().get(0);
+		return (EReference)userRemovedFromProjectEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -597,7 +558,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage
 	 */
 	public EReference getUserRemovedFromProject_Project()
 	{
-        return (EReference)getUserRemovedFromProject().getEStructuralFeatures().get(1);
+		return (EReference)userRemovedFromProjectEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -607,10 +568,6 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage
 	 */
 	public EClass getProjectDeleted()
 	{
-		if (projectDeletedEClass == null)
-		{
-			projectDeletedEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(12);
-		}
 		return projectDeletedEClass;
 	}
 
@@ -621,7 +578,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage
 	 */
 	public EReference getProjectDeleted_Project()
 	{
-        return (EReference)getProjectDeleted().getEStructuralFeatures().get(0);
+		return (EReference)projectDeletedEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -631,10 +588,6 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage
 	 */
 	public EClass getUserDeleted()
 	{
-		if (userDeletedEClass == null)
-		{
-			userDeletedEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(13);
-		}
 		return userDeletedEClass;
 	}
 
@@ -645,7 +598,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage
 	 */
 	public EReference getUserDeleted_User()
 	{
-        return (EReference)getUserDeleted().getEStructuralFeatures().get(0);
+		return (EReference)userDeletedEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -655,10 +608,6 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage
 	 */
 	public EClass getPasswordReset()
 	{
-		if (passwordResetEClass == null)
-		{
-			passwordResetEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(14);
-		}
 		return passwordResetEClass;
 	}
 
@@ -669,7 +618,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage
 	 */
 	public EReference getPasswordReset_User()
 	{
-        return (EReference)getPasswordReset().getEStructuralFeatures().get(0);
+		return (EReference)passwordResetEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -679,10 +628,6 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage
 	 */
 	public EClass getDatabaseCreated()
 	{
-		if (databaseCreatedEClass == null)
-		{
-			databaseCreatedEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(15);
-		}
 		return databaseCreatedEClass;
 	}
 
@@ -693,7 +638,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage
 	 */
 	public EAttribute getDatabaseCreated_Path()
 	{
-        return (EAttribute)getDatabaseCreated().getEStructuralFeatures().get(0);
+		return (EAttribute)databaseCreatedEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -703,7 +648,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage
 	 */
 	public EAttribute getDatabaseCreated_Version()
 	{
-        return (EAttribute)getDatabaseCreated().getEStructuralFeatures().get(1);
+		return (EAttribute)databaseCreatedEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -713,10 +658,6 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage
 	 */
 	public EClass getServerStarted()
 	{
-		if (serverStartedEClass == null)
-		{
-			serverStartedEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(16);
-		}
 		return serverStartedEClass;
 	}
 
@@ -727,10 +668,6 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage
 	 */
 	public EClass getProjectUpdated()
 	{
-		if (projectUpdatedEClass == null)
-		{
-			projectUpdatedEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(17);
-		}
 		return projectUpdatedEClass;
 	}
 
@@ -741,7 +678,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage
 	 */
 	public EReference getProjectUpdated_Project()
 	{
-        return (EReference)getProjectUpdated().getEStructuralFeatures().get(0);
+		return (EReference)projectUpdatedEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -751,10 +688,6 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage
 	 */
 	public EClass getUserUndeleted()
 	{
-		if (userUndeletedEClass == null)
-		{
-			userUndeletedEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(18);
-		}
 		return userUndeletedEClass;
 	}
 
@@ -765,7 +698,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage
 	 */
 	public EReference getUserUndeleted_User()
 	{
-        return (EReference)getUserUndeleted().getEStructuralFeatures().get(0);
+		return (EReference)userUndeletedEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -775,10 +708,6 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage
 	 */
 	public EClass getProjectUndeleted()
 	{
-		if (projectUndeletedEClass == null)
-		{
-			projectUndeletedEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(19);
-		}
 		return projectUndeletedEClass;
 	}
 
@@ -789,7 +718,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage
 	 */
 	public EReference getProjectUndeleted_Project()
 	{
-        return (EReference)getProjectUndeleted().getEStructuralFeatures().get(0);
+		return (EReference)projectUndeletedEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -799,10 +728,6 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage
 	 */
 	public EClass getRevisionUpdated()
 	{
-		if (revisionUpdatedEClass == null)
-		{
-			revisionUpdatedEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(20);
-		}
 		return revisionUpdatedEClass;
 	}
 
@@ -813,7 +738,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage
 	 */
 	public EReference getRevisionUpdated_Revision()
 	{
-        return (EReference)getRevisionUpdated().getEStructuralFeatures().get(0);
+		return (EReference)revisionUpdatedEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -823,10 +748,6 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage
 	 */
 	public EClass getGeoTagUpdated()
 	{
-		if (geoTagUpdatedEClass == null)
-		{
-			geoTagUpdatedEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(21);
-		}
 		return geoTagUpdatedEClass;
 	}
 
@@ -837,7 +758,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage
 	 */
 	public EReference getGeoTagUpdated_GeoTag()
 	{
-        return (EReference)getGeoTagUpdated().getEStructuralFeatures().get(0);
+		return (EReference)geoTagUpdatedEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -847,10 +768,6 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage
 	 */
 	public EClass getClashDetectionSettingsUpdated()
 	{
-		if (clashDetectionSettingsUpdatedEClass == null)
-		{
-			clashDetectionSettingsUpdatedEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(22);
-		}
 		return clashDetectionSettingsUpdatedEClass;
 	}
 
@@ -861,7 +778,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage
 	 */
 	public EReference getClashDetectionSettingsUpdated_ClashDetectionSettings()
 	{
-        return (EReference)getClashDetectionSettingsUpdated().getEStructuralFeatures().get(0);
+		return (EReference)clashDetectionSettingsUpdatedEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -871,10 +788,6 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage
 	 */
 	public EClass getPasswordChanged()
 	{
-		if (passwordChangedEClass == null)
-		{
-			passwordChangedEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(23);
-		}
 		return passwordChangedEClass;
 	}
 
@@ -885,7 +798,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage
 	 */
 	public EReference getPasswordChanged_User()
 	{
-        return (EReference)getPasswordChanged().getEStructuralFeatures().get(0);
+		return (EReference)passwordChangedEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -895,10 +808,6 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage
 	 */
 	public EClass getUserChanged()
 	{
-		if (userChangedEClass == null)
-		{
-			userChangedEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(24);
-		}
 		return userChangedEClass;
 	}
 
@@ -909,7 +818,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage
 	 */
 	public EReference getUserChanged_User()
 	{
-        return (EReference)getUserChanged().getEStructuralFeatures().get(0);
+		return (EReference)userChangedEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -919,10 +828,6 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage
 	 */
 	public EEnum getAccessMethod()
 	{
-		if (accessMethodEEnum == null)
-		{
-			accessMethodEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(0);
-		}
 		return accessMethodEEnum;
 	}
 
@@ -941,73 +846,239 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private boolean isLoaded = false;
+	private boolean isCreated = false;
 
 	/**
-	 * Laods the package and any sub-packages from their serialized form.
+	 * Creates the meta-model objects for the package.  This method is
+	 * guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void loadPackage()
+	public void createPackageContents()
 	{
-		if (isLoaded) return;
-		isLoaded = true;
+		if (isCreated) return;
+		isCreated = true;
 
-		URL url = getClass().getResource(packageFilename);
-		if (url == null)
-		{
-			throw new RuntimeException("Missing serialized package: " + packageFilename);
-		}
-		URI uri = URI.createURI(url.toString());
-		Resource resource = new EcoreResourceFactoryImpl().createResource(uri);
-		try
-		{
-			resource.load(null);
-		}
-		catch (IOException exception)
-		{
-			throw new WrappedException(exception);
-		}
-		initializeFromLoadedEPackage(this, (EPackage)resource.getContents().get(0));
+		// Create classes and their features
+		logActionEClass = createEClass(LOG_ACTION);
+		createEAttribute(logActionEClass, LOG_ACTION__DATE);
+		createEReference(logActionEClass, LOG_ACTION__EXECUTOR);
+		createEAttribute(logActionEClass, LOG_ACTION__ACCESS_METHOD);
+
+		serverLogEClass = createEClass(SERVER_LOG);
+		createEReference(serverLogEClass, SERVER_LOG__ACTIONS);
+
+		newUserAddedEClass = createEClass(NEW_USER_ADDED);
+		createEReference(newUserAddedEClass, NEW_USER_ADDED__USER);
+
+		newProjectAddedEClass = createEClass(NEW_PROJECT_ADDED);
+		createEReference(newProjectAddedEClass, NEW_PROJECT_ADDED__PROJECT);
+		createEReference(newProjectAddedEClass, NEW_PROJECT_ADDED__PARENT_PROJECT);
+
+		newRevisionAddedEClass = createEClass(NEW_REVISION_ADDED);
+		createEReference(newRevisionAddedEClass, NEW_REVISION_ADDED__REVISION);
+
+		newCheckoutAddedEClass = createEClass(NEW_CHECKOUT_ADDED);
+		createEReference(newCheckoutAddedEClass, NEW_CHECKOUT_ADDED__CHECKOUT);
+
+		settingsSavedEClass = createEClass(SETTINGS_SAVED);
+
+		userAddedToProjectEClass = createEClass(USER_ADDED_TO_PROJECT);
+		createEReference(userAddedToProjectEClass, USER_ADDED_TO_PROJECT__USER);
+		createEReference(userAddedToProjectEClass, USER_ADDED_TO_PROJECT__PROJECT);
+
+		newIgnoreFileUploadedEClass = createEClass(NEW_IGNORE_FILE_UPLOADED);
+
+		downloadEClass = createEClass(DOWNLOAD);
+
+		userRemovedFromProjectEClass = createEClass(USER_REMOVED_FROM_PROJECT);
+		createEReference(userRemovedFromProjectEClass, USER_REMOVED_FROM_PROJECT__USER);
+		createEReference(userRemovedFromProjectEClass, USER_REMOVED_FROM_PROJECT__PROJECT);
+
+		projectDeletedEClass = createEClass(PROJECT_DELETED);
+		createEReference(projectDeletedEClass, PROJECT_DELETED__PROJECT);
+
+		userDeletedEClass = createEClass(USER_DELETED);
+		createEReference(userDeletedEClass, USER_DELETED__USER);
+
+		passwordResetEClass = createEClass(PASSWORD_RESET);
+		createEReference(passwordResetEClass, PASSWORD_RESET__USER);
+
+		databaseCreatedEClass = createEClass(DATABASE_CREATED);
+		createEAttribute(databaseCreatedEClass, DATABASE_CREATED__PATH);
+		createEAttribute(databaseCreatedEClass, DATABASE_CREATED__VERSION);
+
+		serverStartedEClass = createEClass(SERVER_STARTED);
+
+		projectUpdatedEClass = createEClass(PROJECT_UPDATED);
+		createEReference(projectUpdatedEClass, PROJECT_UPDATED__PROJECT);
+
+		userUndeletedEClass = createEClass(USER_UNDELETED);
+		createEReference(userUndeletedEClass, USER_UNDELETED__USER);
+
+		projectUndeletedEClass = createEClass(PROJECT_UNDELETED);
+		createEReference(projectUndeletedEClass, PROJECT_UNDELETED__PROJECT);
+
+		revisionUpdatedEClass = createEClass(REVISION_UPDATED);
+		createEReference(revisionUpdatedEClass, REVISION_UPDATED__REVISION);
+
+		geoTagUpdatedEClass = createEClass(GEO_TAG_UPDATED);
+		createEReference(geoTagUpdatedEClass, GEO_TAG_UPDATED__GEO_TAG);
+
+		clashDetectionSettingsUpdatedEClass = createEClass(CLASH_DETECTION_SETTINGS_UPDATED);
+		createEReference(clashDetectionSettingsUpdatedEClass, CLASH_DETECTION_SETTINGS_UPDATED__CLASH_DETECTION_SETTINGS);
+
+		passwordChangedEClass = createEClass(PASSWORD_CHANGED);
+		createEReference(passwordChangedEClass, PASSWORD_CHANGED__USER);
+
+		userChangedEClass = createEClass(USER_CHANGED);
+		createEReference(userChangedEClass, USER_CHANGED__USER);
+
+		// Create enums
+		accessMethodEEnum = createEEnum(ACCESS_METHOD);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private boolean isInitialized = false;
+
+	/**
+	 * Complete the initialization of the package and its meta-model.  This
+	 * method is guarded to have no affect on any invocation but its first.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void initializePackageContents()
+	{
+		if (isInitialized) return;
+		isInitialized = true;
+
+		// Initialize package
+		setName(eNAME);
+		setNsPrefix(eNS_PREFIX);
+		setNsURI(eNS_URI);
+
+		// Obtain other dependent packages
+		StorePackage theStorePackage = (StorePackage)EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI);
+
+		// Create type parameters
+
+		// Set bounds for type parameters
+
+		// Add supertypes to classes
+		newUserAddedEClass.getESuperTypes().add(this.getLogAction());
+		newProjectAddedEClass.getESuperTypes().add(this.getLogAction());
+		newRevisionAddedEClass.getESuperTypes().add(this.getLogAction());
+		newCheckoutAddedEClass.getESuperTypes().add(this.getLogAction());
+		settingsSavedEClass.getESuperTypes().add(this.getLogAction());
+		userAddedToProjectEClass.getESuperTypes().add(this.getLogAction());
+		newIgnoreFileUploadedEClass.getESuperTypes().add(this.getLogAction());
+		downloadEClass.getESuperTypes().add(this.getLogAction());
+		userRemovedFromProjectEClass.getESuperTypes().add(this.getLogAction());
+		projectDeletedEClass.getESuperTypes().add(this.getLogAction());
+		userDeletedEClass.getESuperTypes().add(this.getLogAction());
+		passwordResetEClass.getESuperTypes().add(this.getLogAction());
+		databaseCreatedEClass.getESuperTypes().add(this.getLogAction());
+		serverStartedEClass.getESuperTypes().add(this.getLogAction());
+		projectUpdatedEClass.getESuperTypes().add(this.getLogAction());
+		userUndeletedEClass.getESuperTypes().add(this.getLogAction());
+		projectUndeletedEClass.getESuperTypes().add(this.getLogAction());
+		revisionUpdatedEClass.getESuperTypes().add(this.getLogAction());
+		geoTagUpdatedEClass.getESuperTypes().add(this.getLogAction());
+		clashDetectionSettingsUpdatedEClass.getESuperTypes().add(this.getLogAction());
+		passwordChangedEClass.getESuperTypes().add(this.getLogAction());
+		userChangedEClass.getESuperTypes().add(this.getLogAction());
+
+		// Initialize classes and features; add operations and parameters
+		initEClass(logActionEClass, LogAction.class, "LogAction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getLogAction_Date(), ecorePackage.getEDate(), "date", null, 0, 1, LogAction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getLogAction_Executor(), theStorePackage.getUser(), null, "executor", null, 0, 1, LogAction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLogAction_AccessMethod(), this.getAccessMethod(), "accessMethod", null, 0, 1, LogAction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(serverLogEClass, ServerLog.class, "ServerLog", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getServerLog_Actions(), this.getLogAction(), null, "actions", null, 0, -1, ServerLog.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(newUserAddedEClass, NewUserAdded.class, "NewUserAdded", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getNewUserAdded_User(), theStorePackage.getUser(), null, "user", null, 0, 1, NewUserAdded.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(newProjectAddedEClass, NewProjectAdded.class, "NewProjectAdded", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getNewProjectAdded_Project(), theStorePackage.getProject(), null, "project", null, 0, 1, NewProjectAdded.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getNewProjectAdded_ParentProject(), theStorePackage.getProject(), null, "parentProject", null, 0, 1, NewProjectAdded.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(newRevisionAddedEClass, NewRevisionAdded.class, "NewRevisionAdded", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getNewRevisionAdded_Revision(), theStorePackage.getRevision(), null, "revision", null, 0, 1, NewRevisionAdded.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(newCheckoutAddedEClass, NewCheckoutAdded.class, "NewCheckoutAdded", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getNewCheckoutAdded_Checkout(), theStorePackage.getCheckout(), null, "checkout", null, 0, 1, NewCheckoutAdded.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(settingsSavedEClass, SettingsSaved.class, "SettingsSaved", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(userAddedToProjectEClass, UserAddedToProject.class, "UserAddedToProject", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getUserAddedToProject_User(), theStorePackage.getUser(), null, "user", null, 0, 1, UserAddedToProject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getUserAddedToProject_Project(), theStorePackage.getProject(), null, "project", null, 0, 1, UserAddedToProject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(newIgnoreFileUploadedEClass, NewIgnoreFileUploaded.class, "NewIgnoreFileUploaded", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(downloadEClass, Download.class, "Download", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(userRemovedFromProjectEClass, UserRemovedFromProject.class, "UserRemovedFromProject", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getUserRemovedFromProject_User(), theStorePackage.getUser(), null, "user", null, 0, 1, UserRemovedFromProject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getUserRemovedFromProject_Project(), theStorePackage.getProject(), null, "project", null, 0, 1, UserRemovedFromProject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(projectDeletedEClass, ProjectDeleted.class, "ProjectDeleted", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getProjectDeleted_Project(), theStorePackage.getProject(), null, "project", null, 0, 1, ProjectDeleted.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(userDeletedEClass, UserDeleted.class, "UserDeleted", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getUserDeleted_User(), theStorePackage.getUser(), null, "user", null, 0, 1, UserDeleted.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(passwordResetEClass, PasswordReset.class, "PasswordReset", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getPasswordReset_User(), theStorePackage.getUser(), null, "user", null, 0, 1, PasswordReset.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(databaseCreatedEClass, DatabaseCreated.class, "DatabaseCreated", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getDatabaseCreated_Path(), ecorePackage.getEString(), "path", null, 0, 1, DatabaseCreated.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDatabaseCreated_Version(), ecorePackage.getEInt(), "version", null, 0, 1, DatabaseCreated.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(serverStartedEClass, ServerStarted.class, "ServerStarted", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(projectUpdatedEClass, ProjectUpdated.class, "ProjectUpdated", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getProjectUpdated_Project(), theStorePackage.getProject(), null, "project", null, 0, 1, ProjectUpdated.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(userUndeletedEClass, UserUndeleted.class, "UserUndeleted", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getUserUndeleted_User(), theStorePackage.getUser(), null, "user", null, 0, 1, UserUndeleted.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(projectUndeletedEClass, ProjectUndeleted.class, "ProjectUndeleted", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getProjectUndeleted_Project(), theStorePackage.getProject(), null, "project", null, 0, 1, ProjectUndeleted.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(revisionUpdatedEClass, RevisionUpdated.class, "RevisionUpdated", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getRevisionUpdated_Revision(), theStorePackage.getRevision(), null, "revision", null, 0, 1, RevisionUpdated.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(geoTagUpdatedEClass, GeoTagUpdated.class, "GeoTagUpdated", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getGeoTagUpdated_GeoTag(), theStorePackage.getGeoTag(), null, "geoTag", null, 0, 1, GeoTagUpdated.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(clashDetectionSettingsUpdatedEClass, ClashDetectionSettingsUpdated.class, "ClashDetectionSettingsUpdated", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getClashDetectionSettingsUpdated_ClashDetectionSettings(), theStorePackage.getClashDetectionSettings(), null, "clashDetectionSettings", null, 0, 1, ClashDetectionSettingsUpdated.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(passwordChangedEClass, PasswordChanged.class, "PasswordChanged", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getPasswordChanged_User(), theStorePackage.getUser(), null, "user", null, 0, 1, PasswordChanged.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(userChangedEClass, UserChanged.class, "UserChanged", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getUserChanged_User(), theStorePackage.getUser(), null, "user", null, 0, 1, UserChanged.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		// Initialize enums and add enum literals
+		initEEnum(accessMethodEEnum, AccessMethod.class, "AccessMethod");
+		addEEnumLiteral(accessMethodEEnum, AccessMethod.SOAP);
+		addEEnumLiteral(accessMethodEEnum, AccessMethod.WEB_INTERFACE);
+		addEEnumLiteral(accessMethodEEnum, AccessMethod.INTERNAL);
+		addEEnumLiteral(accessMethodEEnum, AccessMethod.REST);
+		addEEnumLiteral(accessMethodEEnum, AccessMethod.SYNDICATION);
+
+		// Create resource
 		createResource(eNS_URI);
-	}
-
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private boolean isFixed = false;
-
-	/**
-	 * Fixes up the loaded package, to make it appear as if it had been programmatically built.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void fixPackageContents()
-	{
-		if (isFixed) return;
-		isFixed = true;
-		fixEClassifiers();
-	}
-
-	/**
-	 * Sets the instance class on the given classifier.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected void fixInstanceClass(EClassifier eClassifier)
-	{
-		if (eClassifier.getInstanceClassName() == null)
-		{
-			eClassifier.setInstanceClassName("org.bimserver.models.log." + eClassifier.getName());
-			setGeneratedClassName(eClassifier);
-		}
 	}
 
 } //LogPackageImpl

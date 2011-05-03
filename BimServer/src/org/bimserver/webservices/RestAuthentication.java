@@ -31,7 +31,7 @@ public class RestAuthentication extends SoapHeaderInterceptor {
 		Token token = (Token)message.getExchange().getService().get("token");
 		ServiceInterface newService = null;
 		if (token == null) {
-			newService = ServiceFactory.getINSTANCE().newService(AccessMethod.REST_LITERAL);
+			newService = ServiceFactory.getINSTANCE().newService(AccessMethod.REST);
 			message.getExchange().getService().put("token", ((Service)newService).getCurrentToken());
 		} else {
 			try {

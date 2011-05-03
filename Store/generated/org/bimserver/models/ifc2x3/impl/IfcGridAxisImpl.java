@@ -58,13 +58,6 @@ public class IfcGridAxisImpl extends IdEObjectImpl implements IfcGridAxis
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	protected IfcGridAxisImpl()
 	{
 		super();
@@ -78,7 +71,7 @@ public class IfcGridAxisImpl extends IdEObjectImpl implements IfcGridAxis
 	@Override
 	protected EClass eStaticClass()
 	{
-		return Ifc2x3Package.Literals.IFC_GRID_AXIS;
+		return Ifc2x3Package.eINSTANCE.getIfcGridAxis();
 	}
 
 	/**
@@ -99,7 +92,7 @@ public class IfcGridAxisImpl extends IdEObjectImpl implements IfcGridAxis
 	 */
 	public String getAxisTag()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_GRID_AXIS__AXIS_TAG, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcGridAxis_AxisTag(), true);
 	}
 
 	/**
@@ -109,7 +102,7 @@ public class IfcGridAxisImpl extends IdEObjectImpl implements IfcGridAxis
 	 */
 	public void setAxisTag(String newAxisTag)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_GRID_AXIS__AXIS_TAG, newAxisTag);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcGridAxis_AxisTag(), newAxisTag);
 	}
 
 	/**
@@ -119,7 +112,7 @@ public class IfcGridAxisImpl extends IdEObjectImpl implements IfcGridAxis
 	 */
 	public void unsetAxisTag()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_GRID_AXIS__AXIS_TAG);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcGridAxis_AxisTag());
 	}
 
 	/**
@@ -129,7 +122,7 @@ public class IfcGridAxisImpl extends IdEObjectImpl implements IfcGridAxis
 	 */
 	public boolean isSetAxisTag()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_GRID_AXIS__AXIS_TAG);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcGridAxis_AxisTag());
 	}
 
 	/**
@@ -139,7 +132,7 @@ public class IfcGridAxisImpl extends IdEObjectImpl implements IfcGridAxis
 	 */
 	public IfcCurve getAxisCurve()
 	{
-		return (IfcCurve)eGet(Ifc2x3Package.Literals.IFC_GRID_AXIS__AXIS_CURVE, true);
+		return (IfcCurve)eGet(Ifc2x3Package.eINSTANCE.getIfcGridAxis_AxisCurve(), true);
 	}
 
 	/**
@@ -149,7 +142,7 @@ public class IfcGridAxisImpl extends IdEObjectImpl implements IfcGridAxis
 	 */
 	public void setAxisCurve(IfcCurve newAxisCurve)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_GRID_AXIS__AXIS_CURVE, newAxisCurve);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcGridAxis_AxisCurve(), newAxisCurve);
 	}
 
 	/**
@@ -159,7 +152,7 @@ public class IfcGridAxisImpl extends IdEObjectImpl implements IfcGridAxis
 	 */
 	public Tristate getSameSense()
 	{
-		return (Tristate)eGet(Ifc2x3Package.Literals.IFC_GRID_AXIS__SAME_SENSE, true);
+		return (Tristate)eGet(Ifc2x3Package.eINSTANCE.getIfcGridAxis_SameSense(), true);
 	}
 
 	/**
@@ -169,7 +162,7 @@ public class IfcGridAxisImpl extends IdEObjectImpl implements IfcGridAxis
 	 */
 	public void setSameSense(Tristate newSameSense)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_GRID_AXIS__SAME_SENSE, newSameSense);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcGridAxis_SameSense(), newSameSense);
 	}
 
 	/**
@@ -180,7 +173,7 @@ public class IfcGridAxisImpl extends IdEObjectImpl implements IfcGridAxis
 	@SuppressWarnings("unchecked")
 	public EList<IfcGrid> getPartOfW()
 	{
-		return (EList<IfcGrid>)eGet(Ifc2x3Package.Literals.IFC_GRID_AXIS__PART_OF_W, true);
+		return (EList<IfcGrid>)eGet(Ifc2x3Package.eINSTANCE.getIfcGridAxis_PartOfW(), true);
 	}
 
 	/**
@@ -191,7 +184,7 @@ public class IfcGridAxisImpl extends IdEObjectImpl implements IfcGridAxis
 	@SuppressWarnings("unchecked")
 	public EList<IfcGrid> getPartOfV()
 	{
-		return (EList<IfcGrid>)eGet(Ifc2x3Package.Literals.IFC_GRID_AXIS__PART_OF_V, true);
+		return (EList<IfcGrid>)eGet(Ifc2x3Package.eINSTANCE.getIfcGridAxis_PartOfV(), true);
 	}
 
 	/**
@@ -202,7 +195,7 @@ public class IfcGridAxisImpl extends IdEObjectImpl implements IfcGridAxis
 	@SuppressWarnings("unchecked")
 	public EList<IfcGrid> getPartOfU()
 	{
-		return (EList<IfcGrid>)eGet(Ifc2x3Package.Literals.IFC_GRID_AXIS__PART_OF_U, true);
+		return (EList<IfcGrid>)eGet(Ifc2x3Package.eINSTANCE.getIfcGridAxis_PartOfU(), true);
 	}
 
 	/**
@@ -213,7 +206,7 @@ public class IfcGridAxisImpl extends IdEObjectImpl implements IfcGridAxis
 	@SuppressWarnings("unchecked")
 	public EList<IfcVirtualGridIntersection> getHasIntersections()
 	{
-		return (EList<IfcVirtualGridIntersection>)eGet(Ifc2x3Package.Literals.IFC_GRID_AXIS__HAS_INTERSECTIONS, true);
+		return (EList<IfcVirtualGridIntersection>)eGet(Ifc2x3Package.eINSTANCE.getIfcGridAxis_HasIntersections(), true);
 	}
 
 } //IfcGridAxisImpl

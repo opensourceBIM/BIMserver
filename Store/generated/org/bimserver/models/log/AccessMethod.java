@@ -40,58 +40,51 @@ public enum AccessMethod implements Enumerator
 	 * The '<em><b>SOAP</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #SOAP
+	 * @see #SOAP_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	SOAP_LITERAL(0, "SOAP", "SOAP"),
+	SOAP(0, "SOAP", "SOAP"),
 
 	/**
 	 * The '<em><b>WEB INTERFACE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #WEB_INTERFACE
+	 * @see #WEB_INTERFACE_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	WEB_INTERFACE_LITERAL(1, "WEB_INTERFACE", "WEB_INTERFACE"),
+	WEB_INTERFACE(1, "WEB_INTERFACE", "WEB_INTERFACE"),
 
 	/**
 	 * The '<em><b>INTERNAL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #INTERNAL
+	 * @see #INTERNAL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	INTERNAL_LITERAL(2, "INTERNAL", "INTERNAL"),
+	INTERNAL(2, "INTERNAL", "INTERNAL"),
 
 	/**
 	 * The '<em><b>REST</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #REST
+	 * @see #REST_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	REST_LITERAL(3, "REST", "REST"),
+	REST(3, "REST", "REST"),
 
 	/**
 	 * The '<em><b>SYNDICATION</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #SYNDICATION
+	 * @see #SYNDICATION_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	SYNDICATION_LITERAL(4, "SYNDICATION", "SYNDICATION");
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
+	SYNDICATION(4, "SYNDICATION", "SYNDICATION");
 
 	/**
 	 * The '<em><b>SOAP</b></em>' literal value.
@@ -101,12 +94,12 @@ public enum AccessMethod implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #SOAP_LITERAL
+	 * @see #SOAP
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SOAP = 0;
+	public static final int SOAP_VALUE = 0;
 
 	/**
 	 * The '<em><b>WEB INTERFACE</b></em>' literal value.
@@ -116,12 +109,12 @@ public enum AccessMethod implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #WEB_INTERFACE_LITERAL
+	 * @see #WEB_INTERFACE
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int WEB_INTERFACE = 1;
+	public static final int WEB_INTERFACE_VALUE = 1;
 
 	/**
 	 * The '<em><b>INTERNAL</b></em>' literal value.
@@ -131,12 +124,12 @@ public enum AccessMethod implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #INTERNAL_LITERAL
+	 * @see #INTERNAL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int INTERNAL = 2;
+	public static final int INTERNAL_VALUE = 2;
 
 	/**
 	 * The '<em><b>REST</b></em>' literal value.
@@ -146,12 +139,12 @@ public enum AccessMethod implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #REST_LITERAL
+	 * @see #REST
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int REST = 3;
+	public static final int REST_VALUE = 3;
 
 	/**
 	 * The '<em><b>SYNDICATION</b></em>' literal value.
@@ -161,12 +154,12 @@ public enum AccessMethod implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #SYNDICATION_LITERAL
+	 * @see #SYNDICATION
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SYNDICATION = 4;
+	public static final int SYNDICATION_VALUE = 4;
 
 	/**
 	 * An array of all the '<em><b>Access Method</b></em>' enumerators.
@@ -175,13 +168,12 @@ public enum AccessMethod implements Enumerator
 	 * @generated
 	 */
 	private static final AccessMethod[] VALUES_ARRAY =
-		new AccessMethod[]
-		{
-			SOAP_LITERAL,
-			WEB_INTERFACE_LITERAL,
-			INTERNAL_LITERAL,
-			REST_LITERAL,
-			SYNDICATION_LITERAL,
+		new AccessMethod[] {
+			SOAP,
+			WEB_INTERFACE,
+			INTERNAL,
+			REST,
+			SYNDICATION,
 		};
 
 	/**
@@ -200,11 +192,9 @@ public enum AccessMethod implements Enumerator
 	 */
 	public static AccessMethod get(String literal)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			AccessMethod result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal))
-			{
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -219,11 +209,9 @@ public enum AccessMethod implements Enumerator
 	 */
 	public static AccessMethod getByName(String name)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			AccessMethod result = VALUES_ARRAY[i];
-			if (result.getName().equals(name))
-			{
+			if (result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -238,13 +226,12 @@ public enum AccessMethod implements Enumerator
 	 */
 	public static AccessMethod get(int value)
 	{
-		switch (value)
-		{
-			case SOAP: return SOAP_LITERAL;
-			case WEB_INTERFACE: return WEB_INTERFACE_LITERAL;
-			case INTERNAL: return INTERNAL_LITERAL;
-			case REST: return REST_LITERAL;
-			case SYNDICATION: return SYNDICATION_LITERAL;
+		switch (value) {
+			case SOAP_VALUE: return SOAP;
+			case WEB_INTERFACE_VALUE: return WEB_INTERFACE;
+			case INTERNAL_VALUE: return INTERNAL;
+			case REST_VALUE: return REST;
+			case SYNDICATION_VALUE: return SYNDICATION;
 		}
 		return null;
 	}

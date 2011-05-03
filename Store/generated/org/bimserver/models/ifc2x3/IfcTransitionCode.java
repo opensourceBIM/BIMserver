@@ -40,58 +40,51 @@ public enum IfcTransitionCode implements Enumerator
 	 * The '<em><b>NULL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NULL
+	 * @see #NULL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NULL_LITERAL(0, "NULL", "NULL"),
+	NULL(0, "NULL", "NULL"),
 
 	/**
 	 * The '<em><b>CONTSAMEGRADIENT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #CONTSAMEGRADIENT
+	 * @see #CONTSAMEGRADIENT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	CONTSAMEGRADIENT_LITERAL(1, "CONTSAMEGRADIENT", "CONTSAMEGRADIENT"),
+	CONTSAMEGRADIENT(1, "CONTSAMEGRADIENT", "CONTSAMEGRADIENT"),
 
 	/**
 	 * The '<em><b>CONTSAMEGRADIENTSAMECURVATURE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #CONTSAMEGRADIENTSAMECURVATURE
+	 * @see #CONTSAMEGRADIENTSAMECURVATURE_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	CONTSAMEGRADIENTSAMECURVATURE_LITERAL(2, "CONTSAMEGRADIENTSAMECURVATURE", "CONTSAMEGRADIENTSAMECURVATURE"),
+	CONTSAMEGRADIENTSAMECURVATURE(2, "CONTSAMEGRADIENTSAMECURVATURE", "CONTSAMEGRADIENTSAMECURVATURE"),
 
 	/**
 	 * The '<em><b>CONTINUOUS</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #CONTINUOUS
+	 * @see #CONTINUOUS_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	CONTINUOUS_LITERAL(3, "CONTINUOUS", "CONTINUOUS"),
+	CONTINUOUS(3, "CONTINUOUS", "CONTINUOUS"),
 
 	/**
 	 * The '<em><b>DISCONTINUOUS</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #DISCONTINUOUS
+	 * @see #DISCONTINUOUS_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	DISCONTINUOUS_LITERAL(4, "DISCONTINUOUS", "DISCONTINUOUS");
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
+	DISCONTINUOUS(4, "DISCONTINUOUS", "DISCONTINUOUS");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -101,12 +94,12 @@ public enum IfcTransitionCode implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NULL_LITERAL
+	 * @see #NULL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NULL = 0;
+	public static final int NULL_VALUE = 0;
 
 	/**
 	 * The '<em><b>CONTSAMEGRADIENT</b></em>' literal value.
@@ -116,12 +109,12 @@ public enum IfcTransitionCode implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #CONTSAMEGRADIENT_LITERAL
+	 * @see #CONTSAMEGRADIENT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int CONTSAMEGRADIENT = 1;
+	public static final int CONTSAMEGRADIENT_VALUE = 1;
 
 	/**
 	 * The '<em><b>CONTSAMEGRADIENTSAMECURVATURE</b></em>' literal value.
@@ -131,12 +124,12 @@ public enum IfcTransitionCode implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #CONTSAMEGRADIENTSAMECURVATURE_LITERAL
+	 * @see #CONTSAMEGRADIENTSAMECURVATURE
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int CONTSAMEGRADIENTSAMECURVATURE = 2;
+	public static final int CONTSAMEGRADIENTSAMECURVATURE_VALUE = 2;
 
 	/**
 	 * The '<em><b>CONTINUOUS</b></em>' literal value.
@@ -146,12 +139,12 @@ public enum IfcTransitionCode implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #CONTINUOUS_LITERAL
+	 * @see #CONTINUOUS
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int CONTINUOUS = 3;
+	public static final int CONTINUOUS_VALUE = 3;
 
 	/**
 	 * The '<em><b>DISCONTINUOUS</b></em>' literal value.
@@ -161,12 +154,12 @@ public enum IfcTransitionCode implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #DISCONTINUOUS_LITERAL
+	 * @see #DISCONTINUOUS
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int DISCONTINUOUS = 4;
+	public static final int DISCONTINUOUS_VALUE = 4;
 
 	/**
 	 * An array of all the '<em><b>Ifc Transition Code</b></em>' enumerators.
@@ -175,13 +168,12 @@ public enum IfcTransitionCode implements Enumerator
 	 * @generated
 	 */
 	private static final IfcTransitionCode[] VALUES_ARRAY =
-		new IfcTransitionCode[]
-		{
-			NULL_LITERAL,
-			CONTSAMEGRADIENT_LITERAL,
-			CONTSAMEGRADIENTSAMECURVATURE_LITERAL,
-			CONTINUOUS_LITERAL,
-			DISCONTINUOUS_LITERAL,
+		new IfcTransitionCode[] {
+			NULL,
+			CONTSAMEGRADIENT,
+			CONTSAMEGRADIENTSAMECURVATURE,
+			CONTINUOUS,
+			DISCONTINUOUS,
 		};
 
 	/**
@@ -200,11 +192,9 @@ public enum IfcTransitionCode implements Enumerator
 	 */
 	public static IfcTransitionCode get(String literal)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcTransitionCode result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal))
-			{
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -219,11 +209,9 @@ public enum IfcTransitionCode implements Enumerator
 	 */
 	public static IfcTransitionCode getByName(String name)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcTransitionCode result = VALUES_ARRAY[i];
-			if (result.getName().equals(name))
-			{
+			if (result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -238,13 +226,12 @@ public enum IfcTransitionCode implements Enumerator
 	 */
 	public static IfcTransitionCode get(int value)
 	{
-		switch (value)
-		{
-			case NULL: return NULL_LITERAL;
-			case CONTSAMEGRADIENT: return CONTSAMEGRADIENT_LITERAL;
-			case CONTSAMEGRADIENTSAMECURVATURE: return CONTSAMEGRADIENTSAMECURVATURE_LITERAL;
-			case CONTINUOUS: return CONTINUOUS_LITERAL;
-			case DISCONTINUOUS: return DISCONTINUOUS_LITERAL;
+		switch (value) {
+			case NULL_VALUE: return NULL;
+			case CONTSAMEGRADIENT_VALUE: return CONTSAMEGRADIENT;
+			case CONTSAMEGRADIENTSAMECURVATURE_VALUE: return CONTSAMEGRADIENTSAMECURVATURE;
+			case CONTINUOUS_VALUE: return CONTINUOUS;
+			case DISCONTINUOUS_VALUE: return DISCONTINUOUS;
 		}
 		return null;
 	}

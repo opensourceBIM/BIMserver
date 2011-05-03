@@ -40,58 +40,51 @@ public enum IfcLightDistributionCurveEnum implements Enumerator
 	 * The '<em><b>NULL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NULL
+	 * @see #NULL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NULL_LITERAL(0, "NULL", "NULL"),
+	NULL(0, "NULL", "NULL"),
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED
+	 * @see #NOTDEFINED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED_LITERAL(1, "NOTDEFINED", "NOTDEFINED"),
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>TYPE C</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #TYPE_C
+	 * @see #TYPE_C_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	TYPE_C_LITERAL(2, "TYPE_C", "TYPE_C"),
+	TYPE_C(2, "TYPE_C", "TYPE_C"),
 
 	/**
 	 * The '<em><b>TYPE B</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #TYPE_B
+	 * @see #TYPE_B_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	TYPE_B_LITERAL(3, "TYPE_B", "TYPE_B"),
+	TYPE_B(3, "TYPE_B", "TYPE_B"),
 
 	/**
 	 * The '<em><b>TYPE A</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #TYPE_A
+	 * @see #TYPE_A_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	TYPE_A_LITERAL(4, "TYPE_A", "TYPE_A");
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
+	TYPE_A(4, "TYPE_A", "TYPE_A");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -101,12 +94,12 @@ public enum IfcLightDistributionCurveEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NULL_LITERAL
+	 * @see #NULL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NULL = 0;
+	public static final int NULL_VALUE = 0;
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
@@ -116,12 +109,12 @@ public enum IfcLightDistributionCurveEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_LITERAL
+	 * @see #NOTDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED = 1;
+	public static final int NOTDEFINED_VALUE = 1;
 
 	/**
 	 * The '<em><b>TYPE C</b></em>' literal value.
@@ -131,12 +124,12 @@ public enum IfcLightDistributionCurveEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #TYPE_C_LITERAL
+	 * @see #TYPE_C
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int TYPE_C = 2;
+	public static final int TYPE_C_VALUE = 2;
 
 	/**
 	 * The '<em><b>TYPE B</b></em>' literal value.
@@ -146,12 +139,12 @@ public enum IfcLightDistributionCurveEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #TYPE_B_LITERAL
+	 * @see #TYPE_B
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int TYPE_B = 3;
+	public static final int TYPE_B_VALUE = 3;
 
 	/**
 	 * The '<em><b>TYPE A</b></em>' literal value.
@@ -161,12 +154,12 @@ public enum IfcLightDistributionCurveEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #TYPE_A_LITERAL
+	 * @see #TYPE_A
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int TYPE_A = 4;
+	public static final int TYPE_A_VALUE = 4;
 
 	/**
 	 * An array of all the '<em><b>Ifc Light Distribution Curve Enum</b></em>' enumerators.
@@ -175,13 +168,12 @@ public enum IfcLightDistributionCurveEnum implements Enumerator
 	 * @generated
 	 */
 	private static final IfcLightDistributionCurveEnum[] VALUES_ARRAY =
-		new IfcLightDistributionCurveEnum[]
-		{
-			NULL_LITERAL,
-			NOTDEFINED_LITERAL,
-			TYPE_C_LITERAL,
-			TYPE_B_LITERAL,
-			TYPE_A_LITERAL,
+		new IfcLightDistributionCurveEnum[] {
+			NULL,
+			NOTDEFINED,
+			TYPE_C,
+			TYPE_B,
+			TYPE_A,
 		};
 
 	/**
@@ -200,11 +192,9 @@ public enum IfcLightDistributionCurveEnum implements Enumerator
 	 */
 	public static IfcLightDistributionCurveEnum get(String literal)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcLightDistributionCurveEnum result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal))
-			{
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -219,11 +209,9 @@ public enum IfcLightDistributionCurveEnum implements Enumerator
 	 */
 	public static IfcLightDistributionCurveEnum getByName(String name)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcLightDistributionCurveEnum result = VALUES_ARRAY[i];
-			if (result.getName().equals(name))
-			{
+			if (result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -238,13 +226,12 @@ public enum IfcLightDistributionCurveEnum implements Enumerator
 	 */
 	public static IfcLightDistributionCurveEnum get(int value)
 	{
-		switch (value)
-		{
-			case NULL: return NULL_LITERAL;
-			case NOTDEFINED: return NOTDEFINED_LITERAL;
-			case TYPE_C: return TYPE_C_LITERAL;
-			case TYPE_B: return TYPE_B_LITERAL;
-			case TYPE_A: return TYPE_A_LITERAL;
+		switch (value) {
+			case NULL_VALUE: return NULL;
+			case NOTDEFINED_VALUE: return NOTDEFINED;
+			case TYPE_C_VALUE: return TYPE_C;
+			case TYPE_B_VALUE: return TYPE_B;
+			case TYPE_A_VALUE: return TYPE_A;
 		}
 		return null;
 	}

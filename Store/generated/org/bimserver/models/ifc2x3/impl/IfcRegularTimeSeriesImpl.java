@@ -51,13 +51,6 @@ public class IfcRegularTimeSeriesImpl extends IfcTimeSeriesImpl implements IfcRe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	protected IfcRegularTimeSeriesImpl()
 	{
 		super();
@@ -71,7 +64,7 @@ public class IfcRegularTimeSeriesImpl extends IfcTimeSeriesImpl implements IfcRe
 	@Override
 	protected EClass eStaticClass()
 	{
-		return Ifc2x3Package.Literals.IFC_REGULAR_TIME_SERIES;
+		return Ifc2x3Package.eINSTANCE.getIfcRegularTimeSeries();
 	}
 
 	/**
@@ -81,7 +74,7 @@ public class IfcRegularTimeSeriesImpl extends IfcTimeSeriesImpl implements IfcRe
 	 */
 	public float getTimeStep()
 	{
-		return (Float)eGet(Ifc2x3Package.Literals.IFC_REGULAR_TIME_SERIES__TIME_STEP, true);
+		return (Float)eGet(Ifc2x3Package.eINSTANCE.getIfcRegularTimeSeries_TimeStep(), true);
 	}
 
 	/**
@@ -91,7 +84,7 @@ public class IfcRegularTimeSeriesImpl extends IfcTimeSeriesImpl implements IfcRe
 	 */
 	public void setTimeStep(float newTimeStep)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_REGULAR_TIME_SERIES__TIME_STEP, newTimeStep);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcRegularTimeSeries_TimeStep(), newTimeStep);
 	}
 
 	/**
@@ -101,7 +94,7 @@ public class IfcRegularTimeSeriesImpl extends IfcTimeSeriesImpl implements IfcRe
 	 */
 	public String getTimeStepAsString()
 	{
-		return (String)eGet(Ifc2x3Package.Literals.IFC_REGULAR_TIME_SERIES__TIME_STEP_AS_STRING, true);
+		return (String)eGet(Ifc2x3Package.eINSTANCE.getIfcRegularTimeSeries_TimeStepAsString(), true);
 	}
 
 	/**
@@ -111,7 +104,7 @@ public class IfcRegularTimeSeriesImpl extends IfcTimeSeriesImpl implements IfcRe
 	 */
 	public void setTimeStepAsString(String newTimeStepAsString)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_REGULAR_TIME_SERIES__TIME_STEP_AS_STRING, newTimeStepAsString);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcRegularTimeSeries_TimeStepAsString(), newTimeStepAsString);
 	}
 
 	/**
@@ -122,7 +115,7 @@ public class IfcRegularTimeSeriesImpl extends IfcTimeSeriesImpl implements IfcRe
 	@SuppressWarnings("unchecked")
 	public EList<IfcTimeSeriesValue> getValues()
 	{
-		return (EList<IfcTimeSeriesValue>)eGet(Ifc2x3Package.Literals.IFC_REGULAR_TIME_SERIES__VALUES, true);
+		return (EList<IfcTimeSeriesValue>)eGet(Ifc2x3Package.eINSTANCE.getIfcRegularTimeSeries_Values(), true);
 	}
 
 } //IfcRegularTimeSeriesImpl

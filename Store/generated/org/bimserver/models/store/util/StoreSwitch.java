@@ -42,13 +42,6 @@ import org.eclipse.emf.ecore.EObject;
 public class StoreSwitch<T>
 {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
-
-	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -64,8 +57,7 @@ public class StoreSwitch<T>
 	 */
 	public StoreSwitch()
 	{
-		if (modelPackage == null)
-		{
+		if (modelPackage == null) {
 			modelPackage = StorePackage.eINSTANCE;
 		}
 	}
@@ -91,12 +83,10 @@ public class StoreSwitch<T>
 	 */
 	protected T doSwitch(EClass theEClass, EObject theEObject)
 	{
-		if (theEClass.eContainer() == modelPackage)
-		{
+		if (theEClass.eContainer() == modelPackage) {
 			return doSwitch(theEClass.getClassifierID(), theEObject);
 		}
-		else
-		{
+		else {
 			List<EClass> eSuperTypes = theEClass.getESuperTypes();
 			return
 				eSuperTypes.isEmpty() ?
@@ -114,96 +104,82 @@ public class StoreSwitch<T>
 	 */
 	protected T doSwitch(int classifierID, EObject theEObject)
 	{
-		switch (classifierID)
-		{
-			case StorePackage.PROJECT:
-			{
+		switch (classifierID) {
+			case StorePackage.PROJECT: {
 				Project project = (Project)theEObject;
 				T result = caseProject(project);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case StorePackage.USER:
-			{
+			case StorePackage.USER: {
 				User user = (User)theEObject;
 				T result = caseUser(user);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case StorePackage.CLASH:
-			{
+			case StorePackage.CLASH: {
 				Clash clash = (Clash)theEObject;
 				T result = caseClash(clash);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case StorePackage.EID_CLASH:
-			{
+			case StorePackage.EID_CLASH: {
 				EidClash eidClash = (EidClash)theEObject;
 				T result = caseEidClash(eidClash);
 				if (result == null) result = caseClash(eidClash);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case StorePackage.GUID_CLASH:
-			{
+			case StorePackage.GUID_CLASH: {
 				GuidClash guidClash = (GuidClash)theEObject;
 				T result = caseGuidClash(guidClash);
 				if (result == null) result = caseClash(guidClash);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case StorePackage.CLASH_DETECTION_SETTINGS:
-			{
+			case StorePackage.CLASH_DETECTION_SETTINGS: {
 				ClashDetectionSettings clashDetectionSettings = (ClashDetectionSettings)theEObject;
 				T result = caseClashDetectionSettings(clashDetectionSettings);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case StorePackage.REVISION:
-			{
+			case StorePackage.REVISION: {
 				Revision revision = (Revision)theEObject;
 				T result = caseRevision(revision);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case StorePackage.CONCRETE_REVISION:
-			{
+			case StorePackage.CONCRETE_REVISION: {
 				ConcreteRevision concreteRevision = (ConcreteRevision)theEObject;
 				T result = caseConcreteRevision(concreteRevision);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case StorePackage.GEO_TAG:
-			{
+			case StorePackage.GEO_TAG: {
 				GeoTag geoTag = (GeoTag)theEObject;
 				T result = caseGeoTag(geoTag);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case StorePackage.CHECKOUT:
-			{
+			case StorePackage.CHECKOUT: {
 				Checkout checkout = (Checkout)theEObject;
 				T result = caseCheckout(checkout);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case StorePackage.SETTINGS:
-			{
+			case StorePackage.SETTINGS: {
 				Settings settings = (Settings)theEObject;
 				T result = caseSettings(settings);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case StorePackage.SERIALIZER:
-			{
+			case StorePackage.SERIALIZER: {
 				Serializer serializer = (Serializer)theEObject;
 				T result = caseSerializer(serializer);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case StorePackage.IGNORE_FILE:
-			{
+			case StorePackage.IGNORE_FILE: {
 				IgnoreFile ignoreFile = (IgnoreFile)theEObject;
 				T result = caseIgnoreFile(ignoreFile);
 				if (result == null) result = defaultCase(theEObject);

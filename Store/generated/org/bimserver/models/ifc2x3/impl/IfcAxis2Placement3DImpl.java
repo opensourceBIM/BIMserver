@@ -48,13 +48,6 @@ public class IfcAxis2Placement3DImpl extends IfcPlacementImpl implements IfcAxis
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	protected IfcAxis2Placement3DImpl()
 	{
 		super();
@@ -68,7 +61,7 @@ public class IfcAxis2Placement3DImpl extends IfcPlacementImpl implements IfcAxis
 	@Override
 	protected EClass eStaticClass()
 	{
-		return Ifc2x3Package.Literals.IFC_AXIS2_PLACEMENT3_D;
+		return Ifc2x3Package.eINSTANCE.getIfcAxis2Placement3D();
 	}
 
 	/**
@@ -78,7 +71,7 @@ public class IfcAxis2Placement3DImpl extends IfcPlacementImpl implements IfcAxis
 	 */
 	public IfcDirection getAxis()
 	{
-		return (IfcDirection)eGet(Ifc2x3Package.Literals.IFC_AXIS2_PLACEMENT3_D__AXIS, true);
+		return (IfcDirection)eGet(Ifc2x3Package.eINSTANCE.getIfcAxis2Placement3D_Axis(), true);
 	}
 
 	/**
@@ -88,7 +81,7 @@ public class IfcAxis2Placement3DImpl extends IfcPlacementImpl implements IfcAxis
 	 */
 	public void setAxis(IfcDirection newAxis)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_AXIS2_PLACEMENT3_D__AXIS, newAxis);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcAxis2Placement3D_Axis(), newAxis);
 	}
 
 	/**
@@ -98,7 +91,7 @@ public class IfcAxis2Placement3DImpl extends IfcPlacementImpl implements IfcAxis
 	 */
 	public void unsetAxis()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_AXIS2_PLACEMENT3_D__AXIS);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcAxis2Placement3D_Axis());
 	}
 
 	/**
@@ -108,7 +101,7 @@ public class IfcAxis2Placement3DImpl extends IfcPlacementImpl implements IfcAxis
 	 */
 	public boolean isSetAxis()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_AXIS2_PLACEMENT3_D__AXIS);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcAxis2Placement3D_Axis());
 	}
 
 	/**
@@ -118,7 +111,7 @@ public class IfcAxis2Placement3DImpl extends IfcPlacementImpl implements IfcAxis
 	 */
 	public IfcDirection getRefDirection()
 	{
-		return (IfcDirection)eGet(Ifc2x3Package.Literals.IFC_AXIS2_PLACEMENT3_D__REF_DIRECTION, true);
+		return (IfcDirection)eGet(Ifc2x3Package.eINSTANCE.getIfcAxis2Placement3D_RefDirection(), true);
 	}
 
 	/**
@@ -128,7 +121,7 @@ public class IfcAxis2Placement3DImpl extends IfcPlacementImpl implements IfcAxis
 	 */
 	public void setRefDirection(IfcDirection newRefDirection)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_AXIS2_PLACEMENT3_D__REF_DIRECTION, newRefDirection);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcAxis2Placement3D_RefDirection(), newRefDirection);
 	}
 
 	/**
@@ -138,7 +131,7 @@ public class IfcAxis2Placement3DImpl extends IfcPlacementImpl implements IfcAxis
 	 */
 	public void unsetRefDirection()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_AXIS2_PLACEMENT3_D__REF_DIRECTION);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcAxis2Placement3D_RefDirection());
 	}
 
 	/**
@@ -148,7 +141,7 @@ public class IfcAxis2Placement3DImpl extends IfcPlacementImpl implements IfcAxis
 	 */
 	public boolean isSetRefDirection()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_AXIS2_PLACEMENT3_D__REF_DIRECTION);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcAxis2Placement3D_RefDirection());
 	}
 
 } //IfcAxis2Placement3DImpl

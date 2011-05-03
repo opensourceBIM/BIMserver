@@ -40,98 +40,91 @@ public enum IfcCondenserTypeEnum implements Enumerator
 	 * The '<em><b>NULL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NULL
+	 * @see #NULL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NULL_LITERAL(0, "NULL", "NULL"),
+	NULL(0, "NULL", "NULL"),
 
 	/**
 	 * The '<em><b>EVAPORATIVECOOLED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #EVAPORATIVECOOLED
+	 * @see #EVAPORATIVECOOLED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	EVAPORATIVECOOLED_LITERAL(1, "EVAPORATIVECOOLED", "EVAPORATIVECOOLED"),
+	EVAPORATIVECOOLED(1, "EVAPORATIVECOOLED", "EVAPORATIVECOOLED"),
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED
+	 * @see #NOTDEFINED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED_LITERAL(2, "NOTDEFINED", "NOTDEFINED"),
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED
+	 * @see #USERDEFINED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	USERDEFINED_LITERAL(3, "USERDEFINED", "USERDEFINED"),
+	USERDEFINED(3, "USERDEFINED", "USERDEFINED"),
 
 	/**
 	 * The '<em><b>WATERCOOLEDSHELLTUBE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #WATERCOOLEDSHELLTUBE
+	 * @see #WATERCOOLEDSHELLTUBE_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	WATERCOOLEDSHELLTUBE_LITERAL(4, "WATERCOOLEDSHELLTUBE", "WATERCOOLEDSHELLTUBE"),
+	WATERCOOLEDSHELLTUBE(4, "WATERCOOLEDSHELLTUBE", "WATERCOOLEDSHELLTUBE"),
 
 	/**
 	 * The '<em><b>WATERCOOLEDTUBEINTUBE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #WATERCOOLEDTUBEINTUBE
+	 * @see #WATERCOOLEDTUBEINTUBE_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	WATERCOOLEDTUBEINTUBE_LITERAL(5, "WATERCOOLEDTUBEINTUBE", "WATERCOOLEDTUBEINTUBE"),
+	WATERCOOLEDTUBEINTUBE(5, "WATERCOOLEDTUBEINTUBE", "WATERCOOLEDTUBEINTUBE"),
 
 	/**
 	 * The '<em><b>WATERCOOLEDBRAZEDPLATE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #WATERCOOLEDBRAZEDPLATE
+	 * @see #WATERCOOLEDBRAZEDPLATE_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	WATERCOOLEDBRAZEDPLATE_LITERAL(6, "WATERCOOLEDBRAZEDPLATE", "WATERCOOLEDBRAZEDPLATE"),
+	WATERCOOLEDBRAZEDPLATE(6, "WATERCOOLEDBRAZEDPLATE", "WATERCOOLEDBRAZEDPLATE"),
 
 	/**
 	 * The '<em><b>WATERCOOLEDSHELLCOIL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #WATERCOOLEDSHELLCOIL
+	 * @see #WATERCOOLEDSHELLCOIL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	WATERCOOLEDSHELLCOIL_LITERAL(7, "WATERCOOLEDSHELLCOIL", "WATERCOOLEDSHELLCOIL"),
+	WATERCOOLEDSHELLCOIL(7, "WATERCOOLEDSHELLCOIL", "WATERCOOLEDSHELLCOIL"),
 
 	/**
 	 * The '<em><b>AIRCOOLED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #AIRCOOLED
+	 * @see #AIRCOOLED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	AIRCOOLED_LITERAL(8, "AIRCOOLED", "AIRCOOLED");
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
+	AIRCOOLED(8, "AIRCOOLED", "AIRCOOLED");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -141,12 +134,12 @@ public enum IfcCondenserTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NULL_LITERAL
+	 * @see #NULL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NULL = 0;
+	public static final int NULL_VALUE = 0;
 
 	/**
 	 * The '<em><b>EVAPORATIVECOOLED</b></em>' literal value.
@@ -156,12 +149,12 @@ public enum IfcCondenserTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #EVAPORATIVECOOLED_LITERAL
+	 * @see #EVAPORATIVECOOLED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int EVAPORATIVECOOLED = 1;
+	public static final int EVAPORATIVECOOLED_VALUE = 1;
 
 	/**
 	 * The '<em><b>NOTDEFINED</b></em>' literal value.
@@ -171,12 +164,12 @@ public enum IfcCondenserTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_LITERAL
+	 * @see #NOTDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFINED = 2;
+	public static final int NOTDEFINED_VALUE = 2;
 
 	/**
 	 * The '<em><b>USERDEFINED</b></em>' literal value.
@@ -186,12 +179,12 @@ public enum IfcCondenserTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_LITERAL
+	 * @see #USERDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USERDEFINED = 3;
+	public static final int USERDEFINED_VALUE = 3;
 
 	/**
 	 * The '<em><b>WATERCOOLEDSHELLTUBE</b></em>' literal value.
@@ -201,12 +194,12 @@ public enum IfcCondenserTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #WATERCOOLEDSHELLTUBE_LITERAL
+	 * @see #WATERCOOLEDSHELLTUBE
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int WATERCOOLEDSHELLTUBE = 4;
+	public static final int WATERCOOLEDSHELLTUBE_VALUE = 4;
 
 	/**
 	 * The '<em><b>WATERCOOLEDTUBEINTUBE</b></em>' literal value.
@@ -216,12 +209,12 @@ public enum IfcCondenserTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #WATERCOOLEDTUBEINTUBE_LITERAL
+	 * @see #WATERCOOLEDTUBEINTUBE
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int WATERCOOLEDTUBEINTUBE = 5;
+	public static final int WATERCOOLEDTUBEINTUBE_VALUE = 5;
 
 	/**
 	 * The '<em><b>WATERCOOLEDBRAZEDPLATE</b></em>' literal value.
@@ -231,12 +224,12 @@ public enum IfcCondenserTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #WATERCOOLEDBRAZEDPLATE_LITERAL
+	 * @see #WATERCOOLEDBRAZEDPLATE
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int WATERCOOLEDBRAZEDPLATE = 6;
+	public static final int WATERCOOLEDBRAZEDPLATE_VALUE = 6;
 
 	/**
 	 * The '<em><b>WATERCOOLEDSHELLCOIL</b></em>' literal value.
@@ -246,12 +239,12 @@ public enum IfcCondenserTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #WATERCOOLEDSHELLCOIL_LITERAL
+	 * @see #WATERCOOLEDSHELLCOIL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int WATERCOOLEDSHELLCOIL = 7;
+	public static final int WATERCOOLEDSHELLCOIL_VALUE = 7;
 
 	/**
 	 * The '<em><b>AIRCOOLED</b></em>' literal value.
@@ -261,12 +254,12 @@ public enum IfcCondenserTypeEnum implements Enumerator
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #AIRCOOLED_LITERAL
+	 * @see #AIRCOOLED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int AIRCOOLED = 8;
+	public static final int AIRCOOLED_VALUE = 8;
 
 	/**
 	 * An array of all the '<em><b>Ifc Condenser Type Enum</b></em>' enumerators.
@@ -275,17 +268,16 @@ public enum IfcCondenserTypeEnum implements Enumerator
 	 * @generated
 	 */
 	private static final IfcCondenserTypeEnum[] VALUES_ARRAY =
-		new IfcCondenserTypeEnum[]
-		{
-			NULL_LITERAL,
-			EVAPORATIVECOOLED_LITERAL,
-			NOTDEFINED_LITERAL,
-			USERDEFINED_LITERAL,
-			WATERCOOLEDSHELLTUBE_LITERAL,
-			WATERCOOLEDTUBEINTUBE_LITERAL,
-			WATERCOOLEDBRAZEDPLATE_LITERAL,
-			WATERCOOLEDSHELLCOIL_LITERAL,
-			AIRCOOLED_LITERAL,
+		new IfcCondenserTypeEnum[] {
+			NULL,
+			EVAPORATIVECOOLED,
+			NOTDEFINED,
+			USERDEFINED,
+			WATERCOOLEDSHELLTUBE,
+			WATERCOOLEDTUBEINTUBE,
+			WATERCOOLEDBRAZEDPLATE,
+			WATERCOOLEDSHELLCOIL,
+			AIRCOOLED,
 		};
 
 	/**
@@ -304,11 +296,9 @@ public enum IfcCondenserTypeEnum implements Enumerator
 	 */
 	public static IfcCondenserTypeEnum get(String literal)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcCondenserTypeEnum result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal))
-			{
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -323,11 +313,9 @@ public enum IfcCondenserTypeEnum implements Enumerator
 	 */
 	public static IfcCondenserTypeEnum getByName(String name)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IfcCondenserTypeEnum result = VALUES_ARRAY[i];
-			if (result.getName().equals(name))
-			{
+			if (result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -342,17 +330,16 @@ public enum IfcCondenserTypeEnum implements Enumerator
 	 */
 	public static IfcCondenserTypeEnum get(int value)
 	{
-		switch (value)
-		{
-			case NULL: return NULL_LITERAL;
-			case EVAPORATIVECOOLED: return EVAPORATIVECOOLED_LITERAL;
-			case NOTDEFINED: return NOTDEFINED_LITERAL;
-			case USERDEFINED: return USERDEFINED_LITERAL;
-			case WATERCOOLEDSHELLTUBE: return WATERCOOLEDSHELLTUBE_LITERAL;
-			case WATERCOOLEDTUBEINTUBE: return WATERCOOLEDTUBEINTUBE_LITERAL;
-			case WATERCOOLEDBRAZEDPLATE: return WATERCOOLEDBRAZEDPLATE_LITERAL;
-			case WATERCOOLEDSHELLCOIL: return WATERCOOLEDSHELLCOIL_LITERAL;
-			case AIRCOOLED: return AIRCOOLED_LITERAL;
+		switch (value) {
+			case NULL_VALUE: return NULL;
+			case EVAPORATIVECOOLED_VALUE: return EVAPORATIVECOOLED;
+			case NOTDEFINED_VALUE: return NOTDEFINED;
+			case USERDEFINED_VALUE: return USERDEFINED;
+			case WATERCOOLEDSHELLTUBE_VALUE: return WATERCOOLEDSHELLTUBE;
+			case WATERCOOLEDTUBEINTUBE_VALUE: return WATERCOOLEDTUBEINTUBE;
+			case WATERCOOLEDBRAZEDPLATE_VALUE: return WATERCOOLEDBRAZEDPLATE;
+			case WATERCOOLEDSHELLCOIL_VALUE: return WATERCOOLEDSHELLCOIL;
+			case AIRCOOLED_VALUE: return AIRCOOLED;
 		}
 		return null;
 	}

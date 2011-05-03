@@ -52,13 +52,6 @@ public class IfcSurfaceTextureImpl extends IdEObjectImpl implements IfcSurfaceTe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	protected IfcSurfaceTextureImpl()
 	{
 		super();
@@ -72,7 +65,7 @@ public class IfcSurfaceTextureImpl extends IdEObjectImpl implements IfcSurfaceTe
 	@Override
 	protected EClass eStaticClass()
 	{
-		return Ifc2x3Package.Literals.IFC_SURFACE_TEXTURE;
+		return Ifc2x3Package.eINSTANCE.getIfcSurfaceTexture();
 	}
 
 	/**
@@ -93,7 +86,7 @@ public class IfcSurfaceTextureImpl extends IdEObjectImpl implements IfcSurfaceTe
 	 */
 	public Tristate getRepeatS()
 	{
-		return (Tristate)eGet(Ifc2x3Package.Literals.IFC_SURFACE_TEXTURE__REPEAT_S, true);
+		return (Tristate)eGet(Ifc2x3Package.eINSTANCE.getIfcSurfaceTexture_RepeatS(), true);
 	}
 
 	/**
@@ -103,7 +96,7 @@ public class IfcSurfaceTextureImpl extends IdEObjectImpl implements IfcSurfaceTe
 	 */
 	public void setRepeatS(Tristate newRepeatS)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_SURFACE_TEXTURE__REPEAT_S, newRepeatS);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcSurfaceTexture_RepeatS(), newRepeatS);
 	}
 
 	/**
@@ -113,7 +106,7 @@ public class IfcSurfaceTextureImpl extends IdEObjectImpl implements IfcSurfaceTe
 	 */
 	public Tristate getRepeatT()
 	{
-		return (Tristate)eGet(Ifc2x3Package.Literals.IFC_SURFACE_TEXTURE__REPEAT_T, true);
+		return (Tristate)eGet(Ifc2x3Package.eINSTANCE.getIfcSurfaceTexture_RepeatT(), true);
 	}
 
 	/**
@@ -123,7 +116,7 @@ public class IfcSurfaceTextureImpl extends IdEObjectImpl implements IfcSurfaceTe
 	 */
 	public void setRepeatT(Tristate newRepeatT)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_SURFACE_TEXTURE__REPEAT_T, newRepeatT);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcSurfaceTexture_RepeatT(), newRepeatT);
 	}
 
 	/**
@@ -133,7 +126,7 @@ public class IfcSurfaceTextureImpl extends IdEObjectImpl implements IfcSurfaceTe
 	 */
 	public IfcSurfaceTextureEnum getTextureType()
 	{
-		return (IfcSurfaceTextureEnum)eGet(Ifc2x3Package.Literals.IFC_SURFACE_TEXTURE__TEXTURE_TYPE, true);
+		return (IfcSurfaceTextureEnum)eGet(Ifc2x3Package.eINSTANCE.getIfcSurfaceTexture_TextureType(), true);
 	}
 
 	/**
@@ -143,7 +136,7 @@ public class IfcSurfaceTextureImpl extends IdEObjectImpl implements IfcSurfaceTe
 	 */
 	public void setTextureType(IfcSurfaceTextureEnum newTextureType)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_SURFACE_TEXTURE__TEXTURE_TYPE, newTextureType);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcSurfaceTexture_TextureType(), newTextureType);
 	}
 
 	/**
@@ -153,7 +146,7 @@ public class IfcSurfaceTextureImpl extends IdEObjectImpl implements IfcSurfaceTe
 	 */
 	public IfcCartesianTransformationOperator2D getTextureTransform()
 	{
-		return (IfcCartesianTransformationOperator2D)eGet(Ifc2x3Package.Literals.IFC_SURFACE_TEXTURE__TEXTURE_TRANSFORM, true);
+		return (IfcCartesianTransformationOperator2D)eGet(Ifc2x3Package.eINSTANCE.getIfcSurfaceTexture_TextureTransform(), true);
 	}
 
 	/**
@@ -163,7 +156,7 @@ public class IfcSurfaceTextureImpl extends IdEObjectImpl implements IfcSurfaceTe
 	 */
 	public void setTextureTransform(IfcCartesianTransformationOperator2D newTextureTransform)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_SURFACE_TEXTURE__TEXTURE_TRANSFORM, newTextureTransform);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcSurfaceTexture_TextureTransform(), newTextureTransform);
 	}
 
 	/**
@@ -173,7 +166,7 @@ public class IfcSurfaceTextureImpl extends IdEObjectImpl implements IfcSurfaceTe
 	 */
 	public void unsetTextureTransform()
 	{
-		eUnset(Ifc2x3Package.Literals.IFC_SURFACE_TEXTURE__TEXTURE_TRANSFORM);
+		eUnset(Ifc2x3Package.eINSTANCE.getIfcSurfaceTexture_TextureTransform());
 	}
 
 	/**
@@ -183,7 +176,7 @@ public class IfcSurfaceTextureImpl extends IdEObjectImpl implements IfcSurfaceTe
 	 */
 	public boolean isSetTextureTransform()
 	{
-		return eIsSet(Ifc2x3Package.Literals.IFC_SURFACE_TEXTURE__TEXTURE_TRANSFORM);
+		return eIsSet(Ifc2x3Package.eINSTANCE.getIfcSurfaceTexture_TextureTransform());
 	}
 
 } //IfcSurfaceTextureImpl

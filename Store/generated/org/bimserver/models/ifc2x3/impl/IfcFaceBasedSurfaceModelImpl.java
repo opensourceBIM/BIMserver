@@ -50,13 +50,6 @@ public class IfcFaceBasedSurfaceModelImpl extends IfcGeometricRepresentationItem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = " (c) Copyright bimserver.org 2009\r\n Licensed under GNU GPLv3\r\n http://www.gnu.org/licenses/gpl-3.0.txt\r\n For more information mail to license@bimserver.org\r\n \r\n Bimserver.org is free software: you can redistribute it and/or modify \r\n it under the terms of the GNU General Public License as published by \r\n the Free Software Foundation, either version 3 of the License, or\r\n (at your option) any later version.\r\n \r\n Bimserver.org is distributed in the hope that it will be useful, but \r\n WITHOUT ANY WARRANTY; without even the implied warranty of \r\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU \r\n General Public License for more details.\r\n \r\n You should have received a copy of the GNU General Public License a \r\n long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.";
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	protected IfcFaceBasedSurfaceModelImpl()
 	{
 		super();
@@ -70,7 +63,7 @@ public class IfcFaceBasedSurfaceModelImpl extends IfcGeometricRepresentationItem
 	@Override
 	protected EClass eStaticClass()
 	{
-		return Ifc2x3Package.Literals.IFC_FACE_BASED_SURFACE_MODEL;
+		return Ifc2x3Package.eINSTANCE.getIfcFaceBasedSurfaceModel();
 	}
 
 	/**
@@ -81,7 +74,7 @@ public class IfcFaceBasedSurfaceModelImpl extends IfcGeometricRepresentationItem
 	@SuppressWarnings("unchecked")
 	public EList<IfcConnectedFaceSet> getFbsmFaces()
 	{
-		return (EList<IfcConnectedFaceSet>)eGet(Ifc2x3Package.Literals.IFC_FACE_BASED_SURFACE_MODEL__FBSM_FACES, true);
+		return (EList<IfcConnectedFaceSet>)eGet(Ifc2x3Package.eINSTANCE.getIfcFaceBasedSurfaceModel_FbsmFaces(), true);
 	}
 
 	/**
@@ -91,7 +84,7 @@ public class IfcFaceBasedSurfaceModelImpl extends IfcGeometricRepresentationItem
 	 */
 	public int getDim()
 	{
-		return (Integer)eGet(Ifc2x3Package.Literals.IFC_FACE_BASED_SURFACE_MODEL__DIM, true);
+		return (Integer)eGet(Ifc2x3Package.eINSTANCE.getIfcFaceBasedSurfaceModel_Dim(), true);
 	}
 
 	/**
@@ -101,7 +94,7 @@ public class IfcFaceBasedSurfaceModelImpl extends IfcGeometricRepresentationItem
 	 */
 	public void setDim(int newDim)
 	{
-		eSet(Ifc2x3Package.Literals.IFC_FACE_BASED_SURFACE_MODEL__DIM, newDim);
+		eSet(Ifc2x3Package.eINSTANCE.getIfcFaceBasedSurfaceModel_Dim(), newDim);
 	}
 
 } //IfcFaceBasedSurfaceModelImpl
