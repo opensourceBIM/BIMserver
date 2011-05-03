@@ -19,7 +19,6 @@ import org.bimserver.ifc.FieldIgnoreMap;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.PackageDefinition;
 import org.bimserver.ifc.SerializerException;
-import org.bimserver.ifc.database.IfcDatabase;
 import org.bimserver.ifc.file.writer.IfcStepSerializer;
 import org.bimserver.ifcengine.FailSafeIfcEngine;
 import org.bimserver.ifcengine.Geometry;
@@ -177,14 +176,11 @@ public class ColladaSerializer extends BimModelSerializer {
 		out.println("    </asset>");
 	}
 
-	private IfcDatabase ifcDatabase = null;
-
 	private void writeGeometries(PrintWriter out) throws IfcEngineException {
 		out.println("	<library_geometries>");
-		ifcDatabase = new IfcDatabase(model, null);
 
 		if (packageDefinition.hasClassDefinition("IfcRoof")) {
-			for (IfcRoof ifcRoof : ifcDatabase.getAll(IfcRoof.class)) {
+			for (IfcRoof ifcRoof : model.getAll(IfcRoof.class)) {
 				setGeometry(out, ifcRoof, ifcRoof.getGlobalId().getWrappedValue(), "Roof");
 			}
 		}
@@ -198,7 +194,7 @@ public class ColladaSerializer extends BimModelSerializer {
 		// }
 
 		if (packageDefinition.hasClassDefinition("IfcSlab")) {
-			for (IfcSlab ifcSlab : ifcDatabase.getAll(IfcSlab.class)) {
+			for (IfcSlab ifcSlab : model.getAll(IfcSlab.class)) {
 				if (ifcSlab.getPredefinedType() == IfcSlabTypeEnum.ROOF_LITERAL) {
 					setGeometry(out, ifcSlab, ifcSlab.getGlobalId().getWrappedValue(), "Roof");
 				} else {
@@ -207,72 +203,72 @@ public class ColladaSerializer extends BimModelSerializer {
 			}
 		}
 		if (packageDefinition.hasClassDefinition("IfcWindow")) {
-			for (IfcWindow ifcWindow : ifcDatabase.getAll(IfcWindow.class)) {
+			for (IfcWindow ifcWindow : model.getAll(IfcWindow.class)) {
 				setGeometry(out, ifcWindow, ifcWindow.getGlobalId().getWrappedValue(), "Window");
 			}
 		}
 		if (packageDefinition.hasClassDefinition("IfcDoor")) {
-			for (IfcDoor ifcDoor : ifcDatabase.getAll(IfcDoor.class)) {
+			for (IfcDoor ifcDoor : model.getAll(IfcDoor.class)) {
 				setGeometry(out, ifcDoor, ifcDoor.getGlobalId().getWrappedValue(), "Door");
 			}
 		}
 		if (packageDefinition.hasClassDefinition("IfcWall")) {
-			for (IfcWall ifcWall : ifcDatabase.getAll(IfcWall.class)) {
+			for (IfcWall ifcWall : model.getAll(IfcWall.class)) {
 				setGeometry(out, ifcWall, ifcWall.getGlobalId().getWrappedValue(), "Wall");
 			}
 		}
 		if (packageDefinition.hasClassDefinition("IfcStair")) {
-			for (IfcStair ifcStair : ifcDatabase.getAll(IfcStair.class)) {
+			for (IfcStair ifcStair : model.getAll(IfcStair.class)) {
 				setGeometry(out, ifcStair, ifcStair.getGlobalId().getWrappedValue(), "Stair");
 			}
 		}
 		if (packageDefinition.hasClassDefinition("IfcStairFlight")) {
-			for (IfcStairFlight ifcStairFlight : ifcDatabase.getAll(IfcStairFlight.class)) {
+			for (IfcStairFlight ifcStairFlight : model.getAll(IfcStairFlight.class)) {
 				setGeometry(out, ifcStairFlight, ifcStairFlight.getGlobalId().getWrappedValue(), "StairFlight");
 			}
 		}
 		if (packageDefinition.hasClassDefinition("IfcFlowSegment")) {
-			for (IfcFlowSegment ifcFlowSegment : ifcDatabase.getAll(IfcFlowSegment.class)) {
+			for (IfcFlowSegment ifcFlowSegment : model.getAll(IfcFlowSegment.class)) {
 				setGeometry(out, ifcFlowSegment, ifcFlowSegment.getGlobalId().getWrappedValue(), "FlowSegment");
 			}
 		}
 		if (packageDefinition.hasClassDefinition("IfcFurnishingElement")) {
-			for (IfcFurnishingElement ifcFurnishingElement : ifcDatabase.getAll(IfcFurnishingElement.class)) {
+			for (IfcFurnishingElement ifcFurnishingElement : model.getAll(IfcFurnishingElement.class)) {
 				setGeometry(out, ifcFurnishingElement, ifcFurnishingElement.getGlobalId().getWrappedValue(), "FurnishingElement");
 			}
 		}
 		if (packageDefinition.hasClassDefinition("IfcPlate")) {
-			for (IfcPlate ifcPlate : ifcDatabase.getAll(IfcPlate.class)) {
+			for (IfcPlate ifcPlate : model.getAll(IfcPlate.class)) {
 				setGeometry(out, ifcPlate, ifcPlate.getGlobalId().getWrappedValue(), "Plate");
 			}
 		}
 		if (packageDefinition.hasClassDefinition("IfcMember")) {
-			for (IfcMember ifcMember : ifcDatabase.getAll(IfcMember.class)) {
+			for (IfcMember ifcMember : model.getAll(IfcMember.class)) {
 				setGeometry(out, ifcMember, ifcMember.getGlobalId().getWrappedValue(), "Member");
 			}
 		}
 		if (packageDefinition.hasClassDefinition("IfcWallStandardCase")) {
-			for (IfcWallStandardCase ifcWall : ifcDatabase.getAll(IfcWallStandardCase.class)) {
+			for (IfcWallStandardCase ifcWall : model.getAll(IfcWallStandardCase.class)) {
 				setGeometry(out, ifcWall, ifcWall.getGlobalId().getWrappedValue(), "WallStandardCase");
 			}
 		}
 		if (packageDefinition.hasClassDefinition("IfcCurtainWall")) {
-			for (IfcCurtainWall ifcCurtainWall : ifcDatabase.getAll(IfcCurtainWall.class)) {
+			for (IfcCurtainWall ifcCurtainWall : model.getAll(IfcCurtainWall.class)) {
 				setGeometry(out, ifcCurtainWall, ifcCurtainWall.getGlobalId().getWrappedValue(), "CurtainWall");
 			}
 		}
 		if (packageDefinition.hasClassDefinition("IfcRailing")) {
-			for (IfcRailing ifcRailing : ifcDatabase.getAll(IfcRailing.class)) {
+			for (IfcRailing ifcRailing : model.getAll(IfcRailing.class)) {
 				setGeometry(out, ifcRailing, ifcRailing.getGlobalId().getWrappedValue(), "Railing");
 			}
 		}
 		if (packageDefinition.hasClassDefinition("IfcColumn")) {
-			for (IfcColumn ifcColumn : ifcDatabase.getAll(IfcColumn.class)) {
+			for (IfcColumn ifcColumn : model.getAll(IfcColumn.class)) {
 				setGeometry(out, ifcColumn, ifcColumn.getGlobalId().getWrappedValue(), "Column");
 			}
 		}
 		if (packageDefinition.hasClassDefinition("IfcBuildingElementProxy")) {
-			for (IfcBuildingElementProxy ifcBuildingElementProxy : ifcDatabase.getAll(IfcBuildingElementProxy.class)) {
+			for (IfcBuildingElementProxy ifcBuildingElementProxy : model.getAll(IfcBuildingElementProxy.class)) {
 				setGeometry(out, ifcBuildingElementProxy, ifcBuildingElementProxy.getGlobalId().getWrappedValue(), "BuildingElementProxy");
 			}
 		}
@@ -299,7 +295,7 @@ public class ColladaSerializer extends BimModelSerializer {
 				return;
 			}
 
-			Iterator<IfcRelAssociatesMaterial> ramIter = ifcDatabase.getAll(IfcRelAssociatesMaterial.class).iterator();
+			Iterator<IfcRelAssociatesMaterial> ramIter = model.getAll(IfcRelAssociatesMaterial.class).iterator();
 			boolean found = false;
 			IfcMaterialSelect relatingMaterial = null;
 			while (!found && ramIter.hasNext()) {
@@ -524,8 +520,7 @@ public class ColladaSerializer extends BimModelSerializer {
 		writeEffect(out, "Stair", new float[] { 0.637255f, 0.603922f, 0.670588f }, 1.0f);
 		writeEffect(out, "BuildingElementProxy", new float[] { 0.5f, 0.5f, 0.5f }, 1.0f);
 		writeEffect(out, "FlowSegment", new float[] { 0.6f, 0.4f, 0.5f }, 1.0f);
-		IfcDatabase ifcDatabase = new IfcDatabase(model, null);
-		List<IfcSurfaceStyle> listSurfaceStyles = ifcDatabase.getAll(IfcSurfaceStyle.class);
+		List<IfcSurfaceStyle> listSurfaceStyles = model.getAll(IfcSurfaceStyle.class);
 		for (IfcSurfaceStyle ss : listSurfaceStyles) {
 			EList<IfcSurfaceStyleElementSelect> styles = ss.getStyles();
 			for (IfcSurfaceStyleElementSelect style : styles) {
