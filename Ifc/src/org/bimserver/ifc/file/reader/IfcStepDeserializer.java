@@ -390,11 +390,11 @@ public class IfcStepDeserializer {
 						} else if (instanceClass == Tristate.class) {
 							Tristate tristate = null;
 							if (value.equals(".T.")) {
-								tristate = Tristate.TRUE;
+								tristate = Tristate.TRUE_LITERAL;
 							} else if (value.equals(".F.")) {
-								tristate = Tristate.FALSE;
+								tristate = Tristate.FALSE_LITERAL;
 							} else if (value.equals(".U.")) {
-								tristate = Tristate.UNDEFINED;
+								tristate = Tristate.UNDEFINED_LITERAL;
 							}
 							create.eSet(create.eClass().getEStructuralFeature(WRAPPED_VALUE), tristate);
 						}
@@ -450,13 +450,13 @@ public class IfcStepDeserializer {
 				object.eSet(structuralFeature, Tristate.TRUE);
 			} else if (structuralFeature.getEType().getName().equals("IfcBoolean")) {
 				IfcBoolean createIfcBoolean = Ifc2x3Factory.eINSTANCE.createIfcBoolean();
-				createIfcBoolean.setWrappedValue(Tristate.TRUE);
+				createIfcBoolean.setWrappedValue(Tristate.TRUE_LITERAL);
 				object.eSet(structuralFeature, createIfcBoolean);
 			} else if (structuralFeature.getEType() == EcorePackage.eINSTANCE.getEBoolean()) {
 				object.eSet(structuralFeature, true);
 			} else {
 				IfcLogical createIfcBoolean = Ifc2x3Factory.eINSTANCE.createIfcLogical();
-				createIfcBoolean.setWrappedValue(Tristate.TRUE);
+				createIfcBoolean.setWrappedValue(Tristate.TRUE_LITERAL);
 				object.eSet(structuralFeature, createIfcBoolean);
 			}
 		} else if (val.equals(".F.")) {
@@ -464,13 +464,13 @@ public class IfcStepDeserializer {
 				object.eSet(structuralFeature, Tristate.FALSE);
 			} else if (structuralFeature.getEType().getName().equals("IfcBoolean")) {
 				IfcBoolean createIfcBoolean = Ifc2x3Factory.eINSTANCE.createIfcBoolean();
-				createIfcBoolean.setWrappedValue(Tristate.FALSE);
+				createIfcBoolean.setWrappedValue(Tristate.FALSE_LITERAL);
 				object.eSet(structuralFeature, createIfcBoolean);
 			} else if (structuralFeature.getEType() == EcorePackage.eINSTANCE.getEBoolean()) {
 				object.eSet(structuralFeature, false);
 			} else {
 				IfcLogical createIfcBoolean = Ifc2x3Factory.eINSTANCE.createIfcLogical();
-				createIfcBoolean.setWrappedValue(Tristate.FALSE);
+				createIfcBoolean.setWrappedValue(Tristate.FALSE_LITERAL);
 				object.eSet(structuralFeature, createIfcBoolean);
 			}
 		} else if (val.equals(".U.")) {
@@ -480,7 +480,7 @@ public class IfcStepDeserializer {
 				object.eUnset(structuralFeature);
 			} else {
 				IfcLogical createIfcBoolean = Ifc2x3Factory.eINSTANCE.createIfcLogical();
-				createIfcBoolean.setWrappedValue(Tristate.UNDEFINED);
+				createIfcBoolean.setWrappedValue(Tristate.UNDEFINED_LITERAL);
 				object.eSet(structuralFeature, createIfcBoolean);
 			}
 		} else {

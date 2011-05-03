@@ -199,7 +199,7 @@ public class ColladaSerializer extends BimModelSerializer {
 
 		if (packageDefinition.hasClassDefinition("IfcSlab")) {
 			for (IfcSlab ifcSlab : ifcDatabase.getAll(IfcSlab.class)) {
-				if (ifcSlab.getPredefinedType() == IfcSlabTypeEnum.ROOF) {
+				if (ifcSlab.getPredefinedType() == IfcSlabTypeEnum.ROOF_LITERAL) {
 					setGeometry(out, ifcSlab, ifcSlab.getGlobalId().getWrappedValue(), "Roof");
 				} else {
 					setGeometry(out, ifcSlab, ifcSlab.getGlobalId().getWrappedValue(), "Slab");
@@ -735,59 +735,59 @@ public class ColladaSerializer extends BimModelSerializer {
 					if (unit instanceof IfcSIUnit) {
 						IfcSIUnit ifcSIUnit = (IfcSIUnit) unit;
 						IfcUnitEnum unitType = ifcSIUnit.getUnitType();
-						if (unitType == IfcUnitEnum.LENGTHUNIT) {
+						if (unitType == IfcUnitEnum.LENGTHUNIT_LITERAL) {
 							prefixFound = true;
 							switch (ifcSIUnit.getPrefix()) {
-							case EXA:
-								lengthUnitPrefix = SIPrefix.EXAMETER;
+							case EXA_LITERAL:
+								lengthUnitPrefix = SIPrefix.EXAMETER_LITERAL;
 								break;
-							case PETA:
-								lengthUnitPrefix = SIPrefix.PETAMETER;
+							case PETA_LITERAL:
+								lengthUnitPrefix = SIPrefix.PETAMETER_LITERAL;
 								break;
-							case TERA:
-								lengthUnitPrefix = SIPrefix.TERAMETER;
+							case TERA_LITERAL:
+								lengthUnitPrefix = SIPrefix.TERAMETER_LITERAL;
 								break;
-							case GIGA:
-								lengthUnitPrefix = SIPrefix.GIGAMETER;
+							case GIGA_LITERAL:
+								lengthUnitPrefix = SIPrefix.GIGAMETER_LITERAL;
 								break;
-							case MEGA:
-								lengthUnitPrefix = SIPrefix.MEGAMETER;
+							case MEGA_LITERAL:
+								lengthUnitPrefix = SIPrefix.MEGAMETER_LITERAL;
 								break;
-							case KILO:
-								lengthUnitPrefix = SIPrefix.KILOMETER;
+							case KILO_LITERAL:
+								lengthUnitPrefix = SIPrefix.KILOMETER_LITERAL;
 								break;
-							case HECTO:
-								lengthUnitPrefix = SIPrefix.HECTOMETER;
+							case HECTO_LITERAL:
+								lengthUnitPrefix = SIPrefix.HECTOMETER_LITERAL;
 								break;
-							case DECA:
-								lengthUnitPrefix = SIPrefix.DECAMETER;
+							case DECA_LITERAL:
+								lengthUnitPrefix = SIPrefix.DECAMETER_LITERAL;
 								break;
-							case DECI:
-								lengthUnitPrefix = SIPrefix.DECIMETER;
+							case DECI_LITERAL:
+								lengthUnitPrefix = SIPrefix.DECIMETER_LITERAL;
 								break;
-							case CENTI:
-								lengthUnitPrefix = SIPrefix.CENTIMETER;
+							case CENTI_LITERAL:
+								lengthUnitPrefix = SIPrefix.CENTIMETER_LITERAL;
 								break;
-							case MILLI:
-								lengthUnitPrefix = SIPrefix.MILLIMETER;
+							case MILLI_LITERAL:
+								lengthUnitPrefix = SIPrefix.MILLIMETER_LITERAL;
 								break;
-							case MICRO:
-								lengthUnitPrefix = SIPrefix.MICROMETER;
+							case MICRO_LITERAL:
+								lengthUnitPrefix = SIPrefix.MICROMETER_LITERAL;
 								break;
-							case NANO:
-								lengthUnitPrefix = SIPrefix.NANOMETER;
+							case NANO_LITERAL:
+								lengthUnitPrefix = SIPrefix.NANOMETER_LITERAL;
 								break;
-							case PICO:
-								lengthUnitPrefix = SIPrefix.PICOMETER;
+							case PICO_LITERAL:
+								lengthUnitPrefix = SIPrefix.PICOMETER_LITERAL;
 								break;
-							case FEMTO:
-								lengthUnitPrefix = SIPrefix.FEMTOMETER;
+							case FEMTO_LITERAL:
+								lengthUnitPrefix = SIPrefix.FEMTOMETER_LITERAL;
 								break;
-							case ATTO:
-								lengthUnitPrefix = SIPrefix.ATTOMETER;
+							case ATTO_LITERAL:
+								lengthUnitPrefix = SIPrefix.ATTOMETER_LITERAL;
 								break;
-							case NULL:
-								lengthUnitPrefix = SIPrefix.METER;
+							case NULL_LITERAL:
+								lengthUnitPrefix = SIPrefix.METER_LITERAL;
 								break;
 							}
 							break;

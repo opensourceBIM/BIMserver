@@ -9,10 +9,6 @@
 	<classpathentry kind="lib" path="/BimServer/lib/commons/commons-lang-2.4.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Store"/>
 	<classpathentry kind="lib" path="/BimServer/lib/guava-r07.jar" sourcepath="/BimServer/libsrc/guava-src-r07.zip"/>
-	<classpathentry kind="lib" path="/BimServer/lib/emf/org.eclipse.emf_2.5.0.v200906151043.jar"/>
-	<classpathentry kind="lib" path="/BimServer/lib/emf/org.eclipse.emf.common_2.5.0.v200906151043.jar"/>
-	<classpathentry kind="lib" path="/BimServer/lib/emf/org.eclipse.emf.ecore_2.5.0.v200906151043.jar"/>
-	<classpathentry kind="lib" path="/BimServer/lib/emf/org.eclipse.emf.ecore.xmi_2.5.0.v200906151043.jar"/>
 	<classpathentry kind="src" path=".apt_generated">
 		<attributes>
 			<attribute name="optional" value="true"/>
