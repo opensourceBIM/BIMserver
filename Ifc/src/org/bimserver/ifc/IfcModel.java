@@ -20,6 +20,7 @@ package org.bimserver.ifc;
  * long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.Date;
@@ -32,18 +33,29 @@ import java.util.Set;
 import java.util.TreeMap;
 
 import org.bimserver.emf.IdEObject;
+import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcGloballyUniqueId;
 import org.bimserver.models.ifc2x3.IfcProject;
 import org.bimserver.models.ifc2x3.IfcRoot;
 import org.bimserver.models.ifc2x3.WrappedValue;
+import org.eclipse.emf.common.util.ECollections;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EcorePackage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
 
 public class IfcModel {
+	
+	private static final Logger LOGGER = LoggerFactory.getLogger(IfcModel.class);
 
 	private BiMap<Long, IdEObject> objects;
 	private Map<String, IfcRoot> guidIndexed;
@@ -53,6 +65,12 @@ public class IfcModel {
 	private String authorizedUser;
 	private Date date;
 	private final Set<IfcModelChangeListener> changeListeners = new LinkedHashSet<IfcModelChangeListener>();
+
+	private static final Map<Class<?>, Class<?>> interfaceClassMap = initInterfaceClassMap();
+	private final Map<Class<?>, List<? extends EObject>> index = new HashMap<Class<?>, List<? extends EObject>>();
+	private final Map<EClass, Map<String, IdEObject>> guidIndex = new HashMap<EClass, Map<String, IdEObject>>();
+	private final Map<EClass, Map<String, IdEObject>> nameIndex = new HashMap<EClass, Map<String, IdEObject>>();
+	private FieldIgnoreMap fieldIgnoreMap;
 
 	public IfcModel(BiMap<Long, IdEObject> objects) {
 		this.objects = objects;
@@ -66,6 +84,176 @@ public class IfcModel {
 		this.objects = HashBiMap.create(size);
 	}
 	
+	private static Map<Class<?>, Class<?>> initInterfaceClassMap() {
+		Map<Class<?>, Class<?>> interfaceClassMap = new HashMap<Class<?>, Class<?>>();
+		for (EClassifier eClassifier : Ifc2x3Package.eINSTANCE.getEClassifiers()) {
+			if (eClassifier instanceof EClass) {
+				EClass eClass = (EClass)eClassifier;
+				if (!eClass.isInterface()) {
+					try {
+						Class<?> implementationClass = Class.forName(eClassifier.getInstanceClass().getPackage().getName() + ".impl." + eClassifier.getInstanceClass().getSimpleName() + "Impl");
+						interfaceClassMap.put(implementationClass, eClassifier.getInstanceClass());
+					} catch (ClassNotFoundException e) {
+						LOGGER.error("", e);
+					}
+				}
+			}
+		}
+		return interfaceClassMap;
+	}
+
+	@SuppressWarnings("unchecked")
+	private void buildIndex() {
+		for (Long key : objects.keySet()) {
+			EObject value = objects.get((Long) key);
+			if (value != null) {
+				Class<?> clazz = interfaceClassMap.get(value.getClass());
+				if (!index.containsKey(clazz)) {
+					index.put(clazz, new ArrayList<EObject>());
+				}
+				((List<EObject>) index.get(clazz)).add(value);
+			}
+		}
+	}
+
+	public void buildGuidIndex() {
+		for (EClassifier classifier : objects.values().iterator().next().eClass().getEPackage().getEClassifiers()) {
+			if (classifier instanceof EClass) {
+				Map<String, IdEObject> map = new TreeMap<String, IdEObject>();
+				guidIndex.put((EClass) classifier, map);
+			}
+		}
+		for (Long key : objects.keySet()) {
+			IdEObject value = objects.get((Long) key);
+			if (value instanceof IfcRoot) {
+				IfcRoot ifcRoot = (IfcRoot) value;
+				sortAllAggregates(ifcRoot);
+				guidIndex.get(value.eClass()).put(ifcRoot.getGlobalId().getWrappedValue(), value);
+			}
+		}
+	}
+
+	public void buildNameIndex() {
+		for (EClassifier classifier : objects.values().iterator().next().eClass().getEPackage().getEClassifiers()) {
+			if (classifier instanceof EClass) {
+				Map<String, IdEObject> map = new TreeMap<String, IdEObject>();
+				nameIndex.put((EClass) classifier, map);
+			}
+		}
+		for (Long key : objects.keySet()) {
+			IdEObject value = objects.get((Long) key);
+			if (value instanceof IfcRoot) {
+				IfcRoot ifcRoot = (IfcRoot) value;
+				sortAllAggregates(ifcRoot);
+				if (ifcRoot.getName() != null) {
+					nameIndex.get(value.eClass()).put(ifcRoot.getName(), value);
+				}
+			}
+		}
+	}
+
+	@SuppressWarnings("unchecked")
+	private void sortAllAggregates(IfcRoot ifcRoot) {
+		for (EStructuralFeature eStructuralFeature : ifcRoot.eClass().getEAllStructuralFeatures()) {
+			if (!fieldIgnoreMap.shouldIgnoreField(ifcRoot.eClass(), ifcRoot.eClass(), eStructuralFeature)) {
+				if (eStructuralFeature.getUpperBound() == -1 || eStructuralFeature.getUpperBound() > 1) {
+					if (eStructuralFeature.getEType() instanceof EClass) {
+						if (Ifc2x3Package.eINSTANCE.getWrappedValue().isSuperTypeOf((EClass) eStructuralFeature.getEType())) {
+							EList<EObject> list = (EList<EObject>) ifcRoot.eGet(eStructuralFeature);
+							sortPrimitiveList(list);
+						} else {
+							EList<EObject> list = (EList<EObject>) ifcRoot.eGet(eStructuralFeature);
+							sortComplexList(ifcRoot.eClass(), list, eStructuralFeature);
+						}
+					}
+				}
+			}
+		}
+	}
+
+	private void sortPrimitiveList(EList<EObject> list) {
+		ECollections.sort(list, new Comparator<EObject>() {
+			@Override
+			public int compare(EObject o1, EObject o2) {
+				return comparePrimitives(o1, o2);
+			}
+		});
+	}
+
+	private void sortComplexList(final EClass originalQueryClass, EList<EObject> list, EStructuralFeature eStructuralFeature) {
+		final EClass type = (EClass) eStructuralFeature.getEType();
+		ECollections.sort(list, new Comparator<EObject>() {
+			@Override
+			public int compare(EObject o1, EObject o2) {
+				int i=1;
+				for (EStructuralFeature eStructuralFeature : type.getEAllStructuralFeatures()) {
+					if (!fieldIgnoreMap.shouldIgnoreField(originalQueryClass, type, eStructuralFeature)) {
+						Object val1 = o1.eGet(eStructuralFeature);
+						Object val2 = o2.eGet(eStructuralFeature);
+						if (val1 != null && val2 != null) {
+							if (eStructuralFeature.getEType() instanceof EClass) {
+								if (Ifc2x3Package.eINSTANCE.getWrappedValue().isSuperTypeOf((EClass) eStructuralFeature.getEType())) {
+									int compare = comparePrimitives((EObject) val1, (EObject) val2);
+									if (compare != 0) {
+										return compare * i;
+									}
+								}
+							}
+						}
+						i++;
+					}
+				}
+				return 0;
+			}
+		});
+	}
+
+	private int comparePrimitives(EObject o1, EObject o2) {
+		EClass eClass = o1.eClass();
+		EStructuralFeature eStructuralFeature = eClass.getEStructuralFeature("wrappedValue");
+		Object val1 = o1.eGet(eStructuralFeature);
+		Object val2 = o2.eGet(eStructuralFeature);
+		if (eStructuralFeature.getEType() == EcorePackage.eINSTANCE.getEString()) {
+			return ((String) val1).compareTo((String) val2);
+		} else if (eStructuralFeature.getEType() == EcorePackage.eINSTANCE.getEInt()) {
+			return ((Integer) val1).compareTo((Integer) val2);
+		} else {
+			throw new RuntimeException("ni");
+		}
+	}
+
+	@SuppressWarnings("unchecked")
+	public <T extends EObject> List<T> getAll(Class<T> clazz) {
+		if (index == null) {
+			buildIndex();
+		}
+		List<? extends EObject> list = index.get(clazz);
+		if (list == null) {
+			return new ArrayList<T>();
+		} else {
+			return (List<T>) list;
+		}
+	}
+
+	public Set<String> getGuids(EClass eClass) {
+		return guidIndex.get(eClass).keySet();
+	}
+
+	public Set<String> getNames(EClass eClass) {
+		return nameIndex.get(eClass).keySet();
+	}
+
+	public IdEObject getByName(EClass eClass, String name) {
+		return nameIndex.get(eClass).get(name);
+	}
+	
+	public IdEObject getByGuid(EClass eClass, String guid) {
+		if (guidIndex == null) {
+			indexGuids();
+		}
+		return guidIndex.get(eClass).get(guid);
+	}
+
 	public long size() {
 		return objects.size();
 	}

@@ -3,7 +3,6 @@ package org.bimserver.ifc.file.compare;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.FieldIgnoreMap;
 import org.bimserver.ifc.IfcModel;
-import org.bimserver.ifc.database.IfcDatabase;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.shared.SCompareResult.SCompareType;
 import org.eclipse.emf.ecore.EClass;
@@ -25,26 +24,21 @@ public class Compare {
 	public CompareResult compareOnGuids(IfcModel model1, IfcModel model2, SCompareType sCompareType) {
 		CompareResult result = new CompareResult();
 		try {
-			IfcDatabase database1 = new IfcDatabase(model1, fieldIgnoreMap);
-			database1.buildGuidIndex();
-			IfcDatabase database2 = new IfcDatabase(model2, fieldIgnoreMap);
-			database2.buildGuidIndex();
-
 			for (EClassifier eClassifier : Ifc2x3Package.eINSTANCE.getEClassifiers()) {
 				if (eClassifier instanceof EClass && Ifc2x3Package.eINSTANCE.getIfcRoot().isSuperTypeOf((EClass) eClassifier)) {
 					EClass eClass = (EClass) eClassifier;
-					for (String guid : database1.getGuids(eClass)) {
-						IdEObject eObject1 = database1.getByGuid(eClass, guid);
-						IdEObject eObject2 = database2.getByGuid(eClass, guid);
+					for (String guid : model1.getGuids(eClass)) {
+						IdEObject eObject1 = model1.getByGuid(eClass, guid);
+						IdEObject eObject2 = model2.getByGuid(eClass, guid);
 						if  (eObject2 == null) {
 							if (sCompareType == SCompareType.ALL || sCompareType == SCompareType.DELETE) {
 								result.addDeleted(eObject1);
 							}
 						}
 					}
-					for (String guid : database2.getGuids(eClass)) {
-						IdEObject eObject1 = database1.getByGuid(eClass, guid);
-						IdEObject eObject2 = database2.getByGuid(eClass, guid);
+					for (String guid : model2.getGuids(eClass)) {
+						IdEObject eObject1 = model1.getByGuid(eClass, guid);
+						IdEObject eObject2 = model2.getByGuid(eClass, guid);
 						if (eObject1 == null) {
 							if (sCompareType == SCompareType.ALL || sCompareType == SCompareType.ADD) {
 								result.addAdded(eObject2);
@@ -64,26 +58,21 @@ public class Compare {
 	public CompareResult compareOnNames(IfcModel model1, IfcModel model2, SCompareType sCompareType) {
 		CompareResult result = new CompareResult();
 		try {
-			IfcDatabase database1 = new IfcDatabase(model1, fieldIgnoreMap);
-			database1.buildNameIndex();
-			IfcDatabase database2 = new IfcDatabase(model2, fieldIgnoreMap);
-			database2.buildNameIndex();
-
 			for (EClassifier eClassifier : Ifc2x3Package.eINSTANCE.getEClassifiers()) {
 				if (eClassifier instanceof EClass && Ifc2x3Package.eINSTANCE.getIfcRoot().isSuperTypeOf((EClass) eClassifier)) {
 					EClass eClass = (EClass) eClassifier;
-					for (String name : database1.getNames(eClass)) {
-						IdEObject eObject1 = database1.getByName(eClass, name);
-						IdEObject eObject2 = database2.getByName(eClass, name);
+					for (String name : model1.getNames(eClass)) {
+						IdEObject eObject1 = model1.getByName(eClass, name);
+						IdEObject eObject2 = model2.getByName(eClass, name);
 						if  (eObject2 == null) {
 							if (sCompareType == SCompareType.ALL || sCompareType == SCompareType.DELETE) {
 								result.addDeleted(eObject1);
 							}
 						}
 					}
-					for (String name : database2.getNames(eClass)) {
-						IdEObject eObject1 = database1.getByName(eClass, name);
-						IdEObject eObject2 = database2.getByName(eClass, name);
+					for (String name : model2.getNames(eClass)) {
+						IdEObject eObject1 = model1.getByName(eClass, name);
+						IdEObject eObject2 = model2.getByName(eClass, name);
 						if (eObject1 == null) {
 							if (sCompareType == SCompareType.ALL || sCompareType == SCompareType.ADD) {
 								result.addAdded(eObject2);
