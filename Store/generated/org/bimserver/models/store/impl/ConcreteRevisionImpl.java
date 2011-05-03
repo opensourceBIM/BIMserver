@@ -7,18 +7,65 @@
 package org.bimserver.models.store.impl;
 
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
+import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IdEObjectImpl;
 
-import org.bimserver.models.store.CheckinState;
-import org.bimserver.models.store.ConcreteRevision;
-import org.bimserver.models.store.Project;
-import org.bimserver.models.store.Revision;
-import org.bimserver.models.store.StorePackage;
+import org.bimserver.models.ifc2x3.Ifc2x3Package;
+
+import org.bimserver.models.ifc2x3.impl.Ifc2x3PackageImpl;
+
+import org.bimserver.models.log.LogPackage;
+
+import org.bimserver.models.log.impl.LogPackageImpl;
+
+import org.bimserver.models.store.*;
+
+import org.bimserver.models.store.impl.CheckoutImpl;
+import org.bimserver.models.store.impl.ClashDetectionSettingsImpl;
+import org.bimserver.models.store.impl.ClashImpl;
+import org.bimserver.models.store.impl.ConcreteRevisionImpl;
+import org.bimserver.models.store.impl.EidClashImpl;
+import org.bimserver.models.store.impl.GeoTagImpl;
+import org.bimserver.models.store.impl.GuidClashImpl;
+import org.bimserver.models.store.impl.IgnoreFileImpl;
+import org.bimserver.models.store.impl.ProjectImpl;
+import org.bimserver.models.store.impl.RevisionImpl;
+import org.bimserver.models.store.impl.SerializerImpl;
+import org.bimserver.models.store.impl.SettingsImpl;
+import org.bimserver.models.store.impl.UserImpl;
+
+import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.notify.Notifier;
+
+import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EFactory;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
+
+import org.eclipse.emf.ecore.impl.EFactoryImpl;
+import org.eclipse.emf.ecore.impl.EPackageImpl;
+
+import org.eclipse.emf.ecore.plugin.EcorePlugin;
+
+import org.eclipse.emf.ecore.resource.Resource;
+
+import org.eclipse.emf.ecore.resource.impl.ResourceFactoryImpl;
+
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
+
+import org.eclipse.emf.ecore.xmi.util.XMLProcessor;
 
 /**
  * <!-- begin-user-doc -->
@@ -40,13 +87,15 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevision {
+public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevision
+{
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ConcreteRevisionImpl() {
+	protected ConcreteRevisionImpl()
+	{
 		super();
 	}
 
@@ -56,7 +105,8 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return StorePackage.Literals.CONCRETE_REVISION;
 	}
 
@@ -66,7 +116,8 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 	 * @generated
 	 */
 	@Override
-	protected int eStaticFeatureCount() {
+	protected int eStaticFeatureCount()
+	{
 		return 0;
 	}
 
@@ -75,7 +126,8 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getId() {
+	public int getId()
+	{
 		return (Integer)eGet(StorePackage.Literals.CONCRETE_REVISION__ID, true);
 	}
 
@@ -84,7 +136,8 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setId(int newId) {
+	public void setId(int newId)
+	{
 		eSet(StorePackage.Literals.CONCRETE_REVISION__ID, newId);
 	}
 
@@ -93,7 +146,8 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Project getProject() {
+	public Project getProject()
+	{
 		return (Project)eGet(StorePackage.Literals.CONCRETE_REVISION__PROJECT, true);
 	}
 
@@ -102,7 +156,8 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setProject(Project newProject) {
+	public void setProject(Project newProject)
+	{
 		eSet(StorePackage.Literals.CONCRETE_REVISION__PROJECT, newProject);
 	}
 
@@ -111,7 +166,8 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CheckinState getState() {
+	public CheckinState getState()
+	{
 		return (CheckinState)eGet(StorePackage.Literals.CONCRETE_REVISION__STATE, true);
 	}
 
@@ -120,7 +176,8 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setState(CheckinState newState) {
+	public void setState(CheckinState newState)
+	{
 		eSet(StorePackage.Literals.CONCRETE_REVISION__STATE, newState);
 	}
 
@@ -129,7 +186,8 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public byte[] getChecksum() {
+	public byte[] getChecksum()
+	{
 		return (byte[])eGet(StorePackage.Literals.CONCRETE_REVISION__CHECKSUM, true);
 	}
 
@@ -138,7 +196,8 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setChecksum(byte[] newChecksum) {
+	public void setChecksum(byte[] newChecksum)
+	{
 		eSet(StorePackage.Literals.CONCRETE_REVISION__CHECKSUM, newChecksum);
 	}
 
@@ -148,7 +207,8 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	public EList<Revision> getRevisions() {
+	public EList<Revision> getRevisions()
+	{
 		return (EList<Revision>)eGet(StorePackage.Literals.CONCRETE_REVISION__REVISIONS, true);
 	}
 
@@ -157,7 +217,8 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public long getSize() {
+	public long getSize()
+	{
 		return (Long)eGet(StorePackage.Literals.CONCRETE_REVISION__SIZE, true);
 	}
 
@@ -166,7 +227,8 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSize(long newSize) {
+	public void setSize(long newSize)
+	{
 		eSet(StorePackage.Literals.CONCRETE_REVISION__SIZE, newSize);
 	}
 
@@ -175,7 +237,8 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Date getDate() {
+	public Date getDate()
+	{
 		return (Date)eGet(StorePackage.Literals.CONCRETE_REVISION__DATE, true);
 	}
 
@@ -184,7 +247,8 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDate(Date newDate) {
+	public void setDate(Date newDate)
+	{
 		eSet(StorePackage.Literals.CONCRETE_REVISION__DATE, newDate);
 	}
 
@@ -193,7 +257,8 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getLastError() {
+	public String getLastError()
+	{
 		return (String)eGet(StorePackage.Literals.CONCRETE_REVISION__LAST_ERROR, true);
 	}
 
@@ -202,7 +267,8 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLastError(String newLastError) {
+	public void setLastError(String newLastError)
+	{
 		eSet(StorePackage.Literals.CONCRETE_REVISION__LAST_ERROR, newLastError);
 	}
 

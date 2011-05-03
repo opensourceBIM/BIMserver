@@ -8,9 +8,67 @@ package org.bimserver.models.store;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
+import org.bimserver.emf.IdEObject;
+import org.bimserver.emf.IdEObjectImpl;
+
+import org.bimserver.models.ifc2x3.Ifc2x3Package;
+
+import org.bimserver.models.ifc2x3.impl.Ifc2x3PackageImpl;
+
+import org.bimserver.models.log.LogPackage;
+
+import org.bimserver.models.log.impl.LogPackageImpl;
+
+import org.bimserver.models.store.*;
+
+import org.bimserver.models.store.impl.CheckoutImpl;
+import org.bimserver.models.store.impl.ClashDetectionSettingsImpl;
+import org.bimserver.models.store.impl.ClashImpl;
+import org.bimserver.models.store.impl.ConcreteRevisionImpl;
+import org.bimserver.models.store.impl.EidClashImpl;
+import org.bimserver.models.store.impl.GeoTagImpl;
+import org.bimserver.models.store.impl.GuidClashImpl;
+import org.bimserver.models.store.impl.IgnoreFileImpl;
+import org.bimserver.models.store.impl.ProjectImpl;
+import org.bimserver.models.store.impl.RevisionImpl;
+import org.bimserver.models.store.impl.SerializerImpl;
+import org.bimserver.models.store.impl.SettingsImpl;
+import org.bimserver.models.store.impl.UserImpl;
+
+import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.notify.Notifier;
+
+import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
+
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.Enumerator;
+import org.eclipse.emf.common.util.URI;
+
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EFactory;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
+
+import org.eclipse.emf.ecore.impl.EFactoryImpl;
+import org.eclipse.emf.ecore.impl.EPackageImpl;
+
+import org.eclipse.emf.ecore.plugin.EcorePlugin;
+
+import org.eclipse.emf.ecore.resource.Resource;
+
+import org.eclipse.emf.ecore.resource.impl.ResourceFactoryImpl;
+
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
+
+import org.eclipse.emf.ecore.xmi.util.XMLProcessor;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,26 +79,27 @@ import org.eclipse.emf.common.util.Enumerator;
  * @model
  * @generated
  */
-public enum ObjectState implements Enumerator {
+public enum ObjectState implements Enumerator
+{
 	/**
 	 * The '<em><b>ACTIVE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #ACTIVE_VALUE
+	 * @see #ACTIVE
 	 * @generated
 	 * @ordered
 	 */
-	ACTIVE(0, "ACTIVE", "ACTIVE"),
+	ACTIVE_LITERAL(0, "ACTIVE", "ACTIVE"),
 
 	/**
 	 * The '<em><b>DELETED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #DELETED_VALUE
+	 * @see #DELETED
 	 * @generated
 	 * @ordered
 	 */
-	DELETED(1, "DELETED", "DELETED");
+	DELETED_LITERAL(1, "DELETED", "DELETED");
 
 	/**
 	 * The '<em><b>ACTIVE</b></em>' literal value.
@@ -50,12 +109,12 @@ public enum ObjectState implements Enumerator {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ACTIVE
+	 * @see #ACTIVE_LITERAL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ACTIVE_VALUE = 0;
+	public static final int ACTIVE = 0;
 
 	/**
 	 * The '<em><b>DELETED</b></em>' literal value.
@@ -65,12 +124,12 @@ public enum ObjectState implements Enumerator {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #DELETED
+	 * @see #DELETED_LITERAL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int DELETED_VALUE = 1;
+	public static final int DELETED = 1;
 
 	/**
 	 * An array of all the '<em><b>Object State</b></em>' enumerators.
@@ -79,9 +138,10 @@ public enum ObjectState implements Enumerator {
 	 * @generated
 	 */
 	private static final ObjectState[] VALUES_ARRAY =
-		new ObjectState[] {
-			ACTIVE,
-			DELETED,
+		new ObjectState[]
+		{
+			ACTIVE_LITERAL,
+			DELETED_LITERAL,
 		};
 
 	/**
@@ -98,10 +158,13 @@ public enum ObjectState implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static ObjectState get(String literal) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+	public static ObjectState get(String literal)
+	{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i)
+		{
 			ObjectState result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal)) {
+			if (result.toString().equals(literal))
+			{
 				return result;
 			}
 		}
@@ -114,10 +177,13 @@ public enum ObjectState implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static ObjectState getByName(String name) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+	public static ObjectState getByName(String name)
+	{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i)
+		{
 			ObjectState result = VALUES_ARRAY[i];
-			if (result.getName().equals(name)) {
+			if (result.getName().equals(name))
+			{
 				return result;
 			}
 		}
@@ -130,10 +196,12 @@ public enum ObjectState implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static ObjectState get(int value) {
-		switch (value) {
-			case ACTIVE_VALUE: return ACTIVE;
-			case DELETED_VALUE: return DELETED;
+	public static ObjectState get(int value)
+	{
+		switch (value)
+		{
+			case ACTIVE: return ACTIVE_LITERAL;
+			case DELETED: return DELETED_LITERAL;
 		}
 		return null;
 	}
@@ -165,7 +233,8 @@ public enum ObjectState implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private ObjectState(int value, String name, String literal) {
+	private ObjectState(int value, String name, String literal)
+	{
 		this.value = value;
 		this.name = name;
 		this.literal = literal;
@@ -176,7 +245,8 @@ public enum ObjectState implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getValue() {
+	public int getValue()
+	{
 	  return value;
 	}
 
@@ -185,7 +255,8 @@ public enum ObjectState implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getName() {
+	public String getName()
+	{
 	  return name;
 	}
 
@@ -194,7 +265,8 @@ public enum ObjectState implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getLiteral() {
+	public String getLiteral()
+	{
 	  return literal;
 	}
 
@@ -205,7 +277,8 @@ public enum ObjectState implements Enumerator {
 	 * @generated
 	 */
 	@Override
-	public String toString() {
+	public String toString()
+	{
 		return literal;
 	}
 	

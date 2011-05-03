@@ -6,11 +6,41 @@
  */
 package org.bimserver.models.store;
 
+import org.bimserver.models.ifc2x3.Ifc2x3Package;
+
+import org.bimserver.models.ifc2x3.impl.Ifc2x3PackageImpl;
+
+import org.bimserver.models.log.LogPackage;
+
+import org.bimserver.models.log.impl.LogPackageImpl;
+
+import org.bimserver.models.store.CheckinState;
+import org.bimserver.models.store.Checkout;
+import org.bimserver.models.store.Clash;
+import org.bimserver.models.store.ClashDetectionSettings;
+import org.bimserver.models.store.ConcreteRevision;
+import org.bimserver.models.store.EidClash;
+import org.bimserver.models.store.GeoTag;
+import org.bimserver.models.store.GuidClash;
+import org.bimserver.models.store.IgnoreFile;
+import org.bimserver.models.store.ObjectState;
+import org.bimserver.models.store.Project;
+import org.bimserver.models.store.Revision;
+import org.bimserver.models.store.SIPrefix;
+import org.bimserver.models.store.Serializer;
+import org.bimserver.models.store.Settings;
+import org.bimserver.models.store.StoreFactory;
+import org.bimserver.models.store.StorePackage;
+import org.bimserver.models.store.User;
+import org.bimserver.models.store.UserType;
+
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+
+import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,7 +57,8 @@ import org.eclipse.emf.ecore.EReference;
  * @model kind="package"
  * @generated
  */
-public interface StorePackage extends EPackage {
+public interface StorePackage extends EPackage
+{
 	/**
 	 * The package name.
 	 * <!-- begin-user-doc -->
@@ -1242,13 +1273,31 @@ public interface StorePackage extends EPackage {
 	int SETTINGS__IGNORE_FILES = 15;
 
 	/**
+	 * The feature id for the '<em><b>Header Addition</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SETTINGS__HEADER_ADDITION = 16;
+
+	/**
+	 * The feature id for the '<em><b>Footer Addition</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SETTINGS__FOOTER_ADDITION = 17;
+
+	/**
 	 * The number of structural features of the '<em>Settings</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SETTINGS_FEATURE_COUNT = 16;
+	int SETTINGS_FEATURE_COUNT = 18;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.SerializerImpl <em>Serializer</em>}' class.
@@ -2597,6 +2646,28 @@ public interface StorePackage extends EPackage {
 	EReference getSettings_IgnoreFiles();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Settings#getHeaderAddition <em>Header Addition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Header Addition</em>'.
+	 * @see org.bimserver.models.store.Settings#getHeaderAddition()
+	 * @see #getSettings()
+	 * @generated
+	 */
+	EAttribute getSettings_HeaderAddition();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Settings#getFooterAddition <em>Footer Addition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Footer Addition</em>'.
+	 * @see org.bimserver.models.store.Settings#getFooterAddition()
+	 * @see #getSettings()
+	 * @generated
+	 */
+	EAttribute getSettings_FooterAddition();
+
+	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.Serializer <em>Serializer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2787,7 +2858,8 @@ public interface StorePackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	interface Literals {
+	interface Literals
+	{
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.ProjectImpl <em>Project</em>}' class.
 		 * <!-- begin-user-doc -->
@@ -3673,6 +3745,22 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EReference SETTINGS__IGNORE_FILES = eINSTANCE.getSettings_IgnoreFiles();
+
+		/**
+		 * The meta object literal for the '<em><b>Header Addition</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SETTINGS__HEADER_ADDITION = eINSTANCE.getSettings_HeaderAddition();
+
+		/**
+		 * The meta object literal for the '<em><b>Footer Addition</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SETTINGS__FOOTER_ADDITION = eINSTANCE.getSettings_FooterAddition();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.SerializerImpl <em>Serializer</em>}' class.

@@ -8,9 +8,67 @@ package org.bimserver.models.store;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
+import org.bimserver.emf.IdEObject;
+import org.bimserver.emf.IdEObjectImpl;
+
+import org.bimserver.models.ifc2x3.Ifc2x3Package;
+
+import org.bimserver.models.ifc2x3.impl.Ifc2x3PackageImpl;
+
+import org.bimserver.models.log.LogPackage;
+
+import org.bimserver.models.log.impl.LogPackageImpl;
+
+import org.bimserver.models.store.*;
+
+import org.bimserver.models.store.impl.CheckoutImpl;
+import org.bimserver.models.store.impl.ClashDetectionSettingsImpl;
+import org.bimserver.models.store.impl.ClashImpl;
+import org.bimserver.models.store.impl.ConcreteRevisionImpl;
+import org.bimserver.models.store.impl.EidClashImpl;
+import org.bimserver.models.store.impl.GeoTagImpl;
+import org.bimserver.models.store.impl.GuidClashImpl;
+import org.bimserver.models.store.impl.IgnoreFileImpl;
+import org.bimserver.models.store.impl.ProjectImpl;
+import org.bimserver.models.store.impl.RevisionImpl;
+import org.bimserver.models.store.impl.SerializerImpl;
+import org.bimserver.models.store.impl.SettingsImpl;
+import org.bimserver.models.store.impl.UserImpl;
+
+import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.notify.Notifier;
+
+import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
+
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.Enumerator;
+import org.eclipse.emf.common.util.URI;
+
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EFactory;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
+
+import org.eclipse.emf.ecore.impl.EFactoryImpl;
+import org.eclipse.emf.ecore.impl.EPackageImpl;
+
+import org.eclipse.emf.ecore.plugin.EcorePlugin;
+
+import org.eclipse.emf.ecore.resource.Resource;
+
+import org.eclipse.emf.ecore.resource.impl.ResourceFactoryImpl;
+
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
+
+import org.eclipse.emf.ecore.xmi.util.XMLProcessor;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,76 +79,77 @@ import org.eclipse.emf.common.util.Enumerator;
  * @model
  * @generated
  */
-public enum CheckinState implements Enumerator {
+public enum CheckinState implements Enumerator
+{
 	/**
 	 * The '<em><b>UPLOADING</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #UPLOADING_VALUE
+	 * @see #UPLOADING
 	 * @generated
 	 * @ordered
 	 */
-	UPLOADING(0, "UPLOADING", "UPLOADING"),
+	UPLOADING_LITERAL(0, "UPLOADING", "UPLOADING"),
 
 	/**
 	 * The '<em><b>PARSING</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #PARSING_VALUE
+	 * @see #PARSING
 	 * @generated
 	 * @ordered
 	 */
-	PARSING(1, "PARSING", "PARSING"),
+	PARSING_LITERAL(1, "PARSING", "PARSING"),
 
 	/**
 	 * The '<em><b>STORING</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #STORING_VALUE
+	 * @see #STORING
 	 * @generated
 	 * @ordered
 	 */
-	STORING(2, "STORING", "STORING"),
+	STORING_LITERAL(2, "STORING", "STORING"),
 
 	/**
 	 * The '<em><b>SEARCHING CLASHES</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #SEARCHING_CLASHES_VALUE
+	 * @see #SEARCHING_CLASHES
 	 * @generated
 	 * @ordered
 	 */
-	SEARCHING_CLASHES(3, "SEARCHING_CLASHES", "SEARCHING_CLASHES"),
+	SEARCHING_CLASHES_LITERAL(3, "SEARCHING_CLASHES", "SEARCHING_CLASHES"),
 
 	/**
 	 * The '<em><b>DONE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #DONE_VALUE
+	 * @see #DONE
 	 * @generated
 	 * @ordered
 	 */
-	DONE(4, "DONE", "DONE"),
+	DONE_LITERAL(4, "DONE", "DONE"),
 
 	/**
 	 * The '<em><b>ERROR</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #ERROR_VALUE
+	 * @see #ERROR
 	 * @generated
 	 * @ordered
 	 */
-	ERROR(5, "ERROR", "ERROR"),
+	ERROR_LITERAL(5, "ERROR", "ERROR"),
 
 	/**
 	 * The '<em><b>CLASHES ERROR</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #CLASHES_ERROR_VALUE
+	 * @see #CLASHES_ERROR
 	 * @generated
 	 * @ordered
 	 */
-	CLASHES_ERROR(6, "CLASHES_ERROR", "CLASHES_ERROR");
+	CLASHES_ERROR_LITERAL(6, "CLASHES_ERROR", "CLASHES_ERROR");
 
 	/**
 	 * The '<em><b>UPLOADING</b></em>' literal value.
@@ -100,12 +159,12 @@ public enum CheckinState implements Enumerator {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #UPLOADING
+	 * @see #UPLOADING_LITERAL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int UPLOADING_VALUE = 0;
+	public static final int UPLOADING = 0;
 
 	/**
 	 * The '<em><b>PARSING</b></em>' literal value.
@@ -115,12 +174,12 @@ public enum CheckinState implements Enumerator {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #PARSING
+	 * @see #PARSING_LITERAL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PARSING_VALUE = 1;
+	public static final int PARSING = 1;
 
 	/**
 	 * The '<em><b>STORING</b></em>' literal value.
@@ -130,12 +189,12 @@ public enum CheckinState implements Enumerator {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #STORING
+	 * @see #STORING_LITERAL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int STORING_VALUE = 2;
+	public static final int STORING = 2;
 
 	/**
 	 * The '<em><b>SEARCHING CLASHES</b></em>' literal value.
@@ -145,12 +204,12 @@ public enum CheckinState implements Enumerator {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #SEARCHING_CLASHES
+	 * @see #SEARCHING_CLASHES_LITERAL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SEARCHING_CLASHES_VALUE = 3;
+	public static final int SEARCHING_CLASHES = 3;
 
 	/**
 	 * The '<em><b>DONE</b></em>' literal value.
@@ -160,12 +219,12 @@ public enum CheckinState implements Enumerator {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #DONE
+	 * @see #DONE_LITERAL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int DONE_VALUE = 4;
+	public static final int DONE = 4;
 
 	/**
 	 * The '<em><b>ERROR</b></em>' literal value.
@@ -175,12 +234,12 @@ public enum CheckinState implements Enumerator {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ERROR
+	 * @see #ERROR_LITERAL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ERROR_VALUE = 5;
+	public static final int ERROR = 5;
 
 	/**
 	 * The '<em><b>CLASHES ERROR</b></em>' literal value.
@@ -190,12 +249,12 @@ public enum CheckinState implements Enumerator {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #CLASHES_ERROR
+	 * @see #CLASHES_ERROR_LITERAL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int CLASHES_ERROR_VALUE = 6;
+	public static final int CLASHES_ERROR = 6;
 
 	/**
 	 * An array of all the '<em><b>Checkin State</b></em>' enumerators.
@@ -204,14 +263,15 @@ public enum CheckinState implements Enumerator {
 	 * @generated
 	 */
 	private static final CheckinState[] VALUES_ARRAY =
-		new CheckinState[] {
-			UPLOADING,
-			PARSING,
-			STORING,
-			SEARCHING_CLASHES,
-			DONE,
-			ERROR,
-			CLASHES_ERROR,
+		new CheckinState[]
+		{
+			UPLOADING_LITERAL,
+			PARSING_LITERAL,
+			STORING_LITERAL,
+			SEARCHING_CLASHES_LITERAL,
+			DONE_LITERAL,
+			ERROR_LITERAL,
+			CLASHES_ERROR_LITERAL,
 		};
 
 	/**
@@ -228,10 +288,13 @@ public enum CheckinState implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static CheckinState get(String literal) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+	public static CheckinState get(String literal)
+	{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i)
+		{
 			CheckinState result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal)) {
+			if (result.toString().equals(literal))
+			{
 				return result;
 			}
 		}
@@ -244,10 +307,13 @@ public enum CheckinState implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static CheckinState getByName(String name) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+	public static CheckinState getByName(String name)
+	{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i)
+		{
 			CheckinState result = VALUES_ARRAY[i];
-			if (result.getName().equals(name)) {
+			if (result.getName().equals(name))
+			{
 				return result;
 			}
 		}
@@ -260,15 +326,17 @@ public enum CheckinState implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static CheckinState get(int value) {
-		switch (value) {
-			case UPLOADING_VALUE: return UPLOADING;
-			case PARSING_VALUE: return PARSING;
-			case STORING_VALUE: return STORING;
-			case SEARCHING_CLASHES_VALUE: return SEARCHING_CLASHES;
-			case DONE_VALUE: return DONE;
-			case ERROR_VALUE: return ERROR;
-			case CLASHES_ERROR_VALUE: return CLASHES_ERROR;
+	public static CheckinState get(int value)
+	{
+		switch (value)
+		{
+			case UPLOADING: return UPLOADING_LITERAL;
+			case PARSING: return PARSING_LITERAL;
+			case STORING: return STORING_LITERAL;
+			case SEARCHING_CLASHES: return SEARCHING_CLASHES_LITERAL;
+			case DONE: return DONE_LITERAL;
+			case ERROR: return ERROR_LITERAL;
+			case CLASHES_ERROR: return CLASHES_ERROR_LITERAL;
 		}
 		return null;
 	}
@@ -300,7 +368,8 @@ public enum CheckinState implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private CheckinState(int value, String name, String literal) {
+	private CheckinState(int value, String name, String literal)
+	{
 		this.value = value;
 		this.name = name;
 		this.literal = literal;
@@ -311,7 +380,8 @@ public enum CheckinState implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getValue() {
+	public int getValue()
+	{
 	  return value;
 	}
 
@@ -320,7 +390,8 @@ public enum CheckinState implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getName() {
+	public String getName()
+	{
 	  return name;
 	}
 
@@ -329,7 +400,8 @@ public enum CheckinState implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getLiteral() {
+	public String getLiteral()
+	{
 	  return literal;
 	}
 
@@ -340,7 +412,8 @@ public enum CheckinState implements Enumerator {
 	 * @generated
 	 */
 	@Override
-	public String toString() {
+	public String toString()
+	{
 		return literal;
 	}
 	

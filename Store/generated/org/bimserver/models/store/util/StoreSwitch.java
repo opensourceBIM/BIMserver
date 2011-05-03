@@ -8,10 +8,48 @@ package org.bimserver.models.store.util;
 
 import java.util.List;
 
+import org.bimserver.models.ifc2x3.Ifc2x3Package;
+
+import org.bimserver.models.ifc2x3.impl.Ifc2x3PackageImpl;
+
+import org.bimserver.models.log.LogPackage;
+
+import org.bimserver.models.log.impl.LogPackageImpl;
+
 import org.bimserver.models.store.*;
 
+import org.bimserver.models.store.impl.CheckoutImpl;
+import org.bimserver.models.store.impl.ClashDetectionSettingsImpl;
+import org.bimserver.models.store.impl.ClashImpl;
+import org.bimserver.models.store.impl.ConcreteRevisionImpl;
+import org.bimserver.models.store.impl.EidClashImpl;
+import org.bimserver.models.store.impl.GeoTagImpl;
+import org.bimserver.models.store.impl.GuidClashImpl;
+import org.bimserver.models.store.impl.IgnoreFileImpl;
+import org.bimserver.models.store.impl.ProjectImpl;
+import org.bimserver.models.store.impl.RevisionImpl;
+import org.bimserver.models.store.impl.SerializerImpl;
+import org.bimserver.models.store.impl.SettingsImpl;
+import org.bimserver.models.store.impl.UserImpl;
+
+import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.notify.Notifier;
+
+import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
+
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
+
+import org.eclipse.emf.ecore.impl.EFactoryImpl;
+import org.eclipse.emf.ecore.impl.EPackageImpl;
+
+import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,7 +64,8 @@ import org.eclipse.emf.ecore.EObject;
  * @see org.bimserver.models.store.StorePackage
  * @generated
  */
-public class StoreSwitch<T> {
+public class StoreSwitch<T>
+{
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
@@ -41,8 +80,10 @@ public class StoreSwitch<T> {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public StoreSwitch() {
-		if (modelPackage == null) {
+	public StoreSwitch()
+	{
+		if (modelPackage == null)
+		{
 			modelPackage = StorePackage.eINSTANCE;
 		}
 	}
@@ -54,7 +95,8 @@ public class StoreSwitch<T> {
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
-	public T doSwitch(EObject theEObject) {
+	public T doSwitch(EObject theEObject)
+	{
 		return doSwitch(theEObject.eClass(), theEObject);
 	}
 
@@ -65,11 +107,14 @@ public class StoreSwitch<T> {
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
-	protected T doSwitch(EClass theEClass, EObject theEObject) {
-		if (theEClass.eContainer() == modelPackage) {
+	protected T doSwitch(EClass theEClass, EObject theEObject)
+	{
+		if (theEClass.eContainer() == modelPackage)
+		{
 			return doSwitch(theEClass.getClassifierID(), theEObject);
 		}
-		else {
+		else
+		{
 			List<EClass> eSuperTypes = theEClass.getESuperTypes();
 			return
 				eSuperTypes.isEmpty() ?
@@ -85,83 +130,98 @@ public class StoreSwitch<T> {
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
-	protected T doSwitch(int classifierID, EObject theEObject) {
-		switch (classifierID) {
-			case StorePackage.PROJECT: {
+	protected T doSwitch(int classifierID, EObject theEObject)
+	{
+		switch (classifierID)
+		{
+			case StorePackage.PROJECT:
+			{
 				Project project = (Project)theEObject;
 				T result = caseProject(project);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case StorePackage.USER: {
+			case StorePackage.USER:
+			{
 				User user = (User)theEObject;
 				T result = caseUser(user);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case StorePackage.CLASH: {
+			case StorePackage.CLASH:
+			{
 				Clash clash = (Clash)theEObject;
 				T result = caseClash(clash);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case StorePackage.EID_CLASH: {
+			case StorePackage.EID_CLASH:
+			{
 				EidClash eidClash = (EidClash)theEObject;
 				T result = caseEidClash(eidClash);
 				if (result == null) result = caseClash(eidClash);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case StorePackage.GUID_CLASH: {
+			case StorePackage.GUID_CLASH:
+			{
 				GuidClash guidClash = (GuidClash)theEObject;
 				T result = caseGuidClash(guidClash);
 				if (result == null) result = caseClash(guidClash);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case StorePackage.CLASH_DETECTION_SETTINGS: {
+			case StorePackage.CLASH_DETECTION_SETTINGS:
+			{
 				ClashDetectionSettings clashDetectionSettings = (ClashDetectionSettings)theEObject;
 				T result = caseClashDetectionSettings(clashDetectionSettings);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case StorePackage.REVISION: {
+			case StorePackage.REVISION:
+			{
 				Revision revision = (Revision)theEObject;
 				T result = caseRevision(revision);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case StorePackage.CONCRETE_REVISION: {
+			case StorePackage.CONCRETE_REVISION:
+			{
 				ConcreteRevision concreteRevision = (ConcreteRevision)theEObject;
 				T result = caseConcreteRevision(concreteRevision);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case StorePackage.GEO_TAG: {
+			case StorePackage.GEO_TAG:
+			{
 				GeoTag geoTag = (GeoTag)theEObject;
 				T result = caseGeoTag(geoTag);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case StorePackage.CHECKOUT: {
+			case StorePackage.CHECKOUT:
+			{
 				Checkout checkout = (Checkout)theEObject;
 				T result = caseCheckout(checkout);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case StorePackage.SETTINGS: {
+			case StorePackage.SETTINGS:
+			{
 				Settings settings = (Settings)theEObject;
 				T result = caseSettings(settings);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case StorePackage.SERIALIZER: {
+			case StorePackage.SERIALIZER:
+			{
 				Serializer serializer = (Serializer)theEObject;
 				T result = caseSerializer(serializer);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case StorePackage.IGNORE_FILE: {
+			case StorePackage.IGNORE_FILE:
+			{
 				IgnoreFile ignoreFile = (IgnoreFile)theEObject;
 				T result = caseIgnoreFile(ignoreFile);
 				if (result == null) result = defaultCase(theEObject);
@@ -182,7 +242,8 @@ public class StoreSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseProject(Project object) {
+	public T caseProject(Project object)
+	{
 		return null;
 	}
 
@@ -197,7 +258,8 @@ public class StoreSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseUser(User object) {
+	public T caseUser(User object)
+	{
 		return null;
 	}
 
@@ -212,7 +274,8 @@ public class StoreSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseClash(Clash object) {
+	public T caseClash(Clash object)
+	{
 		return null;
 	}
 
@@ -227,7 +290,8 @@ public class StoreSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseEidClash(EidClash object) {
+	public T caseEidClash(EidClash object)
+	{
 		return null;
 	}
 
@@ -242,7 +306,8 @@ public class StoreSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseGuidClash(GuidClash object) {
+	public T caseGuidClash(GuidClash object)
+	{
 		return null;
 	}
 
@@ -257,7 +322,8 @@ public class StoreSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseClashDetectionSettings(ClashDetectionSettings object) {
+	public T caseClashDetectionSettings(ClashDetectionSettings object)
+	{
 		return null;
 	}
 
@@ -272,7 +338,8 @@ public class StoreSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseRevision(Revision object) {
+	public T caseRevision(Revision object)
+	{
 		return null;
 	}
 
@@ -287,7 +354,8 @@ public class StoreSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseConcreteRevision(ConcreteRevision object) {
+	public T caseConcreteRevision(ConcreteRevision object)
+	{
 		return null;
 	}
 
@@ -302,7 +370,8 @@ public class StoreSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseGeoTag(GeoTag object) {
+	public T caseGeoTag(GeoTag object)
+	{
 		return null;
 	}
 
@@ -317,7 +386,8 @@ public class StoreSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseCheckout(Checkout object) {
+	public T caseCheckout(Checkout object)
+	{
 		return null;
 	}
 
@@ -332,7 +402,8 @@ public class StoreSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseSettings(Settings object) {
+	public T caseSettings(Settings object)
+	{
 		return null;
 	}
 
@@ -347,7 +418,8 @@ public class StoreSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseSerializer(Serializer object) {
+	public T caseSerializer(Serializer object)
+	{
 		return null;
 	}
 
@@ -362,7 +434,8 @@ public class StoreSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIgnoreFile(IgnoreFile object) {
+	public T caseIgnoreFile(IgnoreFile object)
+	{
 		return null;
 	}
 
@@ -377,7 +450,8 @@ public class StoreSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)
 	 * @generated
 	 */
-	public T defaultCase(EObject object) {
+	public T defaultCase(EObject object)
+	{
 		return null;
 	}
 

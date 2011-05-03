@@ -48,7 +48,8 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
  * <!-- end-user-doc -->
  * @generated
  */
-public class StorePackageImpl extends EPackageImpl implements StorePackage {
+public class StorePackageImpl extends EPackageImpl implements StorePackage
+{
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -183,7 +184,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * @see #init()
 	 * @generated
 	 */
-	private StorePackageImpl() {
+	private StorePackageImpl()
+	{
 		super(eNS_URI, StoreFactory.eINSTANCE);
 	}
 
@@ -206,7 +208,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
-	public static StorePackage init() {
+	public static StorePackage init()
+	{
 		if (isInited) return (StorePackage)EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI);
 
 		// Obtain or create and register package
@@ -218,19 +221,15 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 		LogPackageImpl theLogPackage = (LogPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI) instanceof LogPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI) : LogPackage.eINSTANCE);
 		Ifc2x3PackageImpl theIfc2x3Package = (Ifc2x3PackageImpl)(EPackage.Registry.INSTANCE.getEPackage(Ifc2x3Package.eNS_URI) instanceof Ifc2x3PackageImpl ? EPackage.Registry.INSTANCE.getEPackage(Ifc2x3Package.eNS_URI) : Ifc2x3Package.eINSTANCE);
 
-		// Load packages
-		theIfc2x3Package.loadPackage();
-
 		// Create package meta-data objects
 		theStorePackage.createPackageContents();
 		theLogPackage.createPackageContents();
+		theIfc2x3Package.createPackageContents();
 
 		// Initialize created meta-data
 		theStorePackage.initializePackageContents();
 		theLogPackage.initializePackageContents();
-
-		// Fix loaded packages
-		theIfc2x3Package.fixPackageContents();
+		theIfc2x3Package.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theStorePackage.freeze();
@@ -246,7 +245,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getProject() {
+	public EClass getProject()
+	{
 		return projectEClass;
 	}
 
@@ -255,7 +255,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getProject_Id() {
+	public EAttribute getProject_Id()
+	{
 		return (EAttribute)projectEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -264,7 +265,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getProject_Name() {
+	public EAttribute getProject_Name()
+	{
 		return (EAttribute)projectEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -273,7 +275,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getProject_HasAuthorizedUsers() {
+	public EReference getProject_HasAuthorizedUsers()
+	{
 		return (EReference)projectEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -282,7 +285,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getProject_ConcreteRevisions() {
+	public EReference getProject_ConcreteRevisions()
+	{
 		return (EReference)projectEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -291,7 +295,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getProject_Revisions() {
+	public EReference getProject_Revisions()
+	{
 		return (EReference)projectEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -300,7 +305,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getProject_LastConcreteRevision() {
+	public EReference getProject_LastConcreteRevision()
+	{
 		return (EReference)projectEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -309,7 +315,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getProject_LastRevision() {
+	public EReference getProject_LastRevision()
+	{
 		return (EReference)projectEClass.getEStructuralFeatures().get(6);
 	}
 
@@ -318,7 +325,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getProject_Checkouts() {
+	public EReference getProject_Checkouts()
+	{
 		return (EReference)projectEClass.getEStructuralFeatures().get(7);
 	}
 
@@ -327,7 +335,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getProject_State() {
+	public EAttribute getProject_State()
+	{
 		return (EAttribute)projectEClass.getEStructuralFeatures().get(8);
 	}
 
@@ -336,7 +345,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getProject_CreatedDate() {
+	public EAttribute getProject_CreatedDate()
+	{
 		return (EAttribute)projectEClass.getEStructuralFeatures().get(9);
 	}
 
@@ -345,7 +355,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getProject_CreatedBy() {
+	public EReference getProject_CreatedBy()
+	{
 		return (EReference)projectEClass.getEStructuralFeatures().get(10);
 	}
 
@@ -354,7 +365,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getProject_GeoTag() {
+	public EReference getProject_GeoTag()
+	{
 		return (EReference)projectEClass.getEStructuralFeatures().get(11);
 	}
 
@@ -363,7 +375,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getProject_SubProjects() {
+	public EReference getProject_SubProjects()
+	{
 		return (EReference)projectEClass.getEStructuralFeatures().get(12);
 	}
 
@@ -372,7 +385,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getProject_Parent() {
+	public EReference getProject_Parent()
+	{
 		return (EReference)projectEClass.getEStructuralFeatures().get(13);
 	}
 
@@ -381,7 +395,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getProject_Description() {
+	public EAttribute getProject_Description()
+	{
 		return (EAttribute)projectEClass.getEStructuralFeatures().get(14);
 	}
 
@@ -390,7 +405,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getProject_ClashDetectionSettings() {
+	public EReference getProject_ClashDetectionSettings()
+	{
 		return (EReference)projectEClass.getEStructuralFeatures().get(15);
 	}
 
@@ -399,7 +415,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getProject_ExportLengthMeasurePrefix() {
+	public EAttribute getProject_ExportLengthMeasurePrefix()
+	{
 		return (EAttribute)projectEClass.getEStructuralFeatures().get(16);
 	}
 
@@ -408,7 +425,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getUser() {
+	public EClass getUser()
+	{
 		return userEClass;
 	}
 
@@ -417,7 +435,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getUser_Name() {
+	public EAttribute getUser_Name()
+	{
 		return (EAttribute)userEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -426,7 +445,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getUser_Password() {
+	public EAttribute getUser_Password()
+	{
 		return (EAttribute)userEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -435,7 +455,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getUser_HasRightsOn() {
+	public EReference getUser_HasRightsOn()
+	{
 		return (EReference)userEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -444,7 +465,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getUser_Revisions() {
+	public EReference getUser_Revisions()
+	{
 		return (EReference)userEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -453,7 +475,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getUser_State() {
+	public EAttribute getUser_State()
+	{
 		return (EAttribute)userEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -462,7 +485,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getUser_CreatedOn() {
+	public EAttribute getUser_CreatedOn()
+	{
 		return (EAttribute)userEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -471,7 +495,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getUser_CreatedBy() {
+	public EReference getUser_CreatedBy()
+	{
 		return (EReference)userEClass.getEStructuralFeatures().get(6);
 	}
 
@@ -480,7 +505,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getUser_UserType() {
+	public EAttribute getUser_UserType()
+	{
 		return (EAttribute)userEClass.getEStructuralFeatures().get(7);
 	}
 
@@ -489,7 +515,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getUser_Username() {
+	public EAttribute getUser_Username()
+	{
 		return (EAttribute)userEClass.getEStructuralFeatures().get(8);
 	}
 
@@ -498,7 +525,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getUser_LastSeen() {
+	public EAttribute getUser_LastSeen()
+	{
 		return (EAttribute)userEClass.getEStructuralFeatures().get(9);
 	}
 
@@ -507,7 +535,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getUser_ValidationToken() {
+	public EAttribute getUser_ValidationToken()
+	{
 		return (EAttribute)userEClass.getEStructuralFeatures().get(10);
 	}
 
@@ -516,7 +545,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getUser_ValidationTokenCreated() {
+	public EAttribute getUser_ValidationTokenCreated()
+	{
 		return (EAttribute)userEClass.getEStructuralFeatures().get(11);
 	}
 
@@ -525,7 +555,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getClash() {
+	public EClass getClash()
+	{
 		return clashEClass;
 	}
 
@@ -534,7 +565,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getClash_Name1() {
+	public EAttribute getClash_Name1()
+	{
 		return (EAttribute)clashEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -543,7 +575,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getClash_Name2() {
+	public EAttribute getClash_Name2()
+	{
 		return (EAttribute)clashEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -552,7 +585,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getClash_Type1() {
+	public EAttribute getClash_Type1()
+	{
 		return (EAttribute)clashEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -561,7 +595,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getClash_Type2() {
+	public EAttribute getClash_Type2()
+	{
 		return (EAttribute)clashEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -570,7 +605,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getClash_Revision1() {
+	public EReference getClash_Revision1()
+	{
 		return (EReference)clashEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -579,7 +615,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getClash_Revision2() {
+	public EReference getClash_Revision2()
+	{
 		return (EReference)clashEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -588,7 +625,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getEidClash() {
+	public EClass getEidClash()
+	{
 		return eidClashEClass;
 	}
 
@@ -597,7 +635,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getEidClash_Eid1() {
+	public EAttribute getEidClash_Eid1()
+	{
 		return (EAttribute)eidClashEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -606,7 +645,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getEidClash_Eid2() {
+	public EAttribute getEidClash_Eid2()
+	{
 		return (EAttribute)eidClashEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -615,7 +655,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getGuidClash() {
+	public EClass getGuidClash()
+	{
 		return guidClashEClass;
 	}
 
@@ -624,7 +665,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getGuidClash_Guid1() {
+	public EAttribute getGuidClash_Guid1()
+	{
 		return (EAttribute)guidClashEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -633,7 +675,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getGuidClash_Guid2() {
+	public EAttribute getGuidClash_Guid2()
+	{
 		return (EAttribute)guidClashEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -642,7 +685,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getClashDetectionSettings() {
+	public EClass getClashDetectionSettings()
+	{
 		return clashDetectionSettingsEClass;
 	}
 
@@ -651,7 +695,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getClashDetectionSettings_Enabled() {
+	public EAttribute getClashDetectionSettings_Enabled()
+	{
 		return (EAttribute)clashDetectionSettingsEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -660,7 +705,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getClashDetectionSettings_Projects() {
+	public EReference getClashDetectionSettings_Projects()
+	{
 		return (EReference)clashDetectionSettingsEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -669,7 +715,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getClashDetectionSettings_Margin() {
+	public EAttribute getClashDetectionSettings_Margin()
+	{
 		return (EAttribute)clashDetectionSettingsEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -678,7 +725,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getClashDetectionSettings_Revisions() {
+	public EReference getClashDetectionSettings_Revisions()
+	{
 		return (EReference)clashDetectionSettingsEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -687,7 +735,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getClashDetectionSettings_IgnoredClasses() {
+	public EAttribute getClashDetectionSettings_IgnoredClasses()
+	{
 		return (EAttribute)clashDetectionSettingsEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -696,7 +745,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getRevision() {
+	public EClass getRevision()
+	{
 		return revisionEClass;
 	}
 
@@ -705,7 +755,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getRevision_Id() {
+	public EAttribute getRevision_Id()
+	{
 		return (EAttribute)revisionEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -714,7 +765,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getRevision_User() {
+	public EReference getRevision_User()
+	{
 		return (EReference)revisionEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -723,7 +775,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getRevision_Date() {
+	public EAttribute getRevision_Date()
+	{
 		return (EAttribute)revisionEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -732,7 +785,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getRevision_Comment() {
+	public EAttribute getRevision_Comment()
+	{
 		return (EAttribute)revisionEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -741,7 +795,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getRevision_Size() {
+	public EAttribute getRevision_Size()
+	{
 		return (EAttribute)revisionEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -750,7 +805,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getRevision_ConcreteRevisions() {
+	public EReference getRevision_ConcreteRevisions()
+	{
 		return (EReference)revisionEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -759,7 +815,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getRevision_LastConcreteRevision() {
+	public EReference getRevision_LastConcreteRevision()
+	{
 		return (EReference)revisionEClass.getEStructuralFeatures().get(6);
 	}
 
@@ -768,7 +825,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getRevision_Checkouts() {
+	public EReference getRevision_Checkouts()
+	{
 		return (EReference)revisionEClass.getEStructuralFeatures().get(7);
 	}
 
@@ -777,7 +835,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getRevision_Project() {
+	public EReference getRevision_Project()
+	{
 		return (EReference)revisionEClass.getEStructuralFeatures().get(8);
 	}
 
@@ -786,7 +845,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getRevision_State() {
+	public EAttribute getRevision_State()
+	{
 		return (EAttribute)revisionEClass.getEStructuralFeatures().get(9);
 	}
 
@@ -795,7 +855,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getRevision_LastClashes() {
+	public EReference getRevision_LastClashes()
+	{
 		return (EReference)revisionEClass.getEStructuralFeatures().get(10);
 	}
 
@@ -804,7 +865,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getRevision_Tag() {
+	public EAttribute getRevision_Tag()
+	{
 		return (EAttribute)revisionEClass.getEStructuralFeatures().get(11);
 	}
 
@@ -813,7 +875,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getRevision_LastError() {
+	public EAttribute getRevision_LastError()
+	{
 		return (EAttribute)revisionEClass.getEStructuralFeatures().get(12);
 	}
 
@@ -822,7 +885,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getRevision_Bmi() {
+	public EAttribute getRevision_Bmi()
+	{
 		return (EAttribute)revisionEClass.getEStructuralFeatures().get(13);
 	}
 
@@ -831,7 +895,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getRevision_NrClashes() {
+	public EAttribute getRevision_NrClashes()
+	{
 		return (EAttribute)revisionEClass.getEStructuralFeatures().get(14);
 	}
 
@@ -840,7 +905,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getRevision_Laid() {
+	public EAttribute getRevision_Laid()
+	{
 		return (EAttribute)revisionEClass.getEStructuralFeatures().get(15);
 	}
 
@@ -849,7 +915,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getConcreteRevision() {
+	public EClass getConcreteRevision()
+	{
 		return concreteRevisionEClass;
 	}
 
@@ -858,7 +925,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getConcreteRevision_Id() {
+	public EAttribute getConcreteRevision_Id()
+	{
 		return (EAttribute)concreteRevisionEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -867,7 +935,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getConcreteRevision_Project() {
+	public EReference getConcreteRevision_Project()
+	{
 		return (EReference)concreteRevisionEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -876,7 +945,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getConcreteRevision_State() {
+	public EAttribute getConcreteRevision_State()
+	{
 		return (EAttribute)concreteRevisionEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -885,7 +955,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getConcreteRevision_Checksum() {
+	public EAttribute getConcreteRevision_Checksum()
+	{
 		return (EAttribute)concreteRevisionEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -894,7 +965,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getConcreteRevision_Revisions() {
+	public EReference getConcreteRevision_Revisions()
+	{
 		return (EReference)concreteRevisionEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -903,7 +975,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getConcreteRevision_Size() {
+	public EAttribute getConcreteRevision_Size()
+	{
 		return (EAttribute)concreteRevisionEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -912,7 +985,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getConcreteRevision_Date() {
+	public EAttribute getConcreteRevision_Date()
+	{
 		return (EAttribute)concreteRevisionEClass.getEStructuralFeatures().get(6);
 	}
 
@@ -921,7 +995,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getConcreteRevision_LastError() {
+	public EAttribute getConcreteRevision_LastError()
+	{
 		return (EAttribute)concreteRevisionEClass.getEStructuralFeatures().get(7);
 	}
 
@@ -930,7 +1005,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getGeoTag() {
+	public EClass getGeoTag()
+	{
 		return geoTagEClass;
 	}
 
@@ -939,7 +1015,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getGeoTag_Enabled() {
+	public EAttribute getGeoTag_Enabled()
+	{
 		return (EAttribute)geoTagEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -948,7 +1025,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getGeoTag_Projects() {
+	public EReference getGeoTag_Projects()
+	{
 		return (EReference)geoTagEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -957,7 +1035,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getGeoTag_X() {
+	public EAttribute getGeoTag_X()
+	{
 		return (EAttribute)geoTagEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -966,7 +1045,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getGeoTag_Y() {
+	public EAttribute getGeoTag_Y()
+	{
 		return (EAttribute)geoTagEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -975,7 +1055,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getGeoTag_Z() {
+	public EAttribute getGeoTag_Z()
+	{
 		return (EAttribute)geoTagEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -984,7 +1065,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getGeoTag_Epsg() {
+	public EAttribute getGeoTag_Epsg()
+	{
 		return (EAttribute)geoTagEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -993,7 +1075,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getGeoTag_DirectionAngle() {
+	public EAttribute getGeoTag_DirectionAngle()
+	{
 		return (EAttribute)geoTagEClass.getEStructuralFeatures().get(6);
 	}
 
@@ -1002,7 +1085,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getCheckout() {
+	public EClass getCheckout()
+	{
 		return checkoutEClass;
 	}
 
@@ -1011,7 +1095,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getCheckout_User() {
+	public EReference getCheckout_User()
+	{
 		return (EReference)checkoutEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -1020,7 +1105,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getCheckout_Revision() {
+	public EReference getCheckout_Revision()
+	{
 		return (EReference)checkoutEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -1029,7 +1115,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getCheckout_Project() {
+	public EReference getCheckout_Project()
+	{
 		return (EReference)checkoutEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -1038,7 +1125,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getCheckout_Date() {
+	public EAttribute getCheckout_Date()
+	{
 		return (EAttribute)checkoutEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -1047,7 +1135,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getCheckout_Checkin() {
+	public EReference getCheckout_Checkin()
+	{
 		return (EReference)checkoutEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -1056,7 +1145,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getCheckout_Active() {
+	public EAttribute getCheckout_Active()
+	{
 		return (EAttribute)checkoutEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -1065,7 +1155,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getSettings() {
+	public EClass getSettings()
+	{
 		return settingsEClass;
 	}
 
@@ -1074,7 +1165,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getSettings_ShowVersionUpgradeAvailable() {
+	public EAttribute getSettings_ShowVersionUpgradeAvailable()
+	{
 		return (EAttribute)settingsEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -1083,7 +1175,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getSettings_SendConfirmationEmailAfterRegistration() {
+	public EAttribute getSettings_SendConfirmationEmailAfterRegistration()
+	{
 		return (EAttribute)settingsEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -1092,7 +1185,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getSettings_UseCaching() {
+	public EAttribute getSettings_UseCaching()
+	{
 		return (EAttribute)settingsEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -1101,7 +1195,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getSettings_AllowSelfRegistration() {
+	public EAttribute getSettings_AllowSelfRegistration()
+	{
 		return (EAttribute)settingsEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -1110,7 +1205,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getSettings_AutoTestClashes() {
+	public EAttribute getSettings_AutoTestClashes()
+	{
 		return (EAttribute)settingsEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -1119,7 +1215,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getSettings_IntelligentMerging() {
+	public EAttribute getSettings_IntelligentMerging()
+	{
 		return (EAttribute)settingsEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -1128,7 +1225,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getSettings_AllowUsersToCreateTopLevelProjects() {
+	public EAttribute getSettings_AllowUsersToCreateTopLevelProjects()
+	{
 		return (EAttribute)settingsEClass.getEStructuralFeatures().get(6);
 	}
 
@@ -1137,7 +1235,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getSettings_CheckinMergingEnabled() {
+	public EAttribute getSettings_CheckinMergingEnabled()
+	{
 		return (EAttribute)settingsEClass.getEStructuralFeatures().get(7);
 	}
 
@@ -1146,7 +1245,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getSettings_RegistrationAddition() {
+	public EAttribute getSettings_RegistrationAddition()
+	{
 		return (EAttribute)settingsEClass.getEStructuralFeatures().get(8);
 	}
 
@@ -1155,7 +1255,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getSettings_SmtpServer() {
+	public EAttribute getSettings_SmtpServer()
+	{
 		return (EAttribute)settingsEClass.getEStructuralFeatures().get(9);
 	}
 
@@ -1164,7 +1265,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getSettings_EmailSenderAddress() {
+	public EAttribute getSettings_EmailSenderAddress()
+	{
 		return (EAttribute)settingsEClass.getEStructuralFeatures().get(10);
 	}
 
@@ -1173,7 +1275,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getSettings_EnabledExportTypes() {
+	public EAttribute getSettings_EnabledExportTypes()
+	{
 		return (EAttribute)settingsEClass.getEStructuralFeatures().get(11);
 	}
 
@@ -1182,7 +1285,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getSettings_CustomLogoAddress() {
+	public EAttribute getSettings_CustomLogoAddress()
+	{
 		return (EAttribute)settingsEClass.getEStructuralFeatures().get(12);
 	}
 
@@ -1191,7 +1295,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getSettings_SiteAddress() {
+	public EAttribute getSettings_SiteAddress()
+	{
 		return (EAttribute)settingsEClass.getEStructuralFeatures().get(13);
 	}
 
@@ -1200,7 +1305,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSettings_Serializers() {
+	public EReference getSettings_Serializers()
+	{
 		return (EReference)settingsEClass.getEStructuralFeatures().get(14);
 	}
 
@@ -1209,7 +1315,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSettings_IgnoreFiles() {
+	public EReference getSettings_IgnoreFiles()
+	{
 		return (EReference)settingsEClass.getEStructuralFeatures().get(15);
 	}
 
@@ -1218,7 +1325,28 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getSerializer() {
+	public EAttribute getSettings_HeaderAddition()
+	{
+		return (EAttribute)settingsEClass.getEStructuralFeatures().get(16);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSettings_FooterAddition()
+	{
+		return (EAttribute)settingsEClass.getEStructuralFeatures().get(17);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getSerializer()
+	{
 		return serializerEClass;
 	}
 
@@ -1227,7 +1355,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getSerializer_Name() {
+	public EAttribute getSerializer_Name()
+	{
 		return (EAttribute)serializerEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -1236,7 +1365,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getSerializer_Description() {
+	public EAttribute getSerializer_Description()
+	{
 		return (EAttribute)serializerEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -1245,7 +1375,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getSerializer_ClassName() {
+	public EAttribute getSerializer_ClassName()
+	{
 		return (EAttribute)serializerEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -1254,7 +1385,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getSerializer_Enabled() {
+	public EAttribute getSerializer_Enabled()
+	{
 		return (EAttribute)serializerEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -1263,7 +1395,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSerializer_IgnoreFile() {
+	public EReference getSerializer_IgnoreFile()
+	{
 		return (EReference)serializerEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -1272,7 +1405,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSerializer_Settings() {
+	public EReference getSerializer_Settings()
+	{
 		return (EReference)serializerEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -1281,7 +1415,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getIgnoreFile() {
+	public EClass getIgnoreFile()
+	{
 		return ignoreFileEClass;
 	}
 
@@ -1290,7 +1425,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getIgnoreFile_Name() {
+	public EAttribute getIgnoreFile_Name()
+	{
 		return (EAttribute)ignoreFileEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -1299,7 +1435,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getIgnoreFile_Data() {
+	public EAttribute getIgnoreFile_Data()
+	{
 		return (EAttribute)ignoreFileEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -1308,7 +1445,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getIgnoreFile_Serializers() {
+	public EReference getIgnoreFile_Serializers()
+	{
 		return (EReference)ignoreFileEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -1317,7 +1455,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getIgnoreFile_Settings() {
+	public EReference getIgnoreFile_Settings()
+	{
 		return (EReference)ignoreFileEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -1326,7 +1465,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EEnum getUserType() {
+	public EEnum getUserType()
+	{
 		return userTypeEEnum;
 	}
 
@@ -1335,7 +1475,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EEnum getCheckinState() {
+	public EEnum getCheckinState()
+	{
 		return checkinStateEEnum;
 	}
 
@@ -1344,7 +1485,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EEnum getSIPrefix() {
+	public EEnum getSIPrefix()
+	{
 		return siPrefixEEnum;
 	}
 
@@ -1353,7 +1495,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EEnum getObjectState() {
+	public EEnum getObjectState()
+	{
 		return objectStateEEnum;
 	}
 
@@ -1362,7 +1505,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public StoreFactory getStoreFactory() {
+	public StoreFactory getStoreFactory()
+	{
 		return (StoreFactory)getEFactoryInstance();
 	}
 
@@ -1380,7 +1524,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void createPackageContents() {
+	public void createPackageContents()
+	{
 		if (isCreated) return;
 		isCreated = true;
 
@@ -1503,6 +1648,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 		createEAttribute(settingsEClass, SETTINGS__SITE_ADDRESS);
 		createEReference(settingsEClass, SETTINGS__SERIALIZERS);
 		createEReference(settingsEClass, SETTINGS__IGNORE_FILES);
+		createEAttribute(settingsEClass, SETTINGS__HEADER_ADDITION);
+		createEAttribute(settingsEClass, SETTINGS__FOOTER_ADDITION);
 
 		serializerEClass = createEClass(SERIALIZER);
 		createEAttribute(serializerEClass, SERIALIZER__NAME);
@@ -1539,7 +1686,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void initializePackageContents() {
+	public void initializePackageContents()
+	{
 		if (isInitialized) return;
 		isInitialized = true;
 
@@ -1675,6 +1823,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 		initEAttribute(getSettings_SiteAddress(), ecorePackage.getEString(), "siteAddress", null, 0, 1, Settings.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSettings_Serializers(), this.getSerializer(), this.getSerializer_Settings(), "serializers", null, 0, -1, Settings.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSettings_IgnoreFiles(), this.getIgnoreFile(), this.getIgnoreFile_Settings(), "ignoreFiles", null, 0, -1, Settings.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSettings_HeaderAddition(), ecorePackage.getEString(), "headerAddition", null, 0, 1, Settings.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSettings_FooterAddition(), ecorePackage.getEString(), "footerAddition", null, 0, 1, Settings.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(serializerEClass, Serializer.class, "Serializer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getSerializer_Name(), ecorePackage.getEString(), "name", null, 0, 1, Serializer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1692,42 +1842,42 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 
 		// Initialize enums and add enum literals
 		initEEnum(userTypeEEnum, UserType.class, "UserType");
-		addEEnumLiteral(userTypeEEnum, UserType.SYSTEM);
-		addEEnumLiteral(userTypeEEnum, UserType.ADMIN);
-		addEEnumLiteral(userTypeEEnum, UserType.USER);
-		addEEnumLiteral(userTypeEEnum, UserType.ANONYMOUS);
+		addEEnumLiteral(userTypeEEnum, UserType.SYSTEM_LITERAL);
+		addEEnumLiteral(userTypeEEnum, UserType.ADMIN_LITERAL);
+		addEEnumLiteral(userTypeEEnum, UserType.USER_LITERAL);
+		addEEnumLiteral(userTypeEEnum, UserType.ANONYMOUS_LITERAL);
 
 		initEEnum(checkinStateEEnum, CheckinState.class, "CheckinState");
-		addEEnumLiteral(checkinStateEEnum, CheckinState.UPLOADING);
-		addEEnumLiteral(checkinStateEEnum, CheckinState.PARSING);
-		addEEnumLiteral(checkinStateEEnum, CheckinState.STORING);
-		addEEnumLiteral(checkinStateEEnum, CheckinState.SEARCHING_CLASHES);
-		addEEnumLiteral(checkinStateEEnum, CheckinState.DONE);
-		addEEnumLiteral(checkinStateEEnum, CheckinState.ERROR);
-		addEEnumLiteral(checkinStateEEnum, CheckinState.CLASHES_ERROR);
+		addEEnumLiteral(checkinStateEEnum, CheckinState.UPLOADING_LITERAL);
+		addEEnumLiteral(checkinStateEEnum, CheckinState.PARSING_LITERAL);
+		addEEnumLiteral(checkinStateEEnum, CheckinState.STORING_LITERAL);
+		addEEnumLiteral(checkinStateEEnum, CheckinState.SEARCHING_CLASHES_LITERAL);
+		addEEnumLiteral(checkinStateEEnum, CheckinState.DONE_LITERAL);
+		addEEnumLiteral(checkinStateEEnum, CheckinState.ERROR_LITERAL);
+		addEEnumLiteral(checkinStateEEnum, CheckinState.CLASHES_ERROR_LITERAL);
 
 		initEEnum(siPrefixEEnum, SIPrefix.class, "SIPrefix");
-		addEEnumLiteral(siPrefixEEnum, SIPrefix.METER);
-		addEEnumLiteral(siPrefixEEnum, SIPrefix.ATTOMETER);
-		addEEnumLiteral(siPrefixEEnum, SIPrefix.FEMTOMETER);
-		addEEnumLiteral(siPrefixEEnum, SIPrefix.PICOMETER);
-		addEEnumLiteral(siPrefixEEnum, SIPrefix.NANOMETER);
-		addEEnumLiteral(siPrefixEEnum, SIPrefix.MICROMETER);
-		addEEnumLiteral(siPrefixEEnum, SIPrefix.MILLIMETER);
-		addEEnumLiteral(siPrefixEEnum, SIPrefix.CENTIMETER);
-		addEEnumLiteral(siPrefixEEnum, SIPrefix.DECIMETER);
-		addEEnumLiteral(siPrefixEEnum, SIPrefix.DECAMETER);
-		addEEnumLiteral(siPrefixEEnum, SIPrefix.HECTOMETER);
-		addEEnumLiteral(siPrefixEEnum, SIPrefix.KILOMETER);
-		addEEnumLiteral(siPrefixEEnum, SIPrefix.MEGAMETER);
-		addEEnumLiteral(siPrefixEEnum, SIPrefix.GIGAMETER);
-		addEEnumLiteral(siPrefixEEnum, SIPrefix.TERAMETER);
-		addEEnumLiteral(siPrefixEEnum, SIPrefix.PETAMETER);
-		addEEnumLiteral(siPrefixEEnum, SIPrefix.EXAMETER);
+		addEEnumLiteral(siPrefixEEnum, SIPrefix.METER_LITERAL);
+		addEEnumLiteral(siPrefixEEnum, SIPrefix.ATTOMETER_LITERAL);
+		addEEnumLiteral(siPrefixEEnum, SIPrefix.FEMTOMETER_LITERAL);
+		addEEnumLiteral(siPrefixEEnum, SIPrefix.PICOMETER_LITERAL);
+		addEEnumLiteral(siPrefixEEnum, SIPrefix.NANOMETER_LITERAL);
+		addEEnumLiteral(siPrefixEEnum, SIPrefix.MICROMETER_LITERAL);
+		addEEnumLiteral(siPrefixEEnum, SIPrefix.MILLIMETER_LITERAL);
+		addEEnumLiteral(siPrefixEEnum, SIPrefix.CENTIMETER_LITERAL);
+		addEEnumLiteral(siPrefixEEnum, SIPrefix.DECIMETER_LITERAL);
+		addEEnumLiteral(siPrefixEEnum, SIPrefix.DECAMETER_LITERAL);
+		addEEnumLiteral(siPrefixEEnum, SIPrefix.HECTOMETER_LITERAL);
+		addEEnumLiteral(siPrefixEEnum, SIPrefix.KILOMETER_LITERAL);
+		addEEnumLiteral(siPrefixEEnum, SIPrefix.MEGAMETER_LITERAL);
+		addEEnumLiteral(siPrefixEEnum, SIPrefix.GIGAMETER_LITERAL);
+		addEEnumLiteral(siPrefixEEnum, SIPrefix.TERAMETER_LITERAL);
+		addEEnumLiteral(siPrefixEEnum, SIPrefix.PETAMETER_LITERAL);
+		addEEnumLiteral(siPrefixEEnum, SIPrefix.EXAMETER_LITERAL);
 
 		initEEnum(objectStateEEnum, ObjectState.class, "ObjectState");
-		addEEnumLiteral(objectStateEEnum, ObjectState.ACTIVE);
-		addEEnumLiteral(objectStateEEnum, ObjectState.DELETED);
+		addEEnumLiteral(objectStateEEnum, ObjectState.ACTIVE_LITERAL);
+		addEEnumLiteral(objectStateEEnum, ObjectState.DELETED_LITERAL);
 
 		// Create resource
 		createResource(eNS_URI);

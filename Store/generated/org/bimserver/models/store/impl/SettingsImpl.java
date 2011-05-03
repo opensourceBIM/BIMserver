@@ -6,15 +6,66 @@
  */
 package org.bimserver.models.store.impl;
 
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+
+import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IdEObjectImpl;
 
-import org.bimserver.models.store.IgnoreFile;
-import org.bimserver.models.store.Serializer;
-import org.bimserver.models.store.Settings;
-import org.bimserver.models.store.StorePackage;
+import org.bimserver.models.ifc2x3.Ifc2x3Package;
+
+import org.bimserver.models.ifc2x3.impl.Ifc2x3PackageImpl;
+
+import org.bimserver.models.log.LogPackage;
+
+import org.bimserver.models.log.impl.LogPackageImpl;
+
+import org.bimserver.models.store.*;
+
+import org.bimserver.models.store.impl.CheckoutImpl;
+import org.bimserver.models.store.impl.ClashDetectionSettingsImpl;
+import org.bimserver.models.store.impl.ClashImpl;
+import org.bimserver.models.store.impl.ConcreteRevisionImpl;
+import org.bimserver.models.store.impl.EidClashImpl;
+import org.bimserver.models.store.impl.GeoTagImpl;
+import org.bimserver.models.store.impl.GuidClashImpl;
+import org.bimserver.models.store.impl.IgnoreFileImpl;
+import org.bimserver.models.store.impl.ProjectImpl;
+import org.bimserver.models.store.impl.RevisionImpl;
+import org.bimserver.models.store.impl.SerializerImpl;
+import org.bimserver.models.store.impl.SettingsImpl;
+import org.bimserver.models.store.impl.UserImpl;
+
+import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.notify.Notifier;
+
+import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
+
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EFactory;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
+
+import org.eclipse.emf.ecore.impl.EFactoryImpl;
+import org.eclipse.emf.ecore.impl.EPackageImpl;
+
+import org.eclipse.emf.ecore.plugin.EcorePlugin;
+
+import org.eclipse.emf.ecore.resource.Resource;
+
+import org.eclipse.emf.ecore.resource.impl.ResourceFactoryImpl;
+
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
+
+import org.eclipse.emf.ecore.xmi.util.XMLProcessor;
 
 /**
  * <!-- begin-user-doc -->
@@ -39,18 +90,22 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getSiteAddress <em>Site Address</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getSerializers <em>Serializers</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getIgnoreFiles <em>Ignore Files</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getHeaderAddition <em>Header Addition</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getFooterAddition <em>Footer Addition</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class SettingsImpl extends IdEObjectImpl implements Settings {
+public class SettingsImpl extends IdEObjectImpl implements Settings
+{
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected SettingsImpl() {
+	protected SettingsImpl()
+	{
 		super();
 	}
 
@@ -60,7 +115,8 @@ public class SettingsImpl extends IdEObjectImpl implements Settings {
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return StorePackage.Literals.SETTINGS;
 	}
 
@@ -70,7 +126,8 @@ public class SettingsImpl extends IdEObjectImpl implements Settings {
 	 * @generated
 	 */
 	@Override
-	protected int eStaticFeatureCount() {
+	protected int eStaticFeatureCount()
+	{
 		return 0;
 	}
 
@@ -79,7 +136,8 @@ public class SettingsImpl extends IdEObjectImpl implements Settings {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isShowVersionUpgradeAvailable() {
+	public boolean isShowVersionUpgradeAvailable()
+	{
 		return (Boolean)eGet(StorePackage.Literals.SETTINGS__SHOW_VERSION_UPGRADE_AVAILABLE, true);
 	}
 
@@ -88,7 +146,8 @@ public class SettingsImpl extends IdEObjectImpl implements Settings {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setShowVersionUpgradeAvailable(boolean newShowVersionUpgradeAvailable) {
+	public void setShowVersionUpgradeAvailable(boolean newShowVersionUpgradeAvailable)
+	{
 		eSet(StorePackage.Literals.SETTINGS__SHOW_VERSION_UPGRADE_AVAILABLE, newShowVersionUpgradeAvailable);
 	}
 
@@ -97,7 +156,8 @@ public class SettingsImpl extends IdEObjectImpl implements Settings {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isSendConfirmationEmailAfterRegistration() {
+	public boolean isSendConfirmationEmailAfterRegistration()
+	{
 		return (Boolean)eGet(StorePackage.Literals.SETTINGS__SEND_CONFIRMATION_EMAIL_AFTER_REGISTRATION, true);
 	}
 
@@ -106,7 +166,8 @@ public class SettingsImpl extends IdEObjectImpl implements Settings {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSendConfirmationEmailAfterRegistration(boolean newSendConfirmationEmailAfterRegistration) {
+	public void setSendConfirmationEmailAfterRegistration(boolean newSendConfirmationEmailAfterRegistration)
+	{
 		eSet(StorePackage.Literals.SETTINGS__SEND_CONFIRMATION_EMAIL_AFTER_REGISTRATION, newSendConfirmationEmailAfterRegistration);
 	}
 
@@ -115,7 +176,8 @@ public class SettingsImpl extends IdEObjectImpl implements Settings {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isUseCaching() {
+	public boolean isUseCaching()
+	{
 		return (Boolean)eGet(StorePackage.Literals.SETTINGS__USE_CACHING, true);
 	}
 
@@ -124,7 +186,8 @@ public class SettingsImpl extends IdEObjectImpl implements Settings {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setUseCaching(boolean newUseCaching) {
+	public void setUseCaching(boolean newUseCaching)
+	{
 		eSet(StorePackage.Literals.SETTINGS__USE_CACHING, newUseCaching);
 	}
 
@@ -133,7 +196,8 @@ public class SettingsImpl extends IdEObjectImpl implements Settings {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isAllowSelfRegistration() {
+	public boolean isAllowSelfRegistration()
+	{
 		return (Boolean)eGet(StorePackage.Literals.SETTINGS__ALLOW_SELF_REGISTRATION, true);
 	}
 
@@ -142,7 +206,8 @@ public class SettingsImpl extends IdEObjectImpl implements Settings {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setAllowSelfRegistration(boolean newAllowSelfRegistration) {
+	public void setAllowSelfRegistration(boolean newAllowSelfRegistration)
+	{
 		eSet(StorePackage.Literals.SETTINGS__ALLOW_SELF_REGISTRATION, newAllowSelfRegistration);
 	}
 
@@ -151,7 +216,8 @@ public class SettingsImpl extends IdEObjectImpl implements Settings {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isAutoTestClashes() {
+	public boolean isAutoTestClashes()
+	{
 		return (Boolean)eGet(StorePackage.Literals.SETTINGS__AUTO_TEST_CLASHES, true);
 	}
 
@@ -160,7 +226,8 @@ public class SettingsImpl extends IdEObjectImpl implements Settings {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setAutoTestClashes(boolean newAutoTestClashes) {
+	public void setAutoTestClashes(boolean newAutoTestClashes)
+	{
 		eSet(StorePackage.Literals.SETTINGS__AUTO_TEST_CLASHES, newAutoTestClashes);
 	}
 
@@ -169,7 +236,8 @@ public class SettingsImpl extends IdEObjectImpl implements Settings {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isIntelligentMerging() {
+	public boolean isIntelligentMerging()
+	{
 		return (Boolean)eGet(StorePackage.Literals.SETTINGS__INTELLIGENT_MERGING, true);
 	}
 
@@ -178,7 +246,8 @@ public class SettingsImpl extends IdEObjectImpl implements Settings {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setIntelligentMerging(boolean newIntelligentMerging) {
+	public void setIntelligentMerging(boolean newIntelligentMerging)
+	{
 		eSet(StorePackage.Literals.SETTINGS__INTELLIGENT_MERGING, newIntelligentMerging);
 	}
 
@@ -187,7 +256,8 @@ public class SettingsImpl extends IdEObjectImpl implements Settings {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isAllowUsersToCreateTopLevelProjects() {
+	public boolean isAllowUsersToCreateTopLevelProjects()
+	{
 		return (Boolean)eGet(StorePackage.Literals.SETTINGS__ALLOW_USERS_TO_CREATE_TOP_LEVEL_PROJECTS, true);
 	}
 
@@ -196,7 +266,8 @@ public class SettingsImpl extends IdEObjectImpl implements Settings {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setAllowUsersToCreateTopLevelProjects(boolean newAllowUsersToCreateTopLevelProjects) {
+	public void setAllowUsersToCreateTopLevelProjects(boolean newAllowUsersToCreateTopLevelProjects)
+	{
 		eSet(StorePackage.Literals.SETTINGS__ALLOW_USERS_TO_CREATE_TOP_LEVEL_PROJECTS, newAllowUsersToCreateTopLevelProjects);
 	}
 
@@ -205,7 +276,8 @@ public class SettingsImpl extends IdEObjectImpl implements Settings {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isCheckinMergingEnabled() {
+	public boolean isCheckinMergingEnabled()
+	{
 		return (Boolean)eGet(StorePackage.Literals.SETTINGS__CHECKIN_MERGING_ENABLED, true);
 	}
 
@@ -214,7 +286,8 @@ public class SettingsImpl extends IdEObjectImpl implements Settings {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setCheckinMergingEnabled(boolean newCheckinMergingEnabled) {
+	public void setCheckinMergingEnabled(boolean newCheckinMergingEnabled)
+	{
 		eSet(StorePackage.Literals.SETTINGS__CHECKIN_MERGING_ENABLED, newCheckinMergingEnabled);
 	}
 
@@ -223,7 +296,8 @@ public class SettingsImpl extends IdEObjectImpl implements Settings {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getRegistrationAddition() {
+	public String getRegistrationAddition()
+	{
 		return (String)eGet(StorePackage.Literals.SETTINGS__REGISTRATION_ADDITION, true);
 	}
 
@@ -232,7 +306,8 @@ public class SettingsImpl extends IdEObjectImpl implements Settings {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRegistrationAddition(String newRegistrationAddition) {
+	public void setRegistrationAddition(String newRegistrationAddition)
+	{
 		eSet(StorePackage.Literals.SETTINGS__REGISTRATION_ADDITION, newRegistrationAddition);
 	}
 
@@ -241,7 +316,8 @@ public class SettingsImpl extends IdEObjectImpl implements Settings {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getSmtpServer() {
+	public String getSmtpServer()
+	{
 		return (String)eGet(StorePackage.Literals.SETTINGS__SMTP_SERVER, true);
 	}
 
@@ -250,7 +326,8 @@ public class SettingsImpl extends IdEObjectImpl implements Settings {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSmtpServer(String newSmtpServer) {
+	public void setSmtpServer(String newSmtpServer)
+	{
 		eSet(StorePackage.Literals.SETTINGS__SMTP_SERVER, newSmtpServer);
 	}
 
@@ -259,7 +336,8 @@ public class SettingsImpl extends IdEObjectImpl implements Settings {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getEmailSenderAddress() {
+	public String getEmailSenderAddress()
+	{
 		return (String)eGet(StorePackage.Literals.SETTINGS__EMAIL_SENDER_ADDRESS, true);
 	}
 
@@ -268,7 +346,8 @@ public class SettingsImpl extends IdEObjectImpl implements Settings {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setEmailSenderAddress(String newEmailSenderAddress) {
+	public void setEmailSenderAddress(String newEmailSenderAddress)
+	{
 		eSet(StorePackage.Literals.SETTINGS__EMAIL_SENDER_ADDRESS, newEmailSenderAddress);
 	}
 
@@ -277,7 +356,8 @@ public class SettingsImpl extends IdEObjectImpl implements Settings {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getEnabledExportTypes() {
+	public String getEnabledExportTypes()
+	{
 		return (String)eGet(StorePackage.Literals.SETTINGS__ENABLED_EXPORT_TYPES, true);
 	}
 
@@ -286,7 +366,8 @@ public class SettingsImpl extends IdEObjectImpl implements Settings {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setEnabledExportTypes(String newEnabledExportTypes) {
+	public void setEnabledExportTypes(String newEnabledExportTypes)
+	{
 		eSet(StorePackage.Literals.SETTINGS__ENABLED_EXPORT_TYPES, newEnabledExportTypes);
 	}
 
@@ -295,7 +376,8 @@ public class SettingsImpl extends IdEObjectImpl implements Settings {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getCustomLogoAddress() {
+	public String getCustomLogoAddress()
+	{
 		return (String)eGet(StorePackage.Literals.SETTINGS__CUSTOM_LOGO_ADDRESS, true);
 	}
 
@@ -304,7 +386,8 @@ public class SettingsImpl extends IdEObjectImpl implements Settings {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setCustomLogoAddress(String newCustomLogoAddress) {
+	public void setCustomLogoAddress(String newCustomLogoAddress)
+	{
 		eSet(StorePackage.Literals.SETTINGS__CUSTOM_LOGO_ADDRESS, newCustomLogoAddress);
 	}
 
@@ -313,7 +396,8 @@ public class SettingsImpl extends IdEObjectImpl implements Settings {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getSiteAddress() {
+	public String getSiteAddress()
+	{
 		return (String)eGet(StorePackage.Literals.SETTINGS__SITE_ADDRESS, true);
 	}
 
@@ -322,7 +406,8 @@ public class SettingsImpl extends IdEObjectImpl implements Settings {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSiteAddress(String newSiteAddress) {
+	public void setSiteAddress(String newSiteAddress)
+	{
 		eSet(StorePackage.Literals.SETTINGS__SITE_ADDRESS, newSiteAddress);
 	}
 
@@ -332,7 +417,8 @@ public class SettingsImpl extends IdEObjectImpl implements Settings {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	public EList<Serializer> getSerializers() {
+	public EList<Serializer> getSerializers()
+	{
 		return (EList<Serializer>)eGet(StorePackage.Literals.SETTINGS__SERIALIZERS, true);
 	}
 
@@ -342,8 +428,49 @@ public class SettingsImpl extends IdEObjectImpl implements Settings {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	public EList<IgnoreFile> getIgnoreFiles() {
+	public EList<IgnoreFile> getIgnoreFiles()
+	{
 		return (EList<IgnoreFile>)eGet(StorePackage.Literals.SETTINGS__IGNORE_FILES, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getHeaderAddition()
+	{
+		return (String)eGet(StorePackage.Literals.SETTINGS__HEADER_ADDITION, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setHeaderAddition(String newHeaderAddition)
+	{
+		eSet(StorePackage.Literals.SETTINGS__HEADER_ADDITION, newHeaderAddition);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getFooterAddition()
+	{
+		return (String)eGet(StorePackage.Literals.SETTINGS__FOOTER_ADDITION, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setFooterAddition(String newFooterAddition)
+	{
+		eSet(StorePackage.Literals.SETTINGS__FOOTER_ADDITION, newFooterAddition);
 	}
 
 } //SettingsImpl

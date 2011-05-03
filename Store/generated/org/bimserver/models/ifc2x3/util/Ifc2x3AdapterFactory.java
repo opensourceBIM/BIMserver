@@ -6,14 +6,821 @@
  */
 package org.bimserver.models.ifc2x3.util;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+
+import org.bimserver.emf.IdEObject;
+import org.bimserver.emf.IdEObjectImpl;
+
 import org.bimserver.models.ifc2x3.*;
+
+import org.bimserver.models.ifc2x3.impl.Ifc2DCompositeCurveImpl;
+import org.bimserver.models.ifc2x3.impl.Ifc2x3PackageImpl;
+import org.bimserver.models.ifc2x3.impl.IfcAbsorbedDoseMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcAccelerationMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcActionRequestImpl;
+import org.bimserver.models.ifc2x3.impl.IfcActorImpl;
+import org.bimserver.models.ifc2x3.impl.IfcActorRoleImpl;
+import org.bimserver.models.ifc2x3.impl.IfcActuatorTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcAddressImpl;
+import org.bimserver.models.ifc2x3.impl.IfcAirTerminalBoxTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcAirTerminalTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcAirToAirHeatRecoveryTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcAlarmTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcAmountOfSubstanceMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcAngularDimensionImpl;
+import org.bimserver.models.ifc2x3.impl.IfcAngularVelocityMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcAnnotationCurveOccurrenceImpl;
+import org.bimserver.models.ifc2x3.impl.IfcAnnotationFillAreaImpl;
+import org.bimserver.models.ifc2x3.impl.IfcAnnotationFillAreaOccurrenceImpl;
+import org.bimserver.models.ifc2x3.impl.IfcAnnotationImpl;
+import org.bimserver.models.ifc2x3.impl.IfcAnnotationOccurrenceImpl;
+import org.bimserver.models.ifc2x3.impl.IfcAnnotationSurfaceImpl;
+import org.bimserver.models.ifc2x3.impl.IfcAnnotationSurfaceOccurrenceImpl;
+import org.bimserver.models.ifc2x3.impl.IfcAnnotationSymbolOccurrenceImpl;
+import org.bimserver.models.ifc2x3.impl.IfcAnnotationTextOccurrenceImpl;
+import org.bimserver.models.ifc2x3.impl.IfcApplicationImpl;
+import org.bimserver.models.ifc2x3.impl.IfcAppliedValueImpl;
+import org.bimserver.models.ifc2x3.impl.IfcAppliedValueRelationshipImpl;
+import org.bimserver.models.ifc2x3.impl.IfcApprovalActorRelationshipImpl;
+import org.bimserver.models.ifc2x3.impl.IfcApprovalImpl;
+import org.bimserver.models.ifc2x3.impl.IfcApprovalPropertyRelationshipImpl;
+import org.bimserver.models.ifc2x3.impl.IfcApprovalRelationshipImpl;
+import org.bimserver.models.ifc2x3.impl.IfcArbitraryClosedProfileDefImpl;
+import org.bimserver.models.ifc2x3.impl.IfcArbitraryOpenProfileDefImpl;
+import org.bimserver.models.ifc2x3.impl.IfcArbitraryProfileDefWithVoidsImpl;
+import org.bimserver.models.ifc2x3.impl.IfcAreaMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcAssetImpl;
+import org.bimserver.models.ifc2x3.impl.IfcAsymmetricIShapeProfileDefImpl;
+import org.bimserver.models.ifc2x3.impl.IfcAxis1PlacementImpl;
+import org.bimserver.models.ifc2x3.impl.IfcAxis2Placement2DImpl;
+import org.bimserver.models.ifc2x3.impl.IfcAxis2Placement3DImpl;
+import org.bimserver.models.ifc2x3.impl.IfcBSplineCurveImpl;
+import org.bimserver.models.ifc2x3.impl.IfcBeamImpl;
+import org.bimserver.models.ifc2x3.impl.IfcBeamTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcBezierCurveImpl;
+import org.bimserver.models.ifc2x3.impl.IfcBlobTextureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcBlockImpl;
+import org.bimserver.models.ifc2x3.impl.IfcBoilerTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcBooleanClippingResultImpl;
+import org.bimserver.models.ifc2x3.impl.IfcBooleanImpl;
+import org.bimserver.models.ifc2x3.impl.IfcBooleanResultImpl;
+import org.bimserver.models.ifc2x3.impl.IfcBoundaryConditionImpl;
+import org.bimserver.models.ifc2x3.impl.IfcBoundaryEdgeConditionImpl;
+import org.bimserver.models.ifc2x3.impl.IfcBoundaryFaceConditionImpl;
+import org.bimserver.models.ifc2x3.impl.IfcBoundaryNodeConditionImpl;
+import org.bimserver.models.ifc2x3.impl.IfcBoundaryNodeConditionWarpingImpl;
+import org.bimserver.models.ifc2x3.impl.IfcBoundedCurveImpl;
+import org.bimserver.models.ifc2x3.impl.IfcBoundedSurfaceImpl;
+import org.bimserver.models.ifc2x3.impl.IfcBoundingBoxImpl;
+import org.bimserver.models.ifc2x3.impl.IfcBoxedHalfSpaceImpl;
+import org.bimserver.models.ifc2x3.impl.IfcBuildingElementComponentImpl;
+import org.bimserver.models.ifc2x3.impl.IfcBuildingElementImpl;
+import org.bimserver.models.ifc2x3.impl.IfcBuildingElementPartImpl;
+import org.bimserver.models.ifc2x3.impl.IfcBuildingElementProxyImpl;
+import org.bimserver.models.ifc2x3.impl.IfcBuildingElementProxyTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcBuildingElementTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcBuildingImpl;
+import org.bimserver.models.ifc2x3.impl.IfcBuildingStoreyImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCShapeProfileDefImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCableCarrierFittingTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCableCarrierSegmentTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCableSegmentTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCalendarDateImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCartesianPointImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCartesianTransformationOperator2DImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCartesianTransformationOperator2DnonUniformImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCartesianTransformationOperator3DImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCartesianTransformationOperator3DnonUniformImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCartesianTransformationOperatorImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCenterLineProfileDefImpl;
+import org.bimserver.models.ifc2x3.impl.IfcChamferEdgeFeatureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcChillerTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCircleHollowProfileDefImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCircleImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCircleProfileDefImpl;
+import org.bimserver.models.ifc2x3.impl.IfcClassificationImpl;
+import org.bimserver.models.ifc2x3.impl.IfcClassificationItemImpl;
+import org.bimserver.models.ifc2x3.impl.IfcClassificationItemRelationshipImpl;
+import org.bimserver.models.ifc2x3.impl.IfcClassificationNotationFacetImpl;
+import org.bimserver.models.ifc2x3.impl.IfcClassificationNotationImpl;
+import org.bimserver.models.ifc2x3.impl.IfcClassificationReferenceImpl;
+import org.bimserver.models.ifc2x3.impl.IfcClosedShellImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCoilTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcColourRgbImpl;
+import org.bimserver.models.ifc2x3.impl.IfcColourSpecificationImpl;
+import org.bimserver.models.ifc2x3.impl.IfcColumnImpl;
+import org.bimserver.models.ifc2x3.impl.IfcColumnTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcComplexPropertyImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCompositeCurveImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCompositeCurveSegmentImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCompositeProfileDefImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCompressorTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCondenserTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcConditionCriterionImpl;
+import org.bimserver.models.ifc2x3.impl.IfcConditionImpl;
+import org.bimserver.models.ifc2x3.impl.IfcConicImpl;
+import org.bimserver.models.ifc2x3.impl.IfcConnectedFaceSetImpl;
+import org.bimserver.models.ifc2x3.impl.IfcConnectionCurveGeometryImpl;
+import org.bimserver.models.ifc2x3.impl.IfcConnectionGeometryImpl;
+import org.bimserver.models.ifc2x3.impl.IfcConnectionPointEccentricityImpl;
+import org.bimserver.models.ifc2x3.impl.IfcConnectionPointGeometryImpl;
+import org.bimserver.models.ifc2x3.impl.IfcConnectionPortGeometryImpl;
+import org.bimserver.models.ifc2x3.impl.IfcConnectionSurfaceGeometryImpl;
+import org.bimserver.models.ifc2x3.impl.IfcConstraintAggregationRelationshipImpl;
+import org.bimserver.models.ifc2x3.impl.IfcConstraintClassificationRelationshipImpl;
+import org.bimserver.models.ifc2x3.impl.IfcConstraintImpl;
+import org.bimserver.models.ifc2x3.impl.IfcConstraintRelationshipImpl;
+import org.bimserver.models.ifc2x3.impl.IfcConstructionEquipmentResourceImpl;
+import org.bimserver.models.ifc2x3.impl.IfcConstructionMaterialResourceImpl;
+import org.bimserver.models.ifc2x3.impl.IfcConstructionProductResourceImpl;
+import org.bimserver.models.ifc2x3.impl.IfcConstructionResourceImpl;
+import org.bimserver.models.ifc2x3.impl.IfcContextDependentMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcContextDependentUnitImpl;
+import org.bimserver.models.ifc2x3.impl.IfcControlImpl;
+import org.bimserver.models.ifc2x3.impl.IfcControllerTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcConversionBasedUnitImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCooledBeamTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCoolingTowerTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCoordinatedUniversalTimeOffsetImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCostItemImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCostScheduleImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCostValueImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCountMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCoveringImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCoveringTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCraneRailAShapeProfileDefImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCraneRailFShapeProfileDefImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCrewResourceImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCsgPrimitive3DImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCsgSolidImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCurrencyRelationshipImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCurtainWallImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCurtainWallTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCurvatureMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCurveBoundedPlaneImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCurveImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCurveStyleFontAndScalingImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCurveStyleFontImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCurveStyleFontPatternImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCurveStyleImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDamperTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDateAndTimeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDefinedSymbolImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDerivedProfileDefImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDerivedUnitElementImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDerivedUnitImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDescriptiveMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDiameterDimensionImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDimensionCalloutRelationshipImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDimensionCurveDirectedCalloutImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDimensionCurveImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDimensionCurveTerminatorImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDimensionPairImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDimensionalExponentsImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDirectionImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDiscreteAccessoryImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDiscreteAccessoryTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDistributionChamberElementImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDistributionChamberElementTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDistributionControlElementImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDistributionControlElementTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDistributionElementImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDistributionElementTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDistributionFlowElementImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDistributionFlowElementTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDistributionPortImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDocumentElectronicFormatImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDocumentInformationImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDocumentInformationRelationshipImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDocumentReferenceImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDoorImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDoorLiningPropertiesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDoorPanelPropertiesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDoorStyleImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDoseEquivalentMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDraughtingCalloutImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDraughtingCalloutRelationshipImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDraughtingPreDefinedColourImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDraughtingPreDefinedCurveFontImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDraughtingPreDefinedTextFontImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDuctFittingTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDuctSegmentTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDuctSilencerTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDynamicViscosityMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcEdgeCurveImpl;
+import org.bimserver.models.ifc2x3.impl.IfcEdgeFeatureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcEdgeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcEdgeLoopImpl;
+import org.bimserver.models.ifc2x3.impl.IfcElectricApplianceTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcElectricCapacitanceMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcElectricChargeMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcElectricConductanceMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcElectricCurrentMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcElectricDistributionPointImpl;
+import org.bimserver.models.ifc2x3.impl.IfcElectricFlowStorageDeviceTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcElectricGeneratorTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcElectricHeaterTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcElectricMotorTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcElectricResistanceMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcElectricTimeControlTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcElectricVoltageMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcElectricalBasePropertiesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcElectricalCircuitImpl;
+import org.bimserver.models.ifc2x3.impl.IfcElectricalElementImpl;
+import org.bimserver.models.ifc2x3.impl.IfcElementAssemblyImpl;
+import org.bimserver.models.ifc2x3.impl.IfcElementComponentImpl;
+import org.bimserver.models.ifc2x3.impl.IfcElementComponentTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcElementImpl;
+import org.bimserver.models.ifc2x3.impl.IfcElementQuantityImpl;
+import org.bimserver.models.ifc2x3.impl.IfcElementTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcElementarySurfaceImpl;
+import org.bimserver.models.ifc2x3.impl.IfcEllipseImpl;
+import org.bimserver.models.ifc2x3.impl.IfcEllipseProfileDefImpl;
+import org.bimserver.models.ifc2x3.impl.IfcEnergyConversionDeviceImpl;
+import org.bimserver.models.ifc2x3.impl.IfcEnergyConversionDeviceTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcEnergyMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcEnergyPropertiesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcEnvironmentalImpactValueImpl;
+import org.bimserver.models.ifc2x3.impl.IfcEquipmentElementImpl;
+import org.bimserver.models.ifc2x3.impl.IfcEquipmentStandardImpl;
+import org.bimserver.models.ifc2x3.impl.IfcEvaporativeCoolerTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcEvaporatorTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcExtendedMaterialPropertiesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcExternalReferenceImpl;
+import org.bimserver.models.ifc2x3.impl.IfcExternallyDefinedHatchStyleImpl;
+import org.bimserver.models.ifc2x3.impl.IfcExternallyDefinedSurfaceStyleImpl;
+import org.bimserver.models.ifc2x3.impl.IfcExternallyDefinedSymbolImpl;
+import org.bimserver.models.ifc2x3.impl.IfcExternallyDefinedTextFontImpl;
+import org.bimserver.models.ifc2x3.impl.IfcExtrudedAreaSolidImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFaceBasedSurfaceModelImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFaceBoundImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFaceImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFaceOuterBoundImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFaceSurfaceImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFacetedBrepImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFacetedBrepWithVoidsImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFailureConnectionConditionImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFanTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFastenerImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFastenerTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFeatureElementAdditionImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFeatureElementImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFeatureElementSubtractionImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFillAreaStyleHatchingImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFillAreaStyleImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFillAreaStyleTileSymbolWithStyleImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFillAreaStyleTilesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFilterTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFireSuppressionTerminalTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFlowControllerImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFlowControllerTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFlowFittingImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFlowFittingTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFlowInstrumentTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFlowMeterTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFlowMovingDeviceImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFlowMovingDeviceTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFlowSegmentImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFlowSegmentTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFlowStorageDeviceImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFlowStorageDeviceTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFlowTerminalImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFlowTerminalTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFlowTreatmentDeviceImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFlowTreatmentDeviceTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFluidFlowPropertiesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFootingImpl;
+import org.bimserver.models.ifc2x3.impl.IfcForceMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFrequencyMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFuelPropertiesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFurnishingElementImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFurnishingElementTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFurnitureStandardImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFurnitureTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcGasTerminalTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcGeneralMaterialPropertiesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcGeneralProfilePropertiesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcGeometricCurveSetImpl;
+import org.bimserver.models.ifc2x3.impl.IfcGeometricRepresentationContextImpl;
+import org.bimserver.models.ifc2x3.impl.IfcGeometricRepresentationItemImpl;
+import org.bimserver.models.ifc2x3.impl.IfcGeometricRepresentationSubContextImpl;
+import org.bimserver.models.ifc2x3.impl.IfcGeometricSetImpl;
+import org.bimserver.models.ifc2x3.impl.IfcGloballyUniqueIdImpl;
+import org.bimserver.models.ifc2x3.impl.IfcGridAxisImpl;
+import org.bimserver.models.ifc2x3.impl.IfcGridImpl;
+import org.bimserver.models.ifc2x3.impl.IfcGridPlacementImpl;
+import org.bimserver.models.ifc2x3.impl.IfcGroupImpl;
+import org.bimserver.models.ifc2x3.impl.IfcHalfSpaceSolidImpl;
+import org.bimserver.models.ifc2x3.impl.IfcHeatExchangerTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcHeatFluxDensityMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcHeatingValueMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcHumidifierTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcHygroscopicMaterialPropertiesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcIShapeProfileDefImpl;
+import org.bimserver.models.ifc2x3.impl.IfcIdentifierImpl;
+import org.bimserver.models.ifc2x3.impl.IfcIlluminanceMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcImageTextureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcInductanceMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcIntegerCountRateMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcIntegerImpl;
+import org.bimserver.models.ifc2x3.impl.IfcInventoryImpl;
+import org.bimserver.models.ifc2x3.impl.IfcIonConcentrationMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcIrregularTimeSeriesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcIrregularTimeSeriesValueImpl;
+import org.bimserver.models.ifc2x3.impl.IfcIsothermalMoistureCapacityMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcJunctionBoxTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcKinematicViscosityMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcLShapeProfileDefImpl;
+import org.bimserver.models.ifc2x3.impl.IfcLabelImpl;
+import org.bimserver.models.ifc2x3.impl.IfcLaborResourceImpl;
+import org.bimserver.models.ifc2x3.impl.IfcLampTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcLengthMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcLibraryInformationImpl;
+import org.bimserver.models.ifc2x3.impl.IfcLibraryReferenceImpl;
+import org.bimserver.models.ifc2x3.impl.IfcLightDistributionDataImpl;
+import org.bimserver.models.ifc2x3.impl.IfcLightFixtureTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcLightIntensityDistributionImpl;
+import org.bimserver.models.ifc2x3.impl.IfcLightSourceAmbientImpl;
+import org.bimserver.models.ifc2x3.impl.IfcLightSourceDirectionalImpl;
+import org.bimserver.models.ifc2x3.impl.IfcLightSourceGoniometricImpl;
+import org.bimserver.models.ifc2x3.impl.IfcLightSourceImpl;
+import org.bimserver.models.ifc2x3.impl.IfcLightSourcePositionalImpl;
+import org.bimserver.models.ifc2x3.impl.IfcLightSourceSpotImpl;
+import org.bimserver.models.ifc2x3.impl.IfcLineImpl;
+import org.bimserver.models.ifc2x3.impl.IfcLinearDimensionImpl;
+import org.bimserver.models.ifc2x3.impl.IfcLinearForceMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcLinearMomentMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcLinearStiffnessMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcLinearVelocityMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcLocalPlacementImpl;
+import org.bimserver.models.ifc2x3.impl.IfcLocalTimeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcLogicalImpl;
+import org.bimserver.models.ifc2x3.impl.IfcLoopImpl;
+import org.bimserver.models.ifc2x3.impl.IfcLuminousFluxMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcLuminousIntensityDistributionMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcLuminousIntensityMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcMagneticFluxDensityMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcMagneticFluxMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcManifoldSolidBrepImpl;
+import org.bimserver.models.ifc2x3.impl.IfcMappedItemImpl;
+import org.bimserver.models.ifc2x3.impl.IfcMassDensityMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcMassFlowRateMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcMassMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcMassPerLengthMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcMaterialClassificationRelationshipImpl;
+import org.bimserver.models.ifc2x3.impl.IfcMaterialDefinitionRepresentationImpl;
+import org.bimserver.models.ifc2x3.impl.IfcMaterialImpl;
+import org.bimserver.models.ifc2x3.impl.IfcMaterialLayerImpl;
+import org.bimserver.models.ifc2x3.impl.IfcMaterialLayerSetImpl;
+import org.bimserver.models.ifc2x3.impl.IfcMaterialLayerSetUsageImpl;
+import org.bimserver.models.ifc2x3.impl.IfcMaterialListImpl;
+import org.bimserver.models.ifc2x3.impl.IfcMaterialPropertiesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcMeasureWithUnitImpl;
+import org.bimserver.models.ifc2x3.impl.IfcMechanicalConcreteMaterialPropertiesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcMechanicalFastenerImpl;
+import org.bimserver.models.ifc2x3.impl.IfcMechanicalFastenerTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcMechanicalMaterialPropertiesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcMechanicalSteelMaterialPropertiesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcMemberImpl;
+import org.bimserver.models.ifc2x3.impl.IfcMemberTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcMetricImpl;
+import org.bimserver.models.ifc2x3.impl.IfcModulusOfElasticityMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcModulusOfLinearSubgradeReactionMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcModulusOfRotationalSubgradeReactionMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcModulusOfSubgradeReactionMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcMoistureDiffusivityMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcMolecularWeightMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcMomentOfInertiaMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcMonetaryMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcMonetaryUnitImpl;
+import org.bimserver.models.ifc2x3.impl.IfcMotorConnectionTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcMoveImpl;
+import org.bimserver.models.ifc2x3.impl.IfcNamedUnitImpl;
+import org.bimserver.models.ifc2x3.impl.IfcNormalisedRatioMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcNumericMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcObjectDefinitionImpl;
+import org.bimserver.models.ifc2x3.impl.IfcObjectImpl;
+import org.bimserver.models.ifc2x3.impl.IfcObjectPlacementImpl;
+import org.bimserver.models.ifc2x3.impl.IfcObjectiveImpl;
+import org.bimserver.models.ifc2x3.impl.IfcOccupantImpl;
+import org.bimserver.models.ifc2x3.impl.IfcOffsetCurve2DImpl;
+import org.bimserver.models.ifc2x3.impl.IfcOffsetCurve3DImpl;
+import org.bimserver.models.ifc2x3.impl.IfcOneDirectionRepeatFactorImpl;
+import org.bimserver.models.ifc2x3.impl.IfcOpenShellImpl;
+import org.bimserver.models.ifc2x3.impl.IfcOpeningElementImpl;
+import org.bimserver.models.ifc2x3.impl.IfcOpticalMaterialPropertiesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcOrderActionImpl;
+import org.bimserver.models.ifc2x3.impl.IfcOrganizationImpl;
+import org.bimserver.models.ifc2x3.impl.IfcOrganizationRelationshipImpl;
+import org.bimserver.models.ifc2x3.impl.IfcOrientedEdgeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcOutletTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcOwnerHistoryImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPHMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcParameterValueImpl;
+import org.bimserver.models.ifc2x3.impl.IfcParameterizedProfileDefImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPathImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPerformanceHistoryImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPermeableCoveringPropertiesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPermitImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPersonAndOrganizationImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPersonImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPhysicalComplexQuantityImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPhysicalQuantityImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPhysicalSimpleQuantityImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPileImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPipeFittingTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPipeSegmentTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPixelTextureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPlacementImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPlanarBoxImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPlanarExtentImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPlanarForceMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPlaneAngleMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPlaneImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPlateImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPlateTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPointImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPointOnCurveImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPointOnSurfaceImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPolyLoopImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPolygonalBoundedHalfSpaceImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPolylineImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPortImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPositiveLengthMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPositivePlaneAngleMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPositiveRatioMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPostalAddressImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPowerMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPreDefinedColourImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPreDefinedCurveFontImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPreDefinedDimensionSymbolImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPreDefinedItemImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPreDefinedPointMarkerSymbolImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPreDefinedSymbolImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPreDefinedTerminatorSymbolImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPreDefinedTextFontImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPresentationLayerAssignmentImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPresentationLayerWithStyleImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPresentationStyleAssignmentImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPresentationStyleImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPressureMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcProcedureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcProcessImpl;
+import org.bimserver.models.ifc2x3.impl.IfcProductDefinitionShapeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcProductImpl;
+import org.bimserver.models.ifc2x3.impl.IfcProductRepresentationImpl;
+import org.bimserver.models.ifc2x3.impl.IfcProductsOfCombustionPropertiesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcProfileDefImpl;
+import org.bimserver.models.ifc2x3.impl.IfcProfilePropertiesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcProjectImpl;
+import org.bimserver.models.ifc2x3.impl.IfcProjectOrderImpl;
+import org.bimserver.models.ifc2x3.impl.IfcProjectOrderRecordImpl;
+import org.bimserver.models.ifc2x3.impl.IfcProjectionCurveImpl;
+import org.bimserver.models.ifc2x3.impl.IfcProjectionElementImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPropertyBoundedValueImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPropertyConstraintRelationshipImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPropertyDefinitionImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPropertyDependencyRelationshipImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPropertyEnumeratedValueImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPropertyEnumerationImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPropertyImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPropertyListValueImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPropertyReferenceValueImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPropertySetDefinitionImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPropertySetImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPropertySingleValueImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPropertyTableValueImpl;
+import org.bimserver.models.ifc2x3.impl.IfcProtectiveDeviceTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcProxyImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPumpTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcQuantityAreaImpl;
+import org.bimserver.models.ifc2x3.impl.IfcQuantityCountImpl;
+import org.bimserver.models.ifc2x3.impl.IfcQuantityLengthImpl;
+import org.bimserver.models.ifc2x3.impl.IfcQuantityTimeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcQuantityVolumeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcQuantityWeightImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRadioActivityMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRadiusDimensionImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRailingImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRailingTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRampFlightImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRampFlightTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRampImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRatioMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRationalBezierCurveImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRealImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRectangleHollowProfileDefImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRectangleProfileDefImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRectangularPyramidImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRectangularTrimmedSurfaceImpl;
+import org.bimserver.models.ifc2x3.impl.IfcReferencesValueDocumentImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRegularTimeSeriesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcReinforcementBarPropertiesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcReinforcementDefinitionPropertiesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcReinforcingBarImpl;
+import org.bimserver.models.ifc2x3.impl.IfcReinforcingElementImpl;
+import org.bimserver.models.ifc2x3.impl.IfcReinforcingMeshImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelAggregatesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelAssignsImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelAssignsTasksImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelAssignsToActorImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelAssignsToControlImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelAssignsToGroupImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelAssignsToProcessImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelAssignsToProductImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelAssignsToProjectOrderImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelAssignsToResourceImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelAssociatesAppliedValueImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelAssociatesApprovalImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelAssociatesClassificationImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelAssociatesConstraintImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelAssociatesDocumentImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelAssociatesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelAssociatesLibraryImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelAssociatesMaterialImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelAssociatesProfilePropertiesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelConnectsElementsImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelConnectsImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelConnectsPathElementsImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelConnectsPortToElementImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelConnectsPortsImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelConnectsStructuralActivityImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelConnectsStructuralElementImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelConnectsStructuralMemberImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelConnectsWithEccentricityImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelConnectsWithRealizingElementsImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelContainedInSpatialStructureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelCoversBldgElementsImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelCoversSpacesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelDecomposesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelDefinesByPropertiesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelDefinesByTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelDefinesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelFillsElementImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelFlowControlElementsImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelInteractionRequirementsImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelNestsImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelOccupiesSpacesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelOverridesPropertiesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelProjectsElementImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelReferencedInSpatialStructureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelSchedulesCostItemsImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelSequenceImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelServicesBuildingsImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelSpaceBoundaryImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelVoidsElementImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelationshipImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelaxationImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRepresentationContextImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRepresentationImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRepresentationItemImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRepresentationMapImpl;
+import org.bimserver.models.ifc2x3.impl.IfcResourceImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRevolvedAreaSolidImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRibPlateProfilePropertiesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRightCircularConeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRightCircularCylinderImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRoofImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRootImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRotationalFrequencyMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRotationalMassMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRotationalStiffnessMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRoundedEdgeFeatureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRoundedRectangleProfileDefImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSIUnitImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSanitaryTerminalTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcScheduleTimeControlImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSectionModulusMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSectionPropertiesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSectionReinforcementPropertiesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSectionalAreaIntegralMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSectionedSpineImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSensorTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcServiceLifeFactorImpl;
+import org.bimserver.models.ifc2x3.impl.IfcServiceLifeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcShapeAspectImpl;
+import org.bimserver.models.ifc2x3.impl.IfcShapeModelImpl;
+import org.bimserver.models.ifc2x3.impl.IfcShapeRepresentationImpl;
+import org.bimserver.models.ifc2x3.impl.IfcShearModulusMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcShellBasedSurfaceModelImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSimplePropertyImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSiteImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSlabImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSlabTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSlippageConnectionConditionImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSolidAngleMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSolidModelImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSoundPowerMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSoundPressureMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSoundPropertiesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSoundValueImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSpaceHeaterTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSpaceImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSpaceProgramImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSpaceThermalLoadPropertiesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSpaceTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSpatialStructureElementImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSpatialStructureElementTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSpecificHeatCapacityMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSpecularExponentImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSpecularRoughnessImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSphereImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStackTerminalTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStairFlightImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStairFlightTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStairImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStructuralActionImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStructuralActivityImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStructuralAnalysisModelImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStructuralConnectionConditionImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStructuralConnectionImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStructuralCurveConnectionImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStructuralCurveMemberImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStructuralCurveMemberVaryingImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStructuralItemImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStructuralLinearActionImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStructuralLinearActionVaryingImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStructuralLoadGroupImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStructuralLoadImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStructuralLoadLinearForceImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStructuralLoadPlanarForceImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStructuralLoadSingleDisplacementDistortionImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStructuralLoadSingleDisplacementImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStructuralLoadSingleForceImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStructuralLoadSingleForceWarpingImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStructuralLoadStaticImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStructuralLoadTemperatureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStructuralMemberImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStructuralPlanarActionImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStructuralPlanarActionVaryingImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStructuralPointActionImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStructuralPointConnectionImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStructuralPointReactionImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStructuralProfilePropertiesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStructuralReactionImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStructuralResultGroupImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStructuralSteelProfilePropertiesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStructuralSurfaceConnectionImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStructuralSurfaceMemberImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStructuralSurfaceMemberVaryingImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStructuredDimensionCalloutImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStyleModelImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStyledItemImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStyledRepresentationImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSubContractResourceImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSubedgeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSurfaceCurveSweptAreaSolidImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSurfaceImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSurfaceOfLinearExtrusionImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSurfaceOfRevolutionImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSurfaceStyleImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSurfaceStyleLightingImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSurfaceStyleRefractionImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSurfaceStyleRenderingImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSurfaceStyleShadingImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSurfaceStyleWithTexturesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSurfaceTextureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSweptAreaSolidImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSweptDiskSolidImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSweptSurfaceImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSwitchingDeviceTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSymbolStyleImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSystemFurnitureElementTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSystemImpl;
+import org.bimserver.models.ifc2x3.impl.IfcTShapeProfileDefImpl;
+import org.bimserver.models.ifc2x3.impl.IfcTableImpl;
+import org.bimserver.models.ifc2x3.impl.IfcTableRowImpl;
+import org.bimserver.models.ifc2x3.impl.IfcTankTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcTaskImpl;
+import org.bimserver.models.ifc2x3.impl.IfcTelecomAddressImpl;
+import org.bimserver.models.ifc2x3.impl.IfcTemperatureGradientMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcTendonAnchorImpl;
+import org.bimserver.models.ifc2x3.impl.IfcTendonImpl;
+import org.bimserver.models.ifc2x3.impl.IfcTerminatorSymbolImpl;
+import org.bimserver.models.ifc2x3.impl.IfcTextImpl;
+import org.bimserver.models.ifc2x3.impl.IfcTextLiteralImpl;
+import org.bimserver.models.ifc2x3.impl.IfcTextLiteralWithExtentImpl;
+import org.bimserver.models.ifc2x3.impl.IfcTextStyleFontModelImpl;
+import org.bimserver.models.ifc2x3.impl.IfcTextStyleForDefinedFontImpl;
+import org.bimserver.models.ifc2x3.impl.IfcTextStyleImpl;
+import org.bimserver.models.ifc2x3.impl.IfcTextStyleTextModelImpl;
+import org.bimserver.models.ifc2x3.impl.IfcTextStyleWithBoxCharacteristicsImpl;
+import org.bimserver.models.ifc2x3.impl.IfcTextureCoordinateGeneratorImpl;
+import org.bimserver.models.ifc2x3.impl.IfcTextureCoordinateImpl;
+import org.bimserver.models.ifc2x3.impl.IfcTextureMapImpl;
+import org.bimserver.models.ifc2x3.impl.IfcTextureVertexImpl;
+import org.bimserver.models.ifc2x3.impl.IfcThermalAdmittanceMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcThermalConductivityMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcThermalExpansionCoefficientMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcThermalMaterialPropertiesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcThermalResistanceMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcThermalTransmittanceMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcThermodynamicTemperatureMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcTimeMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcTimeSeriesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcTimeSeriesReferenceRelationshipImpl;
+import org.bimserver.models.ifc2x3.impl.IfcTimeSeriesScheduleImpl;
+import org.bimserver.models.ifc2x3.impl.IfcTimeSeriesValueImpl;
+import org.bimserver.models.ifc2x3.impl.IfcTimeStampImpl;
+import org.bimserver.models.ifc2x3.impl.IfcTopologicalRepresentationItemImpl;
+import org.bimserver.models.ifc2x3.impl.IfcTopologyRepresentationImpl;
+import org.bimserver.models.ifc2x3.impl.IfcTorqueMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcTransformerTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcTransportElementImpl;
+import org.bimserver.models.ifc2x3.impl.IfcTransportElementTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcTrapeziumProfileDefImpl;
+import org.bimserver.models.ifc2x3.impl.IfcTrimmedCurveImpl;
+import org.bimserver.models.ifc2x3.impl.IfcTubeBundleTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcTwoDirectionRepeatFactorImpl;
+import org.bimserver.models.ifc2x3.impl.IfcTypeObjectImpl;
+import org.bimserver.models.ifc2x3.impl.IfcTypeProductImpl;
+import org.bimserver.models.ifc2x3.impl.IfcUShapeProfileDefImpl;
+import org.bimserver.models.ifc2x3.impl.IfcUnitAssignmentImpl;
+import org.bimserver.models.ifc2x3.impl.IfcUnitaryEquipmentTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcValveTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcVaporPermeabilityMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcVectorImpl;
+import org.bimserver.models.ifc2x3.impl.IfcVertexBasedTextureMapImpl;
+import org.bimserver.models.ifc2x3.impl.IfcVertexImpl;
+import org.bimserver.models.ifc2x3.impl.IfcVertexLoopImpl;
+import org.bimserver.models.ifc2x3.impl.IfcVertexPointImpl;
+import org.bimserver.models.ifc2x3.impl.IfcVibrationIsolatorTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcVirtualElementImpl;
+import org.bimserver.models.ifc2x3.impl.IfcVirtualGridIntersectionImpl;
+import org.bimserver.models.ifc2x3.impl.IfcVolumeMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcVolumetricFlowRateMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcWallImpl;
+import org.bimserver.models.ifc2x3.impl.IfcWallStandardCaseImpl;
+import org.bimserver.models.ifc2x3.impl.IfcWallTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcWarpingConstantMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcWarpingMomentMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcWasteTerminalTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcWaterPropertiesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcWindowImpl;
+import org.bimserver.models.ifc2x3.impl.IfcWindowLiningPropertiesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcWindowPanelPropertiesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcWindowStyleImpl;
+import org.bimserver.models.ifc2x3.impl.IfcWorkControlImpl;
+import org.bimserver.models.ifc2x3.impl.IfcWorkPlanImpl;
+import org.bimserver.models.ifc2x3.impl.IfcWorkScheduleImpl;
+import org.bimserver.models.ifc2x3.impl.IfcZShapeProfileDefImpl;
+import org.bimserver.models.ifc2x3.impl.IfcZoneImpl;
+
+import org.bimserver.models.log.LogPackage;
+
+import org.bimserver.models.log.impl.LogPackageImpl;
+
+import org.bimserver.models.store.*;
+
+import org.bimserver.models.store.impl.CheckoutImpl;
+import org.bimserver.models.store.impl.ClashDetectionSettingsImpl;
+import org.bimserver.models.store.impl.ClashImpl;
+import org.bimserver.models.store.impl.ConcreteRevisionImpl;
+import org.bimserver.models.store.impl.EidClashImpl;
+import org.bimserver.models.store.impl.GeoTagImpl;
+import org.bimserver.models.store.impl.GuidClashImpl;
+import org.bimserver.models.store.impl.IgnoreFileImpl;
+import org.bimserver.models.store.impl.ProjectImpl;
+import org.bimserver.models.store.impl.RevisionImpl;
+import org.bimserver.models.store.impl.SerializerImpl;
+import org.bimserver.models.store.impl.SettingsImpl;
+import org.bimserver.models.store.impl.StorePackageImpl;
+import org.bimserver.models.store.impl.UserImpl;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.Enumerator;
+import org.eclipse.emf.common.util.URI;
+
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
+
+import org.eclipse.emf.ecore.impl.EFactoryImpl;
+import org.eclipse.emf.ecore.impl.EPackageImpl;
+
+import org.eclipse.emf.ecore.plugin.EcorePlugin;
+
+import org.eclipse.emf.ecore.resource.Resource;
+
+import org.eclipse.emf.ecore.resource.impl.ResourceFactoryImpl;
+
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
+
+import org.eclipse.emf.ecore.xmi.util.XMLProcessor;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,7 +830,8 @@ import org.eclipse.emf.ecore.EObject;
  * @see org.bimserver.models.ifc2x3.Ifc2x3Package
  * @generated
  */
-public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
+public class Ifc2x3AdapterFactory extends AdapterFactoryImpl
+{
 	/**
 	 * The cached model package.
 	 * <!-- begin-user-doc -->
@@ -38,8 +846,10 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Ifc2x3AdapterFactory() {
-		if (modelPackage == null) {
+	public Ifc2x3AdapterFactory()
+	{
+		if (modelPackage == null)
+		{
 			modelPackage = Ifc2x3Package.eINSTANCE;
 		}
 	}
@@ -53,11 +863,14 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	@Override
-	public boolean isFactoryForType(Object object) {
-		if (object == modelPackage) {
+	public boolean isFactoryForType(Object object)
+	{
+		if (object == modelPackage)
+		{
 			return true;
 		}
-		if (object instanceof EObject) {
+		if (object instanceof EObject)
+		{
 			return ((EObject)object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
@@ -70,3201 +883,4001 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	protected Ifc2x3Switch<Adapter> modelSwitch =
-		new Ifc2x3Switch<Adapter>() {
+		new Ifc2x3Switch<Adapter>()
+		{
 			@Override
-			public Adapter caseWrappedValue(WrappedValue object) {
+			public Adapter caseWrappedValue(WrappedValue object)
+			{
 				return createWrappedValueAdapter();
 			}
 			@Override
-			public Adapter caseIfcAbsorbedDoseMeasure(IfcAbsorbedDoseMeasure object) {
+			public Adapter caseIfcAbsorbedDoseMeasure(IfcAbsorbedDoseMeasure object)
+			{
 				return createIfcAbsorbedDoseMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcAccelerationMeasure(IfcAccelerationMeasure object) {
+			public Adapter caseIfcAccelerationMeasure(IfcAccelerationMeasure object)
+			{
 				return createIfcAccelerationMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcAmountOfSubstanceMeasure(IfcAmountOfSubstanceMeasure object) {
+			public Adapter caseIfcAmountOfSubstanceMeasure(IfcAmountOfSubstanceMeasure object)
+			{
 				return createIfcAmountOfSubstanceMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcAngularVelocityMeasure(IfcAngularVelocityMeasure object) {
+			public Adapter caseIfcAngularVelocityMeasure(IfcAngularVelocityMeasure object)
+			{
 				return createIfcAngularVelocityMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcAreaMeasure(IfcAreaMeasure object) {
+			public Adapter caseIfcAreaMeasure(IfcAreaMeasure object)
+			{
 				return createIfcAreaMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcBoolean(IfcBoolean object) {
+			public Adapter caseIfcBoolean(IfcBoolean object)
+			{
 				return createIfcBooleanAdapter();
 			}
 			@Override
-			public Adapter caseIfcContextDependentMeasure(IfcContextDependentMeasure object) {
+			public Adapter caseIfcContextDependentMeasure(IfcContextDependentMeasure object)
+			{
 				return createIfcContextDependentMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcCountMeasure(IfcCountMeasure object) {
+			public Adapter caseIfcCountMeasure(IfcCountMeasure object)
+			{
 				return createIfcCountMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcCurvatureMeasure(IfcCurvatureMeasure object) {
+			public Adapter caseIfcCurvatureMeasure(IfcCurvatureMeasure object)
+			{
 				return createIfcCurvatureMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcDescriptiveMeasure(IfcDescriptiveMeasure object) {
+			public Adapter caseIfcDescriptiveMeasure(IfcDescriptiveMeasure object)
+			{
 				return createIfcDescriptiveMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcDoseEquivalentMeasure(IfcDoseEquivalentMeasure object) {
+			public Adapter caseIfcDoseEquivalentMeasure(IfcDoseEquivalentMeasure object)
+			{
 				return createIfcDoseEquivalentMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcDynamicViscosityMeasure(IfcDynamicViscosityMeasure object) {
+			public Adapter caseIfcDynamicViscosityMeasure(IfcDynamicViscosityMeasure object)
+			{
 				return createIfcDynamicViscosityMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcElectricCapacitanceMeasure(IfcElectricCapacitanceMeasure object) {
+			public Adapter caseIfcElectricCapacitanceMeasure(IfcElectricCapacitanceMeasure object)
+			{
 				return createIfcElectricCapacitanceMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcElectricChargeMeasure(IfcElectricChargeMeasure object) {
+			public Adapter caseIfcElectricChargeMeasure(IfcElectricChargeMeasure object)
+			{
 				return createIfcElectricChargeMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcElectricConductanceMeasure(IfcElectricConductanceMeasure object) {
+			public Adapter caseIfcElectricConductanceMeasure(IfcElectricConductanceMeasure object)
+			{
 				return createIfcElectricConductanceMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcElectricCurrentMeasure(IfcElectricCurrentMeasure object) {
+			public Adapter caseIfcElectricCurrentMeasure(IfcElectricCurrentMeasure object)
+			{
 				return createIfcElectricCurrentMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcElectricResistanceMeasure(IfcElectricResistanceMeasure object) {
+			public Adapter caseIfcElectricResistanceMeasure(IfcElectricResistanceMeasure object)
+			{
 				return createIfcElectricResistanceMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcElectricVoltageMeasure(IfcElectricVoltageMeasure object) {
+			public Adapter caseIfcElectricVoltageMeasure(IfcElectricVoltageMeasure object)
+			{
 				return createIfcElectricVoltageMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcEnergyMeasure(IfcEnergyMeasure object) {
+			public Adapter caseIfcEnergyMeasure(IfcEnergyMeasure object)
+			{
 				return createIfcEnergyMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcForceMeasure(IfcForceMeasure object) {
+			public Adapter caseIfcForceMeasure(IfcForceMeasure object)
+			{
 				return createIfcForceMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcFrequencyMeasure(IfcFrequencyMeasure object) {
+			public Adapter caseIfcFrequencyMeasure(IfcFrequencyMeasure object)
+			{
 				return createIfcFrequencyMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcGloballyUniqueId(IfcGloballyUniqueId object) {
+			public Adapter caseIfcGloballyUniqueId(IfcGloballyUniqueId object)
+			{
 				return createIfcGloballyUniqueIdAdapter();
 			}
 			@Override
-			public Adapter caseIfcHeatFluxDensityMeasure(IfcHeatFluxDensityMeasure object) {
+			public Adapter caseIfcHeatFluxDensityMeasure(IfcHeatFluxDensityMeasure object)
+			{
 				return createIfcHeatFluxDensityMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcHeatingValueMeasure(IfcHeatingValueMeasure object) {
+			public Adapter caseIfcHeatingValueMeasure(IfcHeatingValueMeasure object)
+			{
 				return createIfcHeatingValueMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcIdentifier(IfcIdentifier object) {
+			public Adapter caseIfcIdentifier(IfcIdentifier object)
+			{
 				return createIfcIdentifierAdapter();
 			}
 			@Override
-			public Adapter caseIfcIlluminanceMeasure(IfcIlluminanceMeasure object) {
+			public Adapter caseIfcIlluminanceMeasure(IfcIlluminanceMeasure object)
+			{
 				return createIfcIlluminanceMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcInductanceMeasure(IfcInductanceMeasure object) {
+			public Adapter caseIfcInductanceMeasure(IfcInductanceMeasure object)
+			{
 				return createIfcInductanceMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcInteger(IfcInteger object) {
+			public Adapter caseIfcInteger(IfcInteger object)
+			{
 				return createIfcIntegerAdapter();
 			}
 			@Override
-			public Adapter caseIfcIntegerCountRateMeasure(IfcIntegerCountRateMeasure object) {
+			public Adapter caseIfcIntegerCountRateMeasure(IfcIntegerCountRateMeasure object)
+			{
 				return createIfcIntegerCountRateMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcIonConcentrationMeasure(IfcIonConcentrationMeasure object) {
+			public Adapter caseIfcIonConcentrationMeasure(IfcIonConcentrationMeasure object)
+			{
 				return createIfcIonConcentrationMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcIsothermalMoistureCapacityMeasure(IfcIsothermalMoistureCapacityMeasure object) {
+			public Adapter caseIfcIsothermalMoistureCapacityMeasure(IfcIsothermalMoistureCapacityMeasure object)
+			{
 				return createIfcIsothermalMoistureCapacityMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcKinematicViscosityMeasure(IfcKinematicViscosityMeasure object) {
+			public Adapter caseIfcKinematicViscosityMeasure(IfcKinematicViscosityMeasure object)
+			{
 				return createIfcKinematicViscosityMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcLabel(IfcLabel object) {
+			public Adapter caseIfcLabel(IfcLabel object)
+			{
 				return createIfcLabelAdapter();
 			}
 			@Override
-			public Adapter caseIfcLengthMeasure(IfcLengthMeasure object) {
+			public Adapter caseIfcLengthMeasure(IfcLengthMeasure object)
+			{
 				return createIfcLengthMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcLinearForceMeasure(IfcLinearForceMeasure object) {
+			public Adapter caseIfcLinearForceMeasure(IfcLinearForceMeasure object)
+			{
 				return createIfcLinearForceMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcLinearMomentMeasure(IfcLinearMomentMeasure object) {
+			public Adapter caseIfcLinearMomentMeasure(IfcLinearMomentMeasure object)
+			{
 				return createIfcLinearMomentMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcLinearStiffnessMeasure(IfcLinearStiffnessMeasure object) {
+			public Adapter caseIfcLinearStiffnessMeasure(IfcLinearStiffnessMeasure object)
+			{
 				return createIfcLinearStiffnessMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcLinearVelocityMeasure(IfcLinearVelocityMeasure object) {
+			public Adapter caseIfcLinearVelocityMeasure(IfcLinearVelocityMeasure object)
+			{
 				return createIfcLinearVelocityMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcLogical(IfcLogical object) {
+			public Adapter caseIfcLogical(IfcLogical object)
+			{
 				return createIfcLogicalAdapter();
 			}
 			@Override
-			public Adapter caseIfcLuminousFluxMeasure(IfcLuminousFluxMeasure object) {
+			public Adapter caseIfcLuminousFluxMeasure(IfcLuminousFluxMeasure object)
+			{
 				return createIfcLuminousFluxMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcLuminousIntensityDistributionMeasure(IfcLuminousIntensityDistributionMeasure object) {
+			public Adapter caseIfcLuminousIntensityDistributionMeasure(IfcLuminousIntensityDistributionMeasure object)
+			{
 				return createIfcLuminousIntensityDistributionMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcLuminousIntensityMeasure(IfcLuminousIntensityMeasure object) {
+			public Adapter caseIfcLuminousIntensityMeasure(IfcLuminousIntensityMeasure object)
+			{
 				return createIfcLuminousIntensityMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcMagneticFluxDensityMeasure(IfcMagneticFluxDensityMeasure object) {
+			public Adapter caseIfcMagneticFluxDensityMeasure(IfcMagneticFluxDensityMeasure object)
+			{
 				return createIfcMagneticFluxDensityMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcMagneticFluxMeasure(IfcMagneticFluxMeasure object) {
+			public Adapter caseIfcMagneticFluxMeasure(IfcMagneticFluxMeasure object)
+			{
 				return createIfcMagneticFluxMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcMassDensityMeasure(IfcMassDensityMeasure object) {
+			public Adapter caseIfcMassDensityMeasure(IfcMassDensityMeasure object)
+			{
 				return createIfcMassDensityMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcMassFlowRateMeasure(IfcMassFlowRateMeasure object) {
+			public Adapter caseIfcMassFlowRateMeasure(IfcMassFlowRateMeasure object)
+			{
 				return createIfcMassFlowRateMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcMassMeasure(IfcMassMeasure object) {
+			public Adapter caseIfcMassMeasure(IfcMassMeasure object)
+			{
 				return createIfcMassMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcMassPerLengthMeasure(IfcMassPerLengthMeasure object) {
+			public Adapter caseIfcMassPerLengthMeasure(IfcMassPerLengthMeasure object)
+			{
 				return createIfcMassPerLengthMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcModulusOfElasticityMeasure(IfcModulusOfElasticityMeasure object) {
+			public Adapter caseIfcModulusOfElasticityMeasure(IfcModulusOfElasticityMeasure object)
+			{
 				return createIfcModulusOfElasticityMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcModulusOfLinearSubgradeReactionMeasure(IfcModulusOfLinearSubgradeReactionMeasure object) {
+			public Adapter caseIfcModulusOfLinearSubgradeReactionMeasure(IfcModulusOfLinearSubgradeReactionMeasure object)
+			{
 				return createIfcModulusOfLinearSubgradeReactionMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcModulusOfRotationalSubgradeReactionMeasure(IfcModulusOfRotationalSubgradeReactionMeasure object) {
+			public Adapter caseIfcModulusOfRotationalSubgradeReactionMeasure(IfcModulusOfRotationalSubgradeReactionMeasure object)
+			{
 				return createIfcModulusOfRotationalSubgradeReactionMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcModulusOfSubgradeReactionMeasure(IfcModulusOfSubgradeReactionMeasure object) {
+			public Adapter caseIfcModulusOfSubgradeReactionMeasure(IfcModulusOfSubgradeReactionMeasure object)
+			{
 				return createIfcModulusOfSubgradeReactionMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcMoistureDiffusivityMeasure(IfcMoistureDiffusivityMeasure object) {
+			public Adapter caseIfcMoistureDiffusivityMeasure(IfcMoistureDiffusivityMeasure object)
+			{
 				return createIfcMoistureDiffusivityMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcMolecularWeightMeasure(IfcMolecularWeightMeasure object) {
+			public Adapter caseIfcMolecularWeightMeasure(IfcMolecularWeightMeasure object)
+			{
 				return createIfcMolecularWeightMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcMomentOfInertiaMeasure(IfcMomentOfInertiaMeasure object) {
+			public Adapter caseIfcMomentOfInertiaMeasure(IfcMomentOfInertiaMeasure object)
+			{
 				return createIfcMomentOfInertiaMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcMonetaryMeasure(IfcMonetaryMeasure object) {
+			public Adapter caseIfcMonetaryMeasure(IfcMonetaryMeasure object)
+			{
 				return createIfcMonetaryMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcNumericMeasure(IfcNumericMeasure object) {
+			public Adapter caseIfcNumericMeasure(IfcNumericMeasure object)
+			{
 				return createIfcNumericMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcPHMeasure(IfcPHMeasure object) {
+			public Adapter caseIfcPHMeasure(IfcPHMeasure object)
+			{
 				return createIfcPHMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcParameterValue(IfcParameterValue object) {
+			public Adapter caseIfcParameterValue(IfcParameterValue object)
+			{
 				return createIfcParameterValueAdapter();
 			}
 			@Override
-			public Adapter caseIfcPlanarForceMeasure(IfcPlanarForceMeasure object) {
+			public Adapter caseIfcPlanarForceMeasure(IfcPlanarForceMeasure object)
+			{
 				return createIfcPlanarForceMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcPlaneAngleMeasure(IfcPlaneAngleMeasure object) {
+			public Adapter caseIfcPlaneAngleMeasure(IfcPlaneAngleMeasure object)
+			{
 				return createIfcPlaneAngleMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcPowerMeasure(IfcPowerMeasure object) {
+			public Adapter caseIfcPowerMeasure(IfcPowerMeasure object)
+			{
 				return createIfcPowerMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcPressureMeasure(IfcPressureMeasure object) {
+			public Adapter caseIfcPressureMeasure(IfcPressureMeasure object)
+			{
 				return createIfcPressureMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcRadioActivityMeasure(IfcRadioActivityMeasure object) {
+			public Adapter caseIfcRadioActivityMeasure(IfcRadioActivityMeasure object)
+			{
 				return createIfcRadioActivityMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcRatioMeasure(IfcRatioMeasure object) {
+			public Adapter caseIfcRatioMeasure(IfcRatioMeasure object)
+			{
 				return createIfcRatioMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcReal(IfcReal object) {
+			public Adapter caseIfcReal(IfcReal object)
+			{
 				return createIfcRealAdapter();
 			}
 			@Override
-			public Adapter caseIfcRotationalFrequencyMeasure(IfcRotationalFrequencyMeasure object) {
+			public Adapter caseIfcRotationalFrequencyMeasure(IfcRotationalFrequencyMeasure object)
+			{
 				return createIfcRotationalFrequencyMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcRotationalMassMeasure(IfcRotationalMassMeasure object) {
+			public Adapter caseIfcRotationalMassMeasure(IfcRotationalMassMeasure object)
+			{
 				return createIfcRotationalMassMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcRotationalStiffnessMeasure(IfcRotationalStiffnessMeasure object) {
+			public Adapter caseIfcRotationalStiffnessMeasure(IfcRotationalStiffnessMeasure object)
+			{
 				return createIfcRotationalStiffnessMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcSectionModulusMeasure(IfcSectionModulusMeasure object) {
+			public Adapter caseIfcSectionModulusMeasure(IfcSectionModulusMeasure object)
+			{
 				return createIfcSectionModulusMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcSectionalAreaIntegralMeasure(IfcSectionalAreaIntegralMeasure object) {
+			public Adapter caseIfcSectionalAreaIntegralMeasure(IfcSectionalAreaIntegralMeasure object)
+			{
 				return createIfcSectionalAreaIntegralMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcShearModulusMeasure(IfcShearModulusMeasure object) {
+			public Adapter caseIfcShearModulusMeasure(IfcShearModulusMeasure object)
+			{
 				return createIfcShearModulusMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcSolidAngleMeasure(IfcSolidAngleMeasure object) {
+			public Adapter caseIfcSolidAngleMeasure(IfcSolidAngleMeasure object)
+			{
 				return createIfcSolidAngleMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcSoundPowerMeasure(IfcSoundPowerMeasure object) {
+			public Adapter caseIfcSoundPowerMeasure(IfcSoundPowerMeasure object)
+			{
 				return createIfcSoundPowerMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcSoundPressureMeasure(IfcSoundPressureMeasure object) {
+			public Adapter caseIfcSoundPressureMeasure(IfcSoundPressureMeasure object)
+			{
 				return createIfcSoundPressureMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcSpecificHeatCapacityMeasure(IfcSpecificHeatCapacityMeasure object) {
+			public Adapter caseIfcSpecificHeatCapacityMeasure(IfcSpecificHeatCapacityMeasure object)
+			{
 				return createIfcSpecificHeatCapacityMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcSpecularExponent(IfcSpecularExponent object) {
+			public Adapter caseIfcSpecularExponent(IfcSpecularExponent object)
+			{
 				return createIfcSpecularExponentAdapter();
 			}
 			@Override
-			public Adapter caseIfcSpecularRoughness(IfcSpecularRoughness object) {
+			public Adapter caseIfcSpecularRoughness(IfcSpecularRoughness object)
+			{
 				return createIfcSpecularRoughnessAdapter();
 			}
 			@Override
-			public Adapter caseIfcTemperatureGradientMeasure(IfcTemperatureGradientMeasure object) {
+			public Adapter caseIfcTemperatureGradientMeasure(IfcTemperatureGradientMeasure object)
+			{
 				return createIfcTemperatureGradientMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcText(IfcText object) {
+			public Adapter caseIfcText(IfcText object)
+			{
 				return createIfcTextAdapter();
 			}
 			@Override
-			public Adapter caseIfcThermalAdmittanceMeasure(IfcThermalAdmittanceMeasure object) {
+			public Adapter caseIfcThermalAdmittanceMeasure(IfcThermalAdmittanceMeasure object)
+			{
 				return createIfcThermalAdmittanceMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcThermalConductivityMeasure(IfcThermalConductivityMeasure object) {
+			public Adapter caseIfcThermalConductivityMeasure(IfcThermalConductivityMeasure object)
+			{
 				return createIfcThermalConductivityMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcThermalExpansionCoefficientMeasure(IfcThermalExpansionCoefficientMeasure object) {
+			public Adapter caseIfcThermalExpansionCoefficientMeasure(IfcThermalExpansionCoefficientMeasure object)
+			{
 				return createIfcThermalExpansionCoefficientMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcThermalResistanceMeasure(IfcThermalResistanceMeasure object) {
+			public Adapter caseIfcThermalResistanceMeasure(IfcThermalResistanceMeasure object)
+			{
 				return createIfcThermalResistanceMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcThermalTransmittanceMeasure(IfcThermalTransmittanceMeasure object) {
+			public Adapter caseIfcThermalTransmittanceMeasure(IfcThermalTransmittanceMeasure object)
+			{
 				return createIfcThermalTransmittanceMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcThermodynamicTemperatureMeasure(IfcThermodynamicTemperatureMeasure object) {
+			public Adapter caseIfcThermodynamicTemperatureMeasure(IfcThermodynamicTemperatureMeasure object)
+			{
 				return createIfcThermodynamicTemperatureMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcTimeMeasure(IfcTimeMeasure object) {
+			public Adapter caseIfcTimeMeasure(IfcTimeMeasure object)
+			{
 				return createIfcTimeMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcTimeStamp(IfcTimeStamp object) {
+			public Adapter caseIfcTimeStamp(IfcTimeStamp object)
+			{
 				return createIfcTimeStampAdapter();
 			}
 			@Override
-			public Adapter caseIfcTorqueMeasure(IfcTorqueMeasure object) {
+			public Adapter caseIfcTorqueMeasure(IfcTorqueMeasure object)
+			{
 				return createIfcTorqueMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcVaporPermeabilityMeasure(IfcVaporPermeabilityMeasure object) {
+			public Adapter caseIfcVaporPermeabilityMeasure(IfcVaporPermeabilityMeasure object)
+			{
 				return createIfcVaporPermeabilityMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcVolumeMeasure(IfcVolumeMeasure object) {
+			public Adapter caseIfcVolumeMeasure(IfcVolumeMeasure object)
+			{
 				return createIfcVolumeMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcVolumetricFlowRateMeasure(IfcVolumetricFlowRateMeasure object) {
+			public Adapter caseIfcVolumetricFlowRateMeasure(IfcVolumetricFlowRateMeasure object)
+			{
 				return createIfcVolumetricFlowRateMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcWarpingConstantMeasure(IfcWarpingConstantMeasure object) {
+			public Adapter caseIfcWarpingConstantMeasure(IfcWarpingConstantMeasure object)
+			{
 				return createIfcWarpingConstantMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcWarpingMomentMeasure(IfcWarpingMomentMeasure object) {
+			public Adapter caseIfcWarpingMomentMeasure(IfcWarpingMomentMeasure object)
+			{
 				return createIfcWarpingMomentMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcNormalisedRatioMeasure(IfcNormalisedRatioMeasure object) {
+			public Adapter caseIfcNormalisedRatioMeasure(IfcNormalisedRatioMeasure object)
+			{
 				return createIfcNormalisedRatioMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcPositiveLengthMeasure(IfcPositiveLengthMeasure object) {
+			public Adapter caseIfcPositiveLengthMeasure(IfcPositiveLengthMeasure object)
+			{
 				return createIfcPositiveLengthMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcPositivePlaneAngleMeasure(IfcPositivePlaneAngleMeasure object) {
+			public Adapter caseIfcPositivePlaneAngleMeasure(IfcPositivePlaneAngleMeasure object)
+			{
 				return createIfcPositivePlaneAngleMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfcPositiveRatioMeasure(IfcPositiveRatioMeasure object) {
+			public Adapter caseIfcPositiveRatioMeasure(IfcPositiveRatioMeasure object)
+			{
 				return createIfcPositiveRatioMeasureAdapter();
 			}
 			@Override
-			public Adapter caseIfc2DCompositeCurve(Ifc2DCompositeCurve object) {
+			public Adapter caseIfc2DCompositeCurve(Ifc2DCompositeCurve object)
+			{
 				return createIfc2DCompositeCurveAdapter();
 			}
 			@Override
-			public Adapter caseIfcActionRequest(IfcActionRequest object) {
+			public Adapter caseIfcActionRequest(IfcActionRequest object)
+			{
 				return createIfcActionRequestAdapter();
 			}
 			@Override
-			public Adapter caseIfcActor(IfcActor object) {
+			public Adapter caseIfcActor(IfcActor object)
+			{
 				return createIfcActorAdapter();
 			}
 			@Override
-			public Adapter caseIfcActorRole(IfcActorRole object) {
+			public Adapter caseIfcActorRole(IfcActorRole object)
+			{
 				return createIfcActorRoleAdapter();
 			}
 			@Override
-			public Adapter caseIfcActuatorType(IfcActuatorType object) {
+			public Adapter caseIfcActuatorType(IfcActuatorType object)
+			{
 				return createIfcActuatorTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcAddress(IfcAddress object) {
+			public Adapter caseIfcAddress(IfcAddress object)
+			{
 				return createIfcAddressAdapter();
 			}
 			@Override
-			public Adapter caseIfcAirTerminalBoxType(IfcAirTerminalBoxType object) {
+			public Adapter caseIfcAirTerminalBoxType(IfcAirTerminalBoxType object)
+			{
 				return createIfcAirTerminalBoxTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcAirTerminalType(IfcAirTerminalType object) {
+			public Adapter caseIfcAirTerminalType(IfcAirTerminalType object)
+			{
 				return createIfcAirTerminalTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcAirToAirHeatRecoveryType(IfcAirToAirHeatRecoveryType object) {
+			public Adapter caseIfcAirToAirHeatRecoveryType(IfcAirToAirHeatRecoveryType object)
+			{
 				return createIfcAirToAirHeatRecoveryTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcAlarmType(IfcAlarmType object) {
+			public Adapter caseIfcAlarmType(IfcAlarmType object)
+			{
 				return createIfcAlarmTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcAngularDimension(IfcAngularDimension object) {
+			public Adapter caseIfcAngularDimension(IfcAngularDimension object)
+			{
 				return createIfcAngularDimensionAdapter();
 			}
 			@Override
-			public Adapter caseIfcAnnotation(IfcAnnotation object) {
+			public Adapter caseIfcAnnotation(IfcAnnotation object)
+			{
 				return createIfcAnnotationAdapter();
 			}
 			@Override
-			public Adapter caseIfcAnnotationCurveOccurrence(IfcAnnotationCurveOccurrence object) {
+			public Adapter caseIfcAnnotationCurveOccurrence(IfcAnnotationCurveOccurrence object)
+			{
 				return createIfcAnnotationCurveOccurrenceAdapter();
 			}
 			@Override
-			public Adapter caseIfcAnnotationFillArea(IfcAnnotationFillArea object) {
+			public Adapter caseIfcAnnotationFillArea(IfcAnnotationFillArea object)
+			{
 				return createIfcAnnotationFillAreaAdapter();
 			}
 			@Override
-			public Adapter caseIfcAnnotationFillAreaOccurrence(IfcAnnotationFillAreaOccurrence object) {
+			public Adapter caseIfcAnnotationFillAreaOccurrence(IfcAnnotationFillAreaOccurrence object)
+			{
 				return createIfcAnnotationFillAreaOccurrenceAdapter();
 			}
 			@Override
-			public Adapter caseIfcAnnotationOccurrence(IfcAnnotationOccurrence object) {
+			public Adapter caseIfcAnnotationOccurrence(IfcAnnotationOccurrence object)
+			{
 				return createIfcAnnotationOccurrenceAdapter();
 			}
 			@Override
-			public Adapter caseIfcAnnotationSurface(IfcAnnotationSurface object) {
+			public Adapter caseIfcAnnotationSurface(IfcAnnotationSurface object)
+			{
 				return createIfcAnnotationSurfaceAdapter();
 			}
 			@Override
-			public Adapter caseIfcAnnotationSurfaceOccurrence(IfcAnnotationSurfaceOccurrence object) {
+			public Adapter caseIfcAnnotationSurfaceOccurrence(IfcAnnotationSurfaceOccurrence object)
+			{
 				return createIfcAnnotationSurfaceOccurrenceAdapter();
 			}
 			@Override
-			public Adapter caseIfcAnnotationSymbolOccurrence(IfcAnnotationSymbolOccurrence object) {
+			public Adapter caseIfcAnnotationSymbolOccurrence(IfcAnnotationSymbolOccurrence object)
+			{
 				return createIfcAnnotationSymbolOccurrenceAdapter();
 			}
 			@Override
-			public Adapter caseIfcAnnotationTextOccurrence(IfcAnnotationTextOccurrence object) {
+			public Adapter caseIfcAnnotationTextOccurrence(IfcAnnotationTextOccurrence object)
+			{
 				return createIfcAnnotationTextOccurrenceAdapter();
 			}
 			@Override
-			public Adapter caseIfcApplication(IfcApplication object) {
+			public Adapter caseIfcApplication(IfcApplication object)
+			{
 				return createIfcApplicationAdapter();
 			}
 			@Override
-			public Adapter caseIfcAppliedValue(IfcAppliedValue object) {
+			public Adapter caseIfcAppliedValue(IfcAppliedValue object)
+			{
 				return createIfcAppliedValueAdapter();
 			}
 			@Override
-			public Adapter caseIfcAppliedValueRelationship(IfcAppliedValueRelationship object) {
+			public Adapter caseIfcAppliedValueRelationship(IfcAppliedValueRelationship object)
+			{
 				return createIfcAppliedValueRelationshipAdapter();
 			}
 			@Override
-			public Adapter caseIfcApproval(IfcApproval object) {
+			public Adapter caseIfcApproval(IfcApproval object)
+			{
 				return createIfcApprovalAdapter();
 			}
 			@Override
-			public Adapter caseIfcApprovalActorRelationship(IfcApprovalActorRelationship object) {
+			public Adapter caseIfcApprovalActorRelationship(IfcApprovalActorRelationship object)
+			{
 				return createIfcApprovalActorRelationshipAdapter();
 			}
 			@Override
-			public Adapter caseIfcApprovalPropertyRelationship(IfcApprovalPropertyRelationship object) {
+			public Adapter caseIfcApprovalPropertyRelationship(IfcApprovalPropertyRelationship object)
+			{
 				return createIfcApprovalPropertyRelationshipAdapter();
 			}
 			@Override
-			public Adapter caseIfcApprovalRelationship(IfcApprovalRelationship object) {
+			public Adapter caseIfcApprovalRelationship(IfcApprovalRelationship object)
+			{
 				return createIfcApprovalRelationshipAdapter();
 			}
 			@Override
-			public Adapter caseIfcArbitraryClosedProfileDef(IfcArbitraryClosedProfileDef object) {
+			public Adapter caseIfcArbitraryClosedProfileDef(IfcArbitraryClosedProfileDef object)
+			{
 				return createIfcArbitraryClosedProfileDefAdapter();
 			}
 			@Override
-			public Adapter caseIfcArbitraryOpenProfileDef(IfcArbitraryOpenProfileDef object) {
+			public Adapter caseIfcArbitraryOpenProfileDef(IfcArbitraryOpenProfileDef object)
+			{
 				return createIfcArbitraryOpenProfileDefAdapter();
 			}
 			@Override
-			public Adapter caseIfcArbitraryProfileDefWithVoids(IfcArbitraryProfileDefWithVoids object) {
+			public Adapter caseIfcArbitraryProfileDefWithVoids(IfcArbitraryProfileDefWithVoids object)
+			{
 				return createIfcArbitraryProfileDefWithVoidsAdapter();
 			}
 			@Override
-			public Adapter caseIfcAsset(IfcAsset object) {
+			public Adapter caseIfcAsset(IfcAsset object)
+			{
 				return createIfcAssetAdapter();
 			}
 			@Override
-			public Adapter caseIfcAsymmetricIShapeProfileDef(IfcAsymmetricIShapeProfileDef object) {
+			public Adapter caseIfcAsymmetricIShapeProfileDef(IfcAsymmetricIShapeProfileDef object)
+			{
 				return createIfcAsymmetricIShapeProfileDefAdapter();
 			}
 			@Override
-			public Adapter caseIfcAxis1Placement(IfcAxis1Placement object) {
+			public Adapter caseIfcAxis1Placement(IfcAxis1Placement object)
+			{
 				return createIfcAxis1PlacementAdapter();
 			}
 			@Override
-			public Adapter caseIfcAxis2Placement2D(IfcAxis2Placement2D object) {
+			public Adapter caseIfcAxis2Placement2D(IfcAxis2Placement2D object)
+			{
 				return createIfcAxis2Placement2DAdapter();
 			}
 			@Override
-			public Adapter caseIfcAxis2Placement3D(IfcAxis2Placement3D object) {
+			public Adapter caseIfcAxis2Placement3D(IfcAxis2Placement3D object)
+			{
 				return createIfcAxis2Placement3DAdapter();
 			}
 			@Override
-			public Adapter caseIfcBSplineCurve(IfcBSplineCurve object) {
+			public Adapter caseIfcBSplineCurve(IfcBSplineCurve object)
+			{
 				return createIfcBSplineCurveAdapter();
 			}
 			@Override
-			public Adapter caseIfcBeam(IfcBeam object) {
+			public Adapter caseIfcBeam(IfcBeam object)
+			{
 				return createIfcBeamAdapter();
 			}
 			@Override
-			public Adapter caseIfcBeamType(IfcBeamType object) {
+			public Adapter caseIfcBeamType(IfcBeamType object)
+			{
 				return createIfcBeamTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcBezierCurve(IfcBezierCurve object) {
+			public Adapter caseIfcBezierCurve(IfcBezierCurve object)
+			{
 				return createIfcBezierCurveAdapter();
 			}
 			@Override
-			public Adapter caseIfcBlobTexture(IfcBlobTexture object) {
+			public Adapter caseIfcBlobTexture(IfcBlobTexture object)
+			{
 				return createIfcBlobTextureAdapter();
 			}
 			@Override
-			public Adapter caseIfcBlock(IfcBlock object) {
+			public Adapter caseIfcBlock(IfcBlock object)
+			{
 				return createIfcBlockAdapter();
 			}
 			@Override
-			public Adapter caseIfcBoilerType(IfcBoilerType object) {
+			public Adapter caseIfcBoilerType(IfcBoilerType object)
+			{
 				return createIfcBoilerTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcBooleanClippingResult(IfcBooleanClippingResult object) {
+			public Adapter caseIfcBooleanClippingResult(IfcBooleanClippingResult object)
+			{
 				return createIfcBooleanClippingResultAdapter();
 			}
 			@Override
-			public Adapter caseIfcBooleanResult(IfcBooleanResult object) {
+			public Adapter caseIfcBooleanResult(IfcBooleanResult object)
+			{
 				return createIfcBooleanResultAdapter();
 			}
 			@Override
-			public Adapter caseIfcBoundaryCondition(IfcBoundaryCondition object) {
+			public Adapter caseIfcBoundaryCondition(IfcBoundaryCondition object)
+			{
 				return createIfcBoundaryConditionAdapter();
 			}
 			@Override
-			public Adapter caseIfcBoundaryEdgeCondition(IfcBoundaryEdgeCondition object) {
+			public Adapter caseIfcBoundaryEdgeCondition(IfcBoundaryEdgeCondition object)
+			{
 				return createIfcBoundaryEdgeConditionAdapter();
 			}
 			@Override
-			public Adapter caseIfcBoundaryFaceCondition(IfcBoundaryFaceCondition object) {
+			public Adapter caseIfcBoundaryFaceCondition(IfcBoundaryFaceCondition object)
+			{
 				return createIfcBoundaryFaceConditionAdapter();
 			}
 			@Override
-			public Adapter caseIfcBoundaryNodeCondition(IfcBoundaryNodeCondition object) {
+			public Adapter caseIfcBoundaryNodeCondition(IfcBoundaryNodeCondition object)
+			{
 				return createIfcBoundaryNodeConditionAdapter();
 			}
 			@Override
-			public Adapter caseIfcBoundaryNodeConditionWarping(IfcBoundaryNodeConditionWarping object) {
+			public Adapter caseIfcBoundaryNodeConditionWarping(IfcBoundaryNodeConditionWarping object)
+			{
 				return createIfcBoundaryNodeConditionWarpingAdapter();
 			}
 			@Override
-			public Adapter caseIfcBoundedCurve(IfcBoundedCurve object) {
+			public Adapter caseIfcBoundedCurve(IfcBoundedCurve object)
+			{
 				return createIfcBoundedCurveAdapter();
 			}
 			@Override
-			public Adapter caseIfcBoundedSurface(IfcBoundedSurface object) {
+			public Adapter caseIfcBoundedSurface(IfcBoundedSurface object)
+			{
 				return createIfcBoundedSurfaceAdapter();
 			}
 			@Override
-			public Adapter caseIfcBoundingBox(IfcBoundingBox object) {
+			public Adapter caseIfcBoundingBox(IfcBoundingBox object)
+			{
 				return createIfcBoundingBoxAdapter();
 			}
 			@Override
-			public Adapter caseIfcBoxedHalfSpace(IfcBoxedHalfSpace object) {
+			public Adapter caseIfcBoxedHalfSpace(IfcBoxedHalfSpace object)
+			{
 				return createIfcBoxedHalfSpaceAdapter();
 			}
 			@Override
-			public Adapter caseIfcBuilding(IfcBuilding object) {
+			public Adapter caseIfcBuilding(IfcBuilding object)
+			{
 				return createIfcBuildingAdapter();
 			}
 			@Override
-			public Adapter caseIfcBuildingElement(IfcBuildingElement object) {
+			public Adapter caseIfcBuildingElement(IfcBuildingElement object)
+			{
 				return createIfcBuildingElementAdapter();
 			}
 			@Override
-			public Adapter caseIfcBuildingElementComponent(IfcBuildingElementComponent object) {
+			public Adapter caseIfcBuildingElementComponent(IfcBuildingElementComponent object)
+			{
 				return createIfcBuildingElementComponentAdapter();
 			}
 			@Override
-			public Adapter caseIfcBuildingElementPart(IfcBuildingElementPart object) {
+			public Adapter caseIfcBuildingElementPart(IfcBuildingElementPart object)
+			{
 				return createIfcBuildingElementPartAdapter();
 			}
 			@Override
-			public Adapter caseIfcBuildingElementProxy(IfcBuildingElementProxy object) {
+			public Adapter caseIfcBuildingElementProxy(IfcBuildingElementProxy object)
+			{
 				return createIfcBuildingElementProxyAdapter();
 			}
 			@Override
-			public Adapter caseIfcBuildingElementProxyType(IfcBuildingElementProxyType object) {
+			public Adapter caseIfcBuildingElementProxyType(IfcBuildingElementProxyType object)
+			{
 				return createIfcBuildingElementProxyTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcBuildingElementType(IfcBuildingElementType object) {
+			public Adapter caseIfcBuildingElementType(IfcBuildingElementType object)
+			{
 				return createIfcBuildingElementTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcBuildingStorey(IfcBuildingStorey object) {
+			public Adapter caseIfcBuildingStorey(IfcBuildingStorey object)
+			{
 				return createIfcBuildingStoreyAdapter();
 			}
 			@Override
-			public Adapter caseIfcCShapeProfileDef(IfcCShapeProfileDef object) {
+			public Adapter caseIfcCShapeProfileDef(IfcCShapeProfileDef object)
+			{
 				return createIfcCShapeProfileDefAdapter();
 			}
 			@Override
-			public Adapter caseIfcCableCarrierFittingType(IfcCableCarrierFittingType object) {
+			public Adapter caseIfcCableCarrierFittingType(IfcCableCarrierFittingType object)
+			{
 				return createIfcCableCarrierFittingTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcCableCarrierSegmentType(IfcCableCarrierSegmentType object) {
+			public Adapter caseIfcCableCarrierSegmentType(IfcCableCarrierSegmentType object)
+			{
 				return createIfcCableCarrierSegmentTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcCableSegmentType(IfcCableSegmentType object) {
+			public Adapter caseIfcCableSegmentType(IfcCableSegmentType object)
+			{
 				return createIfcCableSegmentTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcCalendarDate(IfcCalendarDate object) {
+			public Adapter caseIfcCalendarDate(IfcCalendarDate object)
+			{
 				return createIfcCalendarDateAdapter();
 			}
 			@Override
-			public Adapter caseIfcCartesianPoint(IfcCartesianPoint object) {
+			public Adapter caseIfcCartesianPoint(IfcCartesianPoint object)
+			{
 				return createIfcCartesianPointAdapter();
 			}
 			@Override
-			public Adapter caseIfcCartesianTransformationOperator(IfcCartesianTransformationOperator object) {
+			public Adapter caseIfcCartesianTransformationOperator(IfcCartesianTransformationOperator object)
+			{
 				return createIfcCartesianTransformationOperatorAdapter();
 			}
 			@Override
-			public Adapter caseIfcCartesianTransformationOperator2D(IfcCartesianTransformationOperator2D object) {
+			public Adapter caseIfcCartesianTransformationOperator2D(IfcCartesianTransformationOperator2D object)
+			{
 				return createIfcCartesianTransformationOperator2DAdapter();
 			}
 			@Override
-			public Adapter caseIfcCartesianTransformationOperator2DnonUniform(IfcCartesianTransformationOperator2DnonUniform object) {
+			public Adapter caseIfcCartesianTransformationOperator2DnonUniform(IfcCartesianTransformationOperator2DnonUniform object)
+			{
 				return createIfcCartesianTransformationOperator2DnonUniformAdapter();
 			}
 			@Override
-			public Adapter caseIfcCartesianTransformationOperator3D(IfcCartesianTransformationOperator3D object) {
+			public Adapter caseIfcCartesianTransformationOperator3D(IfcCartesianTransformationOperator3D object)
+			{
 				return createIfcCartesianTransformationOperator3DAdapter();
 			}
 			@Override
-			public Adapter caseIfcCartesianTransformationOperator3DnonUniform(IfcCartesianTransformationOperator3DnonUniform object) {
+			public Adapter caseIfcCartesianTransformationOperator3DnonUniform(IfcCartesianTransformationOperator3DnonUniform object)
+			{
 				return createIfcCartesianTransformationOperator3DnonUniformAdapter();
 			}
 			@Override
-			public Adapter caseIfcCenterLineProfileDef(IfcCenterLineProfileDef object) {
+			public Adapter caseIfcCenterLineProfileDef(IfcCenterLineProfileDef object)
+			{
 				return createIfcCenterLineProfileDefAdapter();
 			}
 			@Override
-			public Adapter caseIfcChamferEdgeFeature(IfcChamferEdgeFeature object) {
+			public Adapter caseIfcChamferEdgeFeature(IfcChamferEdgeFeature object)
+			{
 				return createIfcChamferEdgeFeatureAdapter();
 			}
 			@Override
-			public Adapter caseIfcChillerType(IfcChillerType object) {
+			public Adapter caseIfcChillerType(IfcChillerType object)
+			{
 				return createIfcChillerTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcCircle(IfcCircle object) {
+			public Adapter caseIfcCircle(IfcCircle object)
+			{
 				return createIfcCircleAdapter();
 			}
 			@Override
-			public Adapter caseIfcCircleHollowProfileDef(IfcCircleHollowProfileDef object) {
+			public Adapter caseIfcCircleHollowProfileDef(IfcCircleHollowProfileDef object)
+			{
 				return createIfcCircleHollowProfileDefAdapter();
 			}
 			@Override
-			public Adapter caseIfcCircleProfileDef(IfcCircleProfileDef object) {
+			public Adapter caseIfcCircleProfileDef(IfcCircleProfileDef object)
+			{
 				return createIfcCircleProfileDefAdapter();
 			}
 			@Override
-			public Adapter caseIfcClassification(IfcClassification object) {
+			public Adapter caseIfcClassification(IfcClassification object)
+			{
 				return createIfcClassificationAdapter();
 			}
 			@Override
-			public Adapter caseIfcClassificationItem(IfcClassificationItem object) {
+			public Adapter caseIfcClassificationItem(IfcClassificationItem object)
+			{
 				return createIfcClassificationItemAdapter();
 			}
 			@Override
-			public Adapter caseIfcClassificationItemRelationship(IfcClassificationItemRelationship object) {
+			public Adapter caseIfcClassificationItemRelationship(IfcClassificationItemRelationship object)
+			{
 				return createIfcClassificationItemRelationshipAdapter();
 			}
 			@Override
-			public Adapter caseIfcClassificationNotation(IfcClassificationNotation object) {
+			public Adapter caseIfcClassificationNotation(IfcClassificationNotation object)
+			{
 				return createIfcClassificationNotationAdapter();
 			}
 			@Override
-			public Adapter caseIfcClassificationNotationFacet(IfcClassificationNotationFacet object) {
+			public Adapter caseIfcClassificationNotationFacet(IfcClassificationNotationFacet object)
+			{
 				return createIfcClassificationNotationFacetAdapter();
 			}
 			@Override
-			public Adapter caseIfcClassificationReference(IfcClassificationReference object) {
+			public Adapter caseIfcClassificationReference(IfcClassificationReference object)
+			{
 				return createIfcClassificationReferenceAdapter();
 			}
 			@Override
-			public Adapter caseIfcClosedShell(IfcClosedShell object) {
+			public Adapter caseIfcClosedShell(IfcClosedShell object)
+			{
 				return createIfcClosedShellAdapter();
 			}
 			@Override
-			public Adapter caseIfcCoilType(IfcCoilType object) {
+			public Adapter caseIfcCoilType(IfcCoilType object)
+			{
 				return createIfcCoilTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcColourRgb(IfcColourRgb object) {
+			public Adapter caseIfcColourRgb(IfcColourRgb object)
+			{
 				return createIfcColourRgbAdapter();
 			}
 			@Override
-			public Adapter caseIfcColourSpecification(IfcColourSpecification object) {
+			public Adapter caseIfcColourSpecification(IfcColourSpecification object)
+			{
 				return createIfcColourSpecificationAdapter();
 			}
 			@Override
-			public Adapter caseIfcColumn(IfcColumn object) {
+			public Adapter caseIfcColumn(IfcColumn object)
+			{
 				return createIfcColumnAdapter();
 			}
 			@Override
-			public Adapter caseIfcColumnType(IfcColumnType object) {
+			public Adapter caseIfcColumnType(IfcColumnType object)
+			{
 				return createIfcColumnTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcComplexProperty(IfcComplexProperty object) {
+			public Adapter caseIfcComplexProperty(IfcComplexProperty object)
+			{
 				return createIfcComplexPropertyAdapter();
 			}
 			@Override
-			public Adapter caseIfcCompositeCurve(IfcCompositeCurve object) {
+			public Adapter caseIfcCompositeCurve(IfcCompositeCurve object)
+			{
 				return createIfcCompositeCurveAdapter();
 			}
 			@Override
-			public Adapter caseIfcCompositeCurveSegment(IfcCompositeCurveSegment object) {
+			public Adapter caseIfcCompositeCurveSegment(IfcCompositeCurveSegment object)
+			{
 				return createIfcCompositeCurveSegmentAdapter();
 			}
 			@Override
-			public Adapter caseIfcCompositeProfileDef(IfcCompositeProfileDef object) {
+			public Adapter caseIfcCompositeProfileDef(IfcCompositeProfileDef object)
+			{
 				return createIfcCompositeProfileDefAdapter();
 			}
 			@Override
-			public Adapter caseIfcCompressorType(IfcCompressorType object) {
+			public Adapter caseIfcCompressorType(IfcCompressorType object)
+			{
 				return createIfcCompressorTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcCondenserType(IfcCondenserType object) {
+			public Adapter caseIfcCondenserType(IfcCondenserType object)
+			{
 				return createIfcCondenserTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcCondition(IfcCondition object) {
+			public Adapter caseIfcCondition(IfcCondition object)
+			{
 				return createIfcConditionAdapter();
 			}
 			@Override
-			public Adapter caseIfcConditionCriterion(IfcConditionCriterion object) {
+			public Adapter caseIfcConditionCriterion(IfcConditionCriterion object)
+			{
 				return createIfcConditionCriterionAdapter();
 			}
 			@Override
-			public Adapter caseIfcConic(IfcConic object) {
+			public Adapter caseIfcConic(IfcConic object)
+			{
 				return createIfcConicAdapter();
 			}
 			@Override
-			public Adapter caseIfcConnectedFaceSet(IfcConnectedFaceSet object) {
+			public Adapter caseIfcConnectedFaceSet(IfcConnectedFaceSet object)
+			{
 				return createIfcConnectedFaceSetAdapter();
 			}
 			@Override
-			public Adapter caseIfcConnectionCurveGeometry(IfcConnectionCurveGeometry object) {
+			public Adapter caseIfcConnectionCurveGeometry(IfcConnectionCurveGeometry object)
+			{
 				return createIfcConnectionCurveGeometryAdapter();
 			}
 			@Override
-			public Adapter caseIfcConnectionGeometry(IfcConnectionGeometry object) {
+			public Adapter caseIfcConnectionGeometry(IfcConnectionGeometry object)
+			{
 				return createIfcConnectionGeometryAdapter();
 			}
 			@Override
-			public Adapter caseIfcConnectionPointEccentricity(IfcConnectionPointEccentricity object) {
+			public Adapter caseIfcConnectionPointEccentricity(IfcConnectionPointEccentricity object)
+			{
 				return createIfcConnectionPointEccentricityAdapter();
 			}
 			@Override
-			public Adapter caseIfcConnectionPointGeometry(IfcConnectionPointGeometry object) {
+			public Adapter caseIfcConnectionPointGeometry(IfcConnectionPointGeometry object)
+			{
 				return createIfcConnectionPointGeometryAdapter();
 			}
 			@Override
-			public Adapter caseIfcConnectionPortGeometry(IfcConnectionPortGeometry object) {
+			public Adapter caseIfcConnectionPortGeometry(IfcConnectionPortGeometry object)
+			{
 				return createIfcConnectionPortGeometryAdapter();
 			}
 			@Override
-			public Adapter caseIfcConnectionSurfaceGeometry(IfcConnectionSurfaceGeometry object) {
+			public Adapter caseIfcConnectionSurfaceGeometry(IfcConnectionSurfaceGeometry object)
+			{
 				return createIfcConnectionSurfaceGeometryAdapter();
 			}
 			@Override
-			public Adapter caseIfcConstraint(IfcConstraint object) {
+			public Adapter caseIfcConstraint(IfcConstraint object)
+			{
 				return createIfcConstraintAdapter();
 			}
 			@Override
-			public Adapter caseIfcConstraintAggregationRelationship(IfcConstraintAggregationRelationship object) {
+			public Adapter caseIfcConstraintAggregationRelationship(IfcConstraintAggregationRelationship object)
+			{
 				return createIfcConstraintAggregationRelationshipAdapter();
 			}
 			@Override
-			public Adapter caseIfcConstraintClassificationRelationship(IfcConstraintClassificationRelationship object) {
+			public Adapter caseIfcConstraintClassificationRelationship(IfcConstraintClassificationRelationship object)
+			{
 				return createIfcConstraintClassificationRelationshipAdapter();
 			}
 			@Override
-			public Adapter caseIfcConstraintRelationship(IfcConstraintRelationship object) {
+			public Adapter caseIfcConstraintRelationship(IfcConstraintRelationship object)
+			{
 				return createIfcConstraintRelationshipAdapter();
 			}
 			@Override
-			public Adapter caseIfcConstructionEquipmentResource(IfcConstructionEquipmentResource object) {
+			public Adapter caseIfcConstructionEquipmentResource(IfcConstructionEquipmentResource object)
+			{
 				return createIfcConstructionEquipmentResourceAdapter();
 			}
 			@Override
-			public Adapter caseIfcConstructionMaterialResource(IfcConstructionMaterialResource object) {
+			public Adapter caseIfcConstructionMaterialResource(IfcConstructionMaterialResource object)
+			{
 				return createIfcConstructionMaterialResourceAdapter();
 			}
 			@Override
-			public Adapter caseIfcConstructionProductResource(IfcConstructionProductResource object) {
+			public Adapter caseIfcConstructionProductResource(IfcConstructionProductResource object)
+			{
 				return createIfcConstructionProductResourceAdapter();
 			}
 			@Override
-			public Adapter caseIfcConstructionResource(IfcConstructionResource object) {
+			public Adapter caseIfcConstructionResource(IfcConstructionResource object)
+			{
 				return createIfcConstructionResourceAdapter();
 			}
 			@Override
-			public Adapter caseIfcContextDependentUnit(IfcContextDependentUnit object) {
+			public Adapter caseIfcContextDependentUnit(IfcContextDependentUnit object)
+			{
 				return createIfcContextDependentUnitAdapter();
 			}
 			@Override
-			public Adapter caseIfcControl(IfcControl object) {
+			public Adapter caseIfcControl(IfcControl object)
+			{
 				return createIfcControlAdapter();
 			}
 			@Override
-			public Adapter caseIfcControllerType(IfcControllerType object) {
+			public Adapter caseIfcControllerType(IfcControllerType object)
+			{
 				return createIfcControllerTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcConversionBasedUnit(IfcConversionBasedUnit object) {
+			public Adapter caseIfcConversionBasedUnit(IfcConversionBasedUnit object)
+			{
 				return createIfcConversionBasedUnitAdapter();
 			}
 			@Override
-			public Adapter caseIfcCooledBeamType(IfcCooledBeamType object) {
+			public Adapter caseIfcCooledBeamType(IfcCooledBeamType object)
+			{
 				return createIfcCooledBeamTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcCoolingTowerType(IfcCoolingTowerType object) {
+			public Adapter caseIfcCoolingTowerType(IfcCoolingTowerType object)
+			{
 				return createIfcCoolingTowerTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcCoordinatedUniversalTimeOffset(IfcCoordinatedUniversalTimeOffset object) {
+			public Adapter caseIfcCoordinatedUniversalTimeOffset(IfcCoordinatedUniversalTimeOffset object)
+			{
 				return createIfcCoordinatedUniversalTimeOffsetAdapter();
 			}
 			@Override
-			public Adapter caseIfcCostItem(IfcCostItem object) {
+			public Adapter caseIfcCostItem(IfcCostItem object)
+			{
 				return createIfcCostItemAdapter();
 			}
 			@Override
-			public Adapter caseIfcCostSchedule(IfcCostSchedule object) {
+			public Adapter caseIfcCostSchedule(IfcCostSchedule object)
+			{
 				return createIfcCostScheduleAdapter();
 			}
 			@Override
-			public Adapter caseIfcCostValue(IfcCostValue object) {
+			public Adapter caseIfcCostValue(IfcCostValue object)
+			{
 				return createIfcCostValueAdapter();
 			}
 			@Override
-			public Adapter caseIfcCovering(IfcCovering object) {
+			public Adapter caseIfcCovering(IfcCovering object)
+			{
 				return createIfcCoveringAdapter();
 			}
 			@Override
-			public Adapter caseIfcCoveringType(IfcCoveringType object) {
+			public Adapter caseIfcCoveringType(IfcCoveringType object)
+			{
 				return createIfcCoveringTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcCraneRailAShapeProfileDef(IfcCraneRailAShapeProfileDef object) {
+			public Adapter caseIfcCraneRailAShapeProfileDef(IfcCraneRailAShapeProfileDef object)
+			{
 				return createIfcCraneRailAShapeProfileDefAdapter();
 			}
 			@Override
-			public Adapter caseIfcCraneRailFShapeProfileDef(IfcCraneRailFShapeProfileDef object) {
+			public Adapter caseIfcCraneRailFShapeProfileDef(IfcCraneRailFShapeProfileDef object)
+			{
 				return createIfcCraneRailFShapeProfileDefAdapter();
 			}
 			@Override
-			public Adapter caseIfcCrewResource(IfcCrewResource object) {
+			public Adapter caseIfcCrewResource(IfcCrewResource object)
+			{
 				return createIfcCrewResourceAdapter();
 			}
 			@Override
-			public Adapter caseIfcCsgPrimitive3D(IfcCsgPrimitive3D object) {
+			public Adapter caseIfcCsgPrimitive3D(IfcCsgPrimitive3D object)
+			{
 				return createIfcCsgPrimitive3DAdapter();
 			}
 			@Override
-			public Adapter caseIfcCsgSolid(IfcCsgSolid object) {
+			public Adapter caseIfcCsgSolid(IfcCsgSolid object)
+			{
 				return createIfcCsgSolidAdapter();
 			}
 			@Override
-			public Adapter caseIfcCurrencyRelationship(IfcCurrencyRelationship object) {
+			public Adapter caseIfcCurrencyRelationship(IfcCurrencyRelationship object)
+			{
 				return createIfcCurrencyRelationshipAdapter();
 			}
 			@Override
-			public Adapter caseIfcCurtainWall(IfcCurtainWall object) {
+			public Adapter caseIfcCurtainWall(IfcCurtainWall object)
+			{
 				return createIfcCurtainWallAdapter();
 			}
 			@Override
-			public Adapter caseIfcCurtainWallType(IfcCurtainWallType object) {
+			public Adapter caseIfcCurtainWallType(IfcCurtainWallType object)
+			{
 				return createIfcCurtainWallTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcCurve(IfcCurve object) {
+			public Adapter caseIfcCurve(IfcCurve object)
+			{
 				return createIfcCurveAdapter();
 			}
 			@Override
-			public Adapter caseIfcCurveBoundedPlane(IfcCurveBoundedPlane object) {
+			public Adapter caseIfcCurveBoundedPlane(IfcCurveBoundedPlane object)
+			{
 				return createIfcCurveBoundedPlaneAdapter();
 			}
 			@Override
-			public Adapter caseIfcCurveStyle(IfcCurveStyle object) {
+			public Adapter caseIfcCurveStyle(IfcCurveStyle object)
+			{
 				return createIfcCurveStyleAdapter();
 			}
 			@Override
-			public Adapter caseIfcCurveStyleFont(IfcCurveStyleFont object) {
+			public Adapter caseIfcCurveStyleFont(IfcCurveStyleFont object)
+			{
 				return createIfcCurveStyleFontAdapter();
 			}
 			@Override
-			public Adapter caseIfcCurveStyleFontAndScaling(IfcCurveStyleFontAndScaling object) {
+			public Adapter caseIfcCurveStyleFontAndScaling(IfcCurveStyleFontAndScaling object)
+			{
 				return createIfcCurveStyleFontAndScalingAdapter();
 			}
 			@Override
-			public Adapter caseIfcCurveStyleFontPattern(IfcCurveStyleFontPattern object) {
+			public Adapter caseIfcCurveStyleFontPattern(IfcCurveStyleFontPattern object)
+			{
 				return createIfcCurveStyleFontPatternAdapter();
 			}
 			@Override
-			public Adapter caseIfcDamperType(IfcDamperType object) {
+			public Adapter caseIfcDamperType(IfcDamperType object)
+			{
 				return createIfcDamperTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcDateAndTime(IfcDateAndTime object) {
+			public Adapter caseIfcDateAndTime(IfcDateAndTime object)
+			{
 				return createIfcDateAndTimeAdapter();
 			}
 			@Override
-			public Adapter caseIfcDefinedSymbol(IfcDefinedSymbol object) {
+			public Adapter caseIfcDefinedSymbol(IfcDefinedSymbol object)
+			{
 				return createIfcDefinedSymbolAdapter();
 			}
 			@Override
-			public Adapter caseIfcDerivedProfileDef(IfcDerivedProfileDef object) {
+			public Adapter caseIfcDerivedProfileDef(IfcDerivedProfileDef object)
+			{
 				return createIfcDerivedProfileDefAdapter();
 			}
 			@Override
-			public Adapter caseIfcDerivedUnit(IfcDerivedUnit object) {
+			public Adapter caseIfcDerivedUnit(IfcDerivedUnit object)
+			{
 				return createIfcDerivedUnitAdapter();
 			}
 			@Override
-			public Adapter caseIfcDerivedUnitElement(IfcDerivedUnitElement object) {
+			public Adapter caseIfcDerivedUnitElement(IfcDerivedUnitElement object)
+			{
 				return createIfcDerivedUnitElementAdapter();
 			}
 			@Override
-			public Adapter caseIfcDiameterDimension(IfcDiameterDimension object) {
+			public Adapter caseIfcDiameterDimension(IfcDiameterDimension object)
+			{
 				return createIfcDiameterDimensionAdapter();
 			}
 			@Override
-			public Adapter caseIfcDimensionCalloutRelationship(IfcDimensionCalloutRelationship object) {
+			public Adapter caseIfcDimensionCalloutRelationship(IfcDimensionCalloutRelationship object)
+			{
 				return createIfcDimensionCalloutRelationshipAdapter();
 			}
 			@Override
-			public Adapter caseIfcDimensionCurve(IfcDimensionCurve object) {
+			public Adapter caseIfcDimensionCurve(IfcDimensionCurve object)
+			{
 				return createIfcDimensionCurveAdapter();
 			}
 			@Override
-			public Adapter caseIfcDimensionCurveDirectedCallout(IfcDimensionCurveDirectedCallout object) {
+			public Adapter caseIfcDimensionCurveDirectedCallout(IfcDimensionCurveDirectedCallout object)
+			{
 				return createIfcDimensionCurveDirectedCalloutAdapter();
 			}
 			@Override
-			public Adapter caseIfcDimensionCurveTerminator(IfcDimensionCurveTerminator object) {
+			public Adapter caseIfcDimensionCurveTerminator(IfcDimensionCurveTerminator object)
+			{
 				return createIfcDimensionCurveTerminatorAdapter();
 			}
 			@Override
-			public Adapter caseIfcDimensionPair(IfcDimensionPair object) {
+			public Adapter caseIfcDimensionPair(IfcDimensionPair object)
+			{
 				return createIfcDimensionPairAdapter();
 			}
 			@Override
-			public Adapter caseIfcDimensionalExponents(IfcDimensionalExponents object) {
+			public Adapter caseIfcDimensionalExponents(IfcDimensionalExponents object)
+			{
 				return createIfcDimensionalExponentsAdapter();
 			}
 			@Override
-			public Adapter caseIfcDirection(IfcDirection object) {
+			public Adapter caseIfcDirection(IfcDirection object)
+			{
 				return createIfcDirectionAdapter();
 			}
 			@Override
-			public Adapter caseIfcDiscreteAccessory(IfcDiscreteAccessory object) {
+			public Adapter caseIfcDiscreteAccessory(IfcDiscreteAccessory object)
+			{
 				return createIfcDiscreteAccessoryAdapter();
 			}
 			@Override
-			public Adapter caseIfcDiscreteAccessoryType(IfcDiscreteAccessoryType object) {
+			public Adapter caseIfcDiscreteAccessoryType(IfcDiscreteAccessoryType object)
+			{
 				return createIfcDiscreteAccessoryTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcDistributionChamberElement(IfcDistributionChamberElement object) {
+			public Adapter caseIfcDistributionChamberElement(IfcDistributionChamberElement object)
+			{
 				return createIfcDistributionChamberElementAdapter();
 			}
 			@Override
-			public Adapter caseIfcDistributionChamberElementType(IfcDistributionChamberElementType object) {
+			public Adapter caseIfcDistributionChamberElementType(IfcDistributionChamberElementType object)
+			{
 				return createIfcDistributionChamberElementTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcDistributionControlElement(IfcDistributionControlElement object) {
+			public Adapter caseIfcDistributionControlElement(IfcDistributionControlElement object)
+			{
 				return createIfcDistributionControlElementAdapter();
 			}
 			@Override
-			public Adapter caseIfcDistributionControlElementType(IfcDistributionControlElementType object) {
+			public Adapter caseIfcDistributionControlElementType(IfcDistributionControlElementType object)
+			{
 				return createIfcDistributionControlElementTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcDistributionElement(IfcDistributionElement object) {
+			public Adapter caseIfcDistributionElement(IfcDistributionElement object)
+			{
 				return createIfcDistributionElementAdapter();
 			}
 			@Override
-			public Adapter caseIfcDistributionElementType(IfcDistributionElementType object) {
+			public Adapter caseIfcDistributionElementType(IfcDistributionElementType object)
+			{
 				return createIfcDistributionElementTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcDistributionFlowElement(IfcDistributionFlowElement object) {
+			public Adapter caseIfcDistributionFlowElement(IfcDistributionFlowElement object)
+			{
 				return createIfcDistributionFlowElementAdapter();
 			}
 			@Override
-			public Adapter caseIfcDistributionFlowElementType(IfcDistributionFlowElementType object) {
+			public Adapter caseIfcDistributionFlowElementType(IfcDistributionFlowElementType object)
+			{
 				return createIfcDistributionFlowElementTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcDistributionPort(IfcDistributionPort object) {
+			public Adapter caseIfcDistributionPort(IfcDistributionPort object)
+			{
 				return createIfcDistributionPortAdapter();
 			}
 			@Override
-			public Adapter caseIfcDocumentElectronicFormat(IfcDocumentElectronicFormat object) {
+			public Adapter caseIfcDocumentElectronicFormat(IfcDocumentElectronicFormat object)
+			{
 				return createIfcDocumentElectronicFormatAdapter();
 			}
 			@Override
-			public Adapter caseIfcDocumentInformation(IfcDocumentInformation object) {
+			public Adapter caseIfcDocumentInformation(IfcDocumentInformation object)
+			{
 				return createIfcDocumentInformationAdapter();
 			}
 			@Override
-			public Adapter caseIfcDocumentInformationRelationship(IfcDocumentInformationRelationship object) {
+			public Adapter caseIfcDocumentInformationRelationship(IfcDocumentInformationRelationship object)
+			{
 				return createIfcDocumentInformationRelationshipAdapter();
 			}
 			@Override
-			public Adapter caseIfcDocumentReference(IfcDocumentReference object) {
+			public Adapter caseIfcDocumentReference(IfcDocumentReference object)
+			{
 				return createIfcDocumentReferenceAdapter();
 			}
 			@Override
-			public Adapter caseIfcDoor(IfcDoor object) {
+			public Adapter caseIfcDoor(IfcDoor object)
+			{
 				return createIfcDoorAdapter();
 			}
 			@Override
-			public Adapter caseIfcDoorLiningProperties(IfcDoorLiningProperties object) {
+			public Adapter caseIfcDoorLiningProperties(IfcDoorLiningProperties object)
+			{
 				return createIfcDoorLiningPropertiesAdapter();
 			}
 			@Override
-			public Adapter caseIfcDoorPanelProperties(IfcDoorPanelProperties object) {
+			public Adapter caseIfcDoorPanelProperties(IfcDoorPanelProperties object)
+			{
 				return createIfcDoorPanelPropertiesAdapter();
 			}
 			@Override
-			public Adapter caseIfcDoorStyle(IfcDoorStyle object) {
+			public Adapter caseIfcDoorStyle(IfcDoorStyle object)
+			{
 				return createIfcDoorStyleAdapter();
 			}
 			@Override
-			public Adapter caseIfcDraughtingCallout(IfcDraughtingCallout object) {
+			public Adapter caseIfcDraughtingCallout(IfcDraughtingCallout object)
+			{
 				return createIfcDraughtingCalloutAdapter();
 			}
 			@Override
-			public Adapter caseIfcDraughtingCalloutRelationship(IfcDraughtingCalloutRelationship object) {
+			public Adapter caseIfcDraughtingCalloutRelationship(IfcDraughtingCalloutRelationship object)
+			{
 				return createIfcDraughtingCalloutRelationshipAdapter();
 			}
 			@Override
-			public Adapter caseIfcDraughtingPreDefinedColour(IfcDraughtingPreDefinedColour object) {
+			public Adapter caseIfcDraughtingPreDefinedColour(IfcDraughtingPreDefinedColour object)
+			{
 				return createIfcDraughtingPreDefinedColourAdapter();
 			}
 			@Override
-			public Adapter caseIfcDraughtingPreDefinedCurveFont(IfcDraughtingPreDefinedCurveFont object) {
+			public Adapter caseIfcDraughtingPreDefinedCurveFont(IfcDraughtingPreDefinedCurveFont object)
+			{
 				return createIfcDraughtingPreDefinedCurveFontAdapter();
 			}
 			@Override
-			public Adapter caseIfcDraughtingPreDefinedTextFont(IfcDraughtingPreDefinedTextFont object) {
+			public Adapter caseIfcDraughtingPreDefinedTextFont(IfcDraughtingPreDefinedTextFont object)
+			{
 				return createIfcDraughtingPreDefinedTextFontAdapter();
 			}
 			@Override
-			public Adapter caseIfcDuctFittingType(IfcDuctFittingType object) {
+			public Adapter caseIfcDuctFittingType(IfcDuctFittingType object)
+			{
 				return createIfcDuctFittingTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcDuctSegmentType(IfcDuctSegmentType object) {
+			public Adapter caseIfcDuctSegmentType(IfcDuctSegmentType object)
+			{
 				return createIfcDuctSegmentTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcDuctSilencerType(IfcDuctSilencerType object) {
+			public Adapter caseIfcDuctSilencerType(IfcDuctSilencerType object)
+			{
 				return createIfcDuctSilencerTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcEdge(IfcEdge object) {
+			public Adapter caseIfcEdge(IfcEdge object)
+			{
 				return createIfcEdgeAdapter();
 			}
 			@Override
-			public Adapter caseIfcEdgeCurve(IfcEdgeCurve object) {
+			public Adapter caseIfcEdgeCurve(IfcEdgeCurve object)
+			{
 				return createIfcEdgeCurveAdapter();
 			}
 			@Override
-			public Adapter caseIfcEdgeFeature(IfcEdgeFeature object) {
+			public Adapter caseIfcEdgeFeature(IfcEdgeFeature object)
+			{
 				return createIfcEdgeFeatureAdapter();
 			}
 			@Override
-			public Adapter caseIfcEdgeLoop(IfcEdgeLoop object) {
+			public Adapter caseIfcEdgeLoop(IfcEdgeLoop object)
+			{
 				return createIfcEdgeLoopAdapter();
 			}
 			@Override
-			public Adapter caseIfcElectricApplianceType(IfcElectricApplianceType object) {
+			public Adapter caseIfcElectricApplianceType(IfcElectricApplianceType object)
+			{
 				return createIfcElectricApplianceTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcElectricDistributionPoint(IfcElectricDistributionPoint object) {
+			public Adapter caseIfcElectricDistributionPoint(IfcElectricDistributionPoint object)
+			{
 				return createIfcElectricDistributionPointAdapter();
 			}
 			@Override
-			public Adapter caseIfcElectricFlowStorageDeviceType(IfcElectricFlowStorageDeviceType object) {
+			public Adapter caseIfcElectricFlowStorageDeviceType(IfcElectricFlowStorageDeviceType object)
+			{
 				return createIfcElectricFlowStorageDeviceTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcElectricGeneratorType(IfcElectricGeneratorType object) {
+			public Adapter caseIfcElectricGeneratorType(IfcElectricGeneratorType object)
+			{
 				return createIfcElectricGeneratorTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcElectricHeaterType(IfcElectricHeaterType object) {
+			public Adapter caseIfcElectricHeaterType(IfcElectricHeaterType object)
+			{
 				return createIfcElectricHeaterTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcElectricMotorType(IfcElectricMotorType object) {
+			public Adapter caseIfcElectricMotorType(IfcElectricMotorType object)
+			{
 				return createIfcElectricMotorTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcElectricTimeControlType(IfcElectricTimeControlType object) {
+			public Adapter caseIfcElectricTimeControlType(IfcElectricTimeControlType object)
+			{
 				return createIfcElectricTimeControlTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcElectricalBaseProperties(IfcElectricalBaseProperties object) {
+			public Adapter caseIfcElectricalBaseProperties(IfcElectricalBaseProperties object)
+			{
 				return createIfcElectricalBasePropertiesAdapter();
 			}
 			@Override
-			public Adapter caseIfcElectricalCircuit(IfcElectricalCircuit object) {
+			public Adapter caseIfcElectricalCircuit(IfcElectricalCircuit object)
+			{
 				return createIfcElectricalCircuitAdapter();
 			}
 			@Override
-			public Adapter caseIfcElectricalElement(IfcElectricalElement object) {
+			public Adapter caseIfcElectricalElement(IfcElectricalElement object)
+			{
 				return createIfcElectricalElementAdapter();
 			}
 			@Override
-			public Adapter caseIfcElement(IfcElement object) {
+			public Adapter caseIfcElement(IfcElement object)
+			{
 				return createIfcElementAdapter();
 			}
 			@Override
-			public Adapter caseIfcElementAssembly(IfcElementAssembly object) {
+			public Adapter caseIfcElementAssembly(IfcElementAssembly object)
+			{
 				return createIfcElementAssemblyAdapter();
 			}
 			@Override
-			public Adapter caseIfcElementComponent(IfcElementComponent object) {
+			public Adapter caseIfcElementComponent(IfcElementComponent object)
+			{
 				return createIfcElementComponentAdapter();
 			}
 			@Override
-			public Adapter caseIfcElementComponentType(IfcElementComponentType object) {
+			public Adapter caseIfcElementComponentType(IfcElementComponentType object)
+			{
 				return createIfcElementComponentTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcElementQuantity(IfcElementQuantity object) {
+			public Adapter caseIfcElementQuantity(IfcElementQuantity object)
+			{
 				return createIfcElementQuantityAdapter();
 			}
 			@Override
-			public Adapter caseIfcElementType(IfcElementType object) {
+			public Adapter caseIfcElementType(IfcElementType object)
+			{
 				return createIfcElementTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcElementarySurface(IfcElementarySurface object) {
+			public Adapter caseIfcElementarySurface(IfcElementarySurface object)
+			{
 				return createIfcElementarySurfaceAdapter();
 			}
 			@Override
-			public Adapter caseIfcEllipse(IfcEllipse object) {
+			public Adapter caseIfcEllipse(IfcEllipse object)
+			{
 				return createIfcEllipseAdapter();
 			}
 			@Override
-			public Adapter caseIfcEllipseProfileDef(IfcEllipseProfileDef object) {
+			public Adapter caseIfcEllipseProfileDef(IfcEllipseProfileDef object)
+			{
 				return createIfcEllipseProfileDefAdapter();
 			}
 			@Override
-			public Adapter caseIfcEnergyConversionDevice(IfcEnergyConversionDevice object) {
+			public Adapter caseIfcEnergyConversionDevice(IfcEnergyConversionDevice object)
+			{
 				return createIfcEnergyConversionDeviceAdapter();
 			}
 			@Override
-			public Adapter caseIfcEnergyConversionDeviceType(IfcEnergyConversionDeviceType object) {
+			public Adapter caseIfcEnergyConversionDeviceType(IfcEnergyConversionDeviceType object)
+			{
 				return createIfcEnergyConversionDeviceTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcEnergyProperties(IfcEnergyProperties object) {
+			public Adapter caseIfcEnergyProperties(IfcEnergyProperties object)
+			{
 				return createIfcEnergyPropertiesAdapter();
 			}
 			@Override
-			public Adapter caseIfcEnvironmentalImpactValue(IfcEnvironmentalImpactValue object) {
+			public Adapter caseIfcEnvironmentalImpactValue(IfcEnvironmentalImpactValue object)
+			{
 				return createIfcEnvironmentalImpactValueAdapter();
 			}
 			@Override
-			public Adapter caseIfcEquipmentElement(IfcEquipmentElement object) {
+			public Adapter caseIfcEquipmentElement(IfcEquipmentElement object)
+			{
 				return createIfcEquipmentElementAdapter();
 			}
 			@Override
-			public Adapter caseIfcEquipmentStandard(IfcEquipmentStandard object) {
+			public Adapter caseIfcEquipmentStandard(IfcEquipmentStandard object)
+			{
 				return createIfcEquipmentStandardAdapter();
 			}
 			@Override
-			public Adapter caseIfcEvaporativeCoolerType(IfcEvaporativeCoolerType object) {
+			public Adapter caseIfcEvaporativeCoolerType(IfcEvaporativeCoolerType object)
+			{
 				return createIfcEvaporativeCoolerTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcEvaporatorType(IfcEvaporatorType object) {
+			public Adapter caseIfcEvaporatorType(IfcEvaporatorType object)
+			{
 				return createIfcEvaporatorTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcExtendedMaterialProperties(IfcExtendedMaterialProperties object) {
+			public Adapter caseIfcExtendedMaterialProperties(IfcExtendedMaterialProperties object)
+			{
 				return createIfcExtendedMaterialPropertiesAdapter();
 			}
 			@Override
-			public Adapter caseIfcExternalReference(IfcExternalReference object) {
+			public Adapter caseIfcExternalReference(IfcExternalReference object)
+			{
 				return createIfcExternalReferenceAdapter();
 			}
 			@Override
-			public Adapter caseIfcExternallyDefinedHatchStyle(IfcExternallyDefinedHatchStyle object) {
+			public Adapter caseIfcExternallyDefinedHatchStyle(IfcExternallyDefinedHatchStyle object)
+			{
 				return createIfcExternallyDefinedHatchStyleAdapter();
 			}
 			@Override
-			public Adapter caseIfcExternallyDefinedSurfaceStyle(IfcExternallyDefinedSurfaceStyle object) {
+			public Adapter caseIfcExternallyDefinedSurfaceStyle(IfcExternallyDefinedSurfaceStyle object)
+			{
 				return createIfcExternallyDefinedSurfaceStyleAdapter();
 			}
 			@Override
-			public Adapter caseIfcExternallyDefinedSymbol(IfcExternallyDefinedSymbol object) {
+			public Adapter caseIfcExternallyDefinedSymbol(IfcExternallyDefinedSymbol object)
+			{
 				return createIfcExternallyDefinedSymbolAdapter();
 			}
 			@Override
-			public Adapter caseIfcExternallyDefinedTextFont(IfcExternallyDefinedTextFont object) {
+			public Adapter caseIfcExternallyDefinedTextFont(IfcExternallyDefinedTextFont object)
+			{
 				return createIfcExternallyDefinedTextFontAdapter();
 			}
 			@Override
-			public Adapter caseIfcExtrudedAreaSolid(IfcExtrudedAreaSolid object) {
+			public Adapter caseIfcExtrudedAreaSolid(IfcExtrudedAreaSolid object)
+			{
 				return createIfcExtrudedAreaSolidAdapter();
 			}
 			@Override
-			public Adapter caseIfcFace(IfcFace object) {
+			public Adapter caseIfcFace(IfcFace object)
+			{
 				return createIfcFaceAdapter();
 			}
 			@Override
-			public Adapter caseIfcFaceBasedSurfaceModel(IfcFaceBasedSurfaceModel object) {
+			public Adapter caseIfcFaceBasedSurfaceModel(IfcFaceBasedSurfaceModel object)
+			{
 				return createIfcFaceBasedSurfaceModelAdapter();
 			}
 			@Override
-			public Adapter caseIfcFaceBound(IfcFaceBound object) {
+			public Adapter caseIfcFaceBound(IfcFaceBound object)
+			{
 				return createIfcFaceBoundAdapter();
 			}
 			@Override
-			public Adapter caseIfcFaceOuterBound(IfcFaceOuterBound object) {
+			public Adapter caseIfcFaceOuterBound(IfcFaceOuterBound object)
+			{
 				return createIfcFaceOuterBoundAdapter();
 			}
 			@Override
-			public Adapter caseIfcFaceSurface(IfcFaceSurface object) {
+			public Adapter caseIfcFaceSurface(IfcFaceSurface object)
+			{
 				return createIfcFaceSurfaceAdapter();
 			}
 			@Override
-			public Adapter caseIfcFacetedBrep(IfcFacetedBrep object) {
+			public Adapter caseIfcFacetedBrep(IfcFacetedBrep object)
+			{
 				return createIfcFacetedBrepAdapter();
 			}
 			@Override
-			public Adapter caseIfcFacetedBrepWithVoids(IfcFacetedBrepWithVoids object) {
+			public Adapter caseIfcFacetedBrepWithVoids(IfcFacetedBrepWithVoids object)
+			{
 				return createIfcFacetedBrepWithVoidsAdapter();
 			}
 			@Override
-			public Adapter caseIfcFailureConnectionCondition(IfcFailureConnectionCondition object) {
+			public Adapter caseIfcFailureConnectionCondition(IfcFailureConnectionCondition object)
+			{
 				return createIfcFailureConnectionConditionAdapter();
 			}
 			@Override
-			public Adapter caseIfcFanType(IfcFanType object) {
+			public Adapter caseIfcFanType(IfcFanType object)
+			{
 				return createIfcFanTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcFastener(IfcFastener object) {
+			public Adapter caseIfcFastener(IfcFastener object)
+			{
 				return createIfcFastenerAdapter();
 			}
 			@Override
-			public Adapter caseIfcFastenerType(IfcFastenerType object) {
+			public Adapter caseIfcFastenerType(IfcFastenerType object)
+			{
 				return createIfcFastenerTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcFeatureElement(IfcFeatureElement object) {
+			public Adapter caseIfcFeatureElement(IfcFeatureElement object)
+			{
 				return createIfcFeatureElementAdapter();
 			}
 			@Override
-			public Adapter caseIfcFeatureElementAddition(IfcFeatureElementAddition object) {
+			public Adapter caseIfcFeatureElementAddition(IfcFeatureElementAddition object)
+			{
 				return createIfcFeatureElementAdditionAdapter();
 			}
 			@Override
-			public Adapter caseIfcFeatureElementSubtraction(IfcFeatureElementSubtraction object) {
+			public Adapter caseIfcFeatureElementSubtraction(IfcFeatureElementSubtraction object)
+			{
 				return createIfcFeatureElementSubtractionAdapter();
 			}
 			@Override
-			public Adapter caseIfcFillAreaStyle(IfcFillAreaStyle object) {
+			public Adapter caseIfcFillAreaStyle(IfcFillAreaStyle object)
+			{
 				return createIfcFillAreaStyleAdapter();
 			}
 			@Override
-			public Adapter caseIfcFillAreaStyleHatching(IfcFillAreaStyleHatching object) {
+			public Adapter caseIfcFillAreaStyleHatching(IfcFillAreaStyleHatching object)
+			{
 				return createIfcFillAreaStyleHatchingAdapter();
 			}
 			@Override
-			public Adapter caseIfcFillAreaStyleTileSymbolWithStyle(IfcFillAreaStyleTileSymbolWithStyle object) {
+			public Adapter caseIfcFillAreaStyleTileSymbolWithStyle(IfcFillAreaStyleTileSymbolWithStyle object)
+			{
 				return createIfcFillAreaStyleTileSymbolWithStyleAdapter();
 			}
 			@Override
-			public Adapter caseIfcFillAreaStyleTiles(IfcFillAreaStyleTiles object) {
+			public Adapter caseIfcFillAreaStyleTiles(IfcFillAreaStyleTiles object)
+			{
 				return createIfcFillAreaStyleTilesAdapter();
 			}
 			@Override
-			public Adapter caseIfcFilterType(IfcFilterType object) {
+			public Adapter caseIfcFilterType(IfcFilterType object)
+			{
 				return createIfcFilterTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcFireSuppressionTerminalType(IfcFireSuppressionTerminalType object) {
+			public Adapter caseIfcFireSuppressionTerminalType(IfcFireSuppressionTerminalType object)
+			{
 				return createIfcFireSuppressionTerminalTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcFlowController(IfcFlowController object) {
+			public Adapter caseIfcFlowController(IfcFlowController object)
+			{
 				return createIfcFlowControllerAdapter();
 			}
 			@Override
-			public Adapter caseIfcFlowControllerType(IfcFlowControllerType object) {
+			public Adapter caseIfcFlowControllerType(IfcFlowControllerType object)
+			{
 				return createIfcFlowControllerTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcFlowFitting(IfcFlowFitting object) {
+			public Adapter caseIfcFlowFitting(IfcFlowFitting object)
+			{
 				return createIfcFlowFittingAdapter();
 			}
 			@Override
-			public Adapter caseIfcFlowFittingType(IfcFlowFittingType object) {
+			public Adapter caseIfcFlowFittingType(IfcFlowFittingType object)
+			{
 				return createIfcFlowFittingTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcFlowInstrumentType(IfcFlowInstrumentType object) {
+			public Adapter caseIfcFlowInstrumentType(IfcFlowInstrumentType object)
+			{
 				return createIfcFlowInstrumentTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcFlowMeterType(IfcFlowMeterType object) {
+			public Adapter caseIfcFlowMeterType(IfcFlowMeterType object)
+			{
 				return createIfcFlowMeterTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcFlowMovingDevice(IfcFlowMovingDevice object) {
+			public Adapter caseIfcFlowMovingDevice(IfcFlowMovingDevice object)
+			{
 				return createIfcFlowMovingDeviceAdapter();
 			}
 			@Override
-			public Adapter caseIfcFlowMovingDeviceType(IfcFlowMovingDeviceType object) {
+			public Adapter caseIfcFlowMovingDeviceType(IfcFlowMovingDeviceType object)
+			{
 				return createIfcFlowMovingDeviceTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcFlowSegment(IfcFlowSegment object) {
+			public Adapter caseIfcFlowSegment(IfcFlowSegment object)
+			{
 				return createIfcFlowSegmentAdapter();
 			}
 			@Override
-			public Adapter caseIfcFlowSegmentType(IfcFlowSegmentType object) {
+			public Adapter caseIfcFlowSegmentType(IfcFlowSegmentType object)
+			{
 				return createIfcFlowSegmentTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcFlowStorageDevice(IfcFlowStorageDevice object) {
+			public Adapter caseIfcFlowStorageDevice(IfcFlowStorageDevice object)
+			{
 				return createIfcFlowStorageDeviceAdapter();
 			}
 			@Override
-			public Adapter caseIfcFlowStorageDeviceType(IfcFlowStorageDeviceType object) {
+			public Adapter caseIfcFlowStorageDeviceType(IfcFlowStorageDeviceType object)
+			{
 				return createIfcFlowStorageDeviceTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcFlowTerminal(IfcFlowTerminal object) {
+			public Adapter caseIfcFlowTerminal(IfcFlowTerminal object)
+			{
 				return createIfcFlowTerminalAdapter();
 			}
 			@Override
-			public Adapter caseIfcFlowTerminalType(IfcFlowTerminalType object) {
+			public Adapter caseIfcFlowTerminalType(IfcFlowTerminalType object)
+			{
 				return createIfcFlowTerminalTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcFlowTreatmentDevice(IfcFlowTreatmentDevice object) {
+			public Adapter caseIfcFlowTreatmentDevice(IfcFlowTreatmentDevice object)
+			{
 				return createIfcFlowTreatmentDeviceAdapter();
 			}
 			@Override
-			public Adapter caseIfcFlowTreatmentDeviceType(IfcFlowTreatmentDeviceType object) {
+			public Adapter caseIfcFlowTreatmentDeviceType(IfcFlowTreatmentDeviceType object)
+			{
 				return createIfcFlowTreatmentDeviceTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcFluidFlowProperties(IfcFluidFlowProperties object) {
+			public Adapter caseIfcFluidFlowProperties(IfcFluidFlowProperties object)
+			{
 				return createIfcFluidFlowPropertiesAdapter();
 			}
 			@Override
-			public Adapter caseIfcFooting(IfcFooting object) {
+			public Adapter caseIfcFooting(IfcFooting object)
+			{
 				return createIfcFootingAdapter();
 			}
 			@Override
-			public Adapter caseIfcFuelProperties(IfcFuelProperties object) {
+			public Adapter caseIfcFuelProperties(IfcFuelProperties object)
+			{
 				return createIfcFuelPropertiesAdapter();
 			}
 			@Override
-			public Adapter caseIfcFurnishingElement(IfcFurnishingElement object) {
+			public Adapter caseIfcFurnishingElement(IfcFurnishingElement object)
+			{
 				return createIfcFurnishingElementAdapter();
 			}
 			@Override
-			public Adapter caseIfcFurnishingElementType(IfcFurnishingElementType object) {
+			public Adapter caseIfcFurnishingElementType(IfcFurnishingElementType object)
+			{
 				return createIfcFurnishingElementTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcFurnitureStandard(IfcFurnitureStandard object) {
+			public Adapter caseIfcFurnitureStandard(IfcFurnitureStandard object)
+			{
 				return createIfcFurnitureStandardAdapter();
 			}
 			@Override
-			public Adapter caseIfcFurnitureType(IfcFurnitureType object) {
+			public Adapter caseIfcFurnitureType(IfcFurnitureType object)
+			{
 				return createIfcFurnitureTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcGasTerminalType(IfcGasTerminalType object) {
+			public Adapter caseIfcGasTerminalType(IfcGasTerminalType object)
+			{
 				return createIfcGasTerminalTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcGeneralMaterialProperties(IfcGeneralMaterialProperties object) {
+			public Adapter caseIfcGeneralMaterialProperties(IfcGeneralMaterialProperties object)
+			{
 				return createIfcGeneralMaterialPropertiesAdapter();
 			}
 			@Override
-			public Adapter caseIfcGeneralProfileProperties(IfcGeneralProfileProperties object) {
+			public Adapter caseIfcGeneralProfileProperties(IfcGeneralProfileProperties object)
+			{
 				return createIfcGeneralProfilePropertiesAdapter();
 			}
 			@Override
-			public Adapter caseIfcGeometricCurveSet(IfcGeometricCurveSet object) {
+			public Adapter caseIfcGeometricCurveSet(IfcGeometricCurveSet object)
+			{
 				return createIfcGeometricCurveSetAdapter();
 			}
 			@Override
-			public Adapter caseIfcGeometricRepresentationContext(IfcGeometricRepresentationContext object) {
+			public Adapter caseIfcGeometricRepresentationContext(IfcGeometricRepresentationContext object)
+			{
 				return createIfcGeometricRepresentationContextAdapter();
 			}
 			@Override
-			public Adapter caseIfcGeometricRepresentationItem(IfcGeometricRepresentationItem object) {
+			public Adapter caseIfcGeometricRepresentationItem(IfcGeometricRepresentationItem object)
+			{
 				return createIfcGeometricRepresentationItemAdapter();
 			}
 			@Override
-			public Adapter caseIfcGeometricRepresentationSubContext(IfcGeometricRepresentationSubContext object) {
+			public Adapter caseIfcGeometricRepresentationSubContext(IfcGeometricRepresentationSubContext object)
+			{
 				return createIfcGeometricRepresentationSubContextAdapter();
 			}
 			@Override
-			public Adapter caseIfcGeometricSet(IfcGeometricSet object) {
+			public Adapter caseIfcGeometricSet(IfcGeometricSet object)
+			{
 				return createIfcGeometricSetAdapter();
 			}
 			@Override
-			public Adapter caseIfcGrid(IfcGrid object) {
+			public Adapter caseIfcGrid(IfcGrid object)
+			{
 				return createIfcGridAdapter();
 			}
 			@Override
-			public Adapter caseIfcGridAxis(IfcGridAxis object) {
+			public Adapter caseIfcGridAxis(IfcGridAxis object)
+			{
 				return createIfcGridAxisAdapter();
 			}
 			@Override
-			public Adapter caseIfcGridPlacement(IfcGridPlacement object) {
+			public Adapter caseIfcGridPlacement(IfcGridPlacement object)
+			{
 				return createIfcGridPlacementAdapter();
 			}
 			@Override
-			public Adapter caseIfcGroup(IfcGroup object) {
+			public Adapter caseIfcGroup(IfcGroup object)
+			{
 				return createIfcGroupAdapter();
 			}
 			@Override
-			public Adapter caseIfcHalfSpaceSolid(IfcHalfSpaceSolid object) {
+			public Adapter caseIfcHalfSpaceSolid(IfcHalfSpaceSolid object)
+			{
 				return createIfcHalfSpaceSolidAdapter();
 			}
 			@Override
-			public Adapter caseIfcHeatExchangerType(IfcHeatExchangerType object) {
+			public Adapter caseIfcHeatExchangerType(IfcHeatExchangerType object)
+			{
 				return createIfcHeatExchangerTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcHumidifierType(IfcHumidifierType object) {
+			public Adapter caseIfcHumidifierType(IfcHumidifierType object)
+			{
 				return createIfcHumidifierTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcHygroscopicMaterialProperties(IfcHygroscopicMaterialProperties object) {
+			public Adapter caseIfcHygroscopicMaterialProperties(IfcHygroscopicMaterialProperties object)
+			{
 				return createIfcHygroscopicMaterialPropertiesAdapter();
 			}
 			@Override
-			public Adapter caseIfcIShapeProfileDef(IfcIShapeProfileDef object) {
+			public Adapter caseIfcIShapeProfileDef(IfcIShapeProfileDef object)
+			{
 				return createIfcIShapeProfileDefAdapter();
 			}
 			@Override
-			public Adapter caseIfcImageTexture(IfcImageTexture object) {
+			public Adapter caseIfcImageTexture(IfcImageTexture object)
+			{
 				return createIfcImageTextureAdapter();
 			}
 			@Override
-			public Adapter caseIfcInventory(IfcInventory object) {
+			public Adapter caseIfcInventory(IfcInventory object)
+			{
 				return createIfcInventoryAdapter();
 			}
 			@Override
-			public Adapter caseIfcIrregularTimeSeries(IfcIrregularTimeSeries object) {
+			public Adapter caseIfcIrregularTimeSeries(IfcIrregularTimeSeries object)
+			{
 				return createIfcIrregularTimeSeriesAdapter();
 			}
 			@Override
-			public Adapter caseIfcIrregularTimeSeriesValue(IfcIrregularTimeSeriesValue object) {
+			public Adapter caseIfcIrregularTimeSeriesValue(IfcIrregularTimeSeriesValue object)
+			{
 				return createIfcIrregularTimeSeriesValueAdapter();
 			}
 			@Override
-			public Adapter caseIfcJunctionBoxType(IfcJunctionBoxType object) {
+			public Adapter caseIfcJunctionBoxType(IfcJunctionBoxType object)
+			{
 				return createIfcJunctionBoxTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcLShapeProfileDef(IfcLShapeProfileDef object) {
+			public Adapter caseIfcLShapeProfileDef(IfcLShapeProfileDef object)
+			{
 				return createIfcLShapeProfileDefAdapter();
 			}
 			@Override
-			public Adapter caseIfcLaborResource(IfcLaborResource object) {
+			public Adapter caseIfcLaborResource(IfcLaborResource object)
+			{
 				return createIfcLaborResourceAdapter();
 			}
 			@Override
-			public Adapter caseIfcLampType(IfcLampType object) {
+			public Adapter caseIfcLampType(IfcLampType object)
+			{
 				return createIfcLampTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcLibraryInformation(IfcLibraryInformation object) {
+			public Adapter caseIfcLibraryInformation(IfcLibraryInformation object)
+			{
 				return createIfcLibraryInformationAdapter();
 			}
 			@Override
-			public Adapter caseIfcLibraryReference(IfcLibraryReference object) {
+			public Adapter caseIfcLibraryReference(IfcLibraryReference object)
+			{
 				return createIfcLibraryReferenceAdapter();
 			}
 			@Override
-			public Adapter caseIfcLightDistributionData(IfcLightDistributionData object) {
+			public Adapter caseIfcLightDistributionData(IfcLightDistributionData object)
+			{
 				return createIfcLightDistributionDataAdapter();
 			}
 			@Override
-			public Adapter caseIfcLightFixtureType(IfcLightFixtureType object) {
+			public Adapter caseIfcLightFixtureType(IfcLightFixtureType object)
+			{
 				return createIfcLightFixtureTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcLightIntensityDistribution(IfcLightIntensityDistribution object) {
+			public Adapter caseIfcLightIntensityDistribution(IfcLightIntensityDistribution object)
+			{
 				return createIfcLightIntensityDistributionAdapter();
 			}
 			@Override
-			public Adapter caseIfcLightSource(IfcLightSource object) {
+			public Adapter caseIfcLightSource(IfcLightSource object)
+			{
 				return createIfcLightSourceAdapter();
 			}
 			@Override
-			public Adapter caseIfcLightSourceAmbient(IfcLightSourceAmbient object) {
+			public Adapter caseIfcLightSourceAmbient(IfcLightSourceAmbient object)
+			{
 				return createIfcLightSourceAmbientAdapter();
 			}
 			@Override
-			public Adapter caseIfcLightSourceDirectional(IfcLightSourceDirectional object) {
+			public Adapter caseIfcLightSourceDirectional(IfcLightSourceDirectional object)
+			{
 				return createIfcLightSourceDirectionalAdapter();
 			}
 			@Override
-			public Adapter caseIfcLightSourceGoniometric(IfcLightSourceGoniometric object) {
+			public Adapter caseIfcLightSourceGoniometric(IfcLightSourceGoniometric object)
+			{
 				return createIfcLightSourceGoniometricAdapter();
 			}
 			@Override
-			public Adapter caseIfcLightSourcePositional(IfcLightSourcePositional object) {
+			public Adapter caseIfcLightSourcePositional(IfcLightSourcePositional object)
+			{
 				return createIfcLightSourcePositionalAdapter();
 			}
 			@Override
-			public Adapter caseIfcLightSourceSpot(IfcLightSourceSpot object) {
+			public Adapter caseIfcLightSourceSpot(IfcLightSourceSpot object)
+			{
 				return createIfcLightSourceSpotAdapter();
 			}
 			@Override
-			public Adapter caseIfcLine(IfcLine object) {
+			public Adapter caseIfcLine(IfcLine object)
+			{
 				return createIfcLineAdapter();
 			}
 			@Override
-			public Adapter caseIfcLinearDimension(IfcLinearDimension object) {
+			public Adapter caseIfcLinearDimension(IfcLinearDimension object)
+			{
 				return createIfcLinearDimensionAdapter();
 			}
 			@Override
-			public Adapter caseIfcLocalPlacement(IfcLocalPlacement object) {
+			public Adapter caseIfcLocalPlacement(IfcLocalPlacement object)
+			{
 				return createIfcLocalPlacementAdapter();
 			}
 			@Override
-			public Adapter caseIfcLocalTime(IfcLocalTime object) {
+			public Adapter caseIfcLocalTime(IfcLocalTime object)
+			{
 				return createIfcLocalTimeAdapter();
 			}
 			@Override
-			public Adapter caseIfcLoop(IfcLoop object) {
+			public Adapter caseIfcLoop(IfcLoop object)
+			{
 				return createIfcLoopAdapter();
 			}
 			@Override
-			public Adapter caseIfcManifoldSolidBrep(IfcManifoldSolidBrep object) {
+			public Adapter caseIfcManifoldSolidBrep(IfcManifoldSolidBrep object)
+			{
 				return createIfcManifoldSolidBrepAdapter();
 			}
 			@Override
-			public Adapter caseIfcMappedItem(IfcMappedItem object) {
+			public Adapter caseIfcMappedItem(IfcMappedItem object)
+			{
 				return createIfcMappedItemAdapter();
 			}
 			@Override
-			public Adapter caseIfcMaterial(IfcMaterial object) {
+			public Adapter caseIfcMaterial(IfcMaterial object)
+			{
 				return createIfcMaterialAdapter();
 			}
 			@Override
-			public Adapter caseIfcMaterialClassificationRelationship(IfcMaterialClassificationRelationship object) {
+			public Adapter caseIfcMaterialClassificationRelationship(IfcMaterialClassificationRelationship object)
+			{
 				return createIfcMaterialClassificationRelationshipAdapter();
 			}
 			@Override
-			public Adapter caseIfcMaterialDefinitionRepresentation(IfcMaterialDefinitionRepresentation object) {
+			public Adapter caseIfcMaterialDefinitionRepresentation(IfcMaterialDefinitionRepresentation object)
+			{
 				return createIfcMaterialDefinitionRepresentationAdapter();
 			}
 			@Override
-			public Adapter caseIfcMaterialLayer(IfcMaterialLayer object) {
+			public Adapter caseIfcMaterialLayer(IfcMaterialLayer object)
+			{
 				return createIfcMaterialLayerAdapter();
 			}
 			@Override
-			public Adapter caseIfcMaterialLayerSet(IfcMaterialLayerSet object) {
+			public Adapter caseIfcMaterialLayerSet(IfcMaterialLayerSet object)
+			{
 				return createIfcMaterialLayerSetAdapter();
 			}
 			@Override
-			public Adapter caseIfcMaterialLayerSetUsage(IfcMaterialLayerSetUsage object) {
+			public Adapter caseIfcMaterialLayerSetUsage(IfcMaterialLayerSetUsage object)
+			{
 				return createIfcMaterialLayerSetUsageAdapter();
 			}
 			@Override
-			public Adapter caseIfcMaterialList(IfcMaterialList object) {
+			public Adapter caseIfcMaterialList(IfcMaterialList object)
+			{
 				return createIfcMaterialListAdapter();
 			}
 			@Override
-			public Adapter caseIfcMaterialProperties(IfcMaterialProperties object) {
+			public Adapter caseIfcMaterialProperties(IfcMaterialProperties object)
+			{
 				return createIfcMaterialPropertiesAdapter();
 			}
 			@Override
-			public Adapter caseIfcMeasureWithUnit(IfcMeasureWithUnit object) {
+			public Adapter caseIfcMeasureWithUnit(IfcMeasureWithUnit object)
+			{
 				return createIfcMeasureWithUnitAdapter();
 			}
 			@Override
-			public Adapter caseIfcMechanicalConcreteMaterialProperties(IfcMechanicalConcreteMaterialProperties object) {
+			public Adapter caseIfcMechanicalConcreteMaterialProperties(IfcMechanicalConcreteMaterialProperties object)
+			{
 				return createIfcMechanicalConcreteMaterialPropertiesAdapter();
 			}
 			@Override
-			public Adapter caseIfcMechanicalFastener(IfcMechanicalFastener object) {
+			public Adapter caseIfcMechanicalFastener(IfcMechanicalFastener object)
+			{
 				return createIfcMechanicalFastenerAdapter();
 			}
 			@Override
-			public Adapter caseIfcMechanicalFastenerType(IfcMechanicalFastenerType object) {
+			public Adapter caseIfcMechanicalFastenerType(IfcMechanicalFastenerType object)
+			{
 				return createIfcMechanicalFastenerTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcMechanicalMaterialProperties(IfcMechanicalMaterialProperties object) {
+			public Adapter caseIfcMechanicalMaterialProperties(IfcMechanicalMaterialProperties object)
+			{
 				return createIfcMechanicalMaterialPropertiesAdapter();
 			}
 			@Override
-			public Adapter caseIfcMechanicalSteelMaterialProperties(IfcMechanicalSteelMaterialProperties object) {
+			public Adapter caseIfcMechanicalSteelMaterialProperties(IfcMechanicalSteelMaterialProperties object)
+			{
 				return createIfcMechanicalSteelMaterialPropertiesAdapter();
 			}
 			@Override
-			public Adapter caseIfcMember(IfcMember object) {
+			public Adapter caseIfcMember(IfcMember object)
+			{
 				return createIfcMemberAdapter();
 			}
 			@Override
-			public Adapter caseIfcMemberType(IfcMemberType object) {
+			public Adapter caseIfcMemberType(IfcMemberType object)
+			{
 				return createIfcMemberTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcMetric(IfcMetric object) {
+			public Adapter caseIfcMetric(IfcMetric object)
+			{
 				return createIfcMetricAdapter();
 			}
 			@Override
-			public Adapter caseIfcMonetaryUnit(IfcMonetaryUnit object) {
+			public Adapter caseIfcMonetaryUnit(IfcMonetaryUnit object)
+			{
 				return createIfcMonetaryUnitAdapter();
 			}
 			@Override
-			public Adapter caseIfcMotorConnectionType(IfcMotorConnectionType object) {
+			public Adapter caseIfcMotorConnectionType(IfcMotorConnectionType object)
+			{
 				return createIfcMotorConnectionTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcMove(IfcMove object) {
+			public Adapter caseIfcMove(IfcMove object)
+			{
 				return createIfcMoveAdapter();
 			}
 			@Override
-			public Adapter caseIfcNamedUnit(IfcNamedUnit object) {
+			public Adapter caseIfcNamedUnit(IfcNamedUnit object)
+			{
 				return createIfcNamedUnitAdapter();
 			}
 			@Override
-			public Adapter caseIfcObject(IfcObject object) {
+			public Adapter caseIfcObject(IfcObject object)
+			{
 				return createIfcObjectAdapter();
 			}
 			@Override
-			public Adapter caseIfcObjectDefinition(IfcObjectDefinition object) {
+			public Adapter caseIfcObjectDefinition(IfcObjectDefinition object)
+			{
 				return createIfcObjectDefinitionAdapter();
 			}
 			@Override
-			public Adapter caseIfcObjectPlacement(IfcObjectPlacement object) {
+			public Adapter caseIfcObjectPlacement(IfcObjectPlacement object)
+			{
 				return createIfcObjectPlacementAdapter();
 			}
 			@Override
-			public Adapter caseIfcObjective(IfcObjective object) {
+			public Adapter caseIfcObjective(IfcObjective object)
+			{
 				return createIfcObjectiveAdapter();
 			}
 			@Override
-			public Adapter caseIfcOccupant(IfcOccupant object) {
+			public Adapter caseIfcOccupant(IfcOccupant object)
+			{
 				return createIfcOccupantAdapter();
 			}
 			@Override
-			public Adapter caseIfcOffsetCurve2D(IfcOffsetCurve2D object) {
+			public Adapter caseIfcOffsetCurve2D(IfcOffsetCurve2D object)
+			{
 				return createIfcOffsetCurve2DAdapter();
 			}
 			@Override
-			public Adapter caseIfcOffsetCurve3D(IfcOffsetCurve3D object) {
+			public Adapter caseIfcOffsetCurve3D(IfcOffsetCurve3D object)
+			{
 				return createIfcOffsetCurve3DAdapter();
 			}
 			@Override
-			public Adapter caseIfcOneDirectionRepeatFactor(IfcOneDirectionRepeatFactor object) {
+			public Adapter caseIfcOneDirectionRepeatFactor(IfcOneDirectionRepeatFactor object)
+			{
 				return createIfcOneDirectionRepeatFactorAdapter();
 			}
 			@Override
-			public Adapter caseIfcOpenShell(IfcOpenShell object) {
+			public Adapter caseIfcOpenShell(IfcOpenShell object)
+			{
 				return createIfcOpenShellAdapter();
 			}
 			@Override
-			public Adapter caseIfcOpeningElement(IfcOpeningElement object) {
+			public Adapter caseIfcOpeningElement(IfcOpeningElement object)
+			{
 				return createIfcOpeningElementAdapter();
 			}
 			@Override
-			public Adapter caseIfcOpticalMaterialProperties(IfcOpticalMaterialProperties object) {
+			public Adapter caseIfcOpticalMaterialProperties(IfcOpticalMaterialProperties object)
+			{
 				return createIfcOpticalMaterialPropertiesAdapter();
 			}
 			@Override
-			public Adapter caseIfcOrderAction(IfcOrderAction object) {
+			public Adapter caseIfcOrderAction(IfcOrderAction object)
+			{
 				return createIfcOrderActionAdapter();
 			}
 			@Override
-			public Adapter caseIfcOrganization(IfcOrganization object) {
+			public Adapter caseIfcOrganization(IfcOrganization object)
+			{
 				return createIfcOrganizationAdapter();
 			}
 			@Override
-			public Adapter caseIfcOrganizationRelationship(IfcOrganizationRelationship object) {
+			public Adapter caseIfcOrganizationRelationship(IfcOrganizationRelationship object)
+			{
 				return createIfcOrganizationRelationshipAdapter();
 			}
 			@Override
-			public Adapter caseIfcOrientedEdge(IfcOrientedEdge object) {
+			public Adapter caseIfcOrientedEdge(IfcOrientedEdge object)
+			{
 				return createIfcOrientedEdgeAdapter();
 			}
 			@Override
-			public Adapter caseIfcOutletType(IfcOutletType object) {
+			public Adapter caseIfcOutletType(IfcOutletType object)
+			{
 				return createIfcOutletTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcOwnerHistory(IfcOwnerHistory object) {
+			public Adapter caseIfcOwnerHistory(IfcOwnerHistory object)
+			{
 				return createIfcOwnerHistoryAdapter();
 			}
 			@Override
-			public Adapter caseIfcParameterizedProfileDef(IfcParameterizedProfileDef object) {
+			public Adapter caseIfcParameterizedProfileDef(IfcParameterizedProfileDef object)
+			{
 				return createIfcParameterizedProfileDefAdapter();
 			}
 			@Override
-			public Adapter caseIfcPath(IfcPath object) {
+			public Adapter caseIfcPath(IfcPath object)
+			{
 				return createIfcPathAdapter();
 			}
 			@Override
-			public Adapter caseIfcPerformanceHistory(IfcPerformanceHistory object) {
+			public Adapter caseIfcPerformanceHistory(IfcPerformanceHistory object)
+			{
 				return createIfcPerformanceHistoryAdapter();
 			}
 			@Override
-			public Adapter caseIfcPermeableCoveringProperties(IfcPermeableCoveringProperties object) {
+			public Adapter caseIfcPermeableCoveringProperties(IfcPermeableCoveringProperties object)
+			{
 				return createIfcPermeableCoveringPropertiesAdapter();
 			}
 			@Override
-			public Adapter caseIfcPermit(IfcPermit object) {
+			public Adapter caseIfcPermit(IfcPermit object)
+			{
 				return createIfcPermitAdapter();
 			}
 			@Override
-			public Adapter caseIfcPerson(IfcPerson object) {
+			public Adapter caseIfcPerson(IfcPerson object)
+			{
 				return createIfcPersonAdapter();
 			}
 			@Override
-			public Adapter caseIfcPersonAndOrganization(IfcPersonAndOrganization object) {
+			public Adapter caseIfcPersonAndOrganization(IfcPersonAndOrganization object)
+			{
 				return createIfcPersonAndOrganizationAdapter();
 			}
 			@Override
-			public Adapter caseIfcPhysicalComplexQuantity(IfcPhysicalComplexQuantity object) {
+			public Adapter caseIfcPhysicalComplexQuantity(IfcPhysicalComplexQuantity object)
+			{
 				return createIfcPhysicalComplexQuantityAdapter();
 			}
 			@Override
-			public Adapter caseIfcPhysicalQuantity(IfcPhysicalQuantity object) {
+			public Adapter caseIfcPhysicalQuantity(IfcPhysicalQuantity object)
+			{
 				return createIfcPhysicalQuantityAdapter();
 			}
 			@Override
-			public Adapter caseIfcPhysicalSimpleQuantity(IfcPhysicalSimpleQuantity object) {
+			public Adapter caseIfcPhysicalSimpleQuantity(IfcPhysicalSimpleQuantity object)
+			{
 				return createIfcPhysicalSimpleQuantityAdapter();
 			}
 			@Override
-			public Adapter caseIfcPile(IfcPile object) {
+			public Adapter caseIfcPile(IfcPile object)
+			{
 				return createIfcPileAdapter();
 			}
 			@Override
-			public Adapter caseIfcPipeFittingType(IfcPipeFittingType object) {
+			public Adapter caseIfcPipeFittingType(IfcPipeFittingType object)
+			{
 				return createIfcPipeFittingTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcPipeSegmentType(IfcPipeSegmentType object) {
+			public Adapter caseIfcPipeSegmentType(IfcPipeSegmentType object)
+			{
 				return createIfcPipeSegmentTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcPixelTexture(IfcPixelTexture object) {
+			public Adapter caseIfcPixelTexture(IfcPixelTexture object)
+			{
 				return createIfcPixelTextureAdapter();
 			}
 			@Override
-			public Adapter caseIfcPlacement(IfcPlacement object) {
+			public Adapter caseIfcPlacement(IfcPlacement object)
+			{
 				return createIfcPlacementAdapter();
 			}
 			@Override
-			public Adapter caseIfcPlanarBox(IfcPlanarBox object) {
+			public Adapter caseIfcPlanarBox(IfcPlanarBox object)
+			{
 				return createIfcPlanarBoxAdapter();
 			}
 			@Override
-			public Adapter caseIfcPlanarExtent(IfcPlanarExtent object) {
+			public Adapter caseIfcPlanarExtent(IfcPlanarExtent object)
+			{
 				return createIfcPlanarExtentAdapter();
 			}
 			@Override
-			public Adapter caseIfcPlane(IfcPlane object) {
+			public Adapter caseIfcPlane(IfcPlane object)
+			{
 				return createIfcPlaneAdapter();
 			}
 			@Override
-			public Adapter caseIfcPlate(IfcPlate object) {
+			public Adapter caseIfcPlate(IfcPlate object)
+			{
 				return createIfcPlateAdapter();
 			}
 			@Override
-			public Adapter caseIfcPlateType(IfcPlateType object) {
+			public Adapter caseIfcPlateType(IfcPlateType object)
+			{
 				return createIfcPlateTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcPoint(IfcPoint object) {
+			public Adapter caseIfcPoint(IfcPoint object)
+			{
 				return createIfcPointAdapter();
 			}
 			@Override
-			public Adapter caseIfcPointOnCurve(IfcPointOnCurve object) {
+			public Adapter caseIfcPointOnCurve(IfcPointOnCurve object)
+			{
 				return createIfcPointOnCurveAdapter();
 			}
 			@Override
-			public Adapter caseIfcPointOnSurface(IfcPointOnSurface object) {
+			public Adapter caseIfcPointOnSurface(IfcPointOnSurface object)
+			{
 				return createIfcPointOnSurfaceAdapter();
 			}
 			@Override
-			public Adapter caseIfcPolyLoop(IfcPolyLoop object) {
+			public Adapter caseIfcPolyLoop(IfcPolyLoop object)
+			{
 				return createIfcPolyLoopAdapter();
 			}
 			@Override
-			public Adapter caseIfcPolygonalBoundedHalfSpace(IfcPolygonalBoundedHalfSpace object) {
+			public Adapter caseIfcPolygonalBoundedHalfSpace(IfcPolygonalBoundedHalfSpace object)
+			{
 				return createIfcPolygonalBoundedHalfSpaceAdapter();
 			}
 			@Override
-			public Adapter caseIfcPolyline(IfcPolyline object) {
+			public Adapter caseIfcPolyline(IfcPolyline object)
+			{
 				return createIfcPolylineAdapter();
 			}
 			@Override
-			public Adapter caseIfcPort(IfcPort object) {
+			public Adapter caseIfcPort(IfcPort object)
+			{
 				return createIfcPortAdapter();
 			}
 			@Override
-			public Adapter caseIfcPostalAddress(IfcPostalAddress object) {
+			public Adapter caseIfcPostalAddress(IfcPostalAddress object)
+			{
 				return createIfcPostalAddressAdapter();
 			}
 			@Override
-			public Adapter caseIfcPreDefinedColour(IfcPreDefinedColour object) {
+			public Adapter caseIfcPreDefinedColour(IfcPreDefinedColour object)
+			{
 				return createIfcPreDefinedColourAdapter();
 			}
 			@Override
-			public Adapter caseIfcPreDefinedCurveFont(IfcPreDefinedCurveFont object) {
+			public Adapter caseIfcPreDefinedCurveFont(IfcPreDefinedCurveFont object)
+			{
 				return createIfcPreDefinedCurveFontAdapter();
 			}
 			@Override
-			public Adapter caseIfcPreDefinedDimensionSymbol(IfcPreDefinedDimensionSymbol object) {
+			public Adapter caseIfcPreDefinedDimensionSymbol(IfcPreDefinedDimensionSymbol object)
+			{
 				return createIfcPreDefinedDimensionSymbolAdapter();
 			}
 			@Override
-			public Adapter caseIfcPreDefinedItem(IfcPreDefinedItem object) {
+			public Adapter caseIfcPreDefinedItem(IfcPreDefinedItem object)
+			{
 				return createIfcPreDefinedItemAdapter();
 			}
 			@Override
-			public Adapter caseIfcPreDefinedPointMarkerSymbol(IfcPreDefinedPointMarkerSymbol object) {
+			public Adapter caseIfcPreDefinedPointMarkerSymbol(IfcPreDefinedPointMarkerSymbol object)
+			{
 				return createIfcPreDefinedPointMarkerSymbolAdapter();
 			}
 			@Override
-			public Adapter caseIfcPreDefinedSymbol(IfcPreDefinedSymbol object) {
+			public Adapter caseIfcPreDefinedSymbol(IfcPreDefinedSymbol object)
+			{
 				return createIfcPreDefinedSymbolAdapter();
 			}
 			@Override
-			public Adapter caseIfcPreDefinedTerminatorSymbol(IfcPreDefinedTerminatorSymbol object) {
+			public Adapter caseIfcPreDefinedTerminatorSymbol(IfcPreDefinedTerminatorSymbol object)
+			{
 				return createIfcPreDefinedTerminatorSymbolAdapter();
 			}
 			@Override
-			public Adapter caseIfcPreDefinedTextFont(IfcPreDefinedTextFont object) {
+			public Adapter caseIfcPreDefinedTextFont(IfcPreDefinedTextFont object)
+			{
 				return createIfcPreDefinedTextFontAdapter();
 			}
 			@Override
-			public Adapter caseIfcPresentationLayerAssignment(IfcPresentationLayerAssignment object) {
+			public Adapter caseIfcPresentationLayerAssignment(IfcPresentationLayerAssignment object)
+			{
 				return createIfcPresentationLayerAssignmentAdapter();
 			}
 			@Override
-			public Adapter caseIfcPresentationLayerWithStyle(IfcPresentationLayerWithStyle object) {
+			public Adapter caseIfcPresentationLayerWithStyle(IfcPresentationLayerWithStyle object)
+			{
 				return createIfcPresentationLayerWithStyleAdapter();
 			}
 			@Override
-			public Adapter caseIfcPresentationStyle(IfcPresentationStyle object) {
+			public Adapter caseIfcPresentationStyle(IfcPresentationStyle object)
+			{
 				return createIfcPresentationStyleAdapter();
 			}
 			@Override
-			public Adapter caseIfcPresentationStyleAssignment(IfcPresentationStyleAssignment object) {
+			public Adapter caseIfcPresentationStyleAssignment(IfcPresentationStyleAssignment object)
+			{
 				return createIfcPresentationStyleAssignmentAdapter();
 			}
 			@Override
-			public Adapter caseIfcProcedure(IfcProcedure object) {
+			public Adapter caseIfcProcedure(IfcProcedure object)
+			{
 				return createIfcProcedureAdapter();
 			}
 			@Override
-			public Adapter caseIfcProcess(IfcProcess object) {
+			public Adapter caseIfcProcess(IfcProcess object)
+			{
 				return createIfcProcessAdapter();
 			}
 			@Override
-			public Adapter caseIfcProduct(IfcProduct object) {
+			public Adapter caseIfcProduct(IfcProduct object)
+			{
 				return createIfcProductAdapter();
 			}
 			@Override
-			public Adapter caseIfcProductDefinitionShape(IfcProductDefinitionShape object) {
+			public Adapter caseIfcProductDefinitionShape(IfcProductDefinitionShape object)
+			{
 				return createIfcProductDefinitionShapeAdapter();
 			}
 			@Override
-			public Adapter caseIfcProductRepresentation(IfcProductRepresentation object) {
+			public Adapter caseIfcProductRepresentation(IfcProductRepresentation object)
+			{
 				return createIfcProductRepresentationAdapter();
 			}
 			@Override
-			public Adapter caseIfcProductsOfCombustionProperties(IfcProductsOfCombustionProperties object) {
+			public Adapter caseIfcProductsOfCombustionProperties(IfcProductsOfCombustionProperties object)
+			{
 				return createIfcProductsOfCombustionPropertiesAdapter();
 			}
 			@Override
-			public Adapter caseIfcProfileDef(IfcProfileDef object) {
+			public Adapter caseIfcProfileDef(IfcProfileDef object)
+			{
 				return createIfcProfileDefAdapter();
 			}
 			@Override
-			public Adapter caseIfcProfileProperties(IfcProfileProperties object) {
+			public Adapter caseIfcProfileProperties(IfcProfileProperties object)
+			{
 				return createIfcProfilePropertiesAdapter();
 			}
 			@Override
-			public Adapter caseIfcProject(IfcProject object) {
+			public Adapter caseIfcProject(IfcProject object)
+			{
 				return createIfcProjectAdapter();
 			}
 			@Override
-			public Adapter caseIfcProjectOrder(IfcProjectOrder object) {
+			public Adapter caseIfcProjectOrder(IfcProjectOrder object)
+			{
 				return createIfcProjectOrderAdapter();
 			}
 			@Override
-			public Adapter caseIfcProjectOrderRecord(IfcProjectOrderRecord object) {
+			public Adapter caseIfcProjectOrderRecord(IfcProjectOrderRecord object)
+			{
 				return createIfcProjectOrderRecordAdapter();
 			}
 			@Override
-			public Adapter caseIfcProjectionCurve(IfcProjectionCurve object) {
+			public Adapter caseIfcProjectionCurve(IfcProjectionCurve object)
+			{
 				return createIfcProjectionCurveAdapter();
 			}
 			@Override
-			public Adapter caseIfcProjectionElement(IfcProjectionElement object) {
+			public Adapter caseIfcProjectionElement(IfcProjectionElement object)
+			{
 				return createIfcProjectionElementAdapter();
 			}
 			@Override
-			public Adapter caseIfcProperty(IfcProperty object) {
+			public Adapter caseIfcProperty(IfcProperty object)
+			{
 				return createIfcPropertyAdapter();
 			}
 			@Override
-			public Adapter caseIfcPropertyBoundedValue(IfcPropertyBoundedValue object) {
+			public Adapter caseIfcPropertyBoundedValue(IfcPropertyBoundedValue object)
+			{
 				return createIfcPropertyBoundedValueAdapter();
 			}
 			@Override
-			public Adapter caseIfcPropertyConstraintRelationship(IfcPropertyConstraintRelationship object) {
+			public Adapter caseIfcPropertyConstraintRelationship(IfcPropertyConstraintRelationship object)
+			{
 				return createIfcPropertyConstraintRelationshipAdapter();
 			}
 			@Override
-			public Adapter caseIfcPropertyDefinition(IfcPropertyDefinition object) {
+			public Adapter caseIfcPropertyDefinition(IfcPropertyDefinition object)
+			{
 				return createIfcPropertyDefinitionAdapter();
 			}
 			@Override
-			public Adapter caseIfcPropertyDependencyRelationship(IfcPropertyDependencyRelationship object) {
+			public Adapter caseIfcPropertyDependencyRelationship(IfcPropertyDependencyRelationship object)
+			{
 				return createIfcPropertyDependencyRelationshipAdapter();
 			}
 			@Override
-			public Adapter caseIfcPropertyEnumeratedValue(IfcPropertyEnumeratedValue object) {
+			public Adapter caseIfcPropertyEnumeratedValue(IfcPropertyEnumeratedValue object)
+			{
 				return createIfcPropertyEnumeratedValueAdapter();
 			}
 			@Override
-			public Adapter caseIfcPropertyEnumeration(IfcPropertyEnumeration object) {
+			public Adapter caseIfcPropertyEnumeration(IfcPropertyEnumeration object)
+			{
 				return createIfcPropertyEnumerationAdapter();
 			}
 			@Override
-			public Adapter caseIfcPropertyListValue(IfcPropertyListValue object) {
+			public Adapter caseIfcPropertyListValue(IfcPropertyListValue object)
+			{
 				return createIfcPropertyListValueAdapter();
 			}
 			@Override
-			public Adapter caseIfcPropertyReferenceValue(IfcPropertyReferenceValue object) {
+			public Adapter caseIfcPropertyReferenceValue(IfcPropertyReferenceValue object)
+			{
 				return createIfcPropertyReferenceValueAdapter();
 			}
 			@Override
-			public Adapter caseIfcPropertySet(IfcPropertySet object) {
+			public Adapter caseIfcPropertySet(IfcPropertySet object)
+			{
 				return createIfcPropertySetAdapter();
 			}
 			@Override
-			public Adapter caseIfcPropertySetDefinition(IfcPropertySetDefinition object) {
+			public Adapter caseIfcPropertySetDefinition(IfcPropertySetDefinition object)
+			{
 				return createIfcPropertySetDefinitionAdapter();
 			}
 			@Override
-			public Adapter caseIfcPropertySingleValue(IfcPropertySingleValue object) {
+			public Adapter caseIfcPropertySingleValue(IfcPropertySingleValue object)
+			{
 				return createIfcPropertySingleValueAdapter();
 			}
 			@Override
-			public Adapter caseIfcPropertyTableValue(IfcPropertyTableValue object) {
+			public Adapter caseIfcPropertyTableValue(IfcPropertyTableValue object)
+			{
 				return createIfcPropertyTableValueAdapter();
 			}
 			@Override
-			public Adapter caseIfcProtectiveDeviceType(IfcProtectiveDeviceType object) {
+			public Adapter caseIfcProtectiveDeviceType(IfcProtectiveDeviceType object)
+			{
 				return createIfcProtectiveDeviceTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcProxy(IfcProxy object) {
+			public Adapter caseIfcProxy(IfcProxy object)
+			{
 				return createIfcProxyAdapter();
 			}
 			@Override
-			public Adapter caseIfcPumpType(IfcPumpType object) {
+			public Adapter caseIfcPumpType(IfcPumpType object)
+			{
 				return createIfcPumpTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcQuantityArea(IfcQuantityArea object) {
+			public Adapter caseIfcQuantityArea(IfcQuantityArea object)
+			{
 				return createIfcQuantityAreaAdapter();
 			}
 			@Override
-			public Adapter caseIfcQuantityCount(IfcQuantityCount object) {
+			public Adapter caseIfcQuantityCount(IfcQuantityCount object)
+			{
 				return createIfcQuantityCountAdapter();
 			}
 			@Override
-			public Adapter caseIfcQuantityLength(IfcQuantityLength object) {
+			public Adapter caseIfcQuantityLength(IfcQuantityLength object)
+			{
 				return createIfcQuantityLengthAdapter();
 			}
 			@Override
-			public Adapter caseIfcQuantityTime(IfcQuantityTime object) {
+			public Adapter caseIfcQuantityTime(IfcQuantityTime object)
+			{
 				return createIfcQuantityTimeAdapter();
 			}
 			@Override
-			public Adapter caseIfcQuantityVolume(IfcQuantityVolume object) {
+			public Adapter caseIfcQuantityVolume(IfcQuantityVolume object)
+			{
 				return createIfcQuantityVolumeAdapter();
 			}
 			@Override
-			public Adapter caseIfcQuantityWeight(IfcQuantityWeight object) {
+			public Adapter caseIfcQuantityWeight(IfcQuantityWeight object)
+			{
 				return createIfcQuantityWeightAdapter();
 			}
 			@Override
-			public Adapter caseIfcRadiusDimension(IfcRadiusDimension object) {
+			public Adapter caseIfcRadiusDimension(IfcRadiusDimension object)
+			{
 				return createIfcRadiusDimensionAdapter();
 			}
 			@Override
-			public Adapter caseIfcRailing(IfcRailing object) {
+			public Adapter caseIfcRailing(IfcRailing object)
+			{
 				return createIfcRailingAdapter();
 			}
 			@Override
-			public Adapter caseIfcRailingType(IfcRailingType object) {
+			public Adapter caseIfcRailingType(IfcRailingType object)
+			{
 				return createIfcRailingTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcRamp(IfcRamp object) {
+			public Adapter caseIfcRamp(IfcRamp object)
+			{
 				return createIfcRampAdapter();
 			}
 			@Override
-			public Adapter caseIfcRampFlight(IfcRampFlight object) {
+			public Adapter caseIfcRampFlight(IfcRampFlight object)
+			{
 				return createIfcRampFlightAdapter();
 			}
 			@Override
-			public Adapter caseIfcRampFlightType(IfcRampFlightType object) {
+			public Adapter caseIfcRampFlightType(IfcRampFlightType object)
+			{
 				return createIfcRampFlightTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcRationalBezierCurve(IfcRationalBezierCurve object) {
+			public Adapter caseIfcRationalBezierCurve(IfcRationalBezierCurve object)
+			{
 				return createIfcRationalBezierCurveAdapter();
 			}
 			@Override
-			public Adapter caseIfcRectangleHollowProfileDef(IfcRectangleHollowProfileDef object) {
+			public Adapter caseIfcRectangleHollowProfileDef(IfcRectangleHollowProfileDef object)
+			{
 				return createIfcRectangleHollowProfileDefAdapter();
 			}
 			@Override
-			public Adapter caseIfcRectangleProfileDef(IfcRectangleProfileDef object) {
+			public Adapter caseIfcRectangleProfileDef(IfcRectangleProfileDef object)
+			{
 				return createIfcRectangleProfileDefAdapter();
 			}
 			@Override
-			public Adapter caseIfcRectangularPyramid(IfcRectangularPyramid object) {
+			public Adapter caseIfcRectangularPyramid(IfcRectangularPyramid object)
+			{
 				return createIfcRectangularPyramidAdapter();
 			}
 			@Override
-			public Adapter caseIfcRectangularTrimmedSurface(IfcRectangularTrimmedSurface object) {
+			public Adapter caseIfcRectangularTrimmedSurface(IfcRectangularTrimmedSurface object)
+			{
 				return createIfcRectangularTrimmedSurfaceAdapter();
 			}
 			@Override
-			public Adapter caseIfcReferencesValueDocument(IfcReferencesValueDocument object) {
+			public Adapter caseIfcReferencesValueDocument(IfcReferencesValueDocument object)
+			{
 				return createIfcReferencesValueDocumentAdapter();
 			}
 			@Override
-			public Adapter caseIfcRegularTimeSeries(IfcRegularTimeSeries object) {
+			public Adapter caseIfcRegularTimeSeries(IfcRegularTimeSeries object)
+			{
 				return createIfcRegularTimeSeriesAdapter();
 			}
 			@Override
-			public Adapter caseIfcReinforcementBarProperties(IfcReinforcementBarProperties object) {
+			public Adapter caseIfcReinforcementBarProperties(IfcReinforcementBarProperties object)
+			{
 				return createIfcReinforcementBarPropertiesAdapter();
 			}
 			@Override
-			public Adapter caseIfcReinforcementDefinitionProperties(IfcReinforcementDefinitionProperties object) {
+			public Adapter caseIfcReinforcementDefinitionProperties(IfcReinforcementDefinitionProperties object)
+			{
 				return createIfcReinforcementDefinitionPropertiesAdapter();
 			}
 			@Override
-			public Adapter caseIfcReinforcingBar(IfcReinforcingBar object) {
+			public Adapter caseIfcReinforcingBar(IfcReinforcingBar object)
+			{
 				return createIfcReinforcingBarAdapter();
 			}
 			@Override
-			public Adapter caseIfcReinforcingElement(IfcReinforcingElement object) {
+			public Adapter caseIfcReinforcingElement(IfcReinforcingElement object)
+			{
 				return createIfcReinforcingElementAdapter();
 			}
 			@Override
-			public Adapter caseIfcReinforcingMesh(IfcReinforcingMesh object) {
+			public Adapter caseIfcReinforcingMesh(IfcReinforcingMesh object)
+			{
 				return createIfcReinforcingMeshAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelAggregates(IfcRelAggregates object) {
+			public Adapter caseIfcRelAggregates(IfcRelAggregates object)
+			{
 				return createIfcRelAggregatesAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelAssigns(IfcRelAssigns object) {
+			public Adapter caseIfcRelAssigns(IfcRelAssigns object)
+			{
 				return createIfcRelAssignsAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelAssignsTasks(IfcRelAssignsTasks object) {
+			public Adapter caseIfcRelAssignsTasks(IfcRelAssignsTasks object)
+			{
 				return createIfcRelAssignsTasksAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelAssignsToActor(IfcRelAssignsToActor object) {
+			public Adapter caseIfcRelAssignsToActor(IfcRelAssignsToActor object)
+			{
 				return createIfcRelAssignsToActorAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelAssignsToControl(IfcRelAssignsToControl object) {
+			public Adapter caseIfcRelAssignsToControl(IfcRelAssignsToControl object)
+			{
 				return createIfcRelAssignsToControlAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelAssignsToGroup(IfcRelAssignsToGroup object) {
+			public Adapter caseIfcRelAssignsToGroup(IfcRelAssignsToGroup object)
+			{
 				return createIfcRelAssignsToGroupAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelAssignsToProcess(IfcRelAssignsToProcess object) {
+			public Adapter caseIfcRelAssignsToProcess(IfcRelAssignsToProcess object)
+			{
 				return createIfcRelAssignsToProcessAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelAssignsToProduct(IfcRelAssignsToProduct object) {
+			public Adapter caseIfcRelAssignsToProduct(IfcRelAssignsToProduct object)
+			{
 				return createIfcRelAssignsToProductAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelAssignsToProjectOrder(IfcRelAssignsToProjectOrder object) {
+			public Adapter caseIfcRelAssignsToProjectOrder(IfcRelAssignsToProjectOrder object)
+			{
 				return createIfcRelAssignsToProjectOrderAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelAssignsToResource(IfcRelAssignsToResource object) {
+			public Adapter caseIfcRelAssignsToResource(IfcRelAssignsToResource object)
+			{
 				return createIfcRelAssignsToResourceAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelAssociates(IfcRelAssociates object) {
+			public Adapter caseIfcRelAssociates(IfcRelAssociates object)
+			{
 				return createIfcRelAssociatesAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelAssociatesAppliedValue(IfcRelAssociatesAppliedValue object) {
+			public Adapter caseIfcRelAssociatesAppliedValue(IfcRelAssociatesAppliedValue object)
+			{
 				return createIfcRelAssociatesAppliedValueAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelAssociatesApproval(IfcRelAssociatesApproval object) {
+			public Adapter caseIfcRelAssociatesApproval(IfcRelAssociatesApproval object)
+			{
 				return createIfcRelAssociatesApprovalAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelAssociatesClassification(IfcRelAssociatesClassification object) {
+			public Adapter caseIfcRelAssociatesClassification(IfcRelAssociatesClassification object)
+			{
 				return createIfcRelAssociatesClassificationAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelAssociatesConstraint(IfcRelAssociatesConstraint object) {
+			public Adapter caseIfcRelAssociatesConstraint(IfcRelAssociatesConstraint object)
+			{
 				return createIfcRelAssociatesConstraintAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelAssociatesDocument(IfcRelAssociatesDocument object) {
+			public Adapter caseIfcRelAssociatesDocument(IfcRelAssociatesDocument object)
+			{
 				return createIfcRelAssociatesDocumentAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelAssociatesLibrary(IfcRelAssociatesLibrary object) {
+			public Adapter caseIfcRelAssociatesLibrary(IfcRelAssociatesLibrary object)
+			{
 				return createIfcRelAssociatesLibraryAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelAssociatesMaterial(IfcRelAssociatesMaterial object) {
+			public Adapter caseIfcRelAssociatesMaterial(IfcRelAssociatesMaterial object)
+			{
 				return createIfcRelAssociatesMaterialAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelAssociatesProfileProperties(IfcRelAssociatesProfileProperties object) {
+			public Adapter caseIfcRelAssociatesProfileProperties(IfcRelAssociatesProfileProperties object)
+			{
 				return createIfcRelAssociatesProfilePropertiesAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelConnects(IfcRelConnects object) {
+			public Adapter caseIfcRelConnects(IfcRelConnects object)
+			{
 				return createIfcRelConnectsAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelConnectsElements(IfcRelConnectsElements object) {
+			public Adapter caseIfcRelConnectsElements(IfcRelConnectsElements object)
+			{
 				return createIfcRelConnectsElementsAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelConnectsPathElements(IfcRelConnectsPathElements object) {
+			public Adapter caseIfcRelConnectsPathElements(IfcRelConnectsPathElements object)
+			{
 				return createIfcRelConnectsPathElementsAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelConnectsPortToElement(IfcRelConnectsPortToElement object) {
+			public Adapter caseIfcRelConnectsPortToElement(IfcRelConnectsPortToElement object)
+			{
 				return createIfcRelConnectsPortToElementAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelConnectsPorts(IfcRelConnectsPorts object) {
+			public Adapter caseIfcRelConnectsPorts(IfcRelConnectsPorts object)
+			{
 				return createIfcRelConnectsPortsAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelConnectsStructuralActivity(IfcRelConnectsStructuralActivity object) {
+			public Adapter caseIfcRelConnectsStructuralActivity(IfcRelConnectsStructuralActivity object)
+			{
 				return createIfcRelConnectsStructuralActivityAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelConnectsStructuralElement(IfcRelConnectsStructuralElement object) {
+			public Adapter caseIfcRelConnectsStructuralElement(IfcRelConnectsStructuralElement object)
+			{
 				return createIfcRelConnectsStructuralElementAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelConnectsStructuralMember(IfcRelConnectsStructuralMember object) {
+			public Adapter caseIfcRelConnectsStructuralMember(IfcRelConnectsStructuralMember object)
+			{
 				return createIfcRelConnectsStructuralMemberAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelConnectsWithEccentricity(IfcRelConnectsWithEccentricity object) {
+			public Adapter caseIfcRelConnectsWithEccentricity(IfcRelConnectsWithEccentricity object)
+			{
 				return createIfcRelConnectsWithEccentricityAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelConnectsWithRealizingElements(IfcRelConnectsWithRealizingElements object) {
+			public Adapter caseIfcRelConnectsWithRealizingElements(IfcRelConnectsWithRealizingElements object)
+			{
 				return createIfcRelConnectsWithRealizingElementsAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelContainedInSpatialStructure(IfcRelContainedInSpatialStructure object) {
+			public Adapter caseIfcRelContainedInSpatialStructure(IfcRelContainedInSpatialStructure object)
+			{
 				return createIfcRelContainedInSpatialStructureAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelCoversBldgElements(IfcRelCoversBldgElements object) {
+			public Adapter caseIfcRelCoversBldgElements(IfcRelCoversBldgElements object)
+			{
 				return createIfcRelCoversBldgElementsAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelCoversSpaces(IfcRelCoversSpaces object) {
+			public Adapter caseIfcRelCoversSpaces(IfcRelCoversSpaces object)
+			{
 				return createIfcRelCoversSpacesAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelDecomposes(IfcRelDecomposes object) {
+			public Adapter caseIfcRelDecomposes(IfcRelDecomposes object)
+			{
 				return createIfcRelDecomposesAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelDefines(IfcRelDefines object) {
+			public Adapter caseIfcRelDefines(IfcRelDefines object)
+			{
 				return createIfcRelDefinesAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelDefinesByProperties(IfcRelDefinesByProperties object) {
+			public Adapter caseIfcRelDefinesByProperties(IfcRelDefinesByProperties object)
+			{
 				return createIfcRelDefinesByPropertiesAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelDefinesByType(IfcRelDefinesByType object) {
+			public Adapter caseIfcRelDefinesByType(IfcRelDefinesByType object)
+			{
 				return createIfcRelDefinesByTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelFillsElement(IfcRelFillsElement object) {
+			public Adapter caseIfcRelFillsElement(IfcRelFillsElement object)
+			{
 				return createIfcRelFillsElementAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelFlowControlElements(IfcRelFlowControlElements object) {
+			public Adapter caseIfcRelFlowControlElements(IfcRelFlowControlElements object)
+			{
 				return createIfcRelFlowControlElementsAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelInteractionRequirements(IfcRelInteractionRequirements object) {
+			public Adapter caseIfcRelInteractionRequirements(IfcRelInteractionRequirements object)
+			{
 				return createIfcRelInteractionRequirementsAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelNests(IfcRelNests object) {
+			public Adapter caseIfcRelNests(IfcRelNests object)
+			{
 				return createIfcRelNestsAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelOccupiesSpaces(IfcRelOccupiesSpaces object) {
+			public Adapter caseIfcRelOccupiesSpaces(IfcRelOccupiesSpaces object)
+			{
 				return createIfcRelOccupiesSpacesAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelOverridesProperties(IfcRelOverridesProperties object) {
+			public Adapter caseIfcRelOverridesProperties(IfcRelOverridesProperties object)
+			{
 				return createIfcRelOverridesPropertiesAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelProjectsElement(IfcRelProjectsElement object) {
+			public Adapter caseIfcRelProjectsElement(IfcRelProjectsElement object)
+			{
 				return createIfcRelProjectsElementAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelReferencedInSpatialStructure(IfcRelReferencedInSpatialStructure object) {
+			public Adapter caseIfcRelReferencedInSpatialStructure(IfcRelReferencedInSpatialStructure object)
+			{
 				return createIfcRelReferencedInSpatialStructureAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelSchedulesCostItems(IfcRelSchedulesCostItems object) {
+			public Adapter caseIfcRelSchedulesCostItems(IfcRelSchedulesCostItems object)
+			{
 				return createIfcRelSchedulesCostItemsAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelSequence(IfcRelSequence object) {
+			public Adapter caseIfcRelSequence(IfcRelSequence object)
+			{
 				return createIfcRelSequenceAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelServicesBuildings(IfcRelServicesBuildings object) {
+			public Adapter caseIfcRelServicesBuildings(IfcRelServicesBuildings object)
+			{
 				return createIfcRelServicesBuildingsAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelSpaceBoundary(IfcRelSpaceBoundary object) {
+			public Adapter caseIfcRelSpaceBoundary(IfcRelSpaceBoundary object)
+			{
 				return createIfcRelSpaceBoundaryAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelVoidsElement(IfcRelVoidsElement object) {
+			public Adapter caseIfcRelVoidsElement(IfcRelVoidsElement object)
+			{
 				return createIfcRelVoidsElementAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelationship(IfcRelationship object) {
+			public Adapter caseIfcRelationship(IfcRelationship object)
+			{
 				return createIfcRelationshipAdapter();
 			}
 			@Override
-			public Adapter caseIfcRelaxation(IfcRelaxation object) {
+			public Adapter caseIfcRelaxation(IfcRelaxation object)
+			{
 				return createIfcRelaxationAdapter();
 			}
 			@Override
-			public Adapter caseIfcRepresentation(IfcRepresentation object) {
+			public Adapter caseIfcRepresentation(IfcRepresentation object)
+			{
 				return createIfcRepresentationAdapter();
 			}
 			@Override
-			public Adapter caseIfcRepresentationContext(IfcRepresentationContext object) {
+			public Adapter caseIfcRepresentationContext(IfcRepresentationContext object)
+			{
 				return createIfcRepresentationContextAdapter();
 			}
 			@Override
-			public Adapter caseIfcRepresentationItem(IfcRepresentationItem object) {
+			public Adapter caseIfcRepresentationItem(IfcRepresentationItem object)
+			{
 				return createIfcRepresentationItemAdapter();
 			}
 			@Override
-			public Adapter caseIfcRepresentationMap(IfcRepresentationMap object) {
+			public Adapter caseIfcRepresentationMap(IfcRepresentationMap object)
+			{
 				return createIfcRepresentationMapAdapter();
 			}
 			@Override
-			public Adapter caseIfcResource(IfcResource object) {
+			public Adapter caseIfcResource(IfcResource object)
+			{
 				return createIfcResourceAdapter();
 			}
 			@Override
-			public Adapter caseIfcRevolvedAreaSolid(IfcRevolvedAreaSolid object) {
+			public Adapter caseIfcRevolvedAreaSolid(IfcRevolvedAreaSolid object)
+			{
 				return createIfcRevolvedAreaSolidAdapter();
 			}
 			@Override
-			public Adapter caseIfcRibPlateProfileProperties(IfcRibPlateProfileProperties object) {
+			public Adapter caseIfcRibPlateProfileProperties(IfcRibPlateProfileProperties object)
+			{
 				return createIfcRibPlateProfilePropertiesAdapter();
 			}
 			@Override
-			public Adapter caseIfcRightCircularCone(IfcRightCircularCone object) {
+			public Adapter caseIfcRightCircularCone(IfcRightCircularCone object)
+			{
 				return createIfcRightCircularConeAdapter();
 			}
 			@Override
-			public Adapter caseIfcRightCircularCylinder(IfcRightCircularCylinder object) {
+			public Adapter caseIfcRightCircularCylinder(IfcRightCircularCylinder object)
+			{
 				return createIfcRightCircularCylinderAdapter();
 			}
 			@Override
-			public Adapter caseIfcRoof(IfcRoof object) {
+			public Adapter caseIfcRoof(IfcRoof object)
+			{
 				return createIfcRoofAdapter();
 			}
 			@Override
-			public Adapter caseIfcRoot(IfcRoot object) {
+			public Adapter caseIfcRoot(IfcRoot object)
+			{
 				return createIfcRootAdapter();
 			}
 			@Override
-			public Adapter caseIfcRoundedEdgeFeature(IfcRoundedEdgeFeature object) {
+			public Adapter caseIfcRoundedEdgeFeature(IfcRoundedEdgeFeature object)
+			{
 				return createIfcRoundedEdgeFeatureAdapter();
 			}
 			@Override
-			public Adapter caseIfcRoundedRectangleProfileDef(IfcRoundedRectangleProfileDef object) {
+			public Adapter caseIfcRoundedRectangleProfileDef(IfcRoundedRectangleProfileDef object)
+			{
 				return createIfcRoundedRectangleProfileDefAdapter();
 			}
 			@Override
-			public Adapter caseIfcSIUnit(IfcSIUnit object) {
+			public Adapter caseIfcSIUnit(IfcSIUnit object)
+			{
 				return createIfcSIUnitAdapter();
 			}
 			@Override
-			public Adapter caseIfcSanitaryTerminalType(IfcSanitaryTerminalType object) {
+			public Adapter caseIfcSanitaryTerminalType(IfcSanitaryTerminalType object)
+			{
 				return createIfcSanitaryTerminalTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcScheduleTimeControl(IfcScheduleTimeControl object) {
+			public Adapter caseIfcScheduleTimeControl(IfcScheduleTimeControl object)
+			{
 				return createIfcScheduleTimeControlAdapter();
 			}
 			@Override
-			public Adapter caseIfcSectionProperties(IfcSectionProperties object) {
+			public Adapter caseIfcSectionProperties(IfcSectionProperties object)
+			{
 				return createIfcSectionPropertiesAdapter();
 			}
 			@Override
-			public Adapter caseIfcSectionReinforcementProperties(IfcSectionReinforcementProperties object) {
+			public Adapter caseIfcSectionReinforcementProperties(IfcSectionReinforcementProperties object)
+			{
 				return createIfcSectionReinforcementPropertiesAdapter();
 			}
 			@Override
-			public Adapter caseIfcSectionedSpine(IfcSectionedSpine object) {
+			public Adapter caseIfcSectionedSpine(IfcSectionedSpine object)
+			{
 				return createIfcSectionedSpineAdapter();
 			}
 			@Override
-			public Adapter caseIfcSensorType(IfcSensorType object) {
+			public Adapter caseIfcSensorType(IfcSensorType object)
+			{
 				return createIfcSensorTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcServiceLife(IfcServiceLife object) {
+			public Adapter caseIfcServiceLife(IfcServiceLife object)
+			{
 				return createIfcServiceLifeAdapter();
 			}
 			@Override
-			public Adapter caseIfcServiceLifeFactor(IfcServiceLifeFactor object) {
+			public Adapter caseIfcServiceLifeFactor(IfcServiceLifeFactor object)
+			{
 				return createIfcServiceLifeFactorAdapter();
 			}
 			@Override
-			public Adapter caseIfcShapeAspect(IfcShapeAspect object) {
+			public Adapter caseIfcShapeAspect(IfcShapeAspect object)
+			{
 				return createIfcShapeAspectAdapter();
 			}
 			@Override
-			public Adapter caseIfcShapeModel(IfcShapeModel object) {
+			public Adapter caseIfcShapeModel(IfcShapeModel object)
+			{
 				return createIfcShapeModelAdapter();
 			}
 			@Override
-			public Adapter caseIfcShapeRepresentation(IfcShapeRepresentation object) {
+			public Adapter caseIfcShapeRepresentation(IfcShapeRepresentation object)
+			{
 				return createIfcShapeRepresentationAdapter();
 			}
 			@Override
-			public Adapter caseIfcShellBasedSurfaceModel(IfcShellBasedSurfaceModel object) {
+			public Adapter caseIfcShellBasedSurfaceModel(IfcShellBasedSurfaceModel object)
+			{
 				return createIfcShellBasedSurfaceModelAdapter();
 			}
 			@Override
-			public Adapter caseIfcSimpleProperty(IfcSimpleProperty object) {
+			public Adapter caseIfcSimpleProperty(IfcSimpleProperty object)
+			{
 				return createIfcSimplePropertyAdapter();
 			}
 			@Override
-			public Adapter caseIfcSite(IfcSite object) {
+			public Adapter caseIfcSite(IfcSite object)
+			{
 				return createIfcSiteAdapter();
 			}
 			@Override
-			public Adapter caseIfcSlab(IfcSlab object) {
+			public Adapter caseIfcSlab(IfcSlab object)
+			{
 				return createIfcSlabAdapter();
 			}
 			@Override
-			public Adapter caseIfcSlabType(IfcSlabType object) {
+			public Adapter caseIfcSlabType(IfcSlabType object)
+			{
 				return createIfcSlabTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcSlippageConnectionCondition(IfcSlippageConnectionCondition object) {
+			public Adapter caseIfcSlippageConnectionCondition(IfcSlippageConnectionCondition object)
+			{
 				return createIfcSlippageConnectionConditionAdapter();
 			}
 			@Override
-			public Adapter caseIfcSolidModel(IfcSolidModel object) {
+			public Adapter caseIfcSolidModel(IfcSolidModel object)
+			{
 				return createIfcSolidModelAdapter();
 			}
 			@Override
-			public Adapter caseIfcSoundProperties(IfcSoundProperties object) {
+			public Adapter caseIfcSoundProperties(IfcSoundProperties object)
+			{
 				return createIfcSoundPropertiesAdapter();
 			}
 			@Override
-			public Adapter caseIfcSoundValue(IfcSoundValue object) {
+			public Adapter caseIfcSoundValue(IfcSoundValue object)
+			{
 				return createIfcSoundValueAdapter();
 			}
 			@Override
-			public Adapter caseIfcSpace(IfcSpace object) {
+			public Adapter caseIfcSpace(IfcSpace object)
+			{
 				return createIfcSpaceAdapter();
 			}
 			@Override
-			public Adapter caseIfcSpaceHeaterType(IfcSpaceHeaterType object) {
+			public Adapter caseIfcSpaceHeaterType(IfcSpaceHeaterType object)
+			{
 				return createIfcSpaceHeaterTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcSpaceProgram(IfcSpaceProgram object) {
+			public Adapter caseIfcSpaceProgram(IfcSpaceProgram object)
+			{
 				return createIfcSpaceProgramAdapter();
 			}
 			@Override
-			public Adapter caseIfcSpaceThermalLoadProperties(IfcSpaceThermalLoadProperties object) {
+			public Adapter caseIfcSpaceThermalLoadProperties(IfcSpaceThermalLoadProperties object)
+			{
 				return createIfcSpaceThermalLoadPropertiesAdapter();
 			}
 			@Override
-			public Adapter caseIfcSpaceType(IfcSpaceType object) {
+			public Adapter caseIfcSpaceType(IfcSpaceType object)
+			{
 				return createIfcSpaceTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcSpatialStructureElement(IfcSpatialStructureElement object) {
+			public Adapter caseIfcSpatialStructureElement(IfcSpatialStructureElement object)
+			{
 				return createIfcSpatialStructureElementAdapter();
 			}
 			@Override
-			public Adapter caseIfcSpatialStructureElementType(IfcSpatialStructureElementType object) {
+			public Adapter caseIfcSpatialStructureElementType(IfcSpatialStructureElementType object)
+			{
 				return createIfcSpatialStructureElementTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcSphere(IfcSphere object) {
+			public Adapter caseIfcSphere(IfcSphere object)
+			{
 				return createIfcSphereAdapter();
 			}
 			@Override
-			public Adapter caseIfcStackTerminalType(IfcStackTerminalType object) {
+			public Adapter caseIfcStackTerminalType(IfcStackTerminalType object)
+			{
 				return createIfcStackTerminalTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcStair(IfcStair object) {
+			public Adapter caseIfcStair(IfcStair object)
+			{
 				return createIfcStairAdapter();
 			}
 			@Override
-			public Adapter caseIfcStairFlight(IfcStairFlight object) {
+			public Adapter caseIfcStairFlight(IfcStairFlight object)
+			{
 				return createIfcStairFlightAdapter();
 			}
 			@Override
-			public Adapter caseIfcStairFlightType(IfcStairFlightType object) {
+			public Adapter caseIfcStairFlightType(IfcStairFlightType object)
+			{
 				return createIfcStairFlightTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcStructuralAction(IfcStructuralAction object) {
+			public Adapter caseIfcStructuralAction(IfcStructuralAction object)
+			{
 				return createIfcStructuralActionAdapter();
 			}
 			@Override
-			public Adapter caseIfcStructuralActivity(IfcStructuralActivity object) {
+			public Adapter caseIfcStructuralActivity(IfcStructuralActivity object)
+			{
 				return createIfcStructuralActivityAdapter();
 			}
 			@Override
-			public Adapter caseIfcStructuralAnalysisModel(IfcStructuralAnalysisModel object) {
+			public Adapter caseIfcStructuralAnalysisModel(IfcStructuralAnalysisModel object)
+			{
 				return createIfcStructuralAnalysisModelAdapter();
 			}
 			@Override
-			public Adapter caseIfcStructuralConnection(IfcStructuralConnection object) {
+			public Adapter caseIfcStructuralConnection(IfcStructuralConnection object)
+			{
 				return createIfcStructuralConnectionAdapter();
 			}
 			@Override
-			public Adapter caseIfcStructuralConnectionCondition(IfcStructuralConnectionCondition object) {
+			public Adapter caseIfcStructuralConnectionCondition(IfcStructuralConnectionCondition object)
+			{
 				return createIfcStructuralConnectionConditionAdapter();
 			}
 			@Override
-			public Adapter caseIfcStructuralCurveConnection(IfcStructuralCurveConnection object) {
+			public Adapter caseIfcStructuralCurveConnection(IfcStructuralCurveConnection object)
+			{
 				return createIfcStructuralCurveConnectionAdapter();
 			}
 			@Override
-			public Adapter caseIfcStructuralCurveMember(IfcStructuralCurveMember object) {
+			public Adapter caseIfcStructuralCurveMember(IfcStructuralCurveMember object)
+			{
 				return createIfcStructuralCurveMemberAdapter();
 			}
 			@Override
-			public Adapter caseIfcStructuralCurveMemberVarying(IfcStructuralCurveMemberVarying object) {
+			public Adapter caseIfcStructuralCurveMemberVarying(IfcStructuralCurveMemberVarying object)
+			{
 				return createIfcStructuralCurveMemberVaryingAdapter();
 			}
 			@Override
-			public Adapter caseIfcStructuralItem(IfcStructuralItem object) {
+			public Adapter caseIfcStructuralItem(IfcStructuralItem object)
+			{
 				return createIfcStructuralItemAdapter();
 			}
 			@Override
-			public Adapter caseIfcStructuralLinearAction(IfcStructuralLinearAction object) {
+			public Adapter caseIfcStructuralLinearAction(IfcStructuralLinearAction object)
+			{
 				return createIfcStructuralLinearActionAdapter();
 			}
 			@Override
-			public Adapter caseIfcStructuralLinearActionVarying(IfcStructuralLinearActionVarying object) {
+			public Adapter caseIfcStructuralLinearActionVarying(IfcStructuralLinearActionVarying object)
+			{
 				return createIfcStructuralLinearActionVaryingAdapter();
 			}
 			@Override
-			public Adapter caseIfcStructuralLoad(IfcStructuralLoad object) {
+			public Adapter caseIfcStructuralLoad(IfcStructuralLoad object)
+			{
 				return createIfcStructuralLoadAdapter();
 			}
 			@Override
-			public Adapter caseIfcStructuralLoadGroup(IfcStructuralLoadGroup object) {
+			public Adapter caseIfcStructuralLoadGroup(IfcStructuralLoadGroup object)
+			{
 				return createIfcStructuralLoadGroupAdapter();
 			}
 			@Override
-			public Adapter caseIfcStructuralLoadLinearForce(IfcStructuralLoadLinearForce object) {
+			public Adapter caseIfcStructuralLoadLinearForce(IfcStructuralLoadLinearForce object)
+			{
 				return createIfcStructuralLoadLinearForceAdapter();
 			}
 			@Override
-			public Adapter caseIfcStructuralLoadPlanarForce(IfcStructuralLoadPlanarForce object) {
+			public Adapter caseIfcStructuralLoadPlanarForce(IfcStructuralLoadPlanarForce object)
+			{
 				return createIfcStructuralLoadPlanarForceAdapter();
 			}
 			@Override
-			public Adapter caseIfcStructuralLoadSingleDisplacement(IfcStructuralLoadSingleDisplacement object) {
+			public Adapter caseIfcStructuralLoadSingleDisplacement(IfcStructuralLoadSingleDisplacement object)
+			{
 				return createIfcStructuralLoadSingleDisplacementAdapter();
 			}
 			@Override
-			public Adapter caseIfcStructuralLoadSingleDisplacementDistortion(IfcStructuralLoadSingleDisplacementDistortion object) {
+			public Adapter caseIfcStructuralLoadSingleDisplacementDistortion(IfcStructuralLoadSingleDisplacementDistortion object)
+			{
 				return createIfcStructuralLoadSingleDisplacementDistortionAdapter();
 			}
 			@Override
-			public Adapter caseIfcStructuralLoadSingleForce(IfcStructuralLoadSingleForce object) {
+			public Adapter caseIfcStructuralLoadSingleForce(IfcStructuralLoadSingleForce object)
+			{
 				return createIfcStructuralLoadSingleForceAdapter();
 			}
 			@Override
-			public Adapter caseIfcStructuralLoadSingleForceWarping(IfcStructuralLoadSingleForceWarping object) {
+			public Adapter caseIfcStructuralLoadSingleForceWarping(IfcStructuralLoadSingleForceWarping object)
+			{
 				return createIfcStructuralLoadSingleForceWarpingAdapter();
 			}
 			@Override
-			public Adapter caseIfcStructuralLoadStatic(IfcStructuralLoadStatic object) {
+			public Adapter caseIfcStructuralLoadStatic(IfcStructuralLoadStatic object)
+			{
 				return createIfcStructuralLoadStaticAdapter();
 			}
 			@Override
-			public Adapter caseIfcStructuralLoadTemperature(IfcStructuralLoadTemperature object) {
+			public Adapter caseIfcStructuralLoadTemperature(IfcStructuralLoadTemperature object)
+			{
 				return createIfcStructuralLoadTemperatureAdapter();
 			}
 			@Override
-			public Adapter caseIfcStructuralMember(IfcStructuralMember object) {
+			public Adapter caseIfcStructuralMember(IfcStructuralMember object)
+			{
 				return createIfcStructuralMemberAdapter();
 			}
 			@Override
-			public Adapter caseIfcStructuralPlanarAction(IfcStructuralPlanarAction object) {
+			public Adapter caseIfcStructuralPlanarAction(IfcStructuralPlanarAction object)
+			{
 				return createIfcStructuralPlanarActionAdapter();
 			}
 			@Override
-			public Adapter caseIfcStructuralPlanarActionVarying(IfcStructuralPlanarActionVarying object) {
+			public Adapter caseIfcStructuralPlanarActionVarying(IfcStructuralPlanarActionVarying object)
+			{
 				return createIfcStructuralPlanarActionVaryingAdapter();
 			}
 			@Override
-			public Adapter caseIfcStructuralPointAction(IfcStructuralPointAction object) {
+			public Adapter caseIfcStructuralPointAction(IfcStructuralPointAction object)
+			{
 				return createIfcStructuralPointActionAdapter();
 			}
 			@Override
-			public Adapter caseIfcStructuralPointConnection(IfcStructuralPointConnection object) {
+			public Adapter caseIfcStructuralPointConnection(IfcStructuralPointConnection object)
+			{
 				return createIfcStructuralPointConnectionAdapter();
 			}
 			@Override
-			public Adapter caseIfcStructuralPointReaction(IfcStructuralPointReaction object) {
+			public Adapter caseIfcStructuralPointReaction(IfcStructuralPointReaction object)
+			{
 				return createIfcStructuralPointReactionAdapter();
 			}
 			@Override
-			public Adapter caseIfcStructuralProfileProperties(IfcStructuralProfileProperties object) {
+			public Adapter caseIfcStructuralProfileProperties(IfcStructuralProfileProperties object)
+			{
 				return createIfcStructuralProfilePropertiesAdapter();
 			}
 			@Override
-			public Adapter caseIfcStructuralReaction(IfcStructuralReaction object) {
+			public Adapter caseIfcStructuralReaction(IfcStructuralReaction object)
+			{
 				return createIfcStructuralReactionAdapter();
 			}
 			@Override
-			public Adapter caseIfcStructuralResultGroup(IfcStructuralResultGroup object) {
+			public Adapter caseIfcStructuralResultGroup(IfcStructuralResultGroup object)
+			{
 				return createIfcStructuralResultGroupAdapter();
 			}
 			@Override
-			public Adapter caseIfcStructuralSteelProfileProperties(IfcStructuralSteelProfileProperties object) {
+			public Adapter caseIfcStructuralSteelProfileProperties(IfcStructuralSteelProfileProperties object)
+			{
 				return createIfcStructuralSteelProfilePropertiesAdapter();
 			}
 			@Override
-			public Adapter caseIfcStructuralSurfaceConnection(IfcStructuralSurfaceConnection object) {
+			public Adapter caseIfcStructuralSurfaceConnection(IfcStructuralSurfaceConnection object)
+			{
 				return createIfcStructuralSurfaceConnectionAdapter();
 			}
 			@Override
-			public Adapter caseIfcStructuralSurfaceMember(IfcStructuralSurfaceMember object) {
+			public Adapter caseIfcStructuralSurfaceMember(IfcStructuralSurfaceMember object)
+			{
 				return createIfcStructuralSurfaceMemberAdapter();
 			}
 			@Override
-			public Adapter caseIfcStructuralSurfaceMemberVarying(IfcStructuralSurfaceMemberVarying object) {
+			public Adapter caseIfcStructuralSurfaceMemberVarying(IfcStructuralSurfaceMemberVarying object)
+			{
 				return createIfcStructuralSurfaceMemberVaryingAdapter();
 			}
 			@Override
-			public Adapter caseIfcStructuredDimensionCallout(IfcStructuredDimensionCallout object) {
+			public Adapter caseIfcStructuredDimensionCallout(IfcStructuredDimensionCallout object)
+			{
 				return createIfcStructuredDimensionCalloutAdapter();
 			}
 			@Override
-			public Adapter caseIfcStyleModel(IfcStyleModel object) {
+			public Adapter caseIfcStyleModel(IfcStyleModel object)
+			{
 				return createIfcStyleModelAdapter();
 			}
 			@Override
-			public Adapter caseIfcStyledItem(IfcStyledItem object) {
+			public Adapter caseIfcStyledItem(IfcStyledItem object)
+			{
 				return createIfcStyledItemAdapter();
 			}
 			@Override
-			public Adapter caseIfcStyledRepresentation(IfcStyledRepresentation object) {
+			public Adapter caseIfcStyledRepresentation(IfcStyledRepresentation object)
+			{
 				return createIfcStyledRepresentationAdapter();
 			}
 			@Override
-			public Adapter caseIfcSubContractResource(IfcSubContractResource object) {
+			public Adapter caseIfcSubContractResource(IfcSubContractResource object)
+			{
 				return createIfcSubContractResourceAdapter();
 			}
 			@Override
-			public Adapter caseIfcSubedge(IfcSubedge object) {
+			public Adapter caseIfcSubedge(IfcSubedge object)
+			{
 				return createIfcSubedgeAdapter();
 			}
 			@Override
-			public Adapter caseIfcSurface(IfcSurface object) {
+			public Adapter caseIfcSurface(IfcSurface object)
+			{
 				return createIfcSurfaceAdapter();
 			}
 			@Override
-			public Adapter caseIfcSurfaceCurveSweptAreaSolid(IfcSurfaceCurveSweptAreaSolid object) {
+			public Adapter caseIfcSurfaceCurveSweptAreaSolid(IfcSurfaceCurveSweptAreaSolid object)
+			{
 				return createIfcSurfaceCurveSweptAreaSolidAdapter();
 			}
 			@Override
-			public Adapter caseIfcSurfaceOfLinearExtrusion(IfcSurfaceOfLinearExtrusion object) {
+			public Adapter caseIfcSurfaceOfLinearExtrusion(IfcSurfaceOfLinearExtrusion object)
+			{
 				return createIfcSurfaceOfLinearExtrusionAdapter();
 			}
 			@Override
-			public Adapter caseIfcSurfaceOfRevolution(IfcSurfaceOfRevolution object) {
+			public Adapter caseIfcSurfaceOfRevolution(IfcSurfaceOfRevolution object)
+			{
 				return createIfcSurfaceOfRevolutionAdapter();
 			}
 			@Override
-			public Adapter caseIfcSurfaceStyle(IfcSurfaceStyle object) {
+			public Adapter caseIfcSurfaceStyle(IfcSurfaceStyle object)
+			{
 				return createIfcSurfaceStyleAdapter();
 			}
 			@Override
-			public Adapter caseIfcSurfaceStyleLighting(IfcSurfaceStyleLighting object) {
+			public Adapter caseIfcSurfaceStyleLighting(IfcSurfaceStyleLighting object)
+			{
 				return createIfcSurfaceStyleLightingAdapter();
 			}
 			@Override
-			public Adapter caseIfcSurfaceStyleRefraction(IfcSurfaceStyleRefraction object) {
+			public Adapter caseIfcSurfaceStyleRefraction(IfcSurfaceStyleRefraction object)
+			{
 				return createIfcSurfaceStyleRefractionAdapter();
 			}
 			@Override
-			public Adapter caseIfcSurfaceStyleRendering(IfcSurfaceStyleRendering object) {
+			public Adapter caseIfcSurfaceStyleRendering(IfcSurfaceStyleRendering object)
+			{
 				return createIfcSurfaceStyleRenderingAdapter();
 			}
 			@Override
-			public Adapter caseIfcSurfaceStyleShading(IfcSurfaceStyleShading object) {
+			public Adapter caseIfcSurfaceStyleShading(IfcSurfaceStyleShading object)
+			{
 				return createIfcSurfaceStyleShadingAdapter();
 			}
 			@Override
-			public Adapter caseIfcSurfaceStyleWithTextures(IfcSurfaceStyleWithTextures object) {
+			public Adapter caseIfcSurfaceStyleWithTextures(IfcSurfaceStyleWithTextures object)
+			{
 				return createIfcSurfaceStyleWithTexturesAdapter();
 			}
 			@Override
-			public Adapter caseIfcSurfaceTexture(IfcSurfaceTexture object) {
+			public Adapter caseIfcSurfaceTexture(IfcSurfaceTexture object)
+			{
 				return createIfcSurfaceTextureAdapter();
 			}
 			@Override
-			public Adapter caseIfcSweptAreaSolid(IfcSweptAreaSolid object) {
+			public Adapter caseIfcSweptAreaSolid(IfcSweptAreaSolid object)
+			{
 				return createIfcSweptAreaSolidAdapter();
 			}
 			@Override
-			public Adapter caseIfcSweptDiskSolid(IfcSweptDiskSolid object) {
+			public Adapter caseIfcSweptDiskSolid(IfcSweptDiskSolid object)
+			{
 				return createIfcSweptDiskSolidAdapter();
 			}
 			@Override
-			public Adapter caseIfcSweptSurface(IfcSweptSurface object) {
+			public Adapter caseIfcSweptSurface(IfcSweptSurface object)
+			{
 				return createIfcSweptSurfaceAdapter();
 			}
 			@Override
-			public Adapter caseIfcSwitchingDeviceType(IfcSwitchingDeviceType object) {
+			public Adapter caseIfcSwitchingDeviceType(IfcSwitchingDeviceType object)
+			{
 				return createIfcSwitchingDeviceTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcSymbolStyle(IfcSymbolStyle object) {
+			public Adapter caseIfcSymbolStyle(IfcSymbolStyle object)
+			{
 				return createIfcSymbolStyleAdapter();
 			}
 			@Override
-			public Adapter caseIfcSystem(IfcSystem object) {
+			public Adapter caseIfcSystem(IfcSystem object)
+			{
 				return createIfcSystemAdapter();
 			}
 			@Override
-			public Adapter caseIfcSystemFurnitureElementType(IfcSystemFurnitureElementType object) {
+			public Adapter caseIfcSystemFurnitureElementType(IfcSystemFurnitureElementType object)
+			{
 				return createIfcSystemFurnitureElementTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcTShapeProfileDef(IfcTShapeProfileDef object) {
+			public Adapter caseIfcTShapeProfileDef(IfcTShapeProfileDef object)
+			{
 				return createIfcTShapeProfileDefAdapter();
 			}
 			@Override
-			public Adapter caseIfcTable(IfcTable object) {
+			public Adapter caseIfcTable(IfcTable object)
+			{
 				return createIfcTableAdapter();
 			}
 			@Override
-			public Adapter caseIfcTableRow(IfcTableRow object) {
+			public Adapter caseIfcTableRow(IfcTableRow object)
+			{
 				return createIfcTableRowAdapter();
 			}
 			@Override
-			public Adapter caseIfcTankType(IfcTankType object) {
+			public Adapter caseIfcTankType(IfcTankType object)
+			{
 				return createIfcTankTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcTask(IfcTask object) {
+			public Adapter caseIfcTask(IfcTask object)
+			{
 				return createIfcTaskAdapter();
 			}
 			@Override
-			public Adapter caseIfcTelecomAddress(IfcTelecomAddress object) {
+			public Adapter caseIfcTelecomAddress(IfcTelecomAddress object)
+			{
 				return createIfcTelecomAddressAdapter();
 			}
 			@Override
-			public Adapter caseIfcTendon(IfcTendon object) {
+			public Adapter caseIfcTendon(IfcTendon object)
+			{
 				return createIfcTendonAdapter();
 			}
 			@Override
-			public Adapter caseIfcTendonAnchor(IfcTendonAnchor object) {
+			public Adapter caseIfcTendonAnchor(IfcTendonAnchor object)
+			{
 				return createIfcTendonAnchorAdapter();
 			}
 			@Override
-			public Adapter caseIfcTerminatorSymbol(IfcTerminatorSymbol object) {
+			public Adapter caseIfcTerminatorSymbol(IfcTerminatorSymbol object)
+			{
 				return createIfcTerminatorSymbolAdapter();
 			}
 			@Override
-			public Adapter caseIfcTextLiteral(IfcTextLiteral object) {
+			public Adapter caseIfcTextLiteral(IfcTextLiteral object)
+			{
 				return createIfcTextLiteralAdapter();
 			}
 			@Override
-			public Adapter caseIfcTextLiteralWithExtent(IfcTextLiteralWithExtent object) {
+			public Adapter caseIfcTextLiteralWithExtent(IfcTextLiteralWithExtent object)
+			{
 				return createIfcTextLiteralWithExtentAdapter();
 			}
 			@Override
-			public Adapter caseIfcTextStyle(IfcTextStyle object) {
+			public Adapter caseIfcTextStyle(IfcTextStyle object)
+			{
 				return createIfcTextStyleAdapter();
 			}
 			@Override
-			public Adapter caseIfcTextStyleFontModel(IfcTextStyleFontModel object) {
+			public Adapter caseIfcTextStyleFontModel(IfcTextStyleFontModel object)
+			{
 				return createIfcTextStyleFontModelAdapter();
 			}
 			@Override
-			public Adapter caseIfcTextStyleForDefinedFont(IfcTextStyleForDefinedFont object) {
+			public Adapter caseIfcTextStyleForDefinedFont(IfcTextStyleForDefinedFont object)
+			{
 				return createIfcTextStyleForDefinedFontAdapter();
 			}
 			@Override
-			public Adapter caseIfcTextStyleTextModel(IfcTextStyleTextModel object) {
+			public Adapter caseIfcTextStyleTextModel(IfcTextStyleTextModel object)
+			{
 				return createIfcTextStyleTextModelAdapter();
 			}
 			@Override
-			public Adapter caseIfcTextStyleWithBoxCharacteristics(IfcTextStyleWithBoxCharacteristics object) {
+			public Adapter caseIfcTextStyleWithBoxCharacteristics(IfcTextStyleWithBoxCharacteristics object)
+			{
 				return createIfcTextStyleWithBoxCharacteristicsAdapter();
 			}
 			@Override
-			public Adapter caseIfcTextureCoordinate(IfcTextureCoordinate object) {
+			public Adapter caseIfcTextureCoordinate(IfcTextureCoordinate object)
+			{
 				return createIfcTextureCoordinateAdapter();
 			}
 			@Override
-			public Adapter caseIfcTextureCoordinateGenerator(IfcTextureCoordinateGenerator object) {
+			public Adapter caseIfcTextureCoordinateGenerator(IfcTextureCoordinateGenerator object)
+			{
 				return createIfcTextureCoordinateGeneratorAdapter();
 			}
 			@Override
-			public Adapter caseIfcTextureMap(IfcTextureMap object) {
+			public Adapter caseIfcTextureMap(IfcTextureMap object)
+			{
 				return createIfcTextureMapAdapter();
 			}
 			@Override
-			public Adapter caseIfcTextureVertex(IfcTextureVertex object) {
+			public Adapter caseIfcTextureVertex(IfcTextureVertex object)
+			{
 				return createIfcTextureVertexAdapter();
 			}
 			@Override
-			public Adapter caseIfcThermalMaterialProperties(IfcThermalMaterialProperties object) {
+			public Adapter caseIfcThermalMaterialProperties(IfcThermalMaterialProperties object)
+			{
 				return createIfcThermalMaterialPropertiesAdapter();
 			}
 			@Override
-			public Adapter caseIfcTimeSeries(IfcTimeSeries object) {
+			public Adapter caseIfcTimeSeries(IfcTimeSeries object)
+			{
 				return createIfcTimeSeriesAdapter();
 			}
 			@Override
-			public Adapter caseIfcTimeSeriesReferenceRelationship(IfcTimeSeriesReferenceRelationship object) {
+			public Adapter caseIfcTimeSeriesReferenceRelationship(IfcTimeSeriesReferenceRelationship object)
+			{
 				return createIfcTimeSeriesReferenceRelationshipAdapter();
 			}
 			@Override
-			public Adapter caseIfcTimeSeriesSchedule(IfcTimeSeriesSchedule object) {
+			public Adapter caseIfcTimeSeriesSchedule(IfcTimeSeriesSchedule object)
+			{
 				return createIfcTimeSeriesScheduleAdapter();
 			}
 			@Override
-			public Adapter caseIfcTimeSeriesValue(IfcTimeSeriesValue object) {
+			public Adapter caseIfcTimeSeriesValue(IfcTimeSeriesValue object)
+			{
 				return createIfcTimeSeriesValueAdapter();
 			}
 			@Override
-			public Adapter caseIfcTopologicalRepresentationItem(IfcTopologicalRepresentationItem object) {
+			public Adapter caseIfcTopologicalRepresentationItem(IfcTopologicalRepresentationItem object)
+			{
 				return createIfcTopologicalRepresentationItemAdapter();
 			}
 			@Override
-			public Adapter caseIfcTopologyRepresentation(IfcTopologyRepresentation object) {
+			public Adapter caseIfcTopologyRepresentation(IfcTopologyRepresentation object)
+			{
 				return createIfcTopologyRepresentationAdapter();
 			}
 			@Override
-			public Adapter caseIfcTransformerType(IfcTransformerType object) {
+			public Adapter caseIfcTransformerType(IfcTransformerType object)
+			{
 				return createIfcTransformerTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcTransportElement(IfcTransportElement object) {
+			public Adapter caseIfcTransportElement(IfcTransportElement object)
+			{
 				return createIfcTransportElementAdapter();
 			}
 			@Override
-			public Adapter caseIfcTransportElementType(IfcTransportElementType object) {
+			public Adapter caseIfcTransportElementType(IfcTransportElementType object)
+			{
 				return createIfcTransportElementTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcTrapeziumProfileDef(IfcTrapeziumProfileDef object) {
+			public Adapter caseIfcTrapeziumProfileDef(IfcTrapeziumProfileDef object)
+			{
 				return createIfcTrapeziumProfileDefAdapter();
 			}
 			@Override
-			public Adapter caseIfcTrimmedCurve(IfcTrimmedCurve object) {
+			public Adapter caseIfcTrimmedCurve(IfcTrimmedCurve object)
+			{
 				return createIfcTrimmedCurveAdapter();
 			}
 			@Override
-			public Adapter caseIfcTubeBundleType(IfcTubeBundleType object) {
+			public Adapter caseIfcTubeBundleType(IfcTubeBundleType object)
+			{
 				return createIfcTubeBundleTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcTwoDirectionRepeatFactor(IfcTwoDirectionRepeatFactor object) {
+			public Adapter caseIfcTwoDirectionRepeatFactor(IfcTwoDirectionRepeatFactor object)
+			{
 				return createIfcTwoDirectionRepeatFactorAdapter();
 			}
 			@Override
-			public Adapter caseIfcTypeObject(IfcTypeObject object) {
+			public Adapter caseIfcTypeObject(IfcTypeObject object)
+			{
 				return createIfcTypeObjectAdapter();
 			}
 			@Override
-			public Adapter caseIfcTypeProduct(IfcTypeProduct object) {
+			public Adapter caseIfcTypeProduct(IfcTypeProduct object)
+			{
 				return createIfcTypeProductAdapter();
 			}
 			@Override
-			public Adapter caseIfcUShapeProfileDef(IfcUShapeProfileDef object) {
+			public Adapter caseIfcUShapeProfileDef(IfcUShapeProfileDef object)
+			{
 				return createIfcUShapeProfileDefAdapter();
 			}
 			@Override
-			public Adapter caseIfcUnitAssignment(IfcUnitAssignment object) {
+			public Adapter caseIfcUnitAssignment(IfcUnitAssignment object)
+			{
 				return createIfcUnitAssignmentAdapter();
 			}
 			@Override
-			public Adapter caseIfcUnitaryEquipmentType(IfcUnitaryEquipmentType object) {
+			public Adapter caseIfcUnitaryEquipmentType(IfcUnitaryEquipmentType object)
+			{
 				return createIfcUnitaryEquipmentTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcValveType(IfcValveType object) {
+			public Adapter caseIfcValveType(IfcValveType object)
+			{
 				return createIfcValveTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcVector(IfcVector object) {
+			public Adapter caseIfcVector(IfcVector object)
+			{
 				return createIfcVectorAdapter();
 			}
 			@Override
-			public Adapter caseIfcVertex(IfcVertex object) {
+			public Adapter caseIfcVertex(IfcVertex object)
+			{
 				return createIfcVertexAdapter();
 			}
 			@Override
-			public Adapter caseIfcVertexBasedTextureMap(IfcVertexBasedTextureMap object) {
+			public Adapter caseIfcVertexBasedTextureMap(IfcVertexBasedTextureMap object)
+			{
 				return createIfcVertexBasedTextureMapAdapter();
 			}
 			@Override
-			public Adapter caseIfcVertexLoop(IfcVertexLoop object) {
+			public Adapter caseIfcVertexLoop(IfcVertexLoop object)
+			{
 				return createIfcVertexLoopAdapter();
 			}
 			@Override
-			public Adapter caseIfcVertexPoint(IfcVertexPoint object) {
+			public Adapter caseIfcVertexPoint(IfcVertexPoint object)
+			{
 				return createIfcVertexPointAdapter();
 			}
 			@Override
-			public Adapter caseIfcVibrationIsolatorType(IfcVibrationIsolatorType object) {
+			public Adapter caseIfcVibrationIsolatorType(IfcVibrationIsolatorType object)
+			{
 				return createIfcVibrationIsolatorTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcVirtualElement(IfcVirtualElement object) {
+			public Adapter caseIfcVirtualElement(IfcVirtualElement object)
+			{
 				return createIfcVirtualElementAdapter();
 			}
 			@Override
-			public Adapter caseIfcVirtualGridIntersection(IfcVirtualGridIntersection object) {
+			public Adapter caseIfcVirtualGridIntersection(IfcVirtualGridIntersection object)
+			{
 				return createIfcVirtualGridIntersectionAdapter();
 			}
 			@Override
-			public Adapter caseIfcWall(IfcWall object) {
+			public Adapter caseIfcWall(IfcWall object)
+			{
 				return createIfcWallAdapter();
 			}
 			@Override
-			public Adapter caseIfcWallStandardCase(IfcWallStandardCase object) {
+			public Adapter caseIfcWallStandardCase(IfcWallStandardCase object)
+			{
 				return createIfcWallStandardCaseAdapter();
 			}
 			@Override
-			public Adapter caseIfcWallType(IfcWallType object) {
+			public Adapter caseIfcWallType(IfcWallType object)
+			{
 				return createIfcWallTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcWasteTerminalType(IfcWasteTerminalType object) {
+			public Adapter caseIfcWasteTerminalType(IfcWasteTerminalType object)
+			{
 				return createIfcWasteTerminalTypeAdapter();
 			}
 			@Override
-			public Adapter caseIfcWaterProperties(IfcWaterProperties object) {
+			public Adapter caseIfcWaterProperties(IfcWaterProperties object)
+			{
 				return createIfcWaterPropertiesAdapter();
 			}
 			@Override
-			public Adapter caseIfcWindow(IfcWindow object) {
+			public Adapter caseIfcWindow(IfcWindow object)
+			{
 				return createIfcWindowAdapter();
 			}
 			@Override
-			public Adapter caseIfcWindowLiningProperties(IfcWindowLiningProperties object) {
+			public Adapter caseIfcWindowLiningProperties(IfcWindowLiningProperties object)
+			{
 				return createIfcWindowLiningPropertiesAdapter();
 			}
 			@Override
-			public Adapter caseIfcWindowPanelProperties(IfcWindowPanelProperties object) {
+			public Adapter caseIfcWindowPanelProperties(IfcWindowPanelProperties object)
+			{
 				return createIfcWindowPanelPropertiesAdapter();
 			}
 			@Override
-			public Adapter caseIfcWindowStyle(IfcWindowStyle object) {
+			public Adapter caseIfcWindowStyle(IfcWindowStyle object)
+			{
 				return createIfcWindowStyleAdapter();
 			}
 			@Override
-			public Adapter caseIfcWorkControl(IfcWorkControl object) {
+			public Adapter caseIfcWorkControl(IfcWorkControl object)
+			{
 				return createIfcWorkControlAdapter();
 			}
 			@Override
-			public Adapter caseIfcWorkPlan(IfcWorkPlan object) {
+			public Adapter caseIfcWorkPlan(IfcWorkPlan object)
+			{
 				return createIfcWorkPlanAdapter();
 			}
 			@Override
-			public Adapter caseIfcWorkSchedule(IfcWorkSchedule object) {
+			public Adapter caseIfcWorkSchedule(IfcWorkSchedule object)
+			{
 				return createIfcWorkScheduleAdapter();
 			}
 			@Override
-			public Adapter caseIfcZShapeProfileDef(IfcZShapeProfileDef object) {
+			public Adapter caseIfcZShapeProfileDef(IfcZShapeProfileDef object)
+			{
 				return createIfcZShapeProfileDefAdapter();
 			}
 			@Override
-			public Adapter caseIfcZone(IfcZone object) {
+			public Adapter caseIfcZone(IfcZone object)
+			{
 				return createIfcZoneAdapter();
 			}
 			@Override
-			public Adapter caseIfcActorSelect(IfcActorSelect object) {
+			public Adapter caseIfcActorSelect(IfcActorSelect object)
+			{
 				return createIfcActorSelectAdapter();
 			}
 			@Override
-			public Adapter caseIfcAppliedValueSelect(IfcAppliedValueSelect object) {
+			public Adapter caseIfcAppliedValueSelect(IfcAppliedValueSelect object)
+			{
 				return createIfcAppliedValueSelectAdapter();
 			}
 			@Override
-			public Adapter caseIfcAxis2Placement(IfcAxis2Placement object) {
+			public Adapter caseIfcAxis2Placement(IfcAxis2Placement object)
+			{
 				return createIfcAxis2PlacementAdapter();
 			}
 			@Override
-			public Adapter caseIfcBooleanOperand(IfcBooleanOperand object) {
+			public Adapter caseIfcBooleanOperand(IfcBooleanOperand object)
+			{
 				return createIfcBooleanOperandAdapter();
 			}
 			@Override
-			public Adapter caseIfcCharacterStyleSelect(IfcCharacterStyleSelect object) {
+			public Adapter caseIfcCharacterStyleSelect(IfcCharacterStyleSelect object)
+			{
 				return createIfcCharacterStyleSelectAdapter();
 			}
 			@Override
-			public Adapter caseIfcClassificationNotationSelect(IfcClassificationNotationSelect object) {
+			public Adapter caseIfcClassificationNotationSelect(IfcClassificationNotationSelect object)
+			{
 				return createIfcClassificationNotationSelectAdapter();
 			}
 			@Override
-			public Adapter caseIfcColour(IfcColour object) {
+			public Adapter caseIfcColour(IfcColour object)
+			{
 				return createIfcColourAdapter();
 			}
 			@Override
-			public Adapter caseIfcColourOrFactor(IfcColourOrFactor object) {
+			public Adapter caseIfcColourOrFactor(IfcColourOrFactor object)
+			{
 				return createIfcColourOrFactorAdapter();
 			}
 			@Override
-			public Adapter caseIfcConditionCriterionSelect(IfcConditionCriterionSelect object) {
+			public Adapter caseIfcConditionCriterionSelect(IfcConditionCriterionSelect object)
+			{
 				return createIfcConditionCriterionSelectAdapter();
 			}
 			@Override
-			public Adapter caseIfcCsgSelect(IfcCsgSelect object) {
+			public Adapter caseIfcCsgSelect(IfcCsgSelect object)
+			{
 				return createIfcCsgSelectAdapter();
 			}
 			@Override
-			public Adapter caseIfcCurveFontOrScaledCurveFontSelect(IfcCurveFontOrScaledCurveFontSelect object) {
+			public Adapter caseIfcCurveFontOrScaledCurveFontSelect(IfcCurveFontOrScaledCurveFontSelect object)
+			{
 				return createIfcCurveFontOrScaledCurveFontSelectAdapter();
 			}
 			@Override
-			public Adapter caseIfcCurveOrEdgeCurve(IfcCurveOrEdgeCurve object) {
+			public Adapter caseIfcCurveOrEdgeCurve(IfcCurveOrEdgeCurve object)
+			{
 				return createIfcCurveOrEdgeCurveAdapter();
 			}
 			@Override
-			public Adapter caseIfcCurveStyleFontSelect(IfcCurveStyleFontSelect object) {
+			public Adapter caseIfcCurveStyleFontSelect(IfcCurveStyleFontSelect object)
+			{
 				return createIfcCurveStyleFontSelectAdapter();
 			}
 			@Override
-			public Adapter caseIfcDateTimeSelect(IfcDateTimeSelect object) {
+			public Adapter caseIfcDateTimeSelect(IfcDateTimeSelect object)
+			{
 				return createIfcDateTimeSelectAdapter();
 			}
 			@Override
-			public Adapter caseIfcDefinedSymbolSelect(IfcDefinedSymbolSelect object) {
+			public Adapter caseIfcDefinedSymbolSelect(IfcDefinedSymbolSelect object)
+			{
 				return createIfcDefinedSymbolSelectAdapter();
 			}
 			@Override
-			public Adapter caseIfcDerivedMeasureValue(IfcDerivedMeasureValue object) {
+			public Adapter caseIfcDerivedMeasureValue(IfcDerivedMeasureValue object)
+			{
 				return createIfcDerivedMeasureValueAdapter();
 			}
 			@Override
-			public Adapter caseIfcDocumentSelect(IfcDocumentSelect object) {
+			public Adapter caseIfcDocumentSelect(IfcDocumentSelect object)
+			{
 				return createIfcDocumentSelectAdapter();
 			}
 			@Override
-			public Adapter caseIfcDraughtingCalloutElement(IfcDraughtingCalloutElement object) {
+			public Adapter caseIfcDraughtingCalloutElement(IfcDraughtingCalloutElement object)
+			{
 				return createIfcDraughtingCalloutElementAdapter();
 			}
 			@Override
-			public Adapter caseIfcFillAreaStyleTileShapeSelect(IfcFillAreaStyleTileShapeSelect object) {
+			public Adapter caseIfcFillAreaStyleTileShapeSelect(IfcFillAreaStyleTileShapeSelect object)
+			{
 				return createIfcFillAreaStyleTileShapeSelectAdapter();
 			}
 			@Override
-			public Adapter caseIfcFillStyleSelect(IfcFillStyleSelect object) {
+			public Adapter caseIfcFillStyleSelect(IfcFillStyleSelect object)
+			{
 				return createIfcFillStyleSelectAdapter();
 			}
 			@Override
-			public Adapter caseIfcGeometricSetSelect(IfcGeometricSetSelect object) {
+			public Adapter caseIfcGeometricSetSelect(IfcGeometricSetSelect object)
+			{
 				return createIfcGeometricSetSelectAdapter();
 			}
 			@Override
-			public Adapter caseIfcHatchLineDistanceSelect(IfcHatchLineDistanceSelect object) {
+			public Adapter caseIfcHatchLineDistanceSelect(IfcHatchLineDistanceSelect object)
+			{
 				return createIfcHatchLineDistanceSelectAdapter();
 			}
 			@Override
-			public Adapter caseIfcLayeredItem(IfcLayeredItem object) {
+			public Adapter caseIfcLayeredItem(IfcLayeredItem object)
+			{
 				return createIfcLayeredItemAdapter();
 			}
 			@Override
-			public Adapter caseIfcLibrarySelect(IfcLibrarySelect object) {
+			public Adapter caseIfcLibrarySelect(IfcLibrarySelect object)
+			{
 				return createIfcLibrarySelectAdapter();
 			}
 			@Override
-			public Adapter caseIfcLightDistributionDataSourceSelect(IfcLightDistributionDataSourceSelect object) {
+			public Adapter caseIfcLightDistributionDataSourceSelect(IfcLightDistributionDataSourceSelect object)
+			{
 				return createIfcLightDistributionDataSourceSelectAdapter();
 			}
 			@Override
-			public Adapter caseIfcMaterialSelect(IfcMaterialSelect object) {
+			public Adapter caseIfcMaterialSelect(IfcMaterialSelect object)
+			{
 				return createIfcMaterialSelectAdapter();
 			}
 			@Override
-			public Adapter caseIfcMeasureValue(IfcMeasureValue object) {
+			public Adapter caseIfcMeasureValue(IfcMeasureValue object)
+			{
 				return createIfcMeasureValueAdapter();
 			}
 			@Override
-			public Adapter caseIfcMetricValueSelect(IfcMetricValueSelect object) {
+			public Adapter caseIfcMetricValueSelect(IfcMetricValueSelect object)
+			{
 				return createIfcMetricValueSelectAdapter();
 			}
 			@Override
-			public Adapter caseIfcObjectReferenceSelect(IfcObjectReferenceSelect object) {
+			public Adapter caseIfcObjectReferenceSelect(IfcObjectReferenceSelect object)
+			{
 				return createIfcObjectReferenceSelectAdapter();
 			}
 			@Override
-			public Adapter caseIfcOrientationSelect(IfcOrientationSelect object) {
+			public Adapter caseIfcOrientationSelect(IfcOrientationSelect object)
+			{
 				return createIfcOrientationSelectAdapter();
 			}
 			@Override
-			public Adapter caseIfcPointOrVertexPoint(IfcPointOrVertexPoint object) {
+			public Adapter caseIfcPointOrVertexPoint(IfcPointOrVertexPoint object)
+			{
 				return createIfcPointOrVertexPointAdapter();
 			}
 			@Override
-			public Adapter caseIfcPresentationStyleSelect(IfcPresentationStyleSelect object) {
+			public Adapter caseIfcPresentationStyleSelect(IfcPresentationStyleSelect object)
+			{
 				return createIfcPresentationStyleSelectAdapter();
 			}
 			@Override
-			public Adapter caseIfcShell(IfcShell object) {
+			public Adapter caseIfcShell(IfcShell object)
+			{
 				return createIfcShellAdapter();
 			}
 			@Override
-			public Adapter caseIfcSimpleValue(IfcSimpleValue object) {
+			public Adapter caseIfcSimpleValue(IfcSimpleValue object)
+			{
 				return createIfcSimpleValueAdapter();
 			}
 			@Override
-			public Adapter caseIfcSizeSelect(IfcSizeSelect object) {
+			public Adapter caseIfcSizeSelect(IfcSizeSelect object)
+			{
 				return createIfcSizeSelectAdapter();
 			}
 			@Override
-			public Adapter caseIfcSpecularHighlightSelect(IfcSpecularHighlightSelect object) {
+			public Adapter caseIfcSpecularHighlightSelect(IfcSpecularHighlightSelect object)
+			{
 				return createIfcSpecularHighlightSelectAdapter();
 			}
 			@Override
-			public Adapter caseIfcStructuralActivityAssignmentSelect(IfcStructuralActivityAssignmentSelect object) {
+			public Adapter caseIfcStructuralActivityAssignmentSelect(IfcStructuralActivityAssignmentSelect object)
+			{
 				return createIfcStructuralActivityAssignmentSelectAdapter();
 			}
 			@Override
-			public Adapter caseIfcSurfaceOrFaceSurface(IfcSurfaceOrFaceSurface object) {
+			public Adapter caseIfcSurfaceOrFaceSurface(IfcSurfaceOrFaceSurface object)
+			{
 				return createIfcSurfaceOrFaceSurfaceAdapter();
 			}
 			@Override
-			public Adapter caseIfcSurfaceStyleElementSelect(IfcSurfaceStyleElementSelect object) {
+			public Adapter caseIfcSurfaceStyleElementSelect(IfcSurfaceStyleElementSelect object)
+			{
 				return createIfcSurfaceStyleElementSelectAdapter();
 			}
 			@Override
-			public Adapter caseIfcSymbolStyleSelect(IfcSymbolStyleSelect object) {
+			public Adapter caseIfcSymbolStyleSelect(IfcSymbolStyleSelect object)
+			{
 				return createIfcSymbolStyleSelectAdapter();
 			}
 			@Override
-			public Adapter caseIfcTextFontSelect(IfcTextFontSelect object) {
+			public Adapter caseIfcTextFontSelect(IfcTextFontSelect object)
+			{
 				return createIfcTextFontSelectAdapter();
 			}
 			@Override
-			public Adapter caseIfcTextStyleSelect(IfcTextStyleSelect object) {
+			public Adapter caseIfcTextStyleSelect(IfcTextStyleSelect object)
+			{
 				return createIfcTextStyleSelectAdapter();
 			}
 			@Override
-			public Adapter caseIfcTrimmingSelect(IfcTrimmingSelect object) {
+			public Adapter caseIfcTrimmingSelect(IfcTrimmingSelect object)
+			{
 				return createIfcTrimmingSelectAdapter();
 			}
 			@Override
-			public Adapter caseIfcUnit(IfcUnit object) {
+			public Adapter caseIfcUnit(IfcUnit object)
+			{
 				return createIfcUnitAdapter();
 			}
 			@Override
-			public Adapter caseIfcValue(IfcValue object) {
+			public Adapter caseIfcValue(IfcValue object)
+			{
 				return createIfcValueAdapter();
 			}
 			@Override
-			public Adapter caseIfcVectorOrDirection(IfcVectorOrDirection object) {
+			public Adapter caseIfcVectorOrDirection(IfcVectorOrDirection object)
+			{
 				return createIfcVectorOrDirectionAdapter();
 			}
 			@Override
-			public Adapter defaultCase(EObject object) {
+			public Adapter defaultCase(EObject object)
+			{
 				return createEObjectAdapter();
 			}
 		};
@@ -3278,7 +4891,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	@Override
-	public Adapter createAdapter(Notifier target) {
+	public Adapter createAdapter(Notifier target)
+	{
 		return modelSwitch.doSwitch((EObject)target);
 	}
 
@@ -3293,7 +4907,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.WrappedValue
 	 * @generated
 	 */
-	public Adapter createWrappedValueAdapter() {
+	public Adapter createWrappedValueAdapter()
+	{
 		return null;
 	}
 
@@ -3307,7 +4922,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcAbsorbedDoseMeasure
 	 * @generated
 	 */
-	public Adapter createIfcAbsorbedDoseMeasureAdapter() {
+	public Adapter createIfcAbsorbedDoseMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -3321,7 +4937,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcAccelerationMeasure
 	 * @generated
 	 */
-	public Adapter createIfcAccelerationMeasureAdapter() {
+	public Adapter createIfcAccelerationMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -3335,7 +4952,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcAmountOfSubstanceMeasure
 	 * @generated
 	 */
-	public Adapter createIfcAmountOfSubstanceMeasureAdapter() {
+	public Adapter createIfcAmountOfSubstanceMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -3349,7 +4967,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcAngularVelocityMeasure
 	 * @generated
 	 */
-	public Adapter createIfcAngularVelocityMeasureAdapter() {
+	public Adapter createIfcAngularVelocityMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -3363,7 +4982,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcAreaMeasure
 	 * @generated
 	 */
-	public Adapter createIfcAreaMeasureAdapter() {
+	public Adapter createIfcAreaMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -3377,7 +4997,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcBoolean
 	 * @generated
 	 */
-	public Adapter createIfcBooleanAdapter() {
+	public Adapter createIfcBooleanAdapter()
+	{
 		return null;
 	}
 
@@ -3391,7 +5012,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcContextDependentMeasure
 	 * @generated
 	 */
-	public Adapter createIfcContextDependentMeasureAdapter() {
+	public Adapter createIfcContextDependentMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -3405,7 +5027,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcCountMeasure
 	 * @generated
 	 */
-	public Adapter createIfcCountMeasureAdapter() {
+	public Adapter createIfcCountMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -3419,7 +5042,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcCurvatureMeasure
 	 * @generated
 	 */
-	public Adapter createIfcCurvatureMeasureAdapter() {
+	public Adapter createIfcCurvatureMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -3433,7 +5057,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcDescriptiveMeasure
 	 * @generated
 	 */
-	public Adapter createIfcDescriptiveMeasureAdapter() {
+	public Adapter createIfcDescriptiveMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -3447,7 +5072,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcDoseEquivalentMeasure
 	 * @generated
 	 */
-	public Adapter createIfcDoseEquivalentMeasureAdapter() {
+	public Adapter createIfcDoseEquivalentMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -3461,7 +5087,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcDynamicViscosityMeasure
 	 * @generated
 	 */
-	public Adapter createIfcDynamicViscosityMeasureAdapter() {
+	public Adapter createIfcDynamicViscosityMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -3475,7 +5102,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcElectricCapacitanceMeasure
 	 * @generated
 	 */
-	public Adapter createIfcElectricCapacitanceMeasureAdapter() {
+	public Adapter createIfcElectricCapacitanceMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -3489,7 +5117,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcElectricChargeMeasure
 	 * @generated
 	 */
-	public Adapter createIfcElectricChargeMeasureAdapter() {
+	public Adapter createIfcElectricChargeMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -3503,7 +5132,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcElectricConductanceMeasure
 	 * @generated
 	 */
-	public Adapter createIfcElectricConductanceMeasureAdapter() {
+	public Adapter createIfcElectricConductanceMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -3517,7 +5147,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcElectricCurrentMeasure
 	 * @generated
 	 */
-	public Adapter createIfcElectricCurrentMeasureAdapter() {
+	public Adapter createIfcElectricCurrentMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -3531,7 +5162,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcElectricResistanceMeasure
 	 * @generated
 	 */
-	public Adapter createIfcElectricResistanceMeasureAdapter() {
+	public Adapter createIfcElectricResistanceMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -3545,7 +5177,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcElectricVoltageMeasure
 	 * @generated
 	 */
-	public Adapter createIfcElectricVoltageMeasureAdapter() {
+	public Adapter createIfcElectricVoltageMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -3559,7 +5192,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcEnergyMeasure
 	 * @generated
 	 */
-	public Adapter createIfcEnergyMeasureAdapter() {
+	public Adapter createIfcEnergyMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -3573,7 +5207,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcForceMeasure
 	 * @generated
 	 */
-	public Adapter createIfcForceMeasureAdapter() {
+	public Adapter createIfcForceMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -3587,7 +5222,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcFrequencyMeasure
 	 * @generated
 	 */
-	public Adapter createIfcFrequencyMeasureAdapter() {
+	public Adapter createIfcFrequencyMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -3601,7 +5237,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcGloballyUniqueId
 	 * @generated
 	 */
-	public Adapter createIfcGloballyUniqueIdAdapter() {
+	public Adapter createIfcGloballyUniqueIdAdapter()
+	{
 		return null;
 	}
 
@@ -3615,7 +5252,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcHeatFluxDensityMeasure
 	 * @generated
 	 */
-	public Adapter createIfcHeatFluxDensityMeasureAdapter() {
+	public Adapter createIfcHeatFluxDensityMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -3629,7 +5267,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcHeatingValueMeasure
 	 * @generated
 	 */
-	public Adapter createIfcHeatingValueMeasureAdapter() {
+	public Adapter createIfcHeatingValueMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -3643,7 +5282,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcIdentifier
 	 * @generated
 	 */
-	public Adapter createIfcIdentifierAdapter() {
+	public Adapter createIfcIdentifierAdapter()
+	{
 		return null;
 	}
 
@@ -3657,7 +5297,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcIlluminanceMeasure
 	 * @generated
 	 */
-	public Adapter createIfcIlluminanceMeasureAdapter() {
+	public Adapter createIfcIlluminanceMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -3671,7 +5312,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcInductanceMeasure
 	 * @generated
 	 */
-	public Adapter createIfcInductanceMeasureAdapter() {
+	public Adapter createIfcInductanceMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -3685,7 +5327,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcInteger
 	 * @generated
 	 */
-	public Adapter createIfcIntegerAdapter() {
+	public Adapter createIfcIntegerAdapter()
+	{
 		return null;
 	}
 
@@ -3699,7 +5342,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcIntegerCountRateMeasure
 	 * @generated
 	 */
-	public Adapter createIfcIntegerCountRateMeasureAdapter() {
+	public Adapter createIfcIntegerCountRateMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -3713,7 +5357,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcIonConcentrationMeasure
 	 * @generated
 	 */
-	public Adapter createIfcIonConcentrationMeasureAdapter() {
+	public Adapter createIfcIonConcentrationMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -3727,7 +5372,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcIsothermalMoistureCapacityMeasure
 	 * @generated
 	 */
-	public Adapter createIfcIsothermalMoistureCapacityMeasureAdapter() {
+	public Adapter createIfcIsothermalMoistureCapacityMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -3741,7 +5387,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcKinematicViscosityMeasure
 	 * @generated
 	 */
-	public Adapter createIfcKinematicViscosityMeasureAdapter() {
+	public Adapter createIfcKinematicViscosityMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -3755,7 +5402,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcLabel
 	 * @generated
 	 */
-	public Adapter createIfcLabelAdapter() {
+	public Adapter createIfcLabelAdapter()
+	{
 		return null;
 	}
 
@@ -3769,7 +5417,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcLengthMeasure
 	 * @generated
 	 */
-	public Adapter createIfcLengthMeasureAdapter() {
+	public Adapter createIfcLengthMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -3783,7 +5432,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcLinearForceMeasure
 	 * @generated
 	 */
-	public Adapter createIfcLinearForceMeasureAdapter() {
+	public Adapter createIfcLinearForceMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -3797,7 +5447,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcLinearMomentMeasure
 	 * @generated
 	 */
-	public Adapter createIfcLinearMomentMeasureAdapter() {
+	public Adapter createIfcLinearMomentMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -3811,7 +5462,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcLinearStiffnessMeasure
 	 * @generated
 	 */
-	public Adapter createIfcLinearStiffnessMeasureAdapter() {
+	public Adapter createIfcLinearStiffnessMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -3825,7 +5477,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcLinearVelocityMeasure
 	 * @generated
 	 */
-	public Adapter createIfcLinearVelocityMeasureAdapter() {
+	public Adapter createIfcLinearVelocityMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -3839,7 +5492,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcLogical
 	 * @generated
 	 */
-	public Adapter createIfcLogicalAdapter() {
+	public Adapter createIfcLogicalAdapter()
+	{
 		return null;
 	}
 
@@ -3853,7 +5507,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcLuminousFluxMeasure
 	 * @generated
 	 */
-	public Adapter createIfcLuminousFluxMeasureAdapter() {
+	public Adapter createIfcLuminousFluxMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -3867,7 +5522,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcLuminousIntensityDistributionMeasure
 	 * @generated
 	 */
-	public Adapter createIfcLuminousIntensityDistributionMeasureAdapter() {
+	public Adapter createIfcLuminousIntensityDistributionMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -3881,7 +5537,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcLuminousIntensityMeasure
 	 * @generated
 	 */
-	public Adapter createIfcLuminousIntensityMeasureAdapter() {
+	public Adapter createIfcLuminousIntensityMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -3895,7 +5552,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcMagneticFluxDensityMeasure
 	 * @generated
 	 */
-	public Adapter createIfcMagneticFluxDensityMeasureAdapter() {
+	public Adapter createIfcMagneticFluxDensityMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -3909,7 +5567,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcMagneticFluxMeasure
 	 * @generated
 	 */
-	public Adapter createIfcMagneticFluxMeasureAdapter() {
+	public Adapter createIfcMagneticFluxMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -3923,7 +5582,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcMassDensityMeasure
 	 * @generated
 	 */
-	public Adapter createIfcMassDensityMeasureAdapter() {
+	public Adapter createIfcMassDensityMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -3937,7 +5597,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcMassFlowRateMeasure
 	 * @generated
 	 */
-	public Adapter createIfcMassFlowRateMeasureAdapter() {
+	public Adapter createIfcMassFlowRateMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -3951,7 +5612,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcMassMeasure
 	 * @generated
 	 */
-	public Adapter createIfcMassMeasureAdapter() {
+	public Adapter createIfcMassMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -3965,7 +5627,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcMassPerLengthMeasure
 	 * @generated
 	 */
-	public Adapter createIfcMassPerLengthMeasureAdapter() {
+	public Adapter createIfcMassPerLengthMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -3979,7 +5642,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcModulusOfElasticityMeasure
 	 * @generated
 	 */
-	public Adapter createIfcModulusOfElasticityMeasureAdapter() {
+	public Adapter createIfcModulusOfElasticityMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -3993,7 +5657,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcModulusOfLinearSubgradeReactionMeasure
 	 * @generated
 	 */
-	public Adapter createIfcModulusOfLinearSubgradeReactionMeasureAdapter() {
+	public Adapter createIfcModulusOfLinearSubgradeReactionMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -4007,7 +5672,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcModulusOfRotationalSubgradeReactionMeasure
 	 * @generated
 	 */
-	public Adapter createIfcModulusOfRotationalSubgradeReactionMeasureAdapter() {
+	public Adapter createIfcModulusOfRotationalSubgradeReactionMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -4021,7 +5687,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcModulusOfSubgradeReactionMeasure
 	 * @generated
 	 */
-	public Adapter createIfcModulusOfSubgradeReactionMeasureAdapter() {
+	public Adapter createIfcModulusOfSubgradeReactionMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -4035,7 +5702,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcMoistureDiffusivityMeasure
 	 * @generated
 	 */
-	public Adapter createIfcMoistureDiffusivityMeasureAdapter() {
+	public Adapter createIfcMoistureDiffusivityMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -4049,7 +5717,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcMolecularWeightMeasure
 	 * @generated
 	 */
-	public Adapter createIfcMolecularWeightMeasureAdapter() {
+	public Adapter createIfcMolecularWeightMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -4063,7 +5732,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcMomentOfInertiaMeasure
 	 * @generated
 	 */
-	public Adapter createIfcMomentOfInertiaMeasureAdapter() {
+	public Adapter createIfcMomentOfInertiaMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -4077,7 +5747,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcMonetaryMeasure
 	 * @generated
 	 */
-	public Adapter createIfcMonetaryMeasureAdapter() {
+	public Adapter createIfcMonetaryMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -4091,7 +5762,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcNumericMeasure
 	 * @generated
 	 */
-	public Adapter createIfcNumericMeasureAdapter() {
+	public Adapter createIfcNumericMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -4105,7 +5777,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcPHMeasure
 	 * @generated
 	 */
-	public Adapter createIfcPHMeasureAdapter() {
+	public Adapter createIfcPHMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -4119,7 +5792,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcParameterValue
 	 * @generated
 	 */
-	public Adapter createIfcParameterValueAdapter() {
+	public Adapter createIfcParameterValueAdapter()
+	{
 		return null;
 	}
 
@@ -4133,7 +5807,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcPlanarForceMeasure
 	 * @generated
 	 */
-	public Adapter createIfcPlanarForceMeasureAdapter() {
+	public Adapter createIfcPlanarForceMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -4147,7 +5822,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcPlaneAngleMeasure
 	 * @generated
 	 */
-	public Adapter createIfcPlaneAngleMeasureAdapter() {
+	public Adapter createIfcPlaneAngleMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -4161,7 +5837,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcPowerMeasure
 	 * @generated
 	 */
-	public Adapter createIfcPowerMeasureAdapter() {
+	public Adapter createIfcPowerMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -4175,7 +5852,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcPressureMeasure
 	 * @generated
 	 */
-	public Adapter createIfcPressureMeasureAdapter() {
+	public Adapter createIfcPressureMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -4189,7 +5867,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcRadioActivityMeasure
 	 * @generated
 	 */
-	public Adapter createIfcRadioActivityMeasureAdapter() {
+	public Adapter createIfcRadioActivityMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -4203,7 +5882,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcRatioMeasure
 	 * @generated
 	 */
-	public Adapter createIfcRatioMeasureAdapter() {
+	public Adapter createIfcRatioMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -4217,7 +5897,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcReal
 	 * @generated
 	 */
-	public Adapter createIfcRealAdapter() {
+	public Adapter createIfcRealAdapter()
+	{
 		return null;
 	}
 
@@ -4231,7 +5912,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcRotationalFrequencyMeasure
 	 * @generated
 	 */
-	public Adapter createIfcRotationalFrequencyMeasureAdapter() {
+	public Adapter createIfcRotationalFrequencyMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -4245,7 +5927,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcRotationalMassMeasure
 	 * @generated
 	 */
-	public Adapter createIfcRotationalMassMeasureAdapter() {
+	public Adapter createIfcRotationalMassMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -4259,7 +5942,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcRotationalStiffnessMeasure
 	 * @generated
 	 */
-	public Adapter createIfcRotationalStiffnessMeasureAdapter() {
+	public Adapter createIfcRotationalStiffnessMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -4273,7 +5957,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcSectionModulusMeasure
 	 * @generated
 	 */
-	public Adapter createIfcSectionModulusMeasureAdapter() {
+	public Adapter createIfcSectionModulusMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -4287,7 +5972,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcSectionalAreaIntegralMeasure
 	 * @generated
 	 */
-	public Adapter createIfcSectionalAreaIntegralMeasureAdapter() {
+	public Adapter createIfcSectionalAreaIntegralMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -4301,7 +5987,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcShearModulusMeasure
 	 * @generated
 	 */
-	public Adapter createIfcShearModulusMeasureAdapter() {
+	public Adapter createIfcShearModulusMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -4315,7 +6002,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcSolidAngleMeasure
 	 * @generated
 	 */
-	public Adapter createIfcSolidAngleMeasureAdapter() {
+	public Adapter createIfcSolidAngleMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -4329,7 +6017,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcSoundPowerMeasure
 	 * @generated
 	 */
-	public Adapter createIfcSoundPowerMeasureAdapter() {
+	public Adapter createIfcSoundPowerMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -4343,7 +6032,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcSoundPressureMeasure
 	 * @generated
 	 */
-	public Adapter createIfcSoundPressureMeasureAdapter() {
+	public Adapter createIfcSoundPressureMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -4357,7 +6047,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcSpecificHeatCapacityMeasure
 	 * @generated
 	 */
-	public Adapter createIfcSpecificHeatCapacityMeasureAdapter() {
+	public Adapter createIfcSpecificHeatCapacityMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -4371,7 +6062,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcSpecularExponent
 	 * @generated
 	 */
-	public Adapter createIfcSpecularExponentAdapter() {
+	public Adapter createIfcSpecularExponentAdapter()
+	{
 		return null;
 	}
 
@@ -4385,7 +6077,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcSpecularRoughness
 	 * @generated
 	 */
-	public Adapter createIfcSpecularRoughnessAdapter() {
+	public Adapter createIfcSpecularRoughnessAdapter()
+	{
 		return null;
 	}
 
@@ -4399,7 +6092,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcTemperatureGradientMeasure
 	 * @generated
 	 */
-	public Adapter createIfcTemperatureGradientMeasureAdapter() {
+	public Adapter createIfcTemperatureGradientMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -4413,7 +6107,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcText
 	 * @generated
 	 */
-	public Adapter createIfcTextAdapter() {
+	public Adapter createIfcTextAdapter()
+	{
 		return null;
 	}
 
@@ -4427,7 +6122,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcThermalAdmittanceMeasure
 	 * @generated
 	 */
-	public Adapter createIfcThermalAdmittanceMeasureAdapter() {
+	public Adapter createIfcThermalAdmittanceMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -4441,7 +6137,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcThermalConductivityMeasure
 	 * @generated
 	 */
-	public Adapter createIfcThermalConductivityMeasureAdapter() {
+	public Adapter createIfcThermalConductivityMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -4455,7 +6152,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcThermalExpansionCoefficientMeasure
 	 * @generated
 	 */
-	public Adapter createIfcThermalExpansionCoefficientMeasureAdapter() {
+	public Adapter createIfcThermalExpansionCoefficientMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -4469,7 +6167,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcThermalResistanceMeasure
 	 * @generated
 	 */
-	public Adapter createIfcThermalResistanceMeasureAdapter() {
+	public Adapter createIfcThermalResistanceMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -4483,7 +6182,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcThermalTransmittanceMeasure
 	 * @generated
 	 */
-	public Adapter createIfcThermalTransmittanceMeasureAdapter() {
+	public Adapter createIfcThermalTransmittanceMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -4497,7 +6197,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcThermodynamicTemperatureMeasure
 	 * @generated
 	 */
-	public Adapter createIfcThermodynamicTemperatureMeasureAdapter() {
+	public Adapter createIfcThermodynamicTemperatureMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -4511,7 +6212,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcTimeMeasure
 	 * @generated
 	 */
-	public Adapter createIfcTimeMeasureAdapter() {
+	public Adapter createIfcTimeMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -4525,7 +6227,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcTimeStamp
 	 * @generated
 	 */
-	public Adapter createIfcTimeStampAdapter() {
+	public Adapter createIfcTimeStampAdapter()
+	{
 		return null;
 	}
 
@@ -4539,7 +6242,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcTorqueMeasure
 	 * @generated
 	 */
-	public Adapter createIfcTorqueMeasureAdapter() {
+	public Adapter createIfcTorqueMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -4553,7 +6257,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcVaporPermeabilityMeasure
 	 * @generated
 	 */
-	public Adapter createIfcVaporPermeabilityMeasureAdapter() {
+	public Adapter createIfcVaporPermeabilityMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -4567,7 +6272,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcVolumeMeasure
 	 * @generated
 	 */
-	public Adapter createIfcVolumeMeasureAdapter() {
+	public Adapter createIfcVolumeMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -4581,7 +6287,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcVolumetricFlowRateMeasure
 	 * @generated
 	 */
-	public Adapter createIfcVolumetricFlowRateMeasureAdapter() {
+	public Adapter createIfcVolumetricFlowRateMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -4595,7 +6302,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcWarpingConstantMeasure
 	 * @generated
 	 */
-	public Adapter createIfcWarpingConstantMeasureAdapter() {
+	public Adapter createIfcWarpingConstantMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -4609,7 +6317,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcWarpingMomentMeasure
 	 * @generated
 	 */
-	public Adapter createIfcWarpingMomentMeasureAdapter() {
+	public Adapter createIfcWarpingMomentMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -4623,7 +6332,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcNormalisedRatioMeasure
 	 * @generated
 	 */
-	public Adapter createIfcNormalisedRatioMeasureAdapter() {
+	public Adapter createIfcNormalisedRatioMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -4637,7 +6347,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcPositiveLengthMeasure
 	 * @generated
 	 */
-	public Adapter createIfcPositiveLengthMeasureAdapter() {
+	public Adapter createIfcPositiveLengthMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -4651,7 +6362,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcPositivePlaneAngleMeasure
 	 * @generated
 	 */
-	public Adapter createIfcPositivePlaneAngleMeasureAdapter() {
+	public Adapter createIfcPositivePlaneAngleMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -4665,7 +6377,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcPositiveRatioMeasure
 	 * @generated
 	 */
-	public Adapter createIfcPositiveRatioMeasureAdapter() {
+	public Adapter createIfcPositiveRatioMeasureAdapter()
+	{
 		return null;
 	}
 
@@ -4679,7 +6392,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.Ifc2DCompositeCurve
 	 * @generated
 	 */
-	public Adapter createIfc2DCompositeCurveAdapter() {
+	public Adapter createIfc2DCompositeCurveAdapter()
+	{
 		return null;
 	}
 
@@ -4693,7 +6407,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcActionRequest
 	 * @generated
 	 */
-	public Adapter createIfcActionRequestAdapter() {
+	public Adapter createIfcActionRequestAdapter()
+	{
 		return null;
 	}
 
@@ -4707,7 +6422,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcActor
 	 * @generated
 	 */
-	public Adapter createIfcActorAdapter() {
+	public Adapter createIfcActorAdapter()
+	{
 		return null;
 	}
 
@@ -4721,7 +6437,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcActorRole
 	 * @generated
 	 */
-	public Adapter createIfcActorRoleAdapter() {
+	public Adapter createIfcActorRoleAdapter()
+	{
 		return null;
 	}
 
@@ -4735,7 +6452,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcActuatorType
 	 * @generated
 	 */
-	public Adapter createIfcActuatorTypeAdapter() {
+	public Adapter createIfcActuatorTypeAdapter()
+	{
 		return null;
 	}
 
@@ -4749,7 +6467,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcAddress
 	 * @generated
 	 */
-	public Adapter createIfcAddressAdapter() {
+	public Adapter createIfcAddressAdapter()
+	{
 		return null;
 	}
 
@@ -4763,7 +6482,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcAirTerminalBoxType
 	 * @generated
 	 */
-	public Adapter createIfcAirTerminalBoxTypeAdapter() {
+	public Adapter createIfcAirTerminalBoxTypeAdapter()
+	{
 		return null;
 	}
 
@@ -4777,7 +6497,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcAirTerminalType
 	 * @generated
 	 */
-	public Adapter createIfcAirTerminalTypeAdapter() {
+	public Adapter createIfcAirTerminalTypeAdapter()
+	{
 		return null;
 	}
 
@@ -4791,7 +6512,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcAirToAirHeatRecoveryType
 	 * @generated
 	 */
-	public Adapter createIfcAirToAirHeatRecoveryTypeAdapter() {
+	public Adapter createIfcAirToAirHeatRecoveryTypeAdapter()
+	{
 		return null;
 	}
 
@@ -4805,7 +6527,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcAlarmType
 	 * @generated
 	 */
-	public Adapter createIfcAlarmTypeAdapter() {
+	public Adapter createIfcAlarmTypeAdapter()
+	{
 		return null;
 	}
 
@@ -4819,7 +6542,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcAngularDimension
 	 * @generated
 	 */
-	public Adapter createIfcAngularDimensionAdapter() {
+	public Adapter createIfcAngularDimensionAdapter()
+	{
 		return null;
 	}
 
@@ -4833,7 +6557,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcAnnotation
 	 * @generated
 	 */
-	public Adapter createIfcAnnotationAdapter() {
+	public Adapter createIfcAnnotationAdapter()
+	{
 		return null;
 	}
 
@@ -4847,7 +6572,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcAnnotationCurveOccurrence
 	 * @generated
 	 */
-	public Adapter createIfcAnnotationCurveOccurrenceAdapter() {
+	public Adapter createIfcAnnotationCurveOccurrenceAdapter()
+	{
 		return null;
 	}
 
@@ -4861,7 +6587,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcAnnotationFillArea
 	 * @generated
 	 */
-	public Adapter createIfcAnnotationFillAreaAdapter() {
+	public Adapter createIfcAnnotationFillAreaAdapter()
+	{
 		return null;
 	}
 
@@ -4875,7 +6602,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcAnnotationFillAreaOccurrence
 	 * @generated
 	 */
-	public Adapter createIfcAnnotationFillAreaOccurrenceAdapter() {
+	public Adapter createIfcAnnotationFillAreaOccurrenceAdapter()
+	{
 		return null;
 	}
 
@@ -4889,7 +6617,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcAnnotationOccurrence
 	 * @generated
 	 */
-	public Adapter createIfcAnnotationOccurrenceAdapter() {
+	public Adapter createIfcAnnotationOccurrenceAdapter()
+	{
 		return null;
 	}
 
@@ -4903,7 +6632,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcAnnotationSurface
 	 * @generated
 	 */
-	public Adapter createIfcAnnotationSurfaceAdapter() {
+	public Adapter createIfcAnnotationSurfaceAdapter()
+	{
 		return null;
 	}
 
@@ -4917,7 +6647,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcAnnotationSurfaceOccurrence
 	 * @generated
 	 */
-	public Adapter createIfcAnnotationSurfaceOccurrenceAdapter() {
+	public Adapter createIfcAnnotationSurfaceOccurrenceAdapter()
+	{
 		return null;
 	}
 
@@ -4931,7 +6662,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcAnnotationSymbolOccurrence
 	 * @generated
 	 */
-	public Adapter createIfcAnnotationSymbolOccurrenceAdapter() {
+	public Adapter createIfcAnnotationSymbolOccurrenceAdapter()
+	{
 		return null;
 	}
 
@@ -4945,7 +6677,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcAnnotationTextOccurrence
 	 * @generated
 	 */
-	public Adapter createIfcAnnotationTextOccurrenceAdapter() {
+	public Adapter createIfcAnnotationTextOccurrenceAdapter()
+	{
 		return null;
 	}
 
@@ -4959,7 +6692,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcApplication
 	 * @generated
 	 */
-	public Adapter createIfcApplicationAdapter() {
+	public Adapter createIfcApplicationAdapter()
+	{
 		return null;
 	}
 
@@ -4973,7 +6707,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcAppliedValue
 	 * @generated
 	 */
-	public Adapter createIfcAppliedValueAdapter() {
+	public Adapter createIfcAppliedValueAdapter()
+	{
 		return null;
 	}
 
@@ -4987,7 +6722,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcAppliedValueRelationship
 	 * @generated
 	 */
-	public Adapter createIfcAppliedValueRelationshipAdapter() {
+	public Adapter createIfcAppliedValueRelationshipAdapter()
+	{
 		return null;
 	}
 
@@ -5001,7 +6737,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcApproval
 	 * @generated
 	 */
-	public Adapter createIfcApprovalAdapter() {
+	public Adapter createIfcApprovalAdapter()
+	{
 		return null;
 	}
 
@@ -5015,7 +6752,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcApprovalActorRelationship
 	 * @generated
 	 */
-	public Adapter createIfcApprovalActorRelationshipAdapter() {
+	public Adapter createIfcApprovalActorRelationshipAdapter()
+	{
 		return null;
 	}
 
@@ -5029,7 +6767,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcApprovalPropertyRelationship
 	 * @generated
 	 */
-	public Adapter createIfcApprovalPropertyRelationshipAdapter() {
+	public Adapter createIfcApprovalPropertyRelationshipAdapter()
+	{
 		return null;
 	}
 
@@ -5043,7 +6782,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcApprovalRelationship
 	 * @generated
 	 */
-	public Adapter createIfcApprovalRelationshipAdapter() {
+	public Adapter createIfcApprovalRelationshipAdapter()
+	{
 		return null;
 	}
 
@@ -5057,7 +6797,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcArbitraryClosedProfileDef
 	 * @generated
 	 */
-	public Adapter createIfcArbitraryClosedProfileDefAdapter() {
+	public Adapter createIfcArbitraryClosedProfileDefAdapter()
+	{
 		return null;
 	}
 
@@ -5071,7 +6812,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcArbitraryOpenProfileDef
 	 * @generated
 	 */
-	public Adapter createIfcArbitraryOpenProfileDefAdapter() {
+	public Adapter createIfcArbitraryOpenProfileDefAdapter()
+	{
 		return null;
 	}
 
@@ -5085,7 +6827,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcArbitraryProfileDefWithVoids
 	 * @generated
 	 */
-	public Adapter createIfcArbitraryProfileDefWithVoidsAdapter() {
+	public Adapter createIfcArbitraryProfileDefWithVoidsAdapter()
+	{
 		return null;
 	}
 
@@ -5099,7 +6842,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcAsset
 	 * @generated
 	 */
-	public Adapter createIfcAssetAdapter() {
+	public Adapter createIfcAssetAdapter()
+	{
 		return null;
 	}
 
@@ -5113,7 +6857,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcAsymmetricIShapeProfileDef
 	 * @generated
 	 */
-	public Adapter createIfcAsymmetricIShapeProfileDefAdapter() {
+	public Adapter createIfcAsymmetricIShapeProfileDefAdapter()
+	{
 		return null;
 	}
 
@@ -5127,7 +6872,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcAxis1Placement
 	 * @generated
 	 */
-	public Adapter createIfcAxis1PlacementAdapter() {
+	public Adapter createIfcAxis1PlacementAdapter()
+	{
 		return null;
 	}
 
@@ -5141,7 +6887,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcAxis2Placement2D
 	 * @generated
 	 */
-	public Adapter createIfcAxis2Placement2DAdapter() {
+	public Adapter createIfcAxis2Placement2DAdapter()
+	{
 		return null;
 	}
 
@@ -5155,7 +6902,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcAxis2Placement3D
 	 * @generated
 	 */
-	public Adapter createIfcAxis2Placement3DAdapter() {
+	public Adapter createIfcAxis2Placement3DAdapter()
+	{
 		return null;
 	}
 
@@ -5169,7 +6917,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcBSplineCurve
 	 * @generated
 	 */
-	public Adapter createIfcBSplineCurveAdapter() {
+	public Adapter createIfcBSplineCurveAdapter()
+	{
 		return null;
 	}
 
@@ -5183,7 +6932,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcBeam
 	 * @generated
 	 */
-	public Adapter createIfcBeamAdapter() {
+	public Adapter createIfcBeamAdapter()
+	{
 		return null;
 	}
 
@@ -5197,7 +6947,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcBeamType
 	 * @generated
 	 */
-	public Adapter createIfcBeamTypeAdapter() {
+	public Adapter createIfcBeamTypeAdapter()
+	{
 		return null;
 	}
 
@@ -5211,7 +6962,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcBezierCurve
 	 * @generated
 	 */
-	public Adapter createIfcBezierCurveAdapter() {
+	public Adapter createIfcBezierCurveAdapter()
+	{
 		return null;
 	}
 
@@ -5225,7 +6977,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcBlobTexture
 	 * @generated
 	 */
-	public Adapter createIfcBlobTextureAdapter() {
+	public Adapter createIfcBlobTextureAdapter()
+	{
 		return null;
 	}
 
@@ -5239,7 +6992,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcBlock
 	 * @generated
 	 */
-	public Adapter createIfcBlockAdapter() {
+	public Adapter createIfcBlockAdapter()
+	{
 		return null;
 	}
 
@@ -5253,7 +7007,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcBoilerType
 	 * @generated
 	 */
-	public Adapter createIfcBoilerTypeAdapter() {
+	public Adapter createIfcBoilerTypeAdapter()
+	{
 		return null;
 	}
 
@@ -5267,7 +7022,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcBooleanClippingResult
 	 * @generated
 	 */
-	public Adapter createIfcBooleanClippingResultAdapter() {
+	public Adapter createIfcBooleanClippingResultAdapter()
+	{
 		return null;
 	}
 
@@ -5281,7 +7037,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcBooleanResult
 	 * @generated
 	 */
-	public Adapter createIfcBooleanResultAdapter() {
+	public Adapter createIfcBooleanResultAdapter()
+	{
 		return null;
 	}
 
@@ -5295,7 +7052,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcBoundaryCondition
 	 * @generated
 	 */
-	public Adapter createIfcBoundaryConditionAdapter() {
+	public Adapter createIfcBoundaryConditionAdapter()
+	{
 		return null;
 	}
 
@@ -5309,7 +7067,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcBoundaryEdgeCondition
 	 * @generated
 	 */
-	public Adapter createIfcBoundaryEdgeConditionAdapter() {
+	public Adapter createIfcBoundaryEdgeConditionAdapter()
+	{
 		return null;
 	}
 
@@ -5323,7 +7082,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcBoundaryFaceCondition
 	 * @generated
 	 */
-	public Adapter createIfcBoundaryFaceConditionAdapter() {
+	public Adapter createIfcBoundaryFaceConditionAdapter()
+	{
 		return null;
 	}
 
@@ -5337,7 +7097,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcBoundaryNodeCondition
 	 * @generated
 	 */
-	public Adapter createIfcBoundaryNodeConditionAdapter() {
+	public Adapter createIfcBoundaryNodeConditionAdapter()
+	{
 		return null;
 	}
 
@@ -5351,7 +7112,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcBoundaryNodeConditionWarping
 	 * @generated
 	 */
-	public Adapter createIfcBoundaryNodeConditionWarpingAdapter() {
+	public Adapter createIfcBoundaryNodeConditionWarpingAdapter()
+	{
 		return null;
 	}
 
@@ -5365,7 +7127,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcBoundedCurve
 	 * @generated
 	 */
-	public Adapter createIfcBoundedCurveAdapter() {
+	public Adapter createIfcBoundedCurveAdapter()
+	{
 		return null;
 	}
 
@@ -5379,7 +7142,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcBoundedSurface
 	 * @generated
 	 */
-	public Adapter createIfcBoundedSurfaceAdapter() {
+	public Adapter createIfcBoundedSurfaceAdapter()
+	{
 		return null;
 	}
 
@@ -5393,7 +7157,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcBoundingBox
 	 * @generated
 	 */
-	public Adapter createIfcBoundingBoxAdapter() {
+	public Adapter createIfcBoundingBoxAdapter()
+	{
 		return null;
 	}
 
@@ -5407,7 +7172,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcBoxedHalfSpace
 	 * @generated
 	 */
-	public Adapter createIfcBoxedHalfSpaceAdapter() {
+	public Adapter createIfcBoxedHalfSpaceAdapter()
+	{
 		return null;
 	}
 
@@ -5421,7 +7187,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcBuilding
 	 * @generated
 	 */
-	public Adapter createIfcBuildingAdapter() {
+	public Adapter createIfcBuildingAdapter()
+	{
 		return null;
 	}
 
@@ -5435,7 +7202,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcBuildingElement
 	 * @generated
 	 */
-	public Adapter createIfcBuildingElementAdapter() {
+	public Adapter createIfcBuildingElementAdapter()
+	{
 		return null;
 	}
 
@@ -5449,7 +7217,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcBuildingElementComponent
 	 * @generated
 	 */
-	public Adapter createIfcBuildingElementComponentAdapter() {
+	public Adapter createIfcBuildingElementComponentAdapter()
+	{
 		return null;
 	}
 
@@ -5463,7 +7232,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcBuildingElementPart
 	 * @generated
 	 */
-	public Adapter createIfcBuildingElementPartAdapter() {
+	public Adapter createIfcBuildingElementPartAdapter()
+	{
 		return null;
 	}
 
@@ -5477,7 +7247,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcBuildingElementProxy
 	 * @generated
 	 */
-	public Adapter createIfcBuildingElementProxyAdapter() {
+	public Adapter createIfcBuildingElementProxyAdapter()
+	{
 		return null;
 	}
 
@@ -5491,7 +7262,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcBuildingElementProxyType
 	 * @generated
 	 */
-	public Adapter createIfcBuildingElementProxyTypeAdapter() {
+	public Adapter createIfcBuildingElementProxyTypeAdapter()
+	{
 		return null;
 	}
 
@@ -5505,7 +7277,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcBuildingElementType
 	 * @generated
 	 */
-	public Adapter createIfcBuildingElementTypeAdapter() {
+	public Adapter createIfcBuildingElementTypeAdapter()
+	{
 		return null;
 	}
 
@@ -5519,7 +7292,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcBuildingStorey
 	 * @generated
 	 */
-	public Adapter createIfcBuildingStoreyAdapter() {
+	public Adapter createIfcBuildingStoreyAdapter()
+	{
 		return null;
 	}
 
@@ -5533,7 +7307,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcCShapeProfileDef
 	 * @generated
 	 */
-	public Adapter createIfcCShapeProfileDefAdapter() {
+	public Adapter createIfcCShapeProfileDefAdapter()
+	{
 		return null;
 	}
 
@@ -5547,7 +7322,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcCableCarrierFittingType
 	 * @generated
 	 */
-	public Adapter createIfcCableCarrierFittingTypeAdapter() {
+	public Adapter createIfcCableCarrierFittingTypeAdapter()
+	{
 		return null;
 	}
 
@@ -5561,7 +7337,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcCableCarrierSegmentType
 	 * @generated
 	 */
-	public Adapter createIfcCableCarrierSegmentTypeAdapter() {
+	public Adapter createIfcCableCarrierSegmentTypeAdapter()
+	{
 		return null;
 	}
 
@@ -5575,7 +7352,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcCableSegmentType
 	 * @generated
 	 */
-	public Adapter createIfcCableSegmentTypeAdapter() {
+	public Adapter createIfcCableSegmentTypeAdapter()
+	{
 		return null;
 	}
 
@@ -5589,7 +7367,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcCalendarDate
 	 * @generated
 	 */
-	public Adapter createIfcCalendarDateAdapter() {
+	public Adapter createIfcCalendarDateAdapter()
+	{
 		return null;
 	}
 
@@ -5603,7 +7382,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcCartesianPoint
 	 * @generated
 	 */
-	public Adapter createIfcCartesianPointAdapter() {
+	public Adapter createIfcCartesianPointAdapter()
+	{
 		return null;
 	}
 
@@ -5617,7 +7397,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcCartesianTransformationOperator
 	 * @generated
 	 */
-	public Adapter createIfcCartesianTransformationOperatorAdapter() {
+	public Adapter createIfcCartesianTransformationOperatorAdapter()
+	{
 		return null;
 	}
 
@@ -5631,7 +7412,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcCartesianTransformationOperator2D
 	 * @generated
 	 */
-	public Adapter createIfcCartesianTransformationOperator2DAdapter() {
+	public Adapter createIfcCartesianTransformationOperator2DAdapter()
+	{
 		return null;
 	}
 
@@ -5645,7 +7427,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcCartesianTransformationOperator2DnonUniform
 	 * @generated
 	 */
-	public Adapter createIfcCartesianTransformationOperator2DnonUniformAdapter() {
+	public Adapter createIfcCartesianTransformationOperator2DnonUniformAdapter()
+	{
 		return null;
 	}
 
@@ -5659,7 +7442,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcCartesianTransformationOperator3D
 	 * @generated
 	 */
-	public Adapter createIfcCartesianTransformationOperator3DAdapter() {
+	public Adapter createIfcCartesianTransformationOperator3DAdapter()
+	{
 		return null;
 	}
 
@@ -5673,7 +7457,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcCartesianTransformationOperator3DnonUniform
 	 * @generated
 	 */
-	public Adapter createIfcCartesianTransformationOperator3DnonUniformAdapter() {
+	public Adapter createIfcCartesianTransformationOperator3DnonUniformAdapter()
+	{
 		return null;
 	}
 
@@ -5687,7 +7472,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcCenterLineProfileDef
 	 * @generated
 	 */
-	public Adapter createIfcCenterLineProfileDefAdapter() {
+	public Adapter createIfcCenterLineProfileDefAdapter()
+	{
 		return null;
 	}
 
@@ -5701,7 +7487,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcChamferEdgeFeature
 	 * @generated
 	 */
-	public Adapter createIfcChamferEdgeFeatureAdapter() {
+	public Adapter createIfcChamferEdgeFeatureAdapter()
+	{
 		return null;
 	}
 
@@ -5715,7 +7502,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcChillerType
 	 * @generated
 	 */
-	public Adapter createIfcChillerTypeAdapter() {
+	public Adapter createIfcChillerTypeAdapter()
+	{
 		return null;
 	}
 
@@ -5729,7 +7517,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcCircle
 	 * @generated
 	 */
-	public Adapter createIfcCircleAdapter() {
+	public Adapter createIfcCircleAdapter()
+	{
 		return null;
 	}
 
@@ -5743,7 +7532,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcCircleHollowProfileDef
 	 * @generated
 	 */
-	public Adapter createIfcCircleHollowProfileDefAdapter() {
+	public Adapter createIfcCircleHollowProfileDefAdapter()
+	{
 		return null;
 	}
 
@@ -5757,7 +7547,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcCircleProfileDef
 	 * @generated
 	 */
-	public Adapter createIfcCircleProfileDefAdapter() {
+	public Adapter createIfcCircleProfileDefAdapter()
+	{
 		return null;
 	}
 
@@ -5771,7 +7562,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcClassification
 	 * @generated
 	 */
-	public Adapter createIfcClassificationAdapter() {
+	public Adapter createIfcClassificationAdapter()
+	{
 		return null;
 	}
 
@@ -5785,7 +7577,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcClassificationItem
 	 * @generated
 	 */
-	public Adapter createIfcClassificationItemAdapter() {
+	public Adapter createIfcClassificationItemAdapter()
+	{
 		return null;
 	}
 
@@ -5799,7 +7592,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcClassificationItemRelationship
 	 * @generated
 	 */
-	public Adapter createIfcClassificationItemRelationshipAdapter() {
+	public Adapter createIfcClassificationItemRelationshipAdapter()
+	{
 		return null;
 	}
 
@@ -5813,7 +7607,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcClassificationNotation
 	 * @generated
 	 */
-	public Adapter createIfcClassificationNotationAdapter() {
+	public Adapter createIfcClassificationNotationAdapter()
+	{
 		return null;
 	}
 
@@ -5827,7 +7622,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcClassificationNotationFacet
 	 * @generated
 	 */
-	public Adapter createIfcClassificationNotationFacetAdapter() {
+	public Adapter createIfcClassificationNotationFacetAdapter()
+	{
 		return null;
 	}
 
@@ -5841,7 +7637,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcClassificationReference
 	 * @generated
 	 */
-	public Adapter createIfcClassificationReferenceAdapter() {
+	public Adapter createIfcClassificationReferenceAdapter()
+	{
 		return null;
 	}
 
@@ -5855,7 +7652,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcClosedShell
 	 * @generated
 	 */
-	public Adapter createIfcClosedShellAdapter() {
+	public Adapter createIfcClosedShellAdapter()
+	{
 		return null;
 	}
 
@@ -5869,7 +7667,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcCoilType
 	 * @generated
 	 */
-	public Adapter createIfcCoilTypeAdapter() {
+	public Adapter createIfcCoilTypeAdapter()
+	{
 		return null;
 	}
 
@@ -5883,7 +7682,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcColourRgb
 	 * @generated
 	 */
-	public Adapter createIfcColourRgbAdapter() {
+	public Adapter createIfcColourRgbAdapter()
+	{
 		return null;
 	}
 
@@ -5897,7 +7697,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcColourSpecification
 	 * @generated
 	 */
-	public Adapter createIfcColourSpecificationAdapter() {
+	public Adapter createIfcColourSpecificationAdapter()
+	{
 		return null;
 	}
 
@@ -5911,7 +7712,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcColumn
 	 * @generated
 	 */
-	public Adapter createIfcColumnAdapter() {
+	public Adapter createIfcColumnAdapter()
+	{
 		return null;
 	}
 
@@ -5925,7 +7727,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcColumnType
 	 * @generated
 	 */
-	public Adapter createIfcColumnTypeAdapter() {
+	public Adapter createIfcColumnTypeAdapter()
+	{
 		return null;
 	}
 
@@ -5939,7 +7742,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcComplexProperty
 	 * @generated
 	 */
-	public Adapter createIfcComplexPropertyAdapter() {
+	public Adapter createIfcComplexPropertyAdapter()
+	{
 		return null;
 	}
 
@@ -5953,7 +7757,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcCompositeCurve
 	 * @generated
 	 */
-	public Adapter createIfcCompositeCurveAdapter() {
+	public Adapter createIfcCompositeCurveAdapter()
+	{
 		return null;
 	}
 
@@ -5967,7 +7772,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcCompositeCurveSegment
 	 * @generated
 	 */
-	public Adapter createIfcCompositeCurveSegmentAdapter() {
+	public Adapter createIfcCompositeCurveSegmentAdapter()
+	{
 		return null;
 	}
 
@@ -5981,7 +7787,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcCompositeProfileDef
 	 * @generated
 	 */
-	public Adapter createIfcCompositeProfileDefAdapter() {
+	public Adapter createIfcCompositeProfileDefAdapter()
+	{
 		return null;
 	}
 
@@ -5995,7 +7802,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcCompressorType
 	 * @generated
 	 */
-	public Adapter createIfcCompressorTypeAdapter() {
+	public Adapter createIfcCompressorTypeAdapter()
+	{
 		return null;
 	}
 
@@ -6009,7 +7817,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcCondenserType
 	 * @generated
 	 */
-	public Adapter createIfcCondenserTypeAdapter() {
+	public Adapter createIfcCondenserTypeAdapter()
+	{
 		return null;
 	}
 
@@ -6023,7 +7832,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcCondition
 	 * @generated
 	 */
-	public Adapter createIfcConditionAdapter() {
+	public Adapter createIfcConditionAdapter()
+	{
 		return null;
 	}
 
@@ -6037,7 +7847,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcConditionCriterion
 	 * @generated
 	 */
-	public Adapter createIfcConditionCriterionAdapter() {
+	public Adapter createIfcConditionCriterionAdapter()
+	{
 		return null;
 	}
 
@@ -6051,7 +7862,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcConic
 	 * @generated
 	 */
-	public Adapter createIfcConicAdapter() {
+	public Adapter createIfcConicAdapter()
+	{
 		return null;
 	}
 
@@ -6065,7 +7877,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcConnectedFaceSet
 	 * @generated
 	 */
-	public Adapter createIfcConnectedFaceSetAdapter() {
+	public Adapter createIfcConnectedFaceSetAdapter()
+	{
 		return null;
 	}
 
@@ -6079,7 +7892,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcConnectionCurveGeometry
 	 * @generated
 	 */
-	public Adapter createIfcConnectionCurveGeometryAdapter() {
+	public Adapter createIfcConnectionCurveGeometryAdapter()
+	{
 		return null;
 	}
 
@@ -6093,7 +7907,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcConnectionGeometry
 	 * @generated
 	 */
-	public Adapter createIfcConnectionGeometryAdapter() {
+	public Adapter createIfcConnectionGeometryAdapter()
+	{
 		return null;
 	}
 
@@ -6107,7 +7922,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcConnectionPointEccentricity
 	 * @generated
 	 */
-	public Adapter createIfcConnectionPointEccentricityAdapter() {
+	public Adapter createIfcConnectionPointEccentricityAdapter()
+	{
 		return null;
 	}
 
@@ -6121,7 +7937,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcConnectionPointGeometry
 	 * @generated
 	 */
-	public Adapter createIfcConnectionPointGeometryAdapter() {
+	public Adapter createIfcConnectionPointGeometryAdapter()
+	{
 		return null;
 	}
 
@@ -6135,7 +7952,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcConnectionPortGeometry
 	 * @generated
 	 */
-	public Adapter createIfcConnectionPortGeometryAdapter() {
+	public Adapter createIfcConnectionPortGeometryAdapter()
+	{
 		return null;
 	}
 
@@ -6149,7 +7967,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcConnectionSurfaceGeometry
 	 * @generated
 	 */
-	public Adapter createIfcConnectionSurfaceGeometryAdapter() {
+	public Adapter createIfcConnectionSurfaceGeometryAdapter()
+	{
 		return null;
 	}
 
@@ -6163,7 +7982,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcConstraint
 	 * @generated
 	 */
-	public Adapter createIfcConstraintAdapter() {
+	public Adapter createIfcConstraintAdapter()
+	{
 		return null;
 	}
 
@@ -6177,7 +7997,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcConstraintAggregationRelationship
 	 * @generated
 	 */
-	public Adapter createIfcConstraintAggregationRelationshipAdapter() {
+	public Adapter createIfcConstraintAggregationRelationshipAdapter()
+	{
 		return null;
 	}
 
@@ -6191,7 +8012,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcConstraintClassificationRelationship
 	 * @generated
 	 */
-	public Adapter createIfcConstraintClassificationRelationshipAdapter() {
+	public Adapter createIfcConstraintClassificationRelationshipAdapter()
+	{
 		return null;
 	}
 
@@ -6205,7 +8027,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcConstraintRelationship
 	 * @generated
 	 */
-	public Adapter createIfcConstraintRelationshipAdapter() {
+	public Adapter createIfcConstraintRelationshipAdapter()
+	{
 		return null;
 	}
 
@@ -6219,7 +8042,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcConstructionEquipmentResource
 	 * @generated
 	 */
-	public Adapter createIfcConstructionEquipmentResourceAdapter() {
+	public Adapter createIfcConstructionEquipmentResourceAdapter()
+	{
 		return null;
 	}
 
@@ -6233,7 +8057,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcConstructionMaterialResource
 	 * @generated
 	 */
-	public Adapter createIfcConstructionMaterialResourceAdapter() {
+	public Adapter createIfcConstructionMaterialResourceAdapter()
+	{
 		return null;
 	}
 
@@ -6247,7 +8072,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcConstructionProductResource
 	 * @generated
 	 */
-	public Adapter createIfcConstructionProductResourceAdapter() {
+	public Adapter createIfcConstructionProductResourceAdapter()
+	{
 		return null;
 	}
 
@@ -6261,7 +8087,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcConstructionResource
 	 * @generated
 	 */
-	public Adapter createIfcConstructionResourceAdapter() {
+	public Adapter createIfcConstructionResourceAdapter()
+	{
 		return null;
 	}
 
@@ -6275,7 +8102,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcContextDependentUnit
 	 * @generated
 	 */
-	public Adapter createIfcContextDependentUnitAdapter() {
+	public Adapter createIfcContextDependentUnitAdapter()
+	{
 		return null;
 	}
 
@@ -6289,7 +8117,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcControl
 	 * @generated
 	 */
-	public Adapter createIfcControlAdapter() {
+	public Adapter createIfcControlAdapter()
+	{
 		return null;
 	}
 
@@ -6303,7 +8132,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcControllerType
 	 * @generated
 	 */
-	public Adapter createIfcControllerTypeAdapter() {
+	public Adapter createIfcControllerTypeAdapter()
+	{
 		return null;
 	}
 
@@ -6317,7 +8147,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcConversionBasedUnit
 	 * @generated
 	 */
-	public Adapter createIfcConversionBasedUnitAdapter() {
+	public Adapter createIfcConversionBasedUnitAdapter()
+	{
 		return null;
 	}
 
@@ -6331,7 +8162,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcCooledBeamType
 	 * @generated
 	 */
-	public Adapter createIfcCooledBeamTypeAdapter() {
+	public Adapter createIfcCooledBeamTypeAdapter()
+	{
 		return null;
 	}
 
@@ -6345,7 +8177,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcCoolingTowerType
 	 * @generated
 	 */
-	public Adapter createIfcCoolingTowerTypeAdapter() {
+	public Adapter createIfcCoolingTowerTypeAdapter()
+	{
 		return null;
 	}
 
@@ -6359,7 +8192,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcCoordinatedUniversalTimeOffset
 	 * @generated
 	 */
-	public Adapter createIfcCoordinatedUniversalTimeOffsetAdapter() {
+	public Adapter createIfcCoordinatedUniversalTimeOffsetAdapter()
+	{
 		return null;
 	}
 
@@ -6373,7 +8207,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcCostItem
 	 * @generated
 	 */
-	public Adapter createIfcCostItemAdapter() {
+	public Adapter createIfcCostItemAdapter()
+	{
 		return null;
 	}
 
@@ -6387,7 +8222,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcCostSchedule
 	 * @generated
 	 */
-	public Adapter createIfcCostScheduleAdapter() {
+	public Adapter createIfcCostScheduleAdapter()
+	{
 		return null;
 	}
 
@@ -6401,7 +8237,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcCostValue
 	 * @generated
 	 */
-	public Adapter createIfcCostValueAdapter() {
+	public Adapter createIfcCostValueAdapter()
+	{
 		return null;
 	}
 
@@ -6415,7 +8252,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcCovering
 	 * @generated
 	 */
-	public Adapter createIfcCoveringAdapter() {
+	public Adapter createIfcCoveringAdapter()
+	{
 		return null;
 	}
 
@@ -6429,7 +8267,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcCoveringType
 	 * @generated
 	 */
-	public Adapter createIfcCoveringTypeAdapter() {
+	public Adapter createIfcCoveringTypeAdapter()
+	{
 		return null;
 	}
 
@@ -6443,7 +8282,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcCraneRailAShapeProfileDef
 	 * @generated
 	 */
-	public Adapter createIfcCraneRailAShapeProfileDefAdapter() {
+	public Adapter createIfcCraneRailAShapeProfileDefAdapter()
+	{
 		return null;
 	}
 
@@ -6457,7 +8297,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcCraneRailFShapeProfileDef
 	 * @generated
 	 */
-	public Adapter createIfcCraneRailFShapeProfileDefAdapter() {
+	public Adapter createIfcCraneRailFShapeProfileDefAdapter()
+	{
 		return null;
 	}
 
@@ -6471,7 +8312,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcCrewResource
 	 * @generated
 	 */
-	public Adapter createIfcCrewResourceAdapter() {
+	public Adapter createIfcCrewResourceAdapter()
+	{
 		return null;
 	}
 
@@ -6485,7 +8327,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcCsgPrimitive3D
 	 * @generated
 	 */
-	public Adapter createIfcCsgPrimitive3DAdapter() {
+	public Adapter createIfcCsgPrimitive3DAdapter()
+	{
 		return null;
 	}
 
@@ -6499,7 +8342,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcCsgSolid
 	 * @generated
 	 */
-	public Adapter createIfcCsgSolidAdapter() {
+	public Adapter createIfcCsgSolidAdapter()
+	{
 		return null;
 	}
 
@@ -6513,7 +8357,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcCurrencyRelationship
 	 * @generated
 	 */
-	public Adapter createIfcCurrencyRelationshipAdapter() {
+	public Adapter createIfcCurrencyRelationshipAdapter()
+	{
 		return null;
 	}
 
@@ -6527,7 +8372,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcCurtainWall
 	 * @generated
 	 */
-	public Adapter createIfcCurtainWallAdapter() {
+	public Adapter createIfcCurtainWallAdapter()
+	{
 		return null;
 	}
 
@@ -6541,7 +8387,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcCurtainWallType
 	 * @generated
 	 */
-	public Adapter createIfcCurtainWallTypeAdapter() {
+	public Adapter createIfcCurtainWallTypeAdapter()
+	{
 		return null;
 	}
 
@@ -6555,7 +8402,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcCurve
 	 * @generated
 	 */
-	public Adapter createIfcCurveAdapter() {
+	public Adapter createIfcCurveAdapter()
+	{
 		return null;
 	}
 
@@ -6569,7 +8417,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcCurveBoundedPlane
 	 * @generated
 	 */
-	public Adapter createIfcCurveBoundedPlaneAdapter() {
+	public Adapter createIfcCurveBoundedPlaneAdapter()
+	{
 		return null;
 	}
 
@@ -6583,7 +8432,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcCurveStyle
 	 * @generated
 	 */
-	public Adapter createIfcCurveStyleAdapter() {
+	public Adapter createIfcCurveStyleAdapter()
+	{
 		return null;
 	}
 
@@ -6597,7 +8447,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcCurveStyleFont
 	 * @generated
 	 */
-	public Adapter createIfcCurveStyleFontAdapter() {
+	public Adapter createIfcCurveStyleFontAdapter()
+	{
 		return null;
 	}
 
@@ -6611,7 +8462,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcCurveStyleFontAndScaling
 	 * @generated
 	 */
-	public Adapter createIfcCurveStyleFontAndScalingAdapter() {
+	public Adapter createIfcCurveStyleFontAndScalingAdapter()
+	{
 		return null;
 	}
 
@@ -6625,7 +8477,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcCurveStyleFontPattern
 	 * @generated
 	 */
-	public Adapter createIfcCurveStyleFontPatternAdapter() {
+	public Adapter createIfcCurveStyleFontPatternAdapter()
+	{
 		return null;
 	}
 
@@ -6639,7 +8492,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcDamperType
 	 * @generated
 	 */
-	public Adapter createIfcDamperTypeAdapter() {
+	public Adapter createIfcDamperTypeAdapter()
+	{
 		return null;
 	}
 
@@ -6653,7 +8507,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcDateAndTime
 	 * @generated
 	 */
-	public Adapter createIfcDateAndTimeAdapter() {
+	public Adapter createIfcDateAndTimeAdapter()
+	{
 		return null;
 	}
 
@@ -6667,7 +8522,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcDefinedSymbol
 	 * @generated
 	 */
-	public Adapter createIfcDefinedSymbolAdapter() {
+	public Adapter createIfcDefinedSymbolAdapter()
+	{
 		return null;
 	}
 
@@ -6681,7 +8537,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcDerivedProfileDef
 	 * @generated
 	 */
-	public Adapter createIfcDerivedProfileDefAdapter() {
+	public Adapter createIfcDerivedProfileDefAdapter()
+	{
 		return null;
 	}
 
@@ -6695,7 +8552,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcDerivedUnit
 	 * @generated
 	 */
-	public Adapter createIfcDerivedUnitAdapter() {
+	public Adapter createIfcDerivedUnitAdapter()
+	{
 		return null;
 	}
 
@@ -6709,7 +8567,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcDerivedUnitElement
 	 * @generated
 	 */
-	public Adapter createIfcDerivedUnitElementAdapter() {
+	public Adapter createIfcDerivedUnitElementAdapter()
+	{
 		return null;
 	}
 
@@ -6723,7 +8582,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcDiameterDimension
 	 * @generated
 	 */
-	public Adapter createIfcDiameterDimensionAdapter() {
+	public Adapter createIfcDiameterDimensionAdapter()
+	{
 		return null;
 	}
 
@@ -6737,7 +8597,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcDimensionCalloutRelationship
 	 * @generated
 	 */
-	public Adapter createIfcDimensionCalloutRelationshipAdapter() {
+	public Adapter createIfcDimensionCalloutRelationshipAdapter()
+	{
 		return null;
 	}
 
@@ -6751,7 +8612,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcDimensionCurve
 	 * @generated
 	 */
-	public Adapter createIfcDimensionCurveAdapter() {
+	public Adapter createIfcDimensionCurveAdapter()
+	{
 		return null;
 	}
 
@@ -6765,7 +8627,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcDimensionCurveDirectedCallout
 	 * @generated
 	 */
-	public Adapter createIfcDimensionCurveDirectedCalloutAdapter() {
+	public Adapter createIfcDimensionCurveDirectedCalloutAdapter()
+	{
 		return null;
 	}
 
@@ -6779,7 +8642,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcDimensionCurveTerminator
 	 * @generated
 	 */
-	public Adapter createIfcDimensionCurveTerminatorAdapter() {
+	public Adapter createIfcDimensionCurveTerminatorAdapter()
+	{
 		return null;
 	}
 
@@ -6793,7 +8657,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcDimensionPair
 	 * @generated
 	 */
-	public Adapter createIfcDimensionPairAdapter() {
+	public Adapter createIfcDimensionPairAdapter()
+	{
 		return null;
 	}
 
@@ -6807,7 +8672,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcDimensionalExponents
 	 * @generated
 	 */
-	public Adapter createIfcDimensionalExponentsAdapter() {
+	public Adapter createIfcDimensionalExponentsAdapter()
+	{
 		return null;
 	}
 
@@ -6821,7 +8687,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcDirection
 	 * @generated
 	 */
-	public Adapter createIfcDirectionAdapter() {
+	public Adapter createIfcDirectionAdapter()
+	{
 		return null;
 	}
 
@@ -6835,7 +8702,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcDiscreteAccessory
 	 * @generated
 	 */
-	public Adapter createIfcDiscreteAccessoryAdapter() {
+	public Adapter createIfcDiscreteAccessoryAdapter()
+	{
 		return null;
 	}
 
@@ -6849,7 +8717,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcDiscreteAccessoryType
 	 * @generated
 	 */
-	public Adapter createIfcDiscreteAccessoryTypeAdapter() {
+	public Adapter createIfcDiscreteAccessoryTypeAdapter()
+	{
 		return null;
 	}
 
@@ -6863,7 +8732,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcDistributionChamberElement
 	 * @generated
 	 */
-	public Adapter createIfcDistributionChamberElementAdapter() {
+	public Adapter createIfcDistributionChamberElementAdapter()
+	{
 		return null;
 	}
 
@@ -6877,7 +8747,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcDistributionChamberElementType
 	 * @generated
 	 */
-	public Adapter createIfcDistributionChamberElementTypeAdapter() {
+	public Adapter createIfcDistributionChamberElementTypeAdapter()
+	{
 		return null;
 	}
 
@@ -6891,7 +8762,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcDistributionControlElement
 	 * @generated
 	 */
-	public Adapter createIfcDistributionControlElementAdapter() {
+	public Adapter createIfcDistributionControlElementAdapter()
+	{
 		return null;
 	}
 
@@ -6905,7 +8777,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcDistributionControlElementType
 	 * @generated
 	 */
-	public Adapter createIfcDistributionControlElementTypeAdapter() {
+	public Adapter createIfcDistributionControlElementTypeAdapter()
+	{
 		return null;
 	}
 
@@ -6919,7 +8792,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcDistributionElement
 	 * @generated
 	 */
-	public Adapter createIfcDistributionElementAdapter() {
+	public Adapter createIfcDistributionElementAdapter()
+	{
 		return null;
 	}
 
@@ -6933,7 +8807,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcDistributionElementType
 	 * @generated
 	 */
-	public Adapter createIfcDistributionElementTypeAdapter() {
+	public Adapter createIfcDistributionElementTypeAdapter()
+	{
 		return null;
 	}
 
@@ -6947,7 +8822,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcDistributionFlowElement
 	 * @generated
 	 */
-	public Adapter createIfcDistributionFlowElementAdapter() {
+	public Adapter createIfcDistributionFlowElementAdapter()
+	{
 		return null;
 	}
 
@@ -6961,7 +8837,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcDistributionFlowElementType
 	 * @generated
 	 */
-	public Adapter createIfcDistributionFlowElementTypeAdapter() {
+	public Adapter createIfcDistributionFlowElementTypeAdapter()
+	{
 		return null;
 	}
 
@@ -6975,7 +8852,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcDistributionPort
 	 * @generated
 	 */
-	public Adapter createIfcDistributionPortAdapter() {
+	public Adapter createIfcDistributionPortAdapter()
+	{
 		return null;
 	}
 
@@ -6989,7 +8867,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcDocumentElectronicFormat
 	 * @generated
 	 */
-	public Adapter createIfcDocumentElectronicFormatAdapter() {
+	public Adapter createIfcDocumentElectronicFormatAdapter()
+	{
 		return null;
 	}
 
@@ -7003,7 +8882,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcDocumentInformation
 	 * @generated
 	 */
-	public Adapter createIfcDocumentInformationAdapter() {
+	public Adapter createIfcDocumentInformationAdapter()
+	{
 		return null;
 	}
 
@@ -7017,7 +8897,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcDocumentInformationRelationship
 	 * @generated
 	 */
-	public Adapter createIfcDocumentInformationRelationshipAdapter() {
+	public Adapter createIfcDocumentInformationRelationshipAdapter()
+	{
 		return null;
 	}
 
@@ -7031,7 +8912,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcDocumentReference
 	 * @generated
 	 */
-	public Adapter createIfcDocumentReferenceAdapter() {
+	public Adapter createIfcDocumentReferenceAdapter()
+	{
 		return null;
 	}
 
@@ -7045,7 +8927,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcDoor
 	 * @generated
 	 */
-	public Adapter createIfcDoorAdapter() {
+	public Adapter createIfcDoorAdapter()
+	{
 		return null;
 	}
 
@@ -7059,7 +8942,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcDoorLiningProperties
 	 * @generated
 	 */
-	public Adapter createIfcDoorLiningPropertiesAdapter() {
+	public Adapter createIfcDoorLiningPropertiesAdapter()
+	{
 		return null;
 	}
 
@@ -7073,7 +8957,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcDoorPanelProperties
 	 * @generated
 	 */
-	public Adapter createIfcDoorPanelPropertiesAdapter() {
+	public Adapter createIfcDoorPanelPropertiesAdapter()
+	{
 		return null;
 	}
 
@@ -7087,7 +8972,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcDoorStyle
 	 * @generated
 	 */
-	public Adapter createIfcDoorStyleAdapter() {
+	public Adapter createIfcDoorStyleAdapter()
+	{
 		return null;
 	}
 
@@ -7101,7 +8987,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcDraughtingCallout
 	 * @generated
 	 */
-	public Adapter createIfcDraughtingCalloutAdapter() {
+	public Adapter createIfcDraughtingCalloutAdapter()
+	{
 		return null;
 	}
 
@@ -7115,7 +9002,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcDraughtingCalloutRelationship
 	 * @generated
 	 */
-	public Adapter createIfcDraughtingCalloutRelationshipAdapter() {
+	public Adapter createIfcDraughtingCalloutRelationshipAdapter()
+	{
 		return null;
 	}
 
@@ -7129,7 +9017,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcDraughtingPreDefinedColour
 	 * @generated
 	 */
-	public Adapter createIfcDraughtingPreDefinedColourAdapter() {
+	public Adapter createIfcDraughtingPreDefinedColourAdapter()
+	{
 		return null;
 	}
 
@@ -7143,7 +9032,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcDraughtingPreDefinedCurveFont
 	 * @generated
 	 */
-	public Adapter createIfcDraughtingPreDefinedCurveFontAdapter() {
+	public Adapter createIfcDraughtingPreDefinedCurveFontAdapter()
+	{
 		return null;
 	}
 
@@ -7157,7 +9047,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcDraughtingPreDefinedTextFont
 	 * @generated
 	 */
-	public Adapter createIfcDraughtingPreDefinedTextFontAdapter() {
+	public Adapter createIfcDraughtingPreDefinedTextFontAdapter()
+	{
 		return null;
 	}
 
@@ -7171,7 +9062,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcDuctFittingType
 	 * @generated
 	 */
-	public Adapter createIfcDuctFittingTypeAdapter() {
+	public Adapter createIfcDuctFittingTypeAdapter()
+	{
 		return null;
 	}
 
@@ -7185,7 +9077,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcDuctSegmentType
 	 * @generated
 	 */
-	public Adapter createIfcDuctSegmentTypeAdapter() {
+	public Adapter createIfcDuctSegmentTypeAdapter()
+	{
 		return null;
 	}
 
@@ -7199,7 +9092,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcDuctSilencerType
 	 * @generated
 	 */
-	public Adapter createIfcDuctSilencerTypeAdapter() {
+	public Adapter createIfcDuctSilencerTypeAdapter()
+	{
 		return null;
 	}
 
@@ -7213,7 +9107,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcEdge
 	 * @generated
 	 */
-	public Adapter createIfcEdgeAdapter() {
+	public Adapter createIfcEdgeAdapter()
+	{
 		return null;
 	}
 
@@ -7227,7 +9122,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcEdgeCurve
 	 * @generated
 	 */
-	public Adapter createIfcEdgeCurveAdapter() {
+	public Adapter createIfcEdgeCurveAdapter()
+	{
 		return null;
 	}
 
@@ -7241,7 +9137,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcEdgeFeature
 	 * @generated
 	 */
-	public Adapter createIfcEdgeFeatureAdapter() {
+	public Adapter createIfcEdgeFeatureAdapter()
+	{
 		return null;
 	}
 
@@ -7255,7 +9152,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcEdgeLoop
 	 * @generated
 	 */
-	public Adapter createIfcEdgeLoopAdapter() {
+	public Adapter createIfcEdgeLoopAdapter()
+	{
 		return null;
 	}
 
@@ -7269,7 +9167,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcElectricApplianceType
 	 * @generated
 	 */
-	public Adapter createIfcElectricApplianceTypeAdapter() {
+	public Adapter createIfcElectricApplianceTypeAdapter()
+	{
 		return null;
 	}
 
@@ -7283,7 +9182,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcElectricDistributionPoint
 	 * @generated
 	 */
-	public Adapter createIfcElectricDistributionPointAdapter() {
+	public Adapter createIfcElectricDistributionPointAdapter()
+	{
 		return null;
 	}
 
@@ -7297,7 +9197,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcElectricFlowStorageDeviceType
 	 * @generated
 	 */
-	public Adapter createIfcElectricFlowStorageDeviceTypeAdapter() {
+	public Adapter createIfcElectricFlowStorageDeviceTypeAdapter()
+	{
 		return null;
 	}
 
@@ -7311,7 +9212,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcElectricGeneratorType
 	 * @generated
 	 */
-	public Adapter createIfcElectricGeneratorTypeAdapter() {
+	public Adapter createIfcElectricGeneratorTypeAdapter()
+	{
 		return null;
 	}
 
@@ -7325,7 +9227,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcElectricHeaterType
 	 * @generated
 	 */
-	public Adapter createIfcElectricHeaterTypeAdapter() {
+	public Adapter createIfcElectricHeaterTypeAdapter()
+	{
 		return null;
 	}
 
@@ -7339,7 +9242,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcElectricMotorType
 	 * @generated
 	 */
-	public Adapter createIfcElectricMotorTypeAdapter() {
+	public Adapter createIfcElectricMotorTypeAdapter()
+	{
 		return null;
 	}
 
@@ -7353,7 +9257,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcElectricTimeControlType
 	 * @generated
 	 */
-	public Adapter createIfcElectricTimeControlTypeAdapter() {
+	public Adapter createIfcElectricTimeControlTypeAdapter()
+	{
 		return null;
 	}
 
@@ -7367,7 +9272,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcElectricalBaseProperties
 	 * @generated
 	 */
-	public Adapter createIfcElectricalBasePropertiesAdapter() {
+	public Adapter createIfcElectricalBasePropertiesAdapter()
+	{
 		return null;
 	}
 
@@ -7381,7 +9287,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcElectricalCircuit
 	 * @generated
 	 */
-	public Adapter createIfcElectricalCircuitAdapter() {
+	public Adapter createIfcElectricalCircuitAdapter()
+	{
 		return null;
 	}
 
@@ -7395,7 +9302,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcElectricalElement
 	 * @generated
 	 */
-	public Adapter createIfcElectricalElementAdapter() {
+	public Adapter createIfcElectricalElementAdapter()
+	{
 		return null;
 	}
 
@@ -7409,7 +9317,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcElement
 	 * @generated
 	 */
-	public Adapter createIfcElementAdapter() {
+	public Adapter createIfcElementAdapter()
+	{
 		return null;
 	}
 
@@ -7423,7 +9332,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcElementAssembly
 	 * @generated
 	 */
-	public Adapter createIfcElementAssemblyAdapter() {
+	public Adapter createIfcElementAssemblyAdapter()
+	{
 		return null;
 	}
 
@@ -7437,7 +9347,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcElementComponent
 	 * @generated
 	 */
-	public Adapter createIfcElementComponentAdapter() {
+	public Adapter createIfcElementComponentAdapter()
+	{
 		return null;
 	}
 
@@ -7451,7 +9362,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcElementComponentType
 	 * @generated
 	 */
-	public Adapter createIfcElementComponentTypeAdapter() {
+	public Adapter createIfcElementComponentTypeAdapter()
+	{
 		return null;
 	}
 
@@ -7465,7 +9377,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcElementQuantity
 	 * @generated
 	 */
-	public Adapter createIfcElementQuantityAdapter() {
+	public Adapter createIfcElementQuantityAdapter()
+	{
 		return null;
 	}
 
@@ -7479,7 +9392,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcElementType
 	 * @generated
 	 */
-	public Adapter createIfcElementTypeAdapter() {
+	public Adapter createIfcElementTypeAdapter()
+	{
 		return null;
 	}
 
@@ -7493,7 +9407,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcElementarySurface
 	 * @generated
 	 */
-	public Adapter createIfcElementarySurfaceAdapter() {
+	public Adapter createIfcElementarySurfaceAdapter()
+	{
 		return null;
 	}
 
@@ -7507,7 +9422,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcEllipse
 	 * @generated
 	 */
-	public Adapter createIfcEllipseAdapter() {
+	public Adapter createIfcEllipseAdapter()
+	{
 		return null;
 	}
 
@@ -7521,7 +9437,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcEllipseProfileDef
 	 * @generated
 	 */
-	public Adapter createIfcEllipseProfileDefAdapter() {
+	public Adapter createIfcEllipseProfileDefAdapter()
+	{
 		return null;
 	}
 
@@ -7535,7 +9452,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcEnergyConversionDevice
 	 * @generated
 	 */
-	public Adapter createIfcEnergyConversionDeviceAdapter() {
+	public Adapter createIfcEnergyConversionDeviceAdapter()
+	{
 		return null;
 	}
 
@@ -7549,7 +9467,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcEnergyConversionDeviceType
 	 * @generated
 	 */
-	public Adapter createIfcEnergyConversionDeviceTypeAdapter() {
+	public Adapter createIfcEnergyConversionDeviceTypeAdapter()
+	{
 		return null;
 	}
 
@@ -7563,7 +9482,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcEnergyProperties
 	 * @generated
 	 */
-	public Adapter createIfcEnergyPropertiesAdapter() {
+	public Adapter createIfcEnergyPropertiesAdapter()
+	{
 		return null;
 	}
 
@@ -7577,7 +9497,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcEnvironmentalImpactValue
 	 * @generated
 	 */
-	public Adapter createIfcEnvironmentalImpactValueAdapter() {
+	public Adapter createIfcEnvironmentalImpactValueAdapter()
+	{
 		return null;
 	}
 
@@ -7591,7 +9512,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcEquipmentElement
 	 * @generated
 	 */
-	public Adapter createIfcEquipmentElementAdapter() {
+	public Adapter createIfcEquipmentElementAdapter()
+	{
 		return null;
 	}
 
@@ -7605,7 +9527,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcEquipmentStandard
 	 * @generated
 	 */
-	public Adapter createIfcEquipmentStandardAdapter() {
+	public Adapter createIfcEquipmentStandardAdapter()
+	{
 		return null;
 	}
 
@@ -7619,7 +9542,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcEvaporativeCoolerType
 	 * @generated
 	 */
-	public Adapter createIfcEvaporativeCoolerTypeAdapter() {
+	public Adapter createIfcEvaporativeCoolerTypeAdapter()
+	{
 		return null;
 	}
 
@@ -7633,7 +9557,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcEvaporatorType
 	 * @generated
 	 */
-	public Adapter createIfcEvaporatorTypeAdapter() {
+	public Adapter createIfcEvaporatorTypeAdapter()
+	{
 		return null;
 	}
 
@@ -7647,7 +9572,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcExtendedMaterialProperties
 	 * @generated
 	 */
-	public Adapter createIfcExtendedMaterialPropertiesAdapter() {
+	public Adapter createIfcExtendedMaterialPropertiesAdapter()
+	{
 		return null;
 	}
 
@@ -7661,7 +9587,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcExternalReference
 	 * @generated
 	 */
-	public Adapter createIfcExternalReferenceAdapter() {
+	public Adapter createIfcExternalReferenceAdapter()
+	{
 		return null;
 	}
 
@@ -7675,7 +9602,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcExternallyDefinedHatchStyle
 	 * @generated
 	 */
-	public Adapter createIfcExternallyDefinedHatchStyleAdapter() {
+	public Adapter createIfcExternallyDefinedHatchStyleAdapter()
+	{
 		return null;
 	}
 
@@ -7689,7 +9617,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcExternallyDefinedSurfaceStyle
 	 * @generated
 	 */
-	public Adapter createIfcExternallyDefinedSurfaceStyleAdapter() {
+	public Adapter createIfcExternallyDefinedSurfaceStyleAdapter()
+	{
 		return null;
 	}
 
@@ -7703,7 +9632,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcExternallyDefinedSymbol
 	 * @generated
 	 */
-	public Adapter createIfcExternallyDefinedSymbolAdapter() {
+	public Adapter createIfcExternallyDefinedSymbolAdapter()
+	{
 		return null;
 	}
 
@@ -7717,7 +9647,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcExternallyDefinedTextFont
 	 * @generated
 	 */
-	public Adapter createIfcExternallyDefinedTextFontAdapter() {
+	public Adapter createIfcExternallyDefinedTextFontAdapter()
+	{
 		return null;
 	}
 
@@ -7731,7 +9662,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcExtrudedAreaSolid
 	 * @generated
 	 */
-	public Adapter createIfcExtrudedAreaSolidAdapter() {
+	public Adapter createIfcExtrudedAreaSolidAdapter()
+	{
 		return null;
 	}
 
@@ -7745,7 +9677,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcFace
 	 * @generated
 	 */
-	public Adapter createIfcFaceAdapter() {
+	public Adapter createIfcFaceAdapter()
+	{
 		return null;
 	}
 
@@ -7759,7 +9692,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcFaceBasedSurfaceModel
 	 * @generated
 	 */
-	public Adapter createIfcFaceBasedSurfaceModelAdapter() {
+	public Adapter createIfcFaceBasedSurfaceModelAdapter()
+	{
 		return null;
 	}
 
@@ -7773,7 +9707,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcFaceBound
 	 * @generated
 	 */
-	public Adapter createIfcFaceBoundAdapter() {
+	public Adapter createIfcFaceBoundAdapter()
+	{
 		return null;
 	}
 
@@ -7787,7 +9722,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcFaceOuterBound
 	 * @generated
 	 */
-	public Adapter createIfcFaceOuterBoundAdapter() {
+	public Adapter createIfcFaceOuterBoundAdapter()
+	{
 		return null;
 	}
 
@@ -7801,7 +9737,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcFaceSurface
 	 * @generated
 	 */
-	public Adapter createIfcFaceSurfaceAdapter() {
+	public Adapter createIfcFaceSurfaceAdapter()
+	{
 		return null;
 	}
 
@@ -7815,7 +9752,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcFacetedBrep
 	 * @generated
 	 */
-	public Adapter createIfcFacetedBrepAdapter() {
+	public Adapter createIfcFacetedBrepAdapter()
+	{
 		return null;
 	}
 
@@ -7829,7 +9767,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcFacetedBrepWithVoids
 	 * @generated
 	 */
-	public Adapter createIfcFacetedBrepWithVoidsAdapter() {
+	public Adapter createIfcFacetedBrepWithVoidsAdapter()
+	{
 		return null;
 	}
 
@@ -7843,7 +9782,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcFailureConnectionCondition
 	 * @generated
 	 */
-	public Adapter createIfcFailureConnectionConditionAdapter() {
+	public Adapter createIfcFailureConnectionConditionAdapter()
+	{
 		return null;
 	}
 
@@ -7857,7 +9797,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcFanType
 	 * @generated
 	 */
-	public Adapter createIfcFanTypeAdapter() {
+	public Adapter createIfcFanTypeAdapter()
+	{
 		return null;
 	}
 
@@ -7871,7 +9812,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcFastener
 	 * @generated
 	 */
-	public Adapter createIfcFastenerAdapter() {
+	public Adapter createIfcFastenerAdapter()
+	{
 		return null;
 	}
 
@@ -7885,7 +9827,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcFastenerType
 	 * @generated
 	 */
-	public Adapter createIfcFastenerTypeAdapter() {
+	public Adapter createIfcFastenerTypeAdapter()
+	{
 		return null;
 	}
 
@@ -7899,7 +9842,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcFeatureElement
 	 * @generated
 	 */
-	public Adapter createIfcFeatureElementAdapter() {
+	public Adapter createIfcFeatureElementAdapter()
+	{
 		return null;
 	}
 
@@ -7913,7 +9857,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcFeatureElementAddition
 	 * @generated
 	 */
-	public Adapter createIfcFeatureElementAdditionAdapter() {
+	public Adapter createIfcFeatureElementAdditionAdapter()
+	{
 		return null;
 	}
 
@@ -7927,7 +9872,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcFeatureElementSubtraction
 	 * @generated
 	 */
-	public Adapter createIfcFeatureElementSubtractionAdapter() {
+	public Adapter createIfcFeatureElementSubtractionAdapter()
+	{
 		return null;
 	}
 
@@ -7941,7 +9887,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcFillAreaStyle
 	 * @generated
 	 */
-	public Adapter createIfcFillAreaStyleAdapter() {
+	public Adapter createIfcFillAreaStyleAdapter()
+	{
 		return null;
 	}
 
@@ -7955,7 +9902,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcFillAreaStyleHatching
 	 * @generated
 	 */
-	public Adapter createIfcFillAreaStyleHatchingAdapter() {
+	public Adapter createIfcFillAreaStyleHatchingAdapter()
+	{
 		return null;
 	}
 
@@ -7969,7 +9917,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcFillAreaStyleTileSymbolWithStyle
 	 * @generated
 	 */
-	public Adapter createIfcFillAreaStyleTileSymbolWithStyleAdapter() {
+	public Adapter createIfcFillAreaStyleTileSymbolWithStyleAdapter()
+	{
 		return null;
 	}
 
@@ -7983,7 +9932,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcFillAreaStyleTiles
 	 * @generated
 	 */
-	public Adapter createIfcFillAreaStyleTilesAdapter() {
+	public Adapter createIfcFillAreaStyleTilesAdapter()
+	{
 		return null;
 	}
 
@@ -7997,7 +9947,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcFilterType
 	 * @generated
 	 */
-	public Adapter createIfcFilterTypeAdapter() {
+	public Adapter createIfcFilterTypeAdapter()
+	{
 		return null;
 	}
 
@@ -8011,7 +9962,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcFireSuppressionTerminalType
 	 * @generated
 	 */
-	public Adapter createIfcFireSuppressionTerminalTypeAdapter() {
+	public Adapter createIfcFireSuppressionTerminalTypeAdapter()
+	{
 		return null;
 	}
 
@@ -8025,7 +9977,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcFlowController
 	 * @generated
 	 */
-	public Adapter createIfcFlowControllerAdapter() {
+	public Adapter createIfcFlowControllerAdapter()
+	{
 		return null;
 	}
 
@@ -8039,7 +9992,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcFlowControllerType
 	 * @generated
 	 */
-	public Adapter createIfcFlowControllerTypeAdapter() {
+	public Adapter createIfcFlowControllerTypeAdapter()
+	{
 		return null;
 	}
 
@@ -8053,7 +10007,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcFlowFitting
 	 * @generated
 	 */
-	public Adapter createIfcFlowFittingAdapter() {
+	public Adapter createIfcFlowFittingAdapter()
+	{
 		return null;
 	}
 
@@ -8067,7 +10022,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcFlowFittingType
 	 * @generated
 	 */
-	public Adapter createIfcFlowFittingTypeAdapter() {
+	public Adapter createIfcFlowFittingTypeAdapter()
+	{
 		return null;
 	}
 
@@ -8081,7 +10037,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcFlowInstrumentType
 	 * @generated
 	 */
-	public Adapter createIfcFlowInstrumentTypeAdapter() {
+	public Adapter createIfcFlowInstrumentTypeAdapter()
+	{
 		return null;
 	}
 
@@ -8095,7 +10052,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcFlowMeterType
 	 * @generated
 	 */
-	public Adapter createIfcFlowMeterTypeAdapter() {
+	public Adapter createIfcFlowMeterTypeAdapter()
+	{
 		return null;
 	}
 
@@ -8109,7 +10067,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcFlowMovingDevice
 	 * @generated
 	 */
-	public Adapter createIfcFlowMovingDeviceAdapter() {
+	public Adapter createIfcFlowMovingDeviceAdapter()
+	{
 		return null;
 	}
 
@@ -8123,7 +10082,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcFlowMovingDeviceType
 	 * @generated
 	 */
-	public Adapter createIfcFlowMovingDeviceTypeAdapter() {
+	public Adapter createIfcFlowMovingDeviceTypeAdapter()
+	{
 		return null;
 	}
 
@@ -8137,7 +10097,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcFlowSegment
 	 * @generated
 	 */
-	public Adapter createIfcFlowSegmentAdapter() {
+	public Adapter createIfcFlowSegmentAdapter()
+	{
 		return null;
 	}
 
@@ -8151,7 +10112,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcFlowSegmentType
 	 * @generated
 	 */
-	public Adapter createIfcFlowSegmentTypeAdapter() {
+	public Adapter createIfcFlowSegmentTypeAdapter()
+	{
 		return null;
 	}
 
@@ -8165,7 +10127,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcFlowStorageDevice
 	 * @generated
 	 */
-	public Adapter createIfcFlowStorageDeviceAdapter() {
+	public Adapter createIfcFlowStorageDeviceAdapter()
+	{
 		return null;
 	}
 
@@ -8179,7 +10142,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcFlowStorageDeviceType
 	 * @generated
 	 */
-	public Adapter createIfcFlowStorageDeviceTypeAdapter() {
+	public Adapter createIfcFlowStorageDeviceTypeAdapter()
+	{
 		return null;
 	}
 
@@ -8193,7 +10157,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcFlowTerminal
 	 * @generated
 	 */
-	public Adapter createIfcFlowTerminalAdapter() {
+	public Adapter createIfcFlowTerminalAdapter()
+	{
 		return null;
 	}
 
@@ -8207,7 +10172,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcFlowTerminalType
 	 * @generated
 	 */
-	public Adapter createIfcFlowTerminalTypeAdapter() {
+	public Adapter createIfcFlowTerminalTypeAdapter()
+	{
 		return null;
 	}
 
@@ -8221,7 +10187,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcFlowTreatmentDevice
 	 * @generated
 	 */
-	public Adapter createIfcFlowTreatmentDeviceAdapter() {
+	public Adapter createIfcFlowTreatmentDeviceAdapter()
+	{
 		return null;
 	}
 
@@ -8235,7 +10202,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcFlowTreatmentDeviceType
 	 * @generated
 	 */
-	public Adapter createIfcFlowTreatmentDeviceTypeAdapter() {
+	public Adapter createIfcFlowTreatmentDeviceTypeAdapter()
+	{
 		return null;
 	}
 
@@ -8249,7 +10217,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcFluidFlowProperties
 	 * @generated
 	 */
-	public Adapter createIfcFluidFlowPropertiesAdapter() {
+	public Adapter createIfcFluidFlowPropertiesAdapter()
+	{
 		return null;
 	}
 
@@ -8263,7 +10232,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcFooting
 	 * @generated
 	 */
-	public Adapter createIfcFootingAdapter() {
+	public Adapter createIfcFootingAdapter()
+	{
 		return null;
 	}
 
@@ -8277,7 +10247,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcFuelProperties
 	 * @generated
 	 */
-	public Adapter createIfcFuelPropertiesAdapter() {
+	public Adapter createIfcFuelPropertiesAdapter()
+	{
 		return null;
 	}
 
@@ -8291,7 +10262,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcFurnishingElement
 	 * @generated
 	 */
-	public Adapter createIfcFurnishingElementAdapter() {
+	public Adapter createIfcFurnishingElementAdapter()
+	{
 		return null;
 	}
 
@@ -8305,7 +10277,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcFurnishingElementType
 	 * @generated
 	 */
-	public Adapter createIfcFurnishingElementTypeAdapter() {
+	public Adapter createIfcFurnishingElementTypeAdapter()
+	{
 		return null;
 	}
 
@@ -8319,7 +10292,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcFurnitureStandard
 	 * @generated
 	 */
-	public Adapter createIfcFurnitureStandardAdapter() {
+	public Adapter createIfcFurnitureStandardAdapter()
+	{
 		return null;
 	}
 
@@ -8333,7 +10307,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcFurnitureType
 	 * @generated
 	 */
-	public Adapter createIfcFurnitureTypeAdapter() {
+	public Adapter createIfcFurnitureTypeAdapter()
+	{
 		return null;
 	}
 
@@ -8347,7 +10322,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcGasTerminalType
 	 * @generated
 	 */
-	public Adapter createIfcGasTerminalTypeAdapter() {
+	public Adapter createIfcGasTerminalTypeAdapter()
+	{
 		return null;
 	}
 
@@ -8361,7 +10337,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcGeneralMaterialProperties
 	 * @generated
 	 */
-	public Adapter createIfcGeneralMaterialPropertiesAdapter() {
+	public Adapter createIfcGeneralMaterialPropertiesAdapter()
+	{
 		return null;
 	}
 
@@ -8375,7 +10352,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcGeneralProfileProperties
 	 * @generated
 	 */
-	public Adapter createIfcGeneralProfilePropertiesAdapter() {
+	public Adapter createIfcGeneralProfilePropertiesAdapter()
+	{
 		return null;
 	}
 
@@ -8389,7 +10367,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcGeometricCurveSet
 	 * @generated
 	 */
-	public Adapter createIfcGeometricCurveSetAdapter() {
+	public Adapter createIfcGeometricCurveSetAdapter()
+	{
 		return null;
 	}
 
@@ -8403,7 +10382,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcGeometricRepresentationContext
 	 * @generated
 	 */
-	public Adapter createIfcGeometricRepresentationContextAdapter() {
+	public Adapter createIfcGeometricRepresentationContextAdapter()
+	{
 		return null;
 	}
 
@@ -8417,7 +10397,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcGeometricRepresentationItem
 	 * @generated
 	 */
-	public Adapter createIfcGeometricRepresentationItemAdapter() {
+	public Adapter createIfcGeometricRepresentationItemAdapter()
+	{
 		return null;
 	}
 
@@ -8431,7 +10412,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcGeometricRepresentationSubContext
 	 * @generated
 	 */
-	public Adapter createIfcGeometricRepresentationSubContextAdapter() {
+	public Adapter createIfcGeometricRepresentationSubContextAdapter()
+	{
 		return null;
 	}
 
@@ -8445,7 +10427,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcGeometricSet
 	 * @generated
 	 */
-	public Adapter createIfcGeometricSetAdapter() {
+	public Adapter createIfcGeometricSetAdapter()
+	{
 		return null;
 	}
 
@@ -8459,7 +10442,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcGrid
 	 * @generated
 	 */
-	public Adapter createIfcGridAdapter() {
+	public Adapter createIfcGridAdapter()
+	{
 		return null;
 	}
 
@@ -8473,7 +10457,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcGridAxis
 	 * @generated
 	 */
-	public Adapter createIfcGridAxisAdapter() {
+	public Adapter createIfcGridAxisAdapter()
+	{
 		return null;
 	}
 
@@ -8487,7 +10472,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcGridPlacement
 	 * @generated
 	 */
-	public Adapter createIfcGridPlacementAdapter() {
+	public Adapter createIfcGridPlacementAdapter()
+	{
 		return null;
 	}
 
@@ -8501,7 +10487,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcGroup
 	 * @generated
 	 */
-	public Adapter createIfcGroupAdapter() {
+	public Adapter createIfcGroupAdapter()
+	{
 		return null;
 	}
 
@@ -8515,7 +10502,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcHalfSpaceSolid
 	 * @generated
 	 */
-	public Adapter createIfcHalfSpaceSolidAdapter() {
+	public Adapter createIfcHalfSpaceSolidAdapter()
+	{
 		return null;
 	}
 
@@ -8529,7 +10517,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcHeatExchangerType
 	 * @generated
 	 */
-	public Adapter createIfcHeatExchangerTypeAdapter() {
+	public Adapter createIfcHeatExchangerTypeAdapter()
+	{
 		return null;
 	}
 
@@ -8543,7 +10532,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcHumidifierType
 	 * @generated
 	 */
-	public Adapter createIfcHumidifierTypeAdapter() {
+	public Adapter createIfcHumidifierTypeAdapter()
+	{
 		return null;
 	}
 
@@ -8557,7 +10547,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcHygroscopicMaterialProperties
 	 * @generated
 	 */
-	public Adapter createIfcHygroscopicMaterialPropertiesAdapter() {
+	public Adapter createIfcHygroscopicMaterialPropertiesAdapter()
+	{
 		return null;
 	}
 
@@ -8571,7 +10562,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcIShapeProfileDef
 	 * @generated
 	 */
-	public Adapter createIfcIShapeProfileDefAdapter() {
+	public Adapter createIfcIShapeProfileDefAdapter()
+	{
 		return null;
 	}
 
@@ -8585,7 +10577,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcImageTexture
 	 * @generated
 	 */
-	public Adapter createIfcImageTextureAdapter() {
+	public Adapter createIfcImageTextureAdapter()
+	{
 		return null;
 	}
 
@@ -8599,7 +10592,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcInventory
 	 * @generated
 	 */
-	public Adapter createIfcInventoryAdapter() {
+	public Adapter createIfcInventoryAdapter()
+	{
 		return null;
 	}
 
@@ -8613,7 +10607,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcIrregularTimeSeries
 	 * @generated
 	 */
-	public Adapter createIfcIrregularTimeSeriesAdapter() {
+	public Adapter createIfcIrregularTimeSeriesAdapter()
+	{
 		return null;
 	}
 
@@ -8627,7 +10622,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcIrregularTimeSeriesValue
 	 * @generated
 	 */
-	public Adapter createIfcIrregularTimeSeriesValueAdapter() {
+	public Adapter createIfcIrregularTimeSeriesValueAdapter()
+	{
 		return null;
 	}
 
@@ -8641,7 +10637,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcJunctionBoxType
 	 * @generated
 	 */
-	public Adapter createIfcJunctionBoxTypeAdapter() {
+	public Adapter createIfcJunctionBoxTypeAdapter()
+	{
 		return null;
 	}
 
@@ -8655,7 +10652,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcLShapeProfileDef
 	 * @generated
 	 */
-	public Adapter createIfcLShapeProfileDefAdapter() {
+	public Adapter createIfcLShapeProfileDefAdapter()
+	{
 		return null;
 	}
 
@@ -8669,7 +10667,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcLaborResource
 	 * @generated
 	 */
-	public Adapter createIfcLaborResourceAdapter() {
+	public Adapter createIfcLaborResourceAdapter()
+	{
 		return null;
 	}
 
@@ -8683,7 +10682,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcLampType
 	 * @generated
 	 */
-	public Adapter createIfcLampTypeAdapter() {
+	public Adapter createIfcLampTypeAdapter()
+	{
 		return null;
 	}
 
@@ -8697,7 +10697,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcLibraryInformation
 	 * @generated
 	 */
-	public Adapter createIfcLibraryInformationAdapter() {
+	public Adapter createIfcLibraryInformationAdapter()
+	{
 		return null;
 	}
 
@@ -8711,7 +10712,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcLibraryReference
 	 * @generated
 	 */
-	public Adapter createIfcLibraryReferenceAdapter() {
+	public Adapter createIfcLibraryReferenceAdapter()
+	{
 		return null;
 	}
 
@@ -8725,7 +10727,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcLightDistributionData
 	 * @generated
 	 */
-	public Adapter createIfcLightDistributionDataAdapter() {
+	public Adapter createIfcLightDistributionDataAdapter()
+	{
 		return null;
 	}
 
@@ -8739,7 +10742,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcLightFixtureType
 	 * @generated
 	 */
-	public Adapter createIfcLightFixtureTypeAdapter() {
+	public Adapter createIfcLightFixtureTypeAdapter()
+	{
 		return null;
 	}
 
@@ -8753,7 +10757,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcLightIntensityDistribution
 	 * @generated
 	 */
-	public Adapter createIfcLightIntensityDistributionAdapter() {
+	public Adapter createIfcLightIntensityDistributionAdapter()
+	{
 		return null;
 	}
 
@@ -8767,7 +10772,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcLightSource
 	 * @generated
 	 */
-	public Adapter createIfcLightSourceAdapter() {
+	public Adapter createIfcLightSourceAdapter()
+	{
 		return null;
 	}
 
@@ -8781,7 +10787,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcLightSourceAmbient
 	 * @generated
 	 */
-	public Adapter createIfcLightSourceAmbientAdapter() {
+	public Adapter createIfcLightSourceAmbientAdapter()
+	{
 		return null;
 	}
 
@@ -8795,7 +10802,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcLightSourceDirectional
 	 * @generated
 	 */
-	public Adapter createIfcLightSourceDirectionalAdapter() {
+	public Adapter createIfcLightSourceDirectionalAdapter()
+	{
 		return null;
 	}
 
@@ -8809,7 +10817,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcLightSourceGoniometric
 	 * @generated
 	 */
-	public Adapter createIfcLightSourceGoniometricAdapter() {
+	public Adapter createIfcLightSourceGoniometricAdapter()
+	{
 		return null;
 	}
 
@@ -8823,7 +10832,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcLightSourcePositional
 	 * @generated
 	 */
-	public Adapter createIfcLightSourcePositionalAdapter() {
+	public Adapter createIfcLightSourcePositionalAdapter()
+	{
 		return null;
 	}
 
@@ -8837,7 +10847,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcLightSourceSpot
 	 * @generated
 	 */
-	public Adapter createIfcLightSourceSpotAdapter() {
+	public Adapter createIfcLightSourceSpotAdapter()
+	{
 		return null;
 	}
 
@@ -8851,7 +10862,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcLine
 	 * @generated
 	 */
-	public Adapter createIfcLineAdapter() {
+	public Adapter createIfcLineAdapter()
+	{
 		return null;
 	}
 
@@ -8865,7 +10877,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcLinearDimension
 	 * @generated
 	 */
-	public Adapter createIfcLinearDimensionAdapter() {
+	public Adapter createIfcLinearDimensionAdapter()
+	{
 		return null;
 	}
 
@@ -8879,7 +10892,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcLocalPlacement
 	 * @generated
 	 */
-	public Adapter createIfcLocalPlacementAdapter() {
+	public Adapter createIfcLocalPlacementAdapter()
+	{
 		return null;
 	}
 
@@ -8893,7 +10907,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcLocalTime
 	 * @generated
 	 */
-	public Adapter createIfcLocalTimeAdapter() {
+	public Adapter createIfcLocalTimeAdapter()
+	{
 		return null;
 	}
 
@@ -8907,7 +10922,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcLoop
 	 * @generated
 	 */
-	public Adapter createIfcLoopAdapter() {
+	public Adapter createIfcLoopAdapter()
+	{
 		return null;
 	}
 
@@ -8921,7 +10937,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcManifoldSolidBrep
 	 * @generated
 	 */
-	public Adapter createIfcManifoldSolidBrepAdapter() {
+	public Adapter createIfcManifoldSolidBrepAdapter()
+	{
 		return null;
 	}
 
@@ -8935,7 +10952,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcMappedItem
 	 * @generated
 	 */
-	public Adapter createIfcMappedItemAdapter() {
+	public Adapter createIfcMappedItemAdapter()
+	{
 		return null;
 	}
 
@@ -8949,7 +10967,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcMaterial
 	 * @generated
 	 */
-	public Adapter createIfcMaterialAdapter() {
+	public Adapter createIfcMaterialAdapter()
+	{
 		return null;
 	}
 
@@ -8963,7 +10982,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcMaterialClassificationRelationship
 	 * @generated
 	 */
-	public Adapter createIfcMaterialClassificationRelationshipAdapter() {
+	public Adapter createIfcMaterialClassificationRelationshipAdapter()
+	{
 		return null;
 	}
 
@@ -8977,7 +10997,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcMaterialDefinitionRepresentation
 	 * @generated
 	 */
-	public Adapter createIfcMaterialDefinitionRepresentationAdapter() {
+	public Adapter createIfcMaterialDefinitionRepresentationAdapter()
+	{
 		return null;
 	}
 
@@ -8991,7 +11012,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcMaterialLayer
 	 * @generated
 	 */
-	public Adapter createIfcMaterialLayerAdapter() {
+	public Adapter createIfcMaterialLayerAdapter()
+	{
 		return null;
 	}
 
@@ -9005,7 +11027,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcMaterialLayerSet
 	 * @generated
 	 */
-	public Adapter createIfcMaterialLayerSetAdapter() {
+	public Adapter createIfcMaterialLayerSetAdapter()
+	{
 		return null;
 	}
 
@@ -9019,7 +11042,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcMaterialLayerSetUsage
 	 * @generated
 	 */
-	public Adapter createIfcMaterialLayerSetUsageAdapter() {
+	public Adapter createIfcMaterialLayerSetUsageAdapter()
+	{
 		return null;
 	}
 
@@ -9033,7 +11057,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcMaterialList
 	 * @generated
 	 */
-	public Adapter createIfcMaterialListAdapter() {
+	public Adapter createIfcMaterialListAdapter()
+	{
 		return null;
 	}
 
@@ -9047,7 +11072,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcMaterialProperties
 	 * @generated
 	 */
-	public Adapter createIfcMaterialPropertiesAdapter() {
+	public Adapter createIfcMaterialPropertiesAdapter()
+	{
 		return null;
 	}
 
@@ -9061,7 +11087,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcMeasureWithUnit
 	 * @generated
 	 */
-	public Adapter createIfcMeasureWithUnitAdapter() {
+	public Adapter createIfcMeasureWithUnitAdapter()
+	{
 		return null;
 	}
 
@@ -9075,7 +11102,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcMechanicalConcreteMaterialProperties
 	 * @generated
 	 */
-	public Adapter createIfcMechanicalConcreteMaterialPropertiesAdapter() {
+	public Adapter createIfcMechanicalConcreteMaterialPropertiesAdapter()
+	{
 		return null;
 	}
 
@@ -9089,7 +11117,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcMechanicalFastener
 	 * @generated
 	 */
-	public Adapter createIfcMechanicalFastenerAdapter() {
+	public Adapter createIfcMechanicalFastenerAdapter()
+	{
 		return null;
 	}
 
@@ -9103,7 +11132,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcMechanicalFastenerType
 	 * @generated
 	 */
-	public Adapter createIfcMechanicalFastenerTypeAdapter() {
+	public Adapter createIfcMechanicalFastenerTypeAdapter()
+	{
 		return null;
 	}
 
@@ -9117,7 +11147,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcMechanicalMaterialProperties
 	 * @generated
 	 */
-	public Adapter createIfcMechanicalMaterialPropertiesAdapter() {
+	public Adapter createIfcMechanicalMaterialPropertiesAdapter()
+	{
 		return null;
 	}
 
@@ -9131,7 +11162,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcMechanicalSteelMaterialProperties
 	 * @generated
 	 */
-	public Adapter createIfcMechanicalSteelMaterialPropertiesAdapter() {
+	public Adapter createIfcMechanicalSteelMaterialPropertiesAdapter()
+	{
 		return null;
 	}
 
@@ -9145,7 +11177,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcMember
 	 * @generated
 	 */
-	public Adapter createIfcMemberAdapter() {
+	public Adapter createIfcMemberAdapter()
+	{
 		return null;
 	}
 
@@ -9159,7 +11192,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcMemberType
 	 * @generated
 	 */
-	public Adapter createIfcMemberTypeAdapter() {
+	public Adapter createIfcMemberTypeAdapter()
+	{
 		return null;
 	}
 
@@ -9173,7 +11207,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcMetric
 	 * @generated
 	 */
-	public Adapter createIfcMetricAdapter() {
+	public Adapter createIfcMetricAdapter()
+	{
 		return null;
 	}
 
@@ -9187,7 +11222,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcMonetaryUnit
 	 * @generated
 	 */
-	public Adapter createIfcMonetaryUnitAdapter() {
+	public Adapter createIfcMonetaryUnitAdapter()
+	{
 		return null;
 	}
 
@@ -9201,7 +11237,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcMotorConnectionType
 	 * @generated
 	 */
-	public Adapter createIfcMotorConnectionTypeAdapter() {
+	public Adapter createIfcMotorConnectionTypeAdapter()
+	{
 		return null;
 	}
 
@@ -9215,7 +11252,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcMove
 	 * @generated
 	 */
-	public Adapter createIfcMoveAdapter() {
+	public Adapter createIfcMoveAdapter()
+	{
 		return null;
 	}
 
@@ -9229,7 +11267,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcNamedUnit
 	 * @generated
 	 */
-	public Adapter createIfcNamedUnitAdapter() {
+	public Adapter createIfcNamedUnitAdapter()
+	{
 		return null;
 	}
 
@@ -9243,7 +11282,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcObject
 	 * @generated
 	 */
-	public Adapter createIfcObjectAdapter() {
+	public Adapter createIfcObjectAdapter()
+	{
 		return null;
 	}
 
@@ -9257,7 +11297,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcObjectDefinition
 	 * @generated
 	 */
-	public Adapter createIfcObjectDefinitionAdapter() {
+	public Adapter createIfcObjectDefinitionAdapter()
+	{
 		return null;
 	}
 
@@ -9271,7 +11312,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcObjectPlacement
 	 * @generated
 	 */
-	public Adapter createIfcObjectPlacementAdapter() {
+	public Adapter createIfcObjectPlacementAdapter()
+	{
 		return null;
 	}
 
@@ -9285,7 +11327,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcObjective
 	 * @generated
 	 */
-	public Adapter createIfcObjectiveAdapter() {
+	public Adapter createIfcObjectiveAdapter()
+	{
 		return null;
 	}
 
@@ -9299,7 +11342,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcOccupant
 	 * @generated
 	 */
-	public Adapter createIfcOccupantAdapter() {
+	public Adapter createIfcOccupantAdapter()
+	{
 		return null;
 	}
 
@@ -9313,7 +11357,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcOffsetCurve2D
 	 * @generated
 	 */
-	public Adapter createIfcOffsetCurve2DAdapter() {
+	public Adapter createIfcOffsetCurve2DAdapter()
+	{
 		return null;
 	}
 
@@ -9327,7 +11372,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcOffsetCurve3D
 	 * @generated
 	 */
-	public Adapter createIfcOffsetCurve3DAdapter() {
+	public Adapter createIfcOffsetCurve3DAdapter()
+	{
 		return null;
 	}
 
@@ -9341,7 +11387,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcOneDirectionRepeatFactor
 	 * @generated
 	 */
-	public Adapter createIfcOneDirectionRepeatFactorAdapter() {
+	public Adapter createIfcOneDirectionRepeatFactorAdapter()
+	{
 		return null;
 	}
 
@@ -9355,7 +11402,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcOpenShell
 	 * @generated
 	 */
-	public Adapter createIfcOpenShellAdapter() {
+	public Adapter createIfcOpenShellAdapter()
+	{
 		return null;
 	}
 
@@ -9369,7 +11417,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcOpeningElement
 	 * @generated
 	 */
-	public Adapter createIfcOpeningElementAdapter() {
+	public Adapter createIfcOpeningElementAdapter()
+	{
 		return null;
 	}
 
@@ -9383,7 +11432,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcOpticalMaterialProperties
 	 * @generated
 	 */
-	public Adapter createIfcOpticalMaterialPropertiesAdapter() {
+	public Adapter createIfcOpticalMaterialPropertiesAdapter()
+	{
 		return null;
 	}
 
@@ -9397,7 +11447,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcOrderAction
 	 * @generated
 	 */
-	public Adapter createIfcOrderActionAdapter() {
+	public Adapter createIfcOrderActionAdapter()
+	{
 		return null;
 	}
 
@@ -9411,7 +11462,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcOrganization
 	 * @generated
 	 */
-	public Adapter createIfcOrganizationAdapter() {
+	public Adapter createIfcOrganizationAdapter()
+	{
 		return null;
 	}
 
@@ -9425,7 +11477,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcOrganizationRelationship
 	 * @generated
 	 */
-	public Adapter createIfcOrganizationRelationshipAdapter() {
+	public Adapter createIfcOrganizationRelationshipAdapter()
+	{
 		return null;
 	}
 
@@ -9439,7 +11492,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcOrientedEdge
 	 * @generated
 	 */
-	public Adapter createIfcOrientedEdgeAdapter() {
+	public Adapter createIfcOrientedEdgeAdapter()
+	{
 		return null;
 	}
 
@@ -9453,7 +11507,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcOutletType
 	 * @generated
 	 */
-	public Adapter createIfcOutletTypeAdapter() {
+	public Adapter createIfcOutletTypeAdapter()
+	{
 		return null;
 	}
 
@@ -9467,7 +11522,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcOwnerHistory
 	 * @generated
 	 */
-	public Adapter createIfcOwnerHistoryAdapter() {
+	public Adapter createIfcOwnerHistoryAdapter()
+	{
 		return null;
 	}
 
@@ -9481,7 +11537,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcParameterizedProfileDef
 	 * @generated
 	 */
-	public Adapter createIfcParameterizedProfileDefAdapter() {
+	public Adapter createIfcParameterizedProfileDefAdapter()
+	{
 		return null;
 	}
 
@@ -9495,7 +11552,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcPath
 	 * @generated
 	 */
-	public Adapter createIfcPathAdapter() {
+	public Adapter createIfcPathAdapter()
+	{
 		return null;
 	}
 
@@ -9509,7 +11567,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcPerformanceHistory
 	 * @generated
 	 */
-	public Adapter createIfcPerformanceHistoryAdapter() {
+	public Adapter createIfcPerformanceHistoryAdapter()
+	{
 		return null;
 	}
 
@@ -9523,7 +11582,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcPermeableCoveringProperties
 	 * @generated
 	 */
-	public Adapter createIfcPermeableCoveringPropertiesAdapter() {
+	public Adapter createIfcPermeableCoveringPropertiesAdapter()
+	{
 		return null;
 	}
 
@@ -9537,7 +11597,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcPermit
 	 * @generated
 	 */
-	public Adapter createIfcPermitAdapter() {
+	public Adapter createIfcPermitAdapter()
+	{
 		return null;
 	}
 
@@ -9551,7 +11612,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcPerson
 	 * @generated
 	 */
-	public Adapter createIfcPersonAdapter() {
+	public Adapter createIfcPersonAdapter()
+	{
 		return null;
 	}
 
@@ -9565,7 +11627,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcPersonAndOrganization
 	 * @generated
 	 */
-	public Adapter createIfcPersonAndOrganizationAdapter() {
+	public Adapter createIfcPersonAndOrganizationAdapter()
+	{
 		return null;
 	}
 
@@ -9579,7 +11642,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcPhysicalComplexQuantity
 	 * @generated
 	 */
-	public Adapter createIfcPhysicalComplexQuantityAdapter() {
+	public Adapter createIfcPhysicalComplexQuantityAdapter()
+	{
 		return null;
 	}
 
@@ -9593,7 +11657,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcPhysicalQuantity
 	 * @generated
 	 */
-	public Adapter createIfcPhysicalQuantityAdapter() {
+	public Adapter createIfcPhysicalQuantityAdapter()
+	{
 		return null;
 	}
 
@@ -9607,7 +11672,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcPhysicalSimpleQuantity
 	 * @generated
 	 */
-	public Adapter createIfcPhysicalSimpleQuantityAdapter() {
+	public Adapter createIfcPhysicalSimpleQuantityAdapter()
+	{
 		return null;
 	}
 
@@ -9621,7 +11687,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcPile
 	 * @generated
 	 */
-	public Adapter createIfcPileAdapter() {
+	public Adapter createIfcPileAdapter()
+	{
 		return null;
 	}
 
@@ -9635,7 +11702,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcPipeFittingType
 	 * @generated
 	 */
-	public Adapter createIfcPipeFittingTypeAdapter() {
+	public Adapter createIfcPipeFittingTypeAdapter()
+	{
 		return null;
 	}
 
@@ -9649,7 +11717,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcPipeSegmentType
 	 * @generated
 	 */
-	public Adapter createIfcPipeSegmentTypeAdapter() {
+	public Adapter createIfcPipeSegmentTypeAdapter()
+	{
 		return null;
 	}
 
@@ -9663,7 +11732,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcPixelTexture
 	 * @generated
 	 */
-	public Adapter createIfcPixelTextureAdapter() {
+	public Adapter createIfcPixelTextureAdapter()
+	{
 		return null;
 	}
 
@@ -9677,7 +11747,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcPlacement
 	 * @generated
 	 */
-	public Adapter createIfcPlacementAdapter() {
+	public Adapter createIfcPlacementAdapter()
+	{
 		return null;
 	}
 
@@ -9691,7 +11762,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcPlanarBox
 	 * @generated
 	 */
-	public Adapter createIfcPlanarBoxAdapter() {
+	public Adapter createIfcPlanarBoxAdapter()
+	{
 		return null;
 	}
 
@@ -9705,7 +11777,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcPlanarExtent
 	 * @generated
 	 */
-	public Adapter createIfcPlanarExtentAdapter() {
+	public Adapter createIfcPlanarExtentAdapter()
+	{
 		return null;
 	}
 
@@ -9719,7 +11792,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcPlane
 	 * @generated
 	 */
-	public Adapter createIfcPlaneAdapter() {
+	public Adapter createIfcPlaneAdapter()
+	{
 		return null;
 	}
 
@@ -9733,7 +11807,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcPlate
 	 * @generated
 	 */
-	public Adapter createIfcPlateAdapter() {
+	public Adapter createIfcPlateAdapter()
+	{
 		return null;
 	}
 
@@ -9747,7 +11822,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcPlateType
 	 * @generated
 	 */
-	public Adapter createIfcPlateTypeAdapter() {
+	public Adapter createIfcPlateTypeAdapter()
+	{
 		return null;
 	}
 
@@ -9761,7 +11837,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcPoint
 	 * @generated
 	 */
-	public Adapter createIfcPointAdapter() {
+	public Adapter createIfcPointAdapter()
+	{
 		return null;
 	}
 
@@ -9775,7 +11852,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcPointOnCurve
 	 * @generated
 	 */
-	public Adapter createIfcPointOnCurveAdapter() {
+	public Adapter createIfcPointOnCurveAdapter()
+	{
 		return null;
 	}
 
@@ -9789,7 +11867,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcPointOnSurface
 	 * @generated
 	 */
-	public Adapter createIfcPointOnSurfaceAdapter() {
+	public Adapter createIfcPointOnSurfaceAdapter()
+	{
 		return null;
 	}
 
@@ -9803,7 +11882,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcPolyLoop
 	 * @generated
 	 */
-	public Adapter createIfcPolyLoopAdapter() {
+	public Adapter createIfcPolyLoopAdapter()
+	{
 		return null;
 	}
 
@@ -9817,7 +11897,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcPolygonalBoundedHalfSpace
 	 * @generated
 	 */
-	public Adapter createIfcPolygonalBoundedHalfSpaceAdapter() {
+	public Adapter createIfcPolygonalBoundedHalfSpaceAdapter()
+	{
 		return null;
 	}
 
@@ -9831,7 +11912,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcPolyline
 	 * @generated
 	 */
-	public Adapter createIfcPolylineAdapter() {
+	public Adapter createIfcPolylineAdapter()
+	{
 		return null;
 	}
 
@@ -9845,7 +11927,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcPort
 	 * @generated
 	 */
-	public Adapter createIfcPortAdapter() {
+	public Adapter createIfcPortAdapter()
+	{
 		return null;
 	}
 
@@ -9859,7 +11942,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcPostalAddress
 	 * @generated
 	 */
-	public Adapter createIfcPostalAddressAdapter() {
+	public Adapter createIfcPostalAddressAdapter()
+	{
 		return null;
 	}
 
@@ -9873,7 +11957,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcPreDefinedColour
 	 * @generated
 	 */
-	public Adapter createIfcPreDefinedColourAdapter() {
+	public Adapter createIfcPreDefinedColourAdapter()
+	{
 		return null;
 	}
 
@@ -9887,7 +11972,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcPreDefinedCurveFont
 	 * @generated
 	 */
-	public Adapter createIfcPreDefinedCurveFontAdapter() {
+	public Adapter createIfcPreDefinedCurveFontAdapter()
+	{
 		return null;
 	}
 
@@ -9901,7 +11987,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcPreDefinedDimensionSymbol
 	 * @generated
 	 */
-	public Adapter createIfcPreDefinedDimensionSymbolAdapter() {
+	public Adapter createIfcPreDefinedDimensionSymbolAdapter()
+	{
 		return null;
 	}
 
@@ -9915,7 +12002,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcPreDefinedItem
 	 * @generated
 	 */
-	public Adapter createIfcPreDefinedItemAdapter() {
+	public Adapter createIfcPreDefinedItemAdapter()
+	{
 		return null;
 	}
 
@@ -9929,7 +12017,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcPreDefinedPointMarkerSymbol
 	 * @generated
 	 */
-	public Adapter createIfcPreDefinedPointMarkerSymbolAdapter() {
+	public Adapter createIfcPreDefinedPointMarkerSymbolAdapter()
+	{
 		return null;
 	}
 
@@ -9943,7 +12032,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcPreDefinedSymbol
 	 * @generated
 	 */
-	public Adapter createIfcPreDefinedSymbolAdapter() {
+	public Adapter createIfcPreDefinedSymbolAdapter()
+	{
 		return null;
 	}
 
@@ -9957,7 +12047,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcPreDefinedTerminatorSymbol
 	 * @generated
 	 */
-	public Adapter createIfcPreDefinedTerminatorSymbolAdapter() {
+	public Adapter createIfcPreDefinedTerminatorSymbolAdapter()
+	{
 		return null;
 	}
 
@@ -9971,7 +12062,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcPreDefinedTextFont
 	 * @generated
 	 */
-	public Adapter createIfcPreDefinedTextFontAdapter() {
+	public Adapter createIfcPreDefinedTextFontAdapter()
+	{
 		return null;
 	}
 
@@ -9985,7 +12077,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcPresentationLayerAssignment
 	 * @generated
 	 */
-	public Adapter createIfcPresentationLayerAssignmentAdapter() {
+	public Adapter createIfcPresentationLayerAssignmentAdapter()
+	{
 		return null;
 	}
 
@@ -9999,7 +12092,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcPresentationLayerWithStyle
 	 * @generated
 	 */
-	public Adapter createIfcPresentationLayerWithStyleAdapter() {
+	public Adapter createIfcPresentationLayerWithStyleAdapter()
+	{
 		return null;
 	}
 
@@ -10013,7 +12107,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcPresentationStyle
 	 * @generated
 	 */
-	public Adapter createIfcPresentationStyleAdapter() {
+	public Adapter createIfcPresentationStyleAdapter()
+	{
 		return null;
 	}
 
@@ -10027,7 +12122,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcPresentationStyleAssignment
 	 * @generated
 	 */
-	public Adapter createIfcPresentationStyleAssignmentAdapter() {
+	public Adapter createIfcPresentationStyleAssignmentAdapter()
+	{
 		return null;
 	}
 
@@ -10041,7 +12137,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcProcedure
 	 * @generated
 	 */
-	public Adapter createIfcProcedureAdapter() {
+	public Adapter createIfcProcedureAdapter()
+	{
 		return null;
 	}
 
@@ -10055,7 +12152,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcProcess
 	 * @generated
 	 */
-	public Adapter createIfcProcessAdapter() {
+	public Adapter createIfcProcessAdapter()
+	{
 		return null;
 	}
 
@@ -10069,7 +12167,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcProduct
 	 * @generated
 	 */
-	public Adapter createIfcProductAdapter() {
+	public Adapter createIfcProductAdapter()
+	{
 		return null;
 	}
 
@@ -10083,7 +12182,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcProductDefinitionShape
 	 * @generated
 	 */
-	public Adapter createIfcProductDefinitionShapeAdapter() {
+	public Adapter createIfcProductDefinitionShapeAdapter()
+	{
 		return null;
 	}
 
@@ -10097,7 +12197,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcProductRepresentation
 	 * @generated
 	 */
-	public Adapter createIfcProductRepresentationAdapter() {
+	public Adapter createIfcProductRepresentationAdapter()
+	{
 		return null;
 	}
 
@@ -10111,7 +12212,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcProductsOfCombustionProperties
 	 * @generated
 	 */
-	public Adapter createIfcProductsOfCombustionPropertiesAdapter() {
+	public Adapter createIfcProductsOfCombustionPropertiesAdapter()
+	{
 		return null;
 	}
 
@@ -10125,7 +12227,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcProfileDef
 	 * @generated
 	 */
-	public Adapter createIfcProfileDefAdapter() {
+	public Adapter createIfcProfileDefAdapter()
+	{
 		return null;
 	}
 
@@ -10139,7 +12242,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcProfileProperties
 	 * @generated
 	 */
-	public Adapter createIfcProfilePropertiesAdapter() {
+	public Adapter createIfcProfilePropertiesAdapter()
+	{
 		return null;
 	}
 
@@ -10153,7 +12257,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcProject
 	 * @generated
 	 */
-	public Adapter createIfcProjectAdapter() {
+	public Adapter createIfcProjectAdapter()
+	{
 		return null;
 	}
 
@@ -10167,7 +12272,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcProjectOrder
 	 * @generated
 	 */
-	public Adapter createIfcProjectOrderAdapter() {
+	public Adapter createIfcProjectOrderAdapter()
+	{
 		return null;
 	}
 
@@ -10181,7 +12287,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcProjectOrderRecord
 	 * @generated
 	 */
-	public Adapter createIfcProjectOrderRecordAdapter() {
+	public Adapter createIfcProjectOrderRecordAdapter()
+	{
 		return null;
 	}
 
@@ -10195,7 +12302,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcProjectionCurve
 	 * @generated
 	 */
-	public Adapter createIfcProjectionCurveAdapter() {
+	public Adapter createIfcProjectionCurveAdapter()
+	{
 		return null;
 	}
 
@@ -10209,7 +12317,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcProjectionElement
 	 * @generated
 	 */
-	public Adapter createIfcProjectionElementAdapter() {
+	public Adapter createIfcProjectionElementAdapter()
+	{
 		return null;
 	}
 
@@ -10223,7 +12332,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcProperty
 	 * @generated
 	 */
-	public Adapter createIfcPropertyAdapter() {
+	public Adapter createIfcPropertyAdapter()
+	{
 		return null;
 	}
 
@@ -10237,7 +12347,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcPropertyBoundedValue
 	 * @generated
 	 */
-	public Adapter createIfcPropertyBoundedValueAdapter() {
+	public Adapter createIfcPropertyBoundedValueAdapter()
+	{
 		return null;
 	}
 
@@ -10251,7 +12362,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcPropertyConstraintRelationship
 	 * @generated
 	 */
-	public Adapter createIfcPropertyConstraintRelationshipAdapter() {
+	public Adapter createIfcPropertyConstraintRelationshipAdapter()
+	{
 		return null;
 	}
 
@@ -10265,7 +12377,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcPropertyDefinition
 	 * @generated
 	 */
-	public Adapter createIfcPropertyDefinitionAdapter() {
+	public Adapter createIfcPropertyDefinitionAdapter()
+	{
 		return null;
 	}
 
@@ -10279,7 +12392,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcPropertyDependencyRelationship
 	 * @generated
 	 */
-	public Adapter createIfcPropertyDependencyRelationshipAdapter() {
+	public Adapter createIfcPropertyDependencyRelationshipAdapter()
+	{
 		return null;
 	}
 
@@ -10293,7 +12407,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcPropertyEnumeratedValue
 	 * @generated
 	 */
-	public Adapter createIfcPropertyEnumeratedValueAdapter() {
+	public Adapter createIfcPropertyEnumeratedValueAdapter()
+	{
 		return null;
 	}
 
@@ -10307,7 +12422,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcPropertyEnumeration
 	 * @generated
 	 */
-	public Adapter createIfcPropertyEnumerationAdapter() {
+	public Adapter createIfcPropertyEnumerationAdapter()
+	{
 		return null;
 	}
 
@@ -10321,7 +12437,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcPropertyListValue
 	 * @generated
 	 */
-	public Adapter createIfcPropertyListValueAdapter() {
+	public Adapter createIfcPropertyListValueAdapter()
+	{
 		return null;
 	}
 
@@ -10335,7 +12452,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcPropertyReferenceValue
 	 * @generated
 	 */
-	public Adapter createIfcPropertyReferenceValueAdapter() {
+	public Adapter createIfcPropertyReferenceValueAdapter()
+	{
 		return null;
 	}
 
@@ -10349,7 +12467,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcPropertySet
 	 * @generated
 	 */
-	public Adapter createIfcPropertySetAdapter() {
+	public Adapter createIfcPropertySetAdapter()
+	{
 		return null;
 	}
 
@@ -10363,7 +12482,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcPropertySetDefinition
 	 * @generated
 	 */
-	public Adapter createIfcPropertySetDefinitionAdapter() {
+	public Adapter createIfcPropertySetDefinitionAdapter()
+	{
 		return null;
 	}
 
@@ -10377,7 +12497,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcPropertySingleValue
 	 * @generated
 	 */
-	public Adapter createIfcPropertySingleValueAdapter() {
+	public Adapter createIfcPropertySingleValueAdapter()
+	{
 		return null;
 	}
 
@@ -10391,7 +12512,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcPropertyTableValue
 	 * @generated
 	 */
-	public Adapter createIfcPropertyTableValueAdapter() {
+	public Adapter createIfcPropertyTableValueAdapter()
+	{
 		return null;
 	}
 
@@ -10405,7 +12527,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcProtectiveDeviceType
 	 * @generated
 	 */
-	public Adapter createIfcProtectiveDeviceTypeAdapter() {
+	public Adapter createIfcProtectiveDeviceTypeAdapter()
+	{
 		return null;
 	}
 
@@ -10419,7 +12542,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcProxy
 	 * @generated
 	 */
-	public Adapter createIfcProxyAdapter() {
+	public Adapter createIfcProxyAdapter()
+	{
 		return null;
 	}
 
@@ -10433,7 +12557,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcPumpType
 	 * @generated
 	 */
-	public Adapter createIfcPumpTypeAdapter() {
+	public Adapter createIfcPumpTypeAdapter()
+	{
 		return null;
 	}
 
@@ -10447,7 +12572,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcQuantityArea
 	 * @generated
 	 */
-	public Adapter createIfcQuantityAreaAdapter() {
+	public Adapter createIfcQuantityAreaAdapter()
+	{
 		return null;
 	}
 
@@ -10461,7 +12587,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcQuantityCount
 	 * @generated
 	 */
-	public Adapter createIfcQuantityCountAdapter() {
+	public Adapter createIfcQuantityCountAdapter()
+	{
 		return null;
 	}
 
@@ -10475,7 +12602,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcQuantityLength
 	 * @generated
 	 */
-	public Adapter createIfcQuantityLengthAdapter() {
+	public Adapter createIfcQuantityLengthAdapter()
+	{
 		return null;
 	}
 
@@ -10489,7 +12617,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcQuantityTime
 	 * @generated
 	 */
-	public Adapter createIfcQuantityTimeAdapter() {
+	public Adapter createIfcQuantityTimeAdapter()
+	{
 		return null;
 	}
 
@@ -10503,7 +12632,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcQuantityVolume
 	 * @generated
 	 */
-	public Adapter createIfcQuantityVolumeAdapter() {
+	public Adapter createIfcQuantityVolumeAdapter()
+	{
 		return null;
 	}
 
@@ -10517,7 +12647,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcQuantityWeight
 	 * @generated
 	 */
-	public Adapter createIfcQuantityWeightAdapter() {
+	public Adapter createIfcQuantityWeightAdapter()
+	{
 		return null;
 	}
 
@@ -10531,7 +12662,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcRadiusDimension
 	 * @generated
 	 */
-	public Adapter createIfcRadiusDimensionAdapter() {
+	public Adapter createIfcRadiusDimensionAdapter()
+	{
 		return null;
 	}
 
@@ -10545,7 +12677,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcRailing
 	 * @generated
 	 */
-	public Adapter createIfcRailingAdapter() {
+	public Adapter createIfcRailingAdapter()
+	{
 		return null;
 	}
 
@@ -10559,7 +12692,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcRailingType
 	 * @generated
 	 */
-	public Adapter createIfcRailingTypeAdapter() {
+	public Adapter createIfcRailingTypeAdapter()
+	{
 		return null;
 	}
 
@@ -10573,7 +12707,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcRamp
 	 * @generated
 	 */
-	public Adapter createIfcRampAdapter() {
+	public Adapter createIfcRampAdapter()
+	{
 		return null;
 	}
 
@@ -10587,7 +12722,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcRampFlight
 	 * @generated
 	 */
-	public Adapter createIfcRampFlightAdapter() {
+	public Adapter createIfcRampFlightAdapter()
+	{
 		return null;
 	}
 
@@ -10601,7 +12737,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcRampFlightType
 	 * @generated
 	 */
-	public Adapter createIfcRampFlightTypeAdapter() {
+	public Adapter createIfcRampFlightTypeAdapter()
+	{
 		return null;
 	}
 
@@ -10615,7 +12752,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcRationalBezierCurve
 	 * @generated
 	 */
-	public Adapter createIfcRationalBezierCurveAdapter() {
+	public Adapter createIfcRationalBezierCurveAdapter()
+	{
 		return null;
 	}
 
@@ -10629,7 +12767,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcRectangleHollowProfileDef
 	 * @generated
 	 */
-	public Adapter createIfcRectangleHollowProfileDefAdapter() {
+	public Adapter createIfcRectangleHollowProfileDefAdapter()
+	{
 		return null;
 	}
 
@@ -10643,7 +12782,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcRectangleProfileDef
 	 * @generated
 	 */
-	public Adapter createIfcRectangleProfileDefAdapter() {
+	public Adapter createIfcRectangleProfileDefAdapter()
+	{
 		return null;
 	}
 
@@ -10657,7 +12797,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcRectangularPyramid
 	 * @generated
 	 */
-	public Adapter createIfcRectangularPyramidAdapter() {
+	public Adapter createIfcRectangularPyramidAdapter()
+	{
 		return null;
 	}
 
@@ -10671,7 +12812,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcRectangularTrimmedSurface
 	 * @generated
 	 */
-	public Adapter createIfcRectangularTrimmedSurfaceAdapter() {
+	public Adapter createIfcRectangularTrimmedSurfaceAdapter()
+	{
 		return null;
 	}
 
@@ -10685,7 +12827,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcReferencesValueDocument
 	 * @generated
 	 */
-	public Adapter createIfcReferencesValueDocumentAdapter() {
+	public Adapter createIfcReferencesValueDocumentAdapter()
+	{
 		return null;
 	}
 
@@ -10699,7 +12842,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcRegularTimeSeries
 	 * @generated
 	 */
-	public Adapter createIfcRegularTimeSeriesAdapter() {
+	public Adapter createIfcRegularTimeSeriesAdapter()
+	{
 		return null;
 	}
 
@@ -10713,7 +12857,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcReinforcementBarProperties
 	 * @generated
 	 */
-	public Adapter createIfcReinforcementBarPropertiesAdapter() {
+	public Adapter createIfcReinforcementBarPropertiesAdapter()
+	{
 		return null;
 	}
 
@@ -10727,7 +12872,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcReinforcementDefinitionProperties
 	 * @generated
 	 */
-	public Adapter createIfcReinforcementDefinitionPropertiesAdapter() {
+	public Adapter createIfcReinforcementDefinitionPropertiesAdapter()
+	{
 		return null;
 	}
 
@@ -10741,7 +12887,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcReinforcingBar
 	 * @generated
 	 */
-	public Adapter createIfcReinforcingBarAdapter() {
+	public Adapter createIfcReinforcingBarAdapter()
+	{
 		return null;
 	}
 
@@ -10755,7 +12902,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcReinforcingElement
 	 * @generated
 	 */
-	public Adapter createIfcReinforcingElementAdapter() {
+	public Adapter createIfcReinforcingElementAdapter()
+	{
 		return null;
 	}
 
@@ -10769,7 +12917,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcReinforcingMesh
 	 * @generated
 	 */
-	public Adapter createIfcReinforcingMeshAdapter() {
+	public Adapter createIfcReinforcingMeshAdapter()
+	{
 		return null;
 	}
 
@@ -10783,7 +12932,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcRelAggregates
 	 * @generated
 	 */
-	public Adapter createIfcRelAggregatesAdapter() {
+	public Adapter createIfcRelAggregatesAdapter()
+	{
 		return null;
 	}
 
@@ -10797,7 +12947,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcRelAssigns
 	 * @generated
 	 */
-	public Adapter createIfcRelAssignsAdapter() {
+	public Adapter createIfcRelAssignsAdapter()
+	{
 		return null;
 	}
 
@@ -10811,7 +12962,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcRelAssignsTasks
 	 * @generated
 	 */
-	public Adapter createIfcRelAssignsTasksAdapter() {
+	public Adapter createIfcRelAssignsTasksAdapter()
+	{
 		return null;
 	}
 
@@ -10825,7 +12977,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcRelAssignsToActor
 	 * @generated
 	 */
-	public Adapter createIfcRelAssignsToActorAdapter() {
+	public Adapter createIfcRelAssignsToActorAdapter()
+	{
 		return null;
 	}
 
@@ -10839,7 +12992,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcRelAssignsToControl
 	 * @generated
 	 */
-	public Adapter createIfcRelAssignsToControlAdapter() {
+	public Adapter createIfcRelAssignsToControlAdapter()
+	{
 		return null;
 	}
 
@@ -10853,7 +13007,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcRelAssignsToGroup
 	 * @generated
 	 */
-	public Adapter createIfcRelAssignsToGroupAdapter() {
+	public Adapter createIfcRelAssignsToGroupAdapter()
+	{
 		return null;
 	}
 
@@ -10867,7 +13022,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcRelAssignsToProcess
 	 * @generated
 	 */
-	public Adapter createIfcRelAssignsToProcessAdapter() {
+	public Adapter createIfcRelAssignsToProcessAdapter()
+	{
 		return null;
 	}
 
@@ -10881,7 +13037,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcRelAssignsToProduct
 	 * @generated
 	 */
-	public Adapter createIfcRelAssignsToProductAdapter() {
+	public Adapter createIfcRelAssignsToProductAdapter()
+	{
 		return null;
 	}
 
@@ -10895,7 +13052,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcRelAssignsToProjectOrder
 	 * @generated
 	 */
-	public Adapter createIfcRelAssignsToProjectOrderAdapter() {
+	public Adapter createIfcRelAssignsToProjectOrderAdapter()
+	{
 		return null;
 	}
 
@@ -10909,7 +13067,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcRelAssignsToResource
 	 * @generated
 	 */
-	public Adapter createIfcRelAssignsToResourceAdapter() {
+	public Adapter createIfcRelAssignsToResourceAdapter()
+	{
 		return null;
 	}
 
@@ -10923,7 +13082,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcRelAssociates
 	 * @generated
 	 */
-	public Adapter createIfcRelAssociatesAdapter() {
+	public Adapter createIfcRelAssociatesAdapter()
+	{
 		return null;
 	}
 
@@ -10937,7 +13097,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcRelAssociatesAppliedValue
 	 * @generated
 	 */
-	public Adapter createIfcRelAssociatesAppliedValueAdapter() {
+	public Adapter createIfcRelAssociatesAppliedValueAdapter()
+	{
 		return null;
 	}
 
@@ -10951,7 +13112,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcRelAssociatesApproval
 	 * @generated
 	 */
-	public Adapter createIfcRelAssociatesApprovalAdapter() {
+	public Adapter createIfcRelAssociatesApprovalAdapter()
+	{
 		return null;
 	}
 
@@ -10965,7 +13127,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcRelAssociatesClassification
 	 * @generated
 	 */
-	public Adapter createIfcRelAssociatesClassificationAdapter() {
+	public Adapter createIfcRelAssociatesClassificationAdapter()
+	{
 		return null;
 	}
 
@@ -10979,7 +13142,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcRelAssociatesConstraint
 	 * @generated
 	 */
-	public Adapter createIfcRelAssociatesConstraintAdapter() {
+	public Adapter createIfcRelAssociatesConstraintAdapter()
+	{
 		return null;
 	}
 
@@ -10993,7 +13157,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcRelAssociatesDocument
 	 * @generated
 	 */
-	public Adapter createIfcRelAssociatesDocumentAdapter() {
+	public Adapter createIfcRelAssociatesDocumentAdapter()
+	{
 		return null;
 	}
 
@@ -11007,7 +13172,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcRelAssociatesLibrary
 	 * @generated
 	 */
-	public Adapter createIfcRelAssociatesLibraryAdapter() {
+	public Adapter createIfcRelAssociatesLibraryAdapter()
+	{
 		return null;
 	}
 
@@ -11021,7 +13187,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcRelAssociatesMaterial
 	 * @generated
 	 */
-	public Adapter createIfcRelAssociatesMaterialAdapter() {
+	public Adapter createIfcRelAssociatesMaterialAdapter()
+	{
 		return null;
 	}
 
@@ -11035,7 +13202,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcRelAssociatesProfileProperties
 	 * @generated
 	 */
-	public Adapter createIfcRelAssociatesProfilePropertiesAdapter() {
+	public Adapter createIfcRelAssociatesProfilePropertiesAdapter()
+	{
 		return null;
 	}
 
@@ -11049,7 +13217,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcRelConnects
 	 * @generated
 	 */
-	public Adapter createIfcRelConnectsAdapter() {
+	public Adapter createIfcRelConnectsAdapter()
+	{
 		return null;
 	}
 
@@ -11063,7 +13232,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcRelConnectsElements
 	 * @generated
 	 */
-	public Adapter createIfcRelConnectsElementsAdapter() {
+	public Adapter createIfcRelConnectsElementsAdapter()
+	{
 		return null;
 	}
 
@@ -11077,7 +13247,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcRelConnectsPathElements
 	 * @generated
 	 */
-	public Adapter createIfcRelConnectsPathElementsAdapter() {
+	public Adapter createIfcRelConnectsPathElementsAdapter()
+	{
 		return null;
 	}
 
@@ -11091,7 +13262,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcRelConnectsPortToElement
 	 * @generated
 	 */
-	public Adapter createIfcRelConnectsPortToElementAdapter() {
+	public Adapter createIfcRelConnectsPortToElementAdapter()
+	{
 		return null;
 	}
 
@@ -11105,7 +13277,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcRelConnectsPorts
 	 * @generated
 	 */
-	public Adapter createIfcRelConnectsPortsAdapter() {
+	public Adapter createIfcRelConnectsPortsAdapter()
+	{
 		return null;
 	}
 
@@ -11119,7 +13292,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcRelConnectsStructuralActivity
 	 * @generated
 	 */
-	public Adapter createIfcRelConnectsStructuralActivityAdapter() {
+	public Adapter createIfcRelConnectsStructuralActivityAdapter()
+	{
 		return null;
 	}
 
@@ -11133,7 +13307,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcRelConnectsStructuralElement
 	 * @generated
 	 */
-	public Adapter createIfcRelConnectsStructuralElementAdapter() {
+	public Adapter createIfcRelConnectsStructuralElementAdapter()
+	{
 		return null;
 	}
 
@@ -11147,7 +13322,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcRelConnectsStructuralMember
 	 * @generated
 	 */
-	public Adapter createIfcRelConnectsStructuralMemberAdapter() {
+	public Adapter createIfcRelConnectsStructuralMemberAdapter()
+	{
 		return null;
 	}
 
@@ -11161,7 +13337,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcRelConnectsWithEccentricity
 	 * @generated
 	 */
-	public Adapter createIfcRelConnectsWithEccentricityAdapter() {
+	public Adapter createIfcRelConnectsWithEccentricityAdapter()
+	{
 		return null;
 	}
 
@@ -11175,7 +13352,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcRelConnectsWithRealizingElements
 	 * @generated
 	 */
-	public Adapter createIfcRelConnectsWithRealizingElementsAdapter() {
+	public Adapter createIfcRelConnectsWithRealizingElementsAdapter()
+	{
 		return null;
 	}
 
@@ -11189,7 +13367,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcRelContainedInSpatialStructure
 	 * @generated
 	 */
-	public Adapter createIfcRelContainedInSpatialStructureAdapter() {
+	public Adapter createIfcRelContainedInSpatialStructureAdapter()
+	{
 		return null;
 	}
 
@@ -11203,7 +13382,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcRelCoversBldgElements
 	 * @generated
 	 */
-	public Adapter createIfcRelCoversBldgElementsAdapter() {
+	public Adapter createIfcRelCoversBldgElementsAdapter()
+	{
 		return null;
 	}
 
@@ -11217,7 +13397,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcRelCoversSpaces
 	 * @generated
 	 */
-	public Adapter createIfcRelCoversSpacesAdapter() {
+	public Adapter createIfcRelCoversSpacesAdapter()
+	{
 		return null;
 	}
 
@@ -11231,7 +13412,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcRelDecomposes
 	 * @generated
 	 */
-	public Adapter createIfcRelDecomposesAdapter() {
+	public Adapter createIfcRelDecomposesAdapter()
+	{
 		return null;
 	}
 
@@ -11245,7 +13427,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcRelDefines
 	 * @generated
 	 */
-	public Adapter createIfcRelDefinesAdapter() {
+	public Adapter createIfcRelDefinesAdapter()
+	{
 		return null;
 	}
 
@@ -11259,7 +13442,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcRelDefinesByProperties
 	 * @generated
 	 */
-	public Adapter createIfcRelDefinesByPropertiesAdapter() {
+	public Adapter createIfcRelDefinesByPropertiesAdapter()
+	{
 		return null;
 	}
 
@@ -11273,7 +13457,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcRelDefinesByType
 	 * @generated
 	 */
-	public Adapter createIfcRelDefinesByTypeAdapter() {
+	public Adapter createIfcRelDefinesByTypeAdapter()
+	{
 		return null;
 	}
 
@@ -11287,7 +13472,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcRelFillsElement
 	 * @generated
 	 */
-	public Adapter createIfcRelFillsElementAdapter() {
+	public Adapter createIfcRelFillsElementAdapter()
+	{
 		return null;
 	}
 
@@ -11301,7 +13487,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcRelFlowControlElements
 	 * @generated
 	 */
-	public Adapter createIfcRelFlowControlElementsAdapter() {
+	public Adapter createIfcRelFlowControlElementsAdapter()
+	{
 		return null;
 	}
 
@@ -11315,7 +13502,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcRelInteractionRequirements
 	 * @generated
 	 */
-	public Adapter createIfcRelInteractionRequirementsAdapter() {
+	public Adapter createIfcRelInteractionRequirementsAdapter()
+	{
 		return null;
 	}
 
@@ -11329,7 +13517,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcRelNests
 	 * @generated
 	 */
-	public Adapter createIfcRelNestsAdapter() {
+	public Adapter createIfcRelNestsAdapter()
+	{
 		return null;
 	}
 
@@ -11343,7 +13532,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcRelOccupiesSpaces
 	 * @generated
 	 */
-	public Adapter createIfcRelOccupiesSpacesAdapter() {
+	public Adapter createIfcRelOccupiesSpacesAdapter()
+	{
 		return null;
 	}
 
@@ -11357,7 +13547,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcRelOverridesProperties
 	 * @generated
 	 */
-	public Adapter createIfcRelOverridesPropertiesAdapter() {
+	public Adapter createIfcRelOverridesPropertiesAdapter()
+	{
 		return null;
 	}
 
@@ -11371,7 +13562,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcRelProjectsElement
 	 * @generated
 	 */
-	public Adapter createIfcRelProjectsElementAdapter() {
+	public Adapter createIfcRelProjectsElementAdapter()
+	{
 		return null;
 	}
 
@@ -11385,7 +13577,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcRelReferencedInSpatialStructure
 	 * @generated
 	 */
-	public Adapter createIfcRelReferencedInSpatialStructureAdapter() {
+	public Adapter createIfcRelReferencedInSpatialStructureAdapter()
+	{
 		return null;
 	}
 
@@ -11399,7 +13592,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcRelSchedulesCostItems
 	 * @generated
 	 */
-	public Adapter createIfcRelSchedulesCostItemsAdapter() {
+	public Adapter createIfcRelSchedulesCostItemsAdapter()
+	{
 		return null;
 	}
 
@@ -11413,7 +13607,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcRelSequence
 	 * @generated
 	 */
-	public Adapter createIfcRelSequenceAdapter() {
+	public Adapter createIfcRelSequenceAdapter()
+	{
 		return null;
 	}
 
@@ -11427,7 +13622,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcRelServicesBuildings
 	 * @generated
 	 */
-	public Adapter createIfcRelServicesBuildingsAdapter() {
+	public Adapter createIfcRelServicesBuildingsAdapter()
+	{
 		return null;
 	}
 
@@ -11441,7 +13637,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcRelSpaceBoundary
 	 * @generated
 	 */
-	public Adapter createIfcRelSpaceBoundaryAdapter() {
+	public Adapter createIfcRelSpaceBoundaryAdapter()
+	{
 		return null;
 	}
 
@@ -11455,7 +13652,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcRelVoidsElement
 	 * @generated
 	 */
-	public Adapter createIfcRelVoidsElementAdapter() {
+	public Adapter createIfcRelVoidsElementAdapter()
+	{
 		return null;
 	}
 
@@ -11469,7 +13667,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcRelationship
 	 * @generated
 	 */
-	public Adapter createIfcRelationshipAdapter() {
+	public Adapter createIfcRelationshipAdapter()
+	{
 		return null;
 	}
 
@@ -11483,7 +13682,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcRelaxation
 	 * @generated
 	 */
-	public Adapter createIfcRelaxationAdapter() {
+	public Adapter createIfcRelaxationAdapter()
+	{
 		return null;
 	}
 
@@ -11497,7 +13697,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcRepresentation
 	 * @generated
 	 */
-	public Adapter createIfcRepresentationAdapter() {
+	public Adapter createIfcRepresentationAdapter()
+	{
 		return null;
 	}
 
@@ -11511,7 +13712,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcRepresentationContext
 	 * @generated
 	 */
-	public Adapter createIfcRepresentationContextAdapter() {
+	public Adapter createIfcRepresentationContextAdapter()
+	{
 		return null;
 	}
 
@@ -11525,7 +13727,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcRepresentationItem
 	 * @generated
 	 */
-	public Adapter createIfcRepresentationItemAdapter() {
+	public Adapter createIfcRepresentationItemAdapter()
+	{
 		return null;
 	}
 
@@ -11539,7 +13742,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcRepresentationMap
 	 * @generated
 	 */
-	public Adapter createIfcRepresentationMapAdapter() {
+	public Adapter createIfcRepresentationMapAdapter()
+	{
 		return null;
 	}
 
@@ -11553,7 +13757,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcResource
 	 * @generated
 	 */
-	public Adapter createIfcResourceAdapter() {
+	public Adapter createIfcResourceAdapter()
+	{
 		return null;
 	}
 
@@ -11567,7 +13772,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcRevolvedAreaSolid
 	 * @generated
 	 */
-	public Adapter createIfcRevolvedAreaSolidAdapter() {
+	public Adapter createIfcRevolvedAreaSolidAdapter()
+	{
 		return null;
 	}
 
@@ -11581,7 +13787,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcRibPlateProfileProperties
 	 * @generated
 	 */
-	public Adapter createIfcRibPlateProfilePropertiesAdapter() {
+	public Adapter createIfcRibPlateProfilePropertiesAdapter()
+	{
 		return null;
 	}
 
@@ -11595,7 +13802,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcRightCircularCone
 	 * @generated
 	 */
-	public Adapter createIfcRightCircularConeAdapter() {
+	public Adapter createIfcRightCircularConeAdapter()
+	{
 		return null;
 	}
 
@@ -11609,7 +13817,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcRightCircularCylinder
 	 * @generated
 	 */
-	public Adapter createIfcRightCircularCylinderAdapter() {
+	public Adapter createIfcRightCircularCylinderAdapter()
+	{
 		return null;
 	}
 
@@ -11623,7 +13832,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcRoof
 	 * @generated
 	 */
-	public Adapter createIfcRoofAdapter() {
+	public Adapter createIfcRoofAdapter()
+	{
 		return null;
 	}
 
@@ -11637,7 +13847,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcRoot
 	 * @generated
 	 */
-	public Adapter createIfcRootAdapter() {
+	public Adapter createIfcRootAdapter()
+	{
 		return null;
 	}
 
@@ -11651,7 +13862,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcRoundedEdgeFeature
 	 * @generated
 	 */
-	public Adapter createIfcRoundedEdgeFeatureAdapter() {
+	public Adapter createIfcRoundedEdgeFeatureAdapter()
+	{
 		return null;
 	}
 
@@ -11665,7 +13877,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcRoundedRectangleProfileDef
 	 * @generated
 	 */
-	public Adapter createIfcRoundedRectangleProfileDefAdapter() {
+	public Adapter createIfcRoundedRectangleProfileDefAdapter()
+	{
 		return null;
 	}
 
@@ -11679,7 +13892,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcSIUnit
 	 * @generated
 	 */
-	public Adapter createIfcSIUnitAdapter() {
+	public Adapter createIfcSIUnitAdapter()
+	{
 		return null;
 	}
 
@@ -11693,7 +13907,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcSanitaryTerminalType
 	 * @generated
 	 */
-	public Adapter createIfcSanitaryTerminalTypeAdapter() {
+	public Adapter createIfcSanitaryTerminalTypeAdapter()
+	{
 		return null;
 	}
 
@@ -11707,7 +13922,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcScheduleTimeControl
 	 * @generated
 	 */
-	public Adapter createIfcScheduleTimeControlAdapter() {
+	public Adapter createIfcScheduleTimeControlAdapter()
+	{
 		return null;
 	}
 
@@ -11721,7 +13937,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcSectionProperties
 	 * @generated
 	 */
-	public Adapter createIfcSectionPropertiesAdapter() {
+	public Adapter createIfcSectionPropertiesAdapter()
+	{
 		return null;
 	}
 
@@ -11735,7 +13952,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcSectionReinforcementProperties
 	 * @generated
 	 */
-	public Adapter createIfcSectionReinforcementPropertiesAdapter() {
+	public Adapter createIfcSectionReinforcementPropertiesAdapter()
+	{
 		return null;
 	}
 
@@ -11749,7 +13967,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcSectionedSpine
 	 * @generated
 	 */
-	public Adapter createIfcSectionedSpineAdapter() {
+	public Adapter createIfcSectionedSpineAdapter()
+	{
 		return null;
 	}
 
@@ -11763,7 +13982,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcSensorType
 	 * @generated
 	 */
-	public Adapter createIfcSensorTypeAdapter() {
+	public Adapter createIfcSensorTypeAdapter()
+	{
 		return null;
 	}
 
@@ -11777,7 +13997,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcServiceLife
 	 * @generated
 	 */
-	public Adapter createIfcServiceLifeAdapter() {
+	public Adapter createIfcServiceLifeAdapter()
+	{
 		return null;
 	}
 
@@ -11791,7 +14012,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcServiceLifeFactor
 	 * @generated
 	 */
-	public Adapter createIfcServiceLifeFactorAdapter() {
+	public Adapter createIfcServiceLifeFactorAdapter()
+	{
 		return null;
 	}
 
@@ -11805,7 +14027,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcShapeAspect
 	 * @generated
 	 */
-	public Adapter createIfcShapeAspectAdapter() {
+	public Adapter createIfcShapeAspectAdapter()
+	{
 		return null;
 	}
 
@@ -11819,7 +14042,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcShapeModel
 	 * @generated
 	 */
-	public Adapter createIfcShapeModelAdapter() {
+	public Adapter createIfcShapeModelAdapter()
+	{
 		return null;
 	}
 
@@ -11833,7 +14057,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcShapeRepresentation
 	 * @generated
 	 */
-	public Adapter createIfcShapeRepresentationAdapter() {
+	public Adapter createIfcShapeRepresentationAdapter()
+	{
 		return null;
 	}
 
@@ -11847,7 +14072,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcShellBasedSurfaceModel
 	 * @generated
 	 */
-	public Adapter createIfcShellBasedSurfaceModelAdapter() {
+	public Adapter createIfcShellBasedSurfaceModelAdapter()
+	{
 		return null;
 	}
 
@@ -11861,7 +14087,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcSimpleProperty
 	 * @generated
 	 */
-	public Adapter createIfcSimplePropertyAdapter() {
+	public Adapter createIfcSimplePropertyAdapter()
+	{
 		return null;
 	}
 
@@ -11875,7 +14102,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcSite
 	 * @generated
 	 */
-	public Adapter createIfcSiteAdapter() {
+	public Adapter createIfcSiteAdapter()
+	{
 		return null;
 	}
 
@@ -11889,7 +14117,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcSlab
 	 * @generated
 	 */
-	public Adapter createIfcSlabAdapter() {
+	public Adapter createIfcSlabAdapter()
+	{
 		return null;
 	}
 
@@ -11903,7 +14132,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcSlabType
 	 * @generated
 	 */
-	public Adapter createIfcSlabTypeAdapter() {
+	public Adapter createIfcSlabTypeAdapter()
+	{
 		return null;
 	}
 
@@ -11917,7 +14147,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcSlippageConnectionCondition
 	 * @generated
 	 */
-	public Adapter createIfcSlippageConnectionConditionAdapter() {
+	public Adapter createIfcSlippageConnectionConditionAdapter()
+	{
 		return null;
 	}
 
@@ -11931,7 +14162,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcSolidModel
 	 * @generated
 	 */
-	public Adapter createIfcSolidModelAdapter() {
+	public Adapter createIfcSolidModelAdapter()
+	{
 		return null;
 	}
 
@@ -11945,7 +14177,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcSoundProperties
 	 * @generated
 	 */
-	public Adapter createIfcSoundPropertiesAdapter() {
+	public Adapter createIfcSoundPropertiesAdapter()
+	{
 		return null;
 	}
 
@@ -11959,7 +14192,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcSoundValue
 	 * @generated
 	 */
-	public Adapter createIfcSoundValueAdapter() {
+	public Adapter createIfcSoundValueAdapter()
+	{
 		return null;
 	}
 
@@ -11973,7 +14207,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcSpace
 	 * @generated
 	 */
-	public Adapter createIfcSpaceAdapter() {
+	public Adapter createIfcSpaceAdapter()
+	{
 		return null;
 	}
 
@@ -11987,7 +14222,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcSpaceHeaterType
 	 * @generated
 	 */
-	public Adapter createIfcSpaceHeaterTypeAdapter() {
+	public Adapter createIfcSpaceHeaterTypeAdapter()
+	{
 		return null;
 	}
 
@@ -12001,7 +14237,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcSpaceProgram
 	 * @generated
 	 */
-	public Adapter createIfcSpaceProgramAdapter() {
+	public Adapter createIfcSpaceProgramAdapter()
+	{
 		return null;
 	}
 
@@ -12015,7 +14252,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcSpaceThermalLoadProperties
 	 * @generated
 	 */
-	public Adapter createIfcSpaceThermalLoadPropertiesAdapter() {
+	public Adapter createIfcSpaceThermalLoadPropertiesAdapter()
+	{
 		return null;
 	}
 
@@ -12029,7 +14267,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcSpaceType
 	 * @generated
 	 */
-	public Adapter createIfcSpaceTypeAdapter() {
+	public Adapter createIfcSpaceTypeAdapter()
+	{
 		return null;
 	}
 
@@ -12043,7 +14282,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcSpatialStructureElement
 	 * @generated
 	 */
-	public Adapter createIfcSpatialStructureElementAdapter() {
+	public Adapter createIfcSpatialStructureElementAdapter()
+	{
 		return null;
 	}
 
@@ -12057,7 +14297,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcSpatialStructureElementType
 	 * @generated
 	 */
-	public Adapter createIfcSpatialStructureElementTypeAdapter() {
+	public Adapter createIfcSpatialStructureElementTypeAdapter()
+	{
 		return null;
 	}
 
@@ -12071,7 +14312,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcSphere
 	 * @generated
 	 */
-	public Adapter createIfcSphereAdapter() {
+	public Adapter createIfcSphereAdapter()
+	{
 		return null;
 	}
 
@@ -12085,7 +14327,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcStackTerminalType
 	 * @generated
 	 */
-	public Adapter createIfcStackTerminalTypeAdapter() {
+	public Adapter createIfcStackTerminalTypeAdapter()
+	{
 		return null;
 	}
 
@@ -12099,7 +14342,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcStair
 	 * @generated
 	 */
-	public Adapter createIfcStairAdapter() {
+	public Adapter createIfcStairAdapter()
+	{
 		return null;
 	}
 
@@ -12113,7 +14357,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcStairFlight
 	 * @generated
 	 */
-	public Adapter createIfcStairFlightAdapter() {
+	public Adapter createIfcStairFlightAdapter()
+	{
 		return null;
 	}
 
@@ -12127,7 +14372,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcStairFlightType
 	 * @generated
 	 */
-	public Adapter createIfcStairFlightTypeAdapter() {
+	public Adapter createIfcStairFlightTypeAdapter()
+	{
 		return null;
 	}
 
@@ -12141,7 +14387,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcStructuralAction
 	 * @generated
 	 */
-	public Adapter createIfcStructuralActionAdapter() {
+	public Adapter createIfcStructuralActionAdapter()
+	{
 		return null;
 	}
 
@@ -12155,7 +14402,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcStructuralActivity
 	 * @generated
 	 */
-	public Adapter createIfcStructuralActivityAdapter() {
+	public Adapter createIfcStructuralActivityAdapter()
+	{
 		return null;
 	}
 
@@ -12169,7 +14417,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcStructuralAnalysisModel
 	 * @generated
 	 */
-	public Adapter createIfcStructuralAnalysisModelAdapter() {
+	public Adapter createIfcStructuralAnalysisModelAdapter()
+	{
 		return null;
 	}
 
@@ -12183,7 +14432,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcStructuralConnection
 	 * @generated
 	 */
-	public Adapter createIfcStructuralConnectionAdapter() {
+	public Adapter createIfcStructuralConnectionAdapter()
+	{
 		return null;
 	}
 
@@ -12197,7 +14447,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcStructuralConnectionCondition
 	 * @generated
 	 */
-	public Adapter createIfcStructuralConnectionConditionAdapter() {
+	public Adapter createIfcStructuralConnectionConditionAdapter()
+	{
 		return null;
 	}
 
@@ -12211,7 +14462,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcStructuralCurveConnection
 	 * @generated
 	 */
-	public Adapter createIfcStructuralCurveConnectionAdapter() {
+	public Adapter createIfcStructuralCurveConnectionAdapter()
+	{
 		return null;
 	}
 
@@ -12225,7 +14477,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcStructuralCurveMember
 	 * @generated
 	 */
-	public Adapter createIfcStructuralCurveMemberAdapter() {
+	public Adapter createIfcStructuralCurveMemberAdapter()
+	{
 		return null;
 	}
 
@@ -12239,7 +14492,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcStructuralCurveMemberVarying
 	 * @generated
 	 */
-	public Adapter createIfcStructuralCurveMemberVaryingAdapter() {
+	public Adapter createIfcStructuralCurveMemberVaryingAdapter()
+	{
 		return null;
 	}
 
@@ -12253,7 +14507,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcStructuralItem
 	 * @generated
 	 */
-	public Adapter createIfcStructuralItemAdapter() {
+	public Adapter createIfcStructuralItemAdapter()
+	{
 		return null;
 	}
 
@@ -12267,7 +14522,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcStructuralLinearAction
 	 * @generated
 	 */
-	public Adapter createIfcStructuralLinearActionAdapter() {
+	public Adapter createIfcStructuralLinearActionAdapter()
+	{
 		return null;
 	}
 
@@ -12281,7 +14537,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcStructuralLinearActionVarying
 	 * @generated
 	 */
-	public Adapter createIfcStructuralLinearActionVaryingAdapter() {
+	public Adapter createIfcStructuralLinearActionVaryingAdapter()
+	{
 		return null;
 	}
 
@@ -12295,7 +14552,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcStructuralLoad
 	 * @generated
 	 */
-	public Adapter createIfcStructuralLoadAdapter() {
+	public Adapter createIfcStructuralLoadAdapter()
+	{
 		return null;
 	}
 
@@ -12309,7 +14567,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcStructuralLoadGroup
 	 * @generated
 	 */
-	public Adapter createIfcStructuralLoadGroupAdapter() {
+	public Adapter createIfcStructuralLoadGroupAdapter()
+	{
 		return null;
 	}
 
@@ -12323,7 +14582,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcStructuralLoadLinearForce
 	 * @generated
 	 */
-	public Adapter createIfcStructuralLoadLinearForceAdapter() {
+	public Adapter createIfcStructuralLoadLinearForceAdapter()
+	{
 		return null;
 	}
 
@@ -12337,7 +14597,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcStructuralLoadPlanarForce
 	 * @generated
 	 */
-	public Adapter createIfcStructuralLoadPlanarForceAdapter() {
+	public Adapter createIfcStructuralLoadPlanarForceAdapter()
+	{
 		return null;
 	}
 
@@ -12351,7 +14612,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcStructuralLoadSingleDisplacement
 	 * @generated
 	 */
-	public Adapter createIfcStructuralLoadSingleDisplacementAdapter() {
+	public Adapter createIfcStructuralLoadSingleDisplacementAdapter()
+	{
 		return null;
 	}
 
@@ -12365,7 +14627,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcStructuralLoadSingleDisplacementDistortion
 	 * @generated
 	 */
-	public Adapter createIfcStructuralLoadSingleDisplacementDistortionAdapter() {
+	public Adapter createIfcStructuralLoadSingleDisplacementDistortionAdapter()
+	{
 		return null;
 	}
 
@@ -12379,7 +14642,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcStructuralLoadSingleForce
 	 * @generated
 	 */
-	public Adapter createIfcStructuralLoadSingleForceAdapter() {
+	public Adapter createIfcStructuralLoadSingleForceAdapter()
+	{
 		return null;
 	}
 
@@ -12393,7 +14657,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcStructuralLoadSingleForceWarping
 	 * @generated
 	 */
-	public Adapter createIfcStructuralLoadSingleForceWarpingAdapter() {
+	public Adapter createIfcStructuralLoadSingleForceWarpingAdapter()
+	{
 		return null;
 	}
 
@@ -12407,7 +14672,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcStructuralLoadStatic
 	 * @generated
 	 */
-	public Adapter createIfcStructuralLoadStaticAdapter() {
+	public Adapter createIfcStructuralLoadStaticAdapter()
+	{
 		return null;
 	}
 
@@ -12421,7 +14687,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcStructuralLoadTemperature
 	 * @generated
 	 */
-	public Adapter createIfcStructuralLoadTemperatureAdapter() {
+	public Adapter createIfcStructuralLoadTemperatureAdapter()
+	{
 		return null;
 	}
 
@@ -12435,7 +14702,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcStructuralMember
 	 * @generated
 	 */
-	public Adapter createIfcStructuralMemberAdapter() {
+	public Adapter createIfcStructuralMemberAdapter()
+	{
 		return null;
 	}
 
@@ -12449,7 +14717,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcStructuralPlanarAction
 	 * @generated
 	 */
-	public Adapter createIfcStructuralPlanarActionAdapter() {
+	public Adapter createIfcStructuralPlanarActionAdapter()
+	{
 		return null;
 	}
 
@@ -12463,7 +14732,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcStructuralPlanarActionVarying
 	 * @generated
 	 */
-	public Adapter createIfcStructuralPlanarActionVaryingAdapter() {
+	public Adapter createIfcStructuralPlanarActionVaryingAdapter()
+	{
 		return null;
 	}
 
@@ -12477,7 +14747,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcStructuralPointAction
 	 * @generated
 	 */
-	public Adapter createIfcStructuralPointActionAdapter() {
+	public Adapter createIfcStructuralPointActionAdapter()
+	{
 		return null;
 	}
 
@@ -12491,7 +14762,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcStructuralPointConnection
 	 * @generated
 	 */
-	public Adapter createIfcStructuralPointConnectionAdapter() {
+	public Adapter createIfcStructuralPointConnectionAdapter()
+	{
 		return null;
 	}
 
@@ -12505,7 +14777,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcStructuralPointReaction
 	 * @generated
 	 */
-	public Adapter createIfcStructuralPointReactionAdapter() {
+	public Adapter createIfcStructuralPointReactionAdapter()
+	{
 		return null;
 	}
 
@@ -12519,7 +14792,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcStructuralProfileProperties
 	 * @generated
 	 */
-	public Adapter createIfcStructuralProfilePropertiesAdapter() {
+	public Adapter createIfcStructuralProfilePropertiesAdapter()
+	{
 		return null;
 	}
 
@@ -12533,7 +14807,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcStructuralReaction
 	 * @generated
 	 */
-	public Adapter createIfcStructuralReactionAdapter() {
+	public Adapter createIfcStructuralReactionAdapter()
+	{
 		return null;
 	}
 
@@ -12547,7 +14822,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcStructuralResultGroup
 	 * @generated
 	 */
-	public Adapter createIfcStructuralResultGroupAdapter() {
+	public Adapter createIfcStructuralResultGroupAdapter()
+	{
 		return null;
 	}
 
@@ -12561,7 +14837,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcStructuralSteelProfileProperties
 	 * @generated
 	 */
-	public Adapter createIfcStructuralSteelProfilePropertiesAdapter() {
+	public Adapter createIfcStructuralSteelProfilePropertiesAdapter()
+	{
 		return null;
 	}
 
@@ -12575,7 +14852,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcStructuralSurfaceConnection
 	 * @generated
 	 */
-	public Adapter createIfcStructuralSurfaceConnectionAdapter() {
+	public Adapter createIfcStructuralSurfaceConnectionAdapter()
+	{
 		return null;
 	}
 
@@ -12589,7 +14867,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcStructuralSurfaceMember
 	 * @generated
 	 */
-	public Adapter createIfcStructuralSurfaceMemberAdapter() {
+	public Adapter createIfcStructuralSurfaceMemberAdapter()
+	{
 		return null;
 	}
 
@@ -12603,7 +14882,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcStructuralSurfaceMemberVarying
 	 * @generated
 	 */
-	public Adapter createIfcStructuralSurfaceMemberVaryingAdapter() {
+	public Adapter createIfcStructuralSurfaceMemberVaryingAdapter()
+	{
 		return null;
 	}
 
@@ -12617,7 +14897,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcStructuredDimensionCallout
 	 * @generated
 	 */
-	public Adapter createIfcStructuredDimensionCalloutAdapter() {
+	public Adapter createIfcStructuredDimensionCalloutAdapter()
+	{
 		return null;
 	}
 
@@ -12631,7 +14912,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcStyleModel
 	 * @generated
 	 */
-	public Adapter createIfcStyleModelAdapter() {
+	public Adapter createIfcStyleModelAdapter()
+	{
 		return null;
 	}
 
@@ -12645,7 +14927,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcStyledItem
 	 * @generated
 	 */
-	public Adapter createIfcStyledItemAdapter() {
+	public Adapter createIfcStyledItemAdapter()
+	{
 		return null;
 	}
 
@@ -12659,7 +14942,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcStyledRepresentation
 	 * @generated
 	 */
-	public Adapter createIfcStyledRepresentationAdapter() {
+	public Adapter createIfcStyledRepresentationAdapter()
+	{
 		return null;
 	}
 
@@ -12673,7 +14957,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcSubContractResource
 	 * @generated
 	 */
-	public Adapter createIfcSubContractResourceAdapter() {
+	public Adapter createIfcSubContractResourceAdapter()
+	{
 		return null;
 	}
 
@@ -12687,7 +14972,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcSubedge
 	 * @generated
 	 */
-	public Adapter createIfcSubedgeAdapter() {
+	public Adapter createIfcSubedgeAdapter()
+	{
 		return null;
 	}
 
@@ -12701,7 +14987,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcSurface
 	 * @generated
 	 */
-	public Adapter createIfcSurfaceAdapter() {
+	public Adapter createIfcSurfaceAdapter()
+	{
 		return null;
 	}
 
@@ -12715,7 +15002,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcSurfaceCurveSweptAreaSolid
 	 * @generated
 	 */
-	public Adapter createIfcSurfaceCurveSweptAreaSolidAdapter() {
+	public Adapter createIfcSurfaceCurveSweptAreaSolidAdapter()
+	{
 		return null;
 	}
 
@@ -12729,7 +15017,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcSurfaceOfLinearExtrusion
 	 * @generated
 	 */
-	public Adapter createIfcSurfaceOfLinearExtrusionAdapter() {
+	public Adapter createIfcSurfaceOfLinearExtrusionAdapter()
+	{
 		return null;
 	}
 
@@ -12743,7 +15032,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcSurfaceOfRevolution
 	 * @generated
 	 */
-	public Adapter createIfcSurfaceOfRevolutionAdapter() {
+	public Adapter createIfcSurfaceOfRevolutionAdapter()
+	{
 		return null;
 	}
 
@@ -12757,7 +15047,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcSurfaceStyle
 	 * @generated
 	 */
-	public Adapter createIfcSurfaceStyleAdapter() {
+	public Adapter createIfcSurfaceStyleAdapter()
+	{
 		return null;
 	}
 
@@ -12771,7 +15062,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcSurfaceStyleLighting
 	 * @generated
 	 */
-	public Adapter createIfcSurfaceStyleLightingAdapter() {
+	public Adapter createIfcSurfaceStyleLightingAdapter()
+	{
 		return null;
 	}
 
@@ -12785,7 +15077,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcSurfaceStyleRefraction
 	 * @generated
 	 */
-	public Adapter createIfcSurfaceStyleRefractionAdapter() {
+	public Adapter createIfcSurfaceStyleRefractionAdapter()
+	{
 		return null;
 	}
 
@@ -12799,7 +15092,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcSurfaceStyleRendering
 	 * @generated
 	 */
-	public Adapter createIfcSurfaceStyleRenderingAdapter() {
+	public Adapter createIfcSurfaceStyleRenderingAdapter()
+	{
 		return null;
 	}
 
@@ -12813,7 +15107,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcSurfaceStyleShading
 	 * @generated
 	 */
-	public Adapter createIfcSurfaceStyleShadingAdapter() {
+	public Adapter createIfcSurfaceStyleShadingAdapter()
+	{
 		return null;
 	}
 
@@ -12827,7 +15122,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcSurfaceStyleWithTextures
 	 * @generated
 	 */
-	public Adapter createIfcSurfaceStyleWithTexturesAdapter() {
+	public Adapter createIfcSurfaceStyleWithTexturesAdapter()
+	{
 		return null;
 	}
 
@@ -12841,7 +15137,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcSurfaceTexture
 	 * @generated
 	 */
-	public Adapter createIfcSurfaceTextureAdapter() {
+	public Adapter createIfcSurfaceTextureAdapter()
+	{
 		return null;
 	}
 
@@ -12855,7 +15152,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcSweptAreaSolid
 	 * @generated
 	 */
-	public Adapter createIfcSweptAreaSolidAdapter() {
+	public Adapter createIfcSweptAreaSolidAdapter()
+	{
 		return null;
 	}
 
@@ -12869,7 +15167,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcSweptDiskSolid
 	 * @generated
 	 */
-	public Adapter createIfcSweptDiskSolidAdapter() {
+	public Adapter createIfcSweptDiskSolidAdapter()
+	{
 		return null;
 	}
 
@@ -12883,7 +15182,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcSweptSurface
 	 * @generated
 	 */
-	public Adapter createIfcSweptSurfaceAdapter() {
+	public Adapter createIfcSweptSurfaceAdapter()
+	{
 		return null;
 	}
 
@@ -12897,7 +15197,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcSwitchingDeviceType
 	 * @generated
 	 */
-	public Adapter createIfcSwitchingDeviceTypeAdapter() {
+	public Adapter createIfcSwitchingDeviceTypeAdapter()
+	{
 		return null;
 	}
 
@@ -12911,7 +15212,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcSymbolStyle
 	 * @generated
 	 */
-	public Adapter createIfcSymbolStyleAdapter() {
+	public Adapter createIfcSymbolStyleAdapter()
+	{
 		return null;
 	}
 
@@ -12925,7 +15227,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcSystem
 	 * @generated
 	 */
-	public Adapter createIfcSystemAdapter() {
+	public Adapter createIfcSystemAdapter()
+	{
 		return null;
 	}
 
@@ -12939,7 +15242,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcSystemFurnitureElementType
 	 * @generated
 	 */
-	public Adapter createIfcSystemFurnitureElementTypeAdapter() {
+	public Adapter createIfcSystemFurnitureElementTypeAdapter()
+	{
 		return null;
 	}
 
@@ -12953,7 +15257,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcTShapeProfileDef
 	 * @generated
 	 */
-	public Adapter createIfcTShapeProfileDefAdapter() {
+	public Adapter createIfcTShapeProfileDefAdapter()
+	{
 		return null;
 	}
 
@@ -12967,7 +15272,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcTable
 	 * @generated
 	 */
-	public Adapter createIfcTableAdapter() {
+	public Adapter createIfcTableAdapter()
+	{
 		return null;
 	}
 
@@ -12981,7 +15287,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcTableRow
 	 * @generated
 	 */
-	public Adapter createIfcTableRowAdapter() {
+	public Adapter createIfcTableRowAdapter()
+	{
 		return null;
 	}
 
@@ -12995,7 +15302,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcTankType
 	 * @generated
 	 */
-	public Adapter createIfcTankTypeAdapter() {
+	public Adapter createIfcTankTypeAdapter()
+	{
 		return null;
 	}
 
@@ -13009,7 +15317,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcTask
 	 * @generated
 	 */
-	public Adapter createIfcTaskAdapter() {
+	public Adapter createIfcTaskAdapter()
+	{
 		return null;
 	}
 
@@ -13023,7 +15332,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcTelecomAddress
 	 * @generated
 	 */
-	public Adapter createIfcTelecomAddressAdapter() {
+	public Adapter createIfcTelecomAddressAdapter()
+	{
 		return null;
 	}
 
@@ -13037,7 +15347,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcTendon
 	 * @generated
 	 */
-	public Adapter createIfcTendonAdapter() {
+	public Adapter createIfcTendonAdapter()
+	{
 		return null;
 	}
 
@@ -13051,7 +15362,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcTendonAnchor
 	 * @generated
 	 */
-	public Adapter createIfcTendonAnchorAdapter() {
+	public Adapter createIfcTendonAnchorAdapter()
+	{
 		return null;
 	}
 
@@ -13065,7 +15377,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcTerminatorSymbol
 	 * @generated
 	 */
-	public Adapter createIfcTerminatorSymbolAdapter() {
+	public Adapter createIfcTerminatorSymbolAdapter()
+	{
 		return null;
 	}
 
@@ -13079,7 +15392,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcTextLiteral
 	 * @generated
 	 */
-	public Adapter createIfcTextLiteralAdapter() {
+	public Adapter createIfcTextLiteralAdapter()
+	{
 		return null;
 	}
 
@@ -13093,7 +15407,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcTextLiteralWithExtent
 	 * @generated
 	 */
-	public Adapter createIfcTextLiteralWithExtentAdapter() {
+	public Adapter createIfcTextLiteralWithExtentAdapter()
+	{
 		return null;
 	}
 
@@ -13107,7 +15422,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcTextStyle
 	 * @generated
 	 */
-	public Adapter createIfcTextStyleAdapter() {
+	public Adapter createIfcTextStyleAdapter()
+	{
 		return null;
 	}
 
@@ -13121,7 +15437,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcTextStyleFontModel
 	 * @generated
 	 */
-	public Adapter createIfcTextStyleFontModelAdapter() {
+	public Adapter createIfcTextStyleFontModelAdapter()
+	{
 		return null;
 	}
 
@@ -13135,7 +15452,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcTextStyleForDefinedFont
 	 * @generated
 	 */
-	public Adapter createIfcTextStyleForDefinedFontAdapter() {
+	public Adapter createIfcTextStyleForDefinedFontAdapter()
+	{
 		return null;
 	}
 
@@ -13149,7 +15467,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcTextStyleTextModel
 	 * @generated
 	 */
-	public Adapter createIfcTextStyleTextModelAdapter() {
+	public Adapter createIfcTextStyleTextModelAdapter()
+	{
 		return null;
 	}
 
@@ -13163,7 +15482,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcTextStyleWithBoxCharacteristics
 	 * @generated
 	 */
-	public Adapter createIfcTextStyleWithBoxCharacteristicsAdapter() {
+	public Adapter createIfcTextStyleWithBoxCharacteristicsAdapter()
+	{
 		return null;
 	}
 
@@ -13177,7 +15497,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcTextureCoordinate
 	 * @generated
 	 */
-	public Adapter createIfcTextureCoordinateAdapter() {
+	public Adapter createIfcTextureCoordinateAdapter()
+	{
 		return null;
 	}
 
@@ -13191,7 +15512,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcTextureCoordinateGenerator
 	 * @generated
 	 */
-	public Adapter createIfcTextureCoordinateGeneratorAdapter() {
+	public Adapter createIfcTextureCoordinateGeneratorAdapter()
+	{
 		return null;
 	}
 
@@ -13205,7 +15527,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcTextureMap
 	 * @generated
 	 */
-	public Adapter createIfcTextureMapAdapter() {
+	public Adapter createIfcTextureMapAdapter()
+	{
 		return null;
 	}
 
@@ -13219,7 +15542,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcTextureVertex
 	 * @generated
 	 */
-	public Adapter createIfcTextureVertexAdapter() {
+	public Adapter createIfcTextureVertexAdapter()
+	{
 		return null;
 	}
 
@@ -13233,7 +15557,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcThermalMaterialProperties
 	 * @generated
 	 */
-	public Adapter createIfcThermalMaterialPropertiesAdapter() {
+	public Adapter createIfcThermalMaterialPropertiesAdapter()
+	{
 		return null;
 	}
 
@@ -13247,7 +15572,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcTimeSeries
 	 * @generated
 	 */
-	public Adapter createIfcTimeSeriesAdapter() {
+	public Adapter createIfcTimeSeriesAdapter()
+	{
 		return null;
 	}
 
@@ -13261,7 +15587,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcTimeSeriesReferenceRelationship
 	 * @generated
 	 */
-	public Adapter createIfcTimeSeriesReferenceRelationshipAdapter() {
+	public Adapter createIfcTimeSeriesReferenceRelationshipAdapter()
+	{
 		return null;
 	}
 
@@ -13275,7 +15602,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcTimeSeriesSchedule
 	 * @generated
 	 */
-	public Adapter createIfcTimeSeriesScheduleAdapter() {
+	public Adapter createIfcTimeSeriesScheduleAdapter()
+	{
 		return null;
 	}
 
@@ -13289,7 +15617,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcTimeSeriesValue
 	 * @generated
 	 */
-	public Adapter createIfcTimeSeriesValueAdapter() {
+	public Adapter createIfcTimeSeriesValueAdapter()
+	{
 		return null;
 	}
 
@@ -13303,7 +15632,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcTopologicalRepresentationItem
 	 * @generated
 	 */
-	public Adapter createIfcTopologicalRepresentationItemAdapter() {
+	public Adapter createIfcTopologicalRepresentationItemAdapter()
+	{
 		return null;
 	}
 
@@ -13317,7 +15647,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcTopologyRepresentation
 	 * @generated
 	 */
-	public Adapter createIfcTopologyRepresentationAdapter() {
+	public Adapter createIfcTopologyRepresentationAdapter()
+	{
 		return null;
 	}
 
@@ -13331,7 +15662,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcTransformerType
 	 * @generated
 	 */
-	public Adapter createIfcTransformerTypeAdapter() {
+	public Adapter createIfcTransformerTypeAdapter()
+	{
 		return null;
 	}
 
@@ -13345,7 +15677,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcTransportElement
 	 * @generated
 	 */
-	public Adapter createIfcTransportElementAdapter() {
+	public Adapter createIfcTransportElementAdapter()
+	{
 		return null;
 	}
 
@@ -13359,7 +15692,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcTransportElementType
 	 * @generated
 	 */
-	public Adapter createIfcTransportElementTypeAdapter() {
+	public Adapter createIfcTransportElementTypeAdapter()
+	{
 		return null;
 	}
 
@@ -13373,7 +15707,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcTrapeziumProfileDef
 	 * @generated
 	 */
-	public Adapter createIfcTrapeziumProfileDefAdapter() {
+	public Adapter createIfcTrapeziumProfileDefAdapter()
+	{
 		return null;
 	}
 
@@ -13387,7 +15722,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcTrimmedCurve
 	 * @generated
 	 */
-	public Adapter createIfcTrimmedCurveAdapter() {
+	public Adapter createIfcTrimmedCurveAdapter()
+	{
 		return null;
 	}
 
@@ -13401,7 +15737,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcTubeBundleType
 	 * @generated
 	 */
-	public Adapter createIfcTubeBundleTypeAdapter() {
+	public Adapter createIfcTubeBundleTypeAdapter()
+	{
 		return null;
 	}
 
@@ -13415,7 +15752,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcTwoDirectionRepeatFactor
 	 * @generated
 	 */
-	public Adapter createIfcTwoDirectionRepeatFactorAdapter() {
+	public Adapter createIfcTwoDirectionRepeatFactorAdapter()
+	{
 		return null;
 	}
 
@@ -13429,7 +15767,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcTypeObject
 	 * @generated
 	 */
-	public Adapter createIfcTypeObjectAdapter() {
+	public Adapter createIfcTypeObjectAdapter()
+	{
 		return null;
 	}
 
@@ -13443,7 +15782,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcTypeProduct
 	 * @generated
 	 */
-	public Adapter createIfcTypeProductAdapter() {
+	public Adapter createIfcTypeProductAdapter()
+	{
 		return null;
 	}
 
@@ -13457,7 +15797,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcUShapeProfileDef
 	 * @generated
 	 */
-	public Adapter createIfcUShapeProfileDefAdapter() {
+	public Adapter createIfcUShapeProfileDefAdapter()
+	{
 		return null;
 	}
 
@@ -13471,7 +15812,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcUnitAssignment
 	 * @generated
 	 */
-	public Adapter createIfcUnitAssignmentAdapter() {
+	public Adapter createIfcUnitAssignmentAdapter()
+	{
 		return null;
 	}
 
@@ -13485,7 +15827,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcUnitaryEquipmentType
 	 * @generated
 	 */
-	public Adapter createIfcUnitaryEquipmentTypeAdapter() {
+	public Adapter createIfcUnitaryEquipmentTypeAdapter()
+	{
 		return null;
 	}
 
@@ -13499,7 +15842,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcValveType
 	 * @generated
 	 */
-	public Adapter createIfcValveTypeAdapter() {
+	public Adapter createIfcValveTypeAdapter()
+	{
 		return null;
 	}
 
@@ -13513,7 +15857,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcVector
 	 * @generated
 	 */
-	public Adapter createIfcVectorAdapter() {
+	public Adapter createIfcVectorAdapter()
+	{
 		return null;
 	}
 
@@ -13527,7 +15872,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcVertex
 	 * @generated
 	 */
-	public Adapter createIfcVertexAdapter() {
+	public Adapter createIfcVertexAdapter()
+	{
 		return null;
 	}
 
@@ -13541,7 +15887,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcVertexBasedTextureMap
 	 * @generated
 	 */
-	public Adapter createIfcVertexBasedTextureMapAdapter() {
+	public Adapter createIfcVertexBasedTextureMapAdapter()
+	{
 		return null;
 	}
 
@@ -13555,7 +15902,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcVertexLoop
 	 * @generated
 	 */
-	public Adapter createIfcVertexLoopAdapter() {
+	public Adapter createIfcVertexLoopAdapter()
+	{
 		return null;
 	}
 
@@ -13569,7 +15917,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcVertexPoint
 	 * @generated
 	 */
-	public Adapter createIfcVertexPointAdapter() {
+	public Adapter createIfcVertexPointAdapter()
+	{
 		return null;
 	}
 
@@ -13583,7 +15932,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcVibrationIsolatorType
 	 * @generated
 	 */
-	public Adapter createIfcVibrationIsolatorTypeAdapter() {
+	public Adapter createIfcVibrationIsolatorTypeAdapter()
+	{
 		return null;
 	}
 
@@ -13597,7 +15947,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcVirtualElement
 	 * @generated
 	 */
-	public Adapter createIfcVirtualElementAdapter() {
+	public Adapter createIfcVirtualElementAdapter()
+	{
 		return null;
 	}
 
@@ -13611,7 +15962,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcVirtualGridIntersection
 	 * @generated
 	 */
-	public Adapter createIfcVirtualGridIntersectionAdapter() {
+	public Adapter createIfcVirtualGridIntersectionAdapter()
+	{
 		return null;
 	}
 
@@ -13625,7 +15977,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcWall
 	 * @generated
 	 */
-	public Adapter createIfcWallAdapter() {
+	public Adapter createIfcWallAdapter()
+	{
 		return null;
 	}
 
@@ -13639,7 +15992,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcWallStandardCase
 	 * @generated
 	 */
-	public Adapter createIfcWallStandardCaseAdapter() {
+	public Adapter createIfcWallStandardCaseAdapter()
+	{
 		return null;
 	}
 
@@ -13653,7 +16007,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcWallType
 	 * @generated
 	 */
-	public Adapter createIfcWallTypeAdapter() {
+	public Adapter createIfcWallTypeAdapter()
+	{
 		return null;
 	}
 
@@ -13667,7 +16022,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcWasteTerminalType
 	 * @generated
 	 */
-	public Adapter createIfcWasteTerminalTypeAdapter() {
+	public Adapter createIfcWasteTerminalTypeAdapter()
+	{
 		return null;
 	}
 
@@ -13681,7 +16037,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcWaterProperties
 	 * @generated
 	 */
-	public Adapter createIfcWaterPropertiesAdapter() {
+	public Adapter createIfcWaterPropertiesAdapter()
+	{
 		return null;
 	}
 
@@ -13695,7 +16052,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcWindow
 	 * @generated
 	 */
-	public Adapter createIfcWindowAdapter() {
+	public Adapter createIfcWindowAdapter()
+	{
 		return null;
 	}
 
@@ -13709,7 +16067,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcWindowLiningProperties
 	 * @generated
 	 */
-	public Adapter createIfcWindowLiningPropertiesAdapter() {
+	public Adapter createIfcWindowLiningPropertiesAdapter()
+	{
 		return null;
 	}
 
@@ -13723,7 +16082,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcWindowPanelProperties
 	 * @generated
 	 */
-	public Adapter createIfcWindowPanelPropertiesAdapter() {
+	public Adapter createIfcWindowPanelPropertiesAdapter()
+	{
 		return null;
 	}
 
@@ -13737,7 +16097,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcWindowStyle
 	 * @generated
 	 */
-	public Adapter createIfcWindowStyleAdapter() {
+	public Adapter createIfcWindowStyleAdapter()
+	{
 		return null;
 	}
 
@@ -13751,7 +16112,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcWorkControl
 	 * @generated
 	 */
-	public Adapter createIfcWorkControlAdapter() {
+	public Adapter createIfcWorkControlAdapter()
+	{
 		return null;
 	}
 
@@ -13765,7 +16127,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcWorkPlan
 	 * @generated
 	 */
-	public Adapter createIfcWorkPlanAdapter() {
+	public Adapter createIfcWorkPlanAdapter()
+	{
 		return null;
 	}
 
@@ -13779,7 +16142,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcWorkSchedule
 	 * @generated
 	 */
-	public Adapter createIfcWorkScheduleAdapter() {
+	public Adapter createIfcWorkScheduleAdapter()
+	{
 		return null;
 	}
 
@@ -13793,7 +16157,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcZShapeProfileDef
 	 * @generated
 	 */
-	public Adapter createIfcZShapeProfileDefAdapter() {
+	public Adapter createIfcZShapeProfileDefAdapter()
+	{
 		return null;
 	}
 
@@ -13807,7 +16172,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcZone
 	 * @generated
 	 */
-	public Adapter createIfcZoneAdapter() {
+	public Adapter createIfcZoneAdapter()
+	{
 		return null;
 	}
 
@@ -13821,7 +16187,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcActorSelect
 	 * @generated
 	 */
-	public Adapter createIfcActorSelectAdapter() {
+	public Adapter createIfcActorSelectAdapter()
+	{
 		return null;
 	}
 
@@ -13835,7 +16202,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcAppliedValueSelect
 	 * @generated
 	 */
-	public Adapter createIfcAppliedValueSelectAdapter() {
+	public Adapter createIfcAppliedValueSelectAdapter()
+	{
 		return null;
 	}
 
@@ -13849,7 +16217,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcAxis2Placement
 	 * @generated
 	 */
-	public Adapter createIfcAxis2PlacementAdapter() {
+	public Adapter createIfcAxis2PlacementAdapter()
+	{
 		return null;
 	}
 
@@ -13863,7 +16232,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcBooleanOperand
 	 * @generated
 	 */
-	public Adapter createIfcBooleanOperandAdapter() {
+	public Adapter createIfcBooleanOperandAdapter()
+	{
 		return null;
 	}
 
@@ -13877,7 +16247,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcCharacterStyleSelect
 	 * @generated
 	 */
-	public Adapter createIfcCharacterStyleSelectAdapter() {
+	public Adapter createIfcCharacterStyleSelectAdapter()
+	{
 		return null;
 	}
 
@@ -13891,7 +16262,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcClassificationNotationSelect
 	 * @generated
 	 */
-	public Adapter createIfcClassificationNotationSelectAdapter() {
+	public Adapter createIfcClassificationNotationSelectAdapter()
+	{
 		return null;
 	}
 
@@ -13905,7 +16277,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcColour
 	 * @generated
 	 */
-	public Adapter createIfcColourAdapter() {
+	public Adapter createIfcColourAdapter()
+	{
 		return null;
 	}
 
@@ -13919,7 +16292,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcColourOrFactor
 	 * @generated
 	 */
-	public Adapter createIfcColourOrFactorAdapter() {
+	public Adapter createIfcColourOrFactorAdapter()
+	{
 		return null;
 	}
 
@@ -13933,7 +16307,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcConditionCriterionSelect
 	 * @generated
 	 */
-	public Adapter createIfcConditionCriterionSelectAdapter() {
+	public Adapter createIfcConditionCriterionSelectAdapter()
+	{
 		return null;
 	}
 
@@ -13947,7 +16322,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcCsgSelect
 	 * @generated
 	 */
-	public Adapter createIfcCsgSelectAdapter() {
+	public Adapter createIfcCsgSelectAdapter()
+	{
 		return null;
 	}
 
@@ -13961,7 +16337,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcCurveFontOrScaledCurveFontSelect
 	 * @generated
 	 */
-	public Adapter createIfcCurveFontOrScaledCurveFontSelectAdapter() {
+	public Adapter createIfcCurveFontOrScaledCurveFontSelectAdapter()
+	{
 		return null;
 	}
 
@@ -13975,7 +16352,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcCurveOrEdgeCurve
 	 * @generated
 	 */
-	public Adapter createIfcCurveOrEdgeCurveAdapter() {
+	public Adapter createIfcCurveOrEdgeCurveAdapter()
+	{
 		return null;
 	}
 
@@ -13989,7 +16367,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcCurveStyleFontSelect
 	 * @generated
 	 */
-	public Adapter createIfcCurveStyleFontSelectAdapter() {
+	public Adapter createIfcCurveStyleFontSelectAdapter()
+	{
 		return null;
 	}
 
@@ -14003,7 +16382,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcDateTimeSelect
 	 * @generated
 	 */
-	public Adapter createIfcDateTimeSelectAdapter() {
+	public Adapter createIfcDateTimeSelectAdapter()
+	{
 		return null;
 	}
 
@@ -14017,7 +16397,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcDefinedSymbolSelect
 	 * @generated
 	 */
-	public Adapter createIfcDefinedSymbolSelectAdapter() {
+	public Adapter createIfcDefinedSymbolSelectAdapter()
+	{
 		return null;
 	}
 
@@ -14031,7 +16412,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcDerivedMeasureValue
 	 * @generated
 	 */
-	public Adapter createIfcDerivedMeasureValueAdapter() {
+	public Adapter createIfcDerivedMeasureValueAdapter()
+	{
 		return null;
 	}
 
@@ -14045,7 +16427,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcDocumentSelect
 	 * @generated
 	 */
-	public Adapter createIfcDocumentSelectAdapter() {
+	public Adapter createIfcDocumentSelectAdapter()
+	{
 		return null;
 	}
 
@@ -14059,7 +16442,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcDraughtingCalloutElement
 	 * @generated
 	 */
-	public Adapter createIfcDraughtingCalloutElementAdapter() {
+	public Adapter createIfcDraughtingCalloutElementAdapter()
+	{
 		return null;
 	}
 
@@ -14073,7 +16457,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcFillAreaStyleTileShapeSelect
 	 * @generated
 	 */
-	public Adapter createIfcFillAreaStyleTileShapeSelectAdapter() {
+	public Adapter createIfcFillAreaStyleTileShapeSelectAdapter()
+	{
 		return null;
 	}
 
@@ -14087,7 +16472,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcFillStyleSelect
 	 * @generated
 	 */
-	public Adapter createIfcFillStyleSelectAdapter() {
+	public Adapter createIfcFillStyleSelectAdapter()
+	{
 		return null;
 	}
 
@@ -14101,7 +16487,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcGeometricSetSelect
 	 * @generated
 	 */
-	public Adapter createIfcGeometricSetSelectAdapter() {
+	public Adapter createIfcGeometricSetSelectAdapter()
+	{
 		return null;
 	}
 
@@ -14115,7 +16502,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcHatchLineDistanceSelect
 	 * @generated
 	 */
-	public Adapter createIfcHatchLineDistanceSelectAdapter() {
+	public Adapter createIfcHatchLineDistanceSelectAdapter()
+	{
 		return null;
 	}
 
@@ -14129,7 +16517,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcLayeredItem
 	 * @generated
 	 */
-	public Adapter createIfcLayeredItemAdapter() {
+	public Adapter createIfcLayeredItemAdapter()
+	{
 		return null;
 	}
 
@@ -14143,7 +16532,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcLibrarySelect
 	 * @generated
 	 */
-	public Adapter createIfcLibrarySelectAdapter() {
+	public Adapter createIfcLibrarySelectAdapter()
+	{
 		return null;
 	}
 
@@ -14157,7 +16547,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcLightDistributionDataSourceSelect
 	 * @generated
 	 */
-	public Adapter createIfcLightDistributionDataSourceSelectAdapter() {
+	public Adapter createIfcLightDistributionDataSourceSelectAdapter()
+	{
 		return null;
 	}
 
@@ -14171,7 +16562,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcMaterialSelect
 	 * @generated
 	 */
-	public Adapter createIfcMaterialSelectAdapter() {
+	public Adapter createIfcMaterialSelectAdapter()
+	{
 		return null;
 	}
 
@@ -14185,7 +16577,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcMeasureValue
 	 * @generated
 	 */
-	public Adapter createIfcMeasureValueAdapter() {
+	public Adapter createIfcMeasureValueAdapter()
+	{
 		return null;
 	}
 
@@ -14199,7 +16592,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcMetricValueSelect
 	 * @generated
 	 */
-	public Adapter createIfcMetricValueSelectAdapter() {
+	public Adapter createIfcMetricValueSelectAdapter()
+	{
 		return null;
 	}
 
@@ -14213,7 +16607,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcObjectReferenceSelect
 	 * @generated
 	 */
-	public Adapter createIfcObjectReferenceSelectAdapter() {
+	public Adapter createIfcObjectReferenceSelectAdapter()
+	{
 		return null;
 	}
 
@@ -14227,7 +16622,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcOrientationSelect
 	 * @generated
 	 */
-	public Adapter createIfcOrientationSelectAdapter() {
+	public Adapter createIfcOrientationSelectAdapter()
+	{
 		return null;
 	}
 
@@ -14241,7 +16637,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcPointOrVertexPoint
 	 * @generated
 	 */
-	public Adapter createIfcPointOrVertexPointAdapter() {
+	public Adapter createIfcPointOrVertexPointAdapter()
+	{
 		return null;
 	}
 
@@ -14255,7 +16652,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcPresentationStyleSelect
 	 * @generated
 	 */
-	public Adapter createIfcPresentationStyleSelectAdapter() {
+	public Adapter createIfcPresentationStyleSelectAdapter()
+	{
 		return null;
 	}
 
@@ -14269,7 +16667,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcShell
 	 * @generated
 	 */
-	public Adapter createIfcShellAdapter() {
+	public Adapter createIfcShellAdapter()
+	{
 		return null;
 	}
 
@@ -14283,7 +16682,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcSimpleValue
 	 * @generated
 	 */
-	public Adapter createIfcSimpleValueAdapter() {
+	public Adapter createIfcSimpleValueAdapter()
+	{
 		return null;
 	}
 
@@ -14297,7 +16697,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcSizeSelect
 	 * @generated
 	 */
-	public Adapter createIfcSizeSelectAdapter() {
+	public Adapter createIfcSizeSelectAdapter()
+	{
 		return null;
 	}
 
@@ -14311,7 +16712,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcSpecularHighlightSelect
 	 * @generated
 	 */
-	public Adapter createIfcSpecularHighlightSelectAdapter() {
+	public Adapter createIfcSpecularHighlightSelectAdapter()
+	{
 		return null;
 	}
 
@@ -14325,7 +16727,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcStructuralActivityAssignmentSelect
 	 * @generated
 	 */
-	public Adapter createIfcStructuralActivityAssignmentSelectAdapter() {
+	public Adapter createIfcStructuralActivityAssignmentSelectAdapter()
+	{
 		return null;
 	}
 
@@ -14339,7 +16742,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcSurfaceOrFaceSurface
 	 * @generated
 	 */
-	public Adapter createIfcSurfaceOrFaceSurfaceAdapter() {
+	public Adapter createIfcSurfaceOrFaceSurfaceAdapter()
+	{
 		return null;
 	}
 
@@ -14353,7 +16757,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcSurfaceStyleElementSelect
 	 * @generated
 	 */
-	public Adapter createIfcSurfaceStyleElementSelectAdapter() {
+	public Adapter createIfcSurfaceStyleElementSelectAdapter()
+	{
 		return null;
 	}
 
@@ -14367,7 +16772,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcSymbolStyleSelect
 	 * @generated
 	 */
-	public Adapter createIfcSymbolStyleSelectAdapter() {
+	public Adapter createIfcSymbolStyleSelectAdapter()
+	{
 		return null;
 	}
 
@@ -14381,7 +16787,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcTextFontSelect
 	 * @generated
 	 */
-	public Adapter createIfcTextFontSelectAdapter() {
+	public Adapter createIfcTextFontSelectAdapter()
+	{
 		return null;
 	}
 
@@ -14395,7 +16802,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcTextStyleSelect
 	 * @generated
 	 */
-	public Adapter createIfcTextStyleSelectAdapter() {
+	public Adapter createIfcTextStyleSelectAdapter()
+	{
 		return null;
 	}
 
@@ -14409,7 +16817,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcTrimmingSelect
 	 * @generated
 	 */
-	public Adapter createIfcTrimmingSelectAdapter() {
+	public Adapter createIfcTrimmingSelectAdapter()
+	{
 		return null;
 	}
 
@@ -14423,7 +16832,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcUnit
 	 * @generated
 	 */
-	public Adapter createIfcUnitAdapter() {
+	public Adapter createIfcUnitAdapter()
+	{
 		return null;
 	}
 
@@ -14437,7 +16847,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcValue
 	 * @generated
 	 */
-	public Adapter createIfcValueAdapter() {
+	public Adapter createIfcValueAdapter()
+	{
 		return null;
 	}
 
@@ -14451,7 +16862,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.ifc2x3.IfcVectorOrDirection
 	 * @generated
 	 */
-	public Adapter createIfcVectorOrDirectionAdapter() {
+	public Adapter createIfcVectorOrDirectionAdapter()
+	{
 		return null;
 	}
 
@@ -14463,7 +16875,8 @@ public class Ifc2x3AdapterFactory extends AdapterFactoryImpl {
 	 * @return the new adapter.
 	 * @generated
 	 */
-	public Adapter createEObjectAdapter() {
+	public Adapter createEObjectAdapter()
+	{
 		return null;
 	}
 

@@ -7,19 +7,65 @@
 package org.bimserver.models.store.impl;
 
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
+import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IdEObjectImpl;
 
-import org.bimserver.models.store.ObjectState;
-import org.bimserver.models.store.Project;
-import org.bimserver.models.store.Revision;
-import org.bimserver.models.store.StorePackage;
-import org.bimserver.models.store.User;
-import org.bimserver.models.store.UserType;
+import org.bimserver.models.ifc2x3.Ifc2x3Package;
+
+import org.bimserver.models.ifc2x3.impl.Ifc2x3PackageImpl;
+
+import org.bimserver.models.log.LogPackage;
+
+import org.bimserver.models.log.impl.LogPackageImpl;
+
+import org.bimserver.models.store.*;
+
+import org.bimserver.models.store.impl.CheckoutImpl;
+import org.bimserver.models.store.impl.ClashDetectionSettingsImpl;
+import org.bimserver.models.store.impl.ClashImpl;
+import org.bimserver.models.store.impl.ConcreteRevisionImpl;
+import org.bimserver.models.store.impl.EidClashImpl;
+import org.bimserver.models.store.impl.GeoTagImpl;
+import org.bimserver.models.store.impl.GuidClashImpl;
+import org.bimserver.models.store.impl.IgnoreFileImpl;
+import org.bimserver.models.store.impl.ProjectImpl;
+import org.bimserver.models.store.impl.RevisionImpl;
+import org.bimserver.models.store.impl.SerializerImpl;
+import org.bimserver.models.store.impl.SettingsImpl;
+import org.bimserver.models.store.impl.UserImpl;
+
+import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.notify.Notifier;
+
+import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EFactory;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
+
+import org.eclipse.emf.ecore.impl.EFactoryImpl;
+import org.eclipse.emf.ecore.impl.EPackageImpl;
+
+import org.eclipse.emf.ecore.plugin.EcorePlugin;
+
+import org.eclipse.emf.ecore.resource.Resource;
+
+import org.eclipse.emf.ecore.resource.impl.ResourceFactoryImpl;
+
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
+
+import org.eclipse.emf.ecore.xmi.util.XMLProcessor;
 
 /**
  * <!-- begin-user-doc -->
@@ -45,13 +91,15 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class UserImpl extends IdEObjectImpl implements User {
+public class UserImpl extends IdEObjectImpl implements User
+{
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected UserImpl() {
+	protected UserImpl()
+	{
 		super();
 	}
 
@@ -61,7 +109,8 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return StorePackage.Literals.USER;
 	}
 
@@ -71,7 +120,8 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 * @generated
 	 */
 	@Override
-	protected int eStaticFeatureCount() {
+	protected int eStaticFeatureCount()
+	{
 		return 0;
 	}
 
@@ -80,7 +130,8 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getName() {
+	public String getName()
+	{
 		return (String)eGet(StorePackage.Literals.USER__NAME, true);
 	}
 
@@ -89,7 +140,8 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setName(String newName) {
+	public void setName(String newName)
+	{
 		eSet(StorePackage.Literals.USER__NAME, newName);
 	}
 
@@ -98,7 +150,8 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getPassword() {
+	public String getPassword()
+	{
 		return (String)eGet(StorePackage.Literals.USER__PASSWORD, true);
 	}
 
@@ -107,7 +160,8 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPassword(String newPassword) {
+	public void setPassword(String newPassword)
+	{
 		eSet(StorePackage.Literals.USER__PASSWORD, newPassword);
 	}
 
@@ -117,7 +171,8 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	public EList<Project> getHasRightsOn() {
+	public EList<Project> getHasRightsOn()
+	{
 		return (EList<Project>)eGet(StorePackage.Literals.USER__HAS_RIGHTS_ON, true);
 	}
 
@@ -127,7 +182,8 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	public EList<Revision> getRevisions() {
+	public EList<Revision> getRevisions()
+	{
 		return (EList<Revision>)eGet(StorePackage.Literals.USER__REVISIONS, true);
 	}
 
@@ -136,7 +192,8 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ObjectState getState() {
+	public ObjectState getState()
+	{
 		return (ObjectState)eGet(StorePackage.Literals.USER__STATE, true);
 	}
 
@@ -145,7 +202,8 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setState(ObjectState newState) {
+	public void setState(ObjectState newState)
+	{
 		eSet(StorePackage.Literals.USER__STATE, newState);
 	}
 
@@ -154,7 +212,8 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Date getCreatedOn() {
+	public Date getCreatedOn()
+	{
 		return (Date)eGet(StorePackage.Literals.USER__CREATED_ON, true);
 	}
 
@@ -163,7 +222,8 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setCreatedOn(Date newCreatedOn) {
+	public void setCreatedOn(Date newCreatedOn)
+	{
 		eSet(StorePackage.Literals.USER__CREATED_ON, newCreatedOn);
 	}
 
@@ -172,7 +232,8 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public User getCreatedBy() {
+	public User getCreatedBy()
+	{
 		return (User)eGet(StorePackage.Literals.USER__CREATED_BY, true);
 	}
 
@@ -181,7 +242,8 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setCreatedBy(User newCreatedBy) {
+	public void setCreatedBy(User newCreatedBy)
+	{
 		eSet(StorePackage.Literals.USER__CREATED_BY, newCreatedBy);
 	}
 
@@ -190,7 +252,8 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public UserType getUserType() {
+	public UserType getUserType()
+	{
 		return (UserType)eGet(StorePackage.Literals.USER__USER_TYPE, true);
 	}
 
@@ -199,7 +262,8 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setUserType(UserType newUserType) {
+	public void setUserType(UserType newUserType)
+	{
 		eSet(StorePackage.Literals.USER__USER_TYPE, newUserType);
 	}
 
@@ -208,7 +272,8 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getUsername() {
+	public String getUsername()
+	{
 		return (String)eGet(StorePackage.Literals.USER__USERNAME, true);
 	}
 
@@ -217,7 +282,8 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setUsername(String newUsername) {
+	public void setUsername(String newUsername)
+	{
 		eSet(StorePackage.Literals.USER__USERNAME, newUsername);
 	}
 
@@ -226,7 +292,8 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Date getLastSeen() {
+	public Date getLastSeen()
+	{
 		return (Date)eGet(StorePackage.Literals.USER__LAST_SEEN, true);
 	}
 
@@ -235,7 +302,8 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLastSeen(Date newLastSeen) {
+	public void setLastSeen(Date newLastSeen)
+	{
 		eSet(StorePackage.Literals.USER__LAST_SEEN, newLastSeen);
 	}
 
@@ -244,7 +312,8 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getValidationToken() {
+	public String getValidationToken()
+	{
 		return (String)eGet(StorePackage.Literals.USER__VALIDATION_TOKEN, true);
 	}
 
@@ -253,7 +322,8 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setValidationToken(String newValidationToken) {
+	public void setValidationToken(String newValidationToken)
+	{
 		eSet(StorePackage.Literals.USER__VALIDATION_TOKEN, newValidationToken);
 	}
 
@@ -262,7 +332,8 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Date getValidationTokenCreated() {
+	public Date getValidationTokenCreated()
+	{
 		return (Date)eGet(StorePackage.Literals.USER__VALIDATION_TOKEN_CREATED, true);
 	}
 
@@ -271,7 +342,8 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setValidationTokenCreated(Date newValidationTokenCreated) {
+	public void setValidationTokenCreated(Date newValidationTokenCreated)
+	{
 		eSet(StorePackage.Literals.USER__VALIDATION_TOKEN_CREATED, newValidationTokenCreated);
 	}
 

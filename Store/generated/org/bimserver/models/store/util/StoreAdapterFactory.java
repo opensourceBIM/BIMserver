@@ -6,14 +6,48 @@
  */
 package org.bimserver.models.store.util;
 
+import org.bimserver.models.ifc2x3.Ifc2x3Package;
+
+import org.bimserver.models.ifc2x3.impl.Ifc2x3PackageImpl;
+
+import org.bimserver.models.log.LogPackage;
+
+import org.bimserver.models.log.impl.LogPackageImpl;
+
 import org.bimserver.models.store.*;
+
+import org.bimserver.models.store.impl.CheckoutImpl;
+import org.bimserver.models.store.impl.ClashDetectionSettingsImpl;
+import org.bimserver.models.store.impl.ClashImpl;
+import org.bimserver.models.store.impl.ConcreteRevisionImpl;
+import org.bimserver.models.store.impl.EidClashImpl;
+import org.bimserver.models.store.impl.GeoTagImpl;
+import org.bimserver.models.store.impl.GuidClashImpl;
+import org.bimserver.models.store.impl.IgnoreFileImpl;
+import org.bimserver.models.store.impl.ProjectImpl;
+import org.bimserver.models.store.impl.RevisionImpl;
+import org.bimserver.models.store.impl.SerializerImpl;
+import org.bimserver.models.store.impl.SettingsImpl;
+import org.bimserver.models.store.impl.UserImpl;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
+
+import org.eclipse.emf.ecore.impl.EFactoryImpl;
+import org.eclipse.emf.ecore.impl.EPackageImpl;
+
+import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,7 +57,8 @@ import org.eclipse.emf.ecore.EObject;
  * @see org.bimserver.models.store.StorePackage
  * @generated
  */
-public class StoreAdapterFactory extends AdapterFactoryImpl {
+public class StoreAdapterFactory extends AdapterFactoryImpl
+{
 	/**
 	 * The cached model package.
 	 * <!-- begin-user-doc -->
@@ -38,8 +73,10 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public StoreAdapterFactory() {
-		if (modelPackage == null) {
+	public StoreAdapterFactory()
+	{
+		if (modelPackage == null)
+		{
 			modelPackage = StorePackage.eINSTANCE;
 		}
 	}
@@ -53,11 +90,14 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	@Override
-	public boolean isFactoryForType(Object object) {
-		if (object == modelPackage) {
+	public boolean isFactoryForType(Object object)
+	{
+		if (object == modelPackage)
+		{
 			return true;
 		}
-		if (object instanceof EObject) {
+		if (object instanceof EObject)
+		{
 			return ((EObject)object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
@@ -70,61 +110,76 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	protected StoreSwitch<Adapter> modelSwitch =
-		new StoreSwitch<Adapter>() {
+		new StoreSwitch<Adapter>()
+		{
 			@Override
-			public Adapter caseProject(Project object) {
+			public Adapter caseProject(Project object)
+			{
 				return createProjectAdapter();
 			}
 			@Override
-			public Adapter caseUser(User object) {
+			public Adapter caseUser(User object)
+			{
 				return createUserAdapter();
 			}
 			@Override
-			public Adapter caseClash(Clash object) {
+			public Adapter caseClash(Clash object)
+			{
 				return createClashAdapter();
 			}
 			@Override
-			public Adapter caseEidClash(EidClash object) {
+			public Adapter caseEidClash(EidClash object)
+			{
 				return createEidClashAdapter();
 			}
 			@Override
-			public Adapter caseGuidClash(GuidClash object) {
+			public Adapter caseGuidClash(GuidClash object)
+			{
 				return createGuidClashAdapter();
 			}
 			@Override
-			public Adapter caseClashDetectionSettings(ClashDetectionSettings object) {
+			public Adapter caseClashDetectionSettings(ClashDetectionSettings object)
+			{
 				return createClashDetectionSettingsAdapter();
 			}
 			@Override
-			public Adapter caseRevision(Revision object) {
+			public Adapter caseRevision(Revision object)
+			{
 				return createRevisionAdapter();
 			}
 			@Override
-			public Adapter caseConcreteRevision(ConcreteRevision object) {
+			public Adapter caseConcreteRevision(ConcreteRevision object)
+			{
 				return createConcreteRevisionAdapter();
 			}
 			@Override
-			public Adapter caseGeoTag(GeoTag object) {
+			public Adapter caseGeoTag(GeoTag object)
+			{
 				return createGeoTagAdapter();
 			}
 			@Override
-			public Adapter caseCheckout(Checkout object) {
+			public Adapter caseCheckout(Checkout object)
+			{
 				return createCheckoutAdapter();
 			}
 			@Override
-			public Adapter caseSettings(Settings object) {
+			public Adapter caseSettings(Settings object)
+			{
 				return createSettingsAdapter();
 			}
 			@Override
-			public Adapter caseSerializer(Serializer object) {
+			public Adapter caseSerializer(Serializer object)
+			{
 				return createSerializerAdapter();
 			}
 			@Override
-			public Adapter caseIgnoreFile(IgnoreFile object) {
+			public Adapter caseIgnoreFile(IgnoreFile object)
+			{
 				return createIgnoreFileAdapter();
 			}
 			@Override
-			public Adapter defaultCase(EObject object) {
+			public Adapter defaultCase(EObject object)
+			{
 				return createEObjectAdapter();
 			}
 		};
@@ -138,7 +193,8 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	@Override
-	public Adapter createAdapter(Notifier target) {
+	public Adapter createAdapter(Notifier target)
+	{
 		return modelSwitch.doSwitch((EObject)target);
 	}
 
@@ -153,7 +209,8 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.store.Project
 	 * @generated
 	 */
-	public Adapter createProjectAdapter() {
+	public Adapter createProjectAdapter()
+	{
 		return null;
 	}
 
@@ -167,7 +224,8 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.store.User
 	 * @generated
 	 */
-	public Adapter createUserAdapter() {
+	public Adapter createUserAdapter()
+	{
 		return null;
 	}
 
@@ -181,7 +239,8 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.store.Clash
 	 * @generated
 	 */
-	public Adapter createClashAdapter() {
+	public Adapter createClashAdapter()
+	{
 		return null;
 	}
 
@@ -195,7 +254,8 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.store.EidClash
 	 * @generated
 	 */
-	public Adapter createEidClashAdapter() {
+	public Adapter createEidClashAdapter()
+	{
 		return null;
 	}
 
@@ -209,7 +269,8 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.store.GuidClash
 	 * @generated
 	 */
-	public Adapter createGuidClashAdapter() {
+	public Adapter createGuidClashAdapter()
+	{
 		return null;
 	}
 
@@ -223,7 +284,8 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.store.ClashDetectionSettings
 	 * @generated
 	 */
-	public Adapter createClashDetectionSettingsAdapter() {
+	public Adapter createClashDetectionSettingsAdapter()
+	{
 		return null;
 	}
 
@@ -237,7 +299,8 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.store.Revision
 	 * @generated
 	 */
-	public Adapter createRevisionAdapter() {
+	public Adapter createRevisionAdapter()
+	{
 		return null;
 	}
 
@@ -251,7 +314,8 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.store.ConcreteRevision
 	 * @generated
 	 */
-	public Adapter createConcreteRevisionAdapter() {
+	public Adapter createConcreteRevisionAdapter()
+	{
 		return null;
 	}
 
@@ -265,7 +329,8 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.store.GeoTag
 	 * @generated
 	 */
-	public Adapter createGeoTagAdapter() {
+	public Adapter createGeoTagAdapter()
+	{
 		return null;
 	}
 
@@ -279,7 +344,8 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.store.Checkout
 	 * @generated
 	 */
-	public Adapter createCheckoutAdapter() {
+	public Adapter createCheckoutAdapter()
+	{
 		return null;
 	}
 
@@ -293,7 +359,8 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.store.Settings
 	 * @generated
 	 */
-	public Adapter createSettingsAdapter() {
+	public Adapter createSettingsAdapter()
+	{
 		return null;
 	}
 
@@ -307,7 +374,8 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.store.Serializer
 	 * @generated
 	 */
-	public Adapter createSerializerAdapter() {
+	public Adapter createSerializerAdapter()
+	{
 		return null;
 	}
 
@@ -321,7 +389,8 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 	 * @see org.bimserver.models.store.IgnoreFile
 	 * @generated
 	 */
-	public Adapter createIgnoreFileAdapter() {
+	public Adapter createIgnoreFileAdapter()
+	{
 		return null;
 	}
 
@@ -333,7 +402,8 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 	 * @return the new adapter.
 	 * @generated
 	 */
-	public Adapter createEObjectAdapter() {
+	public Adapter createEObjectAdapter()
+	{
 		return null;
 	}
 

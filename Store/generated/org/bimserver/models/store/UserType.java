@@ -8,9 +8,67 @@ package org.bimserver.models.store;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
+import org.bimserver.emf.IdEObject;
+import org.bimserver.emf.IdEObjectImpl;
+
+import org.bimserver.models.ifc2x3.Ifc2x3Package;
+
+import org.bimserver.models.ifc2x3.impl.Ifc2x3PackageImpl;
+
+import org.bimserver.models.log.LogPackage;
+
+import org.bimserver.models.log.impl.LogPackageImpl;
+
+import org.bimserver.models.store.*;
+
+import org.bimserver.models.store.impl.CheckoutImpl;
+import org.bimserver.models.store.impl.ClashDetectionSettingsImpl;
+import org.bimserver.models.store.impl.ClashImpl;
+import org.bimserver.models.store.impl.ConcreteRevisionImpl;
+import org.bimserver.models.store.impl.EidClashImpl;
+import org.bimserver.models.store.impl.GeoTagImpl;
+import org.bimserver.models.store.impl.GuidClashImpl;
+import org.bimserver.models.store.impl.IgnoreFileImpl;
+import org.bimserver.models.store.impl.ProjectImpl;
+import org.bimserver.models.store.impl.RevisionImpl;
+import org.bimserver.models.store.impl.SerializerImpl;
+import org.bimserver.models.store.impl.SettingsImpl;
+import org.bimserver.models.store.impl.UserImpl;
+
+import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.notify.Notifier;
+
+import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
+
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.Enumerator;
+import org.eclipse.emf.common.util.URI;
+
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EFactory;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
+
+import org.eclipse.emf.ecore.impl.EFactoryImpl;
+import org.eclipse.emf.ecore.impl.EPackageImpl;
+
+import org.eclipse.emf.ecore.plugin.EcorePlugin;
+
+import org.eclipse.emf.ecore.resource.Resource;
+
+import org.eclipse.emf.ecore.resource.impl.ResourceFactoryImpl;
+
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
+
+import org.eclipse.emf.ecore.xmi.util.XMLProcessor;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,44 +79,47 @@ import org.eclipse.emf.common.util.Enumerator;
  * @model
  * @generated
  */
-public enum UserType implements Enumerator {
+public enum UserType implements Enumerator
+{
 	/**
 	 * The '<em><b>SYSTEM</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #SYSTEM_VALUE
+	 * @see #SYSTEM
 	 * @generated
 	 * @ordered
 	 */
-	SYSTEM(0, "SYSTEM", "SYSTEM"), /**
+	SYSTEM_LITERAL(0, "SYSTEM", "SYSTEM"),
+
+	/**
 	 * The '<em><b>ADMIN</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #ADMIN_VALUE
+	 * @see #ADMIN
 	 * @generated
 	 * @ordered
 	 */
-	ADMIN(1, "ADMIN", "ADMIN"),
+	ADMIN_LITERAL(1, "ADMIN", "ADMIN"),
 
 	/**
 	 * The '<em><b>USER</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #USER_VALUE
+	 * @see #USER
 	 * @generated
 	 * @ordered
 	 */
-	USER(2, "USER", "USER"),
+	USER_LITERAL(2, "USER", "USER"),
 
 	/**
 	 * The '<em><b>ANONYMOUS</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #ANONYMOUS_VALUE
+	 * @see #ANONYMOUS
 	 * @generated
 	 * @ordered
 	 */
-	ANONYMOUS(3, "ANONYMOUS", "ANONYMOUS");
+	ANONYMOUS_LITERAL(3, "ANONYMOUS", "ANONYMOUS");
 
 	/**
 	 * The '<em><b>SYSTEM</b></em>' literal value.
@@ -68,12 +129,12 @@ public enum UserType implements Enumerator {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #SYSTEM
+	 * @see #SYSTEM_LITERAL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SYSTEM_VALUE = 0;
+	public static final int SYSTEM = 0;
 
 	/**
 	 * The '<em><b>ADMIN</b></em>' literal value.
@@ -83,12 +144,12 @@ public enum UserType implements Enumerator {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ADMIN
+	 * @see #ADMIN_LITERAL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ADMIN_VALUE = 1;
+	public static final int ADMIN = 1;
 
 	/**
 	 * The '<em><b>USER</b></em>' literal value.
@@ -98,12 +159,12 @@ public enum UserType implements Enumerator {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #USER
+	 * @see #USER_LITERAL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USER_VALUE = 2;
+	public static final int USER = 2;
 
 	/**
 	 * The '<em><b>ANONYMOUS</b></em>' literal value.
@@ -113,12 +174,12 @@ public enum UserType implements Enumerator {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ANONYMOUS
+	 * @see #ANONYMOUS_LITERAL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ANONYMOUS_VALUE = 3;
+	public static final int ANONYMOUS = 3;
 
 	/**
 	 * An array of all the '<em><b>User Type</b></em>' enumerators.
@@ -127,11 +188,12 @@ public enum UserType implements Enumerator {
 	 * @generated
 	 */
 	private static final UserType[] VALUES_ARRAY =
-		new UserType[] {
-			SYSTEM,
-			ADMIN,
-			USER,
-			ANONYMOUS,
+		new UserType[]
+		{
+			SYSTEM_LITERAL,
+			ADMIN_LITERAL,
+			USER_LITERAL,
+			ANONYMOUS_LITERAL,
 		};
 
 	/**
@@ -148,10 +210,13 @@ public enum UserType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static UserType get(String literal) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+	public static UserType get(String literal)
+	{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i)
+		{
 			UserType result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal)) {
+			if (result.toString().equals(literal))
+			{
 				return result;
 			}
 		}
@@ -164,10 +229,13 @@ public enum UserType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static UserType getByName(String name) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+	public static UserType getByName(String name)
+	{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i)
+		{
 			UserType result = VALUES_ARRAY[i];
-			if (result.getName().equals(name)) {
+			if (result.getName().equals(name))
+			{
 				return result;
 			}
 		}
@@ -180,12 +248,14 @@ public enum UserType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static UserType get(int value) {
-		switch (value) {
-			case SYSTEM_VALUE: return SYSTEM;
-			case ADMIN_VALUE: return ADMIN;
-			case USER_VALUE: return USER;
-			case ANONYMOUS_VALUE: return ANONYMOUS;
+	public static UserType get(int value)
+	{
+		switch (value)
+		{
+			case SYSTEM: return SYSTEM_LITERAL;
+			case ADMIN: return ADMIN_LITERAL;
+			case USER: return USER_LITERAL;
+			case ANONYMOUS: return ANONYMOUS_LITERAL;
 		}
 		return null;
 	}
@@ -217,7 +287,8 @@ public enum UserType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private UserType(int value, String name, String literal) {
+	private UserType(int value, String name, String literal)
+	{
 		this.value = value;
 		this.name = name;
 		this.literal = literal;
@@ -228,7 +299,8 @@ public enum UserType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getValue() {
+	public int getValue()
+	{
 	  return value;
 	}
 
@@ -237,7 +309,8 @@ public enum UserType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getName() {
+	public String getName()
+	{
 	  return name;
 	}
 
@@ -246,7 +319,8 @@ public enum UserType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getLiteral() {
+	public String getLiteral()
+	{
 	  return literal;
 	}
 
@@ -257,7 +331,8 @@ public enum UserType implements Enumerator {
 	 * @generated
 	 */
 	@Override
-	public String toString() {
+	public String toString()
+	{
 		return literal;
 	}
 	

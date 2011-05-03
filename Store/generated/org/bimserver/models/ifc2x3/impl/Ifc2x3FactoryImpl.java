@@ -6,16 +6,821 @@
  */
 package org.bimserver.models.ifc2x3.impl;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+
+import org.bimserver.emf.IdEObject;
+import org.bimserver.emf.IdEObjectImpl;
+
 import org.bimserver.models.ifc2x3.*;
 
+import org.bimserver.models.ifc2x3.impl.Ifc2DCompositeCurveImpl;
+import org.bimserver.models.ifc2x3.impl.Ifc2x3PackageImpl;
+import org.bimserver.models.ifc2x3.impl.IfcAbsorbedDoseMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcAccelerationMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcActionRequestImpl;
+import org.bimserver.models.ifc2x3.impl.IfcActorImpl;
+import org.bimserver.models.ifc2x3.impl.IfcActorRoleImpl;
+import org.bimserver.models.ifc2x3.impl.IfcActuatorTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcAddressImpl;
+import org.bimserver.models.ifc2x3.impl.IfcAirTerminalBoxTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcAirTerminalTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcAirToAirHeatRecoveryTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcAlarmTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcAmountOfSubstanceMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcAngularDimensionImpl;
+import org.bimserver.models.ifc2x3.impl.IfcAngularVelocityMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcAnnotationCurveOccurrenceImpl;
+import org.bimserver.models.ifc2x3.impl.IfcAnnotationFillAreaImpl;
+import org.bimserver.models.ifc2x3.impl.IfcAnnotationFillAreaOccurrenceImpl;
+import org.bimserver.models.ifc2x3.impl.IfcAnnotationImpl;
+import org.bimserver.models.ifc2x3.impl.IfcAnnotationOccurrenceImpl;
+import org.bimserver.models.ifc2x3.impl.IfcAnnotationSurfaceImpl;
+import org.bimserver.models.ifc2x3.impl.IfcAnnotationSurfaceOccurrenceImpl;
+import org.bimserver.models.ifc2x3.impl.IfcAnnotationSymbolOccurrenceImpl;
+import org.bimserver.models.ifc2x3.impl.IfcAnnotationTextOccurrenceImpl;
+import org.bimserver.models.ifc2x3.impl.IfcApplicationImpl;
+import org.bimserver.models.ifc2x3.impl.IfcAppliedValueImpl;
+import org.bimserver.models.ifc2x3.impl.IfcAppliedValueRelationshipImpl;
+import org.bimserver.models.ifc2x3.impl.IfcApprovalActorRelationshipImpl;
+import org.bimserver.models.ifc2x3.impl.IfcApprovalImpl;
+import org.bimserver.models.ifc2x3.impl.IfcApprovalPropertyRelationshipImpl;
+import org.bimserver.models.ifc2x3.impl.IfcApprovalRelationshipImpl;
+import org.bimserver.models.ifc2x3.impl.IfcArbitraryClosedProfileDefImpl;
+import org.bimserver.models.ifc2x3.impl.IfcArbitraryOpenProfileDefImpl;
+import org.bimserver.models.ifc2x3.impl.IfcArbitraryProfileDefWithVoidsImpl;
+import org.bimserver.models.ifc2x3.impl.IfcAreaMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcAssetImpl;
+import org.bimserver.models.ifc2x3.impl.IfcAsymmetricIShapeProfileDefImpl;
+import org.bimserver.models.ifc2x3.impl.IfcAxis1PlacementImpl;
+import org.bimserver.models.ifc2x3.impl.IfcAxis2Placement2DImpl;
+import org.bimserver.models.ifc2x3.impl.IfcAxis2Placement3DImpl;
+import org.bimserver.models.ifc2x3.impl.IfcBSplineCurveImpl;
+import org.bimserver.models.ifc2x3.impl.IfcBeamImpl;
+import org.bimserver.models.ifc2x3.impl.IfcBeamTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcBezierCurveImpl;
+import org.bimserver.models.ifc2x3.impl.IfcBlobTextureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcBlockImpl;
+import org.bimserver.models.ifc2x3.impl.IfcBoilerTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcBooleanClippingResultImpl;
+import org.bimserver.models.ifc2x3.impl.IfcBooleanImpl;
+import org.bimserver.models.ifc2x3.impl.IfcBooleanResultImpl;
+import org.bimserver.models.ifc2x3.impl.IfcBoundaryConditionImpl;
+import org.bimserver.models.ifc2x3.impl.IfcBoundaryEdgeConditionImpl;
+import org.bimserver.models.ifc2x3.impl.IfcBoundaryFaceConditionImpl;
+import org.bimserver.models.ifc2x3.impl.IfcBoundaryNodeConditionImpl;
+import org.bimserver.models.ifc2x3.impl.IfcBoundaryNodeConditionWarpingImpl;
+import org.bimserver.models.ifc2x3.impl.IfcBoundedCurveImpl;
+import org.bimserver.models.ifc2x3.impl.IfcBoundedSurfaceImpl;
+import org.bimserver.models.ifc2x3.impl.IfcBoundingBoxImpl;
+import org.bimserver.models.ifc2x3.impl.IfcBoxedHalfSpaceImpl;
+import org.bimserver.models.ifc2x3.impl.IfcBuildingElementComponentImpl;
+import org.bimserver.models.ifc2x3.impl.IfcBuildingElementImpl;
+import org.bimserver.models.ifc2x3.impl.IfcBuildingElementPartImpl;
+import org.bimserver.models.ifc2x3.impl.IfcBuildingElementProxyImpl;
+import org.bimserver.models.ifc2x3.impl.IfcBuildingElementProxyTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcBuildingElementTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcBuildingImpl;
+import org.bimserver.models.ifc2x3.impl.IfcBuildingStoreyImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCShapeProfileDefImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCableCarrierFittingTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCableCarrierSegmentTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCableSegmentTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCalendarDateImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCartesianPointImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCartesianTransformationOperator2DImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCartesianTransformationOperator2DnonUniformImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCartesianTransformationOperator3DImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCartesianTransformationOperator3DnonUniformImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCartesianTransformationOperatorImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCenterLineProfileDefImpl;
+import org.bimserver.models.ifc2x3.impl.IfcChamferEdgeFeatureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcChillerTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCircleHollowProfileDefImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCircleImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCircleProfileDefImpl;
+import org.bimserver.models.ifc2x3.impl.IfcClassificationImpl;
+import org.bimserver.models.ifc2x3.impl.IfcClassificationItemImpl;
+import org.bimserver.models.ifc2x3.impl.IfcClassificationItemRelationshipImpl;
+import org.bimserver.models.ifc2x3.impl.IfcClassificationNotationFacetImpl;
+import org.bimserver.models.ifc2x3.impl.IfcClassificationNotationImpl;
+import org.bimserver.models.ifc2x3.impl.IfcClassificationReferenceImpl;
+import org.bimserver.models.ifc2x3.impl.IfcClosedShellImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCoilTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcColourRgbImpl;
+import org.bimserver.models.ifc2x3.impl.IfcColourSpecificationImpl;
+import org.bimserver.models.ifc2x3.impl.IfcColumnImpl;
+import org.bimserver.models.ifc2x3.impl.IfcColumnTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcComplexPropertyImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCompositeCurveImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCompositeCurveSegmentImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCompositeProfileDefImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCompressorTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCondenserTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcConditionCriterionImpl;
+import org.bimserver.models.ifc2x3.impl.IfcConditionImpl;
+import org.bimserver.models.ifc2x3.impl.IfcConicImpl;
+import org.bimserver.models.ifc2x3.impl.IfcConnectedFaceSetImpl;
+import org.bimserver.models.ifc2x3.impl.IfcConnectionCurveGeometryImpl;
+import org.bimserver.models.ifc2x3.impl.IfcConnectionGeometryImpl;
+import org.bimserver.models.ifc2x3.impl.IfcConnectionPointEccentricityImpl;
+import org.bimserver.models.ifc2x3.impl.IfcConnectionPointGeometryImpl;
+import org.bimserver.models.ifc2x3.impl.IfcConnectionPortGeometryImpl;
+import org.bimserver.models.ifc2x3.impl.IfcConnectionSurfaceGeometryImpl;
+import org.bimserver.models.ifc2x3.impl.IfcConstraintAggregationRelationshipImpl;
+import org.bimserver.models.ifc2x3.impl.IfcConstraintClassificationRelationshipImpl;
+import org.bimserver.models.ifc2x3.impl.IfcConstraintImpl;
+import org.bimserver.models.ifc2x3.impl.IfcConstraintRelationshipImpl;
+import org.bimserver.models.ifc2x3.impl.IfcConstructionEquipmentResourceImpl;
+import org.bimserver.models.ifc2x3.impl.IfcConstructionMaterialResourceImpl;
+import org.bimserver.models.ifc2x3.impl.IfcConstructionProductResourceImpl;
+import org.bimserver.models.ifc2x3.impl.IfcConstructionResourceImpl;
+import org.bimserver.models.ifc2x3.impl.IfcContextDependentMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcContextDependentUnitImpl;
+import org.bimserver.models.ifc2x3.impl.IfcControlImpl;
+import org.bimserver.models.ifc2x3.impl.IfcControllerTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcConversionBasedUnitImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCooledBeamTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCoolingTowerTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCoordinatedUniversalTimeOffsetImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCostItemImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCostScheduleImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCostValueImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCountMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCoveringImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCoveringTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCraneRailAShapeProfileDefImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCraneRailFShapeProfileDefImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCrewResourceImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCsgPrimitive3DImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCsgSolidImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCurrencyRelationshipImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCurtainWallImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCurtainWallTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCurvatureMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCurveBoundedPlaneImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCurveImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCurveStyleFontAndScalingImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCurveStyleFontImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCurveStyleFontPatternImpl;
+import org.bimserver.models.ifc2x3.impl.IfcCurveStyleImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDamperTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDateAndTimeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDefinedSymbolImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDerivedProfileDefImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDerivedUnitElementImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDerivedUnitImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDescriptiveMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDiameterDimensionImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDimensionCalloutRelationshipImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDimensionCurveDirectedCalloutImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDimensionCurveImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDimensionCurveTerminatorImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDimensionPairImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDimensionalExponentsImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDirectionImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDiscreteAccessoryImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDiscreteAccessoryTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDistributionChamberElementImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDistributionChamberElementTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDistributionControlElementImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDistributionControlElementTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDistributionElementImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDistributionElementTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDistributionFlowElementImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDistributionFlowElementTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDistributionPortImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDocumentElectronicFormatImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDocumentInformationImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDocumentInformationRelationshipImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDocumentReferenceImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDoorImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDoorLiningPropertiesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDoorPanelPropertiesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDoorStyleImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDoseEquivalentMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDraughtingCalloutImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDraughtingCalloutRelationshipImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDraughtingPreDefinedColourImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDraughtingPreDefinedCurveFontImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDraughtingPreDefinedTextFontImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDuctFittingTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDuctSegmentTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDuctSilencerTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcDynamicViscosityMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcEdgeCurveImpl;
+import org.bimserver.models.ifc2x3.impl.IfcEdgeFeatureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcEdgeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcEdgeLoopImpl;
+import org.bimserver.models.ifc2x3.impl.IfcElectricApplianceTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcElectricCapacitanceMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcElectricChargeMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcElectricConductanceMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcElectricCurrentMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcElectricDistributionPointImpl;
+import org.bimserver.models.ifc2x3.impl.IfcElectricFlowStorageDeviceTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcElectricGeneratorTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcElectricHeaterTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcElectricMotorTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcElectricResistanceMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcElectricTimeControlTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcElectricVoltageMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcElectricalBasePropertiesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcElectricalCircuitImpl;
+import org.bimserver.models.ifc2x3.impl.IfcElectricalElementImpl;
+import org.bimserver.models.ifc2x3.impl.IfcElementAssemblyImpl;
+import org.bimserver.models.ifc2x3.impl.IfcElementComponentImpl;
+import org.bimserver.models.ifc2x3.impl.IfcElementComponentTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcElementImpl;
+import org.bimserver.models.ifc2x3.impl.IfcElementQuantityImpl;
+import org.bimserver.models.ifc2x3.impl.IfcElementTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcElementarySurfaceImpl;
+import org.bimserver.models.ifc2x3.impl.IfcEllipseImpl;
+import org.bimserver.models.ifc2x3.impl.IfcEllipseProfileDefImpl;
+import org.bimserver.models.ifc2x3.impl.IfcEnergyConversionDeviceImpl;
+import org.bimserver.models.ifc2x3.impl.IfcEnergyConversionDeviceTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcEnergyMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcEnergyPropertiesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcEnvironmentalImpactValueImpl;
+import org.bimserver.models.ifc2x3.impl.IfcEquipmentElementImpl;
+import org.bimserver.models.ifc2x3.impl.IfcEquipmentStandardImpl;
+import org.bimserver.models.ifc2x3.impl.IfcEvaporativeCoolerTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcEvaporatorTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcExtendedMaterialPropertiesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcExternalReferenceImpl;
+import org.bimserver.models.ifc2x3.impl.IfcExternallyDefinedHatchStyleImpl;
+import org.bimserver.models.ifc2x3.impl.IfcExternallyDefinedSurfaceStyleImpl;
+import org.bimserver.models.ifc2x3.impl.IfcExternallyDefinedSymbolImpl;
+import org.bimserver.models.ifc2x3.impl.IfcExternallyDefinedTextFontImpl;
+import org.bimserver.models.ifc2x3.impl.IfcExtrudedAreaSolidImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFaceBasedSurfaceModelImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFaceBoundImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFaceImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFaceOuterBoundImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFaceSurfaceImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFacetedBrepImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFacetedBrepWithVoidsImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFailureConnectionConditionImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFanTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFastenerImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFastenerTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFeatureElementAdditionImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFeatureElementImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFeatureElementSubtractionImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFillAreaStyleHatchingImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFillAreaStyleImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFillAreaStyleTileSymbolWithStyleImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFillAreaStyleTilesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFilterTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFireSuppressionTerminalTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFlowControllerImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFlowControllerTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFlowFittingImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFlowFittingTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFlowInstrumentTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFlowMeterTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFlowMovingDeviceImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFlowMovingDeviceTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFlowSegmentImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFlowSegmentTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFlowStorageDeviceImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFlowStorageDeviceTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFlowTerminalImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFlowTerminalTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFlowTreatmentDeviceImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFlowTreatmentDeviceTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFluidFlowPropertiesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFootingImpl;
+import org.bimserver.models.ifc2x3.impl.IfcForceMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFrequencyMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFuelPropertiesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFurnishingElementImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFurnishingElementTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFurnitureStandardImpl;
+import org.bimserver.models.ifc2x3.impl.IfcFurnitureTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcGasTerminalTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcGeneralMaterialPropertiesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcGeneralProfilePropertiesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcGeometricCurveSetImpl;
+import org.bimserver.models.ifc2x3.impl.IfcGeometricRepresentationContextImpl;
+import org.bimserver.models.ifc2x3.impl.IfcGeometricRepresentationItemImpl;
+import org.bimserver.models.ifc2x3.impl.IfcGeometricRepresentationSubContextImpl;
+import org.bimserver.models.ifc2x3.impl.IfcGeometricSetImpl;
+import org.bimserver.models.ifc2x3.impl.IfcGloballyUniqueIdImpl;
+import org.bimserver.models.ifc2x3.impl.IfcGridAxisImpl;
+import org.bimserver.models.ifc2x3.impl.IfcGridImpl;
+import org.bimserver.models.ifc2x3.impl.IfcGridPlacementImpl;
+import org.bimserver.models.ifc2x3.impl.IfcGroupImpl;
+import org.bimserver.models.ifc2x3.impl.IfcHalfSpaceSolidImpl;
+import org.bimserver.models.ifc2x3.impl.IfcHeatExchangerTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcHeatFluxDensityMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcHeatingValueMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcHumidifierTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcHygroscopicMaterialPropertiesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcIShapeProfileDefImpl;
+import org.bimserver.models.ifc2x3.impl.IfcIdentifierImpl;
+import org.bimserver.models.ifc2x3.impl.IfcIlluminanceMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcImageTextureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcInductanceMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcIntegerCountRateMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcIntegerImpl;
+import org.bimserver.models.ifc2x3.impl.IfcInventoryImpl;
+import org.bimserver.models.ifc2x3.impl.IfcIonConcentrationMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcIrregularTimeSeriesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcIrregularTimeSeriesValueImpl;
+import org.bimserver.models.ifc2x3.impl.IfcIsothermalMoistureCapacityMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcJunctionBoxTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcKinematicViscosityMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcLShapeProfileDefImpl;
+import org.bimserver.models.ifc2x3.impl.IfcLabelImpl;
+import org.bimserver.models.ifc2x3.impl.IfcLaborResourceImpl;
+import org.bimserver.models.ifc2x3.impl.IfcLampTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcLengthMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcLibraryInformationImpl;
+import org.bimserver.models.ifc2x3.impl.IfcLibraryReferenceImpl;
+import org.bimserver.models.ifc2x3.impl.IfcLightDistributionDataImpl;
+import org.bimserver.models.ifc2x3.impl.IfcLightFixtureTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcLightIntensityDistributionImpl;
+import org.bimserver.models.ifc2x3.impl.IfcLightSourceAmbientImpl;
+import org.bimserver.models.ifc2x3.impl.IfcLightSourceDirectionalImpl;
+import org.bimserver.models.ifc2x3.impl.IfcLightSourceGoniometricImpl;
+import org.bimserver.models.ifc2x3.impl.IfcLightSourceImpl;
+import org.bimserver.models.ifc2x3.impl.IfcLightSourcePositionalImpl;
+import org.bimserver.models.ifc2x3.impl.IfcLightSourceSpotImpl;
+import org.bimserver.models.ifc2x3.impl.IfcLineImpl;
+import org.bimserver.models.ifc2x3.impl.IfcLinearDimensionImpl;
+import org.bimserver.models.ifc2x3.impl.IfcLinearForceMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcLinearMomentMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcLinearStiffnessMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcLinearVelocityMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcLocalPlacementImpl;
+import org.bimserver.models.ifc2x3.impl.IfcLocalTimeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcLogicalImpl;
+import org.bimserver.models.ifc2x3.impl.IfcLoopImpl;
+import org.bimserver.models.ifc2x3.impl.IfcLuminousFluxMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcLuminousIntensityDistributionMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcLuminousIntensityMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcMagneticFluxDensityMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcMagneticFluxMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcManifoldSolidBrepImpl;
+import org.bimserver.models.ifc2x3.impl.IfcMappedItemImpl;
+import org.bimserver.models.ifc2x3.impl.IfcMassDensityMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcMassFlowRateMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcMassMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcMassPerLengthMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcMaterialClassificationRelationshipImpl;
+import org.bimserver.models.ifc2x3.impl.IfcMaterialDefinitionRepresentationImpl;
+import org.bimserver.models.ifc2x3.impl.IfcMaterialImpl;
+import org.bimserver.models.ifc2x3.impl.IfcMaterialLayerImpl;
+import org.bimserver.models.ifc2x3.impl.IfcMaterialLayerSetImpl;
+import org.bimserver.models.ifc2x3.impl.IfcMaterialLayerSetUsageImpl;
+import org.bimserver.models.ifc2x3.impl.IfcMaterialListImpl;
+import org.bimserver.models.ifc2x3.impl.IfcMaterialPropertiesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcMeasureWithUnitImpl;
+import org.bimserver.models.ifc2x3.impl.IfcMechanicalConcreteMaterialPropertiesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcMechanicalFastenerImpl;
+import org.bimserver.models.ifc2x3.impl.IfcMechanicalFastenerTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcMechanicalMaterialPropertiesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcMechanicalSteelMaterialPropertiesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcMemberImpl;
+import org.bimserver.models.ifc2x3.impl.IfcMemberTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcMetricImpl;
+import org.bimserver.models.ifc2x3.impl.IfcModulusOfElasticityMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcModulusOfLinearSubgradeReactionMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcModulusOfRotationalSubgradeReactionMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcModulusOfSubgradeReactionMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcMoistureDiffusivityMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcMolecularWeightMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcMomentOfInertiaMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcMonetaryMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcMonetaryUnitImpl;
+import org.bimserver.models.ifc2x3.impl.IfcMotorConnectionTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcMoveImpl;
+import org.bimserver.models.ifc2x3.impl.IfcNamedUnitImpl;
+import org.bimserver.models.ifc2x3.impl.IfcNormalisedRatioMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcNumericMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcObjectDefinitionImpl;
+import org.bimserver.models.ifc2x3.impl.IfcObjectImpl;
+import org.bimserver.models.ifc2x3.impl.IfcObjectPlacementImpl;
+import org.bimserver.models.ifc2x3.impl.IfcObjectiveImpl;
+import org.bimserver.models.ifc2x3.impl.IfcOccupantImpl;
+import org.bimserver.models.ifc2x3.impl.IfcOffsetCurve2DImpl;
+import org.bimserver.models.ifc2x3.impl.IfcOffsetCurve3DImpl;
+import org.bimserver.models.ifc2x3.impl.IfcOneDirectionRepeatFactorImpl;
+import org.bimserver.models.ifc2x3.impl.IfcOpenShellImpl;
+import org.bimserver.models.ifc2x3.impl.IfcOpeningElementImpl;
+import org.bimserver.models.ifc2x3.impl.IfcOpticalMaterialPropertiesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcOrderActionImpl;
+import org.bimserver.models.ifc2x3.impl.IfcOrganizationImpl;
+import org.bimserver.models.ifc2x3.impl.IfcOrganizationRelationshipImpl;
+import org.bimserver.models.ifc2x3.impl.IfcOrientedEdgeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcOutletTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcOwnerHistoryImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPHMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcParameterValueImpl;
+import org.bimserver.models.ifc2x3.impl.IfcParameterizedProfileDefImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPathImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPerformanceHistoryImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPermeableCoveringPropertiesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPermitImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPersonAndOrganizationImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPersonImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPhysicalComplexQuantityImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPhysicalQuantityImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPhysicalSimpleQuantityImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPileImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPipeFittingTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPipeSegmentTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPixelTextureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPlacementImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPlanarBoxImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPlanarExtentImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPlanarForceMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPlaneAngleMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPlaneImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPlateImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPlateTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPointImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPointOnCurveImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPointOnSurfaceImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPolyLoopImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPolygonalBoundedHalfSpaceImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPolylineImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPortImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPositiveLengthMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPositivePlaneAngleMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPositiveRatioMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPostalAddressImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPowerMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPreDefinedColourImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPreDefinedCurveFontImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPreDefinedDimensionSymbolImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPreDefinedItemImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPreDefinedPointMarkerSymbolImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPreDefinedSymbolImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPreDefinedTerminatorSymbolImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPreDefinedTextFontImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPresentationLayerAssignmentImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPresentationLayerWithStyleImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPresentationStyleAssignmentImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPresentationStyleImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPressureMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcProcedureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcProcessImpl;
+import org.bimserver.models.ifc2x3.impl.IfcProductDefinitionShapeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcProductImpl;
+import org.bimserver.models.ifc2x3.impl.IfcProductRepresentationImpl;
+import org.bimserver.models.ifc2x3.impl.IfcProductsOfCombustionPropertiesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcProfileDefImpl;
+import org.bimserver.models.ifc2x3.impl.IfcProfilePropertiesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcProjectImpl;
+import org.bimserver.models.ifc2x3.impl.IfcProjectOrderImpl;
+import org.bimserver.models.ifc2x3.impl.IfcProjectOrderRecordImpl;
+import org.bimserver.models.ifc2x3.impl.IfcProjectionCurveImpl;
+import org.bimserver.models.ifc2x3.impl.IfcProjectionElementImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPropertyBoundedValueImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPropertyConstraintRelationshipImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPropertyDefinitionImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPropertyDependencyRelationshipImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPropertyEnumeratedValueImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPropertyEnumerationImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPropertyImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPropertyListValueImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPropertyReferenceValueImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPropertySetDefinitionImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPropertySetImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPropertySingleValueImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPropertyTableValueImpl;
+import org.bimserver.models.ifc2x3.impl.IfcProtectiveDeviceTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcProxyImpl;
+import org.bimserver.models.ifc2x3.impl.IfcPumpTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcQuantityAreaImpl;
+import org.bimserver.models.ifc2x3.impl.IfcQuantityCountImpl;
+import org.bimserver.models.ifc2x3.impl.IfcQuantityLengthImpl;
+import org.bimserver.models.ifc2x3.impl.IfcQuantityTimeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcQuantityVolumeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcQuantityWeightImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRadioActivityMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRadiusDimensionImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRailingImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRailingTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRampFlightImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRampFlightTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRampImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRatioMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRationalBezierCurveImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRealImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRectangleHollowProfileDefImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRectangleProfileDefImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRectangularPyramidImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRectangularTrimmedSurfaceImpl;
+import org.bimserver.models.ifc2x3.impl.IfcReferencesValueDocumentImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRegularTimeSeriesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcReinforcementBarPropertiesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcReinforcementDefinitionPropertiesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcReinforcingBarImpl;
+import org.bimserver.models.ifc2x3.impl.IfcReinforcingElementImpl;
+import org.bimserver.models.ifc2x3.impl.IfcReinforcingMeshImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelAggregatesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelAssignsImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelAssignsTasksImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelAssignsToActorImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelAssignsToControlImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelAssignsToGroupImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelAssignsToProcessImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelAssignsToProductImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelAssignsToProjectOrderImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelAssignsToResourceImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelAssociatesAppliedValueImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelAssociatesApprovalImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelAssociatesClassificationImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelAssociatesConstraintImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelAssociatesDocumentImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelAssociatesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelAssociatesLibraryImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelAssociatesMaterialImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelAssociatesProfilePropertiesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelConnectsElementsImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelConnectsImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelConnectsPathElementsImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelConnectsPortToElementImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelConnectsPortsImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelConnectsStructuralActivityImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelConnectsStructuralElementImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelConnectsStructuralMemberImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelConnectsWithEccentricityImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelConnectsWithRealizingElementsImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelContainedInSpatialStructureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelCoversBldgElementsImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelCoversSpacesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelDecomposesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelDefinesByPropertiesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelDefinesByTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelDefinesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelFillsElementImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelFlowControlElementsImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelInteractionRequirementsImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelNestsImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelOccupiesSpacesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelOverridesPropertiesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelProjectsElementImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelReferencedInSpatialStructureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelSchedulesCostItemsImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelSequenceImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelServicesBuildingsImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelSpaceBoundaryImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelVoidsElementImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelationshipImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRelaxationImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRepresentationContextImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRepresentationImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRepresentationItemImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRepresentationMapImpl;
+import org.bimserver.models.ifc2x3.impl.IfcResourceImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRevolvedAreaSolidImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRibPlateProfilePropertiesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRightCircularConeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRightCircularCylinderImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRoofImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRootImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRotationalFrequencyMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRotationalMassMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRotationalStiffnessMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRoundedEdgeFeatureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcRoundedRectangleProfileDefImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSIUnitImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSanitaryTerminalTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcScheduleTimeControlImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSectionModulusMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSectionPropertiesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSectionReinforcementPropertiesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSectionalAreaIntegralMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSectionedSpineImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSensorTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcServiceLifeFactorImpl;
+import org.bimserver.models.ifc2x3.impl.IfcServiceLifeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcShapeAspectImpl;
+import org.bimserver.models.ifc2x3.impl.IfcShapeModelImpl;
+import org.bimserver.models.ifc2x3.impl.IfcShapeRepresentationImpl;
+import org.bimserver.models.ifc2x3.impl.IfcShearModulusMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcShellBasedSurfaceModelImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSimplePropertyImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSiteImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSlabImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSlabTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSlippageConnectionConditionImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSolidAngleMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSolidModelImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSoundPowerMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSoundPressureMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSoundPropertiesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSoundValueImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSpaceHeaterTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSpaceImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSpaceProgramImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSpaceThermalLoadPropertiesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSpaceTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSpatialStructureElementImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSpatialStructureElementTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSpecificHeatCapacityMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSpecularExponentImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSpecularRoughnessImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSphereImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStackTerminalTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStairFlightImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStairFlightTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStairImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStructuralActionImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStructuralActivityImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStructuralAnalysisModelImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStructuralConnectionConditionImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStructuralConnectionImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStructuralCurveConnectionImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStructuralCurveMemberImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStructuralCurveMemberVaryingImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStructuralItemImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStructuralLinearActionImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStructuralLinearActionVaryingImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStructuralLoadGroupImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStructuralLoadImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStructuralLoadLinearForceImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStructuralLoadPlanarForceImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStructuralLoadSingleDisplacementDistortionImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStructuralLoadSingleDisplacementImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStructuralLoadSingleForceImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStructuralLoadSingleForceWarpingImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStructuralLoadStaticImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStructuralLoadTemperatureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStructuralMemberImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStructuralPlanarActionImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStructuralPlanarActionVaryingImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStructuralPointActionImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStructuralPointConnectionImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStructuralPointReactionImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStructuralProfilePropertiesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStructuralReactionImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStructuralResultGroupImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStructuralSteelProfilePropertiesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStructuralSurfaceConnectionImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStructuralSurfaceMemberImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStructuralSurfaceMemberVaryingImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStructuredDimensionCalloutImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStyleModelImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStyledItemImpl;
+import org.bimserver.models.ifc2x3.impl.IfcStyledRepresentationImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSubContractResourceImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSubedgeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSurfaceCurveSweptAreaSolidImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSurfaceImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSurfaceOfLinearExtrusionImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSurfaceOfRevolutionImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSurfaceStyleImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSurfaceStyleLightingImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSurfaceStyleRefractionImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSurfaceStyleRenderingImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSurfaceStyleShadingImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSurfaceStyleWithTexturesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSurfaceTextureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSweptAreaSolidImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSweptDiskSolidImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSweptSurfaceImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSwitchingDeviceTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSymbolStyleImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSystemFurnitureElementTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcSystemImpl;
+import org.bimserver.models.ifc2x3.impl.IfcTShapeProfileDefImpl;
+import org.bimserver.models.ifc2x3.impl.IfcTableImpl;
+import org.bimserver.models.ifc2x3.impl.IfcTableRowImpl;
+import org.bimserver.models.ifc2x3.impl.IfcTankTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcTaskImpl;
+import org.bimserver.models.ifc2x3.impl.IfcTelecomAddressImpl;
+import org.bimserver.models.ifc2x3.impl.IfcTemperatureGradientMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcTendonAnchorImpl;
+import org.bimserver.models.ifc2x3.impl.IfcTendonImpl;
+import org.bimserver.models.ifc2x3.impl.IfcTerminatorSymbolImpl;
+import org.bimserver.models.ifc2x3.impl.IfcTextImpl;
+import org.bimserver.models.ifc2x3.impl.IfcTextLiteralImpl;
+import org.bimserver.models.ifc2x3.impl.IfcTextLiteralWithExtentImpl;
+import org.bimserver.models.ifc2x3.impl.IfcTextStyleFontModelImpl;
+import org.bimserver.models.ifc2x3.impl.IfcTextStyleForDefinedFontImpl;
+import org.bimserver.models.ifc2x3.impl.IfcTextStyleImpl;
+import org.bimserver.models.ifc2x3.impl.IfcTextStyleTextModelImpl;
+import org.bimserver.models.ifc2x3.impl.IfcTextStyleWithBoxCharacteristicsImpl;
+import org.bimserver.models.ifc2x3.impl.IfcTextureCoordinateGeneratorImpl;
+import org.bimserver.models.ifc2x3.impl.IfcTextureCoordinateImpl;
+import org.bimserver.models.ifc2x3.impl.IfcTextureMapImpl;
+import org.bimserver.models.ifc2x3.impl.IfcTextureVertexImpl;
+import org.bimserver.models.ifc2x3.impl.IfcThermalAdmittanceMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcThermalConductivityMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcThermalExpansionCoefficientMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcThermalMaterialPropertiesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcThermalResistanceMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcThermalTransmittanceMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcThermodynamicTemperatureMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcTimeMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcTimeSeriesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcTimeSeriesReferenceRelationshipImpl;
+import org.bimserver.models.ifc2x3.impl.IfcTimeSeriesScheduleImpl;
+import org.bimserver.models.ifc2x3.impl.IfcTimeSeriesValueImpl;
+import org.bimserver.models.ifc2x3.impl.IfcTimeStampImpl;
+import org.bimserver.models.ifc2x3.impl.IfcTopologicalRepresentationItemImpl;
+import org.bimserver.models.ifc2x3.impl.IfcTopologyRepresentationImpl;
+import org.bimserver.models.ifc2x3.impl.IfcTorqueMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcTransformerTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcTransportElementImpl;
+import org.bimserver.models.ifc2x3.impl.IfcTransportElementTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcTrapeziumProfileDefImpl;
+import org.bimserver.models.ifc2x3.impl.IfcTrimmedCurveImpl;
+import org.bimserver.models.ifc2x3.impl.IfcTubeBundleTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcTwoDirectionRepeatFactorImpl;
+import org.bimserver.models.ifc2x3.impl.IfcTypeObjectImpl;
+import org.bimserver.models.ifc2x3.impl.IfcTypeProductImpl;
+import org.bimserver.models.ifc2x3.impl.IfcUShapeProfileDefImpl;
+import org.bimserver.models.ifc2x3.impl.IfcUnitAssignmentImpl;
+import org.bimserver.models.ifc2x3.impl.IfcUnitaryEquipmentTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcValveTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcVaporPermeabilityMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcVectorImpl;
+import org.bimserver.models.ifc2x3.impl.IfcVertexBasedTextureMapImpl;
+import org.bimserver.models.ifc2x3.impl.IfcVertexImpl;
+import org.bimserver.models.ifc2x3.impl.IfcVertexLoopImpl;
+import org.bimserver.models.ifc2x3.impl.IfcVertexPointImpl;
+import org.bimserver.models.ifc2x3.impl.IfcVibrationIsolatorTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcVirtualElementImpl;
+import org.bimserver.models.ifc2x3.impl.IfcVirtualGridIntersectionImpl;
+import org.bimserver.models.ifc2x3.impl.IfcVolumeMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcVolumetricFlowRateMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcWallImpl;
+import org.bimserver.models.ifc2x3.impl.IfcWallStandardCaseImpl;
+import org.bimserver.models.ifc2x3.impl.IfcWallTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcWarpingConstantMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcWarpingMomentMeasureImpl;
+import org.bimserver.models.ifc2x3.impl.IfcWasteTerminalTypeImpl;
+import org.bimserver.models.ifc2x3.impl.IfcWaterPropertiesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcWindowImpl;
+import org.bimserver.models.ifc2x3.impl.IfcWindowLiningPropertiesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcWindowPanelPropertiesImpl;
+import org.bimserver.models.ifc2x3.impl.IfcWindowStyleImpl;
+import org.bimserver.models.ifc2x3.impl.IfcWorkControlImpl;
+import org.bimserver.models.ifc2x3.impl.IfcWorkPlanImpl;
+import org.bimserver.models.ifc2x3.impl.IfcWorkScheduleImpl;
+import org.bimserver.models.ifc2x3.impl.IfcZShapeProfileDefImpl;
+import org.bimserver.models.ifc2x3.impl.IfcZoneImpl;
+
+import org.bimserver.models.log.LogPackage;
+
+import org.bimserver.models.log.impl.LogPackageImpl;
+
+import org.bimserver.models.store.*;
+
+import org.bimserver.models.store.impl.CheckoutImpl;
+import org.bimserver.models.store.impl.ClashDetectionSettingsImpl;
+import org.bimserver.models.store.impl.ClashImpl;
+import org.bimserver.models.store.impl.ConcreteRevisionImpl;
+import org.bimserver.models.store.impl.EidClashImpl;
+import org.bimserver.models.store.impl.GeoTagImpl;
+import org.bimserver.models.store.impl.GuidClashImpl;
+import org.bimserver.models.store.impl.IgnoreFileImpl;
+import org.bimserver.models.store.impl.ProjectImpl;
+import org.bimserver.models.store.impl.RevisionImpl;
+import org.bimserver.models.store.impl.SerializerImpl;
+import org.bimserver.models.store.impl.SettingsImpl;
+import org.bimserver.models.store.impl.StorePackageImpl;
+import org.bimserver.models.store.impl.UserImpl;
+
+import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.notify.Notifier;
+
+import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
+
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.Enumerator;
+import org.eclipse.emf.common.util.URI;
+
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
+import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+
+import org.eclipse.emf.ecore.resource.Resource;
+
+import org.eclipse.emf.ecore.resource.impl.ResourceFactoryImpl;
+
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
+
+import org.eclipse.emf.ecore.xmi.util.XMLProcessor;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,21 +828,26 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
  * <!-- end-user-doc -->
  * @generated
  */
-public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
+public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory
+{
 	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static Ifc2x3Factory init() {
-		try {
+	public static Ifc2x3Factory init()
+	{
+		try
+		{
 			Ifc2x3Factory theIfc2x3Factory = (Ifc2x3Factory)EPackage.Registry.INSTANCE.getEFactory("http:///buildingsmart.ifc.ecore"); 
-			if (theIfc2x3Factory != null) {
+			if (theIfc2x3Factory != null)
+			{
 				return theIfc2x3Factory;
 			}
 		}
-		catch (Exception exception) {
+		catch (Exception exception)
+		{
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new Ifc2x3FactoryImpl();
@@ -49,7 +859,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Ifc2x3FactoryImpl() {
+	public Ifc2x3FactoryImpl()
+	{
 		super();
 	}
 
@@ -59,8 +870,10 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * @generated
 	 */
 	@Override
-	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
+	public EObject create(EClass eClass)
+	{
+		switch (eClass.getClassifierID())
+		{
 			case Ifc2x3Package.IFC_ABSORBED_DOSE_MEASURE: return (EObject)createIfcAbsorbedDoseMeasure();
 			case Ifc2x3Package.IFC_ACCELERATION_MEASURE: return (EObject)createIfcAccelerationMeasure();
 			case Ifc2x3Package.IFC_AMOUNT_OF_SUBSTANCE_MEASURE: return (EObject)createIfcAmountOfSubstanceMeasure();
@@ -823,8 +1636,10 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * @generated
 	 */
 	@Override
-	public Object createFromString(EDataType eDataType, String initialValue) {
-		switch (eDataType.getClassifierID()) {
+	public Object createFromString(EDataType eDataType, String initialValue)
+	{
+		switch (eDataType.getClassifierID())
+		{
 			case Ifc2x3Package.TRISTATE:
 				return createTristateFromString(eDataType, initialValue);
 			case Ifc2x3Package.IFC_ACTION_SOURCE_TYPE_ENUM:
@@ -1166,8 +1981,10 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * @generated
 	 */
 	@Override
-	public String convertToString(EDataType eDataType, Object instanceValue) {
-		switch (eDataType.getClassifierID()) {
+	public String convertToString(EDataType eDataType, Object instanceValue)
+	{
+		switch (eDataType.getClassifierID())
+		{
 			case Ifc2x3Package.TRISTATE:
 				return convertTristateToString(eDataType, instanceValue);
 			case Ifc2x3Package.IFC_ACTION_SOURCE_TYPE_ENUM:
@@ -1508,7 +2325,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcAbsorbedDoseMeasure createIfcAbsorbedDoseMeasure() {
+	public IfcAbsorbedDoseMeasure createIfcAbsorbedDoseMeasure()
+	{
 		IfcAbsorbedDoseMeasureImpl ifcAbsorbedDoseMeasure = new IfcAbsorbedDoseMeasureImpl();
 		return ifcAbsorbedDoseMeasure;
 	}
@@ -1518,7 +2336,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcAccelerationMeasure createIfcAccelerationMeasure() {
+	public IfcAccelerationMeasure createIfcAccelerationMeasure()
+	{
 		IfcAccelerationMeasureImpl ifcAccelerationMeasure = new IfcAccelerationMeasureImpl();
 		return ifcAccelerationMeasure;
 	}
@@ -1528,7 +2347,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcAmountOfSubstanceMeasure createIfcAmountOfSubstanceMeasure() {
+	public IfcAmountOfSubstanceMeasure createIfcAmountOfSubstanceMeasure()
+	{
 		IfcAmountOfSubstanceMeasureImpl ifcAmountOfSubstanceMeasure = new IfcAmountOfSubstanceMeasureImpl();
 		return ifcAmountOfSubstanceMeasure;
 	}
@@ -1538,7 +2358,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcAngularVelocityMeasure createIfcAngularVelocityMeasure() {
+	public IfcAngularVelocityMeasure createIfcAngularVelocityMeasure()
+	{
 		IfcAngularVelocityMeasureImpl ifcAngularVelocityMeasure = new IfcAngularVelocityMeasureImpl();
 		return ifcAngularVelocityMeasure;
 	}
@@ -1548,7 +2369,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcAreaMeasure createIfcAreaMeasure() {
+	public IfcAreaMeasure createIfcAreaMeasure()
+	{
 		IfcAreaMeasureImpl ifcAreaMeasure = new IfcAreaMeasureImpl();
 		return ifcAreaMeasure;
 	}
@@ -1558,7 +2380,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcBoolean createIfcBoolean() {
+	public IfcBoolean createIfcBoolean()
+	{
 		IfcBooleanImpl ifcBoolean = new IfcBooleanImpl();
 		return ifcBoolean;
 	}
@@ -1568,7 +2391,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcContextDependentMeasure createIfcContextDependentMeasure() {
+	public IfcContextDependentMeasure createIfcContextDependentMeasure()
+	{
 		IfcContextDependentMeasureImpl ifcContextDependentMeasure = new IfcContextDependentMeasureImpl();
 		return ifcContextDependentMeasure;
 	}
@@ -1578,7 +2402,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcCountMeasure createIfcCountMeasure() {
+	public IfcCountMeasure createIfcCountMeasure()
+	{
 		IfcCountMeasureImpl ifcCountMeasure = new IfcCountMeasureImpl();
 		return ifcCountMeasure;
 	}
@@ -1588,7 +2413,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcCurvatureMeasure createIfcCurvatureMeasure() {
+	public IfcCurvatureMeasure createIfcCurvatureMeasure()
+	{
 		IfcCurvatureMeasureImpl ifcCurvatureMeasure = new IfcCurvatureMeasureImpl();
 		return ifcCurvatureMeasure;
 	}
@@ -1598,7 +2424,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcDescriptiveMeasure createIfcDescriptiveMeasure() {
+	public IfcDescriptiveMeasure createIfcDescriptiveMeasure()
+	{
 		IfcDescriptiveMeasureImpl ifcDescriptiveMeasure = new IfcDescriptiveMeasureImpl();
 		return ifcDescriptiveMeasure;
 	}
@@ -1608,7 +2435,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcDoseEquivalentMeasure createIfcDoseEquivalentMeasure() {
+	public IfcDoseEquivalentMeasure createIfcDoseEquivalentMeasure()
+	{
 		IfcDoseEquivalentMeasureImpl ifcDoseEquivalentMeasure = new IfcDoseEquivalentMeasureImpl();
 		return ifcDoseEquivalentMeasure;
 	}
@@ -1618,7 +2446,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcDynamicViscosityMeasure createIfcDynamicViscosityMeasure() {
+	public IfcDynamicViscosityMeasure createIfcDynamicViscosityMeasure()
+	{
 		IfcDynamicViscosityMeasureImpl ifcDynamicViscosityMeasure = new IfcDynamicViscosityMeasureImpl();
 		return ifcDynamicViscosityMeasure;
 	}
@@ -1628,7 +2457,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcElectricCapacitanceMeasure createIfcElectricCapacitanceMeasure() {
+	public IfcElectricCapacitanceMeasure createIfcElectricCapacitanceMeasure()
+	{
 		IfcElectricCapacitanceMeasureImpl ifcElectricCapacitanceMeasure = new IfcElectricCapacitanceMeasureImpl();
 		return ifcElectricCapacitanceMeasure;
 	}
@@ -1638,7 +2468,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcElectricChargeMeasure createIfcElectricChargeMeasure() {
+	public IfcElectricChargeMeasure createIfcElectricChargeMeasure()
+	{
 		IfcElectricChargeMeasureImpl ifcElectricChargeMeasure = new IfcElectricChargeMeasureImpl();
 		return ifcElectricChargeMeasure;
 	}
@@ -1648,7 +2479,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcElectricConductanceMeasure createIfcElectricConductanceMeasure() {
+	public IfcElectricConductanceMeasure createIfcElectricConductanceMeasure()
+	{
 		IfcElectricConductanceMeasureImpl ifcElectricConductanceMeasure = new IfcElectricConductanceMeasureImpl();
 		return ifcElectricConductanceMeasure;
 	}
@@ -1658,7 +2490,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcElectricCurrentMeasure createIfcElectricCurrentMeasure() {
+	public IfcElectricCurrentMeasure createIfcElectricCurrentMeasure()
+	{
 		IfcElectricCurrentMeasureImpl ifcElectricCurrentMeasure = new IfcElectricCurrentMeasureImpl();
 		return ifcElectricCurrentMeasure;
 	}
@@ -1668,7 +2501,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcElectricResistanceMeasure createIfcElectricResistanceMeasure() {
+	public IfcElectricResistanceMeasure createIfcElectricResistanceMeasure()
+	{
 		IfcElectricResistanceMeasureImpl ifcElectricResistanceMeasure = new IfcElectricResistanceMeasureImpl();
 		return ifcElectricResistanceMeasure;
 	}
@@ -1678,7 +2512,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcElectricVoltageMeasure createIfcElectricVoltageMeasure() {
+	public IfcElectricVoltageMeasure createIfcElectricVoltageMeasure()
+	{
 		IfcElectricVoltageMeasureImpl ifcElectricVoltageMeasure = new IfcElectricVoltageMeasureImpl();
 		return ifcElectricVoltageMeasure;
 	}
@@ -1688,7 +2523,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcEnergyMeasure createIfcEnergyMeasure() {
+	public IfcEnergyMeasure createIfcEnergyMeasure()
+	{
 		IfcEnergyMeasureImpl ifcEnergyMeasure = new IfcEnergyMeasureImpl();
 		return ifcEnergyMeasure;
 	}
@@ -1698,7 +2534,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcForceMeasure createIfcForceMeasure() {
+	public IfcForceMeasure createIfcForceMeasure()
+	{
 		IfcForceMeasureImpl ifcForceMeasure = new IfcForceMeasureImpl();
 		return ifcForceMeasure;
 	}
@@ -1708,7 +2545,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcFrequencyMeasure createIfcFrequencyMeasure() {
+	public IfcFrequencyMeasure createIfcFrequencyMeasure()
+	{
 		IfcFrequencyMeasureImpl ifcFrequencyMeasure = new IfcFrequencyMeasureImpl();
 		return ifcFrequencyMeasure;
 	}
@@ -1718,7 +2556,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcGloballyUniqueId createIfcGloballyUniqueId() {
+	public IfcGloballyUniqueId createIfcGloballyUniqueId()
+	{
 		IfcGloballyUniqueIdImpl ifcGloballyUniqueId = new IfcGloballyUniqueIdImpl();
 		return ifcGloballyUniqueId;
 	}
@@ -1728,7 +2567,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcHeatFluxDensityMeasure createIfcHeatFluxDensityMeasure() {
+	public IfcHeatFluxDensityMeasure createIfcHeatFluxDensityMeasure()
+	{
 		IfcHeatFluxDensityMeasureImpl ifcHeatFluxDensityMeasure = new IfcHeatFluxDensityMeasureImpl();
 		return ifcHeatFluxDensityMeasure;
 	}
@@ -1738,7 +2578,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcHeatingValueMeasure createIfcHeatingValueMeasure() {
+	public IfcHeatingValueMeasure createIfcHeatingValueMeasure()
+	{
 		IfcHeatingValueMeasureImpl ifcHeatingValueMeasure = new IfcHeatingValueMeasureImpl();
 		return ifcHeatingValueMeasure;
 	}
@@ -1748,7 +2589,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcIdentifier createIfcIdentifier() {
+	public IfcIdentifier createIfcIdentifier()
+	{
 		IfcIdentifierImpl ifcIdentifier = new IfcIdentifierImpl();
 		return ifcIdentifier;
 	}
@@ -1758,7 +2600,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcIlluminanceMeasure createIfcIlluminanceMeasure() {
+	public IfcIlluminanceMeasure createIfcIlluminanceMeasure()
+	{
 		IfcIlluminanceMeasureImpl ifcIlluminanceMeasure = new IfcIlluminanceMeasureImpl();
 		return ifcIlluminanceMeasure;
 	}
@@ -1768,7 +2611,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcInductanceMeasure createIfcInductanceMeasure() {
+	public IfcInductanceMeasure createIfcInductanceMeasure()
+	{
 		IfcInductanceMeasureImpl ifcInductanceMeasure = new IfcInductanceMeasureImpl();
 		return ifcInductanceMeasure;
 	}
@@ -1778,7 +2622,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcInteger createIfcInteger() {
+	public IfcInteger createIfcInteger()
+	{
 		IfcIntegerImpl ifcInteger = new IfcIntegerImpl();
 		return ifcInteger;
 	}
@@ -1788,7 +2633,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcIntegerCountRateMeasure createIfcIntegerCountRateMeasure() {
+	public IfcIntegerCountRateMeasure createIfcIntegerCountRateMeasure()
+	{
 		IfcIntegerCountRateMeasureImpl ifcIntegerCountRateMeasure = new IfcIntegerCountRateMeasureImpl();
 		return ifcIntegerCountRateMeasure;
 	}
@@ -1798,7 +2644,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcIonConcentrationMeasure createIfcIonConcentrationMeasure() {
+	public IfcIonConcentrationMeasure createIfcIonConcentrationMeasure()
+	{
 		IfcIonConcentrationMeasureImpl ifcIonConcentrationMeasure = new IfcIonConcentrationMeasureImpl();
 		return ifcIonConcentrationMeasure;
 	}
@@ -1808,7 +2655,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcIsothermalMoistureCapacityMeasure createIfcIsothermalMoistureCapacityMeasure() {
+	public IfcIsothermalMoistureCapacityMeasure createIfcIsothermalMoistureCapacityMeasure()
+	{
 		IfcIsothermalMoistureCapacityMeasureImpl ifcIsothermalMoistureCapacityMeasure = new IfcIsothermalMoistureCapacityMeasureImpl();
 		return ifcIsothermalMoistureCapacityMeasure;
 	}
@@ -1818,7 +2666,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcKinematicViscosityMeasure createIfcKinematicViscosityMeasure() {
+	public IfcKinematicViscosityMeasure createIfcKinematicViscosityMeasure()
+	{
 		IfcKinematicViscosityMeasureImpl ifcKinematicViscosityMeasure = new IfcKinematicViscosityMeasureImpl();
 		return ifcKinematicViscosityMeasure;
 	}
@@ -1828,7 +2677,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcLabel createIfcLabel() {
+	public IfcLabel createIfcLabel()
+	{
 		IfcLabelImpl ifcLabel = new IfcLabelImpl();
 		return ifcLabel;
 	}
@@ -1838,7 +2688,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcLengthMeasure createIfcLengthMeasure() {
+	public IfcLengthMeasure createIfcLengthMeasure()
+	{
 		IfcLengthMeasureImpl ifcLengthMeasure = new IfcLengthMeasureImpl();
 		return ifcLengthMeasure;
 	}
@@ -1848,7 +2699,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcLinearForceMeasure createIfcLinearForceMeasure() {
+	public IfcLinearForceMeasure createIfcLinearForceMeasure()
+	{
 		IfcLinearForceMeasureImpl ifcLinearForceMeasure = new IfcLinearForceMeasureImpl();
 		return ifcLinearForceMeasure;
 	}
@@ -1858,7 +2710,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcLinearMomentMeasure createIfcLinearMomentMeasure() {
+	public IfcLinearMomentMeasure createIfcLinearMomentMeasure()
+	{
 		IfcLinearMomentMeasureImpl ifcLinearMomentMeasure = new IfcLinearMomentMeasureImpl();
 		return ifcLinearMomentMeasure;
 	}
@@ -1868,7 +2721,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcLinearStiffnessMeasure createIfcLinearStiffnessMeasure() {
+	public IfcLinearStiffnessMeasure createIfcLinearStiffnessMeasure()
+	{
 		IfcLinearStiffnessMeasureImpl ifcLinearStiffnessMeasure = new IfcLinearStiffnessMeasureImpl();
 		return ifcLinearStiffnessMeasure;
 	}
@@ -1878,7 +2732,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcLinearVelocityMeasure createIfcLinearVelocityMeasure() {
+	public IfcLinearVelocityMeasure createIfcLinearVelocityMeasure()
+	{
 		IfcLinearVelocityMeasureImpl ifcLinearVelocityMeasure = new IfcLinearVelocityMeasureImpl();
 		return ifcLinearVelocityMeasure;
 	}
@@ -1888,7 +2743,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcLogical createIfcLogical() {
+	public IfcLogical createIfcLogical()
+	{
 		IfcLogicalImpl ifcLogical = new IfcLogicalImpl();
 		return ifcLogical;
 	}
@@ -1898,7 +2754,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcLuminousFluxMeasure createIfcLuminousFluxMeasure() {
+	public IfcLuminousFluxMeasure createIfcLuminousFluxMeasure()
+	{
 		IfcLuminousFluxMeasureImpl ifcLuminousFluxMeasure = new IfcLuminousFluxMeasureImpl();
 		return ifcLuminousFluxMeasure;
 	}
@@ -1908,7 +2765,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcLuminousIntensityDistributionMeasure createIfcLuminousIntensityDistributionMeasure() {
+	public IfcLuminousIntensityDistributionMeasure createIfcLuminousIntensityDistributionMeasure()
+	{
 		IfcLuminousIntensityDistributionMeasureImpl ifcLuminousIntensityDistributionMeasure = new IfcLuminousIntensityDistributionMeasureImpl();
 		return ifcLuminousIntensityDistributionMeasure;
 	}
@@ -1918,7 +2776,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcLuminousIntensityMeasure createIfcLuminousIntensityMeasure() {
+	public IfcLuminousIntensityMeasure createIfcLuminousIntensityMeasure()
+	{
 		IfcLuminousIntensityMeasureImpl ifcLuminousIntensityMeasure = new IfcLuminousIntensityMeasureImpl();
 		return ifcLuminousIntensityMeasure;
 	}
@@ -1928,7 +2787,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcMagneticFluxDensityMeasure createIfcMagneticFluxDensityMeasure() {
+	public IfcMagneticFluxDensityMeasure createIfcMagneticFluxDensityMeasure()
+	{
 		IfcMagneticFluxDensityMeasureImpl ifcMagneticFluxDensityMeasure = new IfcMagneticFluxDensityMeasureImpl();
 		return ifcMagneticFluxDensityMeasure;
 	}
@@ -1938,7 +2798,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcMagneticFluxMeasure createIfcMagneticFluxMeasure() {
+	public IfcMagneticFluxMeasure createIfcMagneticFluxMeasure()
+	{
 		IfcMagneticFluxMeasureImpl ifcMagneticFluxMeasure = new IfcMagneticFluxMeasureImpl();
 		return ifcMagneticFluxMeasure;
 	}
@@ -1948,7 +2809,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcMassDensityMeasure createIfcMassDensityMeasure() {
+	public IfcMassDensityMeasure createIfcMassDensityMeasure()
+	{
 		IfcMassDensityMeasureImpl ifcMassDensityMeasure = new IfcMassDensityMeasureImpl();
 		return ifcMassDensityMeasure;
 	}
@@ -1958,7 +2820,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcMassFlowRateMeasure createIfcMassFlowRateMeasure() {
+	public IfcMassFlowRateMeasure createIfcMassFlowRateMeasure()
+	{
 		IfcMassFlowRateMeasureImpl ifcMassFlowRateMeasure = new IfcMassFlowRateMeasureImpl();
 		return ifcMassFlowRateMeasure;
 	}
@@ -1968,7 +2831,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcMassMeasure createIfcMassMeasure() {
+	public IfcMassMeasure createIfcMassMeasure()
+	{
 		IfcMassMeasureImpl ifcMassMeasure = new IfcMassMeasureImpl();
 		return ifcMassMeasure;
 	}
@@ -1978,7 +2842,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcMassPerLengthMeasure createIfcMassPerLengthMeasure() {
+	public IfcMassPerLengthMeasure createIfcMassPerLengthMeasure()
+	{
 		IfcMassPerLengthMeasureImpl ifcMassPerLengthMeasure = new IfcMassPerLengthMeasureImpl();
 		return ifcMassPerLengthMeasure;
 	}
@@ -1988,7 +2853,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcModulusOfElasticityMeasure createIfcModulusOfElasticityMeasure() {
+	public IfcModulusOfElasticityMeasure createIfcModulusOfElasticityMeasure()
+	{
 		IfcModulusOfElasticityMeasureImpl ifcModulusOfElasticityMeasure = new IfcModulusOfElasticityMeasureImpl();
 		return ifcModulusOfElasticityMeasure;
 	}
@@ -1998,7 +2864,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcModulusOfLinearSubgradeReactionMeasure createIfcModulusOfLinearSubgradeReactionMeasure() {
+	public IfcModulusOfLinearSubgradeReactionMeasure createIfcModulusOfLinearSubgradeReactionMeasure()
+	{
 		IfcModulusOfLinearSubgradeReactionMeasureImpl ifcModulusOfLinearSubgradeReactionMeasure = new IfcModulusOfLinearSubgradeReactionMeasureImpl();
 		return ifcModulusOfLinearSubgradeReactionMeasure;
 	}
@@ -2008,7 +2875,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcModulusOfRotationalSubgradeReactionMeasure createIfcModulusOfRotationalSubgradeReactionMeasure() {
+	public IfcModulusOfRotationalSubgradeReactionMeasure createIfcModulusOfRotationalSubgradeReactionMeasure()
+	{
 		IfcModulusOfRotationalSubgradeReactionMeasureImpl ifcModulusOfRotationalSubgradeReactionMeasure = new IfcModulusOfRotationalSubgradeReactionMeasureImpl();
 		return ifcModulusOfRotationalSubgradeReactionMeasure;
 	}
@@ -2018,7 +2886,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcModulusOfSubgradeReactionMeasure createIfcModulusOfSubgradeReactionMeasure() {
+	public IfcModulusOfSubgradeReactionMeasure createIfcModulusOfSubgradeReactionMeasure()
+	{
 		IfcModulusOfSubgradeReactionMeasureImpl ifcModulusOfSubgradeReactionMeasure = new IfcModulusOfSubgradeReactionMeasureImpl();
 		return ifcModulusOfSubgradeReactionMeasure;
 	}
@@ -2028,7 +2897,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcMoistureDiffusivityMeasure createIfcMoistureDiffusivityMeasure() {
+	public IfcMoistureDiffusivityMeasure createIfcMoistureDiffusivityMeasure()
+	{
 		IfcMoistureDiffusivityMeasureImpl ifcMoistureDiffusivityMeasure = new IfcMoistureDiffusivityMeasureImpl();
 		return ifcMoistureDiffusivityMeasure;
 	}
@@ -2038,7 +2908,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcMolecularWeightMeasure createIfcMolecularWeightMeasure() {
+	public IfcMolecularWeightMeasure createIfcMolecularWeightMeasure()
+	{
 		IfcMolecularWeightMeasureImpl ifcMolecularWeightMeasure = new IfcMolecularWeightMeasureImpl();
 		return ifcMolecularWeightMeasure;
 	}
@@ -2048,7 +2919,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcMomentOfInertiaMeasure createIfcMomentOfInertiaMeasure() {
+	public IfcMomentOfInertiaMeasure createIfcMomentOfInertiaMeasure()
+	{
 		IfcMomentOfInertiaMeasureImpl ifcMomentOfInertiaMeasure = new IfcMomentOfInertiaMeasureImpl();
 		return ifcMomentOfInertiaMeasure;
 	}
@@ -2058,7 +2930,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcMonetaryMeasure createIfcMonetaryMeasure() {
+	public IfcMonetaryMeasure createIfcMonetaryMeasure()
+	{
 		IfcMonetaryMeasureImpl ifcMonetaryMeasure = new IfcMonetaryMeasureImpl();
 		return ifcMonetaryMeasure;
 	}
@@ -2068,7 +2941,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcNumericMeasure createIfcNumericMeasure() {
+	public IfcNumericMeasure createIfcNumericMeasure()
+	{
 		IfcNumericMeasureImpl ifcNumericMeasure = new IfcNumericMeasureImpl();
 		return ifcNumericMeasure;
 	}
@@ -2078,7 +2952,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcPHMeasure createIfcPHMeasure() {
+	public IfcPHMeasure createIfcPHMeasure()
+	{
 		IfcPHMeasureImpl ifcPHMeasure = new IfcPHMeasureImpl();
 		return ifcPHMeasure;
 	}
@@ -2088,7 +2963,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcParameterValue createIfcParameterValue() {
+	public IfcParameterValue createIfcParameterValue()
+	{
 		IfcParameterValueImpl ifcParameterValue = new IfcParameterValueImpl();
 		return ifcParameterValue;
 	}
@@ -2098,7 +2974,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcPlanarForceMeasure createIfcPlanarForceMeasure() {
+	public IfcPlanarForceMeasure createIfcPlanarForceMeasure()
+	{
 		IfcPlanarForceMeasureImpl ifcPlanarForceMeasure = new IfcPlanarForceMeasureImpl();
 		return ifcPlanarForceMeasure;
 	}
@@ -2108,7 +2985,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcPlaneAngleMeasure createIfcPlaneAngleMeasure() {
+	public IfcPlaneAngleMeasure createIfcPlaneAngleMeasure()
+	{
 		IfcPlaneAngleMeasureImpl ifcPlaneAngleMeasure = new IfcPlaneAngleMeasureImpl();
 		return ifcPlaneAngleMeasure;
 	}
@@ -2118,7 +2996,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcPowerMeasure createIfcPowerMeasure() {
+	public IfcPowerMeasure createIfcPowerMeasure()
+	{
 		IfcPowerMeasureImpl ifcPowerMeasure = new IfcPowerMeasureImpl();
 		return ifcPowerMeasure;
 	}
@@ -2128,7 +3007,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcPressureMeasure createIfcPressureMeasure() {
+	public IfcPressureMeasure createIfcPressureMeasure()
+	{
 		IfcPressureMeasureImpl ifcPressureMeasure = new IfcPressureMeasureImpl();
 		return ifcPressureMeasure;
 	}
@@ -2138,7 +3018,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRadioActivityMeasure createIfcRadioActivityMeasure() {
+	public IfcRadioActivityMeasure createIfcRadioActivityMeasure()
+	{
 		IfcRadioActivityMeasureImpl ifcRadioActivityMeasure = new IfcRadioActivityMeasureImpl();
 		return ifcRadioActivityMeasure;
 	}
@@ -2148,7 +3029,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRatioMeasure createIfcRatioMeasure() {
+	public IfcRatioMeasure createIfcRatioMeasure()
+	{
 		IfcRatioMeasureImpl ifcRatioMeasure = new IfcRatioMeasureImpl();
 		return ifcRatioMeasure;
 	}
@@ -2158,7 +3040,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcReal createIfcReal() {
+	public IfcReal createIfcReal()
+	{
 		IfcRealImpl ifcReal = new IfcRealImpl();
 		return ifcReal;
 	}
@@ -2168,7 +3051,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRotationalFrequencyMeasure createIfcRotationalFrequencyMeasure() {
+	public IfcRotationalFrequencyMeasure createIfcRotationalFrequencyMeasure()
+	{
 		IfcRotationalFrequencyMeasureImpl ifcRotationalFrequencyMeasure = new IfcRotationalFrequencyMeasureImpl();
 		return ifcRotationalFrequencyMeasure;
 	}
@@ -2178,7 +3062,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRotationalMassMeasure createIfcRotationalMassMeasure() {
+	public IfcRotationalMassMeasure createIfcRotationalMassMeasure()
+	{
 		IfcRotationalMassMeasureImpl ifcRotationalMassMeasure = new IfcRotationalMassMeasureImpl();
 		return ifcRotationalMassMeasure;
 	}
@@ -2188,7 +3073,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRotationalStiffnessMeasure createIfcRotationalStiffnessMeasure() {
+	public IfcRotationalStiffnessMeasure createIfcRotationalStiffnessMeasure()
+	{
 		IfcRotationalStiffnessMeasureImpl ifcRotationalStiffnessMeasure = new IfcRotationalStiffnessMeasureImpl();
 		return ifcRotationalStiffnessMeasure;
 	}
@@ -2198,7 +3084,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcSectionModulusMeasure createIfcSectionModulusMeasure() {
+	public IfcSectionModulusMeasure createIfcSectionModulusMeasure()
+	{
 		IfcSectionModulusMeasureImpl ifcSectionModulusMeasure = new IfcSectionModulusMeasureImpl();
 		return ifcSectionModulusMeasure;
 	}
@@ -2208,7 +3095,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcSectionalAreaIntegralMeasure createIfcSectionalAreaIntegralMeasure() {
+	public IfcSectionalAreaIntegralMeasure createIfcSectionalAreaIntegralMeasure()
+	{
 		IfcSectionalAreaIntegralMeasureImpl ifcSectionalAreaIntegralMeasure = new IfcSectionalAreaIntegralMeasureImpl();
 		return ifcSectionalAreaIntegralMeasure;
 	}
@@ -2218,7 +3106,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcShearModulusMeasure createIfcShearModulusMeasure() {
+	public IfcShearModulusMeasure createIfcShearModulusMeasure()
+	{
 		IfcShearModulusMeasureImpl ifcShearModulusMeasure = new IfcShearModulusMeasureImpl();
 		return ifcShearModulusMeasure;
 	}
@@ -2228,7 +3117,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcSolidAngleMeasure createIfcSolidAngleMeasure() {
+	public IfcSolidAngleMeasure createIfcSolidAngleMeasure()
+	{
 		IfcSolidAngleMeasureImpl ifcSolidAngleMeasure = new IfcSolidAngleMeasureImpl();
 		return ifcSolidAngleMeasure;
 	}
@@ -2238,7 +3128,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcSoundPowerMeasure createIfcSoundPowerMeasure() {
+	public IfcSoundPowerMeasure createIfcSoundPowerMeasure()
+	{
 		IfcSoundPowerMeasureImpl ifcSoundPowerMeasure = new IfcSoundPowerMeasureImpl();
 		return ifcSoundPowerMeasure;
 	}
@@ -2248,7 +3139,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcSoundPressureMeasure createIfcSoundPressureMeasure() {
+	public IfcSoundPressureMeasure createIfcSoundPressureMeasure()
+	{
 		IfcSoundPressureMeasureImpl ifcSoundPressureMeasure = new IfcSoundPressureMeasureImpl();
 		return ifcSoundPressureMeasure;
 	}
@@ -2258,7 +3150,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcSpecificHeatCapacityMeasure createIfcSpecificHeatCapacityMeasure() {
+	public IfcSpecificHeatCapacityMeasure createIfcSpecificHeatCapacityMeasure()
+	{
 		IfcSpecificHeatCapacityMeasureImpl ifcSpecificHeatCapacityMeasure = new IfcSpecificHeatCapacityMeasureImpl();
 		return ifcSpecificHeatCapacityMeasure;
 	}
@@ -2268,7 +3161,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcSpecularExponent createIfcSpecularExponent() {
+	public IfcSpecularExponent createIfcSpecularExponent()
+	{
 		IfcSpecularExponentImpl ifcSpecularExponent = new IfcSpecularExponentImpl();
 		return ifcSpecularExponent;
 	}
@@ -2278,7 +3172,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcSpecularRoughness createIfcSpecularRoughness() {
+	public IfcSpecularRoughness createIfcSpecularRoughness()
+	{
 		IfcSpecularRoughnessImpl ifcSpecularRoughness = new IfcSpecularRoughnessImpl();
 		return ifcSpecularRoughness;
 	}
@@ -2288,7 +3183,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcTemperatureGradientMeasure createIfcTemperatureGradientMeasure() {
+	public IfcTemperatureGradientMeasure createIfcTemperatureGradientMeasure()
+	{
 		IfcTemperatureGradientMeasureImpl ifcTemperatureGradientMeasure = new IfcTemperatureGradientMeasureImpl();
 		return ifcTemperatureGradientMeasure;
 	}
@@ -2298,7 +3194,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcText createIfcText() {
+	public IfcText createIfcText()
+	{
 		IfcTextImpl ifcText = new IfcTextImpl();
 		return ifcText;
 	}
@@ -2308,7 +3205,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcThermalAdmittanceMeasure createIfcThermalAdmittanceMeasure() {
+	public IfcThermalAdmittanceMeasure createIfcThermalAdmittanceMeasure()
+	{
 		IfcThermalAdmittanceMeasureImpl ifcThermalAdmittanceMeasure = new IfcThermalAdmittanceMeasureImpl();
 		return ifcThermalAdmittanceMeasure;
 	}
@@ -2318,7 +3216,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcThermalConductivityMeasure createIfcThermalConductivityMeasure() {
+	public IfcThermalConductivityMeasure createIfcThermalConductivityMeasure()
+	{
 		IfcThermalConductivityMeasureImpl ifcThermalConductivityMeasure = new IfcThermalConductivityMeasureImpl();
 		return ifcThermalConductivityMeasure;
 	}
@@ -2328,7 +3227,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcThermalExpansionCoefficientMeasure createIfcThermalExpansionCoefficientMeasure() {
+	public IfcThermalExpansionCoefficientMeasure createIfcThermalExpansionCoefficientMeasure()
+	{
 		IfcThermalExpansionCoefficientMeasureImpl ifcThermalExpansionCoefficientMeasure = new IfcThermalExpansionCoefficientMeasureImpl();
 		return ifcThermalExpansionCoefficientMeasure;
 	}
@@ -2338,7 +3238,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcThermalResistanceMeasure createIfcThermalResistanceMeasure() {
+	public IfcThermalResistanceMeasure createIfcThermalResistanceMeasure()
+	{
 		IfcThermalResistanceMeasureImpl ifcThermalResistanceMeasure = new IfcThermalResistanceMeasureImpl();
 		return ifcThermalResistanceMeasure;
 	}
@@ -2348,7 +3249,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcThermalTransmittanceMeasure createIfcThermalTransmittanceMeasure() {
+	public IfcThermalTransmittanceMeasure createIfcThermalTransmittanceMeasure()
+	{
 		IfcThermalTransmittanceMeasureImpl ifcThermalTransmittanceMeasure = new IfcThermalTransmittanceMeasureImpl();
 		return ifcThermalTransmittanceMeasure;
 	}
@@ -2358,7 +3260,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcThermodynamicTemperatureMeasure createIfcThermodynamicTemperatureMeasure() {
+	public IfcThermodynamicTemperatureMeasure createIfcThermodynamicTemperatureMeasure()
+	{
 		IfcThermodynamicTemperatureMeasureImpl ifcThermodynamicTemperatureMeasure = new IfcThermodynamicTemperatureMeasureImpl();
 		return ifcThermodynamicTemperatureMeasure;
 	}
@@ -2368,7 +3271,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcTimeMeasure createIfcTimeMeasure() {
+	public IfcTimeMeasure createIfcTimeMeasure()
+	{
 		IfcTimeMeasureImpl ifcTimeMeasure = new IfcTimeMeasureImpl();
 		return ifcTimeMeasure;
 	}
@@ -2378,7 +3282,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcTimeStamp createIfcTimeStamp() {
+	public IfcTimeStamp createIfcTimeStamp()
+	{
 		IfcTimeStampImpl ifcTimeStamp = new IfcTimeStampImpl();
 		return ifcTimeStamp;
 	}
@@ -2388,7 +3293,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcTorqueMeasure createIfcTorqueMeasure() {
+	public IfcTorqueMeasure createIfcTorqueMeasure()
+	{
 		IfcTorqueMeasureImpl ifcTorqueMeasure = new IfcTorqueMeasureImpl();
 		return ifcTorqueMeasure;
 	}
@@ -2398,7 +3304,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcVaporPermeabilityMeasure createIfcVaporPermeabilityMeasure() {
+	public IfcVaporPermeabilityMeasure createIfcVaporPermeabilityMeasure()
+	{
 		IfcVaporPermeabilityMeasureImpl ifcVaporPermeabilityMeasure = new IfcVaporPermeabilityMeasureImpl();
 		return ifcVaporPermeabilityMeasure;
 	}
@@ -2408,7 +3315,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcVolumeMeasure createIfcVolumeMeasure() {
+	public IfcVolumeMeasure createIfcVolumeMeasure()
+	{
 		IfcVolumeMeasureImpl ifcVolumeMeasure = new IfcVolumeMeasureImpl();
 		return ifcVolumeMeasure;
 	}
@@ -2418,7 +3326,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcVolumetricFlowRateMeasure createIfcVolumetricFlowRateMeasure() {
+	public IfcVolumetricFlowRateMeasure createIfcVolumetricFlowRateMeasure()
+	{
 		IfcVolumetricFlowRateMeasureImpl ifcVolumetricFlowRateMeasure = new IfcVolumetricFlowRateMeasureImpl();
 		return ifcVolumetricFlowRateMeasure;
 	}
@@ -2428,7 +3337,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcWarpingConstantMeasure createIfcWarpingConstantMeasure() {
+	public IfcWarpingConstantMeasure createIfcWarpingConstantMeasure()
+	{
 		IfcWarpingConstantMeasureImpl ifcWarpingConstantMeasure = new IfcWarpingConstantMeasureImpl();
 		return ifcWarpingConstantMeasure;
 	}
@@ -2438,7 +3348,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcWarpingMomentMeasure createIfcWarpingMomentMeasure() {
+	public IfcWarpingMomentMeasure createIfcWarpingMomentMeasure()
+	{
 		IfcWarpingMomentMeasureImpl ifcWarpingMomentMeasure = new IfcWarpingMomentMeasureImpl();
 		return ifcWarpingMomentMeasure;
 	}
@@ -2448,7 +3359,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcNormalisedRatioMeasure createIfcNormalisedRatioMeasure() {
+	public IfcNormalisedRatioMeasure createIfcNormalisedRatioMeasure()
+	{
 		IfcNormalisedRatioMeasureImpl ifcNormalisedRatioMeasure = new IfcNormalisedRatioMeasureImpl();
 		return ifcNormalisedRatioMeasure;
 	}
@@ -2458,7 +3370,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcPositiveLengthMeasure createIfcPositiveLengthMeasure() {
+	public IfcPositiveLengthMeasure createIfcPositiveLengthMeasure()
+	{
 		IfcPositiveLengthMeasureImpl ifcPositiveLengthMeasure = new IfcPositiveLengthMeasureImpl();
 		return ifcPositiveLengthMeasure;
 	}
@@ -2468,7 +3381,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcPositivePlaneAngleMeasure createIfcPositivePlaneAngleMeasure() {
+	public IfcPositivePlaneAngleMeasure createIfcPositivePlaneAngleMeasure()
+	{
 		IfcPositivePlaneAngleMeasureImpl ifcPositivePlaneAngleMeasure = new IfcPositivePlaneAngleMeasureImpl();
 		return ifcPositivePlaneAngleMeasure;
 	}
@@ -2478,7 +3392,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcPositiveRatioMeasure createIfcPositiveRatioMeasure() {
+	public IfcPositiveRatioMeasure createIfcPositiveRatioMeasure()
+	{
 		IfcPositiveRatioMeasureImpl ifcPositiveRatioMeasure = new IfcPositiveRatioMeasureImpl();
 		return ifcPositiveRatioMeasure;
 	}
@@ -2488,7 +3403,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Ifc2DCompositeCurve createIfc2DCompositeCurve() {
+	public Ifc2DCompositeCurve createIfc2DCompositeCurve()
+	{
 		Ifc2DCompositeCurveImpl ifc2DCompositeCurve = new Ifc2DCompositeCurveImpl();
 		return ifc2DCompositeCurve;
 	}
@@ -2498,7 +3414,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcActionRequest createIfcActionRequest() {
+	public IfcActionRequest createIfcActionRequest()
+	{
 		IfcActionRequestImpl ifcActionRequest = new IfcActionRequestImpl();
 		return ifcActionRequest;
 	}
@@ -2508,7 +3425,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcActor createIfcActor() {
+	public IfcActor createIfcActor()
+	{
 		IfcActorImpl ifcActor = new IfcActorImpl();
 		return ifcActor;
 	}
@@ -2518,7 +3436,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcActorRole createIfcActorRole() {
+	public IfcActorRole createIfcActorRole()
+	{
 		IfcActorRoleImpl ifcActorRole = new IfcActorRoleImpl();
 		return ifcActorRole;
 	}
@@ -2528,7 +3447,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcActuatorType createIfcActuatorType() {
+	public IfcActuatorType createIfcActuatorType()
+	{
 		IfcActuatorTypeImpl ifcActuatorType = new IfcActuatorTypeImpl();
 		return ifcActuatorType;
 	}
@@ -2538,7 +3458,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcAddress createIfcAddress() {
+	public IfcAddress createIfcAddress()
+	{
 		IfcAddressImpl ifcAddress = new IfcAddressImpl();
 		return ifcAddress;
 	}
@@ -2548,7 +3469,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcAirTerminalBoxType createIfcAirTerminalBoxType() {
+	public IfcAirTerminalBoxType createIfcAirTerminalBoxType()
+	{
 		IfcAirTerminalBoxTypeImpl ifcAirTerminalBoxType = new IfcAirTerminalBoxTypeImpl();
 		return ifcAirTerminalBoxType;
 	}
@@ -2558,7 +3480,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcAirTerminalType createIfcAirTerminalType() {
+	public IfcAirTerminalType createIfcAirTerminalType()
+	{
 		IfcAirTerminalTypeImpl ifcAirTerminalType = new IfcAirTerminalTypeImpl();
 		return ifcAirTerminalType;
 	}
@@ -2568,7 +3491,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcAirToAirHeatRecoveryType createIfcAirToAirHeatRecoveryType() {
+	public IfcAirToAirHeatRecoveryType createIfcAirToAirHeatRecoveryType()
+	{
 		IfcAirToAirHeatRecoveryTypeImpl ifcAirToAirHeatRecoveryType = new IfcAirToAirHeatRecoveryTypeImpl();
 		return ifcAirToAirHeatRecoveryType;
 	}
@@ -2578,7 +3502,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcAlarmType createIfcAlarmType() {
+	public IfcAlarmType createIfcAlarmType()
+	{
 		IfcAlarmTypeImpl ifcAlarmType = new IfcAlarmTypeImpl();
 		return ifcAlarmType;
 	}
@@ -2588,7 +3513,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcAngularDimension createIfcAngularDimension() {
+	public IfcAngularDimension createIfcAngularDimension()
+	{
 		IfcAngularDimensionImpl ifcAngularDimension = new IfcAngularDimensionImpl();
 		return ifcAngularDimension;
 	}
@@ -2598,7 +3524,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcAnnotation createIfcAnnotation() {
+	public IfcAnnotation createIfcAnnotation()
+	{
 		IfcAnnotationImpl ifcAnnotation = new IfcAnnotationImpl();
 		return ifcAnnotation;
 	}
@@ -2608,7 +3535,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcAnnotationCurveOccurrence createIfcAnnotationCurveOccurrence() {
+	public IfcAnnotationCurveOccurrence createIfcAnnotationCurveOccurrence()
+	{
 		IfcAnnotationCurveOccurrenceImpl ifcAnnotationCurveOccurrence = new IfcAnnotationCurveOccurrenceImpl();
 		return ifcAnnotationCurveOccurrence;
 	}
@@ -2618,7 +3546,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcAnnotationFillArea createIfcAnnotationFillArea() {
+	public IfcAnnotationFillArea createIfcAnnotationFillArea()
+	{
 		IfcAnnotationFillAreaImpl ifcAnnotationFillArea = new IfcAnnotationFillAreaImpl();
 		return ifcAnnotationFillArea;
 	}
@@ -2628,7 +3557,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcAnnotationFillAreaOccurrence createIfcAnnotationFillAreaOccurrence() {
+	public IfcAnnotationFillAreaOccurrence createIfcAnnotationFillAreaOccurrence()
+	{
 		IfcAnnotationFillAreaOccurrenceImpl ifcAnnotationFillAreaOccurrence = new IfcAnnotationFillAreaOccurrenceImpl();
 		return ifcAnnotationFillAreaOccurrence;
 	}
@@ -2638,7 +3568,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcAnnotationOccurrence createIfcAnnotationOccurrence() {
+	public IfcAnnotationOccurrence createIfcAnnotationOccurrence()
+	{
 		IfcAnnotationOccurrenceImpl ifcAnnotationOccurrence = new IfcAnnotationOccurrenceImpl();
 		return ifcAnnotationOccurrence;
 	}
@@ -2648,7 +3579,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcAnnotationSurface createIfcAnnotationSurface() {
+	public IfcAnnotationSurface createIfcAnnotationSurface()
+	{
 		IfcAnnotationSurfaceImpl ifcAnnotationSurface = new IfcAnnotationSurfaceImpl();
 		return ifcAnnotationSurface;
 	}
@@ -2658,7 +3590,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcAnnotationSurfaceOccurrence createIfcAnnotationSurfaceOccurrence() {
+	public IfcAnnotationSurfaceOccurrence createIfcAnnotationSurfaceOccurrence()
+	{
 		IfcAnnotationSurfaceOccurrenceImpl ifcAnnotationSurfaceOccurrence = new IfcAnnotationSurfaceOccurrenceImpl();
 		return ifcAnnotationSurfaceOccurrence;
 	}
@@ -2668,7 +3601,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcAnnotationSymbolOccurrence createIfcAnnotationSymbolOccurrence() {
+	public IfcAnnotationSymbolOccurrence createIfcAnnotationSymbolOccurrence()
+	{
 		IfcAnnotationSymbolOccurrenceImpl ifcAnnotationSymbolOccurrence = new IfcAnnotationSymbolOccurrenceImpl();
 		return ifcAnnotationSymbolOccurrence;
 	}
@@ -2678,7 +3612,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcAnnotationTextOccurrence createIfcAnnotationTextOccurrence() {
+	public IfcAnnotationTextOccurrence createIfcAnnotationTextOccurrence()
+	{
 		IfcAnnotationTextOccurrenceImpl ifcAnnotationTextOccurrence = new IfcAnnotationTextOccurrenceImpl();
 		return ifcAnnotationTextOccurrence;
 	}
@@ -2688,7 +3623,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcApplication createIfcApplication() {
+	public IfcApplication createIfcApplication()
+	{
 		IfcApplicationImpl ifcApplication = new IfcApplicationImpl();
 		return ifcApplication;
 	}
@@ -2698,7 +3634,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcAppliedValue createIfcAppliedValue() {
+	public IfcAppliedValue createIfcAppliedValue()
+	{
 		IfcAppliedValueImpl ifcAppliedValue = new IfcAppliedValueImpl();
 		return ifcAppliedValue;
 	}
@@ -2708,7 +3645,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcAppliedValueRelationship createIfcAppliedValueRelationship() {
+	public IfcAppliedValueRelationship createIfcAppliedValueRelationship()
+	{
 		IfcAppliedValueRelationshipImpl ifcAppliedValueRelationship = new IfcAppliedValueRelationshipImpl();
 		return ifcAppliedValueRelationship;
 	}
@@ -2718,7 +3656,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcApproval createIfcApproval() {
+	public IfcApproval createIfcApproval()
+	{
 		IfcApprovalImpl ifcApproval = new IfcApprovalImpl();
 		return ifcApproval;
 	}
@@ -2728,7 +3667,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcApprovalActorRelationship createIfcApprovalActorRelationship() {
+	public IfcApprovalActorRelationship createIfcApprovalActorRelationship()
+	{
 		IfcApprovalActorRelationshipImpl ifcApprovalActorRelationship = new IfcApprovalActorRelationshipImpl();
 		return ifcApprovalActorRelationship;
 	}
@@ -2738,7 +3678,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcApprovalPropertyRelationship createIfcApprovalPropertyRelationship() {
+	public IfcApprovalPropertyRelationship createIfcApprovalPropertyRelationship()
+	{
 		IfcApprovalPropertyRelationshipImpl ifcApprovalPropertyRelationship = new IfcApprovalPropertyRelationshipImpl();
 		return ifcApprovalPropertyRelationship;
 	}
@@ -2748,7 +3689,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcApprovalRelationship createIfcApprovalRelationship() {
+	public IfcApprovalRelationship createIfcApprovalRelationship()
+	{
 		IfcApprovalRelationshipImpl ifcApprovalRelationship = new IfcApprovalRelationshipImpl();
 		return ifcApprovalRelationship;
 	}
@@ -2758,7 +3700,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcArbitraryClosedProfileDef createIfcArbitraryClosedProfileDef() {
+	public IfcArbitraryClosedProfileDef createIfcArbitraryClosedProfileDef()
+	{
 		IfcArbitraryClosedProfileDefImpl ifcArbitraryClosedProfileDef = new IfcArbitraryClosedProfileDefImpl();
 		return ifcArbitraryClosedProfileDef;
 	}
@@ -2768,7 +3711,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcArbitraryOpenProfileDef createIfcArbitraryOpenProfileDef() {
+	public IfcArbitraryOpenProfileDef createIfcArbitraryOpenProfileDef()
+	{
 		IfcArbitraryOpenProfileDefImpl ifcArbitraryOpenProfileDef = new IfcArbitraryOpenProfileDefImpl();
 		return ifcArbitraryOpenProfileDef;
 	}
@@ -2778,7 +3722,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcArbitraryProfileDefWithVoids createIfcArbitraryProfileDefWithVoids() {
+	public IfcArbitraryProfileDefWithVoids createIfcArbitraryProfileDefWithVoids()
+	{
 		IfcArbitraryProfileDefWithVoidsImpl ifcArbitraryProfileDefWithVoids = new IfcArbitraryProfileDefWithVoidsImpl();
 		return ifcArbitraryProfileDefWithVoids;
 	}
@@ -2788,7 +3733,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcAsset createIfcAsset() {
+	public IfcAsset createIfcAsset()
+	{
 		IfcAssetImpl ifcAsset = new IfcAssetImpl();
 		return ifcAsset;
 	}
@@ -2798,7 +3744,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcAsymmetricIShapeProfileDef createIfcAsymmetricIShapeProfileDef() {
+	public IfcAsymmetricIShapeProfileDef createIfcAsymmetricIShapeProfileDef()
+	{
 		IfcAsymmetricIShapeProfileDefImpl ifcAsymmetricIShapeProfileDef = new IfcAsymmetricIShapeProfileDefImpl();
 		return ifcAsymmetricIShapeProfileDef;
 	}
@@ -2808,7 +3755,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcAxis1Placement createIfcAxis1Placement() {
+	public IfcAxis1Placement createIfcAxis1Placement()
+	{
 		IfcAxis1PlacementImpl ifcAxis1Placement = new IfcAxis1PlacementImpl();
 		return ifcAxis1Placement;
 	}
@@ -2818,7 +3766,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcAxis2Placement2D createIfcAxis2Placement2D() {
+	public IfcAxis2Placement2D createIfcAxis2Placement2D()
+	{
 		IfcAxis2Placement2DImpl ifcAxis2Placement2D = new IfcAxis2Placement2DImpl();
 		return ifcAxis2Placement2D;
 	}
@@ -2828,7 +3777,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcAxis2Placement3D createIfcAxis2Placement3D() {
+	public IfcAxis2Placement3D createIfcAxis2Placement3D()
+	{
 		IfcAxis2Placement3DImpl ifcAxis2Placement3D = new IfcAxis2Placement3DImpl();
 		return ifcAxis2Placement3D;
 	}
@@ -2838,7 +3788,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcBSplineCurve createIfcBSplineCurve() {
+	public IfcBSplineCurve createIfcBSplineCurve()
+	{
 		IfcBSplineCurveImpl ifcBSplineCurve = new IfcBSplineCurveImpl();
 		return ifcBSplineCurve;
 	}
@@ -2848,7 +3799,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcBeam createIfcBeam() {
+	public IfcBeam createIfcBeam()
+	{
 		IfcBeamImpl ifcBeam = new IfcBeamImpl();
 		return ifcBeam;
 	}
@@ -2858,7 +3810,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcBeamType createIfcBeamType() {
+	public IfcBeamType createIfcBeamType()
+	{
 		IfcBeamTypeImpl ifcBeamType = new IfcBeamTypeImpl();
 		return ifcBeamType;
 	}
@@ -2868,7 +3821,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcBezierCurve createIfcBezierCurve() {
+	public IfcBezierCurve createIfcBezierCurve()
+	{
 		IfcBezierCurveImpl ifcBezierCurve = new IfcBezierCurveImpl();
 		return ifcBezierCurve;
 	}
@@ -2878,7 +3832,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcBlobTexture createIfcBlobTexture() {
+	public IfcBlobTexture createIfcBlobTexture()
+	{
 		IfcBlobTextureImpl ifcBlobTexture = new IfcBlobTextureImpl();
 		return ifcBlobTexture;
 	}
@@ -2888,7 +3843,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcBlock createIfcBlock() {
+	public IfcBlock createIfcBlock()
+	{
 		IfcBlockImpl ifcBlock = new IfcBlockImpl();
 		return ifcBlock;
 	}
@@ -2898,7 +3854,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcBoilerType createIfcBoilerType() {
+	public IfcBoilerType createIfcBoilerType()
+	{
 		IfcBoilerTypeImpl ifcBoilerType = new IfcBoilerTypeImpl();
 		return ifcBoilerType;
 	}
@@ -2908,7 +3865,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcBooleanClippingResult createIfcBooleanClippingResult() {
+	public IfcBooleanClippingResult createIfcBooleanClippingResult()
+	{
 		IfcBooleanClippingResultImpl ifcBooleanClippingResult = new IfcBooleanClippingResultImpl();
 		return ifcBooleanClippingResult;
 	}
@@ -2918,7 +3876,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcBooleanResult createIfcBooleanResult() {
+	public IfcBooleanResult createIfcBooleanResult()
+	{
 		IfcBooleanResultImpl ifcBooleanResult = new IfcBooleanResultImpl();
 		return ifcBooleanResult;
 	}
@@ -2928,7 +3887,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcBoundaryCondition createIfcBoundaryCondition() {
+	public IfcBoundaryCondition createIfcBoundaryCondition()
+	{
 		IfcBoundaryConditionImpl ifcBoundaryCondition = new IfcBoundaryConditionImpl();
 		return ifcBoundaryCondition;
 	}
@@ -2938,7 +3898,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcBoundaryEdgeCondition createIfcBoundaryEdgeCondition() {
+	public IfcBoundaryEdgeCondition createIfcBoundaryEdgeCondition()
+	{
 		IfcBoundaryEdgeConditionImpl ifcBoundaryEdgeCondition = new IfcBoundaryEdgeConditionImpl();
 		return ifcBoundaryEdgeCondition;
 	}
@@ -2948,7 +3909,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcBoundaryFaceCondition createIfcBoundaryFaceCondition() {
+	public IfcBoundaryFaceCondition createIfcBoundaryFaceCondition()
+	{
 		IfcBoundaryFaceConditionImpl ifcBoundaryFaceCondition = new IfcBoundaryFaceConditionImpl();
 		return ifcBoundaryFaceCondition;
 	}
@@ -2958,7 +3920,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcBoundaryNodeCondition createIfcBoundaryNodeCondition() {
+	public IfcBoundaryNodeCondition createIfcBoundaryNodeCondition()
+	{
 		IfcBoundaryNodeConditionImpl ifcBoundaryNodeCondition = new IfcBoundaryNodeConditionImpl();
 		return ifcBoundaryNodeCondition;
 	}
@@ -2968,7 +3931,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcBoundaryNodeConditionWarping createIfcBoundaryNodeConditionWarping() {
+	public IfcBoundaryNodeConditionWarping createIfcBoundaryNodeConditionWarping()
+	{
 		IfcBoundaryNodeConditionWarpingImpl ifcBoundaryNodeConditionWarping = new IfcBoundaryNodeConditionWarpingImpl();
 		return ifcBoundaryNodeConditionWarping;
 	}
@@ -2978,7 +3942,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcBoundedCurve createIfcBoundedCurve() {
+	public IfcBoundedCurve createIfcBoundedCurve()
+	{
 		IfcBoundedCurveImpl ifcBoundedCurve = new IfcBoundedCurveImpl();
 		return ifcBoundedCurve;
 	}
@@ -2988,7 +3953,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcBoundedSurface createIfcBoundedSurface() {
+	public IfcBoundedSurface createIfcBoundedSurface()
+	{
 		IfcBoundedSurfaceImpl ifcBoundedSurface = new IfcBoundedSurfaceImpl();
 		return ifcBoundedSurface;
 	}
@@ -2998,7 +3964,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcBoundingBox createIfcBoundingBox() {
+	public IfcBoundingBox createIfcBoundingBox()
+	{
 		IfcBoundingBoxImpl ifcBoundingBox = new IfcBoundingBoxImpl();
 		return ifcBoundingBox;
 	}
@@ -3008,7 +3975,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcBoxedHalfSpace createIfcBoxedHalfSpace() {
+	public IfcBoxedHalfSpace createIfcBoxedHalfSpace()
+	{
 		IfcBoxedHalfSpaceImpl ifcBoxedHalfSpace = new IfcBoxedHalfSpaceImpl();
 		return ifcBoxedHalfSpace;
 	}
@@ -3018,7 +3986,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcBuilding createIfcBuilding() {
+	public IfcBuilding createIfcBuilding()
+	{
 		IfcBuildingImpl ifcBuilding = new IfcBuildingImpl();
 		return ifcBuilding;
 	}
@@ -3028,7 +3997,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcBuildingElement createIfcBuildingElement() {
+	public IfcBuildingElement createIfcBuildingElement()
+	{
 		IfcBuildingElementImpl ifcBuildingElement = new IfcBuildingElementImpl();
 		return ifcBuildingElement;
 	}
@@ -3038,7 +4008,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcBuildingElementComponent createIfcBuildingElementComponent() {
+	public IfcBuildingElementComponent createIfcBuildingElementComponent()
+	{
 		IfcBuildingElementComponentImpl ifcBuildingElementComponent = new IfcBuildingElementComponentImpl();
 		return ifcBuildingElementComponent;
 	}
@@ -3048,7 +4019,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcBuildingElementPart createIfcBuildingElementPart() {
+	public IfcBuildingElementPart createIfcBuildingElementPart()
+	{
 		IfcBuildingElementPartImpl ifcBuildingElementPart = new IfcBuildingElementPartImpl();
 		return ifcBuildingElementPart;
 	}
@@ -3058,7 +4030,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcBuildingElementProxy createIfcBuildingElementProxy() {
+	public IfcBuildingElementProxy createIfcBuildingElementProxy()
+	{
 		IfcBuildingElementProxyImpl ifcBuildingElementProxy = new IfcBuildingElementProxyImpl();
 		return ifcBuildingElementProxy;
 	}
@@ -3068,7 +4041,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcBuildingElementProxyType createIfcBuildingElementProxyType() {
+	public IfcBuildingElementProxyType createIfcBuildingElementProxyType()
+	{
 		IfcBuildingElementProxyTypeImpl ifcBuildingElementProxyType = new IfcBuildingElementProxyTypeImpl();
 		return ifcBuildingElementProxyType;
 	}
@@ -3078,7 +4052,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcBuildingElementType createIfcBuildingElementType() {
+	public IfcBuildingElementType createIfcBuildingElementType()
+	{
 		IfcBuildingElementTypeImpl ifcBuildingElementType = new IfcBuildingElementTypeImpl();
 		return ifcBuildingElementType;
 	}
@@ -3088,7 +4063,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcBuildingStorey createIfcBuildingStorey() {
+	public IfcBuildingStorey createIfcBuildingStorey()
+	{
 		IfcBuildingStoreyImpl ifcBuildingStorey = new IfcBuildingStoreyImpl();
 		return ifcBuildingStorey;
 	}
@@ -3098,7 +4074,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcCShapeProfileDef createIfcCShapeProfileDef() {
+	public IfcCShapeProfileDef createIfcCShapeProfileDef()
+	{
 		IfcCShapeProfileDefImpl ifcCShapeProfileDef = new IfcCShapeProfileDefImpl();
 		return ifcCShapeProfileDef;
 	}
@@ -3108,7 +4085,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcCableCarrierFittingType createIfcCableCarrierFittingType() {
+	public IfcCableCarrierFittingType createIfcCableCarrierFittingType()
+	{
 		IfcCableCarrierFittingTypeImpl ifcCableCarrierFittingType = new IfcCableCarrierFittingTypeImpl();
 		return ifcCableCarrierFittingType;
 	}
@@ -3118,7 +4096,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcCableCarrierSegmentType createIfcCableCarrierSegmentType() {
+	public IfcCableCarrierSegmentType createIfcCableCarrierSegmentType()
+	{
 		IfcCableCarrierSegmentTypeImpl ifcCableCarrierSegmentType = new IfcCableCarrierSegmentTypeImpl();
 		return ifcCableCarrierSegmentType;
 	}
@@ -3128,7 +4107,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcCableSegmentType createIfcCableSegmentType() {
+	public IfcCableSegmentType createIfcCableSegmentType()
+	{
 		IfcCableSegmentTypeImpl ifcCableSegmentType = new IfcCableSegmentTypeImpl();
 		return ifcCableSegmentType;
 	}
@@ -3138,7 +4118,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcCalendarDate createIfcCalendarDate() {
+	public IfcCalendarDate createIfcCalendarDate()
+	{
 		IfcCalendarDateImpl ifcCalendarDate = new IfcCalendarDateImpl();
 		return ifcCalendarDate;
 	}
@@ -3148,7 +4129,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcCartesianPoint createIfcCartesianPoint() {
+	public IfcCartesianPoint createIfcCartesianPoint()
+	{
 		IfcCartesianPointImpl ifcCartesianPoint = new IfcCartesianPointImpl();
 		return ifcCartesianPoint;
 	}
@@ -3158,7 +4140,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcCartesianTransformationOperator createIfcCartesianTransformationOperator() {
+	public IfcCartesianTransformationOperator createIfcCartesianTransformationOperator()
+	{
 		IfcCartesianTransformationOperatorImpl ifcCartesianTransformationOperator = new IfcCartesianTransformationOperatorImpl();
 		return ifcCartesianTransformationOperator;
 	}
@@ -3168,7 +4151,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcCartesianTransformationOperator2D createIfcCartesianTransformationOperator2D() {
+	public IfcCartesianTransformationOperator2D createIfcCartesianTransformationOperator2D()
+	{
 		IfcCartesianTransformationOperator2DImpl ifcCartesianTransformationOperator2D = new IfcCartesianTransformationOperator2DImpl();
 		return ifcCartesianTransformationOperator2D;
 	}
@@ -3178,7 +4162,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcCartesianTransformationOperator2DnonUniform createIfcCartesianTransformationOperator2DnonUniform() {
+	public IfcCartesianTransformationOperator2DnonUniform createIfcCartesianTransformationOperator2DnonUniform()
+	{
 		IfcCartesianTransformationOperator2DnonUniformImpl ifcCartesianTransformationOperator2DnonUniform = new IfcCartesianTransformationOperator2DnonUniformImpl();
 		return ifcCartesianTransformationOperator2DnonUniform;
 	}
@@ -3188,7 +4173,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcCartesianTransformationOperator3D createIfcCartesianTransformationOperator3D() {
+	public IfcCartesianTransformationOperator3D createIfcCartesianTransformationOperator3D()
+	{
 		IfcCartesianTransformationOperator3DImpl ifcCartesianTransformationOperator3D = new IfcCartesianTransformationOperator3DImpl();
 		return ifcCartesianTransformationOperator3D;
 	}
@@ -3198,7 +4184,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcCartesianTransformationOperator3DnonUniform createIfcCartesianTransformationOperator3DnonUniform() {
+	public IfcCartesianTransformationOperator3DnonUniform createIfcCartesianTransformationOperator3DnonUniform()
+	{
 		IfcCartesianTransformationOperator3DnonUniformImpl ifcCartesianTransformationOperator3DnonUniform = new IfcCartesianTransformationOperator3DnonUniformImpl();
 		return ifcCartesianTransformationOperator3DnonUniform;
 	}
@@ -3208,7 +4195,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcCenterLineProfileDef createIfcCenterLineProfileDef() {
+	public IfcCenterLineProfileDef createIfcCenterLineProfileDef()
+	{
 		IfcCenterLineProfileDefImpl ifcCenterLineProfileDef = new IfcCenterLineProfileDefImpl();
 		return ifcCenterLineProfileDef;
 	}
@@ -3218,7 +4206,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcChamferEdgeFeature createIfcChamferEdgeFeature() {
+	public IfcChamferEdgeFeature createIfcChamferEdgeFeature()
+	{
 		IfcChamferEdgeFeatureImpl ifcChamferEdgeFeature = new IfcChamferEdgeFeatureImpl();
 		return ifcChamferEdgeFeature;
 	}
@@ -3228,7 +4217,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcChillerType createIfcChillerType() {
+	public IfcChillerType createIfcChillerType()
+	{
 		IfcChillerTypeImpl ifcChillerType = new IfcChillerTypeImpl();
 		return ifcChillerType;
 	}
@@ -3238,7 +4228,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcCircle createIfcCircle() {
+	public IfcCircle createIfcCircle()
+	{
 		IfcCircleImpl ifcCircle = new IfcCircleImpl();
 		return ifcCircle;
 	}
@@ -3248,7 +4239,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcCircleHollowProfileDef createIfcCircleHollowProfileDef() {
+	public IfcCircleHollowProfileDef createIfcCircleHollowProfileDef()
+	{
 		IfcCircleHollowProfileDefImpl ifcCircleHollowProfileDef = new IfcCircleHollowProfileDefImpl();
 		return ifcCircleHollowProfileDef;
 	}
@@ -3258,7 +4250,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcCircleProfileDef createIfcCircleProfileDef() {
+	public IfcCircleProfileDef createIfcCircleProfileDef()
+	{
 		IfcCircleProfileDefImpl ifcCircleProfileDef = new IfcCircleProfileDefImpl();
 		return ifcCircleProfileDef;
 	}
@@ -3268,7 +4261,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcClassification createIfcClassification() {
+	public IfcClassification createIfcClassification()
+	{
 		IfcClassificationImpl ifcClassification = new IfcClassificationImpl();
 		return ifcClassification;
 	}
@@ -3278,7 +4272,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcClassificationItem createIfcClassificationItem() {
+	public IfcClassificationItem createIfcClassificationItem()
+	{
 		IfcClassificationItemImpl ifcClassificationItem = new IfcClassificationItemImpl();
 		return ifcClassificationItem;
 	}
@@ -3288,7 +4283,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcClassificationItemRelationship createIfcClassificationItemRelationship() {
+	public IfcClassificationItemRelationship createIfcClassificationItemRelationship()
+	{
 		IfcClassificationItemRelationshipImpl ifcClassificationItemRelationship = new IfcClassificationItemRelationshipImpl();
 		return ifcClassificationItemRelationship;
 	}
@@ -3298,7 +4294,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcClassificationNotation createIfcClassificationNotation() {
+	public IfcClassificationNotation createIfcClassificationNotation()
+	{
 		IfcClassificationNotationImpl ifcClassificationNotation = new IfcClassificationNotationImpl();
 		return ifcClassificationNotation;
 	}
@@ -3308,7 +4305,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcClassificationNotationFacet createIfcClassificationNotationFacet() {
+	public IfcClassificationNotationFacet createIfcClassificationNotationFacet()
+	{
 		IfcClassificationNotationFacetImpl ifcClassificationNotationFacet = new IfcClassificationNotationFacetImpl();
 		return ifcClassificationNotationFacet;
 	}
@@ -3318,7 +4316,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcClassificationReference createIfcClassificationReference() {
+	public IfcClassificationReference createIfcClassificationReference()
+	{
 		IfcClassificationReferenceImpl ifcClassificationReference = new IfcClassificationReferenceImpl();
 		return ifcClassificationReference;
 	}
@@ -3328,7 +4327,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcClosedShell createIfcClosedShell() {
+	public IfcClosedShell createIfcClosedShell()
+	{
 		IfcClosedShellImpl ifcClosedShell = new IfcClosedShellImpl();
 		return ifcClosedShell;
 	}
@@ -3338,7 +4338,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcCoilType createIfcCoilType() {
+	public IfcCoilType createIfcCoilType()
+	{
 		IfcCoilTypeImpl ifcCoilType = new IfcCoilTypeImpl();
 		return ifcCoilType;
 	}
@@ -3348,7 +4349,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcColourRgb createIfcColourRgb() {
+	public IfcColourRgb createIfcColourRgb()
+	{
 		IfcColourRgbImpl ifcColourRgb = new IfcColourRgbImpl();
 		return ifcColourRgb;
 	}
@@ -3358,7 +4360,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcColourSpecification createIfcColourSpecification() {
+	public IfcColourSpecification createIfcColourSpecification()
+	{
 		IfcColourSpecificationImpl ifcColourSpecification = new IfcColourSpecificationImpl();
 		return ifcColourSpecification;
 	}
@@ -3368,7 +4371,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcColumn createIfcColumn() {
+	public IfcColumn createIfcColumn()
+	{
 		IfcColumnImpl ifcColumn = new IfcColumnImpl();
 		return ifcColumn;
 	}
@@ -3378,7 +4382,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcColumnType createIfcColumnType() {
+	public IfcColumnType createIfcColumnType()
+	{
 		IfcColumnTypeImpl ifcColumnType = new IfcColumnTypeImpl();
 		return ifcColumnType;
 	}
@@ -3388,7 +4393,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcComplexProperty createIfcComplexProperty() {
+	public IfcComplexProperty createIfcComplexProperty()
+	{
 		IfcComplexPropertyImpl ifcComplexProperty = new IfcComplexPropertyImpl();
 		return ifcComplexProperty;
 	}
@@ -3398,7 +4404,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcCompositeCurve createIfcCompositeCurve() {
+	public IfcCompositeCurve createIfcCompositeCurve()
+	{
 		IfcCompositeCurveImpl ifcCompositeCurve = new IfcCompositeCurveImpl();
 		return ifcCompositeCurve;
 	}
@@ -3408,7 +4415,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcCompositeCurveSegment createIfcCompositeCurveSegment() {
+	public IfcCompositeCurveSegment createIfcCompositeCurveSegment()
+	{
 		IfcCompositeCurveSegmentImpl ifcCompositeCurveSegment = new IfcCompositeCurveSegmentImpl();
 		return ifcCompositeCurveSegment;
 	}
@@ -3418,7 +4426,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcCompositeProfileDef createIfcCompositeProfileDef() {
+	public IfcCompositeProfileDef createIfcCompositeProfileDef()
+	{
 		IfcCompositeProfileDefImpl ifcCompositeProfileDef = new IfcCompositeProfileDefImpl();
 		return ifcCompositeProfileDef;
 	}
@@ -3428,7 +4437,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcCompressorType createIfcCompressorType() {
+	public IfcCompressorType createIfcCompressorType()
+	{
 		IfcCompressorTypeImpl ifcCompressorType = new IfcCompressorTypeImpl();
 		return ifcCompressorType;
 	}
@@ -3438,7 +4448,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcCondenserType createIfcCondenserType() {
+	public IfcCondenserType createIfcCondenserType()
+	{
 		IfcCondenserTypeImpl ifcCondenserType = new IfcCondenserTypeImpl();
 		return ifcCondenserType;
 	}
@@ -3448,7 +4459,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcCondition createIfcCondition() {
+	public IfcCondition createIfcCondition()
+	{
 		IfcConditionImpl ifcCondition = new IfcConditionImpl();
 		return ifcCondition;
 	}
@@ -3458,7 +4470,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcConditionCriterion createIfcConditionCriterion() {
+	public IfcConditionCriterion createIfcConditionCriterion()
+	{
 		IfcConditionCriterionImpl ifcConditionCriterion = new IfcConditionCriterionImpl();
 		return ifcConditionCriterion;
 	}
@@ -3468,7 +4481,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcConic createIfcConic() {
+	public IfcConic createIfcConic()
+	{
 		IfcConicImpl ifcConic = new IfcConicImpl();
 		return ifcConic;
 	}
@@ -3478,7 +4492,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcConnectedFaceSet createIfcConnectedFaceSet() {
+	public IfcConnectedFaceSet createIfcConnectedFaceSet()
+	{
 		IfcConnectedFaceSetImpl ifcConnectedFaceSet = new IfcConnectedFaceSetImpl();
 		return ifcConnectedFaceSet;
 	}
@@ -3488,7 +4503,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcConnectionCurveGeometry createIfcConnectionCurveGeometry() {
+	public IfcConnectionCurveGeometry createIfcConnectionCurveGeometry()
+	{
 		IfcConnectionCurveGeometryImpl ifcConnectionCurveGeometry = new IfcConnectionCurveGeometryImpl();
 		return ifcConnectionCurveGeometry;
 	}
@@ -3498,7 +4514,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcConnectionGeometry createIfcConnectionGeometry() {
+	public IfcConnectionGeometry createIfcConnectionGeometry()
+	{
 		IfcConnectionGeometryImpl ifcConnectionGeometry = new IfcConnectionGeometryImpl();
 		return ifcConnectionGeometry;
 	}
@@ -3508,7 +4525,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcConnectionPointEccentricity createIfcConnectionPointEccentricity() {
+	public IfcConnectionPointEccentricity createIfcConnectionPointEccentricity()
+	{
 		IfcConnectionPointEccentricityImpl ifcConnectionPointEccentricity = new IfcConnectionPointEccentricityImpl();
 		return ifcConnectionPointEccentricity;
 	}
@@ -3518,7 +4536,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcConnectionPointGeometry createIfcConnectionPointGeometry() {
+	public IfcConnectionPointGeometry createIfcConnectionPointGeometry()
+	{
 		IfcConnectionPointGeometryImpl ifcConnectionPointGeometry = new IfcConnectionPointGeometryImpl();
 		return ifcConnectionPointGeometry;
 	}
@@ -3528,7 +4547,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcConnectionPortGeometry createIfcConnectionPortGeometry() {
+	public IfcConnectionPortGeometry createIfcConnectionPortGeometry()
+	{
 		IfcConnectionPortGeometryImpl ifcConnectionPortGeometry = new IfcConnectionPortGeometryImpl();
 		return ifcConnectionPortGeometry;
 	}
@@ -3538,7 +4558,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcConnectionSurfaceGeometry createIfcConnectionSurfaceGeometry() {
+	public IfcConnectionSurfaceGeometry createIfcConnectionSurfaceGeometry()
+	{
 		IfcConnectionSurfaceGeometryImpl ifcConnectionSurfaceGeometry = new IfcConnectionSurfaceGeometryImpl();
 		return ifcConnectionSurfaceGeometry;
 	}
@@ -3548,7 +4569,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcConstraint createIfcConstraint() {
+	public IfcConstraint createIfcConstraint()
+	{
 		IfcConstraintImpl ifcConstraint = new IfcConstraintImpl();
 		return ifcConstraint;
 	}
@@ -3558,7 +4580,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcConstraintAggregationRelationship createIfcConstraintAggregationRelationship() {
+	public IfcConstraintAggregationRelationship createIfcConstraintAggregationRelationship()
+	{
 		IfcConstraintAggregationRelationshipImpl ifcConstraintAggregationRelationship = new IfcConstraintAggregationRelationshipImpl();
 		return ifcConstraintAggregationRelationship;
 	}
@@ -3568,7 +4591,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcConstraintClassificationRelationship createIfcConstraintClassificationRelationship() {
+	public IfcConstraintClassificationRelationship createIfcConstraintClassificationRelationship()
+	{
 		IfcConstraintClassificationRelationshipImpl ifcConstraintClassificationRelationship = new IfcConstraintClassificationRelationshipImpl();
 		return ifcConstraintClassificationRelationship;
 	}
@@ -3578,7 +4602,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcConstraintRelationship createIfcConstraintRelationship() {
+	public IfcConstraintRelationship createIfcConstraintRelationship()
+	{
 		IfcConstraintRelationshipImpl ifcConstraintRelationship = new IfcConstraintRelationshipImpl();
 		return ifcConstraintRelationship;
 	}
@@ -3588,7 +4613,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcConstructionEquipmentResource createIfcConstructionEquipmentResource() {
+	public IfcConstructionEquipmentResource createIfcConstructionEquipmentResource()
+	{
 		IfcConstructionEquipmentResourceImpl ifcConstructionEquipmentResource = new IfcConstructionEquipmentResourceImpl();
 		return ifcConstructionEquipmentResource;
 	}
@@ -3598,7 +4624,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcConstructionMaterialResource createIfcConstructionMaterialResource() {
+	public IfcConstructionMaterialResource createIfcConstructionMaterialResource()
+	{
 		IfcConstructionMaterialResourceImpl ifcConstructionMaterialResource = new IfcConstructionMaterialResourceImpl();
 		return ifcConstructionMaterialResource;
 	}
@@ -3608,7 +4635,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcConstructionProductResource createIfcConstructionProductResource() {
+	public IfcConstructionProductResource createIfcConstructionProductResource()
+	{
 		IfcConstructionProductResourceImpl ifcConstructionProductResource = new IfcConstructionProductResourceImpl();
 		return ifcConstructionProductResource;
 	}
@@ -3618,7 +4646,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcConstructionResource createIfcConstructionResource() {
+	public IfcConstructionResource createIfcConstructionResource()
+	{
 		IfcConstructionResourceImpl ifcConstructionResource = new IfcConstructionResourceImpl();
 		return ifcConstructionResource;
 	}
@@ -3628,7 +4657,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcContextDependentUnit createIfcContextDependentUnit() {
+	public IfcContextDependentUnit createIfcContextDependentUnit()
+	{
 		IfcContextDependentUnitImpl ifcContextDependentUnit = new IfcContextDependentUnitImpl();
 		return ifcContextDependentUnit;
 	}
@@ -3638,7 +4668,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcControl createIfcControl() {
+	public IfcControl createIfcControl()
+	{
 		IfcControlImpl ifcControl = new IfcControlImpl();
 		return ifcControl;
 	}
@@ -3648,7 +4679,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcControllerType createIfcControllerType() {
+	public IfcControllerType createIfcControllerType()
+	{
 		IfcControllerTypeImpl ifcControllerType = new IfcControllerTypeImpl();
 		return ifcControllerType;
 	}
@@ -3658,7 +4690,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcConversionBasedUnit createIfcConversionBasedUnit() {
+	public IfcConversionBasedUnit createIfcConversionBasedUnit()
+	{
 		IfcConversionBasedUnitImpl ifcConversionBasedUnit = new IfcConversionBasedUnitImpl();
 		return ifcConversionBasedUnit;
 	}
@@ -3668,7 +4701,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcCooledBeamType createIfcCooledBeamType() {
+	public IfcCooledBeamType createIfcCooledBeamType()
+	{
 		IfcCooledBeamTypeImpl ifcCooledBeamType = new IfcCooledBeamTypeImpl();
 		return ifcCooledBeamType;
 	}
@@ -3678,7 +4712,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcCoolingTowerType createIfcCoolingTowerType() {
+	public IfcCoolingTowerType createIfcCoolingTowerType()
+	{
 		IfcCoolingTowerTypeImpl ifcCoolingTowerType = new IfcCoolingTowerTypeImpl();
 		return ifcCoolingTowerType;
 	}
@@ -3688,7 +4723,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcCoordinatedUniversalTimeOffset createIfcCoordinatedUniversalTimeOffset() {
+	public IfcCoordinatedUniversalTimeOffset createIfcCoordinatedUniversalTimeOffset()
+	{
 		IfcCoordinatedUniversalTimeOffsetImpl ifcCoordinatedUniversalTimeOffset = new IfcCoordinatedUniversalTimeOffsetImpl();
 		return ifcCoordinatedUniversalTimeOffset;
 	}
@@ -3698,7 +4734,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcCostItem createIfcCostItem() {
+	public IfcCostItem createIfcCostItem()
+	{
 		IfcCostItemImpl ifcCostItem = new IfcCostItemImpl();
 		return ifcCostItem;
 	}
@@ -3708,7 +4745,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcCostSchedule createIfcCostSchedule() {
+	public IfcCostSchedule createIfcCostSchedule()
+	{
 		IfcCostScheduleImpl ifcCostSchedule = new IfcCostScheduleImpl();
 		return ifcCostSchedule;
 	}
@@ -3718,7 +4756,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcCostValue createIfcCostValue() {
+	public IfcCostValue createIfcCostValue()
+	{
 		IfcCostValueImpl ifcCostValue = new IfcCostValueImpl();
 		return ifcCostValue;
 	}
@@ -3728,7 +4767,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcCovering createIfcCovering() {
+	public IfcCovering createIfcCovering()
+	{
 		IfcCoveringImpl ifcCovering = new IfcCoveringImpl();
 		return ifcCovering;
 	}
@@ -3738,7 +4778,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcCoveringType createIfcCoveringType() {
+	public IfcCoveringType createIfcCoveringType()
+	{
 		IfcCoveringTypeImpl ifcCoveringType = new IfcCoveringTypeImpl();
 		return ifcCoveringType;
 	}
@@ -3748,7 +4789,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcCraneRailAShapeProfileDef createIfcCraneRailAShapeProfileDef() {
+	public IfcCraneRailAShapeProfileDef createIfcCraneRailAShapeProfileDef()
+	{
 		IfcCraneRailAShapeProfileDefImpl ifcCraneRailAShapeProfileDef = new IfcCraneRailAShapeProfileDefImpl();
 		return ifcCraneRailAShapeProfileDef;
 	}
@@ -3758,7 +4800,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcCraneRailFShapeProfileDef createIfcCraneRailFShapeProfileDef() {
+	public IfcCraneRailFShapeProfileDef createIfcCraneRailFShapeProfileDef()
+	{
 		IfcCraneRailFShapeProfileDefImpl ifcCraneRailFShapeProfileDef = new IfcCraneRailFShapeProfileDefImpl();
 		return ifcCraneRailFShapeProfileDef;
 	}
@@ -3768,7 +4811,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcCrewResource createIfcCrewResource() {
+	public IfcCrewResource createIfcCrewResource()
+	{
 		IfcCrewResourceImpl ifcCrewResource = new IfcCrewResourceImpl();
 		return ifcCrewResource;
 	}
@@ -3778,7 +4822,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcCsgPrimitive3D createIfcCsgPrimitive3D() {
+	public IfcCsgPrimitive3D createIfcCsgPrimitive3D()
+	{
 		IfcCsgPrimitive3DImpl ifcCsgPrimitive3D = new IfcCsgPrimitive3DImpl();
 		return ifcCsgPrimitive3D;
 	}
@@ -3788,7 +4833,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcCsgSolid createIfcCsgSolid() {
+	public IfcCsgSolid createIfcCsgSolid()
+	{
 		IfcCsgSolidImpl ifcCsgSolid = new IfcCsgSolidImpl();
 		return ifcCsgSolid;
 	}
@@ -3798,7 +4844,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcCurrencyRelationship createIfcCurrencyRelationship() {
+	public IfcCurrencyRelationship createIfcCurrencyRelationship()
+	{
 		IfcCurrencyRelationshipImpl ifcCurrencyRelationship = new IfcCurrencyRelationshipImpl();
 		return ifcCurrencyRelationship;
 	}
@@ -3808,7 +4855,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcCurtainWall createIfcCurtainWall() {
+	public IfcCurtainWall createIfcCurtainWall()
+	{
 		IfcCurtainWallImpl ifcCurtainWall = new IfcCurtainWallImpl();
 		return ifcCurtainWall;
 	}
@@ -3818,7 +4866,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcCurtainWallType createIfcCurtainWallType() {
+	public IfcCurtainWallType createIfcCurtainWallType()
+	{
 		IfcCurtainWallTypeImpl ifcCurtainWallType = new IfcCurtainWallTypeImpl();
 		return ifcCurtainWallType;
 	}
@@ -3828,7 +4877,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcCurve createIfcCurve() {
+	public IfcCurve createIfcCurve()
+	{
 		IfcCurveImpl ifcCurve = new IfcCurveImpl();
 		return ifcCurve;
 	}
@@ -3838,7 +4888,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcCurveBoundedPlane createIfcCurveBoundedPlane() {
+	public IfcCurveBoundedPlane createIfcCurveBoundedPlane()
+	{
 		IfcCurveBoundedPlaneImpl ifcCurveBoundedPlane = new IfcCurveBoundedPlaneImpl();
 		return ifcCurveBoundedPlane;
 	}
@@ -3848,7 +4899,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcCurveStyle createIfcCurveStyle() {
+	public IfcCurveStyle createIfcCurveStyle()
+	{
 		IfcCurveStyleImpl ifcCurveStyle = new IfcCurveStyleImpl();
 		return ifcCurveStyle;
 	}
@@ -3858,7 +4910,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcCurveStyleFont createIfcCurveStyleFont() {
+	public IfcCurveStyleFont createIfcCurveStyleFont()
+	{
 		IfcCurveStyleFontImpl ifcCurveStyleFont = new IfcCurveStyleFontImpl();
 		return ifcCurveStyleFont;
 	}
@@ -3868,7 +4921,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcCurveStyleFontAndScaling createIfcCurveStyleFontAndScaling() {
+	public IfcCurveStyleFontAndScaling createIfcCurveStyleFontAndScaling()
+	{
 		IfcCurveStyleFontAndScalingImpl ifcCurveStyleFontAndScaling = new IfcCurveStyleFontAndScalingImpl();
 		return ifcCurveStyleFontAndScaling;
 	}
@@ -3878,7 +4932,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcCurveStyleFontPattern createIfcCurveStyleFontPattern() {
+	public IfcCurveStyleFontPattern createIfcCurveStyleFontPattern()
+	{
 		IfcCurveStyleFontPatternImpl ifcCurveStyleFontPattern = new IfcCurveStyleFontPatternImpl();
 		return ifcCurveStyleFontPattern;
 	}
@@ -3888,7 +4943,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcDamperType createIfcDamperType() {
+	public IfcDamperType createIfcDamperType()
+	{
 		IfcDamperTypeImpl ifcDamperType = new IfcDamperTypeImpl();
 		return ifcDamperType;
 	}
@@ -3898,7 +4954,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcDateAndTime createIfcDateAndTime() {
+	public IfcDateAndTime createIfcDateAndTime()
+	{
 		IfcDateAndTimeImpl ifcDateAndTime = new IfcDateAndTimeImpl();
 		return ifcDateAndTime;
 	}
@@ -3908,7 +4965,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcDefinedSymbol createIfcDefinedSymbol() {
+	public IfcDefinedSymbol createIfcDefinedSymbol()
+	{
 		IfcDefinedSymbolImpl ifcDefinedSymbol = new IfcDefinedSymbolImpl();
 		return ifcDefinedSymbol;
 	}
@@ -3918,7 +4976,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcDerivedProfileDef createIfcDerivedProfileDef() {
+	public IfcDerivedProfileDef createIfcDerivedProfileDef()
+	{
 		IfcDerivedProfileDefImpl ifcDerivedProfileDef = new IfcDerivedProfileDefImpl();
 		return ifcDerivedProfileDef;
 	}
@@ -3928,7 +4987,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcDerivedUnit createIfcDerivedUnit() {
+	public IfcDerivedUnit createIfcDerivedUnit()
+	{
 		IfcDerivedUnitImpl ifcDerivedUnit = new IfcDerivedUnitImpl();
 		return ifcDerivedUnit;
 	}
@@ -3938,7 +4998,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcDerivedUnitElement createIfcDerivedUnitElement() {
+	public IfcDerivedUnitElement createIfcDerivedUnitElement()
+	{
 		IfcDerivedUnitElementImpl ifcDerivedUnitElement = new IfcDerivedUnitElementImpl();
 		return ifcDerivedUnitElement;
 	}
@@ -3948,7 +5009,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcDiameterDimension createIfcDiameterDimension() {
+	public IfcDiameterDimension createIfcDiameterDimension()
+	{
 		IfcDiameterDimensionImpl ifcDiameterDimension = new IfcDiameterDimensionImpl();
 		return ifcDiameterDimension;
 	}
@@ -3958,7 +5020,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcDimensionCalloutRelationship createIfcDimensionCalloutRelationship() {
+	public IfcDimensionCalloutRelationship createIfcDimensionCalloutRelationship()
+	{
 		IfcDimensionCalloutRelationshipImpl ifcDimensionCalloutRelationship = new IfcDimensionCalloutRelationshipImpl();
 		return ifcDimensionCalloutRelationship;
 	}
@@ -3968,7 +5031,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcDimensionCurve createIfcDimensionCurve() {
+	public IfcDimensionCurve createIfcDimensionCurve()
+	{
 		IfcDimensionCurveImpl ifcDimensionCurve = new IfcDimensionCurveImpl();
 		return ifcDimensionCurve;
 	}
@@ -3978,7 +5042,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcDimensionCurveDirectedCallout createIfcDimensionCurveDirectedCallout() {
+	public IfcDimensionCurveDirectedCallout createIfcDimensionCurveDirectedCallout()
+	{
 		IfcDimensionCurveDirectedCalloutImpl ifcDimensionCurveDirectedCallout = new IfcDimensionCurveDirectedCalloutImpl();
 		return ifcDimensionCurveDirectedCallout;
 	}
@@ -3988,7 +5053,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcDimensionCurveTerminator createIfcDimensionCurveTerminator() {
+	public IfcDimensionCurveTerminator createIfcDimensionCurveTerminator()
+	{
 		IfcDimensionCurveTerminatorImpl ifcDimensionCurveTerminator = new IfcDimensionCurveTerminatorImpl();
 		return ifcDimensionCurveTerminator;
 	}
@@ -3998,7 +5064,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcDimensionPair createIfcDimensionPair() {
+	public IfcDimensionPair createIfcDimensionPair()
+	{
 		IfcDimensionPairImpl ifcDimensionPair = new IfcDimensionPairImpl();
 		return ifcDimensionPair;
 	}
@@ -4008,7 +5075,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcDimensionalExponents createIfcDimensionalExponents() {
+	public IfcDimensionalExponents createIfcDimensionalExponents()
+	{
 		IfcDimensionalExponentsImpl ifcDimensionalExponents = new IfcDimensionalExponentsImpl();
 		return ifcDimensionalExponents;
 	}
@@ -4018,7 +5086,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcDirection createIfcDirection() {
+	public IfcDirection createIfcDirection()
+	{
 		IfcDirectionImpl ifcDirection = new IfcDirectionImpl();
 		return ifcDirection;
 	}
@@ -4028,7 +5097,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcDiscreteAccessory createIfcDiscreteAccessory() {
+	public IfcDiscreteAccessory createIfcDiscreteAccessory()
+	{
 		IfcDiscreteAccessoryImpl ifcDiscreteAccessory = new IfcDiscreteAccessoryImpl();
 		return ifcDiscreteAccessory;
 	}
@@ -4038,7 +5108,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcDiscreteAccessoryType createIfcDiscreteAccessoryType() {
+	public IfcDiscreteAccessoryType createIfcDiscreteAccessoryType()
+	{
 		IfcDiscreteAccessoryTypeImpl ifcDiscreteAccessoryType = new IfcDiscreteAccessoryTypeImpl();
 		return ifcDiscreteAccessoryType;
 	}
@@ -4048,7 +5119,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcDistributionChamberElement createIfcDistributionChamberElement() {
+	public IfcDistributionChamberElement createIfcDistributionChamberElement()
+	{
 		IfcDistributionChamberElementImpl ifcDistributionChamberElement = new IfcDistributionChamberElementImpl();
 		return ifcDistributionChamberElement;
 	}
@@ -4058,7 +5130,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcDistributionChamberElementType createIfcDistributionChamberElementType() {
+	public IfcDistributionChamberElementType createIfcDistributionChamberElementType()
+	{
 		IfcDistributionChamberElementTypeImpl ifcDistributionChamberElementType = new IfcDistributionChamberElementTypeImpl();
 		return ifcDistributionChamberElementType;
 	}
@@ -4068,7 +5141,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcDistributionControlElement createIfcDistributionControlElement() {
+	public IfcDistributionControlElement createIfcDistributionControlElement()
+	{
 		IfcDistributionControlElementImpl ifcDistributionControlElement = new IfcDistributionControlElementImpl();
 		return ifcDistributionControlElement;
 	}
@@ -4078,7 +5152,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcDistributionControlElementType createIfcDistributionControlElementType() {
+	public IfcDistributionControlElementType createIfcDistributionControlElementType()
+	{
 		IfcDistributionControlElementTypeImpl ifcDistributionControlElementType = new IfcDistributionControlElementTypeImpl();
 		return ifcDistributionControlElementType;
 	}
@@ -4088,7 +5163,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcDistributionElement createIfcDistributionElement() {
+	public IfcDistributionElement createIfcDistributionElement()
+	{
 		IfcDistributionElementImpl ifcDistributionElement = new IfcDistributionElementImpl();
 		return ifcDistributionElement;
 	}
@@ -4098,7 +5174,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcDistributionElementType createIfcDistributionElementType() {
+	public IfcDistributionElementType createIfcDistributionElementType()
+	{
 		IfcDistributionElementTypeImpl ifcDistributionElementType = new IfcDistributionElementTypeImpl();
 		return ifcDistributionElementType;
 	}
@@ -4108,7 +5185,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcDistributionFlowElement createIfcDistributionFlowElement() {
+	public IfcDistributionFlowElement createIfcDistributionFlowElement()
+	{
 		IfcDistributionFlowElementImpl ifcDistributionFlowElement = new IfcDistributionFlowElementImpl();
 		return ifcDistributionFlowElement;
 	}
@@ -4118,7 +5196,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcDistributionFlowElementType createIfcDistributionFlowElementType() {
+	public IfcDistributionFlowElementType createIfcDistributionFlowElementType()
+	{
 		IfcDistributionFlowElementTypeImpl ifcDistributionFlowElementType = new IfcDistributionFlowElementTypeImpl();
 		return ifcDistributionFlowElementType;
 	}
@@ -4128,7 +5207,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcDistributionPort createIfcDistributionPort() {
+	public IfcDistributionPort createIfcDistributionPort()
+	{
 		IfcDistributionPortImpl ifcDistributionPort = new IfcDistributionPortImpl();
 		return ifcDistributionPort;
 	}
@@ -4138,7 +5218,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcDocumentElectronicFormat createIfcDocumentElectronicFormat() {
+	public IfcDocumentElectronicFormat createIfcDocumentElectronicFormat()
+	{
 		IfcDocumentElectronicFormatImpl ifcDocumentElectronicFormat = new IfcDocumentElectronicFormatImpl();
 		return ifcDocumentElectronicFormat;
 	}
@@ -4148,7 +5229,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcDocumentInformation createIfcDocumentInformation() {
+	public IfcDocumentInformation createIfcDocumentInformation()
+	{
 		IfcDocumentInformationImpl ifcDocumentInformation = new IfcDocumentInformationImpl();
 		return ifcDocumentInformation;
 	}
@@ -4158,7 +5240,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcDocumentInformationRelationship createIfcDocumentInformationRelationship() {
+	public IfcDocumentInformationRelationship createIfcDocumentInformationRelationship()
+	{
 		IfcDocumentInformationRelationshipImpl ifcDocumentInformationRelationship = new IfcDocumentInformationRelationshipImpl();
 		return ifcDocumentInformationRelationship;
 	}
@@ -4168,7 +5251,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcDocumentReference createIfcDocumentReference() {
+	public IfcDocumentReference createIfcDocumentReference()
+	{
 		IfcDocumentReferenceImpl ifcDocumentReference = new IfcDocumentReferenceImpl();
 		return ifcDocumentReference;
 	}
@@ -4178,7 +5262,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcDoor createIfcDoor() {
+	public IfcDoor createIfcDoor()
+	{
 		IfcDoorImpl ifcDoor = new IfcDoorImpl();
 		return ifcDoor;
 	}
@@ -4188,7 +5273,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcDoorLiningProperties createIfcDoorLiningProperties() {
+	public IfcDoorLiningProperties createIfcDoorLiningProperties()
+	{
 		IfcDoorLiningPropertiesImpl ifcDoorLiningProperties = new IfcDoorLiningPropertiesImpl();
 		return ifcDoorLiningProperties;
 	}
@@ -4198,7 +5284,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcDoorPanelProperties createIfcDoorPanelProperties() {
+	public IfcDoorPanelProperties createIfcDoorPanelProperties()
+	{
 		IfcDoorPanelPropertiesImpl ifcDoorPanelProperties = new IfcDoorPanelPropertiesImpl();
 		return ifcDoorPanelProperties;
 	}
@@ -4208,7 +5295,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcDoorStyle createIfcDoorStyle() {
+	public IfcDoorStyle createIfcDoorStyle()
+	{
 		IfcDoorStyleImpl ifcDoorStyle = new IfcDoorStyleImpl();
 		return ifcDoorStyle;
 	}
@@ -4218,7 +5306,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcDraughtingCallout createIfcDraughtingCallout() {
+	public IfcDraughtingCallout createIfcDraughtingCallout()
+	{
 		IfcDraughtingCalloutImpl ifcDraughtingCallout = new IfcDraughtingCalloutImpl();
 		return ifcDraughtingCallout;
 	}
@@ -4228,7 +5317,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcDraughtingCalloutRelationship createIfcDraughtingCalloutRelationship() {
+	public IfcDraughtingCalloutRelationship createIfcDraughtingCalloutRelationship()
+	{
 		IfcDraughtingCalloutRelationshipImpl ifcDraughtingCalloutRelationship = new IfcDraughtingCalloutRelationshipImpl();
 		return ifcDraughtingCalloutRelationship;
 	}
@@ -4238,7 +5328,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcDraughtingPreDefinedColour createIfcDraughtingPreDefinedColour() {
+	public IfcDraughtingPreDefinedColour createIfcDraughtingPreDefinedColour()
+	{
 		IfcDraughtingPreDefinedColourImpl ifcDraughtingPreDefinedColour = new IfcDraughtingPreDefinedColourImpl();
 		return ifcDraughtingPreDefinedColour;
 	}
@@ -4248,7 +5339,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcDraughtingPreDefinedCurveFont createIfcDraughtingPreDefinedCurveFont() {
+	public IfcDraughtingPreDefinedCurveFont createIfcDraughtingPreDefinedCurveFont()
+	{
 		IfcDraughtingPreDefinedCurveFontImpl ifcDraughtingPreDefinedCurveFont = new IfcDraughtingPreDefinedCurveFontImpl();
 		return ifcDraughtingPreDefinedCurveFont;
 	}
@@ -4258,7 +5350,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcDraughtingPreDefinedTextFont createIfcDraughtingPreDefinedTextFont() {
+	public IfcDraughtingPreDefinedTextFont createIfcDraughtingPreDefinedTextFont()
+	{
 		IfcDraughtingPreDefinedTextFontImpl ifcDraughtingPreDefinedTextFont = new IfcDraughtingPreDefinedTextFontImpl();
 		return ifcDraughtingPreDefinedTextFont;
 	}
@@ -4268,7 +5361,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcDuctFittingType createIfcDuctFittingType() {
+	public IfcDuctFittingType createIfcDuctFittingType()
+	{
 		IfcDuctFittingTypeImpl ifcDuctFittingType = new IfcDuctFittingTypeImpl();
 		return ifcDuctFittingType;
 	}
@@ -4278,7 +5372,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcDuctSegmentType createIfcDuctSegmentType() {
+	public IfcDuctSegmentType createIfcDuctSegmentType()
+	{
 		IfcDuctSegmentTypeImpl ifcDuctSegmentType = new IfcDuctSegmentTypeImpl();
 		return ifcDuctSegmentType;
 	}
@@ -4288,7 +5383,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcDuctSilencerType createIfcDuctSilencerType() {
+	public IfcDuctSilencerType createIfcDuctSilencerType()
+	{
 		IfcDuctSilencerTypeImpl ifcDuctSilencerType = new IfcDuctSilencerTypeImpl();
 		return ifcDuctSilencerType;
 	}
@@ -4298,7 +5394,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcEdge createIfcEdge() {
+	public IfcEdge createIfcEdge()
+	{
 		IfcEdgeImpl ifcEdge = new IfcEdgeImpl();
 		return ifcEdge;
 	}
@@ -4308,7 +5405,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcEdgeCurve createIfcEdgeCurve() {
+	public IfcEdgeCurve createIfcEdgeCurve()
+	{
 		IfcEdgeCurveImpl ifcEdgeCurve = new IfcEdgeCurveImpl();
 		return ifcEdgeCurve;
 	}
@@ -4318,7 +5416,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcEdgeFeature createIfcEdgeFeature() {
+	public IfcEdgeFeature createIfcEdgeFeature()
+	{
 		IfcEdgeFeatureImpl ifcEdgeFeature = new IfcEdgeFeatureImpl();
 		return ifcEdgeFeature;
 	}
@@ -4328,7 +5427,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcEdgeLoop createIfcEdgeLoop() {
+	public IfcEdgeLoop createIfcEdgeLoop()
+	{
 		IfcEdgeLoopImpl ifcEdgeLoop = new IfcEdgeLoopImpl();
 		return ifcEdgeLoop;
 	}
@@ -4338,7 +5438,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcElectricApplianceType createIfcElectricApplianceType() {
+	public IfcElectricApplianceType createIfcElectricApplianceType()
+	{
 		IfcElectricApplianceTypeImpl ifcElectricApplianceType = new IfcElectricApplianceTypeImpl();
 		return ifcElectricApplianceType;
 	}
@@ -4348,7 +5449,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcElectricDistributionPoint createIfcElectricDistributionPoint() {
+	public IfcElectricDistributionPoint createIfcElectricDistributionPoint()
+	{
 		IfcElectricDistributionPointImpl ifcElectricDistributionPoint = new IfcElectricDistributionPointImpl();
 		return ifcElectricDistributionPoint;
 	}
@@ -4358,7 +5460,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcElectricFlowStorageDeviceType createIfcElectricFlowStorageDeviceType() {
+	public IfcElectricFlowStorageDeviceType createIfcElectricFlowStorageDeviceType()
+	{
 		IfcElectricFlowStorageDeviceTypeImpl ifcElectricFlowStorageDeviceType = new IfcElectricFlowStorageDeviceTypeImpl();
 		return ifcElectricFlowStorageDeviceType;
 	}
@@ -4368,7 +5471,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcElectricGeneratorType createIfcElectricGeneratorType() {
+	public IfcElectricGeneratorType createIfcElectricGeneratorType()
+	{
 		IfcElectricGeneratorTypeImpl ifcElectricGeneratorType = new IfcElectricGeneratorTypeImpl();
 		return ifcElectricGeneratorType;
 	}
@@ -4378,7 +5482,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcElectricHeaterType createIfcElectricHeaterType() {
+	public IfcElectricHeaterType createIfcElectricHeaterType()
+	{
 		IfcElectricHeaterTypeImpl ifcElectricHeaterType = new IfcElectricHeaterTypeImpl();
 		return ifcElectricHeaterType;
 	}
@@ -4388,7 +5493,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcElectricMotorType createIfcElectricMotorType() {
+	public IfcElectricMotorType createIfcElectricMotorType()
+	{
 		IfcElectricMotorTypeImpl ifcElectricMotorType = new IfcElectricMotorTypeImpl();
 		return ifcElectricMotorType;
 	}
@@ -4398,7 +5504,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcElectricTimeControlType createIfcElectricTimeControlType() {
+	public IfcElectricTimeControlType createIfcElectricTimeControlType()
+	{
 		IfcElectricTimeControlTypeImpl ifcElectricTimeControlType = new IfcElectricTimeControlTypeImpl();
 		return ifcElectricTimeControlType;
 	}
@@ -4408,7 +5515,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcElectricalBaseProperties createIfcElectricalBaseProperties() {
+	public IfcElectricalBaseProperties createIfcElectricalBaseProperties()
+	{
 		IfcElectricalBasePropertiesImpl ifcElectricalBaseProperties = new IfcElectricalBasePropertiesImpl();
 		return ifcElectricalBaseProperties;
 	}
@@ -4418,7 +5526,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcElectricalCircuit createIfcElectricalCircuit() {
+	public IfcElectricalCircuit createIfcElectricalCircuit()
+	{
 		IfcElectricalCircuitImpl ifcElectricalCircuit = new IfcElectricalCircuitImpl();
 		return ifcElectricalCircuit;
 	}
@@ -4428,7 +5537,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcElectricalElement createIfcElectricalElement() {
+	public IfcElectricalElement createIfcElectricalElement()
+	{
 		IfcElectricalElementImpl ifcElectricalElement = new IfcElectricalElementImpl();
 		return ifcElectricalElement;
 	}
@@ -4438,7 +5548,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcElement createIfcElement() {
+	public IfcElement createIfcElement()
+	{
 		IfcElementImpl ifcElement = new IfcElementImpl();
 		return ifcElement;
 	}
@@ -4448,7 +5559,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcElementAssembly createIfcElementAssembly() {
+	public IfcElementAssembly createIfcElementAssembly()
+	{
 		IfcElementAssemblyImpl ifcElementAssembly = new IfcElementAssemblyImpl();
 		return ifcElementAssembly;
 	}
@@ -4458,7 +5570,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcElementComponent createIfcElementComponent() {
+	public IfcElementComponent createIfcElementComponent()
+	{
 		IfcElementComponentImpl ifcElementComponent = new IfcElementComponentImpl();
 		return ifcElementComponent;
 	}
@@ -4468,7 +5581,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcElementComponentType createIfcElementComponentType() {
+	public IfcElementComponentType createIfcElementComponentType()
+	{
 		IfcElementComponentTypeImpl ifcElementComponentType = new IfcElementComponentTypeImpl();
 		return ifcElementComponentType;
 	}
@@ -4478,7 +5592,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcElementQuantity createIfcElementQuantity() {
+	public IfcElementQuantity createIfcElementQuantity()
+	{
 		IfcElementQuantityImpl ifcElementQuantity = new IfcElementQuantityImpl();
 		return ifcElementQuantity;
 	}
@@ -4488,7 +5603,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcElementType createIfcElementType() {
+	public IfcElementType createIfcElementType()
+	{
 		IfcElementTypeImpl ifcElementType = new IfcElementTypeImpl();
 		return ifcElementType;
 	}
@@ -4498,7 +5614,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcElementarySurface createIfcElementarySurface() {
+	public IfcElementarySurface createIfcElementarySurface()
+	{
 		IfcElementarySurfaceImpl ifcElementarySurface = new IfcElementarySurfaceImpl();
 		return ifcElementarySurface;
 	}
@@ -4508,7 +5625,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcEllipse createIfcEllipse() {
+	public IfcEllipse createIfcEllipse()
+	{
 		IfcEllipseImpl ifcEllipse = new IfcEllipseImpl();
 		return ifcEllipse;
 	}
@@ -4518,7 +5636,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcEllipseProfileDef createIfcEllipseProfileDef() {
+	public IfcEllipseProfileDef createIfcEllipseProfileDef()
+	{
 		IfcEllipseProfileDefImpl ifcEllipseProfileDef = new IfcEllipseProfileDefImpl();
 		return ifcEllipseProfileDef;
 	}
@@ -4528,7 +5647,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcEnergyConversionDevice createIfcEnergyConversionDevice() {
+	public IfcEnergyConversionDevice createIfcEnergyConversionDevice()
+	{
 		IfcEnergyConversionDeviceImpl ifcEnergyConversionDevice = new IfcEnergyConversionDeviceImpl();
 		return ifcEnergyConversionDevice;
 	}
@@ -4538,7 +5658,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcEnergyConversionDeviceType createIfcEnergyConversionDeviceType() {
+	public IfcEnergyConversionDeviceType createIfcEnergyConversionDeviceType()
+	{
 		IfcEnergyConversionDeviceTypeImpl ifcEnergyConversionDeviceType = new IfcEnergyConversionDeviceTypeImpl();
 		return ifcEnergyConversionDeviceType;
 	}
@@ -4548,7 +5669,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcEnergyProperties createIfcEnergyProperties() {
+	public IfcEnergyProperties createIfcEnergyProperties()
+	{
 		IfcEnergyPropertiesImpl ifcEnergyProperties = new IfcEnergyPropertiesImpl();
 		return ifcEnergyProperties;
 	}
@@ -4558,7 +5680,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcEnvironmentalImpactValue createIfcEnvironmentalImpactValue() {
+	public IfcEnvironmentalImpactValue createIfcEnvironmentalImpactValue()
+	{
 		IfcEnvironmentalImpactValueImpl ifcEnvironmentalImpactValue = new IfcEnvironmentalImpactValueImpl();
 		return ifcEnvironmentalImpactValue;
 	}
@@ -4568,7 +5691,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcEquipmentElement createIfcEquipmentElement() {
+	public IfcEquipmentElement createIfcEquipmentElement()
+	{
 		IfcEquipmentElementImpl ifcEquipmentElement = new IfcEquipmentElementImpl();
 		return ifcEquipmentElement;
 	}
@@ -4578,7 +5702,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcEquipmentStandard createIfcEquipmentStandard() {
+	public IfcEquipmentStandard createIfcEquipmentStandard()
+	{
 		IfcEquipmentStandardImpl ifcEquipmentStandard = new IfcEquipmentStandardImpl();
 		return ifcEquipmentStandard;
 	}
@@ -4588,7 +5713,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcEvaporativeCoolerType createIfcEvaporativeCoolerType() {
+	public IfcEvaporativeCoolerType createIfcEvaporativeCoolerType()
+	{
 		IfcEvaporativeCoolerTypeImpl ifcEvaporativeCoolerType = new IfcEvaporativeCoolerTypeImpl();
 		return ifcEvaporativeCoolerType;
 	}
@@ -4598,7 +5724,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcEvaporatorType createIfcEvaporatorType() {
+	public IfcEvaporatorType createIfcEvaporatorType()
+	{
 		IfcEvaporatorTypeImpl ifcEvaporatorType = new IfcEvaporatorTypeImpl();
 		return ifcEvaporatorType;
 	}
@@ -4608,7 +5735,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcExtendedMaterialProperties createIfcExtendedMaterialProperties() {
+	public IfcExtendedMaterialProperties createIfcExtendedMaterialProperties()
+	{
 		IfcExtendedMaterialPropertiesImpl ifcExtendedMaterialProperties = new IfcExtendedMaterialPropertiesImpl();
 		return ifcExtendedMaterialProperties;
 	}
@@ -4618,7 +5746,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcExternalReference createIfcExternalReference() {
+	public IfcExternalReference createIfcExternalReference()
+	{
 		IfcExternalReferenceImpl ifcExternalReference = new IfcExternalReferenceImpl();
 		return ifcExternalReference;
 	}
@@ -4628,7 +5757,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcExternallyDefinedHatchStyle createIfcExternallyDefinedHatchStyle() {
+	public IfcExternallyDefinedHatchStyle createIfcExternallyDefinedHatchStyle()
+	{
 		IfcExternallyDefinedHatchStyleImpl ifcExternallyDefinedHatchStyle = new IfcExternallyDefinedHatchStyleImpl();
 		return ifcExternallyDefinedHatchStyle;
 	}
@@ -4638,7 +5768,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcExternallyDefinedSurfaceStyle createIfcExternallyDefinedSurfaceStyle() {
+	public IfcExternallyDefinedSurfaceStyle createIfcExternallyDefinedSurfaceStyle()
+	{
 		IfcExternallyDefinedSurfaceStyleImpl ifcExternallyDefinedSurfaceStyle = new IfcExternallyDefinedSurfaceStyleImpl();
 		return ifcExternallyDefinedSurfaceStyle;
 	}
@@ -4648,7 +5779,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcExternallyDefinedSymbol createIfcExternallyDefinedSymbol() {
+	public IfcExternallyDefinedSymbol createIfcExternallyDefinedSymbol()
+	{
 		IfcExternallyDefinedSymbolImpl ifcExternallyDefinedSymbol = new IfcExternallyDefinedSymbolImpl();
 		return ifcExternallyDefinedSymbol;
 	}
@@ -4658,7 +5790,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcExternallyDefinedTextFont createIfcExternallyDefinedTextFont() {
+	public IfcExternallyDefinedTextFont createIfcExternallyDefinedTextFont()
+	{
 		IfcExternallyDefinedTextFontImpl ifcExternallyDefinedTextFont = new IfcExternallyDefinedTextFontImpl();
 		return ifcExternallyDefinedTextFont;
 	}
@@ -4668,7 +5801,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcExtrudedAreaSolid createIfcExtrudedAreaSolid() {
+	public IfcExtrudedAreaSolid createIfcExtrudedAreaSolid()
+	{
 		IfcExtrudedAreaSolidImpl ifcExtrudedAreaSolid = new IfcExtrudedAreaSolidImpl();
 		return ifcExtrudedAreaSolid;
 	}
@@ -4678,7 +5812,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcFace createIfcFace() {
+	public IfcFace createIfcFace()
+	{
 		IfcFaceImpl ifcFace = new IfcFaceImpl();
 		return ifcFace;
 	}
@@ -4688,7 +5823,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcFaceBasedSurfaceModel createIfcFaceBasedSurfaceModel() {
+	public IfcFaceBasedSurfaceModel createIfcFaceBasedSurfaceModel()
+	{
 		IfcFaceBasedSurfaceModelImpl ifcFaceBasedSurfaceModel = new IfcFaceBasedSurfaceModelImpl();
 		return ifcFaceBasedSurfaceModel;
 	}
@@ -4698,7 +5834,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcFaceBound createIfcFaceBound() {
+	public IfcFaceBound createIfcFaceBound()
+	{
 		IfcFaceBoundImpl ifcFaceBound = new IfcFaceBoundImpl();
 		return ifcFaceBound;
 	}
@@ -4708,7 +5845,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcFaceOuterBound createIfcFaceOuterBound() {
+	public IfcFaceOuterBound createIfcFaceOuterBound()
+	{
 		IfcFaceOuterBoundImpl ifcFaceOuterBound = new IfcFaceOuterBoundImpl();
 		return ifcFaceOuterBound;
 	}
@@ -4718,7 +5856,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcFaceSurface createIfcFaceSurface() {
+	public IfcFaceSurface createIfcFaceSurface()
+	{
 		IfcFaceSurfaceImpl ifcFaceSurface = new IfcFaceSurfaceImpl();
 		return ifcFaceSurface;
 	}
@@ -4728,7 +5867,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcFacetedBrep createIfcFacetedBrep() {
+	public IfcFacetedBrep createIfcFacetedBrep()
+	{
 		IfcFacetedBrepImpl ifcFacetedBrep = new IfcFacetedBrepImpl();
 		return ifcFacetedBrep;
 	}
@@ -4738,7 +5878,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcFacetedBrepWithVoids createIfcFacetedBrepWithVoids() {
+	public IfcFacetedBrepWithVoids createIfcFacetedBrepWithVoids()
+	{
 		IfcFacetedBrepWithVoidsImpl ifcFacetedBrepWithVoids = new IfcFacetedBrepWithVoidsImpl();
 		return ifcFacetedBrepWithVoids;
 	}
@@ -4748,7 +5889,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcFailureConnectionCondition createIfcFailureConnectionCondition() {
+	public IfcFailureConnectionCondition createIfcFailureConnectionCondition()
+	{
 		IfcFailureConnectionConditionImpl ifcFailureConnectionCondition = new IfcFailureConnectionConditionImpl();
 		return ifcFailureConnectionCondition;
 	}
@@ -4758,7 +5900,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcFanType createIfcFanType() {
+	public IfcFanType createIfcFanType()
+	{
 		IfcFanTypeImpl ifcFanType = new IfcFanTypeImpl();
 		return ifcFanType;
 	}
@@ -4768,7 +5911,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcFastener createIfcFastener() {
+	public IfcFastener createIfcFastener()
+	{
 		IfcFastenerImpl ifcFastener = new IfcFastenerImpl();
 		return ifcFastener;
 	}
@@ -4778,7 +5922,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcFastenerType createIfcFastenerType() {
+	public IfcFastenerType createIfcFastenerType()
+	{
 		IfcFastenerTypeImpl ifcFastenerType = new IfcFastenerTypeImpl();
 		return ifcFastenerType;
 	}
@@ -4788,7 +5933,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcFeatureElement createIfcFeatureElement() {
+	public IfcFeatureElement createIfcFeatureElement()
+	{
 		IfcFeatureElementImpl ifcFeatureElement = new IfcFeatureElementImpl();
 		return ifcFeatureElement;
 	}
@@ -4798,7 +5944,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcFeatureElementAddition createIfcFeatureElementAddition() {
+	public IfcFeatureElementAddition createIfcFeatureElementAddition()
+	{
 		IfcFeatureElementAdditionImpl ifcFeatureElementAddition = new IfcFeatureElementAdditionImpl();
 		return ifcFeatureElementAddition;
 	}
@@ -4808,7 +5955,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcFeatureElementSubtraction createIfcFeatureElementSubtraction() {
+	public IfcFeatureElementSubtraction createIfcFeatureElementSubtraction()
+	{
 		IfcFeatureElementSubtractionImpl ifcFeatureElementSubtraction = new IfcFeatureElementSubtractionImpl();
 		return ifcFeatureElementSubtraction;
 	}
@@ -4818,7 +5966,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcFillAreaStyle createIfcFillAreaStyle() {
+	public IfcFillAreaStyle createIfcFillAreaStyle()
+	{
 		IfcFillAreaStyleImpl ifcFillAreaStyle = new IfcFillAreaStyleImpl();
 		return ifcFillAreaStyle;
 	}
@@ -4828,7 +5977,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcFillAreaStyleHatching createIfcFillAreaStyleHatching() {
+	public IfcFillAreaStyleHatching createIfcFillAreaStyleHatching()
+	{
 		IfcFillAreaStyleHatchingImpl ifcFillAreaStyleHatching = new IfcFillAreaStyleHatchingImpl();
 		return ifcFillAreaStyleHatching;
 	}
@@ -4838,7 +5988,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcFillAreaStyleTileSymbolWithStyle createIfcFillAreaStyleTileSymbolWithStyle() {
+	public IfcFillAreaStyleTileSymbolWithStyle createIfcFillAreaStyleTileSymbolWithStyle()
+	{
 		IfcFillAreaStyleTileSymbolWithStyleImpl ifcFillAreaStyleTileSymbolWithStyle = new IfcFillAreaStyleTileSymbolWithStyleImpl();
 		return ifcFillAreaStyleTileSymbolWithStyle;
 	}
@@ -4848,7 +5999,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcFillAreaStyleTiles createIfcFillAreaStyleTiles() {
+	public IfcFillAreaStyleTiles createIfcFillAreaStyleTiles()
+	{
 		IfcFillAreaStyleTilesImpl ifcFillAreaStyleTiles = new IfcFillAreaStyleTilesImpl();
 		return ifcFillAreaStyleTiles;
 	}
@@ -4858,7 +6010,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcFilterType createIfcFilterType() {
+	public IfcFilterType createIfcFilterType()
+	{
 		IfcFilterTypeImpl ifcFilterType = new IfcFilterTypeImpl();
 		return ifcFilterType;
 	}
@@ -4868,7 +6021,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcFireSuppressionTerminalType createIfcFireSuppressionTerminalType() {
+	public IfcFireSuppressionTerminalType createIfcFireSuppressionTerminalType()
+	{
 		IfcFireSuppressionTerminalTypeImpl ifcFireSuppressionTerminalType = new IfcFireSuppressionTerminalTypeImpl();
 		return ifcFireSuppressionTerminalType;
 	}
@@ -4878,7 +6032,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcFlowController createIfcFlowController() {
+	public IfcFlowController createIfcFlowController()
+	{
 		IfcFlowControllerImpl ifcFlowController = new IfcFlowControllerImpl();
 		return ifcFlowController;
 	}
@@ -4888,7 +6043,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcFlowControllerType createIfcFlowControllerType() {
+	public IfcFlowControllerType createIfcFlowControllerType()
+	{
 		IfcFlowControllerTypeImpl ifcFlowControllerType = new IfcFlowControllerTypeImpl();
 		return ifcFlowControllerType;
 	}
@@ -4898,7 +6054,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcFlowFitting createIfcFlowFitting() {
+	public IfcFlowFitting createIfcFlowFitting()
+	{
 		IfcFlowFittingImpl ifcFlowFitting = new IfcFlowFittingImpl();
 		return ifcFlowFitting;
 	}
@@ -4908,7 +6065,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcFlowFittingType createIfcFlowFittingType() {
+	public IfcFlowFittingType createIfcFlowFittingType()
+	{
 		IfcFlowFittingTypeImpl ifcFlowFittingType = new IfcFlowFittingTypeImpl();
 		return ifcFlowFittingType;
 	}
@@ -4918,7 +6076,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcFlowInstrumentType createIfcFlowInstrumentType() {
+	public IfcFlowInstrumentType createIfcFlowInstrumentType()
+	{
 		IfcFlowInstrumentTypeImpl ifcFlowInstrumentType = new IfcFlowInstrumentTypeImpl();
 		return ifcFlowInstrumentType;
 	}
@@ -4928,7 +6087,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcFlowMeterType createIfcFlowMeterType() {
+	public IfcFlowMeterType createIfcFlowMeterType()
+	{
 		IfcFlowMeterTypeImpl ifcFlowMeterType = new IfcFlowMeterTypeImpl();
 		return ifcFlowMeterType;
 	}
@@ -4938,7 +6098,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcFlowMovingDevice createIfcFlowMovingDevice() {
+	public IfcFlowMovingDevice createIfcFlowMovingDevice()
+	{
 		IfcFlowMovingDeviceImpl ifcFlowMovingDevice = new IfcFlowMovingDeviceImpl();
 		return ifcFlowMovingDevice;
 	}
@@ -4948,7 +6109,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcFlowMovingDeviceType createIfcFlowMovingDeviceType() {
+	public IfcFlowMovingDeviceType createIfcFlowMovingDeviceType()
+	{
 		IfcFlowMovingDeviceTypeImpl ifcFlowMovingDeviceType = new IfcFlowMovingDeviceTypeImpl();
 		return ifcFlowMovingDeviceType;
 	}
@@ -4958,7 +6120,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcFlowSegment createIfcFlowSegment() {
+	public IfcFlowSegment createIfcFlowSegment()
+	{
 		IfcFlowSegmentImpl ifcFlowSegment = new IfcFlowSegmentImpl();
 		return ifcFlowSegment;
 	}
@@ -4968,7 +6131,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcFlowSegmentType createIfcFlowSegmentType() {
+	public IfcFlowSegmentType createIfcFlowSegmentType()
+	{
 		IfcFlowSegmentTypeImpl ifcFlowSegmentType = new IfcFlowSegmentTypeImpl();
 		return ifcFlowSegmentType;
 	}
@@ -4978,7 +6142,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcFlowStorageDevice createIfcFlowStorageDevice() {
+	public IfcFlowStorageDevice createIfcFlowStorageDevice()
+	{
 		IfcFlowStorageDeviceImpl ifcFlowStorageDevice = new IfcFlowStorageDeviceImpl();
 		return ifcFlowStorageDevice;
 	}
@@ -4988,7 +6153,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcFlowStorageDeviceType createIfcFlowStorageDeviceType() {
+	public IfcFlowStorageDeviceType createIfcFlowStorageDeviceType()
+	{
 		IfcFlowStorageDeviceTypeImpl ifcFlowStorageDeviceType = new IfcFlowStorageDeviceTypeImpl();
 		return ifcFlowStorageDeviceType;
 	}
@@ -4998,7 +6164,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcFlowTerminal createIfcFlowTerminal() {
+	public IfcFlowTerminal createIfcFlowTerminal()
+	{
 		IfcFlowTerminalImpl ifcFlowTerminal = new IfcFlowTerminalImpl();
 		return ifcFlowTerminal;
 	}
@@ -5008,7 +6175,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcFlowTerminalType createIfcFlowTerminalType() {
+	public IfcFlowTerminalType createIfcFlowTerminalType()
+	{
 		IfcFlowTerminalTypeImpl ifcFlowTerminalType = new IfcFlowTerminalTypeImpl();
 		return ifcFlowTerminalType;
 	}
@@ -5018,7 +6186,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcFlowTreatmentDevice createIfcFlowTreatmentDevice() {
+	public IfcFlowTreatmentDevice createIfcFlowTreatmentDevice()
+	{
 		IfcFlowTreatmentDeviceImpl ifcFlowTreatmentDevice = new IfcFlowTreatmentDeviceImpl();
 		return ifcFlowTreatmentDevice;
 	}
@@ -5028,7 +6197,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcFlowTreatmentDeviceType createIfcFlowTreatmentDeviceType() {
+	public IfcFlowTreatmentDeviceType createIfcFlowTreatmentDeviceType()
+	{
 		IfcFlowTreatmentDeviceTypeImpl ifcFlowTreatmentDeviceType = new IfcFlowTreatmentDeviceTypeImpl();
 		return ifcFlowTreatmentDeviceType;
 	}
@@ -5038,7 +6208,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcFluidFlowProperties createIfcFluidFlowProperties() {
+	public IfcFluidFlowProperties createIfcFluidFlowProperties()
+	{
 		IfcFluidFlowPropertiesImpl ifcFluidFlowProperties = new IfcFluidFlowPropertiesImpl();
 		return ifcFluidFlowProperties;
 	}
@@ -5048,7 +6219,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcFooting createIfcFooting() {
+	public IfcFooting createIfcFooting()
+	{
 		IfcFootingImpl ifcFooting = new IfcFootingImpl();
 		return ifcFooting;
 	}
@@ -5058,7 +6230,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcFuelProperties createIfcFuelProperties() {
+	public IfcFuelProperties createIfcFuelProperties()
+	{
 		IfcFuelPropertiesImpl ifcFuelProperties = new IfcFuelPropertiesImpl();
 		return ifcFuelProperties;
 	}
@@ -5068,7 +6241,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcFurnishingElement createIfcFurnishingElement() {
+	public IfcFurnishingElement createIfcFurnishingElement()
+	{
 		IfcFurnishingElementImpl ifcFurnishingElement = new IfcFurnishingElementImpl();
 		return ifcFurnishingElement;
 	}
@@ -5078,7 +6252,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcFurnishingElementType createIfcFurnishingElementType() {
+	public IfcFurnishingElementType createIfcFurnishingElementType()
+	{
 		IfcFurnishingElementTypeImpl ifcFurnishingElementType = new IfcFurnishingElementTypeImpl();
 		return ifcFurnishingElementType;
 	}
@@ -5088,7 +6263,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcFurnitureStandard createIfcFurnitureStandard() {
+	public IfcFurnitureStandard createIfcFurnitureStandard()
+	{
 		IfcFurnitureStandardImpl ifcFurnitureStandard = new IfcFurnitureStandardImpl();
 		return ifcFurnitureStandard;
 	}
@@ -5098,7 +6274,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcFurnitureType createIfcFurnitureType() {
+	public IfcFurnitureType createIfcFurnitureType()
+	{
 		IfcFurnitureTypeImpl ifcFurnitureType = new IfcFurnitureTypeImpl();
 		return ifcFurnitureType;
 	}
@@ -5108,7 +6285,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcGasTerminalType createIfcGasTerminalType() {
+	public IfcGasTerminalType createIfcGasTerminalType()
+	{
 		IfcGasTerminalTypeImpl ifcGasTerminalType = new IfcGasTerminalTypeImpl();
 		return ifcGasTerminalType;
 	}
@@ -5118,7 +6296,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcGeneralMaterialProperties createIfcGeneralMaterialProperties() {
+	public IfcGeneralMaterialProperties createIfcGeneralMaterialProperties()
+	{
 		IfcGeneralMaterialPropertiesImpl ifcGeneralMaterialProperties = new IfcGeneralMaterialPropertiesImpl();
 		return ifcGeneralMaterialProperties;
 	}
@@ -5128,7 +6307,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcGeneralProfileProperties createIfcGeneralProfileProperties() {
+	public IfcGeneralProfileProperties createIfcGeneralProfileProperties()
+	{
 		IfcGeneralProfilePropertiesImpl ifcGeneralProfileProperties = new IfcGeneralProfilePropertiesImpl();
 		return ifcGeneralProfileProperties;
 	}
@@ -5138,7 +6318,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcGeometricCurveSet createIfcGeometricCurveSet() {
+	public IfcGeometricCurveSet createIfcGeometricCurveSet()
+	{
 		IfcGeometricCurveSetImpl ifcGeometricCurveSet = new IfcGeometricCurveSetImpl();
 		return ifcGeometricCurveSet;
 	}
@@ -5148,7 +6329,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcGeometricRepresentationContext createIfcGeometricRepresentationContext() {
+	public IfcGeometricRepresentationContext createIfcGeometricRepresentationContext()
+	{
 		IfcGeometricRepresentationContextImpl ifcGeometricRepresentationContext = new IfcGeometricRepresentationContextImpl();
 		return ifcGeometricRepresentationContext;
 	}
@@ -5158,7 +6340,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcGeometricRepresentationItem createIfcGeometricRepresentationItem() {
+	public IfcGeometricRepresentationItem createIfcGeometricRepresentationItem()
+	{
 		IfcGeometricRepresentationItemImpl ifcGeometricRepresentationItem = new IfcGeometricRepresentationItemImpl();
 		return ifcGeometricRepresentationItem;
 	}
@@ -5168,7 +6351,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcGeometricRepresentationSubContext createIfcGeometricRepresentationSubContext() {
+	public IfcGeometricRepresentationSubContext createIfcGeometricRepresentationSubContext()
+	{
 		IfcGeometricRepresentationSubContextImpl ifcGeometricRepresentationSubContext = new IfcGeometricRepresentationSubContextImpl();
 		return ifcGeometricRepresentationSubContext;
 	}
@@ -5178,7 +6362,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcGeometricSet createIfcGeometricSet() {
+	public IfcGeometricSet createIfcGeometricSet()
+	{
 		IfcGeometricSetImpl ifcGeometricSet = new IfcGeometricSetImpl();
 		return ifcGeometricSet;
 	}
@@ -5188,7 +6373,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcGrid createIfcGrid() {
+	public IfcGrid createIfcGrid()
+	{
 		IfcGridImpl ifcGrid = new IfcGridImpl();
 		return ifcGrid;
 	}
@@ -5198,7 +6384,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcGridAxis createIfcGridAxis() {
+	public IfcGridAxis createIfcGridAxis()
+	{
 		IfcGridAxisImpl ifcGridAxis = new IfcGridAxisImpl();
 		return ifcGridAxis;
 	}
@@ -5208,7 +6395,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcGridPlacement createIfcGridPlacement() {
+	public IfcGridPlacement createIfcGridPlacement()
+	{
 		IfcGridPlacementImpl ifcGridPlacement = new IfcGridPlacementImpl();
 		return ifcGridPlacement;
 	}
@@ -5218,7 +6406,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcGroup createIfcGroup() {
+	public IfcGroup createIfcGroup()
+	{
 		IfcGroupImpl ifcGroup = new IfcGroupImpl();
 		return ifcGroup;
 	}
@@ -5228,7 +6417,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcHalfSpaceSolid createIfcHalfSpaceSolid() {
+	public IfcHalfSpaceSolid createIfcHalfSpaceSolid()
+	{
 		IfcHalfSpaceSolidImpl ifcHalfSpaceSolid = new IfcHalfSpaceSolidImpl();
 		return ifcHalfSpaceSolid;
 	}
@@ -5238,7 +6428,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcHeatExchangerType createIfcHeatExchangerType() {
+	public IfcHeatExchangerType createIfcHeatExchangerType()
+	{
 		IfcHeatExchangerTypeImpl ifcHeatExchangerType = new IfcHeatExchangerTypeImpl();
 		return ifcHeatExchangerType;
 	}
@@ -5248,7 +6439,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcHumidifierType createIfcHumidifierType() {
+	public IfcHumidifierType createIfcHumidifierType()
+	{
 		IfcHumidifierTypeImpl ifcHumidifierType = new IfcHumidifierTypeImpl();
 		return ifcHumidifierType;
 	}
@@ -5258,7 +6450,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcHygroscopicMaterialProperties createIfcHygroscopicMaterialProperties() {
+	public IfcHygroscopicMaterialProperties createIfcHygroscopicMaterialProperties()
+	{
 		IfcHygroscopicMaterialPropertiesImpl ifcHygroscopicMaterialProperties = new IfcHygroscopicMaterialPropertiesImpl();
 		return ifcHygroscopicMaterialProperties;
 	}
@@ -5268,7 +6461,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcIShapeProfileDef createIfcIShapeProfileDef() {
+	public IfcIShapeProfileDef createIfcIShapeProfileDef()
+	{
 		IfcIShapeProfileDefImpl ifcIShapeProfileDef = new IfcIShapeProfileDefImpl();
 		return ifcIShapeProfileDef;
 	}
@@ -5278,7 +6472,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcImageTexture createIfcImageTexture() {
+	public IfcImageTexture createIfcImageTexture()
+	{
 		IfcImageTextureImpl ifcImageTexture = new IfcImageTextureImpl();
 		return ifcImageTexture;
 	}
@@ -5288,7 +6483,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcInventory createIfcInventory() {
+	public IfcInventory createIfcInventory()
+	{
 		IfcInventoryImpl ifcInventory = new IfcInventoryImpl();
 		return ifcInventory;
 	}
@@ -5298,7 +6494,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcIrregularTimeSeries createIfcIrregularTimeSeries() {
+	public IfcIrregularTimeSeries createIfcIrregularTimeSeries()
+	{
 		IfcIrregularTimeSeriesImpl ifcIrregularTimeSeries = new IfcIrregularTimeSeriesImpl();
 		return ifcIrregularTimeSeries;
 	}
@@ -5308,7 +6505,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcIrregularTimeSeriesValue createIfcIrregularTimeSeriesValue() {
+	public IfcIrregularTimeSeriesValue createIfcIrregularTimeSeriesValue()
+	{
 		IfcIrregularTimeSeriesValueImpl ifcIrregularTimeSeriesValue = new IfcIrregularTimeSeriesValueImpl();
 		return ifcIrregularTimeSeriesValue;
 	}
@@ -5318,7 +6516,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcJunctionBoxType createIfcJunctionBoxType() {
+	public IfcJunctionBoxType createIfcJunctionBoxType()
+	{
 		IfcJunctionBoxTypeImpl ifcJunctionBoxType = new IfcJunctionBoxTypeImpl();
 		return ifcJunctionBoxType;
 	}
@@ -5328,7 +6527,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcLShapeProfileDef createIfcLShapeProfileDef() {
+	public IfcLShapeProfileDef createIfcLShapeProfileDef()
+	{
 		IfcLShapeProfileDefImpl ifcLShapeProfileDef = new IfcLShapeProfileDefImpl();
 		return ifcLShapeProfileDef;
 	}
@@ -5338,7 +6538,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcLaborResource createIfcLaborResource() {
+	public IfcLaborResource createIfcLaborResource()
+	{
 		IfcLaborResourceImpl ifcLaborResource = new IfcLaborResourceImpl();
 		return ifcLaborResource;
 	}
@@ -5348,7 +6549,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcLampType createIfcLampType() {
+	public IfcLampType createIfcLampType()
+	{
 		IfcLampTypeImpl ifcLampType = new IfcLampTypeImpl();
 		return ifcLampType;
 	}
@@ -5358,7 +6560,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcLibraryInformation createIfcLibraryInformation() {
+	public IfcLibraryInformation createIfcLibraryInformation()
+	{
 		IfcLibraryInformationImpl ifcLibraryInformation = new IfcLibraryInformationImpl();
 		return ifcLibraryInformation;
 	}
@@ -5368,7 +6571,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcLibraryReference createIfcLibraryReference() {
+	public IfcLibraryReference createIfcLibraryReference()
+	{
 		IfcLibraryReferenceImpl ifcLibraryReference = new IfcLibraryReferenceImpl();
 		return ifcLibraryReference;
 	}
@@ -5378,7 +6582,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcLightDistributionData createIfcLightDistributionData() {
+	public IfcLightDistributionData createIfcLightDistributionData()
+	{
 		IfcLightDistributionDataImpl ifcLightDistributionData = new IfcLightDistributionDataImpl();
 		return ifcLightDistributionData;
 	}
@@ -5388,7 +6593,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcLightFixtureType createIfcLightFixtureType() {
+	public IfcLightFixtureType createIfcLightFixtureType()
+	{
 		IfcLightFixtureTypeImpl ifcLightFixtureType = new IfcLightFixtureTypeImpl();
 		return ifcLightFixtureType;
 	}
@@ -5398,7 +6604,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcLightIntensityDistribution createIfcLightIntensityDistribution() {
+	public IfcLightIntensityDistribution createIfcLightIntensityDistribution()
+	{
 		IfcLightIntensityDistributionImpl ifcLightIntensityDistribution = new IfcLightIntensityDistributionImpl();
 		return ifcLightIntensityDistribution;
 	}
@@ -5408,7 +6615,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcLightSource createIfcLightSource() {
+	public IfcLightSource createIfcLightSource()
+	{
 		IfcLightSourceImpl ifcLightSource = new IfcLightSourceImpl();
 		return ifcLightSource;
 	}
@@ -5418,7 +6626,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcLightSourceAmbient createIfcLightSourceAmbient() {
+	public IfcLightSourceAmbient createIfcLightSourceAmbient()
+	{
 		IfcLightSourceAmbientImpl ifcLightSourceAmbient = new IfcLightSourceAmbientImpl();
 		return ifcLightSourceAmbient;
 	}
@@ -5428,7 +6637,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcLightSourceDirectional createIfcLightSourceDirectional() {
+	public IfcLightSourceDirectional createIfcLightSourceDirectional()
+	{
 		IfcLightSourceDirectionalImpl ifcLightSourceDirectional = new IfcLightSourceDirectionalImpl();
 		return ifcLightSourceDirectional;
 	}
@@ -5438,7 +6648,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcLightSourceGoniometric createIfcLightSourceGoniometric() {
+	public IfcLightSourceGoniometric createIfcLightSourceGoniometric()
+	{
 		IfcLightSourceGoniometricImpl ifcLightSourceGoniometric = new IfcLightSourceGoniometricImpl();
 		return ifcLightSourceGoniometric;
 	}
@@ -5448,7 +6659,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcLightSourcePositional createIfcLightSourcePositional() {
+	public IfcLightSourcePositional createIfcLightSourcePositional()
+	{
 		IfcLightSourcePositionalImpl ifcLightSourcePositional = new IfcLightSourcePositionalImpl();
 		return ifcLightSourcePositional;
 	}
@@ -5458,7 +6670,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcLightSourceSpot createIfcLightSourceSpot() {
+	public IfcLightSourceSpot createIfcLightSourceSpot()
+	{
 		IfcLightSourceSpotImpl ifcLightSourceSpot = new IfcLightSourceSpotImpl();
 		return ifcLightSourceSpot;
 	}
@@ -5468,7 +6681,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcLine createIfcLine() {
+	public IfcLine createIfcLine()
+	{
 		IfcLineImpl ifcLine = new IfcLineImpl();
 		return ifcLine;
 	}
@@ -5478,7 +6692,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcLinearDimension createIfcLinearDimension() {
+	public IfcLinearDimension createIfcLinearDimension()
+	{
 		IfcLinearDimensionImpl ifcLinearDimension = new IfcLinearDimensionImpl();
 		return ifcLinearDimension;
 	}
@@ -5488,7 +6703,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcLocalPlacement createIfcLocalPlacement() {
+	public IfcLocalPlacement createIfcLocalPlacement()
+	{
 		IfcLocalPlacementImpl ifcLocalPlacement = new IfcLocalPlacementImpl();
 		return ifcLocalPlacement;
 	}
@@ -5498,7 +6714,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcLocalTime createIfcLocalTime() {
+	public IfcLocalTime createIfcLocalTime()
+	{
 		IfcLocalTimeImpl ifcLocalTime = new IfcLocalTimeImpl();
 		return ifcLocalTime;
 	}
@@ -5508,7 +6725,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcLoop createIfcLoop() {
+	public IfcLoop createIfcLoop()
+	{
 		IfcLoopImpl ifcLoop = new IfcLoopImpl();
 		return ifcLoop;
 	}
@@ -5518,7 +6736,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcManifoldSolidBrep createIfcManifoldSolidBrep() {
+	public IfcManifoldSolidBrep createIfcManifoldSolidBrep()
+	{
 		IfcManifoldSolidBrepImpl ifcManifoldSolidBrep = new IfcManifoldSolidBrepImpl();
 		return ifcManifoldSolidBrep;
 	}
@@ -5528,7 +6747,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcMappedItem createIfcMappedItem() {
+	public IfcMappedItem createIfcMappedItem()
+	{
 		IfcMappedItemImpl ifcMappedItem = new IfcMappedItemImpl();
 		return ifcMappedItem;
 	}
@@ -5538,7 +6758,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcMaterial createIfcMaterial() {
+	public IfcMaterial createIfcMaterial()
+	{
 		IfcMaterialImpl ifcMaterial = new IfcMaterialImpl();
 		return ifcMaterial;
 	}
@@ -5548,7 +6769,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcMaterialClassificationRelationship createIfcMaterialClassificationRelationship() {
+	public IfcMaterialClassificationRelationship createIfcMaterialClassificationRelationship()
+	{
 		IfcMaterialClassificationRelationshipImpl ifcMaterialClassificationRelationship = new IfcMaterialClassificationRelationshipImpl();
 		return ifcMaterialClassificationRelationship;
 	}
@@ -5558,7 +6780,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcMaterialDefinitionRepresentation createIfcMaterialDefinitionRepresentation() {
+	public IfcMaterialDefinitionRepresentation createIfcMaterialDefinitionRepresentation()
+	{
 		IfcMaterialDefinitionRepresentationImpl ifcMaterialDefinitionRepresentation = new IfcMaterialDefinitionRepresentationImpl();
 		return ifcMaterialDefinitionRepresentation;
 	}
@@ -5568,7 +6791,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcMaterialLayer createIfcMaterialLayer() {
+	public IfcMaterialLayer createIfcMaterialLayer()
+	{
 		IfcMaterialLayerImpl ifcMaterialLayer = new IfcMaterialLayerImpl();
 		return ifcMaterialLayer;
 	}
@@ -5578,7 +6802,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcMaterialLayerSet createIfcMaterialLayerSet() {
+	public IfcMaterialLayerSet createIfcMaterialLayerSet()
+	{
 		IfcMaterialLayerSetImpl ifcMaterialLayerSet = new IfcMaterialLayerSetImpl();
 		return ifcMaterialLayerSet;
 	}
@@ -5588,7 +6813,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcMaterialLayerSetUsage createIfcMaterialLayerSetUsage() {
+	public IfcMaterialLayerSetUsage createIfcMaterialLayerSetUsage()
+	{
 		IfcMaterialLayerSetUsageImpl ifcMaterialLayerSetUsage = new IfcMaterialLayerSetUsageImpl();
 		return ifcMaterialLayerSetUsage;
 	}
@@ -5598,7 +6824,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcMaterialList createIfcMaterialList() {
+	public IfcMaterialList createIfcMaterialList()
+	{
 		IfcMaterialListImpl ifcMaterialList = new IfcMaterialListImpl();
 		return ifcMaterialList;
 	}
@@ -5608,7 +6835,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcMaterialProperties createIfcMaterialProperties() {
+	public IfcMaterialProperties createIfcMaterialProperties()
+	{
 		IfcMaterialPropertiesImpl ifcMaterialProperties = new IfcMaterialPropertiesImpl();
 		return ifcMaterialProperties;
 	}
@@ -5618,7 +6846,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcMeasureWithUnit createIfcMeasureWithUnit() {
+	public IfcMeasureWithUnit createIfcMeasureWithUnit()
+	{
 		IfcMeasureWithUnitImpl ifcMeasureWithUnit = new IfcMeasureWithUnitImpl();
 		return ifcMeasureWithUnit;
 	}
@@ -5628,7 +6857,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcMechanicalConcreteMaterialProperties createIfcMechanicalConcreteMaterialProperties() {
+	public IfcMechanicalConcreteMaterialProperties createIfcMechanicalConcreteMaterialProperties()
+	{
 		IfcMechanicalConcreteMaterialPropertiesImpl ifcMechanicalConcreteMaterialProperties = new IfcMechanicalConcreteMaterialPropertiesImpl();
 		return ifcMechanicalConcreteMaterialProperties;
 	}
@@ -5638,7 +6868,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcMechanicalFastener createIfcMechanicalFastener() {
+	public IfcMechanicalFastener createIfcMechanicalFastener()
+	{
 		IfcMechanicalFastenerImpl ifcMechanicalFastener = new IfcMechanicalFastenerImpl();
 		return ifcMechanicalFastener;
 	}
@@ -5648,7 +6879,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcMechanicalFastenerType createIfcMechanicalFastenerType() {
+	public IfcMechanicalFastenerType createIfcMechanicalFastenerType()
+	{
 		IfcMechanicalFastenerTypeImpl ifcMechanicalFastenerType = new IfcMechanicalFastenerTypeImpl();
 		return ifcMechanicalFastenerType;
 	}
@@ -5658,7 +6890,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcMechanicalMaterialProperties createIfcMechanicalMaterialProperties() {
+	public IfcMechanicalMaterialProperties createIfcMechanicalMaterialProperties()
+	{
 		IfcMechanicalMaterialPropertiesImpl ifcMechanicalMaterialProperties = new IfcMechanicalMaterialPropertiesImpl();
 		return ifcMechanicalMaterialProperties;
 	}
@@ -5668,7 +6901,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcMechanicalSteelMaterialProperties createIfcMechanicalSteelMaterialProperties() {
+	public IfcMechanicalSteelMaterialProperties createIfcMechanicalSteelMaterialProperties()
+	{
 		IfcMechanicalSteelMaterialPropertiesImpl ifcMechanicalSteelMaterialProperties = new IfcMechanicalSteelMaterialPropertiesImpl();
 		return ifcMechanicalSteelMaterialProperties;
 	}
@@ -5678,7 +6912,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcMember createIfcMember() {
+	public IfcMember createIfcMember()
+	{
 		IfcMemberImpl ifcMember = new IfcMemberImpl();
 		return ifcMember;
 	}
@@ -5688,7 +6923,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcMemberType createIfcMemberType() {
+	public IfcMemberType createIfcMemberType()
+	{
 		IfcMemberTypeImpl ifcMemberType = new IfcMemberTypeImpl();
 		return ifcMemberType;
 	}
@@ -5698,7 +6934,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcMetric createIfcMetric() {
+	public IfcMetric createIfcMetric()
+	{
 		IfcMetricImpl ifcMetric = new IfcMetricImpl();
 		return ifcMetric;
 	}
@@ -5708,7 +6945,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcMonetaryUnit createIfcMonetaryUnit() {
+	public IfcMonetaryUnit createIfcMonetaryUnit()
+	{
 		IfcMonetaryUnitImpl ifcMonetaryUnit = new IfcMonetaryUnitImpl();
 		return ifcMonetaryUnit;
 	}
@@ -5718,7 +6956,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcMotorConnectionType createIfcMotorConnectionType() {
+	public IfcMotorConnectionType createIfcMotorConnectionType()
+	{
 		IfcMotorConnectionTypeImpl ifcMotorConnectionType = new IfcMotorConnectionTypeImpl();
 		return ifcMotorConnectionType;
 	}
@@ -5728,7 +6967,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcMove createIfcMove() {
+	public IfcMove createIfcMove()
+	{
 		IfcMoveImpl ifcMove = new IfcMoveImpl();
 		return ifcMove;
 	}
@@ -5738,7 +6978,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcNamedUnit createIfcNamedUnit() {
+	public IfcNamedUnit createIfcNamedUnit()
+	{
 		IfcNamedUnitImpl ifcNamedUnit = new IfcNamedUnitImpl();
 		return ifcNamedUnit;
 	}
@@ -5748,7 +6989,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcObject createIfcObject() {
+	public IfcObject createIfcObject()
+	{
 		IfcObjectImpl ifcObject = new IfcObjectImpl();
 		return ifcObject;
 	}
@@ -5758,7 +7000,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcObjectDefinition createIfcObjectDefinition() {
+	public IfcObjectDefinition createIfcObjectDefinition()
+	{
 		IfcObjectDefinitionImpl ifcObjectDefinition = new IfcObjectDefinitionImpl();
 		return ifcObjectDefinition;
 	}
@@ -5768,7 +7011,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcObjectPlacement createIfcObjectPlacement() {
+	public IfcObjectPlacement createIfcObjectPlacement()
+	{
 		IfcObjectPlacementImpl ifcObjectPlacement = new IfcObjectPlacementImpl();
 		return ifcObjectPlacement;
 	}
@@ -5778,7 +7022,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcObjective createIfcObjective() {
+	public IfcObjective createIfcObjective()
+	{
 		IfcObjectiveImpl ifcObjective = new IfcObjectiveImpl();
 		return ifcObjective;
 	}
@@ -5788,7 +7033,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcOccupant createIfcOccupant() {
+	public IfcOccupant createIfcOccupant()
+	{
 		IfcOccupantImpl ifcOccupant = new IfcOccupantImpl();
 		return ifcOccupant;
 	}
@@ -5798,7 +7044,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcOffsetCurve2D createIfcOffsetCurve2D() {
+	public IfcOffsetCurve2D createIfcOffsetCurve2D()
+	{
 		IfcOffsetCurve2DImpl ifcOffsetCurve2D = new IfcOffsetCurve2DImpl();
 		return ifcOffsetCurve2D;
 	}
@@ -5808,7 +7055,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcOffsetCurve3D createIfcOffsetCurve3D() {
+	public IfcOffsetCurve3D createIfcOffsetCurve3D()
+	{
 		IfcOffsetCurve3DImpl ifcOffsetCurve3D = new IfcOffsetCurve3DImpl();
 		return ifcOffsetCurve3D;
 	}
@@ -5818,7 +7066,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcOneDirectionRepeatFactor createIfcOneDirectionRepeatFactor() {
+	public IfcOneDirectionRepeatFactor createIfcOneDirectionRepeatFactor()
+	{
 		IfcOneDirectionRepeatFactorImpl ifcOneDirectionRepeatFactor = new IfcOneDirectionRepeatFactorImpl();
 		return ifcOneDirectionRepeatFactor;
 	}
@@ -5828,7 +7077,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcOpenShell createIfcOpenShell() {
+	public IfcOpenShell createIfcOpenShell()
+	{
 		IfcOpenShellImpl ifcOpenShell = new IfcOpenShellImpl();
 		return ifcOpenShell;
 	}
@@ -5838,7 +7088,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcOpeningElement createIfcOpeningElement() {
+	public IfcOpeningElement createIfcOpeningElement()
+	{
 		IfcOpeningElementImpl ifcOpeningElement = new IfcOpeningElementImpl();
 		return ifcOpeningElement;
 	}
@@ -5848,7 +7099,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcOpticalMaterialProperties createIfcOpticalMaterialProperties() {
+	public IfcOpticalMaterialProperties createIfcOpticalMaterialProperties()
+	{
 		IfcOpticalMaterialPropertiesImpl ifcOpticalMaterialProperties = new IfcOpticalMaterialPropertiesImpl();
 		return ifcOpticalMaterialProperties;
 	}
@@ -5858,7 +7110,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcOrderAction createIfcOrderAction() {
+	public IfcOrderAction createIfcOrderAction()
+	{
 		IfcOrderActionImpl ifcOrderAction = new IfcOrderActionImpl();
 		return ifcOrderAction;
 	}
@@ -5868,7 +7121,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcOrganization createIfcOrganization() {
+	public IfcOrganization createIfcOrganization()
+	{
 		IfcOrganizationImpl ifcOrganization = new IfcOrganizationImpl();
 		return ifcOrganization;
 	}
@@ -5878,7 +7132,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcOrganizationRelationship createIfcOrganizationRelationship() {
+	public IfcOrganizationRelationship createIfcOrganizationRelationship()
+	{
 		IfcOrganizationRelationshipImpl ifcOrganizationRelationship = new IfcOrganizationRelationshipImpl();
 		return ifcOrganizationRelationship;
 	}
@@ -5888,7 +7143,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcOrientedEdge createIfcOrientedEdge() {
+	public IfcOrientedEdge createIfcOrientedEdge()
+	{
 		IfcOrientedEdgeImpl ifcOrientedEdge = new IfcOrientedEdgeImpl();
 		return ifcOrientedEdge;
 	}
@@ -5898,7 +7154,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcOutletType createIfcOutletType() {
+	public IfcOutletType createIfcOutletType()
+	{
 		IfcOutletTypeImpl ifcOutletType = new IfcOutletTypeImpl();
 		return ifcOutletType;
 	}
@@ -5908,7 +7165,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcOwnerHistory createIfcOwnerHistory() {
+	public IfcOwnerHistory createIfcOwnerHistory()
+	{
 		IfcOwnerHistoryImpl ifcOwnerHistory = new IfcOwnerHistoryImpl();
 		return ifcOwnerHistory;
 	}
@@ -5918,7 +7176,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcParameterizedProfileDef createIfcParameterizedProfileDef() {
+	public IfcParameterizedProfileDef createIfcParameterizedProfileDef()
+	{
 		IfcParameterizedProfileDefImpl ifcParameterizedProfileDef = new IfcParameterizedProfileDefImpl();
 		return ifcParameterizedProfileDef;
 	}
@@ -5928,7 +7187,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcPath createIfcPath() {
+	public IfcPath createIfcPath()
+	{
 		IfcPathImpl ifcPath = new IfcPathImpl();
 		return ifcPath;
 	}
@@ -5938,7 +7198,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcPerformanceHistory createIfcPerformanceHistory() {
+	public IfcPerformanceHistory createIfcPerformanceHistory()
+	{
 		IfcPerformanceHistoryImpl ifcPerformanceHistory = new IfcPerformanceHistoryImpl();
 		return ifcPerformanceHistory;
 	}
@@ -5948,7 +7209,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcPermeableCoveringProperties createIfcPermeableCoveringProperties() {
+	public IfcPermeableCoveringProperties createIfcPermeableCoveringProperties()
+	{
 		IfcPermeableCoveringPropertiesImpl ifcPermeableCoveringProperties = new IfcPermeableCoveringPropertiesImpl();
 		return ifcPermeableCoveringProperties;
 	}
@@ -5958,7 +7220,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcPermit createIfcPermit() {
+	public IfcPermit createIfcPermit()
+	{
 		IfcPermitImpl ifcPermit = new IfcPermitImpl();
 		return ifcPermit;
 	}
@@ -5968,7 +7231,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcPerson createIfcPerson() {
+	public IfcPerson createIfcPerson()
+	{
 		IfcPersonImpl ifcPerson = new IfcPersonImpl();
 		return ifcPerson;
 	}
@@ -5978,7 +7242,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcPersonAndOrganization createIfcPersonAndOrganization() {
+	public IfcPersonAndOrganization createIfcPersonAndOrganization()
+	{
 		IfcPersonAndOrganizationImpl ifcPersonAndOrganization = new IfcPersonAndOrganizationImpl();
 		return ifcPersonAndOrganization;
 	}
@@ -5988,7 +7253,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcPhysicalComplexQuantity createIfcPhysicalComplexQuantity() {
+	public IfcPhysicalComplexQuantity createIfcPhysicalComplexQuantity()
+	{
 		IfcPhysicalComplexQuantityImpl ifcPhysicalComplexQuantity = new IfcPhysicalComplexQuantityImpl();
 		return ifcPhysicalComplexQuantity;
 	}
@@ -5998,7 +7264,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcPhysicalQuantity createIfcPhysicalQuantity() {
+	public IfcPhysicalQuantity createIfcPhysicalQuantity()
+	{
 		IfcPhysicalQuantityImpl ifcPhysicalQuantity = new IfcPhysicalQuantityImpl();
 		return ifcPhysicalQuantity;
 	}
@@ -6008,7 +7275,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcPhysicalSimpleQuantity createIfcPhysicalSimpleQuantity() {
+	public IfcPhysicalSimpleQuantity createIfcPhysicalSimpleQuantity()
+	{
 		IfcPhysicalSimpleQuantityImpl ifcPhysicalSimpleQuantity = new IfcPhysicalSimpleQuantityImpl();
 		return ifcPhysicalSimpleQuantity;
 	}
@@ -6018,7 +7286,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcPile createIfcPile() {
+	public IfcPile createIfcPile()
+	{
 		IfcPileImpl ifcPile = new IfcPileImpl();
 		return ifcPile;
 	}
@@ -6028,7 +7297,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcPipeFittingType createIfcPipeFittingType() {
+	public IfcPipeFittingType createIfcPipeFittingType()
+	{
 		IfcPipeFittingTypeImpl ifcPipeFittingType = new IfcPipeFittingTypeImpl();
 		return ifcPipeFittingType;
 	}
@@ -6038,7 +7308,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcPipeSegmentType createIfcPipeSegmentType() {
+	public IfcPipeSegmentType createIfcPipeSegmentType()
+	{
 		IfcPipeSegmentTypeImpl ifcPipeSegmentType = new IfcPipeSegmentTypeImpl();
 		return ifcPipeSegmentType;
 	}
@@ -6048,7 +7319,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcPixelTexture createIfcPixelTexture() {
+	public IfcPixelTexture createIfcPixelTexture()
+	{
 		IfcPixelTextureImpl ifcPixelTexture = new IfcPixelTextureImpl();
 		return ifcPixelTexture;
 	}
@@ -6058,7 +7330,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcPlacement createIfcPlacement() {
+	public IfcPlacement createIfcPlacement()
+	{
 		IfcPlacementImpl ifcPlacement = new IfcPlacementImpl();
 		return ifcPlacement;
 	}
@@ -6068,7 +7341,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcPlanarBox createIfcPlanarBox() {
+	public IfcPlanarBox createIfcPlanarBox()
+	{
 		IfcPlanarBoxImpl ifcPlanarBox = new IfcPlanarBoxImpl();
 		return ifcPlanarBox;
 	}
@@ -6078,7 +7352,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcPlanarExtent createIfcPlanarExtent() {
+	public IfcPlanarExtent createIfcPlanarExtent()
+	{
 		IfcPlanarExtentImpl ifcPlanarExtent = new IfcPlanarExtentImpl();
 		return ifcPlanarExtent;
 	}
@@ -6088,7 +7363,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcPlane createIfcPlane() {
+	public IfcPlane createIfcPlane()
+	{
 		IfcPlaneImpl ifcPlane = new IfcPlaneImpl();
 		return ifcPlane;
 	}
@@ -6098,7 +7374,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcPlate createIfcPlate() {
+	public IfcPlate createIfcPlate()
+	{
 		IfcPlateImpl ifcPlate = new IfcPlateImpl();
 		return ifcPlate;
 	}
@@ -6108,7 +7385,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcPlateType createIfcPlateType() {
+	public IfcPlateType createIfcPlateType()
+	{
 		IfcPlateTypeImpl ifcPlateType = new IfcPlateTypeImpl();
 		return ifcPlateType;
 	}
@@ -6118,7 +7396,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcPoint createIfcPoint() {
+	public IfcPoint createIfcPoint()
+	{
 		IfcPointImpl ifcPoint = new IfcPointImpl();
 		return ifcPoint;
 	}
@@ -6128,7 +7407,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcPointOnCurve createIfcPointOnCurve() {
+	public IfcPointOnCurve createIfcPointOnCurve()
+	{
 		IfcPointOnCurveImpl ifcPointOnCurve = new IfcPointOnCurveImpl();
 		return ifcPointOnCurve;
 	}
@@ -6138,7 +7418,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcPointOnSurface createIfcPointOnSurface() {
+	public IfcPointOnSurface createIfcPointOnSurface()
+	{
 		IfcPointOnSurfaceImpl ifcPointOnSurface = new IfcPointOnSurfaceImpl();
 		return ifcPointOnSurface;
 	}
@@ -6148,7 +7429,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcPolyLoop createIfcPolyLoop() {
+	public IfcPolyLoop createIfcPolyLoop()
+	{
 		IfcPolyLoopImpl ifcPolyLoop = new IfcPolyLoopImpl();
 		return ifcPolyLoop;
 	}
@@ -6158,7 +7440,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcPolygonalBoundedHalfSpace createIfcPolygonalBoundedHalfSpace() {
+	public IfcPolygonalBoundedHalfSpace createIfcPolygonalBoundedHalfSpace()
+	{
 		IfcPolygonalBoundedHalfSpaceImpl ifcPolygonalBoundedHalfSpace = new IfcPolygonalBoundedHalfSpaceImpl();
 		return ifcPolygonalBoundedHalfSpace;
 	}
@@ -6168,7 +7451,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcPolyline createIfcPolyline() {
+	public IfcPolyline createIfcPolyline()
+	{
 		IfcPolylineImpl ifcPolyline = new IfcPolylineImpl();
 		return ifcPolyline;
 	}
@@ -6178,7 +7462,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcPort createIfcPort() {
+	public IfcPort createIfcPort()
+	{
 		IfcPortImpl ifcPort = new IfcPortImpl();
 		return ifcPort;
 	}
@@ -6188,7 +7473,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcPostalAddress createIfcPostalAddress() {
+	public IfcPostalAddress createIfcPostalAddress()
+	{
 		IfcPostalAddressImpl ifcPostalAddress = new IfcPostalAddressImpl();
 		return ifcPostalAddress;
 	}
@@ -6198,7 +7484,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcPreDefinedColour createIfcPreDefinedColour() {
+	public IfcPreDefinedColour createIfcPreDefinedColour()
+	{
 		IfcPreDefinedColourImpl ifcPreDefinedColour = new IfcPreDefinedColourImpl();
 		return ifcPreDefinedColour;
 	}
@@ -6208,7 +7495,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcPreDefinedCurveFont createIfcPreDefinedCurveFont() {
+	public IfcPreDefinedCurveFont createIfcPreDefinedCurveFont()
+	{
 		IfcPreDefinedCurveFontImpl ifcPreDefinedCurveFont = new IfcPreDefinedCurveFontImpl();
 		return ifcPreDefinedCurveFont;
 	}
@@ -6218,7 +7506,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcPreDefinedDimensionSymbol createIfcPreDefinedDimensionSymbol() {
+	public IfcPreDefinedDimensionSymbol createIfcPreDefinedDimensionSymbol()
+	{
 		IfcPreDefinedDimensionSymbolImpl ifcPreDefinedDimensionSymbol = new IfcPreDefinedDimensionSymbolImpl();
 		return ifcPreDefinedDimensionSymbol;
 	}
@@ -6228,7 +7517,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcPreDefinedItem createIfcPreDefinedItem() {
+	public IfcPreDefinedItem createIfcPreDefinedItem()
+	{
 		IfcPreDefinedItemImpl ifcPreDefinedItem = new IfcPreDefinedItemImpl();
 		return ifcPreDefinedItem;
 	}
@@ -6238,7 +7528,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcPreDefinedPointMarkerSymbol createIfcPreDefinedPointMarkerSymbol() {
+	public IfcPreDefinedPointMarkerSymbol createIfcPreDefinedPointMarkerSymbol()
+	{
 		IfcPreDefinedPointMarkerSymbolImpl ifcPreDefinedPointMarkerSymbol = new IfcPreDefinedPointMarkerSymbolImpl();
 		return ifcPreDefinedPointMarkerSymbol;
 	}
@@ -6248,7 +7539,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcPreDefinedSymbol createIfcPreDefinedSymbol() {
+	public IfcPreDefinedSymbol createIfcPreDefinedSymbol()
+	{
 		IfcPreDefinedSymbolImpl ifcPreDefinedSymbol = new IfcPreDefinedSymbolImpl();
 		return ifcPreDefinedSymbol;
 	}
@@ -6258,7 +7550,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcPreDefinedTerminatorSymbol createIfcPreDefinedTerminatorSymbol() {
+	public IfcPreDefinedTerminatorSymbol createIfcPreDefinedTerminatorSymbol()
+	{
 		IfcPreDefinedTerminatorSymbolImpl ifcPreDefinedTerminatorSymbol = new IfcPreDefinedTerminatorSymbolImpl();
 		return ifcPreDefinedTerminatorSymbol;
 	}
@@ -6268,7 +7561,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcPreDefinedTextFont createIfcPreDefinedTextFont() {
+	public IfcPreDefinedTextFont createIfcPreDefinedTextFont()
+	{
 		IfcPreDefinedTextFontImpl ifcPreDefinedTextFont = new IfcPreDefinedTextFontImpl();
 		return ifcPreDefinedTextFont;
 	}
@@ -6278,7 +7572,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcPresentationLayerAssignment createIfcPresentationLayerAssignment() {
+	public IfcPresentationLayerAssignment createIfcPresentationLayerAssignment()
+	{
 		IfcPresentationLayerAssignmentImpl ifcPresentationLayerAssignment = new IfcPresentationLayerAssignmentImpl();
 		return ifcPresentationLayerAssignment;
 	}
@@ -6288,7 +7583,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcPresentationLayerWithStyle createIfcPresentationLayerWithStyle() {
+	public IfcPresentationLayerWithStyle createIfcPresentationLayerWithStyle()
+	{
 		IfcPresentationLayerWithStyleImpl ifcPresentationLayerWithStyle = new IfcPresentationLayerWithStyleImpl();
 		return ifcPresentationLayerWithStyle;
 	}
@@ -6298,7 +7594,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcPresentationStyle createIfcPresentationStyle() {
+	public IfcPresentationStyle createIfcPresentationStyle()
+	{
 		IfcPresentationStyleImpl ifcPresentationStyle = new IfcPresentationStyleImpl();
 		return ifcPresentationStyle;
 	}
@@ -6308,7 +7605,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcPresentationStyleAssignment createIfcPresentationStyleAssignment() {
+	public IfcPresentationStyleAssignment createIfcPresentationStyleAssignment()
+	{
 		IfcPresentationStyleAssignmentImpl ifcPresentationStyleAssignment = new IfcPresentationStyleAssignmentImpl();
 		return ifcPresentationStyleAssignment;
 	}
@@ -6318,7 +7616,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcProcedure createIfcProcedure() {
+	public IfcProcedure createIfcProcedure()
+	{
 		IfcProcedureImpl ifcProcedure = new IfcProcedureImpl();
 		return ifcProcedure;
 	}
@@ -6328,7 +7627,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcProcess createIfcProcess() {
+	public IfcProcess createIfcProcess()
+	{
 		IfcProcessImpl ifcProcess = new IfcProcessImpl();
 		return ifcProcess;
 	}
@@ -6338,7 +7638,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcProduct createIfcProduct() {
+	public IfcProduct createIfcProduct()
+	{
 		IfcProductImpl ifcProduct = new IfcProductImpl();
 		return ifcProduct;
 	}
@@ -6348,7 +7649,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcProductDefinitionShape createIfcProductDefinitionShape() {
+	public IfcProductDefinitionShape createIfcProductDefinitionShape()
+	{
 		IfcProductDefinitionShapeImpl ifcProductDefinitionShape = new IfcProductDefinitionShapeImpl();
 		return ifcProductDefinitionShape;
 	}
@@ -6358,7 +7660,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcProductRepresentation createIfcProductRepresentation() {
+	public IfcProductRepresentation createIfcProductRepresentation()
+	{
 		IfcProductRepresentationImpl ifcProductRepresentation = new IfcProductRepresentationImpl();
 		return ifcProductRepresentation;
 	}
@@ -6368,7 +7671,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcProductsOfCombustionProperties createIfcProductsOfCombustionProperties() {
+	public IfcProductsOfCombustionProperties createIfcProductsOfCombustionProperties()
+	{
 		IfcProductsOfCombustionPropertiesImpl ifcProductsOfCombustionProperties = new IfcProductsOfCombustionPropertiesImpl();
 		return ifcProductsOfCombustionProperties;
 	}
@@ -6378,7 +7682,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcProfileDef createIfcProfileDef() {
+	public IfcProfileDef createIfcProfileDef()
+	{
 		IfcProfileDefImpl ifcProfileDef = new IfcProfileDefImpl();
 		return ifcProfileDef;
 	}
@@ -6388,7 +7693,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcProfileProperties createIfcProfileProperties() {
+	public IfcProfileProperties createIfcProfileProperties()
+	{
 		IfcProfilePropertiesImpl ifcProfileProperties = new IfcProfilePropertiesImpl();
 		return ifcProfileProperties;
 	}
@@ -6398,7 +7704,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcProject createIfcProject() {
+	public IfcProject createIfcProject()
+	{
 		IfcProjectImpl ifcProject = new IfcProjectImpl();
 		return ifcProject;
 	}
@@ -6408,7 +7715,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcProjectOrder createIfcProjectOrder() {
+	public IfcProjectOrder createIfcProjectOrder()
+	{
 		IfcProjectOrderImpl ifcProjectOrder = new IfcProjectOrderImpl();
 		return ifcProjectOrder;
 	}
@@ -6418,7 +7726,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcProjectOrderRecord createIfcProjectOrderRecord() {
+	public IfcProjectOrderRecord createIfcProjectOrderRecord()
+	{
 		IfcProjectOrderRecordImpl ifcProjectOrderRecord = new IfcProjectOrderRecordImpl();
 		return ifcProjectOrderRecord;
 	}
@@ -6428,7 +7737,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcProjectionCurve createIfcProjectionCurve() {
+	public IfcProjectionCurve createIfcProjectionCurve()
+	{
 		IfcProjectionCurveImpl ifcProjectionCurve = new IfcProjectionCurveImpl();
 		return ifcProjectionCurve;
 	}
@@ -6438,7 +7748,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcProjectionElement createIfcProjectionElement() {
+	public IfcProjectionElement createIfcProjectionElement()
+	{
 		IfcProjectionElementImpl ifcProjectionElement = new IfcProjectionElementImpl();
 		return ifcProjectionElement;
 	}
@@ -6448,7 +7759,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcProperty createIfcProperty() {
+	public IfcProperty createIfcProperty()
+	{
 		IfcPropertyImpl ifcProperty = new IfcPropertyImpl();
 		return ifcProperty;
 	}
@@ -6458,7 +7770,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcPropertyBoundedValue createIfcPropertyBoundedValue() {
+	public IfcPropertyBoundedValue createIfcPropertyBoundedValue()
+	{
 		IfcPropertyBoundedValueImpl ifcPropertyBoundedValue = new IfcPropertyBoundedValueImpl();
 		return ifcPropertyBoundedValue;
 	}
@@ -6468,7 +7781,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcPropertyConstraintRelationship createIfcPropertyConstraintRelationship() {
+	public IfcPropertyConstraintRelationship createIfcPropertyConstraintRelationship()
+	{
 		IfcPropertyConstraintRelationshipImpl ifcPropertyConstraintRelationship = new IfcPropertyConstraintRelationshipImpl();
 		return ifcPropertyConstraintRelationship;
 	}
@@ -6478,7 +7792,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcPropertyDefinition createIfcPropertyDefinition() {
+	public IfcPropertyDefinition createIfcPropertyDefinition()
+	{
 		IfcPropertyDefinitionImpl ifcPropertyDefinition = new IfcPropertyDefinitionImpl();
 		return ifcPropertyDefinition;
 	}
@@ -6488,7 +7803,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcPropertyDependencyRelationship createIfcPropertyDependencyRelationship() {
+	public IfcPropertyDependencyRelationship createIfcPropertyDependencyRelationship()
+	{
 		IfcPropertyDependencyRelationshipImpl ifcPropertyDependencyRelationship = new IfcPropertyDependencyRelationshipImpl();
 		return ifcPropertyDependencyRelationship;
 	}
@@ -6498,7 +7814,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcPropertyEnumeratedValue createIfcPropertyEnumeratedValue() {
+	public IfcPropertyEnumeratedValue createIfcPropertyEnumeratedValue()
+	{
 		IfcPropertyEnumeratedValueImpl ifcPropertyEnumeratedValue = new IfcPropertyEnumeratedValueImpl();
 		return ifcPropertyEnumeratedValue;
 	}
@@ -6508,7 +7825,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcPropertyEnumeration createIfcPropertyEnumeration() {
+	public IfcPropertyEnumeration createIfcPropertyEnumeration()
+	{
 		IfcPropertyEnumerationImpl ifcPropertyEnumeration = new IfcPropertyEnumerationImpl();
 		return ifcPropertyEnumeration;
 	}
@@ -6518,7 +7836,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcPropertyListValue createIfcPropertyListValue() {
+	public IfcPropertyListValue createIfcPropertyListValue()
+	{
 		IfcPropertyListValueImpl ifcPropertyListValue = new IfcPropertyListValueImpl();
 		return ifcPropertyListValue;
 	}
@@ -6528,7 +7847,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcPropertyReferenceValue createIfcPropertyReferenceValue() {
+	public IfcPropertyReferenceValue createIfcPropertyReferenceValue()
+	{
 		IfcPropertyReferenceValueImpl ifcPropertyReferenceValue = new IfcPropertyReferenceValueImpl();
 		return ifcPropertyReferenceValue;
 	}
@@ -6538,7 +7858,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcPropertySet createIfcPropertySet() {
+	public IfcPropertySet createIfcPropertySet()
+	{
 		IfcPropertySetImpl ifcPropertySet = new IfcPropertySetImpl();
 		return ifcPropertySet;
 	}
@@ -6548,7 +7869,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcPropertySetDefinition createIfcPropertySetDefinition() {
+	public IfcPropertySetDefinition createIfcPropertySetDefinition()
+	{
 		IfcPropertySetDefinitionImpl ifcPropertySetDefinition = new IfcPropertySetDefinitionImpl();
 		return ifcPropertySetDefinition;
 	}
@@ -6558,7 +7880,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcPropertySingleValue createIfcPropertySingleValue() {
+	public IfcPropertySingleValue createIfcPropertySingleValue()
+	{
 		IfcPropertySingleValueImpl ifcPropertySingleValue = new IfcPropertySingleValueImpl();
 		return ifcPropertySingleValue;
 	}
@@ -6568,7 +7891,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcPropertyTableValue createIfcPropertyTableValue() {
+	public IfcPropertyTableValue createIfcPropertyTableValue()
+	{
 		IfcPropertyTableValueImpl ifcPropertyTableValue = new IfcPropertyTableValueImpl();
 		return ifcPropertyTableValue;
 	}
@@ -6578,7 +7902,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcProtectiveDeviceType createIfcProtectiveDeviceType() {
+	public IfcProtectiveDeviceType createIfcProtectiveDeviceType()
+	{
 		IfcProtectiveDeviceTypeImpl ifcProtectiveDeviceType = new IfcProtectiveDeviceTypeImpl();
 		return ifcProtectiveDeviceType;
 	}
@@ -6588,7 +7913,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcProxy createIfcProxy() {
+	public IfcProxy createIfcProxy()
+	{
 		IfcProxyImpl ifcProxy = new IfcProxyImpl();
 		return ifcProxy;
 	}
@@ -6598,7 +7924,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcPumpType createIfcPumpType() {
+	public IfcPumpType createIfcPumpType()
+	{
 		IfcPumpTypeImpl ifcPumpType = new IfcPumpTypeImpl();
 		return ifcPumpType;
 	}
@@ -6608,7 +7935,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcQuantityArea createIfcQuantityArea() {
+	public IfcQuantityArea createIfcQuantityArea()
+	{
 		IfcQuantityAreaImpl ifcQuantityArea = new IfcQuantityAreaImpl();
 		return ifcQuantityArea;
 	}
@@ -6618,7 +7946,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcQuantityCount createIfcQuantityCount() {
+	public IfcQuantityCount createIfcQuantityCount()
+	{
 		IfcQuantityCountImpl ifcQuantityCount = new IfcQuantityCountImpl();
 		return ifcQuantityCount;
 	}
@@ -6628,7 +7957,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcQuantityLength createIfcQuantityLength() {
+	public IfcQuantityLength createIfcQuantityLength()
+	{
 		IfcQuantityLengthImpl ifcQuantityLength = new IfcQuantityLengthImpl();
 		return ifcQuantityLength;
 	}
@@ -6638,7 +7968,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcQuantityTime createIfcQuantityTime() {
+	public IfcQuantityTime createIfcQuantityTime()
+	{
 		IfcQuantityTimeImpl ifcQuantityTime = new IfcQuantityTimeImpl();
 		return ifcQuantityTime;
 	}
@@ -6648,7 +7979,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcQuantityVolume createIfcQuantityVolume() {
+	public IfcQuantityVolume createIfcQuantityVolume()
+	{
 		IfcQuantityVolumeImpl ifcQuantityVolume = new IfcQuantityVolumeImpl();
 		return ifcQuantityVolume;
 	}
@@ -6658,7 +7990,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcQuantityWeight createIfcQuantityWeight() {
+	public IfcQuantityWeight createIfcQuantityWeight()
+	{
 		IfcQuantityWeightImpl ifcQuantityWeight = new IfcQuantityWeightImpl();
 		return ifcQuantityWeight;
 	}
@@ -6668,7 +8001,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRadiusDimension createIfcRadiusDimension() {
+	public IfcRadiusDimension createIfcRadiusDimension()
+	{
 		IfcRadiusDimensionImpl ifcRadiusDimension = new IfcRadiusDimensionImpl();
 		return ifcRadiusDimension;
 	}
@@ -6678,7 +8012,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRailing createIfcRailing() {
+	public IfcRailing createIfcRailing()
+	{
 		IfcRailingImpl ifcRailing = new IfcRailingImpl();
 		return ifcRailing;
 	}
@@ -6688,7 +8023,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRailingType createIfcRailingType() {
+	public IfcRailingType createIfcRailingType()
+	{
 		IfcRailingTypeImpl ifcRailingType = new IfcRailingTypeImpl();
 		return ifcRailingType;
 	}
@@ -6698,7 +8034,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRamp createIfcRamp() {
+	public IfcRamp createIfcRamp()
+	{
 		IfcRampImpl ifcRamp = new IfcRampImpl();
 		return ifcRamp;
 	}
@@ -6708,7 +8045,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRampFlight createIfcRampFlight() {
+	public IfcRampFlight createIfcRampFlight()
+	{
 		IfcRampFlightImpl ifcRampFlight = new IfcRampFlightImpl();
 		return ifcRampFlight;
 	}
@@ -6718,7 +8056,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRampFlightType createIfcRampFlightType() {
+	public IfcRampFlightType createIfcRampFlightType()
+	{
 		IfcRampFlightTypeImpl ifcRampFlightType = new IfcRampFlightTypeImpl();
 		return ifcRampFlightType;
 	}
@@ -6728,7 +8067,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRationalBezierCurve createIfcRationalBezierCurve() {
+	public IfcRationalBezierCurve createIfcRationalBezierCurve()
+	{
 		IfcRationalBezierCurveImpl ifcRationalBezierCurve = new IfcRationalBezierCurveImpl();
 		return ifcRationalBezierCurve;
 	}
@@ -6738,7 +8078,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRectangleHollowProfileDef createIfcRectangleHollowProfileDef() {
+	public IfcRectangleHollowProfileDef createIfcRectangleHollowProfileDef()
+	{
 		IfcRectangleHollowProfileDefImpl ifcRectangleHollowProfileDef = new IfcRectangleHollowProfileDefImpl();
 		return ifcRectangleHollowProfileDef;
 	}
@@ -6748,7 +8089,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRectangleProfileDef createIfcRectangleProfileDef() {
+	public IfcRectangleProfileDef createIfcRectangleProfileDef()
+	{
 		IfcRectangleProfileDefImpl ifcRectangleProfileDef = new IfcRectangleProfileDefImpl();
 		return ifcRectangleProfileDef;
 	}
@@ -6758,7 +8100,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRectangularPyramid createIfcRectangularPyramid() {
+	public IfcRectangularPyramid createIfcRectangularPyramid()
+	{
 		IfcRectangularPyramidImpl ifcRectangularPyramid = new IfcRectangularPyramidImpl();
 		return ifcRectangularPyramid;
 	}
@@ -6768,7 +8111,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRectangularTrimmedSurface createIfcRectangularTrimmedSurface() {
+	public IfcRectangularTrimmedSurface createIfcRectangularTrimmedSurface()
+	{
 		IfcRectangularTrimmedSurfaceImpl ifcRectangularTrimmedSurface = new IfcRectangularTrimmedSurfaceImpl();
 		return ifcRectangularTrimmedSurface;
 	}
@@ -6778,7 +8122,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcReferencesValueDocument createIfcReferencesValueDocument() {
+	public IfcReferencesValueDocument createIfcReferencesValueDocument()
+	{
 		IfcReferencesValueDocumentImpl ifcReferencesValueDocument = new IfcReferencesValueDocumentImpl();
 		return ifcReferencesValueDocument;
 	}
@@ -6788,7 +8133,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRegularTimeSeries createIfcRegularTimeSeries() {
+	public IfcRegularTimeSeries createIfcRegularTimeSeries()
+	{
 		IfcRegularTimeSeriesImpl ifcRegularTimeSeries = new IfcRegularTimeSeriesImpl();
 		return ifcRegularTimeSeries;
 	}
@@ -6798,7 +8144,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcReinforcementBarProperties createIfcReinforcementBarProperties() {
+	public IfcReinforcementBarProperties createIfcReinforcementBarProperties()
+	{
 		IfcReinforcementBarPropertiesImpl ifcReinforcementBarProperties = new IfcReinforcementBarPropertiesImpl();
 		return ifcReinforcementBarProperties;
 	}
@@ -6808,7 +8155,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcReinforcementDefinitionProperties createIfcReinforcementDefinitionProperties() {
+	public IfcReinforcementDefinitionProperties createIfcReinforcementDefinitionProperties()
+	{
 		IfcReinforcementDefinitionPropertiesImpl ifcReinforcementDefinitionProperties = new IfcReinforcementDefinitionPropertiesImpl();
 		return ifcReinforcementDefinitionProperties;
 	}
@@ -6818,7 +8166,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcReinforcingBar createIfcReinforcingBar() {
+	public IfcReinforcingBar createIfcReinforcingBar()
+	{
 		IfcReinforcingBarImpl ifcReinforcingBar = new IfcReinforcingBarImpl();
 		return ifcReinforcingBar;
 	}
@@ -6828,7 +8177,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcReinforcingElement createIfcReinforcingElement() {
+	public IfcReinforcingElement createIfcReinforcingElement()
+	{
 		IfcReinforcingElementImpl ifcReinforcingElement = new IfcReinforcingElementImpl();
 		return ifcReinforcingElement;
 	}
@@ -6838,7 +8188,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcReinforcingMesh createIfcReinforcingMesh() {
+	public IfcReinforcingMesh createIfcReinforcingMesh()
+	{
 		IfcReinforcingMeshImpl ifcReinforcingMesh = new IfcReinforcingMeshImpl();
 		return ifcReinforcingMesh;
 	}
@@ -6848,7 +8199,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRelAggregates createIfcRelAggregates() {
+	public IfcRelAggregates createIfcRelAggregates()
+	{
 		IfcRelAggregatesImpl ifcRelAggregates = new IfcRelAggregatesImpl();
 		return ifcRelAggregates;
 	}
@@ -6858,7 +8210,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRelAssigns createIfcRelAssigns() {
+	public IfcRelAssigns createIfcRelAssigns()
+	{
 		IfcRelAssignsImpl ifcRelAssigns = new IfcRelAssignsImpl();
 		return ifcRelAssigns;
 	}
@@ -6868,7 +8221,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRelAssignsTasks createIfcRelAssignsTasks() {
+	public IfcRelAssignsTasks createIfcRelAssignsTasks()
+	{
 		IfcRelAssignsTasksImpl ifcRelAssignsTasks = new IfcRelAssignsTasksImpl();
 		return ifcRelAssignsTasks;
 	}
@@ -6878,7 +8232,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRelAssignsToActor createIfcRelAssignsToActor() {
+	public IfcRelAssignsToActor createIfcRelAssignsToActor()
+	{
 		IfcRelAssignsToActorImpl ifcRelAssignsToActor = new IfcRelAssignsToActorImpl();
 		return ifcRelAssignsToActor;
 	}
@@ -6888,7 +8243,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRelAssignsToControl createIfcRelAssignsToControl() {
+	public IfcRelAssignsToControl createIfcRelAssignsToControl()
+	{
 		IfcRelAssignsToControlImpl ifcRelAssignsToControl = new IfcRelAssignsToControlImpl();
 		return ifcRelAssignsToControl;
 	}
@@ -6898,7 +8254,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRelAssignsToGroup createIfcRelAssignsToGroup() {
+	public IfcRelAssignsToGroup createIfcRelAssignsToGroup()
+	{
 		IfcRelAssignsToGroupImpl ifcRelAssignsToGroup = new IfcRelAssignsToGroupImpl();
 		return ifcRelAssignsToGroup;
 	}
@@ -6908,7 +8265,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRelAssignsToProcess createIfcRelAssignsToProcess() {
+	public IfcRelAssignsToProcess createIfcRelAssignsToProcess()
+	{
 		IfcRelAssignsToProcessImpl ifcRelAssignsToProcess = new IfcRelAssignsToProcessImpl();
 		return ifcRelAssignsToProcess;
 	}
@@ -6918,7 +8276,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRelAssignsToProduct createIfcRelAssignsToProduct() {
+	public IfcRelAssignsToProduct createIfcRelAssignsToProduct()
+	{
 		IfcRelAssignsToProductImpl ifcRelAssignsToProduct = new IfcRelAssignsToProductImpl();
 		return ifcRelAssignsToProduct;
 	}
@@ -6928,7 +8287,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRelAssignsToProjectOrder createIfcRelAssignsToProjectOrder() {
+	public IfcRelAssignsToProjectOrder createIfcRelAssignsToProjectOrder()
+	{
 		IfcRelAssignsToProjectOrderImpl ifcRelAssignsToProjectOrder = new IfcRelAssignsToProjectOrderImpl();
 		return ifcRelAssignsToProjectOrder;
 	}
@@ -6938,7 +8298,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRelAssignsToResource createIfcRelAssignsToResource() {
+	public IfcRelAssignsToResource createIfcRelAssignsToResource()
+	{
 		IfcRelAssignsToResourceImpl ifcRelAssignsToResource = new IfcRelAssignsToResourceImpl();
 		return ifcRelAssignsToResource;
 	}
@@ -6948,7 +8309,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRelAssociates createIfcRelAssociates() {
+	public IfcRelAssociates createIfcRelAssociates()
+	{
 		IfcRelAssociatesImpl ifcRelAssociates = new IfcRelAssociatesImpl();
 		return ifcRelAssociates;
 	}
@@ -6958,7 +8320,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRelAssociatesAppliedValue createIfcRelAssociatesAppliedValue() {
+	public IfcRelAssociatesAppliedValue createIfcRelAssociatesAppliedValue()
+	{
 		IfcRelAssociatesAppliedValueImpl ifcRelAssociatesAppliedValue = new IfcRelAssociatesAppliedValueImpl();
 		return ifcRelAssociatesAppliedValue;
 	}
@@ -6968,7 +8331,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRelAssociatesApproval createIfcRelAssociatesApproval() {
+	public IfcRelAssociatesApproval createIfcRelAssociatesApproval()
+	{
 		IfcRelAssociatesApprovalImpl ifcRelAssociatesApproval = new IfcRelAssociatesApprovalImpl();
 		return ifcRelAssociatesApproval;
 	}
@@ -6978,7 +8342,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRelAssociatesClassification createIfcRelAssociatesClassification() {
+	public IfcRelAssociatesClassification createIfcRelAssociatesClassification()
+	{
 		IfcRelAssociatesClassificationImpl ifcRelAssociatesClassification = new IfcRelAssociatesClassificationImpl();
 		return ifcRelAssociatesClassification;
 	}
@@ -6988,7 +8353,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRelAssociatesConstraint createIfcRelAssociatesConstraint() {
+	public IfcRelAssociatesConstraint createIfcRelAssociatesConstraint()
+	{
 		IfcRelAssociatesConstraintImpl ifcRelAssociatesConstraint = new IfcRelAssociatesConstraintImpl();
 		return ifcRelAssociatesConstraint;
 	}
@@ -6998,7 +8364,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRelAssociatesDocument createIfcRelAssociatesDocument() {
+	public IfcRelAssociatesDocument createIfcRelAssociatesDocument()
+	{
 		IfcRelAssociatesDocumentImpl ifcRelAssociatesDocument = new IfcRelAssociatesDocumentImpl();
 		return ifcRelAssociatesDocument;
 	}
@@ -7008,7 +8375,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRelAssociatesLibrary createIfcRelAssociatesLibrary() {
+	public IfcRelAssociatesLibrary createIfcRelAssociatesLibrary()
+	{
 		IfcRelAssociatesLibraryImpl ifcRelAssociatesLibrary = new IfcRelAssociatesLibraryImpl();
 		return ifcRelAssociatesLibrary;
 	}
@@ -7018,7 +8386,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRelAssociatesMaterial createIfcRelAssociatesMaterial() {
+	public IfcRelAssociatesMaterial createIfcRelAssociatesMaterial()
+	{
 		IfcRelAssociatesMaterialImpl ifcRelAssociatesMaterial = new IfcRelAssociatesMaterialImpl();
 		return ifcRelAssociatesMaterial;
 	}
@@ -7028,7 +8397,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRelAssociatesProfileProperties createIfcRelAssociatesProfileProperties() {
+	public IfcRelAssociatesProfileProperties createIfcRelAssociatesProfileProperties()
+	{
 		IfcRelAssociatesProfilePropertiesImpl ifcRelAssociatesProfileProperties = new IfcRelAssociatesProfilePropertiesImpl();
 		return ifcRelAssociatesProfileProperties;
 	}
@@ -7038,7 +8408,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRelConnects createIfcRelConnects() {
+	public IfcRelConnects createIfcRelConnects()
+	{
 		IfcRelConnectsImpl ifcRelConnects = new IfcRelConnectsImpl();
 		return ifcRelConnects;
 	}
@@ -7048,7 +8419,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRelConnectsElements createIfcRelConnectsElements() {
+	public IfcRelConnectsElements createIfcRelConnectsElements()
+	{
 		IfcRelConnectsElementsImpl ifcRelConnectsElements = new IfcRelConnectsElementsImpl();
 		return ifcRelConnectsElements;
 	}
@@ -7058,7 +8430,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRelConnectsPathElements createIfcRelConnectsPathElements() {
+	public IfcRelConnectsPathElements createIfcRelConnectsPathElements()
+	{
 		IfcRelConnectsPathElementsImpl ifcRelConnectsPathElements = new IfcRelConnectsPathElementsImpl();
 		return ifcRelConnectsPathElements;
 	}
@@ -7068,7 +8441,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRelConnectsPortToElement createIfcRelConnectsPortToElement() {
+	public IfcRelConnectsPortToElement createIfcRelConnectsPortToElement()
+	{
 		IfcRelConnectsPortToElementImpl ifcRelConnectsPortToElement = new IfcRelConnectsPortToElementImpl();
 		return ifcRelConnectsPortToElement;
 	}
@@ -7078,7 +8452,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRelConnectsPorts createIfcRelConnectsPorts() {
+	public IfcRelConnectsPorts createIfcRelConnectsPorts()
+	{
 		IfcRelConnectsPortsImpl ifcRelConnectsPorts = new IfcRelConnectsPortsImpl();
 		return ifcRelConnectsPorts;
 	}
@@ -7088,7 +8463,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRelConnectsStructuralActivity createIfcRelConnectsStructuralActivity() {
+	public IfcRelConnectsStructuralActivity createIfcRelConnectsStructuralActivity()
+	{
 		IfcRelConnectsStructuralActivityImpl ifcRelConnectsStructuralActivity = new IfcRelConnectsStructuralActivityImpl();
 		return ifcRelConnectsStructuralActivity;
 	}
@@ -7098,7 +8474,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRelConnectsStructuralElement createIfcRelConnectsStructuralElement() {
+	public IfcRelConnectsStructuralElement createIfcRelConnectsStructuralElement()
+	{
 		IfcRelConnectsStructuralElementImpl ifcRelConnectsStructuralElement = new IfcRelConnectsStructuralElementImpl();
 		return ifcRelConnectsStructuralElement;
 	}
@@ -7108,7 +8485,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRelConnectsStructuralMember createIfcRelConnectsStructuralMember() {
+	public IfcRelConnectsStructuralMember createIfcRelConnectsStructuralMember()
+	{
 		IfcRelConnectsStructuralMemberImpl ifcRelConnectsStructuralMember = new IfcRelConnectsStructuralMemberImpl();
 		return ifcRelConnectsStructuralMember;
 	}
@@ -7118,7 +8496,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRelConnectsWithEccentricity createIfcRelConnectsWithEccentricity() {
+	public IfcRelConnectsWithEccentricity createIfcRelConnectsWithEccentricity()
+	{
 		IfcRelConnectsWithEccentricityImpl ifcRelConnectsWithEccentricity = new IfcRelConnectsWithEccentricityImpl();
 		return ifcRelConnectsWithEccentricity;
 	}
@@ -7128,7 +8507,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRelConnectsWithRealizingElements createIfcRelConnectsWithRealizingElements() {
+	public IfcRelConnectsWithRealizingElements createIfcRelConnectsWithRealizingElements()
+	{
 		IfcRelConnectsWithRealizingElementsImpl ifcRelConnectsWithRealizingElements = new IfcRelConnectsWithRealizingElementsImpl();
 		return ifcRelConnectsWithRealizingElements;
 	}
@@ -7138,7 +8518,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRelContainedInSpatialStructure createIfcRelContainedInSpatialStructure() {
+	public IfcRelContainedInSpatialStructure createIfcRelContainedInSpatialStructure()
+	{
 		IfcRelContainedInSpatialStructureImpl ifcRelContainedInSpatialStructure = new IfcRelContainedInSpatialStructureImpl();
 		return ifcRelContainedInSpatialStructure;
 	}
@@ -7148,7 +8529,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRelCoversBldgElements createIfcRelCoversBldgElements() {
+	public IfcRelCoversBldgElements createIfcRelCoversBldgElements()
+	{
 		IfcRelCoversBldgElementsImpl ifcRelCoversBldgElements = new IfcRelCoversBldgElementsImpl();
 		return ifcRelCoversBldgElements;
 	}
@@ -7158,7 +8540,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRelCoversSpaces createIfcRelCoversSpaces() {
+	public IfcRelCoversSpaces createIfcRelCoversSpaces()
+	{
 		IfcRelCoversSpacesImpl ifcRelCoversSpaces = new IfcRelCoversSpacesImpl();
 		return ifcRelCoversSpaces;
 	}
@@ -7168,7 +8551,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRelDecomposes createIfcRelDecomposes() {
+	public IfcRelDecomposes createIfcRelDecomposes()
+	{
 		IfcRelDecomposesImpl ifcRelDecomposes = new IfcRelDecomposesImpl();
 		return ifcRelDecomposes;
 	}
@@ -7178,7 +8562,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRelDefines createIfcRelDefines() {
+	public IfcRelDefines createIfcRelDefines()
+	{
 		IfcRelDefinesImpl ifcRelDefines = new IfcRelDefinesImpl();
 		return ifcRelDefines;
 	}
@@ -7188,7 +8573,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRelDefinesByProperties createIfcRelDefinesByProperties() {
+	public IfcRelDefinesByProperties createIfcRelDefinesByProperties()
+	{
 		IfcRelDefinesByPropertiesImpl ifcRelDefinesByProperties = new IfcRelDefinesByPropertiesImpl();
 		return ifcRelDefinesByProperties;
 	}
@@ -7198,7 +8584,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRelDefinesByType createIfcRelDefinesByType() {
+	public IfcRelDefinesByType createIfcRelDefinesByType()
+	{
 		IfcRelDefinesByTypeImpl ifcRelDefinesByType = new IfcRelDefinesByTypeImpl();
 		return ifcRelDefinesByType;
 	}
@@ -7208,7 +8595,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRelFillsElement createIfcRelFillsElement() {
+	public IfcRelFillsElement createIfcRelFillsElement()
+	{
 		IfcRelFillsElementImpl ifcRelFillsElement = new IfcRelFillsElementImpl();
 		return ifcRelFillsElement;
 	}
@@ -7218,7 +8606,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRelFlowControlElements createIfcRelFlowControlElements() {
+	public IfcRelFlowControlElements createIfcRelFlowControlElements()
+	{
 		IfcRelFlowControlElementsImpl ifcRelFlowControlElements = new IfcRelFlowControlElementsImpl();
 		return ifcRelFlowControlElements;
 	}
@@ -7228,7 +8617,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRelInteractionRequirements createIfcRelInteractionRequirements() {
+	public IfcRelInteractionRequirements createIfcRelInteractionRequirements()
+	{
 		IfcRelInteractionRequirementsImpl ifcRelInteractionRequirements = new IfcRelInteractionRequirementsImpl();
 		return ifcRelInteractionRequirements;
 	}
@@ -7238,7 +8628,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRelNests createIfcRelNests() {
+	public IfcRelNests createIfcRelNests()
+	{
 		IfcRelNestsImpl ifcRelNests = new IfcRelNestsImpl();
 		return ifcRelNests;
 	}
@@ -7248,7 +8639,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRelOccupiesSpaces createIfcRelOccupiesSpaces() {
+	public IfcRelOccupiesSpaces createIfcRelOccupiesSpaces()
+	{
 		IfcRelOccupiesSpacesImpl ifcRelOccupiesSpaces = new IfcRelOccupiesSpacesImpl();
 		return ifcRelOccupiesSpaces;
 	}
@@ -7258,7 +8650,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRelOverridesProperties createIfcRelOverridesProperties() {
+	public IfcRelOverridesProperties createIfcRelOverridesProperties()
+	{
 		IfcRelOverridesPropertiesImpl ifcRelOverridesProperties = new IfcRelOverridesPropertiesImpl();
 		return ifcRelOverridesProperties;
 	}
@@ -7268,7 +8661,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRelProjectsElement createIfcRelProjectsElement() {
+	public IfcRelProjectsElement createIfcRelProjectsElement()
+	{
 		IfcRelProjectsElementImpl ifcRelProjectsElement = new IfcRelProjectsElementImpl();
 		return ifcRelProjectsElement;
 	}
@@ -7278,7 +8672,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRelReferencedInSpatialStructure createIfcRelReferencedInSpatialStructure() {
+	public IfcRelReferencedInSpatialStructure createIfcRelReferencedInSpatialStructure()
+	{
 		IfcRelReferencedInSpatialStructureImpl ifcRelReferencedInSpatialStructure = new IfcRelReferencedInSpatialStructureImpl();
 		return ifcRelReferencedInSpatialStructure;
 	}
@@ -7288,7 +8683,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRelSchedulesCostItems createIfcRelSchedulesCostItems() {
+	public IfcRelSchedulesCostItems createIfcRelSchedulesCostItems()
+	{
 		IfcRelSchedulesCostItemsImpl ifcRelSchedulesCostItems = new IfcRelSchedulesCostItemsImpl();
 		return ifcRelSchedulesCostItems;
 	}
@@ -7298,7 +8694,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRelSequence createIfcRelSequence() {
+	public IfcRelSequence createIfcRelSequence()
+	{
 		IfcRelSequenceImpl ifcRelSequence = new IfcRelSequenceImpl();
 		return ifcRelSequence;
 	}
@@ -7308,7 +8705,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRelServicesBuildings createIfcRelServicesBuildings() {
+	public IfcRelServicesBuildings createIfcRelServicesBuildings()
+	{
 		IfcRelServicesBuildingsImpl ifcRelServicesBuildings = new IfcRelServicesBuildingsImpl();
 		return ifcRelServicesBuildings;
 	}
@@ -7318,7 +8716,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRelSpaceBoundary createIfcRelSpaceBoundary() {
+	public IfcRelSpaceBoundary createIfcRelSpaceBoundary()
+	{
 		IfcRelSpaceBoundaryImpl ifcRelSpaceBoundary = new IfcRelSpaceBoundaryImpl();
 		return ifcRelSpaceBoundary;
 	}
@@ -7328,7 +8727,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRelVoidsElement createIfcRelVoidsElement() {
+	public IfcRelVoidsElement createIfcRelVoidsElement()
+	{
 		IfcRelVoidsElementImpl ifcRelVoidsElement = new IfcRelVoidsElementImpl();
 		return ifcRelVoidsElement;
 	}
@@ -7338,7 +8738,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRelationship createIfcRelationship() {
+	public IfcRelationship createIfcRelationship()
+	{
 		IfcRelationshipImpl ifcRelationship = new IfcRelationshipImpl();
 		return ifcRelationship;
 	}
@@ -7348,7 +8749,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRelaxation createIfcRelaxation() {
+	public IfcRelaxation createIfcRelaxation()
+	{
 		IfcRelaxationImpl ifcRelaxation = new IfcRelaxationImpl();
 		return ifcRelaxation;
 	}
@@ -7358,7 +8760,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRepresentation createIfcRepresentation() {
+	public IfcRepresentation createIfcRepresentation()
+	{
 		IfcRepresentationImpl ifcRepresentation = new IfcRepresentationImpl();
 		return ifcRepresentation;
 	}
@@ -7368,7 +8771,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRepresentationContext createIfcRepresentationContext() {
+	public IfcRepresentationContext createIfcRepresentationContext()
+	{
 		IfcRepresentationContextImpl ifcRepresentationContext = new IfcRepresentationContextImpl();
 		return ifcRepresentationContext;
 	}
@@ -7378,7 +8782,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRepresentationItem createIfcRepresentationItem() {
+	public IfcRepresentationItem createIfcRepresentationItem()
+	{
 		IfcRepresentationItemImpl ifcRepresentationItem = new IfcRepresentationItemImpl();
 		return ifcRepresentationItem;
 	}
@@ -7388,7 +8793,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRepresentationMap createIfcRepresentationMap() {
+	public IfcRepresentationMap createIfcRepresentationMap()
+	{
 		IfcRepresentationMapImpl ifcRepresentationMap = new IfcRepresentationMapImpl();
 		return ifcRepresentationMap;
 	}
@@ -7398,7 +8804,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcResource createIfcResource() {
+	public IfcResource createIfcResource()
+	{
 		IfcResourceImpl ifcResource = new IfcResourceImpl();
 		return ifcResource;
 	}
@@ -7408,7 +8815,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRevolvedAreaSolid createIfcRevolvedAreaSolid() {
+	public IfcRevolvedAreaSolid createIfcRevolvedAreaSolid()
+	{
 		IfcRevolvedAreaSolidImpl ifcRevolvedAreaSolid = new IfcRevolvedAreaSolidImpl();
 		return ifcRevolvedAreaSolid;
 	}
@@ -7418,7 +8826,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRibPlateProfileProperties createIfcRibPlateProfileProperties() {
+	public IfcRibPlateProfileProperties createIfcRibPlateProfileProperties()
+	{
 		IfcRibPlateProfilePropertiesImpl ifcRibPlateProfileProperties = new IfcRibPlateProfilePropertiesImpl();
 		return ifcRibPlateProfileProperties;
 	}
@@ -7428,7 +8837,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRightCircularCone createIfcRightCircularCone() {
+	public IfcRightCircularCone createIfcRightCircularCone()
+	{
 		IfcRightCircularConeImpl ifcRightCircularCone = new IfcRightCircularConeImpl();
 		return ifcRightCircularCone;
 	}
@@ -7438,7 +8848,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRightCircularCylinder createIfcRightCircularCylinder() {
+	public IfcRightCircularCylinder createIfcRightCircularCylinder()
+	{
 		IfcRightCircularCylinderImpl ifcRightCircularCylinder = new IfcRightCircularCylinderImpl();
 		return ifcRightCircularCylinder;
 	}
@@ -7448,7 +8859,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRoof createIfcRoof() {
+	public IfcRoof createIfcRoof()
+	{
 		IfcRoofImpl ifcRoof = new IfcRoofImpl();
 		return ifcRoof;
 	}
@@ -7458,7 +8870,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRoot createIfcRoot() {
+	public IfcRoot createIfcRoot()
+	{
 		IfcRootImpl ifcRoot = new IfcRootImpl();
 		return ifcRoot;
 	}
@@ -7468,7 +8881,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRoundedEdgeFeature createIfcRoundedEdgeFeature() {
+	public IfcRoundedEdgeFeature createIfcRoundedEdgeFeature()
+	{
 		IfcRoundedEdgeFeatureImpl ifcRoundedEdgeFeature = new IfcRoundedEdgeFeatureImpl();
 		return ifcRoundedEdgeFeature;
 	}
@@ -7478,7 +8892,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRoundedRectangleProfileDef createIfcRoundedRectangleProfileDef() {
+	public IfcRoundedRectangleProfileDef createIfcRoundedRectangleProfileDef()
+	{
 		IfcRoundedRectangleProfileDefImpl ifcRoundedRectangleProfileDef = new IfcRoundedRectangleProfileDefImpl();
 		return ifcRoundedRectangleProfileDef;
 	}
@@ -7488,7 +8903,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcSIUnit createIfcSIUnit() {
+	public IfcSIUnit createIfcSIUnit()
+	{
 		IfcSIUnitImpl ifcSIUnit = new IfcSIUnitImpl();
 		return ifcSIUnit;
 	}
@@ -7498,7 +8914,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcSanitaryTerminalType createIfcSanitaryTerminalType() {
+	public IfcSanitaryTerminalType createIfcSanitaryTerminalType()
+	{
 		IfcSanitaryTerminalTypeImpl ifcSanitaryTerminalType = new IfcSanitaryTerminalTypeImpl();
 		return ifcSanitaryTerminalType;
 	}
@@ -7508,7 +8925,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcScheduleTimeControl createIfcScheduleTimeControl() {
+	public IfcScheduleTimeControl createIfcScheduleTimeControl()
+	{
 		IfcScheduleTimeControlImpl ifcScheduleTimeControl = new IfcScheduleTimeControlImpl();
 		return ifcScheduleTimeControl;
 	}
@@ -7518,7 +8936,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcSectionProperties createIfcSectionProperties() {
+	public IfcSectionProperties createIfcSectionProperties()
+	{
 		IfcSectionPropertiesImpl ifcSectionProperties = new IfcSectionPropertiesImpl();
 		return ifcSectionProperties;
 	}
@@ -7528,7 +8947,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcSectionReinforcementProperties createIfcSectionReinforcementProperties() {
+	public IfcSectionReinforcementProperties createIfcSectionReinforcementProperties()
+	{
 		IfcSectionReinforcementPropertiesImpl ifcSectionReinforcementProperties = new IfcSectionReinforcementPropertiesImpl();
 		return ifcSectionReinforcementProperties;
 	}
@@ -7538,7 +8958,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcSectionedSpine createIfcSectionedSpine() {
+	public IfcSectionedSpine createIfcSectionedSpine()
+	{
 		IfcSectionedSpineImpl ifcSectionedSpine = new IfcSectionedSpineImpl();
 		return ifcSectionedSpine;
 	}
@@ -7548,7 +8969,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcSensorType createIfcSensorType() {
+	public IfcSensorType createIfcSensorType()
+	{
 		IfcSensorTypeImpl ifcSensorType = new IfcSensorTypeImpl();
 		return ifcSensorType;
 	}
@@ -7558,7 +8980,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcServiceLife createIfcServiceLife() {
+	public IfcServiceLife createIfcServiceLife()
+	{
 		IfcServiceLifeImpl ifcServiceLife = new IfcServiceLifeImpl();
 		return ifcServiceLife;
 	}
@@ -7568,7 +8991,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcServiceLifeFactor createIfcServiceLifeFactor() {
+	public IfcServiceLifeFactor createIfcServiceLifeFactor()
+	{
 		IfcServiceLifeFactorImpl ifcServiceLifeFactor = new IfcServiceLifeFactorImpl();
 		return ifcServiceLifeFactor;
 	}
@@ -7578,7 +9002,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcShapeAspect createIfcShapeAspect() {
+	public IfcShapeAspect createIfcShapeAspect()
+	{
 		IfcShapeAspectImpl ifcShapeAspect = new IfcShapeAspectImpl();
 		return ifcShapeAspect;
 	}
@@ -7588,7 +9013,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcShapeModel createIfcShapeModel() {
+	public IfcShapeModel createIfcShapeModel()
+	{
 		IfcShapeModelImpl ifcShapeModel = new IfcShapeModelImpl();
 		return ifcShapeModel;
 	}
@@ -7598,7 +9024,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcShapeRepresentation createIfcShapeRepresentation() {
+	public IfcShapeRepresentation createIfcShapeRepresentation()
+	{
 		IfcShapeRepresentationImpl ifcShapeRepresentation = new IfcShapeRepresentationImpl();
 		return ifcShapeRepresentation;
 	}
@@ -7608,7 +9035,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcShellBasedSurfaceModel createIfcShellBasedSurfaceModel() {
+	public IfcShellBasedSurfaceModel createIfcShellBasedSurfaceModel()
+	{
 		IfcShellBasedSurfaceModelImpl ifcShellBasedSurfaceModel = new IfcShellBasedSurfaceModelImpl();
 		return ifcShellBasedSurfaceModel;
 	}
@@ -7618,7 +9046,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcSimpleProperty createIfcSimpleProperty() {
+	public IfcSimpleProperty createIfcSimpleProperty()
+	{
 		IfcSimplePropertyImpl ifcSimpleProperty = new IfcSimplePropertyImpl();
 		return ifcSimpleProperty;
 	}
@@ -7628,7 +9057,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcSite createIfcSite() {
+	public IfcSite createIfcSite()
+	{
 		IfcSiteImpl ifcSite = new IfcSiteImpl();
 		return ifcSite;
 	}
@@ -7638,7 +9068,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcSlab createIfcSlab() {
+	public IfcSlab createIfcSlab()
+	{
 		IfcSlabImpl ifcSlab = new IfcSlabImpl();
 		return ifcSlab;
 	}
@@ -7648,7 +9079,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcSlabType createIfcSlabType() {
+	public IfcSlabType createIfcSlabType()
+	{
 		IfcSlabTypeImpl ifcSlabType = new IfcSlabTypeImpl();
 		return ifcSlabType;
 	}
@@ -7658,7 +9090,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcSlippageConnectionCondition createIfcSlippageConnectionCondition() {
+	public IfcSlippageConnectionCondition createIfcSlippageConnectionCondition()
+	{
 		IfcSlippageConnectionConditionImpl ifcSlippageConnectionCondition = new IfcSlippageConnectionConditionImpl();
 		return ifcSlippageConnectionCondition;
 	}
@@ -7668,7 +9101,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcSolidModel createIfcSolidModel() {
+	public IfcSolidModel createIfcSolidModel()
+	{
 		IfcSolidModelImpl ifcSolidModel = new IfcSolidModelImpl();
 		return ifcSolidModel;
 	}
@@ -7678,7 +9112,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcSoundProperties createIfcSoundProperties() {
+	public IfcSoundProperties createIfcSoundProperties()
+	{
 		IfcSoundPropertiesImpl ifcSoundProperties = new IfcSoundPropertiesImpl();
 		return ifcSoundProperties;
 	}
@@ -7688,7 +9123,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcSoundValue createIfcSoundValue() {
+	public IfcSoundValue createIfcSoundValue()
+	{
 		IfcSoundValueImpl ifcSoundValue = new IfcSoundValueImpl();
 		return ifcSoundValue;
 	}
@@ -7698,7 +9134,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcSpace createIfcSpace() {
+	public IfcSpace createIfcSpace()
+	{
 		IfcSpaceImpl ifcSpace = new IfcSpaceImpl();
 		return ifcSpace;
 	}
@@ -7708,7 +9145,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcSpaceHeaterType createIfcSpaceHeaterType() {
+	public IfcSpaceHeaterType createIfcSpaceHeaterType()
+	{
 		IfcSpaceHeaterTypeImpl ifcSpaceHeaterType = new IfcSpaceHeaterTypeImpl();
 		return ifcSpaceHeaterType;
 	}
@@ -7718,7 +9156,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcSpaceProgram createIfcSpaceProgram() {
+	public IfcSpaceProgram createIfcSpaceProgram()
+	{
 		IfcSpaceProgramImpl ifcSpaceProgram = new IfcSpaceProgramImpl();
 		return ifcSpaceProgram;
 	}
@@ -7728,7 +9167,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcSpaceThermalLoadProperties createIfcSpaceThermalLoadProperties() {
+	public IfcSpaceThermalLoadProperties createIfcSpaceThermalLoadProperties()
+	{
 		IfcSpaceThermalLoadPropertiesImpl ifcSpaceThermalLoadProperties = new IfcSpaceThermalLoadPropertiesImpl();
 		return ifcSpaceThermalLoadProperties;
 	}
@@ -7738,7 +9178,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcSpaceType createIfcSpaceType() {
+	public IfcSpaceType createIfcSpaceType()
+	{
 		IfcSpaceTypeImpl ifcSpaceType = new IfcSpaceTypeImpl();
 		return ifcSpaceType;
 	}
@@ -7748,7 +9189,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcSpatialStructureElement createIfcSpatialStructureElement() {
+	public IfcSpatialStructureElement createIfcSpatialStructureElement()
+	{
 		IfcSpatialStructureElementImpl ifcSpatialStructureElement = new IfcSpatialStructureElementImpl();
 		return ifcSpatialStructureElement;
 	}
@@ -7758,7 +9200,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcSpatialStructureElementType createIfcSpatialStructureElementType() {
+	public IfcSpatialStructureElementType createIfcSpatialStructureElementType()
+	{
 		IfcSpatialStructureElementTypeImpl ifcSpatialStructureElementType = new IfcSpatialStructureElementTypeImpl();
 		return ifcSpatialStructureElementType;
 	}
@@ -7768,7 +9211,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcSphere createIfcSphere() {
+	public IfcSphere createIfcSphere()
+	{
 		IfcSphereImpl ifcSphere = new IfcSphereImpl();
 		return ifcSphere;
 	}
@@ -7778,7 +9222,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcStackTerminalType createIfcStackTerminalType() {
+	public IfcStackTerminalType createIfcStackTerminalType()
+	{
 		IfcStackTerminalTypeImpl ifcStackTerminalType = new IfcStackTerminalTypeImpl();
 		return ifcStackTerminalType;
 	}
@@ -7788,7 +9233,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcStair createIfcStair() {
+	public IfcStair createIfcStair()
+	{
 		IfcStairImpl ifcStair = new IfcStairImpl();
 		return ifcStair;
 	}
@@ -7798,7 +9244,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcStairFlight createIfcStairFlight() {
+	public IfcStairFlight createIfcStairFlight()
+	{
 		IfcStairFlightImpl ifcStairFlight = new IfcStairFlightImpl();
 		return ifcStairFlight;
 	}
@@ -7808,7 +9255,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcStairFlightType createIfcStairFlightType() {
+	public IfcStairFlightType createIfcStairFlightType()
+	{
 		IfcStairFlightTypeImpl ifcStairFlightType = new IfcStairFlightTypeImpl();
 		return ifcStairFlightType;
 	}
@@ -7818,7 +9266,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcStructuralAction createIfcStructuralAction() {
+	public IfcStructuralAction createIfcStructuralAction()
+	{
 		IfcStructuralActionImpl ifcStructuralAction = new IfcStructuralActionImpl();
 		return ifcStructuralAction;
 	}
@@ -7828,7 +9277,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcStructuralActivity createIfcStructuralActivity() {
+	public IfcStructuralActivity createIfcStructuralActivity()
+	{
 		IfcStructuralActivityImpl ifcStructuralActivity = new IfcStructuralActivityImpl();
 		return ifcStructuralActivity;
 	}
@@ -7838,7 +9288,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcStructuralAnalysisModel createIfcStructuralAnalysisModel() {
+	public IfcStructuralAnalysisModel createIfcStructuralAnalysisModel()
+	{
 		IfcStructuralAnalysisModelImpl ifcStructuralAnalysisModel = new IfcStructuralAnalysisModelImpl();
 		return ifcStructuralAnalysisModel;
 	}
@@ -7848,7 +9299,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcStructuralConnection createIfcStructuralConnection() {
+	public IfcStructuralConnection createIfcStructuralConnection()
+	{
 		IfcStructuralConnectionImpl ifcStructuralConnection = new IfcStructuralConnectionImpl();
 		return ifcStructuralConnection;
 	}
@@ -7858,7 +9310,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcStructuralConnectionCondition createIfcStructuralConnectionCondition() {
+	public IfcStructuralConnectionCondition createIfcStructuralConnectionCondition()
+	{
 		IfcStructuralConnectionConditionImpl ifcStructuralConnectionCondition = new IfcStructuralConnectionConditionImpl();
 		return ifcStructuralConnectionCondition;
 	}
@@ -7868,7 +9321,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcStructuralCurveConnection createIfcStructuralCurveConnection() {
+	public IfcStructuralCurveConnection createIfcStructuralCurveConnection()
+	{
 		IfcStructuralCurveConnectionImpl ifcStructuralCurveConnection = new IfcStructuralCurveConnectionImpl();
 		return ifcStructuralCurveConnection;
 	}
@@ -7878,7 +9332,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcStructuralCurveMember createIfcStructuralCurveMember() {
+	public IfcStructuralCurveMember createIfcStructuralCurveMember()
+	{
 		IfcStructuralCurveMemberImpl ifcStructuralCurveMember = new IfcStructuralCurveMemberImpl();
 		return ifcStructuralCurveMember;
 	}
@@ -7888,7 +9343,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcStructuralCurveMemberVarying createIfcStructuralCurveMemberVarying() {
+	public IfcStructuralCurveMemberVarying createIfcStructuralCurveMemberVarying()
+	{
 		IfcStructuralCurveMemberVaryingImpl ifcStructuralCurveMemberVarying = new IfcStructuralCurveMemberVaryingImpl();
 		return ifcStructuralCurveMemberVarying;
 	}
@@ -7898,7 +9354,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcStructuralItem createIfcStructuralItem() {
+	public IfcStructuralItem createIfcStructuralItem()
+	{
 		IfcStructuralItemImpl ifcStructuralItem = new IfcStructuralItemImpl();
 		return ifcStructuralItem;
 	}
@@ -7908,7 +9365,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcStructuralLinearAction createIfcStructuralLinearAction() {
+	public IfcStructuralLinearAction createIfcStructuralLinearAction()
+	{
 		IfcStructuralLinearActionImpl ifcStructuralLinearAction = new IfcStructuralLinearActionImpl();
 		return ifcStructuralLinearAction;
 	}
@@ -7918,7 +9376,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcStructuralLinearActionVarying createIfcStructuralLinearActionVarying() {
+	public IfcStructuralLinearActionVarying createIfcStructuralLinearActionVarying()
+	{
 		IfcStructuralLinearActionVaryingImpl ifcStructuralLinearActionVarying = new IfcStructuralLinearActionVaryingImpl();
 		return ifcStructuralLinearActionVarying;
 	}
@@ -7928,7 +9387,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcStructuralLoad createIfcStructuralLoad() {
+	public IfcStructuralLoad createIfcStructuralLoad()
+	{
 		IfcStructuralLoadImpl ifcStructuralLoad = new IfcStructuralLoadImpl();
 		return ifcStructuralLoad;
 	}
@@ -7938,7 +9398,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcStructuralLoadGroup createIfcStructuralLoadGroup() {
+	public IfcStructuralLoadGroup createIfcStructuralLoadGroup()
+	{
 		IfcStructuralLoadGroupImpl ifcStructuralLoadGroup = new IfcStructuralLoadGroupImpl();
 		return ifcStructuralLoadGroup;
 	}
@@ -7948,7 +9409,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcStructuralLoadLinearForce createIfcStructuralLoadLinearForce() {
+	public IfcStructuralLoadLinearForce createIfcStructuralLoadLinearForce()
+	{
 		IfcStructuralLoadLinearForceImpl ifcStructuralLoadLinearForce = new IfcStructuralLoadLinearForceImpl();
 		return ifcStructuralLoadLinearForce;
 	}
@@ -7958,7 +9420,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcStructuralLoadPlanarForce createIfcStructuralLoadPlanarForce() {
+	public IfcStructuralLoadPlanarForce createIfcStructuralLoadPlanarForce()
+	{
 		IfcStructuralLoadPlanarForceImpl ifcStructuralLoadPlanarForce = new IfcStructuralLoadPlanarForceImpl();
 		return ifcStructuralLoadPlanarForce;
 	}
@@ -7968,7 +9431,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcStructuralLoadSingleDisplacement createIfcStructuralLoadSingleDisplacement() {
+	public IfcStructuralLoadSingleDisplacement createIfcStructuralLoadSingleDisplacement()
+	{
 		IfcStructuralLoadSingleDisplacementImpl ifcStructuralLoadSingleDisplacement = new IfcStructuralLoadSingleDisplacementImpl();
 		return ifcStructuralLoadSingleDisplacement;
 	}
@@ -7978,7 +9442,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcStructuralLoadSingleDisplacementDistortion createIfcStructuralLoadSingleDisplacementDistortion() {
+	public IfcStructuralLoadSingleDisplacementDistortion createIfcStructuralLoadSingleDisplacementDistortion()
+	{
 		IfcStructuralLoadSingleDisplacementDistortionImpl ifcStructuralLoadSingleDisplacementDistortion = new IfcStructuralLoadSingleDisplacementDistortionImpl();
 		return ifcStructuralLoadSingleDisplacementDistortion;
 	}
@@ -7988,7 +9453,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcStructuralLoadSingleForce createIfcStructuralLoadSingleForce() {
+	public IfcStructuralLoadSingleForce createIfcStructuralLoadSingleForce()
+	{
 		IfcStructuralLoadSingleForceImpl ifcStructuralLoadSingleForce = new IfcStructuralLoadSingleForceImpl();
 		return ifcStructuralLoadSingleForce;
 	}
@@ -7998,7 +9464,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcStructuralLoadSingleForceWarping createIfcStructuralLoadSingleForceWarping() {
+	public IfcStructuralLoadSingleForceWarping createIfcStructuralLoadSingleForceWarping()
+	{
 		IfcStructuralLoadSingleForceWarpingImpl ifcStructuralLoadSingleForceWarping = new IfcStructuralLoadSingleForceWarpingImpl();
 		return ifcStructuralLoadSingleForceWarping;
 	}
@@ -8008,7 +9475,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcStructuralLoadStatic createIfcStructuralLoadStatic() {
+	public IfcStructuralLoadStatic createIfcStructuralLoadStatic()
+	{
 		IfcStructuralLoadStaticImpl ifcStructuralLoadStatic = new IfcStructuralLoadStaticImpl();
 		return ifcStructuralLoadStatic;
 	}
@@ -8018,7 +9486,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcStructuralLoadTemperature createIfcStructuralLoadTemperature() {
+	public IfcStructuralLoadTemperature createIfcStructuralLoadTemperature()
+	{
 		IfcStructuralLoadTemperatureImpl ifcStructuralLoadTemperature = new IfcStructuralLoadTemperatureImpl();
 		return ifcStructuralLoadTemperature;
 	}
@@ -8028,7 +9497,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcStructuralMember createIfcStructuralMember() {
+	public IfcStructuralMember createIfcStructuralMember()
+	{
 		IfcStructuralMemberImpl ifcStructuralMember = new IfcStructuralMemberImpl();
 		return ifcStructuralMember;
 	}
@@ -8038,7 +9508,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcStructuralPlanarAction createIfcStructuralPlanarAction() {
+	public IfcStructuralPlanarAction createIfcStructuralPlanarAction()
+	{
 		IfcStructuralPlanarActionImpl ifcStructuralPlanarAction = new IfcStructuralPlanarActionImpl();
 		return ifcStructuralPlanarAction;
 	}
@@ -8048,7 +9519,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcStructuralPlanarActionVarying createIfcStructuralPlanarActionVarying() {
+	public IfcStructuralPlanarActionVarying createIfcStructuralPlanarActionVarying()
+	{
 		IfcStructuralPlanarActionVaryingImpl ifcStructuralPlanarActionVarying = new IfcStructuralPlanarActionVaryingImpl();
 		return ifcStructuralPlanarActionVarying;
 	}
@@ -8058,7 +9530,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcStructuralPointAction createIfcStructuralPointAction() {
+	public IfcStructuralPointAction createIfcStructuralPointAction()
+	{
 		IfcStructuralPointActionImpl ifcStructuralPointAction = new IfcStructuralPointActionImpl();
 		return ifcStructuralPointAction;
 	}
@@ -8068,7 +9541,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcStructuralPointConnection createIfcStructuralPointConnection() {
+	public IfcStructuralPointConnection createIfcStructuralPointConnection()
+	{
 		IfcStructuralPointConnectionImpl ifcStructuralPointConnection = new IfcStructuralPointConnectionImpl();
 		return ifcStructuralPointConnection;
 	}
@@ -8078,7 +9552,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcStructuralPointReaction createIfcStructuralPointReaction() {
+	public IfcStructuralPointReaction createIfcStructuralPointReaction()
+	{
 		IfcStructuralPointReactionImpl ifcStructuralPointReaction = new IfcStructuralPointReactionImpl();
 		return ifcStructuralPointReaction;
 	}
@@ -8088,7 +9563,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcStructuralProfileProperties createIfcStructuralProfileProperties() {
+	public IfcStructuralProfileProperties createIfcStructuralProfileProperties()
+	{
 		IfcStructuralProfilePropertiesImpl ifcStructuralProfileProperties = new IfcStructuralProfilePropertiesImpl();
 		return ifcStructuralProfileProperties;
 	}
@@ -8098,7 +9574,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcStructuralReaction createIfcStructuralReaction() {
+	public IfcStructuralReaction createIfcStructuralReaction()
+	{
 		IfcStructuralReactionImpl ifcStructuralReaction = new IfcStructuralReactionImpl();
 		return ifcStructuralReaction;
 	}
@@ -8108,7 +9585,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcStructuralResultGroup createIfcStructuralResultGroup() {
+	public IfcStructuralResultGroup createIfcStructuralResultGroup()
+	{
 		IfcStructuralResultGroupImpl ifcStructuralResultGroup = new IfcStructuralResultGroupImpl();
 		return ifcStructuralResultGroup;
 	}
@@ -8118,7 +9596,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcStructuralSteelProfileProperties createIfcStructuralSteelProfileProperties() {
+	public IfcStructuralSteelProfileProperties createIfcStructuralSteelProfileProperties()
+	{
 		IfcStructuralSteelProfilePropertiesImpl ifcStructuralSteelProfileProperties = new IfcStructuralSteelProfilePropertiesImpl();
 		return ifcStructuralSteelProfileProperties;
 	}
@@ -8128,7 +9607,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcStructuralSurfaceConnection createIfcStructuralSurfaceConnection() {
+	public IfcStructuralSurfaceConnection createIfcStructuralSurfaceConnection()
+	{
 		IfcStructuralSurfaceConnectionImpl ifcStructuralSurfaceConnection = new IfcStructuralSurfaceConnectionImpl();
 		return ifcStructuralSurfaceConnection;
 	}
@@ -8138,7 +9618,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcStructuralSurfaceMember createIfcStructuralSurfaceMember() {
+	public IfcStructuralSurfaceMember createIfcStructuralSurfaceMember()
+	{
 		IfcStructuralSurfaceMemberImpl ifcStructuralSurfaceMember = new IfcStructuralSurfaceMemberImpl();
 		return ifcStructuralSurfaceMember;
 	}
@@ -8148,7 +9629,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcStructuralSurfaceMemberVarying createIfcStructuralSurfaceMemberVarying() {
+	public IfcStructuralSurfaceMemberVarying createIfcStructuralSurfaceMemberVarying()
+	{
 		IfcStructuralSurfaceMemberVaryingImpl ifcStructuralSurfaceMemberVarying = new IfcStructuralSurfaceMemberVaryingImpl();
 		return ifcStructuralSurfaceMemberVarying;
 	}
@@ -8158,7 +9640,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcStructuredDimensionCallout createIfcStructuredDimensionCallout() {
+	public IfcStructuredDimensionCallout createIfcStructuredDimensionCallout()
+	{
 		IfcStructuredDimensionCalloutImpl ifcStructuredDimensionCallout = new IfcStructuredDimensionCalloutImpl();
 		return ifcStructuredDimensionCallout;
 	}
@@ -8168,7 +9651,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcStyleModel createIfcStyleModel() {
+	public IfcStyleModel createIfcStyleModel()
+	{
 		IfcStyleModelImpl ifcStyleModel = new IfcStyleModelImpl();
 		return ifcStyleModel;
 	}
@@ -8178,7 +9662,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcStyledItem createIfcStyledItem() {
+	public IfcStyledItem createIfcStyledItem()
+	{
 		IfcStyledItemImpl ifcStyledItem = new IfcStyledItemImpl();
 		return ifcStyledItem;
 	}
@@ -8188,7 +9673,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcStyledRepresentation createIfcStyledRepresentation() {
+	public IfcStyledRepresentation createIfcStyledRepresentation()
+	{
 		IfcStyledRepresentationImpl ifcStyledRepresentation = new IfcStyledRepresentationImpl();
 		return ifcStyledRepresentation;
 	}
@@ -8198,7 +9684,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcSubContractResource createIfcSubContractResource() {
+	public IfcSubContractResource createIfcSubContractResource()
+	{
 		IfcSubContractResourceImpl ifcSubContractResource = new IfcSubContractResourceImpl();
 		return ifcSubContractResource;
 	}
@@ -8208,7 +9695,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcSubedge createIfcSubedge() {
+	public IfcSubedge createIfcSubedge()
+	{
 		IfcSubedgeImpl ifcSubedge = new IfcSubedgeImpl();
 		return ifcSubedge;
 	}
@@ -8218,7 +9706,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcSurface createIfcSurface() {
+	public IfcSurface createIfcSurface()
+	{
 		IfcSurfaceImpl ifcSurface = new IfcSurfaceImpl();
 		return ifcSurface;
 	}
@@ -8228,7 +9717,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcSurfaceCurveSweptAreaSolid createIfcSurfaceCurveSweptAreaSolid() {
+	public IfcSurfaceCurveSweptAreaSolid createIfcSurfaceCurveSweptAreaSolid()
+	{
 		IfcSurfaceCurveSweptAreaSolidImpl ifcSurfaceCurveSweptAreaSolid = new IfcSurfaceCurveSweptAreaSolidImpl();
 		return ifcSurfaceCurveSweptAreaSolid;
 	}
@@ -8238,7 +9728,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcSurfaceOfLinearExtrusion createIfcSurfaceOfLinearExtrusion() {
+	public IfcSurfaceOfLinearExtrusion createIfcSurfaceOfLinearExtrusion()
+	{
 		IfcSurfaceOfLinearExtrusionImpl ifcSurfaceOfLinearExtrusion = new IfcSurfaceOfLinearExtrusionImpl();
 		return ifcSurfaceOfLinearExtrusion;
 	}
@@ -8248,7 +9739,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcSurfaceOfRevolution createIfcSurfaceOfRevolution() {
+	public IfcSurfaceOfRevolution createIfcSurfaceOfRevolution()
+	{
 		IfcSurfaceOfRevolutionImpl ifcSurfaceOfRevolution = new IfcSurfaceOfRevolutionImpl();
 		return ifcSurfaceOfRevolution;
 	}
@@ -8258,7 +9750,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcSurfaceStyle createIfcSurfaceStyle() {
+	public IfcSurfaceStyle createIfcSurfaceStyle()
+	{
 		IfcSurfaceStyleImpl ifcSurfaceStyle = new IfcSurfaceStyleImpl();
 		return ifcSurfaceStyle;
 	}
@@ -8268,7 +9761,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcSurfaceStyleLighting createIfcSurfaceStyleLighting() {
+	public IfcSurfaceStyleLighting createIfcSurfaceStyleLighting()
+	{
 		IfcSurfaceStyleLightingImpl ifcSurfaceStyleLighting = new IfcSurfaceStyleLightingImpl();
 		return ifcSurfaceStyleLighting;
 	}
@@ -8278,7 +9772,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcSurfaceStyleRefraction createIfcSurfaceStyleRefraction() {
+	public IfcSurfaceStyleRefraction createIfcSurfaceStyleRefraction()
+	{
 		IfcSurfaceStyleRefractionImpl ifcSurfaceStyleRefraction = new IfcSurfaceStyleRefractionImpl();
 		return ifcSurfaceStyleRefraction;
 	}
@@ -8288,7 +9783,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcSurfaceStyleRendering createIfcSurfaceStyleRendering() {
+	public IfcSurfaceStyleRendering createIfcSurfaceStyleRendering()
+	{
 		IfcSurfaceStyleRenderingImpl ifcSurfaceStyleRendering = new IfcSurfaceStyleRenderingImpl();
 		return ifcSurfaceStyleRendering;
 	}
@@ -8298,7 +9794,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcSurfaceStyleShading createIfcSurfaceStyleShading() {
+	public IfcSurfaceStyleShading createIfcSurfaceStyleShading()
+	{
 		IfcSurfaceStyleShadingImpl ifcSurfaceStyleShading = new IfcSurfaceStyleShadingImpl();
 		return ifcSurfaceStyleShading;
 	}
@@ -8308,7 +9805,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcSurfaceStyleWithTextures createIfcSurfaceStyleWithTextures() {
+	public IfcSurfaceStyleWithTextures createIfcSurfaceStyleWithTextures()
+	{
 		IfcSurfaceStyleWithTexturesImpl ifcSurfaceStyleWithTextures = new IfcSurfaceStyleWithTexturesImpl();
 		return ifcSurfaceStyleWithTextures;
 	}
@@ -8318,7 +9816,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcSurfaceTexture createIfcSurfaceTexture() {
+	public IfcSurfaceTexture createIfcSurfaceTexture()
+	{
 		IfcSurfaceTextureImpl ifcSurfaceTexture = new IfcSurfaceTextureImpl();
 		return ifcSurfaceTexture;
 	}
@@ -8328,7 +9827,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcSweptAreaSolid createIfcSweptAreaSolid() {
+	public IfcSweptAreaSolid createIfcSweptAreaSolid()
+	{
 		IfcSweptAreaSolidImpl ifcSweptAreaSolid = new IfcSweptAreaSolidImpl();
 		return ifcSweptAreaSolid;
 	}
@@ -8338,7 +9838,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcSweptDiskSolid createIfcSweptDiskSolid() {
+	public IfcSweptDiskSolid createIfcSweptDiskSolid()
+	{
 		IfcSweptDiskSolidImpl ifcSweptDiskSolid = new IfcSweptDiskSolidImpl();
 		return ifcSweptDiskSolid;
 	}
@@ -8348,7 +9849,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcSweptSurface createIfcSweptSurface() {
+	public IfcSweptSurface createIfcSweptSurface()
+	{
 		IfcSweptSurfaceImpl ifcSweptSurface = new IfcSweptSurfaceImpl();
 		return ifcSweptSurface;
 	}
@@ -8358,7 +9860,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcSwitchingDeviceType createIfcSwitchingDeviceType() {
+	public IfcSwitchingDeviceType createIfcSwitchingDeviceType()
+	{
 		IfcSwitchingDeviceTypeImpl ifcSwitchingDeviceType = new IfcSwitchingDeviceTypeImpl();
 		return ifcSwitchingDeviceType;
 	}
@@ -8368,7 +9871,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcSymbolStyle createIfcSymbolStyle() {
+	public IfcSymbolStyle createIfcSymbolStyle()
+	{
 		IfcSymbolStyleImpl ifcSymbolStyle = new IfcSymbolStyleImpl();
 		return ifcSymbolStyle;
 	}
@@ -8378,7 +9882,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcSystem createIfcSystem() {
+	public IfcSystem createIfcSystem()
+	{
 		IfcSystemImpl ifcSystem = new IfcSystemImpl();
 		return ifcSystem;
 	}
@@ -8388,7 +9893,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcSystemFurnitureElementType createIfcSystemFurnitureElementType() {
+	public IfcSystemFurnitureElementType createIfcSystemFurnitureElementType()
+	{
 		IfcSystemFurnitureElementTypeImpl ifcSystemFurnitureElementType = new IfcSystemFurnitureElementTypeImpl();
 		return ifcSystemFurnitureElementType;
 	}
@@ -8398,7 +9904,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcTShapeProfileDef createIfcTShapeProfileDef() {
+	public IfcTShapeProfileDef createIfcTShapeProfileDef()
+	{
 		IfcTShapeProfileDefImpl ifcTShapeProfileDef = new IfcTShapeProfileDefImpl();
 		return ifcTShapeProfileDef;
 	}
@@ -8408,7 +9915,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcTable createIfcTable() {
+	public IfcTable createIfcTable()
+	{
 		IfcTableImpl ifcTable = new IfcTableImpl();
 		return ifcTable;
 	}
@@ -8418,7 +9926,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcTableRow createIfcTableRow() {
+	public IfcTableRow createIfcTableRow()
+	{
 		IfcTableRowImpl ifcTableRow = new IfcTableRowImpl();
 		return ifcTableRow;
 	}
@@ -8428,7 +9937,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcTankType createIfcTankType() {
+	public IfcTankType createIfcTankType()
+	{
 		IfcTankTypeImpl ifcTankType = new IfcTankTypeImpl();
 		return ifcTankType;
 	}
@@ -8438,7 +9948,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcTask createIfcTask() {
+	public IfcTask createIfcTask()
+	{
 		IfcTaskImpl ifcTask = new IfcTaskImpl();
 		return ifcTask;
 	}
@@ -8448,7 +9959,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcTelecomAddress createIfcTelecomAddress() {
+	public IfcTelecomAddress createIfcTelecomAddress()
+	{
 		IfcTelecomAddressImpl ifcTelecomAddress = new IfcTelecomAddressImpl();
 		return ifcTelecomAddress;
 	}
@@ -8458,7 +9970,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcTendon createIfcTendon() {
+	public IfcTendon createIfcTendon()
+	{
 		IfcTendonImpl ifcTendon = new IfcTendonImpl();
 		return ifcTendon;
 	}
@@ -8468,7 +9981,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcTendonAnchor createIfcTendonAnchor() {
+	public IfcTendonAnchor createIfcTendonAnchor()
+	{
 		IfcTendonAnchorImpl ifcTendonAnchor = new IfcTendonAnchorImpl();
 		return ifcTendonAnchor;
 	}
@@ -8478,7 +9992,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcTerminatorSymbol createIfcTerminatorSymbol() {
+	public IfcTerminatorSymbol createIfcTerminatorSymbol()
+	{
 		IfcTerminatorSymbolImpl ifcTerminatorSymbol = new IfcTerminatorSymbolImpl();
 		return ifcTerminatorSymbol;
 	}
@@ -8488,7 +10003,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcTextLiteral createIfcTextLiteral() {
+	public IfcTextLiteral createIfcTextLiteral()
+	{
 		IfcTextLiteralImpl ifcTextLiteral = new IfcTextLiteralImpl();
 		return ifcTextLiteral;
 	}
@@ -8498,7 +10014,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcTextLiteralWithExtent createIfcTextLiteralWithExtent() {
+	public IfcTextLiteralWithExtent createIfcTextLiteralWithExtent()
+	{
 		IfcTextLiteralWithExtentImpl ifcTextLiteralWithExtent = new IfcTextLiteralWithExtentImpl();
 		return ifcTextLiteralWithExtent;
 	}
@@ -8508,7 +10025,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcTextStyle createIfcTextStyle() {
+	public IfcTextStyle createIfcTextStyle()
+	{
 		IfcTextStyleImpl ifcTextStyle = new IfcTextStyleImpl();
 		return ifcTextStyle;
 	}
@@ -8518,7 +10036,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcTextStyleFontModel createIfcTextStyleFontModel() {
+	public IfcTextStyleFontModel createIfcTextStyleFontModel()
+	{
 		IfcTextStyleFontModelImpl ifcTextStyleFontModel = new IfcTextStyleFontModelImpl();
 		return ifcTextStyleFontModel;
 	}
@@ -8528,7 +10047,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcTextStyleForDefinedFont createIfcTextStyleForDefinedFont() {
+	public IfcTextStyleForDefinedFont createIfcTextStyleForDefinedFont()
+	{
 		IfcTextStyleForDefinedFontImpl ifcTextStyleForDefinedFont = new IfcTextStyleForDefinedFontImpl();
 		return ifcTextStyleForDefinedFont;
 	}
@@ -8538,7 +10058,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcTextStyleTextModel createIfcTextStyleTextModel() {
+	public IfcTextStyleTextModel createIfcTextStyleTextModel()
+	{
 		IfcTextStyleTextModelImpl ifcTextStyleTextModel = new IfcTextStyleTextModelImpl();
 		return ifcTextStyleTextModel;
 	}
@@ -8548,7 +10069,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcTextStyleWithBoxCharacteristics createIfcTextStyleWithBoxCharacteristics() {
+	public IfcTextStyleWithBoxCharacteristics createIfcTextStyleWithBoxCharacteristics()
+	{
 		IfcTextStyleWithBoxCharacteristicsImpl ifcTextStyleWithBoxCharacteristics = new IfcTextStyleWithBoxCharacteristicsImpl();
 		return ifcTextStyleWithBoxCharacteristics;
 	}
@@ -8558,7 +10080,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcTextureCoordinate createIfcTextureCoordinate() {
+	public IfcTextureCoordinate createIfcTextureCoordinate()
+	{
 		IfcTextureCoordinateImpl ifcTextureCoordinate = new IfcTextureCoordinateImpl();
 		return ifcTextureCoordinate;
 	}
@@ -8568,7 +10091,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcTextureCoordinateGenerator createIfcTextureCoordinateGenerator() {
+	public IfcTextureCoordinateGenerator createIfcTextureCoordinateGenerator()
+	{
 		IfcTextureCoordinateGeneratorImpl ifcTextureCoordinateGenerator = new IfcTextureCoordinateGeneratorImpl();
 		return ifcTextureCoordinateGenerator;
 	}
@@ -8578,7 +10102,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcTextureMap createIfcTextureMap() {
+	public IfcTextureMap createIfcTextureMap()
+	{
 		IfcTextureMapImpl ifcTextureMap = new IfcTextureMapImpl();
 		return ifcTextureMap;
 	}
@@ -8588,7 +10113,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcTextureVertex createIfcTextureVertex() {
+	public IfcTextureVertex createIfcTextureVertex()
+	{
 		IfcTextureVertexImpl ifcTextureVertex = new IfcTextureVertexImpl();
 		return ifcTextureVertex;
 	}
@@ -8598,7 +10124,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcThermalMaterialProperties createIfcThermalMaterialProperties() {
+	public IfcThermalMaterialProperties createIfcThermalMaterialProperties()
+	{
 		IfcThermalMaterialPropertiesImpl ifcThermalMaterialProperties = new IfcThermalMaterialPropertiesImpl();
 		return ifcThermalMaterialProperties;
 	}
@@ -8608,7 +10135,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcTimeSeries createIfcTimeSeries() {
+	public IfcTimeSeries createIfcTimeSeries()
+	{
 		IfcTimeSeriesImpl ifcTimeSeries = new IfcTimeSeriesImpl();
 		return ifcTimeSeries;
 	}
@@ -8618,7 +10146,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcTimeSeriesReferenceRelationship createIfcTimeSeriesReferenceRelationship() {
+	public IfcTimeSeriesReferenceRelationship createIfcTimeSeriesReferenceRelationship()
+	{
 		IfcTimeSeriesReferenceRelationshipImpl ifcTimeSeriesReferenceRelationship = new IfcTimeSeriesReferenceRelationshipImpl();
 		return ifcTimeSeriesReferenceRelationship;
 	}
@@ -8628,7 +10157,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcTimeSeriesSchedule createIfcTimeSeriesSchedule() {
+	public IfcTimeSeriesSchedule createIfcTimeSeriesSchedule()
+	{
 		IfcTimeSeriesScheduleImpl ifcTimeSeriesSchedule = new IfcTimeSeriesScheduleImpl();
 		return ifcTimeSeriesSchedule;
 	}
@@ -8638,7 +10168,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcTimeSeriesValue createIfcTimeSeriesValue() {
+	public IfcTimeSeriesValue createIfcTimeSeriesValue()
+	{
 		IfcTimeSeriesValueImpl ifcTimeSeriesValue = new IfcTimeSeriesValueImpl();
 		return ifcTimeSeriesValue;
 	}
@@ -8648,7 +10179,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcTopologicalRepresentationItem createIfcTopologicalRepresentationItem() {
+	public IfcTopologicalRepresentationItem createIfcTopologicalRepresentationItem()
+	{
 		IfcTopologicalRepresentationItemImpl ifcTopologicalRepresentationItem = new IfcTopologicalRepresentationItemImpl();
 		return ifcTopologicalRepresentationItem;
 	}
@@ -8658,7 +10190,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcTopologyRepresentation createIfcTopologyRepresentation() {
+	public IfcTopologyRepresentation createIfcTopologyRepresentation()
+	{
 		IfcTopologyRepresentationImpl ifcTopologyRepresentation = new IfcTopologyRepresentationImpl();
 		return ifcTopologyRepresentation;
 	}
@@ -8668,7 +10201,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcTransformerType createIfcTransformerType() {
+	public IfcTransformerType createIfcTransformerType()
+	{
 		IfcTransformerTypeImpl ifcTransformerType = new IfcTransformerTypeImpl();
 		return ifcTransformerType;
 	}
@@ -8678,7 +10212,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcTransportElement createIfcTransportElement() {
+	public IfcTransportElement createIfcTransportElement()
+	{
 		IfcTransportElementImpl ifcTransportElement = new IfcTransportElementImpl();
 		return ifcTransportElement;
 	}
@@ -8688,7 +10223,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcTransportElementType createIfcTransportElementType() {
+	public IfcTransportElementType createIfcTransportElementType()
+	{
 		IfcTransportElementTypeImpl ifcTransportElementType = new IfcTransportElementTypeImpl();
 		return ifcTransportElementType;
 	}
@@ -8698,7 +10234,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcTrapeziumProfileDef createIfcTrapeziumProfileDef() {
+	public IfcTrapeziumProfileDef createIfcTrapeziumProfileDef()
+	{
 		IfcTrapeziumProfileDefImpl ifcTrapeziumProfileDef = new IfcTrapeziumProfileDefImpl();
 		return ifcTrapeziumProfileDef;
 	}
@@ -8708,7 +10245,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcTrimmedCurve createIfcTrimmedCurve() {
+	public IfcTrimmedCurve createIfcTrimmedCurve()
+	{
 		IfcTrimmedCurveImpl ifcTrimmedCurve = new IfcTrimmedCurveImpl();
 		return ifcTrimmedCurve;
 	}
@@ -8718,7 +10256,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcTubeBundleType createIfcTubeBundleType() {
+	public IfcTubeBundleType createIfcTubeBundleType()
+	{
 		IfcTubeBundleTypeImpl ifcTubeBundleType = new IfcTubeBundleTypeImpl();
 		return ifcTubeBundleType;
 	}
@@ -8728,7 +10267,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcTwoDirectionRepeatFactor createIfcTwoDirectionRepeatFactor() {
+	public IfcTwoDirectionRepeatFactor createIfcTwoDirectionRepeatFactor()
+	{
 		IfcTwoDirectionRepeatFactorImpl ifcTwoDirectionRepeatFactor = new IfcTwoDirectionRepeatFactorImpl();
 		return ifcTwoDirectionRepeatFactor;
 	}
@@ -8738,7 +10278,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcTypeObject createIfcTypeObject() {
+	public IfcTypeObject createIfcTypeObject()
+	{
 		IfcTypeObjectImpl ifcTypeObject = new IfcTypeObjectImpl();
 		return ifcTypeObject;
 	}
@@ -8748,7 +10289,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcTypeProduct createIfcTypeProduct() {
+	public IfcTypeProduct createIfcTypeProduct()
+	{
 		IfcTypeProductImpl ifcTypeProduct = new IfcTypeProductImpl();
 		return ifcTypeProduct;
 	}
@@ -8758,7 +10300,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcUShapeProfileDef createIfcUShapeProfileDef() {
+	public IfcUShapeProfileDef createIfcUShapeProfileDef()
+	{
 		IfcUShapeProfileDefImpl ifcUShapeProfileDef = new IfcUShapeProfileDefImpl();
 		return ifcUShapeProfileDef;
 	}
@@ -8768,7 +10311,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcUnitAssignment createIfcUnitAssignment() {
+	public IfcUnitAssignment createIfcUnitAssignment()
+	{
 		IfcUnitAssignmentImpl ifcUnitAssignment = new IfcUnitAssignmentImpl();
 		return ifcUnitAssignment;
 	}
@@ -8778,7 +10322,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcUnitaryEquipmentType createIfcUnitaryEquipmentType() {
+	public IfcUnitaryEquipmentType createIfcUnitaryEquipmentType()
+	{
 		IfcUnitaryEquipmentTypeImpl ifcUnitaryEquipmentType = new IfcUnitaryEquipmentTypeImpl();
 		return ifcUnitaryEquipmentType;
 	}
@@ -8788,7 +10333,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcValveType createIfcValveType() {
+	public IfcValveType createIfcValveType()
+	{
 		IfcValveTypeImpl ifcValveType = new IfcValveTypeImpl();
 		return ifcValveType;
 	}
@@ -8798,7 +10344,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcVector createIfcVector() {
+	public IfcVector createIfcVector()
+	{
 		IfcVectorImpl ifcVector = new IfcVectorImpl();
 		return ifcVector;
 	}
@@ -8808,7 +10355,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcVertex createIfcVertex() {
+	public IfcVertex createIfcVertex()
+	{
 		IfcVertexImpl ifcVertex = new IfcVertexImpl();
 		return ifcVertex;
 	}
@@ -8818,7 +10366,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcVertexBasedTextureMap createIfcVertexBasedTextureMap() {
+	public IfcVertexBasedTextureMap createIfcVertexBasedTextureMap()
+	{
 		IfcVertexBasedTextureMapImpl ifcVertexBasedTextureMap = new IfcVertexBasedTextureMapImpl();
 		return ifcVertexBasedTextureMap;
 	}
@@ -8828,7 +10377,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcVertexLoop createIfcVertexLoop() {
+	public IfcVertexLoop createIfcVertexLoop()
+	{
 		IfcVertexLoopImpl ifcVertexLoop = new IfcVertexLoopImpl();
 		return ifcVertexLoop;
 	}
@@ -8838,7 +10388,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcVertexPoint createIfcVertexPoint() {
+	public IfcVertexPoint createIfcVertexPoint()
+	{
 		IfcVertexPointImpl ifcVertexPoint = new IfcVertexPointImpl();
 		return ifcVertexPoint;
 	}
@@ -8848,7 +10399,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcVibrationIsolatorType createIfcVibrationIsolatorType() {
+	public IfcVibrationIsolatorType createIfcVibrationIsolatorType()
+	{
 		IfcVibrationIsolatorTypeImpl ifcVibrationIsolatorType = new IfcVibrationIsolatorTypeImpl();
 		return ifcVibrationIsolatorType;
 	}
@@ -8858,7 +10410,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcVirtualElement createIfcVirtualElement() {
+	public IfcVirtualElement createIfcVirtualElement()
+	{
 		IfcVirtualElementImpl ifcVirtualElement = new IfcVirtualElementImpl();
 		return ifcVirtualElement;
 	}
@@ -8868,7 +10421,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcVirtualGridIntersection createIfcVirtualGridIntersection() {
+	public IfcVirtualGridIntersection createIfcVirtualGridIntersection()
+	{
 		IfcVirtualGridIntersectionImpl ifcVirtualGridIntersection = new IfcVirtualGridIntersectionImpl();
 		return ifcVirtualGridIntersection;
 	}
@@ -8878,7 +10432,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcWall createIfcWall() {
+	public IfcWall createIfcWall()
+	{
 		IfcWallImpl ifcWall = new IfcWallImpl();
 		return ifcWall;
 	}
@@ -8888,7 +10443,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcWallStandardCase createIfcWallStandardCase() {
+	public IfcWallStandardCase createIfcWallStandardCase()
+	{
 		IfcWallStandardCaseImpl ifcWallStandardCase = new IfcWallStandardCaseImpl();
 		return ifcWallStandardCase;
 	}
@@ -8898,7 +10454,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcWallType createIfcWallType() {
+	public IfcWallType createIfcWallType()
+	{
 		IfcWallTypeImpl ifcWallType = new IfcWallTypeImpl();
 		return ifcWallType;
 	}
@@ -8908,7 +10465,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcWasteTerminalType createIfcWasteTerminalType() {
+	public IfcWasteTerminalType createIfcWasteTerminalType()
+	{
 		IfcWasteTerminalTypeImpl ifcWasteTerminalType = new IfcWasteTerminalTypeImpl();
 		return ifcWasteTerminalType;
 	}
@@ -8918,7 +10476,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcWaterProperties createIfcWaterProperties() {
+	public IfcWaterProperties createIfcWaterProperties()
+	{
 		IfcWaterPropertiesImpl ifcWaterProperties = new IfcWaterPropertiesImpl();
 		return ifcWaterProperties;
 	}
@@ -8928,7 +10487,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcWindow createIfcWindow() {
+	public IfcWindow createIfcWindow()
+	{
 		IfcWindowImpl ifcWindow = new IfcWindowImpl();
 		return ifcWindow;
 	}
@@ -8938,7 +10498,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcWindowLiningProperties createIfcWindowLiningProperties() {
+	public IfcWindowLiningProperties createIfcWindowLiningProperties()
+	{
 		IfcWindowLiningPropertiesImpl ifcWindowLiningProperties = new IfcWindowLiningPropertiesImpl();
 		return ifcWindowLiningProperties;
 	}
@@ -8948,7 +10509,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcWindowPanelProperties createIfcWindowPanelProperties() {
+	public IfcWindowPanelProperties createIfcWindowPanelProperties()
+	{
 		IfcWindowPanelPropertiesImpl ifcWindowPanelProperties = new IfcWindowPanelPropertiesImpl();
 		return ifcWindowPanelProperties;
 	}
@@ -8958,7 +10520,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcWindowStyle createIfcWindowStyle() {
+	public IfcWindowStyle createIfcWindowStyle()
+	{
 		IfcWindowStyleImpl ifcWindowStyle = new IfcWindowStyleImpl();
 		return ifcWindowStyle;
 	}
@@ -8968,7 +10531,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcWorkControl createIfcWorkControl() {
+	public IfcWorkControl createIfcWorkControl()
+	{
 		IfcWorkControlImpl ifcWorkControl = new IfcWorkControlImpl();
 		return ifcWorkControl;
 	}
@@ -8978,7 +10542,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcWorkPlan createIfcWorkPlan() {
+	public IfcWorkPlan createIfcWorkPlan()
+	{
 		IfcWorkPlanImpl ifcWorkPlan = new IfcWorkPlanImpl();
 		return ifcWorkPlan;
 	}
@@ -8988,7 +10553,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcWorkSchedule createIfcWorkSchedule() {
+	public IfcWorkSchedule createIfcWorkSchedule()
+	{
 		IfcWorkScheduleImpl ifcWorkSchedule = new IfcWorkScheduleImpl();
 		return ifcWorkSchedule;
 	}
@@ -8998,7 +10564,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcZShapeProfileDef createIfcZShapeProfileDef() {
+	public IfcZShapeProfileDef createIfcZShapeProfileDef()
+	{
 		IfcZShapeProfileDefImpl ifcZShapeProfileDef = new IfcZShapeProfileDefImpl();
 		return ifcZShapeProfileDef;
 	}
@@ -9008,7 +10575,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcZone createIfcZone() {
+	public IfcZone createIfcZone()
+	{
 		IfcZoneImpl ifcZone = new IfcZoneImpl();
 		return ifcZone;
 	}
@@ -9018,7 +10586,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Tristate createTristateFromString(EDataType eDataType, String initialValue) {
+	public Tristate createTristateFromString(EDataType eDataType, String initialValue)
+	{
 		Tristate result = Tristate.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -9029,7 +10598,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertTristateToString(EDataType eDataType, Object instanceValue) {
+	public String convertTristateToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -9038,7 +10608,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcActionSourceTypeEnum createIfcActionSourceTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcActionSourceTypeEnum createIfcActionSourceTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcActionSourceTypeEnum result = IfcActionSourceTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -9049,7 +10620,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcActionSourceTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcActionSourceTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -9058,7 +10630,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcActionTypeEnum createIfcActionTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcActionTypeEnum createIfcActionTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcActionTypeEnum result = IfcActionTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -9069,7 +10642,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcActionTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcActionTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -9078,7 +10652,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcActuatorTypeEnum createIfcActuatorTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcActuatorTypeEnum createIfcActuatorTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcActuatorTypeEnum result = IfcActuatorTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -9089,7 +10664,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcActuatorTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcActuatorTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -9098,7 +10674,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcAddressTypeEnum createIfcAddressTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcAddressTypeEnum createIfcAddressTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcAddressTypeEnum result = IfcAddressTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -9109,7 +10686,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcAddressTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcAddressTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -9118,7 +10696,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcAheadOrBehind createIfcAheadOrBehindFromString(EDataType eDataType, String initialValue) {
+	public IfcAheadOrBehind createIfcAheadOrBehindFromString(EDataType eDataType, String initialValue)
+	{
 		IfcAheadOrBehind result = IfcAheadOrBehind.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -9129,7 +10708,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcAheadOrBehindToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcAheadOrBehindToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -9138,7 +10718,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcAirTerminalBoxTypeEnum createIfcAirTerminalBoxTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcAirTerminalBoxTypeEnum createIfcAirTerminalBoxTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcAirTerminalBoxTypeEnum result = IfcAirTerminalBoxTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -9149,7 +10730,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcAirTerminalBoxTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcAirTerminalBoxTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -9158,7 +10740,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcAirTerminalTypeEnum createIfcAirTerminalTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcAirTerminalTypeEnum createIfcAirTerminalTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcAirTerminalTypeEnum result = IfcAirTerminalTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -9169,7 +10752,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcAirTerminalTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcAirTerminalTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -9178,7 +10762,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcAirToAirHeatRecoveryTypeEnum createIfcAirToAirHeatRecoveryTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcAirToAirHeatRecoveryTypeEnum createIfcAirToAirHeatRecoveryTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcAirToAirHeatRecoveryTypeEnum result = IfcAirToAirHeatRecoveryTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -9189,7 +10774,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcAirToAirHeatRecoveryTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcAirToAirHeatRecoveryTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -9198,7 +10784,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcAlarmTypeEnum createIfcAlarmTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcAlarmTypeEnum createIfcAlarmTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcAlarmTypeEnum result = IfcAlarmTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -9209,7 +10796,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcAlarmTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcAlarmTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -9218,7 +10806,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcAnalysisModelTypeEnum createIfcAnalysisModelTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcAnalysisModelTypeEnum createIfcAnalysisModelTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcAnalysisModelTypeEnum result = IfcAnalysisModelTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -9229,7 +10818,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcAnalysisModelTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcAnalysisModelTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -9238,7 +10828,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcAnalysisTheoryTypeEnum createIfcAnalysisTheoryTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcAnalysisTheoryTypeEnum createIfcAnalysisTheoryTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcAnalysisTheoryTypeEnum result = IfcAnalysisTheoryTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -9249,7 +10840,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcAnalysisTheoryTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcAnalysisTheoryTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -9258,7 +10850,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcArithmeticOperatorEnum createIfcArithmeticOperatorEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcArithmeticOperatorEnum createIfcArithmeticOperatorEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcArithmeticOperatorEnum result = IfcArithmeticOperatorEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -9269,7 +10862,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcArithmeticOperatorEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcArithmeticOperatorEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -9278,7 +10872,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcAssemblyPlaceEnum createIfcAssemblyPlaceEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcAssemblyPlaceEnum createIfcAssemblyPlaceEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcAssemblyPlaceEnum result = IfcAssemblyPlaceEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -9289,7 +10884,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcAssemblyPlaceEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcAssemblyPlaceEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -9298,7 +10894,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcBSplineCurveForm createIfcBSplineCurveFormFromString(EDataType eDataType, String initialValue) {
+	public IfcBSplineCurveForm createIfcBSplineCurveFormFromString(EDataType eDataType, String initialValue)
+	{
 		IfcBSplineCurveForm result = IfcBSplineCurveForm.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -9309,7 +10906,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcBSplineCurveFormToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcBSplineCurveFormToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -9318,7 +10916,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcBeamTypeEnum createIfcBeamTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcBeamTypeEnum createIfcBeamTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcBeamTypeEnum result = IfcBeamTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -9329,7 +10928,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcBeamTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcBeamTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -9338,7 +10938,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcBenchmarkEnum createIfcBenchmarkEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcBenchmarkEnum createIfcBenchmarkEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcBenchmarkEnum result = IfcBenchmarkEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -9349,7 +10950,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcBenchmarkEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcBenchmarkEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -9358,7 +10960,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcBoilerTypeEnum createIfcBoilerTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcBoilerTypeEnum createIfcBoilerTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcBoilerTypeEnum result = IfcBoilerTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -9369,7 +10972,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcBoilerTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcBoilerTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -9378,7 +10982,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcBooleanOperator createIfcBooleanOperatorFromString(EDataType eDataType, String initialValue) {
+	public IfcBooleanOperator createIfcBooleanOperatorFromString(EDataType eDataType, String initialValue)
+	{
 		IfcBooleanOperator result = IfcBooleanOperator.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -9389,7 +10994,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcBooleanOperatorToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcBooleanOperatorToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -9398,7 +11004,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcBuildingElementProxyTypeEnum createIfcBuildingElementProxyTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcBuildingElementProxyTypeEnum createIfcBuildingElementProxyTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcBuildingElementProxyTypeEnum result = IfcBuildingElementProxyTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -9409,7 +11016,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcBuildingElementProxyTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcBuildingElementProxyTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -9418,7 +11026,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcCableCarrierFittingTypeEnum createIfcCableCarrierFittingTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcCableCarrierFittingTypeEnum createIfcCableCarrierFittingTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcCableCarrierFittingTypeEnum result = IfcCableCarrierFittingTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -9429,7 +11038,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcCableCarrierFittingTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcCableCarrierFittingTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -9438,7 +11048,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcCableCarrierSegmentTypeEnum createIfcCableCarrierSegmentTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcCableCarrierSegmentTypeEnum createIfcCableCarrierSegmentTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcCableCarrierSegmentTypeEnum result = IfcCableCarrierSegmentTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -9449,7 +11060,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcCableCarrierSegmentTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcCableCarrierSegmentTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -9458,7 +11070,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcCableSegmentTypeEnum createIfcCableSegmentTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcCableSegmentTypeEnum createIfcCableSegmentTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcCableSegmentTypeEnum result = IfcCableSegmentTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -9469,7 +11082,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcCableSegmentTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcCableSegmentTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -9478,7 +11092,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcChangeActionEnum createIfcChangeActionEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcChangeActionEnum createIfcChangeActionEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcChangeActionEnum result = IfcChangeActionEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -9489,7 +11104,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcChangeActionEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcChangeActionEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -9498,7 +11114,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcChillerTypeEnum createIfcChillerTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcChillerTypeEnum createIfcChillerTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcChillerTypeEnum result = IfcChillerTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -9509,7 +11126,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcChillerTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcChillerTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -9518,7 +11136,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcCoilTypeEnum createIfcCoilTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcCoilTypeEnum createIfcCoilTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcCoilTypeEnum result = IfcCoilTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -9529,7 +11148,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcCoilTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcCoilTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -9538,7 +11158,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcColumnTypeEnum createIfcColumnTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcColumnTypeEnum createIfcColumnTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcColumnTypeEnum result = IfcColumnTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -9549,7 +11170,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcColumnTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcColumnTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -9558,7 +11180,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcCompressorTypeEnum createIfcCompressorTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcCompressorTypeEnum createIfcCompressorTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcCompressorTypeEnum result = IfcCompressorTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -9569,7 +11192,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcCompressorTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcCompressorTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -9578,7 +11202,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcCondenserTypeEnum createIfcCondenserTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcCondenserTypeEnum createIfcCondenserTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcCondenserTypeEnum result = IfcCondenserTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -9589,7 +11214,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcCondenserTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcCondenserTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -9598,7 +11224,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcConnectionTypeEnum createIfcConnectionTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcConnectionTypeEnum createIfcConnectionTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcConnectionTypeEnum result = IfcConnectionTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -9609,7 +11236,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcConnectionTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcConnectionTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -9618,7 +11246,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcConstraintEnum createIfcConstraintEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcConstraintEnum createIfcConstraintEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcConstraintEnum result = IfcConstraintEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -9629,7 +11258,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcConstraintEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcConstraintEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -9638,7 +11268,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcControllerTypeEnum createIfcControllerTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcControllerTypeEnum createIfcControllerTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcControllerTypeEnum result = IfcControllerTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -9649,7 +11280,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcControllerTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcControllerTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -9658,7 +11290,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcCooledBeamTypeEnum createIfcCooledBeamTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcCooledBeamTypeEnum createIfcCooledBeamTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcCooledBeamTypeEnum result = IfcCooledBeamTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -9669,7 +11302,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcCooledBeamTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcCooledBeamTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -9678,7 +11312,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcCoolingTowerTypeEnum createIfcCoolingTowerTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcCoolingTowerTypeEnum createIfcCoolingTowerTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcCoolingTowerTypeEnum result = IfcCoolingTowerTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -9689,7 +11324,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcCoolingTowerTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcCoolingTowerTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -9698,7 +11334,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcCostScheduleTypeEnum createIfcCostScheduleTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcCostScheduleTypeEnum createIfcCostScheduleTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcCostScheduleTypeEnum result = IfcCostScheduleTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -9709,7 +11346,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcCostScheduleTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcCostScheduleTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -9718,7 +11356,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcCoveringTypeEnum createIfcCoveringTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcCoveringTypeEnum createIfcCoveringTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcCoveringTypeEnum result = IfcCoveringTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -9729,7 +11368,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcCoveringTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcCoveringTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -9738,7 +11378,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcCurrencyEnum createIfcCurrencyEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcCurrencyEnum createIfcCurrencyEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcCurrencyEnum result = IfcCurrencyEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -9749,7 +11390,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcCurrencyEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcCurrencyEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -9758,7 +11400,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcCurtainWallTypeEnum createIfcCurtainWallTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcCurtainWallTypeEnum createIfcCurtainWallTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcCurtainWallTypeEnum result = IfcCurtainWallTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -9769,7 +11412,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcCurtainWallTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcCurtainWallTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -9778,7 +11422,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcDamperTypeEnum createIfcDamperTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcDamperTypeEnum createIfcDamperTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcDamperTypeEnum result = IfcDamperTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -9789,7 +11434,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcDamperTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcDamperTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -9798,7 +11444,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcDataOriginEnum createIfcDataOriginEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcDataOriginEnum createIfcDataOriginEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcDataOriginEnum result = IfcDataOriginEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -9809,7 +11456,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcDataOriginEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcDataOriginEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -9818,7 +11466,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcDerivedUnitEnum createIfcDerivedUnitEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcDerivedUnitEnum createIfcDerivedUnitEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcDerivedUnitEnum result = IfcDerivedUnitEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -9829,7 +11478,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcDerivedUnitEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcDerivedUnitEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -9838,7 +11488,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcDimensionExtentUsage createIfcDimensionExtentUsageFromString(EDataType eDataType, String initialValue) {
+	public IfcDimensionExtentUsage createIfcDimensionExtentUsageFromString(EDataType eDataType, String initialValue)
+	{
 		IfcDimensionExtentUsage result = IfcDimensionExtentUsage.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -9849,7 +11500,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcDimensionExtentUsageToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcDimensionExtentUsageToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -9858,7 +11510,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcDirectionSenseEnum createIfcDirectionSenseEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcDirectionSenseEnum createIfcDirectionSenseEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcDirectionSenseEnum result = IfcDirectionSenseEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -9869,7 +11522,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcDirectionSenseEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcDirectionSenseEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -9878,7 +11532,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcDistributionChamberElementTypeEnum createIfcDistributionChamberElementTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcDistributionChamberElementTypeEnum createIfcDistributionChamberElementTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcDistributionChamberElementTypeEnum result = IfcDistributionChamberElementTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -9889,7 +11544,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcDistributionChamberElementTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcDistributionChamberElementTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -9898,7 +11554,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcDocumentConfidentialityEnum createIfcDocumentConfidentialityEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcDocumentConfidentialityEnum createIfcDocumentConfidentialityEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcDocumentConfidentialityEnum result = IfcDocumentConfidentialityEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -9909,7 +11566,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcDocumentConfidentialityEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcDocumentConfidentialityEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -9918,7 +11576,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcDocumentStatusEnum createIfcDocumentStatusEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcDocumentStatusEnum createIfcDocumentStatusEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcDocumentStatusEnum result = IfcDocumentStatusEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -9929,7 +11588,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcDocumentStatusEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcDocumentStatusEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -9938,7 +11598,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcDoorPanelOperationEnum createIfcDoorPanelOperationEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcDoorPanelOperationEnum createIfcDoorPanelOperationEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcDoorPanelOperationEnum result = IfcDoorPanelOperationEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -9949,7 +11610,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcDoorPanelOperationEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcDoorPanelOperationEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -9958,7 +11620,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcDoorPanelPositionEnum createIfcDoorPanelPositionEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcDoorPanelPositionEnum createIfcDoorPanelPositionEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcDoorPanelPositionEnum result = IfcDoorPanelPositionEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -9969,7 +11632,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcDoorPanelPositionEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcDoorPanelPositionEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -9978,7 +11642,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcDoorStyleConstructionEnum createIfcDoorStyleConstructionEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcDoorStyleConstructionEnum createIfcDoorStyleConstructionEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcDoorStyleConstructionEnum result = IfcDoorStyleConstructionEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -9989,7 +11654,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcDoorStyleConstructionEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcDoorStyleConstructionEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -9998,7 +11664,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcDoorStyleOperationEnum createIfcDoorStyleOperationEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcDoorStyleOperationEnum createIfcDoorStyleOperationEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcDoorStyleOperationEnum result = IfcDoorStyleOperationEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -10009,7 +11676,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcDoorStyleOperationEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcDoorStyleOperationEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -10018,7 +11686,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcDuctFittingTypeEnum createIfcDuctFittingTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcDuctFittingTypeEnum createIfcDuctFittingTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcDuctFittingTypeEnum result = IfcDuctFittingTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -10029,7 +11698,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcDuctFittingTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcDuctFittingTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -10038,7 +11708,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcDuctSegmentTypeEnum createIfcDuctSegmentTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcDuctSegmentTypeEnum createIfcDuctSegmentTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcDuctSegmentTypeEnum result = IfcDuctSegmentTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -10049,7 +11720,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcDuctSegmentTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcDuctSegmentTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -10058,7 +11730,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcDuctSilencerTypeEnum createIfcDuctSilencerTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcDuctSilencerTypeEnum createIfcDuctSilencerTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcDuctSilencerTypeEnum result = IfcDuctSilencerTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -10069,7 +11742,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcDuctSilencerTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcDuctSilencerTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -10078,7 +11752,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcElectricApplianceTypeEnum createIfcElectricApplianceTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcElectricApplianceTypeEnum createIfcElectricApplianceTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcElectricApplianceTypeEnum result = IfcElectricApplianceTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -10089,7 +11764,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcElectricApplianceTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcElectricApplianceTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -10098,7 +11774,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcElectricCurrentEnum createIfcElectricCurrentEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcElectricCurrentEnum createIfcElectricCurrentEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcElectricCurrentEnum result = IfcElectricCurrentEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -10109,7 +11786,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcElectricCurrentEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcElectricCurrentEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -10118,7 +11796,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcElectricDistributionPointFunctionEnum createIfcElectricDistributionPointFunctionEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcElectricDistributionPointFunctionEnum createIfcElectricDistributionPointFunctionEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcElectricDistributionPointFunctionEnum result = IfcElectricDistributionPointFunctionEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -10129,7 +11808,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcElectricDistributionPointFunctionEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcElectricDistributionPointFunctionEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -10138,7 +11818,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcElectricFlowStorageDeviceTypeEnum createIfcElectricFlowStorageDeviceTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcElectricFlowStorageDeviceTypeEnum createIfcElectricFlowStorageDeviceTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcElectricFlowStorageDeviceTypeEnum result = IfcElectricFlowStorageDeviceTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -10149,7 +11830,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcElectricFlowStorageDeviceTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcElectricFlowStorageDeviceTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -10158,7 +11840,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcElectricGeneratorTypeEnum createIfcElectricGeneratorTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcElectricGeneratorTypeEnum createIfcElectricGeneratorTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcElectricGeneratorTypeEnum result = IfcElectricGeneratorTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -10169,7 +11852,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcElectricGeneratorTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcElectricGeneratorTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -10178,7 +11862,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcElectricHeaterTypeEnum createIfcElectricHeaterTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcElectricHeaterTypeEnum createIfcElectricHeaterTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcElectricHeaterTypeEnum result = IfcElectricHeaterTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -10189,7 +11874,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcElectricHeaterTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcElectricHeaterTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -10198,7 +11884,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcElectricMotorTypeEnum createIfcElectricMotorTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcElectricMotorTypeEnum createIfcElectricMotorTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcElectricMotorTypeEnum result = IfcElectricMotorTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -10209,7 +11896,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcElectricMotorTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcElectricMotorTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -10218,7 +11906,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcElectricTimeControlTypeEnum createIfcElectricTimeControlTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcElectricTimeControlTypeEnum createIfcElectricTimeControlTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcElectricTimeControlTypeEnum result = IfcElectricTimeControlTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -10229,7 +11918,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcElectricTimeControlTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcElectricTimeControlTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -10238,7 +11928,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcElementAssemblyTypeEnum createIfcElementAssemblyTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcElementAssemblyTypeEnum createIfcElementAssemblyTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcElementAssemblyTypeEnum result = IfcElementAssemblyTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -10249,7 +11940,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcElementAssemblyTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcElementAssemblyTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -10258,7 +11950,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcElementCompositionEnum createIfcElementCompositionEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcElementCompositionEnum createIfcElementCompositionEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcElementCompositionEnum result = IfcElementCompositionEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -10269,7 +11962,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcElementCompositionEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcElementCompositionEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -10278,7 +11972,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcEnergySequenceEnum createIfcEnergySequenceEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcEnergySequenceEnum createIfcEnergySequenceEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcEnergySequenceEnum result = IfcEnergySequenceEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -10289,7 +11984,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcEnergySequenceEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcEnergySequenceEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -10298,7 +11994,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcEnvironmentalImpactCategoryEnum createIfcEnvironmentalImpactCategoryEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcEnvironmentalImpactCategoryEnum createIfcEnvironmentalImpactCategoryEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcEnvironmentalImpactCategoryEnum result = IfcEnvironmentalImpactCategoryEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -10309,7 +12006,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcEnvironmentalImpactCategoryEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcEnvironmentalImpactCategoryEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -10318,7 +12016,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcEvaporativeCoolerTypeEnum createIfcEvaporativeCoolerTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcEvaporativeCoolerTypeEnum createIfcEvaporativeCoolerTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcEvaporativeCoolerTypeEnum result = IfcEvaporativeCoolerTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -10329,7 +12028,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcEvaporativeCoolerTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcEvaporativeCoolerTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -10338,7 +12038,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcEvaporatorTypeEnum createIfcEvaporatorTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcEvaporatorTypeEnum createIfcEvaporatorTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcEvaporatorTypeEnum result = IfcEvaporatorTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -10349,7 +12050,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcEvaporatorTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcEvaporatorTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -10358,7 +12060,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcFanTypeEnum createIfcFanTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcFanTypeEnum createIfcFanTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcFanTypeEnum result = IfcFanTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -10369,7 +12072,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcFanTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcFanTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -10378,7 +12082,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcFilterTypeEnum createIfcFilterTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcFilterTypeEnum createIfcFilterTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcFilterTypeEnum result = IfcFilterTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -10389,7 +12094,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcFilterTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcFilterTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -10398,7 +12104,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcFireSuppressionTerminalTypeEnum createIfcFireSuppressionTerminalTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcFireSuppressionTerminalTypeEnum createIfcFireSuppressionTerminalTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcFireSuppressionTerminalTypeEnum result = IfcFireSuppressionTerminalTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -10409,7 +12116,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcFireSuppressionTerminalTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcFireSuppressionTerminalTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -10418,7 +12126,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcFlowDirectionEnum createIfcFlowDirectionEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcFlowDirectionEnum createIfcFlowDirectionEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcFlowDirectionEnum result = IfcFlowDirectionEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -10429,7 +12138,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcFlowDirectionEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcFlowDirectionEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -10438,7 +12148,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcFlowInstrumentTypeEnum createIfcFlowInstrumentTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcFlowInstrumentTypeEnum createIfcFlowInstrumentTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcFlowInstrumentTypeEnum result = IfcFlowInstrumentTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -10449,7 +12160,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcFlowInstrumentTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcFlowInstrumentTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -10458,7 +12170,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcFlowMeterTypeEnum createIfcFlowMeterTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcFlowMeterTypeEnum createIfcFlowMeterTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcFlowMeterTypeEnum result = IfcFlowMeterTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -10469,7 +12182,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcFlowMeterTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcFlowMeterTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -10478,7 +12192,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcFootingTypeEnum createIfcFootingTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcFootingTypeEnum createIfcFootingTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcFootingTypeEnum result = IfcFootingTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -10489,7 +12204,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcFootingTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcFootingTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -10498,7 +12214,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcGasTerminalTypeEnum createIfcGasTerminalTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcGasTerminalTypeEnum createIfcGasTerminalTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcGasTerminalTypeEnum result = IfcGasTerminalTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -10509,7 +12226,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcGasTerminalTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcGasTerminalTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -10518,7 +12236,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcGeometricProjectionEnum createIfcGeometricProjectionEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcGeometricProjectionEnum createIfcGeometricProjectionEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcGeometricProjectionEnum result = IfcGeometricProjectionEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -10529,7 +12248,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcGeometricProjectionEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcGeometricProjectionEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -10538,7 +12258,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcGlobalOrLocalEnum createIfcGlobalOrLocalEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcGlobalOrLocalEnum createIfcGlobalOrLocalEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcGlobalOrLocalEnum result = IfcGlobalOrLocalEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -10549,7 +12270,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcGlobalOrLocalEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcGlobalOrLocalEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -10558,7 +12280,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcHeatExchangerTypeEnum createIfcHeatExchangerTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcHeatExchangerTypeEnum createIfcHeatExchangerTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcHeatExchangerTypeEnum result = IfcHeatExchangerTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -10569,7 +12292,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcHeatExchangerTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcHeatExchangerTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -10578,7 +12302,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcHumidifierTypeEnum createIfcHumidifierTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcHumidifierTypeEnum createIfcHumidifierTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcHumidifierTypeEnum result = IfcHumidifierTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -10589,7 +12314,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcHumidifierTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcHumidifierTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -10598,7 +12324,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcInternalOrExternalEnum createIfcInternalOrExternalEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcInternalOrExternalEnum createIfcInternalOrExternalEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcInternalOrExternalEnum result = IfcInternalOrExternalEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -10609,7 +12336,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcInternalOrExternalEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcInternalOrExternalEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -10618,7 +12346,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcInventoryTypeEnum createIfcInventoryTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcInventoryTypeEnum createIfcInventoryTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcInventoryTypeEnum result = IfcInventoryTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -10629,7 +12358,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcInventoryTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcInventoryTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -10638,7 +12368,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcJunctionBoxTypeEnum createIfcJunctionBoxTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcJunctionBoxTypeEnum createIfcJunctionBoxTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcJunctionBoxTypeEnum result = IfcJunctionBoxTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -10649,7 +12380,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcJunctionBoxTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcJunctionBoxTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -10658,7 +12390,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcLampTypeEnum createIfcLampTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcLampTypeEnum createIfcLampTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcLampTypeEnum result = IfcLampTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -10669,7 +12402,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcLampTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcLampTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -10678,7 +12412,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcLayerSetDirectionEnum createIfcLayerSetDirectionEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcLayerSetDirectionEnum createIfcLayerSetDirectionEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcLayerSetDirectionEnum result = IfcLayerSetDirectionEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -10689,7 +12424,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcLayerSetDirectionEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcLayerSetDirectionEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -10698,7 +12434,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcLightDistributionCurveEnum createIfcLightDistributionCurveEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcLightDistributionCurveEnum createIfcLightDistributionCurveEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcLightDistributionCurveEnum result = IfcLightDistributionCurveEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -10709,7 +12446,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcLightDistributionCurveEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcLightDistributionCurveEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -10718,7 +12456,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcLightEmissionSourceEnum createIfcLightEmissionSourceEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcLightEmissionSourceEnum createIfcLightEmissionSourceEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcLightEmissionSourceEnum result = IfcLightEmissionSourceEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -10729,7 +12468,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcLightEmissionSourceEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcLightEmissionSourceEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -10738,7 +12478,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcLightFixtureTypeEnum createIfcLightFixtureTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcLightFixtureTypeEnum createIfcLightFixtureTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcLightFixtureTypeEnum result = IfcLightFixtureTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -10749,7 +12490,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcLightFixtureTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcLightFixtureTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -10758,7 +12500,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcLoadGroupTypeEnum createIfcLoadGroupTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcLoadGroupTypeEnum createIfcLoadGroupTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcLoadGroupTypeEnum result = IfcLoadGroupTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -10769,7 +12512,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcLoadGroupTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcLoadGroupTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -10778,7 +12522,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcLogicalOperatorEnum createIfcLogicalOperatorEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcLogicalOperatorEnum createIfcLogicalOperatorEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcLogicalOperatorEnum result = IfcLogicalOperatorEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -10789,7 +12534,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcLogicalOperatorEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcLogicalOperatorEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -10798,7 +12544,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcMemberTypeEnum createIfcMemberTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcMemberTypeEnum createIfcMemberTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcMemberTypeEnum result = IfcMemberTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -10809,7 +12556,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcMemberTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcMemberTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -10818,7 +12566,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcMotorConnectionTypeEnum createIfcMotorConnectionTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcMotorConnectionTypeEnum createIfcMotorConnectionTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcMotorConnectionTypeEnum result = IfcMotorConnectionTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -10829,7 +12578,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcMotorConnectionTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcMotorConnectionTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -10838,7 +12588,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcNullStyle createIfcNullStyleFromString(EDataType eDataType, String initialValue) {
+	public IfcNullStyle createIfcNullStyleFromString(EDataType eDataType, String initialValue)
+	{
 		IfcNullStyle result = IfcNullStyle.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -10849,7 +12600,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcNullStyleToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcNullStyleToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -10858,7 +12610,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcObjectTypeEnum createIfcObjectTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcObjectTypeEnum createIfcObjectTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcObjectTypeEnum result = IfcObjectTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -10869,7 +12622,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcObjectTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcObjectTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -10878,7 +12632,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcObjectiveEnum createIfcObjectiveEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcObjectiveEnum createIfcObjectiveEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcObjectiveEnum result = IfcObjectiveEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -10889,7 +12644,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcObjectiveEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcObjectiveEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -10898,7 +12654,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcOccupantTypeEnum createIfcOccupantTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcOccupantTypeEnum createIfcOccupantTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcOccupantTypeEnum result = IfcOccupantTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -10909,7 +12666,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcOccupantTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcOccupantTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -10918,7 +12676,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcOutletTypeEnum createIfcOutletTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcOutletTypeEnum createIfcOutletTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcOutletTypeEnum result = IfcOutletTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -10929,7 +12688,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcOutletTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcOutletTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -10938,7 +12698,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcPermeableCoveringOperationEnum createIfcPermeableCoveringOperationEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcPermeableCoveringOperationEnum createIfcPermeableCoveringOperationEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcPermeableCoveringOperationEnum result = IfcPermeableCoveringOperationEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -10949,7 +12710,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcPermeableCoveringOperationEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcPermeableCoveringOperationEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -10958,7 +12720,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcPhysicalOrVirtualEnum createIfcPhysicalOrVirtualEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcPhysicalOrVirtualEnum createIfcPhysicalOrVirtualEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcPhysicalOrVirtualEnum result = IfcPhysicalOrVirtualEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -10969,7 +12732,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcPhysicalOrVirtualEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcPhysicalOrVirtualEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -10978,7 +12742,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcPileConstructionEnum createIfcPileConstructionEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcPileConstructionEnum createIfcPileConstructionEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcPileConstructionEnum result = IfcPileConstructionEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -10989,7 +12754,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcPileConstructionEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcPileConstructionEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -10998,7 +12764,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcPileTypeEnum createIfcPileTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcPileTypeEnum createIfcPileTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcPileTypeEnum result = IfcPileTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -11009,7 +12776,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcPileTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcPileTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -11018,7 +12786,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcPipeFittingTypeEnum createIfcPipeFittingTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcPipeFittingTypeEnum createIfcPipeFittingTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcPipeFittingTypeEnum result = IfcPipeFittingTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -11029,7 +12798,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcPipeFittingTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcPipeFittingTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -11038,7 +12808,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcPipeSegmentTypeEnum createIfcPipeSegmentTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcPipeSegmentTypeEnum createIfcPipeSegmentTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcPipeSegmentTypeEnum result = IfcPipeSegmentTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -11049,7 +12820,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcPipeSegmentTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcPipeSegmentTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -11058,7 +12830,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcPlateTypeEnum createIfcPlateTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcPlateTypeEnum createIfcPlateTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcPlateTypeEnum result = IfcPlateTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -11069,7 +12842,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcPlateTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcPlateTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -11078,7 +12852,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcProcedureTypeEnum createIfcProcedureTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcProcedureTypeEnum createIfcProcedureTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcProcedureTypeEnum result = IfcProcedureTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -11089,7 +12864,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcProcedureTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcProcedureTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -11098,7 +12874,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcProfileTypeEnum createIfcProfileTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcProfileTypeEnum createIfcProfileTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcProfileTypeEnum result = IfcProfileTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -11109,7 +12886,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcProfileTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcProfileTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -11118,7 +12896,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcProjectOrderRecordTypeEnum createIfcProjectOrderRecordTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcProjectOrderRecordTypeEnum createIfcProjectOrderRecordTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcProjectOrderRecordTypeEnum result = IfcProjectOrderRecordTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -11129,7 +12908,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcProjectOrderRecordTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcProjectOrderRecordTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -11138,7 +12918,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcProjectOrderTypeEnum createIfcProjectOrderTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcProjectOrderTypeEnum createIfcProjectOrderTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcProjectOrderTypeEnum result = IfcProjectOrderTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -11149,7 +12930,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcProjectOrderTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcProjectOrderTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -11158,7 +12940,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcProjectedOrTrueLengthEnum createIfcProjectedOrTrueLengthEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcProjectedOrTrueLengthEnum createIfcProjectedOrTrueLengthEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcProjectedOrTrueLengthEnum result = IfcProjectedOrTrueLengthEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -11169,7 +12952,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcProjectedOrTrueLengthEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcProjectedOrTrueLengthEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -11178,7 +12962,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcPropertySourceEnum createIfcPropertySourceEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcPropertySourceEnum createIfcPropertySourceEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcPropertySourceEnum result = IfcPropertySourceEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -11189,7 +12974,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcPropertySourceEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcPropertySourceEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -11198,7 +12984,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcProtectiveDeviceTypeEnum createIfcProtectiveDeviceTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcProtectiveDeviceTypeEnum createIfcProtectiveDeviceTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcProtectiveDeviceTypeEnum result = IfcProtectiveDeviceTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -11209,7 +12996,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcProtectiveDeviceTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcProtectiveDeviceTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -11218,7 +13006,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcPumpTypeEnum createIfcPumpTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcPumpTypeEnum createIfcPumpTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcPumpTypeEnum result = IfcPumpTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -11229,7 +13018,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcPumpTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcPumpTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -11238,7 +13028,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRailingTypeEnum createIfcRailingTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcRailingTypeEnum createIfcRailingTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcRailingTypeEnum result = IfcRailingTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -11249,7 +13040,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcRailingTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcRailingTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -11258,7 +13050,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRampFlightTypeEnum createIfcRampFlightTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcRampFlightTypeEnum createIfcRampFlightTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcRampFlightTypeEnum result = IfcRampFlightTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -11269,7 +13062,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcRampFlightTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcRampFlightTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -11278,7 +13072,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRampTypeEnum createIfcRampTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcRampTypeEnum createIfcRampTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcRampTypeEnum result = IfcRampTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -11289,7 +13084,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcRampTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcRampTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -11298,7 +13094,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcReflectanceMethodEnum createIfcReflectanceMethodEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcReflectanceMethodEnum createIfcReflectanceMethodEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcReflectanceMethodEnum result = IfcReflectanceMethodEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -11309,7 +13106,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcReflectanceMethodEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcReflectanceMethodEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -11318,7 +13116,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcReinforcingBarRoleEnum createIfcReinforcingBarRoleEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcReinforcingBarRoleEnum createIfcReinforcingBarRoleEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcReinforcingBarRoleEnum result = IfcReinforcingBarRoleEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -11329,7 +13128,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcReinforcingBarRoleEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcReinforcingBarRoleEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -11338,7 +13138,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcReinforcingBarSurfaceEnum createIfcReinforcingBarSurfaceEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcReinforcingBarSurfaceEnum createIfcReinforcingBarSurfaceEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcReinforcingBarSurfaceEnum result = IfcReinforcingBarSurfaceEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -11349,7 +13150,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcReinforcingBarSurfaceEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcReinforcingBarSurfaceEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -11358,7 +13160,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcResourceConsumptionEnum createIfcResourceConsumptionEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcResourceConsumptionEnum createIfcResourceConsumptionEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcResourceConsumptionEnum result = IfcResourceConsumptionEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -11369,7 +13172,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcResourceConsumptionEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcResourceConsumptionEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -11378,7 +13182,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRibPlateDirectionEnum createIfcRibPlateDirectionEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcRibPlateDirectionEnum createIfcRibPlateDirectionEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcRibPlateDirectionEnum result = IfcRibPlateDirectionEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -11389,7 +13194,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcRibPlateDirectionEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcRibPlateDirectionEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -11398,7 +13204,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRoleEnum createIfcRoleEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcRoleEnum createIfcRoleEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcRoleEnum result = IfcRoleEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -11409,7 +13216,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcRoleEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcRoleEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -11418,7 +13226,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRoofTypeEnum createIfcRoofTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcRoofTypeEnum createIfcRoofTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcRoofTypeEnum result = IfcRoofTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -11429,7 +13238,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcRoofTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcRoofTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -11438,7 +13248,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcSIPrefix createIfcSIPrefixFromString(EDataType eDataType, String initialValue) {
+	public IfcSIPrefix createIfcSIPrefixFromString(EDataType eDataType, String initialValue)
+	{
 		IfcSIPrefix result = IfcSIPrefix.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -11449,7 +13260,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcSIPrefixToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcSIPrefixToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -11458,7 +13270,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcSIUnitName createIfcSIUnitNameFromString(EDataType eDataType, String initialValue) {
+	public IfcSIUnitName createIfcSIUnitNameFromString(EDataType eDataType, String initialValue)
+	{
 		IfcSIUnitName result = IfcSIUnitName.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -11469,7 +13282,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcSIUnitNameToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcSIUnitNameToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -11478,7 +13292,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcSanitaryTerminalTypeEnum createIfcSanitaryTerminalTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcSanitaryTerminalTypeEnum createIfcSanitaryTerminalTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcSanitaryTerminalTypeEnum result = IfcSanitaryTerminalTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -11489,7 +13304,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcSanitaryTerminalTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcSanitaryTerminalTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -11498,7 +13314,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcSectionTypeEnum createIfcSectionTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcSectionTypeEnum createIfcSectionTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcSectionTypeEnum result = IfcSectionTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -11509,7 +13326,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcSectionTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcSectionTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -11518,7 +13336,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcSensorTypeEnum createIfcSensorTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcSensorTypeEnum createIfcSensorTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcSensorTypeEnum result = IfcSensorTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -11529,7 +13348,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcSensorTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcSensorTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -11538,7 +13358,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcSequenceEnum createIfcSequenceEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcSequenceEnum createIfcSequenceEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcSequenceEnum result = IfcSequenceEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -11549,7 +13370,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcSequenceEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcSequenceEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -11558,7 +13380,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcServiceLifeFactorTypeEnum createIfcServiceLifeFactorTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcServiceLifeFactorTypeEnum createIfcServiceLifeFactorTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcServiceLifeFactorTypeEnum result = IfcServiceLifeFactorTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -11569,7 +13392,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcServiceLifeFactorTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcServiceLifeFactorTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -11578,7 +13402,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcServiceLifeTypeEnum createIfcServiceLifeTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcServiceLifeTypeEnum createIfcServiceLifeTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcServiceLifeTypeEnum result = IfcServiceLifeTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -11589,7 +13414,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcServiceLifeTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcServiceLifeTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -11598,7 +13424,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcSlabTypeEnum createIfcSlabTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcSlabTypeEnum createIfcSlabTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcSlabTypeEnum result = IfcSlabTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -11609,7 +13436,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcSlabTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcSlabTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -11618,7 +13446,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcSoundScaleEnum createIfcSoundScaleEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcSoundScaleEnum createIfcSoundScaleEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcSoundScaleEnum result = IfcSoundScaleEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -11629,7 +13458,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcSoundScaleEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcSoundScaleEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -11638,7 +13468,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcSpaceHeaterTypeEnum createIfcSpaceHeaterTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcSpaceHeaterTypeEnum createIfcSpaceHeaterTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcSpaceHeaterTypeEnum result = IfcSpaceHeaterTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -11649,7 +13480,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcSpaceHeaterTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcSpaceHeaterTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -11658,7 +13490,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcSpaceTypeEnum createIfcSpaceTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcSpaceTypeEnum createIfcSpaceTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcSpaceTypeEnum result = IfcSpaceTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -11669,7 +13502,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcSpaceTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcSpaceTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -11678,7 +13512,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcStackTerminalTypeEnum createIfcStackTerminalTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcStackTerminalTypeEnum createIfcStackTerminalTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcStackTerminalTypeEnum result = IfcStackTerminalTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -11689,7 +13524,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcStackTerminalTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcStackTerminalTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -11698,7 +13534,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcStairFlightTypeEnum createIfcStairFlightTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcStairFlightTypeEnum createIfcStairFlightTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcStairFlightTypeEnum result = IfcStairFlightTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -11709,7 +13546,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcStairFlightTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcStairFlightTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -11718,7 +13556,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcStairTypeEnum createIfcStairTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcStairTypeEnum createIfcStairTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcStairTypeEnum result = IfcStairTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -11729,7 +13568,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcStairTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcStairTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -11738,7 +13578,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcStateEnum createIfcStateEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcStateEnum createIfcStateEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcStateEnum result = IfcStateEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -11749,7 +13590,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcStateEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcStateEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -11758,7 +13600,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcStructuralCurveTypeEnum createIfcStructuralCurveTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcStructuralCurveTypeEnum createIfcStructuralCurveTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcStructuralCurveTypeEnum result = IfcStructuralCurveTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -11769,7 +13612,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcStructuralCurveTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcStructuralCurveTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -11778,7 +13622,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcStructuralSurfaceTypeEnum createIfcStructuralSurfaceTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcStructuralSurfaceTypeEnum createIfcStructuralSurfaceTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcStructuralSurfaceTypeEnum result = IfcStructuralSurfaceTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -11789,7 +13634,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcStructuralSurfaceTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcStructuralSurfaceTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -11798,7 +13644,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcSurfaceSide createIfcSurfaceSideFromString(EDataType eDataType, String initialValue) {
+	public IfcSurfaceSide createIfcSurfaceSideFromString(EDataType eDataType, String initialValue)
+	{
 		IfcSurfaceSide result = IfcSurfaceSide.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -11809,7 +13656,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcSurfaceSideToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcSurfaceSideToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -11818,7 +13666,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcSurfaceTextureEnum createIfcSurfaceTextureEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcSurfaceTextureEnum createIfcSurfaceTextureEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcSurfaceTextureEnum result = IfcSurfaceTextureEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -11829,7 +13678,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcSurfaceTextureEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcSurfaceTextureEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -11838,7 +13688,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcSwitchingDeviceTypeEnum createIfcSwitchingDeviceTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcSwitchingDeviceTypeEnum createIfcSwitchingDeviceTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcSwitchingDeviceTypeEnum result = IfcSwitchingDeviceTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -11849,7 +13700,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcSwitchingDeviceTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcSwitchingDeviceTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -11858,7 +13710,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcTankTypeEnum createIfcTankTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcTankTypeEnum createIfcTankTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcTankTypeEnum result = IfcTankTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -11869,7 +13722,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcTankTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcTankTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -11878,7 +13732,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcTendonTypeEnum createIfcTendonTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcTendonTypeEnum createIfcTendonTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcTendonTypeEnum result = IfcTendonTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -11889,7 +13744,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcTendonTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcTendonTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -11898,7 +13754,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcTextPath createIfcTextPathFromString(EDataType eDataType, String initialValue) {
+	public IfcTextPath createIfcTextPathFromString(EDataType eDataType, String initialValue)
+	{
 		IfcTextPath result = IfcTextPath.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -11909,7 +13766,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcTextPathToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcTextPathToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -11918,7 +13776,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcThermalLoadSourceEnum createIfcThermalLoadSourceEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcThermalLoadSourceEnum createIfcThermalLoadSourceEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcThermalLoadSourceEnum result = IfcThermalLoadSourceEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -11929,7 +13788,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcThermalLoadSourceEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcThermalLoadSourceEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -11938,7 +13798,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcThermalLoadTypeEnum createIfcThermalLoadTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcThermalLoadTypeEnum createIfcThermalLoadTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcThermalLoadTypeEnum result = IfcThermalLoadTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -11949,7 +13810,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcThermalLoadTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcThermalLoadTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -11958,7 +13820,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcTimeSeriesDataTypeEnum createIfcTimeSeriesDataTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcTimeSeriesDataTypeEnum createIfcTimeSeriesDataTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcTimeSeriesDataTypeEnum result = IfcTimeSeriesDataTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -11969,7 +13832,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcTimeSeriesDataTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcTimeSeriesDataTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -11978,7 +13842,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcTimeSeriesScheduleTypeEnum createIfcTimeSeriesScheduleTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcTimeSeriesScheduleTypeEnum createIfcTimeSeriesScheduleTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcTimeSeriesScheduleTypeEnum result = IfcTimeSeriesScheduleTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -11989,7 +13854,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcTimeSeriesScheduleTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcTimeSeriesScheduleTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -11998,7 +13864,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcTransformerTypeEnum createIfcTransformerTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcTransformerTypeEnum createIfcTransformerTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcTransformerTypeEnum result = IfcTransformerTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -12009,7 +13876,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcTransformerTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcTransformerTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -12018,7 +13886,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcTransitionCode createIfcTransitionCodeFromString(EDataType eDataType, String initialValue) {
+	public IfcTransitionCode createIfcTransitionCodeFromString(EDataType eDataType, String initialValue)
+	{
 		IfcTransitionCode result = IfcTransitionCode.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -12029,7 +13898,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcTransitionCodeToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcTransitionCodeToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -12038,7 +13908,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcTransportElementTypeEnum createIfcTransportElementTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcTransportElementTypeEnum createIfcTransportElementTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcTransportElementTypeEnum result = IfcTransportElementTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -12049,7 +13920,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcTransportElementTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcTransportElementTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -12058,7 +13930,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcTrimmingPreference createIfcTrimmingPreferenceFromString(EDataType eDataType, String initialValue) {
+	public IfcTrimmingPreference createIfcTrimmingPreferenceFromString(EDataType eDataType, String initialValue)
+	{
 		IfcTrimmingPreference result = IfcTrimmingPreference.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -12069,7 +13942,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcTrimmingPreferenceToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcTrimmingPreferenceToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -12078,7 +13952,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcTubeBundleTypeEnum createIfcTubeBundleTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcTubeBundleTypeEnum createIfcTubeBundleTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcTubeBundleTypeEnum result = IfcTubeBundleTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -12089,7 +13964,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcTubeBundleTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcTubeBundleTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -12098,7 +13974,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcUnitEnum createIfcUnitEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcUnitEnum createIfcUnitEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcUnitEnum result = IfcUnitEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -12109,7 +13986,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcUnitEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcUnitEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -12118,7 +13996,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcUnitaryEquipmentTypeEnum createIfcUnitaryEquipmentTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcUnitaryEquipmentTypeEnum createIfcUnitaryEquipmentTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcUnitaryEquipmentTypeEnum result = IfcUnitaryEquipmentTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -12129,7 +14008,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcUnitaryEquipmentTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcUnitaryEquipmentTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -12138,7 +14018,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcValveTypeEnum createIfcValveTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcValveTypeEnum createIfcValveTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcValveTypeEnum result = IfcValveTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -12149,7 +14030,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcValveTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcValveTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -12158,7 +14040,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcVibrationIsolatorTypeEnum createIfcVibrationIsolatorTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcVibrationIsolatorTypeEnum createIfcVibrationIsolatorTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcVibrationIsolatorTypeEnum result = IfcVibrationIsolatorTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -12169,7 +14052,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcVibrationIsolatorTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcVibrationIsolatorTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -12178,7 +14062,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcWallTypeEnum createIfcWallTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcWallTypeEnum createIfcWallTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcWallTypeEnum result = IfcWallTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -12189,7 +14074,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcWallTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcWallTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -12198,7 +14084,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcWasteTerminalTypeEnum createIfcWasteTerminalTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcWasteTerminalTypeEnum createIfcWasteTerminalTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcWasteTerminalTypeEnum result = IfcWasteTerminalTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -12209,7 +14096,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcWasteTerminalTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcWasteTerminalTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -12218,7 +14106,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcWindowPanelOperationEnum createIfcWindowPanelOperationEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcWindowPanelOperationEnum createIfcWindowPanelOperationEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcWindowPanelOperationEnum result = IfcWindowPanelOperationEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -12229,7 +14118,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcWindowPanelOperationEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcWindowPanelOperationEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -12238,7 +14128,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcWindowPanelPositionEnum createIfcWindowPanelPositionEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcWindowPanelPositionEnum createIfcWindowPanelPositionEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcWindowPanelPositionEnum result = IfcWindowPanelPositionEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -12249,7 +14140,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcWindowPanelPositionEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcWindowPanelPositionEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -12258,7 +14150,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcWindowStyleConstructionEnum createIfcWindowStyleConstructionEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcWindowStyleConstructionEnum createIfcWindowStyleConstructionEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcWindowStyleConstructionEnum result = IfcWindowStyleConstructionEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -12269,7 +14162,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcWindowStyleConstructionEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcWindowStyleConstructionEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -12278,7 +14172,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcWindowStyleOperationEnum createIfcWindowStyleOperationEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcWindowStyleOperationEnum createIfcWindowStyleOperationEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcWindowStyleOperationEnum result = IfcWindowStyleOperationEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -12289,7 +14184,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcWindowStyleOperationEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcWindowStyleOperationEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -12298,7 +14194,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcWorkControlTypeEnum createIfcWorkControlTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public IfcWorkControlTypeEnum createIfcWorkControlTypeEnumFromString(EDataType eDataType, String initialValue)
+	{
 		IfcWorkControlTypeEnum result = IfcWorkControlTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -12309,7 +14206,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertIfcWorkControlTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertIfcWorkControlTypeEnumToString(EDataType eDataType, Object instanceValue)
+	{
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -12318,7 +14216,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Ifc2x3Package getIfc2x3Package() {
+	public Ifc2x3Package getIfc2x3Package()
+	{
 		return (Ifc2x3Package)getEPackage();
 	}
 
@@ -12329,7 +14228,8 @@ public class Ifc2x3FactoryImpl extends EFactoryImpl implements Ifc2x3Factory {
 	 * @generated
 	 */
 	@Deprecated
-	public static Ifc2x3Package getPackage() {
+	public static Ifc2x3Package getPackage()
+	{
 		return Ifc2x3Package.eINSTANCE;
 	}
 
