@@ -163,7 +163,7 @@ public class O3dJsonSerializer extends BimModelSerializer {
 						} else if (object instanceof IfcWall) {
 							primitive.setMaterial(wallMaterial);
 						} else if (object instanceof IfcSlab) {
-							if (((IfcSlab) object).getPredefinedType() == IfcSlabTypeEnum.ROOF) {
+							if (((IfcSlab) object).getPredefinedType() == IfcSlabTypeEnum.ROOF_LITERAL) {
 								primitive.setMaterial(roofMaterial);
 							} else {
 								primitive.setMaterial(slabMaterial);
