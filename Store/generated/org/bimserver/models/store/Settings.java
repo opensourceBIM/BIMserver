@@ -6,8 +6,66 @@
  */
 package org.bimserver.models.store;
 
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+
 import org.bimserver.emf.IdEObject;
+import org.bimserver.emf.IdEObjectImpl;
+
+import org.bimserver.models.ifc2x3.Ifc2x3Package;
+
+import org.bimserver.models.ifc2x3.impl.Ifc2x3PackageImpl;
+
+import org.bimserver.models.log.LogPackage;
+
+import org.bimserver.models.log.impl.LogPackageImpl;
+
+import org.bimserver.models.store.*;
+
+import org.bimserver.models.store.impl.CheckoutImpl;
+import org.bimserver.models.store.impl.ClashDetectionSettingsImpl;
+import org.bimserver.models.store.impl.ClashImpl;
+import org.bimserver.models.store.impl.ConcreteRevisionImpl;
+import org.bimserver.models.store.impl.EidClashImpl;
+import org.bimserver.models.store.impl.GeoTagImpl;
+import org.bimserver.models.store.impl.GuidClashImpl;
+import org.bimserver.models.store.impl.IgnoreFileImpl;
+import org.bimserver.models.store.impl.ProjectImpl;
+import org.bimserver.models.store.impl.RevisionImpl;
+import org.bimserver.models.store.impl.SerializerImpl;
+import org.bimserver.models.store.impl.SettingsImpl;
+import org.bimserver.models.store.impl.UserImpl;
+
+import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.notify.Notifier;
+
+import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
+
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
+
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EFactory;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
+
+import org.eclipse.emf.ecore.impl.EFactoryImpl;
+import org.eclipse.emf.ecore.impl.EPackageImpl;
+
+import org.eclipse.emf.ecore.plugin.EcorePlugin;
+
+import org.eclipse.emf.ecore.resource.Resource;
+
+import org.eclipse.emf.ecore.resource.impl.ResourceFactoryImpl;
+
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
+
+import org.eclipse.emf.ecore.xmi.util.XMLProcessor;
 
 /**
  * <!-- begin-user-doc -->
@@ -33,6 +91,8 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.Settings#getSiteAddress <em>Site Address</em>}</li>
  *   <li>{@link org.bimserver.models.store.Settings#getSerializers <em>Serializers</em>}</li>
  *   <li>{@link org.bimserver.models.store.Settings#getIgnoreFiles <em>Ignore Files</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Settings#getHeaderAddition <em>Header Addition</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Settings#getFooterAddition <em>Footer Addition</em>}</li>
  * </ul>
  * </p>
  *
@@ -41,7 +101,8 @@ import org.eclipse.emf.common.util.EList;
  * @extends IdEObject
  * @generated
  */
-public interface Settings extends IdEObject {
+public interface Settings extends IdEObject
+{
 	/**
 	 * Returns the value of the '<em><b>Show Version Upgrade Available</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -441,5 +502,57 @@ public interface Settings extends IdEObject {
 	 * @generated
 	 */
 	EList<IgnoreFile> getIgnoreFiles();
+
+	/**
+	 * Returns the value of the '<em><b>Header Addition</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Header Addition</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Header Addition</em>' attribute.
+	 * @see #setHeaderAddition(String)
+	 * @see org.bimserver.models.store.StorePackage#getSettings_HeaderAddition()
+	 * @model
+	 * @generated
+	 */
+	String getHeaderAddition();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.Settings#getHeaderAddition <em>Header Addition</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Header Addition</em>' attribute.
+	 * @see #getHeaderAddition()
+	 * @generated
+	 */
+	void setHeaderAddition(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Footer Addition</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Footer Addition</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Footer Addition</em>' attribute.
+	 * @see #setFooterAddition(String)
+	 * @see org.bimserver.models.store.StorePackage#getSettings_FooterAddition()
+	 * @model
+	 * @generated
+	 */
+	String getFooterAddition();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.Settings#getFooterAddition <em>Footer Addition</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Footer Addition</em>' attribute.
+	 * @see #getFooterAddition()
+	 * @generated
+	 */
+	void setFooterAddition(String value);
 
 } // Settings

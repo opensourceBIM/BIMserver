@@ -7,21 +7,65 @@
 package org.bimserver.models.store.impl;
 
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
+import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IdEObjectImpl;
 
-import org.bimserver.models.store.CheckinState;
-import org.bimserver.models.store.Checkout;
-import org.bimserver.models.store.Clash;
-import org.bimserver.models.store.ConcreteRevision;
-import org.bimserver.models.store.Project;
-import org.bimserver.models.store.Revision;
-import org.bimserver.models.store.StorePackage;
-import org.bimserver.models.store.User;
+import org.bimserver.models.ifc2x3.Ifc2x3Package;
+
+import org.bimserver.models.ifc2x3.impl.Ifc2x3PackageImpl;
+
+import org.bimserver.models.log.LogPackage;
+
+import org.bimserver.models.log.impl.LogPackageImpl;
+
+import org.bimserver.models.store.*;
+
+import org.bimserver.models.store.impl.CheckoutImpl;
+import org.bimserver.models.store.impl.ClashDetectionSettingsImpl;
+import org.bimserver.models.store.impl.ClashImpl;
+import org.bimserver.models.store.impl.ConcreteRevisionImpl;
+import org.bimserver.models.store.impl.EidClashImpl;
+import org.bimserver.models.store.impl.GeoTagImpl;
+import org.bimserver.models.store.impl.GuidClashImpl;
+import org.bimserver.models.store.impl.IgnoreFileImpl;
+import org.bimserver.models.store.impl.ProjectImpl;
+import org.bimserver.models.store.impl.RevisionImpl;
+import org.bimserver.models.store.impl.SerializerImpl;
+import org.bimserver.models.store.impl.SettingsImpl;
+import org.bimserver.models.store.impl.UserImpl;
+
+import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.notify.Notifier;
+
+import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EFactory;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
+
+import org.eclipse.emf.ecore.impl.EFactoryImpl;
+import org.eclipse.emf.ecore.impl.EPackageImpl;
+
+import org.eclipse.emf.ecore.plugin.EcorePlugin;
+
+import org.eclipse.emf.ecore.resource.Resource;
+
+import org.eclipse.emf.ecore.resource.impl.ResourceFactoryImpl;
+
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
+
+import org.eclipse.emf.ecore.xmi.util.XMLProcessor;
 
 /**
  * <!-- begin-user-doc -->
@@ -51,13 +95,15 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class RevisionImpl extends IdEObjectImpl implements Revision {
+public class RevisionImpl extends IdEObjectImpl implements Revision
+{
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected RevisionImpl() {
+	protected RevisionImpl()
+	{
 		super();
 	}
 
@@ -67,7 +113,8 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return StorePackage.Literals.REVISION;
 	}
 
@@ -77,7 +124,8 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * @generated
 	 */
 	@Override
-	protected int eStaticFeatureCount() {
+	protected int eStaticFeatureCount()
+	{
 		return 0;
 	}
 
@@ -86,7 +134,8 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getId() {
+	public int getId()
+	{
 		return (Integer)eGet(StorePackage.Literals.REVISION__ID, true);
 	}
 
@@ -95,7 +144,8 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setId(int newId) {
+	public void setId(int newId)
+	{
 		eSet(StorePackage.Literals.REVISION__ID, newId);
 	}
 
@@ -104,7 +154,8 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public User getUser() {
+	public User getUser()
+	{
 		return (User)eGet(StorePackage.Literals.REVISION__USER, true);
 	}
 
@@ -113,7 +164,8 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setUser(User newUser) {
+	public void setUser(User newUser)
+	{
 		eSet(StorePackage.Literals.REVISION__USER, newUser);
 	}
 
@@ -122,7 +174,8 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Date getDate() {
+	public Date getDate()
+	{
 		return (Date)eGet(StorePackage.Literals.REVISION__DATE, true);
 	}
 
@@ -131,7 +184,8 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDate(Date newDate) {
+	public void setDate(Date newDate)
+	{
 		eSet(StorePackage.Literals.REVISION__DATE, newDate);
 	}
 
@@ -140,7 +194,8 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getComment() {
+	public String getComment()
+	{
 		return (String)eGet(StorePackage.Literals.REVISION__COMMENT, true);
 	}
 
@@ -149,7 +204,8 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setComment(String newComment) {
+	public void setComment(String newComment)
+	{
 		eSet(StorePackage.Literals.REVISION__COMMENT, newComment);
 	}
 
@@ -158,7 +214,8 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public long getSize() {
+	public long getSize()
+	{
 		return (Long)eGet(StorePackage.Literals.REVISION__SIZE, true);
 	}
 
@@ -167,7 +224,8 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSize(long newSize) {
+	public void setSize(long newSize)
+	{
 		eSet(StorePackage.Literals.REVISION__SIZE, newSize);
 	}
 
@@ -177,7 +235,8 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	public EList<ConcreteRevision> getConcreteRevisions() {
+	public EList<ConcreteRevision> getConcreteRevisions()
+	{
 		return (EList<ConcreteRevision>)eGet(StorePackage.Literals.REVISION__CONCRETE_REVISIONS, true);
 	}
 
@@ -186,7 +245,8 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ConcreteRevision getLastConcreteRevision() {
+	public ConcreteRevision getLastConcreteRevision()
+	{
 		return (ConcreteRevision)eGet(StorePackage.Literals.REVISION__LAST_CONCRETE_REVISION, true);
 	}
 
@@ -195,7 +255,8 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLastConcreteRevision(ConcreteRevision newLastConcreteRevision) {
+	public void setLastConcreteRevision(ConcreteRevision newLastConcreteRevision)
+	{
 		eSet(StorePackage.Literals.REVISION__LAST_CONCRETE_REVISION, newLastConcreteRevision);
 	}
 
@@ -205,7 +266,8 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	public EList<Checkout> getCheckouts() {
+	public EList<Checkout> getCheckouts()
+	{
 		return (EList<Checkout>)eGet(StorePackage.Literals.REVISION__CHECKOUTS, true);
 	}
 
@@ -214,7 +276,8 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Project getProject() {
+	public Project getProject()
+	{
 		return (Project)eGet(StorePackage.Literals.REVISION__PROJECT, true);
 	}
 
@@ -223,7 +286,8 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setProject(Project newProject) {
+	public void setProject(Project newProject)
+	{
 		eSet(StorePackage.Literals.REVISION__PROJECT, newProject);
 	}
 
@@ -232,7 +296,8 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CheckinState getState() {
+	public CheckinState getState()
+	{
 		return (CheckinState)eGet(StorePackage.Literals.REVISION__STATE, true);
 	}
 
@@ -241,7 +306,8 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setState(CheckinState newState) {
+	public void setState(CheckinState newState)
+	{
 		eSet(StorePackage.Literals.REVISION__STATE, newState);
 	}
 
@@ -251,7 +317,8 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	public EList<Clash> getLastClashes() {
+	public EList<Clash> getLastClashes()
+	{
 		return (EList<Clash>)eGet(StorePackage.Literals.REVISION__LAST_CLASHES, true);
 	}
 
@@ -260,7 +327,8 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getTag() {
+	public String getTag()
+	{
 		return (String)eGet(StorePackage.Literals.REVISION__TAG, true);
 	}
 
@@ -269,7 +337,8 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTag(String newTag) {
+	public void setTag(String newTag)
+	{
 		eSet(StorePackage.Literals.REVISION__TAG, newTag);
 	}
 
@@ -278,7 +347,8 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getLastError() {
+	public String getLastError()
+	{
 		return (String)eGet(StorePackage.Literals.REVISION__LAST_ERROR, true);
 	}
 
@@ -287,7 +357,8 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLastError(String newLastError) {
+	public void setLastError(String newLastError)
+	{
 		eSet(StorePackage.Literals.REVISION__LAST_ERROR, newLastError);
 	}
 
@@ -296,7 +367,8 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getBmi() {
+	public int getBmi()
+	{
 		return (Integer)eGet(StorePackage.Literals.REVISION__BMI, true);
 	}
 
@@ -305,7 +377,8 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setBmi(int newBmi) {
+	public void setBmi(int newBmi)
+	{
 		eSet(StorePackage.Literals.REVISION__BMI, newBmi);
 	}
 
@@ -314,7 +387,8 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getNrClashes() {
+	public int getNrClashes()
+	{
 		return (Integer)eGet(StorePackage.Literals.REVISION__NR_CLASHES, true);
 	}
 
@@ -323,7 +397,8 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setNrClashes(int newNrClashes) {
+	public void setNrClashes(int newNrClashes)
+	{
 		eSet(StorePackage.Literals.REVISION__NR_CLASHES, newNrClashes);
 	}
 
@@ -332,7 +407,8 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public long getLaid() {
+	public long getLaid()
+	{
 		return (Long)eGet(StorePackage.Literals.REVISION__LAID, true);
 	}
 
@@ -341,7 +417,8 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLaid(long newLaid) {
+	public void setLaid(long newLaid)
+	{
 		eSet(StorePackage.Literals.REVISION__LAID, newLaid);
 	}
 

@@ -7,23 +7,64 @@
 package org.bimserver.models.store.impl;
 
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 import org.bimserver.emf.IdEObjectImpl;
 
-import org.bimserver.models.store.Checkout;
-import org.bimserver.models.store.ClashDetectionSettings;
-import org.bimserver.models.store.ConcreteRevision;
-import org.bimserver.models.store.GeoTag;
-import org.bimserver.models.store.ObjectState;
-import org.bimserver.models.store.Project;
-import org.bimserver.models.store.Revision;
-import org.bimserver.models.store.SIPrefix;
-import org.bimserver.models.store.StorePackage;
-import org.bimserver.models.store.User;
+import org.bimserver.models.ifc2x3.Ifc2x3Package;
+
+import org.bimserver.models.ifc2x3.impl.Ifc2x3PackageImpl;
+
+import org.bimserver.models.log.LogPackage;
+
+import org.bimserver.models.log.impl.LogPackageImpl;
+
+import org.bimserver.models.store.*;
+
+import org.bimserver.models.store.impl.CheckoutImpl;
+import org.bimserver.models.store.impl.ClashDetectionSettingsImpl;
+import org.bimserver.models.store.impl.ClashImpl;
+import org.bimserver.models.store.impl.ConcreteRevisionImpl;
+import org.bimserver.models.store.impl.EidClashImpl;
+import org.bimserver.models.store.impl.GeoTagImpl;
+import org.bimserver.models.store.impl.GuidClashImpl;
+import org.bimserver.models.store.impl.IgnoreFileImpl;
+import org.bimserver.models.store.impl.ProjectImpl;
+import org.bimserver.models.store.impl.RevisionImpl;
+import org.bimserver.models.store.impl.SerializerImpl;
+import org.bimserver.models.store.impl.SettingsImpl;
+import org.bimserver.models.store.impl.UserImpl;
+
+import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.notify.Notifier;
+
+import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EFactory;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
+
+import org.eclipse.emf.ecore.impl.EFactoryImpl;
+import org.eclipse.emf.ecore.impl.EPackageImpl;
+
+import org.eclipse.emf.ecore.plugin.EcorePlugin;
+
+import org.eclipse.emf.ecore.resource.Resource;
+
+import org.eclipse.emf.ecore.resource.impl.ResourceFactoryImpl;
+
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
+
+import org.eclipse.emf.ecore.xmi.util.XMLProcessor;
 
 /**
  * <!-- begin-user-doc -->
@@ -54,13 +95,15 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class ProjectImpl extends IdEObjectImpl implements Project {
+public class ProjectImpl extends IdEObjectImpl implements Project
+{
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ProjectImpl() {
+	protected ProjectImpl()
+	{
 		super();
 	}
 
@@ -70,7 +113,8 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return StorePackage.Literals.PROJECT;
 	}
 
@@ -80,7 +124,8 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 * @generated
 	 */
 	@Override
-	protected int eStaticFeatureCount() {
+	protected int eStaticFeatureCount()
+	{
 		return 0;
 	}
 
@@ -89,7 +134,8 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getId() {
+	public int getId()
+	{
 		return (Integer)eGet(StorePackage.Literals.PROJECT__ID, true);
 	}
 
@@ -98,7 +144,8 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setId(int newId) {
+	public void setId(int newId)
+	{
 		eSet(StorePackage.Literals.PROJECT__ID, newId);
 	}
 
@@ -107,7 +154,8 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getName() {
+	public String getName()
+	{
 		return (String)eGet(StorePackage.Literals.PROJECT__NAME, true);
 	}
 
@@ -116,7 +164,8 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setName(String newName) {
+	public void setName(String newName)
+	{
 		eSet(StorePackage.Literals.PROJECT__NAME, newName);
 	}
 
@@ -126,7 +175,8 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	public EList<User> getHasAuthorizedUsers() {
+	public EList<User> getHasAuthorizedUsers()
+	{
 		return (EList<User>)eGet(StorePackage.Literals.PROJECT__HAS_AUTHORIZED_USERS, true);
 	}
 
@@ -136,7 +186,8 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	public EList<ConcreteRevision> getConcreteRevisions() {
+	public EList<ConcreteRevision> getConcreteRevisions()
+	{
 		return (EList<ConcreteRevision>)eGet(StorePackage.Literals.PROJECT__CONCRETE_REVISIONS, true);
 	}
 
@@ -146,7 +197,8 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	public EList<Revision> getRevisions() {
+	public EList<Revision> getRevisions()
+	{
 		return (EList<Revision>)eGet(StorePackage.Literals.PROJECT__REVISIONS, true);
 	}
 
@@ -155,7 +207,8 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ConcreteRevision getLastConcreteRevision() {
+	public ConcreteRevision getLastConcreteRevision()
+	{
 		return (ConcreteRevision)eGet(StorePackage.Literals.PROJECT__LAST_CONCRETE_REVISION, true);
 	}
 
@@ -164,7 +217,8 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLastConcreteRevision(ConcreteRevision newLastConcreteRevision) {
+	public void setLastConcreteRevision(ConcreteRevision newLastConcreteRevision)
+	{
 		eSet(StorePackage.Literals.PROJECT__LAST_CONCRETE_REVISION, newLastConcreteRevision);
 	}
 
@@ -173,7 +227,8 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Revision getLastRevision() {
+	public Revision getLastRevision()
+	{
 		return (Revision)eGet(StorePackage.Literals.PROJECT__LAST_REVISION, true);
 	}
 
@@ -182,7 +237,8 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLastRevision(Revision newLastRevision) {
+	public void setLastRevision(Revision newLastRevision)
+	{
 		eSet(StorePackage.Literals.PROJECT__LAST_REVISION, newLastRevision);
 	}
 
@@ -192,7 +248,8 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	public EList<Checkout> getCheckouts() {
+	public EList<Checkout> getCheckouts()
+	{
 		return (EList<Checkout>)eGet(StorePackage.Literals.PROJECT__CHECKOUTS, true);
 	}
 
@@ -201,7 +258,8 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ObjectState getState() {
+	public ObjectState getState()
+	{
 		return (ObjectState)eGet(StorePackage.Literals.PROJECT__STATE, true);
 	}
 
@@ -210,7 +268,8 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setState(ObjectState newState) {
+	public void setState(ObjectState newState)
+	{
 		eSet(StorePackage.Literals.PROJECT__STATE, newState);
 	}
 
@@ -219,7 +278,8 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Date getCreatedDate() {
+	public Date getCreatedDate()
+	{
 		return (Date)eGet(StorePackage.Literals.PROJECT__CREATED_DATE, true);
 	}
 
@@ -228,7 +288,8 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setCreatedDate(Date newCreatedDate) {
+	public void setCreatedDate(Date newCreatedDate)
+	{
 		eSet(StorePackage.Literals.PROJECT__CREATED_DATE, newCreatedDate);
 	}
 
@@ -237,7 +298,8 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public User getCreatedBy() {
+	public User getCreatedBy()
+	{
 		return (User)eGet(StorePackage.Literals.PROJECT__CREATED_BY, true);
 	}
 
@@ -246,7 +308,8 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setCreatedBy(User newCreatedBy) {
+	public void setCreatedBy(User newCreatedBy)
+	{
 		eSet(StorePackage.Literals.PROJECT__CREATED_BY, newCreatedBy);
 	}
 
@@ -255,7 +318,8 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public GeoTag getGeoTag() {
+	public GeoTag getGeoTag()
+	{
 		return (GeoTag)eGet(StorePackage.Literals.PROJECT__GEO_TAG, true);
 	}
 
@@ -264,7 +328,8 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setGeoTag(GeoTag newGeoTag) {
+	public void setGeoTag(GeoTag newGeoTag)
+	{
 		eSet(StorePackage.Literals.PROJECT__GEO_TAG, newGeoTag);
 	}
 
@@ -274,7 +339,8 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	public EList<Project> getSubProjects() {
+	public EList<Project> getSubProjects()
+	{
 		return (EList<Project>)eGet(StorePackage.Literals.PROJECT__SUB_PROJECTS, true);
 	}
 
@@ -283,7 +349,8 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Project getParent() {
+	public Project getParent()
+	{
 		return (Project)eGet(StorePackage.Literals.PROJECT__PARENT, true);
 	}
 
@@ -292,7 +359,8 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setParent(Project newParent) {
+	public void setParent(Project newParent)
+	{
 		eSet(StorePackage.Literals.PROJECT__PARENT, newParent);
 	}
 
@@ -301,7 +369,8 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getDescription() {
+	public String getDescription()
+	{
 		return (String)eGet(StorePackage.Literals.PROJECT__DESCRIPTION, true);
 	}
 
@@ -310,7 +379,8 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDescription(String newDescription) {
+	public void setDescription(String newDescription)
+	{
 		eSet(StorePackage.Literals.PROJECT__DESCRIPTION, newDescription);
 	}
 
@@ -319,7 +389,8 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ClashDetectionSettings getClashDetectionSettings() {
+	public ClashDetectionSettings getClashDetectionSettings()
+	{
 		return (ClashDetectionSettings)eGet(StorePackage.Literals.PROJECT__CLASH_DETECTION_SETTINGS, true);
 	}
 
@@ -328,7 +399,8 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setClashDetectionSettings(ClashDetectionSettings newClashDetectionSettings) {
+	public void setClashDetectionSettings(ClashDetectionSettings newClashDetectionSettings)
+	{
 		eSet(StorePackage.Literals.PROJECT__CLASH_DETECTION_SETTINGS, newClashDetectionSettings);
 	}
 
@@ -337,7 +409,8 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SIPrefix getExportLengthMeasurePrefix() {
+	public SIPrefix getExportLengthMeasurePrefix()
+	{
 		return (SIPrefix)eGet(StorePackage.Literals.PROJECT__EXPORT_LENGTH_MEASURE_PREFIX, true);
 	}
 
@@ -346,7 +419,8 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setExportLengthMeasurePrefix(SIPrefix newExportLengthMeasurePrefix) {
+	public void setExportLengthMeasurePrefix(SIPrefix newExportLengthMeasurePrefix)
+	{
 		eSet(StorePackage.Literals.PROJECT__EXPORT_LENGTH_MEASURE_PREFIX, newExportLengthMeasurePrefix);
 	}
 
