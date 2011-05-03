@@ -32,7 +32,8 @@ public class CityGmlTest {
 		try {
 			IfcModel model = fastIfcFileReader.read(TestFile.AC11.getFile());
 			try {
-				CityGmlSerializer cityGmlSerializer = new CityGmlSerializer(null, null, "test", model, schema, fieldIgnoreMap, ifcEngineFactory);
+				CityGmlSerializer cityGmlSerializer = new CityGmlSerializer();
+				cityGmlSerializer.init(null, null, "test", model, schema, fieldIgnoreMap, ifcEngineFactory);
 				FileOutputStream fos = new FileOutputStream(new File("out.citygml"));
 				cityGmlSerializer.write(fos);
 				fos.close();
