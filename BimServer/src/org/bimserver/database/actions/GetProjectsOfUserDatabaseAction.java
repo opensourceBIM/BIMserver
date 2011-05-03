@@ -28,7 +28,7 @@ public class GetProjectsOfUserDatabaseAction extends BimDatabaseAction<List<Proj
 		if (user != null) {
 			List<Project> result = new ArrayList<Project>();
 			for (Project project : user.getHasRightsOn()) {
-				if (project.getState() == ObjectState.ACTIVE || user.getUserType() == UserType.ADMIN) {
+				if (project.getState() == ObjectState.ACTIVE_LITERAL || user.getUserType() == UserType.ADMIN_LITERAL) {
 					result.add(project);
 				}
 			}

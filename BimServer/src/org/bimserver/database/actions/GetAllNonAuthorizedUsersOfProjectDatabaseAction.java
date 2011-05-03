@@ -35,8 +35,8 @@ public class GetAllNonAuthorizedUsersOfProjectDatabaseAction extends BimDatabase
 			new AndCondition(
 				new AndCondition(
 						new Not(new HasReferenceToCondition(StorePackage.eINSTANCE.getUser_HasRightsOn(), getProjectByPoid(poid))), 
-						new AttributeCondition(StorePackage.eINSTANCE.getUser_State(), new EnumLiteral(ObjectState.ACTIVE))), 
-				new Not(new AttributeCondition(StorePackage.eINSTANCE.getUser_UserType(), new EnumLiteral(UserType.SYSTEM))));
+						new AttributeCondition(StorePackage.eINSTANCE.getUser_State(), new EnumLiteral(ObjectState.ACTIVE_LITERAL))), 
+				new Not(new AttributeCondition(StorePackage.eINSTANCE.getUser_UserType(), new EnumLiteral(UserType.SYSTEM_LITERAL))));
 		return CollectionUtils.mapToSet((Map<Long, User>) getDatabaseSession().query(condition, User.class, false));
 	}
 }

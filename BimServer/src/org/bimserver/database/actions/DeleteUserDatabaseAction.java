@@ -23,17 +23,17 @@ public class DeleteUserDatabaseAction extends BimDatabaseAction<Boolean> {
 	@Override
 	public Boolean execute() throws UserException, BimDatabaseException, BimDeadlockException {
 		User actingUser = getUserByUoid(actingUoid);
-		if (actingUser.getUserType() != UserType.ADMIN) {
+		if (actingUser.getUserType() != UserType.ADMIN_LITERAL) {
 			throw new UserException("Only administrators can delete users accounts");
 		}
 		final User user = getUserByUoid(uoid);
-		if (user.getUserType() == UserType.SYSTEM) {
+		if (user.getUserType() == UserType.SYSTEM_LITERAL) {
 			throw new UserException("System user cannot be deleted");
 		}
-		if (user.getUserType() == UserType.ADMIN || user.getUserType() == UserType.ANONYMOUS) {
+		if (user.getUserType() == UserType.ADMIN_LITERAL || user.getUserType() == UserType.ANONYMOUS_LITERAL) {
 			throw new UserException("Cannot delete this user");
 		}
-		user.setState(ObjectState.DELETED);
+		user.setState(ObjectState.DELETED_LITERAL);
 		getDatabaseSession().store(user);
 		return true;
 	}

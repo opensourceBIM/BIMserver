@@ -55,7 +55,7 @@ public class CommandLine extends Thread {
 				} else if (line.equalsIgnoreCase("test")) {
 					BimDatabaseSession bimDatabaseSession = ServerInitializer.getDatabase().createReadOnlySession();	
 					try {
-						DownloadDatabaseAction downloadDatabaseAction = new DownloadDatabaseAction(bimDatabaseSession, AccessMethod.INTERNAL, ServerInitializer.getSettingsManager(), 16, ServerInitializer.getSystemService().getCurrentUser().getOid());
+						DownloadDatabaseAction downloadDatabaseAction = new DownloadDatabaseAction(bimDatabaseSession, AccessMethod.INTERNAL_LITERAL, ServerInitializer.getSettingsManager(), 16, ServerInitializer.getSystemService().getCurrentUser().getOid());
 						IfcModel model = downloadDatabaseAction.execute();
 						System.out.println("Model size: " + model.size());
 						

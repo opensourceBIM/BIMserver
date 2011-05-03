@@ -174,15 +174,15 @@ public class Database implements BimDatabase {
 				initPidCounter(databaseSession);
 
 				DatabaseCreated databaseCreated = LogFactory.eINSTANCE.createDatabaseCreated();
-				databaseCreated.setAccessMethod(AccessMethod.INTERNAL);
+				databaseCreated.setAccessMethod(AccessMethod.INTERNAL_LITERAL);
 				databaseCreated.setExecutor(null);
 				databaseCreated.setDate(new Date());
 				databaseCreated.setPath(getColumnDatabase().getLocation());
 				databaseCreated.setVersion(databaseSchemaVersion);
 				databaseSession.store(databaseCreated);
 
-				new CreateBaseProject(databaseSession, AccessMethod.INTERNAL).execute();
-				AddUserDatabaseAction addUserDatabaseAction = new AddUserDatabaseAction(databaseSession, AccessMethod.INTERNAL, null, null, "system", "system", "System", UserType.SYSTEM, -1, false);
+				new CreateBaseProject(databaseSession, AccessMethod.INTERNAL_LITERAL).execute();
+				AddUserDatabaseAction addUserDatabaseAction = new AddUserDatabaseAction(databaseSession, AccessMethod.INTERNAL_LITERAL, null, null, "system", "system", "System", UserType.SYSTEM_LITERAL, -1, false);
 				addUserDatabaseAction.setCreateSystemUser();
 				addUserDatabaseAction.execute();
 
@@ -230,17 +230,17 @@ public class Database implements BimDatabase {
 			for (IdEObject idEObject : model.getValues()) {
 				if (idEObject instanceof Revision) {
 					Revision revision = (Revision) idEObject;
-					if (revision.getState() == CheckinState.UPLOADING || revision.getState() == CheckinState.PARSING || revision.getState() == CheckinState.STORING) {
-						LOGGER.info("Changing " + revision.getState().getName() + " to " + CheckinState.ERROR.getName() + " for revision " + revision.getOid());
-						revision.setState(CheckinState.ERROR);
+					if (revision.getState() == CheckinState.UPLOADING_LITERAL || revision.getState() == CheckinState.PARSING_LITERAL || revision.getState() == CheckinState.STORING_LITERAL) {
+						LOGGER.info("Changing " + revision.getState().getName() + " to " + CheckinState.ERROR_LITERAL.getName() + " for revision " + revision.getOid());
+						revision.setState(CheckinState.ERROR_LITERAL);
 						if (revision.getLastConcreteRevision() != null) {
 							revision.getLastConcreteRevision().setChecksum(null);
 						}
 						revision.setLastError("Server crash while uploading");
 					}
-					if (revision.getState() == CheckinState.SEARCHING_CLASHES) {
-						LOGGER.info("Changing " + revision.getState().getName() + " to " + CheckinState.CLASHES_ERROR.getName() + " for revision " + revision.getOid());
-						revision.setState(CheckinState.CLASHES_ERROR);
+					if (revision.getState() == CheckinState.SEARCHING_CLASHES_LITERAL) {
+						LOGGER.info("Changing " + revision.getState().getName() + " to " + CheckinState.CLASHES_ERROR_LITERAL.getName() + " for revision " + revision.getOid());
+						revision.setState(CheckinState.CLASHES_ERROR_LITERAL);
 						revision.setLastError("Server crash while detecting clashes");
 					}
 					databaseSession.store(revision);

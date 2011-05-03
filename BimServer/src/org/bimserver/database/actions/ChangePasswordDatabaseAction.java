@@ -32,15 +32,15 @@ public class ChangePasswordDatabaseAction extends BimDatabaseAction<Boolean> {
 	public Boolean execute() throws UserException, BimDeadlockException, BimDatabaseException {
 		User actingUser = getUserByUoid(actingUoid);
 		User user = getUserByUoid(uoid);
-		if (user.getUserType() == UserType.ANONYMOUS) {
+		if (user.getUserType() == UserType.ANONYMOUS_LITERAL) {
 			throw new UserException("Password of anonymous user cannot be changed");
-		} else if (user.getUserType() == UserType.SYSTEM) {
+		} else if (user.getUserType() == UserType.SYSTEM_LITERAL) {
 			throw new UserException("Password of system user cannot be changed");
 		}
 		if (uoid == actingUoid) {
 			return changePassword(getDatabaseSession(), actingUser, false);
 		} else {
-			if (actingUser.getUserType() == UserType.ADMIN) {
+			if (actingUser.getUserType() == UserType.ADMIN_LITERAL) {
 				return changePassword(getDatabaseSession(), actingUser, true);
 			} else {
 				throw new UserException("Insufficient rights to change the password of this user");

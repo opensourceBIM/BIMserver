@@ -62,6 +62,7 @@ public class DataObjectGenerator {
 		genModel.setFeatureDelegation(GenDelegationKind.REFLECTIVE_LITERAL);
 		genModel.setRootExtendsClass("org.bimserver.emf.IdEObjectImpl");
 		genModel.setRootExtendsInterface("org.bimserver.emf.IdEObject");
+		genModel.setSuppressContainment(true);
 		genModel.setCanGenerate(true);
 		genModel.setModelDirectory("test");
 		genModel.setModelName("model name");
@@ -160,7 +161,7 @@ public class DataObjectGenerator {
 			genPackage.setPrefix(StringUtils.firstUpperCase(ePackage.getName()));
 			genPackage.setBasePackage("org.bimserver.models");
 			genPackage.setEcorePackage(ePackage);
-//			genPackage.setLoadInitialization(true);
+			genPackage.setLoadInitialization(true);
 			genModel.getGenPackages().add(genPackage);
 			
 			ImportManager importManager = new ImportManager("org.bimserver.models");

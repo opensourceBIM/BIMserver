@@ -37,7 +37,7 @@ public class UpdateProjectDatabaseAction extends BimDatabaseAction<Void> {
 		if (sProject.getName().trim().equals("")) {
 			throw new UserException("Project name cannot be empty");
 		}
-		if (actingUser.getUserType() == UserType.ANONYMOUS) {
+		if (actingUser.getUserType() == UserType.ANONYMOUS_LITERAL) {
 			throw new UserException("User anonymous cannot update project properties");
 		}
 		if (!RightsManager.hasRightsOnProjectOrSuperProjects(actingUser, project)) {

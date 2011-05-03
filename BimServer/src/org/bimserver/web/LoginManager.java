@@ -32,7 +32,7 @@ public class LoginManager {
 
 	public LoginManager() {
 		if (ServiceFactory.isInitialized()) {
-			service = ServiceFactory.getINSTANCE().newService(AccessMethod.WEB_INTERFACE);
+			service = ServiceFactory.getINSTANCE().newService(AccessMethod.WEB_INTERFACE_LITERAL);
 		}
 	}
 

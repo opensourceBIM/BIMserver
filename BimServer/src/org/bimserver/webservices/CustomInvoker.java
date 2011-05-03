@@ -29,7 +29,7 @@ public class CustomInvoker extends AbstractInvoker {
 				return null;
 			}
 		} else {
-			ServiceInterface newService = serviceFactory.newService(AccessMethod.WEB_INTERFACE);
+			ServiceInterface newService = serviceFactory.newService(AccessMethod.WEB_INTERFACE_LITERAL);
 			try {
 				context.getSession().put("token", newService.getCurrentToken());
 			} catch (ServiceException e) {
