@@ -12,7 +12,6 @@ import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
 
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.SchemaLoader;
-import org.bimserver.ifc.database.IfcDatabase;
 import org.bimserver.ifc.file.reader.IfcStepDeserializer;
 import org.bimserver.ifc.file.reader.IncorrectIfcFileException;
 import org.bimserver.models.ifc2x3.IfcArbitraryClosedProfileDef;
@@ -46,14 +45,13 @@ public class KmlExportTest {
 			try {
 				fastIfcFileReader.read(TestFile.AC11.getFile());
 				IfcModel model = fastIfcFileReader.getModel();
-				IfcDatabase database = new IfcDatabase(model, null);
 				out.println("<?xml version=\"1.0\" encoding=\"UTF-8\"?><kml xmlns=\"http://www.opengis.net/kml/2.2\">  <Document>");
 				out.println("      <Folder>       <name>Extruded Polygon</name>        <description>A simple way to model a building</description>        ");
 				List<IfcProduct> products = new ArrayList<IfcProduct>();
 //				products.addAll(spaces);
 //				products.addAll(walls);
-//				products.addAll(database.getAll(IfcRoof.class));
-				products.addAll(database.getAll(IfcProduct.class));
+//				products.addAll(model(IfcRoof.class));
+				products.addAll(model.getAll(IfcProduct.class));
 				for (IfcProduct product : products) {
 					IfcLocalPlacement ilp = (IfcLocalPlacement) product.getObjectPlacement();
 					IfcAxis2Placement3D placement = (IfcAxis2Placement3D) ilp.getRelativePlacement();

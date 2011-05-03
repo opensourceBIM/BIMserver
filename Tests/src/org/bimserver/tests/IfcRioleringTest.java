@@ -23,8 +23,8 @@ package org.bimserver.tests;
 import java.io.File;
 import java.util.List;
 
+import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.SchemaLoader;
-import org.bimserver.ifc.database.IfcDatabase;
 import org.bimserver.ifc.file.reader.IfcStepDeserializer;
 import org.bimserver.models.ifc2x3.IfcDistributionPort;
 import org.bimserver.models.ifc2x3.IfcElement;
@@ -38,7 +38,7 @@ import org.slf4j.LoggerFactory;
 
 public class IfcRioleringTest {
 	private static final Logger LOGGER = LoggerFactory.getLogger(IfcRioleringTest.class);
-	private IfcDatabase database;
+	private IfcModel model;
 
 	public static void main(String[] args) {
 		new IfcRioleringTest().start();
@@ -53,12 +53,12 @@ public class IfcRioleringTest {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		database = new IfcDatabase(ifcReader.getModel(), null);
+		model = ifcReader.getModel();
 		step1();
 	}
 
 	private void step1() {
-		List<IfcDistributionPort> ports = database.getAll(IfcDistributionPort.class);
+		List<IfcDistributionPort> ports = model.getAll(IfcDistributionPort.class);
 		for (IfcDistributionPort port : ports) {
 			if (port.getConnectedTo().size() == 0 && port.getConnectedFrom().size() == 0) {
 				LOGGER.info("Step 1: DistributionPort = " + port.getName());

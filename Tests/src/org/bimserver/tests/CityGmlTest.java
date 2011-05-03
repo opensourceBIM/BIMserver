@@ -18,7 +18,6 @@ import org.bimserver.ifcengine.IfcEngineFactory;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
 import org.bimserver.shared.ResourceFetcher;
-import org.bimserver.tests.TestFile;
 import org.bimserver.utils.CollectionUtils;
 
 public class CityGmlTest {
