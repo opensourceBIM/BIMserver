@@ -22,48 +22,6 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 		service = ServiceInterface.newBlockingStub(rpcChannel);
 	}
 
-	public org.bimserver.shared.SCompareResult compare(long roid1, long roid2, org.bimserver.shared.SCompareResult.SCompareType sCompareType) {
-		try {
-			CompareRequest.Builder requestBuilder = CompareRequest.newBuilder();
-			requestBuilder.setRoid1(roid1);
-			requestBuilder.setRoid2(roid2);
-			Service.SCompareType newEnum = Service.SCompareType.values()[sCompareType.ordinal()];
-			requestBuilder.setSCompareType(newEnum);
-			CompareRequest request = requestBuilder.build();
-			CompareResponse response = service.compare(rpcController, request);
-			org.bimserver.shared.SCompareResult realResult = new org.bimserver.shared.SCompareResult();
-			return realResult;
-		} catch (Exception e) {}
-		return null;
-	}
-
-	public void setup(java.lang.String siteAddress, java.lang.String smtpServer, java.lang.String adminName, java.lang.String adminUsername, java.lang.String adminPassword, boolean createAnonymousUser) {
-		try {
-			SetupRequest.Builder requestBuilder = SetupRequest.newBuilder();
-			requestBuilder.setSiteAddress(siteAddress);
-			requestBuilder.setSmtpServer(smtpServer);
-			requestBuilder.setAdminName(adminName);
-			requestBuilder.setAdminUsername(adminUsername);
-			requestBuilder.setAdminPassword(adminPassword);
-			requestBuilder.setCreateAnonymousUser(createAnonymousUser);
-			SetupRequest request = requestBuilder.build();
-			service.setup(rpcController, request);
-		} catch (Exception e) {}
-	}
-
-	public int download(long roid, java.lang.String formatIdentifier, boolean sync) {
-		try {
-			DownloadRequest.Builder requestBuilder = DownloadRequest.newBuilder();
-			requestBuilder.setRoid(roid);
-			requestBuilder.setFormatIdentifier(formatIdentifier);
-			requestBuilder.setSync(sync);
-			DownloadRequest request = requestBuilder.build();
-			DownloadResponse response = service.download(rpcController, request);
-			return response.getValue();
-		} catch (Exception e) {}
-		return 0;
-	}
-
 	public java.util.Set<org.bimserver.shared.SMigration> getMigrations() {
 		try {
 			GetMigrationsRequest.Builder requestBuilder = GetMigrationsRequest.newBuilder();
@@ -336,10 +294,6 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 		try {
 			UpdateProjectRequest.Builder requestBuilder = UpdateProjectRequest.newBuilder();
 			Service.SProject.Builder newVal = SProject.newBuilder();
-			newVal.setName(sProject.getName());
-			newVal.setId(sProject.getId());
-			newVal.setState(SObjectState.values()[sProject.getState().ordinal()]);
-			newVal.setDescription(sProject.getDescription());
 			for (java.lang.Long o : sProject.getSubProjects()) {
 				newVal.addSubProjects(o);
 			}
@@ -364,6 +318,10 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 			newVal.setParentId(sProject.getParentId());
 			newVal.setClashDetectionSettingsId(sProject.getClashDetectionSettingsId());
 			newVal.setExportLengthMeasurePrefix(SSIPrefix.values()[sProject.getExportLengthMeasurePrefix().ordinal()]);
+			newVal.setName(sProject.getName());
+			newVal.setId(sProject.getId());
+			newVal.setState(SObjectState.values()[sProject.getState().ordinal()]);
+			newVal.setDescription(sProject.getDescription());
 			requestBuilder.setSProject(newVal.build());
 			UpdateProjectRequest request = requestBuilder.build();
 			service.updateProject(rpcController, request);
@@ -374,12 +332,6 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 		try {
 			UpdateRevisionRequest.Builder requestBuilder = UpdateRevisionRequest.newBuilder();
 			Service.SRevision.Builder newVal = SRevision.newBuilder();
-			newVal.setId(sRevision.getId());
-			newVal.setState(SCheckinState.values()[sRevision.getState().ordinal()]);
-			newVal.setSize(sRevision.getSize());
-			newVal.setDate(sRevision.getDate().getTime());
-			newVal.setComment(sRevision.getComment());
-			newVal.setTag(sRevision.getTag());
 			for (java.lang.Long o : sRevision.getLastClashes()) {
 				newVal.addLastClashes(o);
 			}
@@ -397,6 +349,12 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 			newVal.setBmi(sRevision.getBmi());
 			newVal.setNrClashes(sRevision.getNrClashes());
 			newVal.setLaid(sRevision.getLaid());
+			newVal.setId(sRevision.getId());
+			newVal.setState(SCheckinState.values()[sRevision.getState().ordinal()]);
+			newVal.setSize(sRevision.getSize());
+			newVal.setDate(sRevision.getDate().getTime());
+			newVal.setComment(sRevision.getComment());
+			newVal.setTag(sRevision.getTag());
 			requestBuilder.setSRevision(newVal.build());
 			UpdateRevisionRequest request = requestBuilder.build();
 			service.updateRevision(rpcController, request);
@@ -458,10 +416,6 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 			List<Service.SProject> originalList = response.getValueList();
 			for (Service.SProject val : originalList) {
 				org.bimserver.interfaces.objects.SProject v = new org.bimserver.interfaces.objects.SProject();
-				v.setName(val.getName());
-				v.setId(val.getId());
-				v.setState(org.bimserver.interfaces.objects.SObjectState.values()[val.getState().ordinal()]);
-				v.setDescription(val.getDescription());
 				v.setOid(val.getOid());
 				v.setLastConcreteRevisionId(val.getLastConcreteRevisionId());
 				v.setLastRevisionId(val.getLastRevisionId());
@@ -471,6 +425,10 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 				v.setParentId(val.getParentId());
 				v.setClashDetectionSettingsId(val.getClashDetectionSettingsId());
 				v.setExportLengthMeasurePrefix(org.bimserver.interfaces.objects.SSIPrefix.values()[val.getExportLengthMeasurePrefix().ordinal()]);
+				v.setName(val.getName());
+				v.setId(val.getId());
+				v.setState(org.bimserver.interfaces.objects.SObjectState.values()[val.getState().ordinal()]);
+				v.setDescription(val.getDescription());
 				realResult.add(v);
 			}
 		return realResult;
@@ -487,10 +445,6 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 			List<Service.SProject> originalList = response.getValueList();
 			for (Service.SProject val : originalList) {
 				org.bimserver.interfaces.objects.SProject v = new org.bimserver.interfaces.objects.SProject();
-				v.setName(val.getName());
-				v.setId(val.getId());
-				v.setState(org.bimserver.interfaces.objects.SObjectState.values()[val.getState().ordinal()]);
-				v.setDescription(val.getDescription());
 				v.setOid(val.getOid());
 				v.setLastConcreteRevisionId(val.getLastConcreteRevisionId());
 				v.setLastRevisionId(val.getLastRevisionId());
@@ -500,6 +454,10 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 				v.setParentId(val.getParentId());
 				v.setClashDetectionSettingsId(val.getClashDetectionSettingsId());
 				v.setExportLengthMeasurePrefix(org.bimserver.interfaces.objects.SSIPrefix.values()[val.getExportLengthMeasurePrefix().ordinal()]);
+				v.setName(val.getName());
+				v.setId(val.getId());
+				v.setState(org.bimserver.interfaces.objects.SObjectState.values()[val.getState().ordinal()]);
+				v.setDescription(val.getDescription());
 				realResult.add(v);
 			}
 		return realResult;
@@ -516,17 +474,17 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 			List<Service.SUser> originalList = response.getValueList();
 			for (Service.SUser val : originalList) {
 				org.bimserver.interfaces.objects.SUser v = new org.bimserver.interfaces.objects.SUser();
-				v.setName(val.getName());
-				v.setState(org.bimserver.interfaces.objects.SObjectState.values()[val.getState().ordinal()]);
 				v.setOid(val.getOid());
 				v.setCreatedById(val.getCreatedById());
-				v.setPassword(val.getPassword());
 				v.setCreatedOn(new Date(val.getCreatedOn()));
 				v.setUserType(org.bimserver.interfaces.objects.SUserType.values()[val.getUserType().ordinal()]);
 				v.setUsername(val.getUsername());
 				v.setLastSeen(new Date(val.getLastSeen()));
 				v.setValidationToken(val.getValidationToken());
 				v.setValidationTokenCreated(new Date(val.getValidationTokenCreated()));
+				v.setName(val.getName());
+				v.setState(org.bimserver.interfaces.objects.SObjectState.values()[val.getState().ordinal()]);
+				v.setPassword(val.getPassword());
 				realResult.add(v);
 			}
 		return realResult;
@@ -544,12 +502,6 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 			List<Service.SRevision> originalList = response.getValueList();
 			for (Service.SRevision val : originalList) {
 				org.bimserver.interfaces.objects.SRevision v = new org.bimserver.interfaces.objects.SRevision();
-				v.setId(val.getId());
-				v.setState(org.bimserver.interfaces.objects.SCheckinState.values()[val.getState().ordinal()]);
-				v.setSize(val.getSize());
-				v.setDate(new Date(val.getDate()));
-				v.setComment(val.getComment());
-				v.setTag(val.getTag());
 				v.setOid(val.getOid());
 				v.setLastConcreteRevisionId(val.getLastConcreteRevisionId());
 				v.setUserId(val.getUserId());
@@ -558,6 +510,12 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 				v.setBmi(val.getBmi());
 				v.setNrClashes(val.getNrClashes());
 				v.setLaid(val.getLaid());
+				v.setId(val.getId());
+				v.setState(org.bimserver.interfaces.objects.SCheckinState.values()[val.getState().ordinal()]);
+				v.setSize(val.getSize());
+				v.setDate(new Date(val.getDate()));
+				v.setComment(val.getComment());
+				v.setTag(val.getTag());
 				realResult.add(v);
 			}
 		return realResult;
@@ -575,12 +533,12 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 			List<Service.SCheckout> originalList = response.getValueList();
 			for (Service.SCheckout val : originalList) {
 				org.bimserver.interfaces.objects.SCheckout v = new org.bimserver.interfaces.objects.SCheckout();
-				v.setDate(new Date(val.getDate()));
 				v.setOid(val.getOid());
 				v.setUserId(val.getUserId());
 				v.setProjectId(val.getProjectId());
 				v.setRevisionId(val.getRevisionId());
 				v.setCheckinId(val.getCheckinId());
+				v.setDate(new Date(val.getDate()));
 				realResult.add(v);
 			}
 		return realResult;
@@ -598,12 +556,6 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 			List<Service.SRevision> originalList = response.getValueList();
 			for (Service.SRevision val : originalList) {
 				org.bimserver.interfaces.objects.SRevision v = new org.bimserver.interfaces.objects.SRevision();
-				v.setId(val.getId());
-				v.setState(org.bimserver.interfaces.objects.SCheckinState.values()[val.getState().ordinal()]);
-				v.setSize(val.getSize());
-				v.setDate(new Date(val.getDate()));
-				v.setComment(val.getComment());
-				v.setTag(val.getTag());
 				v.setOid(val.getOid());
 				v.setLastConcreteRevisionId(val.getLastConcreteRevisionId());
 				v.setUserId(val.getUserId());
@@ -612,6 +564,12 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 				v.setBmi(val.getBmi());
 				v.setNrClashes(val.getNrClashes());
 				v.setLaid(val.getLaid());
+				v.setId(val.getId());
+				v.setState(org.bimserver.interfaces.objects.SCheckinState.values()[val.getState().ordinal()]);
+				v.setSize(val.getSize());
+				v.setDate(new Date(val.getDate()));
+				v.setComment(val.getComment());
+				v.setTag(val.getTag());
 				realResult.add(v);
 			}
 		return realResult;
@@ -629,12 +587,12 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 			List<Service.SCheckout> originalList = response.getValueList();
 			for (Service.SCheckout val : originalList) {
 				org.bimserver.interfaces.objects.SCheckout v = new org.bimserver.interfaces.objects.SCheckout();
-				v.setDate(new Date(val.getDate()));
 				v.setOid(val.getOid());
 				v.setUserId(val.getUserId());
 				v.setProjectId(val.getProjectId());
 				v.setRevisionId(val.getRevisionId());
 				v.setCheckinId(val.getCheckinId());
+				v.setDate(new Date(val.getDate()));
 				realResult.add(v);
 			}
 		return realResult;
@@ -652,12 +610,12 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 			List<Service.SCheckout> originalList = response.getValueList();
 			for (Service.SCheckout val : originalList) {
 				org.bimserver.interfaces.objects.SCheckout v = new org.bimserver.interfaces.objects.SCheckout();
-				v.setDate(new Date(val.getDate()));
 				v.setOid(val.getOid());
 				v.setUserId(val.getUserId());
 				v.setProjectId(val.getProjectId());
 				v.setRevisionId(val.getRevisionId());
 				v.setCheckinId(val.getCheckinId());
+				v.setDate(new Date(val.getDate()));
 				realResult.add(v);
 			}
 		return realResult;
@@ -747,10 +705,6 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 			List<Service.SProject> originalList = response.getValueList();
 			for (Service.SProject val : originalList) {
 				org.bimserver.interfaces.objects.SProject v = new org.bimserver.interfaces.objects.SProject();
-				v.setName(val.getName());
-				v.setId(val.getId());
-				v.setState(org.bimserver.interfaces.objects.SObjectState.values()[val.getState().ordinal()]);
-				v.setDescription(val.getDescription());
 				v.setOid(val.getOid());
 				v.setLastConcreteRevisionId(val.getLastConcreteRevisionId());
 				v.setLastRevisionId(val.getLastRevisionId());
@@ -760,6 +714,10 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 				v.setParentId(val.getParentId());
 				v.setClashDetectionSettingsId(val.getClashDetectionSettingsId());
 				v.setExportLengthMeasurePrefix(org.bimserver.interfaces.objects.SSIPrefix.values()[val.getExportLengthMeasurePrefix().ordinal()]);
+				v.setName(val.getName());
+				v.setId(val.getId());
+				v.setState(org.bimserver.interfaces.objects.SObjectState.values()[val.getState().ordinal()]);
+				v.setDescription(val.getDescription());
 				realResult.add(v);
 			}
 		return realResult;
@@ -910,10 +868,10 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 			List<Service.SDataObject> originalList = response.getValueList();
 			for (Service.SDataObject val : originalList) {
 				org.bimserver.shared.SDataObject v = new org.bimserver.shared.SDataObject();
-				v.setName(val.getName());
-				v.setType(val.getType());
 				v.setOid(val.getOid());
 				v.setGuid(val.getGuid());
+				v.setName(val.getName());
+				v.setType(val.getType());
 				realResult.add(v);
 			}
 		return realResult;
@@ -932,10 +890,10 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 			for (java.lang.Long o : sClashDetectionSettings.getRevisions()) {
 				newVal.addRevisions(o);
 			}
-			newVal.setMargin(sClashDetectionSettings.getMargin());
 			for (java.lang.String o : sClashDetectionSettings.getIgnoredClasses()) {
 				newVal.addIgnoredClasses(o);
 			}
+			newVal.setMargin(sClashDetectionSettings.getMargin());
 			requestBuilder.setSClashDetectionSettings(newVal.build());
 			FindClashesByGuidRequest request = requestBuilder.build();
 			FindClashesByGuidResponse response = service.findClashesByGuid(rpcController, request);
@@ -970,10 +928,10 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 			for (java.lang.Long o : sClashDetectionSettings.getRevisions()) {
 				newVal.addRevisions(o);
 			}
-			newVal.setMargin(sClashDetectionSettings.getMargin());
 			for (java.lang.String o : sClashDetectionSettings.getIgnoredClasses()) {
 				newVal.addIgnoredClasses(o);
 			}
+			newVal.setMargin(sClashDetectionSettings.getMargin());
 			requestBuilder.setSClashDetectionSettings(newVal.build());
 			FindClashesByEidRequest request = requestBuilder.build();
 			FindClashesByEidResponse response = service.findClashesByEid(rpcController, request);
@@ -1069,11 +1027,11 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 				newVal.addProjects(o);
 			}
 			newVal.setOid(sGeoTag.getOid());
-			newVal.setX(sGeoTag.getX());
-			newVal.setY(sGeoTag.getY());
 			newVal.setZ(sGeoTag.getZ());
 			newVal.setEpsg(sGeoTag.getEpsg());
 			newVal.setDirectionAngle(sGeoTag.getDirectionAngle());
+			newVal.setX(sGeoTag.getX());
+			newVal.setY(sGeoTag.getY());
 			requestBuilder.setSGeoTag(newVal.build());
 			UpdateGeoTagRequest request = requestBuilder.build();
 			service.updateGeoTag(rpcController, request);
@@ -1103,10 +1061,10 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 			for (java.lang.Long o : sClashDetectionSettings.getRevisions()) {
 				newVal.addRevisions(o);
 			}
-			newVal.setMargin(sClashDetectionSettings.getMargin());
 			for (java.lang.String o : sClashDetectionSettings.getIgnoredClasses()) {
 				newVal.addIgnoredClasses(o);
 			}
+			newVal.setMargin(sClashDetectionSettings.getMargin());
 			requestBuilder.setSClashDetectionSettings(newVal.build());
 			UpdateClashDetectionSettingsRequest request = requestBuilder.build();
 			service.updateClashDetectionSettings(rpcController, request);
@@ -1146,17 +1104,17 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 			List<Service.SUser> originalList = response.getValueList();
 			for (Service.SUser val : originalList) {
 				org.bimserver.interfaces.objects.SUser v = new org.bimserver.interfaces.objects.SUser();
-				v.setName(val.getName());
-				v.setState(org.bimserver.interfaces.objects.SObjectState.values()[val.getState().ordinal()]);
 				v.setOid(val.getOid());
 				v.setCreatedById(val.getCreatedById());
-				v.setPassword(val.getPassword());
 				v.setCreatedOn(new Date(val.getCreatedOn()));
 				v.setUserType(org.bimserver.interfaces.objects.SUserType.values()[val.getUserType().ordinal()]);
 				v.setUsername(val.getUsername());
 				v.setLastSeen(new Date(val.getLastSeen()));
 				v.setValidationToken(val.getValidationToken());
 				v.setValidationTokenCreated(new Date(val.getValidationTokenCreated()));
+				v.setName(val.getName());
+				v.setState(org.bimserver.interfaces.objects.SObjectState.values()[val.getState().ordinal()]);
+				v.setPassword(val.getPassword());
 				realResult.add(v);
 			}
 		return realResult;
@@ -1174,17 +1132,17 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 			List<Service.SUser> originalList = response.getValueList();
 			for (Service.SUser val : originalList) {
 				org.bimserver.interfaces.objects.SUser v = new org.bimserver.interfaces.objects.SUser();
-				v.setName(val.getName());
-				v.setState(org.bimserver.interfaces.objects.SObjectState.values()[val.getState().ordinal()]);
 				v.setOid(val.getOid());
 				v.setCreatedById(val.getCreatedById());
-				v.setPassword(val.getPassword());
 				v.setCreatedOn(new Date(val.getCreatedOn()));
 				v.setUserType(org.bimserver.interfaces.objects.SUserType.values()[val.getUserType().ordinal()]);
 				v.setUsername(val.getUsername());
 				v.setLastSeen(new Date(val.getLastSeen()));
 				v.setValidationToken(val.getValidationToken());
 				v.setValidationTokenCreated(new Date(val.getValidationTokenCreated()));
+				v.setName(val.getName());
+				v.setState(org.bimserver.interfaces.objects.SObjectState.values()[val.getState().ordinal()]);
+				v.setPassword(val.getPassword());
 				realResult.add(v);
 			}
 		return realResult;
@@ -1202,10 +1160,6 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 			List<Service.SProject> originalList = response.getValueList();
 			for (Service.SProject val : originalList) {
 				org.bimserver.interfaces.objects.SProject v = new org.bimserver.interfaces.objects.SProject();
-				v.setName(val.getName());
-				v.setId(val.getId());
-				v.setState(org.bimserver.interfaces.objects.SObjectState.values()[val.getState().ordinal()]);
-				v.setDescription(val.getDescription());
 				v.setOid(val.getOid());
 				v.setLastConcreteRevisionId(val.getLastConcreteRevisionId());
 				v.setLastRevisionId(val.getLastRevisionId());
@@ -1215,6 +1169,10 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 				v.setParentId(val.getParentId());
 				v.setClashDetectionSettingsId(val.getClashDetectionSettingsId());
 				v.setExportLengthMeasurePrefix(org.bimserver.interfaces.objects.SSIPrefix.values()[val.getExportLengthMeasurePrefix().ordinal()]);
+				v.setName(val.getName());
+				v.setId(val.getId());
+				v.setState(org.bimserver.interfaces.objects.SObjectState.values()[val.getState().ordinal()]);
+				v.setDescription(val.getDescription());
 				realResult.add(v);
 			}
 		return realResult;
@@ -1232,10 +1190,6 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 			List<Service.SProject> originalList = response.getValueList();
 			for (Service.SProject val : originalList) {
 				org.bimserver.interfaces.objects.SProject v = new org.bimserver.interfaces.objects.SProject();
-				v.setName(val.getName());
-				v.setId(val.getId());
-				v.setState(org.bimserver.interfaces.objects.SObjectState.values()[val.getState().ordinal()]);
-				v.setDescription(val.getDescription());
 				v.setOid(val.getOid());
 				v.setLastConcreteRevisionId(val.getLastConcreteRevisionId());
 				v.setLastRevisionId(val.getLastRevisionId());
@@ -1245,6 +1199,10 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 				v.setParentId(val.getParentId());
 				v.setClashDetectionSettingsId(val.getClashDetectionSettingsId());
 				v.setExportLengthMeasurePrefix(org.bimserver.interfaces.objects.SSIPrefix.values()[val.getExportLengthMeasurePrefix().ordinal()]);
+				v.setName(val.getName());
+				v.setId(val.getId());
+				v.setState(org.bimserver.interfaces.objects.SObjectState.values()[val.getState().ordinal()]);
+				v.setDescription(val.getDescription());
 				realResult.add(v);
 			}
 		return realResult;
@@ -1272,10 +1230,6 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 			List<Service.SProject> originalList = response.getValueList();
 			for (Service.SProject val : originalList) {
 				org.bimserver.interfaces.objects.SProject v = new org.bimserver.interfaces.objects.SProject();
-				v.setName(val.getName());
-				v.setId(val.getId());
-				v.setState(org.bimserver.interfaces.objects.SObjectState.values()[val.getState().ordinal()]);
-				v.setDescription(val.getDescription());
 				v.setOid(val.getOid());
 				v.setLastConcreteRevisionId(val.getLastConcreteRevisionId());
 				v.setLastRevisionId(val.getLastRevisionId());
@@ -1285,6 +1239,10 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 				v.setParentId(val.getParentId());
 				v.setClashDetectionSettingsId(val.getClashDetectionSettingsId());
 				v.setExportLengthMeasurePrefix(org.bimserver.interfaces.objects.SSIPrefix.values()[val.getExportLengthMeasurePrefix().ordinal()]);
+				v.setName(val.getName());
+				v.setId(val.getId());
+				v.setState(org.bimserver.interfaces.objects.SObjectState.values()[val.getState().ordinal()]);
+				v.setDescription(val.getDescription());
 				realResult.add(v);
 			}
 		return realResult;
@@ -1384,15 +1342,15 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 			List<Service.ResultType> originalList = response.getValueList();
 			for (Service.ResultType val : originalList) {
 				org.bimserver.shared.ResultType v = new org.bimserver.shared.ResultType();
-				v.setName(val.getName());
-				v.setContentType(val.getContentType());
-				v.setExtension(val.getExtension());
-				v.setNiceName(val.getNiceName());
 				v.setUserType(org.bimserver.shared.ResultType.UserType.values()[val.getUserType().ordinal()]);
+				v.setNiceName(val.getNiceName());
 				v.setSerializerClass(Class.forName(val.getSerializerClass()));
 				v.setDefaultSelected(org.bimserver.shared.ResultType.DefaultSelected.values()[val.getDefaultSelected().ordinal()]);
 				v.setUseInCheckout(org.bimserver.shared.ResultType.UseInCheckout.values()[val.getUseInCheckout().ordinal()]);
 				v.setMultiple(org.bimserver.shared.ResultType.Type.values()[val.getMultiple().ordinal()]);
+				v.setName(val.getName());
+				v.setContentType(val.getContentType());
+				v.setExtension(val.getExtension());
 				realResult.add(v);
 			}
 		return realResult;
@@ -1409,15 +1367,15 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 			List<Service.ResultType> originalList = response.getValueList();
 			for (Service.ResultType val : originalList) {
 				org.bimserver.shared.ResultType v = new org.bimserver.shared.ResultType();
-				v.setName(val.getName());
-				v.setContentType(val.getContentType());
-				v.setExtension(val.getExtension());
-				v.setNiceName(val.getNiceName());
 				v.setUserType(org.bimserver.shared.ResultType.UserType.values()[val.getUserType().ordinal()]);
+				v.setNiceName(val.getNiceName());
 				v.setSerializerClass(Class.forName(val.getSerializerClass()));
 				v.setDefaultSelected(org.bimserver.shared.ResultType.DefaultSelected.values()[val.getDefaultSelected().ordinal()]);
 				v.setUseInCheckout(org.bimserver.shared.ResultType.UseInCheckout.values()[val.getUseInCheckout().ordinal()]);
 				v.setMultiple(org.bimserver.shared.ResultType.Type.values()[val.getMultiple().ordinal()]);
+				v.setName(val.getName());
+				v.setContentType(val.getContentType());
+				v.setExtension(val.getExtension());
 				realResult.add(v);
 			}
 		return realResult;
@@ -1435,12 +1393,12 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 			List<Service.SCheckout> originalList = response.getValueList();
 			for (Service.SCheckout val : originalList) {
 				org.bimserver.interfaces.objects.SCheckout v = new org.bimserver.interfaces.objects.SCheckout();
-				v.setDate(new Date(val.getDate()));
 				v.setOid(val.getOid());
 				v.setUserId(val.getUserId());
 				v.setProjectId(val.getProjectId());
 				v.setRevisionId(val.getRevisionId());
 				v.setCheckinId(val.getCheckinId());
+				v.setDate(new Date(val.getDate()));
 				realResult.add(v);
 			}
 		return realResult;
@@ -1479,10 +1437,10 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 			for (java.lang.Long o : sClashDetectionSettings.getRevisions()) {
 				newVal.addRevisions(o);
 			}
-			newVal.setMargin(sClashDetectionSettings.getMargin());
 			for (java.lang.String o : sClashDetectionSettings.getIgnoredClasses()) {
 				newVal.addIgnoredClasses(o);
 			}
+			newVal.setMargin(sClashDetectionSettings.getMargin());
 			requestBuilder.setSClashDetectionSettings(newVal.build());
 			requestBuilder.setPoid(poid);
 			for (java.lang.String val : addressesTo) {
@@ -1824,10 +1782,10 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 			List<Service.SLogAction> originalList = response.getValueList();
 			for (Service.SLogAction val : originalList) {
 				org.bimserver.interfaces.objects.SLogAction v = new org.bimserver.interfaces.objects.SLogAction();
-				v.setDate(new Date(val.getDate()));
 				v.setAccessMethod(org.bimserver.interfaces.objects.SAccessMethod.values()[val.getAccessMethod().ordinal()]);
 				v.setOid(val.getOid());
 				v.setExecutorId(val.getExecutorId());
+				v.setDate(new Date(val.getDate()));
 				realResult.add(v);
 			}
 		return realResult;
@@ -1844,13 +1802,13 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 			List<Service.SUserSession> originalList = response.getValueList();
 			for (Service.SUserSession val : originalList) {
 				org.bimserver.shared.SUserSession v = new org.bimserver.shared.SUserSession();
-				v.setName(val.getName());
-				v.setType(org.bimserver.interfaces.objects.SUserType.values()[val.getType().ordinal()]);
 				v.setAccessMethod(org.bimserver.interfaces.objects.SAccessMethod.values()[val.getAccessMethod().ordinal()]);
 				v.setActiveSince(new Date(val.getActiveSince()));
 				v.setLastActive(new Date(val.getLastActive()));
 				v.setUsername(val.getUsername());
 				v.setUoid(val.getUoid());
+				v.setName(val.getName());
+				v.setType(org.bimserver.interfaces.objects.SUserType.values()[val.getType().ordinal()]);
 				realResult.add(v);
 			}
 		return realResult;
@@ -1867,11 +1825,11 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 			List<Service.SLongAction> originalList = response.getValueList();
 			for (Service.SLongAction val : originalList) {
 				org.bimserver.shared.SLongAction v = new org.bimserver.shared.SLongAction();
-				v.setName(val.getName());
 				v.setIdentification(val.getIdentification());
 				v.setUsername(val.getUsername());
 				v.setUserOid(val.getUserOid());
 				v.setStart(new Date(val.getStart()));
+				v.setName(val.getName());
 				realResult.add(v);
 			}
 		return realResult;
@@ -1908,12 +1866,12 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 			List<Service.SSerializer> originalList = response.getValueList();
 			for (Service.SSerializer val : originalList) {
 				org.bimserver.interfaces.objects.SSerializer v = new org.bimserver.interfaces.objects.SSerializer();
-				v.setName(val.getName());
-				v.setClassName(val.getClassName());
-				v.setDescription(val.getDescription());
 				v.setOid(val.getOid());
 				v.setIgnoreFileId(val.getIgnoreFileId());
 				v.setSettingsId(val.getSettingsId());
+				v.setName(val.getName());
+				v.setClassName(val.getClassName());
+				v.setDescription(val.getDescription());
 				realResult.add(v);
 			}
 		return realResult;
@@ -1937,12 +1895,12 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 		try {
 			AddSerializerRequest.Builder requestBuilder = AddSerializerRequest.newBuilder();
 			Service.SSerializer.Builder newVal = SSerializer.newBuilder();
-			newVal.setName(unknown.getName());
-			newVal.setClassName(unknown.getClassName());
-			newVal.setDescription(unknown.getDescription());
 			newVal.setOid(unknown.getOid());
 			newVal.setIgnoreFileId(unknown.getIgnoreFileId());
 			newVal.setSettingsId(unknown.getSettingsId());
+			newVal.setName(unknown.getName());
+			newVal.setClassName(unknown.getClassName());
+			newVal.setDescription(unknown.getDescription());
 			requestBuilder.setUnknown(newVal.build());
 			AddSerializerRequest request = requestBuilder.build();
 			service.addSerializer(rpcController, request);
@@ -1953,12 +1911,12 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 		try {
 			UpdateSerializerRequest.Builder requestBuilder = UpdateSerializerRequest.newBuilder();
 			Service.SSerializer.Builder newVal = SSerializer.newBuilder();
-			newVal.setName(unknown.getName());
-			newVal.setClassName(unknown.getClassName());
-			newVal.setDescription(unknown.getDescription());
 			newVal.setOid(unknown.getOid());
 			newVal.setIgnoreFileId(unknown.getIgnoreFileId());
 			newVal.setSettingsId(unknown.getSettingsId());
+			newVal.setName(unknown.getName());
+			newVal.setClassName(unknown.getClassName());
+			newVal.setDescription(unknown.getDescription());
 			requestBuilder.setUnknown(newVal.build());
 			UpdateSerializerRequest request = requestBuilder.build();
 			service.updateSerializer(rpcController, request);
@@ -1974,10 +1932,10 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 			List<Service.SIgnoreFile> originalList = response.getValueList();
 			for (Service.SIgnoreFile val : originalList) {
 				org.bimserver.interfaces.objects.SIgnoreFile v = new org.bimserver.interfaces.objects.SIgnoreFile();
-				v.setName(val.getName());
-				v.setData(val.getData().toByteArray());
 				v.setOid(val.getOid());
 				v.setSettingsId(val.getSettingsId());
+				v.setName(val.getName());
+				v.setData(val.getData().toByteArray());
 				realResult.add(v);
 			}
 		return realResult;
@@ -2001,13 +1959,13 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 		try {
 			AddIgnoreFileRequest.Builder requestBuilder = AddIgnoreFileRequest.newBuilder();
 			Service.SIgnoreFile.Builder newVal = SIgnoreFile.newBuilder();
-			newVal.setName(unknown.getName());
-			newVal.setData(ByteString.copyFrom(unknown.getData()));
 			newVal.setOid(unknown.getOid());
 			newVal.setSettingsId(unknown.getSettingsId());
 			for (java.lang.Long o : unknown.getSerializers()) {
 				newVal.addSerializers(o);
 			}
+			newVal.setName(unknown.getName());
+			newVal.setData(ByteString.copyFrom(unknown.getData()));
 			requestBuilder.setUnknown(newVal.build());
 			AddIgnoreFileRequest request = requestBuilder.build();
 			service.addIgnoreFile(rpcController, request);
@@ -2018,13 +1976,13 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 		try {
 			UpdateIgnoreFileRequest.Builder requestBuilder = UpdateIgnoreFileRequest.newBuilder();
 			Service.SIgnoreFile.Builder newVal = SIgnoreFile.newBuilder();
-			newVal.setName(unknown.getName());
-			newVal.setData(ByteString.copyFrom(unknown.getData()));
 			newVal.setOid(unknown.getOid());
 			newVal.setSettingsId(unknown.getSettingsId());
 			for (java.lang.Long o : unknown.getSerializers()) {
 				newVal.addSerializers(o);
 			}
+			newVal.setName(unknown.getName());
+			newVal.setData(ByteString.copyFrom(unknown.getData()));
 			requestBuilder.setUnknown(newVal.build());
 			UpdateIgnoreFileRequest request = requestBuilder.build();
 			service.updateIgnoreFile(rpcController, request);
@@ -2062,6 +2020,48 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 		return realResult;
 		} catch (Exception e) {}
 		return null;
+	}
+
+	public org.bimserver.shared.SCompareResult compare(long roid1, long roid2, org.bimserver.shared.SCompareResult.SCompareType sCompareType) {
+		try {
+			CompareRequest.Builder requestBuilder = CompareRequest.newBuilder();
+			requestBuilder.setRoid1(roid1);
+			requestBuilder.setRoid2(roid2);
+			Service.SCompareType newEnum = Service.SCompareType.values()[sCompareType.ordinal()];
+			requestBuilder.setSCompareType(newEnum);
+			CompareRequest request = requestBuilder.build();
+			CompareResponse response = service.compare(rpcController, request);
+			org.bimserver.shared.SCompareResult realResult = new org.bimserver.shared.SCompareResult();
+			return realResult;
+		} catch (Exception e) {}
+		return null;
+	}
+
+	public void setup(java.lang.String siteAddress, java.lang.String smtpServer, java.lang.String adminName, java.lang.String adminUsername, java.lang.String adminPassword, boolean createAnonymousUser) {
+		try {
+			SetupRequest.Builder requestBuilder = SetupRequest.newBuilder();
+			requestBuilder.setSiteAddress(siteAddress);
+			requestBuilder.setSmtpServer(smtpServer);
+			requestBuilder.setAdminName(adminName);
+			requestBuilder.setAdminUsername(adminUsername);
+			requestBuilder.setAdminPassword(adminPassword);
+			requestBuilder.setCreateAnonymousUser(createAnonymousUser);
+			SetupRequest request = requestBuilder.build();
+			service.setup(rpcController, request);
+		} catch (Exception e) {}
+	}
+
+	public int download(long roid, java.lang.String formatIdentifier, boolean sync) {
+		try {
+			DownloadRequest.Builder requestBuilder = DownloadRequest.newBuilder();
+			requestBuilder.setRoid(roid);
+			requestBuilder.setFormatIdentifier(formatIdentifier);
+			requestBuilder.setSync(sync);
+			DownloadRequest request = requestBuilder.build();
+			DownloadResponse response = service.download(rpcController, request);
+			return response.getValue();
+		} catch (Exception e) {}
+		return 0;
 	}
 
 }
