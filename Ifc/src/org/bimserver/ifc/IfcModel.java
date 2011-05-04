@@ -506,7 +506,9 @@ public class IfcModel {
 			return;
 		}
 		idEObject.setOid(oidProvider.newOid());
-		temp.put(idEObject.getOid(), idEObject);
+		if (objects.containsValue(idEObject)) {
+			temp.put(idEObject.getOid(), idEObject);
+		}
 		for (EReference eReference : idEObject.eClass().getEAllReferences()) {
 			Object val = idEObject.eGet(eReference);
 			if (eReference.isMany()) {
