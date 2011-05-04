@@ -38,7 +38,7 @@ public class CodeMigrator {
 
 	private void start() {
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-		
+
 		LOGGER.info("Starting code migrator...");
 		Migrator migrator = new Migrator(null);
 		int latestVersion = migrator.getLatestVersion();
