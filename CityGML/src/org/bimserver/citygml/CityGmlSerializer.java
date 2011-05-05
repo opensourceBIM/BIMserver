@@ -106,7 +106,6 @@ public class CityGmlSerializer extends BimModelSerializer {
 	private CityGMLFactory citygml;
 	private Map<EObject, AbstractCityObject> convertedObjects;
 	private CityGMLContext ctx;
-	private IfcModel model;
 	private SchemaDefinition schemaDefinition;
 	private Project project;
 	private User user;

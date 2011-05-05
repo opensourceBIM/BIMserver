@@ -95,7 +95,7 @@ public class Database implements BimDatabase {
 	 * database-schema change Do not change this variable when nothing has
 	 * changed in the schema!
 	 */
-	public static final int APPLICATION_SCHEMA_VERSION = 5;
+	public static final int APPLICATION_SCHEMA_VERSION = 6;
 	private int databaseSchemaVersion;
 	private short tableId;
 	private Migrator migrator;
