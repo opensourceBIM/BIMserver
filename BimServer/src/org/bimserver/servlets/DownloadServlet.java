@@ -21,6 +21,7 @@ package org.bimserver.servlets;
  *****************************************************************************/
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -175,12 +176,16 @@ public class DownloadServlet extends HttpServlet {
 				String name = checkoutResult.getProjectName();
 				ZipOutputStream zipOutputStream = new ZipOutputStream(response.getOutputStream());
 				zipOutputStream.putNextEntry(new ZipEntry(name));
-				IOUtils.copy(dataSource.getInputStream(), zipOutputStream);
+				InputStream in = dataSource.getInputStream();
+				IOUtils.copy(in, zipOutputStream);
+				in.close();
 				zipOutputStream.finish();
 			} else {
 				response.setContentType(resultType.getContentType());
 				response.setHeader("Content-Disposition", "inline; filename=\"" + checkoutResult.getFile().getName() + "\"");
-				IOUtils.copy(dataSource.getInputStream(), response.getOutputStream());
+				InputStream in = dataSource.getInputStream();
+				IOUtils.copy(in, response.getOutputStream());
+				in.close();
 				response.getOutputStream().flush();
 			}
 		} catch (NumberFormatException e) {
