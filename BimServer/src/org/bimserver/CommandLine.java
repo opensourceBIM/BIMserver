@@ -51,32 +51,37 @@ public class CommandLine extends Thread {
 				if (line.equalsIgnoreCase("exit")) {
 					server.stop();
 					return;
-				} else if (line.equalsIgnoreCase("test")) {
-					BimDatabaseSession bimDatabaseSession = ServerInitializer.getDatabase().createReadOnlySession();	
+				} else if (line.startsWith("dumpmodel")) {
 					try {
-						DownloadDatabaseAction downloadDatabaseAction = new DownloadDatabaseAction(bimDatabaseSession, AccessMethod.INTERNAL, ServerInitializer.getSettingsManager(), 16, ServerInitializer.getSystemService().getCurrentUser().getOid());
-						IfcModel model = downloadDatabaseAction.execute();
-						System.out.println("Model size: " + model.size());
-						
-						List<IfcWall> walls = model.getAll(IfcWall.class);
-						List<IfcProject> projects = model.getAll(IfcProject.class);
-						List<IfcSlab> slabs = model.getAll(IfcSlab.class);
-						List<IfcWindow> windows = model.getAll(IfcWindow.class);
-						
-						System.out.println("Walls: " + walls.size());
-						System.out.println("Windows: " + windows.size());
-						System.out.println("Projects: " + projects.size());
-						System.out.println("Slabs: " + slabs.size());
-					} catch (UserException e1) {
-						e1.printStackTrace();
-					} catch (ServerException e1) {
-						e1.printStackTrace();
-					} catch (BimDeadlockException e) {
-						e.printStackTrace();
-					} catch (BimDatabaseException e) {
-						e.printStackTrace();
-					} finally {
-						bimDatabaseSession.close();
+						long roid = Long.parseLong(line.substring(9).trim());
+						BimDatabaseSession bimDatabaseSession = ServerInitializer.getDatabase().createReadOnlySession();	
+						try {
+							DownloadDatabaseAction downloadDatabaseAction = new DownloadDatabaseAction(bimDatabaseSession, AccessMethod.INTERNAL, ServerInitializer.getSettingsManager(), roid, ServerInitializer.getSystemService().getCurrentUser().getOid());
+							IfcModel model = downloadDatabaseAction.execute();
+							System.out.println("Model size: " + model.size());
+							
+							List<IfcWall> walls = model.getAll(IfcWall.class);
+							List<IfcProject> projects = model.getAll(IfcProject.class);
+							List<IfcSlab> slabs = model.getAll(IfcSlab.class);
+							List<IfcWindow> windows = model.getAll(IfcWindow.class);
+							
+							System.out.println("Walls: " + walls.size());
+							System.out.println("Windows: " + windows.size());
+							System.out.println("Projects: " + projects.size());
+							System.out.println("Slabs: " + slabs.size());
+						} catch (UserException e1) {
+							e1.printStackTrace();
+						} catch (ServerException e1) {
+							e1.printStackTrace();
+						} catch (BimDeadlockException e) {
+							e.printStackTrace();
+						} catch (BimDatabaseException e) {
+							e.printStackTrace();
+						} finally {
+							bimDatabaseSession.close();
+						}
+					} catch (Exception e) {
+						LOGGER.error("", e);
 					}
 				} else if (line.equalsIgnoreCase("dump")) {
 					System.out.println("Dumping all thread's track traces...");
