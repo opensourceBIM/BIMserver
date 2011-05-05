@@ -1,0 +1,419 @@
+package org.bimserver.clients.j3d;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.io.File;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+
+import javax.imageio.ImageIO;
+import javax.media.j3d.AmbientLight;
+import javax.media.j3d.Appearance;
+import javax.media.j3d.BoundingSphere;
+import javax.media.j3d.Bounds;
+import javax.media.j3d.BranchGroup;
+import javax.media.j3d.Canvas3D;
+import javax.media.j3d.DirectionalLight;
+import javax.media.j3d.Link;
+import javax.media.j3d.Locale;
+import javax.media.j3d.Material;
+import javax.media.j3d.PhysicalBody;
+import javax.media.j3d.PhysicalEnvironment;
+import javax.media.j3d.SharedGroup;
+import javax.media.j3d.Transform3D;
+import javax.media.j3d.TransformGroup;
+import javax.media.j3d.View;
+import javax.media.j3d.ViewPlatform;
+import javax.media.j3d.VirtualUniverse;
+import javax.swing.JFrame;
+import javax.vecmath.Color3f;
+import javax.vecmath.Matrix3f;
+import javax.vecmath.Point3d;
+import javax.vecmath.Vector3d;
+import javax.vecmath.Vector3f;
+
+import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
+
+import org.bimserver.clients.j3d.behavior.OrbitBehaviorInterim;
+import org.bimserver.emf.IdEObject;
+import org.bimserver.ifc.FieldIgnoreMap;
+import org.bimserver.ifc.FileFieldIgnoreMap;
+import org.bimserver.ifc.IfcModel;
+import org.bimserver.ifc.SchemaLoader;
+import org.bimserver.ifc.SerializerException;
+import org.bimserver.ifc.file.reader.IfcStepDeserializer;
+import org.bimserver.ifc.file.reader.IncorrectIfcFileException;
+import org.bimserver.models.ifc2x3.Ifc2x3Factory;
+import org.bimserver.models.ifc2x3.Ifc2x3Package;
+import org.bimserver.models.ifc2x3.IfcBeam;
+import org.bimserver.models.ifc2x3.IfcColumn;
+import org.bimserver.models.ifc2x3.IfcDistributionFlowElement;
+import org.bimserver.models.ifc2x3.IfcDoor;
+import org.bimserver.models.ifc2x3.IfcFlowTerminalType;
+import org.bimserver.models.ifc2x3.IfcFurnishingElement;
+import org.bimserver.models.ifc2x3.IfcGloballyUniqueId;
+import org.bimserver.models.ifc2x3.IfcOpeningElement;
+import org.bimserver.models.ifc2x3.IfcRailing;
+import org.bimserver.models.ifc2x3.IfcRoof;
+import org.bimserver.models.ifc2x3.IfcRoot;
+import org.bimserver.models.ifc2x3.IfcSite;
+import org.bimserver.models.ifc2x3.IfcSlab;
+import org.bimserver.models.ifc2x3.IfcSpace;
+import org.bimserver.models.ifc2x3.IfcStair;
+import org.bimserver.models.ifc2x3.IfcWall;
+import org.bimserver.models.ifc2x3.IfcWallStandardCase;
+import org.bimserver.models.ifc2x3.IfcWindow;
+import org.bimserver.models.ifc2x3.WrappedValue;
+import org.bimserver.shared.LocalDevelopmentResourceFetcher;
+import org.bimserver.utils.CollectionUtils;
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.sun.j3d.utils.geometry.Box;
+import com.sun.j3d.utils.universe.SimpleUniverse;
+
+public class IfcVisualiser extends JFrame {
+	private static final long serialVersionUID = -4779999816911473897L;
+	private static final Logger LOGGER = LoggerFactory.getLogger(IfcVisualiser.class);
+	private FieldIgnoreMap fieldIgnoreMap;
+	private SchemaDefinition schema;
+	private BranchGroup sceneBranchGroup;
+	private BranchGroup viewBranchGroup;
+	private OrbitBehaviorInterim orbitBehaviorInterim;
+	private volatile boolean showLoader;
+	private BranchGroup buildingBranchGroup;
+	private TransformGroup buildingTransformGroup;
+	private BranchGroup loaderBranchGroup;
+	private TransformGroup loaderTransformGroup;
+	private Canvas3D canvas;
+	private View view;
+	private SharedGroup sharedGroup;
+	private Appearances appearances = new Appearances();
+	private IfcEngine ifcEngine;
+
+	public static void main(String[] args) {
+		new IfcVisualiser().start();
+	}
+
+	private void start() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		try {
+			setIconImage(ImageIO.read(getClass().getResource("haussmall.png")));
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		setSize(800, 600);
+		getContentPane().setBackground(Color.BLACK);
+		setTitle("IFC Visualiser");
+		setVisible(true);
+
+		VirtualUniverse universe = new VirtualUniverse();
+		Locale locale = new Locale(universe);
+		canvas = new Canvas3D(SimpleUniverse.getPreferredConfiguration());
+
+		sceneBranchGroup = new BranchGroup();
+		sceneBranchGroup.setCapability(BranchGroup.ALLOW_CHILDREN_EXTEND);
+		sceneBranchGroup.setCapability(BranchGroup.ALLOW_CHILDREN_WRITE);
+		createLoaderSceneGraph();
+		locale.addBranchGraph(sceneBranchGroup);
+
+		showLoader = true;
+		new Thread() {
+			public void run() {
+				float x = 0;
+				float y = 0;
+				while (showLoader) {
+					Matrix3f matrixX = new Matrix3f();
+					matrixX.rotX(x);
+
+					Matrix3f matrixY = new Matrix3f();
+					matrixY.rotY(y);
+
+					Matrix3f rot = new Matrix3f();
+					rot.mul(matrixX, matrixY);
+
+					Transform3D transform3d = new Transform3D();
+					transform3d.setRotation(rot);
+					transform3d.setTranslation(new Vector3d(10, 0, 0));
+					loaderTransformGroup.setTransform(transform3d);
+					y -= 0.05;
+					x += 0.015;
+					try {
+						Thread.sleep(25);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+			};
+		}.start();
+
+		viewBranchGroup = new BranchGroup();
+		createViewBranch();
+		viewBranchGroup.compile();
+		locale.addBranchGraph(viewBranchGroup);
+
+		add(canvas, BorderLayout.CENTER);
+
+		canvas.setVisible(true);
+		validate();
+
+		LocalDevelopmentResourceFetcher resourceFetcher = new LocalDevelopmentResourceFetcher();
+		fieldIgnoreMap = new FileFieldIgnoreMap(CollectionUtils.singleSet(Ifc2x3Package.eINSTANCE), resourceFetcher);
+		schema = SchemaLoader.loadDefaultSchema();
+
+		ifcEngine = new CppIfcEngine(schema, appearances);
+
+		sharedGroup = new SharedGroup();
+
+		createSceneGraph();
+		System.out.println("Done");
+	}
+
+	protected void createViewBranch() {
+		TransformGroup viewTG = new TransformGroup();
+		viewTG.setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
+
+		ViewPlatform viewPlatform = new ViewPlatform();
+		view = new View();
+		view.setBackClipDistance(30000);
+		view.addCanvas3D(canvas);
+		view.setPhysicalBody(new PhysicalBody());
+		view.setPhysicalEnvironment(new PhysicalEnvironment());
+		view.attachViewPlatform(viewPlatform);
+
+		float halfRadius = (float) (getBoundingSphere(sceneBranchGroup).getRadius() / 2f);
+		Point3d center = new Point3d();
+		getBoundingSphere(sceneBranchGroup).getCenter(center);
+
+		BoundingSphere globalBounds = new BoundingSphere();
+		globalBounds.setRadius(Double.MAX_VALUE);
+
+		orbitBehaviorInterim = new OrbitBehaviorInterim(canvas, viewTG, OrbitBehaviorInterim.REVERSE_ROTATE | OrbitBehaviorInterim.REVERSE_TRANSLATE);
+
+		orbitBehaviorInterim.setRotationCenter(center);
+		orbitBehaviorInterim
+				.setViewingTransform(new Point3d(halfRadius, getViewPlatformDistance(sceneBranchGroup, canvas, view), halfRadius), center, new Vector3d(0, -1, 0), true);
+		orbitBehaviorInterim.setVpView(view);
+		orbitBehaviorInterim.setTransFactors(3.0, 3.0);
+		orbitBehaviorInterim.setSchedulingBounds(globalBounds);
+
+		viewTG.addChild(viewPlatform);
+		viewTG.addChild(orbitBehaviorInterim);
+
+		viewBranchGroup.addChild(viewTG);
+	}
+
+	private void reInitView() {
+		Point3d center = new Point3d();
+		getBoundingSphere(sceneBranchGroup).getCenter(center);
+		float halfRadius = (float) (getBoundingSphere(sceneBranchGroup).getRadius() / 2f);
+		orbitBehaviorInterim.setRotationCenter(center);
+		orbitBehaviorInterim
+				.setViewingTransform(new Point3d(halfRadius, getViewPlatformDistance(sceneBranchGroup, canvas, view), halfRadius), center, new Vector3d(0, -1, 0), true);
+	}
+
+	private void createLoaderSceneGraph() {
+		loaderBranchGroup = new BranchGroup();
+		loaderBranchGroup.setCapability(BranchGroup.ALLOW_DETACH);
+		loaderTransformGroup = new TransformGroup();
+		loaderTransformGroup.setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
+		addLights(loaderBranchGroup);
+		Appearance loaderAppearance = new Appearance();
+		Color3f loaderColor = new Color3f(0.5f, 0.5f, 0.5f);
+		Material loaderMaterial = new Material(loaderColor, new Color3f(), loaderColor, loaderColor, 10);
+		loaderMaterial.setLightingEnable(true);
+		loaderAppearance.setMaterial(loaderMaterial);
+		for (int i = 0; i < 20; i++) {
+			Transform3D translate3d = new Transform3D();
+			translate3d.setTranslation(new Vector3f(0f, 0f, 0.9f));
+			TransformGroup translate = new TransformGroup(translate3d);
+
+			Transform3D rotationY3d = new Transform3D();
+			rotationY3d.rotY((Math.PI * 2 * i) / 20);
+			TransformGroup rotateY = new TransformGroup(rotationY3d);
+			rotateY.addChild(translate);
+
+			Box box = new Box(0.1f, 0.1f, 0.1f, loaderAppearance);
+			translate.addChild(box);
+			loaderTransformGroup.addChild(rotateY);
+		}
+		loaderBranchGroup.addChild(loaderTransformGroup);
+		sceneBranchGroup.addChild(loaderBranchGroup);
+	}
+
+	private void createSceneGraph() {
+		buildingTransformGroup = new TransformGroup();
+		IfcStepDeserializer deserializer = new IfcStepDeserializer(schema);
+		try {
+//			deserializer.read(new File("../TestData/data/export1.ifc"));
+			deserializer.read(new File("../TestData/data/AC11-Institute-Var-2-IFC.ifc"));
+		} catch (IncorrectIfcFileException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		IfcModel model = deserializer.getModel();
+		model.setObjectOids();
+
+		Set<Class<? extends IfcRoot>> classesToConvert = new HashSet<Class<? extends IfcRoot>>();
+		classesToConvert.add(IfcWall.class);
+		classesToConvert.add(IfcWallStandardCase.class);
+		classesToConvert.add(IfcWindow.class);
+		classesToConvert.add(IfcOpeningElement.class);
+		classesToConvert.add(IfcSlab.class);
+		classesToConvert.add(IfcRoof.class);
+		classesToConvert.add(IfcColumn.class);
+		classesToConvert.add(IfcSpace.class);
+		classesToConvert.add(IfcDoor.class);
+		classesToConvert.add(IfcRailing.class);
+		classesToConvert.add(IfcFurnishingElement.class);
+		classesToConvert.add(IfcStair.class);
+		classesToConvert.add(IfcBeam.class);
+		classesToConvert.add(IfcFlowTerminalType.class);
+		classesToConvert.add(IfcDistributionFlowElement.class);
+		classesToConvert.add(IfcSite.class);
+//		classesToConvert.add(IfcProxy.class);
+
+		for (IdEObject idEObject : model.getValues()) {
+			if (classesToConvert.contains(idEObject.eClass().getInstanceClass())) {
+				try {
+					setGeometry((IfcRoot) idEObject);
+				} catch (SerializerException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		buildingBranchGroup = new BranchGroup();
+		addLights(buildingBranchGroup);
+		buildingBranchGroup.addChild(buildingTransformGroup);
+		showLoader = false;
+		sceneBranchGroup.removeChild(loaderBranchGroup);
+		sharedGroup.addChild(buildingBranchGroup);
+
+//		for (int x = 0; x < 5; x++) {
+//			for (int y = 0; y < 5; y++) {
+				Link link1 = new Link(sharedGroup);
+				Transform3D t3d1 = new Transform3D();
+//				t3d1.setTranslation(new Vector3f(x * 20, y * 20, 0f));
+				BranchGroup x1 = new BranchGroup();
+				TransformGroup t1 = new TransformGroup(t3d1);
+				x1.addChild(t1);
+				t1.addChild(link1);
+				sceneBranchGroup.addChild(x1);
+//			}
+//		}
+
+		reInitView();
+	}
+
+	private void addLights(BranchGroup transformGroup) {
+		BoundingSphere bounds = new BoundingSphere(new Point3d(0.0, 0.0, 0.0), 100000.0);
+
+		AmbientLight ambientLight = new AmbientLight(new Color3f(0.5f, 0.5f, 0.5f));
+		ambientLight.setInfluencingBounds(bounds);
+		transformGroup.addChild(ambientLight);
+
+		Color3f lightColor = new Color3f(1.0f, 1.0f, 1.0f);
+		Vector3f light1Direction = new Vector3f(4.0f, -7.0f, -12.0f);
+		DirectionalLight light1 = new DirectionalLight(true, lightColor, light1Direction);
+		light1.setInfluencingBounds(bounds);
+		transformGroup.addChild(light1);
+
+		light1Direction.negate();
+		DirectionalLight light2 = new DirectionalLight(true, lightColor, light1Direction);
+		light2.setInfluencingBounds(bounds);
+		transformGroup.addChild(light2);
+	}
+
+	public float getViewPlatformDistance(BranchGroup scene, Component canvas, View view) {
+		BoundingSphere sceneSphere = getBoundingSphere(scene);
+		double sceneRadius = sceneSphere.getRadius();
+		double borderFactor = 1.3;
+		double ratioFactor = 1.0;
+		int canvasWidth = canvas.getWidth();
+		int canvasHeight = canvas.getHeight();
+		if (canvasWidth > canvasHeight) {
+			ratioFactor = (double) canvasWidth / canvasHeight;
+		}
+		double distance = ratioFactor * borderFactor * sceneRadius / Math.tan(view.getFieldOfView() / 2);
+		return (float) distance;
+	}
+
+	private BoundingSphere getBoundingSphere(BranchGroup scene) {
+		Bounds bounds = scene.getBounds();
+		BoundingSphere sceneSphere = null;
+		if (bounds instanceof BoundingSphere) {
+			sceneSphere = (BoundingSphere) bounds;
+		} else {
+			sceneSphere = new BoundingSphere(bounds);
+		}
+		return sceneSphere;
+	}
+
+	private void setGeometry(IfcRoot ifcRootObject) throws SerializerException {
+		IfcModel ifcModel = new IfcModel();
+		convertToSubset(ifcRootObject.eClass(), ifcRootObject, ifcModel, new HashMap<EObject, EObject>());
+		ifcEngine.createTriangles(ifcRootObject, ifcModel, buildingTransformGroup);
+	}
+
+	@SuppressWarnings("unchecked")
+	protected EObject convertToSubset(EClass originalClass, IdEObject ifcRootObject, IfcModel newModel, Map<EObject, EObject> converted) {
+		IdEObject newObject = (IdEObject) Ifc2x3Factory.eINSTANCE.create(ifcRootObject.eClass());
+		newObject.setOid(ifcRootObject.getOid());
+		converted.put(ifcRootObject, newObject);
+		if (!(newObject instanceof WrappedValue) && !(newObject instanceof IfcGloballyUniqueId)) {
+			newModel.add(newObject.getOid(), newObject, true);
+		}
+		for (EStructuralFeature eStructuralFeature : ifcRootObject.eClass().getEAllStructuralFeatures()) {
+			if (!fieldIgnoreMap.shouldIgnoreField(ifcRootObject.eClass(), ifcRootObject.eClass(), eStructuralFeature)) {
+				Object get = ifcRootObject.eGet(eStructuralFeature);
+				if (eStructuralFeature instanceof EAttribute) {
+					if (get instanceof Float || get instanceof Double) {
+						EStructuralFeature floatStringFeature = ifcRootObject.eClass().getEStructuralFeature("wrappedValueAsString");
+						if (floatStringFeature != null) {
+							Object floatString = ifcRootObject.eGet(floatStringFeature);
+							newObject.eSet(floatStringFeature, floatString);
+						} else {
+							newObject.eSet(eStructuralFeature, get);
+						}
+					} else {
+						newObject.eSet(eStructuralFeature, get);
+					}
+				} else if (eStructuralFeature instanceof EReference) {
+					if (get == null) {
+					} else {
+						if (eStructuralFeature.isMany()) {
+							BasicEList<EObject> list = (BasicEList<EObject>) get;
+							BasicEList<EObject> toList = (BasicEList<EObject>) newObject.eGet(eStructuralFeature);
+							for (Object o : list) {
+								if (converted.containsKey(o)) {
+									toList.addUnique(converted.get(o));
+								} else {
+									toList.addUnique(convertToSubset(originalClass, (IdEObject) o, newModel, converted));
+								}
+							}
+						} else {
+							if (converted.containsKey(get)) {
+								newObject.eSet(eStructuralFeature, converted.get(get));
+							} else {
+								newObject.eSet(eStructuralFeature, convertToSubset(originalClass, (IdEObject) get, newModel, converted));
+							}
+						}
+					}
+				}
+			}
+		}
+		return newObject;
+	}
+}
