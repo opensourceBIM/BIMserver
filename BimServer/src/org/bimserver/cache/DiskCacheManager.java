@@ -7,6 +7,7 @@ import java.io.IOException;
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
 
+import org.bimserver.SettingsManager;
 import org.bimserver.ifc.EmfSerializerDataSource;
 import org.bimserver.ifc.SerializerException;
 import org.bimserver.longaction.DownloadParameters;
@@ -16,22 +17,19 @@ import org.slf4j.LoggerFactory;
 public class DiskCacheManager {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(DiskCacheManager.class);
-	private boolean enabled = true;
 	private final File cacheDir;
+	private final SettingsManager settingsManager;
 
-	public DiskCacheManager(File cacheDir) {
+	public DiskCacheManager(File cacheDir, SettingsManager settingsManager) {
 		this.cacheDir = cacheDir;
+		this.settingsManager = settingsManager;
 		if (!cacheDir.exists()) {
 			cacheDir.mkdir();
 		}
 	}
 	
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
-	}
-	
 	public boolean contains(DownloadParameters downloadParameters) {
-		if (enabled) {
+		if (isEnabled()) {
 			File cachefile = new File(cacheDir, downloadParameters.getId());
 			return cachefile.exists();
 		} else {
@@ -39,8 +37,12 @@ public class DiskCacheManager {
 		}
 	}
 	
+	private boolean isEnabled() {
+		return settingsManager.getSettings().isCacheOutputFiles();
+	}
+
 	public void store(DownloadParameters downloadParameters, DataHandler dataHandler) {
-		if (enabled) {
+		if (isEnabled()) {
 			try {
 				EmfSerializerDataSource emfSerializerDataSource = (EmfSerializerDataSource)dataHandler.getDataSource();
 				FileOutputStream fileOutputStream = new FileOutputStream(new File(cacheDir, downloadParameters.getId()));
@@ -55,7 +57,7 @@ public class DiskCacheManager {
 	}
 
 	public DataSource get(DownloadParameters downloadParameters) {
-		if (enabled) {
+		if (isEnabled()) {
 			FileInputStreamDataSource fileInputStreamDataSource = new FileInputStreamDataSource(new File(cacheDir, downloadParameters.getId()));
 			fileInputStreamDataSource.setName(downloadParameters.getFileName());
 			return fileInputStreamDataSource;

@@ -111,12 +111,12 @@ public class Merger {
 	public static interface MergeIdentifier {
 		String getIdentifier(IdEObject idEObject);
 	}
-	
+
 	public static class GuidMergeIdentifier implements MergeIdentifier {
 		@Override
 		public String getIdentifier(IdEObject idEObject) {
 			if (idEObject instanceof IfcRoot) {
-				IfcRoot ifcRoot = (IfcRoot)idEObject;
+				IfcRoot ifcRoot = (IfcRoot) idEObject;
 				if (ifcRoot.getGlobalId() != null) {
 					return ifcRoot.getGlobalId().getWrappedValue();
 				}
@@ -124,12 +124,12 @@ public class Merger {
 			return null;
 		}
 	}
-	
+
 	public static class NameMergeIdentifier implements MergeIdentifier {
 		@Override
 		public String getIdentifier(IdEObject idEObject) {
 			if (idEObject instanceof IfcRoot) {
-				IfcRoot ifcRoot = (IfcRoot)idEObject;
+				IfcRoot ifcRoot = (IfcRoot) idEObject;
 				return ifcRoot.getName();
 			}
 			return null;
@@ -139,7 +139,7 @@ public class Merger {
 	public Merger(MergeIdentifier mergeIdentifier) {
 		this.mergeIdentifier = mergeIdentifier;
 	}
-	
+
 	/*
 	 * ifcModels MUST be ordered by date already
 	 */
@@ -158,7 +158,7 @@ public class Merger {
 		if (intelligentMerging) {
 			LOGGER.info("Intelligent merging");
 
-			Map<String, List<IdEObject>> identifierMap = buildIdentifierMap(null);
+			Map<String, List<IdEObject>> identifierMap = buildIdentifierMap();
 			cleanIdentifierMap(identifierMap);
 		}
 
@@ -166,31 +166,32 @@ public class Merger {
 		return model;
 	}
 
-	private Map<String, List<IdEObject>> buildIdentifierMap(EClass eClass) {
+	private Map<String, List<IdEObject>> buildIdentifierMap() {
 		Map<String, List<IdEObject>> map = new HashMap<String, List<IdEObject>>();
 		for (IfcModel model : modelSet) {
 			for (IdEObject idEObject : model.getValues()) {
 				if (idEObject instanceof IfcRoot) {
 					IfcRoot ifcRoot = (IfcRoot) idEObject;
-					if (eClass == null || eClass.isInstance(idEObject)) {
-						String identifier = mergeIdentifier.getIdentifier(idEObject);
-						if (identifier != null) {
-							if (!processedIdentifiers.contains(identifier)) {
-								if (map.containsKey(identifier)) {
-									if (map.get(identifier).get(0).eClass() != ifcRoot.eClass()) {
-										LOGGER.info("Not merging " + identifier + " because different types are found: " + map.get(identifier).get(0).eClass().getName() + " and "
-												+ ifcRoot.eClass().getName());
-									} else {
-										if (model.contains(ifcRoot)) {
-											map.get(identifier).add(ifcRoot);
-										}
-									}
+					if (ifcRoot instanceof IfcSite) {
+						System.out.println();
+					}
+					String identifier = mergeIdentifier.getIdentifier(idEObject);
+					if (identifier != null) {
+						if (!processedIdentifiers.contains(identifier)) {
+							if (map.containsKey(identifier)) {
+								if (map.get(identifier).get(0).eClass() != ifcRoot.eClass()) {
+									LOGGER.info("Not merging " + identifier + " because different types are found: " + map.get(identifier).get(0).eClass().getName() + " and "
+											+ ifcRoot.eClass().getName());
 								} else {
 									if (model.contains(ifcRoot)) {
-										List<IdEObject> list = new ArrayList<IdEObject>();
-										list.add(ifcRoot);
-										map.put(identifier, list);
+										map.get(identifier).add(ifcRoot);
 									}
+								}
+							} else {
+								if (model.contains(ifcRoot)) {
+									List<IdEObject> list = new ArrayList<IdEObject>();
+									list.add(ifcRoot);
+									map.put(identifier, list);
 								}
 							}
 						}
@@ -198,6 +199,7 @@ public class Merger {
 				}
 			}
 		}
+		System.out.println(map.size());
 		return map;
 	}
 
@@ -1232,7 +1234,8 @@ public class Merger {
 						if (unitType == IfcUnitEnum.LENGTHUNIT) {
 							prefixFound = true;
 							if (prefix == SIPrefix.METER) {
-								// Set the prefix to null, there is no "meter" prefix in IFC
+								// Set the prefix to null, there is no "meter"
+								// prefix in IFC
 								ifcSIUnit.setPrefix(null);
 							} else {
 								ifcSIUnit.setPrefix(IfcSIPrefix.valueOf(prefix.getLiteral()));

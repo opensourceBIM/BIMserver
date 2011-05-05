@@ -15,6 +15,7 @@
 <%@page import="org.bimserver.interfaces.objects.SUserType"%>
 <%@page import="org.bimserver.shared.ServiceInterface"%>
 <%@page import="org.bimserver.shared.UserException"%>
+<%@page import="org.bimserver.interfaces.objects.SMergeIdentifier"%>
 <div class="sidebar">
 <ul>
 	<li><a href="<%=getServletContext().getContextPath()%>/migrations.jsp">Migrations</a></li>
@@ -33,7 +34,7 @@
 				service.setSettingShowVersionUpgradeAvailable(request.getParameter("showVersionUpgradeAvailable") != null);
 				service.setSettingAllowUsersToCreateTopLevelProjects(request.getParameter("allowUsersToCreateTopLevelProjects") != null);
 				service.setSettingSmtpServer(request.getParameter("smtpServer"));
-				service.setSettingUseCaching(request.getParameter("usecaching") != null);
+				service.setSettingCacheOutputFiles(request.getParameter("cacheOutputFiles") != null);
 				service.setSettingIntelligentMerging(request.getParameter("intelligentMerging") != null);
 				service.setSettingAutoTestClashes(request.getParameter("autoTestClashes") != null);
 				service.setSettingCustomLogoAddress(request.getParameter("customLogo"));
@@ -41,7 +42,7 @@
 				service.setSettingCheckinMergingEnabled(request.getParameter("checkinMergingEnabled") != null);
 				service.setSettingHeaderAddition(request.getParameter("headerAddition"));
 				service.setSettingFooterAddition(request.getParameter("footerAddition"));
-				service(request.getParameter("footerAddition"));
+				service.setSettingMergeIdentifier(SMergeIdentifier.valueOf(request.getParameter("mergeIdentifier")));
 				String enabledExportTypes = "";
 				Set<String> enabledTypes = new HashSet<String>();
 				for (ResultType resultType : loginManager.getService().getAllResultTypes()) {
@@ -148,6 +149,23 @@
 		<td><label for="intelligentMerging">Intelligent merging</label></td>
 		<td><input id="intelligentMerging" name="intelligentMerging" type="checkbox"
 			<%=(request.getParameter("save") == null ? service.isSettingIntelligentMerging() : request.getParameter("intelligentMerging") != null) ? " checked=\"checked\"" : ""%>></input></td>
+	</tr>
+	<tr>
+		<td><label for="cacheOutputFiles">Cache output files</label></td>
+		<td><input id="cacheOutputFiles" name="cacheOutputFiles" type="checkbox"
+			<%=(request.getParameter("save") == null ? service.isSettingCacheOutputFiles() : request.getParameter("cacheOutputFiles") != null) ? " checked=\"checked\"" : ""%>></input></td>
+	</tr>
+	<tr>
+		<td><label for="mergeIdentifier">Intelligent merging identifier</label></td>
+		<td><select name="mergeIdentifier">
+<%
+	for (SMergeIdentifier sMergeIdentifier : SMergeIdentifier.values()) {
+%>
+	<option value="<%=sMergeIdentifier.name()%>"<%=request.getParameter("mergeIdentifier") != null && request.getParameter("mergeIdentifier").equals(sMergeIdentifier.name()) ? " SELECTED=\"SELECTED\"" : (service.getSettingMergeIdentifier() == sMergeIdentifier ? " SELECTED=\"SELECTED\"" : "") %>><%=sMergeIdentifier.name() %></option>
+<%
+	}
+%>
+		</select></td>
 	</tr>
 	<tr>
 		<td><label for="checkinMergingEnabled">Checkin merging <span

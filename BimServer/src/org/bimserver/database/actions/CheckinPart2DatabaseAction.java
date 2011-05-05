@@ -2,6 +2,7 @@ package org.bimserver.database.actions;
 
 import java.util.Date;
 
+import org.bimserver.MergerFactory;
 import org.bimserver.SettingsManager;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
@@ -10,9 +11,7 @@ import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelSet;
 import org.bimserver.merging.IncrementingOidProvider;
-import org.bimserver.merging.Merger;
 import org.bimserver.merging.RevisionMerger;
-import org.bimserver.merging.Merger.GuidMergeIdentifier;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.CheckinState;
 import org.bimserver.models.store.ConcreteRevision;
@@ -27,11 +26,13 @@ public class CheckinPart2DatabaseAction extends BimDatabaseAction<Void> {
 	private final long croid;
 	private final boolean merge;
 	private final SettingsManager settingsManager;
+	private final MergerFactory mergerFactory;
 
-	public CheckinPart2DatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, SettingsManager settingsManager, IfcModel ifcModel, long actingUoid, long croid, boolean merge) {
+	public CheckinPart2DatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, SettingsManager settingsManager, IfcModel ifcModel, MergerFactory mergerFactory, long actingUoid, long croid, boolean merge) {
 		super(bimDatabaseSession, accessMethod);
 		this.settingsManager = settingsManager;
 		this.ifcModel = ifcModel;
+		this.mergerFactory = mergerFactory;
 		this.actingUoid = actingUoid;
 		this.croid = croid;
 		this.merge = merge;
@@ -55,7 +56,7 @@ public class CheckinPart2DatabaseAction extends BimDatabaseAction<Void> {
 				getIfcModel().setDate(new Date());
 				IfcModel newModel = getIfcModel();
 				newModel.fixOids(getDatabaseSession());
-				IfcModel oldModel = new Merger(new GuidMergeIdentifier()).merge(project, ifcModelSet, settingsManager.getSettings().isIntelligentMerging());
+				IfcModel oldModel = mergerFactory.createMerger().merge(project, ifcModelSet, settingsManager.getSettings().isIntelligentMerging());
 				
 				oldModel.setObjectOids();
 				newModel.setObjectOids();

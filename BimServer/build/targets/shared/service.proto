@@ -239,9 +239,9 @@ service ServiceInterface {
 
 	rpc setSettingShowVersionUpgradeAvailable (SetSettingShowVersionUpgradeAvailableRequest) returns (Void);
 
-	rpc isSettingUseCaching (IsSettingUseCachingRequest) returns (IsSettingUseCachingResponse);
+	rpc isSettingCacheOutputFiles (IsSettingCacheOutputFilesRequest) returns (IsSettingCacheOutputFilesResponse);
 
-	rpc setSettingUseCaching (SetSettingUseCachingRequest) returns (Void);
+	rpc setSettingCacheOutputFiles (SetSettingCacheOutputFilesRequest) returns (Void);
 
 	rpc getLogs (GetLogsRequest) returns (GetLogsResponse);
 
@@ -1508,16 +1508,16 @@ message SetSettingShowVersionUpgradeAvailableRequest {
 	optional bool showVersionUpgradeAvailable = 1;
 }
 
-message IsSettingUseCachingRequest {
+message IsSettingCacheOutputFilesRequest {
 }
 
-message IsSettingUseCachingResponse {
+message IsSettingCacheOutputFilesResponse {
 	optional bool value = 2;
 	optional string errorMessage = 1;
 }
 
-message SetSettingUseCachingRequest {
-	optional bool useCaching = 1;
+message SetSettingCacheOutputFilesRequest {
+	optional bool cacheOutputFiles = 1;
 }
 
 message GetLogsRequest {

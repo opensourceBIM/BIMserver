@@ -2,6 +2,7 @@ package org.bimserver.database.actions;
 
 import java.util.concurrent.atomic.AtomicLong;
 
+import org.bimserver.MergerFactory;
 import org.bimserver.SettingsManager;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
@@ -9,8 +10,6 @@ import org.bimserver.database.BimDeadlockException;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelChangeListener;
 import org.bimserver.ifc.IfcModelSet;
-import org.bimserver.merging.Merger;
-import org.bimserver.merging.Merger.GuidMergeIdentifier;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
@@ -25,10 +24,12 @@ public class DownloadDatabaseAction extends BimDatabaseAction<IfcModel> {
 	private final long actingUoid;
 	private int progress;
 	private final SettingsManager settingsManager;
+	private final MergerFactory mergerFactory;
 
-	public DownloadDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, SettingsManager settingsManager, long roid, long actingUoid) {
+	public DownloadDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, SettingsManager settingsManager, MergerFactory mergerFactory, long roid, long actingUoid) {
 		super(bimDatabaseSession, accessMethod);
 		this.settingsManager = settingsManager;
+		this.mergerFactory = mergerFactory;
 		this.roid = roid;
 		this.actingUoid = actingUoid;
 	}
@@ -64,7 +65,7 @@ public class DownloadDatabaseAction extends BimDatabaseAction<IfcModel> {
 			subModel.setDate(subRevision.getDate());
 			ifcModelSet.add(subModel);
 		}
-		IfcModel ifcModel = new Merger(new GuidMergeIdentifier()).merge(revision.getProject(), ifcModelSet, settingsManager.getSettings().isIntelligentMerging());
+		IfcModel ifcModel = mergerFactory.createMerger().merge(revision.getProject(), ifcModelSet, settingsManager.getSettings().isIntelligentMerging());
 		ifcModel.setRevisionNr(project.getRevisions().indexOf(revision) + 1);
 		ifcModel.setAuthorizedUser(user.getName());
 		ifcModel.setDate(revision.getDate());

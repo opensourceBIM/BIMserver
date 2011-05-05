@@ -53,6 +53,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.Settings#getHeaderAddition <em>Header Addition</em>}</li>
  *   <li>{@link org.bimserver.models.store.Settings#getFooterAddition <em>Footer Addition</em>}</li>
  *   <li>{@link org.bimserver.models.store.Settings#getMergeIdentifier <em>Merge Identifier</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Settings#isCacheOutputFiles <em>Cache Output Files</em>}</li>
  * </ul>
  * </p>
  *
@@ -543,5 +544,31 @@ public interface Settings extends IdEObject
 	 * @generated
 	 */
 	void setMergeIdentifier(MergeIdentifier value);
+
+	/**
+	 * Returns the value of the '<em><b>Cache Output Files</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Cache Output Files</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Cache Output Files</em>' attribute.
+	 * @see #setCacheOutputFiles(boolean)
+	 * @see org.bimserver.models.store.StorePackage#getSettings_CacheOutputFiles()
+	 * @model
+	 * @generated
+	 */
+	boolean isCacheOutputFiles();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.Settings#isCacheOutputFiles <em>Cache Output Files</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Cache Output Files</em>' attribute.
+	 * @see #isCacheOutputFiles()
+	 * @generated
+	 */
+	void setCacheOutputFiles(boolean value);
 
 } // Settings

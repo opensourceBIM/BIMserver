@@ -1,5 +1,6 @@
 package org.bimserver.database.actions;
 
+import org.bimserver.MergerFactory;
 import org.bimserver.SettingsManager;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
@@ -23,10 +24,12 @@ public class DownloadOfTypeDatabaseAction extends BimDatabaseAction<IfcModel> {
 	private final long roid;
 	private int progress;
 	private final SettingsManager settingsManager;
+	private final MergerFactory mergerFactory;
 
-	public DownloadOfTypeDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, SettingsManager settingsManager, long roid, String className, long actingUoid) {
+	public DownloadOfTypeDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, SettingsManager settingsManager, MergerFactory mergerFactory, long roid, String className, long actingUoid) {
 		super(bimDatabaseSession, accessMethod);
 		this.settingsManager = settingsManager;
+		this.mergerFactory = mergerFactory;
 		this.roid = roid;
 		this.actingUoid = actingUoid;
 		this.className = className;
@@ -46,7 +49,7 @@ public class DownloadOfTypeDatabaseAction extends BimDatabaseAction<IfcModel> {
 			subModel.setDate(concreteRevision.getDate());
 			ifcModelSet.add(subModel);
 		}
-		IfcModel IfcModel = new Merger(new GuidMergeIdentifier()).merge(project, ifcModelSet, settingsManager.getSettings().isIntelligentMerging());
+		IfcModel IfcModel = mergerFactory.createMerger().merge(project, ifcModelSet, settingsManager.getSettings().isIntelligentMerging());
 		IfcModel.setRevisionNr(project.getRevisions().indexOf(virtualRevision) + 1);
 		IfcModel.setAuthorizedUser(getUserByUoid(actingUoid).getName());
 		IfcModel.setDate(virtualRevision.getDate());
@@ -56,5 +59,4 @@ public class DownloadOfTypeDatabaseAction extends BimDatabaseAction<IfcModel> {
 	public int getProgress() {
 		return progress;
 	}
-
 }

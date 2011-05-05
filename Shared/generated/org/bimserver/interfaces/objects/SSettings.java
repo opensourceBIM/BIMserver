@@ -34,6 +34,7 @@ public class SSettings
 	private java.lang.String headerAddition;
 	private java.lang.String footerAddition;
 	private SMergeIdentifier mergeIdentifier;
+	private boolean cacheOutputFiles;
 
 	public boolean isShowVersionUpgradeAvailable() {
 		return showVersionUpgradeAvailable;
@@ -182,6 +183,14 @@ public class SSettings
 
 	public void setMergeIdentifier(SMergeIdentifier mergeIdentifier) {
 		this.mergeIdentifier = mergeIdentifier;
+	}
+
+	public boolean isCacheOutputFiles() {
+		return cacheOutputFiles;
+	}
+
+	public void setCacheOutputFiles(boolean cacheOutputFiles) {
+		this.cacheOutputFiles = cacheOutputFiles;
 	}
 	@Override
 	public int hashCode() {

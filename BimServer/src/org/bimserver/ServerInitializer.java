@@ -106,7 +106,7 @@ public class ServerInitializer implements ServletContextListener {
 	private IfcEngineFactory ifcEngineFactory;
 	private PackageDefinition colladaSettings;
 	private EmfSerializerFactory emfSerializerFactory;
-	private MergerFactory mergerFactory;
+	private static MergerFactory mergerFactory;
 
 	@Override
 	public void contextInitialized(ServletContextEvent servletContextEvent) {
@@ -231,7 +231,7 @@ public class ServerInitializer implements ServletContextListener {
 
 			TempUtils.makeTempDir("bimserver");
 			
-			DiskCacheManager diskCacheManager = new DiskCacheManager(new File(homeDir, "cache"));
+			DiskCacheManager diskCacheManager = new DiskCacheManager(new File(homeDir, "cache"), settingsManager);
 
 			mergerFactory = new MergerFactory(settingsManager);
 			ServiceFactory.init(bimDatabase, emfSerializerFactory, schema, longActionManager, ifcEngineFactory, fieldIgnoreMap, settingsManager, mailSystem, diskCacheManager, mergerFactory);
@@ -455,5 +455,9 @@ public class ServerInitializer implements ServletContextListener {
 
 	public static ServiceInterface getSystemService() {
 		return systemService;
+	}
+
+	public static MergerFactory getMergerFactory() {
+		return mergerFactory;
 	}
 }
