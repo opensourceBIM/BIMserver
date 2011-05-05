@@ -42,5 +42,4 @@ public class SDownloadResult {
 	public void setFile(DataHandler ifcFile) {
 		this.file = ifcFile;
 	}
-
 }

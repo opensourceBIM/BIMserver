@@ -21,12 +21,12 @@ public class EmfSerializerDataSource implements DataSource {
 
 	@Override
 	public InputStream getInputStream() throws IOException {
-		return null;
+		return serializer.getInputStream();
 	}
 
 	@Override
 	public String getName() {
-		return null;
+		return serializer.getName();
 	}
 
 	@Override
