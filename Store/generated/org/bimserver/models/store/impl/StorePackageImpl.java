@@ -1379,6 +1379,15 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getSettings_CacheOutputFiles() {
+		return (EAttribute)settingsEClass.getEStructuralFeatures().get(19);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getSerializer()
 	{
 		return serializerEClass;
@@ -1694,6 +1703,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 		createEAttribute(settingsEClass, SETTINGS__HEADER_ADDITION);
 		createEAttribute(settingsEClass, SETTINGS__FOOTER_ADDITION);
 		createEAttribute(settingsEClass, SETTINGS__MERGE_IDENTIFIER);
+		createEAttribute(settingsEClass, SETTINGS__CACHE_OUTPUT_FILES);
 
 		serializerEClass = createEClass(SERIALIZER);
 		createEAttribute(serializerEClass, SERIALIZER__NAME);
@@ -1871,6 +1881,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 		initEAttribute(getSettings_HeaderAddition(), ecorePackage.getEString(), "headerAddition", null, 0, 1, Settings.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getSettings_FooterAddition(), ecorePackage.getEString(), "footerAddition", null, 0, 1, Settings.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getSettings_MergeIdentifier(), this.getMergeIdentifier(), "mergeIdentifier", null, 0, 1, Settings.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSettings_CacheOutputFiles(), ecorePackage.getEBoolean(), "cacheOutputFiles", null, 0, 1, Settings.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(serializerEClass, Serializer.class, "Serializer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getSerializer_Name(), ecorePackage.getEString(), "name", null, 0, 1, Serializer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

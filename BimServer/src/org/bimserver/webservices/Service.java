@@ -411,7 +411,7 @@ public class Service implements ServiceInterface {
 			User userByUoid = session.executeAction(getUserByUoidDatabaseAction, DEADLOCK_RETRIES);
 			ConcreteRevision revision = session.executeAndCommitAction(action, DEADLOCK_RETRIES);
 			session.close();
-			CheckinPart2DatabaseAction createCheckinAction = new CheckinPart2DatabaseAction(null, accessMethod, settingsManager, model, currentUoid, revision.getOid(), merge);
+			CheckinPart2DatabaseAction createCheckinAction = new CheckinPart2DatabaseAction(null, accessMethod, settingsManager, model, mergerFactory, currentUoid, revision.getOid(), merge);
 			SCheckinResult result = new SCheckinResult();
 			result.setRid(revision.getId());
 			result.setPoid(revision.getProject().getOid());
@@ -893,7 +893,7 @@ public class Service implements ServiceInterface {
 	}
 
 	private int download(DownloadParameters downloadParameters, boolean sync) throws UserException, ServerException {
-		LongDownloadOrCheckoutAction longDownloadAction = new LongDownloadAction(downloadParameters, currentUoid, longActionManager, bimDatabase, accessMethod, emfSerializerFactory, settingsManager, diskCacheManager);
+		LongDownloadOrCheckoutAction longDownloadAction = new LongDownloadAction(downloadParameters, currentUoid, longActionManager, bimDatabase, accessMethod, emfSerializerFactory, settingsManager, diskCacheManager, mergerFactory);
 		try {
 			longActionManager.start(longDownloadAction);
 		} catch (CannotBeScheduledException e) {
@@ -1181,7 +1181,7 @@ public class Service implements ServiceInterface {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimDatabase.createSession(true);
 		try {
-			BimDatabaseAction<CompareResult> action = new CompareDatabaseAction(session, accessMethod, settingsManager, currentUoid, roid1, roid2, sCompareType, sCompareIdentifier);
+			BimDatabaseAction<CompareResult> action = new CompareDatabaseAction(session, accessMethod, settingsManager, mergerFactory, currentUoid, roid1, roid2, sCompareType, sCompareIdentifier);
 			return convert(session.executeAndCommitAction(action, DEADLOCK_RETRIES), SCompareResult.class, session);
 		} catch (Exception e) {
 			handleException(e);
@@ -1328,7 +1328,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public SDataObject getDataObjectByGuid(long roid, String guid) throws UserException, ServerException {
 		requireAuthenticationAndRunningServer();
-		BimDatabaseSession session = bimDatabase.createSession(true);
+		BimDatabaseSession session = bimDatabase.createReadOnlySession();
 		try {
 			BimDatabaseAction<SDataObject> action = new GetDataObjectByGuidDatabaseAction(session, accessMethod, settingsManager, mergerFactory, roid, guid);
 			SDataObject dataObject = session.executeAndCommitAction(action, DEADLOCK_RETRIES);
@@ -1434,7 +1434,7 @@ public class Service implements ServiceInterface {
 			try {
 				ConcreteRevision revision = session.executeAndCommitAction(action, DEADLOCK_RETRIES);
 				session.close();
-				CheckinPart2DatabaseAction createCheckinAction = new CheckinPart2DatabaseAction(session, accessMethod, settingsManager, model, currentUoid, revision.getOid(),
+				CheckinPart2DatabaseAction createCheckinAction = new CheckinPart2DatabaseAction(session, accessMethod, settingsManager, model, mergerFactory, currentUoid, revision.getOid(),
 						false);
 				SCheckinResult result = new SCheckinResult();
 				result.setRid(revision.getId());
@@ -1482,7 +1482,7 @@ public class Service implements ServiceInterface {
 			try {
 				ConcreteRevision revision = session.executeAndCommitAction(action, DEADLOCK_RETRIES);
 				session.close();
-				CheckinPart2DatabaseAction createCheckinAction = new CheckinPart2DatabaseAction(session, accessMethod, settingsManager, model, currentUoid, revision.getOid(),
+				CheckinPart2DatabaseAction createCheckinAction = new CheckinPart2DatabaseAction(session, accessMethod, settingsManager, model, mergerFactory, currentUoid, revision.getOid(),
 						false);
 				SCheckinResult result = new SCheckinResult();
 				result.setRid(revision.getId());
@@ -1977,15 +1977,15 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public boolean isSettingUseCaching() throws UserException, ServerException {
-		return settingsManager.getSettings().isUseCaching();
+	public boolean isSettingCacheOutputFiles() throws UserException, ServerException {
+		return settingsManager.getSettings().isCacheOutputFiles();
 	}
 
 	@Override
-	public void setSettingUseCaching(boolean useCaching) throws UserException, ServerException {
+	public void setSettingCacheOutputFiles(boolean cacheOutputFiles) throws UserException, ServerException {
 		requireAuthenticationAndRunningServer();
 		Settings settings = settingsManager.getSettings();
-		settings.setUseCaching(useCaching);
+		settings.setCacheOutputFiles(cacheOutputFiles);
 		settingsManager.saveSettings();
 	}
 

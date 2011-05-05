@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.bimserver.ServerInitializer;
 import org.bimserver.SettingsManager;
 import org.bimserver.database.BimDatabase;
 import org.bimserver.database.BimDatabaseException;
@@ -75,7 +76,7 @@ public class CompileServlet extends HttpServlet {
 		}
 		BimDatabaseSession session = database.createSession(true);
 		try {
-			BimDatabaseAction<IfcModel> action = new DownloadDatabaseAction(session, AccessMethod.INTERNAL, settingsManager, roid, loginManager.getUoid());
+			BimDatabaseAction<IfcModel> action = new DownloadDatabaseAction(session, AccessMethod.INTERNAL, settingsManager, ServerInitializer.getMergerFactory(), roid, loginManager.getUoid());
 			IfcModel IfcModel = session.executeAndCommitAction(action, 10);
 			StringWriter out = new StringWriter();
 			queryInterface.query(IfcModel, new PrintWriter(out));

@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicLong;
 
+import org.bimserver.MergerFactory;
 import org.bimserver.SettingsManager;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
@@ -11,8 +12,6 @@ import org.bimserver.database.BimDeadlockException;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelChangeListener;
 import org.bimserver.ifc.IfcModelSet;
-import org.bimserver.merging.Merger;
-import org.bimserver.merging.Merger.GuidMergeIdentifier;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
@@ -28,11 +27,13 @@ public class DownloadByOidsDatabaseAction extends BimDatabaseAction<IfcModel> {
 	private final Set<Long> roids;
 	private int progress;
 	private final SettingsManager settingsManager;
+	private final MergerFactory mergerFactory;
 
-	public DownloadByOidsDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, SettingsManager settingsManager,
+	public DownloadByOidsDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, SettingsManager settingsManager, MergerFactory mergerFactory,
 			Set<Long> roids, Set<Long> oids, long actingUoid) {
 		super(bimDatabaseSession, accessMethod);
 		this.settingsManager = settingsManager;
+		this.mergerFactory = mergerFactory;
 		this.roids = roids;
 		this.oids = oids;
 		this.actingUoid = actingUoid;
@@ -74,7 +75,7 @@ public class DownloadByOidsDatabaseAction extends BimDatabaseAction<IfcModel> {
 				// }
 			}
 		}
-		IfcModel ifcModel = new Merger(new GuidMergeIdentifier()).merge(project, ifcModelSet, settingsManager.getSettings().isIntelligentMerging());
+		IfcModel ifcModel = mergerFactory.createMerger().merge(project, ifcModelSet, settingsManager.getSettings().isIntelligentMerging());
 		ifcModel.setRevisionNr(1);
 		ifcModel.setAuthorizedUser(getUserByUoid(actingUoid).getName());
 		ifcModel.setDate(new Date());

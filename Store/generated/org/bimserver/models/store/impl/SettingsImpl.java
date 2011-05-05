@@ -57,6 +57,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getHeaderAddition <em>Header Addition</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getFooterAddition <em>Footer Addition</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getMergeIdentifier <em>Merge Identifier</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#isCacheOutputFiles <em>Cache Output Files</em>}</li>
  * </ul>
  * </p>
  *
@@ -454,6 +455,24 @@ public class SettingsImpl extends IdEObjectImpl implements Settings
 	 */
 	public void setMergeIdentifier(MergeIdentifier newMergeIdentifier) {
 		eSet(StorePackage.Literals.SETTINGS__MERGE_IDENTIFIER, newMergeIdentifier);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isCacheOutputFiles() {
+		return (Boolean)eGet(StorePackage.Literals.SETTINGS__CACHE_OUTPUT_FILES, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setCacheOutputFiles(boolean newCacheOutputFiles) {
+		eSet(StorePackage.Literals.SETTINGS__CACHE_OUTPUT_FILES, newCacheOutputFiles);
 	}
 
 } //SettingsImpl

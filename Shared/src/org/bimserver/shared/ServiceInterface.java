@@ -572,11 +572,11 @@ public interface ServiceInterface {
 			@WebParam(name = "showVersionUpgradeAvailable", partName = "setSettingShowVersionUpgradeAvailable.showVersionUpgradeAvailable") boolean showVersionUpgradeAvailable)
 			throws UserException, ServerException;
 
-	@WebMethod(action = "isSettingUseCaching")
-	boolean isSettingUseCaching() throws UserException, ServerException;
+	@WebMethod(action = "isCacheOutputFiles")
+	boolean isSettingCacheOutputFiles() throws UserException, ServerException;
 
-	@WebMethod(action = "setSettingUseCaching")
-	void setSettingUseCaching(@WebParam(name = "useCaching", partName = "setSettingUseCaching.useCaching") boolean useCaching)
+	@WebMethod(action = "setCacheOutputFiles")
+	void setSettingCacheOutputFiles(@WebParam(name = "cacheOutputFiles", partName = "setCacheOutputFiles.cacheOutputFiles") boolean cacheOutputFiles)
 			throws UserException, ServerException;
 	
 	@WebMethod(action = "getLogs")

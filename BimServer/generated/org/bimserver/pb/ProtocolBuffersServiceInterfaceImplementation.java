@@ -1803,22 +1803,22 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 		} catch (Exception e) {}
 	}
 
-	public boolean isSettingUseCaching() {
+	public boolean isSettingCacheOutputFiles() {
 		try {
-			IsSettingUseCachingRequest.Builder requestBuilder = IsSettingUseCachingRequest.newBuilder();
-			IsSettingUseCachingRequest request = requestBuilder.build();
-			IsSettingUseCachingResponse response = service.isSettingUseCaching(rpcController, request);
+			IsSettingCacheOutputFilesRequest.Builder requestBuilder = IsSettingCacheOutputFilesRequest.newBuilder();
+			IsSettingCacheOutputFilesRequest request = requestBuilder.build();
+			IsSettingCacheOutputFilesResponse response = service.isSettingCacheOutputFiles(rpcController, request);
 			return response.getValue();
 		} catch (Exception e) {}
 		return false;
 	}
 
-	public void setSettingUseCaching(boolean useCaching) {
+	public void setSettingCacheOutputFiles(boolean cacheOutputFiles) {
 		try {
-			SetSettingUseCachingRequest.Builder requestBuilder = SetSettingUseCachingRequest.newBuilder();
-			requestBuilder.setUseCaching(useCaching);
-			SetSettingUseCachingRequest request = requestBuilder.build();
-			service.setSettingUseCaching(rpcController, request);
+			SetSettingCacheOutputFilesRequest.Builder requestBuilder = SetSettingCacheOutputFilesRequest.newBuilder();
+			requestBuilder.setCacheOutputFiles(cacheOutputFiles);
+			SetSettingCacheOutputFilesRequest request = requestBuilder.build();
+			service.setSettingCacheOutputFiles(rpcController, request);
 		} catch (Exception e) {}
 	}
 

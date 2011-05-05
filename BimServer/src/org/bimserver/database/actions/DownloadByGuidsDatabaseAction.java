@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicLong;
 
+import org.bimserver.MergerFactory;
 import org.bimserver.SettingsManager;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
@@ -15,8 +16,6 @@ import org.bimserver.database.ObjectIdentifier;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelChangeListener;
 import org.bimserver.ifc.IfcModelSet;
-import org.bimserver.merging.Merger;
-import org.bimserver.merging.Merger.GuidMergeIdentifier;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
@@ -32,11 +31,13 @@ public class DownloadByGuidsDatabaseAction extends BimDatabaseAction<IfcModel> {
 	private final Set<Long> roids;
 	private int progress;
 	private final SettingsManager settingsManager;
+	private final MergerFactory mergerFactory;
 
-	public DownloadByGuidsDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, SettingsManager settingsManager,
+	public DownloadByGuidsDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, SettingsManager settingsManager, MergerFactory mergerFactory,
 			Set<Long> roids, Set<String> guids, long actingUoid) {
 		super(bimDatabaseSession, accessMethod);
 		this.settingsManager = settingsManager;
+		this.mergerFactory = mergerFactory;
 		this.roids = roids;
 		this.guids = guids;
 		this.actingUoid = actingUoid;
@@ -90,7 +91,7 @@ public class DownloadByGuidsDatabaseAction extends BimDatabaseAction<IfcModel> {
 				ifcModelSet.add(subModel);
 			}
 		}
-		IfcModel ifcModel = new Merger(new GuidMergeIdentifier()).merge(project, ifcModelSet, settingsManager.getSettings().isIntelligentMerging());
+		IfcModel ifcModel = mergerFactory.createMerger().merge(project, ifcModelSet, settingsManager.getSettings().isIntelligentMerging());
 		for (String guid : guids) {
 			if (!foundGuids.contains(guid)) {
 				throw new UserException("Guid " + guid + " not found");

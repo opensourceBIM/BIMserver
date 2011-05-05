@@ -334,7 +334,7 @@ public class IfcModel {
 	}
 
 	public boolean contains(IdEObject eObject) {
-		return objects.inverse().containsKey(eObject);
+		return objects.containsValue(eObject);
 	}
 
 	public Long get(IdEObject eObject) {

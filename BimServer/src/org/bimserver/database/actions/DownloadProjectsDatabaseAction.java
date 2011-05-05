@@ -3,6 +3,7 @@ package org.bimserver.database.actions;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicLong;
 
+import org.bimserver.MergerFactory;
 import org.bimserver.SettingsManager;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
@@ -10,8 +11,6 @@ import org.bimserver.database.BimDeadlockException;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelChangeListener;
 import org.bimserver.ifc.IfcModelSet;
-import org.bimserver.merging.Merger;
-import org.bimserver.merging.Merger.GuidMergeIdentifier;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
@@ -26,11 +25,13 @@ public class DownloadProjectsDatabaseAction extends BimDatabaseAction<IfcModel> 
 	private final Set<Long> roids;
 	private int progress;
 	private final SettingsManager settingsManager;
+	private final MergerFactory mergerFactory;
 
 	public DownloadProjectsDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod,
-			SettingsManager settingsManager, Set<Long> roids, long actingUoid) {
+			SettingsManager settingsManager, MergerFactory mergerFactory, Set<Long> roids, long actingUoid) {
 		super(bimDatabaseSession, accessMethod);
 		this.settingsManager = settingsManager;
+		this.mergerFactory = mergerFactory;
 		this.roids = roids;
 		this.actingUoid = actingUoid;
 	}
@@ -73,7 +74,7 @@ public class DownloadProjectsDatabaseAction extends BimDatabaseAction<IfcModel> 
 				throw new UserException("User has no rights on project " + project.getOid());
 			}
 		}
-		IfcModel ifcModel = new Merger(new GuidMergeIdentifier()).merge(project, ifcModelSet, settingsManager.getSettings().isIntelligentMerging());
+		IfcModel ifcModel = mergerFactory.createMerger().merge(project, ifcModelSet, settingsManager.getSettings().isIntelligentMerging());
 		if (projectName.endsWith("-")) {
 			projectName = projectName.substring(0, projectName.length() - 1);
 		}

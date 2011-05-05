@@ -1,5 +1,6 @@
 package org.bimserver.database.actions;
 
+import org.bimserver.MergerFactory;
 import org.bimserver.SettingsManager;
 import org.bimserver.cache.CompareCache;
 import org.bimserver.database.BimDatabaseException;
@@ -22,10 +23,12 @@ public class CompareDatabaseAction extends BimDatabaseAction<CompareResult> {
 	private final SCompareType sCompareType;
 	private final SettingsManager settingsManager;
 	private final SCompareIdentifier sCompareIdentifier;
+	private final MergerFactory mergerFactory;
 
-	public CompareDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, SettingsManager settingsManager, long actingUoid, long roid1, long roid2, SCompareType sCompareType, SCompareIdentifier sCompareIdentifier) {
+	public CompareDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, SettingsManager settingsManager, MergerFactory mergerFactory, long actingUoid, long roid1, long roid2, SCompareType sCompareType, SCompareIdentifier sCompareIdentifier) {
 		super(bimDatabaseSession, accessMethod);
 		this.settingsManager = settingsManager;
+		this.mergerFactory = mergerFactory;
 		this.actingUoid = actingUoid;
 		this.roid1 = roid1;
 		this.roid2 = roid2;
@@ -38,8 +41,8 @@ public class CompareDatabaseAction extends BimDatabaseAction<CompareResult> {
 		Compare compare = new Compare(((DatabaseSession)getDatabaseSession()).getFieldIgnoreMap());
 		CompareResult compareResults = CompareCache.getInstance().getCompareResults(roid1, roid2, sCompareType, sCompareIdentifier);
 		if (compareResults == null) {
-			IfcModel model1 = new DownloadDatabaseAction(getDatabaseSession(), getAccessMethod(), settingsManager, roid1, actingUoid).execute();
-			IfcModel model2 = new DownloadDatabaseAction(getDatabaseSession(), getAccessMethod(), settingsManager, roid2, actingUoid).execute();
+			IfcModel model1 = new DownloadDatabaseAction(getDatabaseSession(), getAccessMethod(), settingsManager, mergerFactory, roid1, actingUoid).execute();
+			IfcModel model2 = new DownloadDatabaseAction(getDatabaseSession(), getAccessMethod(), settingsManager, mergerFactory, roid2, actingUoid).execute();
 			if (sCompareIdentifier == SCompareIdentifier.GUID_ID) {
 				compareResults = compare.compareOnGuids(model1, model2, sCompareType);
 			} else if (sCompareIdentifier == SCompareIdentifier.NAME_ID) {

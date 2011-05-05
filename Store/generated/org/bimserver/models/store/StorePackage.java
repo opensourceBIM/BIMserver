@@ -1283,13 +1283,22 @@ public interface StorePackage extends EPackage
 	int SETTINGS__MERGE_IDENTIFIER = 18;
 
 	/**
+	 * The feature id for the '<em><b>Cache Output Files</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SETTINGS__CACHE_OUTPUT_FILES = 19;
+
+	/**
 	 * The number of structural features of the '<em>Settings</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SETTINGS_FEATURE_COUNT = 19;
+	int SETTINGS_FEATURE_COUNT = 20;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.SerializerImpl <em>Serializer</em>}' class.
@@ -2682,6 +2691,17 @@ public interface StorePackage extends EPackage
 	EAttribute getSettings_MergeIdentifier();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Settings#isCacheOutputFiles <em>Cache Output Files</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Cache Output Files</em>'.
+	 * @see org.bimserver.models.store.Settings#isCacheOutputFiles()
+	 * @see #getSettings()
+	 * @generated
+	 */
+	EAttribute getSettings_CacheOutputFiles();
+
+	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.Serializer <em>Serializer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3793,6 +3813,14 @@ public interface StorePackage extends EPackage
 		 * @generated
 		 */
 		EAttribute SETTINGS__MERGE_IDENTIFIER = eINSTANCE.getSettings_MergeIdentifier();
+
+		/**
+		 * The meta object literal for the '<em><b>Cache Output Files</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SETTINGS__CACHE_OUTPUT_FILES = eINSTANCE.getSettings_CacheOutputFiles();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.SerializerImpl <em>Serializer</em>}' class.
