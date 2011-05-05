@@ -106,6 +106,7 @@ public class ServerInitializer implements ServletContextListener {
 	private IfcEngineFactory ifcEngineFactory;
 	private PackageDefinition colladaSettings;
 	private EmfSerializerFactory emfSerializerFactory;
+	private MergerFactory mergerFactory;
 
 	@Override
 	public void contextInitialized(ServletContextEvent servletContextEvent) {
@@ -231,9 +232,9 @@ public class ServerInitializer implements ServletContextListener {
 			TempUtils.makeTempDir("bimserver");
 			
 			DiskCacheManager diskCacheManager = new DiskCacheManager(new File(homeDir, "cache"));
-			
 
-			ServiceFactory.init(bimDatabase, emfSerializerFactory, schema, longActionManager, ifcEngineFactory, fieldIgnoreMap, settingsManager, mailSystem, diskCacheManager);
+			mergerFactory = new MergerFactory(settingsManager);
+			ServiceFactory.init(bimDatabase, emfSerializerFactory, schema, longActionManager, ifcEngineFactory, fieldIgnoreMap, settingsManager, mailSystem, diskCacheManager, mergerFactory);
 			setSystemService(ServiceFactory.getINSTANCE().newService(AccessMethod.INTERNAL));
 			if (!((Service) getSystemService()).loginAsSystem()) {
 				throw new RuntimeException("System user not found");
@@ -245,7 +246,7 @@ public class ServerInitializer implements ServletContextListener {
 					systemService.setup("http://localhost", "localhost", "Administrator", "admin@bimserver.org", "admin", true);
 				}
 			}
-
+			
 			RestApplication.setServiceFactory(ServiceFactory.getINSTANCE());
 
 			RpcServer rpcServer = new RpcServer(SocketRpcConnectionFactories.createServerRpcConnectionFactory(8020), Executors.newFixedThreadPool(10), false);

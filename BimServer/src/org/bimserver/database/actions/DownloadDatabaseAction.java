@@ -10,6 +10,7 @@ import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelChangeListener;
 import org.bimserver.ifc.IfcModelSet;
 import org.bimserver.merging.Merger;
+import org.bimserver.merging.Merger.GuidMergeIdentifier;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
@@ -63,7 +64,7 @@ public class DownloadDatabaseAction extends BimDatabaseAction<IfcModel> {
 			subModel.setDate(subRevision.getDate());
 			ifcModelSet.add(subModel);
 		}
-		IfcModel ifcModel = new Merger().merge(revision.getProject(), ifcModelSet, settingsManager.getSettings().isIntelligentMerging());
+		IfcModel ifcModel = new Merger(new GuidMergeIdentifier()).merge(revision.getProject(), ifcModelSet, settingsManager.getSettings().isIntelligentMerging());
 		ifcModel.setRevisionNr(project.getRevisions().indexOf(revision) + 1);
 		ifcModel.setAuthorizedUser(user.getName());
 		ifcModel.setDate(revision.getDate());

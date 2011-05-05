@@ -10,6 +10,7 @@ import java.util.List;
 
 import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
 
+import org.bimserver.MergerFactory;
 import org.bimserver.SettingsManager;
 import org.bimserver.cache.DiskCacheManager;
 import org.bimserver.database.BimDatabase;
@@ -44,9 +45,10 @@ public class ServiceFactory {
 	private final SettingsManager settingsManager;
 	private final MailSystem mailSystem;
 	private final DiskCacheManager diskCacheManager;
+	private final MergerFactory mergerFactory;
 
 	private ServiceFactory(BimDatabase bimDatabase, EmfSerializerFactory emfSerializerFactory, SchemaDefinition schema,
-			LongActionManager longActionManager, IfcEngineFactory ifcEngineFactory, FieldIgnoreMap fieldIgnoreMap, SettingsManager settingsManager, MailSystem mailSystem, DiskCacheManager diskCacheManager) {
+			LongActionManager longActionManager, IfcEngineFactory ifcEngineFactory, FieldIgnoreMap fieldIgnoreMap, SettingsManager settingsManager, MailSystem mailSystem, DiskCacheManager diskCacheManager, MergerFactory mergerFactory) {
 		this.bimDatabase = bimDatabase;
 		this.emfSerializerFactory = emfSerializerFactory;
 		this.schema = schema;
@@ -56,14 +58,15 @@ public class ServiceFactory {
 		this.settingsManager = settingsManager;
 		this.mailSystem = mailSystem;
 		this.diskCacheManager = diskCacheManager;
+		this.mergerFactory = mergerFactory;
 	}
 	
-	public static void init(BimDatabase bimDatabase, EmfSerializerFactory emfSerializerFactory, SchemaDefinition schema, LongActionManager longActionManager, IfcEngineFactory ifcEngineFactory, FieldIgnoreMap fieldIgnoreMap, SettingsManager settingsManager, MailSystem mailSystem, DiskCacheManager diskCacheManager) {
-		INSTANCE = new ServiceFactory(bimDatabase, emfSerializerFactory, schema, longActionManager, ifcEngineFactory, fieldIgnoreMap, settingsManager, mailSystem, diskCacheManager);
+	public static void init(BimDatabase bimDatabase, EmfSerializerFactory emfSerializerFactory, SchemaDefinition schema, LongActionManager longActionManager, IfcEngineFactory ifcEngineFactory, FieldIgnoreMap fieldIgnoreMap, SettingsManager settingsManager, MailSystem mailSystem, DiskCacheManager diskCacheManager, MergerFactory mergerFactory) {
+		INSTANCE = new ServiceFactory(bimDatabase, emfSerializerFactory, schema, longActionManager, ifcEngineFactory, fieldIgnoreMap, settingsManager, mailSystem, diskCacheManager, mergerFactory);
 	}
 
 	public ServiceInterface newService(AccessMethod accessMethod) {
-		Service service = new Service(bimDatabase, emfSerializerFactory, schema, longActionManager, accessMethod, ifcEngineFactory, this, fieldIgnoreMap, settingsManager, mailSystem, diskCacheManager);
+		Service service = new Service(bimDatabase, emfSerializerFactory, schema, longActionManager, accessMethod, ifcEngineFactory, this, fieldIgnoreMap, settingsManager, mailSystem, diskCacheManager, mergerFactory);
 		Date expires = new Date(new Date().getTime() + (TOKEN_TTL_SECONDS * 1000));
 		Token token = new Token(GeneratorUtils.generateToken(), expires);
 		tokens.put(token, service);

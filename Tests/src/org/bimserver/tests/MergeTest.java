@@ -12,6 +12,7 @@ import org.bimserver.ifc.file.reader.IncorrectIfcFileException;
 import org.bimserver.ifc.file.writer.IfcStepSerializer;
 import org.bimserver.merging.IncrementingOidProvider;
 import org.bimserver.merging.Merger;
+import org.bimserver.merging.Merger.GuidMergeIdentifier;
 
 public class MergeTest {
 	public static void main(String[] args) {
@@ -36,7 +37,7 @@ public class MergeTest {
 			model2.indexGuids();
 			model2.fixOids(new IncrementingOidProvider(model1.getHighestOid() + 1));
 			IfcModelSet ifcModelSet = new IfcModelSet(model1, model2);
-			IfcModel merged = new Merger().merge(null, ifcModelSet, true);
+			IfcModel merged = new Merger(new GuidMergeIdentifier()).merge(null, ifcModelSet, true);
 			merged.checkDoubleOidsPlusReferences();
 			IfcStepSerializer serializer = new IfcStepSerializer(null, null, "merged", merged, schema);
 			serializer.writeToFile(new File("merged.ifc"));

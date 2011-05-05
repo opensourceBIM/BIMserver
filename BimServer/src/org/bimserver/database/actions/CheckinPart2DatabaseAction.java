@@ -12,6 +12,7 @@ import org.bimserver.ifc.IfcModelSet;
 import org.bimserver.merging.IncrementingOidProvider;
 import org.bimserver.merging.Merger;
 import org.bimserver.merging.RevisionMerger;
+import org.bimserver.merging.Merger.GuidMergeIdentifier;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.CheckinState;
 import org.bimserver.models.store.ConcreteRevision;
@@ -54,7 +55,7 @@ public class CheckinPart2DatabaseAction extends BimDatabaseAction<Void> {
 				getIfcModel().setDate(new Date());
 				IfcModel newModel = getIfcModel();
 				newModel.fixOids(getDatabaseSession());
-				IfcModel oldModel = new Merger().merge(project, ifcModelSet, settingsManager.getSettings().isIntelligentMerging());
+				IfcModel oldModel = new Merger(new GuidMergeIdentifier()).merge(project, ifcModelSet, settingsManager.getSettings().isIntelligentMerging());
 				
 				oldModel.setObjectOids();
 				newModel.setObjectOids();

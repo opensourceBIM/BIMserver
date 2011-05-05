@@ -6,6 +6,8 @@ import java.util.Set;
 
 import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
 
+import org.bimserver.MergerFactory;
+import org.bimserver.SettingsManager;
 import org.bimserver.cache.ClashDetectionCache;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
@@ -47,14 +49,16 @@ public class FindClashesDatabaseAction extends BimDatabaseAction<Set<? extends C
 	private final SchemaDefinition schema;
 	private final ClashDetectionSettings clashDetectionSettings;
 	private final FieldIgnoreMap fieldIgnoreMap;
+	private final MergerFactory mergerFactory;
 
 	public FindClashesDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, ClashDetectionSettings clashDetectionSettings, SchemaDefinition schema,
-			IfcEngineFactory ifcEngineFactory, FieldIgnoreMap fieldIgnoreMap, long actingUoid) {
+			IfcEngineFactory ifcEngineFactory, FieldIgnoreMap fieldIgnoreMap, MergerFactory mergerFactory, long actingUoid) {
 		super(bimDatabaseSession, accessMethod);
 		this.fieldIgnoreMap = fieldIgnoreMap;
 		this.clashDetectionSettings = clashDetectionSettings;
 		this.schema = schema;
 		this.ifcEngineFactory = ifcEngineFactory;
+		this.mergerFactory = mergerFactory;
 		this.actingUoid = actingUoid;
 	}
 
@@ -82,7 +86,7 @@ public class FindClashesDatabaseAction extends BimDatabaseAction<Set<? extends C
 				}
 			}
 		}
-		IfcModel ifcModel = new Merger().merge(project, ifcModelSet, false);
+		IfcModel ifcModel = mergerFactory.createMerger().merge(project, ifcModelSet, false);
 		IfcModel newModel = new IfcModel();
 		Map<IdEObject, IdEObject> converted = new HashMap<IdEObject, IdEObject>();
 		for (IdEObject idEObject : ifcModel.getValues()) {

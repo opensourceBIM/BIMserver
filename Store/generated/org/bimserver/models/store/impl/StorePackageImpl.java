@@ -36,6 +36,7 @@ import org.bimserver.models.store.EidClash;
 import org.bimserver.models.store.GeoTag;
 import org.bimserver.models.store.GuidClash;
 import org.bimserver.models.store.IgnoreFile;
+import org.bimserver.models.store.MergeIdentifier;
 import org.bimserver.models.store.ObjectState;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
@@ -181,6 +182,13 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 * @generated
 	 */
 	private EEnum objectStateEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum mergeIdentifierEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -1362,6 +1370,15 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getSettings_MergeIdentifier() {
+		return (EAttribute)settingsEClass.getEStructuralFeatures().get(18);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getSerializer()
 	{
 		return serializerEClass;
@@ -1522,6 +1539,15 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EEnum getMergeIdentifier() {
+		return mergeIdentifierEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public StoreFactory getStoreFactory()
 	{
 		return (StoreFactory)getEFactoryInstance();
@@ -1667,6 +1693,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 		createEReference(settingsEClass, SETTINGS__IGNORE_FILES);
 		createEAttribute(settingsEClass, SETTINGS__HEADER_ADDITION);
 		createEAttribute(settingsEClass, SETTINGS__FOOTER_ADDITION);
+		createEAttribute(settingsEClass, SETTINGS__MERGE_IDENTIFIER);
 
 		serializerEClass = createEClass(SERIALIZER);
 		createEAttribute(serializerEClass, SERIALIZER__NAME);
@@ -1687,6 +1714,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 		checkinStateEEnum = createEEnum(CHECKIN_STATE);
 		siPrefixEEnum = createEEnum(SI_PREFIX);
 		objectStateEEnum = createEEnum(OBJECT_STATE);
+		mergeIdentifierEEnum = createEEnum(MERGE_IDENTIFIER);
 	}
 
 	/**
@@ -1842,6 +1870,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 		initEReference(getSettings_IgnoreFiles(), this.getIgnoreFile(), this.getIgnoreFile_Settings(), "ignoreFiles", null, 0, -1, Settings.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getSettings_HeaderAddition(), ecorePackage.getEString(), "headerAddition", null, 0, 1, Settings.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getSettings_FooterAddition(), ecorePackage.getEString(), "footerAddition", null, 0, 1, Settings.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSettings_MergeIdentifier(), this.getMergeIdentifier(), "mergeIdentifier", null, 0, 1, Settings.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(serializerEClass, Serializer.class, "Serializer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getSerializer_Name(), ecorePackage.getEString(), "name", null, 0, 1, Serializer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1895,6 +1924,10 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 		initEEnum(objectStateEEnum, ObjectState.class, "ObjectState");
 		addEEnumLiteral(objectStateEEnum, ObjectState.ACTIVE);
 		addEEnumLiteral(objectStateEEnum, ObjectState.DELETED);
+
+		initEEnum(mergeIdentifierEEnum, MergeIdentifier.class, "MergeIdentifier");
+		addEEnumLiteral(mergeIdentifierEEnum, MergeIdentifier.NAME);
+		addEEnumLiteral(mergeIdentifierEEnum, MergeIdentifier.GUID);
 
 		// Create resource
 		createResource(eNS_URI);

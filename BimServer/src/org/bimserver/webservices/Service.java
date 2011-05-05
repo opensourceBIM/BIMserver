@@ -45,6 +45,7 @@ import javax.mail.internet.MimeMessage;
 
 import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
 
+import org.bimserver.MergerFactory;
 import org.bimserver.ServerInfo;
 import org.bimserver.SettingsManager;
 import org.bimserver.ServerInfo.ServerState;
@@ -144,6 +145,7 @@ import org.bimserver.interfaces.objects.SGeoTag;
 import org.bimserver.interfaces.objects.SGuidClash;
 import org.bimserver.interfaces.objects.SIgnoreFile;
 import org.bimserver.interfaces.objects.SLogAction;
+import org.bimserver.interfaces.objects.SMergeIdentifier;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.interfaces.objects.SSerializer;
@@ -157,7 +159,6 @@ import org.bimserver.longaction.LongCheckoutAction;
 import org.bimserver.longaction.LongDownloadAction;
 import org.bimserver.longaction.LongDownloadOrCheckoutAction;
 import org.bimserver.mail.MailSystem;
-import org.bimserver.merging.Merger;
 import org.bimserver.models.ifc2x3.IfcRoot;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.LogAction;
@@ -166,6 +167,7 @@ import org.bimserver.models.store.ClashDetectionSettings;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.GeoTag;
 import org.bimserver.models.store.IgnoreFile;
+import org.bimserver.models.store.MergeIdentifier;
 import org.bimserver.models.store.ObjectState;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
@@ -236,10 +238,11 @@ public class Service implements ServiceInterface {
 	private Date activeSince;
 	private Date lastActive;
 	private Token token;
+	private final MergerFactory mergerFactory;
 
 	public Service(BimDatabase bimDatabase, EmfSerializerFactory emfSerializerFactory, SchemaDefinition schema, LongActionManager longActionManager, AccessMethod accessMethod,
 			IfcEngineFactory ifcEngineFactory, ServiceFactory serviceFactory, FieldIgnoreMap fieldIgnoreMap, SettingsManager settingsManager, MailSystem mailSystem,
-			DiskCacheManager diskCacheManager) {
+			DiskCacheManager diskCacheManager, MergerFactory mergerFactory) {
 		this.bimDatabase = bimDatabase;
 		this.emfSerializerFactory = emfSerializerFactory;
 		this.schema = schema;
@@ -251,6 +254,7 @@ public class Service implements ServiceInterface {
 		this.settingsManager = settingsManager;
 		this.mailSystem = mailSystem;
 		this.diskCacheManager = diskCacheManager;
+		this.mergerFactory = mergerFactory;
 		activeSince = new Date();
 		lastActive = new Date();
 	}
@@ -413,7 +417,7 @@ public class Service implements ServiceInterface {
 			result.setPoid(revision.getProject().getOid());
 			result.setProjectName(revision.getProject().getName());
 			longActionManager.start(new LongCheckinAction(userByUoid, longActionManager, bimDatabase, schema, createCheckinAction, ifcEngineFactory, fieldIgnoreMap,
-					settingsManager, mailSystem));
+					settingsManager, mailSystem, mergerFactory));
 			return result;
 		} catch (UserException e) {
 			throw e;
@@ -567,6 +571,31 @@ public class Service implements ServiceInterface {
 		}
 	}
 
+	private <T> T convert(Enumerator enumerator, Class<T> targetClass) {
+		Object[] enumConstants = targetClass.getEnumConstants();
+		for (Object t : enumConstants) {
+			Enum<?> en = (Enum<?>) t;
+			try {
+				Method method2 = en.getDeclaringClass().getMethod("getOrdinal");
+				Object invoke = method2.invoke(en);
+				if ((Integer) invoke == enumerator.getValue()) {
+					return (T) t;
+				}
+			} catch (SecurityException e) {
+				e.printStackTrace();
+			} catch (NoSuchMethodException e) {
+				e.printStackTrace();
+			} catch (IllegalArgumentException e) {
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				e.printStackTrace();
+			} catch (InvocationTargetException e) {
+				e.printStackTrace();
+			}
+		}
+		return null;
+	}
+	
 	private <T> List<T> convert(Collection<? extends IdEObject> list, Class<T> targetClass) {
 		List<T> newList = new ArrayList<T>();
 		if (list == null) {
@@ -1285,7 +1314,7 @@ public class Service implements ServiceInterface {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimDatabase.createReadOnlySession();
 		try {
-			BimDatabaseAction<SDataObject> action = new GetDataObjectByOidDatabaseAction(session, accessMethod, settingsManager, roid, oid, session.getCidForClassName(className));
+			BimDatabaseAction<SDataObject> action = new GetDataObjectByOidDatabaseAction(session, accessMethod, settingsManager, mergerFactory, roid, oid, session.getCidForClassName(className));
 			SDataObject dataObject = session.executeAction(action, DEADLOCK_RETRIES);
 			return dataObject;
 		} catch (Exception e) {
@@ -1301,7 +1330,7 @@ public class Service implements ServiceInterface {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimDatabase.createSession(true);
 		try {
-			BimDatabaseAction<SDataObject> action = new GetDataObjectByGuidDatabaseAction(session, accessMethod, settingsManager, roid, guid);
+			BimDatabaseAction<SDataObject> action = new GetDataObjectByGuidDatabaseAction(session, accessMethod, settingsManager, mergerFactory, roid, guid);
 			SDataObject dataObject = session.executeAndCommitAction(action, DEADLOCK_RETRIES);
 			return dataObject;
 		} catch (Exception e) {
@@ -1316,7 +1345,7 @@ public class Service implements ServiceInterface {
 	public List<SDataObject> getDataObjectsByType(long roid, String className) throws UserException, ServerException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimDatabase.createReadOnlySession();
-		BimDatabaseAction<List<SDataObject>> action = new GetDataObjectsByTypeDatabaseAction(session, accessMethod, settingsManager, roid, className);
+		BimDatabaseAction<List<SDataObject>> action = new GetDataObjectsByTypeDatabaseAction(session, accessMethod, settingsManager, mergerFactory, roid, className);
 		try {
 			List<SDataObject> dataObjects = session.executeAction(action, DEADLOCK_RETRIES);
 			return dataObjects;
@@ -1334,7 +1363,7 @@ public class Service implements ServiceInterface {
 		BimDatabaseSession session = bimDatabase.createSession(true);
 		try {
 			return convert(session.executeAction(new FindClashesDatabaseAction(session, accessMethod, convert(sClashDetectionSettings, session), schema, ifcEngineFactory,
-					fieldIgnoreMap, currentUoid), DEADLOCK_RETRIES), SGuidClash.class);
+					fieldIgnoreMap, mergerFactory, currentUoid), DEADLOCK_RETRIES), SGuidClash.class);
 		} catch (Exception e) {
 			handleException(e);
 			return null;
@@ -1349,7 +1378,7 @@ public class Service implements ServiceInterface {
 		BimDatabaseSession session = bimDatabase.createSession(true);
 		try {
 			return convert(session.executeAction(new FindClashesDatabaseAction(session, accessMethod, convert(sClashDetectionSettings, session), schema, ifcEngineFactory,
-					fieldIgnoreMap, currentUoid), DEADLOCK_RETRIES), SEidClash.class);
+					fieldIgnoreMap, mergerFactory, currentUoid), DEADLOCK_RETRIES), SEidClash.class);
 		} catch (Exception e) {
 			handleException(e);
 			return null;
@@ -1395,7 +1424,7 @@ public class Service implements ServiceInterface {
 				subModel.setDate(subRevision.getDate());
 				ifcModelSet.add(subModel);
 			}
-			IfcModel model = new Merger().merge(oldRevision.getProject(), ifcModelSet, settingsManager.getSettings().isIntelligentMerging());
+			IfcModel model = mergerFactory.createMerger().merge(oldRevision.getProject(), ifcModelSet, settingsManager.getSettings().isIntelligentMerging());
 			model.resetOids();
 			Project newProject = new AddProjectDatabaseAction(session, accessMethod, settingsManager, projectName, currentUoid).execute();
 			session.commit();
@@ -1412,7 +1441,7 @@ public class Service implements ServiceInterface {
 				result.setPoid(revision.getProject().getOid());
 				result.setProjectName(revision.getProject().getName());
 				longActionManager.start(new LongCheckinAction(user, longActionManager, bimDatabase, schema, createCheckinAction, ifcEngineFactory, fieldIgnoreMap, settingsManager,
-						mailSystem));
+						mailSystem, mergerFactory));
 				return result;
 			} catch (UserException e) {
 				throw e;
@@ -1447,7 +1476,7 @@ public class Service implements ServiceInterface {
 				subModel.setDate(subRevision.getDate());
 				ifcModelSet.add(subModel);
 			}
-			IfcModel model = new Merger().merge(oldRevision.getProject(), ifcModelSet, settingsManager.getSettings().isIntelligentMerging());
+			IfcModel model = mergerFactory.createMerger().merge(oldRevision.getProject(), ifcModelSet, settingsManager.getSettings().isIntelligentMerging());
 			model.resetOids();
 			BimDatabaseAction<ConcreteRevision> action = new CheckinPart1DatabaseAction(session, accessMethod, destPoid, currentUoid, model, comment);
 			try {
@@ -1460,7 +1489,7 @@ public class Service implements ServiceInterface {
 				result.setPoid(revision.getProject().getOid());
 				result.setProjectName(revision.getProject().getName());
 				longActionManager.start(new LongCheckinAction(user, longActionManager, bimDatabase, schema, createCheckinAction, ifcEngineFactory, fieldIgnoreMap, settingsManager,
-						mailSystem));
+						mailSystem, mergerFactory));
 				return result;
 			} catch (UserException e) {
 				throw e;
@@ -2390,5 +2419,20 @@ public class Service implements ServiceInterface {
 	public String getSettingHeaderAddition() throws UserException, ServerException {
 		Settings settings = settingsManager.getSettings();
 		return settings.getHeaderAddition();
+	}
+
+	@Override
+	public SMergeIdentifier getSettingMergeIdentifier() throws UserException, ServerException {
+		Settings settings = settingsManager.getSettings();
+		return convert(settings.getMergeIdentifier(), SMergeIdentifier.class);
+	}
+	
+	@Override
+	public void setSettingMergeIdentifier(SMergeIdentifier mergeIdentifier)
+			throws UserException, ServerException {
+		requireAuthenticationAndRunningServer();
+		Settings settings = settingsManager.getSettings();
+		settings.setMergeIdentifier(MergeIdentifier.valueOf(mergeIdentifier.name()));
+		settingsManager.saveSettings();
 	}
 }

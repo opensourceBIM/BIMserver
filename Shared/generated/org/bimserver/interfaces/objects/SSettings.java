@@ -33,6 +33,7 @@ public class SSettings
 	private List<Long> ignoreFiles = new ArrayList<Long>();
 	private java.lang.String headerAddition;
 	private java.lang.String footerAddition;
+	private SMergeIdentifier mergeIdentifier;
 
 	public boolean isShowVersionUpgradeAvailable() {
 		return showVersionUpgradeAvailable;
@@ -174,6 +175,13 @@ public class SSettings
 
 	public void setFooterAddition(java.lang.String footerAddition) {
 		this.footerAddition = footerAddition;
+	}
+	public SMergeIdentifier getMergeIdentifier() {
+		return mergeIdentifier;
+	}
+
+	public void setMergeIdentifier(SMergeIdentifier mergeIdentifier) {
+		this.mergeIdentifier = mergeIdentifier;
 	}
 	@Override
 	public int hashCode() {
