@@ -70,7 +70,6 @@ public class IfcModel {
 	private Map<Class<?>, List<? extends EObject>> index;
 	private Map<EClass, Map<String, IdEObject>> guidIndex;
 	private Map<EClass, Map<String, IdEObject>> nameIndex;
-	private FieldIgnoreMap fieldIgnoreMap;
 
 	public IfcModel(BiMap<Long, IdEObject> objects) {
 		this.objects = objects;
@@ -129,7 +128,6 @@ public class IfcModel {
 			IdEObject value = objects.get((Long) key);
 			if (value instanceof IfcRoot) {
 				IfcRoot ifcRoot = (IfcRoot) value;
-				sortAllAggregates(ifcRoot);
 				guidIndex.get(value.eClass()).put(ifcRoot.getGlobalId().getWrappedValue(), value);
 			}
 		}
@@ -147,7 +145,6 @@ public class IfcModel {
 			IdEObject value = objects.get((Long) key);
 			if (value instanceof IfcRoot) {
 				IfcRoot ifcRoot = (IfcRoot) value;
-				sortAllAggregates(ifcRoot);
 				if (ifcRoot.getName() != null) {
 					nameIndex.get(value.eClass()).put(ifcRoot.getName(), value);
 				}
@@ -156,7 +153,7 @@ public class IfcModel {
 	}
 
 	@SuppressWarnings("unchecked")
-	private void sortAllAggregates(IfcRoot ifcRoot) {
+	public void sortAllAggregates(FieldIgnoreMap fieldIgnoreMap, IfcRoot ifcRoot) {
 		for (EStructuralFeature eStructuralFeature : ifcRoot.eClass().getEAllStructuralFeatures()) {
 			if (!fieldIgnoreMap.shouldIgnoreField(ifcRoot.eClass(), ifcRoot.eClass(), eStructuralFeature)) {
 				if (eStructuralFeature.getUpperBound() == -1 || eStructuralFeature.getUpperBound() > 1) {
@@ -166,7 +163,7 @@ public class IfcModel {
 							sortPrimitiveList(list);
 						} else {
 							EList<EObject> list = (EList<EObject>) ifcRoot.eGet(eStructuralFeature);
-							sortComplexList(ifcRoot.eClass(), list, eStructuralFeature);
+							sortComplexList(fieldIgnoreMap, ifcRoot.eClass(), list, eStructuralFeature);
 						}
 					}
 				}
@@ -183,7 +180,7 @@ public class IfcModel {
 		});
 	}
 
-	private void sortComplexList(final EClass originalQueryClass, EList<EObject> list, EStructuralFeature eStructuralFeature) {
+	private void sortComplexList(final FieldIgnoreMap fieldIgnoreMap, final EClass originalQueryClass, EList<EObject> list, EStructuralFeature eStructuralFeature) {
 		final EClass type = (EClass) eStructuralFeature.getEType();
 		ECollections.sort(list, new Comparator<EObject>() {
 			@Override

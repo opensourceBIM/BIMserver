@@ -612,7 +612,10 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 	public void getMapWithOids(IfcModel model, int pid, int rid, Set<Long> oids, boolean deep) throws BimDatabaseException, BimDeadlockException {
 		for (Long oid : oids) {
 			EClass eClass = getClassOfObjectId(pid, rid, oid, deep);
-			getMapWithOid(pid, rid, database.getCidOfEClass(eClass), oid, model, deep);
+			if (eClass != null) {
+				getMapWithOid(pid, rid, database.getCidOfEClass(eClass), oid, model, deep);
+//				throw new BimDatabaseException("Object with oid " + oid + ", rid " + rid + ", pid " + pid + " not found");
+			}
 		}
 	}
 

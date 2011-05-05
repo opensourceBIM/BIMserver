@@ -1186,8 +1186,7 @@ public class Service implements ServiceInterface {
 					sCompareResult.add(new SObjectRemoved(dataObject));
 				} else if (item instanceof ObjectModified) {
 					ObjectModified objectModified = (ObjectModified) item;
-					sCompareResult.add(new SObjectModified(dataObject, objectModified.getFeature().getName(), objectModified.getOldValue().toString(), objectModified.getNewValue()
-							.toString()));
+					sCompareResult.add(new SObjectModified(dataObject, objectModified.getFeature().getName(), objectModified.getOldValue() == null ? "null" : objectModified.getOldValue().toString(), objectModified.getNewValue() == null ? "null" : objectModified.getNewValue().toString()));
 				}
 			}
 		}

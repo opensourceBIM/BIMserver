@@ -32,7 +32,7 @@ public class LongDownloadAction extends LongDownloadOrCheckoutAction {
 		state = ActionState.STARTED;
 		try {
 			executeAction(action, downloadParameters, session, false);
-		} catch (Exception e) {
+ 		} catch (Exception e) {
 			LOGGER.error("", e);
 		} finally {
 			if (session != null) {
