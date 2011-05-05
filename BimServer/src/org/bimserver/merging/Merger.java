@@ -1198,7 +1198,12 @@ public class Merger {
 						IfcUnitEnum unitType = ifcSIUnit.getUnitType();
 						if (unitType == IfcUnitEnum.LENGTHUNIT) {
 							prefixFound = true;
-							ifcSIUnit.setPrefix(IfcSIPrefix.valueOf(prefix.getLiteral()));
+							if (prefix == SIPrefix.METER) {
+								// Set the prefix to null, there is no "meter" prefix in IFC
+								ifcSIUnit.setPrefix(null);
+							} else {
+								ifcSIUnit.setPrefix(IfcSIPrefix.valueOf(prefix.getLiteral()));
+							}
 							break;
 						}
 					}
