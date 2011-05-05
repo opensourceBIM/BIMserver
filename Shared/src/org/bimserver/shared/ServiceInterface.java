@@ -52,6 +52,7 @@ import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.interfaces.objects.SSerializer;
 import org.bimserver.interfaces.objects.SUser;
 import org.bimserver.interfaces.objects.SUserType;
+import org.bimserver.shared.SCompareResult.SCompareIdentifier;
 import org.bimserver.shared.SCompareResult.SCompareType;
 
 //TODO: Document the rest of the interface
@@ -274,7 +275,7 @@ public interface ServiceInterface {
 	@WebMethod(action = "compare")
 	SCompareResult compare(@WebParam(name = "roid1", partName = "compare.roid1") long roid1,
 			@WebParam(name = "roid2", partName = "compare.roid2") long roid2,
-			@WebParam(name = "sCompareType", partName = "compare.sCompareType") SCompareType sCompareType) throws UserException,
+			@WebParam(name = "sCompareType", partName = "compare.sCompareType") SCompareType sCompareType, @WebParam(name = "sCompareIdentifier", partName = "compare.sCompareIdentifier") SCompareIdentifier sCompareIdentifier) throws UserException,
 			ServerException;
 
 	@WebMethod(action = "getRevisionSummary")
@@ -431,7 +432,9 @@ public interface ServiceInterface {
 			ServerException;
 
 	@WebMethod(action = "sendCompareEmail")
-	void sendCompareEmail(@WebParam(name = "sCompareType", partName = "sendClashesEmail.sCompareType") SCompareType sCompareType,
+	void sendCompareEmail(
+			@WebParam(name = "sCompareType", partName = "sendClashesEmail.sCompareType") SCompareType sCompareType,
+			@WebParam(name = "sCompareIdentifier", partName = "sendClashesEmail.sCompareIdentifier") SCompareIdentifier sCompareIdentifier,
 			@WebParam(name = "poid", partName = "sendClashesEmail.poid") long poid,
 			@WebParam(name = "roid1", partName = "sendClashesEmail.roid1") long roid1,
 			@WebParam(name = "roid2", partName = "sendClashesEmail.roid2") long roid2,

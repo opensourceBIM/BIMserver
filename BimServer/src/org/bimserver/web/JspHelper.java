@@ -223,7 +223,8 @@ public class JspHelper {
 				String guid = "";
 				if (item.dataObject.getGuid() != null) {
 					guid = item.dataObject.getGuid();
-				} else if (item.dataObject.getName() != null) {
+				}
+				if (item.dataObject.getName() != null) {
 					name = item.dataObject.getName();
 				}
 				builder.append("<tr>");

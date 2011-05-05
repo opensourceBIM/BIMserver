@@ -22,10 +22,14 @@ public class CompareResult {
 
 	public static abstract class Item {
 
-		public final IdEObject eObject;
+		private final IdEObject eObject;
 
 		public Item(IdEObject eObject) {
 			this.eObject = eObject;
+		}
+
+		public IdEObject geteObject() {
+			return eObject;
 		}
 	}
 

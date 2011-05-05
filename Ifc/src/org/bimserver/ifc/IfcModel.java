@@ -236,6 +236,9 @@ public class IfcModel {
 	}
 
 	public Set<String> getGuids(EClass eClass) {
+		if (guidIndex == null) {
+			buildGuidIndex();
+		}
 		return guidIndex.get(eClass).keySet();
 	}
 

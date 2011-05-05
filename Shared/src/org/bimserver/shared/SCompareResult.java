@@ -7,6 +7,21 @@ import java.util.Map;
 
 public class SCompareResult {
 
+	public enum SCompareIdentifier {
+		GUID("GUID"),
+		NAME("Name");
+		
+		private final String niceName;
+
+		private SCompareIdentifier(String niceName) {
+			this.niceName = niceName;
+		}
+
+		public String getNiceName() {
+			return niceName;
+		}
+	}
+	
 	public enum SCompareType {
 		ALL("All"),
 		ADD("Added"),

@@ -496,12 +496,16 @@ subproject</a><br />
 	<%
 		}
 	%>
-</select> <select name="type">
+</select> Show <select name="type">
 	<option value="ALL">All</option>
 	<option value="ADD">Added</option>
 	<option value="MODIFY">Modified</option>
 	<option value="DELETE">Deleted</option>
-</select>
+</select> Based on
+<select name="identifier">
+	<option value="GUID">GUID</option>
+	<option value="NAME">Name</option>
+</select> 
 <button type="submit" name="compare" value="Compare">Compare</button>
 </form>
 </fieldset>

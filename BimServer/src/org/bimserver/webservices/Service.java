@@ -193,6 +193,7 @@ import org.bimserver.shared.ServiceException;
 import org.bimserver.shared.ServiceInterface;
 import org.bimserver.shared.Token;
 import org.bimserver.shared.UserException;
+import org.bimserver.shared.SCompareResult.SCompareIdentifier;
 import org.bimserver.shared.SCompareResult.SCompareType;
 import org.bimserver.shared.SCompareResult.SObjectAdded;
 import org.bimserver.shared.SCompareResult.SObjectModified;
@@ -1147,11 +1148,11 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public SCompareResult compare(long roid1, long roid2, SCompareType sCompareType) throws UserException, ServerException {
+	public SCompareResult compare(long roid1, long roid2, SCompareType sCompareType, SCompareIdentifier sCompareIdentifier) throws UserException, ServerException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimDatabase.createSession(true);
 		try {
-			BimDatabaseAction<CompareResult> action = new CompareDatabaseAction(session, accessMethod, settingsManager, currentUoid, roid1, roid2, sCompareType);
+			BimDatabaseAction<CompareResult> action = new CompareDatabaseAction(session, accessMethod, settingsManager, currentUoid, roid1, roid2, sCompareType, sCompareIdentifier);
 			return convert(session.executeAndCommitAction(action, DEADLOCK_RETRIES), SCompareResult.class, session);
 		} catch (Exception e) {
 			handleException(e);
@@ -1179,7 +1180,7 @@ public class Service implements ServiceInterface {
 		for (EClass key : items.keySet()) {
 			List<Item> list = items.get(key);
 			for (Item item : list) {
-				SDataObject dataObject = new SDataObject(item.eObject.eClass().getName(), item.eObject.getOid(), getGuid(item.eObject), getName(item.eObject));
+				SDataObject dataObject = new SDataObject(item.geteObject().eClass().getName(), item.geteObject().getOid(), getGuid(item.geteObject()), getName(item.geteObject()));
 				if (item instanceof ObjectAdded) {
 					sCompareResult.add(new SObjectAdded(dataObject));
 				} else if (item instanceof ObjectDeleted) {
@@ -2029,7 +2030,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public void sendCompareEmail(SCompareType sCompareType, long poid, long roid1, long roid2, String address) throws UserException, ServerException {
+	public void sendCompareEmail(SCompareType sCompareType, SCompareIdentifier sCompareIdentifier, long poid, long roid1, long roid2, String address) throws UserException, ServerException {
 		SUser currentUser = getCurrentUser();
 		BimDatabaseSession session = bimDatabase.createSession(true);
 		try {
@@ -2055,16 +2056,16 @@ public class Service implements ServiceInterface {
 				msg.setRecipients(Message.RecipientType.TO, addressTo);
 
 				msg.setSubject("BIMserver Model Comparator");
-				SCompareResult compareResult = compare(roid1, roid2, sCompareType);
+				SCompareResult compareResult = compare(roid1, roid2, sCompareType, sCompareIdentifier);
 				String html = JspHelper.writeCompareResult(compareResult, revision1.getId(), revision2.getId(), sCompareType, getProjectByPoid(poid), false);
 				msg.setContent(html, "text/html");
 				Transport.send(msg);
 			} catch (AddressException e) {
-				e.printStackTrace();
+				throw new UserException(e);
 			} catch (UnsupportedEncodingException e) {
-				e.printStackTrace();
+				throw new UserException(e);
 			} catch (MessagingException e) {
-				e.printStackTrace();
+				throw new UserException(e);
 			}
 		} finally {
 			session.close();

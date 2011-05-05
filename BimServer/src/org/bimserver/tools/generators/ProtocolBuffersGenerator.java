@@ -179,8 +179,7 @@ public class ProtocolBuffersGenerator {
 					} else if (parameterType.isPrimitive()) {
 						out.println("\t\t\trequestBuilder.set" + StringUtils.firstUpperCase(paramName) + "(" + paramName + ");");
 					} else if (parameterType.isEnum()) {
-						out.println("\t\t\tService." + parameterType.getSimpleName() + " newEnum = Service." + parameterType.getSimpleName() + ".values()[" + paramName + ".ordinal()];");
-						out.println("\t\t\trequestBuilder.set" + StringUtils.firstUpperCase(paramName) + "(newEnum);");
+						out.println("\t\t\trequestBuilder.set" + StringUtils.firstUpperCase(paramName) + "(Service." + parameterType.getSimpleName() + ".values()[" + paramName + ".ordinal()]);");
 					} else if (parameterType.isPrimitive() || parameterType == String.class) {
 						out.println("\t\t\trequestBuilder.set" + StringUtils.firstUpperCase(paramName) + "(" + paramName + ");");
 					} else {

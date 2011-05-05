@@ -9,6 +9,8 @@
 <%@page import="org.bimserver.interfaces.objects.SProject"%>
 <%@page import="org.bimserver.interfaces.objects.SRevision"%>
 <%@page import="org.bimserver.shared.SCompareResult.SCompareType"%>
+<%@page import="org.bimserver.shared.ResultType"%>
+<%@page import="org.bimserver.shared.SCompareResult.SCompareIdentifier"%>
 <%@ include file="header.jsp" %>
 <%
 	if (request.getParameter("compare") != null) {
@@ -19,10 +21,10 @@
 		SRevision revision1 = loginManager.getService().getRevision(roid1);
 		SRevision revision2 = loginManager.getService().getRevision(roid2);
 		SCompareType sCompareType = SCompareResult.SCompareType.valueOf(request.getParameter("type"));
-		SCompareResult compareResult = loginManager.getService().compare(roid1, roid2, sCompareType);
+		SCompareResult.SCompareIdentifier sCompareIdentifier = SCompareResult.SCompareIdentifier.valueOf(request.getParameter("identifier"));
+		SCompareResult compareResult = loginManager.getService().compare(roid1, roid2, sCompareType, sCompareIdentifier);
 %>
 Back to 
-<%@page import="org.bimserver.shared.ResultType"%>
 <a href="project.jsp?poid=<%=poid %>">project '<%= project.getName() %>'</a><br/><br/>
   <a href="#" id="emaillink">E-mail summary</a>
   <div id="emailform">
@@ -35,6 +37,7 @@ Back to
   		<input type="hidden" name="roid1" value="<%=roid1 %>"/>
   		<input type="hidden" name="roid2" value="<%=roid2 %>"/>
   		<input type="hidden" name="type" value="<%=request.getParameter("type") %>"/>
+  		<input type="hidden" name="identifier" value="<%=request.getParameter("identifier") %>"/>
   		<input type="submit" name="email" value="Send"/>
   	</form>
   </div>
@@ -44,6 +47,7 @@ Back to
 Download: 
 <input type="hidden" name="compare" value="true" />
 <input type="hidden" name="type" value="<%=request.getParameter("type") %>" />
+<input type="hidden" name="identifier" value="<%=request.getParameter("identifier") %>" />
 <input type="hidden" name="roid1" value="<%=request.getParameter("roid1") %>" />
 <input type="hidden" name="roid2" value="<%=request.getParameter("roid2") %>" />
 <select name="resultType">
@@ -64,7 +68,7 @@ Download:
 		$("#emailform").hide();
 		$("#emailajaxloader").hide();
 		$("#typeselector").change(function(){
-			document.location = 'compare.jsp?roid1=<%=roid1%>&roid2=<%=roid2%>&poid=<%=poid%>&compare=Compare&type=' + $("#typeselector").val();
+			document.location = 'compare.jsp?roid1=<%=roid1%>&roid2=<%=roid2%>&poid=<%=poid%>&compare=Compare&type=' + $("#typeselector").val() + '&identifier=<%=request.getParameter("identifier")%>';
 		});
 		$("#emaillink").click(function(){
 			$("#emaillink").hide();
@@ -74,7 +78,7 @@ Download:
 		$("#emailcompareform").submit(function(){
 			$("#emailcompareform").hide();
 			$("#emailajaxloader").show();
-			$("#emailform").load("sendcompareemail.jsp?type=<%=request.getParameter("type")%>&poid=<%=poid%>&roid1=<%=roid1%>&roid2=<%=roid2%>&address=" + $("#address").val());
+			$("#emailform").load("sendcompareemail.jsp?type=<%=request.getParameter("type")%>&poid=<%=poid%>&roid1=<%=roid1%>&roid2=<%=roid2%>&address=" + $("#address").val() + '&identifier=<%=request.getParameter("identifier")%>');
 			return false;
 		});
 	});

@@ -44,6 +44,7 @@ import org.bimserver.shared.SCompareResult;
 import org.bimserver.shared.SDownloadResult;
 import org.bimserver.shared.ServiceException;
 import org.bimserver.shared.UserException;
+import org.bimserver.shared.SCompareResult.SCompareIdentifier;
 import org.bimserver.shared.SCompareResult.SCompareType;
 import org.bimserver.shared.SCompareResult.SItem;
 import org.bimserver.web.JspHelper;
@@ -99,9 +100,10 @@ public class DownloadServlet extends HttpServlet {
 				checkoutResult = loginManager.getService().getDownloadData(longCheckoutActionId);
 			} else if (request.getParameter("compare") != null) {
 				SCompareType sCompareType = SCompareType.valueOf(request.getParameter("type"));
+				SCompareIdentifier sCompareIdentifier = SCompareIdentifier.valueOf(request.getParameter("identifier"));
 				Long roid1 = Long.parseLong(request.getParameter("roid1"));
 				Long roid2 = Long.parseLong(request.getParameter("roid2"));
-				SCompareResult compare = loginManager.getService().compare(roid1, roid2, sCompareType);
+				SCompareResult compare = loginManager.getService().compare(roid1, roid2, sCompareType, sCompareIdentifier);
 				Map<String, List<SItem>> items = compare.getItems();
 				Set<Long> oids = new HashSet<Long>();
 				for (String className : items.keySet()) {
