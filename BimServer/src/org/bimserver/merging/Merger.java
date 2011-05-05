@@ -95,7 +95,6 @@ import org.bimserver.models.store.Project;
 import org.bimserver.models.store.SIPrefix;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
