@@ -5,7 +5,7 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/Ifc"/>
 	<classpathentry kind="lib" path="lib/j3dcore.jar">
 		<attributes>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="Java3D/lib/32"/>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="TestViewer/lib/64"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="lib/j3dutils.jar"/>
