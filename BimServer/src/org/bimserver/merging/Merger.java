@@ -172,9 +172,6 @@ public class Merger {
 			for (IdEObject idEObject : model.getValues()) {
 				if (idEObject instanceof IfcRoot) {
 					IfcRoot ifcRoot = (IfcRoot) idEObject;
-					if (ifcRoot instanceof IfcSite) {
-						System.out.println();
-					}
 					String identifier = mergeIdentifier.getIdentifier(idEObject);
 					if (identifier != null) {
 						if (!processedIdentifiers.contains(identifier)) {
@@ -199,7 +196,6 @@ public class Merger {
 				}
 			}
 		}
-		System.out.println(map.size());
 		return map;
 	}
 
