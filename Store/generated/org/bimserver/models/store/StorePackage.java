@@ -1274,13 +1274,22 @@ public interface StorePackage extends EPackage
 	int SETTINGS__FOOTER_ADDITION = 17;
 
 	/**
+	 * The feature id for the '<em><b>Merge Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SETTINGS__MERGE_IDENTIFIER = 18;
+
+	/**
 	 * The number of structural features of the '<em>Settings</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SETTINGS_FEATURE_COUNT = 18;
+	int SETTINGS_FEATURE_COUNT = 19;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.SerializerImpl <em>Serializer</em>}' class.
@@ -1449,6 +1458,17 @@ public interface StorePackage extends EPackage
 	 * @generated
 	 */
 	int OBJECT_STATE = 16;
+
+
+	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.MergeIdentifier <em>Merge Identifier</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.MergeIdentifier
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getMergeIdentifier()
+	 * @generated
+	 */
+	int MERGE_IDENTIFIER = 17;
 
 
 	/**
@@ -2651,6 +2671,17 @@ public interface StorePackage extends EPackage
 	EAttribute getSettings_FooterAddition();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Settings#getMergeIdentifier <em>Merge Identifier</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Merge Identifier</em>'.
+	 * @see org.bimserver.models.store.Settings#getMergeIdentifier()
+	 * @see #getSettings()
+	 * @generated
+	 */
+	EAttribute getSettings_MergeIdentifier();
+
+	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.Serializer <em>Serializer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2819,6 +2850,16 @@ public interface StorePackage extends EPackage
 	 * @generated
 	 */
 	EEnum getObjectState();
+
+	/**
+	 * Returns the meta object for enum '{@link org.bimserver.models.store.MergeIdentifier <em>Merge Identifier</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Merge Identifier</em>'.
+	 * @see org.bimserver.models.store.MergeIdentifier
+	 * @generated
+	 */
+	EEnum getMergeIdentifier();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -3746,6 +3787,14 @@ public interface StorePackage extends EPackage
 		EAttribute SETTINGS__FOOTER_ADDITION = eINSTANCE.getSettings_FooterAddition();
 
 		/**
+		 * The meta object literal for the '<em><b>Merge Identifier</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SETTINGS__MERGE_IDENTIFIER = eINSTANCE.getSettings_MergeIdentifier();
+
+		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.SerializerImpl <em>Serializer</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3884,6 +3933,16 @@ public interface StorePackage extends EPackage
 		 * @generated
 		 */
 		EEnum OBJECT_STATE = eINSTANCE.getObjectState();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.MergeIdentifier <em>Merge Identifier</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.MergeIdentifier
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getMergeIdentifier()
+		 * @generated
+		 */
+		EEnum MERGE_IDENTIFIER = eINSTANCE.getMergeIdentifier();
 
 	}
 

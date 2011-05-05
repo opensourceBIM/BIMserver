@@ -3,13 +3,13 @@ package org.bimserver.database.actions;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bimserver.MergerFactory;
 import org.bimserver.SettingsManager;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelSet;
-import org.bimserver.merging.Merger;
 import org.bimserver.models.ifc2x3.IfcRoot;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;
@@ -24,10 +24,12 @@ public class GetDataObjectsByTypeDatabaseAction extends BimDatabaseAction<List<S
 	private final String className;
 	private final long roid;
 	private final SettingsManager settingsManager;
+	private final MergerFactory mergerFactory;
 
-	public GetDataObjectsByTypeDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, SettingsManager settingsManager, long roid, String className) {
+	public GetDataObjectsByTypeDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, SettingsManager settingsManager, MergerFactory mergerFactory, long roid, String className) {
 		super(bimDatabaseSession, accessMethod);
 		this.settingsManager = settingsManager;
+		this.mergerFactory = mergerFactory;
 		this.roid = roid;
 		this.className = className;
 	}
@@ -42,7 +44,7 @@ public class GetDataObjectsByTypeDatabaseAction extends BimDatabaseAction<List<S
 			subModel.setDate(concreteRevision.getDate());
 			ifcModelSet.add(subModel);
 		}
-		IfcModel ifcModel = new Merger().merge(virtualRevision.getProject(), ifcModelSet, settingsManager.getSettings().isIntelligentMerging());
+		IfcModel ifcModel = mergerFactory.createMerger().merge(virtualRevision.getProject(), ifcModelSet, settingsManager.getSettings().isIntelligentMerging());
 		List<SDataObject> dataObjects = new ArrayList<SDataObject>();
 		for (Long oid : ifcModel.keySet()) {
 			EObject eObject = ifcModel.get(oid);

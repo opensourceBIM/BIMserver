@@ -52,6 +52,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.Settings#getIgnoreFiles <em>Ignore Files</em>}</li>
  *   <li>{@link org.bimserver.models.store.Settings#getHeaderAddition <em>Header Addition</em>}</li>
  *   <li>{@link org.bimserver.models.store.Settings#getFooterAddition <em>Footer Addition</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Settings#getMergeIdentifier <em>Merge Identifier</em>}</li>
  * </ul>
  * </p>
  *
@@ -513,5 +514,34 @@ public interface Settings extends IdEObject
 	 * @generated
 	 */
 	void setFooterAddition(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Merge Identifier</b></em>' attribute.
+	 * The literals are from the enumeration {@link org.bimserver.models.store.MergeIdentifier}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Merge Identifier</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Merge Identifier</em>' attribute.
+	 * @see org.bimserver.models.store.MergeIdentifier
+	 * @see #setMergeIdentifier(MergeIdentifier)
+	 * @see org.bimserver.models.store.StorePackage#getSettings_MergeIdentifier()
+	 * @model
+	 * @generated
+	 */
+	MergeIdentifier getMergeIdentifier();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.Settings#getMergeIdentifier <em>Merge Identifier</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Merge Identifier</em>' attribute.
+	 * @see org.bimserver.models.store.MergeIdentifier
+	 * @see #getMergeIdentifier()
+	 * @generated
+	 */
+	void setMergeIdentifier(MergeIdentifier value);
 
 } // Settings

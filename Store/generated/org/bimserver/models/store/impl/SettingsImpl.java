@@ -22,6 +22,7 @@ package org.bimserver.models.store.impl;
 import org.bimserver.emf.IdEObjectImpl;
 
 import org.bimserver.models.store.IgnoreFile;
+import org.bimserver.models.store.MergeIdentifier;
 import org.bimserver.models.store.Serializer;
 import org.bimserver.models.store.Settings;
 import org.bimserver.models.store.StorePackage;
@@ -55,6 +56,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getIgnoreFiles <em>Ignore Files</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getHeaderAddition <em>Header Addition</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getFooterAddition <em>Footer Addition</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getMergeIdentifier <em>Merge Identifier</em>}</li>
  * </ul>
  * </p>
  *
@@ -434,6 +436,24 @@ public class SettingsImpl extends IdEObjectImpl implements Settings
 	public void setFooterAddition(String newFooterAddition)
 	{
 		eSet(StorePackage.Literals.SETTINGS__FOOTER_ADDITION, newFooterAddition);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public MergeIdentifier getMergeIdentifier() {
+		return (MergeIdentifier)eGet(StorePackage.Literals.SETTINGS__MERGE_IDENTIFIER, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setMergeIdentifier(MergeIdentifier newMergeIdentifier) {
+		eSet(StorePackage.Literals.SETTINGS__MERGE_IDENTIFIER, newMergeIdentifier);
 	}
 
 } //SettingsImpl

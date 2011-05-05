@@ -127,6 +127,8 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory
 				return createSIPrefixFromString(eDataType, initialValue);
 			case StorePackage.OBJECT_STATE:
 				return createObjectStateFromString(eDataType, initialValue);
+			case StorePackage.MERGE_IDENTIFIER:
+				return createMergeIdentifierFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -149,6 +151,8 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory
 				return convertSIPrefixToString(eDataType, instanceValue);
 			case StorePackage.OBJECT_STATE:
 				return convertObjectStateToString(eDataType, instanceValue);
+			case StorePackage.MERGE_IDENTIFIER:
+				return convertMergeIdentifierToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -382,6 +386,26 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory
 	 */
 	public String convertObjectStateToString(EDataType eDataType, Object instanceValue)
 	{
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public MergeIdentifier createMergeIdentifierFromString(EDataType eDataType, String initialValue) {
+		MergeIdentifier result = MergeIdentifier.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertMergeIdentifierToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

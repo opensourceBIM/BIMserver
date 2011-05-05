@@ -105,8 +105,41 @@ public class Merger {
 	private ReferenceCounter referenceCounter;
 	private IfcModelSet modelSet;
 	private IfcModel model;
-	private Set<String> processedGuids = new HashSet<String>();
+	private Set<String> processedIdentifiers = new HashSet<String>();
+	private final MergeIdentifier mergeIdentifier;
 
+	public static interface MergeIdentifier {
+		String getIdentifier(IdEObject idEObject);
+	}
+	
+	public static class GuidMergeIdentifier implements MergeIdentifier {
+		@Override
+		public String getIdentifier(IdEObject idEObject) {
+			if (idEObject instanceof IfcRoot) {
+				IfcRoot ifcRoot = (IfcRoot)idEObject;
+				if (ifcRoot.getGlobalId() != null) {
+					return ifcRoot.getGlobalId().getWrappedValue();
+				}
+			}
+			return null;
+		}
+	}
+	
+	public static class NameMergeIdentifier implements MergeIdentifier {
+		@Override
+		public String getIdentifier(IdEObject idEObject) {
+			if (idEObject instanceof IfcRoot) {
+				IfcRoot ifcRoot = (IfcRoot)idEObject;
+				return ifcRoot.getName();
+			}
+			return null;
+		}
+	}
+
+	public Merger(MergeIdentifier mergeIdentifier) {
+		this.mergeIdentifier = mergeIdentifier;
+	}
+	
 	/*
 	 * ifcModels MUST be ordered by date already
 	 */
@@ -125,38 +158,38 @@ public class Merger {
 		if (intelligentMerging) {
 			LOGGER.info("Intelligent merging");
 
-			Map<String, List<IdEObject>> guidMap = buildGuidMap(null);
-			cleanGuidMap(guidMap);
+			Map<String, List<IdEObject>> identifierMap = buildIdentifierMap(null);
+			cleanIdentifierMap(identifierMap);
 		}
 
 		LOGGER.info("Model size: " + model.size());
 		return model;
 	}
 
-	private Map<String, List<IdEObject>> buildGuidMap(EClass eClass) {
-		Map<String, List<IdEObject>> guidMap = new HashMap<String, List<IdEObject>>();
+	private Map<String, List<IdEObject>> buildIdentifierMap(EClass eClass) {
+		Map<String, List<IdEObject>> map = new HashMap<String, List<IdEObject>>();
 		for (IfcModel model : modelSet) {
 			for (IdEObject idEObject : model.getValues()) {
 				if (idEObject instanceof IfcRoot) {
 					IfcRoot ifcRoot = (IfcRoot) idEObject;
 					if (eClass == null || eClass.isInstance(idEObject)) {
-						if (ifcRoot.getGlobalId() != null) {
-							String guid = ifcRoot.getGlobalId().getWrappedValue();
-							if (!processedGuids.contains(guid)) {
-								if (guidMap.containsKey(guid)) {
-									if (guidMap.get(guid).get(0).eClass() != ifcRoot.eClass()) {
-										LOGGER.info("Not merging GUID " + guid + " because different types are found: " + guidMap.get(guid).get(0).eClass().getName() + " and "
+						String identifier = mergeIdentifier.getIdentifier(idEObject);
+						if (identifier != null) {
+							if (!processedIdentifiers.contains(identifier)) {
+								if (map.containsKey(identifier)) {
+									if (map.get(identifier).get(0).eClass() != ifcRoot.eClass()) {
+										LOGGER.info("Not merging " + identifier + " because different types are found: " + map.get(identifier).get(0).eClass().getName() + " and "
 												+ ifcRoot.eClass().getName());
 									} else {
 										if (model.contains(ifcRoot)) {
-											guidMap.get(guid).add(ifcRoot);
+											map.get(identifier).add(ifcRoot);
 										}
 									}
 								} else {
 									if (model.contains(ifcRoot)) {
 										List<IdEObject> list = new ArrayList<IdEObject>();
 										list.add(ifcRoot);
-										guidMap.put(guid, list);
+										map.put(identifier, list);
 									}
 								}
 							}
@@ -165,12 +198,12 @@ public class Merger {
 				}
 			}
 		}
-		return guidMap;
+		return map;
 	}
 
-	private void cleanGuidMap(Map<String, List<IdEObject>> guidMap) {
-		for (String guid : guidMap.keySet()) {
-			List<IdEObject> list = guidMap.get(guid);
+	private void cleanIdentifierMap(Map<String, List<IdEObject>> identifierMap) {
+		for (String identifier : identifierMap.keySet()) {
+			List<IdEObject> list = identifierMap.get(identifier);
 			if (list.size() > 1) {
 				IdEObject newestObject = list.get(list.size() - 1);
 				// Change all attributes FROM this object
@@ -213,7 +246,7 @@ public class Merger {
 					}
 				}
 			}
-			processedGuids.add(guid);
+			processedIdentifiers.add(identifier);
 		}
 	}
 

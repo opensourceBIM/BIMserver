@@ -12,6 +12,7 @@ import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelChangeListener;
 import org.bimserver.ifc.IfcModelSet;
 import org.bimserver.merging.Merger;
+import org.bimserver.merging.Merger.GuidMergeIdentifier;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
@@ -73,7 +74,7 @@ public class DownloadByOidsDatabaseAction extends BimDatabaseAction<IfcModel> {
 				// }
 			}
 		}
-		IfcModel ifcModel = new Merger().merge(project, ifcModelSet, settingsManager.getSettings().isIntelligentMerging());
+		IfcModel ifcModel = new Merger(new GuidMergeIdentifier()).merge(project, ifcModelSet, settingsManager.getSettings().isIntelligentMerging());
 		ifcModel.setRevisionNr(1);
 		ifcModel.setAuthorizedUser(getUserByUoid(actingUoid).getName());
 		ifcModel.setDate(new Date());

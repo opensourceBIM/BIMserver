@@ -18,6 +18,7 @@ import org.bimserver.ifc.file.reader.IfcStepDeserializer;
 import org.bimserver.ifc.file.reader.IncorrectIfcFileException;
 import org.bimserver.merging.IncrementingOidProvider;
 import org.bimserver.merging.Merger;
+import org.bimserver.merging.Merger.GuidMergeIdentifier;
 
 public class GuidHighlighterTester {
 	private SchemaDefinition schema;
@@ -75,7 +76,7 @@ public class GuidHighlighterTester {
 		System.out.println(highlightedGuids.size() + " GUIDs");
 		File inputFile1 = new File(lars, "2440_ARK_Alt4.ifc");
 		File inputFile2 = new File(lars, "612252_RIV_Alt4.ifc");
-		Merger merger = new Merger();
+		Merger merger = new Merger(new GuidMergeIdentifier());
 		IfcModel model1 = readModel(inputFile1);
 		IfcModel model2 = readModel(inputFile2);
 		model2.fixOids(new IncrementingOidProvider(model1.getHighestOid() + 1));

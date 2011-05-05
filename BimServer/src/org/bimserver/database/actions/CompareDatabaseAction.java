@@ -40,9 +40,9 @@ public class CompareDatabaseAction extends BimDatabaseAction<CompareResult> {
 		if (compareResults == null) {
 			IfcModel model1 = new DownloadDatabaseAction(getDatabaseSession(), getAccessMethod(), settingsManager, roid1, actingUoid).execute();
 			IfcModel model2 = new DownloadDatabaseAction(getDatabaseSession(), getAccessMethod(), settingsManager, roid2, actingUoid).execute();
-			if (sCompareIdentifier == SCompareIdentifier.GUID) {
+			if (sCompareIdentifier == SCompareIdentifier.GUID_ID) {
 				compareResults = compare.compareOnGuids(model1, model2, sCompareType);
-			} else if (sCompareIdentifier == SCompareIdentifier.NAME) {
+			} else if (sCompareIdentifier == SCompareIdentifier.NAME_ID) {
 				compareResults = compare.compareOnNames(model1, model2, sCompareType);
 			}
 			CompareCache.getInstance().storeResults(roid1, roid2, sCompareType, sCompareIdentifier, compareResults);

@@ -47,6 +47,7 @@ import org.bimserver.interfaces.objects.SGeoTag;
 import org.bimserver.interfaces.objects.SGuidClash;
 import org.bimserver.interfaces.objects.SIgnoreFile;
 import org.bimserver.interfaces.objects.SLogAction;
+import org.bimserver.interfaces.objects.SMergeIdentifier;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.interfaces.objects.SSerializer;
@@ -472,6 +473,11 @@ public interface ServiceInterface {
 			@WebParam(name = "footerAddition", partName = "setSettingFooterAddition.footerAddition") String footerAddition)
 			throws UserException, ServerException;
 
+	@WebMethod(action = "setSettingMergeIdentifier")
+	void setSettingMergeIdentifier(
+			@WebParam(name = "mergeIdentifier", partName = "setSettingMergeIdentifier.mergeIdentifier") SMergeIdentifier mergeIdentifier)
+			throws UserException, ServerException;
+
 	@WebMethod(action = "getSettingsEmailSenderAddress")
 	String getSettingEmailSenderAddress() throws UserException, ServerException;
 
@@ -623,4 +629,7 @@ public interface ServiceInterface {
 	
 	@WebMethod(action = "getAllSerializerClassNames")
 	Set<String> getAllSerializerClassNames() throws UserException;
+
+	SMergeIdentifier getSettingMergeIdentifier() throws UserException,
+			ServerException;
 }

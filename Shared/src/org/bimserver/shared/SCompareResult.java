@@ -8,8 +8,8 @@ import java.util.Map;
 public class SCompareResult {
 
 	public enum SCompareIdentifier {
-		GUID("GUID"),
-		NAME("Name");
+		GUID_ID("GUID"),
+		NAME_ID("Name");
 		
 		private final String niceName;
 

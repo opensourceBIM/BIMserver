@@ -41,6 +41,7 @@
 				service.setSettingCheckinMergingEnabled(request.getParameter("checkinMergingEnabled") != null);
 				service.setSettingHeaderAddition(request.getParameter("headerAddition"));
 				service.setSettingFooterAddition(request.getParameter("footerAddition"));
+				service(request.getParameter("footerAddition"));
 				String enabledExportTypes = "";
 				Set<String> enabledTypes = new HashSet<String>();
 				for (ResultType resultType : loginManager.getService().getAllResultTypes()) {
