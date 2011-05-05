@@ -68,7 +68,7 @@ public class NewAttributeChange implements Change {
 								throw new NotImplementedException("Type " + eAttribute.getEType().getName() + " has not been implemented");
 							}
 						}
-						columnDatabase.store(subClass.getName(), record.getKey(), buffer.array(), databaseSession);
+						columnDatabase.store(subClass.getName(), record.getKey(), growingByteBuffer.array(), databaseSession);
 						record = recordIterator.next();
 					}
 				} catch (BimDatabaseException e) {
