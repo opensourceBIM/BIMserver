@@ -67,9 +67,9 @@ public class IfcModel {
 	private final Set<IfcModelChangeListener> changeListeners = new LinkedHashSet<IfcModelChangeListener>();
 
 	private static final Map<Class<?>, Class<?>> interfaceClassMap = initInterfaceClassMap();
-	private final Map<Class<?>, List<? extends EObject>> index = new HashMap<Class<?>, List<? extends EObject>>();
-	private final Map<EClass, Map<String, IdEObject>> guidIndex = new HashMap<EClass, Map<String, IdEObject>>();
-	private final Map<EClass, Map<String, IdEObject>> nameIndex = new HashMap<EClass, Map<String, IdEObject>>();
+	private Map<Class<?>, List<? extends EObject>> index;
+	private Map<EClass, Map<String, IdEObject>> guidIndex;
+	private Map<EClass, Map<String, IdEObject>> nameIndex;
 	private FieldIgnoreMap fieldIgnoreMap;
 
 	public IfcModel(BiMap<Long, IdEObject> objects) {
@@ -104,6 +104,7 @@ public class IfcModel {
 
 	@SuppressWarnings("unchecked")
 	private void buildIndex() {
+		index = new HashMap<Class<?>, List<? extends EObject>>();
 		for (Long key : objects.keySet()) {
 			EObject value = objects.get((Long) key);
 			if (value != null) {
@@ -117,6 +118,7 @@ public class IfcModel {
 	}
 
 	public void buildGuidIndex() {
+		guidIndex = new HashMap<EClass, Map<String,IdEObject>>();
 		for (EClassifier classifier : objects.values().iterator().next().eClass().getEPackage().getEClassifiers()) {
 			if (classifier instanceof EClass) {
 				Map<String, IdEObject> map = new TreeMap<String, IdEObject>();
@@ -134,6 +136,7 @@ public class IfcModel {
 	}
 
 	public void buildNameIndex() {
+		nameIndex = new HashMap<EClass, Map<String,IdEObject>>();
 		for (EClassifier classifier : objects.values().iterator().next().eClass().getEPackage().getEClassifiers()) {
 			if (classifier instanceof EClass) {
 				Map<String, IdEObject> map = new TreeMap<String, IdEObject>();
@@ -240,10 +243,16 @@ public class IfcModel {
 	}
 
 	public Set<String> getNames(EClass eClass) {
+		if (nameIndex == null) {
+			buildNameIndex();
+		}
 		return nameIndex.get(eClass).keySet();
 	}
 
 	public IdEObject getByName(EClass eClass, String name) {
+		if (nameIndex == null) {
+			buildNameIndex();
+		}
 		return nameIndex.get(eClass).get(name);
 	}
 	
