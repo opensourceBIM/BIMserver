@@ -13,6 +13,7 @@ import javax.xml.bind.annotation.XmlType;
  * <pre>
  * &lt;simpleType name="sUserType">
  *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+ *     &lt;enumeration value="SYSTEM"/>
  *     &lt;enumeration value="ADMIN"/>
  *     &lt;enumeration value="USER"/>
  *     &lt;enumeration value="ANONYMOUS"/>
@@ -25,6 +26,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlEnum
 public enum SUserType {
 
+    SYSTEM,
     ADMIN,
     USER,
     ANONYMOUS;

@@ -16,7 +16,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="resultType" type="{http://shared.bimserver.org/}resultType" minOccurs="0"/>
+ *         &lt;element name="resultTypeName" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="arg1" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -28,36 +28,36 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "setExportTypeEnabled", propOrder = {
-    "resultType",
+    "resultTypeName",
     "arg1"
 })
 public class SetExportTypeEnabled {
 
-    protected ResultType resultType;
+    protected String resultTypeName;
     protected boolean arg1;
 
     /**
-     * Gets the value of the resultType property.
+     * Gets the value of the resultTypeName property.
      * 
      * @return
      *     possible object is
-     *     {@link ResultType }
+     *     {@link String }
      *     
      */
-    public ResultType getResultType() {
-        return resultType;
+    public String getResultTypeName() {
+        return resultTypeName;
     }
 
     /**
-     * Sets the value of the resultType property.
+     * Sets the value of the resultTypeName property.
      * 
      * @param value
      *     allowed object is
-     *     {@link ResultType }
+     *     {@link String }
      *     
      */
-    public void setResultType(ResultType value) {
-        this.resultType = value;
+    public void setResultTypeName(String value) {
+        this.resultTypeName = value;
     }
 
     /**

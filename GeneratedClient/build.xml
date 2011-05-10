@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<project name="Generate BIMserver Client" basedir=".">
+	<property name="cxf.home" location="../BimServer/lib/cxf" />
+	<property name="build.classes.dir" location="../Shared/bin" />
+
+	<path id="cxf.classpath">
+		<pathelement location="${build.classes.dir}" />
+		<fileset dir="${cxf.home}">
+			<include name="*.jar" />
+		</fileset>
+	</path>
+
+	<target name="Generate WSDL">
+		<java classname="org.apache.cxf.tools.java2ws.JavaToWS" fork="true">
+			<arg value="-wsdl" />
+			<arg value="-o" />
+			<arg value="generated/BIMserver.wsdl" />
+			<arg value="org.bimserver.shared.ServiceInterface" />
+			<classpath>
+				<path refid="cxf.classpath" />
+			</classpath>
+		</java>
+	</target>
+	
+	<target name="Generate Client" depends="Generate WSDL">
+		<java classname="org.apache.cxf.tools.wsdlto.WSDLToJava" fork="true">
+			<arg value="-d" />
+			<arg value="generated" />
+			<arg value="-p" />
+			<arg value="org.bimserver.generatedclient" />
+			<arg value="generated/BIMserver.wsdl" />
+			<classpath>
+				<path refid="cxf.classpath" />
+			</classpath>
+		</java>
+	</target>
+</project>

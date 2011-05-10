@@ -17,7 +17,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="return" type="{http://shared.bimserver.org/}sDownloadResult" minOccurs="0"/>
+ *         &lt;element name="return" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -33,29 +33,21 @@ import javax.xml.bind.annotation.XmlType;
 public class DownloadByOidsResponse {
 
     @XmlElement(name = "return")
-    protected SDownloadResult _return;
+    protected int _return;
 
     /**
      * Gets the value of the return property.
      * 
-     * @return
-     *     possible object is
-     *     {@link SDownloadResult }
-     *     
      */
-    public SDownloadResult getReturn() {
+    public int getReturn() {
         return _return;
     }
 
     /**
      * Sets the value of the return property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link SDownloadResult }
-     *     
      */
-    public void setReturn(SDownloadResult value) {
+    public void setReturn(int value) {
         this._return = value;
     }
 

@@ -3,7 +3,6 @@ package org.bimserver.generatedclient;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -28,6 +27,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="concreteRevisions" type="{http://www.w3.org/2001/XMLSchema}long" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="date" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
  *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *         &lt;element name="laid" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="lastClashes" type="{http://www.w3.org/2001/XMLSchema}long" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="lastConcreteRevisionId" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="lastError" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
@@ -54,6 +54,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "concreteRevisions",
     "date",
     "id",
+    "laid",
     "lastClashes",
     "lastConcreteRevisionId",
     "lastError",
@@ -76,6 +77,7 @@ public class SRevision {
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar date;
     protected int id;
+    protected long laid;
     @XmlElement(nillable = true)
     protected List<Long> lastClashes;
     protected long lastConcreteRevisionId;
@@ -224,6 +226,22 @@ public class SRevision {
      */
     public void setId(int value) {
         this.id = value;
+    }
+
+    /**
+     * Gets the value of the laid property.
+     * 
+     */
+    public long getLaid() {
+        return laid;
+    }
+
+    /**
+     * Sets the value of the laid property.
+     * 
+     */
+    public void setLaid(long value) {
+        this.laid = value;
     }
 
     /**
