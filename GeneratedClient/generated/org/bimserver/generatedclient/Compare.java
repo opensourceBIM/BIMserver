@@ -19,6 +19,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="roid1" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="roid2" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="sCompareType" type="{http://shared.bimserver.org/}sCompareType" minOccurs="0"/>
+ *         &lt;element name="sCompareIdentifier" type="{http://shared.bimserver.org/}sCompareIdentifier" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -31,13 +32,15 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "compare", propOrder = {
     "roid1",
     "roid2",
-    "sCompareType"
+    "sCompareType",
+    "sCompareIdentifier"
 })
 public class Compare {
 
     protected long roid1;
     protected long roid2;
     protected SCompareType sCompareType;
+    protected SCompareIdentifier sCompareIdentifier;
 
     /**
      * Gets the value of the roid1 property.
@@ -93,6 +96,30 @@ public class Compare {
      */
     public void setSCompareType(SCompareType value) {
         this.sCompareType = value;
+    }
+
+    /**
+     * Gets the value of the sCompareIdentifier property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link SCompareIdentifier }
+     *     
+     */
+    public SCompareIdentifier getSCompareIdentifier() {
+        return sCompareIdentifier;
+    }
+
+    /**
+     * Sets the value of the sCompareIdentifier property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link SCompareIdentifier }
+     *     
+     */
+    public void setSCompareIdentifier(SCompareIdentifier value) {
+        this.sCompareIdentifier = value;
     }
 
 }

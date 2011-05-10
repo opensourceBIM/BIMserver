@@ -39,8 +39,9 @@ public class Test {
 	private void testDownloadFirstProjectFirstRevision() throws UserException_Exception, ServerException_Exception {
 		List<SProject> allProjects = soapPort.getAllProjects();
 		SProject firstProject = allProjects.get(0);
-		SDownloadResult downloadOfType = soapPort.downloadOfType(firstProject.getLastRevisionId(), "IfcSlab", ResultType.IFCXML);
-		DataHandler file = downloadOfType.getFile();
+		int downloadId = soapPort.downloadOfType(firstProject.getLastRevisionId(), "IfcSlab", "IFC", true);
+		SDownloadResult downloadData = soapPort.getDownloadData(downloadId);
+		DataHandler file = downloadData.getFile();
 		try {
 			InputStream inputStream = file.getInputStream();
 			byte[] buffer = new byte[1024];

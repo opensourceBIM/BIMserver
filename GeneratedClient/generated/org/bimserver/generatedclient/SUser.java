@@ -3,7 +3,6 @@ package org.bimserver.generatedclient;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -28,6 +27,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="lastSeen" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
  *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="oid" type="{http://www.w3.org/2001/XMLSchema}long"/>
+ *         &lt;element name="password" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="revisions" type="{http://www.w3.org/2001/XMLSchema}long" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="state" type="{http://shared.bimserver.org/}sObjectState" minOccurs="0"/>
  *         &lt;element name="userType" type="{http://shared.bimserver.org/}sUserType" minOccurs="0"/>
@@ -50,6 +50,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "lastSeen",
     "name",
     "oid",
+    "password",
     "revisions",
     "state",
     "userType",
@@ -68,6 +69,7 @@ public class SUser {
     protected XMLGregorianCalendar lastSeen;
     protected String name;
     protected long oid;
+    protected String password;
     @XmlElement(nillable = true)
     protected List<Long> revisions;
     protected SObjectState state;
@@ -208,6 +210,30 @@ public class SUser {
      */
     public void setOid(long value) {
         this.oid = value;
+    }
+
+    /**
+     * Gets the value of the password property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getPassword() {
+        return password;
+    }
+
+    /**
+     * Sets the value of the password property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setPassword(String value) {
+        this.password = value;
     }
 
     /**

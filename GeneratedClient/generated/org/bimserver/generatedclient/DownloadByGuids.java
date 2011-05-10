@@ -3,7 +3,6 @@ package org.bimserver.generatedclient;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -22,7 +21,8 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;sequence>
  *         &lt;element name="roids" type="{http://www.w3.org/2001/XMLSchema}long" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="guids" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
- *         &lt;element name="resultType" type="{http://shared.bimserver.org/}resultType" minOccurs="0"/>
+ *         &lt;element name="formatIdentifier" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="sync" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -35,14 +35,16 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "downloadByGuids", propOrder = {
     "roids",
     "guids",
-    "resultType"
+    "formatIdentifier",
+    "sync"
 })
 public class DownloadByGuids {
 
     @XmlElement(type = Long.class)
     protected List<Long> roids;
     protected List<String> guids;
-    protected ResultType resultType;
+    protected String formatIdentifier;
+    protected boolean sync;
 
     /**
      * Gets the value of the roids property.
@@ -103,27 +105,43 @@ public class DownloadByGuids {
     }
 
     /**
-     * Gets the value of the resultType property.
+     * Gets the value of the formatIdentifier property.
      * 
      * @return
      *     possible object is
-     *     {@link ResultType }
+     *     {@link String }
      *     
      */
-    public ResultType getResultType() {
-        return resultType;
+    public String getFormatIdentifier() {
+        return formatIdentifier;
     }
 
     /**
-     * Sets the value of the resultType property.
+     * Sets the value of the formatIdentifier property.
      * 
      * @param value
      *     allowed object is
-     *     {@link ResultType }
+     *     {@link String }
      *     
      */
-    public void setResultType(ResultType value) {
-        this.resultType = value;
+    public void setFormatIdentifier(String value) {
+        this.formatIdentifier = value;
+    }
+
+    /**
+     * Gets the value of the sync property.
+     * 
+     */
+    public boolean isSync() {
+        return sync;
+    }
+
+    /**
+     * Sets the value of the sync property.
+     * 
+     */
+    public void setSync(boolean value) {
+        this.sync = value;
     }
 
 }
