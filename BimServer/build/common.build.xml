@@ -56,9 +56,6 @@
 		<copy todir="builds/BuildJar/lib">
 			<fileset file="${defaultsettings}/${target}/log4j.xml" />
 		</copy>
-		<copy tofile="builds/BuildJar/classes/org/bimserver/ifc/emf/Ifc2x3/impl/Ifc2x3.ecore">
-			<fileset file="../../Ifc/model/IFC2X3.ecore" />
-		</copy>
 		<copy todir="builds/BuildJar/lib" flatten="true">
 			<fileset dir="../lib" >
 				<include name="**/*.jar" />
@@ -78,6 +75,7 @@
 				<include name="**" />
 			</fileset>
 		</copy>
+		<mkdir dir="builds/BuildJar/classes"/>
 		<javac srcdir="../src" destdir="builds/BuildJar/classes" debug="on" fork="true" memorymaximumsize="512m">
 			<src path="../../BimServer/generated" />
 			<src path="../../BimServer/imported" />
@@ -87,8 +85,9 @@
 			<src path="../../Utils/src" />
 			<src path="../../Emf/src" />
 			<src path="../../Shared/src" />
+			<src path="../../Shared/generated" />
 			<src path="../../CityGML/src" />
-			<src path="../../CityGML/src-gen" />
+			<src path="../../CityGML/generated" />
 			<src path="../../Collada/src" />
 			<src path="../../IFCEngine/src" />
 			<src path="../../O3d/src" />
@@ -99,6 +98,8 @@
 				</fileset>
 			</classpath>
 		</javac>
+		<copy file="../../BimServer/src/org/bimserver/database/migrations/steps/IFC2X3.ecore" todir="builds/BuildJar/classes/org/bimserver/database/migrations/steps"/>
+		<copy file="../../Store/generated/org/bimserver/models/ifc2x3/impl/ifc2x3.ecore" todir="builds/BuildJar/classes/org/bimserver/models/ifc2x3/impl"/>
 		<jar jarfile="builds/BuildJar/lib/bimserver.jar" manifest="${buildtargets}/${target}/MAIN-MANIFEST.MF">
 			<fileset dir="builds/BuildJar/classes" />
 		</jar>
@@ -162,9 +163,10 @@
 		<replace file="builds/BuildWar/WEB-INF/version.xml" token="@VERSION@" value="${version}" />
 		<replace file="builds/BuildWar/WEB-INF/version.xml" token="@DATE@" value="${touch.time}" />
 		<replace file="builds/BuildWar/WEB-INF/web.xml" token="@VERSION@" value="${version}" />
-		<copy tofile="builds/BuildWar/WEB-INF/classes/org/bimserver/ifc/emf/Ifc2x3/impl/Ifc2x3.ecore">
-			<fileset file="../../Ifc/model/IFC2X3.ecore" />
-		</copy>
+
+		<copy file="../../BimServer/src/org/bimserver/database/migrations/steps/IFC2X3.ecore" todir="builds/BuildWar/WEB-INF/classes/org/bimserver/database/migrations/steps"/>
+		<copy file="../../Store/generated/org/bimserver/models/ifc2x3/impl/ifc2x3.ecore" todir="builds/BuildWar/WEB-INF/classes/org/bimserver/models/ifc2x3/impl"/>
+
 		<copy todir="builds/BuildWar/WEB-INF/ignoreexceptions" overwrite="true" failonerror="false">
 			<fileset dir="${defaultsettings}/shared/ignoreexceptions" />
 		</copy>
@@ -214,8 +216,9 @@
 			<src path="../../Utils/src" />
 			<src path="../../Emf/src" />
 			<src path="../../Shared/src" />
+			<src path="../../Shared/generated" />
 			<src path="../../CityGML/src" />
-			<src path="../../CityGML/src-gen" />
+			<src path="../../CityGML/generated" />
 			<src path="../../Collada/src" />
 			<src path="../../IFCEngine/src" />
 			<src path="../../O3d/src" />
