@@ -24,7 +24,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
 
 import org.apache.cxf.Bus;
 import org.apache.cxf.BusFactory;
@@ -39,7 +38,7 @@ public class WebServiceServlet extends CXFNonSpringServlet {
 	private static final long serialVersionUID = 3633266184012679113L;
 
 	@Override
-	public void loadBus(ServletConfig servletConfig) throws ServletException {
+	public void loadBus(ServletConfig servletConfig) {
 		super.loadBus(servletConfig);
 		Bus bus = getBus();
 		BusFactory.setDefaultBus(bus);
