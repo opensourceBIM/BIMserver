@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="src" path="src-gen"/>
+	<classpathentry kind="src" path="generated"/>
 	<classpathentry exported="true" kind="lib" path="lib/StPL96.jar"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Ifc"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Emf"/>
