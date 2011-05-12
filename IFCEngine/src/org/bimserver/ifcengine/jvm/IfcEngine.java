@@ -12,9 +12,8 @@ import java.util.Set;
 import org.bimserver.ifcengine.IfcEngineInterface;
 import org.bimserver.ifcengine.SdaiTypes;
 import org.bimserver.ifcengine.IfcEngineInterface.StreamCallback;
-import org.bimserver.models.store.EidClash;
-import org.bimserver.models.store.GuidClash;
-import org.bimserver.models.store.StoreFactory;
+import org.bimserver.plugins.ifcengine.IfcEngineClash;
+import org.bimserver.plugins.ifcengine.IfcEngineInstanceVisualisationProperties;
 
 import com.sun.jna.Memory;
 import com.sun.jna.Pointer;
@@ -128,30 +127,6 @@ public class IfcEngine {
 
 		public boolean hasInstanceList() {
 			return instanceList != null;
-		}
-	}
-
-	static public class InstanceVisualisationProperties {
-		private int startVertex;
-		private int startIndex;
-		private int primitiveCount;
-
-		public InstanceVisualisationProperties(int startVertex, int startIndex, int primitiveCount) {
-			this.startVertex = startVertex;
-			this.startIndex = startIndex;
-			this.primitiveCount = primitiveCount;
-		}
-
-		public int getStartVertex() {
-			return startVertex;
-		}
-
-		public int getStartIndex() {
-			return startIndex;
-		}
-
-		public int getPrimitiveCount() {
-			return primitiveCount;
 		}
 	}
 
@@ -458,8 +433,8 @@ public class IfcEngine {
 	 * @param size
 	 * @return
 	 */
-	public Set<EidClash> finalizeClashesByEI(Pointer modelId, int size) {
-		Set<EidClash> clashes = new HashSet<EidClash>();
+	public Set<IfcEngineClash> finalizeClashesByEI(Pointer modelId, int size) {
+		Set<IfcEngineClash> clashes = new HashSet<IfcEngineClash>();
 		
 		Memory pG1 = new Memory(size * 4 * getPlatformMultiplier());
 		Memory pG2 = new Memory(size * 4 * getPlatformMultiplier());
@@ -475,7 +450,7 @@ public class IfcEngine {
 				eid2 = pG2.getLong(i * 4 * getPlatformMultiplier());
 			}
 
-			EidClash clash = StoreFactory.eINSTANCE.createEidClash();
+			IfcEngineClash clash = new IfcEngineClash();
 			clash.setEid1(eid1);
 			clash.setEid2(eid2);
 			clashes.add(clash);
@@ -488,8 +463,8 @@ public class IfcEngine {
 	 * @param size
 	 * @return
 	 */
-	public Set<GuidClash> finalizeClashesByGuid(Pointer modelId, int size) {
-		Set<GuidClash> clashes = new HashSet<GuidClash>();
+	public Set<IfcEngineClash> finalizeClashesByGuid(Pointer modelId, int size) {
+		Set<IfcEngineClash> clashes = new HashSet<IfcEngineClash>();
 		Memory pG1 = new Memory(size * 4 * getPlatformMultiplier());
 		Memory pG2 = new Memory(size * 4 * getPlatformMultiplier());
 		engine.finalizeClashesByGuid(modelId, pG1, pG2);
@@ -499,7 +474,7 @@ public class IfcEngine {
 			Pointer memory2 = pG2.getPointer(i * 4 * getPlatformMultiplier());
 			String pG2Str = memory2.getString(0);
 
-			GuidClash clash = StoreFactory.eINSTANCE.createGuidClash();
+			IfcEngineClash clash = new IfcEngineClash();
 			clash.setGuid1(pG1Str);
 			clash.setGuid2(pG2Str);
 			clashes.add(clash);
@@ -634,7 +609,7 @@ public class IfcEngine {
 	 *            bounding box representation.
 	 * @return
 	 */
-	public InstanceVisualisationProperties getInstanceInModelling(Pointer model, Pointer instance, int mode) {
+	public IfcEngineInstanceVisualisationProperties getInstanceInModelling(Pointer model, Pointer instance, int mode) {
 		IntByReference pV = new IntByReference();
 		IntByReference pI = new IntByReference();
 		IntByReference pC = new IntByReference();
@@ -642,7 +617,7 @@ public class IfcEngine {
 		int startVertex = pV.getValue();
 		int startIndex = pI.getValue();
 		int primitiveCount = pC.getValue();
-		return new InstanceVisualisationProperties(startVertex, startIndex, primitiveCount);
+		return new IfcEngineInstanceVisualisationProperties(startVertex, startIndex, primitiveCount);
 	}
 
 	/**

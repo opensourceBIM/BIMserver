@@ -12,12 +12,11 @@ import java.util.Map;
 import java.util.Set;
 
 import org.bimserver.ifcengine.Command;
-import org.bimserver.ifcengine.IfcEngineException;
 import org.bimserver.ifcengine.SdaiTypes;
-import org.bimserver.ifcengine.jvm.IfcEngine.InstanceVisualisationProperties;
 import org.bimserver.ifcengine.jvm.IfcEngine.SurfaceProperties;
-import org.bimserver.models.store.EidClash;
-import org.bimserver.models.store.GuidClash;
+import org.bimserver.plugins.ifcengine.IfcEngineClash;
+import org.bimserver.plugins.ifcengine.IfcEngineException;
+import org.bimserver.plugins.ifcengine.IfcEngineInstanceVisualisationProperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -132,9 +131,9 @@ public class IfcEngineServer extends Thread {
 					double dist = in.readDouble();
 					int nrClashes = ifcEngine.initializeClashes(pointers.get(modelId), dist);
 					if (nrClashes > 0) {
-						Set<GuidClash> clashes = ifcEngine.finalizeClashesByGuid(pointers.get(modelId), nrClashes);
+						Set<IfcEngineClash> clashes = ifcEngine.finalizeClashesByGuid(pointers.get(modelId), nrClashes);
 						out.writeInt(nrClashes);
-						for (GuidClash clash : clashes) {
+						for (IfcEngineClash clash : clashes) {
 							out.writeUTF(clash.getGuid1());
 							out.writeUTF(clash.getGuid2());
 						}
@@ -148,9 +147,9 @@ public class IfcEngineServer extends Thread {
 					double dist = in.readDouble();
 					int nrClashes = ifcEngine.initializeClashes(pointers.get(modelId), dist);
 					if (nrClashes > 0) {
-						Set<EidClash> clashes = ifcEngine.finalizeClashesByEI(pointers.get(modelId), nrClashes);
+						Set<IfcEngineClash> clashes = ifcEngine.finalizeClashesByEI(pointers.get(modelId), nrClashes);
 						out.writeInt(nrClashes);
-						for (EidClash clash : clashes) {
+						for (IfcEngineClash clash : clashes) {
 							out.writeLong(clash.getEid1());
 							out.writeLong(clash.getEid2());
 						}
@@ -162,7 +161,7 @@ public class IfcEngineServer extends Thread {
 				case GET_VISUALISATION_PROPERTIES: {
 					int modelId = in.readInt();
 					int instanceId = in.readInt();
-					InstanceVisualisationProperties instanceInModelling = ifcEngine.getInstanceInModelling(pointers.get(modelId), pointers.get(instanceId), 1);
+					IfcEngineInstanceVisualisationProperties instanceInModelling = ifcEngine.getInstanceInModelling(pointers.get(modelId), pointers.get(instanceId), 1);
 					out.writeInt(instanceInModelling.getStartVertex());
 					out.writeInt(instanceInModelling.getStartIndex());
 					out.writeInt(instanceInModelling.getPrimitiveCount());
