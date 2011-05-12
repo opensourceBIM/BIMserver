@@ -12,10 +12,12 @@ import java.io.PipedInputStream;
 import java.io.PipedOutputStream;
 
 import org.bimserver.ifcengine.jvm.IfcEngineServer;
+import org.bimserver.plugins.ifcengine.IfcEngine;
+import org.bimserver.plugins.ifcengine.IfcEngineException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class FailSafeIfcEngine {
+public class FailSafeIfcEngine implements IfcEngine {
 	private static final Logger LOGGER = LoggerFactory.getLogger(FailSafeIfcEngine.class);
 	private Process process;
 	private DataInputStream in;
@@ -115,15 +117,15 @@ public class FailSafeIfcEngine {
 		thread.start();
 	}
 
-	public synchronized IfcEngineModel openModel(File ifcFile) throws IfcEngineException {
+	public synchronized IfcEngineModelImpl openModel(File ifcFile) throws IfcEngineException {
 		writeCommand(Command.OPEN_MODEL);
 		writeUTF(ifcFile.getAbsolutePath());
 		flush();
 		int modelId = readInt();
-		return new IfcEngineModel(this, modelId);
+		return new IfcEngineModelImpl(this, modelId);
 	}
 
-	public synchronized IfcEngineModel openModel(InputStream inputStream, int size) throws IfcEngineException {
+	public synchronized IfcEngineModelImpl openModel(InputStream inputStream, int size) throws IfcEngineException {
 		writeCommand(Command.OPEN_MODEL_STREAMING);
 		try {
 			out.writeInt(size);
@@ -142,7 +144,7 @@ public class FailSafeIfcEngine {
 		}
 		flush();
 		int modelId = readInt();
-		return new IfcEngineModel(this, modelId);
+		return new IfcEngineModelImpl(this, modelId);
 	}
 
 	public int readInt() throws IfcEngineException {
@@ -237,7 +239,7 @@ public class FailSafeIfcEngine {
 		}
 	}
 
-	public IfcEngineModel openModel(byte[] bytes) throws IfcEngineException {
+	public IfcEngineModelImpl openModel(byte[] bytes) throws IfcEngineException {
 		return openModel(new ByteArrayInputStream(bytes), bytes.length);
 	}
 }
