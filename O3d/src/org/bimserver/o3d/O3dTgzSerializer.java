@@ -11,20 +11,9 @@ import java.util.zip.GZIPOutputStream;
 import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
 
 import org.bimserver.emf.IdEObject;
-import org.bimserver.ifc.BimModelSerializer;
-import org.bimserver.ifc.EmfSerializer;
 import org.bimserver.ifc.FieldIgnoreMap;
 import org.bimserver.ifc.IfcModel;
-import org.bimserver.ifc.SerializerException;
 import org.bimserver.ifc.file.writer.IfcStepSerializer;
-import org.bimserver.ifcengine.FailSafeIfcEngine;
-import org.bimserver.ifcengine.Geometry;
-import org.bimserver.ifcengine.IfcEngineException;
-import org.bimserver.ifcengine.IfcEngineFactory;
-import org.bimserver.ifcengine.IfcEngineModel;
-import org.bimserver.ifcengine.Instance;
-import org.bimserver.ifcengine.SurfaceProperties;
-import org.bimserver.ifcengine.jvm.IfcEngine.InstanceVisualisationProperties;
 import org.bimserver.models.ifc2x3.IfcColumn;
 import org.bimserver.models.ifc2x3.IfcDoor;
 import org.bimserver.models.ifc2x3.IfcRamp;
@@ -39,9 +28,18 @@ import org.bimserver.models.ifc2x3.IfcWallStandardCase;
 import org.bimserver.models.ifc2x3.IfcWindow;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.User;
+import org.bimserver.plugins.ifcengine.IfcEngine;
+import org.bimserver.plugins.ifcengine.IfcEngineException;
+import org.bimserver.plugins.ifcengine.IfcEngineFactory;
+import org.bimserver.plugins.ifcengine.IfcEngineGeometry;
+import org.bimserver.plugins.ifcengine.IfcEngineInstance;
+import org.bimserver.plugins.ifcengine.IfcEngineInstanceVisualisationProperties;
+import org.bimserver.plugins.ifcengine.IfcEngineModel;
+import org.bimserver.plugins.ifcengine.IfcEngineSurfaceProperties;
+import org.bimserver.plugins.serializers.BimModelSerializer;
+import org.bimserver.plugins.serializers.SerializerException;
 import org.codehaus.jettison.json.JSONException;
 import org.eclipse.emf.ecore.EObject;
-import org.mangosdk.spi.ProviderFor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -49,11 +47,10 @@ import com.google.common.base.Charsets;
 import com.ice.tar.TarEntry;
 import com.ice.tar.TarOutputStream;
 
-@ProviderFor(value=EmfSerializer.class)
 public class O3dTgzSerializer extends BimModelSerializer {
 	private static final Logger LOGGER = LoggerFactory.getLogger(O3dTgzSerializer.class);
 	private SchemaDefinition schemaDefinition;
-	private FailSafeIfcEngine ifcEngine;
+	private IfcEngine ifcEngine;
 	private int convertCounter;
 	private BinaryIndexFile binaryIndexFile = new BinaryIndexFile();
 	private BinaryVertexFile binaryVertexFile = new BinaryVertexFile();
@@ -66,7 +63,7 @@ public class O3dTgzSerializer extends BimModelSerializer {
 		this.user = user;
 		this.schemaDefinition = schemaDefinition;
 		try {
-			this.ifcEngine = ifcEngineFactory.createFailSafeIfcEngine();
+			this.ifcEngine = ifcEngineFactory.createIfcEngine();
 		} catch (IfcEngineException e) {
 			throw new SerializerException(e);
 		}
@@ -244,13 +241,13 @@ public class O3dTgzSerializer extends BimModelSerializer {
 		BinaryVertexBuffer binaryVertexBuffer = new BinaryVertexBuffer();
 		IfcEngineModel model = ifcEngine.openModel(ifcSerializer.getBytes());
 		try {
-			SurfaceProperties sp = model.initializeModelling();
+			IfcEngineSurfaceProperties sp = model.initializeModelling();
 			model.setPostProcessing(true);
-			Geometry geometry = model.finalizeModelling(sp);
+			IfcEngineGeometry geometry = model.finalizeModelling(sp);
 			int nrIndices = 0;
 			if (geometry != null) {
-				for (Instance instance : model.getInstances(ifcRootObject.eClass().getName().toUpperCase())) {
-					InstanceVisualisationProperties instanceInModelling = instance.getVisualisationProperties();
+				for (IfcEngineInstance instance : model.getInstances(ifcRootObject.eClass().getName().toUpperCase())) {
+					IfcEngineInstanceVisualisationProperties instanceInModelling = instance.getVisualisationProperties();
 					for (int i = instanceInModelling.getStartIndex(); i < instanceInModelling.getPrimitiveCount() * 3 + instanceInModelling.getStartIndex(); i += 3) {
 						binaryIndexBuffer.addIndex(geometry.getIndex(i));
 						binaryIndexBuffer.addIndex(geometry.getIndex(i + 2));
