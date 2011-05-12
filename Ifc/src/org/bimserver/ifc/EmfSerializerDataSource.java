@@ -6,6 +6,8 @@ import java.io.OutputStream;
 
 import javax.activation.DataSource;
 
+import org.bimserver.plugins.serializers.EmfSerializer;
+
 public class EmfSerializerDataSource implements DataSource {
 
 	private final EmfSerializer serializer;

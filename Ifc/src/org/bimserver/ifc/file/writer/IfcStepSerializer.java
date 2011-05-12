@@ -31,7 +31,6 @@ import nl.tue.buildingsmart.express.dictionary.EntityDefinition;
 import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
 
 import org.bimserver.emf.IdEObject;
-import org.bimserver.ifc.EmfSerializer;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcSerializer;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
@@ -40,6 +39,7 @@ import org.bimserver.models.ifc2x3.Tristate;
 import org.bimserver.models.ifc2x3.WrappedValue;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.User;
+import org.bimserver.plugins.serializers.EmfSerializer;
 import org.bimserver.utils.UTFPrintWriter;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
