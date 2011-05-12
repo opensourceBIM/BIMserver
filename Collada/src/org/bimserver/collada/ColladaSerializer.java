@@ -13,20 +13,8 @@ import java.util.Set;
 import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
 
 import org.bimserver.emf.IdEObject;
-import org.bimserver.ifc.BimModelSerializer;
-import org.bimserver.ifc.EmfSerializer;
-import org.bimserver.ifc.FieldIgnoreMap;
 import org.bimserver.ifc.IfcModel;
-import org.bimserver.ifc.PackageDefinition;
-import org.bimserver.ifc.SerializerException;
 import org.bimserver.ifc.file.writer.IfcStepSerializer;
-import org.bimserver.ifcengine.FailSafeIfcEngine;
-import org.bimserver.ifcengine.Geometry;
-import org.bimserver.ifcengine.IfcEngineException;
-import org.bimserver.ifcengine.IfcEngineFactory;
-import org.bimserver.ifcengine.IfcEngineModel;
-import org.bimserver.ifcengine.Instance;
-import org.bimserver.ifcengine.jvm.IfcEngine.InstanceVisualisationProperties;
 import org.bimserver.models.ifc2x3.IfcBuildingElementProxy;
 import org.bimserver.models.ifc2x3.IfcColourOrFactor;
 import org.bimserver.models.ifc2x3.IfcColourRgb;
@@ -74,16 +62,26 @@ import org.bimserver.models.ifc2x3.IfcWindow;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.SIPrefix;
 import org.bimserver.models.store.User;
+import org.bimserver.plugins.ifcengine.IfcEngine;
+import org.bimserver.plugins.ifcengine.IfcEngineException;
+import org.bimserver.plugins.ifcengine.IfcEngineFactory;
+import org.bimserver.plugins.ifcengine.IfcEngineGeometry;
+import org.bimserver.plugins.ifcengine.IfcEngineInstance;
+import org.bimserver.plugins.ifcengine.IfcEngineInstanceVisualisationProperties;
+import org.bimserver.plugins.ifcengine.IfcEngineModel;
+import org.bimserver.plugins.serializers.BimModelSerializer;
+import org.bimserver.plugins.serializers.IfcModelInterface;
+import org.bimserver.plugins.serializers.IgnoreProvider;
+import org.bimserver.plugins.serializers.PackageDefinition;
+import org.bimserver.plugins.serializers.SerializerException;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.mangosdk.spi.ProviderFor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@ProviderFor(value=EmfSerializer.class)
 public class ColladaSerializer extends BimModelSerializer {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ColladaSerializer.class);
-	private FailSafeIfcEngine ifcEngine;
+	private IfcEngine ifcEngine;
 	private SchemaDefinition schemaDefinition;
 	private Map<String, Set<String>> converted = new HashMap<String, Set<String>>();
 	private Project project;
@@ -92,8 +90,8 @@ public class ColladaSerializer extends BimModelSerializer {
 	private PackageDefinition packageDefinition;
 	private List<String> surfaceStyleIds;
 
-	public void init(Project project, User user, String fileName, IfcModel model, SchemaDefinition schemaDefinition,
-			FieldIgnoreMap fieldIgnoreMap, IfcEngineFactory ifcEngineFactory, PackageDefinition packageDefinition)
+	public void init(Project project, User user, String fileName, IfcModelInterface model, SchemaDefinition schemaDefinition,
+			IgnoreProvider fieldIgnoreMap, IfcEngineFactory ifcEngineFactory, PackageDefinition packageDefinition)
 			throws SerializerException {
 		super.init(fileName, model, fieldIgnoreMap);
 		this.project = project;
@@ -101,7 +99,7 @@ public class ColladaSerializer extends BimModelSerializer {
 		this.schemaDefinition = schemaDefinition;
 		this.packageDefinition = packageDefinition;
 		try {
-			this.ifcEngine = ifcEngineFactory.createFailSafeIfcEngine();
+			this.ifcEngine = ifcEngineFactory.createIfcEngine();
 		} catch (IfcEngineException e) {
 			throw new SerializerException(e);
 		}
@@ -377,7 +375,7 @@ public class ColladaSerializer extends BimModelSerializer {
 			IfcEngineModel model = ifcEngine.openModel(ifcSerializer.getBytes());
 			try {
 				model.setPostProcessing(true);
-				Geometry geometry = model.finalizeModelling(model.initializeModelling());
+				IfcEngineGeometry geometry = model.finalizeModelling(model.initializeModelling());
 				if (geometry != null) {
 					out.println("<geometry id=\"" + id + "\" name=\"" + id + "\">");
 					out.println("<mesh>");
@@ -418,8 +416,8 @@ public class ColladaSerializer extends BimModelSerializer {
 					out.println("<input semantic=\"POSITION\" source=\"#" + id + "-positions\"/>");
 					out.println("<input semantic=\"NORMAL\" source=\"#" + id + "-normals\"/>");
 					out.println("</vertices>");
-					for (Instance instance : model.getInstances(ifcRootObject.eClass().getName().toUpperCase())) {
-						InstanceVisualisationProperties instanceInModelling = instance.getVisualisationProperties();
+					for (IfcEngineInstance instance : model.getInstances(ifcRootObject.eClass().getName().toUpperCase())) {
+						IfcEngineInstanceVisualisationProperties instanceInModelling = instance.getVisualisationProperties();
 						out.println("<triangles count=\"" + (instanceInModelling.getPrimitiveCount()) + "\" material=\"" + material
 								+ "SG\">");
 						out.println("<input offset=\"0\" semantic=\"VERTEX\" source=\"#" + id + "-vertices\"/>");
@@ -718,7 +716,7 @@ public class ColladaSerializer extends BimModelSerializer {
 		out.println("	</library_materials>");
 	}
 
-	private static SIPrefix getLengthUnitPrefix(IfcModel model) {
+	private static SIPrefix getLengthUnitPrefix(IfcModelInterface model) {
 		SIPrefix lengthUnitPrefix = null;
 		boolean prefixFound = false;
 		Map<Long, IdEObject> objects = model.getObjects();
