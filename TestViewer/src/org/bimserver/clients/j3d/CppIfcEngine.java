@@ -16,13 +16,13 @@ import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.file.writer.IfcStepSerializer;
 import org.bimserver.ifcengine.FailSafeIfcEngine;
-import org.bimserver.ifcengine.Geometry;
-import org.bimserver.ifcengine.IfcEngineException;
-import org.bimserver.ifcengine.IfcEngineModel;
-import org.bimserver.ifcengine.Instance;
-import org.bimserver.ifcengine.SurfaceProperties;
-import org.bimserver.ifcengine.jvm.IfcEngine.InstanceVisualisationProperties;
+import org.bimserver.ifcengine.IfcEngineModelImpl;
 import org.bimserver.models.ifc2x3.IfcRoot;
+import org.bimserver.plugins.ifcengine.IfcEngineException;
+import org.bimserver.plugins.ifcengine.IfcEngineGeometry;
+import org.bimserver.plugins.ifcengine.IfcEngineInstance;
+import org.bimserver.plugins.ifcengine.IfcEngineInstanceVisualisationProperties;
+import org.bimserver.plugins.ifcengine.IfcEngineSurfaceProperties;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -48,15 +48,15 @@ public class CppIfcEngine implements IfcEngine {
 	public void createTriangles(IfcRoot ifcRootObject, IfcModel ifcModel, TransformGroup buildingTransformGroup) {
 		IfcStepSerializer ifcSerializer = new IfcStepSerializer(null, null, "", ifcModel, schema);
 		try {
-			IfcEngineModel model = ifcEngine.openModel(ifcSerializer.getBytes());
+			IfcEngineModelImpl model = ifcEngine.openModel(ifcSerializer.getBytes());
 			try {
 				model.setPostProcessing(true);
-				SurfaceProperties initializeModelling = model.initializeModelling();
-				Geometry geometry = model.finalizeModelling(initializeModelling);
+				IfcEngineSurfaceProperties initializeModelling = model.initializeModelling();
+				IfcEngineGeometry geometry = model.finalizeModelling(initializeModelling);
 				if (geometry != null) {
-					List<Instance> instances = model.getInstances(ifcRootObject.eClass().getName().toUpperCase());
-					for (Instance instance : instances) {
-						InstanceVisualisationProperties instanceInModelling = instance.getVisualisationProperties();
+					List<? extends IfcEngineInstance> instances = model.getInstances(ifcRootObject.eClass().getName().toUpperCase());
+					for (IfcEngineInstance instance : instances) {
+						IfcEngineInstanceVisualisationProperties instanceInModelling = instance.getVisualisationProperties();
 						if (instanceInModelling.getPrimitiveCount() != 0) {
 							Appearance appearance = appearances.getAppearance(ifcRootObject);
 							if (appearance != null) {

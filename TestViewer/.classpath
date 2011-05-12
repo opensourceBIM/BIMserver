@@ -11,5 +11,6 @@
 	<classpathentry kind="lib" path="lib/j3dutils.jar"/>
 	<classpathentry kind="lib" path="lib/vecmath.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Store"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
