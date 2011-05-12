@@ -9,8 +9,8 @@ import javax.activation.DataSource;
 
 import org.bimserver.SettingsManager;
 import org.bimserver.ifc.EmfSerializerDataSource;
-import org.bimserver.ifc.SerializerException;
 import org.bimserver.longaction.DownloadParameters;
+import org.bimserver.plugins.serializers.SerializerException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

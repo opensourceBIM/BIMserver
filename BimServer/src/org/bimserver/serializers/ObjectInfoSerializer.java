@@ -4,18 +4,15 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.List;
 
-import org.bimserver.ifc.BimModelSerializer;
-import org.bimserver.ifc.EmfSerializer;
-import org.bimserver.ifc.SerializerException;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
+import org.bimserver.plugins.serializers.BimModelSerializer;
+import org.bimserver.plugins.serializers.SerializerException;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.mangosdk.spi.ProviderFor;
 
-@ProviderFor(value=EmfSerializer.class)
 public class ObjectInfoSerializer extends BimModelSerializer {
 
 	@Override
