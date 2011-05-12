@@ -35,12 +35,12 @@ import nl.tue.buildingsmart.express.dictionary.EntityDefinition;
 import nl.tue.buildingsmart.express.dictionary.InverseAttribute;
 import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
 
-import org.bimserver.ifc.ClassDefinition;
-import org.bimserver.ifc.FieldDefinition;
 import org.bimserver.ifc.FieldIgnoreMap;
-import org.bimserver.ifc.PackageDefinition;
 import org.bimserver.ifc.SchemaLoader;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
+import org.bimserver.plugins.serializers.ClassDefinition;
+import org.bimserver.plugins.serializers.FieldDefinition;
+import org.bimserver.plugins.serializers.PackageDefinition;
 import org.eclipse.emf.ecore.EPackage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

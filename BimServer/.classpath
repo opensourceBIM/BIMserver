@@ -11,10 +11,7 @@
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Utils"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Shared"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Emf"/>
-	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/CityGML"/>
-	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Collada"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/IFCEngine"/>
-	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/O3d"/>
 	<classpathentry exported="true" kind="lib" path="lib/jetty/servlet-api-2.5.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/geoapi/geoapi-2.3-M1.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/geoapi/geoapi-pending-2.3-M1.jar"/>
@@ -133,5 +130,14 @@
 	<classpathentry kind="lib" path="lib/cxf/jetty-server-7.3.1.v20110307.jar"/>
 	<classpathentry kind="lib" path="lib/cxf/jetty-util-7.3.1.v20110307.jar"/>
 	<classpathentry kind="lib" path="lib/cxf/velocity-1.6.4.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Store"/>
+	<classpathentry kind="src" path=".apt_generated">
+		<attributes>
+			<attribute name="optional" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry combineaccessrules="false" kind="src" path="/CityGML"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Collada"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/O3d"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

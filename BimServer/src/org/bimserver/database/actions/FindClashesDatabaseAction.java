@@ -1,13 +1,13 @@
 package org.bimserver.database.actions;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
 import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
 
 import org.bimserver.MergerFactory;
-import org.bimserver.SettingsManager;
 import org.bimserver.cache.ClashDetectionCache;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
@@ -17,11 +17,6 @@ import org.bimserver.ifc.FieldIgnoreMap;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelSet;
 import org.bimserver.ifc.file.writer.IfcStepSerializer;
-import org.bimserver.ifcengine.FailSafeIfcEngine;
-import org.bimserver.ifcengine.IfcEngineException;
-import org.bimserver.ifcengine.IfcEngineFactory;
-import org.bimserver.ifcengine.IfcEngineModel;
-import org.bimserver.merging.Merger;
 import org.bimserver.models.ifc2x3.IfcGloballyUniqueId;
 import org.bimserver.models.ifc2x3.IfcRoot;
 import org.bimserver.models.ifc2x3.WrappedValue;
@@ -32,6 +27,12 @@ import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.EidClash;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
+import org.bimserver.models.store.StoreFactory;
+import org.bimserver.plugins.ifcengine.IfcEngine;
+import org.bimserver.plugins.ifcengine.IfcEngineClash;
+import org.bimserver.plugins.ifcengine.IfcEngineException;
+import org.bimserver.plugins.ifcengine.IfcEngineFactory;
+import org.bimserver.plugins.ifcengine.IfcEngineModel;
 import org.bimserver.shared.UserException;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EAttribute;
@@ -97,16 +98,25 @@ public class FindClashesDatabaseAction extends BimDatabaseAction<Set<? extends C
 		IfcStepSerializer ifcStepSerializer = new IfcStepSerializer(null, getUserByUoid(actingUoid), "", newModel, schema);
 		try {
 			byte[] bytes = ifcStepSerializer.getBytes();
-			FailSafeIfcEngine failSafeIfcEngine = ifcEngineFactory.createFailSafeIfcEngine();
+			IfcEngine failSafeIfcEngine = ifcEngineFactory.createIfcEngine();
 			try {
 				IfcEngineModel ifcEngineModel = failSafeIfcEngine.openModel(bytes);
 				try {
-					Set<EidClash> clashes = ifcEngineModel.findClashesByEid(clashDetectionSettings.getMargin());
+					Set<IfcEngineClash> clashes = ifcEngineModel.findClashesWithEids(clashDetectionSettings.getMargin());
+
+					Set<EidClash> eidClashes = new HashSet<EidClash>();
+					for (IfcEngineClash clash : clashes) {
+						EidClash eidClash = StoreFactory.eINSTANCE.createEidClash();
+						eidClash.setName1(clash.getName1());
+						eidClash.setName2(clash.getName2());
+						eidClash.setType1(clash.getType1());
+						eidClash.setType2(clash.getType2());
+					}
 
 					// Store in cache
-					ClashDetectionCache.getInstance().storeClashDetection(clashDetectionSettings, clashes);
+					ClashDetectionCache.getInstance().storeClashDetection(clashDetectionSettings, eidClashes);
 
-					for (EidClash clash : clashes) {
+					for (EidClash clash : eidClashes) {
 						IfcRoot object1 = (IfcRoot) newModel.get(clash.getEid1());
 						clash.setName1(object1.getName());
 						clash.setType1(object1.eClass().getName());
@@ -116,7 +126,7 @@ public class FindClashesDatabaseAction extends BimDatabaseAction<Set<? extends C
 						clash.setType2(object2.eClass().getName());
 						clash.setRevision2(oidToRoidMap.get(clash.getEid2()));
 					}
-					return clashes;
+					return eidClashes;
 				} finally {
 					ifcEngineModel.close();
 				}

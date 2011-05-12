@@ -13,30 +13,25 @@ import java.util.TreeSet;
 import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
 
 import org.bimserver.SettingsManager;
-import org.bimserver.citygml.CityGmlSerializer;
-import org.bimserver.collada.ColladaSerializer;
-import org.bimserver.collada.KmzSerializer;
 import org.bimserver.exceptions.NoSerializerFoundException;
-import org.bimserver.ifc.EmfSerializer;
 import org.bimserver.ifc.FieldIgnoreMap;
 import org.bimserver.ifc.IfcModel;
-import org.bimserver.ifc.PackageDefinition;
-import org.bimserver.ifc.SerializerException;
-import org.bimserver.ifc.file.writer.IfcStepSerializer;
-import org.bimserver.ifc.xml.writer.IfcXmlSerializer;
-import org.bimserver.ifcengine.IfcEngineFactory;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.User;
-import org.bimserver.o3d.O3dJsonSerializer;
+import org.bimserver.plugins.ifcengine.IfcEngineFactory;
+import org.bimserver.plugins.serializers.EmfSerializer;
+import org.bimserver.plugins.serializers.PackageDefinition;
+import org.bimserver.plugins.serializers.SerializerException;
+import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.shared.ResourceFetcher;
 import org.bimserver.shared.ResultType;
-import org.bimserver.shared.ResultType.DefaultSelected;
 import org.bimserver.shared.ResultType.Type;
-import org.bimserver.shared.ResultType.UseInCheckout;
-import org.bimserver.shared.ResultType.UserType;
 import org.bimserver.version.Version;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class EmfSerializerFactory {
+	private static final Logger LOGGER = LoggerFactory.getLogger(EmfSerializerFactory.class);
 	
 	public abstract class EmfSerializerCreator {
 		public abstract EmfSerializer create(Project project, User user, IfcModel model, String fileName) throws SerializerException;
@@ -60,6 +55,8 @@ public class EmfSerializerFactory {
 	private ResourceFetcher resourceFetcher;
 	private SettingsManager settingsManager;
 
+	private final Set<SerializerPlugin> serializerPlugins = new HashSet<SerializerPlugin>();
+	
 	private EmfSerializerFactory() {
 	}
 
@@ -116,6 +113,15 @@ public class EmfSerializerFactory {
 	}
 
 	public void initSerializers() {
+		ServiceLoader<SerializerPlugin> loader = ServiceLoader.load(SerializerPlugin.class);
+		Iterator<SerializerPlugin> iterator = loader.iterator();
+		while (iterator.hasNext()) {
+			SerializerPlugin serializerPlugin = iterator.next();
+			LOGGER.info("Loading serializer: " + serializerPlugin.getName());
+			serializerPlugins.add(serializerPlugin);
+		}
+		
+		
 		String enabledExportTypesString = settingsManager.getSettings().getEnabledExportTypes();
 		String[] enabledExportTypes = enabledExportTypesString.split(",");
 		Set<String> enabled = new HashSet<String>();
@@ -125,70 +131,70 @@ public class EmfSerializerFactory {
 				enabled.add(upperCase);
 			}
 		}
-		register(new ResultType("IFC", "IFC2x3", "ifc", "application/ifc", UseInCheckout.USE_IN_CHECKOUT, UserType.USER_TYPE, Type.MULTIPLE, DefaultSelected.TRUE, enabled.contains("IFC")), new EmfSerializerCreator(){
-			@Override
-			public EmfSerializer create(Project project, User user, IfcModel model, String fileName) {
-				IfcStepSerializer ifcSerializer = new IfcStepSerializer(project, user, fileName, model, schemaDefinition);
-				ifcSerializer.setFileDescription("Bimserver.org " + version.getVersion() + " generated IFC file");
-				ifcSerializer.setPreProcessorVersion("Bimserver.org " + version.getVersion());
-				return ifcSerializer;
-			}
-		});
-		register(new ResultType("IFCXML", "IFCXML2x3", "ifcxml", "application/ifcxml", UseInCheckout.USE_IN_CHECKOUT, UserType.USER_TYPE, Type.MULTIPLE, DefaultSelected.FALSE, enabled.contains("IFCXML")), new EmfSerializerCreator() {
-			@Override
-			public EmfSerializer create(Project project, User user, IfcModel model, String fileName) throws SerializerException {
-				return new IfcXmlSerializer(fileName, model, schemaDefinition);
-			}
-		});
-		register(new ResultType("IFCTXT", "Plain text IFC", "txt", "text", UseInCheckout.USE_NOT_IN_CHECKOUT, UserType.USER_TYPE, Type.MULTIPLE, DefaultSelected.FALSE, enabled.contains("IFCTXT")), new EmfSerializerCreator() {
-			@Override
-			public EmfSerializer create(Project project, User user, IfcModel model, String fileName) throws SerializerException {
-				IfcStepSerializer ifcSerializer = new IfcStepSerializer(project, user, fileName, model, schemaDefinition);
-				ifcSerializer.setFileDescription("Bimserver.org " + version.getVersion() + " generated IFC file");
-				ifcSerializer.setPreProcessorVersion("Bimserver.org " + version.getVersion());
-				return ifcSerializer;
-			}
-		});
-		register(new ResultType("CITYGML", "City GML 1.0.0", "gml", "application/gml", UseInCheckout.USE_NOT_IN_CHECKOUT, UserType.USER_TYPE, Type.MULTIPLE, DefaultSelected.FALSE, enabled.contains("CITYGML")), new EmfSerializerCreator() {
-			@Override
-			public EmfSerializer create(Project project, User user, IfcModel model, String fileName) throws SerializerException {
-				CityGmlSerializer cityGmlSerializer = new CityGmlSerializer();
-				cityGmlSerializer.init(project, user, fileName, model, schemaDefinition, fieldIgnoreMap, ifcEngineFactory);
-				return cityGmlSerializer;
-			}
-		});
-		register(new ResultType("COLLADA", "Collada", "dae", "appliction/collada", UseInCheckout.USE_NOT_IN_CHECKOUT, UserType.USER_TYPE, Type.MULTIPLE, DefaultSelected.FALSE, enabled.contains("COLLADA")), new EmfSerializerCreator() {
-			@Override
-			public EmfSerializer create(Project project, User user, IfcModel model, String fileName) throws SerializerException {
-				ColladaSerializer colladaSerializer = new ColladaSerializer();
-				colladaSerializer.init(project, user, fileName, model, schemaDefinition, fieldIgnoreMap, ifcEngineFactory, colladaSettings);
-				return colladaSerializer;
-			}
-		});
-		register(new ResultType("KMZ", "KMZ", "kmz", "application/vnd.google-earth.kmz", UseInCheckout.USE_NOT_IN_CHECKOUT, UserType.USER_TYPE, Type.MULTIPLE, DefaultSelected.FALSE, enabled.contains("KMZ")), new EmfSerializerCreator() {
-			@Override
-			public EmfSerializer create(Project project, User user, IfcModel model, String fileName) throws SerializerException {
-				KmzSerializer kmzSerializer = new KmzSerializer();
-				kmzSerializer.init(project, user, fileName, model, schemaDefinition, fieldIgnoreMap, ifcEngineFactory, colladaSettings);
-				return kmzSerializer;
-			}
-		});
-		register(new ResultType("O3D_JSON", "WebGL", "o3djson", "appliction/json", UseInCheckout.USE_NOT_IN_CHECKOUT, UserType.USER_TYPE, Type.MULTIPLE, DefaultSelected.FALSE, enabled.contains("O3D_JSON")), new EmfSerializerCreator() {
-			@Override
-			public EmfSerializer create(Project project, User user, IfcModel model, String fileName) throws SerializerException {
-				O3dJsonSerializer o3dJsonSerializer = new O3dJsonSerializer();
-				o3dJsonSerializer.init(project, user, fileName, model, fieldIgnoreMap, schemaDefinition, ifcEngineFactory);
-				return o3dJsonSerializer;
-			}
-		});
-		register(new ResultType("OBJECT_INFO", "Object Info", "html", "text/html", UseInCheckout.USE_NOT_IN_CHECKOUT, UserType.USER_TYPE, Type.SINGLE, DefaultSelected.FALSE, enabled.contains("OBJECT_INFO")), new EmfSerializerCreator() {
-			@Override
-			public EmfSerializer create(Project project, User user, IfcModel model, String fileName) {
-				ObjectInfoSerializer objectInfoSerializer = new ObjectInfoSerializer();
-				objectInfoSerializer.init(fileName, model);
-				return objectInfoSerializer;
-			}
-		});
+//		register(new ResultType("IFC", "IFC2x3", "ifc", "application/ifc", UseInCheckout.USE_IN_CHECKOUT, UserType.USER_TYPE, Type.MULTIPLE, DefaultSelected.TRUE, enabled.contains("IFC")), new EmfSerializerCreator(){
+//			@Override
+//			public EmfSerializer create(Project project, User user, IfcModel model, String fileName) {
+//				IfcStepSerializer ifcSerializer = new IfcStepSerializer(project, user, fileName, model, schemaDefinition);
+//				ifcSerializer.setFileDescription("Bimserver.org " + version.getVersion() + " generated IFC file");
+//				ifcSerializer.setPreProcessorVersion("Bimserver.org " + version.getVersion());
+//				return ifcSerializer;
+//			}
+//		});
+//		register(new ResultType("IFCXML", "IFCXML2x3", "ifcxml", "application/ifcxml", UseInCheckout.USE_IN_CHECKOUT, UserType.USER_TYPE, Type.MULTIPLE, DefaultSelected.FALSE, enabled.contains("IFCXML")), new EmfSerializerCreator() {
+//			@Override
+//			public EmfSerializer create(Project project, User user, IfcModel model, String fileName) throws SerializerException {
+//				return new IfcXmlSerializer(fileName, model, schemaDefinition);
+//			}
+//		});
+//		register(new ResultType("IFCTXT", "Plain text IFC", "txt", "text", UseInCheckout.USE_NOT_IN_CHECKOUT, UserType.USER_TYPE, Type.MULTIPLE, DefaultSelected.FALSE, enabled.contains("IFCTXT")), new EmfSerializerCreator() {
+//			@Override
+//			public EmfSerializer create(Project project, User user, IfcModel model, String fileName) throws SerializerException {
+//				IfcStepSerializer ifcSerializer = new IfcStepSerializer(project, user, fileName, model, schemaDefinition);
+//				ifcSerializer.setFileDescription("Bimserver.org " + version.getVersion() + " generated IFC file");
+//				ifcSerializer.setPreProcessorVersion("Bimserver.org " + version.getVersion());
+//				return ifcSerializer;
+//			}
+//		});
+//		register(new ResultType("CITYGML", "City GML 1.0.0", "gml", "application/gml", UseInCheckout.USE_NOT_IN_CHECKOUT, UserType.USER_TYPE, Type.MULTIPLE, DefaultSelected.FALSE, enabled.contains("CITYGML")), new EmfSerializerCreator() {
+//			@Override
+//			public EmfSerializer create(Project project, User user, IfcModel model, String fileName) throws SerializerException {
+//				CityGmlSerializer cityGmlSerializer = new CityGmlSerializer();
+//				cityGmlSerializer.init(project, user, fileName, model, schemaDefinition, fieldIgnoreMap, ifcEngineFactory);
+//				return cityGmlSerializer;
+//			}
+//		});
+//		register(new ResultType("COLLADA", "Collada", "dae", "appliction/collada", UseInCheckout.USE_NOT_IN_CHECKOUT, UserType.USER_TYPE, Type.MULTIPLE, DefaultSelected.FALSE, enabled.contains("COLLADA")), new EmfSerializerCreator() {
+//			@Override
+//			public EmfSerializer create(Project project, User user, IfcModel model, String fileName) throws SerializerException {
+//				ColladaSerializer colladaSerializer = new ColladaSerializer();
+//				colladaSerializer.init(project, user, fileName, model, schemaDefinition, fieldIgnoreMap, ifcEngineFactory, colladaSettings);
+//				return colladaSerializer;
+//			}
+//		});
+//		register(new ResultType("KMZ", "KMZ", "kmz", "application/vnd.google-earth.kmz", UseInCheckout.USE_NOT_IN_CHECKOUT, UserType.USER_TYPE, Type.MULTIPLE, DefaultSelected.FALSE, enabled.contains("KMZ")), new EmfSerializerCreator() {
+//			@Override
+//			public EmfSerializer create(Project project, User user, IfcModel model, String fileName) throws SerializerException {
+//				KmzSerializer kmzSerializer = new KmzSerializer();
+//				kmzSerializer.init(project, user, fileName, model, schemaDefinition, fieldIgnoreMap, ifcEngineFactory, colladaSettings);
+//				return kmzSerializer;
+//			}
+//		});
+//		register(new ResultType("O3D_JSON", "WebGL", "o3djson", "appliction/json", UseInCheckout.USE_NOT_IN_CHECKOUT, UserType.USER_TYPE, Type.MULTIPLE, DefaultSelected.FALSE, enabled.contains("O3D_JSON")), new EmfSerializerCreator() {
+//			@Override
+//			public EmfSerializer create(Project project, User user, IfcModel model, String fileName) throws SerializerException {
+//				O3dJsonSerializer o3dJsonSerializer = new O3dJsonSerializer();
+//				o3dJsonSerializer.init(project, user, fileName, model, fieldIgnoreMap, schemaDefinition, ifcEngineFactory);
+//				return o3dJsonSerializer;
+//			}
+//		});
+//		register(new ResultType("OBJECT_INFO", "Object Info", "html", "text/html", UseInCheckout.USE_NOT_IN_CHECKOUT, UserType.USER_TYPE, Type.SINGLE, DefaultSelected.FALSE, enabled.contains("OBJECT_INFO")), new EmfSerializerCreator() {
+//			@Override
+//			public EmfSerializer create(Project project, User user, IfcModel model, String fileName) {
+//				ObjectInfoSerializer objectInfoSerializer = new ObjectInfoSerializer();
+//				objectInfoSerializer.init(fileName, model);
+//				return objectInfoSerializer;
+//			}
+//		});
 	}
 
 	public ResultType getResultType(String resultTypeName) {

@@ -7,8 +7,8 @@ import java.io.IOException;
 import javax.activation.DataHandler;
 import javax.activation.FileDataSource;
 
-import org.bimserver.ifc.EmfSerializer;
-import org.bimserver.ifc.SerializerException;
+import org.bimserver.plugins.serializers.EmfSerializer;
+import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.shared.ResultType;
 import org.bimserver.shared.SCheckoutResult;
 import org.slf4j.Logger;
