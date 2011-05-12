@@ -8,20 +8,17 @@ import java.util.zip.ZipOutputStream;
 
 import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
 
-import org.bimserver.ifc.BimModelSerializer;
-import org.bimserver.ifc.EmfSerializer;
 import org.bimserver.ifc.FieldIgnoreMap;
 import org.bimserver.ifc.IfcModel;
-import org.bimserver.ifc.PackageDefinition;
-import org.bimserver.ifc.SerializerException;
-import org.bimserver.ifcengine.IfcEngineFactory;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.User;
-import org.mangosdk.spi.ProviderFor;
+import org.bimserver.plugins.ifcengine.IfcEngineFactory;
+import org.bimserver.plugins.serializers.BimModelSerializer;
+import org.bimserver.plugins.serializers.PackageDefinition;
+import org.bimserver.plugins.serializers.SerializerException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@ProviderFor(value=EmfSerializer.class)
 public class KmzSerializer extends BimModelSerializer {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(KmzSerializer.class);
