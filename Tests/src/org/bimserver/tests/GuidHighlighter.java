@@ -8,7 +8,6 @@ import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
 
 import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.IfcModel;
-import org.bimserver.ifc.SerializerException;
 import org.bimserver.ifc.file.writer.IfcStepSerializer;
 import org.bimserver.models.ifc2x3.Ifc2x3Factory;
 import org.bimserver.models.ifc2x3.IfcColourRgb;
@@ -24,6 +23,7 @@ import org.bimserver.models.ifc2x3.IfcStyledItem;
 import org.bimserver.models.ifc2x3.IfcSurfaceStyle;
 import org.bimserver.models.ifc2x3.IfcSurfaceStyleElementSelect;
 import org.bimserver.models.ifc2x3.IfcSurfaceStyleRendering;
+import org.bimserver.plugins.serializers.SerializerException;
 
 public class GuidHighlighter {
 	public GuidHighlighter(SchemaDefinition schema, IfcModel model, File outputFile, Set<String> highlightedGuids) {
