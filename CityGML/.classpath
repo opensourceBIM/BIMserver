@@ -5,7 +5,6 @@
 	<classpathentry exported="true" kind="lib" path="lib/StPL96.jar"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Ifc"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Emf"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/IFCEngine"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Shared"/>
 	<classpathentry kind="lib" path="lib/citygml4j.jar" sourcepath="/BimServer/libsrc/citygml4j1.0.jar"/>
 	<classpathentry kind="lib" path="lib/jsr173_1.0_api.jar"/>
@@ -20,5 +19,7 @@
 			<attribute name="optional" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry combineaccessrules="false" kind="src" path="/Store"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Plugins"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

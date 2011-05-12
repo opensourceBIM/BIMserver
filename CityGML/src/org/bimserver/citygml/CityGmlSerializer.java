@@ -11,20 +11,9 @@ import javax.xml.bind.JAXBException;
 
 import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
 
-import org.bimserver.ifc.BimModelSerializer;
-import org.bimserver.ifc.EmfSerializer;
 import org.bimserver.ifc.FieldIgnoreMap;
 import org.bimserver.ifc.IfcModel;
-import org.bimserver.ifc.SerializerException;
 import org.bimserver.ifc.file.writer.IfcStepSerializer;
-import org.bimserver.ifcengine.FailSafeIfcEngine;
-import org.bimserver.ifcengine.Geometry;
-import org.bimserver.ifcengine.IfcEngineException;
-import org.bimserver.ifcengine.IfcEngineFactory;
-import org.bimserver.ifcengine.IfcEngineModel;
-import org.bimserver.ifcengine.Instance;
-import org.bimserver.ifcengine.SurfaceProperties;
-import org.bimserver.ifcengine.jvm.IfcEngine.InstanceVisualisationProperties;
 import org.bimserver.models.ifc2x3.IfcBuilding;
 import org.bimserver.models.ifc2x3.IfcBuildingStorey;
 import org.bimserver.models.ifc2x3.IfcColumn;
@@ -50,6 +39,16 @@ import org.bimserver.models.ifc2x3.IfcWall;
 import org.bimserver.models.ifc2x3.IfcWindow;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.User;
+import org.bimserver.plugins.ifcengine.IfcEngine;
+import org.bimserver.plugins.ifcengine.IfcEngineException;
+import org.bimserver.plugins.ifcengine.IfcEngineFactory;
+import org.bimserver.plugins.ifcengine.IfcEngineGeometry;
+import org.bimserver.plugins.ifcengine.IfcEngineInstance;
+import org.bimserver.plugins.ifcengine.IfcEngineInstanceVisualisationProperties;
+import org.bimserver.plugins.ifcengine.IfcEngineModel;
+import org.bimserver.plugins.ifcengine.IfcEngineSurfaceProperties;
+import org.bimserver.plugins.serializers.BimModelSerializer;
+import org.bimserver.plugins.serializers.SerializerException;
 import org.citygml4j.CityGMLContext;
 import org.citygml4j.builder.jaxb.JAXBBuilder;
 import org.citygml4j.factory.CityGMLFactory;
@@ -90,17 +89,15 @@ import org.citygml4j.xml.io.reader.CityGMLReadException;
 import org.citygml4j.xml.io.writer.CityGMLWriteException;
 import org.citygml4j.xml.io.writer.CityGMLWriter;
 import org.eclipse.emf.ecore.EObject;
-import org.mangosdk.spi.ProviderFor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.w3c.dom.Element;
 
 import ade.GlobalIdType;
 
-@ProviderFor(value=EmfSerializer.class)
 public class CityGmlSerializer extends BimModelSerializer {
 	private static final Logger LOGGER = LoggerFactory.getLogger(CityGmlSerializer.class);
-	private FailSafeIfcEngine ifcEngine;
+	private IfcEngine ifcEngine;
 	private GMLFactory gml;
 	private XALFactory xal;
 	private CityGMLFactory citygml;
@@ -115,7 +112,7 @@ public class CityGmlSerializer extends BimModelSerializer {
 		this.project = project;
 		this.user = user;
 		try {
-			this.ifcEngine = ifcEngineFactory.createFailSafeIfcEngine();
+			this.ifcEngine = ifcEngineFactory.createIfcEngine();
 		} catch (IfcEngineException e) {
 			throw new SerializerException(e);
 		}
@@ -616,11 +613,11 @@ public class CityGmlSerializer extends BimModelSerializer {
 			IfcEngineModel model = ifcEngine.openModel(ifcSerializer.getBytes());
 			try {
 				model.setPostProcessing(true);
-				SurfaceProperties initializeModelling = model.initializeModelling();
-				Geometry geometry = model.finalizeModelling(initializeModelling);
+				IfcEngineSurfaceProperties initializeModelling = model.initializeModelling();
+				IfcEngineGeometry geometry = model.finalizeModelling(initializeModelling);
 				if (geometry != null) {
-					for (Instance instance : model.getInstances(ifcRootObject.eClass().getName().toUpperCase())) {
-						InstanceVisualisationProperties instanceInModelling = instance.getVisualisationProperties();
+					for (IfcEngineInstance instance : model.getInstances(ifcRootObject.eClass().getName().toUpperCase())) {
+						IfcEngineInstanceVisualisationProperties instanceInModelling = instance.getVisualisationProperties();
 						for (int i = instanceInModelling.getStartIndex(); i < instanceInModelling.getPrimitiveCount() * 3 + instanceInModelling.getStartIndex(); i += 3) {
 							int i1 = geometry.getIndex(i);
 							int i2 = geometry.getIndex(i + 1);
