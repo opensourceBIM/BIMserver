@@ -8,12 +8,12 @@ import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
 
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.SchemaLoader;
-import org.bimserver.ifc.SerializerException;
 import org.bimserver.ifc.file.reader.IfcStepDeserializer;
 import org.bimserver.ifc.file.reader.IncorrectIfcFileException;
 import org.bimserver.ifc.file.writer.IfcStepSerializer;
 import org.bimserver.ifc.xml.reader.IfcXmlDeserializeException;
 import org.bimserver.ifc.xml.reader.IfcXmlDeserializer;
+import org.bimserver.plugins.serializers.SerializerException;
 
 public class IfcXmlReadTest {
 	public static void main(String[] args) {

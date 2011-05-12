@@ -8,13 +8,13 @@ import java.util.List;
 import java.util.Set;
 
 import org.bimserver.ifcengine.FailSafeIfcEngine;
-import org.bimserver.ifcengine.Geometry;
-import org.bimserver.ifcengine.IfcEngineException;
-import org.bimserver.ifcengine.IfcEngineModel;
-import org.bimserver.ifcengine.Instance;
-import org.bimserver.ifcengine.SurfaceProperties;
-import org.bimserver.ifcengine.jvm.IfcEngine.InstanceVisualisationProperties;
-import org.bimserver.models.store.EidClash;
+import org.bimserver.ifcengine.IfcEngineModelImpl;
+import org.bimserver.plugins.ifcengine.IfcEngineClash;
+import org.bimserver.plugins.ifcengine.IfcEngineException;
+import org.bimserver.plugins.ifcengine.IfcEngineGeometry;
+import org.bimserver.plugins.ifcengine.IfcEngineInstance;
+import org.bimserver.plugins.ifcengine.IfcEngineInstanceVisualisationProperties;
+import org.bimserver.plugins.ifcengine.IfcEngineSurfaceProperties;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
 import org.bimserver.shared.ResourceFetcher;
 
@@ -71,10 +71,10 @@ public class Test {
 			FailSafeIfcEngine failSafeIfcEngine = new FailSafeIfcEngine(resourceFetcher.getFile("IFC2X3_FINAL.exp").getAbsoluteFile(), resourceFetcher.getFile("lib/"), new File("tmp"), "");
 			try {
 				File file = TestFile.AC11.getFile();
-				IfcEngineModel openModel = failSafeIfcEngine.openModel(new FileInputStream(file), (int)file.length());
+				IfcEngineModelImpl openModel = failSafeIfcEngine.openModel(new FileInputStream(file), (int)file.length());
 				try {
 					openModel.setPostProcessing(true);
-					Set<EidClash> findClashesByEid = openModel.findClashesByEid(0.0);
+					Set<IfcEngineClash> findClashesByEid = openModel.findClashesWithEids(0.0);
 					System.out.println(findClashesByEid.size());
 				} finally {
 					openModel.close();
@@ -96,15 +96,15 @@ public class Test {
 			FailSafeIfcEngine failSafeIfcEngine = new FailSafeIfcEngine(resourceFetcher.getFile("IFC2X3_FINAL.exp").getAbsoluteFile(), resourceFetcher.getFile("lib/"), new File("tmp"), "");
 			try {
 				File file = TestFile.AC11.getFile();
-				IfcEngineModel openModel = failSafeIfcEngine.openModel(new FileInputStream(file), (int)file.length());
+				IfcEngineModelImpl openModel = failSafeIfcEngine.openModel(new FileInputStream(file), (int)file.length());
 				try {
 					openModel.setPostProcessing(true);
-					SurfaceProperties initializeModelling2 = openModel.initializeModelling();
-					Geometry geometry = openModel.finalizeModelling(initializeModelling2);
+					IfcEngineSurfaceProperties initializeModelling2 = openModel.initializeModelling();
+					IfcEngineGeometry geometry = openModel.finalizeModelling(initializeModelling2);
 					if (geometry != null) {
-						List<Instance> instances = openModel.getInstances("IFCWINDOW");
-						for (Instance instance : instances) {
-							InstanceVisualisationProperties visualisationProperties = instance.getVisualisationProperties();
+						List<? extends IfcEngineInstance> instances = openModel.getInstances("IFCWINDOW");
+						for (IfcEngineInstance instance : instances) {
+							IfcEngineInstanceVisualisationProperties visualisationProperties = instance.getVisualisationProperties();
 							System.out.println("window");
 							for (int i = visualisationProperties.getStartIndex(); i < visualisationProperties.getPrimitiveCount() * 3 + visualisationProperties.getStartIndex(); i += 3) {
 								int i1 = geometry.getIndex(i);
