@@ -21,11 +21,12 @@ import nl.tue.buildingsmart.express.dictionary.SetType;
 import nl.tue.buildingsmart.express.dictionary.StringType;
 
 import org.apache.commons.lang.StringEscapeUtils;
-import org.bimserver.ifc.EmfSerializer;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcSerializer;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.Tristate;
+import org.bimserver.plugins.serializers.EmfSerializer;
+import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.utils.UTFPrintWriter;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.Enumerator;
@@ -49,7 +50,7 @@ public class IfcXmlSerializer extends IfcSerializer {
 	public IfcXmlSerializer() {
 	}
 
-	public IfcXmlSerializer(String fileName, IfcModel model, SchemaDefinition schemaDefinition) {
+	public IfcXmlSerializer(String fileName, IfcModelInterface model, SchemaDefinition schemaDefinition) {
 		init(fileName, model, schemaDefinition);
 	}
 

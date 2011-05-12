@@ -38,6 +38,7 @@ import org.bimserver.models.ifc2x3.IfcGloballyUniqueId;
 import org.bimserver.models.ifc2x3.IfcProject;
 import org.bimserver.models.ifc2x3.IfcRoot;
 import org.bimserver.models.ifc2x3.WrappedValue;
+import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
@@ -53,7 +54,7 @@ import org.slf4j.LoggerFactory;
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
 
-public class IfcModel {
+public class IfcModel implements IfcModelInterface {
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(IfcModel.class);
 
@@ -271,7 +272,7 @@ public class IfcModel {
 		return objects.keySet();
 	}
 
-	public IdEObject get(Long key) {
+	public IdEObject get(long key) {
 		return objects.get(key);
 	}
 
@@ -279,7 +280,7 @@ public class IfcModel {
 		return objects.values();
 	}
 
-	public void add(Long key, IdEObject eObject) {
+	public void add(long key, IdEObject eObject) {
 		add(key, eObject, false);
 	}
 	
@@ -337,7 +338,7 @@ public class IfcModel {
 		return objects.containsValue(eObject);
 	}
 
-	public Long get(IdEObject eObject) {
+	public long get(IdEObject eObject) {
 		return objects.inverse().get(eObject);
 	}
 

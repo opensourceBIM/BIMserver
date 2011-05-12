@@ -29,6 +29,9 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
+import org.bimserver.plugins.serializers.ClassDefinition;
+import org.bimserver.plugins.serializers.FieldDefinition;
+import org.bimserver.plugins.serializers.PackageDefinition;
 import org.bimserver.shared.ResourceFetcher;
 import org.bimserver.utils.StringUtils;
 import org.eclipse.emf.ecore.EClass;

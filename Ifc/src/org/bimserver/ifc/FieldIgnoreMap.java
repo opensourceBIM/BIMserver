@@ -25,11 +25,12 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import org.bimserver.plugins.serializers.IgnoreProvider;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
-public class FieldIgnoreMap {
+public class FieldIgnoreMap implements IgnoreProvider {
 	public static class StructuralFeatureIdentifier {
 		private final String eClass;
 		private final String eStructuralFeature;

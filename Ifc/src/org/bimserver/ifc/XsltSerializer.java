@@ -14,12 +14,14 @@ import javax.xml.transform.stream.StreamSource;
 import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
 
 import org.bimserver.ifc.xml.writer.IfcXmlSerializer;
+import org.bimserver.plugins.serializers.BimModelSerializer;
+import org.bimserver.plugins.serializers.EmfSerializer;
+import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.shared.ResultType;
 import org.mangosdk.spi.ProviderFor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@ProviderFor(value=EmfSerializer.class)
 public class XsltSerializer extends BimModelSerializer {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(XsltSerializer.class);
