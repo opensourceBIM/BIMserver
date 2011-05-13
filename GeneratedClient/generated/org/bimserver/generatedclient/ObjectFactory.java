@@ -64,6 +64,7 @@ public class ObjectFactory {
     private final static QName _GetActiveSinceResponse_QNAME = new QName("http://shared.bimserver.org/", "getActiveSinceResponse");
     private final static QName _GetAvailableClassesResponse_QNAME = new QName("http://shared.bimserver.org/", "getAvailableClassesResponse");
     private final static QName _UpdateClashDetectionSettingsResponse_QNAME = new QName("http://shared.bimserver.org/", "updateClashDetectionSettingsResponse");
+    private final static QName _SReferenceDataValue_QNAME = new QName("http://shared.bimserver.org/", "sReferenceDataValue");
     private final static QName _GetAllSerializerClassNames_QNAME = new QName("http://shared.bimserver.org/", "getAllSerializerClassNames");
     private final static QName _GetGeoTagResponse_QNAME = new QName("http://shared.bimserver.org/", "getGeoTagResponse");
     private final static QName _ResultType_QNAME = new QName("http://shared.bimserver.org/", "resultType");
@@ -132,6 +133,7 @@ public class ObjectFactory {
     private final static QName _AddIgnoreFileResponse_QNAME = new QName("http://shared.bimserver.org/", "addIgnoreFileResponse");
     private final static QName _GetCurrentUser_QNAME = new QName("http://shared.bimserver.org/", "getCurrentUser");
     private final static QName _UpdateProjectResponse_QNAME = new QName("http://shared.bimserver.org/", "updateProjectResponse");
+    private final static QName _SSimpleDataValue_QNAME = new QName("http://shared.bimserver.org/", "sSimpleDataValue");
     private final static QName _UpdateIgnoreFile_QNAME = new QName("http://shared.bimserver.org/", "updateIgnoreFile");
     private final static QName _UndeleteUserResponse_QNAME = new QName("http://shared.bimserver.org/", "undeleteUserResponse");
     private final static QName _GetAllCheckoutsOfProject_QNAME = new QName("http://shared.bimserver.org/", "getAllCheckoutsOfProject");
@@ -140,6 +142,7 @@ public class ObjectFactory {
     private final static QName _GetAllRevisionsOfProjectResponse_QNAME = new QName("http://shared.bimserver.org/", "getAllRevisionsOfProjectResponse");
     private final static QName _GetRevisionSummaryResponse_QNAME = new QName("http://shared.bimserver.org/", "getRevisionSummaryResponse");
     private final static QName _ChangePasswordResponse_QNAME = new QName("http://shared.bimserver.org/", "changePasswordResponse");
+    private final static QName _SListDataValue_QNAME = new QName("http://shared.bimserver.org/", "sListDataValue");
     private final static QName _CheckinAsync_QNAME = new QName("http://shared.bimserver.org/", "checkinAsync");
     private final static QName _GetSettingEnabledExportTypesResponse_QNAME = new QName("http://shared.bimserver.org/", "getSettingEnabledExportTypesResponse");
     private final static QName _GetSettingCustomLogoAddress_QNAME = new QName("http://shared.bimserver.org/", "getSettingCustomLogoAddress");
@@ -536,6 +539,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link SListDataValue }
+     * 
+     */
+    public SListDataValue createSListDataValue() {
+        return new SListDataValue();
+    }
+
+    /**
      * Create an instance of {@link IsSettingCacheOutputFiles }
      * 
      */
@@ -557,6 +568,14 @@ public class ObjectFactory {
      */
     public AddIgnoreFileResponse createAddIgnoreFileResponse() {
         return new AddIgnoreFileResponse();
+    }
+
+    /**
+     * Create an instance of {@link SSimpleDataValue }
+     * 
+     */
+    public SSimpleDataValue createSSimpleDataValue() {
+        return new SSimpleDataValue();
     }
 
     /**
@@ -1085,6 +1104,14 @@ public class ObjectFactory {
      */
     public GetActiveUserSessionsResponse createGetActiveUserSessionsResponse() {
         return new GetActiveUserSessionsResponse();
+    }
+
+    /**
+     * Create an instance of {@link SReferenceDataValue }
+     * 
+     */
+    public SReferenceDataValue createSReferenceDataValue() {
+        return new SReferenceDataValue();
     }
 
     /**
@@ -3104,6 +3131,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link SReferenceDataValue }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://shared.bimserver.org/", name = "sReferenceDataValue")
+    public JAXBElement<SReferenceDataValue> createSReferenceDataValue(SReferenceDataValue value) {
+        return new JAXBElement<SReferenceDataValue>(_SReferenceDataValue_QNAME, SReferenceDataValue.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link GetAllSerializerClassNames }{@code >}}
      * 
      */
@@ -3716,6 +3752,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link SSimpleDataValue }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://shared.bimserver.org/", name = "sSimpleDataValue")
+    public JAXBElement<SSimpleDataValue> createSSimpleDataValue(SSimpleDataValue value) {
+        return new JAXBElement<SSimpleDataValue>(_SSimpleDataValue_QNAME, SSimpleDataValue.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link UpdateIgnoreFile }{@code >}}
      * 
      */
@@ -3785,6 +3830,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://shared.bimserver.org/", name = "changePasswordResponse")
     public JAXBElement<ChangePasswordResponse> createChangePasswordResponse(ChangePasswordResponse value) {
         return new JAXBElement<ChangePasswordResponse>(_ChangePasswordResponse_QNAME, ChangePasswordResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link SListDataValue }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://shared.bimserver.org/", name = "sListDataValue")
+    public JAXBElement<SListDataValue> createSListDataValue(SListDataValue value) {
+        return new JAXBElement<SListDataValue>(_SListDataValue_QNAME, SListDataValue.class, null, value);
     }
 
     /**

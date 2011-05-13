@@ -3,46 +3,22 @@
 		<format property="touch.time" pattern="yyyy-MM-dd'T'HH:mm:ss.S'+01:00'"/>
 	</tstamp>
 	<target name="engine">
-		<delete dir="builds"/>
-		<mkdir dir="builds" />
-		<copy todir="builds/BuildJar/lib">
-			<fileset dir="../lib">
-				<include name="*.jar" />
-			</fileset>
-			<fileset dir="../../buildingSMARTLibrary/lib">
-				<include name="*.jar" />
-			</fileset>
-			<fileset dir="../../Utils/lib">
-				<include name="*.jar" />
-			</fileset>
-			<fileset dir="../../CityGML/lib">
-				<include name="*.jar" />
-			</fileset>
-			<fileset dir="../../IFCEngine/lib">
-				<include name="**" />
-			</fileset>
-			<fileset dir="../../O3d/lib">
-				<include name="*.jar" />
-			</fileset>
-			<fileset dir="../../Emf/lib">
-				<include name="*.jar" />
-			</fileset>
-		</copy>
-		<javac srcdir="../src" destdir="builds/BuildJar/classes" debug="on" fork="true" memorymaximumsize="512m">
-			<src path="../../BimServer/generated" />
-			<src path="../../buildingSMARTLibrary/src" />
-			<src path="../../Ifc/src" />
-			<src path="../../Utils/src" />
-			<src path="../../Emf/src" />
-			<src path="../../Shared/src" />
-			<src path="../../CityGML/src" />
-			<src path="../../CityGML/src-gen" />
-			<src path="../../Collada/src" />
-			<src path="../../IFCEngine/src" />
-			<src path="../../O3d/src" />
-			<src path="../../Store/src" />
+		<delete dir="build" failonerror="false"/>
+		<mkdir dir="build" />
+		<mkdir dir="build/classes" />
+		<javac srcdir="src" destdir="build/classes" debug="on" fork="true" memorymaximumsize="512m">
+			<src path="../Utils/src" />
+			<src path="../Plugins/src" />
+			<src path="../Emf/src" />
+			<src path="../Store/generated" />
 			<classpath>
-				<fileset dir="builds/BuildJar/lib">
+				<fileset dir="../BimServer/lib">
+					<include name="*.jar" />
+				</fileset>
+				<fileset dir="../BimServer/lib/emf">
+					<include name="*.jar" />
+				</fileset>
+				<fileset dir="lib">
 					<include name="*.jar" />
 				</fileset>
 			</classpath>

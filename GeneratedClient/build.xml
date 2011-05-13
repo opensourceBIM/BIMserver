@@ -13,6 +13,7 @@
 	<target name="Generate WSDL">
 		<java classname="org.apache.cxf.tools.java2ws.JavaToWS" fork="true">
 			<arg value="-wsdl" />
+			<arg value="-verbose" />
 			<arg value="-o" />
 			<arg value="generated/BIMserver.wsdl" />
 			<arg value="org.bimserver.shared.ServiceInterface" />
