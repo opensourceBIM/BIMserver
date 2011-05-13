@@ -7,6 +7,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlSeeAlso;
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.NONE)
@@ -39,6 +40,7 @@ public class SDataObject {
 
 	@XmlRootElement
 	@XmlAccessorType(XmlAccessType.NONE)
+	@XmlSeeAlso(value={SReferenceDataValue.class, SListDataValue.class, SSimpleDataValue.class})
 	public static class SDataValue {
 		@XmlElement
 		private String fieldName;
@@ -56,18 +58,21 @@ public class SDataObject {
 	@XmlAccessorType(XmlAccessType.NONE)
 	public static class SReferenceDataValue extends SDataValue {
 		@XmlElement
-		private final String typeName;
+		private String typeName;
 
 		@XmlElement
-		private final long oid;
+		private long oid;
 
 		@XmlElement
-		private final String guid;
+		private String guid;
 
+		public SReferenceDataValue() {
+		}
+		
 		public SReferenceDataValue(String typeName, long oid, String guid) {
-			this.typeName = typeName;
-			this.oid = oid;
-			this.guid = guid;
+			this.setTypeName(typeName);
+			this.setOid(oid);
+			this.setGuid(guid);
 		}
 
 		public String getTypeName() {
@@ -81,11 +86,26 @@ public class SDataObject {
 		public String getGuid() {
 			return guid;
 		}
+
+		public void setTypeName(String typeName) {
+			this.typeName = typeName;
+		}
+
+		public void setOid(long oid) {
+			this.oid = oid;
+		}
+
+		public void setGuid(String guid) {
+			this.guid = guid;
+		}
 	}
 
 	@XmlRootElement
 	@XmlAccessorType(XmlAccessType.NONE)
 	public static class SListDataValue extends SDataValue {
+
+		@XmlElement
+		private final List<SDataValue> values = new ArrayList<SDataValue>();
 
 		public SListDataValue() {
 		}
@@ -94,8 +114,6 @@ public class SDataObject {
 			setFieldName(fieldName);
 		}
 		
-		@XmlElement
-		private final List<SDataValue> values = new ArrayList<SDataValue>();
 
 		public void addValue(String typeName, long oid, String guid) {
 			getValues().add(new SReferenceDataValue(typeName, oid, guid));
@@ -116,6 +134,9 @@ public class SDataObject {
 		@XmlElement
 		private String stringValue;
 
+		public SSimpleDataValue() {
+		}
+		
 		public SSimpleDataValue(Object value) {
 			if (value instanceof String) {
 				setStringValue((String) value);

@@ -222,10 +222,13 @@
 <xs:element name="sGeoTag" type="tns:sGeoTag"/>
 <xs:element name="sGuidClash" type="tns:sGuidClash"/>
 <xs:element name="sIgnoreFile" type="tns:sIgnoreFile"/>
+<xs:element name="sListDataValue" type="tns:sListDataValue"/>
 <xs:element name="sLogAction" type="tns:sLogAction"/>
 <xs:element name="sProject" type="tns:sProject"/>
+<xs:element name="sReferenceDataValue" type="tns:sReferenceDataValue"/>
 <xs:element name="sRevision" type="tns:sRevision"/>
 <xs:element name="sSerializer" type="tns:sSerializer"/>
+<xs:element name="sSimpleDataValue" type="tns:sSimpleDataValue"/>
 <xs:element name="sUser" type="tns:sUser"/>
 <xs:element name="sendClashesEmail" type="tns:sendClashesEmail"/>
 <xs:element name="sendClashesEmailResponse" type="tns:sendClashesEmailResponse"/>
@@ -1025,6 +1028,35 @@
 <xs:sequence>
 <xs:element minOccurs="0" name="fieldName" type="xs:string"/>
 </xs:sequence>
+</xs:complexType>
+<xs:complexType name="sReferenceDataValue">
+<xs:complexContent>
+<xs:extension base="tns:sDataValue">
+<xs:sequence>
+<xs:element minOccurs="0" name="typeName" type="xs:string"/>
+<xs:element name="oid" type="xs:long"/>
+<xs:element minOccurs="0" name="guid" type="xs:string"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="sListDataValue">
+<xs:complexContent>
+<xs:extension base="tns:sDataValue">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="values" type="tns:sDataValue"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="sSimpleDataValue">
+<xs:complexContent>
+<xs:extension base="tns:sDataValue">
+<xs:sequence>
+<xs:element minOccurs="0" name="stringValue" type="xs:string"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
 </xs:complexType>
 <xs:complexType name="downloadOfType">
 <xs:sequence>
