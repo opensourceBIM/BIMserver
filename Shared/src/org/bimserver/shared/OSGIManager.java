@@ -9,6 +9,7 @@ import java.util.Set;
 
 import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
 import org.bimserver.plugins.serializers.SerializerPlugin;
+import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleException;
 import org.osgi.framework.InvalidSyntaxException;
 import org.osgi.framework.ServiceReference;
@@ -34,19 +35,36 @@ public class OSGIManager {
 			LOGGER.info("Using " + framework.getClass().getName() + " as OSGI framework");
 			try {
 				framework.start();
+				load(framework.getBundleContext().installBundle("file:../Utils"));
+				load(framework.getBundleContext().installBundle("file:../Plugins"));
+				load(framework.getBundleContext().installBundle("file:../Shared"));
+				load(framework.getBundleContext().installBundle("file:../Emf"));
+				load(framework.getBundleContext().installBundle("file:../Store"));
+				load(framework.getBundleContext().installBundle("file:../CityGML"));
+				load(framework.getBundleContext().installBundle("file:../O3d"));
+				load(framework.getBundleContext().installBundle("file:../Ifc"));
+				load(framework.getBundleContext().installBundle("file:../Collada"));
+				load(framework.getBundleContext().installBundle("file:../IFCEngine"));
+				load(framework.getBundleContext().installBundle("file:../buildingSMARTLibrary"));
 			} catch (BundleException e) {
 				LOGGER.error("", e);
 			}
 		}
 	}
 	
+	private void load(Bundle installBundle) {
+		System.out.println(installBundle);
+	}
+
 	public Set<IfcEnginePlugin> getIfcPlugins() {
 		Set<IfcEnginePlugin> ifcEnginePlugins = new HashSet<IfcEnginePlugin>();
 		try {
 			ServiceReference[] serviceReferences = framework.getBundleContext().getServiceReferences(IfcEnginePlugin.class.getName(), null);
-			for (ServiceReference serviceReference : serviceReferences) {
-				IfcEnginePlugin ifcEnginePlugin = (IfcEnginePlugin) framework.getBundleContext().getService(serviceReference);
-				LOGGER.info(ifcEnginePlugin.getName());
+			if (serviceReferences != null) {
+				for (ServiceReference serviceReference : serviceReferences) {
+					IfcEnginePlugin ifcEnginePlugin = (IfcEnginePlugin) framework.getBundleContext().getService(serviceReference);
+					LOGGER.info(ifcEnginePlugin.getName());
+				}
 			}
 		} catch (InvalidSyntaxException e) {
 			e.printStackTrace();
@@ -58,10 +76,12 @@ public class OSGIManager {
 		Set<SerializerPlugin> plugins = new HashSet<SerializerPlugin>();
 		try {
 			ServiceReference[] serviceReferences = framework.getBundleContext().getServiceReferences(SerializerPlugin.class.getName(), null);
-			for (ServiceReference serviceReference : serviceReferences) {
-				SerializerPlugin serializerPlugin = (SerializerPlugin) framework.getBundleContext().getService(serviceReference);
-				LOGGER.info(serializerPlugin.getName());
-				plugins.add(serializerPlugin);
+			if (serviceReferences != null) {
+				for (ServiceReference serviceReference : serviceReferences) {
+					SerializerPlugin serializerPlugin = (SerializerPlugin) framework.getBundleContext().getService(serviceReference);
+					LOGGER.info(serializerPlugin.getName());
+					plugins.add(serializerPlugin);
+				}
 			}
 		} catch (InvalidSyntaxException e) {
 			LOGGER.error("", e);

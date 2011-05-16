@@ -226,7 +226,9 @@ public class ServerInitializer implements ServletContextListener {
 				// IfcEngineFactory to use all jar files in the context
 				classPath = servletContext.getRealPath("/") + "WEB-INF" + File.separator + "lib";
 			}
-			ifcEngineFactory = new IfcEngineFactory(schemaFile, nativeFolder, new File(homeDir, "tmp"), classPath, osgiManager.getIfcPlugins().iterator().next());
+			if (osgiManager.getIfcPlugins().size() > 0) {
+				ifcEngineFactory = new IfcEngineFactory(schemaFile, nativeFolder, new File(homeDir, "tmp"), classPath, osgiManager.getIfcPlugins().iterator().next());
+			}
 
 			CompileServlet.database = bimDatabase;
 			CompileServlet.settingsManager = settingsManager;

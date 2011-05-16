@@ -163,3 +163,4 @@ Require-Bundle: Store;bundle-version="1.0.0",
  Emf;bundle-version="1.0.0",
  buildingSMARTLibrary;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-Activator: org.bimserver.BimServerActivator
