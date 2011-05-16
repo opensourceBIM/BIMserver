@@ -16,7 +16,5 @@ Export-Package: org.bimserver.models.ifc2x3,
  org.bimserver.models.store,
  org.bimserver.models.store.impl,
  org.bimserver.models.store.util
-Require-Bundle: org.eclipse.emf.ecore;visibility:=reexport,
- org.eclipse.emf.ecore.xmi;visibility:=reexport,
- Emf;bundle-version="1.0.0"
+Require-Bundle: Emf;bundle-version="1.0.0"
 Bundle-ActivationPolicy: lazy
