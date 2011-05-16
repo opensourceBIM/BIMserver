@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Collada
+Bundle-SymbolicName: Collada
+Bundle-Version: 1.0.0.qualifier
+Import-Package: org.bimserver.plugins.ifcengine,
+ org.bimserver.plugins.ignoreproviders,
+ org.bimserver.plugins.serializers
+Export-Package: org.bimserver.collada

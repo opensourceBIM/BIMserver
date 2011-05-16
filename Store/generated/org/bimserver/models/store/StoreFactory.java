@@ -171,6 +171,15 @@ public interface StoreFactory extends EFactory
 	IgnoreFile createIgnoreFile();
 
 	/**
+	 * Returns a new object of class '<em>Ifc Engine</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Ifc Engine</em>'.
+	 * @generated
+	 */
+	IfcEngine createIfcEngine();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

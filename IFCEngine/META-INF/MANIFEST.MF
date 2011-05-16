@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: IFCEngine
+Bundle-SymbolicName: IFCEngine
+Bundle-Version: 1.0.0.qualifier
+Bundle-ClassPath: IFCEngine.jar,
+ lib/jna.jar,
+ lib/commons/commons-io-1.4.jar
+Export-Package: org.bimserver.ifcengine,
+ org.bimserver.ifcengine.jvm
+Import-Package: org.bimserver.plugins.ifcengine

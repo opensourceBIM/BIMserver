@@ -23,6 +23,7 @@ import org.bimserver.plugins.serializers.EmfSerializer;
 import org.bimserver.plugins.serializers.PackageDefinition;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
+import org.bimserver.shared.OSGIManager;
 import org.bimserver.shared.ResourceFetcher;
 import org.bimserver.shared.ResultType;
 import org.bimserver.shared.ResultType.Type;
@@ -55,7 +56,9 @@ public class EmfSerializerFactory {
 	private ResourceFetcher resourceFetcher;
 	private SettingsManager settingsManager;
 
-	private final Set<SerializerPlugin> serializerPlugins = new HashSet<SerializerPlugin>();
+	private Set<SerializerPlugin> serializerPlugins;
+
+	private OSGIManager osgiManager;
 	
 	private EmfSerializerFactory() {
 	}
@@ -64,7 +67,7 @@ public class EmfSerializerFactory {
 		return INSTANCE;
 	}
 
-	public void init(Version version, SchemaDefinition schemaDefinition, FieldIgnoreMap fieldIgnoreMap, IfcEngineFactory ifcEngineFactory, PackageDefinition colladaSettings, ResourceFetcher resourceFetcher, SettingsManager settingsManager) {
+	public void init(Version version, SchemaDefinition schemaDefinition, FieldIgnoreMap fieldIgnoreMap, IfcEngineFactory ifcEngineFactory, PackageDefinition colladaSettings, ResourceFetcher resourceFetcher, SettingsManager settingsManager, OSGIManager osgiManager) {
 		this.version = version;
 		this.schemaDefinition = schemaDefinition;
 		this.fieldIgnoreMap = fieldIgnoreMap;
@@ -72,6 +75,7 @@ public class EmfSerializerFactory {
 		this.colladaSettings = colladaSettings;
 		this.resourceFetcher = resourceFetcher;
 		this.settingsManager = settingsManager;
+		this.osgiManager = osgiManager;
 	}
 	
 	public void register(ResultType resultType, EmfSerializerCreator emfSerializerCreator) {
@@ -113,24 +117,17 @@ public class EmfSerializerFactory {
 	}
 
 	public void initSerializers() {
-		ServiceLoader<SerializerPlugin> loader = ServiceLoader.load(SerializerPlugin.class);
-		Iterator<SerializerPlugin> iterator = loader.iterator();
-		while (iterator.hasNext()) {
-			SerializerPlugin serializerPlugin = iterator.next();
-			LOGGER.info("Loading serializer: " + serializerPlugin.getName());
-			serializerPlugins.add(serializerPlugin);
-		}
+		serializerPlugins = osgiManager.getAllSerializerPlugins();
 		
-		
-		String enabledExportTypesString = settingsManager.getSettings().getEnabledExportTypes();
-		String[] enabledExportTypes = enabledExportTypesString.split(",");
-		Set<String> enabled = new HashSet<String>();
-		for (String type : enabledExportTypes) {
-			String upperCase = type.trim().toUpperCase();
-			if (!upperCase.equals("")) {
-				enabled.add(upperCase);
-			}
-		}
+//		String enabledExportTypesString = settingsManager.getSettings().getEnabledExportTypes();
+//		String[] enabledExportTypes = enabledExportTypesString.split(",");
+//		Set<String> enabled = new HashSet<String>();
+//		for (String type : enabledExportTypes) {
+//			String upperCase = type.trim().toUpperCase();
+//			if (!upperCase.equals("")) {
+//				enabled.add(upperCase);
+//			}
+//		}
 //		register(new ResultType("IFC", "IFC2x3", "ifc", "application/ifc", UseInCheckout.USE_IN_CHECKOUT, UserType.USER_TYPE, Type.MULTIPLE, DefaultSelected.TRUE, enabled.contains("IFC")), new EmfSerializerCreator(){
 //			@Override
 //			public EmfSerializer create(Project project, User user, IfcModel model, String fileName) {

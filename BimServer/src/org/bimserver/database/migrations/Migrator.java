@@ -49,17 +49,15 @@ public class Migrator {
 	}
 
 	public int getLatestVersion() {
-		boolean more = true;
-		int i = 0;
-		while (more) {
-			Migration migration = getMigration(i);
-			if (migration != null) {
-				i++;
+		int i = -1;
+		while (true) {
+			Migration migration = getMigration(i+1);
+			if (migration == null) {
+				return i;
 			} else {
-				more = false;
+				i++;
 			}
 		}
-		return i;
 	}
 
 	public Schema migrateSchemaToLatest() {
