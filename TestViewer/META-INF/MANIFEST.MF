@@ -54,4 +54,7 @@ Import-Package: org.bimserver.plugins.ifcengine,
  org.bimserver.plugins.serializers
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: Store;bundle-version="1.0.0",
- Ifc;bundle-version="1.0.0"
+ Ifc;bundle-version="1.0.0",
+ buildingSMARTLibrary;bundle-version="1.0.0",
+ Shared;bundle-version="1.0.0",
+ Utils;bundle-version="1.0.0"
