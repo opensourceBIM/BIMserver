@@ -52,7 +52,7 @@ public class DataObjectGenerator {
 
 	public VirtualFile generate(VirtualFile basedir) throws DatabaseException {
 		GenModel genModel = GenModelFactory.eINSTANCE.createGenModel();
-		genModel.setRuntimeVersion(GenRuntimeVersion.EMF26);
+		genModel.setRuntimeVersion(GenRuntimeVersion.EMF25);
 		genModel.setComplianceLevel(GenJDKLevel.JDK60_LITERAL);
 		genModel.setFeatureDelegation(GenDelegationKind.REFLECTIVE_LITERAL);
 		genModel.setRootExtendsClass("org.bimserver.emf.IdEObjectImpl");

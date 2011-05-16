@@ -37,12 +37,13 @@ public class OSGIManager {
 			try {
 				framework.start();
 				Set<Bundle> bundles = new LinkedHashSet<Bundle>();
+//				install("file:C:\\Software\\Eclipse3.5\\plugins\\org.eclipse.core.runtime_3.5.0.v20090525.jar", bundles);
 				install("file:../Utils", bundles);
+				install("file:../Emf", bundles);
 				install("file:../Store", bundles);
 				install("file:../buildingSMARTLibrary", bundles);
 				install("file:../Plugins", bundles);
 				install("file:../Shared", bundles);
-				install("file:../Emf", bundles);
 				install("file:../CityGML", bundles);
 				install("file:../O3d", bundles);
 				install("file:../Ifc", bundles);
