@@ -52,3 +52,6 @@ Export-Package: com,
  org.bimserver.clients.j3d.behavior
 Import-Package: org.bimserver.plugins.ifcengine,
  org.bimserver.plugins.serializers
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Require-Bundle: Store;bundle-version="1.0.0",
+ Ifc;bundle-version="1.0.0"

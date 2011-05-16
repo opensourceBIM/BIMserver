@@ -7,9 +7,6 @@
 			<attribute name="optional" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry combineaccessrules="false" kind="src" path="/Store"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/buildingSMARTLibrary"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/Ifc"/>
 	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

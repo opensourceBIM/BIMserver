@@ -3,9 +3,6 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="generated"/>
 	<classpathentry exported="true" kind="lib" path="lib/StPL96.jar"/>
-	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Ifc"/>
-	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Emf"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/Shared"/>
 	<classpathentry kind="lib" path="lib/citygml4j.jar" sourcepath="/BimServer/libsrc/citygml4j1.0.jar"/>
 	<classpathentry kind="lib" path="lib/jsr173_1.0_api.jar"/>
 	<classpathentry kind="lib" path="lib/sjsxp.jar"/>
@@ -19,7 +16,6 @@
 			<attribute name="optional" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry combineaccessrules="false" kind="src" path="/Store"/>
 	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
