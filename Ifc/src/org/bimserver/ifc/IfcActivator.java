@@ -3,11 +3,11 @@ package org.bimserver.ifc;
 import org.bimserver.ifc.file.writer.IfcStepSerializerPlugin;
 import org.bimserver.ifc.xml.writer.IfcXmlSerializerPlugin;
 import org.bimserver.plugins.serializers.SerializerPlugin;
-import org.eclipse.core.runtime.Plugin;
+import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceRegistration;
 
-public class IfcActivator extends Plugin {
+public class IfcActivator implements BundleActivator {
 
 	private ServiceRegistration ifcStepSerializerServiceRegistration;
 	private ServiceRegistration ifcXmlSerializerServiceRegistration;

@@ -1,11 +1,11 @@
 package org.bimserver.o3d;
 
 import org.bimserver.plugins.serializers.SerializerPlugin;
-import org.eclipse.core.runtime.Plugin;
+import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceRegistration;
 
-public class O3dActivator extends Plugin {
+public class O3dActivator implements BundleActivator {
 
 	private ServiceRegistration o3dJsonServiceRegistration;
 	private ServiceRegistration o3dTgzServiceRegistration;

@@ -1,11 +1,11 @@
 package org.bimserver.citygml;
 
 import org.bimserver.plugins.serializers.SerializerPlugin;
-import org.eclipse.core.runtime.Plugin;
+import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceRegistration;
 
-public class CityGMLActivator extends Plugin {
+public class CityGMLActivator implements BundleActivator {
 
 	private ServiceRegistration registerService;
 
