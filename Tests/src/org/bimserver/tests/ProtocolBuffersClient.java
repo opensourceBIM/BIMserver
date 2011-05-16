@@ -38,11 +38,23 @@ public class ProtocolBuffersClient {
 		rpcController = new SocketRpcController();
 		service = ServiceInterface.newBlockingStub(rpcChannel);
 		try {
-			if (login("admin@logic-labs.nl", "admin")) {
-				for (long roid : getAllProjects().get(0).getRevisionsList()) {
-					System.out.println(roid);
-					getRevision(roid);
-					downloadRevision(roid);
+			if (login("admin@bimserver.org", "admin")) {
+				List<SProject> allProjects = getAllProjects();
+				if (allProjects.size() == 0) {
+					System.out.println("No projects found");
+				} else {
+					SProject sProject = getAllProjects().get(0);
+					System.out.println(sProject.getName() + " found");
+					List<Long> revisionsList = sProject.getRevisionsList();
+					if (revisionsList.size() == 0) {
+						System.out.println("No revisions found");
+					} else {
+						for (long roid : revisionsList) {
+							System.out.println(roid);
+							getRevision(roid);
+							downloadRevision(roid);
+						}
+					}
 				}
 			}
 		} catch (ServiceException e) {

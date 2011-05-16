@@ -1292,13 +1292,22 @@ public interface StorePackage extends EPackage
 	int SETTINGS__CACHE_OUTPUT_FILES = 19;
 
 	/**
+	 * The feature id for the '<em><b>Ifc Engines</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SETTINGS__IFC_ENGINES = 20;
+
+	/**
 	 * The number of structural features of the '<em>Settings</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SETTINGS_FEATURE_COUNT = 20;
+	int SETTINGS_FEATURE_COUNT = 21;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.SerializerImpl <em>Serializer</em>}' class.
@@ -1429,6 +1438,52 @@ public interface StorePackage extends EPackage
 	int IGNORE_FILE_FEATURE_COUNT = 4;
 
 	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.IfcEngineImpl <em>Ifc Engine</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.impl.IfcEngineImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getIfcEngine()
+	 * @generated
+	 */
+	int IFC_ENGINE = 13;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IFC_ENGINE__NAME = 0;
+
+	/**
+	 * The feature id for the '<em><b>Active</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IFC_ENGINE__ACTIVE = 1;
+
+	/**
+	 * The feature id for the '<em><b>Settings</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IFC_ENGINE__SETTINGS = 2;
+
+	/**
+	 * The number of structural features of the '<em>Ifc Engine</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IFC_ENGINE_FEATURE_COUNT = 3;
+
+	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.UserType <em>User Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1436,7 +1491,7 @@ public interface StorePackage extends EPackage
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getUserType()
 	 * @generated
 	 */
-	int USER_TYPE = 13;
+	int USER_TYPE = 14;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.CheckinState <em>Checkin State</em>}' enum.
@@ -1446,7 +1501,7 @@ public interface StorePackage extends EPackage
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getCheckinState()
 	 * @generated
 	 */
-	int CHECKIN_STATE = 14;
+	int CHECKIN_STATE = 15;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.SIPrefix <em>SI Prefix</em>}' enum.
@@ -1456,7 +1511,7 @@ public interface StorePackage extends EPackage
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getSIPrefix()
 	 * @generated
 	 */
-	int SI_PREFIX = 15;
+	int SI_PREFIX = 16;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ObjectState <em>Object State</em>}' enum.
@@ -1466,7 +1521,7 @@ public interface StorePackage extends EPackage
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getObjectState()
 	 * @generated
 	 */
-	int OBJECT_STATE = 16;
+	int OBJECT_STATE = 17;
 
 
 	/**
@@ -1477,7 +1532,7 @@ public interface StorePackage extends EPackage
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getMergeIdentifier()
 	 * @generated
 	 */
-	int MERGE_IDENTIFIER = 17;
+	int MERGE_IDENTIFIER = 18;
 
 
 	/**
@@ -2702,6 +2757,17 @@ public interface StorePackage extends EPackage
 	EAttribute getSettings_CacheOutputFiles();
 
 	/**
+	 * Returns the meta object for the reference list '{@link org.bimserver.models.store.Settings#getIfcEngines <em>Ifc Engines</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Ifc Engines</em>'.
+	 * @see org.bimserver.models.store.Settings#getIfcEngines()
+	 * @see #getSettings()
+	 * @generated
+	 */
+	EReference getSettings_IfcEngines();
+
+	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.Serializer <em>Serializer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2830,6 +2896,49 @@ public interface StorePackage extends EPackage
 	 * @generated
 	 */
 	EReference getIgnoreFile_Settings();
+
+	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.store.IfcEngine <em>Ifc Engine</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Ifc Engine</em>'.
+	 * @see org.bimserver.models.store.IfcEngine
+	 * @generated
+	 */
+	EClass getIfcEngine();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.IfcEngine#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see org.bimserver.models.store.IfcEngine#getName()
+	 * @see #getIfcEngine()
+	 * @generated
+	 */
+	EAttribute getIfcEngine_Name();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.IfcEngine#isActive <em>Active</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Active</em>'.
+	 * @see org.bimserver.models.store.IfcEngine#isActive()
+	 * @see #getIfcEngine()
+	 * @generated
+	 */
+	EAttribute getIfcEngine_Active();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.store.IfcEngine#getSettings <em>Settings</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Settings</em>'.
+	 * @see org.bimserver.models.store.IfcEngine#getSettings()
+	 * @see #getIfcEngine()
+	 * @generated
+	 */
+	EReference getIfcEngine_Settings();
 
 	/**
 	 * Returns the meta object for enum '{@link org.bimserver.models.store.UserType <em>User Type</em>}'.
@@ -3823,6 +3932,14 @@ public interface StorePackage extends EPackage
 		EAttribute SETTINGS__CACHE_OUTPUT_FILES = eINSTANCE.getSettings_CacheOutputFiles();
 
 		/**
+		 * The meta object literal for the '<em><b>Ifc Engines</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SETTINGS__IFC_ENGINES = eINSTANCE.getSettings_IfcEngines();
+
+		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.SerializerImpl <em>Serializer</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3921,6 +4038,40 @@ public interface StorePackage extends EPackage
 		 * @generated
 		 */
 		EReference IGNORE_FILE__SETTINGS = eINSTANCE.getIgnoreFile_Settings();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.IfcEngineImpl <em>Ifc Engine</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.impl.IfcEngineImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getIfcEngine()
+		 * @generated
+		 */
+		EClass IFC_ENGINE = eINSTANCE.getIfcEngine();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute IFC_ENGINE__NAME = eINSTANCE.getIfcEngine_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Active</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute IFC_ENGINE__ACTIVE = eINSTANCE.getIfcEngine_Active();
+
+		/**
+		 * The meta object literal for the '<em><b>Settings</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference IFC_ENGINE__SETTINGS = eINSTANCE.getIfcEngine_Settings();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.UserType <em>User Type</em>}' enum.

@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: O3d
+Bundle-SymbolicName: O3d
+Bundle-Version: 1.0.0.qualifier
+Bundle-ClassPath: O3d.jar,
+ lib/jettison-1.0.1.jar,
+ lib/tar.jar,
+ lib/json.jar,
+ lib/guava-r07.jar
+Import-Package: org.bimserver.plugins.ifcengine,
+ org.bimserver.plugins.serializers
+Export-Package: org.bimserver.o3d

@@ -54,6 +54,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.Settings#getFooterAddition <em>Footer Addition</em>}</li>
  *   <li>{@link org.bimserver.models.store.Settings#getMergeIdentifier <em>Merge Identifier</em>}</li>
  *   <li>{@link org.bimserver.models.store.Settings#isCacheOutputFiles <em>Cache Output Files</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Settings#getIfcEngines <em>Ifc Engines</em>}</li>
  * </ul>
  * </p>
  *
@@ -570,5 +571,23 @@ public interface Settings extends IdEObject
 	 * @generated
 	 */
 	void setCacheOutputFiles(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Ifc Engines</b></em>' reference list.
+	 * The list contents are of type {@link org.bimserver.models.store.IfcEngine}.
+	 * It is bidirectional and its opposite is '{@link org.bimserver.models.store.IfcEngine#getSettings <em>Settings</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Ifc Engines</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Ifc Engines</em>' reference list.
+	 * @see org.bimserver.models.store.StorePackage#getSettings_IfcEngines()
+	 * @see org.bimserver.models.store.IfcEngine#getSettings
+	 * @model opposite="settings"
+	 * @generated
+	 */
+	EList<IfcEngine> getIfcEngines();
 
 } // Settings

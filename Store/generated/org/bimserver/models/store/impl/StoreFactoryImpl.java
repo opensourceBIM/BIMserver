@@ -105,6 +105,7 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory
 			case StorePackage.SETTINGS: return (EObject)createSettings();
 			case StorePackage.SERIALIZER: return (EObject)createSerializer();
 			case StorePackage.IGNORE_FILE: return (EObject)createIgnoreFile();
+			case StorePackage.IFC_ENGINE: return (EObject)createIfcEngine();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -299,6 +300,16 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory
 	{
 		IgnoreFileImpl ignoreFile = new IgnoreFileImpl();
 		return ignoreFile;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IfcEngine createIfcEngine() {
+		IfcEngineImpl ifcEngine = new IfcEngineImpl();
+		return ifcEngine;
 	}
 
 	/**

@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -18,14 +19,17 @@ import javax.media.j3d.Bounds;
 import javax.media.j3d.BranchGroup;
 import javax.media.j3d.Canvas3D;
 import javax.media.j3d.DirectionalLight;
+import javax.media.j3d.GeometryArray;
 import javax.media.j3d.Link;
 import javax.media.j3d.Locale;
 import javax.media.j3d.Material;
 import javax.media.j3d.PhysicalBody;
 import javax.media.j3d.PhysicalEnvironment;
+import javax.media.j3d.Shape3D;
 import javax.media.j3d.SharedGroup;
 import javax.media.j3d.Transform3D;
 import javax.media.j3d.TransformGroup;
+import javax.media.j3d.TriangleArray;
 import javax.media.j3d.View;
 import javax.media.j3d.ViewPlatform;
 import javax.media.j3d.VirtualUniverse;
@@ -33,6 +37,7 @@ import javax.swing.JFrame;
 import javax.vecmath.Color3f;
 import javax.vecmath.Matrix3f;
 import javax.vecmath.Point3d;
+import javax.vecmath.Point3f;
 import javax.vecmath.Vector3d;
 import javax.vecmath.Vector3f;
 
@@ -46,6 +51,7 @@ import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.SchemaLoader;
 import org.bimserver.ifc.file.reader.IfcStepDeserializer;
 import org.bimserver.ifc.file.reader.IncorrectIfcFileException;
+import org.bimserver.ifc.file.writer.IfcStepSerializer;
 import org.bimserver.models.ifc2x3.Ifc2x3Factory;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcBeam;
@@ -67,8 +73,16 @@ import org.bimserver.models.ifc2x3.IfcWall;
 import org.bimserver.models.ifc2x3.IfcWallStandardCase;
 import org.bimserver.models.ifc2x3.IfcWindow;
 import org.bimserver.models.ifc2x3.WrappedValue;
-import org.bimserver.plugins.serializers.SerializerException;
+import org.bimserver.plugins.ifcengine.IfcEngine;
+import org.bimserver.plugins.ifcengine.IfcEngineException;
+import org.bimserver.plugins.ifcengine.IfcEngineGeometry;
+import org.bimserver.plugins.ifcengine.IfcEngineInstance;
+import org.bimserver.plugins.ifcengine.IfcEngineInstanceVisualisationProperties;
+import org.bimserver.plugins.ifcengine.IfcEngineModel;
+import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
+import org.bimserver.plugins.ifcengine.IfcEngineSurfaceProperties;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
+import org.bimserver.shared.OSGIManager;
 import org.bimserver.utils.CollectionUtils;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EAttribute;
@@ -171,7 +185,14 @@ public class IfcVisualiser extends JFrame {
 		fieldIgnoreMap = new FileFieldIgnoreMap(CollectionUtils.singleSet(Ifc2x3Package.eINSTANCE), resourceFetcher);
 		schema = SchemaLoader.loadDefaultSchema();
 
-		ifcEngine = new CppIfcEngine(schema, appearances);
+		OSGIManager osgiManager = new OSGIManager();
+		osgiManager.start();
+		try {
+			IfcEnginePlugin ifcPlugin = osgiManager.getIfcPlugins().iterator().next();
+			ifcEngine = ifcPlugin.createIfcEngine(resourceFetcher.getFile("IFC2X3_FINAL.exp").getAbsoluteFile(), new File("../IFCEngine/lib/" + System.getProperty("sun.arch.data.model")), new File("tmp"), null);
+		} catch (IfcEngineException e) {
+			e.printStackTrace();
+		}
 
 		sharedGroup = new SharedGroup();
 
@@ -287,11 +308,7 @@ public class IfcVisualiser extends JFrame {
 
 		for (IdEObject idEObject : model.getValues()) {
 			if (classesToConvert.contains(idEObject.eClass().getInstanceClass())) {
-				try {
-					setGeometry((IfcRoot) idEObject);
-				} catch (SerializerException e) {
-					e.printStackTrace();
-				}
+				setGeometry((IfcRoot) idEObject);
 			}
 		}
 		buildingBranchGroup = new BranchGroup();
@@ -336,6 +353,57 @@ public class IfcVisualiser extends JFrame {
 		transformGroup.addChild(light2);
 	}
 
+	public void createTriangles(IfcRoot ifcRootObject, IfcModel ifcModel, TransformGroup buildingTransformGroup) {
+		IfcStepSerializer ifcSerializer = new IfcStepSerializer(null, null, "", ifcModel, schema);
+		try {
+			IfcEngineModel model = ifcEngine.openModel(ifcSerializer.getBytes());
+			try {
+				model.setPostProcessing(true);
+				IfcEngineSurfaceProperties initializeModelling = model.initializeModelling();
+				IfcEngineGeometry geometry = model.finalizeModelling(initializeModelling);
+				if (geometry != null) {
+					List<? extends IfcEngineInstance> instances = model.getInstances(ifcRootObject.eClass().getName().toUpperCase());
+					for (IfcEngineInstance instance : instances) {
+						IfcEngineInstanceVisualisationProperties instanceInModelling = instance.getVisualisationProperties();
+						if (instanceInModelling.getPrimitiveCount() != 0) {
+							Appearance appearance = appearances.getAppearance(ifcRootObject);
+							if (appearance != null) {
+								Point3f[] coordinates = new Point3f[instanceInModelling.getPrimitiveCount() * 3];
+								Vector3f[] normals = new Vector3f[instanceInModelling.getPrimitiveCount() * 3];
+								for (int i = instanceInModelling.getStartIndex(); i < instanceInModelling.getPrimitiveCount() * 3 + instanceInModelling.getStartIndex(); i += 3) {
+									int offsetIndex = i - instanceInModelling.getStartIndex();
+									int i1 = geometry.getIndex(i);
+									int i2 = geometry.getIndex(i + 1);
+									int i3 = geometry.getIndex(i + 2);
+
+									coordinates[offsetIndex] = new Point3f(geometry.getVertex(i1 * 3), geometry.getVertex(i1 * 3 + 1), geometry.getVertex(i1 * 3 + 2));
+									coordinates[offsetIndex + 1] = new Point3f(geometry.getVertex(i3 * 3), geometry.getVertex(i3 * 3 + 1), geometry.getVertex(i3 * 3 + 2));
+									coordinates[offsetIndex + 2] = new Point3f(geometry.getVertex(i2 * 3), geometry.getVertex(i2 * 3 + 1), geometry.getVertex(i2 * 3 + 2));
+
+									normals[offsetIndex] = new Vector3f(geometry.getNormal(i1 * 3), geometry.getNormal(i1 * 3 + 1), geometry.getNormal(i1 * 3 + 2));
+									normals[offsetIndex + 1] = new Vector3f(geometry.getNormal(i3 * 3), geometry.getNormal(i3 * 3 + 1), geometry.getNormal(i3 * 3 + 2));
+									normals[offsetIndex + 2] = new Vector3f(geometry.getNormal(i2 * 3), geometry.getNormal(i2 * 3 + 1), geometry.getNormal(i2 * 3 + 2));
+								}
+								TriangleArray triangleArray = new TriangleArray(coordinates.length, GeometryArray.COORDINATES | GeometryArray.NORMALS);
+								triangleArray.setCoordinates(0, coordinates);
+								triangleArray.setNormals(0, normals);
+								Shape3D myShape = new Shape3D(triangleArray, appearance);
+								buildingTransformGroup.addChild(myShape);
+								myShape.setUserData(ifcRootObject);
+							}
+						}
+					}
+				}
+			} finally {
+				model.close();
+			}
+		} catch (IfcEngineException e) {
+			LOGGER.error("", e);
+		} catch (Exception e) {
+			LOGGER.error("", e);
+		}
+	}
+	
 	public float getViewPlatformDistance(BranchGroup scene, Component canvas, View view) {
 		BoundingSphere sceneSphere = getBoundingSphere(scene);
 		double sceneRadius = sceneSphere.getRadius();
@@ -361,10 +429,10 @@ public class IfcVisualiser extends JFrame {
 		return sceneSphere;
 	}
 
-	private void setGeometry(IfcRoot ifcRootObject) throws SerializerException {
+	private void setGeometry(IfcRoot ifcRootObject) {
 		IfcModel ifcModel = new IfcModel();
 		convertToSubset(ifcRootObject.eClass(), ifcRootObject, ifcModel, new HashMap<EObject, EObject>());
-		ifcEngine.createTriangles(ifcRootObject, ifcModel, buildingTransformGroup);
+		createTriangles(ifcRootObject, ifcModel, buildingTransformGroup);
 	}
 
 	@SuppressWarnings("unchecked")

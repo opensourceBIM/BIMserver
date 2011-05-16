@@ -69,6 +69,7 @@ import org.bimserver.resources.WarResourceFetcher;
 import org.bimserver.serializers.EmfSerializerFactory;
 import org.bimserver.servlets.CompileServlet;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
+import org.bimserver.shared.OSGIManager;
 import org.bimserver.shared.ResourceFetcher;
 import org.bimserver.shared.ServiceInterface;
 import org.bimserver.templating.TemplateEngine;
@@ -107,6 +108,7 @@ public class ServerInitializer implements ServletContextListener {
 	private PackageDefinition colladaSettings;
 	private EmfSerializerFactory emfSerializerFactory;
 	private static MergerFactory mergerFactory;
+	private OSGIManager osgiManager;
 
 	@Override
 	public void contextInitialized(ServletContextEvent servletContextEvent) {
@@ -158,6 +160,9 @@ public class ServerInitializer implements ServletContextListener {
 
 			Thread.setDefaultUncaughtExceptionHandler(uncaughtExceptionHandler);
 
+			osgiManager = new OSGIManager();
+			osgiManager.start();
+			
 			LOGGER.info("Detected server type: " + serverType + " (" + System.getProperty("os.name") + ", " + System.getProperty("sun.arch.data.model") + "bit)");
 			if (serverType == ServerType.UNKNOWN) {
 				LOGGER.error("Server type not detected, stopping initialization");
@@ -221,7 +226,7 @@ public class ServerInitializer implements ServletContextListener {
 				// IfcEngineFactory to use all jar files in the context
 				classPath = servletContext.getRealPath("/") + "WEB-INF" + File.separator + "lib";
 			}
-			ifcEngineFactory = new IfcEngineFactory(schemaFile, nativeFolder, new File(homeDir, "tmp"), classPath);
+			ifcEngineFactory = new IfcEngineFactory(schemaFile, nativeFolder, new File(homeDir, "tmp"), classPath, osgiManager.getIfcPlugins().iterator().next());
 
 			CompileServlet.database = bimDatabase;
 			CompileServlet.settingsManager = settingsManager;
@@ -270,14 +275,16 @@ public class ServerInitializer implements ServletContextListener {
 			} finally {
 				session.close();
 			}
-		} catch (Exception e) {
+			
+			LOGGER.info("Done initializing");
+		} catch (Throwable e) {
 			ServerInfo.setErrorMessage(e.getMessage());
 			LOGGER.error("", e);
 		}
 	}
 
 	private void initDatabaseDependantItems() {
-		emfSerializerFactory.init(version, schema, fieldIgnoreMap, ifcEngineFactory, colladaSettings, resourceFetcher, settingsManager);
+		emfSerializerFactory.init(version, schema, fieldIgnoreMap, ifcEngineFactory, colladaSettings, resourceFetcher, settingsManager, osgiManager);
 		emfSerializerFactory.initSerializers();
 	}
 	

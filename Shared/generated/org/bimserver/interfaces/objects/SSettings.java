@@ -35,6 +35,7 @@ public class SSettings
 	private java.lang.String footerAddition;
 	private SMergeIdentifier mergeIdentifier;
 	private boolean cacheOutputFiles;
+	private List<Long> ifcEngines = new ArrayList<Long>();
 
 	public boolean isShowVersionUpgradeAvailable() {
 		return showVersionUpgradeAvailable;
@@ -191,6 +192,13 @@ public class SSettings
 
 	public void setCacheOutputFiles(boolean cacheOutputFiles) {
 		this.cacheOutputFiles = cacheOutputFiles;
+	}
+	public List<Long> getIfcEngines() {
+		return ifcEngines;
+	}
+
+	public void setIfcEngines(List<Long> ifcEngines) {
+		this.ifcEngines = ifcEngines;
 	}
 	@Override
 	public int hashCode() {
