@@ -367,3 +367,4 @@ Export-Package: com.ibm.wsdl,
  schemas.configuration.blueprint,
  schemas.wsdl,
  schemas.wsdl.spec
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6

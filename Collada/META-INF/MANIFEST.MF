@@ -7,3 +7,8 @@ Import-Package: org.bimserver.plugins.ifcengine,
  org.bimserver.plugins.ignoreproviders,
  org.bimserver.plugins.serializers
 Export-Package: org.bimserver.collada
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Require-Bundle: buildingSMARTLibrary;bundle-version="1.0.0",
+ Emf;bundle-version="1.0.0",
+ Ifc;bundle-version="1.0.0",
+ Store;bundle-version="1.0.0"

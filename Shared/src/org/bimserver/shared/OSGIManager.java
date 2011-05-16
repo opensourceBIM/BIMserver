@@ -1,6 +1,5 @@
 package org.bimserver.shared;
 
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -44,9 +43,9 @@ public class OSGIManager {
 	public Set<IfcEnginePlugin> getIfcPlugins() {
 		Set<IfcEnginePlugin> ifcEnginePlugins = new HashSet<IfcEnginePlugin>();
 		try {
-			Collection<ServiceReference<IfcEnginePlugin>> serviceReferences = framework.getBundleContext().getServiceReferences(IfcEnginePlugin.class, null);
-			for (ServiceReference<IfcEnginePlugin> serviceReference : serviceReferences) {
-				IfcEnginePlugin ifcEnginePlugin = framework.getBundleContext().getService(serviceReference);
+			ServiceReference[] serviceReferences = framework.getBundleContext().getServiceReferences(IfcEnginePlugin.class.getName(), null);
+			for (ServiceReference serviceReference : serviceReferences) {
+				IfcEnginePlugin ifcEnginePlugin = (IfcEnginePlugin) framework.getBundleContext().getService(serviceReference);
 				LOGGER.info(ifcEnginePlugin.getName());
 			}
 		} catch (InvalidSyntaxException e) {
@@ -58,9 +57,9 @@ public class OSGIManager {
 	public Set<SerializerPlugin> getAllSerializerPlugins() {
 		Set<SerializerPlugin> plugins = new HashSet<SerializerPlugin>();
 		try {
-			Collection<ServiceReference<SerializerPlugin>> serviceReferences = framework.getBundleContext().getServiceReferences(SerializerPlugin.class, null);
-			for (ServiceReference<SerializerPlugin> serviceReference : serviceReferences) {
-				SerializerPlugin serializerPlugin = framework.getBundleContext().getService(serviceReference);
+			ServiceReference[] serviceReferences = framework.getBundleContext().getServiceReferences(SerializerPlugin.class.getName(), null);
+			for (ServiceReference serviceReference : serviceReferences) {
+				SerializerPlugin serializerPlugin = (SerializerPlugin) framework.getBundleContext().getService(serviceReference);
 				LOGGER.info(serializerPlugin.getName());
 				plugins.add(serializerPlugin);
 			}

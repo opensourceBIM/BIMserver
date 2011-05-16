@@ -81,3 +81,4 @@ Export-Package: com.google.common.annotations,
  org.slf4j.helpers,
  org.slf4j.impl,
  org.slf4j.spi
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6

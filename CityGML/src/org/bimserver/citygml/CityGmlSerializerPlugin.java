@@ -2,9 +2,7 @@ package org.bimserver.citygml;
 
 import org.bimserver.plugins.serializers.EmfSerializer;
 import org.bimserver.plugins.serializers.SerializerPlugin;
-import org.mangosdk.spi.ProviderFor;
 
-@ProviderFor(value=SerializerPlugin.class)
 public class CityGmlSerializerPlugin implements SerializerPlugin {
 
 	public CityGmlSerializerPlugin() {

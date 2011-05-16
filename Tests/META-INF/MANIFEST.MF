@@ -9,3 +9,9 @@ Import-Package: org.bimserver.plugins,
  org.bimserver.plugins.ifcengine,
  org.bimserver.plugins.ignoreproviders,
  org.bimserver.plugins.serializers
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Require-Bundle: Shared;bundle-version="1.0.0",
+ Utils;bundle-version="1.0.0",
+ BimServer;bundle-version="1.0.0",
+ TestData;bundle-version="1.0.0",
+ Ifc;bundle-version="1.0.0"

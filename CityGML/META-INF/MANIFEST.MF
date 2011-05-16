@@ -15,3 +15,7 @@ Bundle-ClassPath: CityGML.jar,
 Import-Package: org.bimserver.plugins.ifcengine,
  org.bimserver.plugins.serializers
 Export-Package: org.bimserver.citygml
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Require-Bundle: Ifc;bundle-version="1.0.0",
+ Store;bundle-version="1.0.0",
+ buildingSMARTLibrary;bundle-version="1.0.0"

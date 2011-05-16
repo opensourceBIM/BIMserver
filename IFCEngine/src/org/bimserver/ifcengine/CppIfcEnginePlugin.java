@@ -5,9 +5,7 @@ import java.io.File;
 import org.bimserver.plugins.ifcengine.IfcEngine;
 import org.bimserver.plugins.ifcengine.IfcEngineException;
 import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
-import org.mangosdk.spi.ProviderFor;
 
-@ProviderFor(value=IfcEnginePlugin.class)
 public class CppIfcEnginePlugin implements IfcEnginePlugin {
 
 	@Override

@@ -14,9 +14,8 @@
 	<classpathentry exported="true" kind="lib" path="lib/java-getopt-1.0.13.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/ifcNamespaces.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/commons-logging-1.1.1.jar"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/Utils"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/Emf"/>
 	<classpathentry kind="lib" path="/BimServer/lib/guava-r07.jar" sourcepath="/BimServer/libsrc/guava-src-r07.zip"/>
 	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
+	<classpathentry kind="lib" path="/BimServer/lib/logging/slf4j-api-1.6.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

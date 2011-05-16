@@ -12,10 +12,7 @@ Bundle-ClassPath: Emf.jar,
  lib/emf/org.eclipse.emf.compare.match_1.0.1.v200909161031.jar,
  lib/emf/org.eclipse.emf.ecore_2.6.1.v20100914-1218.jar,
  lib/emf/org.eclipse.emf.ecore.xmi_2.5.0.v20100521-1846.jar
-Export-Package: icons.full.ctool16,
- icons.full.obj16,
- model,
- org.bimserver.emf,
+Export-Package: org.bimserver.emf,
  org.eclipse.emf.codegen,
  org.eclipse.emf.codegen.ecore,
  org.eclipse.emf.codegen.ecore.generator,
@@ -70,9 +67,5 @@ Export-Package: icons.full.ctool16,
  org.eclipse.emf.ecore.xml.type,
  org.eclipse.emf.ecore.xml.type.impl,
  org.eclipse.emf.ecore.xml.type.internal,
- org.eclipse.emf.ecore.xml.type.util,
- schema,
- templates,
- templates.edit,
- templates.editor,
- templates.model
+ org.eclipse.emf.ecore.xml.type.util
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6

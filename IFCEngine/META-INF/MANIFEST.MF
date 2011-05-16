@@ -9,3 +9,4 @@ Bundle-ClassPath: IFCEngine.jar,
 Export-Package: org.bimserver.ifcengine,
  org.bimserver.ifcengine.jvm
 Import-Package: org.bimserver.plugins.ifcengine
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
