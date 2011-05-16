@@ -368,3 +368,5 @@ Export-Package: com.ibm.wsdl,
  schemas.wsdl,
  schemas.wsdl.spec
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Require-Bundle: Shared;bundle-version="1.0.0",
+ Utils;bundle-version="1.0.0"

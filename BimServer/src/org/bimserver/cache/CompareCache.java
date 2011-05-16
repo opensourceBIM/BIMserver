@@ -1,6 +1,6 @@
 package org.bimserver.cache;
 
-import org.bimserver.ifc.file.compare.CompareResult;
+import org.bimserver.ifc.compare.CompareResult;
 import org.bimserver.shared.SCompareResult.SCompareIdentifier;
 import org.bimserver.shared.SCompareResult.SCompareType;
 
