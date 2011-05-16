@@ -17,3 +17,4 @@ Export-Package: org.bimserver.ifc,
  org.bimserver.ifc.printer,
  org.bimserver.ifc.xml.reader,
  org.bimserver.ifc.xml.writer
+Bundle-Activator: org.bimserver.ifc.IfcActivator

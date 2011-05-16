@@ -12,3 +12,4 @@ Require-Bundle: buildingSMARTLibrary;bundle-version="1.0.0",
  Emf;bundle-version="1.0.0",
  Ifc;bundle-version="1.0.0",
  Store;bundle-version="1.0.0"
+Bundle-Activator: org.bimserver.collada.ColladaActivator

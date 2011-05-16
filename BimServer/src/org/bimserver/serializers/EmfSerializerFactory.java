@@ -199,7 +199,11 @@ public class EmfSerializerFactory {
 	}
 
 	public boolean resultTypeEnabled(String resultTypeName) {
-		return getResultType(resultTypeName).isEnabled();
+		ResultType resultType = getResultType(resultTypeName);
+		if (resultType == null) {
+			return false;
+		}
+		return resultType.isEnabled();
 	}
 
 	public Set<String> getAllSerializerClassNames() {
