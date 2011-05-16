@@ -2,11 +2,11 @@ package org.bimserver;
 
 import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.serializers.ObjectInfoSerializerPlugin;
-import org.eclipse.core.runtime.Plugin;
+import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceRegistration;
 
-public class BimServerActivator extends Plugin {
+public class BimServerActivator implements BundleActivator {
 
 	private ServiceRegistration objectInfoServiceRegistration;
 

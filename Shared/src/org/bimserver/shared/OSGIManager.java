@@ -3,6 +3,7 @@ package org.bimserver.shared;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.ServiceLoader;
 import java.util.Set;
@@ -35,25 +36,31 @@ public class OSGIManager {
 			LOGGER.info("Using " + framework.getClass().getName() + " as OSGI framework");
 			try {
 				framework.start();
-				load(framework.getBundleContext().installBundle("file:../Utils"));
-				load(framework.getBundleContext().installBundle("file:../Plugins"));
-				load(framework.getBundleContext().installBundle("file:../Shared"));
-				load(framework.getBundleContext().installBundle("file:../Emf"));
-				load(framework.getBundleContext().installBundle("file:../Store"));
-				load(framework.getBundleContext().installBundle("file:../CityGML"));
-				load(framework.getBundleContext().installBundle("file:../O3d"));
-				load(framework.getBundleContext().installBundle("file:../Ifc"));
-				load(framework.getBundleContext().installBundle("file:../Collada"));
-				load(framework.getBundleContext().installBundle("file:../IFCEngine"));
-				load(framework.getBundleContext().installBundle("file:../buildingSMARTLibrary"));
+				Set<Bundle> bundles = new LinkedHashSet<Bundle>();
+				install("file:../Utils", bundles);
+				install("file:../Store", bundles);
+				install("file:../buildingSMARTLibrary", bundles);
+				install("file:../Plugins", bundles);
+				install("file:../Shared", bundles);
+				install("file:../Emf", bundles);
+				install("file:../CityGML", bundles);
+				install("file:../O3d", bundles);
+				install("file:../Ifc", bundles);
+				install("file:../Collada", bundles);
+				install("file:../IFCEngine", bundles);
+				for (Bundle bundle : bundles) {
+					LOGGER.info("Starting " + bundle.getLocation());
+					bundle.start();
+				}
 			} catch (BundleException e) {
 				LOGGER.error("", e);
 			}
 		}
 	}
-	
-	private void load(Bundle installBundle) {
-		System.out.println(installBundle);
+
+	private void install(String location, Set<Bundle> bundles) throws BundleException {
+		Bundle bundle = framework.getBundleContext().installBundle(location);
+		bundles.add(bundle);
 	}
 
 	public Set<IfcEnginePlugin> getIfcPlugins() {

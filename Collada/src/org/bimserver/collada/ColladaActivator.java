@@ -1,11 +1,11 @@
 package org.bimserver.collada;
 
 import org.bimserver.plugins.serializers.SerializerPlugin;
-import org.eclipse.core.runtime.Plugin;
+import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceRegistration;
 
-public class ColladaActivator extends Plugin {
+public class ColladaActivator implements BundleActivator {
 
 	private ServiceRegistration colladaServiceRegistration;
 	private ServiceRegistration kmzServiceRegistration;

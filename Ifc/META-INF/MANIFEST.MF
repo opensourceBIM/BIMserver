@@ -8,7 +8,8 @@ Require-Bundle: Plugins;bundle-version="1.0.0",
  Emf;bundle-version="1.0.0",
  Utils;bundle-version="1.0.0",
  Store;bundle-version="1.0.0",
- Shared;bundle-version="1.0.0"
+ Shared;bundle-version="1.0.0",
+ org.eclipse.osgi;bundle-version="3.5.2"
 Export-Package: org.bimserver.ifc,
  org.bimserver.ifc.compare,
  org.bimserver.ifc.file.reader,
