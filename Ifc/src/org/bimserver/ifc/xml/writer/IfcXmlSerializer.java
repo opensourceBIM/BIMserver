@@ -8,25 +8,25 @@ import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
-import nl.tue.buildingsmart.express.dictionary.Attribute;
-import nl.tue.buildingsmart.express.dictionary.BaseType;
-import nl.tue.buildingsmart.express.dictionary.DefinedType;
-import nl.tue.buildingsmart.express.dictionary.EntityDefinition;
-import nl.tue.buildingsmart.express.dictionary.ExplicitAttribute;
-import nl.tue.buildingsmart.express.dictionary.IntegerType;
-import nl.tue.buildingsmart.express.dictionary.ListType;
-import nl.tue.buildingsmart.express.dictionary.RealType;
-import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
-import nl.tue.buildingsmart.express.dictionary.SetType;
-import nl.tue.buildingsmart.express.dictionary.StringType;
-
 import org.apache.commons.lang.StringEscapeUtils;
-import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcSerializer;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.Tristate;
-import org.bimserver.plugins.serializers.EmfSerializer;
+import org.bimserver.plugins.ifcengine.IfcEngineFactory;
+import org.bimserver.plugins.ignoreproviders.IgnoreProvider;
+import org.bimserver.plugins.schema.Attribute;
+import org.bimserver.plugins.schema.BaseType;
+import org.bimserver.plugins.schema.DefinedType;
+import org.bimserver.plugins.schema.EntityDefinition;
+import org.bimserver.plugins.schema.ExplicitAttribute;
+import org.bimserver.plugins.schema.IntegerType;
+import org.bimserver.plugins.schema.ListType;
+import org.bimserver.plugins.schema.RealType;
+import org.bimserver.plugins.schema.Schema;
+import org.bimserver.plugins.schema.SetType;
+import org.bimserver.plugins.schema.StringType;
 import org.bimserver.plugins.serializers.IfcModelInterface;
+import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.utils.UTFPrintWriter;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.Enumerator;
@@ -45,15 +45,9 @@ public class IfcXmlSerializer extends IfcSerializer {
 	private Map<EObject, Long> objectToOidMap;
 	private int tabs;
 
-	public IfcXmlSerializer() {
-	}
-
-	public IfcXmlSerializer(String fileName, IfcModelInterface model, SchemaDefinition schemaDefinition) {
-		init(fileName, model, schemaDefinition);
-	}
-
-	public void init(String fileName, IfcModel model, SchemaDefinition schemaDefinition) {
-		super.init(fileName, model, schemaDefinition);
+	@Override
+	public void init(IfcModelInterface model, Schema schema, IgnoreProvider ignoreProvider, IfcEngineFactory ifcEngineFactory) throws SerializerException {
+		super.init(model, schema, ignoreProvider, ifcEngineFactory);
 		objectToOidMap = new HashMap<EObject, Long>((int) model.size());
 		for (Long key : model.keySet()) {
 			objectToOidMap.put(model.get(key), key);
@@ -115,7 +109,7 @@ public class IfcXmlSerializer extends IfcSerializer {
 		printLineTabbed("<" + object.eClass().getName() + " id=\"i" + key + "\">");
 		tabs++;
 		for (EStructuralFeature structuralFeature : object.eClass().getEAllStructuralFeatures()) {
-			EntityDefinition entityBN = schema.getEntityBN(object.eClass().getName().toUpperCase());
+			EntityDefinition entityBN = getSchema().getEntityBN(object.eClass().getName().toUpperCase());
 			Attribute attributeBN = entityBN != null ? entityBN.getAttributeBNWithSuper(structuralFeature.getName()) : null;
 			boolean derived = entityBN.isDerived(structuralFeature.getName());
 			if (!isInverse(structuralFeature) && !structuralFeature.isDerived() && !derived) {

@@ -1,19 +1,14 @@
 package org.bimserver.pb;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-
+import java.util.*;
+import com.google.protobuf.*;
+import org.bimserver.utils.*;
 import org.bimserver.pb.Service.*;
-import org.bimserver.pb.Service.ServiceInterface.BlockingInterface;
-import org.bimserver.utils.BinUtils;
-
 import com.google.protobuf.BlockingRpcChannel;
-import com.google.protobuf.ByteString;
+import org.bimserver.pb.Service.ServiceInterface.BlockingInterface;
+import com.googlecode.protobuf.socketrpc.SocketRpcController;
 import com.googlecode.protobuf.socketrpc.RpcChannels;
 import com.googlecode.protobuf.socketrpc.SocketRpcConnectionFactories;
-import com.googlecode.protobuf.socketrpc.SocketRpcController;
 
 public class ProtocolBuffersServiceInterfaceImplementation implements org.bimserver.shared.ServiceInterface {
 
@@ -380,8 +375,8 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 			newVal.setId(sRevision.getId());
 			newVal.setState(SCheckinState.values()[sRevision.getState().ordinal()]);
 			newVal.setSize(sRevision.getSize());
-			newVal.setDate(sRevision.getDate().getTime());
 			newVal.setComment(sRevision.getComment());
+			newVal.setDate(sRevision.getDate().getTime());
 			newVal.setTag(sRevision.getTag());
 			for (java.lang.Long o : sRevision.getLastClashes()) {
 				newVal.addLastClashes(o);
@@ -550,8 +545,8 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 				v.setId(val.getId());
 				v.setState(org.bimserver.interfaces.objects.SCheckinState.values()[val.getState().ordinal()]);
 				v.setSize(val.getSize());
-				v.setDate(new Date(val.getDate()));
 				v.setComment(val.getComment());
+				v.setDate(new Date(val.getDate()));
 				v.setTag(val.getTag());
 				v.setOid(val.getOid());
 				v.setLastConcreteRevisionId(val.getLastConcreteRevisionId());
@@ -604,8 +599,8 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 				v.setId(val.getId());
 				v.setState(org.bimserver.interfaces.objects.SCheckinState.values()[val.getState().ordinal()]);
 				v.setSize(val.getSize());
-				v.setDate(new Date(val.getDate()));
 				v.setComment(val.getComment());
+				v.setDate(new Date(val.getDate()));
 				v.setTag(val.getTag());
 				v.setOid(val.getOid());
 				v.setLastConcreteRevisionId(val.getLastConcreteRevisionId());
@@ -1295,17 +1290,6 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 		return null;
 	}
 
-	public boolean isResultTypeEnabled(java.lang.String resultType) {
-		try {
-			IsResultTypeEnabledRequest.Builder requestBuilder = IsResultTypeEnabledRequest.newBuilder();
-			requestBuilder.setResultType(resultType);
-			IsResultTypeEnabledRequest request = requestBuilder.build();
-			IsResultTypeEnabledResponse response = service.isResultTypeEnabled(rpcController, request);
-			return response.getValue();
-		} catch (Exception e) {}
-		return false;
-	}
-
 	public void setExportTypeEnabled(java.lang.String resultTypeName, boolean unknown) {
 		try {
 			SetExportTypeEnabledRequest.Builder requestBuilder = SetExportTypeEnabledRequest.newBuilder();
@@ -1374,56 +1358,6 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 			GetCurrentTokenResponse response = service.getCurrentToken(rpcController, request);
 			org.bimserver.shared.Token realResult = new org.bimserver.shared.Token();
 			return realResult;
-		} catch (Exception e) {}
-		return null;
-	}
-
-	public java.util.Set<org.bimserver.shared.ResultType> getEnabledResultTypes() {
-		try {
-			GetEnabledResultTypesRequest.Builder requestBuilder = GetEnabledResultTypesRequest.newBuilder();
-			GetEnabledResultTypesRequest request = requestBuilder.build();
-			GetEnabledResultTypesResponse response = service.getEnabledResultTypes(rpcController, request);
-			java.util.Set<org.bimserver.shared.ResultType> realResult = new HashSet<org.bimserver.shared.ResultType>();
-			List<Service.ResultType> originalList = response.getValueList();
-			for (Service.ResultType val : originalList) {
-				org.bimserver.shared.ResultType v = new org.bimserver.shared.ResultType();
-				v.setName(val.getName());
-				v.setContentType(val.getContentType());
-				v.setExtension(val.getExtension());
-				v.setNiceName(val.getNiceName());
-				v.setUserType(org.bimserver.shared.ResultType.UserType.values()[val.getUserType().ordinal()]);
-				v.setSerializerClass(Class.forName(val.getSerializerClass()));
-				v.setDefaultSelected(org.bimserver.shared.ResultType.DefaultSelected.values()[val.getDefaultSelected().ordinal()]);
-				v.setUseInCheckout(org.bimserver.shared.ResultType.UseInCheckout.values()[val.getUseInCheckout().ordinal()]);
-				v.setMultiple(org.bimserver.shared.ResultType.Type.values()[val.getMultiple().ordinal()]);
-				realResult.add(v);
-			}
-		return realResult;
-		} catch (Exception e) {}
-		return null;
-	}
-
-	public java.util.Set<org.bimserver.shared.ResultType> getAllResultTypes() {
-		try {
-			GetAllResultTypesRequest.Builder requestBuilder = GetAllResultTypesRequest.newBuilder();
-			GetAllResultTypesRequest request = requestBuilder.build();
-			GetAllResultTypesResponse response = service.getAllResultTypes(rpcController, request);
-			java.util.Set<org.bimserver.shared.ResultType> realResult = new HashSet<org.bimserver.shared.ResultType>();
-			List<Service.ResultType> originalList = response.getValueList();
-			for (Service.ResultType val : originalList) {
-				org.bimserver.shared.ResultType v = new org.bimserver.shared.ResultType();
-				v.setName(val.getName());
-				v.setContentType(val.getContentType());
-				v.setExtension(val.getExtension());
-				v.setNiceName(val.getNiceName());
-				v.setUserType(org.bimserver.shared.ResultType.UserType.values()[val.getUserType().ordinal()]);
-				v.setSerializerClass(Class.forName(val.getSerializerClass()));
-				v.setDefaultSelected(org.bimserver.shared.ResultType.DefaultSelected.values()[val.getDefaultSelected().ordinal()]);
-				v.setUseInCheckout(org.bimserver.shared.ResultType.UseInCheckout.values()[val.getUseInCheckout().ordinal()]);
-				v.setMultiple(org.bimserver.shared.ResultType.Type.values()[val.getMultiple().ordinal()]);
-				realResult.add(v);
-			}
-		return realResult;
 		} catch (Exception e) {}
 		return null;
 	}
@@ -1899,23 +1833,33 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 		} catch (Exception e) {}
 	}
 
-	public org.bimserver.shared.ResultType getResultTypeByName(java.lang.String unknown) {
-		try {
-			GetResultTypeByNameRequest.Builder requestBuilder = GetResultTypeByNameRequest.newBuilder();
-			requestBuilder.setUnknown(unknown);
-			GetResultTypeByNameRequest request = requestBuilder.build();
-			GetResultTypeByNameResponse response = service.getResultTypeByName(rpcController, request);
-			org.bimserver.shared.ResultType realResult = new org.bimserver.shared.ResultType();
-			return realResult;
-		} catch (Exception e) {}
-		return null;
-	}
-
 	public java.util.List<org.bimserver.interfaces.objects.SSerializer> getAllSerializers() {
 		try {
 			GetAllSerializersRequest.Builder requestBuilder = GetAllSerializersRequest.newBuilder();
 			GetAllSerializersRequest request = requestBuilder.build();
 			GetAllSerializersResponse response = service.getAllSerializers(rpcController, request);
+			java.util.List<org.bimserver.interfaces.objects.SSerializer> realResult = new ArrayList<org.bimserver.interfaces.objects.SSerializer>();
+			List<Service.SSerializer> originalList = response.getValueList();
+			for (Service.SSerializer val : originalList) {
+				org.bimserver.interfaces.objects.SSerializer v = new org.bimserver.interfaces.objects.SSerializer();
+				v.setName(val.getName());
+				v.setClassName(val.getClassName());
+				v.setDescription(val.getDescription());
+				v.setOid(val.getOid());
+				v.setIgnoreFileId(val.getIgnoreFileId());
+				v.setSettingsId(val.getSettingsId());
+				realResult.add(v);
+			}
+		return realResult;
+		} catch (Exception e) {}
+		return null;
+	}
+
+	public java.util.List<org.bimserver.interfaces.objects.SSerializer> getEnabledSerializers() {
+		try {
+			GetEnabledSerializersRequest.Builder requestBuilder = GetEnabledSerializersRequest.newBuilder();
+			GetEnabledSerializersRequest request = requestBuilder.build();
+			GetEnabledSerializersResponse response = service.getEnabledSerializers(rpcController, request);
 			java.util.List<org.bimserver.interfaces.objects.SSerializer> realResult = new ArrayList<org.bimserver.interfaces.objects.SSerializer>();
 			List<Service.SSerializer> originalList = response.getValueList();
 			for (Service.SSerializer val : originalList) {
@@ -2082,6 +2026,18 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 			GetSettingMergeIdentifierRequest request = requestBuilder.build();
 			GetSettingMergeIdentifierResponse response = service.getSettingMergeIdentifier(rpcController, request);
 			return null;
+		} catch (Exception e) {}
+		return null;
+	}
+
+	public org.bimserver.interfaces.objects.SSerializer getSerializerByName(java.lang.String unknown) {
+		try {
+			GetSerializerByNameRequest.Builder requestBuilder = GetSerializerByNameRequest.newBuilder();
+			requestBuilder.setUnknown(unknown);
+			GetSerializerByNameRequest request = requestBuilder.build();
+			GetSerializerByNameResponse response = service.getSerializerByName(rpcController, request);
+			org.bimserver.interfaces.objects.SSerializer realResult = new org.bimserver.interfaces.objects.SSerializer();
+			return realResult;
 		} catch (Exception e) {}
 		return null;
 	}

@@ -1,12 +1,11 @@
 package org.bimserver.tests;
 
-import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
-
 import org.bimserver.ifc.FileFieldIgnoreMap;
 import org.bimserver.ifc.SchemaLoader;
 import org.bimserver.ifc.file.reader.IfcStepDeserializer;
 import org.bimserver.ifc.file.reader.IncorrectIfcFileException;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
+import org.bimserver.plugins.schema.SchemaDefinition;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
 import org.bimserver.shared.ResourceFetcher;
 import org.bimserver.utils.CollectionUtils;

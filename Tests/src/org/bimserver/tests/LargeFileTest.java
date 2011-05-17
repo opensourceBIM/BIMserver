@@ -3,13 +3,12 @@ package org.bimserver.tests;
 import java.io.File;
 import java.util.List;
 
-import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
-
 import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.SchemaLoader;
 import org.bimserver.ifc.file.reader.IfcStepDeserializer;
 import org.bimserver.ifc.file.reader.IncorrectIfcFileException;
+import org.bimserver.plugins.schema.SchemaDefinition;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 public class LargeFileTest {

@@ -6,12 +6,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import nl.tue.buildingsmart.express.dictionary.Attribute;
-import nl.tue.buildingsmart.express.dictionary.EntityDefinition;
-import nl.tue.buildingsmart.express.dictionary.InverseAttribute;
-import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
-
 import org.bimserver.emf.IdEObject;
+import org.bimserver.plugins.schema.Attribute;
+import org.bimserver.plugins.schema.EntityDefinition;
+import org.bimserver.plugins.schema.InverseAttribute;
+import org.bimserver.plugins.schema.SchemaDefinition;
 import org.eclipse.emf.ecore.EReference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

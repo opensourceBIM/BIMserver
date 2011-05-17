@@ -1356,13 +1356,22 @@ public interface StorePackage extends EPackage
 	int SERIALIZER__ENABLED = 3;
 
 	/**
+	 * The feature id for the '<em><b>Default Serializer</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERIALIZER__DEFAULT_SERIALIZER = 4;
+
+	/**
 	 * The feature id for the '<em><b>Ignore File</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SERIALIZER__IGNORE_FILE = 4;
+	int SERIALIZER__IGNORE_FILE = 5;
 
 	/**
 	 * The feature id for the '<em><b>Settings</b></em>' reference.
@@ -1371,7 +1380,7 @@ public interface StorePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SERIALIZER__SETTINGS = 5;
+	int SERIALIZER__SETTINGS = 6;
 
 	/**
 	 * The number of structural features of the '<em>Serializer</em>' class.
@@ -1380,7 +1389,7 @@ public interface StorePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SERIALIZER_FEATURE_COUNT = 6;
+	int SERIALIZER_FEATURE_COUNT = 7;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.IgnoreFileImpl <em>Ignore File</em>}' class.
@@ -2822,6 +2831,17 @@ public interface StorePackage extends EPackage
 	EAttribute getSerializer_Enabled();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Serializer#isDefaultSerializer <em>Default Serializer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Default Serializer</em>'.
+	 * @see org.bimserver.models.store.Serializer#isDefaultSerializer()
+	 * @see #getSerializer()
+	 * @generated
+	 */
+	EAttribute getSerializer_DefaultSerializer();
+
+	/**
 	 * Returns the meta object for the reference '{@link org.bimserver.models.store.Serializer#getIgnoreFile <em>Ignore File</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3980,6 +4000,14 @@ public interface StorePackage extends EPackage
 		 * @generated
 		 */
 		EAttribute SERIALIZER__ENABLED = eINSTANCE.getSerializer_Enabled();
+
+		/**
+		 * The meta object literal for the '<em><b>Default Serializer</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SERIALIZER__DEFAULT_SERIALIZER = eINSTANCE.getSerializer_DefaultSerializer();
 
 		/**
 		 * The meta object literal for the '<em><b>Ignore File</b></em>' reference feature.

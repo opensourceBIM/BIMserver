@@ -8,8 +8,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
-
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.SchemaLoader;
 import org.bimserver.ifc.file.reader.IfcStepDeserializer;
@@ -26,6 +24,7 @@ import org.bimserver.models.ifc2x3.IfcProductRepresentation;
 import org.bimserver.models.ifc2x3.IfcRepresentation;
 import org.bimserver.models.ifc2x3.IfcRepresentationItem;
 import org.bimserver.models.ifc2x3.IfcShapeRepresentation;
+import org.bimserver.plugins.schema.SchemaDefinition;
 import org.eclipse.emf.common.util.EList;
 
 public class KmlExportTest {

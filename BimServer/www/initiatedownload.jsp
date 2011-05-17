@@ -1,4 +1,3 @@
-<%@page import="org.bimserver.shared.ResultType"%>
 <%@page import="java.util.Set"%>
 <%@page import="java.util.HashSet"%>
 <%@page import="org.slf4j.LoggerFactory"%>

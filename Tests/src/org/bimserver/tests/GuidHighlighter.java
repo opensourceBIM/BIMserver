@@ -4,8 +4,6 @@ import java.io.File;
 import java.util.HashSet;
 import java.util.Set;
 
-import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
-
 import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.file.writer.IfcStepSerializer;
@@ -23,13 +21,15 @@ import org.bimserver.models.ifc2x3.IfcStyledItem;
 import org.bimserver.models.ifc2x3.IfcSurfaceStyle;
 import org.bimserver.models.ifc2x3.IfcSurfaceStyleElementSelect;
 import org.bimserver.models.ifc2x3.IfcSurfaceStyleRendering;
+import org.bimserver.plugins.schema.SchemaDefinition;
 import org.bimserver.plugins.serializers.SerializerException;
 
 public class GuidHighlighter {
 	public GuidHighlighter(SchemaDefinition schema, IfcModel model, File outputFile, Set<String> highlightedGuids) {
 		highlightGuids(model, highlightedGuids);
-		IfcStepSerializer serializer = new IfcStepSerializer(null, null, outputFile.getName(), model, schema);
+		IfcStepSerializer serializer = new IfcStepSerializer();
 		try {
+			serializer.init(model, schema, null, null);
 			serializer.writeToFile(outputFile);
 		} catch (SerializerException e) {
 			e.printStackTrace();

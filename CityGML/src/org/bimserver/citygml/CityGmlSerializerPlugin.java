@@ -1,8 +1,11 @@
 package org.bimserver.citygml;
 
+import net.xeoh.plugins.base.annotations.PluginImplementation;
+
 import org.bimserver.plugins.serializers.EmfSerializer;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 
+@PluginImplementation
 public class CityGmlSerializerPlugin implements SerializerPlugin {
 
 	public CityGmlSerializerPlugin() {
@@ -11,12 +14,12 @@ public class CityGmlSerializerPlugin implements SerializerPlugin {
 	
 	@Override
 	public String getDescription() {
-		return "CityGmlSerializerPlugin";
+		return "CityGmlSerializer";
 	}
 
 	@Override
 	public String getName() {
-		return "CityGmlSerializerPlugin";
+		return "CityGmlSerializer";
 	}
 
 	@Override
@@ -31,5 +34,10 @@ public class CityGmlSerializerPlugin implements SerializerPlugin {
 	
 	public EmfSerializer createSerializer() {
 		return new CityGmlSerializer();
+	}
+
+	@Override
+	public String getDefaultSerializerName() {
+		return "CityGML 1.0.0";
 	}
 }

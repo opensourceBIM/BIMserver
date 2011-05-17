@@ -4,11 +4,8 @@
 	if (loginManager.getService().isLoggedIn()) {
 		try {
 			long ifid = Integer.parseInt(request.getParameter("ifid"));
-			if (loginManager.getService().deleteIgnoreFile(ifid)) {
-				response.sendRedirect("settings.jsp");
-			} else {
-				out.println("Error");
-			}
+			loginManager.getService().deleteIgnoreFile(ifid);
+			response.sendRedirect("settings.jsp");
 		} catch (UserException e) {
 			out.println("<div class=\"error\">" + e.getUserMessage() + "</div>");
 		}

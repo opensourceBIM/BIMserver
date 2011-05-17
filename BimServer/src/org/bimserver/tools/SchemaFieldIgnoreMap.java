@@ -30,14 +30,13 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 
-import nl.tue.buildingsmart.express.dictionary.Attribute;
-import nl.tue.buildingsmart.express.dictionary.EntityDefinition;
-import nl.tue.buildingsmart.express.dictionary.InverseAttribute;
-import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
-
 import org.bimserver.ifc.FieldIgnoreMap;
 import org.bimserver.ifc.SchemaLoader;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
+import org.bimserver.plugins.schema.Attribute;
+import org.bimserver.plugins.schema.EntityDefinition;
+import org.bimserver.plugins.schema.InverseAttribute;
+import org.bimserver.plugins.schema.SchemaDefinition;
 import org.bimserver.plugins.serializers.ClassDefinition;
 import org.bimserver.plugins.serializers.FieldDefinition;
 import org.bimserver.plugins.serializers.PackageDefinition;

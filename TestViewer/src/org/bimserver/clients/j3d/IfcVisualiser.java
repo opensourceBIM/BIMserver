@@ -41,8 +41,6 @@ import javax.vecmath.Point3f;
 import javax.vecmath.Vector3d;
 import javax.vecmath.Vector3f;
 
-import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
-
 import org.bimserver.clients.j3d.behavior.OrbitBehaviorInterim;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.FieldIgnoreMap;
@@ -75,14 +73,16 @@ import org.bimserver.models.ifc2x3.IfcWindow;
 import org.bimserver.models.ifc2x3.WrappedValue;
 import org.bimserver.plugins.ifcengine.IfcEngine;
 import org.bimserver.plugins.ifcengine.IfcEngineException;
+import org.bimserver.plugins.ifcengine.IfcEngineFactory;
 import org.bimserver.plugins.ifcengine.IfcEngineGeometry;
 import org.bimserver.plugins.ifcengine.IfcEngineInstance;
 import org.bimserver.plugins.ifcengine.IfcEngineInstanceVisualisationProperties;
 import org.bimserver.plugins.ifcengine.IfcEngineModel;
 import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
 import org.bimserver.plugins.ifcengine.IfcEngineSurfaceProperties;
+import org.bimserver.plugins.schema.SchemaDefinition;
+import org.bimserver.shared.BimPluginManager;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
-import org.bimserver.shared.OSGIManager;
 import org.bimserver.utils.CollectionUtils;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EAttribute;
@@ -114,6 +114,8 @@ public class IfcVisualiser extends JFrame {
 	private SharedGroup sharedGroup;
 	private Appearances appearances = new Appearances();
 	private IfcEngine ifcEngine;
+	private IfcEnginePlugin ifcPlugin;
+	private IfcEngineFactory ifcEngineFactory;
 
 	public static void main(String[] args) {
 		new IfcVisualiser().start();
@@ -185,14 +187,10 @@ public class IfcVisualiser extends JFrame {
 		fieldIgnoreMap = new FileFieldIgnoreMap(CollectionUtils.singleSet(Ifc2x3Package.eINSTANCE), resourceFetcher);
 		schema = SchemaLoader.loadDefaultSchema();
 
-		OSGIManager osgiManager = new OSGIManager();
+		BimPluginManager osgiManager = new BimPluginManager();
 		osgiManager.start();
-		try {
-			IfcEnginePlugin ifcPlugin = osgiManager.getIfcPlugins().iterator().next();
-			ifcEngine = ifcPlugin.createIfcEngine(resourceFetcher.getFile("IFC2X3_FINAL.exp").getAbsoluteFile(), new File("../IFCEngine/lib/" + System.getProperty("sun.arch.data.model")), new File("tmp"), null);
-		} catch (IfcEngineException e) {
-			e.printStackTrace();
-		}
+		ifcPlugin = osgiManager.getIfcPlugins().iterator().next();
+		ifcEngineFactory = new IfcEngineFactory(resourceFetcher.getFile("IFC2X3_FINAL.exp").getAbsoluteFile(), new File("../IFCEngine/lib/" + System.getProperty("sun.arch.data.model")), new File("tmp"), null, ifcPlugin);
 
 		sharedGroup = new SharedGroup();
 
@@ -354,8 +352,9 @@ public class IfcVisualiser extends JFrame {
 	}
 
 	public void createTriangles(IfcRoot ifcRootObject, IfcModel ifcModel, TransformGroup buildingTransformGroup) {
-		IfcStepSerializer ifcSerializer = new IfcStepSerializer(null, null, "", ifcModel, schema);
+		IfcStepSerializer ifcSerializer = new IfcStepSerializer();
 		try {
+			ifcSerializer.init(ifcModel, schema, fieldIgnoreMap, ifcEngineFactory);
 			IfcEngineModel model = ifcEngine.openModel(ifcSerializer.getBytes());
 			try {
 				model.setPostProcessing(true);

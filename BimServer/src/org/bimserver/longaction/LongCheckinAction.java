@@ -1,7 +1,5 @@
 package org.bimserver.longaction;
 
-import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
-
 import org.bimserver.MergerFactory;
 import org.bimserver.ServerInfo;
 import org.bimserver.SettingsManager;
@@ -21,6 +19,7 @@ import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.plugins.ifcengine.IfcEngineException;
 import org.bimserver.plugins.ifcengine.IfcEngineFactory;
+import org.bimserver.plugins.schema.SchemaDefinition;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.shared.UserException;
 import org.slf4j.Logger;

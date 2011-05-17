@@ -6,9 +6,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Vector;
 
-import nl.tue.buildingsmart.express.dictionary.EntityDefinition;
-import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
-
+import org.bimserver.plugins.schema.EntityDefinition;
+import org.bimserver.plugins.schema.SchemaDefinition;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

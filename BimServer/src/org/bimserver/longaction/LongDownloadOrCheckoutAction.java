@@ -19,7 +19,6 @@ import org.bimserver.plugins.serializers.EmfSerializer;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.serializers.EmfSerializerFactory;
 import org.bimserver.shared.LongActionState;
-import org.bimserver.shared.ResultType;
 import org.bimserver.shared.SCheckoutResult;
 import org.bimserver.shared.UserException;
 import org.bimserver.shared.LongActionState.ActionState;
@@ -61,15 +60,14 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction<DownloadPa
 		return user;
 	}
 
-	protected SCheckoutResult convertModelToCheckoutResult(Project project, User user, IfcModel model, ResultType resultType)
+	protected SCheckoutResult convertModelToCheckoutResult(Project project, User user, IfcModel model, DownloadParameters downloadParameters)
 			throws UserException, NoSerializerFoundException {
 		SCheckoutResult checkoutResult = new SCheckoutResult();
 		if (model.isValid()) {
 			checkoutResult.setProjectName(project.getName());
 			checkoutResult.setRevisionNr(model.getRevisionNr());
 			try {
-				EmfSerializer serializer = emfSerializerFactory.create(project, user, resultType, model, checkoutResult.getProjectName() + "."
-						+ checkoutResult.getRevisionNr() + "." + resultType.getExtension());
+				EmfSerializer serializer = emfSerializerFactory.create(project, user, model, downloadParameters);
 				checkoutResult.setFile(new DataHandler(new EmfSerializerDataSource(serializer)));
 			} catch (SerializerException e) {
 				LOGGER.error("", e);
@@ -92,7 +90,7 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction<DownloadPa
 			} else {
 				ifcModel = session.executeAction(action, org.bimserver.webservices.Service.DEADLOCK_RETRIES);
 			}
-			checkoutResult = convertModelToCheckoutResult(revision.getProject(), user, ifcModel, EmfSerializerFactory.getInstance().getResultType(downloadParameters.getResultTypeName()));
+			checkoutResult = convertModelToCheckoutResult(revision.getProject(), user, ifcModel, downloadParameters);
 			if (checkoutResult != null) {
 				diskCacheManager.store(downloadParameters, checkoutResult.getFile());
 			}

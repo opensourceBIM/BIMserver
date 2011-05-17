@@ -147,8 +147,6 @@ service ServiceInterface {
 
 	rpc getSubProjects (GetSubProjectsRequest) returns (GetSubProjectsResponse);
 
-	rpc isResultTypeEnabled (IsResultTypeEnabledRequest) returns (IsResultTypeEnabledResponse);
-
 	rpc setExportTypeEnabled (SetExportTypeEnabledRequest) returns (Void);
 
 	rpc getCurrentUser (GetCurrentUserRequest) returns (GetCurrentUserResponse);
@@ -162,10 +160,6 @@ service ServiceInterface {
 	rpc getLastActive (GetLastActiveRequest) returns (GetLastActiveResponse);
 
 	rpc getCurrentToken (GetCurrentTokenRequest) returns (GetCurrentTokenResponse);
-
-	rpc getEnabledResultTypes (GetEnabledResultTypesRequest) returns (GetEnabledResultTypesResponse);
-
-	rpc getAllResultTypes (GetAllResultTypesRequest) returns (GetAllResultTypesResponse);
 
 	rpc getAllCheckoutsOfProjectAndSubProjects (GetAllCheckoutsOfProjectAndSubProjectsRequest) returns (GetAllCheckoutsOfProjectAndSubProjectsResponse);
 
@@ -251,9 +245,9 @@ service ServiceInterface {
 
 	rpc migrateDatabase (MigrateDatabaseRequest) returns (Void);
 
-	rpc getResultTypeByName (GetResultTypeByNameRequest) returns (GetResultTypeByNameResponse);
-
 	rpc getAllSerializers (GetAllSerializersRequest) returns (GetAllSerializersResponse);
+
+	rpc getEnabledSerializers (GetEnabledSerializersRequest) returns (GetEnabledSerializersResponse);
 
 	rpc getSerializerById (GetSerializerByIdRequest) returns (GetSerializerByIdResponse);
 
@@ -276,6 +270,8 @@ service ServiceInterface {
 	rpc getAllSerializerClassNames (GetAllSerializerClassNamesRequest) returns (GetAllSerializerClassNamesResponse);
 
 	rpc getSettingMergeIdentifier (GetSettingMergeIdentifierRequest) returns (GetSettingMergeIdentifierResponse);
+
+	rpc getSerializerByName (GetSerializerByNameRequest) returns (GetSerializerByNameResponse);
 
 }
 
@@ -632,8 +628,8 @@ message SRevision {
 	optional int32 id = 1;
 	optional SCheckinState state = 2;
 	optional int64 size = 3;
-	optional int64 date = 4;
-	optional string comment = 5;
+	optional string comment = 4;
+	optional int64 date = 5;
 	optional string tag = 6;
 	repeated int64 lastClashes = 7;
 	optional int64 oid = 8;
@@ -1174,15 +1170,6 @@ message GetSubProjectsResponse {
 	optional string errorMessage = 1;
 }
 
-message IsResultTypeEnabledRequest {
-	optional string resultType = 1;
-}
-
-message IsResultTypeEnabledResponse {
-	optional bool value = 2;
-	optional string errorMessage = 1;
-}
-
 message SetExportTypeEnabledRequest {
 	optional string resultTypeName = 1;
 	optional bool unknown = 2;
@@ -1234,54 +1221,6 @@ message Token {
 
 message GetCurrentTokenResponse {
 	optional Token value = 2;
-	optional string errorMessage = 1;
-}
-
-message GetEnabledResultTypesRequest {
-}
-
-enum UserType{
-	USER_TYPE = 0;
-	NO_USER_TYPE = 1;
-}
-
-enum DefaultSelected{
-	TRUE = 0;
-	FALSE = 1;
-}
-
-enum UseInCheckout{
-	USE_IN_CHECKOUT = 0;
-	USE_NOT_IN_CHECKOUT = 1;
-}
-
-enum Type{
-	SINGLE = 0;
-	MULTIPLE = 1;
-}
-
-message ResultType {
-	optional string name = 1;
-	optional string contentType = 2;
-	optional string extension = 3;
-	optional string niceName = 4;
-	optional UserType userType = 5;
-	optional string serializerClass = 6;
-	optional DefaultSelected defaultSelected = 7;
-	optional UseInCheckout useInCheckout = 8;
-	optional Type multiple = 9;
-}
-
-message GetEnabledResultTypesResponse {
-	repeated ResultType value = 2;
-	optional string errorMessage = 1;
-}
-
-message GetAllResultTypesRequest {
-}
-
-message GetAllResultTypesResponse {
-	repeated ResultType value = 2;
 	optional string errorMessage = 1;
 }
 
@@ -1572,15 +1511,6 @@ message GetActiveLongActionsResponse {
 message MigrateDatabaseRequest {
 }
 
-message GetResultTypeByNameRequest {
-	optional string unknown = 1;
-}
-
-message GetResultTypeByNameResponse {
-	optional ResultType value = 2;
-	optional string errorMessage = 1;
-}
-
 message GetAllSerializersRequest {
 }
 
@@ -1594,6 +1524,14 @@ message SSerializer {
 }
 
 message GetAllSerializersResponse {
+	repeated SSerializer value = 2;
+	optional string errorMessage = 1;
+}
+
+message GetEnabledSerializersRequest {
+}
+
+message GetEnabledSerializersResponse {
 	repeated SSerializer value = 2;
 	optional string errorMessage = 1;
 }
@@ -1669,6 +1607,15 @@ message GetSettingMergeIdentifierRequest {
 
 message GetSettingMergeIdentifierResponse {
 	optional SMergeIdentifier value = 2;
+	optional string errorMessage = 1;
+}
+
+message GetSerializerByNameRequest {
+	optional string unknown = 1;
+}
+
+message GetSerializerByNameResponse {
+	optional SSerializer value = 2;
 	optional string errorMessage = 1;
 }
 

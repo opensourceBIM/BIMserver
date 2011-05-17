@@ -1,10 +1,11 @@
 package org.bimserver.ifc;
 
+import net.xeoh.plugins.base.annotations.PluginImplementation;
+
 import org.bimserver.plugins.serializers.EmfSerializer;
 import org.bimserver.plugins.serializers.SerializerPlugin;
-import org.mangosdk.spi.ProviderFor;
 
-@ProviderFor(value=SerializerPlugin.class)
+@PluginImplementation
 public class XsltSerializerPlugin implements SerializerPlugin {
 
 	@Override
@@ -29,5 +30,10 @@ public class XsltSerializerPlugin implements SerializerPlugin {
 
 	@Override
 	public void init() {
+	}
+
+	@Override
+	public String getDefaultSerializerName() {
+		return "XSLT";
 	}
 }

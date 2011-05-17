@@ -6,12 +6,13 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Vector;
 
-import nl.tue.buildingsmart.express.dictionary.Attribute;
-import nl.tue.buildingsmart.express.dictionary.EntityDefinition;
-import nl.tue.buildingsmart.express.dictionary.ExplicitAttribute;
-import nl.tue.buildingsmart.express.dictionary.InverseAttribute;
-import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
 import nl.tue.buildingsmart.express.parser.ExpressSchemaParser;
+
+import org.bimserver.plugins.schema.Attribute;
+import org.bimserver.plugins.schema.EntityDefinition;
+import org.bimserver.plugins.schema.ExplicitAttribute;
+import org.bimserver.plugins.schema.InverseAttribute;
+import org.bimserver.plugins.schema.SchemaDefinition;
 
 //import owlGenerator;
 

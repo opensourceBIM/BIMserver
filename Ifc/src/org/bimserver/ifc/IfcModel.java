@@ -65,6 +65,7 @@ public class IfcModel implements IfcModelInterface {
 	private int revisionNr;
 	private String authorizedUser;
 	private Date date;
+	private String name;
 	private final Set<IfcModelChangeListener> changeListeners = new LinkedHashSet<IfcModelChangeListener>();
 
 	private static final Map<Class<?>, Class<?>> interfaceClassMap = initInterfaceClassMap();
@@ -672,5 +673,13 @@ public class IfcModel implements IfcModelInterface {
 	
 	public void addChangeListener(IfcModelChangeListener listener) {
 		changeListeners.add(listener);
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getName() {
+		return name;
 	}
 }

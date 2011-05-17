@@ -9,6 +9,7 @@ import org.osgi.framework.ServiceRegistration;
 public class BimServerActivator implements BundleActivator {
 
 	private ServiceRegistration objectInfoServiceRegistration;
+	private ServerInitializer serverInitializer;
 
 	public BimServerActivator() {
 	}
@@ -16,10 +17,13 @@ public class BimServerActivator implements BundleActivator {
 	@Override
 	public void start(BundleContext context) throws Exception {
 		objectInfoServiceRegistration = context.registerService(SerializerPlugin.class.getName(), new ObjectInfoSerializerPlugin(), null);
+		serverInitializer = new ServerInitializer();
+		serverInitializer.init();
 	}
 	
 	@Override
 	public void stop(BundleContext context) throws Exception {
 		objectInfoServiceRegistration.unregister();
+		serverInitializer.close();
 	}
 }
