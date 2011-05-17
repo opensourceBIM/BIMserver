@@ -2042,4 +2042,15 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 		return null;
 	}
 
+	public boolean hasActiveSerializer(java.lang.String unknown) {
+		try {
+			HasActiveSerializerRequest.Builder requestBuilder = HasActiveSerializerRequest.newBuilder();
+			requestBuilder.setUnknown(unknown);
+			HasActiveSerializerRequest request = requestBuilder.build();
+			HasActiveSerializerResponse response = service.hasActiveSerializer(rpcController, request);
+			return response.getValue();
+		} catch (Exception e) {}
+		return false;
+	}
+
 }

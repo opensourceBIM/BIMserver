@@ -273,6 +273,8 @@ service ServiceInterface {
 
 	rpc getSerializerByName (GetSerializerByNameRequest) returns (GetSerializerByNameResponse);
 
+	rpc hasActiveSerializer (HasActiveSerializerRequest) returns (HasActiveSerializerResponse);
+
 }
 
 enum SCompareType{
@@ -1616,6 +1618,15 @@ message GetSerializerByNameRequest {
 
 message GetSerializerByNameResponse {
 	optional SSerializer value = 2;
+	optional string errorMessage = 1;
+}
+
+message HasActiveSerializerRequest {
+	optional string unknown = 1;
+}
+
+message HasActiveSerializerResponse {
+	optional bool value = 2;
 	optional string errorMessage = 1;
 }
 
