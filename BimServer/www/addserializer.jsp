@@ -12,7 +12,6 @@
 <%@page import="java.util.HashSet"%>
 <%@page import="org.bimserver.ServerInitializer"%>
 <%@page import="java.text.SimpleDateFormat"%>
-<%@page import="org.bimserver.shared.ResultType"%>
 <%@page import="org.apache.commons.io.IOUtils"%>
 <%@page import="org.bimserver.interfaces.objects.SUserType"%>
 <%@page import="org.bimserver.shared.ServiceInterface"%>

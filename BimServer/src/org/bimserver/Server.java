@@ -64,6 +64,7 @@ public class Server {
 
 	public void start(String address, int port, String homedir) {
 		System.setProperty("org.apache.cxf.Logger", "org.apache.cxf.common.logging.Log4jLogger");
+		
 		server = new org.eclipse.jetty.server.Server();
 		HashSessionIdManager hashSessionIdManager = new HashSessionIdManager(new Random());
 		server.setSessionIdManager(hashSessionIdManager);

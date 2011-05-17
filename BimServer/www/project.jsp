@@ -13,7 +13,6 @@
 <%@page import="org.bimserver.interfaces.objects.SUserType"%>
 <%@page import="org.bimserver.models.store.SIPrefix"%>
 <%@page import="org.bimserver.rights.RightsManager"%>
-<%@page import="org.bimserver.shared.ResultType"%>
 <%@page import="org.bimserver.shared.SCheckoutDateComparator"%>
 <%@page import="org.bimserver.shared.SProjectNameComparator"%>
 <%@page import="org.bimserver.shared.SRevisionIdComparator"%>
@@ -68,12 +67,13 @@
 			boolean hasEditRights = loginManager.getService().userHasRights(project.getOid());
 			boolean hasCreateProjectRights = (loginManager.getUserType() == SUserType.ADMIN || loginManager.getService()
 					.isSettingAllowUsersToCreateTopLevelProjects());
-			boolean o3dEnabled = loginManager.getService().isResultTypeEnabled("O3D_JSON");
-			boolean kmzEnabled = loginManager.getService().isResultTypeEnabled("KMZ");
+			boolean o3dEnabled = loginManager.getService().hasActiveSerializer("O3D_JSON");
+			boolean kmzEnabled = loginManager.getService().hasActiveSerializer("KMZ");
 			if (o3dEnabled && lastRevision != null) {
 %>
 
-<%@page import="org.slf4j.LoggerFactory"%><jsp:include page="o3d.jsp" />
+<%@page import="org.slf4j.LoggerFactory"%>
+<%@page import="org.bimserver.interfaces.objects.SSerializer"%><jsp:include page="o3d.jsp" />
 <%
 	}
 %>
@@ -87,7 +87,7 @@
 		}
 	%>
 	<%
-		if (loginManager.getService().isResultTypeEnabled("O3D_JSON") && lastRevision != null) {
+		if (o3dEnabled && lastRevision != null) {
 	%>
 	<li><a id="visualiselink" class="link">Visualise</a></li>
 	<%
@@ -248,10 +248,10 @@ to go to the latest revision<br />
 		<td>Download:</td>
 		<td><select name="resultType" id="detailsdownloadcheckoutselect">
 			<%
-				for (ResultType resultType : loginManager.getService().getEnabledResultTypes()) {
+				for (SSerializer serializer : loginManager.getService().getEnabledSerializers()) {
 			%>
-			<option value="<%=resultType.getName()%>"
-				<%=resultType.isDefaultSelected() ? " SELECTED=\"SELECTED\"" : ""%>><%=resultType.getNiceName()%></option>
+			<option value="<%=serializer.getName()%>"
+				<%=serializer.isDefaultSerializer() ? " SELECTED=\"SELECTED\"" : ""%>><%=serializer.getName()%></option>
 			<%
 				}
 			%>
@@ -301,14 +301,14 @@ to go to the latest revision<br />
 		<td>Download:</td>
 		<td>
 			<select name="resultType">
-			<%
-				for (ResultType resultType : loginManager.getService().getEnabledResultTypes()) {
-			%>
-				<option value="<%=resultType.getName()%>"
-				<%=resultType.isDefaultSelected() ? " SELECTED=\"SELECTED\"" : ""%>><%=resultType.getNiceName()%></option>
-			<%
-				}
-			%>
+				<%
+				for (SSerializer serializer : loginManager.getService().getEnabledSerializers()) {
+				%>
+				<option value="<%=serializer.getName()%>"
+					<%=serializer.isDefaultSerializer() ? " SELECTED=\"SELECTED\"" : ""%>><%=serializer.getName()%></option>
+				<%
+					}
+				%>
 			</select> 
 		</td>
 		<td>
@@ -589,15 +589,14 @@ subproject</a><br />
 		<td>
 		<input type="hidden" name="roid" value="<%=revision.getOid()%>" />
 		<select name="resultType" class="revisionsdownloadcheckoutselect">
-<%
-				for (ResultType resultType : loginManager.getService().getEnabledResultTypes()) {
-%>
-			<option value="<%=resultType.getName()%>"
-				<%=resultType.isDefaultSelected() ? " SELECTED=\"SELECTED\"" : ""%>><%=resultType.getNiceName()%>
-			</option>
-<%
+			<%
+				for (SSerializer serializer : loginManager.getService().getEnabledSerializers()) {
+			%>
+			<option value="<%=serializer.getName()%>"
+				<%=serializer.isDefaultSerializer() ? " SELECTED=\"SELECTED\"" : ""%>><%=serializer.getName()%></option>
+			<%
 				}
-%>
+			%>
 		</select></td> 
 		<td><label for="revisionzip_<%=revision.getId()%>">Zip </label></td>
 		<td>
@@ -692,10 +691,10 @@ open a specific revision to query other revisions<br />
 		<input type="hidden" name="roid" value="<%=checkout.getRevisionId()%>" />
 		<select name="resultType">
 			<%
-				for (ResultType resultType : loginManager.getService().getEnabledResultTypes()) {
+				for (SSerializer serializer : loginManager.getService().getEnabledSerializers()) {
 			%>
-			<option value="<%=resultType.getName()%>"
-				<%=resultType.isDefaultSelected() ? " SELECTED=\"SELECTED\"" : ""%>><%=resultType.getNiceName()%></option>
+			<option value="<%=serializer.getName()%>"
+				<%=serializer.isDefaultSerializer() ? " SELECTED=\"SELECTED\"" : ""%>><%=serializer.getName()%></option>
 			<%
 				}
 			%>

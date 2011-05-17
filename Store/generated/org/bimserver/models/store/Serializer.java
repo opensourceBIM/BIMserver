@@ -36,6 +36,7 @@ import org.bimserver.models.store.Settings;
  *   <li>{@link org.bimserver.models.store.Serializer#getDescription <em>Description</em>}</li>
  *   <li>{@link org.bimserver.models.store.Serializer#getClassName <em>Class Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.Serializer#isEnabled <em>Enabled</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Serializer#isDefaultSerializer <em>Default Serializer</em>}</li>
  *   <li>{@link org.bimserver.models.store.Serializer#getIgnoreFile <em>Ignore File</em>}</li>
  *   <li>{@link org.bimserver.models.store.Serializer#getSettings <em>Settings</em>}</li>
  * </ul>
@@ -151,6 +152,32 @@ public interface Serializer extends IdEObject
 	 * @generated
 	 */
 	void setEnabled(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Default Serializer</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Default Serializer</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Default Serializer</em>' attribute.
+	 * @see #setDefaultSerializer(boolean)
+	 * @see org.bimserver.models.store.StorePackage#getSerializer_DefaultSerializer()
+	 * @model
+	 * @generated
+	 */
+	boolean isDefaultSerializer();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.Serializer#isDefaultSerializer <em>Default Serializer</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Default Serializer</em>' attribute.
+	 * @see #isDefaultSerializer()
+	 * @generated
+	 */
+	void setDefaultSerializer(boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Ignore File</b></em>' reference.

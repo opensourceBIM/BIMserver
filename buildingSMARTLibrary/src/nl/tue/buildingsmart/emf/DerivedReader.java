@@ -28,11 +28,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-import nl.tue.buildingsmart.express.dictionary.BaseType;
-import nl.tue.buildingsmart.express.dictionary.DerivedAttribute2;
-import nl.tue.buildingsmart.express.dictionary.EntityDefinition;
-import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
-
+import org.bimserver.plugins.schema.BaseType;
+import org.bimserver.plugins.schema.DerivedAttribute2;
+import org.bimserver.plugins.schema.EntityDefinition;
+import org.bimserver.plugins.schema.SchemaDefinition;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

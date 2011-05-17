@@ -376,10 +376,6 @@ public interface ServiceInterface {
 	List<SProject> getSubProjects(@WebParam(name = "poid", partName = "getSubProjects.poid") long poid) throws UserException,
 			ServerException;
 
-	@WebMethod(action = "isResultTypeEnabled")
-	boolean isResultTypeEnabled(@WebParam(name = "resultType", partName = "isExportTypeEnabled.resultType") String resultTypeName)
-			throws UserException, ServerException;
-
 	@WebMethod(action = "setExportTypeEnabled")
 	void setExportTypeEnabled(@WebParam(name = "resultTypeName", partName = "setExportTypeEnabled.resultTypeName") String resultTypeName,
 			boolean enabled) throws UserException, ServerException;
@@ -404,12 +400,6 @@ public interface ServiceInterface {
 
 	@WebMethod(action = "getAccessMethod")
 	SAccessMethod getAccessMethod() throws UserException, ServerException;
-
-	@WebMethod(action = "getEnabledResultTypes")
-	Set<ResultType> getEnabledResultTypes() throws UserException, ServerException;
-
-	@WebMethod(action = "getAllResultTypes")
-	Set<ResultType> getAllResultTypes() throws UserException, ServerException;
 
 	@WebMethod(action = "getAllCheckoutsOfProjectAndSubProjects")
 	List<SCheckout> getAllCheckoutsOfProjectAndSubProjects(
@@ -594,12 +584,12 @@ public interface ServiceInterface {
 	@WebMethod(action = "migrateDatabase")
 	void migrateDatabase() throws ServerException, UserException;
 
-	@WebMethod(action = "getResultTypeByName")
-	ResultType getResultTypeByName(String resultTypeName) throws UserException;
-	
 	@WebMethod(action = "getAllSerializers")
 	List<SSerializer> getAllSerializers() throws UserException, ServerException;
 	
+	@WebMethod(action = "getEnabledSerializers")
+	List<SSerializer> getEnabledSerializers() throws UserException, ServerException;
+
 	@WebMethod(action = "getSerializerById")
 	SSerializer getSerializerById(long oid) throws UserException, ServerException;
 	
@@ -632,4 +622,8 @@ public interface ServiceInterface {
 
 	SMergeIdentifier getSettingMergeIdentifier() throws UserException,
 			ServerException;
+
+	SSerializer getSerializerByName(String serializerName) throws UserException, ServerException;
+	
+	boolean hasActiveSerializer(String name) throws UserException, ServerException;
 }

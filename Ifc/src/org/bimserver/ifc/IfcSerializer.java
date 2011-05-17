@@ -3,27 +3,28 @@ package org.bimserver.ifc;
 import java.util.HashMap;
 import java.util.Map;
 
-import nl.tue.buildingsmart.express.dictionary.Attribute;
-import nl.tue.buildingsmart.express.dictionary.EntityDefinition;
-import nl.tue.buildingsmart.express.dictionary.InverseAttribute;
-import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
-
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
-import org.bimserver.plugins.serializers.EmfSerializer;
+import org.bimserver.plugins.ifcengine.IfcEngineFactory;
+import org.bimserver.plugins.ignoreproviders.IgnoreProvider;
+import org.bimserver.plugins.schema.Attribute;
+import org.bimserver.plugins.schema.EntityDefinition;
+import org.bimserver.plugins.schema.InverseAttribute;
+import org.bimserver.plugins.schema.Schema;
+import org.bimserver.plugins.serializers.BimModelSerializer;
 import org.bimserver.plugins.serializers.IfcModelInterface;
+import org.bimserver.plugins.serializers.SerializerException;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
-public abstract class IfcSerializer extends EmfSerializer {
+public abstract class IfcSerializer extends BimModelSerializer {
 
 	protected static final Ifc2x3Package IFC_PACKAGE_INSTANCE = Ifc2x3Package.eINSTANCE;
 	protected static final Map<EClassifier, String> upperCases = initUpperCases();
 	private static final Map<EStructuralFeature, Boolean> inverseCache = new HashMap<EStructuralFeature, Boolean>();
-	protected SchemaDefinition schema;
 
-	public void init(String fileName, IfcModelInterface model, SchemaDefinition schema) {
-		super.init(fileName, model);
-		this.schema = schema;
+	@Override
+	public void init(IfcModelInterface model, Schema schema, IgnoreProvider ignoreProvider, IfcEngineFactory ifcEngineFactory) throws SerializerException {
+		super.init(model, schema, ignoreProvider, ifcEngineFactory);
 	}
 
 	private static Map<EClassifier, String> initUpperCases() {
@@ -38,7 +39,7 @@ public abstract class IfcSerializer extends EmfSerializer {
 		if (inverseCache.containsKey(feature)) {
 			return inverseCache.get(feature);
 		}
-		EntityDefinition entityBN = schema.getEntityBNNoCaseConvert(upperCases.get(feature.getEContainingClass()));
+		EntityDefinition entityBN = getSchema().getEntityBNNoCaseConvert(upperCases.get(feature.getEContainingClass()));
 		if (entityBN == null) {
 			return false;
 		}

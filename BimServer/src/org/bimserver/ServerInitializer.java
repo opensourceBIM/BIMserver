@@ -39,7 +39,6 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
 import nl.tue.buildingsmart.emf.DerivedReader;
-import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
 import nl.tue.buildingsmart.express.parser.ExpressSchemaParser;
 
 import org.apache.commons.io.FileUtils;
@@ -47,10 +46,15 @@ import org.apache.log4j.LogManager;
 import org.bimserver.ServerInfo.ServerState;
 import org.bimserver.cache.DiskCacheManager;
 import org.bimserver.database.BimDatabase;
+import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
+import org.bimserver.database.BimDeadlockException;
 import org.bimserver.database.Database;
 import org.bimserver.database.DatabaseRestartRequiredException;
 import org.bimserver.database.berkeley.BerkeleyColumnDatabase;
+import org.bimserver.database.query.conditions.AttributeCondition;
+import org.bimserver.database.query.conditions.Condition;
+import org.bimserver.database.query.literals.StringLiteral;
 import org.bimserver.ifc.FieldIgnoreMap;
 import org.bimserver.ifc.FileFieldIgnoreMap;
 import org.bimserver.logging.CustomFileAppender;
@@ -60,16 +64,23 @@ import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.LogFactory;
 import org.bimserver.models.log.ServerStarted;
+import org.bimserver.models.store.IfcEngine;
+import org.bimserver.models.store.Serializer;
+import org.bimserver.models.store.StoreFactory;
+import org.bimserver.models.store.StorePackage;
 import org.bimserver.pb.server.ReflectiveRpcChannel;
 import org.bimserver.plugins.ifcengine.IfcEngineFactory;
+import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
+import org.bimserver.plugins.schema.SchemaDefinition;
 import org.bimserver.plugins.serializers.PackageDefinition;
+import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.querycompiler.QueryCompiler;
 import org.bimserver.resources.JarResourceFetcher;
 import org.bimserver.resources.WarResourceFetcher;
 import org.bimserver.serializers.EmfSerializerFactory;
 import org.bimserver.servlets.CompileServlet;
+import org.bimserver.shared.BimPluginManager;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
-import org.bimserver.shared.OSGIManager;
 import org.bimserver.shared.ResourceFetcher;
 import org.bimserver.shared.ServiceInterface;
 import org.bimserver.templating.TemplateEngine;
@@ -108,19 +119,17 @@ public class ServerInitializer implements ServletContextListener {
 	private PackageDefinition colladaSettings;
 	private EmfSerializerFactory emfSerializerFactory;
 	private static MergerFactory mergerFactory;
-	private OSGIManager osgiManager;
+	private BimPluginManager pluginManager;
 
-	@Override
-	public void contextInitialized(ServletContextEvent servletContextEvent) {
+	public void init() {
 		try {
-			servletContext = servletContextEvent.getServletContext();
 			if (servletContext.getAttribute("homedir") != null) {
 				homeDir = new File((String) servletContext.getAttribute("homedir"));
 			}
 			if (homeDir == null && servletContext.getInitParameter("homedir") != null) {
 				homeDir = new File(servletContext.getInitParameter("homedir"));
 			}
-			serverType = detectServerType(servletContextEvent.getServletContext());
+			serverType = detectServerType(servletContext);
 			if (serverType == ServerType.DEV_ENVIRONMENT) {
 				baseDir = new File("../BimServer/defaultsettings/" + "shared");
 			} else if (serverType == ServerType.STANDALONE_JAR) {
@@ -160,8 +169,8 @@ public class ServerInitializer implements ServletContextListener {
 
 			Thread.setDefaultUncaughtExceptionHandler(uncaughtExceptionHandler);
 
-			osgiManager = new OSGIManager();
-			osgiManager.start();
+			pluginManager = new BimPluginManager();
+			pluginManager.start();
 			
 			LOGGER.info("Detected server type: " + serverType + " (" + System.getProperty("os.name") + ", " + System.getProperty("sun.arch.data.model") + "bit)");
 			if (serverType == ServerType.UNKNOWN) {
@@ -191,6 +200,8 @@ public class ServerInitializer implements ServletContextListener {
 				bimDatabase.init();
 			}
 
+			createSerializersAndEngines();
+			
 			settingsManager = new SettingsManager(bimDatabase);
 			ServerInfo.init(bimDatabase, settingsManager);
 			ServerInfo.update();
@@ -226,8 +237,8 @@ public class ServerInitializer implements ServletContextListener {
 				// IfcEngineFactory to use all jar files in the context
 				classPath = servletContext.getRealPath("/") + "WEB-INF" + File.separator + "lib";
 			}
-			if (osgiManager.getIfcPlugins().size() > 0) {
-				ifcEngineFactory = new IfcEngineFactory(schemaFile, nativeFolder, new File(homeDir, "tmp"), classPath, osgiManager.getIfcPlugins().iterator().next());
+			if (pluginManager.getIfcPlugins().size() > 0) {
+				ifcEngineFactory = new IfcEngineFactory(schemaFile, nativeFolder, new File(homeDir, "tmp"), classPath, pluginManager.getIfcPlugins().iterator().next());
 			}
 
 			CompileServlet.database = bimDatabase;
@@ -282,11 +293,46 @@ public class ServerInitializer implements ServletContextListener {
 		} catch (Throwable e) {
 			ServerInfo.setErrorMessage(e.getMessage());
 			LOGGER.error("", e);
+		}		
+	}
+
+	private void createSerializersAndEngines() throws BimDeadlockException, BimDatabaseException {
+		BimDatabaseSession session = bimDatabase.createSession(true);
+		for (SerializerPlugin serializerPlugin : pluginManager.getAllSerializerPlugins()) {
+			String name = serializerPlugin.getDefaultSerializerName();
+			Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getSerializer_Name(), new StringLiteral(name));
+			Serializer found = session.querySingle(condition, Serializer.class, false);
+			if (found == null) {
+				Serializer serializer = StoreFactory.eINSTANCE.createSerializer();
+				serializer.setClassName(serializerPlugin.getName());
+				serializer.setName(name);
+				serializer.setEnabled(false);
+				serializer.setDescription(serializerPlugin.getDescription());
+				session.store(serializer);
+			}
 		}
+		for (IfcEnginePlugin ifcEnginePlugin : pluginManager.getIfcPlugins()) {
+			String name = ifcEnginePlugin.getName();
+			Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getIfcEngine_Name(), new StringLiteral(name));
+			Serializer found = session.querySingle(condition, Serializer.class, false);
+			if (found == null) {
+				IfcEngine ifcEngine = StoreFactory.eINSTANCE.createIfcEngine();
+				ifcEngine.setName(name);
+				ifcEngine.setActive(false);
+				session.store(ifcEngine);
+			}
+		}
+		session.commit();
+	}
+	
+	@Override
+	public void contextInitialized(ServletContextEvent servletContextEvent) {
+		servletContext = servletContextEvent.getServletContext();
+		init();
 	}
 
 	private void initDatabaseDependantItems() {
-		emfSerializerFactory.init(version, schema, fieldIgnoreMap, ifcEngineFactory, colladaSettings, resourceFetcher, settingsManager, osgiManager);
+		emfSerializerFactory.init(version, schema, fieldIgnoreMap, ifcEngineFactory, colladaSettings, resourceFetcher, settingsManager, pluginManager, bimDatabase);
 		emfSerializerFactory.initSerializers();
 	}
 	
@@ -438,16 +484,7 @@ public class ServerInitializer implements ServletContextListener {
 
 	@Override
 	public void contextDestroyed(ServletContextEvent servletContextEvent) {
-		LOGGER.info("Context is being destroyed");
-		if (bimDatabase != null) {
-			bimDatabase.close();
-		}
-		if (bimScheduler != null) {
-			bimScheduler.close();
-		}
-		if (longActionManager != null) {
-			longActionManager.shutdown();
-		}
+		close();
 	}
 
 	public static GregorianCalendar getServerStartTime() {
@@ -468,5 +505,18 @@ public class ServerInitializer implements ServletContextListener {
 
 	public static MergerFactory getMergerFactory() {
 		return mergerFactory;
+	}
+
+	public void close() {
+		LOGGER.info("Context is being destroyed");
+		if (bimDatabase != null) {
+			bimDatabase.close();
+		}
+		if (bimScheduler != null) {
+			bimScheduler.close();
+		}
+		if (longActionManager != null) {
+			longActionManager.shutdown();
+		}
 	}
 }

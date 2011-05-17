@@ -5,8 +5,6 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
-
 import org.bimserver.MergerFactory;
 import org.bimserver.cache.ClashDetectionCache;
 import org.bimserver.database.BimDatabaseException;
@@ -33,6 +31,8 @@ import org.bimserver.plugins.ifcengine.IfcEngineClash;
 import org.bimserver.plugins.ifcengine.IfcEngineException;
 import org.bimserver.plugins.ifcengine.IfcEngineFactory;
 import org.bimserver.plugins.ifcengine.IfcEngineModel;
+import org.bimserver.plugins.schema.SchemaDefinition;
+import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.shared.UserException;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EAttribute;
@@ -95,8 +95,9 @@ public class FindClashesDatabaseAction extends BimDatabaseAction<Set<? extends C
 				cleanupModel(idEObject.eClass(), idEObject, newModel, ifcModel, converted);
 			}
 		}
-		IfcStepSerializer ifcStepSerializer = new IfcStepSerializer(null, getUserByUoid(actingUoid), "", newModel, schema);
+		IfcStepSerializer ifcStepSerializer = new IfcStepSerializer();
 		try {
+			ifcStepSerializer.init(newModel, schema, fieldIgnoreMap, ifcEngineFactory);
 			byte[] bytes = ifcStepSerializer.getBytes();
 			IfcEngine failSafeIfcEngine = ifcEngineFactory.createIfcEngine();
 			try {
@@ -136,6 +137,8 @@ public class FindClashesDatabaseAction extends BimDatabaseAction<Set<? extends C
 				failSafeIfcEngine.close();
 			}
 		} catch (IfcEngineException e) {
+			LOGGER.error("", e);
+		} catch (SerializerException e) {
 			LOGGER.error("", e);
 		}
 		return null;

@@ -15,19 +15,19 @@ import java.net.URL;
 import java.util.Iterator;
 
 import net.sourceforge.osexpress.parser.EasyParser;
-import nl.tue.buildingsmart.express.dictionary.AggregationType;
-import nl.tue.buildingsmart.express.dictionary.Attribute;
-import nl.tue.buildingsmart.express.dictionary.BaseType;
-import nl.tue.buildingsmart.express.dictionary.DefinedType;
-import nl.tue.buildingsmart.express.dictionary.EntityDefinition;
-import nl.tue.buildingsmart.express.dictionary.EnumerationType;
-import nl.tue.buildingsmart.express.dictionary.ExplicitAttribute;
-import nl.tue.buildingsmart.express.dictionary.InverseAttribute;
-import nl.tue.buildingsmart.express.dictionary.NamedType;
-import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
-import nl.tue.buildingsmart.express.dictionary.SelectType;
-import nl.tue.buildingsmart.express.dictionary.UnderlyingType;
 
+import org.bimserver.plugins.schema.AggregationType;
+import org.bimserver.plugins.schema.Attribute;
+import org.bimserver.plugins.schema.BaseType;
+import org.bimserver.plugins.schema.DefinedType;
+import org.bimserver.plugins.schema.EntityDefinition;
+import org.bimserver.plugins.schema.EnumerationType;
+import org.bimserver.plugins.schema.ExplicitAttribute;
+import org.bimserver.plugins.schema.InverseAttribute;
+import org.bimserver.plugins.schema.NamedType;
+import org.bimserver.plugins.schema.SchemaDefinition;
+import org.bimserver.plugins.schema.SelectType;
+import org.bimserver.plugins.schema.UnderlyingType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

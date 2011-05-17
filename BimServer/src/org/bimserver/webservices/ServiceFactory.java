@@ -8,8 +8,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
-import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
-
 import org.bimserver.MergerFactory;
 import org.bimserver.SettingsManager;
 import org.bimserver.cache.DiskCacheManager;
@@ -21,6 +19,7 @@ import org.bimserver.longaction.LongActionManager;
 import org.bimserver.mail.MailSystem;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.plugins.ifcengine.IfcEngineFactory;
+import org.bimserver.plugins.schema.SchemaDefinition;
 import org.bimserver.serializers.EmfSerializerFactory;
 import org.bimserver.shared.SUserSession;
 import org.bimserver.shared.ServiceException;

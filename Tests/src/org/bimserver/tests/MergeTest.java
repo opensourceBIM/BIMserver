@@ -2,8 +2,6 @@ package org.bimserver.tests;
 
 import java.io.File;
 
-import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
-
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelSet;
 import org.bimserver.ifc.SchemaLoader;
@@ -13,6 +11,7 @@ import org.bimserver.ifc.file.writer.IfcStepSerializer;
 import org.bimserver.merging.IncrementingOidProvider;
 import org.bimserver.merging.Merger;
 import org.bimserver.merging.Merger.GuidMergeIdentifier;
+import org.bimserver.plugins.schema.SchemaDefinition;
 
 public class MergeTest {
 	public static void main(String[] args) {
@@ -39,7 +38,8 @@ public class MergeTest {
 			IfcModelSet ifcModelSet = new IfcModelSet(model1, model2);
 			IfcModel merged = new Merger(new GuidMergeIdentifier()).merge(null, ifcModelSet, true);
 			merged.checkDoubleOidsPlusReferences();
-			IfcStepSerializer serializer = new IfcStepSerializer(null, null, "merged", merged, schema);
+			IfcStepSerializer serializer = new IfcStepSerializer();
+			serializer.init(merged, schema, null, null);
 			serializer.writeToFile(new File("merged.ifc"));
 		} catch (IncorrectIfcFileException e) {
 			e.printStackTrace();

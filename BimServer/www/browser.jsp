@@ -8,9 +8,7 @@
 <%@page import="org.bimserver.web.JspHelper"%>
 <%@page import="org.bimserver.interfaces.objects.SProject"%>
 <%@page import="org.bimserver.interfaces.objects.SRevision"%>
-
 <%@page import="org.bimserver.shared.UserException"%>
-<%@page import="org.bimserver.shared.ResultType"%>
 <%@page import="java.util.Collections"%>
 <%@page import="org.bimserver.shared.SRevisionIdComparator"%><div id="browser">
 <jsp:useBean id="loginManager" scope="session" class="org.bimserver.web.LoginManager" />
@@ -64,7 +62,7 @@ for (SRevision sRevision : revisionsInc) {
 	  				}
 	  			}
 	  			out.println("</table>");
-	if (loginManager.getService().isResultTypeEnabled("O3D_JSON")) {
+	if (loginManager.getService().getSerializerByName("O3D_JSON").isEnabled()) {
 %>
 	<br/>
 	<div id="browservisualizeloader">

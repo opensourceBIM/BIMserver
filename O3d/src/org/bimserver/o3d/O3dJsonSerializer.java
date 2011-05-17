@@ -7,10 +7,7 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.util.HashMap;
 
-import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
-
 import org.bimserver.emf.IdEObject;
-import org.bimserver.ifc.FieldIgnoreMap;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.file.writer.IfcStepSerializer;
 import org.bimserver.models.ifc2x3.IfcColumn;
@@ -26,8 +23,6 @@ import org.bimserver.models.ifc2x3.IfcStairFlight;
 import org.bimserver.models.ifc2x3.IfcWall;
 import org.bimserver.models.ifc2x3.IfcWallStandardCase;
 import org.bimserver.models.ifc2x3.IfcWindow;
-import org.bimserver.models.store.Project;
-import org.bimserver.models.store.User;
 import org.bimserver.plugins.ifcengine.IfcEngine;
 import org.bimserver.plugins.ifcengine.IfcEngineException;
 import org.bimserver.plugins.ifcengine.IfcEngineFactory;
@@ -36,7 +31,10 @@ import org.bimserver.plugins.ifcengine.IfcEngineInstance;
 import org.bimserver.plugins.ifcengine.IfcEngineInstanceVisualisationProperties;
 import org.bimserver.plugins.ifcengine.IfcEngineModel;
 import org.bimserver.plugins.ifcengine.IfcEngineSurfaceProperties;
+import org.bimserver.plugins.ignoreproviders.IgnoreProvider;
+import org.bimserver.plugins.schema.Schema;
 import org.bimserver.plugins.serializers.BimModelSerializer;
+import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.codehaus.jettison.json.JSONException;
 import org.eclipse.emf.ecore.EObject;
@@ -47,17 +45,12 @@ import com.google.common.base.Charsets;
 
 public class O3dJsonSerializer extends BimModelSerializer {
 	private static final Logger LOGGER = LoggerFactory.getLogger(O3dJsonSerializer.class);
-	private SchemaDefinition schemaDefinition;
 	private IfcEngine ifcEngine;
 	private int convertCounter;
-	private Project project;
-	private User user;
 
-	public void init(Project project, User user, String fileName, IfcModel model, FieldIgnoreMap fieldIgnoreMap, SchemaDefinition schemaDefinition, IfcEngineFactory ifcEngineFactory) throws SerializerException {
-		super.init(fileName, model, fieldIgnoreMap);
-		this.project = project;
-		this.user = user;
-		this.schemaDefinition = schemaDefinition;
+	@Override
+	public void init(IfcModelInterface model, Schema schema, IgnoreProvider ignoreProvider, IfcEngineFactory ifcEngineFactory) throws SerializerException {
+		super.init(model, schema, ignoreProvider, ifcEngineFactory);
 		try {
 			this.ifcEngine = ifcEngineFactory.createIfcEngine();
 		} catch (IfcEngineException e) {
@@ -216,9 +209,10 @@ public class O3dJsonSerializer extends BimModelSerializer {
 
 	private SetGeometryResult setGeometry(IdEObject ifcRootObject) throws SerializerException, IfcEngineException {
 		convertCounter++;
-		IfcModel IfcModel = new IfcModel();
-		convertToSubset(ifcRootObject.eClass(), ifcRootObject, IfcModel, new HashMap<EObject, EObject>());
-		IfcStepSerializer ifcSerializer = new IfcStepSerializer(project, user, "", IfcModel, schemaDefinition);
+		IfcModel ifcModel = new IfcModel();
+		convertToSubset(ifcRootObject.eClass(), ifcRootObject, ifcModel, new HashMap<EObject, EObject>());
+		IfcStepSerializer ifcSerializer = new IfcStepSerializer();
+		ifcSerializer.init(ifcModel, getSchema(), getIgnoreProvider(), getIfcEngineFactory());
 		BinaryIndexBuffer binaryIndexBuffer = new BinaryIndexBuffer();
 		BinaryVertexBuffer binaryVertexBuffer = new BinaryVertexBuffer();
 		IfcEngineModel model = ifcEngine.openModel(ifcSerializer.getBytes());

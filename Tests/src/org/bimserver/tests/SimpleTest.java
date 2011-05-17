@@ -4,8 +4,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
-
 import org.bimserver.ifc.FileFieldIgnoreMap;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.SchemaLoader;
@@ -16,6 +14,7 @@ import org.bimserver.models.ifc2x3.IfcBuildingStorey;
 import org.bimserver.models.ifc2x3.IfcDoor;
 import org.bimserver.models.ifc2x3.IfcProduct;
 import org.bimserver.models.ifc2x3.IfcRelContainedInSpatialStructure;
+import org.bimserver.plugins.schema.SchemaDefinition;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
 import org.bimserver.shared.ResourceFetcher;
 import org.bimserver.utils.CollectionUtils;

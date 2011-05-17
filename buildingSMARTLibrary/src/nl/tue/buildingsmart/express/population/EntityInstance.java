@@ -2,7 +2,7 @@ package nl.tue.buildingsmart.express.population;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import nl.tue.buildingsmart.express.dictionary.EntityDefinition;
+import org.bimserver.plugins.schema.EntityDefinition;
 
 /**
  * @author Jakob Beetz j.beetz@tue.nl

@@ -1,7 +1,7 @@
-<%@page import="org.bimserver.shared.ResultType"%>
 <%@page import="java.util.Collections"%>
 <%@page import="java.util.List"%>
 <%@page import="org.bimserver.interfaces.objects.SUserType"%>
+<%@page import="org.bimserver.interfaces.objects.SSerializer"%>
 <jsp:useBean id="loginManager" scope="session" class="org.bimserver.web.LoginManager" />
 <%
 	long roid = Long.parseLong(request.getParameter("roid"));
@@ -20,13 +20,14 @@
 	<td>Type</td>
 	<td>
 		<select name="resultType">
-<%
-	for (ResultType resultType : loginManager.getService().getEnabledResultTypes()) {
-%>
-		<option value="<%=resultType.getName() %>"<%=resultType.isDefaultSelected() ? " SELECTED=\"SELECTED\"" : "" %>><%= resultType.getNiceName() %></option>
-<%	
-	}
-%>
+	<%
+		for (SSerializer serializer : loginManager.getService().getEnabledSerializers()) {
+	%>
+	<option value="<%=serializer.getName()%>"
+		<%=serializer.isDefaultSerializer() ? " SELECTED=\"SELECTED\"" : ""%>><%=serializer.getName()%></option>
+	<%
+		}
+	%>
 		</select>
 	</td>
 	<td>
@@ -50,13 +51,14 @@
 	<td>Type</td>
 	<td>
 		<select name="resultType">
-<%
-	for (ResultType resultType : loginManager.getService().getEnabledResultTypes()) {
-%>
-		<option value="<%=resultType.getName() %>"<%=resultType.isDefaultSelected() ? " SELECTED=\"SELECTED\"" : "" %>><%= resultType.getNiceName() %></option>
-<%	
-	}
-%>
+	<%
+		for (SSerializer serializer : loginManager.getService().getEnabledSerializers()) {
+	%>
+	<option value="<%=serializer.getName()%>"
+		<%=serializer.isDefaultSerializer() ? " SELECTED=\"SELECTED\"" : ""%>><%=serializer.getName()%></option>
+	<%
+		}
+	%>
 		</select>
 	</td>
 	<td> 
@@ -89,13 +91,14 @@
 	<td>Type</td>
 	<td>
 		<select name="resultType">
-<%
-	for (ResultType resultType : loginManager.getService().getEnabledResultTypes()) {
-%>
-		<option value="<%=resultType.getName() %>"<%=resultType.isDefaultSelected() ? " SELECTED=\"SELECTED\"" : "" %>><%= resultType.getNiceName() %></option>
-<%	
-	}
-%>
+	<%
+		for (SSerializer serializer : loginManager.getService().getEnabledSerializers()) {
+	%>
+	<option value="<%=serializer.getName()%>"
+		<%=serializer.isDefaultSerializer() ? " SELECTED=\"SELECTED\"" : ""%>><%=serializer.getName()%></option>
+	<%
+		}
+	%>
 		</select>
 	</td>
 	<td>

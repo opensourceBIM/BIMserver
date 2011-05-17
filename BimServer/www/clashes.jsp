@@ -6,11 +6,11 @@
 <%@page import="org.bimserver.web.JspHelper"%>
 <%@page import="java.util.Set"%>
 <%@page import="java.util.HashSet"%>
-<%@page import="org.bimserver.shared.ResultType"%>
 <%@page import="org.bimserver.interfaces.objects.SEidClash"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.Map"%>
-<jsp:useBean id="loginManager" scope="session" class="org.bimserver.web.LoginManager" />
+
+<%@page import="org.bimserver.interfaces.objects.SSerializer"%><jsp:useBean id="loginManager" scope="session" class="org.bimserver.web.LoginManager" />
 <%
 	long poid = Long.parseLong(request.getParameter("poid"));
 	SProject project = loginManager.getService().getProjectByPoid(poid);
@@ -256,10 +256,10 @@ Download: <input type="hidden" name="clashes" value="true" /> <input
 	name="ignored" value="<%=request.getParameter("ignored")%>" /> <select
 	name="resultType">
 	<%
-		for (ResultType resultType : loginManager.getService().getEnabledResultTypes()) {
+		for (SSerializer serializer : loginManager.getService().getEnabledSerializers()) {
 	%>
-	<option value="<%=resultType.getName()%>"
-		<%=resultType.isDefaultSelected() ? " SELECTED=\"SELECTED\"" : ""%>><%=resultType.getNiceName()%></option>
+	<option value="<%=serializer.getName()%>"
+		<%=serializer.isDefaultSerializer() ? " SELECTED=\"SELECTED\"" : ""%>><%=serializer.getName()%></option>
 	<%
 		}
 	%>

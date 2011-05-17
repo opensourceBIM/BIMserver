@@ -10,8 +10,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
-
 import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.file.writer.IfcStepSerializer;
@@ -70,9 +68,9 @@ import org.bimserver.plugins.ifcengine.IfcEngineInstance;
 import org.bimserver.plugins.ifcengine.IfcEngineInstanceVisualisationProperties;
 import org.bimserver.plugins.ifcengine.IfcEngineModel;
 import org.bimserver.plugins.ignoreproviders.IgnoreProvider;
+import org.bimserver.plugins.schema.Schema;
 import org.bimserver.plugins.serializers.BimModelSerializer;
 import org.bimserver.plugins.serializers.IfcModelInterface;
-import org.bimserver.plugins.serializers.PackageDefinition;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -82,22 +80,15 @@ import org.slf4j.LoggerFactory;
 public class ColladaSerializer extends BimModelSerializer {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ColladaSerializer.class);
 	private IfcEngine ifcEngine;
-	private SchemaDefinition schemaDefinition;
 	private Map<String, Set<String>> converted = new HashMap<String, Set<String>>();
 	private Project project;
 	private User user;
 	private SIPrefix lengthUnitPrefix;
-	private PackageDefinition packageDefinition;
 	private List<String> surfaceStyleIds;
 
-	public void init(Project project, User user, String fileName, IfcModelInterface model, SchemaDefinition schemaDefinition,
-			IgnoreProvider fieldIgnoreMap, IfcEngineFactory ifcEngineFactory, PackageDefinition packageDefinition)
-			throws SerializerException {
-		super.init(fileName, model, fieldIgnoreMap);
-		this.project = project;
-		this.user = user;
-		this.schemaDefinition = schemaDefinition;
-		this.packageDefinition = packageDefinition;
+	@Override
+	public void init(IfcModelInterface model, Schema schema, IgnoreProvider ignoreProvider, IfcEngineFactory ifcEngineFactory) throws SerializerException {
+		super.init(model, schema, ignoreProvider, ifcEngineFactory);
 		try {
 			this.ifcEngine = ifcEngineFactory.createIfcEngine();
 		} catch (IfcEngineException e) {
@@ -112,14 +103,15 @@ public class ColladaSerializer extends BimModelSerializer {
 	protected void reset() {
 		setMode(Mode.BODY);
 	}
-	
+
 	@Override
 	public boolean write(OutputStream out) {
 		if (getMode() == Mode.BODY) {
 			PrintWriter writer = new PrintWriter(out);
 			try {
 				writer.println("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\" ?>");
-				writer.println("<COLLADA xmlns=\"http://www.collada.org/2005/11/COLLADASchema\" version=\"1.4.1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.collada.org/2005/11/COLLADASchema http://www.khronos.org/files/collada_schema_1_4\" >");
+				writer
+						.println("<COLLADA xmlns=\"http://www.collada.org/2005/11/COLLADASchema\" version=\"1.4.1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.collada.org/2005/11/COLLADASchema http://www.khronos.org/files/collada_schema_1_4\" >");
 
 				writeAssets(writer);
 				writeCameras(writer);
@@ -167,8 +159,7 @@ public class ColladaSerializer extends BimModelSerializer {
 		if (lengthUnitPrefix == null) {
 			out.println("        <unit meter=\"1\" name=\"meter\"/>");
 		} else {
-			out.println("        <unit meter=\"" + Math.pow(10.0, lengthUnitPrefix.getValue()) + "\" name=\""
-					+ lengthUnitPrefix.name().toLowerCase() + "\"/>");
+			out.println("        <unit meter=\"" + Math.pow(10.0, lengthUnitPrefix.getValue()) + "\" name=\"" + lengthUnitPrefix.name().toLowerCase() + "\"/>");
 		}
 		out.println("        <up_axis>Y_UP</up_axis>");
 		out.println("    </asset>");
@@ -177,10 +168,8 @@ public class ColladaSerializer extends BimModelSerializer {
 	private void writeGeometries(PrintWriter out) throws IfcEngineException {
 		out.println("	<library_geometries>");
 
-		if (packageDefinition.hasClassDefinition("IfcRoof")) {
-			for (IfcRoof ifcRoof : model.getAll(IfcRoof.class)) {
-				setGeometry(out, ifcRoof, ifcRoof.getGlobalId().getWrappedValue(), "Roof");
-			}
+		for (IfcRoof ifcRoof : model.getAll(IfcRoof.class)) {
+			setGeometry(out, ifcRoof, ifcRoof.getGlobalId().getWrappedValue(), "Roof");
 		}
 
 		// Ruben 29-10-2010 A long time ago this code made the IFCEngine crash,
@@ -191,84 +180,54 @@ public class ColladaSerializer extends BimModelSerializer {
 		// ifcSpace.getGlobalId().getWrappedValue(), "Space");
 		// }
 
-		if (packageDefinition.hasClassDefinition("IfcSlab")) {
-			for (IfcSlab ifcSlab : model.getAll(IfcSlab.class)) {
-				if (ifcSlab.getPredefinedType() == IfcSlabTypeEnum.ROOF) {
-					setGeometry(out, ifcSlab, ifcSlab.getGlobalId().getWrappedValue(), "Roof");
-				} else {
-					setGeometry(out, ifcSlab, ifcSlab.getGlobalId().getWrappedValue(), "Slab");
-				}
+		for (IfcSlab ifcSlab : model.getAll(IfcSlab.class)) {
+			if (ifcSlab.getPredefinedType() == IfcSlabTypeEnum.ROOF) {
+				setGeometry(out, ifcSlab, ifcSlab.getGlobalId().getWrappedValue(), "Roof");
+			} else {
+				setGeometry(out, ifcSlab, ifcSlab.getGlobalId().getWrappedValue(), "Slab");
 			}
 		}
-		if (packageDefinition.hasClassDefinition("IfcWindow")) {
-			for (IfcWindow ifcWindow : model.getAll(IfcWindow.class)) {
-				setGeometry(out, ifcWindow, ifcWindow.getGlobalId().getWrappedValue(), "Window");
-			}
+		for (IfcWindow ifcWindow : model.getAll(IfcWindow.class)) {
+			setGeometry(out, ifcWindow, ifcWindow.getGlobalId().getWrappedValue(), "Window");
 		}
-		if (packageDefinition.hasClassDefinition("IfcDoor")) {
-			for (IfcDoor ifcDoor : model.getAll(IfcDoor.class)) {
-				setGeometry(out, ifcDoor, ifcDoor.getGlobalId().getWrappedValue(), "Door");
-			}
+		for (IfcDoor ifcDoor : model.getAll(IfcDoor.class)) {
+			setGeometry(out, ifcDoor, ifcDoor.getGlobalId().getWrappedValue(), "Door");
 		}
-		if (packageDefinition.hasClassDefinition("IfcWall")) {
-			for (IfcWall ifcWall : model.getAll(IfcWall.class)) {
-				setGeometry(out, ifcWall, ifcWall.getGlobalId().getWrappedValue(), "Wall");
-			}
+		for (IfcWall ifcWall : model.getAll(IfcWall.class)) {
+			setGeometry(out, ifcWall, ifcWall.getGlobalId().getWrappedValue(), "Wall");
 		}
-		if (packageDefinition.hasClassDefinition("IfcStair")) {
-			for (IfcStair ifcStair : model.getAll(IfcStair.class)) {
-				setGeometry(out, ifcStair, ifcStair.getGlobalId().getWrappedValue(), "Stair");
-			}
+		for (IfcStair ifcStair : model.getAll(IfcStair.class)) {
+			setGeometry(out, ifcStair, ifcStair.getGlobalId().getWrappedValue(), "Stair");
 		}
-		if (packageDefinition.hasClassDefinition("IfcStairFlight")) {
-			for (IfcStairFlight ifcStairFlight : model.getAll(IfcStairFlight.class)) {
-				setGeometry(out, ifcStairFlight, ifcStairFlight.getGlobalId().getWrappedValue(), "StairFlight");
-			}
+		for (IfcStairFlight ifcStairFlight : model.getAll(IfcStairFlight.class)) {
+			setGeometry(out, ifcStairFlight, ifcStairFlight.getGlobalId().getWrappedValue(), "StairFlight");
 		}
-		if (packageDefinition.hasClassDefinition("IfcFlowSegment")) {
-			for (IfcFlowSegment ifcFlowSegment : model.getAll(IfcFlowSegment.class)) {
-				setGeometry(out, ifcFlowSegment, ifcFlowSegment.getGlobalId().getWrappedValue(), "FlowSegment");
-			}
+		for (IfcFlowSegment ifcFlowSegment : model.getAll(IfcFlowSegment.class)) {
+			setGeometry(out, ifcFlowSegment, ifcFlowSegment.getGlobalId().getWrappedValue(), "FlowSegment");
 		}
-		if (packageDefinition.hasClassDefinition("IfcFurnishingElement")) {
-			for (IfcFurnishingElement ifcFurnishingElement : model.getAll(IfcFurnishingElement.class)) {
-				setGeometry(out, ifcFurnishingElement, ifcFurnishingElement.getGlobalId().getWrappedValue(), "FurnishingElement");
-			}
+		for (IfcFurnishingElement ifcFurnishingElement : model.getAll(IfcFurnishingElement.class)) {
+			setGeometry(out, ifcFurnishingElement, ifcFurnishingElement.getGlobalId().getWrappedValue(), "FurnishingElement");
 		}
-		if (packageDefinition.hasClassDefinition("IfcPlate")) {
-			for (IfcPlate ifcPlate : model.getAll(IfcPlate.class)) {
-				setGeometry(out, ifcPlate, ifcPlate.getGlobalId().getWrappedValue(), "Plate");
-			}
+		for (IfcPlate ifcPlate : model.getAll(IfcPlate.class)) {
+			setGeometry(out, ifcPlate, ifcPlate.getGlobalId().getWrappedValue(), "Plate");
 		}
-		if (packageDefinition.hasClassDefinition("IfcMember")) {
-			for (IfcMember ifcMember : model.getAll(IfcMember.class)) {
-				setGeometry(out, ifcMember, ifcMember.getGlobalId().getWrappedValue(), "Member");
-			}
+		for (IfcMember ifcMember : model.getAll(IfcMember.class)) {
+			setGeometry(out, ifcMember, ifcMember.getGlobalId().getWrappedValue(), "Member");
 		}
-		if (packageDefinition.hasClassDefinition("IfcWallStandardCase")) {
-			for (IfcWallStandardCase ifcWall : model.getAll(IfcWallStandardCase.class)) {
-				setGeometry(out, ifcWall, ifcWall.getGlobalId().getWrappedValue(), "WallStandardCase");
-			}
+		for (IfcWallStandardCase ifcWall : model.getAll(IfcWallStandardCase.class)) {
+			setGeometry(out, ifcWall, ifcWall.getGlobalId().getWrappedValue(), "WallStandardCase");
 		}
-		if (packageDefinition.hasClassDefinition("IfcCurtainWall")) {
-			for (IfcCurtainWall ifcCurtainWall : model.getAll(IfcCurtainWall.class)) {
-				setGeometry(out, ifcCurtainWall, ifcCurtainWall.getGlobalId().getWrappedValue(), "CurtainWall");
-			}
+		for (IfcCurtainWall ifcCurtainWall : model.getAll(IfcCurtainWall.class)) {
+			setGeometry(out, ifcCurtainWall, ifcCurtainWall.getGlobalId().getWrappedValue(), "CurtainWall");
 		}
-		if (packageDefinition.hasClassDefinition("IfcRailing")) {
-			for (IfcRailing ifcRailing : model.getAll(IfcRailing.class)) {
-				setGeometry(out, ifcRailing, ifcRailing.getGlobalId().getWrappedValue(), "Railing");
-			}
+		for (IfcRailing ifcRailing : model.getAll(IfcRailing.class)) {
+			setGeometry(out, ifcRailing, ifcRailing.getGlobalId().getWrappedValue(), "Railing");
 		}
-		if (packageDefinition.hasClassDefinition("IfcColumn")) {
-			for (IfcColumn ifcColumn : model.getAll(IfcColumn.class)) {
-				setGeometry(out, ifcColumn, ifcColumn.getGlobalId().getWrappedValue(), "Column");
-			}
+		for (IfcColumn ifcColumn : model.getAll(IfcColumn.class)) {
+			setGeometry(out, ifcColumn, ifcColumn.getGlobalId().getWrappedValue(), "Column");
 		}
-		if (packageDefinition.hasClassDefinition("IfcBuildingElementProxy")) {
-			for (IfcBuildingElementProxy ifcBuildingElementProxy : model.getAll(IfcBuildingElementProxy.class)) {
-				setGeometry(out, ifcBuildingElementProxy, ifcBuildingElementProxy.getGlobalId().getWrappedValue(), "BuildingElementProxy");
-			}
+		for (IfcBuildingElementProxy ifcBuildingElementProxy : model.getAll(IfcBuildingElementProxy.class)) {
+			setGeometry(out, ifcBuildingElementProxy, ifcBuildingElementProxy.getGlobalId().getWrappedValue(), "BuildingElementProxy");
 		}
 		out.println("	</library_geometries>");
 	}
@@ -370,8 +329,9 @@ public class ColladaSerializer extends BimModelSerializer {
 
 		IfcModel ifcModel = new IfcModel();
 		convertToSubset(ifcRootObject.eClass(), ifcRootObject, ifcModel, new HashMap<EObject, EObject>());
-		IfcStepSerializer ifcSerializer = new IfcStepSerializer(project, user, "", ifcModel, schemaDefinition);
+		IfcStepSerializer ifcSerializer = new IfcStepSerializer();
 		try {
+			ifcSerializer.init(ifcModel, getSchema(), getIgnoreProvider(), getIfcEngineFactory());
 			IfcEngineModel model = ifcEngine.openModel(ifcSerializer.getBytes());
 			try {
 				model.setPostProcessing(true);
@@ -386,8 +346,7 @@ public class ColladaSerializer extends BimModelSerializer {
 					}
 					out.println("</float_array>");
 					out.println("<technique_common>");
-					out.println("<accessor count=\"" + (geometry.getNrVertices() / 3) + "\" offset=\"0\" source=\"#" + id
-							+ "-positions-array\" stride=\"3\">");
+					out.println("<accessor count=\"" + (geometry.getNrVertices() / 3) + "\" offset=\"0\" source=\"#" + id + "-positions-array\" stride=\"3\">");
 					out.println("<param name=\"X\" type=\"float\"></param>");
 					out.println("<param name=\"Y\" type=\"float\"></param>");
 					out.println("<param name=\"Z\" type=\"float\"></param>");
@@ -403,8 +362,7 @@ public class ColladaSerializer extends BimModelSerializer {
 					}
 					out.println("</float_array>");
 					out.println("<technique_common>");
-					out.println("<accessor count=\"" + (geometry.getNrNormals() / 3) + "\" offset=\"0\" source=\"#" + id
-							+ "-normals-array\" stride=\"3\">");
+					out.println("<accessor count=\"" + (geometry.getNrNormals() / 3) + "\" offset=\"0\" source=\"#" + id + "-normals-array\" stride=\"3\">");
 					out.println("<param name=\"X\" type=\"float\"></param>");
 					out.println("<param name=\"Y\" type=\"float\"></param>");
 					out.println("<param name=\"Z\" type=\"float\"></param>");
@@ -418,12 +376,10 @@ public class ColladaSerializer extends BimModelSerializer {
 					out.println("</vertices>");
 					for (IfcEngineInstance instance : model.getInstances(ifcRootObject.eClass().getName().toUpperCase())) {
 						IfcEngineInstanceVisualisationProperties instanceInModelling = instance.getVisualisationProperties();
-						out.println("<triangles count=\"" + (instanceInModelling.getPrimitiveCount()) + "\" material=\"" + material
-								+ "SG\">");
+						out.println("<triangles count=\"" + (instanceInModelling.getPrimitiveCount()) + "\" material=\"" + material + "SG\">");
 						out.println("<input offset=\"0\" semantic=\"VERTEX\" source=\"#" + id + "-vertices\"/>");
 						out.print("<p>");
-						for (int i = instanceInModelling.getStartIndex(); i < instanceInModelling.getPrimitiveCount() * 3
-								+ instanceInModelling.getStartIndex(); i += 3) {
+						for (int i = instanceInModelling.getStartIndex(); i < instanceInModelling.getPrimitiveCount() * 3 + instanceInModelling.getStartIndex(); i += 3) {
 							out.print(geometry.getIndex(i) + " ");
 							out.print(geometry.getIndex(i + 2) + " ");
 							out.print(geometry.getIndex(i + 1) + " ");
@@ -477,8 +433,7 @@ public class ColladaSerializer extends BimModelSerializer {
 				out.println("                <instance_geometry url=\"#" + id + "\">");
 				out.println("                    <bind_material>");
 				out.println("                        <technique_common>");
-				out.println("                            <instance_material symbol=\"" + material + "SG\" target=\"#" + material
-						+ "Material\"/>");
+				out.println("                            <instance_material symbol=\"" + material + "SG\" target=\"#" + material + "Material\"/>");
 				out.println("                        </technique_common>");
 				out.println("                    </bind_material>");
 				out.println("                </instance_geometry>");
@@ -532,8 +487,7 @@ public class ColladaSerializer extends BimModelSerializer {
 					String name = fitNameForQualifiedName(ss.getName());
 					surfaceStyleIds.add(name);
 
-					writeEffect(out, name, new float[] { colour.getRed(), colour.getGreen(), colour.getBlue() },
-							(ssr.isSetTransparency() ? (ssr.getTransparency()) : 1.0f));
+					writeEffect(out, name, new float[] { colour.getRed(), colour.getGreen(), colour.getBlue() }, (ssr.isSetTransparency() ? (ssr.getTransparency()) : 1.0f));
 					break;
 				}
 			}

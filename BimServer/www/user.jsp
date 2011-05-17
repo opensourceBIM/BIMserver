@@ -5,7 +5,6 @@
 <%@page import="java.util.Collections"%>
 <%@page import="org.bimserver.Message"%>
 <%@page import="org.bimserver.shared.UserException"%>
-<%@page import="org.bimserver.shared.ResultType"%>
 <%@page import="org.bimserver.interfaces.objects.SUser"%>
 <%@page import="org.bimserver.interfaces.objects.SRevision"%>
 <%@page import="org.bimserver.interfaces.objects.SCheckout"%>
@@ -25,7 +24,8 @@
 	SUser user = loginManager.getService().getUserByUoid(uoid);
 	boolean allowEdit = (loginManager.getUserType() == SUserType.ADMIN && user.getUserType() != SUserType.SYSTEM) || uoid == loginManager.getUoid();
 %>
-<div class="sidebar">
+
+<%@page import="org.bimserver.interfaces.objects.SSerializer"%><div class="sidebar">
  <ul>
 <% if (allowEdit) { %>
  <li><a href="edituser.jsp?uoid=<%=uoid%>">Edit</a></li>
@@ -102,13 +102,14 @@ if (allowEdit) { %>
 	<form method="get" action="<%=request.getContextPath() %>/download">
 	<input type="hidden" name="roid" value="<%=revision.getOid() %>"/>
 	<select name="resultType" class="revisionsdownloadcheckoutselect">
-<%
-	for (ResultType resultType : loginManager.getService().getEnabledResultTypes()) {
-%>
-	<option value="<%=resultType.getName() %>"<%=resultType.isDefaultSelected() ? " SELECTED=\"SELECTED\"" : "" %>><%=resultType.getNiceName() %></option>
-<%	
-	}
-%>
+	<%
+		for (SSerializer serializer : loginManager.getService().getEnabledSerializers()) {
+	%>
+	<option value="<%=serializer.getName()%>"
+		<%=serializer.isDefaultSerializer() ? " SELECTED=\"SELECTED\"" : ""%>><%=serializer.getName()%></option>
+	<%
+		}
+	%>
 	</select> <label for="zip_<%=revision.getId() %>">Zip</label><input type="checkbox" name="zip" id="zip_<%=revision.getId() %>"/> 
 	<input name="download" type="submit" value="Download"/>
 <% 
@@ -155,13 +156,14 @@ if (userHasCheckinRights) { %>
 	<form method="get" action="<%=request.getContextPath() %>/download">
 	<input type="hidden" name="roid" value="<%=checkout.getRevisionId() %>"/>
 	<select name="resultType">
-<%
-	for (ResultType resultType : loginManager.getService().getEnabledResultTypes()) {
-%>
-	<option value="<%=resultType.getName() %>"<%=resultType.isDefaultSelected() ? " SELECTED=\"SELECTED\"" : "" %>><%=resultType.getNiceName() %></option>
-<%	
-	}
-%>
+	<%
+		for (SSerializer serializer : loginManager.getService().getEnabledSerializers()) {
+	%>
+	<option value="<%=serializer.getName()%>"
+		<%=serializer.isDefaultSerializer() ? " SELECTED=\"SELECTED\"" : ""%>><%=serializer.getName()%></option>
+	<%
+		}
+	%>
 	</select> <label for="zip_<%=checkout.getOid() %>">Zip</label><input type="checkbox" name="zip" id="zip_<%=checkout.getOid() %>"/> <input name="download" type="submit" value="Download"/>
 	</form>
 	</td>

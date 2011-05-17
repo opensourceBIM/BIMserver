@@ -3,8 +3,6 @@ package org.bimserver.longaction;
 import java.util.HashSet;
 import java.util.Set;
 
-import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
-
 import org.bimserver.MergerFactory;
 import org.bimserver.SettingsManager;
 import org.bimserver.database.BimDatabase;
@@ -25,6 +23,7 @@ import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.plugins.ifcengine.IfcEngineFactory;
+import org.bimserver.plugins.schema.SchemaDefinition;
 import org.bimserver.webservices.Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

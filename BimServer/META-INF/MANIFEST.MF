@@ -162,6 +162,7 @@ Require-Bundle: Store;bundle-version="1.0.0",
  Plugins;bundle-version="1.0.0",
  Emf;bundle-version="1.0.0",
  buildingSMARTLibrary;bundle-version="1.0.0",
- org.eclipse.osgi;bundle-version="3.5.2"
+ org.eclipse.osgi;bundle-version="3.5.2",
+ org.eclipse.equinox.http;bundle-version="1.0.301"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-Activator: org.bimserver.BimServerActivator

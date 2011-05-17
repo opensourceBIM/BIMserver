@@ -28,7 +28,7 @@ public class EmfSerializerDataSource implements DataSource {
 
 	@Override
 	public String getName() {
-		return serializer.getName();
+		return serializer.getModel().getName();
 	}
 
 	@Override

@@ -4,7 +4,7 @@ package nl.tue.buildingsmart.express.population;
 import java.util.ArrayList;
 import java.util.Vector;
 
-import nl.tue.buildingsmart.express.dictionary.ExplicitAttribute;
+import org.bimserver.plugins.schema.ExplicitAttribute;
 
 
 @SuppressWarnings("all")

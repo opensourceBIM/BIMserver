@@ -3,8 +3,8 @@ import java.io.FileOutputStream;
 import java.io.PrintStream;
 
 import net.sourceforge.osexpress.parser.EasyParser;
-import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
 
+import org.bimserver.plugins.schema.SchemaDefinition;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

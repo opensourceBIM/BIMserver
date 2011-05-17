@@ -19,6 +19,7 @@ public class SSerializer
 	private java.lang.String description;
 	private java.lang.String className;
 	private boolean enabled;
+	private boolean defaultSerializer;
 	private long ignoreFileId;
 	private long settingsId;
 
@@ -52,6 +53,14 @@ public class SSerializer
 
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
+	}
+
+	public boolean isDefaultSerializer() {
+		return defaultSerializer;
+	}
+
+	public void setDefaultSerializer(boolean defaultSerializer) {
+		this.defaultSerializer = defaultSerializer;
 	}
 	public long getIgnoreFileId() {
 		return ignoreFileId;

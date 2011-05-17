@@ -39,6 +39,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.SerializerImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SerializerImpl#getClassName <em>Class Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SerializerImpl#isEnabled <em>Enabled</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.SerializerImpl#isDefaultSerializer <em>Default Serializer</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SerializerImpl#getIgnoreFile <em>Ignore File</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SerializerImpl#getSettings <em>Settings</em>}</li>
  * </ul>
@@ -158,6 +159,24 @@ public class SerializerImpl extends IdEObjectImpl implements Serializer
 	public void setEnabled(boolean newEnabled)
 	{
 		eSet(StorePackage.Literals.SERIALIZER__ENABLED, newEnabled);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isDefaultSerializer() {
+		return (Boolean)eGet(StorePackage.Literals.SERIALIZER__DEFAULT_SERIALIZER, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDefaultSerializer(boolean newDefaultSerializer) {
+		eSet(StorePackage.Literals.SERIALIZER__DEFAULT_SERIALIZER, newDefaultSerializer);
 	}
 
 	/**

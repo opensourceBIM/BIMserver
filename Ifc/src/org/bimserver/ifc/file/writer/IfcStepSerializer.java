@@ -27,19 +27,19 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
-import nl.tue.buildingsmart.express.dictionary.EntityDefinition;
-import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
-
 import org.bimserver.emf.IdEObject;
-import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcSerializer;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcGloballyUniqueId;
 import org.bimserver.models.ifc2x3.Tristate;
 import org.bimserver.models.ifc2x3.WrappedValue;
-import org.bimserver.models.store.Project;
-import org.bimserver.models.store.User;
+import org.bimserver.plugins.ifcengine.IfcEngineFactory;
+import org.bimserver.plugins.ignoreproviders.IgnoreProvider;
+import org.bimserver.plugins.schema.EntityDefinition;
+import org.bimserver.plugins.schema.Schema;
 import org.bimserver.plugins.serializers.EmfSerializer;
+import org.bimserver.plugins.serializers.IfcModelInterface;
+import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.utils.UTFPrintWriter;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
@@ -85,24 +85,9 @@ public class IfcStepSerializer extends IfcSerializer {
 	private Iterator<Long> iterator;
 	private UTFPrintWriter out;
 
-	public IfcStepSerializer() {
-	}
-	
-	public IfcStepSerializer(Project project, User user, String fileName, IfcModel model, SchemaDefinition schema) {
-		init(project, user, fileName, model, schema);
-	}
-	
-	public void init(Project project, User user, String fileName, IfcModel model, SchemaDefinition schema) {
-		super.init(fileName, model, schema);
-		if (user != null) {
-			setAuthor(user.getName());
-		}
-		setAuthorization(model.getAuthorizedUser());
-		if (project != null) {
-			setName(project.getName() + "." + model.getRevisionNr());
-		} else {
-			setName("");
-		}
+	@Override
+	public void init(IfcModelInterface model, Schema schema, IgnoreProvider ignoreProvider, IfcEngineFactory ifcEngineFactory) throws SerializerException {
+		super.init(model, schema, ignoreProvider, ifcEngineFactory);
 	}
 
 	@Override
@@ -268,7 +253,7 @@ public class IfcStepSerializer extends IfcSerializer {
 	}
 
 	private void writeEDataType(PrintWriter out, EObject object, EStructuralFeature feature) {
-		EntityDefinition entityBN = schema.getEntityBNNoCaseConvert(upperCases.get(object.eClass()));
+		EntityDefinition entityBN = getSchema().getEntityBNNoCaseConvert(upperCases.get(object.eClass()));
 		if (entityBN != null && entityBN.isDerived(feature.getName())) {
 			out.print(ASTERISK);
 		} else if (feature.isMany()) {
@@ -283,7 +268,7 @@ public class IfcStepSerializer extends IfcSerializer {
 		if (referencedObject instanceof WrappedValue || referencedObject instanceof IfcGloballyUniqueId) {
 			writeWrappedValue(out, object, feature, ((EObject)referencedObject).eClass());
 		} else {
-			EntityDefinition entityBN = schema.getEntityBNNoCaseConvert(upperCases.get(object.eClass()));
+			EntityDefinition entityBN = getSchema().getEntityBNNoCaseConvert(upperCases.get(object.eClass()));
 			if (referencedObject instanceof EObject && model.contains((IdEObject) referencedObject)) {
 				out.print(DASH);
 				out.print(String.valueOf(model.get((IdEObject) referencedObject)));
@@ -460,7 +445,7 @@ public class IfcStepSerializer extends IfcSerializer {
 						out.print(BOOLEAN_UNDEFINED);
 					}
 				} else {
-					EntityDefinition entityBN = schema.getEntityBN(object.eClass().getName());
+					EntityDefinition entityBN = getSchema().getEntityBN(object.eClass().getName());
 					if (entityBN != null && entityBN.isDerived(feature.getName())) {
 						out.print("*");
 					} else {

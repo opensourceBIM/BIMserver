@@ -1,4 +1,4 @@
-<%@page import="org.bimserver.ifc.file.compare.CompareResult"%>
+<%@page import="org.bimserver.ifc.compare.CompareResult"%>
 <%@page import="org.bimserver.shared.SRevisionSummary"%>
 <%@page import="org.bimserver.web.JspHelper"%>
 <%@page import="org.bimserver.shared.SCompareResult"%>

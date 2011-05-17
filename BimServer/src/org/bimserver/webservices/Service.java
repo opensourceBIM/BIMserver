@@ -43,8 +43,6 @@ import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
-
 import org.bimserver.MergerFactory;
 import org.bimserver.ServerInfo;
 import org.bimserver.SettingsManager;
@@ -99,6 +97,7 @@ import org.bimserver.database.actions.GetProjectByPoidDatabaseAction;
 import org.bimserver.database.actions.GetRevisionDatabaseAction;
 import org.bimserver.database.actions.GetRevisionSummaryDatabaseAction;
 import org.bimserver.database.actions.GetSerializerByIdDatabaseAction;
+import org.bimserver.database.actions.GetSerializerByNameDatabaseAction;
 import org.bimserver.database.actions.GetSubProjectsDatabaseAction;
 import org.bimserver.database.actions.GetUserByUoidDatabaseAction;
 import org.bimserver.database.actions.GetUserByUserNameDatabaseAction;
@@ -131,10 +130,8 @@ import org.bimserver.ifc.compare.CompareResult.ObjectDeleted;
 import org.bimserver.ifc.compare.CompareResult.ObjectModified;
 import org.bimserver.ifc.file.reader.IfcStepDeserializer;
 import org.bimserver.ifc.file.reader.IncorrectIfcFileException;
-import org.bimserver.ifc.file.writer.IfcStepSerializer;
 import org.bimserver.ifc.xml.reader.IfcXmlDeserializeException;
 import org.bimserver.ifc.xml.reader.IfcXmlDeserializer;
-import org.bimserver.ifc.xml.writer.IfcXmlSerializer;
 import org.bimserver.interfaces.objects.SAccessMethod;
 import org.bimserver.interfaces.objects.SCheckout;
 import org.bimserver.interfaces.objects.SClash;
@@ -177,11 +174,11 @@ import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserType;
 import org.bimserver.plugins.ifcengine.IfcEngineFactory;
+import org.bimserver.plugins.schema.SchemaDefinition;
 import org.bimserver.rights.RightsManager;
 import org.bimserver.serializers.EmfSerializerFactory;
 import org.bimserver.shared.DatabaseInformation;
 import org.bimserver.shared.LongActionState;
-import org.bimserver.shared.ResultType;
 import org.bimserver.shared.SCheckinResult;
 import org.bimserver.shared.SCompareResult;
 import org.bimserver.shared.SDataObject;
@@ -446,10 +443,11 @@ public class Service implements ServiceInterface {
 	@Override
 	public int checkout(long roid, String resultTypeName, boolean sync) throws UserException, ServerException {
 		requireAuthenticationAndRunningServer();
-		ResultType serializerDescriptor = EmfSerializerFactory.getInstance().getResultType(resultTypeName);
-		if (serializerDescriptor.getSerializerClass() != IfcStepSerializer.class && serializerDescriptor.getSerializerClass() != IfcXmlSerializer.class) {
-			throw new UserException("Only IFC or IFCXML allowed when checking out");
-		}
+		// TODO
+//		ResultType serializerDescriptor = EmfSerializerFactory.getInstance().getResultType(resultTypeName);
+//		if (serializerDescriptor.getSerializerClass() != IfcStepSerializer.class && serializerDescriptor.getSerializerClass() != IfcXmlSerializer.class) {
+//			throw new UserException("Only IFC or IFCXML allowed when checking out");
+//		}
 		DownloadParameters downloadParameters = new DownloadParameters(roid, resultTypeName);
 		LongDownloadOrCheckoutAction longDownloadAction = new LongCheckoutAction(downloadParameters, currentUoid, longActionManager, bimDatabase, accessMethod, emfSerializerFactory, settingsManager, diskCacheManager);
 		try {
@@ -1753,12 +1751,6 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public boolean isResultTypeEnabled(String resultTypeName) throws UserException {
-		requireAuthenticationAndRunningServer();
-		return emfSerializerFactory.resultTypeEnabled(resultTypeName);
-	}
-
-	@Override
 	public void setExportTypeEnabled(String resultTypeName, boolean enabled) throws UserException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimDatabase.createSession(true);
@@ -2049,16 +2041,6 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public Set<ResultType> getEnabledResultTypes() {
-		return EmfSerializerFactory.getInstance().getMultipleResultTypes();
-	}
-
-	@Override
-	public Set<ResultType> getAllResultTypes() {
-		return EmfSerializerFactory.getInstance().getMultipleResultTypes();
-	}
-
-	@Override
 	public void sendCompareEmail(SCompareType sCompareType, SCompareIdentifier sCompareIdentifier, long poid, long roid1, long roid2, String address) throws UserException, ServerException {
 		SUser currentUser = getCurrentUser();
 		BimDatabaseSession session = bimDatabase.createSession(true);
@@ -2246,12 +2228,6 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public ResultType getResultTypeByName(String resultTypeName) throws UserException {
-		requireAuthenticationAndRunningServer();
-		return EmfSerializerFactory.getInstance().getResultType(resultTypeName);
-	}
-
-	@Override
 	public List<SSerializer> getAllSerializers() throws UserException, ServerException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimDatabase.createReadOnlySession();
@@ -2434,5 +2410,41 @@ public class Service implements ServiceInterface {
 		Settings settings = settingsManager.getSettings();
 		settings.setMergeIdentifier(MergeIdentifier.valueOf(mergeIdentifier.name()));
 		settingsManager.saveSettings();
+	}
+
+	@Override
+	public SSerializer getSerializerByName(String serializerName) throws UserException, ServerException {
+		requireAuthenticationAndRunningServer();
+		BimDatabaseSession session = bimDatabase.createReadOnlySession();
+		try {
+			return convert(session.executeAction(new GetSerializerByNameDatabaseAction(session, accessMethod, serializerName), DEADLOCK_RETRIES), SSerializer.class);
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+		return null;
+	}
+
+	@Override
+	public List<SSerializer> getEnabledSerializers() throws UserException, ServerException {
+		List<SSerializer> serializers = getAllSerializers();
+		List<SSerializer> result = getAllSerializers();
+		for (SSerializer serializer : serializers) {
+			if (serializer.isEnabled()) {
+				result.add(serializer);
+			}
+		}
+		return result;
+	}
+
+	@Override
+	public boolean hasActiveSerializer(String name) throws UserException, ServerException {
+		try {
+			SSerializer serializer = getSerializerByName(name);
+			return serializer.isEnabled();
+		} catch (Exception e) {
+			return false;
+		}
 	}
 }

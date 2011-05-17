@@ -10,13 +10,13 @@
 <%@page import="java.util.HashSet"%>
 <%@page import="org.bimserver.ServerInitializer"%>
 <%@page import="java.text.SimpleDateFormat"%>
-<%@page import="org.bimserver.shared.ResultType"%>
 <%@page import="org.apache.commons.io.IOUtils"%>
 <%@page import="org.bimserver.interfaces.objects.SUserType"%>
 <%@page import="org.bimserver.shared.ServiceInterface"%>
 <%@page import="org.bimserver.shared.UserException"%>
 <%@page import="org.bimserver.interfaces.objects.SMergeIdentifier"%>
-<div class="sidebar">
+
+<%@page import="org.bimserver.interfaces.objects.SSerializer"%><div class="sidebar">
 <ul>
 	<li><a href="<%=getServletContext().getContextPath()%>/migrations.jsp">Migrations</a></li>
 </ul>
@@ -45,9 +45,9 @@
 				service.setSettingMergeIdentifier(SMergeIdentifier.valueOf(request.getParameter("mergeIdentifier")));
 				String enabledExportTypes = "";
 				Set<String> enabledTypes = new HashSet<String>();
-				for (ResultType resultType : loginManager.getService().getAllResultTypes()) {
-					if (request.getParameter(resultType.getName()) != null) {
-						enabledTypes.add(resultType.getName());
+				for (SSerializer serializer : loginManager.getService().getAllSerializers()) {
+					if (request.getParameter(serializer.getName()) != null) {
+						enabledTypes.add(serializer.getName());
 					}
 				}
 				service.setSettingEnabledExportTypes(enabledTypes);

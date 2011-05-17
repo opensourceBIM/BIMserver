@@ -14,8 +14,6 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeNode;
 
-import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
-
 import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.SchemaLoader;
@@ -25,6 +23,7 @@ import org.bimserver.ifc.file.writer.IfcStepSerializer;
 import org.bimserver.merging.IncrementingOidProvider;
 import org.bimserver.merging.RevisionMerger;
 import org.bimserver.models.ifc2x3.IfcProject;
+import org.bimserver.plugins.schema.SchemaDefinition;
 import org.bimserver.utils.SwingUtil;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EReference;
@@ -49,7 +48,8 @@ public class Visualise extends JFrame {
 			model2.indexGuids();
 			model2.fixOids(new IncrementingOidProvider(model1.getHighestOid() + 1));
 			IfcModel merged = new RevisionMerger(model1, model2).merge();
-			IfcStepSerializer serializer = new IfcStepSerializer(null, null, "merged", merged, schema);
+			IfcStepSerializer serializer = new IfcStepSerializer();
+			serializer.init(merged, schema, null, null);
 			serializer.writeToFile(new File("merged.ifc"));
 			new Visualise().start(model1b, "Model 1");
 			new Visualise().start(model2b, "Model 2");

@@ -22,6 +22,7 @@ public class Step0004 extends Migration {
 		schema.createEAttribute(serializerClass, "description", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(serializerClass, "className", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(serializerClass, "enabled", EcorePackage.eINSTANCE.getEBoolean(), Multiplicity.SINGLE);
+		schema.createEAttribute(serializerClass, "defaultSerializer", EcorePackage.eINSTANCE.getEBoolean(), Multiplicity.SINGLE);
 		EReference serializerIgnoreFileReference = schema.createEReference(serializerClass, "ignoreFile", ignoreFileClass, Multiplicity.SINGLE);
 		EReference serializerSettingsReference = schema.createEReference(serializerClass, "settings", settingsClass, Multiplicity.SINGLE);
 		

@@ -6,15 +6,12 @@ import java.io.PrintWriter;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
-import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
-
-import org.bimserver.ifc.FieldIgnoreMap;
-import org.bimserver.ifc.IfcModel;
 import org.bimserver.models.store.Project;
-import org.bimserver.models.store.User;
 import org.bimserver.plugins.ifcengine.IfcEngineFactory;
+import org.bimserver.plugins.ignoreproviders.IgnoreProvider;
+import org.bimserver.plugins.schema.Schema;
 import org.bimserver.plugins.serializers.BimModelSerializer;
-import org.bimserver.plugins.serializers.PackageDefinition;
+import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,12 +22,12 @@ public class KmzSerializer extends BimModelSerializer {
 	private ColladaSerializer ifcToCollada;
 	private Project project;
 
-	public void init(Project project, User user, String fileName, IfcModel model, SchemaDefinition schemaDefinition, FieldIgnoreMap fieldIgnoreMap, IfcEngineFactory ifcEngineFactory, PackageDefinition packageDefinition) throws SerializerException {
-		super.init(fileName, model, fieldIgnoreMap);
-		this.project = project;
+	@Override
+	public void init(IfcModelInterface model, Schema schema, IgnoreProvider ignoreProvider, IfcEngineFactory ifcEngineFactory) throws SerializerException {
+		super.init(model, schema, ignoreProvider, ifcEngineFactory);
 		try {
 			ifcToCollada = new ColladaSerializer();
-			ifcToCollada.init(project, user, fileName, model, schemaDefinition, fieldIgnoreMap, ifcEngineFactory, packageDefinition);
+			ifcToCollada.init(model, schema, ignoreProvider, ifcEngineFactory);
 		} catch (SerializerException e) {
 			throw new SerializerException(e);
 		}

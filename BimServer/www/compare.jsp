@@ -1,15 +1,14 @@
-<%@page import="org.bimserver.ifc.file.compare.CompareResult.Item"%>
+<%@page import="org.bimserver.ifc.compare.CompareResult.Item"%>
 <%@page import="java.util.List"%>
 <%@page import="org.eclipse.emf.ecore.EClass"%>
 <%@page import="java.util.Map"%>
 <%@page import="java.io.PrintStream"%>
-<%@page import="org.bimserver.ifc.file.compare.CompareResult"%>
+<%@page import="org.bimserver.ifc.compare.CompareResult"%>
 <%@page import="org.bimserver.web.JspHelper"%>
 <%@page import="org.bimserver.shared.SCompareResult"%>
 <%@page import="org.bimserver.interfaces.objects.SProject"%>
 <%@page import="org.bimserver.interfaces.objects.SRevision"%>
 <%@page import="org.bimserver.shared.SCompareResult.SCompareType"%>
-<%@page import="org.bimserver.shared.ResultType"%>
 <%@page import="org.bimserver.shared.SCompareResult.SCompareIdentifier"%>
 <%@ include file="header.jsp" %>
 <%
@@ -25,7 +24,8 @@
 		SCompareResult compareResult = loginManager.getService().compare(roid1, roid2, sCompareType, sCompareIdentifier);
 %>
 Back to 
-<a href="project.jsp?poid=<%=poid %>">project '<%= project.getName() %>'</a><br/><br/>
+
+<%@page import="org.bimserver.interfaces.objects.SSerializer"%><a href="project.jsp?poid=<%=poid %>">project '<%= project.getName() %>'</a><br/><br/>
   <a href="#" id="emaillink">E-mail summary</a>
   <div id="emailform">
 	<div id="emailajaxloader">
@@ -52,13 +52,13 @@ Download:
 <input type="hidden" name="roid2" value="<%=request.getParameter("roid2") %>" />
 <select name="resultType">
 	<%
-	for (ResultType resultType : loginManager.getService().getEnabledResultTypes()) {
-%>
-	<option value="<%=resultType.getName() %>"
-		<%=resultType.isDefaultSelected() ? " SELECTED=\"SELECTED\"" : "" %>><%= resultType.getNiceName() %></option>
-	<%	
-	}
-%>
+		for (SSerializer serializer : loginManager.getService().getEnabledSerializers()) {
+	%>
+	<option value="<%=serializer.getName()%>"
+		<%=serializer.isDefaultSerializer() ? " SELECTED=\"SELECTED\"" : ""%>><%=serializer.getName()%></option>
+	<%
+		}
+	%>
 </select> <label for="zip">Zip</label> <input type="checkbox" name="zip" id="zip" />
 		<input name="download" type="submit" value="Download">
 </form>

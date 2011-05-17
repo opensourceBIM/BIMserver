@@ -1,10 +1,11 @@
 package org.bimserver.serializers;
 
+import net.xeoh.plugins.base.annotations.PluginImplementation;
+
 import org.bimserver.plugins.serializers.EmfSerializer;
 import org.bimserver.plugins.serializers.SerializerPlugin;
-import org.mangosdk.spi.ProviderFor;
 
-@ProviderFor(value=SerializerPlugin.class)
+@PluginImplementation
 public class ObjectInfoSerializerPlugin implements SerializerPlugin {
 
 	@Override
@@ -29,5 +30,10 @@ public class ObjectInfoSerializerPlugin implements SerializerPlugin {
 	@Override
 	public EmfSerializer createSerializer() {
 		return new ObjectInfoSerializer();
+	}
+
+	@Override
+	public String getDefaultSerializerName() {
+		return "ObjectInfo";
 	}
 }

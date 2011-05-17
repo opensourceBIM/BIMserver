@@ -4,8 +4,6 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
-import org.bimserver.serializers.EmfSerializerFactory;
-
 public class DownloadParameters extends LongActionKey {
 	public enum DownloadType {
 		DOWNLOAD, DOWNLOAD_BY_OIDS, DOWNLOAD_BY_GUIDS, DOWNLOAD_OF_TYPE, DOWNLOAD_PROJECTS
@@ -15,44 +13,44 @@ public class DownloadParameters extends LongActionKey {
 	private Set<Long> oids;
 	private Set<String> guids;
 	private String className;
-	private String resultTypeName;
+	private String serializerName;
 	private DownloadType downloadType;
 
 	public DownloadParameters() {
 		downloadType = DownloadType.DOWNLOAD;
 	}
 
-	public DownloadParameters(long roid, String formatIdentifier) {
+	public DownloadParameters(long roid, String serializerName) {
 		setRoid(roid);
 		setDownloadType(DownloadType.DOWNLOAD);
-		setFormatIdentifier(formatIdentifier);
+		setSerializerName(serializerName);
 	}
 
-	public DownloadParameters(Set<Long> roids, Set<String> guids, String formatIdentifier) {
+	public DownloadParameters(Set<Long> roids, Set<String> guids, String serializerName) {
 		setRoids(roids);
 		setGuids(guids);
 		setDownloadType(DownloadType.DOWNLOAD_BY_GUIDS);
-		setFormatIdentifier(formatIdentifier);
+		setSerializerName(serializerName);
 	}
 
-	public DownloadParameters(String formatIdentifier, Set<Long> roids, Set<Long> oids) {
+	public DownloadParameters(String serializerName, Set<Long> roids, Set<Long> oids) {
 		setRoids(roids);
 		setOids(oids);
 		setDownloadType(DownloadType.DOWNLOAD_BY_OIDS);
-		setFormatIdentifier(formatIdentifier);
+		setSerializerName(serializerName);
 	}
 
-	public DownloadParameters(long roid, String className, String formatIdentifier) {
+	public DownloadParameters(long roid, String className, String serializerName) {
 		setRoid(roid);
 		setClassName(className);
 		setDownloadType(DownloadType.DOWNLOAD_OF_TYPE);
-		setFormatIdentifier(formatIdentifier);
+		setSerializerName(serializerName);
 	}
 
-	public DownloadParameters(Set<Long> roids, String formatIdentifier) {
+	public DownloadParameters(Set<Long> roids, String serializerName) {
 		setRoids(roids);
 		setDownloadType(DownloadType.DOWNLOAD_PROJECTS);
-		setFormatIdentifier(formatIdentifier);
+		setSerializerName(serializerName);
 	}
 
 	public String getId() {
@@ -96,14 +94,6 @@ public class DownloadParameters extends LongActionKey {
 		this.guids = guids;
 	}
 
-	public String getResultTypeName() {
-		return resultTypeName;
-	}
-
-	public void setFormatIdentifier(String formatIdentifier) {
-		this.resultTypeName = formatIdentifier;
-	}
-
 	public String getClassName() {
 		return className;
 	}
@@ -132,7 +122,7 @@ public class DownloadParameters extends LongActionKey {
 		result = prime * result + ((downloadType == null) ? 0 : downloadType.ordinal());
 		result = prime * result + ((guids == null) ? 0 : guids.hashCode());
 		result = prime * result + ((oids == null) ? 0 : oids.hashCode());
-		result = prime * result + ((resultTypeName == null) ? 0 : resultTypeName.hashCode());
+		result = prime * result + ((serializerName == null) ? 0 : serializerName.hashCode());
 		result = prime * result + ((roids == null) ? 0 : roids.hashCode());
 		return result;
 	}
@@ -166,10 +156,10 @@ public class DownloadParameters extends LongActionKey {
 				return false;
 		} else if (!oids.equals(other.oids))
 			return false;
-		if (resultTypeName == null) {
-			if (other.resultTypeName != null)
+		if (serializerName == null) {
+			if (other.serializerName != null)
 				return false;
-		} else if (!resultTypeName.equals(other.resultTypeName))
+		} else if (!serializerName.equals(other.serializerName))
 			return false;
 		if (roids == null) {
 			if (other.roids != null)
@@ -228,7 +218,9 @@ public class DownloadParameters extends LongActionKey {
 	}
 
 	public String getFileName() {
-		String extension = EmfSerializerFactory.getInstance().getResultType(resultTypeName).getExtension();
+		// TODO
+//		String extension = EmfSerializerFactory.getInstance().getResultType(serializerName).getExtension();
+		String extension = ".bak";
 		switch (downloadType) {
 		case DOWNLOAD:
 			return getRoidsString() + "." + extension;
@@ -242,5 +234,13 @@ public class DownloadParameters extends LongActionKey {
 			return getRoidsString() + "." + extension;
 		}
 		return "unknown";
+	}
+
+	public void setSerializerName(String serializerName) {
+		this.serializerName = serializerName;
+	}
+
+	public String getSerializerName() {
+		return serializerName;
 	}
 }

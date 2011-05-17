@@ -6,29 +6,30 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-import nl.tue.buildingsmart.express.dictionary.AggregationType;
-import nl.tue.buildingsmart.express.dictionary.Attribute;
-import nl.tue.buildingsmart.express.dictionary.BaseType;
-import nl.tue.buildingsmart.express.dictionary.BooleanType;
-import nl.tue.buildingsmart.express.dictionary.DefinedType;
-import nl.tue.buildingsmart.express.dictionary.DerivedAttribute2;
-import nl.tue.buildingsmart.express.dictionary.EntityDefinition;
-import nl.tue.buildingsmart.express.dictionary.EnumerationType;
-import nl.tue.buildingsmart.express.dictionary.ExplicitAttribute;
-import nl.tue.buildingsmart.express.dictionary.IntegerBound;
-import nl.tue.buildingsmart.express.dictionary.IntegerType;
-import nl.tue.buildingsmart.express.dictionary.InverseAttribute;
-import nl.tue.buildingsmart.express.dictionary.LogicalType;
-import nl.tue.buildingsmart.express.dictionary.NamedType;
-import nl.tue.buildingsmart.express.dictionary.NumberType;
-import nl.tue.buildingsmart.express.dictionary.RealType;
-import nl.tue.buildingsmart.express.dictionary.SchemaDefinition;
-import nl.tue.buildingsmart.express.dictionary.SelectType;
-import nl.tue.buildingsmart.express.dictionary.SimpleType;
-import nl.tue.buildingsmart.express.dictionary.StringType;
-import nl.tue.buildingsmart.express.dictionary.UnderlyingType;
 import nl.tue.buildingsmart.express.parser.SchemaLoader;
 
+import org.bimserver.plugins.schema.AggregationType;
+import org.bimserver.plugins.schema.ArrayType;
+import org.bimserver.plugins.schema.Attribute;
+import org.bimserver.plugins.schema.BaseType;
+import org.bimserver.plugins.schema.BooleanType;
+import org.bimserver.plugins.schema.DefinedType;
+import org.bimserver.plugins.schema.DerivedAttribute2;
+import org.bimserver.plugins.schema.EntityDefinition;
+import org.bimserver.plugins.schema.EnumerationType;
+import org.bimserver.plugins.schema.ExplicitAttribute;
+import org.bimserver.plugins.schema.IntegerBound;
+import org.bimserver.plugins.schema.IntegerType;
+import org.bimserver.plugins.schema.InverseAttribute;
+import org.bimserver.plugins.schema.LogicalType;
+import org.bimserver.plugins.schema.NamedType;
+import org.bimserver.plugins.schema.NumberType;
+import org.bimserver.plugins.schema.RealType;
+import org.bimserver.plugins.schema.SchemaDefinition;
+import org.bimserver.plugins.schema.SelectType;
+import org.bimserver.plugins.schema.SimpleType;
+import org.bimserver.plugins.schema.StringType;
+import org.bimserver.plugins.schema.UnderlyingType;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -432,7 +433,7 @@ public class Express2EMF {
 				eAttribute.setEType(EcorePackage.eINSTANCE.getEBoolean());
 				cls.getEStructuralFeatures().add(eAttribute);
 			}
-			if (domain instanceof nl.tue.buildingsmart.express.dictionary.ArrayType) {
+			if (domain instanceof ArrayType) {
 				// TODO this is not yet implmented in simpelSDAI
 				// eAttrib.setLowerBound(((nl.tue.buildingsmart.express.dictionary
 				// .ArrayType)domain).getLower_index());
