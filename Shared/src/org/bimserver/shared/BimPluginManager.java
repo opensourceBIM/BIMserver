@@ -7,7 +7,6 @@ import java.util.Collection;
 
 import net.xeoh.plugins.base.PluginManager;
 import net.xeoh.plugins.base.impl.PluginManagerFactory;
-import net.xeoh.plugins.base.options.addpluginsfrom.OptionReportAfter;
 import net.xeoh.plugins.base.util.PluginManagerUtil;
 
 import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
@@ -26,17 +25,18 @@ public class BimPluginManager {
 
 	public void start() {
 		pluginManager = PluginManagerFactory.createPluginManager();
-//		try {
-//			pluginManager.addPluginsFrom(new URI("classpath://*"));
-//		} catch (URISyntaxException e) {
-//			e.printStackTrace();
-//		}
 		if (localDev) {
 			pluginManager.addPluginsFrom(new File("../BimServer/bin").toURI());
 			pluginManager.addPluginsFrom(new File("../CityGML/bin").toURI());
 			pluginManager.addPluginsFrom(new File("../Collada/bin").toURI());
 			pluginManager.addPluginsFrom(new File("../Ifc/bin").toURI());
 			pluginManager.addPluginsFrom(new File("../O3d/bin").toURI());
+		} else {
+			try {
+				pluginManager.addPluginsFrom(new URI("classpath://*"));
+			} catch (URISyntaxException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
