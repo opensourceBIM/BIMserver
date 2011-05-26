@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="lib/jettison-1.0.1.jar"/>
-	<classpathentry kind="lib" path="lib/json.jar"/>
 	<classpathentry kind="lib" path="/BimServer/lib/guava-r07.jar" sourcepath="/BimServer/libsrc/guava-src-r07.zip"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path=".apt_generated">
@@ -12,5 +10,7 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
 	<classpathentry kind="lib" path="/BimServer/lib/tar.jar"/>
+	<classpathentry kind="lib" path="/BimServer/lib/jettison-1.0.1.jar"/>
+	<classpathentry kind="lib" path="/BimServer/lib/json.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
