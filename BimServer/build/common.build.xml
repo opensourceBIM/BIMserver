@@ -11,7 +11,7 @@
 	</target>
 	<target name="BimServer" depends="Store, Ifc, Shared, Utils, Emf, Plugins, buildingSMARTLibrary">
 		<mkdir dir="builds/bimserver" />
-		<javac destdir="builds/bimserver" debug="on">
+		<javac destdir="builds/bimserver" debug="on" fork="true">
 			<src path="../../BimServer/src" />
 			<src path="../../BimServer/imported" />
 			<src path="../../BimServer/generated" />
@@ -123,7 +123,7 @@
 	</target>
 	<target name="Ifc" depends="Plugins, buildingSMARTLibrary, Emf, Utils, Store, Shared">
 		<mkdir dir="builds/ifc" />
-		<javac destdir="builds/ifc" debug="on">
+		<javac destdir="builds/ifc" debug="on" fork="true">
 			<src path="../../Ifc/src" />
 			<classpath>
 				<path>
@@ -138,7 +138,7 @@
 	</target>
 	<target name="Emf">
 		<mkdir dir="builds/emf" />
-		<javac destdir="builds/emf" debug="on">
+		<javac destdir="builds/emf" debug="on" fork="true">
 			<src path="../../Emf/src" />
 			<classpath>
 				<path>
@@ -153,7 +153,7 @@
 	</target>
 	<target name="Client" depends="Shared, Utils">
 		<mkdir dir="builds/client" />
-		<javac destdir="builds/client" debug="on">
+		<javac destdir="builds/client" debug="on" fork="true">
 			<src path="../../Client/src" />
 			<classpath>
 				<path>
@@ -169,7 +169,7 @@
 	</target>
 	<target name="Shared" depends="Plugins">
 		<mkdir dir="builds/shared" />
-		<javac destdir="builds/shared" debug="on">
+		<javac destdir="builds/shared" debug="on" fork="true">
 			<src path="../../Shared/src" />
 			<src path="../../Shared/generated" />
 			<classpath>
@@ -185,7 +185,7 @@
 	</target>
 	<target name="Plugins" depends="Emf, Store">
 		<mkdir dir="builds/plugins" />
-		<javac destdir="builds/plugins" debug="on">
+		<javac destdir="builds/plugins" debug="on" fork="true">
 			<src path="../../Plugins/src" />
 			<classpath>
 				<path>
