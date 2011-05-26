@@ -28,4 +28,5 @@ Export-Package: net.sourceforge.osexpress.parser;uses:="antlr.collections.impl,a
  nl.tue.buildingsmart.express.population;uses:="nl.tue.buildingsmart.express.dictionary",
  nl.tue.buildingsmart.express.population.test;uses:="nl.tue.buildingsmart.express.dictionary,nl.tue.buildingsmart.express.population"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Require-Bundle: Store;bundle-version="1.0.0"
+Require-Bundle: Store;bundle-version="1.0.0",
+ Plugins;bundle-version="1.0.0"

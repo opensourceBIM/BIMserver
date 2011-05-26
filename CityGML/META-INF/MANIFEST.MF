@@ -18,6 +18,5 @@ Export-Package: org.bimserver.citygml
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: Ifc;bundle-version="1.0.0",
  Store;bundle-version="1.0.0",
- buildingSMARTLibrary;bundle-version="1.0.0",
- org.eclipse.osgi;bundle-version="3.5.2"
+ buildingSMARTLibrary;bundle-version="1.0.0"
 Bundle-Activator: org.bimserver.citygml.CityGMLActivator
