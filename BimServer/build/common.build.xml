@@ -171,6 +171,7 @@
 				</path>
 			</classpath>
 		</javac>
+		<copy file="../../Client/src/org/bimserver/client/logo_small.png" todir="builds/client/org/bimserver/client" />
 		<jar destfile="builds/lib/bimserver-client-${version}.jar">
 			<fileset dir="builds/client">
 			</fileset>
@@ -409,25 +410,9 @@
 		<antcall target="Shared"/>
 		<antcall target="Utils"/>
 		<antcall target="Client"/>
-		<javac srcdir="../../Client/src" destdir="builds/BuildClient/" debug="on">
-			<src path="../../Utils/src" />
-			<src path="../../Shared/src" />
-			<classpath>
-				<fileset file="../../BimServer/lib/cxf/cxf-2.3.2.jar" />
-				<fileset file="../../BimServer/lib/cxf/jsr311-api-1.1.1.jar" />
-				<fileset file="../../BimServer/lib/cxf/XmlSchema-1.4.5.jar" />
-				<fileset file="../../BimServer/lib/cxf/jaxb-impl-2.2.1.1.jar" />
-				<fileset file="../../BimServer/lib/cxf/wsdl4j-1.6.2.jar" />
-				<fileset file="../../BimServer/lib/cxf/xml-resolver-1.2.jar" />
-				<fileset file="../../BimServer/lib/commons/commons-io-1.4.jar" />
-				<fileset file="../../BimServer/lib/commons/commons-codec-1.3.jar" />
-				<fileset file="../../BimServer/lib/mail.jar" />
-				<fileset file="../../BimServer/lib/joda-time-1.6.jar" />
-				<fileset file="../../BimServer/lib/logging/*.jar" />
-				<fileset file="../../BimServer/lib/guava-r07.jar" />
-			</classpath>
-		</javac>
-		<copy file="../../Client/src/org/bimserver/client/logo_small.png" todir="builds/BuildClient/org/bimserver/client" />
+		<copy todir="builds/BuildClient/lib">
+			<fileset dir="builds/lib"></fileset>
+		</copy>
 		<one-jar destfile="builds/bimserver-client-${version}.jar" manifest="../../BimServer/build/targets/client/MANIFEST.MF">
 			<main>
 				<fileset dir="builds/BuildClient" />
