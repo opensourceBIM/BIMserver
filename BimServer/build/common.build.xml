@@ -397,6 +397,7 @@
 		<delete dir="builds" />
 		<mkdir dir="builds" />
 		<mkdir dir="builds/BuildClient" />
+		<mkdir dir="builds/lib" />
 		<antcall target="Client"/>
 		<copy todir="builds/BuildClient/lib">
 			<fileset dir="builds/lib"></fileset>
