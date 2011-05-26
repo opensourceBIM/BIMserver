@@ -161,6 +161,21 @@
 			</fileset>
 		</jar>
 	</target>
+	<target name="Client">
+		<mkdir dir="builds/client" />
+		<javac destdir="builds/client" debug="on">
+			<src path="../../Client/src" />
+			<classpath>
+				<path>
+					<fileset refid="lib" />
+				</path>
+			</classpath>
+		</javac>
+		<jar destfile="builds/lib/bimserver-client-${version}.jar">
+			<fileset dir="builds/client">
+			</fileset>
+		</jar>
+	</target>
 	<target name="Shared">
 		<mkdir dir="builds/shared" />
 		<javac destdir="builds/shared" debug="on">
@@ -391,7 +406,10 @@
 		<delete dir="builds" />
 		<mkdir dir="builds" />
 		<mkdir dir="builds/BuildClient" />
-		<javac srcdir="../../Client/src" destdir="builds/BuildClient/" debug="on" memorymaximumsize="256m">
+		<antcall target="Shared"/>
+		<antcall target="Utils"/>
+		<antcall target="Client"/>
+		<javac srcdir="../../Client/src" destdir="builds/BuildClient/" debug="on">
 			<src path="../../Utils/src" />
 			<src path="../../Shared/src" />
 			<classpath>
