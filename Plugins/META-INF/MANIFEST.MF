@@ -11,4 +11,4 @@ Export-Package: org.bimserver.plugins,
  org.bimserver.plugins.serializers
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: Emf;bundle-version="1.0.0",
- Store;bundle-version="1.0.0"
+ Store;bundle-version="1.0.0";visibility:=reexport

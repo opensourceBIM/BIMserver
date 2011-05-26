@@ -17,6 +17,5 @@
 	<classpathentry kind="lib" path="/BimServer/lib/guava-r07.jar" sourcepath="/BimServer/libsrc/guava-src-r07.zip"/>
 	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
 	<classpathentry kind="lib" path="/BimServer/lib/logging/slf4j-api-1.6.0.jar"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/Plugins"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

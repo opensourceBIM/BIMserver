@@ -11,6 +11,5 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: buildingSMARTLibrary;bundle-version="1.0.0",
  Emf;bundle-version="1.0.0",
  Ifc;bundle-version="1.0.0",
- Store;bundle-version="1.0.0",
- org.eclipse.osgi;bundle-version="3.5.2"
+ Store;bundle-version="1.0.0"
 Bundle-Activator: org.bimserver.collada.ColladaActivator

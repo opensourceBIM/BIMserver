@@ -26,5 +26,4 @@ Bundle-ClassPath: Shared.jar,
 Export-Package: org.bimserver.interfaces.objects,
  org.bimserver.shared;uses:="javax.activation,org.bimserver.interfaces.objects,javax.xml.bind.annotation.adapters"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Require-Bundle: Plugins;bundle-version="1.0.0",
- org.eclipse.osgi;bundle-version="3.5.2"
+Require-Bundle: Plugins;bundle-version="1.0.0"

@@ -11,4 +11,3 @@ Export-Package: org.bimserver.ifcengine,
 Import-Package: org.bimserver.plugins.ifcengine
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-Activator: org.bimserver.ifcengine.IfcEngineActivator
-Require-Bundle: org.eclipse.osgi;bundle-version="3.5.2"
