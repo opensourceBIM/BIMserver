@@ -250,9 +250,6 @@
 			<fileset dir="../lib">
 				<include name="**/*.jar" />
 			</fileset>
-			<fileset dir="../../buildingSMARTLibrary/lib">
-				<include name="*.jar" />
-			</fileset>
 			<fileset dir="../../CityGML/lib">
 				<include name="*.jar" />
 			</fileset>
