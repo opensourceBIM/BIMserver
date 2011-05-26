@@ -253,9 +253,6 @@
 			<fileset dir="../../CityGML/lib">
 				<include name="*.jar" />
 			</fileset>
-			<fileset dir="../../O3d/lib">
-				<include name="*.jar" />
-			</fileset>
 		</copy>
 		<copy todir="builds/BuildJar/lib">
 			<fileset dir="../../IFCEngine/lib">
