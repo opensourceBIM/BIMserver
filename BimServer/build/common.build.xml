@@ -263,8 +263,7 @@
 			</fileset>
 		</copy>
 		<mkdir dir="builds/BuildJar/classes" />
-		<antcall target="Build">
-		</antcall>
+		<antcall target="Build"/>
 		<copy todir="builds/BuildJar/lib">
 			<fileset dir="builds/lib" />
 		</copy>
@@ -362,9 +361,6 @@
 				<exclude name="core-3.1.1.jar" />
 				<exclude name="cxf/geronimo-servlet_3.0_spec-1.0.jar" />
 			</fileset>
-			<fileset dir="../../buildingSMARTLibrary/lib">
-				<include name="*.jar" />
-			</fileset>
 			<fileset dir="../../CityGML/lib">
 				<include name="*.jar" />
 			</fileset>
@@ -377,34 +373,10 @@
 				<include name="**" />
 			</fileset>
 		</copy>
-		<javac srcdir="../src" destdir="builds/BuildWar/WEB-INF/classes" debug="on">
-			<src path="../../BimServer/generated" />
-			<src path="../../BimServer/imported" />
-			<src path="../../BimServer/build/pb" />
-			<src path="../../buildingSMARTLibrary/src" />
-			<src path="../../Ifc/src" />
-			<src path="../../Utils/src" />
-			<src path="../../Emf/src" />
-			<src path="../../Shared/src" />
-			<src path="../../Shared/generated" />
-			<src path="../../CityGML/src" />
-			<src path="../../CityGML/generated" />
-			<src path="../../Collada/src" />
-			<src path="../../IFCEngine/src" />
-			<src path="../../O3d/src" />
-			<src path="../../Store/generated" />
-			<classpath>
-				<fileset dir="builds/BuildWar/WEB-INF/lib">
-					<include name="**/*.jar" />
-				</fileset>
-				<fileset dir="../lib/jetty">
-					<include name="*.jar" />
-				</fileset>
-				<fileset dir="../lib/jetty/jsp">
-					<include name="*.jar" />
-				</fileset>
-			</classpath>
-		</javac>
+		<antcall target="Build"/>
+		<copy todir="builds/BuildWar/lib">
+			<fileset dir="builds/lib" />
+		</copy>
 		<jar jarfile="builds/BuildWar/WEB-INF/lib/bimserver.jar">
 			<fileset dir="builds/BuildWar/WEB-INF/classes" />
 		</jar>
