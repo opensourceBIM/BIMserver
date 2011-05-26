@@ -7,19 +7,9 @@
 	</fileset>
 	<target name="Build">
 		<mkdir dir="builds/lib" />
-		<antcall target="Utils" />
-		<antcall target="Emf" />
-		<antcall target="Store" />
-		<antcall target="Plugins" />
-		<antcall target="Shared" />
-		<antcall target="buildingSMARTLibrary" />
-		<antcall target="Ifc" />
-		<antcall target="CityGML" />
-		<antcall target="Collada" />
-		<antcall target="O3d" />
 		<antcall target="BimServer" />
 	</target>
-	<target name="BimServer">
+	<target name="BimServer" depends="Store, Ifc, Shared, Utils, Emf, Plugins, buildingSMARTLibrary">
 		<mkdir dir="builds/bimserver" />
 		<javac destdir="builds/bimserver" debug="on">
 			<src path="../../BimServer/src" />
@@ -52,7 +42,7 @@
 			</fileset>
 		</jar>
 	</target>
-	<target name="buildingSMARTLibrary">
+	<target name="buildingSMARTLibrary" depends="Store, Plugins">
 		<mkdir dir="builds/buildingSMARTLibrary" />
 		<javac destdir="builds/buildingSMARTLibrary" debug="on" fork="true">
 			<src path="../../buildingSMARTLibrary/src" />
@@ -67,7 +57,7 @@
 			</fileset>
 		</jar>
 	</target>
-	<target name="Store">
+	<target name="Store" depends="Emf">
 		<mkdir dir="builds/store" />
 		<javac destdir="builds/store" debug="on" fork="true">
 			<src path="../../Store/generated" />
@@ -82,7 +72,7 @@
 			</fileset>
 		</jar>
 	</target>
-	<target name="Collada">
+	<target name="Collada" depends="buildingSMARTLibrary, Emf, Ifc, Store">
 		<mkdir dir="builds/collada" />
 		<javac destdir="builds/collada" debug="on" fork="true">
 			<src path="../../Collada/src" />
@@ -97,7 +87,7 @@
 			</fileset>
 		</jar>
 	</target>
-	<target name="O3d">
+	<target name="O3d" depends="Utils, Emf, buildingSMARTLibrary, Ifc, Store">
 		<mkdir dir="builds/o3d" />
 		<javac destdir="builds/o3d" debug="on" fork="true">
 			<src path="../../O3d/src" />
@@ -112,7 +102,7 @@
 			</fileset>
 		</jar>
 	</target>
-	<target name="CityGML">
+	<target name="CityGML" depends="Ifc, Store, buildingSMARTLibrary">
 		<mkdir dir="builds/citygml" />
 		<javac destdir="builds/citygml" debug="on" fork="true">
 			<src path="../../CityGML/src" />
@@ -131,7 +121,7 @@
 			</fileset>
 		</jar>
 	</target>
-	<target name="Ifc">
+	<target name="Ifc" depends="Plugins, buildingSMARTLibrary, Emf, Utils, Store, Shared">
 		<mkdir dir="builds/ifc" />
 		<javac destdir="builds/ifc" debug="on">
 			<src path="../../Ifc/src" />
@@ -161,7 +151,7 @@
 			</fileset>
 		</jar>
 	</target>
-	<target name="Client">
+	<target name="Client" depends="Shared, Utils">
 		<mkdir dir="builds/client" />
 		<javac destdir="builds/client" debug="on">
 			<src path="../../Client/src" />
@@ -177,7 +167,7 @@
 			</fileset>
 		</jar>
 	</target>
-	<target name="Shared">
+	<target name="Shared" depends="Plugins">
 		<mkdir dir="builds/shared" />
 		<javac destdir="builds/shared" debug="on">
 			<src path="../../Shared/src" />
@@ -193,7 +183,7 @@
 			</fileset>
 		</jar>
 	</target>
-	<target name="Plugins">
+	<target name="Plugins" depends="Emf, Store">
 		<mkdir dir="builds/plugins" />
 		<javac destdir="builds/plugins" debug="on">
 			<src path="../../Plugins/src" />
@@ -407,8 +397,6 @@
 		<delete dir="builds" />
 		<mkdir dir="builds" />
 		<mkdir dir="builds/BuildClient" />
-		<antcall target="Shared"/>
-		<antcall target="Utils"/>
 		<antcall target="Client"/>
 		<copy todir="builds/BuildClient/lib">
 			<fileset dir="builds/lib"></fileset>
