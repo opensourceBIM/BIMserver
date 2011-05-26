@@ -169,7 +169,7 @@ public class ServerInitializer implements ServletContextListener {
 
 			Thread.setDefaultUncaughtExceptionHandler(uncaughtExceptionHandler);
 
-			pluginManager = new BimPluginManager();
+			pluginManager = new BimPluginManager(serverType == ServerType.DEV_ENVIRONMENT);
 			pluginManager.start();
 			
 			LOGGER.info("Detected server type: " + serverType + " (" + System.getProperty("os.name") + ", " + System.getProperty("sun.arch.data.model") + "bit)");

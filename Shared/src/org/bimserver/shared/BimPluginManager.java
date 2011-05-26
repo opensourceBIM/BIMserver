@@ -18,8 +18,10 @@ import org.slf4j.LoggerFactory;
 public class BimPluginManager {
 	private static final Logger LOGGER = LoggerFactory.getLogger(BimPluginManager.class);
 	private PluginManager pluginManager;
+	private final boolean localDev;
 
-	public BimPluginManager() {
+	public BimPluginManager(boolean localDev) {
+		this.localDev = localDev;
 	}
 
 	public void start() {
@@ -29,11 +31,13 @@ public class BimPluginManager {
 //		} catch (URISyntaxException e) {
 //			e.printStackTrace();
 //		}
-		pluginManager.addPluginsFrom(new File("../BimServer/bin").toURI());
-		pluginManager.addPluginsFrom(new File("../CityGML/bin").toURI());
-		pluginManager.addPluginsFrom(new File("../Collada/bin").toURI());
-		pluginManager.addPluginsFrom(new File("../Ifc/bin").toURI());
-		pluginManager.addPluginsFrom(new File("../O3d/bin").toURI());
+		if (localDev) {
+			pluginManager.addPluginsFrom(new File("../BimServer/bin").toURI());
+			pluginManager.addPluginsFrom(new File("../CityGML/bin").toURI());
+			pluginManager.addPluginsFrom(new File("../Collada/bin").toURI());
+			pluginManager.addPluginsFrom(new File("../Ifc/bin").toURI());
+			pluginManager.addPluginsFrom(new File("../O3d/bin").toURI());
+		}
 	}
 
 	public Collection<SerializerPlugin> getAllSerializerPlugins() {

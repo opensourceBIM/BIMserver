@@ -187,7 +187,7 @@ public class IfcVisualiser extends JFrame {
 		fieldIgnoreMap = new FileFieldIgnoreMap(CollectionUtils.singleSet(Ifc2x3Package.eINSTANCE), resourceFetcher);
 		schema = SchemaLoader.loadDefaultSchema();
 
-		BimPluginManager osgiManager = new BimPluginManager();
+		BimPluginManager osgiManager = new BimPluginManager(true);
 		osgiManager.start();
 		ifcPlugin = osgiManager.getIfcPlugins().iterator().next();
 		ifcEngineFactory = new IfcEngineFactory(resourceFetcher.getFile("IFC2X3_FINAL.exp").getAbsoluteFile(), new File("../IFCEngine/lib/" + System.getProperty("sun.arch.data.model")), new File("tmp"), null, ifcPlugin);
