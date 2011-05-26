@@ -37,7 +37,6 @@ import org.bimserver.plugins.ifcengine.IfcEngineFactory;
 import org.bimserver.plugins.ignoreproviders.IgnoreProvider;
 import org.bimserver.plugins.schema.EntityDefinition;
 import org.bimserver.plugins.schema.Schema;
-import org.bimserver.plugins.serializers.EmfSerializer;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.utils.UTFPrintWriter;
@@ -49,9 +48,7 @@ import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
-import org.mangosdk.spi.ProviderFor;
 
-@ProviderFor(value=EmfSerializer.class)
 public class IfcStepSerializer extends IfcSerializer {
 	private static final EcorePackage ECORE_PACKAGE_INSTANCE = EcorePackage.eINSTANCE;
 	private static final String NULL = "NULL";
