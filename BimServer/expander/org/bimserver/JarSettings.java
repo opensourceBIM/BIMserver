@@ -32,7 +32,7 @@ public class JarSettings {
 	private String heapsize = "1024m";
 
 	@XmlElement
-	private String permsize = "128m";
+	private String permsize = "256m";
 
 	@XmlElement
 	private String stacksize = "1024k";
