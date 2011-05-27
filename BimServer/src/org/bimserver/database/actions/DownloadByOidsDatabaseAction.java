@@ -76,6 +76,7 @@ public class DownloadByOidsDatabaseAction extends BimDatabaseAction<IfcModel> {
 			}
 		}
 		IfcModel ifcModel = mergerFactory.createMerger().merge(project, ifcModelSet, settingsManager.getSettings().isIntelligentMerging());
+		ifcModel.setName("Unknown");
 		ifcModel.setRevisionNr(1);
 		ifcModel.setAuthorizedUser(getUserByUoid(actingUoid).getName());
 		ifcModel.setDate(new Date());

@@ -47,11 +47,12 @@ public class DownloadOfTypeDatabaseAction extends BimDatabaseAction<IfcModel> {
 			subModel.setDate(concreteRevision.getDate());
 			ifcModelSet.add(subModel);
 		}
-		IfcModel IfcModel = mergerFactory.createMerger().merge(project, ifcModelSet, settingsManager.getSettings().isIntelligentMerging());
-		IfcModel.setRevisionNr(project.getRevisions().indexOf(virtualRevision) + 1);
-		IfcModel.setAuthorizedUser(getUserByUoid(actingUoid).getName());
-		IfcModel.setDate(virtualRevision.getDate());
-		return IfcModel;
+		IfcModel ifcModel = mergerFactory.createMerger().merge(project, ifcModelSet, settingsManager.getSettings().isIntelligentMerging());
+		ifcModel.setName("Unknown");
+		ifcModel.setRevisionNr(project.getRevisions().indexOf(virtualRevision) + 1);
+		ifcModel.setAuthorizedUser(getUserByUoid(actingUoid).getName());
+		ifcModel.setDate(virtualRevision.getDate());
+		return ifcModel;
 	}
 	
 	public int getProgress() {
