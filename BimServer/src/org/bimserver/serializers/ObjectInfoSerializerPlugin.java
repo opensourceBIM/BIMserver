@@ -10,12 +10,12 @@ public class ObjectInfoSerializerPlugin implements SerializerPlugin {
 
 	@Override
 	public String getDescription() {
-		return "ObjectInfoSerializerPlugin";
+		return "ObjectInfoSerializer";
 	}
 
 	@Override
 	public String getName() {
-		return "ObjectInfoSerializerPlugin";
+		return "ObjectInfoSerializer";
 	}
 
 	@Override
@@ -35,5 +35,15 @@ public class ObjectInfoSerializerPlugin implements SerializerPlugin {
 	@Override
 	public String getDefaultSerializerName() {
 		return "ObjectInfo";
+	}
+
+	@Override
+	public String getDefaultContentType() {
+		return "text/html";
+	}
+
+	@Override
+	public String getDefaultExtension() {
+		return "html";
 	}
 }

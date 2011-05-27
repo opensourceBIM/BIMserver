@@ -38,6 +38,16 @@ public class CityGmlSerializerPlugin implements SerializerPlugin {
 
 	@Override
 	public String getDefaultSerializerName() {
-		return "CityGML 1.0.0";
+		return "CityGML1.0.0";
+	}
+
+	@Override
+	public String getDefaultContentType() {
+		return "application/gml";
+	}
+
+	@Override
+	public String getDefaultExtension() {
+		return "gml";
 	}
 }

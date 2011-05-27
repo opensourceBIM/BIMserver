@@ -36,4 +36,14 @@ public class ColladaSerializerPlugin implements SerializerPlugin {
 	public String getDefaultSerializerName() {
 		return "Collada";
 	}
+
+	@Override
+	public String getDefaultContentType() {
+		return "appliction/collada";
+	}
+
+	@Override
+	public String getDefaultExtension() {
+		return "dae";
+	}
 }

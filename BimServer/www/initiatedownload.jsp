@@ -6,14 +6,14 @@
 <%
 	try {
 		long roid = Long.parseLong(request.getParameter("roid"));
-		String resultTypeName = "IFC";
-		if (request.getParameter("resultType") != null) {
-			resultTypeName = request.getParameter("resultType");
+		String serializerName = "Ifc2x3";
+		if (request.getParameter("serializerName") != null) {
+			serializerName = request.getParameter("serializerName");
 		}
 		String zip = request.getParameter("zip");
 		int longActionId = -1;
 		if (request.getParameter("checkout") != null) {
-			longActionId = loginManager.getService().checkout(roid,	resultTypeName, false);
+			longActionId = loginManager.getService().checkout(roid,	serializerName, false);
 		} else if (request.getParameter("download") != null) {
 			if (request.getParameter("guids") != null){
 				Set<String> guids = new HashSet<String>();
@@ -22,7 +22,7 @@
 				}
 				Set<Long> roids = new HashSet<Long>();
 				roids.add(roid);
-				longActionId = loginManager.getService().downloadByGuids(roids, guids, resultTypeName, false);
+				longActionId = loginManager.getService().downloadByGuids(roids, guids, serializerName, false);
 			} else if (request.getParameter("oids") != null) {
 				Set<Long> oids = new HashSet<Long>();
 				for (String oidString : request.getParameter("oids").split(";")) {
@@ -30,9 +30,9 @@
 				}
 				Set<Long> roids = new HashSet<Long>();
 				roids.add(roid);
-				longActionId = loginManager.getService().downloadByOids(roids, oids, resultTypeName, false);
+				longActionId = loginManager.getService().downloadByOids(roids, oids, serializerName, false);
 			} else if (request.getParameter("class") != null){
-				longActionId = loginManager.getService().downloadOfType(roid, request.getParameter("class"), resultTypeName, false);
+				longActionId = loginManager.getService().downloadOfType(roid, request.getParameter("class"), serializerName, false);
 			} else if (request.getParameter("multiple") != null){
 				Set<Long> roids = new HashSet<Long>();
 				for (Object key : request.getParameterMap().keySet()) {
@@ -43,9 +43,9 @@
 						}
 					}
 				}
-				longActionId = loginManager.getService().downloadProjects(roids, resultTypeName, false);
+				longActionId = loginManager.getService().downloadProjects(roids, serializerName, false);
 			} else {
-				longActionId = loginManager.getService().download(roid, resultTypeName, false);
+				longActionId = loginManager.getService().download(roid, serializerName, false);
 			}
 		}
 		LongActionState las = loginManager.getService().getDownloadState(longActionId);

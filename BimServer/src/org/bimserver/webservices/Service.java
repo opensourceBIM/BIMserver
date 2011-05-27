@@ -27,6 +27,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -2232,7 +2233,9 @@ public class Service implements ServiceInterface {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimDatabase.createReadOnlySession();
 		try {
-			return convert(session.executeAction(new GetAllSerializersDatabaseAction(session, accessMethod), DEADLOCK_RETRIES), SSerializer.class);
+			List<SSerializer> serializers = convert(session.executeAction(new GetAllSerializersDatabaseAction(session, accessMethod), DEADLOCK_RETRIES), SSerializer.class);
+			Collections.sort(serializers, new SSerializerComparator());
+			return serializers;
 		} catch (Exception e) {
 			handleException(e);
 		} finally {

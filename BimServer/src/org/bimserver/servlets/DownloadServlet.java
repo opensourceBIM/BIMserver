@@ -68,7 +68,7 @@ public class DownloadServlet extends HttpServlet {
 			if (!loginManager.getService().isLoggedIn()) {
 				loginManager.getService().loginAnonymous();
 			}
-			String serializerName = "IFC";
+			String serializerName = "Ifc2x3";
 			if (request.getParameter("serializerName") != null) {
 				serializerName = request.getParameter("serializerName");
 			}
@@ -180,9 +180,8 @@ public class DownloadServlet extends HttpServlet {
 				in.close();
 				zipOutputStream.finish();
 			} else {
-				// TODO
-//				response.setContentType(serializer.getContentType());
-				response.setHeader("Content-Disposition", "inline; filename=\"" + checkoutResult.getFile().getName() + "\"");
+				response.setContentType(serializer.getContenttype());
+				response.setHeader("Content-Disposition", "inline; filename=\"" + checkoutResult.getFile().getName() + "." + serializer.getExtension() + "\"");
 				InputStream in = dataSource.getInputStream();
 				IOUtils.copy(in, response.getOutputStream());
 				in.close();

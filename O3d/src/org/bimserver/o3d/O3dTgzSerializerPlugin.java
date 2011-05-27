@@ -15,12 +15,12 @@ public class O3dTgzSerializerPlugin implements SerializerPlugin {
 
 	@Override
 	public String getDescription() {
-		return "O3dTgzSerializerPlugin";
+		return "O3dTgzSerializer";
 	}
 
 	@Override
 	public String getName() {
-		return "O3dTgzSerializerPlugin";
+		return "O3dTgzSerializer";
 	}
 
 	@Override
@@ -35,5 +35,15 @@ public class O3dTgzSerializerPlugin implements SerializerPlugin {
 	@Override
 	public String getDefaultSerializerName() {
 		return "O3DTgz";
+	}
+
+	@Override
+	public String getDefaultContentType() {
+		return "appliction/o3d";
+	}
+
+	@Override
+	public String getDefaultExtension() {
+		return "o3dtgz";
 	}
 }

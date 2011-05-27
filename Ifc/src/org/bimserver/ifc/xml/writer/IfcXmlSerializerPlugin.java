@@ -15,12 +15,12 @@ public class IfcXmlSerializerPlugin implements SerializerPlugin {
 
 	@Override
 	public String getDescription() {
-		return "IfcXmlSerializerPlugin";
+		return "IfcXmlSerializer";
 	}
 
 	@Override
 	public String getName() {
-		return "IfcXmlSerializerPlugin";
+		return "IfcXmlSerializer";
 	}
 
 	@Override
@@ -35,5 +35,15 @@ public class IfcXmlSerializerPlugin implements SerializerPlugin {
 	@Override
 	public String getDefaultSerializerName() {
 		return "IfcXML";
+	}
+
+	@Override
+	public String getDefaultContentType() {
+		return "application/ifcxml";
+	}
+
+	@Override
+	public String getDefaultExtension() {
+		return "ifcxml";
 	}
 }

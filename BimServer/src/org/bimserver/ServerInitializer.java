@@ -308,6 +308,8 @@ public class ServerInitializer implements ServletContextListener {
 				serializer.setName(name);
 				serializer.setEnabled(false);
 				serializer.setDescription(serializerPlugin.getDescription());
+				serializer.setContenttype(serializerPlugin.getDefaultContentType());
+				serializer.setExtension(serializerPlugin.getDefaultExtension());
 				session.store(serializer);
 			}
 		}

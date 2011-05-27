@@ -66,6 +66,7 @@ public class DownloadDatabaseAction extends BimDatabaseAction<IfcModel> {
 			ifcModelSet.add(subModel);
 		}
 		IfcModel ifcModel = mergerFactory.createMerger().merge(revision.getProject(), ifcModelSet, settingsManager.getSettings().isIntelligentMerging());
+		ifcModel.setName(project.getName() + "." + revision.getId());
 		ifcModel.setRevisionNr(project.getRevisions().indexOf(revision) + 1);
 		ifcModel.setAuthorizedUser(user.getName());
 		ifcModel.setDate(revision.getDate());

@@ -15,12 +15,12 @@ public class IfcStepSerializerPlugin implements SerializerPlugin {
 
 	@Override
 	public String getDescription() {
-		return "IfcStepSerializerPlugin";
+		return "IfcStepSerializer";
 	}
 
 	@Override
 	public String getName() {
-		return "IfcStepSerializerPlugin";
+		return "IfcStepSerializer";
 	}
 
 	@Override
@@ -35,5 +35,15 @@ public class IfcStepSerializerPlugin implements SerializerPlugin {
 	@Override
 	public String getDefaultSerializerName() {
 		return "Ifc2x3";
+	}
+
+	@Override
+	public String getDefaultContentType() {
+		return "application/ifc";
+	}
+
+	@Override
+	public String getDefaultExtension() {
+		return "ifc";
 	}
 }

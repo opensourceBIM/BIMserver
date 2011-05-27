@@ -15,12 +15,12 @@ public class O3dJsonSerializerPlugin implements SerializerPlugin {
 
 	@Override
 	public String getDescription() {
-		return "O3dJsonSerializerPlugin";
+		return "O3dJsonSerializer";
 	}
 
 	@Override
 	public String getName() {
-		return "O3dJsonSerializerPlugin";
+		return "O3dJsonSerializer";
 	}
 
 	@Override
@@ -34,6 +34,16 @@ public class O3dJsonSerializerPlugin implements SerializerPlugin {
 
 	@Override
 	public String getDefaultSerializerName() {
-		return "O3D_JSON";
+		return "O3DJSON";
+	}
+
+	@Override
+	public String getDefaultContentType() {
+		return "appliction/json";
+	}
+
+	@Override
+	public String getDefaultExtension() {
+		return "o3djson";
 	}
 }

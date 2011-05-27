@@ -15,12 +15,12 @@ public class XsltSerializerPlugin implements SerializerPlugin {
 
 	@Override
 	public String getDescription() {
-		return "XsltSerializerPlugin";
+		return "XsltSerializer";
 	}
 
 	@Override
 	public String getName() {
-		return "XsltSerializerPlugin";
+		return "XsltSerializer";
 	}
 
 	@Override
@@ -35,5 +35,15 @@ public class XsltSerializerPlugin implements SerializerPlugin {
 	@Override
 	public String getDefaultSerializerName() {
 		return "XSLT";
+	}
+
+	@Override
+	public String getDefaultContentType() {
+		return "application/xhtml+xml";
+	}
+
+	@Override
+	public String getDefaultExtension() {
+		return "xml";
 	}
 }
