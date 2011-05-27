@@ -135,7 +135,7 @@ public class ServerInitializer implements ServletContextListener {
 			} else if (serverType == ServerType.STANDALONE_JAR) {
 				baseDir = new File("");
 			} else if (serverType == ServerType.DEPLOYED_WAR) {
-				baseDir = new File("");
+				baseDir = new File(servletContext.getRealPath("/") + "WEB-INF");
 			}
 			if (homeDir == null) {
 				homeDir = baseDir;
