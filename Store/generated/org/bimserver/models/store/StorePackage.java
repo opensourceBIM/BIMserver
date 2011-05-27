@@ -1338,13 +1338,31 @@ public interface StorePackage extends EPackage
 	int SERIALIZER__DESCRIPTION = 1;
 
 	/**
+	 * The feature id for the '<em><b>Extension</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERIALIZER__EXTENSION = 2;
+
+	/**
+	 * The feature id for the '<em><b>Contenttype</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERIALIZER__CONTENTTYPE = 3;
+
+	/**
 	 * The feature id for the '<em><b>Class Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SERIALIZER__CLASS_NAME = 2;
+	int SERIALIZER__CLASS_NAME = 4;
 
 	/**
 	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
@@ -1353,7 +1371,7 @@ public interface StorePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SERIALIZER__ENABLED = 3;
+	int SERIALIZER__ENABLED = 5;
 
 	/**
 	 * The feature id for the '<em><b>Default Serializer</b></em>' attribute.
@@ -1362,7 +1380,7 @@ public interface StorePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SERIALIZER__DEFAULT_SERIALIZER = 4;
+	int SERIALIZER__DEFAULT_SERIALIZER = 6;
 
 	/**
 	 * The feature id for the '<em><b>Ignore File</b></em>' reference.
@@ -1371,7 +1389,7 @@ public interface StorePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SERIALIZER__IGNORE_FILE = 5;
+	int SERIALIZER__IGNORE_FILE = 7;
 
 	/**
 	 * The feature id for the '<em><b>Settings</b></em>' reference.
@@ -1380,7 +1398,7 @@ public interface StorePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SERIALIZER__SETTINGS = 6;
+	int SERIALIZER__SETTINGS = 8;
 
 	/**
 	 * The number of structural features of the '<em>Serializer</em>' class.
@@ -1389,7 +1407,7 @@ public interface StorePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SERIALIZER_FEATURE_COUNT = 7;
+	int SERIALIZER_FEATURE_COUNT = 9;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.IgnoreFileImpl <em>Ignore File</em>}' class.
@@ -2809,6 +2827,28 @@ public interface StorePackage extends EPackage
 	EAttribute getSerializer_Description();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Serializer#getExtension <em>Extension</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Extension</em>'.
+	 * @see org.bimserver.models.store.Serializer#getExtension()
+	 * @see #getSerializer()
+	 * @generated
+	 */
+	EAttribute getSerializer_Extension();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Serializer#getContenttype <em>Contenttype</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Contenttype</em>'.
+	 * @see org.bimserver.models.store.Serializer#getContenttype()
+	 * @see #getSerializer()
+	 * @generated
+	 */
+	EAttribute getSerializer_Contenttype();
+
+	/**
 	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Serializer#getClassName <em>Class Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3984,6 +4024,22 @@ public interface StorePackage extends EPackage
 		 * @generated
 		 */
 		EAttribute SERIALIZER__DESCRIPTION = eINSTANCE.getSerializer_Description();
+
+		/**
+		 * The meta object literal for the '<em><b>Extension</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SERIALIZER__EXTENSION = eINSTANCE.getSerializer_Extension();
+
+		/**
+		 * The meta object literal for the '<em><b>Contenttype</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SERIALIZER__CONTENTTYPE = eINSTANCE.getSerializer_Contenttype();
 
 		/**
 		 * The meta object literal for the '<em><b>Class Name</b></em>' attribute feature.

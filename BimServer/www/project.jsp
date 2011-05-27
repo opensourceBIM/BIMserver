@@ -196,7 +196,7 @@ revisions tab</a> to add a first revision, or <a id="subprojecttablink"
 		if (kmzEnabled) {
 					String url = WebUtils.getWebServer(request.getRequestURL().toString());
 					String link = "http://" + url + getServletContext().getContextPath() + "/download?poid=" + project.getOid()
-							+ "&resultType=KMZ";
+							+ "&serializerName=KMZ";
 	%>
 	<tr>
 		<td class="first">Google Earth Link</td>
@@ -246,7 +246,7 @@ to go to the latest revision<br />
 <table >
 	<tr class="downloadframe">
 		<td>Download:</td>
-		<td><select name="resultType" id="detailsdownloadcheckoutselect">
+		<td><select name="serializerName" id="detailsdownloadcheckoutselect">
 			<%
 				for (SSerializer serializer : loginManager.getService().getEnabledSerializers()) {
 			%>
@@ -300,7 +300,7 @@ to go to the latest revision<br />
 	<tr class="downloadframe">
 		<td>Download:</td>
 		<td>
-			<select name="resultType">
+			<select name="serializerName">
 				<%
 				for (SSerializer serializer : loginManager.getService().getEnabledSerializers()) {
 				%>
@@ -588,7 +588,7 @@ subproject</a><br />
 		<tr class="downloadframe">
 		<td>
 		<input type="hidden" name="roid" value="<%=revision.getOid()%>" />
-		<select name="resultType" class="revisionsdownloadcheckoutselect">
+		<select name="serializerName" class="revisionsdownloadcheckoutselect">
 			<%
 				for (SSerializer serializer : loginManager.getService().getEnabledSerializers()) {
 			%>
@@ -689,7 +689,7 @@ open a specific revision to query other revisions<br />
 		<td>
 		<form method="get" action="<%=request.getContextPath()%>/download">
 		<input type="hidden" name="roid" value="<%=checkout.getRevisionId()%>" />
-		<select name="resultType">
+		<select name="serializerName">
 			<%
 				for (SSerializer serializer : loginManager.getService().getEnabledSerializers()) {
 			%>
@@ -885,7 +885,7 @@ open a specific revision to query other revisions<br />
 			$(this).hide();
 			downloadframe.find('button[value="Checkout"]').hide();
 			var roid = downloadframe.find('input[name="roid"]');
-			var resultType = downloadframe.find('select[name="resultType"]');
+			var serializerName = downloadframe.find('select[name="serializerName"]');
 			var zipbox = downloadframe.find('input[name="zip"]');
 			var zip = "";
 			if (zipbox.attr('checked')) {
@@ -894,9 +894,9 @@ open a specific revision to query other revisions<br />
 			var multiple = downloadframe.find('input[name="multiple"]');
 			var resultDiv = downloadframe.find(".downloadResult");
 			if (multiple.val() != "undefined") {
-				resultDiv.load("initiatedownload.jsp?roid=" + roid.val() + "&resultType=" + resultType.val() + zip + "&download=Download");
+				resultDiv.load("initiatedownload.jsp?roid=" + roid.val() + "&serializerName=" + serializerName.val() + zip + "&download=Download");
 			} else {
-				resultDiv.load("initiatedownload.jsp?roid=" + roid.val() + "&resultType=" + resultType.val() + zip + "&multiple=" + multiple.val() + "&download=Download");				
+				resultDiv.load("initiatedownload.jsp?roid=" + roid.val() + "&serializerName=" + serializerName.val() + zip + "&multiple=" + multiple.val() + "&download=Download");				
 			}
 		});
 		$('button[value="Checkout"]').click(function(){
@@ -904,14 +904,14 @@ open a specific revision to query other revisions<br />
 			$(this).hide();
 			downloadframe.find('button[value="Download"]').hide();
 			var roid = downloadframe.find('input[name="roid"]');
-			var resultType = downloadframe.find('select[name="resultType"]');
+			var serializerName = downloadframe.find('select[name="serializerName"]');
 			var zipbox = downloadframe.find('input[name="zip"]');
 			var zip = "";
 			if (zipbox.attr('checked')) {
 				zip = "&zip=on";
 			}
 			var resultDiv = downloadframe.find(".downloadResult");
-			resultDiv.load("initiatedownload.jsp?roid=" + roid.val() + "&resultType=" + resultType.val() + zip + "&checkout=Checkout");
+			resultDiv.load("initiatedownload.jsp?roid=" + roid.val() + "&serializerName=" + serializerName.val() + zip + "&checkout=Checkout");
 		});
 		
 		$("#compareajaxloader").hide();

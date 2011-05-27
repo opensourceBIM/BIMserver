@@ -34,6 +34,8 @@ import org.bimserver.models.store.Settings;
  * <ul>
  *   <li>{@link org.bimserver.models.store.Serializer#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.Serializer#getDescription <em>Description</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Serializer#getExtension <em>Extension</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Serializer#getContenttype <em>Contenttype</em>}</li>
  *   <li>{@link org.bimserver.models.store.Serializer#getClassName <em>Class Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.Serializer#isEnabled <em>Enabled</em>}</li>
  *   <li>{@link org.bimserver.models.store.Serializer#isDefaultSerializer <em>Default Serializer</em>}</li>
@@ -100,6 +102,58 @@ public interface Serializer extends IdEObject
 	 * @generated
 	 */
 	void setDescription(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Extension</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Extension</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Extension</em>' attribute.
+	 * @see #setExtension(String)
+	 * @see org.bimserver.models.store.StorePackage#getSerializer_Extension()
+	 * @model
+	 * @generated
+	 */
+	String getExtension();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.Serializer#getExtension <em>Extension</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Extension</em>' attribute.
+	 * @see #getExtension()
+	 * @generated
+	 */
+	void setExtension(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Contenttype</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Contenttype</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Contenttype</em>' attribute.
+	 * @see #setContenttype(String)
+	 * @see org.bimserver.models.store.StorePackage#getSerializer_Contenttype()
+	 * @model
+	 * @generated
+	 */
+	String getContenttype();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.Serializer#getContenttype <em>Contenttype</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Contenttype</em>' attribute.
+	 * @see #getContenttype()
+	 * @generated
+	 */
+	void setContenttype(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Class Name</b></em>' attribute.

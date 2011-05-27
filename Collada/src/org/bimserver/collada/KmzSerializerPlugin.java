@@ -15,12 +15,12 @@ public class KmzSerializerPlugin implements SerializerPlugin {
 
 	@Override
 	public String getDescription() {
-		return "KmzSerializerPlugin";
+		return "KmzSerializer";
 	}
 
 	@Override
 	public String getName() {
-		return "KmzSerializerPlugin";
+		return "KmzSerializer";
 	}
 
 	@Override
@@ -35,5 +35,15 @@ public class KmzSerializerPlugin implements SerializerPlugin {
 	@Override
 	public String getDefaultSerializerName() {
 		return "KMZ";
+	}
+
+	@Override
+	public String getDefaultContentType() {
+		return "application/vnd.google-earth.kmz";
+	}
+
+	@Override
+	public String getDefaultExtension() {
+		return "kmz";
 	}
 }

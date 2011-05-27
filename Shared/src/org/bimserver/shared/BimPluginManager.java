@@ -31,6 +31,7 @@ public class BimPluginManager {
 			pluginManager.addPluginsFrom(new File("../Collada/bin").toURI());
 			pluginManager.addPluginsFrom(new File("../Ifc/bin").toURI());
 			pluginManager.addPluginsFrom(new File("../O3d/bin").toURI());
+			pluginManager.addPluginsFrom(new File("../IFCEngine/bin").toURI());
 		} else {
 			try {
 				pluginManager.addPluginsFrom(new URI("classpath://*"));
