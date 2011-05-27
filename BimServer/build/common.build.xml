@@ -374,7 +374,7 @@
 			</fileset>
 		</copy>
 		<antcall target="Build"/>
-		<copy todir="builds/BuildWar/lib">
+		<copy todir="builds/BuildWar/WEB-INF/lib">
 			<fileset dir="builds/lib" />
 		</copy>
 		<jar jarfile="builds/BuildWar/WEB-INF/lib/bimserver.jar">
