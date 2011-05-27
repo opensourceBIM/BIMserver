@@ -27,6 +27,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.lang.Thread.UncaughtExceptionHandler;
 import java.net.MalformedURLException;
+import java.net.URI;
 import java.net.URL;
 import java.util.Date;
 import java.util.Enumeration;
@@ -169,8 +170,19 @@ public class ServerInitializer implements ServletContextListener {
 
 			Thread.setDefaultUncaughtExceptionHandler(uncaughtExceptionHandler);
 
-			pluginManager = new BimPluginManager(serverType == ServerType.DEV_ENVIRONMENT);
-			pluginManager.start();
+			pluginManager = new BimPluginManager();
+			if (serverType == ServerType.DEV_ENVIRONMENT) {
+				pluginManager.loadPlugins(new File("../BimServer/bin").toURI());
+				pluginManager.loadPlugins(new File("../CityGML/bin").toURI());
+				pluginManager.loadPlugins(new File("../Collada/bin").toURI());
+				pluginManager.loadPlugins(new File("../Ifc/bin").toURI());
+				pluginManager.loadPlugins(new File("../O3d/bin").toURI());
+				pluginManager.loadPlugins(new File("../IFCEngine/bin").toURI());
+			} else if (serverType == ServerType.DEPLOYED_WAR) {
+				pluginManager.loadPlugins(new URI("classpath://*"));
+			} else if (serverType == ServerType.STANDALONE_JAR) {
+				pluginManager.loadPlugins(new URI("classpath://*"));
+			}
 			
 			LOGGER.info("Detected server type: " + serverType + " (" + System.getProperty("os.name") + ", " + System.getProperty("sun.arch.data.model") + "bit)");
 			if (serverType == ServerType.UNKNOWN) {

@@ -99,7 +99,6 @@
 	<classpathentry exported="true" kind="lib" path="lib/cxf/xsdlib-2010.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/velocity-1.6.4.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/logging/slf4j-api-1.6.0.jar"/>
-	<classpathentry kind="lib" path="lib/jspf.core-1.0.1.jar"/>
 	<classpathentry kind="lib" path="lib/jetty/jetty-ajp-7.3.1.v20110307.jar"/>
 	<classpathentry kind="lib" path="lib/jetty/jetty-annotations-7.3.1.v20110307.jar"/>
 	<classpathentry kind="lib" path="lib/jetty/jetty-client-7.3.1.v20110307.jar"/>
@@ -124,5 +123,6 @@
 	<classpathentry kind="lib" path="lib/jetty/jsp/jetty-jsp-2.1-7.3.1.v20110307.jar"/>
 	<classpathentry kind="lib" path="lib/jetty/jsp/org.apache.jasper.glassfish_2.1.0.v201007080150.jar"/>
 	<classpathentry kind="lib" path="lib/jetty/jsp/org.apache.taglibs.standard.glassfish_1.2.0.v201004190952.jar"/>
+	<classpathentry kind="lib" path="lib/jspf.core-1.0.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

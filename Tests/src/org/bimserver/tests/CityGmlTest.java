@@ -27,7 +27,7 @@ public class CityGmlTest {
 		ResourceFetcher resourceFetcher = new LocalDevelopmentResourceFetcher();
 		FileFieldIgnoreMap fieldIgnoreMap = new FileFieldIgnoreMap(CollectionUtils.singleSet(Ifc2x3Package.eINSTANCE), resourceFetcher);
 		File nativeFolder = resourceFetcher.getFile("lib/" + File.separator + System.getProperty("sun.arch.data.model"));
-		BimPluginManager osgiManager = new BimPluginManager(true);
+		BimPluginManager osgiManager = new BimPluginManager();
 		IfcEngineFactory ifcEngineFactory = new IfcEngineFactory(SchemaLoader.DEFAULT_SCHEMA_FILE, nativeFolder, new File("tmp"), null, osgiManager.getIfcPlugins().iterator().next());
 		try {
 			IfcModel model = fastIfcFileReader.read(TestFile.AC11.getFile());

@@ -1,8 +1,6 @@
 package org.bimserver.shared;
 
-import java.io.File;
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.Collection;
 
 import net.xeoh.plugins.base.PluginManager;
@@ -17,28 +15,13 @@ import org.slf4j.LoggerFactory;
 public class BimPluginManager {
 	private static final Logger LOGGER = LoggerFactory.getLogger(BimPluginManager.class);
 	private PluginManager pluginManager;
-	private final boolean localDev;
 
-	public BimPluginManager(boolean localDev) {
-		this.localDev = localDev;
+	public BimPluginManager() {
+		pluginManager = PluginManagerFactory.createPluginManager();
 	}
 
-	public void start() {
-		pluginManager = PluginManagerFactory.createPluginManager();
-		if (localDev) {
-			pluginManager.addPluginsFrom(new File("../BimServer/bin").toURI());
-			pluginManager.addPluginsFrom(new File("../CityGML/bin").toURI());
-			pluginManager.addPluginsFrom(new File("../Collada/bin").toURI());
-			pluginManager.addPluginsFrom(new File("../Ifc/bin").toURI());
-			pluginManager.addPluginsFrom(new File("../O3d/bin").toURI());
-			pluginManager.addPluginsFrom(new File("../IFCEngine/bin").toURI());
-		} else {
-			try {
-				pluginManager.addPluginsFrom(new URI("classpath://*"));
-			} catch (URISyntaxException e) {
-				e.printStackTrace();
-			}
-		}
+	public void loadPlugins(URI uri) {
+		pluginManager.addPluginsFrom(uri);
 	}
 
 	public Collection<SerializerPlugin> getAllSerializerPlugins() {
