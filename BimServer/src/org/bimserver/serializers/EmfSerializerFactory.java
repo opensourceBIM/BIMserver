@@ -72,7 +72,7 @@ public class EmfSerializerFactory {
 
 	public void initSerializers() {
 		for (SerializerPlugin serializerPlugin : pluginManager.getAllSerializerPlugins()) {
-			this.serializerPlugins.put(serializerPlugin.getName(), serializerPlugin);
+			this.serializerPlugins.put(serializerPlugin.getClass().getName(), serializerPlugin);
 		}
 	}
 

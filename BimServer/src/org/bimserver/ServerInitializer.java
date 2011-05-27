@@ -304,7 +304,7 @@ public class ServerInitializer implements ServletContextListener {
 			Serializer found = session.querySingle(condition, Serializer.class, false);
 			if (found == null) {
 				Serializer serializer = StoreFactory.eINSTANCE.createSerializer();
-				serializer.setClassName(serializerPlugin.getName());
+				serializer.setClassName(serializerPlugin.getClass().getName());
 				serializer.setName(name);
 				serializer.setEnabled(false);
 				serializer.setDescription(serializerPlugin.getDescription());

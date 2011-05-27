@@ -70,7 +70,7 @@
 					if (data.progress == 100) {
 						clearInterval(downloadUpdateFunctionHandle);
 						$("#progressBar<%=longActionId%>").hide();
-						$("#progressBar<%=longActionId%>").parent().append("<a id='downloadlink' href='/download?longActionId=<%=longActionId%>&zip=<%=zip%>'><label id='downloadlinkclick' for='downloadlink'>Download</label></a>");
+//						$("#progressBar<%=longActionId%>").parent().append("<a id='downloadlink' href='/download?longActionId=<%=longActionId%>&zip=<%=zip%>'><label id='downloadlinkclick' for='downloadlink'>Download</label></a>");
 						window.location = '/download?longActionId=<%=longActionId%>&zip=<%=zip%>';
 					}
 				},

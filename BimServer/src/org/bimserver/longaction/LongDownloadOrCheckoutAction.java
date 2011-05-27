@@ -68,6 +68,9 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction<DownloadPa
 			checkoutResult.setRevisionNr(model.getRevisionNr());
 			try {
 				EmfSerializer serializer = emfSerializerFactory.create(project, user, model, downloadParameters);
+				if (serializer == null) {
+					throw new UserException("Error, no serializer found");
+				}
 				checkoutResult.setFile(new DataHandler(new EmfSerializerDataSource(serializer)));
 			} catch (SerializerException e) {
 				LOGGER.error("", e);
