@@ -869,7 +869,14 @@ open a specific revision to query other revisions<br />
 			    }
 			}});
 		};
-<% if (!project.getRevisions().isEmpty()) { %>
+<% 
+	boolean shouldRefresh = false;
+	for (long roid : project.getRevisions()) {
+		if (loginManager.getService().getRevision(roid).getState() != SCheckinState.DONE) {
+			shouldRefresh = true;
+		}
+	}
+	if (shouldRefresh) { %>
 		refreshFunction();
 		window.setInterval(refreshFunction, 1000);
 <% } %>
