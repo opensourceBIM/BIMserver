@@ -1,13 +1,10 @@
 package org.bimserver.citygml;
 
 import java.io.OutputStream;
-import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import javax.xml.bind.JAXBException;
 
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.file.writer.IfcStepSerializer;
@@ -48,7 +45,6 @@ import org.bimserver.plugins.serializers.BimModelSerializer;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.citygml4j.CityGMLContext;
-import org.citygml4j.builder.jaxb.JAXBBuilder;
 import org.citygml4j.factory.CityGMLFactory;
 import org.citygml4j.factory.GMLFactory;
 import org.citygml4j.factory.XALFactory;
@@ -80,12 +76,7 @@ import org.citygml4j.model.gml.geometry.primitives.Exterior;
 import org.citygml4j.model.gml.geometry.primitives.LinearRing;
 import org.citygml4j.model.gml.geometry.primitives.Polygon;
 import org.citygml4j.model.gml.geometry.primitives.SurfaceProperty;
-import org.citygml4j.model.module.citygml.CityGMLVersion;
 import org.citygml4j.model.xal.AddressDetails;
-import org.citygml4j.xml.io.CityGMLOutputFactory;
-import org.citygml4j.xml.io.reader.CityGMLReadException;
-import org.citygml4j.xml.io.writer.CityGMLWriteException;
-import org.citygml4j.xml.io.writer.CityGMLWriter;
 import org.eclipse.emf.ecore.EObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -131,14 +122,14 @@ public class CityGmlSerializer extends BimModelSerializer {
 	
 	public boolean write(OutputStream out) throws SerializerException {
 		if (getMode() == Mode.BODY) {
-			PrintWriter writer = new PrintWriter(out);
-			CityModel cityModel = citygml.createCityModel();
-			JAXBBuilder builder = null;
-			try {
-				builder = ctx.createJAXBBuilder();
-			} catch (JAXBException e1) {
-				e1.printStackTrace();
-			}
+//			PrintWriter writer = new PrintWriter(out);
+//			CityModel cityModel = citygml.createCityModel();
+//			JAXBBuilder builder = null;
+//			try {
+//				builder = ctx.createJAXBBuilder();
+//			} catch (JAXBException e1) {
+//				e1.printStackTrace();
+//			}
 //			for (IfcProject ifcProject : ifcDatabase.getAll(IfcProject.class)) {
 //				for (IfcRelDecomposes ifcRelDecomposes : ifcProject.getIsDecomposedBy()) {
 //					for (IfcObjectDefinition ifcObjectDefinition : ifcRelDecomposes.getRelatedObjects()) {
@@ -158,15 +149,15 @@ public class CityGmlSerializer extends BimModelSerializer {
 //					}
 //				}
 //			}
-			try {
-				CityGMLOutputFactory outputFactory = builder.createCityGMLOutputFactory(CityGMLVersion.v1_0_0);
-				CityGMLWriter cityGmlWriter = outputFactory.createCityGMLWriter(writer);
-
-				cityGmlWriter.setPrefixes(CityGMLVersion.v1_0_0);
-				cityGmlWriter.setSchemaLocations(CityGMLVersion.v1_0_0);
-				cityGmlWriter.setIndentString("  ");
-				cityGmlWriter.write(cityModel);
-				cityGmlWriter.close();	
+//			try {
+//				CityGMLOutputFactory outputFactory = builder.createCityGMLOutputFactory(CityGMLVersion.v1_0_0);
+//				CityGMLWriter cityGmlWriter = outputFactory.createCityGMLWriter(writer);
+//
+//				cityGmlWriter.setPrefixes(CityGMLVersion.v1_0_0);
+//				cityGmlWriter.setSchemaLocations(CityGMLVersion.v1_0_0);
+//				cityGmlWriter.setIndentString("  ");
+//				cityGmlWriter.write(cityModel);
+//				cityGmlWriter.close();	
 
 				
 //				JAXBMarshaller marshaller = ctx.createJAXBBuilder().createJAXBMarshaller();
@@ -182,12 +173,12 @@ public class CityGmlSerializer extends BimModelSerializer {
 //				JAXBElement<?> cityModelElement = citygml.cityGML2jaxb(cityModel);
 //				
 //				marshaller.marshal(cityModelElement, writer);
-			} catch (CityGMLReadException e) {
-				e.printStackTrace();
-			} catch (CityGMLWriteException e) {
-				e.printStackTrace();
-			}
-			writer.flush();
+//			} catch (CityGMLReadException e) {
+//				e.printStackTrace();
+//			} catch (CityGMLWriteException e) {
+//				e.printStackTrace();
+//			}
+//			writer.flush();
 			setMode(Mode.FINISHED);
 			ifcEngine.close();
 			return true;
