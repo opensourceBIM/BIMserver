@@ -24,6 +24,7 @@ import org.bimserver.plugins.ifcengine.IfcEngineFactory;
 import org.bimserver.plugins.schema.SchemaDefinition;
 import org.bimserver.plugins.serializers.EmfSerializer;
 import org.bimserver.plugins.serializers.PackageDefinition;
+import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.shared.BimPluginManager;
@@ -93,7 +94,15 @@ public class EmfSerializerFactory {
 				SerializerPlugin serializerPlugin = serializerPlugins.get(found.getClassName());
 				if (serializerPlugin != null) {
 					EmfSerializer serializer = serializerPlugin.createSerializer();
-					serializer.init(model, schemaDefinition, fieldIgnoreMap, ifcEngineFactory);
+					ProjectInfo projectInfo = new ProjectInfo();
+					projectInfo.setName(project.getName());
+					projectInfo.setDescription(project.getDescription());
+					projectInfo.setX(project.getGeoTag().getX());
+					projectInfo.setY(project.getGeoTag().getY());
+					projectInfo.setZ(project.getGeoTag().getZ());
+					projectInfo.setDirectionAngle(project.getGeoTag().getDirectionAngle());
+					projectInfo.setAuthorName(user.getName());
+					serializer.init(model, schemaDefinition, fieldIgnoreMap, ifcEngineFactory, projectInfo);
 					return serializer;
 				}
 			}

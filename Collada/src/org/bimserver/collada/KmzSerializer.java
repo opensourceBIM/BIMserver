@@ -6,12 +6,12 @@ import java.io.PrintWriter;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
-import org.bimserver.models.store.Project;
 import org.bimserver.plugins.ifcengine.IfcEngineFactory;
 import org.bimserver.plugins.ignoreproviders.IgnoreProvider;
 import org.bimserver.plugins.schema.Schema;
 import org.bimserver.plugins.serializers.BimModelSerializer;
 import org.bimserver.plugins.serializers.IfcModelInterface;
+import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,14 +20,13 @@ public class KmzSerializer extends BimModelSerializer {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(KmzSerializer.class);
 	private ColladaSerializer ifcToCollada;
-	private Project project;
 
 	@Override
-	public void init(IfcModelInterface model, Schema schema, IgnoreProvider ignoreProvider, IfcEngineFactory ifcEngineFactory) throws SerializerException {
-		super.init(model, schema, ignoreProvider, ifcEngineFactory);
+	public void init(IfcModelInterface model, Schema schema, IgnoreProvider ignoreProvider, IfcEngineFactory ifcEngineFactory, ProjectInfo projectInfo) throws SerializerException {
+		super.init(model, schema, ignoreProvider, ifcEngineFactory, projectInfo);
 		try {
 			ifcToCollada = new ColladaSerializer();
-			ifcToCollada.init(model, schema, ignoreProvider, ifcEngineFactory);
+			ifcToCollada.init(model, schema, ignoreProvider, ifcEngineFactory, projectInfo);
 		} catch (SerializerException e) {
 			throw new SerializerException(e);
 		}
@@ -67,11 +66,11 @@ public class KmzSerializer extends BimModelSerializer {
 		writer.println("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
 		writer.println("<kml xmlns=\"http://earth.google.com/kml/2.1\">");
 		writer.println("<Placemark>");
-		writer.println("	<name>" + project.getName() + "</name>");
-		writer.println("	<description>" + project.getDescription() + "</description>");
+		writer.println("	<name>" + getProjectInfo().getName() + "</name>");
+		writer.println("	<description>" + getProjectInfo().getDescription() + "</description>");
 		writer.println("	<LookAt>");
-		writer.println("		<longitude>" + project.getGeoTag().getX() + "</longitude>");
-		writer.println("		<latitude>" + project.getGeoTag().getY() + "</latitude>");
+		writer.println("		<longitude>" + getProjectInfo().getX() + "</longitude>");
+		writer.println("		<latitude>" + getProjectInfo().getY() + "</latitude>");
 		writer.println("		<altitude>0</altitude>");
 		writer.println("		<heading>-27.70337734057933</heading>");
 		writer.println("		<tilt>65.74454495876547</tilt>");
@@ -80,12 +79,12 @@ public class KmzSerializer extends BimModelSerializer {
 		writer.println("	<Model id=\"model_4\">");
 		writer.println("		<altitudeMode>relativeToGround</altitudeMode>");
 		writer.println("		<Location>");
-		writer.println("			<longitude>" + project.getGeoTag().getX() + "</longitude>");
-		writer.println("			<latitude>" + project.getGeoTag().getY() + "</latitude>");
-		writer.println("			<altitude>" + project.getGeoTag().getZ() + "</altitude>");
+		writer.println("			<longitude>" + getProjectInfo().getX() + "</longitude>");
+		writer.println("			<latitude>" + getProjectInfo().getY() + "</latitude>");
+		writer.println("			<altitude>" + getProjectInfo().getZ() + "</altitude>");
 		writer.println("		</Location>");
 		writer.println("		<Orientation>");
-		writer.println("			<heading>" + project.getGeoTag().getDirectionAngle() + "</heading>");
+		writer.println("			<heading>" + getProjectInfo().getDirectionAngle() + "</heading>");
 		writer.println("			<tilt>0</tilt>");
 		writer.println("			<roll>0</roll>");
 		writer.println("		</Orientation>");

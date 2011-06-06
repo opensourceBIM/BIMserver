@@ -17,6 +17,7 @@ import org.bimserver.plugins.ignoreproviders.IgnoreProvider;
 import org.bimserver.plugins.schema.Schema;
 import org.bimserver.plugins.serializers.BimModelSerializer;
 import org.bimserver.plugins.serializers.IfcModelInterface;
+import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,8 +29,8 @@ public class XsltSerializer extends BimModelSerializer {
 	private XsltParameter[] parameters;
 
 	@Override
-	public void init(IfcModelInterface model, Schema schema, IgnoreProvider ignoreProvider, IfcEngineFactory ifcEngineFactory) throws SerializerException {
-		super.init(model, schema, ignoreProvider, ifcEngineFactory);
+	public void init(IfcModelInterface model, Schema schema, IgnoreProvider ignoreProvider, IfcEngineFactory ifcEngineFactory, ProjectInfo projectInfo) throws SerializerException {
+		super.init(model, schema, ignoreProvider, ifcEngineFactory, projectInfo);
 	}
 
 	@Override
@@ -40,7 +41,7 @@ public class XsltSerializer extends BimModelSerializer {
 	@Override
 	protected boolean write(OutputStream outputStream) throws SerializerException {
 		IfcXmlSerializer ifcXmlSerializer = new IfcXmlSerializer();
-		ifcXmlSerializer.init(model, getSchema(), getIgnoreProvider(), getIfcEngineFactory());
+		ifcXmlSerializer.init(model, getSchema(), getIgnoreProvider(), getIfcEngineFactory(), null);
 		TransformerFactory factory = TransformerFactory.newInstance();
 
 		try {

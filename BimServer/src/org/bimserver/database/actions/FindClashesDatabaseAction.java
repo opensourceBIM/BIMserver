@@ -97,7 +97,7 @@ public class FindClashesDatabaseAction extends BimDatabaseAction<Set<? extends C
 		}
 		IfcStepSerializer ifcStepSerializer = new IfcStepSerializer();
 		try {
-			ifcStepSerializer.init(newModel, schema, fieldIgnoreMap, ifcEngineFactory);
+			ifcStepSerializer.init(newModel, schema, fieldIgnoreMap, ifcEngineFactory, null);
 			byte[] bytes = ifcStepSerializer.getBytes();
 			IfcEngine failSafeIfcEngine = ifcEngineFactory.createIfcEngine();
 			try {

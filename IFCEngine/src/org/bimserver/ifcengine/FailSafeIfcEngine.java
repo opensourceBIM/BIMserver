@@ -72,10 +72,14 @@ public class FailSafeIfcEngine implements IfcEngine {
 			command.append(File.pathSeparator);
 			if (classPath != null) {
 				File file = new File(classPath);
-				for (File subFile : file.listFiles()) {
-					if (subFile.getName().endsWith(".jar")) {
-						command.append(subFile.getAbsolutePath() + File.pathSeparator);
+				if (file.isDirectory()) {
+					for (File subFile : file.listFiles()) {
+						if (subFile.getName().endsWith(".jar")) {
+							command.append(subFile.getAbsolutePath() + File.pathSeparator);
+						}
 					}
+				} else {
+					command.append(classPath + File.pathSeparator);
 				}
 			}
 			command.append("\"");
