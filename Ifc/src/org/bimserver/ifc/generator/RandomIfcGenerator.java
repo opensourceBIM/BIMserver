@@ -52,7 +52,7 @@ public class RandomIfcGenerator {
 		SchemaDefinition schema = SchemaLoader.loadDefaultSchema();
 		IfcStepSerializer serializer = new IfcStepSerializer();
 		try {
-			serializer.init(ifcModel, schema, null, null);
+			serializer.init(ifcModel, schema, null, null, null);
 			serializer.writeToFile(new File("test.ifc"));
 		} catch (SerializerException e) {
 			e.printStackTrace();

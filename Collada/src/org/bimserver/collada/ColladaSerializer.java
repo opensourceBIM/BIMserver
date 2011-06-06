@@ -57,9 +57,7 @@ import org.bimserver.models.ifc2x3.IfcUnitEnum;
 import org.bimserver.models.ifc2x3.IfcWall;
 import org.bimserver.models.ifc2x3.IfcWallStandardCase;
 import org.bimserver.models.ifc2x3.IfcWindow;
-import org.bimserver.models.store.Project;
 import org.bimserver.models.store.SIPrefix;
-import org.bimserver.models.store.User;
 import org.bimserver.plugins.ifcengine.IfcEngine;
 import org.bimserver.plugins.ifcengine.IfcEngineException;
 import org.bimserver.plugins.ifcengine.IfcEngineFactory;
@@ -71,6 +69,7 @@ import org.bimserver.plugins.ignoreproviders.IgnoreProvider;
 import org.bimserver.plugins.schema.Schema;
 import org.bimserver.plugins.serializers.BimModelSerializer;
 import org.bimserver.plugins.serializers.IfcModelInterface;
+import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -81,14 +80,12 @@ public class ColladaSerializer extends BimModelSerializer {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ColladaSerializer.class);
 	private IfcEngine ifcEngine;
 	private Map<String, Set<String>> converted = new HashMap<String, Set<String>>();
-	private Project project;
-	private User user;
 	private SIPrefix lengthUnitPrefix;
 	private List<String> surfaceStyleIds;
 
 	@Override
-	public void init(IfcModelInterface model, Schema schema, IgnoreProvider ignoreProvider, IfcEngineFactory ifcEngineFactory) throws SerializerException {
-		super.init(model, schema, ignoreProvider, ifcEngineFactory);
+	public void init(IfcModelInterface model, Schema schema, IgnoreProvider ignoreProvider, IfcEngineFactory ifcEngineFactory, ProjectInfo projectInfo) throws SerializerException {
+		super.init(model, schema, ignoreProvider, ifcEngineFactory, projectInfo);
 		try {
 			this.ifcEngine = ifcEngineFactory.createIfcEngine();
 		} catch (IfcEngineException e) {
@@ -140,9 +137,9 @@ public class ColladaSerializer extends BimModelSerializer {
 	private void writeAssets(PrintWriter out) {
 		out.println("    <asset>");
 		out.println("        <contributor>");
-		out.println("            <author>" + user.getName() + "</author>");
+		out.println("            <author>" + getProjectInfo().getAuthorName() + "</author>");
 		out.println("            <authoring_tool>BIMserver</authoring_tool>");
-		out.println("            <comments>" + project.getDescription() + "</comments>");
+		out.println("            <comments>" + getProjectInfo().getDescription() + "</comments>");
 		out.println("            <copyright>Copyright</copyright>");
 		out.println("        </contributor>");
 		out.println("        <created>2006-06-21T21:23:22Z</created>");
@@ -331,7 +328,7 @@ public class ColladaSerializer extends BimModelSerializer {
 		convertToSubset(ifcRootObject.eClass(), ifcRootObject, ifcModel, new HashMap<EObject, EObject>());
 		IfcStepSerializer ifcSerializer = new IfcStepSerializer();
 		try {
-			ifcSerializer.init(ifcModel, getSchema(), getIgnoreProvider(), getIfcEngineFactory());
+			ifcSerializer.init(ifcModel, getSchema(), getIgnoreProvider(), getIfcEngineFactory(), null);
 			IfcEngineModel model = ifcEngine.openModel(ifcSerializer.getBytes());
 			try {
 				model.setPostProcessing(true);

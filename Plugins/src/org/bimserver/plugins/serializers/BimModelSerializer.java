@@ -18,8 +18,8 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 
 public abstract class BimModelSerializer extends EmfSerializer {
 
-	public void init(IfcModelInterface model, Schema schema, IgnoreProvider ignoreProvider, IfcEngineFactory ifcEngineFactory) throws SerializerException {
-		super.init(model, schema, ignoreProvider, ifcEngineFactory);
+	public void init(IfcModelInterface model, Schema schema, IgnoreProvider ignoreProvider, IfcEngineFactory ifcEngineFactory, ProjectInfo projectInfo) throws SerializerException {
+		super.init(model, schema, ignoreProvider, ifcEngineFactory, projectInfo);
 	}
 
 	@SuppressWarnings("unchecked")

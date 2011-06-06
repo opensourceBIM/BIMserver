@@ -353,7 +353,7 @@ public class IfcVisualiser extends JFrame {
 	public void createTriangles(IfcRoot ifcRootObject, IfcModel ifcModel, TransformGroup buildingTransformGroup) {
 		IfcStepSerializer ifcSerializer = new IfcStepSerializer();
 		try {
-			ifcSerializer.init(ifcModel, schema, fieldIgnoreMap, ifcEngineFactory);
+			ifcSerializer.init(ifcModel, schema, fieldIgnoreMap, ifcEngineFactory, null);
 			IfcEngineModel model = ifcEngine.openModel(ifcSerializer.getBytes());
 			try {
 				model.setPostProcessing(true);

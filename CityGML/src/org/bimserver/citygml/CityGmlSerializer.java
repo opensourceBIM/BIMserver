@@ -43,6 +43,7 @@ import org.bimserver.plugins.ignoreproviders.IgnoreProvider;
 import org.bimserver.plugins.schema.Schema;
 import org.bimserver.plugins.serializers.BimModelSerializer;
 import org.bimserver.plugins.serializers.IfcModelInterface;
+import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.citygml4j.CityGMLContext;
 import org.citygml4j.factory.CityGMLFactory;
@@ -94,8 +95,8 @@ public class CityGmlSerializer extends BimModelSerializer {
 	private CityGMLContext ctx;
 	
 	@Override
-	public void init(IfcModelInterface ifcModel, Schema schema, IgnoreProvider ignoreProvider, IfcEngineFactory ifcEngineFactory) throws SerializerException {
-		super.init(ifcModel, schema, ignoreProvider, ifcEngineFactory);
+	public void init(IfcModelInterface ifcModel, Schema schema, IgnoreProvider ignoreProvider, IfcEngineFactory ifcEngineFactory, ProjectInfo projectInfo) throws SerializerException {
+		super.init(ifcModel, schema, ignoreProvider, ifcEngineFactory, projectInfo);
 		try {
 			this.ifcEngine = ifcEngineFactory.createIfcEngine();
 		} catch (IfcEngineException e) {
@@ -593,7 +594,7 @@ public class CityGmlSerializer extends BimModelSerializer {
 		IfcModel ifcModel = new IfcModel();
 		convertToSubset(ifcRootObject.eClass(), ifcRootObject, ifcModel, new HashMap<EObject, EObject>());
 		IfcStepSerializer ifcSerializer = new IfcStepSerializer();
-		ifcSerializer.init(ifcModel, getSchema(), getIgnoreProvider(), getIfcEngineFactory());
+		ifcSerializer.init(ifcModel, getSchema(), getIgnoreProvider(), getIfcEngineFactory(), null);
 		try {
 			IfcEngineModel model = ifcEngine.openModel(ifcSerializer.getBytes());
 			try {

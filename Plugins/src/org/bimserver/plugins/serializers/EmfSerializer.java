@@ -42,7 +42,8 @@ public abstract class EmfSerializer {
 	private Schema schema;
 	private IgnoreProvider ignoreProvider;
 	private IfcEngineFactory ifcEngineFactory;
-	
+	private ProjectInfo projectInfo;
+
 	protected static enum Mode {
 		HEADER,
 		BODY,
@@ -50,14 +51,19 @@ public abstract class EmfSerializer {
 		FINISHED
 	}
 
-	public void init(IfcModelInterface model, Schema schema, IgnoreProvider ignoreProvider, IfcEngineFactory ifcEngineFactory) throws SerializerException {
+	public void init(IfcModelInterface model, Schema schema, IgnoreProvider ignoreProvider, IfcEngineFactory ifcEngineFactory, ProjectInfo projectInfo) throws SerializerException {
 		this.model = model;
+		this.projectInfo = projectInfo;
 		this.setIfcEngineFactory(ifcEngineFactory);
 		this.setIgnoreProvider(ignoreProvider);
 		this.setSchema(schema);
 		reset();
 	}
 
+	public ProjectInfo getProjectInfo() {
+		return projectInfo;
+	}
+	
 	protected Mode getMode() {
 		return mode;
 	}

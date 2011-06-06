@@ -35,6 +35,7 @@ import org.bimserver.plugins.ignoreproviders.IgnoreProvider;
 import org.bimserver.plugins.schema.Schema;
 import org.bimserver.plugins.serializers.BimModelSerializer;
 import org.bimserver.plugins.serializers.IfcModelInterface;
+import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.codehaus.jettison.json.JSONException;
 import org.eclipse.emf.ecore.EObject;
@@ -53,8 +54,8 @@ public class O3dTgzSerializer extends BimModelSerializer {
 	private BinaryVertexFile binaryVertexFile = new BinaryVertexFile();
 
 	@Override
-	public void init(IfcModelInterface model, Schema schema, IgnoreProvider ignoreProvider, IfcEngineFactory ifcEngineFactory) throws SerializerException {
-		super.init(model, schema, ignoreProvider, ifcEngineFactory);
+	public void init(IfcModelInterface model, Schema schema, IgnoreProvider ignoreProvider, IfcEngineFactory ifcEngineFactory, ProjectInfo projectInfo) throws SerializerException {
+		super.init(model, schema, ignoreProvider, ifcEngineFactory, projectInfo);
 		try {
 			this.ifcEngine = ifcEngineFactory.createIfcEngine();
 		} catch (IfcEngineException e) {
@@ -230,7 +231,7 @@ public class O3dTgzSerializer extends BimModelSerializer {
 		IfcModel ifcModel = new IfcModel();
 		convertToSubset(ifcRootObject.eClass(), ifcRootObject, ifcModel, new HashMap<EObject, EObject>());
 		IfcStepSerializer ifcSerializer = new IfcStepSerializer();
-		ifcSerializer.init(ifcModel, getSchema(), getIgnoreProvider(), getIfcEngineFactory());
+		ifcSerializer.init(ifcModel, getSchema(), getIgnoreProvider(), getIfcEngineFactory(), null);
 		BinaryIndexBuffer binaryIndexBuffer = new BinaryIndexBuffer();
 		BinaryVertexBuffer binaryVertexBuffer = new BinaryVertexBuffer();
 		IfcEngineModel model = ifcEngine.openModel(ifcSerializer.getBytes());

@@ -178,6 +178,7 @@ public class ServerInitializer implements ServletContextListener {
 				pluginManager.loadPlugins(new File("../Ifc/bin").toURI());
 				pluginManager.loadPlugins(new File("../O3d/bin").toURI());
 				pluginManager.loadPlugins(new File("../IFCEngine/bin").toURI());
+				
 			} else if (serverType == ServerType.DEPLOYED_WAR) {
 				pluginManager.loadPlugins(new URI("classpath://*"));
 			} else if (serverType == ServerType.STANDALONE_JAR) {
@@ -218,6 +219,23 @@ public class ServerInitializer implements ServletContextListener {
 			ServerInfo.init(bimDatabase, settingsManager);
 			ServerInfo.update();
 
+			File nativeFolder = resourceFetcher.getFile("lib/" + File.separator + System.getProperty("sun.arch.data.model"));
+			File schemaFile = resourceFetcher.getFile("IFC2X3_FINAL.exp").getAbsoluteFile();
+			LOGGER.info("Using " + schemaFile + " as engine schema");
+			String classPath = null;
+			if (serverType == ServerType.DEPLOYED_WAR) {
+				// Because servers like Tomcat use complex classloading
+				// constructions, the classpath system property gives not enough
+				// info about the used classpaths, so here we tell the
+				// IfcEngineFactory to use all jar files in the context
+				classPath = servletContext.getRealPath("/") + "WEB-INF" + File.separator + "lib";
+			} else if (serverType == ServerType.DEV_ENVIRONMENT) {
+				classPath = "../IFCEngine/bin";
+			}
+			if (pluginManager.getIfcPlugins().size() > 0) {
+				ifcEngineFactory = new IfcEngineFactory(schemaFile, nativeFolder, new File(homeDir, "tmp"), classPath, pluginManager.getIfcPlugins().iterator().next());
+			}
+
 			emfSerializerFactory = EmfSerializerFactory.getInstance();
 
 			version = VersionChecker.init(resourceFetcher).getLocalVersion();
@@ -236,22 +254,6 @@ public class ServerInitializer implements ServletContextListener {
 			}
 
 			MailSystem mailSystem = new MailSystem(settingsManager);
-
-			File schemaFile = resourceFetcher.getFile("IFC2X3_FINAL.exp").getAbsoluteFile();
-			LOGGER.info("Using " + schemaFile + " as engine schema");
-
-			File nativeFolder = resourceFetcher.getFile("lib/" + File.separator + System.getProperty("sun.arch.data.model"));
-			String classPath = null;
-			if (serverType == ServerType.DEPLOYED_WAR) {
-				// Because servers like Tomcat use complex classloading
-				// constructions, the classpath system property gives not enough
-				// info about the used classpaths, so here we tell the
-				// IfcEngineFactory to use all jar files in the context
-				classPath = servletContext.getRealPath("/") + "WEB-INF" + File.separator + "lib";
-			}
-			if (pluginManager.getIfcPlugins().size() > 0) {
-				ifcEngineFactory = new IfcEngineFactory(schemaFile, nativeFolder, new File(homeDir, "tmp"), classPath, pluginManager.getIfcPlugins().iterator().next());
-			}
 
 			CompileServlet.database = bimDatabase;
 			CompileServlet.settingsManager = settingsManager;

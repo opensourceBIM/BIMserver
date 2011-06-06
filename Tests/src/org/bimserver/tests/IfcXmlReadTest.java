@@ -28,7 +28,7 @@ public class IfcXmlReadTest {
 			
 			File outFile = new File("out.ifc");
 			IfcStepSerializer ifcStepSerializer = new IfcStepSerializer();
-			ifcStepSerializer.init(model, schema, null, null);
+			ifcStepSerializer.init(model, schema, null, null, null);
 			try {
 				ifcStepSerializer.writeToFile(outFile);
 			} catch (SerializerException e) {

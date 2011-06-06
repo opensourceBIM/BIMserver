@@ -5,11 +5,6 @@
 			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="IFCEngine/lib/64"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry exported="true" kind="lib" path="lib/jna.jar" sourcepath="C:/Java/JNA/src">
-		<attributes>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="IFCEngine/lib/64"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/commons/commons-io-1.4.jar"/>
 	<classpathentry kind="src" path=".apt_generated">
 		<attributes>
@@ -18,5 +13,6 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="/BimServer/lib/jna.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
