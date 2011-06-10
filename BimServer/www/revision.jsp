@@ -72,7 +72,7 @@
 	</tr>
 	<tr>
 		<td class="first">Project</td>
-		<td><a href="project.jsp?id=<%=revision.getProjectId()%>"><%=project.getName()%></a></td>
+		<td><a href="project.jsp?poid=<%=revision.getProjectId()%>"><%=project.getName()%></a></td>
 	</tr>
 	<tr>
 		<td class="first">User</td>
