@@ -15,7 +15,7 @@ public class CityGmlSerializerPlugin implements SerializerPlugin {
 
 	@Override
 	public String getName() {
-		return "CityGmlSerializer";
+		return getClass().getName();
 	}
 
 	@Override

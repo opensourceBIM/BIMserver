@@ -12,7 +12,7 @@ public class ColladaSerializerPlugin implements SerializerPlugin {
 
 	@Override
 	public String getName() {
-		return "ColladaSerializer";
+		return getClass().getName();
 	}
 
 	@Override

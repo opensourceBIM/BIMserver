@@ -10,7 +10,7 @@ public class CppIfcEnginePlugin implements IfcEnginePlugin {
 
 	@Override
 	public String getName() {
-		return "CppIfcEnginePlugin";
+		return getClass().getName();
 	}
 	
 	@Override

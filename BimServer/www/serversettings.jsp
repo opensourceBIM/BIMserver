@@ -15,12 +15,8 @@
 <%@page import="org.bimserver.shared.ServiceInterface"%>
 <%@page import="org.bimserver.shared.UserException"%>
 <%@page import="org.bimserver.interfaces.objects.SMergeIdentifier"%>
-
-<%@page import="org.bimserver.interfaces.objects.SSerializer"%><div class="sidebar">
-<ul>
-	<li><a href="<%=getServletContext().getContextPath()%>/migrations.jsp">Migrations</a></li>
-</ul>
-</div>
+<%@page import="org.bimserver.interfaces.objects.SSerializer"%>
+<jsp:include page="serversettingsmenu.jsp"/>
 <div class="content">
 <%
 	ServiceInterface service = loginManager.getService();
@@ -45,7 +41,7 @@
 				service.setSettingMergeIdentifier(SMergeIdentifier.valueOf(request.getParameter("mergeIdentifier")));
 				String enabledExportTypes = "";
 				Set<String> enabledTypes = new HashSet<String>();
-				for (SSerializer serializer : loginManager.getService().getAllSerializers()) {
+				for (SSerializer serializer : loginManager.getService().getAllSerializers(true)) {
 					if (request.getParameter(serializer.getName()) != null) {
 						enabledTypes.add(serializer.getName());
 					}

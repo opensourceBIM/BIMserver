@@ -1,8 +1,6 @@
 package org.bimserver.serializers;
 
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
 import org.bimserver.SettingsManager;
@@ -23,7 +21,6 @@ import org.bimserver.models.store.User;
 import org.bimserver.plugins.ifcengine.IfcEngineFactory;
 import org.bimserver.plugins.schema.SchemaDefinition;
 import org.bimserver.plugins.serializers.EmfSerializer;
-import org.bimserver.plugins.serializers.PackageDefinition;
 import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
@@ -44,8 +41,6 @@ public class EmfSerializerFactory {
 	private IfcEngineFactory ifcEngineFactory;
 	private ResourceFetcher resourceFetcher;
 	private SettingsManager settingsManager;
-
-	private Map<String, SerializerPlugin> serializerPlugins = new HashMap<String, SerializerPlugin>();
 
 	private PluginManager pluginManager;
 
@@ -69,15 +64,9 @@ public class EmfSerializerFactory {
 		this.bimDatabase = bimDatabase;
 	}
 
-	public void initSerializers() {
-		for (SerializerPlugin serializerPlugin : pluginManager.getAllSerializerPlugins()) {
-			this.serializerPlugins.put(serializerPlugin.getClass().getName(), serializerPlugin);
-		}
-	}
-
 	public Set<String> getAllSerializerClassNames() {
 		Set<String> classNames = new HashSet<String>();
-		for (SerializerPlugin serializerPlugin : serializerPlugins.values()) {
+		for (SerializerPlugin serializerPlugin : pluginManager.getAllSerializerPlugins(true)) {
 			classNames.add(serializerPlugin.getName());
 		}
 		return classNames;
@@ -89,7 +78,7 @@ public class EmfSerializerFactory {
 			Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getSerializer_Name(), new StringLiteral(downloadParameters.getSerializerName()));
 			Serializer found = session.querySingle(condition, Serializer.class, false);
 			if (found != null) {
-				SerializerPlugin serializerPlugin = serializerPlugins.get(found.getClassName());
+				SerializerPlugin serializerPlugin = (SerializerPlugin) pluginManager.getPlugin(found.getClassName(), true);
 				if (serializerPlugin != null) {
 					EmfSerializer serializer = serializerPlugin.createSerializer();
 					ProjectInfo projectInfo = new ProjectInfo();

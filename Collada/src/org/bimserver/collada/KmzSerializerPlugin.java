@@ -17,7 +17,7 @@ public class KmzSerializerPlugin implements SerializerPlugin {
 
 	@Override
 	public String getName() {
-		return "KmzSerializer";
+		return getClass().getName();
 	}
 
 	@Override

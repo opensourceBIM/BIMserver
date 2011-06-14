@@ -70,7 +70,6 @@ public class SettingsServlet extends HttpServlet {
 									Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
 									SSettings sSettings = (SSettings) unmarshaller.unmarshal(item.getInputStream());
 									ServerInitializer.getSettingsManager().setSettings(Service.convert(sSettings, Settings.class, null));
-									EmfSerializerFactory.getInstance().initSerializers();
 									response.sendRedirect(getServletContext().getContextPath() + "/settings.jsp?msg=settingsfileuploadok");
 									return;
 								} else if (fieldName.equals("ignorefile")) {

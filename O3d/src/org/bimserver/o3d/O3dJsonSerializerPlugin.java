@@ -17,7 +17,7 @@ public class O3dJsonSerializerPlugin implements SerializerPlugin {
 
 	@Override
 	public String getName() {
-		return "O3dJsonSerializer";
+		return getClass().getName();
 	}
 
 	@Override
