@@ -17,9 +17,9 @@ import javax.swing.tree.TreeNode;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.SchemaLoader;
-import org.bimserver.ifc.file.reader.IfcStepDeserializer;
-import org.bimserver.ifc.file.reader.IncorrectIfcFileException;
-import org.bimserver.ifc.file.writer.IfcStepSerializer;
+import org.bimserver.ifc.step.deserializer.IfcStepDeserializer;
+import org.bimserver.ifc.step.deserializer.IncorrectIfcFileException;
+import org.bimserver.ifc.step.serializer.IfcStepSerializer;
 import org.bimserver.merging.IncrementingOidProvider;
 import org.bimserver.merging.RevisionMerger;
 import org.bimserver.models.ifc2x3.IfcProject;
@@ -34,7 +34,8 @@ public class Visualise extends JFrame {
 
 	public static void main(String[] args) {
 		SchemaDefinition schema = SchemaLoader.loadDefaultSchema();
-		IfcStepDeserializer deserializer = new IfcStepDeserializer(schema);
+		IfcStepDeserializer deserializer = new IfcStepDeserializer();
+		deserializer.init(schema);
 		try {
 			IfcModel model1 = deserializer.read(TestFile.EXPORT1.getFile());
 			IfcModel model1b = deserializer.read(TestFile.EXPORT1.getFile());

@@ -47,9 +47,9 @@ import org.bimserver.ifc.FieldIgnoreMap;
 import org.bimserver.ifc.FileFieldIgnoreMap;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.SchemaLoader;
-import org.bimserver.ifc.file.reader.IfcStepDeserializer;
-import org.bimserver.ifc.file.reader.IncorrectIfcFileException;
-import org.bimserver.ifc.file.writer.IfcStepSerializer;
+import org.bimserver.ifc.step.deserializer.IfcStepDeserializer;
+import org.bimserver.ifc.step.deserializer.IncorrectIfcFileException;
+import org.bimserver.ifc.step.serializer.IfcStepSerializer;
 import org.bimserver.models.ifc2x3.Ifc2x3Factory;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcBeam;
@@ -271,7 +271,8 @@ public class IfcVisualiser extends JFrame {
 
 	private void createSceneGraph() {
 		buildingTransformGroup = new TransformGroup();
-		IfcStepDeserializer deserializer = new IfcStepDeserializer(schema);
+		IfcStepDeserializer deserializer = new IfcStepDeserializer();
+		deserializer.init(schema);
 		try {
 //			deserializer.read(new File("../TestData/data/export1.ifc"));
 			deserializer.read(new File("../TestData/data/AC11-Institute-Var-2-IFC.ifc"));

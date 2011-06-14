@@ -7,8 +7,8 @@ import java.util.TreeMap;
 import org.bimserver.ifc.FileFieldIgnoreMap;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.SchemaLoader;
-import org.bimserver.ifc.file.reader.IfcStepDeserializer;
-import org.bimserver.ifc.file.reader.IncorrectIfcFileException;
+import org.bimserver.ifc.step.deserializer.IfcStepDeserializer;
+import org.bimserver.ifc.step.deserializer.IncorrectIfcFileException;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcBuildingStorey;
 import org.bimserver.models.ifc2x3.IfcDoor;
@@ -26,7 +26,8 @@ public class SimpleTest {
 
 	private void start() {
 		SchemaDefinition schema = SchemaLoader.loadDefaultSchema();
-		IfcStepDeserializer fastIfcFileReader = new IfcStepDeserializer(schema);
+		IfcStepDeserializer fastIfcFileReader = new IfcStepDeserializer();
+		fastIfcFileReader.init(schema);
 		ResourceFetcher resourceFetcher = new LocalDevelopmentResourceFetcher();
 		FileFieldIgnoreMap fieldIgnoreMap = new FileFieldIgnoreMap(CollectionUtils.singleSet(Ifc2x3Package.eINSTANCE), resourceFetcher);
 		try {

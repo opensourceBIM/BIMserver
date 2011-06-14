@@ -25,7 +25,7 @@ import java.util.List;
 
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.SchemaLoader;
-import org.bimserver.ifc.file.reader.IfcStepDeserializer;
+import org.bimserver.ifc.step.deserializer.IfcStepDeserializer;
 import org.bimserver.models.ifc2x3.IfcDistributionPort;
 import org.bimserver.models.ifc2x3.IfcElement;
 import org.bimserver.models.ifc2x3.IfcFlowFitting;
@@ -47,13 +47,14 @@ public class IfcRioleringTest {
 	private void start() {
 		File src = TestFile.RIOLERING_TEST.getFile();
 
-		IfcStepDeserializer ifcReader = new IfcStepDeserializer(SchemaLoader.loadDefaultSchema());
+		IfcStepDeserializer ifcStepDeserializer = new IfcStepDeserializer();
+		ifcStepDeserializer.init(SchemaLoader.loadDefaultSchema());
 		try {
-			ifcReader.read(src);
+			ifcStepDeserializer.read(src);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		model = ifcReader.getModel();
+		model = ifcStepDeserializer.getModel();
 		step1();
 	}
 

@@ -6,11 +6,11 @@ import java.io.FileNotFoundException;
 
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.SchemaLoader;
-import org.bimserver.ifc.file.reader.IfcStepDeserializer;
-import org.bimserver.ifc.file.reader.IncorrectIfcFileException;
-import org.bimserver.ifc.file.writer.IfcStepSerializer;
-import org.bimserver.ifc.xml.reader.IfcXmlDeserializeException;
-import org.bimserver.ifc.xml.reader.IfcXmlDeserializer;
+import org.bimserver.ifc.step.deserializer.IfcStepDeserializer;
+import org.bimserver.ifc.step.deserializer.IncorrectIfcFileException;
+import org.bimserver.ifc.step.serializer.IfcStepSerializer;
+import org.bimserver.ifc.xml.deserializer.IfcXmlDeserializeException;
+import org.bimserver.ifc.xml.deserializer.IfcXmlDeserializer;
 import org.bimserver.plugins.schema.SchemaDefinition;
 import org.bimserver.plugins.serializers.SerializerException;
 
@@ -35,7 +35,8 @@ public class IfcXmlReadTest {
 				e.printStackTrace();
 			}
 			
-			IfcStepDeserializer deserializer = new IfcStepDeserializer(schema);
+			IfcStepDeserializer deserializer = new IfcStepDeserializer();
+			deserializer.init(schema);
 			deserializer.read(outFile);
 		} catch (IfcXmlDeserializeException e2) {
 			e2.printStackTrace();
