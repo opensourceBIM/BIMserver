@@ -1,6 +1,6 @@
 package org.bimserver.merging;
 
-import org.bimserver.ifc.OidProvider;
+import org.bimserver.plugins.serializers.OidProvider;
 
 public class IncrementingOidProvider implements OidProvider {
 

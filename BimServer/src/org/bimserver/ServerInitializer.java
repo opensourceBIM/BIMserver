@@ -73,6 +73,7 @@ import org.bimserver.models.store.Serializer;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.pb.server.ReflectiveRpcChannel;
+import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.ifcengine.IfcEngineFactory;
 import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
 import org.bimserver.plugins.schema.SchemaDefinition;
@@ -83,7 +84,6 @@ import org.bimserver.resources.WarResourceFetcher;
 import org.bimserver.serializers.EmfSerializerFactory;
 import org.bimserver.servlets.CompileServlet;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
-import org.bimserver.shared.PluginManager;
 import org.bimserver.shared.ResourceFetcher;
 import org.bimserver.shared.ServiceInterface;
 import org.bimserver.templating.TemplateEngine;
@@ -362,7 +362,7 @@ public class ServerInitializer implements ServletContextListener {
 	}
 
 	private void initDatabaseDependantItems() {
-		emfSerializerFactory.init(version, schema, fieldIgnoreMap, ifcEngineFactory, resourceFetcher, settingsManager, pluginManager, bimDatabase);
+		emfSerializerFactory.init(schema, fieldIgnoreMap, ifcEngineFactory, pluginManager, bimDatabase);
 	}
 	
 	public static File getHomeDir() {

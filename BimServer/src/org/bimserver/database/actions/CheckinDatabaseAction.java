@@ -5,7 +5,6 @@ import java.util.Date;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
-import org.bimserver.ifc.IfcModel;
 import org.bimserver.mail.MailSystem;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.LogFactory;
@@ -16,6 +15,7 @@ import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserType;
+import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.rights.RightsManager;
 import org.bimserver.shared.UserException;
 
@@ -25,7 +25,7 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 	private final long actingUoid;
 	private final long poid;
 
-	public CheckinDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, IfcModel model, long poid, long actingUoid, String comment) {
+	public CheckinDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, IfcModelInterface model, long poid, long actingUoid, String comment) {
 		super(bimDatabaseSession, accessMethod, model);
 		this.poid = poid;
 		this.actingUoid = actingUoid;

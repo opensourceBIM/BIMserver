@@ -12,7 +12,7 @@ import org.bimserver.database.query.conditions.IsOfTypeCondition;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.Serializer;
 import org.bimserver.models.store.StorePackage;
-import org.bimserver.shared.PluginManager;
+import org.bimserver.plugins.PluginManager;
 import org.bimserver.shared.UserException;
 import org.bimserver.utils.CollectionUtils;
 
