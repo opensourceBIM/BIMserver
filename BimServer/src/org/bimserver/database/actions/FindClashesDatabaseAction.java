@@ -14,7 +14,7 @@ import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.FieldIgnoreMap;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelSet;
-import org.bimserver.ifc.file.writer.IfcStepSerializer;
+import org.bimserver.ifc.step.serializer.IfcStepSerializer;
 import org.bimserver.models.ifc2x3.IfcGloballyUniqueId;
 import org.bimserver.models.ifc2x3.IfcRoot;
 import org.bimserver.models.ifc2x3.WrappedValue;

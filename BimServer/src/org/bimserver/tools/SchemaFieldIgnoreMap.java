@@ -20,8 +20,10 @@ package org.bimserver.tools;
  * long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
@@ -52,10 +54,14 @@ public class SchemaFieldIgnoreMap extends FieldIgnoreMap {
 		SchemaDefinition schema = SchemaLoader.loadDefaultSchema();
 		Set<EPackage> packages = new HashSet<EPackage>();
 		packages.add(Ifc2x3Package.eINSTANCE);
-		new SchemaFieldIgnoreMap(packages, schema);
+		try {
+			new SchemaFieldIgnoreMap(packages, schema, new FileOutputStream(new File("ignore.xml")));
+		} catch (FileNotFoundException e) {
+			LOGGER.error("", e);
+		}
 	}
 	
-	public SchemaFieldIgnoreMap(Set<? extends EPackage> packages, SchemaDefinition schema) {
+	public SchemaFieldIgnoreMap(Set<? extends EPackage> packages, SchemaDefinition schema, OutputStream outputStream) {
 		super(packages);
 		ArrayList<EntityDefinition> entities = schema.getEntities();
 		PackageDefinition packageDefinition = new PackageDefinition();
@@ -76,9 +82,7 @@ public class SchemaFieldIgnoreMap extends FieldIgnoreMap {
 			JAXBContext jaxbContext = JAXBContext.newInstance(PackageDefinition.class);
 			Marshaller marshaller = jaxbContext.createMarshaller();
 			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-			marshaller.marshal(packageDefinition, new FileOutputStream("ignore.xml"));
-		} catch (FileNotFoundException e) {
-			LOGGER.error("", e);
+			marshaller.marshal(packageDefinition, outputStream);
 		} catch (JAXBException e) {
 			LOGGER.error("", e);
 		}
