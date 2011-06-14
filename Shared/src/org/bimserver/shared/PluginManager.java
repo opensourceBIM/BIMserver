@@ -30,8 +30,6 @@ import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import sun.tools.jar.resources.jar;
-
 public class PluginManager {
 	private static final Logger LOGGER = LoggerFactory.getLogger(PluginManager.class);
 	private final Map<Class<? extends Plugin>, Set<PluginContext>> implementations = new HashMap<Class<? extends Plugin>, Set<PluginContext>>();
@@ -39,6 +37,7 @@ public class PluginManager {
 	public PluginManager() {
 	}
 
+	@SuppressWarnings("unchecked")
 	public void loadPluginsFromEclipseProject(File projectRoot) throws PluginException {
 		if (!projectRoot.isDirectory()) {
 			throw new PluginException("No directory: " + projectRoot.getAbsolutePath());
@@ -112,11 +111,12 @@ public class PluginManager {
 				ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
 				IOUtils.copy(jarInputStream, byteArrayOutputStream);
 				map.put(entry.getName(), byteArrayOutputStream.toByteArray());
+				LOGGER.info(entry.getName());
 				entry = jarInputStream.getNextJarEntry();
 			}
-			if (map.containsKey("plugin/plugin.xml")) {
-				System.out.println("yes");
-			}
+//			if (map.containsKey("plugin/plugin.xml")) {
+//				System.out.println("yes");
+//			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -124,6 +124,7 @@ public class PluginManager {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	private <T> Collection<T> getPlugins(Class<T> requiredInterfaceClass, boolean onlyEnabled) {
 		Collection<T> plugins = new ArrayList<T>();
 		for (Class interfaceClass : implementations.keySet()) {
