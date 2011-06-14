@@ -18,8 +18,9 @@ public class MapClassLoader extends ClassLoader {
 			}
 		} catch (ClassNotFoundException e) {
 		}
-		if (map.containsKey(name)) {
-			byte[] bs = map.get(name);
+		String fileName = name.replace(".", "/") + ".class";
+		if (map.containsKey(fileName)) {
+			byte[] bs = map.get(fileName);
 			return defineClass(name, bs, 0, bs.length);
 		}
 		throw new ClassNotFoundException(name);
