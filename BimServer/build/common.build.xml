@@ -414,6 +414,9 @@
 		<copy todir="builds/BuildWar/WEB-INF/lib">
 			<fileset dir="builds/lib" />
 		</copy>
+		<copy todir="builds/BuildWar/WEB-INF/plugins">
+			<fileset dir="builds/pluginlibs" />
+		</copy>
 		<jar jarfile="builds/BuildWar/WEB-INF/lib/bimserver.jar">
 			<fileset dir="builds/BuildWar/WEB-INF/classes" />
 		</jar>
