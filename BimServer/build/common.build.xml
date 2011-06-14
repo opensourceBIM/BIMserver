@@ -114,7 +114,7 @@
 	<target name="MiscSerializers" depends="Ifc, Plugins">
 		<mkdir dir="builds/miscserializers" />
 		<javac destdir="builds/miscserializers" debug="on" fork="true">
-			<src path="../../MistSerializers/src" />
+			<src path="../../MiscSerializers/src" />
 			<classpath>
 				<path>
 					<fileset refid="lib" />
@@ -122,7 +122,7 @@
 			</classpath>
 		</javac>
 		<jar destfile="builds/pluginlibs/bimserver-miscserializers-${version}.jar">
-			<fileset dir="builds/mistserializers"/>
+			<fileset dir="builds/miscserializers"/>
 		</jar>
 	</target>
 	<target name="Collada" depends="buildingSMARTLibrary, Emf, Ifc, Store">
