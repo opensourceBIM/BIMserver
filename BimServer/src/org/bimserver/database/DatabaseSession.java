@@ -867,7 +867,7 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 
 	public Object readPrimitiveValue(EClassifier classifier, ByteBuffer buffer) {
 		if (classifier == EcorePackage.eINSTANCE.getEString()) {
-			short length = buffer.getShort();
+			int length = buffer.getInt();
 			if (length != -1) {
 				return BinUtils.readString(buffer, length);
 			} else {
@@ -933,10 +933,10 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 			} else {
 				String stringValue = (String) value;
 				byte[] bytes = stringValue.getBytes(Charsets.UTF_8);
-				if (bytes.length > Short.MAX_VALUE) {
-					throw new BimDatabaseException("String value too long");
+				if (bytes.length > Integer.MAX_VALUE) {
+					throw new BimDatabaseException("String value too long (max length is " + Integer.MAX_VALUE + ")");
 				}
-				buffer.putShort((short) bytes.length);
+				buffer.putInt(bytes.length);
 				buffer.put(bytes);
 			}
 		} else if (feature.getEType() == EcorePackage.eINSTANCE.getEInt()) {
@@ -1058,7 +1058,7 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 				if (ridOfRecord == rid && pid == pidOfRecord) {
 					ByteBuffer value = ByteBuffer.wrap(record.getValue());
 					if (value.capacity() > 1) {
-						short stringLength = value.getShort();
+						int stringLength = value.getInt();
 						String s = BinUtils.readString(value, stringLength);
 						if (s.equals(guid)) {
 							short referenceCid = value.getShort();

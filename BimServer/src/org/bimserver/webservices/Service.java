@@ -129,10 +129,10 @@ import org.bimserver.ifc.compare.CompareResult.Item;
 import org.bimserver.ifc.compare.CompareResult.ObjectAdded;
 import org.bimserver.ifc.compare.CompareResult.ObjectDeleted;
 import org.bimserver.ifc.compare.CompareResult.ObjectModified;
-import org.bimserver.ifc.file.reader.IfcStepDeserializer;
-import org.bimserver.ifc.file.reader.IncorrectIfcFileException;
-import org.bimserver.ifc.xml.reader.IfcXmlDeserializeException;
-import org.bimserver.ifc.xml.reader.IfcXmlDeserializer;
+import org.bimserver.ifc.step.deserializer.IfcStepDeserializer;
+import org.bimserver.ifc.step.deserializer.IncorrectIfcFileException;
+import org.bimserver.ifc.xml.deserializer.IfcXmlDeserializeException;
+import org.bimserver.ifc.xml.deserializer.IfcXmlDeserializer;
 import org.bimserver.interfaces.objects.SAccessMethod;
 import org.bimserver.interfaces.objects.SCheckout;
 import org.bimserver.interfaces.objects.SClash;
@@ -346,7 +346,8 @@ public class Service implements ServiceInterface {
 	}
 
 	private IfcModel readIfcStepModel(final InputStream inputStream, long fileSize) throws UserException {
-		IfcStepDeserializer fastIfcFileReader = new IfcStepDeserializer(schema);
+		IfcStepDeserializer fastIfcFileReader = new IfcStepDeserializer();
+		fastIfcFileReader.init(schema);
 		try {
 			InputStream in = inputStream;
 			if (accessMethod == AccessMethod.SOAP) {

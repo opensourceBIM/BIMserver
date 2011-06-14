@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.bimserver.ifc.IfcModel;
-import org.bimserver.ifc.file.writer.IfcStepSerializer;
+import org.bimserver.ifc.step.serializer.IfcStepSerializer;
 import org.bimserver.models.ifc2x3.IfcBuilding;
 import org.bimserver.models.ifc2x3.IfcBuildingStorey;
 import org.bimserver.models.ifc2x3.IfcColumn;

@@ -27,11 +27,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.lang.Thread.UncaughtExceptionHandler;
 import java.net.MalformedURLException;
-import java.net.URI;
 import java.net.URL;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.GregorianCalendar;
+import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.Executors;
 
@@ -43,6 +44,7 @@ import nl.tue.buildingsmart.emf.DerivedReader;
 import nl.tue.buildingsmart.express.parser.ExpressSchemaParser;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.output.ByteArrayOutputStream;
 import org.apache.log4j.LogManager;
 import org.bimserver.ServerInfo.ServerState;
 import org.bimserver.cache.DiskCacheManager;
@@ -66,6 +68,7 @@ import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.LogFactory;
 import org.bimserver.models.log.ServerStarted;
 import org.bimserver.models.store.IfcEngine;
+import org.bimserver.models.store.IgnoreFile;
 import org.bimserver.models.store.Serializer;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StorePackage;
@@ -79,11 +82,12 @@ import org.bimserver.resources.JarResourceFetcher;
 import org.bimserver.resources.WarResourceFetcher;
 import org.bimserver.serializers.EmfSerializerFactory;
 import org.bimserver.servlets.CompileServlet;
-import org.bimserver.shared.PluginManager;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
+import org.bimserver.shared.PluginManager;
 import org.bimserver.shared.ResourceFetcher;
 import org.bimserver.shared.ServiceInterface;
 import org.bimserver.templating.TemplateEngine;
+import org.bimserver.tools.SchemaFieldIgnoreMap;
 import org.bimserver.utils.CollectionUtils;
 import org.bimserver.utils.TempUtils;
 import org.bimserver.version.Version;
@@ -92,6 +96,7 @@ import org.bimserver.web.LoginManager;
 import org.bimserver.webservices.RestApplication;
 import org.bimserver.webservices.Service;
 import org.bimserver.webservices.ServiceFactory;
+import org.eclipse.emf.ecore.EPackage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -334,6 +339,18 @@ public class ServerInitializer implements ServletContextListener {
 				ifcEngine.setActive(false);
 				session.store(ifcEngine);
 			}
+		}
+		Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getIgnoreFile_Name(), new StringLiteral("default"));
+		Map<Long, IgnoreFile> ignoreFiles = session.query(condition, IgnoreFile.class, false);
+		if (ignoreFiles.size() == 0) {
+			IgnoreFile ignoreFile = StoreFactory.eINSTANCE.createIgnoreFile();
+			ignoreFile.setName("default");
+			Set<EPackage> packages = new HashSet<EPackage>();
+			packages.add(Ifc2x3Package.eINSTANCE);
+			ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+			new SchemaFieldIgnoreMap(packages, schema, outputStream);
+			ignoreFile.setData(outputStream.toByteArray());
+			session.store(ignoreFile);
 		}
 		session.commit();
 	}
