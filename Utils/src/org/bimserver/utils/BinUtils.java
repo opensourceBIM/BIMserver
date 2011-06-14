@@ -170,7 +170,7 @@ public class BinUtils {
 		return byteBuffer.getFloat(index);
 	}
 
-	public static String readString(ByteBuffer buffer, short length) {
+	public static String readString(ByteBuffer buffer, int length) {
 		byte[] charBuffer = new byte[length];
 		buffer.get(charBuffer);
 		return new String(charBuffer, Charsets.UTF_8);

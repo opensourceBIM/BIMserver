@@ -2,8 +2,8 @@ package org.bimserver.tests;
 
 import org.bimserver.ifc.FileFieldIgnoreMap;
 import org.bimserver.ifc.SchemaLoader;
-import org.bimserver.ifc.file.reader.IfcStepDeserializer;
-import org.bimserver.ifc.file.reader.IncorrectIfcFileException;
+import org.bimserver.ifc.step.deserializer.IfcStepDeserializer;
+import org.bimserver.ifc.step.deserializer.IncorrectIfcFileException;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.plugins.schema.SchemaDefinition;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
@@ -22,7 +22,8 @@ public class O3dTest {
 		new FileFieldIgnoreMap(CollectionUtils.singleSet(Ifc2x3Package.eINSTANCE), resourceFetcher);
 		
 		TestFile testFile = TestFile.MERGE_TEST_SOURCE_FILE;
-		IfcStepDeserializer fastIfcFileReader = new IfcStepDeserializer(schema);
+		IfcStepDeserializer fastIfcFileReader = new IfcStepDeserializer();
+		fastIfcFileReader.init(schema);
 		try {
 			fastIfcFileReader.read(testFile.getFile());
 		} catch (IncorrectIfcFileException e) {

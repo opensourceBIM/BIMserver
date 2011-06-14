@@ -10,8 +10,8 @@ import java.util.Set;
 
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.SchemaLoader;
-import org.bimserver.ifc.file.reader.IfcStepDeserializer;
-import org.bimserver.ifc.file.reader.IncorrectIfcFileException;
+import org.bimserver.ifc.step.deserializer.IfcStepDeserializer;
+import org.bimserver.ifc.step.deserializer.IncorrectIfcFileException;
 import org.bimserver.models.ifc2x3.IfcArbitraryClosedProfileDef;
 import org.bimserver.models.ifc2x3.IfcAxis2Placement3D;
 import org.bimserver.models.ifc2x3.IfcCartesianPoint;
@@ -39,7 +39,8 @@ public class KmlExportTest {
 		PrintWriter out = null;
 		try {
 			out = new PrintWriter(kmlFile);
-			IfcStepDeserializer fastIfcFileReader = new IfcStepDeserializer(schema);
+			IfcStepDeserializer fastIfcFileReader = new IfcStepDeserializer();
+			fastIfcFileReader.init(schema);
 			Set<IfcExtrudedAreaSolid> solids = new HashSet<IfcExtrudedAreaSolid>();
 			try {
 				fastIfcFileReader.read(TestFile.AC11.getFile());

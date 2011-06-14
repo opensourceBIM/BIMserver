@@ -6,8 +6,8 @@ import java.util.List;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.SchemaLoader;
-import org.bimserver.ifc.file.reader.IfcStepDeserializer;
-import org.bimserver.ifc.file.reader.IncorrectIfcFileException;
+import org.bimserver.ifc.step.deserializer.IfcStepDeserializer;
+import org.bimserver.ifc.step.deserializer.IncorrectIfcFileException;
 import org.bimserver.plugins.schema.SchemaDefinition;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
@@ -18,7 +18,8 @@ public class LargeFileTest {
 
 	private void start() {
 		SchemaDefinition schema = SchemaLoader.loadDefaultSchema();
-		IfcStepDeserializer deserializer = new IfcStepDeserializer(schema);
+		IfcStepDeserializer deserializer = new IfcStepDeserializer();
+		deserializer.init(schema);
 		try {
 			IfcModel model = deserializer.read(new File("C:\\Users\\Ruben de Laat\\Documents\\My Dropbox\\Shared\\BIMserver\\arcadis\\KW02.ifc"));
 			for (IdEObject idEObject : model.getValues()) {

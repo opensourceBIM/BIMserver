@@ -12,8 +12,8 @@ import java.util.Set;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelSet;
 import org.bimserver.ifc.SchemaLoader;
-import org.bimserver.ifc.file.reader.IfcStepDeserializer;
-import org.bimserver.ifc.file.reader.IncorrectIfcFileException;
+import org.bimserver.ifc.step.deserializer.IfcStepDeserializer;
+import org.bimserver.ifc.step.deserializer.IncorrectIfcFileException;
 import org.bimserver.merging.IncrementingOidProvider;
 import org.bimserver.merging.Merger;
 import org.bimserver.merging.Merger.GuidMergeIdentifier;
@@ -55,10 +55,10 @@ public class GuidHighlighterTester {
 	}
 
 	private IfcModel readModel(File file) {
-		IfcStepDeserializer deserializer = new IfcStepDeserializer(schema);
-		IfcModel model;
+		IfcStepDeserializer deserializer = new IfcStepDeserializer();
+		deserializer.init(schema);
 		try {
-			model = deserializer.read(file);
+			IfcModel model = deserializer.read(file);
 			return model;
 		} catch (IncorrectIfcFileException e) {
 			e.printStackTrace();

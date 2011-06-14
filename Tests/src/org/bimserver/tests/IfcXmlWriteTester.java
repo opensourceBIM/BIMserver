@@ -5,9 +5,9 @@ import java.io.FileNotFoundException;
 
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.SchemaLoader;
-import org.bimserver.ifc.file.reader.IfcStepDeserializer;
-import org.bimserver.ifc.file.reader.IncorrectIfcFileException;
-import org.bimserver.ifc.xml.writer.IfcXmlSerializer;
+import org.bimserver.ifc.step.deserializer.IfcStepDeserializer;
+import org.bimserver.ifc.step.deserializer.IncorrectIfcFileException;
+import org.bimserver.ifc.xml.serializer.IfcXmlSerializer;
 import org.bimserver.plugins.schema.SchemaDefinition;
 import org.bimserver.plugins.serializers.SerializerException;
 
@@ -19,7 +19,8 @@ public class IfcXmlWriteTester {
 	private void start() {
 		SchemaDefinition schema = SchemaLoader.loadDefaultSchema();
 		
-		IfcStepDeserializer reader = new IfcStepDeserializer(schema);
+		IfcStepDeserializer reader = new IfcStepDeserializer();
+		reader.init(schema);
 		try {
 			reader.read(TestFile.HAUS_SOURCE_FILE.getFile());
 			// reader.read(TestFile.AC11.getFile());
