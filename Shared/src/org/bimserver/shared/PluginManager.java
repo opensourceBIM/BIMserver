@@ -16,6 +16,7 @@ import org.bimserver.plugins.Plugin;
 import org.bimserver.plugins.PluginClassloader;
 import org.bimserver.plugins.PluginDescriptor;
 import org.bimserver.plugins.PluginImplementation;
+import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.slf4j.Logger;
@@ -78,10 +79,6 @@ public class PluginManager {
 	public void loadPluginsFromJar(File file) {
 	}
 
-	public Collection<SerializerPlugin> getAllSerializerPlugins() {
-		return getPlugins(SerializerPlugin.class);
-	}
-
 	private <T> Collection<T> getPlugins(Class<T> requiredInterfaceClass) {
 		Collection<T> plugins = new ArrayList<T>();
 		for (Class interfaceClass : implementations.keySet()) {
@@ -96,5 +93,13 @@ public class PluginManager {
 
 	public Collection<IfcEnginePlugin> getAllIfcEnginePlugins() {
 		return getPlugins(IfcEnginePlugin.class);
+	}
+
+	public Collection<SerializerPlugin> getAllSerializerPlugins() {
+		return getPlugins(SerializerPlugin.class);
+	}
+	
+	public Collection<DeserializerPlugin> getAllDeserializerPlugins() {
+		return getPlugins(DeserializerPlugin.class);
 	}
 }
