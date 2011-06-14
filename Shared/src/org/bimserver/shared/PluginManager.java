@@ -107,7 +107,11 @@ public class PluginManager {
 		}
 		for (File file : directory.listFiles()) {
 			if (file.getName().toLowerCase().endsWith(".jar")) {
-				loadPluginsFromJar(file);
+				try {
+					loadPluginsFromJar(file);
+				} catch (PluginException e) {
+					LOGGER.error("", e);
+				}
 			}
 		}
 	}
