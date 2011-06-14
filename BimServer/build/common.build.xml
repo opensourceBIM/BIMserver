@@ -219,9 +219,6 @@
 			<fileset file="${buildtargets}/shared/service.proto" />
 		</copy>
 		<copy todir="builds/BuildJar/home" overwrite="true">
-			<fileset file="${defaultsettings}/shared/collada.xml" />
-			<fileset file="${defaultsettings}/${target}/collada.xml" />
-
 			<fileset file="${defaultsettings}/shared/settings.xml" />
 			<fileset file="${defaultsettings}/${target}/settings.xml" />
 
@@ -309,9 +306,6 @@
 			<fileset file="${buildtargets}/shared/_fromCOBie2.ifcxml.xsl" />
 			<fileset file="${buildtargets}/shared/_Report1.xhtml.xsl" />
 			<fileset file="${buildtargets}/shared/service.proto" />
-
-			<fileset file="${defaultsettings}/shared/collada.xml" />
-			<fileset file="${defaultsettings}/${target}/collada.xml" />
 
 			<fileset file="${defaultsettings}/shared/settings.xml" />
 			<fileset file="${defaultsettings}/${target}/settings.xml" />
