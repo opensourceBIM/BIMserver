@@ -1,9 +1,11 @@
 package org.bimserver.shared;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -37,7 +39,6 @@ public class PluginManager {
 	public PluginManager() {
 	}
 
-	@SuppressWarnings("unchecked")
 	public void loadPluginsFromEclipseProject(File projectRoot) throws PluginException {
 		if (!projectRoot.isDirectory()) {
 			throw new PluginException("No directory: " + projectRoot.getAbsolutePath());
@@ -51,41 +52,53 @@ public class PluginManager {
 			throw new PluginException("No 'plugin.xml' found in " + pluginFolder.getAbsolutePath());
 		}
 		try {
-			JAXBContext jaxbContext = JAXBContext.newInstance(PluginDescriptor.class);
-			Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-			PluginDescriptor pluginDescriptor = (PluginDescriptor) unmarshaller.unmarshal(pluginFile);
+			PluginDescriptor pluginDescriptor = getPluginDescriptor(new FileInputStream(pluginFile));
 			PluginClassloader pluginClassloader = new PluginClassloader(new File(projectRoot, "bin"));
-			for (PluginImplementation pluginImplementation : pluginDescriptor.getImplementations()) {
-				String interfaceClassName = pluginImplementation.getInterfaceClass();
-				try {
-					Class interfaceClass = pluginClassloader.loadClass(interfaceClassName);
-					String implementationClassName = pluginImplementation.getImplementationClass();
-					try {
-						Class implementationClass = pluginClassloader.loadClass(implementationClassName);
-						if (!implementations.containsKey(interfaceClass)) {
-							implementations.put(interfaceClass, new HashSet<PluginContext>());
-						}
-						LOGGER.info("Loading plugin " + implementationClassName);
-						Plugin plugin = (Plugin) implementationClass.newInstance();
-						Set<PluginContext> set = (Set<PluginContext>) implementations.get(interfaceClass);
-						PluginContext pluginContext = new PluginContext();
-						pluginContext.setPlugin(plugin);
-						pluginContext.setLocation(projectRoot.getAbsolutePath());
-						set.add(pluginContext);
-					} catch (ClassNotFoundException e) {
-						throw new PluginException("Implementation class '" + implementationClassName + "' not found", e);
-					} catch (InstantiationException e) {
-						throw new PluginException(e);
-					} catch (IllegalAccessException e) {
-						throw new PluginException(e);
-					}
-				} catch (ClassNotFoundException e) {
-					throw new PluginException("Interface class '" + interfaceClassName + "' not found", e);
-				}
-			}
+			loadPlugins(pluginClassloader, projectRoot.getAbsolutePath(), pluginDescriptor);
 		} catch (JAXBException e) {
 			throw new PluginException(e);
+		} catch (FileNotFoundException e) {
+			throw new PluginException(e);
 		}
+	}
+
+	@SuppressWarnings("unchecked")
+	private void loadPlugins(ClassLoader classLoader, String location, PluginDescriptor pluginDescriptor) throws PluginException {
+		for (PluginImplementation pluginImplementation : pluginDescriptor.getImplementations()) {
+			String interfaceClassName = pluginImplementation.getInterfaceClass();
+			try {
+				Class interfaceClass = classLoader.loadClass(interfaceClassName);
+				String implementationClassName = pluginImplementation.getImplementationClass();
+				try {
+					Class implementationClass = classLoader.loadClass(implementationClassName);
+					if (!implementations.containsKey(interfaceClass)) {
+						implementations.put(interfaceClass, new HashSet<PluginContext>());
+					}
+					LOGGER.info("Loading plugin " + implementationClassName);
+					Plugin plugin = (Plugin) implementationClass.newInstance();
+					Set<PluginContext> set = (Set<PluginContext>) implementations.get(interfaceClass);
+					PluginContext pluginContext = new PluginContext();
+					pluginContext.setPlugin(plugin);
+					pluginContext.setLocation(location);
+					set.add(pluginContext);
+				} catch (ClassNotFoundException e) {
+					throw new PluginException("Implementation class '" + implementationClassName + "' not found", e);
+				} catch (InstantiationException e) {
+					throw new PluginException(e);
+				} catch (IllegalAccessException e) {
+					throw new PluginException(e);
+				}
+			} catch (ClassNotFoundException e) {
+				throw new PluginException("Interface class '" + interfaceClassName + "' not found", e);
+			}
+		}
+	}
+
+	private PluginDescriptor getPluginDescriptor(InputStream inputStream) throws JAXBException {
+		JAXBContext jaxbContext = JAXBContext.newInstance(PluginDescriptor.class);
+		Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+		PluginDescriptor pluginDescriptor = (PluginDescriptor) unmarshaller.unmarshal(inputStream);
+		return pluginDescriptor;
 	}
 
 	public void loadAllPluginsFromDirectoryOfJars(File directory) throws PluginException {
@@ -111,16 +124,20 @@ public class PluginManager {
 				ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
 				IOUtils.copy(jarInputStream, byteArrayOutputStream);
 				map.put(entry.getName(), byteArrayOutputStream.toByteArray());
-				LOGGER.info(entry.getName());
 				entry = jarInputStream.getNextJarEntry();
 			}
-//			if (map.containsKey("plugin/plugin.xml")) {
-//				System.out.println("yes");
-//			}
+			jarInputStream.close();
+			if (map.containsKey("plugin/plugin.xml")) {
+				byte[] bs = map.get("plugin/plugin.xml");
+				PluginDescriptor pluginDescriptor = getPluginDescriptor(new ByteArrayInputStream(bs));
+				loadPlugins(new MapClassLoader(map), file.getAbsolutePath(), pluginDescriptor);
+			}
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			throw new PluginException(e);
 		} catch (IOException e) {
-			e.printStackTrace();
+			throw new PluginException(e);
+		} catch (JAXBException e) {
+			throw new PluginException(e);
 		}
 	}
 
