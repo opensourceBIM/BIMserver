@@ -42,6 +42,7 @@ import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcBoolean;
 import org.bimserver.models.ifc2x3.IfcLogical;
 import org.bimserver.models.ifc2x3.Tristate;
+import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.deserializers.EmfDeserializer;
 import org.bimserver.plugins.schema.Attribute;
 import org.bimserver.plugins.schema.BooleanType;
@@ -70,7 +71,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.common.base.Charsets;
-import com.sun.xml.internal.ws.encoding.soap.DeserializationException;
 
 public class IfcStepDeserializer extends EmfDeserializer {
 
@@ -95,7 +95,7 @@ public class IfcStepDeserializer extends EmfDeserializer {
 		this.schema = schema;
 	}	
 
-	public IfcModelInterface read(InputStream in, long fileSize) throws DeserializationException {
+	public IfcModelInterface read(InputStream in, long fileSize) throws DeserializeException {
 		mode = Mode.HEADER;
 		BufferedReader reader = new BufferedReader(new InputStreamReader(in, Charsets.UTF_8));
 		int initialCapacity = (int) (fileSize / AVERAGE_LINE_LENGTH);
@@ -114,7 +114,7 @@ public class IfcStepDeserializer extends EmfDeserializer {
 					}
 				} catch (Exception e) {
 					LOGGER.error("", e);
-					throw new DeserializationException("Error on line " + lineNumber + " (" + e.getMessage() + ") " + line, e);
+					throw new DeserializeException("Error on line " + lineNumber + " (" + e.getMessage() + ") " + line, e);
 				}
 				line = reader.readLine();
 				lineNumber++;
@@ -130,7 +130,7 @@ public class IfcStepDeserializer extends EmfDeserializer {
 		return model;
 	}
 
-	public IfcModel read(File sourceFile) throws DeserializationException {
+	public IfcModel read(File sourceFile) throws DeserializeException {
 		try {
 			FileInputStream in = new FileInputStream(sourceFile);
 			read(in, sourceFile.length());
@@ -138,9 +138,9 @@ public class IfcStepDeserializer extends EmfDeserializer {
 			model.setDate(new Date());
 			return model;
 		} catch (FileNotFoundException e) {
-			throw new DeserializationException(e);
+			throw new DeserializeException(e);
 		} catch (IOException e) {
-			throw new DeserializationException(e);
+			throw new DeserializeException(e);
 		}
 	}
 
@@ -156,7 +156,7 @@ public class IfcStepDeserializer extends EmfDeserializer {
 		return classes;
 	}
 
-	private boolean processLine(String line) throws DeserializationException {
+	private boolean processLine(String line) throws DeserializeException {
 		switch (mode) {
 		case HEADER:
 			if (line.equals("DATA;")) {
@@ -189,7 +189,7 @@ public class IfcStepDeserializer extends EmfDeserializer {
 		return true;
 	}
 
-	public void processRecord(String line) throws DeserializationException {
+	public void processRecord(String line) throws DeserializeException {
 		int equalSignLocation = line.indexOf("=");
 		int lastIndexOfSemiColon = line.lastIndexOf(";");
 		int indexOfFirstParen = line.indexOf("(");
@@ -203,14 +203,14 @@ public class IfcStepDeserializer extends EmfDeserializer {
 			int lastIndex = 0;
 			EntityDefinition entityBN = schema.getEntityBN(name);
 			if (entityBN == null) {
-				throw new DeserializationException("Unknown entity " + name);
+				throw new DeserializeException("Unknown entity " + name);
 			}
 			for (Attribute attribute : entityBN.getAttributesCached(true)) {
 				if (attribute instanceof ExplicitAttribute) {
 					if (!entityBN.isDerived(attribute.getName())) {
 						EStructuralFeature structuralFeature = classifier.getEStructuralFeature(attribute.getName());
 						if (structuralFeature == null) {
-							throw new DeserializationException("Unknown feature " + classifier.getName() + "." + attribute.getName());
+							throw new DeserializeException("Unknown feature " + classifier.getName() + "." + attribute.getName());
 						}
 						int nextIndex = StringUtils.nextString(realData, lastIndex);
 						String val = null;
@@ -223,7 +223,7 @@ public class IfcStepDeserializer extends EmfDeserializer {
 									expected++;
 								}
 							}
-							throw new DeserializationException(classifier.getName() + " expects " + expected + " fields, but less found");
+							throw new DeserializeException(classifier.getName() + " expects " + expected + " fields, but less found");
 						}
 						lastIndex = nextIndex;
 						char firstChar = val.charAt(0);
@@ -255,15 +255,15 @@ public class IfcStepDeserializer extends EmfDeserializer {
 				updateNode(recordNumber, classifier, object);
 			}
 		} else {
-			throw new DeserializationException(name + " is not a known entity");
+			throw new DeserializeException(name + " is not a known entity");
 		}
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	private void readList(String val, EObject object, EStructuralFeature structuralFeature) throws DeserializationException {
+	private void readList(String val, EObject object, EStructuralFeature structuralFeature) throws DeserializeException {
 		int index = 0;
 		if (!structuralFeature.isMany()) {
-			throw new DeserializationException("Field " + structuralFeature.getName() + " of " + structuralFeature.getEContainingClass().getName() + " is no aggregation");
+			throw new DeserializeException("Field " + structuralFeature.getName() + " of " + structuralFeature.getEContainingClass().getName() + " is no aggregation");
 		}
 		BasicEList list = (BasicEList) object.eGet(structuralFeature);
 		String realData = val.substring(1, val.length() - 1);
@@ -285,7 +285,7 @@ public class IfcStepDeserializer extends EmfDeserializer {
 								}
 								list.setUnique(index, referencedObject);
 							} else {
-								throw new DeserializationException(referenceEClass.getName() + " cannot be stored in " + structuralFeature.getName());
+								throw new DeserializeException(referenceEClass.getName() + " cannot be stored in " + structuralFeature.getName());
 							}
 						}
 					} else {
@@ -313,7 +313,7 @@ public class IfcStepDeserializer extends EmfDeserializer {
 	}
 
 	@SuppressWarnings("unchecked")
-	private void updateNode(Long id, EClass ec, EObject eObject) throws DeserializationException {
+	private void updateNode(Long id, EClass ec, EObject eObject) throws DeserializeException {
 		for (WaitingObject waitingObject : waitingObjects.get(id)) {
 			if (waitingObject.getStructuralFeature().getUpperBound() != 1) {
 				BasicEList<EObject> list = (BasicEList<EObject>) waitingObject.getObject().eGet(waitingObject.getStructuralFeature());
@@ -326,7 +326,7 @@ public class IfcStepDeserializer extends EmfDeserializer {
 						}
 						list.setUnique(waitingObject.getIndex(), eObject);
 					} else {
-						throw new DeserializationException("Field " + waitingObject.getStructuralFeature().getName() + " of "
+						throw new DeserializeException("Field " + waitingObject.getStructuralFeature().getName() + " of "
 								+ waitingObject.getStructuralFeature().getEContainingClass().getName() + " cannot contain a " + eObject.eClass().getName());
 					}
 				}
@@ -334,7 +334,7 @@ public class IfcStepDeserializer extends EmfDeserializer {
 				if (((EClass) waitingObject.getStructuralFeature().getEType()).isSuperTypeOf(eObject.eClass())) {
 					waitingObject.getObject().eSet(waitingObject.getStructuralFeature(), eObject);
 				} else {
-					throw new DeserializationException("Field " + waitingObject.getStructuralFeature().getName() + " of "
+					throw new DeserializeException("Field " + waitingObject.getStructuralFeature().getName() + " of "
 							+ waitingObject.getStructuralFeature().getEContainingClass().getName() + " cannot contain a " + eObject.eClass().getName());
 				}
 			}
@@ -342,7 +342,7 @@ public class IfcStepDeserializer extends EmfDeserializer {
 		waitingObjects.remove(id);
 	}
 
-	private Object convertSimpleValue(Class<?> instanceClass, String value) throws DeserializationException {
+	private Object convertSimpleValue(Class<?> instanceClass, String value) throws DeserializeException {
 		if (!value.equals("")) {
 			if (instanceClass == Double.class || instanceClass == double.class) {
 				return Double.parseDouble(value);
@@ -356,7 +356,7 @@ public class IfcStepDeserializer extends EmfDeserializer {
 				try {
 					return Float.parseFloat(value);
 				} catch (NumberFormatException e) {
-					throw new DeserializationException("Incorrent floating point value", e);
+					throw new DeserializeException("Incorrent floating point value", e);
 				}
 			} else if (instanceClass == String.class) {
 				if (value.startsWith("'") && value.endsWith("'")) {
@@ -369,7 +369,7 @@ public class IfcStepDeserializer extends EmfDeserializer {
 		return null;
 	}
 
-	private Object convert(EClassifier classifier, String value) throws DeserializationException {
+	private Object convert(EClassifier classifier, String value) throws DeserializeException {
 		if (classifier != null) {
 			if (classifier instanceof EClassImpl) {
 				if (null != ((EClassImpl) classifier).getEStructuralFeature(WRAPPED_VALUE)) {
@@ -382,7 +382,7 @@ public class IfcStepDeserializer extends EmfDeserializer {
 							try {
 								create.eSet(create.eClass().getEStructuralFeature(WRAPPED_VALUE), Integer.parseInt(value));
 							} catch (NumberFormatException e) {
-								throw new DeserializationException(value + " is not a valid integer value");
+								throw new DeserializeException(value + " is not a valid integer value");
 							}
 						} else if (instanceClass == Long.class || instanceClass == long.class) {
 							create.eSet(create.eClass().getEStructuralFeature(WRAPPED_VALUE), Long.parseLong(value));
@@ -392,7 +392,7 @@ public class IfcStepDeserializer extends EmfDeserializer {
 							try {
 								create.eSet(create.eClass().getEStructuralFeature(WRAPPED_VALUE), Float.parseFloat(value));
 							} catch (NumberFormatException e) {
-								throw new DeserializationException(value + " is not a valid floating point number");
+								throw new DeserializeException(value + " is not a valid floating point number");
 							}
 							create.eSet(create.eClass().getEStructuralFeature(WRAPPED_VALUE + "AsString"), value);
 						} else if (instanceClass == String.class) {
@@ -420,7 +420,7 @@ public class IfcStepDeserializer extends EmfDeserializer {
 		return null;
 	}
 
-	private Object processInline(EClassifier classifier, String value) throws DeserializationException {
+	private Object processInline(EClassifier classifier, String value) throws DeserializeException {
 		if (value.indexOf("(") != -1) {
 			String typeName = value.substring(0, value.indexOf("(")).trim();
 			String v = value.substring(value.indexOf("(") + 1, value.length() - 1);
@@ -428,7 +428,7 @@ public class IfcStepDeserializer extends EmfDeserializer {
 			if (cl == null) {
 				DefinedType typeBN = schema.getTypeBN(typeName);
 				if (typeBN == null) {
-					throw new DeserializationException(typeName + " is not an existing IFC entity");
+					throw new DeserializeException(typeName + " is not an existing IFC entity");
 				}
 				return convertSimpleValue(typeBN.getDomain(), v);
 			} else {
@@ -454,7 +454,7 @@ public class IfcStepDeserializer extends EmfDeserializer {
 		return null;
 	}
 
-	private void readEnum(String val, EObject object, EStructuralFeature structuralFeature) throws DeserializationException {
+	private void readEnum(String val, EObject object, EStructuralFeature structuralFeature) throws DeserializeException {
 		if (val.equals(".T.")) {
 			if (structuralFeature.getEType() == Ifc2x3Package.eINSTANCE.getTristate()) {
 				object.eSet(structuralFeature, Tristate.TRUE);
@@ -498,21 +498,21 @@ public class IfcStepDeserializer extends EmfDeserializer {
 				String realEnumValue = val.substring(1, val.length() - 1);
 				EEnumLiteral enumValue = (((EEnumImpl) structuralFeature.getEType()).getEEnumLiteral(realEnumValue));
 				if (enumValue == null) {
-					throw new DeserializationException("Enum type " + structuralFeature.getEType().getName() + " has no literal value '" + realEnumValue + "'");
+					throw new DeserializeException("Enum type " + structuralFeature.getEType().getName() + " has no literal value '" + realEnumValue + "'");
 				}
 				object.eSet(structuralFeature, enumValue.getInstance());
 			} else {
-				throw new DeserializationException("Value " + val + " indicates enum type but " + structuralFeature.getEType().getName() + " expected");
+				throw new DeserializeException("Value " + val + " indicates enum type but " + structuralFeature.getEType().getName() + " expected");
 			}
 		}
 	}
 
-	private void readReference(String val, EObject object, EStructuralFeature structuralFeature) throws DeserializationException {
+	private void readReference(String val, EObject object, EStructuralFeature structuralFeature) throws DeserializeException {
 		long referenceId;
 		try {
 			referenceId = Long.parseLong(val.substring(1));
 		} catch (NumberFormatException e) {
-			throw new DeserializationException("'" + val + "' is not a valid reference");
+			throw new DeserializeException("'" + val + "' is not a valid reference");
 		}
 		if (model.contains(referenceId)) {
 			object.eSet(structuralFeature, model.get(referenceId));
