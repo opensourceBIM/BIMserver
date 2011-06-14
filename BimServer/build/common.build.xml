@@ -97,7 +97,7 @@
 			<fileset dir="builds/ifcengine"/>
 		</jar>
 	</target>
-	<target name="IfcPlugins" depends="Ifc">
+	<target name="IfcPlugins" depends="Ifc, Plugins">
 		<mkdir dir="builds/ifcplugins" />
 		<javac destdir="builds/ifcplugins" debug="on" fork="true">
 			<src path="../../IfcPlugins/src" />
@@ -111,7 +111,7 @@
 			<fileset dir="builds/ifcplugins"/>
 		</jar>
 	</target>
-	<target name="MiscSerializers" depends="Ifc">
+	<target name="MiscSerializers" depends="Ifc, Plugins">
 		<mkdir dir="builds/miscserializers" />
 		<javac destdir="builds/miscserializers" debug="on" fork="true">
 			<src path="../../MistSerializers/src" />
