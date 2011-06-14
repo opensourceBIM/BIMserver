@@ -1,21 +1,16 @@
 package org.bimserver.ifc.generator;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.IfcModel;
-import org.bimserver.ifc.SchemaLoader;
-import org.bimserver.ifc.step.serializer.IfcStepSerializer;
 import org.bimserver.models.ifc2x3.Ifc2x3Factory;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcGloballyUniqueId;
 import org.bimserver.models.ifc2x3.IfcProject;
 import org.bimserver.models.ifc2x3.WrappedValue;
-import org.bimserver.plugins.schema.SchemaDefinition;
-import org.bimserver.plugins.serializers.SerializerException;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -48,14 +43,6 @@ public class RandomIfcGenerator {
 		long i=0;
 		for (IdEObject idEObject : objects) {
 			ifcModel.add(i++, idEObject);
-		}
-		SchemaDefinition schema = SchemaLoader.loadDefaultSchema();
-		IfcStepSerializer serializer = new IfcStepSerializer();
-		try {
-			serializer.init(ifcModel, schema, null, null, null);
-			serializer.writeToFile(new File("test.ifc"));
-		} catch (SerializerException e) {
-			e.printStackTrace();
 		}
 	}
 
