@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
-	<classpathentry kind="lib" path="/BimServer/lib/commons/commons-lang-2.4.jar"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/Emf"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/Plugins"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/Shared"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/Store"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/Utils"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/buildingSMARTLibrary"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
+	<classpathentry exported="true" kind="lib" path="/BimServer/lib/commons/commons-lang-2.4.jar"/>
+	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Emf"/>
+	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Plugins"/>
+	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Shared"/>
+	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Store"/>
+	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Utils"/>
+	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/buildingSMARTLibrary"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
