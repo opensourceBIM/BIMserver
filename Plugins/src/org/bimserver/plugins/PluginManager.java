@@ -97,6 +97,7 @@ public class PluginManager {
 	}
 
 	public void loadAllPluginsFromDirectoryOfJars(File directory) throws PluginException {
+		LOGGER.info("Loading all plugin jars from " + directory.getAbsolutePath());
 		if (!directory.isDirectory()) {
 			throw new PluginException("No directory: " + directory.getAbsolutePath());
 		}
