@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PluginDescriptor>
+	<PluginImplementation>
+		<interfaceClass>org.bimserver.plugins.serializers.SerializerPlugin</interfaceClass>
+		<implementationClass>org.bimserver.collada.ColladaSerializerPlugin</implementationClass>
+	</PluginImplementation>
+	<PluginImplementation>
+		<interfaceClass>org.bimserver.plugins.serializers.SerializerPlugin</interfaceClass>
+		<implementationClass>org.bimserver.collada.KmzSerializerPlugin</implementationClass>
+	</PluginImplementation>
+</PluginDescriptor>

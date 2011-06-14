@@ -73,14 +73,13 @@ import org.bimserver.pb.server.ReflectiveRpcChannel;
 import org.bimserver.plugins.ifcengine.IfcEngineFactory;
 import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
 import org.bimserver.plugins.schema.SchemaDefinition;
-import org.bimserver.plugins.serializers.PackageDefinition;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.querycompiler.QueryCompiler;
 import org.bimserver.resources.JarResourceFetcher;
 import org.bimserver.resources.WarResourceFetcher;
 import org.bimserver.serializers.EmfSerializerFactory;
 import org.bimserver.servlets.CompileServlet;
-import org.bimserver.shared.BimPluginManager;
+import org.bimserver.shared.PluginManager;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
 import org.bimserver.shared.ResourceFetcher;
 import org.bimserver.shared.ServiceInterface;
@@ -117,10 +116,9 @@ public class ServerInitializer implements ServletContextListener {
 	private SchemaDefinition schema;
 	private FieldIgnoreMap fieldIgnoreMap;
 	private IfcEngineFactory ifcEngineFactory;
-	private PackageDefinition colladaSettings;
 	private EmfSerializerFactory emfSerializerFactory;
 	private static MergerFactory mergerFactory;
-	private BimPluginManager pluginManager;
+	private PluginManager pluginManager;
 
 	public void init() {
 		try {
@@ -170,19 +168,18 @@ public class ServerInitializer implements ServletContextListener {
 
 			Thread.setDefaultUncaughtExceptionHandler(uncaughtExceptionHandler);
 
-			pluginManager = new BimPluginManager();
+			pluginManager = new PluginManager();
 			if (serverType == ServerType.DEV_ENVIRONMENT) {
-				pluginManager.loadPlugins(new File("../BimServer/bin").toURI());
-				pluginManager.loadPlugins(new File("../CityGML/bin").toURI());
-				pluginManager.loadPlugins(new File("../Collada/bin").toURI());
-				pluginManager.loadPlugins(new File("../Ifc/bin").toURI());
-				pluginManager.loadPlugins(new File("../O3d/bin").toURI());
-				pluginManager.loadPlugins(new File("../IFCEngine/bin").toURI());
-				
+				pluginManager.loadPluginsFromEclipseProject(new File("../BimServer"));
+				pluginManager.loadPluginsFromEclipseProject(new File("../CityGML"));
+				pluginManager.loadPluginsFromEclipseProject(new File("../Collada"));
+				pluginManager.loadPluginsFromEclipseProject(new File("../Ifc"));
+				pluginManager.loadPluginsFromEclipseProject(new File("../O3d"));
+				pluginManager.loadPluginsFromEclipseProject(new File("../IFCEngine"));
 			} else if (serverType == ServerType.DEPLOYED_WAR) {
-				pluginManager.loadPlugins(new URI("classpath://*"));
+				pluginManager.loadPluginsFromJar(new File(""));
 			} else if (serverType == ServerType.STANDALONE_JAR) {
-				pluginManager.loadPlugins(new URI("classpath://*"));
+				pluginManager.loadPluginsFromJar(new File(""));
 			}
 			
 			LOGGER.info("Detected server type: " + serverType + " (" + System.getProperty("os.name") + ", " + System.getProperty("sun.arch.data.model") + "bit)");
@@ -232,8 +229,8 @@ public class ServerInitializer implements ServletContextListener {
 			} else if (serverType == ServerType.DEV_ENVIRONMENT) {
 				classPath = "../IFCEngine/bin";
 			}
-			if (pluginManager.getIfcPlugins().size() > 0) {
-				ifcEngineFactory = new IfcEngineFactory(schemaFile, nativeFolder, new File(homeDir, "tmp"), classPath, pluginManager.getIfcPlugins().iterator().next());
+			if (pluginManager.getAllIfcEnginePlugins().size() > 0) {
+				ifcEngineFactory = new IfcEngineFactory(schemaFile, nativeFolder, new File(homeDir, "tmp"), classPath, pluginManager.getAllIfcEnginePlugins().iterator().next());
 			}
 
 			emfSerializerFactory = EmfSerializerFactory.getInstance();
@@ -258,8 +255,8 @@ public class ServerInitializer implements ServletContextListener {
 			CompileServlet.database = bimDatabase;
 			CompileServlet.settingsManager = settingsManager;
 
-			URL colladSettingsFile = resourceFetcher.getResource("collada.xml");
-			colladaSettings = PackageDefinition.readFromFile(colladSettingsFile);
+//			URL colladSettingsFile = resourceFetcher.getResource("collada.xml");
+//			colladaSettings = PackageDefinition.readFromFile(colladSettingsFile);
 
 			TempUtils.makeTempDir("bimserver");
 			
@@ -327,7 +324,7 @@ public class ServerInitializer implements ServletContextListener {
 				session.store(serializer);
 			}
 		}
-		for (IfcEnginePlugin ifcEnginePlugin : pluginManager.getIfcPlugins()) {
+		for (IfcEnginePlugin ifcEnginePlugin : pluginManager.getAllIfcEnginePlugins()) {
 			String name = ifcEnginePlugin.getName();
 			Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getIfcEngine_Name(), new StringLiteral(name));
 			Serializer found = session.querySingle(condition, Serializer.class, false);
@@ -348,7 +345,7 @@ public class ServerInitializer implements ServletContextListener {
 	}
 
 	private void initDatabaseDependantItems() {
-		emfSerializerFactory.init(version, schema, fieldIgnoreMap, ifcEngineFactory, colladaSettings, resourceFetcher, settingsManager, pluginManager, bimDatabase);
+		emfSerializerFactory.init(version, schema, fieldIgnoreMap, ifcEngineFactory, resourceFetcher, settingsManager, pluginManager, bimDatabase);
 		emfSerializerFactory.initSerializers();
 	}
 	

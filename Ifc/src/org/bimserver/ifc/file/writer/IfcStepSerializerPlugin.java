@@ -1,11 +1,8 @@
 package org.bimserver.ifc.file.writer;
 
-import net.xeoh.plugins.base.annotations.PluginImplementation;
-
 import org.bimserver.plugins.serializers.EmfSerializer;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 
-@PluginImplementation
 public class IfcStepSerializerPlugin implements SerializerPlugin {
 
 	@Override

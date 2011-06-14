@@ -1,11 +1,8 @@
 package org.bimserver.serializers;
 
-import net.xeoh.plugins.base.annotations.PluginImplementation;
-
 import org.bimserver.plugins.serializers.EmfSerializer;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 
-@PluginImplementation
 public class ObjectInfoSerializerPlugin implements SerializerPlugin {
 
 	@Override
