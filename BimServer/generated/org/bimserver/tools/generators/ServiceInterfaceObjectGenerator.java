@@ -1,11 +1,7 @@
 package org.bimserver.tools.generators;
 
-import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EEnum;
-import org.eclipse.emf.ecore.EEnumLiteral;
-import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.*;
+import org.bimserver.tools.generators.GenerateUtils;
 
 public class ServiceInterfaceObjectGenerator
 {
