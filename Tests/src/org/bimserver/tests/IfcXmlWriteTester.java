@@ -32,7 +32,7 @@ public class IfcXmlWriteTester {
 		IfcModel model = reader.getModel();
 		IfcXmlSerializer ifcXmlWriter = new IfcXmlSerializer();
 		try {
-			ifcXmlWriter.init(model, schema, null, null, null);
+			ifcXmlWriter.init(model, schema, null, null, null, null);
 		} catch (SerializerException e1) {
 			e1.printStackTrace();
 		}

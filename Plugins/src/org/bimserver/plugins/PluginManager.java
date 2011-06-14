@@ -1,4 +1,4 @@
-package org.bimserver.shared;
+package org.bimserver.plugins;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -21,11 +21,6 @@ import javax.xml.bind.Unmarshaller;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.output.ByteArrayOutputStream;
-import org.bimserver.plugins.Plugin;
-import org.bimserver.plugins.PluginClassloader;
-import org.bimserver.plugins.PluginContext;
-import org.bimserver.plugins.PluginDescriptor;
-import org.bimserver.plugins.PluginImplementation;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
 import org.bimserver.plugins.serializers.SerializerPlugin;
