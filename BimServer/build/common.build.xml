@@ -7,7 +7,7 @@
 	</fileset>
 	<target name="Build">
 		<mkdir dir="builds/lib" />
-		<mkdir dir="builds/plugins" />
+		<mkdir dir="builds/pluginlibs" />
 		<antcall target="BimServer" />
 		<antcall target="CityGML" />
 		<antcall target="Collada" />
