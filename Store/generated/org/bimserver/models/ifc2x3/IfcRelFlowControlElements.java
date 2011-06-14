@@ -19,10 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcDistributionControlElement;
-import org.bimserver.models.ifc2x3.IfcDistributionFlowElement;
-import org.bimserver.models.ifc2x3.IfcRelConnects;
-
 import org.eclipse.emf.common.util.EList;
 
 /**

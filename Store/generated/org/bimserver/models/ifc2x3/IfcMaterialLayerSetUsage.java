@@ -19,10 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcDirectionSenseEnum;
-import org.bimserver.models.ifc2x3.IfcLayerSetDirectionEnum;
-import org.bimserver.models.ifc2x3.IfcMaterialLayerSet;
-import org.bimserver.models.ifc2x3.IfcMaterialSelect;
 
 /**
  * <!-- begin-user-doc -->

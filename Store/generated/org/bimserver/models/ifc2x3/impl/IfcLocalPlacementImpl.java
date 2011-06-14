@@ -23,9 +23,6 @@ import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcAxis2Placement;
 import org.bimserver.models.ifc2x3.IfcLocalPlacement;
 import org.bimserver.models.ifc2x3.IfcObjectPlacement;
-
-import org.bimserver.models.ifc2x3.impl.IfcObjectPlacementImpl;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

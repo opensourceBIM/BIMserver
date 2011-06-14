@@ -19,8 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcAssemblyPlaceEnum;
-import org.bimserver.models.ifc2x3.IfcFurnishingElementType;
 
 /**
  * <!-- begin-user-doc -->

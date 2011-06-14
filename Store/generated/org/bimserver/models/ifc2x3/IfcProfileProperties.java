@@ -21,8 +21,6 @@ package org.bimserver.models.ifc2x3;
 
 import org.bimserver.emf.IdEObject;
 
-import org.bimserver.models.ifc2x3.IfcProfileDef;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Ifc Profile Properties</b></em>'.

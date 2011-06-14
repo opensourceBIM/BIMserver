@@ -19,8 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcFilterTypeEnum;
-import org.bimserver.models.ifc2x3.IfcFlowTreatmentDeviceType;
 
 /**
  * <!-- begin-user-doc -->

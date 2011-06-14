@@ -19,10 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcLayeredItem;
-import org.bimserver.models.ifc2x3.IfcPresentationLayerAssignment;
-import org.bimserver.models.ifc2x3.IfcStyledItem;
-
 import org.eclipse.emf.common.util.EList;
 
 /**

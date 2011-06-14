@@ -19,8 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcObjectPlacement;
-import org.bimserver.models.ifc2x3.IfcVirtualGridIntersection;
 
 /**
  * <!-- begin-user-doc -->

@@ -20,11 +20,6 @@
 package org.bimserver.models.ifc2x3;
 
 import org.bimserver.emf.IdEObject;
-
-import org.bimserver.models.ifc2x3.IfcApprovalActorRelationship;
-import org.bimserver.models.ifc2x3.IfcApprovalRelationship;
-import org.bimserver.models.ifc2x3.IfcDateTimeSelect;
-
 import org.eclipse.emf.common.util.EList;
 
 /**

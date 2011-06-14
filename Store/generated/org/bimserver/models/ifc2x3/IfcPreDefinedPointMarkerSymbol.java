@@ -19,7 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcPreDefinedSymbol;
 
 /**
  * <!-- begin-user-doc -->

@@ -23,11 +23,7 @@ import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcProcess;
 import org.bimserver.models.ifc2x3.IfcRelAssignsToProcess;
 import org.bimserver.models.ifc2x3.IfcRelSequence;
-
-import org.bimserver.models.ifc2x3.impl.IfcObjectImpl;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

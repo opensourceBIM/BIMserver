@@ -19,11 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcCartesianPoint;
-import org.bimserver.models.ifc2x3.IfcCurveStyle;
-import org.bimserver.models.ifc2x3.IfcFillStyleSelect;
-import org.bimserver.models.ifc2x3.IfcGeometricRepresentationItem;
-import org.bimserver.models.ifc2x3.IfcHatchLineDistanceSelect;
 
 /**
  * <!-- begin-user-doc -->

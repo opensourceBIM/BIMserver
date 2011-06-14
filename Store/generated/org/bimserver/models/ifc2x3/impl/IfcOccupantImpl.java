@@ -22,9 +22,6 @@ package org.bimserver.models.ifc2x3.impl;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcOccupant;
 import org.bimserver.models.ifc2x3.IfcOccupantTypeEnum;
-
-import org.bimserver.models.ifc2x3.impl.IfcActorImpl;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

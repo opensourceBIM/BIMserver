@@ -19,9 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcAxis2Placement;
-import org.bimserver.models.ifc2x3.IfcDirection;
-import org.bimserver.models.ifc2x3.IfcPlacement;
 
 /**
  * <!-- begin-user-doc -->

@@ -23,9 +23,6 @@ import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcCartesianTransformationOperator;
 import org.bimserver.models.ifc2x3.IfcMappedItem;
 import org.bimserver.models.ifc2x3.IfcRepresentationMap;
-
-import org.bimserver.models.ifc2x3.impl.IfcRepresentationItemImpl;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

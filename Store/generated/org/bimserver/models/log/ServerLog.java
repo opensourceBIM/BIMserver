@@ -20,9 +20,6 @@
 package org.bimserver.models.log;
 
 import org.bimserver.emf.IdEObject;
-
-import org.bimserver.models.log.LogAction;
-
 import org.eclipse.emf.common.util.EList;
 
 /**

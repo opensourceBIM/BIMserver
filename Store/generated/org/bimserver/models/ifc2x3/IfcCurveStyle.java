@@ -19,11 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcColour;
-import org.bimserver.models.ifc2x3.IfcCurveFontOrScaledCurveFontSelect;
-import org.bimserver.models.ifc2x3.IfcPresentationStyle;
-import org.bimserver.models.ifc2x3.IfcPresentationStyleSelect;
-import org.bimserver.models.ifc2x3.IfcSizeSelect;
 
 /**
  * <!-- begin-user-doc -->

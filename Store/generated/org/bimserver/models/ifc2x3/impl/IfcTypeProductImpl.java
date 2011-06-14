@@ -22,11 +22,7 @@ package org.bimserver.models.ifc2x3.impl;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcRepresentationMap;
 import org.bimserver.models.ifc2x3.IfcTypeProduct;
-
-import org.bimserver.models.ifc2x3.impl.IfcTypeObjectImpl;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

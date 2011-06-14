@@ -23,9 +23,6 @@ import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcStructuralAction;
 import org.bimserver.models.ifc2x3.IfcStructuralReaction;
 import org.bimserver.models.ifc2x3.Tristate;
-
-import org.bimserver.models.ifc2x3.impl.IfcStructuralActivityImpl;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

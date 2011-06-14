@@ -19,8 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcEnergyConversionDeviceType;
-import org.bimserver.models.ifc2x3.IfcTubeBundleTypeEnum;
 
 /**
  * <!-- begin-user-doc -->

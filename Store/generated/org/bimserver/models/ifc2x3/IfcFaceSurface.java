@@ -19,10 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcFace;
-import org.bimserver.models.ifc2x3.IfcSurface;
-import org.bimserver.models.ifc2x3.IfcSurfaceOrFaceSurface;
-import org.bimserver.models.ifc2x3.Tristate;
 
 /**
  * <!-- begin-user-doc -->

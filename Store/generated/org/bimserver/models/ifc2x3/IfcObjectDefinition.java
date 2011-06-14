@@ -19,11 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcRelAssigns;
-import org.bimserver.models.ifc2x3.IfcRelAssociates;
-import org.bimserver.models.ifc2x3.IfcRelDecomposes;
-import org.bimserver.models.ifc2x3.IfcRoot;
-
 import org.eclipse.emf.common.util.EList;
 
 /**

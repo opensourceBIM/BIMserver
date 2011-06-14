@@ -22,11 +22,7 @@ package org.bimserver.models.ifc2x3.impl;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcPostalAddress;
 import org.bimserver.models.ifc2x3.IfcSite;
-
-import org.bimserver.models.ifc2x3.impl.IfcSpatialStructureElementImpl;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

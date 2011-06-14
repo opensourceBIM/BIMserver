@@ -22,9 +22,6 @@ package org.bimserver.models.ifc2x3.impl;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcDistributionChamberElementType;
 import org.bimserver.models.ifc2x3.IfcDistributionChamberElementTypeEnum;
-
-import org.bimserver.models.ifc2x3.impl.IfcDistributionFlowElementTypeImpl;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

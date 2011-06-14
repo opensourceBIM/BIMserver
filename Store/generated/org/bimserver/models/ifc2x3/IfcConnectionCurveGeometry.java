@@ -19,8 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcConnectionGeometry;
-import org.bimserver.models.ifc2x3.IfcCurveOrEdgeCurve;
 
 /**
  * <!-- begin-user-doc -->

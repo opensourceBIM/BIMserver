@@ -24,9 +24,6 @@ import org.bimserver.models.ifc2x3.IfcDoorStyle;
 import org.bimserver.models.ifc2x3.IfcDoorStyleConstructionEnum;
 import org.bimserver.models.ifc2x3.IfcDoorStyleOperationEnum;
 import org.bimserver.models.ifc2x3.Tristate;
-
-import org.bimserver.models.ifc2x3.impl.IfcTypeProductImpl;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

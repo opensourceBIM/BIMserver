@@ -22,9 +22,6 @@ package org.bimserver.models.ifc2x3.impl;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcProjectedOrTrueLengthEnum;
 import org.bimserver.models.ifc2x3.IfcStructuralLinearAction;
-
-import org.bimserver.models.ifc2x3.impl.IfcStructuralActionImpl;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

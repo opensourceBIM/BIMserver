@@ -19,10 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcDoorPanelOperationEnum;
-import org.bimserver.models.ifc2x3.IfcDoorPanelPositionEnum;
-import org.bimserver.models.ifc2x3.IfcPropertySetDefinition;
-import org.bimserver.models.ifc2x3.IfcShapeAspect;
 
 /**
  * <!-- begin-user-doc -->

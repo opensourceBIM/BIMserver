@@ -19,10 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcCurve;
-import org.bimserver.models.ifc2x3.IfcCurveOrEdgeCurve;
-import org.bimserver.models.ifc2x3.IfcEdge;
-import org.bimserver.models.ifc2x3.Tristate;
 
 /**
  * <!-- begin-user-doc -->

@@ -19,8 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcCableCarrierFittingTypeEnum;
-import org.bimserver.models.ifc2x3.IfcFlowFittingType;
 
 /**
  * <!-- begin-user-doc -->

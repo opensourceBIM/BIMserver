@@ -19,11 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcAxis2Placement;
-import org.bimserver.models.ifc2x3.IfcDirection;
-import org.bimserver.models.ifc2x3.IfcGeometricRepresentationSubContext;
-import org.bimserver.models.ifc2x3.IfcRepresentationContext;
-
 import org.eclipse.emf.common.util.EList;
 
 /**

@@ -24,11 +24,7 @@ import org.bimserver.models.ifc2x3.IfcDateTimeSelect;
 import org.bimserver.models.ifc2x3.IfcPerson;
 import org.bimserver.models.ifc2x3.IfcWorkControl;
 import org.bimserver.models.ifc2x3.IfcWorkControlTypeEnum;
-
-import org.bimserver.models.ifc2x3.impl.IfcControlImpl;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

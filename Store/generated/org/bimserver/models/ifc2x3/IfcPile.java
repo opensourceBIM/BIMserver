@@ -19,9 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcBuildingElement;
-import org.bimserver.models.ifc2x3.IfcPileConstructionEnum;
-import org.bimserver.models.ifc2x3.IfcPileTypeEnum;
 
 /**
  * <!-- begin-user-doc -->

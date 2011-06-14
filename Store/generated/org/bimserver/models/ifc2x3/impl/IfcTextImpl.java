@@ -21,9 +21,6 @@ package org.bimserver.models.ifc2x3.impl;
 
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcText;
-
-import org.bimserver.models.ifc2x3.impl.WrappedValueImpl;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

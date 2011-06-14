@@ -19,8 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcControllerTypeEnum;
-import org.bimserver.models.ifc2x3.IfcDistributionControlElementType;
 
 /**
  * <!-- begin-user-doc -->

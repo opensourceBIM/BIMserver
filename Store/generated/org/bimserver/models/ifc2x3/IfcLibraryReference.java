@@ -19,10 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcExternalReference;
-import org.bimserver.models.ifc2x3.IfcLibraryInformation;
-import org.bimserver.models.ifc2x3.IfcLibrarySelect;
-
 import org.eclipse.emf.common.util.EList;
 
 /**

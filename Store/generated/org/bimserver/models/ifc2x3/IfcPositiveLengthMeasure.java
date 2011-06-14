@@ -19,10 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcHatchLineDistanceSelect;
-import org.bimserver.models.ifc2x3.IfcLengthMeasure;
-import org.bimserver.models.ifc2x3.IfcMeasureValue;
-import org.bimserver.models.ifc2x3.IfcSizeSelect;
 
 /**
  * <!-- begin-user-doc -->

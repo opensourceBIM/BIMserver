@@ -19,10 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcDraughtingCalloutElement;
-import org.bimserver.models.ifc2x3.IfcDraughtingCalloutRelationship;
-import org.bimserver.models.ifc2x3.IfcGeometricRepresentationItem;
-
 import org.eclipse.emf.common.util.EList;
 
 /**

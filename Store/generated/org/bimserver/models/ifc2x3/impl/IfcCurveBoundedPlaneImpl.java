@@ -23,11 +23,7 @@ import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcCurve;
 import org.bimserver.models.ifc2x3.IfcCurveBoundedPlane;
 import org.bimserver.models.ifc2x3.IfcPlane;
-
-import org.bimserver.models.ifc2x3.impl.IfcBoundedSurfaceImpl;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

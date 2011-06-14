@@ -19,12 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcAnalysisTheoryTypeEnum;
-import org.bimserver.models.ifc2x3.IfcGroup;
-import org.bimserver.models.ifc2x3.IfcStructuralAnalysisModel;
-import org.bimserver.models.ifc2x3.IfcStructuralLoadGroup;
-import org.bimserver.models.ifc2x3.Tristate;
-
 import org.eclipse.emf.common.util.EList;
 
 /**

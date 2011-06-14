@@ -19,11 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcDerivedMeasureValue;
-import org.bimserver.models.ifc2x3.IfcMaterial;
-import org.bimserver.models.ifc2x3.IfcPropertySetDefinition;
-import org.bimserver.models.ifc2x3.IfcPropertySourceEnum;
-import org.bimserver.models.ifc2x3.IfcTimeSeries;
 
 /**
  * <!-- begin-user-doc -->

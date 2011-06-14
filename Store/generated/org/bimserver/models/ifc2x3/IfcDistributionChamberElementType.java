@@ -19,8 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcDistributionChamberElementTypeEnum;
-import org.bimserver.models.ifc2x3.IfcDistributionFlowElementType;
 
 /**
  * <!-- begin-user-doc -->

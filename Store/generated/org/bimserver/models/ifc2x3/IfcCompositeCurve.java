@@ -19,9 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcBoundedCurve;
-import org.bimserver.models.ifc2x3.IfcCompositeCurveSegment;
-
 import org.eclipse.emf.common.util.EList;
 
 /**

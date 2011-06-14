@@ -23,9 +23,6 @@ import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcSIPrefix;
 import org.bimserver.models.ifc2x3.IfcSIUnit;
 import org.bimserver.models.ifc2x3.IfcSIUnitName;
-
-import org.bimserver.models.ifc2x3.impl.IfcNamedUnitImpl;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

@@ -19,13 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcAppliedValueRelationship;
-import org.bimserver.models.ifc2x3.IfcAppliedValueSelect;
-import org.bimserver.models.ifc2x3.IfcDateTimeSelect;
-import org.bimserver.models.ifc2x3.IfcMeasureWithUnit;
-import org.bimserver.models.ifc2x3.IfcObjectReferenceSelect;
-import org.bimserver.models.ifc2x3.IfcReferencesValueDocument;
-
 import org.eclipse.emf.common.util.EList;
 
 /**

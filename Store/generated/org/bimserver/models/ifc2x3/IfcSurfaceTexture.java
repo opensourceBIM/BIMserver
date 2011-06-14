@@ -21,10 +21,6 @@ package org.bimserver.models.ifc2x3;
 
 import org.bimserver.emf.IdEObject;
 
-import org.bimserver.models.ifc2x3.IfcCartesianTransformationOperator2D;
-import org.bimserver.models.ifc2x3.IfcSurfaceTextureEnum;
-import org.bimserver.models.ifc2x3.Tristate;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Ifc Surface Texture</b></em>'.

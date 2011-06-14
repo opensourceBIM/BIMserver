@@ -19,13 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcActorSelect;
-import org.bimserver.models.ifc2x3.IfcCalendarDate;
-import org.bimserver.models.ifc2x3.IfcCostValue;
-import org.bimserver.models.ifc2x3.IfcGroup;
-import org.bimserver.models.ifc2x3.IfcInventoryTypeEnum;
-import org.bimserver.models.ifc2x3.IfcPerson;
-
 import org.eclipse.emf.common.util.EList;
 
 /**

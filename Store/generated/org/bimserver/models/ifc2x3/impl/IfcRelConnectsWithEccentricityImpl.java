@@ -22,9 +22,6 @@ package org.bimserver.models.ifc2x3.impl;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcConnectionGeometry;
 import org.bimserver.models.ifc2x3.IfcRelConnectsWithEccentricity;
-
-import org.bimserver.models.ifc2x3.impl.IfcRelConnectsStructuralMemberImpl;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

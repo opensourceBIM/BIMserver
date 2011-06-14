@@ -22,9 +22,6 @@ package org.bimserver.models.ifc2x3.impl;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcDuctSegmentType;
 import org.bimserver.models.ifc2x3.IfcDuctSegmentTypeEnum;
-
-import org.bimserver.models.ifc2x3.impl.IfcFlowSegmentTypeImpl;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

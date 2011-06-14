@@ -24,11 +24,7 @@ import org.bimserver.models.ifc2x3.IfcAxis2Placement;
 import org.bimserver.models.ifc2x3.IfcDirection;
 import org.bimserver.models.ifc2x3.IfcGeometricRepresentationContext;
 import org.bimserver.models.ifc2x3.IfcGeometricRepresentationSubContext;
-
-import org.bimserver.models.ifc2x3.impl.IfcRepresentationContextImpl;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

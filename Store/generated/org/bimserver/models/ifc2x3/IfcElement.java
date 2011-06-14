@@ -19,20 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcProduct;
-import org.bimserver.models.ifc2x3.IfcRelConnectsElements;
-import org.bimserver.models.ifc2x3.IfcRelConnectsPortToElement;
-import org.bimserver.models.ifc2x3.IfcRelConnectsStructuralElement;
-import org.bimserver.models.ifc2x3.IfcRelConnectsWithRealizingElements;
-import org.bimserver.models.ifc2x3.IfcRelContainedInSpatialStructure;
-import org.bimserver.models.ifc2x3.IfcRelCoversBldgElements;
-import org.bimserver.models.ifc2x3.IfcRelFillsElement;
-import org.bimserver.models.ifc2x3.IfcRelProjectsElement;
-import org.bimserver.models.ifc2x3.IfcRelReferencedInSpatialStructure;
-import org.bimserver.models.ifc2x3.IfcRelSpaceBoundary;
-import org.bimserver.models.ifc2x3.IfcRelVoidsElement;
-import org.bimserver.models.ifc2x3.IfcStructuralActivityAssignmentSelect;
-
 import org.eclipse.emf.common.util.EList;
 
 /**

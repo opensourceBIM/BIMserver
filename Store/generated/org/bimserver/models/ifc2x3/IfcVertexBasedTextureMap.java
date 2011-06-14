@@ -20,10 +20,6 @@
 package org.bimserver.models.ifc2x3;
 
 import org.bimserver.emf.IdEObject;
-
-import org.bimserver.models.ifc2x3.IfcCartesianPoint;
-import org.bimserver.models.ifc2x3.IfcTextureVertex;
-
 import org.eclipse.emf.common.util.EList;
 
 /**

@@ -25,11 +25,7 @@ import org.bimserver.models.ifc2x3.IfcTrimmedCurve;
 import org.bimserver.models.ifc2x3.IfcTrimmingPreference;
 import org.bimserver.models.ifc2x3.IfcTrimmingSelect;
 import org.bimserver.models.ifc2x3.Tristate;
-
-import org.bimserver.models.ifc2x3.impl.IfcBoundedCurveImpl;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

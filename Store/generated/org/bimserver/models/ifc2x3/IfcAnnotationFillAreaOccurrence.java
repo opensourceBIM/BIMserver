@@ -19,9 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcAnnotationOccurrence;
-import org.bimserver.models.ifc2x3.IfcGlobalOrLocalEnum;
-import org.bimserver.models.ifc2x3.IfcPoint;
 
 /**
  * <!-- begin-user-doc -->

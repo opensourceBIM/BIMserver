@@ -19,9 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcConditionCriterionSelect;
-import org.bimserver.models.ifc2x3.IfcControl;
-import org.bimserver.models.ifc2x3.IfcDateTimeSelect;
 
 /**
  * <!-- begin-user-doc -->

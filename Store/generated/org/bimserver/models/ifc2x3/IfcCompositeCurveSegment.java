@@ -19,12 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcCompositeCurve;
-import org.bimserver.models.ifc2x3.IfcCurve;
-import org.bimserver.models.ifc2x3.IfcGeometricRepresentationItem;
-import org.bimserver.models.ifc2x3.IfcTransitionCode;
-import org.bimserver.models.ifc2x3.Tristate;
-
 import org.eclipse.emf.common.util.EList;
 
 /**

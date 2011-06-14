@@ -24,9 +24,6 @@ import org.bimserver.models.ifc2x3.IfcColour;
 import org.bimserver.models.ifc2x3.IfcCurveFontOrScaledCurveFontSelect;
 import org.bimserver.models.ifc2x3.IfcCurveStyle;
 import org.bimserver.models.ifc2x3.IfcSizeSelect;
-
-import org.bimserver.models.ifc2x3.impl.IfcPresentationStyleImpl;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

@@ -20,13 +20,11 @@
 package org.bimserver.models.ifc2x3.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
-
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcDirectionSenseEnum;
 import org.bimserver.models.ifc2x3.IfcLayerSetDirectionEnum;
 import org.bimserver.models.ifc2x3.IfcMaterialLayerSet;
 import org.bimserver.models.ifc2x3.IfcMaterialLayerSetUsage;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

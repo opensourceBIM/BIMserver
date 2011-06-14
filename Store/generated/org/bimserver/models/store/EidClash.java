@@ -19,7 +19,6 @@
  */
 package org.bimserver.models.store;
 
-import org.bimserver.models.store.Clash;
 
 /**
  * <!-- begin-user-doc -->

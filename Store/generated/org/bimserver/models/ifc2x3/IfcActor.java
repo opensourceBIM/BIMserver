@@ -19,10 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcActorSelect;
-import org.bimserver.models.ifc2x3.IfcObject;
-import org.bimserver.models.ifc2x3.IfcRelAssignsToActor;
-
 import org.eclipse.emf.common.util.EList;
 
 /**

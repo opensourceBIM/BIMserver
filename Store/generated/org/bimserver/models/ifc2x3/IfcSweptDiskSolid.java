@@ -19,8 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcCurve;
-import org.bimserver.models.ifc2x3.IfcSolidModel;
 
 /**
  * <!-- begin-user-doc -->

@@ -21,9 +21,6 @@ package org.bimserver.models.ifc2x3.impl;
 
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcQuantityTime;
-
-import org.bimserver.models.ifc2x3.impl.IfcPhysicalSimpleQuantityImpl;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

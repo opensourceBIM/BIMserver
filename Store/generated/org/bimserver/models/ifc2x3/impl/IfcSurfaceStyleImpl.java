@@ -23,11 +23,7 @@ import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcSurfaceSide;
 import org.bimserver.models.ifc2x3.IfcSurfaceStyle;
 import org.bimserver.models.ifc2x3.IfcSurfaceStyleElementSelect;
-
-import org.bimserver.models.ifc2x3.impl.IfcPresentationStyleImpl;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

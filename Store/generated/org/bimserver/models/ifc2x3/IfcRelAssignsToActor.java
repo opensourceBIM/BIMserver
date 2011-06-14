@@ -19,9 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcActor;
-import org.bimserver.models.ifc2x3.IfcActorRole;
-import org.bimserver.models.ifc2x3.IfcRelAssigns;
 
 /**
  * <!-- begin-user-doc -->

@@ -19,16 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcActorSelect;
-import org.bimserver.models.ifc2x3.IfcCalendarDate;
-import org.bimserver.models.ifc2x3.IfcDateAndTime;
-import org.bimserver.models.ifc2x3.IfcDocumentConfidentialityEnum;
-import org.bimserver.models.ifc2x3.IfcDocumentElectronicFormat;
-import org.bimserver.models.ifc2x3.IfcDocumentInformationRelationship;
-import org.bimserver.models.ifc2x3.IfcDocumentReference;
-import org.bimserver.models.ifc2x3.IfcDocumentSelect;
-import org.bimserver.models.ifc2x3.IfcDocumentStatusEnum;
-
 import org.eclipse.emf.common.util.EList;
 
 /**

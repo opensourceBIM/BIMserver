@@ -20,7 +20,6 @@
 package org.bimserver.models.ifc2x3.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
-
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcDataOriginEnum;
 import org.bimserver.models.ifc2x3.IfcDateTimeSelect;
@@ -28,9 +27,7 @@ import org.bimserver.models.ifc2x3.IfcTimeSeries;
 import org.bimserver.models.ifc2x3.IfcTimeSeriesDataTypeEnum;
 import org.bimserver.models.ifc2x3.IfcTimeSeriesReferenceRelationship;
 import org.bimserver.models.ifc2x3.IfcUnit;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

@@ -19,8 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcObjectTypeEnum;
-import org.bimserver.models.ifc2x3.IfcProduct;
 
 /**
  * <!-- begin-user-doc -->

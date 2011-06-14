@@ -24,9 +24,6 @@ import org.bimserver.models.ifc2x3.IfcShapeAspect;
 import org.bimserver.models.ifc2x3.IfcWindowPanelOperationEnum;
 import org.bimserver.models.ifc2x3.IfcWindowPanelPositionEnum;
 import org.bimserver.models.ifc2x3.IfcWindowPanelProperties;
-
-import org.bimserver.models.ifc2x3.impl.IfcPropertySetDefinitionImpl;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

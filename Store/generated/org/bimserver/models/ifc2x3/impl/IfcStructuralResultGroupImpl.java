@@ -25,11 +25,7 @@ import org.bimserver.models.ifc2x3.IfcStructuralAnalysisModel;
 import org.bimserver.models.ifc2x3.IfcStructuralLoadGroup;
 import org.bimserver.models.ifc2x3.IfcStructuralResultGroup;
 import org.bimserver.models.ifc2x3.Tristate;
-
-import org.bimserver.models.ifc2x3.impl.IfcGroupImpl;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

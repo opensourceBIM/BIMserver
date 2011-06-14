@@ -22,9 +22,6 @@ package org.bimserver.models.ifc2x3.impl;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcPlanarExtent;
 import org.bimserver.models.ifc2x3.IfcTextLiteralWithExtent;
-
-import org.bimserver.models.ifc2x3.impl.IfcTextLiteralImpl;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

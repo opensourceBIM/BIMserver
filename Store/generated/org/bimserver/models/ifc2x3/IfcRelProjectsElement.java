@@ -19,9 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcElement;
-import org.bimserver.models.ifc2x3.IfcFeatureElementAddition;
-import org.bimserver.models.ifc2x3.IfcRelConnects;
 
 /**
  * <!-- begin-user-doc -->

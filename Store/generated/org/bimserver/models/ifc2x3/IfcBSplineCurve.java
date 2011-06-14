@@ -19,10 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcBSplineCurveForm;
-import org.bimserver.models.ifc2x3.IfcBoundedCurve;
-import org.bimserver.models.ifc2x3.IfcCartesianPoint;
-
 import org.eclipse.emf.common.util.EList;
 
 /**

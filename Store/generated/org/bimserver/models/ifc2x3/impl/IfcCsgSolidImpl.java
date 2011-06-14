@@ -22,9 +22,6 @@ package org.bimserver.models.ifc2x3.impl;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcCsgSelect;
 import org.bimserver.models.ifc2x3.IfcCsgSolid;
-
-import org.bimserver.models.ifc2x3.impl.IfcSolidModelImpl;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

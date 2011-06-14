@@ -19,11 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcObject;
-import org.bimserver.models.ifc2x3.IfcObjectPlacement;
-import org.bimserver.models.ifc2x3.IfcProductRepresentation;
-import org.bimserver.models.ifc2x3.IfcRelAssignsToProduct;
-
 import org.eclipse.emf.common.util.EList;
 
 /**

@@ -23,9 +23,6 @@ import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcCurve;
 import org.bimserver.models.ifc2x3.IfcSurface;
 import org.bimserver.models.ifc2x3.IfcSurfaceCurveSweptAreaSolid;
-
-import org.bimserver.models.ifc2x3.impl.IfcSweptAreaSolidImpl;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

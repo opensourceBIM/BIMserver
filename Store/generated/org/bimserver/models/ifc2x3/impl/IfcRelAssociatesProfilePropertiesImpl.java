@@ -24,9 +24,6 @@ import org.bimserver.models.ifc2x3.IfcOrientationSelect;
 import org.bimserver.models.ifc2x3.IfcProfileProperties;
 import org.bimserver.models.ifc2x3.IfcRelAssociatesProfileProperties;
 import org.bimserver.models.ifc2x3.IfcShapeAspect;
-
-import org.bimserver.models.ifc2x3.impl.IfcRelAssociatesImpl;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

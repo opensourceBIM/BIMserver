@@ -23,9 +23,6 @@ import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcProcess;
 import org.bimserver.models.ifc2x3.IfcRelSequence;
 import org.bimserver.models.ifc2x3.IfcSequenceEnum;
-
-import org.bimserver.models.ifc2x3.impl.IfcRelConnectsImpl;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

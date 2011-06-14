@@ -19,10 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcPropertyEnumeration;
-import org.bimserver.models.ifc2x3.IfcSimpleProperty;
-import org.bimserver.models.ifc2x3.IfcValue;
-
 import org.eclipse.emf.common.util.EList;
 
 /**

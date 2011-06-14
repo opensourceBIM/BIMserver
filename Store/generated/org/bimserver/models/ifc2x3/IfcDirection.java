@@ -19,10 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcGeometricRepresentationItem;
-import org.bimserver.models.ifc2x3.IfcOrientationSelect;
-import org.bimserver.models.ifc2x3.IfcVectorOrDirection;
-
 import org.eclipse.emf.common.util.EList;
 
 /**

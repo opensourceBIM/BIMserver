@@ -19,11 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcAxis2Placement3D;
-import org.bimserver.models.ifc2x3.IfcCompositeCurve;
-import org.bimserver.models.ifc2x3.IfcGeometricRepresentationItem;
-import org.bimserver.models.ifc2x3.IfcProfileDef;
-
 import org.eclipse.emf.common.util.EList;
 
 /**

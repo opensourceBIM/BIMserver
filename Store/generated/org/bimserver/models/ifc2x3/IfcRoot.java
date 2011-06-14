@@ -21,9 +21,6 @@ package org.bimserver.models.ifc2x3;
 
 import org.bimserver.emf.IdEObject;
 
-import org.bimserver.models.ifc2x3.IfcGloballyUniqueId;
-import org.bimserver.models.ifc2x3.IfcOwnerHistory;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Ifc Root</b></em>'.

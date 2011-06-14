@@ -21,10 +21,6 @@ package org.bimserver.models.ifc2x3;
 
 import org.bimserver.emf.IdEObject;
 
-import org.bimserver.models.ifc2x3.IfcActorRole;
-import org.bimserver.models.ifc2x3.IfcActorSelect;
-import org.bimserver.models.ifc2x3.IfcApproval;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Ifc Approval Actor Relationship</b></em>'.

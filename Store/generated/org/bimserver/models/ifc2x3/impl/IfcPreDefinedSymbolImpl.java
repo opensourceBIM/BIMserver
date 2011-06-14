@@ -21,9 +21,6 @@ package org.bimserver.models.ifc2x3.impl;
 
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcPreDefinedSymbol;
-
-import org.bimserver.models.ifc2x3.impl.IfcPreDefinedItemImpl;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

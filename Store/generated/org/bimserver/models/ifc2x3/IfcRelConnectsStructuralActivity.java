@@ -19,9 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcRelConnects;
-import org.bimserver.models.ifc2x3.IfcStructuralActivity;
-import org.bimserver.models.ifc2x3.IfcStructuralActivityAssignmentSelect;
 
 /**
  * <!-- begin-user-doc -->

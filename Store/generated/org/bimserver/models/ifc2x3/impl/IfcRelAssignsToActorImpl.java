@@ -23,9 +23,6 @@ import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcActor;
 import org.bimserver.models.ifc2x3.IfcActorRole;
 import org.bimserver.models.ifc2x3.IfcRelAssignsToActor;
-
-import org.bimserver.models.ifc2x3.impl.IfcRelAssignsImpl;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

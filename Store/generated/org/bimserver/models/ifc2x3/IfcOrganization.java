@@ -19,13 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcActorRole;
-import org.bimserver.models.ifc2x3.IfcActorSelect;
-import org.bimserver.models.ifc2x3.IfcAddress;
-import org.bimserver.models.ifc2x3.IfcObjectReferenceSelect;
-import org.bimserver.models.ifc2x3.IfcOrganizationRelationship;
-import org.bimserver.models.ifc2x3.IfcPersonAndOrganization;
-
 import org.eclipse.emf.common.util.EList;
 
 /**

@@ -19,12 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcConnectionGeometry;
-import org.bimserver.models.ifc2x3.IfcElement;
-import org.bimserver.models.ifc2x3.IfcInternalOrExternalEnum;
-import org.bimserver.models.ifc2x3.IfcPhysicalOrVirtualEnum;
-import org.bimserver.models.ifc2x3.IfcRelConnects;
-import org.bimserver.models.ifc2x3.IfcSpace;
 
 /**
  * <!-- begin-user-doc -->

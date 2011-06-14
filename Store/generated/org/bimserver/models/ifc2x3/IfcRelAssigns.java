@@ -19,10 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcObjectDefinition;
-import org.bimserver.models.ifc2x3.IfcObjectTypeEnum;
-import org.bimserver.models.ifc2x3.IfcRelationship;
-
 import org.eclipse.emf.common.util.EList;
 
 /**

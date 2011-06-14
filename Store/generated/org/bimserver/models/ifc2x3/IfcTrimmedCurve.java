@@ -19,12 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcBoundedCurve;
-import org.bimserver.models.ifc2x3.IfcCurve;
-import org.bimserver.models.ifc2x3.IfcTrimmingPreference;
-import org.bimserver.models.ifc2x3.IfcTrimmingSelect;
-import org.bimserver.models.ifc2x3.Tristate;
-
 import org.eclipse.emf.common.util.EList;
 
 /**

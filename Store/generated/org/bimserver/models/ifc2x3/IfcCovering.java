@@ -19,11 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcBuildingElement;
-import org.bimserver.models.ifc2x3.IfcCoveringTypeEnum;
-import org.bimserver.models.ifc2x3.IfcRelCoversBldgElements;
-import org.bimserver.models.ifc2x3.IfcRelCoversSpaces;
-
 import org.eclipse.emf.common.util.EList;
 
 /**

@@ -19,9 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcNamedUnit;
-import org.bimserver.models.ifc2x3.IfcSIPrefix;
-import org.bimserver.models.ifc2x3.IfcSIUnitName;
 
 /**
  * <!-- begin-user-doc -->

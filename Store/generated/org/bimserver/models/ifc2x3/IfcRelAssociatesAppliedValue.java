@@ -19,8 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcAppliedValue;
-import org.bimserver.models.ifc2x3.IfcRelAssociates;
 
 /**
  * <!-- begin-user-doc -->

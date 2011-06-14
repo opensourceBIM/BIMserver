@@ -20,7 +20,6 @@
 package org.bimserver.models.ifc2x3.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
-
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcActorSelect;
 import org.bimserver.models.ifc2x3.IfcConstraint;
@@ -30,9 +29,7 @@ import org.bimserver.models.ifc2x3.IfcConstraintEnum;
 import org.bimserver.models.ifc2x3.IfcConstraintRelationship;
 import org.bimserver.models.ifc2x3.IfcDateTimeSelect;
 import org.bimserver.models.ifc2x3.IfcPropertyConstraintRelationship;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**
