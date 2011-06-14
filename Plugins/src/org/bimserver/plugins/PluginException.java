@@ -1,4 +1,4 @@
-package org.bimserver.shared;
+package org.bimserver.plugins;
 
 public class PluginException extends Exception {
 

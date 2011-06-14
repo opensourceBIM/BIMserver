@@ -71,6 +71,7 @@ import org.bimserver.models.ifc2x3.IfcWall;
 import org.bimserver.models.ifc2x3.IfcWallStandardCase;
 import org.bimserver.models.ifc2x3.IfcWindow;
 import org.bimserver.models.ifc2x3.WrappedValue;
+import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.ifcengine.IfcEngine;
 import org.bimserver.plugins.ifcengine.IfcEngineException;
 import org.bimserver.plugins.ifcengine.IfcEngineFactory;
@@ -81,7 +82,6 @@ import org.bimserver.plugins.ifcengine.IfcEngineModel;
 import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
 import org.bimserver.plugins.ifcengine.IfcEngineSurfaceProperties;
 import org.bimserver.plugins.schema.SchemaDefinition;
-import org.bimserver.shared.PluginManager;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
 import org.bimserver.utils.CollectionUtils;
 import org.eclipse.emf.common.util.BasicEList;
@@ -354,7 +354,7 @@ public class IfcVisualiser extends JFrame {
 	public void createTriangles(IfcRoot ifcRootObject, IfcModel ifcModel, TransformGroup buildingTransformGroup) {
 		IfcStepSerializer ifcSerializer = new IfcStepSerializer();
 		try {
-			ifcSerializer.init(ifcModel, schema, fieldIgnoreMap, ifcEngineFactory, null);
+			ifcSerializer.init(ifcModel, schema, fieldIgnoreMap, ifcEngineFactory, null, null);
 			IfcEngineModel model = ifcEngine.openModel(ifcSerializer.getBytes());
 			try {
 				model.setPostProcessing(true);

@@ -6,6 +6,7 @@ import org.bimserver.emf.IdEObject;
 import org.bimserver.models.ifc2x3.Ifc2x3Factory;
 import org.bimserver.models.ifc2x3.IfcGloballyUniqueId;
 import org.bimserver.models.ifc2x3.WrappedValue;
+import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.ifcengine.IfcEngineFactory;
 import org.bimserver.plugins.ignoreproviders.IgnoreProvider;
 import org.bimserver.plugins.schema.Schema;
@@ -18,8 +19,8 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 
 public abstract class BimModelSerializer extends EmfSerializer {
 
-	public void init(IfcModelInterface model, Schema schema, IgnoreProvider ignoreProvider, IfcEngineFactory ifcEngineFactory, ProjectInfo projectInfo) throws SerializerException {
-		super.init(model, schema, ignoreProvider, ifcEngineFactory, projectInfo);
+	public void init(IfcModelInterface model, Schema schema, IgnoreProvider ignoreProvider, IfcEngineFactory ifcEngineFactory, ProjectInfo projectInfo, PluginManager pluginManager) throws SerializerException {
+		super.init(model, schema, ignoreProvider, ifcEngineFactory, projectInfo, pluginManager);
 	}
 
 	@SuppressWarnings("unchecked")

@@ -2,8 +2,8 @@ package org.bimserver.tests;
 
 import java.io.File;
 
-import org.bimserver.shared.PluginException;
-import org.bimserver.shared.PluginManager;
+import org.bimserver.plugins.PluginException;
+import org.bimserver.plugins.PluginManager;
 
 public class PluginTester {
 	public static void main(String[] args) {

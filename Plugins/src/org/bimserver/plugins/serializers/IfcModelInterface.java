@@ -1,5 +1,7 @@
 package org.bimserver.plugins.serializers;
 
+import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -20,4 +22,11 @@ public interface IfcModelInterface {
 	String getAuthorizedUser();
 	String getName();
 	long size();
+	int getSize();
+	byte[] getChecksum();
+	void fixOids(OidProvider oidProvider);
+	void setObjectOids();
+	void indexGuids();
+	void setDate(Date date);
+	Collection<IdEObject> getValues();
 }

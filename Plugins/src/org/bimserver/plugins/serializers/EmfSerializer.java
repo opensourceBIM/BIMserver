@@ -28,6 +28,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.ifcengine.IfcEngineFactory;
 import org.bimserver.plugins.ignoreproviders.IgnoreProvider;
 import org.bimserver.plugins.schema.Schema;
@@ -43,6 +44,7 @@ public abstract class EmfSerializer {
 	private IgnoreProvider ignoreProvider;
 	private IfcEngineFactory ifcEngineFactory;
 	private ProjectInfo projectInfo;
+	private PluginManager pluginManager;
 
 	protected static enum Mode {
 		HEADER,
@@ -51,9 +53,10 @@ public abstract class EmfSerializer {
 		FINISHED
 	}
 
-	public void init(IfcModelInterface model, Schema schema, IgnoreProvider ignoreProvider, IfcEngineFactory ifcEngineFactory, ProjectInfo projectInfo) throws SerializerException {
+	public void init(IfcModelInterface model, Schema schema, IgnoreProvider ignoreProvider, IfcEngineFactory ifcEngineFactory, ProjectInfo projectInfo, PluginManager pluginManager) throws SerializerException {
 		this.model = model;
 		this.projectInfo = projectInfo;
+		this.setPluginManager(pluginManager);
 		this.setIfcEngineFactory(ifcEngineFactory);
 		this.setIgnoreProvider(ignoreProvider);
 		this.setSchema(schema);
@@ -206,5 +209,13 @@ public abstract class EmfSerializer {
 
 	public IfcEngineFactory getIfcEngineFactory() {
 		return ifcEngineFactory;
+	}
+
+	public void setPluginManager(PluginManager pluginManager) {
+		this.pluginManager = pluginManager;
+	}
+
+	public PluginManager getPluginManager() {
+		return pluginManager;
 	}
 }
