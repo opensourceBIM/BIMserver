@@ -19,8 +19,6 @@
  */
 package org.bimserver.models.log;
 
-import org.bimserver.models.log.LogAction;
-
 import org.bimserver.models.store.Checkout;
 
 /**

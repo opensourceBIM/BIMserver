@@ -21,9 +21,6 @@ package org.bimserver.models.ifc2x3.impl;
 
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcShapeRepresentation;
-
-import org.bimserver.models.ifc2x3.impl.IfcShapeModelImpl;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

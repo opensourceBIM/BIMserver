@@ -20,13 +20,11 @@
 package org.bimserver.models.ifc2x3.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
-
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcCurrencyRelationship;
 import org.bimserver.models.ifc2x3.IfcDateAndTime;
 import org.bimserver.models.ifc2x3.IfcLibraryInformation;
 import org.bimserver.models.ifc2x3.IfcMonetaryUnit;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

@@ -22,9 +22,6 @@ package org.bimserver.models.ifc2x3.impl;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcProcedure;
 import org.bimserver.models.ifc2x3.IfcProcedureTypeEnum;
-
-import org.bimserver.models.ifc2x3.impl.IfcProcessImpl;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

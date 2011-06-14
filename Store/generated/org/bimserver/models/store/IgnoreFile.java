@@ -20,10 +20,6 @@
 package org.bimserver.models.store;
 
 import org.bimserver.emf.IdEObject;
-
-import org.bimserver.models.store.Serializer;
-import org.bimserver.models.store.Settings;
-
 import org.eclipse.emf.common.util.EList;
 
 /**

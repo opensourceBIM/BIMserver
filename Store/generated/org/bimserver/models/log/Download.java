@@ -19,7 +19,6 @@
  */
 package org.bimserver.models.log;
 
-import org.bimserver.models.log.LogAction;
 
 /**
  * <!-- begin-user-doc -->

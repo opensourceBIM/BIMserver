@@ -20,14 +20,11 @@
 package org.bimserver.models.ifc2x3.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
-
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcComplexProperty;
 import org.bimserver.models.ifc2x3.IfcProperty;
 import org.bimserver.models.ifc2x3.IfcPropertyDependencyRelationship;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

@@ -20,10 +20,6 @@
 package org.bimserver.models.ifc2x3;
 
 import org.bimserver.emf.IdEObject;
-
-import org.bimserver.models.ifc2x3.IfcComplexProperty;
-import org.bimserver.models.ifc2x3.IfcPropertyDependencyRelationship;
-
 import org.eclipse.emf.common.util.EList;
 
 /**

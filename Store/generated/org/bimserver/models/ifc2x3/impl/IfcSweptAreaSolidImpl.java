@@ -23,9 +23,6 @@ import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcAxis2Placement3D;
 import org.bimserver.models.ifc2x3.IfcProfileDef;
 import org.bimserver.models.ifc2x3.IfcSweptAreaSolid;
-
-import org.bimserver.models.ifc2x3.impl.IfcSolidModelImpl;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

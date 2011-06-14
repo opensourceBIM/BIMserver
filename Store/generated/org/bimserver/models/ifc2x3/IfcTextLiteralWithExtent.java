@@ -19,8 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcPlanarExtent;
-import org.bimserver.models.ifc2x3.IfcTextLiteral;
 
 /**
  * <!-- begin-user-doc -->

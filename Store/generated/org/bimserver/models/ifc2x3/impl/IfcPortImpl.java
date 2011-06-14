@@ -23,11 +23,7 @@ import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcPort;
 import org.bimserver.models.ifc2x3.IfcRelConnectsPortToElement;
 import org.bimserver.models.ifc2x3.IfcRelConnectsPorts;
-
-import org.bimserver.models.ifc2x3.impl.IfcProductImpl;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

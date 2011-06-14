@@ -19,8 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcFlowControllerType;
-import org.bimserver.models.ifc2x3.IfcFlowMeterTypeEnum;
 
 /**
  * <!-- begin-user-doc -->

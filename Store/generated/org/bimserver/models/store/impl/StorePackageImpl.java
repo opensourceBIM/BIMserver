@@ -20,13 +20,9 @@
 package org.bimserver.models.store.impl;
 
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
-
 import org.bimserver.models.ifc2x3.impl.Ifc2x3PackageImpl;
-
 import org.bimserver.models.log.LogPackage;
-
 import org.bimserver.models.log.impl.LogPackageImpl;
-
 import org.bimserver.models.store.CheckinState;
 import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.Clash;
@@ -48,13 +44,11 @@ import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserType;
-
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 /**

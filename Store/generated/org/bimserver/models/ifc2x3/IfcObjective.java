@@ -19,9 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcConstraint;
-import org.bimserver.models.ifc2x3.IfcMetric;
-import org.bimserver.models.ifc2x3.IfcObjectiveEnum;
 
 /**
  * <!-- begin-user-doc -->

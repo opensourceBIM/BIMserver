@@ -22,9 +22,6 @@ package org.bimserver.models.ifc2x3.impl;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcGridPlacement;
 import org.bimserver.models.ifc2x3.IfcVirtualGridIntersection;
-
-import org.bimserver.models.ifc2x3.impl.IfcObjectPlacementImpl;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

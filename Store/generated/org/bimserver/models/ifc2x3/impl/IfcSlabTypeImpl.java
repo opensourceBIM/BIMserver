@@ -22,9 +22,6 @@ package org.bimserver.models.ifc2x3.impl;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcSlabType;
 import org.bimserver.models.ifc2x3.IfcSlabTypeEnum;
-
-import org.bimserver.models.ifc2x3.impl.IfcBuildingElementTypeImpl;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

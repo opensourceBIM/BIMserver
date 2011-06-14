@@ -22,9 +22,6 @@ package org.bimserver.models.ifc2x3.impl;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcElectricHeaterType;
 import org.bimserver.models.ifc2x3.IfcElectricHeaterTypeEnum;
-
-import org.bimserver.models.ifc2x3.impl.IfcFlowTerminalTypeImpl;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

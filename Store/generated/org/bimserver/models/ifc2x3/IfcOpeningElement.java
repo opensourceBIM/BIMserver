@@ -19,9 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcFeatureElementSubtraction;
-import org.bimserver.models.ifc2x3.IfcRelFillsElement;
-
 import org.eclipse.emf.common.util.EList;
 
 /**

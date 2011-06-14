@@ -19,9 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcSimpleProperty;
-import org.bimserver.models.ifc2x3.IfcUnit;
-import org.bimserver.models.ifc2x3.IfcValue;
 
 /**
  * <!-- begin-user-doc -->

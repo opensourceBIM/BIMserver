@@ -21,9 +21,6 @@ package org.bimserver.models.ifc2x3.impl;
 
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcCartesianTransformationOperator3DnonUniform;
-
-import org.bimserver.models.ifc2x3.impl.IfcCartesianTransformationOperator3DImpl;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

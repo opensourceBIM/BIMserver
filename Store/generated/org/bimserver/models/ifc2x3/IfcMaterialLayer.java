@@ -19,11 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcMaterial;
-import org.bimserver.models.ifc2x3.IfcMaterialLayerSet;
-import org.bimserver.models.ifc2x3.IfcMaterialSelect;
-import org.bimserver.models.ifc2x3.IfcObjectReferenceSelect;
-import org.bimserver.models.ifc2x3.Tristate;
 
 /**
  * <!-- begin-user-doc -->

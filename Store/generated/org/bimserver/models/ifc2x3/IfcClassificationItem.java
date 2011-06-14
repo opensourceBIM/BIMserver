@@ -20,11 +20,6 @@
 package org.bimserver.models.ifc2x3;
 
 import org.bimserver.emf.IdEObject;
-
-import org.bimserver.models.ifc2x3.IfcClassification;
-import org.bimserver.models.ifc2x3.IfcClassificationItemRelationship;
-import org.bimserver.models.ifc2x3.IfcClassificationNotationFacet;
-
 import org.eclipse.emf.common.util.EList;
 
 /**

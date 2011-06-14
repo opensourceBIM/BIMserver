@@ -19,12 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcElementCompositionEnum;
-import org.bimserver.models.ifc2x3.IfcProduct;
-import org.bimserver.models.ifc2x3.IfcRelContainedInSpatialStructure;
-import org.bimserver.models.ifc2x3.IfcRelReferencedInSpatialStructure;
-import org.bimserver.models.ifc2x3.IfcRelServicesBuildings;
-
 import org.eclipse.emf.common.util.EList;
 
 /**

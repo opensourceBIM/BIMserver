@@ -23,9 +23,6 @@ import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcBooleanOperand;
 import org.bimserver.models.ifc2x3.IfcBooleanOperator;
 import org.bimserver.models.ifc2x3.IfcBooleanResult;
-
-import org.bimserver.models.ifc2x3.impl.IfcGeometricRepresentationItemImpl;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

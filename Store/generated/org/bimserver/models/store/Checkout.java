@@ -23,10 +23,6 @@ import java.util.Date;
 
 import org.bimserver.emf.IdEObject;
 
-import org.bimserver.models.store.Project;
-import org.bimserver.models.store.Revision;
-import org.bimserver.models.store.User;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Checkout</b></em>'.

@@ -19,9 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcDimensionalExponents;
-import org.bimserver.models.ifc2x3.IfcUnit;
-import org.bimserver.models.ifc2x3.IfcUnitEnum;
 
 /**
  * <!-- begin-user-doc -->

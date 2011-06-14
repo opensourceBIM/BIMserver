@@ -22,9 +22,6 @@ package org.bimserver.models.ifc2x3.impl;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcDistributionPort;
 import org.bimserver.models.ifc2x3.IfcFlowDirectionEnum;
-
-import org.bimserver.models.ifc2x3.impl.IfcPortImpl;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

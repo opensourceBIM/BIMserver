@@ -22,9 +22,6 @@ package org.bimserver.models.ifc2x3.impl;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcTransportElement;
 import org.bimserver.models.ifc2x3.IfcTransportElementTypeEnum;
-
-import org.bimserver.models.ifc2x3.impl.IfcElementImpl;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

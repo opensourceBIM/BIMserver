@@ -21,8 +21,6 @@ package org.bimserver.models.store;
 
 import org.bimserver.emf.IdEObject;
 
-import org.bimserver.models.store.Revision;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Clash</b></em>'.

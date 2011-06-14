@@ -22,9 +22,6 @@ package org.bimserver.models.ifc2x3.impl;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcJunctionBoxType;
 import org.bimserver.models.ifc2x3.IfcJunctionBoxTypeEnum;
-
-import org.bimserver.models.ifc2x3.impl.IfcFlowFittingTypeImpl;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

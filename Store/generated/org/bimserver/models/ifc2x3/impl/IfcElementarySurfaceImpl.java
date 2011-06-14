@@ -22,9 +22,6 @@ package org.bimserver.models.ifc2x3.impl;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcAxis2Placement3D;
 import org.bimserver.models.ifc2x3.IfcElementarySurface;
-
-import org.bimserver.models.ifc2x3.impl.IfcSurfaceImpl;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

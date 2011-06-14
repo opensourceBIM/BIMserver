@@ -19,10 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcBooleanOperand;
-import org.bimserver.models.ifc2x3.IfcBooleanOperator;
-import org.bimserver.models.ifc2x3.IfcCsgSelect;
-import org.bimserver.models.ifc2x3.IfcGeometricRepresentationItem;
 
 /**
  * <!-- begin-user-doc -->

@@ -22,9 +22,6 @@ package org.bimserver.models.ifc2x3.impl;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcCartesianPoint;
 import org.bimserver.models.ifc2x3.IfcPlacement;
-
-import org.bimserver.models.ifc2x3.impl.IfcGeometricRepresentationItemImpl;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

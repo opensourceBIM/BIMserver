@@ -19,8 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcBuildingElement;
-import org.bimserver.models.ifc2x3.IfcElementCompositionEnum;
 
 /**
  * <!-- begin-user-doc -->

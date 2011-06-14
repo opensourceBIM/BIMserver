@@ -20,7 +20,6 @@
 package org.bimserver.models.ifc2x3.util;
 
 import org.eclipse.emf.common.util.URI;
-
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
 
 /**

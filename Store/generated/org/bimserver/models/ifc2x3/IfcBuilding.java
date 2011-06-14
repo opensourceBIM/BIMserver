@@ -19,8 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcPostalAddress;
-import org.bimserver.models.ifc2x3.IfcSpatialStructureElement;
 
 /**
  * <!-- begin-user-doc -->

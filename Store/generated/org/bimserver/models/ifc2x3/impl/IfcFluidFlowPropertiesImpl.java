@@ -25,9 +25,6 @@ import org.bimserver.models.ifc2x3.IfcFluidFlowProperties;
 import org.bimserver.models.ifc2x3.IfcMaterial;
 import org.bimserver.models.ifc2x3.IfcPropertySourceEnum;
 import org.bimserver.models.ifc2x3.IfcTimeSeries;
-
-import org.bimserver.models.ifc2x3.impl.IfcPropertySetDefinitionImpl;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

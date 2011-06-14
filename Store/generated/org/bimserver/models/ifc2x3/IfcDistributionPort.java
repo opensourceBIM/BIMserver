@@ -19,8 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcFlowDirectionEnum;
-import org.bimserver.models.ifc2x3.IfcPort;
 
 /**
  * <!-- begin-user-doc -->

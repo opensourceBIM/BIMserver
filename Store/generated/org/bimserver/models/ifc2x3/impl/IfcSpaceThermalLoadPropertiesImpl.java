@@ -25,9 +25,6 @@ import org.bimserver.models.ifc2x3.IfcSpaceThermalLoadProperties;
 import org.bimserver.models.ifc2x3.IfcThermalLoadSourceEnum;
 import org.bimserver.models.ifc2x3.IfcThermalLoadTypeEnum;
 import org.bimserver.models.ifc2x3.IfcTimeSeries;
-
-import org.bimserver.models.ifc2x3.impl.IfcPropertySetDefinitionImpl;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

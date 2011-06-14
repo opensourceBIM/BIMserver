@@ -21,10 +21,6 @@ package org.bimserver.models.ifc2x3;
 
 import org.bimserver.emf.IdEObject;
 
-import org.bimserver.models.ifc2x3.IfcDateAndTime;
-import org.bimserver.models.ifc2x3.IfcLibraryInformation;
-import org.bimserver.models.ifc2x3.IfcMonetaryUnit;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Ifc Currency Relationship</b></em>'.

@@ -23,9 +23,6 @@ import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcEdge;
 import org.bimserver.models.ifc2x3.IfcOrientedEdge;
 import org.bimserver.models.ifc2x3.Tristate;
-
-import org.bimserver.models.ifc2x3.impl.IfcEdgeImpl;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

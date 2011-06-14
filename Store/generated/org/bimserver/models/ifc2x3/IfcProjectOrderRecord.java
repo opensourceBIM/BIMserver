@@ -19,10 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcControl;
-import org.bimserver.models.ifc2x3.IfcProjectOrderRecordTypeEnum;
-import org.bimserver.models.ifc2x3.IfcRelAssignsToProjectOrder;
-
 import org.eclipse.emf.common.util.EList;
 
 /**

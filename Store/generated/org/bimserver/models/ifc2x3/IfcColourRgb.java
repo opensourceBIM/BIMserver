@@ -19,8 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcColourOrFactor;
-import org.bimserver.models.ifc2x3.IfcColourSpecification;
 
 /**
  * <!-- begin-user-doc -->

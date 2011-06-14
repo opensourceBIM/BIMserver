@@ -23,11 +23,7 @@ import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcPropertyListValue;
 import org.bimserver.models.ifc2x3.IfcUnit;
 import org.bimserver.models.ifc2x3.IfcValue;
-
-import org.bimserver.models.ifc2x3.impl.IfcSimplePropertyImpl;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

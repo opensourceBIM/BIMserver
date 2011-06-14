@@ -19,9 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcClosedShell;
-import org.bimserver.models.ifc2x3.IfcManifoldSolidBrep;
-
 import org.eclipse.emf.common.util.EList;
 
 /**

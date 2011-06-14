@@ -24,11 +24,7 @@ import org.bimserver.models.ifc2x3.IfcDateTimeSelect;
 import org.bimserver.models.ifc2x3.IfcTimeSeries;
 import org.bimserver.models.ifc2x3.IfcTimeSeriesSchedule;
 import org.bimserver.models.ifc2x3.IfcTimeSeriesScheduleTypeEnum;
-
-import org.bimserver.models.ifc2x3.impl.IfcControlImpl;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

@@ -19,8 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcElectricFlowStorageDeviceTypeEnum;
-import org.bimserver.models.ifc2x3.IfcFlowStorageDeviceType;
 
 /**
  * <!-- begin-user-doc -->

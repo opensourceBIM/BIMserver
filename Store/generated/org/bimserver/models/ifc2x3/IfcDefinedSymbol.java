@@ -19,9 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcCartesianTransformationOperator2D;
-import org.bimserver.models.ifc2x3.IfcDefinedSymbolSelect;
-import org.bimserver.models.ifc2x3.IfcGeometricRepresentationItem;
 
 /**
  * <!-- begin-user-doc -->

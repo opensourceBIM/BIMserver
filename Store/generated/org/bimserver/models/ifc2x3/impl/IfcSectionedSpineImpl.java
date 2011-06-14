@@ -24,11 +24,7 @@ import org.bimserver.models.ifc2x3.IfcAxis2Placement3D;
 import org.bimserver.models.ifc2x3.IfcCompositeCurve;
 import org.bimserver.models.ifc2x3.IfcProfileDef;
 import org.bimserver.models.ifc2x3.IfcSectionedSpine;
-
-import org.bimserver.models.ifc2x3.impl.IfcGeometricRepresentationItemImpl;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

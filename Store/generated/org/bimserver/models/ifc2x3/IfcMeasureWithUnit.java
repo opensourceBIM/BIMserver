@@ -19,11 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcAppliedValueSelect;
-import org.bimserver.models.ifc2x3.IfcConditionCriterionSelect;
-import org.bimserver.models.ifc2x3.IfcMetricValueSelect;
-import org.bimserver.models.ifc2x3.IfcUnit;
-import org.bimserver.models.ifc2x3.IfcValue;
 
 /**
  * <!-- begin-user-doc -->

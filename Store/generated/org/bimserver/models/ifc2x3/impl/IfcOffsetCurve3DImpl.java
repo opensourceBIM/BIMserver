@@ -23,9 +23,6 @@ import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcCurve;
 import org.bimserver.models.ifc2x3.IfcDirection;
 import org.bimserver.models.ifc2x3.IfcOffsetCurve3D;
-
-import org.bimserver.models.ifc2x3.impl.IfcCurveImpl;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

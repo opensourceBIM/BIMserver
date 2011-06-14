@@ -19,10 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcTypeProduct;
-import org.bimserver.models.ifc2x3.IfcWindowStyleConstructionEnum;
-import org.bimserver.models.ifc2x3.IfcWindowStyleOperationEnum;
-import org.bimserver.models.ifc2x3.Tristate;
 
 /**
  * <!-- begin-user-doc -->

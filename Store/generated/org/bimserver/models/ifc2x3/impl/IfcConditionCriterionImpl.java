@@ -23,9 +23,6 @@ import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcConditionCriterion;
 import org.bimserver.models.ifc2x3.IfcConditionCriterionSelect;
 import org.bimserver.models.ifc2x3.IfcDateTimeSelect;
-
-import org.bimserver.models.ifc2x3.impl.IfcControlImpl;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

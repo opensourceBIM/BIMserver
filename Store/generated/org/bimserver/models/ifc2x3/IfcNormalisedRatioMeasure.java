@@ -19,10 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcColourOrFactor;
-import org.bimserver.models.ifc2x3.IfcMeasureValue;
-import org.bimserver.models.ifc2x3.IfcRatioMeasure;
-import org.bimserver.models.ifc2x3.IfcSizeSelect;
 
 /**
  * <!-- begin-user-doc -->

@@ -19,8 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcStructuralCurveTypeEnum;
-import org.bimserver.models.ifc2x3.IfcStructuralMember;
 
 /**
  * <!-- begin-user-doc -->

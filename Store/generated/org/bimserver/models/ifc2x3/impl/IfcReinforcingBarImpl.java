@@ -23,9 +23,6 @@ import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcReinforcingBar;
 import org.bimserver.models.ifc2x3.IfcReinforcingBarRoleEnum;
 import org.bimserver.models.ifc2x3.IfcReinforcingBarSurfaceEnum;
-
-import org.bimserver.models.ifc2x3.impl.IfcReinforcingElementImpl;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

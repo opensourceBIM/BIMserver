@@ -22,11 +22,8 @@ package org.bimserver.models.log.util;
 import java.util.Map;
 
 import org.bimserver.models.log.LogPackage;
-
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.resource.Resource;
-
 import org.eclipse.emf.ecore.xmi.util.XMLProcessor;
 
 /**

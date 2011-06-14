@@ -22,9 +22,6 @@ package org.bimserver.models.ifc2x3.impl;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcWaterProperties;
 import org.bimserver.models.ifc2x3.Tristate;
-
-import org.bimserver.models.ifc2x3.impl.IfcMaterialPropertiesImpl;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

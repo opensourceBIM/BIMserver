@@ -19,10 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcFillStyleSelect;
-import org.bimserver.models.ifc2x3.IfcPresentationStyle;
-import org.bimserver.models.ifc2x3.IfcPresentationStyleSelect;
-
 import org.eclipse.emf.common.util.EList;
 
 /**

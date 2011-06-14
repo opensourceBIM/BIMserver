@@ -19,9 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcDirection;
-import org.bimserver.models.ifc2x3.IfcGeometricRepresentationItem;
-import org.bimserver.models.ifc2x3.IfcVectorOrDirection;
 
 /**
  * <!-- begin-user-doc -->

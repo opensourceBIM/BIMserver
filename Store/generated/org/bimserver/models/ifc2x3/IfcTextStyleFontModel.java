@@ -19,9 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcPreDefinedTextFont;
-import org.bimserver.models.ifc2x3.IfcSizeSelect;
-
 import org.eclipse.emf.common.util.EList;
 
 /**

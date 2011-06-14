@@ -19,10 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcCovering;
-import org.bimserver.models.ifc2x3.IfcRelConnects;
-import org.bimserver.models.ifc2x3.IfcSpace;
-
 import org.eclipse.emf.common.util.EList;
 
 /**

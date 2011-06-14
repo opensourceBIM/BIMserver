@@ -26,9 +26,6 @@ import org.bimserver.models.ifc2x3.IfcInternalOrExternalEnum;
 import org.bimserver.models.ifc2x3.IfcPhysicalOrVirtualEnum;
 import org.bimserver.models.ifc2x3.IfcRelSpaceBoundary;
 import org.bimserver.models.ifc2x3.IfcSpace;
-
-import org.bimserver.models.ifc2x3.impl.IfcRelConnectsImpl;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

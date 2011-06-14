@@ -19,11 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcAxis2Placement3D;
-import org.bimserver.models.ifc2x3.IfcColourRgb;
-import org.bimserver.models.ifc2x3.IfcLightDistributionDataSourceSelect;
-import org.bimserver.models.ifc2x3.IfcLightEmissionSourceEnum;
-import org.bimserver.models.ifc2x3.IfcLightSource;
 
 /**
  * <!-- begin-user-doc -->

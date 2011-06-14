@@ -20,11 +20,6 @@
 package org.bimserver.models.ifc2x3;
 
 import org.bimserver.emf.IdEObject;
-
-import org.bimserver.models.ifc2x3.IfcAxis2Placement;
-import org.bimserver.models.ifc2x3.IfcMappedItem;
-import org.bimserver.models.ifc2x3.IfcRepresentation;
-
 import org.eclipse.emf.common.util.EList;
 
 /**

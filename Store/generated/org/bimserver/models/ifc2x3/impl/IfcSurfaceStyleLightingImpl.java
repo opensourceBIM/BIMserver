@@ -20,11 +20,9 @@
 package org.bimserver.models.ifc2x3.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
-
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcColourRgb;
 import org.bimserver.models.ifc2x3.IfcSurfaceStyleLighting;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

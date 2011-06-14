@@ -30,7 +30,6 @@ import org.bimserver.interfaces.objects.SUserType;
 import org.bimserver.models.store.Settings;
 import org.bimserver.resources.JarResourceFetcher;
 import org.bimserver.resources.WarResourceFetcher;
-import org.bimserver.serializers.EmfSerializerFactory;
 import org.bimserver.web.LoginManager;
 import org.bimserver.webservices.Service;
 import org.slf4j.Logger;

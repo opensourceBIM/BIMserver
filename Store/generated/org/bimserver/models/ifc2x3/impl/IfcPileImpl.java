@@ -23,9 +23,6 @@ import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcPile;
 import org.bimserver.models.ifc2x3.IfcPileConstructionEnum;
 import org.bimserver.models.ifc2x3.IfcPileTypeEnum;
-
-import org.bimserver.models.ifc2x3.impl.IfcBuildingElementImpl;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

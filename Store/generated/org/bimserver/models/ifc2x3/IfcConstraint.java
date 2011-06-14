@@ -20,15 +20,6 @@
 package org.bimserver.models.ifc2x3;
 
 import org.bimserver.emf.IdEObject;
-
-import org.bimserver.models.ifc2x3.IfcActorSelect;
-import org.bimserver.models.ifc2x3.IfcConstraintAggregationRelationship;
-import org.bimserver.models.ifc2x3.IfcConstraintClassificationRelationship;
-import org.bimserver.models.ifc2x3.IfcConstraintEnum;
-import org.bimserver.models.ifc2x3.IfcConstraintRelationship;
-import org.bimserver.models.ifc2x3.IfcDateTimeSelect;
-import org.bimserver.models.ifc2x3.IfcPropertyConstraintRelationship;
-
 import org.eclipse.emf.common.util.EList;
 
 /**

@@ -23,11 +23,7 @@ import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcCovering;
 import org.bimserver.models.ifc2x3.IfcRelCoversSpaces;
 import org.bimserver.models.ifc2x3.IfcSpace;
-
-import org.bimserver.models.ifc2x3.impl.IfcRelConnectsImpl;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

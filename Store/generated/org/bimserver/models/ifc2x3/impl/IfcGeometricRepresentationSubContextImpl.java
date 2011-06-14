@@ -23,9 +23,6 @@ import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcGeometricProjectionEnum;
 import org.bimserver.models.ifc2x3.IfcGeometricRepresentationContext;
 import org.bimserver.models.ifc2x3.IfcGeometricRepresentationSubContext;
-
-import org.bimserver.models.ifc2x3.impl.IfcGeometricRepresentationContextImpl;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

@@ -19,8 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcDimensionExtentUsage;
-import org.bimserver.models.ifc2x3.IfcTerminatorSymbol;
 
 /**
  * <!-- begin-user-doc -->

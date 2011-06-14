@@ -22,9 +22,6 @@ package org.bimserver.models.ifc2x3.impl;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcSwitchingDeviceType;
 import org.bimserver.models.ifc2x3.IfcSwitchingDeviceTypeEnum;
-
-import org.bimserver.models.ifc2x3.impl.IfcFlowControllerTypeImpl;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

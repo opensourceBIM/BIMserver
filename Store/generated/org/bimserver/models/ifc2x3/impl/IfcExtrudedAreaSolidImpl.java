@@ -22,9 +22,6 @@ package org.bimserver.models.ifc2x3.impl;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcDirection;
 import org.bimserver.models.ifc2x3.IfcExtrudedAreaSolid;
-
-import org.bimserver.models.ifc2x3.impl.IfcSweptAreaSolidImpl;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

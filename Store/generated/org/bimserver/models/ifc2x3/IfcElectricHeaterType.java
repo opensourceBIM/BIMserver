@@ -19,8 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcElectricHeaterTypeEnum;
-import org.bimserver.models.ifc2x3.IfcFlowTerminalType;
 
 /**
  * <!-- begin-user-doc -->

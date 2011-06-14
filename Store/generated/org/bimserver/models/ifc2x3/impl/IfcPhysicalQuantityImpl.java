@@ -20,13 +20,10 @@
 package org.bimserver.models.ifc2x3.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
-
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcPhysicalComplexQuantity;
 import org.bimserver.models.ifc2x3.IfcPhysicalQuantity;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

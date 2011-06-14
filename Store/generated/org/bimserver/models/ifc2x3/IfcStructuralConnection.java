@@ -19,10 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcBoundaryCondition;
-import org.bimserver.models.ifc2x3.IfcRelConnectsStructuralMember;
-import org.bimserver.models.ifc2x3.IfcStructuralItem;
-
 import org.eclipse.emf.common.util.EList;
 
 /**

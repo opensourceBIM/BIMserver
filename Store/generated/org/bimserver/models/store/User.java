@@ -22,13 +22,6 @@ package org.bimserver.models.store;
 import java.util.Date;
 
 import org.bimserver.emf.IdEObject;
-
-import org.bimserver.models.store.ObjectState;
-import org.bimserver.models.store.Project;
-import org.bimserver.models.store.Revision;
-import org.bimserver.models.store.User;
-import org.bimserver.models.store.UserType;
-
 import org.eclipse.emf.common.util.EList;
 
 /**

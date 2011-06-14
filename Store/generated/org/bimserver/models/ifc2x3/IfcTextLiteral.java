@@ -19,9 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcAxis2Placement;
-import org.bimserver.models.ifc2x3.IfcGeometricRepresentationItem;
-import org.bimserver.models.ifc2x3.IfcTextPath;
 
 /**
  * <!-- begin-user-doc -->

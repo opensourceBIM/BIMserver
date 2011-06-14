@@ -25,9 +25,6 @@ import org.bimserver.models.ifc2x3.IfcAsset;
 import org.bimserver.models.ifc2x3.IfcCalendarDate;
 import org.bimserver.models.ifc2x3.IfcCostValue;
 import org.bimserver.models.ifc2x3.IfcPerson;
-
-import org.bimserver.models.ifc2x3.impl.IfcGroupImpl;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

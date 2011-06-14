@@ -19,9 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcSpatialStructureElement;
-import org.bimserver.models.ifc2x3.IfcTask;
-
 import org.eclipse.emf.common.util.EList;
 
 /**

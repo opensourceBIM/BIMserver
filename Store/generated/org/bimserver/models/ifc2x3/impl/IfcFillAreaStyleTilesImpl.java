@@ -23,11 +23,7 @@ import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcFillAreaStyleTileShapeSelect;
 import org.bimserver.models.ifc2x3.IfcFillAreaStyleTiles;
 import org.bimserver.models.ifc2x3.IfcOneDirectionRepeatFactor;
-
-import org.bimserver.models.ifc2x3.impl.IfcGeometricRepresentationItemImpl;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

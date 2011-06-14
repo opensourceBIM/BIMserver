@@ -22,9 +22,6 @@ package org.bimserver.models.ifc2x3.impl;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcTankType;
 import org.bimserver.models.ifc2x3.IfcTankTypeEnum;
-
-import org.bimserver.models.ifc2x3.impl.IfcFlowStorageDeviceTypeImpl;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

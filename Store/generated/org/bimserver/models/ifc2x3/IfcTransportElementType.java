@@ -19,8 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcElementType;
-import org.bimserver.models.ifc2x3.IfcTransportElementTypeEnum;
 
 /**
  * <!-- begin-user-doc -->

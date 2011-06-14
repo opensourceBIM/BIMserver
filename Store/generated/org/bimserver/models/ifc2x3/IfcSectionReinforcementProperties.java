@@ -20,11 +20,6 @@
 package org.bimserver.models.ifc2x3;
 
 import org.bimserver.emf.IdEObject;
-
-import org.bimserver.models.ifc2x3.IfcReinforcementBarProperties;
-import org.bimserver.models.ifc2x3.IfcReinforcingBarRoleEnum;
-import org.bimserver.models.ifc2x3.IfcSectionProperties;
-
 import org.eclipse.emf.common.util.EList;
 
 /**

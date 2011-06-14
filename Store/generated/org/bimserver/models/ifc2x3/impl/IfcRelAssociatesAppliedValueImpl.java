@@ -22,9 +22,6 @@ package org.bimserver.models.ifc2x3.impl;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcAppliedValue;
 import org.bimserver.models.ifc2x3.IfcRelAssociatesAppliedValue;
-
-import org.bimserver.models.ifc2x3.impl.IfcRelAssociatesImpl;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

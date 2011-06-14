@@ -19,10 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcColourOrFactor;
-import org.bimserver.models.ifc2x3.IfcReflectanceMethodEnum;
-import org.bimserver.models.ifc2x3.IfcSpecularHighlightSelect;
-import org.bimserver.models.ifc2x3.IfcSurfaceStyleShading;
 
 /**
  * <!-- begin-user-doc -->

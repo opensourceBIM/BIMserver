@@ -19,11 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcCalendarDate;
-import org.bimserver.models.ifc2x3.IfcLibraryReference;
-import org.bimserver.models.ifc2x3.IfcLibrarySelect;
-import org.bimserver.models.ifc2x3.IfcOrganization;
-
 import org.eclipse.emf.common.util.EList;
 
 /**

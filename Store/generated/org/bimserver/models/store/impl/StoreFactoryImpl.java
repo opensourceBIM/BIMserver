@@ -19,29 +19,32 @@
  */
 package org.bimserver.models.store.impl;
 
-import org.bimserver.models.store.*;
-
-import org.bimserver.models.store.impl.CheckoutImpl;
-import org.bimserver.models.store.impl.ClashDetectionSettingsImpl;
-import org.bimserver.models.store.impl.ClashImpl;
-import org.bimserver.models.store.impl.ConcreteRevisionImpl;
-import org.bimserver.models.store.impl.EidClashImpl;
-import org.bimserver.models.store.impl.GeoTagImpl;
-import org.bimserver.models.store.impl.GuidClashImpl;
-import org.bimserver.models.store.impl.IgnoreFileImpl;
-import org.bimserver.models.store.impl.ProjectImpl;
-import org.bimserver.models.store.impl.RevisionImpl;
-import org.bimserver.models.store.impl.SerializerImpl;
-import org.bimserver.models.store.impl.SettingsImpl;
-import org.bimserver.models.store.impl.UserImpl;
-
+import org.bimserver.models.store.CheckinState;
+import org.bimserver.models.store.Checkout;
+import org.bimserver.models.store.Clash;
+import org.bimserver.models.store.ClashDetectionSettings;
+import org.bimserver.models.store.ConcreteRevision;
+import org.bimserver.models.store.EidClash;
+import org.bimserver.models.store.GeoTag;
+import org.bimserver.models.store.GuidClash;
+import org.bimserver.models.store.IfcEngine;
+import org.bimserver.models.store.IgnoreFile;
+import org.bimserver.models.store.MergeIdentifier;
+import org.bimserver.models.store.ObjectState;
+import org.bimserver.models.store.Project;
+import org.bimserver.models.store.Revision;
+import org.bimserver.models.store.SIPrefix;
+import org.bimserver.models.store.Serializer;
+import org.bimserver.models.store.Settings;
+import org.bimserver.models.store.StoreFactory;
+import org.bimserver.models.store.StorePackage;
+import org.bimserver.models.store.User;
+import org.bimserver.models.store.UserType;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 /**

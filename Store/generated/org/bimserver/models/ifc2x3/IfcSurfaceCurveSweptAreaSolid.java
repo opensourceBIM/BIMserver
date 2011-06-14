@@ -19,9 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcCurve;
-import org.bimserver.models.ifc2x3.IfcSurface;
-import org.bimserver.models.ifc2x3.IfcSweptAreaSolid;
 
 /**
  * <!-- begin-user-doc -->

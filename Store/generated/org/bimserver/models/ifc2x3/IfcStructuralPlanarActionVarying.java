@@ -19,10 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcShapeAspect;
-import org.bimserver.models.ifc2x3.IfcStructuralLoad;
-import org.bimserver.models.ifc2x3.IfcStructuralPlanarAction;
-
 import org.eclipse.emf.common.util.EList;
 
 /**

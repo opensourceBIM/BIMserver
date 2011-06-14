@@ -19,9 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcFace;
-import org.bimserver.models.ifc2x3.IfcTopologicalRepresentationItem;
-
 import org.eclipse.emf.common.util.EList;
 
 /**

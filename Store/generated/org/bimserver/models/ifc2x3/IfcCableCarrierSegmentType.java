@@ -19,8 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcCableCarrierSegmentTypeEnum;
-import org.bimserver.models.ifc2x3.IfcFlowSegmentType;
 
 /**
  * <!-- begin-user-doc -->

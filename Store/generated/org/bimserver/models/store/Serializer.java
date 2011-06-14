@@ -21,9 +21,6 @@ package org.bimserver.models.store;
 
 import org.bimserver.emf.IdEObject;
 
-import org.bimserver.models.store.IgnoreFile;
-import org.bimserver.models.store.Settings;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Serializer</b></em>'.

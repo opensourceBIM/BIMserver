@@ -19,10 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcProduct;
-import org.bimserver.models.ifc2x3.IfcRelConnectsPortToElement;
-import org.bimserver.models.ifc2x3.IfcRelConnectsPorts;
-
 import org.eclipse.emf.common.util.EList;
 
 /**

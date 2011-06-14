@@ -19,9 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcTimeSeries;
-import org.bimserver.models.ifc2x3.IfcTimeSeriesValue;
-
 import org.eclipse.emf.common.util.EList;
 
 /**

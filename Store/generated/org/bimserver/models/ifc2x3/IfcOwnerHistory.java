@@ -21,11 +21,6 @@ package org.bimserver.models.ifc2x3;
 
 import org.bimserver.emf.IdEObject;
 
-import org.bimserver.models.ifc2x3.IfcApplication;
-import org.bimserver.models.ifc2x3.IfcChangeActionEnum;
-import org.bimserver.models.ifc2x3.IfcPersonAndOrganization;
-import org.bimserver.models.ifc2x3.IfcStateEnum;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Ifc Owner History</b></em>'.

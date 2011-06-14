@@ -23,9 +23,6 @@ import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcAxis2Placement;
 import org.bimserver.models.ifc2x3.IfcTextLiteral;
 import org.bimserver.models.ifc2x3.IfcTextPath;
-
-import org.bimserver.models.ifc2x3.impl.IfcGeometricRepresentationItemImpl;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

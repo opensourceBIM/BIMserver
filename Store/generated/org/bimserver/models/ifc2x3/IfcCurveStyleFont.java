@@ -19,9 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcCurveStyleFontPattern;
-import org.bimserver.models.ifc2x3.IfcCurveStyleFontSelect;
-
 import org.eclipse.emf.common.util.EList;
 
 /**

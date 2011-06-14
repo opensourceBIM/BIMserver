@@ -22,9 +22,6 @@ package org.bimserver.models.ifc2x3.impl;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcVibrationIsolatorType;
 import org.bimserver.models.ifc2x3.IfcVibrationIsolatorTypeEnum;
-
-import org.bimserver.models.ifc2x3.impl.IfcDiscreteAccessoryTypeImpl;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

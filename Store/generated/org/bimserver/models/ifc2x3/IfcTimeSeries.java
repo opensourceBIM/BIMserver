@@ -19,14 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcDataOriginEnum;
-import org.bimserver.models.ifc2x3.IfcDateTimeSelect;
-import org.bimserver.models.ifc2x3.IfcMetricValueSelect;
-import org.bimserver.models.ifc2x3.IfcObjectReferenceSelect;
-import org.bimserver.models.ifc2x3.IfcTimeSeriesDataTypeEnum;
-import org.bimserver.models.ifc2x3.IfcTimeSeriesReferenceRelationship;
-import org.bimserver.models.ifc2x3.IfcUnit;
-
 import org.eclipse.emf.common.util.EList;
 
 /**

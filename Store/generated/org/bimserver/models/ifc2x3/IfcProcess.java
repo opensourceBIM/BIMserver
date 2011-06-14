@@ -19,10 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcObject;
-import org.bimserver.models.ifc2x3.IfcRelAssignsToProcess;
-import org.bimserver.models.ifc2x3.IfcRelSequence;
-
 import org.eclipse.emf.common.util.EList;
 
 /**

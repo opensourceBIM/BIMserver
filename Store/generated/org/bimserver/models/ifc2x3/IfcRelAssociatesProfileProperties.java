@@ -19,10 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcOrientationSelect;
-import org.bimserver.models.ifc2x3.IfcProfileProperties;
-import org.bimserver.models.ifc2x3.IfcRelAssociates;
-import org.bimserver.models.ifc2x3.IfcShapeAspect;
 
 /**
  * <!-- begin-user-doc -->

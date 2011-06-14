@@ -19,10 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcBoundedSurface;
-import org.bimserver.models.ifc2x3.IfcCurve;
-import org.bimserver.models.ifc2x3.IfcPlane;
-
 import org.eclipse.emf.common.util.EList;
 
 /**

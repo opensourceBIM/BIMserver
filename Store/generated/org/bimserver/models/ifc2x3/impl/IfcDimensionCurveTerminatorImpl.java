@@ -22,9 +22,6 @@ package org.bimserver.models.ifc2x3.impl;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcDimensionCurveTerminator;
 import org.bimserver.models.ifc2x3.IfcDimensionExtentUsage;
-
-import org.bimserver.models.ifc2x3.impl.IfcTerminatorSymbolImpl;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

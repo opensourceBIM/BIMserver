@@ -24,11 +24,7 @@ import org.bimserver.models.ifc2x3.IfcSoundProperties;
 import org.bimserver.models.ifc2x3.IfcSoundScaleEnum;
 import org.bimserver.models.ifc2x3.IfcSoundValue;
 import org.bimserver.models.ifc2x3.Tristate;
-
-import org.bimserver.models.ifc2x3.impl.IfcPropertySetDefinitionImpl;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

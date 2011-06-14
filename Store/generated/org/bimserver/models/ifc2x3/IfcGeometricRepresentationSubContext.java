@@ -19,8 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcGeometricProjectionEnum;
-import org.bimserver.models.ifc2x3.IfcGeometricRepresentationContext;
 
 /**
  * <!-- begin-user-doc -->

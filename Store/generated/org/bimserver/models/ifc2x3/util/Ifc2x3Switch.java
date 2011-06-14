@@ -22,7 +22,6 @@ package org.bimserver.models.ifc2x3.util;
 import java.util.List;
 
 import org.bimserver.models.ifc2x3.*;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 

@@ -25,11 +25,7 @@ import org.bimserver.models.ifc2x3.IfcCompositeCurveSegment;
 import org.bimserver.models.ifc2x3.IfcCurve;
 import org.bimserver.models.ifc2x3.IfcTransitionCode;
 import org.bimserver.models.ifc2x3.Tristate;
-
-import org.bimserver.models.ifc2x3.impl.IfcGeometricRepresentationItemImpl;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

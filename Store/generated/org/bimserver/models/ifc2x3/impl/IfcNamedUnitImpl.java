@@ -20,12 +20,10 @@
 package org.bimserver.models.ifc2x3.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
-
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcDimensionalExponents;
 import org.bimserver.models.ifc2x3.IfcNamedUnit;
 import org.bimserver.models.ifc2x3.IfcUnitEnum;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

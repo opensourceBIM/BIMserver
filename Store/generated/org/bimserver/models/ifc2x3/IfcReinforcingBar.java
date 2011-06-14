@@ -19,9 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcReinforcingBarRoleEnum;
-import org.bimserver.models.ifc2x3.IfcReinforcingBarSurfaceEnum;
-import org.bimserver.models.ifc2x3.IfcReinforcingElement;
 
 /**
  * <!-- begin-user-doc -->

@@ -19,11 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcControl;
-import org.bimserver.models.ifc2x3.IfcDateTimeSelect;
-import org.bimserver.models.ifc2x3.IfcPerson;
-import org.bimserver.models.ifc2x3.IfcWorkControlTypeEnum;
-
 import org.eclipse.emf.common.util.EList;
 
 /**

@@ -19,10 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcControl;
-import org.bimserver.models.ifc2x3.IfcDateTimeSelect;
-import org.bimserver.models.ifc2x3.IfcRelAssignsTasks;
-import org.bimserver.models.ifc2x3.Tristate;
 
 /**
  * <!-- begin-user-doc -->

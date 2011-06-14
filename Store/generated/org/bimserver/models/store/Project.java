@@ -22,17 +22,6 @@ package org.bimserver.models.store;
 import java.util.Date;
 
 import org.bimserver.emf.IdEObject;
-
-import org.bimserver.models.store.Checkout;
-import org.bimserver.models.store.ClashDetectionSettings;
-import org.bimserver.models.store.ConcreteRevision;
-import org.bimserver.models.store.GeoTag;
-import org.bimserver.models.store.ObjectState;
-import org.bimserver.models.store.Project;
-import org.bimserver.models.store.Revision;
-import org.bimserver.models.store.SIPrefix;
-import org.bimserver.models.store.User;
-
 import org.eclipse.emf.common.util.EList;
 
 /**

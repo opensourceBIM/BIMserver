@@ -32,11 +32,7 @@ import org.bimserver.models.ifc2x3.IfcRelProjectsElement;
 import org.bimserver.models.ifc2x3.IfcRelReferencedInSpatialStructure;
 import org.bimserver.models.ifc2x3.IfcRelSpaceBoundary;
 import org.bimserver.models.ifc2x3.IfcRelVoidsElement;
-
-import org.bimserver.models.ifc2x3.impl.IfcProductImpl;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

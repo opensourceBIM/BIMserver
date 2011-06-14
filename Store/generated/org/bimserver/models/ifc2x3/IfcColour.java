@@ -19,8 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcFillStyleSelect;
-import org.bimserver.models.ifc2x3.IfcSymbolStyleSelect;
 
 /**
  * <!-- begin-user-doc -->

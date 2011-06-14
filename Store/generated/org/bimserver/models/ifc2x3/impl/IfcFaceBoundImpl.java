@@ -23,9 +23,6 @@ import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcFaceBound;
 import org.bimserver.models.ifc2x3.IfcLoop;
 import org.bimserver.models.ifc2x3.Tristate;
-
-import org.bimserver.models.ifc2x3.impl.IfcTopologicalRepresentationItemImpl;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

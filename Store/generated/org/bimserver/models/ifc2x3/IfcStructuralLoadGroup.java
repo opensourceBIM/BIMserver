@@ -19,13 +19,6 @@
  */
 package org.bimserver.models.ifc2x3;
 
-import org.bimserver.models.ifc2x3.IfcActionSourceTypeEnum;
-import org.bimserver.models.ifc2x3.IfcActionTypeEnum;
-import org.bimserver.models.ifc2x3.IfcGroup;
-import org.bimserver.models.ifc2x3.IfcLoadGroupTypeEnum;
-import org.bimserver.models.ifc2x3.IfcStructuralAnalysisModel;
-import org.bimserver.models.ifc2x3.IfcStructuralResultGroup;
-
 import org.eclipse.emf.common.util.EList;
 
 /**
