@@ -11,5 +11,7 @@
 	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
 	<classpathentry kind="lib" path="/BimServer/lib/logging/slf4j-api-1.6.0.jar"/>
 	<classpathentry kind="lib" path="/BimServer/lib/logging/log4j-1.2.16.jar" sourcepath="/BimServer/libsrc/log4j.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Shared"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Utils"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
