@@ -27,6 +27,10 @@
 				</path>
 			</classpath>
 		</javac>
+		<mkdir dir="builds/bimserver/plugin"/>
+		<copy todir="builds/bimserver/plugin">
+			<fileset dir="../../BimServer/plugin"></fileset>
+		</copy>
 		<jar destfile="builds/lib/bimserver-${version}.jar">
 			<fileset dir="builds/bimserver">
 			</fileset>
@@ -87,6 +91,10 @@
 				</path>
 			</classpath>
 		</javac>
+		<mkdir dir="builds/ifcengine/plugin"/>
+		<copy todir="builds/ifcengine/plugin">
+			<fileset dir="../../IFCEngine/plugin"></fileset>
+		</copy>
 		<jar destfile="builds/pluginlibs/bimserver-ifcengine-${version}.jar">
 			<fileset dir="builds/ifcengine">
 			</fileset>
@@ -102,6 +110,10 @@
 				</path>
 			</classpath>
 		</javac>
+		<mkdir dir="builds/collada/plugin"/>
+		<copy todir="builds/collada/plugin">
+			<fileset dir="../../Collada/plugin"></fileset>
+		</copy>
 		<jar destfile="builds/pluginlibs/bimserver-collada-${version}.jar">
 			<fileset dir="builds/collada">
 			</fileset>
@@ -117,6 +129,10 @@
 				</path>
 			</classpath>
 		</javac>
+		<mkdir dir="builds/o3d/plugin"/>
+		<copy todir="builds/o3d/plugin">
+			<fileset dir="../../O3d/plugin"></fileset>
+		</copy>
 		<jar destfile="builds/pluginlibs/bimserver-o3d-${version}.jar">
 			<fileset dir="builds/o3d">
 			</fileset>
@@ -136,6 +152,10 @@
 				</path>
 			</classpath>
 		</javac>
+		<mkdir dir="builds/citygml/plugin"/>
+		<copy todir="builds/citygml/plugin">
+			<fileset dir="../../CityGML/plugin"></fileset>
+		</copy>
 		<jar destfile="builds/pluginlibs/bimserver-citygml-${version}.jar">
 			<fileset dir="builds/citygml">
 			</fileset>
