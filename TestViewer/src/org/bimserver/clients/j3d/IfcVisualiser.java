@@ -188,7 +188,7 @@ public class IfcVisualiser extends JFrame {
 		schema = SchemaLoader.loadDefaultSchema();
 
 		PluginManager osgiManager = new PluginManager();
-		ifcPlugin = osgiManager.getAllIfcEnginePlugins().iterator().next();
+		ifcPlugin = osgiManager.getAllIfcEnginePlugins(true).iterator().next();
 		ifcEngineFactory = new IfcEngineFactory(resourceFetcher.getFile("IFC2X3_FINAL.exp").getAbsoluteFile(), new File("../IFCEngine/lib/" + System.getProperty("sun.arch.data.model")), new File("tmp"), null, ifcPlugin);
 
 		sharedGroup = new SharedGroup();

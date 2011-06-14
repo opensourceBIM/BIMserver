@@ -29,7 +29,7 @@ public class CityGmlTest {
 		FileFieldIgnoreMap fieldIgnoreMap = new FileFieldIgnoreMap(CollectionUtils.singleSet(Ifc2x3Package.eINSTANCE), resourceFetcher);
 		File nativeFolder = resourceFetcher.getFile("lib/" + File.separator + System.getProperty("sun.arch.data.model"));
 		PluginManager osgiManager = new PluginManager();
-		IfcEngineFactory ifcEngineFactory = new IfcEngineFactory(SchemaLoader.DEFAULT_SCHEMA_FILE, nativeFolder, new File("tmp"), null, osgiManager.getAllIfcEnginePlugins().iterator().next());
+		IfcEngineFactory ifcEngineFactory = new IfcEngineFactory(SchemaLoader.DEFAULT_SCHEMA_FILE, nativeFolder, new File("tmp"), null, osgiManager.getAllIfcEnginePlugins(true).iterator().next());
 		try {
 			IfcModel model = ifcStepDeserializer.read(TestFile.AC11.getFile());
 			try {

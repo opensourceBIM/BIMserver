@@ -275,6 +275,12 @@ service ServiceInterface {
 
 	rpc hasActiveSerializer (HasActiveSerializerRequest) returns (HasActiveSerializerResponse);
 
+	rpc getAllPlugins (GetAllPluginsRequest) returns (GetAllPluginsResponse);
+
+	rpc enablePlugin (EnablePluginRequest) returns (Void);
+
+	rpc disablePlugin (DisablePluginRequest) returns (Void);
+
 }
 
 enum SCompareType{
@@ -630,8 +636,8 @@ message SRevision {
 	optional int32 id = 1;
 	optional SCheckinState state = 2;
 	optional int64 size = 3;
-	optional string comment = 4;
-	optional int64 date = 5;
+	optional int64 date = 4;
+	optional string comment = 5;
 	optional string tag = 6;
 	repeated int64 lastClashes = 7;
 	optional int64 oid = 8;
@@ -1514,15 +1520,18 @@ message MigrateDatabaseRequest {
 }
 
 message GetAllSerializersRequest {
+	optional bool unknown = 1;
 }
 
 message SSerializer {
 	optional string name = 1;
 	optional string className = 2;
 	optional string description = 3;
-	optional int64 oid = 4;
-	optional int64 ignoreFileId = 5;
-	optional int64 settingsId = 6;
+	optional string extension = 4;
+	optional int64 oid = 5;
+	optional string contenttype = 6;
+	optional int64 ignoreFileId = 7;
+	optional int64 settingsId = 8;
 }
 
 message GetAllSerializersResponse {
@@ -1628,6 +1637,34 @@ message HasActiveSerializerRequest {
 message HasActiveSerializerResponse {
 	optional bool value = 2;
 	optional string errorMessage = 1;
+}
+
+message GetAllPluginsRequest {
+}
+
+enum SPluginState{
+	ENABLED = 0;
+	DISABLED = 1;
+}
+
+message SPlugin {
+	optional string name = 1;
+	optional string location = 2;
+	optional SPluginState state = 3;
+	optional string description = 4;
+}
+
+message GetAllPluginsResponse {
+	repeated SPlugin value = 2;
+	optional string errorMessage = 1;
+}
+
+message EnablePluginRequest {
+	optional string unknown = 1;
+}
+
+message DisablePluginRequest {
+	optional string unknown = 1;
 }
 
 message Void {

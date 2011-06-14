@@ -174,18 +174,22 @@ import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserType;
+import org.bimserver.plugins.Plugin;
+import org.bimserver.plugins.PluginContext;
 import org.bimserver.plugins.ifcengine.IfcEngineFactory;
 import org.bimserver.plugins.schema.SchemaDefinition;
 import org.bimserver.rights.RightsManager;
 import org.bimserver.serializers.EmfSerializerFactory;
 import org.bimserver.shared.DatabaseInformation;
 import org.bimserver.shared.LongActionState;
+import org.bimserver.shared.PluginManager;
 import org.bimserver.shared.SCheckinResult;
 import org.bimserver.shared.SCompareResult;
 import org.bimserver.shared.SDataObject;
 import org.bimserver.shared.SDownloadResult;
 import org.bimserver.shared.SLongAction;
 import org.bimserver.shared.SMigration;
+import org.bimserver.shared.SPlugin;
 import org.bimserver.shared.SRevisionSummary;
 import org.bimserver.shared.SUserSession;
 import org.bimserver.shared.ServerException;
@@ -198,6 +202,7 @@ import org.bimserver.shared.SCompareResult.SCompareType;
 import org.bimserver.shared.SCompareResult.SObjectAdded;
 import org.bimserver.shared.SCompareResult.SObjectModified;
 import org.bimserver.shared.SCompareResult.SObjectRemoved;
+import org.bimserver.shared.SPlugin.SPluginState;
 import org.bimserver.tools.generators.GenerateUtils;
 import org.bimserver.utils.FakeClosingInputStream;
 import org.bimserver.utils.Hashers;
@@ -230,6 +235,7 @@ public class Service implements ServiceInterface {
 	private final FieldIgnoreMap fieldIgnoreMap;
 	private final SettingsManager settingsManager;
 	private final MailSystem mailSystem;
+	private final PluginManager pluginManager;
 	private final DiskCacheManager diskCacheManager;
 
 	private long currentUoid = -1;
@@ -240,7 +246,7 @@ public class Service implements ServiceInterface {
 
 	public Service(BimDatabase bimDatabase, EmfSerializerFactory emfSerializerFactory, SchemaDefinition schema, LongActionManager longActionManager, AccessMethod accessMethod,
 			IfcEngineFactory ifcEngineFactory, ServiceFactory serviceFactory, FieldIgnoreMap fieldIgnoreMap, SettingsManager settingsManager, MailSystem mailSystem,
-			DiskCacheManager diskCacheManager, MergerFactory mergerFactory) {
+			DiskCacheManager diskCacheManager, MergerFactory mergerFactory, PluginManager pluginManager) {
 		this.bimDatabase = bimDatabase;
 		this.emfSerializerFactory = emfSerializerFactory;
 		this.schema = schema;
@@ -253,6 +259,7 @@ public class Service implements ServiceInterface {
 		this.mailSystem = mailSystem;
 		this.diskCacheManager = diskCacheManager;
 		this.mergerFactory = mergerFactory;
+		this.pluginManager = pluginManager;
 		activeSince = new Date();
 		lastActive = new Date();
 	}
@@ -2230,11 +2237,11 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public List<SSerializer> getAllSerializers() throws UserException, ServerException {
+	public List<SSerializer> getAllSerializers(boolean onlyEnabled) throws UserException, ServerException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimDatabase.createReadOnlySession();
 		try {
-			List<SSerializer> serializers = convert(session.executeAction(new GetAllSerializersDatabaseAction(session, accessMethod), DEADLOCK_RETRIES), SSerializer.class);
+			List<SSerializer> serializers = convert(session.executeAction(new GetAllSerializersDatabaseAction(session, accessMethod, pluginManager, onlyEnabled), DEADLOCK_RETRIES), SSerializer.class);
 			Collections.sort(serializers, new SSerializerComparator());
 			return serializers;
 		} catch (Exception e) {
@@ -2432,8 +2439,8 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public List<SSerializer> getEnabledSerializers() throws UserException, ServerException {
-		List<SSerializer> serializers = getAllSerializers();
-		List<SSerializer> result = getAllSerializers();
+		List<SSerializer> serializers = getAllSerializers(true);
+		List<SSerializer> result = new ArrayList<SSerializer>();
 		for (SSerializer serializer : serializers) {
 			if (serializer.isEnabled()) {
 				result.add(serializer);
@@ -2450,5 +2457,32 @@ public class Service implements ServiceInterface {
 		} catch (Exception e) {
 			return false;
 		}
+	}
+
+	@Override
+	public List<SPlugin> getAllPlugins() {
+		List<SPlugin> result = new ArrayList<SPlugin>();
+		Collection<Plugin> plugins = pluginManager.getAllPlugins(false);
+		for (Plugin plugin : plugins) {
+			SPlugin sPlugin = new SPlugin();
+			sPlugin.setName(plugin.getName());
+			PluginContext pluginContext = pluginManager.getPluginContext(plugin);
+			sPlugin.setLocation(pluginContext.getLocation());
+			sPlugin.setDescription(plugin.getDescription());
+			sPlugin.setState(pluginContext.isEnabled() ? SPluginState.ENABLED : SPluginState.DISABLED);
+			result.add(sPlugin);
+		}
+		Collections.sort(result, new SPluginComparator());
+		return result;
+	}
+
+	@Override
+	public void disablePlugin(String name) {
+		pluginManager.disablePlugin(name);
+	}
+
+	@Override
+	public void enablePlugin(String name) {
+		pluginManager.enablePlugin(name);
 	}
 }

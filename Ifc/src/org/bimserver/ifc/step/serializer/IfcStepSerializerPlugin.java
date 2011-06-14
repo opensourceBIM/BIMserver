@@ -17,7 +17,7 @@ public class IfcStepSerializerPlugin implements SerializerPlugin {
 
 	@Override
 	public String getName() {
-		return "IfcStepSerializer";
+		return getClass().getName();
 	}
 
 	@Override

@@ -17,7 +17,7 @@ public class O3dTgzSerializerPlugin implements SerializerPlugin {
 
 	@Override
 	public String getName() {
-		return "O3dTgzSerializer";
+		return getClass().getName();
 	}
 
 	@Override

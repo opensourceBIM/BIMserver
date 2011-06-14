@@ -585,7 +585,7 @@ public interface ServiceInterface {
 	void migrateDatabase() throws ServerException, UserException;
 
 	@WebMethod(action = "getAllSerializers")
-	List<SSerializer> getAllSerializers() throws UserException, ServerException;
+	List<SSerializer> getAllSerializers(boolean onlyEnabled) throws UserException, ServerException;
 	
 	@WebMethod(action = "getEnabledSerializers")
 	List<SSerializer> getEnabledSerializers() throws UserException, ServerException;
@@ -626,4 +626,10 @@ public interface ServiceInterface {
 	SSerializer getSerializerByName(String serializerName) throws UserException, ServerException;
 	
 	boolean hasActiveSerializer(String name) throws UserException, ServerException;
+	
+	List<SPlugin> getAllPlugins();
+	
+	void enablePlugin(String name);
+	
+	void disablePlugin(String name);
 }

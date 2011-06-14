@@ -46,7 +46,7 @@
 <table class="formatted">
 <tr><th>Name</th><th>Description</th><th>Type</th><th>Ignore file</th><th>Actions</th></tr>
 <%
-	List<SSerializer> serializers = service.getAllSerializers();
+	List<SSerializer> serializers = service.getAllSerializers(false);
 	for (SSerializer serializer : serializers) {
 		SIgnoreFile ignoreFile = null;
 		if (serializer.getIgnoreFileId() != -1) {

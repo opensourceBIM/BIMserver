@@ -499,3 +499,11 @@ p.explain {
 	width: 80px;
 	height: 14px;
 }
+
+.enabledPlugin {
+	background-color: #AAFFAA;
+}
+
+.disabledPlugin {
+	background-color: #FFAAAA;
+}

@@ -184,7 +184,7 @@ public class ServerInitializer implements ServletContextListener {
 			} else if (serverType == ServerType.DEPLOYED_WAR) {
 				pluginManager.loadPluginsFromJar(new File(""));
 			} else if (serverType == ServerType.STANDALONE_JAR) {
-				pluginManager.loadPluginsFromJar(new File(""));
+				pluginManager.loadAllPluginsFromDirectoryOfJars(new File("plugins"));
 			}
 			
 			LOGGER.info("Detected server type: " + serverType + " (" + System.getProperty("os.name") + ", " + System.getProperty("sun.arch.data.model") + "bit)");
@@ -234,8 +234,8 @@ public class ServerInitializer implements ServletContextListener {
 			} else if (serverType == ServerType.DEV_ENVIRONMENT) {
 				classPath = "../IFCEngine/bin";
 			}
-			if (pluginManager.getAllIfcEnginePlugins().size() > 0) {
-				ifcEngineFactory = new IfcEngineFactory(schemaFile, nativeFolder, new File(homeDir, "tmp"), classPath, pluginManager.getAllIfcEnginePlugins().iterator().next());
+			if (pluginManager.getAllIfcEnginePlugins(true).size() > 0) {
+				ifcEngineFactory = new IfcEngineFactory(schemaFile, nativeFolder, new File(homeDir, "tmp"), classPath, pluginManager.getAllIfcEnginePlugins(true).iterator().next());
 			}
 
 			emfSerializerFactory = EmfSerializerFactory.getInstance();
@@ -268,7 +268,7 @@ public class ServerInitializer implements ServletContextListener {
 			DiskCacheManager diskCacheManager = new DiskCacheManager(new File(homeDir, "cache"), settingsManager);
 
 			mergerFactory = new MergerFactory(settingsManager);
-			ServiceFactory.init(bimDatabase, emfSerializerFactory, schema, longActionManager, ifcEngineFactory, fieldIgnoreMap, settingsManager, mailSystem, diskCacheManager, mergerFactory);
+			ServiceFactory.init(bimDatabase, emfSerializerFactory, schema, longActionManager, ifcEngineFactory, fieldIgnoreMap, settingsManager, mailSystem, diskCacheManager, mergerFactory, pluginManager);
 			setSystemService(ServiceFactory.getINSTANCE().newService(AccessMethod.INTERNAL));
 			if (!((Service) getSystemService()).loginAsSystem()) {
 				throw new RuntimeException("System user not found");
@@ -314,7 +314,7 @@ public class ServerInitializer implements ServletContextListener {
 
 	private void createSerializersAndEngines() throws BimDeadlockException, BimDatabaseException {
 		BimDatabaseSession session = bimDatabase.createSession(true);
-		for (SerializerPlugin serializerPlugin : pluginManager.getAllSerializerPlugins()) {
+		for (SerializerPlugin serializerPlugin : pluginManager.getAllSerializerPlugins(true)) {
 			String name = serializerPlugin.getDefaultSerializerName();
 			Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getSerializer_Name(), new StringLiteral(name));
 			Serializer found = session.querySingle(condition, Serializer.class, false);
@@ -329,7 +329,7 @@ public class ServerInitializer implements ServletContextListener {
 				session.store(serializer);
 			}
 		}
-		for (IfcEnginePlugin ifcEnginePlugin : pluginManager.getAllIfcEnginePlugins()) {
+		for (IfcEnginePlugin ifcEnginePlugin : pluginManager.getAllIfcEnginePlugins(true)) {
 			String name = ifcEnginePlugin.getName();
 			Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getIfcEngine_Name(), new StringLiteral(name));
 			Serializer found = session.querySingle(condition, Serializer.class, false);
@@ -363,7 +363,6 @@ public class ServerInitializer implements ServletContextListener {
 
 	private void initDatabaseDependantItems() {
 		emfSerializerFactory.init(version, schema, fieldIgnoreMap, ifcEngineFactory, resourceFetcher, settingsManager, pluginManager, bimDatabase);
-		emfSerializerFactory.initSerializers();
 	}
 	
 	public static File getHomeDir() {

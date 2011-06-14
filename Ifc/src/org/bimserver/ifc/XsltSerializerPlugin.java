@@ -17,7 +17,7 @@ public class XsltSerializerPlugin implements SerializerPlugin {
 
 	@Override
 	public String getName() {
-		return "XsltSerializer";
+		return getClass().getName();
 	}
 
 	@Override

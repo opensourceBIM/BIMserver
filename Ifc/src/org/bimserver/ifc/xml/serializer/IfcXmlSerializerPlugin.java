@@ -17,7 +17,7 @@ public class IfcXmlSerializerPlugin implements SerializerPlugin {
 
 	@Override
 	public String getName() {
-		return "IfcXmlSerializer";
+		return getClass().getName();
 	}
 
 	@Override

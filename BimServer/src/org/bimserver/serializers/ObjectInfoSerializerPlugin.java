@@ -12,7 +12,7 @@ public class ObjectInfoSerializerPlugin implements SerializerPlugin {
 
 	@Override
 	public String getName() {
-		return "ObjectInfoSerializer";
+		return getClass().getName();
 	}
 
 	@Override

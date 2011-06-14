@@ -17,7 +17,7 @@ public class IfcXmlDeserializerPlugin implements DeserializerPlugin {
 
 	@Override
 	public String getName() {
-		return "IfcXmlDeserializer";
+		return getClass().getName();
 	}
 
 	@Override
