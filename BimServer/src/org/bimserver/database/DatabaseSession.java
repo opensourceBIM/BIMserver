@@ -725,9 +725,9 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 			return 8;
 		} else if (eDataType == EcorePackage.eINSTANCE.getEString()) {
 			if (val != null) {
-				return 2 + ((String) val).getBytes(Charsets.UTF_8).length;
+				return 4 + ((String) val).getBytes(Charsets.UTF_8).length;
 			}
-			return 2;
+			return 4;
 		} else if (eDataType == EcorePackage.eINSTANCE.getEByteArray()) {
 			if (val != null) {
 				return 4 + ((byte[]) val).length;
@@ -784,7 +784,7 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 				refSize = 2 + getPrimitiveSize((EDataType) wrappedValueFeature.getEType(), wrappedVal);
 				if (wrappedValueFeature.getEType() == EcorePackage.eINSTANCE.getEFloat()) {
 					EStructuralFeature floatValueFeature = wrappedValue.eClass().getEStructuralFeature("wrappedValueAsString");
-					refSize += 2 + ((String) wrappedValue.eGet(floatValueFeature)).getBytes(Charsets.UTF_8).length;
+					refSize += 4 + ((String) wrappedValue.eGet(floatValueFeature)).getBytes(Charsets.UTF_8).length;
 				}
 			}
 			return refSize;
@@ -929,7 +929,7 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 	public void writePrimitiveValue(EStructuralFeature feature, Object value, ByteBuffer buffer) throws BimDatabaseException {
 		if (feature.getEType() == EcorePackage.eINSTANCE.getEString()) {
 			if (value == null) {
-				buffer.putShort((short) -1);
+				buffer.putInt(-1);
 			} else {
 				String stringValue = (String) value;
 				byte[] bytes = stringValue.getBytes(Charsets.UTF_8);
