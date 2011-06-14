@@ -125,5 +125,12 @@
 	<classpathentry kind="lib" path="lib/jetty/jsp/org.apache.taglibs.standard.glassfish_1.2.0.v201004190952.jar"/>
 	<classpathentry kind="lib" path="lib/jspf.core-1.0.2.jar"/>
 	<classpathentry kind="lib" path="lib/jna.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Emf"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Ifc"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Plugins"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Shared"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Store"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Utils"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/buildingSMARTLibrary"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

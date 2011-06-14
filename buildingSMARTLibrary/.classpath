@@ -13,5 +13,7 @@
 	<classpathentry kind="lib" path="/BimServer/lib/antlr-3.1.1.jar"/>
 	<classpathentry kind="lib" path="/BimServer/lib/ifcNamespaces.jar"/>
 	<classpathentry kind="lib" path="/BimServer/lib/java-getopt-1.0.13.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Plugins"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Store"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
