@@ -14,7 +14,6 @@ import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.FieldIgnoreMap;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelSet;
-import org.bimserver.ifc.step.serializer.IfcStepSerializer;
 import org.bimserver.models.ifc2x3.IfcGloballyUniqueId;
 import org.bimserver.models.ifc2x3.IfcRoot;
 import org.bimserver.models.ifc2x3.WrappedValue;
@@ -26,13 +25,16 @@ import org.bimserver.models.store.EidClash;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.StoreFactory;
+import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.ifcengine.IfcEngine;
 import org.bimserver.plugins.ifcengine.IfcEngineClash;
 import org.bimserver.plugins.ifcengine.IfcEngineException;
 import org.bimserver.plugins.ifcengine.IfcEngineFactory;
 import org.bimserver.plugins.ifcengine.IfcEngineModel;
 import org.bimserver.plugins.schema.SchemaDefinition;
+import org.bimserver.plugins.serializers.EmfSerializer;
 import org.bimserver.plugins.serializers.SerializerException;
+import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.shared.UserException;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EAttribute;
@@ -51,9 +53,10 @@ public class FindClashesDatabaseAction extends BimDatabaseAction<Set<? extends C
 	private final ClashDetectionSettings clashDetectionSettings;
 	private final FieldIgnoreMap fieldIgnoreMap;
 	private final MergerFactory mergerFactory;
+	private final PluginManager pluginManager;
 
 	public FindClashesDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, ClashDetectionSettings clashDetectionSettings, SchemaDefinition schema,
-			IfcEngineFactory ifcEngineFactory, FieldIgnoreMap fieldIgnoreMap, MergerFactory mergerFactory, long actingUoid) {
+			IfcEngineFactory ifcEngineFactory, FieldIgnoreMap fieldIgnoreMap, MergerFactory mergerFactory, long actingUoid, PluginManager pluginManager) {
 		super(bimDatabaseSession, accessMethod);
 		this.fieldIgnoreMap = fieldIgnoreMap;
 		this.clashDetectionSettings = clashDetectionSettings;
@@ -61,6 +64,7 @@ public class FindClashesDatabaseAction extends BimDatabaseAction<Set<? extends C
 		this.ifcEngineFactory = ifcEngineFactory;
 		this.mergerFactory = mergerFactory;
 		this.actingUoid = actingUoid;
+		this.pluginManager = pluginManager;
 	}
 
 	@Override
@@ -95,10 +99,11 @@ public class FindClashesDatabaseAction extends BimDatabaseAction<Set<? extends C
 				cleanupModel(idEObject.eClass(), idEObject, newModel, ifcModel, converted);
 			}
 		}
-		IfcStepSerializer ifcStepSerializer = new IfcStepSerializer();
+		SerializerPlugin serializerPlugin = (SerializerPlugin) pluginManager.getPlugin("org.bimserver.ifc.step.serializer.IfcStepSerializer", true);
+		EmfSerializer ifcSerializer = serializerPlugin.createSerializer();
 		try {
-			ifcStepSerializer.init(newModel, schema, fieldIgnoreMap, ifcEngineFactory, null);
-			byte[] bytes = ifcStepSerializer.getBytes();
+			ifcSerializer.init(newModel, schema, fieldIgnoreMap, ifcEngineFactory, null, null);
+			byte[] bytes = ifcSerializer.getBytes();
 			IfcEngine failSafeIfcEngine = ifcEngineFactory.createIfcEngine();
 			try {
 				IfcEngineModel ifcEngineModel = failSafeIfcEngine.openModel(bytes);

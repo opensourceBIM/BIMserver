@@ -22,6 +22,7 @@ import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
+import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.ifcengine.IfcEngineFactory;
 import org.bimserver.plugins.schema.SchemaDefinition;
 import org.bimserver.webservices.Service;
@@ -41,8 +42,9 @@ public class ClashDetectionLongAction extends LongAction {
 	private final MailSystem mailSystem;
 	private final SettingsManager settingsManager;
 	private final MergerFactory mergerFactory;
+	private final PluginManager pluginManager;
 
-	public ClashDetectionLongAction(User user, long actingUoid, SchemaDefinition schema, SettingsManager settingsManager, IfcEngineFactory ifcEngineFactory, MailSystem mailSystem, BimDatabase bimDatabase, FieldIgnoreMap fieldIgnoreMap, MergerFactory mergerFactory, long poid) {
+	public ClashDetectionLongAction(User user, long actingUoid, SchemaDefinition schema, SettingsManager settingsManager, IfcEngineFactory ifcEngineFactory, MailSystem mailSystem, BimDatabase bimDatabase, FieldIgnoreMap fieldIgnoreMap, MergerFactory mergerFactory, long poid, PluginManager pluginManager) {
 		this.user = user;
 		this.actingUoid = actingUoid;
 		this.schema = schema;
@@ -53,6 +55,7 @@ public class ClashDetectionLongAction extends LongAction {
 		this.fieldIgnoreMap = fieldIgnoreMap;
 		this.mergerFactory = mergerFactory;
 		this.poid = poid;
+		this.pluginManager = pluginManager;
 	}
 
 	@Override
@@ -79,7 +82,7 @@ public class ClashDetectionLongAction extends LongAction {
 			ClashDetectionSettings clashDetectionSettings = StoreFactory.eINSTANCE.createClashDetectionSettings();
 			clashDetectionSettings.setMargin(project.getClashDetectionSettings().getMargin());
 			clashDetectionSettings.getRevisions().add(project.getLastRevision());
-			FindClashesDatabaseAction findClashesDatabaseAction = new FindClashesDatabaseAction(session, AccessMethod.INTERNAL, clashDetectionSettings, schema, ifcEngineFactory, fieldIgnoreMap, mergerFactory, roid);
+			FindClashesDatabaseAction findClashesDatabaseAction = new FindClashesDatabaseAction(session, AccessMethod.INTERNAL, clashDetectionSettings, schema, ifcEngineFactory, fieldIgnoreMap, mergerFactory, roid, pluginManager);
 			Set<? extends Clash> clashes = findClashesDatabaseAction.execute();
 			Revision revision = project.getLastRevision();
 // Temporarily disabled, should be enabled when lazy loading is working

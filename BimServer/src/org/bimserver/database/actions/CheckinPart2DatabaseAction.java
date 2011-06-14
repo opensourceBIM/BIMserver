@@ -17,18 +17,19 @@ import org.bimserver.models.store.CheckinState;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
+import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.shared.UserException;
 
 public class CheckinPart2DatabaseAction extends BimDatabaseAction<Void> {
 
-	private final IfcModel ifcModel;
+	private final IfcModelInterface ifcModel;
 	private final long actingUoid;
 	private final long croid;
 	private final boolean merge;
 	private final SettingsManager settingsManager;
 	private final MergerFactory mergerFactory;
 
-	public CheckinPart2DatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, SettingsManager settingsManager, IfcModel ifcModel, MergerFactory mergerFactory, long actingUoid, long croid, boolean merge) {
+	public CheckinPart2DatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, SettingsManager settingsManager, IfcModelInterface ifcModel, MergerFactory mergerFactory, long actingUoid, long croid, boolean merge) {
 		super(bimDatabaseSession, accessMethod);
 		this.settingsManager = settingsManager;
 		this.ifcModel = ifcModel;
@@ -44,7 +45,7 @@ public class CheckinPart2DatabaseAction extends BimDatabaseAction<Void> {
 		try {
 			Project project = concreteRevision.getProject();
 			Revision lastRevision = project.getLastRevision();
-			IfcModel ifcModel = null;
+			IfcModelInterface ifcModel = null;
 			if (merge) {
 				IfcModelSet ifcModelSet = new IfcModelSet();
 				for (ConcreteRevision subRevision : lastRevision.getConcreteRevisions()) {
@@ -54,7 +55,7 @@ public class CheckinPart2DatabaseAction extends BimDatabaseAction<Void> {
 					ifcModelSet.add(subModel);
 				}
 				getIfcModel().setDate(new Date());
-				IfcModel newModel = getIfcModel();
+				IfcModelInterface newModel = getIfcModel();
 				newModel.fixOids(getDatabaseSession());
 				IfcModel oldModel = mergerFactory.createMerger().merge(project, ifcModelSet, settingsManager.getSettings().isIntelligentMerging());
 				
@@ -64,7 +65,7 @@ public class CheckinPart2DatabaseAction extends BimDatabaseAction<Void> {
 				newModel.indexGuids();
 				newModel.fixOids(new IncrementingOidProvider(oldModel.getHighestOid() + 1));
 
-				RevisionMerger revisionMerger = new RevisionMerger(oldModel, newModel);
+				RevisionMerger revisionMerger = new RevisionMerger(oldModel, (IfcModel) newModel);
 				ifcModel = revisionMerger.merge();
 				revisionMerger.cleanupUnmodified();
 				
@@ -100,7 +101,7 @@ public class CheckinPart2DatabaseAction extends BimDatabaseAction<Void> {
 		return null;
 	}
 
-	public IfcModel getIfcModel() {
+	public IfcModelInterface getIfcModel() {
 		return ifcModel;
 	}
 

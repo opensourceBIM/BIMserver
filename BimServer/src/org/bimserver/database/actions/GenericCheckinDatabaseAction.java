@@ -6,7 +6,6 @@ import java.util.Date;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
-import org.bimserver.ifc.IfcModel;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.CheckinState;
 import org.bimserver.models.store.Checkout;
@@ -15,13 +14,14 @@ import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.User;
+import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.shared.UserException;
 
 public abstract class GenericCheckinDatabaseAction extends BimDatabaseAction<ConcreteRevision>{
 
-	protected final IfcModel model;
+	protected final IfcModelInterface model;
 
-	public GenericCheckinDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, IfcModel model) {
+	public GenericCheckinDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, IfcModelInterface model) {
 		super(bimDatabaseSession, accessMethod);
 		this.model = model;
 	}

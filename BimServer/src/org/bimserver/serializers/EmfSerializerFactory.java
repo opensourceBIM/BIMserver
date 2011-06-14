@@ -3,7 +3,6 @@ package org.bimserver.serializers;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.bimserver.SettingsManager;
 import org.bimserver.database.BimDatabase;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
@@ -18,15 +17,13 @@ import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Serializer;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
+import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.ifcengine.IfcEngineFactory;
 import org.bimserver.plugins.schema.SchemaDefinition;
 import org.bimserver.plugins.serializers.EmfSerializer;
 import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
-import org.bimserver.shared.PluginManager;
-import org.bimserver.shared.ResourceFetcher;
-import org.bimserver.version.Version;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -36,14 +33,8 @@ public class EmfSerializerFactory {
 	private static final EmfSerializerFactory INSTANCE = new EmfSerializerFactory();
 	private FieldIgnoreMap fieldIgnoreMap;
 	private SchemaDefinition schemaDefinition;
-	private Version version;
-
 	private IfcEngineFactory ifcEngineFactory;
-	private ResourceFetcher resourceFetcher;
-	private SettingsManager settingsManager;
-
 	private PluginManager pluginManager;
-
 	private BimDatabase bimDatabase;
 	
 	private EmfSerializerFactory() {
@@ -53,13 +44,10 @@ public class EmfSerializerFactory {
 		return INSTANCE;
 	}
 
-	public void init(Version version, SchemaDefinition schemaDefinition, FieldIgnoreMap fieldIgnoreMap, IfcEngineFactory ifcEngineFactory, ResourceFetcher resourceFetcher, SettingsManager settingsManager, PluginManager osgiManager, BimDatabase bimDatabase) {
-		this.version = version;
+	public void init(SchemaDefinition schemaDefinition, FieldIgnoreMap fieldIgnoreMap, IfcEngineFactory ifcEngineFactory, PluginManager osgiManager, BimDatabase bimDatabase) {
 		this.schemaDefinition = schemaDefinition;
 		this.fieldIgnoreMap = fieldIgnoreMap;
 		this.ifcEngineFactory = ifcEngineFactory;
-		this.resourceFetcher = resourceFetcher;
-		this.settingsManager = settingsManager;
 		this.pluginManager = osgiManager;
 		this.bimDatabase = bimDatabase;
 	}
@@ -89,7 +77,7 @@ public class EmfSerializerFactory {
 					projectInfo.setZ(project.getGeoTag().getZ());
 					projectInfo.setDirectionAngle(project.getGeoTag().getDirectionAngle());
 					projectInfo.setAuthorName(user.getName());
-					serializer.init(model, schemaDefinition, fieldIgnoreMap, ifcEngineFactory, projectInfo);
+					serializer.init(model, schemaDefinition, fieldIgnoreMap, ifcEngineFactory, projectInfo, null);
 					return serializer;
 				}
 			}

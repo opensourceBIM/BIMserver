@@ -17,6 +17,7 @@ import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
+import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.ifcengine.IfcEngineException;
 import org.bimserver.plugins.ifcengine.IfcEngineFactory;
 import org.bimserver.plugins.schema.SchemaDefinition;
@@ -39,8 +40,9 @@ public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 	private final SettingsManager settingsManager;
 	private int progress;
 	private final MergerFactory mergerFactory;
+	private final PluginManager pluginManager;
 
-	public LongCheckinAction(User user, LongActionManager longActionManager, BimDatabase bimDatabase, SchemaDefinition schema, CheckinPart2DatabaseAction createCheckinAction, IfcEngineFactory ifcEngineFactory, FieldIgnoreMap fieldIgnoreMap, SettingsManager settingsManager, MailSystem mailSystem, MergerFactory mergerFactory) {
+	public LongCheckinAction(User user, LongActionManager longActionManager, BimDatabase bimDatabase, SchemaDefinition schema, CheckinPart2DatabaseAction createCheckinAction, IfcEngineFactory ifcEngineFactory, FieldIgnoreMap fieldIgnoreMap, SettingsManager settingsManager, MailSystem mailSystem, MergerFactory mergerFactory, PluginManager pluginManager) {
 		this.user = user;
 		this.longActionManager = longActionManager;
 		this.bimDatabase = bimDatabase;
@@ -51,6 +53,7 @@ public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 		this.settingsManager = settingsManager;
 		this.mailSystem = mailSystem;
 		this.mergerFactory = mergerFactory;
+		this.pluginManager = pluginManager;
 	}
 
 	public void execute() {
@@ -133,7 +136,7 @@ public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 			mainProject = mainProject.getParent();
 		}
 		if (mainProject.getClashDetectionSettings().isEnabled()) {
-			ClashDetectionLongAction clashDetectionLongAction = new ClashDetectionLongAction(user, createCheckinAction.getActingUid(), schema, settingsManager, ifcEngineFactory, mailSystem, bimDatabase, fieldIgnoreMap, mergerFactory, mainProject.getOid());
+			ClashDetectionLongAction clashDetectionLongAction = new ClashDetectionLongAction(user, createCheckinAction.getActingUid(), schema, settingsManager, ifcEngineFactory, mailSystem, bimDatabase, fieldIgnoreMap, mergerFactory, mainProject.getOid(), pluginManager);
 			try {
 				longActionManager.start(clashDetectionLongAction);
 			} catch (CannotBeScheduledException e) {
