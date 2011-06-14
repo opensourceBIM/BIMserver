@@ -65,34 +65,6 @@
 			<fileset dir="builds/buildingSMARTLibrary"/>
 		</jar>
 	</target>
-	<target name="IfcPlugins">
-		<mkdir dir="builds/ifcplugins" />
-		<javac destdir="builds/ifcplugins" debug="on" fork="true">
-			<src path="../../IfcPlugins/src" />
-			<classpath>
-				<path>
-					<fileset refid="lib" />
-				</path>
-			</classpath>
-		</javac>
-		<jar destfile="builds/pluginlibs/bimserver-ifcplugins-${version}.jar">
-			<fileset dir="builds/ifcplugins"/>
-		</jar>
-	</target>
-	<target name="MiscSerializers">
-		<mkdir dir="builds/miscserializers" />
-		<javac destdir="builds/miscserializers" debug="on" fork="true">
-			<src path="../../MistSerializers/src" />
-			<classpath>
-				<path>
-					<fileset refid="lib" />
-				</path>
-			</classpath>
-		</javac>
-		<jar destfile="builds/pluginlibs/bimserver-miscserializers-${version}.jar">
-			<fileset dir="builds/mistserializers"/>
-		</jar>
-	</target>
 	<target name="Store" depends="Emf">
 		<mkdir dir="builds/store" />
 		<javac destdir="builds/store" debug="on" fork="true">
@@ -123,6 +95,34 @@
 		</copy>
 		<jar destfile="builds/pluginlibs/bimserver-ifcengine-${version}.jar">
 			<fileset dir="builds/ifcengine"/>
+		</jar>
+	</target>
+	<target name="IfcPlugins" depends="Ifc">
+		<mkdir dir="builds/ifcplugins" />
+		<javac destdir="builds/ifcplugins" debug="on" fork="true">
+			<src path="../../IfcPlugins/src" />
+			<classpath>
+				<path>
+					<fileset refid="lib" />
+				</path>
+			</classpath>
+		</javac>
+		<jar destfile="builds/pluginlibs/bimserver-ifcplugins-${version}.jar">
+			<fileset dir="builds/ifcplugins"/>
+		</jar>
+	</target>
+	<target name="MiscSerializers" depends="Ifc">
+		<mkdir dir="builds/miscserializers" />
+		<javac destdir="builds/miscserializers" debug="on" fork="true">
+			<src path="../../MistSerializers/src" />
+			<classpath>
+				<path>
+					<fileset refid="lib" />
+				</path>
+			</classpath>
+		</javac>
+		<jar destfile="builds/pluginlibs/bimserver-miscserializers-${version}.jar">
+			<fileset dir="builds/mistserializers"/>
 		</jar>
 	</target>
 	<target name="Collada" depends="buildingSMARTLibrary, Emf, Ifc, Store">
