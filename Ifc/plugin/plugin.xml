@@ -2,22 +2,23 @@
 <PluginDescriptor>
 	<PluginImplementation>
 		<interfaceClass>org.bimserver.plugins.serializers.SerializerPlugin</interfaceClass>
-		<implementationClass>org.bimserver.ifc.file.writer.IfcStepSerializerPlugin</implementationClass>
+		<implementationClass>org.bimserver.ifc.step.serializer.IfcStepSerializerPlugin</implementationClass>
 	</PluginImplementation>
 	<PluginImplementation>
 		<interfaceClass>org.bimserver.plugins.serializers.SerializerPlugin</interfaceClass>
-		<implementationClass>org.bimserver.ifc.xml.writer.IfcXmlSerializerPlugin</implementationClass>
+		<implementationClass>org.bimserver.ifc.xml.serializer.IfcXmlSerializerPlugin</implementationClass>
 	</PluginImplementation>
 	<PluginImplementation>
 		<interfaceClass>org.bimserver.plugins.serializers.SerializerPlugin</interfaceClass>
 		<implementationClass>org.bimserver.ifc.XsltSerializerPlugin</implementationClass>
 	</PluginImplementation>
+
 	<PluginImplementation>
 		<interfaceClass>org.bimserver.plugins.deserializers.DeserializerPlugin</interfaceClass>
-		<implementationClass>org.bimserver.ifc.xml.reader.IfcXmlDeserializerPlugin</implementationClass>
+		<implementationClass>org.bimserver.ifc.xml.deserializer.IfcXmlDeserializerPlugin</implementationClass>
 	</PluginImplementation>
 	<PluginImplementation>
 		<interfaceClass>org.bimserver.plugins.deserializers.DeserializerPlugin</interfaceClass>
-		<implementationClass>org.bimserver.ifc.file.reader.IfcStepDeserializerPlugin</implementationClass>
+		<implementationClass>org.bimserver.ifc.step.deserializer.IfcStepDeserializerPlugin</implementationClass>
 	</PluginImplementation>
 </PluginDescriptor>
