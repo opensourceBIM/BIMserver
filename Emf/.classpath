@@ -2,6 +2,14 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
+	<classpathentry exported="true" kind="lib" path="/BimServer/lib/emf/org.eclipse.emf_2.6.0.v20100914-1218.jar"/>
+	<classpathentry exported="true" kind="lib" path="/BimServer/lib/emf/org.eclipse.emf.codegen_2.6.0.v20100914-1218.jar"/>
+	<classpathentry exported="true" kind="lib" path="/BimServer/lib/emf/org.eclipse.emf.codegen.ecore_2.6.1.v20100914-1218.jar"/>
+	<classpathentry exported="true" kind="lib" path="/BimServer/lib/emf/org.eclipse.emf.common_2.6.0.v20100914-1218.jar"/>
+	<classpathentry exported="true" kind="lib" path="/BimServer/lib/emf/org.eclipse.emf.compare_1.0.1.v200909161031.jar"/>
+	<classpathentry exported="true" kind="lib" path="/BimServer/lib/emf/org.eclipse.emf.compare.match_1.0.1.v200909161031.jar"/>
+	<classpathentry exported="true" kind="lib" path="/BimServer/lib/emf/org.eclipse.emf.ecore_2.6.1.v20100914-1218.jar"/>
+	<classpathentry exported="true" kind="lib" path="/BimServer/lib/emf/org.eclipse.emf.ecore.xmi_2.5.0.v20100521-1846.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
