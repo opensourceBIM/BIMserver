@@ -12,7 +12,6 @@ import java.util.Set;
 
 import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.IfcModel;
-import org.bimserver.ifc.step.serializer.IfcStepSerializer;
 import org.bimserver.models.ifc2x3.IfcBuildingElementProxy;
 import org.bimserver.models.ifc2x3.IfcColourOrFactor;
 import org.bimserver.models.ifc2x3.IfcColourRgb;
@@ -58,6 +57,7 @@ import org.bimserver.models.ifc2x3.IfcWall;
 import org.bimserver.models.ifc2x3.IfcWallStandardCase;
 import org.bimserver.models.ifc2x3.IfcWindow;
 import org.bimserver.models.store.SIPrefix;
+import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.ifcengine.IfcEngine;
 import org.bimserver.plugins.ifcengine.IfcEngineException;
 import org.bimserver.plugins.ifcengine.IfcEngineFactory;
@@ -68,9 +68,11 @@ import org.bimserver.plugins.ifcengine.IfcEngineModel;
 import org.bimserver.plugins.ignoreproviders.IgnoreProvider;
 import org.bimserver.plugins.schema.Schema;
 import org.bimserver.plugins.serializers.BimModelSerializer;
+import org.bimserver.plugins.serializers.EmfSerializer;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.SerializerException;
+import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.slf4j.Logger;
@@ -84,8 +86,8 @@ public class ColladaSerializer extends BimModelSerializer {
 	private List<String> surfaceStyleIds;
 
 	@Override
-	public void init(IfcModelInterface model, Schema schema, IgnoreProvider ignoreProvider, IfcEngineFactory ifcEngineFactory, ProjectInfo projectInfo) throws SerializerException {
-		super.init(model, schema, ignoreProvider, ifcEngineFactory, projectInfo);
+	public void init(IfcModelInterface model, Schema schema, IgnoreProvider ignoreProvider, IfcEngineFactory ifcEngineFactory, ProjectInfo projectInfo, PluginManager pluginManager) throws SerializerException {
+		super.init(model, schema, ignoreProvider, ifcEngineFactory, projectInfo, pluginManager);
 		try {
 			this.ifcEngine = ifcEngineFactory.createIfcEngine();
 		} catch (IfcEngineException e) {
@@ -326,9 +328,10 @@ public class ColladaSerializer extends BimModelSerializer {
 
 		IfcModel ifcModel = new IfcModel();
 		convertToSubset(ifcRootObject.eClass(), ifcRootObject, ifcModel, new HashMap<EObject, EObject>());
-		IfcStepSerializer ifcSerializer = new IfcStepSerializer();
+		SerializerPlugin serializerPlugin = (SerializerPlugin) getPluginManager().getPlugin("org.bimserver.ifc.step.serializer.IfcStepSerializer", true);
+		EmfSerializer ifcSerializer = serializerPlugin.createSerializer();
 		try {
-			ifcSerializer.init(ifcModel, getSchema(), getIgnoreProvider(), getIfcEngineFactory(), null);
+			ifcSerializer.init(ifcModel, getSchema(), getIgnoreProvider(), getIfcEngineFactory(), null, null);
 			IfcEngineModel model = ifcEngine.openModel(ifcSerializer.getBytes());
 			try {
 				model.setPostProcessing(true);

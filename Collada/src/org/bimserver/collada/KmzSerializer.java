@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
+import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.ifcengine.IfcEngineFactory;
 import org.bimserver.plugins.ignoreproviders.IgnoreProvider;
 import org.bimserver.plugins.schema.Schema;
@@ -22,11 +23,11 @@ public class KmzSerializer extends BimModelSerializer {
 	private ColladaSerializer ifcToCollada;
 
 	@Override
-	public void init(IfcModelInterface model, Schema schema, IgnoreProvider ignoreProvider, IfcEngineFactory ifcEngineFactory, ProjectInfo projectInfo) throws SerializerException {
-		super.init(model, schema, ignoreProvider, ifcEngineFactory, projectInfo);
+	public void init(IfcModelInterface model, Schema schema, IgnoreProvider ignoreProvider, IfcEngineFactory ifcEngineFactory, ProjectInfo projectInfo, PluginManager pluginManager) throws SerializerException {
+		super.init(model, schema, ignoreProvider, ifcEngineFactory, projectInfo, pluginManager);
 		try {
 			ifcToCollada = new ColladaSerializer();
-			ifcToCollada.init(model, schema, ignoreProvider, ifcEngineFactory, projectInfo);
+			ifcToCollada.init(model, schema, ignoreProvider, ifcEngineFactory, projectInfo, null);
 		} catch (SerializerException e) {
 			throw new SerializerException(e);
 		}
