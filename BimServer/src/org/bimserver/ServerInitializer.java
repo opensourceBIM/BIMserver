@@ -175,10 +175,10 @@ public class ServerInitializer implements ServletContextListener {
 
 			pluginManager = new PluginManager();
 			if (serverType == ServerType.DEV_ENVIRONMENT) {
-				pluginManager.loadPluginsFromEclipseProject(new File("../BimServer"));
 				pluginManager.loadPluginsFromEclipseProject(new File("../CityGML"));
 				pluginManager.loadPluginsFromEclipseProject(new File("../Collada"));
-				pluginManager.loadPluginsFromEclipseProject(new File("../Ifc"));
+				pluginManager.loadPluginsFromEclipseProject(new File("../IfcPlugins"));
+				pluginManager.loadPluginsFromEclipseProject(new File("../MiscSerializers"));
 				pluginManager.loadPluginsFromEclipseProject(new File("../O3d"));
 				pluginManager.loadPluginsFromEclipseProject(new File("../IFCEngine"));
 			} else if (serverType == ServerType.DEPLOYED_WAR) {
