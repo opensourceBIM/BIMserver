@@ -14,5 +14,6 @@
 	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="/BimServer/lib/jna.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Plugins"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
