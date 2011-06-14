@@ -9,10 +9,6 @@ if (!loginManager.getService().isLoggedIn()) {
 	response.sendRedirect("login.jsp");
 } else {
 %>
-<jsp:include page="htmlheader.jsp" />
-<body>
-<div style="width: 1000px; margin-left: auto; margin-right: auto; padding-top: 20px">
-<a href="main.jsp"><img src="images/fulllogo.gif" title="BIMserver"/></a>
 <h1>BIMserver Database Migrations</h1>
 <%
 	if (request.getParameter("migrate") != null) {
@@ -53,7 +49,4 @@ No migrations required to execute
 	}
 %>
 </form>
-</div>
-</body>
-</html>
 <% } %>
