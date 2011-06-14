@@ -10,5 +10,11 @@
 	<classpathentry kind="lib" path="lib/vecmath.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Ifc"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Plugins"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Shared"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Store"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Utils"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Emf"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
