@@ -11,7 +11,6 @@ import java.util.Set;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.SchemaLoader;
 import org.bimserver.ifc.step.deserializer.IfcStepDeserializer;
-import org.bimserver.ifc.step.deserializer.IncorrectIfcFileException;
 import org.bimserver.models.ifc2x3.IfcArbitraryClosedProfileDef;
 import org.bimserver.models.ifc2x3.IfcAxis2Placement3D;
 import org.bimserver.models.ifc2x3.IfcCartesianPoint;
@@ -26,6 +25,8 @@ import org.bimserver.models.ifc2x3.IfcRepresentationItem;
 import org.bimserver.models.ifc2x3.IfcShapeRepresentation;
 import org.bimserver.plugins.schema.SchemaDefinition;
 import org.eclipse.emf.common.util.EList;
+
+import com.sun.xml.internal.ws.encoding.soap.DeserializationException;
 
 public class KmlExportTest {
 	public static void main(String[] args) {
@@ -86,7 +87,7 @@ public class KmlExportTest {
 					}
 				}
 				out.println("             </Folder>  </Document></kml>");
-			} catch (IncorrectIfcFileException e) {
+			} catch (DeserializationException e) {
 				e.printStackTrace();
 			} catch (Exception e) {
 				e.printStackTrace();

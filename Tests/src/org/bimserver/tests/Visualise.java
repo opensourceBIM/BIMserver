@@ -18,7 +18,6 @@ import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.SchemaLoader;
 import org.bimserver.ifc.step.deserializer.IfcStepDeserializer;
-import org.bimserver.ifc.step.deserializer.IncorrectIfcFileException;
 import org.bimserver.ifc.step.serializer.IfcStepSerializer;
 import org.bimserver.merging.IncrementingOidProvider;
 import org.bimserver.merging.RevisionMerger;
@@ -28,6 +27,8 @@ import org.bimserver.utils.SwingUtil;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+
+import com.sun.xml.internal.ws.encoding.soap.DeserializationException;
 
 public class Visualise extends JFrame {
 	private static final long serialVersionUID = 9066505986920442200L;
@@ -55,7 +56,7 @@ public class Visualise extends JFrame {
 			new Visualise().start(model1b, "Model 1");
 			new Visualise().start(model2b, "Model 2");
 			new Visualise().start(merged, "Merged");
-		} catch (IncorrectIfcFileException e) {
+		} catch (DeserializationException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
 			e.printStackTrace();

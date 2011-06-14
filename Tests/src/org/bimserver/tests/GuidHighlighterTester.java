@@ -13,11 +13,12 @@ import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelSet;
 import org.bimserver.ifc.SchemaLoader;
 import org.bimserver.ifc.step.deserializer.IfcStepDeserializer;
-import org.bimserver.ifc.step.deserializer.IncorrectIfcFileException;
 import org.bimserver.merging.IncrementingOidProvider;
 import org.bimserver.merging.Merger;
 import org.bimserver.merging.Merger.GuidMergeIdentifier;
 import org.bimserver.plugins.schema.SchemaDefinition;
+
+import com.sun.xml.internal.ws.encoding.soap.DeserializationException;
 
 public class GuidHighlighterTester {
 	private SchemaDefinition schema;
@@ -60,7 +61,7 @@ public class GuidHighlighterTester {
 		try {
 			IfcModel model = deserializer.read(file);
 			return model;
-		} catch (IncorrectIfcFileException e) {
+		} catch (DeserializationException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
 			e.printStackTrace();

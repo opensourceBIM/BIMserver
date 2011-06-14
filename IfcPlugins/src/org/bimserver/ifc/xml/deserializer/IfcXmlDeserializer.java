@@ -11,7 +11,10 @@ import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.models.ifc2x3.Ifc2x3Factory;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
+import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.deserializers.EmfDeserializer;
+import org.bimserver.plugins.schema.SchemaDefinition;
+import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EDataType;
@@ -26,17 +29,6 @@ public class IfcXmlDeserializer extends EmfDeserializer  {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(IfcXmlDeserializer.class);
 	private final IfcModel model = new IfcModel();
-
-	public IfcModel read(InputStream inputStream) throws IfcXmlDeserializeException {
-		XMLInputFactory inputFactory = XMLInputFactory.newInstance();
-		try {
-			XMLStreamReader reader = inputFactory.createXMLStreamReader(inputStream);
-			parseDocument(reader);
-		} catch (XMLStreamException e) {
-			LOGGER.error("", e);
-		}
-		return model;
-	}
 
 	private void parseDocument(XMLStreamReader reader) throws XMLStreamException, IfcXmlDeserializeException {
 		while (reader.hasNext()) {
@@ -248,5 +240,29 @@ public class IfcXmlDeserializer extends EmfDeserializer  {
 		} else {
 			throw new IfcXmlDeserializeException("Unimplemented primitive type: " + eType.getName());
 		}
+	}
+
+	@Override
+	public IfcModelInterface getModel() {
+		return model;
+	}
+
+	@Override
+	public void init(SchemaDefinition schema) {
+		
+	}
+
+	@Override
+	public IfcModelInterface read(InputStream inputStream, long fileSize) throws DeserializeException {
+		XMLInputFactory inputFactory = XMLInputFactory.newInstance();
+		try {
+			XMLStreamReader reader = inputFactory.createXMLStreamReader(inputStream);
+			parseDocument(reader);
+		} catch (XMLStreamException e) {
+			LOGGER.error("", e);
+		} catch (IfcXmlDeserializeException e) {
+			LOGGER.error("", e);
+		}
+		return model;
 	}
 }

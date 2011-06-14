@@ -12,6 +12,7 @@ import org.apache.commons.lang.StringEscapeUtils;
 import org.bimserver.ifc.IfcSerializer;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.Tristate;
+import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.ifcengine.IfcEngineFactory;
 import org.bimserver.plugins.ignoreproviders.IgnoreProvider;
 import org.bimserver.plugins.schema.Attribute;
@@ -47,8 +48,8 @@ public class IfcXmlSerializer extends IfcSerializer {
 	private int tabs;
 
 	@Override
-	public void init(IfcModelInterface model, Schema schema, IgnoreProvider ignoreProvider, IfcEngineFactory ifcEngineFactory, ProjectInfo projectInfo) throws SerializerException {
-		super.init(model, schema, ignoreProvider, ifcEngineFactory, projectInfo);
+	public void init(IfcModelInterface model, Schema schema, IgnoreProvider ignoreProvider, IfcEngineFactory ifcEngineFactory, ProjectInfo projectInfo, PluginManager pluginManager) throws SerializerException {
+		super.init(model, schema, ignoreProvider, ifcEngineFactory, projectInfo, pluginManager);
 		objectToOidMap = new HashMap<EObject, Long>((int) model.size());
 		for (Long key : model.keySet()) {
 			objectToOidMap.put(model.get(key), key);

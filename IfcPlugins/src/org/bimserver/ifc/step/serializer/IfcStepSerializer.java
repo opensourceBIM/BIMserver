@@ -33,6 +33,7 @@ import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcGloballyUniqueId;
 import org.bimserver.models.ifc2x3.Tristate;
 import org.bimserver.models.ifc2x3.WrappedValue;
+import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.ifcengine.IfcEngineFactory;
 import org.bimserver.plugins.ignoreproviders.IgnoreProvider;
 import org.bimserver.plugins.schema.EntityDefinition;
@@ -84,8 +85,8 @@ public class IfcStepSerializer extends IfcSerializer {
 	private UTFPrintWriter out;
 
 	@Override
-	public void init(IfcModelInterface model, Schema schema, IgnoreProvider ignoreProvider, IfcEngineFactory ifcEngineFactory, ProjectInfo projectInfo) throws SerializerException {
-		super.init(model, schema, ignoreProvider, ifcEngineFactory, projectInfo);
+	public void init(IfcModelInterface model, Schema schema, IgnoreProvider ignoreProvider, IfcEngineFactory ifcEngineFactory, ProjectInfo projectInfo, PluginManager pluginManager) throws SerializerException {
+		super.init(model, schema, ignoreProvider, ifcEngineFactory, projectInfo, pluginManager);
 	}
 
 	@Override
