@@ -12,5 +12,10 @@
 	<classpathentry kind="lib" path="/BimServer/lib/tar.jar"/>
 	<classpathentry kind="lib" path="/BimServer/lib/jettison-1.0.1.jar"/>
 	<classpathentry kind="lib" path="/BimServer/lib/json.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Emf"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Ifc"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Plugins"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Store"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Utils"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
