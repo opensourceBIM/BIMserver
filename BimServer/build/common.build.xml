@@ -107,6 +107,10 @@
 				</path>
 			</classpath>
 		</javac>
+		<mkdir dir="builds/ifcplugins/plugin"/>
+		<copy todir="builds/ifcplugins/plugin">
+			<fileset dir="../../IfcPlugins/plugin"></fileset>
+		</copy>
 		<jar destfile="builds/pluginlibs/bimserver-ifcplugins-${version}.jar">
 			<fileset dir="builds/ifcplugins"/>
 		</jar>
@@ -121,6 +125,10 @@
 				</path>
 			</classpath>
 		</javac>
+		<mkdir dir="builds/miscserializers/plugin"/>
+		<copy todir="builds/miscserializers/plugin">
+			<fileset dir="../../MiscSerializers/plugin"></fileset>
+		</copy>
 		<jar destfile="builds/pluginlibs/bimserver-miscserializers-${version}.jar">
 			<fileset dir="builds/miscserializers"/>
 		</jar>
