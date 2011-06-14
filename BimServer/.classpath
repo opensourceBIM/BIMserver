@@ -123,7 +123,6 @@
 	<classpathentry kind="lib" path="lib/jetty/jsp/jetty-jsp-2.1-7.3.1.v20110307.jar"/>
 	<classpathentry kind="lib" path="lib/jetty/jsp/org.apache.jasper.glassfish_2.1.0.v201007080150.jar"/>
 	<classpathentry kind="lib" path="lib/jetty/jsp/org.apache.taglibs.standard.glassfish_1.2.0.v201004190952.jar"/>
-	<classpathentry kind="lib" path="lib/jspf.core-1.0.2.jar"/>
 	<classpathentry kind="lib" path="lib/jna.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Emf"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Ifc"/>

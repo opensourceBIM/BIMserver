@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PluginDescriptor>
+	<PluginImplementation>
+		<interfaceClass>org.bimserver.plugins.serializers.SerializerPlugin</interfaceClass>
+		<implementationClass>org.bimserver.ifc.file.writer.IfcStepSerializerPlugin</implementationClass>
+	</PluginImplementation>
+	<PluginImplementation>
+		<interfaceClass>org.bimserver.plugins.serializers.SerializerPlugin</interfaceClass>
+		<implementationClass>org.bimserver.ifc.xml.writer.IfcXmlSerializerPlugin</implementationClass>
+	</PluginImplementation>
+	<PluginImplementation>
+		<interfaceClass>org.bimserver.plugins.serializers.SerializerPlugin</interfaceClass>
+		<implementationClass>org.bimserver.ifc.XsltSerializerPlugin</implementationClass>
+	</PluginImplementation>
+</PluginDescriptor>

@@ -81,7 +81,7 @@ import org.bimserver.plugins.ifcengine.IfcEngineModel;
 import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
 import org.bimserver.plugins.ifcengine.IfcEngineSurfaceProperties;
 import org.bimserver.plugins.schema.SchemaDefinition;
-import org.bimserver.shared.BimPluginManager;
+import org.bimserver.shared.PluginManager;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
 import org.bimserver.utils.CollectionUtils;
 import org.eclipse.emf.common.util.BasicEList;
@@ -187,8 +187,8 @@ public class IfcVisualiser extends JFrame {
 		fieldIgnoreMap = new FileFieldIgnoreMap(CollectionUtils.singleSet(Ifc2x3Package.eINSTANCE), resourceFetcher);
 		schema = SchemaLoader.loadDefaultSchema();
 
-		BimPluginManager osgiManager = new BimPluginManager();
-		ifcPlugin = osgiManager.getIfcPlugins().iterator().next();
+		PluginManager osgiManager = new PluginManager();
+		ifcPlugin = osgiManager.getAllIfcEnginePlugins().iterator().next();
 		ifcEngineFactory = new IfcEngineFactory(resourceFetcher.getFile("IFC2X3_FINAL.exp").getAbsoluteFile(), new File("../IFCEngine/lib/" + System.getProperty("sun.arch.data.model")), new File("tmp"), null, ifcPlugin);
 
 		sharedGroup = new SharedGroup();

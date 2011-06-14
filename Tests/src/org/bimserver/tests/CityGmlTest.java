@@ -15,7 +15,7 @@ import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.plugins.ifcengine.IfcEngineFactory;
 import org.bimserver.plugins.schema.SchemaDefinition;
 import org.bimserver.plugins.serializers.SerializerException;
-import org.bimserver.shared.BimPluginManager;
+import org.bimserver.shared.PluginManager;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
 import org.bimserver.shared.ResourceFetcher;
 import org.bimserver.utils.CollectionUtils;
@@ -27,8 +27,8 @@ public class CityGmlTest {
 		ResourceFetcher resourceFetcher = new LocalDevelopmentResourceFetcher();
 		FileFieldIgnoreMap fieldIgnoreMap = new FileFieldIgnoreMap(CollectionUtils.singleSet(Ifc2x3Package.eINSTANCE), resourceFetcher);
 		File nativeFolder = resourceFetcher.getFile("lib/" + File.separator + System.getProperty("sun.arch.data.model"));
-		BimPluginManager osgiManager = new BimPluginManager();
-		IfcEngineFactory ifcEngineFactory = new IfcEngineFactory(SchemaLoader.DEFAULT_SCHEMA_FILE, nativeFolder, new File("tmp"), null, osgiManager.getIfcPlugins().iterator().next());
+		PluginManager osgiManager = new PluginManager();
+		IfcEngineFactory ifcEngineFactory = new IfcEngineFactory(SchemaLoader.DEFAULT_SCHEMA_FILE, nativeFolder, new File("tmp"), null, osgiManager.getAllIfcEnginePlugins().iterator().next());
 		try {
 			IfcModel model = fastIfcFileReader.read(TestFile.AC11.getFile());
 			try {

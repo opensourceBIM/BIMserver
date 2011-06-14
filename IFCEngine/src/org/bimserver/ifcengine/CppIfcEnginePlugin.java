@@ -2,13 +2,10 @@ package org.bimserver.ifcengine;
 
 import java.io.File;
 
-import net.xeoh.plugins.base.annotations.PluginImplementation;
-
 import org.bimserver.plugins.ifcengine.IfcEngine;
 import org.bimserver.plugins.ifcengine.IfcEngineException;
 import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
 
-@PluginImplementation
 public class CppIfcEnginePlugin implements IfcEnginePlugin {
 
 	@Override

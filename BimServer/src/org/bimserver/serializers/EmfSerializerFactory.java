@@ -27,7 +27,7 @@ import org.bimserver.plugins.serializers.PackageDefinition;
 import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
-import org.bimserver.shared.BimPluginManager;
+import org.bimserver.shared.PluginManager;
 import org.bimserver.shared.ResourceFetcher;
 import org.bimserver.version.Version;
 import org.slf4j.Logger;
@@ -38,7 +38,6 @@ public class EmfSerializerFactory {
 	
 	private static final EmfSerializerFactory INSTANCE = new EmfSerializerFactory();
 	private FieldIgnoreMap fieldIgnoreMap;
-	private PackageDefinition colladaSettings;
 	private SchemaDefinition schemaDefinition;
 	private Version version;
 
@@ -48,7 +47,7 @@ public class EmfSerializerFactory {
 
 	private Map<String, SerializerPlugin> serializerPlugins = new HashMap<String, SerializerPlugin>();
 
-	private BimPluginManager pluginManager;
+	private PluginManager pluginManager;
 
 	private BimDatabase bimDatabase;
 	
@@ -59,12 +58,11 @@ public class EmfSerializerFactory {
 		return INSTANCE;
 	}
 
-	public void init(Version version, SchemaDefinition schemaDefinition, FieldIgnoreMap fieldIgnoreMap, IfcEngineFactory ifcEngineFactory, PackageDefinition colladaSettings, ResourceFetcher resourceFetcher, SettingsManager settingsManager, BimPluginManager osgiManager, BimDatabase bimDatabase) {
+	public void init(Version version, SchemaDefinition schemaDefinition, FieldIgnoreMap fieldIgnoreMap, IfcEngineFactory ifcEngineFactory, ResourceFetcher resourceFetcher, SettingsManager settingsManager, PluginManager osgiManager, BimDatabase bimDatabase) {
 		this.version = version;
 		this.schemaDefinition = schemaDefinition;
 		this.fieldIgnoreMap = fieldIgnoreMap;
 		this.ifcEngineFactory = ifcEngineFactory;
-		this.colladaSettings = colladaSettings;
 		this.resourceFetcher = resourceFetcher;
 		this.settingsManager = settingsManager;
 		this.pluginManager = osgiManager;
