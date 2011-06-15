@@ -35,6 +35,7 @@ import org.bimserver.models.store.IfcEngine;
 import org.bimserver.models.store.IgnoreFile;
 import org.bimserver.models.store.MergeIdentifier;
 import org.bimserver.models.store.ObjectState;
+import org.bimserver.models.store.Plugin;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.SIPrefix;
@@ -156,6 +157,13 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 * @generated
 	 */
 	private EClass ifcEngineEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass pluginEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1399,6 +1407,15 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getSettings_Plugins() {
+		return (EReference)settingsEClass.getEStructuralFeatures().get(21);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getSerializer()
 	{
 		return serializerEClass;
@@ -1575,6 +1592,42 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 */
 	public EReference getIfcEngine_Settings() {
 		return (EReference)ifcEngineEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getPlugin() {
+		return pluginEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPlugin_Name() {
+		return (EAttribute)pluginEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPlugin_Enabled() {
+		return (EAttribute)pluginEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPlugin_Settings() {
+		return (EReference)pluginEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -1779,6 +1832,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 		createEAttribute(settingsEClass, SETTINGS__MERGE_IDENTIFIER);
 		createEAttribute(settingsEClass, SETTINGS__CACHE_OUTPUT_FILES);
 		createEReference(settingsEClass, SETTINGS__IFC_ENGINES);
+		createEReference(settingsEClass, SETTINGS__PLUGINS);
 
 		serializerEClass = createEClass(SERIALIZER);
 		createEAttribute(serializerEClass, SERIALIZER__NAME);
@@ -1801,6 +1855,11 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 		createEAttribute(ifcEngineEClass, IFC_ENGINE__NAME);
 		createEAttribute(ifcEngineEClass, IFC_ENGINE__ACTIVE);
 		createEReference(ifcEngineEClass, IFC_ENGINE__SETTINGS);
+
+		pluginEClass = createEClass(PLUGIN);
+		createEAttribute(pluginEClass, PLUGIN__NAME);
+		createEAttribute(pluginEClass, PLUGIN__ENABLED);
+		createEReference(pluginEClass, PLUGIN__SETTINGS);
 
 		// Create enums
 		userTypeEEnum = createEEnum(USER_TYPE);
@@ -1966,6 +2025,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 		initEAttribute(getSettings_MergeIdentifier(), this.getMergeIdentifier(), "mergeIdentifier", null, 0, 1, Settings.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getSettings_CacheOutputFiles(), ecorePackage.getEBoolean(), "cacheOutputFiles", null, 0, 1, Settings.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSettings_IfcEngines(), this.getIfcEngine(), this.getIfcEngine_Settings(), "ifcEngines", null, 0, -1, Settings.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSettings_Plugins(), this.getPlugin(), this.getPlugin_Settings(), "plugins", null, 0, -1, Settings.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(serializerEClass, Serializer.class, "Serializer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getSerializer_Name(), ecorePackage.getEString(), "name", null, 0, 1, Serializer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1988,6 +2048,11 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 		initEAttribute(getIfcEngine_Name(), ecorePackage.getEString(), "name", null, 0, 1, IfcEngine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getIfcEngine_Active(), ecorePackage.getEBoolean(), "active", null, 0, 1, IfcEngine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getIfcEngine_Settings(), this.getSettings(), this.getSettings_IfcEngines(), "settings", null, 0, 1, IfcEngine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(pluginEClass, Plugin.class, "Plugin", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getPlugin_Name(), ecorePackage.getEString(), "name", null, 0, 1, Plugin.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPlugin_Enabled(), ecorePackage.getEBoolean(), "enabled", null, 0, 1, Plugin.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPlugin_Settings(), this.getSettings(), this.getSettings_Plugins(), "settings", null, 0, 1, Plugin.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(userTypeEEnum, UserType.class, "UserType");

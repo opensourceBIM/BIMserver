@@ -1,8 +1,6 @@
 package org.bimserver.interfaces.objects;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import java.util.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
@@ -38,6 +36,7 @@ public class SSettings
 	private SMergeIdentifier mergeIdentifier;
 	private boolean cacheOutputFiles;
 	private List<Long> ifcEngines = new ArrayList<Long>();
+	private List<Long> plugins = new ArrayList<Long>();
 
 	public boolean isShowVersionUpgradeAvailable() {
 		return showVersionUpgradeAvailable;
@@ -201,6 +200,13 @@ public class SSettings
 
 	public void setIfcEngines(List<Long> ifcEngines) {
 		this.ifcEngines = ifcEngines;
+	}
+	public List<Long> getPlugins() {
+		return plugins;
+	}
+
+	public void setPlugins(List<Long> plugins) {
+		this.plugins = plugins;
 	}
 	@Override
 	public int hashCode() {

@@ -21,6 +21,7 @@ package org.bimserver.models.log.util;
 
 import java.util.List;
 
+import org.bimserver.models.log.*;
 import org.bimserver.models.log.ClashDetectionSettingsUpdated;
 import org.bimserver.models.log.DatabaseCreated;
 import org.bimserver.models.log.Download;

@@ -23,6 +23,7 @@ import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.models.store.IfcEngine;
 import org.bimserver.models.store.IgnoreFile;
 import org.bimserver.models.store.MergeIdentifier;
+import org.bimserver.models.store.Plugin;
 import org.bimserver.models.store.Serializer;
 import org.bimserver.models.store.Settings;
 import org.bimserver.models.store.StorePackage;
@@ -57,6 +58,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getMergeIdentifier <em>Merge Identifier</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#isCacheOutputFiles <em>Cache Output Files</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getIfcEngines <em>Ifc Engines</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getPlugins <em>Plugins</em>}</li>
  * </ul>
  * </p>
  *
@@ -482,6 +484,16 @@ public class SettingsImpl extends IdEObjectImpl implements Settings
 	@SuppressWarnings("unchecked")
 	public EList<IfcEngine> getIfcEngines() {
 		return (EList<IfcEngine>)eGet(StorePackage.Literals.SETTINGS__IFC_ENGINES, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public EList<Plugin> getPlugins() {
+		return (EList<Plugin>)eGet(StorePackage.Literals.SETTINGS__PLUGINS, true);
 	}
 
 } //SettingsImpl
