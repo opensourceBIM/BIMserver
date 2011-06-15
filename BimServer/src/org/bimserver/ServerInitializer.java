@@ -173,6 +173,7 @@ public class ServerInitializer implements ServletContextListener {
 
 			Thread.setDefaultUncaughtExceptionHandler(uncaughtExceptionHandler);
 
+			LOGGER.info("Creating plugin manager");
 			pluginManager = new PluginManager();
 			if (serverType == ServerType.DEV_ENVIRONMENT) {
 				pluginManager.loadPluginsFromEclipseProject(new File("../CityGML"));
@@ -182,6 +183,7 @@ public class ServerInitializer implements ServletContextListener {
 				pluginManager.loadPluginsFromEclipseProject(new File("../O3d"));
 				pluginManager.loadPluginsFromEclipseProject(new File("../IFCEngine"));
 			} else if (serverType == ServerType.DEPLOYED_WAR) {
+				LOGGER.info("Going to load plugins");
 				pluginManager.loadAllPluginsFromDirectoryOfJars(resourceFetcher.getFile("plugins"));
 			} else if (serverType == ServerType.STANDALONE_JAR) {
 				pluginManager.loadAllPluginsFromDirectoryOfJars(new File("plugins"));
