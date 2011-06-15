@@ -214,12 +214,11 @@ public class O3dJsonSerializer extends BimModelSerializer {
 		convertCounter++;
 		IfcModel ifcModel = new IfcModel();
 		convertToSubset(ifcRootObject.eClass(), ifcRootObject, ifcModel, new HashMap<EObject, EObject>());
-		SerializerPlugin serializerPlugin = (SerializerPlugin) getPluginManager().getPlugin("org.bimserver.ifc.step.serializer.IfcStepSerializer", true);
-		EmfSerializer ifcSerializer = serializerPlugin.createSerializer();
-		ifcSerializer.init(ifcModel, getSchema(), getIgnoreProvider(), getIfcEngineFactory(), null, null);
+		EmfSerializer serializer = requireIfcStepSerializer();
+		serializer.init(ifcModel, getSchema(), getIgnoreProvider(), getIfcEngineFactory(), null, null);
 		BinaryIndexBuffer binaryIndexBuffer = new BinaryIndexBuffer();
 		BinaryVertexBuffer binaryVertexBuffer = new BinaryVertexBuffer();
-		IfcEngineModel model = ifcEngine.openModel(ifcSerializer.getBytes());
+		IfcEngineModel model = ifcEngine.openModel(serializer.getBytes());
 		try {
 			IfcEngineSurfaceProperties sp = model.initializeModelling();
 			model.setPostProcessing(true);

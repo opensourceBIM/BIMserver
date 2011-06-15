@@ -27,6 +27,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Collection;
 
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.ifcengine.IfcEngineFactory;
@@ -61,6 +62,20 @@ public abstract class EmfSerializer {
 		this.setIgnoreProvider(ignoreProvider);
 		this.setSchema(schema);
 		reset();
+	}
+
+	/*
+	 * This will try to find at least one serializer for the content-type "application/ifc", if none are found an exception is throws, if more than 1 is found, the first one is returned
+	 */
+	protected EmfSerializer requireIfcStepSerializer() throws SerializerException {
+		String contentType = "application/ifc";
+		Collection<SerializerPlugin> serializerPlugins = getPluginManager().getAllSerializerPlugins(contentType, true);
+		if (serializerPlugins.isEmpty()) {
+			throw new SerializerException("A working serializer for the content type " + contentType + " is required");
+		}
+		SerializerPlugin serializerPlugin = serializerPlugins.iterator().next();
+		EmfSerializer ifcSerializer = serializerPlugin.createSerializer();
+		return ifcSerializer;
 	}
 
 	public ProjectInfo getProjectInfo() {

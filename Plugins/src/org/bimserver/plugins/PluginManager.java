@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 import java.util.jar.JarEntry;
@@ -164,7 +165,19 @@ public class PluginManager {
 	public Collection<SerializerPlugin> getAllSerializerPlugins(boolean onlyEnabled) {
 		return getPlugins(SerializerPlugin.class, onlyEnabled);
 	}
-	
+
+	public Collection<SerializerPlugin> getAllSerializerPlugins(String contentType, boolean onlyEnabled) {
+		Collection<SerializerPlugin> plugins = getPlugins(SerializerPlugin.class, onlyEnabled);
+		Iterator<SerializerPlugin> iterator = plugins.iterator();
+		while (iterator.hasNext()) {
+			SerializerPlugin serializerPlugin = iterator.next();
+			if (!serializerPlugin.getDefaultContentType().equalsIgnoreCase(contentType)) {
+				iterator.remove();
+			}
+		}
+		return plugins;
+	}
+
 	public Collection<DeserializerPlugin> getAllDeserializerPlugins(boolean onlyEnabled) {
 		return getPlugins(DeserializerPlugin.class, onlyEnabled);
 	}
