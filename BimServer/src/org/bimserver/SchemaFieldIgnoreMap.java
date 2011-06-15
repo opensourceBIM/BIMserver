@@ -1,4 +1,4 @@
-package org.bimserver.tools;
+package org.bimserver;
 
 /******************************************************************************
  * (c) Copyright bimserver.org 2009
@@ -28,7 +28,7 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 
-import org.bimserver.ifc.FieldIgnoreMap;
+import org.bimserver.plugins.ignoreproviders.FieldIgnoreMap;
 import org.bimserver.plugins.schema.Attribute;
 import org.bimserver.plugins.schema.EntityDefinition;
 import org.bimserver.plugins.schema.InverseAttribute;

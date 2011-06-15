@@ -40,7 +40,6 @@ import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.conditions.IsOfTypeCondition;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.LazyLoader;
-import org.bimserver.ifc.FieldIgnoreMap;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.models.ifc2x3.Ifc2x3Factory;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;

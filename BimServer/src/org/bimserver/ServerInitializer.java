@@ -85,7 +85,6 @@ import org.bimserver.servlets.CompileServlet;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
 import org.bimserver.shared.ServiceInterface;
 import org.bimserver.templating.TemplateEngine;
-import org.bimserver.tools.SchemaFieldIgnoreMap;
 import org.bimserver.utils.CollectionUtils;
 import org.bimserver.utils.TempUtils;
 import org.bimserver.version.Version;
