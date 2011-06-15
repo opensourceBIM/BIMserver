@@ -11,4 +11,8 @@ public class SerializerException extends Exception {
 	public SerializerException(Throwable e) {
 		super(e);
 	}
+
+	public SerializerException(String message) {
+		super(message);
+	}
 }

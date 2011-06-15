@@ -164,7 +164,7 @@ public class ColladaSerializer extends BimModelSerializer {
 		out.println("    </asset>");
 	}
 
-	private void writeGeometries(PrintWriter out) throws IfcEngineException {
+	private void writeGeometries(PrintWriter out) throws IfcEngineException, SerializerException {
 		out.println("	<library_geometries>");
 
 		for (IfcRoof ifcRoof : model.getAll(IfcRoof.class)) {
@@ -231,7 +231,7 @@ public class ColladaSerializer extends BimModelSerializer {
 		out.println("	</library_geometries>");
 	}
 
-	private void setGeometry(PrintWriter out, IdEObject ifcRootObject, String id, String material) throws IfcEngineException {
+	private void setGeometry(PrintWriter out, IdEObject ifcRootObject, String id, String material) throws IfcEngineException, SerializerException {
 
 		id = id.replace('$', '-'); // XML QNAME may not contain a $ character.
 		id = "_" + id; // XML QNAME may not start with a digit.
@@ -328,11 +328,10 @@ public class ColladaSerializer extends BimModelSerializer {
 
 		IfcModel ifcModel = new IfcModel();
 		convertToSubset(ifcRootObject.eClass(), ifcRootObject, ifcModel, new HashMap<EObject, EObject>());
-		SerializerPlugin serializerPlugin = (SerializerPlugin) getPluginManager().getPlugin("org.bimserver.ifc.step.serializer.IfcStepSerializer", true);
-		EmfSerializer ifcSerializer = serializerPlugin.createSerializer();
+		EmfSerializer serializer = requireIfcStepSerializer();
+		serializer.init(ifcModel, getSchema(), getIgnoreProvider(), getIfcEngineFactory(), getProjectInfo(), getPluginManager());
 		try {
-			ifcSerializer.init(ifcModel, getSchema(), getIgnoreProvider(), getIfcEngineFactory(), null, null);
-			IfcEngineModel model = ifcEngine.openModel(ifcSerializer.getBytes());
+			IfcEngineModel model = ifcEngine.openModel(serializer.getBytes());
 			try {
 				model.setPostProcessing(true);
 				IfcEngineGeometry geometry = model.finalizeModelling(model.initializeModelling());
