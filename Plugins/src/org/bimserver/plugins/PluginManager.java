@@ -89,6 +89,7 @@ public class PluginManager {
 					}
 					LOGGER.info("Loading plugin " + implementationClassName);
 					Plugin plugin = (Plugin) implementationClass.newInstance();
+					plugin.init(this);
 					Set<PluginContext> set = (Set<PluginContext>) implementations.get(interfaceClass);
 					PluginContext pluginContext = new PluginContext(this);
 					pluginContext.setPlugin(plugin);
@@ -281,7 +282,8 @@ public class PluginManager {
 		if (allSchemaPlugins.size() == 0) {
 			throw new SchemaException("No schema found");
 		}
-		return allSchemaPlugins.iterator().next().getSchemaDefinition();
+		SchemaPlugin next = allSchemaPlugins.iterator().next();
+		return next.getSchemaDefinition();
 	}
 	
 	public EmfDeserializer requireDeserializer(String type) throws DeserializeException {
