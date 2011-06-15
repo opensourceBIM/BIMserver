@@ -8,8 +8,8 @@ import java.io.IOException;
 import nl.tue.buildingsmart.emf.SchemaLoader;
 
 import org.bimserver.citygml.CityGmlSerializer;
-import org.bimserver.ifc.FileFieldIgnoreMap;
 import org.bimserver.ifc.step.deserializer.IfcStepDeserializer;
+import org.bimserver.ignoreproviders.FileFieldIgnoreMap;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.ResourceFetcher;

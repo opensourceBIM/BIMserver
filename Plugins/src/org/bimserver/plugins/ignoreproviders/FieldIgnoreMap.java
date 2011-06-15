@@ -1,4 +1,4 @@
-package org.bimserver.ifc;
+package org.bimserver.plugins.ignoreproviders;
 
 /******************************************************************************
  * (c) Copyright bimserver.org 2009
@@ -25,7 +25,6 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import org.bimserver.plugins.ignoreproviders.IgnoreProvider;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;

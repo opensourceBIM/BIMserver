@@ -1,4 +1,4 @@
-package org.bimserver.ifc;
+package org.bimserver.ignoreproviders;
 
 /******************************************************************************
  * (c) Copyright bimserver.org 2009
@@ -30,6 +30,7 @@ import javax.xml.bind.Unmarshaller;
 
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.plugins.ResourceFetcher;
+import org.bimserver.plugins.ignoreproviders.FieldIgnoreMap;
 import org.bimserver.plugins.serializers.ClassDefinition;
 import org.bimserver.plugins.serializers.FieldDefinition;
 import org.bimserver.plugins.serializers.PackageDefinition;
