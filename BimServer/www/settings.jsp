@@ -35,7 +35,10 @@
 	List<SIgnoreFile> ignoreFiles = service.getAllIgnoreFiles();
 	for (SIgnoreFile ignoreFile : ignoreFiles) {
 %>
-	<tr><td><%=ignoreFile.getName() %></td><td><%=ignoreFile.getSerializers().size() %></td><td><a href="editignorefile.jsp?ifid=<%=ignoreFile.getOid()%>">Edit</a> <a href="deleteignorefile.jsp?ifid=<%=ignoreFile.getOid()%>">Delete</a></td></tr>
+	<tr>
+		<td><%=ignoreFile.getName() %></td>
+		<td><%=ignoreFile.getSerializers().size() %></td>
+		<td><a href="editignorefile.jsp?ifid=<%=ignoreFile.getOid()%>">Edit</a> <a href="deleteignorefile.jsp?ifid=<%=ignoreFile.getOid()%>">Delete</a></td></tr>
 <%
 	}
 %>
@@ -44,7 +47,7 @@
 <div class="tabbertab" id="serializerstab" title="Serializers">
 <a href="addserializer.jsp">Add Serializer</a>
 <table class="formatted">
-<tr><th>Name</th><th>Description</th><th>Type</th><th>Ignore file</th><th>Actions</th></tr>
+<tr><th>Name</th><th>Description</th><th>Type</th><th>Ignore file</th><th>State</th><th>Actions</th></tr>
 <%
 	List<SSerializer> serializers = service.getAllSerializers(false);
 	for (SSerializer serializer : serializers) {
@@ -53,7 +56,13 @@
 			ignoreFile = service.getIgnoreFileById(serializer.getIgnoreFileId());
 		}
 %>
-	<tr><td><%=serializer.getName() %></td><td><%=serializer.getDescription() %></td><td><%=serializer.getClassName() %></td><td><%=ignoreFile == null ? "none" : ignoreFile.getName() %></td><td><a href="deleteserializer.jsp?sid=<%=serializer.getOid()%>">Delete</a></td></tr>
+	<tr>
+		<td><%=serializer.getName() %></td>
+		<td><%=serializer.getDescription() %></td>
+		<td><%=serializer.getClassName() %></td>
+		<td><%=ignoreFile == null ? "none" : ignoreFile.getName() %></td>
+		<td><%=serializer.isEnabled() ? "Enabled" : "Disabled" %></td>
+		<td><a href="deleteserializer.jsp?sid=<%=serializer.getOid()%>">Delete</a></td></tr>
 <%
 	}
 %>

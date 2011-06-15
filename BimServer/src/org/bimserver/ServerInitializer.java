@@ -360,7 +360,7 @@ public class ServerInitializer implements ServletContextListener {
 				Serializer serializer = StoreFactory.eINSTANCE.createSerializer();
 				serializer.setClassName(serializerPlugin.getClass().getName());
 				serializer.setName(name);
-				serializer.setEnabled(false);
+				serializer.setEnabled(true);
 				serializer.setDescription(serializerPlugin.getDescription());
 				serializer.setContenttype(serializerPlugin.getDefaultContentType());
 				serializer.setExtension(serializerPlugin.getDefaultExtension());

@@ -28,4 +28,9 @@ public class IfcXmlDeserializerPlugin implements DeserializerPlugin {
 	@Override
 	public void init() {
 	}
+
+	@Override
+	public boolean canHandleExtension(String extension) {
+		return extension.equalsIgnoreCase("ifcxml");
+	}
 }

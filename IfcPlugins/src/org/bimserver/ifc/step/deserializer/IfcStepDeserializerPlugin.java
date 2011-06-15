@@ -28,4 +28,9 @@ public class IfcStepDeserializerPlugin implements DeserializerPlugin {
 	@Override
 	public void init() {
 	}
+
+	@Override
+	public boolean canHandleExtension(String extension) {
+		return extension.equalsIgnoreCase("ifc");
+	}
 }
