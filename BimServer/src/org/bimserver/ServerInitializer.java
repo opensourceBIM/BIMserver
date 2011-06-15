@@ -185,7 +185,11 @@ public class ServerInitializer implements ServletContextListener {
 			} else if (serverType == ServerType.DEPLOYED_WAR) {
 				File file = resourceFetcher.getFile("plugins");
 				LOGGER.info("Going to load plugins from " + file.getAbsolutePath());
-				pluginManager.loadAllPluginsFromDirectoryOfJars(file);
+				try {
+					pluginManager.loadAllPluginsFromDirectoryOfJars(file);
+				} catch (Exception e) {
+					LOGGER.error("", e);
+				}
 			} else if (serverType == ServerType.STANDALONE_JAR) {
 				pluginManager.loadAllPluginsFromDirectoryOfJars(new File("plugins"));
 			}
