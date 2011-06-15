@@ -20,12 +20,8 @@ package org.bimserver.tools;
  * long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Set;
 
 import javax.xml.bind.JAXBContext;
@@ -33,8 +29,6 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 
 import org.bimserver.ifc.FieldIgnoreMap;
-import org.bimserver.ifc.SchemaLoader;
-import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.plugins.schema.Attribute;
 import org.bimserver.plugins.schema.EntityDefinition;
 import org.bimserver.plugins.schema.InverseAttribute;
@@ -49,17 +43,6 @@ import org.slf4j.LoggerFactory;
 public class SchemaFieldIgnoreMap extends FieldIgnoreMap {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(SchemaFieldIgnoreMap.class);
-	
-	public static void main(String[] args) {
-		SchemaDefinition schema = SchemaLoader.loadDefaultSchema();
-		Set<EPackage> packages = new HashSet<EPackage>();
-		packages.add(Ifc2x3Package.eINSTANCE);
-		try {
-			new SchemaFieldIgnoreMap(packages, schema, new FileOutputStream(new File("ignore.xml")));
-		} catch (FileNotFoundException e) {
-			LOGGER.error("", e);
-		}
-	}
 	
 	public SchemaFieldIgnoreMap(Set<? extends EPackage> packages, SchemaDefinition schema, OutputStream outputStream) {
 		super(packages);

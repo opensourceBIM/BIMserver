@@ -24,7 +24,7 @@ public class KmzSerializer extends BimModelSerializer {
 		super.init(model, projectInfo, pluginManager);
 		try {
 			ifcToCollada = new ColladaSerializer();
-			ifcToCollada.init(model, projectInfo, null);
+			ifcToCollada.init(model, projectInfo, pluginManager);
 		} catch (SerializerException e) {
 			throw new SerializerException(e);
 		}

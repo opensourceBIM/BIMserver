@@ -130,6 +130,5 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/Shared"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Store"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Utils"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/buildingSMARTLibrary"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

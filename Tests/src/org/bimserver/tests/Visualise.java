@@ -14,9 +14,10 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeNode;
 
+import nl.tue.buildingsmart.emf.SchemaLoader;
+
 import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.IfcModel;
-import org.bimserver.ifc.SchemaLoader;
 import org.bimserver.ifc.step.deserializer.IfcStepDeserializer;
 import org.bimserver.ifc.step.serializer.IfcStepSerializer;
 import org.bimserver.merging.IncrementingOidProvider;

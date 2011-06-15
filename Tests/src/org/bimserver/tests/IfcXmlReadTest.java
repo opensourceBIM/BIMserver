@@ -4,7 +4,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
-import org.bimserver.ifc.SchemaLoader;
+import nl.tue.buildingsmart.emf.SchemaLoader;
+
 import org.bimserver.ifc.step.deserializer.IfcStepDeserializer;
 import org.bimserver.ifc.step.serializer.IfcStepSerializer;
 import org.bimserver.ifc.xml.deserializer.IfcXmlDeserializer;

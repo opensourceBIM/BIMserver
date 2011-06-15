@@ -2,8 +2,9 @@ package org.bimserver.tests;
 
 import java.io.File;
 
+import nl.tue.buildingsmart.emf.SchemaLoader;
+
 import org.bimserver.ifc.IfcModel;
-import org.bimserver.ifc.SchemaLoader;
 import org.bimserver.ifc.step.deserializer.IfcStepDeserializer;
 import org.bimserver.ifc.step.serializer.IfcStepSerializer;
 import org.bimserver.merging.IncrementingOidProvider;

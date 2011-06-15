@@ -79,5 +79,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/Store"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Plugins"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/IfcPlugins"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/buildingSMARTLibrary"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

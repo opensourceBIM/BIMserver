@@ -8,8 +8,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import nl.tue.buildingsmart.emf.SchemaLoader;
+
 import org.bimserver.ifc.IfcModel;
-import org.bimserver.ifc.SchemaLoader;
 import org.bimserver.ifc.step.deserializer.IfcStepDeserializer;
 import org.bimserver.models.ifc2x3.IfcArbitraryClosedProfileDef;
 import org.bimserver.models.ifc2x3.IfcAxis2Placement3D;

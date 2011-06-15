@@ -9,9 +9,10 @@ import java.io.InputStreamReader;
 import java.util.HashSet;
 import java.util.Set;
 
+import nl.tue.buildingsmart.emf.SchemaLoader;
+
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelSet;
-import org.bimserver.ifc.SchemaLoader;
 import org.bimserver.ifc.step.deserializer.IfcStepDeserializer;
 import org.bimserver.merging.IncrementingOidProvider;
 import org.bimserver.merging.Merger;

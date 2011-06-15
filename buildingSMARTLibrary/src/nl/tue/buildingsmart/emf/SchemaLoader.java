@@ -1,9 +1,8 @@
-package org.bimserver.ifc;
+package nl.tue.buildingsmart.emf;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 
-import nl.tue.buildingsmart.emf.DerivedReader;
 import nl.tue.buildingsmart.express.parser.ExpressSchemaParser;
 
 import org.bimserver.plugins.schema.SchemaDefinition;

@@ -1,4 +1,4 @@
-package org.bimserver.tools.generators;
+package nl.tue.buildingsmart.emf;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-import nl.tue.buildingsmart.emf.DerivedReader;
 import nl.tue.buildingsmart.express.parser.SchemaLoader;
 
 import org.bimserver.plugins.schema.AggregationType;

@@ -9,6 +9,5 @@
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Shared"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Store"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Utils"/>
-	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/buildingSMARTLibrary"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

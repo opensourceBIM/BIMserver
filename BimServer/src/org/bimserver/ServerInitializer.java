@@ -216,6 +216,7 @@ public class ServerInitializer implements ServletContextListener {
 				pluginManager.loadPluginsFromEclipseProject(new File("../MiscSerializers"));
 				pluginManager.loadPluginsFromEclipseProject(new File("../O3d"));
 				pluginManager.loadPluginsFromEclipseProject(new File("../IFCEngine"));
+				pluginManager.loadPluginsFromEclipseProject(new File("../buildingSMARTLibrary"));
 			} else if (serverType == ServerType.DEPLOYED_WAR) {
 				File file = resourceFetcher.getFile("plugins");
 				LOGGER.info("Going to load plugins from " + file.getAbsolutePath());

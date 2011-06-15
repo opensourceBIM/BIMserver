@@ -2,7 +2,8 @@ package org.bimserver.tests;
 
 import java.io.File;
 
-import org.bimserver.ifc.SchemaLoader;
+import nl.tue.buildingsmart.emf.SchemaLoader;
+
 import org.bimserver.ifc.step.deserializer.IfcStepDeserializer;
 import org.bimserver.plugins.schema.SchemaDefinition;
 

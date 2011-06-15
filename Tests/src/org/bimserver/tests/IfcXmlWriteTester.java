@@ -3,8 +3,9 @@ package org.bimserver.tests;
 import java.io.File;
 import java.io.FileNotFoundException;
 
+import nl.tue.buildingsmart.emf.SchemaLoader;
+
 import org.bimserver.ifc.IfcModel;
-import org.bimserver.ifc.SchemaLoader;
 import org.bimserver.ifc.step.deserializer.IfcStepDeserializer;
 import org.bimserver.ifc.xml.serializer.IfcXmlSerializer;
 import org.bimserver.plugins.schema.SchemaDefinition;
