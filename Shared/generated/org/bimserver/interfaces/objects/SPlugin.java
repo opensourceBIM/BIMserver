@@ -4,7 +4,7 @@ import java.util.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
-public class SUserUndeleted extends SLogAction
+public class SPlugin
 {
 	private long oid;
 	
@@ -15,13 +15,31 @@ public class SUserUndeleted extends SLogAction
 	public void setOid(long oid) {
 		this.oid = oid;
 	}
-	private long userId;
-	public long getUserId() {
-		return userId;
+	private java.lang.String name;
+	private boolean enabled;
+	private long settingsId;
+
+	public java.lang.String getName() {
+		return name;
 	}
 
-	public void setUserId(long userId) {
-		this.userId = userId;
+	public void setName(java.lang.String name) {
+		this.name = name;
+	}
+
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+	public long getSettingsId() {
+		return settingsId;
+	}
+
+	public void setSettingsId(long settingsId) {
+		this.settingsId = settingsId;
 	}
 	
 	@Override
@@ -40,7 +58,7 @@ public class SUserUndeleted extends SLogAction
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		SUserUndeleted other = (SUserUndeleted) obj;
+		SPlugin other = (SPlugin) obj;
 		if (oid != other.oid)
 			return false;
 		return true;

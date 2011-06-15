@@ -30,6 +30,7 @@ import org.slf4j.LoggerFactory;
 public class PluginManager {
 	private final Logger LOGGER = LoggerFactory.getLogger(PluginManager.class);
 	private final Map<Class<? extends Plugin>, Set<PluginContext>> implementations = new HashMap<Class<? extends Plugin>, Set<PluginContext>>();
+	private final Set<PluginChangeListener> pluginChangeListeners = new HashSet<PluginChangeListener>();
 
 	public PluginManager() {
 	}
@@ -72,7 +73,7 @@ public class PluginManager {
 					LOGGER.info("Loading plugin " + implementationClassName);
 					Plugin plugin = (Plugin) implementationClass.newInstance();
 					Set<PluginContext> set = (Set<PluginContext>) implementations.get(interfaceClass);
-					PluginContext pluginContext = new PluginContext();
+					PluginContext pluginContext = new PluginContext(this);
 					pluginContext.setPlugin(plugin);
 					pluginContext.setLocation(location);
 					set.add(pluginContext);
@@ -218,5 +219,15 @@ public class PluginManager {
 
 	public boolean isEnabled(String className) {
 		return getPlugin(className, true) != null;
+	}
+	
+	public void addPluginChangeListener(PluginChangeListener pluginChangeListener) {
+		pluginChangeListeners.add(pluginChangeListener);
+	}
+
+	public void notifyPluginStateChange(PluginContext pluginContext, boolean enabled) {
+		for (PluginChangeListener pluginChangeListener : pluginChangeListeners) {
+			pluginChangeListener.pluginStateChanged(pluginContext, enabled);
+		}
 	}
 }

@@ -27,5 +27,15 @@ public class Step0007 extends Migration {
 
 		settingsIfcEngines.setEOpposite(ifcEngineSettings);
 		ifcEngineSettings.setEOpposite(settingsIfcEngines);
+		
+		EClass pluginClass = schema.createEClass(schema.getEPackage("store"), "Plugin");
+		schema.createEAttribute(pluginClass, "name", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
+		schema.createEAttribute(pluginClass, "enabled", EcorePackage.eINSTANCE.getEBoolean(), Multiplicity.SINGLE);
+		EReference pluginSettings = schema.createEReference(pluginClass, "settings", settingsClass, Multiplicity.SINGLE);
+		
+		EReference settingsPlugins = schema.createEReference(settingsClass, "plugins", pluginClass, Multiplicity.MANY);
+		
+		pluginSettings.setEOpposite(settingsPlugins);
+		settingsPlugins.setEOpposite(pluginSettings);
 	}
 }

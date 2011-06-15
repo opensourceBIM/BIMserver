@@ -51,6 +51,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.Settings#getMergeIdentifier <em>Merge Identifier</em>}</li>
  *   <li>{@link org.bimserver.models.store.Settings#isCacheOutputFiles <em>Cache Output Files</em>}</li>
  *   <li>{@link org.bimserver.models.store.Settings#getIfcEngines <em>Ifc Engines</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Settings#getPlugins <em>Plugins</em>}</li>
  * </ul>
  * </p>
  *
@@ -585,5 +586,23 @@ public interface Settings extends IdEObject
 	 * @generated
 	 */
 	EList<IfcEngine> getIfcEngines();
+
+	/**
+	 * Returns the value of the '<em><b>Plugins</b></em>' reference list.
+	 * The list contents are of type {@link org.bimserver.models.store.Plugin}.
+	 * It is bidirectional and its opposite is '{@link org.bimserver.models.store.Plugin#getSettings <em>Settings</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Plugins</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Plugins</em>' reference list.
+	 * @see org.bimserver.models.store.StorePackage#getSettings_Plugins()
+	 * @see org.bimserver.models.store.Plugin#getSettings
+	 * @model opposite="settings"
+	 * @generated
+	 */
+	EList<Plugin> getPlugins();
 
 } // Settings

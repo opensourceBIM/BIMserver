@@ -199,6 +199,8 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="cacheOutputFiles" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="ifcEngines" upperBound="-1"
           eType="#/0/IfcEngine" eOpposite="#/0/IfcEngine/settings"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="plugins" upperBound="-1"
+          eType="#/0/Plugin" eOpposite="#/0/Plugin/settings"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Serializer">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -230,6 +232,12 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="active" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="settings" eType="#/0/Settings"
           eOpposite="#/0/Settings/ifcEngines"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Plugin">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="enabled" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="settings" eType="#/0/Settings"
+          eOpposite="#/0/Settings/plugins"/>
     </eClassifiers>
   </ecore:EPackage>
   <ecore:EPackage name="log" nsURI="log" nsPrefix="log">

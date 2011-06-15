@@ -21,6 +21,7 @@ package org.bimserver.models.store.util;
 
 import java.util.List;
 
+import org.bimserver.models.store.*;
 import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.Clash;
 import org.bimserver.models.store.ClashDetectionSettings;
@@ -201,6 +202,12 @@ public class StoreSwitch<T>
 			case StorePackage.IFC_ENGINE: {
 				IfcEngine ifcEngine = (IfcEngine)theEObject;
 				T result = caseIfcEngine(ifcEngine);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case StorePackage.PLUGIN: {
+				Plugin plugin = (Plugin)theEObject;
+				T result = casePlugin(plugin);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -428,6 +435,21 @@ public class StoreSwitch<T>
 	 * @generated
 	 */
 	public T caseIfcEngine(IfcEngine object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Plugin</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Plugin</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePlugin(Plugin object) {
 		return null;
 	}
 

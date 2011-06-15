@@ -5,7 +5,12 @@ public class PluginContext {
 	private Plugin plugin;
 	private String location;
 	private boolean enabled = true;
+	private final PluginManager pluginManager;
 
+	public PluginContext(PluginManager pluginManager) {
+		this.pluginManager = pluginManager;
+	}
+	
 	public void setPlugin(Plugin plugin) {
 		this.plugin = plugin;
 	}
@@ -24,6 +29,7 @@ public class PluginContext {
 
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
+		pluginManager.notifyPluginStateChange(this, enabled);
 	}
 
 	public boolean isEnabled() {

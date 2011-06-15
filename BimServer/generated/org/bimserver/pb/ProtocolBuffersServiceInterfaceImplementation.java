@@ -1,19 +1,14 @@
 package org.bimserver.pb;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-
+import java.util.*;
+import com.google.protobuf.*;
+import org.bimserver.utils.*;
 import org.bimserver.pb.Service.*;
-import org.bimserver.pb.Service.ServiceInterface.BlockingInterface;
-import org.bimserver.utils.BinUtils;
-
 import com.google.protobuf.BlockingRpcChannel;
-import com.google.protobuf.ByteString;
+import org.bimserver.pb.Service.ServiceInterface.BlockingInterface;
+import com.googlecode.protobuf.socketrpc.SocketRpcController;
 import com.googlecode.protobuf.socketrpc.RpcChannels;
 import com.googlecode.protobuf.socketrpc.SocketRpcConnectionFactories;
-import com.googlecode.protobuf.socketrpc.SocketRpcController;
 
 public class ProtocolBuffersServiceInterfaceImplementation implements org.bimserver.shared.ServiceInterface {
 

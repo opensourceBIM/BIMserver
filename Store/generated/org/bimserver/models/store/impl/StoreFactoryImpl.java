@@ -19,6 +19,7 @@
  */
 package org.bimserver.models.store.impl;
 
+import org.bimserver.models.store.*;
 import org.bimserver.models.store.CheckinState;
 import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.Clash;
@@ -109,6 +110,7 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory
 			case StorePackage.SERIALIZER: return (EObject)createSerializer();
 			case StorePackage.IGNORE_FILE: return (EObject)createIgnoreFile();
 			case StorePackage.IFC_ENGINE: return (EObject)createIfcEngine();
+			case StorePackage.PLUGIN: return (EObject)createPlugin();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -313,6 +315,16 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory
 	public IfcEngine createIfcEngine() {
 		IfcEngineImpl ifcEngine = new IfcEngineImpl();
 		return ifcEngine;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Plugin createPlugin() {
+		PluginImpl plugin = new PluginImpl();
+		return plugin;
 	}
 
 	/**

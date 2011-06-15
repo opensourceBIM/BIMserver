@@ -28,6 +28,7 @@ import java.io.InputStream;
 import java.lang.Thread.UncaughtExceptionHandler;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Collection;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.GregorianCalendar;
@@ -73,6 +74,9 @@ import org.bimserver.models.store.Serializer;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.pb.server.ReflectiveRpcChannel;
+import org.bimserver.plugins.Plugin;
+import org.bimserver.plugins.PluginChangeListener;
+import org.bimserver.plugins.PluginContext;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.ifcengine.IfcEngineFactory;
 import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
@@ -175,6 +179,33 @@ public class ServerInitializer implements ServletContextListener {
 
 			LOGGER.info("Creating plugin manager");
 			pluginManager = new PluginManager();
+			pluginManager.addPluginChangeListener(new PluginChangeListener() {
+				@Override
+				public void pluginStateChanged(PluginContext pluginContext, boolean enabled) {
+					// Reflect this change also in the database
+					Condition pluginCondition = new AttributeCondition(StorePackage.eINSTANCE.getPlugin_Name(), new StringLiteral(pluginContext.getPlugin().getName()));
+					BimDatabaseSession session = bimDatabase.createSession(true);
+					try {
+						Map<Long, org.bimserver.models.store.Plugin> pluginsFound = session.query(pluginCondition, org.bimserver.models.store.Plugin.class, false);
+						if (pluginsFound.size() == 0) {
+							LOGGER.error("Error changing plugin-state in database, plugin " + pluginContext.getPlugin().getName() + " not found");
+						} else if (pluginsFound.size() == 1) {
+							org.bimserver.models.store.Plugin pluginFound = pluginsFound.values().iterator().next();
+							pluginFound.setEnabled(pluginContext.isEnabled());
+							session.store(pluginFound);
+						} else {
+							LOGGER.error("Error, too many plugin-objects found in database for name " + pluginContext.getPlugin().getName());
+						}
+						session.commit();
+					} catch (BimDatabaseException e) {
+						e.printStackTrace();
+					} catch (BimDeadlockException e) {
+						e.printStackTrace();
+					} finally {
+						session.close();
+					}
+				}
+			});
 			if (serverType == ServerType.DEV_ENVIRONMENT) {
 				pluginManager.loadPluginsFromEclipseProject(new File("../CityGML"));
 				pluginManager.loadPluginsFromEclipseProject(new File("../Collada"));
@@ -358,6 +389,22 @@ public class ServerInitializer implements ServletContextListener {
 			new SchemaFieldIgnoreMap(packages, schema, outputStream);
 			ignoreFile.setData(outputStream.toByteArray());
 			session.store(ignoreFile);
+		}
+		Collection<Plugin> allPlugins = pluginManager.getAllPlugins(false);
+		for (Plugin plugin : allPlugins) {
+			Condition pluginCondition = new AttributeCondition(StorePackage.eINSTANCE.getPlugin_Name(), new StringLiteral(plugin.getName()));
+			Map<Long, org.bimserver.models.store.Plugin> results = session.query(pluginCondition, org.bimserver.models.store.Plugin.class, false);
+			if (results.size() == 0) {
+				org.bimserver.models.store.Plugin pluginObject = StoreFactory.eINSTANCE.createPlugin();
+				pluginObject.setName(plugin.getName());
+				pluginObject.setEnabled(true); // New plugins are enabled by default
+				session.store(pluginObject);
+			} else if (results.size() == 1) {
+				org.bimserver.models.store.Plugin pluginObject = results.values().iterator().next();
+				pluginManager.getPluginContext(plugin).setEnabled(pluginObject.isEnabled());
+			} else {
+				LOGGER.error("Multiple plugin objects found with the same name: " + plugin.getName());
+			}
 		}
 		session.commit();
 	}
