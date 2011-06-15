@@ -121,7 +121,6 @@ import org.bimserver.database.migrations.InconsistentModelsException;
 import org.bimserver.database.migrations.MigrationException;
 import org.bimserver.database.migrations.Migrator;
 import org.bimserver.emf.IdEObject;
-import org.bimserver.ifc.FieldIgnoreMap;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelSet;
 import org.bimserver.ifc.compare.CompareResult;
@@ -174,10 +173,8 @@ import org.bimserver.plugins.Plugin;
 import org.bimserver.plugins.PluginContext;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.deserializers.DeserializeException;
-import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.deserializers.EmfDeserializer;
-import org.bimserver.plugins.ifcengine.IfcEngineFactory;
-import org.bimserver.plugins.schema.SchemaDefinition;
+import org.bimserver.plugins.schema.SchemaException;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.rights.RightsManager;
 import org.bimserver.serializers.EmfSerializerFactory;
@@ -224,15 +221,12 @@ public class Service implements ServiceInterface {
 	private static final int DEFAULT_LOGIN_ERROR_TIMEOUT = 3000;
 	private static final Logger LOGGER = LoggerFactory.getLogger(Service.class);
 	public static final int DEADLOCK_RETRIES = 10;
-	private final SchemaDefinition schema;
 	private final BimDatabase bimDatabase;
 	private final EmfSerializerFactory emfSerializerFactory;
 	private final ServiceFactory serviceFactory;
 
 	private final LongActionManager longActionManager;
 	private final AccessMethod accessMethod;
-	private final IfcEngineFactory ifcEngineFactory;
-	private final FieldIgnoreMap fieldIgnoreMap;
 	private final SettingsManager settingsManager;
 	private final MailSystem mailSystem;
 	private final PluginManager pluginManager;
@@ -244,17 +238,14 @@ public class Service implements ServiceInterface {
 	private Token token;
 	private final MergerFactory mergerFactory;
 
-	public Service(BimDatabase bimDatabase, EmfSerializerFactory emfSerializerFactory, SchemaDefinition schema, LongActionManager longActionManager, AccessMethod accessMethod,
-			IfcEngineFactory ifcEngineFactory, ServiceFactory serviceFactory, FieldIgnoreMap fieldIgnoreMap, SettingsManager settingsManager, MailSystem mailSystem,
+	public Service(BimDatabase bimDatabase, EmfSerializerFactory emfSerializerFactory, LongActionManager longActionManager, AccessMethod accessMethod,
+			ServiceFactory serviceFactory, SettingsManager settingsManager, MailSystem mailSystem,
 			DiskCacheManager diskCacheManager, MergerFactory mergerFactory, PluginManager pluginManager) {
 		this.bimDatabase = bimDatabase;
 		this.emfSerializerFactory = emfSerializerFactory;
-		this.schema = schema;
 		this.longActionManager = longActionManager;
 		this.accessMethod = accessMethod;
-		this.ifcEngineFactory = ifcEngineFactory;
 		this.serviceFactory = serviceFactory;
-		this.fieldIgnoreMap = fieldIgnoreMap;
 		this.settingsManager = settingsManager;
 		this.mailSystem = mailSystem;
 		this.diskCacheManager = diskCacheManager;
@@ -346,7 +337,7 @@ public class Service implements ServiceInterface {
 	private IfcModelInterface readIfcXmlModel(InputStream inputStream, long fileSize) throws UserException {
 		EmfDeserializer deserializer;
 		try {
-			deserializer = requireDeserializer("ifcxml");
+			deserializer = pluginManager.requireDeserializer("ifcxml");
 		} catch (DeserializeException e) {
 			throw new UserException(e.getMessage());
 		}
@@ -360,11 +351,15 @@ public class Service implements ServiceInterface {
 	private IfcModelInterface readIfcStepModel(final InputStream inputStream, long fileSize) throws UserException {
 		EmfDeserializer deserializer;
 		try {
-			deserializer = requireDeserializer("ifc");
+			deserializer = pluginManager.requireDeserializer("ifc");
 		} catch (DeserializeException e) {
 			throw new UserException(e.getMessage());
 		}
-		deserializer.init(schema);
+		try {
+			deserializer.init(pluginManager.requireSchemaDefinition());
+		} catch (SchemaException e) {
+			throw new UserException(e);
+		}
 		try {
 			InputStream in = inputStream;
 			if (accessMethod == AccessMethod.SOAP) {
@@ -401,15 +396,6 @@ public class Service implements ServiceInterface {
 		}
 	}
 
-	private EmfDeserializer requireDeserializer(String type) throws DeserializeException {
-		Collection<DeserializerPlugin> allDeserializerPlugins = pluginManager.getAllDeserializerPlugins(type, true);
-		if (allDeserializerPlugins.size() == 0) {
-			throw new DeserializeException("No deserializers found for type '" + type + "'");
-		} else {
-			return allDeserializerPlugins.iterator().next().createDeserializer();
-		}
-	}
-
 	private SCheckinResult processCheckinSync(final long poid, final String comment, long fileSize, final BimDatabaseSession session, IfcModelInterface model, boolean merge)
 			throws UserException, ServerException {
 		BimDatabaseAction<ConcreteRevision> action = new CheckinDatabaseAction(session, accessMethod, model, poid, currentUoid, comment);
@@ -439,8 +425,7 @@ public class Service implements ServiceInterface {
 			result.setRid(revision.getId());
 			result.setPoid(revision.getProject().getOid());
 			result.setProjectName(revision.getProject().getName());
-			longActionManager.start(new LongCheckinAction(userByUoid, longActionManager, bimDatabase, schema, createCheckinAction, ifcEngineFactory, fieldIgnoreMap,
-					settingsManager, mailSystem, mergerFactory, pluginManager));
+			longActionManager.start(new LongCheckinAction(userByUoid, longActionManager, bimDatabase, createCheckinAction, settingsManager, mailSystem, mergerFactory, pluginManager));
 			return result;
 		} catch (UserException e) {
 			throw e;
@@ -1205,7 +1190,7 @@ public class Service implements ServiceInterface {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimDatabase.createSession(true);
 		try {
-			BimDatabaseAction<CompareResult> action = new CompareDatabaseAction(session, accessMethod, settingsManager, mergerFactory, currentUoid, roid1, roid2, sCompareType, sCompareIdentifier);
+			BimDatabaseAction<CompareResult> action = new CompareDatabaseAction(session, accessMethod, settingsManager, mergerFactory, pluginManager, currentUoid, roid1, roid2, sCompareType, sCompareIdentifier);
 			return convert(session.executeAndCommitAction(action, DEADLOCK_RETRIES), SCompareResult.class, session);
 		} catch (Exception e) {
 			handleException(e);
@@ -1386,8 +1371,7 @@ public class Service implements ServiceInterface {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimDatabase.createSession(true);
 		try {
-			return convert(session.executeAction(new FindClashesDatabaseAction(session, accessMethod, convert(sClashDetectionSettings, session), schema, ifcEngineFactory,
-					fieldIgnoreMap, mergerFactory, currentUoid, pluginManager), DEADLOCK_RETRIES), SGuidClash.class);
+			return convert(session.executeAction(new FindClashesDatabaseAction(session, accessMethod, convert(sClashDetectionSettings, session), mergerFactory, currentUoid, pluginManager), DEADLOCK_RETRIES), SGuidClash.class);
 		} catch (Exception e) {
 			handleException(e);
 			return null;
@@ -1401,8 +1385,7 @@ public class Service implements ServiceInterface {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimDatabase.createSession(true);
 		try {
-			return convert(session.executeAction(new FindClashesDatabaseAction(session, accessMethod, convert(sClashDetectionSettings, session), schema, ifcEngineFactory,
-					fieldIgnoreMap, mergerFactory, currentUoid, pluginManager), DEADLOCK_RETRIES), SEidClash.class);
+			return convert(session.executeAction(new FindClashesDatabaseAction(session, accessMethod, convert(sClashDetectionSettings, session), mergerFactory, currentUoid, pluginManager), DEADLOCK_RETRIES), SEidClash.class);
 		} catch (Exception e) {
 			handleException(e);
 			return null;
@@ -1464,8 +1447,7 @@ public class Service implements ServiceInterface {
 				result.setRid(revision.getId());
 				result.setPoid(revision.getProject().getOid());
 				result.setProjectName(revision.getProject().getName());
-				longActionManager.start(new LongCheckinAction(user, longActionManager, bimDatabase, schema, createCheckinAction, ifcEngineFactory, fieldIgnoreMap, settingsManager,
-						mailSystem, mergerFactory, pluginManager));
+				longActionManager.start(new LongCheckinAction(user, longActionManager, bimDatabase, createCheckinAction, settingsManager, mailSystem, mergerFactory, pluginManager));
 				return result;
 			} catch (UserException e) {
 				throw e;
@@ -1512,8 +1494,7 @@ public class Service implements ServiceInterface {
 				result.setRid(revision.getId());
 				result.setPoid(revision.getProject().getOid());
 				result.setProjectName(revision.getProject().getName());
-				longActionManager.start(new LongCheckinAction(user, longActionManager, bimDatabase, schema, createCheckinAction, ifcEngineFactory, fieldIgnoreMap, settingsManager,
-						mailSystem, mergerFactory, pluginManager));
+				longActionManager.start(new LongCheckinAction(user, longActionManager, bimDatabase, createCheckinAction, settingsManager, mailSystem, mergerFactory, pluginManager));
 				return result;
 			} catch (UserException e) {
 				throw e;

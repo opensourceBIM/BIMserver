@@ -31,7 +31,7 @@ public class RevisionMergeTest {
 			model2.fixOids(new IncrementingOidProvider(model1.getHighestOid() + 1));
 			IfcModel merged = new RevisionMerger(model1, model2).merge();
 			IfcStepSerializer serializer = new IfcStepSerializer();
-			serializer.init(merged, schema, null, null, null, null);
+			serializer.init(merged, null, null);
 			serializer.writeToFile(new File("merged.ifc"));
 		} catch (DeserializationException e) {
 			e.printStackTrace();

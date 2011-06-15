@@ -38,7 +38,6 @@ import org.bimserver.database.migrations.InconsistentModelsException;
 import org.bimserver.database.migrations.MigrationException;
 import org.bimserver.database.migrations.Migrator;
 import org.bimserver.emf.IdEObject;
-import org.bimserver.ifc.FieldIgnoreMap;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.log.AccessMethod;
@@ -83,7 +82,6 @@ public class Database implements BimDatabase {
 	private final List<String> realClasses = new ArrayList<String>();
 	private volatile long oidCounter;
 	private volatile int pidCounter = 1;
-	private final FieldIgnoreMap fieldIgnoreMap;
 	private final Registry registry;
 	private Date created;
 	private final Set<BimDatabaseSession> sessions = new HashSet<BimDatabaseSession>();
@@ -100,9 +98,8 @@ public class Database implements BimDatabase {
 	private short tableId;
 	private Migrator migrator;
 
-	public Database(Set<? extends EPackage> emfPackages, ColumnDatabase columnDatabase, FieldIgnoreMap fieldIgnoreMap) throws DatabaseInitException {
+	public Database(Set<? extends EPackage> emfPackages, ColumnDatabase columnDatabase) throws DatabaseInitException {
 		this.columnDatabase = columnDatabase;
-		this.fieldIgnoreMap = fieldIgnoreMap;
 		this.emfPackages.add(StorePackage.eINSTANCE);
 		this.emfPackages.add(LogPackage.eINSTANCE);
 		this.emfPackages.addAll(emfPackages);
@@ -435,10 +432,6 @@ public class Database implements BimDatabase {
 		return classifiers.keyBSet();
 	}
 
-	public boolean shouldIgnoreField(EClass originalQueryClass, EClass eClass, EStructuralFeature feature) {
-		return fieldIgnoreMap.shouldIgnoreField(originalQueryClass, eClass, feature);
-	}
-
 	public EClass getEClassForCid(short cid) {
 		return classifiers.getB(cid);
 	}
@@ -457,10 +450,6 @@ public class Database implements BimDatabase {
 
 	public Registry getRegistry() {
 		return registry;
-	}
-
-	public FieldIgnoreMap getFieldIgnoreMap() {
-		return fieldIgnoreMap;
 	}
 
 	public Date getCreated() {
@@ -497,5 +486,10 @@ public class Database implements BimDatabase {
 
 	public RecordSizeEstimater getRecordSizeEstimater() {
 		return recordSizeEstimater;
+	}
+
+	//TODO: Implement
+	public boolean shouldIgnoreField(EClass originalQueryClass, EClass eClass, EStructuralFeature feature) {
+		return false;
 	}
 }

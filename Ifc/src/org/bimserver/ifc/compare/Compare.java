@@ -4,6 +4,7 @@ import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.FieldIgnoreMap;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
+import org.bimserver.plugins.ignoreproviders.IgnoreProvider;
 import org.bimserver.shared.SCompareResult.SCompareType;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -15,10 +16,10 @@ import org.slf4j.LoggerFactory;
 
 public class Compare {
 	private static final Logger LOGGER = LoggerFactory.getLogger(Compare.class);
-	private final FieldIgnoreMap fieldIgnoreMap;
+	private final IgnoreProvider ignoreProvider;
 
-	public Compare(FieldIgnoreMap fieldIgnoreMap) {
-		this.fieldIgnoreMap = fieldIgnoreMap;
+	public Compare(IgnoreProvider ignoreProvider) {
+		this.ignoreProvider = ignoreProvider;
 	}
 
 	public CompareResult compareOnGuids(IfcModel model1, IfcModel model2, SCompareType sCompareType) {
@@ -96,7 +97,7 @@ public class Compare {
 		EClass eClass = eObject1.eClass();
 		if (sCompareType == SCompareType.ALL || sCompareType == SCompareType.MODIFY) {
 			for (EStructuralFeature eStructuralFeature : eClass.getEAllStructuralFeatures()) {
-				if (!fieldIgnoreMap.shouldIgnoreField(originalQueryClass, eClass, eStructuralFeature)) {
+				if (!ignoreProvider.shouldIgnoreField(originalQueryClass, eClass, eStructuralFeature)) {
 					if (eStructuralFeature.getName().endsWith("AsString")) {
 						continue;
 					}

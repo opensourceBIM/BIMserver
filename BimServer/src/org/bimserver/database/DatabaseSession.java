@@ -1128,10 +1128,6 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 		return database.getAvailableClasses();
 	}
 
-	public FieldIgnoreMap getFieldIgnoreMap() {
-		return database.getFieldIgnoreMap();
-	}
-
 	@Override
 	public short getCidForClassName(String className) {
 		return database.getCidOfEClass(getEClassForName(className));

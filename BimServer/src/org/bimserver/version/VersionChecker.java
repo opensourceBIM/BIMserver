@@ -31,7 +31,7 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.UnmarshalException;
 import javax.xml.bind.Unmarshaller;
 
-import org.bimserver.shared.ResourceFetcher;
+import org.bimserver.plugins.ResourceFetcher;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

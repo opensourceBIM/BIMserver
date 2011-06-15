@@ -7,9 +7,6 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
 import org.bimserver.plugins.PluginManager;
-import org.bimserver.plugins.ifcengine.IfcEngineFactory;
-import org.bimserver.plugins.ignoreproviders.IgnoreProvider;
-import org.bimserver.plugins.schema.Schema;
 import org.bimserver.plugins.serializers.BimModelSerializer;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.plugins.serializers.ProjectInfo;
@@ -23,11 +20,11 @@ public class KmzSerializer extends BimModelSerializer {
 	private ColladaSerializer ifcToCollada;
 
 	@Override
-	public void init(IfcModelInterface model, Schema schema, IgnoreProvider ignoreProvider, IfcEngineFactory ifcEngineFactory, ProjectInfo projectInfo, PluginManager pluginManager) throws SerializerException {
-		super.init(model, schema, ignoreProvider, ifcEngineFactory, projectInfo, pluginManager);
+	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager) throws SerializerException {
+		super.init(model, projectInfo, pluginManager);
 		try {
 			ifcToCollada = new ColladaSerializer();
-			ifcToCollada.init(model, schema, ignoreProvider, ifcEngineFactory, projectInfo, null);
+			ifcToCollada.init(model, projectInfo, null);
 		} catch (SerializerException e) {
 			throw new SerializerException(e);
 		}
@@ -39,7 +36,7 @@ public class KmzSerializer extends BimModelSerializer {
 	}
 	
 	@Override
-	public boolean write(OutputStream out) {
+	public boolean write(OutputStream out) throws SerializerException {
 		if (getMode() == Mode.BODY) {
 			try {
 				ZipOutputStream zipOutputStream = new ZipOutputStream(out);

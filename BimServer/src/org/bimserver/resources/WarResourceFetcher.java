@@ -4,7 +4,7 @@ import java.io.File;
 
 import javax.servlet.ServletContext;
 
-import org.bimserver.shared.ResourceFetcher;
+import org.bimserver.plugins.ResourceFetcher;
 
 public class WarResourceFetcher extends ResourceFetcher {
 

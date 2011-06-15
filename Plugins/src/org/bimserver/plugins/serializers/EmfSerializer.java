@@ -30,9 +30,10 @@ import java.io.OutputStream;
 import java.util.Collection;
 
 import org.bimserver.plugins.PluginManager;
-import org.bimserver.plugins.ifcengine.IfcEngineFactory;
-import org.bimserver.plugins.ignoreproviders.IgnoreProvider;
-import org.bimserver.plugins.schema.Schema;
+import org.bimserver.plugins.ifcengine.IfcEngine;
+import org.bimserver.plugins.ifcengine.IfcEngineException;
+import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
+import org.bimserver.plugins.schema.SchemaDefinition;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -41,9 +42,6 @@ public abstract class EmfSerializer {
 	private static final Logger LOGGER = LoggerFactory.getLogger(EmfSerializer.class);
 	protected IfcModelInterface model;
 	private Mode mode;
-	private Schema schema;
-	private IgnoreProvider ignoreProvider;
-	private IfcEngineFactory ifcEngineFactory;
 	private ProjectInfo projectInfo;
 	private PluginManager pluginManager;
 
@@ -54,28 +52,11 @@ public abstract class EmfSerializer {
 		FINISHED
 	}
 
-	public void init(IfcModelInterface model, Schema schema, IgnoreProvider ignoreProvider, IfcEngineFactory ifcEngineFactory, ProjectInfo projectInfo, PluginManager pluginManager) throws SerializerException {
+	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager) throws SerializerException {
 		this.model = model;
 		this.projectInfo = projectInfo;
 		this.setPluginManager(pluginManager);
-		this.setIfcEngineFactory(ifcEngineFactory);
-		this.setIgnoreProvider(ignoreProvider);
-		this.setSchema(schema);
 		reset();
-	}
-
-	/*
-	 * This will try to find at least one serializer for the content-type "application/ifc", if none are found an exception is throws, if more than 1 is found, the first one is returned
-	 */
-	protected EmfSerializer requireIfcStepSerializer() throws SerializerException {
-		String contentType = "application/ifc";
-		Collection<SerializerPlugin> serializerPlugins = getPluginManager().getAllSerializerPlugins(contentType, true);
-		if (serializerPlugins.isEmpty()) {
-			throw new SerializerException("A working serializer for the content type " + contentType + " is required");
-		}
-		SerializerPlugin serializerPlugin = serializerPlugins.iterator().next();
-		EmfSerializer ifcSerializer = serializerPlugin.createSerializer();
-		return ifcSerializer;
 	}
 
 	public ProjectInfo getProjectInfo() {
@@ -198,32 +179,8 @@ public abstract class EmfSerializer {
 		}
 	}
 
-	public void setSchema(Schema schema) {
-		this.schema = schema;
-	}
-
-	public Schema getSchema() {
-		return schema;
-	}
-
 	public IfcModelInterface getModel() {
 		return model;
-	}
-
-	public void setIgnoreProvider(IgnoreProvider ignoreProvider) {
-		this.ignoreProvider = ignoreProvider;
-	}
-
-	public IgnoreProvider getIgnoreProvider() {
-		return ignoreProvider;
-	}
-
-	public void setIfcEngineFactory(IfcEngineFactory ifcEngineFactory) {
-		this.ifcEngineFactory = ifcEngineFactory;
-	}
-
-	public IfcEngineFactory getIfcEngineFactory() {
-		return ifcEngineFactory;
 	}
 
 	public void setPluginManager(PluginManager pluginManager) {

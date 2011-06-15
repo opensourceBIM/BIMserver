@@ -1,4 +1,4 @@
-package org.bimserver.shared;
+package org.bimserver.plugins;
 
 import java.io.File;
 import java.net.MalformedURLException;

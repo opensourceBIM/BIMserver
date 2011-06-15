@@ -33,14 +33,11 @@ import org.bimserver.models.ifc2x3.IfcWindow;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.ifcengine.IfcEngine;
 import org.bimserver.plugins.ifcengine.IfcEngineException;
-import org.bimserver.plugins.ifcengine.IfcEngineFactory;
 import org.bimserver.plugins.ifcengine.IfcEngineGeometry;
 import org.bimserver.plugins.ifcengine.IfcEngineInstance;
 import org.bimserver.plugins.ifcengine.IfcEngineInstanceVisualisationProperties;
 import org.bimserver.plugins.ifcengine.IfcEngineModel;
 import org.bimserver.plugins.ifcengine.IfcEngineSurfaceProperties;
-import org.bimserver.plugins.ignoreproviders.IgnoreProvider;
-import org.bimserver.plugins.schema.Schema;
 import org.bimserver.plugins.serializers.BimModelSerializer;
 import org.bimserver.plugins.serializers.EmfSerializer;
 import org.bimserver.plugins.serializers.IfcModelInterface;
@@ -96,13 +93,8 @@ public class CityGmlSerializer extends BimModelSerializer {
 	private CityGMLContext ctx;
 	
 	@Override
-	public void init(IfcModelInterface ifcModel, Schema schema, IgnoreProvider ignoreProvider, IfcEngineFactory ifcEngineFactory, ProjectInfo projectInfo, PluginManager pluginManager) throws SerializerException {
-		super.init(ifcModel, schema, ignoreProvider, ifcEngineFactory, projectInfo, pluginManager);
-		try {
-			this.ifcEngine = ifcEngineFactory.createIfcEngine();
-		} catch (IfcEngineException e) {
-			throw new SerializerException(e);
-		}
+	public void init(IfcModelInterface ifcModel, ProjectInfo projectInfo, PluginManager pluginManager) throws SerializerException {
+		super.init(ifcModel, projectInfo, pluginManager);
 		this.model = ifcModel;
 		ctx = new CityGMLContext();
 		citygml = new CityGMLFactory();
@@ -124,6 +116,11 @@ public class CityGmlSerializer extends BimModelSerializer {
 	
 	public boolean write(OutputStream out) throws SerializerException {
 		if (getMode() == Mode.BODY) {
+			try {
+				ifcEngine = getPluginManager().requireIfcEngine();
+			} catch (IfcEngineException e) {
+				throw new SerializerException(e);
+			}
 //			PrintWriter writer = new PrintWriter(out);
 //			CityModel cityModel = citygml.createCityModel();
 //			JAXBBuilder builder = null;
@@ -594,8 +591,8 @@ public class CityGmlSerializer extends BimModelSerializer {
 	private void setGeometry(MultiSurface ms, IfcRoot ifcRootObject) throws SerializerException {
 		IfcModel ifcModel = new IfcModel();
 		convertToSubset(ifcRootObject.eClass(), ifcRootObject, ifcModel, new HashMap<EObject, EObject>());
-		EmfSerializer serializer = requireIfcStepSerializer();
-		serializer.init(ifcModel, getSchema(), getIgnoreProvider(), getIfcEngineFactory(), getProjectInfo(), getPluginManager());
+		EmfSerializer serializer = getPluginManager().requireIfcStepSerializer();
+		serializer.init(ifcModel, getProjectInfo(), getPluginManager());
 		try {
 			IfcEngineModel model = ifcEngine.openModel(serializer.getBytes());
 			try {

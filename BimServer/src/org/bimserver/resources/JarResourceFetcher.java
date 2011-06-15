@@ -2,7 +2,7 @@ package org.bimserver.resources;
 
 import java.io.File;
 
-import org.bimserver.shared.ResourceFetcher;
+import org.bimserver.plugins.ResourceFetcher;
 
 public class JarResourceFetcher extends ResourceFetcher {
 	

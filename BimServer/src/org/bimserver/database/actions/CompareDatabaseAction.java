@@ -6,11 +6,13 @@ import org.bimserver.cache.CompareCache;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
-import org.bimserver.database.DatabaseSession;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.compare.Compare;
 import org.bimserver.ifc.compare.CompareResult;
 import org.bimserver.models.log.AccessMethod;
+import org.bimserver.plugins.IgnoreProviderException;
+import org.bimserver.plugins.PluginManager;
+import org.bimserver.plugins.ignoreproviders.IgnoreProvider;
 import org.bimserver.shared.UserException;
 import org.bimserver.shared.SCompareResult.SCompareIdentifier;
 import org.bimserver.shared.SCompareResult.SCompareType;
@@ -24,11 +26,13 @@ public class CompareDatabaseAction extends BimDatabaseAction<CompareResult> {
 	private final SettingsManager settingsManager;
 	private final SCompareIdentifier sCompareIdentifier;
 	private final MergerFactory mergerFactory;
+	private final PluginManager pluginManager;
 
-	public CompareDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, SettingsManager settingsManager, MergerFactory mergerFactory, long actingUoid, long roid1, long roid2, SCompareType sCompareType, SCompareIdentifier sCompareIdentifier) {
+	public CompareDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, SettingsManager settingsManager, MergerFactory mergerFactory, PluginManager pluginManager, long actingUoid, long roid1, long roid2, SCompareType sCompareType, SCompareIdentifier sCompareIdentifier) {
 		super(bimDatabaseSession, accessMethod);
 		this.settingsManager = settingsManager;
 		this.mergerFactory = mergerFactory;
+		this.pluginManager = pluginManager;
 		this.actingUoid = actingUoid;
 		this.roid1 = roid1;
 		this.roid2 = roid2;
@@ -38,7 +42,13 @@ public class CompareDatabaseAction extends BimDatabaseAction<CompareResult> {
 
 	@Override
 	public CompareResult execute() throws UserException, BimDeadlockException, BimDatabaseException {
-		Compare compare = new Compare(((DatabaseSession)getDatabaseSession()).getFieldIgnoreMap());
+		IgnoreProvider ignoreProvider;
+		try {
+			ignoreProvider = pluginManager.requireIgnoreProvider();
+		} catch (IgnoreProviderException e) {
+			throw new UserException(e);
+		}
+		Compare compare = new Compare(ignoreProvider);
 		CompareResult compareResults = CompareCache.getInstance().getCompareResults(roid1, roid2, sCompareType, sCompareIdentifier);
 		if (compareResults == null) {
 			IfcModel model1 = new DownloadDatabaseAction(getDatabaseSession(), getAccessMethod(), settingsManager, mergerFactory, roid1, actingUoid).execute();

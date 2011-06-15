@@ -11,9 +11,6 @@ import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
 import org.bimserver.plugins.PluginManager;
-import org.bimserver.plugins.ifcengine.IfcEngineFactory;
-import org.bimserver.plugins.ignoreproviders.IgnoreProvider;
-import org.bimserver.plugins.schema.Schema;
 import org.bimserver.plugins.serializers.BimModelSerializer;
 import org.bimserver.plugins.serializers.EmfSerializer;
 import org.bimserver.plugins.serializers.IfcModelInterface;
@@ -30,8 +27,8 @@ public class XsltSerializer extends BimModelSerializer {
 	private XsltParameter[] parameters;
 
 	@Override
-	public void init(IfcModelInterface model, Schema schema, IgnoreProvider ignoreProvider, IfcEngineFactory ifcEngineFactory, ProjectInfo projectInfo, PluginManager pluginManager) throws SerializerException {
-		super.init(model, schema, ignoreProvider, ifcEngineFactory, projectInfo, pluginManager);
+	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager) throws SerializerException {
+		super.init(model, projectInfo, pluginManager);
 	}
 
 	@Override
@@ -43,7 +40,7 @@ public class XsltSerializer extends BimModelSerializer {
 	protected boolean write(OutputStream outputStream) throws SerializerException {
 		SerializerPlugin plugin = (SerializerPlugin) getPluginManager().getPlugin("org.bimserver.ifc.xml.serializer.IfcXmlSerializerPlugin", true);
 		EmfSerializer ifcXmlSerializer = plugin.createSerializer();
-		ifcXmlSerializer.init(model, getSchema(), getIgnoreProvider(), getIfcEngineFactory(), null, getPluginManager());
+		ifcXmlSerializer.init(model, null, getPluginManager());
 		TransformerFactory factory = TransformerFactory.newInstance();
 		try {
 			StreamSource xslStream = new StreamSource(xsltUrl.openStream());

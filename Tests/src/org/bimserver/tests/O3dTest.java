@@ -4,9 +4,9 @@ import org.bimserver.ifc.FileFieldIgnoreMap;
 import org.bimserver.ifc.SchemaLoader;
 import org.bimserver.ifc.step.deserializer.IfcStepDeserializer;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
+import org.bimserver.plugins.ResourceFetcher;
 import org.bimserver.plugins.schema.SchemaDefinition;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
-import org.bimserver.shared.ResourceFetcher;
 import org.bimserver.utils.CollectionUtils;
 
 import com.sun.xml.internal.ws.encoding.soap.DeserializationException;

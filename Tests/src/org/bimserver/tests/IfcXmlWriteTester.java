@@ -14,10 +14,14 @@ import com.sun.xml.internal.ws.encoding.soap.DeserializationException;
 
 public class IfcXmlWriteTester {
 	public static void main(String[] args) {
-		new IfcXmlWriteTester().start();
+		try {
+			new IfcXmlWriteTester().start();
+		} catch (SerializerException e) {
+			e.printStackTrace();
+		}
 	}
 
-	private void start() {
+	private void start() throws SerializerException {
 		SchemaDefinition schema = SchemaLoader.loadDefaultSchema();
 		
 		IfcStepDeserializer reader = new IfcStepDeserializer();
@@ -33,7 +37,7 @@ public class IfcXmlWriteTester {
 		IfcModel model = reader.getModel();
 		IfcXmlSerializer ifcXmlWriter = new IfcXmlSerializer();
 		try {
-			ifcXmlWriter.init(model, schema, null, null, null, null);
+			ifcXmlWriter.init(model, null, null);
 		} catch (SerializerException e1) {
 			e1.printStackTrace();
 		}

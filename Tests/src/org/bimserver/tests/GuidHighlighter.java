@@ -29,7 +29,7 @@ public class GuidHighlighter {
 		highlightGuids(model, highlightedGuids);
 		IfcStepSerializer serializer = new IfcStepSerializer();
 		try {
-			serializer.init(model, schema, null, null, null, null);
+			serializer.init(model, null, null);
 			serializer.writeToFile(outputFile);
 		} catch (SerializerException e) {
 			e.printStackTrace();

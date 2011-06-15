@@ -11,7 +11,6 @@ import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
 import org.bimserver.emf.IdEObject;
-import org.bimserver.ifc.FieldIgnoreMap;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelSet;
 import org.bimserver.models.ifc2x3.IfcGloballyUniqueId;
@@ -25,13 +24,13 @@ import org.bimserver.models.store.EidClash;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.StoreFactory;
+import org.bimserver.plugins.IgnoreProviderException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.ifcengine.IfcEngine;
 import org.bimserver.plugins.ifcengine.IfcEngineClash;
 import org.bimserver.plugins.ifcengine.IfcEngineException;
-import org.bimserver.plugins.ifcengine.IfcEngineFactory;
 import org.bimserver.plugins.ifcengine.IfcEngineModel;
-import org.bimserver.plugins.schema.SchemaDefinition;
+import org.bimserver.plugins.ignoreproviders.IgnoreProvider;
 import org.bimserver.plugins.serializers.EmfSerializer;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
@@ -48,20 +47,13 @@ import org.slf4j.LoggerFactory;
 public class FindClashesDatabaseAction extends BimDatabaseAction<Set<? extends Clash>> {
 	private static final Logger LOGGER = LoggerFactory.getLogger(FindClashesDatabaseAction.class);
 	private final long actingUoid;
-	private final IfcEngineFactory ifcEngineFactory;
-	private final SchemaDefinition schema;
 	private final ClashDetectionSettings clashDetectionSettings;
-	private final FieldIgnoreMap fieldIgnoreMap;
 	private final MergerFactory mergerFactory;
 	private final PluginManager pluginManager;
 
-	public FindClashesDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, ClashDetectionSettings clashDetectionSettings, SchemaDefinition schema,
-			IfcEngineFactory ifcEngineFactory, FieldIgnoreMap fieldIgnoreMap, MergerFactory mergerFactory, long actingUoid, PluginManager pluginManager) {
+	public FindClashesDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, ClashDetectionSettings clashDetectionSettings, MergerFactory mergerFactory, long actingUoid, PluginManager pluginManager) {
 		super(bimDatabaseSession, accessMethod);
-		this.fieldIgnoreMap = fieldIgnoreMap;
 		this.clashDetectionSettings = clashDetectionSettings;
-		this.schema = schema;
-		this.ifcEngineFactory = ifcEngineFactory;
 		this.mergerFactory = mergerFactory;
 		this.actingUoid = actingUoid;
 		this.pluginManager = pluginManager;
@@ -102,9 +94,9 @@ public class FindClashesDatabaseAction extends BimDatabaseAction<Set<? extends C
 		SerializerPlugin serializerPlugin = (SerializerPlugin) pluginManager.getPlugin("org.bimserver.ifc.step.serializer.IfcStepSerializer", true);
 		EmfSerializer ifcSerializer = serializerPlugin.createSerializer();
 		try {
-			ifcSerializer.init(newModel, schema, fieldIgnoreMap, ifcEngineFactory, null, null);
+			ifcSerializer.init(newModel, null, null);
 			byte[] bytes = ifcSerializer.getBytes();
-			IfcEngine failSafeIfcEngine = ifcEngineFactory.createIfcEngine();
+			IfcEngine failSafeIfcEngine = pluginManager.requireIfcEngine();
 			try {
 				IfcEngineModel ifcEngineModel = failSafeIfcEngine.openModel(bytes);
 				try {
@@ -150,7 +142,7 @@ public class FindClashesDatabaseAction extends BimDatabaseAction<Set<? extends C
 	}
 
 	@SuppressWarnings("unchecked")
-	private IdEObject cleanupModel(EClass originalEClass, IdEObject original, IfcModel newModel, IfcModel ifcModel, Map<IdEObject, IdEObject> converted) {
+	private IdEObject cleanupModel(EClass originalEClass, IdEObject original, IfcModel newModel, IfcModel ifcModel, Map<IdEObject, IdEObject> converted) throws UserException {
 		if (converted.containsKey(original)) {
 			return converted.get(original);
 		}
@@ -160,8 +152,14 @@ public class FindClashesDatabaseAction extends BimDatabaseAction<Set<? extends C
 		if (!(newObject instanceof WrappedValue) && !(newObject instanceof IfcGloballyUniqueId)) {
 			newModel.add(newObject.getOid(), newObject);
 		}
+		IgnoreProvider ignoreProvider;
+		try {
+			ignoreProvider = pluginManager.requireIgnoreProvider();
+		} catch (IgnoreProviderException e) {
+			throw new UserException(e);
+		}
 		for (EStructuralFeature eStructuralFeature : original.eClass().getEAllStructuralFeatures()) {
-			if (!fieldIgnoreMap.shouldIgnoreField(originalEClass, original.eClass(), eStructuralFeature)) {
+			if (!ignoreProvider.shouldIgnoreField(originalEClass, original.eClass(), eStructuralFeature)) {
 				Object get = original.eGet(eStructuralFeature);
 				if (eStructuralFeature instanceof EAttribute) {
 					if (get instanceof Float || get instanceof Double) {

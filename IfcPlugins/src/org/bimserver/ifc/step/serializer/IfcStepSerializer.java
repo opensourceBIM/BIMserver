@@ -34,10 +34,9 @@ import org.bimserver.models.ifc2x3.IfcGloballyUniqueId;
 import org.bimserver.models.ifc2x3.Tristate;
 import org.bimserver.models.ifc2x3.WrappedValue;
 import org.bimserver.plugins.PluginManager;
-import org.bimserver.plugins.ifcengine.IfcEngineFactory;
-import org.bimserver.plugins.ignoreproviders.IgnoreProvider;
 import org.bimserver.plugins.schema.EntityDefinition;
-import org.bimserver.plugins.schema.Schema;
+import org.bimserver.plugins.schema.SchemaDefinition;
+import org.bimserver.plugins.schema.SchemaException;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.SerializerException;
@@ -85,8 +84,8 @@ public class IfcStepSerializer extends IfcSerializer {
 	private UTFPrintWriter out;
 
 	@Override
-	public void init(IfcModelInterface model, Schema schema, IgnoreProvider ignoreProvider, IfcEngineFactory ifcEngineFactory, ProjectInfo projectInfo, PluginManager pluginManager) throws SerializerException {
-		super.init(model, schema, ignoreProvider, ifcEngineFactory, projectInfo, pluginManager);
+	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager) throws SerializerException {
+		super.init(model, projectInfo, pluginManager);
 	}
 
 	@Override
@@ -95,7 +94,7 @@ public class IfcStepSerializer extends IfcSerializer {
 		out = null;
 	}
 	
-	public boolean write(OutputStream outputStream) {
+	public boolean write(OutputStream outputStream) throws SerializerException {
 		if (out == null) {
 			out = new UTFPrintWriter(outputStream);
 		}
@@ -214,7 +213,7 @@ public class IfcStepSerializer extends IfcSerializer {
 		}
 	}
 
-	private void write(PrintWriter out, Long key, EObject object) {
+	private void write(PrintWriter out, Long key, EObject object) throws SerializerException {
 		EClass eClass = object.eClass();
 		out.print(DASH);
 		out.print(String.valueOf(key));
@@ -251,8 +250,14 @@ public class IfcStepSerializer extends IfcSerializer {
 		out.println(PAREN_CLOSE_SEMICOLON);
 	}
 
-	private void writeEDataType(PrintWriter out, EObject object, EStructuralFeature feature) {
-		EntityDefinition entityBN = getSchema().getEntityBNNoCaseConvert(upperCases.get(object.eClass()));
+	private void writeEDataType(PrintWriter out, EObject object, EStructuralFeature feature) throws SerializerException {
+		SchemaDefinition schema;
+		try {
+			schema = getPluginManager().requireSchemaDefinition();
+		} catch (SchemaException e) {
+			throw new SerializerException(e);
+		}
+		EntityDefinition entityBN = schema.getEntityBNNoCaseConvert(upperCases.get(object.eClass()));
 		if (entityBN != null && entityBN.isDerived(feature.getName())) {
 			out.print(ASTERISK);
 		} else if (feature.isMany()) {
@@ -262,12 +267,18 @@ public class IfcStepSerializer extends IfcSerializer {
 		}
 	}
 
-	private void writeEClass(PrintWriter out, EObject object, EStructuralFeature feature) {
+	private void writeEClass(PrintWriter out, EObject object, EStructuralFeature feature) throws SerializerException {
 		Object referencedObject = object.eGet(feature);
 		if (referencedObject instanceof WrappedValue || referencedObject instanceof IfcGloballyUniqueId) {
 			writeWrappedValue(out, object, feature, ((EObject)referencedObject).eClass());
 		} else {
-			EntityDefinition entityBN = getSchema().getEntityBNNoCaseConvert(upperCases.get(object.eClass()));
+			SchemaDefinition schema;
+			try {
+				schema = getPluginManager().requireSchemaDefinition();
+			} catch (SchemaException e) {
+				throw new SerializerException(e);
+			}
+			EntityDefinition entityBN = schema.getEntityBNNoCaseConvert(upperCases.get(object.eClass()));
 			if (referencedObject instanceof EObject && model.contains((IdEObject) referencedObject)) {
 				out.print(DASH);
 				out.print(String.valueOf(model.get((IdEObject) referencedObject)));
@@ -386,7 +397,7 @@ public class IfcStepSerializer extends IfcSerializer {
 		}
 	}
 
-	private void writeWrappedValue(PrintWriter out, EObject object, EStructuralFeature feature, EClass ec) {
+	private void writeWrappedValue(PrintWriter out, EObject object, EStructuralFeature feature, EClass ec) throws SerializerException {
 		Object get = object.eGet(feature);
 		boolean isWrapped = Ifc2x3Package.eINSTANCE.getWrappedValue().isSuperTypeOf(ec) || ec == Ifc2x3Package.eINSTANCE.getIfcGloballyUniqueId();
 		EStructuralFeature structuralFeature = ec.getEStructuralFeature(WRAPPED_VALUE);
@@ -444,7 +455,13 @@ public class IfcStepSerializer extends IfcSerializer {
 						out.print(BOOLEAN_UNDEFINED);
 					}
 				} else {
-					EntityDefinition entityBN = getSchema().getEntityBN(object.eClass().getName());
+					SchemaDefinition schema;
+					try {
+						schema = getPluginManager().requireSchemaDefinition();
+					} catch (SchemaException e) {
+						throw new SerializerException(e);
+					}
+					EntityDefinition entityBN = schema.getEntityBN(object.eClass().getName());
 					if (entityBN != null && entityBN.isDerived(feature.getName())) {
 						out.print("*");
 					} else {

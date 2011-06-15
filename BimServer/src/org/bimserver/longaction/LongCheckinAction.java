@@ -9,7 +9,6 @@ import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
 import org.bimserver.database.ProgressHandler;
 import org.bimserver.database.actions.CheckinPart2DatabaseAction;
-import org.bimserver.ifc.FieldIgnoreMap;
 import org.bimserver.mail.MailSystem;
 import org.bimserver.models.store.CheckinState;
 import org.bimserver.models.store.ConcreteRevision;
@@ -19,8 +18,6 @@ import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.ifcengine.IfcEngineException;
-import org.bimserver.plugins.ifcengine.IfcEngineFactory;
-import org.bimserver.plugins.schema.SchemaDefinition;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.shared.UserException;
 import org.slf4j.Logger;
@@ -31,25 +28,19 @@ public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 	private static final Logger LOGGER = LoggerFactory.getLogger(LongCheckinAction.class);
 	private final CheckinPart2DatabaseAction createCheckinAction;
 	private final BimDatabase bimDatabase;
-	private final SchemaDefinition schema;
-	private final IfcEngineFactory ifcEngineFactory;
 	private final LongActionManager longActionManager;
 	private final User user;
-	private final FieldIgnoreMap fieldIgnoreMap;
 	private final MailSystem mailSystem;
 	private final SettingsManager settingsManager;
 	private int progress;
 	private final MergerFactory mergerFactory;
 	private final PluginManager pluginManager;
 
-	public LongCheckinAction(User user, LongActionManager longActionManager, BimDatabase bimDatabase, SchemaDefinition schema, CheckinPart2DatabaseAction createCheckinAction, IfcEngineFactory ifcEngineFactory, FieldIgnoreMap fieldIgnoreMap, SettingsManager settingsManager, MailSystem mailSystem, MergerFactory mergerFactory, PluginManager pluginManager) {
+	public LongCheckinAction(User user, LongActionManager longActionManager, BimDatabase bimDatabase, CheckinPart2DatabaseAction createCheckinAction, SettingsManager settingsManager, MailSystem mailSystem, MergerFactory mergerFactory, PluginManager pluginManager) {
 		this.user = user;
 		this.longActionManager = longActionManager;
 		this.bimDatabase = bimDatabase;
-		this.schema = schema;
 		this.createCheckinAction = createCheckinAction;
-		this.ifcEngineFactory = ifcEngineFactory;
-		this.fieldIgnoreMap = fieldIgnoreMap;
 		this.settingsManager = settingsManager;
 		this.mailSystem = mailSystem;
 		this.mergerFactory = mergerFactory;
@@ -136,7 +127,7 @@ public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 			mainProject = mainProject.getParent();
 		}
 		if (mainProject.getClashDetectionSettings().isEnabled()) {
-			ClashDetectionLongAction clashDetectionLongAction = new ClashDetectionLongAction(user, createCheckinAction.getActingUid(), schema, settingsManager, ifcEngineFactory, mailSystem, bimDatabase, fieldIgnoreMap, mergerFactory, mainProject.getOid(), pluginManager);
+			ClashDetectionLongAction clashDetectionLongAction = new ClashDetectionLongAction(user, createCheckinAction.getActingUid(), settingsManager, mailSystem, bimDatabase, mergerFactory, mainProject.getOid(), pluginManager);
 			try {
 				longActionManager.start(clashDetectionLongAction);
 			} catch (CannotBeScheduledException e) {
