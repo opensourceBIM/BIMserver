@@ -243,4 +243,16 @@ public class PluginManager {
 			pluginChangeListener.pluginStateChanged(pluginContext, enabled);
 		}
 	}
+
+	public Collection<DeserializerPlugin> getAllDeserializerPlugins(String extension, boolean onlyEnabled) {
+		Collection<DeserializerPlugin> allDeserializerPlugins = getAllDeserializerPlugins(onlyEnabled);
+		Iterator<DeserializerPlugin> iterator = allDeserializerPlugins.iterator();
+		while (iterator.hasNext()) {
+			DeserializerPlugin deserializerPlugin = iterator.next();
+			if (!deserializerPlugin.canHandleExtension(extension)) {
+				iterator.remove();
+			}
+		}
+		return allDeserializerPlugins;
+	}
 }

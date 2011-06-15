@@ -20,11 +20,13 @@ package org.bimserver.utils;
  * long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.util.Calendar;
 import java.util.Formatter;
 import java.util.GregorianCalendar;
 
 import org.joda.time.DateTime;
 import org.joda.time.Interval;
+import org.joda.time.PeriodType;
 import org.joda.time.format.PeriodFormatter;
 import org.joda.time.format.PeriodFormatterBuilder;
 
@@ -54,21 +56,8 @@ public class Formatters {
 	}
 
 	public static final String timeSpanToString(GregorianCalendar startGc, GregorianCalendar stopGc) {
-		PeriodFormatter yearsAndMonths = new PeriodFormatterBuilder()
-	     .printZeroAlways()
-	     .appendDays()
-	     .appendSuffix(" day", " days")
-	     .appendSeparator(", ")
-	     .appendHours()
-	     .appendSuffix(" hour", " hours")
-	     .appendSeparator(" and ")
-	     .appendMinutes()
-	     .appendSuffix(" minute", " minutes")
-	     .toFormatter();
-		DateTime start = new DateTime(startGc.getTimeInMillis());
-		DateTime end = new DateTime(stopGc.getTimeInMillis());
-		Interval interval = new Interval(start, end);
-		return yearsAndMonths.print(interval.toPeriod());
+		long millis = stopGc.getTimeInMillis() - startGc.getTimeInMillis();
+		return millis / 60000 + " minutes";
 	}
 	
 	public static final String millisecondsToString(long millis) {
@@ -119,11 +108,17 @@ public class Formatters {
 	}
 
 	public static void main(String[] args) {
-		check(1000, "1s");
-		check(60000, "01:00m");
-		check(55, "55ms");
-		check(69000, "01:09m");
-		check(13560000, "03:46h");
+//		check(1000, "1s");
+//		check(60000, "01:00m");
+//		check(55, "55ms");
+//		check(69000, "01:09m");
+//		check(13560000, "03:46h");
+		
+		GregorianCalendar now = new GregorianCalendar();
+		GregorianCalendar before = new GregorianCalendar();
+		before.add(Calendar.DAY_OF_YEAR, -60);
+		System.out.println(before.getTime());
+		System.out.println(timeSpanToString(before, now));
 	}
 
 	public static String formatNanoSeconds(long l) {

@@ -69,6 +69,7 @@ public class DataObjectGenerator {
 		genModel.setBinaryCompatibleReflectiveMethods(false);
 		genModel.setPublicConstructors(false);
 		genModel.setMinimalReflectiveMethods(true); // More code, but faster
+		genModel.setUpdateClasspath(false);
 
 		genModel.initialize(schema.getEPackages());
 		

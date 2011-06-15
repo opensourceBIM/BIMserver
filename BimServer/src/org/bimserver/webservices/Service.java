@@ -344,8 +344,12 @@ public class Service implements ServiceInterface {
 	}
 
 	private IfcModelInterface readIfcXmlModel(InputStream inputStream, long fileSize) throws UserException {
-		DeserializerPlugin deserializerPlugin = (DeserializerPlugin) pluginManager.getPlugin("org.bimserver.ifc.xml.deserializer.IfcXmlDeserializerPlugin", true);
-		EmfDeserializer deserializer = deserializerPlugin.createDeserializer();
+		EmfDeserializer deserializer;
+		try {
+			deserializer = requireDeserializer("ifcxml");
+		} catch (DeserializeException e) {
+			throw new UserException(e.getMessage());
+		}
 		try {
 			return deserializer.read(inputStream, fileSize);
 		} catch (DeserializeException e) {
@@ -354,8 +358,12 @@ public class Service implements ServiceInterface {
 	}
 
 	private IfcModelInterface readIfcStepModel(final InputStream inputStream, long fileSize) throws UserException {
-		DeserializerPlugin deserializerPlugin = (DeserializerPlugin) pluginManager.getPlugin("org.bimserver.ifc.step.deserializer.IfcStepDeserializerPlugin", true);
-		EmfDeserializer deserializer = deserializerPlugin.createDeserializer();
+		EmfDeserializer deserializer;
+		try {
+			deserializer = requireDeserializer("ifc");
+		} catch (DeserializeException e) {
+			throw new UserException(e.getMessage());
+		}
 		deserializer.init(schema);
 		try {
 			InputStream in = inputStream;
@@ -390,6 +398,15 @@ public class Service implements ServiceInterface {
 			LOGGER.error("", e);
 			ServerInfo.setErrorMessage(e.getMessage());
 			throw new UserException("Out of memory", e);
+		}
+	}
+
+	private EmfDeserializer requireDeserializer(String type) throws DeserializeException {
+		Collection<DeserializerPlugin> allDeserializerPlugins = pluginManager.getAllDeserializerPlugins(type, true);
+		if (allDeserializerPlugins.size() == 0) {
+			throw new DeserializeException("No deserializers found for type '" + type + "'");
+		} else {
+			return allDeserializerPlugins.iterator().next().createDeserializer();
 		}
 	}
 
