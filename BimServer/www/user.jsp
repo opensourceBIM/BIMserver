@@ -110,7 +110,7 @@ if (allowEdit) { %>
 	<%
 		}
 	%>
-	</select> <label for="zip_<%=revision.getId() %>">Zip</label><input type="checkbox" name="zip" id="zip_<%=revision.getId() %>"/> 
+	</select> <label for="zip_<%=revision.getId() %>">Zip</label> <input type="checkbox" name="zip" id="zip_<%=revision.getId() %>"/> 
 	<input name="download" type="submit" value="Download"/>
 <% 
 	boolean userHasCheckinRights = loginManager.getService().userHasCheckinRights(sProject.getOid());
@@ -164,7 +164,7 @@ if (userHasCheckinRights) { %>
 	<%
 		}
 	%>
-	</select> <label for="zip_<%=checkout.getOid() %>">Zip</label><input type="checkbox" name="zip" id="zip_<%=checkout.getOid() %>"/> <input name="download" type="submit" value="Download"/>
+	</select> <label for="zip_<%=checkout.getOid() %>">Zip</label> <input type="checkbox" name="zip" id="zip_<%=checkout.getOid() %>"/> <input name="download" type="submit" value="Download"/>
 	</form>
 	</td>
 </tr>

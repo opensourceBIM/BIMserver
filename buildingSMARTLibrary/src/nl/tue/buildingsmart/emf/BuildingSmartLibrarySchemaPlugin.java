@@ -5,7 +5,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import nl.tue.buildingsmart.express.parser.ExpressSchemaParser;
-import nl.tue.buildingsmart.express.parser.SchemaLoader;
 
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.ResourceFetcher;

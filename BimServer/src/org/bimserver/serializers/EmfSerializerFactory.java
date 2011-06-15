@@ -68,7 +68,7 @@ public class EmfSerializerFactory {
 					projectInfo.setZ(project.getGeoTag().getZ());
 					projectInfo.setDirectionAngle(project.getGeoTag().getDirectionAngle());
 					projectInfo.setAuthorName(user.getName());
-					serializer.init(model, projectInfo, null);
+					serializer.init(model, projectInfo, pluginManager);
 					return serializer;
 				}
 			}
