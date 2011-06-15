@@ -3,9 +3,10 @@ package org.bimserver.tests;
 import java.io.File;
 import java.util.List;
 
+import nl.tue.buildingsmart.emf.SchemaLoader;
+
 import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.IfcModel;
-import org.bimserver.ifc.SchemaLoader;
 import org.bimserver.ifc.step.deserializer.IfcStepDeserializer;
 import org.bimserver.plugins.schema.SchemaDefinition;
 import org.eclipse.emf.ecore.EStructuralFeature;

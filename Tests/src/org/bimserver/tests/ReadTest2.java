@@ -2,9 +2,10 @@ package org.bimserver.tests;
 
 import java.util.List;
 
+import nl.tue.buildingsmart.emf.SchemaLoader;
+
 import org.bimserver.ifc.FileFieldIgnoreMap;
 import org.bimserver.ifc.IfcModel;
-import org.bimserver.ifc.SchemaLoader;
 import org.bimserver.ifc.step.deserializer.IfcStepDeserializer;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcBuildingStorey;

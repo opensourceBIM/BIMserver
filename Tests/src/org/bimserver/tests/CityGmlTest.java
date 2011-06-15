@@ -5,9 +5,10 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import nl.tue.buildingsmart.emf.SchemaLoader;
+
 import org.bimserver.citygml.CityGmlSerializer;
 import org.bimserver.ifc.FileFieldIgnoreMap;
-import org.bimserver.ifc.SchemaLoader;
 import org.bimserver.ifc.step.deserializer.IfcStepDeserializer;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.plugins.PluginManager;
