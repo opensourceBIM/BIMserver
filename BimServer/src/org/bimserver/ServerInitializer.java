@@ -41,9 +41,6 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
-import nl.tue.buildingsmart.emf.DerivedReader;
-import nl.tue.buildingsmart.express.parser.ExpressSchemaParser;
-
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.output.ByteArrayOutputStream;
 import org.apache.log4j.LogManager;
@@ -59,8 +56,6 @@ import org.bimserver.database.berkeley.BerkeleyColumnDatabase;
 import org.bimserver.database.query.conditions.AttributeCondition;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.literals.StringLiteral;
-import org.bimserver.ifc.FieldIgnoreMap;
-import org.bimserver.ifc.FileFieldIgnoreMap;
 import org.bimserver.logging.CustomFileAppender;
 import org.bimserver.longaction.LongActionManager;
 import org.bimserver.mail.MailSystem;
@@ -78,9 +73,9 @@ import org.bimserver.plugins.Plugin;
 import org.bimserver.plugins.PluginChangeListener;
 import org.bimserver.plugins.PluginContext;
 import org.bimserver.plugins.PluginManager;
-import org.bimserver.plugins.ifcengine.IfcEngineFactory;
+import org.bimserver.plugins.ResourceFetcher;
 import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
-import org.bimserver.plugins.schema.SchemaDefinition;
+import org.bimserver.plugins.schema.SchemaException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.querycompiler.QueryCompiler;
 import org.bimserver.resources.JarResourceFetcher;
@@ -88,7 +83,6 @@ import org.bimserver.resources.WarResourceFetcher;
 import org.bimserver.serializers.EmfSerializerFactory;
 import org.bimserver.servlets.CompileServlet;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
-import org.bimserver.shared.ResourceFetcher;
 import org.bimserver.shared.ServiceInterface;
 import org.bimserver.templating.TemplateEngine;
 import org.bimserver.tools.SchemaFieldIgnoreMap;
@@ -122,9 +116,6 @@ public class ServerInitializer implements ServletContextListener {
 	private static ServerType serverType;
 	private static SettingsManager settingsManager;
 	private Version version;
-	private SchemaDefinition schema;
-	private FieldIgnoreMap fieldIgnoreMap;
-	private IfcEngineFactory ifcEngineFactory;
 	private EmfSerializerFactory emfSerializerFactory;
 	private static MergerFactory mergerFactory;
 	private PluginManager pluginManager;
@@ -178,7 +169,19 @@ public class ServerInitializer implements ServletContextListener {
 			Thread.setDefaultUncaughtExceptionHandler(uncaughtExceptionHandler);
 
 			LOGGER.info("Creating plugin manager");
-			pluginManager = new PluginManager();
+			
+			String classPath = null;
+			if (serverType == ServerType.DEPLOYED_WAR) {
+				// Because servers like Tomcat use complex classloading
+				// constructions, the classpath system property gives not enough
+				// info about the used classpaths, so here we tell the
+				// IfcEngineFactory to use all jar files in the context
+				classPath = servletContext.getRealPath("/") + "WEB-INF" + File.separator + "lib";
+			} else if (serverType == ServerType.DEV_ENVIRONMENT) {
+				classPath = "../IFCEngine/bin";
+			}
+
+			pluginManager = new PluginManager(resourceFetcher, classPath, homeDir);
 			pluginManager.addPluginChangeListener(new PluginChangeListener() {
 				@Override
 				public void pluginStateChanged(PluginContext pluginContext, boolean enabled) {
@@ -231,7 +234,6 @@ public class ServerInitializer implements ServletContextListener {
 				return;
 			}
 			serverStartTime = new GregorianCalendar();
-			schema = loadIfcSchema(resourceFetcher);
 			Set<Ifc2x3Package> packages = CollectionUtils.singleSet(Ifc2x3Package.eINSTANCE);
 
 			bimScheduler = new JobScheduler();
@@ -239,17 +241,16 @@ public class ServerInitializer implements ServletContextListener {
 
 			longActionManager = new LongActionManager();
 
-			fieldIgnoreMap = new FileFieldIgnoreMap(packages, resourceFetcher);
 			TemplateEngine.getTemplateEngine().init(resourceFetcher.getResource("templates/"));
 			File databaseDir = new File(homeDir, "database");
 			BerkeleyColumnDatabase columnDatabase = new BerkeleyColumnDatabase(databaseDir);
-			bimDatabase = new Database(packages, columnDatabase, fieldIgnoreMap);
+			bimDatabase = new Database(packages, columnDatabase);
 			try {
 				bimDatabase.init();
 			} catch (DatabaseRestartRequiredException e) {
 				bimDatabase.close();
 				columnDatabase = new BerkeleyColumnDatabase(databaseDir);
-				bimDatabase = new Database(packages, columnDatabase, fieldIgnoreMap);
+				bimDatabase = new Database(packages, columnDatabase);
 				bimDatabase.init();
 			}
 
@@ -262,19 +263,6 @@ public class ServerInitializer implements ServletContextListener {
 			File nativeFolder = resourceFetcher.getFile("lib/" + File.separator + System.getProperty("sun.arch.data.model"));
 			File schemaFile = resourceFetcher.getFile("IFC2X3_FINAL.exp").getAbsoluteFile();
 			LOGGER.info("Using " + schemaFile + " as engine schema");
-			String classPath = null;
-			if (serverType == ServerType.DEPLOYED_WAR) {
-				// Because servers like Tomcat use complex classloading
-				// constructions, the classpath system property gives not enough
-				// info about the used classpaths, so here we tell the
-				// IfcEngineFactory to use all jar files in the context
-				classPath = servletContext.getRealPath("/") + "WEB-INF" + File.separator + "lib";
-			} else if (serverType == ServerType.DEV_ENVIRONMENT) {
-				classPath = "../IFCEngine/bin";
-			}
-			if (pluginManager.getAllIfcEnginePlugins(true).size() > 0) {
-				ifcEngineFactory = new IfcEngineFactory(schemaFile, nativeFolder, new File(homeDir, "tmp"), classPath, pluginManager.getAllIfcEnginePlugins(true).iterator().next());
-			}
 
 			emfSerializerFactory = EmfSerializerFactory.getInstance();
 
@@ -306,7 +294,7 @@ public class ServerInitializer implements ServletContextListener {
 			DiskCacheManager diskCacheManager = new DiskCacheManager(new File(homeDir, "cache"), settingsManager);
 
 			mergerFactory = new MergerFactory(settingsManager);
-			ServiceFactory.init(bimDatabase, emfSerializerFactory, schema, longActionManager, ifcEngineFactory, fieldIgnoreMap, settingsManager, mailSystem, diskCacheManager, mergerFactory, pluginManager);
+			ServiceFactory.init(bimDatabase, emfSerializerFactory, longActionManager, settingsManager, mailSystem, diskCacheManager, mergerFactory, pluginManager);
 			setSystemService(ServiceFactory.getINSTANCE().newService(AccessMethod.INTERNAL));
 			if (!((Service) getSystemService()).loginAsSystem()) {
 				throw new RuntimeException("System user not found");
@@ -350,7 +338,7 @@ public class ServerInitializer implements ServletContextListener {
 		}		
 	}
 
-	private void createSerializersAndEngines() throws BimDeadlockException, BimDatabaseException {
+	private void createSerializersAndEngines() throws BimDeadlockException, BimDatabaseException, SchemaException {
 		BimDatabaseSession session = bimDatabase.createSession(true);
 		for (SerializerPlugin serializerPlugin : pluginManager.getAllSerializerPlugins(true)) {
 			String name = serializerPlugin.getDefaultSerializerName();
@@ -386,7 +374,7 @@ public class ServerInitializer implements ServletContextListener {
 			Set<EPackage> packages = new HashSet<EPackage>();
 			packages.add(Ifc2x3Package.eINSTANCE);
 			ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-			new SchemaFieldIgnoreMap(packages, schema, outputStream);
+			new SchemaFieldIgnoreMap(packages, pluginManager.requireSchemaDefinition(), outputStream);
 			ignoreFile.setData(outputStream.toByteArray());
 			session.store(ignoreFile);
 		}
@@ -416,7 +404,7 @@ public class ServerInitializer implements ServletContextListener {
 	}
 
 	private void initDatabaseDependantItems() {
-		emfSerializerFactory.init(schema, fieldIgnoreMap, ifcEngineFactory, pluginManager, bimDatabase);
+		emfSerializerFactory.init(pluginManager, bimDatabase);
 	}
 	
 	public static File getHomeDir() {
@@ -541,30 +529,6 @@ public class ServerInitializer implements ServletContextListener {
 			return new JarResourceFetcher();
 		}
 		return resourceFetcher;
-	}
-
-	private SchemaDefinition loadIfcSchema(ResourceFetcher resourceFetcher) throws Exception {
-		try {
-			URL ifcSchemaFile = resourceFetcher.getResource("IFC2X3_FINAL.exp");
-			if (ifcSchemaFile == null) {
-				LOGGER.error("IFC-Schema file not found");
-			} else {
-				LOGGER.info("IFC-Schema file found");
-				ExpressSchemaParser schemaParser = new ExpressSchemaParser(ifcSchemaFile);
-				schemaParser.parse();
-				SchemaDefinition schema = schemaParser.getSchema();
-				new DerivedReader(ifcSchemaFile.openStream(), schema);
-				if (schema != null) {
-					LOGGER.info("IFC-Schema successfully loaded");
-				} else {
-					LOGGER.error("Error loading IFC-Schema");
-				}
-				return schema;
-			}
-		} catch (MalformedURLException e) {
-			LOGGER.error("", e);
-		}
-		return null;
 	}
 
 	@Override

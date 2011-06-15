@@ -60,19 +60,15 @@ import org.bimserver.models.store.SIPrefix;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.ifcengine.IfcEngine;
 import org.bimserver.plugins.ifcengine.IfcEngineException;
-import org.bimserver.plugins.ifcengine.IfcEngineFactory;
 import org.bimserver.plugins.ifcengine.IfcEngineGeometry;
 import org.bimserver.plugins.ifcengine.IfcEngineInstance;
 import org.bimserver.plugins.ifcengine.IfcEngineInstanceVisualisationProperties;
 import org.bimserver.plugins.ifcengine.IfcEngineModel;
-import org.bimserver.plugins.ignoreproviders.IgnoreProvider;
-import org.bimserver.plugins.schema.Schema;
 import org.bimserver.plugins.serializers.BimModelSerializer;
 import org.bimserver.plugins.serializers.EmfSerializer;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.SerializerException;
-import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.slf4j.Logger;
@@ -86,15 +82,9 @@ public class ColladaSerializer extends BimModelSerializer {
 	private List<String> surfaceStyleIds;
 
 	@Override
-	public void init(IfcModelInterface model, Schema schema, IgnoreProvider ignoreProvider, IfcEngineFactory ifcEngineFactory, ProjectInfo projectInfo, PluginManager pluginManager) throws SerializerException {
-		super.init(model, schema, ignoreProvider, ifcEngineFactory, projectInfo, pluginManager);
-		try {
-			this.ifcEngine = ifcEngineFactory.createIfcEngine();
-		} catch (IfcEngineException e) {
-			throw new SerializerException(e);
-		}
+	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager) throws SerializerException {
+		super.init(model, projectInfo, pluginManager);
 		lengthUnitPrefix = getLengthUnitPrefix(model);
-
 		this.surfaceStyleIds = new ArrayList<String>();
 	}
 
@@ -104,8 +94,13 @@ public class ColladaSerializer extends BimModelSerializer {
 	}
 
 	@Override
-	public boolean write(OutputStream out) {
+	public boolean write(OutputStream out) throws SerializerException {
 		if (getMode() == Mode.BODY) {
+			try {
+				ifcEngine = getPluginManager().requireIfcEngine();
+			} catch (IfcEngineException e) {
+				throw new SerializerException(e);
+			}
 			PrintWriter writer = new PrintWriter(out);
 			try {
 				writer.println("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\" ?>");
@@ -328,8 +323,8 @@ public class ColladaSerializer extends BimModelSerializer {
 
 		IfcModel ifcModel = new IfcModel();
 		convertToSubset(ifcRootObject.eClass(), ifcRootObject, ifcModel, new HashMap<EObject, EObject>());
-		EmfSerializer serializer = requireIfcStepSerializer();
-		serializer.init(ifcModel, getSchema(), getIgnoreProvider(), getIfcEngineFactory(), getProjectInfo(), getPluginManager());
+		EmfSerializer serializer = getPluginManager().requireIfcStepSerializer();
+		serializer.init(ifcModel, getProjectInfo(), getPluginManager());
 		try {
 			IfcEngineModel model = ifcEngine.openModel(serializer.getBytes());
 			try {

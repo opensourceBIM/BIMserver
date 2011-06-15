@@ -11,12 +11,11 @@ import org.bimserver.ifc.SchemaLoader;
 import org.bimserver.ifc.step.deserializer.IfcStepDeserializer;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.plugins.PluginManager;
-import org.bimserver.plugins.ifcengine.IfcEngineFactory;
+import org.bimserver.plugins.ResourceFetcher;
 import org.bimserver.plugins.schema.SchemaDefinition;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
-import org.bimserver.shared.ResourceFetcher;
 import org.bimserver.utils.CollectionUtils;
 
 import com.sun.xml.internal.ws.encoding.soap.DeserializationException;
@@ -27,15 +26,12 @@ public class CityGmlTest {
 		IfcStepDeserializer ifcStepDeserializer = new IfcStepDeserializer();
 		ifcStepDeserializer.init(schema);
 		ResourceFetcher resourceFetcher = new LocalDevelopmentResourceFetcher();
-		FileFieldIgnoreMap fieldIgnoreMap = new FileFieldIgnoreMap(CollectionUtils.singleSet(Ifc2x3Package.eINSTANCE), resourceFetcher);
-		File nativeFolder = resourceFetcher.getFile("lib/" + File.separator + System.getProperty("sun.arch.data.model"));
-		PluginManager pluginManager = new PluginManager();
-		IfcEngineFactory ifcEngineFactory = new IfcEngineFactory(SchemaLoader.DEFAULT_SCHEMA_FILE, nativeFolder, new File("tmp"), null, pluginManager.getAllIfcEnginePlugins(true).iterator().next());
+		PluginManager pluginManager = new PluginManager(resourceFetcher, null, null);
 		try {
 			IfcModelInterface model = ifcStepDeserializer.read(TestFile.AC11.getFile());
 			try {
 				CityGmlSerializer cityGmlSerializer = new CityGmlSerializer();
-				cityGmlSerializer.init(model, schema, fieldIgnoreMap, ifcEngineFactory, null, pluginManager);
+				cityGmlSerializer.init(model, null, pluginManager);
 				FileOutputStream fos = new FileOutputStream(new File("out.citygml"));
 				cityGmlSerializer.write(fos);
 				fos.close();

@@ -1,5 +1,6 @@
 package org.bimserver.collada;
 
+import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.serializers.EmfSerializer;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 
@@ -21,7 +22,7 @@ public class ColladaSerializerPlugin implements SerializerPlugin {
 	}
 
 	@Override
-	public void init() {
+	public void init(PluginManager pluginManager) {
 	}
 
 	@Override

@@ -17,10 +17,10 @@ import org.bimserver.models.ifc2x3.IfcQuantityArea;
 import org.bimserver.models.ifc2x3.IfcRelContainedInSpatialStructure;
 import org.bimserver.models.ifc2x3.IfcRelDefines;
 import org.bimserver.models.ifc2x3.IfcRelDefinesByProperties;
+import org.bimserver.plugins.ResourceFetcher;
 import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.schema.SchemaDefinition;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
-import org.bimserver.shared.ResourceFetcher;
 import org.bimserver.utils.CollectionUtils;
 import org.eclipse.emf.common.util.EList;
 

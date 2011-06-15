@@ -12,15 +12,12 @@ import org.bimserver.MergerFactory;
 import org.bimserver.SettingsManager;
 import org.bimserver.cache.DiskCacheManager;
 import org.bimserver.database.BimDatabase;
-import org.bimserver.ifc.FieldIgnoreMap;
 import org.bimserver.interfaces.objects.SAccessMethod;
 import org.bimserver.interfaces.objects.SUser;
 import org.bimserver.longaction.LongActionManager;
 import org.bimserver.mail.MailSystem;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.plugins.PluginManager;
-import org.bimserver.plugins.ifcengine.IfcEngineFactory;
-import org.bimserver.plugins.schema.SchemaDefinition;
 import org.bimserver.serializers.EmfSerializerFactory;
 import org.bimserver.shared.SUserSession;
 import org.bimserver.shared.ServiceException;
@@ -38,24 +35,17 @@ public class ServiceFactory {
 	private final HashMap<Token, ServiceInterface> tokens = new HashMap<Token, ServiceInterface>();
 	private final BimDatabase bimDatabase;
 	private final EmfSerializerFactory emfSerializerFactory;
-	private final SchemaDefinition schema;
 	private final LongActionManager longActionManager;
-	private final IfcEngineFactory ifcEngineFactory;
-	private final FieldIgnoreMap fieldIgnoreMap;
 	private final SettingsManager settingsManager;
 	private final MailSystem mailSystem;
 	private final DiskCacheManager diskCacheManager;
 	private final MergerFactory mergerFactory;
 	private final PluginManager pluginManager;
 
-	private ServiceFactory(BimDatabase bimDatabase, EmfSerializerFactory emfSerializerFactory, SchemaDefinition schema,
-			LongActionManager longActionManager, IfcEngineFactory ifcEngineFactory, FieldIgnoreMap fieldIgnoreMap, SettingsManager settingsManager, MailSystem mailSystem, DiskCacheManager diskCacheManager, MergerFactory mergerFactory, PluginManager pluginManager) {
+	private ServiceFactory(BimDatabase bimDatabase, EmfSerializerFactory emfSerializerFactory, LongActionManager longActionManager, SettingsManager settingsManager, MailSystem mailSystem, DiskCacheManager diskCacheManager, MergerFactory mergerFactory, PluginManager pluginManager) {
 		this.bimDatabase = bimDatabase;
 		this.emfSerializerFactory = emfSerializerFactory;
-		this.schema = schema;
 		this.longActionManager = longActionManager;
-		this.ifcEngineFactory = ifcEngineFactory;
-		this.fieldIgnoreMap = fieldIgnoreMap;
 		this.settingsManager = settingsManager;
 		this.mailSystem = mailSystem;
 		this.diskCacheManager = diskCacheManager;
@@ -63,12 +53,12 @@ public class ServiceFactory {
 		this.pluginManager = pluginManager;
 	}
 	
-	public static void init(BimDatabase bimDatabase, EmfSerializerFactory emfSerializerFactory, SchemaDefinition schema, LongActionManager longActionManager, IfcEngineFactory ifcEngineFactory, FieldIgnoreMap fieldIgnoreMap, SettingsManager settingsManager, MailSystem mailSystem, DiskCacheManager diskCacheManager, MergerFactory mergerFactory, PluginManager pluginManager) {
-		INSTANCE = new ServiceFactory(bimDatabase, emfSerializerFactory, schema, longActionManager, ifcEngineFactory, fieldIgnoreMap, settingsManager, mailSystem, diskCacheManager, mergerFactory, pluginManager);
+	public static void init(BimDatabase bimDatabase, EmfSerializerFactory emfSerializerFactory, LongActionManager longActionManager, SettingsManager settingsManager, MailSystem mailSystem, DiskCacheManager diskCacheManager, MergerFactory mergerFactory, PluginManager pluginManager) {
+		INSTANCE = new ServiceFactory(bimDatabase, emfSerializerFactory, longActionManager, settingsManager, mailSystem, diskCacheManager, mergerFactory, pluginManager);
 	}
 
 	public ServiceInterface newService(AccessMethod accessMethod) {
-		Service service = new Service(bimDatabase, emfSerializerFactory, schema, longActionManager, accessMethod, ifcEngineFactory, this, fieldIgnoreMap, settingsManager, mailSystem, diskCacheManager, mergerFactory, pluginManager);
+		Service service = new Service(bimDatabase, emfSerializerFactory, longActionManager, accessMethod, this, settingsManager, mailSystem, diskCacheManager, mergerFactory, pluginManager);
 		Date expires = new Date(new Date().getTime() + (TOKEN_TTL_SECONDS * 1000));
 		Token token = new Token(GeneratorUtils.generateToken(), expires);
 		tokens.put(token, service);

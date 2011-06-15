@@ -51,7 +51,7 @@ public class Visualise extends JFrame {
 			model2.fixOids(new IncrementingOidProvider(model1.getHighestOid() + 1));
 			IfcModel merged = new RevisionMerger(model1, model2).merge();
 			IfcStepSerializer serializer = new IfcStepSerializer();
-			serializer.init(merged, schema, null, null, null, null);
+			serializer.init(merged, null, null);
 			serializer.writeToFile(new File("merged.ifc"));
 			new Visualise().start(model1b, "Model 1");
 			new Visualise().start(model2b, "Model 2");

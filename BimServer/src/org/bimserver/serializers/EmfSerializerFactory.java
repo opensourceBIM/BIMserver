@@ -10,7 +10,6 @@ import org.bimserver.database.BimDeadlockException;
 import org.bimserver.database.query.conditions.AttributeCondition;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.literals.StringLiteral;
-import org.bimserver.ifc.FieldIgnoreMap;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.longaction.DownloadParameters;
 import org.bimserver.models.store.Project;
@@ -18,8 +17,6 @@ import org.bimserver.models.store.Serializer;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.plugins.PluginManager;
-import org.bimserver.plugins.ifcengine.IfcEngineFactory;
-import org.bimserver.plugins.schema.SchemaDefinition;
 import org.bimserver.plugins.serializers.EmfSerializer;
 import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.SerializerException;
@@ -31,9 +28,6 @@ public class EmfSerializerFactory {
 	private static final Logger LOGGER = LoggerFactory.getLogger(EmfSerializerFactory.class);
 	
 	private static final EmfSerializerFactory INSTANCE = new EmfSerializerFactory();
-	private FieldIgnoreMap fieldIgnoreMap;
-	private SchemaDefinition schemaDefinition;
-	private IfcEngineFactory ifcEngineFactory;
 	private PluginManager pluginManager;
 	private BimDatabase bimDatabase;
 	
@@ -44,10 +38,7 @@ public class EmfSerializerFactory {
 		return INSTANCE;
 	}
 
-	public void init(SchemaDefinition schemaDefinition, FieldIgnoreMap fieldIgnoreMap, IfcEngineFactory ifcEngineFactory, PluginManager osgiManager, BimDatabase bimDatabase) {
-		this.schemaDefinition = schemaDefinition;
-		this.fieldIgnoreMap = fieldIgnoreMap;
-		this.ifcEngineFactory = ifcEngineFactory;
+	public void init(PluginManager osgiManager, BimDatabase bimDatabase) {
 		this.pluginManager = osgiManager;
 		this.bimDatabase = bimDatabase;
 	}
@@ -77,7 +68,7 @@ public class EmfSerializerFactory {
 					projectInfo.setZ(project.getGeoTag().getZ());
 					projectInfo.setDirectionAngle(project.getGeoTag().getDirectionAngle());
 					projectInfo.setAuthorName(user.getName());
-					serializer.init(model, schemaDefinition, fieldIgnoreMap, ifcEngineFactory, projectInfo, null);
+					serializer.init(model, projectInfo, null);
 					return serializer;
 				}
 			}

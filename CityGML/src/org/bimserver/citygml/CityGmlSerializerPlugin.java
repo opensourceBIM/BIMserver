@@ -1,5 +1,6 @@
 package org.bimserver.citygml;
 
+import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.serializers.EmfSerializer;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 
@@ -24,7 +25,7 @@ public class CityGmlSerializerPlugin implements SerializerPlugin {
 	}
 
 	@Override
-	public void init() {
+	public void init(PluginManager pluginManager) {
 		
 	}
 	

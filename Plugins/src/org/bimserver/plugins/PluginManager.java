@@ -22,8 +22,18 @@ import javax.xml.bind.Unmarshaller;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.output.ByteArrayOutputStream;
+import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
+import org.bimserver.plugins.deserializers.EmfDeserializer;
+import org.bimserver.plugins.ifcengine.IfcEngine;
+import org.bimserver.plugins.ifcengine.IfcEngineException;
 import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
+import org.bimserver.plugins.ignoreproviders.IgnoreProvider;
+import org.bimserver.plugins.schema.SchemaDefinition;
+import org.bimserver.plugins.schema.SchemaException;
+import org.bimserver.plugins.schema.SchemaPlugin;
+import org.bimserver.plugins.serializers.EmfSerializer;
+import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,8 +42,14 @@ public class PluginManager {
 	private final Logger LOGGER = LoggerFactory.getLogger(PluginManager.class);
 	private final Map<Class<? extends Plugin>, Set<PluginContext>> implementations = new HashMap<Class<? extends Plugin>, Set<PluginContext>>();
 	private final Set<PluginChangeListener> pluginChangeListeners = new HashSet<PluginChangeListener>();
+	private final ResourceFetcher resourceFetcher;
+	private final String classPath;
+	private File homeDir;
 
-	public PluginManager() {
+	public PluginManager(ResourceFetcher resourceFetcher, String classPath, File homeDir) {
+		this.resourceFetcher = resourceFetcher;
+		this.classPath = classPath;
+		this.homeDir = homeDir;
 	}
 
 	public void loadPluginsFromEclipseProject(File projectRoot) throws PluginException {
@@ -254,5 +270,68 @@ public class PluginManager {
 			}
 		}
 		return allDeserializerPlugins;
+	}
+
+	public Collection<SchemaPlugin> getAllSchemaPlugins(boolean onlyEnabled) {
+		return getPlugins(SchemaPlugin.class, onlyEnabled);
+	}
+	
+	public SchemaDefinition requireSchemaDefinition() throws SchemaException {
+		Collection<SchemaPlugin> allSchemaPlugins = getAllSchemaPlugins(true);
+		if (allSchemaPlugins.size() == 0) {
+			throw new SchemaException("No schema found");
+		}
+		return allSchemaPlugins.iterator().next().getSchemaDefinition();
+	}
+	
+	public EmfDeserializer requireDeserializer(String type) throws DeserializeException {
+		Collection<DeserializerPlugin> allDeserializerPlugins = getAllDeserializerPlugins(type, true);
+		if (allDeserializerPlugins.size() == 0) {
+			throw new DeserializeException("No deserializers found for type '" + type + "'");
+		} else {
+			return allDeserializerPlugins.iterator().next().createDeserializer();
+		}
+	}
+
+	public IfcEngine requireIfcEngine() throws IfcEngineException {
+		Collection<IfcEnginePlugin> allIfcEnginePlugins = getAllIfcEnginePlugins(true);
+		if (allIfcEnginePlugins.size() == 0) {
+			throw new IfcEngineException("A working IfcEngine is required");
+		}
+		return allIfcEnginePlugins.iterator().next().createIfcEngine();
+	}
+	
+	/*
+	 * This will try to find at least one serializer for the content-type "application/ifc", if none are found an exception is throws, if more than 1 is found, the first one is returned
+	 */
+	public EmfSerializer requireIfcStepSerializer() throws SerializerException {
+		String contentType = "application/ifc";
+		Collection<SerializerPlugin> serializerPlugins = getAllSerializerPlugins(contentType, true);
+		if (serializerPlugins.isEmpty()) {
+			throw new SerializerException("A working serializer for the content type " + contentType + " is required");
+		}
+		SerializerPlugin serializerPlugin = serializerPlugins.iterator().next();
+		EmfSerializer ifcSerializer = serializerPlugin.createSerializer();
+		return ifcSerializer;
+	}
+
+	public IgnoreProvider requireIgnoreProvider() throws IgnoreProviderException {
+		Collection<IgnoreProvider> plugins = getPlugins(IgnoreProvider.class, true);
+		if (plugins.size() == 0) {
+			throw new IgnoreProviderException("An ignore provider is required");
+		}
+		return plugins.iterator().next();
+	}
+
+	public ResourceFetcher getResourceFetcher() {
+		return resourceFetcher;
+	}
+
+	public String getClassPath() {
+		return classPath;
+	}
+
+	public File getHomeDir() {
+		return homeDir;
 	}
 }

@@ -2,6 +2,8 @@ package org.bimserver.shared;
 
 import java.io.File;
 
+import org.bimserver.plugins.ResourceFetcher;
+
 public class LocalDevelopmentResourceFetcher extends ResourceFetcher {
 
 	public LocalDevelopmentResourceFetcher() {

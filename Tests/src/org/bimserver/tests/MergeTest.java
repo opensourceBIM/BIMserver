@@ -41,7 +41,7 @@ public class MergeTest {
 			IfcModel merged = new Merger(new GuidMergeIdentifier()).merge(null, ifcModelSet, true);
 			merged.checkDoubleOidsPlusReferences();
 			IfcStepSerializer serializer = new IfcStepSerializer();
-			serializer.init(merged, schema, null, null, null, null);
+			serializer.init(merged, null, null);
 			serializer.writeToFile(new File("merged.ifc"));
 		} catch (DeserializationException e) {
 			e.printStackTrace();

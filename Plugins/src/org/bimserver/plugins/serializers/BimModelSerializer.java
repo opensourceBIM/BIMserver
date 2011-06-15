@@ -6,10 +6,9 @@ import org.bimserver.emf.IdEObject;
 import org.bimserver.models.ifc2x3.Ifc2x3Factory;
 import org.bimserver.models.ifc2x3.IfcGloballyUniqueId;
 import org.bimserver.models.ifc2x3.WrappedValue;
+import org.bimserver.plugins.IgnoreProviderException;
 import org.bimserver.plugins.PluginManager;
-import org.bimserver.plugins.ifcengine.IfcEngineFactory;
 import org.bimserver.plugins.ignoreproviders.IgnoreProvider;
-import org.bimserver.plugins.schema.Schema;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -19,20 +18,26 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 
 public abstract class BimModelSerializer extends EmfSerializer {
 
-	public void init(IfcModelInterface model, Schema schema, IgnoreProvider ignoreProvider, IfcEngineFactory ifcEngineFactory, ProjectInfo projectInfo, PluginManager pluginManager) throws SerializerException {
-		super.init(model, schema, ignoreProvider, ifcEngineFactory, projectInfo, pluginManager);
+	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager) throws SerializerException {
+		super.init(model, projectInfo, pluginManager);
 	}
 
 	@SuppressWarnings("unchecked")
-	protected EObject convertToSubset(EClass originalClass, IdEObject ifcRootObject, IfcModelInterface newModel, Map<EObject, EObject> converted) {
+	protected EObject convertToSubset(EClass originalClass, IdEObject ifcRootObject, IfcModelInterface newModel, Map<EObject, EObject> converted) throws SerializerException {
 		IdEObject newObject = (IdEObject) Ifc2x3Factory.eINSTANCE.create(ifcRootObject.eClass());
 		newObject.setOid(ifcRootObject.getOid());
 		converted.put(ifcRootObject, newObject);
 		if (!(newObject instanceof WrappedValue) && !(newObject instanceof IfcGloballyUniqueId)) {
 			newModel.add(newObject.getOid(), newObject);
 		}
+		IgnoreProvider ignoreProvider;
+		try {
+			ignoreProvider = getPluginManager().requireIgnoreProvider();
+		} catch (IgnoreProviderException e) {
+			throw new SerializerException(e);
+		}
 		for (EStructuralFeature eStructuralFeature : ifcRootObject.eClass().getEAllStructuralFeatures()) {
-			if (!getIgnoreProvider().shouldIgnoreField(originalClass, ifcRootObject.eClass(), eStructuralFeature)) {
+			if (!ignoreProvider.shouldIgnoreField(originalClass, ifcRootObject.eClass(), eStructuralFeature)) {
 				Object get = ifcRootObject.eGet(eStructuralFeature);
 				if (eStructuralFeature instanceof EAttribute) {
 					if (get instanceof Float || get instanceof Double) {

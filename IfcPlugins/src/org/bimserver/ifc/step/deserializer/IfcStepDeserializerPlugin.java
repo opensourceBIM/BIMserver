@@ -1,5 +1,6 @@
 package org.bimserver.ifc.step.deserializer;
 
+import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.deserializers.EmfDeserializer;
 
@@ -26,7 +27,7 @@ public class IfcStepDeserializerPlugin implements DeserializerPlugin {
 	}
 
 	@Override
-	public void init() {
+	public void init(PluginManager pluginManager) {
 	}
 
 	@Override

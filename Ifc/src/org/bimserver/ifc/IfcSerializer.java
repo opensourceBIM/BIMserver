@@ -5,12 +5,11 @@ import java.util.Map;
 
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.plugins.PluginManager;
-import org.bimserver.plugins.ifcengine.IfcEngineFactory;
-import org.bimserver.plugins.ignoreproviders.IgnoreProvider;
 import org.bimserver.plugins.schema.Attribute;
 import org.bimserver.plugins.schema.EntityDefinition;
 import org.bimserver.plugins.schema.InverseAttribute;
-import org.bimserver.plugins.schema.Schema;
+import org.bimserver.plugins.schema.SchemaDefinition;
+import org.bimserver.plugins.schema.SchemaException;
 import org.bimserver.plugins.serializers.BimModelSerializer;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.plugins.serializers.ProjectInfo;
@@ -25,8 +24,8 @@ public abstract class IfcSerializer extends BimModelSerializer {
 	private static final Map<EStructuralFeature, Boolean> inverseCache = new HashMap<EStructuralFeature, Boolean>();
 
 	@Override
-	public void init(IfcModelInterface model, Schema schema, IgnoreProvider ignoreProvider, IfcEngineFactory ifcEngineFactory, ProjectInfo projectInfo, PluginManager pluginManager) throws SerializerException {
-		super.init(model, schema, ignoreProvider, ifcEngineFactory, projectInfo, pluginManager);
+	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager) throws SerializerException {
+		super.init(model, projectInfo, pluginManager);
 	}
 
 	private static Map<EClassifier, String> initUpperCases() {
@@ -37,11 +36,17 @@ public abstract class IfcSerializer extends BimModelSerializer {
 		return upperCases;
 	}
 
-	protected boolean isInverse(EStructuralFeature feature) {
+	protected boolean isInverse(EStructuralFeature feature) throws SerializerException {
 		if (inverseCache.containsKey(feature)) {
 			return inverseCache.get(feature);
 		}
-		EntityDefinition entityBN = getSchema().getEntityBNNoCaseConvert(upperCases.get(feature.getEContainingClass()));
+		SchemaDefinition schema;
+		try {
+			schema = getPluginManager().requireSchemaDefinition();
+		} catch (SchemaException e) {
+			throw new SerializerException(e);
+		}
+		EntityDefinition entityBN = schema.getEntityBNNoCaseConvert(upperCases.get(feature.getEContainingClass()));
 		if (entityBN == null) {
 			return false;
 		}

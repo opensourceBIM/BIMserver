@@ -13,8 +13,6 @@ import org.bimserver.ifc.IfcSerializer;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.Tristate;
 import org.bimserver.plugins.PluginManager;
-import org.bimserver.plugins.ifcengine.IfcEngineFactory;
-import org.bimserver.plugins.ignoreproviders.IgnoreProvider;
 import org.bimserver.plugins.schema.Attribute;
 import org.bimserver.plugins.schema.BaseType;
 import org.bimserver.plugins.schema.DefinedType;
@@ -23,7 +21,8 @@ import org.bimserver.plugins.schema.ExplicitAttribute;
 import org.bimserver.plugins.schema.IntegerType;
 import org.bimserver.plugins.schema.ListType;
 import org.bimserver.plugins.schema.RealType;
-import org.bimserver.plugins.schema.Schema;
+import org.bimserver.plugins.schema.SchemaDefinition;
+import org.bimserver.plugins.schema.SchemaException;
 import org.bimserver.plugins.schema.SetType;
 import org.bimserver.plugins.schema.StringType;
 import org.bimserver.plugins.serializers.IfcModelInterface;
@@ -48,8 +47,8 @@ public class IfcXmlSerializer extends IfcSerializer {
 	private int tabs;
 
 	@Override
-	public void init(IfcModelInterface model, Schema schema, IgnoreProvider ignoreProvider, IfcEngineFactory ifcEngineFactory, ProjectInfo projectInfo, PluginManager pluginManager) throws SerializerException {
-		super.init(model, schema, ignoreProvider, ifcEngineFactory, projectInfo, pluginManager);
+	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager) throws SerializerException {
+		super.init(model, projectInfo, pluginManager);
 		objectToOidMap = new HashMap<EObject, Long>((int) model.size());
 		for (Long key : model.keySet()) {
 			objectToOidMap.put(model.get(key), key);
@@ -62,7 +61,7 @@ public class IfcXmlSerializer extends IfcSerializer {
 	}
 	
 	@Override
-	public boolean write(OutputStream out) {
+	public boolean write(OutputStream out) throws SerializerException {
 		if (getMode() == Mode.BODY) {
 			this.out = new UTFPrintWriter(out);
 			printLineTabbed("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
@@ -90,7 +89,7 @@ public class IfcXmlSerializer extends IfcSerializer {
 		return false;
 	}
 
-	public void write(File file) throws FileNotFoundException {
+	public void write(File file) throws FileNotFoundException, SerializerException {
 		write(new FileOutputStream(file));
 	}
 
@@ -101,17 +100,24 @@ public class IfcXmlSerializer extends IfcSerializer {
 	 *            record ID
 	 * @param object
 	 *            IFC object with this record ID
+	 * @throws SerializerException 
 	 */
 	/*
 	 * Because of insufficient info in the EMF model a few hacks were necessary
 	 * to guarantee XML code that obeys the IFC XML schema. When these
 	 * shortcomings are solved the hacks will be removed. (PW)
 	 */
-	private void store(Long key, EObject object) {
+	private void store(Long key, EObject object) throws SerializerException {
 		printLineTabbed("<" + object.eClass().getName() + " id=\"i" + key + "\">");
 		tabs++;
 		for (EStructuralFeature structuralFeature : object.eClass().getEAllStructuralFeatures()) {
-			EntityDefinition entityBN = getSchema().getEntityBN(object.eClass().getName().toUpperCase());
+			SchemaDefinition schema;
+			try {
+				schema = getPluginManager().requireSchemaDefinition();
+			} catch (SchemaException e) {
+				throw new SerializerException(e);
+			}
+			EntityDefinition entityBN = schema.getEntityBN(object.eClass().getName().toUpperCase());
 			Attribute attributeBN = entityBN != null ? entityBN.getAttributeBNWithSuper(structuralFeature.getName()) : null;
 			boolean derived = entityBN.isDerived(structuralFeature.getName());
 			if (!isInverse(structuralFeature) && !structuralFeature.isDerived() && !derived) {

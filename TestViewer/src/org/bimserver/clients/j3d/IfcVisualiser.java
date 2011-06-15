@@ -73,7 +73,6 @@ import org.bimserver.models.ifc2x3.WrappedValue;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.ifcengine.IfcEngine;
 import org.bimserver.plugins.ifcengine.IfcEngineException;
-import org.bimserver.plugins.ifcengine.IfcEngineFactory;
 import org.bimserver.plugins.ifcengine.IfcEngineGeometry;
 import org.bimserver.plugins.ifcengine.IfcEngineInstance;
 import org.bimserver.plugins.ifcengine.IfcEngineInstanceVisualisationProperties;
@@ -115,7 +114,6 @@ public class IfcVisualiser extends JFrame {
 	private Appearances appearances = new Appearances();
 	private IfcEngine ifcEngine;
 	private IfcEnginePlugin ifcPlugin;
-	private IfcEngineFactory ifcEngineFactory;
 
 	public static void main(String[] args) {
 		new IfcVisualiser().start();
@@ -187,9 +185,8 @@ public class IfcVisualiser extends JFrame {
 		fieldIgnoreMap = new FileFieldIgnoreMap(CollectionUtils.singleSet(Ifc2x3Package.eINSTANCE), resourceFetcher);
 		schema = SchemaLoader.loadDefaultSchema();
 
-		PluginManager osgiManager = new PluginManager();
+		PluginManager osgiManager = new PluginManager(null, null, null);
 		ifcPlugin = osgiManager.getAllIfcEnginePlugins(true).iterator().next();
-		ifcEngineFactory = new IfcEngineFactory(resourceFetcher.getFile("IFC2X3_FINAL.exp").getAbsoluteFile(), new File("../IFCEngine/lib/" + System.getProperty("sun.arch.data.model")), new File("tmp"), null, ifcPlugin);
 
 		sharedGroup = new SharedGroup();
 
@@ -354,7 +351,7 @@ public class IfcVisualiser extends JFrame {
 	public void createTriangles(IfcRoot ifcRootObject, IfcModel ifcModel, TransformGroup buildingTransformGroup) {
 		IfcStepSerializer ifcSerializer = new IfcStepSerializer();
 		try {
-			ifcSerializer.init(ifcModel, schema, fieldIgnoreMap, ifcEngineFactory, null, null);
+			ifcSerializer.init(ifcModel, null, null);
 			IfcEngineModel model = ifcEngine.openModel(ifcSerializer.getBytes());
 			try {
 				model.setPostProcessing(true);

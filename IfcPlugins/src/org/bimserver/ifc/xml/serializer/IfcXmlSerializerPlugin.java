@@ -1,5 +1,6 @@
 package org.bimserver.ifc.xml.serializer;
 
+import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.serializers.EmfSerializer;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 
@@ -26,7 +27,7 @@ public class IfcXmlSerializerPlugin implements SerializerPlugin {
 	}
 
 	@Override
-	public void init() {
+	public void init(PluginManager pluginManager) {
 	}
 
 	@Override
