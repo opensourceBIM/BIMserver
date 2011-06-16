@@ -281,6 +281,8 @@ service ServiceInterface {
 
 	rpc disablePlugin (DisablePluginRequest) returns (Void);
 
+	rpc getSerializerByContentType (GetSerializerByContentTypeRequest) returns (GetSerializerByContentTypeResponse);
+
 }
 
 enum SCompareType{
@@ -636,8 +638,8 @@ message SRevision {
 	optional int32 id = 1;
 	optional SCheckinState state = 2;
 	optional int64 size = 3;
-	optional int64 date = 4;
-	optional string comment = 5;
+	optional string comment = 4;
+	optional int64 date = 5;
 	optional string tag = 6;
 	repeated int64 lastClashes = 7;
 	optional int64 oid = 8;
@@ -1526,10 +1528,10 @@ message GetAllSerializersRequest {
 message SSerializer {
 	optional string name = 1;
 	optional string className = 2;
-	optional string description = 3;
-	optional string extension = 4;
-	optional int64 oid = 5;
-	optional string contenttype = 6;
+	optional string contentType = 3;
+	optional string description = 4;
+	optional string extension = 5;
+	optional int64 oid = 6;
 	optional int64 ignoreFileId = 7;
 	optional int64 settingsId = 8;
 }
@@ -1665,6 +1667,15 @@ message EnablePluginRequest {
 
 message DisablePluginRequest {
 	optional string unknown = 1;
+}
+
+message GetSerializerByContentTypeRequest {
+	optional string unknown = 1;
+}
+
+message GetSerializerByContentTypeResponse {
+	optional SSerializer value = 2;
+	optional string errorMessage = 1;
 }
 
 message Void {

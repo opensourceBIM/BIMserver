@@ -180,7 +180,7 @@ public class DownloadServlet extends HttpServlet {
 				in.close();
 				zipOutputStream.finish();
 			} else {
-				response.setContentType(serializer.getContenttype());
+				response.setContentType(serializer.getContentType());
 				response.setHeader("Content-Disposition", "inline; filename=\"" + checkoutResult.getFile().getName() + "." + serializer.getExtension() + "\"");
 				InputStream in = dataSource.getInputStream();
 				IOUtils.copy(in, response.getOutputStream());
