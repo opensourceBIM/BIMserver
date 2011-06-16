@@ -43,11 +43,12 @@ import org.slf4j.LoggerFactory;
 public class SchemaFieldIgnoreMap extends FieldIgnoreMap {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(SchemaFieldIgnoreMap.class);
+	private PackageDefinition packageDefinition;
 	
-	public SchemaFieldIgnoreMap(Set<? extends EPackage> packages, SchemaDefinition schema, OutputStream outputStream) {
+	public SchemaFieldIgnoreMap(Set<? extends EPackage> packages, SchemaDefinition schema) {
 		super(packages);
 		ArrayList<EntityDefinition> entities = schema.getEntities();
-		PackageDefinition packageDefinition = new PackageDefinition();
+		packageDefinition = new PackageDefinition();
 		for (EntityDefinition entity : entities) {
 			ClassDefinition classDefinition = new ClassDefinition();
 			classDefinition.setName(entity.getName());
@@ -61,6 +62,9 @@ public class SchemaFieldIgnoreMap extends FieldIgnoreMap {
 				}
 			}
 		}
+	}
+	
+	public void write(OutputStream outputStream) {
 		try {
 			JAXBContext jaxbContext = JAXBContext.newInstance(PackageDefinition.class);
 			Marshaller marshaller = jaxbContext.createMarshaller();

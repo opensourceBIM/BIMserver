@@ -25,6 +25,18 @@
 <div class="content">
 <%
 	ServiceInterface service = loginManager.getService();
+	if (request.getParameter("action") != null) {
+		String action = request.getParameter("action");
+		if (action.equals("disableSerializer")) {
+			SSerializer serializer = loginManager.getService().getSerializerByName(request.getParameter("serializer"));
+			serializer.setEnabled(false);
+			loginManager.getService().updateSerializer(serializer);
+		} else if (action.equals("enableSerializer")) {
+			SSerializer serializer = loginManager.getService().getSerializerByName(request.getParameter("serializer"));
+			serializer.setEnabled(true);
+			loginManager.getService().updateSerializer(serializer);
+		}
+	}
 %>
 <div class="tabber" id="settingstabber">
 <div class="tabbertab" id="ignorefilestab" title="Ignore files">
@@ -61,8 +73,22 @@
 		<td><%=serializer.getDescription() %></td>
 		<td><%=serializer.getClassName() %></td>
 		<td><%=ignoreFile == null ? "none" : ignoreFile.getName() %></td>
-		<td><%=serializer.isEnabled() ? "Enabled" : "Disabled" %></td>
-		<td><a href="deleteserializer.jsp?sid=<%=serializer.getOid()%>">Delete</a></td></tr>
+		<td class="<%=serializer.isEnabled() ? "enabledSerializer" : "disabledSerializer" %>"> <%=serializer.isEnabled() ? "Enabled" : "Disabled" %></td>
+		<td>
+<%
+	if (serializer.isEnabled()) {
+%>
+<a href="settings.jsp?action=disableSerializer&serializer=<%=serializer.getName() %>">Disable</a>
+<%
+	} else {
+%>
+<a href="settings.jsp?action=enableSerializer&serializer=<%=serializer.getName() %>">Enable</a>
+<%
+	}
+%>
+			<a href="deleteserializer.jsp?sid=<%=serializer.getOid()%>">Delete</a>
+		</td>
+	</tr>
 <%
 	}
 %>

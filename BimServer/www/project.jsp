@@ -26,6 +26,8 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Collections"%>
 <%@page import="java.util.ArrayList"%>
+<%@page import="org.slf4j.LoggerFactory"%>
+<%@page import="org.bimserver.interfaces.objects.SSerializer"%>
 <%@ include file="header.jsp"%>
 <%
 	if (loginManager.getService().isLoggedIn()) {
@@ -67,13 +69,11 @@
 			boolean hasEditRights = loginManager.getService().userHasRights(project.getOid());
 			boolean hasCreateProjectRights = (loginManager.getUserType() == SUserType.ADMIN || loginManager.getService()
 					.isSettingAllowUsersToCreateTopLevelProjects());
-			boolean o3dEnabled = loginManager.getService().hasActiveSerializer("O3D_JSON");
-			boolean kmzEnabled = loginManager.getService().hasActiveSerializer("KMZ");
+			boolean o3dEnabled = loginManager.getService().hasActiveSerializer("appliction/json");
+			boolean kmzEnabled = loginManager.getService().hasActiveSerializer("application/vnd.google-earth.kmz");
 			if (o3dEnabled && lastRevision != null) {
 %>
-
-<%@page import="org.slf4j.LoggerFactory"%>
-<%@page import="org.bimserver.interfaces.objects.SSerializer"%><jsp:include page="o3d.jsp" />
+<jsp:include page="o3d.jsp" />
 <%
 	}
 %>
@@ -195,7 +195,7 @@ revisions tab</a> to add a first revision, or <a id="subprojecttablink"
 	<%
 		if (kmzEnabled) {
 					String url = WebUtils.getWebServer(request.getRequestURL().toString());
-					String link = "http://" + url + getServletContext().getContextPath() + "/download?poid=" + project.getOid()
+					String link = "http://" + url + getServletContext().getContextPath() + "download?poid=" + project.getOid()
 							+ "&serializerName=KMZ";
 	%>
 	<tr>
@@ -503,8 +503,8 @@ subproject</a><br />
 	<option value="DELETE">Deleted</option>
 </select> Based on
 <select name="identifier">
-	<option value="GUID">GUID</option>
-	<option value="NAME">Name</option>
+	<option value="GUID_ID">GUID</option>
+	<option value="NAME_ID">Name</option>
 </select> 
 <button type="submit" name="compare" value="Compare">Compare</button>
 </form>

@@ -22,6 +22,9 @@ public class DeleteDatabaseAction extends BimDatabaseAction<Void> {
 	@Override
 	public Void execute() throws UserException, BimDeadlockException, BimDatabaseException {
 		IdEObject object = getDatabaseSession().get(eClass, oid, false);
+		if (object == null) {
+			throw new UserException("Object with oid " + oid + " not found");
+		}
 		getDatabaseSession().delete(object);
 		return null;
 	}

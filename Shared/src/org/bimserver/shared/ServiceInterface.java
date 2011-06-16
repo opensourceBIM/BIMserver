@@ -625,11 +625,13 @@ public interface ServiceInterface {
 
 	SSerializer getSerializerByName(String serializerName) throws UserException, ServerException;
 	
-	boolean hasActiveSerializer(String name) throws UserException, ServerException;
+	boolean hasActiveSerializer(String contentType) throws UserException, ServerException;
 	
 	List<SPlugin> getAllPlugins();
 	
 	void enablePlugin(String name);
 	
 	void disablePlugin(String name);
+
+	SSerializer getSerializerByContentType(String contentType) throws UserException, ServerException;
 }

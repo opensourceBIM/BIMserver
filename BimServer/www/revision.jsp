@@ -11,6 +11,8 @@
 <%@page import="org.bimserver.interfaces.objects.SProject"%>
 <%@page import="org.bimserver.interfaces.objects.SUser"%>
 <%@page import="org.bimserver.interfaces.objects.SUserType"%>
+<%@page import="org.bimserver.utils.WebUtils"%>
+<%@page import="org.bimserver.interfaces.objects.SSerializer"%>
 <%@ include file="header.jsp"%>
 <%
 	if (loginManager.getService().isLoggedIn()) {
@@ -27,13 +29,11 @@
 	Collections.sort(classes);
 	boolean isAdmin = loginManager.getService().getCurrentUser().getUserType() == SUserType.ADMIN;
 	boolean isTopProject = project.getParentId() == -1L;
-	boolean o3dEnabled = loginManager.getService().getSerializerByName("O3D_JSON").isEnabled();
-	boolean kmzEnabled = loginManager.getService().getSerializerByName("KMZ").isEnabled();
+	boolean o3dEnabled = loginManager.getService().hasActiveSerializer("appliction/json");
+	boolean kmzEnabled = loginManager.getService().hasActiveSerializer("application/vnd.google-earth.kmz");
 	if (o3dEnabled) {
 %>
-
-<%@page import="org.bimserver.utils.WebUtils"%>
-<%@page import="org.bimserver.interfaces.objects.SSerializer"%><jsp:include page="o3d.jsp"/>
+<jsp:include page="o3d.jsp"/>
 <%
 	}
 %>
