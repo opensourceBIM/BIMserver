@@ -18,7 +18,7 @@ public class SSerializer
 	private java.lang.String name;
 	private java.lang.String description;
 	private java.lang.String extension;
-	private java.lang.String contenttype;
+	private java.lang.String contentType;
 	private java.lang.String className;
 	private boolean enabled;
 	private boolean defaultSerializer;
@@ -49,12 +49,12 @@ public class SSerializer
 		this.extension = extension;
 	}
 
-	public java.lang.String getContenttype() {
-		return contenttype;
+	public java.lang.String getContentType() {
+		return contentType;
 	}
 
-	public void setContenttype(java.lang.String contenttype) {
-		this.contenttype = contenttype;
+	public void setContentType(java.lang.String contentType) {
+		this.contentType = contentType;
 	}
 
 	public java.lang.String getClassName() {
