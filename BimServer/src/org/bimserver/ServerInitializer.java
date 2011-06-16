@@ -75,6 +75,7 @@ import org.bimserver.plugins.PluginContext;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.ResourceFetcher;
 import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
+import org.bimserver.plugins.ignoreproviders.IgnoreProviderPlugin;
 import org.bimserver.plugins.schema.SchemaException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.querycompiler.QueryCompiler;
@@ -227,6 +228,7 @@ public class ServerInitializer implements ServletContextListener {
 			} else if (serverType == ServerType.STANDALONE_JAR) {
 				pluginManager.loadAllPluginsFromDirectoryOfJars(new File("plugins"));
 			}
+			pluginManager.loadPlugin(IgnoreProviderPlugin.class, "Internal", new SchemaFieldIgnoreProviderPlugin());
 			
 			LOGGER.info("Detected server type: " + serverType + " (" + System.getProperty("os.name") + ", " + System.getProperty("sun.arch.data.model") + "bit)");
 			if (serverType == ServerType.UNKNOWN) {
@@ -234,13 +236,13 @@ public class ServerInitializer implements ServletContextListener {
 				return;
 			}
 			serverStartTime = new GregorianCalendar();
-			Set<Ifc2x3Package> packages = CollectionUtils.singleSet(Ifc2x3Package.eINSTANCE);
 
 			bimScheduler = new JobScheduler();
 			bimScheduler.start();
 
 			longActionManager = new LongActionManager();
 
+			Set<Ifc2x3Package> packages = CollectionUtils.singleSet(Ifc2x3Package.eINSTANCE);
 			TemplateEngine.getTemplateEngine().init(resourceFetcher.getResource("templates/"));
 			File databaseDir = new File(homeDir, "database");
 			BerkeleyColumnDatabase columnDatabase = new BerkeleyColumnDatabase(databaseDir);
@@ -340,6 +342,22 @@ public class ServerInitializer implements ServletContextListener {
 
 	private void createSerializersAndEngines() throws BimDeadlockException, BimDatabaseException, SchemaException {
 		BimDatabaseSession session = bimDatabase.createSession(true);
+		Condition ignoreFileCondition = new AttributeCondition(StorePackage.eINSTANCE.getIgnoreFile_Name(), new StringLiteral("default"));
+		Map<Long, IgnoreFile> ignoreFiles = session.query(ignoreFileCondition, IgnoreFile.class, false);
+		IgnoreFile ignoreFile = null;
+		if (ignoreFiles.size() == 0) {
+			ignoreFile = StoreFactory.eINSTANCE.createIgnoreFile();
+			ignoreFile.setName("default");
+			Set<EPackage> packages = new HashSet<EPackage>();
+			packages.add(Ifc2x3Package.eINSTANCE);
+			ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+			SchemaFieldIgnoreMap schemaFieldIgnoreMap = new SchemaFieldIgnoreMap(packages, pluginManager.requireSchemaDefinition());
+			schemaFieldIgnoreMap.write(outputStream);
+			ignoreFile.setData(outputStream.toByteArray());
+			session.store(ignoreFile);
+		} else {
+			ignoreFile = ignoreFiles.values().iterator().next();
+		}
 		for (SerializerPlugin serializerPlugin : pluginManager.getAllSerializerPlugins(true)) {
 			String name = serializerPlugin.getDefaultSerializerName();
 			Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getSerializer_Name(), new StringLiteral(name));
@@ -352,9 +370,11 @@ public class ServerInitializer implements ServletContextListener {
 				serializer.setDescription(serializerPlugin.getDescription());
 				serializer.setContenttype(serializerPlugin.getDefaultContentType());
 				serializer.setExtension(serializerPlugin.getDefaultExtension());
+				serializer.setIgnoreFile(ignoreFile);
 				session.store(serializer);
 			}
 		}
+		session.store(ignoreFile);
 		for (IfcEnginePlugin ifcEnginePlugin : pluginManager.getAllIfcEnginePlugins(true)) {
 			String name = ifcEnginePlugin.getName();
 			Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getIfcEngine_Name(), new StringLiteral(name));
@@ -365,18 +385,6 @@ public class ServerInitializer implements ServletContextListener {
 				ifcEngine.setActive(false);
 				session.store(ifcEngine);
 			}
-		}
-		Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getIgnoreFile_Name(), new StringLiteral("default"));
-		Map<Long, IgnoreFile> ignoreFiles = session.query(condition, IgnoreFile.class, false);
-		if (ignoreFiles.size() == 0) {
-			IgnoreFile ignoreFile = StoreFactory.eINSTANCE.createIgnoreFile();
-			ignoreFile.setName("default");
-			Set<EPackage> packages = new HashSet<EPackage>();
-			packages.add(Ifc2x3Package.eINSTANCE);
-			ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-			new SchemaFieldIgnoreMap(packages, pluginManager.requireSchemaDefinition(), outputStream);
-			ignoreFile.setData(outputStream.toByteArray());
-			session.store(ignoreFile);
 		}
 		Collection<Plugin> allPlugins = pluginManager.getAllPlugins(false);
 		for (Plugin plugin : allPlugins) {

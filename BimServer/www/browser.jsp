@@ -62,7 +62,7 @@ for (SRevision sRevision : revisionsInc) {
 	  				}
 	  			}
 	  			out.println("</table>");
-	if (loginManager.getService().getSerializerByName("O3D_JSON").isEnabled()) {
+	if (loginManager.getService().hasActiveSerializer("appliction/json")) {
 %>
 	<br/>
 	<div id="browservisualizeloader">

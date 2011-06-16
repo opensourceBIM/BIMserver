@@ -29,6 +29,7 @@ import org.bimserver.plugins.ifcengine.IfcEngine;
 import org.bimserver.plugins.ifcengine.IfcEngineException;
 import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
 import org.bimserver.plugins.ignoreproviders.IgnoreProvider;
+import org.bimserver.plugins.ignoreproviders.IgnoreProviderPlugin;
 import org.bimserver.plugins.schema.SchemaDefinition;
 import org.bimserver.plugins.schema.SchemaException;
 import org.bimserver.plugins.schema.SchemaPlugin;
@@ -84,17 +85,8 @@ public class PluginManager {
 				String implementationClassName = pluginImplementation.getImplementationClass();
 				try {
 					Class implementationClass = classLoader.loadClass(implementationClassName);
-					if (!implementations.containsKey(interfaceClass)) {
-						implementations.put(interfaceClass, new HashSet<PluginContext>());
-					}
-					LOGGER.info("Loading plugin " + implementationClassName);
 					Plugin plugin = (Plugin) implementationClass.newInstance();
-					plugin.init(this);
-					Set<PluginContext> set = (Set<PluginContext>) implementations.get(interfaceClass);
-					PluginContext pluginContext = new PluginContext(this);
-					pluginContext.setPlugin(plugin);
-					pluginContext.setLocation(location);
-					set.add(pluginContext);
+					loadPlugin(interfaceClass, location, plugin);
 				} catch (ClassNotFoundException e) {
 					throw new PluginException("Implementation class '" + implementationClassName + "' not found", e);
 				} catch (InstantiationException e) {
@@ -318,11 +310,11 @@ public class PluginManager {
 	}
 
 	public IgnoreProvider requireIgnoreProvider() throws IgnoreProviderException {
-		Collection<IgnoreProvider> plugins = getPlugins(IgnoreProvider.class, true);
+		Collection<IgnoreProviderPlugin> plugins = getPlugins(IgnoreProviderPlugin.class, true);
 		if (plugins.size() == 0) {
 			throw new IgnoreProviderException("An ignore provider is required");
 		}
-		return plugins.iterator().next();
+		return plugins.iterator().next().getIgnoreProvider();
 	}
 
 	public ResourceFetcher getResourceFetcher() {
@@ -335,5 +327,18 @@ public class PluginManager {
 
 	public File getHomeDir() {
 		return homeDir;
+	}
+
+	public void loadPlugin(Class<? extends Plugin> interfaceClass, String location, Plugin plugin) {
+		LOGGER.info("Loading plugin " + plugin.getClass().getName());
+		if (!implementations.containsKey(interfaceClass)) {
+			implementations.put(interfaceClass, new HashSet<PluginContext>());
+		}
+		plugin.init(this);
+		Set<PluginContext> set = (Set<PluginContext>) implementations.get(interfaceClass);
+		PluginContext pluginContext = new PluginContext(this);
+		pluginContext.setPlugin(plugin);
+		pluginContext.setLocation(location);
+		set.add(pluginContext);
 	}
 }

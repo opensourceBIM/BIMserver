@@ -10,6 +10,7 @@
 <%@page import="org.bimserver.interfaces.objects.SRevision"%>
 <%@page import="org.bimserver.shared.SCompareResult.SCompareType"%>
 <%@page import="org.bimserver.shared.SCompareResult.SCompareIdentifier"%>
+<%@page import="org.bimserver.interfaces.objects.SSerializer"%>
 <%@ include file="header.jsp" %>
 <%
 	if (request.getParameter("compare") != null) {
@@ -24,8 +25,7 @@
 		SCompareResult compareResult = loginManager.getService().compare(roid1, roid2, sCompareType, sCompareIdentifier);
 %>
 Back to 
-
-<%@page import="org.bimserver.interfaces.objects.SSerializer"%><a href="project.jsp?poid=<%=poid %>">project '<%= project.getName() %>'</a><br/><br/>
+<a href="project.jsp?poid=<%=poid %>">project '<%= project.getName() %>'</a><br/><br/>
   <a href="#" id="emaillink">E-mail summary</a>
   <div id="emailform">
 	<div id="emailajaxloader">

@@ -491,28 +491,31 @@ public class ColladaSerializer extends BimModelSerializer {
 	}
 
 	private String fitNameForQualifiedName(String name) {
-		StringBuffer buf = new StringBuffer(name);
-		int indexOfSpace = buf.indexOf(" ");
-		while (indexOfSpace >= 0) {
-			buf.deleteCharAt(indexOfSpace);
-			indexOfSpace = buf.indexOf(" ");
+		if (name == null) {
+			return "";
 		}
-		indexOfSpace = buf.indexOf(",");
+		StringBuilder builder = new StringBuilder(name);
+		int indexOfSpace = builder.indexOf(" ");
 		while (indexOfSpace >= 0) {
-			buf.setCharAt(indexOfSpace, '_');
-			indexOfSpace = buf.indexOf(",");
+			builder.deleteCharAt(indexOfSpace);
+			indexOfSpace = builder.indexOf(" ");
 		}
-		indexOfSpace = buf.indexOf("/");
+		indexOfSpace = builder.indexOf(",");
 		while (indexOfSpace >= 0) {
-			buf.setCharAt(indexOfSpace, '_');
-			indexOfSpace = buf.indexOf("/");
+			builder.setCharAt(indexOfSpace, '_');
+			indexOfSpace = builder.indexOf(",");
 		}
-		indexOfSpace = buf.indexOf("*");
+		indexOfSpace = builder.indexOf("/");
 		while (indexOfSpace >= 0) {
-			buf.setCharAt(indexOfSpace, '_');
-			indexOfSpace = buf.indexOf("/");
+			builder.setCharAt(indexOfSpace, '_');
+			indexOfSpace = builder.indexOf("/");
 		}
-		return buf.toString();
+		indexOfSpace = builder.indexOf("*");
+		while (indexOfSpace >= 0) {
+			builder.setCharAt(indexOfSpace, '_');
+			indexOfSpace = builder.indexOf("/");
+		}
+		return builder.toString();
 	}
 
 	private void writeEffect(PrintWriter out, String name, float[] colors, float transparency) {

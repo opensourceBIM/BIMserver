@@ -46,8 +46,8 @@ import javax.mail.internet.MimeMessage;
 
 import org.bimserver.MergerFactory;
 import org.bimserver.ServerInfo;
-import org.bimserver.SettingsManager;
 import org.bimserver.ServerInfo.ServerState;
+import org.bimserver.SettingsManager;
 import org.bimserver.cache.DiskCacheManager;
 import org.bimserver.database.BimDatabase;
 import org.bimserver.database.BimDatabaseException;
@@ -97,6 +97,7 @@ import org.bimserver.database.actions.GetProjectByNameDatabaseAction;
 import org.bimserver.database.actions.GetProjectByPoidDatabaseAction;
 import org.bimserver.database.actions.GetRevisionDatabaseAction;
 import org.bimserver.database.actions.GetRevisionSummaryDatabaseAction;
+import org.bimserver.database.actions.GetSerializerByContentTypeDatabaseAction;
 import org.bimserver.database.actions.GetSerializerByIdDatabaseAction;
 import org.bimserver.database.actions.GetSerializerByNameDatabaseAction;
 import org.bimserver.database.actions.GetSubProjectsDatabaseAction;
@@ -182,11 +183,17 @@ import org.bimserver.shared.DatabaseInformation;
 import org.bimserver.shared.LongActionState;
 import org.bimserver.shared.SCheckinResult;
 import org.bimserver.shared.SCompareResult;
+import org.bimserver.shared.SCompareResult.SCompareIdentifier;
+import org.bimserver.shared.SCompareResult.SCompareType;
+import org.bimserver.shared.SCompareResult.SObjectAdded;
+import org.bimserver.shared.SCompareResult.SObjectModified;
+import org.bimserver.shared.SCompareResult.SObjectRemoved;
 import org.bimserver.shared.SDataObject;
 import org.bimserver.shared.SDownloadResult;
 import org.bimserver.shared.SLongAction;
 import org.bimserver.shared.SMigration;
 import org.bimserver.shared.SPlugin;
+import org.bimserver.shared.SPlugin.SPluginState;
 import org.bimserver.shared.SRevisionSummary;
 import org.bimserver.shared.SUserSession;
 import org.bimserver.shared.ServerException;
@@ -194,12 +201,6 @@ import org.bimserver.shared.ServiceException;
 import org.bimserver.shared.ServiceInterface;
 import org.bimserver.shared.Token;
 import org.bimserver.shared.UserException;
-import org.bimserver.shared.SCompareResult.SCompareIdentifier;
-import org.bimserver.shared.SCompareResult.SCompareType;
-import org.bimserver.shared.SCompareResult.SObjectAdded;
-import org.bimserver.shared.SCompareResult.SObjectModified;
-import org.bimserver.shared.SCompareResult.SObjectRemoved;
-import org.bimserver.shared.SPlugin.SPluginState;
 import org.bimserver.tools.generators.GenerateUtils;
 import org.bimserver.utils.FakeClosingInputStream;
 import org.bimserver.utils.Hashers;
@@ -623,6 +624,24 @@ public class Service implements ServiceInterface {
 		}
 		EClass eClass = (EClass) StorePackage.eINSTANCE.getEClassifier(targetClass.getSimpleName());
 		IdEObject idEObject = (IdEObject) eClass.getEPackage().getEFactoryInstance().create(eClass);
+		try {
+			Method getOidMethod = original.getClass().getMethod("getOid");
+			long oid = (Long) getOidMethod.invoke(original);
+			if (oid == 0) {
+				oid = -1;
+			}
+			idEObject.setOid(oid);
+		} catch (SecurityException e1) {
+			e1.printStackTrace();
+		} catch (NoSuchMethodException e1) {
+			e1.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			e.printStackTrace();
+		}
 		for (EStructuralFeature eStructuralFeature : eClass.getEAllStructuralFeatures()) {
 			try {
 				String methodName = "get" + StringUtils.firstUpperCase(eStructuralFeature.getName());
@@ -635,8 +654,8 @@ public class Service implements ServiceInterface {
 				Method method = original.getClass().getMethod(methodName);
 				Object value = method.invoke(original);
 				if (eStructuralFeature instanceof EReference) {
-					Long oid = (Long)value;
-					idEObject.eSet(eStructuralFeature, session.get((EClass)eStructuralFeature.getEType(), oid, false));
+					Long refOid = (Long)value;
+					idEObject.eSet(eStructuralFeature, session.get((EClass)eStructuralFeature.getEType(), refOid, false));
 				} else {
 					idEObject.eSet(eStructuralFeature, value);
 				}
@@ -2255,7 +2274,8 @@ public class Service implements ServiceInterface {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimDatabase.createSession(true);
 		try {
-			session.executeAndCommitAction(new AddSerializerDatabaseAction(session, accessMethod, convert(serializer, Serializer.class, session)), DEADLOCK_RETRIES);
+			Serializer convert = convert(serializer, Serializer.class, session);
+			session.executeAndCommitAction(new AddSerializerDatabaseAction(session, accessMethod, convert), DEADLOCK_RETRIES);
 		} catch (Exception e) {
 			handleException(e);
 		} finally {
@@ -2436,6 +2456,20 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
+	public SSerializer getSerializerByContentType(String contentType) throws UserException, ServerException {
+		requireAuthenticationAndRunningServer();
+		BimDatabaseSession session = bimDatabase.createReadOnlySession();
+		try {
+			return convert(session.executeAction(new GetSerializerByContentTypeDatabaseAction(session, accessMethod, contentType), DEADLOCK_RETRIES), SSerializer.class);
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+		return null;
+	}
+
+	@Override
 	public List<SSerializer> getEnabledSerializers() throws UserException, ServerException {
 		List<SSerializer> serializers = getAllSerializers(true);
 		List<SSerializer> result = new ArrayList<SSerializer>();
@@ -2448,13 +2482,17 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public boolean hasActiveSerializer(String name) throws UserException, ServerException {
+	public boolean hasActiveSerializer(String contentType) throws UserException, ServerException {
 		try {
-			SSerializer serializer = getSerializerByName(name);
-			return serializer.isEnabled();
+			SSerializer serializer = getSerializerByContentType(contentType);
+			if (serializer != null) {
+				if (serializer.isEnabled()) {
+					return pluginManager.isEnabled(serializer.getClassName());
+				}
+			}
 		} catch (Exception e) {
-			return false;
 		}
+		return false;
 	}
 
 	@Override

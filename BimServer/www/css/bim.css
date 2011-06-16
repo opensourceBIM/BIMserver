@@ -500,10 +500,10 @@ p.explain {
 	height: 14px;
 }
 
-.enabledPlugin {
+.enabledPlugin, .enabledSerializer {
 	background-color: #AAFFAA;
 }
 
-.disabledPlugin {
+.disabledPlugin, .disabledSerializer {
 	background-color: #FFAAAA;
 }
