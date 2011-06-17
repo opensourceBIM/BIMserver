@@ -2,8 +2,8 @@ package org.bimserver.tests;
 
 import nl.tue.buildingsmart.emf.SchemaLoader;
 
+import org.bimserver.guidanceproviders.FileFieldIgnoreMap;
 import org.bimserver.ifc.step.deserializer.IfcStepDeserializer;
-import org.bimserver.ignoreproviders.FileFieldIgnoreMap;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.plugins.ResourceFetcher;
 import org.bimserver.plugins.schema.SchemaDefinition;

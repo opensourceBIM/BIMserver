@@ -45,10 +45,10 @@ import nl.tue.buildingsmart.emf.SchemaLoader;
 
 import org.bimserver.clients.j3d.behavior.OrbitBehaviorInterim;
 import org.bimserver.emf.IdEObject;
+import org.bimserver.guidanceproviders.FileFieldIgnoreMap;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.step.deserializer.IfcStepDeserializer;
 import org.bimserver.ifc.step.serializer.IfcStepSerializer;
-import org.bimserver.ignoreproviders.FileFieldIgnoreMap;
 import org.bimserver.models.ifc2x3.Ifc2x3Factory;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcBeam;
