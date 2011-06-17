@@ -74,8 +74,8 @@ import org.bimserver.plugins.PluginChangeListener;
 import org.bimserver.plugins.PluginContext;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.ResourceFetcher;
+import org.bimserver.plugins.guidanceproviders.GuidanceProviderPlugin;
 import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
-import org.bimserver.plugins.ignoreproviders.IgnoreProviderPlugin;
 import org.bimserver.plugins.schema.SchemaException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.querycompiler.QueryCompiler;
@@ -228,7 +228,7 @@ public class ServerInitializer implements ServletContextListener {
 			} else if (serverType == ServerType.STANDALONE_JAR) {
 				pluginManager.loadAllPluginsFromDirectoryOfJars(new File("plugins"));
 			}
-			pluginManager.loadPlugin(IgnoreProviderPlugin.class, "Internal", new SchemaFieldIgnoreProviderPlugin());
+			pluginManager.loadPlugin(GuidanceProviderPlugin.class, "Internal", new SchemaFieldGuidanceProviderPlugin());
 			
 			LOGGER.info("Detected server type: " + serverType + " (" + System.getProperty("os.name") + ", " + System.getProperty("sun.arch.data.model") + "bit)");
 			if (serverType == ServerType.UNKNOWN) {
@@ -342,8 +342,8 @@ public class ServerInitializer implements ServletContextListener {
 
 	private void createSerializersAndEngines() throws BimDeadlockException, BimDatabaseException, SchemaException {
 		BimDatabaseSession session = bimDatabase.createSession(true);
-		Condition ignoreFileCondition = new AttributeCondition(StorePackage.eINSTANCE.getGuidanceProvider_Name(), new StringLiteral("default"));
-		Map<Long, GuidanceProvider> guidanceProviders = session.query(ignoreFileCondition, GuidanceProvider.class, false);
+		Condition guidanceProviderCondition = new AttributeCondition(StorePackage.eINSTANCE.getGuidanceProvider_Name(), new StringLiteral("default"));
+		Map<Long, GuidanceProvider> guidanceProviders = session.query(guidanceProviderCondition, GuidanceProvider.class, false);
 		GuidanceProvider guidanceProvider = null;
 		if (guidanceProviders.size() == 0) {
 			guidanceProvider = StoreFactory.eINSTANCE.createGuidanceProvider();

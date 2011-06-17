@@ -2,21 +2,21 @@ package org.bimserver;
 
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.plugins.PluginManager;
-import org.bimserver.plugins.ignoreproviders.IgnoreProvider;
-import org.bimserver.plugins.ignoreproviders.IgnoreProviderPlugin;
+import org.bimserver.plugins.guidanceproviders.GuidanceProvider;
+import org.bimserver.plugins.guidanceproviders.GuidanceProviderPlugin;
 import org.bimserver.plugins.schema.SchemaDefinition;
 import org.bimserver.plugins.schema.SchemaException;
 import org.bimserver.utils.CollectionUtils;
 
-public class SchemaFieldIgnoreProviderPlugin implements IgnoreProviderPlugin {
+public class SchemaFieldGuidanceProviderPlugin implements GuidanceProviderPlugin {
 
-	private SchemaFieldIgnoreMap ignoreProvider;
+	private SchemaFieldIgnoreMap guidanceProvider;
 
 	@Override
 	public void init(PluginManager pluginManager) {
 		try {
 			SchemaDefinition schema = pluginManager.requireSchemaDefinition();
-			ignoreProvider = new SchemaFieldIgnoreMap(CollectionUtils.singleSet(Ifc2x3Package.eINSTANCE), schema);
+			guidanceProvider = new SchemaFieldIgnoreMap(CollectionUtils.singleSet(Ifc2x3Package.eINSTANCE), schema);
 		} catch (SchemaException e) {
 			e.printStackTrace();
 		}
@@ -29,7 +29,7 @@ public class SchemaFieldIgnoreProviderPlugin implements IgnoreProviderPlugin {
 
 	@Override
 	public String getDescription() {
-		return "SchemaFieldIgnoreProviderPlugin";
+		return "SchemaFieldGuidanceProviderPlugin";
 	}
 
 	@Override
@@ -38,7 +38,7 @@ public class SchemaFieldIgnoreProviderPlugin implements IgnoreProviderPlugin {
 	}
 
 	@Override
-	public IgnoreProvider getIgnoreProvider() {
-		return ignoreProvider;
+	public GuidanceProvider getGuidanceProvider() {
+		return guidanceProvider;
 	}
 }

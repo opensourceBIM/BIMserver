@@ -1,4 +1,4 @@
-package org.bimserver.plugins.ignoreproviders;
+package org.bimserver.plugins.guidanceproviders;
 
 /******************************************************************************
  * (c) Copyright bimserver.org 2009
@@ -29,7 +29,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
-public class FieldIgnoreMap implements IgnoreProvider {
+public class FieldIgnoreMap implements GuidanceProvider {
 	public static class StructuralFeatureIdentifier {
 		private final String eClass;
 		private final String eStructuralFeature;

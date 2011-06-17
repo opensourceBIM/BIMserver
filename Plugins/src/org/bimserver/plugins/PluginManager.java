@@ -25,11 +25,11 @@ import org.apache.commons.io.output.ByteArrayOutputStream;
 import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.deserializers.EmfDeserializer;
+import org.bimserver.plugins.guidanceproviders.GuidanceProvider;
+import org.bimserver.plugins.guidanceproviders.GuidanceProviderPlugin;
 import org.bimserver.plugins.ifcengine.IfcEngine;
 import org.bimserver.plugins.ifcengine.IfcEngineException;
 import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
-import org.bimserver.plugins.ignoreproviders.IgnoreProvider;
-import org.bimserver.plugins.ignoreproviders.IgnoreProviderPlugin;
 import org.bimserver.plugins.schema.SchemaDefinition;
 import org.bimserver.plugins.schema.SchemaException;
 import org.bimserver.plugins.schema.SchemaPlugin;
@@ -309,12 +309,12 @@ public class PluginManager {
 		return ifcSerializer;
 	}
 
-	public IgnoreProvider requireIgnoreProvider() throws IgnoreProviderException {
-		Collection<IgnoreProviderPlugin> plugins = getPlugins(IgnoreProviderPlugin.class, true);
+	public GuidanceProvider requireGuidanceProvider() throws GuidanceProviderException {
+		Collection<GuidanceProviderPlugin> plugins = getPlugins(GuidanceProviderPlugin.class, true);
 		if (plugins.size() == 0) {
-			throw new IgnoreProviderException("An ignore provider is required");
+			throw new GuidanceProviderException("An ignore provider is required");
 		}
-		return plugins.iterator().next().getIgnoreProvider();
+		return plugins.iterator().next().getGuidanceProvider();
 	}
 
 	public ResourceFetcher getResourceFetcher() {

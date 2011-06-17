@@ -38,7 +38,7 @@ import org.bimserver.models.ifc2x3.IfcGloballyUniqueId;
 import org.bimserver.models.ifc2x3.IfcProject;
 import org.bimserver.models.ifc2x3.IfcRoot;
 import org.bimserver.models.ifc2x3.WrappedValue;
-import org.bimserver.plugins.ignoreproviders.IgnoreProvider;
+import org.bimserver.plugins.guidanceproviders.GuidanceProvider;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.plugins.serializers.OidProvider;
 import org.eclipse.emf.common.util.ECollections;
@@ -157,9 +157,9 @@ public class IfcModel implements IfcModelInterface {
 	}
 
 	@SuppressWarnings("unchecked")
-	public void sortAllAggregates(IgnoreProvider ignoreProvider, IfcRoot ifcRoot) {
+	public void sortAllAggregates(GuidanceProvider guidanceProvider, IfcRoot ifcRoot) {
 		for (EStructuralFeature eStructuralFeature : ifcRoot.eClass().getEAllStructuralFeatures()) {
-			if (!ignoreProvider.shouldIgnoreField(ifcRoot.eClass(), ifcRoot.eClass(), eStructuralFeature)) {
+			if (!guidanceProvider.shouldIgnoreField(ifcRoot.eClass(), ifcRoot.eClass(), eStructuralFeature)) {
 				if (eStructuralFeature.getUpperBound() == -1 || eStructuralFeature.getUpperBound() > 1) {
 					if (eStructuralFeature.getEType() instanceof EClass) {
 						if (Ifc2x3Package.eINSTANCE.getWrappedValue().isSuperTypeOf((EClass) eStructuralFeature.getEType())) {
@@ -167,7 +167,7 @@ public class IfcModel implements IfcModelInterface {
 							sortPrimitiveList(list);
 						} else {
 							EList<EObject> list = (EList<EObject>) ifcRoot.eGet(eStructuralFeature);
-							sortComplexList(ignoreProvider, ifcRoot.eClass(), list, eStructuralFeature);
+							sortComplexList(guidanceProvider, ifcRoot.eClass(), list, eStructuralFeature);
 						}
 					}
 				}
@@ -184,14 +184,14 @@ public class IfcModel implements IfcModelInterface {
 		});
 	}
 
-	private void sortComplexList(final IgnoreProvider ignoreProvider, final EClass originalQueryClass, EList<EObject> list, EStructuralFeature eStructuralFeature) {
+	private void sortComplexList(final GuidanceProvider guidanceProvider, final EClass originalQueryClass, EList<EObject> list, EStructuralFeature eStructuralFeature) {
 		final EClass type = (EClass) eStructuralFeature.getEType();
 		ECollections.sort(list, new Comparator<EObject>() {
 			@Override
 			public int compare(EObject o1, EObject o2) {
 				int i=1;
 				for (EStructuralFeature eStructuralFeature : type.getEAllStructuralFeatures()) {
-					if (!ignoreProvider.shouldIgnoreField(originalQueryClass, type, eStructuralFeature)) {
+					if (!guidanceProvider.shouldIgnoreField(originalQueryClass, type, eStructuralFeature)) {
 						Object val1 = o1.eGet(eStructuralFeature);
 						Object val2 = o2.eGet(eStructuralFeature);
 						if (val1 != null && val2 != null) {

@@ -30,7 +30,7 @@ import javax.xml.bind.Unmarshaller;
 
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.plugins.ResourceFetcher;
-import org.bimserver.plugins.ignoreproviders.FieldIgnoreMap;
+import org.bimserver.plugins.guidanceproviders.FieldIgnoreMap;
 import org.bimserver.plugins.serializers.ClassDefinition;
 import org.bimserver.plugins.serializers.FieldDefinition;
 import org.bimserver.plugins.serializers.PackageDefinition;
