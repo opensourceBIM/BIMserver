@@ -2,8 +2,8 @@
 <genmodel:GenModel xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/Store/generated"
-    modelPluginID="BimServer" dynamicTemplates="true" modelName="Models" updateClasspath="false"
-    rootExtendsInterface="org.bimserver.emf.IdEObject" rootExtendsClass="org.bimserver.emf.IdEObjectImpl"
+    modelPluginID="BimServer" dynamicTemplates="true" forceOverwrite="true" modelName="Models"
+    updateClasspath="false" rootExtendsInterface="org.bimserver.emf.IdEObject" rootExtendsClass="org.bimserver.emf.IdEObjectImpl"
     reflectiveDelegation="true" importerID="org.eclipse.emf.importer.ecore" featureDelegation="Reflective"
     suppressContainment="true" complianceLevel="6.0" copyrightFields="false">
   <foreignModel>models.ecore</foreignModel>
@@ -46,6 +46,10 @@
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="models.ecore#/0/ObjectState">
       <genEnumLiterals ecoreEnumLiteral="models.ecore#/0/ObjectState/ACTIVE"/>
       <genEnumLiterals ecoreEnumLiteral="models.ecore#/0/ObjectState/DELETED"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="models.ecore#/0/MergeIdentifier">
+      <genEnumLiterals ecoreEnumLiteral="models.ecore#/0/MergeIdentifier/NAME"/>
+      <genEnumLiterals ecoreEnumLiteral="models.ecore#/0/MergeIdentifier/GUID"/>
     </genEnums>
     <genClasses ecoreClass="models.ecore#/0/Project">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Project/id"/>
@@ -164,23 +168,40 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Settings/customLogoAddress"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Settings/siteAddress"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/Settings/serializers"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/Settings/ignoreFiles"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/Settings/guidanceProviders"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Settings/headerAddition"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Settings/footerAddition"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Settings/mergeIdentifier"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Settings/cacheOutputFiles"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/Settings/ifcEngines"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/Settings/plugins"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/0/Serializer">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Serializer/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Serializer/description"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Serializer/extension"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Serializer/contentType"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Serializer/className"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Serializer/enabled"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/Serializer/ignoreFile"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Serializer/defaultSerializer"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/Serializer/guidanceProvider"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/Serializer/settings"/>
     </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IgnoreFile">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IgnoreFile/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IgnoreFile/data"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/IgnoreFile/serializers"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/IgnoreFile/settings"/>
+    <genClasses ecoreClass="models.ecore#/0/GuidanceProvider">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/GuidanceProvider/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/GuidanceProvider/data"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/GuidanceProvider/serializers"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/GuidanceProvider/settings"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/IfcEngine">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcEngine/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcEngine/active"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/IfcEngine/settings"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/Plugin">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Plugin/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Plugin/enabled"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/Plugin/settings"/>
     </genClasses>
   </genPackages>
   <genPackages prefix="Log" basePackage="org.bimserver.models" disposableProviderFactory="true"
@@ -218,7 +239,7 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/1/UserAddedToProject/user"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/1/UserAddedToProject/project"/>
     </genClasses>
-    <genClasses ecoreClass="models.ecore#/1/NewIgnoreFileUploaded"/>
+    <genClasses ecoreClass="models.ecore#/1/NewGuidanceProviderUploaded"/>
     <genClasses ecoreClass="models.ecore#/1/Download"/>
     <genClasses ecoreClass="models.ecore#/1/UserRemovedFromProject">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/1/UserRemovedFromProject/user"/>

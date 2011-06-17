@@ -24,7 +24,7 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.IOUtils;
 import org.bimserver.ServerInitializer;
-import org.bimserver.interfaces.objects.SIgnoreFile;
+import org.bimserver.interfaces.objects.SGuidanceProvider;
 import org.bimserver.interfaces.objects.SSettings;
 import org.bimserver.interfaces.objects.SUserType;
 import org.bimserver.models.store.Settings;
@@ -76,10 +76,10 @@ public class SettingsServlet extends HttpServlet {
 									File file = ServerInitializer.getResourceFetcher().getFile("ignore.xml");
 									ByteArrayOutputStream baos = new ByteArrayOutputStream();
 									IOUtils.copy(inputStream, baos);
-									SIgnoreFile ignoreFile = new SIgnoreFile();
+									SGuidanceProvider guidanceProvider = new SGuidanceProvider();
 //									ignoreFile.setName(name);
-									ignoreFile.setData(baos.toByteArray());
-									loginManager.getService().addIgnoreFile(ignoreFile);
+									guidanceProvider.setData(baos.toByteArray());
+									loginManager.getService().addGuidanceProvider(guidanceProvider);
 									response.sendRedirect(getServletContext().getContextPath() + "/settings.jsp");
 									return;
 								} else if (fieldName.equals("colladasettings")) {

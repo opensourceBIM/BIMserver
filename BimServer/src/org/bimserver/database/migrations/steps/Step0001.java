@@ -59,7 +59,7 @@ public class Step0001 extends Migration {
 		schema.createEReference(userAddedToProjectClass, "user", userClass, Multiplicity.SINGLE);
 		schema.createEReference(userAddedToProjectClass, "project", projectClass, Multiplicity.SINGLE);
 		
-		schema.createEClass(logPackage, "NewIgnoreFileUploaded", logActionClass);
+		schema.createEClass(logPackage, "NewGuidanceProviderUploaded", logActionClass);
 		
 		schema.createEClass(logPackage, "Download", logActionClass);
 		

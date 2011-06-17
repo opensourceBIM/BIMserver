@@ -4,7 +4,7 @@ import java.util.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
-public class SIgnoreFile
+public class SGuidanceProvider
 {
 	private long oid;
 	
@@ -66,7 +66,7 @@ public class SIgnoreFile
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		SIgnoreFile other = (SIgnoreFile) obj;
+		SGuidanceProvider other = (SGuidanceProvider) obj;
 		if (oid != other.oid)
 			return false;
 		return true;

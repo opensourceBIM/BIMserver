@@ -63,8 +63,8 @@ import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.LogFactory;
 import org.bimserver.models.log.ServerStarted;
+import org.bimserver.models.store.GuidanceProvider;
 import org.bimserver.models.store.IfcEngine;
-import org.bimserver.models.store.IgnoreFile;
 import org.bimserver.models.store.Serializer;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StorePackage;
@@ -342,21 +342,21 @@ public class ServerInitializer implements ServletContextListener {
 
 	private void createSerializersAndEngines() throws BimDeadlockException, BimDatabaseException, SchemaException {
 		BimDatabaseSession session = bimDatabase.createSession(true);
-		Condition ignoreFileCondition = new AttributeCondition(StorePackage.eINSTANCE.getIgnoreFile_Name(), new StringLiteral("default"));
-		Map<Long, IgnoreFile> ignoreFiles = session.query(ignoreFileCondition, IgnoreFile.class, false);
-		IgnoreFile ignoreFile = null;
-		if (ignoreFiles.size() == 0) {
-			ignoreFile = StoreFactory.eINSTANCE.createIgnoreFile();
-			ignoreFile.setName("default");
+		Condition ignoreFileCondition = new AttributeCondition(StorePackage.eINSTANCE.getGuidanceProvider_Name(), new StringLiteral("default"));
+		Map<Long, GuidanceProvider> guidanceProviders = session.query(ignoreFileCondition, GuidanceProvider.class, false);
+		GuidanceProvider guidanceProvider = null;
+		if (guidanceProviders.size() == 0) {
+			guidanceProvider = StoreFactory.eINSTANCE.createGuidanceProvider();
+			guidanceProvider.setName("default");
 			Set<EPackage> packages = new HashSet<EPackage>();
 			packages.add(Ifc2x3Package.eINSTANCE);
 			ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 			SchemaFieldIgnoreMap schemaFieldIgnoreMap = new SchemaFieldIgnoreMap(packages, pluginManager.requireSchemaDefinition());
 			schemaFieldIgnoreMap.write(outputStream);
-			ignoreFile.setData(outputStream.toByteArray());
-			session.store(ignoreFile);
+			guidanceProvider.setData(outputStream.toByteArray());
+			session.store(guidanceProvider);
 		} else {
-			ignoreFile = ignoreFiles.values().iterator().next();
+			guidanceProvider = guidanceProviders.values().iterator().next();
 		}
 		for (SerializerPlugin serializerPlugin : pluginManager.getAllSerializerPlugins(true)) {
 			String name = serializerPlugin.getDefaultSerializerName();
@@ -370,11 +370,11 @@ public class ServerInitializer implements ServletContextListener {
 				serializer.setDescription(serializerPlugin.getDescription());
 				serializer.setContentType(serializerPlugin.getDefaultContentType());
 				serializer.setExtension(serializerPlugin.getDefaultExtension());
-				serializer.setIgnoreFile(ignoreFile);
+				serializer.setGuidanceProvider(guidanceProvider);
 				session.store(serializer);
 			}
 		}
-		session.store(ignoreFile);
+		session.store(guidanceProvider);
 		for (IfcEnginePlugin ifcEnginePlugin : pluginManager.getAllIfcEnginePlugins(true)) {
 			String name = ifcEnginePlugin.getName();
 			Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getIfcEngine_Name(), new StringLiteral(name));

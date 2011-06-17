@@ -191,8 +191,8 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="siteAddress" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="serializers" upperBound="-1"
           eType="#/0/Serializer" eOpposite="#/0/Serializer/settings"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="ignoreFiles" upperBound="-1"
-          eType="#/0/IgnoreFile" eOpposite="#/0/IgnoreFile/settings"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="guidanceProviders" upperBound="-1"
+          eType="#/0/GuidanceProvider" eOpposite="#/0/GuidanceProvider/settings"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="headerAddition" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="footerAddition" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="mergeIdentifier" eType="#/0/MergeIdentifier"/>
@@ -210,18 +210,18 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="className" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="enabled" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultSerializer" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="ignoreFile" eType="#/0/IgnoreFile"
-          eOpposite="#/0/IgnoreFile/serializers"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="guidanceProvider" eType="#/0/GuidanceProvider"
+          eOpposite="#/0/GuidanceProvider/serializers"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="settings" eType="#/0/Settings"
           eOpposite="#/0/Settings/serializers"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="IgnoreFile">
+    <eClassifiers xsi:type="ecore:EClass" name="GuidanceProvider">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="data" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EByteArray"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="serializers" upperBound="-1"
-          eType="#/0/Serializer" eOpposite="#/0/Serializer/ignoreFile"/>
+          eType="#/0/Serializer" eOpposite="#/0/Serializer/guidanceProvider"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="settings" eType="#/0/Settings"
-          eOpposite="#/0/Settings/ignoreFiles"/>
+          eOpposite="#/0/Settings/guidanceProviders"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EEnum" name="MergeIdentifier">
       <eLiterals name="NAME"/>
@@ -275,7 +275,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="user" eType="#/0/User"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="project" eType="#/0/Project"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="NewIgnoreFileUploaded" eSuperTypes="#/1/LogAction"/>
+    <eClassifiers xsi:type="ecore:EClass" name="NewGuidanceProviderUploaded" eSuperTypes="#/1/LogAction"/>
     <eClassifiers xsi:type="ecore:EClass" name="Download" eSuperTypes="#/1/LogAction"/>
     <eClassifiers xsi:type="ecore:EClass" name="UserRemovedFromProject" eSuperTypes="#/1/LogAction">
       <eStructuralFeatures xsi:type="ecore:EReference" name="user" eType="#/0/User"/>

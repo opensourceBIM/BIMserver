@@ -15,7 +15,7 @@ public class Step0004 extends Migration {
 	@Override
 	public void migrate(Schema schema) {
 		EClass serializerClass = schema.createEClass(schema.getEPackage("store"), "Serializer");
-		EClass ignoreFileClass = schema.createEClass(schema.getEPackage("store"), "IgnoreFile");
+		EClass guidanceProviderClass = schema.createEClass(schema.getEPackage("store"), "GuidanceProvider");
 		EClass settingsClass = schema.getEClass("store", "Settings");
 
 		schema.createEAttribute(serializerClass, "name", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
@@ -25,25 +25,25 @@ public class Step0004 extends Migration {
 		schema.createEAttribute(serializerClass, "className", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(serializerClass, "enabled", EcorePackage.eINSTANCE.getEBoolean(), Multiplicity.SINGLE);
 		schema.createEAttribute(serializerClass, "defaultSerializer", EcorePackage.eINSTANCE.getEBoolean(), Multiplicity.SINGLE);
-		EReference serializerIgnoreFileReference = schema.createEReference(serializerClass, "ignoreFile", ignoreFileClass, Multiplicity.SINGLE);
+		EReference serializerGuidanceProviderReference = schema.createEReference(serializerClass, "guidanceProvider", guidanceProviderClass, Multiplicity.SINGLE);
 		EReference serializerSettingsReference = schema.createEReference(serializerClass, "settings", settingsClass, Multiplicity.SINGLE);
 		
-		schema.createEAttribute(ignoreFileClass, "name", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
-		schema.createEAttribute(ignoreFileClass, "data", EcorePackage.eINSTANCE.getEByteArray(), Multiplicity.SINGLE);
-		EReference ignoreFileSerializers = schema.createEReference(ignoreFileClass, "serializers", serializerClass, Multiplicity.MANY);
-		EReference ignoreFileSettingsReference = schema.createEReference(ignoreFileClass, "settings", settingsClass, Multiplicity.SINGLE);
+		schema.createEAttribute(guidanceProviderClass, "name", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
+		schema.createEAttribute(guidanceProviderClass, "data", EcorePackage.eINSTANCE.getEByteArray(), Multiplicity.SINGLE);
+		EReference guidanceProviderSerializers = schema.createEReference(guidanceProviderClass, "serializers", serializerClass, Multiplicity.MANY);
+		EReference guidanceProviderSettingsReference = schema.createEReference(guidanceProviderClass, "settings", settingsClass, Multiplicity.SINGLE);
 		
 		EReference settingsSerializersReference = schema.createEReference(settingsClass, "serializers", serializerClass, Multiplicity.MANY);
-		EReference settingsIgnoreFilesReference = schema.createEReference(settingsClass, "ignoreFiles", ignoreFileClass, Multiplicity.MANY);
+		EReference settingsGuidanceProviderReference = schema.createEReference(settingsClass, "guidanceProviders", guidanceProviderClass, Multiplicity.MANY);
 		
 		serializerSettingsReference.setEOpposite(settingsSerializersReference);
-		ignoreFileSettingsReference.setEOpposite(settingsIgnoreFilesReference);
+		guidanceProviderSettingsReference.setEOpposite(settingsGuidanceProviderReference);
 
 		settingsSerializersReference.setEOpposite(serializerSettingsReference);
-		settingsIgnoreFilesReference.setEOpposite(ignoreFileSettingsReference);
+		settingsGuidanceProviderReference.setEOpposite(guidanceProviderSettingsReference);
 		
-		ignoreFileSerializers.setEOpposite(serializerIgnoreFileReference);
-		serializerIgnoreFileReference.setEOpposite(ignoreFileSerializers);
+		guidanceProviderSerializers.setEOpposite(serializerGuidanceProviderReference);
+		serializerGuidanceProviderReference.setEOpposite(guidanceProviderSerializers);
 	}
 
 	@Override
