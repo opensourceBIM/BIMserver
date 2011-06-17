@@ -10,9 +10,9 @@ import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.compare.Compare;
 import org.bimserver.ifc.compare.CompareResult;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.plugins.IgnoreProviderException;
+import org.bimserver.plugins.GuidanceProviderException;
 import org.bimserver.plugins.PluginManager;
-import org.bimserver.plugins.ignoreproviders.IgnoreProvider;
+import org.bimserver.plugins.guidanceproviders.GuidanceProvider;
 import org.bimserver.shared.UserException;
 import org.bimserver.shared.SCompareResult.SCompareIdentifier;
 import org.bimserver.shared.SCompareResult.SCompareType;
@@ -42,13 +42,13 @@ public class CompareDatabaseAction extends BimDatabaseAction<CompareResult> {
 
 	@Override
 	public CompareResult execute() throws UserException, BimDeadlockException, BimDatabaseException {
-		IgnoreProvider ignoreProvider;
+		GuidanceProvider guidanceProvider;
 		try {
-			ignoreProvider = pluginManager.requireIgnoreProvider();
-		} catch (IgnoreProviderException e) {
+			guidanceProvider = pluginManager.requireGuidanceProvider();
+		} catch (GuidanceProviderException e) {
 			throw new UserException(e);
 		}
-		Compare compare = new Compare(ignoreProvider);
+		Compare compare = new Compare(guidanceProvider);
 		CompareResult compareResults = CompareCache.getInstance().getCompareResults(roid1, roid2, sCompareType, sCompareIdentifier);
 		if (compareResults == null) {
 			IfcModel model1 = new DownloadDatabaseAction(getDatabaseSession(), getAccessMethod(), settingsManager, mergerFactory, roid1, actingUoid).execute();

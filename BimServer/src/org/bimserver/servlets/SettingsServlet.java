@@ -71,17 +71,6 @@ public class SettingsServlet extends HttpServlet {
 									ServerInitializer.getSettingsManager().setSettings(Service.convert(sSettings, Settings.class, null));
 									response.sendRedirect(getServletContext().getContextPath() + "/settings.jsp?msg=settingsfileuploadok");
 									return;
-								} else if (fieldName.equals("ignorefile")) {
-									InputStream inputStream = item.getInputStream();
-									File file = ServerInitializer.getResourceFetcher().getFile("ignore.xml");
-									ByteArrayOutputStream baos = new ByteArrayOutputStream();
-									IOUtils.copy(inputStream, baos);
-									SGuidanceProvider guidanceProvider = new SGuidanceProvider();
-//									ignoreFile.setName(name);
-									guidanceProvider.setData(baos.toByteArray());
-									loginManager.getService().addGuidanceProvider(guidanceProvider);
-									response.sendRedirect(getServletContext().getContextPath() + "/settings.jsp");
-									return;
 								} else if (fieldName.equals("colladasettings")) {
 									InputStream inputStream = item.getInputStream();
 									File file = ServerInitializer.getResourceFetcher().getFile("collada.xml");
@@ -145,14 +134,6 @@ public class SettingsServlet extends HttpServlet {
 								read = fileIn.read(buffer);
 							}
 						}
-						return;
-					} else if (action.equals("downloadignorefile")) {
-						response.setContentType("text/xml");
-						response.setHeader("Content-Disposition", "attachment; filename=\"ignore.xml\"");
-						URL resource = ServerInitializer.getResourceFetcher().getResource("ignore.xml");
-						InputStream openStream = resource.openStream();
-						IOUtils.copy(openStream, response.getOutputStream());
-						openStream.close();
 						return;
 					} else if (action.equals("downloadcolladasettings")) {
 						response.setContentType("text/xml");

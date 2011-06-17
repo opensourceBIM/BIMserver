@@ -24,13 +24,13 @@ import org.bimserver.models.store.EidClash;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.StoreFactory;
-import org.bimserver.plugins.IgnoreProviderException;
+import org.bimserver.plugins.GuidanceProviderException;
 import org.bimserver.plugins.PluginManager;
+import org.bimserver.plugins.guidanceproviders.GuidanceProvider;
 import org.bimserver.plugins.ifcengine.IfcEngine;
 import org.bimserver.plugins.ifcengine.IfcEngineClash;
 import org.bimserver.plugins.ifcengine.IfcEngineException;
 import org.bimserver.plugins.ifcengine.IfcEngineModel;
-import org.bimserver.plugins.ignoreproviders.IgnoreProvider;
 import org.bimserver.plugins.serializers.EmfSerializer;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
@@ -152,14 +152,14 @@ public class FindClashesDatabaseAction extends BimDatabaseAction<Set<? extends C
 		if (!(newObject instanceof WrappedValue) && !(newObject instanceof IfcGloballyUniqueId)) {
 			newModel.add(newObject.getOid(), newObject);
 		}
-		IgnoreProvider ignoreProvider;
+		GuidanceProvider guidanceProvider;
 		try {
-			ignoreProvider = pluginManager.requireIgnoreProvider();
-		} catch (IgnoreProviderException e) {
+			guidanceProvider = pluginManager.requireGuidanceProvider();
+		} catch (GuidanceProviderException e) {
 			throw new UserException(e);
 		}
 		for (EStructuralFeature eStructuralFeature : original.eClass().getEAllStructuralFeatures()) {
-			if (!ignoreProvider.shouldIgnoreField(originalEClass, original.eClass(), eStructuralFeature)) {
+			if (!guidanceProvider.shouldIgnoreField(originalEClass, original.eClass(), eStructuralFeature)) {
 				Object get = original.eGet(eStructuralFeature);
 				if (eStructuralFeature instanceof EAttribute) {
 					if (get instanceof Float || get instanceof Double) {

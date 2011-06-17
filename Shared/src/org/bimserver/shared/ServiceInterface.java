@@ -599,19 +599,19 @@ public interface ServiceInterface {
 	@WebMethod(action = "updateSerializer")
 	void updateSerializer(SSerializer serializer) throws UserException, ServerException;
 	
-	@WebMethod(action = "getAllIgnoreFiles")
+	@WebMethod(action = "getAllGuidanceProviders")
 	List<SGuidanceProvider> getAllGuidanceProviders() throws UserException, ServerException;
 	
-	@WebMethod(action = "getIgnoreFileById")
+	@WebMethod(action = "getGuidanceProviderById")
 	SGuidanceProvider getGuidanceProviderById(long oid) throws UserException, ServerException;
 	
-	@WebMethod(action = "addIgnoreFile")
+	@WebMethod(action = "addGuidanceProvider")
 	void addGuidanceProvider(SGuidanceProvider guidanceProvider) throws UserException, ServerException;
 	
-	@WebMethod(action = "updateIgnoreFile")
+	@WebMethod(action = "updateGuidanceProvider")
 	void updateGuidanceProvider(SGuidanceProvider guidanceProvider) throws UserException, ServerException;
 	
-	@WebMethod(action = "deleteIgnoreFile")
+	@WebMethod(action = "deleteGuidanceProvider")
 	void deleteGuidanceProvider(long ifid) throws UserException, ServerException;
 
 	@WebMethod(action = "deleteSerializer")
