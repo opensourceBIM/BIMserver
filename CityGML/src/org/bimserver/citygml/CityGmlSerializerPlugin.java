@@ -47,4 +47,14 @@ public class CityGmlSerializerPlugin implements SerializerPlugin {
 	public String getDefaultExtension() {
 		return "gml";
 	}
+
+	@Override
+	public boolean requiresIfcEngine() {
+		return true;
+	}
+
+	@Override
+	public boolean requiresIfcStepSerializer() {
+		return true;
+	}
 }

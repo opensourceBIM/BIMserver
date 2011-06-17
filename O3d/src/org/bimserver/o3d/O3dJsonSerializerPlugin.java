@@ -44,4 +44,14 @@ public class O3dJsonSerializerPlugin implements SerializerPlugin {
 	public String getDefaultExtension() {
 		return "o3djson";
 	}
+
+	@Override
+	public boolean requiresIfcEngine() {
+		return true;
+	}
+
+	@Override
+	public boolean requiresIfcStepSerializer() {
+		return true;
+	}
 }

@@ -44,4 +44,14 @@ public class O3dTgzSerializerPlugin implements SerializerPlugin {
 	public String getDefaultExtension() {
 		return "o3dtgz";
 	}
+
+	@Override
+	public boolean requiresIfcEngine() {
+		return true;
+	}
+
+	@Override
+	public boolean requiresIfcStepSerializer() {
+		return true;
+	}
 }

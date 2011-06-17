@@ -1,4 +1,3 @@
-<%@page import="org.bimserver.interfaces.objects.SIgnoreFile"%>
 <%@page import="org.bimserver.interfaces.objects.SSerializer"%>
 <%@ include file="header.jsp"%>
 <%@page import="java.util.List"%>
@@ -16,6 +15,7 @@
 <%@page import="org.bimserver.interfaces.objects.SUserType"%>
 <%@page import="org.bimserver.shared.ServiceInterface"%>
 <%@page import="org.bimserver.shared.UserException"%>
+<%@page import="org.bimserver.interfaces.objects.SGuidanceProvider"%>
 <div class="sidebar">
 <ul>
 </ul>
@@ -38,33 +38,33 @@
 	}
 %>
 <div class="tabber" id="settingstabber">
-<div class="tabbertab" id="ignorefilestab" title="Ignore files">
-<a href="addignorefile.jsp">Add Ignore File</a>
+<div class="tabbertab" id="ignorefilestab" title="Guidance Providers">
+<a href="addignorefile.jsp">Add Guidance Provider</a>
 <table class="formatted">
 <tr><th>Name</th><th>Serializers</th><th>Actions</th></tr>
 <%
-	List<SIgnoreFile> ignoreFiles = service.getAllGuidanceProviders();
-	for (SIgnoreFile ignoreFile : ignoreFiles) {
+	List<SGuidanceProvider> guidanceProviders = service.getAllGuidanceProviders();
+	for (SGuidanceProvider guidanceProvider : guidanceProviders) {
 %>
 	<tr>
-		<td><%=ignoreFile.getName() %></td>
-		<td><%=ignoreFile.getSerializers().size() %></td>
-		<td><a href="editignorefile.jsp?ifid=<%=ignoreFile.getOid()%>">Edit</a> <a href="deleteignorefile.jsp?ifid=<%=ignoreFile.getOid()%>">Delete</a></td></tr>
+		<td><%=guidanceProvider.getName() %></td>
+		<td><%=guidanceProvider.getSerializers().size() %></td>
+		<td><a href="editguidanceprovider.jsp?ifid=<%=guidanceProvider.getOid()%>">Edit</a> <a href="deleteguidanceprovider.jsp?ifid=<%=guidanceProvider.getOid()%>">Delete</a></td></tr>
 <%
 	}
 %>
 </table>
 </div>
 <div class="tabbertab" id="serializerstab" title="Serializers">
-<a href="addserializer.jsp">Add Serializer</a>
+<a href="addserializer1.jsp">Add Serializer</a>
 <table class="formatted">
 <tr><th>Name</th><th>Description</th><th>Type</th><th>Content Type</th><th>Ignore file</th><th>State</th><th>Actions</th></tr>
 <%
 	List<SSerializer> serializers = service.getAllSerializers(false);
 	for (SSerializer serializer : serializers) {
-		SIgnoreFile ignoreFile = null;
-		if (serializer.getIgnoreFileId() != -1) {
-	ignoreFile = service.getGuidanceProviderById(serializer.getIgnoreFileId());
+		SGuidanceProvider guidanceProvider = null;
+		if (serializer.getGuidanceProviderId() != -1) {
+			guidanceProvider = service.getGuidanceProviderById(serializer.getGuidanceProviderId());
 		}
 %>
 	<tr>
@@ -72,7 +72,7 @@
 		<td><%=serializer.getDescription() %></td>
 		<td><%=serializer.getClassName() %></td>
 		<td><%=serializer.getContentType() %></td>
-		<td><%=ignoreFile == null ? "none" : ignoreFile.getName() %></td>
+		<td><%=guidanceProvider == null ? "none" : guidanceProvider.getName() %></td>
 		<td class="<%=serializer.isEnabled() ? "enabledSerializer" : "disabledSerializer" %>"> <%=serializer.isEnabled() ? "Enabled" : "Disabled" %></td>
 		<td>
 <%

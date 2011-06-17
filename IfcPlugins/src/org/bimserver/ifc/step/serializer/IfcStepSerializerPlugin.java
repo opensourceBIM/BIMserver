@@ -44,4 +44,14 @@ public class IfcStepSerializerPlugin implements SerializerPlugin {
 	public String getDefaultExtension() {
 		return "ifc";
 	}
+
+	@Override
+	public boolean requiresIfcEngine() {
+		return false;
+	}
+
+	@Override
+	public boolean requiresIfcStepSerializer() {
+		return false;
+	}
 }
