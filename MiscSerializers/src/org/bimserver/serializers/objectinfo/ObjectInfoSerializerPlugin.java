@@ -44,4 +44,14 @@ public class ObjectInfoSerializerPlugin implements SerializerPlugin {
 	public String getDefaultExtension() {
 		return "html";
 	}
+
+	@Override
+	public boolean requiresIfcEngine() {
+		return false;
+	}
+
+	@Override
+	public boolean requiresIfcStepSerializer() {
+		return false;
+	}
 }

@@ -44,4 +44,14 @@ public class KmzSerializerPlugin implements SerializerPlugin {
 	public String getDefaultExtension() {
 		return "kmz";
 	}
+
+	@Override
+	public boolean requiresIfcEngine() {
+		return true;
+	}
+
+	@Override
+	public boolean requiresIfcStepSerializer() {
+		return true;
+	}
 }

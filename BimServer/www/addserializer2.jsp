@@ -1,5 +1,4 @@
 <%@ include file="header.jsp"%>
-<%@page import="org.bimserver.interfaces.objects.SIgnoreFile"%>
 <%@page import="org.bimserver.interfaces.objects.SSerializer"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.Collections"%>
@@ -16,13 +15,16 @@
 <%@page import="org.bimserver.interfaces.objects.SUserType"%>
 <%@page import="org.bimserver.shared.ServiceInterface"%>
 <%@page import="org.bimserver.shared.UserException"%>
+<%@page import="org.bimserver.interfaces.objects.SGuidanceProvider"%>
 <div class="sidebar">
 <ul>
 </ul>
 </div>
 <div class="content">
-<h1>Add serializer</h1>
+<h1>Add serializer (2)</h1>
+<fieldset>
 <%
+	String type = request.getParameter("type");
 	ServiceInterface service = loginManager.getService();
 	if (request.getParameter("next") != null) {
 		SSerializer serializer = new SSerializer();
@@ -30,9 +32,9 @@
 		serializer.setDescription(request.getParameter("description"));
 		serializer.setEnabled(true);
 		try {
-			serializer.setIgnoreFileId(Long.parseLong(request.getParameter("ignorefile")));
+			serializer.setGuidanceProviderId(Long.parseLong(request.getParameter("guidanceProvider")));
 		} catch (NumberFormatException e) {
-			serializer.setIgnoreFileId(-1);			
+			serializer.setGuidanceProviderId(-1);			
 		}
 		serializer.setClassName(request.getParameter("type"));
 		try {
@@ -44,6 +46,7 @@
 	}
 %>
 <form>
+<input type="hidden" name="type" value="<%=type%>"/>
 <table>
 <tr>
 	<td><label for="name">Name</label></td>
@@ -54,31 +57,25 @@
 	<td><input name="description" id="description" value="<%=request.getParameter("description") != null ? request.getParameter("description") : ""%>"></input></td>
 </tr>
 <tr>
-	<td><label for="type">Type</label></td>
-	<td><select id="type" name="type">
-<%
-	for (String className : service.getAllSerializerClassNames()) {
-		if (request.getParameter("type") != null && className.equals(request.getParameter("type"))) {
-%>
-		<option value="<%=className%>" selected="selected"><%=className %></option>
-<%
-		} else {
-%>
-		<option value="<%=className%>"><%=className %></option>
-<%			
-		}
-	}
-%>
-	</select></td>
+	<td><label for="contentType">Content Type</label></td>
+	<td><input name="contentType" id="contentType" value="<%=request.getParameter("contentType") != null ? request.getParameter("contentType") : ""%>"></input></td>
 </tr>
 <tr>
-	<td><label for="ignorefile">Ignore file</label></td>
-	<td><select name="ignorefile" id="ignorefile">
+	<td><label for="extension">Extension</label></td>
+	<td><input name="extension" id="extension" value="<%=request.getParameter("extension") != null ? request.getParameter("extension") : ""%>"></input></td>
+</tr>
+<tr>
+	<td><label for="type">Type</label></td>
+	<td><%=type %></td>
+</tr>
+<tr>
+	<td><label for="guidanceProvider">Guidance provider</label></td>
+	<td><select name="guidanceProvider" id="guidanceProvider">
 		<option value="[none]">[None]</option>
 <%
-	for (SIgnoreFile ignoreFile : service.getAllIgnoreFiles()) {
+	for (SGuidanceProvider guidanceProvider : service.getAllGuidanceProviders()) {
 %>
-	<option value="<%=ignoreFile.getOid()%>"<%=(request.getParameter("ignorefile") != null && request.getParameter("ignorefile").equals("" + ignoreFile.getOid())) ? " selected=\"selected\"" : "" %>><%=ignoreFile.getName()%></option>
+	<option value="<%=guidanceProvider.getOid()%>"<%=(request.getParameter("guidanceProvider") != null && request.getParameter("guidanceProvider").equals("" + guidanceProvider.getOid())) ? " selected=\"selected\"" : "" %>><%=guidanceProvider.getName()%></option>
 <%
 	}
 %>
@@ -96,4 +93,5 @@ $(function(){
 	$("#name").focus();
 });
 </script>
+</fieldset>
 <%@ include file="footer.jsp"%>

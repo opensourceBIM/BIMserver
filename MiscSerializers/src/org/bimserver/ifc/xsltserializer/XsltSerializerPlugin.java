@@ -43,4 +43,14 @@ public class XsltSerializerPlugin implements SerializerPlugin {
 	public String getDefaultExtension() {
 		return "xml";
 	}
+
+	@Override
+	public boolean requiresIfcEngine() {
+		return false;
+	}
+
+	@Override
+	public boolean requiresIfcStepSerializer() {
+		return false;
+	}
 }

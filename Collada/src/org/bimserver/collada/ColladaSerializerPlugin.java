@@ -44,4 +44,14 @@ public class ColladaSerializerPlugin implements SerializerPlugin {
 	public String getDefaultExtension() {
 		return "dae";
 	}
+
+	@Override
+	public boolean requiresIfcEngine() {
+		return true;
+	}
+
+	@Override
+	public boolean requiresIfcStepSerializer() {
+		return true;
+	}
 }
