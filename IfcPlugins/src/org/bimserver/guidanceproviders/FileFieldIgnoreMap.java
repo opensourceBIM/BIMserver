@@ -1,4 +1,4 @@
-package org.bimserver.ignoreproviders;
+package org.bimserver.guidanceproviders;
 
 /******************************************************************************
  * (c) Copyright bimserver.org 2009
