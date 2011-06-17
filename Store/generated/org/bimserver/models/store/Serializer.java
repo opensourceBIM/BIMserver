@@ -32,7 +32,7 @@ import org.bimserver.emf.IdEObject;
  *   <li>{@link org.bimserver.models.store.Serializer#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.Serializer#getDescription <em>Description</em>}</li>
  *   <li>{@link org.bimserver.models.store.Serializer#getExtension <em>Extension</em>}</li>
- *   <li>{@link org.bimserver.models.store.Serializer#getContenttype <em>Contenttype</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Serializer#getContentType <em>Content Type</em>}</li>
  *   <li>{@link org.bimserver.models.store.Serializer#getClassName <em>Class Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.Serializer#isEnabled <em>Enabled</em>}</li>
  *   <li>{@link org.bimserver.models.store.Serializer#isDefaultSerializer <em>Default Serializer</em>}</li>
@@ -127,30 +127,30 @@ public interface Serializer extends IdEObject
 	void setExtension(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Contenttype</b></em>' attribute.
+	 * Returns the value of the '<em><b>Content Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Contenttype</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Content Type</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Contenttype</em>' attribute.
-	 * @see #setContenttype(String)
-	 * @see org.bimserver.models.store.StorePackage#getSerializer_Contenttype()
+	 * @return the value of the '<em>Content Type</em>' attribute.
+	 * @see #setContentType(String)
+	 * @see org.bimserver.models.store.StorePackage#getSerializer_ContentType()
 	 * @model
 	 * @generated
 	 */
-	String getContenttype();
+	String getContentType();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.Serializer#getContenttype <em>Contenttype</em>}' attribute.
+	 * Sets the value of the '{@link org.bimserver.models.store.Serializer#getContentType <em>Content Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Contenttype</em>' attribute.
-	 * @see #getContenttype()
+	 * @param value the new value of the '<em>Content Type</em>' attribute.
+	 * @see #getContentType()
 	 * @generated
 	 */
-	void setContenttype(String value);
+	void setContentType(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Class Name</b></em>' attribute.

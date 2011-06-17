@@ -1356,13 +1356,13 @@ public interface StorePackage extends EPackage
 	int SERIALIZER__EXTENSION = 2;
 
 	/**
-	 * The feature id for the '<em><b>Contenttype</b></em>' attribute.
+	 * The feature id for the '<em><b>Content Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SERIALIZER__CONTENTTYPE = 3;
+	int SERIALIZER__CONTENT_TYPE = 3;
 
 	/**
 	 * The feature id for the '<em><b>Class Name</b></em>' attribute.
@@ -2904,15 +2904,15 @@ public interface StorePackage extends EPackage
 	EAttribute getSerializer_Extension();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Serializer#getContenttype <em>Contenttype</em>}'.
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Serializer#getContentType <em>Content Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Contenttype</em>'.
-	 * @see org.bimserver.models.store.Serializer#getContenttype()
+	 * @return the meta object for the attribute '<em>Content Type</em>'.
+	 * @see org.bimserver.models.store.Serializer#getContentType()
 	 * @see #getSerializer()
 	 * @generated
 	 */
-	EAttribute getSerializer_Contenttype();
+	EAttribute getSerializer_ContentType();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Serializer#getClassName <em>Class Name</em>}'.
@@ -4151,12 +4151,12 @@ public interface StorePackage extends EPackage
 		EAttribute SERIALIZER__EXTENSION = eINSTANCE.getSerializer_Extension();
 
 		/**
-		 * The meta object literal for the '<em><b>Contenttype</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Content Type</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute SERIALIZER__CONTENTTYPE = eINSTANCE.getSerializer_Contenttype();
+		EAttribute SERIALIZER__CONTENT_TYPE = eINSTANCE.getSerializer_ContentType();
 
 		/**
 		 * The meta object literal for the '<em><b>Class Name</b></em>' attribute feature.

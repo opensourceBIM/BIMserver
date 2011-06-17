@@ -36,7 +36,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.SerializerImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SerializerImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SerializerImpl#getExtension <em>Extension</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.SerializerImpl#getContenttype <em>Contenttype</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.SerializerImpl#getContentType <em>Content Type</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SerializerImpl#getClassName <em>Class Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SerializerImpl#isEnabled <em>Enabled</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SerializerImpl#isDefaultSerializer <em>Default Serializer</em>}</li>
@@ -144,8 +144,8 @@ public class SerializerImpl extends IdEObjectImpl implements Serializer
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getContenttype() {
-		return (String)eGet(StorePackage.Literals.SERIALIZER__CONTENTTYPE, true);
+	public String getContentType() {
+		return (String)eGet(StorePackage.Literals.SERIALIZER__CONTENT_TYPE, true);
 	}
 
 	/**
@@ -153,8 +153,8 @@ public class SerializerImpl extends IdEObjectImpl implements Serializer
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setContenttype(String newContenttype) {
-		eSet(StorePackage.Literals.SERIALIZER__CONTENTTYPE, newContenttype);
+	public void setContentType(String newContentType) {
+		eSet(StorePackage.Literals.SERIALIZER__CONTENT_TYPE, newContentType);
 	}
 
 	/**

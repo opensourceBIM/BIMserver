@@ -22,7 +22,7 @@ public class GetSerializerByContentTypeDatabaseAction extends BimDatabaseAction<
 
 	@Override
 	public Serializer execute() throws UserException, BimDeadlockException, BimDatabaseException {
-		Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getSerializer_Contenttype(), new StringLiteral(contentType));
+		Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getSerializer_ContentType(), new StringLiteral(contentType));
 		return getDatabaseSession().querySingle(condition, Serializer.class, false);
 	}
 }
