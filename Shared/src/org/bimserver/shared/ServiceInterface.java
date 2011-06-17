@@ -45,7 +45,7 @@ import org.bimserver.interfaces.objects.SClashDetectionSettings;
 import org.bimserver.interfaces.objects.SEidClash;
 import org.bimserver.interfaces.objects.SGeoTag;
 import org.bimserver.interfaces.objects.SGuidClash;
-import org.bimserver.interfaces.objects.SIgnoreFile;
+import org.bimserver.interfaces.objects.SGuidanceProvider;
 import org.bimserver.interfaces.objects.SLogAction;
 import org.bimserver.interfaces.objects.SMergeIdentifier;
 import org.bimserver.interfaces.objects.SProject;
@@ -600,19 +600,19 @@ public interface ServiceInterface {
 	void updateSerializer(SSerializer serializer) throws UserException, ServerException;
 	
 	@WebMethod(action = "getAllIgnoreFiles")
-	List<SIgnoreFile> getAllIgnoreFiles() throws UserException, ServerException;
+	List<SGuidanceProvider> getAllGuidanceProviders() throws UserException, ServerException;
 	
 	@WebMethod(action = "getIgnoreFileById")
-	SIgnoreFile getIgnoreFileById(long oid) throws UserException, ServerException;
+	SGuidanceProvider getGuidanceProviderById(long oid) throws UserException, ServerException;
 	
 	@WebMethod(action = "addIgnoreFile")
-	void addIgnoreFile(SIgnoreFile ignoreFile) throws UserException, ServerException;
+	void addGuidanceProvider(SGuidanceProvider guidanceProvider) throws UserException, ServerException;
 	
 	@WebMethod(action = "updateIgnoreFile")
-	void updateIgnoreFile(SIgnoreFile ignoreFile) throws UserException, ServerException;
+	void updateGuidanceProvider(SGuidanceProvider guidanceProvider) throws UserException, ServerException;
 	
 	@WebMethod(action = "deleteIgnoreFile")
-	void deleteIgnoreFile(long ifid) throws UserException, ServerException;
+	void deleteGuidanceProvider(long ifid) throws UserException, ServerException;
 
 	@WebMethod(action = "deleteSerializer")
 	void deleteSerializer(long sid) throws UserException, ServerException;

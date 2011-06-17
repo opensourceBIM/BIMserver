@@ -8,6 +8,7 @@
 <%@ include file="header.jsp" %>
 <jsp:include page="serversettingsmenu.jsp"/>
 <div class="content">
+<h1>Plugins</h1>
 <%
 	if (request.getParameter("action") != null) {
 		String action = request.getParameter("action");

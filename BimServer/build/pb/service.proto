@@ -255,15 +255,15 @@ service ServiceInterface {
 
 	rpc updateSerializer (UpdateSerializerRequest) returns (Void);
 
-	rpc getAllIgnoreFiles (GetAllIgnoreFilesRequest) returns (GetAllIgnoreFilesResponse);
+	rpc getAllGuidanceProviders (GetAllGuidanceProvidersRequest) returns (GetAllGuidanceProvidersResponse);
 
-	rpc getIgnoreFileById (GetIgnoreFileByIdRequest) returns (GetIgnoreFileByIdResponse);
+	rpc getGuidanceProviderById (GetGuidanceProviderByIdRequest) returns (GetGuidanceProviderByIdResponse);
 
-	rpc addIgnoreFile (AddIgnoreFileRequest) returns (Void);
+	rpc addGuidanceProvider (AddGuidanceProviderRequest) returns (Void);
 
-	rpc updateIgnoreFile (UpdateIgnoreFileRequest) returns (Void);
+	rpc updateGuidanceProvider (UpdateGuidanceProviderRequest) returns (Void);
 
-	rpc deleteIgnoreFile (DeleteIgnoreFileRequest) returns (Void);
+	rpc deleteGuidanceProvider (DeleteGuidanceProviderRequest) returns (Void);
 
 	rpc deleteSerializer (DeleteSerializerRequest) returns (Void);
 
@@ -638,8 +638,8 @@ message SRevision {
 	optional int32 id = 1;
 	optional SCheckinState state = 2;
 	optional int64 size = 3;
-	optional string comment = 4;
-	optional int64 date = 5;
+	optional int64 date = 4;
+	optional string comment = 5;
 	optional string tag = 6;
 	repeated int64 lastClashes = 7;
 	optional int64 oid = 8;
@@ -1532,7 +1532,7 @@ message SSerializer {
 	optional string description = 4;
 	optional string extension = 5;
 	optional int64 oid = 6;
-	optional int64 ignoreFileId = 7;
+	optional int64 guidanceProviderId = 7;
 	optional int64 settingsId = 8;
 }
 
@@ -1566,10 +1566,10 @@ message UpdateSerializerRequest {
 	optional SSerializer unknown = 1;
 }
 
-message GetAllIgnoreFilesRequest {
+message GetAllGuidanceProvidersRequest {
 }
 
-message SIgnoreFile {
+message SGuidanceProvider {
 	optional string name = 1;
 	optional bytes data = 2;
 	optional int64 oid = 3;
@@ -1577,29 +1577,29 @@ message SIgnoreFile {
 	repeated int64 serializers = 5;
 }
 
-message GetAllIgnoreFilesResponse {
-	repeated SIgnoreFile value = 2;
+message GetAllGuidanceProvidersResponse {
+	repeated SGuidanceProvider value = 2;
 	optional string errorMessage = 1;
 }
 
-message GetIgnoreFileByIdRequest {
+message GetGuidanceProviderByIdRequest {
 	optional int64 unknown = 1;
 }
 
-message GetIgnoreFileByIdResponse {
-	optional SIgnoreFile value = 2;
+message GetGuidanceProviderByIdResponse {
+	optional SGuidanceProvider value = 2;
 	optional string errorMessage = 1;
 }
 
-message AddIgnoreFileRequest {
-	optional SIgnoreFile unknown = 1;
+message AddGuidanceProviderRequest {
+	optional SGuidanceProvider unknown = 1;
 }
 
-message UpdateIgnoreFileRequest {
-	optional SIgnoreFile unknown = 1;
+message UpdateGuidanceProviderRequest {
+	optional SGuidanceProvider unknown = 1;
 }
 
-message DeleteIgnoreFileRequest {
+message DeleteGuidanceProviderRequest {
 	optional int64 unknown = 1;
 }
 

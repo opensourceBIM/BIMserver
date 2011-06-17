@@ -127,4 +127,9 @@ public class FieldIgnoreMap implements IgnoreProvider {
 		}
 		return false;
 	}
+
+	@Override
+	public boolean shouldIgnoreClass(EClass eClass) {
+		return false;
+	}
 }

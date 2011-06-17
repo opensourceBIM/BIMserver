@@ -61,8 +61,7 @@
 			}
 		}
 %>
-<div class="tabber" id="settingstabber">
-<div class="tabbertab" id="basicsettingstab" title="Basic settings">
+<h1>Server Settings</h1>
 <form method="post">
 <table class="formatted infotable">
 	<tr>
@@ -174,11 +173,9 @@
 </table>
 <input name="save" type="submit" value="Save" /></form>
 </div>
-</div>
 <%
 	} else {
 		out.println("Insufficient rights");
 	}
 %>
-</div>
 <%@ include file="footer.jsp"%>

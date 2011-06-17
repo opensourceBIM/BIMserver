@@ -6,4 +6,5 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 public interface IgnoreProvider {
 
 	boolean shouldIgnoreField(EClass originalClass, EClass eClass, EStructuralFeature eStructuralFeature);
+	boolean shouldIgnoreClass(EClass eClass);
 }

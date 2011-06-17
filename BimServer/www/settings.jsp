@@ -18,11 +18,10 @@
 <%@page import="org.bimserver.shared.UserException"%>
 <div class="sidebar">
 <ul>
-	<li><a href="<%=getServletContext().getContextPath()%>/settings?action=downloadignorefile">Download ignore.xml</a></li>
-	<li><a href="<%=getServletContext().getContextPath()%>/settings?action=downloadsettingsfile">Download settings.xml</a></li>
 </ul>
 </div>
 <div class="content">
+<h1>Settings</h1>
 <%
 	ServiceInterface service = loginManager.getService();
 	if (request.getParameter("action") != null) {
@@ -44,7 +43,7 @@
 <table class="formatted">
 <tr><th>Name</th><th>Serializers</th><th>Actions</th></tr>
 <%
-	List<SIgnoreFile> ignoreFiles = service.getAllIgnoreFiles();
+	List<SIgnoreFile> ignoreFiles = service.getAllGuidanceProviders();
 	for (SIgnoreFile ignoreFile : ignoreFiles) {
 %>
 	<tr>
@@ -65,7 +64,7 @@
 	for (SSerializer serializer : serializers) {
 		SIgnoreFile ignoreFile = null;
 		if (serializer.getIgnoreFileId() != -1) {
-			ignoreFile = service.getIgnoreFileById(serializer.getIgnoreFileId());
+	ignoreFile = service.getGuidanceProviderById(serializer.getIgnoreFileId());
 		}
 %>
 	<tr>

@@ -375,8 +375,8 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 			newVal.setId(sRevision.getId());
 			newVal.setState(SCheckinState.values()[sRevision.getState().ordinal()]);
 			newVal.setSize(sRevision.getSize());
-			newVal.setComment(sRevision.getComment());
 			newVal.setDate(sRevision.getDate().getTime());
+			newVal.setComment(sRevision.getComment());
 			newVal.setTag(sRevision.getTag());
 			for (java.lang.Long o : sRevision.getLastClashes()) {
 				newVal.addLastClashes(o);
@@ -545,8 +545,8 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 				v.setId(val.getId());
 				v.setState(org.bimserver.interfaces.objects.SCheckinState.values()[val.getState().ordinal()]);
 				v.setSize(val.getSize());
-				v.setComment(val.getComment());
 				v.setDate(new Date(val.getDate()));
+				v.setComment(val.getComment());
 				v.setTag(val.getTag());
 				v.setOid(val.getOid());
 				v.setLastConcreteRevisionId(val.getLastConcreteRevisionId());
@@ -599,8 +599,8 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 				v.setId(val.getId());
 				v.setState(org.bimserver.interfaces.objects.SCheckinState.values()[val.getState().ordinal()]);
 				v.setSize(val.getSize());
-				v.setComment(val.getComment());
 				v.setDate(new Date(val.getDate()));
+				v.setComment(val.getComment());
 				v.setTag(val.getTag());
 				v.setOid(val.getOid());
 				v.setLastConcreteRevisionId(val.getLastConcreteRevisionId());
@@ -1849,7 +1849,7 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 				v.setDescription(val.getDescription());
 				v.setExtension(val.getExtension());
 				v.setOid(val.getOid());
-				v.setIgnoreFileId(val.getIgnoreFileId());
+				v.setGuidanceProviderId(val.getGuidanceProviderId());
 				v.setSettingsId(val.getSettingsId());
 				realResult.add(v);
 			}
@@ -1873,7 +1873,7 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 				v.setDescription(val.getDescription());
 				v.setExtension(val.getExtension());
 				v.setOid(val.getOid());
-				v.setIgnoreFileId(val.getIgnoreFileId());
+				v.setGuidanceProviderId(val.getGuidanceProviderId());
 				v.setSettingsId(val.getSettingsId());
 				realResult.add(v);
 			}
@@ -1904,7 +1904,7 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 			newVal.setDescription(unknown.getDescription());
 			newVal.setExtension(unknown.getExtension());
 			newVal.setOid(unknown.getOid());
-			newVal.setIgnoreFileId(unknown.getIgnoreFileId());
+			newVal.setGuidanceProviderId(unknown.getGuidanceProviderId());
 			newVal.setSettingsId(unknown.getSettingsId());
 			requestBuilder.setUnknown(newVal.build());
 			AddSerializerRequest request = requestBuilder.build();
@@ -1922,7 +1922,7 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 			newVal.setDescription(unknown.getDescription());
 			newVal.setExtension(unknown.getExtension());
 			newVal.setOid(unknown.getOid());
-			newVal.setIgnoreFileId(unknown.getIgnoreFileId());
+			newVal.setGuidanceProviderId(unknown.getGuidanceProviderId());
 			newVal.setSettingsId(unknown.getSettingsId());
 			requestBuilder.setUnknown(newVal.build());
 			UpdateSerializerRequest request = requestBuilder.build();
@@ -1930,15 +1930,15 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 		} catch (Exception e) {}
 	}
 
-	public java.util.List<org.bimserver.interfaces.objects.SIgnoreFile> getAllIgnoreFiles() {
+	public java.util.List<org.bimserver.interfaces.objects.SGuidanceProvider> getAllGuidanceProviders() {
 		try {
-			GetAllIgnoreFilesRequest.Builder requestBuilder = GetAllIgnoreFilesRequest.newBuilder();
-			GetAllIgnoreFilesRequest request = requestBuilder.build();
-			GetAllIgnoreFilesResponse response = service.getAllIgnoreFiles(rpcController, request);
-			java.util.List<org.bimserver.interfaces.objects.SIgnoreFile> realResult = new ArrayList<org.bimserver.interfaces.objects.SIgnoreFile>();
-			List<Service.SIgnoreFile> originalList = response.getValueList();
-			for (Service.SIgnoreFile val : originalList) {
-				org.bimserver.interfaces.objects.SIgnoreFile v = new org.bimserver.interfaces.objects.SIgnoreFile();
+			GetAllGuidanceProvidersRequest.Builder requestBuilder = GetAllGuidanceProvidersRequest.newBuilder();
+			GetAllGuidanceProvidersRequest request = requestBuilder.build();
+			GetAllGuidanceProvidersResponse response = service.getAllGuidanceProviders(rpcController, request);
+			java.util.List<org.bimserver.interfaces.objects.SGuidanceProvider> realResult = new ArrayList<org.bimserver.interfaces.objects.SGuidanceProvider>();
+			List<Service.SGuidanceProvider> originalList = response.getValueList();
+			for (Service.SGuidanceProvider val : originalList) {
+				org.bimserver.interfaces.objects.SGuidanceProvider v = new org.bimserver.interfaces.objects.SGuidanceProvider();
 				v.setName(val.getName());
 				v.setData(val.getData().toByteArray());
 				v.setOid(val.getOid());
@@ -1950,22 +1950,22 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 		return null;
 	}
 
-	public org.bimserver.interfaces.objects.SIgnoreFile getIgnoreFileById(long unknown) {
+	public org.bimserver.interfaces.objects.SGuidanceProvider getGuidanceProviderById(long unknown) {
 		try {
-			GetIgnoreFileByIdRequest.Builder requestBuilder = GetIgnoreFileByIdRequest.newBuilder();
+			GetGuidanceProviderByIdRequest.Builder requestBuilder = GetGuidanceProviderByIdRequest.newBuilder();
 			requestBuilder.setUnknown(unknown);
-			GetIgnoreFileByIdRequest request = requestBuilder.build();
-			GetIgnoreFileByIdResponse response = service.getIgnoreFileById(rpcController, request);
-			org.bimserver.interfaces.objects.SIgnoreFile realResult = new org.bimserver.interfaces.objects.SIgnoreFile();
+			GetGuidanceProviderByIdRequest request = requestBuilder.build();
+			GetGuidanceProviderByIdResponse response = service.getGuidanceProviderById(rpcController, request);
+			org.bimserver.interfaces.objects.SGuidanceProvider realResult = new org.bimserver.interfaces.objects.SGuidanceProvider();
 			return realResult;
 		} catch (Exception e) {}
 		return null;
 	}
 
-	public void addIgnoreFile(org.bimserver.interfaces.objects.SIgnoreFile unknown) {
+	public void addGuidanceProvider(org.bimserver.interfaces.objects.SGuidanceProvider unknown) {
 		try {
-			AddIgnoreFileRequest.Builder requestBuilder = AddIgnoreFileRequest.newBuilder();
-			Service.SIgnoreFile.Builder newVal = SIgnoreFile.newBuilder();
+			AddGuidanceProviderRequest.Builder requestBuilder = AddGuidanceProviderRequest.newBuilder();
+			Service.SGuidanceProvider.Builder newVal = SGuidanceProvider.newBuilder();
 			newVal.setName(unknown.getName());
 			newVal.setData(ByteString.copyFrom(unknown.getData()));
 			newVal.setOid(unknown.getOid());
@@ -1974,15 +1974,15 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 				newVal.addSerializers(o);
 			}
 			requestBuilder.setUnknown(newVal.build());
-			AddIgnoreFileRequest request = requestBuilder.build();
-			service.addIgnoreFile(rpcController, request);
+			AddGuidanceProviderRequest request = requestBuilder.build();
+			service.addGuidanceProvider(rpcController, request);
 		} catch (Exception e) {}
 	}
 
-	public void updateIgnoreFile(org.bimserver.interfaces.objects.SIgnoreFile unknown) {
+	public void updateGuidanceProvider(org.bimserver.interfaces.objects.SGuidanceProvider unknown) {
 		try {
-			UpdateIgnoreFileRequest.Builder requestBuilder = UpdateIgnoreFileRequest.newBuilder();
-			Service.SIgnoreFile.Builder newVal = SIgnoreFile.newBuilder();
+			UpdateGuidanceProviderRequest.Builder requestBuilder = UpdateGuidanceProviderRequest.newBuilder();
+			Service.SGuidanceProvider.Builder newVal = SGuidanceProvider.newBuilder();
 			newVal.setName(unknown.getName());
 			newVal.setData(ByteString.copyFrom(unknown.getData()));
 			newVal.setOid(unknown.getOid());
@@ -1991,17 +1991,17 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 				newVal.addSerializers(o);
 			}
 			requestBuilder.setUnknown(newVal.build());
-			UpdateIgnoreFileRequest request = requestBuilder.build();
-			service.updateIgnoreFile(rpcController, request);
+			UpdateGuidanceProviderRequest request = requestBuilder.build();
+			service.updateGuidanceProvider(rpcController, request);
 		} catch (Exception e) {}
 	}
 
-	public void deleteIgnoreFile(long unknown) {
+	public void deleteGuidanceProvider(long unknown) {
 		try {
-			DeleteIgnoreFileRequest.Builder requestBuilder = DeleteIgnoreFileRequest.newBuilder();
+			DeleteGuidanceProviderRequest.Builder requestBuilder = DeleteGuidanceProviderRequest.newBuilder();
 			requestBuilder.setUnknown(unknown);
-			DeleteIgnoreFileRequest request = requestBuilder.build();
-			service.deleteIgnoreFile(rpcController, request);
+			DeleteGuidanceProviderRequest request = requestBuilder.build();
+			service.deleteGuidanceProvider(rpcController, request);
 		} catch (Exception e) {}
 	}
 

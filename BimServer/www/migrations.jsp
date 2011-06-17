@@ -9,7 +9,7 @@ if (!loginManager.getService().isLoggedIn()) {
 	response.sendRedirect("login.jsp");
 } else {
 %>
-<h1>BIMserver Database Migrations</h1>
+<h1>Migrations</h1>
 <%
 	if (request.getParameter("migrate") != null) {
 		try {

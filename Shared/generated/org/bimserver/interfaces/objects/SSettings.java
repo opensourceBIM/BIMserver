@@ -30,7 +30,7 @@ public class SSettings
 	private java.lang.String customLogoAddress;
 	private java.lang.String siteAddress;
 	private List<Long> serializers = new ArrayList<Long>();
-	private List<Long> ignoreFiles = new ArrayList<Long>();
+	private List<Long> guidanceProviders = new ArrayList<Long>();
 	private java.lang.String headerAddition;
 	private java.lang.String footerAddition;
 	private SMergeIdentifier mergeIdentifier;
@@ -156,12 +156,12 @@ public class SSettings
 	public void setSerializers(List<Long> serializers) {
 		this.serializers = serializers;
 	}
-	public List<Long> getIgnoreFiles() {
-		return ignoreFiles;
+	public List<Long> getGuidanceProviders() {
+		return guidanceProviders;
 	}
 
-	public void setIgnoreFiles(List<Long> ignoreFiles) {
-		this.ignoreFiles = ignoreFiles;
+	public void setGuidanceProviders(List<Long> guidanceProviders) {
+		this.guidanceProviders = guidanceProviders;
 	}
 
 	public java.lang.String getHeaderAddition() {

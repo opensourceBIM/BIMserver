@@ -22,7 +22,7 @@ public class SSerializer
 	private java.lang.String className;
 	private boolean enabled;
 	private boolean defaultSerializer;
-	private long ignoreFileId;
+	private long guidanceProviderId;
 	private long settingsId;
 
 	public java.lang.String getName() {
@@ -80,12 +80,12 @@ public class SSerializer
 	public void setDefaultSerializer(boolean defaultSerializer) {
 		this.defaultSerializer = defaultSerializer;
 	}
-	public long getIgnoreFileId() {
-		return ignoreFileId;
+	public long getGuidanceProviderId() {
+		return guidanceProviderId;
 	}
 
-	public void setIgnoreFileId(long ignoreFileId) {
-		this.ignoreFileId = ignoreFileId;
+	public void setGuidanceProviderId(long guidanceProviderId) {
+		this.guidanceProviderId = guidanceProviderId;
 	}
 	
 	public long getSettingsId() {

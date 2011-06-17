@@ -46,14 +46,14 @@ import javax.mail.internet.MimeMessage;
 
 import org.bimserver.MergerFactory;
 import org.bimserver.ServerInfo;
-import org.bimserver.ServerInfo.ServerState;
 import org.bimserver.SettingsManager;
+import org.bimserver.ServerInfo.ServerState;
 import org.bimserver.cache.DiskCacheManager;
 import org.bimserver.database.BimDatabase;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
-import org.bimserver.database.actions.AddIgnoreFileDatabaseAction;
+import org.bimserver.database.actions.AddGuidanceProviderDatabaseAction;
 import org.bimserver.database.actions.AddProjectDatabaseAction;
 import org.bimserver.database.actions.AddSerializerDatabaseAction;
 import org.bimserver.database.actions.AddUserDatabaseAction;
@@ -65,7 +65,7 @@ import org.bimserver.database.actions.CheckinDatabaseAction;
 import org.bimserver.database.actions.CheckinPart1DatabaseAction;
 import org.bimserver.database.actions.CheckinPart2DatabaseAction;
 import org.bimserver.database.actions.CompareDatabaseAction;
-import org.bimserver.database.actions.DeleteIgnoreFileDatabaseAction;
+import org.bimserver.database.actions.DeleteGuidanceProviderDatabaseAction;
 import org.bimserver.database.actions.DeleteProjectDatabaseAction;
 import org.bimserver.database.actions.DeleteSerializerDatabaseAction;
 import org.bimserver.database.actions.DeleteUserDatabaseAction;
@@ -74,7 +74,7 @@ import org.bimserver.database.actions.GetAllAuthorizedUsersOfProjectDatabaseActi
 import org.bimserver.database.actions.GetAllCheckoutsByUserDatabaseAction;
 import org.bimserver.database.actions.GetAllCheckoutsOfProjectDatabaseAction;
 import org.bimserver.database.actions.GetAllCheckoutsOfRevisionDatabaseAction;
-import org.bimserver.database.actions.GetAllIgnoreFilesDatabaseAction;
+import org.bimserver.database.actions.GetAllGuidanceProvidersDatabaseAction;
 import org.bimserver.database.actions.GetAllNonAuthorizedProjectsOfUserDatabaseAction;
 import org.bimserver.database.actions.GetAllNonAuthorizedUsersOfProjectDatabaseAction;
 import org.bimserver.database.actions.GetAllProjectsDatabaseAction;
@@ -91,7 +91,7 @@ import org.bimserver.database.actions.GetDataObjectByOidDatabaseAction;
 import org.bimserver.database.actions.GetDataObjectsByTypeDatabaseAction;
 import org.bimserver.database.actions.GetDatabaseInformationAction;
 import org.bimserver.database.actions.GetGeoTagDatabaseAction;
-import org.bimserver.database.actions.GetIgnoreFileByIdDatabaseAction;
+import org.bimserver.database.actions.GetGuidanceProviderByIdDatabaseAction;
 import org.bimserver.database.actions.GetLogsDatabaseAction;
 import org.bimserver.database.actions.GetProjectByNameDatabaseAction;
 import org.bimserver.database.actions.GetProjectByPoidDatabaseAction;
@@ -111,7 +111,7 @@ import org.bimserver.database.actions.UndeleteProjectDatabaseAction;
 import org.bimserver.database.actions.UndeleteUserDatabaseAction;
 import org.bimserver.database.actions.UpdateClashDetectionSettingsDatabaseAction;
 import org.bimserver.database.actions.UpdateGeoTagDatabaseAction;
-import org.bimserver.database.actions.UpdateIgnoreFileDatabaseAction;
+import org.bimserver.database.actions.UpdateGuidanceProviderDatabaseAction;
 import org.bimserver.database.actions.UpdateProjectDatabaseAction;
 import org.bimserver.database.actions.UpdateRevisionDatabaseAction;
 import org.bimserver.database.actions.UpdateSerializerDatabaseAction;
@@ -136,7 +136,7 @@ import org.bimserver.interfaces.objects.SClashDetectionSettings;
 import org.bimserver.interfaces.objects.SEidClash;
 import org.bimserver.interfaces.objects.SGeoTag;
 import org.bimserver.interfaces.objects.SGuidClash;
-import org.bimserver.interfaces.objects.SIgnoreFile;
+import org.bimserver.interfaces.objects.SGuidanceProvider;
 import org.bimserver.interfaces.objects.SLogAction;
 import org.bimserver.interfaces.objects.SMergeIdentifier;
 import org.bimserver.interfaces.objects.SProject;
@@ -159,7 +159,7 @@ import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.ClashDetectionSettings;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.GeoTag;
-import org.bimserver.models.store.IgnoreFile;
+import org.bimserver.models.store.GuidanceProvider;
 import org.bimserver.models.store.MergeIdentifier;
 import org.bimserver.models.store.ObjectState;
 import org.bimserver.models.store.Project;
@@ -183,17 +183,11 @@ import org.bimserver.shared.DatabaseInformation;
 import org.bimserver.shared.LongActionState;
 import org.bimserver.shared.SCheckinResult;
 import org.bimserver.shared.SCompareResult;
-import org.bimserver.shared.SCompareResult.SCompareIdentifier;
-import org.bimserver.shared.SCompareResult.SCompareType;
-import org.bimserver.shared.SCompareResult.SObjectAdded;
-import org.bimserver.shared.SCompareResult.SObjectModified;
-import org.bimserver.shared.SCompareResult.SObjectRemoved;
 import org.bimserver.shared.SDataObject;
 import org.bimserver.shared.SDownloadResult;
 import org.bimserver.shared.SLongAction;
 import org.bimserver.shared.SMigration;
 import org.bimserver.shared.SPlugin;
-import org.bimserver.shared.SPlugin.SPluginState;
 import org.bimserver.shared.SRevisionSummary;
 import org.bimserver.shared.SUserSession;
 import org.bimserver.shared.ServerException;
@@ -201,6 +195,12 @@ import org.bimserver.shared.ServiceException;
 import org.bimserver.shared.ServiceInterface;
 import org.bimserver.shared.Token;
 import org.bimserver.shared.UserException;
+import org.bimserver.shared.SCompareResult.SCompareIdentifier;
+import org.bimserver.shared.SCompareResult.SCompareType;
+import org.bimserver.shared.SCompareResult.SObjectAdded;
+import org.bimserver.shared.SCompareResult.SObjectModified;
+import org.bimserver.shared.SCompareResult.SObjectRemoved;
+import org.bimserver.shared.SPlugin.SPluginState;
 import org.bimserver.tools.generators.GenerateUtils;
 import org.bimserver.utils.FakeClosingInputStream;
 import org.bimserver.utils.Hashers;
@@ -2297,11 +2297,11 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public List<SIgnoreFile> getAllIgnoreFiles() throws UserException, ServerException {
+	public List<SGuidanceProvider> getAllGuidanceProviders() throws UserException, ServerException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimDatabase.createReadOnlySession();
 		try {
-			return convert(session.executeAction(new GetAllIgnoreFilesDatabaseAction(session, accessMethod), DEADLOCK_RETRIES), SIgnoreFile.class);
+			return convert(session.executeAction(new GetAllGuidanceProvidersDatabaseAction(session, accessMethod), DEADLOCK_RETRIES), SGuidanceProvider.class);
 		} catch (Exception e) {
 			handleException(e);
 		} finally {
@@ -2311,11 +2311,11 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public void addIgnoreFile(SIgnoreFile ignoreFile) throws UserException, ServerException {
+	public void addGuidanceProvider(SGuidanceProvider guidanceProvider) throws UserException, ServerException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimDatabase.createSession(true);
 		try {
-			session.executeAndCommitAction(new AddIgnoreFileDatabaseAction(session, accessMethod, convert(ignoreFile, IgnoreFile.class, session)), DEADLOCK_RETRIES);
+			session.executeAndCommitAction(new AddGuidanceProviderDatabaseAction(session, accessMethod, convert(guidanceProvider, GuidanceProvider.class, session)), DEADLOCK_RETRIES);
 		} catch (Exception e) {
 			handleException(e);
 		} finally {
@@ -2324,11 +2324,11 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public void updateIgnoreFile(SIgnoreFile ignoreFile) throws UserException, ServerException {
+	public void updateGuidanceProvider(SGuidanceProvider guidanceProvider) throws UserException, ServerException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimDatabase.createSession(true);
 		try {
-			session.executeAndCommitAction(new UpdateIgnoreFileDatabaseAction(session, accessMethod, convert(ignoreFile, IgnoreFile.class, session)), DEADLOCK_RETRIES);
+			session.executeAndCommitAction(new UpdateGuidanceProviderDatabaseAction(session, accessMethod, convert(guidanceProvider, GuidanceProvider.class, session)), DEADLOCK_RETRIES);
 		} catch (Exception e) {
 			handleException(e);
 		} finally {
@@ -2351,11 +2351,11 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public SIgnoreFile getIgnoreFileById(long oid) throws UserException, ServerException {
+	public SGuidanceProvider getGuidanceProviderById(long oid) throws UserException, ServerException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimDatabase.createReadOnlySession();
 		try {
-			return convert(session.executeAction(new GetIgnoreFileByIdDatabaseAction(session, accessMethod, oid), DEADLOCK_RETRIES), SIgnoreFile.class);
+			return convert(session.executeAction(new GetGuidanceProviderByIdDatabaseAction(session, accessMethod, oid), DEADLOCK_RETRIES), SGuidanceProvider.class);
 		} catch (Exception e) {
 			handleException(e);
 		} finally {
@@ -2371,11 +2371,11 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public void deleteIgnoreFile(long ifid) throws UserException, ServerException {
+	public void deleteGuidanceProvider(long ifid) throws UserException, ServerException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimDatabase.createSession(true);
 		try {
-			BimDatabaseAction<Void> action = new DeleteIgnoreFileDatabaseAction(session, accessMethod, ifid);
+			BimDatabaseAction<Void> action = new DeleteGuidanceProviderDatabaseAction(session, accessMethod, ifid);
 			session.executeAndCommitAction(action, DEADLOCK_RETRIES);
 		} catch (Exception e) {
 			handleException(e);
