@@ -59,7 +59,7 @@
 <div class="tabbertab" id="serializerstab" title="Serializers">
 <a href="addserializer.jsp">Add Serializer</a>
 <table class="formatted">
-<tr><th>Name</th><th>Description</th><th>Type</th><th>Ignore file</th><th>State</th><th>Actions</th></tr>
+<tr><th>Name</th><th>Description</th><th>Type</th><th>Content Type</th><th>Ignore file</th><th>State</th><th>Actions</th></tr>
 <%
 	List<SSerializer> serializers = service.getAllSerializers(false);
 	for (SSerializer serializer : serializers) {
@@ -72,6 +72,7 @@
 		<td><%=serializer.getName() %></td>
 		<td><%=serializer.getDescription() %></td>
 		<td><%=serializer.getClassName() %></td>
+		<td><%=serializer.getContentType() %></td>
 		<td><%=ignoreFile == null ? "none" : ignoreFile.getName() %></td>
 		<td class="<%=serializer.isEnabled() ? "enabledSerializer" : "disabledSerializer" %>"> <%=serializer.isEnabled() ? "Enabled" : "Disabled" %></td>
 		<td>

@@ -1455,7 +1455,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getSerializer_Contenttype() {
+	public EAttribute getSerializer_ContentType() {
 		return (EAttribute)serializerEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -1838,7 +1838,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 		createEAttribute(serializerEClass, SERIALIZER__NAME);
 		createEAttribute(serializerEClass, SERIALIZER__DESCRIPTION);
 		createEAttribute(serializerEClass, SERIALIZER__EXTENSION);
-		createEAttribute(serializerEClass, SERIALIZER__CONTENTTYPE);
+		createEAttribute(serializerEClass, SERIALIZER__CONTENT_TYPE);
 		createEAttribute(serializerEClass, SERIALIZER__CLASS_NAME);
 		createEAttribute(serializerEClass, SERIALIZER__ENABLED);
 		createEAttribute(serializerEClass, SERIALIZER__DEFAULT_SERIALIZER);
@@ -2031,7 +2031,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage
 		initEAttribute(getSerializer_Name(), ecorePackage.getEString(), "name", null, 0, 1, Serializer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getSerializer_Description(), ecorePackage.getEString(), "description", null, 0, 1, Serializer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getSerializer_Extension(), ecorePackage.getEString(), "extension", null, 0, 1, Serializer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getSerializer_Contenttype(), ecorePackage.getEString(), "contenttype", null, 0, 1, Serializer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSerializer_ContentType(), ecorePackage.getEString(), "contentType", null, 0, 1, Serializer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getSerializer_ClassName(), ecorePackage.getEString(), "className", null, 0, 1, Serializer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getSerializer_Enabled(), ecorePackage.getEBoolean(), "enabled", null, 0, 1, Serializer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getSerializer_DefaultSerializer(), ecorePackage.getEBoolean(), "defaultSerializer", null, 0, 1, Serializer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

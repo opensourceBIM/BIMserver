@@ -80,6 +80,7 @@ public class RpcServer {
 		this.rpcConnectionFactory = rpcConnectionFactory;
 		this.executor = executorService;
 		this.serverThread = new ServerThread();
+		serverThread.setName("RPC Server");
 		serverThread.setDaemon(true);
 		this.waitForCallback = !closeConnectionAfterInvokingService;
 	}
