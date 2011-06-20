@@ -22,6 +22,7 @@ package org.bimserver.ifc;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
@@ -50,18 +51,13 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
 
 public class IfcModel implements IfcModelInterface {
 	
-	private static final Logger LOGGER = LoggerFactory.getLogger(IfcModel.class);
-
 	private BiMap<Long, IdEObject> objects;
-	private Map<String, IfcRoot> guidIndexed;
 	private byte[] checksum;
 	private IdEObject eObject;
 	private int revisionNr;
@@ -70,8 +66,10 @@ public class IfcModel implements IfcModelInterface {
 	private String name;
 	private final Set<IfcModelChangeListener> changeListeners = new LinkedHashSet<IfcModelChangeListener>();
 
-	private static final Map<Class<?>, Class<?>> interfaceClassMap = initInterfaceClassMap();
-	private Map<Class<?>, List<? extends EObject>> index;
+	private static final BiMap<EClass, Class<?>> eClassClassMap = initEClassClassMap();
+	private Map<String, IfcRoot> guidIndexed;
+	private Map<EClass, List<? extends EObject>> index;
+	private Map<EClass, List<? extends EObject>> indexWithSubTypes;
 	private Map<EClass, Map<String, IdEObject>> guidIndex;
 	private Map<EClass, Map<String, IdEObject>> nameIndex;
 
@@ -79,6 +77,17 @@ public class IfcModel implements IfcModelInterface {
 		this.objects = objects;
 	}
 	
+	private static BiMap<EClass, Class<?>> initEClassClassMap() {
+		BiMap<EClass, Class<?>> eClassClassMap = HashBiMap.create();
+		for (EClassifier eClassifier : Ifc2x3Package.eINSTANCE.getEClassifiers()) {
+			if (eClassifier instanceof EClass) {
+				EClass eClass = (EClass)eClassifier;
+				eClassClassMap.put(eClass, eClass.getInstanceClass());
+			}
+		}
+		return eClassClassMap;
+	}
+
 	public IfcModel() {
 		this.objects = HashBiMap.create();
 	}
@@ -87,36 +96,42 @@ public class IfcModel implements IfcModelInterface {
 		this.objects = HashBiMap.create(size);
 	}
 	
-	private static Map<Class<?>, Class<?>> initInterfaceClassMap() {
-		Map<Class<?>, Class<?>> interfaceClassMap = new HashMap<Class<?>, Class<?>>();
-		for (EClassifier eClassifier : Ifc2x3Package.eINSTANCE.getEClassifiers()) {
-			if (eClassifier instanceof EClass) {
-				EClass eClass = (EClass)eClassifier;
-				if (!eClass.isInterface()) {
-					try {
-						Class<?> implementationClass = Class.forName(eClassifier.getInstanceClass().getPackage().getName() + ".impl." + eClassifier.getInstanceClass().getSimpleName() + "Impl");
-						interfaceClassMap.put(implementationClass, eClassifier.getInstanceClass());
-					} catch (ClassNotFoundException e) {
-						LOGGER.error("", e);
-					}
-				}
-			}
-		}
-		return interfaceClassMap;
-	}
-
 	@SuppressWarnings("unchecked")
 	private void buildIndex() {
-		index = new HashMap<Class<?>, List<? extends EObject>>();
+		index = new HashMap<EClass, List<? extends EObject>>();
+		for (EClassifier eClassifier : Ifc2x3Package.eINSTANCE.getEClassifiers()) {
+			if (eClassifier instanceof EClass) {
+				index.put((EClass) eClassifier, new ArrayList<EObject>());
+			}
+		}
 		for (Long key : objects.keySet()) {
 			EObject value = objects.get((Long) key);
 			if (value != null) {
-				Class<?> clazz = interfaceClassMap.get(value.getClass());
-				if (!index.containsKey(clazz)) {
-					index.put(clazz, new ArrayList<EObject>());
-				}
-				((List<EObject>) index.get(clazz)).add(value);
+				((List<EObject>) index.get(value.eClass())).add(value);
 			}
+		}
+	}
+
+	private void buildIndexWithSubTypes() {
+		indexWithSubTypes = new HashMap<EClass, List<? extends EObject>>();
+		for (EClassifier eClassifier : Ifc2x3Package.eINSTANCE.getEClassifiers()) {
+			if (eClassifier instanceof EClass) {
+				indexWithSubTypes.put((EClass) eClassifier, new ArrayList<EObject>());
+			}
+		}
+		for (Long key : objects.keySet()) {
+			IdEObject idEObject = objects.get(key);
+			if (idEObject != null) {
+				buildIndexWithSuperTypes(idEObject, idEObject.eClass());
+			}
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	private void buildIndexWithSuperTypes(IdEObject eObject, EClass eClass) {
+		((List<EObject>) indexWithSubTypes.get(eClass)).add(eObject);
+		for (EClass superClass : eClass.getESuperTypes()) {
+			buildIndexWithSuperTypes(eObject, superClass);
 		}
 	}
 
@@ -227,16 +242,38 @@ public class IfcModel implements IfcModelInterface {
 	}
 
 	@SuppressWarnings("unchecked")
-	public <T extends EObject> List<T> getAll(Class<T> clazz) {
+	public <T extends EObject> List<T> getAll(EClass eClass) {
 		if (index == null) {
 			buildIndex();
 		}
-		List<? extends EObject> list = index.get(clazz);
+		List<? extends EObject> list = index.get(eClass);
 		if (list == null) {
-			return new ArrayList<T>();
+			return Collections.EMPTY_LIST;
 		} else {
 			return (List<T>) list;
 		}
+	}
+	
+	public <T extends EObject> List<T> getAll(Class<T> interfaceClass) {
+		return getAll(eClassClassMap.inverse().get(interfaceClass));
+	}
+
+
+	@SuppressWarnings("unchecked")
+	public <T extends EObject> List<T> getAllWithSubTypes(EClass eClass) {
+		if (indexWithSubTypes == null) {
+			buildIndexWithSubTypes();
+		}
+		List<? extends EObject> list = indexWithSubTypes.get(eClass);
+		if (list == null) {
+			return Collections.EMPTY_LIST;
+		} else {
+			return (List<T>) list;
+		}
+	}
+	
+	public <T extends EObject> List<T> getAllWithSubTypes(Class<T> interfaceClass) {
+		return getAllWithSubTypes(eClassClassMap.inverse().get(interfaceClass));
 	}
 
 	public Set<String> getGuids(EClass eClass) {
