@@ -29,6 +29,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -45,6 +46,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 import org.bimserver.MergerFactory;
+import org.bimserver.MetaDataManager;
 import org.bimserver.ServerInfo;
 import org.bimserver.SettingsManager;
 import org.bimserver.ServerInfo.ServerState;
@@ -202,6 +204,15 @@ import org.bimserver.shared.SCompareResult.SObjectModified;
 import org.bimserver.shared.SCompareResult.SObjectRemoved;
 import org.bimserver.shared.SPlugin.SPluginState;
 import org.bimserver.tools.generators.GenerateUtils;
+import org.bimserver.transactions.AddAttributeChange;
+import org.bimserver.transactions.AddReferenceChange;
+import org.bimserver.transactions.Change;
+import org.bimserver.transactions.CreateObject;
+import org.bimserver.transactions.RemoveAttributeChange;
+import org.bimserver.transactions.RemoveObjectChange;
+import org.bimserver.transactions.RemoveReferenceChange;
+import org.bimserver.transactions.SetAttributeChange;
+import org.bimserver.transactions.SetReferenceChange;
 import org.bimserver.utils.FakeClosingInputStream;
 import org.bimserver.utils.Hashers;
 import org.bimserver.utils.StringUtils;
@@ -232,12 +243,15 @@ public class Service implements ServiceInterface {
 	private final MailSystem mailSystem;
 	private final PluginManager pluginManager;
 	private final DiskCacheManager diskCacheManager;
+	private final MetaDataManager metaDataManager = new MetaDataManager();
+	private Set<Change> changes = null;
 
 	private long currentUoid = -1;
 	private Date activeSince;
 	private Date lastActive;
 	private Token token;
 	private final MergerFactory mergerFactory;
+	private int transactionPid;
 
 	public Service(BimDatabase bimDatabase, EmfSerializerFactory emfSerializerFactory, LongActionManager longActionManager, AccessMethod accessMethod,
 			ServiceFactory serviceFactory, SettingsManager settingsManager, MailSystem mailSystem,
@@ -2520,5 +2534,87 @@ public class Service implements ServiceInterface {
 	@Override
 	public void enablePlugin(String name) {
 		pluginManager.enablePlugin(name);
+	}
+
+	@Override
+	public void startTransaction(int pid) {
+		changes = new HashSet<Change>();
+		transactionPid = pid;
+	}
+
+	@Override
+	public void commitTransaction() throws UserException {
+		if (changes == null) {
+			throw new UserException("No transaction active");
+		}
+		BimDatabaseSession session = bimDatabase.createSession(true);
+		try {
+			for (Change change : changes) {
+				change.execute(transactionPid, session);
+			}
+			session.commit();
+		} catch (BimDeadlockException e) {
+		} catch (BimDatabaseException e) {
+		} finally {
+			session.close();
+		}
+	}
+	
+	@Override
+	public void abortTransaction() {
+		changes = null;
+	}
+
+	@Override
+	public void addAttribute(long oid, String className, String attributeName, Object value) {
+		changes.add(new AddAttributeChange(oid, className, attributeName, value));
+	}
+
+	@Override
+	public void addReference(long oid, String className, String referenceName, long referenceOid, String referenceClassName) {
+		changes.add(new AddReferenceChange(oid, className, referenceName, referenceOid, referenceClassName));
+	}
+
+	@Override
+	public long createObject(String className) throws UserException {
+		long oid = bimDatabase.newOid();
+		CreateObject createObject = new CreateObject(className, oid);
+		changes.add(createObject);
+		return oid;
+	}
+
+	@Override
+	public void removeAttribute(long oid, String className, String attributeName, int index) {
+		changes.add(new RemoveAttributeChange(oid, className, attributeName, index));
+	}
+
+	@Override
+	public void removeObject(String className, long oid) {
+		changes.add(new RemoveObjectChange(className, oid));
+	}
+
+	@Override
+	public void removeReference(long oid, String className, String referenceName, int index) {
+		changes.add(new RemoveReferenceChange(oid, className, referenceName, index));
+	}
+
+	@Override
+	public void setAttribute(long oid, String className, String attributeName, Object value) {
+		changes.add(new SetAttributeChange(oid, className, attributeName, value));
+	}
+
+	@Override
+	public void setReference(long oid, String className, String referenceName, long referenceOid, String referenceClassName) {
+		changes.add(new SetReferenceChange(oid, className, referenceName, referenceOid, referenceClassName));
+	}
+
+	@Override
+	public void unsetAttribute(long oid, String className, String attributeName) {
+		changes.add(new SetAttributeChange(oid, className, attributeName, null));
+	}
+
+	@Override
+	public void unsetReference(long oid, String className, String referenceName) {
+		changes.add(new SetReferenceChange(oid, className, referenceName, -1, null));
 	}
 }

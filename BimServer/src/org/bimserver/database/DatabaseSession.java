@@ -34,6 +34,7 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
 
+import org.bimserver.MetaDataManager;
 import org.bimserver.database.actions.BimDatabaseAction;
 import org.bimserver.database.actions.PostCommitAction;
 import org.bimserver.database.query.conditions.Condition;
@@ -1235,5 +1236,10 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 
 	private ByteBuffer createKeyBuffer(IdEObject object) {
 		return createKeyBuffer(object.getPid(), object.getOid(), object.getRid());
+	}
+
+	@Override
+	public MetaDataManager getMetaDataManager() {
+		return database.getMetaDataManager();
 	}
 }

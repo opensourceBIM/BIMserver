@@ -634,4 +634,18 @@ public interface ServiceInterface {
 	void disablePlugin(String name);
 
 	SSerializer getSerializerByContentType(String contentType) throws UserException, ServerException;
+	
+	void startTransaction(int pid);
+	void commitTransaction() throws UserException;
+	void abortTransaction();
+	long createObject(String className) throws UserException;
+	void removeObject(String className, long oid);
+	void setAttribute(long oid, String className, String attributeName, Object value);
+	void setReference(long oid, String className, String referenceName, long referenceOid, String referenceClassName);
+	void unsetAttribute(long oid, String className, String attributeName);
+	void unsetReference(long oid, String className, String referenceName);
+	void addAttribute(long oid, String className, String attributeName, Object value);
+	void addReference(long oid, String className, String referenceName, long referenceOid, String referenceClassName);
+	void removeAttribute(long oid, String className, String attributeName, int index);
+	void removeReference(long oid, String className, String referenceName, int index);
 }

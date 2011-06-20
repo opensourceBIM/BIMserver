@@ -13,4 +13,6 @@ public interface BimDatabase {
 	Migrator getMigrator();
 
 	void init() throws DatabaseInitException, DatabaseRestartRequiredException;
+
+	long newOid();
 }
