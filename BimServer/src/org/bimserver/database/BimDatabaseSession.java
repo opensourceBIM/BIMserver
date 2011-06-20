@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.bimserver.MetaDataManager;
 import org.bimserver.database.actions.BimDatabaseAction;
 import org.bimserver.database.actions.PostCommitAction;
 import org.bimserver.database.query.conditions.Condition;
@@ -108,4 +109,6 @@ public interface BimDatabaseSession extends OidProvider {
 	BimDatabaseSession newSession(boolean useTransaction);
 
 	void delete(IdEObject object);
+
+	MetaDataManager getMetaDataManager();
 }

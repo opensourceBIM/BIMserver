@@ -28,6 +28,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.bimserver.MetaDataManager;
 import org.bimserver.ServerInfo;
 import org.bimserver.SettingsManager;
 import org.bimserver.ServerInfo.ServerState;
@@ -97,6 +98,7 @@ public class Database implements BimDatabase {
 	private int databaseSchemaVersion;
 	private short tableId;
 	private Migrator migrator;
+	private MetaDataManager metaDataManager = new MetaDataManager();
 
 	public Database(Set<? extends EPackage> emfPackages, ColumnDatabase columnDatabase) throws DatabaseInitException {
 		this.columnDatabase = columnDatabase;
@@ -491,5 +493,9 @@ public class Database implements BimDatabase {
 	//TODO: Implement
 	public boolean shouldIgnoreField(EClass originalQueryClass, EClass eClass, EStructuralFeature feature) {
 		return false;
+	}
+
+	public MetaDataManager getMetaDataManager() {
+		return metaDataManager;
 	}
 }
