@@ -7,12 +7,12 @@ import org.bimserver.emf.IdEObject;
 import org.bimserver.shared.UserException;
 import org.eclipse.emf.ecore.EClass;
 
-public class CreateObject implements Change {
+public class CreateObjectChange implements Change {
 
 	private final long oid;
 	private final String type;
 
-	public CreateObject(String type, long oid) {
+	public CreateObjectChange(String type, long oid) {
 		this.type = type;
 		this.oid = oid;
 	}
