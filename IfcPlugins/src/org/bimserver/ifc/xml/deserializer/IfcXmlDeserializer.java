@@ -253,7 +253,7 @@ public class IfcXmlDeserializer extends EmfDeserializer  {
 	}
 
 	@Override
-	public IfcModelInterface read(InputStream inputStream, long fileSize) throws DeserializeException {
+	public IfcModelInterface read(InputStream inputStream, boolean setOids, long fileSize) throws DeserializeException {
 		XMLInputFactory inputFactory = XMLInputFactory.newInstance();
 		try {
 			XMLStreamReader reader = inputFactory.createXMLStreamReader(inputStream);

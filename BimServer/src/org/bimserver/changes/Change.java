@@ -7,5 +7,5 @@ import org.bimserver.shared.UserException;
 
 public interface Change {
 
-	void execute(int transactionPid, BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException;
+	void execute(int pid, int rid, BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException;
 }

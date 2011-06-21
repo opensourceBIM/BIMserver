@@ -54,7 +54,7 @@ import org.bimserver.cache.DiskCacheManager;
 import org.bimserver.changes.AddAttributeChange;
 import org.bimserver.changes.AddReferenceChange;
 import org.bimserver.changes.Change;
-import org.bimserver.changes.CreateObject;
+import org.bimserver.changes.CreateObjectChange;
 import org.bimserver.changes.RemoveAttributeChange;
 import org.bimserver.changes.RemoveObjectChange;
 import org.bimserver.changes.RemoveReferenceChange;
@@ -132,6 +132,9 @@ import org.bimserver.database.actions.ValidateUserDatabaseAction;
 import org.bimserver.database.migrations.InconsistentModelsException;
 import org.bimserver.database.migrations.MigrationException;
 import org.bimserver.database.migrations.Migrator;
+import org.bimserver.database.query.conditions.AttributeCondition;
+import org.bimserver.database.query.conditions.Condition;
+import org.bimserver.database.query.literals.IntegerLiteral;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelSet;
@@ -357,7 +360,7 @@ public class Service implements ServiceInterface {
 			throw new UserException(e.getMessage());
 		}
 		try {
-			return deserializer.read(inputStream, fileSize);
+			return deserializer.read(inputStream, false, fileSize);
 		} catch (DeserializeException e) {
 			throw new UserException("Invalid IFC XML file", e);
 		}
@@ -400,7 +403,7 @@ public class Service implements ServiceInterface {
 					}
 				};
 			}
-			deserializer.read(in, fileSize);
+			deserializer.read(in, false, fileSize);
 			return deserializer.getModel();
 		} catch (Exception e) {
 			throw new UserException("Invalid IFC file", e);
@@ -595,7 +598,7 @@ public class Service implements ServiceInterface {
 		}
 	}
 
-	private <T> T convert(Enumerator enumerator, Class<T> targetClass) {
+	private <T> T convertEnum(Enumerator enumerator, Class<T> targetClass) {
 		Object[] enumConstants = targetClass.getEnumConstants();
 		for (Object t : enumConstants) {
 			Enum<?> en = (Enum<?>) t;
@@ -620,6 +623,31 @@ public class Service implements ServiceInterface {
 		return null;
 	}
 	
+	private <T> T convert(Enum enumerator, Class<T> targetClass) {
+		Object[] enumConstants = targetClass.getEnumConstants();
+		for (Object t : enumConstants) {
+			Enum<?> en = (Enum<?>) t;
+			try {
+				Method method2 = en.getDeclaringClass().getMethod("getOrdinal");
+				Object invoke = method2.invoke(en);
+				if ((Integer) invoke == enumerator.ordinal()) {
+					return (T) t;
+				}
+			} catch (SecurityException e) {
+				e.printStackTrace();
+			} catch (NoSuchMethodException e) {
+				e.printStackTrace();
+			} catch (IllegalArgumentException e) {
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				e.printStackTrace();
+			} catch (InvocationTargetException e) {
+				e.printStackTrace();
+			}
+		}
+		return null;
+	}
+
 	private <T> List<T> convert(Collection<? extends IdEObject> list, Class<T> targetClass) {
 		List<T> newList = new ArrayList<T>();
 		if (list == null) {
@@ -2543,21 +2571,27 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public void commitTransaction() throws UserException {
+	public long commitTransaction() throws UserException {
 		if (changes == null) {
 			throw new UserException("No transaction active");
 		}
 		BimDatabaseSession session = bimDatabase.createSession(true);
 		try {
+			Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getProject_Id(), new IntegerLiteral(transactionPid));
+			Project project = session.querySingle(condition, Project.class, false);
+			CheckinDatabaseAction checkinDatabaseAction = new CheckinDatabaseAction(session, accessMethod, null, project.getOid(), currentUoid, "comment");
+			checkinDatabaseAction.execute();
 			for (Change change : changes) {
-				change.execute(transactionPid, session);
+				change.execute(transactionPid, checkinDatabaseAction.getConcreteRevision().getId(), session);
 			}
 			session.commit();
+			return checkinDatabaseAction.getRevision().getOid();
 		} catch (BimDeadlockException e) {
 		} catch (BimDatabaseException e) {
 		} finally {
 			session.close();
 		}
+		return -1;
 	}
 	
 	@Override
@@ -2578,7 +2612,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public long createObject(String className) throws UserException {
 		long oid = bimDatabase.newOid();
-		CreateObject createObject = new CreateObject(className, oid);
+		CreateObjectChange createObject = new CreateObjectChange(className, oid);
 		changes.add(createObject);
 		return oid;
 	}

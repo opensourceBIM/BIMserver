@@ -80,5 +80,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/Plugins"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/IfcPlugins"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/buildingSMARTLibrary"/>
+	<classpathentry kind="lib" path="/BimServer/lib/junit-4.8.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

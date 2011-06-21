@@ -26,7 +26,7 @@ public class AddReferenceChange implements Change {
 	}
 
 	@Override
-	public void execute(int pid, BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
+	public void execute(int pid, int rid, BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
 		IdEObject idEObject = bimDatabaseSession.get(bimDatabaseSession.getEClassForName(className), oid, false);
 		if (idEObject == null) {
 			throw new UserException("No object of type " + className + " found in project with pid " + pid);
