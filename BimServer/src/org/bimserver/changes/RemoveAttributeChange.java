@@ -1,4 +1,4 @@
-package org.bimserver.transactions;
+package org.bimserver.changes;
 
 import java.util.List;
 

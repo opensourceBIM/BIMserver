@@ -1,4 +1,4 @@
-package org.bimserver.transactions;
+package org.bimserver.changes;
 
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
