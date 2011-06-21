@@ -24,7 +24,7 @@ public class IfcXmlReadTest {
 		IfcXmlDeserializer ifcXmlReader = new IfcXmlDeserializer();
 		try {
 			File file = TestFile.AC11_XML.getFile();
-			IfcModelInterface model = ifcXmlReader.read(new FileInputStream(file), file.length());
+			IfcModelInterface model = ifcXmlReader.read(new FileInputStream(file), false, file.length());
 			
 			SchemaDefinition schema = SchemaLoader.loadDefaultSchema();
 			

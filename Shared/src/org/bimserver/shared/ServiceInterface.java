@@ -636,7 +636,7 @@ public interface ServiceInterface {
 	SSerializer getSerializerByContentType(String contentType) throws UserException, ServerException;
 	
 	void startTransaction(int pid);
-	void commitTransaction() throws UserException;
+	long commitTransaction() throws UserException;
 	void abortTransaction();
 	long createObject(String className) throws UserException;
 	void removeObject(String className, long oid);

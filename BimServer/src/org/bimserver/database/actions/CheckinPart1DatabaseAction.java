@@ -51,8 +51,8 @@ public class CheckinPart1DatabaseAction extends GenericCheckinDatabaseAction {
 		if (!project.getRevisions().isEmpty() && project.getRevisions().get(project.getRevisions().size()-1).getState() == CheckinState.STORING) {
 			throw new UserException("Another checkin on this project is currently running, please wait and try again");
 		}
-		ConcreteRevision concreteRevision = createNewConcreteRevision(getDatabaseSession(), model.getSize(), poid, actingUid, comment.trim(), CheckinState.STORING);
-		concreteRevision.setChecksum(model.getChecksum());
+		ConcreteRevision concreteRevision = createNewConcreteRevision(getDatabaseSession(), getModel().getSize(), poid, actingUid, comment.trim(), CheckinState.STORING);
+		concreteRevision.setChecksum(getModel().getChecksum());
 		NewRevisionAdded newRevisionAdded = LogFactory.eINSTANCE.createNewRevisionAdded();
 		newRevisionAdded.setDate(new Date());
 		newRevisionAdded.setExecutor(user);

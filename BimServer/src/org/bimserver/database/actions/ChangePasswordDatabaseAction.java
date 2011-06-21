@@ -40,7 +40,7 @@ public class ChangePasswordDatabaseAction extends BimDatabaseAction<Boolean> {
 		if (uoid == actingUoid) {
 			return changePassword(getDatabaseSession(), actingUser, false);
 		} else {
-			if (actingUser.getUserType() == UserType.ADMIN) {
+			if (actingUser.getUserType() == UserType.ADMIN || actingUser.getUserType() == UserType.SYSTEM) {
 				return changePassword(getDatabaseSession(), actingUser, true);
 			} else {
 				throw new UserException("Insufficient rights to change the password of this user");

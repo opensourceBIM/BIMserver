@@ -18,7 +18,7 @@ public class RemoveObjectChange implements Change {
 	}
 
 	@Override
-	public void execute(int transactionPid, BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
+	public void execute(int pid, int rid, BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
 		EClass eClass = bimDatabaseSession.getEClassForName(className);
 		if (eClass == null) {
 			throw new UserException("Unknown classname " + className);

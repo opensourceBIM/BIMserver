@@ -19,7 +19,7 @@ import org.bimserver.shared.UserException;
 
 public abstract class GenericCheckinDatabaseAction extends BimDatabaseAction<ConcreteRevision>{
 
-	protected final IfcModelInterface model;
+	private final IfcModelInterface model;
 
 	public GenericCheckinDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, IfcModelInterface model) {
 		super(bimDatabaseSession, accessMethod);
@@ -30,8 +30,10 @@ public abstract class GenericCheckinDatabaseAction extends BimDatabaseAction<Con
 		if (!project.getConcreteRevisions().isEmpty()) {
 			ConcreteRevision concreteRevision = project.getConcreteRevisions().get(project.getConcreteRevisions().size()-1);
 			byte[] revisionChecksum = concreteRevision.getChecksum();
-			if (Arrays.equals(revisionChecksum, model.getChecksum())) {
-				throw new UserException("Uploaded model is the same as last revision (" + (1+project.getConcreteRevisions().indexOf(concreteRevision)) + ") duplicate model not stored");
+			if (revisionChecksum != null && getModel().getChecksum() != null) {
+				if (Arrays.equals(revisionChecksum, getModel().getChecksum())) {
+					throw new UserException("Uploaded model is the same as last revision (" + (1+project.getConcreteRevisions().indexOf(concreteRevision)) + ") duplicate model not stored");
+				}
 			}
 		}
 	}
@@ -106,5 +108,9 @@ public abstract class GenericCheckinDatabaseAction extends BimDatabaseAction<Con
 		virtualRevision.getConcreteRevisions().add(revision);
 		virtualRevision.setProject(project);
 		session.store(virtualRevision);
+	}
+
+	public IfcModelInterface getModel() {
+		return model;
 	}
 }

@@ -95,7 +95,7 @@ public class IfcStepDeserializer extends EmfDeserializer {
 		this.schema = schema;
 	}	
 
-	public IfcModelInterface read(InputStream in, long fileSize) throws DeserializeException {
+	public IfcModelInterface read(InputStream in, boolean setOids, long fileSize) throws DeserializeException {
 		mode = Mode.HEADER;
 		BufferedReader reader = new BufferedReader(new InputStreamReader(in, Charsets.UTF_8));
 		int initialCapacity = (int) (fileSize / AVERAGE_LINE_LENGTH);
@@ -108,7 +108,7 @@ public class IfcStepDeserializer extends EmfDeserializer {
 				byte[] bytes = line.getBytes(Charsets.UTF_8);
 				md.update(bytes, 0, bytes.length);
 				try {
-					while (!processLine(line.trim())) {
+					while (!processLine(line.trim(), setOids)) {
 						line += reader.readLine();
 						lineNumber++;
 					}
@@ -133,7 +133,7 @@ public class IfcStepDeserializer extends EmfDeserializer {
 	public IfcModel read(File sourceFile) throws DeserializeException {
 		try {
 			FileInputStream in = new FileInputStream(sourceFile);
-			read(in, sourceFile.length());
+			read(in, false, sourceFile.length());
 			in.close();
 			model.setDate(new Date());
 			return model;
@@ -156,7 +156,7 @@ public class IfcStepDeserializer extends EmfDeserializer {
 		return classes;
 	}
 
-	private boolean processLine(String line) throws DeserializeException {
+	private boolean processLine(String line, boolean setOids) throws DeserializeException {
 		switch (mode) {
 		case HEADER:
 			if (line.equals("DATA;")) {
@@ -172,7 +172,7 @@ public class IfcStepDeserializer extends EmfDeserializer {
 						line = line.substring(0, line.lastIndexOf("/*")).trim();
 					}
 					if (line.endsWith(";")) {
-						processRecord(line);
+						processRecord(line, setOids);
 					} else {
 						return false;
 					}
@@ -189,7 +189,7 @@ public class IfcStepDeserializer extends EmfDeserializer {
 		return true;
 	}
 
-	public void processRecord(String line) throws DeserializeException {
+	public void processRecord(String line, boolean setOids) throws DeserializeException {
 		int equalSignLocation = line.indexOf("=");
 		int lastIndexOfSemiColon = line.lastIndexOf(";");
 		int indexOfFirstParen = line.indexOf("(");
@@ -199,6 +199,9 @@ public class IfcStepDeserializer extends EmfDeserializer {
 		if (classifier != null) {
 			IdEObject object = (IdEObject) Ifc2x3Factory.eINSTANCE.create(classifier);
 			model.add(recordNumber, object);
+			if (setOids) {
+				object.setOid(recordNumber);
+			}
 			String realData = line.substring(indexOfFirstParen + 1, lastIndexOfSemiColon - 1);
 			int lastIndex = 0;
 			EntityDefinition entityBN = schema.getEntityBN(name);

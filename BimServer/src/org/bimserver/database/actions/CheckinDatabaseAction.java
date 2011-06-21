@@ -24,6 +24,8 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 	private final String comment;
 	private final long actingUoid;
 	private final long poid;
+	private ConcreteRevision concreteRevision;
+	private Revision virtualRevision;
 
 	public CheckinDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, IfcModelInterface model, long poid, long actingUoid, String comment) {
 		super(bimDatabaseSession, accessMethod, model);
@@ -51,16 +53,18 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 		if (!MailSystem.isValidEmailAddress(user.getUsername())) {
 			throw new UserException("Users must have a valid e-mail address to checkin");
 		}
-		checkCheckSum(project);
-		ConcreteRevision concreteRevision = createNewConcreteRevision(getDatabaseSession(), model.size(), poid, actingUoid, comment.trim(), CheckinState.DONE);
-		Revision virtualRevision = concreteRevision.getRevisions().get(0);
-		concreteRevision.setChecksum(model.getChecksum());
-		project.setLastConcreteRevision(concreteRevision);
+		if (getModel() != null) {
+			checkCheckSum(project);
+		}
+		concreteRevision = createNewConcreteRevision(getDatabaseSession(), getModel() == null ? 0 : getModel().size(), poid, actingUoid, comment.trim(), CheckinState.DONE);
+		virtualRevision = getConcreteRevision().getRevisions().get(0);
+		getConcreteRevision().setChecksum(getModel() == null ? null : getModel().getChecksum());
+		project.setLastConcreteRevision(getConcreteRevision());
 		project.setLastRevision(virtualRevision);
-		concreteRevision.setState(CheckinState.STORING);
-		if (concreteRevision.getId() != 1) {
+		getConcreteRevision().setState(CheckinState.STORING);
+		if (getConcreteRevision().getId() != 1) {
 			// There already was a revision, lets go delete it
-			getDatabaseSession().clearProject(project.getId(), concreteRevision.getId() - 1, concreteRevision.getId());
+			getDatabaseSession().clearProject(project.getId(), getConcreteRevision().getId() - 1, getConcreteRevision().getId());
 		}
 		NewRevisionAdded newRevisionAdded = LogFactory.eINSTANCE.createNewRevisionAdded();
 		newRevisionAdded.setDate(new Date());
@@ -68,9 +72,19 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 		newRevisionAdded.setRevision(virtualRevision);
 		newRevisionAdded.setAccessMethod(getAccessMethod());
 		getDatabaseSession().store(newRevisionAdded);
-		getDatabaseSession().store(model.getValues(), project.getId(), concreteRevision.getId());
-		getDatabaseSession().store(concreteRevision);
+		if (getModel() != null) {
+			getDatabaseSession().store(getModel().getValues(), project.getId(), getConcreteRevision().getId());
+		}
+		getDatabaseSession().store(getConcreteRevision());
 		getDatabaseSession().store(project);
+		return getConcreteRevision();
+	}
+
+	public ConcreteRevision getConcreteRevision() {
 		return concreteRevision;
+	}
+	
+	public Revision getRevision() {
+		return virtualRevision;
 	}
 }

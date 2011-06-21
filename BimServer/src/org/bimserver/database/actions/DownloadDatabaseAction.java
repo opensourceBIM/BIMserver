@@ -58,7 +58,11 @@ public class DownloadDatabaseAction extends BimDatabaseAction<IfcModel> {
 				@Override
 				public void objectAdded() {
 					total.incrementAndGet();
-					progress = Math.round(100L * total.get() / totalSize);
+					if (totalSize == 0) {
+						progress = 0;
+					} else {
+						progress = Math.round(100L * total.get() / totalSize);
+					}
 				}
 			});
 			getDatabaseSession().getMap(subModel, subRevision.getProject().getId(), subRevision.getId(), true);

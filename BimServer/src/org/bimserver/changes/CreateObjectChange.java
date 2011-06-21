@@ -18,13 +18,14 @@ public class CreateObjectChange implements Change {
 	}
 
 	@Override
-	public void execute(int transactionPid, BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
+	public void execute(int pid, int rid, BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
 		EClass eClass = bimDatabaseSession.getEClassForName(type);
 		if (eClass == null) {
 			throw new UserException("Type " + type + " does not exist");
 		}
 		IdEObject eObject = (IdEObject) eClass.getEPackage().getEFactoryInstance().create(eClass);
-		eObject.setOid(bimDatabaseSession.newOid());
-		bimDatabaseSession.store(eObject);
+		eObject.setOid(oid);
+		eObject.setPid(pid);
+		bimDatabaseSession.store(eObject, pid, rid);
 	}
 }
