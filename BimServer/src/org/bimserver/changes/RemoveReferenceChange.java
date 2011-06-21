@@ -1,4 +1,4 @@
-package org.bimserver.transactions;
+package org.bimserver.changes;
 
 import java.util.List;
 
@@ -7,36 +7,37 @@ import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.shared.UserException;
-import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EReference;
 
-public class SetAttributeChange implements Change {
+public class RemoveReferenceChange implements Change {
 
 	private final long oid;
-	private final String attributeName;
-	private final Object value;
+	private final String referenceName;
+	private final int index;
 	private final String className;
 
-	public SetAttributeChange(long oid, String className, String attributeName, Object value) {
+	public RemoveReferenceChange(long oid, String className, String referenceName, int index) {
 		this.oid = oid;
 		this.className = className;
-		this.attributeName = attributeName;
-		this.value = value;
+		this.referenceName = referenceName;
+		this.index = index;
 	}
-
+	
 	@Override
 	public void execute(int pid, BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
 		IdEObject idEObject = bimDatabaseSession.get(bimDatabaseSession.getEClassForName(className), oid, false);
 		if (idEObject == null) {
 			throw new UserException("No object of type " + className + " found in project with pid " + pid);
 		}
-		EAttribute eAttribute = bimDatabaseSession.getMetaDataManager().getEAttribute(className, attributeName);
-		if (eAttribute == null) {
-			throw new UserException("No attribute with the name " + attributeName + " found in class " + className);
+		EReference eReference = bimDatabaseSession.getMetaDataManager().getEReference(className, referenceName);
+		if (eReference == null) {
+			throw new UserException("No reference with the name " + referenceName + " found in class " + className);
 		}
-		if (eAttribute.isMany()) {
-			throw new UserException("Attribute is not of type 'single'");
+		if (!eReference.isMany()) {
+			throw new UserException("Reference is not of type 'many'");
 		}
-		idEObject.eSet(eAttribute, value);
+		List list = (List) idEObject.eGet(eReference);
+		list.remove(index);
 		bimDatabaseSession.store(idEObject);
 	}
 }
