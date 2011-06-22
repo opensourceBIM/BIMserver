@@ -1,5 +1,4 @@
 <%@ include file="header.jsp"%>
-<%@page import="org.bimserver.interfaces.objects.SIgnoreFile"%>
 <%@page import="org.bimserver.interfaces.objects.SSerializer"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.Collections"%>
@@ -16,7 +15,8 @@
 <%@page import="org.bimserver.interfaces.objects.SUserType"%>
 <%@page import="org.bimserver.shared.ServiceInterface"%>
 <%@page import="org.bimserver.shared.UserException"%>
-<div class="sidebar">
+
+<%@page import="org.bimserver.interfaces.objects.SGuidanceProvider"%><div class="sidebar">
 <ul>
 </ul>
 </div>
@@ -24,8 +24,8 @@
 <%
 	ServiceInterface service = loginManager.getService();
 	if (request.getParameter("add") != null) {
-		SIgnoreFile ignoreFile = new SIgnoreFile();
-		ignoreFile.setName(request.getParameter("name"));
+		SGuidanceProvider guidanceProvider = new SGuidanceProvider();
+		guidanceProvider.setName(request.getParameter("name"));
 	}
 %>
 <form action="settings">
