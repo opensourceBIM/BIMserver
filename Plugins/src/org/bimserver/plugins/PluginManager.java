@@ -132,7 +132,6 @@ public class PluginManager {
 			JarEntry entry = jarInputStream.getNextJarEntry();
 			Map<String, byte[]> map = new HashMap<String, byte[]>();
 			while (entry != null) {
-				System.out.println(entry.getName());
 				ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
 				IOUtils.copy(jarInputStream, byteArrayOutputStream);
 				map.put(entry.getName(), byteArrayOutputStream.toByteArray());
@@ -146,7 +145,6 @@ public class PluginManager {
 			} else {
 				System.out.println("no plugin.xml found");
 			}
-			System.out.println("done");
 		} catch (FileNotFoundException e) {
 			throw new PluginException(e);
 		} catch (IOException e) {
