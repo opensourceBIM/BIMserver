@@ -817,7 +817,7 @@ open a specific revision to query other revisions<br />
 		$("#showinactivecheckouts").change(updateInactiveCheckouts);
 		updateInactiveCheckouts();
 		var refreshFunction = function() {
-			$.ajax({ url: "/progress", cache: false, context: document.body, data: {poid: poid}, success: function(data){
+			$.ajax({ url: "progress", cache: false, context: document.body, data: {poid: poid}, success: function(data){
 				if (data.lastRevision != lastRevisionOid) {
 					location.reload();
 				} else {
