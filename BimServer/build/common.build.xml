@@ -61,7 +61,11 @@
 				</path>
 			</classpath>
 		</javac>
-		<jar destfile="builds/lib/bimserver-buildingSMARTLibrary-${version}.jar">
+		<mkdir dir="builds/buildingSMARTLibrary/plugin"/>
+		<copy todir="builds/buildingSMARTLibrary/plugin">
+			<fileset dir="../../buildingSMARTLibrary/plugin"></fileset>
+		</copy>
+		<jar destfile="builds/pluginlibs/bimserver-buildingSMARTLibrary-${version}.jar">
 			<fileset dir="builds/buildingSMARTLibrary"/>
 		</jar>
 	</target>
