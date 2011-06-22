@@ -8,6 +8,12 @@
 	<target name="Build">
 		<mkdir dir="builds/lib" />
 		<mkdir dir="builds/pluginlibs" />
+		<antcall target="Utils" />
+		<antcall target="Emf" />
+		<antcall target="Store" />
+		<antcall target="Plugins" />
+		<antcall target="Shared" />
+		<antcall target="Ifc" />
 		<antcall target="BimServer" />
 		<antcall target="CityGML" />
 		<antcall target="Collada" />
@@ -16,7 +22,7 @@
 		<antcall target="IfcPlugins" />
 		<antcall target="MiscSerializers" />
 	</target>
-	<target name="BimServer" depends="Store, Ifc, Shared, Utils, Emf, Plugins, buildingSMARTLibrary">
+	<target name="BimServer">
 		<mkdir dir="builds/bimserver" />
 		<javac destdir="builds/bimserver" debug="on" fork="true">
 			<src path="../../BimServer/src" />
@@ -51,7 +57,7 @@
 			<fileset dir="builds/utils"/>
 		</jar>
 	</target>
-	<target name="buildingSMARTLibrary" depends="Store, Plugins">
+	<target name="buildingSMARTLibrary">
 		<mkdir dir="builds/buildingSMARTLibrary" />
 		<javac destdir="builds/buildingSMARTLibrary" debug="on" fork="true">
 			<src path="../../buildingSMARTLibrary/src" />
@@ -69,7 +75,7 @@
 			<fileset dir="builds/buildingSMARTLibrary"/>
 		</jar>
 	</target>
-	<target name="Store" depends="Emf">
+	<target name="Store">
 		<mkdir dir="builds/store" />
 		<javac destdir="builds/store" debug="on" fork="true">
 			<src path="../../Store/generated" />
@@ -83,7 +89,7 @@
 			<fileset dir="builds/store"/>
 		</jar>
 	</target>
-	<target name="IFCEngine" depends="Emf">
+	<target name="IFCEngine">
 		<mkdir dir="builds/ifcengine" />
 		<javac destdir="builds/ifcengine" debug="on" fork="true">
 			<src path="../../IFCEngine/src" />
@@ -101,7 +107,7 @@
 			<fileset dir="builds/ifcengine"/>
 		</jar>
 	</target>
-	<target name="IfcPlugins" depends="Ifc, Plugins">
+	<target name="IfcPlugins">
 		<mkdir dir="builds/ifcplugins" />
 		<javac destdir="builds/ifcplugins" debug="on" fork="true">
 			<src path="../../IfcPlugins/src" />
@@ -119,7 +125,7 @@
 			<fileset dir="builds/ifcplugins"/>
 		</jar>
 	</target>
-	<target name="MiscSerializers" depends="Ifc, Plugins">
+	<target name="MiscSerializers">
 		<mkdir dir="builds/miscserializers" />
 		<javac destdir="builds/miscserializers" debug="on" fork="true">
 			<src path="../../MiscSerializers/src" />
@@ -137,7 +143,7 @@
 			<fileset dir="builds/miscserializers"/>
 		</jar>
 	</target>
-	<target name="Collada" depends="buildingSMARTLibrary, Emf, Ifc, Store">
+	<target name="Collada">
 		<mkdir dir="builds/collada" />
 		<javac destdir="builds/collada" debug="on" fork="true">
 			<src path="../../Collada/src" />
@@ -155,7 +161,7 @@
 			<fileset dir="builds/collada"/>
 		</jar>
 	</target>
-	<target name="O3d" depends="Utils, Emf, buildingSMARTLibrary, Ifc, Store">
+	<target name="O3d">
 		<mkdir dir="builds/o3d" />
 		<javac destdir="builds/o3d" debug="on" fork="true">
 			<src path="../../O3d/src" />
@@ -173,7 +179,7 @@
 			<fileset dir="builds/o3d"/>
 		</jar>
 	</target>
-	<target name="CityGML" depends="Ifc, Store, buildingSMARTLibrary">
+	<target name="CityGML">
 		<mkdir dir="builds/citygml" />
 		<javac destdir="builds/citygml" debug="on" fork="true">
 			<src path="../../CityGML/src" />
@@ -195,7 +201,7 @@
 			<fileset dir="builds/citygml"/>
 		</jar>
 	</target>
-	<target name="Ifc" depends="Plugins, buildingSMARTLibrary, Emf, Utils, Store, Shared">
+	<target name="Ifc">
 		<mkdir dir="builds/ifc" />
 		<javac destdir="builds/ifc" debug="on" fork="true">
 			<src path="../../Ifc/src" />
@@ -223,7 +229,7 @@
 			<fileset dir="builds/emf"/>
 		</jar>
 	</target>
-	<target name="Client" depends="Shared, Utils">
+	<target name="Client">
 		<mkdir dir="builds/client" />
 		<javac destdir="builds/client" debug="on" fork="true">
 			<src path="../../Client/src" />
@@ -238,7 +244,7 @@
 			<fileset dir="builds/client"/>
 		</jar>
 	</target>
-	<target name="Shared" depends="Plugins">
+	<target name="Shared">
 		<mkdir dir="builds/shared" />
 		<javac destdir="builds/shared" debug="on" fork="true">
 			<src path="../../Shared/src" />
@@ -253,7 +259,7 @@
 			<fileset dir="builds/shared"/>
 		</jar>
 	</target>
-	<target name="Plugins" depends="Emf, Store">
+	<target name="Plugins">
 		<mkdir dir="builds/plugins" />
 		<javac destdir="builds/plugins" debug="on" fork="true">
 			<src path="../../Plugins/src" />
@@ -391,7 +397,7 @@
 
 		<copy file="pb/service.proto" tofile="builds/BuildWar/WEB-INF/service.proto" />
 
-		<copy file="${buildtargets}/war/servertype.txt" todir="builds/BuildWar/WEB-INF" />
+		<copy file="${buildtargets}/war/servertype.txt" todir="builds/BuildWar" />
 		<copy todir="builds/BuildWar/META-INF" overwrite="true">
 			<fileset file="${buildtargets}/shared/context.xml" />
 		</copy>
