@@ -52,6 +52,7 @@ public class PluginManager {
 		this.classPath = classPath;
 		this.homeDir = homeDir;
 		LOGGER.info("Created PluginManager");
+		System.out.println("Created PluginManager");
 	}
 
 	public void loadPluginsFromEclipseProject(File projectRoot) throws PluginException {
@@ -109,6 +110,7 @@ public class PluginManager {
 	}
 
 	public void loadAllPluginsFromDirectoryOfJars(File directory) throws PluginException {
+		System.out.println("Loading all plugin jars from " + directory.getAbsolutePath());
 		LOGGER.info("Loading all plugin jars from " + directory.getAbsolutePath());
 		if (!directory.isDirectory()) {
 			throw new PluginException("No directory: " + directory.getAbsolutePath());
@@ -118,6 +120,7 @@ public class PluginManager {
 				try {
 					loadPluginsFromJar(file);
 				} catch (PluginException e) {
+					e.printStackTrace();
 					LOGGER.error("", e);
 				}
 			}
