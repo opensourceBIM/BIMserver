@@ -620,32 +620,102 @@ public interface ServiceInterface {
 	@WebMethod(action = "getAllSerializerClassNames")
 	Set<String> getAllSerializerClassNames() throws UserException;
 
+	@WebMethod(action = "getSettingMergeIdentifier")
 	SMergeIdentifier getSettingMergeIdentifier() throws UserException,
 			ServerException;
 
-	SSerializer getSerializerByName(String serializerName) throws UserException, ServerException;
+	@WebMethod(action = "getSerializerByName")
+	SSerializer getSerializerByName(
+			@WebParam(name = "serializerName", partName = "getSerializerByName.serializerName") String serializerName) throws UserException, ServerException;
 	
+	@WebMethod(action = "hasActiveSerializer")
 	boolean hasActiveSerializer(String contentType) throws UserException, ServerException;
 	
+	@WebMethod(action = "getAllPlugins")
 	List<SPlugin> getAllPlugins();
 	
+	@WebMethod(action = "enablePlugin")
 	void enablePlugin(String name);
 	
+	@WebMethod(action = "disablePlugin")
 	void disablePlugin(String name);
 
-	SSerializer getSerializerByContentType(String contentType) throws UserException, ServerException;
+	@WebMethod(action = "getSerializerByContentType")
+	SSerializer getSerializerByContentType(
+			@WebParam(name = "contentType", partName = "getSerializerByContentType.contentType") String contentType) throws UserException, ServerException;
 	
-	void startTransaction(int pid);
+	@WebMethod(action = "startTransaction")
+	void startTransaction(
+			@WebParam(name = "pid", partName = "startTransaction.pid") int pid);
+
+	@WebMethod(action = "commitTransaction")
 	long commitTransaction() throws UserException;
+	
+	@WebMethod(action = "abortTransaction")
 	void abortTransaction();
-	long createObject(String className) throws UserException;
-	void removeObject(String className, long oid);
-	void setAttribute(long oid, String className, String attributeName, Object value);
-	void setReference(long oid, String className, String referenceName, long referenceOid, String referenceClassName);
-	void unsetAttribute(long oid, String className, String attributeName);
-	void unsetReference(long oid, String className, String referenceName);
-	void addAttribute(long oid, String className, String attributeName, Object value);
-	void addReference(long oid, String className, String referenceName, long referenceOid, String referenceClassName);
-	void removeAttribute(long oid, String className, String attributeName, int index);
-	void removeReference(long oid, String className, String referenceName, int index);
+	
+	@WebMethod(action = "createObject")
+	long createObject(
+			@WebParam(name = "className", partName = "createObject.className") String className) throws UserException;
+	
+	@WebMethod(action = "removeObject")
+	void removeObject(
+			@WebParam(name = "className", partName = "removeObject.className") String className, 
+			@WebParam(name = "oid", partName = "removeObject.oid") long oid);
+	
+	@WebMethod(action = "setAttribute")
+	void setAttribute(
+			@WebParam(name = "oid", partName = "setAttribute.oid") long oid, 
+			@WebParam(name = "className", partName = "setAttribute.className") String className, 
+			@WebParam(name = "attributeName", partName = "setAttribute.attributeName") String attributeName, 
+			@WebParam(name = "value", partName = "setAttribute.value") String value);
+	
+	@WebMethod(action = "setReference")
+	void setReference(
+			@WebParam(name = "oid", partName = "setReference.oid") long oid, 
+			@WebParam(name = "className", partName = "setReference.className") String className, 
+			@WebParam(name = "referenceName", partName = "setReference.referenceName") String referenceName, 
+			@WebParam(name = "referenceOid", partName = "setReference.referenceOid") long referenceOid, 
+			@WebParam(name = "referenceClassName", partName = "setReference.referenceClassName") String referenceClassName);
+	
+	@WebMethod(action = "unsetAttribute")
+	void unsetAttribute(
+			@WebParam(name = "oid", partName = "unsetAttribute.oid") long oid, 
+			@WebParam(name = "className", partName = "unsetAttribute.className") String className, 
+			@WebParam(name = "attributeName", partName = "unsetAttribute.attributeName") String attributeName);
+	
+	@WebMethod(action = "unsetReference")
+	void unsetReference(
+			@WebParam(name = "oid", partName = "unsetReference.oid") long oid,
+			@WebParam(name = "className", partName = "unsetReference.className") String className,
+			@WebParam(name = "referenceName", partName = "unsetReference.referenceName") String referenceName);
+	
+	@WebMethod(action = "addAttribute")
+	void addAttribute(
+			@WebParam(name = "oid", partName = "addAttribute.oid") long oid, 
+			@WebParam(name = "className", partName = "addAttribute.className") String className, 
+			@WebParam(name = "attributeName", partName = "addAttribute.attributeName") String attributeName,
+			@WebParam(name = "value", partName = "addAttribute.value") String value);
+
+	@WebMethod(action = "addReference")
+	void addReference(
+			@WebParam(name = "oid", partName = "addReference.oid") long oid, 
+			@WebParam(name = "className", partName = "addReference.className") String className, 
+			@WebParam(name = "referenceName", partName = "addReference.referenceName") String referenceName, 
+			@WebParam(name = "referenceOid", partName = "addReference.referenceOid") long referenceOid,
+			@WebParam(name = "referenceClassName", partName = "addReference.referenceClassName") String referenceClassName);
+	
+	@WebMethod(action = "removeAttribute")
+	void removeAttribute(
+			@WebParam(name = "oid", partName = "removeAttribute.oid") long oid, 
+			@WebParam(name = "className", partName = "removeAttribute.className") String className, 
+			@WebParam(name = "attributeName", partName = "removeAttribute.attributeName") String attributeName, 
+			@WebParam(name = "index", partName = "removeAttribute.index") int index);
+	
+	@WebMethod(action = "removeReference")
+	void removeReference(
+			@WebParam(name = "oid", partName = "removeReference.oid") long oid, 
+			@WebParam(name = "className", partName = "removeReference.className") String className, 
+			@WebParam(name = "referenceName", partName = "removeReference.referenceName") String referenceName, 
+			@WebParam(name = "index", partName = "removeReference.index") int index);
 }

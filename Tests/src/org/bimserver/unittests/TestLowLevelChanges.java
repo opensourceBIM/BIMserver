@@ -100,7 +100,7 @@ public class TestLowLevelChanges {
 		try {
 			service.startTransaction(project.getId());
 			long wallOid = service.createObject("IfcWindow");
-			service.setAttribute(wallOid, "IfcWall", "OverallHeight", 200);
+			service.setAttribute(wallOid, "IfcWall", "OverallHeight", "200");
 			long roid = service.commitTransaction();
 			IfcModelInterface model = getSingleRevision(roid);
 			if (model.size() != 1) {
