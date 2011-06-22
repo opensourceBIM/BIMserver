@@ -21,6 +21,7 @@
 		<antcall target="IFCEngine" />
 		<antcall target="IfcPlugins" />
 		<antcall target="MiscSerializers" />
+		<antcall target="buildingSMARTLibrary" />
 	</target>
 	<target name="BimServer">
 		<mkdir dir="builds/bimserver" />
