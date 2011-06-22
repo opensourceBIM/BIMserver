@@ -394,7 +394,7 @@
 
 		<copy file="pb/service.proto" tofile="builds/BuildWar/WEB-INF/service.proto" />
 
-		<copy file="${buildtargets}/war/servertype.txt" todir="builds/BuildWar" />
+		<copy file="${buildtargets}/war/servertype.txt" todir="builds/BuildWar" overwrite="true" />
 		<copy todir="builds/BuildWar/META-INF" overwrite="true">
 			<fileset file="${buildtargets}/shared/context.xml" />
 		</copy>
