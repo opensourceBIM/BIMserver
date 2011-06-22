@@ -51,6 +51,7 @@ public class PluginManager {
 		this.resourceFetcher = resourceFetcher;
 		this.classPath = classPath;
 		this.homeDir = homeDir;
+		LOGGER.info("Created PluginManager");
 	}
 
 	public void loadPluginsFromEclipseProject(File projectRoot) throws PluginException {
