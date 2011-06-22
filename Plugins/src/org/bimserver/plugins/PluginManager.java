@@ -80,6 +80,7 @@ public class PluginManager {
 
 	@SuppressWarnings("unchecked")
 	private void loadPlugins(ClassLoader classLoader, String location, PluginDescriptor pluginDescriptor) throws PluginException {
+		System.out.println("Load plugins");
 		for (PluginImplementation pluginImplementation : pluginDescriptor.getImplementations()) {
 			String interfaceClassName = pluginImplementation.getInterfaceClass();
 			try {

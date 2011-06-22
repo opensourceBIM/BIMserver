@@ -227,6 +227,7 @@ public class ServerInitializer implements ServletContextListener {
 				}
 				pluginManager.loadPlugin(GuidanceProviderPlugin.class, "Internal", new SchemaFieldGuidanceProviderPlugin());
 			} catch (Exception e) {
+				e.printStackTrace();
 				LOGGER.error("", e);
 			}
 			
