@@ -354,11 +354,19 @@ public class PluginManager {
 		if (!implementations.containsKey(interfaceClass)) {
 			implementations.put(interfaceClass, new HashSet<PluginContext>());
 		}
-		plugin.init(this);
 		Set<PluginContext> set = (Set<PluginContext>) implementations.get(interfaceClass);
 		PluginContext pluginContext = new PluginContext(this);
 		pluginContext.setPlugin(plugin);
 		pluginContext.setLocation(location);
 		set.add(pluginContext);
+	}
+	
+	public void initAllLoadedPlugins() {
+		for (Class<? extends Plugin> pluginClass : implementations.keySet()) {
+			Set<PluginContext> set = implementations.get(pluginClass);
+			for (PluginContext pluginContext : set) {
+				pluginContext.getPlugin().init(this);
+			}
+		}
 	}
 }
