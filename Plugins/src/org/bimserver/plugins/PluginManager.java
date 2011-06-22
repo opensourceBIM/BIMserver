@@ -142,10 +142,11 @@ public class PluginManager {
 				IOUtils.copy(jarInputStream, byteArrayOutputStream);
 				map.put(entry.getName(), byteArrayOutputStream.toByteArray());
 				entry = jarInputStream.getNextJarEntry();
-				
 				System.out.println(entry.getName());
 			}
+			System.out.println("closing input stream");
 			jarInputStream.close();
+			System.out.println("input stream closed");
 			if (map.containsKey("plugin/plugin.xml")) {
 				System.out.println("plugin.xml found");
 				byte[] bs = map.get("plugin/plugin.xml");
@@ -154,7 +155,10 @@ public class PluginManager {
 				System.out.println("loaded pluginDescriptor");
 				loadPlugins(new MapClassLoader(map), file.getAbsolutePath(), pluginDescriptor);
 				System.out.println("Loaded plugins");
+			} else {
+				System.out.println("no plugin.xml found");
 			}
+			System.out.println("done");
 		} catch (FileNotFoundException e) {
 			throw new PluginException(e);
 		} catch (IOException e) {
