@@ -72,11 +72,11 @@ import org.bimserver.pb.server.ReflectiveRpcChannel;
 import org.bimserver.plugins.Plugin;
 import org.bimserver.plugins.PluginChangeListener;
 import org.bimserver.plugins.PluginContext;
+import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.ResourceFetcher;
 import org.bimserver.plugins.guidanceproviders.GuidanceProviderPlugin;
 import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
-import org.bimserver.plugins.schema.SchemaException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.querycompiler.QueryCompiler;
 import org.bimserver.resources.JarResourceFetcher;
@@ -342,7 +342,7 @@ public class ServerInitializer implements ServletContextListener {
 		}		
 	}
 
-	private void createSerializersAndEngines() throws BimDeadlockException, BimDatabaseException, SchemaException {
+	private void createSerializersAndEngines() throws BimDeadlockException, BimDatabaseException, PluginException {
 		BimDatabaseSession session = bimDatabase.createSession(true);
 		Condition guidanceProviderCondition = new AttributeCondition(StorePackage.eINSTANCE.getGuidanceProvider_Name(), new StringLiteral("default"));
 		Map<Long, GuidanceProvider> guidanceProviders = session.query(guidanceProviderCondition, GuidanceProvider.class, false);

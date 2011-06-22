@@ -35,7 +35,7 @@ public class CollectionUtils {
 		return set;
 	}
 
-	public static <A> HashSet<A> singleSet(A object) {
+	public static <A> Set<A> singleSet(A object) {
 		HashSet<A> set = new HashSet<A>();
 		set.add(object);
 		return set;

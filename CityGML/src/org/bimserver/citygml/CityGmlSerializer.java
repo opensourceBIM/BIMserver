@@ -30,6 +30,7 @@ import org.bimserver.models.ifc2x3.IfcSpace;
 import org.bimserver.models.ifc2x3.IfcVirtualElement;
 import org.bimserver.models.ifc2x3.IfcWall;
 import org.bimserver.models.ifc2x3.IfcWindow;
+import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.ifcengine.IfcEngine;
 import org.bimserver.plugins.ifcengine.IfcEngineException;
@@ -118,7 +119,7 @@ public class CityGmlSerializer extends BimModelSerializer {
 		if (getMode() == Mode.BODY) {
 			try {
 				ifcEngine = getPluginManager().requireIfcEngine();
-			} catch (IfcEngineException e) {
+			} catch (PluginException e) {
 				throw new SerializerException(e);
 			}
 //			PrintWriter writer = new PrintWriter(out);

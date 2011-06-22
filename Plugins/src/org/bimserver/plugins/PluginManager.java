@@ -288,13 +288,16 @@ public class PluginManager {
 		return getPlugins(SchemaPlugin.class, onlyEnabled);
 	}
 	
-	public SchemaDefinition requireSchemaDefinition() throws SchemaException {
+	public SchemaDefinition requireSchemaDefinition() throws PluginException {
 		Collection<SchemaPlugin> allSchemaPlugins = getAllSchemaPlugins(true);
 		if (allSchemaPlugins.size() == 0) {
-			throw new SchemaException("No schema found");
+			throw new SchemaException("No schema plugins found");
 		}
-		SchemaPlugin next = allSchemaPlugins.iterator().next();
-		return next.getSchemaDefinition();
+		SchemaPlugin schemaPlugin = allSchemaPlugins.iterator().next();
+		if (!schemaPlugin.isInitialized()) {
+			schemaPlugin.init(this);
+		}
+		return schemaPlugin.getSchemaDefinition();
 	}
 	
 	public EmfDeserializer requireDeserializer(String type) throws DeserializeException {
@@ -306,12 +309,16 @@ public class PluginManager {
 		}
 	}
 
-	public IfcEngine requireIfcEngine() throws IfcEngineException {
+	public IfcEngine requireIfcEngine() throws PluginException {
 		Collection<IfcEnginePlugin> allIfcEnginePlugins = getAllIfcEnginePlugins(true);
 		if (allIfcEnginePlugins.size() == 0) {
 			throw new IfcEngineException("A working IfcEngine is required");
 		}
-		return allIfcEnginePlugins.iterator().next().createIfcEngine();
+		IfcEnginePlugin ifcEnginePlugin = allIfcEnginePlugins.iterator().next();
+		if (!ifcEnginePlugin.isInitialized()) {
+			ifcEnginePlugin.init(this);
+		}
+		return ifcEnginePlugin.createIfcEngine();
 	}
 	
 	/*
@@ -365,7 +372,15 @@ public class PluginManager {
 		for (Class<? extends Plugin> pluginClass : implementations.keySet()) {
 			Set<PluginContext> set = implementations.get(pluginClass);
 			for (PluginContext pluginContext : set) {
-				pluginContext.getPlugin().init(this);
+				try {
+					Plugin plugin = pluginContext.getPlugin();
+					if (!plugin.isInitialized()) {
+						plugin.init(this);
+					}
+				} catch (Exception e) {
+					LOGGER.error("", e);
+					e.printStackTrace();
+				}
 			}
 		}
 	}
