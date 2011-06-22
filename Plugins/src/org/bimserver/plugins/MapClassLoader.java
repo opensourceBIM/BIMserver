@@ -5,7 +5,8 @@ import java.util.Map;
 public class MapClassLoader extends ClassLoader {
 	private final Map<String, byte[]> map;
 
-	public MapClassLoader(Map<String, byte[]> map) {
+	public MapClassLoader(ClassLoader parentLoader, Map<String, byte[]> map) {
+		super(parentLoader);
 		this.map = map;
 	}
 

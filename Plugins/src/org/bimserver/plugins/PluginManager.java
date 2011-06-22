@@ -156,7 +156,7 @@ public class PluginManager {
 				System.out.println("loaded data");
 				PluginDescriptor pluginDescriptor = getPluginDescriptor(new ByteArrayInputStream(bs));
 				System.out.println("loaded pluginDescriptor");
-				loadPlugins(new MapClassLoader(map), file.getAbsolutePath(), pluginDescriptor);
+				loadPlugins(new MapClassLoader(getClass().getClassLoader(), map), file.getAbsolutePath(), pluginDescriptor);
 				System.out.println("Loaded plugins");
 			} else {
 				System.out.println("no plugin.xml found");
