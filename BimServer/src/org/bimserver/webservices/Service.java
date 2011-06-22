@@ -186,10 +186,10 @@ import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserType;
 import org.bimserver.plugins.Plugin;
 import org.bimserver.plugins.PluginContext;
+import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.deserializers.EmfDeserializer;
-import org.bimserver.plugins.schema.SchemaException;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.rights.RightsManager;
 import org.bimserver.serializers.EmfSerializerFactory;
@@ -375,7 +375,7 @@ public class Service implements ServiceInterface {
 		}
 		try {
 			deserializer.init(pluginManager.requireSchemaDefinition());
-		} catch (SchemaException e) {
+		} catch (PluginException e) {
 			throw new UserException(e);
 		}
 		try {

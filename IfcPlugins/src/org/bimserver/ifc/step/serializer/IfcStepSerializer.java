@@ -33,10 +33,10 @@ import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcGloballyUniqueId;
 import org.bimserver.models.ifc2x3.Tristate;
 import org.bimserver.models.ifc2x3.WrappedValue;
+import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.schema.EntityDefinition;
 import org.bimserver.plugins.schema.SchemaDefinition;
-import org.bimserver.plugins.schema.SchemaException;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.SerializerException;
@@ -254,7 +254,7 @@ public class IfcStepSerializer extends IfcSerializer {
 		SchemaDefinition schema;
 		try {
 			schema = getPluginManager().requireSchemaDefinition();
-		} catch (SchemaException e) {
+		} catch (PluginException e) {
 			throw new SerializerException(e);
 		}
 		EntityDefinition entityBN = schema.getEntityBNNoCaseConvert(upperCases.get(object.eClass()));
@@ -275,7 +275,7 @@ public class IfcStepSerializer extends IfcSerializer {
 			SchemaDefinition schema;
 			try {
 				schema = getPluginManager().requireSchemaDefinition();
-			} catch (SchemaException e) {
+			} catch (PluginException e) {
 				throw new SerializerException(e);
 			}
 			EntityDefinition entityBN = schema.getEntityBNNoCaseConvert(upperCases.get(object.eClass()));
@@ -458,7 +458,7 @@ public class IfcStepSerializer extends IfcSerializer {
 					SchemaDefinition schema;
 					try {
 						schema = getPluginManager().requireSchemaDefinition();
-					} catch (SchemaException e) {
+					} catch (PluginException e) {
 						throw new SerializerException(e);
 					}
 					EntityDefinition entityBN = schema.getEntityBN(object.eClass().getName());

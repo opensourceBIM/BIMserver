@@ -1,10 +1,19 @@
 package org.bimserver.o3d;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import org.bimserver.plugins.Plugin;
+import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
+import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
+import org.bimserver.plugins.schema.SchemaPlugin;
 import org.bimserver.plugins.serializers.EmfSerializer;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 
 public class O3dJsonSerializerPlugin implements SerializerPlugin {
+
+	private boolean initialized = false;
 
 	@Override
 	public EmfSerializer createSerializer() {
@@ -27,7 +36,18 @@ public class O3dJsonSerializerPlugin implements SerializerPlugin {
 	}
 
 	@Override
-	public void init(PluginManager pluginManager) {
+	public Set<Class<? extends Plugin>> getRequiredPlugins() {
+		Set<Class<? extends Plugin>> set = new HashSet<Class<? extends Plugin>>();
+		set.add(SchemaPlugin.class);
+		set.add(IfcEnginePlugin.class);
+		return set;
+	}
+
+	@Override
+	public void init(PluginManager pluginManager) throws PluginException {
+		pluginManager.requireSchemaDefinition();
+		pluginManager.requireIfcEngine();
+		initialized  = true;
 	}
 
 	@Override
@@ -46,12 +66,7 @@ public class O3dJsonSerializerPlugin implements SerializerPlugin {
 	}
 
 	@Override
-	public boolean requiresIfcEngine() {
-		return true;
-	}
-
-	@Override
-	public boolean requiresIfcStepSerializer() {
-		return true;
+	public boolean isInitialized() {
+		return initialized;
 	}
 }

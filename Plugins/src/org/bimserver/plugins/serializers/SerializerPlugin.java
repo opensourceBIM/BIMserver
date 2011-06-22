@@ -7,6 +7,4 @@ public interface SerializerPlugin extends Plugin {
 	String getDefaultSerializerName();
 	String getDefaultExtension();
 	String getDefaultContentType();
-	boolean requiresIfcEngine();
-	boolean requiresIfcStepSerializer();
 }

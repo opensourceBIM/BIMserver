@@ -1,10 +1,17 @@
 package org.bimserver.ifc.step.serializer;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import org.bimserver.plugins.Plugin;
+import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.serializers.EmfSerializer;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 
 public class IfcStepSerializerPlugin implements SerializerPlugin {
+
+	private boolean initialized = false;
 
 	@Override
 	public EmfSerializer createSerializer() {
@@ -27,9 +34,16 @@ public class IfcStepSerializerPlugin implements SerializerPlugin {
 	}
 
 	@Override
-	public void init(PluginManager pluginManager) {
+	public void init(PluginManager pluginManager) throws PluginException {
+		pluginManager.requireSchemaDefinition();
+		initialized = true;
 	}
 
+	@Override
+	public Set<Class<? extends Plugin>> getRequiredPlugins() {
+		return new HashSet<Class<? extends Plugin>>();
+	}
+	
 	@Override
 	public String getDefaultSerializerName() {
 		return "Ifc2x3";
@@ -46,12 +60,7 @@ public class IfcStepSerializerPlugin implements SerializerPlugin {
 	}
 
 	@Override
-	public boolean requiresIfcEngine() {
-		return false;
-	}
-
-	@Override
-	public boolean requiresIfcStepSerializer() {
-		return false;
+	public boolean isInitialized() {
+		return initialized;
 	}
 }

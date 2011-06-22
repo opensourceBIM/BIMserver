@@ -3,9 +3,12 @@ package nl.tue.buildingsmart.emf;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.HashSet;
+import java.util.Set;
 
 import nl.tue.buildingsmart.express.parser.ExpressSchemaParser;
 
+import org.bimserver.plugins.Plugin;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.ResourceFetcher;
 import org.bimserver.plugins.schema.SchemaDefinition;
@@ -17,6 +20,7 @@ public class BuildingSmartLibrarySchemaPlugin implements SchemaPlugin {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(BuildingSmartLibrarySchemaPlugin.class);
 	private SchemaDefinition schemaDefinition;
+	private boolean initialized = false;
 	
 	@Override
 	public SchemaDefinition getSchemaDefinition() {
@@ -41,6 +45,12 @@ public class BuildingSmartLibrarySchemaPlugin implements SchemaPlugin {
 	@Override
 	public void init(PluginManager pluginManager) {
 		schemaDefinition = loadIfcSchema(pluginManager.getResourceFetcher());
+		initialized = true;
+	}
+
+	@Override
+	public Set<Class<? extends Plugin>> getRequiredPlugins() {
+		return new HashSet<Class<? extends Plugin>>();
 	}
 
 	private SchemaDefinition loadIfcSchema(ResourceFetcher resourceFetcher) {
@@ -67,5 +77,10 @@ public class BuildingSmartLibrarySchemaPlugin implements SchemaPlugin {
 			LOGGER.error("", e);
 		}
 		return null;
+	}
+
+	@Override
+	public boolean isInitialized() {
+		return initialized;
 	}
 }

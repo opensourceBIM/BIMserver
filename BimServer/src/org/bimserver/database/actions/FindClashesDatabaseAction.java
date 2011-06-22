@@ -25,6 +25,7 @@ import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.plugins.GuidanceProviderException;
+import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.guidanceproviders.GuidanceProvider;
 import org.bimserver.plugins.ifcengine.IfcEngine;
@@ -128,12 +129,12 @@ public class FindClashesDatabaseAction extends BimDatabaseAction<Set<? extends C
 				} finally {
 					ifcEngineModel.close();
 				}
-			} catch (IfcEngineException e) {
+			} catch (PluginException e) {
 				LOGGER.error("", e);
 			} finally {
 				failSafeIfcEngine.close();
 			}
-		} catch (IfcEngineException e) {
+		} catch (PluginException e) {
 			LOGGER.error("", e);
 		} catch (SerializerException e) {
 			LOGGER.error("", e);

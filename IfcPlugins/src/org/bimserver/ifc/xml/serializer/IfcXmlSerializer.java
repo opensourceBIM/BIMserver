@@ -12,6 +12,7 @@ import org.apache.commons.lang.StringEscapeUtils;
 import org.bimserver.ifc.IfcSerializer;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.Tristate;
+import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.schema.Attribute;
 import org.bimserver.plugins.schema.BaseType;
@@ -22,7 +23,6 @@ import org.bimserver.plugins.schema.IntegerType;
 import org.bimserver.plugins.schema.ListType;
 import org.bimserver.plugins.schema.RealType;
 import org.bimserver.plugins.schema.SchemaDefinition;
-import org.bimserver.plugins.schema.SchemaException;
 import org.bimserver.plugins.schema.SetType;
 import org.bimserver.plugins.schema.StringType;
 import org.bimserver.plugins.serializers.IfcModelInterface;
@@ -114,7 +114,7 @@ public class IfcXmlSerializer extends IfcSerializer {
 			SchemaDefinition schema;
 			try {
 				schema = getPluginManager().requireSchemaDefinition();
-			} catch (SchemaException e) {
+			} catch (PluginException e) {
 				throw new SerializerException(e);
 			}
 			EntityDefinition entityBN = schema.getEntityBN(object.eClass().getName().toUpperCase());
