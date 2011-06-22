@@ -51,8 +51,6 @@ public class PluginManager {
 		this.resourceFetcher = resourceFetcher;
 		this.classPath = classPath;
 		this.homeDir = homeDir;
-		LOGGER.info("Created PluginManager");
-		System.out.println("Created PluginManager");
 	}
 
 	public void loadPluginsFromEclipseProject(File projectRoot) throws PluginException {
@@ -80,10 +78,6 @@ public class PluginManager {
 
 	@SuppressWarnings("unchecked")
 	private void loadPlugins(ClassLoader classLoader, String location, PluginDescriptor pluginDescriptor) throws PluginException {
-		System.out.println("Load plugins");
-		System.out.println(classLoader);
-		System.out.println(location);
-		System.out.println(pluginDescriptor);
 		for (PluginImplementation pluginImplementation : pluginDescriptor.getImplementations()) {
 			String interfaceClassName = pluginImplementation.getInterfaceClass();
 			try {
@@ -114,8 +108,6 @@ public class PluginManager {
 	}
 
 	public void loadAllPluginsFromDirectoryOfJars(File directory) throws PluginException {
-		System.out.println("Loading all plugin jars from " + directory.getAbsolutePath());
-		LOGGER.info("Loading all plugin jars from " + directory.getAbsolutePath());
 		if (!directory.isDirectory()) {
 			throw new PluginException("No directory: " + directory.getAbsolutePath());
 		}
@@ -135,7 +127,6 @@ public class PluginManager {
 		if (!file.isFile()) {
 			throw new PluginException("Not a file: " + file.getAbsolutePath());
 		}
-		System.out.println("Loading JAR: " + file.getAbsolutePath());
 		try {
 			JarInputStream jarInputStream = new JarInputStream(new FileInputStream(file));
 			JarEntry entry = jarInputStream.getNextJarEntry();
@@ -147,17 +138,11 @@ public class PluginManager {
 				map.put(entry.getName(), byteArrayOutputStream.toByteArray());
 				entry = jarInputStream.getNextJarEntry();
 			}
-			System.out.println("closing input stream");
 			jarInputStream.close();
-			System.out.println("input stream closed");
 			if (map.containsKey("plugin/plugin.xml")) {
-				System.out.println("plugin.xml found");
 				byte[] bs = map.get("plugin/plugin.xml");
-				System.out.println("loaded data");
 				PluginDescriptor pluginDescriptor = getPluginDescriptor(new ByteArrayInputStream(bs));
-				System.out.println("loaded pluginDescriptor");
 				loadPlugins(new MapClassLoader(getClass().getClassLoader(), map), file.getAbsolutePath(), pluginDescriptor);
-				System.out.println("Loaded plugins");
 			} else {
 				System.out.println("no plugin.xml found");
 			}
@@ -356,8 +341,6 @@ public class PluginManager {
 	}
 
 	public void loadPlugin(Class<? extends Plugin> interfaceClass, String location, Plugin plugin) {
-		System.out.println("Loading plugin " + plugin.getClass().getName());
-		LOGGER.info("Loading plugin " + plugin.getClass().getName());
 		if (!implementations.containsKey(interfaceClass)) {
 			implementations.put(interfaceClass, new HashSet<PluginContext>());
 		}
