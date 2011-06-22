@@ -168,7 +168,6 @@ public class ServerInitializer implements ServletContextListener {
 
 			Thread.setDefaultUncaughtExceptionHandler(uncaughtExceptionHandler);
 
-			LOGGER.info("Creating plugin manager");
 			
 			String classPath = null;
 			if (serverType == ServerType.DEPLOYED_WAR) {
@@ -181,54 +180,55 @@ public class ServerInitializer implements ServletContextListener {
 				classPath = "../IFCEngine/bin";
 			}
 
-			pluginManager = new PluginManager(resourceFetcher, classPath, homeDir);
-			pluginManager.addPluginChangeListener(new PluginChangeListener() {
-				@Override
-				public void pluginStateChanged(PluginContext pluginContext, boolean enabled) {
-					// Reflect this change also in the database
-					Condition pluginCondition = new AttributeCondition(StorePackage.eINSTANCE.getPlugin_Name(), new StringLiteral(pluginContext.getPlugin().getName()));
-					BimDatabaseSession session = bimDatabase.createSession(true);
-					try {
-						Map<Long, org.bimserver.models.store.Plugin> pluginsFound = session.query(pluginCondition, org.bimserver.models.store.Plugin.class, false);
-						if (pluginsFound.size() == 0) {
-							LOGGER.error("Error changing plugin-state in database, plugin " + pluginContext.getPlugin().getName() + " not found");
-						} else if (pluginsFound.size() == 1) {
-							org.bimserver.models.store.Plugin pluginFound = pluginsFound.values().iterator().next();
-							pluginFound.setEnabled(pluginContext.isEnabled());
-							session.store(pluginFound);
-						} else {
-							LOGGER.error("Error, too many plugin-objects found in database for name " + pluginContext.getPlugin().getName());
+			try {
+				LOGGER.info("Creating plugin manager");
+				pluginManager = new PluginManager(resourceFetcher, classPath, homeDir);
+				pluginManager.addPluginChangeListener(new PluginChangeListener() {
+					@Override
+					public void pluginStateChanged(PluginContext pluginContext, boolean enabled) {
+						// Reflect this change also in the database
+						Condition pluginCondition = new AttributeCondition(StorePackage.eINSTANCE.getPlugin_Name(), new StringLiteral(pluginContext.getPlugin().getName()));
+						BimDatabaseSession session = bimDatabase.createSession(true);
+						try {
+							Map<Long, org.bimserver.models.store.Plugin> pluginsFound = session.query(pluginCondition, org.bimserver.models.store.Plugin.class, false);
+							if (pluginsFound.size() == 0) {
+								LOGGER.error("Error changing plugin-state in database, plugin " + pluginContext.getPlugin().getName() + " not found");
+							} else if (pluginsFound.size() == 1) {
+								org.bimserver.models.store.Plugin pluginFound = pluginsFound.values().iterator().next();
+								pluginFound.setEnabled(pluginContext.isEnabled());
+								session.store(pluginFound);
+							} else {
+								LOGGER.error("Error, too many plugin-objects found in database for name " + pluginContext.getPlugin().getName());
+							}
+							session.commit();
+						} catch (BimDatabaseException e) {
+							e.printStackTrace();
+						} catch (BimDeadlockException e) {
+							e.printStackTrace();
+						} finally {
+							session.close();
 						}
-						session.commit();
-					} catch (BimDatabaseException e) {
-						e.printStackTrace();
-					} catch (BimDeadlockException e) {
-						e.printStackTrace();
-					} finally {
-						session.close();
 					}
-				}
-			});
-			if (serverType == ServerType.DEV_ENVIRONMENT) {
-				pluginManager.loadPluginsFromEclipseProject(new File("../CityGML"));
-				pluginManager.loadPluginsFromEclipseProject(new File("../Collada"));
-				pluginManager.loadPluginsFromEclipseProject(new File("../IfcPlugins"));
-				pluginManager.loadPluginsFromEclipseProject(new File("../MiscSerializers"));
-				pluginManager.loadPluginsFromEclipseProject(new File("../O3d"));
-				pluginManager.loadPluginsFromEclipseProject(new File("../IFCEngine"));
-				pluginManager.loadPluginsFromEclipseProject(new File("../buildingSMARTLibrary"));
-			} else if (serverType == ServerType.DEPLOYED_WAR) {
-				File file = resourceFetcher.getFile("plugins");
-				LOGGER.info("Going to load plugins from " + file.getAbsolutePath());
-				try {
+				});
+				if (serverType == ServerType.DEV_ENVIRONMENT) {
+					pluginManager.loadPluginsFromEclipseProject(new File("../CityGML"));
+					pluginManager.loadPluginsFromEclipseProject(new File("../Collada"));
+					pluginManager.loadPluginsFromEclipseProject(new File("../IfcPlugins"));
+					pluginManager.loadPluginsFromEclipseProject(new File("../MiscSerializers"));
+					pluginManager.loadPluginsFromEclipseProject(new File("../O3d"));
+					pluginManager.loadPluginsFromEclipseProject(new File("../IFCEngine"));
+					pluginManager.loadPluginsFromEclipseProject(new File("../buildingSMARTLibrary"));
+				} else if (serverType == ServerType.DEPLOYED_WAR) {
+					File file = resourceFetcher.getFile("plugins");
+					LOGGER.info("Going to load plugins from " + file.getAbsolutePath());
 					pluginManager.loadAllPluginsFromDirectoryOfJars(file);
-				} catch (Exception e) {
-					LOGGER.error("", e);
+				} else if (serverType == ServerType.STANDALONE_JAR) {
+					pluginManager.loadAllPluginsFromDirectoryOfJars(new File("plugins"));
 				}
-			} else if (serverType == ServerType.STANDALONE_JAR) {
-				pluginManager.loadAllPluginsFromDirectoryOfJars(new File("plugins"));
+				pluginManager.loadPlugin(GuidanceProviderPlugin.class, "Internal", new SchemaFieldGuidanceProviderPlugin());
+			} catch (Exception e) {
+				LOGGER.error("", e);
 			}
-			pluginManager.loadPlugin(GuidanceProviderPlugin.class, "Internal", new SchemaFieldGuidanceProviderPlugin());
 			
 			LOGGER.info("Detected server type: " + serverType + " (" + System.getProperty("os.name") + ", " + System.getProperty("sun.arch.data.model") + "bit)");
 			if (serverType == ServerType.UNKNOWN) {
