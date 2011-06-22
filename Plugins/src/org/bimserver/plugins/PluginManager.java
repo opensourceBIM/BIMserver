@@ -131,6 +131,7 @@ public class PluginManager {
 		if (!file.isFile()) {
 			throw new PluginException("Not a file: " + file.getAbsolutePath());
 		}
+		System.out.println("Loading JAR: " + file.getAbsolutePath());
 		try {
 			JarInputStream jarInputStream = new JarInputStream(new FileInputStream(file));
 			JarEntry entry = jarInputStream.getNextJarEntry();
@@ -140,6 +141,8 @@ public class PluginManager {
 				IOUtils.copy(jarInputStream, byteArrayOutputStream);
 				map.put(entry.getName(), byteArrayOutputStream.toByteArray());
 				entry = jarInputStream.getNextJarEntry();
+				
+				System.out.println(entry.getName());
 			}
 			jarInputStream.close();
 			if (map.containsKey("plugin/plugin.xml")) {
