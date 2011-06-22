@@ -81,6 +81,9 @@ public class PluginManager {
 	@SuppressWarnings("unchecked")
 	private void loadPlugins(ClassLoader classLoader, String location, PluginDescriptor pluginDescriptor) throws PluginException {
 		System.out.println("Load plugins");
+		System.out.println(classLoader);
+		System.out.println(location);
+		System.out.println(pluginDescriptor);
 		for (PluginImplementation pluginImplementation : pluginDescriptor.getImplementations()) {
 			String interfaceClassName = pluginImplementation.getInterfaceClass();
 			try {
@@ -346,6 +349,7 @@ public class PluginManager {
 	}
 
 	public void loadPlugin(Class<? extends Plugin> interfaceClass, String location, Plugin plugin) {
+		System.out.println("Loading plugin " + plugin.getClass().getName());
 		LOGGER.info("Loading plugin " + plugin.getClass().getName());
 		if (!implementations.containsKey(interfaceClass)) {
 			implementations.put(interfaceClass, new HashSet<PluginContext>());
