@@ -25,7 +25,7 @@
 	</target>
 	<target name="BimServer">
 		<mkdir dir="builds/bimserver" />
-		<javac destdir="builds/bimserver" debug="on" fork="true">
+		<javac destdir="builds/bimserver" debug="on">
 			<src path="../../BimServer/src" />
 			<src path="../../BimServer/imported" />
 			<src path="../../BimServer/generated" />
@@ -46,7 +46,7 @@
 	</target>
 	<target name="Utils">
 		<mkdir dir="builds/utils" />
-		<javac destdir="builds/utils" debug="on" fork="true">
+		<javac destdir="builds/utils" debug="on" fork="false">
 			<src path="../../Utils/src" />
 			<classpath>
 				<path>
@@ -60,7 +60,7 @@
 	</target>
 	<target name="buildingSMARTLibrary">
 		<mkdir dir="builds/buildingSMARTLibrary" />
-		<javac destdir="builds/buildingSMARTLibrary" debug="on" fork="true">
+		<javac destdir="builds/buildingSMARTLibrary" debug="on">
 			<src path="../../buildingSMARTLibrary/src" />
 			<classpath>
 				<path>
@@ -78,7 +78,7 @@
 	</target>
 	<target name="Store">
 		<mkdir dir="builds/store" />
-		<javac destdir="builds/store" debug="on" fork="true">
+		<javac destdir="builds/store" debug="on">
 			<src path="../../Store/generated" />
 			<classpath>
 				<path>
@@ -92,7 +92,7 @@
 	</target>
 	<target name="IFCEngine">
 		<mkdir dir="builds/ifcengine" />
-		<javac destdir="builds/ifcengine" debug="on" fork="true">
+		<javac destdir="builds/ifcengine" debug="on">
 			<src path="../../IFCEngine/src" />
 			<classpath>
 				<path>
@@ -110,7 +110,7 @@
 	</target>
 	<target name="IfcPlugins">
 		<mkdir dir="builds/ifcplugins" />
-		<javac destdir="builds/ifcplugins" debug="on" fork="true">
+		<javac destdir="builds/ifcplugins" debug="on">
 			<src path="../../IfcPlugins/src" />
 			<classpath>
 				<path>
@@ -128,7 +128,7 @@
 	</target>
 	<target name="MiscSerializers">
 		<mkdir dir="builds/miscserializers" />
-		<javac destdir="builds/miscserializers" debug="on" fork="true">
+		<javac destdir="builds/miscserializers" debug="on">
 			<src path="../../MiscSerializers/src" />
 			<classpath>
 				<path>
@@ -146,7 +146,7 @@
 	</target>
 	<target name="Collada">
 		<mkdir dir="builds/collada" />
-		<javac destdir="builds/collada" debug="on" fork="true">
+		<javac destdir="builds/collada" debug="on">
 			<src path="../../Collada/src" />
 			<classpath>
 				<path>
@@ -164,7 +164,7 @@
 	</target>
 	<target name="O3d">
 		<mkdir dir="builds/o3d" />
-		<javac destdir="builds/o3d" debug="on" fork="true">
+		<javac destdir="builds/o3d" debug="on">
 			<src path="../../O3d/src" />
 			<classpath>
 				<path>
@@ -182,7 +182,7 @@
 	</target>
 	<target name="CityGML">
 		<mkdir dir="builds/citygml" />
-		<javac destdir="builds/citygml" debug="on" fork="true">
+		<javac destdir="builds/citygml" debug="on">
 			<src path="../../CityGML/src" />
 			<src path="../../CityGML/generated" />
 			<classpath>
@@ -204,7 +204,7 @@
 	</target>
 	<target name="Ifc">
 		<mkdir dir="builds/ifc" />
-		<javac destdir="builds/ifc" debug="on" fork="true">
+		<javac destdir="builds/ifc" debug="on">
 			<src path="../../Ifc/src" />
 			<classpath>
 				<path>
@@ -218,7 +218,7 @@
 	</target>
 	<target name="Emf">
 		<mkdir dir="builds/emf" />
-		<javac destdir="builds/emf" debug="on" fork="true">
+		<javac destdir="builds/emf" debug="on">
 			<src path="../../Emf/src" />
 			<classpath>
 				<path>
@@ -232,7 +232,7 @@
 	</target>
 	<target name="Client">
 		<mkdir dir="builds/client" />
-		<javac destdir="builds/client" debug="on" fork="true">
+		<javac destdir="builds/client" debug="on">
 			<src path="../../Client/src" />
 			<classpath>
 				<path>
@@ -247,7 +247,7 @@
 	</target>
 	<target name="Shared">
 		<mkdir dir="builds/shared" />
-		<javac destdir="builds/shared" debug="on" fork="true">
+		<javac destdir="builds/shared" debug="on">
 			<src path="../../Shared/src" />
 			<src path="../../Shared/generated" />
 			<classpath>
@@ -262,7 +262,7 @@
 	</target>
 	<target name="Plugins">
 		<mkdir dir="builds/plugins" />
-		<javac destdir="builds/plugins" debug="on" fork="true">
+		<javac destdir="builds/plugins" debug="on">
 			<src path="../../Plugins/src" />
 			<classpath>
 				<path>
@@ -361,7 +361,7 @@
 				<exclude name="*.svn" />
 			</fileset>
 		</jar>
-		<delete dir="builds/BuildJar" />
+		<delete dir="builds/BuildJar" failonerror="false" />
 	</target>
 	<target name="buildwar">
 		<delete dir="builds" />
@@ -460,7 +460,7 @@
 				<exclude name="*.svn" />
 			</fileset>
 		</jar>
-		<delete dir="builds/BuildWar" />
+		<delete dir="builds/BuildWar" failonerror="false" />
 	</target>
 	<import file="one-jar-ant-task.xml" />
 	<target name="buildclient">

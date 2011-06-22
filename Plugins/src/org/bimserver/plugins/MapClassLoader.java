@@ -2,11 +2,16 @@ package org.bimserver.plugins;
 
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class MapClassLoader extends ClassLoader {
+	private static final Logger LOGGER = LoggerFactory.getLogger(MapClassLoader.class);
 	private final Map<String, byte[]> map;
 
 	public MapClassLoader(ClassLoader parentLoader, Map<String, byte[]> map) {
 		super(parentLoader);
+		LOGGER.info("Using as parent classloader: " + parentLoader);
 		this.map = map;
 	}
 
