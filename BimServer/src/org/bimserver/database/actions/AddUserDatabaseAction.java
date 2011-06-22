@@ -88,7 +88,7 @@ public class AddUserDatabaseAction extends BimDatabaseAction<Long> {
 			throw new UserException("A user with the username " + trimmedUserName + " already exists");
 		}
 		User actingUser = getUserByUoid(createrUoid);
-		if (actingUser.getUserType() != UserType.SYSTEM) {
+		if (actingUser == null || actingUser.getUserType() != UserType.SYSTEM) {
 			if (createrUoid != -1 && actingUser.getUserType() != UserType.ADMIN) {
 				throw new UserException("Only admin users can create other users");
 			}
