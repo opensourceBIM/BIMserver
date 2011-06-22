@@ -9,6 +9,14 @@ service ServiceInterface {
 
 	rpc download (DownloadRequest) returns (DownloadResponse);
 
+	rpc setAttribute (SetAttributeRequest) returns (Void);
+
+	rpc createObject (CreateObjectRequest) returns (CreateObjectResponse);
+
+	rpc addAttribute (AddAttributeRequest) returns (Void);
+
+	rpc removeAttribute (RemoveAttributeRequest) returns (Void);
+
 	rpc getMigrations (GetMigrationsRequest) returns (GetMigrationsResponse);
 
 	rpc getAccessMethod (GetAccessMethodRequest) returns (GetAccessMethodResponse);
@@ -283,6 +291,24 @@ service ServiceInterface {
 
 	rpc getSerializerByContentType (GetSerializerByContentTypeRequest) returns (GetSerializerByContentTypeResponse);
 
+	rpc startTransaction (StartTransactionRequest) returns (Void);
+
+	rpc commitTransaction (CommitTransactionRequest) returns (CommitTransactionResponse);
+
+	rpc abortTransaction (AbortTransactionRequest) returns (Void);
+
+	rpc removeObject (RemoveObjectRequest) returns (Void);
+
+	rpc setReference (SetReferenceRequest) returns (Void);
+
+	rpc unsetAttribute (UnsetAttributeRequest) returns (Void);
+
+	rpc unsetReference (UnsetReferenceRequest) returns (Void);
+
+	rpc addReference (AddReferenceRequest) returns (Void);
+
+	rpc removeReference (RemoveReferenceRequest) returns (Void);
+
 }
 
 enum SCompareType{
@@ -334,6 +360,36 @@ message DownloadRequest {
 message DownloadResponse {
 	optional int32 value = 2;
 	optional string errorMessage = 1;
+}
+
+message SetAttributeRequest {
+	optional int64 oid = 1;
+	optional string className = 2;
+	optional string attributeName = 3;
+	optional string value = 4;
+}
+
+message CreateObjectRequest {
+	optional string className = 1;
+}
+
+message CreateObjectResponse {
+	optional int64 value = 2;
+	optional string errorMessage = 1;
+}
+
+message AddAttributeRequest {
+	optional int64 oid = 1;
+	optional string className = 2;
+	optional string attributeName = 3;
+	optional string value = 4;
+}
+
+message RemoveAttributeRequest {
+	optional int64 oid = 1;
+	optional string className = 2;
+	optional string attributeName = 3;
+	optional int32 index = 4;
 }
 
 message GetMigrationsRequest {
@@ -1624,7 +1680,7 @@ message GetSettingMergeIdentifierResponse {
 }
 
 message GetSerializerByNameRequest {
-	optional string unknown = 1;
+	optional string serializerName = 1;
 }
 
 message GetSerializerByNameResponse {
@@ -1670,12 +1726,67 @@ message DisablePluginRequest {
 }
 
 message GetSerializerByContentTypeRequest {
-	optional string unknown = 1;
+	optional string contentType = 1;
 }
 
 message GetSerializerByContentTypeResponse {
 	optional SSerializer value = 2;
 	optional string errorMessage = 1;
+}
+
+message StartTransactionRequest {
+	optional int32 pid = 1;
+}
+
+message CommitTransactionRequest {
+}
+
+message CommitTransactionResponse {
+	optional int64 value = 2;
+	optional string errorMessage = 1;
+}
+
+message AbortTransactionRequest {
+}
+
+message RemoveObjectRequest {
+	optional string className = 1;
+	optional int64 oid = 2;
+}
+
+message SetReferenceRequest {
+	optional int64 oid = 1;
+	optional string className = 2;
+	optional string referenceName = 3;
+	optional int64 referenceOid = 4;
+	optional string referenceClassName = 5;
+}
+
+message UnsetAttributeRequest {
+	optional int64 oid = 1;
+	optional string className = 2;
+	optional string attributeName = 3;
+}
+
+message UnsetReferenceRequest {
+	optional int64 oid = 1;
+	optional string className = 2;
+	optional string referenceName = 3;
+}
+
+message AddReferenceRequest {
+	optional int64 oid = 1;
+	optional string className = 2;
+	optional string referenceName = 3;
+	optional int64 referenceOid = 4;
+	optional string referenceClassName = 5;
+}
+
+message RemoveReferenceRequest {
+	optional int64 oid = 1;
+	optional string className = 2;
+	optional string referenceName = 3;
+	optional int32 index = 4;
 }
 
 message Void {

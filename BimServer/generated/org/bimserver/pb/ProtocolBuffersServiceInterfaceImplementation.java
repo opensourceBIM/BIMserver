@@ -64,6 +64,53 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 		return 0;
 	}
 
+	public void setAttribute(long oid, java.lang.String className, java.lang.String attributeName, java.lang.String value) {
+		try {
+			SetAttributeRequest.Builder requestBuilder = SetAttributeRequest.newBuilder();
+			requestBuilder.setOid(oid);
+			requestBuilder.setClassName(className);
+			requestBuilder.setAttributeName(attributeName);
+			requestBuilder.setValue(value);
+			SetAttributeRequest request = requestBuilder.build();
+			service.setAttribute(rpcController, request);
+		} catch (Exception e) {}
+	}
+
+	public long createObject(java.lang.String className) {
+		try {
+			CreateObjectRequest.Builder requestBuilder = CreateObjectRequest.newBuilder();
+			requestBuilder.setClassName(className);
+			CreateObjectRequest request = requestBuilder.build();
+			CreateObjectResponse response = service.createObject(rpcController, request);
+			return response.getValue();
+		} catch (Exception e) {}
+		return 0;
+	}
+
+	public void addAttribute(long oid, java.lang.String className, java.lang.String attributeName, java.lang.String value) {
+		try {
+			AddAttributeRequest.Builder requestBuilder = AddAttributeRequest.newBuilder();
+			requestBuilder.setOid(oid);
+			requestBuilder.setClassName(className);
+			requestBuilder.setAttributeName(attributeName);
+			requestBuilder.setValue(value);
+			AddAttributeRequest request = requestBuilder.build();
+			service.addAttribute(rpcController, request);
+		} catch (Exception e) {}
+	}
+
+	public void removeAttribute(long oid, java.lang.String className, java.lang.String attributeName, int index) {
+		try {
+			RemoveAttributeRequest.Builder requestBuilder = RemoveAttributeRequest.newBuilder();
+			requestBuilder.setOid(oid);
+			requestBuilder.setClassName(className);
+			requestBuilder.setAttributeName(attributeName);
+			requestBuilder.setIndex(index);
+			RemoveAttributeRequest request = requestBuilder.build();
+			service.removeAttribute(rpcController, request);
+		} catch (Exception e) {}
+	}
+
 	public java.util.Set<org.bimserver.shared.SMigration> getMigrations() {
 		try {
 			GetMigrationsRequest.Builder requestBuilder = GetMigrationsRequest.newBuilder();
@@ -2039,10 +2086,10 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 		return null;
 	}
 
-	public org.bimserver.interfaces.objects.SSerializer getSerializerByName(java.lang.String unknown) {
+	public org.bimserver.interfaces.objects.SSerializer getSerializerByName(java.lang.String serializerName) {
 		try {
 			GetSerializerByNameRequest.Builder requestBuilder = GetSerializerByNameRequest.newBuilder();
-			requestBuilder.setUnknown(unknown);
+			requestBuilder.setSerializerName(serializerName);
 			GetSerializerByNameRequest request = requestBuilder.build();
 			GetSerializerByNameResponse response = service.getSerializerByName(rpcController, request);
 			org.bimserver.interfaces.objects.SSerializer realResult = new org.bimserver.interfaces.objects.SSerializer();
@@ -2100,16 +2147,113 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 		} catch (Exception e) {}
 	}
 
-	public org.bimserver.interfaces.objects.SSerializer getSerializerByContentType(java.lang.String unknown) {
+	public org.bimserver.interfaces.objects.SSerializer getSerializerByContentType(java.lang.String contentType) {
 		try {
 			GetSerializerByContentTypeRequest.Builder requestBuilder = GetSerializerByContentTypeRequest.newBuilder();
-			requestBuilder.setUnknown(unknown);
+			requestBuilder.setContentType(contentType);
 			GetSerializerByContentTypeRequest request = requestBuilder.build();
 			GetSerializerByContentTypeResponse response = service.getSerializerByContentType(rpcController, request);
 			org.bimserver.interfaces.objects.SSerializer realResult = new org.bimserver.interfaces.objects.SSerializer();
 			return realResult;
 		} catch (Exception e) {}
 		return null;
+	}
+
+	public void startTransaction(int pid) {
+		try {
+			StartTransactionRequest.Builder requestBuilder = StartTransactionRequest.newBuilder();
+			requestBuilder.setPid(pid);
+			StartTransactionRequest request = requestBuilder.build();
+			service.startTransaction(rpcController, request);
+		} catch (Exception e) {}
+	}
+
+	public long commitTransaction() {
+		try {
+			CommitTransactionRequest.Builder requestBuilder = CommitTransactionRequest.newBuilder();
+			CommitTransactionRequest request = requestBuilder.build();
+			CommitTransactionResponse response = service.commitTransaction(rpcController, request);
+			return response.getValue();
+		} catch (Exception e) {}
+		return 0;
+	}
+
+	public void abortTransaction() {
+		try {
+			AbortTransactionRequest.Builder requestBuilder = AbortTransactionRequest.newBuilder();
+			AbortTransactionRequest request = requestBuilder.build();
+			service.abortTransaction(rpcController, request);
+		} catch (Exception e) {}
+	}
+
+	public void removeObject(java.lang.String className, long oid) {
+		try {
+			RemoveObjectRequest.Builder requestBuilder = RemoveObjectRequest.newBuilder();
+			requestBuilder.setClassName(className);
+			requestBuilder.setOid(oid);
+			RemoveObjectRequest request = requestBuilder.build();
+			service.removeObject(rpcController, request);
+		} catch (Exception e) {}
+	}
+
+	public void setReference(long oid, java.lang.String className, java.lang.String referenceName, long referenceOid, java.lang.String referenceClassName) {
+		try {
+			SetReferenceRequest.Builder requestBuilder = SetReferenceRequest.newBuilder();
+			requestBuilder.setOid(oid);
+			requestBuilder.setClassName(className);
+			requestBuilder.setReferenceName(referenceName);
+			requestBuilder.setReferenceOid(referenceOid);
+			requestBuilder.setReferenceClassName(referenceClassName);
+			SetReferenceRequest request = requestBuilder.build();
+			service.setReference(rpcController, request);
+		} catch (Exception e) {}
+	}
+
+	public void unsetAttribute(long oid, java.lang.String className, java.lang.String attributeName) {
+		try {
+			UnsetAttributeRequest.Builder requestBuilder = UnsetAttributeRequest.newBuilder();
+			requestBuilder.setOid(oid);
+			requestBuilder.setClassName(className);
+			requestBuilder.setAttributeName(attributeName);
+			UnsetAttributeRequest request = requestBuilder.build();
+			service.unsetAttribute(rpcController, request);
+		} catch (Exception e) {}
+	}
+
+	public void unsetReference(long oid, java.lang.String className, java.lang.String referenceName) {
+		try {
+			UnsetReferenceRequest.Builder requestBuilder = UnsetReferenceRequest.newBuilder();
+			requestBuilder.setOid(oid);
+			requestBuilder.setClassName(className);
+			requestBuilder.setReferenceName(referenceName);
+			UnsetReferenceRequest request = requestBuilder.build();
+			service.unsetReference(rpcController, request);
+		} catch (Exception e) {}
+	}
+
+	public void addReference(long oid, java.lang.String className, java.lang.String referenceName, long referenceOid, java.lang.String referenceClassName) {
+		try {
+			AddReferenceRequest.Builder requestBuilder = AddReferenceRequest.newBuilder();
+			requestBuilder.setOid(oid);
+			requestBuilder.setClassName(className);
+			requestBuilder.setReferenceName(referenceName);
+			requestBuilder.setReferenceOid(referenceOid);
+			requestBuilder.setReferenceClassName(referenceClassName);
+			AddReferenceRequest request = requestBuilder.build();
+			service.addReference(rpcController, request);
+		} catch (Exception e) {}
+	}
+
+	public void removeReference(long oid, java.lang.String className, java.lang.String referenceName, int index) {
+		try {
+			RemoveReferenceRequest.Builder requestBuilder = RemoveReferenceRequest.newBuilder();
+			requestBuilder.setOid(oid);
+			requestBuilder.setClassName(className);
+			requestBuilder.setReferenceName(referenceName);
+			requestBuilder.setIndex(index);
+			RemoveReferenceRequest request = requestBuilder.build();
+			service.removeReference(rpcController, request);
+		} catch (Exception e) {}
 	}
 
 }

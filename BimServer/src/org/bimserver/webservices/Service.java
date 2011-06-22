@@ -2600,7 +2600,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public void addAttribute(long oid, String className, String attributeName, Object value) {
+	public void addAttribute(long oid, String className, String attributeName, String value) {
 		changes.add(new AddAttributeChange(oid, className, attributeName, value));
 	}
 
@@ -2633,7 +2633,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public void setAttribute(long oid, String className, String attributeName, Object value) {
+	public void setAttribute(long oid, String className, String attributeName, String value) {
 		changes.add(new SetAttributeChange(oid, className, attributeName, value));
 	}
 
