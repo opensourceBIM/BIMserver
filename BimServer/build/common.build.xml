@@ -467,6 +467,11 @@
 		<mkdir dir="builds" />
 		<mkdir dir="builds/BuildClient" />
 		<mkdir dir="builds/lib" />
+		<antcall target="Utils" />
+		<antcall target="Emf" />
+		<antcall target="Store" />
+		<antcall target="Plugins" />
+		<antcall target="Shared" />
 		<antcall target="Client"/>
 		<copy todir="builds/BuildClient/lib">
 			<fileset dir="builds/lib"></fileset>
