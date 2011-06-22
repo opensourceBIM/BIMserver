@@ -147,9 +147,13 @@ public class PluginManager {
 			}
 			jarInputStream.close();
 			if (map.containsKey("plugin/plugin.xml")) {
+				System.out.println("plugin.xml found");
 				byte[] bs = map.get("plugin/plugin.xml");
+				System.out.println("loaded data");
 				PluginDescriptor pluginDescriptor = getPluginDescriptor(new ByteArrayInputStream(bs));
+				System.out.println("loaded pluginDescriptor");
 				loadPlugins(new MapClassLoader(map), file.getAbsolutePath(), pluginDescriptor);
+				System.out.println("Loaded plugins");
 			}
 		} catch (FileNotFoundException e) {
 			throw new PluginException(e);
