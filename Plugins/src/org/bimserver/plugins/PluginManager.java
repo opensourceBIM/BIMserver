@@ -138,11 +138,11 @@ public class PluginManager {
 			JarEntry entry = jarInputStream.getNextJarEntry();
 			Map<String, byte[]> map = new HashMap<String, byte[]>();
 			while (entry != null) {
+				System.out.println(entry.getName());
 				ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
 				IOUtils.copy(jarInputStream, byteArrayOutputStream);
 				map.put(entry.getName(), byteArrayOutputStream.toByteArray());
 				entry = jarInputStream.getNextJarEntry();
-				System.out.println(entry.getName());
 			}
 			System.out.println("closing input stream");
 			jarInputStream.close();
