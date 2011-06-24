@@ -97,9 +97,9 @@ public class FindClashesDatabaseAction extends BimDatabaseAction<Set<? extends C
 		try {
 			ifcSerializer.init(newModel, null, null);
 			byte[] bytes = ifcSerializer.getBytes();
-			IfcEngine failSafeIfcEngine = pluginManager.requireIfcEngine();
+			IfcEngine ifcEngine = pluginManager.requireIfcEngine().createIfcEngine();
 			try {
-				IfcEngineModel ifcEngineModel = failSafeIfcEngine.openModel(bytes);
+				IfcEngineModel ifcEngineModel = ifcEngine.openModel(bytes);
 				try {
 					Set<IfcEngineClash> clashes = ifcEngineModel.findClashesWithEids(clashDetectionSettings.getMargin());
 
@@ -132,7 +132,7 @@ public class FindClashesDatabaseAction extends BimDatabaseAction<Set<? extends C
 			} catch (PluginException e) {
 				LOGGER.error("", e);
 			} finally {
-				failSafeIfcEngine.close();
+				ifcEngine.close();
 			}
 		} catch (PluginException e) {
 			LOGGER.error("", e);

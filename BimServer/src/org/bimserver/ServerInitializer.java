@@ -88,6 +88,7 @@ import org.bimserver.shared.ServiceInterface;
 import org.bimserver.templating.TemplateEngine;
 import org.bimserver.utils.CollectionUtils;
 import org.bimserver.utils.TempUtils;
+import org.bimserver.version.VersionChecker;
 import org.bimserver.web.LoginManager;
 import org.bimserver.webservices.RestApplication;
 import org.bimserver.webservices.Service;
@@ -177,6 +178,8 @@ public class ServerInitializer implements ServletContextListener {
 				classPath = "../IFCEngine/bin";
 			}
 
+			VersionChecker.init(resourceFetcher);
+			
 			try {
 				LOGGER.info("Creating plugin manager");
 				pluginManager = new PluginManager(resourceFetcher, classPath, homeDir);

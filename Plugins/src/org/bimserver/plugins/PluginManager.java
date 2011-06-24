@@ -27,7 +27,6 @@ import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.deserializers.EmfDeserializer;
 import org.bimserver.plugins.guidanceproviders.GuidanceProvider;
 import org.bimserver.plugins.guidanceproviders.GuidanceProviderPlugin;
-import org.bimserver.plugins.ifcengine.IfcEngine;
 import org.bimserver.plugins.ifcengine.IfcEngineException;
 import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
 import org.bimserver.plugins.schema.SchemaDefinition;
@@ -292,7 +291,7 @@ public class PluginManager {
 		}
 	}
 
-	public IfcEngine requireIfcEngine() throws PluginException {
+	public IfcEnginePlugin requireIfcEngine() throws PluginException {
 		Collection<IfcEnginePlugin> allIfcEnginePlugins = getAllIfcEnginePlugins(true);
 		if (allIfcEnginePlugins.size() == 0) {
 			throw new IfcEngineException("A working IfcEngine is required");
@@ -301,7 +300,7 @@ public class PluginManager {
 		if (!ifcEnginePlugin.isInitialized()) {
 			ifcEnginePlugin.init(this);
 		}
-		return ifcEnginePlugin.createIfcEngine();
+		return ifcEnginePlugin;
 	}
 	
 	/*
