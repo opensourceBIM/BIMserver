@@ -101,6 +101,7 @@ import org.slf4j.LoggerFactory;
 import org.w3c.dom.Element;
 
 import ade.GlobalIdType;
+import ade.ObjectFactory;
 import ade.RoofTypeEnum;
 
 public class CityGmlSerializer extends BimModelSerializer {
@@ -147,7 +148,7 @@ public class CityGmlSerializer extends BimModelSerializer {
 			cityModel.setName(createNameList(getModel().getName()));
 			JAXBBuilder builder = null;
 			try {
-				builder = ctx.createJAXBBuilder();
+				builder = ctx.createJAXBBuilder(ObjectFactory.class.getClassLoader());
 			} catch (JAXBException e1) {
 				e1.printStackTrace();
 			}
