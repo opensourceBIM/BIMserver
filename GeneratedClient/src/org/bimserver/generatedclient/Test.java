@@ -54,9 +54,4 @@ public class Test {
 			e.printStackTrace();
 		}
 	}
-
-	private void testAddUser() throws UserException_Exception, ServerException_Exception {
-		long addUser = soapPort.addUser("tes43@bimserver.org", "Test", SUserType.USER, true);
-		System.out.println("User successfully added: " + addUser);
-	}
 }
