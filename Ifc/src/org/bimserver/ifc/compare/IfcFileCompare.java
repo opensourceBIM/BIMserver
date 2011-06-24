@@ -39,7 +39,6 @@ public class IfcFileCompare {
 			InputStream srcStream = new FileInputStream(src);
 			InputStream destStream = new FileInputStream(dest);
 			int diffs = 0;
-			int i = 0;
 
 			FileReader srcReader = new FileReader(srcStream);
 			FileReader destReader = new FileReader(destStream);
@@ -58,7 +57,6 @@ public class IfcFileCompare {
 					out.println();
 					diffs++;
 				}
-				i++;
 //				if (i % 100 == 0) {
 //					LOGGER.info("id: " + i + " (" + diffs + ")");
 //				}
