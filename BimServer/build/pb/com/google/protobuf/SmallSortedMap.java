@@ -84,6 +84,7 @@ import java.util.TreeMap;
 // This class is final for all intents and purposes because the constructor is
 // private. However, the FieldDescriptor-specific logic is encapsulated in
 // a subclass to aid testability of the core logic.
+@SuppressWarnings({"rawtypes", "unchecked"})
 class SmallSortedMap<K extends Comparable<K>, V> extends AbstractMap<K, V> {
 
   /**
@@ -99,7 +100,6 @@ class SmallSortedMap<K extends Comparable<K>, V> extends AbstractMap<K, V> {
       SmallSortedMap<FieldDescriptorType, Object> newFieldMap(int arraySize) {
     return new SmallSortedMap<FieldDescriptorType, Object>(arraySize) {
       @Override
-      @SuppressWarnings("unchecked")
       public void makeImmutable() {
         if (!isImmutable()) {
           for (int i = 0; i < getNumArrayEntries(); i++) {
@@ -210,7 +210,6 @@ class SmallSortedMap<K extends Comparable<K>, V> extends AbstractMap<K, V> {
    */
   @Override
   public boolean containsKey(Object o) {
-    @SuppressWarnings("unchecked")
     final K key = (K) o;
     return binarySearchInArray(key) >= 0 || overflowEntries.containsKey(key);
   }
@@ -223,7 +222,6 @@ class SmallSortedMap<K extends Comparable<K>, V> extends AbstractMap<K, V> {
    */
   @Override
   public V get(Object o) {
-    @SuppressWarnings("unchecked")
     final K key = (K) o;
     final int index = binarySearchInArray(key);
     if (index >= 0) {
@@ -277,7 +275,6 @@ class SmallSortedMap<K extends Comparable<K>, V> extends AbstractMap<K, V> {
   @Override
   public V remove(Object o) {
     checkMutable();
-    @SuppressWarnings("unchecked")
     final K key = (K) o;
     final int index = binarySearchInArray(key);
     if (index >= 0) {
@@ -372,7 +369,6 @@ class SmallSortedMap<K extends Comparable<K>, V> extends AbstractMap<K, V> {
    * @throws UnsupportedOperationException if {@link #makeImmutable()} has been
    *         called.
    */
-  @SuppressWarnings("unchecked")
   private SortedMap<K, V> getOverflowEntriesMutable() {
     checkMutable();
     if (overflowEntries.isEmpty() && !(overflowEntries instanceof TreeMap)) {
@@ -385,7 +381,6 @@ class SmallSortedMap<K extends Comparable<K>, V> extends AbstractMap<K, V> {
    * Lazily creates the entry list. Any code that adds to the list must first
    * call this method.
    */
-  @SuppressWarnings("unchecked")
 private void ensureEntryArrayMutable() {
     checkMutable();
     if (entryList.isEmpty() && !(entryList instanceof ArrayList)) {
@@ -435,7 +430,6 @@ private void ensureEntryArrayMutable() {
       return oldValue;
     }
 
-    @SuppressWarnings("unchecked")
 	@Override
     public boolean equals(Object o) {
       if (o == this) {
@@ -487,7 +481,6 @@ private void ensureEntryArrayMutable() {
      */
     @Override
     public boolean contains(Object o) {
-      @SuppressWarnings("unchecked")
       final Map.Entry<K, V> entry = (Map.Entry<K, V>) o;
       final V existing = get(entry.getKey());
       final V value = entry.getValue();
@@ -511,7 +504,6 @@ private void ensureEntryArrayMutable() {
      */
     @Override
     public boolean remove(Object o) {
-      @SuppressWarnings("unchecked")
       final Map.Entry<K, V> entry = (Map.Entry<K, V>) o;
       if (contains(entry)) {
         SmallSortedMap.this.remove(entry.getKey());
@@ -611,7 +603,6 @@ private void ensureEntryArrayMutable() {
       }
     };
 
-    @SuppressWarnings("unchecked")
     static <T> Iterable<T> iterable() {
       return (Iterable<T>) ITERABLE;
     }

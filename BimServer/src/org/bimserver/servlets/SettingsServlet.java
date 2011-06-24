@@ -1,6 +1,5 @@
 package org.bimserver.servlets;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -24,7 +23,6 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.IOUtils;
 import org.bimserver.ServerInitializer;
-import org.bimserver.interfaces.objects.SGuidanceProvider;
 import org.bimserver.interfaces.objects.SSettings;
 import org.bimserver.interfaces.objects.SUserType;
 import org.bimserver.models.store.Settings;

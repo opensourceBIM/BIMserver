@@ -7,15 +7,11 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.bimserver.shared.SLongAction;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
 
 public class LongActionManager {
-
-	private static final Logger LOGGER = LoggerFactory.getLogger(LongActionManager.class);
 
 	private final BiMap<Integer, LongAction<?>> actions = HashBiMap.create();
 
@@ -73,6 +69,7 @@ public class LongActionManager {
 		return actions.get(id);
 	}
 
+	@SuppressWarnings("unchecked")
 	public synchronized <T extends LongAction<?>> T getLongAction(Class<T> clazz, LongActionKey key) {
 		for (LongAction<?> longAction : actions.values()) {
 			if (clazz.isInstance(longAction)) {

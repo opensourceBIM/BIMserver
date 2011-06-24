@@ -23,6 +23,7 @@ public class RemoveReferenceChange implements Change {
 		this.index = index;
 	}
 	
+	@SuppressWarnings("rawtypes")
 	@Override
 	public void execute(int pid, int rid, BimDatabaseSession bimDatabaseSession) throws UserException, BimDeadlockException, BimDatabaseException {
 		IdEObject idEObject = bimDatabaseSession.get(bimDatabaseSession.getEClassForName(className), oid, false);

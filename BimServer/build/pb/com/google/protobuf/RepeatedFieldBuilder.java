@@ -63,7 +63,7 @@ import java.util.List;
  *
  * @author jonp@google.com (Jon Perlow)
  */
-@SuppressWarnings("unchecked")
+@SuppressWarnings({"rawtypes", "unchecked"})
 public class RepeatedFieldBuilder
     <MType extends GeneratedMessage,
      BType extends GeneratedMessage.Builder,

@@ -45,7 +45,7 @@ import java.util.Map;
  *
  * @author kenton@google.com Kenton Varda
  */
-@SuppressWarnings("unchecked")
+@SuppressWarnings({"rawtypes", "unchecked"})
 public abstract class GeneratedMessageLite extends AbstractMessageLite
     implements Serializable {
   private static final long serialVersionUID = 1L;

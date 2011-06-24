@@ -56,7 +56,7 @@ package com.google.protobuf;
  *
  * @author jonp@google.com (Jon Perlow)
  */
-@SuppressWarnings("unchecked")
+@SuppressWarnings({"rawtypes", "unchecked"})
 public class SingleFieldBuilder
     <MType extends GeneratedMessage,
      BType extends GeneratedMessage.Builder,

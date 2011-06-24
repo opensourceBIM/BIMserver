@@ -55,7 +55,7 @@ public class CodeMigrator {
 				DataObjectGenerator dataObjectGenerator = new DataObjectGenerator(schema);
 				VirtualFile basedir = new VirtualFile(null, null);
 				VirtualFile generate = dataObjectGenerator.generate(basedir);
-//				generate.dumpToDir(new File("../Store/generated"));
+				generate.dumpToDir(new File("../Store/generated"));
 				LOGGER.info("EMF classes successfully generated");
 			}
 		} catch (IOException e) {

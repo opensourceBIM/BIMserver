@@ -46,10 +46,9 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 import org.bimserver.MergerFactory;
-import org.bimserver.MetaDataManager;
 import org.bimserver.ServerInfo;
-import org.bimserver.SettingsManager;
 import org.bimserver.ServerInfo.ServerState;
+import org.bimserver.SettingsManager;
 import org.bimserver.cache.DiskCacheManager;
 import org.bimserver.changes.AddAttributeChange;
 import org.bimserver.changes.AddReferenceChange;
@@ -197,11 +196,17 @@ import org.bimserver.shared.DatabaseInformation;
 import org.bimserver.shared.LongActionState;
 import org.bimserver.shared.SCheckinResult;
 import org.bimserver.shared.SCompareResult;
+import org.bimserver.shared.SCompareResult.SCompareIdentifier;
+import org.bimserver.shared.SCompareResult.SCompareType;
+import org.bimserver.shared.SCompareResult.SObjectAdded;
+import org.bimserver.shared.SCompareResult.SObjectModified;
+import org.bimserver.shared.SCompareResult.SObjectRemoved;
 import org.bimserver.shared.SDataObject;
 import org.bimserver.shared.SDownloadResult;
 import org.bimserver.shared.SLongAction;
 import org.bimserver.shared.SMigration;
 import org.bimserver.shared.SPlugin;
+import org.bimserver.shared.SPlugin.SPluginState;
 import org.bimserver.shared.SRevisionSummary;
 import org.bimserver.shared.SUserSession;
 import org.bimserver.shared.ServerException;
@@ -209,12 +214,6 @@ import org.bimserver.shared.ServiceException;
 import org.bimserver.shared.ServiceInterface;
 import org.bimserver.shared.Token;
 import org.bimserver.shared.UserException;
-import org.bimserver.shared.SCompareResult.SCompareIdentifier;
-import org.bimserver.shared.SCompareResult.SCompareType;
-import org.bimserver.shared.SCompareResult.SObjectAdded;
-import org.bimserver.shared.SCompareResult.SObjectModified;
-import org.bimserver.shared.SCompareResult.SObjectRemoved;
-import org.bimserver.shared.SPlugin.SPluginState;
 import org.bimserver.tools.generators.GenerateUtils;
 import org.bimserver.utils.FakeClosingInputStream;
 import org.bimserver.utils.Hashers;
@@ -246,7 +245,6 @@ public class Service implements ServiceInterface {
 	private final MailSystem mailSystem;
 	private final PluginManager pluginManager;
 	private final DiskCacheManager diskCacheManager;
-	private final MetaDataManager metaDataManager = new MetaDataManager();
 	private Set<Change> changes = null;
 
 	private long currentUoid = -1;
@@ -598,6 +596,7 @@ public class Service implements ServiceInterface {
 		}
 	}
 
+	@SuppressWarnings({ "unchecked", "unused" })
 	private <T> T convertEnum(Enumerator enumerator, Class<T> targetClass) {
 		Object[] enumConstants = targetClass.getEnumConstants();
 		for (Object t : enumConstants) {
@@ -623,6 +622,7 @@ public class Service implements ServiceInterface {
 		return null;
 	}
 	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private <T> T convert(Enum enumerator, Class<T> targetClass) {
 		Object[] enumConstants = targetClass.getEnumConstants();
 		for (Object t : enumConstants) {

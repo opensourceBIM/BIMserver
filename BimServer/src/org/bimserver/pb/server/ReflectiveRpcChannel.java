@@ -77,7 +77,7 @@ public class ReflectiveRpcChannel implements BlockingRpcChannel {
 //		}
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public Message callBlockingMethod(MethodDescriptor methodDescriptor, RpcController controller, Message request, Message responsePrototype) throws ServiceException {
 		if (service == null) {
@@ -135,7 +135,7 @@ public class ReflectiveRpcChannel implements BlockingRpcChannel {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private Object convertObject(Map<Object, Object> convertedObjects, Descriptor descriptor, Object object) {
 		if (convertedObjects.containsKey(object)) {
 			return convertedObjects.get(object);

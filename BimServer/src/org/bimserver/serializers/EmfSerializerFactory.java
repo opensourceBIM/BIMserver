@@ -21,12 +21,8 @@ import org.bimserver.plugins.serializers.EmfSerializer;
 import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class EmfSerializerFactory {
-	private static final Logger LOGGER = LoggerFactory.getLogger(EmfSerializerFactory.class);
-
 	private static final EmfSerializerFactory INSTANCE = new EmfSerializerFactory();
 	private PluginManager pluginManager;
 	private BimDatabase bimDatabase;

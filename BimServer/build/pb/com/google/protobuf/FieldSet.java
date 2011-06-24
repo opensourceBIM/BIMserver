@@ -95,7 +95,7 @@ final class FieldSet<FieldDescriptorType extends
       FieldSet<T> emptySet() {
     return DEFAULT_INSTANCE;
   }
-  @SuppressWarnings("unchecked")
+  @SuppressWarnings({ "rawtypes" })
   private static final FieldSet DEFAULT_INSTANCE = new FieldSet(true);
 
   /** Make this FieldSet immutable from this point forward. */
@@ -191,7 +191,7 @@ final class FieldSet<FieldDescriptorType extends
    * Useful for implementing
    * {@link Message.Builder#setField(Descriptors.FieldDescriptor,Object)}.
    */
-  @SuppressWarnings("unchecked")
+  @SuppressWarnings({ "unchecked", "rawtypes" })
   public void setField(final FieldDescriptorType descriptor,
                        Object value) {
     if (descriptor.isRepeated()) {
@@ -265,7 +265,7 @@ final class FieldSet<FieldDescriptorType extends
    * Useful for implementing
    * {@link Message.Builder#setRepeatedField(Descriptors.FieldDescriptor,int,Object)}.
    */
-  @SuppressWarnings("unchecked")
+  @SuppressWarnings({ "unchecked", "rawtypes" })
   public void setRepeatedField(final FieldDescriptorType descriptor,
                                final int index,
                                final Object value) {
@@ -287,7 +287,7 @@ final class FieldSet<FieldDescriptorType extends
    * Useful for implementing
    * {@link Message.Builder#addRepeatedField(Descriptors.FieldDescriptor,Object)}.
    */
-  @SuppressWarnings("unchecked")
+  @SuppressWarnings({ "unchecked", "rawtypes" })
   public void addRepeatedField(final FieldDescriptorType descriptor,
                                final Object value) {
     if (!descriptor.isRepeated()) {
@@ -427,7 +427,7 @@ final class FieldSet<FieldDescriptorType extends
     }
   }
 
-  @SuppressWarnings("unchecked")
+  @SuppressWarnings({ "unchecked", "rawtypes" })
   private void mergeFromField(
       final Map.Entry<FieldDescriptorType, Object> entry) {
     final FieldDescriptorType descriptor = entry.getKey();
