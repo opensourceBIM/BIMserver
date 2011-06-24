@@ -93,7 +93,7 @@ public class ReferenceCounter {
 			super(idEObject, referredObject, eReference);
 		}
 
-		@SuppressWarnings("unchecked")
+		@SuppressWarnings({ "rawtypes", "unchecked" })
 		@Override
 		public Reference reAttach(IdEObject mainObject) {
 			List list = (List)getIdEObject().eGet(geteReference());
@@ -110,7 +110,7 @@ public class ReferenceCounter {
 		this.ifcModel = ifcModel;
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public void updateReferences() {
 		references.clear();
 		for (IdEObject idEObject : ifcModel.getValues()) {
@@ -139,7 +139,7 @@ public class ReferenceCounter {
 		System.out.println("Removing " + idEObject + " (" + totalRemoved + ")");
 	}
 	
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public int removeInternal(IdEObject idEObject) {
 		int totalRemoved = 1;
 		for (EReference eReference : idEObject.eClass().getEAllReferences()) {

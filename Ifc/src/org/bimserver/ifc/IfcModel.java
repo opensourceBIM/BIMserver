@@ -430,7 +430,7 @@ public class IfcModel implements IfcModelInterface {
 		dumpObject(idEObject, 0, new HashSet<IdEObject>());
 	}
 	
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	private void dumpObject(IdEObject idEObject, int indention, Set<IdEObject> printed) {
 		if (printed.contains(idEObject)) {
 			printIndention(indention);
@@ -508,7 +508,7 @@ public class IfcModel implements IfcModelInterface {
 		}
 	}
 	
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	private void dumpPlusReferences(Set<IdEObject> done, IdEObject idEObject) {
 		if (idEObject == null) {
 			return;
@@ -547,7 +547,7 @@ public class IfcModel implements IfcModelInterface {
 		objects = temp;
 	}
 	
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	private void fixOids(IdEObject idEObject, OidProvider oidProvider, BiMap<Long, IdEObject> temp) {
 		if (idEObject == null) {
 			return;
@@ -621,7 +621,7 @@ public class IfcModel implements IfcModelInterface {
 		}
 	}
 	
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	private void checkDoubleOidsPlusReferences(BiMap<IdEObject, Long> done, IdEObject idEObject) {
 		if (idEObject == null) {
 			return;
@@ -651,7 +651,7 @@ public class IfcModel implements IfcModelInterface {
 		}
 	}
 	
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public void showBackReferences(IdEObject idEObject) {
 		System.out.println("Showing back references to: " + idEObject);
 		for (IdEObject object : getValues()) {
@@ -687,7 +687,7 @@ public class IfcModel implements IfcModelInterface {
 		}
 	}
 	
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public void resetOids(IdEObject idEObject, Set<IdEObject> done) {
 		if (idEObject == null) {
 			return;
