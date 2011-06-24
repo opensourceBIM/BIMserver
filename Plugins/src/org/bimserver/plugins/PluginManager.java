@@ -76,7 +76,7 @@ public class PluginManager {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private void loadPlugins(ClassLoader classLoader, String location, PluginDescriptor pluginDescriptor) throws PluginException {
 		for (PluginImplementation pluginImplementation : pluginDescriptor.getImplementations()) {
 			String interfaceClassName = pluginImplementation.getInterfaceClass();
@@ -154,7 +154,7 @@ public class PluginManager {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private <T> Collection<T> getPlugins(Class<T> requiredInterfaceClass, boolean onlyEnabled) {
 		Collection<T> plugins = new ArrayList<T>();
 		for (Class interfaceClass : implementations.keySet()) {
