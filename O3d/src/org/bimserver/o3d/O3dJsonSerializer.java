@@ -61,7 +61,7 @@ public class O3dJsonSerializer extends BimModelSerializer {
 	public boolean write(OutputStream out) throws SerializerException {
 		if (getMode() == Mode.BODY) {
 			try {
-				ifcEngine = getPluginManager().requireIfcEngine();
+				ifcEngine = getPluginManager().requireIfcEngine().createIfcEngine();
 			} catch (PluginException e) {
 				throw new SerializerException(e);
 			}

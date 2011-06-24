@@ -66,7 +66,7 @@ public class O3dTgzSerializer extends BimModelSerializer {
 		if (getMode() == Mode.BODY) {
 			try {
 				try {
-					ifcEngine = getPluginManager().requireIfcEngine();
+					ifcEngine = getPluginManager().requireIfcEngine().createIfcEngine();
 				} catch (PluginException e) {
 					throw new SerializerException(e);
 				}
