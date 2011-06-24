@@ -71,15 +71,12 @@
 	<classpathentry kind="lib" path="/BimServer/lib/cxf/xmltooling-1.3.1.jar"/>
 	<classpathentry kind="lib" path="/BimServer/lib/cxf/xsdlib-2010.1.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/BimServer"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/CityGML"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Ifc"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Shared"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/TestData"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Utils"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Store"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Plugins"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/IfcPlugins"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/buildingSMARTLibrary"/>
 	<classpathentry kind="lib" path="/BimServer/lib/junit-4.8.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

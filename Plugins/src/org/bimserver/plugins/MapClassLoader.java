@@ -1,5 +1,10 @@
 package org.bimserver.plugins;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -15,6 +20,36 @@ public class MapClassLoader extends ClassLoader {
 		this.map = map;
 	}
 
+	public MapClassLoader(ClassLoader parentLoader) {
+		super(parentLoader);
+		this.map = new HashMap<String, byte[]>();
+	}
+
+	public void addMap(Map<String, byte[]> map) {
+		this.map.putAll(map);
+	}
+
+	@Override
+	protected Enumeration<URL> findResources(String name) throws IOException {
+		return super.findResources(name);
+	}
+	
+	@Override
+	protected URL findResource(String name) {
+		URL findResource = super.findResource(name);
+		if (findResource != null) {
+			return findResource;
+		}
+		try {
+			URL url = new URL(name);
+			System.out.println(url);
+			return url;
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 	@Override
 	protected Class<?> findClass(String name) throws ClassNotFoundException {
 		try {

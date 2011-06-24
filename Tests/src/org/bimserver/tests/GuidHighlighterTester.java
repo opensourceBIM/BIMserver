@@ -9,15 +9,17 @@ import java.io.InputStreamReader;
 import java.util.HashSet;
 import java.util.Set;
 
-import nl.tue.buildingsmart.emf.SchemaLoader;
-
-import org.bimserver.ifc.IfcModel;
+import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.ifc.IfcModelSet;
-import org.bimserver.ifc.step.deserializer.IfcStepDeserializer;
 import org.bimserver.merging.IncrementingOidProvider;
 import org.bimserver.merging.Merger;
 import org.bimserver.merging.Merger.GuidMergeIdentifier;
+import org.bimserver.plugins.PluginException;
+import org.bimserver.plugins.PluginManager;
+import org.bimserver.plugins.deserializers.DeserializerPlugin;
+import org.bimserver.plugins.deserializers.EmfDeserializer;
 import org.bimserver.plugins.schema.SchemaDefinition;
+import org.bimserver.plugins.serializers.IfcModelInterface;
 
 import com.sun.xml.internal.ws.encoding.soap.DeserializationException;
 
@@ -56,33 +58,39 @@ public class GuidHighlighterTester {
 		return null;
 	}
 
-	private IfcModel readModel(File file) {
-		IfcStepDeserializer deserializer = new IfcStepDeserializer();
-		deserializer.init(schema);
+	private IfcModelInterface readModel(File file) {
+		PluginManager pluginManager;
 		try {
-			IfcModel model = deserializer.read(file);
-			return model;
-		} catch (DeserializationException e) {
-			e.printStackTrace();
-		} catch (Exception e) {
-			e.printStackTrace();
+			pluginManager = LocalDevPluginLoader.createPluginManager();
+			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", true);
+			EmfDeserializer deserializer = deserializerPlugin.createDeserializer();
+			deserializer.init(schema);
+			try {
+				IfcModelInterface model = deserializer.read(file, true);
+				return model;
+			} catch (DeserializationException e) {
+				e.printStackTrace();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} catch (PluginException e1) {
+			e1.printStackTrace();
 		}
 		return null;
 	}
 
 	private void start() {
-		schema = SchemaLoader.loadDefaultSchema();
 		File lars = new File("C:\\Users\\Ruben\\Documents\\My Dropbox\\Logic Labs\\Projecten\\BIMserver\\Lars\\");
 		Set<String> highlightedGuids = readGuidsFromFile(new File(lars, "missing.csv"));
 		System.out.println(highlightedGuids.size() + " GUIDs");
 		File inputFile1 = new File(lars, "2440_ARK_Alt4.ifc");
 		File inputFile2 = new File(lars, "612252_RIV_Alt4.ifc");
 		Merger merger = new Merger(new GuidMergeIdentifier());
-		IfcModel model1 = readModel(inputFile1);
-		IfcModel model2 = readModel(inputFile2);
+		IfcModelInterface model1 = readModel(inputFile1);
+		IfcModelInterface model2 = readModel(inputFile2);
 		model2.fixOids(new IncrementingOidProvider(model1.getHighestOid() + 1));
 		IfcModelSet modelSet = new IfcModelSet(model1, model2);
-		IfcModel mergedModel = merger.merge(null, modelSet, true);
+		IfcModelInterface mergedModel = merger.merge(null, modelSet, true);
 		new GuidHighlighter(schema, mergedModel, new File(lars, "output.ifc"), highlightedGuids);
 	}
 }

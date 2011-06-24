@@ -14,35 +14,40 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeNode;
 
-import nl.tue.buildingsmart.emf.SchemaLoader;
-
+import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.IfcModel;
-import org.bimserver.ifc.step.deserializer.IfcStepDeserializer;
-import org.bimserver.ifc.step.serializer.IfcStepSerializer;
 import org.bimserver.merging.IncrementingOidProvider;
 import org.bimserver.merging.RevisionMerger;
 import org.bimserver.models.ifc2x3.IfcProject;
-import org.bimserver.plugins.schema.SchemaDefinition;
+import org.bimserver.plugins.PluginException;
+import org.bimserver.plugins.PluginManager;
+import org.bimserver.plugins.deserializers.DeserializeException;
+import org.bimserver.plugins.deserializers.DeserializerPlugin;
+import org.bimserver.plugins.deserializers.EmfDeserializer;
+import org.bimserver.plugins.serializers.EmfSerializer;
+import org.bimserver.plugins.serializers.IfcModelInterface;
+import org.bimserver.plugins.serializers.SerializerException;
+import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.utils.SwingUtil;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
-import com.sun.xml.internal.ws.encoding.soap.DeserializationException;
-
 public class Visualise extends JFrame {
 	private static final long serialVersionUID = 9066505986920442200L;
 
 	public static void main(String[] args) {
-		SchemaDefinition schema = SchemaLoader.loadDefaultSchema();
-		IfcStepDeserializer deserializer = new IfcStepDeserializer();
-		deserializer.init(schema);
+		PluginManager pluginManager;
 		try {
-			IfcModel model1 = deserializer.read(TestFile.EXPORT1.getFile());
-			IfcModel model1b = deserializer.read(TestFile.EXPORT1.getFile());
-			IfcModel model2 = deserializer.read(TestFile.EXPORT3.getFile());
-			IfcModel model2b = deserializer.read(TestFile.EXPORT3.getFile());
+			pluginManager = LocalDevPluginLoader.createPluginManager();
+			DeserializerPlugin deserializerPlugin = pluginManager.requireDeserializer("application/ifc");
+			EmfDeserializer deserializer = deserializerPlugin.createDeserializer();
+			deserializer.init(pluginManager.requireSchemaDefinition());
+			IfcModelInterface model1 = deserializer.read(TestFile.EXPORT1.getFile(), true);
+			IfcModelInterface model1b = deserializer.read(TestFile.EXPORT1.getFile(), true);
+			IfcModelInterface model2 = deserializer.read(TestFile.EXPORT3.getFile(), true);
+			IfcModelInterface model2b = deserializer.read(TestFile.EXPORT3.getFile(), true);
 			model1.setObjectOids();
 			model1b.setObjectOids();
 			model2.setObjectOids();
@@ -51,15 +56,18 @@ public class Visualise extends JFrame {
 			model2.indexGuids();
 			model2.fixOids(new IncrementingOidProvider(model1.getHighestOid() + 1));
 			IfcModel merged = new RevisionMerger(model1, model2).merge();
-			IfcStepSerializer serializer = new IfcStepSerializer();
+			SerializerPlugin serializerPlugin = pluginManager.getFirstSerializerPlugin("application/ifc", true);
+			EmfSerializer serializer = serializerPlugin.createSerializer();
 			serializer.init(merged, null, null);
 			serializer.writeToFile(new File("merged.ifc"));
 			new Visualise().start(model1b, "Model 1");
 			new Visualise().start(model2b, "Model 2");
 			new Visualise().start(merged, "Merged");
-		} catch (DeserializationException e) {
+		} catch (PluginException e1) {
+			e1.printStackTrace();
+		} catch (SerializerException e) {
 			e.printStackTrace();
-		} catch (Exception e) {
+		} catch (DeserializeException e) {
 			e.printStackTrace();
 		}
 	}
@@ -173,7 +181,7 @@ public class Visualise extends JFrame {
 		}
 	}
 
-	private void start(IfcModel model, String name) {
+	private void start(IfcModelInterface model, String name) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		SwingUtil.setLookAndFeelToNice();
 		setSize(800, 600);

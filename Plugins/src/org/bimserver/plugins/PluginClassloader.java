@@ -9,7 +9,8 @@ public class PluginClassloader extends ClassLoader {
 
 	private final File classDir;
 
-	public PluginClassloader(File classDir) {
+	public PluginClassloader(ClassLoader parentClassloader, File classDir) {
+		super(parentClassloader);
 		this.classDir = classDir;
 	}
 	

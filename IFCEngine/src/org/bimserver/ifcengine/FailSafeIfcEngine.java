@@ -89,7 +89,7 @@ public class FailSafeIfcEngine implements IfcEngine {
 			} else {
 				command.append(" " + schemaFile.getAbsolutePath());
 			}
-			LOGGER.error(command.toString());
+			LOGGER.info(command.toString());
 			process = Runtime.getRuntime().exec(command.toString());
 			in = new DataInputStream(new BufferedInputStream(process.getInputStream()));
 			out = new DataOutputStream(new BufferedOutputStream(process.getOutputStream()));

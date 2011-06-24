@@ -15,10 +15,11 @@ import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.User;
+import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.rights.RightsManager;
 import org.bimserver.shared.UserException;
 
-public class DownloadDatabaseAction extends BimDatabaseAction<IfcModel> {
+public class DownloadDatabaseAction extends BimDatabaseAction<IfcModelInterface> {
 
 	private final long roid;
 	private final long actingUoid;
@@ -35,7 +36,7 @@ public class DownloadDatabaseAction extends BimDatabaseAction<IfcModel> {
 	}
 
 	@Override
-	public IfcModel execute() throws UserException, BimDeadlockException, BimDatabaseException {
+	public IfcModelInterface execute() throws UserException, BimDeadlockException, BimDatabaseException {
 		Revision revision = getVirtualRevision(roid);
 		if (revision == null) {
 			throw new UserException("Revision with oid " + roid + " not found");
@@ -69,7 +70,7 @@ public class DownloadDatabaseAction extends BimDatabaseAction<IfcModel> {
 			subModel.setDate(subRevision.getDate());
 			ifcModelSet.add(subModel);
 		}
-		IfcModel ifcModel = mergerFactory.createMerger().merge(revision.getProject(), ifcModelSet, settingsManager.getSettings().isIntelligentMerging());
+		IfcModelInterface ifcModel = mergerFactory.createMerger().merge(revision.getProject(), ifcModelSet, settingsManager.getSettings().isIntelligentMerging());
 		ifcModel.setName(project.getName() + "." + revision.getId());
 		ifcModel.setRevisionNr(project.getRevisions().indexOf(revision) + 1);
 		ifcModel.setAuthorizedUser(user.getName());

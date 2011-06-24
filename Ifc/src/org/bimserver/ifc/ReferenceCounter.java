@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.bimserver.emf.IdEObject;
+import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.eclipse.emf.ecore.EReference;
 
 public class ReferenceCounter {
@@ -104,9 +105,9 @@ public class ReferenceCounter {
 	}
 	
 	private final Map<IdEObject, Set<Reference>> references = new HashMap<IdEObject, Set<Reference>>();
-	private final IfcModel ifcModel;
+	private final IfcModelInterface ifcModel;
 
-	public ReferenceCounter(IfcModel ifcModel) {
+	public ReferenceCounter(IfcModelInterface ifcModel) {
 		this.ifcModel = ifcModel;
 	}
 

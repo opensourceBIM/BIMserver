@@ -7,18 +7,19 @@ import java.util.Random;
 
 import javax.activation.DataHandler;
 
-import nl.tue.buildingsmart.emf.SchemaLoader;
-
 import org.bimserver.Server;
 import org.bimserver.ServerInitializer;
 import org.bimserver.emf.IdEObject;
-import org.bimserver.ifc.step.deserializer.IfcStepDeserializer;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.interfaces.objects.SSerializer;
 import org.bimserver.interfaces.objects.SUserType;
 import org.bimserver.models.ifc2x3.IfcWall;
+import org.bimserver.plugins.PluginException;
+import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.deserializers.DeserializeException;
+import org.bimserver.plugins.deserializers.DeserializerPlugin;
+import org.bimserver.plugins.deserializers.EmfDeserializer;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.shared.SDownloadResult;
 import org.bimserver.shared.ServerException;
@@ -33,14 +34,15 @@ public class TestLowLevelChanges {
 	private static Server server;
 	private static ServiceInterface service;
 	private static SProject project;
+	private static PluginManager pluginManager;
 
 	@BeforeClass
 	public static void setup() {
 		server = new Server();
 		server.start("127.0.0.1", 8082, "home", "../BimServer/www");
 		service = ServerInitializer.getSystemService();
+		pluginManager = ServerInitializer.getPluginManager();
 		createUserAndLogin();
-		
 	}
 	
 	@AfterClass
@@ -129,9 +131,16 @@ public class TestLowLevelChanges {
 		int downloadId = service.download(revision.getOid(), serializerByContentType.getName(), true);
 		SDownloadResult downloadData = service.getDownloadData(downloadId);
 		DataHandler dataHandler = downloadData.getFile();
-		IfcStepDeserializer deserializer = new IfcStepDeserializer();
-		deserializer.init(SchemaLoader.loadDefaultSchema());
-		IfcModelInterface model = deserializer.read(dataHandler.getInputStream(), true, 0);
-		return model;
+		DeserializerPlugin deserializerPlugin;
+		try {
+			deserializerPlugin = pluginManager.getFirstDeserializer("ifc", true);
+			EmfDeserializer deserializer = deserializerPlugin.createDeserializer();
+			deserializer.init(pluginManager.requireSchemaDefinition());
+			IfcModelInterface model = deserializer.read(dataHandler.getInputStream(), true, 0);
+			return model;
+		} catch (PluginException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 }

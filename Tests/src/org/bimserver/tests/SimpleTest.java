@@ -4,15 +4,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-import nl.tue.buildingsmart.emf.SchemaLoader;
-
-import org.bimserver.ifc.IfcModel;
-import org.bimserver.ifc.step.deserializer.IfcStepDeserializer;
+import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.models.ifc2x3.IfcBuildingStorey;
 import org.bimserver.models.ifc2x3.IfcDoor;
 import org.bimserver.models.ifc2x3.IfcProduct;
 import org.bimserver.models.ifc2x3.IfcRelContainedInSpatialStructure;
-import org.bimserver.plugins.schema.SchemaDefinition;
+import org.bimserver.plugins.PluginManager;
+import org.bimserver.plugins.deserializers.DeserializerPlugin;
+import org.bimserver.plugins.deserializers.EmfDeserializer;
+import org.bimserver.plugins.serializers.IfcModelInterface;
 
 import com.sun.xml.internal.ws.encoding.soap.DeserializationException;
 
@@ -22,12 +22,13 @@ public class SimpleTest {
 	}
 
 	private void start() {
-		SchemaDefinition schema = SchemaLoader.loadDefaultSchema();
-		IfcStepDeserializer fastIfcFileReader = new IfcStepDeserializer();
-		fastIfcFileReader.init(schema);
 		try {
-			fastIfcFileReader.read(TestFile.HAUS_SOURCE_FILE.getFile());
-			IfcModel model = fastIfcFileReader.getModel();
+			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager();
+			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", true);
+			EmfDeserializer deserializer = deserializerPlugin.createDeserializer();
+			deserializer.init(pluginManager.requireSchemaDefinition());
+			deserializer.read(TestFile.HAUS_SOURCE_FILE.getFile(), true);
+			IfcModelInterface model = deserializer.getModel();
             List<IfcBuildingStorey> stories = model.getAll(IfcBuildingStorey.class);
             Map<Float, IfcBuildingStorey> orderedStories = new TreeMap<Float, IfcBuildingStorey>();
             for (IfcBuildingStorey storey : stories) {

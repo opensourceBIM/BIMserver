@@ -66,7 +66,33 @@ public class PluginManager {
 		}
 		try {
 			PluginDescriptor pluginDescriptor = getPluginDescriptor(new FileInputStream(pluginFile));
-			PluginClassloader pluginClassloader = new PluginClassloader(new File(projectRoot, "bin"));
+			File libFolder = new File(projectRoot, "lib");
+			MapClassLoader libClassLoader = new MapClassLoader(getClass().getClassLoader());
+			if (libFolder.isDirectory()) {
+				for (File libFile : libFolder.listFiles()) {
+					if (libFile.getName().toLowerCase().endsWith(".jar")) {
+						try {
+							JarInputStream jarInputStream = new JarInputStream(new FileInputStream(libFile));
+							JarEntry entry = jarInputStream.getNextJarEntry();
+							Map<String, byte[]> map = new HashMap<String, byte[]>();
+							while (entry != null) {
+								ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+								IOUtils.copy(jarInputStream, byteArrayOutputStream);
+								map.put(entry.getName(), byteArrayOutputStream.toByteArray());
+								entry = jarInputStream.getNextJarEntry();
+							}
+							jarInputStream.close();
+							libClassLoader.addMap(map);
+						} catch (FileNotFoundException e) {
+							throw new PluginException(e);
+						} catch (IOException e) {
+							throw new PluginException(e);
+						}
+					}
+				}
+			}
+			File binFolder = new File(projectRoot, "bin");
+			PluginClassloader pluginClassloader = new PluginClassloader(libClassLoader, binFolder);
 			loadPlugins(pluginClassloader, projectRoot.getAbsolutePath(), pluginDescriptor);
 		} catch (JAXBException e) {
 			throw new PluginException(e);
@@ -176,6 +202,14 @@ public class PluginManager {
 		return getPlugins(SerializerPlugin.class, onlyEnabled);
 	}
 
+	public SerializerPlugin getFirstSerializerPlugin(String contentType, boolean onlyEnabled) throws PluginException {
+		Collection<SerializerPlugin> allSerializerPlugins = getAllSerializerPlugins(contentType, onlyEnabled);
+		if (allSerializerPlugins.size() == 0) {
+			throw new PluginException("No serializers for contentType " + contentType + " found");
+		}
+		return allSerializerPlugins.iterator().next();
+	}
+	
 	public Collection<SerializerPlugin> getAllSerializerPlugins(String contentType, boolean onlyEnabled) {
 		Collection<SerializerPlugin> plugins = getPlugins(SerializerPlugin.class, onlyEnabled);
 		Iterator<SerializerPlugin> iterator = plugins.iterator();
@@ -282,12 +316,12 @@ public class PluginManager {
 		return schemaPlugin.getSchemaDefinition();
 	}
 	
-	public EmfDeserializer requireDeserializer(String type) throws DeserializeException {
+	public DeserializerPlugin requireDeserializer(String type) throws DeserializeException {
 		Collection<DeserializerPlugin> allDeserializerPlugins = getAllDeserializerPlugins(type, true);
 		if (allDeserializerPlugins.size() == 0) {
 			throw new DeserializeException("No deserializers found for type '" + type + "'");
 		} else {
-			return allDeserializerPlugins.iterator().next().createDeserializer();
+			return allDeserializerPlugins.iterator().next();
 		}
 	}
 
@@ -320,7 +354,7 @@ public class PluginManager {
 	public GuidanceProvider requireGuidanceProvider() throws GuidanceProviderException {
 		Collection<GuidanceProviderPlugin> plugins = getPlugins(GuidanceProviderPlugin.class, true);
 		if (plugins.size() == 0) {
-			throw new GuidanceProviderException("An ignore provider is required");
+			throw new GuidanceProviderException("A guidance provider is required");
 		}
 		return plugins.iterator().next().getGuidanceProvider();
 	}
@@ -363,5 +397,13 @@ public class PluginManager {
 				}
 			}
 		}
+	}
+
+	public DeserializerPlugin getFirstDeserializer(String extension, boolean onlyEnabled) throws PluginException {
+		Collection<DeserializerPlugin> allDeserializerPlugins = getAllDeserializerPlugins(extension, onlyEnabled);
+		if (allDeserializerPlugins.size() == 0) {
+			throw new PluginException("No deserializers with extension " + extension + " found");
+		}
+		return allDeserializerPlugins.iterator().next();
 	}
 }

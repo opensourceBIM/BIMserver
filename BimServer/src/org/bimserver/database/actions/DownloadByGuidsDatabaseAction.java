@@ -21,10 +21,11 @@ import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.User;
+import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.rights.RightsManager;
 import org.bimserver.shared.UserException;
 
-public class DownloadByGuidsDatabaseAction extends BimDatabaseAction<IfcModel> {
+public class DownloadByGuidsDatabaseAction extends BimDatabaseAction<IfcModelInterface> {
 
 	private final long actingUoid;
 	private final Set<String> guids;
@@ -44,7 +45,7 @@ public class DownloadByGuidsDatabaseAction extends BimDatabaseAction<IfcModel> {
 	}
 
 	@Override
-	public IfcModel execute() throws UserException, BimDeadlockException, BimDatabaseException {
+	public IfcModelInterface execute() throws UserException, BimDeadlockException, BimDatabaseException {
 		User user = getUserByUoid(actingUoid);
 		Set<String> foundGuids = new HashSet<String>();
 		IfcModelSet ifcModelSet = new IfcModelSet();
@@ -91,7 +92,7 @@ public class DownloadByGuidsDatabaseAction extends BimDatabaseAction<IfcModel> {
 				ifcModelSet.add(subModel);
 			}
 		}
-		IfcModel ifcModel = mergerFactory.createMerger().merge(project, ifcModelSet, settingsManager.getSettings().isIntelligentMerging());
+		IfcModelInterface ifcModel = mergerFactory.createMerger().merge(project, ifcModelSet, settingsManager.getSettings().isIntelligentMerging());
 		ifcModel.setName("Unknown");
 		for (String guid : guids) {
 			if (!foundGuids.contains(guid)) {

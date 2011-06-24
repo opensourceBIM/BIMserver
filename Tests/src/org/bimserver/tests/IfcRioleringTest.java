@@ -23,10 +23,7 @@ package org.bimserver.tests;
 import java.io.File;
 import java.util.List;
 
-import nl.tue.buildingsmart.emf.SchemaLoader;
-
-import org.bimserver.ifc.IfcModel;
-import org.bimserver.ifc.step.deserializer.IfcStepDeserializer;
+import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.models.ifc2x3.IfcDistributionPort;
 import org.bimserver.models.ifc2x3.IfcElement;
 import org.bimserver.models.ifc2x3.IfcFlowFitting;
@@ -34,12 +31,17 @@ import org.bimserver.models.ifc2x3.IfcFlowSegment;
 import org.bimserver.models.ifc2x3.IfcFlowTerminal;
 import org.bimserver.models.ifc2x3.IfcPort;
 import org.bimserver.models.ifc2x3.IfcRelConnectsPortToElement;
+import org.bimserver.plugins.PluginException;
+import org.bimserver.plugins.PluginManager;
+import org.bimserver.plugins.deserializers.DeserializerPlugin;
+import org.bimserver.plugins.deserializers.EmfDeserializer;
+import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class IfcRioleringTest {
 	private static final Logger LOGGER = LoggerFactory.getLogger(IfcRioleringTest.class);
-	private IfcModel model;
+	private IfcModelInterface model;
 
 	public static void main(String[] args) {
 		new IfcRioleringTest().start();
@@ -47,16 +49,22 @@ public class IfcRioleringTest {
 
 	private void start() {
 		File src = TestFile.RIOLERING_TEST.getFile();
-
-		IfcStepDeserializer ifcStepDeserializer = new IfcStepDeserializer();
-		ifcStepDeserializer.init(SchemaLoader.loadDefaultSchema());
+		PluginManager pluginManager;
 		try {
-			ifcStepDeserializer.read(src);
-		} catch (Exception e) {
-			e.printStackTrace();
+			pluginManager = LocalDevPluginLoader.createPluginManager();
+			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", true);
+			EmfDeserializer deserializer = deserializerPlugin.createDeserializer();
+			deserializer.init(pluginManager.requireSchemaDefinition());
+			try {
+				deserializer.read(src, true);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			model = deserializer.getModel();
+			step1();
+		} catch (PluginException e1) {
+			e1.printStackTrace();
 		}
-		model = ifcStepDeserializer.getModel();
-		step1();
 	}
 
 	private void step1() {

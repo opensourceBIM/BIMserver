@@ -14,12 +14,13 @@ import org.bimserver.models.ifc2x3.WrappedValue;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Revision;
+import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.shared.SDataObject;
-import org.bimserver.shared.UserException;
 import org.bimserver.shared.SDataObject.SDataValue;
 import org.bimserver.shared.SDataObject.SListDataValue;
 import org.bimserver.shared.SDataObject.SReferenceDataValue;
 import org.bimserver.shared.SDataObject.SSimpleDataValue;
+import org.bimserver.shared.UserException;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
@@ -59,7 +60,7 @@ public class GetDataObjectByOidDatabaseAction extends BimDatabaseAction<SDataObj
 				break;
 			}
 		}
-		IfcModel ifcModel = mergerFactory.createMerger().merge(virtualRevision.getProject(), ifcModelSet, settingsManager.getSettings().isIntelligentMerging());
+		IfcModelInterface ifcModel = mergerFactory.createMerger().merge(virtualRevision.getProject(), ifcModelSet, settingsManager.getSettings().isIntelligentMerging());
 		if (eObject == null) {
 			throw new UserException("Object not found in this project/revision");
 		}

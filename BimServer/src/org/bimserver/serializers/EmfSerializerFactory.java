@@ -10,7 +10,6 @@ import org.bimserver.database.BimDeadlockException;
 import org.bimserver.database.query.conditions.AttributeCondition;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.literals.StringLiteral;
-import org.bimserver.ifc.IfcModel;
 import org.bimserver.longaction.DownloadParameters;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Serializer;
@@ -18,6 +17,7 @@ import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.serializers.EmfSerializer;
+import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
@@ -47,7 +47,7 @@ public class EmfSerializerFactory {
 		return classNames;
 	}
 
-	public EmfSerializer create(Project project, User user, IfcModel model, DownloadParameters downloadParameters) throws SerializerException {
+	public EmfSerializer create(Project project, User user, IfcModelInterface model, DownloadParameters downloadParameters) throws SerializerException {
 		BimDatabaseSession session = bimDatabase.createReadOnlySession();
 		try {
 			Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getSerializer_Name(), new StringLiteral(downloadParameters.getSerializerName()));

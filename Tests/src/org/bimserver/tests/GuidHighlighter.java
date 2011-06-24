@@ -4,9 +4,8 @@ import java.io.File;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.emf.IdEObject;
-import org.bimserver.ifc.IfcModel;
-import org.bimserver.ifc.step.serializer.IfcStepSerializer;
 import org.bimserver.models.ifc2x3.Ifc2x3Factory;
 import org.bimserver.models.ifc2x3.IfcColourRgb;
 import org.bimserver.models.ifc2x3.IfcGloballyUniqueId;
@@ -21,22 +20,33 @@ import org.bimserver.models.ifc2x3.IfcStyledItem;
 import org.bimserver.models.ifc2x3.IfcSurfaceStyle;
 import org.bimserver.models.ifc2x3.IfcSurfaceStyleElementSelect;
 import org.bimserver.models.ifc2x3.IfcSurfaceStyleRendering;
+import org.bimserver.plugins.PluginException;
+import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.schema.SchemaDefinition;
+import org.bimserver.plugins.serializers.EmfSerializer;
+import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.plugins.serializers.SerializerException;
+import org.bimserver.plugins.serializers.SerializerPlugin;
 
 public class GuidHighlighter {
-	public GuidHighlighter(SchemaDefinition schema, IfcModel model, File outputFile, Set<String> highlightedGuids) {
-		highlightGuids(model, highlightedGuids);
-		IfcStepSerializer serializer = new IfcStepSerializer();
+	public GuidHighlighter(SchemaDefinition schema, IfcModelInterface model, File outputFile, Set<String> highlightedGuids) {
 		try {
-			serializer.init(model, null, null);
-			serializer.writeToFile(outputFile);
-		} catch (SerializerException e) {
-			e.printStackTrace();
+			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager();
+			highlightGuids(model, highlightedGuids);
+			SerializerPlugin serializerPlugin = pluginManager.getFirstSerializerPlugin("application/ifc", true);
+			EmfSerializer serializer = serializerPlugin.createSerializer();
+			try {
+				serializer.init(model, null, null);
+				serializer.writeToFile(outputFile);
+			} catch (SerializerException e) {
+				e.printStackTrace();
+			}
+		} catch (PluginException e1) {
+			e1.printStackTrace();
 		}
 	}
 	
-	private void highlightGuids(IfcModel model, Set<String> highlightedGuids) {
+	private void highlightGuids(IfcModelInterface model, Set<String> highlightedGuids) {
 		Set<IdEObject> newObjects = new HashSet<IdEObject>();
 		IfcColourRgb gray = Ifc2x3Factory.eINSTANCE.createIfcColourRgb();
 		newObjects.add(gray);

@@ -87,7 +87,6 @@ import org.bimserver.shared.LocalDevelopmentResourceFetcher;
 import org.bimserver.shared.ServiceInterface;
 import org.bimserver.templating.TemplateEngine;
 import org.bimserver.utils.CollectionUtils;
-import org.bimserver.utils.TempUtils;
 import org.bimserver.version.VersionChecker;
 import org.bimserver.web.LoginManager;
 import org.bimserver.webservices.RestApplication;
@@ -116,7 +115,7 @@ public class ServerInitializer implements ServletContextListener {
 	private static SettingsManager settingsManager;
 	private EmfSerializerFactory emfSerializerFactory;
 	private static MergerFactory mergerFactory;
-	private PluginManager pluginManager;
+	private static PluginManager pluginManager;
 
 	public void init() {
 		try {
@@ -287,11 +286,6 @@ public class ServerInitializer implements ServletContextListener {
 			CompileServlet.database = bimDatabase;
 			CompileServlet.settingsManager = settingsManager;
 
-//			URL colladSettingsFile = resourceFetcher.getResource("collada.xml");
-//			colladaSettings = PackageDefinition.readFromFile(colladSettingsFile);
-
-			TempUtils.makeTempDir("bimserver");
-			
 			DiskCacheManager diskCacheManager = new DiskCacheManager(new File(homeDir, "cache"), settingsManager);
 
 			mergerFactory = new MergerFactory(settingsManager);
@@ -574,5 +568,9 @@ public class ServerInitializer implements ServletContextListener {
 		if (longActionManager != null) {
 			longActionManager.shutdown();
 		}
+	}
+
+	public static PluginManager getPluginManager() {
+		return pluginManager;
 	}
 }

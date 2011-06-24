@@ -4,6 +4,7 @@ import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.plugins.guidanceproviders.GuidanceProvider;
+import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.shared.SCompareResult.SCompareType;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -21,7 +22,7 @@ public class Compare {
 		this.guidanceProvider = guidanceProvider;
 	}
 
-	public CompareResult compareOnGuids(IfcModel model1, IfcModel model2, SCompareType sCompareType) {
+	public CompareResult compareOnGuids(IfcModelInterface model1, IfcModelInterface model2, SCompareType sCompareType) {
 		CompareResult result = new CompareResult();
 		try {
 			for (EClassifier eClassifier : Ifc2x3Package.eINSTANCE.getEClassifiers()) {
@@ -55,7 +56,7 @@ public class Compare {
 		return result;
 	}
 
-	public CompareResult compareOnNames(IfcModel model1, IfcModel model2, SCompareType sCompareType) {
+	public CompareResult compareOnNames(IfcModelInterface model1, IfcModelInterface model2, SCompareType sCompareType) {
 		CompareResult result = new CompareResult();
 		try {
 			for (EClassifier eClassifier : Ifc2x3Package.eINSTANCE.getEClassifiers()) {

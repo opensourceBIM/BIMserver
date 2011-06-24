@@ -70,6 +70,8 @@ import org.eclipse.emf.ecore.impl.EEnumImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import sun.misc.Sort;
+
 import com.google.common.base.Charsets;
 
 public class IfcStepDeserializer extends EmfDeserializer {
@@ -130,12 +132,13 @@ public class IfcStepDeserializer extends EmfDeserializer {
 		return model;
 	}
 
-	public IfcModel read(File sourceFile) throws DeserializeException {
+	public IfcModel read(File sourceFile, boolean setOids) throws DeserializeException {
 		try {
 			FileInputStream in = new FileInputStream(sourceFile);
-			read(in, false, sourceFile.length());
+			read(in, setOids, sourceFile.length());
 			in.close();
 			model.setDate(new Date());
+			model.setName(sourceFile.getName());
 			return model;
 		} catch (FileNotFoundException e) {
 			throw new DeserializeException(e);
