@@ -84,7 +84,7 @@ public class BimServerTester {
 		return new ProtocolBuffersServiceInterfaceImplementation(address, 8020);
 	}
 	
-	private ServiceInterface createSoapClient(final String address) {
+	public ServiceInterface createSoapClient(final String address) {
 		ServiceInterface service;
 		JaxWsProxyFactoryBean cpfb = new JaxWsProxyFactoryBean();
 		cpfb.setServiceClass(ServiceInterface.class);

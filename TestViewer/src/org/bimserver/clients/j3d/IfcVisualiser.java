@@ -70,7 +70,6 @@ import org.bimserver.models.ifc2x3.IfcWall;
 import org.bimserver.models.ifc2x3.IfcWallStandardCase;
 import org.bimserver.models.ifc2x3.IfcWindow;
 import org.bimserver.models.ifc2x3.WrappedValue;
-import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.guidanceproviders.FieldIgnoreMap;
 import org.bimserver.plugins.ifcengine.IfcEngine;
 import org.bimserver.plugins.ifcengine.IfcEngineException;
@@ -78,7 +77,6 @@ import org.bimserver.plugins.ifcengine.IfcEngineGeometry;
 import org.bimserver.plugins.ifcengine.IfcEngineInstance;
 import org.bimserver.plugins.ifcengine.IfcEngineInstanceVisualisationProperties;
 import org.bimserver.plugins.ifcengine.IfcEngineModel;
-import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
 import org.bimserver.plugins.ifcengine.IfcEngineSurfaceProperties;
 import org.bimserver.plugins.schema.SchemaDefinition;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
@@ -114,7 +112,6 @@ public class IfcVisualiser extends JFrame {
 	private SharedGroup sharedGroup;
 	private Appearances appearances = new Appearances();
 	private IfcEngine ifcEngine;
-	private IfcEnginePlugin ifcPlugin;
 
 	public static void main(String[] args) {
 		new IfcVisualiser().start();
@@ -185,9 +182,6 @@ public class IfcVisualiser extends JFrame {
 		LocalDevelopmentResourceFetcher resourceFetcher = new LocalDevelopmentResourceFetcher();
 		fieldIgnoreMap = new FileFieldIgnoreMap(CollectionUtils.singleSet(Ifc2x3Package.eINSTANCE), resourceFetcher);
 		schema = SchemaLoader.loadDefaultSchema();
-
-		PluginManager osgiManager = new PluginManager(null, null, null);
-		ifcPlugin = osgiManager.getAllIfcEnginePlugins(true).iterator().next();
 
 		sharedGroup = new SharedGroup();
 

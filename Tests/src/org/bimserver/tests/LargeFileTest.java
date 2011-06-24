@@ -18,6 +18,7 @@ public class LargeFileTest {
 		new LargeFileTest().start();
 	}
 
+	@SuppressWarnings("rawtypes")
 	private void start() {
 		SchemaDefinition schema = SchemaLoader.loadDefaultSchema();
 		IfcStepDeserializer deserializer = new IfcStepDeserializer();

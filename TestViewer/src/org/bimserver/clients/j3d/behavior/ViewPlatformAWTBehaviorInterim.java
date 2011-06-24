@@ -142,7 +142,7 @@ public abstract class ViewPlatformAWTBehaviorInterim extends ViewPlatformBehavio
     //protected Component components[];
     protected Component component = null;
 
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({ "rawtypes" })
 	private ArrayList eventQueue = new ArrayList();
     private int listenerFlags = 0;
     private boolean firstEvent = false;
@@ -197,7 +197,7 @@ public abstract class ViewPlatformAWTBehaviorInterim extends ViewPlatformBehavio
      * NOTE: Applications should not call this method. It is called by the
      * Java 3D behavior scheduler.
      */
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
     public void processStimulus( java.util.Enumeration behEnum ) {
         boolean hadPost = false;

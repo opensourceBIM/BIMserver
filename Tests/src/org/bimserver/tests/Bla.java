@@ -26,21 +26,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
-
-import org.bimserver.models.ifc2x3.IfcBuildingStorey;
-import org.bimserver.models.ifc2x3.IfcElementQuantity;
-import org.bimserver.models.ifc2x3.IfcOpeningElement;
-import org.bimserver.models.ifc2x3.IfcPhysicalQuantity;
-import org.bimserver.models.ifc2x3.IfcProduct;
-import org.bimserver.models.ifc2x3.IfcPropertySetDefinition;
-import org.bimserver.models.ifc2x3.IfcQuantityArea;
-import org.bimserver.models.ifc2x3.IfcRelContainedInSpatialStructure;
-import org.bimserver.models.ifc2x3.IfcRelDefines;
-import org.bimserver.models.ifc2x3.IfcRelDefinesByProperties;
-import org.eclipse.emf.common.util.EList;
 
 public class Bla {
 	public static void main(String[] args) {

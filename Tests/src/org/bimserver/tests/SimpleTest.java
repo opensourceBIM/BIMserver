@@ -6,18 +6,13 @@ import java.util.TreeMap;
 
 import nl.tue.buildingsmart.emf.SchemaLoader;
 
-import org.bimserver.guidanceproviders.FileFieldIgnoreMap;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.step.deserializer.IfcStepDeserializer;
-import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcBuildingStorey;
 import org.bimserver.models.ifc2x3.IfcDoor;
 import org.bimserver.models.ifc2x3.IfcProduct;
 import org.bimserver.models.ifc2x3.IfcRelContainedInSpatialStructure;
-import org.bimserver.plugins.ResourceFetcher;
 import org.bimserver.plugins.schema.SchemaDefinition;
-import org.bimserver.shared.LocalDevelopmentResourceFetcher;
-import org.bimserver.utils.CollectionUtils;
 
 import com.sun.xml.internal.ws.encoding.soap.DeserializationException;
 
@@ -30,8 +25,6 @@ public class SimpleTest {
 		SchemaDefinition schema = SchemaLoader.loadDefaultSchema();
 		IfcStepDeserializer fastIfcFileReader = new IfcStepDeserializer();
 		fastIfcFileReader.init(schema);
-		ResourceFetcher resourceFetcher = new LocalDevelopmentResourceFetcher();
-		FileFieldIgnoreMap fieldIgnoreMap = new FileFieldIgnoreMap(CollectionUtils.singleSet(Ifc2x3Package.eINSTANCE), resourceFetcher);
 		try {
 			fastIfcFileReader.read(TestFile.HAUS_SOURCE_FILE.getFile());
 			IfcModel model = fastIfcFileReader.getModel();

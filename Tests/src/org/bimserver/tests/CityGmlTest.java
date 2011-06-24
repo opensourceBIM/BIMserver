@@ -8,16 +8,13 @@ import java.io.IOException;
 import nl.tue.buildingsmart.emf.SchemaLoader;
 
 import org.bimserver.citygml.CityGmlSerializer;
-import org.bimserver.guidanceproviders.FileFieldIgnoreMap;
 import org.bimserver.ifc.step.deserializer.IfcStepDeserializer;
-import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.ResourceFetcher;
 import org.bimserver.plugins.schema.SchemaDefinition;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
-import org.bimserver.utils.CollectionUtils;
 
 import com.sun.xml.internal.ws.encoding.soap.DeserializationException;
 

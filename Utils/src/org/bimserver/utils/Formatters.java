@@ -24,12 +24,6 @@ import java.util.Calendar;
 import java.util.Formatter;
 import java.util.GregorianCalendar;
 
-import org.joda.time.DateTime;
-import org.joda.time.Interval;
-import org.joda.time.PeriodType;
-import org.joda.time.format.PeriodFormatter;
-import org.joda.time.format.PeriodFormatterBuilder;
-
 public class Formatters {
 	private Formatters() {
 	}
@@ -99,6 +93,7 @@ public class Formatters {
 		return result;
 	}
 
+	@SuppressWarnings("unused")
 	private static void check(long millis, String result) {
 		if (millisecondsToString(millis).equals(result)) {
 			System.out.println("OK  ");
