@@ -88,8 +88,6 @@ import org.bimserver.shared.ServiceInterface;
 import org.bimserver.templating.TemplateEngine;
 import org.bimserver.utils.CollectionUtils;
 import org.bimserver.utils.TempUtils;
-import org.bimserver.version.Version;
-import org.bimserver.version.VersionChecker;
 import org.bimserver.web.LoginManager;
 import org.bimserver.webservices.RestApplication;
 import org.bimserver.webservices.Service;
@@ -115,7 +113,6 @@ public class ServerInitializer implements ServletContextListener {
 	private File baseDir;
 	private static ServerType serverType;
 	private static SettingsManager settingsManager;
-	private Version version;
 	private EmfSerializerFactory emfSerializerFactory;
 	private static MergerFactory mergerFactory;
 	private PluginManager pluginManager;
@@ -264,13 +261,10 @@ public class ServerInitializer implements ServletContextListener {
 			ServerInfo.init(bimDatabase, settingsManager);
 			ServerInfo.update();
 
-			File nativeFolder = resourceFetcher.getFile("lib/" + File.separator + System.getProperty("sun.arch.data.model"));
 			File schemaFile = resourceFetcher.getFile("IFC2X3_FINAL.exp").getAbsoluteFile();
 			LOGGER.info("Using " + schemaFile + " as engine schema");
 
 			emfSerializerFactory = EmfSerializerFactory.getInstance();
-
-			version = VersionChecker.init(resourceFetcher).getLocalVersion();
 
 			if (ServerInfo.getServerState() == ServerState.MIGRATION_REQUIRED) {
 				ServerInfo.registerStateChangeListener(new StateChangeListener() {

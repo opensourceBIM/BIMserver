@@ -26,6 +26,7 @@ import org.bimserver.webservices.Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+@SuppressWarnings("rawtypes")
 public class ClashDetectionLongAction extends LongAction {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(ClashDetectionLongAction.class);

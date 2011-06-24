@@ -1,7 +1,5 @@
 package org.bimserver.changes;
 
-import java.util.List;
-
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;

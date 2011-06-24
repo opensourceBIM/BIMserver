@@ -85,7 +85,7 @@ public class DataObjectGenerator {
 		return basedir;
 	}
 
-	private void generatePackages(GenModel genModel, List<GenPackage> genPackages, VirtualFile basedir) {
+	public void generatePackages(GenModel genModel, List<GenPackage> genPackages, VirtualFile basedir) {
 		for (GenPackage genPackage : genPackages) {
 			genPackage.prepareCache();
 
@@ -185,7 +185,7 @@ public class DataObjectGenerator {
 		}
 	}
 
-	private List<GenPackage> createGenPackages(GenModel genModel, VirtualFile basedir) throws DatabaseException {
+	public List<GenPackage> createGenPackages(GenModel genModel, VirtualFile basedir) throws DatabaseException {
 		ResourceSetImpl resourceSet = new ResourceSetImpl();
 		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("ecore", new EcoreResourceFactoryImpl());
 		Map<VirtualFile, Resource> resources = new HashMap<VirtualFile, Resource>();

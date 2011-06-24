@@ -96,7 +96,7 @@ public abstract class AbstractMessageLite implements MessageLite {
    * implements as many methods of that interface as possible in terms of
    * other methods.
    */
-  @SuppressWarnings("unchecked")
+  @SuppressWarnings({ "unchecked", "rawtypes" })
   public static abstract class Builder<BuilderType extends Builder>
       implements MessageLite.Builder {
     // The compiler produces an error if this is not declared explicitly.

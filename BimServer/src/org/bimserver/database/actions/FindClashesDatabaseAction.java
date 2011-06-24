@@ -30,7 +30,6 @@ import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.guidanceproviders.GuidanceProvider;
 import org.bimserver.plugins.ifcengine.IfcEngine;
 import org.bimserver.plugins.ifcengine.IfcEngineClash;
-import org.bimserver.plugins.ifcengine.IfcEngineException;
 import org.bimserver.plugins.ifcengine.IfcEngineModel;
 import org.bimserver.plugins.serializers.EmfSerializer;
 import org.bimserver.plugins.serializers.SerializerException;
@@ -47,6 +46,7 @@ import org.slf4j.LoggerFactory;
 
 public class FindClashesDatabaseAction extends BimDatabaseAction<Set<? extends Clash>> {
 	private static final Logger LOGGER = LoggerFactory.getLogger(FindClashesDatabaseAction.class);
+	@SuppressWarnings("unused")
 	private final long actingUoid;
 	private final ClashDetectionSettings clashDetectionSettings;
 	private final MergerFactory mergerFactory;

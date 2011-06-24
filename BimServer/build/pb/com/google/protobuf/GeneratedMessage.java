@@ -54,7 +54,7 @@ import com.google.protobuf.Descriptors.FieldDescriptor;
  *
  * @author kenton@google.com Kenton Varda
  */
-@SuppressWarnings("unchecked")
+@SuppressWarnings({"rawtypes", "unchecked"})
 public abstract class GeneratedMessage extends AbstractMessage
     implements Serializable {
   private static final long serialVersionUID = 1L;
