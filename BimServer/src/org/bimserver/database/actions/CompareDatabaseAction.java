@@ -6,16 +6,16 @@ import org.bimserver.cache.CompareCache;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
-import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.compare.Compare;
 import org.bimserver.ifc.compare.CompareResult;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.plugins.GuidanceProviderException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.guidanceproviders.GuidanceProvider;
-import org.bimserver.shared.UserException;
+import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.shared.SCompareResult.SCompareIdentifier;
 import org.bimserver.shared.SCompareResult.SCompareType;
+import org.bimserver.shared.UserException;
 
 public class CompareDatabaseAction extends BimDatabaseAction<CompareResult> {
 
@@ -51,8 +51,8 @@ public class CompareDatabaseAction extends BimDatabaseAction<CompareResult> {
 		Compare compare = new Compare(guidanceProvider);
 		CompareResult compareResults = CompareCache.getInstance().getCompareResults(roid1, roid2, sCompareType, sCompareIdentifier);
 		if (compareResults == null) {
-			IfcModel model1 = new DownloadDatabaseAction(getDatabaseSession(), getAccessMethod(), settingsManager, mergerFactory, roid1, actingUoid).execute();
-			IfcModel model2 = new DownloadDatabaseAction(getDatabaseSession(), getAccessMethod(), settingsManager, mergerFactory, roid2, actingUoid).execute();
+			IfcModelInterface model1 = new DownloadDatabaseAction(getDatabaseSession(), getAccessMethod(), settingsManager, mergerFactory, roid1, actingUoid).execute();
+			IfcModelInterface model2 = new DownloadDatabaseAction(getDatabaseSession(), getAccessMethod(), settingsManager, mergerFactory, roid2, actingUoid).execute();
 			if (sCompareIdentifier == SCompareIdentifier.GUID_ID) {
 				compareResults = compare.compareOnGuids(model1, model2, sCompareType);
 			} else if (sCompareIdentifier == SCompareIdentifier.NAME_ID) {

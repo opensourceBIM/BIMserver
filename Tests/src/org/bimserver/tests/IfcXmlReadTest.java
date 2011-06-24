@@ -4,14 +4,15 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
-import nl.tue.buildingsmart.emf.SchemaLoader;
-
-import org.bimserver.ifc.step.deserializer.IfcStepDeserializer;
-import org.bimserver.ifc.step.serializer.IfcStepSerializer;
-import org.bimserver.ifc.xml.deserializer.IfcXmlDeserializer;
-import org.bimserver.plugins.schema.SchemaDefinition;
+import org.bimserver.LocalDevPluginLoader;
+import org.bimserver.plugins.PluginException;
+import org.bimserver.plugins.PluginManager;
+import org.bimserver.plugins.deserializers.DeserializerPlugin;
+import org.bimserver.plugins.deserializers.EmfDeserializer;
+import org.bimserver.plugins.serializers.EmfSerializer;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.plugins.serializers.SerializerException;
+import org.bimserver.plugins.serializers.SerializerPlugin;
 
 import com.sun.xml.internal.ws.encoding.soap.DeserializationException;
 
@@ -21,31 +22,38 @@ public class IfcXmlReadTest {
 	}
 
 	private void start() {
-		IfcXmlDeserializer ifcXmlReader = new IfcXmlDeserializer();
+		PluginManager pluginManager;
 		try {
-			File file = TestFile.AC11_XML.getFile();
-			IfcModelInterface model = ifcXmlReader.read(new FileInputStream(file), false, file.length());
-			
-			SchemaDefinition schema = SchemaLoader.loadDefaultSchema();
-			
-			File outFile = new File("out.ifc");
-			IfcStepSerializer ifcStepSerializer = new IfcStepSerializer();
-			ifcStepSerializer.init(model, null, null);
+			pluginManager = LocalDevPluginLoader.createPluginManager();
+			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifcxml", true);
+			EmfDeserializer deserializer = deserializerPlugin.createDeserializer();
 			try {
-				ifcStepSerializer.writeToFile(outFile);
-			} catch (SerializerException e) {
+				File file = TestFile.AC11_XML.getFile();
+				IfcModelInterface model = deserializer.read(new FileInputStream(file), false, file.length());
+				
+				File outFile = new File("out.ifc");
+				SerializerPlugin serializerPlugin = pluginManager.getFirstSerializerPlugin("application/ifc", true);
+				EmfSerializer serializer = serializerPlugin.createSerializer();
+				serializer.init(model, null, null);
+				try {
+					serializer.writeToFile(outFile);
+				} catch (SerializerException e) {
+					e.printStackTrace();
+				}
+				
+				DeserializerPlugin deserializerPlugin2 = pluginManager.getFirstDeserializer("ifc", true);
+				EmfDeserializer deserializer2 = deserializerPlugin2.createDeserializer();
+				deserializer2.init(pluginManager.requireSchemaDefinition());
+				deserializer2.read(outFile, true);
+			} catch (DeserializationException e2) {
+				e2.printStackTrace();
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			
-			IfcStepDeserializer deserializer = new IfcStepDeserializer();
-			deserializer.init(schema);
-			deserializer.read(outFile);
-		} catch (DeserializationException e2) {
-			e2.printStackTrace();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (PluginException e1) {
+			e1.printStackTrace();
 		}
 	}
 }

@@ -5,25 +5,27 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedHashSet;
 
-public class IfcModelSet extends LinkedHashSet<IfcModel> {
+import org.bimserver.plugins.serializers.IfcModelInterface;
+
+public class IfcModelSet extends LinkedHashSet<IfcModelInterface> {
 	private static final long serialVersionUID = 7322433737304593455L;
 
-	public IfcModelSet(IfcModel... models) {
-		for (IfcModel model : models) {
+	public IfcModelSet(IfcModelInterface... models) {
+		for (IfcModelInterface model : models) {
 			add(model);
 		}
 	}
 	
 	public void sortByDate() {
-		ArrayList<IfcModel> tmpList = new ArrayList<IfcModel>(this);
-		Collections.sort(tmpList, new Comparator<IfcModel>() {
+		ArrayList<IfcModelInterface> tmpList = new ArrayList<IfcModelInterface>(this);
+		Collections.sort(tmpList, new Comparator<IfcModelInterface>() {
 			@Override
-			public int compare(IfcModel o1, IfcModel o2) {
+			public int compare(IfcModelInterface o1, IfcModelInterface o2) {
 				return o1.getDate().compareTo(o2.getDate());
 			}
 		});
 		this.clear();
-		for (IfcModel ifcModel : tmpList) {
+		for (IfcModelInterface ifcModel : tmpList) {
 			add(ifcModel);
 		}
 	}

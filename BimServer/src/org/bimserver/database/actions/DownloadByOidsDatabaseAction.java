@@ -17,10 +17,11 @@ import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.User;
+import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.rights.RightsManager;
 import org.bimserver.shared.UserException;
 
-public class DownloadByOidsDatabaseAction extends BimDatabaseAction<IfcModel> {
+public class DownloadByOidsDatabaseAction extends BimDatabaseAction<IfcModelInterface> {
 
 	private final long actingUoid;
 	private final Set<Long> oids;
@@ -40,7 +41,7 @@ public class DownloadByOidsDatabaseAction extends BimDatabaseAction<IfcModel> {
 	}
 
 	@Override
-	public IfcModel execute() throws UserException, BimDeadlockException, BimDatabaseException {
+	public IfcModelInterface execute() throws UserException, BimDeadlockException, BimDatabaseException {
 		User user = getUserByUoid(actingUoid);
 		IfcModelSet ifcModelSet = new IfcModelSet();
 		Project project = null;
@@ -75,7 +76,7 @@ public class DownloadByOidsDatabaseAction extends BimDatabaseAction<IfcModel> {
 				// }
 			}
 		}
-		IfcModel ifcModel = mergerFactory.createMerger().merge(project, ifcModelSet, settingsManager.getSettings().isIntelligentMerging());
+		IfcModelInterface ifcModel = mergerFactory.createMerger().merge(project, ifcModelSet, settingsManager.getSettings().isIntelligentMerging());
 		ifcModel.setName("Unknown");
 		ifcModel.setRevisionNr(1);
 		ifcModel.setAuthorizedUser(getUserByUoid(actingUoid).getName());

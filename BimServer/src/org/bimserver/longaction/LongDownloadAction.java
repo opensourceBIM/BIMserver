@@ -11,15 +11,15 @@ import org.bimserver.database.actions.DownloadByOidsDatabaseAction;
 import org.bimserver.database.actions.DownloadDatabaseAction;
 import org.bimserver.database.actions.DownloadOfTypeDatabaseAction;
 import org.bimserver.database.actions.DownloadProjectsDatabaseAction;
-import org.bimserver.ifc.IfcModel;
 import org.bimserver.models.log.AccessMethod;
+import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.serializers.EmfSerializerFactory;
 import org.bimserver.shared.LongActionState;
 import org.bimserver.shared.LongActionState.ActionState;
 
 public class LongDownloadAction extends LongDownloadOrCheckoutAction {
 
-	private BimDatabaseAction<IfcModel> action;
+	private BimDatabaseAction<? extends IfcModelInterface> action;
 	private final SettingsManager settingsManager;
 	private BimDatabaseSession session;
 	private final MergerFactory mergerFactory;

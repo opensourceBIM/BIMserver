@@ -93,6 +93,7 @@ import org.bimserver.models.ifc2x3.IfcWindowPanelProperties;
 import org.bimserver.models.ifc2x3.IfcZShapeProfileDef;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.SIPrefix;
+import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EReference;
@@ -103,7 +104,7 @@ public class Merger {
 	private final Logger LOGGER = LoggerFactory.getLogger(Merger.class);
 	private ReferenceCounter referenceCounter;
 	private IfcModelSet modelSet;
-	private IfcModel model;
+	private IfcModelInterface model;
 	private Set<String> processedIdentifiers = new HashSet<String>();
 	private final MergeIdentifier mergeIdentifier;
 
@@ -142,7 +143,7 @@ public class Merger {
 	/*
 	 * ifcModels MUST be ordered by date already
 	 */
-	public IfcModel merge(Project project, IfcModelSet modelSet, boolean intelligentMerging) {
+	public IfcModelInterface merge(Project project, IfcModelSet modelSet, boolean intelligentMerging) {
 		this.modelSet = modelSet;
 		if (modelSet.size() == 1) {
 			// Do no merging on only 1 model, same in - same out principle of
@@ -167,7 +168,7 @@ public class Merger {
 
 	private Map<String, List<IdEObject>> buildIdentifierMap() {
 		Map<String, List<IdEObject>> map = new HashMap<String, List<IdEObject>>();
-		for (IfcModel model : modelSet) {
+		for (IfcModelInterface model : modelSet) {
 			for (IdEObject idEObject : model.getValues()) {
 				if (idEObject instanceof IfcRoot) {
 					IfcRoot ifcRoot = (IfcRoot) idEObject;
@@ -267,30 +268,30 @@ public class Merger {
 		model.remove(objectToRemove);
 	}
 
-	private IfcModel mergeScales(Project project, Set<IfcModel> ifcModels) {
+	private IfcModelInterface mergeScales(Project project, Set<IfcModelInterface> ifcModels) {
 		long size = 0;
-		for (IfcModel ifcModel : ifcModels) {
+		for (IfcModelInterface ifcModel : ifcModels) {
 			size += ifcModel.size();
 		}
-		IfcModel endModel = new IfcModel((int) size);
+		IfcModelInterface endModel = new IfcModel((int) size);
 		float foundPrefix = Float.MIN_VALUE;
 		boolean allModelsSameScale = allModelsSameScale(ifcModels, foundPrefix);
 		if (allModelsSameScale) {
-			for (IfcModel ifcModel : ifcModels) {
+			for (IfcModelInterface ifcModel : ifcModels) {
 				for (long key : ifcModel.keySet()) {
-					endModel.add(key, ifcModel.get(key));
+					endModel.add(key, (IdEObject) ifcModel.get(key));
 				}
 			}
 		} else {
 			LOGGER.info("Merging scales");
 			SIPrefix prefix = project.getExportLengthMeasurePrefix();
-			for (IfcModel ifcModel : ifcModels) {
+			for (IfcModelInterface ifcModel : ifcModels) {
 				float scale = (float) (getLengthUnitPrefix(ifcModel) / Math.pow(10.0, prefix.getValue()));
 				setLengthUnitMeasure(ifcModel, prefix);
 
 				ifcModel.indexGuids();
 				for (long key : ifcModel.keySet()) {
-					IdEObject idEObject = ifcModel.get(key);
+					IdEObject idEObject = (IdEObject) ifcModel.get(key);
 					if (idEObject instanceof IfcAsymmetricIShapeProfileDef) {
 						setIfcAsymmetricIShapeProfileDef(idEObject, scale);
 					} else if (idEObject instanceof IfcBlock) {
@@ -434,15 +435,15 @@ public class Merger {
 					} else if (idEObject instanceof IfcZShapeProfileDef) {
 						setIfcZShapeProfileDef(idEObject, scale);
 					}
-					endModel.add(key, ifcModel.get(key));
+					endModel.add(key, (IdEObject) ifcModel.get(key));
 				}
 			}
 		}
 		return endModel;
 	}
 
-	private boolean allModelsSameScale(Set<IfcModel> ifcModels, float foundPrefix) {
-		for (IfcModel ifcModel : ifcModels) {
+	private boolean allModelsSameScale(Set<IfcModelInterface> ifcModels, float foundPrefix) {
+		for (IfcModelInterface ifcModel : ifcModels) {
 			float lengthUnitPrefix = getLengthUnitPrefix(ifcModel);
 			if (foundPrefix != Float.MIN_VALUE) {
 				if (lengthUnitPrefix != foundPrefix) {
@@ -1133,7 +1134,7 @@ public class Merger {
 		ifcZShapeProfileDef.setWebThickness(ifcZShapeProfileDef.getWebThickness() * scale);
 	}
 
-	private float getLengthUnitPrefix(IfcModel model) {
+	private float getLengthUnitPrefix(IfcModelInterface model) {
 		float lengthUnitPrefix = 1.0f;
 		boolean prefixFound = false;
 		Map<Long, IdEObject> objects = model.getObjects();
@@ -1215,7 +1216,7 @@ public class Merger {
 		return lengthUnitPrefix;
 	}
 
-	private void setLengthUnitMeasure(IfcModel model, SIPrefix prefix) {
+	private void setLengthUnitMeasure(IfcModelInterface model, SIPrefix prefix) {
 		Map<Long, IdEObject> objects = model.getObjects();
 		boolean prefixFound = false;
 		for (IdEObject object : objects.values()) {

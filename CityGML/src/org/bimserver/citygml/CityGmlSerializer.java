@@ -1,10 +1,14 @@
 package org.bimserver.citygml;
 
 import java.io.OutputStream;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.xml.bind.JAXBException;
 
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.models.ifc2x3.IfcBuilding;
@@ -19,11 +23,15 @@ import org.bimserver.models.ifc2x3.IfcObjectDefinition;
 import org.bimserver.models.ifc2x3.IfcOpeningElement;
 import org.bimserver.models.ifc2x3.IfcPostalAddress;
 import org.bimserver.models.ifc2x3.IfcProduct;
+import org.bimserver.models.ifc2x3.IfcProject;
 import org.bimserver.models.ifc2x3.IfcRelContainedInSpatialStructure;
 import org.bimserver.models.ifc2x3.IfcRelDecomposes;
+import org.bimserver.models.ifc2x3.IfcRelFillsElement;
 import org.bimserver.models.ifc2x3.IfcRelSpaceBoundary;
+import org.bimserver.models.ifc2x3.IfcRelVoidsElement;
 import org.bimserver.models.ifc2x3.IfcRoof;
 import org.bimserver.models.ifc2x3.IfcRoot;
+import org.bimserver.models.ifc2x3.IfcSite;
 import org.bimserver.models.ifc2x3.IfcSlab;
 import org.bimserver.models.ifc2x3.IfcSlabTypeEnum;
 import org.bimserver.models.ifc2x3.IfcSpace;
@@ -45,11 +53,14 @@ import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.citygml4j.CityGMLContext;
+import org.citygml4j.builder.jaxb.JAXBBuilder;
 import org.citygml4j.factory.CityGMLFactory;
 import org.citygml4j.factory.GMLFactory;
 import org.citygml4j.factory.XALFactory;
 import org.citygml4j.impl.citygml.generics.DoubleAttributeImpl;
+import org.citygml4j.impl.gml.BoundingShapeImpl;
 import org.citygml4j.model.citygml.ade.ADEComponent;
+import org.citygml4j.model.citygml.building.BoundarySurface;
 import org.citygml4j.model.citygml.building.BoundarySurfaceProperty;
 import org.citygml4j.model.citygml.building.Building;
 import org.citygml4j.model.citygml.building.BuildingFurniture;
@@ -57,32 +68,40 @@ import org.citygml4j.model.citygml.building.Door;
 import org.citygml4j.model.citygml.building.FloorSurface;
 import org.citygml4j.model.citygml.building.InteriorFurnitureProperty;
 import org.citygml4j.model.citygml.building.InteriorRoomProperty;
+import org.citygml4j.model.citygml.building.OpeningProperty;
 import org.citygml4j.model.citygml.building.RoofSurface;
 import org.citygml4j.model.citygml.building.Room;
 import org.citygml4j.model.citygml.building.Window;
-import org.citygml4j.model.citygml.core.AbstractCityObject;
 import org.citygml4j.model.citygml.core.Address;
 import org.citygml4j.model.citygml.core.AddressProperty;
 import org.citygml4j.model.citygml.core.CityModel;
+import org.citygml4j.model.citygml.core.CityObject;
 import org.citygml4j.model.citygml.core.CityObjectMember;
 import org.citygml4j.model.citygml.core.XalAddressProperty;
 import org.citygml4j.model.citygml.generics.DoubleAttribute;
-import org.citygml4j.model.gml.basicTypes.Code;
-import org.citygml4j.model.gml.geometry.GeometryProperty;
-import org.citygml4j.model.gml.geometry.aggregates.MultiSurface;
-import org.citygml4j.model.gml.geometry.aggregates.MultiSurfaceProperty;
-import org.citygml4j.model.gml.geometry.primitives.DirectPositionList;
-import org.citygml4j.model.gml.geometry.primitives.Exterior;
-import org.citygml4j.model.gml.geometry.primitives.LinearRing;
-import org.citygml4j.model.gml.geometry.primitives.Polygon;
-import org.citygml4j.model.gml.geometry.primitives.SurfaceProperty;
+import org.citygml4j.model.gml.BoundingShape;
+import org.citygml4j.model.gml.Code;
+import org.citygml4j.model.gml.DirectPositionList;
+import org.citygml4j.model.gml.Exterior;
+import org.citygml4j.model.gml.GeometryProperty;
+import org.citygml4j.model.gml.LinearRing;
+import org.citygml4j.model.gml.MultiSurface;
+import org.citygml4j.model.gml.MultiSurfaceProperty;
+import org.citygml4j.model.gml.Polygon;
+import org.citygml4j.model.gml.SurfaceProperty;
+import org.citygml4j.model.module.citygml.CityGMLVersion;
 import org.citygml4j.model.xal.AddressDetails;
+import org.citygml4j.xml.io.CityGMLOutputFactory;
+import org.citygml4j.xml.io.reader.CityGMLReadException;
+import org.citygml4j.xml.io.writer.CityGMLWriteException;
+import org.citygml4j.xml.io.writer.CityGMLWriter;
 import org.eclipse.emf.ecore.EObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.w3c.dom.Element;
 
 import ade.GlobalIdType;
+import ade.RoofTypeEnum;
 
 public class CityGmlSerializer extends BimModelSerializer {
 	private static final Logger LOGGER = LoggerFactory.getLogger(CityGmlSerializer.class);
@@ -90,9 +109,9 @@ public class CityGmlSerializer extends BimModelSerializer {
 	private GMLFactory gml;
 	private XALFactory xal;
 	private CityGMLFactory citygml;
-	private Map<EObject, AbstractCityObject> convertedObjects;
+	private Map<EObject, CityObject> convertedObjects;
 	private CityGMLContext ctx;
-	
+
 	@Override
 	public void init(IfcModelInterface ifcModel, ProjectInfo projectInfo, PluginManager pluginManager) throws SerializerException {
 		super.init(ifcModel, projectInfo, pluginManager);
@@ -101,7 +120,7 @@ public class CityGmlSerializer extends BimModelSerializer {
 		citygml = new CityGMLFactory();
 		gml = new GMLFactory();
 		xal = new XALFactory();
-		convertedObjects = new HashMap<EObject, AbstractCityObject>();
+		convertedObjects = new HashMap<EObject, CityObject>();
 	}
 
 	private Code createName(String value) {
@@ -114,7 +133,7 @@ public class CityGmlSerializer extends BimModelSerializer {
 	protected void reset() {
 		setMode(Mode.BODY);
 	}
-	
+
 	public boolean write(OutputStream out) throws SerializerException {
 		if (getMode() == Mode.BODY) {
 			try {
@@ -122,63 +141,51 @@ public class CityGmlSerializer extends BimModelSerializer {
 			} catch (PluginException e) {
 				throw new SerializerException(e);
 			}
-//			PrintWriter writer = new PrintWriter(out);
-//			CityModel cityModel = citygml.createCityModel();
-//			JAXBBuilder builder = null;
-//			try {
-//				builder = ctx.createJAXBBuilder();
-//			} catch (JAXBException e1) {
-//				e1.printStackTrace();
-//			}
-//			for (IfcProject ifcProject : ifcDatabase.getAll(IfcProject.class)) {
-//				for (IfcRelDecomposes ifcRelDecomposes : ifcProject.getIsDecomposedBy()) {
-//					for (IfcObjectDefinition ifcObjectDefinition : ifcRelDecomposes.getRelatedObjects()) {
-//						if (ifcObjectDefinition instanceof IfcBuilding) {
-//							IfcBuilding ifcBuilding = (IfcBuilding) ifcObjectDefinition;
-//							processBuilding(cityModel, ifcBuilding);
-//						} else if (ifcObjectDefinition instanceof IfcSite) {
-//							IfcSite ifcSite = (IfcSite) ifcObjectDefinition;
-//							for (IfcRelDecomposes siteComposites : ifcSite.getIsDecomposedBy()) {
-//								for (IfcObjectDefinition siteCompositeObject : siteComposites.getRelatedObjects()) {
-//									if (siteCompositeObject instanceof IfcBuilding) {
-//										processBuilding(cityModel, (IfcBuilding) siteCompositeObject);
-//									}
-//								}
-//							}
-//						}
-//					}
-//				}
-//			}
-//			try {
-//				CityGMLOutputFactory outputFactory = builder.createCityGMLOutputFactory(CityGMLVersion.v1_0_0);
-//				CityGMLWriter cityGmlWriter = outputFactory.createCityGMLWriter(writer);
-//
-//				cityGmlWriter.setPrefixes(CityGMLVersion.v1_0_0);
-//				cityGmlWriter.setSchemaLocations(CityGMLVersion.v1_0_0);
-//				cityGmlWriter.setIndentString("  ");
-//				cityGmlWriter.write(cityModel);
-//				cityGmlWriter.close();	
+			CityModel cityModel = citygml.createCityModel();
+//			BoundingShape boundingShape = new BoundingShapeImpl();
+//			cityModel.setBoundedBy(boundingShape);
+			cityModel.setName(createNameList(getModel().getName()));
+			JAXBBuilder builder = null;
+			try {
+				builder = ctx.createJAXBBuilder();
+			} catch (JAXBException e1) {
+				e1.printStackTrace();
+			}
+			for (IfcProject ifcProject : getModel().getAll(IfcProject.class)) {
+				for (IfcRelDecomposes ifcRelDecomposes : ifcProject.getIsDecomposedBy()) {
+					for (IfcObjectDefinition ifcObjectDefinition : ifcRelDecomposes.getRelatedObjects()) {
+						if (ifcObjectDefinition instanceof IfcBuilding) {
+							IfcBuilding ifcBuilding = (IfcBuilding) ifcObjectDefinition;
+							processBuilding(cityModel, ifcBuilding);
+						} else if (ifcObjectDefinition instanceof IfcSite) {
+							IfcSite ifcSite = (IfcSite) ifcObjectDefinition;
+							for (IfcRelDecomposes siteComposites : ifcSite.getIsDecomposedBy()) {
+								for (IfcObjectDefinition siteCompositeObject : siteComposites.getRelatedObjects()) {
+									if (siteCompositeObject instanceof IfcBuilding) {
+										processBuilding(cityModel, (IfcBuilding) siteCompositeObject);
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			try {
+				CityGMLOutputFactory outputFactory = builder.createCityGMLOutputFactory(CityGMLVersion.v1_0_0);
+				PrintWriter writer = new PrintWriter(out);
+				CityGMLWriter cityGmlWriter = outputFactory.createCityGMLWriter(writer);
 
-				
-//				JAXBMarshaller marshaller = ctx.createJAXBBuilder().createJAXBMarshaller();
-				
-//				JAXBNamespacePrefixMapper nsMapper = new JAXBNamespacePrefixMapper();
-//				nsMapper.setNamespacePrefixMapping(CoreModule.v1_0_0.getNamespaceUri(), "core");
-//				nsMapper.setNamespacePrefixMapping(XBuildingAdeContext.NAMESPACE_URI, "xbuilding");
-//				
-//				marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-//				marshaller.setProperty("com.sun.xml.bind.namespacePrefixMapper", nsMapper);
-//				marshaller.setProperty(Marshaller.JAXB_SCHEMA_LOCATION, CoreModule.v1_0_0.getNamespaceUri() + " " + CoreModule.v1_0_0.getSchemaLocation());
-//				
-//				JAXBElement<?> cityModelElement = citygml.cityGML2jaxb(cityModel);
-//				
-//				marshaller.marshal(cityModelElement, writer);
-//			} catch (CityGMLReadException e) {
-//				e.printStackTrace();
-//			} catch (CityGMLWriteException e) {
-//				e.printStackTrace();
-//			}
-//			writer.flush();
+				cityGmlWriter.setPrefixes(CityGMLVersion.v1_0_0);
+				cityGmlWriter.setSchemaLocations(CityGMLVersion.v1_0_0);
+				cityGmlWriter.setIndentString("  ");
+				cityGmlWriter.write(cityModel);
+				cityGmlWriter.close();
+				writer.flush();
+			} catch (CityGMLReadException e) {
+				e.printStackTrace();
+			} catch (CityGMLWriteException e) {
+				e.printStackTrace();
+			}
 			setMode(Mode.FINISHED);
 			ifcEngine.close();
 			return true;
@@ -186,6 +193,12 @@ public class CityGmlSerializer extends BimModelSerializer {
 			return false;
 		}
 		return false;
+	}
+
+	private List<Code> createNameList(String string) {
+		ArrayList<Code> arrayList = new ArrayList<Code>();
+		arrayList.add(createName(string));
+		return arrayList;
 	}
 
 	private void processBuilding(CityModel cityModel, IfcBuilding ifcBuilding) throws SerializerException {
@@ -207,7 +220,7 @@ public class CityGmlSerializer extends BimModelSerializer {
 				processBoundary(building, createFakeRoom(building), ifcProduct, null);
 			}
 		}
-		
+
 		for (IfcRelDecomposes ifcRelDecomposes : ifcBuilding.getIsDecomposedBy()) {
 			for (IfcObjectDefinition ifcObjectDefinition : ifcRelDecomposes.getRelatedObjects()) {
 				if (ifcObjectDefinition instanceof IfcBuildingStorey) {
@@ -218,7 +231,7 @@ public class CityGmlSerializer extends BimModelSerializer {
 		}
 	}
 
-	private void setGlobalId(AbstractCityObject cityObject, IfcRoot ifcRoot) {
+	private void setGlobalId(CityObject cityObject, IfcRoot ifcRoot) {
 		if (ifcRoot != null && ifcRoot.getGlobalId() != null && ifcRoot.getGlobalId().getWrappedValue() != null) {
 			GlobalIdType globalId = new GlobalIdType();
 			globalId.setValue(ifcRoot.getGlobalId().getWrappedValue());
@@ -252,36 +265,33 @@ public class CityGmlSerializer extends BimModelSerializer {
 				}
 			}
 		}
-		// for (IfcRelContainedInSpatialStructure spatialStructure :
-		// ifcBuildingStorey.getContainsElements()) {
-		// for (IfcProduct ifcProduct : spatialStructure.getRelatedElements()) {
-		// if (ifcProduct instanceof IfcRoof) {
-		// RoofSurface roofSurface = citygml.createRoofSurface();
-		// MultiSurfaceProperty roofMSP = gml.createMultiSurfaceProperty();
-		// MultiSurface roofMs = gml.createMultiSurface();
-		// roofMSP.setMultiSurface(roofMs);
-		// roofSurface.setLod4MultiSurface(roofMSP);
-		// setGeometry(roofMs, (IfcRootObject) ifcProduct);
-		// BoundarySurfaceProperty boundarySurfaceProperty =
-		// citygml.createBoundarySurfaceProperty();
-		// boundarySurfaceProperty.setObject(roofSurface);
-		// convertedObjects.put(ifcProduct, roofSurface);
-		// setName(roofSurface.getName(), ifcProduct.getName());
-		// setGlobalId(roofSurface, ifcProduct);
-		// // IfcRoof ifcRoof = (IfcRoof)ifcProduct;
-		// // RoofTypeEnum roofTypeEnum =
-		// RoofTypeEnum.valueOf(ifcRoof.getShapeType().getName());
-		// //
-		// roofSurface.addGenericApplicationPropertyOfCityObject(roofTypeEnum);
-		// building.addBoundedBySurface(boundarySurfaceProperty);
-		// } else {
-		// ADEComponent cityObject = processProduct(ifcProduct);
-		// if (cityObject != null) {
-		// building.addGenericApplicationPropertyOfBuilding(cityObject);
-		// }
-		// }
-		// }
-		// }
+		for (IfcRelContainedInSpatialStructure spatialStructure : ifcBuildingStorey.getContainsElements()) {
+			for (IfcProduct ifcProduct : spatialStructure.getRelatedElements()) {
+				if (ifcProduct instanceof IfcRoof) {
+					RoofSurface roofSurface = citygml.createRoofSurface();
+					MultiSurfaceProperty roofMSP = gml.createMultiSurfaceProperty();
+					MultiSurface roofMs = gml.createMultiSurface();
+					roofMSP.setMultiSurface(roofMs);
+					roofSurface.setLod4MultiSurface(roofMSP);
+					setGeometry(roofMs, (IfcRoot) ifcProduct);
+					BoundarySurfaceProperty boundarySurfaceProperty = citygml.createBoundarySurfaceProperty();
+					boundarySurfaceProperty.setObject(roofSurface);
+					convertedObjects.put(ifcProduct, roofSurface);
+					setName(roofSurface.getName(), ifcProduct.getName());
+					setGlobalId(roofSurface, ifcProduct);
+					IfcRoof ifcRoof = (IfcRoof) ifcProduct;
+					RoofTypeEnum roofTypeEnum = RoofTypeEnum.valueOf(ifcRoof.getShapeType().getName());
+
+//					roofSurface.addGenericApplicationPropertyOfCityObject(roofTypeEnum);
+					building.addBoundedBySurface(boundarySurfaceProperty);
+				} else {
+					ADEComponent cityObject = processProduct(ifcProduct);
+					if (cityObject != null) {
+						building.addGenericApplicationPropertyOfBuilding(cityObject);
+					}
+				}
+			}
+		}
 	}
 
 	private Room createFakeRoom(Building building) {
@@ -297,83 +307,89 @@ public class CityGmlSerializer extends BimModelSerializer {
 	}
 
 	private ADEComponent processProduct(IfcProduct ifcProduct) throws SerializerException {
-//		if (ifcProduct instanceof IfcWallStandardCase || ifcProduct instanceof IfcWall || ifcProduct instanceof IfcWindow || ifcProduct instanceof IfcDoor
-//				|| ifcProduct instanceof IfcSlab) {
-//			// Do nothing, because it should already have been converted
-//		} else if (ifcProduct instanceof IfcStair) {
-//			Stair stair = new Stair();
-//			MultiSurfaceProperty stairMSP = gml.createMultiSurfaceProperty();
-//			MultiSurface stairMs = gml.createMultiSurface();
-//			setGeometry(stairMs, ifcProduct);
-//			stairMSP.setMultiSurface(stairMs);
-//			stair.setLod3MultiSurface(stairMSP);
-//			setName(stair.getName(), ifcProduct.getName());
-//			setGlobalId(stair, ifcProduct);
-//			stair.setGlobalId(ifcProduct.getGlobalId());
-//			IfcStairTypeEnum ifcShapeType = ((IfcStair) ifcProduct).getShapeType();
-//			stair.setType(StairTypeEnum.valueOf(ifcShapeType.getName().replace("_", "___")));
-//			return stair;
-//		} else if (ifcProduct instanceof IfcRailing) {
-//			Railing railing = new Railing();
-//			IfcRailing ifcRailing = (IfcRailing) ifcProduct;
-//			MultiSurfaceProperty railingMSP = gml.createMultiSurfaceProperty();
-//			MultiSurface stairMs = gml.createMultiSurface();
-//			setGeometry(stairMs, ifcProduct);
-//			railingMSP.setMultiSurface(stairMs);
-//			railing.setLod3MultiSurface(railingMSP);
-//			setName(railing.getName(), ifcProduct.getName());
-//			setGlobalId(railing, ifcProduct);
-//			railing.setGlobalId(ifcProduct.getGlobalId());
-//			railing.setPredefinedType(RailingTypeEnum.valueOf(ifcRailing.getPredefinedType().getName().replace("_", "___")));
-//			return railing;
-//		} else if (ifcProduct instanceof IfcAnnotation) {
-//			Annotation annotation = new Annotation();
-//			MultiSurfaceProperty annotationMSP = gml.createMultiSurfaceProperty();
-//			MultiSurface stairMs = gml.createMultiSurface();
-//			setGeometry(stairMs, ifcProduct);
-//			annotationMSP.setMultiSurface(stairMs);
-//			annotation.setLod3MultiSurface(annotationMSP);
-//			setName(annotation.getName(), ifcProduct.getName());
-//			setGlobalId(annotation, ifcProduct);
-//			annotation.setGlobalId(ifcProduct.getGlobalId());
-//			return annotation;
-//		} else if (ifcProduct instanceof IfcColumn) {
-//			Column column = new Column();
-//			MultiSurfaceProperty columnMSP = gml.createMultiSurfaceProperty();
-//			MultiSurface stairMs = gml.createMultiSurface();
-//			setGeometry(stairMs, ifcProduct);
-//			columnMSP.setMultiSurface(stairMs);
-//			column.setLod3MultiSurface(columnMSP);
-//			setName(column.getName(), ifcProduct.getName());
-//			setGlobalId(column, ifcProduct);
-//			column.setGlobalId(ifcProduct.getGlobalId());
-//			return column;
-//		} else if (ifcProduct instanceof IfcBuildingElementProxy) {
-//			// Do nothing, this is a bad IFC thing
-//		} else if (ifcProduct instanceof IfcBeam) {
-//			BeamType beamType = new BeamType();
-//			MultiSurfaceProperty beamMSP = gml.createMultiSurfaceProperty();
-//			MultiSurface stairMs = gml.createMultiSurface();
-//			setGeometry(stairMs, ifcProduct);
-//			beamMSP.setMultiSurface(stairMs);
-//			beamType.setLod3MultiSurface(beamMSP);
-//			setName(beam.getName(), ifcProduct.getName());
-//			setGlobalId(beam, ifcProduct);
-//			beam.setGlobalId(ifcProduct.getGlobalId());
-//			return beam;
-//			// } else if (ifcProduct instanceof IfcOpeningElement) {
-//			// OpeningElement openingElement = new OpeningElement();
-//			// MultiSurfaceProperty openingElementMSP =
-//			// gml.createMultiSurfaceProperty();
-//			// MultiSurface stairMs = gml.createMultiSurface();
-//			// setGeometry(stairMs, (IfcRootObject) ifcProduct);
-//			// openingElementMSP.setMultiSurface(stairMs);
-//			// openingElement.setLod3MultiSurface(openingElementMSP);
-//			// setName(openingElement.getName(), ifcProduct.getName());
-//			// setGlobalId(openingElement, ifcProduct);
-//			// ifcProduct.setGlobalId(ifcProduct.getGlobalId());
-//			// return openingElement;
-//		}
+		// if (ifcProduct instanceof IfcWallStandardCase || ifcProduct
+		// instanceof IfcWall || ifcProduct instanceof IfcWindow || ifcProduct
+		// instanceof IfcDoor
+		// || ifcProduct instanceof IfcSlab) {
+		// // Do nothing, because it should already have been converted
+		// } else if (ifcProduct instanceof IfcStair) {
+		// Stair stair = new Stair();
+		// MultiSurfaceProperty stairMSP = gml.createMultiSurfaceProperty();
+		// MultiSurface stairMs = gml.createMultiSurface();
+		// setGeometry(stairMs, ifcProduct);
+		// stairMSP.setMultiSurface(stairMs);
+		// stair.setLod4MultiSurface(stairMSP);
+		// setName(stair.getName(), ifcProduct.getName());
+		// setGlobalId(stair, ifcProduct);
+		// stair.setGlobalId(ifcProduct.getGlobalId());
+		// IfcStairTypeEnum ifcShapeType = ((IfcStair)
+		// ifcProduct).getShapeType();
+		// stair.setType(StairTypeEnum.valueOf(ifcShapeType.getName().replace("_",
+		// "___")));
+		// return stair;
+		// } else if (ifcProduct instanceof IfcRailing) {
+		// Railing railing = new Railing();
+		// IfcRailing ifcRailing = (IfcRailing) ifcProduct;
+		// MultiSurfaceProperty railingMSP = gml.createMultiSurfaceProperty();
+		// MultiSurface stairMs = gml.createMultiSurface();
+		// setGeometry(stairMs, ifcProduct);
+		// railingMSP.setMultiSurface(stairMs);
+		// railing.setLod4MultiSurface(railingMSP);
+		// setName(railing.getName(), ifcProduct.getName());
+		// setGlobalId(railing, ifcProduct);
+		// railing.setGlobalId(ifcProduct.getGlobalId());
+		// railing.setPredefinedType(RailingTypeEnum.valueOf(ifcRailing.getPredefinedType().getName().replace("_",
+		// "___")));
+		// return railing;
+		// } else if (ifcProduct instanceof IfcAnnotation) {
+		// Annotation annotation = new Annotation();
+		// MultiSurfaceProperty annotationMSP =
+		// gml.createMultiSurfaceProperty();
+		// MultiSurface stairMs = gml.createMultiSurface();
+		// setGeometry(stairMs, ifcProduct);
+		// annotationMSP.setMultiSurface(stairMs);
+		// annotation.setLod4MultiSurface(annotationMSP);
+		// setName(annotation.getName(), ifcProduct.getName());
+		// setGlobalId(annotation, ifcProduct);
+		// annotation.setGlobalId(ifcProduct.getGlobalId());
+		// return annotation;
+		// } else if (ifcProduct instanceof IfcColumn) {
+		// Column column = new Column();
+		// MultiSurfaceProperty columnMSP = gml.createMultiSurfaceProperty();
+		// MultiSurface stairMs = gml.createMultiSurface();
+		// setGeometry(stairMs, ifcProduct);
+		// columnMSP.setMultiSurface(stairMs);
+		// column.setLod4MultiSurface(columnMSP);
+		// setName(column.getName(), ifcProduct.getName());
+		// setGlobalId(column, ifcProduct);
+		// column.setGlobalId(ifcProduct.getGlobalId());
+		// return column;
+		// } else if (ifcProduct instanceof IfcBuildingElementProxy) {
+		// // Do nothing, this is a bad IFC thing
+		// } else if (ifcProduct instanceof IfcBeam) {
+		// BeamType beamType = new BeamType();
+		// MultiSurfaceProperty beamMSP = gml.createMultiSurfaceProperty();
+		// MultiSurface stairMs = gml.createMultiSurface();
+		// setGeometry(stairMs, ifcProduct);
+		// beamMSP.setMultiSurface(stairMs);
+		// beamType.setLod4MultiSurface(beamMSP);
+		// setName(beam.getName(), ifcProduct.getName());
+		// setGlobalId(beam, ifcProduct);
+		// beam.setGlobalId(ifcProduct.getGlobalId());
+		// return beam;
+		// // } else if (ifcProduct instanceof IfcOpeningElement) {
+		// // OpeningElement openingElement = new OpeningElement();
+		// // MultiSurfaceProperty openingElementMSP =
+		// // gml.createMultiSurfaceProperty();
+		// // MultiSurface stairMs = gml.createMultiSurface();
+		// // setGeometry(stairMs, (IfcRootObject) ifcProduct);
+		// // openingElementMSP.setMultiSurface(stairMs);
+		// // openingElement.setLod4MultiSurface(openingElementMSP);
+		// // setName(openingElement.getName(), ifcProduct.getName());
+		// // setGlobalId(openingElement, ifcProduct);
+		// // ifcProduct.setGlobalId(ifcProduct.getGlobalId());
+		// // return openingElement;
+		// }
 		return null;
 	}
 
@@ -408,46 +424,46 @@ public class CityGmlSerializer extends BimModelSerializer {
 		if (ifcElement instanceof IfcWall) {
 			IfcWall ifcWall = (IfcWall) ifcElement;
 			if (!convertedObjects.containsKey(ifcWall)) {
-//				BoundarySurface boundarySurface = null;
-//				if (boundayType == null || boundayType == IfcInternalOrExternalEnum.INTERNAL) {
-//					boundarySurface = citygml.createInteriorWallSurface();
-//				} else {
-//					boundarySurface = citygml.createWallSurface();
-//				}
-//				setName(boundarySurface.getName(), ifcWall.getName());
-//				setGlobalId(boundarySurface, ifcWall);
-//				convertedObjects.put(ifcWall, boundarySurface);
-//				BoundarySurfaceProperty boundarySurfaceProperty = citygml.createBoundarySurfaceProperty();
-//				boundarySurfaceProperty.setObject(boundarySurface);
-//				MultiSurface wallMs = gml.createMultiSurface();
-//				MultiSurfaceProperty wallMSP = gml.createMultiSurfaceProperty();
-//				wallMSP.setMultiSurface(wallMs);
-//				boundarySurface.setLod4MultiSurface(wallMSP);
-//				setGeometry(wallMs, ifcWall);
-//				building.addBoundedBySurface(boundarySurfaceProperty);
-//				for (IfcRelVoidsElement ifcRelVoidsElement : ifcWall.getHasOpenings()) {
-//					IfcOpeningElement ifcOpeningElement = (IfcOpeningElement) ifcRelVoidsElement.getRelatedOpeningElement();
-//					for (IfcRelFillsElement filling : ifcOpeningElement.getHasFillings()) {
-//						IfcElement ifcRelatedBuildingElement = filling.getRelatedBuildingElement();
-//						if (ifcRelatedBuildingElement instanceof IfcWindow) {
-//							if (!convertedObjects.containsKey(ifcRelatedBuildingElement)) {
-//								Window window = createWindow((IfcWindow) ifcRelatedBuildingElement);
-//								OpeningProperty openingProperty = citygml.createOpeningProperty();
-//								openingProperty.setObject(window);
-//								boundarySurface.addOpening(openingProperty);
-//								convertedObjects.put(ifcRelatedBuildingElement, window);
-//							}
-//						} else if (ifcRelatedBuildingElement instanceof IfcDoor) {
-//							if (!convertedObjects.containsKey(ifcRelatedBuildingElement)) {
-//								Door door = createDoor(ifcRelatedBuildingElement);
-//								OpeningProperty openingProperty = citygml.createOpeningProperty();
-//								openingProperty.setObject(door);
-//								boundarySurface.addOpening(openingProperty);
-//								convertedObjects.put(ifcRelatedBuildingElement, door);
-//							}
-//						}
-//					}
-//				}
+				BoundarySurface boundarySurface = null;
+				if (boundayType == null || boundayType == IfcInternalOrExternalEnum.INTERNAL) {
+					boundarySurface = citygml.createInteriorWallSurface();
+				} else {
+					boundarySurface = citygml.createWallSurface();
+				}
+				setName(boundarySurface.getName(), ifcWall.getName());
+				setGlobalId(boundarySurface, ifcWall);
+				convertedObjects.put(ifcWall, boundarySurface);
+				BoundarySurfaceProperty boundarySurfaceProperty = citygml.createBoundarySurfaceProperty();
+				boundarySurfaceProperty.setObject(boundarySurface);
+				MultiSurface wallMs = gml.createMultiSurface();
+				MultiSurfaceProperty wallMSP = gml.createMultiSurfaceProperty();
+				wallMSP.setMultiSurface(wallMs);
+				boundarySurface.setLod4MultiSurface(wallMSP);
+				setGeometry(wallMs, ifcWall);
+				building.addBoundedBySurface(boundarySurfaceProperty);
+				for (IfcRelVoidsElement ifcRelVoidsElement : ifcWall.getHasOpenings()) {
+					IfcOpeningElement ifcOpeningElement = (IfcOpeningElement) ifcRelVoidsElement.getRelatedOpeningElement();
+					for (IfcRelFillsElement filling : ifcOpeningElement.getHasFillings()) {
+						IfcElement ifcRelatedBuildingElement = filling.getRelatedBuildingElement();
+						if (ifcRelatedBuildingElement instanceof IfcWindow) {
+							if (!convertedObjects.containsKey(ifcRelatedBuildingElement)) {
+								Window window = createWindow((IfcWindow) ifcRelatedBuildingElement);
+								OpeningProperty openingProperty = citygml.createOpeningProperty();
+								openingProperty.setObject(window);
+								boundarySurface.addOpening(openingProperty);
+								convertedObjects.put(ifcRelatedBuildingElement, window);
+							}
+						} else if (ifcRelatedBuildingElement instanceof IfcDoor) {
+							if (!convertedObjects.containsKey(ifcRelatedBuildingElement)) {
+								Door door = createDoor(ifcRelatedBuildingElement);
+								OpeningProperty openingProperty = citygml.createOpeningProperty();
+								openingProperty.setObject(door);
+								boundarySurface.addOpening(openingProperty);
+								convertedObjects.put(ifcRelatedBuildingElement, door);
+							}
+						}
+					}
+				}
 			}
 		} else if (ifcElement instanceof IfcSlab) {
 			if (!convertedObjects.containsKey(ifcElement)) {
@@ -469,7 +485,10 @@ public class CityGmlSerializer extends BimModelSerializer {
 		} else if (ifcElement instanceof IfcOpeningElement) {
 			// room.addGenericApplicationPropertyOfRoom(processProduct(ifcRelating));
 		} else if (ifcElement instanceof IfcColumn) {
-			room.addGenericApplicationPropertyOfRoom(processProduct(ifcElement));
+			ADEComponent processProduct = processProduct(ifcElement);
+			if (processProduct != null) {
+				room.addGenericApplicationPropertyOfRoom(processProduct);
+			}
 		} else if (ifcElement == null || ifcElement instanceof IfcWindow || ifcElement instanceof IfcDoor || ifcElement instanceof IfcVirtualElement) {
 			// ignore
 		} else if (ifcElement instanceof IfcFurnishingElement) {
@@ -486,18 +505,19 @@ public class CityGmlSerializer extends BimModelSerializer {
 			room.addInteriorFurniture(ifp);
 			convertedObjects.put(ifcElement, buildingFurniture);
 		} else if (ifcElement instanceof IfcFlowTerminal) {
-//			FlowTerminal flowTerminal = new FlowTerminal();
-//			setName(flowTerminal.getName(), ifcElement.getName());
-//			MultiSurfaceProperty createGeometryProperty = gml.createMultiSurfaceProperty();
-//			MultiSurface createMultiSurface = gml.createMultiSurface();
-//			setGeometry(createMultiSurface, ifcElement);
-//			createGeometryProperty.setMultiSurface(createMultiSurface);
-//			flowTerminal.setLod3MultiSurface(createGeometryProperty);
-//			room.getGenericApplicationPropertyOfRoom().add(flowTerminal);
-//			setName(flowTerminal.getName(), ifcElement.getName());
-//			setGlobalId(flowTerminal, ifcElement);
-//			flowTerminal.setGlobalId(ifcElement.getGlobalId());
-//			convertedObjects.put(ifcElement, flowTerminal);
+			// FlowTerminal flowTerminal = new FlowTerminal();
+			// setName(flowTerminal.getName(), ifcElement.getName());
+			// MultiSurfaceProperty createGeometryProperty =
+			// gml.createMultiSurfaceProperty();
+			// MultiSurface createMultiSurface = gml.createMultiSurface();
+			// setGeometry(createMultiSurface, ifcElement);
+			// createGeometryProperty.setMultiSurface(createMultiSurface);
+			// flowTerminal.setLod4MultiSurface(createGeometryProperty);
+			// room.getGenericApplicationPropertyOfRoom().add(flowTerminal);
+			// setName(flowTerminal.getName(), ifcElement.getName());
+			// setGlobalId(flowTerminal, ifcElement);
+			// flowTerminal.setGlobalId(ifcElement.getGlobalId());
+			// convertedObjects.put(ifcElement, flowTerminal);
 		}
 	}
 
@@ -573,7 +593,7 @@ public class CityGmlSerializer extends BimModelSerializer {
 	}
 
 	private void setName(List<Code> name, String value) {
-		if (value != null) {
+		if (value != null && !value.trim().equals("")) {
 			name.add(createName(value));
 		}
 	}
@@ -607,11 +627,13 @@ public class CityGmlSerializer extends BimModelSerializer {
 							int i1 = geometry.getIndex(i);
 							int i2 = geometry.getIndex(i + 1);
 							int i3 = geometry.getIndex(i + 2);
-							ms.addSurfaceMember(createSurfaceProperty(gml, Arrays.asList(new Double[] { (double) geometry.getVertex(i1 * 3), (double) geometry.getVertex(i1 * 3 + 1),
-									(double) geometry.getVertex(i1 * 3 + 2), (double) geometry.getVertex(i3 * 3), (double) geometry.getVertex(i3 * 3 + 1),
-									(double) geometry.getVertex(i3 * 3 + 2), (double) geometry.getVertex(i2 * 3), (double) geometry.getVertex(i2 * 3 + 1),
-									(double) geometry.getVertex(i2 * 3 + 2), (double) geometry.getVertex(i1 * 3), (double) geometry.getVertex(i1 * 3 + 1),
-									(double) geometry.getVertex(i1 * 3 + 2) })));
+							ms.addSurfaceMember(createSurfaceProperty(
+									gml,
+									Arrays.asList(new Double[] { (double) geometry.getVertex(i1 * 3), (double) geometry.getVertex(i1 * 3 + 1),
+											(double) geometry.getVertex(i1 * 3 + 2), (double) geometry.getVertex(i3 * 3), (double) geometry.getVertex(i3 * 3 + 1),
+											(double) geometry.getVertex(i3 * 3 + 2), (double) geometry.getVertex(i2 * 3), (double) geometry.getVertex(i2 * 3 + 1),
+											(double) geometry.getVertex(i2 * 3 + 2), (double) geometry.getVertex(i1 * 3), (double) geometry.getVertex(i1 * 3 + 1),
+											(double) geometry.getVertex(i1 * 3 + 2) })));
 						}
 					}
 				}

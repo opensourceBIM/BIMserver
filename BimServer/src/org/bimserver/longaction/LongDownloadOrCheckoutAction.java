@@ -9,19 +9,19 @@ import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.actions.BimDatabaseAction;
 import org.bimserver.exceptions.NoSerializerFoundException;
 import org.bimserver.ifc.EmfSerializerDataSource;
-import org.bimserver.ifc.IfcModel;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.plugins.serializers.EmfSerializer;
+import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.serializers.EmfSerializerFactory;
 import org.bimserver.shared.LongActionState;
+import org.bimserver.shared.LongActionState.ActionState;
 import org.bimserver.shared.SCheckoutResult;
 import org.bimserver.shared.UserException;
-import org.bimserver.shared.LongActionState.ActionState;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -60,7 +60,7 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction<DownloadPa
 		return user;
 	}
 
-	protected SCheckoutResult convertModelToCheckoutResult(Project project, User user, IfcModel model, DownloadParameters downloadParameters)
+	protected SCheckoutResult convertModelToCheckoutResult(Project project, User user, IfcModelInterface model, DownloadParameters downloadParameters)
 			throws UserException, NoSerializerFoundException {
 		SCheckoutResult checkoutResult = new SCheckoutResult();
 		if (model.isValid()) {
@@ -79,13 +79,13 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction<DownloadPa
 		return checkoutResult;
 	}
 
-	protected void executeAction(BimDatabaseAction<IfcModel> action, DownloadParameters downloadParameters, BimDatabaseSession session,
+	protected void executeAction(BimDatabaseAction<? extends IfcModelInterface> action, DownloadParameters downloadParameters, BimDatabaseSession session,
 			boolean commit) throws BimDatabaseException, UserException, NoSerializerFoundException {
 		if (action == null) {
 			checkoutResult = new SCheckoutResult();
 			checkoutResult.setFile(new DataHandler(getDiskCacheManager().get(downloadParameters)));
 		} else {
-			IfcModel ifcModel = null;
+			IfcModelInterface ifcModel = null;
 			Revision revision = session.get(StorePackage.eINSTANCE.getRevision(), downloadParameters.getRoid(), false);
 			user = session.get(StorePackage.eINSTANCE.getUser(), currentUoid, false);
 			if (commit) {

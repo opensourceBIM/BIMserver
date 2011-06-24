@@ -32,6 +32,7 @@ import org.bimserver.plugins.ifcengine.IfcEngine;
 import org.bimserver.plugins.ifcengine.IfcEngineClash;
 import org.bimserver.plugins.ifcengine.IfcEngineModel;
 import org.bimserver.plugins.serializers.EmfSerializer;
+import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.shared.UserException;
@@ -84,7 +85,7 @@ public class FindClashesDatabaseAction extends BimDatabaseAction<Set<? extends C
 				}
 			}
 		}
-		IfcModel ifcModel = mergerFactory.createMerger().merge(project, ifcModelSet, false);
+		IfcModelInterface ifcModel = mergerFactory.createMerger().merge(project, ifcModelSet, false);
 		IfcModel newModel = new IfcModel();
 		Map<IdEObject, IdEObject> converted = new HashMap<IdEObject, IdEObject>();
 		for (IdEObject idEObject : ifcModel.getValues()) {
@@ -143,7 +144,7 @@ public class FindClashesDatabaseAction extends BimDatabaseAction<Set<? extends C
 	}
 
 	@SuppressWarnings("unchecked")
-	private IdEObject cleanupModel(EClass originalEClass, IdEObject original, IfcModel newModel, IfcModel ifcModel, Map<IdEObject, IdEObject> converted) throws UserException {
+	private IdEObject cleanupModel(EClass originalEClass, IdEObject original, IfcModelInterface newModel, IfcModelInterface ifcModel, Map<IdEObject, IdEObject> converted) throws UserException {
 		if (converted.containsKey(original)) {
 			return converted.get(original);
 		}

@@ -12,10 +12,11 @@ import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.User;
+import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.rights.RightsManager;
 import org.bimserver.shared.UserException;
 
-public class DownloadOfTypeDatabaseAction extends BimDatabaseAction<IfcModel> {
+public class DownloadOfTypeDatabaseAction extends BimDatabaseAction<IfcModelInterface> {
 
 	private final String className;
 	private final long actingUoid;
@@ -34,7 +35,7 @@ public class DownloadOfTypeDatabaseAction extends BimDatabaseAction<IfcModel> {
 	}
 
 	@Override
-	public IfcModel execute() throws UserException, BimDeadlockException, BimDatabaseException {
+	public IfcModelInterface execute() throws UserException, BimDeadlockException, BimDatabaseException {
 		Revision virtualRevision = getVirtualRevision(roid);
 		Project project = virtualRevision.getProject();
 		User user = getUserByUoid(actingUoid);
@@ -47,7 +48,7 @@ public class DownloadOfTypeDatabaseAction extends BimDatabaseAction<IfcModel> {
 			subModel.setDate(concreteRevision.getDate());
 			ifcModelSet.add(subModel);
 		}
-		IfcModel ifcModel = mergerFactory.createMerger().merge(project, ifcModelSet, settingsManager.getSettings().isIntelligentMerging());
+		IfcModelInterface ifcModel = mergerFactory.createMerger().merge(project, ifcModelSet, settingsManager.getSettings().isIntelligentMerging());
 		ifcModel.setName("Unknown");
 		ifcModel.setRevisionNr(project.getRevisions().indexOf(virtualRevision) + 1);
 		ifcModel.setAuthorizedUser(getUserByUoid(actingUoid).getName());

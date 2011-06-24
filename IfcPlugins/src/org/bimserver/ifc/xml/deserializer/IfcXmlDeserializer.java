@@ -1,6 +1,11 @@
 package org.bimserver.ifc.xml.deserializer;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
+import java.util.Date;
 import java.util.List;
 
 import javax.xml.stream.XMLInputFactory;
@@ -264,5 +269,20 @@ public class IfcXmlDeserializer extends EmfDeserializer  {
 			LOGGER.error("", e);
 		}
 		return model;
+	}
+
+	@Override
+	public IfcModelInterface read(File file, boolean setOids) throws DeserializeException {
+		try {
+			FileInputStream in = new FileInputStream(file);
+			read(in, setOids, file.length());
+			in.close();
+			model.setDate(new Date());
+			return model;
+		} catch (FileNotFoundException e) {
+			throw new DeserializeException(e);
+		} catch (IOException e) {
+			throw new DeserializeException(e);
+		}
 	}
 }

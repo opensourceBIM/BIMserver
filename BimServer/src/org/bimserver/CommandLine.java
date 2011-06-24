@@ -13,12 +13,12 @@ import org.bimserver.database.BimDeadlockException;
 import org.bimserver.database.ColumnDatabase;
 import org.bimserver.database.Database;
 import org.bimserver.database.actions.DownloadDatabaseAction;
-import org.bimserver.ifc.IfcModel;
 import org.bimserver.models.ifc2x3.IfcProject;
 import org.bimserver.models.ifc2x3.IfcSlab;
 import org.bimserver.models.ifc2x3.IfcWall;
 import org.bimserver.models.ifc2x3.IfcWindow;
 import org.bimserver.models.log.AccessMethod;
+import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.shared.ServerException;
 import org.bimserver.shared.UserException;
 import org.slf4j.Logger;
@@ -57,7 +57,7 @@ public class CommandLine extends Thread {
 						BimDatabaseSession bimDatabaseSession = ServerInitializer.getDatabase().createReadOnlySession();	
 						try {
 							DownloadDatabaseAction downloadDatabaseAction = new DownloadDatabaseAction(bimDatabaseSession, AccessMethod.INTERNAL, ServerInitializer.getSettingsManager(), ServerInitializer.getMergerFactory(), roid, ServerInitializer.getSystemService().getCurrentUser().getOid());
-							IfcModel model = downloadDatabaseAction.execute();
+							IfcModelInterface model = downloadDatabaseAction.execute();
 							System.out.println("Model size: " + model.size());
 							
 							List<IfcWall> walls = model.getAll(IfcWall.class);

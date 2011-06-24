@@ -1,49 +1,42 @@
 package org.bimserver.tests;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-import nl.tue.buildingsmart.emf.SchemaLoader;
-
-import org.bimserver.citygml.CityGmlSerializer;
-import org.bimserver.ifc.step.deserializer.IfcStepDeserializer;
+import org.bimserver.LocalDevPluginLoader;
+import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
-import org.bimserver.plugins.ResourceFetcher;
-import org.bimserver.plugins.schema.SchemaDefinition;
+import org.bimserver.plugins.deserializers.DeserializeException;
+import org.bimserver.plugins.deserializers.DeserializerPlugin;
+import org.bimserver.plugins.deserializers.EmfDeserializer;
+import org.bimserver.plugins.serializers.EmfSerializer;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.plugins.serializers.SerializerException;
-import org.bimserver.shared.LocalDevelopmentResourceFetcher;
-
-import com.sun.xml.internal.ws.encoding.soap.DeserializationException;
+import org.bimserver.plugins.serializers.SerializerPlugin;
 
 public class CityGmlTest {
 	public static void main(String[] args) {
-		SchemaDefinition schema = SchemaLoader.loadDefaultSchema();
-		IfcStepDeserializer ifcStepDeserializer = new IfcStepDeserializer();
-		ifcStepDeserializer.init(schema);
-		ResourceFetcher resourceFetcher = new LocalDevelopmentResourceFetcher();
-		PluginManager pluginManager = new PluginManager(resourceFetcher, null, null);
 		try {
-			IfcModelInterface model = ifcStepDeserializer.read(TestFile.AC11.getFile());
-			try {
-				CityGmlSerializer cityGmlSerializer = new CityGmlSerializer();
-				cityGmlSerializer.init(model, null, pluginManager);
-				FileOutputStream fos = new FileOutputStream(new File("out.citygml"));
-				cityGmlSerializer.write(fos);
-				fos.close();
-			} catch (SerializerException e) {
-				e.printStackTrace();
-			} catch (FileNotFoundException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		} catch (DeserializationException e1) {
-			e1.printStackTrace();
-		} catch (Exception e1) {
-			e1.printStackTrace();
+			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager();
+			DeserializerPlugin deserializerPlugin = pluginManager.requireDeserializer("ifc");
+			EmfDeserializer deserializer = deserializerPlugin.createDeserializer();
+			deserializer.init(pluginManager.requireSchemaDefinition());
+			IfcModelInterface model = deserializer.read(TestFile.AC11.getFile(), true);
+			SerializerPlugin serializerPlugin = pluginManager.getFirstSerializerPlugin("application/gml", true);
+			EmfSerializer serializer = serializerPlugin.createSerializer();
+			serializer.init(model, null, pluginManager);
+			FileOutputStream fos = new FileOutputStream(new File("out.gml"));
+			serializer.writeToOutputStream(fos);
+			fos.close();
+		} catch (PluginException e2) {
+			e2.printStackTrace();
+		} catch (DeserializeException e) {
+			e.printStackTrace();
+		} catch (SerializerException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 }

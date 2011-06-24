@@ -36,7 +36,6 @@ import java.util.TreeMap;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcGloballyUniqueId;
-import org.bimserver.models.ifc2x3.IfcProject;
 import org.bimserver.models.ifc2x3.IfcRoot;
 import org.bimserver.models.ifc2x3.WrappedValue;
 import org.bimserver.plugins.guidanceproviders.GuidanceProvider;
@@ -602,7 +601,7 @@ public class IfcModel implements IfcModelInterface {
 		return guidIndexed.containsKey(guid);
 	}
 
-	public IdEObject get(Class<IfcProject> class1) {
+	public IdEObject get(Class<?> class1) {
 		for (IdEObject idEObject : objects.values()) {
 			if (class1.isInstance(idEObject)) {
 				return idEObject;

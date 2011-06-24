@@ -353,7 +353,7 @@ public class Service implements ServiceInterface {
 	private IfcModelInterface readIfcXmlModel(InputStream inputStream, long fileSize) throws UserException {
 		EmfDeserializer deserializer;
 		try {
-			deserializer = pluginManager.requireDeserializer("ifcxml");
+			deserializer = pluginManager.requireDeserializer("ifcxml").createDeserializer();
 		} catch (DeserializeException e) {
 			throw new UserException(e.getMessage());
 		}
@@ -367,7 +367,7 @@ public class Service implements ServiceInterface {
 	private IfcModelInterface readIfcStepModel(final InputStream inputStream, long fileSize) throws UserException {
 		EmfDeserializer deserializer;
 		try {
-			deserializer = pluginManager.requireDeserializer("ifc");
+			deserializer = pluginManager.requireDeserializer("ifc").createDeserializer();
 		} catch (DeserializeException e) {
 			throw new UserException(e.getMessage());
 		}
@@ -1492,7 +1492,7 @@ public class Service implements ServiceInterface {
 				subModel.setDate(subRevision.getDate());
 				ifcModelSet.add(subModel);
 			}
-			IfcModel model = mergerFactory.createMerger().merge(oldRevision.getProject(), ifcModelSet, settingsManager.getSettings().isIntelligentMerging());
+			IfcModelInterface model = mergerFactory.createMerger().merge(oldRevision.getProject(), ifcModelSet, settingsManager.getSettings().isIntelligentMerging());
 			model.resetOids();
 			Project newProject = new AddProjectDatabaseAction(session, accessMethod, settingsManager, projectName, currentUoid).execute();
 			session.commit();
@@ -1543,7 +1543,7 @@ public class Service implements ServiceInterface {
 				subModel.setDate(subRevision.getDate());
 				ifcModelSet.add(subModel);
 			}
-			IfcModel model = mergerFactory.createMerger().merge(oldRevision.getProject(), ifcModelSet, settingsManager.getSettings().isIntelligentMerging());
+			IfcModelInterface model = mergerFactory.createMerger().merge(oldRevision.getProject(), ifcModelSet, settingsManager.getSettings().isIntelligentMerging());
 			model.resetOids();
 			BimDatabaseAction<ConcreteRevision> action = new CheckinPart1DatabaseAction(session, accessMethod, destPoid, currentUoid, model, comment);
 			try {

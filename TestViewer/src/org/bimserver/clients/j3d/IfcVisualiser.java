@@ -267,7 +267,7 @@ public class IfcVisualiser extends JFrame {
 		deserializer.init(schema);
 		try {
 //			deserializer.read(new File("../TestData/data/export1.ifc"));
-			deserializer.read(new File("../TestData/data/AC11-Institute-Var-2-IFC.ifc"));
+			deserializer.read(new File("../TestData/data/AC11-Institute-Var-2-IFC.ifc"), true);
 		} catch (DeserializationException e) {
 			e.printStackTrace();
 		} catch (Exception e) {

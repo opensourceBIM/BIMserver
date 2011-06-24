@@ -12,16 +12,17 @@ import org.bimserver.models.ifc2x3.Ifc2x3Factory;
 import org.bimserver.models.ifc2x3.IfcGloballyUniqueId;
 import org.bimserver.models.ifc2x3.IfcProject;
 import org.bimserver.models.ifc2x3.IfcRoot;
+import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EReference;
 
 public class RevisionMerger {
 
-	private IfcModel oldModel;
-	private IfcModel newModel;
+	private IfcModelInterface oldModel;
+	private IfcModelInterface newModel;
 	private IfcModel resultModel;
 
-	public RevisionMerger(IfcModel oldModel, IfcModel newModel) {
+	public RevisionMerger(IfcModelInterface oldModel, IfcModelInterface newModel) {
 		this.oldModel = oldModel;
 		this.newModel = newModel;
 		resultModel = new IfcModel((int)oldModel.size());
@@ -57,7 +58,7 @@ public class RevisionMerger {
 		while (iterator.hasNext()) {
 			Long oid = iterator.next();
 			IdEObject idEObject = resultModel.get(oid);
-			IdEObject originalObject = oldModel.get(oid);
+			IdEObject originalObject = (IdEObject) oldModel.get(oid);
 			if (originalObject != null) {
 				boolean objectChanged = false;
 				for (EAttribute eAttribute : idEObject.eClass().getEAllAttributes()) {

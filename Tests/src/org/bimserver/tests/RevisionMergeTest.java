@@ -2,14 +2,16 @@ package org.bimserver.tests;
 
 import java.io.File;
 
-import nl.tue.buildingsmart.emf.SchemaLoader;
-
+import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.ifc.IfcModel;
-import org.bimserver.ifc.step.deserializer.IfcStepDeserializer;
-import org.bimserver.ifc.step.serializer.IfcStepSerializer;
 import org.bimserver.merging.IncrementingOidProvider;
 import org.bimserver.merging.RevisionMerger;
-import org.bimserver.plugins.schema.SchemaDefinition;
+import org.bimserver.plugins.PluginManager;
+import org.bimserver.plugins.deserializers.DeserializerPlugin;
+import org.bimserver.plugins.deserializers.EmfDeserializer;
+import org.bimserver.plugins.serializers.EmfSerializer;
+import org.bimserver.plugins.serializers.IfcModelInterface;
+import org.bimserver.plugins.serializers.SerializerPlugin;
 
 import com.sun.xml.internal.ws.encoding.soap.DeserializationException;
 
@@ -19,19 +21,21 @@ public class RevisionMergeTest {
 	}
 
 	private void start() {
-		SchemaDefinition schema = SchemaLoader.loadDefaultSchema();
-		IfcStepDeserializer deserializer = new IfcStepDeserializer();
-		deserializer.init(schema);
 		try {
-			IfcModel model1 = deserializer.read(TestFile.EXPORT1.getFile());
-			IfcModel model2 = deserializer.read(TestFile.EXPORT3.getFile());
+			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager();
+			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", true);
+			EmfDeserializer deserializer = deserializerPlugin.createDeserializer();
+			deserializer.init(pluginManager.requireSchemaDefinition());
+			IfcModelInterface model1 = deserializer.read(TestFile.EXPORT1.getFile(), true);
+			IfcModelInterface model2 = deserializer.read(TestFile.EXPORT3.getFile(), true);
 			model1.setObjectOids();
 			model2.setObjectOids();
 			model1.indexGuids();
 			model2.indexGuids();
 			model2.fixOids(new IncrementingOidProvider(model1.getHighestOid() + 1));
 			IfcModel merged = new RevisionMerger(model1, model2).merge();
-			IfcStepSerializer serializer = new IfcStepSerializer();
+			SerializerPlugin serializerPlugin = pluginManager.getFirstSerializerPlugin("application/ifc", true);
+			EmfSerializer serializer = serializerPlugin.createSerializer();
 			serializer.init(merged, null, null);
 			serializer.writeToFile(new File("merged.ifc"));
 		} catch (DeserializationException e) {
