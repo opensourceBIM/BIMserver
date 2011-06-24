@@ -113,6 +113,7 @@ public class ProtocolBuffersGenerator {
 			out.println("import com.googlecode.protobuf.socketrpc.RpcChannels;");
 			out.println("import com.googlecode.protobuf.socketrpc.SocketRpcConnectionFactories;");
 			out.println();
+			out.println("@SuppressWarnings(\"unused\")");
 			out.println("public class ProtocolBuffersServiceInterfaceImplementation implements org.bimserver.shared.ServiceInterface {\n");
 			out.println("\tprivate BlockingInterface service;\n");
 			out.println("\tprivate SocketRpcController rpcController;\n");
@@ -242,6 +243,7 @@ public class ProtocolBuffersGenerator {
 						out.println("\t\t\treturn null;");
 					} else {
 						out.println("\t\t\t" + method.getReturnType().getName() + " realResult = new " + method.getReturnType().getName() + "();");
+						
 						out.println("\t\t\treturn realResult;");
 					}
 				}
