@@ -16,13 +16,6 @@ public class PluginClassloader extends ClassLoader {
 	
 	@Override
 	protected Class<?> findClass(String name) throws ClassNotFoundException {
-		try {
-			Class<?> existing = super.findClass(name);
-			if (existing != null) {
-				return existing;
-			}
-		} catch (ClassNotFoundException e) {
-		}
 		String path = name.replace(".", File.separator) + ".class";
 		File classFile = new File(classDir, path);
 		if (classFile.isFile()) {

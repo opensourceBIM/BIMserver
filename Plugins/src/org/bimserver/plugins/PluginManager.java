@@ -1,10 +1,8 @@
 package org.bimserver.plugins;
 
-import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -13,18 +11,13 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
-import java.util.jar.JarEntry;
-import java.util.jar.JarInputStream;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 
-import org.apache.commons.io.IOUtils;
-import org.apache.commons.io.output.ByteArrayOutputStream;
 import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
-import org.bimserver.plugins.deserializers.EmfDeserializer;
 import org.bimserver.plugins.guidanceproviders.GuidanceProvider;
 import org.bimserver.plugins.guidanceproviders.GuidanceProviderPlugin;
 import org.bimserver.plugins.ifcengine.IfcEngineException;
@@ -67,32 +60,17 @@ public class PluginManager {
 		try {
 			PluginDescriptor pluginDescriptor = getPluginDescriptor(new FileInputStream(pluginFile));
 			File libFolder = new File(projectRoot, "lib");
-			MapClassLoader libClassLoader = new MapClassLoader(getClass().getClassLoader());
+			DelegatingClassLoader delegatingClassLoader = new DelegatingClassLoader(getClass().getClassLoader());
 			if (libFolder.isDirectory()) {
 				for (File libFile : libFolder.listFiles()) {
 					if (libFile.getName().toLowerCase().endsWith(".jar")) {
-						try {
-							JarInputStream jarInputStream = new JarInputStream(new FileInputStream(libFile));
-							JarEntry entry = jarInputStream.getNextJarEntry();
-							Map<String, byte[]> map = new HashMap<String, byte[]>();
-							while (entry != null) {
-								ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-								IOUtils.copy(jarInputStream, byteArrayOutputStream);
-								map.put(entry.getName(), byteArrayOutputStream.toByteArray());
-								entry = jarInputStream.getNextJarEntry();
-							}
-							jarInputStream.close();
-							libClassLoader.addMap(map);
-						} catch (FileNotFoundException e) {
-							throw new PluginException(e);
-						} catch (IOException e) {
-							throw new PluginException(e);
-						}
+						JarClassLoader jarClassLoader = new JarClassLoader(delegatingClassLoader, libFile);
+						delegatingClassLoader.add(jarClassLoader);
 					}
 				}
 			}
 			File binFolder = new File(projectRoot, "bin");
-			PluginClassloader pluginClassloader = new PluginClassloader(libClassLoader, binFolder);
+			PluginClassloader pluginClassloader = new PluginClassloader(delegatingClassLoader, binFolder);
 			loadPlugins(pluginClassloader, projectRoot.getAbsolutePath(), pluginDescriptor);
 		} catch (JAXBException e) {
 			throw new PluginException(e);
@@ -153,27 +131,10 @@ public class PluginManager {
 			throw new PluginException("Not a file: " + file.getAbsolutePath());
 		}
 		try {
-			JarInputStream jarInputStream = new JarInputStream(new FileInputStream(file));
-			JarEntry entry = jarInputStream.getNextJarEntry();
-			Map<String, byte[]> map = new HashMap<String, byte[]>();
-			while (entry != null) {
-				ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-				IOUtils.copy(jarInputStream, byteArrayOutputStream);
-				map.put(entry.getName(), byteArrayOutputStream.toByteArray());
-				entry = jarInputStream.getNextJarEntry();
-			}
-			jarInputStream.close();
-			if (map.containsKey("plugin/plugin.xml")) {
-				byte[] bs = map.get("plugin/plugin.xml");
-				PluginDescriptor pluginDescriptor = getPluginDescriptor(new ByteArrayInputStream(bs));
-				loadPlugins(new MapClassLoader(getClass().getClassLoader(), map), file.getAbsolutePath(), pluginDescriptor);
-			} else {
-				System.out.println("no plugin.xml found");
-			}
-		} catch (FileNotFoundException e) {
-			throw new PluginException(e);
-		} catch (IOException e) {
-			throw new PluginException(e);
+			JarClassLoader jarClassLoader = new JarClassLoader(getClass().getClassLoader(), file);
+			InputStream pluginStream = jarClassLoader.getResourceAsStream("plugin/plugin.xml");
+			PluginDescriptor pluginDescriptor = getPluginDescriptor(pluginStream);
+			loadPlugins(jarClassLoader, file.getAbsolutePath(), pluginDescriptor);
 		} catch (JAXBException e) {
 			throw new PluginException(e);
 		}
