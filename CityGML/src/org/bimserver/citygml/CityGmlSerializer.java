@@ -59,7 +59,7 @@ import org.citygml4j.factory.GMLFactory;
 import org.citygml4j.factory.XALFactory;
 import org.citygml4j.impl.citygml.generics.DoubleAttributeImpl;
 import org.citygml4j.model.citygml.ade.ADEComponent;
-import org.citygml4j.model.citygml.building.BoundarySurface;
+import org.citygml4j.model.citygml.building.AbstractBoundarySurface;
 import org.citygml4j.model.citygml.building.BoundarySurfaceProperty;
 import org.citygml4j.model.citygml.building.Building;
 import org.citygml4j.model.citygml.building.BuildingFurniture;
@@ -71,22 +71,22 @@ import org.citygml4j.model.citygml.building.OpeningProperty;
 import org.citygml4j.model.citygml.building.RoofSurface;
 import org.citygml4j.model.citygml.building.Room;
 import org.citygml4j.model.citygml.building.Window;
+import org.citygml4j.model.citygml.core.AbstractCityObject;
 import org.citygml4j.model.citygml.core.Address;
 import org.citygml4j.model.citygml.core.AddressProperty;
 import org.citygml4j.model.citygml.core.CityModel;
-import org.citygml4j.model.citygml.core.CityObject;
 import org.citygml4j.model.citygml.core.CityObjectMember;
 import org.citygml4j.model.citygml.core.XalAddressProperty;
 import org.citygml4j.model.citygml.generics.DoubleAttribute;
-import org.citygml4j.model.gml.Code;
-import org.citygml4j.model.gml.DirectPositionList;
-import org.citygml4j.model.gml.Exterior;
-import org.citygml4j.model.gml.GeometryProperty;
-import org.citygml4j.model.gml.LinearRing;
-import org.citygml4j.model.gml.MultiSurface;
-import org.citygml4j.model.gml.MultiSurfaceProperty;
-import org.citygml4j.model.gml.Polygon;
-import org.citygml4j.model.gml.SurfaceProperty;
+import org.citygml4j.model.gml.basicTypes.Code;
+import org.citygml4j.model.gml.geometry.GeometryProperty;
+import org.citygml4j.model.gml.geometry.aggregates.MultiSurface;
+import org.citygml4j.model.gml.geometry.aggregates.MultiSurfaceProperty;
+import org.citygml4j.model.gml.geometry.primitives.DirectPositionList;
+import org.citygml4j.model.gml.geometry.primitives.Exterior;
+import org.citygml4j.model.gml.geometry.primitives.LinearRing;
+import org.citygml4j.model.gml.geometry.primitives.Polygon;
+import org.citygml4j.model.gml.geometry.primitives.SurfaceProperty;
 import org.citygml4j.model.module.citygml.CityGMLVersion;
 import org.citygml4j.model.xal.AddressDetails;
 import org.citygml4j.xml.io.CityGMLOutputFactory;
@@ -107,7 +107,7 @@ public class CityGmlSerializer extends BimModelSerializer {
 	private GMLFactory gml;
 	private XALFactory xal;
 	private CityGMLFactory citygml;
-	private Map<EObject, CityObject> convertedObjects;
+	private Map<EObject, AbstractCityObject> convertedObjects;
 	private CityGMLContext ctx;
 
 	@Override
@@ -118,7 +118,7 @@ public class CityGmlSerializer extends BimModelSerializer {
 		citygml = new CityGMLFactory();
 		gml = new GMLFactory();
 		xal = new XALFactory();
-		convertedObjects = new HashMap<EObject, CityObject>();
+		convertedObjects = new HashMap<EObject, AbstractCityObject>();
 	}
 
 	private Code createName(String value) {
@@ -229,7 +229,7 @@ public class CityGmlSerializer extends BimModelSerializer {
 		}
 	}
 
-	private void setGlobalId(CityObject cityObject, IfcRoot ifcRoot) {
+	private void setGlobalId(AbstractCityObject cityObject, IfcRoot ifcRoot) {
 		if (ifcRoot != null && ifcRoot.getGlobalId() != null && ifcRoot.getGlobalId().getWrappedValue() != null) {
 			GlobalIdType globalId = new GlobalIdType();
 			globalId.setValue(ifcRoot.getGlobalId().getWrappedValue());
@@ -421,7 +421,7 @@ public class CityGmlSerializer extends BimModelSerializer {
 		if (ifcElement instanceof IfcWall) {
 			IfcWall ifcWall = (IfcWall) ifcElement;
 			if (!convertedObjects.containsKey(ifcWall)) {
-				BoundarySurface boundarySurface = null;
+				AbstractBoundarySurface boundarySurface = null;
 				if (boundayType == null || boundayType == IfcInternalOrExternalEnum.INTERNAL) {
 					boundarySurface = citygml.createInteriorWallSurface();
 				} else {
