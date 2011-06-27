@@ -58,7 +58,6 @@ import org.citygml4j.factory.CityGMLFactory;
 import org.citygml4j.factory.GMLFactory;
 import org.citygml4j.factory.XALFactory;
 import org.citygml4j.impl.citygml.generics.DoubleAttributeImpl;
-import org.citygml4j.impl.gml.BoundingShapeImpl;
 import org.citygml4j.model.citygml.ade.ADEComponent;
 import org.citygml4j.model.citygml.building.BoundarySurface;
 import org.citygml4j.model.citygml.building.BoundarySurfaceProperty;
@@ -79,7 +78,6 @@ import org.citygml4j.model.citygml.core.CityObject;
 import org.citygml4j.model.citygml.core.CityObjectMember;
 import org.citygml4j.model.citygml.core.XalAddressProperty;
 import org.citygml4j.model.citygml.generics.DoubleAttribute;
-import org.citygml4j.model.gml.BoundingShape;
 import org.citygml4j.model.gml.Code;
 import org.citygml4j.model.gml.DirectPositionList;
 import org.citygml4j.model.gml.Exterior;
@@ -102,7 +100,6 @@ import org.w3c.dom.Element;
 
 import ade.GlobalIdType;
 import ade.ObjectFactory;
-import ade.RoofTypeEnum;
 
 public class CityGmlSerializer extends BimModelSerializer {
 	private static final Logger LOGGER = LoggerFactory.getLogger(CityGmlSerializer.class);
@@ -280,9 +277,8 @@ public class CityGmlSerializer extends BimModelSerializer {
 					convertedObjects.put(ifcProduct, roofSurface);
 					setName(roofSurface.getName(), ifcProduct.getName());
 					setGlobalId(roofSurface, ifcProduct);
-					IfcRoof ifcRoof = (IfcRoof) ifcProduct;
-					RoofTypeEnum roofTypeEnum = RoofTypeEnum.valueOf(ifcRoof.getShapeType().getName());
-
+//					IfcRoof ifcRoof = (IfcRoof) ifcProduct;
+//					RoofTypeEnum roofTypeEnum = RoofTypeEnum.valueOf(ifcRoof.getShapeType().getName());
 //					roofSurface.addGenericApplicationPropertyOfCityObject(roofTypeEnum);
 					building.addBoundedBySurface(boundarySurfaceProperty);
 				} else {

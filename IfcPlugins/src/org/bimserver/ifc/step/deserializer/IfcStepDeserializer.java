@@ -70,8 +70,6 @@ import org.eclipse.emf.ecore.impl.EEnumImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import sun.misc.Sort;
-
 import com.google.common.base.Charsets;
 
 public class IfcStepDeserializer extends EmfDeserializer {
