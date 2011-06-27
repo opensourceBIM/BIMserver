@@ -1,11 +1,15 @@
 package org.bimserver.plugins;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLConnection;
+import java.net.URLStreamHandler;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.jar.JarEntry;
@@ -17,6 +21,7 @@ import org.apache.commons.io.output.ByteArrayOutputStream;
 public class JarClassLoader extends ClassLoader {
 	private File jarFile;
 	private Map<String, byte[]> map;
+	private Map<String, Class<?>> loadedClasses = new HashMap<String, Class<?>>();
 
 	public JarClassLoader(ClassLoader parentClassLoader, File jarFile) {
 		super(parentClassLoader);
@@ -38,31 +43,42 @@ public class JarClassLoader extends ClassLoader {
 	}
 
 	@Override
-	protected URL findResource(String name) {
-		if (name.startsWith("/")) {
-			name = name.substring(1);
-		}
-		try {
-			return new URL("jar:" + new File(jarFile.getName()).toURI().toURL() + "!/" + name);
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
+	protected URL findResource(final String name) {
+		if (map.containsKey(name)) {
+			try {
+				return new URL(new URL("jar:" + new File(jarFile.getName()).toURI().toURL() + "!/" + name), name, new URLStreamHandler() {
+					@Override
+					protected URLConnection openConnection(URL u) throws IOException {
+						return new URLConnection(u) {
+							@Override
+							public void connect() throws IOException {
+							}
+
+							@Override
+							public InputStream getInputStream() throws IOException {
+								return new ByteArrayInputStream(map.get(name));
+							}
+						};
+					}
+				});
+			} catch (MalformedURLException e) {
+				e.printStackTrace();
+			}
 		}
 		return null;
 	}
 
 	@Override
 	protected Class<?> findClass(String name) throws ClassNotFoundException {
-		try {
-			Class<?> findClass = super.findClass(name);
-			if (findClass != null) {
-				return findClass;
-			}
-		} catch (ClassNotFoundException e) {
-		}
 		String fileName = name.replace(".", "/") + ".class";
+		if (loadedClasses.containsKey(fileName)) {
+			return loadedClasses.get(fileName);
+		}
 		if (map.containsKey(fileName)) {
 			byte[] bs = map.get(fileName);
-			return defineClass(name, bs, 0, bs.length);
+			Class<?> defineClass = defineClass(name, bs, 0, bs.length);
+			loadedClasses.put(fileName, defineClass);
+			return defineClass;
 		}
 		throw new ClassNotFoundException(name);
 	}

@@ -17,11 +17,13 @@ public class DelegatingClassLoader extends ClassLoader {
 	
 	@Override
 	protected Class<?> findClass(String name) throws ClassNotFoundException {
-		System.out.println(name);
 		for (JarClassLoader jarClassLoader : jarClassLoaders) {
-			Class<?> findClass = jarClassLoader.findClass(name);
-			if (findClass != null) {
-				return findClass;
+			try {
+				Class<?> findClass = jarClassLoader.findClass(name);
+				if (findClass != null) {
+					return findClass;
+				}
+			} catch (ClassNotFoundException e) {
 			}
 		}
 		return null;
@@ -29,7 +31,6 @@ public class DelegatingClassLoader extends ClassLoader {
 
 	@Override
 	protected URL findResource(String name) {
-		System.out.println(name);
 		for (JarClassLoader jarClassLoader : jarClassLoaders) {
 			URL resource = jarClassLoader.findResource(name);
 			if (resource != null) {
