@@ -41,12 +41,10 @@ import javax.vecmath.Point3f;
 import javax.vecmath.Vector3d;
 import javax.vecmath.Vector3f;
 
-import nl.tue.buildingsmart.emf.SchemaLoader;
-
+import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.clients.j3d.behavior.OrbitBehaviorInterim;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.IfcModel;
-import org.bimserver.ifc.step.deserializer.IfcStepDeserializer;
 import org.bimserver.ifc.step.serializer.IfcStepSerializer;
 import org.bimserver.models.ifc2x3.Ifc2x3Factory;
 import org.bimserver.models.ifc2x3.IfcBeam;
@@ -68,7 +66,12 @@ import org.bimserver.models.ifc2x3.IfcWall;
 import org.bimserver.models.ifc2x3.IfcWallStandardCase;
 import org.bimserver.models.ifc2x3.IfcWindow;
 import org.bimserver.models.ifc2x3.WrappedValue;
-import org.bimserver.plugins.guidanceproviders.FieldIgnoreMap;
+import org.bimserver.plugins.GuidanceProviderException;
+import org.bimserver.plugins.PluginException;
+import org.bimserver.plugins.PluginManager;
+import org.bimserver.plugins.deserializers.DeserializerPlugin;
+import org.bimserver.plugins.deserializers.EmfDeserializer;
+import org.bimserver.plugins.guidanceproviders.GuidanceProvider;
 import org.bimserver.plugins.ifcengine.IfcEngine;
 import org.bimserver.plugins.ifcengine.IfcEngineException;
 import org.bimserver.plugins.ifcengine.IfcEngineGeometry;
@@ -76,8 +79,7 @@ import org.bimserver.plugins.ifcengine.IfcEngineInstance;
 import org.bimserver.plugins.ifcengine.IfcEngineInstanceVisualisationProperties;
 import org.bimserver.plugins.ifcengine.IfcEngineModel;
 import org.bimserver.plugins.ifcengine.IfcEngineSurfaceProperties;
-import org.bimserver.plugins.schema.SchemaDefinition;
-import org.bimserver.shared.LocalDevelopmentResourceFetcher;
+import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -94,8 +96,6 @@ import com.sun.xml.internal.ws.encoding.soap.DeserializationException;
 public class IfcVisualiser extends JFrame {
 	private static final long serialVersionUID = -4779999816911473897L;
 	private static final Logger LOGGER = LoggerFactory.getLogger(IfcVisualiser.class);
-	private FieldIgnoreMap fieldIgnoreMap;
-	private SchemaDefinition schema;
 	private BranchGroup sceneBranchGroup;
 	private BranchGroup viewBranchGroup;
 	private OrbitBehaviorInterim orbitBehaviorInterim;
@@ -109,12 +109,18 @@ public class IfcVisualiser extends JFrame {
 	private SharedGroup sharedGroup;
 	private Appearances appearances = new Appearances();
 	private IfcEngine ifcEngine;
+	private PluginManager pluginManager;
+	private GuidanceProvider guidanceProvider;
 
 	public static void main(String[] args) {
-		new IfcVisualiser().start();
+		try {
+			new IfcVisualiser().start();
+		} catch (PluginException e) {
+			e.printStackTrace();
+		}
 	}
 
-	private void start() {
+	private void start() throws PluginException {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		try {
 			setIconImage(ImageIO.read(getClass().getResource("haussmall.png")));
@@ -176,11 +182,17 @@ public class IfcVisualiser extends JFrame {
 		canvas.setVisible(true);
 		validate();
 
-		LocalDevelopmentResourceFetcher resourceFetcher = new LocalDevelopmentResourceFetcher();
-		schema = SchemaLoader.loadDefaultSchema();
-
 		sharedGroup = new SharedGroup();
 
+		try {
+			pluginManager = LocalDevPluginLoader.createPluginManager();
+			guidanceProvider = pluginManager.requireGuidanceProvider();
+		} catch (PluginException e) {
+			e.printStackTrace();
+		} catch (GuidanceProviderException e) {
+			e.printStackTrace();
+		}
+		
 		createSceneGraph();
 		System.out.println("Done");
 	}
@@ -257,10 +269,11 @@ public class IfcVisualiser extends JFrame {
 		sceneBranchGroup.addChild(loaderBranchGroup);
 	}
 
-	private void createSceneGraph() {
+	private void createSceneGraph() throws PluginException {
 		buildingTransformGroup = new TransformGroup();
-		IfcStepDeserializer deserializer = new IfcStepDeserializer();
-		deserializer.init(schema);
+		DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", true);
+		EmfDeserializer deserializer = deserializerPlugin.createDeserializer();
+		deserializer.init(pluginManager.requireSchemaDefinition());
 		try {
 //			deserializer.read(new File("../TestData/data/export1.ifc"));
 			deserializer.read(new File("../TestData/data/AC11-Institute-Var-2-IFC.ifc"), true);
@@ -270,7 +283,7 @@ public class IfcVisualiser extends JFrame {
 			e.printStackTrace();
 		}
 
-		IfcModel model = deserializer.getModel();
+		IfcModelInterface model = deserializer.getModel();
 		model.setObjectOids();
 
 		Set<Class<? extends IfcRoot>> classesToConvert = new HashSet<Class<? extends IfcRoot>>();
@@ -431,7 +444,7 @@ public class IfcVisualiser extends JFrame {
 			newModel.add(newObject.getOid(), newObject, true);
 		}
 		for (EStructuralFeature eStructuralFeature : ifcRootObject.eClass().getEAllStructuralFeatures()) {
-			if (!fieldIgnoreMap.shouldIgnoreField(ifcRootObject.eClass(), ifcRootObject.eClass(), eStructuralFeature)) {
+			if (!guidanceProvider.shouldIgnoreField(ifcRootObject.eClass(), ifcRootObject.eClass(), eStructuralFeature)) {
 				Object get = ifcRootObject.eGet(eStructuralFeature);
 				if (eStructuralFeature instanceof EAttribute) {
 					if (get instanceof Float || get instanceof Double) {
