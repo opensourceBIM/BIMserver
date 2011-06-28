@@ -318,6 +318,13 @@ public class IfcStepSerializer extends IfcSerializer {
 		} else {
 			if (ref instanceof EObject) {
 				writeEmbedded(out, (EObject) ref);
+			} else if (feature.getEType() == ECORE_PACKAGE_INSTANCE.getEFloat() || feature.getEType() == ECORE_PACKAGE_INSTANCE.getEDouble()) {
+				Object eGet = object.eGet(object.eClass().getEStructuralFeature(feature.getName() + "AsString"));
+				if (eGet != null) {
+					out.print(eGet);
+				} else {
+					out.print(DOLLAR);
+				}
 			} else {
 				writePrimitive(out, ref);
 			}
