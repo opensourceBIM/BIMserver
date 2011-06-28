@@ -379,11 +379,6 @@ public class ColladaSerializer extends BimModelSerializer {
 		}
 	}
 
-	private String getMaterialBasedOnType(IdEObject ifcRootObject) {
-		
-		return null;
-	}
-
 	private void writeScene(PrintWriter out) {
 		out.println("	<scene>");
 		out.println("		<instance_visual_scene url=\"#VisualSceneNode\"/>");
