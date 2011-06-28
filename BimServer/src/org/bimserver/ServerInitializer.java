@@ -114,14 +114,8 @@ public class ServerInitializer implements ServletContextListener {
 	private static MergerFactory mergerFactory;
 	private static PluginManager pluginManager;
 
-	public void init() {
+	public void init(File homeDir) {
 		try {
-			if (servletContext.getAttribute("homedir") != null) {
-				homeDir = new File((String) servletContext.getAttribute("homedir"));
-			}
-			if (homeDir == null && servletContext.getInitParameter("homedir") != null) {
-				homeDir = new File(servletContext.getInitParameter("homedir"));
-			}
 			serverType = detectServerType(servletContext);
 			if (serverType == ServerType.DEV_ENVIRONMENT) {
 				baseDir = new File("../BimServer/defaultsettings/" + "shared");
@@ -397,7 +391,13 @@ public class ServerInitializer implements ServletContextListener {
 	@Override
 	public void contextInitialized(ServletContextEvent servletContextEvent) {
 		servletContext = servletContextEvent.getServletContext();
-		init();
+		if (servletContext.getAttribute("homedir") != null) {
+			homeDir = new File((String) servletContext.getAttribute("homedir"));
+		}
+		if (homeDir == null && servletContext.getInitParameter("homedir") != null) {
+			homeDir = new File(servletContext.getInitParameter("homedir"));
+		}
+		init(homeDir);
 	}
 
 	private void initDatabaseDependantItems() {
