@@ -142,15 +142,6 @@ public class ColladaSerializer extends BimModelSerializer {
 		out.println("        </contributor>");
 		out.println("        <created>2006-06-21T21:23:22Z</created>");
 		out.println("        <modified>2006-06-21T21:23:22Z</modified>");
-
-		// Ruben 23-09-2010 Why is this commented out? Can we throw it away?
-
-		// double scale = Math.pow(10.0, project.getExportLengthMeasurePrefix()
-		// .getValue());
-		// out.println("        <unit meter=\"" + scale + "\" name=\""
-		// + project.getExportLengthMeasurePrefix().name().toLowerCase()
-		// + "\"/>");
-
 		if (lengthUnitPrefix == null) {
 			out.println("        <unit meter=\"1\" name=\"meter\"/>");
 		} else {
@@ -166,15 +157,6 @@ public class ColladaSerializer extends BimModelSerializer {
 		for (IfcRoof ifcRoof : model.getAll(IfcRoof.class)) {
 			setGeometry(out, ifcRoof, ifcRoof.getGlobalId().getWrappedValue(), "Roof");
 		}
-
-		// Ruben 29-10-2010 A long time ago this code made the IFCEngine crash,
-		// should try to enable it again
-
-		// for (IfcSpace ifcSpace : ifcDatabase.getAll(IfcSpace.class)) {
-		// setGeometry(out, (IfcRootObject) ifcSpace,
-		// ifcSpace.getGlobalId().getWrappedValue(), "Space");
-		// }
-
 		for (IfcSlab ifcSlab : model.getAll(IfcSlab.class)) {
 			if (ifcSlab.getPredefinedType() == IfcSlabTypeEnum.ROOF) {
 				setGeometry(out, ifcSlab, ifcSlab.getGlobalId().getWrappedValue(), "Roof");
@@ -264,11 +246,13 @@ public class ColladaSerializer extends BimModelSerializer {
 					EList<IfcMaterialLayer> materialLayers = forLayerSet.getMaterialLayers();
 					for (IfcMaterialLayer ml : materialLayers) {
 						IfcMaterial ifcMaterial = ml.getMaterial();
-						String name = ifcMaterial.getName();
-						String filterSpaces = fitNameForQualifiedName(name);
-						materialFound = surfaceStyleIds.contains(filterSpaces);
-						if (materialFound) {
-							material = filterSpaces;
+						if (ifcMaterial != null) {
+							String name = ifcMaterial.getName();
+							String filterSpaces = fitNameForQualifiedName(name);
+							materialFound = surfaceStyleIds.contains(filterSpaces);
+							if (materialFound) {
+								material = filterSpaces;
+							}
 						}
 					}
 				}
@@ -393,6 +377,11 @@ public class ColladaSerializer extends BimModelSerializer {
 		} catch (Exception e) {
 			LOGGER.error("", e);
 		}
+	}
+
+	private String getMaterialBasedOnType(IdEObject ifcRootObject) {
+		
+		return null;
 	}
 
 	private void writeScene(PrintWriter out) {
