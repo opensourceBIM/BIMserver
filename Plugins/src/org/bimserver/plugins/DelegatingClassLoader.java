@@ -26,7 +26,7 @@ public class DelegatingClassLoader extends ClassLoader {
 			} catch (ClassNotFoundException e) {
 			}
 		}
-		return null;
+		throw new ClassNotFoundException(name);
 	}
 
 	@Override

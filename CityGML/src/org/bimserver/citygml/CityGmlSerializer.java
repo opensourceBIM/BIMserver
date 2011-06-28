@@ -145,7 +145,8 @@ public class CityGmlSerializer extends BimModelSerializer {
 			cityModel.setName(createNameList(getModel().getName()));
 			JAXBBuilder builder = null;
 			try {
-				builder = ctx.createJAXBBuilder(ObjectFactory.class.getClassLoader());
+				System.out.println(getClass().getClassLoader());
+				builder = ctx.createJAXBBuilder(getClass().getClassLoader());
 			} catch (JAXBException e1) {
 				e1.printStackTrace();
 			}

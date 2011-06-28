@@ -15,6 +15,10 @@ import org.bimserver.plugins.serializers.SerializerPlugin;
 
 public class CityGmlSerializerPlugin implements SerializerPlugin {
 
+	static {
+		System.out.println("Loading CityGmlSerializerPlugin");
+	}
+	
 	private boolean initialized = false;
 
 	public CityGmlSerializerPlugin() {
