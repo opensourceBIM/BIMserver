@@ -37,9 +37,6 @@
 			</classpath>
 		</javac>
 		<mkdir dir="builds/bimserver/plugin"/>
-		<copy todir="builds/bimserver/plugin">
-			<fileset dir="../../BimServer/plugin"></fileset>
-		</copy>
 		<jar destfile="builds/lib/bimserver-${version}.jar">
 			<fileset dir="builds/bimserver"/>
 		</jar>
