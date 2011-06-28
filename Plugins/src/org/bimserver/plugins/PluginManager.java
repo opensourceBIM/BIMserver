@@ -154,6 +154,10 @@ public class PluginManager {
 		}
 		return plugins;
 	}
+	
+	public Collection<GuidanceProviderPlugin> getAllGuidanceProviders(boolean onlyEnabled) {
+		return getPlugins(GuidanceProviderPlugin.class, onlyEnabled);
+	}
 
 	public Collection<IfcEnginePlugin> getAllIfcEnginePlugins(boolean onlyEnabled) {
 		return getPlugins(IfcEnginePlugin.class, onlyEnabled);

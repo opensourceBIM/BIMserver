@@ -72,8 +72,6 @@
 	<classpathentry exported="true" kind="lib" path="lib/cxf/spring-tx-3.0.5.RELEASE.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/spring-web-3.0.5.RELEASE.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/xmlsec-1.4.4.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/emf/org.eclipse.emf.compare_1.0.1.v200909161031.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/emf/org.eclipse.emf.compare.match_1.0.1.v200909161031.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/commons-beanutils-1.8.3.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/commons-beanutils-bean-collections-1.8.3.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/commons-beanutils-core-1.8.3.jar"/>

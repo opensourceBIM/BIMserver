@@ -32,7 +32,6 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.GregorianCalendar;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.Executors;
@@ -42,7 +41,6 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.output.ByteArrayOutputStream;
 import org.apache.log4j.LogManager;
 import org.bimserver.ServerInfo.ServerState;
 import org.bimserver.cache.DiskCacheManager;
@@ -92,7 +90,6 @@ import org.bimserver.web.LoginManager;
 import org.bimserver.webservices.RestApplication;
 import org.bimserver.webservices.Service;
 import org.bimserver.webservices.ServiceFactory;
-import org.eclipse.emf.ecore.EPackage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -335,21 +332,18 @@ public class ServerInitializer implements ServletContextListener {
 
 	private void createSerializersAndEngines() throws BimDeadlockException, BimDatabaseException, PluginException {
 		BimDatabaseSession session = bimDatabase.createSession(true);
-		Condition guidanceProviderCondition = new AttributeCondition(StorePackage.eINSTANCE.getGuidanceProvider_Name(), new StringLiteral("default"));
-		Map<Long, GuidanceProvider> guidanceProviders = session.query(guidanceProviderCondition, GuidanceProvider.class, false);
-		GuidanceProvider guidanceProvider = null;
-		if (guidanceProviders.size() == 0) {
-			guidanceProvider = StoreFactory.eINSTANCE.createGuidanceProvider();
-			guidanceProvider.setName("default");
-			Set<EPackage> packages = new HashSet<EPackage>();
-			packages.add(Ifc2x3Package.eINSTANCE);
-			ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-			SchemaFieldIgnoreMap schemaFieldIgnoreMap = new SchemaFieldIgnoreMap(packages, pluginManager.requireSchemaDefinition());
-			schemaFieldIgnoreMap.write(outputStream);
-			guidanceProvider.setData(outputStream.toByteArray());
-			session.store(guidanceProvider);
-		} else {
-			guidanceProvider = guidanceProviders.values().iterator().next();
+		GuidanceProvider defaultGuidanceProvider = null;
+		for (GuidanceProviderPlugin guidanceProviderPlugin : pluginManager.getAllGuidanceProviders(true)) {
+			String name = guidanceProviderPlugin.getDefaultGuidanceProviderName();
+			Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getGuidanceProvider_Name(), new StringLiteral(name));
+			GuidanceProvider found = session.querySingle(condition, GuidanceProvider.class, false);
+			if (found == null) {
+				GuidanceProvider guidanceProvider = StoreFactory.eINSTANCE.createGuidanceProvider();
+				guidanceProvider.setName(name);
+				guidanceProvider.setClassName(guidanceProvider.getClass().getName());
+				defaultGuidanceProvider = guidanceProvider;
+				session.store(guidanceProvider);
+			}
 		}
 		for (SerializerPlugin serializerPlugin : pluginManager.getAllSerializerPlugins(true)) {
 			String name = serializerPlugin.getDefaultSerializerName();
@@ -363,11 +357,11 @@ public class ServerInitializer implements ServletContextListener {
 				serializer.setDescription(serializerPlugin.getDescription());
 				serializer.setContentType(serializerPlugin.getDefaultContentType());
 				serializer.setExtension(serializerPlugin.getDefaultExtension());
-				serializer.setGuidanceProvider(guidanceProvider);
+				serializer.setGuidanceProvider(defaultGuidanceProvider);
 				session.store(serializer);
 			}
 		}
-		session.store(guidanceProvider);
+		session.store(defaultGuidanceProvider);
 		for (IfcEnginePlugin ifcEnginePlugin : pluginManager.getAllIfcEnginePlugins(true)) {
 			String name = ifcEnginePlugin.getName();
 			Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getIfcEngine_Name(), new StringLiteral(name));

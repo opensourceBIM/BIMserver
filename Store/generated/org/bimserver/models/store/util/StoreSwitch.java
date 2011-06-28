@@ -6,12 +6,25 @@
  */
 package org.bimserver.models.store.util;
 
-import java.util.List;
-
-import org.bimserver.models.store.*;
-
-import org.eclipse.emf.ecore.EClass;
+import org.bimserver.models.store.Checkout;
+import org.bimserver.models.store.Clash;
+import org.bimserver.models.store.ClashDetectionSettings;
+import org.bimserver.models.store.ConcreteRevision;
+import org.bimserver.models.store.EidClash;
+import org.bimserver.models.store.GeoTag;
+import org.bimserver.models.store.GuidClash;
+import org.bimserver.models.store.GuidanceProvider;
+import org.bimserver.models.store.IfcEngine;
+import org.bimserver.models.store.Plugin;
+import org.bimserver.models.store.Project;
+import org.bimserver.models.store.Revision;
+import org.bimserver.models.store.Serializer;
+import org.bimserver.models.store.Settings;
+import org.bimserver.models.store.StorePackage;
+import org.bimserver.models.store.User;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.util.Switch;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,7 +39,7 @@ import org.eclipse.emf.ecore.EObject;
  * @see org.bimserver.models.store.StorePackage
  * @generated
  */
-public class StoreSwitch<T> {
+public class StoreSwitch<T> extends Switch<T> {
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
@@ -48,14 +61,16 @@ public class StoreSwitch<T> {
 	}
 
 	/**
-	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
+	 * Checks whether this is a switch for the given package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the first non-null result returned by a <code>caseXXX</code> call.
+	 * @parameter ePackage the package in question.
+	 * @return whether this is a switch for the given package.
 	 * @generated
 	 */
-	public T doSwitch(EObject theEObject) {
-		return doSwitch(theEObject.eClass(), theEObject);
+	@Override
+	protected boolean isSwitchFor(EPackage ePackage) {
+		return ePackage == modelPackage;
 	}
 
 	/**
@@ -65,26 +80,7 @@ public class StoreSwitch<T> {
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
-	protected T doSwitch(EClass theEClass, EObject theEObject) {
-		if (theEClass.eContainer() == modelPackage) {
-			return doSwitch(theEClass.getClassifierID(), theEObject);
-		}
-		else {
-			List<EClass> eSuperTypes = theEClass.getESuperTypes();
-			return
-				eSuperTypes.isEmpty() ?
-					defaultCase(theEObject) :
-					doSwitch(eSuperTypes.get(0), theEObject);
-		}
-	}
-
-	/**
-	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the first non-null result returned by a <code>caseXXX</code> call.
-	 * @generated
-	 */
+	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
 			case StorePackage.PROJECT: {
@@ -419,6 +415,7 @@ public class StoreSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)
 	 * @generated
 	 */
+	@Override
 	public T defaultCase(EObject object) {
 		return null;
 	}

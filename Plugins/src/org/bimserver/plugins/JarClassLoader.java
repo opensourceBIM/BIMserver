@@ -74,8 +74,8 @@ public class JarClassLoader extends ClassLoader {
 		if (loadedClasses.containsKey(fileName)) {
 			return loadedClasses.get(fileName);
 		}
-		if (map.containsKey(fileName)) {
-			byte[] bs = map.get(fileName);
+		if (map.containsKey(name)) {
+			byte[] bs = map.get(name);
 			Class<?> defineClass = defineClass(name, bs, 0, bs.length);
 			loadedClasses.put(fileName, defineClass);
 			return defineClass;
