@@ -7,13 +7,9 @@
 package org.bimserver.models.store.impl;
 
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
-
 import org.bimserver.models.ifc2x3.impl.Ifc2x3PackageImpl;
-
 import org.bimserver.models.log.LogPackage;
-
 import org.bimserver.models.log.impl.LogPackageImpl;
-
 import org.bimserver.models.store.CheckinState;
 import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.Clash;
@@ -36,13 +32,11 @@ import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserType;
-
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 /**
@@ -1404,7 +1398,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getGuidanceProvider_Data() {
+	public EAttribute getGuidanceProvider_ClassName() {
 		return (EAttribute)guidanceProviderEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -1709,7 +1703,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 
 		guidanceProviderEClass = createEClass(GUIDANCE_PROVIDER);
 		createEAttribute(guidanceProviderEClass, GUIDANCE_PROVIDER__NAME);
-		createEAttribute(guidanceProviderEClass, GUIDANCE_PROVIDER__DATA);
+		createEAttribute(guidanceProviderEClass, GUIDANCE_PROVIDER__CLASS_NAME);
 		createEReference(guidanceProviderEClass, GUIDANCE_PROVIDER__SERIALIZERS);
 		createEReference(guidanceProviderEClass, GUIDANCE_PROVIDER__SETTINGS);
 
@@ -1901,7 +1895,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 
 		initEClass(guidanceProviderEClass, GuidanceProvider.class, "GuidanceProvider", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getGuidanceProvider_Name(), ecorePackage.getEString(), "name", null, 0, 1, GuidanceProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getGuidanceProvider_Data(), ecorePackage.getEByteArray(), "data", null, 0, 1, GuidanceProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getGuidanceProvider_ClassName(), ecorePackage.getEString(), "className", null, 0, 1, GuidanceProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getGuidanceProvider_Serializers(), this.getSerializer(), this.getSerializer_GuidanceProvider(), "serializers", null, 0, -1, GuidanceProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getGuidanceProvider_Settings(), this.getSettings(), this.getSettings_GuidanceProviders(), "settings", null, 0, 1, GuidanceProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

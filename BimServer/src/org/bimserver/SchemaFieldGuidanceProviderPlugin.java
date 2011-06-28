@@ -56,4 +56,9 @@ public class SchemaFieldGuidanceProviderPlugin implements GuidanceProviderPlugin
 	public boolean isInitialized() {
 		return initialized;
 	}
+
+	@Override
+	public String getDefaultGuidanceProviderName() {
+		return "default";
+	}
 }

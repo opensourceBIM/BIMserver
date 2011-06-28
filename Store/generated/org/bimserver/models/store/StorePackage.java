@@ -1424,13 +1424,13 @@ public interface StorePackage extends EPackage {
 	int GUIDANCE_PROVIDER__NAME = 0;
 
 	/**
-	 * The feature id for the '<em><b>Data</b></em>' attribute.
+	 * The feature id for the '<em><b>Class Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GUIDANCE_PROVIDER__DATA = 1;
+	int GUIDANCE_PROVIDER__CLASS_NAME = 1;
 
 	/**
 	 * The feature id for the '<em><b>Serializers</b></em>' reference list.
@@ -2976,15 +2976,15 @@ public interface StorePackage extends EPackage {
 	EAttribute getGuidanceProvider_Name();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.GuidanceProvider#getData <em>Data</em>}'.
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.GuidanceProvider#getClassName <em>Class Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Data</em>'.
-	 * @see org.bimserver.models.store.GuidanceProvider#getData()
+	 * @return the meta object for the attribute '<em>Class Name</em>'.
+	 * @see org.bimserver.models.store.GuidanceProvider#getClassName()
 	 * @see #getGuidanceProvider()
 	 * @generated
 	 */
-	EAttribute getGuidanceProvider_Data();
+	EAttribute getGuidanceProvider_ClassName();
 
 	/**
 	 * Returns the meta object for the reference list '{@link org.bimserver.models.store.GuidanceProvider#getSerializers <em>Serializers</em>}'.
@@ -4201,12 +4201,12 @@ public interface StorePackage extends EPackage {
 		EAttribute GUIDANCE_PROVIDER__NAME = eINSTANCE.getGuidanceProvider_Name();
 
 		/**
-		 * The meta object literal for the '<em><b>Data</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Class Name</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute GUIDANCE_PROVIDER__DATA = eINSTANCE.getGuidanceProvider_Data();
+		EAttribute GUIDANCE_PROVIDER__CLASS_NAME = eINSTANCE.getGuidanceProvider_ClassName();
 
 		/**
 		 * The meta object literal for the '<em><b>Serializers</b></em>' reference list feature.

@@ -7,14 +7,11 @@
 package org.bimserver.models.store.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
-
 import org.bimserver.models.store.GuidanceProvider;
 import org.bimserver.models.store.Serializer;
 import org.bimserver.models.store.Settings;
 import org.bimserver.models.store.StorePackage;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -25,7 +22,7 @@ import org.eclipse.emf.ecore.EClass;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.GuidanceProviderImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.GuidanceProviderImpl#getData <em>Data</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.GuidanceProviderImpl#getClassName <em>Class Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.GuidanceProviderImpl#getSerializers <em>Serializers</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.GuidanceProviderImpl#getSettings <em>Settings</em>}</li>
  * </ul>
@@ -86,8 +83,8 @@ public class GuidanceProviderImpl extends IdEObjectImpl implements GuidanceProvi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public byte[] getData() {
-		return (byte[])eGet(StorePackage.Literals.GUIDANCE_PROVIDER__DATA, true);
+	public String getClassName() {
+		return (String)eGet(StorePackage.Literals.GUIDANCE_PROVIDER__CLASS_NAME, true);
 	}
 
 	/**
@@ -95,8 +92,8 @@ public class GuidanceProviderImpl extends IdEObjectImpl implements GuidanceProvi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setData(byte[] newData) {
-		eSet(StorePackage.Literals.GUIDANCE_PROVIDER__DATA, newData);
+	public void setClassName(String newClassName) {
+		eSet(StorePackage.Literals.GUIDANCE_PROVIDER__CLASS_NAME, newClassName);
 	}
 
 	/**

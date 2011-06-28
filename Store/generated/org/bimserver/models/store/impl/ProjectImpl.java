@@ -9,7 +9,6 @@ package org.bimserver.models.store.impl;
 import java.util.Date;
 
 import org.bimserver.emf.IdEObjectImpl;
-
 import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.ClashDetectionSettings;
 import org.bimserver.models.store.ConcreteRevision;
@@ -20,9 +19,7 @@ import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.SIPrefix;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

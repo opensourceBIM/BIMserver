@@ -8,7 +8,6 @@ package org.bimserver.models.log.impl;
 
 import org.bimserver.models.log.LogPackage;
 import org.bimserver.models.log.SettingsSaved;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

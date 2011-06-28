@@ -18,7 +18,7 @@ public class SGuidanceProvider
 		this.oid = oid;
 	}
 	private java.lang.String name;
-	private byte[] data;
+	private java.lang.String className;
 	private List<Long> serializers = new ArrayList<Long>();
 	private long settingsId;
 
@@ -30,12 +30,12 @@ public class SGuidanceProvider
 		this.name = name;
 	}
 
-	public byte[] getData() {
-		return data;
+	public java.lang.String getClassName() {
+		return className;
 	}
 
-	public void setData(byte[] data) {
-		this.data = data;
+	public void setClassName(java.lang.String className) {
+		this.className = className;
 	}
 	public List<Long> getSerializers() {
 		return serializers;
