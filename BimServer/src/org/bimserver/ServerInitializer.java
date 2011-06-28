@@ -343,6 +343,8 @@ public class ServerInitializer implements ServletContextListener {
 				guidanceProvider.setClassName(guidanceProvider.getClass().getName());
 				defaultGuidanceProvider = guidanceProvider;
 				session.store(guidanceProvider);
+			} else {
+				defaultGuidanceProvider = found;
 			}
 		}
 		for (SerializerPlugin serializerPlugin : pluginManager.getAllSerializerPlugins(true)) {
