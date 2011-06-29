@@ -15,6 +15,7 @@
 		<antcall target="Shared" />
 		<antcall target="Ifc" />
 		<antcall target="BimServer" />
+		<antcall target="BimWebServer" />
 		<antcall target="CityGML" />
 		<antcall target="Collada" />
 		<antcall target="O3d" />
@@ -22,6 +23,20 @@
 		<antcall target="IfcPlugins" />
 		<antcall target="MiscSerializers" />
 		<antcall target="buildingSMARTLibrary" />
+	</target>
+	<target name="BimWebServer">
+		<mkdir dir="builds/bimwebserver" />
+		<javac destdir="builds/bimwebserver" debug="on">
+			<src path="../../BimWebServer/src" />
+			<classpath>
+				<path>
+					<fileset refid="lib" />
+				</path>
+			</classpath>
+		</javac>
+		<jar destfile="builds/lib/bimwebserver-${version}.jar">
+			<fileset dir="builds/bimwebserver"/>
+		</jar>
 	</target>
 	<target name="BimServer">
 		<mkdir dir="builds/bimserver" />
@@ -280,7 +295,7 @@
 			<fileset file="${buildtargets}/shared/gpl.txt" />
 		</copy>
 		<copy todir="builds/BuildJar/www">
-			<fileset dir="../www" />
+			<fileset dir="../../BimWebServer/www" />
 		</copy>
 		<copy todir="builds/BuildJar/config" overwrite="true">
 			<fileset file="${buildtargets}/shared/IFC2X3_FINAL.exp" />
@@ -369,7 +384,7 @@
 		</copy>
 		<mkdir dir="builds/BuildWar/WEB-INF/classes" />
 		<copy todir="builds/BuildWar/">
-			<fileset dir="../www" />
+			<fileset dir="../../BimWebServer/www" />
 		</copy>
 		<copy todir="builds/BuildWar/WEB-INF" overwrite="true">
 			<fileset file="${buildtargets}/shared/IFC2X3_FINAL.exp" />
