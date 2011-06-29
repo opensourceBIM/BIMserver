@@ -7,6 +7,10 @@
 		<welcome-file>login.jsp</welcome-file>
 	</welcome-file-list>
 
+	<listener>
+		<listener-class>org.bimserver.WarServerInitializer</listener-class>
+	</listener>
+
 	<servlet>
 		<servlet-name>ProgressServlet</servlet-name>
 		<servlet-class>org.bimserver.servlets.ProgressServlet</servlet-class>

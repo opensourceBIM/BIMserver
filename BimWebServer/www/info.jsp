@@ -6,7 +6,7 @@
 <%@page import="org.bimserver.shared.DatabaseInformation"%>
 <%@page import="org.bimserver.version.VersionChecker"%>
 <%@page import="java.util.Map"%>
-<%@page import="org.bimserver.ServerInitializer"%>
+<%@page import="org.bimserver.web.WarServerInitializer"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="org.bimserver.database.Database"%>
 <%@page import="java.io.File"%>
