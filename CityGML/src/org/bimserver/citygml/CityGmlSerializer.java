@@ -10,6 +10,7 @@ import java.util.Map;
 
 import javax.xml.bind.JAXBException;
 
+import org.bimserver.citygml.xbuilding.GlobalIdType;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.models.ifc2x3.IfcBuilding;
 import org.bimserver.models.ifc2x3.IfcBuildingStorey;
@@ -97,9 +98,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.w3c.dom.Element;
-
-import ade.GlobalIdType;
-import ade.ObjectFactory;
 
 public class CityGmlSerializer extends BimModelSerializer {
 	private static final Logger LOGGER = LoggerFactory.getLogger(CityGmlSerializer.class);

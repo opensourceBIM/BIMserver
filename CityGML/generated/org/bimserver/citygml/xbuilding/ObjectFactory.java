@@ -1,5 +1,5 @@
 
-package ade;
+package org.bimserver.citygml.xbuilding;
 
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.annotation.XmlElementDecl;
@@ -10,7 +10,7 @@ import javax.xml.namespace.QName;
 /**
  * This object contains factory methods for each 
  * Java content interface and Java element interface 
- * generated in the ade package. 
+ * generated in the org.bimserver.citygml.xbuilding package. 
  * <p>An ObjectFactory allows you to programatically 
  * construct new instances of the Java representation 
  * for XML content. The Java representation of XML 
@@ -41,10 +41,50 @@ public class ObjectFactory {
     private final static QName _ShapeType_QNAME = new QName("http://www.citygml.org/ade/xbuilding", "ShapeType");
 
     /**
-     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: ade
+     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: org.bimserver.citygml.xbuilding
      * 
      */
     public ObjectFactory() {
+    }
+
+    /**
+     * Create an instance of {@link VisualElementType }
+     * 
+     */
+    public VisualElementType createVisualElementType() {
+        return new VisualElementType();
+    }
+
+    /**
+     * Create an instance of {@link AnnotationType }
+     * 
+     */
+    public AnnotationType createAnnotationType() {
+        return new AnnotationType();
+    }
+
+    /**
+     * Create an instance of {@link BeamType }
+     * 
+     */
+    public BeamType createBeamType() {
+        return new BeamType();
+    }
+
+    /**
+     * Create an instance of {@link FlowTerminalType }
+     * 
+     */
+    public FlowTerminalType createFlowTerminalType() {
+        return new FlowTerminalType();
+    }
+
+    /**
+     * Create an instance of {@link StairFlightType }
+     * 
+     */
+    public StairFlightType createStairFlightType() {
+        return new StairFlightType();
     }
 
     /**
@@ -53,6 +93,14 @@ public class ObjectFactory {
      */
     public OpeningElementType createOpeningElementType() {
         return new OpeningElementType();
+    }
+
+    /**
+     * Create an instance of {@link StairType }
+     * 
+     */
+    public StairType createStairType() {
+        return new StairType();
     }
 
     /**
@@ -72,46 +120,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link FlowTerminalType }
-     * 
-     */
-    public FlowTerminalType createFlowTerminalType() {
-        return new FlowTerminalType();
-    }
-
-    /**
-     * Create an instance of {@link VisualElementType }
-     * 
-     */
-    public VisualElementType createVisualElementType() {
-        return new VisualElementType();
-    }
-
-    /**
-     * Create an instance of {@link TransportElementType }
-     * 
-     */
-    public TransportElementType createTransportElementType() {
-        return new TransportElementType();
-    }
-
-    /**
-     * Create an instance of {@link StairFlightType }
-     * 
-     */
-    public StairFlightType createStairFlightType() {
-        return new StairFlightType();
-    }
-
-    /**
-     * Create an instance of {@link StairType }
-     * 
-     */
-    public StairType createStairType() {
-        return new StairType();
-    }
-
-    /**
      * Create an instance of {@link ColumnType }
      * 
      */
@@ -120,19 +128,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link BeamType }
+     * Create an instance of {@link TransportElementType }
      * 
      */
-    public BeamType createBeamType() {
-        return new BeamType();
-    }
-
-    /**
-     * Create an instance of {@link AnnotationType }
-     * 
-     */
-    public AnnotationType createAnnotationType() {
-        return new AnnotationType();
+    public TransportElementType createTransportElementType() {
+        return new TransportElementType();
     }
 
     /**
