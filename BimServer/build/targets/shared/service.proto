@@ -309,6 +309,8 @@ service ServiceInterface {
 
 	rpc removeReference (RemoveReferenceRequest) returns (Void);
 
+	rpc getServerStartTime (GetServerStartTimeRequest) returns (GetServerStartTimeResponse);
+
 }
 
 enum SCompareType{
@@ -1787,6 +1789,14 @@ message RemoveReferenceRequest {
 	optional string className = 2;
 	optional string referenceName = 3;
 	optional int32 index = 4;
+}
+
+message GetServerStartTimeRequest {
+}
+
+message GetServerStartTimeResponse {
+	optional int64 value = 2;
+	optional string errorMessage = 1;
 }
 
 message Void {

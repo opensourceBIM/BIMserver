@@ -1,7 +1,6 @@
 package org.bimserver.database.actions;
 
-import org.bimserver.MergerFactory;
-import org.bimserver.SettingsManager;
+import org.bimserver.BimServer;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
@@ -34,13 +33,11 @@ public class GetDataObjectByOidDatabaseAction extends BimDatabaseAction<SDataObj
 	private final long oid;
 	private final short cid;
 	private final long roid;
-	private final SettingsManager settingsManager;
-	private final MergerFactory mergerFactory;
+	private final BimServer bimServer;
 
-	public GetDataObjectByOidDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, SettingsManager settingsManager, MergerFactory mergerFactory, long roid, long oid, short cid) {
+	public GetDataObjectByOidDatabaseAction(BimServer bimServer, BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long roid, long oid, short cid) {
 		super(bimDatabaseSession, accessMethod);
-		this.settingsManager = settingsManager;
-		this.mergerFactory = mergerFactory;
+		this.bimServer = bimServer;
 		this.roid = roid;
 		this.oid = oid;
 		this.cid = cid;
@@ -60,7 +57,7 @@ public class GetDataObjectByOidDatabaseAction extends BimDatabaseAction<SDataObj
 				break;
 			}
 		}
-		IfcModelInterface ifcModel = mergerFactory.createMerger().merge(virtualRevision.getProject(), ifcModelSet, settingsManager.getSettings().isIntelligentMerging());
+		IfcModelInterface ifcModel = bimServer.getMergerFactory().createMerger().merge(virtualRevision.getProject(), ifcModelSet, bimServer.getSettingsManager().getSettings().isIntelligentMerging());
 		if (eObject == null) {
 			throw new UserException("Object not found in this project/revision");
 		}

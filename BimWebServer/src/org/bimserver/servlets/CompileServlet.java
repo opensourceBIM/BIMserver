@@ -9,9 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.bimserver.ServerInitializer;
-import org.bimserver.SettingsManager;
-import org.bimserver.database.BimDatabase;
+import org.bimserver.BimServer;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.actions.BimDatabaseAction;
@@ -32,8 +30,6 @@ public class CompileServlet extends HttpServlet {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(CompileServlet.class);
 	private static final long serialVersionUID = 2409894233105690606L;
-	public static BimDatabase database;
-	public static SettingsManager settingsManager;
 
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -48,7 +44,7 @@ public class CompileServlet extends HttpServlet {
 				QueryInterface compile = compile(root, code);
 				LoginManager loginManager = (LoginManager) request.getSession().getAttribute("loginManager");
 				if (compile != null) {
-					run(compile, loginManager, roid, root);
+					run(compile, loginManager, roid, root, (BimServer)request.getServletContext().getAttribute("bimserver"));
 				}
 			}
 		} catch (CompileException e) {
@@ -63,7 +59,7 @@ public class CompileServlet extends HttpServlet {
 		}
 	}
 
-	private void run(QueryInterface queryInterface, LoginManager loginManager, long roid, JSONObject root) {
+	private void run(QueryInterface queryInterface, LoginManager loginManager, long roid, JSONObject root, BimServer bimServer) {
 		if (loginManager == null) {
 			loginManager = new LoginManager();
 		}
@@ -74,9 +70,9 @@ public class CompileServlet extends HttpServlet {
 		} catch (ServiceException e) {
 			LOGGER.error("", e);
 		}
-		BimDatabaseSession session = database.createSession(true);
+		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
 		try {
-			BimDatabaseAction<IfcModelInterface> action = new DownloadDatabaseAction(session, AccessMethod.INTERNAL, settingsManager, ServerInitializer.getMergerFactory(), roid, loginManager.getUoid());
+			BimDatabaseAction<IfcModelInterface> action = new DownloadDatabaseAction(bimServer, session, AccessMethod.INTERNAL, roid, loginManager.getUoid());
 			IfcModelInterface IfcModel = session.executeAndCommitAction(action, 10);
 			StringWriter out = new StringWriter();
 			queryInterface.query(IfcModel, new PrintWriter(out));

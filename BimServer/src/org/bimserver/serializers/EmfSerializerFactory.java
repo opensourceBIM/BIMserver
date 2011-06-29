@@ -23,15 +23,10 @@ import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 
 public class EmfSerializerFactory {
-	private static final EmfSerializerFactory INSTANCE = new EmfSerializerFactory();
 	private PluginManager pluginManager;
 	private BimDatabase bimDatabase;
 
-	private EmfSerializerFactory() {
-	}
-
-	public static EmfSerializerFactory getInstance() {
-		return INSTANCE;
+	public EmfSerializerFactory() {
 	}
 
 	public void init(PluginManager osgiManager, BimDatabase bimDatabase) {

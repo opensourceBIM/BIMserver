@@ -28,10 +28,11 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.bimserver.BimServer;
 import org.bimserver.MetaDataManager;
 import org.bimserver.ServerInfo;
-import org.bimserver.SettingsManager;
 import org.bimserver.ServerInfo.ServerState;
+import org.bimserver.SettingsManager;
 import org.bimserver.database.actions.AddUserDatabaseAction;
 import org.bimserver.database.actions.CreateBaseProject;
 import org.bimserver.database.berkeley.DatabaseInitException;
@@ -99,8 +100,10 @@ public class Database implements BimDatabase {
 	private short tableId;
 	private Migrator migrator;
 	private MetaDataManager metaDataManager = new MetaDataManager();
+	private final BimServer bimServer;
 
-	public Database(Set<? extends EPackage> emfPackages, ColumnDatabase columnDatabase) throws DatabaseInitException {
+	public Database(BimServer bimServer, Set<? extends EPackage> emfPackages, ColumnDatabase columnDatabase) throws DatabaseInitException {
+		this.bimServer = bimServer;
 		this.columnDatabase = columnDatabase;
 		this.emfPackages.add(StorePackage.eINSTANCE);
 		this.emfPackages.add(LogPackage.eINSTANCE);
@@ -181,7 +184,7 @@ public class Database implements BimDatabase {
 				databaseSession.store(databaseCreated);
 
 				new CreateBaseProject(databaseSession, AccessMethod.INTERNAL).execute();
-				AddUserDatabaseAction addUserDatabaseAction = new AddUserDatabaseAction(databaseSession, AccessMethod.INTERNAL, null, null, "system", "system", "System", UserType.SYSTEM, -1, false);
+				AddUserDatabaseAction addUserDatabaseAction = new AddUserDatabaseAction(bimServer, databaseSession, AccessMethod.INTERNAL, "system", "system", "System", UserType.SYSTEM, -1, false);
 				addUserDatabaseAction.setCreateSystemUser();
 				addUserDatabaseAction.execute();
 

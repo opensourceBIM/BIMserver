@@ -25,455 +25,99 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.Thread.UncaughtExceptionHandler;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Collection;
-import java.util.Date;
-import java.util.Enumeration;
-import java.util.GregorianCalendar;
-import java.util.Map;
-import java.util.Set;
-import java.util.concurrent.Executors;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
-import org.apache.commons.io.FileUtils;
-import org.apache.log4j.LogManager;
-import org.bimserver.ServerInfo.ServerState;
-import org.bimserver.cache.DiskCacheManager;
-import org.bimserver.database.BimDatabase;
 import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
-import org.bimserver.database.Database;
 import org.bimserver.database.DatabaseRestartRequiredException;
-import org.bimserver.database.berkeley.BerkeleyColumnDatabase;
-import org.bimserver.database.query.conditions.AttributeCondition;
-import org.bimserver.database.query.conditions.Condition;
-import org.bimserver.database.query.literals.StringLiteral;
-import org.bimserver.logging.CustomFileAppender;
-import org.bimserver.longaction.LongActionManager;
-import org.bimserver.mail.MailSystem;
-import org.bimserver.models.ifc2x3.Ifc2x3Package;
-import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.log.LogFactory;
-import org.bimserver.models.log.ServerStarted;
-import org.bimserver.models.store.GuidanceProvider;
-import org.bimserver.models.store.IfcEngine;
-import org.bimserver.models.store.Serializer;
-import org.bimserver.models.store.StoreFactory;
-import org.bimserver.models.store.StorePackage;
-import org.bimserver.pb.server.ReflectiveRpcChannel;
-import org.bimserver.plugins.Plugin;
-import org.bimserver.plugins.PluginChangeListener;
-import org.bimserver.plugins.PluginContext;
+import org.bimserver.database.berkeley.DatabaseInitException;
 import org.bimserver.plugins.PluginException;
-import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.ResourceFetcher;
-import org.bimserver.plugins.guidanceproviders.GuidanceProviderPlugin;
-import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
-import org.bimserver.plugins.serializers.SerializerPlugin;
-import org.bimserver.querycompiler.QueryCompiler;
 import org.bimserver.resources.JarResourceFetcher;
 import org.bimserver.resources.WarResourceFetcher;
-import org.bimserver.serializers.EmfSerializerFactory;
-import org.bimserver.servlets.CompileServlet;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
-import org.bimserver.shared.ServiceInterface;
-import org.bimserver.templating.TemplateEngine;
-import org.bimserver.utils.CollectionUtils;
-import org.bimserver.version.VersionChecker;
-import org.bimserver.web.LoginManager;
-import org.bimserver.webservices.RestApplication;
-import org.bimserver.webservices.Service;
-import org.bimserver.webservices.ServiceFactory;
+import org.bimserver.shared.ServerException;
+import org.bimserver.shared.UserException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.common.base.Charsets;
-import com.googlecode.protobuf.socketrpc.RpcServer;
-import com.googlecode.protobuf.socketrpc.SocketRpcConnectionFactories;
 
 public class ServerInitializer implements ServletContextListener {
+	private static BimServer bimServer;
 	private static final Logger LOGGER = LoggerFactory.getLogger(ServerInitializer.class);
-	private static GregorianCalendar serverStartTime;
-	private static BimDatabase bimDatabase;
-	private JobScheduler bimScheduler;
-	private static ResourceFetcher resourceFetcher;
-	private static ServletContext servletContext;
-	private static LongActionManager longActionManager;
-	private static ServiceInterface systemService;
-	private static File homeDir;
-	private File baseDir;
-	private static ServerType serverType;
-	private static SettingsManager settingsManager;
-	private EmfSerializerFactory emfSerializerFactory;
-	private static MergerFactory mergerFactory;
-	private static PluginManager pluginManager;
 
-	public void init(File homeDir) {
-		try {
-			serverType = detectServerType(servletContext);
-			if (serverType == ServerType.DEV_ENVIRONMENT) {
-				baseDir = new File("../BimServer/defaultsettings/" + "shared");
-			} else if (serverType == ServerType.STANDALONE_JAR) {
-				baseDir = new File("");
-			} else if (serverType == ServerType.DEPLOYED_WAR) {
-				baseDir = new File(servletContext.getRealPath("/") + "WEB-INF");
-			}
-			if (homeDir == null) {
-				homeDir = baseDir;
-			}
-			resourceFetcher = createResourceFetcher(serverType, servletContext, homeDir);
-			if (homeDir != null) {
-				initHomeDir();
-			}
-
-			fixLogging();
-
-			LOGGER.info("Starting ServerInitializer");
-			if (homeDir != null) {
-				LOGGER.info("Using \"" + homeDir.getAbsolutePath() + "\" as homedir");
-			} else {
-				LOGGER.info("Not using a homedir");
-			}
-
-			UncaughtExceptionHandler uncaughtExceptionHandler = new UncaughtExceptionHandler() {
-				@Override
-				public void uncaughtException(Thread t, Throwable e) {
-					if (e instanceof OutOfMemoryError) {
-						ServerInfo.setOutOfMemory();
-						LOGGER.error("", e);
-					} else if (e instanceof Error) {
-						ServerInfo.setErrorMessage(e.getMessage());
-						LOGGER.error("", e);
-					}
-				}
-			};
-
-			Thread.setDefaultUncaughtExceptionHandler(uncaughtExceptionHandler);
-
-			
-			VersionChecker.init(resourceFetcher);
-			
-			try {
-				LOGGER.info("Creating plugin manager");
-				pluginManager = new PluginManager(resourceFetcher, homeDir);
-				pluginManager.addPluginChangeListener(new PluginChangeListener() {
-					@Override
-					public void pluginStateChanged(PluginContext pluginContext, boolean enabled) {
-						// Reflect this change also in the database
-						Condition pluginCondition = new AttributeCondition(StorePackage.eINSTANCE.getPlugin_Name(), new StringLiteral(pluginContext.getPlugin().getName()));
-						BimDatabaseSession session = bimDatabase.createSession(true);
-						try {
-							Map<Long, org.bimserver.models.store.Plugin> pluginsFound = session.query(pluginCondition, org.bimserver.models.store.Plugin.class, false);
-							if (pluginsFound.size() == 0) {
-								LOGGER.error("Error changing plugin-state in database, plugin " + pluginContext.getPlugin().getName() + " not found");
-							} else if (pluginsFound.size() == 1) {
-								org.bimserver.models.store.Plugin pluginFound = pluginsFound.values().iterator().next();
-								pluginFound.setEnabled(pluginContext.isEnabled());
-								session.store(pluginFound);
-							} else {
-								LOGGER.error("Error, too many plugin-objects found in database for name " + pluginContext.getPlugin().getName());
-							}
-							session.commit();
-						} catch (BimDatabaseException e) {
-							e.printStackTrace();
-						} catch (BimDeadlockException e) {
-							e.printStackTrace();
-						} finally {
-							session.close();
-						}
-					}
-				});
-				if (serverType == ServerType.DEV_ENVIRONMENT) {
-					pluginManager.loadPluginsFromEclipseProject(new File("../CityGML"));
-					pluginManager.loadPluginsFromEclipseProject(new File("../Collada"));
-					pluginManager.loadPluginsFromEclipseProject(new File("../IfcPlugins"));
-					pluginManager.loadPluginsFromEclipseProject(new File("../MiscSerializers"));
-					pluginManager.loadPluginsFromEclipseProject(new File("../O3d"));
-					pluginManager.loadPluginsFromEclipseProject(new File("../IFCEngine"));
-					pluginManager.loadPluginsFromEclipseProject(new File("../buildingSMARTLibrary"));
-				} else if (serverType == ServerType.DEPLOYED_WAR) {
-					File file = resourceFetcher.getFile("plugins");
-					LOGGER.info("Going to load plugins from " + file.getAbsolutePath());
-					pluginManager.loadAllPluginsFromDirectoryOfJars(file);
-				} else if (serverType == ServerType.STANDALONE_JAR) {
-					pluginManager.loadAllPluginsFromDirectoryOfJars(new File("plugins"));
-				}
-				pluginManager.loadPlugin(GuidanceProviderPlugin.class, "Internal", new SchemaFieldGuidanceProviderPlugin());
-				pluginManager.initAllLoadedPlugins();
-			} catch (Exception e) {
-				e.printStackTrace();
-				LOGGER.error("", e);
-			}
-			
-			LOGGER.info("Detected server type: " + serverType + " (" + System.getProperty("os.name") + ", " + System.getProperty("sun.arch.data.model") + "bit)");
-			if (serverType == ServerType.UNKNOWN) {
-				LOGGER.error("Server type not detected, stopping initialization");
-				return;
-			}
-			serverStartTime = new GregorianCalendar();
-
-			bimScheduler = new JobScheduler();
-			bimScheduler.start();
-
-			longActionManager = new LongActionManager();
-
-			Set<Ifc2x3Package> packages = CollectionUtils.singleSet(Ifc2x3Package.eINSTANCE);
-			TemplateEngine.getTemplateEngine().init(resourceFetcher.getResource("templates/"));
-			File databaseDir = new File(homeDir, "database");
-			BerkeleyColumnDatabase columnDatabase = new BerkeleyColumnDatabase(databaseDir);
-			bimDatabase = new Database(packages, columnDatabase);
-			try {
-				bimDatabase.init();
-			} catch (DatabaseRestartRequiredException e) {
-				bimDatabase.close();
-				columnDatabase = new BerkeleyColumnDatabase(databaseDir);
-				bimDatabase = new Database(packages, columnDatabase);
-				bimDatabase.init();
-			}
-
-			createSerializersAndEngines();
-			
-			settingsManager = new SettingsManager(bimDatabase);
-			ServerInfo.init(bimDatabase, settingsManager);
-			ServerInfo.update();
-
-			File schemaFile = resourceFetcher.getFile("IFC2X3_FINAL.exp").getAbsoluteFile();
-			LOGGER.info("Using " + schemaFile + " as engine schema");
-
-			emfSerializerFactory = EmfSerializerFactory.getInstance();
-
-			if (ServerInfo.getServerState() == ServerState.MIGRATION_REQUIRED) {
-				ServerInfo.registerStateChangeListener(new StateChangeListener() {
-					@Override
-					public void stateChanged(ServerState oldState, ServerState newState) {
-						if (oldState == ServerState.MIGRATION_REQUIRED && newState == ServerState.RUNNING) {
-							initDatabaseDependantItems();
-						}
-					}
-				});
-			} else {
-				initDatabaseDependantItems();
-			}
-
-			MailSystem mailSystem = new MailSystem(settingsManager);
-
-			CompileServlet.database = bimDatabase;
-			CompileServlet.settingsManager = settingsManager;
-
-			DiskCacheManager diskCacheManager = new DiskCacheManager(new File(homeDir, "cache"), settingsManager);
-
-			mergerFactory = new MergerFactory(settingsManager);
-			ServiceFactory.init(bimDatabase, emfSerializerFactory, longActionManager, settingsManager, mailSystem, diskCacheManager, mergerFactory, pluginManager);
-			setSystemService(ServiceFactory.getINSTANCE().newService(AccessMethod.INTERNAL));
-			if (!((Service) getSystemService()).loginAsSystem()) {
-				throw new RuntimeException("System user not found");
-			}
-			LoginManager.setSystemService(getSystemService());
-			
-			if (ServerInitializer.getServerType() == ServerType.DEV_ENVIRONMENT) {
-				if (ServerInfo.getServerState() == ServerState.NOT_SETUP) {
-					systemService.setup("http://localhost", "localhost", "Administrator", "admin@bimserver.org", "admin", true);
-				}
-			}
-			
-			RestApplication.setServiceFactory(ServiceFactory.getINSTANCE());
-
-			RpcServer rpcServer = new RpcServer(SocketRpcConnectionFactories.createServerRpcConnectionFactory(8020), Executors.newFixedThreadPool(10), false);
-			rpcServer.registerBlockingService(org.bimserver.pb.Service.ServiceInterface.newReflectiveBlockingService(org.bimserver.pb.Service.ServiceInterface.newBlockingStub(new ReflectiveRpcChannel(ServiceFactory.getINSTANCE()))));
-			rpcServer.startServer();
-
-//			if (serverType == ServerType.DEPLOYED_WAR) {
-//				File libDir = new File(classPath);
-//				LOGGER.info("adding lib dir: " + libDir.getAbsolutePath());
-//				QueryCompiler.addJarFolder(libDir);
-//			}
-
-			ServerStarted serverStarted = LogFactory.eINSTANCE.createServerStarted();
-			serverStarted.setDate(new Date());
-			serverStarted.setAccessMethod(AccessMethod.INTERNAL);
-			serverStarted.setExecutor(null);
-			BimDatabaseSession session = bimDatabase.createSession(true);
-			try {
-				session.store(serverStarted);
-				session.commit();
-			} finally {
-				session.close();
-			}
-			
-			LOGGER.info("Done initializing");
-		} catch (Throwable e) {
-			ServerInfo.setErrorMessage(e.getMessage());
-			LOGGER.error("", e);
-		}		
-	}
-
-	private void createSerializersAndEngines() throws BimDeadlockException, BimDatabaseException, PluginException {
-		BimDatabaseSession session = bimDatabase.createSession(true);
-		GuidanceProvider defaultGuidanceProvider = null;
-		for (GuidanceProviderPlugin guidanceProviderPlugin : pluginManager.getAllGuidanceProviders(true)) {
-			String name = guidanceProviderPlugin.getDefaultGuidanceProviderName();
-			Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getGuidanceProvider_Name(), new StringLiteral(name));
-			GuidanceProvider found = session.querySingle(condition, GuidanceProvider.class, false);
-			if (found == null) {
-				GuidanceProvider guidanceProvider = StoreFactory.eINSTANCE.createGuidanceProvider();
-				guidanceProvider.setName(name);
-				guidanceProvider.setClassName(guidanceProvider.getClass().getName());
-				defaultGuidanceProvider = guidanceProvider;
-				session.store(guidanceProvider);
-			} else {
-				defaultGuidanceProvider = found;
-			}
-		}
-		for (SerializerPlugin serializerPlugin : pluginManager.getAllSerializerPlugins(true)) {
-			String name = serializerPlugin.getDefaultSerializerName();
-			Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getSerializer_Name(), new StringLiteral(name));
-			Serializer found = session.querySingle(condition, Serializer.class, false);
-			if (found == null) {
-				Serializer serializer = StoreFactory.eINSTANCE.createSerializer();
-				serializer.setClassName(serializerPlugin.getClass().getName());
-				serializer.setName(name);
-				serializer.setEnabled(true);
-				serializer.setDescription(serializerPlugin.getDescription());
-				serializer.setContentType(serializerPlugin.getDefaultContentType());
-				serializer.setExtension(serializerPlugin.getDefaultExtension());
-				serializer.setGuidanceProvider(defaultGuidanceProvider);
-				session.store(serializer);
-			}
-		}
-		session.store(defaultGuidanceProvider);
-		for (IfcEnginePlugin ifcEnginePlugin : pluginManager.getAllIfcEnginePlugins(true)) {
-			String name = ifcEnginePlugin.getName();
-			Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getIfcEngine_Name(), new StringLiteral(name));
-			Serializer found = session.querySingle(condition, Serializer.class, false);
-			if (found == null) {
-				IfcEngine ifcEngine = StoreFactory.eINSTANCE.createIfcEngine();
-				ifcEngine.setName(name);
-				ifcEngine.setActive(false);
-				session.store(ifcEngine);
-			}
-		}
-		Collection<Plugin> allPlugins = pluginManager.getAllPlugins(false);
-		for (Plugin plugin : allPlugins) {
-			Condition pluginCondition = new AttributeCondition(StorePackage.eINSTANCE.getPlugin_Name(), new StringLiteral(plugin.getName()));
-			Map<Long, org.bimserver.models.store.Plugin> results = session.query(pluginCondition, org.bimserver.models.store.Plugin.class, false);
-			if (results.size() == 0) {
-				org.bimserver.models.store.Plugin pluginObject = StoreFactory.eINSTANCE.createPlugin();
-				pluginObject.setName(plugin.getName());
-				pluginObject.setEnabled(true); // New plugins are enabled by default
-				session.store(pluginObject);
-			} else if (results.size() == 1) {
-				org.bimserver.models.store.Plugin pluginObject = results.values().iterator().next();
-				pluginManager.getPluginContext(plugin).setEnabled(pluginObject.isEnabled());
-			} else {
-				LOGGER.error("Multiple plugin objects found with the same name: " + plugin.getName());
-			}
-		}
-		session.commit();
-	}
-	
 	@Override
 	public void contextInitialized(ServletContextEvent servletContextEvent) {
-		servletContext = servletContextEvent.getServletContext();
+		ServletContext servletContext = servletContextEvent.getServletContext();
+		File homeDir = null;
 		if (servletContext.getAttribute("homedir") != null) {
 			homeDir = new File((String) servletContext.getAttribute("homedir"));
 		}
 		if (homeDir == null && servletContext.getInitParameter("homedir") != null) {
 			homeDir = new File(servletContext.getInitParameter("homedir"));
 		}
-		init(homeDir);
-	}
-
-	private void initDatabaseDependantItems() {
-		emfSerializerFactory.init(pluginManager, bimDatabase);
-	}
-	
-	public static File getHomeDir() {
-		return homeDir;
-	}
-	
-	public static SettingsManager getSettingsManager() {
-		return settingsManager;
-	}
-	
-	public static LongActionManager getLongActionManager() {
-		return longActionManager;
-	}
-	
-	public static ServerType getServerType() {
-		return serverType;
-	}
-	
-	private void fixLogging() throws IOException {
-		File file = new File(homeDir, "logs/bimserver.log");
-		CustomFileAppender appender = new CustomFileAppender(file);
-		System.out.println("Logging to: " + file.getAbsolutePath());
-		Enumeration<?> currentLoggers = LogManager.getCurrentLoggers();
-		while (currentLoggers.hasMoreElements()) {
-			Object nextElement = currentLoggers.nextElement();
-			((org.apache.log4j.Logger) nextElement).addAppender(appender);
+		bimServer = new BimServer();
+		
+		ServerType serverType = detectServerType(servletContext);
+		File baseDir = null;
+		if (serverType == ServerType.DEV_ENVIRONMENT) {
+			baseDir = new File("../BimServer/defaultsettings/" + "shared");
+		} else if (serverType == ServerType.STANDALONE_JAR) {
+			baseDir = new File("");
+		} else if (serverType == ServerType.DEPLOYED_WAR) {
+			baseDir = new File(servletContext.getRealPath("/") + "WEB-INF");
 		}
-	}
-
-	private void initHomeDir() throws IOException {
-		String[] filesToCheck = new String[] { "logs", "tmp", "collada.xml", "ignore.xml", "ignoreexceptions", "log4j.xml", "templates" };
-		if (!homeDir.exists()) {
-			homeDir.mkdir();
+		if (homeDir == null) {
+			homeDir = baseDir;
 		}
-		if (homeDir.exists() && homeDir.isDirectory()) {
-			for (String fileToCheck : filesToCheck) {
-				File sourceFile = resourceFetcher.getFile(fileToCheck);
-				if (sourceFile != null && sourceFile.exists()) {
-					File destFile = new File(homeDir, fileToCheck);
-					if (!destFile.exists()) {
-						if (sourceFile.isDirectory()) {
-							destFile.mkdir();
-							for (File f : sourceFile.listFiles()) {
-								if (f.isFile()) {
-									FileUtils.copyFile(f, new File(destFile, f.getName()));
-								}
-							}
-						} else {
-							FileUtils.copyFile(sourceFile, destFile);
-						}
-					}
-				}
-			}
-		}
-	}
-
-	public static BimDatabase getDatabase() {
-		return bimDatabase;
-	}
-
-	public static ResourceFetcher getResourceFetcher() {
-		return resourceFetcher;
-	}
-
-	private ServerType detectServerType(ServletContext servletContext) {
-		String typeString = null;
+		ResourceFetcher resourceFetcher = createResourceFetcher(serverType, servletContext, homeDir);
+		
+		bimServer.init(homeDir, baseDir, resourceFetcher);
 		try {
-			URL resource = servletContext.getResource("/servertype.txt");
-			if (resource != null) {
-				typeString = readUrl(resource);
-			}
-		} catch (MalformedURLException e) {
-			LOGGER.error("", e);
+			bimServer.start();
+		} catch (UserException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ServerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (DatabaseInitException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (BimDeadlockException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (BimDatabaseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (PluginException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (DatabaseRestartRequiredException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		if (typeString == null) {
-			File file = new File("servertype.txt");
-			typeString = readFile(file);
-		}
-		if (typeString == null) {
-			return ServerType.UNKNOWN;
-		}
-		return ServerType.valueOf(typeString);
+		servletContext.setAttribute("bimserver", bimServer);
 	}
+	
+	private ResourceFetcher createResourceFetcher(ServerType serverType, final ServletContext servletContext, File homeDir) {
+		switch (serverType) {
+		case DEV_ENVIRONMENT:
+			return new LocalDevelopmentResourceFetcher();
+		case DEPLOYED_WAR:
+			return new WarResourceFetcher(servletContext, homeDir);
+		case STANDALONE_JAR:
+			return new JarResourceFetcher();
+		}
+		return null;
+	}
+
 
 	private String readUrl(URL resource) {
 		try {
@@ -504,58 +148,29 @@ public class ServerInitializer implements ServletContextListener {
 		}
 		return null;
 	}
-
-	private ResourceFetcher createResourceFetcher(ServerType serverType, final ServletContext servletContext, File homeDir) {
-		switch (serverType) {
-		case DEV_ENVIRONMENT:
-			return new LocalDevelopmentResourceFetcher();
-		case DEPLOYED_WAR:
-			return new WarResourceFetcher(servletContext, homeDir);
-		case STANDALONE_JAR:
-			return new JarResourceFetcher();
+	
+	private ServerType detectServerType(ServletContext servletContext) {
+		String typeString = null;
+		try {
+			URL resource = servletContext.getResource("/servertype.txt");
+			if (resource != null) {
+				typeString = readUrl(resource);
+			}
+		} catch (MalformedURLException e) {
+			LOGGER.error("", e);
 		}
-		return resourceFetcher;
+		if (typeString == null) {
+			File file = new File("servertype.txt");
+			typeString = readFile(file);
+		}
+		if (typeString == null) {
+			return ServerType.UNKNOWN;
+		}
+		return ServerType.valueOf(typeString);
 	}
 
 	@Override
 	public void contextDestroyed(ServletContextEvent servletContextEvent) {
-		close();
-	}
-
-	public static GregorianCalendar getServerStartTime() {
-		return serverStartTime;
-	}
-
-	public static ServletContext getServletContext() {
-		return servletContext;
-	}
-
-	public static void setSystemService(ServiceInterface systemService) {
-		ServerInitializer.systemService = systemService;
-	}
-
-	public static ServiceInterface getSystemService() {
-		return systemService;
-	}
-
-	public static MergerFactory getMergerFactory() {
-		return mergerFactory;
-	}
-
-	public void close() {
-		LOGGER.info("Context is being destroyed");
-		if (bimDatabase != null) {
-			bimDatabase.close();
-		}
-		if (bimScheduler != null) {
-			bimScheduler.close();
-		}
-		if (longActionManager != null) {
-			longActionManager.shutdown();
-		}
-	}
-
-	public static PluginManager getPluginManager() {
-		return pluginManager;
+		bimServer.stop();
 	}
 }

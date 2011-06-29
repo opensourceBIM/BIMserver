@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import org.bimserver.MergerFactory;
+import org.bimserver.BimServer;
 import org.bimserver.cache.ClashDetectionCache;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
@@ -26,7 +26,6 @@ import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.plugins.GuidanceProviderException;
 import org.bimserver.plugins.PluginException;
-import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.guidanceproviders.GuidanceProvider;
 import org.bimserver.plugins.ifcengine.IfcEngine;
 import org.bimserver.plugins.ifcengine.IfcEngineClash;
@@ -50,15 +49,13 @@ public class FindClashesDatabaseAction extends BimDatabaseAction<Set<? extends C
 	@SuppressWarnings("unused")
 	private final long actingUoid;
 	private final ClashDetectionSettings clashDetectionSettings;
-	private final MergerFactory mergerFactory;
-	private final PluginManager pluginManager;
+	private final BimServer bimServer;
 
-	public FindClashesDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, ClashDetectionSettings clashDetectionSettings, MergerFactory mergerFactory, long actingUoid, PluginManager pluginManager) {
+	public FindClashesDatabaseAction(BimServer bimServer, BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, ClashDetectionSettings clashDetectionSettings,  long actingUoid) {
 		super(bimDatabaseSession, accessMethod);
+		this.bimServer = bimServer;
 		this.clashDetectionSettings = clashDetectionSettings;
-		this.mergerFactory = mergerFactory;
 		this.actingUoid = actingUoid;
-		this.pluginManager = pluginManager;
 	}
 
 	@Override
@@ -85,7 +82,7 @@ public class FindClashesDatabaseAction extends BimDatabaseAction<Set<? extends C
 				}
 			}
 		}
-		IfcModelInterface ifcModel = mergerFactory.createMerger().merge(project, ifcModelSet, false);
+		IfcModelInterface ifcModel = bimServer.getMergerFactory().createMerger().merge(project, ifcModelSet, false);
 		IfcModel newModel = new IfcModel();
 		Map<IdEObject, IdEObject> converted = new HashMap<IdEObject, IdEObject>();
 		for (IdEObject idEObject : ifcModel.getValues()) {
@@ -93,12 +90,12 @@ public class FindClashesDatabaseAction extends BimDatabaseAction<Set<? extends C
 				cleanupModel(idEObject.eClass(), idEObject, newModel, ifcModel, converted);
 			}
 		}
-		SerializerPlugin serializerPlugin = (SerializerPlugin) pluginManager.getPlugin("org.bimserver.ifc.step.serializer.IfcStepSerializer", true);
+		SerializerPlugin serializerPlugin = (SerializerPlugin) bimServer.getPluginManager().getPlugin("org.bimserver.ifc.step.serializer.IfcStepSerializer", true);
 		EmfSerializer ifcSerializer = serializerPlugin.createSerializer();
 		try {
 			ifcSerializer.init(newModel, null, null);
 			byte[] bytes = ifcSerializer.getBytes();
-			IfcEngine ifcEngine = pluginManager.requireIfcEngine().createIfcEngine();
+			IfcEngine ifcEngine = bimServer.getPluginManager().requireIfcEngine().createIfcEngine();
 			try {
 				IfcEngineModel ifcEngineModel = ifcEngine.openModel(bytes);
 				try {
@@ -156,7 +153,7 @@ public class FindClashesDatabaseAction extends BimDatabaseAction<Set<? extends C
 		}
 		GuidanceProvider guidanceProvider;
 		try {
-			guidanceProvider = pluginManager.requireGuidanceProvider();
+			guidanceProvider = bimServer.getPluginManager().requireGuidanceProvider();
 		} catch (GuidanceProviderException e) {
 			throw new UserException(e);
 		}

@@ -1,9 +1,6 @@
 package org.bimserver.longaction;
 
-import org.bimserver.MergerFactory;
-import org.bimserver.SettingsManager;
-import org.bimserver.cache.DiskCacheManager;
-import org.bimserver.database.BimDatabase;
+import org.bimserver.BimServer;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.actions.BimDatabaseAction;
 import org.bimserver.database.actions.DownloadByGuidsDatabaseAction;
@@ -13,22 +10,16 @@ import org.bimserver.database.actions.DownloadOfTypeDatabaseAction;
 import org.bimserver.database.actions.DownloadProjectsDatabaseAction;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.plugins.serializers.IfcModelInterface;
-import org.bimserver.serializers.EmfSerializerFactory;
 import org.bimserver.shared.LongActionState;
 import org.bimserver.shared.LongActionState.ActionState;
 
 public class LongDownloadAction extends LongDownloadOrCheckoutAction {
 
 	private BimDatabaseAction<? extends IfcModelInterface> action;
-	private final SettingsManager settingsManager;
 	private BimDatabaseSession session;
-	private final MergerFactory mergerFactory;
 
-	public LongDownloadAction(DownloadParameters downloadParameters, long currentUoid, LongActionManager longActionManager, BimDatabase bimDatabase, AccessMethod accessMethod,
-			EmfSerializerFactory emfSerializerFactory, SettingsManager settingsManager, DiskCacheManager diskCacheManager, MergerFactory mergerFactory) {
-		super(downloadParameters, bimDatabase, longActionManager, accessMethod, emfSerializerFactory, currentUoid, diskCacheManager);
-		this.settingsManager = settingsManager;
-		this.mergerFactory = mergerFactory;
+	public LongDownloadAction(BimServer bimServer, DownloadParameters downloadParameters, long currentUoid, AccessMethod accessMethod) {
+		super(bimServer, downloadParameters, accessMethod, currentUoid);
 	}
 
 	public void execute() {
@@ -46,25 +37,25 @@ public class LongDownloadAction extends LongDownloadOrCheckoutAction {
 	}
 
 	public void init() {
-		if (getDiskCacheManager().contains(downloadParameters)) {
+		if (getBimServer().getDiskCacheManager().contains(downloadParameters)) {
 			return;
 		}
-		session = bimDatabase.createReadOnlySession();
+		session = getBimServer().getDatabase().createReadOnlySession();
 		switch (downloadParameters.getDownloadType()) {
 		case DOWNLOAD:
-			action = new DownloadDatabaseAction(session, accessMethod, settingsManager, mergerFactory, downloadParameters.getRoid(), currentUoid);
+			action = new DownloadDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoid(), currentUoid);
 			break;
 		case DOWNLOAD_BY_OIDS:
-			action = new DownloadByOidsDatabaseAction(session, accessMethod, settingsManager, mergerFactory, downloadParameters.getRoids(), downloadParameters.getOids(), currentUoid);
+			action = new DownloadByOidsDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getOids(), currentUoid);
 			break;
 		case DOWNLOAD_BY_GUIDS:
-			action = new DownloadByGuidsDatabaseAction(session, accessMethod, settingsManager, mergerFactory, downloadParameters.getRoids(), downloadParameters.getGuids(), currentUoid);
+			action = new DownloadByGuidsDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getGuids(), currentUoid);
 			break;
 		case DOWNLOAD_OF_TYPE:
-			action = new DownloadOfTypeDatabaseAction(session, accessMethod, settingsManager, mergerFactory, downloadParameters.getRoid(), downloadParameters.getClassName(), currentUoid);
+			action = new DownloadOfTypeDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoid(), downloadParameters.getClassName(), currentUoid);
 			break;
 		case DOWNLOAD_PROJECTS:
-			action = new DownloadProjectsDatabaseAction(session, accessMethod, settingsManager, mergerFactory, downloadParameters.getRoids(), currentUoid);
+			action = new DownloadProjectsDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), currentUoid);
 			break;
 		}
 	}

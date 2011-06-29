@@ -1,7 +1,6 @@
 package org.bimserver.database.actions;
 
-import org.bimserver.MergerFactory;
-import org.bimserver.SettingsManager;
+import org.bimserver.BimServer;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
@@ -16,13 +15,11 @@ public class GetDataObjectByGuidDatabaseAction extends BimDatabaseAction<SDataOb
 
 	private final String guid;
 	private final long roid;
-	private final SettingsManager settingsManager;
-	private final MergerFactory mergerFactory;
+	private final BimServer bimServer;
 
-	public GetDataObjectByGuidDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, SettingsManager settingsManager, MergerFactory mergerFactory, long roid, String guid) {
+	public GetDataObjectByGuidDatabaseAction(BimServer bimServer, BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long roid, String guid) {
 		super(bimDatabaseSession, accessMethod);
-		this.settingsManager = settingsManager;
-		this.mergerFactory = mergerFactory;
+		this.bimServer = bimServer;
 		this.roid = roid;
 		this.guid = guid;
 	}
@@ -44,6 +41,6 @@ public class GetDataObjectByGuidDatabaseAction extends BimDatabaseAction<SDataOb
 			throw new UserException("Guid " + guid + " not found in this revision/project");
 		}
 		
-		return new GetDataObjectByOidDatabaseAction(getDatabaseSession(), getAccessMethod(), settingsManager, mergerFactory, roid, objectIdentifier.getOid(), objectIdentifier.getCid()).execute();
+		return new GetDataObjectByOidDatabaseAction(bimServer, getDatabaseSession(), getAccessMethod(), roid, objectIdentifier.getOid(), objectIdentifier.getCid()).execute();
 	}
 }

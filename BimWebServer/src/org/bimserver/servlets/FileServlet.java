@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.IOUtils;
-import org.bimserver.ServerInitializer;
+import org.bimserver.BimServer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -24,7 +24,8 @@ public class FileServlet extends HttpServlet {
 		if (request.getParameter("file") != null) {
 			String file = request.getParameter("file");
 			if (file.equals("service.proto")) {
-				sendFile(ServerInitializer.getResourceFetcher().getFile("service.proto"), response);
+				BimServer bimServer = (BimServer) request.getServletContext().getAttribute("bimserver");
+				sendFile(bimServer.getResourceFetcher().getFile("service.proto"), response);
 			}
 		}
 	}
