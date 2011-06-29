@@ -75,9 +75,6 @@
 	<classpathentry exported="true" kind="lib" path="lib/commons-beanutils-1.8.3.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/commons-beanutils-bean-collections-1.8.3.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/commons-beanutils-core-1.8.3.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jaxb/jaxb-api-2.2.1.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jaxb/jaxb-impl-2.2.1.1.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jaxb/jaxb-xjc-2.2.1.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/commons-lang-2.6.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/cxf-2.4.0.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/FastInfoset-1.2.9.jar"/>

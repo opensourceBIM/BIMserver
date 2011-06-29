@@ -78,6 +78,23 @@ public class JarClassLoader extends ClassLoader {
 			byte[] bs = map.get(fileName);
 			Class<?> defineClass = defineClass(name, bs, 0, bs.length);
 			loadedClasses.put(fileName, defineClass);
+
+			/*
+			 * This is a fix to actually load the package-info.class file with
+			 * the annotations about for example namespaces required for JAXB to
+			 * work. Found this code here:
+			 * https://issues.jboss.org/browse/JBPM-1404
+			 */
+			if (defineClass != null) {
+				final int packageIndex = name.lastIndexOf('.');
+				if (packageIndex != -1) {
+					final String packageName = name.substring(0, packageIndex);
+					final Package classPackage = getPackage(packageName);
+					if (classPackage == null) {
+						definePackage(packageName, null, null, null, null, null, null, null);
+					}
+				}
+			}
 			return defineClass;
 		}
 		throw new ClassNotFoundException(name);
