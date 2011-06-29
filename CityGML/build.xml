@@ -1,0 +1,5 @@
+<project name="CityGMLADE">
+	<target name="ADE">
+		<java jar="ade-xjc.jar" fork="true" args="schemas/XBuilding.xsd -non-strict -output generated -package org.bimserver.citygml.xbuilding"/>
+	</target>
+</project>

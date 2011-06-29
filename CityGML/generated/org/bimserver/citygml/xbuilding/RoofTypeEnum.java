@@ -1,5 +1,5 @@
 
-package ade;
+package org.bimserver.citygml.xbuilding;
 
 import javax.xml.bind.annotation.XmlEnum;
 import javax.xml.bind.annotation.XmlEnumValue;
