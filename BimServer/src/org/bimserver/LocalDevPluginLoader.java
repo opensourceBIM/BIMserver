@@ -11,7 +11,7 @@ import org.bimserver.shared.LocalDevelopmentResourceFetcher;
 public class LocalDevPluginLoader {
 	public static PluginManager createPluginManager() throws PluginException {
 		ResourceFetcher resourceFetcher = new LocalDevelopmentResourceFetcher();
-		PluginManager pluginManager = new PluginManager(resourceFetcher, "../IFCEngine/bin", null);
+		PluginManager pluginManager = new PluginManager(resourceFetcher, null);
 		pluginManager.loadPluginsFromEclipseProject(new File("../IFCEngine"));
 		pluginManager.loadPluginsFromEclipseProject(new File("../buildingSMARTLibrary"));
 		pluginManager.loadPluginsFromEclipseProject(new File("../IfcPlugins"));
