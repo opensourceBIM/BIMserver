@@ -59,7 +59,9 @@ public class WarServerInitializer implements ServletContextListener {
 		ResourceFetcher resourceFetcher = new WarResourceFetcher(servletContext, homeDir);
 		
 		bimServer.init(homeDir, baseDir, resourceFetcher);
+		File file = resourceFetcher.getFile("plugins");
 		try {
+			bimServer.getPluginManager().loadAllPluginsFromDirectoryOfJars(file);
 			bimServer.start();
 		} catch (UserException e) {
 			e.printStackTrace();
