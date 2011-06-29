@@ -19,8 +19,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;extension base="{http://www.citygml.org/ade/xbuilding}VisualElementType">
  *       &lt;sequence>
- *         &lt;element name="ShapeType" type="{http://www.citygml.org/ade/xbuilding}StairTypeEnum"/>
- *         &lt;element name="StairFlights" type="{http://www.citygml.org/ade/xbuilding}StairFlightType" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="shapeType" type="{http://www.citygml.org/ade/xbuilding}StairTypeEnum"/>
+ *         &lt;element name="stairFlights" type="{http://www.citygml.org/ade/xbuilding}StairFlightType" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/extension>
  *   &lt;/complexContent>
@@ -38,9 +38,8 @@ public class StairType
     extends VisualElementType
 {
 
-    @XmlElement(name = "ShapeType", required = true)
+    @XmlElement(required = true)
     protected StairTypeEnum shapeType;
-    @XmlElement(name = "StairFlights")
     protected List<StairFlightType> stairFlights;
 
     /**

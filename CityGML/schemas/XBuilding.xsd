@@ -21,7 +21,7 @@
 		<xsd:complexContent>
 			<xsd:extension base="core:AbstractCityObjectType">
 				<xsd:sequence>
-					<xsd:element name="Lod3MultiSurface" type="gml:MultiSurfacePropertyType"></xsd:element>
+					<xsd:element name="lod4MultiSurface" type="gml:MultiSurfacePropertyType"></xsd:element>
 				</xsd:sequence>
 			</xsd:extension>
 		</xsd:complexContent>
@@ -40,8 +40,8 @@
 		<xsd:complexContent>
 			<xsd:extension base="VisualElementType">
 				<xsd:sequence>
-					<xsd:element name="ShapeType" type="StairTypeEnum"></xsd:element>
-					<xsd:element name="StairFlights" type="StairFlightType"
+					<xsd:element name="shapeType" type="StairTypeEnum"></xsd:element>
+					<xsd:element name="stairFlights" type="StairFlightType"
 						maxOccurs="unbounded" minOccurs="0"></xsd:element>
 				</xsd:sequence>
 			</xsd:extension>
@@ -52,7 +52,7 @@
 		<xsd:complexContent>
 			<xsd:extension base="VisualElementType">
 				<xsd:sequence>
-					<xsd:element name="PredefinedType" type="StairFlightTypeEnum"></xsd:element>
+					<xsd:element name="predefinedType" type="StairFlightTypeEnum"></xsd:element>
 				</xsd:sequence>
 			</xsd:extension>
 		</xsd:complexContent>
@@ -70,7 +70,7 @@
 		<xsd:complexContent>
 			<xsd:extension base="VisualElementType">
 				<xsd:sequence>
-					<xsd:element name="PredefinedType" type="RailingTypeEnum">
+					<xsd:element name="predefinedType" type="RailingTypeEnum">
 					</xsd:element>
 				</xsd:sequence>
 			</xsd:extension>
