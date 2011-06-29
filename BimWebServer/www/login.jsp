@@ -7,7 +7,7 @@
 <%@page import="java.net.URLEncoder"%>
 <%@page import="org.bimserver.ServerInfo"%>
 <%@page import="org.bimserver.ServerInfo.ServerState"%><jsp:include page="htmlheader.jsp" />
-<jsp:useBean id="errorMessages" scope="request" class="org.bimserver.ErrorMessages" />
+<jsp:useBean id="errorMessages" scope="request" class="org.bimserver.web.ErrorMessages" />
 <jsp:useBean id="loginManager" scope="session" class="org.bimserver.web.LoginManager" />
 <body>
 	<%
