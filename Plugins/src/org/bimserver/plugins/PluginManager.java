@@ -36,12 +36,10 @@ public class PluginManager {
 	private final Map<Class<? extends Plugin>, Set<PluginContext>> implementations = new HashMap<Class<? extends Plugin>, Set<PluginContext>>();
 	private final Set<PluginChangeListener> pluginChangeListeners = new HashSet<PluginChangeListener>();
 	private final ResourceFetcher resourceFetcher;
-	private final String classPath;
 	private File homeDir;
 
-	public PluginManager(ResourceFetcher resourceFetcher, String classPath, File homeDir) {
+	public PluginManager(ResourceFetcher resourceFetcher, File homeDir) {
 		this.resourceFetcher = resourceFetcher;
-		this.classPath = classPath;
 		this.homeDir = homeDir;
 	}
 
@@ -326,10 +324,6 @@ public class PluginManager {
 
 	public ResourceFetcher getResourceFetcher() {
 		return resourceFetcher;
-	}
-
-	public String getClassPath() {
-		return classPath;
 	}
 
 	public File getHomeDir() {

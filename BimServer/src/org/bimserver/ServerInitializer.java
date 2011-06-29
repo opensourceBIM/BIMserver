@@ -157,22 +157,11 @@ public class ServerInitializer implements ServletContextListener {
 			Thread.setDefaultUncaughtExceptionHandler(uncaughtExceptionHandler);
 
 			
-			String classPath = null;
-			if (serverType == ServerType.DEPLOYED_WAR) {
-				// Because servers like Tomcat use complex classloading
-				// constructions, the classpath system property gives not enough
-				// info about the used classpaths, so here we tell the
-				// IfcEngineFactory to use all jar files in the context
-				classPath = servletContext.getRealPath("/") + "WEB-INF" + File.separator + "lib";
-			} else if (serverType == ServerType.DEV_ENVIRONMENT) {
-				classPath = "../IFCEngine/bin";
-			}
-
 			VersionChecker.init(resourceFetcher);
 			
 			try {
 				LOGGER.info("Creating plugin manager");
-				pluginManager = new PluginManager(resourceFetcher, classPath, homeDir);
+				pluginManager = new PluginManager(resourceFetcher, homeDir);
 				pluginManager.addPluginChangeListener(new PluginChangeListener() {
 					@Override
 					public void pluginStateChanged(PluginContext pluginContext, boolean enabled) {
@@ -299,11 +288,11 @@ public class ServerInitializer implements ServletContextListener {
 			rpcServer.registerBlockingService(org.bimserver.pb.Service.ServiceInterface.newReflectiveBlockingService(org.bimserver.pb.Service.ServiceInterface.newBlockingStub(new ReflectiveRpcChannel(ServiceFactory.getINSTANCE()))));
 			rpcServer.startServer();
 
-			if (serverType == ServerType.DEPLOYED_WAR) {
-				File libDir = new File(classPath);
-				LOGGER.info("adding lib dir: " + libDir.getAbsolutePath());
-				QueryCompiler.addJarFolder(libDir);
-			}
+//			if (serverType == ServerType.DEPLOYED_WAR) {
+//				File libDir = new File(classPath);
+//				LOGGER.info("adding lib dir: " + libDir.getAbsolutePath());
+//				QueryCompiler.addJarFolder(libDir);
+//			}
 
 			ServerStarted serverStarted = LogFactory.eINSTANCE.createServerStarted();
 			serverStarted.setDate(new Date());
