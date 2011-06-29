@@ -2,6 +2,7 @@ package org.bimserver;
 
 import java.io.File;
 
+import org.bimserver.ServerInfo.ServerState;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDeadlockException;
 import org.bimserver.database.DatabaseRestartRequiredException;
@@ -24,6 +25,9 @@ public class LocalDevBimServerStarter {
 			bimServer.getPluginManager().loadPluginsFromEclipseProject(new File("../IFCEngine"));
 			bimServer.getPluginManager().loadPluginsFromEclipseProject(new File("../buildingSMARTLibrary"));
 			bimServer.start();
+			if (ServerInfo.getServerState() == ServerState.NOT_SETUP) {
+				bimServer.getSystemService().setup("http://localhost", "localhost", "Administrator", "admin@bimserver.org", "admin", true);
+			}
 		} catch (PluginException e1) {
 			e1.printStackTrace();
 		} catch (UserException e) {

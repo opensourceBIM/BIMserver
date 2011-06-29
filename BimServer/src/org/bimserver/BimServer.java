@@ -78,7 +78,6 @@ public class BimServer {
 	private ServiceInterface systemService;
 	private File homeDir;
 	private File baseDir;
-	private ServerType serverType;
 	private SettingsManager settingsManager;
 	private EmfSerializerFactory emfSerializerFactory;
 	private MergerFactory mergerFactory;
@@ -125,12 +124,6 @@ public class BimServer {
 			};
 
 			Thread.setDefaultUncaughtExceptionHandler(uncaughtExceptionHandler);
-
-			LOGGER.info("Detected server type: " + serverType + " (" + System.getProperty("os.name") + ", " + System.getProperty("sun.arch.data.model") + "bit)");
-			if (serverType == ServerType.UNKNOWN) {
-				LOGGER.error("Server type not detected, stopping initialization");
-				return;
-			}
 
 			VersionChecker.init(resourceFetcher);
 			
@@ -243,12 +236,6 @@ public class BimServer {
 			throw new RuntimeException("System user not found");
 		}
 		
-		if (getServerType() == ServerType.DEV_ENVIRONMENT) {
-			if (ServerInfo.getServerState() == ServerState.NOT_SETUP) {
-				systemService.setup("http://localhost", "localhost", "Administrator", "admin@bimserver.org", "admin", true);
-			}
-		}
-		
 		RestApplication.setServiceFactory(ServiceFactory.getINSTANCE());
 
 		RpcServer rpcServer = new RpcServer(SocketRpcConnectionFactories.createServerRpcConnectionFactory(8020), Executors.newFixedThreadPool(10), false);
@@ -355,10 +342,6 @@ public class BimServer {
 	
 	public LongActionManager getLongActionManager() {
 		return longActionManager;
-	}
-	
-	public  ServerType getServerType() {
-		return serverType;
 	}
 	
 	private void fixLogging() throws IOException {
