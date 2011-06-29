@@ -421,6 +421,8 @@
 		<replace file="builds/BuildWar/WEB-INF/version.xml" token="@DATE@" value="${touch.time}" />
 		<replace file="builds/BuildWar/WEB-INF/web.xml" token="@VERSION@" value="${version}" />
 
+		<copy file="${buildtargets}/${target}/web.xml" todir="builds/BuildWar/WEB-INF" overwrite="true"/>
+		
 		<copy file="../../BimServer/src/org/bimserver/database/migrations/steps/IFC2X3.ecore" todir="builds/BuildWar/WEB-INF/classes/org/bimserver/database/migrations/steps" />
 		<copy file="../../Store/generated/org/bimserver/models/ifc2x3/impl/ifc2x3.ecore" todir="builds/BuildWar/WEB-INF/classes/org/bimserver/models/ifc2x3/impl" />
 

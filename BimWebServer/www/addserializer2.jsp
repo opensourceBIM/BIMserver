@@ -9,7 +9,7 @@
 <%@page import="java.util.Map"%>
 <%@page import="java.util.Set"%>
 <%@page import="java.util.HashSet"%>
-<%@page import="org.bimserver.ServerInitializer"%>
+<%@page import="org.bimserver.web.WarServerInitializer"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="org.apache.commons.io.IOUtils"%>
 <%@page import="org.bimserver.interfaces.objects.SUserType"%>
