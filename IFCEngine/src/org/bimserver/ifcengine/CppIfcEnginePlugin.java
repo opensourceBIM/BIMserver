@@ -45,7 +45,7 @@ public class CppIfcEnginePlugin implements IfcEnginePlugin {
 	public IfcEngine createIfcEngine() throws IfcEngineException {
 		File nativeFolder = pluginManager.getResourceFetcher().getFile("lib/" + File.separator + System.getProperty("sun.arch.data.model"));
 		File schemaFile = pluginManager.getResourceFetcher().getFile("IFC2X3_FINAL.exp").getAbsoluteFile();
-		return new FailSafeIfcEngine(schemaFile, nativeFolder, new File(pluginManager.getHomeDir(), "tmp"), pluginManager.getPluginContext(this).getLocation());
+		return new FailSafeIfcEngine(schemaFile, nativeFolder, new File(pluginManager.getHomeDir(), "tmp"), pluginManager.getCompleteClassPath());
 	}
 
 	@Override

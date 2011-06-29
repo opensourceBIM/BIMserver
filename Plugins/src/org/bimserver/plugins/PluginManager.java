@@ -358,6 +358,20 @@ public class PluginManager {
 		}
 	}
 
+	/*
+	 * Returns a complete classpath for all loaded plugins
+	 */
+	public String getCompleteClassPath() {
+		StringBuilder sb = new StringBuilder();
+		for (Class<? extends Plugin> pluginClass : implementations.keySet()) {
+			Set<PluginContext> set = implementations.get(pluginClass);
+			for (PluginContext pluginContext : set) {
+				sb.append(pluginContext.getLocation() + File.pathSeparator);
+			}
+		}
+		return sb.toString();
+	}
+	
 	public DeserializerPlugin getFirstDeserializer(String extension, boolean onlyEnabled) throws PluginException {
 		Collection<DeserializerPlugin> allDeserializerPlugins = getAllDeserializerPlugins(extension, onlyEnabled);
 		if (allDeserializerPlugins.size() == 0) {
