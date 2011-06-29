@@ -3,15 +3,12 @@ package org.bimserver.longaction;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.bimserver.MergerFactory;
-import org.bimserver.SettingsManager;
-import org.bimserver.database.BimDatabase;
+import org.bimserver.BimServer;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
 import org.bimserver.database.actions.FindClashesDatabaseAction;
 import org.bimserver.database.actions.SendClashesEmailDatabaseAction;
-import org.bimserver.mail.MailSystem;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.CheckinState;
 import org.bimserver.models.store.Clash;
@@ -21,7 +18,6 @@ import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
-import org.bimserver.plugins.PluginManager;
 import org.bimserver.webservices.Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,28 +27,20 @@ public class ClashDetectionLongAction extends LongAction {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(ClashDetectionLongAction.class);
 	private final long actingUoid;
-	private final BimDatabase bimDatabase;
 	private final long poid;
 	private final User user;
-	private final MailSystem mailSystem;
-	private final SettingsManager settingsManager;
-	private final MergerFactory mergerFactory;
-	private final PluginManager pluginManager;
+	private final BimServer bimServer;
 
-	public ClashDetectionLongAction(User user, long actingUoid, SettingsManager settingsManager, MailSystem mailSystem, BimDatabase bimDatabase, MergerFactory mergerFactory, long poid, PluginManager pluginManager) {
+	public ClashDetectionLongAction(BimServer bimServer, User user, long actingUoid, long poid) {
+		this.bimServer = bimServer;
 		this.user = user;
 		this.actingUoid = actingUoid;
-		this.settingsManager = settingsManager;
-		this.mailSystem = mailSystem;
-		this.bimDatabase = bimDatabase;
-		this.mergerFactory = mergerFactory;
 		this.poid = poid;
-		this.pluginManager = pluginManager;
 	}
 
 	@Override
 	public void execute() {
-		BimDatabaseSession session = bimDatabase.createSession(true);
+		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
 		long roid = -1;
 		try {
 			Project project = session.get(StorePackage.eINSTANCE.getProject(), poid, false);
@@ -68,13 +56,13 @@ public class ClashDetectionLongAction extends LongAction {
 		} finally {
 			session.close();
 		}
-		session = bimDatabase.createSession(true);
+		session = bimServer.getDatabase().createSession(true);
 		try {
 			Project project = session.get(StorePackage.eINSTANCE.getProject(), poid, false);
 			ClashDetectionSettings clashDetectionSettings = StoreFactory.eINSTANCE.createClashDetectionSettings();
 			clashDetectionSettings.setMargin(project.getClashDetectionSettings().getMargin());
 			clashDetectionSettings.getRevisions().add(project.getLastRevision());
-			FindClashesDatabaseAction findClashesDatabaseAction = new FindClashesDatabaseAction(session, AccessMethod.INTERNAL, clashDetectionSettings, mergerFactory, roid, pluginManager);
+			FindClashesDatabaseAction findClashesDatabaseAction = new FindClashesDatabaseAction(bimServer, session, AccessMethod.INTERNAL, clashDetectionSettings, roid);
 			Set<? extends Clash> clashes = findClashesDatabaseAction.execute();
 			Revision revision = project.getLastRevision();
 // Temporarily disabled, should be enabled when lazy loading is working
@@ -95,14 +83,14 @@ public class ClashDetectionLongAction extends LongAction {
 				String[] emailAddressesArray = new String[emailAddresses.size()];
 				emailAddresses.toArray(emailAddressesArray);
 				
-				SendClashesEmailDatabaseAction sendClashesEmailDatabaseAction = new SendClashesEmailDatabaseAction(session, AccessMethod.INTERNAL, settingsManager, mailSystem, actingUoid, poid, Service.convert(clashDetectionSettings), emailAddresses);
+				SendClashesEmailDatabaseAction sendClashesEmailDatabaseAction = new SendClashesEmailDatabaseAction(bimServer, session, AccessMethod.INTERNAL, actingUoid, poid, Service.convert(clashDetectionSettings), emailAddresses);
 				sendClashesEmailDatabaseAction.execute();
 			}
 			session.commit();
 		} catch (Throwable e) {
 			LOGGER.error("", e);
 			try {
-				BimDatabaseSession rollBackSession = bimDatabase.createSession(true);
+				BimDatabaseSession rollBackSession = bimServer.getDatabase().createSession(true);
 				try {
 					Throwable throwable = e;
 					while (throwable.getCause() != null) {

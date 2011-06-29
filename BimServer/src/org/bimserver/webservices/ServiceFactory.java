@@ -8,17 +8,10 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
-import org.bimserver.MergerFactory;
-import org.bimserver.SettingsManager;
-import org.bimserver.cache.DiskCacheManager;
-import org.bimserver.database.BimDatabase;
+import org.bimserver.BimServer;
 import org.bimserver.interfaces.objects.SAccessMethod;
 import org.bimserver.interfaces.objects.SUser;
-import org.bimserver.longaction.LongActionManager;
-import org.bimserver.mail.MailSystem;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.plugins.PluginManager;
-import org.bimserver.serializers.EmfSerializerFactory;
 import org.bimserver.shared.SUserSession;
 import org.bimserver.shared.ServiceException;
 import org.bimserver.shared.ServiceInterface;
@@ -33,32 +26,18 @@ public class ServiceFactory {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ServiceFactory.class);
 	private static final int TOKEN_TTL_SECONDS = 60*60; // one hour
 	private final HashMap<Token, ServiceInterface> tokens = new HashMap<Token, ServiceInterface>();
-	private final BimDatabase bimDatabase;
-	private final EmfSerializerFactory emfSerializerFactory;
-	private final LongActionManager longActionManager;
-	private final SettingsManager settingsManager;
-	private final MailSystem mailSystem;
-	private final DiskCacheManager diskCacheManager;
-	private final MergerFactory mergerFactory;
-	private final PluginManager pluginManager;
+	private final BimServer bimServer;
 
-	private ServiceFactory(BimDatabase bimDatabase, EmfSerializerFactory emfSerializerFactory, LongActionManager longActionManager, SettingsManager settingsManager, MailSystem mailSystem, DiskCacheManager diskCacheManager, MergerFactory mergerFactory, PluginManager pluginManager) {
-		this.bimDatabase = bimDatabase;
-		this.emfSerializerFactory = emfSerializerFactory;
-		this.longActionManager = longActionManager;
-		this.settingsManager = settingsManager;
-		this.mailSystem = mailSystem;
-		this.diskCacheManager = diskCacheManager;
-		this.mergerFactory = mergerFactory;
-		this.pluginManager = pluginManager;
+	private ServiceFactory(BimServer bimServer) {
+		this.bimServer = bimServer;
 	}
 	
-	public static void init(BimDatabase bimDatabase, EmfSerializerFactory emfSerializerFactory, LongActionManager longActionManager, SettingsManager settingsManager, MailSystem mailSystem, DiskCacheManager diskCacheManager, MergerFactory mergerFactory, PluginManager pluginManager) {
-		INSTANCE = new ServiceFactory(bimDatabase, emfSerializerFactory, longActionManager, settingsManager, mailSystem, diskCacheManager, mergerFactory, pluginManager);
+	public static void init(BimServer bimServer) {
+		INSTANCE = new ServiceFactory(bimServer);
 	}
 
 	public ServiceInterface newService(AccessMethod accessMethod) {
-		Service service = new Service(bimDatabase, emfSerializerFactory, longActionManager, accessMethod, this, settingsManager, mailSystem, diskCacheManager, mergerFactory, pluginManager);
+		Service service = new Service(bimServer, accessMethod, this);
 		Date expires = new Date(new Date().getTime() + (TOKEN_TTL_SECONDS * 1000));
 		Token token = new Token(GeneratorUtils.generateToken(), expires);
 		tokens.put(token, service);

@@ -8,7 +8,7 @@
 	</welcome-file-list>
 
 	<listener>
-		<listener-class>org.bimserver.ServerInitializer</listener-class>
+		<listener-class>org.bimserver.web.BimWebServerInitializer</listener-class>
 	</listener>
 
 	<servlet>

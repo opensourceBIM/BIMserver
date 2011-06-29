@@ -1,7 +1,6 @@
 package org.bimserver.database.actions;
 
-import org.bimserver.MergerFactory;
-import org.bimserver.SettingsManager;
+import org.bimserver.BimServer;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
@@ -22,13 +21,11 @@ public class DownloadOfTypeDatabaseAction extends BimDatabaseAction<IfcModelInte
 	private final long actingUoid;
 	private final long roid;
 	private int progress;
-	private final SettingsManager settingsManager;
-	private final MergerFactory mergerFactory;
+	private final BimServer bimServer;
 
-	public DownloadOfTypeDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, SettingsManager settingsManager, MergerFactory mergerFactory, long roid, String className, long actingUoid) {
+	public DownloadOfTypeDatabaseAction(BimServer bimServer, BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long roid, String className, long actingUoid) {
 		super(bimDatabaseSession, accessMethod);
-		this.settingsManager = settingsManager;
-		this.mergerFactory = mergerFactory;
+		this.bimServer = bimServer;
 		this.roid = roid;
 		this.actingUoid = actingUoid;
 		this.className = className;
@@ -48,7 +45,7 @@ public class DownloadOfTypeDatabaseAction extends BimDatabaseAction<IfcModelInte
 			subModel.setDate(concreteRevision.getDate());
 			ifcModelSet.add(subModel);
 		}
-		IfcModelInterface ifcModel = mergerFactory.createMerger().merge(project, ifcModelSet, settingsManager.getSettings().isIntelligentMerging());
+		IfcModelInterface ifcModel = bimServer.getMergerFactory().createMerger().merge(project, ifcModelSet, bimServer.getSettingsManager().getSettings().isIntelligentMerging());
 		ifcModel.setName("Unknown");
 		ifcModel.setRevisionNr(project.getRevisions().indexOf(virtualRevision) + 1);
 		ifcModel.setAuthorizedUser(getUserByUoid(actingUoid).getName());

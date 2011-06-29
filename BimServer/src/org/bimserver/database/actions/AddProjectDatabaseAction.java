@@ -2,7 +2,7 @@ package org.bimserver.database.actions;
 
 import java.util.Date;
 
-import org.bimserver.SettingsManager;
+import org.bimserver.BimServer;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
@@ -23,15 +23,15 @@ public class AddProjectDatabaseAction extends BimDatabaseAction<Project> {
 	private final String name;
 	private final long owningUoid;
 	private final long parentPoid;
-	private final SettingsManager settingsManager;
+	private final BimServer bimServer;
 
-	public AddProjectDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, SettingsManager settingsManager, String name, long owningUoid) {
-		this(bimDatabaseSession, accessMethod, settingsManager, name, -1, owningUoid);
+	public AddProjectDatabaseAction(BimServer bimServer, BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, String name, long owningUoid) {
+		this(bimServer, bimDatabaseSession, accessMethod, name, -1, owningUoid);
 	}
 
-	public AddProjectDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, SettingsManager settingsManager, String projectName, long parentPoid, long owningUoid) {
+	public AddProjectDatabaseAction(BimServer bimServer, BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, String projectName, long parentPoid, long owningUoid) {
 		super(bimDatabaseSession, accessMethod);
-		this.settingsManager = settingsManager;
+		this.bimServer = bimServer;
 		this.name = projectName;
 		this.parentPoid = parentPoid;
 		this.owningUoid = owningUoid;
@@ -55,7 +55,7 @@ public class AddProjectDatabaseAction extends BimDatabaseAction<Project> {
 			getDatabaseSession().store(parentProject);
 		}
 		if (actingUser.getUserType() != UserType.SYSTEM) {
-			if (parentPoid == -1 && actingUser.getUserType() != UserType.ADMIN && !settingsManager.getSettings().isAllowUsersToCreateTopLevelProjects()) {
+			if (parentPoid == -1 && actingUser.getUserType() != UserType.ADMIN && !bimServer.getSettingsManager().getSettings().isAllowUsersToCreateTopLevelProjects()) {
 				throw new UserException("Only administrators can create new projects");
 			}
 		}

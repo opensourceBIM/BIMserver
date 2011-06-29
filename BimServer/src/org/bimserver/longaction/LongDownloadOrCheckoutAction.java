@@ -2,8 +2,7 @@ package org.bimserver.longaction;
 
 import javax.activation.DataHandler;
 
-import org.bimserver.cache.DiskCacheManager;
-import org.bimserver.database.BimDatabase;
+import org.bimserver.BimServer;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.actions.BimDatabaseAction;
@@ -17,7 +16,6 @@ import org.bimserver.models.store.User;
 import org.bimserver.plugins.serializers.EmfSerializer;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.plugins.serializers.SerializerException;
-import org.bimserver.serializers.EmfSerializerFactory;
 import org.bimserver.shared.LongActionState;
 import org.bimserver.shared.LongActionState.ActionState;
 import org.bimserver.shared.SCheckoutResult;
@@ -27,27 +25,20 @@ import org.slf4j.LoggerFactory;
 
 public abstract class LongDownloadOrCheckoutAction extends LongAction<DownloadParameters> {
 	protected static final Logger LOGGER = LoggerFactory.getLogger(LongDownloadAction.class);
-	protected final BimDatabase bimDatabase;
-	protected final LongActionManager longActionManager;
 	protected final AccessMethod accessMethod;
-	protected final EmfSerializerFactory emfSerializerFactory;
 	protected final DownloadParameters downloadParameters;
 	protected final long currentUoid;
 	protected ActionState state = ActionState.UNKNOWN;
 	protected SCheckoutResult checkoutResult;
 	protected User user;
-	private final DiskCacheManager diskCacheManager;
+	private final BimServer bimServer;
 
-	protected LongDownloadOrCheckoutAction(DownloadParameters downloadParameters, BimDatabase bimDatabase,
-			LongActionManager longActionManager, AccessMethod accessMethod, EmfSerializerFactory emfSerializerFactory, long currentUoid, DiskCacheManager diskCacheManager) {
+	protected LongDownloadOrCheckoutAction(BimServer bimServer, DownloadParameters downloadParameters, AccessMethod accessMethod, long currentUoid) {
 		super();
-		this.bimDatabase = bimDatabase;
-		this.longActionManager = longActionManager;
+		this.bimServer = bimServer;
 		this.accessMethod = accessMethod;
-		this.emfSerializerFactory = emfSerializerFactory;
 		this.downloadParameters = downloadParameters;
 		this.currentUoid = currentUoid;
-		this.diskCacheManager = diskCacheManager;
 	}
 
 	public SCheckoutResult getCheckoutResult() {
@@ -67,7 +58,7 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction<DownloadPa
 			checkoutResult.setProjectName(project.getName());
 			checkoutResult.setRevisionNr(model.getRevisionNr());
 			try {
-				EmfSerializer serializer = emfSerializerFactory.create(project, user, model, downloadParameters);
+				EmfSerializer serializer = getBimServer().getEmfSerializerFactory().create(project, user, model, downloadParameters);
 				if (serializer == null) {
 					throw new UserException("Error, no serializer found");
 				}
@@ -83,7 +74,7 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction<DownloadPa
 			boolean commit) throws BimDatabaseException, UserException, NoSerializerFoundException {
 		if (action == null) {
 			checkoutResult = new SCheckoutResult();
-			checkoutResult.setFile(new DataHandler(getDiskCacheManager().get(downloadParameters)));
+			checkoutResult.setFile(new DataHandler(getBimServer().getDiskCacheManager().get(downloadParameters)));
 		} else {
 			IfcModelInterface ifcModel = null;
 			Revision revision = session.get(StorePackage.eINSTANCE.getRevision(), downloadParameters.getRoid(), false);
@@ -95,13 +86,13 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction<DownloadPa
 			}
 			checkoutResult = convertModelToCheckoutResult(revision.getProject(), user, ifcModel, downloadParameters);
 			if (checkoutResult != null) {
-				diskCacheManager.store(downloadParameters, checkoutResult.getFile());
+				getBimServer().getDiskCacheManager().store(downloadParameters, checkoutResult.getFile());
 			}
 		}
 		done();
 	}
 
-	public DiskCacheManager getDiskCacheManager() {
-		return diskCacheManager;
+	public BimServer getBimServer() {
+		return bimServer;
 	}
 }

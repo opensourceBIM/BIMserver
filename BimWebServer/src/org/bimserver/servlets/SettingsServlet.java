@@ -22,7 +22,7 @@ import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.IOUtils;
-import org.bimserver.ServerInitializer;
+import org.bimserver.BimServer;
 import org.bimserver.interfaces.objects.SSettings;
 import org.bimserver.interfaces.objects.SUserType;
 import org.bimserver.models.store.Settings;
@@ -43,6 +43,7 @@ public class SettingsServlet extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		@SuppressWarnings("unused")
 		String xsltName = null;
+		BimServer bimServer = (BimServer) request.getServletContext().getAttribute("bimserver");
 		try {
 			boolean isMultipart = ServletFileUpload.isMultipartContent(request);
 			LoginManager loginManager = (LoginManager) request.getSession().getAttribute("loginManager");
@@ -66,12 +67,12 @@ public class SettingsServlet extends HttpServlet {
 									JAXBContext jaxbContext = JAXBContext.newInstance(SSettings.class);
 									Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
 									SSettings sSettings = (SSettings) unmarshaller.unmarshal(item.getInputStream());
-									ServerInitializer.getSettingsManager().setSettings(Service.convert(sSettings, Settings.class, null));
+									bimServer.getSettingsManager().setSettings(Service.convert(sSettings, Settings.class, null));
 									response.sendRedirect(getServletContext().getContextPath() + "/settings.jsp?msg=settingsfileuploadok");
 									return;
 								} else if (fieldName.equals("colladasettings")) {
 									InputStream inputStream = item.getInputStream();
-									File file = ServerInitializer.getResourceFetcher().getFile("collada.xml");
+									File file = bimServer.getResourceFetcher().getFile("collada.xml");
 									FileOutputStream fos = new FileOutputStream(file);
 									IOUtils.copy(inputStream, fos);
 									fos.close();
@@ -105,7 +106,7 @@ public class SettingsServlet extends HttpServlet {
 					if (action.equals("downloadsettingsfile")) {
 						response.setContentType("text/xml");
 						response.setHeader("Content-Disposition", "attachment; filename=\"settings.xml\"");
-						Settings settings = ServerInitializer.getSettingsManager().getSettings();
+						Settings settings = bimServer.getSettingsManager().getSettings();
 						SSettings sSettings = Service.convert(settings, SSettings.class);
 						JAXBContext jaxbContext = JAXBContext.newInstance(SSettings.class);
 						Marshaller marshaller = jaxbContext.createMarshaller();
@@ -115,9 +116,9 @@ public class SettingsServlet extends HttpServlet {
 						response.setContentType("text");
 						response.setHeader("Content-Disposition", "attachment; filename=\"bimserver.log\"");
 						File logfile = null;
-						if (ServerInitializer.getResourceFetcher() instanceof WarResourceFetcher) {
+						if (bimServer.getResourceFetcher() instanceof WarResourceFetcher) {
 							logfile = new File(getServletContext().getRealPath("/") + "bimserver.log");
-						} else if (ServerInitializer.getResourceFetcher() instanceof JarResourceFetcher) {
+						} else if (bimServer.getResourceFetcher() instanceof JarResourceFetcher) {
 							logfile = new File("bimserver.log");
 						} else {
 							response.getWriter().println("No log file on local development stations");
@@ -136,7 +137,7 @@ public class SettingsServlet extends HttpServlet {
 					} else if (action.equals("downloadcolladasettings")) {
 						response.setContentType("text/xml");
 						response.setHeader("Content-Disposition", "attachment; filename=\"collada.xml\"");
-						URL resource = ServerInitializer.getResourceFetcher().getResource("collada.xml");
+						URL resource = bimServer.getResourceFetcher().getResource("collada.xml");
 						InputStream openStream = resource.openStream();
 						IOUtils.copy(openStream, response.getOutputStream());
 						openStream.close();

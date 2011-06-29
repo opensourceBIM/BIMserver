@@ -10,8 +10,7 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-import org.bimserver.ServerInitializer;
-import org.bimserver.SettingsManager;
+import org.bimserver.BimServer;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
@@ -38,14 +37,12 @@ public class AddUserDatabaseAction extends BimDatabaseAction<Long> {
 	private final long createrUoid;
 	private final boolean selfRegistration;
 	private final String password;
-	private final MailSystem mailSystem;
-	private final SettingsManager settingsManager;
 	private boolean createSystemUser = false;
+	private final BimServer bimServer;
 
-	public AddUserDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, SettingsManager settingsManager, MailSystem mailSystem, String username, String name, UserType userType, long createrUoid, boolean selfRegistration) {
+	public AddUserDatabaseAction(BimServer bimServer, BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, String username, String name, UserType userType, long createrUoid, boolean selfRegistration) {
 		super(bimDatabaseSession, accessMethod);
-		this.settingsManager = settingsManager;
-		this.mailSystem = mailSystem;
+		this.bimServer = bimServer;
 		this.name = name;
 		this.username = username;
 		this.userType = userType;
@@ -54,10 +51,9 @@ public class AddUserDatabaseAction extends BimDatabaseAction<Long> {
 		this.password = null;
 	}
 
-	public AddUserDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, SettingsManager settingsManager, MailSystem mailSystem, String username, String password, String name, UserType userType, long createrUoid, boolean selfRegistration) {
+	public AddUserDatabaseAction(BimServer bimServer, BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, String username, String password, String name, UserType userType, long createrUoid, boolean selfRegistration) {
 		super(bimDatabaseSession, accessMethod);
-		this.settingsManager = settingsManager;
-		this.mailSystem = mailSystem;
+		this.bimServer = bimServer;
 		this.password = password;
 		this.name = name;
 		this.username = username;
@@ -117,13 +113,13 @@ public class AddUserDatabaseAction extends BimDatabaseAction<Long> {
 			@Override
 			public void execute() throws UserException {
 				try {
-					if (settingsManager != null && settingsManager.getSettings().isSendConfirmationEmailAfterRegistration()) {
+					if (bimServer.getSettingsManager() != null && bimServer.getSettingsManager().getSettings().isSendConfirmationEmailAfterRegistration()) {
 						if (MailSystem.isValidEmailAddress(user.getUsername()) && createrUoid != -1) {
-							Session mailSession = mailSystem.createMailSession();
+							Session mailSession = bimServer.getMailSystem().createMailSession();
 							
 							Message msg = new MimeMessage(mailSession);
 							
-							InternetAddress addressFrom = new InternetAddress(settingsManager.getSettings().getEmailSenderAddress());
+							InternetAddress addressFrom = new InternetAddress(bimServer.getSettingsManager().getSettings().getEmailSenderAddress());
 							msg.setFrom(addressFrom);
 							
 							InternetAddress[] addressTo = new InternetAddress[1];
@@ -133,8 +129,8 @@ public class AddUserDatabaseAction extends BimDatabaseAction<Long> {
 							Map<String, Object> context = new HashMap<String, Object>();
 							context.put("name", user.getName());
 							context.put("username", user.getUsername());
-							context.put("siteaddress", settingsManager.getSettings().getSiteAddress());
-							context.put("validationlink", settingsManager.getSettings().getSiteAddress() + ServerInitializer.getServletContext().getContextPath() + "/validate.jsp?uoid=" + user.getOid() + "&token=" + token);
+							context.put("siteaddress", bimServer.getSettingsManager().getSettings().getSiteAddress());
+							context.put("validationlink", bimServer.getSettingsManager().getSettings().getSiteAddress() + bimServer.getSettingsManager().getSettings().getSiteAddress() + "/validate.jsp?uoid=" + user.getOid() + "&token=" + token);
 							String body = null;
 							String subject = null;
 							if (selfRegistration) {

@@ -14,8 +14,7 @@ import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-import org.bimserver.ServerInitializer;
-import org.bimserver.SettingsManager;
+import org.bimserver.BimServer;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
@@ -33,13 +32,11 @@ public class SendClashesEmailDatabaseAction extends BimDatabaseAction<Void> {
 	private final long actingUoid;
 	private final long poid;
 	private final Set<String> addressesTo;
-	private final MailSystem mailSystem;
-	private final SettingsManager settingsManager;
+	private final BimServer bimServer;
 
-	public SendClashesEmailDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, SettingsManager settingsManager, MailSystem mailSystem, long actingUoid, long poid, SClashDetectionSettings sClashDetectionSettings, Set<String> addressesTo) {
+	public SendClashesEmailDatabaseAction(BimServer bimServer, BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long actingUoid, long poid, SClashDetectionSettings sClashDetectionSettings, Set<String> addressesTo) {
 		super(bimDatabaseSession, accessMethod);
-		this.settingsManager = settingsManager;
-		this.mailSystem = mailSystem;
+		this.bimServer = bimServer;
 		this.actingUoid = actingUoid;
 		this.poid = poid;
 		this.sClashDetectionSettings = sClashDetectionSettings;
@@ -50,8 +47,8 @@ public class SendClashesEmailDatabaseAction extends BimDatabaseAction<Void> {
 	public Void execute() throws UserException, BimDeadlockException, BimDatabaseException {
 		try {
 			User user = getUserByUoid(actingUoid);
-			String senderAddress = settingsManager.getSettings().getEmailSenderAddress();
-			Session mailSession = mailSystem.createMailSession();
+			String senderAddress = bimServer.getSettingsManager().getSettings().getEmailSenderAddress();
+			Session mailSession = bimServer.getMailSystem().createMailSession();
 
 			MimeMessage msg = new MimeMessage(mailSession);
 			InternetAddress addressFrom = new InternetAddress(senderAddress);
@@ -77,14 +74,14 @@ public class SendClashesEmailDatabaseAction extends BimDatabaseAction<Void> {
 				revisionsString.append(roid + ";");
 			}
 
-			String link = "<a href=\"" + settingsManager.getSettings().getSiteAddress() + ServerInitializer.getServletContext().getContextPath() + "/project.jsp?tab=cd&poid="
+			String link = "<a href=\"" + bimServer.getSettingsManager().getSettings().getSiteAddress() + bimServer.getSettingsManager().getSettings().getSiteAddress() + "/project.jsp?tab=cd&poid="
 					+ poid + "&margin=" + sClashDetectionSettings.getMargin() + "&revisions=" + revisionsString + "&ignored=" + ignoreString
 					+ "\">Click here for clash detection results</a>";
 			
 			Map<String, Object> context = new HashMap<String, Object>();
 			context.put("name", user.getName());
 			context.put("username", user.getUsername());
-			context.put("siteaddress", settingsManager.getSettings().getSiteAddress());
+			context.put("siteaddress", bimServer.getSettingsManager().getSettings().getSiteAddress());
 			context.put("url", link);
 			
 			String body = TemplateEngine.getTemplateEngine().process(context, TemplateIdentifier.CLASH_DETECTION_EMAIL_BODY);

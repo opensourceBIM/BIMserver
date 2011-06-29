@@ -26,12 +26,12 @@ import org.slf4j.LoggerFactory;
 
 public class CommandLine extends Thread {
 	private static final Logger LOGGER = LoggerFactory.getLogger(CommandLine.class);
-	private final Server server;
+	private final BimServer bimServer;
 
-	public CommandLine(Server server) {
+	public CommandLine(BimServer bimServer) {
+		this.bimServer = bimServer;
 		setName("CommandLine");
 		setDaemon(true);
-		this.server = server;
 	}
 
 	@Override
@@ -49,14 +49,14 @@ public class CommandLine extends Thread {
 					continue;
 				}
 				if (line.equalsIgnoreCase("exit")) {
-					server.stop();
+					bimServer.stop();
 					return;
 				} else if (line.startsWith("dumpmodel")) {
 					try {
 						long roid = Long.parseLong(line.substring(9).trim());
-						BimDatabaseSession bimDatabaseSession = ServerInitializer.getDatabase().createReadOnlySession();	
+						BimDatabaseSession bimDatabaseSession = bimServer.getDatabase().createReadOnlySession();	
 						try {
-							DownloadDatabaseAction downloadDatabaseAction = new DownloadDatabaseAction(bimDatabaseSession, AccessMethod.INTERNAL, ServerInitializer.getSettingsManager(), ServerInitializer.getMergerFactory(), roid, ServerInitializer.getSystemService().getCurrentUser().getOid());
+							DownloadDatabaseAction downloadDatabaseAction = new DownloadDatabaseAction(bimServer, bimDatabaseSession, AccessMethod.INTERNAL, roid, bimServer.getSystemService().getCurrentUser().getOid());
 							IfcModelInterface model = downloadDatabaseAction.execute();
 							System.out.println("Model size: " + model.size());
 							
@@ -104,7 +104,7 @@ public class CommandLine extends Thread {
 						LOGGER.error("", e);
 					}
 				} else if (line.startsWith("showall")) {
-					ColumnDatabase columnDatabase = ((Database) ServerInitializer.getDatabase()).getColumnDatabase();
+					ColumnDatabase columnDatabase = ((Database) bimServer.getDatabase()).getColumnDatabase();
 					Set<String> allTableNames = columnDatabase.getAllTableNames();
 					long total = 0;
 					for (String tableName : allTableNames) {

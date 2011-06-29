@@ -718,4 +718,7 @@ public interface ServiceInterface {
 			@WebParam(name = "className", partName = "removeReference.className") String className, 
 			@WebParam(name = "referenceName", partName = "removeReference.referenceName") String referenceName, 
 			@WebParam(name = "index", partName = "removeReference.index") int index);
+	
+	@WebMethod(action = "getServerStartTime")
+	Date getServerStartTime();
 }

@@ -2257,4 +2257,15 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 		} catch (Exception e) {}
 	}
 
+	public java.util.Date getServerStartTime() {
+		try {
+			GetServerStartTimeRequest.Builder requestBuilder = GetServerStartTimeRequest.newBuilder();
+			GetServerStartTimeRequest request = requestBuilder.build();
+			GetServerStartTimeResponse response = service.getServerStartTime(rpcController, request);
+			java.util.Date realResult = new java.util.Date();
+			return realResult;
+		} catch (Exception e) {}
+		return null;
+	}
+
 }

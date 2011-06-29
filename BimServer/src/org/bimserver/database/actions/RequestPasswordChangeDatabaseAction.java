@@ -12,8 +12,7 @@ import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-import org.bimserver.ServerInitializer;
-import org.bimserver.SettingsManager;
+import org.bimserver.BimServer;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
@@ -29,13 +28,11 @@ import org.bimserver.utils.Hashers;
 public class RequestPasswordChangeDatabaseAction extends BimDatabaseAction<Void> {
 
 	private final long uoid;
-	private final MailSystem mailSystem;
-	private final SettingsManager settingsManager;
+	private final BimServer bimServer;
 
-	public RequestPasswordChangeDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, SettingsManager settingsManager, MailSystem mailSystem, long uoid) {
+	public RequestPasswordChangeDatabaseAction(BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, BimServer bimServer, long uoid) {
 		super(bimDatabaseSession, accessMethod);
-		this.settingsManager = settingsManager;
-		this.mailSystem = mailSystem;
+		this.bimServer = bimServer;
 		this.uoid = uoid;
 	}
 
@@ -50,12 +47,12 @@ public class RequestPasswordChangeDatabaseAction extends BimDatabaseAction<Void>
 			@Override
 			public void execute() throws UserException {
 				if (MailSystem.isValidEmailAddress(user.getUsername())) {
-					Session mailSession = mailSystem.createMailSession();
+					Session mailSession = bimServer.getMailSystem().createMailSession();
 					
 					Message msg = new MimeMessage(mailSession);
 					
 					try {
-						InternetAddress addressFrom = new InternetAddress(settingsManager.getSettings().getEmailSenderAddress());
+						InternetAddress addressFrom = new InternetAddress(bimServer.getSettingsManager().getSettings().getEmailSenderAddress());
 						msg.setFrom(addressFrom);
 						
 						InternetAddress[] addressTo = new InternetAddress[1];
@@ -65,8 +62,8 @@ public class RequestPasswordChangeDatabaseAction extends BimDatabaseAction<Void>
 						Map<String, Object> context = new HashMap<String, Object>();
 						context.put("name", user.getName());
 						context.put("username", user.getUsername());
-						context.put("siteaddress", settingsManager.getSettings().getSiteAddress());
-						context.put("validationlink", settingsManager.getSettings().getSiteAddress() + ServerInitializer.getServletContext().getContextPath() + "/validate.jsp?uoid=" + user.getOid() + "&token=" + token);
+						context.put("siteaddress", bimServer.getSettingsManager().getSettings().getSiteAddress());
+						context.put("validationlink", bimServer.getSettingsManager().getSettings().getSiteAddress() + bimServer.getSettingsManager().getSettings().getSiteAddress() + "/validate.jsp?uoid=" + user.getOid() + "&token=" + token);
 						String body = null;
 						String subject = null;
 						body = TemplateEngine.getTemplateEngine().process(context, TemplateIdentifier.PASSWORD_RESET_EMAIL_BODY);

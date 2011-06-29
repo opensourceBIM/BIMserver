@@ -7,8 +7,7 @@ import java.util.Random;
 
 import javax.activation.DataHandler;
 
-import org.bimserver.Server;
-import org.bimserver.ServerInitializer;
+import org.bimserver.BimServer;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevision;
@@ -31,23 +30,22 @@ import org.junit.Test;
 
 public class TestLowLevelChanges {
 	
-	private static Server server;
+	private static BimServer bimServer;
 	private static ServiceInterface service;
 	private static SProject project;
 	private static PluginManager pluginManager;
 
 	@BeforeClass
 	public static void setup() {
-		server = new Server();
-		server.start("127.0.0.1", 8082, "home", "../BimServer/www");
-		service = ServerInitializer.getSystemService();
-		pluginManager = ServerInitializer.getPluginManager();
+		bimServer = new BimServer();
+		service = bimServer.getSystemService();
+		pluginManager = bimServer.getPluginManager();
 		createUserAndLogin();
 	}
 	
 	@AfterClass
 	public static void shutdown() {
-		server.stop();
+		bimServer.stop();
 	}
 	
 	private static long createUserAndLogin() {

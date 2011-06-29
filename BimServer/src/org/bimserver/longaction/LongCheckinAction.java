@@ -1,22 +1,18 @@
 package org.bimserver.longaction;
 
-import org.bimserver.MergerFactory;
+import org.bimserver.BimServer;
 import org.bimserver.ServerInfo;
-import org.bimserver.SettingsManager;
-import org.bimserver.database.BimDatabase;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
 import org.bimserver.database.ProgressHandler;
 import org.bimserver.database.actions.CheckinPart2DatabaseAction;
-import org.bimserver.mail.MailSystem;
 import org.bimserver.models.store.CheckinState;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
-import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.ifcengine.IfcEngineException;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.shared.UserException;
@@ -27,28 +23,18 @@ public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(LongCheckinAction.class);
 	private final CheckinPart2DatabaseAction createCheckinAction;
-	private final BimDatabase bimDatabase;
-	private final LongActionManager longActionManager;
 	private final User user;
-	private final MailSystem mailSystem;
-	private final SettingsManager settingsManager;
 	private int progress;
-	private final MergerFactory mergerFactory;
-	private final PluginManager pluginManager;
+	private final BimServer bimServer;
 
-	public LongCheckinAction(User user, LongActionManager longActionManager, BimDatabase bimDatabase, CheckinPart2DatabaseAction createCheckinAction, SettingsManager settingsManager, MailSystem mailSystem, MergerFactory mergerFactory, PluginManager pluginManager) {
+	public LongCheckinAction(BimServer bimServer, User user, CheckinPart2DatabaseAction createCheckinAction) {
 		this.user = user;
-		this.longActionManager = longActionManager;
-		this.bimDatabase = bimDatabase;
+		this.bimServer = bimServer;
 		this.createCheckinAction = createCheckinAction;
-		this.settingsManager = settingsManager;
-		this.mailSystem = mailSystem;
-		this.mergerFactory = mergerFactory;
-		this.pluginManager = pluginManager;
 	}
 
 	public void execute() {
-		BimDatabaseSession session = bimDatabase.createSession(true);
+		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
 		try {
 			createCheckinAction.setDatabaseSession(session);
 			session.executeAndCommitAction(createCheckinAction, 10, new ProgressHandler(){
@@ -58,7 +44,7 @@ public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 				}});
 			session.close();
 
-			BimDatabaseSession extraSession = bimDatabase.createSession(true);
+			BimDatabaseSession extraSession = bimServer.getDatabase().createSession(true);
 			try {
 				ConcreteRevision concreteRevision = (ConcreteRevision) extraSession.get(StorePackage.eINSTANCE.getConcreteRevision(),
 						createCheckinAction.getCroid(), false);
@@ -79,7 +65,7 @@ public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 				extraSession.close();
 			}
 
-			session = bimDatabase.createReadOnlySession();
+			session = bimServer.getDatabase().createReadOnlySession();
 			startClashDetection(session);
 		} catch (OutOfMemoryError e) {
 			ServerInfo.setOutOfMemory();
@@ -88,7 +74,7 @@ public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 			LOGGER.error("", e);
 			long croid = createCheckinAction.getCroid();
 			try {
-				BimDatabaseSession rollBackSession = bimDatabase.createSession(true);
+				BimDatabaseSession rollBackSession = bimServer.getDatabase().createSession(true);
 				try {
 					Throwable throwable = e;
 					while (throwable.getCause() != null) {
@@ -127,9 +113,9 @@ public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 			mainProject = mainProject.getParent();
 		}
 		if (mainProject.getClashDetectionSettings().isEnabled()) {
-			ClashDetectionLongAction clashDetectionLongAction = new ClashDetectionLongAction(user, createCheckinAction.getActingUid(), settingsManager, mailSystem, bimDatabase, mergerFactory, mainProject.getOid(), pluginManager);
+			ClashDetectionLongAction clashDetectionLongAction = new ClashDetectionLongAction(bimServer, user, createCheckinAction.getActingUid(), mainProject.getOid());
 			try {
-				longActionManager.start(clashDetectionLongAction);
+				bimServer.getLongActionManager().start(clashDetectionLongAction);
 			} catch (CannotBeScheduledException e) {
 				throw new UserException("Server is shutting down", e);
 			}
