@@ -69,7 +69,7 @@ public class PluginManager {
 			}
 			File binFolder = new File(projectRoot, "bin");
 			PluginClassloader pluginClassloader = new PluginClassloader(delegatingClassLoader, binFolder);
-			loadPlugins(pluginClassloader, projectRoot.getAbsolutePath(), pluginDescriptor);
+			loadPlugins(pluginClassloader, binFolder.getAbsolutePath(), pluginDescriptor);
 		} catch (JAXBException e) {
 			throw new PluginException(e);
 		} catch (FileNotFoundException e) {
