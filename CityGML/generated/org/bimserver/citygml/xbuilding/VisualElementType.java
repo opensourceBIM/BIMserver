@@ -20,7 +20,7 @@ import org.citygml4j.jaxb.gml._3_1_1.MultiSurfacePropertyType;
  *   &lt;complexContent>
  *     &lt;extension base="{http://www.opengis.net/citygml/1.0}AbstractCityObjectType">
  *       &lt;sequence>
- *         &lt;element name="Lod3MultiSurface" type="{http://www.opengis.net/gml}MultiSurfacePropertyType"/>
+ *         &lt;element name="lod4MultiSurface" type="{http://www.opengis.net/gml}MultiSurfacePropertyType"/>
  *       &lt;/sequence>
  *     &lt;/extension>
  *   &lt;/complexContent>
@@ -31,7 +31,7 @@ import org.citygml4j.jaxb.gml._3_1_1.MultiSurfacePropertyType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "VisualElementType", propOrder = {
-    "lod3MultiSurface"
+    "lod4MultiSurface"
 })
 @XmlSeeAlso({
     TransportElementType.class,
@@ -48,35 +48,35 @@ public class VisualElementType
     extends AbstractCityObjectType
 {
 
-    @XmlElement(name = "Lod3MultiSurface", required = true)
-    protected MultiSurfacePropertyType lod3MultiSurface;
+    @XmlElement(required = true)
+    protected MultiSurfacePropertyType lod4MultiSurface;
 
     /**
-     * Gets the value of the lod3MultiSurface property.
+     * Gets the value of the lod4MultiSurface property.
      * 
      * @return
      *     possible object is
      *     {@link MultiSurfacePropertyType }
      *     
      */
-    public MultiSurfacePropertyType getLod3MultiSurface() {
-        return lod3MultiSurface;
+    public MultiSurfacePropertyType getLod4MultiSurface() {
+        return lod4MultiSurface;
     }
 
     /**
-     * Sets the value of the lod3MultiSurface property.
+     * Sets the value of the lod4MultiSurface property.
      * 
      * @param value
      *     allowed object is
      *     {@link MultiSurfacePropertyType }
      *     
      */
-    public void setLod3MultiSurface(MultiSurfacePropertyType value) {
-        this.lod3MultiSurface = value;
+    public void setLod4MultiSurface(MultiSurfacePropertyType value) {
+        this.lod4MultiSurface = value;
     }
 
-    public boolean isSetLod3MultiSurface() {
-        return (this.lod3MultiSurface!= null);
+    public boolean isSetLod4MultiSurface() {
+        return (this.lod4MultiSurface!= null);
     }
 
 }

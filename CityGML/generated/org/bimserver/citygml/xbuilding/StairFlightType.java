@@ -17,7 +17,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;extension base="{http://www.citygml.org/ade/xbuilding}VisualElementType">
  *       &lt;sequence>
- *         &lt;element name="PredefinedType" type="{http://www.citygml.org/ade/xbuilding}StairFlightTypeEnum"/>
+ *         &lt;element name="predefinedType" type="{http://www.citygml.org/ade/xbuilding}StairFlightTypeEnum"/>
  *       &lt;/sequence>
  *     &lt;/extension>
  *   &lt;/complexContent>
@@ -34,7 +34,7 @@ public class StairFlightType
     extends VisualElementType
 {
 
-    @XmlElement(name = "PredefinedType", required = true)
+    @XmlElement(required = true)
     protected StairFlightTypeEnum predefinedType;
 
     /**

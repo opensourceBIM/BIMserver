@@ -48,11 +48,27 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link VisualElementType }
+     * Create an instance of {@link StairFlightType }
      * 
      */
-    public VisualElementType createVisualElementType() {
-        return new VisualElementType();
+    public StairFlightType createStairFlightType() {
+        return new StairFlightType();
+    }
+
+    /**
+     * Create an instance of {@link StairType }
+     * 
+     */
+    public StairType createStairType() {
+        return new StairType();
+    }
+
+    /**
+     * Create an instance of {@link ColumnType }
+     * 
+     */
+    public ColumnType createColumnType() {
+        return new ColumnType();
     }
 
     /**
@@ -61,6 +77,14 @@ public class ObjectFactory {
      */
     public AnnotationType createAnnotationType() {
         return new AnnotationType();
+    }
+
+    /**
+     * Create an instance of {@link VisualElementType }
+     * 
+     */
+    public VisualElementType createVisualElementType() {
+        return new VisualElementType();
     }
 
     /**
@@ -80,35 +104,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link StairFlightType }
+     * Create an instance of {@link TransportElementType }
      * 
      */
-    public StairFlightType createStairFlightType() {
-        return new StairFlightType();
-    }
-
-    /**
-     * Create an instance of {@link OpeningElementType }
-     * 
-     */
-    public OpeningElementType createOpeningElementType() {
-        return new OpeningElementType();
-    }
-
-    /**
-     * Create an instance of {@link StairType }
-     * 
-     */
-    public StairType createStairType() {
-        return new StairType();
-    }
-
-    /**
-     * Create an instance of {@link RailingType }
-     * 
-     */
-    public RailingType createRailingType() {
-        return new RailingType();
+    public TransportElementType createTransportElementType() {
+        return new TransportElementType();
     }
 
     /**
@@ -120,19 +120,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ColumnType }
+     * Create an instance of {@link OpeningElementType }
      * 
      */
-    public ColumnType createColumnType() {
-        return new ColumnType();
+    public OpeningElementType createOpeningElementType() {
+        return new OpeningElementType();
     }
 
     /**
-     * Create an instance of {@link TransportElementType }
+     * Create an instance of {@link RailingType }
      * 
      */
-    public TransportElementType createTransportElementType() {
-        return new TransportElementType();
+    public RailingType createRailingType() {
+        return new RailingType();
     }
 
     /**
