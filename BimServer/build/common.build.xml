@@ -32,6 +32,9 @@
 				<path>
 					<fileset refid="lib" />
 				</path>
+				<path>
+					<fileset dir="../../BimWebServer/lib" />
+				</path>
 			</classpath>
 		</javac>
 		<jar destfile="builds/lib/bimwebserver-${version}.jar">
