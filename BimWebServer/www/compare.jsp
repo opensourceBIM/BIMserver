@@ -1,3 +1,4 @@
+<%@page import="org.bimserver.webservices.CompareWriter"%>
 <%@page import="org.bimserver.ifc.compare.CompareResult.Item"%>
 <%@page import="java.util.List"%>
 <%@page import="org.eclipse.emf.ecore.EClass"%>
@@ -41,7 +42,7 @@ Back to
   		<input type="submit" name="email" value="Send"/>
   	</form>
   </div>
-<%= JspHelper.writeCompareResult(compareResult, revision1.getId(), revision2.getId(), sCompareType, project, true) %>
+<%= CompareWriter.writeCompareResult(compareResult, revision1.getId(), revision2.getId(), sCompareType, project, true) %>
 
 <form action="<%=request.getContextPath() %>/download" method="get">
 Download: 

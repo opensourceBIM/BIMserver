@@ -146,8 +146,12 @@ E-mail <a href="mailto:<%= checkVersion.getOnlineVersion().getSupportEmail() %>"
 			<tr><td class="firstcolumn">Revisions</td><td><%=databaseInformation.getNumberOfRevisions() %></td></tr>
 			<tr><td class="firstcolumn">Checkouts</td><td><%=databaseInformation.getNumberOfCheckouts() %></td></tr>
 			<tr><td colspan="2" class="tabletitle">Other</td></tr>
-			<tr><td class="firstcolumn">Server started at</td><td><%=dateFormat.format(loginManager.getService().getServerStartTime().getTime()) %></td></tr>
-			<tr><td class="firstcolumn">Uptime</td><td><%=Formatters.timeSpanToString(loginManager.getService().getServerStartTime(), new GregorianCalendar()) %></td></tr>
+			<tr><td class="firstcolumn">Server started at</td><td><%=dateFormat.format(loginManager.getService().getServerStartTime()) %></td></tr>
+			<%
+				GregorianCalendar gc = new GregorianCalendar();
+				gc.setTime(loginManager.getService().getServerStartTime());
+			%>
+			<tr><td class="firstcolumn">Uptime</td><td><%=Formatters.timeSpanToString(gc, new GregorianCalendar()) %></td></tr>
 		</table>
 	</div>
 	<div class="tabbertab" id="databasetab" title="Database">
