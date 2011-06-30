@@ -15,7 +15,7 @@ import org.bimserver.shared.UserException;
 public class LocalDevBimServerStarter {
 	public static void main(String[] args) {
 		BimServer bimServer = new BimServer();
-		bimServer.init(new File("home"), new File("../BimServer/defaultsettings/shared"), new LocalDevelopmentResourceFetcher());
+		bimServer.init(new File("home"), new LocalDevelopmentResourceFetcher());
 		try {
 			bimServer.getPluginManager().loadPluginsFromEclipseProject(new File("../CityGML"));
 			bimServer.getPluginManager().loadPluginsFromEclipseProject(new File("../Collada"));

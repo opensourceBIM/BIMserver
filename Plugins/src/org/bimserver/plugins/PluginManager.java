@@ -37,10 +37,12 @@ public class PluginManager {
 	private final Set<PluginChangeListener> pluginChangeListeners = new HashSet<PluginChangeListener>();
 	private final ResourceFetcher resourceFetcher;
 	private File homeDir;
+	private final String baseClassPath;
 
-	public PluginManager(ResourceFetcher resourceFetcher, File homeDir) {
+	public PluginManager(ResourceFetcher resourceFetcher, File homeDir, String baseClassPath) {
 		this.resourceFetcher = resourceFetcher;
 		this.homeDir = homeDir;
+		this.baseClassPath = baseClassPath;
 	}
 
 	public void loadPluginsFromEclipseProject(File projectRoot) throws PluginException {
@@ -362,6 +364,9 @@ public class PluginManager {
 	 */
 	public String getCompleteClassPath() {
 		StringBuilder sb = new StringBuilder();
+		if (baseClassPath != null) {
+			sb.append(baseClassPath + File.pathSeparator);
+		}
 		for (Class<? extends Plugin> pluginClass : implementations.keySet()) {
 			Set<PluginContext> set = implementations.get(pluginClass);
 			for (PluginContext pluginContext : set) {

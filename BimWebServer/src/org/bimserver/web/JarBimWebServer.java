@@ -53,7 +53,7 @@ public class JarBimWebServer {
 		System.setProperty("org.apache.cxf.Logger", "org.apache.cxf.common.logging.Log4jLogger");
 		BimServer bimServer = new BimServer();
 	 	try {
-	 		bimServer.init(new File(homedir), new File("."), new JarResourceFetcher());
+	 		bimServer.init(new File(homedir), new JarResourceFetcher());
 			bimServer.getPluginManager().loadAllPluginsFromDirectoryOfJars(new File("plugins"));
 			bimServer.start();
 		} catch (PluginException e) {

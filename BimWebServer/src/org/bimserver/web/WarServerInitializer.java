@@ -58,7 +58,8 @@ public class WarServerInitializer implements ServletContextListener {
 		}
 		ResourceFetcher resourceFetcher = new WarResourceFetcher(servletContext, homeDir);
 		
-		bimServer.init(homeDir, baseDir, resourceFetcher);
+		bimServer.setClassPath(makeClassPath(resourceFetcher.getFile("lib")));
+		bimServer.init(homeDir, resourceFetcher);
 		File file = resourceFetcher.getFile("plugins");
 		try {
 			bimServer.getPluginManager().loadAllPluginsFromDirectoryOfJars(file);
@@ -81,6 +82,16 @@ public class WarServerInitializer implements ServletContextListener {
 		servletContext.setAttribute("bimserver", bimServer);
 	}
 	
+	private String makeClassPath(File file) {
+		StringBuilder sb = new StringBuilder();
+		for (File f : file.listFiles()) {
+			if (f.getName().toLowerCase().endsWith(".jar")) {
+				sb.append(f.getAbsolutePath() + File.pathSeparator);
+			}
+		}
+		return sb.toString();
+	}
+
 	@Override
 	public void contextDestroyed(ServletContextEvent servletContextEvent) {
 		bimServer.stop();
