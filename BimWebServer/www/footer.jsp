@@ -1,7 +1,7 @@
-<jsp:useBean id="loginManager2" scope="session" class="org.bimserver.web.LoginManager" />
+<%@page import="org.bimserver.web.LoginManager"%>
 </div>
 <div class="footer">    
-	<%=loginManager2.getService().getSettingFooterAddition() %>
+	<%=((LoginManager)request.getSession().getAttribute("loginManager")).getService().getSettingFooterAddition() %>
 	<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>
         <div><a href="http://www.bimserver.org"><img src="images/footerlogo.gif" alt="Open Source BIMserver" /></a><br/>(C) GNU GPL v3
        <!--  <a href="<%=getServletContext().getContextPath()%>/settings?action=downloadlog">Download Logfile</a>  -->

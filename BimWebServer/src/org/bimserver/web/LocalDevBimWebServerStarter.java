@@ -75,6 +75,8 @@ public class LocalDevBimWebServerStarter {
 			e.printStackTrace();
 		}
 		
+	 	WebServerHelper.setBimServer(bimServer);
+	 	
 	 	LOGGER.info("Starting BIMWebServer");
 	 	
 		server = new org.eclipse.jetty.server.Server();

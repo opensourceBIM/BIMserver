@@ -28,14 +28,12 @@ import javax.servlet.ServletContextListener;
 
 import org.bimserver.BimServer;
 import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDeadlockException;
 import org.bimserver.database.DatabaseRestartRequiredException;
 import org.bimserver.database.berkeley.DatabaseInitException;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.ResourceFetcher;
 import org.bimserver.resources.WarResourceFetcher;
 import org.bimserver.shared.ServerException;
-import org.bimserver.shared.UserException;
 
 public class WarServerInitializer implements ServletContextListener {
 	private BimServer bimServer;

@@ -1,3 +1,4 @@
+<%@page import="org.bimserver.web.WebServerHelper"%>
 <%@page import="org.bimserver.models.log.AccessMethod"%>
 <%@page import="org.bimserver.version.Version"%>
 <%@page import="org.bimserver.version.VersionChecker"%>
@@ -10,13 +11,12 @@
 <%@page import="org.bimserver.ServerInfo.ServerState"%><jsp:include page="htmlheader.jsp" />
 <jsp:useBean id="errorMessages" scope="request" class="org.bimserver.web.ErrorMessages" />
 <jsp:useBean id="loginManager" scope="session" class="org.bimserver.web.LoginManager" />
-<jsp:useBean id="bimServer" scope="application" class="org.bimserver.BimServer" />
 <body>
 	<%
 	if (loginManager.getService() == null) {
-		loginManager.setService(bimServer.getServiceFactory().newService(AccessMethod.WEB_INTERFACE));
+		loginManager.setService(WebServerHelper.getBimServer().getServiceFactory().newService(AccessMethod.WEB_INTERFACE));
 	}
-	if (bimServer.getServerInfo().isAvailable() || bimServer.getServerInfo().getServerState() == ServerInfo.ServerState.MIGRATION_REQUIRED) {
+	if (WebServerHelper.getBimServer().getServerInfo().isAvailable() || WebServerHelper.getBimServer().getServerInfo().getServerState() == ServerInfo.ServerState.MIGRATION_REQUIRED) {
 		Version version = VersionChecker.getInstance().getLocalVersion();
 		boolean redirected = false;
 		if (request.getParameter("login") != null) {
@@ -108,13 +108,13 @@ if (loginManager.getService().isSettingAllowSelfRegistration()) {
 </script>
 <%
 		}
- 	} else if (bimServer.getServerInfo().getServerState() == ServerInfo.ServerState.NOT_SETUP) {
+ 	} else if (WebServerHelper.getBimServer().getServerInfo().getServerState() == ServerInfo.ServerState.NOT_SETUP) {
  		response.sendRedirect("setup.jsp");
- 	} else if (bimServer.getServerInfo().getServerState() == ServerInfo.ServerState.MIGRATION_REQUIRED || bimServer.getServerInfo().getServerState() == ServerInfo.ServerState.MIGRATION_IMPOSSIBLE) {
+ 	} else if (WebServerHelper.getBimServer().getServerInfo().getServerState() == ServerInfo.ServerState.MIGRATION_REQUIRED || WebServerHelper.getBimServer().getServerInfo().getServerState() == ServerInfo.ServerState.MIGRATION_IMPOSSIBLE) {
  		response.sendRedirect("migrations.jsp");
- 	} else if (bimServer.getServerInfo().getServerState() == ServerInfo.ServerState.FATAL_ERROR || bimServer.getServerInfo().getServerState() == ServerInfo.ServerState.UNKNOWN) {
+ 	} else if (WebServerHelper.getBimServer().getServerInfo().getServerState() == ServerInfo.ServerState.FATAL_ERROR || WebServerHelper.getBimServer().getServerInfo().getServerState() == ServerInfo.ServerState.UNKNOWN) {
  		response.sendRedirect("error.jsp");
- 	} else if (bimServer.getServerInfo().getServerState() == ServerInfo.ServerState.FATAL_ERROR) {
+ 	} else if (WebServerHelper.getBimServer().getServerInfo().getServerState() == ServerInfo.ServerState.FATAL_ERROR) {
  		response.sendRedirect("error.jsp");
  	}
 %>
