@@ -64,13 +64,9 @@ public class WarServerInitializer implements ServletContextListener {
 		try {
 			bimServer.getPluginManager().loadAllPluginsFromDirectoryOfJars(file);
 			bimServer.start();
-		} catch (UserException e) {
-			e.printStackTrace();
 		} catch (ServerException e) {
 			e.printStackTrace();
 		} catch (DatabaseInitException e) {
-			e.printStackTrace();
-		} catch (BimDeadlockException e) {
 			e.printStackTrace();
 		} catch (BimDatabaseException e) {
 			e.printStackTrace();

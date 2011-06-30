@@ -1,7 +1,6 @@
 package org.bimserver.longaction;
 
 import org.bimserver.BimServer;
-import org.bimserver.ServerInfo;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
@@ -68,7 +67,7 @@ public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 			session = bimServer.getDatabase().createReadOnlySession();
 			startClashDetection(session);
 		} catch (OutOfMemoryError e) {
-			ServerInfo.setOutOfMemory();
+			bimServer.getServerInfo().setOutOfMemory();
 			return;
 		} catch (Exception e) {
 			LOGGER.error("", e);

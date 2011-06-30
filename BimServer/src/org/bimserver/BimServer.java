@@ -23,6 +23,7 @@ import org.bimserver.database.Database;
 import org.bimserver.database.DatabaseRestartRequiredException;
 import org.bimserver.database.berkeley.BerkeleyColumnDatabase;
 import org.bimserver.database.berkeley.DatabaseInitException;
+import org.bimserver.database.migrations.InconsistentModelsException;
 import org.bimserver.database.query.conditions.AttributeCondition;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.literals.StringLiteral;
@@ -83,7 +84,9 @@ public class BimServer {
 	private PluginManager pluginManager;
 	private MailSystem mailSystem;
 	private DiskCacheManager diskCacheManager;
+	private ServerInfo serverInfo = new ServerInfo();
 	private String classPath = System.getProperty("java.class.path");
+	private ServiceFactory serviceFactory;
 	
 	/**
 	 * Initialize this BIMserver
@@ -112,10 +115,10 @@ public class BimServer {
 				@Override
 				public void uncaughtException(Thread t, Throwable e) {
 					if (e instanceof OutOfMemoryError) {
-						ServerInfo.setOutOfMemory();
+						serverInfo.setOutOfMemory();
 						LOGGER.error("", e);
 					} else if (e instanceof Error) {
-						ServerInfo.setErrorMessage(e.getMessage());
+						serverInfo.setErrorMessage(e.getMessage());
 						LOGGER.error("", e);
 					}
 				}
@@ -162,17 +165,14 @@ public class BimServer {
 			
 
 		} catch (Throwable e) {
-			ServerInfo.setErrorMessage(e.getMessage());
+			serverInfo.setErrorMessage(e.getMessage());
 			LOGGER.error("", e);
 		}		
 	}
 	
-	public void start() throws DatabaseInitException, BimDeadlockException, BimDatabaseException, PluginException, DatabaseRestartRequiredException, UserException, ServerException {
+	public void start() throws DatabaseInitException, BimDatabaseException, PluginException, DatabaseRestartRequiredException, ServerException {
 		pluginManager.initAllLoadedPlugins();
 		serverStartTime = new GregorianCalendar();
-
-		bimScheduler = new JobScheduler();
-		bimScheduler.start();
 
 		longActionManager = new LongActionManager();
 
@@ -187,19 +187,33 @@ public class BimServer {
 			bimDatabase.close();
 			columnDatabase = new BerkeleyColumnDatabase(databaseDir);
 			bimDatabase = new Database(this, packages, columnDatabase);
-			bimDatabase.init();
+			try {
+				bimDatabase.init();
+			} catch (InconsistentModelsException e1) {
+				LOGGER.error("", e);
+				serverInfo.setServerState(ServerState.FATAL_ERROR);
+				serverInfo.setErrorMessage("Inconsistent models");
+			}
+		} catch (InconsistentModelsException e) {
+			LOGGER.error("", e);
+			serverInfo.setServerState(ServerState.FATAL_ERROR);
+			serverInfo.setErrorMessage("Inconsistent models");
 		}
 
-		createSerializersAndEngines();
+		try {
+			createSerializersAndEngines();
+		} catch (BimDeadlockException e) {
+			throw new BimDatabaseException(e);
+		}
 		
 		settingsManager = new SettingsManager(bimDatabase);
-		ServerInfo.init(bimDatabase, settingsManager);
-		ServerInfo.update();
+		serverInfo.init(this);
+		serverInfo.update();
 
 		emfSerializerFactory = new EmfSerializerFactory();
 
-		if (ServerInfo.getServerState() == ServerState.MIGRATION_REQUIRED) {
-			ServerInfo.registerStateChangeListener(new StateChangeListener() {
+		if (serverInfo.getServerState() == ServerState.MIGRATION_REQUIRED) {
+			serverInfo.registerStateChangeListener(new StateChangeListener() {
 				@Override
 				public void stateChanged(ServerState oldState, ServerState newState) {
 					if (oldState == ServerState.MIGRATION_REQUIRED && newState == ServerState.RUNNING) {
@@ -216,16 +230,23 @@ public class BimServer {
 		diskCacheManager = new DiskCacheManager(new File(homeDir, "cache"), settingsManager);
 
 		mergerFactory = new MergerFactory(settingsManager);
-		ServiceFactory.init(this);
-		setSystemService(ServiceFactory.getINSTANCE().newService(AccessMethod.INTERNAL));
-		if (!((Service) getSystemService()).loginAsSystem()) {
-			throw new RuntimeException("System user not found");
+		serviceFactory = new ServiceFactory(this);
+		setSystemService(serviceFactory.newService(AccessMethod.INTERNAL));
+		try {
+			if (!((Service) getSystemService()).loginAsSystem()) {
+				throw new RuntimeException("System user not found");
+			}
+		} catch (UserException e) {
+			e.printStackTrace();
 		}
 		
-		RestApplication.setServiceFactory(ServiceFactory.getINSTANCE());
+		RestApplication.setServiceFactory(serviceFactory);
+
+		bimScheduler = new JobScheduler(this);
+		bimScheduler.start();
 
 		RpcServer rpcServer = new RpcServer(SocketRpcConnectionFactories.createServerRpcConnectionFactory(8020), Executors.newFixedThreadPool(10), false);
-		rpcServer.registerBlockingService(org.bimserver.pb.Service.ServiceInterface.newReflectiveBlockingService(org.bimserver.pb.Service.ServiceInterface.newBlockingStub(new ReflectiveRpcChannel(ServiceFactory.getINSTANCE()))));
+		rpcServer.registerBlockingService(org.bimserver.pb.Service.ServiceInterface.newReflectiveBlockingService(org.bimserver.pb.Service.ServiceInterface.newBlockingStub(new ReflectiveRpcChannel(serviceFactory))));
 		rpcServer.startServer();
 
 //		if (serverType == ServerType.DEPLOYED_WAR) {
@@ -242,6 +263,8 @@ public class BimServer {
 		try {
 			session.store(serverStarted);
 			session.commit();
+		} catch (BimDeadlockException e) {
+			throw new BimDatabaseException(e);
 		} finally {
 			session.close();
 		}
@@ -427,5 +450,13 @@ public class BimServer {
 	
 	public String getClassPath() {
 		return classPath;
+	}
+
+	public ServerInfo getServerInfo() {
+		return serverInfo;
+	}
+
+	public ServiceFactory getServiceFactory() {
+		return serviceFactory;
 	}
 }

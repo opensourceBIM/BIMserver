@@ -3,6 +3,7 @@ package org.bimserver.servlets;
 import javax.servlet.ServletConfig;
 
 import org.apache.cxf.jaxrs.servlet.CXFNonSpringJaxrsServlet;
+import org.bimserver.BimServer;
 import org.bimserver.webservices.RestAuthentication;
 
 public class RestServlet extends CXFNonSpringJaxrsServlet {
@@ -11,6 +12,7 @@ public class RestServlet extends CXFNonSpringJaxrsServlet {
 	@Override
 	public void loadBus(ServletConfig servletConfig) {
 		super.loadBus(servletConfig);
-		getBus().getInInterceptors().add(new RestAuthentication());
+		BimServer bimServer = (BimServer) servletConfig.getServletContext().getAttribute("bimserver");
+		getBus().getInInterceptors().add(new RestAuthentication(bimServer));
 	}
 }

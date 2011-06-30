@@ -21,19 +21,14 @@ package org.bimserver.web;
  *****************************************************************************/
 
 import org.bimserver.interfaces.objects.SUserType;
-import org.bimserver.models.log.AccessMethod;
 import org.bimserver.shared.ServiceException;
 import org.bimserver.shared.ServiceInterface;
-import org.bimserver.webservices.ServiceFactory;
 
 public class LoginManager {
 	private static ServiceInterface systemService;
 	private ServiceInterface service;
 
 	public LoginManager() {
-		if (ServiceFactory.isInitialized()) {
-			service = ServiceFactory.getINSTANCE().newService(AccessMethod.WEB_INTERFACE);
-		}
 	}
 
 	public static void setSystemService(ServiceInterface systemService) {
@@ -44,6 +39,10 @@ public class LoginManager {
 		return service.getCurrentUser().getOid();
 	}
 
+	public void setService(ServiceInterface service) {
+		this.service = service;
+	}	
+	
 	public ServiceInterface getService() {
 		return service;
 	}

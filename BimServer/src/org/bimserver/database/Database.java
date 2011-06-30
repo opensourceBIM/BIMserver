@@ -30,8 +30,6 @@ import java.util.Set;
 
 import org.bimserver.BimServer;
 import org.bimserver.MetaDataManager;
-import org.bimserver.ServerInfo;
-import org.bimserver.ServerInfo.ServerState;
 import org.bimserver.SettingsManager;
 import org.bimserver.database.actions.AddUserDatabaseAction;
 import org.bimserver.database.actions.CreateBaseProject;
@@ -132,7 +130,7 @@ public class Database implements BimDatabase {
 		return databaseSchemaVersion;
 	}
 
-	public void init() throws DatabaseInitException, DatabaseRestartRequiredException {
+	public void init() throws DatabaseInitException, DatabaseRestartRequiredException, InconsistentModelsException {
 		DatabaseSession databaseSession = createSession(true);
 		try {
 			if (getColumnDatabase().isNew()) {
@@ -161,10 +159,6 @@ public class Database implements BimDatabase {
 				try {
 					migrator.migrate(databaseSession);
 				} catch (MigrationException e) {
-					LOGGER.error("", e);
-				} catch (InconsistentModelsException e) {
-					ServerInfo.setServerState(ServerState.FATAL_ERROR);
-					ServerInfo.setErrorMessage("Inconsistent models");
 					LOGGER.error("", e);
 				}
 				registry.save("isnew", true, databaseSession);

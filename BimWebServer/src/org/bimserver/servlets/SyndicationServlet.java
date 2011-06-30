@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.codec.binary.Base64;
+import org.bimserver.BimServer;
 import org.bimserver.interfaces.objects.SCheckout;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevision;
@@ -21,7 +22,6 @@ import org.bimserver.shared.SRevisionIdComparator;
 import org.bimserver.shared.ServiceException;
 import org.bimserver.shared.ServiceInterface;
 import org.bimserver.shared.UserException;
-import org.bimserver.webservices.ServiceFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -42,6 +42,7 @@ public class SyndicationServlet extends HttpServlet {
 
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		BimServer bimServer = (BimServer) request.getServletContext().getAttribute("bimserver");
 		if (request.getHeader("Authorization") != null) {
 			String authorization = request.getHeader("Authorization");
 			String usernamePasswordEncoded = authorization.substring(6);
@@ -55,7 +56,7 @@ public class SyndicationServlet extends HttpServlet {
 			String password = split[1];
 			ServiceInterface service = (ServiceInterface) getServletContext().getAttribute("service");
 			if (service == null) {
-				service = ServiceFactory.getINSTANCE().newService(AccessMethod.SYNDICATION);
+				service = bimServer.getServiceFactory().newService(AccessMethod.SYNDICATION);
 			}
 			try {
 				if (service.login(username, password)) {

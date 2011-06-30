@@ -15,6 +15,7 @@ import org.apache.cxf.message.Exchange;
 import org.apache.cxf.message.Message;
 import org.apache.cxf.transport.Conduit;
 import org.apache.cxf.ws.addressing.EndpointReferenceType;
+import org.bimserver.BimServer;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.shared.ServiceException;
 import org.bimserver.shared.ServiceInterface;
@@ -25,17 +26,22 @@ import org.slf4j.LoggerFactory;
 
 public class RestAuthentication extends SoapHeaderInterceptor {
 	private static final Logger LOGGER = LoggerFactory.getLogger(RestAuthentication.class);
+	private final BimServer bimServer;
 	
+	public RestAuthentication(BimServer bimServer) {
+		this.bimServer = bimServer;
+	}
+
 	@Override
 	public void handleMessage(Message message) throws Fault {
 		Token token = (Token)message.getExchange().getService().get("token");
 		ServiceInterface newService = null;
 		if (token == null) {
-			newService = ServiceFactory.getINSTANCE().newService(AccessMethod.REST);
+			newService = bimServer.getServiceFactory().newService(AccessMethod.REST);
 			message.getExchange().getService().put("token", ((Service)newService).getCurrentToken());
 		} else {
 			try {
-				newService = ServiceFactory.getINSTANCE().getService((Token)message.getExchange().getService().get("token"));
+				newService = bimServer.getServiceFactory().getService((Token)message.getExchange().getService().get("token"));
 			} catch (UserException e) {
 				LOGGER.error("", e);
 			}
