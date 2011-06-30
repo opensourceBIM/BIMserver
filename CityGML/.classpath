@@ -2,7 +2,7 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="generated"/>
-	<classpathentry kind="lib" path="lib/citygml4j.jar" sourcepath="C:/Users/Ruben de Laat/BIMserverIndigo32/BimServer/libsrc/citygml4j-1.0-jaxb-src.jar"/>
+	<classpathentry kind="lib" path="lib/citygml4j.jar" sourcepath="C:/Users/Ruben de Laat/BIMserverIndigo32/BimServer/libsrc/citygml4j1.0.jar"/>
 	<classpathentry kind="lib" path="lib/jsr173_1.0_api.jar"/>
 	<classpathentry kind="lib" path="lib/sjsxp.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>

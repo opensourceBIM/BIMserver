@@ -9,7 +9,7 @@ import org.bimserver.database.BimDeadlockException;
 import org.bimserver.database.DatabaseRestartRequiredException;
 import org.bimserver.database.berkeley.DatabaseInitException;
 import org.bimserver.plugins.PluginException;
-import org.bimserver.shared.LocalDevelopmentResourceFetcher;
+import org.bimserver.resources.JarResourceFetcher;
 import org.bimserver.shared.ServerException;
 import org.bimserver.shared.UserException;
 import org.eclipse.jetty.server.bio.SocketConnector;
@@ -18,9 +18,9 @@ import org.eclipse.jetty.webapp.WebAppContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class JettyWebServer {
+public class JarBimWebServer {
 	private org.eclipse.jetty.server.Server server;
-	private static final Logger LOGGER = LoggerFactory.getLogger(JettyWebServer.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(JarBimWebServer.class);
 
 	public static void main(String[] args) {
 		String address = "127.0.0.1";
@@ -35,7 +35,7 @@ public class JettyWebServer {
 				homedir = arg.substring(8);
 			}
 		}
-		final JettyWebServer server = new JettyWebServer();
+		final JarBimWebServer server = new JarBimWebServer();
 		server.start(address, Integer.parseInt(port), homedir, "www");
 	}
 
@@ -51,32 +51,25 @@ public class JettyWebServer {
 
 	public void start(String address, int port, String homedir, String resourceBase) {
 		System.setProperty("org.apache.cxf.Logger", "org.apache.cxf.common.logging.Log4jLogger");
-
 		BimServer bimServer = new BimServer();
-		bimServer.init(new File(homedir), new File("../BimServer/defaultsettings/" + "shared"), new LocalDevelopmentResourceFetcher());
 	 	try {
-			bimServer.getPluginManager().loadPluginsFromEclipseProject(new File("../CityGML"));
-			bimServer.getPluginManager().loadPluginsFromEclipseProject(new File("../Collada"));
-			bimServer.getPluginManager().loadPluginsFromEclipseProject(new File("../IfcPlugins"));
-			bimServer.getPluginManager().loadPluginsFromEclipseProject(new File("../MiscSerializers"));
-			bimServer.getPluginManager().loadPluginsFromEclipseProject(new File("../O3d"));
-			bimServer.getPluginManager().loadPluginsFromEclipseProject(new File("../IFCEngine"));
-			bimServer.getPluginManager().loadPluginsFromEclipseProject(new File("../buildingSMARTLibrary"));
+	 		bimServer.init(new File(homedir), new File("."), new JarResourceFetcher());
+			bimServer.getPluginManager().loadAllPluginsFromDirectoryOfJars(new File("plugins"));
 			bimServer.start();
-		} catch (PluginException e1) {
-			e1.printStackTrace();
+		} catch (PluginException e) {
+			LOGGER.error("", e);
 		} catch (UserException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (ServerException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (DatabaseInitException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (BimDeadlockException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (BimDatabaseException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (DatabaseRestartRequiredException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 		
 		server = new org.eclipse.jetty.server.Server();
