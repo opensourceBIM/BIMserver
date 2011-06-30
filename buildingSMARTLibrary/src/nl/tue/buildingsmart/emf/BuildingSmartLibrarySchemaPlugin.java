@@ -77,7 +77,7 @@ public class BuildingSmartLibrarySchemaPlugin implements SchemaPlugin {
 			SchemaDefinition schema = schemaParser.getSchema();
 			new DerivedReader(schemaFile, schema);
 			if (schema != null) {
-				LOGGER.info("IFC-Schema successfully loaded");
+				LOGGER.info("IFC-Schema successfully loaded from " + schemaFile.getAbsolutePath());
 			} else {
 				LOGGER.error("Error loading IFC-Schema");
 			}

@@ -152,7 +152,6 @@ public class RpcServer {
 
 		@Override
 		public void run() {
-			LOGGER.info("Starting RPC server");
 			try {
 				running = true;
 				while (running) {
