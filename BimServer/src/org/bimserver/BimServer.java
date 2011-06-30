@@ -196,9 +196,6 @@ public class BimServer {
 		ServerInfo.init(bimDatabase, settingsManager);
 		ServerInfo.update();
 
-		File schemaFile = resourceFetcher.getFile("IFC2X3_FINAL.exp").getAbsoluteFile();
-		LOGGER.info("Using " + schemaFile + " as engine schema");
-
 		emfSerializerFactory = new EmfSerializerFactory();
 
 		if (ServerInfo.getServerState() == ServerState.MIGRATION_REQUIRED) {
@@ -250,7 +247,7 @@ public class BimServer {
 		}
 		CommandLine commandLine = new CommandLine(this);
 		commandLine.start();
-		LOGGER.info("Done initializing");		
+		LOGGER.info("Done starting BIMserver");		
 	}
 
 	private void createSerializersAndEngines() throws BimDeadlockException, BimDatabaseException, PluginException {

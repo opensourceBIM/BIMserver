@@ -226,8 +226,8 @@ public class Database implements BimDatabase {
 	 * "Parsing", "Storing" or "Searching Clashes"
 	 */
 	private void fixCheckinStates(DatabaseSession databaseSession) {
-		LOGGER.info("Fixing broken checkin states");
 		try {
+			int fixed = 0;
 			IfcModel model = databaseSession.getAllOfType(StorePackage.eINSTANCE.getRevision(), Database.STORE_PROJECT_ID, Database.STORE_PROJECT_REVISION_ID, false);
 			for (IdEObject idEObject : model.getValues()) {
 				if (idEObject instanceof Revision) {
@@ -239,14 +239,19 @@ public class Database implements BimDatabase {
 							revision.getLastConcreteRevision().setChecksum(null);
 						}
 						revision.setLastError("Server crash while uploading");
+						fixed++;
 					}
 					if (revision.getState() == CheckinState.SEARCHING_CLASHES) {
 						LOGGER.info("Changing " + revision.getState().getName() + " to " + CheckinState.CLASHES_ERROR.getName() + " for revision " + revision.getOid());
 						revision.setState(CheckinState.CLASHES_ERROR);
 						revision.setLastError("Server crash while detecting clashes");
+						fixed++;
 					}
 					databaseSession.store(revision);
 				}
+			}
+			if (fixed > 0) {
+				LOGGER.info("Fixed broken checkin states (" + fixed + ")");
 			}
 		} catch (BimDatabaseException e) {
 			LOGGER.error("", e);

@@ -97,7 +97,7 @@ class SocketServerRpcConnectionFactory implements ServerRpcConnectionFactory {
 	private synchronized ServerSocket initServerSocket() throws IOException {
 		ServerSocket local = serverSocket;
 		if (local == null) {
-			LOGGER.info("Listening for requests on port: " + port);
+			LOGGER.info("Starting Protocol Buffers Server on port " + port);
 			serverSocket = local = socketFactory.createServerSocket(port, backlog, bindAddr);
 		}
 		return local;

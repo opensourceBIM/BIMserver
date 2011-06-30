@@ -84,7 +84,6 @@ public class BerkeleyColumnDatabase implements ColumnDatabase {
 				LOGGER.error("Error creating database dir \"" + dataDir.getAbsolutePath() + "\"");
 			}
 		}
-		long s = System.nanoTime();
 		EnvironmentConfig envConfig = new EnvironmentConfig();
 		envConfig.setCachePercent(25);
 		envConfig.setAllowCreate(true);
@@ -117,9 +116,6 @@ public class BerkeleyColumnDatabase implements ColumnDatabase {
 		cursorConfig = new CursorConfig();
 		// cursorConfig.setReadCommitted(true);
 		cursorConfig.setReadUncommitted(true);
-
-		long e = System.nanoTime();
-		LOGGER.info("Berkeley Database Init done " + ((e - s) / 1000000) + " ms");
 	}
 
 	public boolean isNew() {

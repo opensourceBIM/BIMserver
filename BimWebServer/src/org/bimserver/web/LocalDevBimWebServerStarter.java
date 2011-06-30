@@ -79,6 +79,8 @@ public class LocalDevBimWebServerStarter {
 			e.printStackTrace();
 		}
 		
+	 	LOGGER.info("Starting BIMWebServer");
+	 	
 		server = new org.eclipse.jetty.server.Server();
 		HashSessionIdManager hashSessionIdManager = new HashSessionIdManager(new Random());
 		server.setSessionIdManager(hashSessionIdManager);
@@ -96,6 +98,6 @@ public class LocalDevBimWebServerStarter {
 		} catch (Exception e) {
 			LOGGER.error("", e);
 		}
-		LOGGER.info("Server started successfully, click on the \"launch webbrowser\" button, or go to: http://" + address + ":" + port);
+		LOGGER.info("BIMWebServer started successfully, click on the \"launch webbrowser\" button, or go to: http://" + address + ":" + port);
 	}
 }
