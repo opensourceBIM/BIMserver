@@ -84,7 +84,8 @@
 			</classpath>
 		</javac>
 		<mkdir dir="builds/buildingSMARTLibrary/plugin"/>
-		<copy todir="builds/buildingSMARTLibrary">
+		<mkdir dir="builds/buildingSMARTLibrary/schema"/>
+		<copy todir="builds/buildingSMARTLibrary/schema">
 			<fileset dir="../../buildingSMARTLibrary/schema"/>
 		</copy>
 		<copy todir="builds/buildingSMARTLibrary/plugin">

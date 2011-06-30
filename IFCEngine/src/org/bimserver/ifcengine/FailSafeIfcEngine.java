@@ -79,7 +79,11 @@ public class FailSafeIfcEngine implements IfcEngine {
 						}
 					}
 				}
-				command.append(classPath + File.pathSeparator);
+				if (classPath.contains(" ")) {
+					command.append("\"" + classPath + "\"" + File.pathSeparator);
+				} else {
+					command.append(classPath + File.pathSeparator);
+				}
 			}
 			command.append("\"");
 			command.append(" -Xmx512m");
