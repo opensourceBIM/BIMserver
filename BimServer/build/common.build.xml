@@ -116,6 +116,9 @@
 			</classpath>
 		</javac>
 		<mkdir dir="builds/ifcengine/plugin"/>
+		<copy todir="builds/ifcengine/lib">
+			<fileset dir="../../IFCEngine/lib"/>
+		</copy>
 		<copy todir="builds/ifcengine/plugin">
 			<fileset dir="../../IFCEngine/plugin"></fileset>
 		</copy>
@@ -341,13 +344,8 @@
 			<fileset dir="../lib">
 				<include name="**/*.jar" />
 			</fileset>
-			<fileset dir="../../CityGML/lib">
-				<include name="*.jar" />
-			</fileset>
-		</copy>
-		<copy todir="builds/BuildJar/lib">
-			<fileset dir="../../IFCEngine/lib">
-				<include name="**" />
+			<fileset dir="../../BimWebServer/lib">
+				<include name="**/*.jar" />
 			</fileset>
 		</copy>
 		<mkdir dir="builds/BuildJar/classes" />
@@ -441,20 +439,9 @@
 		<copy todir="builds/BuildWar/WEB-INF/lib" flatten="true">
 			<fileset dir="../lib">
 				<include name="**/*.jar" />
-				<exclude name="jetty*.jar" />
-				<exclude name="jetty/*.jar" />
-				<exclude name="jetty/jsp/*.jar" />
 				<exclude name="ant-1.6.5.jar" />
 				<exclude name="core-3.1.1.jar" />
 				<exclude name="cxf/geronimo-servlet_3.0_spec-1.0.jar" />
-			</fileset>
-			<fileset dir="../../CityGML/lib">
-				<include name="*.jar" />
-			</fileset>
-		</copy>
-		<copy todir="builds/BuildWar/WEB-INF/lib">
-			<fileset dir="../../IFCEngine/lib">
-				<include name="**" />
 			</fileset>
 		</copy>
 		<antcall target="Build"/>
