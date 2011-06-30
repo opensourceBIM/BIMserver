@@ -60,7 +60,11 @@ public class FailSafeIfcEngine implements IfcEngine {
 				tempDir.mkdir();
 			}
 			StringBuilder command = new StringBuilder("java");
-			command.append(" -Djna.library.path=" + nativeBaseDir.toString());
+			if (nativeBaseDir.toString().contains(" ")) {
+				command.append(" -Djna.library.path=\"" + nativeBaseDir.toString() + "\"");
+			} else {
+				command.append(" -Djna.library.path=" + nativeBaseDir.toString());
+			}
 			if (tempDir.getAbsolutePath().toString().contains(" ")) {
 				command.append(" -Djava.io.tmpdir=\"" + tempDir.getAbsolutePath().toString() + "\"");
 			} else {
@@ -79,11 +83,7 @@ public class FailSafeIfcEngine implements IfcEngine {
 						}
 					}
 				}
-				if (classPath.contains(" ")) {
-					command.append("\"" + classPath + "\"" + File.pathSeparator);
-				} else {
-					command.append(classPath + File.pathSeparator);
-				}
+				command.append(classPath + File.pathSeparator);
 			}
 			command.append("\"");
 			command.append(" -Xmx512m");
@@ -93,7 +93,7 @@ public class FailSafeIfcEngine implements IfcEngine {
 			} else {
 				command.append(" " + schemaFile.getAbsolutePath());
 			}
-			LOGGER.info(command.toString());
+			LOGGER.error(command.toString());
 			process = Runtime.getRuntime().exec(command.toString());
 			in = new DataInputStream(new BufferedInputStream(process.getInputStream()));
 			out = new DataOutputStream(new BufferedOutputStream(process.getOutputStream()));
