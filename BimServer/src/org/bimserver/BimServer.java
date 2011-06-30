@@ -77,25 +77,23 @@ public class BimServer {
 	private LongActionManager longActionManager;
 	private ServiceInterface systemService;
 	private File homeDir;
-	private File baseDir;
 	private SettingsManager settingsManager;
 	private EmfSerializerFactory emfSerializerFactory;
 	private MergerFactory mergerFactory;
 	private PluginManager pluginManager;
 	private MailSystem mailSystem;
 	private DiskCacheManager diskCacheManager;
+	private String classPath = System.getProperty("java.class.path");
 	
 	/**
 	 * Initialize this BIMserver
 	 * 
 	 * @param homeDir A directory where the user can store instance specific configuration files
-	 * @param baseDir A directory where the BIMserver will copy file from when they are not available in the homedir, this directory will be used when no homedir is provider
 	 * @param resourceFetcher A resource fetcher
 	 */
-	public void init(File homeDir, File baseDir, ResourceFetcher resourceFetcher) {
+	public void init(File homeDir, ResourceFetcher resourceFetcher) {
 		try {
 			this.homeDir = homeDir;
-			this.baseDir = baseDir;
 			this.resourceFetcher = resourceFetcher;
 			if (homeDir != null) {
 				initHomeDir();
@@ -128,8 +126,7 @@ public class BimServer {
 			VersionChecker.init(resourceFetcher);
 			
 			try {
-				LOGGER.info("Creating plugin manager");
-				pluginManager = new PluginManager(resourceFetcher, homeDir);
+				pluginManager = new PluginManager(resourceFetcher, homeDir, classPath);
 				pluginManager.addPluginChangeListener(new PluginChangeListener() {
 					@Override
 					public void pluginStateChanged(PluginContext pluginContext, boolean enabled) {
@@ -157,14 +154,6 @@ public class BimServer {
 						}
 					}
 				});
-//				if (serverType == ServerType.DEV_ENVIRONMENT) {
-//				} else if (serverType == ServerType.DEPLOYED_WAR) {
-//					File file = resourceFetcher.getFile("plugins");
-//					LOGGER.info("Going to load plugins from " + file.getAbsolutePath());
-//					pluginManager.loadAllPluginsFromDirectoryOfJars(file);
-//				} else if (serverType == ServerType.STANDALONE_JAR) {
-//					pluginManager.loadAllPluginsFromDirectoryOfJars(new File("plugins"));
-//				}
 				pluginManager.loadPlugin(GuidanceProviderPlugin.class, "Internal", new SchemaFieldGuidanceProviderPlugin());
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -433,5 +422,13 @@ public class BimServer {
 	
 	public DiskCacheManager getDiskCacheManager() {
 		return diskCacheManager;
+	}
+
+	public void setClassPath(String classPath) {
+		this.classPath = classPath;
+	}
+	
+	public String getClassPath() {
+		return classPath;
 	}
 }

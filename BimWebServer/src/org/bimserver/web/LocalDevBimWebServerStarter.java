@@ -18,9 +18,9 @@ import org.eclipse.jetty.webapp.WebAppContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class LocalDevBimWebServer {
+public class LocalDevBimWebServerStarter {
 	private org.eclipse.jetty.server.Server server;
-	private static final Logger LOGGER = LoggerFactory.getLogger(LocalDevBimWebServer.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(LocalDevBimWebServerStarter.class);
 
 	public static void main(String[] args) {
 		String address = "127.0.0.1";
@@ -35,7 +35,7 @@ public class LocalDevBimWebServer {
 				homedir = arg.substring(8);
 			}
 		}
-		final LocalDevBimWebServer server = new LocalDevBimWebServer();
+		final LocalDevBimWebServerStarter server = new LocalDevBimWebServerStarter();
 		server.start(address, Integer.parseInt(port), homedir, "www");
 	}
 
@@ -53,7 +53,7 @@ public class LocalDevBimWebServer {
 		System.setProperty("org.apache.cxf.Logger", "org.apache.cxf.common.logging.Log4jLogger");
 
 		BimServer bimServer = new BimServer();
-		bimServer.init(new File(homedir), new File("../BimServer/defaultsettings/shared"), new LocalDevelopmentResourceFetcher());
+		bimServer.init(new File(homedir), new LocalDevelopmentResourceFetcher());
 	 	try {
 			bimServer.getPluginManager().loadPluginsFromEclipseProject(new File("../CityGML"));
 			bimServer.getPluginManager().loadPluginsFromEclipseProject(new File("../Collada"));
