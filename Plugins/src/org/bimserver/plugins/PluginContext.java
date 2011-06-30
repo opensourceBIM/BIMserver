@@ -1,5 +1,7 @@
 package org.bimserver.plugins;
 
+import java.io.InputStream;
+
 public class PluginContext {
 
 	private Plugin plugin;
@@ -34,5 +36,9 @@ public class PluginContext {
 
 	public boolean isEnabled() {
 		return enabled;
+	}
+
+	public InputStream getResourceAsInputStream(String name) {
+		return plugin.getClass().getClassLoader().getResourceAsStream(name);
 	}
 }

@@ -67,9 +67,8 @@ public class PluginManager {
 					}
 				}
 			}
-			File binFolder = new File(projectRoot, "bin");
-			PluginClassloader pluginClassloader = new PluginClassloader(delegatingClassLoader, binFolder);
-			loadPlugins(pluginClassloader, binFolder.getAbsolutePath(), pluginDescriptor);
+			EclipsePluginClassloader pluginClassloader = new EclipsePluginClassloader(delegatingClassLoader, projectRoot);
+			loadPlugins(pluginClassloader, projectRoot.getAbsolutePath(), pluginDescriptor);
 		} catch (JAXBException e) {
 			throw new PluginException(e);
 		} catch (FileNotFoundException e) {
@@ -378,5 +377,17 @@ public class PluginManager {
 			throw new PluginException("No deserializers with extension " + extension + " found");
 		}
 		return allDeserializerPlugins.iterator().next();
+	}
+
+	public SchemaPlugin getFirstSchemaPlugin(boolean onlyEnabled) throws PluginException {
+		Collection<SchemaPlugin> allSchemaPlugins = getAllSchemaPlugins(onlyEnabled);
+		if (allSchemaPlugins.size() == 0) {
+			throw new PluginException("No schema plugins found");
+		}
+		SchemaPlugin schemaPlugin = allSchemaPlugins.iterator().next();
+		if (!schemaPlugin.isInitialized()) {
+			schemaPlugin.init(this);
+		}
+		return schemaPlugin;
 	}
 }
