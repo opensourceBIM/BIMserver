@@ -25,7 +25,7 @@ public class LocalDevBimServerStarter {
 			bimServer.getPluginManager().loadPluginsFromEclipseProject(new File("../IFCEngine"));
 			bimServer.getPluginManager().loadPluginsFromEclipseProject(new File("../buildingSMARTLibrary"));
 			bimServer.start();
-			if (ServerInfo.getServerState() == ServerState.NOT_SETUP) {
+			if (bimServer.getServerInfo().getServerState() == ServerState.NOT_SETUP) {
 				bimServer.getSystemService().setup("http://localhost", "localhost", "Administrator", "admin@bimserver.org", "admin", true);
 			}
 		} catch (PluginException e1) {
@@ -35,8 +35,6 @@ public class LocalDevBimServerStarter {
 		} catch (ServerException e) {
 			e.printStackTrace();
 		} catch (DatabaseInitException e) {
-			e.printStackTrace();
-		} catch (BimDeadlockException e) {
 			e.printStackTrace();
 		} catch (BimDatabaseException e) {
 			e.printStackTrace();

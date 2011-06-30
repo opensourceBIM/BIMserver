@@ -22,20 +22,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class ServiceFactory {
-	private static ServiceFactory INSTANCE = null;
 	private static final Logger LOGGER = LoggerFactory.getLogger(ServiceFactory.class);
 	private static final int TOKEN_TTL_SECONDS = 60*60; // one hour
 	private final HashMap<Token, ServiceInterface> tokens = new HashMap<Token, ServiceInterface>();
 	private final BimServer bimServer;
 
-	private ServiceFactory(BimServer bimServer) {
+	public ServiceFactory(BimServer bimServer) {
 		this.bimServer = bimServer;
 	}
 	
-	public static void init(BimServer bimServer) {
-		INSTANCE = new ServiceFactory(bimServer);
-	}
-
 	public ServiceInterface newService(AccessMethod accessMethod) {
 		Service service = new Service(bimServer, accessMethod, this);
 		Date expires = new Date(new Date().getTime() + (TOKEN_TTL_SECONDS * 1000));
@@ -43,10 +38,6 @@ public class ServiceFactory {
 		tokens.put(token, service);
 		service.setToken(token);
 		return service;
-	}
-
-	public static ServiceFactory getINSTANCE() {
-		return INSTANCE;
 	}
 
 	public synchronized ServiceInterface getService(Token token) throws UserException {
@@ -102,9 +93,5 @@ public class ServiceFactory {
 				return o1.getLastActive().compareTo(o2.getLastActive());
 			}});
 		return userSessions;
-	}
-
-	public static boolean isInitialized() {
-		return INSTANCE != null;
 	}
 }

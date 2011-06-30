@@ -383,7 +383,7 @@ public class Service implements ServiceInterface {
 			throw new UserException("Invalid IFC file", e);
 		} catch (OutOfMemoryError e) {
 			LOGGER.error("", e);
-			ServerInfo.setErrorMessage(e.getMessage());
+			bimServer.getServerInfo().setErrorMessage(e.getMessage());
 			throw new UserException("Out of memory", e);
 		}
 	}
@@ -553,8 +553,8 @@ public class Service implements ServiceInterface {
 	}
 
 	private void requireRunningServer() throws UserException {
-		if (ServerInfo.getServerState() != ServerState.RUNNING) {
-			throw new UserException("Call cannot be executed because the server is in " + ServerInfo.getServerState() + " mode");
+		if (bimServer.getServerInfo().getServerState() != ServerState.RUNNING) {
+			throw new UserException("Call cannot be executed because the server is in " + bimServer.getServerInfo().getServerState() + " mode");
 		}
 	}
 
@@ -2229,7 +2229,7 @@ public class Service implements ServiceInterface {
 			throw new UserException("Admin Password cannot be empty");
 		}
 
-		ServerInfo.update();
+		bimServer.getServerInfo().update();
 
 		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
 		try {
@@ -2260,7 +2260,7 @@ public class Service implements ServiceInterface {
 		requireAuthentication();
 		try {
 			bimServer.getDatabase().getMigrator().migrate();
-			ServerInfo.update();
+			bimServer.getServerInfo().update();
 		} catch (MigrationException e) {
 			LOGGER.error("", e);
 			throw new ServerException(e);

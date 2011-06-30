@@ -35,7 +35,7 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
-import org.bimserver.ServerInfo;
+import org.bimserver.BimServer;
 import org.bimserver.shared.ServiceException;
 import org.bimserver.utils.InputStreamDataSource;
 import org.bimserver.web.LoginManager;
@@ -60,6 +60,7 @@ public class UploadServlet extends HttpServlet {
 			response.sendRedirect("login.jsp");
 			return;
 		}
+		BimServer bimServer = (BimServer) request.getServletContext().getAttribute("bimserver");
 		boolean isMultipart = ServletFileUpload.isMultipartContent(request);
 		long poid = -1;
 		String comment = null;
@@ -109,7 +110,7 @@ public class UploadServlet extends HttpServlet {
 								response.sendRedirect("project.jsp?poid=" + poid);
 							} catch (ServiceException e) {
 								if (e.getCause() instanceof OutOfMemoryError) {
-									ServerInfo.setOutOfMemory();
+									bimServer.getServerInfo().setOutOfMemory();
 									response.sendRedirect(getServletContext().getContextPath());
 									return;
 								}

@@ -65,13 +65,9 @@ public class LocalDevBimWebServerStarter {
 			bimServer.start();
 		} catch (PluginException e1) {
 			e1.printStackTrace();
-		} catch (UserException e) {
-			e.printStackTrace();
 		} catch (ServerException e) {
 			e.printStackTrace();
 		} catch (DatabaseInitException e) {
-			e.printStackTrace();
-		} catch (BimDeadlockException e) {
 			e.printStackTrace();
 		} catch (BimDatabaseException e) {
 			e.printStackTrace();
@@ -91,6 +87,7 @@ public class LocalDevBimWebServerStarter {
 
 		WebAppContext context = new WebAppContext(server, "", "/");
 		context.setAttribute("bimserver", bimServer);
+		context.getServletContext().setAttribute("bimserver", bimServer);
 		context.setResourceBase(resourceBase);
 
 		try {

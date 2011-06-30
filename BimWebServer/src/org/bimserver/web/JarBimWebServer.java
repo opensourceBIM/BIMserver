@@ -58,13 +58,9 @@ public class JarBimWebServer {
 			bimServer.start();
 		} catch (PluginException e) {
 			LOGGER.error("", e);
-		} catch (UserException e) {
-			LOGGER.error("", e);
 		} catch (ServerException e) {
 			LOGGER.error("", e);
 		} catch (DatabaseInitException e) {
-			LOGGER.error("", e);
-		} catch (BimDeadlockException e) {
 			LOGGER.error("", e);
 		} catch (BimDatabaseException e) {
 			LOGGER.error("", e);

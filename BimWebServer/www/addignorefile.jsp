@@ -15,8 +15,8 @@
 <%@page import="org.bimserver.interfaces.objects.SUserType"%>
 <%@page import="org.bimserver.shared.ServiceInterface"%>
 <%@page import="org.bimserver.shared.UserException"%>
-
-<%@page import="org.bimserver.interfaces.objects.SGuidanceProvider"%><div class="sidebar">
+<%@page import="org.bimserver.interfaces.objects.SGuidanceProvider"%>
+<div class="sidebar">
 <ul>
 </ul>
 </div>

@@ -29,9 +29,9 @@ import org.apache.cxf.Bus;
 import org.apache.cxf.BusFactory;
 import org.apache.cxf.jaxws.JaxWsServerFactoryBean;
 import org.apache.cxf.transport.servlet.CXFNonSpringServlet;
+import org.bimserver.BimServer;
 import org.bimserver.shared.ServiceInterface;
 import org.bimserver.webservices.CustomInvoker;
-import org.bimserver.webservices.ServiceFactory;
 
 public class WebServiceServlet extends CXFNonSpringServlet {
 
@@ -40,6 +40,7 @@ public class WebServiceServlet extends CXFNonSpringServlet {
 	@Override
 	public void loadBus(ServletConfig servletConfig) {
 		super.loadBus(servletConfig);
+		BimServer bimServer = (BimServer) servletConfig.getServletContext().getAttribute("bimserver");
 		Bus bus = getBus();
 		BusFactory.setDefaultBus(bus);
 		JaxWsServerFactoryBean serverFactoryBean = new JaxWsServerFactoryBean();
@@ -47,7 +48,7 @@ public class WebServiceServlet extends CXFNonSpringServlet {
 		properties.put("mtom-enabled", Boolean.TRUE);
 		serverFactoryBean.setProperties(properties);
 		serverFactoryBean.setServiceClass(ServiceInterface.class);
-		serverFactoryBean.setInvoker(new CustomInvoker(ServiceFactory.getINSTANCE()));
+		serverFactoryBean.setInvoker(new CustomInvoker(bimServer.getServiceFactory()));
 		serverFactoryBean.setAddress("/");
 		serverFactoryBean.setTransportId("http://schemas.xmlsoap.org/soap/http");
 		serverFactoryBean.create();

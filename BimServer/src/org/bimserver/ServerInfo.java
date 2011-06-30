@@ -3,7 +3,6 @@ package org.bimserver;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.bimserver.database.BimDatabase;
 import org.bimserver.models.store.Settings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,66 +18,64 @@ public class ServerInfo {
 		RUNNING
 	}
 	
-	private static String errorMessage;
-	private static ServerState serverState = ServerState.UNKNOWN;
-	private static BimDatabase bimDatabase;
-	private static SettingsManager settingsManager;
-	private static Set<StateChangeListener> stateChangeListeners = new HashSet<StateChangeListener>();
+	private String errorMessage;
+	private ServerState serverState = ServerState.UNKNOWN;
+	private Set<StateChangeListener> stateChangeListeners = new HashSet<StateChangeListener>();
+	private BimServer bimServer;
 
-	public static void registerStateChangeListener(StateChangeListener stateChangeListener) {
+	public void registerStateChangeListener(StateChangeListener stateChangeListener) {
 		stateChangeListeners.add(stateChangeListener);
 	}
 	
-	private static void notifyStateChangeListeners(ServerState oldState, ServerState newState) {
+	private void notifyStateChangeListeners(ServerState oldState, ServerState newState) {
 		for (StateChangeListener stateChangeListener : stateChangeListeners) {
 			stateChangeListener.stateChanged(oldState, newState);
 		}
 	}
 	
-	public static void update() {
-		if (bimDatabase.getMigrator().migrationRequired()) {
-			ServerInfo.setServerState(ServerState.MIGRATION_REQUIRED);
-		} else if (bimDatabase.getMigrator().migrationImpossible()) {
-			ServerInfo.setServerState(ServerState.MIGRATION_IMPOSSIBLE);
+	public void update() {
+		if (bimServer.getDatabase().getMigrator().migrationRequired()) {
+			setServerState(ServerState.MIGRATION_REQUIRED);
+		} else if (bimServer.getDatabase().getMigrator().migrationImpossible()) {
+			setServerState(ServerState.MIGRATION_IMPOSSIBLE);
 		} else {
-			Settings settings = settingsManager.getSettings();
+			Settings settings = bimServer.getSettingsManager().getSettings();
 			if (settings.getSiteAddress().isEmpty() || settings.getSmtpServer().isEmpty()) {
-				ServerInfo.setServerState(ServerState.NOT_SETUP);
+				setServerState(ServerState.NOT_SETUP);
 			} else {
-				ServerInfo.setServerState(ServerState.RUNNING);
+				setServerState(ServerState.RUNNING);
 			}
 		}
 	}
 	
-	public static boolean isAvailable() {
+	public boolean isAvailable() {
 		return errorMessage == null && serverState == ServerState.RUNNING;
 	}
 	
-	public static String getErrorMessage() {
+	public String getErrorMessage() {
 		return errorMessage;
 	}
 	
-	public static void setErrorMessage(String errorMessage) {
-		ServerInfo.errorMessage = errorMessage;
+	public void setErrorMessage(String errorMessage) {
+		this.errorMessage = errorMessage;
 	}
 
-	public static void setOutOfMemory() {
-		ServerInfo.errorMessage = "This server is out of memory, more info on how to fix this can be found on <a href=\"http://www.bimserver.org/faq\">www.bimserver.org/faq</a>";
+	public void setOutOfMemory() {
+		this.errorMessage = "This server is out of memory, more info on how to fix this can be found on <a href=\"http://www.bimserver.org/faq\">www.bimserver.org/faq</a>";
 	}
 
-	public static void setServerState(ServerState serverState) {
-		ServerState oldState = ServerInfo.serverState;
-		ServerInfo.serverState = serverState;
+	public void setServerState(ServerState serverState) {
+		ServerState oldState = this.serverState;
+		this.serverState = serverState;
 		LOGGER.info("Changing server state to " + serverState);
 		notifyStateChangeListeners(oldState, serverState);
 	}
 
-	public static ServerState getServerState() {
+	public ServerState getServerState() {
 		return serverState;
 	}
 
-	public static void init(BimDatabase bimDatabase, SettingsManager settingsManager) {
-		ServerInfo.bimDatabase = bimDatabase;
-		ServerInfo.settingsManager = settingsManager;
+	public void init(BimServer bimServer) {
+		this.bimServer = bimServer;
 	}
 }
