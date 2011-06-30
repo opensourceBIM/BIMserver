@@ -8,7 +8,7 @@
 <%@page import="org.bimserver.interfaces.objects.SUserType"%>
 <%@ include file="header.jsp" %>
 <%
-if (bimServer.getServerInfo().isAvailable()) {
+if (WebServerHelper.getBimServer().getServerInfo().isAvailable()) {
 	if (loginManager.getService().isLoggedIn()) { %>
 <div class="sidebar">
  <ul>
