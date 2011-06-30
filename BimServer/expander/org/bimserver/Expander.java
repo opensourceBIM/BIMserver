@@ -339,7 +339,7 @@ public class Expander extends JFrame {
 			if (command.endsWith(File.pathSeparator)) {
 				command = command.substring(0, command.length()-1);
 			}
-			command += " org.bimserver.Server";
+			command += " org.bimserver.web.JarBimWebServer";
 			command += " address=" + address;
 			command += " port=" + port;
 			command += " homedir=\"" + homedir + "\"";

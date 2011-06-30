@@ -2,13 +2,15 @@ package org.bimserver.citygml;
 
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
-import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
 
 import org.bimserver.citygml.xbuilding.GlobalIdType;
@@ -64,10 +66,14 @@ import org.citygml4j.factory.CityGMLFactory;
 import org.citygml4j.factory.GMLFactory;
 import org.citygml4j.factory.XALFactory;
 import org.citygml4j.impl.citygml.generics.DoubleAttributeImpl;
+import org.citygml4j.jaxb.gml._3_1_1.AbstractRingPropertyType;
+import org.citygml4j.jaxb.gml._3_1_1.DirectPositionListType;
+import org.citygml4j.jaxb.gml._3_1_1.LinearRingPropertyType;
+import org.citygml4j.jaxb.gml._3_1_1.LinearRingType;
 import org.citygml4j.jaxb.gml._3_1_1.MultiSurfacePropertyType;
 import org.citygml4j.jaxb.gml._3_1_1.MultiSurfaceType;
+import org.citygml4j.jaxb.gml._3_1_1.PolygonType;
 import org.citygml4j.jaxb.gml._3_1_1.SurfacePropertyType;
-import org.citygml4j.jaxb.gml._3_1_1.SurfaceType;
 import org.citygml4j.model.citygml.ade.ADEComponent;
 import org.citygml4j.model.citygml.building.AbstractBoundarySurface;
 import org.citygml4j.model.citygml.building.BoundarySurfaceProperty;
@@ -117,6 +123,7 @@ public class CityGmlSerializer extends BimModelSerializer {
 	private Map<EObject, AbstractCityObject> convertedObjects;
 	private CityGMLContext ctx;
 	private ObjectFactory xbuilding;
+	private org.citygml4j.jaxb.gml._3_1_1.ObjectFactory gmlObjectFactory;
 
 	@Override
 	public void init(IfcModelInterface ifcModel, ProjectInfo projectInfo, PluginManager pluginManager) throws SerializerException {
@@ -127,6 +134,7 @@ public class CityGmlSerializer extends BimModelSerializer {
 		gml = new GMLFactory();
 		xal = new XALFactory();
 		xbuilding = new ObjectFactory();
+		gmlObjectFactory = new org.citygml4j.jaxb.gml._3_1_1.ObjectFactory();
 		convertedObjects = new HashMap<EObject, AbstractCityObject>();
 	}
 
@@ -320,10 +328,25 @@ public class CityGmlSerializer extends BimModelSerializer {
 		// || ifcProduct instanceof IfcSlab) {
 		// // Do nothing, because it should already have been converted
 		if (ifcProduct instanceof IfcStair) {
+			List<Double> coordinates = null;
+
 			StairType stairType = xbuilding.createStairType();
 			MultiSurfacePropertyType multiSurfacePropertyType = new MultiSurfacePropertyType();
 			MultiSurfaceType multiSurfaceType = new MultiSurfaceType();
 			SurfacePropertyType surfacePropertyType = new SurfacePropertyType();
+			Set<SurfaceProperty> geometry = getGeometry(ifcProduct);
+			PolygonType polygonType = new PolygonType();
+			LinearRingPropertyType linearRingProperty = gmlObjectFactory.createLinearRingPropertyType();
+			
+			DirectPositionListType posList = gmlObjectFactory.createDirectPositionListType();
+			posList.setValue(coordinates);
+			posList.setSrsDimension(BigInteger.valueOf(3));
+			LinearRingType linearRingType = new LinearRingType();
+			linearRingType.setPosList(posList);
+			linearRingProperty.setLinearRing(linearRingType);
+
+//			polygonType.setExterior(gmlObjectFactory.createExterior(linearRingProperty)); // Compile error, LinearRingPropertyType is not a subtype of AbstractRingPropertyType
+			surfacePropertyType.set_Surface(gmlObjectFactory.createPolygon(polygonType));
 			multiSurfaceType.getSurfaceMember().add(surfacePropertyType);
 			multiSurfacePropertyType.setMultiSurface(multiSurfaceType);
 			stairType.setLod4MultiSurface(multiSurfacePropertyType);
@@ -655,6 +678,47 @@ public class CityGmlSerializer extends BimModelSerializer {
 		}
 	}
 
+	private Set<SurfaceProperty> getGeometry(IfcRoot ifcRootObject) throws SerializerException {
+		Set<SurfaceProperty> surfaceProperties = new HashSet<SurfaceProperty>();
+		IfcModel ifcModel = new IfcModel();
+		convertToSubset(ifcRootObject.eClass(), ifcRootObject, ifcModel, new HashMap<EObject, EObject>());
+		EmfSerializer serializer = getPluginManager().requireIfcStepSerializer();
+		serializer.init(ifcModel, getProjectInfo(), getPluginManager());
+		try {
+			IfcEngineModel model = ifcEngine.openModel(serializer.getBytes());
+			try {
+				model.setPostProcessing(true);
+				IfcEngineSurfaceProperties initializeModelling = model.initializeModelling();
+				IfcEngineGeometry geometry = model.finalizeModelling(initializeModelling);
+				if (geometry != null) {
+					for (IfcEngineInstance instance : model.getInstances(ifcRootObject.eClass().getName().toUpperCase())) {
+						IfcEngineInstanceVisualisationProperties instanceInModelling = instance.getVisualisationProperties();
+						for (int i = instanceInModelling.getStartIndex(); i < instanceInModelling.getPrimitiveCount() * 3 + instanceInModelling.getStartIndex(); i += 3) {
+							int i1 = geometry.getIndex(i);
+							int i2 = geometry.getIndex(i + 1);
+							int i3 = geometry.getIndex(i + 2);
+							surfaceProperties.add(createSurfaceProperty(
+									gml,
+									Arrays.asList(new Double[] { (double) geometry.getVertex(i1 * 3), (double) geometry.getVertex(i1 * 3 + 1),
+											(double) geometry.getVertex(i1 * 3 + 2), (double) geometry.getVertex(i3 * 3), (double) geometry.getVertex(i3 * 3 + 1),
+											(double) geometry.getVertex(i3 * 3 + 2), (double) geometry.getVertex(i2 * 3), (double) geometry.getVertex(i2 * 3 + 1),
+											(double) geometry.getVertex(i2 * 3 + 2), (double) geometry.getVertex(i1 * 3), (double) geometry.getVertex(i1 * 3 + 1),
+											(double) geometry.getVertex(i1 * 3 + 2) })));
+						}
+					}
+				}
+			} finally {
+				model.close();
+			}
+			return surfaceProperties;
+		} catch (IfcEngineException e) {
+			throw new SerializerException("IfcEngineException", e);
+		} catch (Exception e) {
+			LOGGER.error("", e);
+		}
+		return null;
+	}
+	
 	private static SurfaceProperty createSurfaceProperty(GMLFactory gml, List<Double> points) {
 		Polygon polygon = gml.createPolygon();
 
