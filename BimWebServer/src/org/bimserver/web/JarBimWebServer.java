@@ -5,13 +5,11 @@ import java.util.Random;
 
 import org.bimserver.BimServer;
 import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDeadlockException;
 import org.bimserver.database.DatabaseRestartRequiredException;
 import org.bimserver.database.berkeley.DatabaseInitException;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.resources.JarResourceFetcher;
 import org.bimserver.shared.ServerException;
-import org.bimserver.shared.UserException;
 import org.eclipse.jetty.server.bio.SocketConnector;
 import org.eclipse.jetty.server.session.HashSessionIdManager;
 import org.eclipse.jetty.webapp.WebAppContext;

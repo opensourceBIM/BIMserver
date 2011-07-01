@@ -17,7 +17,6 @@ import org.bimserver.plugins.ifcengine.IfcEngine;
 import org.bimserver.plugins.ifcengine.IfcEngineException;
 import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
 import org.bimserver.plugins.schema.SchemaPlugin;
-import org.bimserver.plugins.serializers.BimModelSerializer;
 
 public class CppIfcEnginePlugin implements IfcEnginePlugin {
 

@@ -4,7 +4,6 @@ import java.io.File;
 
 import org.bimserver.ServerInfo.ServerState;
 import org.bimserver.database.BimDatabaseException;
-import org.bimserver.database.BimDeadlockException;
 import org.bimserver.database.DatabaseRestartRequiredException;
 import org.bimserver.database.berkeley.DatabaseInitException;
 import org.bimserver.plugins.PluginException;
