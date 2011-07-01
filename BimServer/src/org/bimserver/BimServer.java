@@ -88,6 +88,7 @@ public class BimServer {
 	private String classPath = System.getProperty("java.class.path");
 	private ServiceFactory serviceFactory;
 	private VersionChecker versionChecker;
+	private TemplateEngine templateEngine;
 	
 	/**
 	 * Create a new BIMserver
@@ -178,7 +179,8 @@ public class BimServer {
 		longActionManager = new LongActionManager();
 
 		Set<Ifc2x3Package> packages = CollectionUtils.singleSet(Ifc2x3Package.eINSTANCE);
-		TemplateEngine.getTemplateEngine().init(resourceFetcher.getResource("templates/"));
+		templateEngine = new TemplateEngine();
+		templateEngine.init(resourceFetcher.getResource("templates/"));
 		File databaseDir = new File(homeDir, "database");
 		BerkeleyColumnDatabase columnDatabase = new BerkeleyColumnDatabase(databaseDir);
 		bimDatabase = new Database(this, packages, columnDatabase);
@@ -463,5 +465,9 @@ public class BimServer {
 	
 	public VersionChecker getVersionChecker() {
 		return versionChecker;
+	}
+
+	public TemplateEngine getTemplateEngine() {
+		return templateEngine;
 	}
 }

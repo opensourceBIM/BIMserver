@@ -22,7 +22,6 @@ import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserType;
 import org.bimserver.shared.UserException;
-import org.bimserver.templating.TemplateEngine;
 import org.bimserver.templating.TemplateIdentifier;
 import org.bimserver.utils.GeneratorUtils;
 import org.bimserver.utils.Hashers;
@@ -134,11 +133,11 @@ public class AddUserDatabaseAction extends BimDatabaseAction<Long> {
 							String body = null;
 							String subject = null;
 							if (selfRegistration) {
-								body = TemplateEngine.getTemplateEngine().process(context, TemplateIdentifier.SELF_REGISTRATION_EMAIL_BODY);
-								subject = TemplateEngine.getTemplateEngine().process(context, TemplateIdentifier.SELF_REGISTRATION_EMAIL_SUBJECT);
+								body = bimServer.getTemplateEngine().process(context, TemplateIdentifier.SELF_REGISTRATION_EMAIL_BODY);
+								subject = bimServer.getTemplateEngine().process(context, TemplateIdentifier.SELF_REGISTRATION_EMAIL_SUBJECT);
 							} else {
-								body = TemplateEngine.getTemplateEngine().process(context, TemplateIdentifier.ADMIN_REGISTRATION_EMAIL_BODY);
-								subject = TemplateEngine.getTemplateEngine().process(context, TemplateIdentifier.ADMIN_REGISTRATION_EMAIL_SUBJECT);
+								body = bimServer.getTemplateEngine().process(context, TemplateIdentifier.ADMIN_REGISTRATION_EMAIL_BODY);
+								subject = bimServer.getTemplateEngine().process(context, TemplateIdentifier.ADMIN_REGISTRATION_EMAIL_SUBJECT);
 							}
 							msg.setContent(body, "text/html");
 							msg.setSubject(subject.trim());
