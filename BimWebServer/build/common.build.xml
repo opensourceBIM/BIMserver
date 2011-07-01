@@ -47,7 +47,6 @@
 			<src path="../../BimServer/src" />
 			<src path="../../BimServer/imported" />
 			<src path="../../BimServer/generated" />
-			<src path="../../BimServer/build/pb" />
 			<classpath>
 				<path>
 					<fileset refid="lib" />
