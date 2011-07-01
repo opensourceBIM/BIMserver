@@ -261,7 +261,7 @@ public class IfcXmlDeserializer extends EmfDeserializer  {
 	public IfcModelInterface read(InputStream inputStream, boolean setOids, long fileSize) throws DeserializeException {
 		XMLInputFactory inputFactory = XMLInputFactory.newInstance();
 		try {
-			XMLStreamReader reader = inputFactory.createXMLStreamReader(inputStream);
+			XMLStreamReader reader = inputFactory.createXMLStreamReader(inputStream, "UTF-8");
 			parseDocument(reader);
 		} catch (XMLStreamException e) {
 			LOGGER.error("", e);
