@@ -6,7 +6,6 @@ import java.util.Map;
 import java.util.Set;
 
 import org.bimserver.BimServer;
-import org.bimserver.cache.ClashDetectionCache;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
