@@ -90,12 +90,12 @@ public class BimServer {
 	private VersionChecker versionChecker;
 	
 	/**
-	 * Initialize this BIMserver
+	 * Create a new BIMserver
 	 * 
 	 * @param homeDir A directory where the user can store instance specific configuration files
 	 * @param resourceFetcher A resource fetcher
 	 */
-	public void init(File homeDir, ResourceFetcher resourceFetcher) {
+	public BimServer(File homeDir, ResourceFetcher resourceFetcher) {
 		try {
 			this.homeDir = homeDir;
 			this.resourceFetcher = resourceFetcher;

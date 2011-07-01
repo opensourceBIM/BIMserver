@@ -50,8 +50,7 @@ public class LocalDevBimWebServerStarter {
 	public void start(String address, int port, String homedir, String resourceBase) {
 		System.setProperty("org.apache.cxf.Logger", "org.apache.cxf.common.logging.Log4jLogger");
 
-		BimServer bimServer = new BimServer();
-		bimServer.init(new File(homedir), new LocalDevelopmentResourceFetcher());
+		BimServer bimServer = new BimServer(new File(homedir), new LocalDevelopmentResourceFetcher());
 	 	try {
 			bimServer.getPluginManager().loadPluginsFromEclipseProject(new File("../CityGML"));
 			bimServer.getPluginManager().loadPluginsFromEclipseProject(new File("../Collada"));

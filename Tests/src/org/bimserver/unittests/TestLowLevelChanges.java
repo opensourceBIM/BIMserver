@@ -2,6 +2,7 @@ package org.bimserver.unittests;
 
 import static org.junit.Assert.fail;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Random;
 
@@ -20,6 +21,7 @@ import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.deserializers.EmfDeserializer;
 import org.bimserver.plugins.serializers.IfcModelInterface;
+import org.bimserver.shared.LocalDevelopmentResourceFetcher;
 import org.bimserver.shared.SDownloadResult;
 import org.bimserver.shared.ServerException;
 import org.bimserver.shared.ServiceInterface;
@@ -37,7 +39,7 @@ public class TestLowLevelChanges {
 
 	@BeforeClass
 	public static void setup() {
-		bimServer = new BimServer();
+		bimServer = new BimServer(new File("home"), new LocalDevelopmentResourceFetcher());
 		service = bimServer.getSystemService();
 		pluginManager = bimServer.getPluginManager();
 		createUserAndLogin();
