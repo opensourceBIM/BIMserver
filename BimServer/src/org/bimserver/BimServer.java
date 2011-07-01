@@ -56,7 +56,6 @@ import org.bimserver.shared.UserException;
 import org.bimserver.templating.TemplateEngine;
 import org.bimserver.utils.CollectionUtils;
 import org.bimserver.version.VersionChecker;
-import org.bimserver.webservices.RestApplication;
 import org.bimserver.webservices.Service;
 import org.bimserver.webservices.ServiceFactory;
 import org.slf4j.Logger;
@@ -243,7 +242,7 @@ public class BimServer {
 			e.printStackTrace();
 		}
 		
-		RestApplication.setServiceFactory(serviceFactory);
+//		RestApplication.setServiceFactory(serviceFactory);
 
 		bimScheduler = new JobScheduler(this);
 		bimScheduler.start();

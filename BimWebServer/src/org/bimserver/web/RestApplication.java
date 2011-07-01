@@ -1,4 +1,4 @@
-package org.bimserver.webservices;
+package org.bimserver.web;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -7,6 +7,7 @@ import javax.ws.rs.core.Application;
 
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.shared.ServiceInterface;
+import org.bimserver.webservices.ServiceFactory;
 
 public class RestApplication extends Application {
 	private static ServiceFactory serviceFactory;
