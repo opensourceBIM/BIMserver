@@ -88,6 +88,8 @@ public class WarServerInitializer implements ServletContextListener {
 
 	@Override
 	public void contextDestroyed(ServletContextEvent servletContextEvent) {
-		bimServer.stop();
+		if (bimServer != null) {
+			bimServer.stop();
+		}
 	}
 }
