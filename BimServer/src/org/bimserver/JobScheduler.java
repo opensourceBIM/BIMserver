@@ -2,8 +2,6 @@ package org.bimserver;
 
 import java.util.Properties;
 
-import org.bimserver.cache.ClashDetectionCache;
-import org.bimserver.cache.CompareCache;
 import org.quartz.Job;
 import org.quartz.JobDetail;
 import org.quartz.JobExecutionContext;
@@ -31,16 +29,20 @@ public class JobScheduler {
 				BimServer bimServer = (BimServer) (jobExecutionContext.getScheduler().getContext().get("bimserver"));
 				bimServer.getServiceFactory().cleanup();
 			} catch (SchedulerException e) {
-				e.printStackTrace();
+				LOGGER.error("", e);
 			}
 		}
 	}
 	
 	public static class ClashDetectionCacheCleaner implements Job {
+		
 		@Override
 		public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
-			if (ClashDetectionCache.getInstance() != null) {
-				ClashDetectionCache.getInstance().cleanup();
+			try {
+				BimServer bimServer = (BimServer) (jobExecutionContext.getScheduler().getContext().get("bimserver"));
+				bimServer.getClashDetectionCache().cleanup();
+			} catch (SchedulerException e) {
+				LOGGER.error("", e);
 			}
 		}
 	}
@@ -48,8 +50,11 @@ public class JobScheduler {
 	public static class CompareResultCacheCleaner implements Job {
 		@Override
 		public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
-			if (CompareCache.getInstance() != null) {
-				CompareCache.getInstance().cleanup();
+			try {
+				BimServer bimServer = (BimServer) (jobExecutionContext.getScheduler().getContext().get("bimserver"));
+				bimServer.getCompareCache().cleanup();
+			} catch (SchedulerException e) {
+				LOGGER.error("", e);
 			}
 		}
 	}

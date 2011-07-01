@@ -6,7 +6,6 @@ import org.bimserver.shared.SCompareResult.SCompareType;
 
 public class CompareCache extends GenericCache<CompareCache.CompareKey, CompareCache.CompareValue> {
 	private static final int MAX_UNACCESSED_TIME_MS = 1000 * 60 * 30; // 30 minutes
-	private static final CompareCache INSTANCE = new CompareCache();
 
 	public static class CompareKey extends GenericCacheKey {
 		private final long roid1;
@@ -78,12 +77,8 @@ public class CompareCache extends GenericCache<CompareCache.CompareKey, CompareC
 		}
 	}
 
-	private CompareCache() {
+	public CompareCache() {
 		super();
-	}
-
-	public static CompareCache getInstance() {
-		return INSTANCE;
 	}
 
 	public CompareResult getCompareResults(long roid1, long roid2, SCompareType sCompareType, SCompareIdentifier sCompareIdentifier) {

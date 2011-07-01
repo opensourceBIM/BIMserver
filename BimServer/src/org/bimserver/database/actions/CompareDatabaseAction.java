@@ -1,7 +1,6 @@
 package org.bimserver.database.actions;
 
 import org.bimserver.BimServer;
-import org.bimserver.cache.CompareCache;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
@@ -43,7 +42,7 @@ public class CompareDatabaseAction extends BimDatabaseAction<CompareResult> {
 			throw new UserException(e);
 		}
 		Compare compare = new Compare(guidanceProvider);
-		CompareResult compareResults = CompareCache.getInstance().getCompareResults(roid1, roid2, sCompareType, sCompareIdentifier);
+		CompareResult compareResults = bimServer.getCompareCache().getCompareResults(roid1, roid2, sCompareType, sCompareIdentifier);
 		if (compareResults == null) {
 			IfcModelInterface model1 = new DownloadDatabaseAction(bimServer, getDatabaseSession(), getAccessMethod(), roid1, actingUoid).execute();
 			IfcModelInterface model2 = new DownloadDatabaseAction(bimServer, getDatabaseSession(), getAccessMethod(), roid2, actingUoid).execute();
@@ -52,7 +51,7 @@ public class CompareDatabaseAction extends BimDatabaseAction<CompareResult> {
 			} else if (sCompareIdentifier == SCompareIdentifier.NAME_ID) {
 				compareResults = compare.compareOnNames(model1, model2, sCompareType);
 			}
-			CompareCache.getInstance().storeResults(roid1, roid2, sCompareType, sCompareIdentifier, compareResults);
+			bimServer.getCompareCache().storeResults(roid1, roid2, sCompareType, sCompareIdentifier, compareResults);
 			return compareResults;
 		} else {
 			return compareResults;

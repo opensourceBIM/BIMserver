@@ -14,6 +14,8 @@ import java.util.concurrent.Executors;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.LogManager;
 import org.bimserver.ServerInfo.ServerState;
+import org.bimserver.cache.ClashDetectionCache;
+import org.bimserver.cache.CompareCache;
 import org.bimserver.cache.DiskCacheManager;
 import org.bimserver.database.BimDatabase;
 import org.bimserver.database.BimDatabaseException;
@@ -88,6 +90,8 @@ public class BimServer {
 	private ServiceFactory serviceFactory;
 	private VersionChecker versionChecker;
 	private TemplateEngine templateEngine;
+	private ClashDetectionCache clashDetectionCache;
+	private CompareCache compareCache;
 	
 	/**
 	 * Create a new BIMserver
@@ -164,7 +168,8 @@ public class BimServer {
 				LOGGER.error("", e);
 			}
 			
-
+			clashDetectionCache = new ClashDetectionCache();
+			compareCache = new CompareCache();
 		} catch (Throwable e) {
 			serverInfo.setErrorMessage(e.getMessage());
 			LOGGER.error("", e);
@@ -468,5 +473,13 @@ public class BimServer {
 
 	public TemplateEngine getTemplateEngine() {
 		return templateEngine;
+	}
+
+	public ClashDetectionCache getClashDetectionCache() {
+		return clashDetectionCache;
+	}
+
+	public CompareCache getCompareCache() {
+		return compareCache;
 	}
 }

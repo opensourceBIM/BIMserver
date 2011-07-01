@@ -80,9 +80,7 @@ public class ClashDetectionCache extends GenericCache<ClashDetectionCache.ClashD
 		}
 	}
 
-	private static final ClashDetectionCache INSTANCE = new ClashDetectionCache();
-
-	private ClashDetectionCache() {
+	public ClashDetectionCache() {
 		super();
 	}
 
@@ -96,9 +94,5 @@ public class ClashDetectionCache extends GenericCache<ClashDetectionCache.ClashD
 			return null;
 		}
 		return value.getClashes();
-	}
-
-	public static ClashDetectionCache getInstance() {
-		return INSTANCE;
 	}
 }
