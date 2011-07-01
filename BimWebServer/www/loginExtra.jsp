@@ -1,3 +1,4 @@
+<%@page import="org.bimserver.web.WebServerHelper"%>
 <%@page import="org.bimserver.version.VersionChecker"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="org.bimserver.shared.UserException"%>
