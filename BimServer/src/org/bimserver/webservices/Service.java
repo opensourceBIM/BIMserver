@@ -46,7 +46,6 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 import org.bimserver.BimServer;
-import org.bimserver.ServerInfo;
 import org.bimserver.ServerInfo.ServerState;
 import org.bimserver.changes.AddAttributeChange;
 import org.bimserver.changes.AddReferenceChange;
