@@ -22,9 +22,8 @@ public class IfcXmlReadTest {
 	}
 
 	private void start() {
-		PluginManager pluginManager;
 		try {
-			pluginManager = LocalDevPluginLoader.createPluginManager();
+			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager();
 			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifcxml", true);
 			EmfDeserializer deserializer = deserializerPlugin.createDeserializer();
 			try {
@@ -34,7 +33,7 @@ public class IfcXmlReadTest {
 				File outFile = new File("out.ifc");
 				SerializerPlugin serializerPlugin = pluginManager.getFirstSerializerPlugin("application/ifc", true);
 				EmfSerializer serializer = serializerPlugin.createSerializer();
-				serializer.init(model, null, null);
+				serializer.init(model, null, pluginManager);
 				try {
 					serializer.writeToFile(outFile);
 				} catch (SerializerException e) {
