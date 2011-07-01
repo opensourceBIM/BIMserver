@@ -23,7 +23,6 @@ import org.bimserver.mail.MailSystem;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.User;
 import org.bimserver.shared.UserException;
-import org.bimserver.templating.TemplateEngine;
 import org.bimserver.templating.TemplateIdentifier;
 
 public class SendClashesEmailDatabaseAction extends BimDatabaseAction<Void> {
@@ -84,8 +83,8 @@ public class SendClashesEmailDatabaseAction extends BimDatabaseAction<Void> {
 			context.put("siteaddress", bimServer.getSettingsManager().getSettings().getSiteAddress());
 			context.put("url", link);
 			
-			String body = TemplateEngine.getTemplateEngine().process(context, TemplateIdentifier.CLASH_DETECTION_EMAIL_BODY);
-			String subject = TemplateEngine.getTemplateEngine().process(context, TemplateIdentifier.CLASH_DETECTION_EMAIL_SUBJECT);
+			String body = bimServer.getTemplateEngine().process(context, TemplateIdentifier.CLASH_DETECTION_EMAIL_BODY);
+			String subject = bimServer.getTemplateEngine().process(context, TemplateIdentifier.CLASH_DETECTION_EMAIL_SUBJECT);
 
 			msg.setSubject(subject);
 			msg.setContent(body, "text/html");

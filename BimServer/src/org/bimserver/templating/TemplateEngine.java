@@ -19,15 +19,10 @@ import org.slf4j.LoggerFactory;
 
 public class TemplateEngine {
 
-	private static final TemplateEngine INSTANCE = new TemplateEngine();
 	private static final Logger LOGGER = LoggerFactory.getLogger(TemplateEngine.class);
 	private VelocityEngine velocityEngine;
 
 	public TemplateEngine() {
-	}
-
-	public static final TemplateEngine getTemplateEngine() {
-		return INSTANCE;
 	}
 
 	public String process(Map<String, Object> context, TemplateIdentifier templateIdentifier) {
