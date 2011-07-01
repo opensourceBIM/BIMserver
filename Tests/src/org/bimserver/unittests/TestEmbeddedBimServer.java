@@ -22,7 +22,6 @@ import org.bimserver.models.log.AccessMethod;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
-import org.bimserver.shared.SCheckinResult;
 import org.bimserver.shared.ServerException;
 import org.bimserver.shared.ServiceInterface;
 import org.bimserver.shared.UserException;
@@ -31,16 +30,46 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+/*
+ * This class tests several functionalities on an embedded BIMserver
+ */
 public class TestEmbeddedBimServer {
-	
-	private String username;
-	private String password;
+
+	private static String username;
+	private static String password;
 	private static BimServer bimServer;
 
+	/*
+	 * Setup a BIMserver
+	 */
 	@BeforeClass
 	public static void initClass() {
 		try {
-			bimServer = setup();
+			// Create a BIMserver
+			bimServer = new BimServer();
+
+			// Initialize
+			bimServer.init(new File("home"), new LocalDevelopmentResourceFetcher());
+
+			// Load plugins
+			bimServer.getPluginManager().loadPluginsFromEclipseProject(new File("../CityGML"));
+			bimServer.getPluginManager().loadPluginsFromEclipseProject(new File("../Collada"));
+			bimServer.getPluginManager().loadPluginsFromEclipseProject(new File("../IfcPlugins"));
+			bimServer.getPluginManager().loadPluginsFromEclipseProject(new File("../MiscSerializers"));
+			bimServer.getPluginManager().loadPluginsFromEclipseProject(new File("../O3d"));
+			bimServer.getPluginManager().loadPluginsFromEclipseProject(new File("../IFCEngine"));
+			bimServer.getPluginManager().loadPluginsFromEclipseProject(new File("../buildingSMARTLibrary"));
+
+			// Start
+			bimServer.start();
+
+			// Convenience, setup the server to make sure it is in RUNNING state
+			if (bimServer.getServerInfo().getServerState() == ServerState.NOT_SETUP) {
+				bimServer.getSystemService().setup("http://localhost", "localhost", "Administrator", "admin@bimserver.org", "admin", true);
+			}
+
+			// Change a setting to normal users can create projects
+			bimServer.getSettingsManager().getSettings().setAllowUsersToCreateTopLevelProjects(true);
 		} catch (ServerException e) {
 			e.printStackTrace();
 		} catch (UserException e) {
@@ -55,12 +84,19 @@ public class TestEmbeddedBimServer {
 			e.printStackTrace();
 		}
 	}
-	
+
+	/*
+	 * Cleanup
+	 */
 	@AfterClass
 	public static void shutdownClass() {
 		bimServer.stop();
 	}
-	
+
+	/*
+	 * Tests whether a user can be created and it's password reset, this user is
+	 * also used for subsequent tests
+	 */
 	@Test
 	public void testEmbeddedBimServerCreateUser() {
 		try {
@@ -74,10 +110,9 @@ public class TestEmbeddedBimServer {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/*
-	 * This will start an embedded BIMserver, create a project and checkin the
-	 * AC11 IFC file
+	 * This will create a project and checkin the AC11 IFC file
 	 */
 	@Test
 	public void testEmbeddedBimServerUpload() {
@@ -86,7 +121,7 @@ public class TestEmbeddedBimServer {
 			service.login(username, password);
 			SProject project = service.addProject("test " + new Random().nextInt());
 			File sourceFile = TestFile.AC11.getFile();
-			SCheckinResult checkinSync = service.checkinSync(project.getOid(), "test", sourceFile.length(), new DataHandler(new FileDataSource(sourceFile)), false);
+			service.checkinSync(project.getOid(), "test", sourceFile.length(), new DataHandler(new FileDataSource(sourceFile)), false);
 		} catch (ServerException e) {
 			e.printStackTrace();
 		} catch (UserException e) {
@@ -95,9 +130,9 @@ public class TestEmbeddedBimServer {
 	}
 
 	/*
-	 * This will start an embedded BIMserver, list all projects, select the
-	 * first project with at least one revision and dump the names of all walls
-	 * within the last revision of that project
+	 * This will list all projects, select the first project with at least one
+	 * revision and dump the names of all walls within the last revision of that
+	 * project
 	 */
 	@Test
 	public void testEmbeddedBimServerDump() {
@@ -117,7 +152,7 @@ public class TestEmbeddedBimServer {
 				long roid = firstProjectWithRevisions.getLastRevisionId();
 				DownloadDatabaseAction downloadDatabaseAction = new DownloadDatabaseAction(bimServer, session, AccessMethod.INTERNAL, roid, service.getCurrentUser().getOid());
 				IfcModelInterface ifcModelInterface = downloadDatabaseAction.execute();
-				for (IfcWall ifcWall : ifcModelInterface.getAll(IfcWall.class)) {
+				for (IfcWall ifcWall : ifcModelInterface.getAllWithSubTypes(IfcWall.class)) {
 					System.out.println(ifcWall.getName());
 				}
 			}
@@ -130,22 +165,5 @@ public class TestEmbeddedBimServer {
 		} catch (BimDeadlockException e) {
 			e.printStackTrace();
 		}
-	}
-
-	private static BimServer setup() throws PluginException, DatabaseInitException, BimDatabaseException, DatabaseRestartRequiredException, ServerException, UserException {
-		BimServer bimServer = new BimServer();
-		bimServer.init(new File("home"), new LocalDevelopmentResourceFetcher());
-		bimServer.getPluginManager().loadPluginsFromEclipseProject(new File("../CityGML"));
-		bimServer.getPluginManager().loadPluginsFromEclipseProject(new File("../Collada"));
-		bimServer.getPluginManager().loadPluginsFromEclipseProject(new File("../IfcPlugins"));
-		bimServer.getPluginManager().loadPluginsFromEclipseProject(new File("../MiscSerializers"));
-		bimServer.getPluginManager().loadPluginsFromEclipseProject(new File("../O3d"));
-		bimServer.getPluginManager().loadPluginsFromEclipseProject(new File("../IFCEngine"));
-		bimServer.getPluginManager().loadPluginsFromEclipseProject(new File("../buildingSMARTLibrary"));
-		bimServer.start();
-		if (bimServer.getServerInfo().getServerState() == ServerState.NOT_SETUP) {
-			bimServer.getSystemService().setup("http://localhost", "localhost", "Administrator", "admin@bimserver.org", "admin", true);
-		}
-		return bimServer;
 	}
 }
