@@ -5,6 +5,9 @@
 	<fileset id="lib" dir="../../BimServer">
 		<include name="**/*.jar" />
 	</fileset>
+	<fileset id="buildlib" dir="builds/lib">
+		<include name="**/*.jar" />
+	</fileset>
 	<target name="Build">
 		<mkdir dir="builds/lib" />
 		<mkdir dir="builds/pluginlibs" />
@@ -31,6 +34,7 @@
 			<classpath>
 				<path>
 					<fileset refid="lib" />
+					<fileset refid="buildlib" />
 				</path>
 				<path>
 					<fileset dir="../../BimWebServer/lib" />
@@ -50,6 +54,7 @@
 			<classpath>
 				<path>
 					<fileset refid="lib" />
+					<fileset refid="buildlib" />
 				</path>
 			</classpath>
 		</javac>
@@ -65,6 +70,7 @@
 			<classpath>
 				<path>
 					<fileset refid="lib" />
+					<fileset refid="buildlib" />
 				</path>
 			</classpath>
 		</javac>
@@ -79,6 +85,7 @@
 			<classpath>
 				<path>
 					<fileset refid="lib" />
+					<fileset refid="buildlib" />
 				</path>
 			</classpath>
 		</javac>
@@ -101,6 +108,7 @@
 			<classpath>
 				<path>
 					<fileset refid="lib" />
+					<fileset refid="buildlib" />
 				</path>
 			</classpath>
 		</javac>
@@ -115,6 +123,7 @@
 			<classpath>
 				<path>
 					<fileset refid="lib" />
+					<fileset refid="buildlib" />
 				</path>
 			</classpath>
 		</javac>
@@ -136,6 +145,7 @@
 			<classpath>
 				<path>
 					<fileset refid="lib" />
+					<fileset refid="buildlib" />
 				</path>
 			</classpath>
 		</javac>
@@ -154,6 +164,7 @@
 			<classpath>
 				<path>
 					<fileset refid="lib" />
+					<fileset refid="buildlib" />
 				</path>
 			</classpath>
 		</javac>
@@ -172,6 +183,7 @@
 			<classpath>
 				<path>
 					<fileset refid="lib" />
+					<fileset refid="buildlib" />
 				</path>
 			</classpath>
 		</javac>
@@ -190,6 +202,7 @@
 			<classpath>
 				<path>
 					<fileset refid="lib" />
+					<fileset refid="buildlib" />
 				</path>
 			</classpath>
 		</javac>
@@ -212,6 +225,7 @@
 				</path>
 				<path>
 					<fileset refid="lib" />
+					<fileset refid="buildlib" />
 				</path>
 			</classpath>
 		</javac>
@@ -230,6 +244,7 @@
 			<classpath>
 				<path>
 					<fileset refid="lib" />
+					<fileset refid="buildlib" />
 				</path>
 			</classpath>
 		</javac>
@@ -244,6 +259,7 @@
 			<classpath>
 				<path>
 					<fileset refid="lib" />
+					<fileset refid="buildlib" />
 				</path>
 			</classpath>
 		</javac>
@@ -258,6 +274,7 @@
 			<classpath>
 				<path>
 					<fileset refid="lib" />
+					<fileset refid="buildlib" />
 				</path>
 			</classpath>
 		</javac>
@@ -274,6 +291,7 @@
 			<classpath>
 				<path>
 					<fileset refid="lib" />
+					<fileset refid="buildlib" />
 				</path>
 			</classpath>
 		</javac>
@@ -288,6 +306,7 @@
 			<classpath>
 				<path>
 					<fileset refid="lib" />
+					<fileset refid="buildlib" />
 				</path>
 			</classpath>
 		</javac>
