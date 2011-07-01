@@ -4,7 +4,7 @@
 <%@page import="java.util.Date"%>
 <jsp:useBean id="loginManager" scope="session" class="org.bimserver.web.LoginManager" />
 <%
-	VersionChecker checkVersion = VersionChecker.getInstance();
+	VersionChecker checkVersion = WebServerHelper.getBimServer().getVersionChecker();
 	SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
 	Date lastReset = null;
 	try {

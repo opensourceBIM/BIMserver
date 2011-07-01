@@ -87,6 +87,7 @@ public class BimServer {
 	private ServerInfo serverInfo = new ServerInfo();
 	private String classPath = System.getProperty("java.class.path");
 	private ServiceFactory serviceFactory;
+	private VersionChecker versionChecker;
 	
 	/**
 	 * Initialize this BIMserver
@@ -126,7 +127,7 @@ public class BimServer {
 
 			Thread.setDefaultUncaughtExceptionHandler(uncaughtExceptionHandler);
 
-			VersionChecker.init(resourceFetcher);
+			versionChecker = new VersionChecker(resourceFetcher);
 			
 			try {
 				pluginManager = new PluginManager(resourceFetcher, homeDir, classPath);
@@ -458,5 +459,9 @@ public class BimServer {
 
 	public ServiceFactory getServiceFactory() {
 		return serviceFactory;
+	}
+	
+	public VersionChecker getVersionChecker() {
+		return versionChecker;
 	}
 }

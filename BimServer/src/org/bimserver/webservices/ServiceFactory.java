@@ -48,15 +48,18 @@ public class ServiceFactory {
 	}
 
 	public synchronized void cleanup() {
-		LOGGER.info("Cleaning up tokens");
+		int tokensCleaned = 0;
 		Date now = new Date();
 		Iterator<Token> iterator = tokens.keySet().iterator();
 		while (iterator.hasNext()) {
 			Token token = iterator.next();
 			if (token.getExpiresAsDate().before(now)) {
-				LOGGER.info("Removing token " + token.getTokenString() + " because it is expired");
+				tokensCleaned++;
 				iterator.remove();
 			}
+		}
+		if (tokensCleaned > 0) {
+			LOGGER.info("Removed " + tokensCleaned + " tokens");
 		}
 	}
 
