@@ -63,7 +63,7 @@ public class FindClashesDatabaseAction extends BimDatabaseAction<Set<? extends C
 		Map<Long, Revision> oidToRoidMap = new HashMap<Long, Revision>();
 
 		// Look in the cache
-		Set<EidClash> clashDetection = ClashDetectionCache.getInstance().getClashDetection(clashDetectionSettings);
+		Set<EidClash> clashDetection = bimServer.getClashDetectionCache().getClashDetection(clashDetectionSettings);
 		if (clashDetection != null) {
 			return clashDetection;
 		}
@@ -111,7 +111,7 @@ public class FindClashesDatabaseAction extends BimDatabaseAction<Set<? extends C
 					}
 
 					// Store in cache
-					ClashDetectionCache.getInstance().storeClashDetection(clashDetectionSettings, eidClashes);
+					bimServer.getClashDetectionCache().storeClashDetection(clashDetectionSettings, eidClashes);
 
 					for (EidClash clash : eidClashes) {
 						IfcRoot object1 = (IfcRoot) newModel.get(clash.getEid1());
