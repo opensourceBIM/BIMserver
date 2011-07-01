@@ -344,7 +344,7 @@
 			<fileset file="${defaultsettings}/${target}/log4j.xml" />
 		</copy>
 		<copy todir="builds/BuildJar/lib" flatten="true">
-			<fileset dir="../lib">
+			<fileset dir="../../BimServer/lib">
 				<include name="**/*.jar" />
 			</fileset>
 			<fileset dir="../../BimWebServer/lib">
@@ -440,7 +440,7 @@
 			<fileset file="${defaultsettings}/${target}/settings.xml" />
 		</copy>
 		<copy todir="builds/BuildWar/WEB-INF/lib" flatten="true">
-			<fileset dir="../lib">
+			<fileset dir="../../BimServer/lib">
 				<include name="**/*.jar" />
 				<exclude name="ant-1.6.5.jar" />
 				<exclude name="core-3.1.1.jar" />
