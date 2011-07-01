@@ -36,25 +36,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class VersionChecker {
+	private static final Logger LOGGER = LoggerFactory.getLogger(VersionChecker.class);
 	private GregorianCalendar lastCheck;
 	private Version onlineVersion;
-	private static final Logger LOGGER = LoggerFactory.getLogger(VersionChecker.class);
-	private static VersionChecker VERSION_CHECKER = null;
 	private final ResourceFetcher resourceFetcher;
 
-	private VersionChecker(ResourceFetcher resourceFetcher) {
+	public VersionChecker(ResourceFetcher resourceFetcher) {
 		this.resourceFetcher = resourceFetcher;
 	}
 
-	public static VersionChecker getInstance() {
-		return VERSION_CHECKER;
-	}
-
-	public static VersionChecker init(ResourceFetcher resourceFetcher) {
-		VERSION_CHECKER = new VersionChecker(resourceFetcher);
-		return VERSION_CHECKER;
-	}
-	
 	public synchronized Version getOnlineVersion() {
 		if (lastCheck == null || lastCheck.before(getReferenceDate())) {
 			LOGGER.info("Fetching online version info");

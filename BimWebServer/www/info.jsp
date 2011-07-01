@@ -46,7 +46,7 @@
 	if (loginManager.getService().isLoggedIn() && loginManager.getUserType() == SUserType.ADMIN) {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
 		DatabaseInformation databaseInformation = loginManager.getService().getDatabaseInformation();
-		VersionChecker checkVersion = VersionChecker.getInstance();
+		VersionChecker checkVersion = WebServerHelper.getBimServer().getVersionChecker();
 		if (loginManager.getService().isSettingShowVersionUpgradeAvailable() && checkVersion.updateNeeded()) {
 %>
 <div class="error">

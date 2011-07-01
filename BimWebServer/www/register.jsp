@@ -1,3 +1,4 @@
+<%@page import="org.bimserver.web.WebServerHelper"%>
 <%@page import="org.bimserver.shared.UserException"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
@@ -21,7 +22,7 @@
 <%
 	if (loginManager.getService().isSettingAllowSelfRegistration()) {
 		List<String> errorMessages = new ArrayList<String>();
-		Version version = VersionChecker.getInstance().getLocalVersion();
+		Version version = WebServerHelper.getBimServer().getVersionChecker().getLocalVersion();
 		boolean success = false;
 		if (request.getParameter("register") != null) {
 	String name = request.getParameter("register_name");

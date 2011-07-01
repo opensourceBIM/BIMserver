@@ -16,7 +16,7 @@
 %>
 <div class="sitewrapper">
 <div class="header"><a href="main.jsp"> <%
- 	Version version = VersionChecker.getInstance().getLocalVersion();
+ 	Version version = WebServerHelper.getBimServer().getVersionChecker().getLocalVersion();
  %> <img class="headerimage"
 	src="<%=loginManager.getService().getSettingCustomLogoAddress() != null ? loginManager.getService().getSettingCustomLogoAddress() : "images/logo.gif"%>" alt="BIMserver" title="BIMserver <%=version.getVersion()%>" /></a> <%
  	if (loginManager.getService().isLoggedIn()) {
