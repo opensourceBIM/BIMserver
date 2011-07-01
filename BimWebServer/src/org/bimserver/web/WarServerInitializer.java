@@ -48,16 +48,15 @@ public class WarServerInitializer implements ServletContextListener {
 		if (homeDir == null && servletContext.getInitParameter("homedir") != null) {
 			homeDir = new File(servletContext.getInitParameter("homedir"));
 		}
-		bimServer = new BimServer();
 		
 		File baseDir = new File(servletContext.getRealPath("/") + "WEB-INF");
 		if (homeDir == null) {
 			homeDir = baseDir;
 		}
 		ResourceFetcher resourceFetcher = new WarResourceFetcher(servletContext, homeDir);
+		bimServer = new BimServer(homeDir, resourceFetcher);
 		
 		bimServer.setClassPath(makeClassPath(resourceFetcher.getFile("lib")));
-		bimServer.init(homeDir, resourceFetcher);
 		File file = resourceFetcher.getFile("plugins");
 		try {
 			bimServer.getPluginManager().loadAllPluginsFromDirectoryOfJars(file);

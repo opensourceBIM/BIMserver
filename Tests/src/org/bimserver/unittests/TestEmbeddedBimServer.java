@@ -46,10 +46,7 @@ public class TestEmbeddedBimServer {
 	public static void initClass() {
 		try {
 			// Create a BIMserver
-			bimServer = new BimServer();
-
-			// Initialize
-			bimServer.init(new File("home"), new LocalDevelopmentResourceFetcher());
+			bimServer = new BimServer(new File("home"), new LocalDevelopmentResourceFetcher());
 
 			// Load plugins
 			bimServer.getPluginManager().loadPluginsFromEclipseProject(new File("../CityGML"));
