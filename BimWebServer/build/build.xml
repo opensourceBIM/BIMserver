@@ -1,0 +1,14 @@
+<project name="BIMserver">
+	<property name="version" value="trunk" />
+	<target name="jar">
+		<property name="target" value="jar" description="Create a standalone jar file" />
+		<ant antfile="common.build.xml" target="buildjar"></ant>
+	</target>
+	<target name="war">
+		<property name="target" value="war" description="Create a war file" />
+		<ant antfile="common.build.xml" target="buildwar"></ant>
+	</target>
+	<target name="source" description="Create an eclipse workspace zipfile">
+		<ant antfile="common.build.xml" target="buildsource"></ant>
+	</target>
+</project>
