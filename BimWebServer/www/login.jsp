@@ -1,3 +1,4 @@
+<%@page import="org.slf4j.LoggerFactory"%>
 <%@page import="org.bimserver.web.WebServerHelper"%>
 <%@page import="org.bimserver.models.log.AccessMethod"%>
 <%@page import="org.bimserver.version.Version"%>
@@ -13,6 +14,7 @@
 <jsp:useBean id="loginManager" scope="session" class="org.bimserver.web.LoginManager" />
 <body>
 	<%
+	try {
 	if (loginManager.getService() == null) {
 		loginManager.setService(WebServerHelper.getBimServer().getServiceFactory().newService(AccessMethod.WEB_INTERFACE));
 	}
@@ -117,5 +119,9 @@ if (loginManager.getService().isSettingAllowSelfRegistration()) {
  	} else if (WebServerHelper.getBimServer().getServerInfo().getServerState() == ServerInfo.ServerState.FATAL_ERROR) {
  		response.sendRedirect("error.jsp");
  	}
+	} catch (Exception e) {
+		LoggerFactory.getLogger("login.jsp").error("", e);
+		out.println(e.getMessage());
+	}
 %>
 <jsp:include page="footer.jsp" />

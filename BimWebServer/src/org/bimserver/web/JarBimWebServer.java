@@ -65,6 +65,8 @@ public class JarBimWebServer {
 			LOGGER.error("", e);
 		}
 		
+	 	WebServerHelper.setBimServer(bimServer);
+	 	
 		server = new org.eclipse.jetty.server.Server();
 		HashSessionIdManager hashSessionIdManager = new HashSessionIdManager(new Random());
 		server.setSessionIdManager(hashSessionIdManager);
@@ -75,6 +77,7 @@ public class JarBimWebServer {
 
 		WebAppContext context = new WebAppContext(server, "", "/");
 		context.setAttribute("bimserver", bimServer);
+		context.getServletContext().setAttribute("bimserver", bimServer);
 		context.setResourceBase(resourceBase);
 
 		try {
