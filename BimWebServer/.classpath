@@ -32,5 +32,6 @@
 	<classpathentry kind="lib" path="lib/jetty/jetty-websocket-7.3.1.v20110307.jar"/>
 	<classpathentry kind="lib" path="lib/jetty/jetty-xml-7.3.1.v20110307.jar"/>
 	<classpathentry kind="lib" path="lib/jetty/servlet-api-2.5.jar"/>
+	<classpathentry kind="src" path="expander"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

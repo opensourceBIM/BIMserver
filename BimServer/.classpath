@@ -4,7 +4,6 @@
 	<classpathentry exported="true" kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="generated"/>
-	<classpathentry kind="src" path="expander"/>
 	<classpathentry kind="src" path="imported"/>
 	<classpathentry exported="true" kind="lib" path="lib/geoapi/geoapi-2.3-M1.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/geoapi/geoapi-pending-2.3-M1.jar"/>
