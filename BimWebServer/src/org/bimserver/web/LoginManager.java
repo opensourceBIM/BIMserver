@@ -25,14 +25,9 @@ import org.bimserver.shared.ServiceException;
 import org.bimserver.shared.ServiceInterface;
 
 public class LoginManager {
-	private static ServiceInterface systemService;
 	private ServiceInterface service;
 
 	public LoginManager() {
-	}
-
-	public static void setSystemService(ServiceInterface systemService) {
-		LoginManager.systemService = systemService;
 	}
 
 	public long getUoid() throws ServiceException {
@@ -50,8 +45,8 @@ public class LoginManager {
 	public SUserType getUserType() throws ServiceException {
 		return service.getCurrentUser().getUserType();
 	}
-
+	
 	public ServiceInterface getSystemService() {
-		return systemService;
+		return WebServerHelper.getBimServer().getSystemService();
 	}
 }
