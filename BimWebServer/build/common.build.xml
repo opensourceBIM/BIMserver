@@ -503,7 +503,7 @@
 		<copy todir="builds/BuildClient/lib">
 			<fileset dir="builds/lib"></fileset>
 		</copy>
-		<one-jar destfile="builds/bimserver-client-${version}.jar" manifest="../../BimServer/build/targets/client/MANIFEST.MF">
+		<one-jar destfile="builds/bimserver-client-${version}.jar" manifest="../../BimWebServer/build/targets/client/MANIFEST.MF">
 			<main>
 				<fileset dir="builds/BuildClient" />
 			</main>
