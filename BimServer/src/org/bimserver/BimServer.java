@@ -86,20 +86,26 @@ public class BimServer {
 	private MailSystem mailSystem;
 	private DiskCacheManager diskCacheManager;
 	private ServerInfo serverInfo = new ServerInfo();
-	private String classPath = System.getProperty("java.class.path");
 	private ServiceFactory serviceFactory;
 	private VersionChecker versionChecker;
 	private TemplateEngine templateEngine;
 	private ClashDetectionCache clashDetectionCache;
 	private CompareCache compareCache;
-	
+
+	private final String classPath;
+
+	public BimServer(File homeDir, ResourceFetcher resourceFetcher) {
+		this(homeDir, resourceFetcher, System.getProperty("java.class.path"));
+	}
+
 	/**
 	 * Create a new BIMserver
 	 * 
 	 * @param homeDir A directory where the user can store instance specific configuration files
 	 * @param resourceFetcher A resource fetcher
 	 */
-	public BimServer(File homeDir, ResourceFetcher resourceFetcher) {
+	public BimServer(File homeDir, ResourceFetcher resourceFetcher, String classPath) {
+		this.classPath = classPath;
 		try {
 			this.homeDir = homeDir;
 			this.resourceFetcher = resourceFetcher;
@@ -451,10 +457,6 @@ public class BimServer {
 		return diskCacheManager;
 	}
 
-	public void setClassPath(String classPath) {
-		this.classPath = classPath;
-	}
-	
 	public String getClassPath() {
 		return classPath;
 	}
