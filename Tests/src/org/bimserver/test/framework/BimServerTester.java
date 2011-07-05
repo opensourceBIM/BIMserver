@@ -49,7 +49,6 @@ import org.apache.cxf.jaxws.JaxWsProxyFactoryBean;
 import org.apache.cxf.transport.http.HTTPConduit;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SUserType;
-import org.bimserver.pb.ProtocolBuffersServiceInterfaceImplementation;
 import org.bimserver.shared.ServiceException;
 import org.bimserver.shared.ServiceInterface;
 import org.bimserver.test.framework.TestResult.ResultCode;
@@ -81,7 +80,8 @@ public class BimServerTester {
 	}
 
 	private ServiceInterface createProtocolBuffersClient(String address) {
-		return new ProtocolBuffersServiceInterfaceImplementation(address, 8020);
+		return null;
+//		return new ProtocolBuffersServiceInterfaceImplementation(address, 8020);
 	}
 	
 	public ServiceInterface createSoapClient(final String address) {
