@@ -723,4 +723,6 @@ public interface ServiceInterface {
 	Date getServerStartTime();
 	
 	SSerializerPluginDescriptor getSerializerPluginDescriptor(String type);
+	
+	Set<SGuidanceProviderPluginDescriptor> getAllGuidanceProviderPluginDescriptors();
 }
