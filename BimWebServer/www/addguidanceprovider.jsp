@@ -1,3 +1,4 @@
+<%@page import="org.bimserver.shared.SGuidanceProviderPluginDescriptor"%>
 <%@ include file="header.jsp"%>
 <%@page import="org.bimserver.interfaces.objects.SSerializer"%>
 <%@page import="java.util.List"%>
@@ -26,17 +27,25 @@
 	if (request.getParameter("add") != null) {
 		SGuidanceProvider guidanceProvider = new SGuidanceProvider();
 		guidanceProvider.setName(request.getParameter("name"));
+		guidanceProvider.setClassName(request.getParameter("className"));
+		loginManager.getService().addGuidanceProvider(guidanceProvider);
 	}
 %>
-<form action="settings">
+<form>
 <table>
 <tr>
 	<td><label for="name">Name</label></td>
 	<td><input name="name" id="name"></input></td>
 </tr>
 <tr>
-	<td><label for="ignorefile">File</label></td>
-	<td><input name="ignorefile" id="ignorefile" type="file"></input></td>
+	<td><label for="className">Class</label></td>
+	<td><select name="className" id="className">
+<%
+	for (SGuidanceProviderPluginDescriptor gppd : loginManager.getService().getAllGuidanceProviderPluginDescriptors()) {
+		out.print("<option value=\"" + gppd.getClassName() + "\">" + gppd.getClassName() + "</option>");
+	}
+%>
+	</select></td>
 </tr>
 <tr>
 	<td></td>

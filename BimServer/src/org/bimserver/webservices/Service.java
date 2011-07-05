@@ -182,6 +182,7 @@ import org.bimserver.plugins.PluginContext;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.deserializers.EmfDeserializer;
+import org.bimserver.plugins.guidanceproviders.GuidanceProviderPlugin;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.rights.RightsManager;
 import org.bimserver.shared.DatabaseInformation;
@@ -195,6 +196,7 @@ import org.bimserver.shared.SCompareResult.SObjectModified;
 import org.bimserver.shared.SCompareResult.SObjectRemoved;
 import org.bimserver.shared.SDataObject;
 import org.bimserver.shared.SDownloadResult;
+import org.bimserver.shared.SGuidanceProviderPluginDescriptor;
 import org.bimserver.shared.SLongAction;
 import org.bimserver.shared.SMigration;
 import org.bimserver.shared.SPlugin;
@@ -2305,7 +2307,11 @@ public class Service implements ServiceInterface {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
 		try {
-			session.executeAndCommitAction(new UpdateSerializerDatabaseAction(session, accessMethod, convert(serializer, Serializer.class, session)), DEADLOCK_RETRIES);
+			Serializer convert = convert(serializer, Serializer.class, session);
+			if (convert.getGuidanceProvider() != null) {
+				session.store(convert.getGuidanceProvider());
+			}
+			session.executeAndCommitAction(new UpdateSerializerDatabaseAction(session, accessMethod, convert), DEADLOCK_RETRIES);
 		} catch (Exception e) {
 			handleException(e);
 		} finally {
@@ -2635,5 +2641,17 @@ public class Service implements ServiceInterface {
 	@Override
 	public SSerializerPluginDescriptor getSerializerPluginDescriptor(String type) {
 		return bimServer.getEmfSerializerFactory().getSerializerPluginDescriptor(type);
+	}
+
+	@Override
+	public Set<SGuidanceProviderPluginDescriptor> getAllGuidanceProviderPluginDescriptors() {
+		Collection<GuidanceProviderPlugin> allGuidanceProviders = bimServer.getPluginManager().getAllGuidanceProviders(true);
+		Set<SGuidanceProviderPluginDescriptor> descriptors = new HashSet<SGuidanceProviderPluginDescriptor>();
+		for (GuidanceProviderPlugin guidanceProviderPlugin : allGuidanceProviders) {
+			SGuidanceProviderPluginDescriptor descriptor = new SGuidanceProviderPluginDescriptor();
+			descriptor.setClassName(guidanceProviderPlugin.getName());
+			descriptors.add(descriptor);
+		}
+		return descriptors;
 	}
 }
