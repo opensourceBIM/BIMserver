@@ -366,8 +366,11 @@ subproject</a><br />
 	<%
 		Set<SProject> subProjects = new TreeSet<SProject>(new SProjectNameComparator());
 					for (long subPoid : project.getSubProjects()) {
-						SProject subProject = loginManager.getService().getProjectByPoid(subPoid);
-						subProjects.add(subProject);
+						try {
+							SProject subProject = loginManager.getService().getProjectByPoid(subPoid);
+							subProjects.add(subProject);
+						} catch (UserException e) {
+						}
 					}
 					for (SProject subProject : subProjects) {
 						SRevision lastSubProjectRevision = null;
