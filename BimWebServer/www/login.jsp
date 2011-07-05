@@ -15,9 +15,6 @@
 <body>
 	<%
 	try {
-	if (loginManager.getService() == null) {
-		loginManager.setService(WebServerHelper.getBimServer().getServiceFactory().newService(AccessMethod.WEB_INTERFACE));
-	}
 	if (WebServerHelper.getBimServer().getServerInfo().isAvailable() || WebServerHelper.getBimServer().getServerInfo().getServerState() == ServerInfo.ServerState.MIGRATION_REQUIRED) {
 		Version version = WebServerHelper.getBimServer().getVersionChecker().getLocalVersion();
 		boolean redirected = false;

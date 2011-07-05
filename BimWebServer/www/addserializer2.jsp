@@ -1,3 +1,4 @@
+<%@page import="org.bimserver.shared.SSerializerPluginDescriptor"%>
 <%@ include file="header.jsp"%>
 <%@page import="org.bimserver.interfaces.objects.SSerializer"%>
 <%@page import="java.util.List"%>
@@ -25,11 +26,21 @@
 <fieldset>
 <%
 	String type = request.getParameter("type");
+	String contentType = "";
+	String extension = "";
+	String description = "";
+	String name = "";
 	ServiceInterface service = loginManager.getService();
 	if (request.getParameter("next") != null) {
+		description = request.getParameter("description");
+		contentType = request.getParameter("contentType");
+		extension = request.getParameter("extension");
+		name = request.getParameter("name");
 		SSerializer serializer = new SSerializer();
-		serializer.setName(request.getParameter("name"));
-		serializer.setDescription(request.getParameter("description"));
+		serializer.setName(name);
+		serializer.setDescription(description);
+		serializer.setContentType(contentType);
+		serializer.setExtension(extension);
 		serializer.setEnabled(true);
 		try {
 			serializer.setGuidanceProviderId(Long.parseLong(request.getParameter("guidanceProvider")));
@@ -43,6 +54,11 @@
 		} catch (UserException e) {
 			out.println("<div class=\"error\">" + e.getMessage() + "</div>");
 		}
+	} else {
+		SSerializerPluginDescriptor serializerPluginDescriptor = loginManager.getService().getSerializerPluginDescriptor(type);
+		contentType = serializerPluginDescriptor.getDefaultContentType();
+		extension = serializerPluginDescriptor.getDefaultExtension();
+		name = serializerPluginDescriptor.getDefaultName();
 	}
 %>
 <form>
@@ -50,19 +66,19 @@
 <table>
 <tr>
 	<td><label for="name">Name</label></td>
-	<td><input name="name" id="name" value="<%=request.getParameter("name") != null ? request.getParameter("name") : ""%>"></input></td>
+	<td><input name="name" id="name" value="<%=name%>"></input></td>
 </tr>
 <tr>
 	<td><label for="description">Description</label></td>
-	<td><input name="description" id="description" value="<%=request.getParameter("description") != null ? request.getParameter("description") : ""%>"></input></td>
+	<td><input name="description" id="description" value="<%=description%>"></input></td>
 </tr>
 <tr>
 	<td><label for="contentType">Content Type</label></td>
-	<td><input name="contentType" id="contentType" value="<%=request.getParameter("contentType") != null ? request.getParameter("contentType") : ""%>"></input></td>
+	<td><input name="contentType" id="contentType" value="<%=contentType%>"></input></td>
 </tr>
 <tr>
 	<td><label for="extension">Extension</label></td>
-	<td><input name="extension" id="extension" value="<%=request.getParameter("extension") != null ? request.getParameter("extension") : ""%>"></input></td>
+	<td><input name="extension" id="extension" value="<%=extension%>"></input></td>
 </tr>
 <tr>
 	<td><label for="type">Type</label></td>

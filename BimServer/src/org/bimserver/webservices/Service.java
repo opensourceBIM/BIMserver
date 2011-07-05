@@ -200,6 +200,7 @@ import org.bimserver.shared.SMigration;
 import org.bimserver.shared.SPlugin;
 import org.bimserver.shared.SPlugin.SPluginState;
 import org.bimserver.shared.SRevisionSummary;
+import org.bimserver.shared.SSerializerPluginDescriptor;
 import org.bimserver.shared.SUserSession;
 import org.bimserver.shared.ServerException;
 import org.bimserver.shared.ServiceException;
@@ -2381,9 +2382,9 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public Set<String> getAllSerializerClassNames() throws UserException {
+	public Set<SSerializerPluginDescriptor> getAllSerializerPluginDescriptors() throws UserException {
 		requireAuthenticationAndRunningServer();
-		return bimServer.getEmfSerializerFactory().getAllSerializerClassNames();
+		return bimServer.getEmfSerializerFactory().getAllSerializerPluginDescriptors();
 	}
 
 	@Override
@@ -2629,5 +2630,10 @@ public class Service implements ServiceInterface {
 	@Override
 	public Date getServerStartTime() {
 		return bimServer.getServerStartTime().getTime();
+	}
+
+	@Override
+	public SSerializerPluginDescriptor getSerializerPluginDescriptor(String type) {
+		return bimServer.getEmfSerializerFactory().getSerializerPluginDescriptor(type);
 	}
 }
