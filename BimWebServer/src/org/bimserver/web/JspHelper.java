@@ -19,6 +19,7 @@ import org.bimserver.shared.SRevisionIdComparator;
 import org.bimserver.shared.SRevisionSummary;
 import org.bimserver.shared.ServiceException;
 import org.bimserver.shared.ServiceInterface;
+import org.bimserver.shared.UserException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -76,8 +77,11 @@ public class JspHelper {
 		result.append("</tr>");
 		Set<SProject> subProjects = new TreeSet<SProject>(new SProjectNameComparator());
 		for (long subPoid : project.getSubProjects()) {
-			SProject subProject = loginManager.getService().getProjectByPoid(subPoid);
-			subProjects.add(subProject);
+			try {
+				SProject subProject = loginManager.getService().getProjectByPoid(subPoid);
+				subProjects.add(subProject);
+			} catch (UserException e) {
+			}
 		}
 		for (SProject subProject : subProjects) {
 			if (loginManager.getService().userHasRights(subProject.getOid())
