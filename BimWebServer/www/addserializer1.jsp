@@ -1,3 +1,4 @@
+<%@page import="org.bimserver.shared.SSerializerPluginDescriptor"%>
 <%@ include file="header.jsp"%>
 <%@page import="org.bimserver.interfaces.objects.SSerializer"%>
 <%@page import="java.util.List"%>
@@ -34,14 +35,14 @@
 	<td><label for="type">Type</label></td>
 	<td><select id="type" name="type">
 <%
-	for (String className : service.getAllSerializerClassNames()) {
-		if (request.getParameter("type") != null && className.equals(request.getParameter("type"))) {
+	for (SSerializerPluginDescriptor serializerPluginDescriptor : service.getAllSerializerPluginDescriptors()) {
+		if (request.getParameter("type") != null && serializerPluginDescriptor.getPluginClassName().equals(request.getParameter("type"))) {
 %>
-		<option value="<%=className%>" selected="selected"><%=className %></option>
+		<option value="<%=serializerPluginDescriptor.getPluginClassName()%>" selected="selected"><%=serializerPluginDescriptor.getPluginClassName() %></option>
 <%
 		} else {
 %>
-		<option value="<%=className%>"><%=className %></option>
+		<option value="<%=serializerPluginDescriptor.getPluginClassName()%>"><%=serializerPluginDescriptor.getPluginClassName() %></option>
 <%			
 		}
 	}

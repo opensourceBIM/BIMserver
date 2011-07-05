@@ -618,7 +618,7 @@ public interface ServiceInterface {
 	void deleteSerializer(long sid) throws UserException, ServerException;
 	
 	@WebMethod(action = "getAllSerializerClassNames")
-	Set<String> getAllSerializerClassNames() throws UserException;
+	Set<SSerializerPluginDescriptor> getAllSerializerPluginDescriptors() throws UserException;
 
 	@WebMethod(action = "getSettingMergeIdentifier")
 	SMergeIdentifier getSettingMergeIdentifier() throws UserException,
@@ -721,4 +721,6 @@ public interface ServiceInterface {
 	
 	@WebMethod(action = "getServerStartTime")
 	Date getServerStartTime();
+	
+	SSerializerPluginDescriptor getSerializerPluginDescriptor(String type);
 }
