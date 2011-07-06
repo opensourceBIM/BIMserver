@@ -17,7 +17,7 @@
 	}
 %>
 <script src="js/main.js" type="text/javascript" charset="utf-8"></script>
-<script src="js/jquery-1.5.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/jquery-1.6.2.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/jquery-ui-1.8.11.custom.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/thickbox-compressed.js" type="text/javascript" charset="utf-8"></script>
 <link type="text/css" href="css/redmond/jquery-ui-1.8.11.custom.css" rel="stylesheet" />	

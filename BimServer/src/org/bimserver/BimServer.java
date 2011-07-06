@@ -91,7 +91,6 @@ public class BimServer {
 	private TemplateEngine templateEngine;
 	private ClashDetectionCache clashDetectionCache;
 	private CompareCache compareCache;
-
 	private final String classPath;
 
 	public BimServer(File homeDir, ResourceFetcher resourceFetcher) {
@@ -168,7 +167,7 @@ public class BimServer {
 						}
 					}
 				});
-				pluginManager.loadPlugin(GuidanceProviderPlugin.class, "Internal", new SchemaFieldGuidanceProviderPlugin());
+				pluginManager.loadPlugin(GuidanceProviderPlugin.class, "Internal", "Internal", new SchemaFieldGuidanceProviderPlugin());
 			} catch (Exception e) {
 				e.printStackTrace();
 				LOGGER.error("", e);
