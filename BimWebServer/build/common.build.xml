@@ -26,6 +26,7 @@
 		<antcall target="IfcPlugins" />
 		<antcall target="MiscSerializers" />
 		<antcall target="buildingSMARTLibrary" />
+		<antcall target="FileBasedGuidanceProvider" />
 	</target>
 	<target name="BimWebServer">
 		<mkdir dir="builds/bimwebserver" />
@@ -76,6 +77,28 @@
 		</javac>
 		<jar destfile="builds/lib/bimserver-utils-${version}.jar">
 			<fileset dir="builds/utils"/>
+		</jar>
+	</target>
+	<target name="FileBasedGuidanceProvider">
+		<mkdir dir="builds/filebasedguidanceprovider" />
+		<javac destdir="builds/filebasedguidanceprovider" debug="on" fork="false">
+			<src path="../../FileBasedGuidanceProvider/src" />
+			<classpath>
+				<path>
+					<fileset refid="lib" />
+					<fileset refid="buildlib" />
+				</path>
+			</classpath>
+		</javac>
+		<copy todir="builds/filebasedguidanceprovider">
+			<fileset file="../../FileBasedGuidanceProvider/ignore.xml"/>
+		</copy>
+		<mkdir dir="builds/filebasedguidanceprovider/ignoreexceptions"/>
+		<copy todir="builds/filebasedguidanceprovider/ignoreexceptions">
+			<fileset dir="../../FileBasedGuidanceProvider/ignoreexceptions"/>
+		</copy>
+		<jar destfile="builds/lib/bimserver-filebasedguidanceprovider-${version}.jar">
+			<fileset dir="builds/filebasedguidanceprovider"/>
 		</jar>
 	</target>
 	<target name="buildingSMARTLibrary">
