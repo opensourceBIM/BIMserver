@@ -35,10 +35,11 @@ public class GetAllProjectsDatabaseAction extends BimDatabaseAction<Set<Project>
 	@Override
 	public Set<Project> execute() throws UserException, BimDeadlockException, BimDatabaseException {
 		User user = getUserByUoid(actingUoid);
-		Condition condition = new IsOfTypeCondition(StorePackage.eINSTANCE.getProject()).and(
-				new Not(new AttributeCondition(StorePackage.eINSTANCE.getProject_Name(), new StringLiteral(Database.STORE_PROJECT_NAME)))).and(
-				new HasReferenceToCondition(StorePackage.eINSTANCE.getProject_HasAuthorizedUsers(), user));
-		if (user.getUserType() != UserType.ADMIN) {
+		Not notStoreProject = new Not(new AttributeCondition(StorePackage.eINSTANCE.getProject_Name(), new StringLiteral(Database.STORE_PROJECT_NAME)));
+		HasReferenceToCondition authorized = new HasReferenceToCondition(StorePackage.eINSTANCE.getProject_HasAuthorizedUsers(), user);
+		Condition condition = new IsOfTypeCondition(StorePackage.eINSTANCE.getProject()).and(notStoreProject);
+		if (user.getUserType() != UserType.ADMIN && user.getUserType() != UserType.SYSTEM) {
+			condition = condition.and(authorized);
 			condition = condition.and(new AttributeCondition(StorePackage.eINSTANCE.getProject_State(), new EnumLiteral(ObjectState.ACTIVE)));
 		}
 		Map<Long, Project> results = (Map<Long, Project>) getDatabaseSession().query(condition, Project.class, false);
