@@ -90,6 +90,10 @@
 				</path>
 			</classpath>
 		</javac>
+		<mkdir dir="builds/buildingSMARTLibrary/plugin"/>
+		<copy todir="builds/filebasedguidanceprovider/plugin">
+			<fileset dir="../../FileBasedGuidanceProvider/plugin"></fileset>
+		</copy>
 		<copy todir="builds/filebasedguidanceprovider">
 			<fileset file="../../FileBasedGuidanceProvider/ignore.xml"/>
 		</copy>
