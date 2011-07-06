@@ -34,11 +34,30 @@ public class JarClassLoader extends ClassLoader {
 				ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
 				IOUtils.copy(jarInputStream, byteArrayOutputStream);
 				map.put(entry.getName(), byteArrayOutputStream.toByteArray());
+				if (entry.getName().endsWith(".jar")) {
+					loadSubJars(byteArrayOutputStream.toByteArray());
+				}
 				entry = jarInputStream.getNextJarEntry();
 			}
 			jarInputStream.close();
 		} catch (FileNotFoundException e) {
 		} catch (IOException e) {
+		}
+	}
+
+	private void loadSubJars(byte[] byteArray) {
+		try {
+			JarInputStream jarInputStream = new JarInputStream(new ByteArrayInputStream(byteArray));
+			JarEntry entry = jarInputStream.getNextJarEntry();
+			while (entry != null) {
+				ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+				IOUtils.copy(jarInputStream, byteArrayOutputStream);
+				map.put(entry.getName(), byteArrayOutputStream.toByteArray());
+				entry = jarInputStream.getNextJarEntry();
+			}
+			jarInputStream.close();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 
