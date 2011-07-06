@@ -97,7 +97,7 @@
 		<copy todir="builds/filebasedguidanceprovider/ignoreexceptions">
 			<fileset dir="../../FileBasedGuidanceProvider/ignoreexceptions"/>
 		</copy>
-		<jar destfile="builds/lib/bimserver-filebasedguidanceprovider-${version}.jar">
+		<jar destfile="builds/pluginlibs/bimserver-filebasedguidanceprovider-${version}.jar">
 			<fileset dir="builds/filebasedguidanceprovider"/>
 		</jar>
 	</target>
