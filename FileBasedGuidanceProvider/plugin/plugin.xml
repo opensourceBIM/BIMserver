@@ -2,6 +2,6 @@
 <PluginDescriptor>
 	<PluginImplementation>
 		<interfaceClass>org.bimserver.plugins.guidanceproviders.GuidanceProvider</interfaceClass>
-		<implementationClass>org.bimserver.guidanceproviders.FileBasedGuidanceProvider</implementationClass>
+		<implementationClass>org.bimserver.guidanceproviders.FileBasedGuidanceProviderPlugin</implementationClass>
 	</PluginImplementation>
 </PluginDescriptor>

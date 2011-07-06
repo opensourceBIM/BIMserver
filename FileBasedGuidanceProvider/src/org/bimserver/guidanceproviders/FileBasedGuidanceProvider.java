@@ -29,12 +29,10 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
-import org.bimserver.plugins.ResourceFetcher;
 import org.bimserver.plugins.guidanceproviders.FieldIgnoreMap;
 import org.bimserver.utils.StringUtils;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EPackage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -43,8 +41,8 @@ public class FileBasedGuidanceProvider extends FieldIgnoreMap {
 	private static final Logger LOGGER = LoggerFactory.getLogger(FileBasedGuidanceProvider.class);
 	private JAXBContext jaxbContext;
 
-	public FileBasedGuidanceProvider(Set<? extends EPackage> packages, ResourceFetcher resourceFetcher) {
-		super(packages);
+	public FileBasedGuidanceProvider(Set<Ifc2x3Package> set) {
+		super(set);
 		URL ignoreFile = getClass().getClassLoader().getResource("ignore.xml");
 		LOGGER.info("Reading general ignore list from \"" + StringUtils.getPrettyFileUrl(ignoreFile) + "\"");
 		try {
@@ -69,7 +67,7 @@ public class FileBasedGuidanceProvider extends FieldIgnoreMap {
 			LOGGER.error("", e);
 		}
 	}
-
+	
 	private void processResource(EClass eClass, URL resource) throws JAXBException {
 		Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
 		PackageDefinition packageDefinition = (PackageDefinition) unmarshaller.unmarshal(resource);
