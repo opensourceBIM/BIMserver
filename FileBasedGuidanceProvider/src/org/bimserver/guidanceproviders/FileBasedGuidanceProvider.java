@@ -38,14 +38,14 @@ import org.eclipse.emf.ecore.EPackage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class FileFieldIgnoreMap extends FieldIgnoreMap {
+public class FileBasedGuidanceProvider extends FieldIgnoreMap {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(FileFieldIgnoreMap.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(FileBasedGuidanceProvider.class);
 	private JAXBContext jaxbContext;
 
-	public FileFieldIgnoreMap(Set<? extends EPackage> packages, ResourceFetcher resourceFetcher) {
+	public FileBasedGuidanceProvider(Set<? extends EPackage> packages, ResourceFetcher resourceFetcher) {
 		super(packages);
-		URL ignoreFile = resourceFetcher.getResource("ignore.xml");
+		URL ignoreFile = getClass().getClassLoader().getResource("ignore.xml");
 		LOGGER.info("Reading general ignore list from \"" + StringUtils.getPrettyFileUrl(ignoreFile) + "\"");
 		try {
 			jaxbContext = JAXBContext.newInstance(PackageDefinition.class);
@@ -59,7 +59,7 @@ public class FileFieldIgnoreMap extends FieldIgnoreMap {
 			for (EClassifier eClassifier : Ifc2x3Package.eINSTANCE.getEClassifiers()) {
 				if (eClassifier instanceof EClass) {
 					EClass eClass = (EClass) eClassifier;
-					URL resource = resourceFetcher.getResource("ignoreexceptions/" + eClass.getName() + ".xml");
+					URL resource = getClass().getClassLoader().getResource("ignoreexceptions/" + eClass.getName() + ".xml");
 					if (resource != null) {
 						processResource(eClass, resource);
 					}

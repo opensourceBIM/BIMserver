@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PluginDescriptor>
+	<PluginImplementation>
+		<interfaceClass>org.bimserver.plugins.guidanceproviders.GuidanceProvider</interfaceClass>
+		<implementationClass>org.bimserver.guidanceproviders.FileBasedGuidanceProvider</implementationClass>
+	</PluginImplementation>
+</PluginDescriptor>
