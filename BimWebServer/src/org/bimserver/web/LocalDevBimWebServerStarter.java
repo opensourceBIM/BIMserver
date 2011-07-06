@@ -59,6 +59,7 @@ public class LocalDevBimWebServerStarter {
 			bimServer.getPluginManager().loadPluginsFromEclipseProject(new File("../O3d"));
 			bimServer.getPluginManager().loadPluginsFromEclipseProject(new File("../IFCEngine"));
 			bimServer.getPluginManager().loadPluginsFromEclipseProject(new File("../buildingSMARTLibrary"));
+			bimServer.getPluginManager().loadPluginsFromEclipseProject(new File("../FileBasedGuidanceProvider"));
 			bimServer.start();
 		} catch (PluginException e1) {
 			e1.printStackTrace();

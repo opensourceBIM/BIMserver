@@ -16,6 +16,7 @@ public class LocalDevPluginLoader {
 		pluginManager.loadPluginsFromEclipseProject(new File("../buildingSMARTLibrary"));
 		pluginManager.loadPluginsFromEclipseProject(new File("../IfcPlugins"));
 		pluginManager.loadPluginsFromEclipseProject(new File("../CityGML"));
+		pluginManager.loadPluginsFromEclipseProject(new File("../FileBasedGuidanceProvider"));
 		pluginManager.loadPlugin(GuidanceProviderPlugin.class, "Internal", new SchemaFieldGuidanceProviderPlugin());
 		pluginManager.initAllLoadedPlugins();
 		return pluginManager;
