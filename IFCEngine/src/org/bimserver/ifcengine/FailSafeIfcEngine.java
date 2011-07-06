@@ -72,8 +72,6 @@ public class FailSafeIfcEngine implements IfcEngine {
 			}
 			command.append(" -classpath ");
 			command.append("\"");
-			command.append(System.getProperty("java.class.path"));
-			command.append(File.pathSeparator);
 			if (classPath != null) {
 				File file = new File(classPath);
 				if (file.isDirectory()) {

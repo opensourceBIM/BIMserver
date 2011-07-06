@@ -8,6 +8,7 @@ public class PluginContext {
 	private String location;
 	private boolean enabled = true;
 	private final PluginManager pluginManager;
+	private String classLocation;
 
 	public PluginContext(PluginManager pluginManager) {
 		this.pluginManager = pluginManager;
@@ -40,5 +41,13 @@ public class PluginContext {
 
 	public InputStream getResourceAsInputStream(String name) {
 		return plugin.getClass().getClassLoader().getResourceAsStream(name);
+	}
+
+	public void setClassLocation(String classLocation) {
+		this.classLocation = classLocation;
+	}
+	
+	public String getClassLocation() {
+		return classLocation;
 	}
 }

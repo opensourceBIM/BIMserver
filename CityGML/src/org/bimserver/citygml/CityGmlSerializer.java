@@ -328,29 +328,29 @@ public class CityGmlSerializer extends BimModelSerializer {
 		// || ifcProduct instanceof IfcSlab) {
 		// // Do nothing, because it should already have been converted
 		if (ifcProduct instanceof IfcStair) {
-			List<Double> coordinates = null;
-
-			StairType stairType = xbuilding.createStairType();
-			MultiSurfacePropertyType multiSurfacePropertyType = new MultiSurfacePropertyType();
-			MultiSurfaceType multiSurfaceType = new MultiSurfaceType();
-			SurfacePropertyType surfacePropertyType = new SurfacePropertyType();
-			Set<SurfaceProperty> geometry = getGeometry(ifcProduct);
-			PolygonType polygonType = new PolygonType();
-			LinearRingPropertyType linearRingProperty = gmlObjectFactory.createLinearRingPropertyType();
-			
-			DirectPositionListType posList = gmlObjectFactory.createDirectPositionListType();
-			posList.setValue(coordinates);
-			posList.setSrsDimension(BigInteger.valueOf(3));
-			LinearRingType linearRingType = new LinearRingType();
-			linearRingType.setPosList(posList);
-			linearRingProperty.setLinearRing(linearRingType);
-
-//			polygonType.setExterior(gmlObjectFactory.createExterior(linearRingProperty)); // Compile error, LinearRingPropertyType is not a subtype of AbstractRingPropertyType
-			surfacePropertyType.set_Surface(gmlObjectFactory.createPolygon(polygonType));
-			multiSurfaceType.getSurfaceMember().add(surfacePropertyType);
-			multiSurfacePropertyType.setMultiSurface(multiSurfaceType);
-			stairType.setLod4MultiSurface(multiSurfacePropertyType);
-			return stairType.get_ADEComponent();
+//			List<Double> coordinates = null;
+//
+//			StairType stairType = xbuilding.createStairType();
+//			MultiSurfacePropertyType multiSurfacePropertyType = new MultiSurfacePropertyType();
+//			MultiSurfaceType multiSurfaceType = new MultiSurfaceType();
+//			SurfacePropertyType surfacePropertyType = new SurfacePropertyType();
+//			Set<SurfaceProperty> geometry = getGeometry(ifcProduct);
+//			PolygonType polygonType = new PolygonType();
+//			LinearRingPropertyType linearRingProperty = gmlObjectFactory.createLinearRingPropertyType();
+//			
+//			DirectPositionListType posList = gmlObjectFactory.createDirectPositionListType();
+//			posList.setValue(coordinates);
+//			posList.setSrsDimension(BigInteger.valueOf(3));
+//			LinearRingType linearRingType = new LinearRingType();
+//			linearRingType.setPosList(posList);
+//			linearRingProperty.setLinearRing(linearRingType);
+//
+////			polygonType.setExterior(gmlObjectFactory.createExterior(linearRingProperty)); // Compile error, LinearRingPropertyType is not a subtype of AbstractRingPropertyType
+//			surfacePropertyType.set_Surface(gmlObjectFactory.createPolygon(polygonType));
+//			multiSurfaceType.getSurfaceMember().add(surfacePropertyType);
+//			multiSurfacePropertyType.setMultiSurface(multiSurfaceType);
+//			stairType.setLod4MultiSurface(multiSurfacePropertyType);
+//			return stairType.get_ADEComponent();
 		}
 		// } else if (ifcProduct instanceof IfcRailing) {
 		// RailingType railing = new RailingType();

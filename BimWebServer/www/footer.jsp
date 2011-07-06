@@ -56,9 +56,6 @@ $(document).ready(function(){
 			return false;
 		});
 	}
-$(window).unload(function(){
-	uninit();	
-});
 </script>
 </body>
 </html>

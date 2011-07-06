@@ -817,7 +817,10 @@ open a specific revision to query other revisions<br />
 				$(".inactivecheckoutrow").hide();
 			}
 		}
-		$("#showinactivecheckouts").change(updateInactiveCheckouts);
+		// Crappy MS browser does not understand change
+		if (!$.browser.msie) {
+			$("#showinactivecheckouts").change(updateInactiveCheckouts);
+		}
 		updateInactiveCheckouts();
 		var refreshFunction = function() {
 			$.ajax({ url: "progress", cache: false, context: document.body, data: {poid: poid}, success: function(data){
@@ -887,7 +890,7 @@ open a specific revision to query other revisions<br />
 </script> 
 <%
  	if (lastRevision != null) {
-%> 
+%>
 <script>
 	$(document).ready(function(){
 		$('button[value="Download"]').click(function(){
@@ -962,13 +965,16 @@ open a specific revision to query other revisions<br />
 			return false;
 		});
 
-		checkDetailsCheckoutButton = function(){
+		var checkDetailsCheckoutButton = function(){
 			$("#detailscheckoutbutton").attr("disabled", $("#detailsdownloadcheckoutselect").val() != "IFC" && $("#detailsdownloadcheckoutselect").val() != "IFCXML");
 		};
-		$("#detailsdownloadcheckoutselect").change(checkDetailsCheckoutButton);
+		// Crappy MS browser does not understand change
+		if (!$.browser.msie) {
+			$("#detailsdownloadcheckoutselect").change(checkDetailsCheckoutButton);
+		}
 		checkDetailsCheckoutButton();
 
-		checkRevisionsCheckoutButton = function(event) {
+		var checkRevisionsCheckoutButton = function(event) {
 							$(event.target)
 									.parent()
 									.children(".revisionscheckoutbutton")
@@ -977,8 +983,11 @@ open a specific revision to query other revisions<br />
 											$(event.target).val() != "IFC"
 													&& $(event.target).val() != "IFCXML");
 						};
-						$(".revisionsdownloadcheckoutselect").change(
+						// Crappy MS browser does not understand change
+						if (!$.browser.msie) {
+							$(".revisionsdownloadcheckoutselect").change(
 								checkRevisionsCheckoutButton);
+						}
 
 						$("#visualiselink")
 								.click(
@@ -1016,17 +1025,20 @@ open a specific revision to query other revisions<br />
 	}
 	
 	function updateTreeSelectListeners() {
-		$(".treeselect").change(function(e){
-			var idString = e.target.id;
-			var baseName = idString.substring(0, idString.indexOf("_"));
-			var id = idString.substring(idString.indexOf("_") + 1);
-			if ($("#" + baseName + "_" + id).val() != "[off]") {
-				var revisionId = e.target.value;
-				var project = projects["project" + id];
-				setOffSupers(baseName, project.id);
-				setOffSubs(baseName, project.id);
-			}
-		});
+		// Crappy MS browser does not understand change
+		if (!$.browser.msie) {
+			$(".treeselect").change(function(e){
+				var idString = e.target.id;
+				var baseName = idString.substring(0, idString.indexOf("_"));
+				var id = idString.substring(idString.indexOf("_") + 1);
+				if ($("#" + baseName + "_" + id).val() != "[off]") {
+					var revisionId = e.target.value;
+					var project = projects["project" + id];
+					setOffSupers(baseName, project.id);
+					setOffSubs(baseName, project.id);
+				}
+			});
+		}
 	}
 </script> <%
  	}

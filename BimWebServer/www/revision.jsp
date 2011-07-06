@@ -152,7 +152,7 @@
 			<%
 				}
 			%>
-		</select> <label for="zip_<%=revision.getId()%>">Zip</label><input
+		</select> <label for="zip_<%=revision.getId()%>">Zip</label> <input
 			type="checkbox" name="zip" id="zip_<%=revision.getId()%>" />
 			<input name="download" type="submit" value="Download">
 <%
@@ -228,10 +228,13 @@ if (userHasCheckinRights) { %>
 			$("#browserajaxloader").show();
 			$("#browser").load("browser.jsp?roid=<%=roid%>");
 		});
-		checkCheckoutButton = function(event){
-			$(".checkoutbutton").attr("disabled", $("#downloadcheckoutselect").val() != "IFC" && $("#downloadcheckoutselect").val() != "IFCXML");
+		var checkCheckoutButton = function(event){
+			$(".checkoutbutton").attr("disabled", $("#downloadcheckoutselect").val() != "Ifc2x3" && $("#downloadcheckoutselect").val() != "IfcXML");
 		};
-		$("#downloadcheckoutselect").change(checkCheckoutButton);
+		// Crappy MS browser does not understand change
+		if (!$.browser.msie) {
+			$("#downloadcheckoutselect").change(checkCheckoutButton);
+		}
 		$("#visualiselink").click(function(){
 			showOverlay("Visualisation", "visualize.jsp?roid=<%=revision.getOid() %>");
 			return false;

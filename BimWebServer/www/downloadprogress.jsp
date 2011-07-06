@@ -1,8 +1,10 @@
+<%@page import="org.slf4j.LoggerFactory"%>
 <%@page import="org.bimserver.shared.LongActionState.ActionState"%>
 <%@page import="org.bimserver.shared.LongActionState"%>
 <jsp:useBean id="loginManager" scope="session"
 	class="org.bimserver.web.LoginManager" />
 <%
+	LoggerFactory.getLogger("downloadprogress.jsp").info("Progress request");
 	int longActionId = Integer.parseInt(request.getParameter("longActionId"));
 	String zip = request.getParameter("zip");
 %>

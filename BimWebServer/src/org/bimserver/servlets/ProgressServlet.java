@@ -30,6 +30,7 @@ public class ProgressServlet extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
+			LOGGER.info("Progress request");
 			response.setContentType("application/json");
 			LoginManager loginManager = (LoginManager) request.getSession().getAttribute("loginManager");
 			JSONObject result = new JSONObject();
