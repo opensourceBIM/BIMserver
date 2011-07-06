@@ -229,6 +229,10 @@
 				</path>
 			</classpath>
 		</javac>
+		<mkdir dir="builds/citygml/lib"/>
+		<copy todir="builds/citygml/lib">
+			<fileset dir="../../CityGML/lib"/>
+		</copy>
 		<mkdir dir="builds/citygml/plugin"/>
 		<copy todir="builds/citygml/plugin">
 			<fileset dir="../../CityGML/plugin"></fileset>
