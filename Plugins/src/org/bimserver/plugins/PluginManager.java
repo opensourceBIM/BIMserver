@@ -331,7 +331,10 @@ public class PluginManager {
 		return homeDir;
 	}
 
-	public void loadPlugin(Class<? extends Plugin> interfaceClass, String location, Plugin plugin) {
+	public void loadPlugin(Class<? extends Plugin> interfaceClass, String location, Plugin plugin) throws PluginException {
+		if (!Plugin.class.isAssignableFrom(interfaceClass)) {
+			throw new PluginException("Given interface class (" + interfaceClass.getName() + ") must be a subclass of " + Plugin.class.getName());
+		}
 		if (!implementations.containsKey(interfaceClass)) {
 			implementations.put(interfaceClass, new HashSet<PluginContext>());
 		}
