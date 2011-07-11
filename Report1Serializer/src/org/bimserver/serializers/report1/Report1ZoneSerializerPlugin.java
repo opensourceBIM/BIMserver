@@ -67,6 +67,6 @@ public class Report1ZoneSerializerPlugin implements SerializerPlugin {
 
 	@Override
 	public String getDefaultContentType() {
-		return "text/xhtml";
+		return "text/html";
 	}
 }
