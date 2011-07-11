@@ -29,6 +29,10 @@ public abstract class GenericCheckinDatabaseAction extends BimDatabaseAction<Con
 	protected void checkCheckSum(Project project) throws UserException {
 		if (!project.getConcreteRevisions().isEmpty()) {
 			ConcreteRevision concreteRevision = project.getConcreteRevisions().get(project.getConcreteRevisions().size()-1);
+			if (concreteRevision.getState() == CheckinState.ERROR) {
+				// When in error state, user usually tries the same file again, this should not give the 'duplicate model' error
+				return;
+			}
 			byte[] revisionChecksum = concreteRevision.getChecksum();
 			if (revisionChecksum != null && getModel().getChecksum() != null) {
 				if (Arrays.equals(revisionChecksum, getModel().getChecksum())) {
