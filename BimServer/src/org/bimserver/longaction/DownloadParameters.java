@@ -4,9 +4,11 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
+import org.bimserver.BimServer;
+
 public class DownloadParameters extends LongActionKey {
 	public enum DownloadType {
-		DOWNLOAD, DOWNLOAD_BY_OIDS, DOWNLOAD_BY_GUIDS, DOWNLOAD_OF_TYPE, DOWNLOAD_PROJECTS
+		DOWNLOAD_REVISION, DOWNLOAD_BY_OIDS, DOWNLOAD_BY_GUIDS, DOWNLOAD_OF_TYPE, DOWNLOAD_PROJECTS
 	};
 
 	private Set<Long> roids;
@@ -15,39 +17,41 @@ public class DownloadParameters extends LongActionKey {
 	private String className;
 	private String serializerName;
 	private DownloadType downloadType;
+	private final BimServer bimServer;
 
-	public DownloadParameters() {
-		downloadType = DownloadType.DOWNLOAD;
-	}
-
-	public DownloadParameters(long roid, String serializerName) {
+	public DownloadParameters(BimServer bimServer, long roid, String serializerName) {
+		this.bimServer = bimServer;
 		setRoid(roid);
-		setDownloadType(DownloadType.DOWNLOAD);
+		setDownloadType(DownloadType.DOWNLOAD_REVISION);
 		setSerializerName(serializerName);
 	}
 
-	public DownloadParameters(Set<Long> roids, Set<String> guids, String serializerName) {
+	public DownloadParameters(BimServer bimServer, Set<Long> roids, Set<String> guids, String serializerName) {
+		this.bimServer = bimServer;
 		setRoids(roids);
 		setGuids(guids);
 		setDownloadType(DownloadType.DOWNLOAD_BY_GUIDS);
 		setSerializerName(serializerName);
 	}
 
-	public DownloadParameters(String serializerName, Set<Long> roids, Set<Long> oids) {
+	public DownloadParameters(BimServer bimServer, String serializerName, Set<Long> roids, Set<Long> oids) {
+		this.bimServer = bimServer;
 		setRoids(roids);
 		setOids(oids);
 		setDownloadType(DownloadType.DOWNLOAD_BY_OIDS);
 		setSerializerName(serializerName);
 	}
 
-	public DownloadParameters(long roid, String className, String serializerName) {
+	public DownloadParameters(BimServer bimServer, long roid, String className, String serializerName) {
+		this.bimServer = bimServer;
 		setRoid(roid);
 		setClassName(className);
 		setDownloadType(DownloadType.DOWNLOAD_OF_TYPE);
 		setSerializerName(serializerName);
 	}
 
-	public DownloadParameters(Set<Long> roids, String serializerName) {
+	public DownloadParameters(BimServer bimServer, Set<Long> roids, String serializerName) {
+		this.bimServer = bimServer;
 		setRoids(roids);
 		setDownloadType(DownloadType.DOWNLOAD_PROJECTS);
 		setSerializerName(serializerName);
@@ -218,11 +222,9 @@ public class DownloadParameters extends LongActionKey {
 	}
 
 	public String getFileName() {
-		// TODO
-//		String extension = EmfSerializerFactory.getInstance().getResultType(serializerName).getExtension();
-		String extension = ".bak";
+		String extension = bimServer.getEmfSerializerFactory().getExtension(serializerName);
 		switch (downloadType) {
-		case DOWNLOAD:
+		case DOWNLOAD_REVISION:
 			return getRoidsString() + "." + extension;
 		case DOWNLOAD_BY_GUIDS:
 			return getRoidsString() + "-" + getGuidsString() + "." + extension;

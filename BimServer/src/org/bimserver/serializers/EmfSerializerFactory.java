@@ -92,4 +92,22 @@ public class EmfSerializerFactory {
 		}
 		return null;
 	}
+
+	public String getExtension(String serializerName) {
+		BimDatabaseSession session = bimDatabase.createReadOnlySession();
+		try {
+			Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getSerializer_Name(), new StringLiteral(serializerName));
+			Serializer found = session.querySingle(condition, Serializer.class, false);
+			if (found != null) {
+				return found.getExtension();
+			}
+		} catch (BimDatabaseException e) {
+			e.printStackTrace();
+		} catch (BimDeadlockException e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return null;
+	}
 }

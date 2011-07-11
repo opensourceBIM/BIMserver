@@ -5,7 +5,6 @@ import java.io.File;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.ResourceFetcher;
-import org.bimserver.plugins.guidanceproviders.GuidanceProviderPlugin;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
 
 public class LocalDevPluginLoader {
@@ -20,7 +19,6 @@ public class LocalDevPluginLoader {
 		pluginManager.loadPluginsFromEclipseProject(new File("../FileBasedGuidanceProvider"));
 		pluginManager.loadPluginsFromEclipseProject(new File("../Cobie2Serializer"));
 		pluginManager.loadPluginsFromEclipseProject(new File("../Report1Serializer"));
-		pluginManager.loadPlugin(GuidanceProviderPlugin.class, "Internal", "Internal", new SchemaFieldGuidanceProviderPlugin());
 	}
 	
 	public static PluginManager createPluginManager() throws PluginException {
