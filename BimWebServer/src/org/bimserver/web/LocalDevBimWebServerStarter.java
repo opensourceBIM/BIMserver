@@ -4,10 +4,12 @@ import java.io.File;
 import java.util.Random;
 
 import org.bimserver.BimServer;
+import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.DatabaseRestartRequiredException;
 import org.bimserver.database.berkeley.DatabaseInitException;
 import org.bimserver.plugins.PluginException;
+import org.bimserver.plugins.PluginManager;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
 import org.bimserver.shared.ServerException;
 import org.eclipse.jetty.server.bio.SocketConnector;
@@ -52,14 +54,7 @@ public class LocalDevBimWebServerStarter {
 
 		BimServer bimServer = new BimServer(new File(homedir), new LocalDevelopmentResourceFetcher());
 	 	try {
-			bimServer.getPluginManager().loadPluginsFromEclipseProject(new File("../CityGML"));
-			bimServer.getPluginManager().loadPluginsFromEclipseProject(new File("../Collada"));
-			bimServer.getPluginManager().loadPluginsFromEclipseProject(new File("../IfcPlugins"));
-			bimServer.getPluginManager().loadPluginsFromEclipseProject(new File("../MiscSerializers"));
-			bimServer.getPluginManager().loadPluginsFromEclipseProject(new File("../O3d"));
-			bimServer.getPluginManager().loadPluginsFromEclipseProject(new File("../IFCEngine"));
-			bimServer.getPluginManager().loadPluginsFromEclipseProject(new File("../buildingSMARTLibrary"));
-			bimServer.getPluginManager().loadPluginsFromEclipseProject(new File("../FileBasedGuidanceProvider"));
+	 		LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager());
 			bimServer.start();
 		} catch (PluginException e1) {
 			e1.printStackTrace();

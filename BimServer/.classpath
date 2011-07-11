@@ -89,5 +89,6 @@
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Store"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Utils"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/cxf-2.4.1.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/XsltSerializer"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

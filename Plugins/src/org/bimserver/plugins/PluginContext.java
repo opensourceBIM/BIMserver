@@ -1,6 +1,7 @@
 package org.bimserver.plugins;
 
 import java.io.InputStream;
+import java.net.URL;
 
 public class PluginContext {
 
@@ -43,6 +44,10 @@ public class PluginContext {
 		return plugin.getClass().getClassLoader().getResourceAsStream(name);
 	}
 
+	public URL getResourceAsUrl(String name) {
+		return plugin.getClass().getClassLoader().getResource(name);
+	}
+	
 	public void setClassLocation(String classLocation) {
 		this.classLocation = classLocation;
 	}

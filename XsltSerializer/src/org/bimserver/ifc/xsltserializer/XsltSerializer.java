@@ -1,6 +1,9 @@
 package org.bimserver.ifc.xsltserializer;
+
 import java.io.OutputStream;
 import java.net.URL;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.xml.transform.ErrorListener;
 import javax.xml.transform.Transformer;
@@ -24,59 +27,75 @@ public class XsltSerializer extends BimModelSerializer {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(XsltSerializer.class);
 	private URL xsltUrl;
-	private XsltParameter[] parameters;
+	private Set<XsltParameter> parameters = new HashSet<XsltParameter>();
 
 	@Override
 	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager) throws SerializerException {
 		super.init(model, projectInfo, pluginManager);
 	}
 
+	public void setXsltUrl(URL url) {
+		xsltUrl = url;
+	}
+
 	@Override
 	protected void reset() {
 		setMode(Mode.BODY);
 	}
-	
+
 	@Override
 	protected boolean write(OutputStream outputStream) throws SerializerException {
-		SerializerPlugin plugin = (SerializerPlugin) getPluginManager().getPlugin("org.bimserver.ifc.xml.serializer.IfcXmlSerializerPlugin", true);
-		EmfSerializer ifcXmlSerializer = plugin.createSerializer();
-		ifcXmlSerializer.init(model, null, getPluginManager());
-		TransformerFactory factory = TransformerFactory.newInstance();
-		try {
-			StreamSource xslStream = new StreamSource(xsltUrl.openStream());
+		switch (getMode()) {
+		case BODY:
+			SerializerPlugin plugin = (SerializerPlugin) getPluginManager().getPlugin("org.bimserver.ifc.xml.serializer.IfcXmlSerializerPlugin", true);
+			EmfSerializer ifcXmlSerializer = plugin.createSerializer();
+			ifcXmlSerializer.init(model, null, getPluginManager());
+			TransformerFactory factory = TransformerFactory.newInstance();
 			try {
-				Transformer transformer = factory.newTransformer(xslStream);
-				for (XsltParameter xsltParameter : parameters) {
-					transformer.setParameter(xsltParameter.getKey(), xsltParameter.getValue());
+				StreamSource xslStream = new StreamSource(xsltUrl.openStream());
+				try {
+					Transformer transformer = factory.newTransformer(xslStream);
+					for (XsltParameter xsltParameter : parameters) {
+						transformer.setParameter(xsltParameter.getKey(), xsltParameter.getValue());
+					}
+					transformer.setErrorListener(new ErrorListener() {
+
+						@Override
+						public void warning(TransformerException e) throws TransformerException {
+						}
+
+						@Override
+						public void fatalError(TransformerException e) throws TransformerException {
+							LOGGER.error("", e);
+						}
+
+						@Override
+						public void error(TransformerException e) throws TransformerException {
+							LOGGER.error("", e);
+						}
+					});
+
+					StreamSource in = new StreamSource(ifcXmlSerializer.getInputStream());
+					StreamResult out = new StreamResult(outputStream);
+					transformer.transform(in, out);
+					outputStream.flush();
+				} catch (TransformerConfigurationException e) {
+					throw new SerializerException(e);
+				} catch (TransformerException e) {
+					throw new SerializerException(e);
 				}
-				transformer.setErrorListener(new ErrorListener() {
-
-					@Override
-					public void warning(TransformerException e) throws TransformerException {
-					}
-
-					@Override
-					public void fatalError(TransformerException e) throws TransformerException {
-						LOGGER.error("", e);
-					}
-
-					@Override
-					public void error(TransformerException e) throws TransformerException {
-						LOGGER.error("", e);
-					}
-				});
-
-				StreamSource in = new StreamSource(ifcXmlSerializer.getInputStream());
-				StreamResult out = new StreamResult(outputStream);
-				transformer.transform(in, out);
-			} catch (TransformerConfigurationException e) {
-				throw new SerializerException(e);
-			} catch (TransformerException e) {
+			} catch (Throwable e) {
 				throw new SerializerException(e);
 			}
-		} catch (Throwable e) {
-			throw new SerializerException(e);
+			setMode(Mode.FINISHED);
+			return true;
+		case FINISHED:
+			return false;
 		}
 		return false;
+	}
+
+	public void addParameter(XsltParameter xsltParameter) {
+		parameters.add(xsltParameter);
 	}
 }

@@ -17,6 +17,7 @@
 		<antcall target="Plugins" />
 		<antcall target="Shared" />
 		<antcall target="Ifc" />
+		<antcall target="XsltSerializer" />
 		<antcall target="BimServer" />
 		<antcall target="BimWebServer" />
 		<antcall target="CityGML" />
@@ -27,6 +28,8 @@
 		<antcall target="MiscSerializers" />
 		<antcall target="buildingSMARTLibrary" />
 		<antcall target="FileBasedGuidanceProvider" />
+		<antcall target="Cobie2Serializer" />
+		<antcall target="Report1Serializer" />
 	</target>
 	<target name="BimWebServer">
 		<mkdir dir="builds/bimwebserver" />
@@ -203,6 +206,63 @@
 			<fileset dir="builds/miscserializers"/>
 		</jar>
 	</target>
+	<target name="XsltSerializer">
+		<mkdir dir="builds/xsltserializer" />
+		<javac destdir="builds/xsltserializer" debug="on">
+			<src path="../../XsltSerializer/src" />
+			<classpath>
+				<path>
+					<fileset refid="lib" />
+					<fileset refid="buildlib" />
+				</path>
+			</classpath>
+		</javac>
+		<jar destfile="builds/lib/bimserver-xsltserializer-${version}.jar">
+			<fileset dir="builds/xsltserializer"/>
+		</jar>
+	</target>	<target name="Cobie2Serializer">
+		<mkdir dir="builds/cobie2serializer" />
+		<javac destdir="builds/cobie2serializer" debug="on">
+			<src path="../../Cobie2Serializer/src" />
+			<classpath>
+				<path>
+					<fileset refid="lib" />
+					<fileset refid="buildlib" />
+				</path>
+			</classpath>
+		</javac>
+		<copy todir="builds/cobie2serializer">
+			<fileset file="../../Cobie2Serializer/_asCOBie2.xml.xsl"></fileset>
+		</copy>
+		<copy todir="builds/cobie2serializer/plugin">
+			<fileset dir="../../Cobie2Serializer/plugin"></fileset>
+		</copy>
+		<jar destfile="builds/pluginlibs/bimserver-cobie2serializer-${version}.jar">
+			<fileset dir="builds/cobie2serializer"/>
+		</jar>
+	</target>
+	<target name="Report1Serializer">
+		<mkdir dir="builds/report1serializer" />
+		<javac destdir="builds/report1serializer" debug="on">
+			<src path="../../Report1Serializer/src" />
+			<classpath>
+				<path>
+					<fileset refid="lib" />
+					<fileset refid="buildlib" />
+				</path>
+			</classpath>
+		</javac>
+		<copy todir="builds/report1serializer">
+			<fileset file="../../Report1Serializer/_Report1.xhtml.xsl"></fileset>
+		</copy>
+		<mkdir dir="builds/report1serializer/plugin"/>
+		<copy todir="builds/report1serializer/plugin">
+			<fileset dir="../../Report1Serializer/plugin"></fileset>
+		</copy>
+		<jar destfile="builds/pluginlibs/bimserver-report1serializer-${version}.jar">
+			<fileset dir="builds/report1serializer"/>
+		</jar>
+	</target>
 	<target name="Collada">
 		<mkdir dir="builds/collada" />
 		<javac destdir="builds/collada" debug="on">
@@ -360,9 +420,6 @@
 			<fileset file="${buildtargets}/shared/IFC2X3_FINAL.exp" />
 			<fileset file="${buildtargets}/shared/version.xml" />
 			<fileset file="${buildtargets}/shared/web.xml" />
-			<fileset file="${buildtargets}/shared/_asCOBie2.xml.xsl" />
-			<fileset file="${buildtargets}/shared/_fromCOBie2.ifcxml.xsl" />
-			<fileset file="${buildtargets}/shared/_Report1.xhtml.xsl" />
 			<fileset file="${buildtargets}/shared/service.proto" />
 		</copy>
 		<copy todir="builds/BuildJar/home" overwrite="true">
@@ -444,9 +501,6 @@
 			<fileset file="${buildtargets}/shared/IFC2X3_FINAL.exp" />
 			<fileset file="${buildtargets}/shared/version.xml" />
 			<fileset file="${buildtargets}/shared/web.xml" />
-			<fileset file="${buildtargets}/shared/_asCOBie2.xml.xsl" />
-			<fileset file="${buildtargets}/shared/_fromCOBie2.ifcxml.xsl" />
-			<fileset file="${buildtargets}/shared/_Report1.xhtml.xsl" />
 			<fileset file="${buildtargets}/shared/service.proto" />
 
 			<fileset file="${defaultsettings}/shared/settings.xml" />
