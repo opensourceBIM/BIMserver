@@ -2,10 +2,6 @@
 <PluginDescriptor>
 	<PluginImplementation>
 		<interfaceClass>org.bimserver.plugins.serializers.SerializerPlugin</interfaceClass>
-		<implementationClass>org.bimserver.ifc.xsltserializer.XsltSerializerPlugin</implementationClass>
-	</PluginImplementation>
-	<PluginImplementation>
-		<interfaceClass>org.bimserver.plugins.serializers.SerializerPlugin</interfaceClass>
 		<implementationClass>org.bimserver.serializers.objectinfo.ObjectInfoSerializerPlugin</implementationClass>
 	</PluginImplementation>
 </PluginDescriptor>
