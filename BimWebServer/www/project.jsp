@@ -195,8 +195,7 @@ revisions tab</a> to add a first revision, or <a id="subprojecttablink"
 	<%
 		if (kmzEnabled) {
 					String url = WebUtils.getWebServer(request.getRequestURL().toString());
-					String link = "http://" + url + getServletContext().getContextPath() + "download?poid=" + project.getOid()
-							+ "&serializerName=KMZ";
+					String link = "http://" + url + getServletContext().getContextPath() + "download?poid=" + project.getOid() + "&serializerName=KMZ";
 	%>
 	<tr>
 		<td class="first">Google Earth Link</td>
@@ -275,9 +274,6 @@ to go to the latest revision<br />
 		<%
 			}
 		%>
-		<td>
-			<div class="downloadResult"></div>
-		</td>
 	</tr>
 </table>
 </div>
@@ -319,9 +315,6 @@ to go to the latest revision<br />
 			<input type="hidden" name="multiple" value="true">
 			<input type="hidden" name="roid" value="<%=lastRevision.getOid()%>" >
 			<button value="Download" type="button">Download</button>
-		</td>
-		<td>
-		<div class="downloadResult"></div>
 		</td>
 	</tr>
 </table>
@@ -618,9 +611,6 @@ subproject</a><br />
 <%
  	}
 %>
-		<td>
-		<div class="downloadResult"></div>
-		</td>
 		</tr>
 		</table>
 		</div>
@@ -893,10 +883,10 @@ open a specific revision to query other revisions<br />
 %>
 <script>
 	$(document).ready(function(){
-		$('button[value="Download"]').click(function(){
-			var downloadframe = $(this).parents(".downloadframe");
-			$(this).hide();
-			downloadframe.find('button[value="Checkout"]').hide();
+		$('button[value="Download"]').click(function(event){
+			var progressDiv = $("<div>");
+			$(this).parent().append(progressDiv);
+			var downloadframe = $(event.target).parent().parent();
 			var roid = downloadframe.find('input[name="roid"]');
 			var serializerName = downloadframe.find('select[name="serializerName"]');
 			var zipbox = downloadframe.find('input[name="zip"]');
@@ -905,17 +895,16 @@ open a specific revision to query other revisions<br />
 				zip = "&zip=on";
 			}
 			var multiple = downloadframe.find('input[name="multiple"]');
-			var resultDiv = downloadframe.find(".downloadResult");
 			if (multiple.val() != "undefined") {
-				resultDiv.load("initiatedownload.jsp?roid=" + roid.val() + "&serializerName=" + serializerName.val() + zip + "&download=Download");
+				progressDiv.load("initiatedownload.jsp?roid=" + roid.val() + "&serializerName=" + serializerName.val() + zip + "&download=Download");
 			} else {
-				resultDiv.load("initiatedownload.jsp?roid=" + roid.val() + "&serializerName=" + serializerName.val() + zip + "&multiple=" + multiple.val() + "&download=Download");				
+				progressDiv.load("initiatedownload.jsp?roid=" + roid.val() + "&serializerName=" + serializerName.val() + zip + "&multiple=" + multiple.val() + "&download=Download");				
 			}
 		});
 		$('button[value="Checkout"]').click(function(){
-			var downloadframe = $(this).parents(".downloadframe");
-			$(this).hide();
-			downloadframe.find('button[value="Download"]').hide();
+			var progressDiv = $("<div>");
+			$(this).parent().append(progressDiv);
+			var downloadframe = $(event.target).parent().parent();
 			var roid = downloadframe.find('input[name="roid"]');
 			var serializerName = downloadframe.find('select[name="serializerName"]');
 			var zipbox = downloadframe.find('input[name="zip"]');
@@ -923,8 +912,7 @@ open a specific revision to query other revisions<br />
 			if (zipbox.attr('checked')) {
 				zip = "&zip=on";
 			}
-			var resultDiv = downloadframe.find(".downloadResult");
-			resultDiv.load("initiatedownload.jsp?roid=" + roid.val() + "&serializerName=" + serializerName.val() + zip + "&checkout=Checkout");
+			progressDiv.load("initiatedownload.jsp?roid=" + roid.val() + "&serializerName=" + serializerName.val() + zip + "&checkout=Checkout");
 		});
 		
 		$("#compareajaxloader").hide();
@@ -966,7 +954,7 @@ open a specific revision to query other revisions<br />
 		});
 
 		var checkDetailsCheckoutButton = function(){
-			$("#detailscheckoutbutton").attr("disabled", $("#detailsdownloadcheckoutselect").val() != "IFC" && $("#detailsdownloadcheckoutselect").val() != "IFCXML");
+			$("#detailscheckoutbutton").attr("disabled", $("#detailsdownloadcheckoutselect").val() != "Ifc2x3" && $("#detailsdownloadcheckoutselect").val() != "IfcXML");
 		};
 		// Crappy MS browser does not understand change
 		if (!$.browser.msie) {
@@ -980,8 +968,8 @@ open a specific revision to query other revisions<br />
 									.children(".revisionscheckoutbutton")
 									.attr(
 											"disabled",
-											$(event.target).val() != "IFC"
-													&& $(event.target).val() != "IFCXML");
+											$(event.target).val() != "Ifc2x3"
+													&& $(event.target).val() != "IfcXML");
 						};
 						// Crappy MS browser does not understand change
 						if (!$.browser.msie) {

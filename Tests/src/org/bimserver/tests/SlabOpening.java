@@ -78,6 +78,7 @@ public class SlabOpening implements QueryInterface {
 		}
 	}
 	
+	@SuppressWarnings("rawtypes")
 	@Override
 	public void query(IfcModelInterface model, PrintWriter out) {
 
