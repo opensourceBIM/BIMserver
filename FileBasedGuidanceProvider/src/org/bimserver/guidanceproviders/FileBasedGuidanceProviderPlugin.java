@@ -13,9 +13,11 @@ import org.bimserver.utils.CollectionUtils;
 public class FileBasedGuidanceProviderPlugin implements GuidanceProviderPlugin {
 
 	private boolean initialized;
+	private FileBasedGuidanceProvider fileBasedGuidanceProvider;
 
 	@Override
 	public void init(PluginManager pluginManager) throws PluginException {
+		fileBasedGuidanceProvider = new FileBasedGuidanceProvider(CollectionUtils.singleSet(Ifc2x3Package.eINSTANCE));
 		initialized = true;
 	}
 
@@ -46,7 +48,7 @@ public class FileBasedGuidanceProviderPlugin implements GuidanceProviderPlugin {
 
 	@Override
 	public GuidanceProvider getGuidanceProvider() {
-		return new FileBasedGuidanceProvider(CollectionUtils.singleSet(Ifc2x3Package.eINSTANCE));
+		return fileBasedGuidanceProvider;
 	}
 
 	@Override
