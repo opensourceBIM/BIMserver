@@ -453,7 +453,7 @@ public class Service implements ServiceInterface {
 //		if (serializerDescriptor.getSerializerClass() != IfcStepSerializer.class && serializerDescriptor.getSerializerClass() != IfcXmlSerializer.class) {
 //			throw new UserException("Only IFC or IFCXML allowed when checking out");
 //		}
-		DownloadParameters downloadParameters = new DownloadParameters(roid, resultTypeName);
+		DownloadParameters downloadParameters = new DownloadParameters(bimServer, roid, resultTypeName);
 		LongDownloadOrCheckoutAction longDownloadAction = new LongCheckoutAction(bimServer, downloadParameters, currentUoid, accessMethod);
 		try {
 			bimServer.getLongActionManager().start(longDownloadAction);
@@ -937,7 +937,7 @@ public class Service implements ServiceInterface {
 
 	public int download(long roid, String resultTypeName, boolean sync) throws UserException, ServerException {
 		requireAuthenticationAndRunningServer();
-		return download(new DownloadParameters(roid, resultTypeName), sync);
+		return download(new DownloadParameters(bimServer, roid, resultTypeName), sync);
 	}
 
 	private int download(DownloadParameters downloadParameters, boolean sync) throws UserException, ServerException {
@@ -1022,13 +1022,13 @@ public class Service implements ServiceInterface {
 	@Override
 	public int downloadByOids(Set<Long> roids, Set<Long> oids, String resultTypeName, boolean sync) throws UserException, ServerException {
 		requireAuthenticationAndRunningServer();
-		return download(new DownloadParameters(resultTypeName, roids, oids), sync);
+		return download(new DownloadParameters(bimServer, resultTypeName, roids, oids), sync);
 	}
 
 	@Override
 	public int downloadOfType(long roid, String className, String resultTypeName, boolean sync) throws UserException, ServerException {
 		requireAuthenticationAndRunningServer();
-		return download(new DownloadParameters(roid, className, resultTypeName), sync);
+		return download(new DownloadParameters(bimServer, roid, className, resultTypeName), sync);
 	}
 
 	@Override
@@ -1064,7 +1064,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public int downloadByGuids(Set<Long> roids, Set<String> guids, String resultTypeName, boolean sync) throws UserException, ServerException {
 		requireAuthenticationAndRunningServer();
-		return download(new DownloadParameters(roids, guids, resultTypeName), sync);
+		return download(new DownloadParameters(bimServer, roids, guids, resultTypeName), sync);
 	}
 
 	@Override
@@ -1354,7 +1354,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public int downloadProjects(Set<Long> roids, String resultTypeName, boolean sync) throws UserException, ServerException {
 		requireAuthenticationAndRunningServer();
-		return download(new DownloadParameters(roids, resultTypeName), sync);
+		return download(new DownloadParameters(bimServer, roids, resultTypeName), sync);
 	}
 
 	@Override

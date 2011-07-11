@@ -42,7 +42,7 @@ public class LongDownloadAction extends LongDownloadOrCheckoutAction {
 		}
 		session = getBimServer().getDatabase().createReadOnlySession();
 		switch (downloadParameters.getDownloadType()) {
-		case DOWNLOAD:
+		case DOWNLOAD_REVISION:
 			action = new DownloadDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoid(), currentUoid);
 			break;
 		case DOWNLOAD_BY_OIDS:
@@ -69,7 +69,7 @@ public class LongDownloadAction extends LongDownloadOrCheckoutAction {
 			return ds;
 		}
 		switch (downloadParameters.getDownloadType()) {
-		case DOWNLOAD:
+		case DOWNLOAD_REVISION:
 			ds.setProgress(((DownloadDatabaseAction) action).getProgress());
 			break;
 		case DOWNLOAD_BY_OIDS:
