@@ -62,7 +62,7 @@ public class RequestPasswordChangeDatabaseAction extends BimDatabaseAction<Void>
 						context.put("name", user.getName());
 						context.put("username", user.getUsername());
 						context.put("siteaddress", bimServer.getSettingsManager().getSettings().getSiteAddress());
-						context.put("validationlink", bimServer.getSettingsManager().getSettings().getSiteAddress() + bimServer.getSettingsManager().getSettings().getSiteAddress() + "/validate.jsp?uoid=" + user.getOid() + "&token=" + token);
+						context.put("validationlink", bimServer.getSettingsManager().getSettings().getSiteAddress() + "/validate.jsp?uoid=" + user.getOid() + "&token=" + token);
 						String body = null;
 						String subject = null;
 						body = bimServer.getTemplateEngine().process(context, TemplateIdentifier.PASSWORD_RESET_EMAIL_BODY);
