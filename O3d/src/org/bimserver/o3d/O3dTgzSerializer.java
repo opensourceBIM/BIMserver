@@ -228,7 +228,7 @@ public class O3dTgzSerializer extends BimModelSerializer {
 		IfcModel ifcModel = new IfcModel();
 		convertToSubset(ifcRootObject.eClass(), ifcRootObject, ifcModel, new HashMap<EObject, EObject>());
 		EmfSerializer serializer = getPluginManager().requireIfcStepSerializer();
-		serializer.init(ifcModel, null, null);
+		serializer.init(ifcModel, null, getPluginManager());
 		BinaryIndexBuffer binaryIndexBuffer = new BinaryIndexBuffer();
 		BinaryVertexBuffer binaryVertexBuffer = new BinaryVertexBuffer();
 		IfcEngineModel model = ifcEngine.openModel(serializer.getBytes());
