@@ -99,7 +99,7 @@ import org.bimserver.database.actions.GetDatabaseInformationAction;
 import org.bimserver.database.actions.GetGeoTagDatabaseAction;
 import org.bimserver.database.actions.GetGuidanceProviderByIdDatabaseAction;
 import org.bimserver.database.actions.GetLogsDatabaseAction;
-import org.bimserver.database.actions.GetProjectByNameDatabaseAction;
+import org.bimserver.database.actions.GetProjectsByNameDatabaseAction;
 import org.bimserver.database.actions.GetProjectByPoidDatabaseAction;
 import org.bimserver.database.actions.GetRevisionDatabaseAction;
 import org.bimserver.database.actions.GetRevisionSummaryDatabaseAction;
@@ -1712,13 +1712,12 @@ public class Service implements ServiceInterface {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
-	public List<SProject> getProjectByName(String name) throws UserException {
+	public List<SProject> getProjectsByName(String name) throws UserException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
 		try {
-			GetProjectByNameDatabaseAction action = new GetProjectByNameDatabaseAction(session, accessMethod, name, currentUoid);
+			GetProjectsByNameDatabaseAction action = new GetProjectsByNameDatabaseAction(session, accessMethod, name, currentUoid);
 			return (List<SProject>) convert(session.executeAction(action, DEADLOCK_RETRIES), SProject.class);
 		} catch (BimDatabaseException e) {
 			throw new UserException(e);

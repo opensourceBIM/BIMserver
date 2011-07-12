@@ -93,6 +93,8 @@ public class BimServer {
 	private CompareCache compareCache;
 	private final String classPath;
 
+	private RpcServer protocolBuffersRpcServer;
+
 	public BimServer(File homeDir, ResourceFetcher resourceFetcher) {
 		this(homeDir, resourceFetcher, System.getProperty("java.class.path"));
 	}
@@ -257,9 +259,9 @@ public class BimServer {
 		bimScheduler = new JobScheduler(this);
 		bimScheduler.start();
 
-		RpcServer rpcServer = new RpcServer(SocketRpcConnectionFactories.createServerRpcConnectionFactory(8020), Executors.newFixedThreadPool(10), false);
-		rpcServer.registerBlockingService(org.bimserver.pb.Service.ServiceInterface.newReflectiveBlockingService(org.bimserver.pb.Service.ServiceInterface.newBlockingStub(new ReflectiveRpcChannel(serviceFactory))));
-		rpcServer.startServer();
+		protocolBuffersRpcServer = new RpcServer(SocketRpcConnectionFactories.createServerRpcConnectionFactory(8020), Executors.newFixedThreadPool(10), false);
+		protocolBuffersRpcServer.registerBlockingService(org.bimserver.pb.Service.ServiceInterface.newReflectiveBlockingService(org.bimserver.pb.Service.ServiceInterface.newBlockingStub(new ReflectiveRpcChannel(serviceFactory))));
+		protocolBuffersRpcServer.startServer();
 
 //		if (serverType == ServerType.DEPLOYED_WAR) {
 //			File libDir = new File(classPath);

@@ -44,15 +44,15 @@ public class ProtocolBuffersGenerator {
 	}
 
 	public void start() {
-		File protoFile = new File("build/pb/service.proto");
+		File protoFile = new File("../BimWebServer/build/pb/service.proto");
 		generateProtoFile(protoFile);
 		try {
-			FileUtils.copyFile(protoFile, new File("build/targets/shared/service.proto"));
+			FileUtils.copyFile(protoFile, new File("../BimWebServer/build/targets/shared/service.proto"));
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
 		File destDir = new File("generated");
-		File protoDir = new File("build/pb");
+		File protoDir = new File("../BimWebServer/build/pb");
 		File execFile = new File("build/pb/protoc.exe");
 		try {
 			ProcessBuilder processBuilder = new ProcessBuilder(execFile.getAbsolutePath(), "-I=" + protoDir.getAbsolutePath(), "--java_out=" + destDir.getAbsolutePath(), protoFile
