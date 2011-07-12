@@ -2,7 +2,6 @@ package org.bimserver.web;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -17,6 +16,8 @@ import org.bimserver.interfaces.objects.SUserType;
 import org.bimserver.shared.SProjectNameComparator;
 import org.bimserver.shared.SRevisionIdComparator;
 import org.bimserver.shared.SRevisionSummary;
+import org.bimserver.shared.SRevisionSummaryContainer;
+import org.bimserver.shared.SRevisionSummaryType;
 import org.bimserver.shared.ServiceException;
 import org.bimserver.shared.ServiceInterface;
 import org.bimserver.shared.UserException;
@@ -167,14 +168,12 @@ public class JspHelper {
 		StringBuilder builder = new StringBuilder();
 		builder.append("<table class=\"formatted\">");
 		builder.append("<tr><th>Entity</th><th>Query</th><th>Amount</th></tr>");
-		Map<String, Map<String, Integer>> map = revisionSummary.getMap();
-		for (String group : map.keySet()) {
-			builder.append("<tr><td colspan=\"3\" class=\"summarygroup\">" + group + "</td></tr>");
-			Map<String, Integer> subMap = map.get(group);
-			for (String className : subMap.keySet()) {
-				Integer amount = subMap.get(className);
+		List<SRevisionSummaryContainer> list = revisionSummary.getList();
+		for (SRevisionSummaryContainer container : list) {
+			builder.append("<tr><td colspan=\"3\" class=\"summarygroup\">" + container.getName() + "</td></tr>");
+			for (SRevisionSummaryType type : container.getTypes()) {
 				builder.append("<tr><td><span class=\"summaryitem\"><a class=\"browserlink\" href=\"#\" browserurl=\"" + request.getRequestURI() + "?roid=" + roid + "&className="
-						+ className + "\">" + className + "</a></span></td><td><a href=\"#\" class=\"querylink\" cName=\"" + className + "\">query</a></td><td>" + amount
+						+ type.getName() + "\">" + type.getName() + "</a></span></td><td><a href=\"#\" class=\"querylink\" cName=\"" + type.getName() + "\">query</a></td><td>" + type.getCount()
 						+ "</td></tr>");
 			}
 		}

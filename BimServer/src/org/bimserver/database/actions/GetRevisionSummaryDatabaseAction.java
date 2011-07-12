@@ -1,7 +1,5 @@
 package org.bimserver.database.actions;
 
-import java.util.Map;
-
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
@@ -11,6 +9,7 @@ import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Revision;
 import org.bimserver.shared.SRevisionSummary;
+import org.bimserver.shared.SRevisionSummaryContainer;
 import org.bimserver.shared.UserException;
 import org.eclipse.emf.ecore.EClass;
 
@@ -40,20 +39,16 @@ public class GetRevisionSummaryDatabaseAction extends BimDatabaseAction<SRevisio
 		if (count == 0) {
 			return;
 		}
-		Map<String, Integer> subMap = null;
+		SRevisionSummaryContainer subMap = null;
 		if (Ifc2x3Package.eINSTANCE.getIfcObject().isSuperTypeOf(eClass)) {
-			subMap = sRevisionSummary.getMap().get("IFC Entities");
+			subMap = sRevisionSummary.get("IFC Entities");
 		} else if (Ifc2x3Package.eINSTANCE.getIfcRelationship().isSuperTypeOf(eClass)) {
-			subMap = sRevisionSummary.getMap().get("IFC Relations");
+			subMap = sRevisionSummary.get("IFC Relations");
 		} else if (Ifc2x3Package.eINSTANCE.getWrappedValue().isSuperTypeOf(eClass)) {
-			subMap = sRevisionSummary.getMap().get("IFC Primitives");
+			subMap = sRevisionSummary.get("IFC Primitives");
 		} else {
-			subMap = sRevisionSummary.getMap().get("Rest");
+			subMap = sRevisionSummary.get("Rest");
 		}
-		if (subMap.containsKey(eClass.getName())) {
-			subMap.put(eClass.getName(), subMap.get(eClass.getName()) + count);
-		} else {
-			subMap.put(eClass.getName(), count);
-		}
+		subMap.increment(eClass.getName(), count);
 	}
 }
