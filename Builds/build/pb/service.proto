@@ -900,8 +900,18 @@ message GetRevisionSummaryRequest {
 	optional int64 roid = 1;
 }
 
+message SRevisionSummaryType {
+	optional string name = 1;
+	optional int32 count = 2;
+}
+
+message SRevisionSummaryContainer {
+	repeated SRevisionSummaryType types = 1;
+	optional string name = 2;
+}
+
 message SRevisionSummary {
-	optional Map map = 1;
+	repeated SRevisionSummaryContainer list = 1;
 }
 
 message GetRevisionSummaryResponse {

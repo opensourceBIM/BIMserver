@@ -29,11 +29,16 @@ import org.bimserver.pb.Service.GetAllProjectsRequest;
 import org.bimserver.pb.Service.GetAllProjectsResponse;
 import org.bimserver.pb.Service.GetAllRevisionsOfProjectRequest;
 import org.bimserver.pb.Service.GetAllRevisionsOfProjectResponse;
-import org.bimserver.pb.Service.GetProjectByNameRequest;
-import org.bimserver.pb.Service.GetProjectByNameResponse;
+import org.bimserver.pb.Service.GetProjectsByNameRequest;
+import org.bimserver.pb.Service.GetProjectsByNameResponse;
+import org.bimserver.pb.Service.GetRevisionSummaryRequest;
+import org.bimserver.pb.Service.GetRevisionSummaryResponse;
 import org.bimserver.pb.Service.LoginRequest;
 import org.bimserver.pb.Service.LoginResponse;
 import org.bimserver.pb.Service.SRevision;
+import org.bimserver.pb.Service.SRevisionSummary;
+import org.bimserver.pb.Service.SRevisionSummaryContainer;
+import org.bimserver.pb.Service.SRevisionSummaryType;
 import org.bimserver.pb.Service.ServiceInterface;
 import org.bimserver.pb.Service.ServiceInterface.BlockingInterface;
 import org.bimserver.plugins.PluginException;
@@ -200,10 +205,10 @@ public class TestProtocolBuffersInterface {
 		SocketRpcController rpcController = new SocketRpcController();
 		BlockingInterface service = ServiceInterface.newBlockingStub(rpcChannel);
 		
-		GetProjectByNameRequest.Builder getProjectByNameRequestBuilder = GetProjectByNameRequest.newBuilder();
+		GetProjectsByNameRequest.Builder getProjectByNameRequestBuilder = GetProjectsByNameRequest.newBuilder();
 		getProjectByNameRequestBuilder.setName(projectName);
 		try {
-			GetProjectByNameResponse getProjectByNameResponse = service.getProjectByName(rpcController, getProjectByNameRequestBuilder.build());
+			GetProjectsByNameResponse getProjectByNameResponse = service.getProjectsByName(rpcController, getProjectByNameRequestBuilder.build());
 			if (getProjectByNameResponse.getErrorMessage().equals("OKE")) {
 				System.out.println(getProjectByNameResponse.getValueList().size() + " projects with name " + projectName);
 			} else {
@@ -242,6 +247,21 @@ public class TestProtocolBuffersInterface {
 							GetAllRevisionsOfProjectResponse getAllRevisionsOfProjectResponse = service.getAllRevisionsOfProject(rpcController, getAllRevisionsOfProjectRequestBuilder.build());
 							if (getAllRevisionsOfProjectResponse.getErrorMessage().equals("OKE")) {
 								for (SRevision revision : getAllRevisionsOfProjectResponse.getValueList()) {
+									GetRevisionSummaryRequest.Builder getRevisionSummaryRequestBuilder = GetRevisionSummaryRequest.newBuilder();
+									getRevisionSummaryRequestBuilder.setRoid(revision.getOid());
+									GetRevisionSummaryResponse getRevisionSummaryResponse = service.getRevisionSummary(rpcController, getRevisionSummaryRequestBuilder.build());
+									if (getRevisionSummaryResponse.getErrorMessage().equals("OKE")) {
+										SRevisionSummary sRevisionSummary = getRevisionSummaryResponse.getValue();
+										for (SRevisionSummaryContainer container : sRevisionSummary.getListList()) {
+											System.out.println(container.getName());
+											for (SRevisionSummaryType type : container.getTypesList()) {
+												System.out.println("\t" + type.getName() + ": " + type.getCount());
+											}
+										}
+									} else {
+										fail(getRevisionSummaryResponse.getErrorMessage());
+									}
+									
 									DownloadRequest.Builder downloadRequestBuilder = DownloadRequest.newBuilder();
 									downloadRequestBuilder.setRoid(revision.getOid());
 									downloadRequestBuilder.setSync(true);

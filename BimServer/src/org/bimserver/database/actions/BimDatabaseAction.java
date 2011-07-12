@@ -17,6 +17,7 @@ import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.shared.UserException;
+import org.bimserver.utils.CollectionUtils;
 
 public abstract class BimDatabaseAction<T> {
 	private BimDatabaseSession bimDatabaseSession;
@@ -56,7 +57,7 @@ public abstract class BimDatabaseAction<T> {
 
 	public Set<Project> getProjectsByName(String projectName) throws BimDatabaseException, BimDeadlockException {
 		Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getProject_Name(), new StringLiteral(projectName));
-		return (Set<Project>) bimDatabaseSession.query(condition, Project.class, false).values();
+		return CollectionUtils.mapToSet(bimDatabaseSession.query(condition, Project.class, false));
 	}
 
 	public User getUserByUserName(String username) throws BimDatabaseException, BimDeadlockException {
