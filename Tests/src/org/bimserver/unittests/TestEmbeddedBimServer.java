@@ -7,6 +7,7 @@ import javax.activation.DataHandler;
 import javax.activation.FileDataSource;
 
 import org.bimserver.BimServer;
+import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.ServerInfo.ServerState;
 import org.bimserver.database.BimDatabase;
 import org.bimserver.database.BimDatabaseException;
@@ -49,13 +50,7 @@ public class TestEmbeddedBimServer {
 			bimServer = new BimServer(new File("home"), new LocalDevelopmentResourceFetcher());
 
 			// Load plugins
-			bimServer.getPluginManager().loadPluginsFromEclipseProject(new File("../CityGML"));
-			bimServer.getPluginManager().loadPluginsFromEclipseProject(new File("../Collada"));
-			bimServer.getPluginManager().loadPluginsFromEclipseProject(new File("../IfcPlugins"));
-			bimServer.getPluginManager().loadPluginsFromEclipseProject(new File("../MiscSerializers"));
-			bimServer.getPluginManager().loadPluginsFromEclipseProject(new File("../O3d"));
-			bimServer.getPluginManager().loadPluginsFromEclipseProject(new File("../IFCEngine"));
-			bimServer.getPluginManager().loadPluginsFromEclipseProject(new File("../buildingSMARTLibrary"));
+			LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager());
 
 			// Start
 			bimServer.start();
@@ -95,7 +90,7 @@ public class TestEmbeddedBimServer {
 	 * also used for subsequent tests
 	 */
 	@Test
-	public void testEmbeddedBimServerCreateUser() {
+	public void testCreateUser() {
 		try {
 			username = "test" + new Random().nextInt() + "@bimserver.org";
 			password = "test";
@@ -112,7 +107,7 @@ public class TestEmbeddedBimServer {
 	 * This will create a project and checkin the AC11 IFC file
 	 */
 	@Test
-	public void testEmbeddedBimServerUpload() {
+	public void testUpload() {
 		try {
 			ServiceInterface service = bimServer.getServiceFactory().newService(AccessMethod.INTERNAL);
 			service.login(username, password);
@@ -132,7 +127,7 @@ public class TestEmbeddedBimServer {
 	 * project
 	 */
 	@Test
-	public void testEmbeddedBimServerDump() {
+	public void testDump() {
 		try {
 			ServiceInterface service = bimServer.getServiceFactory().newService(AccessMethod.INTERNAL);
 			service.login(username, password);

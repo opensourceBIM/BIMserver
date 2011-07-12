@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.activation.DataHandler;
+import javax.activation.DataSource;
 
 import org.apache.commons.io.IOUtils;
 import org.bimserver.models.log.AccessMethod;
@@ -23,15 +24,16 @@ import org.slf4j.LoggerFactory;
 
 import com.google.protobuf.BlockingRpcChannel;
 import com.google.protobuf.ByteString;
-import com.google.protobuf.Message;
-import com.google.protobuf.RpcController;
-import com.google.protobuf.ServiceException;
 import com.google.protobuf.Descriptors.Descriptor;
 import com.google.protobuf.Descriptors.EnumValueDescriptor;
 import com.google.protobuf.Descriptors.FieldDescriptor;
-import com.google.protobuf.Descriptors.MethodDescriptor;
 import com.google.protobuf.Descriptors.FieldDescriptor.JavaType;
+import com.google.protobuf.Descriptors.MethodDescriptor;
+import com.google.protobuf.Message;
 import com.google.protobuf.Message.Builder;
+import com.google.protobuf.RpcController;
+import com.google.protobuf.ServiceException;
+import com.sun.istack.internal.ByteArrayDataSource;
 
 public class ReflectiveRpcChannel implements BlockingRpcChannel {
 
@@ -83,6 +85,9 @@ public class ReflectiveRpcChannel implements BlockingRpcChannel {
 		if (service == null) {
 			service = serviceFactory.newService(AccessMethod.INTERNAL);
 		}
+		if (methodDescriptor.getName().equals("getProjectByName")) {
+			System.out.println();
+		}
 		Class<? extends ServiceInterface> clazz = service.getClass();
 		Class<?>[] parameterClasses = new Class[methodDescriptor.getInputType().getFields().size()];
 		int ci = 0;
@@ -94,7 +99,19 @@ public class ReflectiveRpcChannel implements BlockingRpcChannel {
 			Object[] arguments = new Object[methodDescriptor.getInputType().getFields().size()];
 			int i = 0;
 			for (FieldDescriptor fieldDescriptor : methodDescriptor.getInputType().getFields()) {
-				arguments[i] = request.getField(fieldDescriptor);
+				Object field = request.getField(fieldDescriptor);
+				if (field instanceof EnumValueDescriptor) {
+					EnumValueDescriptor enumValueDescriptor = (EnumValueDescriptor)field;
+					Class en = convert(fieldDescriptor);
+					arguments[i] = en.getEnumConstants()[enumValueDescriptor.getIndex()];
+				} else if (field instanceof ByteString) {
+					ByteString byteString = (ByteString)field;
+					DataSource dataSource = new ByteArrayDataSource(byteString.toByteArray(), "bytes");
+					DataHandler dataHandler = new DataHandler(dataSource);
+					arguments[i] = dataHandler;
+				} else {
+					arguments[i] = field;
+				}
 				i++;
 			}
 			Object result = method.invoke(service, arguments);
@@ -214,7 +231,7 @@ public class ReflectiveRpcChannel implements BlockingRpcChannel {
 		if (fieldDescriptor.getJavaType() == JavaType.BOOLEAN) {
 			return boolean.class;
 		} else if (fieldDescriptor.getJavaType() == JavaType.BYTE_STRING) {
-			return Byte[].class;
+			return DataHandler.class;
 		} else if (fieldDescriptor.getJavaType() == JavaType.DOUBLE) {
 			return Double.class;
 		} else if (fieldDescriptor.getJavaType() == JavaType.FLOAT) {

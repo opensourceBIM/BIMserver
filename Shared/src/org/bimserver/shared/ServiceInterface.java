@@ -113,7 +113,7 @@ public interface ServiceInterface {
 	@Produces("application/xml")
 	@WebMethod(action = "download")
 	int download(@QueryParam("roid") @WebParam(name = "roid", partName = "download.roid") long roid,
-			@QueryParam("resultType") @WebParam(name = "formatIdentifier", partName = "download.formatIdentifier") String formatIdentifier,
+			@QueryParam("resultType") @WebParam(name = "formatIdentifier", partName = "download.serializerName") String serializerName,
 			@QueryParam("sync") @WebParam(name = "sync", partName = "download.sync") boolean sync) throws UserException, ServerException;
 
 	@WebMethod(action = "downloadByOids")
@@ -364,8 +364,8 @@ public interface ServiceInterface {
 	List<SProject> getUsersProjects(@WebParam(name = "uoid", partName = "getUsersProjects.uoid") long uoid) throws UserException,
 			ServerException;
 
-	@WebMethod(action = "getProjectByName")
-	List<SProject> getProjectByName(@WebParam(name = "name", partName = "getProjectByName.name") String name) throws UserException,
+	@WebMethod(action = "getProjectsByName")
+	List<SProject> getProjectsByName(@WebParam(name = "name", partName = "getProjectsByName.name") String name) throws UserException,
 			ServerException;
 
 	@WebMethod(action = "setRevisionTag")

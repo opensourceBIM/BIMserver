@@ -1,5 +1,7 @@
 package org.bimserver.interfaces.objects;
 
+import java.util.*;
+import javax.xml.bind.annotation.XmlRootElement;
 public enum SUserType {
 	SYSTEM(0),
 	ADMIN(1),
