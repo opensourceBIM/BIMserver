@@ -18,6 +18,7 @@
 <%@page import="org.bimserver.interfaces.objects.SSerializer"%>
 <jsp:include page="serversettingsmenu.jsp"/>
 <div class="content">
+<h1>Server Settings</h1>
 <%
 	ServiceInterface service = loginManager.getService();
 	if (loginManager.getService().isLoggedIn() && loginManager.getUserType() == SUserType.ADMIN) {
@@ -61,7 +62,6 @@
 			}
 		}
 %>
-<h1>Server Settings</h1>
 <form method="post">
 <table class="formatted infotable">
 	<tr>
@@ -172,10 +172,10 @@
 	</tr>
 </table>
 <input name="save" type="submit" value="Save" /></form>
-</div>
 <%
 	} else {
 		out.println("Insufficient rights");
 	}
 %>
+</div>
 <%@ include file="footer.jsp"%>

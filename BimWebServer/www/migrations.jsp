@@ -52,3 +52,5 @@ No migrations required to execute
 %>
 </form>
 <% } %>
+</div>
+<%@ include file="footer.jsp"%>
