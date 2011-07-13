@@ -663,13 +663,34 @@ public interface ServiceInterface {
 			@WebParam(name = "className", partName = "removeObject.className") String className, 
 			@WebParam(name = "oid", partName = "removeObject.oid") long oid) throws UserException;
 	
-	@WebMethod(action = "setAttribute")
-	void setAttribute(
-			@WebParam(name = "oid", partName = "setAttribute.oid") long oid, 
-			@WebParam(name = "className", partName = "setAttribute.className") String className, 
-			@WebParam(name = "attributeName", partName = "setAttribute.attributeName") String attributeName, 
-			@WebParam(name = "value", partName = "setAttribute.value") String value) throws UserException;
+	@WebMethod(action = "setStringAttribute")
+	void setStringAttribute(
+			@WebParam(name = "oid", partName = "setStringAttribute.oid") long oid, 
+			@WebParam(name = "className", partName = "setStringAttribute.className") String className, 
+			@WebParam(name = "attributeName", partName = "setStringAttribute.attributeName") String attributeName, 
+			@WebParam(name = "value", partName = "setStringAttribute.value") String value) throws UserException;
 	
+	@WebMethod(action = "setFloatAttribute")
+	void setFloatAttribute(
+			@WebParam(name = "oid", partName = "setFloatAttribute.oid") long oid, 
+			@WebParam(name = "className", partName = "setFloatAttribute.className") String className, 
+			@WebParam(name = "attributeName", partName = "setFloatAttribute.attributeName") String attributeName, 
+			@WebParam(name = "value", partName = "setFloatAttribute.value") float value) throws UserException;
+
+	@WebMethod(action = "setIntegerAttribute")
+	void setIntegerAttribute(
+			@WebParam(name = "oid", partName = "setIntegerAttribute.oid") long oid, 
+			@WebParam(name = "className", partName = "setIntegerAttribute.className") String className, 
+			@WebParam(name = "attributeName", partName = "setIntegerAttribute.attributeName") String attributeName, 
+			@WebParam(name = "value", partName = "setIntegerAttribute.value") int value) throws UserException;
+
+	@WebMethod(action = "setBooleanAttribute")
+	void setBooleanAttribute(
+			@WebParam(name = "oid", partName = "setBooleanAttribute.oid") long oid, 
+			@WebParam(name = "className", partName = "setBooleanAttribute.className") String className, 
+			@WebParam(name = "attributeName", partName = "setBooleanAttribute.attributeName") String attributeName, 
+			@WebParam(name = "value", partName = "setBooleanAttribute.value") boolean value) throws UserException;
+
 	@WebMethod(action = "setReference")
 	void setReference(
 			@WebParam(name = "oid", partName = "setReference.oid") long oid, 
@@ -690,12 +711,33 @@ public interface ServiceInterface {
 			@WebParam(name = "className", partName = "unsetReference.className") String className,
 			@WebParam(name = "referenceName", partName = "unsetReference.referenceName") String referenceName) throws UserException;
 	
-	@WebMethod(action = "addAttribute")
-	void addAttribute(
-			@WebParam(name = "oid", partName = "addAttribute.oid") long oid, 
-			@WebParam(name = "className", partName = "addAttribute.className") String className, 
-			@WebParam(name = "attributeName", partName = "addAttribute.attributeName") String attributeName,
-			@WebParam(name = "value", partName = "addAttribute.value") String value) throws UserException;
+	@WebMethod(action = "addStringAttribute")
+	void addStringAttribute(
+			@WebParam(name = "oid", partName = "addStringAttribute.oid") long oid, 
+			@WebParam(name = "className", partName = "addStringAttribute.className") String className, 
+			@WebParam(name = "attributeName", partName = "addStringAttribute.attributeName") String attributeName,
+			@WebParam(name = "value", partName = "addStringAttribute.value") String value) throws UserException;
+
+	@WebMethod(action = "addFloatAttribute")
+	void addFloatAttribute(
+			@WebParam(name = "oid", partName = "addFloatAttribute.oid") long oid, 
+			@WebParam(name = "className", partName = "addFloatAttribute.className") String className, 
+			@WebParam(name = "attributeName", partName = "addFloatAttribute.attributeName") String attributeName,
+			@WebParam(name = "value", partName = "addFloatAttribute.value") float value) throws UserException;
+
+	@WebMethod(action = "addIntegerAttribute")
+	void addIntegerAttribute(
+			@WebParam(name = "oid", partName = "addIntegerAttribute.oid") long oid, 
+			@WebParam(name = "className", partName = "addIntegerAttribute.className") String className, 
+			@WebParam(name = "attributeName", partName = "addIntegerAttribute.attributeName") String attributeName,
+			@WebParam(name = "value", partName = "addIntegerAttribute.value") int value) throws UserException;
+
+	@WebMethod(action = "addBooleanAttribute")
+	void addBooleanAttribute(
+			@WebParam(name = "oid", partName = "addBooleanAttribute.oid") long oid, 
+			@WebParam(name = "className", partName = "addBooleanAttribute.className") String className, 
+			@WebParam(name = "attributeName", partName = "addBooleanAttribute.attributeName") String attributeName,
+			@WebParam(name = "value", partName = "addBooleanAttribute.value") boolean value) throws UserException;
 
 	@WebMethod(action = "addReference")
 	void addReference(

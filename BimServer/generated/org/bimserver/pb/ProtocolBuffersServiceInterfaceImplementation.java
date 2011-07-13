@@ -2253,7 +2253,7 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 		} catch (Exception e) {}
 	}
 
-	public void addAttribute(long oid, java.lang.String className, java.lang.String attributeName, java.lang.String value) {
+	public void addStringAttribute(long oid, java.lang.String className, java.lang.String attributeName, java.lang.String value) {
 		try {
 			AddAttributeRequest.Builder requestBuilder = AddAttributeRequest.newBuilder();
 			requestBuilder.setOid(oid);
@@ -2277,7 +2277,7 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 		} catch (Exception e) {}
 	}
 
-	public void setAttribute(long oid, java.lang.String className, java.lang.String attributeName, java.lang.String value) {
+	public void setStringAttribute(long oid, java.lang.String className, java.lang.String attributeName, java.lang.String value) {
 		try {
 			SetAttributeRequest.Builder requestBuilder = SetAttributeRequest.newBuilder();
 			requestBuilder.setOid(oid);
