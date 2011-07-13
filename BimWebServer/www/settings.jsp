@@ -23,6 +23,7 @@
 <div class="content">
 <h1>Settings</h1>
 <%
+	if (loginManager.getService().isLoggedIn() && loginManager.getUserType() == SUserType.ADMIN) {
 	ServiceInterface service = loginManager.getService();
 	if (request.getParameter("action") != null) {
 		String action = request.getParameter("action");
@@ -95,4 +96,9 @@
 </table>
 </div>
 </div>
+<%
+	} else {
+		out.println("Insufficient rights");
+	}
+%>
 <%@ include file="footer.jsp"%>

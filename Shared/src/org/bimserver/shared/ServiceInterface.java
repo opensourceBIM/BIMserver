@@ -632,13 +632,13 @@ public interface ServiceInterface {
 	boolean hasActiveSerializer(String contentType) throws UserException, ServerException;
 	
 	@WebMethod(action = "getAllPlugins")
-	List<SPlugin> getAllPlugins();
+	List<SPlugin> getAllPlugins() throws UserException;
 	
 	@WebMethod(action = "enablePlugin")
-	void enablePlugin(String name);
+	void enablePlugin(String name) throws UserException;
 	
 	@WebMethod(action = "disablePlugin")
-	void disablePlugin(String name);
+	void disablePlugin(String name) throws UserException;
 
 	@WebMethod(action = "getSerializerByContentType")
 	SSerializer getSerializerByContentType(
@@ -646,13 +646,13 @@ public interface ServiceInterface {
 	
 	@WebMethod(action = "startTransaction")
 	void startTransaction(
-			@WebParam(name = "pid", partName = "startTransaction.pid") int pid);
+			@WebParam(name = "pid", partName = "startTransaction.pid") int pid) throws UserException;
 
 	@WebMethod(action = "commitTransaction")
 	long commitTransaction() throws UserException;
 	
 	@WebMethod(action = "abortTransaction")
-	void abortTransaction();
+	void abortTransaction() throws UserException;
 	
 	@WebMethod(action = "createObject")
 	long createObject(
@@ -661,14 +661,14 @@ public interface ServiceInterface {
 	@WebMethod(action = "removeObject")
 	void removeObject(
 			@WebParam(name = "className", partName = "removeObject.className") String className, 
-			@WebParam(name = "oid", partName = "removeObject.oid") long oid);
+			@WebParam(name = "oid", partName = "removeObject.oid") long oid) throws UserException;
 	
 	@WebMethod(action = "setAttribute")
 	void setAttribute(
 			@WebParam(name = "oid", partName = "setAttribute.oid") long oid, 
 			@WebParam(name = "className", partName = "setAttribute.className") String className, 
 			@WebParam(name = "attributeName", partName = "setAttribute.attributeName") String attributeName, 
-			@WebParam(name = "value", partName = "setAttribute.value") String value);
+			@WebParam(name = "value", partName = "setAttribute.value") String value) throws UserException;
 	
 	@WebMethod(action = "setReference")
 	void setReference(
@@ -676,26 +676,26 @@ public interface ServiceInterface {
 			@WebParam(name = "className", partName = "setReference.className") String className, 
 			@WebParam(name = "referenceName", partName = "setReference.referenceName") String referenceName, 
 			@WebParam(name = "referenceOid", partName = "setReference.referenceOid") long referenceOid, 
-			@WebParam(name = "referenceClassName", partName = "setReference.referenceClassName") String referenceClassName);
+			@WebParam(name = "referenceClassName", partName = "setReference.referenceClassName") String referenceClassName) throws UserException;
 	
 	@WebMethod(action = "unsetAttribute")
 	void unsetAttribute(
 			@WebParam(name = "oid", partName = "unsetAttribute.oid") long oid, 
 			@WebParam(name = "className", partName = "unsetAttribute.className") String className, 
-			@WebParam(name = "attributeName", partName = "unsetAttribute.attributeName") String attributeName);
+			@WebParam(name = "attributeName", partName = "unsetAttribute.attributeName") String attributeName) throws UserException;
 	
 	@WebMethod(action = "unsetReference")
 	void unsetReference(
 			@WebParam(name = "oid", partName = "unsetReference.oid") long oid,
 			@WebParam(name = "className", partName = "unsetReference.className") String className,
-			@WebParam(name = "referenceName", partName = "unsetReference.referenceName") String referenceName);
+			@WebParam(name = "referenceName", partName = "unsetReference.referenceName") String referenceName) throws UserException;
 	
 	@WebMethod(action = "addAttribute")
 	void addAttribute(
 			@WebParam(name = "oid", partName = "addAttribute.oid") long oid, 
 			@WebParam(name = "className", partName = "addAttribute.className") String className, 
 			@WebParam(name = "attributeName", partName = "addAttribute.attributeName") String attributeName,
-			@WebParam(name = "value", partName = "addAttribute.value") String value);
+			@WebParam(name = "value", partName = "addAttribute.value") String value) throws UserException;
 
 	@WebMethod(action = "addReference")
 	void addReference(
@@ -703,26 +703,26 @@ public interface ServiceInterface {
 			@WebParam(name = "className", partName = "addReference.className") String className, 
 			@WebParam(name = "referenceName", partName = "addReference.referenceName") String referenceName, 
 			@WebParam(name = "referenceOid", partName = "addReference.referenceOid") long referenceOid,
-			@WebParam(name = "referenceClassName", partName = "addReference.referenceClassName") String referenceClassName);
+			@WebParam(name = "referenceClassName", partName = "addReference.referenceClassName") String referenceClassName) throws UserException;
 	
 	@WebMethod(action = "removeAttribute")
 	void removeAttribute(
 			@WebParam(name = "oid", partName = "removeAttribute.oid") long oid, 
 			@WebParam(name = "className", partName = "removeAttribute.className") String className, 
 			@WebParam(name = "attributeName", partName = "removeAttribute.attributeName") String attributeName, 
-			@WebParam(name = "index", partName = "removeAttribute.index") int index);
+			@WebParam(name = "index", partName = "removeAttribute.index") int index) throws UserException;
 	
 	@WebMethod(action = "removeReference")
 	void removeReference(
 			@WebParam(name = "oid", partName = "removeReference.oid") long oid, 
 			@WebParam(name = "className", partName = "removeReference.className") String className, 
 			@WebParam(name = "referenceName", partName = "removeReference.referenceName") String referenceName, 
-			@WebParam(name = "index", partName = "removeReference.index") int index);
+			@WebParam(name = "index", partName = "removeReference.index") int index) throws UserException;
 	
 	@WebMethod(action = "getServerStartTime")
 	Date getServerStartTime();
 	
-	SSerializerPluginDescriptor getSerializerPluginDescriptor(String type);
+	SSerializerPluginDescriptor getSerializerPluginDescriptor(String type) throws UserException;
 	
-	Set<SGuidanceProviderPluginDescriptor> getAllGuidanceProviderPluginDescriptors();
+	Set<SGuidanceProviderPluginDescriptor> getAllGuidanceProviderPluginDescriptors() throws UserException;
 }

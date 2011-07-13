@@ -550,6 +550,11 @@ public class Service implements ServiceInterface {
 		requireAuthentication();
 	}
 
+	private void requireAdminAuthenticationAndRunningServer() throws UserException {
+		requireRunningServer();
+		requireAdminAuthentication();
+	}
+
 	private void updateLastActive() {
 		lastActive = new Date();
 	}
@@ -564,6 +569,16 @@ public class Service implements ServiceInterface {
 		updateLastActive();
 		if (currentUoid == -1) {
 			throw new UserException("Authentication required for this call");
+		}
+	}
+
+	private void requireAdminAuthentication() throws UserException {
+		updateLastActive();
+		if (currentUoid == -1) {
+			throw new UserException("Authentication required for this call");
+		}
+		if (getCurrentUser().getUserType() != SUserType.ADMIN) {
+			throw new UserException("Administrator rights required for this call");
 		}
 	}
 
@@ -1847,7 +1862,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public void setSettingCustomLogoAddress(String customLogoAddress) throws UserException, ServerException {
-		requireAuthenticationAndRunningServer();
+		requireAdminAuthenticationAndRunningServer();
 		Settings settings = bimServer.getSettingsManager().getSettings();
 		settings.setCustomLogoAddress(customLogoAddress);
 		bimServer.getSettingsManager().saveSettings();
@@ -1860,7 +1875,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public void setSettingEmailSenderAddress(String emailSenderAddress) throws UserException, ServerException {
-		requireAuthenticationAndRunningServer();
+		requireAdminAuthenticationAndRunningServer();
 		Settings settings = bimServer.getSettingsManager().getSettings();
 		settings.setEmailSenderAddress(emailSenderAddress);
 		bimServer.getSettingsManager().saveSettings();
@@ -1873,7 +1888,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public void setSettingEnabledExportTypes(Set<String> enabledExportTypeNames) throws UserException, ServerException {
-		requireAuthenticationAndRunningServer();
+		requireAdminAuthenticationAndRunningServer();
 		bimServer.getSettingsManager().updateEnabledResultTypes(enabledExportTypeNames);
 	}
 
@@ -1884,7 +1899,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public void setSettingRegistrationAddition(String registrationAddition) throws UserException, ServerException {
-		requireAuthenticationAndRunningServer();
+		requireAdminAuthenticationAndRunningServer();
 		Settings settings = bimServer.getSettingsManager().getSettings();
 		settings.setRegistrationAddition(registrationAddition);
 		bimServer.getSettingsManager().saveSettings();
@@ -1897,6 +1912,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public void setSettingSiteAddress(String siteAddress) throws UserException, ServerException {
+		requireAdminAuthenticationAndRunningServer();
 		Settings settings = bimServer.getSettingsManager().getSettings();
 		if (siteAddress.trim().isEmpty()) {
 			throw new UserException("Site Address cannot be empty");
@@ -1914,6 +1930,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public void setSettingSmtpServer(String smtpServer) throws UserException, ServerException {
+		requireAdminAuthenticationAndRunningServer();
 		Settings settings = bimServer.getSettingsManager().getSettings();
 		if (smtpServer.trim().isEmpty()) {
 			throw new UserException("SMTP server address cannot be empty");
@@ -1929,7 +1946,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public void setSettingAllowSelfRegistration(boolean allowSelfRegistration) throws UserException, ServerException {
-		requireAuthenticationAndRunningServer();
+		requireAdminAuthenticationAndRunningServer();
 		Settings settings = bimServer.getSettingsManager().getSettings();
 		settings.setAllowSelfRegistration(allowSelfRegistration);
 		bimServer.getSettingsManager().saveSettings();
@@ -1942,7 +1959,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public void setSettingAllowUsersToCreateTopLevelProjects(boolean allowUsersToCreateTopLevelProjects) throws UserException, ServerException {
-		requireAuthenticationAndRunningServer();
+		requireAdminAuthenticationAndRunningServer();
 		Settings settings = bimServer.getSettingsManager().getSettings();
 		settings.setAllowUsersToCreateTopLevelProjects(allowUsersToCreateTopLevelProjects);
 		bimServer.getSettingsManager().saveSettings();
@@ -1955,7 +1972,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public void setSettingAutoTestClashes(boolean autoTestClashes) throws UserException, ServerException {
-		requireAuthenticationAndRunningServer();
+		requireAdminAuthenticationAndRunningServer();
 		Settings settings = bimServer.getSettingsManager().getSettings();
 		settings.setAutoTestClashes(autoTestClashes);
 		bimServer.getSettingsManager().saveSettings();
@@ -1968,7 +1985,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public void setSettingCheckinMergingEnabled(boolean checkinMergingEnabled) throws UserException, ServerException {
-		requireAuthenticationAndRunningServer();
+		requireAdminAuthenticationAndRunningServer();
 		Settings settings = bimServer.getSettingsManager().getSettings();
 		settings.setCheckinMergingEnabled(checkinMergingEnabled);
 		bimServer.getSettingsManager().saveSettings();
@@ -1981,7 +1998,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public void setSettingIntelligentMerging(boolean intelligentMerging) throws UserException, ServerException {
-		requireAuthenticationAndRunningServer();
+		requireAdminAuthenticationAndRunningServer();
 		Settings settings = bimServer.getSettingsManager().getSettings();
 		settings.setIntelligentMerging(intelligentMerging);
 		bimServer.getSettingsManager().saveSettings();
@@ -1994,7 +2011,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public void setSettingSendConfirmationEmailAfterRegistration(boolean sendConfirmationEmailAfterRegistration) throws UserException, ServerException {
-		requireAuthenticationAndRunningServer();
+		requireAdminAuthenticationAndRunningServer();
 		Settings settings = bimServer.getSettingsManager().getSettings();
 		settings.setSendConfirmationEmailAfterRegistration(sendConfirmationEmailAfterRegistration);
 		bimServer.getSettingsManager().saveSettings();
@@ -2007,7 +2024,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public void setSettingShowVersionUpgradeAvailable(boolean showVersionUpgradeAvailable) throws UserException, ServerException {
-		requireAuthenticationAndRunningServer();
+		requireAdminAuthenticationAndRunningServer();
 		Settings settings = bimServer.getSettingsManager().getSettings();
 		settings.setShowVersionUpgradeAvailable(showVersionUpgradeAvailable);
 		bimServer.getSettingsManager().saveSettings();
@@ -2020,7 +2037,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public void setSettingCacheOutputFiles(boolean cacheOutputFiles) throws UserException, ServerException {
-		requireAuthenticationAndRunningServer();
+		requireAdminAuthenticationAndRunningServer();
 		Settings settings = bimServer.getSettingsManager().getSettings();
 		settings.setCacheOutputFiles(cacheOutputFiles);
 		bimServer.getSettingsManager().saveSettings();
@@ -2143,6 +2160,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public void sendClashesEmail(SClashDetectionSettings sClashDetectionSettings, long poid, Set<String> addressesTo) throws UserException, ServerException {
+		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
 		try {
 			BimDatabaseAction<Void> action = new SendClashesEmailDatabaseAction(bimServer, session, accessMethod, currentUoid, poid, sClashDetectionSettings, addressesTo);
@@ -2169,7 +2187,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public List<SLongAction> getActiveLongActions() throws ServerException, ServiceException {
-		requireAuthenticationAndRunningServer();
+		requireAdminAuthenticationAndRunningServer();
 		return bimServer.getLongActionManager().getActiveLongActions();
 	}
 
@@ -2289,7 +2307,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public void addSerializer(SSerializer serializer) throws UserException, ServerException {
-		requireAuthenticationAndRunningServer();
+		requireAdminAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
 		try {
 			Serializer convert = convert(serializer, Serializer.class, session);
@@ -2303,7 +2321,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public void updateSerializer(SSerializer serializer) throws UserException, ServerException {
-		requireAuthenticationAndRunningServer();
+		requireAdminAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
 		try {
 			Serializer convert = convert(serializer, Serializer.class, session);
@@ -2334,7 +2352,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public void addGuidanceProvider(SGuidanceProvider guidanceProvider) throws UserException, ServerException {
-		requireAuthenticationAndRunningServer();
+		requireAdminAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
 		try {
 			session.executeAndCommitAction(new AddGuidanceProviderDatabaseAction(session, accessMethod, convert(guidanceProvider, GuidanceProvider.class, session)), DEADLOCK_RETRIES);
@@ -2347,7 +2365,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public void updateGuidanceProvider(SGuidanceProvider guidanceProvider) throws UserException, ServerException {
-		requireAuthenticationAndRunningServer();
+		requireAdminAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
 		try {
 			session.executeAndCommitAction(new UpdateGuidanceProviderDatabaseAction(session, accessMethod, convert(guidanceProvider, GuidanceProvider.class, session)), DEADLOCK_RETRIES);
@@ -2394,7 +2412,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public void deleteGuidanceProvider(long ifid) throws UserException, ServerException {
-		requireAuthenticationAndRunningServer();
+		requireAdminAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
 		try {
 			BimDatabaseAction<Void> action = new DeleteGuidanceProviderDatabaseAction(session, accessMethod, ifid);
@@ -2408,7 +2426,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public void deleteSerializer(long sid) throws UserException, ServerException {
-		requireAuthenticationAndRunningServer();
+		requireAdminAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
 		try {
 			BimDatabaseAction<Void> action = new DeleteSerializerDatabaseAction(session, accessMethod, sid);
@@ -2422,7 +2440,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public void setSettingFooterAddition(String footerAddition) throws UserException, ServerException {
-		requireAuthenticationAndRunningServer();
+		requireAdminAuthenticationAndRunningServer();
 		Settings settings = bimServer.getSettingsManager().getSettings();
 		settings.setFooterAddition(footerAddition);
 		bimServer.getSettingsManager().saveSettings();
@@ -2430,7 +2448,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public void setSettingHeaderAddition(String headerAddition) throws UserException, ServerException {
-		requireAuthenticationAndRunningServer();
+		requireAdminAuthenticationAndRunningServer();
 		Settings settings = bimServer.getSettingsManager().getSettings();
 		settings.setHeaderAddition(headerAddition);
 		bimServer.getSettingsManager().saveSettings();
@@ -2450,6 +2468,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public SMergeIdentifier getSettingMergeIdentifier() throws UserException, ServerException {
+		requireAuthenticationAndRunningServer();
 		Settings settings = bimServer.getSettingsManager().getSettings();
 		return convert(settings.getMergeIdentifier(), SMergeIdentifier.class);
 	}
@@ -2457,7 +2476,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public void setSettingMergeIdentifier(SMergeIdentifier mergeIdentifier)
 			throws UserException, ServerException {
-		requireAuthenticationAndRunningServer();
+		requireAdminAuthenticationAndRunningServer();
 		Settings settings = bimServer.getSettingsManager().getSettings();
 		settings.setMergeIdentifier(MergeIdentifier.valueOf(mergeIdentifier.name()));
 		bimServer.getSettingsManager().saveSettings();
@@ -2518,7 +2537,8 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public List<SPlugin> getAllPlugins() {
+	public List<SPlugin> getAllPlugins() throws UserException {
+		requireAuthenticationAndRunningServer();
 		List<SPlugin> result = new ArrayList<SPlugin>();
 		Collection<Plugin> plugins = bimServer.getPluginManager().getAllPlugins(false);
 		for (Plugin plugin : plugins) {
@@ -2535,23 +2555,27 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public void disablePlugin(String name) {
+	public void disablePlugin(String name) throws UserException {
+		requireAdminAuthenticationAndRunningServer();
 		bimServer.getPluginManager().disablePlugin(name);
 	}
 
 	@Override
-	public void enablePlugin(String name) {
+	public void enablePlugin(String name) throws UserException {
+		requireAdminAuthenticationAndRunningServer();
 		bimServer.getPluginManager().enablePlugin(name);
 	}
 
 	@Override
-	public void startTransaction(int pid) {
+	public void startTransaction(int pid) throws UserException {
+		requireAuthenticationAndRunningServer();
 		changes = new HashSet<Change>();
 		transactionPid = pid;
 	}
 
 	@Override
 	public long commitTransaction() throws UserException {
+		requireAuthenticationAndRunningServer();
 		if (changes == null) {
 			throw new UserException("No transaction active");
 		}
@@ -2575,22 +2599,26 @@ public class Service implements ServiceInterface {
 	}
 	
 	@Override
-	public void abortTransaction() {
+	public void abortTransaction() throws UserException {
+		requireAuthenticationAndRunningServer();
 		changes = null;
 	}
 
 	@Override
-	public void addAttribute(long oid, String className, String attributeName, String value) {
+	public void addAttribute(long oid, String className, String attributeName, String value) throws UserException {
+		requireAuthenticationAndRunningServer();
 		changes.add(new AddAttributeChange(oid, className, attributeName, value));
 	}
 
 	@Override
-	public void addReference(long oid, String className, String referenceName, long referenceOid, String referenceClassName) {
+	public void addReference(long oid, String className, String referenceName, long referenceOid, String referenceClassName) throws UserException {
+		requireAuthenticationAndRunningServer();
 		changes.add(new AddReferenceChange(oid, className, referenceName, referenceOid, referenceClassName));
 	}
 
 	@Override
 	public long createObject(String className) throws UserException {
+		requireAuthenticationAndRunningServer();
 		long oid = bimServer.getDatabase().newOid();
 		CreateObjectChange createObject = new CreateObjectChange(className, oid);
 		changes.add(createObject);
@@ -2598,37 +2626,44 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public void removeAttribute(long oid, String className, String attributeName, int index) {
+	public void removeAttribute(long oid, String className, String attributeName, int index) throws UserException {
+		requireAuthenticationAndRunningServer();
 		changes.add(new RemoveAttributeChange(oid, className, attributeName, index));
 	}
 
 	@Override
-	public void removeObject(String className, long oid) {
+	public void removeObject(String className, long oid) throws UserException {
+		requireAuthenticationAndRunningServer();
 		changes.add(new RemoveObjectChange(className, oid));
 	}
 
 	@Override
-	public void removeReference(long oid, String className, String referenceName, int index) {
+	public void removeReference(long oid, String className, String referenceName, int index) throws UserException {
+		requireAuthenticationAndRunningServer();
 		changes.add(new RemoveReferenceChange(oid, className, referenceName, index));
 	}
 
 	@Override
-	public void setAttribute(long oid, String className, String attributeName, String value) {
+	public void setAttribute(long oid, String className, String attributeName, String value) throws UserException {
+		requireAuthenticationAndRunningServer();
 		changes.add(new SetAttributeChange(oid, className, attributeName, value));
 	}
 
 	@Override
-	public void setReference(long oid, String className, String referenceName, long referenceOid, String referenceClassName) {
+	public void setReference(long oid, String className, String referenceName, long referenceOid, String referenceClassName) throws UserException {
+		requireAuthenticationAndRunningServer();
 		changes.add(new SetReferenceChange(oid, className, referenceName, referenceOid, referenceClassName));
 	}
 
 	@Override
-	public void unsetAttribute(long oid, String className, String attributeName) {
+	public void unsetAttribute(long oid, String className, String attributeName) throws UserException {
+		requireAuthenticationAndRunningServer();
 		changes.add(new SetAttributeChange(oid, className, attributeName, null));
 	}
 
 	@Override
-	public void unsetReference(long oid, String className, String referenceName) {
+	public void unsetReference(long oid, String className, String referenceName) throws UserException {
+		requireAuthenticationAndRunningServer();
 		changes.add(new SetReferenceChange(oid, className, referenceName, -1, null));
 	}
 
@@ -2638,12 +2673,14 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public SSerializerPluginDescriptor getSerializerPluginDescriptor(String type) {
+	public SSerializerPluginDescriptor getSerializerPluginDescriptor(String type) throws UserException {
+		requireAuthenticationAndRunningServer();
 		return bimServer.getEmfSerializerFactory().getSerializerPluginDescriptor(type);
 	}
 
 	@Override
-	public Set<SGuidanceProviderPluginDescriptor> getAllGuidanceProviderPluginDescriptors() {
+	public Set<SGuidanceProviderPluginDescriptor> getAllGuidanceProviderPluginDescriptors() throws UserException {
+		requireAuthenticationAndRunningServer();
 		Collection<GuidanceProviderPlugin> allGuidanceProviders = bimServer.getPluginManager().getAllGuidanceProviders(true);
 		Set<SGuidanceProviderPluginDescriptor> descriptors = new HashSet<SGuidanceProviderPluginDescriptor>();
 		for (GuidanceProviderPlugin guidanceProviderPlugin : allGuidanceProviders) {
