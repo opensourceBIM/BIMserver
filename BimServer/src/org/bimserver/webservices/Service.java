@@ -30,6 +30,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -99,8 +100,8 @@ import org.bimserver.database.actions.GetDatabaseInformationAction;
 import org.bimserver.database.actions.GetGeoTagDatabaseAction;
 import org.bimserver.database.actions.GetGuidanceProviderByIdDatabaseAction;
 import org.bimserver.database.actions.GetLogsDatabaseAction;
-import org.bimserver.database.actions.GetProjectsByNameDatabaseAction;
 import org.bimserver.database.actions.GetProjectByPoidDatabaseAction;
+import org.bimserver.database.actions.GetProjectsByNameDatabaseAction;
 import org.bimserver.database.actions.GetRevisionDatabaseAction;
 import org.bimserver.database.actions.GetRevisionSummaryDatabaseAction;
 import org.bimserver.database.actions.GetSerializerByContentTypeDatabaseAction;
@@ -577,7 +578,7 @@ public class Service implements ServiceInterface {
 		if (currentUoid == -1) {
 			throw new UserException("Authentication required for this call");
 		}
-		if (getCurrentUser().getUserType() != SUserType.ADMIN) {
+		if (getCurrentUser().getUserType() != SUserType.ADMIN && getCurrentUser().getUserType() != SUserType.SYSTEM) {
 			throw new UserException("Administrator rights required for this call");
 		}
 	}
@@ -1912,7 +1913,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public void setSettingSiteAddress(String siteAddress) throws UserException, ServerException {
-		requireAdminAuthenticationAndRunningServer();
+		requireAdminAuthentication();
 		Settings settings = bimServer.getSettingsManager().getSettings();
 		if (siteAddress.trim().isEmpty()) {
 			throw new UserException("Site Address cannot be empty");
@@ -1930,7 +1931,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public void setSettingSmtpServer(String smtpServer) throws UserException, ServerException {
-		requireAdminAuthenticationAndRunningServer();
+		requireAdminAuthentication();
 		Settings settings = bimServer.getSettingsManager().getSettings();
 		if (smtpServer.trim().isEmpty()) {
 			throw new UserException("SMTP server address cannot be empty");
@@ -2569,7 +2570,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public void startTransaction(int pid) throws UserException {
 		requireAuthenticationAndRunningServer();
-		changes = new HashSet<Change>();
+		changes = new LinkedHashSet<Change>();
 		transactionPid = pid;
 	}
 
@@ -2605,7 +2606,25 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public void addAttribute(long oid, String className, String attributeName, String value) throws UserException {
+	public void addStringAttribute(long oid, String className, String attributeName, String value) throws UserException {
+		requireAuthenticationAndRunningServer();
+		changes.add(new AddAttributeChange(oid, className, attributeName, value));
+	}
+
+	@Override
+	public void addIntegerAttribute(long oid, String className, String attributeName, int value) throws UserException {
+		requireAuthenticationAndRunningServer();
+		changes.add(new AddAttributeChange(oid, className, attributeName, value));
+	}
+
+	@Override
+	public void addFloatAttribute(long oid, String className, String attributeName, float value) throws UserException {
+		requireAuthenticationAndRunningServer();
+		changes.add(new AddAttributeChange(oid, className, attributeName, value));
+	}
+
+	@Override
+	public void addBooleanAttribute(long oid, String className, String attributeName, boolean value) throws UserException {
 		requireAuthenticationAndRunningServer();
 		changes.add(new AddAttributeChange(oid, className, attributeName, value));
 	}
@@ -2644,7 +2663,25 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public void setAttribute(long oid, String className, String attributeName, String value) throws UserException {
+	public void setStringAttribute(long oid, String className, String attributeName, String value) throws UserException {
+		requireAuthenticationAndRunningServer();
+		changes.add(new SetAttributeChange(oid, className, attributeName, value));
+	}
+	
+	@Override
+	public void setIntegerAttribute(long oid, String className, String attributeName, int value) throws UserException {
+		requireAuthenticationAndRunningServer();
+		changes.add(new SetAttributeChange(oid, className, attributeName, value));
+	}
+	
+	@Override
+	public void setBooleanAttribute(long oid, String className, String attributeName, boolean value) throws UserException {
+		requireAuthenticationAndRunningServer();
+		changes.add(new SetAttributeChange(oid, className, attributeName, value));
+	}
+	
+	@Override
+	public void setFloatAttribute(long oid, String className, String attributeName, float value) throws UserException {
 		requireAuthenticationAndRunningServer();
 		changes.add(new SetAttributeChange(oid, className, attributeName, value));
 	}

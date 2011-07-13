@@ -35,6 +35,9 @@ public class SetAttributeChange implements Change {
 			throw new UserException("Attribute is not of type 'single'");
 		}
 		idEObject.eSet(eAttribute, value);
+		if (value instanceof Float) {
+			idEObject.eSet(idEObject.eClass().getEStructuralFeature(attributeName + "AsString"), String.valueOf((Float)value));
+		}
 		bimDatabaseSession.store(idEObject);
 	}
 }

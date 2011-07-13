@@ -108,14 +108,17 @@ public class Database implements BimDatabase {
 		this.emfPackages.addAll(emfPackages);
 
 		// All classes from the packages other than Store/Log (basically only the Ifc2x3 package at the moment) are transaction-less (faster)
-		for (EPackage ePackage : emfPackages) {
-			for (EClassifier eClassifier : ePackage.getEClassifiers()) {
-				if (eClassifier instanceof EClass) {
-					EClass eClass = (EClass)eClassifier;
-					transactionLessClasses.add(eClass);
-				}
-			}
-		}
+
+		// 13-07-2011 disabling this because low-level-transactions in the service interface require database-level transactions on all tables
+		
+//		for (EPackage ePackage : emfPackages) {
+//			for (EClassifier eClassifier : ePackage.getEClassifiers()) {
+//				if (eClassifier instanceof EClass) {
+//					EClass eClass = (EClass)eClassifier;
+//					transactionLessClasses.add(eClass);
+//				}
+//			}
+//		}
 		
 		recordSizeEstimater.init(this.emfPackages);
 		

@@ -200,8 +200,7 @@ public class BerkeleyColumnDatabase implements ColumnDatabase {
 		DatabaseEntry value = new DatabaseEntry();
 		try {
 			Database database = getDatabase(tableName);
-			OperationStatus operationStatus = database.get(getTransaction(databaseSession), key,
-					value, LockMode.READ_UNCOMMITTED);
+			OperationStatus operationStatus = database.get(getTransaction(databaseSession), key, value, LockMode.READ_UNCOMMITTED);
 			if (operationStatus == OperationStatus.SUCCESS) {
 				increaseReads();
 				return value.getData();
