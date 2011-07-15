@@ -472,7 +472,7 @@
 			<fileset dir="builds/BuildJar/classes" />
 		</jar>
 		<delete dir="builds/BuildJar/classes" />
-		<javac destdir="builds/BuildJar" debug="on" srcdir="../expander" />
+		<javac destdir="builds/BuildJar" debug="on" srcdir="../../Builds/expander" />
 		<copy todir="builds/BuildJar/org/bimserver">
 			<fileset dir="../expander/org/bimserver">
 				<include name="*.png" />
