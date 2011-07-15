@@ -17,7 +17,7 @@ package org.bimserver.shared;
  * General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License a 
- * long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.
+ * Long with Bimserver.org . If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
 import java.util.Date;
@@ -76,90 +76,90 @@ public interface ServiceInterface {
 	@Path("/login")
 	@Produces("application/xml")
 	@WebMethod(action = "login")
-	boolean login(@QueryParam("username") @WebParam(name = "username", partName = "login.username") String username,
+	Boolean login(@QueryParam("username") @WebParam(name = "username", partName = "login.username") String username,
 			@QueryParam("password") @WebParam(name = "password", partName = "login.password") String password) throws UserException,
 			ServerException;
 
 	@WebMethod(action = "autologin")
-	boolean autologin(@WebParam(name = "username", partName = "autologin.username") String username,
+	Boolean autologin(@WebParam(name = "username", partName = "autologin.username") String username,
 			@WebParam(name = "hash", partName = "autologin.hash") String hash) throws UserException, ServerException;
 
 	@WebMethod(action = "checkinSync")
-	SCheckinResult checkinSync(@WebParam(name = "poid", partName = "checkinSync.poid") long poid,
+	SCheckinResult checkinSync(@WebParam(name = "poid", partName = "checkinSync.poid") Long poid,
 			@WebParam(name = "comment", partName = "checkinSync.comment") String comment,
-			@WebParam(name = "fileSize", partName = "checkinSync.fileSize") long fileSize,
+			@WebParam(name = "fileSize", partName = "checkinSync.fileSize") Long fileSize,
 			@WebParam(name = "ifcFile", partName = "checkinSync.ifcFile") @XmlMimeType("application/octet-stream") DataHandler ifcFile,
-			@WebParam(name = "merge", partName = "checkinSync.merge") boolean merge) throws UserException, ServerException;
+			@WebParam(name = "merge", partName = "checkinSync.merge") Boolean merge) throws UserException, ServerException;
 
 	@WebMethod(action = "checkinAsync")
-	SCheckinResult checkinAsync(@WebParam(name = "poid", partName = "checlinAsync.poid") long poid,
+	SCheckinResult checkinAsync(@WebParam(name = "poid", partName = "checlinAsync.poid") Long poid,
 			@WebParam(name = "comment", partName = "checkinAsync.comment") String comment,
-			@WebParam(name = "fileSize", partName = "checkinSync.fileSize") long fileSize,
+			@WebParam(name = "fileSize", partName = "checkinSync.fileSize") Long fileSize,
 			@WebParam(name = "ifcFile", partName = "checkinAsync.ifcFile") @XmlMimeType("application/octet-stream") DataHandler ifcFile,
-			@WebParam(name = "merge", partName = "checkinAsync.merge") boolean merge) throws UserException, ServerException;
+			@WebParam(name = "merge", partName = "checkinAsync.merge") Boolean merge) throws UserException, ServerException;
 
 	@WebMethod(action = "checkout")
-	int checkout(@WebParam(name = "roid", partName = "checkout.roid") long roid,
+	Integer checkout(@WebParam(name = "roid", partName = "checkout.roid") Long roid,
 			@WebParam(name = "formatIdentifier", partName = "checkout.formatIdentifier") String formatIdentifier,
-			@QueryParam("sync") @WebParam(name = "sync", partName = "download.sync") boolean sync) throws UserException, ServerException;
+			@QueryParam("sync") @WebParam(name = "sync", partName = "download.sync") Boolean sync) throws UserException, ServerException;
 
 	@WebMethod(action = "checkoutLastRevision")
-	int checkoutLastRevision(@QueryParam("poid") @WebParam(name = "poid", partName = "checkoutLastRevision.poid") long poid,
+	Integer checkoutLastRevision(@QueryParam("poid") @WebParam(name = "poid", partName = "checkoutLastRevision.poid") Long poid,
 			@QueryParam("resultType") @WebParam(name = "formatIdentifier", partName = "checkoutLastRevision.formatIdentifier") String formatIdentifier,
-			@QueryParam("sync") @WebParam(name = "sync", partName = "download.sync") boolean sync) throws UserException, ServerException;
+			@QueryParam("sync") @WebParam(name = "sync", partName = "download.sync") Boolean sync) throws UserException, ServerException;
 
 	@GET
 	@Path("/download")
 	@Produces("application/xml")
 	@WebMethod(action = "download")
-	int download(@QueryParam("roid") @WebParam(name = "roid", partName = "download.roid") long roid,
+	Integer download(@QueryParam("roid") @WebParam(name = "roid", partName = "download.roid") Long roid,
 			@QueryParam("resultType") @WebParam(name = "formatIdentifier", partName = "download.serializerName") String serializerName,
-			@QueryParam("sync") @WebParam(name = "sync", partName = "download.sync") boolean sync) throws UserException, ServerException;
+			@QueryParam("sync") @WebParam(name = "sync", partName = "download.sync") Boolean sync) throws UserException, ServerException;
 
 	@WebMethod(action = "downloadByOids")
-	int downloadByOids(@WebParam(name = "roids", partName = "downloadByOids.roids") Set<Long> roids,
+	Integer downloadByOids(@WebParam(name = "roids", partName = "downloadByOids.roids") Set<Long> roids,
 			@WebParam(name = "oids", partName = "downloadByOids.oids") Set<Long> oids,
 			@WebParam(name = "formatIdentifier", partName = "downloadByOids.formatIdentifier") String formatIdentifier,
-			@QueryParam("sync") @WebParam(name = "sync", partName = "download.sync") boolean sync) throws UserException,
+			@QueryParam("sync") @WebParam(name = "sync", partName = "download.sync") Boolean sync) throws UserException,
 			ServerException;
 
 	@WebMethod(action = "downloadOfType")
-	int downloadOfType(@WebParam(name = "roid", partName = "downloadOfType.roid") long roid,
+	Integer downloadOfType(@WebParam(name = "roid", partName = "downloadOfType.roid") Long roid,
 			@WebParam(name = "className", partName = "downloadOfType.className") String className,
 			@WebParam(name = "formatIdentifier", partName = "downloadOfType.formatIdentifier") String formatIdentifier,
-			@QueryParam("sync") @WebParam(name = "sync", partName = "download.sync") boolean sync) throws UserException,
+			@QueryParam("sync") @WebParam(name = "sync", partName = "download.sync") Boolean sync) throws UserException,
 			ServerException;
 
 	@WebMethod(action = "downloadByGuids")
-	int downloadByGuids(@WebParam(name = "roids", partName = "downloadByGuids.roids") Set<Long> roids,
+	Integer downloadByGuids(@WebParam(name = "roids", partName = "downloadByGuids.roids") Set<Long> roids,
 			@WebParam(name = "guids", partName = "downloadByGuids.guids") Set<String> guids,
 			@WebParam(name = "formatIdentifier", partName = "downloadByGuids.formatIdentifier") String formatIdentifier,
-			@QueryParam("sync") @WebParam(name = "sync", partName = "download.sync") boolean sync) throws UserException,
+			@QueryParam("sync") @WebParam(name = "sync", partName = "download.sync") Boolean sync) throws UserException,
 			ServerException;
 
 	@WebMethod(action = "downloadProjects")
-	int downloadProjects(@WebParam(name = "roids", partName = "downloadProjects.roids") Set<Long> roids,
+	Integer downloadProjects(@WebParam(name = "roids", partName = "downloadProjects.roids") Set<Long> roids,
 			@WebParam(name = "formatIdentifier", partName = "downloadProjects.formatIdentifier") String formatIdentifier,
-			@QueryParam("sync") @WebParam(name = "sync", partName = "download.sync") boolean sync) throws UserException,
+			@QueryParam("sync") @WebParam(name = "sync", partName = "download.sync") Boolean sync) throws UserException,
 			ServerException;
 
 	@WebMethod(action = "getDownloadData")
-	SDownloadResult getDownloadData(@WebParam(name = "actionID", partName = "downloadProjects.actionID") int actionId)
+	SDownloadResult getDownloadData(@WebParam(name = "actionID", partName = "downloadProjects.actionID") Integer actionId)
 			throws UserException, ServerException;
 
 	@WebMethod(action = "getDownloadState")
-	LongActionState getDownloadState(@WebParam(name = "actionID", partName = "downloadProjects.actionID") int actionId)
+	LongActionState getDownloadState(@WebParam(name = "actionID", partName = "downloadProjects.actionID") Integer actionId)
 			throws UserException, ServerException;
 
 	@WebMethod(action = "addUser")
-	long addUser(@WebParam(name = "username", partName = "addUser.username") String username,
+	Long addUser(@WebParam(name = "username", partName = "addUser.username") String username,
 			@WebParam(name = "name", partName = "addUser.name") String name,
 			@WebParam(name = "type", partName = "addUser.type") SUserType type,
-			@WebParam(name = "selfRegistration", partName = "addUser.selfRegistration") boolean selfRegistration) throws UserException,
+			@WebParam(name = "selfRegistration", partName = "addUser.selfRegistration") Boolean selfRegistration) throws UserException,
 			ServerException;
 
 	@WebMethod(action = "changeUserType")
-	void changeUserType(@WebParam(name = "uoid", partName = "changeUserType.uoid") long uoid,
+	void changeUserType(@WebParam(name = "uoid", partName = "changeUserType.uoid") Long uoid,
 			@WebParam(name = "userType", partName = "changeUserType.userType") SUserType userType) throws UserException, ServerException;
 
 	@WebMethod(action = "addProject")
@@ -168,7 +168,7 @@ public interface ServiceInterface {
 
 	@WebMethod(action = "addProjectAsSubProject")
 	SProject addProjectAsSubProject(@WebParam(name = "projectName", partName = "addProjectAsSubProject.projectName") String projectName,
-			@WebParam(name = "parentPoid", partName = "addProjectAsSubProject.parentPoid") long parentPoid) throws UserException,
+			@WebParam(name = "parentPoid", partName = "addProjectAsSubProject.parentPoid") Long parentPoid) throws UserException,
 			ServerException;
 
 	@WebMethod(action = "updateProject")
@@ -180,18 +180,18 @@ public interface ServiceInterface {
 			ServerException;
 
 	@WebMethod(action = "addUserToProject")
-	boolean addUserToProject(@WebParam(name = "uoid", partName = "addUserToProject.uoid") long uoid,
-			@WebParam(name = "poid", partName = "addUserToProject.poid") long poid) throws UserException, ServerException;
+	Boolean addUserToProject(@WebParam(name = "uoid", partName = "addUserToProject.uoid") Long uoid,
+			@WebParam(name = "poid", partName = "addUserToProject.poid") Long poid) throws UserException, ServerException;
 
 	@WebMethod(action = "removeUserFromProject")
-	boolean removeUserFromProject(@WebParam(name = "uoid", partName = "removeProjectFromUser.uoid") long uoid,
-			@WebParam(name = "poid", partName = "removeUserFromProject.poid") long poid) throws UserException, ServerException;
+	Boolean removeUserFromProject(@WebParam(name = "uoid", partName = "removeProjectFromUser.uoid") Long uoid,
+			@WebParam(name = "poid", partName = "removeUserFromProject.poid") Long poid) throws UserException, ServerException;
 
 	@WebMethod(action = "deleteProject")
-	boolean deleteProject(@WebParam(name = "poid", partName = "deleteProject.poid") long poid) throws UserException, ServerException;
+	Boolean deleteProject(@WebParam(name = "poid", partName = "deleteProject.poid") Long poid) throws UserException, ServerException;
 
 	@WebMethod(action = "deleteUser")
-	boolean deleteUser(@WebParam(name = "uoid", partName = "deleteUser.uoid") long uoid) throws UserException, ServerException;
+	Boolean deleteUser(@WebParam(name = "uoid", partName = "deleteUser.uoid") Long uoid) throws UserException, ServerException;
 
 	@GET
 	@Path("/getAllProjects")
@@ -213,30 +213,30 @@ public interface ServiceInterface {
 	@Produces("application/xml")
 	@WebMethod(action = "getAllRevisionsOfProject")
 	List<SRevision> getAllRevisionsOfProject(
-			@QueryParam("poid") @WebParam(name = "poid", partName = "getAllRevisionsOfProject.poid") long poid) throws UserException,
+			@QueryParam("poid") @WebParam(name = "poid", partName = "getAllRevisionsOfProject.poid") Long poid) throws UserException,
 			ServerException;
 
 	@WebMethod(action = "getAllCheckoutsOfProject")
-	List<SCheckout> getAllCheckoutsOfProject(@WebParam(name = "poid", partName = "getAllCheckoutsOfProject.poid") long poid)
+	List<SCheckout> getAllCheckoutsOfProject(@WebParam(name = "poid", partName = "getAllCheckoutsOfProject.poid") Long poid)
 			throws UserException, ServerException;
 
 	@WebMethod(action = "getAllRevisionsByUser")
-	List<SRevision> getAllRevisionsByUser(@WebParam(name = "uoid", partName = "getAllRevisionsOfUser.uoid") long uoid)
+	List<SRevision> getAllRevisionsByUser(@WebParam(name = "uoid", partName = "getAllRevisionsOfUser.uoid") Long uoid)
 			throws UserException, ServerException;
 
 	@WebMethod(action = "getAllCheckoutsByUser")
-	List<SCheckout> getAllCheckoutsByUser(@WebParam(name = "uoid", partName = "getAllCheckoutsByUser.uoid") long uoid)
+	List<SCheckout> getAllCheckoutsByUser(@WebParam(name = "uoid", partName = "getAllCheckoutsByUser.uoid") Long uoid)
 			throws UserException, ServerException;
 
 	@WebMethod(action = "getAllCheckoutsOfRevision")
-	List<SCheckout> getAllCheckoutsOfRevision(@WebParam(name = "roid", partName = "getAllCheckoutsOfRevision.roid") long roid)
+	List<SCheckout> getAllCheckoutsOfRevision(@WebParam(name = "roid", partName = "getAllCheckoutsOfRevision.roid") Long roid)
 			throws UserException, ServerException;
 
 	@WebMethod(action = "getProjectByPoid")
-	SProject getProjectByPoid(@WebParam(name = "poid", partName = "getProjectByPoid.poid") long poid) throws UserException, ServerException;
+	SProject getProjectByPoid(@WebParam(name = "poid", partName = "getProjectByPoid.poid") Long poid) throws UserException, ServerException;
 
 	@WebMethod(action = "getRevision")
-	SRevision getRevision(@WebParam(name = "roid", partName = "getRevision.roid") long roid) throws UserException, ServerException;
+	SRevision getRevision(@WebParam(name = "roid", partName = "getRevision.roid") Long roid) throws UserException, ServerException;
 
 	@WebMethod(action = "getAvailableClasses")
 	List<String> getAvailableClasses() throws UserException, ServerException;
@@ -251,14 +251,14 @@ public interface ServiceInterface {
 	SUser getLoggedInUser() throws UserException, ServerException;
 
 	@WebMethod(action = "getAllNonAuthorizedProjectsOfUser")
-	List<SProject> getAllNonAuthorizedProjectsOfUser(@WebParam(name = "uoid", partName = "getAllNonAuthorizedProjectsOfUser.uoid") long uoid)
+	List<SProject> getAllNonAuthorizedProjectsOfUser(@WebParam(name = "uoid", partName = "getAllNonAuthorizedProjectsOfUser.uoid") Long uoid)
 			throws UserException, ServerException;
 
 	@WebMethod(action = "logout")
 	void logout() throws UserException, ServerException;
 
 	@WebMethod(action = "changePassword")
-	boolean changePassword(@WebParam(name = "uoid", partName = "changePassword.uoid") long uoid,
+	Boolean changePassword(@WebParam(name = "uoid", partName = "changePassword.uoid") Long uoid,
 			@WebParam(name = "oldPassword", partName = "changePassword.oldPassword") String oldPassword,
 			@WebParam(name = "newPassword", partName = "changePassword.newPassword") String newPassword) throws UserException,
 			ServerException;
@@ -268,43 +268,43 @@ public interface ServiceInterface {
 			ServerException;
 
 	@WebMethod(action = "undeleteProject")
-	boolean undeleteProject(@WebParam(name = "poid", partName = "undeleteProject.poid") long poid) throws UserException, ServerException;
+	Boolean undeleteProject(@WebParam(name = "poid", partName = "undeleteProject.poid") Long poid) throws UserException, ServerException;
 
 	@WebMethod(action = "undeleteUser")
-	boolean undeleteUser(@WebParam(name = "uoid", partName = "undeleteUser.uoid") long uoid) throws UserException, ServerException;
+	Boolean undeleteUser(@WebParam(name = "uoid", partName = "undeleteUser.uoid") Long uoid) throws UserException, ServerException;
 
 	@WebMethod(action = "compare")
-	SCompareResult compare(@WebParam(name = "roid1", partName = "compare.roid1") long roid1,
-			@WebParam(name = "roid2", partName = "compare.roid2") long roid2,
+	SCompareResult compare(@WebParam(name = "roid1", partName = "compare.roid1") Long roid1,
+			@WebParam(name = "roid2", partName = "compare.roid2") Long roid2,
 			@WebParam(name = "sCompareType", partName = "compare.sCompareType") SCompareType sCompareType, @WebParam(name = "sCompareIdentifier", partName = "compare.sCompareIdentifier") SCompareIdentifier sCompareIdentifier) throws UserException,
 			ServerException;
 
 	@WebMethod(action = "getRevisionSummary")
-	SRevisionSummary getRevisionSummary(@WebParam(name = "roid", partName = "getRevisionSummary.roid") long roid) throws UserException,
+	SRevisionSummary getRevisionSummary(@WebParam(name = "roid", partName = "getRevisionSummary.roid") Long roid) throws UserException,
 			ServerException;
 
 	@WebMethod(action = "userHasCheckinRights")
-	boolean userHasCheckinRights(@WebParam(name = "poid", partName = "userHasCheckinRights.poid") long poid) throws UserException,
+	Boolean userHasCheckinRights(@WebParam(name = "poid", partName = "userHasCheckinRights.poid") Long poid) throws UserException,
 			ServerException;
 
 	@WebMethod(action = "getShowCheckoutWarning")
-	Set<String> getCheckoutWarnings(@WebParam(name = "poid", partName = "getShowCheckoutWarning.poid") long poid) throws UserException, ServerException;
+	Set<String> getCheckoutWarnings(@WebParam(name = "poid", partName = "getShowCheckoutWarning.poid") Long poid) throws UserException, ServerException;
 
 	@WebMethod(action = "userHasRights")
-	boolean userHasRights(@WebParam(name = "poid", partName = "userHasRights.poid") long poid) throws UserException, ServerException;
+	Boolean userHasRights(@WebParam(name = "poid", partName = "userHasRights.poid") Long poid) throws UserException, ServerException;
 
 	@WebMethod(action = "getDataObjectByOid")
-	SDataObject getDataObjectByOid(@WebParam(name = "roid", partName = "getDataObjectByOid.roid") long roid,
-			@WebParam(name = "oid", partName = "getDataObjectByOid.oid") long oid,
+	SDataObject getDataObjectByOid(@WebParam(name = "roid", partName = "getDataObjectByOid.roid") Long roid,
+			@WebParam(name = "oid", partName = "getDataObjectByOid.oid") Long oid,
 			@WebParam(name = "className", partName = "getDataObjectByOid.className") String className) throws UserException,
 			ServerException;
 
 	@WebMethod(action = "getDataObjectByGuid")
-	SDataObject getDataObjectByGuid(@WebParam(name = "roid", partName = "getDataObjectByGuid.roid") long roid,
+	SDataObject getDataObjectByGuid(@WebParam(name = "roid", partName = "getDataObjectByGuid.roid") Long roid,
 			@WebParam(name = "guid", partName = "getDataObjectByGuid.guid") String guid) throws UserException, ServerException;
 
 	@WebMethod(action = "getDataObjectsByType")
-	List<SDataObject> getDataObjectsByType(@WebParam(name = "roid", partName = "getDataObjectsByType.roid") long roid,
+	List<SDataObject> getDataObjectsByType(@WebParam(name = "roid", partName = "getDataObjectsByType.roid") Long roid,
 			@WebParam(name = "className", partName = "getDataObjectsByType.className") String className) throws UserException,
 			ServerException;
 
@@ -319,26 +319,26 @@ public interface ServiceInterface {
 			throws UserException, ServerException;
 
 	@WebMethod(action = "getLastClashes")
-	List<SClash> getLastClashes(@WebParam(name = "roid", partName = "getLastClashes.roid") long roid) throws UserException, ServerException;
+	List<SClash> getLastClashes(@WebParam(name = "roid", partName = "getLastClashes.roid") Long roid) throws UserException, ServerException;
 
 	@WebMethod(action = "branchToNewProject")
-	SCheckinResult branchToNewProject(@WebParam(name = "roid", partName = "branchToNewProject.roid") long roid,
+	SCheckinResult branchToNewProject(@WebParam(name = "roid", partName = "branchToNewProject.roid") Long roid,
 			@WebParam(name = "projectName", partName = "branchToNewProject.projectName") String projectName,
 			@WebParam(name = "comment", partName = "branchToNewProject.comment") String comment) throws UserException, ServerException;
 
 	@WebMethod(action = "branchToExistingProject")
-	SCheckinResult branchToExistingProject(@WebParam(name = "roid", partName = "branchToExistingProject.roid") long roid,
-			@WebParam(name = "destPoid", partName = "branchToExistingProject.destPoid") long destPoid,
+	SCheckinResult branchToExistingProject(@WebParam(name = "roid", partName = "branchToExistingProject.roid") Long roid,
+			@WebParam(name = "destPoid", partName = "branchToExistingProject.destPoid") Long destPoid,
 			@WebParam(name = "comment", partName = "branchToExistingProject.comment") String comment) throws UserException, ServerException;
 
 	@WebMethod(action = "getGeoTag")
-	SGeoTag getGeoTag(@WebParam(name = "goid", partName = "getGeoTag.goid") long goid) throws UserException, ServerException;
+	SGeoTag getGeoTag(@WebParam(name = "goid", partName = "getGeoTag.goid") Long goid) throws UserException, ServerException;
 
 	@WebMethod(action = "updateGeoTag")
 	void updateGeoTag(@WebParam(name = "sGeoTag", partName = "updateGeoTag.sGeoTag") SGeoTag sGeoTag) throws UserException, ServerException;
 
 	@WebMethod(action = "getClashDetectionSettings")
-	SClashDetectionSettings getClashDetectionSettings(@WebParam(name = "cdsoid", partName = "getClashDetectionSettings.cdsoid") long cdsoid)
+	SClashDetectionSettings getClashDetectionSettings(@WebParam(name = "cdsoid", partName = "getClashDetectionSettings.cdsoid") Long cdsoid)
 			throws UserException, ServerException;
 
 	@WebMethod(action = "updateClashDetectionSettings")
@@ -347,21 +347,21 @@ public interface ServiceInterface {
 			throws UserException, ServerException;
 
 	@WebMethod(action = "getUserByUoid")
-	SUser getUserByUoid(@WebParam(name = "uoid", partName = "getUserByUoid.uoid") long uoid) throws UserException, ServerException;
+	SUser getUserByUoid(@WebParam(name = "uoid", partName = "getUserByUoid.uoid") Long uoid) throws UserException, ServerException;
 
 	@WebMethod(action = "getAnonymousUser")
 	SUser getAnonymousUser() throws UserException, ServerException;
 
 	@WebMethod(action = "getAllNonAuthorizedUsersOfProject")
-	List<SUser> getAllNonAuthorizedUsersOfProject(@WebParam(name = "poid", partName = "getAllNonAuthorizedUsersOfProject.poid") long poid)
+	List<SUser> getAllNonAuthorizedUsersOfProject(@WebParam(name = "poid", partName = "getAllNonAuthorizedUsersOfProject.poid") Long poid)
 			throws UserException, ServerException;
 
 	@WebMethod(action = "getAllAuthorizedUsersOfProject")
-	List<SUser> getAllAuthorizedUsersOfProject(@WebParam(name = "poid", partName = "getAllAuthorizedUsersOfProject.poid") long poid)
+	List<SUser> getAllAuthorizedUsersOfProject(@WebParam(name = "poid", partName = "getAllAuthorizedUsersOfProject.poid") Long poid)
 			throws UserException, ServerException;
 
 	@WebMethod(action = "getUsersProjects")
-	List<SProject> getUsersProjects(@WebParam(name = "uoid", partName = "getUsersProjects.uoid") long uoid) throws UserException,
+	List<SProject> getUsersProjects(@WebParam(name = "uoid", partName = "getUsersProjects.uoid") Long uoid) throws UserException,
 			ServerException;
 
 	@WebMethod(action = "getProjectsByName")
@@ -369,22 +369,22 @@ public interface ServiceInterface {
 			ServerException;
 
 	@WebMethod(action = "setRevisionTag")
-	void setRevisionTag(@WebParam(name = "roid", partName = "setRevisionTag.roid") long roid,
+	void setRevisionTag(@WebParam(name = "roid", partName = "setRevisionTag.roid") Long roid,
 			@WebParam(name = "tag", partName = "setRevisionTag.tag") String tag) throws UserException, ServerException;
 
 	@WebMethod(action = "getSubProjects")
-	List<SProject> getSubProjects(@WebParam(name = "poid", partName = "getSubProjects.poid") long poid) throws UserException,
+	List<SProject> getSubProjects(@WebParam(name = "poid", partName = "getSubProjects.poid") Long poid) throws UserException,
 			ServerException;
 
 	@WebMethod(action = "setExportTypeEnabled")
 	void setExportTypeEnabled(@WebParam(name = "resultTypeName", partName = "setExportTypeEnabled.resultTypeName") String resultTypeName,
-			boolean enabled) throws UserException, ServerException;
+			Boolean enabled) throws UserException, ServerException;
 
 	@WebMethod(action = "getCurrentUser")
 	SUser getCurrentUser() throws UserException, ServerException;
 
 	@WebMethod(action = "isLoggedIn")
-	boolean isLoggedIn() throws UserException, ServerException;
+	Boolean isLoggedIn() throws UserException, ServerException;
 
 	@WebMethod(action = "loginAnonymous")
 	void loginAnonymous() throws UserException, ServerException;
@@ -403,22 +403,22 @@ public interface ServiceInterface {
 
 	@WebMethod(action = "getAllCheckoutsOfProjectAndSubProjects")
 	List<SCheckout> getAllCheckoutsOfProjectAndSubProjects(
-			@WebParam(name = "poid", partName = "getAllCheckoutsOfProjectAndSubProjects.poid") long poid) throws UserException,
+			@WebParam(name = "poid", partName = "getAllCheckoutsOfProjectAndSubProjects.poid") Long poid) throws UserException,
 			ServerException;
 
 	@WebMethod(action = "requestPasswordChange")
-	void requestPasswordChange(@WebParam(name = "uoid", partName = "requestPasswordChange.uoid") long uoid) throws UserException,
+	void requestPasswordChange(@WebParam(name = "uoid", partName = "requestPasswordChange.uoid") Long uoid) throws UserException,
 			ServerException;
 
 	@WebMethod(action = "validateAccount")
-	void validateAccount(@WebParam(name = "uoid", partName = "validateAccount.uoid") long uoid,
+	void validateAccount(@WebParam(name = "uoid", partName = "validateAccount.uoid") Long uoid,
 			@WebParam(name = "token", partName = "validateAccount.token") String token,
 			@WebParam(name = "password", partName = "validateAccount.password") String password) throws UserException, ServerException;
 
 	@WebMethod(action = "sendClashesEmail")
 	void sendClashesEmail(
 			@WebParam(name = "sClashDetectionSettings", partName = "sendClashesEmail.sClashDetectionSettings") SClashDetectionSettings sClashDetectionSettings,
-			@WebParam(name = "poid", partName = "sendClashesEmail.poid") long poid,
+			@WebParam(name = "poid", partName = "sendClashesEmail.poid") Long poid,
 			@WebParam(name = "addressesTo", partName = "sendClashesEmail.addressesTo") Set<String> addressesTo) throws UserException,
 			ServerException;
 
@@ -426,9 +426,9 @@ public interface ServiceInterface {
 	void sendCompareEmail(
 			@WebParam(name = "sCompareType", partName = "sendClashesEmail.sCompareType") SCompareType sCompareType,
 			@WebParam(name = "sCompareIdentifier", partName = "sendClashesEmail.sCompareIdentifier") SCompareIdentifier sCompareIdentifier,
-			@WebParam(name = "poid", partName = "sendClashesEmail.poid") long poid,
-			@WebParam(name = "roid1", partName = "sendClashesEmail.roid1") long roid1,
-			@WebParam(name = "roid2", partName = "sendClashesEmail.roid2") long roid2,
+			@WebParam(name = "poid", partName = "sendClashesEmail.poid") Long poid,
+			@WebParam(name = "roid1", partName = "sendClashesEmail.roid1") Long roid1,
+			@WebParam(name = "roid2", partName = "sendClashesEmail.roid2") Long roid2,
 			@WebParam(name = "address", partName = "sendClashesEmail.address") String address) throws UserException, ServerException;
 	
 	@WebMethod(action = "setup")
@@ -437,7 +437,7 @@ public interface ServiceInterface {
 			@WebParam(name = "adminName", partName = "setup.adminName") String adminName,
 			@WebParam(name = "adminUsername", partName = "setup.adminUsername") String adminUsername,
 			@WebParam(name = "adminPassword", partName = "setup.adminPassword") String adminPassword,
-			@WebParam(name = "createAnonymousUser", partName = "setup.createAnonymousUser") boolean createAnonymousUser) throws UserException, ServerException;
+			@WebParam(name = "createAnonymousUser", partName = "setup.createAnonymousUser") Boolean createAnonymousUser) throws UserException, ServerException;
 
 	@WebMethod(action = "getSettingsCustomLogoAddress")
 	String getSettingCustomLogoAddress() throws UserException, ServerException;
@@ -507,66 +507,66 @@ public interface ServiceInterface {
 			throws UserException, ServerException;
 
 	@WebMethod(action = "isSettingAllowSelfRegistration")
-	boolean isSettingAllowSelfRegistration() throws UserException, ServerException;
+	Boolean isSettingAllowSelfRegistration() throws UserException, ServerException;
 
 	@WebMethod(action = "setSettingAllowSelfRegistration")
 	void setSettingAllowSelfRegistration(
-			@WebParam(name = "allowSelfRegistration", partName = "setSettingAllowSelfRegistration.allowSelfRegistration") boolean allowSelfRegistration)
+			@WebParam(name = "allowSelfRegistration", partName = "setSettingAllowSelfRegistration.allowSelfRegistration") Boolean allowSelfRegistration)
 			throws UserException, ServerException;
 
 	@WebMethod(action = "isSettingAllowUsersToCreateTopLevelProjects")
-	boolean isSettingAllowUsersToCreateTopLevelProjects() throws UserException, ServerException;
+	Boolean isSettingAllowUsersToCreateTopLevelProjects() throws UserException, ServerException;
 
 	@WebMethod(action = "setSettingAllowUsersToCreateTopLevelProjects")
 	void setSettingAllowUsersToCreateTopLevelProjects(
-			@WebParam(name = "allowUsersToCreateTopLevelProjects", partName = "setSettingAllowUsersToCreateTopLevelProjects.allowUsersToCreateTopLevelProjects") boolean allowUsersToCreateTopLevelProjects)
+			@WebParam(name = "allowUsersToCreateTopLevelProjects", partName = "setSettingAllowUsersToCreateTopLevelProjects.allowUsersToCreateTopLevelProjects") Boolean allowUsersToCreateTopLevelProjects)
 			throws UserException, ServerException;
 
 	@WebMethod(action = "isSettingAutoTestClashes")
-	boolean isSettingAutoTestClashes() throws UserException, ServerException;
+	Boolean isSettingAutoTestClashes() throws UserException, ServerException;
 
 	@WebMethod(action = "setSettingAutoTestClashes")
 	void setSettingAutoTestClashes(
-			@WebParam(name = "autoTestClashes", partName = "setSettingAutoTestClashes.autoTestClashes") boolean autoTestClashes)
+			@WebParam(name = "autoTestClashes", partName = "setSettingAutoTestClashes.autoTestClashes") Boolean autoTestClashes)
 			throws UserException, ServerException;
 
 	@WebMethod(action = "isSettingCheckinMergingEnabled")
-	boolean isSettingCheckinMergingEnabled() throws UserException, ServerException;
+	Boolean isSettingCheckinMergingEnabled() throws UserException, ServerException;
 
 	@WebMethod(action = "setSettingCheckinMergingEnabled")
 	void setSettingCheckinMergingEnabled(
-			@WebParam(name = "checkinMergingEnabled", partName = "setSettingCheckinMergingEnabled.checkinMergingEnabled") boolean checkinMergingEnabled)
+			@WebParam(name = "checkinMergingEnabled", partName = "setSettingCheckinMergingEnabled.checkinMergingEnabled") Boolean checkinMergingEnabled)
 			throws UserException, ServerException;
 
 	@WebMethod(action = "isSettingIntelligentMerging")
-	boolean isSettingIntelligentMerging() throws UserException, ServerException;
+	Boolean isSettingIntelligentMerging() throws UserException, ServerException;
 
 	@WebMethod(action = "setSettingIntelligentMerging")
 	void setSettingIntelligentMerging(
-			@WebParam(name = "intelligentMerging", partName = "setSettingIntelligentMerging.intelligentMerging") boolean intelligentMerging)
+			@WebParam(name = "intelligentMerging", partName = "setSettingIntelligentMerging.intelligentMerging") Boolean intelligentMerging)
 			throws UserException, ServerException;
 
 	@WebMethod(action = "isSettingSendConfirmationEmailAfterRegistration")
-	boolean isSettingSendConfirmationEmailAfterRegistration() throws UserException, ServerException;
+	Boolean isSettingSendConfirmationEmailAfterRegistration() throws UserException, ServerException;
 
 	@WebMethod(action = "setSettingSendConfirmationEmailAfterRegistration")
 	void setSettingSendConfirmationEmailAfterRegistration(
-			@WebParam(name = "sendConfirmationEmailAfterRegistration", partName = "setSettingSendConfirmationEmailAfterRegistration.sendConfirmationEmailAfterRegistration") boolean sendConfirmationEmailAfterRegistration)
+			@WebParam(name = "sendConfirmationEmailAfterRegistration", partName = "setSettingSendConfirmationEmailAfterRegistration.sendConfirmationEmailAfterRegistration") Boolean sendConfirmationEmailAfterRegistration)
 			throws UserException, ServerException;
 
 	@WebMethod(action = "isSettingShowVersionUpgradeAvailable")
-	boolean isSettingShowVersionUpgradeAvailable() throws UserException, ServerException;
+	Boolean isSettingShowVersionUpgradeAvailable() throws UserException, ServerException;
 
 	@WebMethod(action = "setSettingShowVersionUpgradeAvailable")
 	void setSettingShowVersionUpgradeAvailable(
-			@WebParam(name = "showVersionUpgradeAvailable", partName = "setSettingShowVersionUpgradeAvailable.showVersionUpgradeAvailable") boolean showVersionUpgradeAvailable)
+			@WebParam(name = "showVersionUpgradeAvailable", partName = "setSettingShowVersionUpgradeAvailable.showVersionUpgradeAvailable") Boolean showVersionUpgradeAvailable)
 			throws UserException, ServerException;
 
 	@WebMethod(action = "isCacheOutputFiles")
-	boolean isSettingCacheOutputFiles() throws UserException, ServerException;
+	Boolean isSettingCacheOutputFiles() throws UserException, ServerException;
 
 	@WebMethod(action = "setCacheOutputFiles")
-	void setSettingCacheOutputFiles(@WebParam(name = "cacheOutputFiles", partName = "setCacheOutputFiles.cacheOutputFiles") boolean cacheOutputFiles)
+	void setSettingCacheOutputFiles(@WebParam(name = "cacheOutputFiles", partName = "setCacheOutputFiles.cacheOutputFiles") Boolean cacheOutputFiles)
 			throws UserException, ServerException;
 	
 	@WebMethod(action = "getLogs")
@@ -585,13 +585,13 @@ public interface ServiceInterface {
 	void migrateDatabase() throws ServerException, UserException;
 
 	@WebMethod(action = "getAllSerializers")
-	List<SSerializer> getAllSerializers(boolean onlyEnabled) throws UserException, ServerException;
+	List<SSerializer> getAllSerializers(Boolean onlyEnabled) throws UserException, ServerException;
 	
 	@WebMethod(action = "getEnabledSerializers")
 	List<SSerializer> getEnabledSerializers() throws UserException, ServerException;
 
 	@WebMethod(action = "getSerializerById")
-	SSerializer getSerializerById(long oid) throws UserException, ServerException;
+	SSerializer getSerializerById(Long oid) throws UserException, ServerException;
 	
 	@WebMethod(action = "addSerializer")
 	void addSerializer(SSerializer serializer) throws UserException, ServerException;
@@ -603,7 +603,7 @@ public interface ServiceInterface {
 	List<SGuidanceProvider> getAllGuidanceProviders() throws UserException, ServerException;
 	
 	@WebMethod(action = "getGuidanceProviderById")
-	SGuidanceProvider getGuidanceProviderById(long oid) throws UserException, ServerException;
+	SGuidanceProvider getGuidanceProviderById(Long oid) throws UserException, ServerException;
 	
 	@WebMethod(action = "addGuidanceProvider")
 	void addGuidanceProvider(SGuidanceProvider guidanceProvider) throws UserException, ServerException;
@@ -612,10 +612,10 @@ public interface ServiceInterface {
 	void updateGuidanceProvider(SGuidanceProvider guidanceProvider) throws UserException, ServerException;
 	
 	@WebMethod(action = "deleteGuidanceProvider")
-	void deleteGuidanceProvider(long ifid) throws UserException, ServerException;
+	void deleteGuidanceProvider(Long ifid) throws UserException, ServerException;
 
 	@WebMethod(action = "deleteSerializer")
-	void deleteSerializer(long sid) throws UserException, ServerException;
+	void deleteSerializer(Long sid) throws UserException, ServerException;
 	
 	@WebMethod(action = "getAllSerializerClassNames")
 	Set<SSerializerPluginDescriptor> getAllSerializerPluginDescriptors() throws UserException;
@@ -629,7 +629,7 @@ public interface ServiceInterface {
 			@WebParam(name = "serializerName", partName = "getSerializerByName.serializerName") String serializerName) throws UserException, ServerException;
 	
 	@WebMethod(action = "hasActiveSerializer")
-	boolean hasActiveSerializer(String contentType) throws UserException, ServerException;
+	Boolean hasActiveSerializer(String contentType) throws UserException, ServerException;
 	
 	@WebMethod(action = "getAllPlugins")
 	List<SPlugin> getAllPlugins() throws UserException;
@@ -646,120 +646,120 @@ public interface ServiceInterface {
 	
 	@WebMethod(action = "startTransaction")
 	void startTransaction(
-			@WebParam(name = "pid", partName = "startTransaction.pid") int pid) throws UserException;
+			@WebParam(name = "pid", partName = "startTransaction.pid") Integer pid) throws UserException;
 
 	@WebMethod(action = "commitTransaction")
-	long commitTransaction() throws UserException;
+	Long commitTransaction() throws UserException;
 	
 	@WebMethod(action = "abortTransaction")
 	void abortTransaction() throws UserException;
 	
 	@WebMethod(action = "createObject")
-	long createObject(
+	Long createObject(
 			@WebParam(name = "className", partName = "createObject.className") String className) throws UserException;
 	
 	@WebMethod(action = "removeObject")
 	void removeObject(
 			@WebParam(name = "className", partName = "removeObject.className") String className, 
-			@WebParam(name = "oid", partName = "removeObject.oid") long oid) throws UserException;
+			@WebParam(name = "oid", partName = "removeObject.oid") Long oid) throws UserException;
 	
 	@WebMethod(action = "setStringAttribute")
 	void setStringAttribute(
-			@WebParam(name = "oid", partName = "setStringAttribute.oid") long oid, 
+			@WebParam(name = "oid", partName = "setStringAttribute.oid") Long oid, 
 			@WebParam(name = "className", partName = "setStringAttribute.className") String className, 
 			@WebParam(name = "attributeName", partName = "setStringAttribute.attributeName") String attributeName, 
 			@WebParam(name = "value", partName = "setStringAttribute.value") String value) throws UserException;
 	
 	@WebMethod(action = "setFloatAttribute")
 	void setFloatAttribute(
-			@WebParam(name = "oid", partName = "setFloatAttribute.oid") long oid, 
+			@WebParam(name = "oid", partName = "setFloatAttribute.oid") Long oid, 
 			@WebParam(name = "className", partName = "setFloatAttribute.className") String className, 
 			@WebParam(name = "attributeName", partName = "setFloatAttribute.attributeName") String attributeName, 
 			@WebParam(name = "value", partName = "setFloatAttribute.value") float value) throws UserException;
 
 	@WebMethod(action = "setIntegerAttribute")
 	void setIntegerAttribute(
-			@WebParam(name = "oid", partName = "setIntegerAttribute.oid") long oid, 
+			@WebParam(name = "oid", partName = "setIntegerAttribute.oid") Long oid, 
 			@WebParam(name = "className", partName = "setIntegerAttribute.className") String className, 
 			@WebParam(name = "attributeName", partName = "setIntegerAttribute.attributeName") String attributeName, 
-			@WebParam(name = "value", partName = "setIntegerAttribute.value") int value) throws UserException;
+			@WebParam(name = "value", partName = "setIntegerAttribute.value") Integer value) throws UserException;
 
 	@WebMethod(action = "setBooleanAttribute")
 	void setBooleanAttribute(
-			@WebParam(name = "oid", partName = "setBooleanAttribute.oid") long oid, 
+			@WebParam(name = "oid", partName = "setBooleanAttribute.oid") Long oid, 
 			@WebParam(name = "className", partName = "setBooleanAttribute.className") String className, 
 			@WebParam(name = "attributeName", partName = "setBooleanAttribute.attributeName") String attributeName, 
-			@WebParam(name = "value", partName = "setBooleanAttribute.value") boolean value) throws UserException;
+			@WebParam(name = "value", partName = "setBooleanAttribute.value") Boolean value) throws UserException;
 
 	@WebMethod(action = "setReference")
 	void setReference(
-			@WebParam(name = "oid", partName = "setReference.oid") long oid, 
+			@WebParam(name = "oid", partName = "setReference.oid") Long oid, 
 			@WebParam(name = "className", partName = "setReference.className") String className, 
 			@WebParam(name = "referenceName", partName = "setReference.referenceName") String referenceName, 
-			@WebParam(name = "referenceOid", partName = "setReference.referenceOid") long referenceOid, 
+			@WebParam(name = "referenceOid", partName = "setReference.referenceOid") Long referenceOid, 
 			@WebParam(name = "referenceClassName", partName = "setReference.referenceClassName") String referenceClassName) throws UserException;
 	
 	@WebMethod(action = "unsetAttribute")
 	void unsetAttribute(
-			@WebParam(name = "oid", partName = "unsetAttribute.oid") long oid, 
+			@WebParam(name = "oid", partName = "unsetAttribute.oid") Long oid, 
 			@WebParam(name = "className", partName = "unsetAttribute.className") String className, 
 			@WebParam(name = "attributeName", partName = "unsetAttribute.attributeName") String attributeName) throws UserException;
 	
 	@WebMethod(action = "unsetReference")
 	void unsetReference(
-			@WebParam(name = "oid", partName = "unsetReference.oid") long oid,
+			@WebParam(name = "oid", partName = "unsetReference.oid") Long oid,
 			@WebParam(name = "className", partName = "unsetReference.className") String className,
 			@WebParam(name = "referenceName", partName = "unsetReference.referenceName") String referenceName) throws UserException;
 	
 	@WebMethod(action = "addStringAttribute")
 	void addStringAttribute(
-			@WebParam(name = "oid", partName = "addStringAttribute.oid") long oid, 
+			@WebParam(name = "oid", partName = "addStringAttribute.oid") Long oid, 
 			@WebParam(name = "className", partName = "addStringAttribute.className") String className, 
 			@WebParam(name = "attributeName", partName = "addStringAttribute.attributeName") String attributeName,
 			@WebParam(name = "value", partName = "addStringAttribute.value") String value) throws UserException;
 
 	@WebMethod(action = "addFloatAttribute")
 	void addFloatAttribute(
-			@WebParam(name = "oid", partName = "addFloatAttribute.oid") long oid, 
+			@WebParam(name = "oid", partName = "addFloatAttribute.oid") Long oid, 
 			@WebParam(name = "className", partName = "addFloatAttribute.className") String className, 
 			@WebParam(name = "attributeName", partName = "addFloatAttribute.attributeName") String attributeName,
 			@WebParam(name = "value", partName = "addFloatAttribute.value") float value) throws UserException;
 
 	@WebMethod(action = "addIntegerAttribute")
 	void addIntegerAttribute(
-			@WebParam(name = "oid", partName = "addIntegerAttribute.oid") long oid, 
+			@WebParam(name = "oid", partName = "addIntegerAttribute.oid") Long oid, 
 			@WebParam(name = "className", partName = "addIntegerAttribute.className") String className, 
 			@WebParam(name = "attributeName", partName = "addIntegerAttribute.attributeName") String attributeName,
-			@WebParam(name = "value", partName = "addIntegerAttribute.value") int value) throws UserException;
+			@WebParam(name = "value", partName = "addIntegerAttribute.value") Integer value) throws UserException;
 
 	@WebMethod(action = "addBooleanAttribute")
 	void addBooleanAttribute(
-			@WebParam(name = "oid", partName = "addBooleanAttribute.oid") long oid, 
+			@WebParam(name = "oid", partName = "addBooleanAttribute.oid") Long oid, 
 			@WebParam(name = "className", partName = "addBooleanAttribute.className") String className, 
 			@WebParam(name = "attributeName", partName = "addBooleanAttribute.attributeName") String attributeName,
-			@WebParam(name = "value", partName = "addBooleanAttribute.value") boolean value) throws UserException;
+			@WebParam(name = "value", partName = "addBooleanAttribute.value") Boolean value) throws UserException;
 
 	@WebMethod(action = "addReference")
 	void addReference(
-			@WebParam(name = "oid", partName = "addReference.oid") long oid, 
+			@WebParam(name = "oid", partName = "addReference.oid") Long oid, 
 			@WebParam(name = "className", partName = "addReference.className") String className, 
 			@WebParam(name = "referenceName", partName = "addReference.referenceName") String referenceName, 
-			@WebParam(name = "referenceOid", partName = "addReference.referenceOid") long referenceOid,
+			@WebParam(name = "referenceOid", partName = "addReference.referenceOid") Long referenceOid,
 			@WebParam(name = "referenceClassName", partName = "addReference.referenceClassName") String referenceClassName) throws UserException;
 	
 	@WebMethod(action = "removeAttribute")
 	void removeAttribute(
-			@WebParam(name = "oid", partName = "removeAttribute.oid") long oid, 
+			@WebParam(name = "oid", partName = "removeAttribute.oid") Long oid, 
 			@WebParam(name = "className", partName = "removeAttribute.className") String className, 
 			@WebParam(name = "attributeName", partName = "removeAttribute.attributeName") String attributeName, 
-			@WebParam(name = "index", partName = "removeAttribute.index") int index) throws UserException;
+			@WebParam(name = "index", partName = "removeAttribute.index") Integer index) throws UserException;
 	
 	@WebMethod(action = "removeReference")
 	void removeReference(
-			@WebParam(name = "oid", partName = "removeReference.oid") long oid, 
+			@WebParam(name = "oid", partName = "removeReference.oid") Long oid, 
 			@WebParam(name = "className", partName = "removeReference.className") String className, 
 			@WebParam(name = "referenceName", partName = "removeReference.referenceName") String referenceName, 
-			@WebParam(name = "index", partName = "removeReference.index") int index) throws UserException;
+			@WebParam(name = "index", partName = "removeReference.index") Integer index) throws UserException;
 	
 	@WebMethod(action = "getServerStartTime")
 	Date getServerStartTime();

@@ -216,7 +216,7 @@ public class TreePanel extends JPanel {
 					int showConfirmDialog = JOptionPane.showConfirmDialog(testWindow, "Are you sure you want to delete this project?", "Delete project", JOptionPane.YES_NO_OPTION);
 					if (showConfirmDialog == JOptionPane.YES_OPTION) {
 						try {
-							serviceHolder.getService().deleteProject(((ProjectTreeNode) lastPathComponent).getProject().getId());
+							serviceHolder.getService().deleteProject(((ProjectTreeNode) lastPathComponent).getProject().getOid());
 							updateProjects(serverTreeNode);
 						} catch (ServiceException e1) {
 							LOGGER.error("", e1);

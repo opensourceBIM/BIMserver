@@ -23,18 +23,22 @@ import org.bimserver.pb.Service.ChangePasswordRequest;
 import org.bimserver.pb.Service.ChangePasswordResponse;
 import org.bimserver.pb.Service.CheckinSyncRequest;
 import org.bimserver.pb.Service.CheckinSyncResponse;
+import org.bimserver.pb.Service.CheckoutRequest;
 import org.bimserver.pb.Service.DownloadRequest;
 import org.bimserver.pb.Service.DownloadResponse;
 import org.bimserver.pb.Service.GetAllProjectsRequest;
 import org.bimserver.pb.Service.GetAllProjectsResponse;
 import org.bimserver.pb.Service.GetAllRevisionsOfProjectRequest;
 import org.bimserver.pb.Service.GetAllRevisionsOfProjectResponse;
+import org.bimserver.pb.Service.GetDownloadDataRequest;
+import org.bimserver.pb.Service.GetDownloadDataResponse;
 import org.bimserver.pb.Service.GetProjectsByNameRequest;
 import org.bimserver.pb.Service.GetProjectsByNameResponse;
 import org.bimserver.pb.Service.GetRevisionSummaryRequest;
 import org.bimserver.pb.Service.GetRevisionSummaryResponse;
 import org.bimserver.pb.Service.LoginRequest;
 import org.bimserver.pb.Service.LoginResponse;
+import org.bimserver.pb.Service.SDownloadResult;
 import org.bimserver.pb.Service.SRevision;
 import org.bimserver.pb.Service.SRevisionSummary;
 import org.bimserver.pb.Service.SRevisionSummaryContainer;
@@ -271,6 +275,27 @@ public class TestProtocolBuffersInterface {
 										
 									} else {
 										fail(downloadResponse.getErrorMessage());
+									}
+
+									CheckoutRequest.Builder checkoutRequestBuilder = CheckoutRequest.newBuilder();
+									checkoutRequestBuilder.setRoid(revision.getOid());
+									checkoutRequestBuilder.setSync(true);
+									checkoutRequestBuilder.setFormatIdentifier("Ifc2x3");
+									DownloadResponse checkoutResponse = service.download(rpcController, downloadRequestBuilder.build());
+									if (checkoutResponse.getErrorMessage().equals("OKE")) {
+										GetDownloadDataRequest.Builder getDownloadDataRequestBuilder = GetDownloadDataRequest.newBuilder();
+										getDownloadDataRequestBuilder.setActionID(checkoutResponse.getValue());
+										GetDownloadDataResponse getDownloadDataResponse = service.getDownloadData(rpcController, getDownloadDataRequestBuilder.build());
+										if (getDownloadDataResponse.getErrorMessage().equals("OKE")) {
+											SDownloadResult downloadResult = getDownloadDataResponse.getValue();
+											ByteString data = downloadResult.getFile();
+											byte[] byteArray = data.toByteArray(); // This is the IFC file
+											System.out.println("Bytes: " + byteArray.length);
+										} else {
+											fail(getDownloadDataResponse.getErrorMessage());
+										}
+									} else {
+										fail(checkoutResponse.getErrorMessage());
 									}
 								}
 							} else {

@@ -229,7 +229,7 @@ public class ReflectiveRpcChannel implements BlockingRpcChannel {
 
 	private Class<?> convert(FieldDescriptor fieldDescriptor) {
 		if (fieldDescriptor.getJavaType() == JavaType.BOOLEAN) {
-			return boolean.class;
+			return Boolean.class;
 		} else if (fieldDescriptor.getJavaType() == JavaType.BYTE_STRING) {
 			return DataHandler.class;
 		} else if (fieldDescriptor.getJavaType() == JavaType.DOUBLE) {
@@ -239,7 +239,7 @@ public class ReflectiveRpcChannel implements BlockingRpcChannel {
 		} else if (fieldDescriptor.getJavaType() == JavaType.INT) {
 			return Integer.class;
 		} else if (fieldDescriptor.getJavaType() == JavaType.LONG) {
-			return long.class;
+			return Long.class;
 		} else if (fieldDescriptor.getJavaType() == JavaType.STRING) {
 			return String.class;
 		} else if (fieldDescriptor.getJavaType() == JavaType.ENUM) {
