@@ -57,7 +57,7 @@ public class ColladaSerializerPlugin implements SerializerPlugin {
 
 	@Override
 	public String getDefaultContentType() {
-		return "appliction/collada";
+		return "application/collada";
 	}
 
 	@Override

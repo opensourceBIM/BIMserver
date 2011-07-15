@@ -29,7 +29,7 @@
 	Collections.sort(classes);
 	boolean isAdmin = loginManager.getService().getCurrentUser().getUserType() == SUserType.ADMIN;
 	boolean isTopProject = project.getParentId() == -1L;
-	boolean o3dEnabled = loginManager.getService().hasActiveSerializer("appliction/json");
+	boolean o3dEnabled = loginManager.getService().hasActiveSerializer("application/json");
 	boolean kmzEnabled = loginManager.getService().hasActiveSerializer("application/vnd.google-earth.kmz");
 	if (o3dEnabled) {
 %>

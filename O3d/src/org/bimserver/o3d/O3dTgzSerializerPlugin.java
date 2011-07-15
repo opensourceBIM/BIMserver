@@ -57,7 +57,7 @@ public class O3dTgzSerializerPlugin implements SerializerPlugin {
 
 	@Override
 	public String getDefaultContentType() {
-		return "appliction/o3d";
+		return "application/o3d";
 	}
 
 	@Override

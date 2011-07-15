@@ -35,6 +35,18 @@
 		long poid = Long.parseLong(request.getParameter("poid"));
 		try {
 			SProject project = loginManager.getService().getProjectByPoid(poid);
+			
+			// Count the active subprojects
+			int subProjectCount = 0;
+			List<Long> subProjectIds = project.getSubProjects();
+			for (Long subpoid: subProjectIds) {
+				SProject subproject = loginManager.getService().getProjectByPoid(subpoid);
+				SObjectState state = subproject.getState();
+				if (subproject.getState() == SObjectState.ACTIVE) {
+					subProjectCount++;
+				}
+			}
+			
 			SClashDetectionSettings sClashDetectionSettings = loginManager.getService().getClashDetectionSettings(
 					project.getClashDetectionSettingsId());
 			List<SRevision> revisions = loginManager.getService().getAllRevisionsOfProject(poid);
@@ -69,7 +81,7 @@
 			boolean hasEditRights = loginManager.getService().userHasRights(project.getOid());
 			boolean hasCreateProjectRights = (loginManager.getUserType() == SUserType.ADMIN || loginManager.getService()
 					.isSettingAllowUsersToCreateTopLevelProjects());
-			boolean o3dEnabled = loginManager.getService().hasActiveSerializer("appliction/json");
+			boolean o3dEnabled = loginManager.getService().hasActiveSerializer("application/json");
 			boolean kmzEnabled = loginManager.getService().hasActiveSerializer("application/vnd.google-earth.kmz");
 			if (o3dEnabled && lastRevision != null) {
 %>
@@ -327,7 +339,7 @@ to go to the latest revision<br />
 </div>
 
 <div class="tabbertab" id="subprojectstab"
-	title="Sub Projects<%=project.getSubProjects().size() == 0 ? "" : " (" + project.getSubProjects().size() + ")"%>">
+	title="Sub Projects<%=subProjectCount /*project.getSubProjects().size()*/ == 0 ? "" : " (" + subProjectCount /*project.getSubProjects().size()*/ + ")"%>">
 <%
 	if (hasCreateProjectRights) {
 %> <a href="addproject.jsp?parentoid=<%=project.getOid()%>">Add
