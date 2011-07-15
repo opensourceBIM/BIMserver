@@ -57,7 +57,7 @@ public class O3dJsonSerializerPlugin implements SerializerPlugin {
 
 	@Override
 	public String getDefaultContentType() {
-		return "appliction/json";
+		return "application/json";
 	}
 
 	@Override

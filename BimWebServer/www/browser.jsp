@@ -62,7 +62,7 @@ for (SRevision sRevision : revisionsInc) {
 	  				}
 	  			}
 	  			out.println("</table>");
-	if (loginManager.getService().hasActiveSerializer("appliction/json")) {
+	if (loginManager.getService().hasActiveSerializer("application/json")) {
 %>
 	<br/>
 	<div id="browservisualizeloader">
