@@ -13,6 +13,7 @@ import java.util.Map;
 
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
+import javax.mail.util.ByteArrayDataSource;
 
 import org.apache.commons.io.IOUtils;
 import org.bimserver.models.log.AccessMethod;
@@ -33,7 +34,6 @@ import com.google.protobuf.Message;
 import com.google.protobuf.Message.Builder;
 import com.google.protobuf.RpcController;
 import com.google.protobuf.ServiceException;
-import com.sun.istack.internal.ByteArrayDataSource;
 
 public class ReflectiveRpcChannel implements BlockingRpcChannel {
 
