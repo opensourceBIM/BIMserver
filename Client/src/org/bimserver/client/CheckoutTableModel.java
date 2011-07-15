@@ -76,7 +76,7 @@ public class CheckoutTableModel extends AbstractTableModel {
 
 	public void showProject(SProject project) {
 		try {
-			List<SCheckout> checkouts = serviceHolder.getService().getAllCheckoutsOfProject(project.getId());
+			List<SCheckout> checkouts = serviceHolder.getService().getAllCheckoutsOfProject(project.getOid());
 			if (checkouts == null) {
 				this.allCheckouts.clear();
 			} else {

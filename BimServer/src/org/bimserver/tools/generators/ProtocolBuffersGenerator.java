@@ -181,7 +181,7 @@ public class ProtocolBuffersGenerator {
 						out.println("\t\t\trequestBuilder.set" + StringUtils.firstUpperCase(paramName) + "(" + paramName + ");");
 					} else if (parameterType.isEnum()) {
 						out.println("\t\t\trequestBuilder.set" + StringUtils.firstUpperCase(paramName) + "(Service." + parameterType.getSimpleName() + ".values()[" + paramName + ".ordinal()]);");
-					} else if (parameterType.isPrimitive() || parameterType == String.class) {
+					} else if (isPrimitive(parameterType) || parameterType == String.class) {
 						out.println("\t\t\trequestBuilder.set" + StringUtils.firstUpperCase(paramName) + "(" + paramName + ");");
 					} else {
 						out.println("\t\t\tService." + parameterType.getSimpleName() + ".Builder newVal = " + parameterType.getSimpleName() + ".newBuilder();");
@@ -335,7 +335,7 @@ public class ProtocolBuffersGenerator {
 		} else if (type == Integer.class || type == int.class) {
 			return "0";
 		} else if (type == Long.class || type == long.class) {
-			return "0";
+			return "0L";
 		} else if (type.isEnum()) {
 			return "null";
 		} else {
