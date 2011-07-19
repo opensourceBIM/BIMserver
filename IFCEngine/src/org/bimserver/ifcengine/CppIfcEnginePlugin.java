@@ -51,12 +51,14 @@ public class CppIfcEnginePlugin implements IfcEnginePlugin {
 				libraryName = "IFCEngine.dll";
 			} else if (os.contains("osx")) {
 				libraryName = "libIFCEngine.dylib";
+			} else if (os.contains("os x")) {
+				libraryName = "libIFCEngine.dylib";
 			} else if (os.contains("linux")) {
 				libraryName = "libIFCEngine.so";
 			}
 			InputStream inputStream = pluginContext.getResourceAsInputStream("lib/" + System.getProperty("sun.arch.data.model") + "/" + libraryName);
 			if (inputStream != null) {
-				File tmpFolder = new File(pluginManager.getHomeDir(), "tmp");
+				File tmpFolder = new File(pluginManager.getHomeDir().getAbsolutePath(), "tmp");
 				nativeFolder = new File(tmpFolder, "ifcengine");
 				try {
 					if (nativeFolder.exists()) {
