@@ -11,6 +11,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 import org.bimserver.BimServer;
+import org.bimserver.SettingsManager;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
@@ -112,13 +113,14 @@ public class AddUserDatabaseAction extends BimDatabaseAction<Long> {
 			@Override
 			public void execute() throws UserException {
 				try {
-					if (bimServer.getSettingsManager() != null && bimServer.getSettingsManager().getSettings().isSendConfirmationEmailAfterRegistration()) {
+					SettingsManager settingsManager = bimServer.getSettingsManager();
+					if (settingsManager != null && settingsManager.getSettings().isSendConfirmationEmailAfterRegistration()) {
 						if (MailSystem.isValidEmailAddress(user.getUsername()) && createrUoid != -1) {
 							Session mailSession = bimServer.getMailSystem().createMailSession();
 							
 							Message msg = new MimeMessage(mailSession);
-							
-							InternetAddress addressFrom = new InternetAddress(bimServer.getSettingsManager().getSettings().getEmailSenderAddress());
+							String emailSenderAddress = settingsManager.getSettings().getEmailSenderAddress();
+							InternetAddress addressFrom = new InternetAddress(emailSenderAddress);
 							msg.setFrom(addressFrom);
 							
 							InternetAddress[] addressTo = new InternetAddress[1];
@@ -128,8 +130,8 @@ public class AddUserDatabaseAction extends BimDatabaseAction<Long> {
 							Map<String, Object> context = new HashMap<String, Object>();
 							context.put("name", user.getName());
 							context.put("username", user.getUsername());
-							context.put("siteaddress", bimServer.getSettingsManager().getSettings().getSiteAddress());
-							context.put("validationlink", bimServer.getSettingsManager().getSettings().getSiteAddress() + "/validate.jsp?uoid=" + user.getOid() + "&token=" + token);
+							context.put("siteaddress", settingsManager.getSettings().getSiteAddress());
+							context.put("validationlink", settingsManager.getSettings().getSiteAddress() + "/validate.jsp?uoid=" + user.getOid() + "&token=" + token);
 							String body = null;
 							String subject = null;
 							if (selfRegistration) {
