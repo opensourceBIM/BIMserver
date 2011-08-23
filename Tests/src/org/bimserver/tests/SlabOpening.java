@@ -40,17 +40,26 @@ import org.bimserver.models.ifc2x3.IfcAreaMeasure;
 import org.bimserver.models.ifc2x3.IfcBuildingStorey;
 import org.bimserver.models.ifc2x3.IfcElement;
 import org.bimserver.models.ifc2x3.IfcElementQuantity;
+import org.bimserver.models.ifc2x3.IfcExtrudedAreaSolid;
 import org.bimserver.models.ifc2x3.IfcFeatureElementSubtraction;
 import org.bimserver.models.ifc2x3.IfcOpeningElement;
 import org.bimserver.models.ifc2x3.IfcProduct;
+import org.bimserver.models.ifc2x3.IfcProductDefinitionShape;
+import org.bimserver.models.ifc2x3.IfcProductRepresentation;
+import org.bimserver.models.ifc2x3.IfcProfileDef;
 import org.bimserver.models.ifc2x3.IfcProperty;
 import org.bimserver.models.ifc2x3.IfcPropertySet;
 import org.bimserver.models.ifc2x3.IfcPropertySetDefinition;
 import org.bimserver.models.ifc2x3.IfcPropertySingleValue;
+import org.bimserver.models.ifc2x3.IfcRectangleProfileDef;
 import org.bimserver.models.ifc2x3.IfcRelContainedInSpatialStructure;
 import org.bimserver.models.ifc2x3.IfcRelDefines;
 import org.bimserver.models.ifc2x3.IfcRelDefinesByProperties;
 import org.bimserver.models.ifc2x3.IfcRelVoidsElement;
+import org.bimserver.models.ifc2x3.IfcRepresentation;
+import org.bimserver.models.ifc2x3.IfcRepresentationItem;
+import org.bimserver.models.ifc2x3.IfcShapeAspect;
+import org.bimserver.models.ifc2x3.IfcShapeRepresentation;
 import org.bimserver.models.ifc2x3.IfcSlab;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
@@ -69,7 +78,7 @@ public class SlabOpening implements QueryInterface {
 			DeserializerPlugin deserializerPlugin = pluginManager.requireDeserializer("ifc");
 			EmfDeserializer deserializer = deserializerPlugin.createDeserializer();
 			deserializer.init(pluginManager.requireSchemaDefinition());
-			IfcModelInterface model = deserializer.read(new File("4351.ifc"), true);
+			IfcModelInterface model = deserializer.read(new File(TestFileConstants.DATA_FOLDER, "4351.ifc"), true);
 			new SlabOpening().query(model, new PrintWriter(System.out));
 		} catch (PluginException e) {
 			e.printStackTrace();
@@ -115,6 +124,26 @@ public class SlabOpening implements QueryInterface {
 			Iterator OE_it = Opening_subjectToArea.iterator();
 			while (OE_it.hasNext()) {
 				IfcOpeningElement openingElement = (IfcOpeningElement) OE_it.next();
+				
+				IfcProductRepresentation representation = openingElement.getRepresentation();
+				IfcProductDefinitionShape ifcProductDefinitionShape = (IfcProductDefinitionShape)representation;
+				for (IfcRepresentation ifcRepresentation : ifcProductDefinitionShape.getRepresentations()) {
+					if (ifcRepresentation instanceof IfcShapeRepresentation) {
+						IfcShapeRepresentation ifcShapeRepresentation = (IfcShapeRepresentation)ifcRepresentation;
+						for (IfcRepresentationItem item : ifcShapeRepresentation.getItems()) {
+							if (item instanceof IfcExtrudedAreaSolid) {
+								IfcExtrudedAreaSolid extrudedAreaSolid = (IfcExtrudedAreaSolid)item;
+								IfcProfileDef sweptArea = extrudedAreaSolid.getSweptArea();
+								if (sweptArea instanceof IfcRectangleProfileDef) {
+									IfcRectangleProfileDef rectangleProfileDef = (IfcRectangleProfileDef)sweptArea;
+									float area = rectangleProfileDef.getXDim() * rectangleProfileDef.getYDim();
+									System.out.println("Area calculated from geometry: " + area);
+								}
+							}
+						}
+					}
+				}
+				
 				for (IfcRelDefines ifcRelDefines : openingElement.getIsDefinedBy()) {
 					if (ifcRelDefines instanceof IfcRelDefinesByProperties) {
 						IfcRelDefinesByProperties ifcRelDefinesByProperties = (IfcRelDefinesByProperties) ifcRelDefines;
@@ -126,7 +155,7 @@ public class SlabOpening implements QueryInterface {
 									IfcPropertySingleValue ifcPropertySingleValue = (IfcPropertySingleValue)ifcProperty;
 									if (ifcPropertySingleValue.getNominalValue() instanceof IfcAreaMeasure) {
 										IfcAreaMeasure ifcAreaMeasure = (IfcAreaMeasure)ifcPropertySingleValue.getNominalValue();
-										System.out.println("Area for " + openingElement + ": " + ifcAreaMeasure.getWrappedValue());
+										System.out.println("Area from semantic: " + ifcAreaMeasure.getWrappedValue());
 									}
 								}
 							}
