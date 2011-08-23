@@ -40,11 +40,6 @@ public class IfcStepSerializerPlugin implements SerializerPlugin {
 	}
 
 	@Override
-	public Set<Class<? extends Plugin>> getRequiredPlugins() {
-		return new HashSet<Class<? extends Plugin>>();
-	}
-	
-	@Override
 	public String getDefaultSerializerName() {
 		return "Ifc2x3";
 	}

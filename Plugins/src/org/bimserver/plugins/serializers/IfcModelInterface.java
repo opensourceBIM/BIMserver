@@ -50,4 +50,5 @@ public interface IfcModelInterface {
 	boolean isValid();
 	void checkDoubleOidsPlusReferences();
 	<T extends EObject> List<T> getAllWithSubTypes(Class<T> interfaceClass);
+	void setChecksum(byte[] digest);
 }

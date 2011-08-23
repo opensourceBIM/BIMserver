@@ -33,13 +33,6 @@ public class IfcXmlSerializerPlugin implements SerializerPlugin {
 	public String getVersion() {
 		return "1.0";
 	}
-	
-	@Override
-	public Set<Class<? extends Plugin>> getRequiredPlugins() {
-		Set<Class<? extends Plugin>> set = new HashSet<Class<? extends Plugin>>();
-		set.add(SchemaPlugin.class);
-		return set;
-	}
 
 	@Override
 	public void init(PluginManager pluginManager) throws PluginException {

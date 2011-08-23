@@ -7,6 +7,7 @@
 package org.bimserver.models.store.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
+import org.bimserver.models.store.Deserializer;
 import org.bimserver.models.store.GuidanceProvider;
 import org.bimserver.models.store.IfcEngine;
 import org.bimserver.models.store.MergeIdentifier;
@@ -46,6 +47,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#isCacheOutputFiles <em>Cache Output Files</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getIfcEngines <em>Ifc Engines</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getPlugins <em>Plugins</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.SettingsImpl#getDeserializers <em>Deserializers</em>}</li>
  * </ul>
  * </p>
  *
@@ -443,6 +445,16 @@ public class SettingsImpl extends IdEObjectImpl implements Settings {
 	@SuppressWarnings("unchecked")
 	public EList<Plugin> getPlugins() {
 		return (EList<Plugin>)eGet(StorePackage.Literals.SETTINGS__PLUGINS, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public EList<Deserializer> getDeserializers() {
+		return (EList<Deserializer>)eGet(StorePackage.Literals.SETTINGS__DESERIALIZERS, true);
 	}
 
 } //SettingsImpl

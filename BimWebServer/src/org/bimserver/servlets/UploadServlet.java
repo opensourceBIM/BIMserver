@@ -64,9 +64,9 @@ public class UploadServlet extends HttpServlet {
 		boolean isMultipart = ServletFileUpload.isMultipartContent(request);
 		long poid = -1;
 		String comment = null;
-		String type = null;
+		String deserializerName = null;
 		if (isMultipart) {
-			factory.setSizeThreshold(1024 * 1024 * 300); // 300 MB
+			factory.setSizeThreshold(1024 * 1024 * 500); // 500 MB
 			ServletFileUpload upload = new ServletFileUpload(factory);
 			try {
 				List<FileItem> items = (List<FileItem>) upload.parseRequest(request);
@@ -84,11 +84,11 @@ public class UploadServlet extends HttpServlet {
 						if ("comment".equals(item.getFieldName())) {
 							comment = item.getString();
 						}
-						if ("type".equals(item.getFieldName())) {
-							type = item.getString();
-						}
 						if ("merge".equals(item.getFieldName())) {
 							merge = true;
+						}
+						if ("deserializerName".equals(item.getFieldName())) {
+							deserializerName = item.getString();
 						}
 					} else {
 						size = item.getSize();
@@ -101,37 +101,23 @@ public class UploadServlet extends HttpServlet {
 						response.sendRedirect("project.jsp?poid=" + poid + "&message=Uploaded file empty, or no file uploaded at all");
 					} else {
 						final InputStream realStream = in;
-						if (type.equals("ifc")) {
-							try {
-								InputStreamDataSource inputStreamDataSource = new InputStreamDataSource(realStream);
-								inputStreamDataSource.setName(name);
-								DataHandler ifcFile = new DataHandler(inputStreamDataSource);
-								loginManager.getService().checkinAsync(poid, comment, size, ifcFile, merge);
-								response.sendRedirect("project.jsp?poid=" + poid);
-							} catch (ServiceException e) {
-								if (e.getCause() instanceof OutOfMemoryError) {
-									bimServer.getServerInfo().setOutOfMemory();
-									response.sendRedirect(getServletContext().getContextPath());
-									return;
-								}
-								if (e.getCause() != null) {
-									response.sendRedirect("project.jsp?poid=" + poid + "&message=" + e.getCause().getMessage());
-								} else {
-									response.sendRedirect("project.jsp?poid=" + poid + "&message=" + e.getUserMessage());
-								}
+						try {
+							InputStreamDataSource inputStreamDataSource = new InputStreamDataSource(realStream);
+							inputStreamDataSource.setName(name);
+							DataHandler ifcFile = new DataHandler(inputStreamDataSource);
+							loginManager.getService().checkinAsync(poid, comment, deserializerName, size, ifcFile, merge);
+							response.sendRedirect("project.jsp?poid=" + poid);
+						} catch (ServiceException e) {
+							if (e.getCause() instanceof OutOfMemoryError) {
+								bimServer.getServerInfo().setOutOfMemory();
+								response.sendRedirect(getServletContext().getContextPath());
+								return;
 							}
-//						} else if (type.equals("changeset")) {
-//							try {
-//								JAXBContext context = JAXBContext.newInstance(ChangeSet.class);
-//								Unmarshaller unmarshaller = context.createUnmarshaller();
-//								ChangeSet changeSet = (ChangeSet) unmarshaller.unmarshal(realStream);
-//								loginManager.getService().processChangeSet(changeSet, poid, comment);
-//								response.sendRedirect("project.jsp?poid=" + poid);
-//							} catch (JAXBException e) {
-//								LOGGER.error("", e);
-//							} catch (UserException e) {
-//								LOGGER.error("", e);
-//							}
+							if (e.getCause() != null) {
+								response.sendRedirect("project.jsp?poid=" + poid + "&message=" + e.getCause().getMessage());
+							} else {
+								response.sendRedirect("project.jsp?poid=" + poid + "&message=" + e.getUserMessage());
+							}
 						}
 					}
 				} else {

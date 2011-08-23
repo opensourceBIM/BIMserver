@@ -161,6 +161,15 @@ public interface StoreFactory extends EFactory {
 	Plugin createPlugin();
 
 	/**
+	 * Returns a new object of class '<em>Deserializer</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Deserializer</em>'.
+	 * @generated
+	 */
+	Deserializer createDeserializer();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

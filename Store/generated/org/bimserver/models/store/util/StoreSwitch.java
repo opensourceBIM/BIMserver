@@ -6,6 +6,7 @@
  */
 package org.bimserver.models.store.util;
 
+import org.bimserver.models.store.*;
 import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.Clash;
 import org.bimserver.models.store.ClashDetectionSettings;
@@ -172,6 +173,12 @@ public class StoreSwitch<T> extends Switch<T> {
 			case StorePackage.PLUGIN: {
 				Plugin plugin = (Plugin)theEObject;
 				T result = casePlugin(plugin);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case StorePackage.DESERIALIZER: {
+				Deserializer deserializer = (Deserializer)theEObject;
+				T result = caseDeserializer(deserializer);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -401,6 +408,21 @@ public class StoreSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T casePlugin(Plugin object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Deserializer</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Deserializer</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDeserializer(Deserializer object) {
 		return null;
 	}
 

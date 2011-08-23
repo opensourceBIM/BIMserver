@@ -29,6 +29,7 @@ import org.bimserver.database.migrations.InconsistentModelsException;
 import org.bimserver.database.query.conditions.AttributeCondition;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.literals.StringLiteral;
+import org.bimserver.deserializers.EmfDeserializerFactory;
 import org.bimserver.logging.CustomFileAppender;
 import org.bimserver.longaction.LongActionManager;
 import org.bimserver.mail.MailSystem;
@@ -36,6 +37,7 @@ import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.LogFactory;
 import org.bimserver.models.log.ServerStarted;
+import org.bimserver.models.store.Deserializer;
 import org.bimserver.models.store.GuidanceProvider;
 import org.bimserver.models.store.IfcEngine;
 import org.bimserver.models.store.Serializer;
@@ -48,6 +50,7 @@ import org.bimserver.plugins.PluginContext;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.ResourceFetcher;
+import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.guidanceproviders.GuidanceProviderPlugin;
 import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
 import org.bimserver.plugins.serializers.SerializerPlugin;
@@ -71,7 +74,7 @@ import com.googlecode.protobuf.socketrpc.SocketRpcConnectionFactories;
  */
 public class BimServer {
 	private static final Logger LOGGER = LoggerFactory.getLogger(BimServer.class);
-	
+
 	private GregorianCalendar serverStartTime;
 	private BimDatabase bimDatabase;
 	private JobScheduler bimScheduler;
@@ -81,6 +84,7 @@ public class BimServer {
 	private File homeDir;
 	private SettingsManager settingsManager;
 	private EmfSerializerFactory emfSerializerFactory;
+	private EmfDeserializerFactory emfDeserializerFactory;
 	private MergerFactory mergerFactory;
 	private PluginManager pluginManager;
 	private MailSystem mailSystem;
@@ -102,8 +106,11 @@ public class BimServer {
 	/**
 	 * Create a new BIMserver
 	 * 
-	 * @param homeDir A directory where the user can store instance specific configuration files
-	 * @param resourceFetcher A resource fetcher
+	 * @param homeDir
+	 *            A directory where the user can store instance specific
+	 *            configuration files
+	 * @param resourceFetcher
+	 *            A resource fetcher
 	 */
 	public BimServer(File homeDir, ResourceFetcher resourceFetcher, String classPath) {
 		this.classPath = classPath;
@@ -139,7 +146,7 @@ public class BimServer {
 			Thread.setDefaultUncaughtExceptionHandler(uncaughtExceptionHandler);
 
 			versionChecker = new VersionChecker(resourceFetcher);
-			
+
 			try {
 				pluginManager = new PluginManager(resourceFetcher, homeDir, classPath);
 				pluginManager.addPluginChangeListener(new PluginChangeListener() {
@@ -174,15 +181,15 @@ public class BimServer {
 				e.printStackTrace();
 				LOGGER.error("", e);
 			}
-			
+
 			clashDetectionCache = new ClashDetectionCache();
 			compareCache = new CompareCache();
 		} catch (Throwable e) {
 			serverInfo.setErrorMessage(e.getMessage());
 			LOGGER.error("", e);
-		}		
+		}
 	}
-	
+
 	public void start() throws DatabaseInitException, BimDatabaseException, PluginException, DatabaseRestartRequiredException, ServerException {
 		pluginManager.initAllLoadedPlugins();
 		serverStartTime = new GregorianCalendar();
@@ -215,16 +222,17 @@ public class BimServer {
 		}
 
 		try {
-			createSerializersAndEngines();
+			createDatabaseObjects();
 		} catch (BimDeadlockException e) {
 			throw new BimDatabaseException(e);
 		}
-		
+
 		settingsManager = new SettingsManager(bimDatabase);
 		serverInfo.init(this);
 		serverInfo.update();
 
 		emfSerializerFactory = new EmfSerializerFactory();
+		emfDeserializerFactory = new EmfDeserializerFactory();
 
 		if (serverInfo.getServerState() == ServerState.MIGRATION_REQUIRED) {
 			serverInfo.registerStateChangeListener(new StateChangeListener() {
@@ -253,21 +261,22 @@ public class BimServer {
 		} catch (UserException e) {
 			e.printStackTrace();
 		}
-		
-//		RestApplication.setServiceFactory(serviceFactory);
+
+		// RestApplication.setServiceFactory(serviceFactory);
 
 		bimScheduler = new JobScheduler(this);
 		bimScheduler.start();
 
 		protocolBuffersRpcServer = new RpcServer(SocketRpcConnectionFactories.createServerRpcConnectionFactory(8020), Executors.newFixedThreadPool(10), false);
-		protocolBuffersRpcServer.registerBlockingService(org.bimserver.pb.Service.ServiceInterface.newReflectiveBlockingService(org.bimserver.pb.Service.ServiceInterface.newBlockingStub(new ReflectiveRpcChannel(serviceFactory))));
+		protocolBuffersRpcServer.registerBlockingService(org.bimserver.pb.Service.ServiceInterface.newReflectiveBlockingService(org.bimserver.pb.Service.ServiceInterface
+				.newBlockingStub(new ReflectiveRpcChannel(serviceFactory))));
 		protocolBuffersRpcServer.startServer();
 
-//		if (serverType == ServerType.DEPLOYED_WAR) {
-//			File libDir = new File(classPath);
-//			LOGGER.info("adding lib dir: " + libDir.getAbsolutePath());
-//			QueryCompiler.addJarFolder(libDir);
-//		}
+		// if (serverType == ServerType.DEPLOYED_WAR) {
+		// File libDir = new File(classPath);
+		// LOGGER.info("adding lib dir: " + libDir.getAbsolutePath());
+		// QueryCompiler.addJarFolder(libDir);
+		// }
 
 		ServerStarted serverStarted = LogFactory.eINSTANCE.createServerStarted();
 		serverStarted.setDate(new Date());
@@ -284,10 +293,15 @@ public class BimServer {
 		}
 		CommandLine commandLine = new CommandLine(this);
 		commandLine.start();
-		LOGGER.info("Done starting BIMserver");		
+		LOGGER.info("Done starting BIMserver");
 	}
 
-	private void createSerializersAndEngines() throws BimDeadlockException, BimDatabaseException, PluginException {
+	/*
+	 * Serializers, deserializers, ifcengines etc... all have counterparts as
+	 * objects in the database for configuration purposes, this methods syncs
+	 * both versions
+	 */
+	private void createDatabaseObjects() throws BimDeadlockException, BimDatabaseException, PluginException {
 		BimDatabaseSession session = bimDatabase.createSession(true);
 		GuidanceProvider defaultGuidanceProvider = null;
 		for (GuidanceProviderPlugin guidanceProviderPlugin : pluginManager.getAllGuidanceProviders(true)) {
@@ -320,6 +334,19 @@ public class BimServer {
 				session.store(serializer);
 			}
 		}
+		for (DeserializerPlugin deserializerPlugin : pluginManager.getAllDeserializerPlugins(true)) {
+			String name = deserializerPlugin.getDefaultDeserializerName();
+			Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getDeserializer_Name(), new StringLiteral(name));
+			Deserializer found = session.querySingle(condition, Deserializer.class, false);
+			if (found == null) {
+				Deserializer deserializer = StoreFactory.eINSTANCE.createDeserializer();
+				deserializer.setClassName(deserializerPlugin.getClass().getName());
+				deserializer.setName(name);
+				deserializer.setEnabled(true);
+				deserializer.setDescription(deserializerPlugin.getDescription());
+				session.store(deserializer);
+			}
+		}
 		session.store(defaultGuidanceProvider);
 		for (IfcEnginePlugin ifcEnginePlugin : pluginManager.getAllIfcEnginePlugins(true)) {
 			String name = ifcEnginePlugin.getName();
@@ -339,7 +366,8 @@ public class BimServer {
 			if (results.size() == 0) {
 				org.bimserver.models.store.Plugin pluginObject = StoreFactory.eINSTANCE.createPlugin();
 				pluginObject.setName(plugin.getName());
-				pluginObject.setEnabled(true); // New plugins are enabled by default
+				pluginObject.setEnabled(true); // New plugins are enabled by
+												// default
 				session.store(pluginObject);
 			} else if (results.size() == 1) {
 				org.bimserver.models.store.Plugin pluginObject = results.values().iterator().next();
@@ -350,23 +378,24 @@ public class BimServer {
 		}
 		session.commit();
 	}
-	
+
 	private void initDatabaseDependantItems() {
 		getEmfSerializerFactory().init(pluginManager, bimDatabase);
+		getEmfDeserializerFactory().init(pluginManager, bimDatabase);
 	}
-	
+
 	public File getHomeDir() {
 		return homeDir;
 	}
-	
+
 	public SettingsManager getSettingsManager() {
 		return settingsManager;
 	}
-	
+
 	public LongActionManager getLongActionManager() {
 		return longActionManager;
 	}
-	
+
 	private void fixLogging() throws IOException {
 		File file = new File(homeDir, "logs/bimserver.log");
 		CustomFileAppender appender = new CustomFileAppender(file);
@@ -453,7 +482,11 @@ public class BimServer {
 	public EmfSerializerFactory getEmfSerializerFactory() {
 		return emfSerializerFactory;
 	}
-	
+
+	public EmfDeserializerFactory getEmfDeserializerFactory() {
+		return emfDeserializerFactory;
+	}
+
 	public DiskCacheManager getDiskCacheManager() {
 		return diskCacheManager;
 	}
@@ -469,7 +502,7 @@ public class BimServer {
 	public ServiceFactory getServiceFactory() {
 		return serviceFactory;
 	}
-	
+
 	public VersionChecker getVersionChecker() {
 		return versionChecker;
 	}

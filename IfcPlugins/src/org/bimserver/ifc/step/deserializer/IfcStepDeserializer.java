@@ -34,6 +34,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
 
 import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.IfcModel;
@@ -55,6 +57,7 @@ import org.bimserver.plugins.schema.SchemaDefinition;
 import org.bimserver.plugins.schema.StringType;
 import org.bimserver.plugins.schema.UnderlyingType;
 import org.bimserver.plugins.serializers.IfcModelInterface;
+import org.bimserver.utils.FakeClosingInputStream;
 import org.bimserver.utils.StringUtils;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EClass;
@@ -89,15 +92,53 @@ public class IfcStepDeserializer extends EmfDeserializer {
 	private EPackage ePackage;
 	private Mode mode = Mode.HEADER;
 	private IfcModel model;
-	
+
 	public void init(SchemaDefinition schema) {
 		this.ePackage = Ifc2x3Package.eINSTANCE;
 		this.schema = schema;
-	}	
+	}
 
-	public IfcModelInterface read(InputStream in, boolean setOids, long fileSize) throws DeserializeException {
+	public IfcModelInterface read(InputStream in, String filename, boolean setOids, long fileSize) throws DeserializeException {
 		mode = Mode.HEADER;
-		BufferedReader reader = new BufferedReader(new InputStreamReader(in, Charsets.UTF_8));
+		if (filename != null && (filename.toUpperCase().endsWith(".ZIP") || filename.toUpperCase().endsWith(".IFCZIP"))) {
+			ZipInputStream zipInputStream = new ZipInputStream(in);
+			ZipEntry nextEntry;
+			try {
+				nextEntry = zipInputStream.getNextEntry();
+				if (nextEntry == null) {
+					throw new DeserializeException("Zip files must contain exactly one IFC-file, this zip-file looks empty");
+				}
+				if (nextEntry.getName().toUpperCase().endsWith(".IFC")) {
+					IfcModelInterface model = null;
+					FakeClosingInputStream fakeClosingInputStream = new FakeClosingInputStream(zipInputStream);
+					if (nextEntry.getName().toUpperCase().endsWith(".IFC")) {
+						model = read(fakeClosingInputStream, setOids, fileSize);
+					}
+					if (model.getSize() == 0) {
+						throw new DeserializeException("Uploaded file does not seem to be a correct IFC file");
+					}
+					if (zipInputStream.getNextEntry() != null) {
+						zipInputStream.close();
+						throw new DeserializeException("Zip files may only contain one IFC-file, this zip-file contains more files");
+					} else {
+						zipInputStream.close();
+						return model;
+					}
+				} else {
+					throw new DeserializeException("Zip files must contain exactly one IFC-file, this zip-file seems to have one or more non-IFC files");
+				}
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+		} else {
+			return read(in, setOids, fileSize);
+		}
+		return model;
+	}
+
+	private IfcModelInterface read(InputStream inputStream, boolean setOids, long fileSize) throws DeserializeException {
+		IfcModelInterface model;
+		BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, Charsets.UTF_8));
 		int initialCapacity = (int) (fileSize / AVERAGE_LINE_LENGTH);
 		model = new IfcModel(initialCapacity);
 		int lineNumber = 0;
@@ -283,7 +324,7 @@ public class IfcStepDeserializer extends EmfDeserializer {
 						EObject referencedObject = model.get(referenceId);
 						if (referencedObject != null) {
 							EClass referenceEClass = referencedObject.eClass();
-							if (((EClass)structuralFeature.getEType()).isSuperTypeOf(referenceEClass)) {
+							if (((EClass) structuralFeature.getEType()).isSuperTypeOf(referenceEClass)) {
 								while (list.size() <= index) {
 									list.addUnique(ePackage.getEFactoryInstance().create(referenceEClass));
 								}
@@ -364,7 +405,7 @@ public class IfcStepDeserializer extends EmfDeserializer {
 				}
 			} else if (instanceClass == String.class) {
 				if (value.startsWith("'") && value.endsWith("'")) {
-					return value.substring(1, value.length()-1);
+					return value.substring(1, value.length() - 1);
 				} else {
 					return value;
 				}

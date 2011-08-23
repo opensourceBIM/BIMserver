@@ -1296,13 +1296,22 @@ public interface StorePackage extends EPackage {
 	int SETTINGS__PLUGINS = 21;
 
 	/**
+	 * The feature id for the '<em><b>Deserializers</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SETTINGS__DESERIALIZERS = 22;
+
+	/**
 	 * The number of structural features of the '<em>Settings</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SETTINGS_FEATURE_COUNT = 22;
+	int SETTINGS_FEATURE_COUNT = 23;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.SerializerImpl <em>Serializer</em>}' class.
@@ -1552,6 +1561,79 @@ public interface StorePackage extends EPackage {
 	int PLUGIN_FEATURE_COUNT = 3;
 
 	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.DeserializerImpl <em>Deserializer</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.impl.DeserializerImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getDeserializer()
+	 * @generated
+	 */
+	int DESERIALIZER = 15;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DESERIALIZER__NAME = 0;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DESERIALIZER__DESCRIPTION = 1;
+
+	/**
+	 * The feature id for the '<em><b>Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DESERIALIZER__CLASS_NAME = 2;
+
+	/**
+	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DESERIALIZER__ENABLED = 3;
+
+	/**
+	 * The feature id for the '<em><b>Default Deserializer</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DESERIALIZER__DEFAULT_DESERIALIZER = 4;
+
+	/**
+	 * The feature id for the '<em><b>Settings</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DESERIALIZER__SETTINGS = 5;
+
+	/**
+	 * The number of structural features of the '<em>Deserializer</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DESERIALIZER_FEATURE_COUNT = 6;
+
+	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.UserType <em>User Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1559,7 +1641,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getUserType()
 	 * @generated
 	 */
-	int USER_TYPE = 15;
+	int USER_TYPE = 16;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.CheckinState <em>Checkin State</em>}' enum.
@@ -1569,7 +1651,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getCheckinState()
 	 * @generated
 	 */
-	int CHECKIN_STATE = 16;
+	int CHECKIN_STATE = 17;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.SIPrefix <em>SI Prefix</em>}' enum.
@@ -1579,7 +1661,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getSIPrefix()
 	 * @generated
 	 */
-	int SI_PREFIX = 17;
+	int SI_PREFIX = 18;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ObjectState <em>Object State</em>}' enum.
@@ -1589,7 +1671,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getObjectState()
 	 * @generated
 	 */
-	int OBJECT_STATE = 18;
+	int OBJECT_STATE = 19;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.MergeIdentifier <em>Merge Identifier</em>}' enum.
@@ -1599,7 +1681,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getMergeIdentifier()
 	 * @generated
 	 */
-	int MERGE_IDENTIFIER = 19;
+	int MERGE_IDENTIFIER = 20;
 
 
 	/**
@@ -2846,6 +2928,17 @@ public interface StorePackage extends EPackage {
 	EReference getSettings_Plugins();
 
 	/**
+	 * Returns the meta object for the reference list '{@link org.bimserver.models.store.Settings#getDeserializers <em>Deserializers</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Deserializers</em>'.
+	 * @see org.bimserver.models.store.Settings#getDeserializers()
+	 * @see #getSettings()
+	 * @generated
+	 */
+	EReference getSettings_Deserializers();
+
+	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.Serializer <em>Serializer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3093,6 +3186,82 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getPlugin_Settings();
+
+	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.store.Deserializer <em>Deserializer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Deserializer</em>'.
+	 * @see org.bimserver.models.store.Deserializer
+	 * @generated
+	 */
+	EClass getDeserializer();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Deserializer#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see org.bimserver.models.store.Deserializer#getName()
+	 * @see #getDeserializer()
+	 * @generated
+	 */
+	EAttribute getDeserializer_Name();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Deserializer#getDescription <em>Description</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Description</em>'.
+	 * @see org.bimserver.models.store.Deserializer#getDescription()
+	 * @see #getDeserializer()
+	 * @generated
+	 */
+	EAttribute getDeserializer_Description();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Deserializer#getClassName <em>Class Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Class Name</em>'.
+	 * @see org.bimserver.models.store.Deserializer#getClassName()
+	 * @see #getDeserializer()
+	 * @generated
+	 */
+	EAttribute getDeserializer_ClassName();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Deserializer#isEnabled <em>Enabled</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Enabled</em>'.
+	 * @see org.bimserver.models.store.Deserializer#isEnabled()
+	 * @see #getDeserializer()
+	 * @generated
+	 */
+	EAttribute getDeserializer_Enabled();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Deserializer#isDefaultDeserializer <em>Default Deserializer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Default Deserializer</em>'.
+	 * @see org.bimserver.models.store.Deserializer#isDefaultDeserializer()
+	 * @see #getDeserializer()
+	 * @generated
+	 */
+	EAttribute getDeserializer_DefaultDeserializer();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.store.Deserializer#getSettings <em>Settings</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Settings</em>'.
+	 * @see org.bimserver.models.store.Deserializer#getSettings()
+	 * @see #getDeserializer()
+	 * @generated
+	 */
+	EReference getDeserializer_Settings();
 
 	/**
 	 * Returns the meta object for enum '{@link org.bimserver.models.store.UserType <em>User Type</em>}'.
@@ -4101,6 +4270,14 @@ public interface StorePackage extends EPackage {
 		EReference SETTINGS__PLUGINS = eINSTANCE.getSettings_Plugins();
 
 		/**
+		 * The meta object literal for the '<em><b>Deserializers</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SETTINGS__DESERIALIZERS = eINSTANCE.getSettings_Deserializers();
+
+		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.SerializerImpl <em>Serializer</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -4291,6 +4468,64 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EReference PLUGIN__SETTINGS = eINSTANCE.getPlugin_Settings();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.DeserializerImpl <em>Deserializer</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.impl.DeserializerImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getDeserializer()
+		 * @generated
+		 */
+		EClass DESERIALIZER = eINSTANCE.getDeserializer();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DESERIALIZER__NAME = eINSTANCE.getDeserializer_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DESERIALIZER__DESCRIPTION = eINSTANCE.getDeserializer_Description();
+
+		/**
+		 * The meta object literal for the '<em><b>Class Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DESERIALIZER__CLASS_NAME = eINSTANCE.getDeserializer_ClassName();
+
+		/**
+		 * The meta object literal for the '<em><b>Enabled</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DESERIALIZER__ENABLED = eINSTANCE.getDeserializer_Enabled();
+
+		/**
+		 * The meta object literal for the '<em><b>Default Deserializer</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DESERIALIZER__DEFAULT_DESERIALIZER = eINSTANCE.getDeserializer_DefaultDeserializer();
+
+		/**
+		 * The meta object literal for the '<em><b>Settings</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DESERIALIZER__SETTINGS = eINSTANCE.getDeserializer_Settings();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.UserType <em>User Type</em>}' enum.

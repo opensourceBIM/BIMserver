@@ -42,6 +42,7 @@ import org.bimserver.interfaces.objects.SAccessMethod;
 import org.bimserver.interfaces.objects.SCheckout;
 import org.bimserver.interfaces.objects.SClash;
 import org.bimserver.interfaces.objects.SClashDetectionSettings;
+import org.bimserver.interfaces.objects.SDeserializer;
 import org.bimserver.interfaces.objects.SEidClash;
 import org.bimserver.interfaces.objects.SGeoTag;
 import org.bimserver.interfaces.objects.SGuidClash;
@@ -87,6 +88,7 @@ public interface ServiceInterface {
 	@WebMethod(action = "checkinSync")
 	SCheckinResult checkinSync(@WebParam(name = "poid", partName = "checkinSync.poid") Long poid,
 			@WebParam(name = "comment", partName = "checkinSync.comment") String comment,
+			@WebParam(name = "deserializerName", partName = "checkinSync.deserializerName") String deserializerName,
 			@WebParam(name = "fileSize", partName = "checkinSync.fileSize") Long fileSize,
 			@WebParam(name = "ifcFile", partName = "checkinSync.ifcFile") @XmlMimeType("application/octet-stream") DataHandler ifcFile,
 			@WebParam(name = "merge", partName = "checkinSync.merge") Boolean merge) throws UserException, ServerException;
@@ -94,6 +96,7 @@ public interface ServiceInterface {
 	@WebMethod(action = "checkinAsync")
 	SCheckinResult checkinAsync(@WebParam(name = "poid", partName = "checlinAsync.poid") Long poid,
 			@WebParam(name = "comment", partName = "checkinAsync.comment") String comment,
+			@WebParam(name = "deserializerName", partName = "checkinSync.deserializerName") String deserializerName,
 			@WebParam(name = "fileSize", partName = "checkinSync.fileSize") Long fileSize,
 			@WebParam(name = "ifcFile", partName = "checkinAsync.ifcFile") @XmlMimeType("application/octet-stream") DataHandler ifcFile,
 			@WebParam(name = "merge", partName = "checkinAsync.merge") Boolean merge) throws UserException, ServerException;
@@ -590,6 +593,9 @@ public interface ServiceInterface {
 	@WebMethod(action = "getEnabledSerializers")
 	List<SSerializer> getEnabledSerializers() throws UserException, ServerException;
 
+	@WebMethod(action = "getEnabledSerializers")
+	List<SDeserializer> getEnabledDeserializers() throws UserException, ServerException;
+	
 	@WebMethod(action = "getSerializerById")
 	SSerializer getSerializerById(Long oid) throws UserException, ServerException;
 	
@@ -767,4 +773,6 @@ public interface ServiceInterface {
 	SSerializerPluginDescriptor getSerializerPluginDescriptor(String type) throws UserException;
 	
 	Set<SGuidanceProviderPluginDescriptor> getAllGuidanceProviderPluginDescriptors() throws UserException;
+
+	List<SDeserializer> getAllDeserializers(Boolean onlyEnabled) throws UserException, ServerException;
 }

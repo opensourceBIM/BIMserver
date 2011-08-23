@@ -68,11 +68,6 @@ public class BuildingSmartLibrarySchemaPlugin implements SchemaPlugin {
 		}
 	}
 
-	@Override
-	public Set<Class<? extends Plugin>> getRequiredPlugins() {
-		return new HashSet<Class<? extends Plugin>>();
-	}
-
 	private SchemaDefinition loadIfcSchema(File schemaFile) {
 		try {
 			ExpressSchemaParser schemaParser = new ExpressSchemaParser(schemaFile);

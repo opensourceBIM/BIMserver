@@ -88,17 +88,19 @@ public class Database implements BimDatabase {
 	private final Set<EClass> transactionLessClasses = new HashSet<EClass>();
 	private final RecordSizeEstimater recordSizeEstimater = new RecordSizeEstimater();
 
-	/*
-	 * This variable should be _incremented_ with every (released)
-	 * database-schema change Do not change this variable when nothing has
-	 * changed in the schema!
-	 */
-	public static final int APPLICATION_SCHEMA_VERSION = 7;
 	private int databaseSchemaVersion;
 	private short tableId;
 	private Migrator migrator;
 	private MetaDataManager metaDataManager = new MetaDataManager();
 	private final BimServer bimServer;
+	
+
+	/*
+	 * This variable should be _incremented_ with every (released)
+	 * database-schema change Do not change this variable when nothing has
+	 * changed in the schema!
+	 */
+	public static final int APPLICATION_SCHEMA_VERSION = 8;
 
 	public Database(BimServer bimServer, Set<? extends EPackage> emfPackages, ColumnDatabase columnDatabase) throws DatabaseInitException {
 		this.bimServer = bimServer;

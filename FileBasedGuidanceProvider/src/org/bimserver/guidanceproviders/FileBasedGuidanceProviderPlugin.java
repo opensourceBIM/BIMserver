@@ -42,11 +42,6 @@ public class FileBasedGuidanceProviderPlugin implements GuidanceProviderPlugin {
 	}
 
 	@Override
-	public Set<Class<? extends Plugin>> getRequiredPlugins() {
-		return null;
-	}
-
-	@Override
 	public GuidanceProvider getGuidanceProvider() {
 		return fileBasedGuidanceProvider;
 	}

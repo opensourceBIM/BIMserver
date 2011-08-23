@@ -222,7 +222,7 @@ public class BimServerTester {
 			e1.printStackTrace();
 		}
 		try {
-			client.checkinSync(projectId, sourceFile.getName(), sourceFile.length(), new DataHandler(new FileDataSource(sourceFile)), false);
+			client.checkinSync(projectId, sourceFile.getName(), "TODO", sourceFile.length(), new DataHandler(new FileDataSource(sourceFile)), false);
 			testResult.setResultCode(ResultCode.OKE);
 			testResult.setDescription("Checkin successfull");
 		} catch (ServiceException e) {
