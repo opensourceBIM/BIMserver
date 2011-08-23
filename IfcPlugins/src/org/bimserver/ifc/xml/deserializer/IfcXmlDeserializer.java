@@ -7,7 +7,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Date;
 import java.util.List;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
 
+import javax.xml.stream.FactoryConfigurationError;
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
@@ -20,6 +23,7 @@ import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.deserializers.EmfDeserializer;
 import org.bimserver.plugins.schema.SchemaDefinition;
 import org.bimserver.plugins.serializers.IfcModelInterface;
+import org.bimserver.utils.FakeClosingInputStream;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EDataType;
@@ -34,7 +38,72 @@ public class IfcXmlDeserializer extends EmfDeserializer  {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(IfcXmlDeserializer.class);
 	private final IfcModel model = new IfcModel();
+	
+	@Override
+	public IfcModelInterface read(InputStream inputStream, String filename, boolean setOids, long fileSize) throws DeserializeException {
+		if (filename != null && (filename.toUpperCase().endsWith(".ZIP") || filename.toUpperCase().endsWith(".IFCZIP"))) {
+			ZipInputStream zipInputStream = new ZipInputStream(inputStream);
+			ZipEntry nextEntry;
+			try {
+				nextEntry = zipInputStream.getNextEntry();
+				if (nextEntry == null) {
+					throw new DeserializeException("Zip files must contain exactly one IFC-file, this zip-file looks empty");
+				}
+				if (nextEntry.getName().toUpperCase().endsWith(".IFCXML")) {
+					IfcModelInterface model = null;
+					FakeClosingInputStream fakeClosingInputStream = new FakeClosingInputStream(zipInputStream);
+					model = read(fakeClosingInputStream);
+					if (model.getSize() == 0) {
+						throw new DeserializeException("Uploaded file does not seem to be a correct IFC file");
+					}
+					if (zipInputStream.getNextEntry() != null) {
+						zipInputStream.close();
+						throw new DeserializeException("Zip files may only contain one IFC-file, this zip-file contains more files");
+					} else {
+						zipInputStream.close();
+						return model;
+					}
+				} else {
+					throw new DeserializeException("Zip files must contain exactly one IFC-file, this zip-file seems to have one or more non-IFC files");
+				}
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+		} else {
+			return read(inputStream);
+		}
+		return model;
+	}
 
+	private IfcModel read(InputStream inputStream) throws FactoryConfigurationError {
+		XMLInputFactory inputFactory = XMLInputFactory.newInstance();
+		try {
+			XMLStreamReader reader = inputFactory.createXMLStreamReader(inputStream, "UTF-8");
+			parseDocument(reader);
+			return model;
+		} catch (XMLStreamException e) {
+			LOGGER.error("", e);
+		} catch (IfcXmlDeserializeException e) {
+			LOGGER.error("", e);
+		}
+		return null;
+	}
+
+	@Override
+	public IfcModelInterface read(File file, boolean setOids) throws DeserializeException {
+		try {
+			FileInputStream in = new FileInputStream(file);
+			read(in, file.getName(), setOids, file.length());
+			in.close();
+			model.setDate(new Date());
+			return model;
+		} catch (FileNotFoundException e) {
+			throw new DeserializeException(e);
+		} catch (IOException e) {
+			throw new DeserializeException(e);
+		}
+	}
+	
 	private void parseDocument(XMLStreamReader reader) throws XMLStreamException, IfcXmlDeserializeException {
 		while (reader.hasNext()) {
 			reader.next();
@@ -255,34 +324,5 @@ public class IfcXmlDeserializer extends EmfDeserializer  {
 	@Override
 	public void init(SchemaDefinition schema) {
 		
-	}
-
-	@Override
-	public IfcModelInterface read(InputStream inputStream, String filename, boolean setOids, long fileSize) throws DeserializeException {
-		XMLInputFactory inputFactory = XMLInputFactory.newInstance();
-		try {
-			XMLStreamReader reader = inputFactory.createXMLStreamReader(inputStream, "UTF-8");
-			parseDocument(reader);
-		} catch (XMLStreamException e) {
-			LOGGER.error("", e);
-		} catch (IfcXmlDeserializeException e) {
-			LOGGER.error("", e);
-		}
-		return model;
-	}
-
-	@Override
-	public IfcModelInterface read(File file, boolean setOids) throws DeserializeException {
-		try {
-			FileInputStream in = new FileInputStream(file);
-			read(in, file.getName(), setOids, file.length());
-			in.close();
-			model.setDate(new Date());
-			return model;
-		} catch (FileNotFoundException e) {
-			throw new DeserializeException(e);
-		} catch (IOException e) {
-			throw new DeserializeException(e);
-		}
 	}
 }

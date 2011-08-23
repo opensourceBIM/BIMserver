@@ -34,8 +34,6 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipInputStream;
 
 import javax.activation.DataHandler;
 import javax.mail.Message;
@@ -213,7 +211,6 @@ import org.bimserver.shared.ServiceInterface;
 import org.bimserver.shared.Token;
 import org.bimserver.shared.UserException;
 import org.bimserver.tools.generators.GenerateUtils;
-import org.bimserver.utils.FakeClosingInputStream;
 import org.bimserver.utils.Hashers;
 import org.bimserver.utils.StringUtils;
 import org.eclipse.emf.common.util.Enumerator;
@@ -284,145 +281,15 @@ public class Service implements ServiceInterface {
 			}
 			inputStream.close();
 			return checkinResult;
-
-//			if (dataHandler.getName() != null && (dataHandler.getName().toUpperCase().endsWith(".ZIP") || dataHandler.getName().toUpperCase().endsWith(".IFCZIP"))) {
-//				ZipInputStream zipInputStream = new ZipInputStream(inputStream);
-//				ZipEntry nextEntry = zipInputStream.getNextEntry();
-//				if (nextEntry == null) {
-//					throw new UserException("Zip files must contain exactly one IFC-file, this zip-file looks empty");
-//				}
-//				if (nextEntry.getName().toUpperCase().endsWith(".IFC") || nextEntry.getName().toUpperCase().endsWith(".IFCXML")) {
-//					IfcModelInterface model = null;
-//					FakeClosingInputStream fakeClosingInputStream = new FakeClosingInputStream(zipInputStream);
-//					if (nextEntry.getName().toUpperCase().endsWith(".IFC")) {
-//						model = readIfcStepModel(fakeClosingInputStream, fileSize);
-//					} else if (nextEntry.getName().toUpperCase().endsWith(".IFCXML")) {
-//						model = readIfcXmlModel(fakeClosingInputStream, fileSize);
-//					}
-//					if (model.getSize() == 0) {
-//						throw new UserException("Uploaded file does not seem to be a correct IFC file");
-//					}
-//					if (zipInputStream.getNextEntry() != null) {
-//						zipInputStream.close();
-//						throw new UserException("Zip files may only contain one IFC-file, this zip-file contains more files");
-//					} else {
-//						zipInputStream.close();
-//						if (sync) {
-//							SCheckinResult processCheckin = processCheckinSync(poid, comment, fileSize, session, model, merge);
-//							return processCheckin;
-//						} else {
-//							SCheckinResult processCheckin = processCheckinAsync(poid, comment, fileSize, session, model, merge);
-//							return processCheckin;
-//						}
-//					}
-//				} else {
-//					throw new UserException("Zip files must contain exactly one IFC-file, this zip-file seems to have one or more non-IFC files");
-//				}
-//			} else if (dataHandler.getName() == null || dataHandler.getName().toUpperCase().endsWith(".IFC") || dataHandler.getName().toUpperCase().endsWith(".IFCXML")) {
-//				IfcModelInterface model = null;
-//				if (dataHandler.getName() != null && dataHandler.getName().toUpperCase().endsWith(".IFCXML")) {
-//					model = readIfcXmlModel(dataHandler.getInputStream(), fileSize);
-//				} else {
-//					model = readIfcStepModel(dataHandler.getInputStream(), fileSize);
-//				}
-//				if (model.getSize() == 0) {
-//					throw new UserException("Uploaded file does not seem to be a correct IFC file");
-//				}
-//				SCheckinResult checkinResult = null;
-//				boolean correctModel = validateModel(model);
-//				if (correctModel) {
-//					if (sync) {
-//						checkinResult = processCheckinSync(poid, comment, fileSize, session, model, merge);
-//					} else {
-//						checkinResult = processCheckinAsync(poid, comment, fileSize, session, model, merge);
-//					}
-//					inputStream.close();
-//					return checkinResult;
-//				} else {
-//					throw new UserException("Model isn't valid according to the MVD/IDM");
-//				}
-//			} else {
-//				throw new UserException("Uploaded file does not seem to be a valid IFC file");
-//			}
 		} catch (IOException e) {
 			LOGGER.error("", e);
 			throw new UserException("IOException", e);
 		} catch (DeserializeException e) {
-			e.printStackTrace();
+			throw new UserException(e);
 		} finally {
 			session.close();
 		}
-		return null;
 	}
-
-	private boolean validateModel(IfcModelInterface model) {
-		// this is where the model can be validated
-		LOGGER.info("This is where the magic happens!");
-		return true;
-	}
-
-//	private IfcModelInterface readIfcXmlModel(InputStream inputStream, Long fileSize) throws UserException {
-//		EmfDeserializer deserializer;
-//		try {
-//			deserializer = bimServer.getPluginManager().requireDeserializer("ifcxml").createDeserializer();
-//		} catch (DeserializeException e) {
-//			throw new UserException(e.getMessage());
-//		}
-//		try {
-//			return deserializer.read(inputStream, false, fileSize);
-//		} catch (DeserializeException e) {
-//			throw new UserException("Invalid IFC XML file", e);
-//		}
-//	}
-//
-//	private IfcModelInterface readIfcStepModel(final InputStream inputStream, Long fileSize) throws UserException {
-//		EmfDeserializer deserializer;
-//		try {
-//			deserializer = bimServer.getPluginManager().requireDeserializer("ifc").createDeserializer();
-//		} catch (DeserializeException e) {
-//			throw new UserException(e.getMessage());
-//		}
-//		try {
-//			deserializer.init(bimServer.getPluginManager().requireSchemaDefinition());
-//		} catch (PluginException e) {
-//			throw new UserException(e);
-//		}
-//		try {
-//			InputStream in = inputStream;
-//			if (accessMethod == AccessMethod.SOAP) {
-//				/*
-//				 * Strangest hack ever, it seems that DelegatingInputStream
-//				 * (when using SOAP), sometimes gives 0 as a result of
-//				 * read(byte[] b, int off, Integer len), which is illegal, so
-//				 * this code makes sure a 0 will be interpreted as the end of
-//				 * the stream
-//				 */
-//				in = new InputStream() {
-//					@Override
-//					public int read() throws IOException {
-//						return inputStream.read();
-//					}
-//
-//					@Override
-//					public int read(byte[] b, int off, int len) throws IOException {
-//						Integer read = inputStream.read(b, off, len);
-//						if (read == 0) {
-//							return -1;
-//						}
-//						return read;
-//					}
-//				};
-//			}
-//			deserializer.read(in, false, fileSize);
-//			return deserializer.getModel();
-//		} catch (Exception e) {
-//			throw new UserException("Invalid IFC file", e);
-//		} catch (OutOfMemoryError e) {
-//			LOGGER.error("", e);
-//			bimServer.getServerInfo().setErrorMessage(e.getMessage());
-//			throw new UserException("Out of memory", e);
-//		}
-//	}
 
 	private SCheckinResult processCheckinSync(final Long poid, final String comment, Long fileSize, final BimDatabaseSession session, IfcModelInterface model, Boolean merge)
 			throws UserException, ServerException {
