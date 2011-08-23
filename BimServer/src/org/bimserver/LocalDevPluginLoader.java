@@ -23,7 +23,7 @@ public class LocalDevPluginLoader {
 	
 	public static PluginManager createPluginManager() throws PluginException {
 		ResourceFetcher resourceFetcher = new LocalDevelopmentResourceFetcher();
-		PluginManager pluginManager = new PluginManager(resourceFetcher, null, null);
+		PluginManager pluginManager = new PluginManager(resourceFetcher, new File("home"), null);
 		loadPlugins(pluginManager);
 		pluginManager.initAllLoadedPlugins();
 		return pluginManager;
