@@ -111,9 +111,7 @@ public class IfcStepDeserializer extends EmfDeserializer {
 				if (nextEntry.getName().toUpperCase().endsWith(".IFC")) {
 					IfcModelInterface model = null;
 					FakeClosingInputStream fakeClosingInputStream = new FakeClosingInputStream(zipInputStream);
-					if (nextEntry.getName().toUpperCase().endsWith(".IFC")) {
-						model = read(fakeClosingInputStream, setOids, fileSize);
-					}
+					model = read(fakeClosingInputStream, setOids, fileSize);
 					if (model.getSize() == 0) {
 						throw new DeserializeException("Uploaded file does not seem to be a correct IFC file");
 					}
@@ -137,7 +135,6 @@ public class IfcStepDeserializer extends EmfDeserializer {
 	}
 
 	private IfcModelInterface read(InputStream inputStream, boolean setOids, long fileSize) throws DeserializeException {
-		IfcModelInterface model;
 		BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, Charsets.UTF_8));
 		int initialCapacity = (int) (fileSize / AVERAGE_LINE_LENGTH);
 		model = new IfcModel(initialCapacity);
