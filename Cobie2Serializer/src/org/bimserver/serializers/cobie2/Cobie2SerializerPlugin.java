@@ -42,11 +42,6 @@ public class Cobie2SerializerPlugin implements SerializerPlugin {
 	}
 
 	@Override
-	public Set<Class<? extends Plugin>> getRequiredPlugins() {
-		return null;
-	}
-
-	@Override
 	public EmfSerializer createSerializer() {
 		XsltSerializer xsltSerializer = new XsltSerializer();
 		xsltSerializer.setXsltUrl(url);

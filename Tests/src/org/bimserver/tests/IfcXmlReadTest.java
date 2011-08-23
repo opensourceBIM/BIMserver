@@ -28,7 +28,7 @@ public class IfcXmlReadTest {
 			EmfDeserializer deserializer = deserializerPlugin.createDeserializer();
 			try {
 				File file = TestFile.AC11_XML.getFile();
-				IfcModelInterface model = deserializer.read(new FileInputStream(file), false, file.length());
+				IfcModelInterface model = deserializer.read(new FileInputStream(file), "ac11.ifcxml", false, file.length());
 				
 				File outFile = new File("out.ifc");
 				SerializerPlugin serializerPlugin = pluginManager.getFirstSerializerPlugin("application/ifc", true);

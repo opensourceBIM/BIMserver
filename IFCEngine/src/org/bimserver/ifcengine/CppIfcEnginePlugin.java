@@ -77,11 +77,6 @@ public class CppIfcEnginePlugin implements IfcEnginePlugin {
 	}
 
 	@Override
-	public Set<Class<? extends Plugin>> getRequiredPlugins() {
-		return new HashSet<Class<? extends Plugin>>();
-	}
-
-	@Override
 	public String getDescription() {
 		return "Native implementation of an IFC Engine";
 	}

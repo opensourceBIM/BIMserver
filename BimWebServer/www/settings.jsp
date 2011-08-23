@@ -1,3 +1,4 @@
+<%@page import="org.bimserver.interfaces.objects.SDeserializer"%>
 <%@page import="org.bimserver.interfaces.objects.SSerializer"%>
 <%@ include file="header.jsp"%>
 <%@page import="java.util.List"%>
@@ -88,6 +89,39 @@
 	}
 %>
 			<a href="deleteserializer.jsp?sid=<%=serializer.getOid()%>">Delete</a>
+		</td>
+	</tr>
+<%
+	}
+%>
+</table>
+</div>
+<div class="tabbertab" id="deserializerstab" title="Deserializers">
+<a href="adddeserializer1.jsp">Add Deserializer</a>
+<table class="formatted">
+<tr><th>Name</th><th>Description</th><th>Type</th><th>Ignore file</th><th>State</th><th>Actions</th></tr>
+<%
+	List<SDeserializer> deserializers = service.getAllDeserializers(false);
+	for (SDeserializer deserializer : deserializers) {
+%>
+	<tr>
+		<td><a href="deserializer.jsp?name=<%=deserializer.getName()%>"><%=deserializer.getName() %></a></td>
+		<td><%=deserializer.getDescription() %></td>
+		<td><%=deserializer.getClassName() %></td>
+		<td class="<%=deserializer.isEnabled() ? "enabledDeserializer" : "disabledDeserializer" %>"> <%=deserializer.isEnabled() ? "Enabled" : "Disabled" %></td>
+		<td>
+<%
+	if (deserializer.isEnabled()) {
+%>
+<a href="settings.jsp?action=disableDeserializer&deserializer=<%=deserializer.getName() %>">Disable</a>
+<%
+	} else {
+%>
+<a href="settings.jsp?action=enableDeserializer&deserializer=<%=deserializer.getName() %>">Enable</a>
+<%
+	}
+%>
+			<a href="deletedeserializer.jsp?sid=<%=deserializer.getOid()%>">Delete</a>
 		</td>
 	</tr>
 <%

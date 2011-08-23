@@ -37,6 +37,7 @@ public class SSettings
 	private boolean cacheOutputFiles;
 	private List<Long> ifcEngines = new ArrayList<Long>();
 	private List<Long> plugins = new ArrayList<Long>();
+	private List<Long> deserializers = new ArrayList<Long>();
 
 	public boolean isShowVersionUpgradeAvailable() {
 		return showVersionUpgradeAvailable;
@@ -207,6 +208,13 @@ public class SSettings
 
 	public void setPlugins(List<Long> plugins) {
 		this.plugins = plugins;
+	}
+	public List<Long> getDeserializers() {
+		return deserializers;
+	}
+
+	public void setDeserializers(List<Long> deserializers) {
+		this.deserializers = deserializers;
 	}
 	@Override
 	public int hashCode() {

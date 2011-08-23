@@ -6,6 +6,7 @@
  */
 package org.bimserver.models.store.util;
 
+import org.bimserver.models.store.*;
 import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.Clash;
 import org.bimserver.models.store.ClashDetectionSettings;
@@ -142,6 +143,10 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter casePlugin(Plugin object) {
 				return createPluginAdapter();
+			}
+			@Override
+			public Adapter caseDeserializer(Deserializer object) {
+				return createDeserializerAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -370,6 +375,20 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createPluginAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.Deserializer <em>Deserializer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.Deserializer
+	 * @generated
+	 */
+	public Adapter createDeserializerAdapter() {
 		return null;
 	}
 

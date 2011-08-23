@@ -15,6 +15,7 @@ import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.Clash;
 import org.bimserver.models.store.ClashDetectionSettings;
 import org.bimserver.models.store.ConcreteRevision;
+import org.bimserver.models.store.Deserializer;
 import org.bimserver.models.store.EidClash;
 import org.bimserver.models.store.GeoTag;
 import org.bimserver.models.store.GuidClash;
@@ -150,6 +151,13 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * @generated
 	 */
 	private EClass pluginEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass deserializerEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1290,6 +1298,15 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getSettings_Deserializers() {
+		return (EReference)settingsEClass.getEStructuralFeatures().get(22);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getSerializer() {
 		return serializerEClass;
 	}
@@ -1497,6 +1514,69 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getDeserializer() {
+		return deserializerEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDeserializer_Name() {
+		return (EAttribute)deserializerEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDeserializer_Description() {
+		return (EAttribute)deserializerEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDeserializer_ClassName() {
+		return (EAttribute)deserializerEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDeserializer_Enabled() {
+		return (EAttribute)deserializerEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDeserializer_DefaultDeserializer() {
+		return (EAttribute)deserializerEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getDeserializer_Settings() {
+		return (EReference)deserializerEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getUserType() {
 		return userTypeEEnum;
 	}
@@ -1689,6 +1769,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 		createEAttribute(settingsEClass, SETTINGS__CACHE_OUTPUT_FILES);
 		createEReference(settingsEClass, SETTINGS__IFC_ENGINES);
 		createEReference(settingsEClass, SETTINGS__PLUGINS);
+		createEReference(settingsEClass, SETTINGS__DESERIALIZERS);
 
 		serializerEClass = createEClass(SERIALIZER);
 		createEAttribute(serializerEClass, SERIALIZER__NAME);
@@ -1716,6 +1797,14 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 		createEAttribute(pluginEClass, PLUGIN__NAME);
 		createEAttribute(pluginEClass, PLUGIN__ENABLED);
 		createEReference(pluginEClass, PLUGIN__SETTINGS);
+
+		deserializerEClass = createEClass(DESERIALIZER);
+		createEAttribute(deserializerEClass, DESERIALIZER__NAME);
+		createEAttribute(deserializerEClass, DESERIALIZER__DESCRIPTION);
+		createEAttribute(deserializerEClass, DESERIALIZER__CLASS_NAME);
+		createEAttribute(deserializerEClass, DESERIALIZER__ENABLED);
+		createEAttribute(deserializerEClass, DESERIALIZER__DEFAULT_DESERIALIZER);
+		createEReference(deserializerEClass, DESERIALIZER__SETTINGS);
 
 		// Create enums
 		userTypeEEnum = createEEnum(USER_TYPE);
@@ -1881,6 +1970,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 		initEAttribute(getSettings_CacheOutputFiles(), ecorePackage.getEBoolean(), "cacheOutputFiles", null, 0, 1, Settings.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSettings_IfcEngines(), this.getIfcEngine(), this.getIfcEngine_Settings(), "ifcEngines", null, 0, -1, Settings.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSettings_Plugins(), this.getPlugin(), this.getPlugin_Settings(), "plugins", null, 0, -1, Settings.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSettings_Deserializers(), this.getDeserializer(), this.getDeserializer_Settings(), "deserializers", null, 0, -1, Settings.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(serializerEClass, Serializer.class, "Serializer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getSerializer_Name(), ecorePackage.getEString(), "name", null, 0, 1, Serializer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1908,6 +1998,14 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 		initEAttribute(getPlugin_Name(), ecorePackage.getEString(), "name", null, 0, 1, Plugin.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getPlugin_Enabled(), ecorePackage.getEBoolean(), "enabled", null, 0, 1, Plugin.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPlugin_Settings(), this.getSettings(), this.getSettings_Plugins(), "settings", null, 0, 1, Plugin.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(deserializerEClass, Deserializer.class, "Deserializer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getDeserializer_Name(), ecorePackage.getEString(), "name", null, 0, 1, Deserializer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDeserializer_Description(), ecorePackage.getEString(), "description", null, 0, 1, Deserializer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDeserializer_ClassName(), ecorePackage.getEString(), "className", null, 0, 1, Deserializer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDeserializer_Enabled(), ecorePackage.getEBoolean(), "enabled", null, 0, 1, Deserializer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDeserializer_DefaultDeserializer(), ecorePackage.getEBoolean(), "defaultDeserializer", null, 0, 1, Deserializer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDeserializer_Settings(), this.getSettings(), this.getSettings_Deserializers(), "settings", null, 0, 1, Deserializer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(userTypeEEnum, UserType.class, "UserType");

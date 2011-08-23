@@ -34,13 +34,6 @@ public class XsltSerializerPlugin implements SerializerPlugin {
 	}
 
 	@Override
-	public Set<Class<? extends Plugin>> getRequiredPlugins() {
-		Set<Class<? extends Plugin>> set = new HashSet<Class<? extends Plugin>>();
-		set.add(SchemaPlugin.class);
-		return set;
-	}
-
-	@Override
 	public void init(PluginManager pluginManager) throws PluginException {
 		pluginManager.requireSchemaDefinition();
 		initialized  = true;

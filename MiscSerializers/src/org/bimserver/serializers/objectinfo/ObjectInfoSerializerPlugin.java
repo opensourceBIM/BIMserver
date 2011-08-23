@@ -36,13 +36,6 @@ public class ObjectInfoSerializerPlugin implements SerializerPlugin {
 	}
 
 	@Override
-	public Set<Class<? extends Plugin>> getRequiredPlugins() {
-		Set<Class<? extends Plugin>> set = new HashSet<Class<? extends Plugin>>();
-		set.add(SchemaPlugin.class);
-		return set;
-	}
-
-	@Override
 	public EmfSerializer createSerializer() {
 		return new ObjectInfoSerializer();
 	}

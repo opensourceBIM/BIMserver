@@ -30,8 +30,8 @@ public class EmfSerializerFactory {
 	public EmfSerializerFactory() {
 	}
 
-	public void init(PluginManager osgiManager, BimDatabase bimDatabase) {
-		this.pluginManager = osgiManager;
+	public void init(PluginManager pluginManager, BimDatabase bimDatabase) {
+		this.pluginManager = pluginManager;
 		this.bimDatabase = bimDatabase;
 	}
 

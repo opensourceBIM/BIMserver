@@ -10,7 +10,7 @@ public abstract class EmfDeserializer {
 
 	public abstract void init(SchemaDefinition schema);
 
-	public abstract IfcModelInterface read(InputStream in, boolean setOids, long fileSize) throws DeserializeException;
+	public abstract IfcModelInterface read(InputStream in, String filename, boolean setOids, long fileSize) throws DeserializeException;
 
 	public abstract IfcModelInterface read(File file, boolean setOids) throws DeserializeException;
 

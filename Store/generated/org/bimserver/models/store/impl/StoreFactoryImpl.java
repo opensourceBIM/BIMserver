@@ -6,6 +6,7 @@
  */
 package org.bimserver.models.store.impl;
 
+import org.bimserver.models.store.*;
 import org.bimserver.models.store.CheckinState;
 import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.Clash;
@@ -94,6 +95,7 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			case StorePackage.GUIDANCE_PROVIDER: return (EObject)createGuidanceProvider();
 			case StorePackage.IFC_ENGINE: return (EObject)createIfcEngine();
 			case StorePackage.PLUGIN: return (EObject)createPlugin();
+			case StorePackage.DESERIALIZER: return (EObject)createDeserializer();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -293,6 +295,16 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	public Plugin createPlugin() {
 		PluginImpl plugin = new PluginImpl();
 		return plugin;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Deserializer createDeserializer() {
+		DeserializerImpl deserializer = new DeserializerImpl();
+		return deserializer;
 	}
 
 	/**

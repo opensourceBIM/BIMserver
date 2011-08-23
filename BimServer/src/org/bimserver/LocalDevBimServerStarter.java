@@ -22,6 +22,7 @@ public class LocalDevBimServerStarter {
 			bimServer.getPluginManager().loadPluginsFromEclipseProject(new File("../O3d"));
 			bimServer.getPluginManager().loadPluginsFromEclipseProject(new File("../IFCEngine"));
 			bimServer.getPluginManager().loadPluginsFromEclipseProject(new File("../buildingSMARTLibrary"));
+			bimServer.getPluginManager().loadPluginsFromEclipseProject(new File("../DeserializerExample"));
 			bimServer.start();
 			if (bimServer.getServerInfo().getServerState() == ServerState.NOT_SETUP) {
 				bimServer.getSystemService().setup("http://localhost", "localhost", "Administrator", "admin@bimserver.org", "admin", true);

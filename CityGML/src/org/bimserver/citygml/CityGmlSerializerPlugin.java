@@ -42,14 +42,6 @@ public class CityGmlSerializerPlugin implements SerializerPlugin {
 		initialized = true;
 	}
 	
-	@Override
-	public Set<Class<? extends Plugin>> getRequiredPlugins() {
-		Set<Class<? extends Plugin>> set = new HashSet<Class<? extends Plugin>>();
-		set.add(SchemaPlugin.class);
-		set.add(IfcEnginePlugin.class);
-		return set;
-	}
-	
 	public EmfSerializer createSerializer() {
 		return new CityGmlSerializer();
 	}

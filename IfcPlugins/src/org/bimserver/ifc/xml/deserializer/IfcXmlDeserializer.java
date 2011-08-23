@@ -258,7 +258,7 @@ public class IfcXmlDeserializer extends EmfDeserializer  {
 	}
 
 	@Override
-	public IfcModelInterface read(InputStream inputStream, boolean setOids, long fileSize) throws DeserializeException {
+	public IfcModelInterface read(InputStream inputStream, String filename, boolean setOids, long fileSize) throws DeserializeException {
 		XMLInputFactory inputFactory = XMLInputFactory.newInstance();
 		try {
 			XMLStreamReader reader = inputFactory.createXMLStreamReader(inputStream, "UTF-8");
@@ -275,7 +275,7 @@ public class IfcXmlDeserializer extends EmfDeserializer  {
 	public IfcModelInterface read(File file, boolean setOids) throws DeserializeException {
 		try {
 			FileInputStream in = new FileInputStream(file);
-			read(in, setOids, file.length());
+			read(in, file.getName(), setOids, file.length());
 			in.close();
 			model.setDate(new Date());
 			return model;

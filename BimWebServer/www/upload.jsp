@@ -1,3 +1,4 @@
+<%@page import="org.bimserver.interfaces.objects.SDeserializer"%>
 <%@page import="org.bimserver.web.LoginManager"%>
 <%@page import="org.bimserver.interfaces.objects.SProject"%>
 <jsp:useBean id="loginManager" scope="session" class="org.bimserver.web.LoginManager" />
@@ -6,13 +7,20 @@
 	SProject sProject = loginManager.getService().getProjectByPoid(poid);
 %>
 <fieldset>
-<legend>Upload IFC file</legend>
+<legend>Upload file</legend>
 <div id="uploadajaxloader">
 Uploading... <img src="images/ajax-loader.gif"/>
 </div>
 <form action="upload" method="post" enctype="multipart/form-data" id="uploadform">
 <table>
-<tr><td><label for="file">IFC File</label></td><td><input id="file" type="file" name="file"/></td></tr>
+<tr><td><label for="file">File</label></td><td><input id="file" type="file" name="file"/></td></tr>
+<tr><td><label for="deserializerName">Deserializer</label></td><td><select name="deserializerName">
+<%
+	for (SDeserializer deserializer : loginManager.getService().getEnabledDeserializers()) {
+		out.println("<option value=\"" + deserializer.getName() + "\">" + deserializer.getName() + "</option>");
+	}
+%>
+</select></td></tr>
 <tr><td><label for="comment">Comment</label></td><td><textarea id="comment" name="comment" cols="80" rows="4"></textarea></td></tr>
 <%
 	if (loginManager.getService().isSettingCheckinMergingEnabled() && sProject.getRevisions().size() > 0) {
