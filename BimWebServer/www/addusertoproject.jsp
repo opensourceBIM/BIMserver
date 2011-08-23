@@ -1,6 +1,6 @@
 <%@page import="org.bimserver.interfaces.objects.SUserType"%>
 <%@page import="org.bimserver.shared.UserException"%>
-<%@ include file="header.jsp" %>
+<%@ include file="header.jsp"%>
 <%
 	if (loginManager.getService().isLoggedIn()) {
 		try {
@@ -17,12 +17,22 @@
 			} else if (type.equals("invitedUser")) {
 				String username = request.getParameter("username");
 				String name = request.getParameter("name");
-				long uoid = loginManager.getService().addUser(username, name, SUserType.USER, true);
-				loginManager.getService().addUserToProject(uoid, poid);
-				response.sendRedirect("project.jsp?poid=" + poid);
+%>
+<jsp:include page="register.jsp">
+	<jsp:param name="register" value="Register" />
+	<jsp:param name="register_username" value="<%=username%>" />
+	<jsp:param name="register_name" value="<%=name%>" />
+</jsp:include>
+<%
+				SUser user = loginManager.getService().getUserByUserName(username);
+				if (user != null) {
+					long uoid = user.getOid();
+					loginManager.getService().addUserToProject(uoid, poid);
+					response.sendRedirect("project.jsp?poid=" + poid);
+				}
 			}
 		} catch (UserException e) {
 			out.println("<div class=\"error\">" + e.getUserMessage() + "</div>");
 		}
- 	}
+	}
 %>
