@@ -23,6 +23,20 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 		service = ServiceInterface.newBlockingStub(rpcChannel);
 	}
 
+	public void setup(java.lang.String siteAddress, java.lang.String smtpServer, java.lang.String adminName, java.lang.String adminUsername, java.lang.String adminPassword, java.lang.Boolean createAnonymousUser) {
+		try {
+			SetupRequest.Builder requestBuilder = SetupRequest.newBuilder();
+			requestBuilder.setSiteAddress(siteAddress);
+			requestBuilder.setSmtpServer(smtpServer);
+			requestBuilder.setAdminName(adminName);
+			requestBuilder.setAdminUsername(adminUsername);
+			requestBuilder.setAdminPassword(adminPassword);
+			requestBuilder.setCreateAnonymousUser(createAnonymousUser);
+			SetupRequest request = requestBuilder.build();
+			service.setup(rpcController, request);
+		} catch (Exception e) {}
+	}
+
 	public org.bimserver.shared.SCompareResult compare(java.lang.Long roid1, java.lang.Long roid2, org.bimserver.shared.SCompareResult.SCompareType sCompareType, org.bimserver.shared.SCompareResult.SCompareIdentifier sCompareIdentifier) {
 		try {
 			CompareRequest.Builder requestBuilder = CompareRequest.newBuilder();
@@ -38,20 +52,6 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 		return null;
 	}
 
-	public void setup(java.lang.String siteAddress, java.lang.String smtpServer, java.lang.String adminName, java.lang.String adminUsername, java.lang.String adminPassword, java.lang.Boolean createAnonymousUser) {
-		try {
-			SetupRequest.Builder requestBuilder = SetupRequest.newBuilder();
-			requestBuilder.setSiteAddress(siteAddress);
-			requestBuilder.setSmtpServer(smtpServer);
-			requestBuilder.setAdminName(adminName);
-			requestBuilder.setAdminUsername(adminUsername);
-			requestBuilder.setAdminPassword(adminPassword);
-			requestBuilder.setCreateAnonymousUser(createAnonymousUser);
-			SetupRequest request = requestBuilder.build();
-			service.setup(rpcController, request);
-		} catch (Exception e) {}
-	}
-
 	public java.lang.Long createObject(java.lang.String className) {
 		try {
 			CreateObjectRequest.Builder requestBuilder = CreateObjectRequest.newBuilder();
@@ -61,6 +61,19 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 			return response.getValue();
 		} catch (Exception e) {}
 		return 0L;
+	}
+
+	public java.lang.Integer checkout(java.lang.Long roid, java.lang.String formatIdentifier, java.lang.Boolean sync) {
+		try {
+			CheckoutRequest.Builder requestBuilder = CheckoutRequest.newBuilder();
+			requestBuilder.setRoid(roid);
+			requestBuilder.setFormatIdentifier(formatIdentifier);
+			requestBuilder.setSync(sync);
+			CheckoutRequest request = requestBuilder.build();
+			CheckoutResponse response = service.checkout(rpcController, request);
+			return response.getValue();
+		} catch (Exception e) {}
+		return 0;
 	}
 
 	public void removeAttribute(java.lang.Long oid, java.lang.String className, java.lang.String attributeName, java.lang.Integer index) {
@@ -75,180 +88,23 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 		} catch (Exception e) {}
 	}
 
-	public java.util.List<org.bimserver.interfaces.objects.SProject> getAllNonAuthorizedProjectsOfUser(java.lang.Long uoid) {
+	public java.lang.Boolean isSettingSendConfirmationEmailAfterRegistration() {
 		try {
-			GetAllNonAuthorizedProjectsOfUserRequest.Builder requestBuilder = GetAllNonAuthorizedProjectsOfUserRequest.newBuilder();
-			requestBuilder.setUoid(uoid);
-			GetAllNonAuthorizedProjectsOfUserRequest request = requestBuilder.build();
-			GetAllNonAuthorizedProjectsOfUserResponse response = service.getAllNonAuthorizedProjectsOfUser(rpcController, request);
-			java.util.List<org.bimserver.interfaces.objects.SProject> realResult = new ArrayList<org.bimserver.interfaces.objects.SProject>();
-			List<Service.SProject> originalList = response.getValueList();
-			for (Service.SProject val : originalList) {
-				org.bimserver.interfaces.objects.SProject v = new org.bimserver.interfaces.objects.SProject();
-				v.setName(val.getName());
-				v.setId(val.getId());
-				v.setState(org.bimserver.interfaces.objects.SObjectState.values()[val.getState().ordinal()]);
-				v.setDescription(val.getDescription());
-				v.setLastConcreteRevisionId(val.getLastConcreteRevisionId());
-				v.setLastRevisionId(val.getLastRevisionId());
-				v.setCreatedDate(new Date(val.getCreatedDate()));
-				v.setCreatedById(val.getCreatedById());
-				v.setClashDetectionSettingsId(val.getClashDetectionSettingsId());
-				v.setExportLengthMeasurePrefix(org.bimserver.interfaces.objects.SSIPrefix.values()[val.getExportLengthMeasurePrefix().ordinal()]);
-				v.setOid(val.getOid());
-				v.setGeoTagId(val.getGeoTagId());
-				v.setParentId(val.getParentId());
-				realResult.add(v);
-			}
-		return realResult;
-		} catch (Exception e) {}
-		return null;
-	}
-
-	public java.util.List<org.bimserver.interfaces.objects.SUser> getAllNonAuthorizedUsersOfProject(java.lang.Long poid) {
-		try {
-			GetAllNonAuthorizedUsersOfProjectRequest.Builder requestBuilder = GetAllNonAuthorizedUsersOfProjectRequest.newBuilder();
-			requestBuilder.setPoid(poid);
-			GetAllNonAuthorizedUsersOfProjectRequest request = requestBuilder.build();
-			GetAllNonAuthorizedUsersOfProjectResponse response = service.getAllNonAuthorizedUsersOfProject(rpcController, request);
-			java.util.List<org.bimserver.interfaces.objects.SUser> realResult = new ArrayList<org.bimserver.interfaces.objects.SUser>();
-			List<Service.SUser> originalList = response.getValueList();
-			for (Service.SUser val : originalList) {
-				org.bimserver.interfaces.objects.SUser v = new org.bimserver.interfaces.objects.SUser();
-				v.setName(val.getName());
-				v.setState(org.bimserver.interfaces.objects.SObjectState.values()[val.getState().ordinal()]);
-				v.setCreatedById(val.getCreatedById());
-				v.setValidationToken(val.getValidationToken());
-				v.setValidationTokenCreated(new Date(val.getValidationTokenCreated()));
-				v.setOid(val.getOid());
-				v.setCreatedOn(new Date(val.getCreatedOn()));
-				v.setPassword(val.getPassword());
-				v.setUserType(org.bimserver.interfaces.objects.SUserType.values()[val.getUserType().ordinal()]);
-				v.setUsername(val.getUsername());
-				v.setLastSeen(new Date(val.getLastSeen()));
-				realResult.add(v);
-			}
-		return realResult;
-		} catch (Exception e) {}
-		return null;
-	}
-
-	public java.util.List<org.bimserver.interfaces.objects.SUser> getAllAuthorizedUsersOfProject(java.lang.Long poid) {
-		try {
-			GetAllAuthorizedUsersOfProjectRequest.Builder requestBuilder = GetAllAuthorizedUsersOfProjectRequest.newBuilder();
-			requestBuilder.setPoid(poid);
-			GetAllAuthorizedUsersOfProjectRequest request = requestBuilder.build();
-			GetAllAuthorizedUsersOfProjectResponse response = service.getAllAuthorizedUsersOfProject(rpcController, request);
-			java.util.List<org.bimserver.interfaces.objects.SUser> realResult = new ArrayList<org.bimserver.interfaces.objects.SUser>();
-			List<Service.SUser> originalList = response.getValueList();
-			for (Service.SUser val : originalList) {
-				org.bimserver.interfaces.objects.SUser v = new org.bimserver.interfaces.objects.SUser();
-				v.setName(val.getName());
-				v.setState(org.bimserver.interfaces.objects.SObjectState.values()[val.getState().ordinal()]);
-				v.setCreatedById(val.getCreatedById());
-				v.setValidationToken(val.getValidationToken());
-				v.setValidationTokenCreated(new Date(val.getValidationTokenCreated()));
-				v.setOid(val.getOid());
-				v.setCreatedOn(new Date(val.getCreatedOn()));
-				v.setPassword(val.getPassword());
-				v.setUserType(org.bimserver.interfaces.objects.SUserType.values()[val.getUserType().ordinal()]);
-				v.setUsername(val.getUsername());
-				v.setLastSeen(new Date(val.getLastSeen()));
-				realResult.add(v);
-			}
-		return realResult;
-		} catch (Exception e) {}
-		return null;
-	}
-
-	public java.util.List<org.bimserver.interfaces.objects.SCheckout> getAllCheckoutsOfProjectAndSubProjects(java.lang.Long poid) {
-		try {
-			GetAllCheckoutsOfProjectAndSubProjectsRequest.Builder requestBuilder = GetAllCheckoutsOfProjectAndSubProjectsRequest.newBuilder();
-			requestBuilder.setPoid(poid);
-			GetAllCheckoutsOfProjectAndSubProjectsRequest request = requestBuilder.build();
-			GetAllCheckoutsOfProjectAndSubProjectsResponse response = service.getAllCheckoutsOfProjectAndSubProjects(rpcController, request);
-			java.util.List<org.bimserver.interfaces.objects.SCheckout> realResult = new ArrayList<org.bimserver.interfaces.objects.SCheckout>();
-			List<Service.SCheckout> originalList = response.getValueList();
-			for (Service.SCheckout val : originalList) {
-				org.bimserver.interfaces.objects.SCheckout v = new org.bimserver.interfaces.objects.SCheckout();
-				v.setDate(new Date(val.getDate()));
-				v.setCheckinId(val.getCheckinId());
-				v.setRevisionId(val.getRevisionId());
-				v.setOid(val.getOid());
-				v.setUserId(val.getUserId());
-				v.setProjectId(val.getProjectId());
-				realResult.add(v);
-			}
-		return realResult;
-		} catch (Exception e) {}
-		return null;
-	}
-
-	public java.lang.String getSettingRegistrationAddition() {
-		try {
-			GetSettingRegistrationAdditionRequest.Builder requestBuilder = GetSettingRegistrationAdditionRequest.newBuilder();
-			GetSettingRegistrationAdditionRequest request = requestBuilder.build();
-			GetSettingRegistrationAdditionResponse response = service.getSettingRegistrationAddition(rpcController, request);
-			return response.getValue();
-		} catch (Exception e) {}
-		return null;
-	}
-
-	public void setSettingRegistrationAddition(java.lang.String registrationAddition) {
-		try {
-			SetSettingRegistrationAdditionRequest.Builder requestBuilder = SetSettingRegistrationAdditionRequest.newBuilder();
-			requestBuilder.setRegistrationAddition(registrationAddition);
-			SetSettingRegistrationAdditionRequest request = requestBuilder.build();
-			service.setSettingRegistrationAddition(rpcController, request);
-		} catch (Exception e) {}
-	}
-
-	public java.lang.Boolean isSettingAllowSelfRegistration() {
-		try {
-			IsSettingAllowSelfRegistrationRequest.Builder requestBuilder = IsSettingAllowSelfRegistrationRequest.newBuilder();
-			IsSettingAllowSelfRegistrationRequest request = requestBuilder.build();
-			IsSettingAllowSelfRegistrationResponse response = service.isSettingAllowSelfRegistration(rpcController, request);
+			IsSettingSendConfirmationEmailAfterRegistrationRequest.Builder requestBuilder = IsSettingSendConfirmationEmailAfterRegistrationRequest.newBuilder();
+			IsSettingSendConfirmationEmailAfterRegistrationRequest request = requestBuilder.build();
+			IsSettingSendConfirmationEmailAfterRegistrationResponse response = service.isSettingSendConfirmationEmailAfterRegistration(rpcController, request);
 			return response.getValue();
 		} catch (Exception e) {}
 		return false;
 	}
 
-	public void setSettingAllowSelfRegistration(java.lang.Boolean allowSelfRegistration) {
+	public void setSettingSendConfirmationEmailAfterRegistration(java.lang.Boolean sendConfirmationEmailAfterRegistration) {
 		try {
-			SetSettingAllowSelfRegistrationRequest.Builder requestBuilder = SetSettingAllowSelfRegistrationRequest.newBuilder();
-			requestBuilder.setAllowSelfRegistration(allowSelfRegistration);
-			SetSettingAllowSelfRegistrationRequest request = requestBuilder.build();
-			service.setSettingAllowSelfRegistration(rpcController, request);
+			SetSettingSendConfirmationEmailAfterRegistrationRequest.Builder requestBuilder = SetSettingSendConfirmationEmailAfterRegistrationRequest.newBuilder();
+			requestBuilder.setSendConfirmationEmailAfterRegistration(sendConfirmationEmailAfterRegistration);
+			SetSettingSendConfirmationEmailAfterRegistrationRequest request = requestBuilder.build();
+			service.setSettingSendConfirmationEmailAfterRegistration(rpcController, request);
 		} catch (Exception e) {}
-	}
-
-	public java.lang.Boolean isSettingAllowUsersToCreateTopLevelProjects() {
-		try {
-			IsSettingAllowUsersToCreateTopLevelProjectsRequest.Builder requestBuilder = IsSettingAllowUsersToCreateTopLevelProjectsRequest.newBuilder();
-			IsSettingAllowUsersToCreateTopLevelProjectsRequest request = requestBuilder.build();
-			IsSettingAllowUsersToCreateTopLevelProjectsResponse response = service.isSettingAllowUsersToCreateTopLevelProjects(rpcController, request);
-			return response.getValue();
-		} catch (Exception e) {}
-		return false;
-	}
-
-	public void setSettingAllowUsersToCreateTopLevelProjects(java.lang.Boolean allowUsersToCreateTopLevelProjects) {
-		try {
-			SetSettingAllowUsersToCreateTopLevelProjectsRequest.Builder requestBuilder = SetSettingAllowUsersToCreateTopLevelProjectsRequest.newBuilder();
-			requestBuilder.setAllowUsersToCreateTopLevelProjects(allowUsersToCreateTopLevelProjects);
-			SetSettingAllowUsersToCreateTopLevelProjectsRequest request = requestBuilder.build();
-			service.setSettingAllowUsersToCreateTopLevelProjects(rpcController, request);
-		} catch (Exception e) {}
-	}
-
-	public java.lang.Boolean isSettingCheckinMergingEnabled() {
-		try {
-			IsSettingCheckinMergingEnabledRequest.Builder requestBuilder = IsSettingCheckinMergingEnabledRequest.newBuilder();
-			IsSettingCheckinMergingEnabledRequest request = requestBuilder.build();
-			IsSettingCheckinMergingEnabledResponse response = service.isSettingCheckinMergingEnabled(rpcController, request);
-			return response.getValue();
-		} catch (Exception e) {}
-		return false;
 	}
 
 	public java.util.Set<org.bimserver.shared.SMigration> getMigrations() {
@@ -269,55 +125,665 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 		return null;
 	}
 
-	public java.lang.Integer checkout(java.lang.Long roid, java.lang.String formatIdentifier, java.lang.Boolean sync) {
+	public void setSettingEnabledExportTypes(java.util.Set<java.lang.String> enabledExportTypeNames) {
 		try {
-			CheckoutRequest.Builder requestBuilder = CheckoutRequest.newBuilder();
-			requestBuilder.setRoid(roid);
-			requestBuilder.setFormatIdentifier(formatIdentifier);
-			requestBuilder.setSync(sync);
-			CheckoutRequest request = requestBuilder.build();
-			CheckoutResponse response = service.checkout(rpcController, request);
+			SetSettingEnabledExportTypesRequest.Builder requestBuilder = SetSettingEnabledExportTypesRequest.newBuilder();
+			for (java.lang.String val : enabledExportTypeNames) {
+				String v = val;
+				requestBuilder.addEnabledExportTypeNames(v);
+			}
+			SetSettingEnabledExportTypesRequest request = requestBuilder.build();
+			service.setSettingEnabledExportTypes(rpcController, request);
+		} catch (Exception e) {}
+	}
+
+	public java.lang.String getSettingSiteAddress() {
+		try {
+			GetSettingSiteAddressRequest.Builder requestBuilder = GetSettingSiteAddressRequest.newBuilder();
+			GetSettingSiteAddressRequest request = requestBuilder.build();
+			GetSettingSiteAddressResponse response = service.getSettingSiteAddress(rpcController, request);
 			return response.getValue();
 		} catch (Exception e) {}
-		return 0;
+		return null;
 	}
 
-	public void setSettingCheckinMergingEnabled(java.lang.Boolean checkinMergingEnabled) {
+	public void setSettingSiteAddress(java.lang.String siteAddress) {
 		try {
-			SetSettingCheckinMergingEnabledRequest.Builder requestBuilder = SetSettingCheckinMergingEnabledRequest.newBuilder();
-			requestBuilder.setCheckinMergingEnabled(checkinMergingEnabled);
-			SetSettingCheckinMergingEnabledRequest request = requestBuilder.build();
-			service.setSettingCheckinMergingEnabled(rpcController, request);
+			SetSettingSiteAddressRequest.Builder requestBuilder = SetSettingSiteAddressRequest.newBuilder();
+			requestBuilder.setSiteAddress(siteAddress);
+			SetSettingSiteAddressRequest request = requestBuilder.build();
+			service.setSettingSiteAddress(rpcController, request);
 		} catch (Exception e) {}
 	}
 
-	public java.lang.Boolean isSettingShowVersionUpgradeAvailable() {
+	public java.lang.String getSettingSmtpServer() {
 		try {
-			IsSettingShowVersionUpgradeAvailableRequest.Builder requestBuilder = IsSettingShowVersionUpgradeAvailableRequest.newBuilder();
-			IsSettingShowVersionUpgradeAvailableRequest request = requestBuilder.build();
-			IsSettingShowVersionUpgradeAvailableResponse response = service.isSettingShowVersionUpgradeAvailable(rpcController, request);
+			GetSettingSmtpServerRequest.Builder requestBuilder = GetSettingSmtpServerRequest.newBuilder();
+			GetSettingSmtpServerRequest request = requestBuilder.build();
+			GetSettingSmtpServerResponse response = service.getSettingSmtpServer(rpcController, request);
+			return response.getValue();
+		} catch (Exception e) {}
+		return null;
+	}
+
+	public void setSettingSmtpServer(java.lang.String smtpServer) {
+		try {
+			SetSettingSmtpServerRequest.Builder requestBuilder = SetSettingSmtpServerRequest.newBuilder();
+			requestBuilder.setSmtpServer(smtpServer);
+			SetSettingSmtpServerRequest request = requestBuilder.build();
+			service.setSettingSmtpServer(rpcController, request);
+		} catch (Exception e) {}
+	}
+
+	public java.lang.Boolean isSettingAutoTestClashes() {
+		try {
+			IsSettingAutoTestClashesRequest.Builder requestBuilder = IsSettingAutoTestClashesRequest.newBuilder();
+			IsSettingAutoTestClashesRequest request = requestBuilder.build();
+			IsSettingAutoTestClashesResponse response = service.isSettingAutoTestClashes(rpcController, request);
 			return response.getValue();
 		} catch (Exception e) {}
 		return false;
 	}
 
-	public java.lang.Boolean isSettingSendConfirmationEmailAfterRegistration() {
+	public void setSettingAutoTestClashes(java.lang.Boolean autoTestClashes) {
 		try {
-			IsSettingSendConfirmationEmailAfterRegistrationRequest.Builder requestBuilder = IsSettingSendConfirmationEmailAfterRegistrationRequest.newBuilder();
-			IsSettingSendConfirmationEmailAfterRegistrationRequest request = requestBuilder.build();
-			IsSettingSendConfirmationEmailAfterRegistrationResponse response = service.isSettingSendConfirmationEmailAfterRegistration(rpcController, request);
+			SetSettingAutoTestClashesRequest.Builder requestBuilder = SetSettingAutoTestClashesRequest.newBuilder();
+			requestBuilder.setAutoTestClashes(autoTestClashes);
+			SetSettingAutoTestClashesRequest request = requestBuilder.build();
+			service.setSettingAutoTestClashes(rpcController, request);
+		} catch (Exception e) {}
+	}
+
+	public java.lang.Boolean isSettingIntelligentMerging() {
+		try {
+			IsSettingIntelligentMergingRequest.Builder requestBuilder = IsSettingIntelligentMergingRequest.newBuilder();
+			IsSettingIntelligentMergingRequest request = requestBuilder.build();
+			IsSettingIntelligentMergingResponse response = service.isSettingIntelligentMerging(rpcController, request);
 			return response.getValue();
 		} catch (Exception e) {}
 		return false;
 	}
 
-	public void setSettingSendConfirmationEmailAfterRegistration(java.lang.Boolean sendConfirmationEmailAfterRegistration) {
+	public void setSettingIntelligentMerging(java.lang.Boolean intelligentMerging) {
 		try {
-			SetSettingSendConfirmationEmailAfterRegistrationRequest.Builder requestBuilder = SetSettingSendConfirmationEmailAfterRegistrationRequest.newBuilder();
-			requestBuilder.setSendConfirmationEmailAfterRegistration(sendConfirmationEmailAfterRegistration);
-			SetSettingSendConfirmationEmailAfterRegistrationRequest request = requestBuilder.build();
-			service.setSettingSendConfirmationEmailAfterRegistration(rpcController, request);
+			SetSettingIntelligentMergingRequest.Builder requestBuilder = SetSettingIntelligentMergingRequest.newBuilder();
+			requestBuilder.setIntelligentMerging(intelligentMerging);
+			SetSettingIntelligentMergingRequest request = requestBuilder.build();
+			service.setSettingIntelligentMerging(rpcController, request);
 		} catch (Exception e) {}
+	}
+
+	public java.lang.Boolean isSettingCacheOutputFiles() {
+		try {
+			IsSettingCacheOutputFilesRequest.Builder requestBuilder = IsSettingCacheOutputFilesRequest.newBuilder();
+			IsSettingCacheOutputFilesRequest request = requestBuilder.build();
+			IsSettingCacheOutputFilesResponse response = service.isSettingCacheOutputFiles(rpcController, request);
+			return response.getValue();
+		} catch (Exception e) {}
+		return false;
+	}
+
+	public void setSettingCacheOutputFiles(java.lang.Boolean cacheOutputFiles) {
+		try {
+			SetSettingCacheOutputFilesRequest.Builder requestBuilder = SetSettingCacheOutputFilesRequest.newBuilder();
+			requestBuilder.setCacheOutputFiles(cacheOutputFiles);
+			SetSettingCacheOutputFilesRequest request = requestBuilder.build();
+			service.setSettingCacheOutputFiles(rpcController, request);
+		} catch (Exception e) {}
+	}
+
+	public java.util.List<org.bimserver.shared.SUserSession> getActiveUserSessions() {
+		try {
+			GetActiveUserSessionsRequest.Builder requestBuilder = GetActiveUserSessionsRequest.newBuilder();
+			GetActiveUserSessionsRequest request = requestBuilder.build();
+			GetActiveUserSessionsResponse response = service.getActiveUserSessions(rpcController, request);
+			java.util.List<org.bimserver.shared.SUserSession> realResult = new ArrayList<org.bimserver.shared.SUserSession>();
+			List<Service.SUserSession> originalList = response.getValueList();
+			for (Service.SUserSession val : originalList) {
+				org.bimserver.shared.SUserSession v = new org.bimserver.shared.SUserSession();
+				v.setName(val.getName());
+				v.setType(org.bimserver.interfaces.objects.SUserType.values()[val.getType().ordinal()]);
+				v.setAccessMethod(org.bimserver.interfaces.objects.SAccessMethod.values()[val.getAccessMethod().ordinal()]);
+				v.setActiveSince(new Date(val.getActiveSince()));
+				v.setLastActive(new Date(val.getLastActive()));
+				v.setUoid(val.getUoid());
+				v.setUsername(val.getUsername());
+				realResult.add(v);
+			}
+		return realResult;
+		} catch (Exception e) {}
+		return null;
+	}
+
+	public java.util.List<org.bimserver.shared.SLongAction> getActiveLongActions() {
+		try {
+			GetActiveLongActionsRequest.Builder requestBuilder = GetActiveLongActionsRequest.newBuilder();
+			GetActiveLongActionsRequest request = requestBuilder.build();
+			GetActiveLongActionsResponse response = service.getActiveLongActions(rpcController, request);
+			java.util.List<org.bimserver.shared.SLongAction> realResult = new ArrayList<org.bimserver.shared.SLongAction>();
+			List<Service.SLongAction> originalList = response.getValueList();
+			for (Service.SLongAction val : originalList) {
+				org.bimserver.shared.SLongAction v = new org.bimserver.shared.SLongAction();
+				v.setName(val.getName());
+				v.setIdentification(val.getIdentification());
+				v.setUserOid(val.getUserOid());
+				v.setStart(new Date(val.getStart()));
+				v.setUsername(val.getUsername());
+				realResult.add(v);
+			}
+		return realResult;
+		} catch (Exception e) {}
+		return null;
+	}
+
+	public void migrateDatabase() {
+		try {
+			MigrateDatabaseRequest.Builder requestBuilder = MigrateDatabaseRequest.newBuilder();
+			MigrateDatabaseRequest request = requestBuilder.build();
+			service.migrateDatabase(rpcController, request);
+		} catch (Exception e) {}
+	}
+
+	public java.util.List<org.bimserver.interfaces.objects.SSerializer> getAllSerializers(java.lang.Boolean unknown) {
+		try {
+			GetAllSerializersRequest.Builder requestBuilder = GetAllSerializersRequest.newBuilder();
+			requestBuilder.setUnknown(unknown);
+			GetAllSerializersRequest request = requestBuilder.build();
+			GetAllSerializersResponse response = service.getAllSerializers(rpcController, request);
+			java.util.List<org.bimserver.interfaces.objects.SSerializer> realResult = new ArrayList<org.bimserver.interfaces.objects.SSerializer>();
+			List<Service.SSerializer> originalList = response.getValueList();
+			for (Service.SSerializer val : originalList) {
+				org.bimserver.interfaces.objects.SSerializer v = new org.bimserver.interfaces.objects.SSerializer();
+				v.setName(val.getName());
+				v.setClassName(val.getClassName());
+				v.setExtension(val.getExtension());
+				v.setContentType(val.getContentType());
+				v.setDescription(val.getDescription());
+				v.setGuidanceProviderId(val.getGuidanceProviderId());
+				v.setSettingsId(val.getSettingsId());
+				v.setOid(val.getOid());
+				realResult.add(v);
+			}
+		return realResult;
+		} catch (Exception e) {}
+		return null;
+	}
+
+	public java.util.List<org.bimserver.interfaces.objects.SSerializer> getEnabledSerializers() {
+		try {
+			GetEnabledSerializersRequest.Builder requestBuilder = GetEnabledSerializersRequest.newBuilder();
+			GetEnabledSerializersRequest request = requestBuilder.build();
+			GetEnabledSerializersResponse response = service.getEnabledSerializers(rpcController, request);
+			java.util.List<org.bimserver.interfaces.objects.SSerializer> realResult = new ArrayList<org.bimserver.interfaces.objects.SSerializer>();
+			List<Service.SSerializer> originalList = response.getValueList();
+			for (Service.SSerializer val : originalList) {
+				org.bimserver.interfaces.objects.SSerializer v = new org.bimserver.interfaces.objects.SSerializer();
+				v.setName(val.getName());
+				v.setClassName(val.getClassName());
+				v.setExtension(val.getExtension());
+				v.setContentType(val.getContentType());
+				v.setDescription(val.getDescription());
+				v.setGuidanceProviderId(val.getGuidanceProviderId());
+				v.setSettingsId(val.getSettingsId());
+				v.setOid(val.getOid());
+				realResult.add(v);
+			}
+		return realResult;
+		} catch (Exception e) {}
+		return null;
+	}
+
+	public java.util.List<org.bimserver.interfaces.objects.SDeserializer> getEnabledDeserializers() {
+		try {
+			GetEnabledDeserializersRequest.Builder requestBuilder = GetEnabledDeserializersRequest.newBuilder();
+			GetEnabledDeserializersRequest request = requestBuilder.build();
+			GetEnabledDeserializersResponse response = service.getEnabledDeserializers(rpcController, request);
+			java.util.List<org.bimserver.interfaces.objects.SDeserializer> realResult = new ArrayList<org.bimserver.interfaces.objects.SDeserializer>();
+			List<Service.SDeserializer> originalList = response.getValueList();
+			for (Service.SDeserializer val : originalList) {
+				org.bimserver.interfaces.objects.SDeserializer v = new org.bimserver.interfaces.objects.SDeserializer();
+				v.setName(val.getName());
+				v.setClassName(val.getClassName());
+				v.setDescription(val.getDescription());
+				v.setSettingsId(val.getSettingsId());
+				v.setOid(val.getOid());
+				realResult.add(v);
+			}
+		return realResult;
+		} catch (Exception e) {}
+		return null;
+	}
+
+	public org.bimserver.interfaces.objects.SSerializer getSerializerById(java.lang.Long unknown) {
+		try {
+			GetSerializerByIdRequest.Builder requestBuilder = GetSerializerByIdRequest.newBuilder();
+			requestBuilder.setUnknown(unknown);
+			GetSerializerByIdRequest request = requestBuilder.build();
+			GetSerializerByIdResponse response = service.getSerializerById(rpcController, request);
+			org.bimserver.interfaces.objects.SSerializer realResult = new org.bimserver.interfaces.objects.SSerializer();
+			return realResult;
+		} catch (Exception e) {}
+		return null;
+	}
+
+	public void addSerializer(org.bimserver.interfaces.objects.SSerializer unknown) {
+		try {
+			AddSerializerRequest.Builder requestBuilder = AddSerializerRequest.newBuilder();
+			Service.SSerializer.Builder newVal = SSerializer.newBuilder();
+			newVal.setName(unknown.getName());
+			newVal.setClassName(unknown.getClassName());
+			newVal.setExtension(unknown.getExtension());
+			newVal.setContentType(unknown.getContentType());
+			newVal.setDescription(unknown.getDescription());
+			newVal.setGuidanceProviderId(unknown.getGuidanceProviderId());
+			newVal.setSettingsId(unknown.getSettingsId());
+			newVal.setOid(unknown.getOid());
+			requestBuilder.setUnknown(newVal.build());
+			AddSerializerRequest request = requestBuilder.build();
+			service.addSerializer(rpcController, request);
+		} catch (Exception e) {}
+	}
+
+	public void updateSerializer(org.bimserver.interfaces.objects.SSerializer unknown) {
+		try {
+			UpdateSerializerRequest.Builder requestBuilder = UpdateSerializerRequest.newBuilder();
+			Service.SSerializer.Builder newVal = SSerializer.newBuilder();
+			newVal.setName(unknown.getName());
+			newVal.setClassName(unknown.getClassName());
+			newVal.setExtension(unknown.getExtension());
+			newVal.setContentType(unknown.getContentType());
+			newVal.setDescription(unknown.getDescription());
+			newVal.setGuidanceProviderId(unknown.getGuidanceProviderId());
+			newVal.setSettingsId(unknown.getSettingsId());
+			newVal.setOid(unknown.getOid());
+			requestBuilder.setUnknown(newVal.build());
+			UpdateSerializerRequest request = requestBuilder.build();
+			service.updateSerializer(rpcController, request);
+		} catch (Exception e) {}
+	}
+
+	public void updateDeserializer(org.bimserver.interfaces.objects.SDeserializer unknown) {
+		try {
+			UpdateDeserializerRequest.Builder requestBuilder = UpdateDeserializerRequest.newBuilder();
+			Service.SDeserializer.Builder newVal = SDeserializer.newBuilder();
+			newVal.setName(unknown.getName());
+			newVal.setClassName(unknown.getClassName());
+			newVal.setDescription(unknown.getDescription());
+			newVal.setSettingsId(unknown.getSettingsId());
+			newVal.setOid(unknown.getOid());
+			requestBuilder.setUnknown(newVal.build());
+			UpdateDeserializerRequest request = requestBuilder.build();
+			service.updateDeserializer(rpcController, request);
+		} catch (Exception e) {}
+	}
+
+	public java.util.List<org.bimserver.interfaces.objects.SGuidanceProvider> getAllGuidanceProviders() {
+		try {
+			GetAllGuidanceProvidersRequest.Builder requestBuilder = GetAllGuidanceProvidersRequest.newBuilder();
+			GetAllGuidanceProvidersRequest request = requestBuilder.build();
+			GetAllGuidanceProvidersResponse response = service.getAllGuidanceProviders(rpcController, request);
+			java.util.List<org.bimserver.interfaces.objects.SGuidanceProvider> realResult = new ArrayList<org.bimserver.interfaces.objects.SGuidanceProvider>();
+			List<Service.SGuidanceProvider> originalList = response.getValueList();
+			for (Service.SGuidanceProvider val : originalList) {
+				org.bimserver.interfaces.objects.SGuidanceProvider v = new org.bimserver.interfaces.objects.SGuidanceProvider();
+				v.setName(val.getName());
+				v.setClassName(val.getClassName());
+				v.setSettingsId(val.getSettingsId());
+				v.setOid(val.getOid());
+				realResult.add(v);
+			}
+		return realResult;
+		} catch (Exception e) {}
+		return null;
+	}
+
+	public org.bimserver.interfaces.objects.SGuidanceProvider getGuidanceProviderById(java.lang.Long unknown) {
+		try {
+			GetGuidanceProviderByIdRequest.Builder requestBuilder = GetGuidanceProviderByIdRequest.newBuilder();
+			requestBuilder.setUnknown(unknown);
+			GetGuidanceProviderByIdRequest request = requestBuilder.build();
+			GetGuidanceProviderByIdResponse response = service.getGuidanceProviderById(rpcController, request);
+			org.bimserver.interfaces.objects.SGuidanceProvider realResult = new org.bimserver.interfaces.objects.SGuidanceProvider();
+			return realResult;
+		} catch (Exception e) {}
+		return null;
+	}
+
+	public void addGuidanceProvider(org.bimserver.interfaces.objects.SGuidanceProvider unknown) {
+		try {
+			AddGuidanceProviderRequest.Builder requestBuilder = AddGuidanceProviderRequest.newBuilder();
+			Service.SGuidanceProvider.Builder newVal = SGuidanceProvider.newBuilder();
+			newVal.setName(unknown.getName());
+			newVal.setClassName(unknown.getClassName());
+			newVal.setSettingsId(unknown.getSettingsId());
+			for (java.lang.Long o : unknown.getSerializers()) {
+				newVal.addSerializers(o);
+			}
+			newVal.setOid(unknown.getOid());
+			requestBuilder.setUnknown(newVal.build());
+			AddGuidanceProviderRequest request = requestBuilder.build();
+			service.addGuidanceProvider(rpcController, request);
+		} catch (Exception e) {}
+	}
+
+	public void updateGuidanceProvider(org.bimserver.interfaces.objects.SGuidanceProvider unknown) {
+		try {
+			UpdateGuidanceProviderRequest.Builder requestBuilder = UpdateGuidanceProviderRequest.newBuilder();
+			Service.SGuidanceProvider.Builder newVal = SGuidanceProvider.newBuilder();
+			newVal.setName(unknown.getName());
+			newVal.setClassName(unknown.getClassName());
+			newVal.setSettingsId(unknown.getSettingsId());
+			for (java.lang.Long o : unknown.getSerializers()) {
+				newVal.addSerializers(o);
+			}
+			newVal.setOid(unknown.getOid());
+			requestBuilder.setUnknown(newVal.build());
+			UpdateGuidanceProviderRequest request = requestBuilder.build();
+			service.updateGuidanceProvider(rpcController, request);
+		} catch (Exception e) {}
+	}
+
+	public void deleteGuidanceProvider(java.lang.Long unknown) {
+		try {
+			DeleteGuidanceProviderRequest.Builder requestBuilder = DeleteGuidanceProviderRequest.newBuilder();
+			requestBuilder.setUnknown(unknown);
+			DeleteGuidanceProviderRequest request = requestBuilder.build();
+			service.deleteGuidanceProvider(rpcController, request);
+		} catch (Exception e) {}
+	}
+
+	public void deleteSerializer(java.lang.Long unknown) {
+		try {
+			DeleteSerializerRequest.Builder requestBuilder = DeleteSerializerRequest.newBuilder();
+			requestBuilder.setUnknown(unknown);
+			DeleteSerializerRequest request = requestBuilder.build();
+			service.deleteSerializer(rpcController, request);
+		} catch (Exception e) {}
+	}
+
+	public void deleteDeserializer(java.lang.Long unknown) {
+		try {
+			DeleteDeserializerRequest.Builder requestBuilder = DeleteDeserializerRequest.newBuilder();
+			requestBuilder.setUnknown(unknown);
+			DeleteDeserializerRequest request = requestBuilder.build();
+			service.deleteDeserializer(rpcController, request);
+		} catch (Exception e) {}
+	}
+
+	public org.bimserver.interfaces.objects.SMergeIdentifier getSettingMergeIdentifier() {
+		try {
+			GetSettingMergeIdentifierRequest.Builder requestBuilder = GetSettingMergeIdentifierRequest.newBuilder();
+			GetSettingMergeIdentifierRequest request = requestBuilder.build();
+			GetSettingMergeIdentifierResponse response = service.getSettingMergeIdentifier(rpcController, request);
+			return null;
+		} catch (Exception e) {}
+		return null;
+	}
+
+	public org.bimserver.interfaces.objects.SSerializer getSerializerByName(java.lang.String serializerName) {
+		try {
+			GetSerializerByNameRequest.Builder requestBuilder = GetSerializerByNameRequest.newBuilder();
+			requestBuilder.setSerializerName(serializerName);
+			GetSerializerByNameRequest request = requestBuilder.build();
+			GetSerializerByNameResponse response = service.getSerializerByName(rpcController, request);
+			org.bimserver.interfaces.objects.SSerializer realResult = new org.bimserver.interfaces.objects.SSerializer();
+			return realResult;
+		} catch (Exception e) {}
+		return null;
+	}
+
+	public org.bimserver.interfaces.objects.SDeserializer getDeserializerByName(java.lang.String deserializerName) {
+		try {
+			GetDeserializerByNameRequest.Builder requestBuilder = GetDeserializerByNameRequest.newBuilder();
+			requestBuilder.setDeserializerName(deserializerName);
+			GetDeserializerByNameRequest request = requestBuilder.build();
+			GetDeserializerByNameResponse response = service.getDeserializerByName(rpcController, request);
+			org.bimserver.interfaces.objects.SDeserializer realResult = new org.bimserver.interfaces.objects.SDeserializer();
+			return realResult;
+		} catch (Exception e) {}
+		return null;
+	}
+
+	public java.lang.Boolean hasActiveSerializer(java.lang.String unknown) {
+		try {
+			HasActiveSerializerRequest.Builder requestBuilder = HasActiveSerializerRequest.newBuilder();
+			requestBuilder.setUnknown(unknown);
+			HasActiveSerializerRequest request = requestBuilder.build();
+			HasActiveSerializerResponse response = service.hasActiveSerializer(rpcController, request);
+			return response.getValue();
+		} catch (Exception e) {}
+		return false;
+	}
+
+	public java.util.List<org.bimserver.shared.SPlugin> getAllPlugins() {
+		try {
+			GetAllPluginsRequest.Builder requestBuilder = GetAllPluginsRequest.newBuilder();
+			GetAllPluginsRequest request = requestBuilder.build();
+			GetAllPluginsResponse response = service.getAllPlugins(rpcController, request);
+			java.util.List<org.bimserver.shared.SPlugin> realResult = new ArrayList<org.bimserver.shared.SPlugin>();
+			List<Service.SPlugin> originalList = response.getValueList();
+			for (Service.SPlugin val : originalList) {
+				org.bimserver.shared.SPlugin v = new org.bimserver.shared.SPlugin();
+				v.setName(val.getName());
+				v.setLocation(val.getLocation());
+				v.setState(org.bimserver.shared.SPlugin.SPluginState.values()[val.getState().ordinal()]);
+				v.setDescription(val.getDescription());
+				realResult.add(v);
+			}
+		return realResult;
+		} catch (Exception e) {}
+		return null;
+	}
+
+	public void disablePlugin(java.lang.String unknown) {
+		try {
+			DisablePluginRequest.Builder requestBuilder = DisablePluginRequest.newBuilder();
+			requestBuilder.setUnknown(unknown);
+			DisablePluginRequest request = requestBuilder.build();
+			service.disablePlugin(rpcController, request);
+		} catch (Exception e) {}
+	}
+
+	public org.bimserver.interfaces.objects.SSerializer getSerializerByContentType(java.lang.String contentType) {
+		try {
+			GetSerializerByContentTypeRequest.Builder requestBuilder = GetSerializerByContentTypeRequest.newBuilder();
+			requestBuilder.setContentType(contentType);
+			GetSerializerByContentTypeRequest request = requestBuilder.build();
+			GetSerializerByContentTypeResponse response = service.getSerializerByContentType(rpcController, request);
+			org.bimserver.interfaces.objects.SSerializer realResult = new org.bimserver.interfaces.objects.SSerializer();
+			return realResult;
+		} catch (Exception e) {}
+		return null;
+	}
+
+	public void startTransaction(java.lang.Integer pid) {
+		try {
+			StartTransactionRequest.Builder requestBuilder = StartTransactionRequest.newBuilder();
+			requestBuilder.setPid(pid);
+			StartTransactionRequest request = requestBuilder.build();
+			service.startTransaction(rpcController, request);
+		} catch (Exception e) {}
+	}
+
+	public java.lang.Long commitTransaction() {
+		try {
+			CommitTransactionRequest.Builder requestBuilder = CommitTransactionRequest.newBuilder();
+			CommitTransactionRequest request = requestBuilder.build();
+			CommitTransactionResponse response = service.commitTransaction(rpcController, request);
+			return response.getValue();
+		} catch (Exception e) {}
+		return 0L;
+	}
+
+	public void abortTransaction() {
+		try {
+			AbortTransactionRequest.Builder requestBuilder = AbortTransactionRequest.newBuilder();
+			AbortTransactionRequest request = requestBuilder.build();
+			service.abortTransaction(rpcController, request);
+		} catch (Exception e) {}
+	}
+
+	public void setStringAttribute(java.lang.Long oid, java.lang.String className, java.lang.String attributeName, java.lang.String value) {
+		try {
+			SetStringAttributeRequest.Builder requestBuilder = SetStringAttributeRequest.newBuilder();
+			requestBuilder.setOid(oid);
+			requestBuilder.setClassName(className);
+			requestBuilder.setAttributeName(attributeName);
+			requestBuilder.setValue(value);
+			SetStringAttributeRequest request = requestBuilder.build();
+			service.setStringAttribute(rpcController, request);
+		} catch (Exception e) {}
+	}
+
+	public void setFloatAttribute(java.lang.Long oid, java.lang.String className, java.lang.String attributeName, float value) {
+		try {
+			SetFloatAttributeRequest.Builder requestBuilder = SetFloatAttributeRequest.newBuilder();
+			requestBuilder.setOid(oid);
+			requestBuilder.setClassName(className);
+			requestBuilder.setAttributeName(attributeName);
+			requestBuilder.setValue(value);
+			SetFloatAttributeRequest request = requestBuilder.build();
+			service.setFloatAttribute(rpcController, request);
+		} catch (Exception e) {}
+	}
+
+	public void setIntegerAttribute(java.lang.Long oid, java.lang.String className, java.lang.String attributeName, java.lang.Integer value) {
+		try {
+			SetIntegerAttributeRequest.Builder requestBuilder = SetIntegerAttributeRequest.newBuilder();
+			requestBuilder.setOid(oid);
+			requestBuilder.setClassName(className);
+			requestBuilder.setAttributeName(attributeName);
+			requestBuilder.setValue(value);
+			SetIntegerAttributeRequest request = requestBuilder.build();
+			service.setIntegerAttribute(rpcController, request);
+		} catch (Exception e) {}
+	}
+
+	public void setBooleanAttribute(java.lang.Long oid, java.lang.String className, java.lang.String attributeName, java.lang.Boolean value) {
+		try {
+			SetBooleanAttributeRequest.Builder requestBuilder = SetBooleanAttributeRequest.newBuilder();
+			requestBuilder.setOid(oid);
+			requestBuilder.setClassName(className);
+			requestBuilder.setAttributeName(attributeName);
+			requestBuilder.setValue(value);
+			SetBooleanAttributeRequest request = requestBuilder.build();
+			service.setBooleanAttribute(rpcController, request);
+		} catch (Exception e) {}
+	}
+
+	public void unsetAttribute(java.lang.Long oid, java.lang.String className, java.lang.String attributeName) {
+		try {
+			UnsetAttributeRequest.Builder requestBuilder = UnsetAttributeRequest.newBuilder();
+			requestBuilder.setOid(oid);
+			requestBuilder.setClassName(className);
+			requestBuilder.setAttributeName(attributeName);
+			UnsetAttributeRequest request = requestBuilder.build();
+			service.unsetAttribute(rpcController, request);
+		} catch (Exception e) {}
+	}
+
+	public void unsetReference(java.lang.Long oid, java.lang.String className, java.lang.String referenceName) {
+		try {
+			UnsetReferenceRequest.Builder requestBuilder = UnsetReferenceRequest.newBuilder();
+			requestBuilder.setOid(oid);
+			requestBuilder.setClassName(className);
+			requestBuilder.setReferenceName(referenceName);
+			UnsetReferenceRequest request = requestBuilder.build();
+			service.unsetReference(rpcController, request);
+		} catch (Exception e) {}
+	}
+
+	public void addStringAttribute(java.lang.Long oid, java.lang.String className, java.lang.String attributeName, java.lang.String value) {
+		try {
+			AddStringAttributeRequest.Builder requestBuilder = AddStringAttributeRequest.newBuilder();
+			requestBuilder.setOid(oid);
+			requestBuilder.setClassName(className);
+			requestBuilder.setAttributeName(attributeName);
+			requestBuilder.setValue(value);
+			AddStringAttributeRequest request = requestBuilder.build();
+			service.addStringAttribute(rpcController, request);
+		} catch (Exception e) {}
+	}
+
+	public void addFloatAttribute(java.lang.Long oid, java.lang.String className, java.lang.String attributeName, float value) {
+		try {
+			AddFloatAttributeRequest.Builder requestBuilder = AddFloatAttributeRequest.newBuilder();
+			requestBuilder.setOid(oid);
+			requestBuilder.setClassName(className);
+			requestBuilder.setAttributeName(attributeName);
+			requestBuilder.setValue(value);
+			AddFloatAttributeRequest request = requestBuilder.build();
+			service.addFloatAttribute(rpcController, request);
+		} catch (Exception e) {}
+	}
+
+	public void addIntegerAttribute(java.lang.Long oid, java.lang.String className, java.lang.String attributeName, java.lang.Integer value) {
+		try {
+			AddIntegerAttributeRequest.Builder requestBuilder = AddIntegerAttributeRequest.newBuilder();
+			requestBuilder.setOid(oid);
+			requestBuilder.setClassName(className);
+			requestBuilder.setAttributeName(attributeName);
+			requestBuilder.setValue(value);
+			AddIntegerAttributeRequest request = requestBuilder.build();
+			service.addIntegerAttribute(rpcController, request);
+		} catch (Exception e) {}
+	}
+
+	public void addBooleanAttribute(java.lang.Long oid, java.lang.String className, java.lang.String attributeName, java.lang.Boolean value) {
+		try {
+			AddBooleanAttributeRequest.Builder requestBuilder = AddBooleanAttributeRequest.newBuilder();
+			requestBuilder.setOid(oid);
+			requestBuilder.setClassName(className);
+			requestBuilder.setAttributeName(attributeName);
+			requestBuilder.setValue(value);
+			AddBooleanAttributeRequest request = requestBuilder.build();
+			service.addBooleanAttribute(rpcController, request);
+		} catch (Exception e) {}
+	}
+
+	public void removeReference(java.lang.Long oid, java.lang.String className, java.lang.String referenceName, java.lang.Integer index) {
+		try {
+			RemoveReferenceRequest.Builder requestBuilder = RemoveReferenceRequest.newBuilder();
+			requestBuilder.setOid(oid);
+			requestBuilder.setClassName(className);
+			requestBuilder.setReferenceName(referenceName);
+			requestBuilder.setIndex(index);
+			RemoveReferenceRequest request = requestBuilder.build();
+			service.removeReference(rpcController, request);
+		} catch (Exception e) {}
+	}
+
+	public java.util.Date getServerStartTime() {
+		try {
+			GetServerStartTimeRequest.Builder requestBuilder = GetServerStartTimeRequest.newBuilder();
+			GetServerStartTimeRequest request = requestBuilder.build();
+			GetServerStartTimeResponse response = service.getServerStartTime(rpcController, request);
+			java.util.Date realResult = new java.util.Date();
+			return realResult;
+		} catch (Exception e) {}
+		return null;
+	}
+
+	public java.util.List<org.bimserver.interfaces.objects.SDeserializer> getAllDeserializers(java.lang.Boolean unknown) {
+		try {
+			GetAllDeserializersRequest.Builder requestBuilder = GetAllDeserializersRequest.newBuilder();
+			requestBuilder.setUnknown(unknown);
+			GetAllDeserializersRequest request = requestBuilder.build();
+			GetAllDeserializersResponse response = service.getAllDeserializers(rpcController, request);
+			java.util.List<org.bimserver.interfaces.objects.SDeserializer> realResult = new ArrayList<org.bimserver.interfaces.objects.SDeserializer>();
+			List<Service.SDeserializer> originalList = response.getValueList();
+			for (Service.SDeserializer val : originalList) {
+				org.bimserver.interfaces.objects.SDeserializer v = new org.bimserver.interfaces.objects.SDeserializer();
+				v.setName(val.getName());
+				v.setClassName(val.getClassName());
+				v.setDescription(val.getDescription());
+				v.setSettingsId(val.getSettingsId());
+				v.setOid(val.getOid());
+				realResult.add(v);
+			}
+		return realResult;
+		} catch (Exception e) {}
+		return null;
 	}
 
 	public org.bimserver.interfaces.objects.SAccessMethod getAccessMethod() {
@@ -468,9 +934,6 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 			newVal.setId(sProject.getId());
 			newVal.setState(SObjectState.values()[sProject.getState().ordinal()]);
 			newVal.setDescription(sProject.getDescription());
-			for (java.lang.Long o : sProject.getSubProjects()) {
-				newVal.addSubProjects(o);
-			}
 			for (java.lang.Long o : sProject.getHasAuthorizedUsers()) {
 				newVal.addHasAuthorizedUsers(o);
 			}
@@ -483,6 +946,9 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 			newVal.setCreatedById(sProject.getCreatedById());
 			newVal.setClashDetectionSettingsId(sProject.getClashDetectionSettingsId());
 			newVal.setExportLengthMeasurePrefix(SSIPrefix.values()[sProject.getExportLengthMeasurePrefix().ordinal()]);
+			for (java.lang.Long o : sProject.getSubProjects()) {
+				newVal.addSubProjects(o);
+			}
 			newVal.setOid(sProject.getOid());
 			for (java.lang.Long o : sProject.getRevisions()) {
 				newVal.addRevisions(o);
@@ -508,13 +974,13 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 			newVal.setDate(sRevision.getDate().getTime());
 			newVal.setComment(sRevision.getComment());
 			newVal.setTag(sRevision.getTag());
-			for (java.lang.Long o : sRevision.getLastClashes()) {
-				newVal.addLastClashes(o);
-			}
 			for (java.lang.Long o : sRevision.getConcreteRevisions()) {
 				newVal.addConcreteRevisions(o);
 			}
 			newVal.setLastConcreteRevisionId(sRevision.getLastConcreteRevisionId());
+			for (java.lang.Long o : sRevision.getLastClashes()) {
+				newVal.addLastClashes(o);
+			}
 			newVal.setOid(sRevision.getOid());
 			for (java.lang.Long o : sRevision.getCheckouts()) {
 				newVal.addCheckouts(o);
@@ -666,11 +1132,11 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 			for (Service.SCheckout val : originalList) {
 				org.bimserver.interfaces.objects.SCheckout v = new org.bimserver.interfaces.objects.SCheckout();
 				v.setDate(new Date(val.getDate()));
-				v.setCheckinId(val.getCheckinId());
 				v.setRevisionId(val.getRevisionId());
 				v.setOid(val.getOid());
 				v.setUserId(val.getUserId());
 				v.setProjectId(val.getProjectId());
+				v.setCheckinId(val.getCheckinId());
 				realResult.add(v);
 			}
 		return realResult;
@@ -720,11 +1186,11 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 			for (Service.SCheckout val : originalList) {
 				org.bimserver.interfaces.objects.SCheckout v = new org.bimserver.interfaces.objects.SCheckout();
 				v.setDate(new Date(val.getDate()));
-				v.setCheckinId(val.getCheckinId());
 				v.setRevisionId(val.getRevisionId());
 				v.setOid(val.getOid());
 				v.setUserId(val.getUserId());
 				v.setProjectId(val.getProjectId());
+				v.setCheckinId(val.getCheckinId());
 				realResult.add(v);
 			}
 		return realResult;
@@ -743,11 +1209,11 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 			for (Service.SCheckout val : originalList) {
 				org.bimserver.interfaces.objects.SCheckout v = new org.bimserver.interfaces.objects.SCheckout();
 				v.setDate(new Date(val.getDate()));
-				v.setCheckinId(val.getCheckinId());
 				v.setRevisionId(val.getRevisionId());
 				v.setOid(val.getOid());
 				v.setUserId(val.getUserId());
 				v.setProjectId(val.getProjectId());
+				v.setCheckinId(val.getCheckinId());
 				realResult.add(v);
 			}
 		return realResult;
@@ -975,8 +1441,8 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 				v.setOid(val.getOid());
 				v.setGuid1(val.getGuid1());
 				v.setGuid2(val.getGuid2());
-				v.setRevision2Id(val.getRevision2Id());
 				v.setRevision1Id(val.getRevision1Id());
+				v.setRevision2Id(val.getRevision2Id());
 				v.setName1(val.getName1());
 				v.setName2(val.getName2());
 				v.setType1(val.getType1());
@@ -1011,10 +1477,10 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 			for (Service.SEidClash val : originalList) {
 				org.bimserver.interfaces.objects.SEidClash v = new org.bimserver.interfaces.objects.SEidClash();
 				v.setOid(val.getOid());
-				v.setEid1(val.getEid1());
 				v.setEid2(val.getEid2());
-				v.setRevision2Id(val.getRevision2Id());
+				v.setEid1(val.getEid1());
 				v.setRevision1Id(val.getRevision1Id());
+				v.setRevision2Id(val.getRevision2Id());
 				v.setName1(val.getName1());
 				v.setName2(val.getName2());
 				v.setType1(val.getType1());
@@ -1036,8 +1502,8 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 			List<Service.SClash> originalList = response.getValueList();
 			for (Service.SClash val : originalList) {
 				org.bimserver.interfaces.objects.SClash v = new org.bimserver.interfaces.objects.SClash();
-				v.setRevision2Id(val.getRevision2Id());
 				v.setRevision1Id(val.getRevision1Id());
+				v.setRevision2Id(val.getRevision2Id());
 				v.setOid(val.getOid());
 				v.setName1(val.getName1());
 				v.setName2(val.getName2());
@@ -1451,643 +1917,6 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 		return null;
 	}
 
-	public void setSettingEnabledExportTypes(java.util.Set<java.lang.String> enabledExportTypeNames) {
-		try {
-			SetSettingEnabledExportTypesRequest.Builder requestBuilder = SetSettingEnabledExportTypesRequest.newBuilder();
-			for (java.lang.String val : enabledExportTypeNames) {
-				String v = val;
-				requestBuilder.addEnabledExportTypeNames(v);
-			}
-			SetSettingEnabledExportTypesRequest request = requestBuilder.build();
-			service.setSettingEnabledExportTypes(rpcController, request);
-		} catch (Exception e) {}
-	}
-
-	public java.lang.String getSettingSiteAddress() {
-		try {
-			GetSettingSiteAddressRequest.Builder requestBuilder = GetSettingSiteAddressRequest.newBuilder();
-			GetSettingSiteAddressRequest request = requestBuilder.build();
-			GetSettingSiteAddressResponse response = service.getSettingSiteAddress(rpcController, request);
-			return response.getValue();
-		} catch (Exception e) {}
-		return null;
-	}
-
-	public void setSettingSiteAddress(java.lang.String siteAddress) {
-		try {
-			SetSettingSiteAddressRequest.Builder requestBuilder = SetSettingSiteAddressRequest.newBuilder();
-			requestBuilder.setSiteAddress(siteAddress);
-			SetSettingSiteAddressRequest request = requestBuilder.build();
-			service.setSettingSiteAddress(rpcController, request);
-		} catch (Exception e) {}
-	}
-
-	public java.lang.String getSettingSmtpServer() {
-		try {
-			GetSettingSmtpServerRequest.Builder requestBuilder = GetSettingSmtpServerRequest.newBuilder();
-			GetSettingSmtpServerRequest request = requestBuilder.build();
-			GetSettingSmtpServerResponse response = service.getSettingSmtpServer(rpcController, request);
-			return response.getValue();
-		} catch (Exception e) {}
-		return null;
-	}
-
-	public void setSettingSmtpServer(java.lang.String smtpServer) {
-		try {
-			SetSettingSmtpServerRequest.Builder requestBuilder = SetSettingSmtpServerRequest.newBuilder();
-			requestBuilder.setSmtpServer(smtpServer);
-			SetSettingSmtpServerRequest request = requestBuilder.build();
-			service.setSettingSmtpServer(rpcController, request);
-		} catch (Exception e) {}
-	}
-
-	public java.lang.Boolean isSettingAutoTestClashes() {
-		try {
-			IsSettingAutoTestClashesRequest.Builder requestBuilder = IsSettingAutoTestClashesRequest.newBuilder();
-			IsSettingAutoTestClashesRequest request = requestBuilder.build();
-			IsSettingAutoTestClashesResponse response = service.isSettingAutoTestClashes(rpcController, request);
-			return response.getValue();
-		} catch (Exception e) {}
-		return false;
-	}
-
-	public void setSettingAutoTestClashes(java.lang.Boolean autoTestClashes) {
-		try {
-			SetSettingAutoTestClashesRequest.Builder requestBuilder = SetSettingAutoTestClashesRequest.newBuilder();
-			requestBuilder.setAutoTestClashes(autoTestClashes);
-			SetSettingAutoTestClashesRequest request = requestBuilder.build();
-			service.setSettingAutoTestClashes(rpcController, request);
-		} catch (Exception e) {}
-	}
-
-	public java.lang.Boolean isSettingIntelligentMerging() {
-		try {
-			IsSettingIntelligentMergingRequest.Builder requestBuilder = IsSettingIntelligentMergingRequest.newBuilder();
-			IsSettingIntelligentMergingRequest request = requestBuilder.build();
-			IsSettingIntelligentMergingResponse response = service.isSettingIntelligentMerging(rpcController, request);
-			return response.getValue();
-		} catch (Exception e) {}
-		return false;
-	}
-
-	public void setSettingIntelligentMerging(java.lang.Boolean intelligentMerging) {
-		try {
-			SetSettingIntelligentMergingRequest.Builder requestBuilder = SetSettingIntelligentMergingRequest.newBuilder();
-			requestBuilder.setIntelligentMerging(intelligentMerging);
-			SetSettingIntelligentMergingRequest request = requestBuilder.build();
-			service.setSettingIntelligentMerging(rpcController, request);
-		} catch (Exception e) {}
-	}
-
-	public java.lang.Boolean isSettingCacheOutputFiles() {
-		try {
-			IsSettingCacheOutputFilesRequest.Builder requestBuilder = IsSettingCacheOutputFilesRequest.newBuilder();
-			IsSettingCacheOutputFilesRequest request = requestBuilder.build();
-			IsSettingCacheOutputFilesResponse response = service.isSettingCacheOutputFiles(rpcController, request);
-			return response.getValue();
-		} catch (Exception e) {}
-		return false;
-	}
-
-	public void setSettingCacheOutputFiles(java.lang.Boolean cacheOutputFiles) {
-		try {
-			SetSettingCacheOutputFilesRequest.Builder requestBuilder = SetSettingCacheOutputFilesRequest.newBuilder();
-			requestBuilder.setCacheOutputFiles(cacheOutputFiles);
-			SetSettingCacheOutputFilesRequest request = requestBuilder.build();
-			service.setSettingCacheOutputFiles(rpcController, request);
-		} catch (Exception e) {}
-	}
-
-	public java.util.List<org.bimserver.shared.SUserSession> getActiveUserSessions() {
-		try {
-			GetActiveUserSessionsRequest.Builder requestBuilder = GetActiveUserSessionsRequest.newBuilder();
-			GetActiveUserSessionsRequest request = requestBuilder.build();
-			GetActiveUserSessionsResponse response = service.getActiveUserSessions(rpcController, request);
-			java.util.List<org.bimserver.shared.SUserSession> realResult = new ArrayList<org.bimserver.shared.SUserSession>();
-			List<Service.SUserSession> originalList = response.getValueList();
-			for (Service.SUserSession val : originalList) {
-				org.bimserver.shared.SUserSession v = new org.bimserver.shared.SUserSession();
-				v.setName(val.getName());
-				v.setType(org.bimserver.interfaces.objects.SUserType.values()[val.getType().ordinal()]);
-				v.setAccessMethod(org.bimserver.interfaces.objects.SAccessMethod.values()[val.getAccessMethod().ordinal()]);
-				v.setActiveSince(new Date(val.getActiveSince()));
-				v.setLastActive(new Date(val.getLastActive()));
-				v.setUsername(val.getUsername());
-				v.setUoid(val.getUoid());
-				realResult.add(v);
-			}
-		return realResult;
-		} catch (Exception e) {}
-		return null;
-	}
-
-	public java.util.List<org.bimserver.shared.SLongAction> getActiveLongActions() {
-		try {
-			GetActiveLongActionsRequest.Builder requestBuilder = GetActiveLongActionsRequest.newBuilder();
-			GetActiveLongActionsRequest request = requestBuilder.build();
-			GetActiveLongActionsResponse response = service.getActiveLongActions(rpcController, request);
-			java.util.List<org.bimserver.shared.SLongAction> realResult = new ArrayList<org.bimserver.shared.SLongAction>();
-			List<Service.SLongAction> originalList = response.getValueList();
-			for (Service.SLongAction val : originalList) {
-				org.bimserver.shared.SLongAction v = new org.bimserver.shared.SLongAction();
-				v.setName(val.getName());
-				v.setIdentification(val.getIdentification());
-				v.setUsername(val.getUsername());
-				v.setUserOid(val.getUserOid());
-				v.setStart(new Date(val.getStart()));
-				realResult.add(v);
-			}
-		return realResult;
-		} catch (Exception e) {}
-		return null;
-	}
-
-	public void migrateDatabase() {
-		try {
-			MigrateDatabaseRequest.Builder requestBuilder = MigrateDatabaseRequest.newBuilder();
-			MigrateDatabaseRequest request = requestBuilder.build();
-			service.migrateDatabase(rpcController, request);
-		} catch (Exception e) {}
-	}
-
-	public java.util.List<org.bimserver.interfaces.objects.SSerializer> getAllSerializers(java.lang.Boolean unknown) {
-		try {
-			GetAllSerializersRequest.Builder requestBuilder = GetAllSerializersRequest.newBuilder();
-			requestBuilder.setUnknown(unknown);
-			GetAllSerializersRequest request = requestBuilder.build();
-			GetAllSerializersResponse response = service.getAllSerializers(rpcController, request);
-			java.util.List<org.bimserver.interfaces.objects.SSerializer> realResult = new ArrayList<org.bimserver.interfaces.objects.SSerializer>();
-			List<Service.SSerializer> originalList = response.getValueList();
-			for (Service.SSerializer val : originalList) {
-				org.bimserver.interfaces.objects.SSerializer v = new org.bimserver.interfaces.objects.SSerializer();
-				v.setName(val.getName());
-				v.setClassName(val.getClassName());
-				v.setExtension(val.getExtension());
-				v.setContentType(val.getContentType());
-				v.setDescription(val.getDescription());
-				v.setGuidanceProviderId(val.getGuidanceProviderId());
-				v.setSettingsId(val.getSettingsId());
-				v.setOid(val.getOid());
-				realResult.add(v);
-			}
-		return realResult;
-		} catch (Exception e) {}
-		return null;
-	}
-
-	public java.util.List<org.bimserver.interfaces.objects.SSerializer> getEnabledSerializers() {
-		try {
-			GetEnabledSerializersRequest.Builder requestBuilder = GetEnabledSerializersRequest.newBuilder();
-			GetEnabledSerializersRequest request = requestBuilder.build();
-			GetEnabledSerializersResponse response = service.getEnabledSerializers(rpcController, request);
-			java.util.List<org.bimserver.interfaces.objects.SSerializer> realResult = new ArrayList<org.bimserver.interfaces.objects.SSerializer>();
-			List<Service.SSerializer> originalList = response.getValueList();
-			for (Service.SSerializer val : originalList) {
-				org.bimserver.interfaces.objects.SSerializer v = new org.bimserver.interfaces.objects.SSerializer();
-				v.setName(val.getName());
-				v.setClassName(val.getClassName());
-				v.setExtension(val.getExtension());
-				v.setContentType(val.getContentType());
-				v.setDescription(val.getDescription());
-				v.setGuidanceProviderId(val.getGuidanceProviderId());
-				v.setSettingsId(val.getSettingsId());
-				v.setOid(val.getOid());
-				realResult.add(v);
-			}
-		return realResult;
-		} catch (Exception e) {}
-		return null;
-	}
-
-	public java.util.List<org.bimserver.interfaces.objects.SDeserializer> getEnabledDeserializers() {
-		try {
-			GetEnabledDeserializersRequest.Builder requestBuilder = GetEnabledDeserializersRequest.newBuilder();
-			GetEnabledDeserializersRequest request = requestBuilder.build();
-			GetEnabledDeserializersResponse response = service.getEnabledDeserializers(rpcController, request);
-			java.util.List<org.bimserver.interfaces.objects.SDeserializer> realResult = new ArrayList<org.bimserver.interfaces.objects.SDeserializer>();
-			List<Service.SDeserializer> originalList = response.getValueList();
-			for (Service.SDeserializer val : originalList) {
-				org.bimserver.interfaces.objects.SDeserializer v = new org.bimserver.interfaces.objects.SDeserializer();
-				v.setName(val.getName());
-				v.setClassName(val.getClassName());
-				v.setDescription(val.getDescription());
-				v.setSettingsId(val.getSettingsId());
-				v.setOid(val.getOid());
-				realResult.add(v);
-			}
-		return realResult;
-		} catch (Exception e) {}
-		return null;
-	}
-
-	public org.bimserver.interfaces.objects.SSerializer getSerializerById(java.lang.Long unknown) {
-		try {
-			GetSerializerByIdRequest.Builder requestBuilder = GetSerializerByIdRequest.newBuilder();
-			requestBuilder.setUnknown(unknown);
-			GetSerializerByIdRequest request = requestBuilder.build();
-			GetSerializerByIdResponse response = service.getSerializerById(rpcController, request);
-			org.bimserver.interfaces.objects.SSerializer realResult = new org.bimserver.interfaces.objects.SSerializer();
-			return realResult;
-		} catch (Exception e) {}
-		return null;
-	}
-
-	public void addSerializer(org.bimserver.interfaces.objects.SSerializer unknown) {
-		try {
-			AddSerializerRequest.Builder requestBuilder = AddSerializerRequest.newBuilder();
-			Service.SSerializer.Builder newVal = SSerializer.newBuilder();
-			newVal.setName(unknown.getName());
-			newVal.setClassName(unknown.getClassName());
-			newVal.setExtension(unknown.getExtension());
-			newVal.setContentType(unknown.getContentType());
-			newVal.setDescription(unknown.getDescription());
-			newVal.setGuidanceProviderId(unknown.getGuidanceProviderId());
-			newVal.setSettingsId(unknown.getSettingsId());
-			newVal.setOid(unknown.getOid());
-			requestBuilder.setUnknown(newVal.build());
-			AddSerializerRequest request = requestBuilder.build();
-			service.addSerializer(rpcController, request);
-		} catch (Exception e) {}
-	}
-
-	public void updateSerializer(org.bimserver.interfaces.objects.SSerializer unknown) {
-		try {
-			UpdateSerializerRequest.Builder requestBuilder = UpdateSerializerRequest.newBuilder();
-			Service.SSerializer.Builder newVal = SSerializer.newBuilder();
-			newVal.setName(unknown.getName());
-			newVal.setClassName(unknown.getClassName());
-			newVal.setExtension(unknown.getExtension());
-			newVal.setContentType(unknown.getContentType());
-			newVal.setDescription(unknown.getDescription());
-			newVal.setGuidanceProviderId(unknown.getGuidanceProviderId());
-			newVal.setSettingsId(unknown.getSettingsId());
-			newVal.setOid(unknown.getOid());
-			requestBuilder.setUnknown(newVal.build());
-			UpdateSerializerRequest request = requestBuilder.build();
-			service.updateSerializer(rpcController, request);
-		} catch (Exception e) {}
-	}
-
-	public java.util.List<org.bimserver.interfaces.objects.SGuidanceProvider> getAllGuidanceProviders() {
-		try {
-			GetAllGuidanceProvidersRequest.Builder requestBuilder = GetAllGuidanceProvidersRequest.newBuilder();
-			GetAllGuidanceProvidersRequest request = requestBuilder.build();
-			GetAllGuidanceProvidersResponse response = service.getAllGuidanceProviders(rpcController, request);
-			java.util.List<org.bimserver.interfaces.objects.SGuidanceProvider> realResult = new ArrayList<org.bimserver.interfaces.objects.SGuidanceProvider>();
-			List<Service.SGuidanceProvider> originalList = response.getValueList();
-			for (Service.SGuidanceProvider val : originalList) {
-				org.bimserver.interfaces.objects.SGuidanceProvider v = new org.bimserver.interfaces.objects.SGuidanceProvider();
-				v.setName(val.getName());
-				v.setClassName(val.getClassName());
-				v.setSettingsId(val.getSettingsId());
-				v.setOid(val.getOid());
-				realResult.add(v);
-			}
-		return realResult;
-		} catch (Exception e) {}
-		return null;
-	}
-
-	public org.bimserver.interfaces.objects.SGuidanceProvider getGuidanceProviderById(java.lang.Long unknown) {
-		try {
-			GetGuidanceProviderByIdRequest.Builder requestBuilder = GetGuidanceProviderByIdRequest.newBuilder();
-			requestBuilder.setUnknown(unknown);
-			GetGuidanceProviderByIdRequest request = requestBuilder.build();
-			GetGuidanceProviderByIdResponse response = service.getGuidanceProviderById(rpcController, request);
-			org.bimserver.interfaces.objects.SGuidanceProvider realResult = new org.bimserver.interfaces.objects.SGuidanceProvider();
-			return realResult;
-		} catch (Exception e) {}
-		return null;
-	}
-
-	public void addGuidanceProvider(org.bimserver.interfaces.objects.SGuidanceProvider unknown) {
-		try {
-			AddGuidanceProviderRequest.Builder requestBuilder = AddGuidanceProviderRequest.newBuilder();
-			Service.SGuidanceProvider.Builder newVal = SGuidanceProvider.newBuilder();
-			newVal.setName(unknown.getName());
-			newVal.setClassName(unknown.getClassName());
-			newVal.setSettingsId(unknown.getSettingsId());
-			for (java.lang.Long o : unknown.getSerializers()) {
-				newVal.addSerializers(o);
-			}
-			newVal.setOid(unknown.getOid());
-			requestBuilder.setUnknown(newVal.build());
-			AddGuidanceProviderRequest request = requestBuilder.build();
-			service.addGuidanceProvider(rpcController, request);
-		} catch (Exception e) {}
-	}
-
-	public void updateGuidanceProvider(org.bimserver.interfaces.objects.SGuidanceProvider unknown) {
-		try {
-			UpdateGuidanceProviderRequest.Builder requestBuilder = UpdateGuidanceProviderRequest.newBuilder();
-			Service.SGuidanceProvider.Builder newVal = SGuidanceProvider.newBuilder();
-			newVal.setName(unknown.getName());
-			newVal.setClassName(unknown.getClassName());
-			newVal.setSettingsId(unknown.getSettingsId());
-			for (java.lang.Long o : unknown.getSerializers()) {
-				newVal.addSerializers(o);
-			}
-			newVal.setOid(unknown.getOid());
-			requestBuilder.setUnknown(newVal.build());
-			UpdateGuidanceProviderRequest request = requestBuilder.build();
-			service.updateGuidanceProvider(rpcController, request);
-		} catch (Exception e) {}
-	}
-
-	public void deleteGuidanceProvider(java.lang.Long unknown) {
-		try {
-			DeleteGuidanceProviderRequest.Builder requestBuilder = DeleteGuidanceProviderRequest.newBuilder();
-			requestBuilder.setUnknown(unknown);
-			DeleteGuidanceProviderRequest request = requestBuilder.build();
-			service.deleteGuidanceProvider(rpcController, request);
-		} catch (Exception e) {}
-	}
-
-	public void deleteSerializer(java.lang.Long unknown) {
-		try {
-			DeleteSerializerRequest.Builder requestBuilder = DeleteSerializerRequest.newBuilder();
-			requestBuilder.setUnknown(unknown);
-			DeleteSerializerRequest request = requestBuilder.build();
-			service.deleteSerializer(rpcController, request);
-		} catch (Exception e) {}
-	}
-
-	public org.bimserver.interfaces.objects.SMergeIdentifier getSettingMergeIdentifier() {
-		try {
-			GetSettingMergeIdentifierRequest.Builder requestBuilder = GetSettingMergeIdentifierRequest.newBuilder();
-			GetSettingMergeIdentifierRequest request = requestBuilder.build();
-			GetSettingMergeIdentifierResponse response = service.getSettingMergeIdentifier(rpcController, request);
-			return null;
-		} catch (Exception e) {}
-		return null;
-	}
-
-	public org.bimserver.interfaces.objects.SSerializer getSerializerByName(java.lang.String serializerName) {
-		try {
-			GetSerializerByNameRequest.Builder requestBuilder = GetSerializerByNameRequest.newBuilder();
-			requestBuilder.setSerializerName(serializerName);
-			GetSerializerByNameRequest request = requestBuilder.build();
-			GetSerializerByNameResponse response = service.getSerializerByName(rpcController, request);
-			org.bimserver.interfaces.objects.SSerializer realResult = new org.bimserver.interfaces.objects.SSerializer();
-			return realResult;
-		} catch (Exception e) {}
-		return null;
-	}
-
-	public java.lang.Boolean hasActiveSerializer(java.lang.String unknown) {
-		try {
-			HasActiveSerializerRequest.Builder requestBuilder = HasActiveSerializerRequest.newBuilder();
-			requestBuilder.setUnknown(unknown);
-			HasActiveSerializerRequest request = requestBuilder.build();
-			HasActiveSerializerResponse response = service.hasActiveSerializer(rpcController, request);
-			return response.getValue();
-		} catch (Exception e) {}
-		return false;
-	}
-
-	public java.util.List<org.bimserver.shared.SPlugin> getAllPlugins() {
-		try {
-			GetAllPluginsRequest.Builder requestBuilder = GetAllPluginsRequest.newBuilder();
-			GetAllPluginsRequest request = requestBuilder.build();
-			GetAllPluginsResponse response = service.getAllPlugins(rpcController, request);
-			java.util.List<org.bimserver.shared.SPlugin> realResult = new ArrayList<org.bimserver.shared.SPlugin>();
-			List<Service.SPlugin> originalList = response.getValueList();
-			for (Service.SPlugin val : originalList) {
-				org.bimserver.shared.SPlugin v = new org.bimserver.shared.SPlugin();
-				v.setName(val.getName());
-				v.setLocation(val.getLocation());
-				v.setState(org.bimserver.shared.SPlugin.SPluginState.values()[val.getState().ordinal()]);
-				v.setDescription(val.getDescription());
-				realResult.add(v);
-			}
-		return realResult;
-		} catch (Exception e) {}
-		return null;
-	}
-
-	public void disablePlugin(java.lang.String unknown) {
-		try {
-			DisablePluginRequest.Builder requestBuilder = DisablePluginRequest.newBuilder();
-			requestBuilder.setUnknown(unknown);
-			DisablePluginRequest request = requestBuilder.build();
-			service.disablePlugin(rpcController, request);
-		} catch (Exception e) {}
-	}
-
-	public org.bimserver.interfaces.objects.SSerializer getSerializerByContentType(java.lang.String contentType) {
-		try {
-			GetSerializerByContentTypeRequest.Builder requestBuilder = GetSerializerByContentTypeRequest.newBuilder();
-			requestBuilder.setContentType(contentType);
-			GetSerializerByContentTypeRequest request = requestBuilder.build();
-			GetSerializerByContentTypeResponse response = service.getSerializerByContentType(rpcController, request);
-			org.bimserver.interfaces.objects.SSerializer realResult = new org.bimserver.interfaces.objects.SSerializer();
-			return realResult;
-		} catch (Exception e) {}
-		return null;
-	}
-
-	public void startTransaction(java.lang.Integer pid) {
-		try {
-			StartTransactionRequest.Builder requestBuilder = StartTransactionRequest.newBuilder();
-			requestBuilder.setPid(pid);
-			StartTransactionRequest request = requestBuilder.build();
-			service.startTransaction(rpcController, request);
-		} catch (Exception e) {}
-	}
-
-	public java.lang.Long commitTransaction() {
-		try {
-			CommitTransactionRequest.Builder requestBuilder = CommitTransactionRequest.newBuilder();
-			CommitTransactionRequest request = requestBuilder.build();
-			CommitTransactionResponse response = service.commitTransaction(rpcController, request);
-			return response.getValue();
-		} catch (Exception e) {}
-		return 0L;
-	}
-
-	public void abortTransaction() {
-		try {
-			AbortTransactionRequest.Builder requestBuilder = AbortTransactionRequest.newBuilder();
-			AbortTransactionRequest request = requestBuilder.build();
-			service.abortTransaction(rpcController, request);
-		} catch (Exception e) {}
-	}
-
-	public void setStringAttribute(java.lang.Long oid, java.lang.String className, java.lang.String attributeName, java.lang.String value) {
-		try {
-			SetStringAttributeRequest.Builder requestBuilder = SetStringAttributeRequest.newBuilder();
-			requestBuilder.setOid(oid);
-			requestBuilder.setClassName(className);
-			requestBuilder.setAttributeName(attributeName);
-			requestBuilder.setValue(value);
-			SetStringAttributeRequest request = requestBuilder.build();
-			service.setStringAttribute(rpcController, request);
-		} catch (Exception e) {}
-	}
-
-	public void setFloatAttribute(java.lang.Long oid, java.lang.String className, java.lang.String attributeName, float value) {
-		try {
-			SetFloatAttributeRequest.Builder requestBuilder = SetFloatAttributeRequest.newBuilder();
-			requestBuilder.setOid(oid);
-			requestBuilder.setClassName(className);
-			requestBuilder.setAttributeName(attributeName);
-			requestBuilder.setValue(value);
-			SetFloatAttributeRequest request = requestBuilder.build();
-			service.setFloatAttribute(rpcController, request);
-		} catch (Exception e) {}
-	}
-
-	public void setIntegerAttribute(java.lang.Long oid, java.lang.String className, java.lang.String attributeName, java.lang.Integer value) {
-		try {
-			SetIntegerAttributeRequest.Builder requestBuilder = SetIntegerAttributeRequest.newBuilder();
-			requestBuilder.setOid(oid);
-			requestBuilder.setClassName(className);
-			requestBuilder.setAttributeName(attributeName);
-			requestBuilder.setValue(value);
-			SetIntegerAttributeRequest request = requestBuilder.build();
-			service.setIntegerAttribute(rpcController, request);
-		} catch (Exception e) {}
-	}
-
-	public void setBooleanAttribute(java.lang.Long oid, java.lang.String className, java.lang.String attributeName, java.lang.Boolean value) {
-		try {
-			SetBooleanAttributeRequest.Builder requestBuilder = SetBooleanAttributeRequest.newBuilder();
-			requestBuilder.setOid(oid);
-			requestBuilder.setClassName(className);
-			requestBuilder.setAttributeName(attributeName);
-			requestBuilder.setValue(value);
-			SetBooleanAttributeRequest request = requestBuilder.build();
-			service.setBooleanAttribute(rpcController, request);
-		} catch (Exception e) {}
-	}
-
-	public void unsetAttribute(java.lang.Long oid, java.lang.String className, java.lang.String attributeName) {
-		try {
-			UnsetAttributeRequest.Builder requestBuilder = UnsetAttributeRequest.newBuilder();
-			requestBuilder.setOid(oid);
-			requestBuilder.setClassName(className);
-			requestBuilder.setAttributeName(attributeName);
-			UnsetAttributeRequest request = requestBuilder.build();
-			service.unsetAttribute(rpcController, request);
-		} catch (Exception e) {}
-	}
-
-	public void unsetReference(java.lang.Long oid, java.lang.String className, java.lang.String referenceName) {
-		try {
-			UnsetReferenceRequest.Builder requestBuilder = UnsetReferenceRequest.newBuilder();
-			requestBuilder.setOid(oid);
-			requestBuilder.setClassName(className);
-			requestBuilder.setReferenceName(referenceName);
-			UnsetReferenceRequest request = requestBuilder.build();
-			service.unsetReference(rpcController, request);
-		} catch (Exception e) {}
-	}
-
-	public void addStringAttribute(java.lang.Long oid, java.lang.String className, java.lang.String attributeName, java.lang.String value) {
-		try {
-			AddStringAttributeRequest.Builder requestBuilder = AddStringAttributeRequest.newBuilder();
-			requestBuilder.setOid(oid);
-			requestBuilder.setClassName(className);
-			requestBuilder.setAttributeName(attributeName);
-			requestBuilder.setValue(value);
-			AddStringAttributeRequest request = requestBuilder.build();
-			service.addStringAttribute(rpcController, request);
-		} catch (Exception e) {}
-	}
-
-	public void addFloatAttribute(java.lang.Long oid, java.lang.String className, java.lang.String attributeName, float value) {
-		try {
-			AddFloatAttributeRequest.Builder requestBuilder = AddFloatAttributeRequest.newBuilder();
-			requestBuilder.setOid(oid);
-			requestBuilder.setClassName(className);
-			requestBuilder.setAttributeName(attributeName);
-			requestBuilder.setValue(value);
-			AddFloatAttributeRequest request = requestBuilder.build();
-			service.addFloatAttribute(rpcController, request);
-		} catch (Exception e) {}
-	}
-
-	public void addIntegerAttribute(java.lang.Long oid, java.lang.String className, java.lang.String attributeName, java.lang.Integer value) {
-		try {
-			AddIntegerAttributeRequest.Builder requestBuilder = AddIntegerAttributeRequest.newBuilder();
-			requestBuilder.setOid(oid);
-			requestBuilder.setClassName(className);
-			requestBuilder.setAttributeName(attributeName);
-			requestBuilder.setValue(value);
-			AddIntegerAttributeRequest request = requestBuilder.build();
-			service.addIntegerAttribute(rpcController, request);
-		} catch (Exception e) {}
-	}
-
-	public void addBooleanAttribute(java.lang.Long oid, java.lang.String className, java.lang.String attributeName, java.lang.Boolean value) {
-		try {
-			AddBooleanAttributeRequest.Builder requestBuilder = AddBooleanAttributeRequest.newBuilder();
-			requestBuilder.setOid(oid);
-			requestBuilder.setClassName(className);
-			requestBuilder.setAttributeName(attributeName);
-			requestBuilder.setValue(value);
-			AddBooleanAttributeRequest request = requestBuilder.build();
-			service.addBooleanAttribute(rpcController, request);
-		} catch (Exception e) {}
-	}
-
-	public void removeReference(java.lang.Long oid, java.lang.String className, java.lang.String referenceName, java.lang.Integer index) {
-		try {
-			RemoveReferenceRequest.Builder requestBuilder = RemoveReferenceRequest.newBuilder();
-			requestBuilder.setOid(oid);
-			requestBuilder.setClassName(className);
-			requestBuilder.setReferenceName(referenceName);
-			requestBuilder.setIndex(index);
-			RemoveReferenceRequest request = requestBuilder.build();
-			service.removeReference(rpcController, request);
-		} catch (Exception e) {}
-	}
-
-	public java.util.Date getServerStartTime() {
-		try {
-			GetServerStartTimeRequest.Builder requestBuilder = GetServerStartTimeRequest.newBuilder();
-			GetServerStartTimeRequest request = requestBuilder.build();
-			GetServerStartTimeResponse response = service.getServerStartTime(rpcController, request);
-			java.util.Date realResult = new java.util.Date();
-			return realResult;
-		} catch (Exception e) {}
-		return null;
-	}
-
-	public java.util.List<org.bimserver.interfaces.objects.SDeserializer> getAllDeserializers(java.lang.Boolean unknown) {
-		try {
-			GetAllDeserializersRequest.Builder requestBuilder = GetAllDeserializersRequest.newBuilder();
-			requestBuilder.setUnknown(unknown);
-			GetAllDeserializersRequest request = requestBuilder.build();
-			GetAllDeserializersResponse response = service.getAllDeserializers(rpcController, request);
-			java.util.List<org.bimserver.interfaces.objects.SDeserializer> realResult = new ArrayList<org.bimserver.interfaces.objects.SDeserializer>();
-			List<Service.SDeserializer> originalList = response.getValueList();
-			for (Service.SDeserializer val : originalList) {
-				org.bimserver.interfaces.objects.SDeserializer v = new org.bimserver.interfaces.objects.SDeserializer();
-				v.setName(val.getName());
-				v.setClassName(val.getClassName());
-				v.setDescription(val.getDescription());
-				v.setSettingsId(val.getSettingsId());
-				v.setOid(val.getOid());
-				realResult.add(v);
-			}
-		return realResult;
-		} catch (Exception e) {}
-		return null;
-	}
-
-	public java.lang.Boolean login(java.lang.String username, java.lang.String password) {
-		try {
-			LoginRequest.Builder requestBuilder = LoginRequest.newBuilder();
-			requestBuilder.setUsername(username);
-			requestBuilder.setPassword(password);
-			LoginRequest request = requestBuilder.build();
-			LoginResponse response = service.login(rpcController, request);
-			return response.getValue();
-		} catch (Exception e) {}
-		return false;
-	}
-
 	public org.bimserver.shared.SCheckinResult checkinSync(java.lang.Long poid, java.lang.String comment, java.lang.String deserializerName, java.lang.Long fileSize, javax.activation.DataHandler ifcFile, java.lang.Boolean merge) {
 		try {
 			CheckinSyncRequest.Builder requestBuilder = CheckinSyncRequest.newBuilder();
@@ -2106,15 +1935,41 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 		return null;
 	}
 
-	public java.lang.String ping(java.lang.String in) {
+	public java.lang.Boolean login(java.lang.String username, java.lang.String password) {
 		try {
-			PingRequest.Builder requestBuilder = PingRequest.newBuilder();
-			requestBuilder.setIn(in);
-			PingRequest request = requestBuilder.build();
-			PingResponse response = service.ping(rpcController, request);
+			LoginRequest.Builder requestBuilder = LoginRequest.newBuilder();
+			requestBuilder.setUsername(username);
+			requestBuilder.setPassword(password);
+			LoginRequest request = requestBuilder.build();
+			LoginResponse response = service.login(rpcController, request);
 			return response.getValue();
 		} catch (Exception e) {}
-		return null;
+		return false;
+	}
+
+	public java.lang.Integer download(java.lang.Long roid, java.lang.String formatIdentifier, java.lang.Boolean sync) {
+		try {
+			DownloadRequest.Builder requestBuilder = DownloadRequest.newBuilder();
+			requestBuilder.setRoid(roid);
+			requestBuilder.setFormatIdentifier(formatIdentifier);
+			requestBuilder.setSync(sync);
+			DownloadRequest request = requestBuilder.build();
+			DownloadResponse response = service.download(rpcController, request);
+			return response.getValue();
+		} catch (Exception e) {}
+		return 0;
+	}
+
+	public java.lang.Boolean autologin(java.lang.String username, java.lang.String hash) {
+		try {
+			AutologinRequest.Builder requestBuilder = AutologinRequest.newBuilder();
+			requestBuilder.setUsername(username);
+			requestBuilder.setHash(hash);
+			AutologinRequest request = requestBuilder.build();
+			AutologinResponse response = service.autologin(rpcController, request);
+			return response.getValue();
+		} catch (Exception e) {}
+		return false;
 	}
 
 	public java.lang.Long addUser(java.lang.String username, java.lang.String name, org.bimserver.interfaces.objects.SUserType type, java.lang.Boolean selfRegistration) {
@@ -2149,29 +2004,15 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 		return null;
 	}
 
-	public java.lang.Integer download(java.lang.Long roid, java.lang.String formatIdentifier, java.lang.Boolean sync) {
+	public java.lang.String ping(java.lang.String in) {
 		try {
-			DownloadRequest.Builder requestBuilder = DownloadRequest.newBuilder();
-			requestBuilder.setRoid(roid);
-			requestBuilder.setFormatIdentifier(formatIdentifier);
-			requestBuilder.setSync(sync);
-			DownloadRequest request = requestBuilder.build();
-			DownloadResponse response = service.download(rpcController, request);
+			PingRequest.Builder requestBuilder = PingRequest.newBuilder();
+			requestBuilder.setIn(in);
+			PingRequest request = requestBuilder.build();
+			PingResponse response = service.ping(rpcController, request);
 			return response.getValue();
 		} catch (Exception e) {}
-		return 0;
-	}
-
-	public java.lang.Boolean autologin(java.lang.String username, java.lang.String hash) {
-		try {
-			AutologinRequest.Builder requestBuilder = AutologinRequest.newBuilder();
-			requestBuilder.setUsername(username);
-			requestBuilder.setHash(hash);
-			AutologinRequest request = requestBuilder.build();
-			AutologinResponse response = service.autologin(rpcController, request);
-			return response.getValue();
-		} catch (Exception e) {}
-		return false;
+		return null;
 	}
 
 	public org.bimserver.interfaces.objects.SProject addProject(java.lang.String projectName) {
@@ -2255,60 +2096,29 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 		return false;
 	}
 
-	public org.bimserver.interfaces.objects.SGeoTag getGeoTag(java.lang.Long goid) {
+	public java.util.List<org.bimserver.interfaces.objects.SProject> getAllNonAuthorizedProjectsOfUser(java.lang.Long uoid) {
 		try {
-			GetGeoTagRequest.Builder requestBuilder = GetGeoTagRequest.newBuilder();
-			requestBuilder.setGoid(goid);
-			GetGeoTagRequest request = requestBuilder.build();
-			GetGeoTagResponse response = service.getGeoTag(rpcController, request);
-			org.bimserver.interfaces.objects.SGeoTag realResult = new org.bimserver.interfaces.objects.SGeoTag();
-			return realResult;
-		} catch (Exception e) {}
-		return null;
-	}
-
-	public void updateGeoTag(org.bimserver.interfaces.objects.SGeoTag sGeoTag) {
-		try {
-			UpdateGeoTagRequest.Builder requestBuilder = UpdateGeoTagRequest.newBuilder();
-			Service.SGeoTag.Builder newVal = SGeoTag.newBuilder();
-			for (java.lang.Long o : sGeoTag.getProjects()) {
-				newVal.addProjects(o);
-			}
-			newVal.setDirectionAngle(sGeoTag.getDirectionAngle());
-			newVal.setOid(sGeoTag.getOid());
-			newVal.setZ(sGeoTag.getZ());
-			newVal.setY(sGeoTag.getY());
-			newVal.setX(sGeoTag.getX());
-			newVal.setEpsg(sGeoTag.getEpsg());
-			requestBuilder.setSGeoTag(newVal.build());
-			UpdateGeoTagRequest request = requestBuilder.build();
-			service.updateGeoTag(rpcController, request);
-		} catch (Exception e) {}
-	}
-
-	public java.lang.Boolean isLoggedIn() {
-		try {
-			IsLoggedInRequest.Builder requestBuilder = IsLoggedInRequest.newBuilder();
-			IsLoggedInRequest request = requestBuilder.build();
-			IsLoggedInResponse response = service.isLoggedIn(rpcController, request);
-			return response.getValue();
-		} catch (Exception e) {}
-		return false;
-	}
-
-	public java.util.List<org.bimserver.interfaces.objects.SLogAction> getLogs() {
-		try {
-			GetLogsRequest.Builder requestBuilder = GetLogsRequest.newBuilder();
-			GetLogsRequest request = requestBuilder.build();
-			GetLogsResponse response = service.getLogs(rpcController, request);
-			java.util.List<org.bimserver.interfaces.objects.SLogAction> realResult = new ArrayList<org.bimserver.interfaces.objects.SLogAction>();
-			List<Service.SLogAction> originalList = response.getValueList();
-			for (Service.SLogAction val : originalList) {
-				org.bimserver.interfaces.objects.SLogAction v = new org.bimserver.interfaces.objects.SLogAction();
-				v.setDate(new Date(val.getDate()));
-				v.setAccessMethod(org.bimserver.interfaces.objects.SAccessMethod.values()[val.getAccessMethod().ordinal()]);
-				v.setExecutorId(val.getExecutorId());
+			GetAllNonAuthorizedProjectsOfUserRequest.Builder requestBuilder = GetAllNonAuthorizedProjectsOfUserRequest.newBuilder();
+			requestBuilder.setUoid(uoid);
+			GetAllNonAuthorizedProjectsOfUserRequest request = requestBuilder.build();
+			GetAllNonAuthorizedProjectsOfUserResponse response = service.getAllNonAuthorizedProjectsOfUser(rpcController, request);
+			java.util.List<org.bimserver.interfaces.objects.SProject> realResult = new ArrayList<org.bimserver.interfaces.objects.SProject>();
+			List<Service.SProject> originalList = response.getValueList();
+			for (Service.SProject val : originalList) {
+				org.bimserver.interfaces.objects.SProject v = new org.bimserver.interfaces.objects.SProject();
+				v.setName(val.getName());
+				v.setId(val.getId());
+				v.setState(org.bimserver.interfaces.objects.SObjectState.values()[val.getState().ordinal()]);
+				v.setDescription(val.getDescription());
+				v.setLastConcreteRevisionId(val.getLastConcreteRevisionId());
+				v.setLastRevisionId(val.getLastRevisionId());
+				v.setCreatedDate(new Date(val.getCreatedDate()));
+				v.setCreatedById(val.getCreatedById());
+				v.setClashDetectionSettingsId(val.getClashDetectionSettingsId());
+				v.setExportLengthMeasurePrefix(org.bimserver.interfaces.objects.SSIPrefix.values()[val.getExportLengthMeasurePrefix().ordinal()]);
 				v.setOid(val.getOid());
+				v.setGeoTagId(val.getGeoTagId());
+				v.setParentId(val.getParentId());
 				realResult.add(v);
 			}
 		return realResult;
@@ -2316,49 +2126,169 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 		return null;
 	}
 
-	public void enablePlugin(java.lang.String unknown) {
+	public java.util.List<org.bimserver.interfaces.objects.SUser> getAllNonAuthorizedUsersOfProject(java.lang.Long poid) {
 		try {
-			EnablePluginRequest.Builder requestBuilder = EnablePluginRequest.newBuilder();
-			requestBuilder.setUnknown(unknown);
-			EnablePluginRequest request = requestBuilder.build();
-			service.enablePlugin(rpcController, request);
+			GetAllNonAuthorizedUsersOfProjectRequest.Builder requestBuilder = GetAllNonAuthorizedUsersOfProjectRequest.newBuilder();
+			requestBuilder.setPoid(poid);
+			GetAllNonAuthorizedUsersOfProjectRequest request = requestBuilder.build();
+			GetAllNonAuthorizedUsersOfProjectResponse response = service.getAllNonAuthorizedUsersOfProject(rpcController, request);
+			java.util.List<org.bimserver.interfaces.objects.SUser> realResult = new ArrayList<org.bimserver.interfaces.objects.SUser>();
+			List<Service.SUser> originalList = response.getValueList();
+			for (Service.SUser val : originalList) {
+				org.bimserver.interfaces.objects.SUser v = new org.bimserver.interfaces.objects.SUser();
+				v.setName(val.getName());
+				v.setState(org.bimserver.interfaces.objects.SObjectState.values()[val.getState().ordinal()]);
+				v.setCreatedById(val.getCreatedById());
+				v.setValidationToken(val.getValidationToken());
+				v.setValidationTokenCreated(new Date(val.getValidationTokenCreated()));
+				v.setOid(val.getOid());
+				v.setCreatedOn(new Date(val.getCreatedOn()));
+				v.setPassword(val.getPassword());
+				v.setUserType(org.bimserver.interfaces.objects.SUserType.values()[val.getUserType().ordinal()]);
+				v.setUsername(val.getUsername());
+				v.setLastSeen(new Date(val.getLastSeen()));
+				realResult.add(v);
+			}
+		return realResult;
+		} catch (Exception e) {}
+		return null;
+	}
+
+	public java.util.List<org.bimserver.interfaces.objects.SUser> getAllAuthorizedUsersOfProject(java.lang.Long poid) {
+		try {
+			GetAllAuthorizedUsersOfProjectRequest.Builder requestBuilder = GetAllAuthorizedUsersOfProjectRequest.newBuilder();
+			requestBuilder.setPoid(poid);
+			GetAllAuthorizedUsersOfProjectRequest request = requestBuilder.build();
+			GetAllAuthorizedUsersOfProjectResponse response = service.getAllAuthorizedUsersOfProject(rpcController, request);
+			java.util.List<org.bimserver.interfaces.objects.SUser> realResult = new ArrayList<org.bimserver.interfaces.objects.SUser>();
+			List<Service.SUser> originalList = response.getValueList();
+			for (Service.SUser val : originalList) {
+				org.bimserver.interfaces.objects.SUser v = new org.bimserver.interfaces.objects.SUser();
+				v.setName(val.getName());
+				v.setState(org.bimserver.interfaces.objects.SObjectState.values()[val.getState().ordinal()]);
+				v.setCreatedById(val.getCreatedById());
+				v.setValidationToken(val.getValidationToken());
+				v.setValidationTokenCreated(new Date(val.getValidationTokenCreated()));
+				v.setOid(val.getOid());
+				v.setCreatedOn(new Date(val.getCreatedOn()));
+				v.setPassword(val.getPassword());
+				v.setUserType(org.bimserver.interfaces.objects.SUserType.values()[val.getUserType().ordinal()]);
+				v.setUsername(val.getUsername());
+				v.setLastSeen(new Date(val.getLastSeen()));
+				realResult.add(v);
+			}
+		return realResult;
+		} catch (Exception e) {}
+		return null;
+	}
+
+	public java.util.List<org.bimserver.interfaces.objects.SCheckout> getAllCheckoutsOfProjectAndSubProjects(java.lang.Long poid) {
+		try {
+			GetAllCheckoutsOfProjectAndSubProjectsRequest.Builder requestBuilder = GetAllCheckoutsOfProjectAndSubProjectsRequest.newBuilder();
+			requestBuilder.setPoid(poid);
+			GetAllCheckoutsOfProjectAndSubProjectsRequest request = requestBuilder.build();
+			GetAllCheckoutsOfProjectAndSubProjectsResponse response = service.getAllCheckoutsOfProjectAndSubProjects(rpcController, request);
+			java.util.List<org.bimserver.interfaces.objects.SCheckout> realResult = new ArrayList<org.bimserver.interfaces.objects.SCheckout>();
+			List<Service.SCheckout> originalList = response.getValueList();
+			for (Service.SCheckout val : originalList) {
+				org.bimserver.interfaces.objects.SCheckout v = new org.bimserver.interfaces.objects.SCheckout();
+				v.setDate(new Date(val.getDate()));
+				v.setRevisionId(val.getRevisionId());
+				v.setOid(val.getOid());
+				v.setUserId(val.getUserId());
+				v.setProjectId(val.getProjectId());
+				v.setCheckinId(val.getCheckinId());
+				realResult.add(v);
+			}
+		return realResult;
+		} catch (Exception e) {}
+		return null;
+	}
+
+	public java.lang.String getSettingRegistrationAddition() {
+		try {
+			GetSettingRegistrationAdditionRequest.Builder requestBuilder = GetSettingRegistrationAdditionRequest.newBuilder();
+			GetSettingRegistrationAdditionRequest request = requestBuilder.build();
+			GetSettingRegistrationAdditionResponse response = service.getSettingRegistrationAddition(rpcController, request);
+			return response.getValue();
+		} catch (Exception e) {}
+		return null;
+	}
+
+	public void setSettingRegistrationAddition(java.lang.String registrationAddition) {
+		try {
+			SetSettingRegistrationAdditionRequest.Builder requestBuilder = SetSettingRegistrationAdditionRequest.newBuilder();
+			requestBuilder.setRegistrationAddition(registrationAddition);
+			SetSettingRegistrationAdditionRequest request = requestBuilder.build();
+			service.setSettingRegistrationAddition(rpcController, request);
 		} catch (Exception e) {}
 	}
 
-	public void removeObject(java.lang.String className, java.lang.Long oid) {
+	public java.lang.Boolean isSettingAllowSelfRegistration() {
 		try {
-			RemoveObjectRequest.Builder requestBuilder = RemoveObjectRequest.newBuilder();
-			requestBuilder.setClassName(className);
-			requestBuilder.setOid(oid);
-			RemoveObjectRequest request = requestBuilder.build();
-			service.removeObject(rpcController, request);
+			IsSettingAllowSelfRegistrationRequest.Builder requestBuilder = IsSettingAllowSelfRegistrationRequest.newBuilder();
+			IsSettingAllowSelfRegistrationRequest request = requestBuilder.build();
+			IsSettingAllowSelfRegistrationResponse response = service.isSettingAllowSelfRegistration(rpcController, request);
+			return response.getValue();
+		} catch (Exception e) {}
+		return false;
+	}
+
+	public void setSettingAllowSelfRegistration(java.lang.Boolean allowSelfRegistration) {
+		try {
+			SetSettingAllowSelfRegistrationRequest.Builder requestBuilder = SetSettingAllowSelfRegistrationRequest.newBuilder();
+			requestBuilder.setAllowSelfRegistration(allowSelfRegistration);
+			SetSettingAllowSelfRegistrationRequest request = requestBuilder.build();
+			service.setSettingAllowSelfRegistration(rpcController, request);
 		} catch (Exception e) {}
 	}
 
-	public void setReference(java.lang.Long oid, java.lang.String className, java.lang.String referenceName, java.lang.Long referenceOid, java.lang.String referenceClassName) {
+	public java.lang.Boolean isSettingAllowUsersToCreateTopLevelProjects() {
 		try {
-			SetReferenceRequest.Builder requestBuilder = SetReferenceRequest.newBuilder();
-			requestBuilder.setOid(oid);
-			requestBuilder.setClassName(className);
-			requestBuilder.setReferenceName(referenceName);
-			requestBuilder.setReferenceOid(referenceOid);
-			requestBuilder.setReferenceClassName(referenceClassName);
-			SetReferenceRequest request = requestBuilder.build();
-			service.setReference(rpcController, request);
+			IsSettingAllowUsersToCreateTopLevelProjectsRequest.Builder requestBuilder = IsSettingAllowUsersToCreateTopLevelProjectsRequest.newBuilder();
+			IsSettingAllowUsersToCreateTopLevelProjectsRequest request = requestBuilder.build();
+			IsSettingAllowUsersToCreateTopLevelProjectsResponse response = service.isSettingAllowUsersToCreateTopLevelProjects(rpcController, request);
+			return response.getValue();
+		} catch (Exception e) {}
+		return false;
+	}
+
+	public void setSettingAllowUsersToCreateTopLevelProjects(java.lang.Boolean allowUsersToCreateTopLevelProjects) {
+		try {
+			SetSettingAllowUsersToCreateTopLevelProjectsRequest.Builder requestBuilder = SetSettingAllowUsersToCreateTopLevelProjectsRequest.newBuilder();
+			requestBuilder.setAllowUsersToCreateTopLevelProjects(allowUsersToCreateTopLevelProjects);
+			SetSettingAllowUsersToCreateTopLevelProjectsRequest request = requestBuilder.build();
+			service.setSettingAllowUsersToCreateTopLevelProjects(rpcController, request);
 		} catch (Exception e) {}
 	}
 
-	public void addReference(java.lang.Long oid, java.lang.String className, java.lang.String referenceName, java.lang.Long referenceOid, java.lang.String referenceClassName) {
+	public java.lang.Boolean isSettingCheckinMergingEnabled() {
 		try {
-			AddReferenceRequest.Builder requestBuilder = AddReferenceRequest.newBuilder();
-			requestBuilder.setOid(oid);
-			requestBuilder.setClassName(className);
-			requestBuilder.setReferenceName(referenceName);
-			requestBuilder.setReferenceOid(referenceOid);
-			requestBuilder.setReferenceClassName(referenceClassName);
-			AddReferenceRequest request = requestBuilder.build();
-			service.addReference(rpcController, request);
+			IsSettingCheckinMergingEnabledRequest.Builder requestBuilder = IsSettingCheckinMergingEnabledRequest.newBuilder();
+			IsSettingCheckinMergingEnabledRequest request = requestBuilder.build();
+			IsSettingCheckinMergingEnabledResponse response = service.isSettingCheckinMergingEnabled(rpcController, request);
+			return response.getValue();
 		} catch (Exception e) {}
+		return false;
+	}
+
+	public void setSettingCheckinMergingEnabled(java.lang.Boolean checkinMergingEnabled) {
+		try {
+			SetSettingCheckinMergingEnabledRequest.Builder requestBuilder = SetSettingCheckinMergingEnabledRequest.newBuilder();
+			requestBuilder.setCheckinMergingEnabled(checkinMergingEnabled);
+			SetSettingCheckinMergingEnabledRequest request = requestBuilder.build();
+			service.setSettingCheckinMergingEnabled(rpcController, request);
+		} catch (Exception e) {}
+	}
+
+	public java.lang.Boolean isSettingShowVersionUpgradeAvailable() {
+		try {
+			IsSettingShowVersionUpgradeAvailableRequest.Builder requestBuilder = IsSettingShowVersionUpgradeAvailableRequest.newBuilder();
+			IsSettingShowVersionUpgradeAvailableRequest request = requestBuilder.build();
+			IsSettingShowVersionUpgradeAvailableResponse response = service.isSettingShowVersionUpgradeAvailable(rpcController, request);
+			return response.getValue();
+		} catch (Exception e) {}
+		return false;
 	}
 
 	public void setSettingShowVersionUpgradeAvailable(java.lang.Boolean showVersionUpgradeAvailable) {
@@ -2417,6 +2347,112 @@ public class ProtocolBuffersServiceInterfaceImplementation implements org.bimser
 		return realResult;
 		} catch (Exception e) {}
 		return null;
+	}
+
+	public org.bimserver.interfaces.objects.SGeoTag getGeoTag(java.lang.Long goid) {
+		try {
+			GetGeoTagRequest.Builder requestBuilder = GetGeoTagRequest.newBuilder();
+			requestBuilder.setGoid(goid);
+			GetGeoTagRequest request = requestBuilder.build();
+			GetGeoTagResponse response = service.getGeoTag(rpcController, request);
+			org.bimserver.interfaces.objects.SGeoTag realResult = new org.bimserver.interfaces.objects.SGeoTag();
+			return realResult;
+		} catch (Exception e) {}
+		return null;
+	}
+
+	public void updateGeoTag(org.bimserver.interfaces.objects.SGeoTag sGeoTag) {
+		try {
+			UpdateGeoTagRequest.Builder requestBuilder = UpdateGeoTagRequest.newBuilder();
+			Service.SGeoTag.Builder newVal = SGeoTag.newBuilder();
+			for (java.lang.Long o : sGeoTag.getProjects()) {
+				newVal.addProjects(o);
+			}
+			newVal.setDirectionAngle(sGeoTag.getDirectionAngle());
+			newVal.setX(sGeoTag.getX());
+			newVal.setY(sGeoTag.getY());
+			newVal.setZ(sGeoTag.getZ());
+			newVal.setEpsg(sGeoTag.getEpsg());
+			newVal.setOid(sGeoTag.getOid());
+			requestBuilder.setSGeoTag(newVal.build());
+			UpdateGeoTagRequest request = requestBuilder.build();
+			service.updateGeoTag(rpcController, request);
+		} catch (Exception e) {}
+	}
+
+	public java.lang.Boolean isLoggedIn() {
+		try {
+			IsLoggedInRequest.Builder requestBuilder = IsLoggedInRequest.newBuilder();
+			IsLoggedInRequest request = requestBuilder.build();
+			IsLoggedInResponse response = service.isLoggedIn(rpcController, request);
+			return response.getValue();
+		} catch (Exception e) {}
+		return false;
+	}
+
+	public java.util.List<org.bimserver.interfaces.objects.SLogAction> getLogs() {
+		try {
+			GetLogsRequest.Builder requestBuilder = GetLogsRequest.newBuilder();
+			GetLogsRequest request = requestBuilder.build();
+			GetLogsResponse response = service.getLogs(rpcController, request);
+			java.util.List<org.bimserver.interfaces.objects.SLogAction> realResult = new ArrayList<org.bimserver.interfaces.objects.SLogAction>();
+			List<Service.SLogAction> originalList = response.getValueList();
+			for (Service.SLogAction val : originalList) {
+				org.bimserver.interfaces.objects.SLogAction v = new org.bimserver.interfaces.objects.SLogAction();
+				v.setDate(new Date(val.getDate()));
+				v.setExecutorId(val.getExecutorId());
+				v.setAccessMethod(org.bimserver.interfaces.objects.SAccessMethod.values()[val.getAccessMethod().ordinal()]);
+				v.setOid(val.getOid());
+				realResult.add(v);
+			}
+		return realResult;
+		} catch (Exception e) {}
+		return null;
+	}
+
+	public void enablePlugin(java.lang.String unknown) {
+		try {
+			EnablePluginRequest.Builder requestBuilder = EnablePluginRequest.newBuilder();
+			requestBuilder.setUnknown(unknown);
+			EnablePluginRequest request = requestBuilder.build();
+			service.enablePlugin(rpcController, request);
+		} catch (Exception e) {}
+	}
+
+	public void removeObject(java.lang.String className, java.lang.Long oid) {
+		try {
+			RemoveObjectRequest.Builder requestBuilder = RemoveObjectRequest.newBuilder();
+			requestBuilder.setClassName(className);
+			requestBuilder.setOid(oid);
+			RemoveObjectRequest request = requestBuilder.build();
+			service.removeObject(rpcController, request);
+		} catch (Exception e) {}
+	}
+
+	public void setReference(java.lang.Long oid, java.lang.String className, java.lang.String referenceName, java.lang.Long referenceOid, java.lang.String referenceClassName) {
+		try {
+			SetReferenceRequest.Builder requestBuilder = SetReferenceRequest.newBuilder();
+			requestBuilder.setOid(oid);
+			requestBuilder.setClassName(className);
+			requestBuilder.setReferenceName(referenceName);
+			requestBuilder.setReferenceOid(referenceOid);
+			requestBuilder.setReferenceClassName(referenceClassName);
+			SetReferenceRequest request = requestBuilder.build();
+			service.setReference(rpcController, request);
+		} catch (Exception e) {}
+	}
+
+	public void addReference(java.lang.Long oid, java.lang.String className, java.lang.String referenceName, java.lang.Long referenceOid, java.lang.String referenceClassName) {
+		try {
+			AddReferenceRequest.Builder requestBuilder = AddReferenceRequest.newBuilder();
+			requestBuilder.setOid(oid);
+			requestBuilder.setClassName(className);
+			requestBuilder.setReferenceName(referenceName);
+			requestBuilder.setReferenceOid(referenceOid);
+			requestBuilder.setReferenceClassName(referenceClassName);
+			AddReferenceRequest request = requestBuilder.build();
+			service.addReference(rpcController, request);
+		} catch (Exception e) {}
 	}
 
 }

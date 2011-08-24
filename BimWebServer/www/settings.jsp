@@ -36,6 +36,14 @@
 			SSerializer serializer = loginManager.getService().getSerializerByName(request.getParameter("serializer"));
 			serializer.setEnabled(true);
 			loginManager.getService().updateSerializer(serializer);
+		} else if (action.equals("disableDeserializer")) {
+			SDeserializer deserializer = loginManager.getService().getDeserializerByName(request.getParameter("deserializer"));
+			deserializer.setEnabled(false);
+			loginManager.getService().updateDeserializer(deserializer);
+		} else if (action.equals("enableDeserializer")) {
+			SDeserializer deserializer = loginManager.getService().getDeserializerByName(request.getParameter("deserializer"));
+			deserializer.setEnabled(true);
+			loginManager.getService().updateDeserializer(deserializer);
 		}
 	}
 %>
