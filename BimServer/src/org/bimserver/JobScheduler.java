@@ -19,6 +19,7 @@ public class JobScheduler {
 	private static final int TOKEN_CLEAN_INTERVAL_MILLIS = 60 * 60 * 1000; // 1 hour
 	private static final int CLASH_DETECTION_CLEAN_INTERVAL_MILLIS = 30 * 60 * 1000; // 30 minutes
 	private static final int COMPARE_RESULT_CLEAN_INTERVAL_MILLIS = 30 * 60 * 1000; // 30 minutes
+	private static final int LONG_ACTION_MANAGER_CLEANUP_INTERVAL_MILLIS = 30 * 60 * 1000; // 30 minutes
 	private SchedulerFactory sf;
 	private Scheduler sched;
 
@@ -59,6 +60,18 @@ public class JobScheduler {
 		}
 	}
 	
+	public static class LongActionManagerCleaner implements Job {
+		@Override
+		public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
+			try {
+				BimServer bimServer = (BimServer) (jobExecutionContext.getScheduler().getContext().get("bimserver"));
+				bimServer.getLongActionManager().cleanup();
+			} catch (SchedulerException e) {
+				LOGGER.error("", e);
+			}
+		}
+	}
+	
 	public JobScheduler(BimServer bimServer) {
 		try {
 			Properties properties = new Properties();
@@ -77,6 +90,7 @@ public class JobScheduler {
 			addRecurringJob(TokenCleaner.class, TOKEN_CLEAN_INTERVAL_MILLIS);
 			addRecurringJob(ClashDetectionCacheCleaner.class, CLASH_DETECTION_CLEAN_INTERVAL_MILLIS);
 			addRecurringJob(CompareResultCacheCleaner.class, COMPARE_RESULT_CLEAN_INTERVAL_MILLIS);
+			addRecurringJob(LongActionManagerCleaner.class, LONG_ACTION_MANAGER_CLEANUP_INTERVAL_MILLIS);
 			sched.start();
 		} catch (SchedulerException e) {
 			LOGGER.error("", e);
