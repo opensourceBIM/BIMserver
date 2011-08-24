@@ -3,6 +3,8 @@ package org.bimserver.longaction;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.List;
 
@@ -79,6 +81,19 @@ public class LongActionManager {
 		return null;
 	}
 
+	public synchronized void cleanup() {
+		Iterator<Integer> iterator = actions.keySet().iterator();
+		GregorianCalendar now = new GregorianCalendar();
+		while (iterator.hasNext()) {
+			int id = iterator.next();
+			LongAction<?> longAction = actions.get(id);
+			Date start = longAction.getStart();
+			if (now.getTimeInMillis() - start.getTime() > 60 * 60 * 1000) {
+				iterator.remove();
+			}
+		}
+	}
+	
 	/*
 	 * Untested method
 	 */
