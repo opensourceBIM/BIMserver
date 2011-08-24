@@ -11,6 +11,7 @@ public class LocalDevPluginLoader {
 	public static void loadPlugins(PluginManager pluginManager) throws PluginException {
 		pluginManager.loadPluginsFromEclipseProject(new File("../CityGML"));
 		pluginManager.loadPluginsFromEclipseProject(new File("../Collada"));
+		pluginManager.loadPluginsFromEclipseProject(new File("../SceneJS"));
 		pluginManager.loadPluginsFromEclipseProject(new File("../IfcPlugins"));
 		pluginManager.loadPluginsFromEclipseProject(new File("../MiscSerializers"));
 		pluginManager.loadPluginsFromEclipseProject(new File("../O3d"));
