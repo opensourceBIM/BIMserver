@@ -189,6 +189,7 @@ import org.bimserver.rights.RightsManager;
 import org.bimserver.shared.DatabaseInformation;
 import org.bimserver.shared.LongActionState;
 import org.bimserver.shared.SCheckinResult;
+import org.bimserver.shared.SCheckoutResult;
 import org.bimserver.shared.SCompareResult;
 import org.bimserver.shared.SCompareResult.SCompareIdentifier;
 import org.bimserver.shared.SCompareResult.SCompareType;
@@ -877,7 +878,9 @@ public class Service implements ServiceInterface {
 		LongDownloadOrCheckoutAction longAction = (LongDownloadOrCheckoutAction) bimServer.getLongActionManager().getLongAction(actionId);
 		if (longAction != null) {
 			longAction.waitForCompletion();
-			return longAction.getCheckoutResult();
+			SCheckoutResult result = longAction.getCheckoutResult();
+			bimServer.getLongActionManager().remove(actionId);
+			return result;
 		} else {
 			throw new UserException("No data found for laid " + actionId);
 		}

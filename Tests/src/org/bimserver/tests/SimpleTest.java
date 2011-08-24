@@ -27,8 +27,7 @@ public class SimpleTest {
 			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", true);
 			EmfDeserializer deserializer = deserializerPlugin.createDeserializer();
 			deserializer.init(pluginManager.requireSchemaDefinition());
-			deserializer.read(TestFile.HAUS_SOURCE_FILE.getFile(), true);
-			IfcModelInterface model = deserializer.getModel();
+			IfcModelInterface model = deserializer.read(TestFile.HAUS_SOURCE_FILE.getFile(), true);
             List<IfcBuildingStorey> stories = model.getAll(IfcBuildingStorey.class);
             Map<Float, IfcBuildingStorey> orderedStories = new TreeMap<Float, IfcBuildingStorey>();
             for (IfcBuildingStorey storey : stories) {

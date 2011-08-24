@@ -274,16 +274,16 @@ public class IfcVisualiser extends JFrame {
 		DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", true);
 		EmfDeserializer deserializer = deserializerPlugin.createDeserializer();
 		deserializer.init(pluginManager.requireSchemaDefinition());
+		IfcModelInterface model = null;
 		try {
 //			deserializer.read(new File("../TestData/data/export1.ifc"));
-			deserializer.read(new File("../TestData/data/AC11-Institute-Var-2-IFC.ifc"), true);
+			model = deserializer.read(new File("../TestData/data/AC11-Institute-Var-2-IFC.ifc"), true);
 		} catch (DeserializationException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		IfcModelInterface model = deserializer.getModel();
 		model.setObjectOids();
 
 		Set<Class<? extends IfcRoot>> classesToConvert = new HashSet<Class<? extends IfcRoot>>();

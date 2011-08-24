@@ -56,11 +56,10 @@ public class IfcRioleringTest {
 			EmfDeserializer deserializer = deserializerPlugin.createDeserializer();
 			deserializer.init(pluginManager.requireSchemaDefinition());
 			try {
-				deserializer.read(src, true);
+				model = deserializer.read(src, true);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			model = deserializer.getModel();
 			step1();
 		} catch (PluginException e1) {
 			e1.printStackTrace();

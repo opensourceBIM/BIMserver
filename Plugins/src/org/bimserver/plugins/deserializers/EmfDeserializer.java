@@ -1,6 +1,8 @@
 package org.bimserver.plugins.deserializers;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.InputStream;
 
 import org.bimserver.plugins.schema.SchemaDefinition;
@@ -12,7 +14,12 @@ public abstract class EmfDeserializer {
 
 	public abstract IfcModelInterface read(InputStream in, String filename, boolean setOids, long fileSize) throws DeserializeException;
 
-	public abstract IfcModelInterface read(File file, boolean setOids) throws DeserializeException;
-
-	public abstract IfcModelInterface getModel();
+	public IfcModelInterface read(File file, boolean setOids) throws DeserializeException {
+		try {
+			return read(new FileInputStream(file), file.getName(), setOids, file.length());
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 }
