@@ -22,6 +22,7 @@
 		<antcall target="BimWebServer" />
 		<antcall target="CityGML" />
 		<antcall target="Collada" />
+		<antcall target="SceneJS" />
 		<antcall target="O3d" />
 		<antcall target="IFCEngine" />
 		<antcall target="IfcPlugins" />
@@ -280,6 +281,25 @@
 		</copy>
 		<jar destfile="builds/pluginlibs/bimserver-collada-${version}.jar">
 			<fileset dir="builds/collada"/>
+		</jar>
+	</target>
+	<target name="SceneJS">
+		<mkdir dir="builds/scenejs" />
+		<javac destdir="builds/scenejs" debug="on">
+			<src path="../../SceneJS/src" />
+			<classpath>
+				<path>
+					<fileset refid="lib" />
+					<fileset refid="buildlib" />
+				</path>
+			</classpath>
+		</javac>
+		<mkdir dir="builds/scenejs/plugin"/>
+		<copy todir="builds/scenejs/plugin">
+			<fileset dir="../../SceneJS/plugin"></fileset>
+		</copy>
+		<jar destfile="builds/pluginlibs/bimserver-scenejs-${version}.jar">
+			<fileset dir="builds/scenejs"/>
 		</jar>
 	</target>
 	<target name="O3d">
@@ -628,6 +648,9 @@
 		</copy>
 		<copy todir="builds/BuildSource/BIMserver/Collada">
 			<fileset dir="../../Collada" />
+		</copy>
+		<copy todir="builds/BuildSource/BIMserver/SceneJS">
+			<fileset dir="../../SceneJS" />
 		</copy>
 		<copy todir="builds/BuildSource/BIMserver/Emf">
 			<fileset dir="../../Emf" />
