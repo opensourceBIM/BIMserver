@@ -70,6 +70,7 @@ import org.bimserver.database.actions.CheckinDatabaseAction;
 import org.bimserver.database.actions.CheckinPart1DatabaseAction;
 import org.bimserver.database.actions.CheckinPart2DatabaseAction;
 import org.bimserver.database.actions.CompareDatabaseAction;
+import org.bimserver.database.actions.DeleteDeserializerDatabaseAction;
 import org.bimserver.database.actions.DeleteGuidanceProviderDatabaseAction;
 import org.bimserver.database.actions.DeleteProjectDatabaseAction;
 import org.bimserver.database.actions.DeleteSerializerDatabaseAction;
@@ -96,6 +97,7 @@ import org.bimserver.database.actions.GetDataObjectByGuidDatabaseAction;
 import org.bimserver.database.actions.GetDataObjectByOidDatabaseAction;
 import org.bimserver.database.actions.GetDataObjectsByTypeDatabaseAction;
 import org.bimserver.database.actions.GetDatabaseInformationAction;
+import org.bimserver.database.actions.GetDeserializerByNameDatabaseAction;
 import org.bimserver.database.actions.GetGeoTagDatabaseAction;
 import org.bimserver.database.actions.GetGuidanceProviderByIdDatabaseAction;
 import org.bimserver.database.actions.GetLogsDatabaseAction;
@@ -116,6 +118,7 @@ import org.bimserver.database.actions.SetRevisionTagDatabaseAction;
 import org.bimserver.database.actions.UndeleteProjectDatabaseAction;
 import org.bimserver.database.actions.UndeleteUserDatabaseAction;
 import org.bimserver.database.actions.UpdateClashDetectionSettingsDatabaseAction;
+import org.bimserver.database.actions.UpdateDeserializerDatabaseAction;
 import org.bimserver.database.actions.UpdateGeoTagDatabaseAction;
 import org.bimserver.database.actions.UpdateGuidanceProviderDatabaseAction;
 import org.bimserver.database.actions.UpdateProjectDatabaseAction;
@@ -166,6 +169,7 @@ import org.bimserver.models.log.LogAction;
 import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.ClashDetectionSettings;
 import org.bimserver.models.store.ConcreteRevision;
+import org.bimserver.models.store.Deserializer;
 import org.bimserver.models.store.GeoTag;
 import org.bimserver.models.store.GuidanceProvider;
 import org.bimserver.models.store.MergeIdentifier;
@@ -2265,6 +2269,20 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
+	public void updateDeserializer(SDeserializer deserializer) throws UserException, ServerException {
+		requireAdminAuthenticationAndRunningServer();
+		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
+		try {
+			Deserializer convert = convert(deserializer, Deserializer.class, session);
+			session.executeAndCommitAction(new UpdateDeserializerDatabaseAction(session, accessMethod, convert), DEADLOCK_RETRIES);
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+
+	@Override
 	public List<SGuidanceProvider> getAllGuidanceProviders() throws UserException, ServerException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
@@ -2369,6 +2387,20 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
+	public void deleteDeserializer(Long sid) throws UserException, ServerException {
+		requireAdminAuthenticationAndRunningServer();
+		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
+		try {
+			BimDatabaseAction<Void> action = new DeleteDeserializerDatabaseAction(session, accessMethod, sid);
+			session.executeAndCommitAction(action, DEADLOCK_RETRIES);
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+
+	@Override
 	public void setSettingFooterAddition(String footerAddition) throws UserException, ServerException {
 		requireAdminAuthenticationAndRunningServer();
 		Settings settings = bimServer.getSettingsManager().getSettings();
@@ -2417,6 +2449,20 @@ public class Service implements ServiceInterface {
 		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
 			return convert(session.executeAction(new GetSerializerByNameDatabaseAction(session, accessMethod, serializerName), DEADLOCK_RETRIES), SSerializer.class);
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+		return null;
+	}
+
+	@Override
+	public SDeserializer getDeserializerByName(String deserializerName) throws UserException, ServerException {
+		requireAuthenticationAndRunningServer();
+		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
+		try {
+			return convert(session.executeAction(new GetDeserializerByNameDatabaseAction(session, accessMethod, deserializerName), DEADLOCK_RETRIES), SDeserializer.class);
 		} catch (Exception e) {
 			handleException(e);
 		} finally {

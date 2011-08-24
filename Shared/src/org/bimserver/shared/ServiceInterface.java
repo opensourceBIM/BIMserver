@@ -605,6 +605,9 @@ public interface ServiceInterface {
 	@WebMethod(action = "updateSerializer")
 	void updateSerializer(SSerializer serializer) throws UserException, ServerException;
 	
+	@WebMethod(action = "updateDeserializer")
+	void updateDeserializer(SDeserializer deserializer) throws UserException, ServerException;
+
 	@WebMethod(action = "getAllGuidanceProviders")
 	List<SGuidanceProvider> getAllGuidanceProviders() throws UserException, ServerException;
 	
@@ -623,6 +626,9 @@ public interface ServiceInterface {
 	@WebMethod(action = "deleteSerializer")
 	void deleteSerializer(Long sid) throws UserException, ServerException;
 	
+	@WebMethod(action = "deleteDeserializer")
+	void deleteDeserializer(Long sid) throws UserException, ServerException;
+
 	@WebMethod(action = "getAllSerializerClassNames")
 	Set<SSerializerPluginDescriptor> getAllSerializerPluginDescriptors() throws UserException;
 
@@ -634,6 +640,10 @@ public interface ServiceInterface {
 	SSerializer getSerializerByName(
 			@WebParam(name = "serializerName", partName = "getSerializerByName.serializerName") String serializerName) throws UserException, ServerException;
 	
+	@WebMethod(action = "getDeserializerByName")
+	SDeserializer getDeserializerByName(
+			@WebParam(name = "deserializerName", partName = "getDeserializerByName.deserializerName") String deserializerName) throws UserException, ServerException;
+
 	@WebMethod(action = "hasActiveSerializer")
 	Boolean hasActiveSerializer(String contentType) throws UserException, ServerException;
 	
