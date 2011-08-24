@@ -26,11 +26,6 @@ public class SchemaFieldGuidanceProviderPlugin implements GuidanceProviderPlugin
 	}
 
 	@Override
-	public String getName() {
-		return getClass().getName();
-	}
-
-	@Override
 	public String getDescription() {
 		return "SchemaFieldGuidanceProviderPlugin";
 	}

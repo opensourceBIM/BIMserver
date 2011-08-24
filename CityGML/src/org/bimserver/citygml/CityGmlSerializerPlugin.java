@@ -26,11 +26,6 @@ public class CityGmlSerializerPlugin implements SerializerPlugin {
 	}
 
 	@Override
-	public String getName() {
-		return getClass().getName();
-	}
-
-	@Override
 	public String getVersion() {
 		return "1.0";
 	}

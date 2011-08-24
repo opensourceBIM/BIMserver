@@ -22,11 +22,6 @@ public class Cobie2SerializerPlugin implements SerializerPlugin {
 	}
 
 	@Override
-	public String getName() {
-		return getClass().getName();
-	}
-
-	@Override
 	public String getDescription() {
 		return "Cobie2";
 	}

@@ -208,7 +208,7 @@ public class PluginManager {
 	public void enablePlugin(String name) {
 		for (Set<PluginContext> pluginContexts : implementations.values()) {
 			for (PluginContext pluginContext : pluginContexts) {
-				if (pluginContext.getPlugin().getName().equals(name)) {
+				if (pluginContext.getPlugin().getClass().getName().equals(name)) {
 					pluginContext.setEnabled(true);
 				}
 			}
@@ -218,7 +218,7 @@ public class PluginManager {
 	public void disablePlugin(String name) {
 		for (Set<PluginContext> pluginContexts : implementations.values()) {
 			for (PluginContext pluginContext : pluginContexts) {
-				if (pluginContext.getPlugin().getName().equals(name)) {
+				if (pluginContext.getPlugin().getClass().getName().equals(name)) {
 					pluginContext.setEnabled(false);
 				}
 			}
@@ -228,7 +228,7 @@ public class PluginManager {
 	public Plugin getPlugin(String className, boolean onlyEnabled) {
 		for (Set<PluginContext> pluginContexts : implementations.values()) {
 			for (PluginContext pluginContext : pluginContexts) {
-				if (pluginContext.getPlugin().getName().equals(className)) {
+				if (pluginContext.getPlugin().getClass().getName().equals(className)) {
 					if (!onlyEnabled || pluginContext.isEnabled()) {
 						return pluginContext.getPlugin();
 					}
