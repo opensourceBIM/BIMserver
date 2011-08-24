@@ -23,11 +23,6 @@ public class Report1ComponentSerializerPlugin implements SerializerPlugin {
 	}
 
 	@Override
-	public String getName() {
-		return getClass().getName();
-	}
-
-	@Override
 	public String getDescription() {
 		return "Report1Component";
 	}

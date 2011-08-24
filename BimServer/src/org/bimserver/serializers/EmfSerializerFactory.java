@@ -42,7 +42,7 @@ public class EmfSerializerFactory {
 			descriptor.setDefaultContentType(serializerPlugin.getDefaultContentType());
 			descriptor.setDefaultExtension(serializerPlugin.getDefaultExtension());
 			descriptor.setDefaultName(serializerPlugin.getDefaultSerializerName());
-			descriptor.setPluginClassName(serializerPlugin.getName());
+			descriptor.setPluginClassName(serializerPlugin.getClass().getName());
 			descriptors.add(descriptor);
 		}
 		return descriptors;
@@ -81,12 +81,12 @@ public class EmfSerializerFactory {
 
 	public SSerializerPluginDescriptor getSerializerPluginDescriptor(String type) {
 		for (SerializerPlugin serializerPlugin : pluginManager.getAllSerializerPlugins(true)) {
-			if (serializerPlugin.getName().equals(type)) {
+			if (serializerPlugin.getClass().getName().equals(type)) {
 				SSerializerPluginDescriptor descriptor = new SSerializerPluginDescriptor();
 				descriptor.setDefaultContentType(serializerPlugin.getDefaultContentType());
 				descriptor.setDefaultExtension(serializerPlugin.getDefaultExtension());
 				descriptor.setDefaultName(serializerPlugin.getDefaultSerializerName());
-				descriptor.setPluginClassName(serializerPlugin.getName());
+				descriptor.setPluginClassName(serializerPlugin.getClass().getName());
 				return descriptor;
 			}
 		}

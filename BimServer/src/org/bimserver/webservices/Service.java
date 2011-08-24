@@ -2481,7 +2481,7 @@ public class Service implements ServiceInterface {
 		Collection<Plugin> plugins = bimServer.getPluginManager().getAllPlugins(false);
 		for (Plugin plugin : plugins) {
 			SPlugin sPlugin = new SPlugin();
-			sPlugin.setName(plugin.getName());
+			sPlugin.setName(plugin.getClass().getName());
 			PluginContext pluginContext = bimServer.getPluginManager().getPluginContext(plugin);
 			sPlugin.setLocation(pluginContext.getLocation());
 			sPlugin.setDescription(plugin.getDescription());
@@ -2659,7 +2659,7 @@ public class Service implements ServiceInterface {
 		Set<SGuidanceProviderPluginDescriptor> descriptors = new HashSet<SGuidanceProviderPluginDescriptor>();
 		for (GuidanceProviderPlugin guidanceProviderPlugin : allGuidanceProviders) {
 			SGuidanceProviderPluginDescriptor descriptor = new SGuidanceProviderPluginDescriptor();
-			descriptor.setClassName(guidanceProviderPlugin.getName());
+			descriptor.setClassName(guidanceProviderPlugin.getClass().getName());
 			descriptors.add(descriptor);
 		}
 		return descriptors;

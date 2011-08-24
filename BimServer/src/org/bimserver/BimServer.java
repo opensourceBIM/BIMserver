@@ -153,18 +153,18 @@ public class BimServer {
 					@Override
 					public void pluginStateChanged(PluginContext pluginContext, boolean enabled) {
 						// Reflect this change also in the database
-						Condition pluginCondition = new AttributeCondition(StorePackage.eINSTANCE.getPlugin_Name(), new StringLiteral(pluginContext.getPlugin().getName()));
+						Condition pluginCondition = new AttributeCondition(StorePackage.eINSTANCE.getPlugin_Name(), new StringLiteral(pluginContext.getPlugin().getClass().getName()));
 						BimDatabaseSession session = bimDatabase.createSession(true);
 						try {
 							Map<Long, org.bimserver.models.store.Plugin> pluginsFound = session.query(pluginCondition, org.bimserver.models.store.Plugin.class, false);
 							if (pluginsFound.size() == 0) {
-								LOGGER.error("Error changing plugin-state in database, plugin " + pluginContext.getPlugin().getName() + " not found");
+								LOGGER.error("Error changing plugin-state in database, plugin " + pluginContext.getPlugin().getClass().getName() + " not found");
 							} else if (pluginsFound.size() == 1) {
 								org.bimserver.models.store.Plugin pluginFound = pluginsFound.values().iterator().next();
 								pluginFound.setEnabled(pluginContext.isEnabled());
 								session.store(pluginFound);
 							} else {
-								LOGGER.error("Error, too many plugin-objects found in database for name " + pluginContext.getPlugin().getName());
+								LOGGER.error("Error, too many plugin-objects found in database for name " + pluginContext.getPlugin().getClass().getName());
 							}
 							session.commit();
 						} catch (BimDatabaseException e) {
@@ -349,7 +349,7 @@ public class BimServer {
 		}
 		session.store(defaultGuidanceProvider);
 		for (IfcEnginePlugin ifcEnginePlugin : pluginManager.getAllIfcEnginePlugins(true)) {
-			String name = ifcEnginePlugin.getName();
+			String name = ifcEnginePlugin.getClass().getName();
 			Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getIfcEngine_Name(), new StringLiteral(name));
 			Serializer found = session.querySingle(condition, Serializer.class, false);
 			if (found == null) {
@@ -361,11 +361,11 @@ public class BimServer {
 		}
 		Collection<Plugin> allPlugins = pluginManager.getAllPlugins(false);
 		for (Plugin plugin : allPlugins) {
-			Condition pluginCondition = new AttributeCondition(StorePackage.eINSTANCE.getPlugin_Name(), new StringLiteral(plugin.getName()));
+			Condition pluginCondition = new AttributeCondition(StorePackage.eINSTANCE.getPlugin_Name(), new StringLiteral(plugin.getClass().getName()));
 			Map<Long, org.bimserver.models.store.Plugin> results = session.query(pluginCondition, org.bimserver.models.store.Plugin.class, false);
 			if (results.size() == 0) {
 				org.bimserver.models.store.Plugin pluginObject = StoreFactory.eINSTANCE.createPlugin();
-				pluginObject.setName(plugin.getName());
+				pluginObject.setName(plugin.getClass().getName());
 				pluginObject.setEnabled(true); // New plugins are enabled by
 												// default
 				session.store(pluginObject);
@@ -373,7 +373,7 @@ public class BimServer {
 				org.bimserver.models.store.Plugin pluginObject = results.values().iterator().next();
 				pluginManager.getPluginContext(plugin).setEnabled(pluginObject.isEnabled());
 			} else {
-				LOGGER.error("Multiple plugin objects found with the same name: " + plugin.getName());
+				LOGGER.error("Multiple plugin objects found with the same name: " + plugin.getClass().getName());
 			}
 		}
 		session.commit();

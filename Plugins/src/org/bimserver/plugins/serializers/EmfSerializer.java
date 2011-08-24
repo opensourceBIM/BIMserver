@@ -41,10 +41,7 @@ public abstract class EmfSerializer {
 	private PluginManager pluginManager;
 
 	protected static enum Mode {
-		HEADER,
-		BODY,
-		FOOTER,
-		FINISHED
+		HEADER, BODY, FOOTER, FINISHED
 	}
 
 	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager) throws SerializerException {
@@ -57,15 +54,15 @@ public abstract class EmfSerializer {
 	public ProjectInfo getProjectInfo() {
 		return projectInfo;
 	}
-	
+
 	protected Mode getMode() {
 		return mode;
 	}
-	
+
 	protected void setMode(Mode mode) {
 		this.mode = mode;
 	}
-	
+
 	public byte[] getBytes() {
 		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 		try {
@@ -119,7 +116,7 @@ public abstract class EmfSerializer {
 				}
 				return read;
 			}
-			
+
 			@Override
 			public int read() throws IOException {
 				try {
@@ -130,14 +127,13 @@ public abstract class EmfSerializer {
 						while (buffer == null) {
 							out.reset();
 							boolean write = write(out);
-							if (write) {
-								byte[] newBuffer = out.toByteArray();
-								if (newBuffer.length > 0) {
-									buffer = newBuffer;
-									pos = 1;
-									return buffer[0];
-								}
-							} else {
+							byte[] newBuffer = out.toByteArray();
+							if (newBuffer.length > 0) {
+								buffer = newBuffer;
+								pos = 1;
+								return buffer[0];
+							}
+							if (!write) {
 								return -1;
 							}
 						}
@@ -151,8 +147,19 @@ public abstract class EmfSerializer {
 		return in;
 	}
 
+	/*
+	 * The serializer must implement this method, but in most cases won't have
+	 * to do anything. Only when reusing a serializer, this method can be used
+	 * to cleanup/setup
+	 */
 	protected abstract void reset();
 
+	/*
+	 * The serializer must implement this method and write data to the
+	 * outputstream. This call can be called multiple times by the BIMserver.
+	 * The implementation must return true when data has been written, or false
+	 * when no data has been written (this will stop the serialization).
+	 */
 	protected abstract boolean write(OutputStream outputStream) throws SerializerException;
 
 	public void writeToOutputStream(OutputStream outputStream) throws SerializerException {

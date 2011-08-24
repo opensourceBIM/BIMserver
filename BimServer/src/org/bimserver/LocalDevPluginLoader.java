@@ -20,6 +20,7 @@ public class LocalDevPluginLoader {
 		pluginManager.loadPluginsFromEclipseProject(new File("../Cobie2Serializer"));
 		pluginManager.loadPluginsFromEclipseProject(new File("../Report1Serializer"));
 		pluginManager.loadPluginsFromEclipseProject(new File("../DeserializerExample"));
+		pluginManager.loadPluginsFromEclipseProject(new File("../SerializerExample"));
 	}
 	
 	public static PluginManager createPluginManager() throws PluginException {

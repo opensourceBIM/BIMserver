@@ -22,11 +22,6 @@ public class FileBasedGuidanceProviderPlugin implements GuidanceProviderPlugin {
 	}
 
 	@Override
-	public String getName() {
-		return getClass().getName();
-	}
-
-	@Override
 	public String getDescription() {
 		return "FileBasedGuidanceProviderPlugin";
 	}
