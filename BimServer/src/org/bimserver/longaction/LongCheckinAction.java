@@ -36,17 +36,17 @@ public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
 		try {
 			createCheckinAction.setDatabaseSession(session);
-			session.executeAndCommitAction(createCheckinAction, 10, new ProgressHandler(){
+			session.executeAndCommitAction(createCheckinAction, 10, new ProgressHandler() {
 				@Override
 				public void progress(int current, int max) {
 					LongCheckinAction.this.progress = current * 100 / max;
-				}});
+				}
+			});
 			session.close();
 
 			BimDatabaseSession extraSession = bimServer.getDatabase().createSession(true);
 			try {
-				ConcreteRevision concreteRevision = (ConcreteRevision) extraSession.get(StorePackage.eINSTANCE.getConcreteRevision(),
-						createCheckinAction.getCroid(), false);
+				ConcreteRevision concreteRevision = (ConcreteRevision) extraSession.get(StorePackage.eINSTANCE.getConcreteRevision(), createCheckinAction.getCroid(), false);
 				for (Revision r : concreteRevision.getRevisions()) {
 					Revision latest = null;
 					for (Revision r2 : r.getProject().getRevisions()) {
@@ -79,8 +79,7 @@ public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 					while (throwable.getCause() != null) {
 						throwable = throwable.getCause();
 					}
-					ConcreteRevision concreteRevision = (ConcreteRevision) rollBackSession.get(
-							StorePackage.eINSTANCE.getConcreteRevision(), croid, false);
+					ConcreteRevision concreteRevision = (ConcreteRevision) rollBackSession.get(StorePackage.eINSTANCE.getConcreteRevision(), croid, false);
 					concreteRevision.setState(CheckinState.ERROR);
 					concreteRevision.setLastError(throwable.getMessage());
 					for (Revision revision : concreteRevision.getRevisions()) {
@@ -100,12 +99,11 @@ public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 		} finally {
 			session.close();
 		}
+		bimServer.getLongActionManager().remove(this);
 	}
 
-	private void startClashDetection(BimDatabaseSession session) throws BimDeadlockException, BimDatabaseException, UserException,
-			IfcEngineException, SerializerException {
-		ConcreteRevision concreteRevision = (ConcreteRevision) session.get(StorePackage.eINSTANCE.getConcreteRevision(),
-				createCheckinAction.getCroid(), false);
+	private void startClashDetection(BimDatabaseSession session) throws BimDeadlockException, BimDatabaseException, UserException, IfcEngineException, SerializerException {
+		ConcreteRevision concreteRevision = (ConcreteRevision) session.get(StorePackage.eINSTANCE.getConcreteRevision(), createCheckinAction.getCroid(), false);
 		Project project = concreteRevision.getProject();
 		Project mainProject = project;
 		while (mainProject.getParent() != null) {

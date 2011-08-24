@@ -25,9 +25,6 @@ public class LongActionManager {
 				@Override
 				public void run() {
 					longAction.execute();
-					synchronized (LongActionManager.this) {
-						//actions.remove(longAction.getId());
-					}
 				}
 			});
 			longAction.setId(actionNumberCounter++);
@@ -92,5 +89,13 @@ public class LongActionManager {
 			LongAction<?> longAction = iterator.next();
 			longAction.waitForCompletion();
 		}
+	}
+
+	public synchronized void remove(Integer actionId) {
+		actions.remove(actionId);
+	}
+
+	public void remove(LongAction<?> action) {
+		actions.inverse().remove(action);
 	}
 }

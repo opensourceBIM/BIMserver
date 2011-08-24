@@ -1,11 +1,7 @@
 package org.bimserver.ifc.xml.deserializer;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Date;
 import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
@@ -89,21 +85,6 @@ public class IfcXmlDeserializer extends EmfDeserializer  {
 		return null;
 	}
 
-	@Override
-	public IfcModelInterface read(File file, boolean setOids) throws DeserializeException {
-		try {
-			FileInputStream in = new FileInputStream(file);
-			read(in, file.getName(), setOids, file.length());
-			in.close();
-			model.setDate(new Date());
-			return model;
-		} catch (FileNotFoundException e) {
-			throw new DeserializeException(e);
-		} catch (IOException e) {
-			throw new DeserializeException(e);
-		}
-	}
-	
 	private void parseDocument(XMLStreamReader reader) throws XMLStreamException, IfcXmlDeserializeException {
 		while (reader.hasNext()) {
 			reader.next();
@@ -314,11 +295,6 @@ public class IfcXmlDeserializer extends EmfDeserializer  {
 		} else {
 			throw new IfcXmlDeserializeException("Unimplemented primitive type: " + eType.getName());
 		}
-	}
-
-	@Override
-	public IfcModelInterface getModel() {
-		return model;
 	}
 
 	@Override

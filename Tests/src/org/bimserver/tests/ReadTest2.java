@@ -22,8 +22,7 @@ public class ReadTest2 {
 			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", true);
 			EmfDeserializer deserializer = deserializerPlugin.createDeserializer();
 			deserializer.init(pluginManager.requireSchemaDefinition());
-			deserializer.read(TestFile.HAUS_SOURCE_FILE.getFile(), true);
-			IfcModelInterface model = deserializer.getModel();
+			IfcModelInterface model =  deserializer.read(TestFile.HAUS_SOURCE_FILE.getFile(), true);
 
 			List<IdEObject> windows = model.getAllWithSubTypes(IdEObject.class);
 			System.out.println(windows.size());
