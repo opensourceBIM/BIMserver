@@ -403,17 +403,17 @@ public class CityGmlSerializer extends BimModelSerializer {
 		// beam.setGlobalId(ifcProduct.getGlobalId());
 		// return beam;
 		else if (ifcProduct instanceof IfcOpeningElement) {
-			OpeningElementType openingElement = new OpeningElementType();
-			MultiSurfaceProperty openingElementMSP = gml.createMultiSurfaceProperty();
-			MultiSurface stairMs = gml.createMultiSurface();
-			setGeometry(stairMs, ifcProduct);
-			openingElementMSP.setMultiSurface(stairMs);
-			openingElement.setLod4MultiSurface((MultiSurfacePropertyType) openingElementMSP);
+//			OpeningElementType openingElement = new OpeningElementType();
+//			MultiSurfaceProperty openingElementMSP = gml.createMultiSurfaceProperty();
+//			MultiSurface stairMs = gml.createMultiSurface();
+//			setGeometry(stairMs, ifcProduct);
+//			openingElementMSP.setMultiSurface(stairMs);
+//			openingElement.setLod4MultiSurface((MultiSurfacePropertyType) openingElementMSP);
 			// openingElement.setLod4MultiSurface(openingElementMSP);
 			// setName(openingElement.getName(), ifcProduct.getName());
 			// setGlobalId(openingElement, ifcProduct);
-			ifcProduct.setGlobalId(ifcProduct.getGlobalId());
-			return openingElement.get_ADEComponent();
+//			ifcProduct.setGlobalId(ifcProduct.getGlobalId());
+//			return openingElement.get_ADEComponent();
 		}
 		return null;
 	}
