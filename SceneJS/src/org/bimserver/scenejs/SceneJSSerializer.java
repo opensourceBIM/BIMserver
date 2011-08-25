@@ -4,8 +4,8 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
-//import java.util.HashSet;
-//import java.util.Iterator;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -20,34 +20,34 @@ import org.bimserver.models.ifc2x3.IfcCurtainWall;
 import org.bimserver.models.ifc2x3.IfcDoor;
 import org.bimserver.models.ifc2x3.IfcFlowSegment;
 import org.bimserver.models.ifc2x3.IfcFurnishingElement;
-//import org.bimserver.models.ifc2x3.IfcMaterial;
-//import org.bimserver.models.ifc2x3.IfcMaterialLayer;
-//import org.bimserver.models.ifc2x3.IfcMaterialLayerSet;
-//import org.bimserver.models.ifc2x3.IfcMaterialLayerSetUsage;
-//import org.bimserver.models.ifc2x3.IfcMaterialSelect;
+import org.bimserver.models.ifc2x3.IfcMaterial;
+import org.bimserver.models.ifc2x3.IfcMaterialLayer;
+import org.bimserver.models.ifc2x3.IfcMaterialLayerSet;
+import org.bimserver.models.ifc2x3.IfcMaterialLayerSetUsage;
+import org.bimserver.models.ifc2x3.IfcMaterialSelect;
 import org.bimserver.models.ifc2x3.IfcMember;
-//import org.bimserver.models.ifc2x3.IfcObjectDefinition;
+import org.bimserver.models.ifc2x3.IfcObjectDefinition;
 import org.bimserver.models.ifc2x3.IfcPlate;
-//import org.bimserver.models.ifc2x3.IfcPresentationStyleAssignment;
-//import org.bimserver.models.ifc2x3.IfcPresentationStyleSelect;
-//import org.bimserver.models.ifc2x3.IfcProduct;
-//import org.bimserver.models.ifc2x3.IfcProductDefinitionShape;
-//import org.bimserver.models.ifc2x3.IfcProductRepresentation;
+import org.bimserver.models.ifc2x3.IfcPresentationStyleAssignment;
+import org.bimserver.models.ifc2x3.IfcPresentationStyleSelect;
+import org.bimserver.models.ifc2x3.IfcProduct;
+import org.bimserver.models.ifc2x3.IfcProductDefinitionShape;
+import org.bimserver.models.ifc2x3.IfcProductRepresentation;
 //import org.bimserver.models.ifc2x3.IfcProject;
 import org.bimserver.models.ifc2x3.IfcRailing;
-//import org.bimserver.models.ifc2x3.IfcRelAssociatesMaterial;
-//import org.bimserver.models.ifc2x3.IfcRelDecomposes;
-//import org.bimserver.models.ifc2x3.IfcRepresentation;
-//import org.bimserver.models.ifc2x3.IfcRepresentationItem;
+import org.bimserver.models.ifc2x3.IfcRelAssociatesMaterial;
+import org.bimserver.models.ifc2x3.IfcRelDecomposes;
+import org.bimserver.models.ifc2x3.IfcRepresentation;
+import org.bimserver.models.ifc2x3.IfcRepresentationItem;
 import org.bimserver.models.ifc2x3.IfcRoof;
 //import org.bimserver.models.ifc2x3.IfcSIUnit;
-//import org.bimserver.models.ifc2x3.IfcShapeRepresentation;
+import org.bimserver.models.ifc2x3.IfcShapeRepresentation;
 import org.bimserver.models.ifc2x3.IfcSlab;
 import org.bimserver.models.ifc2x3.IfcSlabTypeEnum;
 import org.bimserver.models.ifc2x3.IfcStair;
 import org.bimserver.models.ifc2x3.IfcStairFlight;
-//import org.bimserver.models.ifc2x3.IfcStyledItem;
-//import org.bimserver.models.ifc2x3.IfcSurfaceStyle;
+import org.bimserver.models.ifc2x3.IfcStyledItem;
+import org.bimserver.models.ifc2x3.IfcSurfaceStyle;
 //import org.bimserver.models.ifc2x3.IfcSurfaceStyleElementSelect;
 //import org.bimserver.models.ifc2x3.IfcSurfaceStyleRendering;
 //import org.bimserver.models.ifc2x3.IfcUnit;
@@ -62,15 +62,15 @@ import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.ifcengine.IfcEngine;
 import org.bimserver.plugins.ifcengine.IfcEngineException;
 import org.bimserver.plugins.ifcengine.IfcEngineGeometry;
-//import org.bimserver.plugins.ifcengine.IfcEngineInstance;
-//import org.bimserver.plugins.ifcengine.IfcEngineInstanceVisualisationProperties;
+import org.bimserver.plugins.ifcengine.IfcEngineInstance;
+import org.bimserver.plugins.ifcengine.IfcEngineInstanceVisualisationProperties;
 import org.bimserver.plugins.ifcengine.IfcEngineModel;
 import org.bimserver.plugins.serializers.BimModelSerializer;
 import org.bimserver.plugins.serializers.EmfSerializer;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.SerializerException;
-//import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -78,8 +78,36 @@ import org.slf4j.LoggerFactory;
 public class SceneJSSerializer extends BimModelSerializer {
 	private static final Logger LOGGER = LoggerFactory.getLogger(SceneJSSerializer.class);
 	private IfcEngine ifcEngine;
-	//private Map<String, Set<String>> converted = new HashMap<String, Set<String>>();
+	private Map<String, Set<String>> converted = new HashMap<String, Set<String>>();
 	private List<String> surfaceStyleIds;
+	
+	/* JsWriter adds automatic indentation to the PrintWriter */ 
+	private class JsWriter extends PrintWriter {
+		private int indentation = 0;
+		public JsWriter(OutputStream out) {
+			super(out);
+		}
+		public void indent() {
+			indentation += 1;
+		}
+		public void unindent() {
+			indentation = Math.max(0, indentation - 1);
+		}
+		
+		public void writeln(String s){
+			for (int i = 0; i < indentation; ++i){
+				super.print("  ");
+			}
+			super.println(s);
+		}
+		
+		public void writetab(String s){
+			for (int i = 0; i < indentation; ++i){
+				super.print("  ");
+			}
+			super.print(s);
+		}
+	}
 
 	@Override
 	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager) throws SerializerException {
@@ -100,49 +128,49 @@ public class SceneJSSerializer extends BimModelSerializer {
 			} catch (PluginException e) {
 				throw new SerializerException(e);
 			}
-			PrintWriter writer = new PrintWriter(out);
+			JsWriter writer = new JsWriter(out);
 			try {
 				writeAssets(writer);
 
-				writer.println("SceneJS.createScene({");
-				//writer.indent();
-				writer.println("type: 'scene',");
-				writer.println("id: 'Scene',");
-				writer.println("canvasId: 'scenejsCanvas',");
-				writer.println("loggingElementId: 'scenejsLog',");
-				writer.println("flags:");
-				//writer.indent();
-				writer.println("{");
-				//writer.indent();
-				//writer.undent();
-				writer.println("},");
-				//writer.undent();
+				writer.writeln("SceneJS.createScene({");
+				writer.indent();
+				writer.writeln("type: 'scene',");
+				writer.writeln("id: 'Scene',");
+				writer.writeln("canvasId: 'scenejsCanvas',");
+				writer.writeln("loggingElementId: 'scenejsLog',");
+				writer.writeln("flags:");
+				writer.indent();
+				writer.writeln("{");
+				writer.indent();
+				writer.unindent();
+				writer.writeln("},");
+				writer.unindent();
 
-				writer.println("nodes: [");
-				//writer.indent();
+				writer.writeln("nodes: [");
+				writer.indent();
 
-				writer.println("{");
-				//writer.indent();
-				writer.println("type: 'library',");
-				writer.println("nodes: [");
-				//writer.indent()
+				writer.writeln("{");
+				writer.indent();
+				writer.writeln("type: 'library',");
+				writer.writeln("nodes: [");
+				writer.indent();
 				writeMaterials(writer);
 				writeGeometries(writer);
-				//writer.undent();
-				writer.println("],");
+				writer.unindent();
+				writer.writeln("],");
 
-				//writer.undent();
-				writer.println("},");
+				writer.unindent();
+				writer.writeln("},");
 
 				writeCameras(writer);
 				writeLights(writer);
 				writeVisualScenes(writer);
 
-				//writer.undent();
-				writer.println("],");
+				writer.unindent();
+				writer.writeln("],");
 
-				//writer.undent();
-				writer.print("});");
+				writer.unindent();
+				writer.writeln("});");
 				writer.flush();
 			} catch (Exception e) {
 				LOGGER.error("", e);
@@ -157,144 +185,144 @@ public class SceneJSSerializer extends BimModelSerializer {
 		return false;
 	}
 
-	private void writeAssets(PrintWriter writer) {
-		writer.println("/* Author:      " + getProjectInfo().getAuthorName());
-		writer.println("   Description: " + getProjectInfo().getDescription());
-		writer.println("*/");
+	private void writeAssets(JsWriter writer) {
+		writer.writeln("/* Author:      " + getProjectInfo().getAuthorName());
+		writer.writeln("   Description: " + getProjectInfo().getDescription());
+		writer.writeln("*/");
 
 		/*if (lengthUnitPrefix == null) {
-			writer.println("   Unit: 1 meter");
+			writer.writeln("   Unit: 1 meter");
 		} else {
-			writer.println("   Unit: " + Math.pow(10.0, lengthUnitPrefix.getValue()) + " " + lengthUnitPrefix.name().toLowerCase());
+			writer.writeln("   Unit: " + Math.pow(10.0, lengthUnitPrefix.getValue()) + " " + lengthUnitPrefix.name().toLowerCase());
 		}*/
 	}
 
-	private void writeMaterials(PrintWriter writer) {
-		writer.println("{");
-		//writer.indent();
-		writer.println("type: 'material'");
-		writer.println("coreId: 'RoofMaterial'");
+	private void writeMaterials(JsWriter writer) {
+		writer.writeln("{");
+		writer.indent();
+		writer.writeln("type: 'material',");
+		writer.writeln("coreId: 'RoofMaterial',");
 		//todo: effect instance
-		//writer.undent();
-		writer.println("},");
+		writer.unindent();
+		writer.writeln("},");
 
-		writer.println("{");
-		//writer.indent();
-		writer.println("type: 'material'");
-		writer.println("coreId: 'SpaceMaterial'");
+		writer.writeln("{");
+		writer.indent();
+		writer.writeln("type: 'material',");
+		writer.writeln("coreId: 'SpaceMaterial',");
 		//todo: effect instance
-		//writer.undent();
-		writer.println("},");
+		writer.unindent();
+		writer.writeln("},");
 
-		writer.println("{");
-		//writer.indent();
-		writer.println("type: 'material'");
-		writer.println("coreId: 'SlabMaterial'");
+		writer.writeln("{");
+		writer.indent();
+		writer.writeln("type: 'material',");
+		writer.writeln("coreId: 'SlabMaterial',");
 		//todo: effect instance
-		//writer.undent();
-		writer.println("},");
+		writer.unindent();
+		writer.writeln("},");
 
-		writer.println("{");
-		//writer.indent();
-		writer.println("type: 'material'");
-		writer.println("coreId: 'WallMaterial'");
+		writer.writeln("{");
+		writer.indent();
+		writer.writeln("type: 'material',");
+		writer.writeln("coreId: 'WallMaterial',");
 		//todo: effect instance
-		//writer.undent();
-		writer.println("},");
+		writer.unindent();
+		writer.writeln("},");
 
-		writer.println("{");
-		//writer.indent();
-		writer.println("type: 'material'");
-		writer.println("coreId: 'WindowMaterial'");
+		writer.writeln("{");
+		writer.indent();
+		writer.writeln("type: 'material',");
+		writer.writeln("coreId: 'WindowMaterial',");
 		//todo: effect instance
-		//writer.undent();
-		writer.println("},");
+		writer.unindent();
+		writer.writeln("},");
 
-		writer.println("{");
-		//writer.indent();
-		writer.println("type: 'material'");
-		writer.println("coreId: 'DoorMaterial'");
+		writer.writeln("{");
+		writer.indent();
+		writer.writeln("type: 'material',");
+		writer.writeln("coreId: 'DoorMaterial',");
 		//todo: effect instance
-		//writer.undent();
-		writer.println("},");
+		writer.unindent();
+		writer.writeln("},");
 
-		writer.println("{");
-		//writer.indent();
-		writer.println("type: 'material'");
-		writer.println("coreId: 'RailingMaterial'");
+		writer.writeln("{");
+		writer.indent();
+		writer.writeln("type: 'material',");
+		writer.writeln("coreId: 'RailingMaterial',");
 		//todo: effect instance
-		//writer.undent();
-		writer.println("},");
+		writer.unindent();
+		writer.writeln("},");
 
-		writer.println("{");
-		//writer.indent();
-		writer.println("type: 'material'");
-		writer.println("coreId: 'ColumnMaterial'");
+		writer.writeln("{");
+		writer.indent();
+		writer.writeln("type: 'material',");
+		writer.writeln("coreId: 'ColumnMaterial',");
 		//todo: effect instance
-		//writer.undent();
-		writer.println("},");
+		writer.unindent();
+		writer.writeln("},");
 
-		writer.println("{");
-		//writer.indent();
-		writer.println("type: 'material'");
-		writer.println("coreId: 'FurnishingElementMaterial'");
+		writer.writeln("{");
+		writer.indent();
+		writer.writeln("type: 'material',");
+		writer.writeln("coreId: 'FurnishingElementMaterial',");
 		//todo: effect instance
-		//writer.undent();
-		writer.println("},");
+		writer.unindent();
+		writer.writeln("},");
 
-		writer.println("{");
-		//writer.indent();
-		writer.println("type: 'material'");
-		writer.println("coreId: 'CurtainWallMaterial'");
+		writer.writeln("{");
+		writer.indent();
+		writer.writeln("type: 'material',");
+		writer.writeln("coreId: 'CurtainWallMaterial',");
 		//todo: effect instance
-		//writer.undent();
-		writer.println("},");
+		writer.unindent();
+		writer.writeln("},");
 
-		writer.println("{");
-		//writer.indent();
-		writer.println("type: 'material'");
-		writer.println("coreId: 'FurnishingElementMaterial'");
+		writer.writeln("{");
+		writer.indent();
+		writer.writeln("type: 'material',");
+		writer.writeln("coreId: 'FurnishingElementMaterial',");
 		//todo: effect instance
-		//writer.undent();
-		writer.println("},");
+		writer.unindent();
+		writer.writeln("},");
 
-		writer.println("{");
-		//writer.indent();
-		writer.println("type: 'material'");
-		writer.println("coreId: 'StairMaterial'");
+		writer.writeln("{");
+		writer.indent();
+		writer.writeln("type: 'material',");
+		writer.writeln("coreId: 'StairMaterial',");
 		//todo: effect instance
-		//writer.undent();
-		writer.println("},");
+		writer.unindent();
+		writer.writeln("},");
 
-		writer.println("{");
-		//writer.indent();
-		writer.println("type: 'material'");
-		writer.println("coreId: 'FlowSegmentMaterial'");
+		writer.writeln("{");
+		writer.indent();
+		writer.writeln("type: 'material',");
+		writer.writeln("coreId: 'FlowSegmentMaterial',");
 		//todo: effect instance
-		//writer.undent();
-		writer.println("},");
+		writer.unindent();
+		writer.writeln("},");
 
-		writer.println("{");
-		//writer.indent();
-		writer.println("type: 'material'");
-		writer.println("coreId: 'BuildingElementProxyMaterial'");
+		writer.writeln("{");
+		writer.indent();
+		writer.writeln("type: 'material',");
+		writer.writeln("coreId: 'BuildingElementProxyMaterial',");
 		//todo: effect instance
-		//writer.undent();
-		writer.println("},");
+		writer.unindent();
+		writer.writeln("},");
 
 		for (String surfaceStyleId : surfaceStyleIds) {
-			writer.println("{");
-			//writer.indent();
-			writer.println("type: 'material'");
-			writer.println("coreId: '" + surfaceStyleId + "Material'");
+			writer.writeln("{");
+			writer.indent();
+			writer.writeln("type: 'material',");
+			writer.writeln("coreId: '" + surfaceStyleId + "Material',");
 			//todo: effect instance
-			//writer.undent();
-			writer.println("},");
+			writer.unindent();
+			writer.writeln("},");
 		}
 	}
 
-	private void writeEffects(PrintWriter writer) {
-		/*out.println("	<library_effects>");
+	private void writeEffects(JsWriter writer) {
+		/*out.writeln("	<library_effects>");
 		writeEffect(out, "Space", new float[] { 0.137255f, 0.403922f, 0.870588f }, 1.0f);
 		writeEffect(out, "Roof", new float[] { 0.837255f, 0.203922f, 0.270588f }, 1.0f);
 		writeEffect(out, "Slab", new float[] { 0.637255f, 0.603922f, 0.670588f }, 1.0f);
@@ -328,51 +356,51 @@ public class SceneJSSerializer extends BimModelSerializer {
 			}
 		}
 
-		out.println("    </library_effects>");*/
+		out.writeln("    </library_effects>");*/
 	}
 
-	private void writeEffect(PrintWriter writer, String name, float[] colors, float transparency) {
-		/*out.println("        <effect id=\"" + name + "-fx\">");
-		out.println("            <profile_COMMON>");
-		out.println("                <technique sid=\"common\">");
-		out.println("                    <phong>");
-		out.println("                        <emission>");
-		out.println("                            <color>0 0 0 1</color>");
-		out.println("                        </emission>");
-		out.println("                        <ambient>");
-		out.println("                            <color>0 0 0 1</color>");
-		out.println("                        </ambient>");
-		out.println("                        <diffuse>");
-		out.println("                            <color>" + colors[0] + " " + colors[1] + " " + colors[2] + " " + transparency + "</color>");
-		out.println("                        </diffuse>");
-		out.println("                        <specular>");
-		out.println("                            <color>0.5 0.5 0.5 1</color>");
-		out.println("                        </specular>");
-		out.println("                        <shininess>");
-		out.println("                            <float>16</float>");
-		out.println("                        </shininess>");
-		out.println("                        <reflective>");
-		out.println("                            <color>0 0 0 1</color>");
-		out.println("                        </reflective>");
-		out.println("                        <reflectivity>");
-		out.println("                            <float>0.5</float>");
-		out.println("                        </reflectivity>");
-		out.println("                        <transparent>");
-		out.println("                            <color>" + transparency + " " + transparency + " " + transparency + " " + 1 + "</color>");
-		out.println("                        </transparent>");
-		out.println("                        <transparency>");
-		out.println("                            <float>" + transparency + "</float>");
-		out.println("                        </transparency>");
-		out.println("                        <index_of_refraction>");
-		out.println("                            <float>0</float>");
-		out.println("                        </index_of_refraction>");
-		out.println("                    </phong>");
-		out.println("                </technique>");
-		out.println("            </profile_COMMON>");
-		out.println("        </effect>");*/
+	private void writeEffect(JsWriter writer, String name, float[] colors, float transparency) {
+		/*out.writeln("        <effect id=\"" + name + "-fx\">");
+		out.writeln("            <profile_COMMON>");
+		out.writeln("                <technique sid=\"common\">");
+		out.writeln("                    <phong>");
+		out.writeln("                        <emission>");
+		out.writeln("                            <color>0 0 0 1</color>");
+		out.writeln("                        </emission>");
+		out.writeln("                        <ambient>");
+		out.writeln("                            <color>0 0 0 1</color>");
+		out.writeln("                        </ambient>");
+		out.writeln("                        <diffuse>");
+		out.writeln("                            <color>" + colors[0] + " " + colors[1] + " " + colors[2] + " " + transparency + "</color>");
+		out.writeln("                        </diffuse>");
+		out.writeln("                        <specular>");
+		out.writeln("                            <color>0.5 0.5 0.5 1</color>");
+		out.writeln("                        </specular>");
+		out.writeln("                        <shininess>");
+		out.writeln("                            <float>16</float>");
+		out.writeln("                        </shininess>");
+		out.writeln("                        <reflective>");
+		out.writeln("                            <color>0 0 0 1</color>");
+		out.writeln("                        </reflective>");
+		out.writeln("                        <reflectivity>");
+		out.writeln("                            <float>0.5</float>");
+		out.writeln("                        </reflectivity>");
+		out.writeln("                        <transparent>");
+		out.writeln("                            <color>" + transparency + " " + transparency + " " + transparency + " " + 1 + "</color>");
+		out.writeln("                        </transparent>");
+		out.writeln("                        <transparency>");
+		out.writeln("                            <float>" + transparency + "</float>");
+		out.writeln("                        </transparency>");
+		out.writeln("                        <index_of_refraction>");
+		out.writeln("                            <float>0</float>");
+		out.writeln("                        </index_of_refraction>");
+		out.writeln("                    </phong>");
+		out.writeln("                </technique>");
+		out.writeln("            </profile_COMMON>");
+		out.writeln("        </effect>");*/
 	}
 
-	private void writeGeometries(PrintWriter writer) throws IfcEngineException, SerializerException {
+	private void writeGeometries(JsWriter writer) throws IfcEngineException, SerializerException {
 		for (IfcRoof ifcRoof : model.getAll(IfcRoof.class)) {
 			setGeometry(writer, ifcRoof, ifcRoof.getGlobalId().getWrappedValue(), "Roof");
 		}
@@ -427,14 +455,15 @@ public class SceneJSSerializer extends BimModelSerializer {
 		}
 	}
 
-	private void setGeometry(PrintWriter writer, IdEObject ifcRootObject, String id, String material) throws IfcEngineException, SerializerException {
+	private void setGeometry(JsWriter writer, IdEObject ifcRootObject, String id, String material) throws IfcEngineException, SerializerException {
 		id = id.replace('$', '-'); // Remove the $ character from geometry id's.
 		//id = "_" + id; // Ensure that the id does not start with a digit
 
-		/*boolean materialFound = false;
+		boolean materialFound = false;
 		if (ifcRootObject instanceof IfcProduct) {
 			IfcProduct ifcProduct = (IfcProduct) ifcRootObject;
 
+			// If this product is composed of other objects, output each object separately
 			EList<IfcRelDecomposes> isDecomposedBy = ifcProduct.getIsDecomposedBy();
 			for (IfcRelDecomposes dcmp : isDecomposedBy) {
 				EList<IfcObjectDefinition> relatedObjects = dcmp.getRelatedObjects();
@@ -446,6 +475,7 @@ public class SceneJSSerializer extends BimModelSerializer {
 				return;
 			}
 
+			// Get the relating material for this model 
 			Iterator<IfcRelAssociatesMaterial> ramIter = model.getAll(IfcRelAssociatesMaterial.class).iterator();
 			boolean found = false;
 			IfcMaterialSelect relatingMaterial = null;
@@ -456,6 +486,8 @@ public class SceneJSSerializer extends BimModelSerializer {
 					relatingMaterial = ram.getRelatingMaterial();
 				}
 			}
+			
+			// Try to find the IFC material name
 			if (found && relatingMaterial instanceof IfcMaterialLayerSetUsage) {
 				IfcMaterialLayerSetUsage mlsu = (IfcMaterialLayerSetUsage) relatingMaterial;
 				IfcMaterialLayerSet forLayerSet = mlsu.getForLayerSet();
@@ -483,6 +515,7 @@ public class SceneJSSerializer extends BimModelSerializer {
 				}
 			}
 
+			// If no material was found then derive one from the presentation style
 			if (!materialFound) {
 				IfcProductRepresentation representation = ifcProduct.getRepresentation();
 				if (representation instanceof IfcProductDefinitionShape) {
@@ -518,11 +551,13 @@ public class SceneJSSerializer extends BimModelSerializer {
 			}
 		}
 
+		// Add the object id to the related material in the hash map 
 		if (!converted.containsKey(material)) {
 			converted.put(material, new HashSet<String>());
 		}
-		converted.get(material).add(id);*/
-
+		converted.get(material).add(id);
+		
+		// Serialize the geometric data itself
 		IfcModelInterface ifcModel = new IfcModel();
 		convertToSubset(ifcRootObject.eClass(), ifcRootObject, ifcModel, new HashMap<EObject, EObject>());
 		EmfSerializer serializer = getPluginManager().requireIfcStepSerializer();
@@ -534,42 +569,43 @@ public class SceneJSSerializer extends BimModelSerializer {
 				IfcEngineGeometry geometry = model.finalizeModelling(model.initializeModelling());
 				if (geometry != null) {
 
-					writer.println("{");
-					//writer.indent();
-					writer.println("type: 'geometry',");
-					writer.println("coreId: '" + id + "',");
-					writer.println("resource: '" + id + "',");
-					writer.println("primitive: 'triangles',");
-					writer.print("positions: [");
+					writer.writeln("{");
+					writer.indent();
+					writer.writeln("type: 'geometry',");
+					writer.writeln("coreId: '" + id + "',");
+					writer.writeln("resource: '" + id + "',");
+					writer.writeln("primitive: 'triangles',");
+					writer.writetab("positions: [");
 					for (int i = 0; i < geometry.getNrVertices(); i += 1) {
 						writer.print(geometry.getVertex(i) + ",");
 					}
 					writer.println("],");
-					writer.print("normals: [");
+					writer.writetab("normals: [");
 					for (int i = 0; i < geometry.getNrNormals(); i++) {
 						// Normals will also be scaled in Google Earth ...
-						//out.print(geometry.getNormal(i) * 1000.0f + " ");
-//						out.print(geometry.getNormal(i) + ",");
+						//writer.print(geometry.getNormal(i) * 1000.0f + " ");
+						writer.print(geometry.getNormal(i) + ",");
 					}
 					writer.println("],");
 
 					// TODO: Create subgeometries if there are multiple index buffers
-					/*for (IfcEngineInstance instance : model.getInstances(ifcRootObject.eClass().getName().toUpperCase())) {
+					List<? extends IfcEngineInstance> instances = model.getInstances(ifcRootObject.eClass().getName().toUpperCase());
+					if (instances.size() > 1)
+						writer.writeln("// TODO: Create subgeometries");
+					for (IfcEngineInstance instance : instances) {
 						IfcEngineInstanceVisualisationProperties instanceInModelling = instance.getVisualisationProperties();
-						out.println("<triangles count=\"" + (instanceInModelling.getPrimitiveCount()) + "\" material=\"" + material + "SG\">");
-						out.println("<input offset=\"0\" semantic=\"VERTEX\" source=\"#" + id + "-vertices\"/>");
-						out.print("<p>");
+						//out.writeln("<triangles count=\"" + (instanceInModelling.getPrimitiveCount()) + "\" material=\"" + material + "SG\">");
+						writer.writetab("indices: [");
 						for (int i = instanceInModelling.getStartIndex(); i < instanceInModelling.getPrimitiveCount() * 3 + instanceInModelling.getStartIndex(); i += 3) {
-							out.print(geometry.getIndex(i) + " ");
-							out.print(geometry.getIndex(i + 2) + " ");
-							out.print(geometry.getIndex(i + 1) + " ");
+							writer.print(geometry.getIndex(i) + ",");
+							writer.print(geometry.getIndex(i + 2) + ",");
+							writer.print(geometry.getIndex(i + 1) + ",");
 						}
-						out.println("</p>");
-						out.println("</triangles>");
-					}*/
+						writer.println("],");
+					}
 
-					//writer.undent();
-					writer.println("},");
+					writer.unindent();
+					writer.writeln("},");
 				}
 			} finally {
 				model.close();
@@ -581,115 +617,284 @@ public class SceneJSSerializer extends BimModelSerializer {
 		}
 	}
 
-	private void writeVisualScenes(PrintWriter writer) {
+	private void writeVisualScenes(JsWriter writer) {
+		writer.writeln("{");
+		writer.indent();
+		writer.writeln("type: 'lookAt',");
+		
+		writer.writeln("eye: {");
+		writer.indent();
+		writer.writeln("x: -427.749,");
+		writer.writeln("y: 333.855,");
+		writer.writeln("z: 655.017,");
+		writer.unindent();
+		writer.writeln("},");
+		
+		writer.writeln("look: {");
+		writer.indent();
+		writer.writeln("x: 0.0,");
+		writer.writeln("y: 0.0,");
+		writer.writeln("z: 0.0,");
+		writer.unindent();
+		writer.writeln("},");
+		
+		writer.writeln("up: {");
+		writer.indent();
+		writer.writeln("x: 0.0,");
+		writer.writeln("y: 1.0,");
+		writer.writeln("z: 0.0,");
+		writer.unindent();
+		writer.writeln("},");
+		
+		writer.writeln("nodes: [");
+		writer.indent();
+		writer.writeln("{");
+		writer.indent();
+		
+		writer.writeln("type: 'camera',");
+		writer.writeln("optics: {");
+		writer.indent();
+		writer.writeln("type: 'perspective',");
+		writer.writeln("far: 1000.0,");
+		writer.writeln("near: 10.0,");
+		writer.writeln("aspect: 1.0,");
+		writer.writeln("fovy: 27.6380627952,");
+		//writer.writeln("fovy: 37.8493,");
+		
+		 /*type: 'renderer',
+         clear:
+             {
+                 color: true, 
+                 depth: true, 
+                 stencil: false, 
+             },
+         clearColor:
+             {
+                 r: 0.0,
+                 b: 0.0,
+                 g: 0.0,
+                 a: 0.0
+             },
+         nodes: [
+             {
+                 type: 'matrix',
+                 elements: [-0.290864378214,0.955171227455,-0.055189050734,0.0,-0.771100878716,-0.199883162975,0.604524791241,0.0,0.566393375397,0.218391060829,0.794672250748,0.0,4.07624483109,1.00545394421,5.90386199951,1.0,],
+                 nodes: [
+                     {
+                         type: 'light',
+                         color:
+                             {
+                                 r: 1.0,
+                                 b: 1.0,
+                                 g: 1.0,
+                             },
+                         pos:
+                             {
+                                 y: 0.0,
+                                 x: 0.0,
+                                 z: 0.0,
+                             },
+                         quadraticAttenuation: 0.000555556,
+                         linearAttenuation: 0.0,
+                         mode: 'point',
+                         constantAttenuation: 1.0,
+                     },
+                 ],
+             },*/
+		
+		
+		
+		writer.writeln("nodes: [");
+		writer.indent();
+		
+		// Output each geometry instance grouped by material
+		for (String materialId : converted.keySet()) {
+			writer.writeln("{");
+			writer.indent();
+			
+			writer.writeln("type: 'material',");
+			writer.writeln("coreId: '" + materialId + "Material',");
+			
+			Set<String> geometryIds = converted.get(materialId);
+			
+			writer.writeln("nodes: [");
+			writer.indent();
+			for (String geometryId : geometryIds) {
+				writer.writeln("{");
+				writer.indent();
+				
+				writer.writeln("type: 'geometry',");
+				writer.writeln("coreId: '" + geometryId + "',");
+				/*writer.writeln("            <node id=\"" + id + "-node\" name=\"" + id + "-node\">");
+				writer.writeln("                <rotate sid=\"rotateX\">1 0 0 90</rotate>");
+				writer.writeln("                <rotate sid=\"rotateY\">0 1 0 180</rotate>");
+				writer.writeln("                <rotate sid=\"rotateZ\">0 0 1 90</rotate>");
+				writer.writeln("                <instance_geometry url=\"#" + id + "\">");
+				writer.writeln("                    <bind_material>");
+				writer.writeln("                        <technique_common>");
+				writer.writeln("                            <instance_material symbol=\"" + material + "SG\" target=\"#" + material + "Material\"/>");
+				writer.writeln("                        </technique_common>");
+				writer.writeln("                    </bind_material>");
+				writer.writeln("                </instance_geometry>");
+				writer.writeln("            </node>");*/
+				writer.unindent();
+				writer.writeln("},");
+			}
+			writer.unindent();
+			writer.writeln("],");
+			
+			writer.unindent();
+			writer.writeln("},");
+		}
+		
+		writer.unindent();
+		writer.writeln("],");
+		
+		writer.unindent();
+		writer.writeln("},");
+		
+		writer.unindent();
+		writer.writeln("},");
+		writer.unindent();
+		writer.writeln("],");
 		/*
-		out.println("    <library_visual_scenes>");
-		out.println("        <visual_scene id=\"VisualSceneNode\" name=\"VisualSceneNode\">");
-		out.println("            <node id=\"Camera\" name=\"Camera\">");
-		out.println("                <translate sid=\"translate\">-427.749 333.855 655.017</translate>");
-		out.println("                <rotate sid=\"rotateX\">1 0 0 -22.1954</rotate>");
-		out.println("                <rotate sid=\"rotateY\">0 1 0 -33</rotate>");
-		out.println("                <rotate sid=\"rotateZ\">0 0 1 0</rotate>");
-		out.println("                <instance_camera url=\"#PerspCamera\"/>");
-		out.println("            </node>");
-		out.println("            <node id=\"Light\" name=\"Light\">");
-		out.println("                <translate sid=\"translate\">-500 1000 400</translate>");
-		out.println("                <rotate sid=\"rotateX\">1 0 0 0</rotate>");
-		out.println("                <rotate sid=\"rotateY\">0 1 0 0</rotate>");
-		out.println("                <rotate sid=\"rotateZ\">0 0 1 0</rotate>");
-		out.println("                <instance_light url=\"#light-lib\"/>");
-		out.println("            </node>");
+		out.writeln("    <library_visual_scenes>");
+		out.writeln("        <visual_scene id=\"VisualSceneNode\" name=\"VisualSceneNode\">");
+		out.writeln("            <node id=\"Camera\" name=\"Camera\">");
+		out.writeln("                <translate sid=\"translate\">-427.749 333.855 655.017</translate>");
+		out.writeln("                <rotate sid=\"rotateX\">1 0 0 -22.1954</rotate>");
+		out.writeln("                <rotate sid=\"rotateY\">0 1 0 -33</rotate>");
+		out.writeln("                <rotate sid=\"rotateZ\">0 0 1 0</rotate>");
+		out.writeln("                <instance_camera url=\"#PerspCamera\"/>");
+		out.writeln("            </node>");
+		out.writeln("            <node id=\"Light\" name=\"Light\">");
+		out.writeln("                <translate sid=\"translate\">-500 1000 400</translate>");
+		out.writeln("                <rotate sid=\"rotateX\">1 0 0 0</rotate>");
+		out.writeln("                <rotate sid=\"rotateY\">0 1 0 0</rotate>");
+		out.writeln("                <rotate sid=\"rotateZ\">0 0 1 0</rotate>");
+		out.writeln("                <instance_light url=\"#light-lib\"/>");
+		out.writeln("            </node>");
 		for (String material : converted.keySet()) {
 			Set<String> ids = converted.get(material);
 			for (String id : ids) {
-				out.println("            <node id=\"" + id + "-node\" name=\"" + id + "-node\">");
-				out.println("                <rotate sid=\"rotateX\">1 0 0 90</rotate>");
-				out.println("                <rotate sid=\"rotateY\">0 1 0 180</rotate>");
-				out.println("                <rotate sid=\"rotateZ\">0 0 1 90</rotate>");
-				out.println("                <instance_geometry url=\"#" + id + "\">");
-				out.println("                    <bind_material>");
-				out.println("                        <technique_common>");
-				out.println("                            <instance_material symbol=\"" + material + "SG\" target=\"#" + material + "Material\"/>");
-				out.println("                        </technique_common>");
-				out.println("                    </bind_material>");
-				out.println("                </instance_geometry>");
-				out.println("            </node>");
+				out.writeln("            <node id=\"" + id + "-node\" name=\"" + id + "-node\">");
+				out.writeln("                <rotate sid=\"rotateX\">1 0 0 90</rotate>");
+				out.writeln("                <rotate sid=\"rotateY\">0 1 0 180</rotate>");
+				out.writeln("                <rotate sid=\"rotateZ\">0 0 1 90</rotate>");
+				out.writeln("                <instance_geometry url=\"#" + id + "\">");
+				out.writeln("                    <bind_material>");
+				out.writeln("                        <technique_common>");
+				out.writeln("                            <instance_material symbol=\"" + material + "SG\" target=\"#" + material + "Material\"/>");
+				out.writeln("                        </technique_common>");
+				out.writeln("                    </bind_material>");
+				out.writeln("                </instance_geometry>");
+				out.writeln("            </node>");
 			}
 		}
-		out.println("            <node id=\"testCamera\" name=\"testCamera\">");
-		out.println("                <translate sid=\"translate\">-427.749 333.855 655.017</translate>");
-		out.println("                <rotate sid=\"rotateY\">0 1 0 -33</rotate>");
-		out.println("                <rotate sid=\"rotateX\">1 0 0 -22.1954</rotate>");
-		out.println("                <rotate sid=\"rotateZ\">0 0 1 0</rotate>");
-		out.println("                <instance_camera url=\"#testCameraShape\"/>");
-		out.println("            </node>");
-		out.println("            <node id=\"pointLight1\" name=\"pointLight1\">");
-		out.println("                <translate sid=\"translate\">3 4 10</translate>");
-		out.println("                <rotate sid=\"rotateZ\">0 0 1 0</rotate>");
-		out.println("                <rotate sid=\"rotateY\">0 1 0 0</rotate>");
-		out.println("                <rotate sid=\"rotateX\">1 0 0 0</rotate>");
-		out.println("                <instance_light url=\"#pointLightShape1-lib\"/>");
-		out.println("            </node>");
-		out.println("        </visual_scene>");
-		out.println("    </library_visual_scenes>");*/
+		out.writeln("            <node id=\"testCamera\" name=\"testCamera\">");
+		out.writeln("                <translate sid=\"translate\">-427.749 333.855 655.017</translate>");
+		out.writeln("                <rotate sid=\"rotateY\">0 1 0 -33</rotate>");
+		out.writeln("                <rotate sid=\"rotateX\">1 0 0 -22.1954</rotate>");
+		out.writeln("                <rotate sid=\"rotateZ\">0 0 1 0</rotate>");
+		out.writeln("                <instance_camera url=\"#testCameraShape\"/>");
+		out.writeln("            </node>");
+		out.writeln("            <node id=\"pointLight1\" name=\"pointLight1\">");
+		out.writeln("                <translate sid=\"translate\">3 4 10</translate>");
+		out.writeln("                <rotate sid=\"rotateZ\">0 0 1 0</rotate>");
+		out.writeln("                <rotate sid=\"rotateY\">0 1 0 0</rotate>");
+		out.writeln("                <rotate sid=\"rotateX\">1 0 0 0</rotate>");
+		out.writeln("                <instance_light url=\"#pointLightShape1-lib\"/>");
+		out.writeln("            </node>");
+		out.writeln("        </visual_scene>");
+		out.writeln("    </library_visual_scenes>");*/
+		writer.unindent();
+		writer.writeln("},");
 	}
 
-	private void writeLights(PrintWriter writer) {
+	private void writeLights(JsWriter writer) {
 		/*
-		out.println("    <library_lights>");
-		out.println("        <light id=\"light-lib\" name=\"light\">");
-		out.println("            <technique_common>");
-		out.println("                <point>");
-		out.println("                    <color>1 1 1</color>");
-		out.println("                    <constant_attenuation>1</constant_attenuation>");
-		out.println("                    <linear_attenuation>0</linear_attenuation>");
-		out.println("                    <quadratic_attenuation>0</quadratic_attenuation>");
-		out.println("                </point>");
-		out.println("            </technique_common>");
-		out.println("            <technique profile=\"MAX3D\">");
-		out.println("                <intensity>1.000000</intensity>");
-		out.println("            </technique>");
-		out.println("        </light>");
-		out.println("        <light id=\"pointLightShape1-lib\" name=\"pointLightShape1\">");
-		out.println("            <technique_common>");
-		out.println("                <point>");
-		out.println("                    <color>1 1 1</color>");
-		out.println("                    <constant_attenuation>1</constant_attenuation>");
-		out.println("                    <linear_attenuation>0</linear_attenuation>");
-		out.println("                    <quadratic_attenuation>0</quadratic_attenuation>");
-		out.println("                </point>");
-		out.println("            </technique_common>");
-		out.println("        </light>");
-		out.println("    </library_lights>");*/
+		out.writeln("    <library_lights>");
+		out.writeln("        <light id=\"light-lib\" name=\"light\">");
+		out.writeln("            <technique_common>");
+		out.writeln("                <point>");
+		out.writeln("                    <color>1 1 1</color>");
+		out.writeln("                    <constant_attenuation>1</constant_attenuation>");
+		out.writeln("                    <linear_attenuation>0</linear_attenuation>");
+		out.writeln("                    <quadratic_attenuation>0</quadratic_attenuation>");
+		out.writeln("                </point>");
+		out.writeln("            </technique_common>");
+		out.writeln("            <technique profile=\"MAX3D\">");
+		out.writeln("                <intensity>1.000000</intensity>");
+		out.writeln("            </technique>");
+		out.writeln("        </light>");
+		out.writeln("        <light id=\"pointLightShape1-lib\" name=\"pointLightShape1\">");
+		out.writeln("            <technique_common>");
+		out.writeln("                <point>");
+		out.writeln("                    <color>1 1 1</color>");
+		out.writeln("                    <constant_attenuation>1</constant_attenuation>");
+		out.writeln("                    <linear_attenuation>0</linear_attenuation>");
+		out.writeln("                    <quadratic_attenuation>0</quadratic_attenuation>");
+		out.writeln("                </point>");
+		out.writeln("            </technique_common>");
+		out.writeln("        </light>");
+		out.writeln("    </library_lights>");*/
 	}
 
-	private void writeCameras(PrintWriter writer) {
+	private void writeCameras(JsWriter writer) {
 		/*
-		out.println("    <library_cameras>");
-		out.println("        <camera id=\"PerspCamera\" name=\"PerspCamera\">");
-		out.println("            <optics>");
-		out.println("                <technique_common>");
-		out.println("                    <perspective>");
-		out.println("                        <yfov>37.8493</yfov>");
-		out.println("                        <aspect_ratio>1</aspect_ratio>");
-		out.println("                        <znear>10</znear>");
-		out.println("                        <zfar>1000</zfar>");
-		out.println("                    </perspective>");
-		out.println("                </technique_common>");
-		out.println("            </optics>");
-		out.println("        </camera>");
-		out.println("        <camera id=\"testCameraShape\" name=\"testCameraShape\">");
-		out.println("            <optics>");
-		out.println("                <technique_common>");
-		out.println("                    <perspective>");
-		out.println("                        <yfov>37.8501</yfov>");
-		out.println("                        <aspect_ratio>1</aspect_ratio>");
-		out.println("                        <znear>0.01</znear>");
-		out.println("                        <zfar>1000</zfar>");
-		out.println("                    </perspective>");
-		out.println("                </technique_common>");
-		out.println("            </optics>");
-		out.println("        </camera>");
-		out.println("    </library_cameras>");*/
+		out.writeln("    <library_cameras>");
+		out.writeln("        <camera id=\"PerspCamera\" name=\"PerspCamera\">");
+		out.writeln("            <optics>");
+		out.writeln("                <technique_common>");
+		out.writeln("                    <perspective>");
+		out.writeln("                        <yfov>37.8493</yfov>");
+		out.writeln("                        <aspect_ratio>1</aspect_ratio>");
+		out.writeln("                        <znear>10</znear>");
+		out.writeln("                        <zfar>1000</zfar>");
+		out.writeln("                    </perspective>");
+		out.writeln("                </technique_common>");
+		out.writeln("            </optics>");
+		out.writeln("        </camera>");
+		out.writeln("        <camera id=\"testCameraShape\" name=\"testCameraShape\">");
+		out.writeln("            <optics>");
+		out.writeln("                <technique_common>");
+		out.writeln("                    <perspective>");
+		out.writeln("                        <yfov>37.8501</yfov>");
+		out.writeln("                        <aspect_ratio>1</aspect_ratio>");
+		out.writeln("                        <znear>0.01</znear>");
+		out.writeln("                        <zfar>1000</zfar>");
+		out.writeln("                    </perspective>");
+		out.writeln("                </technique_common>");
+		out.writeln("            </optics>");
+		out.writeln("        </camera>");
+		out.writeln("    </library_cameras>");*/
+	}
+	
+	private String fitNameForQualifiedName(String name) {
+		if (name == null) {
+			return "";
+		}
+		StringBuilder builder = new StringBuilder(name);
+		int indexOfSpace = builder.indexOf(" ");
+		while (indexOfSpace >= 0) {
+			builder.deleteCharAt(indexOfSpace);
+			indexOfSpace = builder.indexOf(" ");
+		}
+		indexOfSpace = builder.indexOf(",");
+		while (indexOfSpace >= 0) {
+			builder.setCharAt(indexOfSpace, '_');
+			indexOfSpace = builder.indexOf(",");
+		}
+		indexOfSpace = builder.indexOf("/");
+		while (indexOfSpace >= 0) {
+			builder.setCharAt(indexOfSpace, '_');
+			indexOfSpace = builder.indexOf("/");
+		}
+		indexOfSpace = builder.indexOf("*");
+		while (indexOfSpace >= 0) {
+			builder.setCharAt(indexOfSpace, '_');
+			indexOfSpace = builder.indexOf("/");
+		}
+		return builder.toString();
 	}
 }
