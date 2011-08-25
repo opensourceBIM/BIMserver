@@ -1,3 +1,4 @@
+<%@page import="org.bimserver.web.JspHelper"%>
 <%@page import="org.bimserver.interfaces.objects.SUser"%>
 <jsp:include page="htmlheader.jsp" />
 <jsp:useBean id="loginManager" scope="session" class="org.bimserver.web.LoginManager" />
@@ -14,7 +15,7 @@
 			showForm = false;
 			out.println("An email with instructions on how to reset your password has been sent to your address");
 		} catch (UserException e) {
-			out.println("<div class=\"error\">" + e.getMessage() + "</div>");
+			JspHelper.showException(out, e);
 		}
 	}
 	if (showForm) {

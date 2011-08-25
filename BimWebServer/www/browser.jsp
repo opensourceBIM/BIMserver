@@ -112,7 +112,7 @@ for (SRevision sRevision : revisionsInc) {
 	  			out.print(JspHelper.writeSummaryTable(project, roid, revisionSummary, request));
 	  		}
 		} catch (UserException e) {
- 			out.println("<p>" + e.getMessage() + "</p>");
+			JspHelper.showException(out, e);
 		}
   	%>
 </div>

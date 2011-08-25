@@ -1,11 +1,13 @@
 package org.bimserver.web;
 
+import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.jsp.JspWriter;
 
 import org.bimserver.interfaces.objects.SAccessMethod;
 import org.bimserver.interfaces.objects.SClashDetectionSettings;
@@ -265,5 +267,14 @@ public class JspHelper {
 			sb.append("</ul>");
 		}
 		sb.append("</li>");
+	}
+	
+	public static void showException(JspWriter out, UserException e) throws IOException {
+		out.println("<div class=\"error\">" + e.getUserMessage() + " <a class=\"errorLink\" href=\"#\">Show origin</a>");
+		out.println("<div class=\"errorBody\" style=\"display: none\">");
+		for (StackTraceElement element : e.getStackTrace()) {
+			out.print(element + "<br/>");
+		}
+		out.println("</div></div>");
 	}
 }

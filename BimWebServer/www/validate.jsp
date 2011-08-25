@@ -1,3 +1,4 @@
+<%@page import="org.bimserver.web.JspHelper"%>
 <%@page import="org.bimserver.interfaces.objects.SUser"%>
 <jsp:include page="htmlheader.jsp" />
 <jsp:useBean id="loginManager" scope="session" class="org.bimserver.web.LoginManager" />
@@ -15,7 +16,7 @@
 			out.println("<div class=\"success\">Account successfully validated, you can now <a href=\"/?username=" + sUser.getUsername() + "\">login</a></div>");
 			showForm = false;
 		} catch (UserException e) {
-			out.println("<div class=\"error\">" + e.getMessage() + "</div>");
+			JspHelper.showException(out, e);
 		}
 	}
 	if (showForm) {

@@ -13,7 +13,7 @@
 		String tag = request.getParameter("tagLabel");
 		loginManager.getService().setRevisionTag(roid, tag);
 		response.sendRedirect("revision.jsp?roid=" + request.getParameter("roid"));
-	} catch (UserException exp) {
-		System.err.println(exp.getUserMessage());
+	} catch (UserException e) {
+		JspHelper.showException(out, e);
 	}
 %>

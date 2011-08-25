@@ -1,3 +1,4 @@
+<%@page import="org.bimserver.web.JspHelper"%>
 <%@page import="java.util.List" %>
 <%@page import="java.text.DateFormat" %>
 <%@page import="java.text.SimpleDateFormat" %>
@@ -25,7 +26,7 @@
 					response.sendRedirect("user.jsp?uoid=" + uoid + "&mid=" + Message.PASSWORD_SUCCESSFULLY_CHANGED.ordinal());
 				}
 			} catch (UserException e) {
-				out.println("<div class=\"error\">" + e.getUserMessage() + "</div>");
+				JspHelper.showException(out, e);
 			}
 		}
 %>

@@ -1,3 +1,4 @@
+<%@page import="org.bimserver.web.JspHelper"%>
 <%@page import="org.bimserver.shared.UserException"%>
 <jsp:useBean id="loginManager" scope="session" class="org.bimserver.web.LoginManager" />
 <jsp:include page="htmlheader.jsp" />
@@ -16,7 +17,7 @@
 			loginManager.getService().setup(siteAddress, smtpServer, adminName, adminUsername, adminPassword, createAnonymousUser);
 			response.sendRedirect("login.jsp?username=" + adminUsername);
 		} catch (UserException e) {
-			out.println("<div class=\"error\">" + e.getUserMessage() + "</div>");
+			JspHelper.showException(out, e);
 		}
 	}
 %>
@@ -79,5 +80,4 @@
 <input type="submit" name="setup" value="Setup"/>
 </form>
 </div>
-</body>
-</html>
+<jsp:include page="footer.jsp" />

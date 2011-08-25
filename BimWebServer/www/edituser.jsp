@@ -13,7 +13,7 @@
 			loginManager.getService().changeUserType(uoid, userType);
 			response.sendRedirect("user.jsp?uoid=" + uoid);
 		} catch (UserException e) {
-			out.println("<div class=\"error\">" + e.getMessage() + "</div>");
+			JspHelper.showException(out, e);
 		}
 	}
 %>

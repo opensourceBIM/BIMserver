@@ -1,3 +1,4 @@
+<%@page import="org.bimserver.web.JspHelper"%>
 <%@ include file="header.jsp"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.Collections"%>
@@ -50,7 +51,7 @@
 				service.setSettingEnabledExportTypes(enabledTypes);
 				response.sendRedirect(getServletContext().getContextPath() + "/serversettings.jsp?msg=settingschangeok");
 			} catch (UserException e) {
-				out.println("<div class=\"error\">" + e.getUserMessage() + "</div>");
+				JspHelper.showException(out, e);
 			}
 		}
 			SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
