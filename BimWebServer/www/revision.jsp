@@ -248,7 +248,7 @@ if (userHasCheckinRights) { %>
 	});
 </script> <%
  	} catch (UserException e) {
- 			out.println(e.getUserMessage());
+		JspHelper.showException(out, e);
  		}
  	}
  %>

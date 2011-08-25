@@ -66,7 +66,7 @@
 					}
 					response.sendRedirect("project.jsp?poid=" + poid);
 				} catch (UserException e) {
-					out.println("<div class=\"error\">" + e.getMessage() + "</div>");
+					JspHelper.showException(out, e);
 				}
 			}
 %>
@@ -206,7 +206,7 @@ $(document).ready(function(){
 });
 </script> <%
  	} catch (UserException e) {
- 			out.println(e.getUserMessage());
+		JspHelper.showException(out, e);
  		}
  	}
  %>

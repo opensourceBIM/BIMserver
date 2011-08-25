@@ -221,12 +221,6 @@ public class BimServer {
 			serverInfo.setErrorMessage("Inconsistent models");
 		}
 
-		try {
-			createDatabaseObjects();
-		} catch (BimDeadlockException e) {
-			throw new BimDatabaseException(e);
-		}
-
 		settingsManager = new SettingsManager(bimDatabase);
 		serverInfo.init(this);
 		serverInfo.update();
@@ -239,7 +233,11 @@ public class BimServer {
 				@Override
 				public void stateChanged(ServerState oldState, ServerState newState) {
 					if (oldState == ServerState.MIGRATION_REQUIRED && newState == ServerState.RUNNING) {
-						initDatabaseDependantItems();
+						try {
+							initDatabaseDependantItems();
+						} catch (BimDatabaseException e) {
+							LOGGER.error("", e);
+						}
 					}
 				}
 			});
@@ -379,9 +377,16 @@ public class BimServer {
 		session.commit();
 	}
 
-	private void initDatabaseDependantItems() {
+	private void initDatabaseDependantItems() throws BimDatabaseException {
 		getEmfSerializerFactory().init(pluginManager, bimDatabase);
 		getEmfDeserializerFactory().init(pluginManager, bimDatabase);
+		try {
+			createDatabaseObjects();
+		} catch (BimDeadlockException e) {
+			throw new BimDatabaseException(e);
+		} catch (PluginException e) {
+			throw new BimDatabaseException(e);
+		}
 	}
 
 	public File getHomeDir() {

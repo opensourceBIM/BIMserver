@@ -3,7 +3,8 @@
 <%@page import="java.util.TreeSet"%>
 <%@page import="org.bimserver.interfaces.objects.SCheckinState"%>
 <%@page import="org.bimserver.interfaces.objects.SCheckout"%>
-<%@page	import="org.bimserver.interfaces.objects.SClashDetectionSettings"%>
+<%@page
+	import="org.bimserver.interfaces.objects.SClashDetectionSettings"%>
 <%@page import="org.bimserver.interfaces.objects.SGeoTag"%>
 <%@page import="org.bimserver.interfaces.objects.SObjectState"%>
 <%@page import="org.bimserver.interfaces.objects.SProject"%>
@@ -34,80 +35,52 @@
 		DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
 		long poid = Long.parseLong(request.getParameter("poid"));
 		try {
-			SProject project = loginManager.getService()
-					.getProjectByPoid(poid);
+			SProject project = loginManager.getService().getProjectByPoid(poid);
 
 			// Count the active subprojects
 			int subProjectCount = 0;
 			List<Long> subProjectIds = project.getSubProjects();
 			for (Long subpoid : subProjectIds) {
-				SProject subproject = loginManager.getService()
-						.getProjectByPoid(subpoid);
+				SProject subproject = loginManager.getService().getProjectByPoid(subpoid);
 				SObjectState state = subproject.getState();
 				if (subproject.getState() == SObjectState.ACTIVE) {
 					subProjectCount++;
 				}
 			}
 
-			SClashDetectionSettings sClashDetectionSettings = loginManager
-					.getService().getClashDetectionSettings(
-							project.getClashDetectionSettingsId());
-			List<SRevision> revisions = loginManager.getService()
-					.getAllRevisionsOfProject(poid);
-			Collections.sort(revisions,
-					new SRevisionIdComparator(false));
-			List<SRevision> revisionsInc = loginManager.getService()
-					.getAllRevisionsOfProject(poid);
-			Collections.sort(revisionsInc, new SRevisionIdComparator(
-					false));
-			List<SCheckout> checkouts = loginManager.getService()
-					.getAllCheckoutsOfProjectAndSubProjects(poid);
-			Collections.sort(checkouts, new SCheckoutDateComparator(
-					false));
+			SClashDetectionSettings sClashDetectionSettings = loginManager.getService().getClashDetectionSettings(project.getClashDetectionSettingsId());
+			List<SRevision> revisions = loginManager.getService().getAllRevisionsOfProject(poid);
+			Collections.sort(revisions, new SRevisionIdComparator(false));
+			List<SRevision> revisionsInc = loginManager.getService().getAllRevisionsOfProject(poid);
+			Collections.sort(revisionsInc, new SRevisionIdComparator(false));
+			List<SCheckout> checkouts = loginManager.getService().getAllCheckoutsOfProjectAndSubProjects(poid);
+			Collections.sort(checkouts, new SCheckoutDateComparator(false));
 			List<SCheckout> activeCheckouts = new ArrayList<SCheckout>();
 			for (SCheckout checkout : checkouts) {
 				if (checkout.isActive()) {
 					activeCheckouts.add(checkout);
 				}
 			}
-			List<SUser> users = loginManager.getService()
-					.getAllAuthorizedUsersOfProject(poid);
+			List<SUser> users = loginManager.getService().getAllAuthorizedUsersOfProject(poid);
 			Collections.sort(users, new SUserNameComparator());
-			List<SUser> nonAuthorizedUsers = loginManager.getService()
-					.getAllNonAuthorizedUsersOfProject(poid);
-			Collections.sort(nonAuthorizedUsers,
-					new SUserNameComparator());
+			List<SUser> nonAuthorizedUsers = loginManager.getService().getAllNonAuthorizedUsersOfProject(poid);
+			Collections.sort(nonAuthorizedUsers, new SUserNameComparator());
 			SRevision lastRevision = null;
 			if (project.getLastRevisionId() != -1) {
-				lastRevision = loginManager.getService().getRevision(
-						project.getLastRevisionId());
+				lastRevision = loginManager.getService().getRevision(project.getLastRevisionId());
 			}
 			SUser anonymousUser = null;
 			try {
-				anonymousUser = loginManager.getService()
-						.getAnonymousUser();
+				anonymousUser = loginManager.getService().getAnonymousUser();
 			} catch (UserException e) {
 			}
-			boolean anonymousAccess = anonymousUser != null
-					&& project.getHasAuthorizedUsers().contains(
-							anonymousUser.getOid());
-			boolean hasUserManagementRights = project
-					.getHasAuthorizedUsers().contains(
-							loginManager.getUoid())
-					&& loginManager.getUserType() != SUserType.ANONYMOUS;
-			boolean userHasCheckinRights = loginManager.getService()
-					.userHasCheckinRights(project.getOid());
-			boolean hasEditRights = loginManager.getService()
-					.userHasRights(project.getOid());
-			boolean hasCreateProjectRights = (loginManager
-					.getUserType() == SUserType.ADMIN || loginManager
-					.getService()
-					.isSettingAllowUsersToCreateTopLevelProjects());
-			boolean o3dEnabled = loginManager.getService()
-					.hasActiveSerializer("application/json");
-			boolean kmzEnabled = loginManager.getService()
-					.hasActiveSerializer(
-							"application/vnd.google-earth.kmz");
+			boolean anonymousAccess = anonymousUser != null && project.getHasAuthorizedUsers().contains(anonymousUser.getOid());
+			boolean hasUserManagementRights = project.getHasAuthorizedUsers().contains(loginManager.getUoid()) && loginManager.getUserType() != SUserType.ANONYMOUS;
+			boolean userHasCheckinRights = loginManager.getService().userHasCheckinRights(project.getOid());
+			boolean hasEditRights = loginManager.getService().userHasRights(project.getOid());
+			boolean hasCreateProjectRights = (loginManager.getUserType() == SUserType.ADMIN || loginManager.getService().isSettingAllowUsersToCreateTopLevelProjects());
+			boolean o3dEnabled = loginManager.getService().hasActiveSerializer("application/json");
+			boolean kmzEnabled = loginManager.getService().hasActiveSerializer("application/vnd.google-earth.kmz");
 			if (o3dEnabled && lastRevision != null) {
 %>
 <jsp:include page="o3d.jsp" />
@@ -127,45 +100,38 @@
 		<%
 			if (o3dEnabled && lastRevision != null) {
 		%>
-		<li><a id="visualiselink" class="link">Visualise</a>
-		</li>
+		<li><a id="visualiselink" class="link">Visualise</a></li>
 		<%
 			}
 		%>
 		<%
 			if (lastRevision != null) {
 		%>
-		<li><a id="browserlink" class="link">Browser</a>
-		</li>
+		<li><a id="browserlink" class="link">Browser</a></li>
 		<%
 			}
 		%>
 		<li><a class="rss"
 			href="<%=request.getContextPath()%>/syndication/revisions?poid=<%=poid%>">Revisions
-				feed</a>
-		</li>
+				feed</a></li>
 		<li><a class="rss"
 			href="<%=request.getContextPath()%>/syndication/checkouts?poid=<%=poid%>">Checkouts
-				feed</a>
-		</li>
+				feed</a></li>
 		<jsp:include page="showdeleted.jsp" />
 	</ul>
-	<br /><%=JspHelper.showProjectTree(project,
-							loginManager.getService())%>
+	<br /><%=JspHelper.showProjectTree(project, loginManager.getService())%>
 </div>
 
 <div class="content">
 	<%
 		if (request.getParameter("message") != null) {
-					out.println("<div class=\"error\">"
-							+ request.getParameter("message") + "</div>");
+					out.println("<div class=\"error\">" + request.getParameter("message") + "</div>");
 				}
 	%>
 	<div id="guide">
 		<div id="guidewrap">
 			<ol id="breadcrumb">
-				<li><%=JspHelper.generateBreadCrumbPath(project,
-							loginManager.getService())%></li>
+				<li><%=JspHelper.generateBreadCrumbPath(project, loginManager.getService())%></li>
 			</ol>
 		</div>
 	</div>
@@ -196,8 +162,7 @@
 				</tr>
 				<%
 					if (project.getParentId() != -1) {
-								SProject parentProject = loginManager.getService()
-										.getProjectByPoid(project.getParentId());
+								SProject parentProject = loginManager.getService().getProjectByPoid(project.getParentId());
 				%>
 				<tr>
 					<td class="first">Parent</td>
@@ -206,10 +171,8 @@
 				</tr>
 				<%
 					}
-							SUser createdBy = loginManager.getService().getUserByUoid(
-									project.getCreatedById());
-							SGeoTag geoTag = loginManager.getService().getGeoTag(
-									project.getGeoTagId());
+							SUser createdBy = loginManager.getService().getUserByUoid(project.getCreatedById());
+							SGeoTag geoTag = loginManager.getService().getGeoTag(project.getGeoTagId());
 				%>
 				<tr>
 					<td class="first">Created on</td>
@@ -229,10 +192,7 @@
 				</tr>
 				<tr>
 					<td class="first">Last update by</td>
-					<td><a href="user.jsp?uoid=<%=lastRevision.getUserId()%>"><%=loginManager.getService()
-								.getUserByUoid(lastRevision.getUserId())
-								.getUsername()%></a>
-					</td>
+					<td><a href="user.jsp?uoid=<%=lastRevision.getUserId()%>"><%=loginManager.getService().getUserByUoid(lastRevision.getUserId()).getUsername()%></a></td>
 				</tr>
 				<%
 					}
@@ -251,17 +211,12 @@
 				</tr>
 				<%
 					if (kmzEnabled) {
-								String url = WebUtils.getWebServer(request
-										.getRequestURL().toString());
-								String link = "http://" + url
-										+ getServletContext().getContextPath()
-										+ "download?poid=" + project.getOid()
-										+ "&serializerName=KMZ";
+								String url = WebUtils.getWebServer(request.getRequestURL().toString());
+								String link = "http://" + url + getServletContext().getContextPath() + "download?poid=" + project.getOid() + "&serializerName=KMZ";
 				%>
 				<tr>
 					<td class="first">Google Earth Link</td>
-					<td><a href="<%=link%>"><%=link%></a>
-					</td>
+					<td><a href="<%=link%>"><%=link%></a></td>
 				</tr>
 				<%
 					}
@@ -281,8 +236,7 @@
 				%>
 				<tr>
 					<td class="first">Coordinates</td>
-					<td><%=geoTag.getX() + "," + geoTag.getY() + ","
-								+ geoTag.getZ()%></td>
+					<td><%=geoTag.getX() + "," + geoTag.getY() + "," + geoTag.getZ()%></td>
 				</tr>
 				<tr>
 					<td class="first">Direction angle</td>
@@ -311,30 +265,30 @@
 							<td><select name="serializerName"
 								id="detailsdownloadcheckoutselect">
 									<%
-										for (SSerializer serializer : loginManager.getService()
-															.getEnabledSerializers()) {
+										for (SSerializer serializer : loginManager.getService().getEnabledSerializers()) {
 									%>
 									<option value="<%=serializer.getName()%>"
-										<%=serializer.isDefaultSerializer() ? " SELECTED=\"SELECTED\""
-									: ""%>><%=serializer.getName()%></option>
+										<%=serializer.isDefaultSerializer() ? " SELECTED=\"SELECTED\"" : ""%>><%=serializer.getName()%></option>
 									<%
 										}
 									%>
-							</select>
-							</td>
+							</select></td>
 							<td><label for="simplezip_<%=lastRevision.getId()%>">Zip</label>
 							</td>
 							<td><input type="checkbox" name="zip"
-								id="simplezip_<%=lastRevision.getId()%>" /></td>
+								id="simplezip_<%=lastRevision.getId()%>" />
+							</td>
 							<td><input type="hidden" name="roid"
 								value="<%=lastRevision.getOid()%>" />
-								<button value="Download" type="button">Download</button></td>
+								<button value="Download" type="button">Download</button>
+							</td>
 							<%
 								if (userHasCheckinRights) {
 							%>
 							<td>
 								<button class="checkoutButton" id="detailscheckoutbutton"
-									type="button" value="Checkout">Checkout</button></td>
+									type="button" value="Checkout">Checkout</button>
+							</td>
 							<%
 								}
 							%>
@@ -346,8 +300,7 @@
 					<script>
 	var projects = new Object();
 	
-	<%=JspHelper.writeDownloadProjectTreeJavaScript(
-								project, loginManager)%>
+	<%=JspHelper.writeDownloadProjectTreeJavaScript(project, loginManager)%>
 </script>
 
 					<table class="formatted maintable">
@@ -356,31 +309,31 @@
 							<th>Last revision</th>
 							<th>Revision</th>
 						</tr>
-						<%=JspHelper.writeDownloadProjectTree(
-								"download", project, loginManager, 0, null)%>
+						<%=JspHelper.writeDownloadProjectTree("download", project, loginManager, 0, null)%>
 					</table>
 					<table>
 						<tr class="downloadframe">
 							<td>Download:</td>
 							<td><select name="serializerName">
 									<%
-										for (SSerializer serializer : loginManager.getService()
-															.getEnabledSerializers()) {
+										for (SSerializer serializer : loginManager.getService().getEnabledSerializers()) {
 									%>
 									<option value="<%=serializer.getName()%>"
-										<%=serializer.isDefaultSerializer() ? " SELECTED=\"SELECTED\""
-									: ""%>><%=serializer.getName()%></option>
+										<%=serializer.isDefaultSerializer() ? " SELECTED=\"SELECTED\"" : ""%>><%=serializer.getName()%></option>
 									<%
 										}
 									%>
-							</select></td>
+							</select>
+							</td>
 							<td><label for="advancedzip_<%=lastRevision.getId()%>">Zip
 							</label> <input type="checkbox" name="zip"
-								id="advancedzip_<%=lastRevision.getId()%>" /></td>
+								id="advancedzip_<%=lastRevision.getId()%>" />
+							</td>
 							<td><input type="hidden" name="multiple" value="true">
 								<input type="hidden" name="roid"
 								value="<%=lastRevision.getOid()%>">
-								<button value="Download" type="button">Download</button></td>
+								<button value="Download" type="button">Download</button>
+							</td>
 						</tr>
 					</table>
 
@@ -392,9 +345,8 @@
 		</div>
 
 		<div class="tabbertab" id="subprojectstab"
-			title="Sub Projects<%=subProjectCount /*project.getSubProjects().size()*/== 0 ? ""
-							: " (" + subProjectCount /*project.getSubProjects().size()*/
-									+ ")"%>">
+			title="Sub Projects<%=subProjectCount /*project.getSubProjects().size()*/== 0 ? "" : " (" + subProjectCount /*project.getSubProjects().size()*/
+							+ ")"%>">
 			<%
 				if (hasCreateProjectRights) {
 			%>
@@ -424,12 +376,10 @@
 					%>
 				</tr>
 				<%
-					Set<SProject> subProjects = new TreeSet<SProject>(
-										new SProjectNameComparator());
+					Set<SProject> subProjects = new TreeSet<SProject>(new SProjectNameComparator());
 								for (long subPoid : project.getSubProjects()) {
 									try {
-										SProject subProject = loginManager.getService()
-												.getProjectByPoid(subPoid);
+										SProject subProject = loginManager.getService().getProjectByPoid(subPoid);
 										subProjects.add(subProject);
 									} catch (UserException e) {
 									}
@@ -437,34 +387,17 @@
 								for (SProject subProject : subProjects) {
 									SRevision lastSubProjectRevision = null;
 									if (subProject.getLastRevisionId() != -1) {
-										lastSubProjectRevision = loginManager
-												.getService().getRevision(
-														subProject.getLastRevisionId());
+										lastSubProjectRevision = loginManager.getService().getRevision(subProject.getLastRevisionId());
 									}
 				%>
 				<tr
-					<%=(loginManager.getService()
-									.userHasCheckinRights(subProject.getOid()) == true ? ""
-									: " class=\"checkinrights\"")%>
-					<%=subProject.getState() == SObjectState.DELETED ? " class=\"deleted\""
-									: ""%>>
+					<%=(loginManager.getService().userHasCheckinRights(subProject.getOid()) == true ? "" : " class=\"checkinrights\"")%>
+					<%=subProject.getState() == SObjectState.DELETED ? " class=\"deleted\"" : ""%>>
 					<td><a href="project.jsp?poid=<%=subProject.getOid()%>"><%=subProject.getName()%></a>
 					</td>
-					<td><%=lastSubProjectRevision == null ? "No revisions"
-									: ("<a href=\"revision.jsp?roid="
-											+ lastSubProjectRevision.getOid()
-											+ "\">"
-											+ lastSubProjectRevision.getId()
-											+ "</a> by <a href=\"user.jsp?id="
-											+ lastSubProjectRevision
-													.getUserId()
-											+ "\">"
-											+ loginManager
-													.getService()
-													.getUserByUoid(
-															lastSubProjectRevision
-																	.getUserId())
-													.getUsername() + "</a>")%></td>
+					<td><%=lastSubProjectRevision == null ? "No revisions" : ("<a href=\"revision.jsp?roid=" + lastSubProjectRevision.getOid() + "\">"
+									+ lastSubProjectRevision.getId() + "</a> by <a href=\"user.jsp?id=" + lastSubProjectRevision.getUserId() + "\">"
+									+ loginManager.getService().getUserByUoid(lastSubProjectRevision.getUserId()).getUsername() + "</a>")%></td>
 					<td><%=subProject.getRevisions().size()%></td>
 					<td><%=subProject.getCheckouts().size()%></td>
 					<td><%=subProject.getHasAuthorizedUsers().size()%></td>
@@ -500,14 +433,11 @@
 		</div>
 
 		<div class="tabbertab" id="revisionstab"
-			title="Revisions<%=revisions.size() == 0 ? "" : " ("
-							+ revisions.size() + ")"%>">
+			title="Revisions<%=revisions.size() == 0 ? "" : " (" + revisions.size() + ")"%>">
 			<%
-				Set<String> checkoutWarnings = loginManager.getService()
-								.getCheckoutWarnings(project.getOid());
+				Set<String> checkoutWarnings = loginManager.getService().getCheckoutWarnings(project.getOid());
 						for (String warning : checkoutWarnings) {
-							out.write("<div class=\"warning\"><img src=\"images/warning.png\" alt=\"warning\" />"
-									+ warning + "</div>");
+							out.write("<div class=\"warning\"><img src=\"images/warning.png\" alt=\"warning\" />" + warning + "</div>");
 						}
 						if (userHasCheckinRights) {
 			%>
@@ -515,13 +445,9 @@
 			<div id="upload"><jsp:include page="upload.jsp"><jsp:param
 						name="poid" value="<%=poid %>" /></jsp:include>
 				<%
-					List<SProject> projects = loginManager.getService()
-										.getAllReadableProjects();
-								Collections
-										.sort(projects, new SProjectNameComparator());
-								if (!projects.isEmpty()
-										&& (projects.size() > 1 || !projects.get(0)
-												.getRevisions().isEmpty())) {
+					List<SProject> projects = loginManager.getService().getAllReadableProjects();
+								Collections.sort(projects, new SProjectNameComparator());
+								if (!projects.isEmpty() && (projects.size() > 1 || !projects.get(0).getRevisions().isEmpty())) {
 									boolean atLeastOne = false;
 									for (SProject sProject : projects) {
 										if (!sProject.getRevisions().isEmpty()) {
@@ -541,14 +467,8 @@
 							%>
 							<optgroup label="<%=sProject.getName()%>">
 								<%
-									List<SRevision> checkinRevisions = loginManager
-																		.getService()
-																		.getAllRevisionsOfProject(
-																				sProject.getOid());
-																Collections
-																		.sort(checkinRevisions,
-																				new SRevisionIdComparator(
-																						false));
+									List<SRevision> checkinRevisions = loginManager.getService().getAllRevisionsOfProject(sProject.getOid());
+																Collections.sort(checkinRevisions, new SRevisionIdComparator(false));
 																for (SRevision sRevision : checkinRevisions) {
 								%>
 								<option value="<%=sRevision.getOid()%>"><%=sRevision.getId()%></option>
@@ -621,8 +541,7 @@
 					<th>User</th>
 					<th>Comment</th>
 					<%
-						if (project.getParentId() == -1
-											&& sClashDetectionSettings.isEnabled()) {
+						if (project.getParentId() == -1 && sClashDetectionSettings.isEnabled()) {
 					%>
 					<th>Clashes</th>
 					<%
@@ -633,15 +552,12 @@
 				</tr>
 				<%
 					for (SRevision revision : revisions) {
-									SUser revisionUser = loginManager.getService()
-											.getUserByUoid(revision.getUserId());
+									SUser revisionUser = loginManager.getService().getUserByUoid(revision.getUserId());
 									boolean isTagged = revision.getTag() != null;
 				%>
 				<tr <%=isTagged ? "class=\"tagged\"" : ""%>
 					id="rev<%=revision.getOid()%>"
-					<%=lastRevision != null
-									&& revision.getId() == lastRevision.getId() ? "class=\"lastrevision\""
-									: ""%>>
+					<%=lastRevision != null && revision.getId() == lastRevision.getId() ? "class=\"lastrevision\"" : ""%>>
 					<td><a href="revision.jsp?roid=<%=revision.getOid()%>"><%=revision.getId()%></a>
 					</td>
 					<td style="white-space: nowrap;"><%=dateFormat.format(revision.getDate())%></td>
@@ -652,92 +568,80 @@
 						<div class="commentbox">
 							<div><%=revision.getComment()%></div>
 							<a href="#" class="morelink">more</a>
-						</div></td>
+						</div>
+					</td>
 					<%
-						if (project.getParentId() == -1
-												&& sClashDetectionSettings.isEnabled()) {
+						if (project.getParentId() == -1 && sClashDetectionSettings.isEnabled()) {
 					%>
 					<td class="clashesfield"><img src="images/ajax-loader.gif"
 						align="left"
-						style="margin-right: 5px; display: <%=revision.getState() == SCheckinState.SEARCHING_CLASHES ? "block"
-										: "none"%>" />
+						style="margin-right: 5px; display: <%=revision.getState() == SCheckinState.SEARCHING_CLASHES ? "block" : "none"%>" />
 						<span class="statusfield"> <%
  	if (revision.getState() == SCheckinState.DONE) {
  							out.print(revision.getLastClashes().size());
  						} else if (revision.getState() == SCheckinState.SEARCHING_CLASHES) {
  							out.print("Searching clashes...");
  						} else if (revision.getState() == SCheckinState.CLASHES_ERROR) {
- 							out.print("Error: "
- 									+ revision.getLastError());
+ 							out.print("Error: " + revision.getLastError());
  						}
- %> </span>
-					</td>
+ %> </span></td>
 					<%
 						}
 					%>
-					<td class="sizefield"><%=(revision.getState() == SCheckinState.DONE
-									|| revision.getState() == SCheckinState.SEARCHING_CLASHES || revision
-									.getState() == SCheckinState.CLASHES_ERROR) ? revision
+					<td class="sizefield"><%=(revision.getState() == SCheckinState.DONE || revision.getState() == SCheckinState.SEARCHING_CLASHES || revision.getState() == SCheckinState.CLASHES_ERROR) ? revision
 									.getSize() : ""%></td>
 					<td class="downloadfield"><img src="images/ajax-loader.gif"
 						align="left"
-						style="margin-right: 5px; display: <%=(revision.getState() == SCheckinState.DONE
-									|| revision.getState() == SCheckinState.ERROR
-									|| revision.getState() == SCheckinState.CLASHES_ERROR || revision
-									.getState() == SCheckinState.SEARCHING_CLASHES) ? "none"
-									: "block"%>" />
+						style="margin-right: 5px; display: <%=(revision.getState() == SCheckinState.DONE || revision.getState() == SCheckinState.ERROR
+									|| revision.getState() == SCheckinState.CLASHES_ERROR || revision.getState() == SCheckinState.SEARCHING_CLASHES) ? "none" : "block"%>" />
 						<div id="uploadProgressBar<%=revision.getOid()%>"></div> <span
 						class="statusfield"> <%
  	if (revision.getState() == SCheckinState.ERROR) {
- 						out.print("Error: "
- 								+ revision.getState().name()
- 										.toLowerCase());
+ 						out.print("Error: " + revision.getState().name().toLowerCase());
  					} else if (revision.getState() == SCheckinState.STORING) {
  						out.print("Storing...");
  					}
  %> </span>
 						<div
-							class="<%=revision.getState() == SCheckinState.DONE
-									|| revision.getState() == SCheckinState.CLASHES_ERROR
-									|| revision.getState() == SCheckinState.SEARCHING_CLASHES ? ""
-									: "blockinvisible"%>">
+							class="<%=revision.getState() == SCheckinState.DONE || revision.getState() == SCheckinState.CLASHES_ERROR
+									|| revision.getState() == SCheckinState.SEARCHING_CLASHES ? "" : "blockinvisible"%>">
 							<table class="cleantable">
 								<tr class="downloadframe">
 									<td><input type="hidden" name="roid"
 										value="<%=revision.getOid()%>" /> <select
 										name="serializerName" class="revisionsdownloadcheckoutselect">
 											<%
-												for (SSerializer serializer : loginManager
-																		.getService().getEnabledSerializers()) {
+												for (SSerializer serializer : loginManager.getService().getEnabledSerializers()) {
 											%>
 											<option value="<%=serializer.getName()%>"
-												<%=serializer.isDefaultSerializer() ? " SELECTED=\"SELECTED\""
-										: ""%>><%=serializer.getName()%></option>
+												<%=serializer.isDefaultSerializer() ? " SELECTED=\"SELECTED\"" : ""%>><%=serializer.getName()%></option>
 											<%
 												}
 											%>
-									</select>
-									</td>
+									</select></td>
 									<td><label for="revisionzip_<%=revision.getId()%>">Zip
-									</label>
-									</td>
+									</label></td>
 									<td><input type="checkbox" name="zip"
-										id="revisionzip_<%=revision.getId()%>" /></td>
+										id="revisionzip_<%=revision.getId()%>" />
+									</td>
 									<td><input type="hidden" name="roid"
 										name="<%=revision.getOid()%>" />
-										<button type="button" value="Download">Download</button></td>
+										<button type="button" value="Download">Download</button>
+									</td>
 									<%
 										if (userHasCheckinRights) {
 									%>
 									<td>
 										<button type="button" value="Checkout"
-											class="revisionscheckoutbutton">Checkout</button></td>
+											class="revisionscheckoutbutton">Checkout</button>
+									</td>
 									<%
 										}
 									%>
 								</tr>
 							</table>
-						</div></td>
+						</div>
+					</td>
 				</tr>
 				<%
 					}
@@ -747,8 +651,7 @@
 				} else {
 			%>
 			<div class="none">
-				No revisions<%=userHasCheckinRights ? ", upload a file"
-								: ""%></div>
+				No revisions<%=userHasCheckinRights ? ", upload a file" : ""%></div>
 			<%
 				}
 			%>
@@ -775,8 +678,7 @@
 			if (checkouts.size() > 0) {
 		%>
 		<div class="tabbertab" id="checkoutstab"
-			title="Checkouts<%=checkouts.size() == 0 ? "" : " ("
-								+ activeCheckouts.size() + ")"%>">
+			title="Checkouts<%=checkouts.size() == 0 ? "" : " (" + activeCheckouts.size() + ")"%>">
 			<%
 				boolean showCheckoutToggle = false;
 							for (SCheckout checkout : checkouts) {
@@ -801,15 +703,11 @@
 				</tr>
 				<%
 					for (SCheckout checkout : checkouts) {
-									SUser checkoutUser = loginManager.getService()
-											.getUserByUoid(checkout.getUserId());
+									SUser checkoutUser = loginManager.getService().getUserByUoid(checkout.getUserId());
 				%>
-				<tr class="<%=checkout.isActive() ? ""
-									: "inactivecheckoutrow"%>">
-					<td><a href="revision.jsp?roid=<%=checkout.getRevisionId()%>"><%=loginManager.getService()
-									.getRevision(checkout.getRevisionId())
-									.getId()%></a>
-					</td>
+				<tr
+					class="<%=checkout.isActive() ? "" : "inactivecheckoutrow"%>">
+					<td><a href="revision.jsp?roid=<%=checkout.getRevisionId()%>"><%=loginManager.getService().getRevision(checkout.getRevisionId()).getId()%></a></td>
 					<td><a href="user.jsp?uoid=<%=checkout.getUserId()%>"><%=checkoutUser.getUsername()%></a>
 					</td>
 					<td><%=dateFormat.format(checkout.getDate())%></td>
@@ -820,12 +718,10 @@
 								value="<%=checkout.getRevisionId()%>" /> <select
 								name="serializerName">
 								<%
-									for (SSerializer serializer : loginManager
-															.getService().getEnabledSerializers()) {
+									for (SSerializer serializer : loginManager.getService().getEnabledSerializers()) {
 								%>
 								<option value="<%=serializer.getName()%>"
-									<%=serializer.isDefaultSerializer() ? " SELECTED=\"SELECTED\""
-										: ""%>><%=serializer.getName()%></option>
+									<%=serializer.isDefaultSerializer() ? " SELECTED=\"SELECTED\"" : ""%>><%=serializer.getName()%></option>
 								<%
 									}
 								%>
@@ -833,7 +729,8 @@
 							<input type="checkbox" name="zip"
 								id="checkoutsdownloadzip_<%=checkout.getOid()%>" /> <input
 								name="download" type="submit" value="Download" />
-						</form></td>
+						</form>
+					</td>
 				</tr>
 				<%
 					}
@@ -844,8 +741,7 @@
 			}
 		%>
 		<div class="tabbertab" id="authorizeduserstab"
-			title="Authorized users<%=users.size() == 0 ? "" : " (" + users.size()
-							+ ")"%>">
+			title="Authorized users<%=users.size() == 0 ? "" : " (" + users.size() + ")"%>">
 			<%
 				if (nonAuthorizedUsers.size() > 0 && hasUserManagementRights) {
 			%>
@@ -854,30 +750,30 @@
 					<%
 						for (SUser user : nonAuthorizedUsers) {
 					%>
-					<option value="<%=user.getOid()%>"><%=user.getName() + " ("
-									+ user.getUsername() + ")"%></option>
+					<option value="<%=user.getOid()%>"><%=user.getName() + " (" + user.getUsername() + ")"%></option>
 					<%
 						}
 					%>
 				</select> <input type="hidden" name="poid" value="<%=poid%>" /> <input
-					type="hidden" name="type" value="project" /> <input
-					type="submit" value="Add" />
+					type="hidden" name="type" value="project" /> <input type="submit"
+					value="Add" />
 			</form>
 
-			<% 	
+			<%
 				if (loginManager.getService().isSettingAllowSelfRegistration()) {
-			 %>
+			%>
 			<form method="post" action="addusertoproject.jsp">
-				<input type="hidden" name="poid" value="<%=poid%>" />
-				<input type="hidden" name="type" value="invitedUser" /> Invite a
-				new user to join this project:<br> <label for="usernamefield">User
-					name (= e-mail address):</label><input id="usernamefield" type="email" name="username" />
-					<label for="namefield">Name:</label><input id="namefield" type="text" name="name" />
-					<input type="submit" value="Invite" />
+				<input type="hidden" name="poid" value="<%=poid%>" /> <input
+					type="hidden" name="type" value="invitedUser" /> Invite a new user
+				to join this project:<br> <label for="usernamefield">User
+					name (= e-mail address):</label><input id="usernamefield" type="email"
+					name="username" /> <label for="namefield">Name:</label><input
+					id="namefield" type="text" name="name" /> <input type="submit"
+					value="Invite" />
 			</form>
 			<%
-					}
 				}
+						}
 			%>
 			<%
 				if (users.size() > 0) {
@@ -899,14 +795,12 @@
 					for (SUser user : users) {
 				%>
 				<tr
-					<%=user.getState() == SObjectState.DELETED ? " class=\"deleted\""
-									: ""%>>
+					<%=user.getState() == SObjectState.DELETED ? " class=\"deleted\"" : ""%>>
 					<td><a href="user.jsp?uoid=<%=user.getOid()%>"><%=user.getName()%></a>
 					</td>
 					<td><a href="user.jsp?uoid=<%=user.getOid()%>"><%=user.getUsername()%></a>
 					</td>
-					<td><%=JspHelper.getNiceUserTypeName(user
-									.getUserType())%></td>
+					<td><%=JspHelper.getNiceUserTypeName(user.getUserType())%></td>
 					<%
 						if (hasUserManagementRights) {
 					%>
@@ -949,8 +843,7 @@
 			document.getElementById("projecttabber").tabber.tabShow(1);
 			return false;
 		});
-<%if (!loginManager.getService()
-							.getSubProjects(project.getOid()).isEmpty()) {%>
+<%if (!loginManager.getService().getSubProjects(project.getOid()).isEmpty()) {%>
 			$("#uploadlink").show();
 			$("#uploadlink").click(function(){
 				$("#upload").show();
@@ -1028,8 +921,7 @@
 		};
 <%boolean shouldRefresh = false;
 					for (long roid : project.getRevisions()) {
-						if (loginManager.getService().getRevision(roid)
-								.getState() != SCheckinState.DONE) {
+						if (loginManager.getService().getRevision(roid).getState() != SCheckinState.DONE) {
 							shouldRefresh = true;
 						}
 					}
@@ -1080,16 +972,13 @@
 		$("#browserajaxloader").hide();
 <%String clashesUrl = "clashes.jsp?poid=" + poid;
 						if (request.getParameter("margin") != null) {
-							clashesUrl += "&margin="
-									+ request.getParameter("margin");
+							clashesUrl += "&margin=" + request.getParameter("margin");
 						}
 						if (request.getParameter("revisions") != null) {
-							clashesUrl += "&revisions="
-									+ request.getParameter("revisions");
+							clashesUrl += "&revisions=" + request.getParameter("revisions");
 						}
 						if (request.getParameter("ignored") != null) {
-							clashesUrl += "&ignored="
-									+ request.getParameter("ignored");
+							clashesUrl += "&ignored=" + request.getParameter("ignored");
 						}%>
 		$("#clashdetectiondiv").load("<%=clashesUrl%>");
 		$("#compareform").submit(function(){
@@ -1212,8 +1101,7 @@
 		}
 			} catch (UserException e) {
 				if (e.getCause() instanceof OutOfMemoryError) {
-					response.sendRedirect(getServletContext()
-							.getContextPath());
+					response.sendRedirect(getServletContext().getContextPath());
 				} else {
 					e.printStackTrace();
 					out.println(e.getUserMessage());

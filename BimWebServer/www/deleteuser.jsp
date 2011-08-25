@@ -1,3 +1,4 @@
+<%@page import="org.bimserver.web.JspHelper"%>
 <%@page import="org.bimserver.shared.UserException"%>
 <%@ include file="header.jsp" %>
 <%
@@ -10,7 +11,7 @@
 				out.println("Error");
 			}
 		} catch (UserException e) {
-			out.println("<div class=\"error\">" + e.getUserMessage() + "</div>");
+			JspHelper.showException(out, e);
 		}
 	}
 %>

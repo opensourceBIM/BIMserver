@@ -12,6 +12,10 @@
 $(document).ready(function(){
 	instrumentBrowserLinks();
 
+	$(".errorLink").click(function(event){
+		$(event.target).parent().find(".errorBody").show();
+	});
+	
 	var showDeleted = getCookie("showdeleted") == "true";
 	$("#showdeleted").attr("checked", showDeleted);
 	if (showDeleted) {

@@ -19,7 +19,7 @@
 				long uoid = loginManager.getService().addUser(request.getParameter("username"), request.getParameter("name"), SUserType.values()[Integer.parseInt(request.getParameter("type"))], false);
 				response.sendRedirect("user.jsp?uoid=" + uoid);
 			} catch (UserException e) {
-				out.println("<div class=\"error\">" + e.getUserMessage() + "</div>");
+				JspHelper.showException(out, e);
 			}
 		}
 %>

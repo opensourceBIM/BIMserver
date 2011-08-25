@@ -1844,7 +1844,9 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public void setSettingSmtpServer(String smtpServer) throws UserException, ServerException {
-		requireAdminAuthentication();
+		if (bimServer.getServerInfo().getServerState() != ServerState.NOT_SETUP) {
+			requireAdminAuthentication();
+		}
 		Settings settings = bimServer.getSettingsManager().getSettings();
 		if (smtpServer.trim().isEmpty()) {
 			throw new UserException("SMTP server address cannot be empty");

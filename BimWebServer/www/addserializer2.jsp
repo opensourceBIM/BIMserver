@@ -1,3 +1,4 @@
+<%@page import="org.bimserver.web.JspHelper"%>
 <%@page import="org.bimserver.shared.SSerializerPluginDescriptor"%>
 <%@ include file="header.jsp"%>
 <%@page import="org.bimserver.interfaces.objects.SSerializer"%>
@@ -52,7 +53,7 @@
 			service.addSerializer(serializer);
 			response.sendRedirect("settings.jsp");
 		} catch (UserException e) {
-			out.println("<div class=\"error\">" + e.getMessage() + "</div>");
+			JspHelper.showException(out, e);
 		}
 	} else {
 		SSerializerPluginDescriptor serializerPluginDescriptor = loginManager.getService().getSerializerPluginDescriptor(type);
