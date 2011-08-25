@@ -1826,7 +1826,9 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public void setSettingSiteAddress(String siteAddress) throws UserException, ServerException {
-		requireAdminAuthentication();
+		if (bimServer.getServerInfo().getServerState() != ServerState.NOT_SETUP) {
+			requireAdminAuthentication();
+		}
 		Settings settings = bimServer.getSettingsManager().getSettings();
 		if (siteAddress.trim().isEmpty()) {
 			throw new UserException("Site Address cannot be empty");
