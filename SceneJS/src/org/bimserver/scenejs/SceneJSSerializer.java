@@ -141,6 +141,7 @@ public class SceneJSSerializer extends BimModelSerializer {
 				writer.writeln("flags:");
 				writer.indent();
 				writer.writeln("{");
+				writer.writeln("backfaces: false,");
 				writer.indent();
 				writer.unindent();
 				writer.writeln("},");
@@ -573,7 +574,6 @@ public class SceneJSSerializer extends BimModelSerializer {
 					writer.indent();
 					writer.writeln("type: 'geometry',");
 					writer.writeln("coreId: '" + id + "',");
-					writer.writeln("resource: '" + id + "',");
 					writer.writeln("primitive: 'triangles',");
 					writer.writetab("positions: [");
 					for (int i = 0; i < geometry.getNrVertices(); i += 1) {
@@ -660,53 +660,64 @@ public class SceneJSSerializer extends BimModelSerializer {
 		writer.writeln("aspect: 1.0,");
 		writer.writeln("fovy: 27.6380627952,");
 		//writer.writeln("fovy: 37.8493,");
+        writer.unindent();
+		writer.writeln("},");
+
+		writer.writeln("nodes: [");
+		writer.indent();
+		writer.writeln("{");
+		writer.indent();
 		
-		 /*type: 'renderer',
-         clear:
-             {
-                 color: true, 
-                 depth: true, 
-                 stencil: false, 
-             },
-         clearColor:
-             {
-                 r: 0.0,
-                 b: 0.0,
-                 g: 0.0,
-                 a: 0.0
-             },
-         nodes: [
-             {
-                 type: 'matrix',
-                 elements: [-0.290864378214,0.955171227455,-0.055189050734,0.0,-0.771100878716,-0.199883162975,0.604524791241,0.0,0.566393375397,0.218391060829,0.794672250748,0.0,4.07624483109,1.00545394421,5.90386199951,1.0,],
-                 nodes: [
-                     {
-                         type: 'light',
-                         color:
-                             {
-                                 r: 1.0,
-                                 b: 1.0,
-                                 g: 1.0,
-                             },
-                         pos:
-                             {
-                                 y: 0.0,
-                                 x: 0.0,
-                                 z: 0.0,
-                             },
-                         quadraticAttenuation: 0.000555556,
-                         linearAttenuation: 0.0,
-                         mode: 'point',
-                         constantAttenuation: 1.0,
-                     },
-                 ],
-             },*/
+		writer.writeln("type: 'renderer',");
 		
-		
-		
+		writer.writeln("clear: {");
+		writer.indent();
+		writer.writeln("color: true,"); 
+		writer.writeln("depth: true,"); 
+		writer.writeln("stencil: false,");
+        writer.unindent();
+		writer.writeln("},");
+        
+        writer.writeln("clearColor: {");
+		writer.indent();
+		writer.writeln("r: 0.0,"); 
+		writer.writeln("g: 0.0,"); 
+		writer.writeln("b: 0.0,");
+		writer.writeln("a: 0.0,");
+        writer.unindent();
+		writer.writeln("},");
+        
 		writer.writeln("nodes: [");
 		writer.indent();
 		
+		// Add a simple light to the scene 
+		writer.writeln("{");
+		writer.indent();
+		writer.writeln("type: 'light',");
+		
+		writer.writeln("color: {");
+		writer.indent();
+		writer.writeln("r: 1.0,"); 
+		writer.writeln("g: 1.0,"); 
+		writer.writeln("b: 1.0,");
+		writer.unindent();
+        writer.writeln("},");
+        
+        writer.writeln("pos: {");
+		writer.indent();
+		writer.writeln("x: 0.0,"); 
+		writer.writeln("y: 0.0,"); 
+		writer.writeln("z: 0.0,");
+        writer.unindent();
+		writer.writeln("},");
+        
+        writer.writeln("mode: 'point',");
+        writer.writeln("constantAttenuation: 1.0,");
+        writer.writeln("linearAttenuation: 0.0,");
+        writer.writeln("quadraticAttenuation: 0.000555556,");        
+        writer.unindent();
+		writer.writeln("},"); // light
+	
 		// Output each geometry instance grouped by material
 		for (String materialId : converted.keySet()) {
 			writer.writeln("{");
@@ -738,25 +749,30 @@ public class SceneJSSerializer extends BimModelSerializer {
 				writer.writeln("                </instance_geometry>");
 				writer.writeln("            </node>");*/
 				writer.unindent();
-				writer.writeln("},");
+				writer.writeln("},"); // geometry
 			}
 			writer.unindent();
 			writer.writeln("],");
 			
 			writer.unindent();
-			writer.writeln("},");
+			writer.writeln("},"); // material
 		}
 		
 		writer.unindent();
 		writer.writeln("],");
 		
 		writer.unindent();
-		writer.writeln("},");
-		
-		writer.unindent();
-		writer.writeln("},");
+		writer.writeln("},"); // renderer
 		writer.unindent();
 		writer.writeln("],");
+		
+		writer.unindent();
+		writer.writeln("},"); // camera
+		writer.unindent();
+		writer.writeln("],");
+		
+		writer.unindent();
+		writer.writeln("},"); // lookAt
 		/*
 		out.writeln("    <library_visual_scenes>");
 		out.writeln("        <visual_scene id=\"VisualSceneNode\" name=\"VisualSceneNode\">");
@@ -807,8 +823,6 @@ public class SceneJSSerializer extends BimModelSerializer {
 		out.writeln("            </node>");
 		out.writeln("        </visual_scene>");
 		out.writeln("    </library_visual_scenes>");*/
-		writer.unindent();
-		writer.writeln("},");
 	}
 
 	private void writeLights(JsWriter writer) {
