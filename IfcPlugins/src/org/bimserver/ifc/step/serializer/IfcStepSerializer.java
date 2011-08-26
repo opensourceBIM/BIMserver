@@ -31,6 +31,7 @@ import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.IfcSerializer;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcGloballyUniqueId;
+import org.bimserver.models.ifc2x3.IfcTrimmedCurve;
 import org.bimserver.models.ifc2x3.Tristate;
 import org.bimserver.models.ifc2x3.WrappedValue;
 import org.bimserver.plugins.PluginException;
@@ -339,7 +340,12 @@ public class IfcStepSerializer extends IfcSerializer {
 		if (structuralFeature != null) {
 			Object get = eObject.eGet(structuralFeature);
 			if (structuralFeature.getEType() == ECORE_PACKAGE_INSTANCE.getEFloat() || structuralFeature.getEType() == ECORE_PACKAGE_INSTANCE.getEDouble()) {
-				out.print(eObject.eGet(class1.getEStructuralFeature(structuralFeature.getName() + "AsString")));
+				Object realVal = eObject.eGet(class1.getEStructuralFeature(structuralFeature.getName() + "AsString"));
+				if (realVal != null) {
+					out.print(realVal);					
+				} else {
+					out.print(get);
+				}
 			} else {
 				writePrimitive(out, get);
 			}
@@ -374,7 +380,12 @@ public class IfcStepSerializer extends IfcSerializer {
 							IdEObject eObject = (IdEObject) listObject;
 							Object realVal = eObject.eGet(eObject.eClass().getEStructuralFeature("wrappedValue"));
 							if (realVal instanceof Float || realVal instanceof Double) {
-								out.print(eObject.eGet(eObject.eClass().getEStructuralFeature("wrappedValueAsString")));
+								Object stringVal = eObject.eGet(eObject.eClass().getEStructuralFeature("wrappedValueAsString"));
+								if (stringVal != null) {
+									out.print(stringVal);									
+								} else {
+									out.print(realVal);
+								}
 							} else {
 								writePrimitive(out, realVal);
 							}
@@ -387,7 +398,12 @@ public class IfcStepSerializer extends IfcSerializer {
 								out.print(upperCases.get(class1));
 								out.print(OPEN_CLOSE);
 								if (realVal instanceof Float || realVal instanceof Double) {
-									out.print(eObject.eGet(class1.getEStructuralFeature(structuralFeature.getName() + "AsString")));
+									Object stringVal = eObject.eGet(class1.getEStructuralFeature(structuralFeature.getName() + "AsString"));
+									if (stringVal != null) {
+										out.print(stringVal);										
+									} else {
+										out.print(realVal);
+									}
 								} else {
 									writePrimitive(out, realVal);
 								}
@@ -418,7 +434,12 @@ public class IfcStepSerializer extends IfcSerializer {
 					if ((name.equals(IFC_BOOLEAN) || name.equals(IFC_LOGICAL)) && val == null) {
 						out.print(BOOLEAN_UNDEFINED);
 					} else if (structuralFeature.getEType() == ECORE_PACKAGE_INSTANCE.getEFloat()) {
-						out.print(betweenObject.eGet(betweenObject.eClass().getEStructuralFeature("wrappedValueAsString")));
+						Object stringVal = betweenObject.eGet(betweenObject.eClass().getEStructuralFeature("wrappedValueAsString"));
+						if (stringVal != null) {
+							out.print(stringVal);							
+						} else {
+							out.print(val);
+						}
 					} else {
 						writePrimitive(out, val);
 					}

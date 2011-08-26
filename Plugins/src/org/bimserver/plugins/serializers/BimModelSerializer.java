@@ -41,16 +41,13 @@ public abstract class BimModelSerializer extends EmfSerializer {
 				Object get = ifcRootObject.eGet(eStructuralFeature);
 				if (eStructuralFeature instanceof EAttribute) {
 					if (get instanceof Float || get instanceof Double) {
-						EStructuralFeature floatStringFeature = ifcRootObject.eClass().getEStructuralFeature("wrappedValueAsString");
+						EStructuralFeature floatStringFeature = ifcRootObject.eClass().getEStructuralFeature(eStructuralFeature.getName() + "AsString");
 						if (floatStringFeature != null) {
 							Object floatString = ifcRootObject.eGet(floatStringFeature);
 							newObject.eSet(floatStringFeature, floatString);
-						} else {
-							newObject.eSet(eStructuralFeature, get);
 						}
-					} else {
-						newObject.eSet(eStructuralFeature, get);
 					}
+					newObject.eSet(eStructuralFeature, get);
 				} else if (eStructuralFeature instanceof EReference) {
 					if (get == null) {
 					} else {

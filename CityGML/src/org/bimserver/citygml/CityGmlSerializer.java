@@ -1,5 +1,6 @@
 package org.bimserver.citygml;
 
+import java.io.File;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.math.BigInteger;
@@ -60,6 +61,7 @@ import org.bimserver.plugins.serializers.EmfSerializer;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.SerializerException;
+import org.bimserver.utils.FileUtils;
 import org.citygml4j.CityGMLContext;
 import org.citygml4j.builder.jaxb.JAXBBuilder;
 import org.citygml4j.factory.CityGMLFactory;
@@ -639,14 +641,16 @@ public class CityGmlSerializer extends BimModelSerializer {
 		addressProperty.setObject(address);
 		return addressProperty;
 	}
-
+	
 	private void setGeometry(MultiSurface ms, IfcRoot ifcRootObject) throws SerializerException {
 		IfcModel ifcModel = new IfcModel();
 		convertToSubset(ifcRootObject.eClass(), ifcRootObject, ifcModel, new HashMap<EObject, EObject>());
 		EmfSerializer serializer = getPluginManager().requireIfcStepSerializer();
 		serializer.init(ifcModel, getProjectInfo(), getPluginManager());
 		try {
-			IfcEngineModel model = ifcEngine.openModel(serializer.getBytes());
+			byte[] bytes = serializer.getBytes();
+			FileUtils.writeToFile(bytes, new File("test.ifc"));
+			IfcEngineModel model = ifcEngine.openModel(bytes);
 			try {
 				model.setPostProcessing(true);
 				IfcEngineSurfaceProperties initializeModelling = model.initializeModelling();
