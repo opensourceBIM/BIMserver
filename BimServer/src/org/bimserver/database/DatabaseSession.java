@@ -51,6 +51,7 @@ import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
+import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.shared.DatabaseInformation;
 import org.bimserver.shared.UserException;
 import org.bimserver.utils.BinUtils;
@@ -216,7 +217,7 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 		return database.convert(type, value);
 	}
 
-	public IdEObject convertByteArrayToObject(EClass originalQueryClass, EClass eClass, long oid, ByteBuffer buffer, IfcModel model, int pid, int rid, boolean deep)
+	public IdEObject convertByteArrayToObject(EClass originalQueryClass, EClass eClass, long oid, ByteBuffer buffer, IfcModelInterface model, int pid, int rid, boolean deep)
 			throws BimDatabaseException, BimDeadlockException {
 		if (model.contains(oid)) {
 			return model.get(oid);
@@ -244,7 +245,7 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 	}
 
 	@SuppressWarnings("unchecked")
-	public IdEObject convertByteArrayToObject(IdEObject idEObject, EClass originalQueryClass, EClass eClass, long oid, ByteBuffer buffer, IfcModel model, int pid, int rid,
+	public IdEObject convertByteArrayToObject(IdEObject idEObject, EClass originalQueryClass, EClass eClass, long oid, ByteBuffer buffer, IfcModelInterface model, int pid, int rid,
 			boolean deep) throws BimDatabaseException, BimDeadlockException {
 		for (EStructuralFeature feature : eClass.getEAllStructuralFeatures()) {
 			if (!feature.isTransient() && !feature.isVolatile()) {
@@ -547,16 +548,47 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 		if (objectsToCommit.containsValue(oid)) {
 			return (T) objectsToCommit.inverse().get(oid);
 		}
-		ByteBuffer keyBuffer = createKeyBuffer(pid, oid, rid);
 		EClass eClass = getEClassForCid(cid);
-		byte[] value = database.getColumnDatabase().get(eClass.getName(), keyBuffer.array(), this);
-		if (value == null) {
-			return null;
-		} else {
-			ByteBuffer buffer = ByteBuffer.wrap(value);
-			IdEObject object = convertByteArrayToObject(eClass, eClass, oid, buffer, model, pid, rid, deep);
-			putInCache(new RecordIdentifier(pid, oid, rid), object);
-			return (T) object;
+		ByteBuffer mustStartWith = ByteBuffer.wrap(new byte[12]);
+		mustStartWith.putInt(pid);
+		mustStartWith.putLong(oid);
+		ByteBuffer startSearchWith = ByteBuffer.wrap(new byte[16]);
+		startSearchWith.putInt(pid);
+		startSearchWith.putLong(oid);
+		startSearchWith.putInt(-rid);
+		SearchingRecordIterator recordIterator = database.getColumnDatabase().getRecordIterator(eClass.getName(), mustStartWith.array(), startSearchWith.array(), this);
+		try {
+			Record record = recordIterator.next();
+			if (record == null) {
+				return null;
+			}
+			ByteBuffer keyBuffer = ByteBuffer.wrap(record.getKey());
+			ByteBuffer valueBuffer = ByteBuffer.wrap(record.getValue());
+			int keyPid = keyBuffer.getInt();
+			long keyOid = keyBuffer.getLong();
+			int keyRid = -keyBuffer.getInt();
+			if (keyRid <= rid) {
+				RecordIdentifier recordIdentifier = new RecordIdentifier(pid, keyOid, keyRid);
+				if (cacheContains(recordIdentifier)) {
+					return (T) getObject(recordIdentifier);
+				} else {
+					if (model.contains(keyOid)) {
+						return (T) model.get(keyOid);
+					} else {
+						if (valueBuffer.capacity() == 1 && valueBuffer.get(0) == -1) {
+							valueBuffer.position(valueBuffer.position() + 1);
+							return null;
+							// deleted entity
+						} else {
+							return (T) convertByteArrayToObject(eClass, eClass, keyOid, valueBuffer, model, pid, rid, deep);
+						}
+					}
+				}
+			} else {
+				return null;
+			}
+		} finally {
+			recordIterator.close();
 		}
 	}
 
@@ -737,7 +769,7 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 		return size;
 	}
 
-	private int getMap(EClass originalQueryClass, EClass eClass, IfcModel model, ByteBuffer buffer, int keyPid, long keyOid, int keyRid, int pid, int rid, boolean deep)
+	private int getMap(EClass originalQueryClass, EClass eClass, IfcModelInterface model, ByteBuffer buffer, int keyPid, long keyOid, int keyRid, int pid, int rid, boolean deep)
 			throws BimDatabaseException, BimDeadlockException {
 		if (keyPid == pid) {
 			if (keyRid <= rid) {
@@ -1068,7 +1100,7 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 		}
 	}
 
-	private IdEObject readReference(EClass originalQueryClass, ByteBuffer buffer, IfcModel model, int pid, int rid, IdEObject object, EStructuralFeature feature, EClass eClass,
+	private IdEObject readReference(EClass originalQueryClass, ByteBuffer buffer, IfcModelInterface model, int pid, int rid, IdEObject object, EStructuralFeature feature, EClass eClass,
 			boolean deep) throws BimDatabaseException, BimDeadlockException {
 		if (buffer.capacity() == 1 && buffer.get(0) == -1) {
 			buffer.position(buffer.position() + 1);

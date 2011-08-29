@@ -19,7 +19,7 @@ public interface IfcModelInterface {
 	EObject getMainObject();
 	<T extends EObject> List<T> getAll(Class<T> clazz);
 	Set<Long> keySet();
-	EObject get(long key);
+	IdEObject get(long key);
 	boolean contains(IdEObject referencedObject);
 	long get(IdEObject referencedObject);
 	String getAuthorizedUser();
@@ -51,4 +51,5 @@ public interface IfcModelInterface {
 	void checkDoubleOidsPlusReferences();
 	<T extends EObject> List<T> getAllWithSubTypes(Class<T> interfaceClass);
 	void setChecksum(byte[] digest);
+	boolean contains(long oid);
 }
