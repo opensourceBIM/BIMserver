@@ -1,9 +1,5 @@
 package org.bimserver.ifc.step.serializer;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import org.bimserver.plugins.Plugin;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.serializers.EmfSerializer;

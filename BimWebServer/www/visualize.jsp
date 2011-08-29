@@ -12,7 +12,7 @@ $(document).ready(function(){
 		$("<div id='" + o3dId + "' style='width: " + (($(document).width() * 0.7)-20) + "px; height: " + (($(document).height() * 0.7)-30) + "px'></div>").appendTo("#visualizediv");
 		g_idOfLoader = "visualizeloader";
 		createClient(document.getElementById(o3dId), function(){
-			loadFile(o3djs.util.getCurrentURI() + 'download?roid=<%=request.getParameter("roid") %>&resultType=O3D_JSON', "visualizeloader");
+			loadFile(o3djs.util.getCurrentURI() + 'download?roid=<%=request.getParameter("roid") %>&serializerName=O3DJSON', "visualizeloader");
 		});
 		return false;
 	});

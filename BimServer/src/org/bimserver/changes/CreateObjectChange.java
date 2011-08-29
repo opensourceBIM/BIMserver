@@ -26,6 +26,7 @@ public class CreateObjectChange implements Change {
 		IdEObject eObject = (IdEObject) eClass.getEPackage().getEFactoryInstance().create(eClass);
 		eObject.setOid(oid);
 		eObject.setPid(pid);
+		eObject.setRid(rid);
 		bimDatabaseSession.store(eObject, pid, rid);
 	}
 }

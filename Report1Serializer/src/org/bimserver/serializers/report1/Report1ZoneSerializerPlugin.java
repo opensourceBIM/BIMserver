@@ -1,11 +1,9 @@
 package org.bimserver.serializers.report1;
 
 import java.net.URL;
-import java.util.Set;
 
 import org.bimserver.ifc.xsltserializer.XsltParameter;
 import org.bimserver.ifc.xsltserializer.XsltSerializer;
-import org.bimserver.plugins.Plugin;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.serializers.EmfSerializer;

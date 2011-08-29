@@ -1,12 +1,7 @@
 package org.bimserver.ifc.xml.serializer;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import org.bimserver.plugins.Plugin;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
-import org.bimserver.plugins.schema.SchemaPlugin;
 import org.bimserver.plugins.serializers.EmfSerializer;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 

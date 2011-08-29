@@ -357,7 +357,7 @@ public class IfcModel implements IfcModelInterface {
 		this.checksum = checksum;
 	}
 
-	public boolean contains(Long key) {
+	public boolean contains(long key) {
 		return objects.containsKey(key);
 	}
 

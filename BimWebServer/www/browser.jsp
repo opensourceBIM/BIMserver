@@ -137,7 +137,7 @@ $(document).ready(function(){
 		$("<div id='" + o3dId + "' style='width: 500px; height: 300px'></div>").appendTo("#browservisualizediv");
 		g_idOfLoader = "browservisualizeloader";
 		createClient(document.getElementById(o3dId), function(){
-			loadFile(o3djs.util.getCurrentURI() + 'download?roid=<%=request.getParameter("roid") %>&oids=<%=request.getParameter("oid")%>&resultType=O3D_JSON', "browservisualizeloader");
+			loadFile(o3djs.util.getCurrentURI() + 'download?roid=<%=request.getParameter("roid") %>&oids=<%=request.getParameter("oid")%>&serializerName=O3DJSON', "browservisualizeloader");
 		});
 		return false;
 	});

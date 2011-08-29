@@ -9,6 +9,7 @@ import java.util.Random;
 
 import javax.activation.DataHandler;
 
+import org.apache.commons.io.FileUtils;
 import org.bimserver.BimServer;
 import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.ServerInfo.ServerState;
@@ -50,6 +51,11 @@ public class TestLowLevelChanges {
 	@BeforeClass
 	public static void setup() {
 		try {
+			File home = new File("home");
+			if (home.isDirectory()) {
+				FileUtils.deleteDirectory(home);
+			}
+			
 			// Create a BIMserver
 			bimServer = new BimServer(new File("home"), new LocalDevelopmentResourceFetcher());
 			
@@ -77,6 +83,8 @@ public class TestLowLevelChanges {
 		} catch (DatabaseRestartRequiredException e) {
 			e.printStackTrace();
 		} catch (UserException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 
