@@ -79,12 +79,23 @@ import org.slf4j.LoggerFactory;
 public class SceneJSSerializer extends BimModelSerializer {
 	private static final Logger LOGGER = LoggerFactory.getLogger(SceneJSSerializer.class);
 	private IfcEngine ifcEngine;
-	private float[] minExtent = { Float.POSITIVE_INFINITY, Float.POSITIVE_INFINITY, Float.POSITIVE_INFINITY };
-	private float[] maxExtent = { Float.NEGATIVE_INFINITY, Float.NEGATIVE_INFINITY, Float.NEGATIVE_INFINITY };
-	private Map<String, Set<String>> converted = new HashMap<String, Set<String>>();
+	
+	/**
+	 * Extents provides an axis-aligned bounding cuboid for geometric data, 
+	 * represented as a pair of 3 dimensional vectors for the two opposing corners of the cuboid.
+	 */
+	private class Extents {
+		public float[] min = { Float.POSITIVE_INFINITY, Float.POSITIVE_INFINITY, Float.POSITIVE_INFINITY };
+		public float[] max = { Float.NEGATIVE_INFINITY, Float.NEGATIVE_INFINITY, Float.NEGATIVE_INFINITY };
+	}
+	private Extents sceneExtents = new Extents();
+	private Map<String, Extents> geometryExtents = new HashMap<String, Extents>();
+	private Map<String, Set<String>> materialGeometryRel = new HashMap<String, Set<String>>();
 	private List<String> surfaceStyleIds;
 	
-	/* JsWriter adds automatic indentation to the PrintWriter */ 
+	/** 
+	 * JsWriter adds automatic indentation to the PrintWriter 
+	 */ 
 	private class JsWriter extends PrintWriter {
 		private int indentation = 0;
 		public JsWriter(OutputStream out) {
@@ -133,8 +144,14 @@ public class SceneJSSerializer extends BimModelSerializer {
 			}
 			JsWriter writer = new JsWriter(out);
 			try {
-				writeAssets(writer);
-
+				// Pre-calculate information for use during the export
+				calculateGeometryExtents();
+				
+				// Write data to stream
+				writer.writeln("/* Author:      " + getProjectInfo().getAuthorName());
+				writer.writeln("   Description: " + getProjectInfo().getDescription());
+				writer.writeln("*/");
+				
 				writer.writeln("SceneJS.createScene({");
 				writer.indent();
 				writer.writeln("type: 'scene',");
@@ -172,9 +189,15 @@ public class SceneJSSerializer extends BimModelSerializer {
 				writer.writeln("data: {");
 				writer.indent();
 				writer.writeln("extents: [[" 
-						+ minExtent[0] + "," + minExtent[1] + "," + minExtent[2] + "],["
-						+ maxExtent[0] + "," + maxExtent[1] + "," + maxExtent[2] + "]],");
+						+ sceneExtents.min[0] + "," + sceneExtents.min[1] + "," + sceneExtents.min[2] + "],["
+						+ sceneExtents.max[0] + "," + sceneExtents.max[1] + "," + sceneExtents.max[2] + "]],");
 				writer.unindent();
+				
+				/*if (lengthUnitPrefix == null) {
+					writer.writeln("   Unit: 1 meter");
+				} else {
+					writer.writeln("   Unit: " + Math.pow(10.0, lengthUnitPrefix.getValue()) + " " + lengthUnitPrefix.name().toLowerCase());
+				}*/
 				writer.writeln("},");
 
 				writer.unindent();
@@ -191,18 +214,6 @@ public class SceneJSSerializer extends BimModelSerializer {
 			return false;
 		}
 		return false;
-	}
-
-	private void writeAssets(JsWriter writer) {
-		writer.writeln("/* Author:      " + getProjectInfo().getAuthorName());
-		writer.writeln("   Description: " + getProjectInfo().getDescription());
-		writer.writeln("*/");
-
-		/*if (lengthUnitPrefix == null) {
-			writer.writeln("   Unit: 1 meter");
-		} else {
-			writer.writeln("   Unit: " + Math.pow(10.0, lengthUnitPrefix.getValue()) + " " + lengthUnitPrefix.name().toLowerCase());
-		}*/
 	}
 
 	private void writeMaterials(JsWriter writer) {
@@ -261,6 +272,95 @@ public class SceneJSSerializer extends BimModelSerializer {
 		writer.writeln("},");
 	}
 
+	private void calculateGeometryExtents() throws IfcEngineException, SerializerException {
+		// TODO: Please review (is there a simpler way to fetch geometric objects?)
+		for (IfcRoof ifcRoof : model.getAll(IfcRoof.class)) {
+			calculateExtents(ifcRoof.getGlobalId().getWrappedValue(), ifcRoof);
+		}
+		for (IfcSlab ifcSlab : model.getAll(IfcSlab.class)) {
+			calculateExtents(ifcSlab.getGlobalId().getWrappedValue(), ifcSlab);
+		}
+		for (IfcWindow ifcWindow : model.getAll(IfcWindow.class)) {
+			calculateExtents(ifcWindow.getGlobalId().getWrappedValue(), ifcWindow);
+		}
+		for (IfcDoor ifcDoor : model.getAll(IfcDoor.class)) {
+			calculateExtents(ifcDoor.getGlobalId().getWrappedValue(), ifcDoor);
+		}
+		for (IfcWall ifcWall : model.getAll(IfcWall.class)) {
+			calculateExtents(ifcWall.getGlobalId().getWrappedValue(), ifcWall);
+		}
+		for (IfcStair ifcStair : model.getAll(IfcStair.class)) {
+			calculateExtents(ifcStair.getGlobalId().getWrappedValue(), ifcStair);
+		}
+		for (IfcStairFlight ifcStairFlight : model.getAll(IfcStairFlight.class)) {
+			calculateExtents(ifcStairFlight.getGlobalId().getWrappedValue(), ifcStairFlight);
+		}
+		for (IfcFlowSegment ifcFlowSegment : model.getAll(IfcFlowSegment.class)) {
+			calculateExtents(ifcFlowSegment.getGlobalId().getWrappedValue(), ifcFlowSegment);
+		}
+		for (IfcFurnishingElement ifcFurnishingElement : model.getAll(IfcFurnishingElement.class)) {
+			calculateExtents(ifcFurnishingElement.getGlobalId().getWrappedValue(), ifcFurnishingElement);
+		}
+		for (IfcPlate ifcPlate : model.getAll(IfcPlate.class)) {
+			calculateExtents(ifcPlate.getGlobalId().getWrappedValue(), ifcPlate);
+		}
+		for (IfcMember ifcMember : model.getAll(IfcMember.class)) {
+			calculateExtents(ifcMember.getGlobalId().getWrappedValue(), ifcMember);
+		}
+		for (IfcWallStandardCase ifcWall : model.getAll(IfcWallStandardCase.class)) {
+			calculateExtents(ifcWall.getGlobalId().getWrappedValue(), ifcWall);
+		}
+		for (IfcCurtainWall ifcCurtainWall : model.getAll(IfcCurtainWall.class)) {
+			calculateExtents(ifcCurtainWall.getGlobalId().getWrappedValue(), ifcCurtainWall);
+		}
+		for (IfcRailing ifcRailing : model.getAll(IfcRailing.class)) {
+			calculateExtents(ifcRailing.getGlobalId().getWrappedValue(), ifcRailing);
+		}
+		for (IfcColumn ifcColumn : model.getAll(IfcColumn.class)) {
+			calculateExtents(ifcColumn.getGlobalId().getWrappedValue(), ifcColumn);
+		}
+		for (IfcBuildingElementProxy ifcBuildingElementProxy : model.getAll(IfcBuildingElementProxy.class)) {
+			calculateExtents(ifcBuildingElementProxy.getGlobalId().getWrappedValue(), ifcBuildingElementProxy);
+		}
+	}
+	
+	private void calculateExtents(String id, IdEObject ifcRootObject) throws IfcEngineException, SerializerException {
+		// Get the extents object related to this geometric object 
+		if (!geometryExtents.containsKey(id)) {
+			geometryExtents.put(id, new Extents());
+		}
+		Extents extents = geometryExtents.get(id);
+		
+		// Create a geometric model to for calculating the extents of the object 
+		IfcModelInterface ifcModel = new IfcModel();
+		convertToSubset(ifcRootObject.eClass(), ifcRootObject, ifcModel, new HashMap<EObject, EObject>());
+		EmfSerializer serializer = getPluginManager().requireIfcStepSerializer();
+		serializer.init(ifcModel, getProjectInfo(), getPluginManager());
+		try {
+			IfcEngineModel model = ifcEngine.openModel(serializer.getBytes());
+			try {
+				model.setPostProcessing(true); // TODO: Please review - what does setPostProcessing do?
+				IfcEngineGeometry geometry = model.finalizeModelling(model.initializeModelling());
+				if (geometry != null) {
+					for (int i = 0; i < geometry.getNrVertices(); i += 3) {
+						// Use the vertex to calculate the boundaries of the geometric object
+						addToExtents(extents, new float[] { geometry.getVertex(i + 0), geometry.getVertex(i + 1), geometry.getVertex(i + 2) });	
+					}
+				}
+			}
+			finally {
+				model.close();
+			}
+		} catch (IfcEngineException e) {
+			throw e;
+		} //catch (Exception e) {
+		//}
+		
+		// Add the object's extents to the scene's total extents
+		addToExtents(sceneExtents, extents.min);
+		addToExtents(sceneExtents, extents.max);
+	}
+	
 	private void writeGeometries(JsWriter writer) throws IfcEngineException, SerializerException {
 		for (IfcRoof ifcRoof : model.getAll(IfcRoof.class)) {
 			setGeometry(writer, ifcRoof, ifcRoof.getGlobalId().getWrappedValue(), "Roof");
@@ -413,15 +513,15 @@ public class SceneJSSerializer extends BimModelSerializer {
 		}
 
 		// Add the object id to the related material in the hash map 
-		if (!converted.containsKey(material)) {
-			converted.put(material, new HashSet<String>());
+		if (!materialGeometryRel.containsKey(material)) {
+			materialGeometryRel.put(material, new HashSet<String>());
 		}
-		converted.get(material).add(id);
+		materialGeometryRel.get(material).add(id);
 		
 		// Serialize the geometric data itself
 		writeGeometry(writer, ifcRootObject, id);
 	}
-
+	
 	private void writeGeometry(JsWriter writer, IdEObject ifcRootObject, String id) throws IfcEngineException, SerializerException {
 		IfcModelInterface ifcModel = new IfcModel();
 		convertToSubset(ifcRootObject.eClass(), ifcRootObject, ifcModel, new HashMap<EObject, EObject>());
@@ -442,7 +542,7 @@ public class SceneJSSerializer extends BimModelSerializer {
 					writer.writetab("positions: [");
 					for (int i = 0; i < geometry.getNrVertices(); i += 3) {
 						// Use the vertex to calculate the bounds of the model
-						addToExtents(new float[] { geometry.getVertex(i + 0), geometry.getVertex(i + 1), geometry.getVertex(i + 2) });
+						//addToExtents(new float[] { geometry.getVertex(i + 0), geometry.getVertex(i + 1), geometry.getVertex(i + 2) });
 						
 						// Write the vertex to output
 						writer.print(geometry.getVertex(i + 0) + "," + geometry.getVertex(i + 1) + "," + geometry.getVertex(i + 2) + ",");
@@ -586,14 +686,14 @@ public class SceneJSSerializer extends BimModelSerializer {
 		writer.writeln("},"); // light
 	
 		// Output each geometry instance grouped by material
-		for (String materialId : converted.keySet()) {
+		for (String materialId : materialGeometryRel.keySet()) {
 			writer.writeln("{");
 			writer.indent();
 			
 			writer.writeln("type: 'material',");
 			writer.writeln("coreId: '" + materialId + "Material',");
 			
-			Set<String> geometryIds = converted.get(materialId);
+			Set<String> geometryIds = materialGeometryRel.get(materialId);
 			
 			writer.writeln("nodes: [");
 			writer.indent();
@@ -658,12 +758,17 @@ public class SceneJSSerializer extends BimModelSerializer {
 		return builder.toString();
 	}
 	
-	private void addToExtents(float[] vertex) {
-		minExtent[0] = Math.min(vertex[0], minExtent[0]);
-		minExtent[1] = Math.min(vertex[1], minExtent[1]);
-		minExtent[2] = Math.min(vertex[2], minExtent[2]);
-		maxExtent[0] = Math.max(vertex[0], maxExtent[0]);
-		maxExtent[1] = Math.max(vertex[1], maxExtent[1]);
-		maxExtent[2] = Math.max(vertex[2], maxExtent[2]);
+	private void addToExtents(Extents extents, float[] vertex) {
+		//if (!materialGeometryRel.containsKey(material)) {
+		//	materialGeometryRel.put(material, new Extents);
+		//}
+		//materialGeometryRel.get(material).add(id);
+		// geometryExtents.
+		extents.min[0] = Math.min(vertex[0], extents.min[0]);
+		extents.min[1] = Math.min(vertex[1], extents.min[1]);
+		extents.min[2] = Math.min(vertex[2], extents.min[2]);
+		extents.max[0] = Math.max(vertex[0], extents.max[0]);
+		extents.max[1] = Math.max(vertex[1], extents.max[1]);
+		extents.max[2] = Math.max(vertex[2], extents.max[2]);
 	}
 }
