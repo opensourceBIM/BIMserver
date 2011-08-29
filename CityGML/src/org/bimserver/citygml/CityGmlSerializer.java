@@ -3,7 +3,6 @@ package org.bimserver.citygml;
 import java.io.File;
 import java.io.OutputStream;
 import java.io.PrintWriter;
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -14,10 +13,9 @@ import java.util.Set;
 
 import javax.xml.bind.JAXBException;
 
+import org.apache.commons.io.FileUtils;
 import org.bimserver.citygml.xbuilding.GlobalIdType;
 import org.bimserver.citygml.xbuilding.ObjectFactory;
-import org.bimserver.citygml.xbuilding.OpeningElementType;
-import org.bimserver.citygml.xbuilding.StairType;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.models.ifc2x3.IfcBuilding;
 import org.bimserver.models.ifc2x3.IfcBuildingStorey;
@@ -61,21 +59,12 @@ import org.bimserver.plugins.serializers.EmfSerializer;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.SerializerException;
-import org.bimserver.utils.FileUtils;
 import org.citygml4j.CityGMLContext;
 import org.citygml4j.builder.jaxb.JAXBBuilder;
 import org.citygml4j.factory.CityGMLFactory;
 import org.citygml4j.factory.GMLFactory;
 import org.citygml4j.factory.XALFactory;
 import org.citygml4j.impl.citygml.generics.DoubleAttributeImpl;
-import org.citygml4j.jaxb.gml._3_1_1.AbstractRingPropertyType;
-import org.citygml4j.jaxb.gml._3_1_1.DirectPositionListType;
-import org.citygml4j.jaxb.gml._3_1_1.LinearRingPropertyType;
-import org.citygml4j.jaxb.gml._3_1_1.LinearRingType;
-import org.citygml4j.jaxb.gml._3_1_1.MultiSurfacePropertyType;
-import org.citygml4j.jaxb.gml._3_1_1.MultiSurfaceType;
-import org.citygml4j.jaxb.gml._3_1_1.PolygonType;
-import org.citygml4j.jaxb.gml._3_1_1.SurfacePropertyType;
 import org.citygml4j.model.citygml.ade.ADEComponent;
 import org.citygml4j.model.citygml.building.AbstractBoundarySurface;
 import org.citygml4j.model.citygml.building.BoundarySurfaceProperty;
@@ -649,7 +638,6 @@ public class CityGmlSerializer extends BimModelSerializer {
 		serializer.init(ifcModel, getProjectInfo(), getPluginManager());
 		try {
 			byte[] bytes = serializer.getBytes();
-			FileUtils.writeToFile(bytes, new File("test.ifc"));
 			IfcEngineModel model = ifcEngine.openModel(bytes);
 			try {
 				model.setPostProcessing(true);
