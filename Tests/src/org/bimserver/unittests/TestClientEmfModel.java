@@ -70,6 +70,7 @@ import org.bimserver.shared.SDownloadResult;
 import org.bimserver.shared.ServerException;
 import org.bimserver.shared.ServiceInterface;
 import org.bimserver.shared.UserException;
+import org.bimserver.web.LocalDevBimWebServerStarter;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -90,60 +91,14 @@ public class TestClientEmfModel {
 			if (home.isDirectory()) {
 				FileUtils.deleteDirectory(home);
 			}
-			
-			// Create a BIMserver
-			bimServer = new BimServer(new File("home"), new LocalDevelopmentResourceFetcher());
-			
-			// Load plugins
-			LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager());
 
-			// Start
-			bimServer.start();
-
-			// Convenience, setup the server to make sure it is in RUNNING state
-			if (bimServer.getServerInfo().getServerState() == ServerState.NOT_SETUP) {
-				bimServer.getSystemService().setup("http://localhost", "localhost", "Administrator", "admin@bimserver.org", "admin", true);
-			}
-			
-			// Change a setting to normal users can create projects
-			bimServer.getSettingsManager().getSettings().setAllowUsersToCreateTopLevelProjects(true);
-		} catch (PluginException e) {
-			e.printStackTrace();
-		} catch (ServerException e) {
-			e.printStackTrace();
-		} catch (DatabaseInitException e) {
-			e.printStackTrace();
-		} catch (BimDatabaseException e) {
-			e.printStackTrace();
-		} catch (DatabaseRestartRequiredException e) {
-			e.printStackTrace();
-		} catch (UserException e) {
-			e.printStackTrace();
+			LocalDevBimWebServerStarter localDevBimWebServerStarter = new LocalDevBimWebServerStarter();
+			localDevBimWebServerStarter.start("localhost", 8082, "home", "");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
-		service = bimServer.getSystemService();
-		pluginManager = bimServer.getPluginManager();
-		createUserAndLogin();
 	}
 	
-	private static long createUserAndLogin() {
-		int nextInt = new Random().nextInt();
-		try {
-			String username = "test" + nextInt + "@bimserver.org";
-			long addUser = service.addUser(username, "User " + nextInt, SUserType.USER, false);
-			service.changePassword(addUser, null, "test");
-			service.login(username, "test");
-			return addUser;
-		} catch (UserException e) {
-			e.printStackTrace();
-		} catch (ServerException e) {
-			e.printStackTrace();
-		}
-		return -1;
-	}
-
 	@AfterClass
 	public static void shutdown() {
 		bimServer.stop();

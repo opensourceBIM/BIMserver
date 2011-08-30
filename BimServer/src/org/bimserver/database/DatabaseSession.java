@@ -102,7 +102,7 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 		if (idEObject.getOid() == -1) {
 			throw new BimDatabaseException("Cannot store object with oid -1");
 		}
-		objectsToCommit.put(idEObject, idEObject.getOid());
+		objectsToCommit.forcePut(idEObject, idEObject.getOid());
 	}
 
 	public boolean cacheContains(EObject object) {

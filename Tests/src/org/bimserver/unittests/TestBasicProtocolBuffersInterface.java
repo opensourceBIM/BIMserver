@@ -8,6 +8,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Random;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.bimserver.BimServer;
 import org.bimserver.LocalDevPluginLoader;
@@ -61,7 +62,7 @@ import com.googlecode.protobuf.socketrpc.RpcChannels;
 import com.googlecode.protobuf.socketrpc.SocketRpcConnectionFactories;
 import com.googlecode.protobuf.socketrpc.SocketRpcController;
 
-public class TestProtocolBuffersInterface {
+public class TestBasicProtocolBuffersInterface {
 	private static String username = "test" + new Random().nextInt() + "@bimserver.org";
 	private static String password = "test";
 	private static BimServer bimServer;
@@ -70,6 +71,11 @@ public class TestProtocolBuffersInterface {
 	@BeforeClass
 	public static void initClass() {
 		try {
+			File home = new File("home");
+			if (home.isDirectory()) {
+				FileUtils.deleteDirectory(home);
+			}
+
 			// Create a BIMserver
 			bimServer = new BimServer(new File("home"), new LocalDevelopmentResourceFetcher());
 
@@ -97,6 +103,8 @@ public class TestProtocolBuffersInterface {
 		} catch (BimDatabaseException e) {
 			e.printStackTrace();
 		} catch (DatabaseRestartRequiredException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
@@ -181,6 +189,7 @@ public class TestProtocolBuffersInterface {
 					File sourceFile = TestFile.AC11.getFile();
 
 					CheckinSyncRequest.Builder checkinSyncRequestBuilder = CheckinSyncRequest.newBuilder();
+					checkinSyncRequestBuilder.setDeserializerName("IfcStepDeserializer");
 					checkinSyncRequestBuilder.setPoid(project.getOid());
 					checkinSyncRequestBuilder.setComment("test");
 					checkinSyncRequestBuilder.setFileSize(sourceFile.length());
