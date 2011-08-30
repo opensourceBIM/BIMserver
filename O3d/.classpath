@@ -8,7 +8,6 @@
 			<attribute name="optional" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
 	<classpathentry kind="lib" path="/BimServer/lib/tar.jar"/>
 	<classpathentry kind="lib" path="/BimServer/lib/jettison-1.0.1.jar"/>
 	<classpathentry kind="lib" path="/BimServer/lib/json.jar"/>

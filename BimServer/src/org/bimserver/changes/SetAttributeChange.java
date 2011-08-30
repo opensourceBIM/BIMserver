@@ -6,6 +6,7 @@ import org.bimserver.database.BimDeadlockException;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.shared.UserException;
 import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EEnum;
 
 public class SetAttributeChange implements Change {
 
@@ -34,7 +35,12 @@ public class SetAttributeChange implements Change {
 		if (eAttribute.isMany()) {
 			throw new UserException("Attribute is not of type 'single'");
 		}
-		idEObject.eSet(eAttribute, value);
+		if (eAttribute.getEType() instanceof EEnum) {
+			EEnum eEnum = (EEnum) eAttribute.getEType();
+			idEObject.eSet(eAttribute, eEnum.getEEnumLiteral((String) value).getInstance());
+		} else {
+			idEObject.eSet(eAttribute, value);
+		}
 		if (value instanceof Float) {
 			idEObject.eSet(idEObject.eClass().getEStructuralFeature(attributeName + "AsString"), String.valueOf((Float)value));
 		}

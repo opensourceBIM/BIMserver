@@ -15,6 +15,7 @@ import org.bimserver.client.Session;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.DatabaseRestartRequiredException;
 import org.bimserver.database.berkeley.DatabaseInitException;
+import org.bimserver.ifc.step.serializer.IfcStepSerializer;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.interfaces.objects.SSerializer;
@@ -63,6 +64,7 @@ import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.deserializers.EmfDeserializer;
 import org.bimserver.plugins.serializers.IfcModelInterface;
+import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
 import org.bimserver.shared.SDownloadResult;
 import org.bimserver.shared.ServerException;
@@ -161,7 +163,7 @@ public class TestClientEmfModel {
 	
 	@Test
 	public void test() {
-		BimServerClient bimServerClient = new BimServerClient(service);
+		BimServerClient bimServerClient = new BimServerClient("http://localhost:8082/soap");
 		session = bimServerClient.createSession();
 		int pid = createProject();
 		session.startTransaction(pid);
@@ -169,6 +171,9 @@ public class TestClientEmfModel {
 		long roid = session.commitTransaction();
 		try {
 			IfcModelInterface model = getSingleRevision(roid);
+			IfcStepSerializer serializer = new IfcStepSerializer();
+			serializer.init(model, null, pluginManager);
+			serializer.writeToFile(new File("test.ifc"));
 		} catch (UserException e) {
 			e.printStackTrace();
 		} catch (ServerException e) {
@@ -176,6 +181,8 @@ public class TestClientEmfModel {
 		} catch (DeserializeException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (SerializerException e) {
 			e.printStackTrace();
 		}
 	}

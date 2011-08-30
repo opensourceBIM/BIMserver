@@ -1,6 +1,7 @@
 package org.bimserver.client;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.bimserver.emf.IdEObject;
@@ -10,6 +11,8 @@ import org.bimserver.shared.ServiceInterface;
 import org.bimserver.shared.UserException;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -50,36 +53,47 @@ public class Session {
 			for (IdEObject eObject : newObjects) {
 				for (EStructuralFeature eStructuralFeature : eObject.eClass().getEAllStructuralFeatures()) {
 					Object val = eObject.eGet(eStructuralFeature);
-					if (eStructuralFeature instanceof EAttribute) {
-						EAttribute eAttribute = (EAttribute) eStructuralFeature;
-						if (eAttribute.isMany()) {
-							if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEString()) {
-								serviceInterface.addStringAttribute(eObject.getOid(), eObject.eClass().getName(), eAttribute.getName(), (String) val);
-							} else if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEInt()) {
-								serviceInterface.addIntegerAttribute(eObject.getOid(), eObject.eClass().getName(), eAttribute.getName(), (Integer) val);
-							} else if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEFloat()) {
-								serviceInterface.addFloatAttribute(eObject.getOid(), eObject.eClass().getName(), eAttribute.getName(), (Float) val);
+					if (val != null) {
+						if (eStructuralFeature instanceof EAttribute) {
+							EAttribute eAttribute = (EAttribute) eStructuralFeature;
+							if (eAttribute.isMany()) {
+								List list = (List) val;
+								for (Object o : list) {
+									if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEString()) {
+										serviceInterface.addStringAttribute(eObject.getOid(), eObject.eClass().getName(), eAttribute.getName(), (String) o);
+									} else if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEInt()) {
+										serviceInterface.addIntegerAttribute(eObject.getOid(), eObject.eClass().getName(), eAttribute.getName(), (Integer) o);
+									} else if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEFloat()) {
+										serviceInterface.addFloatAttribute(eObject.getOid(), eObject.eClass().getName(), eAttribute.getName(), (Float) o);
+									} else {
+										throw new RuntimeException("Unimplemented: " + eAttribute.getEType());
+									}
+								}
 							} else {
-								throw new RuntimeException("Unimplemented: " + eAttribute.getEType());
+								if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEString()) {
+									serviceInterface.setStringAttribute(eObject.getOid(), eObject.eClass().getName(), eAttribute.getName(), (String) val);
+								} else if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEInt()) {
+									serviceInterface.setIntegerAttribute(eObject.getOid(), eObject.eClass().getName(), eAttribute.getName(), (Integer) val);
+								} else if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEFloat()) {
+									serviceInterface.setFloatAttribute(eObject.getOid(), eObject.eClass().getName(), eAttribute.getName(), (Float) val);
+								} else if (eAttribute.getEType() instanceof EEnum) {
+									serviceInterface.setEnumAttribute(eObject.getOid(), eObject.eClass().getName(), eAttribute.getName(), val.toString());
+								} else {
+									throw new RuntimeException("Unimplemented: " + eAttribute.getEType());
+								}
 							}
-						} else {
-							if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEString()) {
-								serviceInterface.setStringAttribute(eObject.getOid(), eObject.eClass().getName(), eAttribute.getName(), (String) val);
-							} else if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEInt()) {
-								serviceInterface.setIntegerAttribute(eObject.getOid(), eObject.eClass().getName(), eAttribute.getName(), (Integer) val);
-							} else if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEFloat()) {
-								serviceInterface.setFloatAttribute(eObject.getOid(), eObject.eClass().getName(), eAttribute.getName(), (Float) val);
+						} else if (eStructuralFeature instanceof EReference) {
+							EReference eReference = (EReference) eStructuralFeature;
+							if (eReference.isMany()) {
+								List<IdEObject> list = (List<IdEObject>) val;
+								for (IdEObject object : list) {
+									serviceInterface.addReference(eObject.getOid(), eObject.eClass().getName(), eReference.getName(), object.getOid(), object.eClass().getName());
+								}
 							} else {
-								throw new RuntimeException("Unimplemented: " + eAttribute.getEType());
+								IdEObject referredObject = (IdEObject) val;
+								serviceInterface.setReference(eObject.getOid(), eObject.eClass().getName(), eReference.getName(), referredObject.getOid(), referredObject.eClass()
+										.getName());
 							}
-						}
-					} else if (eStructuralFeature instanceof EReference) {
-						EReference eReference = (EReference)eStructuralFeature;
-						IdEObject referredObject = (IdEObject)val;
-						if (eReference.isMany()) {
-							serviceInterface.addReference(eObject.getOid(), eObject.eClass().getName(), eReference.getName(), referredObject.getOid(), referredObject.eClass().getName());
-						} else {
-							serviceInterface.setReference(eObject.getOid(), eObject.eClass().getName(), eReference.getName(), referredObject.getOid(), referredObject.eClass().getName());
 						}
 					}
 				}
