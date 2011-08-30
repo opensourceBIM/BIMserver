@@ -2695,6 +2695,13 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
+	public void setEnumAttribute(Long oid, String className, String attributeName, String value) throws UserException {
+		requireAuthenticationAndRunningServer();
+		requireOpenStransaction();
+		changes.add(new SetAttributeChange(oid, className, attributeName, value));
+	}
+
+	@Override
 	public void setReference(Long oid, String className, String referenceName, Long referenceOid, String referenceClassName) throws UserException {
 		requireAuthenticationAndRunningServer();
 		requireOpenStransaction();

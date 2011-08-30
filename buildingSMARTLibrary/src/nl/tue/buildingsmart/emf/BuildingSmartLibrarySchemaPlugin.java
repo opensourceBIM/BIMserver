@@ -5,13 +5,10 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.HashSet;
-import java.util.Set;
 
 import nl.tue.buildingsmart.express.parser.ExpressSchemaParser;
 
 import org.apache.commons.io.IOUtils;
-import org.bimserver.plugins.Plugin;
 import org.bimserver.plugins.PluginContext;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.schema.SchemaDefinition;

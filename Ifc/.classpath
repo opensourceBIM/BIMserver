@@ -2,7 +2,6 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry exported="true" kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/commons/commons-lang-2.4.jar"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Emf"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Plugins"/>

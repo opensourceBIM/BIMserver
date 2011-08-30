@@ -14,11 +14,10 @@ import org.bimserver.shared.ServiceInterface;
 public class BimServerClient {
 	private ServiceInterface serviceInterface;
 
-
 	public BimServerClient(String address) {
 		serviceInterface = createClient(address);
 	}
-	
+
 	public BimServerClient(ServiceInterface serviceInterface) {
 		this.serviceInterface = serviceInterface;
 	}

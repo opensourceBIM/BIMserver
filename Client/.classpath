@@ -7,7 +7,6 @@
 	<classpathentry kind="lib" path="/BimServer/lib/cxf/wsdl4j-1.6.2.jar"/>
 	<classpathentry kind="lib" path="/BimServer/lib/commons/commons-logging-1.1.1.jar"/>
 	<classpathentry kind="lib" path="/BimServer/lib/cxf/xmlschema-core-2.0.jar"/>
-	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
 	<classpathentry kind="lib" path="/BimServer/lib/logging/slf4j-api-1.6.0.jar"/>
 	<classpathentry kind="lib" path="/BimServer/lib/logging/log4j-1.2.16.jar" sourcepath="/BimServer/libsrc/log4j.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Shared"/>

@@ -2,7 +2,6 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry exported="true" kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/emf/org.eclipse.emf_2.6.0.v20110606-0949.jar"/>
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/emf/org.eclipse.emf.codegen_2.6.0.v20110606-0949.jar"/>
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/emf/org.eclipse.emf.codegen.ecore_2.7.0.v20110606-0949.jar"/>

@@ -9,7 +9,6 @@
 	<classpathentry kind="lib" path="lib/j3dutils.jar"/>
 	<classpathentry kind="lib" path="lib/vecmath.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Ifc"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Plugins"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Shared"/>
