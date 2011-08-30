@@ -1,6 +1,7 @@
 package org.bimserver.database.actions;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
@@ -43,7 +44,9 @@ public class GetAllCheckoutsOfProjectDatabaseAction extends BimDatabaseAction<Se
 	
 	private void getSubProjects(Project project, Set<Project> projects) {
 		projects.add(project);
-		for (Project subProject : project.getSubProjects()) {
+		Iterator<Project> iterator = project.getSubProjects().iterator();
+		while (iterator.hasNext()) {
+			Project subProject = iterator.next();
 			getSubProjects(subProject, projects);
 		}
 	}
