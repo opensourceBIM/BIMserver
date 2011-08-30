@@ -33,15 +33,18 @@ import org.bimserver.models.ifc2x3.IfcPresentationStyleSelect;
 import org.bimserver.models.ifc2x3.IfcProduct;
 import org.bimserver.models.ifc2x3.IfcProductDefinitionShape;
 import org.bimserver.models.ifc2x3.IfcProductRepresentation;
+import org.bimserver.models.ifc2x3.IfcProject;
 import org.bimserver.models.ifc2x3.IfcRoot;
-//import org.bimserver.models.ifc2x3.IfcProject;
+import org.bimserver.models.ifc2x3.IfcSIUnit;
+import org.bimserver.models.ifc2x3.IfcUnit;
+import org.bimserver.models.ifc2x3.IfcUnitAssignment;
+import org.bimserver.models.ifc2x3.IfcUnitEnum;
 import org.bimserver.models.ifc2x3.IfcRailing;
 import org.bimserver.models.ifc2x3.IfcRelAssociatesMaterial;
 import org.bimserver.models.ifc2x3.IfcRelDecomposes;
 import org.bimserver.models.ifc2x3.IfcRepresentation;
 import org.bimserver.models.ifc2x3.IfcRepresentationItem;
 import org.bimserver.models.ifc2x3.IfcRoof;
-//import org.bimserver.models.ifc2x3.IfcSIUnit;
 import org.bimserver.models.ifc2x3.IfcShapeRepresentation;
 import org.bimserver.models.ifc2x3.IfcSlab;
 import org.bimserver.models.ifc2x3.IfcSlabTypeEnum;
@@ -51,13 +54,10 @@ import org.bimserver.models.ifc2x3.IfcStyledItem;
 import org.bimserver.models.ifc2x3.IfcSurfaceStyle;
 import org.bimserver.models.ifc2x3.IfcSurfaceStyleElementSelect;
 import org.bimserver.models.ifc2x3.IfcSurfaceStyleRendering;
-//import org.bimserver.models.ifc2x3.IfcUnit;
-//import org.bimserver.models.ifc2x3.IfcUnitAssignment;
-//import org.bimserver.models.ifc2x3.IfcUnitEnum;
 import org.bimserver.models.ifc2x3.IfcWall;
 import org.bimserver.models.ifc2x3.IfcWallStandardCase;
 import org.bimserver.models.ifc2x3.IfcWindow;
-//import org.bimserver.models.store.SIPrefix;
+import org.bimserver.models.store.SIPrefix;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.ifcengine.IfcEngine;
@@ -188,16 +188,24 @@ public class SceneJSSerializer extends BimModelSerializer {
 				// Append additional custom data to the scene node
 				writer.writeln("data: {");
 				writer.indent();
-				writer.writeln("extents: [[" 
-						+ sceneExtents.min[0] + "," + sceneExtents.min[1] + "," + sceneExtents.min[2] + "],["
-						+ sceneExtents.max[0] + "," + sceneExtents.max[1] + "," + sceneExtents.max[2] + "]],");
-				writer.unindent();
 				
-				/*if (lengthUnitPrefix == null) {
-					writer.writeln("   Unit: 1 meter");
+				/*writer.writeln("extents: [[" 
+						+ sceneExtents.max[0] + "," + sceneExtents.min[1] + "," + sceneExtents.min[2] + "],["
+						+ sceneExtents.max[0] + "," + sceneExtents.max[1] + "," + sceneExtents.max[2] + "]],");*/
+				
+				writer.writeln("bounds: [" 
+						+ (sceneExtents.max[0] - sceneExtents.min[0]) + "," 
+						+ (sceneExtents.max[1] - sceneExtents.min[1]) + ","
+						+ (sceneExtents.max[2] - sceneExtents.min[2]) + "],");
+				
+				SIPrefix lengthUnitPrefix = getLengthUnitPrefix(model);
+				if (lengthUnitPrefix == null) {
+					writer.writeln("unit: \'1 meter\',");
 				} else {
-					writer.writeln("   Unit: " + Math.pow(10.0, lengthUnitPrefix.getValue()) + " " + lengthUnitPrefix.name().toLowerCase());
-				}*/
+					writer.writeln("unit: \'" + Math.pow(10.0, lengthUnitPrefix.getValue()) + " " + lengthUnitPrefix.name().toLowerCase() + "\',");
+				}
+
+				writer.unindent();
 				writer.writeln("},");
 
 				writer.unindent();
@@ -779,5 +787,83 @@ public class SceneJSSerializer extends BimModelSerializer {
 		extents.max[0] = Math.max(vertex[0], extents.max[0]);
 		extents.max[1] = Math.max(vertex[1], extents.max[1]);
 		extents.max[2] = Math.max(vertex[2], extents.max[2]);
+	}
+	
+	private static SIPrefix getLengthUnitPrefix(IfcModelInterface model) {
+		SIPrefix lengthUnitPrefix = null;
+		boolean prefixFound = false;
+		Map<Long, IdEObject> objects = model.getObjects();
+		for (IdEObject object : objects.values()) {
+			if (object instanceof IfcProject) {
+				IfcUnitAssignment unitsInContext = ((IfcProject) object).getUnitsInContext();
+				EList<IfcUnit> units = unitsInContext.getUnits();
+				for (IfcUnit unit : units) {
+					if (unit instanceof IfcSIUnit) {
+						IfcSIUnit ifcSIUnit = (IfcSIUnit) unit;
+						IfcUnitEnum unitType = ifcSIUnit.getUnitType();
+						if (unitType == IfcUnitEnum.LENGTHUNIT) {
+							prefixFound = true;
+							switch (ifcSIUnit.getPrefix()) {
+							case EXA:
+								lengthUnitPrefix = SIPrefix.EXAMETER;
+								break;
+							case PETA:
+								lengthUnitPrefix = SIPrefix.PETAMETER;
+								break;
+							case TERA:
+								lengthUnitPrefix = SIPrefix.TERAMETER;
+								break;
+							case GIGA:
+								lengthUnitPrefix = SIPrefix.GIGAMETER;
+								break;
+							case MEGA:
+								lengthUnitPrefix = SIPrefix.MEGAMETER;
+								break;
+							case KILO:
+								lengthUnitPrefix = SIPrefix.KILOMETER;
+								break;
+							case HECTO:
+								lengthUnitPrefix = SIPrefix.HECTOMETER;
+								break;
+							case DECA:
+								lengthUnitPrefix = SIPrefix.DECAMETER;
+								break;
+							case DECI:
+								lengthUnitPrefix = SIPrefix.DECIMETER;
+								break;
+							case CENTI:
+								lengthUnitPrefix = SIPrefix.CENTIMETER;
+								break;
+							case MILLI:
+								lengthUnitPrefix = SIPrefix.MILLIMETER;
+								break;
+							case MICRO:
+								lengthUnitPrefix = SIPrefix.MICROMETER;
+								break;
+							case NANO:
+								lengthUnitPrefix = SIPrefix.NANOMETER;
+								break;
+							case PICO:
+								lengthUnitPrefix = SIPrefix.PICOMETER;
+								break;
+							case FEMTO:
+								lengthUnitPrefix = SIPrefix.FEMTOMETER;
+								break;
+							case ATTO:
+								lengthUnitPrefix = SIPrefix.ATTOMETER;
+								break;
+							case NULL:
+								lengthUnitPrefix = SIPrefix.METER;
+								break;
+							}
+							break;
+						}
+					}
+				}
+			}
+			if (prefixFound)
+				break;
+		}
+		return lengthUnitPrefix;
 	}
 }
