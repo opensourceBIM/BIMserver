@@ -523,6 +523,14 @@ public class SceneJSSerializer extends BimModelSerializer {
 	}
 	
 	private void writeGeometry(JsWriter writer, IdEObject ifcRootObject, String id) throws IfcEngineException, SerializerException {
+		// Calculate an offset for the model to find its relative coordinates inside the bounding box (in order to center the scene) 
+		// TODO: In future use the geometry's bounding box to calculate a transformation matrix for the node along with relative coordinates
+		float[] modelOffset = new float[]{ 
+				-(sceneExtents.min[0] + sceneExtents.max[0]) * 0.5f, 
+				-(sceneExtents.min[1] + sceneExtents.max[1]) * 0.5f, 
+				-(sceneExtents.min[2] + sceneExtents.max[2]) * 0.5f 
+			};
+		
 		IfcModelInterface ifcModel = new IfcModel();
 		convertToSubset(ifcRootObject.eClass(), ifcRootObject, ifcModel, new HashMap<EObject, EObject>());
 		EmfSerializer serializer = getPluginManager().requireIfcStepSerializer();
@@ -541,17 +549,13 @@ public class SceneJSSerializer extends BimModelSerializer {
 					writer.writeln("primitive: 'triangles',");
 					writer.writetab("positions: [");
 					for (int i = 0; i < geometry.getNrVertices(); i += 3) {
-						// Use the vertex to calculate the bounds of the model
-						//addToExtents(new float[] { geometry.getVertex(i + 0), geometry.getVertex(i + 1), geometry.getVertex(i + 2) });
-						
-						// Write the vertex to output
-						writer.print(geometry.getVertex(i + 0) + "," + geometry.getVertex(i + 1) + "," + geometry.getVertex(i + 2) + ",");
+						writer.print((geometry.getVertex(i + 0) + modelOffset[0]) + "," 
+								+ (geometry.getVertex(i + 1) + modelOffset[1]) + "," 
+								+ (geometry.getVertex(i + 2) + modelOffset[2]) + ",");
 					}
 					writer.println("],");
 					writer.writetab("normals: [");
 					for (int i = 0; i < geometry.getNrNormals(); i++) {
-						// Normals will also be scaled in Google Earth ...
-						//writer.print(geometry.getNormal(i) * 1000.0f + " ");
 						writer.print(geometry.getNormal(i) + ",");
 					}
 					writer.println("],");
