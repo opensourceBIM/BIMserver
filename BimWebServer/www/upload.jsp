@@ -21,6 +21,22 @@ Uploading... <img src="images/ajax-loader.gif"/>
 	}
 %>
 </select></td></tr>
+<!-- Pro features checkboxes -->
+<tr><td>
+<label for="checkbox">Validate Business Rules</label></td>
+<td><input name="checkbox" type="checkbox" onclick="$(this).is(':checked') && $('#idmchecked').slideDown('slow') || $('#idmchecked').slideUp('slow');" /></td>
+<p id="idmchecked" style="display: none; padding: 10px" >Sorry... Checking data against business rules is only available in a custom made release. It will be in the generic release soon!</p>
+</tr>
+
+<tr><td>
+<label for="checkbox">Check IFC validity</label></td>
+<td><input name="checkbox" type="checkbox" onclick="$(this).is(':checked') && $('#ifcchecked').slideDown('slow') || $('#ifcchecked').slideUp('slow');" /></td>
+<p id="ifcchecked" style="display: none; padding: 10px" >Sorry... Checking the validity of the IFC data is only available in a custom made release. It will be in the generic release soon!</p>
+</tr>
+
+
+
+<!-- Comment -->
 <tr><td><label for="comment">Comment</label></td><td><textarea id="comment" name="comment" cols="80" rows="4"></textarea></td></tr>
 <%
 	if (loginManager.getService().isSettingCheckinMergingEnabled() && sProject.getRevisions().size() > 0) {
