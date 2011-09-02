@@ -605,6 +605,7 @@ public class SceneJSSerializer extends BimModelSerializer {
 		writer.writeln("{");
 		writer.indent();
 		writer.writeln("type: 'lookAt',");
+		writer.writeln("id: 'main-lookAt',");
 		
 		writer.writeln("eye: {");
 		writer.indent();
@@ -636,6 +637,8 @@ public class SceneJSSerializer extends BimModelSerializer {
 		writer.indent();
 		
 		writer.writeln("type: 'camera',");
+		writer.writeln("id: 'main-camera',");
+		
 		writer.writeln("optics: {");
 		writer.indent();
 		writer.writeln("type: 'perspective',");
@@ -653,6 +656,7 @@ public class SceneJSSerializer extends BimModelSerializer {
 		writer.indent();
 		
 		writer.writeln("type: 'renderer',");
+		writer.writeln("id: 'main-renderer',");
 		
 		writer.writeln("clear: {");
 		writer.indent();
@@ -678,7 +682,7 @@ public class SceneJSSerializer extends BimModelSerializer {
 		writer.writeln("{");
 		writer.indent();
 		writer.writeln("type: 'light',");
-		writer.writeln("id: 'sunlight',");
+		writer.writeln("id: 'sun-light',");
 		writer.writeln("mode: 'dir',");
 		
 		writer.writeln("color: {");
