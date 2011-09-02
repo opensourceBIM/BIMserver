@@ -112,6 +112,8 @@ public class ProtocolBuffersGenerator {
 			out.println("import com.googlecode.protobuf.socketrpc.SocketRpcController;");
 			out.println("import com.googlecode.protobuf.socketrpc.RpcChannels;");
 			out.println("import com.googlecode.protobuf.socketrpc.SocketRpcConnectionFactories;");
+			out.println("import javax.mail.util.ByteArrayDataSource;");
+			out.println("import javax.activation.DataHandler;");
 			out.println();
 			out.println("@SuppressWarnings(\"unused\")");
 			out.println("public class ProtocolBuffersServiceInterfaceImplementation implements org.bimserver.shared.ServiceInterface {\n");
@@ -239,11 +241,14 @@ public class ProtocolBuffersGenerator {
 						out.println("\t\treturn realResult;");
 					} else if (isPrimitive(method.getReturnType()) || method.getReturnType() == String.class) {
 						out.println("\t\t\treturn response.getValue();");
+					} else if (method.getReturnType() == Date.class) {
+						out.println("\t\t\treturn new java.util.Date(response.getValue());");
 					} else if (method.getReturnType().isEnum()) {
 						out.println("\t\t\treturn null;");
 					} else {
 						out.println("\t\t\t" + method.getReturnType().getName() + " realResult = new " + method.getReturnType().getName() + "();");
-						
+						out.println("\t\t\t" + "ProtocolBuffersService." + method.getReturnType().getSimpleName() + " val = response.getValue();");
+						genProtocolBuffersToServiceInterface(out, "val", "realResult", method.getReturnType());
 						out.println("\t\t\treturn realResult;");
 					}
 				}
@@ -264,23 +269,30 @@ public class ProtocolBuffersGenerator {
 		for (Method method : parameterType.getMethods()) {
 			if (method.getName().startsWith("get") && !method.getName().equals("getClass") && method.getParameterTypes().length == 0) {
 				String fName = method.getName().substring(3);
-				if (method.getReturnType().isAssignableFrom(List.class)) {
-					Class<?> genericReturnType = getGenericReturnType(method);
-					if (genericReturnType != null) {
+				try {
+					if (parameterType.getMethod("set" + StringUtils.firstUpperCase(fName), method.getReturnType()) != null) {
+						if (method.getReturnType().isAssignableFrom(List.class)) {
+							Class<?> genericReturnType = getGenericReturnType(method);
+							if (genericReturnType != null) {
 //						out.println("\t\t\t\tfor (" + genericReturnType.getName() + " o : " + sourceName + "." + method.getName() + "List()) {");
 //						out.println("\t\t\t\t\t" + targetName + ".get" + fName + "().add(o);");
 //						out.println("\t\t\t\t}");
+							}
+						} else if (method.getReturnType() == Date.class) {
+							out.println("\t\t\t\t" + targetName + ".set" + fName + "(new Date(" + sourceName + "." + method.getName() + "()));");
+						} else if (method.getReturnType() == Class.class) {
+							out.println("\t\t\t\t" + targetName + ".set" + fName + "(Class.forName(" + sourceName + "." + method.getName() + "()));");
+						} else if (method.getReturnType() == DataHandler.class) {
+							out.println("\t\t\t\t" + targetName + ".setFile(new DataHandler(new ByteArrayDataSource(" + sourceName + ".getFile().toByteArray(), \"\")));");
+//							out.println("\t\t\t\t" + targetName + ".set" + fName + "(" + sourceName + "." + method.getName() + "().toByteArray());");
+						} else if (method.getReturnType().isEnum()) {
+							out.println("\t\t\t\t" + targetName + ".set" + fName + "(" + method.getReturnType().getName().replace("$", ".") + ".values()[" + sourceName + "." + method.getName() + "().ordinal()]);");
+						} else {
+							out.println("\t\t\t\t" + targetName + ".set" + fName + "(" + sourceName + "." + method.getName() + "());");
+						}
 					}
-				} else if (method.getReturnType() == Date.class) {
-					out.println("\t\t\t\t" + targetName + ".set" + fName + "(new Date(" + sourceName + "." + method.getName() + "()));");
-				} else if (method.getReturnType() == Class.class) {
-					out.println("\t\t\t\t" + targetName + ".set" + fName + "(Class.forName(" + sourceName + "." + method.getName() + "()));");
-				} else if (method.getReturnType() == byte[].class) {
-					out.println("\t\t\t\t" + targetName + ".set" + fName + "(" + sourceName + "." + method.getName() + "().toByteArray());");
-				} else if (method.getReturnType().isEnum()) {
-					out.println("\t\t\t\t" + targetName + ".set" + fName + "(" + method.getReturnType().getName().replace("$", ".") + ".values()[" + sourceName + "." + method.getName() + "().ordinal()]);");
-				} else {
-					out.println("\t\t\t\t" + targetName + ".set" + fName + "(" + sourceName + "." + method.getName() + "());");
+				} catch (NoSuchMethodException e) {
+				} catch (SecurityException e) {
 				}
 			}
 		}

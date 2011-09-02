@@ -691,7 +691,7 @@ public interface ServiceInterface {
 			@WebParam(name = "oid", partName = "setFloatAttribute.oid") Long oid, 
 			@WebParam(name = "className", partName = "setFloatAttribute.className") String className, 
 			@WebParam(name = "attributeName", partName = "setFloatAttribute.attributeName") String attributeName, 
-			@WebParam(name = "value", partName = "setFloatAttribute.value") float value) throws UserException;
+			@WebParam(name = "value", partName = "setFloatAttribute.value") Float value) throws UserException;
 
 	@WebMethod(action = "setEnumAttribute")
 	void setEnumAttribute(
