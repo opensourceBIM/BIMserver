@@ -122,7 +122,7 @@ public class TestClientEmfModel {
 			IfcModelInterface model = getSingleRevision(roid);
 			IfcStepSerializer serializer = new IfcStepSerializer();
 			serializer.init(model, null, bimServer.getPluginManager());
-			serializer.writeToFile(new File("test.ifc"));
+			serializer.writeToFile(new File("output/test.ifc"));
 		} catch (UserException e) {
 			e.printStackTrace();
 		} catch (ServerException e) {

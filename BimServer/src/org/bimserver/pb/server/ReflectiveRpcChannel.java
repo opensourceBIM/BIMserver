@@ -85,7 +85,7 @@ public class ReflectiveRpcChannel implements BlockingRpcChannel {
 		if (service == null) {
 			service = serviceFactory.newService(AccessMethod.INTERNAL);
 		}
-		if (methodDescriptor.getName().equals("getProjectByName")) {
+		if (methodDescriptor.getName().equals("getDownloadData")) {
 			System.out.println();
 		}
 		Class<? extends ServiceInterface> clazz = service.getClass();
@@ -117,8 +117,8 @@ public class ReflectiveRpcChannel implements BlockingRpcChannel {
 			Object result = method.invoke(service, arguments);
 			Builder builder = responsePrototype.newBuilderForType();
 			List<FieldDescriptor> fields = methodDescriptor.getOutputType().getFields();
-			if (fields.isEmpty()) {
-				System.out.println("No fields, " + methodDescriptor.getFullName());
+			if (methodDescriptor.getOutputType().getName().equals("VoidResponse")) {
+				builder.setField(responsePrototype.getDescriptorForType().getFields().get(0), "OKE");
 			} else {
 				FieldDescriptor valueField = fields.get(0);
 				if (result != null) {
@@ -137,8 +137,8 @@ public class ReflectiveRpcChannel implements BlockingRpcChannel {
 						builder.setField(valueField, convertObject(new HashMap<Object, Object>(), messageType, result));
 					}
 				}
+				builder.setField(responsePrototype.getDescriptorForType().getFields().get(1), "OKE");
 			}
-			builder.setField(responsePrototype.getDescriptorForType().getFields().get(1), "OKE");
 			return builder.build();
 		} catch (InvocationTargetException e) {
 			Builder errorMessage = responsePrototype.newBuilderForType();
@@ -165,7 +165,7 @@ public class ReflectiveRpcChannel implements BlockingRpcChannel {
 		Class<? extends Object> clazz = object.getClass();
 		Builder builder = null;
 		try {
-			Class builderClass = Class.forName("org.bimserver.pb.Service$" + descriptor.getName());
+			Class builderClass = Class.forName("org.bimserver.pb.ProtocolBuffersService$" + descriptor.getName());
 			Method method = getMethod(builderClass, "newBuilder");
 			builder = (Builder) method.invoke(null);
 			convertedObjects.put(object, builder);
