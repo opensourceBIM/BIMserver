@@ -31,7 +31,7 @@
 <tr>
 	<td>
 		<label for="siteAddress">Site address</label>
-		<p class="explain">The address on which your BIMserver is going to be available, for example "http://demo.bimserver.org"</p>
+		<p class="explain">The address on which your BIMserver is going to be available, for example "http://www.myserver.com"</p>
 	</td>
 	<td><input type="text" id="siteAddress" name="siteAddress" value="<%=siteAddress %>"/></td>
 </tr>
@@ -43,12 +43,26 @@
 	<td><input type="text" id="smtpServer" name="smtpServer" value="<%=smtpServer %>"/></td>
 </tr>
 <tr>
+	<td>
+		<label for="engine">IFC geometry engine</label>
+		<p class="explain">Choose which engine you want to use for IFC geometry calculations. These engines can be closed source and are not part of the BIMserver project.</p>
+	</td>
+	<td><select name="engine" size="1"><option value="bonsma">Bonsma Engine DLL</option></select>
+</tr>
+<tr>
+	<td>
+		<label for="ifcversion">IFC version</label>
+		<p class="explain">Choose which version of IFC should be used as the main database structure.</p>
+	</td>
+	<td><select name="ifcversion" size="1"><option value="ifc2x3">IFC2x3 RC1</option></select>
+</tr>
+<tr>
 	<td colspan="2" class="tabletitle">Admin user</td>
 </tr>
 <tr>
 	<td>
 		<label for="adminName">Admin name</label>
-		<p class="explain">Name of the first admin user (example: Bill Gates)</p>
+		<p class="explain">Name of the first admin user (example: Arthur Dent)</p>
 	</td>
 	<td><input type="text" id="adminName" name="adminName" value="<%=adminName %>"/></td>
 </tr>
