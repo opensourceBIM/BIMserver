@@ -9,20 +9,26 @@ import org.apache.cxf.endpoint.Client;
 import org.apache.cxf.frontend.ClientProxy;
 import org.apache.cxf.jaxws.JaxWsProxyFactoryBean;
 import org.apache.cxf.transport.http.HTTPConduit;
+import org.bimserver.pb.ProtocolBuffersServiceInterfaceImplementation;
+import org.bimserver.shared.ServerException;
 import org.bimserver.shared.ServiceInterface;
+import org.bimserver.shared.UserException;
 
 public class BimServerClient {
 	private ServiceInterface serviceInterface;
 
-	public BimServerClient(String address) {
-		serviceInterface = createClient(address);
+	public BimServerClient() {
 	}
 
-	public BimServerClient(ServiceInterface serviceInterface) {
+	public void connectDirect(ServiceInterface serviceInterface) {
 		this.serviceInterface = serviceInterface;
 	}
-
-	private ServiceInterface createClient(final String address) {
+	
+	public void connectProtocolBuffers(String host, int port) {
+		serviceInterface = new ProtocolBuffersServiceInterfaceImplementation(host, port);
+	}
+	
+	public void connectSoap(final String address) {
 		JaxWsProxyFactoryBean cpfb = new JaxWsProxyFactoryBean();
 		cpfb.setServiceClass(ServiceInterface.class);
 		cpfb.setAddress(address);
@@ -30,20 +36,28 @@ public class BimServerClient {
 		properties.put("mtom-enabled", Boolean.TRUE);
 		cpfb.setProperties(properties);
 
-		ServiceInterface service = (ServiceInterface) cpfb.create();
+		serviceInterface = (ServiceInterface) cpfb.create();
 
-		Client client = ClientProxy.getClient(service);
+		Client client = ClientProxy.getClient(serviceInterface);
 		HTTPConduit http = (HTTPConduit) client.getConduit();
-		((BindingProvider) service).getRequestContext().put(BindingProvider.SESSION_MAINTAIN_PROPERTY, Boolean.TRUE);
+		((BindingProvider) serviceInterface).getRequestContext().put(BindingProvider.SESSION_MAINTAIN_PROPERTY, Boolean.TRUE);
 		http.getClient().setConnectionTimeout(360000);
 		http.getClient().setAllowChunking(false);
 		http.getClient().setReceiveTimeout(320000);
-		
-		return service;
 	}
 
+	public void login(String username, String password) throws UserException, ServerException {
+		serviceInterface.login(username, password);
+	}
+	
+	public ServiceInterface getServiceInterface() {
+		return serviceInterface;
+	}
 	
 	public Session createSession() {
+		if (serviceInterface == null) {
+			throw new RuntimeException("Connect first");
+		}
 		Session session = new Session(serviceInterface);
 		return session;
 	}

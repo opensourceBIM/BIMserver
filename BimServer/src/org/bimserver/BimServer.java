@@ -43,6 +43,7 @@ import org.bimserver.models.store.IfcEngine;
 import org.bimserver.models.store.Serializer;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StorePackage;
+import org.bimserver.pb.ProtocolBuffersService;
 import org.bimserver.pb.server.ReflectiveRpcChannel;
 import org.bimserver.plugins.Plugin;
 import org.bimserver.plugins.PluginChangeListener;
@@ -266,7 +267,7 @@ public class BimServer {
 		bimScheduler.start();
 
 		protocolBuffersRpcServer = new RpcServer(SocketRpcConnectionFactories.createServerRpcConnectionFactory(8020), Executors.newFixedThreadPool(10), false);
-		protocolBuffersRpcServer.registerBlockingService(org.bimserver.pb.Service.ServiceInterface.newReflectiveBlockingService(org.bimserver.pb.Service.ServiceInterface
+		protocolBuffersRpcServer.registerBlockingService(ProtocolBuffersService.ServiceInterface.newReflectiveBlockingService(ProtocolBuffersService.ServiceInterface
 				.newBlockingStub(new ReflectiveRpcChannel(serviceFactory))));
 		protocolBuffersRpcServer.startServer();
 

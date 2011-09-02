@@ -2,21 +2,21 @@ package org.bimserver.tests;
 
 import java.util.List;
 
-import org.bimserver.pb.Service.DownloadRequest;
-import org.bimserver.pb.Service.DownloadResponse;
-import org.bimserver.pb.Service.GetAllProjectsRequest;
-import org.bimserver.pb.Service.GetAllProjectsResponse;
-import org.bimserver.pb.Service.GetDownloadDataRequest;
-import org.bimserver.pb.Service.GetDownloadDataResponse;
-import org.bimserver.pb.Service.GetRevisionRequest;
-import org.bimserver.pb.Service.GetRevisionResponse;
-import org.bimserver.pb.Service.LoginRequest;
-import org.bimserver.pb.Service.LoginResponse;
-import org.bimserver.pb.Service.SDownloadResult;
-import org.bimserver.pb.Service.SProject;
-import org.bimserver.pb.Service.ServiceInterface;
-import org.bimserver.pb.Service.GetAllProjectsRequest.Builder;
-import org.bimserver.pb.Service.ServiceInterface.BlockingInterface;
+import org.bimserver.pb.ProtocolBuffersService.DownloadRequest;
+import org.bimserver.pb.ProtocolBuffersService.DownloadResponse;
+import org.bimserver.pb.ProtocolBuffersService.GetAllProjectsRequest;
+import org.bimserver.pb.ProtocolBuffersService.GetAllProjectsResponse;
+import org.bimserver.pb.ProtocolBuffersService.GetDownloadDataRequest;
+import org.bimserver.pb.ProtocolBuffersService.GetDownloadDataResponse;
+import org.bimserver.pb.ProtocolBuffersService.GetRevisionRequest;
+import org.bimserver.pb.ProtocolBuffersService.GetRevisionResponse;
+import org.bimserver.pb.ProtocolBuffersService.LoginRequest;
+import org.bimserver.pb.ProtocolBuffersService.LoginResponse;
+import org.bimserver.pb.ProtocolBuffersService.SDownloadResult;
+import org.bimserver.pb.ProtocolBuffersService.SProject;
+import org.bimserver.pb.ProtocolBuffersService.ServiceInterface;
+import org.bimserver.pb.ProtocolBuffersService.GetAllProjectsRequest.Builder;
+import org.bimserver.pb.ProtocolBuffersService.ServiceInterface.BlockingInterface;
 
 import com.google.protobuf.BlockingRpcChannel;
 import com.google.protobuf.ByteString;
@@ -67,7 +67,7 @@ public class ProtocolBuffersClient {
 	}
 
 	private String downloadRevision(long roid) {
-		org.bimserver.pb.Service.DownloadRequest.Builder downloadRequestBuilder = DownloadRequest.newBuilder();
+		org.bimserver.pb.ProtocolBuffersService.DownloadRequest.Builder downloadRequestBuilder = DownloadRequest.newBuilder();
 		downloadRequestBuilder.setRoid(roid);
 		downloadRequestBuilder.setFormatIdentifier("O3D_JSON");
 		downloadRequestBuilder.setSync(true);
@@ -77,7 +77,7 @@ public class ProtocolBuffersClient {
 			if (downloadResponse.getErrorMessage().equals("OKE")) {
 				int downloadId = downloadResponse.getValue();
 
-				org.bimserver.pb.Service.GetDownloadDataRequest.Builder getDownloadDataRequestBuilder = GetDownloadDataRequest.newBuilder();
+				org.bimserver.pb.ProtocolBuffersService.GetDownloadDataRequest.Builder getDownloadDataRequestBuilder = GetDownloadDataRequest.newBuilder();
 				getDownloadDataRequestBuilder.setActionID(downloadId);
 				GetDownloadDataRequest getDownloadDataRequest = getDownloadDataRequestBuilder.build();
 
@@ -99,7 +99,7 @@ public class ProtocolBuffersClient {
 	}
 
 	private void getRevision(long roid) throws ServiceException {
-		org.bimserver.pb.Service.GetRevisionRequest.Builder getRevisionRequestBuilder = GetRevisionRequest.newBuilder();
+		org.bimserver.pb.ProtocolBuffersService.GetRevisionRequest.Builder getRevisionRequestBuilder = GetRevisionRequest.newBuilder();
 		getRevisionRequestBuilder.setRoid(roid);
 		GetRevisionRequest getRevisionRequest = getRevisionRequestBuilder.build();
 

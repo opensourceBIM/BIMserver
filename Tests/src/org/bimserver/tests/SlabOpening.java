@@ -58,7 +58,6 @@ import org.bimserver.models.ifc2x3.IfcRelDefinesByProperties;
 import org.bimserver.models.ifc2x3.IfcRelVoidsElement;
 import org.bimserver.models.ifc2x3.IfcRepresentation;
 import org.bimserver.models.ifc2x3.IfcRepresentationItem;
-import org.bimserver.models.ifc2x3.IfcShapeAspect;
 import org.bimserver.models.ifc2x3.IfcShapeRepresentation;
 import org.bimserver.models.ifc2x3.IfcSlab;
 import org.bimserver.plugins.PluginException;

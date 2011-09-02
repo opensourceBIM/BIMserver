@@ -16,36 +16,36 @@ import org.bimserver.ServerInfo.ServerState;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.DatabaseRestartRequiredException;
 import org.bimserver.database.berkeley.DatabaseInitException;
-import org.bimserver.pb.Service.AddProjectRequest;
-import org.bimserver.pb.Service.AddProjectResponse;
-import org.bimserver.pb.Service.AddUserRequest;
-import org.bimserver.pb.Service.AddUserResponse;
-import org.bimserver.pb.Service.ChangePasswordRequest;
-import org.bimserver.pb.Service.ChangePasswordResponse;
-import org.bimserver.pb.Service.CheckinSyncRequest;
-import org.bimserver.pb.Service.CheckinSyncResponse;
-import org.bimserver.pb.Service.CheckoutRequest;
-import org.bimserver.pb.Service.DownloadRequest;
-import org.bimserver.pb.Service.DownloadResponse;
-import org.bimserver.pb.Service.GetAllProjectsRequest;
-import org.bimserver.pb.Service.GetAllProjectsResponse;
-import org.bimserver.pb.Service.GetAllRevisionsOfProjectRequest;
-import org.bimserver.pb.Service.GetAllRevisionsOfProjectResponse;
-import org.bimserver.pb.Service.GetDownloadDataRequest;
-import org.bimserver.pb.Service.GetDownloadDataResponse;
-import org.bimserver.pb.Service.GetProjectsByNameRequest;
-import org.bimserver.pb.Service.GetProjectsByNameResponse;
-import org.bimserver.pb.Service.GetRevisionSummaryRequest;
-import org.bimserver.pb.Service.GetRevisionSummaryResponse;
-import org.bimserver.pb.Service.LoginRequest;
-import org.bimserver.pb.Service.LoginResponse;
-import org.bimserver.pb.Service.SDownloadResult;
-import org.bimserver.pb.Service.SRevision;
-import org.bimserver.pb.Service.SRevisionSummary;
-import org.bimserver.pb.Service.SRevisionSummaryContainer;
-import org.bimserver.pb.Service.SRevisionSummaryType;
-import org.bimserver.pb.Service.ServiceInterface;
-import org.bimserver.pb.Service.ServiceInterface.BlockingInterface;
+import org.bimserver.pb.ProtocolBuffersService.AddProjectRequest;
+import org.bimserver.pb.ProtocolBuffersService.AddProjectResponse;
+import org.bimserver.pb.ProtocolBuffersService.AddUserRequest;
+import org.bimserver.pb.ProtocolBuffersService.AddUserResponse;
+import org.bimserver.pb.ProtocolBuffersService.ChangePasswordRequest;
+import org.bimserver.pb.ProtocolBuffersService.ChangePasswordResponse;
+import org.bimserver.pb.ProtocolBuffersService.CheckinSyncRequest;
+import org.bimserver.pb.ProtocolBuffersService.CheckinSyncResponse;
+import org.bimserver.pb.ProtocolBuffersService.CheckoutRequest;
+import org.bimserver.pb.ProtocolBuffersService.DownloadRequest;
+import org.bimserver.pb.ProtocolBuffersService.DownloadResponse;
+import org.bimserver.pb.ProtocolBuffersService.GetAllProjectsRequest;
+import org.bimserver.pb.ProtocolBuffersService.GetAllProjectsResponse;
+import org.bimserver.pb.ProtocolBuffersService.GetAllRevisionsOfProjectRequest;
+import org.bimserver.pb.ProtocolBuffersService.GetAllRevisionsOfProjectResponse;
+import org.bimserver.pb.ProtocolBuffersService.GetDownloadDataRequest;
+import org.bimserver.pb.ProtocolBuffersService.GetDownloadDataResponse;
+import org.bimserver.pb.ProtocolBuffersService.GetProjectsByNameRequest;
+import org.bimserver.pb.ProtocolBuffersService.GetProjectsByNameResponse;
+import org.bimserver.pb.ProtocolBuffersService.GetRevisionSummaryRequest;
+import org.bimserver.pb.ProtocolBuffersService.GetRevisionSummaryResponse;
+import org.bimserver.pb.ProtocolBuffersService.LoginRequest;
+import org.bimserver.pb.ProtocolBuffersService.LoginResponse;
+import org.bimserver.pb.ProtocolBuffersService.SDownloadResult;
+import org.bimserver.pb.ProtocolBuffersService.SRevision;
+import org.bimserver.pb.ProtocolBuffersService.SRevisionSummary;
+import org.bimserver.pb.ProtocolBuffersService.SRevisionSummaryContainer;
+import org.bimserver.pb.ProtocolBuffersService.SRevisionSummaryType;
+import org.bimserver.pb.ProtocolBuffersService.ServiceInterface;
+import org.bimserver.pb.ProtocolBuffersService.ServiceInterface.BlockingInterface;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
 import org.bimserver.shared.ServerException;
@@ -138,7 +138,7 @@ public class TestBasicProtocolBuffersInterface {
 					AddUserRequest.Builder addUserRequestBuilder = AddUserRequest.newBuilder();
 					addUserRequestBuilder.setUsername(username);
 					addUserRequestBuilder.setName("Test");
-					addUserRequestBuilder.setType(org.bimserver.pb.Service.SUserType.USER);
+					addUserRequestBuilder.setType(org.bimserver.pb.ProtocolBuffersService.SUserType.USER);
 					addUserRequestBuilder.setSelfRegistration(false);
 					AddUserResponse addUserResponse = service.addUser(rpcController, addUserRequestBuilder.build());
 					if (addUserResponse.getErrorMessage().equals("OKE")) {
@@ -185,7 +185,7 @@ public class TestBasicProtocolBuffersInterface {
 				addProjectRequestBuilder.setProjectName(projectName);
 				AddProjectResponse addProjectResponse = service.addProject(rpcController, addProjectRequestBuilder.build());
 				if (addProjectResponse.getErrorMessage().equals("OKE")) {
-					org.bimserver.pb.Service.SProject project = addProjectResponse.getValue();
+					org.bimserver.pb.ProtocolBuffersService.SProject project = addProjectResponse.getValue();
 					File sourceFile = TestFile.AC11.getFile();
 
 					CheckinSyncRequest.Builder checkinSyncRequestBuilder = CheckinSyncRequest.newBuilder();
@@ -252,7 +252,7 @@ public class TestBasicProtocolBuffersInterface {
 				GetAllProjectsRequest.Builder getAllProjectsRequestBuilder = GetAllProjectsRequest.newBuilder();
 				GetAllProjectsResponse getAllProjectsResponse = service.getAllProjects(rpcController, getAllProjectsRequestBuilder.build());
 				if (getAllProjectsResponse.getErrorMessage().equals("OKE")) {
-					for (org.bimserver.pb.Service.SProject project : getAllProjectsResponse.getValueList()) {
+					for (org.bimserver.pb.ProtocolBuffersService.SProject project : getAllProjectsResponse.getValueList()) {
 						System.out.println(project.getName());
 						if (project.getRevisionsCount() > 0) {
 							GetAllRevisionsOfProjectRequest.Builder getAllRevisionsOfProjectRequestBuilder = GetAllRevisionsOfProjectRequest.newBuilder();

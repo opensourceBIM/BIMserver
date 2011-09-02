@@ -12,7 +12,6 @@ import org.bimserver.shared.UserException;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -57,6 +56,7 @@ public class Session {
 						if (eStructuralFeature instanceof EAttribute) {
 							EAttribute eAttribute = (EAttribute) eStructuralFeature;
 							if (eAttribute.isMany()) {
+								@SuppressWarnings("rawtypes")
 								List list = (List) val;
 								for (Object o : list) {
 									if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEString()) {
@@ -85,6 +85,7 @@ public class Session {
 						} else if (eStructuralFeature instanceof EReference) {
 							EReference eReference = (EReference) eStructuralFeature;
 							if (eReference.isMany()) {
+								@SuppressWarnings("unchecked")
 								List<IdEObject> list = (List<IdEObject>) val;
 								for (IdEObject object : list) {
 									serviceInterface.addReference(eObject.getOid(), eObject.eClass().getName(), eReference.getName(), object.getOid(), object.eClass().getName());

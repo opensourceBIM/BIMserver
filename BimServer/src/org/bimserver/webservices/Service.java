@@ -2609,7 +2609,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public void addFloatAttribute(Long oid, String className, String attributeName, float value) throws UserException {
+	public void addFloatAttribute(Long oid, String className, String attributeName, Float value) throws UserException {
 		requireAuthenticationAndRunningServer();
 		requireOpenStransaction();
 		changes.add(new AddAttributeChange(oid, className, attributeName, value));

@@ -6,11 +6,11 @@
  */
 package org.bimserver.models.store.util;
 
-import org.bimserver.models.store.*;
 import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.Clash;
 import org.bimserver.models.store.ClashDetectionSettings;
 import org.bimserver.models.store.ConcreteRevision;
+import org.bimserver.models.store.Deserializer;
 import org.bimserver.models.store.EidClash;
 import org.bimserver.models.store.GeoTag;
 import org.bimserver.models.store.GuidClash;

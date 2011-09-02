@@ -1,16 +1,11 @@
 package org.bimserver;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
-import org.bimserver.plugins.Plugin;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.guidanceproviders.GuidanceProvider;
 import org.bimserver.plugins.guidanceproviders.GuidanceProviderPlugin;
 import org.bimserver.plugins.schema.SchemaDefinition;
-import org.bimserver.plugins.schema.SchemaPlugin;
 import org.bimserver.utils.CollectionUtils;
 
 public class SchemaFieldGuidanceProviderPlugin implements GuidanceProviderPlugin {
