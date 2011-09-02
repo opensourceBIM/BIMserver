@@ -106,9 +106,9 @@ public class ProtocolBuffersGenerator {
 			out.println("import java.util.*;");
 			out.println("import com.google.protobuf.*;");
 			out.println("import org.bimserver.utils.*;");
-			out.println("import org.bimserver.pb.Service.*;");
+			out.println("import org.bimserver.pb.ProtocolBuffersService.*;");
 			out.println("import com.google.protobuf.BlockingRpcChannel;");
-			out.println("import org.bimserver.pb.Service.ServiceInterface.BlockingInterface;");
+			out.println("import org.bimserver.pb.ProtocolBuffersService.ServiceInterface.BlockingInterface;");
 			out.println("import com.googlecode.protobuf.socketrpc.SocketRpcController;");
 			out.println("import com.googlecode.protobuf.socketrpc.RpcChannels;");
 			out.println("import com.googlecode.protobuf.socketrpc.SocketRpcConnectionFactories;");
@@ -170,7 +170,7 @@ public class ProtocolBuffersGenerator {
 						if (isPrimitive(genericType) || genericType == String.class) {
 							out.println("\t\t\t\t" + genericType.getSimpleName() + " v = val;");
 						} else {
-							out.println("\t\t\t\tService." + genericType.getSimpleName() + " v = null;");
+							out.println("\t\t\t\tProtocolBuffersService." + genericType.getSimpleName() + " v = null;");
 						}
 						out.println("\t\t\t\trequestBuilder.add" + StringUtils.firstUpperCase(paramName) + "(v);");
 						out.println("\t\t\t}");
@@ -180,11 +180,11 @@ public class ProtocolBuffersGenerator {
 					} else if (parameterType.isPrimitive()) {
 						out.println("\t\t\trequestBuilder.set" + StringUtils.firstUpperCase(paramName) + "(" + paramName + ");");
 					} else if (parameterType.isEnum()) {
-						out.println("\t\t\trequestBuilder.set" + StringUtils.firstUpperCase(paramName) + "(Service." + parameterType.getSimpleName() + ".values()[" + paramName + ".ordinal()]);");
+						out.println("\t\t\trequestBuilder.set" + StringUtils.firstUpperCase(paramName) + "(ProtocolBuffersService." + parameterType.getSimpleName() + ".values()[" + paramName + ".ordinal()]);");
 					} else if (isPrimitive(parameterType) || parameterType == String.class) {
 						out.println("\t\t\trequestBuilder.set" + StringUtils.firstUpperCase(paramName) + "(" + paramName + ");");
 					} else {
-						out.println("\t\t\tService." + parameterType.getSimpleName() + ".Builder newVal = " + parameterType.getSimpleName() + ".newBuilder();");
+						out.println("\t\t\tProtocolBuffersService." + parameterType.getSimpleName() + ".Builder newVal = " + parameterType.getSimpleName() + ".newBuilder();");
 						genServiceInterfaceToProtocolBuffers(out, paramName, "newVal", parameterType);
 						out.println("\t\t\trequestBuilder.set" + StringUtils.firstUpperCase(paramName) + "(newVal.build());");
 					}
@@ -201,7 +201,7 @@ public class ProtocolBuffersGenerator {
 						String fullTypeName = genericReturnType.getSimpleName();
 						if (isPrimitive(genericReturnType) || genericReturnType == String.class) {
 						} else {
-							fullTypeName = "Service." + genericReturnType.getSimpleName();
+							fullTypeName = "ProtocolBuffersService." + genericReturnType.getSimpleName();
 						}
 						out.println("\t\t\tList<" + fullTypeName + "> originalList = response.getValueList();");
 						out.println("\t\t\tfor (" + fullTypeName + " val : originalList) {");
@@ -222,7 +222,7 @@ public class ProtocolBuffersGenerator {
 						String fullTypeName = genericReturnType.getSimpleName();
 						if (isPrimitive(genericReturnType) || genericReturnType == String.class) {
 						} else {
-							fullTypeName = "Service." + genericReturnType.getSimpleName();
+							fullTypeName = "ProtocolBuffersService." + genericReturnType.getSimpleName();
 						}
 						out.println("\t\t\tList<" + fullTypeName + "> originalList = response.getValueList();");
 						out.println("\t\t\tfor (" + fullTypeName + " val : originalList) {");
@@ -354,16 +354,18 @@ public class ProtocolBuffersGenerator {
 		try {
 			out.println("package org.bimserver.pb;\n");
 			out.println("option java_generic_services = true;\n");
+			out.println("option java_outer_classname = \"ProtocolBuffersService\";\n");
 			StringBuilder serviceBuilder = new StringBuilder();
 			StringBuilder messageBuilder = new StringBuilder();
 			serviceBuilder.append("service ServiceInterface {\n");
+			createVoidResponseMessage(messageBuilder);
 			Class<ServiceInterface> serviceInterfaceClass = (Class<ServiceInterface>) Class.forName("org.bimserver.shared.ServiceInterface");
 			for (Method method : serviceInterfaceClass.getMethods()) {
 				String inputObjectName = StringUtils.firstUpperCase(method.getName()) + "Request";
 				String outputObjectName = StringUtils.firstUpperCase(method.getName()) + "Response";
 				createRequestMessage(messageBuilder, method, inputObjectName);
 				if (method.getReturnType() == void.class) {
-					outputObjectName = "Void";
+					outputObjectName = "VoidResponse";
 				} else {
 					createResponseMessage(messageBuilder, method, outputObjectName);
 				}
@@ -386,6 +388,15 @@ public class ProtocolBuffersGenerator {
 		builder.append("message Void {\n}");
 	}
 	
+	private void createVoidResponseMessage(StringBuilder builder) {
+		String messageName = "VoidResponse";
+		StringBuilder messageBuilder = new StringBuilder();
+		messageBuilder.append("message " + messageName + " {\n");
+		messageBuilder.append("\toptional string errorMessage = 1;\n");
+		messageBuilder.append("}\n\n");
+		builder.append(messageBuilder);
+	}
+
 	private void createResponseMessage(StringBuilder builder, Method method, String messageName) {
 		StringBuilder messageBuilder = new StringBuilder();
 		messageBuilder.append("message " + messageName + " {\n");

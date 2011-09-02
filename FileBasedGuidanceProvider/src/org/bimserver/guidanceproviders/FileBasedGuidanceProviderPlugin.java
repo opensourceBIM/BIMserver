@@ -1,9 +1,6 @@
 package org.bimserver.guidanceproviders;
 
-import java.util.Set;
-
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
-import org.bimserver.plugins.Plugin;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.guidanceproviders.GuidanceProvider;

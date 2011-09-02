@@ -528,6 +528,7 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 		return null;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public <T extends IdEObject> T get(EClass eClass, int pid, int rid, long oid, boolean deep) {
 		try {
@@ -544,6 +545,7 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 		return get(cid, oid, Database.STORE_PROJECT_ID, Database.STORE_PROJECT_REVISION_ID, new IfcModel(), deep);
 	}
 
+	@SuppressWarnings("unchecked")
 	public <T extends IdEObject> T get(short cid, long oid, int pid, int rid, IfcModel model, boolean deep) throws BimDatabaseException, BimDeadlockException {
 		if (objectsToCommit.containsValue(oid)) {
 			return (T) objectsToCommit.inverse().get(oid);
@@ -564,7 +566,7 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 			}
 			ByteBuffer keyBuffer = ByteBuffer.wrap(record.getKey());
 			ByteBuffer valueBuffer = ByteBuffer.wrap(record.getValue());
-			int keyPid = keyBuffer.getInt();
+			keyBuffer.getInt(); // pid
 			long keyOid = keyBuffer.getLong();
 			int keyRid = -keyBuffer.getInt();
 			if (keyRid <= rid) {
@@ -580,7 +582,9 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 							return null;
 							// deleted entity
 						} else {
-							return (T) convertByteArrayToObject(eClass, eClass, keyOid, valueBuffer, model, pid, rid, deep);
+							T convertByteArrayToObject = (T) convertByteArrayToObject(eClass, eClass, keyOid, valueBuffer, model, pid, rid, deep);
+							putInCache(recordIdentifier, convertByteArrayToObject);
+							return convertByteArrayToObject;
 						}
 					}
 				}

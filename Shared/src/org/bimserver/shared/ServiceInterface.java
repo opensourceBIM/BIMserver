@@ -746,7 +746,7 @@ public interface ServiceInterface {
 			@WebParam(name = "oid", partName = "addFloatAttribute.oid") Long oid, 
 			@WebParam(name = "className", partName = "addFloatAttribute.className") String className, 
 			@WebParam(name = "attributeName", partName = "addFloatAttribute.attributeName") String attributeName,
-			@WebParam(name = "value", partName = "addFloatAttribute.value") float value) throws UserException;
+			@WebParam(name = "value", partName = "addFloatAttribute.value") Float value) throws UserException;
 
 	@WebMethod(action = "addIntegerAttribute")
 	void addIntegerAttribute(

@@ -22,6 +22,7 @@ import org.slf4j.LoggerFactory;
 public class LocalDevBimWebServerStarter {
 	private org.eclipse.jetty.server.Server server;
 	private static final Logger LOGGER = LoggerFactory.getLogger(LocalDevBimWebServerStarter.class);
+	private BimServer bimServer;
 
 	public static void main(String[] args) {
 		String address = "127.0.0.1";
@@ -53,7 +54,7 @@ public class LocalDevBimWebServerStarter {
 	public void start(String address, int port, String homedir, String resourceBase) {
 		System.setProperty("org.apache.cxf.Logger", "org.apache.cxf.common.logging.Log4jLogger");
 
-		BimServer bimServer = new BimServer(new File(homedir), new LocalDevelopmentResourceFetcher());
+		bimServer = new BimServer(new File(homedir), new LocalDevelopmentResourceFetcher());
 	 	try {
 	 		LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager());
 	 		bimServer.start();
@@ -97,5 +98,9 @@ public class LocalDevBimWebServerStarter {
 			LOGGER.error("", e);
 		}
 		LOGGER.info("BIMWebServer started successfully, click on the \"launch webbrowser\" button, or go to: http://" + address + ":" + port);
+	}
+	
+	public BimServer getBimServer() {
+		return bimServer;
 	}
 }

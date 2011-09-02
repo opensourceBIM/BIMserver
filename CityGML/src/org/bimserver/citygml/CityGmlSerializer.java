@@ -1,6 +1,5 @@
 package org.bimserver.citygml;
 
-import java.io.File;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -13,7 +12,6 @@ import java.util.Set;
 
 import javax.xml.bind.JAXBException;
 
-import org.apache.commons.io.FileUtils;
 import org.bimserver.citygml.xbuilding.GlobalIdType;
 import org.bimserver.citygml.xbuilding.ObjectFactory;
 import org.bimserver.ifc.IfcModel;
@@ -69,10 +67,8 @@ import org.citygml4j.model.citygml.ade.ADEComponent;
 import org.citygml4j.model.citygml.building.AbstractBoundarySurface;
 import org.citygml4j.model.citygml.building.BoundarySurfaceProperty;
 import org.citygml4j.model.citygml.building.Building;
-import org.citygml4j.model.citygml.building.BuildingFurniture;
 import org.citygml4j.model.citygml.building.Door;
 import org.citygml4j.model.citygml.building.FloorSurface;
-import org.citygml4j.model.citygml.building.InteriorFurnitureProperty;
 import org.citygml4j.model.citygml.building.InteriorRoomProperty;
 import org.citygml4j.model.citygml.building.OpeningProperty;
 import org.citygml4j.model.citygml.building.RoofSurface;
@@ -86,7 +82,6 @@ import org.citygml4j.model.citygml.core.CityObjectMember;
 import org.citygml4j.model.citygml.core.XalAddressProperty;
 import org.citygml4j.model.citygml.generics.DoubleAttribute;
 import org.citygml4j.model.gml.basicTypes.Code;
-import org.citygml4j.model.gml.geometry.GeometryProperty;
 import org.citygml4j.model.gml.geometry.aggregates.MultiSurface;
 import org.citygml4j.model.gml.geometry.aggregates.MultiSurfaceProperty;
 import org.citygml4j.model.gml.geometry.primitives.DirectPositionList;
@@ -514,18 +509,18 @@ public class CityGmlSerializer extends BimModelSerializer {
 		} else if (ifcElement == null || ifcElement instanceof IfcWindow || ifcElement instanceof IfcDoor || ifcElement instanceof IfcVirtualElement) {
 			// ignore
 		} else if (ifcElement instanceof IfcFurnishingElement) {
-			BuildingFurniture buildingFurniture = citygml.createBuildingFurniture();
-			GeometryProperty createGeometryProperty = gml.createGeometryProperty();
-			MultiSurface createMultiSurface = gml.createMultiSurface();
-			setGeometry(createMultiSurface, ifcElement);
-			createGeometryProperty.setGeometry(createMultiSurface);
-			buildingFurniture.setLod4Geometry(createGeometryProperty);
-			InteriorFurnitureProperty ifp = citygml.createInteriorFurnitureProperty();
-			ifp.setObject(buildingFurniture);
-			setName(buildingFurniture.getName(), ifcElement.getName());
-			setGlobalId(buildingFurniture, ifcElement);
-			room.addInteriorFurniture(ifp);
-			convertedObjects.put(ifcElement, buildingFurniture);
+//			BuildingFurniture buildingFurniture = citygml.createBuildingFurniture();
+//			GeometryProperty createGeometryProperty = gml.createGeometryProperty();
+//			MultiSurface createMultiSurface = gml.createMultiSurface();
+//			setGeometry(createMultiSurface, ifcElement);
+//			createGeometryProperty.setGeometry(createMultiSurface);
+//			buildingFurniture.setLod4Geometry(createGeometryProperty);
+//			InteriorFurnitureProperty ifp = citygml.createInteriorFurnitureProperty();
+//			ifp.setObject(buildingFurniture);
+//			setName(buildingFurniture.getName(), ifcElement.getName());
+//			setGlobalId(buildingFurniture, ifcElement);
+//			room.addInteriorFurniture(ifp);
+//			convertedObjects.put(ifcElement, buildingFurniture);
 		} else if (ifcElement instanceof IfcFlowTerminal) {
 			// FlowTerminal flowTerminal = new FlowTerminal();
 			// setName(flowTerminal.getName(), ifcElement.getName());

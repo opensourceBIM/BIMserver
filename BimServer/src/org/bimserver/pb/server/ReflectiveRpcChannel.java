@@ -116,21 +116,26 @@ public class ReflectiveRpcChannel implements BlockingRpcChannel {
 			}
 			Object result = method.invoke(service, arguments);
 			Builder builder = responsePrototype.newBuilderForType();
-			FieldDescriptor valueField = methodDescriptor.getOutputType().getFields().get(0);
-			if (result != null) {
-				if (valueField.getType().getJavaType() != JavaType.MESSAGE) {
-					builder.setField(valueField, result);
-				} else if (result instanceof List) {
-					Descriptor messageType = valueField.getMessageType();
-					List list = new ArrayList();
-					List originalList = (List) result;
-					for (Object object : originalList) {
-						list.add(convertObject(new HashMap(), messageType, object));
+			List<FieldDescriptor> fields = methodDescriptor.getOutputType().getFields();
+			if (fields.isEmpty()) {
+				System.out.println("No fields, " + methodDescriptor.getFullName());
+			} else {
+				FieldDescriptor valueField = fields.get(0);
+				if (result != null) {
+					if (valueField.getType().getJavaType() != JavaType.MESSAGE) {
+						builder.setField(valueField, result);
+					} else if (result instanceof List) {
+						Descriptor messageType = valueField.getMessageType();
+						List list = new ArrayList();
+						List originalList = (List) result;
+						for (Object object : originalList) {
+							list.add(convertObject(new HashMap(), messageType, object));
+						}
+						builder.setField(valueField, list);
+					} else {
+						Descriptor messageType = valueField.getMessageType();
+						builder.setField(valueField, convertObject(new HashMap<Object, Object>(), messageType, result));
 					}
-					builder.setField(valueField, list);
-				} else {
-					Descriptor messageType = valueField.getMessageType();
-					builder.setField(valueField, convertObject(new HashMap<Object, Object>(), messageType, result));
 				}
 			}
 			builder.setField(responsePrototype.getDescriptorForType().getFields().get(1), "OKE");
