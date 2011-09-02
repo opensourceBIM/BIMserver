@@ -52,7 +52,7 @@
 </ul>
 </div>
 <div class="content">
-
+<%-- ------------------------------------------------------------------------ this page shows the REVISION Details --%>
 <h1>Revision details (Project: <%=project.getName()%>, Revision: <%=revision.getId()%>)</h1>
 <div id="guide">
   <div id="guidewrap">
