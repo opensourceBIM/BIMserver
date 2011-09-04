@@ -609,9 +609,9 @@ public class SceneJSSerializer extends BimModelSerializer {
 		
 		writer.writeln("eye: {");
 		writer.indent();
-		writer.writeln("x: " + (-extentsDiff[0] * 2.0f) + ",");
-		writer.writeln("y: " + (extentsDiff[1] * 2.0f) + ",");
-		writer.writeln("z: " + (extentsDiff[2] * 2.0f) + ",");
+		writer.writeln("x: " + (extentsDiff[0] * 1.5f) + ",");
+		writer.writeln("y: " + (extentsDiff[1] * 1.5f) + ",");
+		writer.writeln("z: " + (extentsDiff[2] * 1.5f) + ",");
 		writer.unindent();
 		writer.writeln("},"); // eye
 		
@@ -626,8 +626,8 @@ public class SceneJSSerializer extends BimModelSerializer {
 		writer.writeln("up: {");
 		writer.indent();
 		writer.writeln("x: 0.0,");
-		writer.writeln("y: 1.0,");
-		writer.writeln("z: 0.0,");
+		writer.writeln("y: 0.0,");
+		writer.writeln("z: 1.0,");
 		writer.unindent();
 		writer.writeln("},"); // up
 		
@@ -642,7 +642,7 @@ public class SceneJSSerializer extends BimModelSerializer {
 		writer.writeln("optics: {");
 		writer.indent();
 		writer.writeln("type: 'perspective',");
-		writer.writeln("far: " + (extentsDiffLength * 4) + ",");
+		writer.writeln("far: " + (extentsDiffLength * 6) + ",");
 		writer.writeln("near: " + (extentsDiffLength * 0.001f) + ",");
 		writer.writeln("aspect: 1.0,");
 		writer.writeln("fovy: 37.8493,");
@@ -694,9 +694,9 @@ public class SceneJSSerializer extends BimModelSerializer {
         
         writer.writeln("dir: {");
 		writer.indent();
-		writer.writeln("x: 0.3,"); 
-		writer.writeln("y:-1.0,"); 
-		writer.writeln("z: 0.3,");
+		writer.writeln("x:-0.5,"); 
+		writer.writeln("y:-0.5,"); 
+		writer.writeln("z:-1.0,");
         writer.unindent();
 		writer.writeln("},"); // dir
 		writer.writeln("diffuse: true,");
