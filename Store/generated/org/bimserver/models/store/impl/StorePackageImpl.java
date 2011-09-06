@@ -551,6 +551,15 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getUser_NotificationUrl() {
+		return (EAttribute)userEClass.getEStructuralFeatures().get(12);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getClash() {
 		return clashEClass;
 	}
@@ -1677,6 +1686,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 		createEAttribute(userEClass, USER__LAST_SEEN);
 		createEAttribute(userEClass, USER__VALIDATION_TOKEN);
 		createEAttribute(userEClass, USER__VALIDATION_TOKEN_CREATED);
+		createEAttribute(userEClass, USER__NOTIFICATION_URL);
 
 		clashEClass = createEClass(CLASH);
 		createEAttribute(clashEClass, CLASH__NAME1);
@@ -1878,6 +1888,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 		initEAttribute(getUser_LastSeen(), ecorePackage.getEDate(), "lastSeen", null, 0, 1, User.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getUser_ValidationToken(), ecorePackage.getEString(), "validationToken", null, 0, 1, User.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getUser_ValidationTokenCreated(), ecorePackage.getEDate(), "validationTokenCreated", null, 0, 1, User.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getUser_NotificationUrl(), ecorePackage.getEString(), "notificationUrl", null, 0, 1, User.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(clashEClass, Clash.class, "Clash", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getClash_Name1(), ecorePackage.getEString(), "name1", null, 0, 1, Clash.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

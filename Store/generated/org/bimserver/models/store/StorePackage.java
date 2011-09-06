@@ -351,13 +351,22 @@ public interface StorePackage extends EPackage {
 	int USER__VALIDATION_TOKEN_CREATED = 11;
 
 	/**
+	 * The feature id for the '<em><b>Notification Url</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER__NOTIFICATION_URL = 12;
+
+	/**
 	 * The number of structural features of the '<em>User</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int USER_FEATURE_COUNT = 12;
+	int USER_FEATURE_COUNT = 13;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.ClashImpl <em>Clash</em>}' class.
@@ -2024,6 +2033,17 @@ public interface StorePackage extends EPackage {
 	EAttribute getUser_ValidationTokenCreated();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.User#getNotificationUrl <em>Notification Url</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Notification Url</em>'.
+	 * @see org.bimserver.models.store.User#getNotificationUrl()
+	 * @see #getUser()
+	 * @generated
+	 */
+	EAttribute getUser_NotificationUrl();
+
+	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.Clash <em>Clash</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3586,6 +3606,14 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute USER__VALIDATION_TOKEN_CREATED = eINSTANCE.getUser_ValidationTokenCreated();
+
+		/**
+		 * The meta object literal for the '<em><b>Notification Url</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute USER__NOTIFICATION_URL = eINSTANCE.getUser_NotificationUrl();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.ClashImpl <em>Clash</em>}' class.

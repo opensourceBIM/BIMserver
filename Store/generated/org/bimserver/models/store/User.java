@@ -31,6 +31,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.User#getLastSeen <em>Last Seen</em>}</li>
  *   <li>{@link org.bimserver.models.store.User#getValidationToken <em>Validation Token</em>}</li>
  *   <li>{@link org.bimserver.models.store.User#getValidationTokenCreated <em>Validation Token Created</em>}</li>
+ *   <li>{@link org.bimserver.models.store.User#getNotificationUrl <em>Notification Url</em>}</li>
  * </ul>
  * </p>
  *
@@ -339,5 +340,31 @@ public interface User extends IdEObject {
 	 * @generated
 	 */
 	void setValidationTokenCreated(Date value);
+
+	/**
+	 * Returns the value of the '<em><b>Notification Url</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Notification Url</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Notification Url</em>' attribute.
+	 * @see #setNotificationUrl(String)
+	 * @see org.bimserver.models.store.StorePackage#getUser_NotificationUrl()
+	 * @model
+	 * @generated
+	 */
+	String getNotificationUrl();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.User#getNotificationUrl <em>Notification Url</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Notification Url</em>' attribute.
+	 * @see #getNotificationUrl()
+	 * @generated
+	 */
+	void setNotificationUrl(String value);
 
 } // User

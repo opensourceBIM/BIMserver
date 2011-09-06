@@ -50,7 +50,7 @@ public interface BimDatabaseSession extends OidProvider {
 
 	<T extends IdEObject> T  get(short cid, long oid, int pid, int rid, IfcModel model, boolean deep) throws BimDeadlockException, BimDatabaseException;
 
-	IfcModel getAllOfType(EClass settings, boolean deep) throws BimDatabaseException, BimDeadlockException;
+	IfcModel getAllOfType(EClass eClass, boolean deep) throws BimDatabaseException, BimDeadlockException;
 
 	IfcModel getAllOfType(EClass eClass, int pid, int rid, boolean deep) throws BimDatabaseException, BimDeadlockException;
 

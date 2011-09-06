@@ -29,7 +29,7 @@ import org.bimserver.models.store.Settings;
 import org.bimserver.resources.JarResourceFetcher;
 import org.bimserver.resources.WarResourceFetcher;
 import org.bimserver.web.LoginManager;
-import org.bimserver.webservices.Service;
+import org.bimserver.webservices.Converter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -67,7 +67,7 @@ public class SettingsServlet extends HttpServlet {
 									JAXBContext jaxbContext = JAXBContext.newInstance(SSettings.class);
 									Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
 									SSettings sSettings = (SSettings) unmarshaller.unmarshal(item.getInputStream());
-									bimServer.getSettingsManager().setSettings(Service.convert(sSettings, Settings.class, null));
+									bimServer.getSettingsManager().setSettings(Converter.convert(sSettings, Settings.class, null));
 									response.sendRedirect(getServletContext().getContextPath() + "/settings.jsp?msg=settingsfileuploadok");
 									return;
 								} else if (fieldName.equals("colladasettings")) {
@@ -107,7 +107,7 @@ public class SettingsServlet extends HttpServlet {
 						response.setContentType("text/xml");
 						response.setHeader("Content-Disposition", "attachment; filename=\"settings.xml\"");
 						Settings settings = bimServer.getSettingsManager().getSettings();
-						SSettings sSettings = Service.convert(settings, SSettings.class);
+						SSettings sSettings = Converter.convert(settings, SSettings.class);
 						JAXBContext jaxbContext = JAXBContext.newInstance(SSettings.class);
 						Marshaller marshaller = jaxbContext.createMarshaller();
 						marshaller.marshal(sSettings, response.getOutputStream());

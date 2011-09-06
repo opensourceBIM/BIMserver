@@ -29,6 +29,7 @@ public class SUser
 	private java.util.Date lastSeen;
 	private java.lang.String validationToken;
 	private java.util.Date validationTokenCreated;
+	private java.lang.String notificationUrl;
 
 	public java.lang.String getName() {
 		return name;
@@ -120,6 +121,14 @@ public class SUser
 
 	public void setValidationTokenCreated(java.util.Date validationTokenCreated) {
 		this.validationTokenCreated = validationTokenCreated;
+	}
+
+	public java.lang.String getNotificationUrl() {
+		return notificationUrl;
+	}
+
+	public void setNotificationUrl(java.lang.String notificationUrl) {
+		this.notificationUrl = notificationUrl;
 	}
 	@Override
 	public int hashCode() {
