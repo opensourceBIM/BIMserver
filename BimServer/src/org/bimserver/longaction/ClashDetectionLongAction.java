@@ -18,7 +18,7 @@ import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
-import org.bimserver.webservices.Service;
+import org.bimserver.webservices.Converter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -83,7 +83,7 @@ public class ClashDetectionLongAction extends LongAction {
 				String[] emailAddressesArray = new String[emailAddresses.size()];
 				emailAddresses.toArray(emailAddressesArray);
 				
-				SendClashesEmailDatabaseAction sendClashesEmailDatabaseAction = new SendClashesEmailDatabaseAction(bimServer, session, AccessMethod.INTERNAL, actingUoid, poid, Service.convert(clashDetectionSettings), emailAddresses);
+				SendClashesEmailDatabaseAction sendClashesEmailDatabaseAction = new SendClashesEmailDatabaseAction(bimServer, session, AccessMethod.INTERNAL, actingUoid, poid, Converter.convert(clashDetectionSettings), emailAddresses);
 				sendClashesEmailDatabaseAction.execute();
 			}
 			session.commit();

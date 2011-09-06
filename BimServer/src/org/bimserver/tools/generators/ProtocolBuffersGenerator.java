@@ -46,6 +46,12 @@ public class ProtocolBuffersGenerator {
 	public void start() {
 		File protoFile = new File("../Builds/build/pb/service.proto");
 		generateProtoFile(protoFile);
+		generateProtocolBuffersImplementation(protoFile);
+		generateProtocolBuffersImplementation(new File("../Builds/build/pb/listener.proto"));
+		generateServiceInterfaceImplementation();
+	}
+
+	private void generateProtocolBuffersImplementation(File protoFile) {
 		try {
 			FileUtils.copyFile(protoFile, new File("../Builds/build/targets/shared/service.proto"));
 		} catch (IOException e1) {
@@ -95,7 +101,6 @@ public class ProtocolBuffersGenerator {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		generateServiceInterfaceImplementation();
 	}
 
 	private void generateServiceInterfaceImplementation() {
@@ -367,6 +372,7 @@ public class ProtocolBuffersGenerator {
 			out.println("package org.bimserver.pb;\n");
 			out.println("option java_generic_services = true;\n");
 			out.println("option java_outer_classname = \"ProtocolBuffersService\";\n");
+			out.println("option optimize_for = CODE_SIZE;\n");
 			StringBuilder serviceBuilder = new StringBuilder();
 			StringBuilder messageBuilder = new StringBuilder();
 			serviceBuilder.append("service ServiceInterface {\n");

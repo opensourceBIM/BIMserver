@@ -43,6 +43,7 @@ import org.bimserver.models.store.IfcEngine;
 import org.bimserver.models.store.Serializer;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StorePackage;
+import org.bimserver.notifications.NotificationsManager;
 import org.bimserver.pb.ProtocolBuffersService;
 import org.bimserver.pb.server.ReflectiveRpcChannel;
 import org.bimserver.plugins.Plugin;
@@ -95,6 +96,7 @@ public class BimServer {
 	private VersionChecker versionChecker;
 	private TemplateEngine templateEngine;
 	private ClashDetectionCache clashDetectionCache;
+	private NotificationsManager notificationsManager;
 	private CompareCache compareCache;
 	private final String classPath;
 
@@ -222,6 +224,8 @@ public class BimServer {
 			serverInfo.setErrorMessage("Inconsistent models");
 		}
 
+		notificationsManager = new NotificationsManager(this);
+		
 		settingsManager = new SettingsManager(bimDatabase);
 		serverInfo.init(this);
 		serverInfo.update();
@@ -523,5 +527,9 @@ public class BimServer {
 
 	public CompareCache getCompareCache() {
 		return compareCache;
+	}
+	
+	public NotificationsManager getNotificationsManager() {
+		return notificationsManager;
 	}
 }

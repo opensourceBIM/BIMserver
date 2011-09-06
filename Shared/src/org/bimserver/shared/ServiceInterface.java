@@ -787,9 +787,20 @@ public interface ServiceInterface {
 	@WebMethod(action = "getServerStartTime")
 	Date getServerStartTime();
 	
-	SSerializerPluginDescriptor getSerializerPluginDescriptor(String type) throws UserException;
+	@WebMethod(action = "getSerializerPluginDescriptor")
+	SSerializerPluginDescriptor getSerializerPluginDescriptor(@WebParam(name = "type", partName = "getSerializerPluginDescriptor.type") String type) throws UserException;
 	
+	@WebMethod(action = "getAllGuidanceProviderPluginDescriptors")
 	Set<SGuidanceProviderPluginDescriptor> getAllGuidanceProviderPluginDescriptors() throws UserException;
 
-	List<SDeserializer> getAllDeserializers(Boolean onlyEnabled) throws UserException, ServerException;
+	@WebMethod(action = "getAllDeserializers")
+	List<SDeserializer> getAllDeserializers(@WebParam(name = "oid", partName = "removeReference.oid") Boolean onlyEnabled) throws UserException, ServerException;
+	
+	@WebMethod(action = "registerNewRevisionListener")
+	void registerNewRevisionListener();
+	
+	@WebMethod(action = "setHttpCallback")
+	void setHttpCallback(
+			@WebParam(name = "uoid", partName = "setHttpCallback.uoid") Long uoid, 
+			@WebParam(name = "address", partName = "setHttpCallback.address") String address) throws UserException;
 }

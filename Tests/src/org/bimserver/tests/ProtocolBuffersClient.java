@@ -5,6 +5,7 @@ import java.util.List;
 import org.bimserver.pb.ProtocolBuffersService.DownloadRequest;
 import org.bimserver.pb.ProtocolBuffersService.DownloadResponse;
 import org.bimserver.pb.ProtocolBuffersService.GetAllProjectsRequest;
+import org.bimserver.pb.ProtocolBuffersService.GetAllProjectsRequest.Builder;
 import org.bimserver.pb.ProtocolBuffersService.GetAllProjectsResponse;
 import org.bimserver.pb.ProtocolBuffersService.GetDownloadDataRequest;
 import org.bimserver.pb.ProtocolBuffersService.GetDownloadDataResponse;
@@ -15,7 +16,6 @@ import org.bimserver.pb.ProtocolBuffersService.LoginResponse;
 import org.bimserver.pb.ProtocolBuffersService.SDownloadResult;
 import org.bimserver.pb.ProtocolBuffersService.SProject;
 import org.bimserver.pb.ProtocolBuffersService.ServiceInterface;
-import org.bimserver.pb.ProtocolBuffersService.GetAllProjectsRequest.Builder;
 import org.bimserver.pb.ProtocolBuffersService.ServiceInterface.BlockingInterface;
 
 import com.google.protobuf.BlockingRpcChannel;

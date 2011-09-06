@@ -37,6 +37,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.UserImpl#getLastSeen <em>Last Seen</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.UserImpl#getValidationToken <em>Validation Token</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.UserImpl#getValidationTokenCreated <em>Validation Token Created</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.UserImpl#getNotificationUrl <em>Notification Url</em>}</li>
  * </ul>
  * </p>
  *
@@ -270,6 +271,24 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 */
 	public void setValidationTokenCreated(Date newValidationTokenCreated) {
 		eSet(StorePackage.Literals.USER__VALIDATION_TOKEN_CREATED, newValidationTokenCreated);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getNotificationUrl() {
+		return (String)eGet(StorePackage.Literals.USER__NOTIFICATION_URL, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setNotificationUrl(String newNotificationUrl) {
+		eSet(StorePackage.Literals.USER__NOTIFICATION_URL, newNotificationUrl);
 	}
 
 } //UserImpl

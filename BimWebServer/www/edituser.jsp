@@ -7,18 +7,22 @@
 <div class="content">
 <%
 	long uoid = Long.parseLong(request.getParameter("uoid"));
+	SUser user = loginManager.getService().getUserByUoid(uoid);
+	String notificationUrl = user.getNotificationUrl();
+	if (notificationUrl == null) {
+		notificationUrl = "";
+	}
 	if (request.getParameter("save") != null) {
+		notificationUrl = request.getParameter("notificationUrl");
 		SUserType userType = SUserType.values()[Integer.parseInt(request.getParameter("type"))];
 		try {
 			loginManager.getService().changeUserType(uoid, userType);
+			loginManager.getService().setHttpCallback(uoid, notificationUrl);
 			response.sendRedirect("user.jsp?uoid=" + uoid);
 		} catch (UserException e) {
 			JspHelper.showException(out, e);
 		}
 	}
-%>
-<%
-	SUser user = loginManager.getService().getUserByUoid(uoid);
 %>
 <h1>Edit user (<%=user.getName() %>)</h1>
 <div class="tabber" id="usertabber">
@@ -46,6 +50,10 @@
 	}
 %>
 	</select></td>
+</tr>
+<tr>
+	<td><label for="notificationUrl">Notification URL</label></td>
+	<td><input type="text" name="notificationUrl" id="notificationUrl" value="<%=notificationUrl%>"/></td>
 </tr>
 </table>
 <input type="submit" value="Save" name="save"/>

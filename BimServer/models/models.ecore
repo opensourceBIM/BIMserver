@@ -86,6 +86,7 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="validationToken" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="validationTokenCreated"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="notificationUrl" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Clash">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

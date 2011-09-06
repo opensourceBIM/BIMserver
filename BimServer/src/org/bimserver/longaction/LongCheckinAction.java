@@ -1,11 +1,15 @@
 package org.bimserver.longaction;
 
+import java.util.Date;
+
 import org.bimserver.BimServer;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
 import org.bimserver.database.ProgressHandler;
 import org.bimserver.database.actions.CheckinPart2DatabaseAction;
+import org.bimserver.models.log.LogFactory;
+import org.bimserver.models.log.NewRevisionAdded;
 import org.bimserver.models.store.CheckinState;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
@@ -65,6 +69,14 @@ public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 			}
 
 			session = bimServer.getDatabase().createReadOnlySession();
+			for (Revision revision : createCheckinAction.getConcreteRevision(createCheckinAction.getCroid()).getRevisions()) {
+				NewRevisionAdded newRevisionAdded = LogFactory.eINSTANCE.createNewRevisionAdded();
+				newRevisionAdded.setDate(new Date());
+				newRevisionAdded.setExecutor(user);
+				newRevisionAdded.setRevision(revision);
+				newRevisionAdded.setAccessMethod(createCheckinAction.getAccessMethod());
+				bimServer.getNotificationsManager().notify(newRevisionAdded);
+			}
 			startClashDetection(session);
 		} catch (OutOfMemoryError e) {
 			bimServer.getServerInfo().setOutOfMemory();

@@ -100,7 +100,7 @@ public class Database implements BimDatabase {
 	 * database-schema change Do not change this variable when nothing has
 	 * changed in the schema!
 	 */
-	public static final int APPLICATION_SCHEMA_VERSION = 8;
+	public static final int APPLICATION_SCHEMA_VERSION = 9;
 
 	public Database(BimServer bimServer, Set<? extends EPackage> emfPackages, ColumnDatabase columnDatabase) throws DatabaseInitException {
 		this.bimServer = bimServer;
