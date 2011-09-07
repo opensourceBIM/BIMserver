@@ -667,9 +667,9 @@ public class SceneJSSerializer extends BimModelSerializer {
         
         writer.writeln("clearColor: {");
 		writer.indent();
-		writer.writeln("r: 0.0,"); 
-		writer.writeln("g: 0.0,"); 
-		writer.writeln("b: 0.0,");
+		writer.writeln("r: 0.2,"); 
+		writer.writeln("g: 0.2,"); 
+		writer.writeln("b: 0.2,");
 		writer.writeln("a: 0.0,");
         writer.unindent();
 		writer.writeln("},"); // clearColor 
@@ -686,9 +686,9 @@ public class SceneJSSerializer extends BimModelSerializer {
 		
 		writer.writeln("color: {");
 		writer.indent();
-		writer.writeln("r: 1.0,"); 
-		writer.writeln("g: 1.0,"); 
-		writer.writeln("b: 1.0,");
+		writer.writeln("r: 0.8,"); 
+		writer.writeln("g: 0.8,"); 
+		writer.writeln("b: 0.8,");
 		writer.unindent();
         writer.writeln("},"); // color
         
@@ -706,6 +706,14 @@ public class SceneJSSerializer extends BimModelSerializer {
 	
 		// Output each geometry instance grouped by material
 		for (String materialId : materialGeometryRel.keySet()) {
+			writer.writeln("{");
+			writer.indent();
+			
+			writer.writeln("type: 'tag',");
+			writer.writeln("tag: '" + materialId + "',");
+			
+			writer.writeln("nodes: [");
+			writer.indent();
 			writer.writeln("{");
 			writer.indent();
 			
@@ -730,6 +738,11 @@ public class SceneJSSerializer extends BimModelSerializer {
 			
 			writer.unindent();
 			writer.writeln("},"); // material
+			
+			writer.unindent();
+			writer.writeln("],");
+			writer.unindent();
+			writer.writeln("},"); // tag
 		}
 		
 		writer.unindent();
