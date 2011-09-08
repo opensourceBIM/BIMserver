@@ -88,8 +88,9 @@ public class SceneJSSerializer extends BimModelSerializer {
 		public float[] max = { Float.NEGATIVE_INFINITY, Float.NEGATIVE_INFINITY, Float.NEGATIVE_INFINITY };
 	}
 	private Extents sceneExtents = new Extents();
-	private Map<String, Extents> geometryExtents = new HashMap<String, Extents>();
-	private Map<String, Set<String>> materialGeometryRel = new HashMap<String, Set<String>>();
+	private HashMap<String, Extents> geometryExtents = new HashMap<String, Extents>();
+	private HashMap<String, HashMap<String, HashSet<String>>> typeMaterialGeometryRel = new HashMap<String, HashMap<String, HashSet<String>>>();
+	//private  materialGeometryRel = new HashMap<String, Set<String>>();
 	private List<String> surfaceStyleIds;
 	
 	/** 
@@ -423,23 +424,24 @@ public class SceneJSSerializer extends BimModelSerializer {
 		}
 	}
 
-	private void setGeometry(JsWriter writer, IdEObject ifcRootObject, String id, String material) throws IfcEngineException, SerializerException {
+	private void setGeometry(JsWriter writer, IdEObject ifcRootObject, String id, String ifcObjectType) throws IfcEngineException, SerializerException {
 		id = id.replace('$', '-'); // Remove the $ character from geometry id's.
 		//id = "_" + id; // Ensure that the id does not start with a digit
-
+		
 		boolean materialFound = false;
+		String material = ifcObjectType;
 		if (ifcRootObject instanceof IfcProduct) {
 			IfcProduct ifcProduct = (IfcProduct) ifcRootObject;
 
 			// If this product is composed of other objects, output each object separately
 			EList<IfcRelDecomposes> isDecomposedBy = ifcProduct.getIsDecomposedBy();
-			for (IfcRelDecomposes dcmp : isDecomposedBy) {
-				EList<IfcObjectDefinition> relatedObjects = dcmp.getRelatedObjects();
-				for (IfcObjectDefinition relatedObject : relatedObjects) {
-					setGeometry(writer, relatedObject, relatedObject.getGlobalId().getWrappedValue(), material);
-				}
-			}
 			if (isDecomposedBy != null && isDecomposedBy.size() > 0) {
+				for (IfcRelDecomposes dcmp : isDecomposedBy) {
+					EList<IfcObjectDefinition> relatedObjects = dcmp.getRelatedObjects();
+					for (IfcObjectDefinition relatedObject : relatedObjects) {
+						setGeometry(writer, relatedObject, relatedObject.getGlobalId().getWrappedValue(), ifcObjectType);
+					}
+				}
 				return;
 			}
 
@@ -519,7 +521,15 @@ public class SceneJSSerializer extends BimModelSerializer {
 			}
 		}
 
-		// Add the object id to the related material in the hash map 
+		// Add the object id to the related ifc type & material in the hash map
+		HashMap<String, HashSet<String>> materialGeometryRel = null; 
+		if (!typeMaterialGeometryRel.containsKey(ifcObjectType)) {
+			materialGeometryRel = new HashMap<String, HashSet<String>>();
+			typeMaterialGeometryRel.put(ifcObjectType, materialGeometryRel);
+		} else {
+			materialGeometryRel = typeMaterialGeometryRel.get(ifcObjectType);
+		}
+		
 		if (!materialGeometryRel.containsKey(material)) {
 			materialGeometryRel.put(material, new HashSet<String>());
 		}
@@ -705,46 +715,48 @@ public class SceneJSSerializer extends BimModelSerializer {
 		writer.writeln("},"); // light
 	
 		// Output each geometry instance grouped by material
-		for (String materialId : materialGeometryRel.keySet()) {
+		for (String ifcObjectType : typeMaterialGeometryRel.keySet()) {
 			writer.writeln("{");
 			writer.indent();
 			
 			writer.writeln("type: 'tag',");
-			writer.writeln("tag: '" + materialId.toLowerCase() + "',");
+			writer.writeln("tag: '" + ifcObjectType.toLowerCase() + "',");
 			
 			writer.writeln("nodes: [");
 			writer.indent();
-			writer.writeln("{");
-			writer.indent();
 			
-			writer.writeln("type: 'material',");
-			writer.writeln("coreId: '" + materialId + "Material',");
-			
-			Set<String> geometryIds = materialGeometryRel.get(materialId);
-			
-			writer.writeln("nodes: [");
-			writer.indent();
-			for (String geometryId : geometryIds) {
+			HashMap<String, HashSet<String>> materialGeometryRel = typeMaterialGeometryRel.get(ifcObjectType);
+			for (String materialId : materialGeometryRel.keySet()) {
 				writer.writeln("{");
 				writer.indent();
 				
-				writer.writeln("type: 'geometry',");
-				writer.writeln("coreId: '" + geometryId + "',");
+				writer.writeln("type: 'material',");
+				writer.writeln("coreId: '" + materialId + "Material',");
+				
+				Set<String> geometryIds = materialGeometryRel.get(materialId);
+				
+				writer.writeln("nodes: [");
+				writer.indent();
+				for (String geometryId : geometryIds) {
+					writer.writeln("{");
+					writer.indent();
+					
+					writer.writeln("type: 'geometry',");
+					writer.writeln("coreId: '" + geometryId + "',");
+					writer.unindent();
+					writer.writeln("},"); // geometry
+				}
 				writer.unindent();
-				writer.writeln("},"); // geometry
+				writer.writeln("],");
+				
+				writer.unindent();
+				writer.writeln("},"); // material
 			}
-			writer.unindent();
-			writer.writeln("],");
-			
-			writer.unindent();
-			writer.writeln("},"); // material
-			
 			writer.unindent();
 			writer.writeln("],");
 			writer.unindent();
 			writer.writeln("},"); // tag
 		}
-		
 		writer.unindent();
 		writer.writeln("],");
 		
