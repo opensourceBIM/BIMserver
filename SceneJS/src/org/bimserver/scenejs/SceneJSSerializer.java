@@ -205,6 +205,12 @@ public class SceneJSSerializer extends BimModelSerializer {
 					writer.writeln("unit: \'" + Math.pow(10.0, lengthUnitPrefix.getValue()) + " " + lengthUnitPrefix.name().toLowerCase() + "\',");
 				}
 
+				writer.writetab("ifcTypes: [");
+				for (String ifcObjectType : typeMaterialGeometryRel.keySet()) {
+					writer.print("'" + ifcObjectType + "',");
+				}
+				writer.println("]");
+				
 				writer.unindent();
 				writer.writeln("},");
 
