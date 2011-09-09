@@ -40,7 +40,6 @@ public class ReflectiveRpcChannel implements BlockingRpcChannel {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ReflectiveRpcChannel.class);
 	private final ServiceFactory serviceFactory;
 	private ServiceInterface service;
-//	private final Map<Class<?>, Map<String, Set<Method>>> cachedMethods = new HashMap<Class<?>, Map<String, Set<Method>>>();
 
 	public ReflectiveRpcChannel(ServiceFactory serviceFactory) {
 		this.serviceFactory = serviceFactory;
@@ -55,28 +54,6 @@ public class ReflectiveRpcChannel implements BlockingRpcChannel {
 			LOGGER.error("", e);
 		}
 		return null;
-//		if (cachedMethods.containsKey(clazz)) {
-//			Map<String, Set<Method>> map = cachedMethods.get(clazz);
-//			if (map.containsKey(methodName)) {
-//				for (Method method : map.get(methodName)) {
-//					if (ArrayUtils.isEquals(method.getParameterTypes(), parameterClasses)) {
-//						return method;
-//					}
-//				}
-//			} else {
-//				map.put(methodName, new HashSet<Method>());
-//			}
-//			for (Method method : clazz.getMethods()) {
-//				if (method.getName().equals(methodName) && ArrayUtils.isEquals(method.getParameterTypes(), parameterClasses)) {
-//					map.get(methodName).add(method);
-//					return method;
-//				}
-//			}
-//			return null;
-//		} else {
-//			cachedMethods.put(clazz, new HashMap<String, Set<Method>>());
-//			return getMethod(clazz, methodName);
-//		}
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -84,9 +61,6 @@ public class ReflectiveRpcChannel implements BlockingRpcChannel {
 	public Message callBlockingMethod(MethodDescriptor methodDescriptor, RpcController controller, Message request, Message responsePrototype) throws ServiceException {
 		if (service == null) {
 			service = serviceFactory.newService(AccessMethod.INTERNAL);
-		}
-		if (methodDescriptor.getName().equals("getDownloadData")) {
-			System.out.println();
 		}
 		Class<? extends ServiceInterface> clazz = service.getClass();
 		Class<?>[] parameterClasses = new Class[methodDescriptor.getInputType().getFields().size()];
