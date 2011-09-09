@@ -1,12 +1,14 @@
 package org.bimserver;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.lang.Thread.UncaughtExceptionHandler;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.GregorianCalendar;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.Executors;
@@ -44,7 +46,6 @@ import org.bimserver.models.store.Serializer;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.notifications.NotificationsManager;
-import org.bimserver.pb.ProtocolBuffersService;
 import org.bimserver.pb.server.ReflectiveRpcChannel;
 import org.bimserver.plugins.Plugin;
 import org.bimserver.plugins.PluginChangeListener;
@@ -68,6 +69,15 @@ import org.bimserver.webservices.ServiceFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.google.protobuf.BlockingService;
+import com.google.protobuf.DescriptorProtos.FileDescriptorProto;
+import com.google.protobuf.DescriptorProtos.FileDescriptorSet;
+import com.google.protobuf.Descriptors.FileDescriptor;
+import com.google.protobuf.Descriptors.MethodDescriptor;
+import com.google.protobuf.Descriptors.ServiceDescriptor;
+import com.google.protobuf.Message;
+import com.google.protobuf.RpcController;
+import com.google.protobuf.ServiceException;
 import com.googlecode.protobuf.socketrpc.RpcServer;
 import com.googlecode.protobuf.socketrpc.SocketRpcConnectionFactories;
 
@@ -156,7 +166,8 @@ public class BimServer {
 					@Override
 					public void pluginStateChanged(PluginContext pluginContext, boolean enabled) {
 						// Reflect this change also in the database
-						Condition pluginCondition = new AttributeCondition(StorePackage.eINSTANCE.getPlugin_Name(), new StringLiteral(pluginContext.getPlugin().getClass().getName()));
+						Condition pluginCondition = new AttributeCondition(StorePackage.eINSTANCE.getPlugin_Name(), new StringLiteral(pluginContext.getPlugin().getClass()
+								.getName()));
 						BimDatabaseSession session = bimDatabase.createSession(true);
 						try {
 							Map<Long, org.bimserver.models.store.Plugin> pluginsFound = session.query(pluginCondition, org.bimserver.models.store.Plugin.class, false);
@@ -225,7 +236,7 @@ public class BimServer {
 		}
 
 		notificationsManager = new NotificationsManager(this);
-		
+
 		settingsManager = new SettingsManager(bimDatabase);
 		serverInfo.init(this);
 		serverInfo.update();
@@ -271,9 +282,19 @@ public class BimServer {
 		bimScheduler.start();
 
 		protocolBuffersRpcServer = new RpcServer(SocketRpcConnectionFactories.createServerRpcConnectionFactory(8020), Executors.newFixedThreadPool(10), false);
-		protocolBuffersRpcServer.registerBlockingService(ProtocolBuffersService.ServiceInterface.newReflectiveBlockingService(ProtocolBuffersService.ServiceInterface
-				.newBlockingStub(new ReflectiveRpcChannel(serviceFactory))));
-		protocolBuffersRpcServer.startServer();
+
+		try {
+			FileDescriptorSet descriptorSet = FileDescriptorSet.parseFrom(new FileInputStream(resourceFetcher.getFile("service.desc")));
+			List<FileDescriptorProto> fileList = descriptorSet.getFileList();
+			FileDescriptorProto fileDescriptorProto = fileList.get(0);
+			final FileDescriptor fileDescriptor = FileDescriptor.buildFrom(fileDescriptorProto, new FileDescriptor[]{});
+			final ReflectiveRpcChannel reflectiveRpcChannel = new ReflectiveRpcChannel(serviceFactory);
+			BlockingService blockingService = new ProtocolBuffersBlockingService(fileDescriptor, reflectiveRpcChannel);
+			protocolBuffersRpcServer.registerBlockingService(blockingService);
+			protocolBuffersRpcServer.startServer();
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
 
 		// if (serverType == ServerType.DEPLOYED_WAR) {
 		// File libDir = new File(classPath);
@@ -528,7 +549,7 @@ public class BimServer {
 	public CompareCache getCompareCache() {
 		return compareCache;
 	}
-	
+
 	public NotificationsManager getNotificationsManager() {
 		return notificationsManager;
 	}

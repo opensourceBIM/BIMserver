@@ -110,9 +110,9 @@ public class TestClientEmfModel {
 	@Test
 	public void test() {
 		bimServerClient = new BimServerClient();
-		bimServerClient.connectSoap("http://localhost:8082/soap");
+//		bimServerClient.connectSoap("http://localhost:8082/soap");
 		bimServerClient.connectProtocolBuffers("localhost", 8020);
-		bimServerClient.connectDirect(bimServer.getSystemService());
+//		bimServerClient.connectDirect(bimServer.getSystemService());
 		try {
 			bimServerClient.login("admin@bimserver.org", "admin");
 			session = bimServerClient.createSession();

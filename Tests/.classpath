@@ -70,5 +70,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/IfcPlugins"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/BimServerClientLib"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/BimWebServer"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/GeneratedProtocolBuffersClient"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

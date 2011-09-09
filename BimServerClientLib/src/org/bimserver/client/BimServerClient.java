@@ -14,6 +14,11 @@ import org.bimserver.shared.ServerException;
 import org.bimserver.shared.ServiceInterface;
 import org.bimserver.shared.UserException;
 
+import com.google.protobuf.BlockingRpcChannel;
+import com.googlecode.protobuf.socketrpc.RpcChannels;
+import com.googlecode.protobuf.socketrpc.SocketRpcConnectionFactories;
+import com.googlecode.protobuf.socketrpc.SocketRpcController;
+
 public class BimServerClient {
 	private ServiceInterface serviceInterface;
 
@@ -24,8 +29,13 @@ public class BimServerClient {
 		this.serviceInterface = serviceInterface;
 	}
 	
-	public void connectProtocolBuffers(String host, int port) {
-		serviceInterface = new ProtocolBuffersServiceInterfaceImplementation(host, port);
+	public void connectProtocolBuffers(String address, int port) {
+		SocketRpcController rpcController;
+		BlockingRpcChannel rpcChannel = RpcChannels.newBlockingRpcChannel(SocketRpcConnectionFactories.createRpcConnectionFactory(address, port));
+		rpcController = new SocketRpcController();
+
+		Reflector reflector = new Reflector(rpcController, rpcChannel);
+		serviceInterface = new ProtocolBuffersServiceInterfaceImplementation(reflector);
 	}
 	
 	public void connectSoap(final String address) {

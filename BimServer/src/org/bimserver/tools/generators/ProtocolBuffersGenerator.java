@@ -44,25 +44,72 @@ public class ProtocolBuffersGenerator {
 	}
 
 	public void start() {
-		File protoFile = new File("../Builds/build/pb/service.proto");
-		generateProtoFile(protoFile);
-		generateProtocolBuffersImplementation(protoFile);
-		generateProtocolBuffersImplementation(new File("../Builds/build/pb/listener.proto"));
-		generateServiceInterfaceImplementation();
-	}
-
-	private void generateProtocolBuffersImplementation(File protoFile) {
+		File serviceProtoFile = new File("../Builds/build/pb/service.proto");
+		File listenerProtoFile = new File("../Builds/build/pb/listener.proto");
+		generateProtoFile(serviceProtoFile);
+		File protoDestFile = new File("../Builds/build/pb/service.desc");
+		
+		generateProtocolBuffersImplementation(serviceProtoFile, protoDestFile, true);
+		
 		try {
-			FileUtils.copyFile(protoFile, new File("../Builds/build/targets/shared/service.proto"));
+			FileUtils.copyFile(protoDestFile, new File("../BimServerClientLib/src/" + protoDestFile.getName()));
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
-		File destDir = new File("../BimServer/generated");
-		File protoDir = new File("../Builds//build/pb");
+		
+		generateProtocolBuffersImplementation(listenerProtoFile, new File("../Builds/build/pb/listener.desc"), true);
+		generateServiceInterfaceImplementation();
+		generateServiceInterfaceImplementation2();
+	}
+
+	private void generateServiceInterfaceImplementation2() {
+		File file = new File("../BimServerClientLib/generated/org/bimserver/pb/ProtocolBuffersServiceInterfaceImplementation.java");
+		try {
+			PrintWriter out = new PrintWriter(file);
+			out.println("package org.bimserver.pb;\n");
+			out.println("import org.bimserver.client.Reflector;\n");
+			out.println("@SuppressWarnings(\"unused\")");
+			out.println("public class ProtocolBuffersServiceInterfaceImplementation implements org.bimserver.shared.ServiceInterface {\n");
+			out.println("private Reflector reflector;\n");
+			out.println("public ProtocolBuffersServiceInterfaceImplementation(Reflector reflector) {this.reflector = reflector;}");
+			for (Method method : ServiceInterface.class.getMethods()) {
+				out.println("public " + method.getReturnType().getName() + " " + method.getName() + "(");
+				int i=0;
+				StringBuilder sb1 = new StringBuilder();
+				StringBuilder sb2 = new StringBuilder();
+				for (Class<?> type : method.getParameterTypes()) {
+					sb1.append(type.getName().replace("$", ".") + " arg" + i + (i < method.getParameterTypes().length-1 ? ", " : ""));
+					sb2.append("arg" + i +  (i < method.getParameterTypes().length-1 ? ", " : ""));
+					i++;
+				}
+				out.println(sb1.toString() + ") {");
+				if (method.getReturnType() == void.class) {
+					out.println("reflector.callMethod(\"" + method.getName() + "\"" + (method.getParameterTypes().length > 0 ? ", " : "") + sb2.toString() + ");");
+				} else {
+					out.println("return (" + method.getReturnType().getName() + ") reflector.callMethod(\"" + method.getName() + "\"" + (method.getParameterTypes().length > 0 ? (", " + sb2.toString()) : "") + ");");
+				}
+				out.println("}");
+			}
+			out.println("}");
+			out.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void generateProtocolBuffersImplementation(File protoFile, File protoDestFile, boolean javaOut) {
+		File destDir = new File("../GeneratedProtocolBuffersClient/generated");
+		File protoDir = new File("../Builds/build/pb");
 		File execFile = new File("../Builds/build/pb/protoc.exe");
 		try {
-			ProcessBuilder processBuilder = new ProcessBuilder(execFile.getAbsolutePath(), "-I=" + protoDir.getAbsolutePath(), "--java_out=" + destDir.getAbsolutePath(), protoFile
-					.getAbsolutePath());
+			ProcessBuilder processBuilder = null;
+			if (javaOut) {
+				processBuilder = new ProcessBuilder(execFile.getAbsolutePath(), "-I=" + protoDir.getAbsolutePath(), "--java_out=" + destDir.getAbsolutePath(), "--descriptor_set_out=" + protoDestFile.getAbsolutePath(), protoFile
+						.getAbsolutePath());
+			} else {
+				processBuilder = new ProcessBuilder(execFile.getAbsolutePath(), "-I=" + protoDir.getAbsolutePath(), "--descriptor_set_out=" + protoDestFile.getAbsolutePath(), protoFile
+						.getAbsolutePath());
+			}
 			final Process exec = processBuilder.start();
 			new Thread(new Runnable() {
 				@Override
@@ -101,10 +148,15 @@ public class ProtocolBuffersGenerator {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		try {
+			FileUtils.copyFile(protoDestFile, new File("../Builds/build/targets/shared/" + protoDestFile.getName()));
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
 	}
 
 	private void generateServiceInterfaceImplementation() {
-		File file = new File("generated/org/bimserver/pb/ProtocolBuffersServiceInterfaceImplementation.java");
+		File file = new File("../BimServerClientLib/generated/org/bimserver/pb/ProtocolBuffersServiceInterfaceImplementation.java");
 		try {
 			PrintWriter out = new PrintWriter(file);
 			out.println("package org.bimserver.pb;\n");
@@ -400,8 +452,13 @@ public class ProtocolBuffersGenerator {
 				out.close();
 			}
 		}
-	}
+		try {
+			FileUtils.copyFile(protoFile, new File("../Builds/build/targets/shared/" + protoFile.getName()));
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
 
+	}
 	private void generateVoidMessage(StringBuilder builder) {
 		builder.append("message Void {\n}");
 	}
