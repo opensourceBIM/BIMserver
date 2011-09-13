@@ -475,6 +475,7 @@ public class ProtocolBuffersGenerator {
 	private void createResponseMessage(StringBuilder builder, Method method, String messageName) {
 		StringBuilder messageBuilder = new StringBuilder();
 		messageBuilder.append("message " + messageName + " {\n");
+		messageBuilder.append("\toptional string errorMessage = 1;\n");
 		messageBuilder.append("\t");
 		boolean aggregate = method.getReturnType().isAssignableFrom(List.class) || method.getReturnType().isAssignableFrom(Set.class);
 		if (aggregate) {
@@ -487,7 +488,6 @@ public class ProtocolBuffersGenerator {
 			returnType = getGenericReturnType(method);
 		}
 		messageBuilder.append(createMessage(builder, returnType) + " value = 2;\n");
-		messageBuilder.append("\toptional string errorMessage = 1;\n");
 		messageBuilder.append("}\n\n");
 		builder.append(messageBuilder);
 	}

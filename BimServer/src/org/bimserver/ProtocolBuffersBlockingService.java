@@ -3,12 +3,14 @@ package org.bimserver;
 import org.bimserver.pb.server.ReflectiveRpcChannel;
 
 import com.google.protobuf.BlockingService;
+import com.google.protobuf.DescriptorProtos.FileDescriptorProto;
 import com.google.protobuf.Descriptors.FileDescriptor;
+import com.google.protobuf.Descriptors.MethodDescriptor;
+import com.google.protobuf.Descriptors.ServiceDescriptor;
+import com.google.protobuf.DynamicMessage;
 import com.google.protobuf.Message;
 import com.google.protobuf.RpcController;
 import com.google.protobuf.ServiceException;
-import com.google.protobuf.Descriptors.MethodDescriptor;
-import com.google.protobuf.Descriptors.ServiceDescriptor;
 
 public class ProtocolBuffersBlockingService implements BlockingService {
 	private final FileDescriptor fileDescriptor;
@@ -37,7 +39,8 @@ public class ProtocolBuffersBlockingService implements BlockingService {
 		if (method.getService() != getDescriptorForType()) {
 			throw new java.lang.IllegalArgumentException("Service.getRequestPrototype() given method " + "descriptor for wrong service type.");
 		}
-		return getDescriptorForType().getMethods().get(method.getIndex()).getInputType().toProto().getDefaultInstanceForType();
+		MethodDescriptor methodDescriptor = getDescriptorForType().getMethods().get(method.getIndex());
+		return DynamicMessage.getDefaultInstance(methodDescriptor.getInputType());
 	}
 
 	@Override
@@ -45,6 +48,7 @@ public class ProtocolBuffersBlockingService implements BlockingService {
 		if (method.getService() != getDescriptorForType()) {
 			throw new java.lang.IllegalArgumentException("Service.getRequestPrototype() given method " + "descriptor for wrong service type.");
 		}
-		return getDescriptorForType().getMethods().get(method.getIndex()).getOutputType().toProto().getDefaultInstanceForType();
+		MethodDescriptor methodDescriptor = getDescriptorForType().getMethods().get(method.getIndex());
+		return DynamicMessage.getDefaultInstance(methodDescriptor.getOutputType());
 	}
 }

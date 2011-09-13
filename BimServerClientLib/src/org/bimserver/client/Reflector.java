@@ -17,6 +17,7 @@ import com.google.protobuf.Descriptors.MethodDescriptor;
 import com.google.protobuf.Descriptors.ServiceDescriptor;
 import com.google.protobuf.DynamicMessage;
 import com.google.protobuf.DynamicMessage.Builder;
+import com.google.protobuf.Message;
 import com.google.protobuf.ServiceException;
 import com.googlecode.protobuf.socketrpc.SocketRpcController;
 
@@ -45,6 +46,15 @@ public class Reflector {
 		}
 	}
 
+	private FieldDescriptor getFieldDescriptor(Descriptor descriptor, String fieldName) {
+		for (FieldDescriptor fieldDescriptor : descriptor.getFields()) {
+			if (fieldDescriptor.getName().equals(fieldName)) {
+				return fieldDescriptor;
+			}
+		}
+		return null;
+	}
+	
 	public Object callMethod(String name, Object... args) throws ServerException {
 		for (MethodDescriptor methodDescriptor : serviceDescriptor.getMethods()) {
 			if (methodDescriptor.getName().equals(name)) {
@@ -56,7 +66,14 @@ public class Reflector {
 				}
 				DynamicMessage message = builder.build();
 				try {
-					return rpcChannel.callBlockingMethod(methodDescriptor, rpcController, message, methodDescriptor.getOutputType().toProto().getDefaultInstanceForType());
+					Message result = rpcChannel.callBlockingMethod(methodDescriptor, rpcController, message, DynamicMessage.getDefaultInstance(methodDescriptor.getOutputType()));
+					String errorMessage = (String) result.getField(getFieldDescriptor(result.getDescriptorForType(), "errorMessage"));
+					System.out.println(errorMessage);
+					Object value = result.getField(getFieldDescriptor(result.getDescriptorForType(), "value"));
+					if (value instanceof DynamicMessage) {
+						
+					}
+					return value;
 				} catch (ServiceException e) {
 					throw new ServerException(e.getMessage());
 				}

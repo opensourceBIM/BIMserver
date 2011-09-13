@@ -24,6 +24,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.google.protobuf.BlockingService;
+import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.google.protobuf.Message;
 import com.google.protobuf.RpcCallback;
@@ -206,8 +207,9 @@ class RpcForwarder {
       Message requestPrototype) throws RpcException {
     Message.Builder builder;
     try {
-      builder = requestPrototype.newBuilderForType()
-          .mergeFrom(rpcRequest.getRequestProto());
+      com.google.protobuf.Message.Builder newBuilderForType = requestPrototype.newBuilderForType();
+      ByteString requestProto = rpcRequest.getRequestProto();
+      builder = newBuilderForType.mergeFrom(requestProto);
       if (!builder.isInitialized()) {
         throw new RpcException(ErrorReason.BAD_REQUEST_PROTO,
             "Invalid request proto", null);
