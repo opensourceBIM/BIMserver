@@ -26,16 +26,25 @@ public class ProtocolBuffersBlockingService implements BlockingService {
 
 	@Override
 	public Message callBlockingMethod(MethodDescriptor method, RpcController controller, Message request) throws ServiceException {
+		if (method.getService() != getDescriptorForType()) {
+			throw new java.lang.IllegalArgumentException("Service.callBlockingMethod() given method descriptor for " + "wrong service type.");
+		}
 		return reflectiveRpcChannel.callBlockingMethod(method, controller, request, getResponsePrototype(method));
 	}
 
 	@Override
 	public Message getRequestPrototype(MethodDescriptor method) {
-		return method.getInputType().toProto().getDefaultInstanceForType();
+		if (method.getService() != getDescriptorForType()) {
+			throw new java.lang.IllegalArgumentException("Service.getRequestPrototype() given method " + "descriptor for wrong service type.");
+		}
+		return getDescriptorForType().getMethods().get(method.getIndex()).getInputType().toProto().getDefaultInstanceForType();
 	}
 
 	@Override
 	public Message getResponsePrototype(MethodDescriptor method) {
-		return method.getOutputType().toProto().getDefaultInstanceForType();
+		if (method.getService() != getDescriptorForType()) {
+			throw new java.lang.IllegalArgumentException("Service.getRequestPrototype() given method " + "descriptor for wrong service type.");
+		}
+		return getDescriptorForType().getMethods().get(method.getIndex()).getOutputType().toProto().getDefaultInstanceForType();
 	}
 }

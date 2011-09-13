@@ -7,6 +7,7 @@ import java.util.Set;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.models.ifc2x3.Ifc2x3Factory;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
+import org.bimserver.shared.ServiceException;
 import org.bimserver.shared.ServiceInterface;
 import org.bimserver.shared.UserException;
 import org.eclipse.emf.ecore.EAttribute;
@@ -33,7 +34,7 @@ public class Session {
 			Long oid = serviceInterface.createObject(cl.getSimpleName());
 			newObjects.add(eObject);
 			eObject.setOid(oid);
-		} catch (UserException e) {
+		} catch (ServiceException e) {
 			e.printStackTrace();
 		}
 		return (T) eObject;
@@ -42,7 +43,7 @@ public class Session {
 	public void startTransaction(int pid) {
 		try {
 			serviceInterface.startTransaction(pid);
-		} catch (UserException e) {
+		} catch (ServiceException e) {
 			e.printStackTrace();
 		}
 	}
@@ -100,7 +101,7 @@ public class Session {
 				}
 			}
 			return serviceInterface.commitTransaction();
-		} catch (UserException e) {
+		} catch (ServiceException e) {
 			e.printStackTrace();
 		}
 		return -1;

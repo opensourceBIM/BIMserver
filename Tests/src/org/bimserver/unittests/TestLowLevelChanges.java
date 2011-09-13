@@ -34,9 +34,8 @@ import org.bimserver.plugins.deserializers.EmfDeserializer;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
 import org.bimserver.shared.SDownloadResult;
-import org.bimserver.shared.ServerException;
+import org.bimserver.shared.ServiceException;
 import org.bimserver.shared.ServiceInterface;
-import org.bimserver.shared.UserException;
 import org.eclipse.emf.common.util.EList;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -74,15 +73,13 @@ public class TestLowLevelChanges {
 			bimServer.getSettingsManager().getSettings().setAllowUsersToCreateTopLevelProjects(true);
 		} catch (PluginException e) {
 			e.printStackTrace();
-		} catch (ServerException e) {
+		} catch (ServiceException e) {
 			e.printStackTrace();
 		} catch (DatabaseInitException e) {
 			e.printStackTrace();
 		} catch (BimDatabaseException e) {
 			e.printStackTrace();
 		} catch (DatabaseRestartRequiredException e) {
-			e.printStackTrace();
-		} catch (UserException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -106,9 +103,7 @@ public class TestLowLevelChanges {
 			service.changePassword(addUser, null, "test");
 			service.login(username, "test");
 			return addUser;
-		} catch (UserException e) {
-			e.printStackTrace();
-		} catch (ServerException e) {
+		} catch (ServiceException e) {
 			e.printStackTrace();
 		}
 		return -1;
@@ -118,9 +113,7 @@ public class TestLowLevelChanges {
 		try {
 			SProject project = service.addProject("Project " + new Random().nextInt());
 			return project.getId();
-		} catch (UserException e) {
-			e.printStackTrace();
-		} catch (ServerException e) {
+		} catch (ServiceException e) {
 			e.printStackTrace();
 		}
 		return -1;
@@ -288,7 +281,7 @@ public class TestLowLevelChanges {
 		}
 	}
 	
-	private IfcModelInterface getSingleRevision(long roid) throws UserException, ServerException, DeserializeException, IOException {
+	private IfcModelInterface getSingleRevision(long roid) throws ServiceException, DeserializeException, IOException {
 		SRevision revision = service.getRevision(roid);
 		SSerializer serializerByContentType = service.getSerializerByContentType("application/ifc");
 		int downloadId = service.download(revision.getOid(), serializerByContentType.getName(), true);
