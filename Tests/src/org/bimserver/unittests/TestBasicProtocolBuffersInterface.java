@@ -48,8 +48,6 @@ import org.bimserver.pb.ProtocolBuffersService.ServiceInterface;
 import org.bimserver.pb.ProtocolBuffersService.ServiceInterface.BlockingInterface;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
-import org.bimserver.shared.ServerException;
-import org.bimserver.shared.UserException;
 import org.bimserver.tests.TestFile;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -92,9 +90,7 @@ public class TestBasicProtocolBuffersInterface {
 
 			// Change a setting to normal users can create projects
 			bimServer.getSettingsManager().getSettings().setAllowUsersToCreateTopLevelProjects(true);
-		} catch (ServerException e) {
-			e.printStackTrace();
-		} catch (UserException e) {
+		} catch (org.bimserver.shared.ServiceException e) {
 			e.printStackTrace();
 		} catch (PluginException e) {
 			e.printStackTrace();
@@ -217,7 +213,7 @@ public class TestBasicProtocolBuffersInterface {
 		BlockingRpcChannel rpcChannel = RpcChannels.newBlockingRpcChannel(SocketRpcConnectionFactories.createRpcConnectionFactory("localhost", 8020));
 		SocketRpcController rpcController = new SocketRpcController();
 		BlockingInterface service = ServiceInterface.newBlockingStub(rpcChannel);
-		
+
 		GetProjectsByNameRequest.Builder getProjectByNameRequestBuilder = GetProjectsByNameRequest.newBuilder();
 		getProjectByNameRequestBuilder.setName(projectName);
 		try {
@@ -231,7 +227,7 @@ public class TestBasicProtocolBuffersInterface {
 			fail(e.getMessage());
 		}
 	}
-	
+
 	/*
 	 * This will list all projects, select the first project with at least one
 	 * revision and dump the names of all walls within the last revision of that
@@ -257,7 +253,8 @@ public class TestBasicProtocolBuffersInterface {
 						if (project.getRevisionsCount() > 0) {
 							GetAllRevisionsOfProjectRequest.Builder getAllRevisionsOfProjectRequestBuilder = GetAllRevisionsOfProjectRequest.newBuilder();
 							getAllRevisionsOfProjectRequestBuilder.setPoid(project.getOid());
-							GetAllRevisionsOfProjectResponse getAllRevisionsOfProjectResponse = service.getAllRevisionsOfProject(rpcController, getAllRevisionsOfProjectRequestBuilder.build());
+							GetAllRevisionsOfProjectResponse getAllRevisionsOfProjectResponse = service.getAllRevisionsOfProject(rpcController,
+									getAllRevisionsOfProjectRequestBuilder.build());
 							if (getAllRevisionsOfProjectResponse.getErrorMessage().equals("OKE")) {
 								for (SRevision revision : getAllRevisionsOfProjectResponse.getValueList()) {
 									GetRevisionSummaryRequest.Builder getRevisionSummaryRequestBuilder = GetRevisionSummaryRequest.newBuilder();
@@ -274,14 +271,14 @@ public class TestBasicProtocolBuffersInterface {
 									} else {
 										fail(getRevisionSummaryResponse.getErrorMessage());
 									}
-									
+
 									DownloadRequest.Builder downloadRequestBuilder = DownloadRequest.newBuilder();
 									downloadRequestBuilder.setRoid(revision.getOid());
 									downloadRequestBuilder.setSync(true);
 									downloadRequestBuilder.setFormatIdentifier("Ifc2x3");
 									DownloadResponse downloadResponse = service.download(rpcController, downloadRequestBuilder.build());
 									if (downloadResponse.getErrorMessage().equals("OKE")) {
-										
+
 									} else {
 										fail(downloadResponse.getErrorMessage());
 									}
@@ -298,7 +295,11 @@ public class TestBasicProtocolBuffersInterface {
 										if (getDownloadDataResponse.getErrorMessage().equals("OKE")) {
 											SDownloadResult downloadResult = getDownloadDataResponse.getValue();
 											ByteString data = downloadResult.getFile();
-											byte[] byteArray = data.toByteArray(); // This is the IFC file
+											byte[] byteArray = data.toByteArray(); // This
+																					// is
+																					// the
+																					// IFC
+																					// file
 											System.out.println("Bytes: " + byteArray.length);
 										} else {
 											fail(getDownloadDataResponse.getErrorMessage());
@@ -322,7 +323,7 @@ public class TestBasicProtocolBuffersInterface {
 			e.printStackTrace();
 		}
 	}
-	
+
 	private ByteString createByteString(File file) {
 		try {
 			FileInputStream fis = new FileInputStream(file);

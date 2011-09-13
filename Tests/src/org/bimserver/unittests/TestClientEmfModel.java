@@ -59,8 +59,7 @@ import org.bimserver.plugins.deserializers.EmfDeserializer;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.shared.SDownloadResult;
-import org.bimserver.shared.ServerException;
-import org.bimserver.shared.UserException;
+import org.bimserver.shared.ServiceException;
 import org.bimserver.web.LocalDevBimWebServerStarter;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -99,9 +98,7 @@ public class TestClientEmfModel {
 		try {
 			SProject project =  bimServerClient.getServiceInterface().addProject("Project " + new Random().nextInt());
 			return project.getId();
-		} catch (UserException e) {
-			e.printStackTrace();
-		} catch (ServerException e) {
+		} catch (ServiceException e) {
 			e.printStackTrace();
 		}
 		return -1;
@@ -124,9 +121,7 @@ public class TestClientEmfModel {
 			IfcStepSerializer serializer = new IfcStepSerializer();
 			serializer.init(model, null, bimServer.getPluginManager());
 			serializer.writeToFile(new File("output/test.ifc"));
-		} catch (UserException e) {
-			e.printStackTrace();
-		} catch (ServerException e) {
+		} catch (ServiceException e) {
 			e.printStackTrace();
 		} catch (DeserializeException e) {
 			e.printStackTrace();
@@ -137,7 +132,7 @@ public class TestClientEmfModel {
 		}
 	}
 
-	private IfcModelInterface getSingleRevision(long roid) throws UserException, ServerException, DeserializeException, IOException {
+	private IfcModelInterface getSingleRevision(long roid) throws ServiceException, DeserializeException, IOException {
 		SRevision revision = bimServerClient.getServiceInterface().getRevision(roid);
 		SSerializer serializerByContentType = bimServerClient.getServiceInterface().getSerializerByContentType("application/ifc");
 		int downloadId = bimServerClient.getServiceInterface().download(revision.getOid(), serializerByContentType.getName(), true);

@@ -11,8 +11,7 @@ import org.bimserver.database.DatabaseRestartRequiredException;
 import org.bimserver.database.berkeley.DatabaseInitException;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
-import org.bimserver.shared.ServerException;
-import org.bimserver.shared.UserException;
+import org.bimserver.shared.ServiceException;
 import org.eclipse.jetty.server.bio.SocketConnector;
 import org.eclipse.jetty.server.session.HashSessionIdManager;
 import org.eclipse.jetty.webapp.WebAppContext;
@@ -63,15 +62,13 @@ public class LocalDevBimWebServerStarter {
 			}
 		} catch (PluginException e1) {
 			e1.printStackTrace();
-		} catch (ServerException e) {
+		} catch (ServiceException e) {
 			e.printStackTrace();
 		} catch (DatabaseInitException e) {
 			e.printStackTrace();
 		} catch (BimDatabaseException e) {
 			e.printStackTrace();
 		} catch (DatabaseRestartRequiredException e) {
-			e.printStackTrace();
-		} catch (UserException e) {
 			e.printStackTrace();
 		}
 		

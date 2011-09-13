@@ -23,9 +23,8 @@ import org.bimserver.models.log.AccessMethod;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
-import org.bimserver.shared.ServerException;
+import org.bimserver.shared.ServiceException;
 import org.bimserver.shared.ServiceInterface;
-import org.bimserver.shared.UserException;
 import org.bimserver.tests.TestFile;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -62,9 +61,7 @@ public class TestEmbeddedBimServer {
 
 			// Change a setting to normal users can create projects
 			bimServer.getSettingsManager().getSettings().setAllowUsersToCreateTopLevelProjects(true);
-		} catch (ServerException e) {
-			e.printStackTrace();
-		} catch (UserException e) {
+		} catch (ServiceException e) {
 			e.printStackTrace();
 		} catch (PluginException e) {
 			e.printStackTrace();
@@ -96,9 +93,7 @@ public class TestEmbeddedBimServer {
 			password = "test";
 			long userId = bimServer.getSystemService().addUser(username, "Test", SUserType.USER, false);
 			bimServer.getSystemService().changePassword(userId, null, password);
-		} catch (ServerException e) {
-			e.printStackTrace();
-		} catch (UserException e) {
+		} catch (ServiceException e) {
 			e.printStackTrace();
 		}
 	}
@@ -114,9 +109,7 @@ public class TestEmbeddedBimServer {
 			SProject project = service.addProject("test " + new Random().nextInt());
 			File sourceFile = TestFile.AC11.getFile();
 			service.checkinSync(project.getOid(), "test", "TODO", sourceFile.length(), new DataHandler(new FileDataSource(sourceFile)), false);
-		} catch (ServerException e) {
-			e.printStackTrace();
-		} catch (UserException e) {
+		} catch (ServiceException e) {
 			e.printStackTrace();
 		}
 	}
@@ -148,11 +141,9 @@ public class TestEmbeddedBimServer {
 					System.out.println(ifcWall.getName());
 				}
 			}
-		} catch (ServerException e) {
+		} catch (ServiceException e) {
 			e.printStackTrace();
 		} catch (BimDatabaseException e) {
-			e.printStackTrace();
-		} catch (UserException e) {
 			e.printStackTrace();
 		} catch (BimDeadlockException e) {
 			e.printStackTrace();

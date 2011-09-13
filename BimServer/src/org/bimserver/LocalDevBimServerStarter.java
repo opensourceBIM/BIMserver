@@ -8,8 +8,7 @@ import org.bimserver.database.DatabaseRestartRequiredException;
 import org.bimserver.database.berkeley.DatabaseInitException;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
-import org.bimserver.shared.ServerException;
-import org.bimserver.shared.UserException;
+import org.bimserver.shared.ServiceException;
 
 public class LocalDevBimServerStarter {
 	public static void main(String[] args) {
@@ -22,9 +21,7 @@ public class LocalDevBimServerStarter {
 			}
 		} catch (PluginException e1) {
 			e1.printStackTrace();
-		} catch (UserException e) {
-			e.printStackTrace();
-		} catch (ServerException e) {
+		} catch (ServiceException e) {
 			e.printStackTrace();
 		} catch (DatabaseInitException e) {
 			e.printStackTrace();

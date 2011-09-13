@@ -63,16 +63,17 @@ public class ReflectiveRpcChannel implements BlockingRpcChannel {
 			service = serviceFactory.newService(AccessMethod.INTERNAL);
 		}
 		Class<? extends ServiceInterface> clazz = service.getClass();
-		Class<?>[] parameterClasses = new Class[methodDescriptor.getInputType().getFields().size()];
+		Descriptor inputType = methodDescriptor.getInputType();
+		Class<?>[] parameterClasses = new Class[inputType.getFields().size()];
 		int ci = 0;
-		for (FieldDescriptor fieldDescriptor : methodDescriptor.getInputType().getFields()) {
+		for (FieldDescriptor fieldDescriptor : inputType.getFields()) {
 			parameterClasses[ci++] = convert(fieldDescriptor);
 		}
 		try {
 			Method method = getMethod(clazz, methodDescriptor.getName(), parameterClasses);
-			Object[] arguments = new Object[methodDescriptor.getInputType().getFields().size()];
+			Object[] arguments = new Object[inputType.getFields().size()];
 			int i = 0;
-			for (FieldDescriptor fieldDescriptor : methodDescriptor.getInputType().getFields()) {
+			for (FieldDescriptor fieldDescriptor : inputType.getFields()) {
 				Object field = request.getField(fieldDescriptor);
 				if (field instanceof EnumValueDescriptor) {
 					EnumValueDescriptor enumValueDescriptor = (EnumValueDescriptor)field;

@@ -10,9 +10,8 @@ import org.apache.cxf.frontend.ClientProxy;
 import org.apache.cxf.jaxws.JaxWsProxyFactoryBean;
 import org.apache.cxf.transport.http.HTTPConduit;
 import org.bimserver.pb.ProtocolBuffersServiceInterfaceImplementation;
-import org.bimserver.shared.ServerException;
+import org.bimserver.shared.ServiceException;
 import org.bimserver.shared.ServiceInterface;
-import org.bimserver.shared.UserException;
 
 import com.google.protobuf.BlockingRpcChannel;
 import com.googlecode.protobuf.socketrpc.RpcChannels;
@@ -56,7 +55,7 @@ public class BimServerClient {
 		http.getClient().setReceiveTimeout(320000);
 	}
 
-	public void login(String username, String password) throws UserException, ServerException {
+	public void login(String username, String password) throws ServiceException {
 		serviceInterface.login(username, password);
 	}
 	
