@@ -9,6 +9,7 @@ import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
 import org.bimserver.database.actions.FindClashesDatabaseAction;
 import org.bimserver.database.actions.SendClashesEmailDatabaseAction;
+import org.bimserver.interfaces.SConverter;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.CheckinState;
 import org.bimserver.models.store.Clash;
@@ -18,7 +19,6 @@ import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
-import org.bimserver.webservices.Converter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -83,7 +83,7 @@ public class ClashDetectionLongAction extends LongAction {
 				String[] emailAddressesArray = new String[emailAddresses.size()];
 				emailAddresses.toArray(emailAddressesArray);
 				
-				SendClashesEmailDatabaseAction sendClashesEmailDatabaseAction = new SendClashesEmailDatabaseAction(bimServer, session, AccessMethod.INTERNAL, actingUoid, poid, Converter.convert(clashDetectionSettings), emailAddresses);
+				SendClashesEmailDatabaseAction sendClashesEmailDatabaseAction = new SendClashesEmailDatabaseAction(bimServer, session, AccessMethod.INTERNAL, actingUoid, poid, new SConverter().convertToSObject(clashDetectionSettings), emailAddresses);
 				sendClashesEmailDatabaseAction.execute();
 			}
 			session.commit();
