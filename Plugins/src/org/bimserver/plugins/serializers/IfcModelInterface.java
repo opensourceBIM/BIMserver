@@ -52,4 +52,5 @@ public interface IfcModelInterface {
 	<T extends EObject> List<T> getAllWithSubTypes(Class<T> interfaceClass);
 	void setChecksum(byte[] digest);
 	boolean contains(long oid);
+	long add(IdEObject eObject);
 }

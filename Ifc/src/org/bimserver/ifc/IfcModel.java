@@ -71,6 +71,7 @@ public class IfcModel implements IfcModelInterface {
 	private Map<EClass, List<? extends EObject>> indexWithSubTypes;
 	private Map<EClass, Map<String, IdEObject>> guidIndex;
 	private Map<EClass, Map<String, IdEObject>> nameIndex;
+	private long oidCounter = 1;
 
 	public IfcModel(BiMap<Long, IdEObject> objects) {
 		this.objects = objects;
@@ -319,6 +320,13 @@ public class IfcModel implements IfcModelInterface {
 		return objects.values();
 	}
 
+	public long add(IdEObject eObject) {
+		long oid = oidCounter++;
+		eObject.setOid(oid);
+		add(oid, eObject, false);
+		return oid;
+	}
+	
 	public void add(long key, IdEObject eObject) {
 		add(key, eObject, false);
 	}
