@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
+import org.bimserver.shared.ProtocolBuffersConverter;
 import org.bimserver.shared.ServerException;
 
 import com.google.protobuf.BlockingRpcChannel;
@@ -21,7 +22,7 @@ import com.google.protobuf.Message;
 import com.google.protobuf.ServiceException;
 import com.googlecode.protobuf.socketrpc.SocketRpcController;
 
-public class Reflector {
+public class Reflector extends ProtocolBuffersConverter {
 
 	private final BlockingRpcChannel rpcChannel;
 	private FileDescriptor fileDescriptor;
@@ -46,15 +47,6 @@ public class Reflector {
 		}
 	}
 
-	private FieldDescriptor getFieldDescriptor(Descriptor descriptor, String fieldName) {
-		for (FieldDescriptor fieldDescriptor : descriptor.getFields()) {
-			if (fieldDescriptor.getName().equals(fieldName)) {
-				return fieldDescriptor;
-			}
-		}
-		return null;
-	}
-	
 	public Object callMethod(String name, Object... args) throws ServerException {
 		for (MethodDescriptor methodDescriptor : serviceDescriptor.getMethods()) {
 			if (methodDescriptor.getName().equals(name)) {
@@ -68,12 +60,17 @@ public class Reflector {
 				try {
 					Message result = rpcChannel.callBlockingMethod(methodDescriptor, rpcController, message, DynamicMessage.getDefaultInstance(methodDescriptor.getOutputType()));
 					String errorMessage = (String) result.getField(getFieldDescriptor(result.getDescriptorForType(), "errorMessage"));
-					System.out.println(errorMessage);
-					Object value = result.getField(getFieldDescriptor(result.getDescriptorForType(), "value"));
-					if (value instanceof DynamicMessage) {
-						
+					if (errorMessage.equals("OKE")) {
+						if (result.getDescriptorForType().getName().equals("VoidResponse")) {
+							return null;
+						} else {
+							Object value = result.getField(getFieldDescriptor(result.getDescriptorForType(), "value"));
+							if (value instanceof DynamicMessage) {
+								return convertProtocolBuffersMessageToSObject((DynamicMessage) value);
+							}
+							return value;
+						}
 					}
-					return value;
 				} catch (ServiceException e) {
 					throw new ServerException(e.getMessage());
 				}

@@ -1,0 +1,140 @@
+<%@ jet package="org.bimserver.tools.generators" imports="org.eclipse.emf.ecore.* java.util.Set org.bimserver.tools.generators.GenerateUtils org.bimserver.utils.StringUtils" class="SConverterGenerator" version="$Id: Class.javajet,v 1.75.2.1 2008/11/03 11:51:41 emerks Exp $" %>
+package org.bimserver.interfaces;
+
+import org.bimserver.interfaces.objects.*;
+import java.util.*;
+import org.bimserver.models.log.*;
+import org.bimserver.models.store.*;
+import org.bimserver.database.BimDatabaseSession;
+
+public class SConverter {
+<%
+	Set<EPackage> ePackages = (Set<EPackage>)argument;
+	for (EPackage ePackage : ePackages) {
+		for (EClassifier eClassifier : ePackage.getEClassifiers()) {
+			if (eClassifier instanceof EClass) {
+				EClass eClass = (EClass)eClassifier;
+%>
+
+	public Set<S<%=eClass.getName()%>> convertToSSet<%=eClass.getName()%>(Collection<<%=eClass.getName()%>> input) {
+		Set<S<%=eClass.getName()%>> result = new HashSet<S<%=eClass.getName()%>>();
+		for (<%=eClass.getName()%> o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<<%=eClass.getName()%>> convertFromSSet<%=eClass.getName()%>(Collection<S<%=eClass.getName()%>> input, BimDatabaseSession session) {
+		Set<<%=eClass.getName()%>> result = new HashSet<<%=eClass.getName()%>>();
+		for (S<%=eClass.getName()%> o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<S<%=eClass.getName()%>> convertToSList<%=eClass.getName()%>(Collection<<%=eClass.getName()%>> input) {
+		List<S<%=eClass.getName()%>> result = new ArrayList<S<%=eClass.getName()%>>();
+		for (<%=eClass.getName()%> o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<<%=eClass.getName()%>> convertFromSList<%=eClass.getName()%>(Collection<S<%=eClass.getName()%>> input, BimDatabaseSession session) {
+		List<<%=eClass.getName()%>> result = new ArrayList<<%=eClass.getName()%>>();
+		for (S<%=eClass.getName()%> o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public S<%=eClass.getName()%> convertToSObject(<%=eClass.getName()%> input) {
+		if (input == null) {
+			return null;
+		}
+		S<%=eClass.getName()%> result = new S<%=eClass.getName()%>();
+		result.setOid(input.getOid());
+<%
+	for (EAttribute eAttribute : eClass.getEAllAttributes()) {
+		if (eAttribute.getEType() instanceof EEnum) {
+%>
+		result.set<%=StringUtils.firstUpperCase(eAttribute.getName())%>(S<%=eAttribute.getEType().getName()%>.values()[input.get<%=StringUtils.firstUpperCase(eAttribute.getName())%>().ordinal()]);
+<%
+		} else {
+%>
+		result.set<%=StringUtils.firstUpperCase(eAttribute.getName())%>(input.<%=eAttribute.getEType() == EcorePackage.eINSTANCE.getEBoolean() ? "is" : "get"%><%=StringUtils.firstUpperCase(eAttribute.getName())%>());
+<%
+		}
+	}
+	for (EReference eReference : eClass.getEAllReferences()) {
+		if (eReference.isMany()) {
+%>
+		List<Long> list<%=eReference.getName()%> = new ArrayList<Long>();
+		for (<%=eReference.getEType().getName()%> v : input.get<%=StringUtils.firstUpperCase(eReference.getName())%>()) {
+			list<%=eReference.getName()%>.add(v.getOid());
+		}
+		result.set<%=StringUtils.firstUpperCase(eReference.getName())%>(list<%=eReference.getName()%>);
+<%		
+		} else {
+%>
+		<%=eReference.getEType().getName()%> <%=eReference.getName()%>Val = input.get<%=StringUtils.firstUpperCase(eReference.getName())%>();
+		result.set<%=StringUtils.firstUpperCase(eReference.getName())%>Id(<%=eReference.getName()%>Val == null ? -1 : <%=eReference.getName()%>Val.getOid());
+<%
+		}
+	}
+%>
+		return result;
+	}
+
+	public <%=eClass.getName()%> convertFromSObject(S<%=eClass.getName()%> input, BimDatabaseSession session) {
+		if (input == null) {
+			return null;
+		}
+		<%=eClass.getName()%> result = <%=StringUtils.firstUpperCase(eClass.getEPackage().getName())%>Factory.eINSTANCE.create<%=eClass.getName()%>();
+		result.setOid(input.getOid());
+<%
+	for (EAttribute eAttribute : eClass.getEAllAttributes()) {
+		if (eAttribute.getEType() instanceof EEnum) {
+%>
+		result.set<%=StringUtils.firstUpperCase(eAttribute.getName())%>(<%=eAttribute.getEType().getName()%>.values()[input.get<%=StringUtils.firstUpperCase(eAttribute.getName())%>().ordinal()]);
+<%
+		} else {
+%>
+		result.set<%=StringUtils.firstUpperCase(eAttribute.getName())%>(input.<%=eAttribute.getEType() == EcorePackage.eINSTANCE.getEBoolean() ? "is" : "get"%><%=StringUtils.firstUpperCase(eAttribute.getName())%>());
+<%
+		}
+	}
+	for (EReference eReference : eClass.getEAllReferences()) {
+		if (eReference.isMany()) {
+%>
+		List<<%=eReference.getEType().getName()%>> list<%=eReference.getName()%> = result.get<%=StringUtils.firstUpperCase(eReference.getName())%>();
+		for (long oid : input.get<%=StringUtils.firstUpperCase(eReference.getName())%>()) {
+			list<%=eReference.getName()%>.add((<%=eReference.getEType().getName()%>)session.get(<%=StringUtils.firstUpperCase(eReference.getEType().getEPackage().getName())%>Package.eINSTANCE.get<%=eReference.getEType().getName()%>(), oid, false));
+		}
+<%		
+		} else {
+%>
+		result.set<%=StringUtils.firstUpperCase(eReference.getName())%>((<%=eReference.getEType().getName()%>)session.get(<%=StringUtils.firstUpperCase(eReference.getEType().getEPackage().getName())%>Package.eINSTANCE.get<%=eReference.getEType().getName()%>(), input.get<%=StringUtils.firstUpperCase(eReference.getName())%>Id(), false));
+<%
+		}
+	}
+%>
+		return result;
+	}
+<%
+		} else if (eClassifier instanceof EEnum) {
+			EEnum eEnum = (EEnum)eClassifier;
+%>
+		public S<%=eEnum.getName()%> convertToSObject(<%=eEnum.getName()%> input) {
+			return S<%=eEnum.getName()%>.values()[input.ordinal()];
+		}
+		
+		public <%=eEnum.getName()%> convertFromSObject(S<%=eEnum.getName()%> input) {
+			return <%=eEnum.getName()%>.values()[input.ordinal()];
+		}
+<%
+		}
+	}
+}
+%>
+}

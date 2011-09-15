@@ -8,10 +8,6 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.util.List;
 
-import org.bimserver.ProtocolBuffersBlockingService;
-import org.bimserver.pb.server.ReflectiveRpcChannel;
-
-import com.google.protobuf.BlockingService;
 import com.google.protobuf.DescriptorProtos.DescriptorProto;
 import com.google.protobuf.DescriptorProtos.DescriptorProto.Builder;
 import com.google.protobuf.DescriptorProtos.FileDescriptorProto;

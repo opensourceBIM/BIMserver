@@ -2,6 +2,7 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="generated"/>
+	<classpathentry kind="src" path="imported"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="/BimServer/lib/cxf/antlr-2.7.7.jar"/>
 	<classpathentry kind="lib" path="/BimServer/lib/cxf/aopalliance-1.0.jar"/>
@@ -25,5 +26,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/Plugins"/>
 	<classpathentry kind="lib" path="/BimServer/lib/guava-r07.jar" sourcepath="/BimServer/libsrc/guava-src-r07.zip"/>
 	<classpathentry kind="lib" path="/BimServer/lib/commons/commons-io-1.4.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Utils"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

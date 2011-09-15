@@ -43,7 +43,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class FindClashesDatabaseAction extends BimDatabaseAction<Set<? extends Clash>> {
+public class FindClashesDatabaseAction<T extends Clash> extends BimDatabaseAction<Set<T>> {
 	private static final Logger LOGGER = LoggerFactory.getLogger(FindClashesDatabaseAction.class);
 	@SuppressWarnings("unused")
 	private final long actingUoid;
@@ -58,13 +58,13 @@ public class FindClashesDatabaseAction extends BimDatabaseAction<Set<? extends C
 	}
 
 	@Override
-	public Set<? extends Clash> execute() throws UserException, BimDeadlockException, BimDatabaseException {
+	public Set<T> execute() throws UserException, BimDeadlockException, BimDatabaseException {
 		Map<Long, Revision> oidToRoidMap = new HashMap<Long, Revision>();
 
 		// Look in the cache
-		Set<EidClash> clashDetection = bimServer.getClashDetectionCache().getClashDetection(clashDetectionSettings);
-		if (clashDetection != null) {
-			return clashDetection;
+		Set<EidClash> clashDetections = bimServer.getClashDetectionCache().getClashDetection(clashDetectionSettings);
+		if (clashDetections != null) {
+			return (Set<T>) clashDetections;
 		}
 
 		Project project = null;
@@ -122,7 +122,7 @@ public class FindClashesDatabaseAction extends BimDatabaseAction<Set<? extends C
 						clash.setType2(object2.eClass().getName());
 						clash.setRevision2(oidToRoidMap.get(clash.getEid2()));
 					}
-					return eidClashes;
+					return (Set<T>) eidClashes;
 				} finally {
 					ifcEngineModel.close();
 				}

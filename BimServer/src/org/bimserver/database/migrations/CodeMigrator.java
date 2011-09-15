@@ -7,9 +7,11 @@ import java.io.InputStreamReader;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.bimserver.models.store.StorePackage;
 import org.bimserver.querycompiler.VirtualFile;
 import org.bimserver.tools.generators.DataObjectGenerator;
 import org.bimserver.tools.generators.ProtocolBuffersGenerator;
+import org.bimserver.tools.generators.SConverterGeneratorWrapper;
 import org.bimserver.tools.generators.ServiceGenerator;
 import org.eclipse.emf.ecore.EPackage;
 import org.slf4j.Logger;
@@ -72,6 +74,9 @@ public class CodeMigrator {
 		}
 		serviceGenerator.generateDataObjects(ePackages);
 		LOGGER.info("ServiceInterface objects successfully generated");
+		
+		SConverterGeneratorWrapper sConverterGenerator = new SConverterGeneratorWrapper();
+		sConverterGenerator.generate(ePackages);
 		
 		LOGGER.info("Generating protocol buffers file and classes...");
 		ProtocolBuffersGenerator protocolBuffersGenerator = new ProtocolBuffersGenerator();

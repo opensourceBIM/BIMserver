@@ -23,13 +23,13 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.IOUtils;
 import org.bimserver.BimServer;
+import org.bimserver.interfaces.SConverter;
 import org.bimserver.interfaces.objects.SSettings;
 import org.bimserver.interfaces.objects.SUserType;
 import org.bimserver.models.store.Settings;
 import org.bimserver.resources.JarResourceFetcher;
 import org.bimserver.resources.WarResourceFetcher;
 import org.bimserver.web.LoginManager;
-import org.bimserver.webservices.Converter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -67,7 +67,7 @@ public class SettingsServlet extends HttpServlet {
 									JAXBContext jaxbContext = JAXBContext.newInstance(SSettings.class);
 									Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
 									SSettings sSettings = (SSettings) unmarshaller.unmarshal(item.getInputStream());
-									bimServer.getSettingsManager().setSettings(Converter.convert(sSettings, Settings.class, null));
+									bimServer.getSettingsManager().setSettings(new SConverter().convertFromSObject(sSettings, null));
 									response.sendRedirect(getServletContext().getContextPath() + "/settings.jsp?msg=settingsfileuploadok");
 									return;
 								} else if (fieldName.equals("colladasettings")) {
@@ -107,7 +107,7 @@ public class SettingsServlet extends HttpServlet {
 						response.setContentType("text/xml");
 						response.setHeader("Content-Disposition", "attachment; filename=\"settings.xml\"");
 						Settings settings = bimServer.getSettingsManager().getSettings();
-						SSettings sSettings = Converter.convert(settings, SSettings.class);
+						SSettings sSettings = new SConverter().convertToSObject(settings);
 						JAXBContext jaxbContext = JAXBContext.newInstance(SSettings.class);
 						Marshaller marshaller = jaxbContext.createMarshaller();
 						marshaller.marshal(sSettings, response.getOutputStream());
