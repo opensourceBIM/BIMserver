@@ -8,7 +8,7 @@ import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDeadlockException;
 import org.bimserver.database.Database;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.shared.SMigration;
+import org.bimserver.interfaces.objects.SMigration;
 
 public class Migrator {
 	private final Database database;

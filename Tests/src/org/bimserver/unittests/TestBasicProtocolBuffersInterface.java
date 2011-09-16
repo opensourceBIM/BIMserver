@@ -90,7 +90,7 @@ public class TestBasicProtocolBuffersInterface {
 
 			// Change a setting to normal users can create projects
 			bimServer.getSettingsManager().getSettings().setAllowUsersToCreateTopLevelProjects(true);
-		} catch (org.bimserver.shared.ServiceException e) {
+		} catch (org.bimserver.shared.exceptions.ServiceException e) {
 			e.printStackTrace();
 		} catch (PluginException e) {
 			e.printStackTrace();

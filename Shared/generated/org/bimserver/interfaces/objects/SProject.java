@@ -1,14 +1,35 @@
 package org.bimserver.interfaces.objects;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import java.util.*;
 import javax.xml.bind.annotation.XmlRootElement;
+import org.bimserver.shared.meta.*;
 
 @XmlRootElement
-public class SProject
+public class SProject implements SBase
 {
 	private long oid;
+	private static final SClass sClass = new SClass("Project");
+	
+	static {
+		sClass.addField(new SField("oid", long.class));
+		sClass.addField(new SField("id", int.class));
+		sClass.addField(new SField("name", java.lang.String.class));
+		sClass.addField(new SField("hasAuthorizedUsers", Long.class, true));
+		sClass.addField(new SField("concreteRevisions", Long.class, true));
+		sClass.addField(new SField("revisions", Long.class, true));
+		sClass.addField(new SField("lastConcreteRevisionId", long.class));
+		sClass.addField(new SField("lastRevisionId", long.class));
+		sClass.addField(new SField("checkouts", Long.class, true));
+		sClass.addField(new SField("state", SObjectState.class));
+		sClass.addField(new SField("createdDate", java.util.Date.class));
+		sClass.addField(new SField("createdById", long.class));
+		sClass.addField(new SField("geoTagId", long.class));
+		sClass.addField(new SField("subProjects", Long.class, true));
+		sClass.addField(new SField("parentId", long.class));
+		sClass.addField(new SField("description", java.lang.String.class));
+		sClass.addField(new SField("clashDetectionSettingsId", long.class));
+		sClass.addField(new SField("exportLengthMeasurePrefix", SSIPrefix.class));
+	}
 	
 	public long getOid() {
 		return oid;
@@ -16,6 +37,10 @@ public class SProject
 	
 	public void setOid(long oid) {
 		this.oid = oid;
+	}
+	
+	public SClass getSClass() {
+		return sClass;
 	}
 	private int id;
 	private java.lang.String name;

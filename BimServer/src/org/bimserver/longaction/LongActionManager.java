@@ -8,7 +8,7 @@ import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.List;
 
-import org.bimserver.shared.SLongAction;
+import org.bimserver.interfaces.objects.SLongAction;
 
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
@@ -49,7 +49,7 @@ public class LongActionManager {
 		for (LongAction<?> longAction : actions.values()) {
 			SLongAction sLongAction = new SLongAction();
 			sLongAction.setIdentification(longAction.getDescription());
-			sLongAction.setUserOid(longAction.getUser().getOid());
+			sLongAction.setUserId(longAction.getUser().getOid());
 			sLongAction.setStart(longAction.getStart());
 			sLongAction.setUsername(longAction.getUser().getUsername());
 			sLongAction.setName(longAction.getUser().getName());

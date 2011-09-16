@@ -9,7 +9,7 @@ import org.bimserver.database.query.literals.StringLiteral;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.Serializer;
 import org.bimserver.models.store.StorePackage;
-import org.bimserver.shared.UserException;
+import org.bimserver.shared.exceptions.UserException;
 
 public class GetSerializerByContentTypeDatabaseAction extends BimDatabaseAction<Serializer> {
 

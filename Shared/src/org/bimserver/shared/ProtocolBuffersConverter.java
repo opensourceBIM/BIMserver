@@ -13,6 +13,8 @@ import java.util.Map;
 import javax.activation.DataHandler;
 
 import org.apache.commons.io.IOUtils;
+import org.bimserver.shared.meta.SBase;
+import org.bimserver.shared.meta.SField;
 import org.bimserver.utils.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,15 +44,18 @@ public class ProtocolBuffersConverter {
 	protected Object convertProtocolBuffersMessageToSObject(DynamicMessage message) {
 		try {
 			Descriptor descriptor = message.getDescriptorForType();
-			Object newInstance = Class.forName("org.bimserver.interfaces.objects." + descriptor.getName()).newInstance();
+			SBase newInstance = (SBase) Class.forName("org.bimserver.interfaces.objects." + descriptor.getName()).newInstance();
 			for (FieldDescriptor fieldDescriptor : descriptor.getFields()) {
 				Object val = message.getField(fieldDescriptor);
 				if (fieldDescriptor.isRepeated()) {
 					Method setMethod = getMethod(newInstance.getClass(), "set" + StringUtils.firstUpperCase(fieldDescriptor.getName()), new Class[]{List.class});
 					System.out.println(val);
 				} else {
-					Class<?> javaPrimitiveType = getJavaPrimitiveType(fieldDescriptor);
-					Method setMethod = getMethod(newInstance.getClass(), "set" + StringUtils.firstUpperCase(fieldDescriptor.getName()), new Class[]{javaPrimitiveType});
+					SField field = newInstance.getSClass().getField(fieldDescriptor.getName());
+					if (field == null) {
+						throw new RuntimeException("No field with name " + fieldDescriptor.getName());
+					}
+					Method setMethod = getMethod(newInstance.getClass(), "set" + StringUtils.firstUpperCase(fieldDescriptor.getName()), new Class[]{field.getType()});
 					if (val instanceof EnumValueDescriptor) {
 						EnumValueDescriptor enumValueDescriptor = (EnumValueDescriptor)val;
 						Class<?> enumClass = Class.forName("org.bimserver.interfaces.objects." + enumValueDescriptor.getType().getName());
@@ -61,10 +66,14 @@ public class ProtocolBuffersConverter {
 								break;
 							}
 						}
-					} else if (javaPrimitiveType == Date.class) {
+						setMethod.invoke(newInstance, val);
+					} else if (field.getType() == Date.class) {
 						setMethod.invoke(newInstance, new Date((Long)val));
+					} else {
+						System.out.println(setMethod);
+						System.out.println(val);
+						setMethod.invoke(newInstance, val);
 					}
-					setMethod.invoke(newInstance, val);
 				}
 			}
 			return newInstance;

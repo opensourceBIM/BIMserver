@@ -141,20 +141,29 @@ import org.bimserver.ifc.compare.CompareResult.ObjectDeleted;
 import org.bimserver.ifc.compare.CompareResult.ObjectModified;
 import org.bimserver.interfaces.SConverter;
 import org.bimserver.interfaces.objects.SAccessMethod;
+import org.bimserver.interfaces.objects.SCheckinResult;
 import org.bimserver.interfaces.objects.SCheckout;
 import org.bimserver.interfaces.objects.SClash;
 import org.bimserver.interfaces.objects.SClashDetectionSettings;
+import org.bimserver.interfaces.objects.SDataObject;
 import org.bimserver.interfaces.objects.SDeserializer;
 import org.bimserver.interfaces.objects.SEidClash;
 import org.bimserver.interfaces.objects.SGeoTag;
 import org.bimserver.interfaces.objects.SGuidClash;
 import org.bimserver.interfaces.objects.SGuidanceProvider;
+import org.bimserver.interfaces.objects.SGuidanceProviderPluginDescriptor;
 import org.bimserver.interfaces.objects.SLogAction;
+import org.bimserver.interfaces.objects.SLongAction;
 import org.bimserver.interfaces.objects.SMergeIdentifier;
+import org.bimserver.interfaces.objects.SMigration;
+import org.bimserver.interfaces.objects.SPluginDescriptor;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevision;
+import org.bimserver.interfaces.objects.SRevisionSummary;
 import org.bimserver.interfaces.objects.SSerializer;
+import org.bimserver.interfaces.objects.SSerializerPluginDescriptor;
 import org.bimserver.interfaces.objects.SUser;
+import org.bimserver.interfaces.objects.SUserSession;
 import org.bimserver.interfaces.objects.SUserType;
 import org.bimserver.longaction.CannotBeScheduledException;
 import org.bimserver.longaction.DownloadParameters;
@@ -178,6 +187,7 @@ import org.bimserver.models.store.MergeIdentifier;
 import org.bimserver.models.store.ObjectState;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
+import org.bimserver.models.store.RevisionSummary;
 import org.bimserver.models.store.Serializer;
 import org.bimserver.models.store.Settings;
 import org.bimserver.models.store.StorePackage;
@@ -191,31 +201,21 @@ import org.bimserver.plugins.deserializers.EmfDeserializer;
 import org.bimserver.plugins.guidanceproviders.GuidanceProviderPlugin;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.rights.RightsManager;
-import org.bimserver.shared.DatabaseInformation;
-import org.bimserver.shared.LongActionState;
-import org.bimserver.shared.SCheckinResult;
-import org.bimserver.shared.SCheckoutResult;
-import org.bimserver.shared.SCompareResult;
-import org.bimserver.shared.SCompareResult.SCompareIdentifier;
-import org.bimserver.shared.SCompareResult.SCompareType;
-import org.bimserver.shared.SCompareResult.SObjectAdded;
-import org.bimserver.shared.SCompareResult.SObjectModified;
-import org.bimserver.shared.SCompareResult.SObjectRemoved;
-import org.bimserver.shared.SDataObject;
-import org.bimserver.shared.SDownloadResult;
-import org.bimserver.shared.SGuidanceProviderPluginDescriptor;
-import org.bimserver.shared.SLongAction;
-import org.bimserver.shared.SMigration;
-import org.bimserver.shared.SPlugin;
-import org.bimserver.shared.SPlugin.SPluginState;
-import org.bimserver.shared.SRevisionSummary;
-import org.bimserver.shared.SSerializerPluginDescriptor;
-import org.bimserver.shared.SUserSession;
-import org.bimserver.shared.ServerException;
-import org.bimserver.shared.ServiceException;
 import org.bimserver.shared.ServiceInterface;
 import org.bimserver.shared.Token;
-import org.bimserver.shared.UserException;
+import org.bimserver.shared.exceptions.ServerException;
+import org.bimserver.shared.exceptions.ServiceException;
+import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.shared.objects.DatabaseInformation;
+import org.bimserver.shared.objects.LongActionState;
+import org.bimserver.shared.objects.SCheckoutResult;
+import org.bimserver.shared.objects.SCompareResult;
+import org.bimserver.shared.objects.SCompareResult.SCompareIdentifier;
+import org.bimserver.shared.objects.SCompareResult.SCompareType;
+import org.bimserver.shared.objects.SCompareResult.SObjectAdded;
+import org.bimserver.shared.objects.SCompareResult.SObjectModified;
+import org.bimserver.shared.objects.SCompareResult.SObjectRemoved;
+import org.bimserver.shared.objects.SDownloadResult;
 import org.bimserver.utils.Hashers;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -307,8 +307,8 @@ public class Service implements ServiceInterface {
 			}
 			SCheckinResult result = new SCheckinResult();
 			result.setRid(concreteRevision.getId());
-			result.setPoid(concreteRevision.getProject().getOid());
-			result.setProjectName(concreteRevision.getProject().getName());
+			result.setProjectId(concreteRevision.getProject().getOid());
+//			result.setProjectName(concreteRevision.getProject().getName());
 			return result;
 		} catch (Exception e) {
 			handleException(e);
@@ -327,8 +327,8 @@ public class Service implements ServiceInterface {
 			CheckinPart2DatabaseAction createCheckinAction = new CheckinPart2DatabaseAction(bimServer, null, accessMethod, model, currentUoid, revision.getOid(), merge);
 			SCheckinResult result = new SCheckinResult();
 			result.setRid(revision.getId());
-			result.setPoid(revision.getProject().getOid());
-			result.setProjectName(revision.getProject().getName());
+			result.setProjectId(revision.getProject().getOid());
+//			result.setProjectName(revision.getProject().getName());
 			bimServer.getLongActionManager().start(new LongCheckinAction(bimServer, userByUoid, createCheckinAction));
 			return result;
 		} catch (UserException e) {
@@ -971,7 +971,11 @@ public class Service implements ServiceInterface {
 		for (EClass key : items.keySet()) {
 			List<Item> list = items.get(key);
 			for (Item item : list) {
-				SDataObject dataObject = new SDataObject(item.geteObject().eClass().getName(), item.geteObject().getOid(), getGuid(item.geteObject()), getName(item.geteObject()));
+				SDataObject dataObject = new SDataObject();
+				dataObject.setType(item.geteObject().eClass().getName());
+				dataObject.setOid(item.geteObject().getOid());
+				dataObject.setGuid(getGuid(item.geteObject()));
+				dataObject.setName(getName(item.geteObject()));
 				if (item instanceof ObjectAdded) {
 					sCompareResult.add(new SObjectAdded(dataObject));
 				} else if (item instanceof ObjectDeleted) {
@@ -1006,8 +1010,8 @@ public class Service implements ServiceInterface {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 		try {
-			BimDatabaseAction<SRevisionSummary> action = new GetRevisionSummaryDatabaseAction(session, accessMethod, roid);
-			return session.executeAction(action, DEADLOCK_RETRIES);
+			BimDatabaseAction<RevisionSummary> action = new GetRevisionSummaryDatabaseAction(session, accessMethod, roid);
+			return converter.convertToSObject(session.executeAction(action, DEADLOCK_RETRIES));
 		} catch (Exception e) {
 			handleException(e);
 			return null;
@@ -1179,8 +1183,8 @@ public class Service implements ServiceInterface {
 				CheckinPart2DatabaseAction createCheckinAction = new CheckinPart2DatabaseAction(bimServer, session, accessMethod, model, currentUoid, revision.getOid(), false);
 				SCheckinResult result = new SCheckinResult();
 				result.setRid(revision.getId());
-				result.setPoid(revision.getProject().getOid());
-				result.setProjectName(revision.getProject().getName());
+				result.setProjectId(revision.getProject().getOid());
+//				result.setProjectName(revision.getProject().getName());
 				bimServer.getLongActionManager().start(new LongCheckinAction(bimServer, user, createCheckinAction));
 				return result;
 			} catch (UserException e) {
@@ -1226,8 +1230,8 @@ public class Service implements ServiceInterface {
 				CheckinPart2DatabaseAction createCheckinAction = new CheckinPart2DatabaseAction(bimServer, session, accessMethod, model, currentUoid, revision.getOid(), false);
 				SCheckinResult result = new SCheckinResult();
 				result.setRid(revision.getId());
-				result.setPoid(revision.getProject().getOid());
-				result.setProjectName(revision.getProject().getName());
+				result.setProjectId(revision.getProject().getOid());
+//				result.setProjectName(revision.getProject().getName());
 				bimServer.getLongActionManager().start(new LongCheckinAction(bimServer, user, createCheckinAction));
 				return result;
 			} catch (UserException e) {
@@ -2278,17 +2282,17 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public List<SPlugin> getAllPlugins() throws UserException {
+	public List<SPluginDescriptor> getAllPlugins() throws UserException {
 		requireAuthenticationAndRunningServer();
-		List<SPlugin> result = new ArrayList<SPlugin>();
+		List<SPluginDescriptor> result = new ArrayList<SPluginDescriptor>();
 		Collection<Plugin> plugins = bimServer.getPluginManager().getAllPlugins(false);
 		for (Plugin plugin : plugins) {
-			SPlugin sPlugin = new SPlugin();
+			SPluginDescriptor sPlugin = new SPluginDescriptor();
 			sPlugin.setName(plugin.getClass().getName());
 			PluginContext pluginContext = bimServer.getPluginManager().getPluginContext(plugin);
 			sPlugin.setLocation(pluginContext.getLocation());
 			sPlugin.setDescription(plugin.getDescription());
-			sPlugin.setState(pluginContext.isEnabled() ? SPluginState.ENABLED : SPluginState.DISABLED);
+			sPlugin.setEnabled(pluginContext.isEnabled());
 			result.add(sPlugin);
 		}
 		Collections.sort(result, new SPluginComparator());

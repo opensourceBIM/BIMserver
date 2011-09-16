@@ -1,11 +1,24 @@
 package org.bimserver.interfaces.objects;
 
+import java.util.*;
 import javax.xml.bind.annotation.XmlRootElement;
+import org.bimserver.shared.meta.*;
 
 @XmlRootElement
-public class SDeserializer
+public class SDeserializer implements SBase
 {
 	private long oid;
+	private static final SClass sClass = new SClass("Deserializer");
+	
+	static {
+		sClass.addField(new SField("oid", long.class));
+		sClass.addField(new SField("name", java.lang.String.class));
+		sClass.addField(new SField("description", java.lang.String.class));
+		sClass.addField(new SField("className", java.lang.String.class));
+		sClass.addField(new SField("enabled", boolean.class));
+		sClass.addField(new SField("defaultDeserializer", boolean.class));
+		sClass.addField(new SField("settingsId", long.class));
+	}
 	
 	public long getOid() {
 		return oid;
@@ -13,6 +26,10 @@ public class SDeserializer
 	
 	public void setOid(long oid) {
 		this.oid = oid;
+	}
+	
+	public SClass getSClass() {
+		return sClass;
 	}
 	private java.lang.String name;
 	private java.lang.String description;

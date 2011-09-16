@@ -3,6 +3,7 @@ package org.bimserver.interfaces.objects;
 
 import java.util.*;
 import javax.xml.bind.annotation.XmlRootElement;
+import org.bimserver.shared.meta.*;
 <%
 	if (argument instanceof EClass) {
 		EClass eClass = (EClass)argument;
@@ -17,9 +18,59 @@ public class S<%=eClass.getName()%>
 			%>S<%=eSuperClass.getName()%><%
 		}
 	}
-%>
+%> implements SBase
 {
 	private long oid;
+	private static final SClass sClass = new SClass("<%=eClass.getName()%>");
+	
+	static {
+		sClass.addField(new SField("oid", long.class));
+<%
+	for (EStructuralFeature eStructuralFeature : eClass.getEAllStructuralFeatures()) {
+		if (eStructuralFeature instanceof EAttribute) {
+			EAttribute eAttribute = (EAttribute)eStructuralFeature;
+			if (eAttribute.getEType() instanceof EEnum) {
+%>
+		sClass.addField(new SField("<%=eStructuralFeature.getName()%>", S<%=eAttribute.getEType().getName()%>.class));
+<%
+			} else {
+				if (eAttribute.isMany()) {
+%>
+		sClass.addField(new SField("<%=eStructuralFeature.getName()%>", <%=eAttribute.getEType().getInstanceClassName()%>.class, true));
+<%
+				} else {
+%>
+		sClass.addField(new SField("<%=eStructuralFeature.getName()%>", <%=eAttribute.getEType().getInstanceClassName()%>.class));
+<%
+				}
+			}
+		} else if (eStructuralFeature instanceof EReference) {
+			EReference eReference = (EReference)eStructuralFeature;
+			if (eReference.isMany()) {
+				if (eReference.getEAnnotation("embedsreference") != null) {
+%>
+		sClass.addField(new SField("<%=eStructuralFeature.getName()%>", S<%=eReference.getEType().getName()%>.class, true));
+<%
+				} else {
+%>
+		sClass.addField(new SField("<%=eStructuralFeature.getName()%>", Long.class, true));
+<%
+				}
+			} else {
+				if (eReference.getEAnnotation("embedsreference") != null) {
+%>
+		sClass.addField(new SField("<%=eStructuralFeature.getName()%>Id", S<%=eReference.getEType().getName()%>.class));
+<%
+				} else {
+%>
+		sClass.addField(new SField("<%=eStructuralFeature.getName()%>Id", long.class));
+<%
+				}
+			}
+		}
+	}
+%>
+	}
 	
 	public long getOid() {
 		return oid;
@@ -27,6 +78,10 @@ public class S<%=eClass.getName()%>
 	
 	public void setOid(long oid) {
 		this.oid = oid;
+	}
+	
+	public SClass getSClass() {
+		return sClass;
 	}
 <%
 	for (EStructuralFeature eStructuralFeature : eClass.getEStructuralFeatures()) {
@@ -51,13 +106,25 @@ public class S<%=eClass.getName()%>
 			} else if (eStructuralFeature instanceof EReference) {
 				EReference eReference = (EReference)eStructuralFeature;
 				if (eReference.isMany()) {
+					if (eReference.getEAnnotation("embedsreference") != null) {
+%>
+	private List<S<%=eReference.getEType().getName()%>> <%=eReference.getName()%> = new ArrayList<S<%=eReference.getEType().getName()%>>();
+<%			
+					} else {
 %>
 	private List<Long> <%=eReference.getName()%> = new ArrayList<Long>();
 <%
+					}
 				} else {
+					if (eReference.getEAnnotation("embedsreference") != null) {
+%>
+	private S<%=eReference.getEType().getName()%> <%=eReference.getName()%>;
+<%
+					} else {
 %>
 	private long <%=eReference.getName()%>Id;
 <%
+					}
 				}
 			}
 		}
@@ -104,6 +171,17 @@ public class S<%=eClass.getName()%>
 			} else if (eStructuralFeature instanceof EReference) {
 				EReference eReference = (EReference)eStructuralFeature;
 				if (eReference.isMany()) {
+					if (eReference.getEAnnotation("embedsreference") != null) {
+%>
+	public List<S<%=eReference.getEType().getName()%>> <%=GenerateUtils.makeGetter(eReference)%>() {
+		return <%=eReference.getName()%>;
+	}
+
+	public void <%=GenerateUtils.makeSetter(eReference)%>(List<S<%=eReference.getEType().getName()%>> <%=eReference.getName()%>) {
+		this.<%=eReference.getName()%> = <%=eReference.getName()%>;
+	}
+<%
+					} else {
 %>
 	public List<Long> <%=GenerateUtils.makeGetter(eReference)%>() {
 		return <%=eReference.getName()%>;
@@ -113,7 +191,20 @@ public class S<%=eClass.getName()%>
 		this.<%=eReference.getName()%> = <%=eReference.getName()%>;
 	}
 <%
+					}
 				} else {
+					if (eReference.getEAnnotation("embedsreference") != null) {
+%>
+	public S<%=eReference.getEType().getName()%> <%=GenerateUtils.makeGetter(eReference)%>() {
+		return <%=eReference.getName()%>;
+	}
+
+	public void <%=GenerateUtils.makeSetter(eReference)%>(S<%=eReference.getEType().getName()%> <%=eReference.getName()%>) {
+		this.<%=eReference.getName()%> = <%=eReference.getName()%>;
+	}
+	
+<%
+					} else {
 %>
 	public long <%=GenerateUtils.makeGetter(eReference)%>() {
 		return <%=eReference.getName()%>Id;
@@ -124,10 +215,11 @@ public class S<%=eClass.getName()%>
 	}
 	
 <%
-	}
-	}
-		}
+					}
+				}
 			}
+		}
+	}
 %>
 	@Override
 	public int hashCode() {

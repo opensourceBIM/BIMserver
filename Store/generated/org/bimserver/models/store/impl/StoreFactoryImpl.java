@@ -6,6 +6,7 @@
  */
 package org.bimserver.models.store.impl;
 
+import org.bimserver.models.store.*;
 import org.bimserver.models.store.CheckinState;
 import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.Clash;
@@ -96,6 +97,26 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			case StorePackage.IFC_ENGINE: return (EObject)createIfcEngine();
 			case StorePackage.PLUGIN: return (EObject)createPlugin();
 			case StorePackage.DESERIALIZER: return (EObject)createDeserializer();
+			case StorePackage.CHECKIN_RESULT: return (EObject)createCheckinResult();
+			case StorePackage.DOWNLOAD_RESULT: return (EObject)createDownloadResult();
+			case StorePackage.CHECKOUT_RESULT: return (EObject)createCheckoutResult();
+			case StorePackage.DATA_VALUE: return (EObject)createDataValue();
+			case StorePackage.DATA_OBJECT: return (EObject)createDataObject();
+			case StorePackage.USER_SESSION: return (EObject)createUserSession();
+			case StorePackage.MIGRATION: return (EObject)createMigration();
+			case StorePackage.REFERENCE_DATA_VALUE: return (EObject)createReferenceDataValue();
+			case StorePackage.LIST_DATA_VALUE: return (EObject)createListDataValue();
+			case StorePackage.SIMPLE_DATA_VALUE: return (EObject)createSimpleDataValue();
+			case StorePackage.DATABASE_INFORMATION: return (EObject)createDatabaseInformation();
+			case StorePackage.SERIALIZER_PLUGIN_DESCRIPTOR: return (EObject)createSerializerPluginDescriptor();
+			case StorePackage.REVISION_SUMMARY_TYPE: return (EObject)createRevisionSummaryType();
+			case StorePackage.REVISION_SUMMARY_CONTAINER: return (EObject)createRevisionSummaryContainer();
+			case StorePackage.REVISION_SUMMARY: return (EObject)createRevisionSummary();
+			case StorePackage.PLUGIN_DESCRIPTOR: return (EObject)createPluginDescriptor();
+			case StorePackage.LONG_ACTION: return (EObject)createLongAction();
+			case StorePackage.GUIDANCE_PROVIDER_PLUGIN_DESCRIPTOR: return (EObject)createGuidanceProviderPluginDescriptor();
+			case StorePackage.COMPARE_RESULT: return (EObject)createCompareResult();
+			case StorePackage.LONG_ACTION_STATE: return (EObject)createLongActionState();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -119,6 +140,8 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 				return createObjectStateFromString(eDataType, initialValue);
 			case StorePackage.MERGE_IDENTIFIER:
 				return createMergeIdentifierFromString(eDataType, initialValue);
+			case StorePackage.ACTION_STATE:
+				return createActionStateFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -142,6 +165,8 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 				return convertObjectStateToString(eDataType, instanceValue);
 			case StorePackage.MERGE_IDENTIFIER:
 				return convertMergeIdentifierToString(eDataType, instanceValue);
+			case StorePackage.ACTION_STATE:
+				return convertActionStateToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -312,6 +337,206 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public CheckinResult createCheckinResult() {
+		CheckinResultImpl checkinResult = new CheckinResultImpl();
+		return checkinResult;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DownloadResult createDownloadResult() {
+		DownloadResultImpl downloadResult = new DownloadResultImpl();
+		return downloadResult;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CheckoutResult createCheckoutResult() {
+		CheckoutResultImpl checkoutResult = new CheckoutResultImpl();
+		return checkoutResult;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DataObject createDataObject() {
+		DataObjectImpl dataObject = new DataObjectImpl();
+		return dataObject;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public UserSession createUserSession() {
+		UserSessionImpl userSession = new UserSessionImpl();
+		return userSession;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Migration createMigration() {
+		MigrationImpl migration = new MigrationImpl();
+		return migration;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DataValue createDataValue() {
+		DataValueImpl dataValue = new DataValueImpl();
+		return dataValue;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ReferenceDataValue createReferenceDataValue() {
+		ReferenceDataValueImpl referenceDataValue = new ReferenceDataValueImpl();
+		return referenceDataValue;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ListDataValue createListDataValue() {
+		ListDataValueImpl listDataValue = new ListDataValueImpl();
+		return listDataValue;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SimpleDataValue createSimpleDataValue() {
+		SimpleDataValueImpl simpleDataValue = new SimpleDataValueImpl();
+		return simpleDataValue;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DatabaseInformation createDatabaseInformation() {
+		DatabaseInformationImpl databaseInformation = new DatabaseInformationImpl();
+		return databaseInformation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SerializerPluginDescriptor createSerializerPluginDescriptor() {
+		SerializerPluginDescriptorImpl serializerPluginDescriptor = new SerializerPluginDescriptorImpl();
+		return serializerPluginDescriptor;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public RevisionSummaryType createRevisionSummaryType() {
+		RevisionSummaryTypeImpl revisionSummaryType = new RevisionSummaryTypeImpl();
+		return revisionSummaryType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public RevisionSummaryContainer createRevisionSummaryContainer() {
+		RevisionSummaryContainerImpl revisionSummaryContainer = new RevisionSummaryContainerImpl();
+		return revisionSummaryContainer;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public RevisionSummary createRevisionSummary() {
+		RevisionSummaryImpl revisionSummary = new RevisionSummaryImpl();
+		return revisionSummary;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PluginDescriptor createPluginDescriptor() {
+		PluginDescriptorImpl pluginDescriptor = new PluginDescriptorImpl();
+		return pluginDescriptor;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LongAction createLongAction() {
+		LongActionImpl longAction = new LongActionImpl();
+		return longAction;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public GuidanceProviderPluginDescriptor createGuidanceProviderPluginDescriptor() {
+		GuidanceProviderPluginDescriptorImpl guidanceProviderPluginDescriptor = new GuidanceProviderPluginDescriptorImpl();
+		return guidanceProviderPluginDescriptor;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CompareResult createCompareResult() {
+		CompareResultImpl compareResult = new CompareResultImpl();
+		return compareResult;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LongActionState createLongActionState() {
+		LongActionStateImpl longActionState = new LongActionStateImpl();
+		return longActionState;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public UserType createUserTypeFromString(EDataType eDataType, String initialValue) {
 		UserType result = UserType.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
@@ -404,6 +629,26 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	 * @generated
 	 */
 	public String convertMergeIdentifierToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ActionState createActionStateFromString(EDataType eDataType, String initialValue) {
+		ActionState result = ActionState.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertActionStateToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

@@ -4,7 +4,7 @@ import org.bimserver.emf.IdEObject;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.plugins.guidanceproviders.GuidanceProvider;
 import org.bimserver.plugins.serializers.IfcModelInterface;
-import org.bimserver.shared.SCompareResult.SCompareType;
+import org.bimserver.shared.objects.SCompareResult.SCompareType;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EDataType;

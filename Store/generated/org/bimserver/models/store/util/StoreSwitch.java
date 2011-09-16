@@ -6,6 +6,7 @@
  */
 package org.bimserver.models.store.util;
 
+import org.bimserver.models.store.*;
 import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.Clash;
 import org.bimserver.models.store.ClashDetectionSettings;
@@ -179,6 +180,130 @@ public class StoreSwitch<T> extends Switch<T> {
 			case StorePackage.DESERIALIZER: {
 				Deserializer deserializer = (Deserializer)theEObject;
 				T result = caseDeserializer(deserializer);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case StorePackage.CHECKIN_RESULT: {
+				CheckinResult checkinResult = (CheckinResult)theEObject;
+				T result = caseCheckinResult(checkinResult);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case StorePackage.DOWNLOAD_RESULT: {
+				DownloadResult downloadResult = (DownloadResult)theEObject;
+				T result = caseDownloadResult(downloadResult);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case StorePackage.CHECKOUT_RESULT: {
+				CheckoutResult checkoutResult = (CheckoutResult)theEObject;
+				T result = caseCheckoutResult(checkoutResult);
+				if (result == null) result = caseDownloadResult(checkoutResult);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case StorePackage.DATA_VALUE: {
+				DataValue dataValue = (DataValue)theEObject;
+				T result = caseDataValue(dataValue);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case StorePackage.DATA_OBJECT: {
+				DataObject dataObject = (DataObject)theEObject;
+				T result = caseDataObject(dataObject);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case StorePackage.USER_SESSION: {
+				UserSession userSession = (UserSession)theEObject;
+				T result = caseUserSession(userSession);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case StorePackage.MIGRATION: {
+				Migration migration = (Migration)theEObject;
+				T result = caseMigration(migration);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case StorePackage.REFERENCE_DATA_VALUE: {
+				ReferenceDataValue referenceDataValue = (ReferenceDataValue)theEObject;
+				T result = caseReferenceDataValue(referenceDataValue);
+				if (result == null) result = caseDataValue(referenceDataValue);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case StorePackage.LIST_DATA_VALUE: {
+				ListDataValue listDataValue = (ListDataValue)theEObject;
+				T result = caseListDataValue(listDataValue);
+				if (result == null) result = caseDataValue(listDataValue);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case StorePackage.SIMPLE_DATA_VALUE: {
+				SimpleDataValue simpleDataValue = (SimpleDataValue)theEObject;
+				T result = caseSimpleDataValue(simpleDataValue);
+				if (result == null) result = caseDataValue(simpleDataValue);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case StorePackage.DATABASE_INFORMATION: {
+				DatabaseInformation databaseInformation = (DatabaseInformation)theEObject;
+				T result = caseDatabaseInformation(databaseInformation);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case StorePackage.SERIALIZER_PLUGIN_DESCRIPTOR: {
+				SerializerPluginDescriptor serializerPluginDescriptor = (SerializerPluginDescriptor)theEObject;
+				T result = caseSerializerPluginDescriptor(serializerPluginDescriptor);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case StorePackage.REVISION_SUMMARY_TYPE: {
+				RevisionSummaryType revisionSummaryType = (RevisionSummaryType)theEObject;
+				T result = caseRevisionSummaryType(revisionSummaryType);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case StorePackage.REVISION_SUMMARY_CONTAINER: {
+				RevisionSummaryContainer revisionSummaryContainer = (RevisionSummaryContainer)theEObject;
+				T result = caseRevisionSummaryContainer(revisionSummaryContainer);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case StorePackage.REVISION_SUMMARY: {
+				RevisionSummary revisionSummary = (RevisionSummary)theEObject;
+				T result = caseRevisionSummary(revisionSummary);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case StorePackage.PLUGIN_DESCRIPTOR: {
+				PluginDescriptor pluginDescriptor = (PluginDescriptor)theEObject;
+				T result = casePluginDescriptor(pluginDescriptor);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case StorePackage.LONG_ACTION: {
+				LongAction longAction = (LongAction)theEObject;
+				T result = caseLongAction(longAction);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case StorePackage.GUIDANCE_PROVIDER_PLUGIN_DESCRIPTOR: {
+				GuidanceProviderPluginDescriptor guidanceProviderPluginDescriptor = (GuidanceProviderPluginDescriptor)theEObject;
+				T result = caseGuidanceProviderPluginDescriptor(guidanceProviderPluginDescriptor);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case StorePackage.COMPARE_RESULT: {
+				CompareResult compareResult = (CompareResult)theEObject;
+				T result = caseCompareResult(compareResult);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case StorePackage.LONG_ACTION_STATE: {
+				LongActionState longActionState = (LongActionState)theEObject;
+				T result = caseLongActionState(longActionState);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -423,6 +548,306 @@ public class StoreSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseDeserializer(Deserializer object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Checkin Result</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Checkin Result</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCheckinResult(CheckinResult object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Download Result</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Download Result</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDownloadResult(DownloadResult object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Checkout Result</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Checkout Result</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCheckoutResult(CheckoutResult object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Data Object</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Data Object</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDataObject(DataObject object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>User Session</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>User Session</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseUserSession(UserSession object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Migration</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Migration</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMigration(Migration object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Data Value</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Data Value</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDataValue(DataValue object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Reference Data Value</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Reference Data Value</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseReferenceDataValue(ReferenceDataValue object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>List Data Value</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>List Data Value</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseListDataValue(ListDataValue object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Simple Data Value</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Simple Data Value</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSimpleDataValue(SimpleDataValue object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Database Information</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Database Information</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDatabaseInformation(DatabaseInformation object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Serializer Plugin Descriptor</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Serializer Plugin Descriptor</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSerializerPluginDescriptor(SerializerPluginDescriptor object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Revision Summary Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Revision Summary Type</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseRevisionSummaryType(RevisionSummaryType object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Revision Summary Container</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Revision Summary Container</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseRevisionSummaryContainer(RevisionSummaryContainer object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Revision Summary</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Revision Summary</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseRevisionSummary(RevisionSummary object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Plugin Descriptor</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Plugin Descriptor</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePluginDescriptor(PluginDescriptor object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Long Action</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Long Action</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseLongAction(LongAction object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Guidance Provider Plugin Descriptor</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Guidance Provider Plugin Descriptor</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseGuidanceProviderPluginDescriptor(GuidanceProviderPluginDescriptor object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Compare Result</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Compare Result</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCompareResult(CompareResult object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Long Action State</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Long Action State</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseLongActionState(LongActionState object) {
 		return null;
 	}
 

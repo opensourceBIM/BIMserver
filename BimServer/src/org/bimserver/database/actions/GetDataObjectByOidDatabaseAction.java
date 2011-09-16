@@ -6,6 +6,11 @@ import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelSet;
+import org.bimserver.interfaces.objects.SDataObject;
+import org.bimserver.interfaces.objects.SDataValue;
+import org.bimserver.interfaces.objects.SListDataValue;
+import org.bimserver.interfaces.objects.SReferenceDataValue;
+import org.bimserver.interfaces.objects.SSimpleDataValue;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcGloballyUniqueId;
 import org.bimserver.models.ifc2x3.IfcRoot;
@@ -14,12 +19,7 @@ import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Revision;
 import org.bimserver.plugins.serializers.IfcModelInterface;
-import org.bimserver.shared.SDataObject;
-import org.bimserver.shared.SDataObject.SDataValue;
-import org.bimserver.shared.SDataObject.SListDataValue;
-import org.bimserver.shared.SDataObject.SReferenceDataValue;
-import org.bimserver.shared.SDataObject.SSimpleDataValue;
-import org.bimserver.shared.UserException;
+import org.bimserver.shared.exceptions.UserException;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
@@ -66,9 +66,17 @@ public class GetDataObjectByOidDatabaseAction extends BimDatabaseAction<SDataObj
 			IfcRoot ifcRoot = (IfcRoot) eObject;
 			String guid = ifcRoot.getGlobalId() != null ? ifcRoot.getGlobalId().getWrappedValue() : "";
 			String name = ifcRoot.getName() != null ? ifcRoot.getName() : "";
-			dataObject = new SDataObject(eObject.eClass().getName(), oid, guid, name);
+			dataObject = new SDataObject();
+			dataObject.setType(eObject.eClass().getName());
+			dataObject.setOid(oid);
+			dataObject.setGuid(guid);
+			dataObject.setName(name);
 		} else {
-			dataObject = new SDataObject(eObject.eClass().getName(), oid, "", "");
+			dataObject = new SDataObject();
+			dataObject.setType(eObject.eClass().getName());
+			dataObject.setOid(oid);
+			dataObject.setName("");
+			dataObject.setGuid("");
 		}
 		fillDataObject(ifcModel.getMap(), eObject, dataObject);
 		return dataObject;
@@ -80,7 +88,14 @@ public class GetDataObjectByOidDatabaseAction extends BimDatabaseAction<SDataObj
 			Object eGet = eObject.eGet(eStructuralFeature);
 			if (eStructuralFeature instanceof EAttribute) {
 				if (!eStructuralFeature.getName().endsWith("AsString")) {
-					SSimpleDataValue dataValue = new SSimpleDataValue(eGet);
+					SSimpleDataValue dataValue = new SSimpleDataValue();
+					if (eGet instanceof String) {
+						dataValue.setStringValue((String) eGet);
+					} else if (eGet != null) {
+						dataValue.setStringValue(eGet.toString());
+					} else {
+						dataValue.setStringValue("");
+					}
 					dataValue.setFieldName(eStructuralFeature.getName());
 					dataObject.getValues().add(dataValue);
 				}
@@ -90,14 +105,24 @@ public class GetDataObjectByOidDatabaseAction extends BimDatabaseAction<SDataObj
 					if (eObject2 != null) {
 						if (eObject2 instanceof WrappedValue || eObject2 instanceof IfcGloballyUniqueId) {
 							EObject referenceEObject = (EObject) eGet;
-							SSimpleDataValue e = new SSimpleDataValue(referenceEObject.eGet(referenceEObject.eClass().getEStructuralFeature(
-									"wrappedValue")));
+							SSimpleDataValue e = new SSimpleDataValue();
+							Object eGet2 = referenceEObject.eGet(referenceEObject.eClass().getEStructuralFeature("wrappedValue"));
+							if (eGet2 instanceof String) {
+								e.setStringValue((String) eGet2);
+							} else if (eGet2 != null) {
+								e.setStringValue(eGet2.toString());
+							} else {
+								e.setStringValue("");
+							}
 							e.setFieldName(eStructuralFeature.getName());
 							dataObject.getValues().add(e);
 						} else {
 							Long oid = mapResult.inverse().get(eObject2);
 							String guid = getGuid(eObject2);
-							SReferenceDataValue reference = new SReferenceDataValue(eObject2.eClass().getName(), oid, guid);
+							SReferenceDataValue reference = new SReferenceDataValue();
+							reference.setTypeName(eObject2.eClass().getName());
+							reference.setOid(oid);
+							reference.setGuid(guid);
 							reference.setFieldName(eStructuralFeature.getName());
 							dataObject.getValues().add(reference);
 						}
@@ -109,16 +134,22 @@ public class GetDataObjectByOidDatabaseAction extends BimDatabaseAction<SDataObj
 				} else {
 					EList<? extends EObject> list = (EList<EObject>) eGet;
 					for (EObject item : list) {
-						SListDataValue dataValue = new SListDataValue(eStructuralFeature.getName());
+						SListDataValue dataValue = new SListDataValue();
 						dataValue.setFieldName(eStructuralFeature.getName());
 						dataObject.getValues().add(dataValue);
 						if (item instanceof WrappedValue || item instanceof IfcGloballyUniqueId) {
 							EObject referenceEObject = (EObject) item;
-							dataValue.addValue(referenceEObject.eGet(referenceEObject.eClass().getEStructuralFeature("wrappedValue")));
+							SSimpleDataValue simpleDataValue = new SSimpleDataValue();
+							simpleDataValue.setStringValue(referenceEObject.eGet(referenceEObject.eClass().getEStructuralFeature("wrappedValue")).toString());
+							dataValue.getValues().add(simpleDataValue);
 						} else {
 							Long oid = mapResult.inverse().get(item);
 							String guid = getGuid(item);
-							dataValue.addValue(item.eClass().getName(), oid, guid);
+							SReferenceDataValue referenceDataValue = new SReferenceDataValue();
+							referenceDataValue.setTypeName(item.eClass().getName());
+							referenceDataValue.setOid(oid);
+							referenceDataValue.setGuid(guid);
+							dataValue.getValues().add(referenceDataValue);
 						}
 					}
 				}

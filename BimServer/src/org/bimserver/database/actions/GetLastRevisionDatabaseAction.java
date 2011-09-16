@@ -6,7 +6,7 @@ import org.bimserver.database.BimDeadlockException;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
-import org.bimserver.shared.UserException;
+import org.bimserver.shared.exceptions.UserException;
 
 public class GetLastRevisionDatabaseAction extends BimDatabaseAction<Revision> {
 

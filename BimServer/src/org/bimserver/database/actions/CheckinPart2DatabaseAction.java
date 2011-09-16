@@ -17,7 +17,7 @@ import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.plugins.serializers.IfcModelInterface;
-import org.bimserver.shared.UserException;
+import org.bimserver.shared.exceptions.UserException;
 
 public class CheckinPart2DatabaseAction extends BimDatabaseAction<Void> {
 

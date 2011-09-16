@@ -9,13 +9,13 @@ import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelSet;
+import org.bimserver.interfaces.objects.SDataObject;
 import org.bimserver.models.ifc2x3.IfcRoot;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Revision;
 import org.bimserver.plugins.serializers.IfcModelInterface;
-import org.bimserver.shared.SDataObject;
-import org.bimserver.shared.UserException;
+import org.bimserver.shared.exceptions.UserException;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
@@ -52,9 +52,17 @@ public class GetDataObjectsByTypeDatabaseAction extends BimDatabaseAction<List<S
 					IfcRoot ifcRoot = (IfcRoot)eObject;
 					String guid = ifcRoot.getGlobalId() != null ? ifcRoot.getGlobalId().getWrappedValue() : "";
 					String name = ifcRoot.getName() != null ? ifcRoot.getName() : "";
-					dataObject = new SDataObject(eObject.eClass().getName(), oid, guid, name);
+					dataObject = new SDataObject();
+					dataObject.setType(eObject.eClass().getName());
+					dataObject.setOid(oid);
+					dataObject.setGuid(guid);
+					dataObject.setName(name);
 				} else {
-					dataObject = new SDataObject(eObject.eClass().getName(), oid, "", "");
+					dataObject = new SDataObject();
+					dataObject.setType(eObject.eClass().getName());
+					dataObject.setOid(oid);
+					dataObject.setGuid("");
+					dataObject.setName("");
 				}
 				GetDataObjectByOidDatabaseAction.fillDataObject(ifcModel.getMap(), eObject, dataObject);
 				dataObjects.add(dataObject);

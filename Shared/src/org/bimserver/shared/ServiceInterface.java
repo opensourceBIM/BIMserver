@@ -39,23 +39,38 @@ import javax.ws.rs.QueryParam;
 import javax.xml.bind.annotation.XmlMimeType;
 
 import org.bimserver.interfaces.objects.SAccessMethod;
+import org.bimserver.interfaces.objects.SCheckinResult;
 import org.bimserver.interfaces.objects.SCheckout;
 import org.bimserver.interfaces.objects.SClash;
 import org.bimserver.interfaces.objects.SClashDetectionSettings;
+import org.bimserver.interfaces.objects.SDataObject;
 import org.bimserver.interfaces.objects.SDeserializer;
 import org.bimserver.interfaces.objects.SEidClash;
 import org.bimserver.interfaces.objects.SGeoTag;
 import org.bimserver.interfaces.objects.SGuidClash;
 import org.bimserver.interfaces.objects.SGuidanceProvider;
+import org.bimserver.interfaces.objects.SGuidanceProviderPluginDescriptor;
 import org.bimserver.interfaces.objects.SLogAction;
+import org.bimserver.interfaces.objects.SLongAction;
 import org.bimserver.interfaces.objects.SMergeIdentifier;
+import org.bimserver.interfaces.objects.SMigration;
+import org.bimserver.interfaces.objects.SPluginDescriptor;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevision;
+import org.bimserver.interfaces.objects.SRevisionSummary;
 import org.bimserver.interfaces.objects.SSerializer;
+import org.bimserver.interfaces.objects.SSerializerPluginDescriptor;
 import org.bimserver.interfaces.objects.SUser;
+import org.bimserver.interfaces.objects.SUserSession;
 import org.bimserver.interfaces.objects.SUserType;
-import org.bimserver.shared.SCompareResult.SCompareIdentifier;
-import org.bimserver.shared.SCompareResult.SCompareType;
+import org.bimserver.shared.exceptions.ServerException;
+import org.bimserver.shared.exceptions.ServiceException;
+import org.bimserver.shared.objects.DatabaseInformation;
+import org.bimserver.shared.objects.LongActionState;
+import org.bimserver.shared.objects.SCompareResult;
+import org.bimserver.shared.objects.SCompareResult.SCompareIdentifier;
+import org.bimserver.shared.objects.SCompareResult.SCompareType;
+import org.bimserver.shared.objects.SDownloadResult;
 
 //TODO: Document the rest of the interface
 /**
@@ -623,7 +638,7 @@ public interface ServiceInterface {
 	Boolean hasActiveSerializer(String contentType) throws ServiceException;
 	
 	@WebMethod(action = "getAllPlugins")
-	List<SPlugin> getAllPlugins() throws ServiceException;
+	List<SPluginDescriptor> getAllPlugins() throws ServiceException;
 	
 	@WebMethod(action = "enablePlugin")
 	void enablePlugin(String name) throws ServiceException;

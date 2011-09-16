@@ -1,14 +1,26 @@
 package org.bimserver.interfaces.objects;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import java.util.*;
 import javax.xml.bind.annotation.XmlRootElement;
+import org.bimserver.shared.meta.*;
 
 @XmlRootElement
-public class SConcreteRevision
+public class SConcreteRevision implements SBase
 {
 	private long oid;
+	private static final SClass sClass = new SClass("ConcreteRevision");
+	
+	static {
+		sClass.addField(new SField("oid", long.class));
+		sClass.addField(new SField("id", int.class));
+		sClass.addField(new SField("projectId", long.class));
+		sClass.addField(new SField("state", SCheckinState.class));
+		sClass.addField(new SField("checksum", byte[].class));
+		sClass.addField(new SField("revisions", Long.class, true));
+		sClass.addField(new SField("size", long.class));
+		sClass.addField(new SField("date", java.util.Date.class));
+		sClass.addField(new SField("lastError", java.lang.String.class));
+	}
 	
 	public long getOid() {
 		return oid;
@@ -16,6 +28,10 @@ public class SConcreteRevision
 	
 	public void setOid(long oid) {
 		this.oid = oid;
+	}
+	
+	public SClass getSClass() {
+		return sClass;
 	}
 	private int id;
 	private long projectId;

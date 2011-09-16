@@ -7,7 +7,7 @@ import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
-import org.bimserver.shared.UserException;
+import org.bimserver.shared.exceptions.UserException;
 import org.eclipse.emf.common.util.EList;
 
 public class SetRevisionTagDatabaseAction extends BimDatabaseAction<String> {

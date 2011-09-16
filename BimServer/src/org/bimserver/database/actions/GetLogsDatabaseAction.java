@@ -13,7 +13,7 @@ import org.bimserver.models.log.LogAction;
 import org.bimserver.models.log.LogPackage;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserType;
-import org.bimserver.shared.UserException;
+import org.bimserver.shared.exceptions.UserException;
 
 public class GetLogsDatabaseAction extends BimDatabaseAction<List<LogAction>> {
 

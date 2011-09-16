@@ -49,7 +49,7 @@ import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.Settings;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.UserType;
-import org.bimserver.shared.UserException;
+import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.utils.BinUtils;
 import org.bimserver.utils.DoubleHashMap;
 import org.eclipse.emf.ecore.EClass;
@@ -100,7 +100,7 @@ public class Database implements BimDatabase {
 	 * database-schema change Do not change this variable when nothing has
 	 * changed in the schema!
 	 */
-	public static final int APPLICATION_SCHEMA_VERSION = 9;
+	public static final int APPLICATION_SCHEMA_VERSION = 10;
 
 	public Database(BimServer bimServer, Set<? extends EPackage> emfPackages, ColumnDatabase columnDatabase) throws DatabaseInitException {
 		this.bimServer = bimServer;

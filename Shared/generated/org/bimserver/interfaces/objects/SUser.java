@@ -1,14 +1,31 @@
 package org.bimserver.interfaces.objects;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import java.util.*;
 import javax.xml.bind.annotation.XmlRootElement;
+import org.bimserver.shared.meta.*;
 
 @XmlRootElement
-public class SUser
+public class SUser implements SBase
 {
 	private long oid;
+	private static final SClass sClass = new SClass("User");
+	
+	static {
+		sClass.addField(new SField("oid", long.class));
+		sClass.addField(new SField("name", java.lang.String.class));
+		sClass.addField(new SField("password", java.lang.String.class));
+		sClass.addField(new SField("hasRightsOn", Long.class, true));
+		sClass.addField(new SField("revisions", Long.class, true));
+		sClass.addField(new SField("state", SObjectState.class));
+		sClass.addField(new SField("createdOn", java.util.Date.class));
+		sClass.addField(new SField("createdById", long.class));
+		sClass.addField(new SField("userType", SUserType.class));
+		sClass.addField(new SField("username", java.lang.String.class));
+		sClass.addField(new SField("lastSeen", java.util.Date.class));
+		sClass.addField(new SField("validationToken", java.lang.String.class));
+		sClass.addField(new SField("validationTokenCreated", java.util.Date.class));
+		sClass.addField(new SField("notificationUrl", java.lang.String.class));
+	}
 	
 	public long getOid() {
 		return oid;
@@ -16,6 +33,10 @@ public class SUser
 	
 	public void setOid(long oid) {
 		this.oid = oid;
+	}
+	
+	public SClass getSClass() {
+		return sClass;
 	}
 	private java.lang.String name;
 	private java.lang.String password;

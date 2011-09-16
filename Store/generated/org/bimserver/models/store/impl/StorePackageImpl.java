@@ -10,28 +10,50 @@ import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.impl.Ifc2x3PackageImpl;
 import org.bimserver.models.log.LogPackage;
 import org.bimserver.models.log.impl.LogPackageImpl;
+import org.bimserver.models.store.ActionState;
+import org.bimserver.models.store.CheckinResult;
 import org.bimserver.models.store.CheckinState;
 import org.bimserver.models.store.Checkout;
+import org.bimserver.models.store.CheckoutResult;
 import org.bimserver.models.store.Clash;
 import org.bimserver.models.store.ClashDetectionSettings;
+import org.bimserver.models.store.CompareResult;
 import org.bimserver.models.store.ConcreteRevision;
+import org.bimserver.models.store.DataObject;
+import org.bimserver.models.store.DataValue;
+import org.bimserver.models.store.DatabaseInformation;
 import org.bimserver.models.store.Deserializer;
+import org.bimserver.models.store.DownloadResult;
 import org.bimserver.models.store.EidClash;
 import org.bimserver.models.store.GeoTag;
 import org.bimserver.models.store.GuidClash;
 import org.bimserver.models.store.GuidanceProvider;
+import org.bimserver.models.store.GuidanceProviderPluginDescriptor;
 import org.bimserver.models.store.IfcEngine;
+import org.bimserver.models.store.ListDataValue;
+import org.bimserver.models.store.LongAction;
+import org.bimserver.models.store.LongActionState;
 import org.bimserver.models.store.MergeIdentifier;
+import org.bimserver.models.store.Migration;
 import org.bimserver.models.store.ObjectState;
 import org.bimserver.models.store.Plugin;
+import org.bimserver.models.store.PluginDescriptor;
 import org.bimserver.models.store.Project;
+import org.bimserver.models.store.ReferenceDataValue;
 import org.bimserver.models.store.Revision;
+import org.bimserver.models.store.RevisionSummary;
+import org.bimserver.models.store.RevisionSummaryContainer;
+import org.bimserver.models.store.RevisionSummaryType;
 import org.bimserver.models.store.SIPrefix;
 import org.bimserver.models.store.Serializer;
+import org.bimserver.models.store.SerializerPluginDescriptor;
 import org.bimserver.models.store.Settings;
+import org.bimserver.models.store.SimpleDataValue;
+import org.bimserver.models.store.SimpleValue;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
+import org.bimserver.models.store.UserSession;
 import org.bimserver.models.store.UserType;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -164,6 +186,146 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass checkinResultEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass downloadResultEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass checkoutResultEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass dataObjectEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass userSessionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass migrationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass dataValueEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass referenceDataValueEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass listDataValueEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass simpleDataValueEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass databaseInformationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass serializerPluginDescriptorEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass revisionSummaryTypeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass revisionSummaryContainerEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass revisionSummaryEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass pluginDescriptorEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass longActionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass guidanceProviderPluginDescriptorEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass compareResultEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass longActionStateEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EEnum userTypeEEnum = null;
 
 	/**
@@ -193,6 +355,13 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * @generated
 	 */
 	private EEnum mergeIdentifierEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum actionStateEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -1586,6 +1755,690 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getCheckinResult() {
+		return checkinResultEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getCheckinResult_Revision() {
+		return (EReference)checkinResultEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getCheckinResult_Rid() {
+		return (EAttribute)checkinResultEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getCheckinResult_Project() {
+		return (EReference)checkinResultEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getDownloadResult() {
+		return downloadResultEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDownloadResult_ProjectName() {
+		return (EAttribute)downloadResultEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDownloadResult_RevisionNr() {
+		return (EAttribute)downloadResultEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDownloadResult_File() {
+		return (EAttribute)downloadResultEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getCheckoutResult() {
+		return checkoutResultEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getDataObject() {
+		return dataObjectEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDataObject_Type() {
+		return (EAttribute)dataObjectEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDataObject_Guid() {
+		return (EAttribute)dataObjectEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDataObject_Name() {
+		return (EAttribute)dataObjectEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getDataObject_Values() {
+		return (EReference)dataObjectEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getUserSession() {
+		return userSessionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getUserSession_User() {
+		return (EReference)userSessionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getUserSession_Username() {
+		return (EAttribute)userSessionEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getUserSession_Name() {
+		return (EAttribute)userSessionEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getUserSession_Type() {
+		return (EAttribute)userSessionEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getUserSession_ActiveSince() {
+		return (EAttribute)userSessionEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getUserSession_LastActive() {
+		return (EAttribute)userSessionEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getUserSession_AccessMethod() {
+		return (EAttribute)userSessionEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getMigration() {
+		return migrationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getMigration_Number() {
+		return (EAttribute)migrationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getMigration_Description() {
+		return (EAttribute)migrationEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getMigration_Executed() {
+		return (EAttribute)migrationEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getDataValue() {
+		return dataValueEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDataValue_FieldName() {
+		return (EAttribute)dataValueEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getReferenceDataValue() {
+		return referenceDataValueEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getReferenceDataValue_TypeName() {
+		return (EAttribute)referenceDataValueEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getReferenceDataValue_Guid() {
+		return (EAttribute)referenceDataValueEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getListDataValue() {
+		return listDataValueEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getListDataValue_Values() {
+		return (EReference)listDataValueEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getSimpleDataValue() {
+		return simpleDataValueEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSimpleDataValue_StringValue() {
+		return (EAttribute)simpleDataValueEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getDatabaseInformation() {
+		return databaseInformationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDatabaseInformation_NumberOfProjects() {
+		return (EAttribute)databaseInformationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDatabaseInformation_NumberOfUsers() {
+		return (EAttribute)databaseInformationEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDatabaseInformation_NumberOfRevisions() {
+		return (EAttribute)databaseInformationEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDatabaseInformation_NumberOfCheckouts() {
+		return (EAttribute)databaseInformationEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDatabaseInformation_DatabaseSizeInBytes() {
+		return (EAttribute)databaseInformationEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDatabaseInformation_Type() {
+		return (EAttribute)databaseInformationEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDatabaseInformation_Created() {
+		return (EAttribute)databaseInformationEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDatabaseInformation_Location() {
+		return (EAttribute)databaseInformationEClass.getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDatabaseInformation_SchemaVersion() {
+		return (EAttribute)databaseInformationEClass.getEStructuralFeatures().get(8);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDatabaseInformation_GenericLines() {
+		return (EAttribute)databaseInformationEClass.getEStructuralFeatures().get(9);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getSerializerPluginDescriptor() {
+		return serializerPluginDescriptorEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSerializerPluginDescriptor_PluginClassName() {
+		return (EAttribute)serializerPluginDescriptorEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSerializerPluginDescriptor_DefaultName() {
+		return (EAttribute)serializerPluginDescriptorEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSerializerPluginDescriptor_DefaultExtension() {
+		return (EAttribute)serializerPluginDescriptorEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSerializerPluginDescriptor_DefaultContentType() {
+		return (EAttribute)serializerPluginDescriptorEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getRevisionSummaryType() {
+		return revisionSummaryTypeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getRevisionSummaryType_Name() {
+		return (EAttribute)revisionSummaryTypeEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getRevisionSummaryType_Count() {
+		return (EAttribute)revisionSummaryTypeEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getRevisionSummaryContainer() {
+		return revisionSummaryContainerEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getRevisionSummaryContainer_Name() {
+		return (EAttribute)revisionSummaryContainerEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getRevisionSummaryContainer_Types() {
+		return (EReference)revisionSummaryContainerEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getRevisionSummary() {
+		return revisionSummaryEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getRevisionSummary_List() {
+		return (EReference)revisionSummaryEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getPluginDescriptor() {
+		return pluginDescriptorEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPluginDescriptor_Name() {
+		return (EAttribute)pluginDescriptorEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPluginDescriptor_Description() {
+		return (EAttribute)pluginDescriptorEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPluginDescriptor_Location() {
+		return (EAttribute)pluginDescriptorEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPluginDescriptor_Enabled() {
+		return (EAttribute)pluginDescriptorEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getLongAction() {
+		return longActionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getLongAction_Identification() {
+		return (EAttribute)longActionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getLongAction_User() {
+		return (EReference)longActionEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getLongAction_Start() {
+		return (EAttribute)longActionEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getLongAction_Username() {
+		return (EAttribute)longActionEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getLongAction_Name() {
+		return (EAttribute)longActionEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getGuidanceProviderPluginDescriptor() {
+		return guidanceProviderPluginDescriptorEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getGuidanceProviderPluginDescriptor_ClassName() {
+		return (EAttribute)guidanceProviderPluginDescriptorEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getCompareResult() {
+		return compareResultEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getLongActionState() {
+		return longActionStateEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getLongActionState_Progress() {
+		return (EAttribute)longActionStateEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getLongActionState_State() {
+		return (EAttribute)longActionStateEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getUserType() {
 		return userTypeEEnum;
 	}
@@ -1624,6 +2477,15 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 */
 	public EEnum getMergeIdentifier() {
 		return mergeIdentifierEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getActionState() {
+		return actionStateEEnum;
 	}
 
 	/**
@@ -1816,12 +2678,109 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 		createEAttribute(deserializerEClass, DESERIALIZER__DEFAULT_DESERIALIZER);
 		createEReference(deserializerEClass, DESERIALIZER__SETTINGS);
 
+		checkinResultEClass = createEClass(CHECKIN_RESULT);
+		createEReference(checkinResultEClass, CHECKIN_RESULT__REVISION);
+		createEAttribute(checkinResultEClass, CHECKIN_RESULT__RID);
+		createEReference(checkinResultEClass, CHECKIN_RESULT__PROJECT);
+
+		downloadResultEClass = createEClass(DOWNLOAD_RESULT);
+		createEAttribute(downloadResultEClass, DOWNLOAD_RESULT__PROJECT_NAME);
+		createEAttribute(downloadResultEClass, DOWNLOAD_RESULT__REVISION_NR);
+		createEAttribute(downloadResultEClass, DOWNLOAD_RESULT__FILE);
+
+		checkoutResultEClass = createEClass(CHECKOUT_RESULT);
+
+		dataValueEClass = createEClass(DATA_VALUE);
+		createEAttribute(dataValueEClass, DATA_VALUE__FIELD_NAME);
+
+		dataObjectEClass = createEClass(DATA_OBJECT);
+		createEAttribute(dataObjectEClass, DATA_OBJECT__TYPE);
+		createEAttribute(dataObjectEClass, DATA_OBJECT__GUID);
+		createEAttribute(dataObjectEClass, DATA_OBJECT__NAME);
+		createEReference(dataObjectEClass, DATA_OBJECT__VALUES);
+
+		userSessionEClass = createEClass(USER_SESSION);
+		createEReference(userSessionEClass, USER_SESSION__USER);
+		createEAttribute(userSessionEClass, USER_SESSION__USERNAME);
+		createEAttribute(userSessionEClass, USER_SESSION__NAME);
+		createEAttribute(userSessionEClass, USER_SESSION__TYPE);
+		createEAttribute(userSessionEClass, USER_SESSION__ACTIVE_SINCE);
+		createEAttribute(userSessionEClass, USER_SESSION__LAST_ACTIVE);
+		createEAttribute(userSessionEClass, USER_SESSION__ACCESS_METHOD);
+
+		migrationEClass = createEClass(MIGRATION);
+		createEAttribute(migrationEClass, MIGRATION__NUMBER);
+		createEAttribute(migrationEClass, MIGRATION__DESCRIPTION);
+		createEAttribute(migrationEClass, MIGRATION__EXECUTED);
+
+		referenceDataValueEClass = createEClass(REFERENCE_DATA_VALUE);
+		createEAttribute(referenceDataValueEClass, REFERENCE_DATA_VALUE__TYPE_NAME);
+		createEAttribute(referenceDataValueEClass, REFERENCE_DATA_VALUE__GUID);
+
+		listDataValueEClass = createEClass(LIST_DATA_VALUE);
+		createEReference(listDataValueEClass, LIST_DATA_VALUE__VALUES);
+
+		simpleDataValueEClass = createEClass(SIMPLE_DATA_VALUE);
+		createEAttribute(simpleDataValueEClass, SIMPLE_DATA_VALUE__STRING_VALUE);
+
+		databaseInformationEClass = createEClass(DATABASE_INFORMATION);
+		createEAttribute(databaseInformationEClass, DATABASE_INFORMATION__NUMBER_OF_PROJECTS);
+		createEAttribute(databaseInformationEClass, DATABASE_INFORMATION__NUMBER_OF_USERS);
+		createEAttribute(databaseInformationEClass, DATABASE_INFORMATION__NUMBER_OF_REVISIONS);
+		createEAttribute(databaseInformationEClass, DATABASE_INFORMATION__NUMBER_OF_CHECKOUTS);
+		createEAttribute(databaseInformationEClass, DATABASE_INFORMATION__DATABASE_SIZE_IN_BYTES);
+		createEAttribute(databaseInformationEClass, DATABASE_INFORMATION__TYPE);
+		createEAttribute(databaseInformationEClass, DATABASE_INFORMATION__CREATED);
+		createEAttribute(databaseInformationEClass, DATABASE_INFORMATION__LOCATION);
+		createEAttribute(databaseInformationEClass, DATABASE_INFORMATION__SCHEMA_VERSION);
+		createEAttribute(databaseInformationEClass, DATABASE_INFORMATION__GENERIC_LINES);
+
+		serializerPluginDescriptorEClass = createEClass(SERIALIZER_PLUGIN_DESCRIPTOR);
+		createEAttribute(serializerPluginDescriptorEClass, SERIALIZER_PLUGIN_DESCRIPTOR__PLUGIN_CLASS_NAME);
+		createEAttribute(serializerPluginDescriptorEClass, SERIALIZER_PLUGIN_DESCRIPTOR__DEFAULT_NAME);
+		createEAttribute(serializerPluginDescriptorEClass, SERIALIZER_PLUGIN_DESCRIPTOR__DEFAULT_EXTENSION);
+		createEAttribute(serializerPluginDescriptorEClass, SERIALIZER_PLUGIN_DESCRIPTOR__DEFAULT_CONTENT_TYPE);
+
+		revisionSummaryTypeEClass = createEClass(REVISION_SUMMARY_TYPE);
+		createEAttribute(revisionSummaryTypeEClass, REVISION_SUMMARY_TYPE__NAME);
+		createEAttribute(revisionSummaryTypeEClass, REVISION_SUMMARY_TYPE__COUNT);
+
+		revisionSummaryContainerEClass = createEClass(REVISION_SUMMARY_CONTAINER);
+		createEAttribute(revisionSummaryContainerEClass, REVISION_SUMMARY_CONTAINER__NAME);
+		createEReference(revisionSummaryContainerEClass, REVISION_SUMMARY_CONTAINER__TYPES);
+
+		revisionSummaryEClass = createEClass(REVISION_SUMMARY);
+		createEReference(revisionSummaryEClass, REVISION_SUMMARY__LIST);
+
+		pluginDescriptorEClass = createEClass(PLUGIN_DESCRIPTOR);
+		createEAttribute(pluginDescriptorEClass, PLUGIN_DESCRIPTOR__NAME);
+		createEAttribute(pluginDescriptorEClass, PLUGIN_DESCRIPTOR__DESCRIPTION);
+		createEAttribute(pluginDescriptorEClass, PLUGIN_DESCRIPTOR__LOCATION);
+		createEAttribute(pluginDescriptorEClass, PLUGIN_DESCRIPTOR__ENABLED);
+
+		longActionEClass = createEClass(LONG_ACTION);
+		createEAttribute(longActionEClass, LONG_ACTION__IDENTIFICATION);
+		createEReference(longActionEClass, LONG_ACTION__USER);
+		createEAttribute(longActionEClass, LONG_ACTION__START);
+		createEAttribute(longActionEClass, LONG_ACTION__USERNAME);
+		createEAttribute(longActionEClass, LONG_ACTION__NAME);
+
+		guidanceProviderPluginDescriptorEClass = createEClass(GUIDANCE_PROVIDER_PLUGIN_DESCRIPTOR);
+		createEAttribute(guidanceProviderPluginDescriptorEClass, GUIDANCE_PROVIDER_PLUGIN_DESCRIPTOR__CLASS_NAME);
+
+		compareResultEClass = createEClass(COMPARE_RESULT);
+
+		longActionStateEClass = createEClass(LONG_ACTION_STATE);
+		createEAttribute(longActionStateEClass, LONG_ACTION_STATE__PROGRESS);
+		createEAttribute(longActionStateEClass, LONG_ACTION_STATE__STATE);
+
 		// Create enums
 		userTypeEEnum = createEEnum(USER_TYPE);
 		checkinStateEEnum = createEEnum(CHECKIN_STATE);
 		siPrefixEEnum = createEEnum(SI_PREFIX);
 		objectStateEEnum = createEEnum(OBJECT_STATE);
 		mergeIdentifierEEnum = createEEnum(MERGE_IDENTIFIER);
+		actionStateEEnum = createEEnum(ACTION_STATE);
 	}
 
 	/**
@@ -1847,6 +2806,9 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 		setNsPrefix(eNS_PREFIX);
 		setNsURI(eNS_URI);
 
+		// Obtain other dependent packages
+		LogPackage theLogPackage = (LogPackage)EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI);
+
 		// Create type parameters
 
 		// Set bounds for type parameters
@@ -1854,6 +2816,10 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 		// Add supertypes to classes
 		eidClashEClass.getESuperTypes().add(this.getClash());
 		guidClashEClass.getESuperTypes().add(this.getClash());
+		checkoutResultEClass.getESuperTypes().add(this.getDownloadResult());
+		referenceDataValueEClass.getESuperTypes().add(this.getDataValue());
+		listDataValueEClass.getESuperTypes().add(this.getDataValue());
+		simpleDataValueEClass.getESuperTypes().add(this.getDataValue());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(projectEClass, Project.class, "Project", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2018,6 +2984,102 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 		initEAttribute(getDeserializer_DefaultDeserializer(), ecorePackage.getEBoolean(), "defaultDeserializer", null, 0, 1, Deserializer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDeserializer_Settings(), this.getSettings(), this.getSettings_Deserializers(), "settings", null, 0, 1, Deserializer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		initEClass(checkinResultEClass, CheckinResult.class, "CheckinResult", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getCheckinResult_Revision(), this.getRevision(), null, "revision", null, 0, 1, CheckinResult.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getCheckinResult_Rid(), ecorePackage.getEInt(), "rid", null, 0, 1, CheckinResult.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCheckinResult_Project(), this.getProject(), null, "project", null, 0, 1, CheckinResult.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(downloadResultEClass, DownloadResult.class, "DownloadResult", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getDownloadResult_ProjectName(), ecorePackage.getEString(), "projectName", null, 0, 1, DownloadResult.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDownloadResult_RevisionNr(), ecorePackage.getEInt(), "revisionNr", null, 0, 1, DownloadResult.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDownloadResult_File(), ecorePackage.getEByteArray(), "file", null, 0, 1, DownloadResult.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(checkoutResultEClass, CheckoutResult.class, "CheckoutResult", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(dataValueEClass, DataValue.class, "DataValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getDataValue_FieldName(), ecorePackage.getEString(), "fieldName", null, 0, 1, DataValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(dataObjectEClass, DataObject.class, "DataObject", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getDataObject_Type(), ecorePackage.getEString(), "type", null, 0, 1, DataObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDataObject_Guid(), ecorePackage.getEString(), "guid", null, 0, 1, DataObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDataObject_Name(), ecorePackage.getEString(), "name", null, 0, 1, DataObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDataObject_Values(), this.getDataValue(), null, "values", null, 0, -1, DataObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(userSessionEClass, UserSession.class, "UserSession", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getUserSession_User(), this.getUser(), null, "user", null, 0, 1, UserSession.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getUserSession_Username(), ecorePackage.getEString(), "username", null, 0, 1, UserSession.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getUserSession_Name(), ecorePackage.getEString(), "name", null, 0, 1, UserSession.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getUserSession_Type(), this.getUserType(), "type", null, 0, 1, UserSession.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getUserSession_ActiveSince(), ecorePackage.getEDate(), "activeSince", null, 0, 1, UserSession.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getUserSession_LastActive(), ecorePackage.getEDate(), "lastActive", null, 0, 1, UserSession.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getUserSession_AccessMethod(), theLogPackage.getAccessMethod(), "accessMethod", null, 0, 1, UserSession.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(migrationEClass, Migration.class, "Migration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getMigration_Number(), ecorePackage.getEInt(), "number", null, 0, 1, Migration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getMigration_Description(), ecorePackage.getEString(), "description", null, 0, 1, Migration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getMigration_Executed(), ecorePackage.getEBoolean(), "executed", null, 0, 1, Migration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(referenceDataValueEClass, ReferenceDataValue.class, "ReferenceDataValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getReferenceDataValue_TypeName(), ecorePackage.getEString(), "typeName", null, 0, 1, ReferenceDataValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getReferenceDataValue_Guid(), ecorePackage.getEString(), "guid", null, 0, 1, ReferenceDataValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(listDataValueEClass, ListDataValue.class, "ListDataValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getListDataValue_Values(), this.getDataValue(), null, "values", null, 0, -1, ListDataValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(simpleDataValueEClass, SimpleDataValue.class, "SimpleDataValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getSimpleDataValue_StringValue(), ecorePackage.getEString(), "stringValue", null, 0, 1, SimpleDataValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(databaseInformationEClass, DatabaseInformation.class, "DatabaseInformation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getDatabaseInformation_NumberOfProjects(), ecorePackage.getEInt(), "numberOfProjects", null, 0, 1, DatabaseInformation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDatabaseInformation_NumberOfUsers(), ecorePackage.getEInt(), "numberOfUsers", null, 0, 1, DatabaseInformation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDatabaseInformation_NumberOfRevisions(), ecorePackage.getEInt(), "numberOfRevisions", null, 0, 1, DatabaseInformation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDatabaseInformation_NumberOfCheckouts(), ecorePackage.getEInt(), "numberOfCheckouts", null, 0, 1, DatabaseInformation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDatabaseInformation_DatabaseSizeInBytes(), ecorePackage.getELong(), "databaseSizeInBytes", null, 0, 1, DatabaseInformation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDatabaseInformation_Type(), ecorePackage.getEString(), "type", null, 0, 1, DatabaseInformation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDatabaseInformation_Created(), ecorePackage.getEDate(), "created", null, 0, 1, DatabaseInformation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDatabaseInformation_Location(), ecorePackage.getEString(), "location", null, 0, 1, DatabaseInformation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDatabaseInformation_SchemaVersion(), ecorePackage.getEInt(), "schemaVersion", null, 0, 1, DatabaseInformation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDatabaseInformation_GenericLines(), ecorePackage.getEString(), "genericLines", null, 0, 1, DatabaseInformation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(serializerPluginDescriptorEClass, SerializerPluginDescriptor.class, "SerializerPluginDescriptor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getSerializerPluginDescriptor_PluginClassName(), ecorePackage.getEString(), "pluginClassName", null, 0, 1, SerializerPluginDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSerializerPluginDescriptor_DefaultName(), ecorePackage.getEString(), "defaultName", null, 0, 1, SerializerPluginDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSerializerPluginDescriptor_DefaultExtension(), ecorePackage.getEString(), "defaultExtension", null, 0, 1, SerializerPluginDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSerializerPluginDescriptor_DefaultContentType(), ecorePackage.getEString(), "defaultContentType", null, 0, 1, SerializerPluginDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(revisionSummaryTypeEClass, RevisionSummaryType.class, "RevisionSummaryType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getRevisionSummaryType_Name(), ecorePackage.getEString(), "name", null, 0, 1, RevisionSummaryType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getRevisionSummaryType_Count(), ecorePackage.getEInt(), "count", null, 0, 1, RevisionSummaryType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(revisionSummaryContainerEClass, RevisionSummaryContainer.class, "RevisionSummaryContainer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getRevisionSummaryContainer_Name(), ecorePackage.getEString(), "name", null, 0, 1, RevisionSummaryContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getRevisionSummaryContainer_Types(), this.getRevisionSummaryType(), null, "types", null, 0, -1, RevisionSummaryContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(revisionSummaryEClass, RevisionSummary.class, "RevisionSummary", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getRevisionSummary_List(), this.getRevisionSummaryContainer(), null, "list", null, 0, -1, RevisionSummary.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(pluginDescriptorEClass, PluginDescriptor.class, "PluginDescriptor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getPluginDescriptor_Name(), ecorePackage.getEString(), "name", null, 0, 1, PluginDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPluginDescriptor_Description(), ecorePackage.getEString(), "description", null, 0, 1, PluginDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPluginDescriptor_Location(), ecorePackage.getEString(), "location", null, 0, 1, PluginDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPluginDescriptor_Enabled(), ecorePackage.getEBoolean(), "enabled", null, 0, 1, PluginDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(longActionEClass, LongAction.class, "LongAction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getLongAction_Identification(), ecorePackage.getEString(), "identification", null, 0, 1, LongAction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getLongAction_User(), this.getUser(), null, "user", null, 0, 1, LongAction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLongAction_Start(), ecorePackage.getEDate(), "start", null, 0, 1, LongAction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLongAction_Username(), ecorePackage.getEString(), "username", null, 0, 1, LongAction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLongAction_Name(), ecorePackage.getEString(), "name", null, 0, 1, LongAction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(guidanceProviderPluginDescriptorEClass, GuidanceProviderPluginDescriptor.class, "GuidanceProviderPluginDescriptor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getGuidanceProviderPluginDescriptor_ClassName(), ecorePackage.getEString(), "className", null, 0, 1, GuidanceProviderPluginDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(compareResultEClass, CompareResult.class, "CompareResult", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(longActionStateEClass, LongActionState.class, "LongActionState", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getLongActionState_Progress(), ecorePackage.getEInt(), "progress", null, 0, 1, LongActionState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLongActionState_State(), this.getActionState(), "state", null, 0, 1, LongActionState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		// Initialize enums and add enum literals
 		initEEnum(userTypeEEnum, UserType.class, "UserType");
 		addEEnumLiteral(userTypeEEnum, UserType.SYSTEM);
@@ -2061,8 +3123,47 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 		addEEnumLiteral(mergeIdentifierEEnum, MergeIdentifier.NAME);
 		addEEnumLiteral(mergeIdentifierEEnum, MergeIdentifier.GUID);
 
+		initEEnum(actionStateEEnum, ActionState.class, "ActionState");
+		addEEnumLiteral(actionStateEEnum, ActionState.UNKNOWN);
+		addEEnumLiteral(actionStateEEnum, ActionState.STARTED);
+		addEEnumLiteral(actionStateEEnum, ActionState.FINISHED);
+
 		// Create resource
 		createResource(eNS_URI);
+
+		// Create annotations
+		// embedsreference
+		createEmbedsreferenceAnnotations();
+	}
+
+	/**
+	 * Initializes the annotations for <b>embedsreference</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createEmbedsreferenceAnnotations() {
+		String source = "embedsreference";		
+		addAnnotation
+		  (getDataObject_Values(), 
+		   source, 
+		   new String[] {
+		   });		
+		addAnnotation
+		  (getListDataValue_Values(), 
+		   source, 
+		   new String[] {
+		   });		
+		addAnnotation
+		  (getRevisionSummaryContainer_Types(), 
+		   source, 
+		   new String[] {
+		   });		
+		addAnnotation
+		  (getRevisionSummary_List(), 
+		   source, 
+		   new String[] {
+		   });
 	}
 
 } //StorePackageImpl

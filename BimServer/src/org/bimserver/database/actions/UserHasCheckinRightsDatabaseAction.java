@@ -7,7 +7,7 @@ import org.bimserver.mail.MailSystem;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.User;
 import org.bimserver.rights.RightsManager;
-import org.bimserver.shared.UserException;
+import org.bimserver.shared.exceptions.UserException;
 
 public class UserHasCheckinRightsDatabaseAction extends BimDatabaseAction<Boolean> {
 

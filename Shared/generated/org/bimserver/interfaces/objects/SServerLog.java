@@ -1,14 +1,19 @@
 package org.bimserver.interfaces.objects;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import java.util.*;
 import javax.xml.bind.annotation.XmlRootElement;
+import org.bimserver.shared.meta.*;
 
 @XmlRootElement
-public class SServerLog
+public class SServerLog implements SBase
 {
 	private long oid;
+	private static final SClass sClass = new SClass("ServerLog");
+	
+	static {
+		sClass.addField(new SField("oid", long.class));
+		sClass.addField(new SField("actions", Long.class, true));
+	}
 	
 	public long getOid() {
 		return oid;
@@ -16,6 +21,10 @@ public class SServerLog
 	
 	public void setOid(long oid) {
 		this.oid = oid;
+	}
+	
+	public SClass getSClass() {
+		return sClass;
 	}
 	private List<Long> actions = new ArrayList<Long>();
 	public List<Long> getActions() {

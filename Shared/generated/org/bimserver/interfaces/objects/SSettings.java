@@ -1,14 +1,41 @@
 package org.bimserver.interfaces.objects;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import java.util.*;
 import javax.xml.bind.annotation.XmlRootElement;
+import org.bimserver.shared.meta.*;
 
 @XmlRootElement
-public class SSettings
+public class SSettings implements SBase
 {
 	private long oid;
+	private static final SClass sClass = new SClass("Settings");
+	
+	static {
+		sClass.addField(new SField("oid", long.class));
+		sClass.addField(new SField("showVersionUpgradeAvailable", boolean.class));
+		sClass.addField(new SField("sendConfirmationEmailAfterRegistration", boolean.class));
+		sClass.addField(new SField("useCaching", boolean.class));
+		sClass.addField(new SField("allowSelfRegistration", boolean.class));
+		sClass.addField(new SField("autoTestClashes", boolean.class));
+		sClass.addField(new SField("intelligentMerging", boolean.class));
+		sClass.addField(new SField("allowUsersToCreateTopLevelProjects", boolean.class));
+		sClass.addField(new SField("checkinMergingEnabled", boolean.class));
+		sClass.addField(new SField("registrationAddition", java.lang.String.class));
+		sClass.addField(new SField("smtpServer", java.lang.String.class));
+		sClass.addField(new SField("emailSenderAddress", java.lang.String.class));
+		sClass.addField(new SField("enabledExportTypes", java.lang.String.class));
+		sClass.addField(new SField("customLogoAddress", java.lang.String.class));
+		sClass.addField(new SField("siteAddress", java.lang.String.class));
+		sClass.addField(new SField("serializers", Long.class, true));
+		sClass.addField(new SField("guidanceProviders", Long.class, true));
+		sClass.addField(new SField("headerAddition", java.lang.String.class));
+		sClass.addField(new SField("footerAddition", java.lang.String.class));
+		sClass.addField(new SField("mergeIdentifier", SMergeIdentifier.class));
+		sClass.addField(new SField("cacheOutputFiles", boolean.class));
+		sClass.addField(new SField("ifcEngines", Long.class, true));
+		sClass.addField(new SField("plugins", Long.class, true));
+		sClass.addField(new SField("deserializers", Long.class, true));
+	}
 	
 	public long getOid() {
 		return oid;
@@ -16,6 +43,10 @@ public class SSettings
 	
 	public void setOid(long oid) {
 		this.oid = oid;
+	}
+	
+	public SClass getSClass() {
+		return sClass;
 	}
 	private boolean showVersionUpgradeAvailable;
 	private boolean sendConfirmationEmailAfterRegistration;

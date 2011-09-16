@@ -10,6 +10,7 @@ import org.bimserver.database.BimDeadlockException;
 import org.bimserver.database.query.conditions.AttributeCondition;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.literals.StringLiteral;
+import org.bimserver.interfaces.objects.SSerializerPluginDescriptor;
 import org.bimserver.longaction.DownloadParameters;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Serializer;
@@ -21,7 +22,6 @@ import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
-import org.bimserver.shared.SSerializerPluginDescriptor;
 
 public class EmfSerializerFactory {
 	private PluginManager pluginManager;

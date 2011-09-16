@@ -1,11 +1,23 @@
 package org.bimserver.interfaces.objects;
 
+import java.util.*;
 import javax.xml.bind.annotation.XmlRootElement;
+import org.bimserver.shared.meta.*;
 
 @XmlRootElement
-public class SDatabaseCreated extends SLogAction
+public class SDatabaseCreated extends SLogAction implements SBase
 {
 	private long oid;
+	private static final SClass sClass = new SClass("DatabaseCreated");
+	
+	static {
+		sClass.addField(new SField("oid", long.class));
+		sClass.addField(new SField("date", java.util.Date.class));
+		sClass.addField(new SField("executorId", long.class));
+		sClass.addField(new SField("accessMethod", SAccessMethod.class));
+		sClass.addField(new SField("path", java.lang.String.class));
+		sClass.addField(new SField("version", int.class));
+	}
 	
 	public long getOid() {
 		return oid;
@@ -13,6 +25,10 @@ public class SDatabaseCreated extends SLogAction
 	
 	public void setOid(long oid) {
 		this.oid = oid;
+	}
+	
+	public SClass getSClass() {
+		return sClass;
 	}
 	private java.lang.String path;
 	private int version;

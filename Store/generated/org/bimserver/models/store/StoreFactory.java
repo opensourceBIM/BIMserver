@@ -170,6 +170,186 @@ public interface StoreFactory extends EFactory {
 	Deserializer createDeserializer();
 
 	/**
+	 * Returns a new object of class '<em>Checkin Result</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Checkin Result</em>'.
+	 * @generated
+	 */
+	CheckinResult createCheckinResult();
+
+	/**
+	 * Returns a new object of class '<em>Download Result</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Download Result</em>'.
+	 * @generated
+	 */
+	DownloadResult createDownloadResult();
+
+	/**
+	 * Returns a new object of class '<em>Checkout Result</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Checkout Result</em>'.
+	 * @generated
+	 */
+	CheckoutResult createCheckoutResult();
+
+	/**
+	 * Returns a new object of class '<em>Data Object</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Data Object</em>'.
+	 * @generated
+	 */
+	DataObject createDataObject();
+
+	/**
+	 * Returns a new object of class '<em>User Session</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>User Session</em>'.
+	 * @generated
+	 */
+	UserSession createUserSession();
+
+	/**
+	 * Returns a new object of class '<em>Migration</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Migration</em>'.
+	 * @generated
+	 */
+	Migration createMigration();
+
+	/**
+	 * Returns a new object of class '<em>Data Value</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Data Value</em>'.
+	 * @generated
+	 */
+	DataValue createDataValue();
+
+	/**
+	 * Returns a new object of class '<em>Reference Data Value</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Reference Data Value</em>'.
+	 * @generated
+	 */
+	ReferenceDataValue createReferenceDataValue();
+
+	/**
+	 * Returns a new object of class '<em>List Data Value</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>List Data Value</em>'.
+	 * @generated
+	 */
+	ListDataValue createListDataValue();
+
+	/**
+	 * Returns a new object of class '<em>Simple Data Value</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Simple Data Value</em>'.
+	 * @generated
+	 */
+	SimpleDataValue createSimpleDataValue();
+
+	/**
+	 * Returns a new object of class '<em>Database Information</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Database Information</em>'.
+	 * @generated
+	 */
+	DatabaseInformation createDatabaseInformation();
+
+	/**
+	 * Returns a new object of class '<em>Serializer Plugin Descriptor</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Serializer Plugin Descriptor</em>'.
+	 * @generated
+	 */
+	SerializerPluginDescriptor createSerializerPluginDescriptor();
+
+	/**
+	 * Returns a new object of class '<em>Revision Summary Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Revision Summary Type</em>'.
+	 * @generated
+	 */
+	RevisionSummaryType createRevisionSummaryType();
+
+	/**
+	 * Returns a new object of class '<em>Revision Summary Container</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Revision Summary Container</em>'.
+	 * @generated
+	 */
+	RevisionSummaryContainer createRevisionSummaryContainer();
+
+	/**
+	 * Returns a new object of class '<em>Revision Summary</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Revision Summary</em>'.
+	 * @generated
+	 */
+	RevisionSummary createRevisionSummary();
+
+	/**
+	 * Returns a new object of class '<em>Plugin Descriptor</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Plugin Descriptor</em>'.
+	 * @generated
+	 */
+	PluginDescriptor createPluginDescriptor();
+
+	/**
+	 * Returns a new object of class '<em>Long Action</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Long Action</em>'.
+	 * @generated
+	 */
+	LongAction createLongAction();
+
+	/**
+	 * Returns a new object of class '<em>Guidance Provider Plugin Descriptor</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Guidance Provider Plugin Descriptor</em>'.
+	 * @generated
+	 */
+	GuidanceProviderPluginDescriptor createGuidanceProviderPluginDescriptor();
+
+	/**
+	 * Returns a new object of class '<em>Compare Result</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Compare Result</em>'.
+	 * @generated
+	 */
+	CompareResult createCompareResult();
+
+	/**
+	 * Returns a new object of class '<em>Long Action State</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Long Action State</em>'.
+	 * @generated
+	 */
+	LongActionState createLongActionState();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
