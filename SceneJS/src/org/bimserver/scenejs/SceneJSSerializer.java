@@ -745,12 +745,23 @@ public class SceneJSSerializer extends BimModelSerializer {
 				writer.indent();
 				for (String geometryId : geometryIds) {
 					writer.writeln("{");
-					writer.indent();
+					writer.indent();					
+					writer.writeln("type: 'name',");
+					writer.writeln("id: '" + geometryId + "',");
 					
+					writer.writeln("nodes: [");
+					writer.indent();					
+					writer.writeln("{");
+					writer.indent();					
 					writer.writeln("type: 'geometry',");
 					writer.writeln("coreId: '" + geometryId + "',");
 					writer.unindent();
-					writer.writeln("},"); // geometry
+					writer.writeln("},"); // geometry					
+					writer.unindent();
+					writer.writeln("],");
+					
+					writer.unindent();
+					writer.writeln("},"); // name
 				}
 				writer.unindent();
 				writer.writeln("],");
