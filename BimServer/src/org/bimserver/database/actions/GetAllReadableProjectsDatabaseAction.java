@@ -16,7 +16,7 @@ import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserType;
 import org.bimserver.rights.RightsManager;
-import org.bimserver.shared.UserException;
+import org.bimserver.shared.exceptions.UserException;
 
 public class GetAllReadableProjectsDatabaseAction extends BimDatabaseAction<Set<Project>> {
 

@@ -11,7 +11,7 @@ import org.bimserver.models.log.UserUndeleted;
 import org.bimserver.models.store.ObjectState;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserType;
-import org.bimserver.shared.UserException;
+import org.bimserver.shared.exceptions.UserException;
 
 public class UndeleteUserDatabaseAction extends BimDatabaseAction<Boolean> {
 

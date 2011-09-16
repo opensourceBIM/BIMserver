@@ -1,14 +1,23 @@
 package org.bimserver.interfaces.objects;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import java.util.*;
 import javax.xml.bind.annotation.XmlRootElement;
+import org.bimserver.shared.meta.*;
 
 @XmlRootElement
-public class SClashDetectionSettings
+public class SClashDetectionSettings implements SBase
 {
 	private long oid;
+	private static final SClass sClass = new SClass("ClashDetectionSettings");
+	
+	static {
+		sClass.addField(new SField("oid", long.class));
+		sClass.addField(new SField("enabled", boolean.class));
+		sClass.addField(new SField("projects", Long.class, true));
+		sClass.addField(new SField("margin", float.class));
+		sClass.addField(new SField("revisions", Long.class, true));
+		sClass.addField(new SField("ignoredClasses", java.lang.String.class, true));
+	}
 	
 	public long getOid() {
 		return oid;
@@ -16,6 +25,10 @@ public class SClashDetectionSettings
 	
 	public void setOid(long oid) {
 		this.oid = oid;
+	}
+	
+	public SClass getSClass() {
+		return sClass;
 	}
 	private boolean enabled;
 	private List<Long> projects = new ArrayList<Long>();

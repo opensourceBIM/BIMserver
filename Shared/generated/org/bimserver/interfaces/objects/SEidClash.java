@@ -1,11 +1,26 @@
 package org.bimserver.interfaces.objects;
 
+import java.util.*;
 import javax.xml.bind.annotation.XmlRootElement;
+import org.bimserver.shared.meta.*;
 
 @XmlRootElement
-public class SEidClash extends SClash
+public class SEidClash extends SClash implements SBase
 {
 	private long oid;
+	private static final SClass sClass = new SClass("EidClash");
+	
+	static {
+		sClass.addField(new SField("oid", long.class));
+		sClass.addField(new SField("name1", java.lang.String.class));
+		sClass.addField(new SField("name2", java.lang.String.class));
+		sClass.addField(new SField("type1", java.lang.String.class));
+		sClass.addField(new SField("type2", java.lang.String.class));
+		sClass.addField(new SField("revision1Id", long.class));
+		sClass.addField(new SField("revision2Id", long.class));
+		sClass.addField(new SField("eid1", long.class));
+		sClass.addField(new SField("eid2", long.class));
+	}
 	
 	public long getOid() {
 		return oid;
@@ -13,6 +28,10 @@ public class SEidClash extends SClash
 	
 	public void setOid(long oid) {
 		this.oid = oid;
+	}
+	
+	public SClass getSClass() {
+		return sClass;
 	}
 	private long eid1;
 	private long eid2;

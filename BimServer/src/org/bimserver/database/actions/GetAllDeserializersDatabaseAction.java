@@ -13,7 +13,7 @@ import org.bimserver.database.query.conditions.IsOfTypeCondition;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.Deserializer;
 import org.bimserver.models.store.StorePackage;
-import org.bimserver.shared.UserException;
+import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.utils.CollectionUtils;
 
 public class GetAllDeserializersDatabaseAction extends GetAllDatabaseAction<Deserializer> {

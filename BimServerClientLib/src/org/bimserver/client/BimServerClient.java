@@ -10,8 +10,8 @@ import org.apache.cxf.frontend.ClientProxy;
 import org.apache.cxf.jaxws.JaxWsProxyFactoryBean;
 import org.apache.cxf.transport.http.HTTPConduit;
 import org.bimserver.pb.ProtocolBuffersServiceInterfaceImplementation;
-import org.bimserver.shared.ServiceException;
 import org.bimserver.shared.ServiceInterface;
+import org.bimserver.shared.exceptions.ServiceException;
 
 import com.google.protobuf.BlockingRpcChannel;
 import com.googlecode.protobuf.socketrpc.RpcChannels;

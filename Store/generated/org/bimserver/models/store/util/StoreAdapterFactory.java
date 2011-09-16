@@ -6,6 +6,7 @@
  */
 package org.bimserver.models.store.util;
 
+import org.bimserver.models.store.*;
 import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.Clash;
 import org.bimserver.models.store.ClashDetectionSettings;
@@ -147,6 +148,86 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseDeserializer(Deserializer object) {
 				return createDeserializerAdapter();
+			}
+			@Override
+			public Adapter caseCheckinResult(CheckinResult object) {
+				return createCheckinResultAdapter();
+			}
+			@Override
+			public Adapter caseDownloadResult(DownloadResult object) {
+				return createDownloadResultAdapter();
+			}
+			@Override
+			public Adapter caseCheckoutResult(CheckoutResult object) {
+				return createCheckoutResultAdapter();
+			}
+			@Override
+			public Adapter caseDataValue(DataValue object) {
+				return createDataValueAdapter();
+			}
+			@Override
+			public Adapter caseDataObject(DataObject object) {
+				return createDataObjectAdapter();
+			}
+			@Override
+			public Adapter caseUserSession(UserSession object) {
+				return createUserSessionAdapter();
+			}
+			@Override
+			public Adapter caseMigration(Migration object) {
+				return createMigrationAdapter();
+			}
+			@Override
+			public Adapter caseReferenceDataValue(ReferenceDataValue object) {
+				return createReferenceDataValueAdapter();
+			}
+			@Override
+			public Adapter caseListDataValue(ListDataValue object) {
+				return createListDataValueAdapter();
+			}
+			@Override
+			public Adapter caseSimpleDataValue(SimpleDataValue object) {
+				return createSimpleDataValueAdapter();
+			}
+			@Override
+			public Adapter caseDatabaseInformation(DatabaseInformation object) {
+				return createDatabaseInformationAdapter();
+			}
+			@Override
+			public Adapter caseSerializerPluginDescriptor(SerializerPluginDescriptor object) {
+				return createSerializerPluginDescriptorAdapter();
+			}
+			@Override
+			public Adapter caseRevisionSummaryType(RevisionSummaryType object) {
+				return createRevisionSummaryTypeAdapter();
+			}
+			@Override
+			public Adapter caseRevisionSummaryContainer(RevisionSummaryContainer object) {
+				return createRevisionSummaryContainerAdapter();
+			}
+			@Override
+			public Adapter caseRevisionSummary(RevisionSummary object) {
+				return createRevisionSummaryAdapter();
+			}
+			@Override
+			public Adapter casePluginDescriptor(PluginDescriptor object) {
+				return createPluginDescriptorAdapter();
+			}
+			@Override
+			public Adapter caseLongAction(LongAction object) {
+				return createLongActionAdapter();
+			}
+			@Override
+			public Adapter caseGuidanceProviderPluginDescriptor(GuidanceProviderPluginDescriptor object) {
+				return createGuidanceProviderPluginDescriptorAdapter();
+			}
+			@Override
+			public Adapter caseCompareResult(CompareResult object) {
+				return createCompareResultAdapter();
+			}
+			@Override
+			public Adapter caseLongActionState(LongActionState object) {
+				return createLongActionStateAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -389,6 +470,286 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createDeserializerAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.CheckinResult <em>Checkin Result</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.CheckinResult
+	 * @generated
+	 */
+	public Adapter createCheckinResultAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.DownloadResult <em>Download Result</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.DownloadResult
+	 * @generated
+	 */
+	public Adapter createDownloadResultAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.CheckoutResult <em>Checkout Result</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.CheckoutResult
+	 * @generated
+	 */
+	public Adapter createCheckoutResultAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.DataObject <em>Data Object</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.DataObject
+	 * @generated
+	 */
+	public Adapter createDataObjectAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.UserSession <em>User Session</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.UserSession
+	 * @generated
+	 */
+	public Adapter createUserSessionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.Migration <em>Migration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.Migration
+	 * @generated
+	 */
+	public Adapter createMigrationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.DataValue <em>Data Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.DataValue
+	 * @generated
+	 */
+	public Adapter createDataValueAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.ReferenceDataValue <em>Reference Data Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.ReferenceDataValue
+	 * @generated
+	 */
+	public Adapter createReferenceDataValueAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.ListDataValue <em>List Data Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.ListDataValue
+	 * @generated
+	 */
+	public Adapter createListDataValueAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.SimpleDataValue <em>Simple Data Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.SimpleDataValue
+	 * @generated
+	 */
+	public Adapter createSimpleDataValueAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.DatabaseInformation <em>Database Information</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.DatabaseInformation
+	 * @generated
+	 */
+	public Adapter createDatabaseInformationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.SerializerPluginDescriptor <em>Serializer Plugin Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.SerializerPluginDescriptor
+	 * @generated
+	 */
+	public Adapter createSerializerPluginDescriptorAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.RevisionSummaryType <em>Revision Summary Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.RevisionSummaryType
+	 * @generated
+	 */
+	public Adapter createRevisionSummaryTypeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.RevisionSummaryContainer <em>Revision Summary Container</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.RevisionSummaryContainer
+	 * @generated
+	 */
+	public Adapter createRevisionSummaryContainerAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.RevisionSummary <em>Revision Summary</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.RevisionSummary
+	 * @generated
+	 */
+	public Adapter createRevisionSummaryAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.PluginDescriptor <em>Plugin Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.PluginDescriptor
+	 * @generated
+	 */
+	public Adapter createPluginDescriptorAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.LongAction <em>Long Action</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.LongAction
+	 * @generated
+	 */
+	public Adapter createLongActionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.GuidanceProviderPluginDescriptor <em>Guidance Provider Plugin Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.GuidanceProviderPluginDescriptor
+	 * @generated
+	 */
+	public Adapter createGuidanceProviderPluginDescriptorAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.CompareResult <em>Compare Result</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.CompareResult
+	 * @generated
+	 */
+	public Adapter createCompareResultAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.LongActionState <em>Long Action State</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.LongActionState
+	 * @generated
+	 */
+	public Adapter createLongActionStateAdapter() {
 		return null;
 	}
 

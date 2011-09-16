@@ -46,12 +46,12 @@ import javax.swing.JSplitPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import org.apache.commons.io.IOUtils;
+import org.bimserver.interfaces.objects.SCheckinResult;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.interfaces.objects.SUser;
-import org.bimserver.shared.SCheckinResult;
-import org.bimserver.shared.SDownloadResult;
-import org.bimserver.shared.ServiceException;
+import org.bimserver.shared.exceptions.ServiceException;
+import org.bimserver.shared.objects.SDownloadResult;
 import org.bimserver.utils.SwingUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

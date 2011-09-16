@@ -1,5 +1,8 @@
 package org.bimserver.interfaces.objects;
 
+import java.util.*;
+import javax.xml.bind.annotation.XmlRootElement;
+import org.bimserver.shared.meta.*;
 public enum SAccessMethod {
 	SOAP(0),
 	WEB_INTERFACE(1),

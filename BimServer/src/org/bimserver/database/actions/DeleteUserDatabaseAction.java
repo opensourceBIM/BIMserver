@@ -7,7 +7,7 @@ import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ObjectState;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserType;
-import org.bimserver.shared.UserException;
+import org.bimserver.shared.exceptions.UserException;
 
 public class DeleteUserDatabaseAction extends BimDatabaseAction<Boolean> {
 

@@ -9,7 +9,7 @@ import javax.activation.FileDataSource;
 
 import org.bimserver.plugins.serializers.EmfSerializer;
 import org.bimserver.plugins.serializers.SerializerException;
-import org.bimserver.shared.SCheckoutResult;
+import org.bimserver.shared.objects.SCheckoutResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

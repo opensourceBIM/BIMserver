@@ -6,7 +6,7 @@ import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
 import org.bimserver.emf.IdEObject;
-import org.bimserver.shared.UserException;
+import org.bimserver.shared.exceptions.UserException;
 import org.eclipse.emf.ecore.EAttribute;
 
 public class AddAttributeChange implements Change {

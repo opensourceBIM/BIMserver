@@ -11,7 +11,7 @@ import org.bimserver.models.log.LogFactory;
 import org.bimserver.models.log.UserChanged;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserType;
-import org.bimserver.shared.UserException;
+import org.bimserver.shared.exceptions.UserException;
 
 public class ChangeUserTypeDatabaseAction extends BimDatabaseAction<Void> {
 

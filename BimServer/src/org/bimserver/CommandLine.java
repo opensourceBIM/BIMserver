@@ -19,8 +19,8 @@ import org.bimserver.models.ifc2x3.IfcWall;
 import org.bimserver.models.ifc2x3.IfcWindow;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.plugins.serializers.IfcModelInterface;
-import org.bimserver.shared.ServerException;
-import org.bimserver.shared.UserException;
+import org.bimserver.shared.exceptions.ServerException;
+import org.bimserver.shared.exceptions.UserException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

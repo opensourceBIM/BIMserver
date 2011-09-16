@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.List;
 
 import org.bimserver.shared.ProtocolBuffersConverter;
-import org.bimserver.shared.ServerException;
+import org.bimserver.shared.exceptions.ServerException;
 
 import com.google.protobuf.BlockingRpcChannel;
 import com.google.protobuf.DescriptorProtos.FileDescriptorProto;

@@ -1,11 +1,22 @@
 package org.bimserver.interfaces.objects;
 
+import java.util.*;
 import javax.xml.bind.annotation.XmlRootElement;
+import org.bimserver.shared.meta.*;
 
 @XmlRootElement
-public class SNewCheckoutAdded extends SLogAction
+public class SNewCheckoutAdded extends SLogAction implements SBase
 {
 	private long oid;
+	private static final SClass sClass = new SClass("NewCheckoutAdded");
+	
+	static {
+		sClass.addField(new SField("oid", long.class));
+		sClass.addField(new SField("date", java.util.Date.class));
+		sClass.addField(new SField("executorId", long.class));
+		sClass.addField(new SField("accessMethod", SAccessMethod.class));
+		sClass.addField(new SField("checkoutId", long.class));
+	}
 	
 	public long getOid() {
 		return oid;
@@ -13,6 +24,10 @@ public class SNewCheckoutAdded extends SLogAction
 	
 	public void setOid(long oid) {
 		this.oid = oid;
+	}
+	
+	public SClass getSClass() {
+		return sClass;
 	}
 	private long checkoutId;
 	public long getCheckoutId() {

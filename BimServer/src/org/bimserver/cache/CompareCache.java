@@ -1,8 +1,8 @@
 package org.bimserver.cache;
 
 import org.bimserver.ifc.compare.CompareResult;
-import org.bimserver.shared.SCompareResult.SCompareIdentifier;
-import org.bimserver.shared.SCompareResult.SCompareType;
+import org.bimserver.shared.objects.SCompareResult.SCompareIdentifier;
+import org.bimserver.shared.objects.SCompareResult.SCompareType;
 
 public class CompareCache extends GenericCache<CompareCache.CompareKey, CompareCache.CompareValue> {
 	private static final int MAX_UNACCESSED_TIME_MS = 1000 * 60 * 30; // 30 minutes

@@ -1,14 +1,25 @@
 package org.bimserver.interfaces.objects;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import java.util.*;
 import javax.xml.bind.annotation.XmlRootElement;
+import org.bimserver.shared.meta.*;
 
 @XmlRootElement
-public class SGeoTag
+public class SGeoTag implements SBase
 {
 	private long oid;
+	private static final SClass sClass = new SClass("GeoTag");
+	
+	static {
+		sClass.addField(new SField("oid", long.class));
+		sClass.addField(new SField("enabled", boolean.class));
+		sClass.addField(new SField("projects", Long.class, true));
+		sClass.addField(new SField("x", float.class));
+		sClass.addField(new SField("y", float.class));
+		sClass.addField(new SField("z", float.class));
+		sClass.addField(new SField("epsg", int.class));
+		sClass.addField(new SField("directionAngle", float.class));
+	}
 	
 	public long getOid() {
 		return oid;
@@ -16,6 +27,10 @@ public class SGeoTag
 	
 	public void setOid(long oid) {
 		this.oid = oid;
+	}
+	
+	public SClass getSClass() {
+		return sClass;
 	}
 	private boolean enabled;
 	private List<Long> projects = new ArrayList<Long>();

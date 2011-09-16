@@ -61,25 +61,48 @@ public class SConverter {
 		result.set<%=StringUtils.firstUpperCase(eAttribute.getName())%>(S<%=eAttribute.getEType().getName()%>.values()[input.get<%=StringUtils.firstUpperCase(eAttribute.getName())%>().ordinal()]);
 <%
 		} else {
+			if (eAttribute.isMany()) {
+%>
+		result.get<%=StringUtils.firstUpperCase(eAttribute.getName())%>().addAll(input.<%=eAttribute.getEType() == EcorePackage.eINSTANCE.getEBoolean() ? "is" : "get"%><%=StringUtils.firstUpperCase(eAttribute.getName())%>());
+<%
+			} else {
 %>
 		result.set<%=StringUtils.firstUpperCase(eAttribute.getName())%>(input.<%=eAttribute.getEType() == EcorePackage.eINSTANCE.getEBoolean() ? "is" : "get"%><%=StringUtils.firstUpperCase(eAttribute.getName())%>());
 <%
+			}
 		}
 	}
 	for (EReference eReference : eClass.getEAllReferences()) {
 		if (eReference.isMany()) {
+			if (eReference.getEAnnotation("embedsreference") != null) {
+%>
+		List<S<%=eReference.getEType().getName()%>> list<%=eReference.getName()%> = new ArrayList<S<%=eReference.getEType().getName()%>>();
+		for (<%=eReference.getEType().getName()%> v : input.get<%=StringUtils.firstUpperCase(eReference.getName())%>()) {
+			list<%=eReference.getName()%>.add(convertToSObject(v));
+		}
+		result.set<%=StringUtils.firstUpperCase(eReference.getName())%>(list<%=eReference.getName()%>);
+<%
+			} else {
 %>
 		List<Long> list<%=eReference.getName()%> = new ArrayList<Long>();
 		for (<%=eReference.getEType().getName()%> v : input.get<%=StringUtils.firstUpperCase(eReference.getName())%>()) {
 			list<%=eReference.getName()%>.add(v.getOid());
 		}
 		result.set<%=StringUtils.firstUpperCase(eReference.getName())%>(list<%=eReference.getName()%>);
-<%		
+<%
+			}
 		} else {
+			if (eReference.getEAnnotation("embedsreference") != null) {
+%>
+		<%=eReference.getEType().getName()%> <%=eReference.getName()%>Val = input.get<%=StringUtils.firstUpperCase(eReference.getName())%>();
+		result.set<%=StringUtils.firstUpperCase(eReference.getName())%>(convertToSObject(<%=eReference.getName()%>Val));
+<%
+			} else {
 %>
 		<%=eReference.getEType().getName()%> <%=eReference.getName()%>Val = input.get<%=StringUtils.firstUpperCase(eReference.getName())%>();
 		result.set<%=StringUtils.firstUpperCase(eReference.getName())%>Id(<%=eReference.getName()%>Val == null ? -1 : <%=eReference.getName()%>Val.getOid());
 <%
+			}
 		}
 	}
 %>
@@ -99,23 +122,44 @@ public class SConverter {
 		result.set<%=StringUtils.firstUpperCase(eAttribute.getName())%>(<%=eAttribute.getEType().getName()%>.values()[input.get<%=StringUtils.firstUpperCase(eAttribute.getName())%>().ordinal()]);
 <%
 		} else {
+			if (eAttribute.isMany()) {
+%>
+		result.get<%=StringUtils.firstUpperCase(eAttribute.getName())%>().addAll(input.<%=eAttribute.getEType() == EcorePackage.eINSTANCE.getEBoolean() ? "is" : "get"%><%=StringUtils.firstUpperCase(eAttribute.getName())%>());
+<%
+			} else {
 %>
 		result.set<%=StringUtils.firstUpperCase(eAttribute.getName())%>(input.<%=eAttribute.getEType() == EcorePackage.eINSTANCE.getEBoolean() ? "is" : "get"%><%=StringUtils.firstUpperCase(eAttribute.getName())%>());
 <%
+			}
 		}
 	}
 	for (EReference eReference : eClass.getEAllReferences()) {
 		if (eReference.isMany()) {
+			if (eReference.getEAnnotation("embedsreference") != null) {
+%>
+		List<<%=eReference.getEType().getName()%>> list<%=eReference.getName()%> = result.get<%=StringUtils.firstUpperCase(eReference.getName())%>();
+		for (S<%=eReference.getEType().getName()%> v : input.get<%=StringUtils.firstUpperCase(eReference.getName())%>()) {
+			list<%=eReference.getName()%>.add(convertFromSObject(v, session));
+		}
+<%
+			} else {
 %>
 		List<<%=eReference.getEType().getName()%>> list<%=eReference.getName()%> = result.get<%=StringUtils.firstUpperCase(eReference.getName())%>();
 		for (long oid : input.get<%=StringUtils.firstUpperCase(eReference.getName())%>()) {
 			list<%=eReference.getName()%>.add((<%=eReference.getEType().getName()%>)session.get(<%=StringUtils.firstUpperCase(eReference.getEType().getEPackage().getName())%>Package.eINSTANCE.get<%=eReference.getEType().getName()%>(), oid, false));
 		}
 <%		
+			}
 		} else {
+			if (eReference.getEAnnotation("embedsreference") != null) {
+%>
+		result.set<%=StringUtils.firstUpperCase(eReference.getName())%>(convertFromSObject(input.get<%=StringUtils.firstUpperCase(eReference.getName())%>(), session));
+<%
+			} else {
 %>
 		result.set<%=StringUtils.firstUpperCase(eReference.getName())%>((<%=eReference.getEType().getName()%>)session.get(<%=StringUtils.firstUpperCase(eReference.getEType().getEPackage().getName())%>Package.eINSTANCE.get<%=eReference.getEType().getName()%>(), input.get<%=StringUtils.firstUpperCase(eReference.getName())%>Id(), false));
 <%
+			}
 		}
 	}
 %>

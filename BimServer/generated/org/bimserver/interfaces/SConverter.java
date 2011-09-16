@@ -1905,7 +1905,7 @@ public class SConverter {
 		result.setOid(input.getOid());
 		result.setEnabled(input.isEnabled());
 		result.setMargin(input.getMargin());
-		result.setIgnoredClasses(input.getIgnoredClasses());
+		result.getIgnoredClasses().addAll(input.getIgnoredClasses());
 		List<Long> listprojects = new ArrayList<Long>();
 		for (Project v : input.getProjects()) {
 			listprojects.add(v.getOid());
@@ -1927,6 +1927,7 @@ public class SConverter {
 		result.setOid(input.getOid());
 		result.setEnabled(input.isEnabled());
 		result.setMargin(input.getMargin());
+		result.getIgnoredClasses().addAll(input.getIgnoredClasses());
 		List<Project> listprojects = result.getProjects();
 		for (long oid : input.getProjects()) {
 			listprojects.add((Project)session.get(StorePackage.eINSTANCE.getProject(), oid, false));
@@ -2698,6 +2699,1162 @@ public class SConverter {
 		result.setSettings((Settings)session.get(StorePackage.eINSTANCE.getSettings(), input.getSettingsId(), false));
 		return result;
 	}
+
+	public Set<SCheckinResult> convertToSSetCheckinResult(Collection<CheckinResult> input) {
+		Set<SCheckinResult> result = new HashSet<SCheckinResult>();
+		for (CheckinResult o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<CheckinResult> convertFromSSetCheckinResult(Collection<SCheckinResult> input, BimDatabaseSession session) {
+		Set<CheckinResult> result = new HashSet<CheckinResult>();
+		for (SCheckinResult o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SCheckinResult> convertToSListCheckinResult(Collection<CheckinResult> input) {
+		List<SCheckinResult> result = new ArrayList<SCheckinResult>();
+		for (CheckinResult o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<CheckinResult> convertFromSListCheckinResult(Collection<SCheckinResult> input, BimDatabaseSession session) {
+		List<CheckinResult> result = new ArrayList<CheckinResult>();
+		for (SCheckinResult o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SCheckinResult convertToSObject(CheckinResult input) {
+		if (input == null) {
+			return null;
+		}
+		SCheckinResult result = new SCheckinResult();
+		result.setOid(input.getOid());
+		result.setRid(input.getRid());
+		Revision revisionVal = input.getRevision();
+		result.setRevisionId(revisionVal == null ? -1 : revisionVal.getOid());
+		Project projectVal = input.getProject();
+		result.setProjectId(projectVal == null ? -1 : projectVal.getOid());
+		return result;
+	}
+
+	public CheckinResult convertFromSObject(SCheckinResult input, BimDatabaseSession session) {
+		if (input == null) {
+			return null;
+		}
+		CheckinResult result = StoreFactory.eINSTANCE.createCheckinResult();
+		result.setOid(input.getOid());
+		result.setRid(input.getRid());
+		result.setRevision((Revision)session.get(StorePackage.eINSTANCE.getRevision(), input.getRevisionId(), false));
+		result.setProject((Project)session.get(StorePackage.eINSTANCE.getProject(), input.getProjectId(), false));
+		return result;
+	}
+
+	public Set<SDownloadResult> convertToSSetDownloadResult(Collection<DownloadResult> input) {
+		Set<SDownloadResult> result = new HashSet<SDownloadResult>();
+		for (DownloadResult o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<DownloadResult> convertFromSSetDownloadResult(Collection<SDownloadResult> input, BimDatabaseSession session) {
+		Set<DownloadResult> result = new HashSet<DownloadResult>();
+		for (SDownloadResult o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SDownloadResult> convertToSListDownloadResult(Collection<DownloadResult> input) {
+		List<SDownloadResult> result = new ArrayList<SDownloadResult>();
+		for (DownloadResult o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<DownloadResult> convertFromSListDownloadResult(Collection<SDownloadResult> input, BimDatabaseSession session) {
+		List<DownloadResult> result = new ArrayList<DownloadResult>();
+		for (SDownloadResult o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SDownloadResult convertToSObject(DownloadResult input) {
+		if (input == null) {
+			return null;
+		}
+		SDownloadResult result = new SDownloadResult();
+		result.setOid(input.getOid());
+		result.setProjectName(input.getProjectName());
+		result.setRevisionNr(input.getRevisionNr());
+		result.setFile(input.getFile());
+		return result;
+	}
+
+	public DownloadResult convertFromSObject(SDownloadResult input, BimDatabaseSession session) {
+		if (input == null) {
+			return null;
+		}
+		DownloadResult result = StoreFactory.eINSTANCE.createDownloadResult();
+		result.setOid(input.getOid());
+		result.setProjectName(input.getProjectName());
+		result.setRevisionNr(input.getRevisionNr());
+		result.setFile(input.getFile());
+		return result;
+	}
+
+	public Set<SCheckoutResult> convertToSSetCheckoutResult(Collection<CheckoutResult> input) {
+		Set<SCheckoutResult> result = new HashSet<SCheckoutResult>();
+		for (CheckoutResult o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<CheckoutResult> convertFromSSetCheckoutResult(Collection<SCheckoutResult> input, BimDatabaseSession session) {
+		Set<CheckoutResult> result = new HashSet<CheckoutResult>();
+		for (SCheckoutResult o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SCheckoutResult> convertToSListCheckoutResult(Collection<CheckoutResult> input) {
+		List<SCheckoutResult> result = new ArrayList<SCheckoutResult>();
+		for (CheckoutResult o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<CheckoutResult> convertFromSListCheckoutResult(Collection<SCheckoutResult> input, BimDatabaseSession session) {
+		List<CheckoutResult> result = new ArrayList<CheckoutResult>();
+		for (SCheckoutResult o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SCheckoutResult convertToSObject(CheckoutResult input) {
+		if (input == null) {
+			return null;
+		}
+		SCheckoutResult result = new SCheckoutResult();
+		result.setOid(input.getOid());
+		result.setProjectName(input.getProjectName());
+		result.setRevisionNr(input.getRevisionNr());
+		result.setFile(input.getFile());
+		return result;
+	}
+
+	public CheckoutResult convertFromSObject(SCheckoutResult input, BimDatabaseSession session) {
+		if (input == null) {
+			return null;
+		}
+		CheckoutResult result = StoreFactory.eINSTANCE.createCheckoutResult();
+		result.setOid(input.getOid());
+		result.setProjectName(input.getProjectName());
+		result.setRevisionNr(input.getRevisionNr());
+		result.setFile(input.getFile());
+		return result;
+	}
+
+	public Set<SDataValue> convertToSSetDataValue(Collection<DataValue> input) {
+		Set<SDataValue> result = new HashSet<SDataValue>();
+		for (DataValue o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<DataValue> convertFromSSetDataValue(Collection<SDataValue> input, BimDatabaseSession session) {
+		Set<DataValue> result = new HashSet<DataValue>();
+		for (SDataValue o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SDataValue> convertToSListDataValue(Collection<DataValue> input) {
+		List<SDataValue> result = new ArrayList<SDataValue>();
+		for (DataValue o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<DataValue> convertFromSListDataValue(Collection<SDataValue> input, BimDatabaseSession session) {
+		List<DataValue> result = new ArrayList<DataValue>();
+		for (SDataValue o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SDataValue convertToSObject(DataValue input) {
+		if (input == null) {
+			return null;
+		}
+		SDataValue result = new SDataValue();
+		result.setOid(input.getOid());
+		result.setFieldName(input.getFieldName());
+		return result;
+	}
+
+	public DataValue convertFromSObject(SDataValue input, BimDatabaseSession session) {
+		if (input == null) {
+			return null;
+		}
+		DataValue result = StoreFactory.eINSTANCE.createDataValue();
+		result.setOid(input.getOid());
+		result.setFieldName(input.getFieldName());
+		return result;
+	}
+
+	public Set<SDataObject> convertToSSetDataObject(Collection<DataObject> input) {
+		Set<SDataObject> result = new HashSet<SDataObject>();
+		for (DataObject o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<DataObject> convertFromSSetDataObject(Collection<SDataObject> input, BimDatabaseSession session) {
+		Set<DataObject> result = new HashSet<DataObject>();
+		for (SDataObject o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SDataObject> convertToSListDataObject(Collection<DataObject> input) {
+		List<SDataObject> result = new ArrayList<SDataObject>();
+		for (DataObject o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<DataObject> convertFromSListDataObject(Collection<SDataObject> input, BimDatabaseSession session) {
+		List<DataObject> result = new ArrayList<DataObject>();
+		for (SDataObject o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SDataObject convertToSObject(DataObject input) {
+		if (input == null) {
+			return null;
+		}
+		SDataObject result = new SDataObject();
+		result.setOid(input.getOid());
+		result.setType(input.getType());
+		result.setGuid(input.getGuid());
+		result.setName(input.getName());
+		List<SDataValue> listvalues = new ArrayList<SDataValue>();
+		for (DataValue v : input.getValues()) {
+			listvalues.add(convertToSObject(v));
+		}
+		result.setValues(listvalues);
+		return result;
+	}
+
+	public DataObject convertFromSObject(SDataObject input, BimDatabaseSession session) {
+		if (input == null) {
+			return null;
+		}
+		DataObject result = StoreFactory.eINSTANCE.createDataObject();
+		result.setOid(input.getOid());
+		result.setType(input.getType());
+		result.setGuid(input.getGuid());
+		result.setName(input.getName());
+		List<DataValue> listvalues = result.getValues();
+		for (SDataValue v : input.getValues()) {
+			listvalues.add(convertFromSObject(v, session));
+		}
+		return result;
+	}
+
+	public Set<SUserSession> convertToSSetUserSession(Collection<UserSession> input) {
+		Set<SUserSession> result = new HashSet<SUserSession>();
+		for (UserSession o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<UserSession> convertFromSSetUserSession(Collection<SUserSession> input, BimDatabaseSession session) {
+		Set<UserSession> result = new HashSet<UserSession>();
+		for (SUserSession o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SUserSession> convertToSListUserSession(Collection<UserSession> input) {
+		List<SUserSession> result = new ArrayList<SUserSession>();
+		for (UserSession o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<UserSession> convertFromSListUserSession(Collection<SUserSession> input, BimDatabaseSession session) {
+		List<UserSession> result = new ArrayList<UserSession>();
+		for (SUserSession o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SUserSession convertToSObject(UserSession input) {
+		if (input == null) {
+			return null;
+		}
+		SUserSession result = new SUserSession();
+		result.setOid(input.getOid());
+		result.setUsername(input.getUsername());
+		result.setName(input.getName());
+		result.setType(SUserType.values()[input.getType().ordinal()]);
+		result.setActiveSince(input.getActiveSince());
+		result.setLastActive(input.getLastActive());
+		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
+		User userVal = input.getUser();
+		result.setUserId(userVal == null ? -1 : userVal.getOid());
+		return result;
+	}
+
+	public UserSession convertFromSObject(SUserSession input, BimDatabaseSession session) {
+		if (input == null) {
+			return null;
+		}
+		UserSession result = StoreFactory.eINSTANCE.createUserSession();
+		result.setOid(input.getOid());
+		result.setUsername(input.getUsername());
+		result.setName(input.getName());
+		result.setType(UserType.values()[input.getType().ordinal()]);
+		result.setActiveSince(input.getActiveSince());
+		result.setLastActive(input.getLastActive());
+		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
+		result.setUser((User)session.get(StorePackage.eINSTANCE.getUser(), input.getUserId(), false));
+		return result;
+	}
+
+	public Set<SMigration> convertToSSetMigration(Collection<Migration> input) {
+		Set<SMigration> result = new HashSet<SMigration>();
+		for (Migration o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<Migration> convertFromSSetMigration(Collection<SMigration> input, BimDatabaseSession session) {
+		Set<Migration> result = new HashSet<Migration>();
+		for (SMigration o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SMigration> convertToSListMigration(Collection<Migration> input) {
+		List<SMigration> result = new ArrayList<SMigration>();
+		for (Migration o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<Migration> convertFromSListMigration(Collection<SMigration> input, BimDatabaseSession session) {
+		List<Migration> result = new ArrayList<Migration>();
+		for (SMigration o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SMigration convertToSObject(Migration input) {
+		if (input == null) {
+			return null;
+		}
+		SMigration result = new SMigration();
+		result.setOid(input.getOid());
+		result.setNumber(input.getNumber());
+		result.setDescription(input.getDescription());
+		result.setExecuted(input.isExecuted());
+		return result;
+	}
+
+	public Migration convertFromSObject(SMigration input, BimDatabaseSession session) {
+		if (input == null) {
+			return null;
+		}
+		Migration result = StoreFactory.eINSTANCE.createMigration();
+		result.setOid(input.getOid());
+		result.setNumber(input.getNumber());
+		result.setDescription(input.getDescription());
+		result.setExecuted(input.isExecuted());
+		return result;
+	}
+
+	public Set<SReferenceDataValue> convertToSSetReferenceDataValue(Collection<ReferenceDataValue> input) {
+		Set<SReferenceDataValue> result = new HashSet<SReferenceDataValue>();
+		for (ReferenceDataValue o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<ReferenceDataValue> convertFromSSetReferenceDataValue(Collection<SReferenceDataValue> input, BimDatabaseSession session) {
+		Set<ReferenceDataValue> result = new HashSet<ReferenceDataValue>();
+		for (SReferenceDataValue o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SReferenceDataValue> convertToSListReferenceDataValue(Collection<ReferenceDataValue> input) {
+		List<SReferenceDataValue> result = new ArrayList<SReferenceDataValue>();
+		for (ReferenceDataValue o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<ReferenceDataValue> convertFromSListReferenceDataValue(Collection<SReferenceDataValue> input, BimDatabaseSession session) {
+		List<ReferenceDataValue> result = new ArrayList<ReferenceDataValue>();
+		for (SReferenceDataValue o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SReferenceDataValue convertToSObject(ReferenceDataValue input) {
+		if (input == null) {
+			return null;
+		}
+		SReferenceDataValue result = new SReferenceDataValue();
+		result.setOid(input.getOid());
+		result.setFieldName(input.getFieldName());
+		result.setTypeName(input.getTypeName());
+		result.setGuid(input.getGuid());
+		return result;
+	}
+
+	public ReferenceDataValue convertFromSObject(SReferenceDataValue input, BimDatabaseSession session) {
+		if (input == null) {
+			return null;
+		}
+		ReferenceDataValue result = StoreFactory.eINSTANCE.createReferenceDataValue();
+		result.setOid(input.getOid());
+		result.setFieldName(input.getFieldName());
+		result.setTypeName(input.getTypeName());
+		result.setGuid(input.getGuid());
+		return result;
+	}
+
+	public Set<SListDataValue> convertToSSetListDataValue(Collection<ListDataValue> input) {
+		Set<SListDataValue> result = new HashSet<SListDataValue>();
+		for (ListDataValue o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<ListDataValue> convertFromSSetListDataValue(Collection<SListDataValue> input, BimDatabaseSession session) {
+		Set<ListDataValue> result = new HashSet<ListDataValue>();
+		for (SListDataValue o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SListDataValue> convertToSListListDataValue(Collection<ListDataValue> input) {
+		List<SListDataValue> result = new ArrayList<SListDataValue>();
+		for (ListDataValue o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<ListDataValue> convertFromSListListDataValue(Collection<SListDataValue> input, BimDatabaseSession session) {
+		List<ListDataValue> result = new ArrayList<ListDataValue>();
+		for (SListDataValue o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SListDataValue convertToSObject(ListDataValue input) {
+		if (input == null) {
+			return null;
+		}
+		SListDataValue result = new SListDataValue();
+		result.setOid(input.getOid());
+		result.setFieldName(input.getFieldName());
+		List<SDataValue> listvalues = new ArrayList<SDataValue>();
+		for (DataValue v : input.getValues()) {
+			listvalues.add(convertToSObject(v));
+		}
+		result.setValues(listvalues);
+		return result;
+	}
+
+	public ListDataValue convertFromSObject(SListDataValue input, BimDatabaseSession session) {
+		if (input == null) {
+			return null;
+		}
+		ListDataValue result = StoreFactory.eINSTANCE.createListDataValue();
+		result.setOid(input.getOid());
+		result.setFieldName(input.getFieldName());
+		List<DataValue> listvalues = result.getValues();
+		for (SDataValue v : input.getValues()) {
+			listvalues.add(convertFromSObject(v, session));
+		}
+		return result;
+	}
+
+	public Set<SSimpleDataValue> convertToSSetSimpleDataValue(Collection<SimpleDataValue> input) {
+		Set<SSimpleDataValue> result = new HashSet<SSimpleDataValue>();
+		for (SimpleDataValue o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<SimpleDataValue> convertFromSSetSimpleDataValue(Collection<SSimpleDataValue> input, BimDatabaseSession session) {
+		Set<SimpleDataValue> result = new HashSet<SimpleDataValue>();
+		for (SSimpleDataValue o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SSimpleDataValue> convertToSListSimpleDataValue(Collection<SimpleDataValue> input) {
+		List<SSimpleDataValue> result = new ArrayList<SSimpleDataValue>();
+		for (SimpleDataValue o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<SimpleDataValue> convertFromSListSimpleDataValue(Collection<SSimpleDataValue> input, BimDatabaseSession session) {
+		List<SimpleDataValue> result = new ArrayList<SimpleDataValue>();
+		for (SSimpleDataValue o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SSimpleDataValue convertToSObject(SimpleDataValue input) {
+		if (input == null) {
+			return null;
+		}
+		SSimpleDataValue result = new SSimpleDataValue();
+		result.setOid(input.getOid());
+		result.setFieldName(input.getFieldName());
+		result.setStringValue(input.getStringValue());
+		return result;
+	}
+
+	public SimpleDataValue convertFromSObject(SSimpleDataValue input, BimDatabaseSession session) {
+		if (input == null) {
+			return null;
+		}
+		SimpleDataValue result = StoreFactory.eINSTANCE.createSimpleDataValue();
+		result.setOid(input.getOid());
+		result.setFieldName(input.getFieldName());
+		result.setStringValue(input.getStringValue());
+		return result;
+	}
+
+	public Set<SDatabaseInformation> convertToSSetDatabaseInformation(Collection<DatabaseInformation> input) {
+		Set<SDatabaseInformation> result = new HashSet<SDatabaseInformation>();
+		for (DatabaseInformation o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<DatabaseInformation> convertFromSSetDatabaseInformation(Collection<SDatabaseInformation> input, BimDatabaseSession session) {
+		Set<DatabaseInformation> result = new HashSet<DatabaseInformation>();
+		for (SDatabaseInformation o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SDatabaseInformation> convertToSListDatabaseInformation(Collection<DatabaseInformation> input) {
+		List<SDatabaseInformation> result = new ArrayList<SDatabaseInformation>();
+		for (DatabaseInformation o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<DatabaseInformation> convertFromSListDatabaseInformation(Collection<SDatabaseInformation> input, BimDatabaseSession session) {
+		List<DatabaseInformation> result = new ArrayList<DatabaseInformation>();
+		for (SDatabaseInformation o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SDatabaseInformation convertToSObject(DatabaseInformation input) {
+		if (input == null) {
+			return null;
+		}
+		SDatabaseInformation result = new SDatabaseInformation();
+		result.setOid(input.getOid());
+		result.setNumberOfProjects(input.getNumberOfProjects());
+		result.setNumberOfUsers(input.getNumberOfUsers());
+		result.setNumberOfRevisions(input.getNumberOfRevisions());
+		result.setNumberOfCheckouts(input.getNumberOfCheckouts());
+		result.setDatabaseSizeInBytes(input.getDatabaseSizeInBytes());
+		result.setType(input.getType());
+		result.setCreated(input.getCreated());
+		result.setLocation(input.getLocation());
+		result.setSchemaVersion(input.getSchemaVersion());
+		result.setGenericLines(input.getGenericLines());
+		return result;
+	}
+
+	public DatabaseInformation convertFromSObject(SDatabaseInformation input, BimDatabaseSession session) {
+		if (input == null) {
+			return null;
+		}
+		DatabaseInformation result = StoreFactory.eINSTANCE.createDatabaseInformation();
+		result.setOid(input.getOid());
+		result.setNumberOfProjects(input.getNumberOfProjects());
+		result.setNumberOfUsers(input.getNumberOfUsers());
+		result.setNumberOfRevisions(input.getNumberOfRevisions());
+		result.setNumberOfCheckouts(input.getNumberOfCheckouts());
+		result.setDatabaseSizeInBytes(input.getDatabaseSizeInBytes());
+		result.setType(input.getType());
+		result.setCreated(input.getCreated());
+		result.setLocation(input.getLocation());
+		result.setSchemaVersion(input.getSchemaVersion());
+		result.setGenericLines(input.getGenericLines());
+		return result;
+	}
+
+	public Set<SSerializerPluginDescriptor> convertToSSetSerializerPluginDescriptor(Collection<SerializerPluginDescriptor> input) {
+		Set<SSerializerPluginDescriptor> result = new HashSet<SSerializerPluginDescriptor>();
+		for (SerializerPluginDescriptor o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<SerializerPluginDescriptor> convertFromSSetSerializerPluginDescriptor(Collection<SSerializerPluginDescriptor> input, BimDatabaseSession session) {
+		Set<SerializerPluginDescriptor> result = new HashSet<SerializerPluginDescriptor>();
+		for (SSerializerPluginDescriptor o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SSerializerPluginDescriptor> convertToSListSerializerPluginDescriptor(Collection<SerializerPluginDescriptor> input) {
+		List<SSerializerPluginDescriptor> result = new ArrayList<SSerializerPluginDescriptor>();
+		for (SerializerPluginDescriptor o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<SerializerPluginDescriptor> convertFromSListSerializerPluginDescriptor(Collection<SSerializerPluginDescriptor> input, BimDatabaseSession session) {
+		List<SerializerPluginDescriptor> result = new ArrayList<SerializerPluginDescriptor>();
+		for (SSerializerPluginDescriptor o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SSerializerPluginDescriptor convertToSObject(SerializerPluginDescriptor input) {
+		if (input == null) {
+			return null;
+		}
+		SSerializerPluginDescriptor result = new SSerializerPluginDescriptor();
+		result.setOid(input.getOid());
+		result.setPluginClassName(input.getPluginClassName());
+		result.setDefaultName(input.getDefaultName());
+		result.setDefaultExtension(input.getDefaultExtension());
+		result.setDefaultContentType(input.getDefaultContentType());
+		return result;
+	}
+
+	public SerializerPluginDescriptor convertFromSObject(SSerializerPluginDescriptor input, BimDatabaseSession session) {
+		if (input == null) {
+			return null;
+		}
+		SerializerPluginDescriptor result = StoreFactory.eINSTANCE.createSerializerPluginDescriptor();
+		result.setOid(input.getOid());
+		result.setPluginClassName(input.getPluginClassName());
+		result.setDefaultName(input.getDefaultName());
+		result.setDefaultExtension(input.getDefaultExtension());
+		result.setDefaultContentType(input.getDefaultContentType());
+		return result;
+	}
+
+	public Set<SRevisionSummaryType> convertToSSetRevisionSummaryType(Collection<RevisionSummaryType> input) {
+		Set<SRevisionSummaryType> result = new HashSet<SRevisionSummaryType>();
+		for (RevisionSummaryType o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<RevisionSummaryType> convertFromSSetRevisionSummaryType(Collection<SRevisionSummaryType> input, BimDatabaseSession session) {
+		Set<RevisionSummaryType> result = new HashSet<RevisionSummaryType>();
+		for (SRevisionSummaryType o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SRevisionSummaryType> convertToSListRevisionSummaryType(Collection<RevisionSummaryType> input) {
+		List<SRevisionSummaryType> result = new ArrayList<SRevisionSummaryType>();
+		for (RevisionSummaryType o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<RevisionSummaryType> convertFromSListRevisionSummaryType(Collection<SRevisionSummaryType> input, BimDatabaseSession session) {
+		List<RevisionSummaryType> result = new ArrayList<RevisionSummaryType>();
+		for (SRevisionSummaryType o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SRevisionSummaryType convertToSObject(RevisionSummaryType input) {
+		if (input == null) {
+			return null;
+		}
+		SRevisionSummaryType result = new SRevisionSummaryType();
+		result.setOid(input.getOid());
+		result.setName(input.getName());
+		result.setCount(input.getCount());
+		return result;
+	}
+
+	public RevisionSummaryType convertFromSObject(SRevisionSummaryType input, BimDatabaseSession session) {
+		if (input == null) {
+			return null;
+		}
+		RevisionSummaryType result = StoreFactory.eINSTANCE.createRevisionSummaryType();
+		result.setOid(input.getOid());
+		result.setName(input.getName());
+		result.setCount(input.getCount());
+		return result;
+	}
+
+	public Set<SRevisionSummaryContainer> convertToSSetRevisionSummaryContainer(Collection<RevisionSummaryContainer> input) {
+		Set<SRevisionSummaryContainer> result = new HashSet<SRevisionSummaryContainer>();
+		for (RevisionSummaryContainer o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<RevisionSummaryContainer> convertFromSSetRevisionSummaryContainer(Collection<SRevisionSummaryContainer> input, BimDatabaseSession session) {
+		Set<RevisionSummaryContainer> result = new HashSet<RevisionSummaryContainer>();
+		for (SRevisionSummaryContainer o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SRevisionSummaryContainer> convertToSListRevisionSummaryContainer(Collection<RevisionSummaryContainer> input) {
+		List<SRevisionSummaryContainer> result = new ArrayList<SRevisionSummaryContainer>();
+		for (RevisionSummaryContainer o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<RevisionSummaryContainer> convertFromSListRevisionSummaryContainer(Collection<SRevisionSummaryContainer> input, BimDatabaseSession session) {
+		List<RevisionSummaryContainer> result = new ArrayList<RevisionSummaryContainer>();
+		for (SRevisionSummaryContainer o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SRevisionSummaryContainer convertToSObject(RevisionSummaryContainer input) {
+		if (input == null) {
+			return null;
+		}
+		SRevisionSummaryContainer result = new SRevisionSummaryContainer();
+		result.setOid(input.getOid());
+		result.setName(input.getName());
+		List<SRevisionSummaryType> listtypes = new ArrayList<SRevisionSummaryType>();
+		for (RevisionSummaryType v : input.getTypes()) {
+			listtypes.add(convertToSObject(v));
+		}
+		result.setTypes(listtypes);
+		return result;
+	}
+
+	public RevisionSummaryContainer convertFromSObject(SRevisionSummaryContainer input, BimDatabaseSession session) {
+		if (input == null) {
+			return null;
+		}
+		RevisionSummaryContainer result = StoreFactory.eINSTANCE.createRevisionSummaryContainer();
+		result.setOid(input.getOid());
+		result.setName(input.getName());
+		List<RevisionSummaryType> listtypes = result.getTypes();
+		for (SRevisionSummaryType v : input.getTypes()) {
+			listtypes.add(convertFromSObject(v, session));
+		}
+		return result;
+	}
+
+	public Set<SRevisionSummary> convertToSSetRevisionSummary(Collection<RevisionSummary> input) {
+		Set<SRevisionSummary> result = new HashSet<SRevisionSummary>();
+		for (RevisionSummary o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<RevisionSummary> convertFromSSetRevisionSummary(Collection<SRevisionSummary> input, BimDatabaseSession session) {
+		Set<RevisionSummary> result = new HashSet<RevisionSummary>();
+		for (SRevisionSummary o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SRevisionSummary> convertToSListRevisionSummary(Collection<RevisionSummary> input) {
+		List<SRevisionSummary> result = new ArrayList<SRevisionSummary>();
+		for (RevisionSummary o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<RevisionSummary> convertFromSListRevisionSummary(Collection<SRevisionSummary> input, BimDatabaseSession session) {
+		List<RevisionSummary> result = new ArrayList<RevisionSummary>();
+		for (SRevisionSummary o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SRevisionSummary convertToSObject(RevisionSummary input) {
+		if (input == null) {
+			return null;
+		}
+		SRevisionSummary result = new SRevisionSummary();
+		result.setOid(input.getOid());
+		List<SRevisionSummaryContainer> listlist = new ArrayList<SRevisionSummaryContainer>();
+		for (RevisionSummaryContainer v : input.getList()) {
+			listlist.add(convertToSObject(v));
+		}
+		result.setList(listlist);
+		return result;
+	}
+
+	public RevisionSummary convertFromSObject(SRevisionSummary input, BimDatabaseSession session) {
+		if (input == null) {
+			return null;
+		}
+		RevisionSummary result = StoreFactory.eINSTANCE.createRevisionSummary();
+		result.setOid(input.getOid());
+		List<RevisionSummaryContainer> listlist = result.getList();
+		for (SRevisionSummaryContainer v : input.getList()) {
+			listlist.add(convertFromSObject(v, session));
+		}
+		return result;
+	}
+
+	public Set<SPluginDescriptor> convertToSSetPluginDescriptor(Collection<PluginDescriptor> input) {
+		Set<SPluginDescriptor> result = new HashSet<SPluginDescriptor>();
+		for (PluginDescriptor o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<PluginDescriptor> convertFromSSetPluginDescriptor(Collection<SPluginDescriptor> input, BimDatabaseSession session) {
+		Set<PluginDescriptor> result = new HashSet<PluginDescriptor>();
+		for (SPluginDescriptor o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SPluginDescriptor> convertToSListPluginDescriptor(Collection<PluginDescriptor> input) {
+		List<SPluginDescriptor> result = new ArrayList<SPluginDescriptor>();
+		for (PluginDescriptor o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<PluginDescriptor> convertFromSListPluginDescriptor(Collection<SPluginDescriptor> input, BimDatabaseSession session) {
+		List<PluginDescriptor> result = new ArrayList<PluginDescriptor>();
+		for (SPluginDescriptor o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SPluginDescriptor convertToSObject(PluginDescriptor input) {
+		if (input == null) {
+			return null;
+		}
+		SPluginDescriptor result = new SPluginDescriptor();
+		result.setOid(input.getOid());
+		result.setName(input.getName());
+		result.setDescription(input.getDescription());
+		result.setLocation(input.getLocation());
+		result.setEnabled(input.isEnabled());
+		return result;
+	}
+
+	public PluginDescriptor convertFromSObject(SPluginDescriptor input, BimDatabaseSession session) {
+		if (input == null) {
+			return null;
+		}
+		PluginDescriptor result = StoreFactory.eINSTANCE.createPluginDescriptor();
+		result.setOid(input.getOid());
+		result.setName(input.getName());
+		result.setDescription(input.getDescription());
+		result.setLocation(input.getLocation());
+		result.setEnabled(input.isEnabled());
+		return result;
+	}
+
+	public Set<SLongAction> convertToSSetLongAction(Collection<LongAction> input) {
+		Set<SLongAction> result = new HashSet<SLongAction>();
+		for (LongAction o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<LongAction> convertFromSSetLongAction(Collection<SLongAction> input, BimDatabaseSession session) {
+		Set<LongAction> result = new HashSet<LongAction>();
+		for (SLongAction o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SLongAction> convertToSListLongAction(Collection<LongAction> input) {
+		List<SLongAction> result = new ArrayList<SLongAction>();
+		for (LongAction o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<LongAction> convertFromSListLongAction(Collection<SLongAction> input, BimDatabaseSession session) {
+		List<LongAction> result = new ArrayList<LongAction>();
+		for (SLongAction o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SLongAction convertToSObject(LongAction input) {
+		if (input == null) {
+			return null;
+		}
+		SLongAction result = new SLongAction();
+		result.setOid(input.getOid());
+		result.setIdentification(input.getIdentification());
+		result.setStart(input.getStart());
+		result.setUsername(input.getUsername());
+		result.setName(input.getName());
+		User userVal = input.getUser();
+		result.setUserId(userVal == null ? -1 : userVal.getOid());
+		return result;
+	}
+
+	public LongAction convertFromSObject(SLongAction input, BimDatabaseSession session) {
+		if (input == null) {
+			return null;
+		}
+		LongAction result = StoreFactory.eINSTANCE.createLongAction();
+		result.setOid(input.getOid());
+		result.setIdentification(input.getIdentification());
+		result.setStart(input.getStart());
+		result.setUsername(input.getUsername());
+		result.setName(input.getName());
+		result.setUser((User)session.get(StorePackage.eINSTANCE.getUser(), input.getUserId(), false));
+		return result;
+	}
+
+	public Set<SGuidanceProviderPluginDescriptor> convertToSSetGuidanceProviderPluginDescriptor(Collection<GuidanceProviderPluginDescriptor> input) {
+		Set<SGuidanceProviderPluginDescriptor> result = new HashSet<SGuidanceProviderPluginDescriptor>();
+		for (GuidanceProviderPluginDescriptor o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<GuidanceProviderPluginDescriptor> convertFromSSetGuidanceProviderPluginDescriptor(Collection<SGuidanceProviderPluginDescriptor> input, BimDatabaseSession session) {
+		Set<GuidanceProviderPluginDescriptor> result = new HashSet<GuidanceProviderPluginDescriptor>();
+		for (SGuidanceProviderPluginDescriptor o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SGuidanceProviderPluginDescriptor> convertToSListGuidanceProviderPluginDescriptor(Collection<GuidanceProviderPluginDescriptor> input) {
+		List<SGuidanceProviderPluginDescriptor> result = new ArrayList<SGuidanceProviderPluginDescriptor>();
+		for (GuidanceProviderPluginDescriptor o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<GuidanceProviderPluginDescriptor> convertFromSListGuidanceProviderPluginDescriptor(Collection<SGuidanceProviderPluginDescriptor> input, BimDatabaseSession session) {
+		List<GuidanceProviderPluginDescriptor> result = new ArrayList<GuidanceProviderPluginDescriptor>();
+		for (SGuidanceProviderPluginDescriptor o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SGuidanceProviderPluginDescriptor convertToSObject(GuidanceProviderPluginDescriptor input) {
+		if (input == null) {
+			return null;
+		}
+		SGuidanceProviderPluginDescriptor result = new SGuidanceProviderPluginDescriptor();
+		result.setOid(input.getOid());
+		result.setClassName(input.getClassName());
+		return result;
+	}
+
+	public GuidanceProviderPluginDescriptor convertFromSObject(SGuidanceProviderPluginDescriptor input, BimDatabaseSession session) {
+		if (input == null) {
+			return null;
+		}
+		GuidanceProviderPluginDescriptor result = StoreFactory.eINSTANCE.createGuidanceProviderPluginDescriptor();
+		result.setOid(input.getOid());
+		result.setClassName(input.getClassName());
+		return result;
+	}
+
+	public Set<SCompareResult> convertToSSetCompareResult(Collection<CompareResult> input) {
+		Set<SCompareResult> result = new HashSet<SCompareResult>();
+		for (CompareResult o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<CompareResult> convertFromSSetCompareResult(Collection<SCompareResult> input, BimDatabaseSession session) {
+		Set<CompareResult> result = new HashSet<CompareResult>();
+		for (SCompareResult o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SCompareResult> convertToSListCompareResult(Collection<CompareResult> input) {
+		List<SCompareResult> result = new ArrayList<SCompareResult>();
+		for (CompareResult o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<CompareResult> convertFromSListCompareResult(Collection<SCompareResult> input, BimDatabaseSession session) {
+		List<CompareResult> result = new ArrayList<CompareResult>();
+		for (SCompareResult o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SCompareResult convertToSObject(CompareResult input) {
+		if (input == null) {
+			return null;
+		}
+		SCompareResult result = new SCompareResult();
+		result.setOid(input.getOid());
+		return result;
+	}
+
+	public CompareResult convertFromSObject(SCompareResult input, BimDatabaseSession session) {
+		if (input == null) {
+			return null;
+		}
+		CompareResult result = StoreFactory.eINSTANCE.createCompareResult();
+		result.setOid(input.getOid());
+		return result;
+	}
+
+	public Set<SLongActionState> convertToSSetLongActionState(Collection<LongActionState> input) {
+		Set<SLongActionState> result = new HashSet<SLongActionState>();
+		for (LongActionState o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<LongActionState> convertFromSSetLongActionState(Collection<SLongActionState> input, BimDatabaseSession session) {
+		Set<LongActionState> result = new HashSet<LongActionState>();
+		for (SLongActionState o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SLongActionState> convertToSListLongActionState(Collection<LongActionState> input) {
+		List<SLongActionState> result = new ArrayList<SLongActionState>();
+		for (LongActionState o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<LongActionState> convertFromSListLongActionState(Collection<SLongActionState> input, BimDatabaseSession session) {
+		List<LongActionState> result = new ArrayList<LongActionState>();
+		for (SLongActionState o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SLongActionState convertToSObject(LongActionState input) {
+		if (input == null) {
+			return null;
+		}
+		SLongActionState result = new SLongActionState();
+		result.setOid(input.getOid());
+		result.setProgress(input.getProgress());
+		result.setState(SActionState.values()[input.getState().ordinal()]);
+		return result;
+	}
+
+	public LongActionState convertFromSObject(SLongActionState input, BimDatabaseSession session) {
+		if (input == null) {
+			return null;
+		}
+		LongActionState result = StoreFactory.eINSTANCE.createLongActionState();
+		result.setOid(input.getOid());
+		result.setProgress(input.getProgress());
+		result.setState(ActionState.values()[input.getState().ordinal()]);
+		return result;
+	}
 		public SUserType convertToSObject(UserType input) {
 			return SUserType.values()[input.ordinal()];
 		}
@@ -2732,5 +3889,12 @@ public class SConverter {
 		
 		public MergeIdentifier convertFromSObject(SMergeIdentifier input) {
 			return MergeIdentifier.values()[input.ordinal()];
+		}
+		public SActionState convertToSObject(ActionState input) {
+			return SActionState.values()[input.ordinal()];
+		}
+		
+		public ActionState convertFromSObject(SActionState input) {
+			return ActionState.values()[input.ordinal()];
 		}
 }

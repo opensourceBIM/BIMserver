@@ -22,7 +22,7 @@ import org.bimserver.models.log.NewUserAdded;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserType;
-import org.bimserver.shared.UserException;
+import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.templating.TemplateIdentifier;
 import org.bimserver.utils.GeneratorUtils;
 import org.bimserver.utils.Hashers;

@@ -8,7 +8,7 @@ import org.bimserver.database.DatabaseRestartRequiredException;
 import org.bimserver.database.berkeley.DatabaseInitException;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
-import org.bimserver.shared.ServiceException;
+import org.bimserver.shared.exceptions.ServiceException;
 
 public class LocalDevBimServerStarter {
 	public static void main(String[] args) {

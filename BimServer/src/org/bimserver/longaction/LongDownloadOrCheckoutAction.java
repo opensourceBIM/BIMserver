@@ -16,10 +16,10 @@ import org.bimserver.models.store.User;
 import org.bimserver.plugins.serializers.EmfSerializer;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.plugins.serializers.SerializerException;
-import org.bimserver.shared.LongActionState;
-import org.bimserver.shared.LongActionState.ActionState;
-import org.bimserver.shared.SCheckoutResult;
-import org.bimserver.shared.UserException;
+import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.shared.objects.LongActionState;
+import org.bimserver.shared.objects.SCheckoutResult;
+import org.bimserver.shared.objects.LongActionState.ActionState;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

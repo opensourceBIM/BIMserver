@@ -1,7 +1,8 @@
 package org.bimserver.unittests;
 
-import java.io.File;
 import static org.junit.Assert.fail;
+
+import java.io.File;
 import java.io.IOException;
 import java.util.Random;
 
@@ -58,9 +59,8 @@ import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.deserializers.EmfDeserializer;
 import org.bimserver.plugins.serializers.IfcModelInterface;
-import org.bimserver.plugins.serializers.SerializerException;
-import org.bimserver.shared.SDownloadResult;
-import org.bimserver.shared.ServiceException;
+import org.bimserver.shared.exceptions.ServiceException;
+import org.bimserver.shared.objects.SDownloadResult;
 import org.bimserver.web.LocalDevBimWebServerStarter;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;

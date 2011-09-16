@@ -1,11 +1,21 @@
 package org.bimserver.interfaces.objects;
 
+import java.util.*;
 import javax.xml.bind.annotation.XmlRootElement;
+import org.bimserver.shared.meta.*;
 
 @XmlRootElement
-public class SIfcEngine
+public class SIfcEngine implements SBase
 {
 	private long oid;
+	private static final SClass sClass = new SClass("IfcEngine");
+	
+	static {
+		sClass.addField(new SField("oid", long.class));
+		sClass.addField(new SField("name", java.lang.String.class));
+		sClass.addField(new SField("active", boolean.class));
+		sClass.addField(new SField("settingsId", long.class));
+	}
 	
 	public long getOid() {
 		return oid;
@@ -13,6 +23,10 @@ public class SIfcEngine
 	
 	public void setOid(long oid) {
 		this.oid = oid;
+	}
+	
+	public SClass getSClass() {
+		return sClass;
 	}
 	private java.lang.String name;
 	private boolean active;

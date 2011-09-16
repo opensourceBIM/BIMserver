@@ -15,7 +15,7 @@ import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.User;
 import org.bimserver.plugins.serializers.IfcModelInterface;
-import org.bimserver.shared.UserException;
+import org.bimserver.shared.exceptions.UserException;
 
 public abstract class GenericCheckinDatabaseAction extends BimDatabaseAction<ConcreteRevision>{
 

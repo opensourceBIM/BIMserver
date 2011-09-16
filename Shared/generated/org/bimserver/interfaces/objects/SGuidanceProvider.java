@@ -1,14 +1,22 @@
 package org.bimserver.interfaces.objects;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import java.util.*;
 import javax.xml.bind.annotation.XmlRootElement;
+import org.bimserver.shared.meta.*;
 
 @XmlRootElement
-public class SGuidanceProvider
+public class SGuidanceProvider implements SBase
 {
 	private long oid;
+	private static final SClass sClass = new SClass("GuidanceProvider");
+	
+	static {
+		sClass.addField(new SField("oid", long.class));
+		sClass.addField(new SField("name", java.lang.String.class));
+		sClass.addField(new SField("className", java.lang.String.class));
+		sClass.addField(new SField("serializers", Long.class, true));
+		sClass.addField(new SField("settingsId", long.class));
+	}
 	
 	public long getOid() {
 		return oid;
@@ -16,6 +24,10 @@ public class SGuidanceProvider
 	
 	public void setOid(long oid) {
 		this.oid = oid;
+	}
+	
+	public SClass getSClass() {
+		return sClass;
 	}
 	private java.lang.String name;
 	private java.lang.String className;

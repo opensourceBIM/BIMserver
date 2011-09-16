@@ -14,7 +14,7 @@ import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.StorePackage;
-import org.bimserver.shared.UserException;
+import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.utils.CollectionUtils;
 
 public class GetAllCheckoutsOfProjectDatabaseAction extends BimDatabaseAction<Set<Checkout>> {

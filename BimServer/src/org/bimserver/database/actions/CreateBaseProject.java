@@ -9,7 +9,7 @@ import org.bimserver.database.Database;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.StoreFactory;
-import org.bimserver.shared.UserException;
+import org.bimserver.shared.exceptions.UserException;
 
 public class CreateBaseProject extends BimDatabaseAction<Project>{
 

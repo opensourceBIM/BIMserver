@@ -22,8 +22,8 @@ package org.bimserver.web;
 
 import org.bimserver.interfaces.objects.SUserType;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.shared.ServiceException;
 import org.bimserver.shared.ServiceInterface;
+import org.bimserver.shared.exceptions.ServiceException;
 
 public class LoginManager {
 	private ServiceInterface service;

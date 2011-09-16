@@ -7,13 +7,13 @@ import java.util.Map;
 
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 
-import org.bimserver.shared.SDataObject.SDataValue;
+import org.bimserver.interfaces.objects.SDataValue;
 
 public class MapAdapter extends XmlAdapter<List<SDataValue>, Map<String, SDataValue>> {
 
 	@Override
 	public Map<String, SDataValue> unmarshal(List<SDataValue> list) throws Exception {
-		Map<String, SDataValue> values = new HashMap<String, SDataObject.SDataValue>();
+		Map<String, SDataValue> values = new HashMap<String, SDataValue>();
 		for (SDataValue value : list) {
 			values.put(value.getFieldName(), value);
 		}
@@ -22,7 +22,7 @@ public class MapAdapter extends XmlAdapter<List<SDataValue>, Map<String, SDataVa
 
 	@Override
 	public List<SDataValue> marshal(Map<String, SDataValue> values) throws Exception {
-		List<SDataValue> list = new ArrayList<SDataObject.SDataValue>();
+		List<SDataValue> list = new ArrayList<SDataValue>();
 		for (String key : values.keySet()) {
 			list.add(values.get(key));
 		}

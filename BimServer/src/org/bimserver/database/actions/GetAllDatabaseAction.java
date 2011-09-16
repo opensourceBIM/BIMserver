@@ -10,7 +10,7 @@ import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.conditions.IsOfTypeCondition;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.shared.UserException;
+import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.utils.CollectionUtils;
 import org.eclipse.emf.ecore.EClass;
 

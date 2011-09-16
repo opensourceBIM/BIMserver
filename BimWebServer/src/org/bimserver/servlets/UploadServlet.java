@@ -36,7 +36,7 @@ import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.bimserver.BimServer;
-import org.bimserver.shared.ServiceException;
+import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.utils.InputStreamDataSource;
 import org.bimserver.web.LoginManager;
 import org.slf4j.Logger;

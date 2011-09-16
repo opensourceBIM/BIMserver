@@ -19,7 +19,7 @@ import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.querycompiler.CompileException;
 import org.bimserver.querycompiler.QueryCompiler;
 import org.bimserver.querycompiler.QueryInterface;
-import org.bimserver.shared.ServiceException;
+import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.web.LoginManager;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;

@@ -16,7 +16,7 @@ import org.bimserver.models.store.SIPrefix;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserType;
-import org.bimserver.shared.UserException;
+import org.bimserver.shared.exceptions.UserException;
 
 public class AddProjectDatabaseAction extends BimDatabaseAction<Project> {
 

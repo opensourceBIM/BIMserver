@@ -1643,6 +1643,944 @@ public interface StorePackage extends EPackage {
 	int DESERIALIZER_FEATURE_COUNT = 6;
 
 	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.CheckinResultImpl <em>Checkin Result</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.impl.CheckinResultImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getCheckinResult()
+	 * @generated
+	 */
+	int CHECKIN_RESULT = 16;
+
+	/**
+	 * The feature id for the '<em><b>Revision</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHECKIN_RESULT__REVISION = 0;
+
+	/**
+	 * The feature id for the '<em><b>Rid</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHECKIN_RESULT__RID = 1;
+
+	/**
+	 * The feature id for the '<em><b>Project</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHECKIN_RESULT__PROJECT = 2;
+
+	/**
+	 * The number of structural features of the '<em>Checkin Result</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHECKIN_RESULT_FEATURE_COUNT = 3;
+
+	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.DownloadResultImpl <em>Download Result</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.impl.DownloadResultImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getDownloadResult()
+	 * @generated
+	 */
+	int DOWNLOAD_RESULT = 17;
+
+	/**
+	 * The feature id for the '<em><b>Project Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOWNLOAD_RESULT__PROJECT_NAME = 0;
+
+	/**
+	 * The feature id for the '<em><b>Revision Nr</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOWNLOAD_RESULT__REVISION_NR = 1;
+
+	/**
+	 * The feature id for the '<em><b>File</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOWNLOAD_RESULT__FILE = 2;
+
+	/**
+	 * The number of structural features of the '<em>Download Result</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOWNLOAD_RESULT_FEATURE_COUNT = 3;
+
+	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.CheckoutResultImpl <em>Checkout Result</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.impl.CheckoutResultImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getCheckoutResult()
+	 * @generated
+	 */
+	int CHECKOUT_RESULT = 18;
+
+	/**
+	 * The feature id for the '<em><b>Project Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHECKOUT_RESULT__PROJECT_NAME = DOWNLOAD_RESULT__PROJECT_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Revision Nr</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHECKOUT_RESULT__REVISION_NR = DOWNLOAD_RESULT__REVISION_NR;
+
+	/**
+	 * The feature id for the '<em><b>File</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHECKOUT_RESULT__FILE = DOWNLOAD_RESULT__FILE;
+
+	/**
+	 * The number of structural features of the '<em>Checkout Result</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHECKOUT_RESULT_FEATURE_COUNT = DOWNLOAD_RESULT_FEATURE_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.DataObjectImpl <em>Data Object</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.impl.DataObjectImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getDataObject()
+	 * @generated
+	 */
+	int DATA_OBJECT = 20;
+
+	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.UserSessionImpl <em>User Session</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.impl.UserSessionImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getUserSession()
+	 * @generated
+	 */
+	int USER_SESSION = 21;
+
+	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.MigrationImpl <em>Migration</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.impl.MigrationImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getMigration()
+	 * @generated
+	 */
+	int MIGRATION = 22;
+
+	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.DataValueImpl <em>Data Value</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.impl.DataValueImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getDataValue()
+	 * @generated
+	 */
+	int DATA_VALUE = 19;
+
+	/**
+	 * The feature id for the '<em><b>Field Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_VALUE__FIELD_NAME = 0;
+
+	/**
+	 * The number of structural features of the '<em>Data Value</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_VALUE_FEATURE_COUNT = 1;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_OBJECT__TYPE = 0;
+
+	/**
+	 * The feature id for the '<em><b>Guid</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_OBJECT__GUID = 1;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_OBJECT__NAME = 2;
+
+	/**
+	 * The feature id for the '<em><b>Values</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_OBJECT__VALUES = 3;
+
+	/**
+	 * The number of structural features of the '<em>Data Object</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_OBJECT_FEATURE_COUNT = 4;
+
+	/**
+	 * The feature id for the '<em><b>User</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_SESSION__USER = 0;
+
+	/**
+	 * The feature id for the '<em><b>Username</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_SESSION__USERNAME = 1;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_SESSION__NAME = 2;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_SESSION__TYPE = 3;
+
+	/**
+	 * The feature id for the '<em><b>Active Since</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_SESSION__ACTIVE_SINCE = 4;
+
+	/**
+	 * The feature id for the '<em><b>Last Active</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_SESSION__LAST_ACTIVE = 5;
+
+	/**
+	 * The feature id for the '<em><b>Access Method</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_SESSION__ACCESS_METHOD = 6;
+
+	/**
+	 * The number of structural features of the '<em>User Session</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_SESSION_FEATURE_COUNT = 7;
+
+	/**
+	 * The feature id for the '<em><b>Number</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MIGRATION__NUMBER = 0;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MIGRATION__DESCRIPTION = 1;
+
+	/**
+	 * The feature id for the '<em><b>Executed</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MIGRATION__EXECUTED = 2;
+
+	/**
+	 * The number of structural features of the '<em>Migration</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MIGRATION_FEATURE_COUNT = 3;
+
+	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.ReferenceDataValueImpl <em>Reference Data Value</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.impl.ReferenceDataValueImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getReferenceDataValue()
+	 * @generated
+	 */
+	int REFERENCE_DATA_VALUE = 23;
+
+	/**
+	 * The feature id for the '<em><b>Field Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFERENCE_DATA_VALUE__FIELD_NAME = DATA_VALUE__FIELD_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Type Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFERENCE_DATA_VALUE__TYPE_NAME = DATA_VALUE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Guid</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFERENCE_DATA_VALUE__GUID = DATA_VALUE_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Reference Data Value</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFERENCE_DATA_VALUE_FEATURE_COUNT = DATA_VALUE_FEATURE_COUNT + 2;
+
+	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.ListDataValueImpl <em>List Data Value</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.impl.ListDataValueImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getListDataValue()
+	 * @generated
+	 */
+	int LIST_DATA_VALUE = 24;
+
+	/**
+	 * The feature id for the '<em><b>Field Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIST_DATA_VALUE__FIELD_NAME = DATA_VALUE__FIELD_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Values</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIST_DATA_VALUE__VALUES = DATA_VALUE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>List Data Value</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIST_DATA_VALUE_FEATURE_COUNT = DATA_VALUE_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.SimpleDataValueImpl <em>Simple Data Value</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.impl.SimpleDataValueImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getSimpleDataValue()
+	 * @generated
+	 */
+	int SIMPLE_DATA_VALUE = 25;
+
+	/**
+	 * The feature id for the '<em><b>Field Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIMPLE_DATA_VALUE__FIELD_NAME = DATA_VALUE__FIELD_NAME;
+
+	/**
+	 * The feature id for the '<em><b>String Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIMPLE_DATA_VALUE__STRING_VALUE = DATA_VALUE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Simple Data Value</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIMPLE_DATA_VALUE_FEATURE_COUNT = DATA_VALUE_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.DatabaseInformationImpl <em>Database Information</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.impl.DatabaseInformationImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getDatabaseInformation()
+	 * @generated
+	 */
+	int DATABASE_INFORMATION = 26;
+
+	/**
+	 * The feature id for the '<em><b>Number Of Projects</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATABASE_INFORMATION__NUMBER_OF_PROJECTS = 0;
+
+	/**
+	 * The feature id for the '<em><b>Number Of Users</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATABASE_INFORMATION__NUMBER_OF_USERS = 1;
+
+	/**
+	 * The feature id for the '<em><b>Number Of Revisions</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATABASE_INFORMATION__NUMBER_OF_REVISIONS = 2;
+
+	/**
+	 * The feature id for the '<em><b>Number Of Checkouts</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATABASE_INFORMATION__NUMBER_OF_CHECKOUTS = 3;
+
+	/**
+	 * The feature id for the '<em><b>Database Size In Bytes</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATABASE_INFORMATION__DATABASE_SIZE_IN_BYTES = 4;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATABASE_INFORMATION__TYPE = 5;
+
+	/**
+	 * The feature id for the '<em><b>Created</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATABASE_INFORMATION__CREATED = 6;
+
+	/**
+	 * The feature id for the '<em><b>Location</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATABASE_INFORMATION__LOCATION = 7;
+
+	/**
+	 * The feature id for the '<em><b>Schema Version</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATABASE_INFORMATION__SCHEMA_VERSION = 8;
+
+	/**
+	 * The feature id for the '<em><b>Generic Lines</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATABASE_INFORMATION__GENERIC_LINES = 9;
+
+	/**
+	 * The number of structural features of the '<em>Database Information</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATABASE_INFORMATION_FEATURE_COUNT = 10;
+
+	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.SerializerPluginDescriptorImpl <em>Serializer Plugin Descriptor</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.impl.SerializerPluginDescriptorImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getSerializerPluginDescriptor()
+	 * @generated
+	 */
+	int SERIALIZER_PLUGIN_DESCRIPTOR = 27;
+
+	/**
+	 * The feature id for the '<em><b>Plugin Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERIALIZER_PLUGIN_DESCRIPTOR__PLUGIN_CLASS_NAME = 0;
+
+	/**
+	 * The feature id for the '<em><b>Default Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERIALIZER_PLUGIN_DESCRIPTOR__DEFAULT_NAME = 1;
+
+	/**
+	 * The feature id for the '<em><b>Default Extension</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERIALIZER_PLUGIN_DESCRIPTOR__DEFAULT_EXTENSION = 2;
+
+	/**
+	 * The feature id for the '<em><b>Default Content Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERIALIZER_PLUGIN_DESCRIPTOR__DEFAULT_CONTENT_TYPE = 3;
+
+	/**
+	 * The number of structural features of the '<em>Serializer Plugin Descriptor</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERIALIZER_PLUGIN_DESCRIPTOR_FEATURE_COUNT = 4;
+
+	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.RevisionSummaryTypeImpl <em>Revision Summary Type</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.impl.RevisionSummaryTypeImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getRevisionSummaryType()
+	 * @generated
+	 */
+	int REVISION_SUMMARY_TYPE = 28;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REVISION_SUMMARY_TYPE__NAME = 0;
+
+	/**
+	 * The feature id for the '<em><b>Count</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REVISION_SUMMARY_TYPE__COUNT = 1;
+
+	/**
+	 * The number of structural features of the '<em>Revision Summary Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REVISION_SUMMARY_TYPE_FEATURE_COUNT = 2;
+
+	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.RevisionSummaryContainerImpl <em>Revision Summary Container</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.impl.RevisionSummaryContainerImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getRevisionSummaryContainer()
+	 * @generated
+	 */
+	int REVISION_SUMMARY_CONTAINER = 29;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REVISION_SUMMARY_CONTAINER__NAME = 0;
+
+	/**
+	 * The feature id for the '<em><b>Types</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REVISION_SUMMARY_CONTAINER__TYPES = 1;
+
+	/**
+	 * The number of structural features of the '<em>Revision Summary Container</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REVISION_SUMMARY_CONTAINER_FEATURE_COUNT = 2;
+
+	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.RevisionSummaryImpl <em>Revision Summary</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.impl.RevisionSummaryImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getRevisionSummary()
+	 * @generated
+	 */
+	int REVISION_SUMMARY = 30;
+
+	/**
+	 * The feature id for the '<em><b>List</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REVISION_SUMMARY__LIST = 0;
+
+	/**
+	 * The number of structural features of the '<em>Revision Summary</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REVISION_SUMMARY_FEATURE_COUNT = 1;
+
+	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.PluginDescriptorImpl <em>Plugin Descriptor</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.impl.PluginDescriptorImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getPluginDescriptor()
+	 * @generated
+	 */
+	int PLUGIN_DESCRIPTOR = 31;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PLUGIN_DESCRIPTOR__NAME = 0;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PLUGIN_DESCRIPTOR__DESCRIPTION = 1;
+
+	/**
+	 * The feature id for the '<em><b>Location</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PLUGIN_DESCRIPTOR__LOCATION = 2;
+
+	/**
+	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PLUGIN_DESCRIPTOR__ENABLED = 3;
+
+	/**
+	 * The number of structural features of the '<em>Plugin Descriptor</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PLUGIN_DESCRIPTOR_FEATURE_COUNT = 4;
+
+	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.LongActionImpl <em>Long Action</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.impl.LongActionImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getLongAction()
+	 * @generated
+	 */
+	int LONG_ACTION = 32;
+
+	/**
+	 * The feature id for the '<em><b>Identification</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LONG_ACTION__IDENTIFICATION = 0;
+
+	/**
+	 * The feature id for the '<em><b>User</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LONG_ACTION__USER = 1;
+
+	/**
+	 * The feature id for the '<em><b>Start</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LONG_ACTION__START = 2;
+
+	/**
+	 * The feature id for the '<em><b>Username</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LONG_ACTION__USERNAME = 3;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LONG_ACTION__NAME = 4;
+
+	/**
+	 * The number of structural features of the '<em>Long Action</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LONG_ACTION_FEATURE_COUNT = 5;
+
+	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.GuidanceProviderPluginDescriptorImpl <em>Guidance Provider Plugin Descriptor</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.impl.GuidanceProviderPluginDescriptorImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getGuidanceProviderPluginDescriptor()
+	 * @generated
+	 */
+	int GUIDANCE_PROVIDER_PLUGIN_DESCRIPTOR = 33;
+
+	/**
+	 * The feature id for the '<em><b>Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUIDANCE_PROVIDER_PLUGIN_DESCRIPTOR__CLASS_NAME = 0;
+
+	/**
+	 * The number of structural features of the '<em>Guidance Provider Plugin Descriptor</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUIDANCE_PROVIDER_PLUGIN_DESCRIPTOR_FEATURE_COUNT = 1;
+
+	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.CompareResultImpl <em>Compare Result</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.impl.CompareResultImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getCompareResult()
+	 * @generated
+	 */
+	int COMPARE_RESULT = 34;
+
+	/**
+	 * The number of structural features of the '<em>Compare Result</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPARE_RESULT_FEATURE_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.LongActionStateImpl <em>Long Action State</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.impl.LongActionStateImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getLongActionState()
+	 * @generated
+	 */
+	int LONG_ACTION_STATE = 35;
+
+	/**
+	 * The feature id for the '<em><b>Progress</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LONG_ACTION_STATE__PROGRESS = 0;
+
+	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LONG_ACTION_STATE__STATE = 1;
+
+	/**
+	 * The number of structural features of the '<em>Long Action State</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LONG_ACTION_STATE_FEATURE_COUNT = 2;
+
+	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.UserType <em>User Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1650,7 +2588,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getUserType()
 	 * @generated
 	 */
-	int USER_TYPE = 16;
+	int USER_TYPE = 36;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.CheckinState <em>Checkin State</em>}' enum.
@@ -1660,7 +2598,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getCheckinState()
 	 * @generated
 	 */
-	int CHECKIN_STATE = 17;
+	int CHECKIN_STATE = 37;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.SIPrefix <em>SI Prefix</em>}' enum.
@@ -1670,7 +2608,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getSIPrefix()
 	 * @generated
 	 */
-	int SI_PREFIX = 18;
+	int SI_PREFIX = 38;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ObjectState <em>Object State</em>}' enum.
@@ -1680,7 +2618,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getObjectState()
 	 * @generated
 	 */
-	int OBJECT_STATE = 19;
+	int OBJECT_STATE = 39;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.MergeIdentifier <em>Merge Identifier</em>}' enum.
@@ -1690,7 +2628,18 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getMergeIdentifier()
 	 * @generated
 	 */
-	int MERGE_IDENTIFIER = 20;
+	int MERGE_IDENTIFIER = 40;
+
+
+	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.ActionState <em>Action State</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.ActionState
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getActionState()
+	 * @generated
+	 */
+	int ACTION_STATE = 41;
 
 
 	/**
@@ -3284,6 +4233,822 @@ public interface StorePackage extends EPackage {
 	EReference getDeserializer_Settings();
 
 	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.store.CheckinResult <em>Checkin Result</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Checkin Result</em>'.
+	 * @see org.bimserver.models.store.CheckinResult
+	 * @generated
+	 */
+	EClass getCheckinResult();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.store.CheckinResult#getRevision <em>Revision</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Revision</em>'.
+	 * @see org.bimserver.models.store.CheckinResult#getRevision()
+	 * @see #getCheckinResult()
+	 * @generated
+	 */
+	EReference getCheckinResult_Revision();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.CheckinResult#getRid <em>Rid</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Rid</em>'.
+	 * @see org.bimserver.models.store.CheckinResult#getRid()
+	 * @see #getCheckinResult()
+	 * @generated
+	 */
+	EAttribute getCheckinResult_Rid();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.store.CheckinResult#getProject <em>Project</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Project</em>'.
+	 * @see org.bimserver.models.store.CheckinResult#getProject()
+	 * @see #getCheckinResult()
+	 * @generated
+	 */
+	EReference getCheckinResult_Project();
+
+	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.store.DownloadResult <em>Download Result</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Download Result</em>'.
+	 * @see org.bimserver.models.store.DownloadResult
+	 * @generated
+	 */
+	EClass getDownloadResult();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.DownloadResult#getProjectName <em>Project Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Project Name</em>'.
+	 * @see org.bimserver.models.store.DownloadResult#getProjectName()
+	 * @see #getDownloadResult()
+	 * @generated
+	 */
+	EAttribute getDownloadResult_ProjectName();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.DownloadResult#getRevisionNr <em>Revision Nr</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Revision Nr</em>'.
+	 * @see org.bimserver.models.store.DownloadResult#getRevisionNr()
+	 * @see #getDownloadResult()
+	 * @generated
+	 */
+	EAttribute getDownloadResult_RevisionNr();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.DownloadResult#getFile <em>File</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>File</em>'.
+	 * @see org.bimserver.models.store.DownloadResult#getFile()
+	 * @see #getDownloadResult()
+	 * @generated
+	 */
+	EAttribute getDownloadResult_File();
+
+	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.store.CheckoutResult <em>Checkout Result</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Checkout Result</em>'.
+	 * @see org.bimserver.models.store.CheckoutResult
+	 * @generated
+	 */
+	EClass getCheckoutResult();
+
+	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.store.DataObject <em>Data Object</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Data Object</em>'.
+	 * @see org.bimserver.models.store.DataObject
+	 * @generated
+	 */
+	EClass getDataObject();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.DataObject#getType <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Type</em>'.
+	 * @see org.bimserver.models.store.DataObject#getType()
+	 * @see #getDataObject()
+	 * @generated
+	 */
+	EAttribute getDataObject_Type();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.DataObject#getGuid <em>Guid</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Guid</em>'.
+	 * @see org.bimserver.models.store.DataObject#getGuid()
+	 * @see #getDataObject()
+	 * @generated
+	 */
+	EAttribute getDataObject_Guid();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.DataObject#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see org.bimserver.models.store.DataObject#getName()
+	 * @see #getDataObject()
+	 * @generated
+	 */
+	EAttribute getDataObject_Name();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.bimserver.models.store.DataObject#getValues <em>Values</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Values</em>'.
+	 * @see org.bimserver.models.store.DataObject#getValues()
+	 * @see #getDataObject()
+	 * @generated
+	 */
+	EReference getDataObject_Values();
+
+	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.store.UserSession <em>User Session</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>User Session</em>'.
+	 * @see org.bimserver.models.store.UserSession
+	 * @generated
+	 */
+	EClass getUserSession();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.store.UserSession#getUser <em>User</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>User</em>'.
+	 * @see org.bimserver.models.store.UserSession#getUser()
+	 * @see #getUserSession()
+	 * @generated
+	 */
+	EReference getUserSession_User();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.UserSession#getUsername <em>Username</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Username</em>'.
+	 * @see org.bimserver.models.store.UserSession#getUsername()
+	 * @see #getUserSession()
+	 * @generated
+	 */
+	EAttribute getUserSession_Username();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.UserSession#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see org.bimserver.models.store.UserSession#getName()
+	 * @see #getUserSession()
+	 * @generated
+	 */
+	EAttribute getUserSession_Name();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.UserSession#getType <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Type</em>'.
+	 * @see org.bimserver.models.store.UserSession#getType()
+	 * @see #getUserSession()
+	 * @generated
+	 */
+	EAttribute getUserSession_Type();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.UserSession#getActiveSince <em>Active Since</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Active Since</em>'.
+	 * @see org.bimserver.models.store.UserSession#getActiveSince()
+	 * @see #getUserSession()
+	 * @generated
+	 */
+	EAttribute getUserSession_ActiveSince();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.UserSession#getLastActive <em>Last Active</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Last Active</em>'.
+	 * @see org.bimserver.models.store.UserSession#getLastActive()
+	 * @see #getUserSession()
+	 * @generated
+	 */
+	EAttribute getUserSession_LastActive();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.UserSession#getAccessMethod <em>Access Method</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Access Method</em>'.
+	 * @see org.bimserver.models.store.UserSession#getAccessMethod()
+	 * @see #getUserSession()
+	 * @generated
+	 */
+	EAttribute getUserSession_AccessMethod();
+
+	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.store.Migration <em>Migration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Migration</em>'.
+	 * @see org.bimserver.models.store.Migration
+	 * @generated
+	 */
+	EClass getMigration();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Migration#getNumber <em>Number</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Number</em>'.
+	 * @see org.bimserver.models.store.Migration#getNumber()
+	 * @see #getMigration()
+	 * @generated
+	 */
+	EAttribute getMigration_Number();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Migration#getDescription <em>Description</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Description</em>'.
+	 * @see org.bimserver.models.store.Migration#getDescription()
+	 * @see #getMigration()
+	 * @generated
+	 */
+	EAttribute getMigration_Description();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Migration#isExecuted <em>Executed</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Executed</em>'.
+	 * @see org.bimserver.models.store.Migration#isExecuted()
+	 * @see #getMigration()
+	 * @generated
+	 */
+	EAttribute getMigration_Executed();
+
+	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.store.DataValue <em>Data Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Data Value</em>'.
+	 * @see org.bimserver.models.store.DataValue
+	 * @generated
+	 */
+	EClass getDataValue();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.DataValue#getFieldName <em>Field Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Field Name</em>'.
+	 * @see org.bimserver.models.store.DataValue#getFieldName()
+	 * @see #getDataValue()
+	 * @generated
+	 */
+	EAttribute getDataValue_FieldName();
+
+	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.store.ReferenceDataValue <em>Reference Data Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Reference Data Value</em>'.
+	 * @see org.bimserver.models.store.ReferenceDataValue
+	 * @generated
+	 */
+	EClass getReferenceDataValue();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ReferenceDataValue#getTypeName <em>Type Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Type Name</em>'.
+	 * @see org.bimserver.models.store.ReferenceDataValue#getTypeName()
+	 * @see #getReferenceDataValue()
+	 * @generated
+	 */
+	EAttribute getReferenceDataValue_TypeName();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ReferenceDataValue#getGuid <em>Guid</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Guid</em>'.
+	 * @see org.bimserver.models.store.ReferenceDataValue#getGuid()
+	 * @see #getReferenceDataValue()
+	 * @generated
+	 */
+	EAttribute getReferenceDataValue_Guid();
+
+	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.store.ListDataValue <em>List Data Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>List Data Value</em>'.
+	 * @see org.bimserver.models.store.ListDataValue
+	 * @generated
+	 */
+	EClass getListDataValue();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.bimserver.models.store.ListDataValue#getValues <em>Values</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Values</em>'.
+	 * @see org.bimserver.models.store.ListDataValue#getValues()
+	 * @see #getListDataValue()
+	 * @generated
+	 */
+	EReference getListDataValue_Values();
+
+	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.store.SimpleDataValue <em>Simple Data Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Simple Data Value</em>'.
+	 * @see org.bimserver.models.store.SimpleDataValue
+	 * @generated
+	 */
+	EClass getSimpleDataValue();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.SimpleDataValue#getStringValue <em>String Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>String Value</em>'.
+	 * @see org.bimserver.models.store.SimpleDataValue#getStringValue()
+	 * @see #getSimpleDataValue()
+	 * @generated
+	 */
+	EAttribute getSimpleDataValue_StringValue();
+
+	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.store.DatabaseInformation <em>Database Information</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Database Information</em>'.
+	 * @see org.bimserver.models.store.DatabaseInformation
+	 * @generated
+	 */
+	EClass getDatabaseInformation();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.DatabaseInformation#getNumberOfProjects <em>Number Of Projects</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Number Of Projects</em>'.
+	 * @see org.bimserver.models.store.DatabaseInformation#getNumberOfProjects()
+	 * @see #getDatabaseInformation()
+	 * @generated
+	 */
+	EAttribute getDatabaseInformation_NumberOfProjects();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.DatabaseInformation#getNumberOfUsers <em>Number Of Users</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Number Of Users</em>'.
+	 * @see org.bimserver.models.store.DatabaseInformation#getNumberOfUsers()
+	 * @see #getDatabaseInformation()
+	 * @generated
+	 */
+	EAttribute getDatabaseInformation_NumberOfUsers();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.DatabaseInformation#getNumberOfRevisions <em>Number Of Revisions</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Number Of Revisions</em>'.
+	 * @see org.bimserver.models.store.DatabaseInformation#getNumberOfRevisions()
+	 * @see #getDatabaseInformation()
+	 * @generated
+	 */
+	EAttribute getDatabaseInformation_NumberOfRevisions();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.DatabaseInformation#getNumberOfCheckouts <em>Number Of Checkouts</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Number Of Checkouts</em>'.
+	 * @see org.bimserver.models.store.DatabaseInformation#getNumberOfCheckouts()
+	 * @see #getDatabaseInformation()
+	 * @generated
+	 */
+	EAttribute getDatabaseInformation_NumberOfCheckouts();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.DatabaseInformation#getDatabaseSizeInBytes <em>Database Size In Bytes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Database Size In Bytes</em>'.
+	 * @see org.bimserver.models.store.DatabaseInformation#getDatabaseSizeInBytes()
+	 * @see #getDatabaseInformation()
+	 * @generated
+	 */
+	EAttribute getDatabaseInformation_DatabaseSizeInBytes();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.DatabaseInformation#getType <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Type</em>'.
+	 * @see org.bimserver.models.store.DatabaseInformation#getType()
+	 * @see #getDatabaseInformation()
+	 * @generated
+	 */
+	EAttribute getDatabaseInformation_Type();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.DatabaseInformation#getCreated <em>Created</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Created</em>'.
+	 * @see org.bimserver.models.store.DatabaseInformation#getCreated()
+	 * @see #getDatabaseInformation()
+	 * @generated
+	 */
+	EAttribute getDatabaseInformation_Created();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.DatabaseInformation#getLocation <em>Location</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Location</em>'.
+	 * @see org.bimserver.models.store.DatabaseInformation#getLocation()
+	 * @see #getDatabaseInformation()
+	 * @generated
+	 */
+	EAttribute getDatabaseInformation_Location();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.DatabaseInformation#getSchemaVersion <em>Schema Version</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Schema Version</em>'.
+	 * @see org.bimserver.models.store.DatabaseInformation#getSchemaVersion()
+	 * @see #getDatabaseInformation()
+	 * @generated
+	 */
+	EAttribute getDatabaseInformation_SchemaVersion();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.DatabaseInformation#getGenericLines <em>Generic Lines</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Generic Lines</em>'.
+	 * @see org.bimserver.models.store.DatabaseInformation#getGenericLines()
+	 * @see #getDatabaseInformation()
+	 * @generated
+	 */
+	EAttribute getDatabaseInformation_GenericLines();
+
+	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.store.SerializerPluginDescriptor <em>Serializer Plugin Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Serializer Plugin Descriptor</em>'.
+	 * @see org.bimserver.models.store.SerializerPluginDescriptor
+	 * @generated
+	 */
+	EClass getSerializerPluginDescriptor();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.SerializerPluginDescriptor#getPluginClassName <em>Plugin Class Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Plugin Class Name</em>'.
+	 * @see org.bimserver.models.store.SerializerPluginDescriptor#getPluginClassName()
+	 * @see #getSerializerPluginDescriptor()
+	 * @generated
+	 */
+	EAttribute getSerializerPluginDescriptor_PluginClassName();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.SerializerPluginDescriptor#getDefaultName <em>Default Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Default Name</em>'.
+	 * @see org.bimserver.models.store.SerializerPluginDescriptor#getDefaultName()
+	 * @see #getSerializerPluginDescriptor()
+	 * @generated
+	 */
+	EAttribute getSerializerPluginDescriptor_DefaultName();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.SerializerPluginDescriptor#getDefaultExtension <em>Default Extension</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Default Extension</em>'.
+	 * @see org.bimserver.models.store.SerializerPluginDescriptor#getDefaultExtension()
+	 * @see #getSerializerPluginDescriptor()
+	 * @generated
+	 */
+	EAttribute getSerializerPluginDescriptor_DefaultExtension();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.SerializerPluginDescriptor#getDefaultContentType <em>Default Content Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Default Content Type</em>'.
+	 * @see org.bimserver.models.store.SerializerPluginDescriptor#getDefaultContentType()
+	 * @see #getSerializerPluginDescriptor()
+	 * @generated
+	 */
+	EAttribute getSerializerPluginDescriptor_DefaultContentType();
+
+	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.store.RevisionSummaryType <em>Revision Summary Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Revision Summary Type</em>'.
+	 * @see org.bimserver.models.store.RevisionSummaryType
+	 * @generated
+	 */
+	EClass getRevisionSummaryType();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.RevisionSummaryType#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see org.bimserver.models.store.RevisionSummaryType#getName()
+	 * @see #getRevisionSummaryType()
+	 * @generated
+	 */
+	EAttribute getRevisionSummaryType_Name();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.RevisionSummaryType#getCount <em>Count</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Count</em>'.
+	 * @see org.bimserver.models.store.RevisionSummaryType#getCount()
+	 * @see #getRevisionSummaryType()
+	 * @generated
+	 */
+	EAttribute getRevisionSummaryType_Count();
+
+	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.store.RevisionSummaryContainer <em>Revision Summary Container</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Revision Summary Container</em>'.
+	 * @see org.bimserver.models.store.RevisionSummaryContainer
+	 * @generated
+	 */
+	EClass getRevisionSummaryContainer();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.RevisionSummaryContainer#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see org.bimserver.models.store.RevisionSummaryContainer#getName()
+	 * @see #getRevisionSummaryContainer()
+	 * @generated
+	 */
+	EAttribute getRevisionSummaryContainer_Name();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.bimserver.models.store.RevisionSummaryContainer#getTypes <em>Types</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Types</em>'.
+	 * @see org.bimserver.models.store.RevisionSummaryContainer#getTypes()
+	 * @see #getRevisionSummaryContainer()
+	 * @generated
+	 */
+	EReference getRevisionSummaryContainer_Types();
+
+	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.store.RevisionSummary <em>Revision Summary</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Revision Summary</em>'.
+	 * @see org.bimserver.models.store.RevisionSummary
+	 * @generated
+	 */
+	EClass getRevisionSummary();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.bimserver.models.store.RevisionSummary#getList <em>List</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>List</em>'.
+	 * @see org.bimserver.models.store.RevisionSummary#getList()
+	 * @see #getRevisionSummary()
+	 * @generated
+	 */
+	EReference getRevisionSummary_List();
+
+	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.store.PluginDescriptor <em>Plugin Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Plugin Descriptor</em>'.
+	 * @see org.bimserver.models.store.PluginDescriptor
+	 * @generated
+	 */
+	EClass getPluginDescriptor();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.PluginDescriptor#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see org.bimserver.models.store.PluginDescriptor#getName()
+	 * @see #getPluginDescriptor()
+	 * @generated
+	 */
+	EAttribute getPluginDescriptor_Name();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.PluginDescriptor#getDescription <em>Description</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Description</em>'.
+	 * @see org.bimserver.models.store.PluginDescriptor#getDescription()
+	 * @see #getPluginDescriptor()
+	 * @generated
+	 */
+	EAttribute getPluginDescriptor_Description();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.PluginDescriptor#getLocation <em>Location</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Location</em>'.
+	 * @see org.bimserver.models.store.PluginDescriptor#getLocation()
+	 * @see #getPluginDescriptor()
+	 * @generated
+	 */
+	EAttribute getPluginDescriptor_Location();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.PluginDescriptor#isEnabled <em>Enabled</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Enabled</em>'.
+	 * @see org.bimserver.models.store.PluginDescriptor#isEnabled()
+	 * @see #getPluginDescriptor()
+	 * @generated
+	 */
+	EAttribute getPluginDescriptor_Enabled();
+
+	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.store.LongAction <em>Long Action</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Long Action</em>'.
+	 * @see org.bimserver.models.store.LongAction
+	 * @generated
+	 */
+	EClass getLongAction();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.LongAction#getIdentification <em>Identification</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Identification</em>'.
+	 * @see org.bimserver.models.store.LongAction#getIdentification()
+	 * @see #getLongAction()
+	 * @generated
+	 */
+	EAttribute getLongAction_Identification();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.store.LongAction#getUser <em>User</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>User</em>'.
+	 * @see org.bimserver.models.store.LongAction#getUser()
+	 * @see #getLongAction()
+	 * @generated
+	 */
+	EReference getLongAction_User();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.LongAction#getStart <em>Start</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Start</em>'.
+	 * @see org.bimserver.models.store.LongAction#getStart()
+	 * @see #getLongAction()
+	 * @generated
+	 */
+	EAttribute getLongAction_Start();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.LongAction#getUsername <em>Username</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Username</em>'.
+	 * @see org.bimserver.models.store.LongAction#getUsername()
+	 * @see #getLongAction()
+	 * @generated
+	 */
+	EAttribute getLongAction_Username();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.LongAction#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see org.bimserver.models.store.LongAction#getName()
+	 * @see #getLongAction()
+	 * @generated
+	 */
+	EAttribute getLongAction_Name();
+
+	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.store.GuidanceProviderPluginDescriptor <em>Guidance Provider Plugin Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Guidance Provider Plugin Descriptor</em>'.
+	 * @see org.bimserver.models.store.GuidanceProviderPluginDescriptor
+	 * @generated
+	 */
+	EClass getGuidanceProviderPluginDescriptor();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.GuidanceProviderPluginDescriptor#getClassName <em>Class Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Class Name</em>'.
+	 * @see org.bimserver.models.store.GuidanceProviderPluginDescriptor#getClassName()
+	 * @see #getGuidanceProviderPluginDescriptor()
+	 * @generated
+	 */
+	EAttribute getGuidanceProviderPluginDescriptor_ClassName();
+
+	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.store.CompareResult <em>Compare Result</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Compare Result</em>'.
+	 * @see org.bimserver.models.store.CompareResult
+	 * @generated
+	 */
+	EClass getCompareResult();
+
+	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.store.LongActionState <em>Long Action State</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Long Action State</em>'.
+	 * @see org.bimserver.models.store.LongActionState
+	 * @generated
+	 */
+	EClass getLongActionState();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.LongActionState#getProgress <em>Progress</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Progress</em>'.
+	 * @see org.bimserver.models.store.LongActionState#getProgress()
+	 * @see #getLongActionState()
+	 * @generated
+	 */
+	EAttribute getLongActionState_Progress();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.LongActionState#getState <em>State</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>State</em>'.
+	 * @see org.bimserver.models.store.LongActionState#getState()
+	 * @see #getLongActionState()
+	 * @generated
+	 */
+	EAttribute getLongActionState_State();
+
+	/**
 	 * Returns the meta object for enum '{@link org.bimserver.models.store.UserType <em>User Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3332,6 +5097,16 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 */
 	EEnum getMergeIdentifier();
+
+	/**
+	 * Returns the meta object for enum '{@link org.bimserver.models.store.ActionState <em>Action State</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Action State</em>'.
+	 * @see org.bimserver.models.store.ActionState
+	 * @generated
+	 */
+	EEnum getActionState();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -4556,6 +6331,654 @@ public interface StorePackage extends EPackage {
 		EReference DESERIALIZER__SETTINGS = eINSTANCE.getDeserializer_Settings();
 
 		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.CheckinResultImpl <em>Checkin Result</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.impl.CheckinResultImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getCheckinResult()
+		 * @generated
+		 */
+		EClass CHECKIN_RESULT = eINSTANCE.getCheckinResult();
+
+		/**
+		 * The meta object literal for the '<em><b>Revision</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CHECKIN_RESULT__REVISION = eINSTANCE.getCheckinResult_Revision();
+
+		/**
+		 * The meta object literal for the '<em><b>Rid</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CHECKIN_RESULT__RID = eINSTANCE.getCheckinResult_Rid();
+
+		/**
+		 * The meta object literal for the '<em><b>Project</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CHECKIN_RESULT__PROJECT = eINSTANCE.getCheckinResult_Project();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.DownloadResultImpl <em>Download Result</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.impl.DownloadResultImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getDownloadResult()
+		 * @generated
+		 */
+		EClass DOWNLOAD_RESULT = eINSTANCE.getDownloadResult();
+
+		/**
+		 * The meta object literal for the '<em><b>Project Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DOWNLOAD_RESULT__PROJECT_NAME = eINSTANCE.getDownloadResult_ProjectName();
+
+		/**
+		 * The meta object literal for the '<em><b>Revision Nr</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DOWNLOAD_RESULT__REVISION_NR = eINSTANCE.getDownloadResult_RevisionNr();
+
+		/**
+		 * The meta object literal for the '<em><b>File</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DOWNLOAD_RESULT__FILE = eINSTANCE.getDownloadResult_File();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.CheckoutResultImpl <em>Checkout Result</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.impl.CheckoutResultImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getCheckoutResult()
+		 * @generated
+		 */
+		EClass CHECKOUT_RESULT = eINSTANCE.getCheckoutResult();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.DataObjectImpl <em>Data Object</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.impl.DataObjectImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getDataObject()
+		 * @generated
+		 */
+		EClass DATA_OBJECT = eINSTANCE.getDataObject();
+
+		/**
+		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DATA_OBJECT__TYPE = eINSTANCE.getDataObject_Type();
+
+		/**
+		 * The meta object literal for the '<em><b>Guid</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DATA_OBJECT__GUID = eINSTANCE.getDataObject_Guid();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DATA_OBJECT__NAME = eINSTANCE.getDataObject_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Values</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DATA_OBJECT__VALUES = eINSTANCE.getDataObject_Values();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.UserSessionImpl <em>User Session</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.impl.UserSessionImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getUserSession()
+		 * @generated
+		 */
+		EClass USER_SESSION = eINSTANCE.getUserSession();
+
+		/**
+		 * The meta object literal for the '<em><b>User</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference USER_SESSION__USER = eINSTANCE.getUserSession_User();
+
+		/**
+		 * The meta object literal for the '<em><b>Username</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute USER_SESSION__USERNAME = eINSTANCE.getUserSession_Username();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute USER_SESSION__NAME = eINSTANCE.getUserSession_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute USER_SESSION__TYPE = eINSTANCE.getUserSession_Type();
+
+		/**
+		 * The meta object literal for the '<em><b>Active Since</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute USER_SESSION__ACTIVE_SINCE = eINSTANCE.getUserSession_ActiveSince();
+
+		/**
+		 * The meta object literal for the '<em><b>Last Active</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute USER_SESSION__LAST_ACTIVE = eINSTANCE.getUserSession_LastActive();
+
+		/**
+		 * The meta object literal for the '<em><b>Access Method</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute USER_SESSION__ACCESS_METHOD = eINSTANCE.getUserSession_AccessMethod();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.MigrationImpl <em>Migration</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.impl.MigrationImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getMigration()
+		 * @generated
+		 */
+		EClass MIGRATION = eINSTANCE.getMigration();
+
+		/**
+		 * The meta object literal for the '<em><b>Number</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MIGRATION__NUMBER = eINSTANCE.getMigration_Number();
+
+		/**
+		 * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MIGRATION__DESCRIPTION = eINSTANCE.getMigration_Description();
+
+		/**
+		 * The meta object literal for the '<em><b>Executed</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MIGRATION__EXECUTED = eINSTANCE.getMigration_Executed();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.DataValueImpl <em>Data Value</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.impl.DataValueImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getDataValue()
+		 * @generated
+		 */
+		EClass DATA_VALUE = eINSTANCE.getDataValue();
+
+		/**
+		 * The meta object literal for the '<em><b>Field Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DATA_VALUE__FIELD_NAME = eINSTANCE.getDataValue_FieldName();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.ReferenceDataValueImpl <em>Reference Data Value</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.impl.ReferenceDataValueImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getReferenceDataValue()
+		 * @generated
+		 */
+		EClass REFERENCE_DATA_VALUE = eINSTANCE.getReferenceDataValue();
+
+		/**
+		 * The meta object literal for the '<em><b>Type Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute REFERENCE_DATA_VALUE__TYPE_NAME = eINSTANCE.getReferenceDataValue_TypeName();
+
+		/**
+		 * The meta object literal for the '<em><b>Guid</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute REFERENCE_DATA_VALUE__GUID = eINSTANCE.getReferenceDataValue_Guid();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.ListDataValueImpl <em>List Data Value</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.impl.ListDataValueImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getListDataValue()
+		 * @generated
+		 */
+		EClass LIST_DATA_VALUE = eINSTANCE.getListDataValue();
+
+		/**
+		 * The meta object literal for the '<em><b>Values</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LIST_DATA_VALUE__VALUES = eINSTANCE.getListDataValue_Values();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.SimpleDataValueImpl <em>Simple Data Value</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.impl.SimpleDataValueImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getSimpleDataValue()
+		 * @generated
+		 */
+		EClass SIMPLE_DATA_VALUE = eINSTANCE.getSimpleDataValue();
+
+		/**
+		 * The meta object literal for the '<em><b>String Value</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SIMPLE_DATA_VALUE__STRING_VALUE = eINSTANCE.getSimpleDataValue_StringValue();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.DatabaseInformationImpl <em>Database Information</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.impl.DatabaseInformationImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getDatabaseInformation()
+		 * @generated
+		 */
+		EClass DATABASE_INFORMATION = eINSTANCE.getDatabaseInformation();
+
+		/**
+		 * The meta object literal for the '<em><b>Number Of Projects</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DATABASE_INFORMATION__NUMBER_OF_PROJECTS = eINSTANCE.getDatabaseInformation_NumberOfProjects();
+
+		/**
+		 * The meta object literal for the '<em><b>Number Of Users</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DATABASE_INFORMATION__NUMBER_OF_USERS = eINSTANCE.getDatabaseInformation_NumberOfUsers();
+
+		/**
+		 * The meta object literal for the '<em><b>Number Of Revisions</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DATABASE_INFORMATION__NUMBER_OF_REVISIONS = eINSTANCE.getDatabaseInformation_NumberOfRevisions();
+
+		/**
+		 * The meta object literal for the '<em><b>Number Of Checkouts</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DATABASE_INFORMATION__NUMBER_OF_CHECKOUTS = eINSTANCE.getDatabaseInformation_NumberOfCheckouts();
+
+		/**
+		 * The meta object literal for the '<em><b>Database Size In Bytes</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DATABASE_INFORMATION__DATABASE_SIZE_IN_BYTES = eINSTANCE.getDatabaseInformation_DatabaseSizeInBytes();
+
+		/**
+		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DATABASE_INFORMATION__TYPE = eINSTANCE.getDatabaseInformation_Type();
+
+		/**
+		 * The meta object literal for the '<em><b>Created</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DATABASE_INFORMATION__CREATED = eINSTANCE.getDatabaseInformation_Created();
+
+		/**
+		 * The meta object literal for the '<em><b>Location</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DATABASE_INFORMATION__LOCATION = eINSTANCE.getDatabaseInformation_Location();
+
+		/**
+		 * The meta object literal for the '<em><b>Schema Version</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DATABASE_INFORMATION__SCHEMA_VERSION = eINSTANCE.getDatabaseInformation_SchemaVersion();
+
+		/**
+		 * The meta object literal for the '<em><b>Generic Lines</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DATABASE_INFORMATION__GENERIC_LINES = eINSTANCE.getDatabaseInformation_GenericLines();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.SerializerPluginDescriptorImpl <em>Serializer Plugin Descriptor</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.impl.SerializerPluginDescriptorImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getSerializerPluginDescriptor()
+		 * @generated
+		 */
+		EClass SERIALIZER_PLUGIN_DESCRIPTOR = eINSTANCE.getSerializerPluginDescriptor();
+
+		/**
+		 * The meta object literal for the '<em><b>Plugin Class Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SERIALIZER_PLUGIN_DESCRIPTOR__PLUGIN_CLASS_NAME = eINSTANCE.getSerializerPluginDescriptor_PluginClassName();
+
+		/**
+		 * The meta object literal for the '<em><b>Default Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SERIALIZER_PLUGIN_DESCRIPTOR__DEFAULT_NAME = eINSTANCE.getSerializerPluginDescriptor_DefaultName();
+
+		/**
+		 * The meta object literal for the '<em><b>Default Extension</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SERIALIZER_PLUGIN_DESCRIPTOR__DEFAULT_EXTENSION = eINSTANCE.getSerializerPluginDescriptor_DefaultExtension();
+
+		/**
+		 * The meta object literal for the '<em><b>Default Content Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SERIALIZER_PLUGIN_DESCRIPTOR__DEFAULT_CONTENT_TYPE = eINSTANCE.getSerializerPluginDescriptor_DefaultContentType();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.RevisionSummaryTypeImpl <em>Revision Summary Type</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.impl.RevisionSummaryTypeImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getRevisionSummaryType()
+		 * @generated
+		 */
+		EClass REVISION_SUMMARY_TYPE = eINSTANCE.getRevisionSummaryType();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute REVISION_SUMMARY_TYPE__NAME = eINSTANCE.getRevisionSummaryType_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Count</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute REVISION_SUMMARY_TYPE__COUNT = eINSTANCE.getRevisionSummaryType_Count();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.RevisionSummaryContainerImpl <em>Revision Summary Container</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.impl.RevisionSummaryContainerImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getRevisionSummaryContainer()
+		 * @generated
+		 */
+		EClass REVISION_SUMMARY_CONTAINER = eINSTANCE.getRevisionSummaryContainer();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute REVISION_SUMMARY_CONTAINER__NAME = eINSTANCE.getRevisionSummaryContainer_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Types</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference REVISION_SUMMARY_CONTAINER__TYPES = eINSTANCE.getRevisionSummaryContainer_Types();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.RevisionSummaryImpl <em>Revision Summary</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.impl.RevisionSummaryImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getRevisionSummary()
+		 * @generated
+		 */
+		EClass REVISION_SUMMARY = eINSTANCE.getRevisionSummary();
+
+		/**
+		 * The meta object literal for the '<em><b>List</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference REVISION_SUMMARY__LIST = eINSTANCE.getRevisionSummary_List();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.PluginDescriptorImpl <em>Plugin Descriptor</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.impl.PluginDescriptorImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getPluginDescriptor()
+		 * @generated
+		 */
+		EClass PLUGIN_DESCRIPTOR = eINSTANCE.getPluginDescriptor();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PLUGIN_DESCRIPTOR__NAME = eINSTANCE.getPluginDescriptor_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PLUGIN_DESCRIPTOR__DESCRIPTION = eINSTANCE.getPluginDescriptor_Description();
+
+		/**
+		 * The meta object literal for the '<em><b>Location</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PLUGIN_DESCRIPTOR__LOCATION = eINSTANCE.getPluginDescriptor_Location();
+
+		/**
+		 * The meta object literal for the '<em><b>Enabled</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PLUGIN_DESCRIPTOR__ENABLED = eINSTANCE.getPluginDescriptor_Enabled();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.LongActionImpl <em>Long Action</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.impl.LongActionImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getLongAction()
+		 * @generated
+		 */
+		EClass LONG_ACTION = eINSTANCE.getLongAction();
+
+		/**
+		 * The meta object literal for the '<em><b>Identification</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LONG_ACTION__IDENTIFICATION = eINSTANCE.getLongAction_Identification();
+
+		/**
+		 * The meta object literal for the '<em><b>User</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LONG_ACTION__USER = eINSTANCE.getLongAction_User();
+
+		/**
+		 * The meta object literal for the '<em><b>Start</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LONG_ACTION__START = eINSTANCE.getLongAction_Start();
+
+		/**
+		 * The meta object literal for the '<em><b>Username</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LONG_ACTION__USERNAME = eINSTANCE.getLongAction_Username();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LONG_ACTION__NAME = eINSTANCE.getLongAction_Name();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.GuidanceProviderPluginDescriptorImpl <em>Guidance Provider Plugin Descriptor</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.impl.GuidanceProviderPluginDescriptorImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getGuidanceProviderPluginDescriptor()
+		 * @generated
+		 */
+		EClass GUIDANCE_PROVIDER_PLUGIN_DESCRIPTOR = eINSTANCE.getGuidanceProviderPluginDescriptor();
+
+		/**
+		 * The meta object literal for the '<em><b>Class Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute GUIDANCE_PROVIDER_PLUGIN_DESCRIPTOR__CLASS_NAME = eINSTANCE.getGuidanceProviderPluginDescriptor_ClassName();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.CompareResultImpl <em>Compare Result</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.impl.CompareResultImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getCompareResult()
+		 * @generated
+		 */
+		EClass COMPARE_RESULT = eINSTANCE.getCompareResult();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.LongActionStateImpl <em>Long Action State</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.impl.LongActionStateImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getLongActionState()
+		 * @generated
+		 */
+		EClass LONG_ACTION_STATE = eINSTANCE.getLongActionState();
+
+		/**
+		 * The meta object literal for the '<em><b>Progress</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LONG_ACTION_STATE__PROGRESS = eINSTANCE.getLongActionState_Progress();
+
+		/**
+		 * The meta object literal for the '<em><b>State</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LONG_ACTION_STATE__STATE = eINSTANCE.getLongActionState_State();
+
+		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.UserType <em>User Type</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -4604,6 +7027,16 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EEnum MERGE_IDENTIFIER = eINSTANCE.getMergeIdentifier();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.ActionState <em>Action State</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.ActionState
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getActionState()
+		 * @generated
+		 */
+		EEnum ACTION_STATE = eINSTANCE.getActionState();
 
 	}
 

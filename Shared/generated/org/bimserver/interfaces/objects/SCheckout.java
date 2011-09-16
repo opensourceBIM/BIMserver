@@ -1,11 +1,24 @@
 package org.bimserver.interfaces.objects;
 
+import java.util.*;
 import javax.xml.bind.annotation.XmlRootElement;
+import org.bimserver.shared.meta.*;
 
 @XmlRootElement
-public class SCheckout
+public class SCheckout implements SBase
 {
 	private long oid;
+	private static final SClass sClass = new SClass("Checkout");
+	
+	static {
+		sClass.addField(new SField("oid", long.class));
+		sClass.addField(new SField("userId", long.class));
+		sClass.addField(new SField("revisionId", long.class));
+		sClass.addField(new SField("projectId", long.class));
+		sClass.addField(new SField("date", java.util.Date.class));
+		sClass.addField(new SField("checkinId", long.class));
+		sClass.addField(new SField("active", boolean.class));
+	}
 	
 	public long getOid() {
 		return oid;
@@ -13,6 +26,10 @@ public class SCheckout
 	
 	public void setOid(long oid) {
 		this.oid = oid;
+	}
+	
+	public SClass getSClass() {
+		return sClass;
 	}
 	private long userId;
 	private long revisionId;

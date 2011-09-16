@@ -10,9 +10,9 @@ import org.bimserver.models.log.AccessMethod;
 import org.bimserver.plugins.GuidanceProviderException;
 import org.bimserver.plugins.guidanceproviders.GuidanceProvider;
 import org.bimserver.plugins.serializers.IfcModelInterface;
-import org.bimserver.shared.SCompareResult.SCompareIdentifier;
-import org.bimserver.shared.SCompareResult.SCompareType;
-import org.bimserver.shared.UserException;
+import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.shared.objects.SCompareResult.SCompareIdentifier;
+import org.bimserver.shared.objects.SCompareResult.SCompareType;
 
 public class CompareDatabaseAction extends BimDatabaseAction<CompareResult> {
 

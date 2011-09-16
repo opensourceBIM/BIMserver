@@ -14,15 +14,15 @@ import org.bimserver.interfaces.objects.SClashDetectionSettings;
 import org.bimserver.interfaces.objects.SObjectState;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevision;
+import org.bimserver.interfaces.objects.SRevisionSummary;
+import org.bimserver.interfaces.objects.SRevisionSummaryContainer;
+import org.bimserver.interfaces.objects.SRevisionSummaryType;
 import org.bimserver.interfaces.objects.SUserType;
-import org.bimserver.shared.SProjectNameComparator;
-import org.bimserver.shared.SRevisionIdComparator;
-import org.bimserver.shared.SRevisionSummary;
-import org.bimserver.shared.SRevisionSummaryContainer;
-import org.bimserver.shared.SRevisionSummaryType;
-import org.bimserver.shared.ServiceException;
 import org.bimserver.shared.ServiceInterface;
-import org.bimserver.shared.UserException;
+import org.bimserver.shared.comparators.SProjectNameComparator;
+import org.bimserver.shared.comparators.SRevisionIdComparator;
+import org.bimserver.shared.exceptions.ServiceException;
+import org.bimserver.shared.exceptions.UserException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -182,7 +182,6 @@ public class JspHelper {
 		builder.append("</table>");
 		return builder.toString();
 	}
-
 
 	public static String completeProjectName(ServiceInterface service, SProject sProject) {
 		if (sProject.getParentId() != -1) {

@@ -11,7 +11,7 @@ import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.User;
-import org.bimserver.shared.UserException;
+import org.bimserver.shared.exceptions.UserException;
 
 public class GetCheckoutWarningsDatabaseAction extends BimDatabaseAction<Set<String>> {
 

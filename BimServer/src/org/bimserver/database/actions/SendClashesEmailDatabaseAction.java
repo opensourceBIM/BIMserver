@@ -22,7 +22,7 @@ import org.bimserver.interfaces.objects.SClashDetectionSettings;
 import org.bimserver.mail.MailSystem;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.User;
-import org.bimserver.shared.UserException;
+import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.templating.TemplateIdentifier;
 
 public class SendClashesEmailDatabaseAction extends BimDatabaseAction<Void> {
