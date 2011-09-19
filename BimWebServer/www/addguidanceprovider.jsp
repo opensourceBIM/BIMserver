@@ -5,7 +5,6 @@
 <%@page import="java.util.Collections"%>
 <%@page import="java.util.GregorianCalendar"%>
 <%@page import="org.bimserver.utils.Formatters"%>
-<%@page import="org.bimserver.interfaces.objects.DatabaseInformation"%>
 <%@page import="org.bimserver.version.VersionChecker"%>
 <%@page import="java.util.Map"%>
 <%@page import="java.util.Set"%>

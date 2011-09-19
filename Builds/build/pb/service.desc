@@ -1,5 +1,5 @@
 
-∞‡
+Ë·
 service.protoorg.bimserver.pb"$
 VoidResponse
 errorMessage (	"¶
@@ -22,11 +22,11 @@ SDataValue
 oid ((
 sClass (2.org.bimserver.pb.SClass
 guid (	"x
-SCompareItem
-oid ((
-sClass (2.org.bimserver.pb.SClass1
+SCompareItem1
 
-dataObject (2.org.bimserver.pb.SDataObject"á
+dataObject (2.org.bimserver.pb.SDataObject
+oid ((
+sClass (2.org.bimserver.pb.SClass"á
 SCompareContainer
 type (	
 oid ((
@@ -56,7 +56,24 @@ smtpServer (	
 oid (
 	className (	
 attributeName (	
-index ("
+index ("G
+CheckoutRequest
+roid (
+formatIdentifier (	
+sync ("7
+CheckoutResponse
+errorMessage (	
+value ("8
+6IsSettingSendConfirmationEmailAfterRegistrationRequest"^
+7IsSettingSendConfirmationEmailAfterRegistrationResponse
+errorMessage (	
+value ("i
+7SetSettingSendConfirmationEmailAfterRegistrationRequest.
+&sendConfirmationEmailAfterRegistration ("
+GetAccessMethodRequest"_
+GetAccessMethodResponse
+errorMessage (	.
+value (2.org.bimserver.pb.SAccessMethod"
 GetMigrationsRequest"h
 
 SMigration
@@ -240,16 +257,15 @@ revisionNr (
 errorMessage (	0
 value (2!.org.bimserver.pb.SDownloadResult"+
 GetDownloadStateRequest
-actionID ("x
-LongActionState,
-state (2.org.bimserver.pb.ActionState
+actionID ("ä
+SLongActionState-
+state (2.org.bimserver.pb.SActionState
 progress (
-oid (
-rid (
-pid ("b
+oid ((
+sClass (2.org.bimserver.pb.SClass"c
 GetDownloadStateResponse
-errorMessage (	0
-value (2!.org.bimserver.pb.LongActionState"T
+errorMessage (	1
+value (2".org.bimserver.pb.SLongActionState"T
 ChangeUserTypeRequest
 uoid (-
 userType (2.org.bimserver.pb.SUserType"H
@@ -268,11 +284,11 @@ parentPoid ("a
 state (2.org.bimserver.pb.SCheckinState
 size (
 date (
-comment (	
-lastClashes (
-concreteRevisions (
-lastConcreteRevisionId (
-tag	 (	
+comment (	
+tag (	
+lastClashes (
+concreteRevisions (
+lastConcreteRevisionId	 (
 oid
  ((
 sClass (2.org.bimserver.pb.SClass
@@ -344,7 +360,12 @@ parentPoid ("a
 GetAvailableClassesResponse
 errorMessage (	
 value (	"
-GetDatabaseInformationRequest"Ø
+GetDatabaseInformationRequest"s
+SDatabaseInformationCategory
+lines (	
+title (	
+oid ((
+sClass (2.org.bimserver.pb.SClass"›
 SDatabaseInformation
 location (	
 type (	
@@ -353,8 +374,9 @@ parentPoid ("a
 numberOfRevisions (
 numberOfCheckouts (
 databaseSizeInBytes (
-schemaVersion (
-genericLines	 (	
+schemaVersion (B
+
+categories	 (2..org.bimserver.pb.SDatabaseInformationCategory
 oid
  ((
 sClass (2.org.bimserver.pb.SClass
@@ -440,9 +462,9 @@ parentPoid ("a
 GetDataObjectsByTypeResponse
 errorMessage (	,
 value (2.org.bimserver.pb.SDataObject"ù
-SClashDetectionSettings
-ignoredClasses (	
-projects (
+SClashDetectionSettings
+projects (
+ignoredClasses (	
 oid ((
 sClass (2.org.bimserver.pb.SClass
 	revisions (
@@ -454,14 +476,14 @@ SGuidClash
 oid ((
 sClass (2.org.bimserver.pb.SClass
 guid1 (	
-guid2 (	
-name1 (	
-name2 (	
-type1 (	
-type2 (	
-revision1Id	 (
-revision2Id
- ("^
+guid2 (	
+revision1Id (
+revision2Id (
+name1 (	
+name2 (	
+type1	 (	
+type2
+ (	"^
 FindClashesByGuidResponse
 errorMessage (	+
 value (2.org.bimserver.pb.SGuidClash"e
@@ -471,28 +493,28 @@ SGuidClash
 oid ((
 sClass (2.org.bimserver.pb.SClass
 eid1 (
-eid2 (
-name1 (	
-name2 (	
-type1 (	
-type2 (	
-revision1Id	 (
-revision2Id
- ("\
+eid2 (
+revision1Id (
+revision2Id (
+name1 (	
+name2 (	
+type1	 (	
+type2
+ (	"\
 FindClashesByEidResponse
 errorMessage (	*
 value (2.org.bimserver.pb.SEidClash"%
 GetLastClashesRequest
 roid ("•
-SClash
-oid ((
-sClass (2.org.bimserver.pb.SClass
-name1 (	
-name2 (	
-type1 (	
-type2 (	
-revision1Id (
-revision2Id ("W
+SClash
+revision1Id (
+revision2Id (
+oid ((
+sClass (2.org.bimserver.pb.SClass
+name1 (	
+name2 (	
+type1 (	
+type2 (	"W
 GetLastClashesResponse
 errorMessage (	'
 value (2.org.bimserver.pb.SClash"O
@@ -504,9 +526,9 @@ SGuidClash
 
 revisionId (
 oid ((
-sClass (2.org.bimserver.pb.SClass
-rid (
-	projectId ("c
+sClass (2.org.bimserver.pb.SClass
+	projectId (
+rid ("c
 BranchToNewProjectResponse
 errorMessage (	/
 value (2 .org.bimserver.pb.SCheckinResult"Q
@@ -658,11 +680,11 @@ smtpServer (	"!
 GetActiveUserSessionsRequest"Ä
 SUserSession
 name (	)
-type (2.org.bimserver.pb.SUserType
-activeSince (
+type (2.org.bimserver.pb.SUserType5
+accessMethod (2.org.bimserver.pb.SAccessMethod
+activeSince (
 
-lastActive (5
-accessMethod (2.org.bimserver.pb.SAccessMethod
+lastActive (
 oid ((
 sClass (2.org.bimserver.pb.SClass
 userId (
@@ -866,24 +888,7 @@ settingsId (
 "RegisterNewRevisionListenerRequest"7
 SetHttpCallbackRequest
 uoid (
-address (	"8
-6IsSettingSendConfirmationEmailAfterRegistrationRequest"^
-7IsSettingSendConfirmationEmailAfterRegistrationResponse
-errorMessage (	
-value ("i
-7SetSettingSendConfirmationEmailAfterRegistrationRequest.
-&sendConfirmationEmailAfterRegistration ("
-GetAccessMethodRequest"_
-GetAccessMethodResponse
-errorMessage (	.
-value (2.org.bimserver.pb.SAccessMethod"G
-CheckoutRequest
-roid (
-formatIdentifier (	
-sync ("7
-CheckoutResponse
-errorMessage (	
-value ("2
+address (	"2
 AutologinRequest
 username (	
 hash (	"8
@@ -964,9 +969,9 @@ settingsId (
 value (" 
 GetGeoTagRequest
 goid ("ô
-SGeoTag
-directionAngle (
-projects (
+SGeoTag
+projects (
+directionAngle (
 oid ((
 sClass (2.org.bimserver.pb.SClass	
 x (	
@@ -986,11 +991,11 @@ settingsId (
 
 SLogAction
 date (5
-accessMethod (2.org.bimserver.pb.SAccessMethod
-oid ((
-sClass (2.org.bimserver.pb.SClass
+accessMethod (2.org.bimserver.pb.SAccessMethod
 
-executorId ("T
+executorId (
+oid ((
+sClass (2.org.bimserver.pb.SClass"T
 GetLogsResponse
 errorMessage (	+
 value (2.org.bimserver.pb.SLogAction"&
@@ -1021,7 +1026,13 @@ executorId ("T
 DELETE*.
 SCompareIdentifier
 NAME_ID 
-GUID_ID*'
+GUID_ID*U
+SAccessMethod
+SOAP 
+WEB_INTERFACE
+INTERNAL
+REST
+SYNDICATION*'
 SObjectState
 
 ACTIVE 
@@ -1055,8 +1066,8 @@ hectometer
 SYSTEM 	
 ADMIN
 USER
-	ANONYMOUS*5
-ActionState
+	ANONYMOUS*6
+SActionState
 UNKNOWN 
 STARTED
 FINISHED*w
@@ -1070,18 +1081,16 @@ hectometer
 CLASHES_ERROR*&
 SMergeIdentifier
 NAME 
-GUID*U
-SAccessMethod
-SOAP 
-WEB_INTERFACE
-INTERNAL
-REST
-SYNDICATION2≠î
+GUID2≠î
 ServiceInterfaceN
 compare .org.bimserver.pb.CompareRequest!.org.bimserver.pb.CompareResponseG
 setup.org.bimserver.pb.SetupRequest.org.bimserver.pb.VoidResponse]
 createObject%.org.bimserver.pb.CreateObjectRequest&.org.bimserver.pb.CreateObjectResponse[
-removeAttribute(.org.bimserver.pb.RemoveAttributeRequest.org.bimserver.pb.VoidResponse`
+removeAttribute(.org.bimserver.pb.RemoveAttributeRequest.org.bimserver.pb.VoidResponseQ
+checkout!.org.bimserver.pb.CheckoutRequest".org.bimserver.pb.CheckoutResponse∆
+/isSettingSendConfirmationEmailAfterRegistrationH.org.bimserver.pb.IsSettingSendConfirmationEmailAfterRegistrationRequestI.org.bimserver.pb.IsSettingSendConfirmationEmailAfterRegistrationResponseù
+0setSettingSendConfirmationEmailAfterRegistrationI.org.bimserver.pb.SetSettingSendConfirmationEmailAfterRegistrationRequest.org.bimserver.pb.VoidResponsef
+getAccessMethod(.org.bimserver.pb.GetAccessMethodRequest).org.bimserver.pb.GetAccessMethodResponse`
 getMigrations&.org.bimserver.pb.GetMigrationsRequest'.org.bimserver.pb.GetMigrationsResponseú
 !getAllNonAuthorizedProjectsOfUser:.org.bimserver.pb.GetAllNonAuthorizedProjectsOfUserRequest;.org.bimserver.pb.GetAllNonAuthorizedProjectsOfUserResponseú
 !getAllNonAuthorizedUsersOfProject:.org.bimserver.pb.GetAllNonAuthorizedUsersOfProjectRequest;.org.bimserver.pb.GetAllNonAuthorizedUsersOfProjectResponseì
@@ -1222,11 +1231,7 @@ $isSettingShowVersionUpgradeAvailable=.org.bimserver.pb.IsSettingShowVersionUpg
 getServerStartTime+.org.bimserver.pb.GetServerStartTimeRequest,.org.bimserver.pb.GetServerStartTimeResponser
 getAllDeserializers,.org.bimserver.pb.GetAllDeserializersRequest-.org.bimserver.pb.GetAllDeserializersResponses
 registerNewRevisionListener4.org.bimserver.pb.RegisterNewRevisionListenerRequest.org.bimserver.pb.VoidResponse[
-setHttpCallback(.org.bimserver.pb.SetHttpCallbackRequest.org.bimserver.pb.VoidResponse∆
-/isSettingSendConfirmationEmailAfterRegistrationH.org.bimserver.pb.IsSettingSendConfirmationEmailAfterRegistrationRequestI.org.bimserver.pb.IsSettingSendConfirmationEmailAfterRegistrationResponseù
-0setSettingSendConfirmationEmailAfterRegistrationI.org.bimserver.pb.SetSettingSendConfirmationEmailAfterRegistrationRequest.org.bimserver.pb.VoidResponsef
-getAccessMethod(.org.bimserver.pb.GetAccessMethodRequest).org.bimserver.pb.GetAccessMethodResponseQ
-checkout!.org.bimserver.pb.CheckoutRequest".org.bimserver.pb.CheckoutResponseT
+setHttpCallback(.org.bimserver.pb.SetHttpCallbackRequest.org.bimserver.pb.VoidResponseT
 	autologin".org.bimserver.pb.AutologinRequest#.org.bimserver.pb.AutologinResponse]
 checkinAsync%.org.bimserver.pb.CheckinAsyncRequest&.org.bimserver.pb.CheckinAsyncResponseQ
 download!.org.bimserver.pb.DownloadRequest".org.bimserver.pb.DownloadResponseH

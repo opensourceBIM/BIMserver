@@ -1,3 +1,5 @@
+<%@page import="org.bimserver.interfaces.objects.SDatabaseInformationItem"%>
+<%@page import="org.bimserver.interfaces.objects.SDatabaseInformationCategory"%>
 <%@page import="org.bimserver.interfaces.objects.SDatabaseInformation"%>
 <%@ include file="header.jsp" %>
 <%@page import="java.util.List" %>
@@ -163,11 +165,11 @@ E-mail <a href="mailto:<%= checkVersion.getOnlineVersion().getSupportEmail() %>"
 			<tr><td class="firstcolumn">Size</td><td><%=Formatters.bytesToString(databaseInformation.getDatabaseSizeInBytes()) %></td></tr>
 			<tr><td class="firstcolumn">Schema Version</td><td><%=databaseInformation.getSchemaVersion() %></td></tr>
 			<%
-				Map<String, Map<String, String>> genericLines = databaseInformation.getGenericLines();
-				for (String title : genericLines.keySet()) {
-					out.println("<tr><td colspan=\"2\" class=\"tabletitle\">" + title + "</td></tr>");
-					for (String key : genericLines.get(title).keySet()) {
-						out.println("<tr><td class=\"firstcolumn\">" + key + "</td><td>" + genericLines.get(title).get(key) + "</td></tr>");
+				List<SDatabaseInformationCategory> categories = databaseInformation.getCategories();
+				for (SDatabaseInformationCategory category : categories) {
+					out.println("<tr><td colspan=\"2\" class=\"tabletitle\">" + category.getTitle() + "</td></tr>");
+					for (SDatabaseInformationItem item : category.getItems()) {
+						out.println("<tr><td class=\"firstcolumn\">" + item.getKey() + "</td><td>" + item.getValue() + "</td></tr>");
 					}
 				}
 			%>
@@ -196,7 +198,7 @@ E-mail <a href="mailto:<%= checkVersion.getOnlineVersion().getSupportEmail() %>"
 	for (SUserSession userSession : userSessions) {
 %>
 	<tr>
-		<td><a href="user.jsp?uoid=<%=userSession.getUoid()%>"><%=userSession.getUsername() %></a></td>
+		<td><a href="user.jsp?uoid=<%=userSession.getUserId()%>"><%=userSession.getUsername() %></a></td>
 		<td><%=userSession.getName() %></td>
 		<td><%=JspHelper.getNiceUserTypeName(userSession.getType()) %></td>
 		<td><%=JspHelper.getNiceAccessMethodName(userSession.getAccessMethod()) %></td>
@@ -223,7 +225,7 @@ E-mail <a href="mailto:<%= checkVersion.getOnlineVersion().getSupportEmail() %>"
 		long millis = System.currentTimeMillis() - longAction.getStart().getTime();		
 %>
 	<tr>
-		<td><a href="user.jsp?uoid=<%=longAction.getUserOid()%>"><%=longAction.getUsername() %></a></td>
+		<td><a href="user.jsp?uoid=<%=longAction.getUserId()%>"><%=longAction.getUsername() %></a></td>
 		<td><%=longAction.getName() %></td>
 		<td><%=longAction.getIdentification() %></td>
 		<td><%=dateFormat.format(longAction.getStart()) %></td>

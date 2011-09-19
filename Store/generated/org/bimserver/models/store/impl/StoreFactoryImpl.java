@@ -8,6 +8,7 @@ package org.bimserver.models.store.impl;
 
 import javax.activation.DataHandler;
 
+import org.bimserver.models.store.*;
 import org.bimserver.models.store.ActionState;
 import org.bimserver.models.store.CheckinResult;
 import org.bimserver.models.store.CheckinState;
@@ -136,6 +137,8 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			case StorePackage.REFERENCE_DATA_VALUE: return (EObject)createReferenceDataValue();
 			case StorePackage.LIST_DATA_VALUE: return (EObject)createListDataValue();
 			case StorePackage.SIMPLE_DATA_VALUE: return (EObject)createSimpleDataValue();
+			case StorePackage.DATABASE_INFORMATION_ITEM: return (EObject)createDatabaseInformationItem();
+			case StorePackage.DATABASE_INFORMATION_CATEGORY: return (EObject)createDatabaseInformationCategory();
 			case StorePackage.DATABASE_INFORMATION: return (EObject)createDatabaseInformation();
 			case StorePackage.SERIALIZER_PLUGIN_DESCRIPTOR: return (EObject)createSerializerPluginDescriptor();
 			case StorePackage.REVISION_SUMMARY_TYPE: return (EObject)createRevisionSummaryType();
@@ -476,6 +479,26 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	public SimpleDataValue createSimpleDataValue() {
 		SimpleDataValueImpl simpleDataValue = new SimpleDataValueImpl();
 		return simpleDataValue;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DatabaseInformationItem createDatabaseInformationItem() {
+		DatabaseInformationItemImpl databaseInformationItem = new DatabaseInformationItemImpl();
+		return databaseInformationItem;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DatabaseInformationCategory createDatabaseInformationCategory() {
+		DatabaseInformationCategoryImpl databaseInformationCategory = new DatabaseInformationCategoryImpl();
+		return databaseInformationCategory;
 	}
 
 	/**

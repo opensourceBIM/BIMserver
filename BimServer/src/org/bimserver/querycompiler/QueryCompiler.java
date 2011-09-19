@@ -69,8 +69,8 @@ public class QueryCompiler {
 		List<String> options = new ArrayList<String>();
 		options.add("-cp");
 		options.add(libPath);
-		options.add("-target");
-		options.add("6");
+//		options.add("-target");
+//		options.add("7");
 
 		DiagnosticCollector<JavaFileObject> diagnosticsCollector = new DiagnosticCollector<JavaFileObject>();
 		boolean success = true;

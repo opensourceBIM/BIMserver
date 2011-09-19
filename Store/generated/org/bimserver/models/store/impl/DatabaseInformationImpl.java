@@ -10,7 +10,9 @@ import java.util.Date;
 
 import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.models.store.DatabaseInformation;
+import org.bimserver.models.store.DatabaseInformationCategory;
 import org.bimserver.models.store.StorePackage;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -29,7 +31,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.DatabaseInformationImpl#getCreated <em>Created</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.DatabaseInformationImpl#getLocation <em>Location</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.DatabaseInformationImpl#getSchemaVersion <em>Schema Version</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.DatabaseInformationImpl#getGenericLines <em>Generic Lines</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.DatabaseInformationImpl#getCategories <em>Categories</em>}</li>
  * </ul>
  * </p>
  *
@@ -232,17 +234,9 @@ public class DatabaseInformationImpl extends IdEObjectImpl implements DatabaseIn
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getGenericLines() {
-		return (String)eGet(StorePackage.Literals.DATABASE_INFORMATION__GENERIC_LINES, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setGenericLines(String newGenericLines) {
-		eSet(StorePackage.Literals.DATABASE_INFORMATION__GENERIC_LINES, newGenericLines);
+	@SuppressWarnings("unchecked")
+	public EList<DatabaseInformationCategory> getCategories() {
+		return (EList<DatabaseInformationCategory>)eGet(StorePackage.Literals.DATABASE_INFORMATION__CATEGORIES, true);
 	}
 
 } //DatabaseInformationImpl

@@ -49,6 +49,8 @@ import org.bimserver.models.ifc2x3.WrappedValue;
 import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.DatabaseInformation;
+import org.bimserver.models.store.DatabaseInformationCategory;
+import org.bimserver.models.store.DatabaseInformationItem;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StorePackage;
@@ -718,14 +720,18 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 		databaseInformation.setSchemaVersion(database.getRegistry().readInt(Database.SCHEMA_VERSION, this));
 		String stats = database.getColumnDatabase().getStats();
 		Scanner scanner = new Scanner(stats);
-		String title = "";
+		DatabaseInformationCategory category = StoreFactory.eINSTANCE.createDatabaseInformationCategory();
 		while (scanner.hasNextLine()) {
 			String line = scanner.nextLine();
 			if (line.contains("=")) {
-				// TODO
-//				databaseInformation.addGenericLine(title, line.substring(0, line.indexOf("=")), line.substring(line.indexOf("=") + 1));
+				DatabaseInformationItem item = StoreFactory.eINSTANCE.createDatabaseInformationItem();
+				category.getItems().add(item);
+				item.setKey(line.substring(0, line.indexOf("=")));
+				item.setValue(line.substring(line.indexOf("=") + 1));
 			} else {
-				title = line;
+				category = StoreFactory.eINSTANCE.createDatabaseInformationCategory();
+				category.setTitle(line);
+				databaseInformation.getCategories().add(category);
 			}
 		}
 		databaseInformation.setLocation(database.getColumnDatabase().getLocation());

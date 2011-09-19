@@ -9,6 +9,7 @@ import org.bimserver.database.BimDeadlockException;
 import org.bimserver.database.Database;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.interfaces.objects.SMigration;
+import org.bimserver.models.store.StoreFactory;
 
 public class Migrator {
 	private final Database database;
@@ -108,18 +109,18 @@ public class Migrator {
 		return schema;
 	}
 
-	public Set<SMigration> getMigrations() {
-		Set<SMigration> migrations = new LinkedHashSet<SMigration>();
+	public Set<org.bimserver.models.store.Migration> getMigrations() {
+		Set<org.bimserver.models.store.Migration> migrations = new LinkedHashSet<org.bimserver.models.store.Migration>();
 		int applicationSchemaVersion = database.getApplicationSchemaVersion();
 		int databaseSchemaVersion = database.getDatabaseSchemaVersion();
 		for (int i = applicationSchemaVersion; i >= 0; i--) {
 			Migration migration = getMigration(i);
 			if (migration != null) {
-				SMigration sMigration = new SMigration();
-				sMigration.setNumber(i);
-				sMigration.setExecuted(i <= databaseSchemaVersion);
-				sMigration.setDescription(migration.getDescription());
-				migrations.add(sMigration);
+				org.bimserver.models.store.Migration migrationObject = StoreFactory.eINSTANCE.createMigration();
+				migrationObject.setNumber(i);
+				migrationObject.setExecuted(i <= databaseSchemaVersion);
+				migrationObject.setDescription(migration.getDescription());
+				migrations.add(migrationObject);
 			}
 		}
 		return migrations;

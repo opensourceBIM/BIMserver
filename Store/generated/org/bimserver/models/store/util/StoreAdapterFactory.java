@@ -6,6 +6,7 @@
  */
 package org.bimserver.models.store.util;
 
+import org.bimserver.models.store.*;
 import org.bimserver.models.store.CheckinResult;
 import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.CheckoutResult;
@@ -212,6 +213,14 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseSimpleDataValue(SimpleDataValue object) {
 				return createSimpleDataValueAdapter();
+			}
+			@Override
+			public Adapter caseDatabaseInformationItem(DatabaseInformationItem object) {
+				return createDatabaseInformationItemAdapter();
+			}
+			@Override
+			public Adapter caseDatabaseInformationCategory(DatabaseInformationCategory object) {
+				return createDatabaseInformationCategoryAdapter();
 			}
 			@Override
 			public Adapter caseDatabaseInformation(DatabaseInformation object) {
@@ -654,6 +663,34 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createSimpleDataValueAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.DatabaseInformationItem <em>Database Information Item</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.DatabaseInformationItem
+	 * @generated
+	 */
+	public Adapter createDatabaseInformationItemAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.DatabaseInformationCategory <em>Database Information Category</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.DatabaseInformationCategory
+	 * @generated
+	 */
+	public Adapter createDatabaseInformationCategoryAdapter() {
 		return null;
 	}
 

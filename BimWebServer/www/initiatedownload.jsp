@@ -1,7 +1,7 @@
+<%@page import="org.bimserver.interfaces.objects.SLongActionState"%>
 <%@page import="java.util.Set"%>
 <%@page import="java.util.HashSet"%>
 <%@page import="org.slf4j.LoggerFactory"%>
-<%@page import="org.bimserver.interfaces.objects.LongActionState"%>
 <jsp:useBean id="loginManager" scope="session" class="org.bimserver.web.LoginManager" />
 <%
 	try {
@@ -48,7 +48,7 @@
 				longActionId = loginManager.getService().download(roid, serializerName, false);
 			}
 		}
-		LongActionState las = loginManager.getService().getDownloadState(longActionId);
+		SLongActionState las = loginManager.getService().getDownloadState(longActionId);
 %>
 
 <div id="progressBar<%=longActionId%>">

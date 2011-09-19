@@ -37,12 +37,16 @@ public class GetRevisionSummaryDatabaseAction extends BimDatabaseAction<Revision
 		RevisionSummary revisionSummary = StoreFactory.eINSTANCE.createRevisionSummary();
 		revisionSummaryContainerEntities = StoreFactory.eINSTANCE.createRevisionSummaryContainer();
 		revisionSummaryContainerEntities.setName("IFC Entities");
+		revisionSummary.getList().add(revisionSummaryContainerEntities);
 		revisionSummaryContainerRelations = StoreFactory.eINSTANCE.createRevisionSummaryContainer();
 		revisionSummaryContainerRelations.setName("IFC Relations");
+		revisionSummary.getList().add(revisionSummaryContainerRelations);
 		revisionSummaryContainerPrimitives = StoreFactory.eINSTANCE.createRevisionSummaryContainer();
 		revisionSummaryContainerPrimitives.setName("IFC Primitives");
+		revisionSummary.getList().add(revisionSummaryContainerPrimitives);
 		revisionSummaryContainerOther = StoreFactory.eINSTANCE.createRevisionSummaryContainer();
 		revisionSummaryContainerOther.setName("Rest");
+		revisionSummary.getList().add(revisionSummaryContainerOther);
 		Revision revision = getVirtualRevision(roid);
 		for (ConcreteRevision subRevision : revision.getConcreteRevisions()) {
 			for (EClass eClass : getDatabaseSession().getClasses()) {
