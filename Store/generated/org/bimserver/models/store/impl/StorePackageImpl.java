@@ -6,6 +6,7 @@
  */
 package org.bimserver.models.store.impl;
 
+import javax.activation.DataHandler;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.impl.Ifc2x3PackageImpl;
 import org.bimserver.models.log.LogPackage;
@@ -65,6 +66,7 @@ import org.bimserver.models.store.UserSession;
 import org.bimserver.models.store.UserType;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -419,6 +421,13 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * @generated
 	 */
 	private EEnum actionStateEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EDataType dataHandlerEDataType = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -2676,6 +2685,15 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EDataType getDataHandler() {
+		return dataHandlerEDataType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public StoreFactory getStoreFactory() {
 		return (StoreFactory)getEFactoryInstance();
 	}
@@ -2983,6 +3001,9 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 		compareIdentifierEEnum = createEEnum(COMPARE_IDENTIFIER);
 		compareTypeEEnum = createEEnum(COMPARE_TYPE);
 		actionStateEEnum = createEEnum(ACTION_STATE);
+
+		// Create data types
+		dataHandlerEDataType = createEDataType(DATA_HANDLER);
 	}
 
 	/**
@@ -3197,7 +3218,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 		initEClass(downloadResultEClass, DownloadResult.class, "DownloadResult", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getDownloadResult_ProjectName(), ecorePackage.getEString(), "projectName", null, 0, 1, DownloadResult.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getDownloadResult_RevisionNr(), ecorePackage.getEInt(), "revisionNr", null, 0, 1, DownloadResult.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getDownloadResult_File(), ecorePackage.getEByteArray(), "file", null, 0, 1, DownloadResult.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDownloadResult_File(), this.getDataHandler(), "file", null, 0, 1, DownloadResult.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(checkoutResultEClass, CheckoutResult.class, "CheckoutResult", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -3346,8 +3367,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 		addEEnumLiteral(mergeIdentifierEEnum, MergeIdentifier.GUID);
 
 		initEEnum(compareIdentifierEEnum, CompareIdentifier.class, "CompareIdentifier");
-		addEEnumLiteral(compareIdentifierEEnum, CompareIdentifier.NAME);
-		addEEnumLiteral(compareIdentifierEEnum, CompareIdentifier.GUID);
+		addEEnumLiteral(compareIdentifierEEnum, CompareIdentifier.NAME_ID);
+		addEEnumLiteral(compareIdentifierEEnum, CompareIdentifier.GUID_ID);
 
 		initEEnum(compareTypeEEnum, CompareType.class, "CompareType");
 		addEEnumLiteral(compareTypeEEnum, CompareType.ALL);
@@ -3359,6 +3380,9 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 		addEEnumLiteral(actionStateEEnum, ActionState.UNKNOWN);
 		addEEnumLiteral(actionStateEEnum, ActionState.STARTED);
 		addEEnumLiteral(actionStateEEnum, ActionState.FINISHED);
+
+		// Initialize data types
+		initEDataType(dataHandlerEDataType, DataHandler.class, "DataHandler", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);
@@ -3403,6 +3427,11 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 		   });		
 		addAnnotation
 		  (getCompareContainer_Items(), 
+		   source, 
+		   new String[] {
+		   });		
+		addAnnotation
+		  (getCompareResult_Items(), 
 		   source, 
 		   new String[] {
 		   });

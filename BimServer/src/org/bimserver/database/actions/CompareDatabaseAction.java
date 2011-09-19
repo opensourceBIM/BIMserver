@@ -5,10 +5,9 @@ import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
 import org.bimserver.ifc.compare.Compare;
-import org.bimserver.ifc.compare.CompareResult;
-import org.bimserver.interfaces.objects.SCompareIdentifier;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.CompareIdentifier;
+import org.bimserver.models.store.CompareResult;
 import org.bimserver.models.store.CompareType;
 import org.bimserver.plugins.GuidanceProviderException;
 import org.bimserver.plugins.guidanceproviders.GuidanceProvider;
@@ -47,9 +46,9 @@ public class CompareDatabaseAction extends BimDatabaseAction<CompareResult> {
 		if (compareResults == null) {
 			IfcModelInterface model1 = new DownloadDatabaseAction(bimServer, getDatabaseSession(), getAccessMethod(), roid1, actingUoid).execute();
 			IfcModelInterface model2 = new DownloadDatabaseAction(bimServer, getDatabaseSession(), getAccessMethod(), roid2, actingUoid).execute();
-			if (sCompareIdentifier == SCompareIdentifier.GUID_ID) {
+			if (sCompareIdentifier == CompareIdentifier.GUID_ID) {
 				compareResults = compare.compareOnGuids(model1, model2, sCompareType);
-			} else if (sCompareIdentifier == SCompareIdentifier.NAME_ID) {
+			} else if (sCompareIdentifier == CompareIdentifier.NAME_ID) {
 				compareResults = compare.compareOnNames(model1, model2, sCompareType);
 			}
 			bimServer.getCompareCache().storeResults(roid1, roid2, sCompareType, sCompareIdentifier, compareResults);

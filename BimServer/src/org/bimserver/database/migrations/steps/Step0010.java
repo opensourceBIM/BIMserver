@@ -1,10 +1,13 @@
 package org.bimserver.database.migrations.steps;
 
+import javax.activation.DataHandler;
+
 import org.bimserver.database.migrations.Migration;
 import org.bimserver.database.migrations.Schema;
 import org.bimserver.database.migrations.Schema.Multiplicity;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -18,10 +21,14 @@ public class Step0010 extends Migration {
 		schema.createEAttribute(checkinResultClass, "rid", EcorePackage.eINSTANCE.getEInt(), Multiplicity.SINGLE);
 		schema.createEReference(checkinResultClass, "project", schema.getEClass("store", "Project"), Multiplicity.SINGLE);
 		
+		EDataType dataHandler = schema.createEDataType(schema.getEPackage("store"), EcoreFactory.eINSTANCE.createEDataType());
+		dataHandler.setName("DataHandler");
+		dataHandler.setInstanceClass(DataHandler.class);
+		
 		EClass downloadResultClass = schema.createEClass(schema.getEPackage("store"), "DownloadResult");
 		schema.createEAttribute(downloadResultClass, "projectName", ecorePackage.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(downloadResultClass, "revisionNr", ecorePackage.getEInt(), Multiplicity.SINGLE);
-		schema.createEAttribute(downloadResultClass, "file", ecorePackage.getEByteArray(), Multiplicity.SINGLE);
+		schema.createEAttribute(downloadResultClass, "file", dataHandler, Multiplicity.SINGLE);
 
 		schema.createEClass(schema.getEPackage("store"), "CheckoutResult", downloadResultClass);
 		
@@ -104,8 +111,10 @@ public class Step0010 extends Migration {
 		schema.createEAttribute(guidanceProviderPluginDescriptor, "className", ecorePackage.getEString(), Multiplicity.SINGLE);
 		
 		EEnum compareIdentifier = schema.createEEnum(schema.getEPackage("store"), "CompareIdentifier");
-		schema.createEEnumLiteral(compareIdentifier, "NAME");
-		schema.createEEnumLiteral(compareIdentifier, "GUID");
+		
+		// Those are post-fixed with "_ID" because a name conflict occurs with another enum in protocol buffers
+		schema.createEEnumLiteral(compareIdentifier, "NAME_ID");
+		schema.createEEnumLiteral(compareIdentifier, "GUID_ID");
 		
 		EEnum compareTypeEnum = schema.createEEnum(schema.getEPackage("store"), "CompareType");
 		schema.createEEnumLiteral(compareTypeEnum, "ALL");
@@ -130,7 +139,7 @@ public class Step0010 extends Migration {
 		schema.createEReference(compareContainerClass, "items", compareItemClass, Multiplicity.MANY).getEAnnotations().add(createEmbedsReference());
 
 		EClass compareResultClass = schema.createEClass(schema.getEPackage("store"), "CompareResult");		
-		schema.createEReference(compareResultClass, "items", compareContainerClass, Multiplicity.MANY);
+		schema.createEReference(compareResultClass, "items", compareContainerClass, Multiplicity.MANY).getEAnnotations().add(createEmbedsReference());
 		
 		EEnum actionStateEnum = schema.createEEnum(schema.getEPackage("store"), "ActionState");
 		schema.createEEnumLiteral(actionStateEnum, "UNKNOWN");

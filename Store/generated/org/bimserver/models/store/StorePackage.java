@@ -8,6 +8,7 @@ package org.bimserver.models.store;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -2848,6 +2849,17 @@ public interface StorePackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '<em>Data Handler</em>' data type.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see javax.activation.DataHandler
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getDataHandler()
+	 * @generated
+	 */
+	int DATA_HANDLER = 49;
+
+
+	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.Project <em>Project</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5461,6 +5473,17 @@ public interface StorePackage extends EPackage {
 	EEnum getActionState();
 
 	/**
+	 * Returns the meta object for data type '{@link javax.activation.DataHandler <em>Data Handler</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for data type '<em>Data Handler</em>'.
+	 * @see javax.activation.DataHandler
+	 * @model instanceClass="javax.activation.DataHandler"
+	 * @generated
+	 */
+	EDataType getDataHandler();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7515,6 +7538,16 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EEnum ACTION_STATE = eINSTANCE.getActionState();
+
+		/**
+		 * The meta object literal for the '<em>Data Handler</em>' data type.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see javax.activation.DataHandler
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getDataHandler()
+		 * @generated
+		 */
+		EDataType DATA_HANDLER = eINSTANCE.getDataHandler();
 
 	}
 

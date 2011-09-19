@@ -6,6 +6,7 @@
  */
 package org.bimserver.models.store.impl;
 
+import javax.activation.DataHandler;
 import org.bimserver.models.store.*;
 import org.bimserver.models.store.CheckinState;
 import org.bimserver.models.store.Checkout;
@@ -151,6 +152,8 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 				return createCompareTypeFromString(eDataType, initialValue);
 			case StorePackage.ACTION_STATE:
 				return createActionStateFromString(eDataType, initialValue);
+			case StorePackage.DATA_HANDLER:
+				return createDataHandlerFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -180,6 +183,8 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 				return convertCompareTypeToString(eDataType, instanceValue);
 			case StorePackage.ACTION_STATE:
 				return convertActionStateToString(eDataType, instanceValue);
+			case StorePackage.DATA_HANDLER:
+				return convertDataHandlerToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -753,6 +758,24 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	 */
 	public String convertActionStateToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DataHandler createDataHandlerFromString(EDataType eDataType, String initialValue) {
+		return (DataHandler)super.createFromString(eDataType, initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertDataHandlerToString(EDataType eDataType, Object instanceValue) {
+		return super.convertToString(eDataType, instanceValue);
 	}
 
 	/**

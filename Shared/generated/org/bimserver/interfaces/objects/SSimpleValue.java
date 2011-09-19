@@ -1,8 +1,7 @@
 package org.bimserver.interfaces.objects;
 
-import java.util.*;
 import javax.xml.bind.annotation.XmlRootElement;
-import org.bimserver.shared.*;
+
 import org.bimserver.shared.meta.SBase;
 import org.bimserver.shared.meta.SClass;
 import org.bimserver.shared.meta.SField;

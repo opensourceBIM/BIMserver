@@ -3,9 +3,10 @@ package org.bimserver.longaction;
 import org.bimserver.BimServer;
 import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.actions.CheckoutDatabaseAction;
-import org.bimserver.interfaces.objects.LongActionState;
-import org.bimserver.interfaces.objects.LongActionState.ActionState;
 import org.bimserver.models.log.AccessMethod;
+import org.bimserver.models.store.ActionState;
+import org.bimserver.models.store.LongActionState;
+import org.bimserver.models.store.StoreFactory;
 
 public class LongCheckoutAction extends LongDownloadOrCheckoutAction {
 
@@ -31,7 +32,7 @@ public class LongCheckoutAction extends LongDownloadOrCheckoutAction {
 
 	@Override
 	public synchronized LongActionState getState() {
-		LongActionState ds = new LongActionState();
+		LongActionState ds = StoreFactory.eINSTANCE.createLongActionState();
 		ds.setProgress(action.getProgress());
 		if (state == ActionState.FINISHED) {
 			ds.setProgress(100);

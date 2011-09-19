@@ -13,7 +13,7 @@ public class GenerateUtils {
 			sb.append("get");
 		}
 		sb.append(firstLetterUpperCase(eStructuralFeature.getName()));
-		if (eStructuralFeature instanceof EReference && !eStructuralFeature.isMany()) {
+		if (eStructuralFeature instanceof EReference && !eStructuralFeature.isMany() && eStructuralFeature.getEAnnotation("embedsreference") == null) {
 			sb.append("Id");
 		}
 		return sb.toString();
@@ -22,7 +22,7 @@ public class GenerateUtils {
 	public static String makeSetter(EStructuralFeature eStructuralFeature) {
 		StringBuilder sb = new StringBuilder();
 		sb.append("set" + firstLetterUpperCase(eStructuralFeature.getName()));
-		if (eStructuralFeature instanceof EReference && !eStructuralFeature.isMany()) {
+		if (eStructuralFeature instanceof EReference && !eStructuralFeature.isMany() && eStructuralFeature.getEAnnotation("embedsreference") == null) {
 			sb.append("Id");
 		}
 		return sb.toString();

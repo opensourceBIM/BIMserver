@@ -4118,9 +4118,9 @@ public class SConverter {
 		}
 		SCompareResult result = new SCompareResult();
 		result.setOid(input.getOid());
-		List<Long> listitems = new ArrayList<Long>();
+		List<SCompareContainer> listitems = new ArrayList<SCompareContainer>();
 		for (CompareContainer v : input.getItems()) {
-			listitems.add(v.getOid());
+			listitems.add(convertToSObject(v));
 		}
 		result.setItems(listitems);
 		return result;
@@ -4133,8 +4133,8 @@ public class SConverter {
 		CompareResult result = StoreFactory.eINSTANCE.createCompareResult();
 		result.setOid(input.getOid());
 		List<CompareContainer> listitems = result.getItems();
-		for (long oid : input.getItems()) {
-			listitems.add((CompareContainer)session.get(StorePackage.eINSTANCE.getCompareContainer(), oid, false));
+		for (SCompareContainer v : input.getItems()) {
+			listitems.add(convertFromSObject(v, session));
 		}
 		return result;
 	}

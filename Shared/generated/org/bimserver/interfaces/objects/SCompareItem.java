@@ -1,9 +1,10 @@
 package org.bimserver.interfaces.objects;
 
-import java.util.*;
-import javax.xml.bind.annotation.*;
-import org.bimserver.shared.meta.*;
-import javax.activation.DataHandler;
+import javax.xml.bind.annotation.XmlRootElement;
+
+import org.bimserver.shared.meta.SBase;
+import org.bimserver.shared.meta.SClass;
+import org.bimserver.shared.meta.SField;
 
 @XmlRootElement
 public class SCompareItem implements SBase
@@ -28,11 +29,11 @@ public class SCompareItem implements SBase
 		return sClass;
 	}
 	private SDataObject dataObject;
-	public SDataObject getDataObjectId() {
+	public SDataObject getDataObject() {
 		return dataObject;
 	}
 
-	public void setDataObjectId(SDataObject dataObject) {
+	public void setDataObject(SDataObject dataObject) {
 		this.dataObject = dataObject;
 	}
 	

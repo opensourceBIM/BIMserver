@@ -1,9 +1,13 @@
 package org.bimserver.interfaces.objects;
 
-import java.util.*;
-import javax.xml.bind.annotation.*;
-import org.bimserver.shared.meta.*;
-import javax.activation.DataHandler;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.xml.bind.annotation.XmlRootElement;
+
+import org.bimserver.shared.meta.SBase;
+import org.bimserver.shared.meta.SClass;
+import org.bimserver.shared.meta.SField;
 
 @XmlRootElement
 public class SCompareResult implements SBase
@@ -13,7 +17,7 @@ public class SCompareResult implements SBase
 	
 	static {
 		sClass.addField(new SField("oid", long.class));
-		sClass.addField(new SField("items", Long.class, true));
+		sClass.addField(new SField("items", SCompareContainer.class, true));
 	}
 	
 	public long getOid() {
@@ -27,12 +31,12 @@ public class SCompareResult implements SBase
 	public SClass getSClass() {
 		return sClass;
 	}
-	private List<Long> items = new ArrayList<Long>();
-	public List<Long> getItems() {
+	private List<SCompareContainer> items = new ArrayList<SCompareContainer>();
+	public List<SCompareContainer> getItems() {
 		return items;
 	}
 
-	public void setItems(List<Long> items) {
+	public void setItems(List<SCompareContainer> items) {
 		this.items = items;
 	}
 	@Override

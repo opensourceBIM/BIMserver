@@ -1,9 +1,10 @@
 package org.bimserver.interfaces.objects;
 
-import java.util.*;
-import javax.xml.bind.annotation.*;
-import org.bimserver.shared.meta.*;
-import javax.activation.DataHandler;
+import javax.xml.bind.annotation.XmlRootElement;
+
+import org.bimserver.shared.meta.SBase;
+import org.bimserver.shared.meta.SClass;
+import org.bimserver.shared.meta.SField;
 
 @XmlRootElement
 public class SCheckoutResult extends SDownloadResult implements SBase
@@ -15,7 +16,7 @@ public class SCheckoutResult extends SDownloadResult implements SBase
 		sClass.addField(new SField("oid", long.class));
 		sClass.addField(new SField("projectName", java.lang.String.class));
 		sClass.addField(new SField("revisionNr", int.class));
-		sClass.addField(new SField("file", byte[].class));
+		sClass.addField(new SField("file", javax.activation.DataHandler.class));
 	}
 	
 	public long getOid() {

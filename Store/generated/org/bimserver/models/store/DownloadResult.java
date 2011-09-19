@@ -6,6 +6,7 @@
  */
 package org.bimserver.models.store;
 
+import javax.activation.DataHandler;
 import org.bimserver.emf.IdEObject;
 
 
@@ -91,12 +92,12 @@ public interface DownloadResult extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>File</em>' attribute.
-	 * @see #setFile(byte[])
+	 * @see #setFile(DataHandler)
 	 * @see org.bimserver.models.store.StorePackage#getDownloadResult_File()
-	 * @model
+	 * @model dataType="org.bimserver.models.store.DataHandler"
 	 * @generated
 	 */
-	byte[] getFile();
+	DataHandler getFile();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.store.DownloadResult#getFile <em>File</em>}' attribute.
@@ -106,5 +107,5 @@ public interface DownloadResult extends IdEObject {
 	 * @see #getFile()
 	 * @generated
 	 */
-	void setFile(byte[] value);
+	void setFile(DataHandler value);
 } // DownloadResult

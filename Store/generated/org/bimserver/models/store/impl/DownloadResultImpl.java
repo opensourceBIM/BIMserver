@@ -6,6 +6,7 @@
  */
 package org.bimserver.models.store.impl;
 
+import javax.activation.DataHandler;
 import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.models.store.DownloadResult;
 import org.bimserver.models.store.StorePackage;
@@ -98,8 +99,8 @@ public class DownloadResultImpl extends IdEObjectImpl implements DownloadResult 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public byte[] getFile() {
-		return (byte[])eGet(StorePackage.Literals.DOWNLOAD_RESULT__FILE, true);
+	public DataHandler getFile() {
+		return (DataHandler)eGet(StorePackage.Literals.DOWNLOAD_RESULT__FILE, true);
 	}
 
 	/**
@@ -107,7 +108,7 @@ public class DownloadResultImpl extends IdEObjectImpl implements DownloadResult 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setFile(byte[] newFile) {
+	public void setFile(DataHandler newFile) {
 		eSet(StorePackage.Literals.DOWNLOAD_RESULT__FILE, newFile);
 	}
 

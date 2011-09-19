@@ -30,7 +30,6 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 import javax.activation.DataHandler;
@@ -134,14 +133,7 @@ import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.literals.IntegerLiteral;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelSet;
-import org.bimserver.ifc.compare.CompareResult;
-import org.bimserver.ifc.compare.CompareResult.Item;
-import org.bimserver.ifc.compare.CompareResult.ObjectAdded;
-import org.bimserver.ifc.compare.CompareResult.ObjectDeleted;
-import org.bimserver.ifc.compare.CompareResult.ObjectModified;
 import org.bimserver.interfaces.SConverter;
-import org.bimserver.interfaces.objects.DatabaseInformation;
-import org.bimserver.interfaces.objects.LongActionState;
 import org.bimserver.interfaces.objects.SAccessMethod;
 import org.bimserver.interfaces.objects.SCheckinResult;
 import org.bimserver.interfaces.objects.SCheckout;
@@ -164,9 +156,6 @@ import org.bimserver.interfaces.objects.SLogAction;
 import org.bimserver.interfaces.objects.SLongAction;
 import org.bimserver.interfaces.objects.SMergeIdentifier;
 import org.bimserver.interfaces.objects.SMigration;
-import org.bimserver.interfaces.objects.SObjectAdded;
-import org.bimserver.interfaces.objects.SObjectModified;
-import org.bimserver.interfaces.objects.SObjectRemoved;
 import org.bimserver.interfaces.objects.SPluginDescriptor;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevision;
@@ -182,18 +171,20 @@ import org.bimserver.longaction.LongCheckinAction;
 import org.bimserver.longaction.LongCheckoutAction;
 import org.bimserver.longaction.LongDownloadAction;
 import org.bimserver.longaction.LongDownloadOrCheckoutAction;
-import org.bimserver.models.ifc2x3.IfcRoot;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.LogAction;
 import org.bimserver.models.log.LogFactory;
 import org.bimserver.models.log.NewRevisionAdded;
 import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.ClashDetectionSettings;
+import org.bimserver.models.store.CompareResult;
 import org.bimserver.models.store.ConcreteRevision;
+import org.bimserver.models.store.DatabaseInformation;
 import org.bimserver.models.store.Deserializer;
 import org.bimserver.models.store.EidClash;
 import org.bimserver.models.store.GeoTag;
 import org.bimserver.models.store.GuidClash;
+import org.bimserver.models.store.LongActionState;
 import org.bimserver.models.store.MergeIdentifier;
 import org.bimserver.models.store.ObjectState;
 import org.bimserver.models.store.Project;
@@ -218,8 +209,6 @@ import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.utils.Hashers;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -946,66 +935,13 @@ public class Service implements ServiceInterface {
 		}
 	}
 
-	private static String getName(EObject eObject) {
-		if (eObject instanceof IfcRoot) {
-			IfcRoot ifcRoot = (IfcRoot) eObject;
-			if (ifcRoot.getName() != null) {
-				return ifcRoot.getName();
-			}
-		}
-		return null;
-	}
-
-	private static String getGuid(EObject eObject) {
-		if (eObject instanceof IfcRoot) {
-			IfcRoot ifcRoot = (IfcRoot) eObject;
-			if (ifcRoot.getGlobalId() != null) {
-				return ifcRoot.getGlobalId().getWrappedValue();
-			}
-		}
-		return null;
-	}
-
-	public static SCompareResult convertCompareResults(CompareResult compareResult, Class<SCompareResult> class1, BimDatabaseSession session) {
-		SCompareResult sCompareResult = new SCompareResult();
-		Map<EClass, List<Item>> items = compareResult.getItems();
-		for (EClass key : items.keySet()) {
-			List<Item> list = items.get(key);
-			for (Item item : list) {
-				SDataObject dataObject = new SDataObject();
-				dataObject.setType(item.geteObject().eClass().getName());
-				dataObject.setOid(item.geteObject().getOid());
-				dataObject.setGuid(getGuid(item.geteObject()));
-				dataObject.setName(getName(item.geteObject()));
-				if (item instanceof ObjectAdded) {
-					SObjectAdded added = new SObjectAdded();
-					added.setDataObject(dataObject);
-					sCompareResult.add(added);
-				} else if (item instanceof ObjectDeleted) {
-					SObjectRemoved removed = new SObjectRemoved();
-					removed.setDataObjectId(dataObject);
-					sCompareResult.add(removed);
-				} else if (item instanceof ObjectModified) {
-					ObjectModified objectModified = (ObjectModified) item;
-					SObjectModified modified = new SObjectModified();
-					modified.setDataObjectId(dataObject);
-					modified.setFieldName(objectModified.getFeature().getName());
-					modified.setOldValue(objectModified.getOldValue() == null ? "null" : objectModified.getOldValue().toString());
-					modified.setNewValue(objectModified.getNewValue() == null ? "null" : objectModified.getNewValue().toString());
-					sCompareResult.getItems().add(modified);
-				}
-			}
-		}
-		return sCompareResult;
-	}
-
 	@Override
 	public SCompareResult compare(Long roid1, Long roid2, SCompareType sCompareType, SCompareIdentifier sCompareIdentifier) throws UserException, ServerException {
 		requireAuthenticationAndRunningServer();
 		BimDatabaseSession session = bimServer.getDatabase().createSession(true);
 		try {
-			BimDatabaseAction<CompareResult> action = new CompareDatabaseAction(bimServer, session, accessMethod, currentUoid, roid1, roid2, sCompareType, sCompareIdentifier);
-			return convertCompareResults(session.executeAndCommitAction(action, DEADLOCK_RETRIES), SCompareResult.class, session);
+			BimDatabaseAction<CompareResult> action = new CompareDatabaseAction(bimServer, session, accessMethod, currentUoid, roid1, roid2, converter.convertFromSObject(sCompareType), converter.convertFromSObject(sCompareIdentifier));
+			return converter.convertToSObject(session.executeAndCommitAction(action, DEADLOCK_RETRIES));
 		} catch (Exception e) {
 			handleException(e);
 			return null;

@@ -24,7 +24,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
@@ -37,14 +36,15 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.IOUtils;
 import org.bimserver.interfaces.objects.SClashDetectionSettings;
+import org.bimserver.interfaces.objects.SCompareContainer;
+import org.bimserver.interfaces.objects.SCompareIdentifier;
+import org.bimserver.interfaces.objects.SCompareItem;
 import org.bimserver.interfaces.objects.SCompareResult;
+import org.bimserver.interfaces.objects.SCompareType;
 import org.bimserver.interfaces.objects.SDownloadResult;
 import org.bimserver.interfaces.objects.SEidClash;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SSerializer;
-import org.bimserver.interfaces.objects.SCompareResult.SCompareIdentifier;
-import org.bimserver.interfaces.objects.SCompareResult.SCompareType;
-import org.bimserver.interfaces.objects.SCompareResult.SItem;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.web.JspHelper;
@@ -102,12 +102,11 @@ public class DownloadServlet extends HttpServlet {
 				Long roid1 = Long.parseLong(request.getParameter("roid1"));
 				Long roid2 = Long.parseLong(request.getParameter("roid2"));
 				SCompareResult compare = loginManager.getService().compare(roid1, roid2, sCompareType, sCompareIdentifier);
-				Map<String, List<SItem>> items = compare.getItems();
 				Set<Long> oids = new HashSet<Long>();
-				for (String className : items.keySet()) {
-					List<SItem> list = items.get(className);
-					for (SItem item : list) {
-						oids.add(item.dataObject.getOid());
+				for (SCompareContainer compareContainer : compare.getItems()) {
+					List<SCompareItem> items = compareContainer.getItems();
+					for (SCompareItem item : items) {
+						oids.add(item.getDataObject().getOid());
 					}
 				}
 				downloadId = loginManager.getService().downloadByOids(Sets.newHashSet(roid1, roid2), oids, serializerName, true);
