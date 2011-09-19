@@ -15,6 +15,10 @@ public class SField {
 		this.many = many;
 	}
 
+	public boolean isMany() {
+		return many;
+	}
+	
 	public Class<?> getType() {
 		return type;
 	}

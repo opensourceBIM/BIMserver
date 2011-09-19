@@ -48,8 +48,8 @@ public class ProtocolBuffersConverter {
 			for (FieldDescriptor fieldDescriptor : descriptor.getFields()) {
 				Object val = message.getField(fieldDescriptor);
 				if (fieldDescriptor.isRepeated()) {
-					Method setMethod = getMethod(newInstance.getClass(), "set" + StringUtils.firstUpperCase(fieldDescriptor.getName()), new Class[]{List.class});
-					System.out.println(val);
+//					Method setMethod = getMethod(newInstance.getClass(), "set" + StringUtils.firstUpperCase(fieldDescriptor.getName()), new Class[]{List.class});
+//					System.out.println(val);
 				} else {
 					SField field = newInstance.getSClass().getField(fieldDescriptor.getName());
 					if (field == null) {
@@ -60,7 +60,7 @@ public class ProtocolBuffersConverter {
 						EnumValueDescriptor enumValueDescriptor = (EnumValueDescriptor)val;
 						Class<?> enumClass = Class.forName("org.bimserver.interfaces.objects." + enumValueDescriptor.getType().getName());
 						for (Object v : enumClass.getEnumConstants()) {
-							Enum e = (Enum)v;
+							Enum<?> e = (Enum<?>)v;
 							if (e.ordinal() == enumValueDescriptor.getNumber()) {
 								val = e;
 								break;
