@@ -47,14 +47,14 @@ public class ProtocolBuffersConverter {
 			SBase newInstance = (SBase) Class.forName("org.bimserver.interfaces.objects." + descriptor.getName()).newInstance();
 			for (FieldDescriptor fieldDescriptor : descriptor.getFields()) {
 				Object val = message.getField(fieldDescriptor);
+				SField field = newInstance.getSClass().getField(fieldDescriptor.getName());
+				if (field == null) {
+					throw new RuntimeException("No field with name " + fieldDescriptor.getName());
+				}
 				if (fieldDescriptor.isRepeated()) {
 //					Method setMethod = getMethod(newInstance.getClass(), "set" + StringUtils.firstUpperCase(fieldDescriptor.getName()), new Class[]{List.class});
 //					System.out.println(val);
 				} else {
-					SField field = newInstance.getSClass().getField(fieldDescriptor.getName());
-					if (field == null) {
-						throw new RuntimeException("No field with name " + fieldDescriptor.getName());
-					}
 					Method setMethod = getMethod(newInstance.getClass(), "set" + StringUtils.firstUpperCase(fieldDescriptor.getName()), new Class[]{field.getType()});
 					if (val instanceof EnumValueDescriptor) {
 						EnumValueDescriptor enumValueDescriptor = (EnumValueDescriptor)val;
