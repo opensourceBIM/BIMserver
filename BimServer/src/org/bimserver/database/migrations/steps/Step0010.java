@@ -103,7 +103,34 @@ public class Step0010 extends Migration {
 		EClass guidanceProviderPluginDescriptor = schema.createEClass(schema.getEPackage("store"), "GuidanceProviderPluginDescriptor");
 		schema.createEAttribute(guidanceProviderPluginDescriptor, "className", ecorePackage.getEString(), Multiplicity.SINGLE);
 		
-		EClass compareResultClass = schema.createEClass(schema.getEPackage("store"), "CompareResult");
+		EEnum compareIdentifier = schema.createEEnum(schema.getEPackage("store"), "CompareIdentifier");
+		schema.createEEnumLiteral(compareIdentifier, "NAME");
+		schema.createEEnumLiteral(compareIdentifier, "GUID");
+		
+		EEnum compareTypeEnum = schema.createEEnum(schema.getEPackage("store"), "CompareType");
+		schema.createEEnumLiteral(compareTypeEnum, "ALL");
+		schema.createEEnumLiteral(compareTypeEnum, "ADD");
+		schema.createEEnumLiteral(compareTypeEnum, "MODIFY");
+		schema.createEEnumLiteral(compareTypeEnum, "DELETE");
+		
+		EClass compareItemClass = schema.createEClass(schema.getEPackage("store"), "CompareItem");
+		schema.createEReference(compareItemClass, "dataObject", dataObjectClass, Multiplicity.SINGLE).getEAnnotations().add(createEmbedsReference());
+		
+		schema.createEClass(schema.getEPackage("store"), "ObjectAdded", compareItemClass);
+		
+		schema.createEClass(schema.getEPackage("store"), "ObjectRemoved", compareItemClass);
+		
+		EClass objectModified = schema.createEClass(schema.getEPackage("store"), "ObjectModified", compareItemClass);
+		schema.createEAttribute(objectModified, "fieldName", ecorePackage.getEString(), Multiplicity.SINGLE);
+		schema.createEAttribute(objectModified, "oldValue", ecorePackage.getEString(), Multiplicity.SINGLE);
+		schema.createEAttribute(objectModified, "newValue", ecorePackage.getEString(), Multiplicity.SINGLE);
+		
+		EClass compareContainerClass = schema.createEClass(schema.getEPackage("store"), "CompareContainer");
+		schema.createEAttribute(compareContainerClass, "type", ecorePackage.getEString(), Multiplicity.SINGLE);
+		schema.createEReference(compareContainerClass, "items", compareItemClass, Multiplicity.MANY).getEAnnotations().add(createEmbedsReference());
+
+		EClass compareResultClass = schema.createEClass(schema.getEPackage("store"), "CompareResult");		
+		schema.createEReference(compareResultClass, "items", compareContainerClass, Multiplicity.MANY);
 		
 		EEnum actionStateEnum = schema.createEEnum(schema.getEPackage("store"), "ActionState");
 		schema.createEEnumLiteral(actionStateEnum, "UNKNOWN");

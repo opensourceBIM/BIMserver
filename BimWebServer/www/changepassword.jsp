@@ -3,7 +3,7 @@
 <%@page import="java.text.DateFormat" %>
 <%@page import="java.text.SimpleDateFormat" %>
 <%@page import="org.bimserver.utils.Formatters"%>
-<%@page import="org.bimserver.shared.UserException"%>
+<%@page import="org.bimserver.shared.exceptions.ServiceException"%>
 <%@page import="org.bimserver.Message"%>
 <%@page import="org.bimserver.interfaces.objects.SUserType"%>
 <%@ include file="header.jsp" %>
@@ -25,7 +25,7 @@
 					loginManager.getService().changePassword(uoid, oldPassword, newPassword1);
 					response.sendRedirect("user.jsp?uoid=" + uoid + "&mid=" + Message.PASSWORD_SUCCESSFULLY_CHANGED.ordinal());
 				}
-			} catch (UserException e) {
+			} catch (ServiceException e) {
 				JspHelper.showException(out, e);
 			}
 		}

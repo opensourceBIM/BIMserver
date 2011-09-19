@@ -1,8 +1,9 @@
 package org.bimserver.interfaces.objects;
 
 import java.util.*;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.*;
 import org.bimserver.shared.meta.*;
+import javax.activation.DataHandler;
 
 @XmlRootElement
 public class SEidClash extends SClash implements SBase
@@ -35,7 +36,6 @@ public class SEidClash extends SClash implements SBase
 	}
 	private long eid1;
 	private long eid2;
-
 	public long getEid1() {
 		return eid1;
 	}
@@ -43,7 +43,6 @@ public class SEidClash extends SClash implements SBase
 	public void setEid1(long eid1) {
 		this.eid1 = eid1;
 	}
-
 	public long getEid2() {
 		return eid2;
 	}

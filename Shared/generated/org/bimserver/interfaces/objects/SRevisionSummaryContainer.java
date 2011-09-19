@@ -1,8 +1,9 @@
 package org.bimserver.interfaces.objects;
 
 import java.util.*;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.*;
 import org.bimserver.shared.meta.*;
+import javax.activation.DataHandler;
 
 @XmlRootElement
 public class SRevisionSummaryContainer implements SBase
@@ -29,7 +30,6 @@ public class SRevisionSummaryContainer implements SBase
 	}
 	private java.lang.String name;
 	private List<SRevisionSummaryType> types = new ArrayList<SRevisionSummaryType>();
-
 	public java.lang.String getName() {
 		return name;
 	}

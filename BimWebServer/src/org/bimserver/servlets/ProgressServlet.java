@@ -8,13 +8,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.bimserver.BimServer;
+import org.bimserver.interfaces.objects.LongActionState;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.longaction.LongCheckinAction;
 import org.bimserver.longaction.LongCheckinActionKey;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
-import org.bimserver.shared.objects.LongActionState;
 import org.bimserver.web.LoginManager;
 import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONException;

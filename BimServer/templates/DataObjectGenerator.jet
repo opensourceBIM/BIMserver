@@ -2,8 +2,9 @@
 package org.bimserver.interfaces.objects;
 
 import java.util.*;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.*;
 import org.bimserver.shared.meta.*;
+import javax.activation.DataHandler;
 <%
 	if (argument instanceof EClass) {
 		EClass eClass = (EClass)argument;
@@ -98,9 +99,16 @@ public class S<%=eClass.getName()%>
 	private List<<%=eAttribute.getEType().getInstanceClassName()%>> <%=eAttribute.getName()%> = new ArrayList<<%=eAttribute.getEType().getInstanceClassName()%>>();
 <%
 					} else {
+						if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEByteArray()) {
+%>
+	@XmlMimeType("application/octet-stream")
+	private DataHandler <%=eAttribute.getName()%>;
+<%
+						} else {
 %>
 	private <%=eAttribute.getEType().getInstanceClassName()%> <%=eAttribute.getName()%>;
 <%
+						}
 					}
 				}
 			} else if (eStructuralFeature instanceof EReference) {
@@ -156,8 +164,18 @@ public class S<%=eClass.getName()%>
 	}
 <%
 					} else {
+						if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEByteArray()) {
 %>
+	public DataHandler <%=GenerateUtils.makeGetter(eAttribute)%>() {
+		return <%=eAttribute.getName()%>;
+	}
 
+	public void <%=GenerateUtils.makeSetter(eAttribute)%>(DataHandler <%=eAttribute.getName()%>) {
+		this.<%=eAttribute.getName()%> = <%=eAttribute.getName()%>;
+	}
+<%
+						} else {
+%>
 	public <%=eAttribute.getEType().getInstanceClassName()%> <%=GenerateUtils.makeGetter(eAttribute)%>() {
 		return <%=eAttribute.getName()%>;
 	}
@@ -166,6 +184,7 @@ public class S<%=eClass.getName()%>
 		this.<%=eAttribute.getName()%> = <%=eAttribute.getName()%>;
 	}
 <%
+						}
 					}
 				}
 			} else if (eStructuralFeature instanceof EReference) {

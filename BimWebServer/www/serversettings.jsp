@@ -4,7 +4,6 @@
 <%@page import="java.util.Collections"%>
 <%@page import="java.util.GregorianCalendar"%>
 <%@page import="org.bimserver.utils.Formatters"%>
-<%@page import="org.bimserver.shared.DatabaseInformation"%>
 <%@page import="org.bimserver.version.VersionChecker"%>
 <%@page import="java.util.Map"%>
 <%@page import="java.util.Set"%>
@@ -14,7 +13,7 @@
 <%@page import="org.apache.commons.io.IOUtils"%>
 <%@page import="org.bimserver.interfaces.objects.SUserType"%>
 <%@page import="org.bimserver.shared.ServiceInterface"%>
-<%@page import="org.bimserver.shared.UserException"%>
+<%@page import="org.bimserver.shared.exceptions.ServiceException"%>
 <%@page import="org.bimserver.interfaces.objects.SMergeIdentifier"%>
 <%@page import="org.bimserver.interfaces.objects.SSerializer"%>
 <jsp:include page="serversettingsmenu.jsp"/>
@@ -50,7 +49,7 @@
 				}
 				service.setSettingEnabledExportTypes(enabledTypes);
 				response.sendRedirect(getServletContext().getContextPath() + "/serversettings.jsp?msg=settingschangeok");
-			} catch (UserException e) {
+			} catch (ServiceException e) {
 				JspHelper.showException(out, e);
 			}
 		}

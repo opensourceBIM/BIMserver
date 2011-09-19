@@ -1,5 +1,5 @@
-<%@page import="org.bimserver.shared.UserException"%>
-<%@page import="org.bimserver.shared.SCheckinResult"%>
+<%@page import="org.bimserver.shared.exceptions.ServiceException"%>
+<%@page import="org.bimserver.interfaces.objects.SCheckinResult"%>
 <%@ include file="header.jsp" %>
 <%
 	try {
@@ -9,7 +9,7 @@
 			String name = request.getParameter("name");
 			String comment = request.getParameter("comment");
 			SCheckinResult checkinResult = loginManager.getService().branchToNewProject(roid, name, comment);
-			response.sendRedirect("project.jsp?poid=" + checkinResult.getPoid());
+			response.sendRedirect("project.jsp?poid=" + checkinResult.getProjectId());
 		} else if (action.equals("branchtoexistingproject")) {
 			long destPoid = Long.parseLong(request.getParameter("destpoid"));
 			String comment = request.getParameter("comment");

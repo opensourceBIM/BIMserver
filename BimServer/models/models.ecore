@@ -354,7 +354,39 @@
     <eClassifiers xsi:type="ecore:EClass" name="GuidanceProviderPluginDescriptor">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="className" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="CompareResult"/>
+    <eClassifiers xsi:type="ecore:EEnum" name="CompareIdentifier">
+      <eLiterals name="NAME"/>
+      <eLiterals name="GUID" value="1"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EEnum" name="CompareType">
+      <eLiterals name="ALL"/>
+      <eLiterals name="ADD" value="1"/>
+      <eLiterals name="MODIFY" value="2"/>
+      <eLiterals name="DELETE" value="3"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="CompareItem">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="dataObject" eType="#/0/DataObject">
+        <eAnnotations source="embedsreference"/>
+      </eStructuralFeatures>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ObjectAdded" eSuperTypes="#/0/CompareItem"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ObjectRemoved" eSuperTypes="#/0/CompareItem"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ObjectModified" eSuperTypes="#/0/CompareItem">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="fieldName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="oldValue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="newValue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="CompareContainer">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="items" upperBound="-1"
+          eType="#/0/CompareItem">
+        <eAnnotations source="embedsreference"/>
+      </eStructuralFeatures>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="CompareResult">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="items" upperBound="-1"
+          eType="#/0/CompareContainer"/>
+    </eClassifiers>
     <eClassifiers xsi:type="ecore:EEnum" name="ActionState">
       <eLiterals name="UNKNOWN"/>
       <eLiterals name="STARTED" value="1"/>

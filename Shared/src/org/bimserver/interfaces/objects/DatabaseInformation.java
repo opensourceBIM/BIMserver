@@ -1,4 +1,4 @@
-package org.bimserver.shared.objects;
+package org.bimserver.interfaces.objects;
 
 import java.util.Date;
 import java.util.HashMap;

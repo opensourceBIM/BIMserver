@@ -1,8 +1,9 @@
 package org.bimserver.interfaces.objects;
 
 import java.util.*;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.*;
 import org.bimserver.shared.meta.*;
+import javax.activation.DataHandler;
 
 @XmlRootElement
 public class SCheckout implements SBase
@@ -61,7 +62,6 @@ public class SCheckout implements SBase
 		this.projectId = projectId;
 	}
 	
-
 	public java.util.Date getDate() {
 		return date;
 	}
@@ -77,7 +77,6 @@ public class SCheckout implements SBase
 		this.checkinId = checkinId;
 	}
 	
-
 	public boolean isActive() {
 		return active;
 	}

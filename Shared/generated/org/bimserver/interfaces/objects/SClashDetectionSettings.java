@@ -1,8 +1,9 @@
 package org.bimserver.interfaces.objects;
 
 import java.util.*;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.*;
 import org.bimserver.shared.meta.*;
+import javax.activation.DataHandler;
 
 @XmlRootElement
 public class SClashDetectionSettings implements SBase
@@ -35,7 +36,6 @@ public class SClashDetectionSettings implements SBase
 	private float margin;
 	private List<Long> revisions = new ArrayList<Long>();
 	private List<java.lang.String> ignoredClasses = new ArrayList<java.lang.String>();
-
 	public boolean isEnabled() {
 		return enabled;
 	}
@@ -50,7 +50,6 @@ public class SClashDetectionSettings implements SBase
 	public void setProjects(List<Long> projects) {
 		this.projects = projects;
 	}
-
 	public float getMargin() {
 		return margin;
 	}

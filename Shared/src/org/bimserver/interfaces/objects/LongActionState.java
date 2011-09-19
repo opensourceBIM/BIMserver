@@ -1,4 +1,4 @@
-package org.bimserver.shared.objects;
+package org.bimserver.interfaces.objects;
 
 import javax.xml.bind.annotation.XmlRootElement;
 

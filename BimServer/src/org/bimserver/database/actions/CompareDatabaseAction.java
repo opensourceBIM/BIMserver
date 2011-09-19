@@ -6,24 +6,25 @@ import org.bimserver.database.BimDatabaseSession;
 import org.bimserver.database.BimDeadlockException;
 import org.bimserver.ifc.compare.Compare;
 import org.bimserver.ifc.compare.CompareResult;
+import org.bimserver.interfaces.objects.SCompareIdentifier;
 import org.bimserver.models.log.AccessMethod;
+import org.bimserver.models.store.CompareIdentifier;
+import org.bimserver.models.store.CompareType;
 import org.bimserver.plugins.GuidanceProviderException;
 import org.bimserver.plugins.guidanceproviders.GuidanceProvider;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 import org.bimserver.shared.exceptions.UserException;
-import org.bimserver.shared.objects.SCompareResult.SCompareIdentifier;
-import org.bimserver.shared.objects.SCompareResult.SCompareType;
 
 public class CompareDatabaseAction extends BimDatabaseAction<CompareResult> {
 
 	private final long actingUoid;
 	private final long roid1;
 	private final long roid2;
-	private final SCompareType sCompareType;
-	private final SCompareIdentifier sCompareIdentifier;
+	private final CompareType sCompareType;
+	private final CompareIdentifier sCompareIdentifier;
 	private final BimServer bimServer;
 
-	public CompareDatabaseAction(BimServer bimServer, BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long actingUoid, long roid1, long roid2, SCompareType sCompareType, SCompareIdentifier sCompareIdentifier) {
+	public CompareDatabaseAction(BimServer bimServer, BimDatabaseSession bimDatabaseSession, AccessMethod accessMethod, long actingUoid, long roid1, long roid2, CompareType sCompareType, CompareIdentifier sCompareIdentifier) {
 		super(bimDatabaseSession, accessMethod);
 		this.bimServer = bimServer;
 		this.actingUoid = actingUoid;

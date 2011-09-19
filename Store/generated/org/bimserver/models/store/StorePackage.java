@@ -2525,6 +2525,182 @@ public interface StorePackage extends EPackage {
 	int GUIDANCE_PROVIDER_PLUGIN_DESCRIPTOR_FEATURE_COUNT = 1;
 
 	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.CompareItemImpl <em>Compare Item</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.impl.CompareItemImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getCompareItem()
+	 * @generated
+	 */
+	int COMPARE_ITEM = 34;
+
+	/**
+	 * The feature id for the '<em><b>Data Object</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPARE_ITEM__DATA_OBJECT = 0;
+
+	/**
+	 * The number of structural features of the '<em>Compare Item</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPARE_ITEM_FEATURE_COUNT = 1;
+
+	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.ObjectAddedImpl <em>Object Added</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.impl.ObjectAddedImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getObjectAdded()
+	 * @generated
+	 */
+	int OBJECT_ADDED = 35;
+
+	/**
+	 * The feature id for the '<em><b>Data Object</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_ADDED__DATA_OBJECT = COMPARE_ITEM__DATA_OBJECT;
+
+	/**
+	 * The number of structural features of the '<em>Object Added</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_ADDED_FEATURE_COUNT = COMPARE_ITEM_FEATURE_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.ObjectRemovedImpl <em>Object Removed</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.impl.ObjectRemovedImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getObjectRemoved()
+	 * @generated
+	 */
+	int OBJECT_REMOVED = 36;
+
+	/**
+	 * The feature id for the '<em><b>Data Object</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_REMOVED__DATA_OBJECT = COMPARE_ITEM__DATA_OBJECT;
+
+	/**
+	 * The number of structural features of the '<em>Object Removed</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_REMOVED_FEATURE_COUNT = COMPARE_ITEM_FEATURE_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.ObjectModifiedImpl <em>Object Modified</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.impl.ObjectModifiedImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getObjectModified()
+	 * @generated
+	 */
+	int OBJECT_MODIFIED = 37;
+
+	/**
+	 * The feature id for the '<em><b>Data Object</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_MODIFIED__DATA_OBJECT = COMPARE_ITEM__DATA_OBJECT;
+
+	/**
+	 * The feature id for the '<em><b>Field Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_MODIFIED__FIELD_NAME = COMPARE_ITEM_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Old Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_MODIFIED__OLD_VALUE = COMPARE_ITEM_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>New Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_MODIFIED__NEW_VALUE = COMPARE_ITEM_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>Object Modified</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_MODIFIED_FEATURE_COUNT = COMPARE_ITEM_FEATURE_COUNT + 3;
+
+	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.CompareContainerImpl <em>Compare Container</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.impl.CompareContainerImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getCompareContainer()
+	 * @generated
+	 */
+	int COMPARE_CONTAINER = 38;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPARE_CONTAINER__TYPE = 0;
+
+	/**
+	 * The feature id for the '<em><b>Items</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPARE_CONTAINER__ITEMS = 1;
+
+	/**
+	 * The number of structural features of the '<em>Compare Container</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPARE_CONTAINER_FEATURE_COUNT = 2;
+
+	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.CompareResultImpl <em>Compare Result</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2532,7 +2708,16 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getCompareResult()
 	 * @generated
 	 */
-	int COMPARE_RESULT = 34;
+	int COMPARE_RESULT = 39;
+
+	/**
+	 * The feature id for the '<em><b>Items</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPARE_RESULT__ITEMS = 0;
 
 	/**
 	 * The number of structural features of the '<em>Compare Result</em>' class.
@@ -2541,7 +2726,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPARE_RESULT_FEATURE_COUNT = 0;
+	int COMPARE_RESULT_FEATURE_COUNT = 1;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.LongActionStateImpl <em>Long Action State</em>}' class.
@@ -2551,7 +2736,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getLongActionState()
 	 * @generated
 	 */
-	int LONG_ACTION_STATE = 35;
+	int LONG_ACTION_STATE = 40;
 
 	/**
 	 * The feature id for the '<em><b>Progress</b></em>' attribute.
@@ -2588,7 +2773,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getUserType()
 	 * @generated
 	 */
-	int USER_TYPE = 36;
+	int USER_TYPE = 41;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.CheckinState <em>Checkin State</em>}' enum.
@@ -2598,7 +2783,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getCheckinState()
 	 * @generated
 	 */
-	int CHECKIN_STATE = 37;
+	int CHECKIN_STATE = 42;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.SIPrefix <em>SI Prefix</em>}' enum.
@@ -2608,7 +2793,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getSIPrefix()
 	 * @generated
 	 */
-	int SI_PREFIX = 38;
+	int SI_PREFIX = 43;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ObjectState <em>Object State</em>}' enum.
@@ -2618,7 +2803,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getObjectState()
 	 * @generated
 	 */
-	int OBJECT_STATE = 39;
+	int OBJECT_STATE = 44;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.MergeIdentifier <em>Merge Identifier</em>}' enum.
@@ -2628,8 +2813,28 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getMergeIdentifier()
 	 * @generated
 	 */
-	int MERGE_IDENTIFIER = 40;
+	int MERGE_IDENTIFIER = 45;
 
+
+	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.CompareIdentifier <em>Compare Identifier</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.CompareIdentifier
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getCompareIdentifier()
+	 * @generated
+	 */
+	int COMPARE_IDENTIFIER = 46;
+
+	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.CompareType <em>Compare Type</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.CompareType
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getCompareType()
+	 * @generated
+	 */
+	int COMPARE_TYPE = 47;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ActionState <em>Action State</em>}' enum.
@@ -2639,7 +2844,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getActionState()
 	 * @generated
 	 */
-	int ACTION_STATE = 41;
+	int ACTION_STATE = 48;
 
 
 	/**
@@ -5007,6 +5212,122 @@ public interface StorePackage extends EPackage {
 	EAttribute getGuidanceProviderPluginDescriptor_ClassName();
 
 	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.store.CompareItem <em>Compare Item</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Compare Item</em>'.
+	 * @see org.bimserver.models.store.CompareItem
+	 * @generated
+	 */
+	EClass getCompareItem();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.store.CompareItem#getDataObject <em>Data Object</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Data Object</em>'.
+	 * @see org.bimserver.models.store.CompareItem#getDataObject()
+	 * @see #getCompareItem()
+	 * @generated
+	 */
+	EReference getCompareItem_DataObject();
+
+	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.store.ObjectAdded <em>Object Added</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Object Added</em>'.
+	 * @see org.bimserver.models.store.ObjectAdded
+	 * @generated
+	 */
+	EClass getObjectAdded();
+
+	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.store.ObjectRemoved <em>Object Removed</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Object Removed</em>'.
+	 * @see org.bimserver.models.store.ObjectRemoved
+	 * @generated
+	 */
+	EClass getObjectRemoved();
+
+	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.store.ObjectModified <em>Object Modified</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Object Modified</em>'.
+	 * @see org.bimserver.models.store.ObjectModified
+	 * @generated
+	 */
+	EClass getObjectModified();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ObjectModified#getFieldName <em>Field Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Field Name</em>'.
+	 * @see org.bimserver.models.store.ObjectModified#getFieldName()
+	 * @see #getObjectModified()
+	 * @generated
+	 */
+	EAttribute getObjectModified_FieldName();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ObjectModified#getOldValue <em>Old Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Old Value</em>'.
+	 * @see org.bimserver.models.store.ObjectModified#getOldValue()
+	 * @see #getObjectModified()
+	 * @generated
+	 */
+	EAttribute getObjectModified_OldValue();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ObjectModified#getNewValue <em>New Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>New Value</em>'.
+	 * @see org.bimserver.models.store.ObjectModified#getNewValue()
+	 * @see #getObjectModified()
+	 * @generated
+	 */
+	EAttribute getObjectModified_NewValue();
+
+	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.store.CompareContainer <em>Compare Container</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Compare Container</em>'.
+	 * @see org.bimserver.models.store.CompareContainer
+	 * @generated
+	 */
+	EClass getCompareContainer();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.CompareContainer#getType <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Type</em>'.
+	 * @see org.bimserver.models.store.CompareContainer#getType()
+	 * @see #getCompareContainer()
+	 * @generated
+	 */
+	EAttribute getCompareContainer_Type();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.bimserver.models.store.CompareContainer#getItems <em>Items</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Items</em>'.
+	 * @see org.bimserver.models.store.CompareContainer#getItems()
+	 * @see #getCompareContainer()
+	 * @generated
+	 */
+	EReference getCompareContainer_Items();
+
+	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.CompareResult <em>Compare Result</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5015,6 +5336,17 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 */
 	EClass getCompareResult();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.bimserver.models.store.CompareResult#getItems <em>Items</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Items</em>'.
+	 * @see org.bimserver.models.store.CompareResult#getItems()
+	 * @see #getCompareResult()
+	 * @generated
+	 */
+	EReference getCompareResult_Items();
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.LongActionState <em>Long Action State</em>}'.
@@ -5097,6 +5429,26 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 */
 	EEnum getMergeIdentifier();
+
+	/**
+	 * Returns the meta object for enum '{@link org.bimserver.models.store.CompareIdentifier <em>Compare Identifier</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Compare Identifier</em>'.
+	 * @see org.bimserver.models.store.CompareIdentifier
+	 * @generated
+	 */
+	EEnum getCompareIdentifier();
+
+	/**
+	 * Returns the meta object for enum '{@link org.bimserver.models.store.CompareType <em>Compare Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Compare Type</em>'.
+	 * @see org.bimserver.models.store.CompareType
+	 * @generated
+	 */
+	EEnum getCompareType();
 
 	/**
 	 * Returns the meta object for enum '{@link org.bimserver.models.store.ActionState <em>Action State</em>}'.
@@ -6943,6 +7295,104 @@ public interface StorePackage extends EPackage {
 		EAttribute GUIDANCE_PROVIDER_PLUGIN_DESCRIPTOR__CLASS_NAME = eINSTANCE.getGuidanceProviderPluginDescriptor_ClassName();
 
 		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.CompareItemImpl <em>Compare Item</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.impl.CompareItemImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getCompareItem()
+		 * @generated
+		 */
+		EClass COMPARE_ITEM = eINSTANCE.getCompareItem();
+
+		/**
+		 * The meta object literal for the '<em><b>Data Object</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMPARE_ITEM__DATA_OBJECT = eINSTANCE.getCompareItem_DataObject();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.ObjectAddedImpl <em>Object Added</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.impl.ObjectAddedImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getObjectAdded()
+		 * @generated
+		 */
+		EClass OBJECT_ADDED = eINSTANCE.getObjectAdded();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.ObjectRemovedImpl <em>Object Removed</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.impl.ObjectRemovedImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getObjectRemoved()
+		 * @generated
+		 */
+		EClass OBJECT_REMOVED = eINSTANCE.getObjectRemoved();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.ObjectModifiedImpl <em>Object Modified</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.impl.ObjectModifiedImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getObjectModified()
+		 * @generated
+		 */
+		EClass OBJECT_MODIFIED = eINSTANCE.getObjectModified();
+
+		/**
+		 * The meta object literal for the '<em><b>Field Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute OBJECT_MODIFIED__FIELD_NAME = eINSTANCE.getObjectModified_FieldName();
+
+		/**
+		 * The meta object literal for the '<em><b>Old Value</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute OBJECT_MODIFIED__OLD_VALUE = eINSTANCE.getObjectModified_OldValue();
+
+		/**
+		 * The meta object literal for the '<em><b>New Value</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute OBJECT_MODIFIED__NEW_VALUE = eINSTANCE.getObjectModified_NewValue();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.CompareContainerImpl <em>Compare Container</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.impl.CompareContainerImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getCompareContainer()
+		 * @generated
+		 */
+		EClass COMPARE_CONTAINER = eINSTANCE.getCompareContainer();
+
+		/**
+		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COMPARE_CONTAINER__TYPE = eINSTANCE.getCompareContainer_Type();
+
+		/**
+		 * The meta object literal for the '<em><b>Items</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMPARE_CONTAINER__ITEMS = eINSTANCE.getCompareContainer_Items();
+
+		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.CompareResultImpl <em>Compare Result</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -6951,6 +7401,14 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EClass COMPARE_RESULT = eINSTANCE.getCompareResult();
+
+		/**
+		 * The meta object literal for the '<em><b>Items</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMPARE_RESULT__ITEMS = eINSTANCE.getCompareResult_Items();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.LongActionStateImpl <em>Long Action State</em>}' class.
@@ -7027,6 +7485,26 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EEnum MERGE_IDENTIFIER = eINSTANCE.getMergeIdentifier();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.CompareIdentifier <em>Compare Identifier</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.CompareIdentifier
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getCompareIdentifier()
+		 * @generated
+		 */
+		EEnum COMPARE_IDENTIFIER = eINSTANCE.getCompareIdentifier();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.CompareType <em>Compare Type</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.CompareType
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getCompareType()
+		 * @generated
+		 */
+		EEnum COMPARE_TYPE = eINSTANCE.getCompareType();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.ActionState <em>Action State</em>}' enum.

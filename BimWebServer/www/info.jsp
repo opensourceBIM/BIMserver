@@ -1,9 +1,9 @@
+<%@page import="org.bimserver.interfaces.objects.SDatabaseInformation"%>
 <%@ include file="header.jsp" %>
 <%@page import="java.util.List" %>
 <%@page import="java.util.Collections"%>
 <%@page import="java.util.GregorianCalendar"%>
 <%@page import="org.bimserver.utils.Formatters"%>
-<%@page import="org.bimserver.shared.DatabaseInformation"%>
 <%@page import="org.bimserver.version.VersionChecker"%>
 <%@page import="java.util.Map"%>
 <%@page import="org.bimserver.web.WarServerInitializer"%>
@@ -16,7 +16,7 @@
 <%@page import="org.bimserver.interfaces.objects.SUserAddedToProject"%>
 <%@page import="org.bimserver.interfaces.objects.SProject"%>
 <%@page import="org.bimserver.interfaces.objects.SNewProjectAdded"%>
-<%@page import="org.bimserver.shared.SLogActionDateComparator"%>
+<%@page import="org.bimserver.shared.comparators.SLogActionDateComparator"%>
 <%@page import="org.bimserver.interfaces.objects.SNewUserAdded"%>
 <%@page import="org.bimserver.interfaces.objects.SNewRevisionAdded"%>
 <%@page import="org.bimserver.interfaces.objects.SRevision"%>
@@ -27,7 +27,7 @@
 <%@page import="org.bimserver.interfaces.objects.SUserRemovedFromProject"%>
 <%@page import="org.bimserver.interfaces.objects.SServerStarted"%>
 <%@page import="org.bimserver.interfaces.objects.SProjectUpdated"%>
-<%@page import="org.bimserver.shared.SUserSession"%>
+<%@page import="org.bimserver.interfaces.objects.SUserSession"%>
 <%@page import="org.bimserver.web.JspHelper"%>
 <%@page import="org.bimserver.interfaces.objects.SClashDetectionSettingsUpdated"%>
 <%@page import="org.bimserver.interfaces.objects.SGeoTagUpdated"%>
@@ -37,7 +37,7 @@
 <%@page import="org.bimserver.interfaces.objects.SClashDetectionSettings"%>
 <%@page import="org.bimserver.interfaces.objects.SGeoTag"%>
 <%@page import="org.bimserver.interfaces.objects.SDatabaseCreated"%>
-<%@page import="org.bimserver.shared.SLongAction"%>
+<%@page import="org.bimserver.interfaces.objects.SLongAction"%>
 <%@page import="java.util.Date"%><div class="sidebar">
 </div>
 <div class="content">
@@ -45,7 +45,7 @@
 <%
 	if (loginManager.getService().isLoggedIn() && loginManager.getUserType() == SUserType.ADMIN) {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
-		DatabaseInformation databaseInformation = loginManager.getService().getDatabaseInformation();
+		SDatabaseInformation databaseInformation = loginManager.getService().getDatabaseInformation();
 		VersionChecker checkVersion = WebServerHelper.getBimServer().getVersionChecker();
 		if (loginManager.getService().isSettingShowVersionUpgradeAvailable() && checkVersion.updateNeeded()) {
 %>

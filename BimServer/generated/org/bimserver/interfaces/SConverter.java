@@ -7,6 +7,13 @@ import org.bimserver.models.store.*;
 import org.bimserver.database.BimDatabaseSession;
 
 public class SConverter {
+		public SAccessMethod convertToSObject(AccessMethod input) {
+			return SAccessMethod.values()[input.ordinal()];
+		}
+		
+		public AccessMethod convertFromSObject(SAccessMethod input) {
+			return AccessMethod.values()[input.ordinal()];
+		}
 
 	public Set<SLogAction> convertToSSetLogAction(Collection<LogAction> input) {
 		Set<SLogAction> result = new HashSet<SLogAction>();
@@ -1441,12 +1448,33 @@ public class SConverter {
 		result.setUser((User)session.get(StorePackage.eINSTANCE.getUser(), input.getUserId(), false));
 		return result;
 	}
-		public SAccessMethod convertToSObject(AccessMethod input) {
-			return SAccessMethod.values()[input.ordinal()];
+		public SUserType convertToSObject(UserType input) {
+			return SUserType.values()[input.ordinal()];
 		}
 		
-		public AccessMethod convertFromSObject(SAccessMethod input) {
-			return AccessMethod.values()[input.ordinal()];
+		public UserType convertFromSObject(SUserType input) {
+			return UserType.values()[input.ordinal()];
+		}
+		public SCheckinState convertToSObject(CheckinState input) {
+			return SCheckinState.values()[input.ordinal()];
+		}
+		
+		public CheckinState convertFromSObject(SCheckinState input) {
+			return CheckinState.values()[input.ordinal()];
+		}
+		public SSIPrefix convertToSObject(SIPrefix input) {
+			return SSIPrefix.values()[input.ordinal()];
+		}
+		
+		public SIPrefix convertFromSObject(SSIPrefix input) {
+			return SIPrefix.values()[input.ordinal()];
+		}
+		public SObjectState convertToSObject(ObjectState input) {
+			return SObjectState.values()[input.ordinal()];
+		}
+		
+		public ObjectState convertFromSObject(SObjectState input) {
+			return ObjectState.values()[input.ordinal()];
 		}
 
 	public Set<SProject> convertToSSetProject(Collection<Project> input) {
@@ -2522,6 +2550,13 @@ public class SConverter {
 		result.setSettings((Settings)session.get(StorePackage.eINSTANCE.getSettings(), input.getSettingsId(), false));
 		return result;
 	}
+		public SMergeIdentifier convertToSObject(MergeIdentifier input) {
+			return SMergeIdentifier.values()[input.ordinal()];
+		}
+		
+		public MergeIdentifier convertFromSObject(SMergeIdentifier input) {
+			return MergeIdentifier.values()[input.ordinal()];
+		}
 
 	public Set<SIfcEngine> convertToSSetIfcEngine(Collection<IfcEngine> input) {
 		Set<SIfcEngine> result = new HashSet<SIfcEngine>();
@@ -3751,6 +3786,299 @@ public class SConverter {
 		result.setClassName(input.getClassName());
 		return result;
 	}
+		public SCompareIdentifier convertToSObject(CompareIdentifier input) {
+			return SCompareIdentifier.values()[input.ordinal()];
+		}
+		
+		public CompareIdentifier convertFromSObject(SCompareIdentifier input) {
+			return CompareIdentifier.values()[input.ordinal()];
+		}
+		public SCompareType convertToSObject(CompareType input) {
+			return SCompareType.values()[input.ordinal()];
+		}
+		
+		public CompareType convertFromSObject(SCompareType input) {
+			return CompareType.values()[input.ordinal()];
+		}
+
+	public Set<SCompareItem> convertToSSetCompareItem(Collection<CompareItem> input) {
+		Set<SCompareItem> result = new HashSet<SCompareItem>();
+		for (CompareItem o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<CompareItem> convertFromSSetCompareItem(Collection<SCompareItem> input, BimDatabaseSession session) {
+		Set<CompareItem> result = new HashSet<CompareItem>();
+		for (SCompareItem o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SCompareItem> convertToSListCompareItem(Collection<CompareItem> input) {
+		List<SCompareItem> result = new ArrayList<SCompareItem>();
+		for (CompareItem o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<CompareItem> convertFromSListCompareItem(Collection<SCompareItem> input, BimDatabaseSession session) {
+		List<CompareItem> result = new ArrayList<CompareItem>();
+		for (SCompareItem o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SCompareItem convertToSObject(CompareItem input) {
+		if (input == null) {
+			return null;
+		}
+		SCompareItem result = new SCompareItem();
+		result.setOid(input.getOid());
+		DataObject dataObjectVal = input.getDataObject();
+		result.setDataObject(convertToSObject(dataObjectVal));
+		return result;
+	}
+
+	public CompareItem convertFromSObject(SCompareItem input, BimDatabaseSession session) {
+		if (input == null) {
+			return null;
+		}
+		CompareItem result = StoreFactory.eINSTANCE.createCompareItem();
+		result.setOid(input.getOid());
+		result.setDataObject(convertFromSObject(input.getDataObject(), session));
+		return result;
+	}
+
+	public Set<SObjectAdded> convertToSSetObjectAdded(Collection<ObjectAdded> input) {
+		Set<SObjectAdded> result = new HashSet<SObjectAdded>();
+		for (ObjectAdded o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<ObjectAdded> convertFromSSetObjectAdded(Collection<SObjectAdded> input, BimDatabaseSession session) {
+		Set<ObjectAdded> result = new HashSet<ObjectAdded>();
+		for (SObjectAdded o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SObjectAdded> convertToSListObjectAdded(Collection<ObjectAdded> input) {
+		List<SObjectAdded> result = new ArrayList<SObjectAdded>();
+		for (ObjectAdded o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<ObjectAdded> convertFromSListObjectAdded(Collection<SObjectAdded> input, BimDatabaseSession session) {
+		List<ObjectAdded> result = new ArrayList<ObjectAdded>();
+		for (SObjectAdded o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SObjectAdded convertToSObject(ObjectAdded input) {
+		if (input == null) {
+			return null;
+		}
+		SObjectAdded result = new SObjectAdded();
+		result.setOid(input.getOid());
+		DataObject dataObjectVal = input.getDataObject();
+		result.setDataObject(convertToSObject(dataObjectVal));
+		return result;
+	}
+
+	public ObjectAdded convertFromSObject(SObjectAdded input, BimDatabaseSession session) {
+		if (input == null) {
+			return null;
+		}
+		ObjectAdded result = StoreFactory.eINSTANCE.createObjectAdded();
+		result.setOid(input.getOid());
+		result.setDataObject(convertFromSObject(input.getDataObject(), session));
+		return result;
+	}
+
+	public Set<SObjectRemoved> convertToSSetObjectRemoved(Collection<ObjectRemoved> input) {
+		Set<SObjectRemoved> result = new HashSet<SObjectRemoved>();
+		for (ObjectRemoved o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<ObjectRemoved> convertFromSSetObjectRemoved(Collection<SObjectRemoved> input, BimDatabaseSession session) {
+		Set<ObjectRemoved> result = new HashSet<ObjectRemoved>();
+		for (SObjectRemoved o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SObjectRemoved> convertToSListObjectRemoved(Collection<ObjectRemoved> input) {
+		List<SObjectRemoved> result = new ArrayList<SObjectRemoved>();
+		for (ObjectRemoved o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<ObjectRemoved> convertFromSListObjectRemoved(Collection<SObjectRemoved> input, BimDatabaseSession session) {
+		List<ObjectRemoved> result = new ArrayList<ObjectRemoved>();
+		for (SObjectRemoved o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SObjectRemoved convertToSObject(ObjectRemoved input) {
+		if (input == null) {
+			return null;
+		}
+		SObjectRemoved result = new SObjectRemoved();
+		result.setOid(input.getOid());
+		DataObject dataObjectVal = input.getDataObject();
+		result.setDataObject(convertToSObject(dataObjectVal));
+		return result;
+	}
+
+	public ObjectRemoved convertFromSObject(SObjectRemoved input, BimDatabaseSession session) {
+		if (input == null) {
+			return null;
+		}
+		ObjectRemoved result = StoreFactory.eINSTANCE.createObjectRemoved();
+		result.setOid(input.getOid());
+		result.setDataObject(convertFromSObject(input.getDataObject(), session));
+		return result;
+	}
+
+	public Set<SObjectModified> convertToSSetObjectModified(Collection<ObjectModified> input) {
+		Set<SObjectModified> result = new HashSet<SObjectModified>();
+		for (ObjectModified o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<ObjectModified> convertFromSSetObjectModified(Collection<SObjectModified> input, BimDatabaseSession session) {
+		Set<ObjectModified> result = new HashSet<ObjectModified>();
+		for (SObjectModified o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SObjectModified> convertToSListObjectModified(Collection<ObjectModified> input) {
+		List<SObjectModified> result = new ArrayList<SObjectModified>();
+		for (ObjectModified o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<ObjectModified> convertFromSListObjectModified(Collection<SObjectModified> input, BimDatabaseSession session) {
+		List<ObjectModified> result = new ArrayList<ObjectModified>();
+		for (SObjectModified o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SObjectModified convertToSObject(ObjectModified input) {
+		if (input == null) {
+			return null;
+		}
+		SObjectModified result = new SObjectModified();
+		result.setOid(input.getOid());
+		result.setFieldName(input.getFieldName());
+		result.setOldValue(input.getOldValue());
+		result.setNewValue(input.getNewValue());
+		DataObject dataObjectVal = input.getDataObject();
+		result.setDataObject(convertToSObject(dataObjectVal));
+		return result;
+	}
+
+	public ObjectModified convertFromSObject(SObjectModified input, BimDatabaseSession session) {
+		if (input == null) {
+			return null;
+		}
+		ObjectModified result = StoreFactory.eINSTANCE.createObjectModified();
+		result.setOid(input.getOid());
+		result.setFieldName(input.getFieldName());
+		result.setOldValue(input.getOldValue());
+		result.setNewValue(input.getNewValue());
+		result.setDataObject(convertFromSObject(input.getDataObject(), session));
+		return result;
+	}
+
+	public Set<SCompareContainer> convertToSSetCompareContainer(Collection<CompareContainer> input) {
+		Set<SCompareContainer> result = new HashSet<SCompareContainer>();
+		for (CompareContainer o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<CompareContainer> convertFromSSetCompareContainer(Collection<SCompareContainer> input, BimDatabaseSession session) {
+		Set<CompareContainer> result = new HashSet<CompareContainer>();
+		for (SCompareContainer o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SCompareContainer> convertToSListCompareContainer(Collection<CompareContainer> input) {
+		List<SCompareContainer> result = new ArrayList<SCompareContainer>();
+		for (CompareContainer o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<CompareContainer> convertFromSListCompareContainer(Collection<SCompareContainer> input, BimDatabaseSession session) {
+		List<CompareContainer> result = new ArrayList<CompareContainer>();
+		for (SCompareContainer o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SCompareContainer convertToSObject(CompareContainer input) {
+		if (input == null) {
+			return null;
+		}
+		SCompareContainer result = new SCompareContainer();
+		result.setOid(input.getOid());
+		result.setType(input.getType());
+		List<SCompareItem> listitems = new ArrayList<SCompareItem>();
+		for (CompareItem v : input.getItems()) {
+			listitems.add(convertToSObject(v));
+		}
+		result.setItems(listitems);
+		return result;
+	}
+
+	public CompareContainer convertFromSObject(SCompareContainer input, BimDatabaseSession session) {
+		if (input == null) {
+			return null;
+		}
+		CompareContainer result = StoreFactory.eINSTANCE.createCompareContainer();
+		result.setOid(input.getOid());
+		result.setType(input.getType());
+		List<CompareItem> listitems = result.getItems();
+		for (SCompareItem v : input.getItems()) {
+			listitems.add(convertFromSObject(v, session));
+		}
+		return result;
+	}
 
 	public Set<SCompareResult> convertToSSetCompareResult(Collection<CompareResult> input) {
 		Set<SCompareResult> result = new HashSet<SCompareResult>();
@@ -3790,6 +4118,11 @@ public class SConverter {
 		}
 		SCompareResult result = new SCompareResult();
 		result.setOid(input.getOid());
+		List<Long> listitems = new ArrayList<Long>();
+		for (CompareContainer v : input.getItems()) {
+			listitems.add(v.getOid());
+		}
+		result.setItems(listitems);
 		return result;
 	}
 
@@ -3799,8 +4132,19 @@ public class SConverter {
 		}
 		CompareResult result = StoreFactory.eINSTANCE.createCompareResult();
 		result.setOid(input.getOid());
+		List<CompareContainer> listitems = result.getItems();
+		for (long oid : input.getItems()) {
+			listitems.add((CompareContainer)session.get(StorePackage.eINSTANCE.getCompareContainer(), oid, false));
+		}
 		return result;
 	}
+		public SActionState convertToSObject(ActionState input) {
+			return SActionState.values()[input.ordinal()];
+		}
+		
+		public ActionState convertFromSObject(SActionState input) {
+			return ActionState.values()[input.ordinal()];
+		}
 
 	public Set<SLongActionState> convertToSSetLongActionState(Collection<LongActionState> input) {
 		Set<SLongActionState> result = new HashSet<SLongActionState>();
@@ -3855,46 +4199,4 @@ public class SConverter {
 		result.setState(ActionState.values()[input.getState().ordinal()]);
 		return result;
 	}
-		public SUserType convertToSObject(UserType input) {
-			return SUserType.values()[input.ordinal()];
-		}
-		
-		public UserType convertFromSObject(SUserType input) {
-			return UserType.values()[input.ordinal()];
-		}
-		public SCheckinState convertToSObject(CheckinState input) {
-			return SCheckinState.values()[input.ordinal()];
-		}
-		
-		public CheckinState convertFromSObject(SCheckinState input) {
-			return CheckinState.values()[input.ordinal()];
-		}
-		public SSIPrefix convertToSObject(SIPrefix input) {
-			return SSIPrefix.values()[input.ordinal()];
-		}
-		
-		public SIPrefix convertFromSObject(SSIPrefix input) {
-			return SIPrefix.values()[input.ordinal()];
-		}
-		public SObjectState convertToSObject(ObjectState input) {
-			return SObjectState.values()[input.ordinal()];
-		}
-		
-		public ObjectState convertFromSObject(SObjectState input) {
-			return ObjectState.values()[input.ordinal()];
-		}
-		public SMergeIdentifier convertToSObject(MergeIdentifier input) {
-			return SMergeIdentifier.values()[input.ordinal()];
-		}
-		
-		public MergeIdentifier convertFromSObject(SMergeIdentifier input) {
-			return MergeIdentifier.values()[input.ordinal()];
-		}
-		public SActionState convertToSObject(ActionState input) {
-			return SActionState.values()[input.ordinal()];
-		}
-		
-		public ActionState convertFromSObject(SActionState input) {
-			return ActionState.values()[input.ordinal()];
-		}
 }

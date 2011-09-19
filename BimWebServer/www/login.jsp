@@ -3,7 +3,7 @@
 <%@page import="org.bimserver.models.log.AccessMethod"%>
 <%@page import="org.bimserver.version.Version"%>
 <%@page import="org.bimserver.version.VersionChecker"%>
-<%@page import="org.bimserver.shared.UserException"%>
+<%@page import="org.bimserver.shared.exceptions.ServiceException"%>
 <%@page import="org.bimserver.utils.Hashers"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.Map"%>
@@ -39,7 +39,7 @@
 				} else {
 					errorMessages.add("Login unsuccessful");
 				}
-			} catch (UserException e) {
+			} catch (ServiceException e) {
 				errorMessages.add(e.getUserMessage());
 			}
 		} else {

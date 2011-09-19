@@ -2,7 +2,7 @@
 <%@page import="java.text.DateFormat" %>
 <%@page import="java.text.SimpleDateFormat" %>
 <%@page import="org.bimserver.utils.Formatters"%>
-<%@page import="org.bimserver.shared.UserException"%>
+<%@page import="org.bimserver.shared.exceptions.ServiceException"%>
 <%@page import="org.bimserver.web.JspHelper"%>
 <%@page import="org.bimserver.interfaces.objects.SGeoTag"%>
 <%@page import="org.bimserver.interfaces.objects.SClashDetectionSettings"%>
@@ -69,7 +69,7 @@
 					}
 				} catch (NumberFormatException e) {
 					out.println("<div class=\"error\">" + e.getMessage() + "</div>");
-				} catch (UserException e) {
+				} catch (ServiceException e) {
 					JspHelper.showException(out, e);
 				}
 			}

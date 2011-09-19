@@ -1,8 +1,9 @@
 package org.bimserver.interfaces.objects;
 
 import java.util.*;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.*;
 import org.bimserver.shared.meta.*;
+import javax.activation.DataHandler;
 
 @XmlRootElement
 public class SDatabaseInformation implements SBase
@@ -45,7 +46,6 @@ public class SDatabaseInformation implements SBase
 	private java.lang.String location;
 	private int schemaVersion;
 	private java.lang.String genericLines;
-
 	public int getNumberOfProjects() {
 		return numberOfProjects;
 	}
@@ -53,7 +53,6 @@ public class SDatabaseInformation implements SBase
 	public void setNumberOfProjects(int numberOfProjects) {
 		this.numberOfProjects = numberOfProjects;
 	}
-
 	public int getNumberOfUsers() {
 		return numberOfUsers;
 	}
@@ -61,7 +60,6 @@ public class SDatabaseInformation implements SBase
 	public void setNumberOfUsers(int numberOfUsers) {
 		this.numberOfUsers = numberOfUsers;
 	}
-
 	public int getNumberOfRevisions() {
 		return numberOfRevisions;
 	}
@@ -69,7 +67,6 @@ public class SDatabaseInformation implements SBase
 	public void setNumberOfRevisions(int numberOfRevisions) {
 		this.numberOfRevisions = numberOfRevisions;
 	}
-
 	public int getNumberOfCheckouts() {
 		return numberOfCheckouts;
 	}
@@ -77,7 +74,6 @@ public class SDatabaseInformation implements SBase
 	public void setNumberOfCheckouts(int numberOfCheckouts) {
 		this.numberOfCheckouts = numberOfCheckouts;
 	}
-
 	public long getDatabaseSizeInBytes() {
 		return databaseSizeInBytes;
 	}
@@ -85,7 +81,6 @@ public class SDatabaseInformation implements SBase
 	public void setDatabaseSizeInBytes(long databaseSizeInBytes) {
 		this.databaseSizeInBytes = databaseSizeInBytes;
 	}
-
 	public java.lang.String getType() {
 		return type;
 	}
@@ -93,7 +88,6 @@ public class SDatabaseInformation implements SBase
 	public void setType(java.lang.String type) {
 		this.type = type;
 	}
-
 	public java.util.Date getCreated() {
 		return created;
 	}
@@ -101,7 +95,6 @@ public class SDatabaseInformation implements SBase
 	public void setCreated(java.util.Date created) {
 		this.created = created;
 	}
-
 	public java.lang.String getLocation() {
 		return location;
 	}
@@ -109,7 +102,6 @@ public class SDatabaseInformation implements SBase
 	public void setLocation(java.lang.String location) {
 		this.location = location;
 	}
-
 	public int getSchemaVersion() {
 		return schemaVersion;
 	}
@@ -117,7 +109,6 @@ public class SDatabaseInformation implements SBase
 	public void setSchemaVersion(int schemaVersion) {
 		this.schemaVersion = schemaVersion;
 	}
-
 	public java.lang.String getGenericLines() {
 		return genericLines;
 	}

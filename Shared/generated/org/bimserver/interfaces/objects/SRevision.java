@@ -1,8 +1,9 @@
 package org.bimserver.interfaces.objects;
 
 import java.util.*;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.*;
 import org.bimserver.shared.meta.*;
+import javax.activation.DataHandler;
 
 @XmlRootElement
 public class SRevision implements SBase
@@ -57,7 +58,6 @@ public class SRevision implements SBase
 	private int bmi;
 	private int nrClashes;
 	private long laid;
-
 	public int getId() {
 		return id;
 	}
@@ -73,7 +73,6 @@ public class SRevision implements SBase
 		this.userId = userId;
 	}
 	
-
 	public java.util.Date getDate() {
 		return date;
 	}
@@ -81,7 +80,6 @@ public class SRevision implements SBase
 	public void setDate(java.util.Date date) {
 		this.date = date;
 	}
-
 	public java.lang.String getComment() {
 		return comment;
 	}
@@ -89,7 +87,6 @@ public class SRevision implements SBase
 	public void setComment(java.lang.String comment) {
 		this.comment = comment;
 	}
-
 	public long getSize() {
 		return size;
 	}
@@ -141,7 +138,6 @@ public class SRevision implements SBase
 	public void setLastClashes(List<Long> lastClashes) {
 		this.lastClashes = lastClashes;
 	}
-
 	public java.lang.String getTag() {
 		return tag;
 	}
@@ -149,7 +145,6 @@ public class SRevision implements SBase
 	public void setTag(java.lang.String tag) {
 		this.tag = tag;
 	}
-
 	public java.lang.String getLastError() {
 		return lastError;
 	}
@@ -157,7 +152,6 @@ public class SRevision implements SBase
 	public void setLastError(java.lang.String lastError) {
 		this.lastError = lastError;
 	}
-
 	public int getBmi() {
 		return bmi;
 	}
@@ -165,7 +159,6 @@ public class SRevision implements SBase
 	public void setBmi(int bmi) {
 		this.bmi = bmi;
 	}
-
 	public int getNrClashes() {
 		return nrClashes;
 	}
@@ -173,7 +166,6 @@ public class SRevision implements SBase
 	public void setNrClashes(int nrClashes) {
 		this.nrClashes = nrClashes;
 	}
-
 	public long getLaid() {
 		return laid;
 	}

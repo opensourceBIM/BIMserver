@@ -1,5 +1,5 @@
+<%@page import="org.bimserver.interfaces.objects.SDataObject"%>
 <%@page import="java.util.List"%>
-<%@page import="org.bimserver.shared.SDataObject"%>
 <%@ include file="header.jsp"%>
 
 <%@page import="org.bimserver.interfaces.objects.SProject"%>

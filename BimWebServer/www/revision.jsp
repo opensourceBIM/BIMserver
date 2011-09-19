@@ -1,13 +1,13 @@
+<%@page import="org.bimserver.shared.comparators.SCheckoutDateComparator"%>
 <%@page import="java.util.List"%>
 <%@page import="java.text.DateFormat"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Collections"%>
 <%@page import="org.bimserver.utils.Formatters"%>
-<%@page import="org.bimserver.shared.UserException"%>
+<%@page import="org.bimserver.shared.exceptions.ServiceException"%>
 <%@page import="org.bimserver.web.JspHelper"%>
 <%@page import="org.bimserver.interfaces.objects.SCheckout"%>
 <%@page import="org.bimserver.interfaces.objects.SRevision"%>
-<%@page import="org.bimserver.shared.SCheckoutDateComparator"%>
 <%@page import="org.bimserver.interfaces.objects.SProject"%>
 <%@page import="org.bimserver.interfaces.objects.SUser"%>
 <%@page import="org.bimserver.interfaces.objects.SUserType"%>
@@ -247,7 +247,7 @@ if (userHasCheckinRights) { %>
 		checkCheckoutButton();
 	});
 </script> <%
- 	} catch (UserException e) {
+ 	} catch (ServiceException e) {
 		JspHelper.showException(out, e);
  		}
  	}

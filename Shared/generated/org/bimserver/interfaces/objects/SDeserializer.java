@@ -1,8 +1,9 @@
 package org.bimserver.interfaces.objects;
 
 import java.util.*;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.*;
 import org.bimserver.shared.meta.*;
+import javax.activation.DataHandler;
 
 @XmlRootElement
 public class SDeserializer implements SBase
@@ -37,7 +38,6 @@ public class SDeserializer implements SBase
 	private boolean enabled;
 	private boolean defaultDeserializer;
 	private long settingsId;
-
 	public java.lang.String getName() {
 		return name;
 	}
@@ -45,7 +45,6 @@ public class SDeserializer implements SBase
 	public void setName(java.lang.String name) {
 		this.name = name;
 	}
-
 	public java.lang.String getDescription() {
 		return description;
 	}
@@ -53,7 +52,6 @@ public class SDeserializer implements SBase
 	public void setDescription(java.lang.String description) {
 		this.description = description;
 	}
-
 	public java.lang.String getClassName() {
 		return className;
 	}
@@ -61,7 +59,6 @@ public class SDeserializer implements SBase
 	public void setClassName(java.lang.String className) {
 		this.className = className;
 	}
-
 	public boolean isEnabled() {
 		return enabled;
 	}
@@ -69,7 +66,6 @@ public class SDeserializer implements SBase
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
 	}
-
 	public boolean isDefaultDeserializer() {
 		return defaultDeserializer;
 	}

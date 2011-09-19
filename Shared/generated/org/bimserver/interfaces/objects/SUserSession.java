@@ -1,8 +1,9 @@
 package org.bimserver.interfaces.objects;
 
 import java.util.*;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.*;
 import org.bimserver.shared.meta.*;
+import javax.activation.DataHandler;
 
 @XmlRootElement
 public class SUserSession implements SBase
@@ -47,7 +48,6 @@ public class SUserSession implements SBase
 		this.userId = userId;
 	}
 	
-
 	public java.lang.String getUsername() {
 		return username;
 	}
@@ -55,7 +55,6 @@ public class SUserSession implements SBase
 	public void setUsername(java.lang.String username) {
 		this.username = username;
 	}
-
 	public java.lang.String getName() {
 		return name;
 	}
@@ -70,7 +69,6 @@ public class SUserSession implements SBase
 	public void setType(SUserType type) {
 		this.type = type;
 	}
-
 	public java.util.Date getActiveSince() {
 		return activeSince;
 	}
@@ -78,7 +76,6 @@ public class SUserSession implements SBase
 	public void setActiveSince(java.util.Date activeSince) {
 		this.activeSince = activeSince;
 	}
-
 	public java.util.Date getLastActive() {
 		return lastActive;
 	}

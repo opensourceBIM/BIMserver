@@ -2,7 +2,7 @@
 <%@page import="org.bimserver.interfaces.objects.SUser"%>
 <jsp:include page="htmlheader.jsp" />
 <jsp:useBean id="loginManager" scope="session" class="org.bimserver.web.LoginManager" />
-<%@page import="org.bimserver.shared.UserException"%>
+<%@page import="org.bimserver.shared.exceptions.ServiceException"%>
 <div class="loginwrapper">
 <div class="header"><a href="main.jsp"><img src="images/fulllogo.gif" title="BIMserver"/></a></div>
 <div>
@@ -15,7 +15,7 @@
 			loginManager.getSystemService().validateAccount(uoid, request.getParameter("token"), request.getParameter("password"));
 			out.println("<div class=\"success\">Account successfully validated, you can now <a href=\"/?username=" + sUser.getUsername() + "\">login</a></div>");
 			showForm = false;
-		} catch (UserException e) {
+		} catch (ServiceException e) {
 			JspHelper.showException(out, e);
 		}
 	}

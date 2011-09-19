@@ -1,9 +1,9 @@
-<%@page import="org.bimserver.shared.UserException"%>
+<%@page import="org.bimserver.shared.exceptions.ServiceException"%>
 <jsp:useBean id="loginManager" scope="session" class="org.bimserver.web.LoginManager" />
 <%
 	try {
 		loginManager.getService().logout();
-	} catch (UserException e) {
+	} catch (ServiceException e) {
 		// Probably a session timeout
 	}
 	request.getSession().setAttribute("loggingout", "true");

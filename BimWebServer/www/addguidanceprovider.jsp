@@ -1,11 +1,11 @@
-<%@page import="org.bimserver.shared.SGuidanceProviderPluginDescriptor"%>
 <%@ include file="header.jsp"%>
+<%@page import="org.bimserver.interfaces.objects.SGuidanceProviderPluginDescriptor"%>
 <%@page import="org.bimserver.interfaces.objects.SSerializer"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.Collections"%>
 <%@page import="java.util.GregorianCalendar"%>
 <%@page import="org.bimserver.utils.Formatters"%>
-<%@page import="org.bimserver.shared.DatabaseInformation"%>
+<%@page import="org.bimserver.interfaces.objects.DatabaseInformation"%>
 <%@page import="org.bimserver.version.VersionChecker"%>
 <%@page import="java.util.Map"%>
 <%@page import="java.util.Set"%>
@@ -15,7 +15,7 @@
 <%@page import="org.apache.commons.io.IOUtils"%>
 <%@page import="org.bimserver.interfaces.objects.SUserType"%>
 <%@page import="org.bimserver.shared.ServiceInterface"%>
-<%@page import="org.bimserver.shared.UserException"%>
+<%@page import="org.bimserver.shared.exceptions.ServiceException"%>
 <%@page import="org.bimserver.interfaces.objects.SGuidanceProvider"%>
 <div class="sidebar">
 <ul>

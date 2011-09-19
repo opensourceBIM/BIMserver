@@ -1,8 +1,9 @@
 package org.bimserver.interfaces.objects;
 
 import java.util.*;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.*;
 import org.bimserver.shared.meta.*;
+import javax.activation.DataHandler;
 
 @XmlRootElement
 public class SGuidClash extends SClash implements SBase
@@ -35,7 +36,6 @@ public class SGuidClash extends SClash implements SBase
 	}
 	private java.lang.String guid1;
 	private java.lang.String guid2;
-
 	public java.lang.String getGuid1() {
 		return guid1;
 	}
@@ -43,7 +43,6 @@ public class SGuidClash extends SClash implements SBase
 	public void setGuid1(java.lang.String guid1) {
 		this.guid1 = guid1;
 	}
-
 	public java.lang.String getGuid2() {
 		return guid2;
 	}

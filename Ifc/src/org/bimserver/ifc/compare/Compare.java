@@ -1,10 +1,11 @@
 package org.bimserver.ifc.compare;
 
 import org.bimserver.emf.IdEObject;
+import org.bimserver.interfaces.objects.SCompareType;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
+import org.bimserver.models.store.CompareType;
 import org.bimserver.plugins.guidanceproviders.GuidanceProvider;
 import org.bimserver.plugins.serializers.IfcModelInterface;
-import org.bimserver.shared.objects.SCompareResult.SCompareType;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EDataType;
@@ -21,7 +22,7 @@ public class Compare {
 		this.guidanceProvider = guidanceProvider;
 	}
 
-	public CompareResult compareOnGuids(IfcModelInterface model1, IfcModelInterface model2, SCompareType sCompareType) {
+	public CompareResult compareOnGuids(IfcModelInterface model1, IfcModelInterface model2, CompareType sCompareType) {
 		CompareResult result = new CompareResult();
 		try {
 			for (EClassifier eClassifier : Ifc2x3Package.eINSTANCE.getEClassifiers()) {
@@ -31,7 +32,7 @@ public class Compare {
 						IdEObject eObject1 = model1.getByGuid(eClass, guid);
 						IdEObject eObject2 = model2.getByGuid(eClass, guid);
 						if  (eObject2 == null) {
-							if (sCompareType == SCompareType.ALL || sCompareType == SCompareType.DELETE) {
+							if (sCompareType == SCompareType.ALL || sCompareType == CompareType.DELETE) {
 								result.addDeleted(eObject1);
 							}
 						}
@@ -40,7 +41,7 @@ public class Compare {
 						IdEObject eObject1 = model1.getByGuid(eClass, guid);
 						IdEObject eObject2 = model2.getByGuid(eClass, guid);
 						if (eObject1 == null) {
-							if (sCompareType == SCompareType.ALL || sCompareType == SCompareType.ADD) {
+							if (sCompareType == SCompareType.ALL || sCompareType == CompareType.ADD) {
 								result.addAdded(eObject2);
 							}
 						} else {
@@ -89,12 +90,12 @@ public class Compare {
 		return result;
 	}
 
-	private void compareEObjects(EClass originalQueryClass, IdEObject eObject1, IdEObject eObject2, CompareResult result, SCompareType sCompareType) {
+	private void compareEObjects(EClass originalQueryClass, IdEObject eObject1, IdEObject eObject2, CompareResult result, CompareType sCompareType) {
 		if (eObject1.eClass() != eObject2.eClass()) {
 			return;
 		}
 		EClass eClass = eObject1.eClass();
-		if (sCompareType == SCompareType.ALL || sCompareType == SCompareType.MODIFY) {
+		if (sCompareType == CompareType.ALL || sCompareType == CompareType.MODIFY) {
 			for (EStructuralFeature eStructuralFeature : eClass.getEAllStructuralFeatures()) {
 				if (!guidanceProvider.shouldIgnoreField(originalQueryClass, eClass, eStructuralFeature)) {
 					if (eStructuralFeature.getName().endsWith("AsString")) {

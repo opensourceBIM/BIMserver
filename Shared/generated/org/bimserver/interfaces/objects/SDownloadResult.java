@@ -1,8 +1,9 @@
 package org.bimserver.interfaces.objects;
 
 import java.util.*;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.*;
 import org.bimserver.shared.meta.*;
+import javax.activation.DataHandler;
 
 @XmlRootElement
 public class SDownloadResult implements SBase
@@ -30,8 +31,8 @@ public class SDownloadResult implements SBase
 	}
 	private java.lang.String projectName;
 	private int revisionNr;
-	private byte[] file;
-
+	@XmlMimeType("application/octet-stream")
+	private DataHandler file;
 	public java.lang.String getProjectName() {
 		return projectName;
 	}
@@ -39,7 +40,6 @@ public class SDownloadResult implements SBase
 	public void setProjectName(java.lang.String projectName) {
 		this.projectName = projectName;
 	}
-
 	public int getRevisionNr() {
 		return revisionNr;
 	}
@@ -47,12 +47,11 @@ public class SDownloadResult implements SBase
 	public void setRevisionNr(int revisionNr) {
 		this.revisionNr = revisionNr;
 	}
-
-	public byte[] getFile() {
+	public DataHandler getFile() {
 		return file;
 	}
 
-	public void setFile(byte[] file) {
+	public void setFile(DataHandler file) {
 		this.file = file;
 	}
 	@Override

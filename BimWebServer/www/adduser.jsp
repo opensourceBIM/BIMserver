@@ -2,7 +2,7 @@
 <%@page import="java.text.DateFormat" %>
 <%@page import="java.text.SimpleDateFormat" %>
 <%@page import="org.bimserver.utils.Formatters"%>
-<%@page import="org.bimserver.shared.UserException"%>
+<%@page import="org.bimserver.shared.exceptions.ServiceException"%>
 <%@page import="java.util.Properties"%>
 <%@page import="org.bimserver.mail.MailSystem"%>
 <%@page import="org.bimserver.web.JspHelper"%>
@@ -18,7 +18,7 @@
 			try {
 				long uoid = loginManager.getService().addUser(request.getParameter("username"), request.getParameter("name"), SUserType.values()[Integer.parseInt(request.getParameter("type"))], false);
 				response.sendRedirect("user.jsp?uoid=" + uoid);
-			} catch (UserException e) {
+			} catch (ServiceException e) {
 				JspHelper.showException(out, e);
 			}
 		}

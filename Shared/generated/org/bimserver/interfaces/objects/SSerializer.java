@@ -1,8 +1,9 @@
 package org.bimserver.interfaces.objects;
 
 import java.util.*;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.*;
 import org.bimserver.shared.meta.*;
+import javax.activation.DataHandler;
 
 @XmlRootElement
 public class SSerializer implements SBase
@@ -43,7 +44,6 @@ public class SSerializer implements SBase
 	private boolean defaultSerializer;
 	private long guidanceProviderId;
 	private long settingsId;
-
 	public java.lang.String getName() {
 		return name;
 	}
@@ -51,7 +51,6 @@ public class SSerializer implements SBase
 	public void setName(java.lang.String name) {
 		this.name = name;
 	}
-
 	public java.lang.String getDescription() {
 		return description;
 	}
@@ -59,7 +58,6 @@ public class SSerializer implements SBase
 	public void setDescription(java.lang.String description) {
 		this.description = description;
 	}
-
 	public java.lang.String getExtension() {
 		return extension;
 	}
@@ -67,7 +65,6 @@ public class SSerializer implements SBase
 	public void setExtension(java.lang.String extension) {
 		this.extension = extension;
 	}
-
 	public java.lang.String getContentType() {
 		return contentType;
 	}
@@ -75,7 +72,6 @@ public class SSerializer implements SBase
 	public void setContentType(java.lang.String contentType) {
 		this.contentType = contentType;
 	}
-
 	public java.lang.String getClassName() {
 		return className;
 	}
@@ -83,7 +79,6 @@ public class SSerializer implements SBase
 	public void setClassName(java.lang.String className) {
 		this.className = className;
 	}
-
 	public boolean isEnabled() {
 		return enabled;
 	}
@@ -91,7 +86,6 @@ public class SSerializer implements SBase
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
 	}
-
 	public boolean isDefaultSerializer() {
 		return defaultSerializer;
 	}

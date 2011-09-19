@@ -38,13 +38,19 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.xml.bind.annotation.XmlMimeType;
 
+import org.bimserver.interfaces.objects.LongActionState;
 import org.bimserver.interfaces.objects.SAccessMethod;
 import org.bimserver.interfaces.objects.SCheckinResult;
 import org.bimserver.interfaces.objects.SCheckout;
 import org.bimserver.interfaces.objects.SClash;
 import org.bimserver.interfaces.objects.SClashDetectionSettings;
+import org.bimserver.interfaces.objects.SCompareIdentifier;
+import org.bimserver.interfaces.objects.SCompareResult;
+import org.bimserver.interfaces.objects.SCompareType;
 import org.bimserver.interfaces.objects.SDataObject;
+import org.bimserver.interfaces.objects.SDatabaseInformation;
 import org.bimserver.interfaces.objects.SDeserializer;
+import org.bimserver.interfaces.objects.SDownloadResult;
 import org.bimserver.interfaces.objects.SEidClash;
 import org.bimserver.interfaces.objects.SGeoTag;
 import org.bimserver.interfaces.objects.SGuidClash;
@@ -65,12 +71,6 @@ import org.bimserver.interfaces.objects.SUserSession;
 import org.bimserver.interfaces.objects.SUserType;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
-import org.bimserver.shared.objects.DatabaseInformation;
-import org.bimserver.shared.objects.LongActionState;
-import org.bimserver.shared.objects.SCompareResult;
-import org.bimserver.shared.objects.SCompareResult.SCompareIdentifier;
-import org.bimserver.shared.objects.SCompareResult.SCompareType;
-import org.bimserver.shared.objects.SDownloadResult;
 
 //TODO: Document the rest of the interface
 /**
@@ -249,7 +249,7 @@ public interface ServiceInterface {
 	List<String> getAvailableClasses() throws ServiceException;
 
 	@WebMethod(action = "getDatabaseInformation")
-	DatabaseInformation getDatabaseInformation() throws ServiceException;
+	SDatabaseInformation getDatabaseInformation() throws ServiceException;
 
 	@WebMethod(action = "getLastDatabaseReset")
 	Date getLastDatabaseReset() throws ServiceException;

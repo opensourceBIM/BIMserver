@@ -295,6 +295,39 @@ public class StoreSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case StorePackage.COMPARE_ITEM: {
+				CompareItem compareItem = (CompareItem)theEObject;
+				T result = caseCompareItem(compareItem);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case StorePackage.OBJECT_ADDED: {
+				ObjectAdded objectAdded = (ObjectAdded)theEObject;
+				T result = caseObjectAdded(objectAdded);
+				if (result == null) result = caseCompareItem(objectAdded);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case StorePackage.OBJECT_REMOVED: {
+				ObjectRemoved objectRemoved = (ObjectRemoved)theEObject;
+				T result = caseObjectRemoved(objectRemoved);
+				if (result == null) result = caseCompareItem(objectRemoved);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case StorePackage.OBJECT_MODIFIED: {
+				ObjectModified objectModified = (ObjectModified)theEObject;
+				T result = caseObjectModified(objectModified);
+				if (result == null) result = caseCompareItem(objectModified);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case StorePackage.COMPARE_CONTAINER: {
+				CompareContainer compareContainer = (CompareContainer)theEObject;
+				T result = caseCompareContainer(compareContainer);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case StorePackage.COMPARE_RESULT: {
 				CompareResult compareResult = (CompareResult)theEObject;
 				T result = caseCompareResult(compareResult);
@@ -818,6 +851,81 @@ public class StoreSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseGuidanceProviderPluginDescriptor(GuidanceProviderPluginDescriptor object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Compare Item</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Compare Item</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCompareItem(CompareItem object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Object Added</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Object Added</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseObjectAdded(ObjectAdded object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Object Removed</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Object Removed</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseObjectRemoved(ObjectRemoved object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Object Modified</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Object Modified</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseObjectModified(ObjectModified object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Compare Container</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Compare Container</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCompareContainer(CompareContainer object) {
 		return null;
 	}
 

@@ -1,8 +1,9 @@
 package org.bimserver.interfaces.objects;
 
 import java.util.*;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.*;
 import org.bimserver.shared.meta.*;
+import javax.activation.DataHandler;
 
 @XmlRootElement
 public class SDatabaseCreated extends SLogAction implements SBase
@@ -32,7 +33,6 @@ public class SDatabaseCreated extends SLogAction implements SBase
 	}
 	private java.lang.String path;
 	private int version;
-
 	public java.lang.String getPath() {
 		return path;
 	}
@@ -40,7 +40,6 @@ public class SDatabaseCreated extends SLogAction implements SBase
 	public void setPath(java.lang.String path) {
 		this.path = path;
 	}
-
 	public int getVersion() {
 		return version;
 	}

@@ -4,7 +4,7 @@
 <%@page import="org.bimserver.web.LoginManager"%>
 <%@page import="org.bimserver.web.JspHelper"%>
 <%@page import="org.bimserver.interfaces.objects.SProject"%>
-<%@page import="org.bimserver.shared.SProjectNameComparator"%>
+<%@page import="org.bimserver.shared.comparators.SProjectNameComparator"%>
 <%@page import="org.bimserver.interfaces.objects.SUserType"%>
 <%@ include file="header.jsp" %>
 <%
