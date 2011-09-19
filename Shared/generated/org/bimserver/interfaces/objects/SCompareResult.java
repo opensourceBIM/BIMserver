@@ -31,6 +31,17 @@ public class SCompareResult implements SBase
 	public SClass getSClass() {
 		return sClass;
 	}
+	
+	public Object sGet(SField sField) {
+		if (sField.getName().equals("items")) {
+			return getItems();
+		}
+		if (sField.getName().equals("oid")) {
+			return getOid();
+		}
+		throw new RuntimeException("Field " + sField.getName() + " not found");
+	}
+	
 	private List<SCompareContainer> items = new ArrayList<SCompareContainer>();
 	public List<SCompareContainer> getItems() {
 		return items;

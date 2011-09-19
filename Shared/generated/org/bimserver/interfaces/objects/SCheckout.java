@@ -33,6 +33,32 @@ public class SCheckout implements SBase
 	public SClass getSClass() {
 		return sClass;
 	}
+	
+	public Object sGet(SField sField) {
+		if (sField.getName().equals("userId")) {
+			return getUserId();
+		}
+		if (sField.getName().equals("revisionId")) {
+			return getRevisionId();
+		}
+		if (sField.getName().equals("projectId")) {
+			return getProjectId();
+		}
+		if (sField.getName().equals("date")) {
+			return getDate();
+		}
+		if (sField.getName().equals("checkinId")) {
+			return getCheckinId();
+		}
+		if (sField.getName().equals("active")) {
+			return isActive();
+		}
+		if (sField.getName().equals("oid")) {
+			return getOid();
+		}
+		throw new RuntimeException("Field " + sField.getName() + " not found");
+	}
+	
 	private long userId;
 	private long revisionId;
 	private long projectId;

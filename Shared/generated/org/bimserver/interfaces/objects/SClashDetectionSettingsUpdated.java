@@ -31,6 +31,26 @@ public class SClashDetectionSettingsUpdated extends SLogAction implements SBase
 	public SClass getSClass() {
 		return sClass;
 	}
+	
+	public Object sGet(SField sField) {
+		if (sField.getName().equals("date")) {
+			return getDate();
+		}
+		if (sField.getName().equals("executorId")) {
+			return getExecutorId();
+		}
+		if (sField.getName().equals("accessMethod")) {
+			return getAccessMethod();
+		}
+		if (sField.getName().equals("clashDetectionSettingsId")) {
+			return getClashDetectionSettingsId();
+		}
+		if (sField.getName().equals("oid")) {
+			return getOid();
+		}
+		throw new RuntimeException("Field " + sField.getName() + " not found");
+	}
+	
 	private long clashDetectionSettingsId;
 	public long getClashDetectionSettingsId() {
 		return clashDetectionSettingsId;

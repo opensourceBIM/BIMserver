@@ -30,6 +30,23 @@ public class SIfcEngine implements SBase
 	public SClass getSClass() {
 		return sClass;
 	}
+	
+	public Object sGet(SField sField) {
+		if (sField.getName().equals("name")) {
+			return getName();
+		}
+		if (sField.getName().equals("active")) {
+			return isActive();
+		}
+		if (sField.getName().equals("settingsId")) {
+			return getSettingsId();
+		}
+		if (sField.getName().equals("oid")) {
+			return getOid();
+		}
+		throw new RuntimeException("Field " + sField.getName() + " not found");
+	}
+	
 	private java.lang.String name;
 	private boolean active;
 	private long settingsId;

@@ -31,6 +31,17 @@ public class SServerLog implements SBase
 	public SClass getSClass() {
 		return sClass;
 	}
+	
+	public Object sGet(SField sField) {
+		if (sField.getName().equals("actions")) {
+			return getActions();
+		}
+		if (sField.getName().equals("oid")) {
+			return getOid();
+		}
+		throw new RuntimeException("Field " + sField.getName() + " not found");
+	}
+	
 	private List<Long> actions = new ArrayList<Long>();
 	public List<Long> getActions() {
 		return actions;

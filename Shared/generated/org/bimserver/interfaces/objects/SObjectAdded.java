@@ -28,6 +28,17 @@ public class SObjectAdded extends SCompareItem implements SBase
 	public SClass getSClass() {
 		return sClass;
 	}
+	
+	public Object sGet(SField sField) {
+		if (sField.getName().equals("dataObject")) {
+			return getDataObject();
+		}
+		if (sField.getName().equals("oid")) {
+			return getOid();
+		}
+		throw new RuntimeException("Field " + sField.getName() + " not found");
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

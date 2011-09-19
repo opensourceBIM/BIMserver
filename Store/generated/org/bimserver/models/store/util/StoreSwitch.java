@@ -6,7 +6,6 @@
  */
 package org.bimserver.models.store.util;
 
-import org.bimserver.models.store.*;
 import org.bimserver.models.store.CheckinResult;
 import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.CheckoutResult;
@@ -19,6 +18,8 @@ import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.DataObject;
 import org.bimserver.models.store.DataValue;
 import org.bimserver.models.store.DatabaseInformation;
+import org.bimserver.models.store.DatabaseInformationCategory;
+import org.bimserver.models.store.DatabaseInformationItem;
 import org.bimserver.models.store.Deserializer;
 import org.bimserver.models.store.DownloadResult;
 import org.bimserver.models.store.EidClash;

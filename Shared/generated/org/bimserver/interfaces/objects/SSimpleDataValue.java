@@ -29,6 +29,20 @@ public class SSimpleDataValue extends SDataValue implements SBase
 	public SClass getSClass() {
 		return sClass;
 	}
+	
+	public Object sGet(SField sField) {
+		if (sField.getName().equals("fieldName")) {
+			return getFieldName();
+		}
+		if (sField.getName().equals("stringValue")) {
+			return getStringValue();
+		}
+		if (sField.getName().equals("oid")) {
+			return getOid();
+		}
+		throw new RuntimeException("Field " + sField.getName() + " not found");
+	}
+	
 	private java.lang.String stringValue;
 	public java.lang.String getStringValue() {
 		return stringValue;

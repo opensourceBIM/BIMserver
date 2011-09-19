@@ -8,7 +8,6 @@ import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.BimDeadlockException;
 import org.bimserver.database.Database;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.interfaces.objects.SMigration;
 import org.bimserver.models.store.StoreFactory;
 
 public class Migrator {

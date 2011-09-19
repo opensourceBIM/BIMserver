@@ -28,6 +28,17 @@ public class SCompareItem implements SBase
 	public SClass getSClass() {
 		return sClass;
 	}
+	
+	public Object sGet(SField sField) {
+		if (sField.getName().equals("dataObject")) {
+			return getDataObject();
+		}
+		if (sField.getName().equals("oid")) {
+			return getOid();
+		}
+		throw new RuntimeException("Field " + sField.getName() + " not found");
+	}
+	
 	private SDataObject dataObject;
 	public SDataObject getDataObject() {
 		return dataObject;

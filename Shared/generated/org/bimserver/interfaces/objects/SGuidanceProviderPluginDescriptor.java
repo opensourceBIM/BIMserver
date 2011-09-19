@@ -28,6 +28,17 @@ public class SGuidanceProviderPluginDescriptor implements SBase
 	public SClass getSClass() {
 		return sClass;
 	}
+	
+	public Object sGet(SField sField) {
+		if (sField.getName().equals("className")) {
+			return getClassName();
+		}
+		if (sField.getName().equals("oid")) {
+			return getOid();
+		}
+		throw new RuntimeException("Field " + sField.getName() + " not found");
+	}
+	
 	private java.lang.String className;
 	public java.lang.String getClassName() {
 		return className;

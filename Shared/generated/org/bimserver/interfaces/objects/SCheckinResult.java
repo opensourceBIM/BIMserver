@@ -30,6 +30,23 @@ public class SCheckinResult implements SBase
 	public SClass getSClass() {
 		return sClass;
 	}
+	
+	public Object sGet(SField sField) {
+		if (sField.getName().equals("revisionId")) {
+			return getRevisionId();
+		}
+		if (sField.getName().equals("rid")) {
+			return getRid();
+		}
+		if (sField.getName().equals("projectId")) {
+			return getProjectId();
+		}
+		if (sField.getName().equals("oid")) {
+			return getOid();
+		}
+		throw new RuntimeException("Field " + sField.getName() + " not found");
+	}
+	
 	private long revisionId;
 	private int rid;
 	private long projectId;

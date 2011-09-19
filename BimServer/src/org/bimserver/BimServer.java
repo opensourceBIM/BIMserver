@@ -73,11 +73,6 @@ import com.google.protobuf.BlockingService;
 import com.google.protobuf.DescriptorProtos.FileDescriptorProto;
 import com.google.protobuf.DescriptorProtos.FileDescriptorSet;
 import com.google.protobuf.Descriptors.FileDescriptor;
-import com.google.protobuf.Descriptors.MethodDescriptor;
-import com.google.protobuf.Descriptors.ServiceDescriptor;
-import com.google.protobuf.Message;
-import com.google.protobuf.RpcController;
-import com.google.protobuf.ServiceException;
 import com.googlecode.protobuf.socketrpc.RpcServer;
 import com.googlecode.protobuf.socketrpc.SocketRpcConnectionFactories;
 

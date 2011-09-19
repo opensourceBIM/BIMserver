@@ -29,6 +29,20 @@ public class SRevisionSummaryType implements SBase
 	public SClass getSClass() {
 		return sClass;
 	}
+	
+	public Object sGet(SField sField) {
+		if (sField.getName().equals("name")) {
+			return getName();
+		}
+		if (sField.getName().equals("count")) {
+			return getCount();
+		}
+		if (sField.getName().equals("oid")) {
+			return getOid();
+		}
+		throw new RuntimeException("Field " + sField.getName() + " not found");
+	}
+	
 	private java.lang.String name;
 	private int count;
 	public java.lang.String getName() {

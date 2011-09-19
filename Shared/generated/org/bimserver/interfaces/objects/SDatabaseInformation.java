@@ -40,6 +40,44 @@ public class SDatabaseInformation implements SBase
 	public SClass getSClass() {
 		return sClass;
 	}
+	
+	public Object sGet(SField sField) {
+		if (sField.getName().equals("numberOfProjects")) {
+			return getNumberOfProjects();
+		}
+		if (sField.getName().equals("numberOfUsers")) {
+			return getNumberOfUsers();
+		}
+		if (sField.getName().equals("numberOfRevisions")) {
+			return getNumberOfRevisions();
+		}
+		if (sField.getName().equals("numberOfCheckouts")) {
+			return getNumberOfCheckouts();
+		}
+		if (sField.getName().equals("databaseSizeInBytes")) {
+			return getDatabaseSizeInBytes();
+		}
+		if (sField.getName().equals("type")) {
+			return getType();
+		}
+		if (sField.getName().equals("created")) {
+			return getCreated();
+		}
+		if (sField.getName().equals("location")) {
+			return getLocation();
+		}
+		if (sField.getName().equals("schemaVersion")) {
+			return getSchemaVersion();
+		}
+		if (sField.getName().equals("categories")) {
+			return getCategories();
+		}
+		if (sField.getName().equals("oid")) {
+			return getOid();
+		}
+		throw new RuntimeException("Field " + sField.getName() + " not found");
+	}
+	
 	private int numberOfProjects;
 	private int numberOfUsers;
 	private int numberOfRevisions;

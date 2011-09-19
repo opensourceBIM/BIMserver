@@ -32,6 +32,29 @@ public class SDatabaseCreated extends SLogAction implements SBase
 	public SClass getSClass() {
 		return sClass;
 	}
+	
+	public Object sGet(SField sField) {
+		if (sField.getName().equals("date")) {
+			return getDate();
+		}
+		if (sField.getName().equals("executorId")) {
+			return getExecutorId();
+		}
+		if (sField.getName().equals("accessMethod")) {
+			return getAccessMethod();
+		}
+		if (sField.getName().equals("path")) {
+			return getPath();
+		}
+		if (sField.getName().equals("version")) {
+			return getVersion();
+		}
+		if (sField.getName().equals("oid")) {
+			return getOid();
+		}
+		throw new RuntimeException("Field " + sField.getName() + " not found");
+	}
+	
 	private java.lang.String path;
 	private int version;
 	public java.lang.String getPath() {

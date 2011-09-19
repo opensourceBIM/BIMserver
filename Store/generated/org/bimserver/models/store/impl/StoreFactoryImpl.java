@@ -8,7 +8,6 @@ package org.bimserver.models.store.impl;
 
 import javax.activation.DataHandler;
 
-import org.bimserver.models.store.*;
 import org.bimserver.models.store.ActionState;
 import org.bimserver.models.store.CheckinResult;
 import org.bimserver.models.store.CheckinState;
@@ -25,6 +24,8 @@ import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.DataObject;
 import org.bimserver.models.store.DataValue;
 import org.bimserver.models.store.DatabaseInformation;
+import org.bimserver.models.store.DatabaseInformationCategory;
+import org.bimserver.models.store.DatabaseInformationItem;
 import org.bimserver.models.store.Deserializer;
 import org.bimserver.models.store.DownloadResult;
 import org.bimserver.models.store.EidClash;

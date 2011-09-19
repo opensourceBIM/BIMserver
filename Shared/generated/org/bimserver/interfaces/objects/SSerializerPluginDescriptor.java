@@ -31,6 +31,26 @@ public class SSerializerPluginDescriptor implements SBase
 	public SClass getSClass() {
 		return sClass;
 	}
+	
+	public Object sGet(SField sField) {
+		if (sField.getName().equals("pluginClassName")) {
+			return getPluginClassName();
+		}
+		if (sField.getName().equals("defaultName")) {
+			return getDefaultName();
+		}
+		if (sField.getName().equals("defaultExtension")) {
+			return getDefaultExtension();
+		}
+		if (sField.getName().equals("defaultContentType")) {
+			return getDefaultContentType();
+		}
+		if (sField.getName().equals("oid")) {
+			return getOid();
+		}
+		throw new RuntimeException("Field " + sField.getName() + " not found");
+	}
+	
 	private java.lang.String pluginClassName;
 	private java.lang.String defaultName;
 	private java.lang.String defaultExtension;

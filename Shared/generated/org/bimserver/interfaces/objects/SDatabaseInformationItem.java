@@ -29,6 +29,20 @@ public class SDatabaseInformationItem implements SBase
 	public SClass getSClass() {
 		return sClass;
 	}
+	
+	public Object sGet(SField sField) {
+		if (sField.getName().equals("key")) {
+			return getKey();
+		}
+		if (sField.getName().equals("value")) {
+			return getValue();
+		}
+		if (sField.getName().equals("oid")) {
+			return getOid();
+		}
+		throw new RuntimeException("Field " + sField.getName() + " not found");
+	}
+	
 	private java.lang.String key;
 	private java.lang.String value;
 	public java.lang.String getKey() {

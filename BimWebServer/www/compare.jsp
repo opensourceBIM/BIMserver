@@ -1,10 +1,11 @@
+<%@page import="org.bimserver.interfaces.objects.SCompareResult"%>
+<%@page import="org.bimserver.interfaces.objects.SCompareIdentifier"%>
+<%@page import="org.bimserver.interfaces.objects.SCompareType"%>
 <%@page import="org.bimserver.webservices.CompareWriter"%>
-<%@page import="org.bimserver.ifc.compare.CompareResult.Item"%>
 <%@page import="java.util.List"%>
 <%@page import="org.eclipse.emf.ecore.EClass"%>
 <%@page import="java.util.Map"%>
 <%@page import="java.io.PrintStream"%>
-<%@page import="org.bimserver.ifc.compare.CompareResult"%>
 <%@page import="org.bimserver.web.JspHelper"%>
 <%@page import="org.bimserver.interfaces.objects.SProject"%>
 <%@page import="org.bimserver.interfaces.objects.SRevision"%>

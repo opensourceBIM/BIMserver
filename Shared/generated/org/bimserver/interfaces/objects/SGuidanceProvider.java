@@ -34,6 +34,26 @@ public class SGuidanceProvider implements SBase
 	public SClass getSClass() {
 		return sClass;
 	}
+	
+	public Object sGet(SField sField) {
+		if (sField.getName().equals("name")) {
+			return getName();
+		}
+		if (sField.getName().equals("className")) {
+			return getClassName();
+		}
+		if (sField.getName().equals("serializers")) {
+			return getSerializers();
+		}
+		if (sField.getName().equals("settingsId")) {
+			return getSettingsId();
+		}
+		if (sField.getName().equals("oid")) {
+			return getOid();
+		}
+		throw new RuntimeException("Field " + sField.getName() + " not found");
+	}
+	
 	private java.lang.String name;
 	private java.lang.String className;
 	private List<Long> serializers = new ArrayList<Long>();

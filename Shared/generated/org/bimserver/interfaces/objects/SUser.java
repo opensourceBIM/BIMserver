@@ -43,6 +43,53 @@ public class SUser implements SBase
 	public SClass getSClass() {
 		return sClass;
 	}
+	
+	public Object sGet(SField sField) {
+		if (sField.getName().equals("name")) {
+			return getName();
+		}
+		if (sField.getName().equals("password")) {
+			return getPassword();
+		}
+		if (sField.getName().equals("hasRightsOn")) {
+			return getHasRightsOn();
+		}
+		if (sField.getName().equals("revisions")) {
+			return getRevisions();
+		}
+		if (sField.getName().equals("state")) {
+			return getState();
+		}
+		if (sField.getName().equals("createdOn")) {
+			return getCreatedOn();
+		}
+		if (sField.getName().equals("createdById")) {
+			return getCreatedById();
+		}
+		if (sField.getName().equals("userType")) {
+			return getUserType();
+		}
+		if (sField.getName().equals("username")) {
+			return getUsername();
+		}
+		if (sField.getName().equals("lastSeen")) {
+			return getLastSeen();
+		}
+		if (sField.getName().equals("validationToken")) {
+			return getValidationToken();
+		}
+		if (sField.getName().equals("validationTokenCreated")) {
+			return getValidationTokenCreated();
+		}
+		if (sField.getName().equals("notificationUrl")) {
+			return getNotificationUrl();
+		}
+		if (sField.getName().equals("oid")) {
+			return getOid();
+		}
+		throw new RuntimeException("Field " + sField.getName() + " not found");
+	}
+	
 	private java.lang.String name;
 	private java.lang.String password;
 	private List<Long> hasRightsOn = new ArrayList<Long>();

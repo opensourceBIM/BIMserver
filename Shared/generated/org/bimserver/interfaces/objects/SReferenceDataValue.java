@@ -30,6 +30,23 @@ public class SReferenceDataValue extends SDataValue implements SBase
 	public SClass getSClass() {
 		return sClass;
 	}
+	
+	public Object sGet(SField sField) {
+		if (sField.getName().equals("fieldName")) {
+			return getFieldName();
+		}
+		if (sField.getName().equals("typeName")) {
+			return getTypeName();
+		}
+		if (sField.getName().equals("guid")) {
+			return getGuid();
+		}
+		if (sField.getName().equals("oid")) {
+			return getOid();
+		}
+		throw new RuntimeException("Field " + sField.getName() + " not found");
+	}
+	
 	private java.lang.String typeName;
 	private java.lang.String guid;
 	public java.lang.String getTypeName() {

@@ -33,6 +33,32 @@ public class SDeserializer implements SBase
 	public SClass getSClass() {
 		return sClass;
 	}
+	
+	public Object sGet(SField sField) {
+		if (sField.getName().equals("name")) {
+			return getName();
+		}
+		if (sField.getName().equals("description")) {
+			return getDescription();
+		}
+		if (sField.getName().equals("className")) {
+			return getClassName();
+		}
+		if (sField.getName().equals("enabled")) {
+			return isEnabled();
+		}
+		if (sField.getName().equals("defaultDeserializer")) {
+			return isDefaultDeserializer();
+		}
+		if (sField.getName().equals("settingsId")) {
+			return getSettingsId();
+		}
+		if (sField.getName().equals("oid")) {
+			return getOid();
+		}
+		throw new RuntimeException("Field " + sField.getName() + " not found");
+	}
+	
 	private java.lang.String name;
 	private java.lang.String description;
 	private java.lang.String className;

@@ -35,6 +35,29 @@ public class SClashDetectionSettings implements SBase
 	public SClass getSClass() {
 		return sClass;
 	}
+	
+	public Object sGet(SField sField) {
+		if (sField.getName().equals("enabled")) {
+			return isEnabled();
+		}
+		if (sField.getName().equals("projects")) {
+			return getProjects();
+		}
+		if (sField.getName().equals("margin")) {
+			return getMargin();
+		}
+		if (sField.getName().equals("revisions")) {
+			return getRevisions();
+		}
+		if (sField.getName().equals("ignoredClasses")) {
+			return getIgnoredClasses();
+		}
+		if (sField.getName().equals("oid")) {
+			return getOid();
+		}
+		throw new RuntimeException("Field " + sField.getName() + " not found");
+	}
+	
 	private boolean enabled;
 	private List<Long> projects = new ArrayList<Long>();
 	private float margin;

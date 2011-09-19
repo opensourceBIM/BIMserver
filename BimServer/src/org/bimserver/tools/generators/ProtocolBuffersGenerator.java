@@ -37,6 +37,7 @@ public class ProtocolBuffersGenerator {
 		methodsToIgnore.add("getExceptionTypes");
 		methodsToIgnore.add("getTypeParameters");
 		methodsToIgnore.add("getAnnotation");
+		methodsToIgnore.add("getSClass");
 	}
 	
 	public static void main(String[] args) {
