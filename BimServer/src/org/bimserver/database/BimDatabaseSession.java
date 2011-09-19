@@ -12,7 +12,7 @@ import org.bimserver.database.actions.PostCommitAction;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.ifc.IfcModel;
-import org.bimserver.interfaces.objects.DatabaseInformation;
+import org.bimserver.models.store.DatabaseInformation;
 import org.bimserver.plugins.serializers.OidProvider;
 import org.bimserver.shared.exceptions.UserException;
 import org.eclipse.emf.ecore.EClass;

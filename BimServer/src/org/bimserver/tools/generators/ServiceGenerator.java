@@ -12,6 +12,7 @@ import java.util.Set;
 import org.apache.commons.io.FileUtils;
 import org.bimserver.models.log.LogPackage;
 import org.bimserver.models.store.StorePackage;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EPackage;
 import org.slf4j.Logger;
@@ -40,18 +41,20 @@ public class ServiceGenerator {
 		ServiceInterfaceObjectGenerator dataObjectGenerator = new ServiceInterfaceObjectGenerator();
 		for (EPackage ePackage : ePackages) {
 			for (EClassifier eClassifier : ePackage.getEClassifiers()) {
-				String generated = dataObjectGenerator.generate(eClassifier);
-				File file = new File(packageFolder, "S" + eClassifier.getName() + ".java");
-				try {
-					OutputStream fileOutputStream = new FileOutputStream(file);
-					fileOutputStream.write(generated.getBytes(Charsets.UTF_8));
-					fileOutputStream.close();
-				} catch (FileNotFoundException e) {
-					LOGGER.error("", e);
-				} catch (UnsupportedEncodingException e) {
-					LOGGER.error("", e);
-				} catch (IOException e) {
-					LOGGER.error("", e);
+				if (eClassifier instanceof EClass) {
+					String generated = dataObjectGenerator.generate(eClassifier);
+					File file = new File(packageFolder, "S" + eClassifier.getName() + ".java");
+					try {
+						OutputStream fileOutputStream = new FileOutputStream(file);
+						fileOutputStream.write(generated.getBytes(Charsets.UTF_8));
+						fileOutputStream.close();
+					} catch (FileNotFoundException e) {
+						LOGGER.error("", e);
+					} catch (UnsupportedEncodingException e) {
+						LOGGER.error("", e);
+					} catch (IOException e) {
+						LOGGER.error("", e);
+					}
 				}
 			}
 		}

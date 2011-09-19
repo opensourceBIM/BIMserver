@@ -41,7 +41,6 @@ import org.bimserver.database.query.conditions.IsOfTypeCondition;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.LazyLoader;
 import org.bimserver.ifc.IfcModel;
-import org.bimserver.interfaces.objects.DatabaseInformation;
 import org.bimserver.models.ifc2x3.Ifc2x3Factory;
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.IfcGloballyUniqueId;
@@ -49,7 +48,9 @@ import org.bimserver.models.ifc2x3.Tristate;
 import org.bimserver.models.ifc2x3.WrappedValue;
 import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.ConcreteRevision;
+import org.bimserver.models.store.DatabaseInformation;
 import org.bimserver.models.store.Project;
+import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.plugins.serializers.IfcModelInterface;
@@ -71,6 +72,7 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EEnumImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.dao.DataAccessException;
 
 import com.google.common.base.Charsets;
 import com.google.common.collect.BiMap;
@@ -706,7 +708,7 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 
 	@Override
 	public DatabaseInformation getDatabaseInformation() throws BimDatabaseException, BimDeadlockException {
-		DatabaseInformation databaseInformation = new DatabaseInformation();
+		DatabaseInformation databaseInformation = StoreFactory.eINSTANCE.createDatabaseInformation();
 		databaseInformation.setNumberOfProjects(getObjectCount(Project.class, false));
 		databaseInformation.setNumberOfUsers(getObjectCount(User.class, false));
 		databaseInformation.setNumberOfCheckouts(getObjectCount(Checkout.class, false));
@@ -721,7 +723,8 @@ public class DatabaseSession implements BimDatabaseSession, LazyLoader {
 		while (scanner.hasNextLine()) {
 			String line = scanner.nextLine();
 			if (line.contains("=")) {
-				databaseInformation.addGenericLine(title, line.substring(0, line.indexOf("=")), line.substring(line.indexOf("=") + 1));
+				// TODO
+//				databaseInformation.addGenericLine(title, line.substring(0, line.indexOf("=")), line.substring(line.indexOf("=") + 1));
 			} else {
 				title = line;
 			}

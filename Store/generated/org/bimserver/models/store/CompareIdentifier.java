@@ -23,54 +23,52 @@ import org.eclipse.emf.common.util.Enumerator;
  */
 public enum CompareIdentifier implements Enumerator {
 	/**
-	 * The '<em><b>NAME</b></em>' literal object.
+	 * The '<em><b>NAME ID</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NAME_VALUE
+	 * @see #NAME_ID_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NAME(0, "NAME", "NAME"),
-
-	/**
-	 * The '<em><b>GUID</b></em>' literal object.
+	NAME_ID(0, "NAME_ID", "NAME_ID"), /**
+	 * The '<em><b>GUID ID</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #GUID_VALUE
+	 * @see #GUID_ID_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	GUID(1, "GUID", "GUID");
+	GUID_ID(1, "GUID_ID", "GUID_ID");
 
 	/**
-	 * The '<em><b>NAME</b></em>' literal value.
+	 * The '<em><b>NAME ID</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>NAME</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>NAME ID</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NAME
+	 * @see #NAME_ID
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NAME_VALUE = 0;
+	public static final int NAME_ID_VALUE = 0;
 
 	/**
-	 * The '<em><b>GUID</b></em>' literal value.
+	 * The '<em><b>GUID ID</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>GUID</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>GUID ID</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #GUID
+	 * @see #GUID_ID
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int GUID_VALUE = 1;
+	public static final int GUID_ID_VALUE = 1;
 
 	/**
 	 * An array of all the '<em><b>Compare Identifier</b></em>' enumerators.
@@ -80,8 +78,8 @@ public enum CompareIdentifier implements Enumerator {
 	 */
 	private static final CompareIdentifier[] VALUES_ARRAY =
 		new CompareIdentifier[] {
-			NAME,
-			GUID,
+			NAME_ID,
+			GUID_ID,
 		};
 
 	/**
@@ -132,8 +130,8 @@ public enum CompareIdentifier implements Enumerator {
 	 */
 	public static CompareIdentifier get(int value) {
 		switch (value) {
-			case NAME_VALUE: return NAME;
-			case GUID_VALUE: return GUID;
+			case NAME_ID_VALUE: return NAME_ID;
+			case GUID_ID_VALUE: return GUID_ID;
 		}
 		return null;
 	}

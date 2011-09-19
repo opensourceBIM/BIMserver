@@ -264,4 +264,9 @@ public class Schema {
 	public EDataType getEEnum(String packageName, String enumName) {
 		return (EEnum) packages.get(packageName).getEClassifier(enumName);
 	}
+
+	public EDataType createEDataType(EPackage ePackage, EDataType dataType) {
+		ePackage.getEClassifiers().add(dataType);
+		return dataType;
+	}
 }

@@ -257,10 +257,11 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="rid" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="project" eType="#/0/Project"/>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EDataType" name="DataHandler" instanceClassName="javax.activation.DataHandler"/>
     <eClassifiers xsi:type="ecore:EClass" name="DownloadResult">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="projectName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="revisionNr" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="file" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EByteArray"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="file" eType="#/0/DataHandler"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="CheckoutResult" eSuperTypes="#/0/DownloadResult"/>
     <eClassifiers xsi:type="ecore:EClass" name="DataValue">
@@ -355,8 +356,8 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="className" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EEnum" name="CompareIdentifier">
-      <eLiterals name="NAME"/>
-      <eLiterals name="GUID" value="1"/>
+      <eLiterals name="NAME_ID"/>
+      <eLiterals name="GUID_ID" value="1"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EEnum" name="CompareType">
       <eLiterals name="ALL"/>
@@ -385,7 +386,9 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="CompareResult">
       <eStructuralFeatures xsi:type="ecore:EReference" name="items" upperBound="-1"
-          eType="#/0/CompareContainer"/>
+          eType="#/0/CompareContainer">
+        <eAnnotations source="embedsreference"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EEnum" name="ActionState">
       <eLiterals name="UNKNOWN"/>

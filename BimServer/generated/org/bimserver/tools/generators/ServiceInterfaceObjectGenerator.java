@@ -263,7 +263,7 @@ public class ServiceInterfaceObjectGenerator
     stringBuffer.append(TEXT_33);
     
 					} else {
-						if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEByteArray()) {
+						if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEByteArray() && eAttribute.getEAnnotation("file") != null) {
 
     stringBuffer.append(TEXT_34);
     stringBuffer.append(eAttribute.getName());
@@ -366,7 +366,7 @@ public class ServiceInterfaceObjectGenerator
     stringBuffer.append(TEXT_67);
     
 					} else {
-						if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEByteArray()) {
+						if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEByteArray() && eAttribute.getEAnnotation("file") != null) {
 
     stringBuffer.append(TEXT_68);
     stringBuffer.append(GenerateUtils.makeGetter(eAttribute));

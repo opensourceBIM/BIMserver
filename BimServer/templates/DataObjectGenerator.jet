@@ -99,7 +99,7 @@ public class S<%=eClass.getName()%>
 	private List<<%=eAttribute.getEType().getInstanceClassName()%>> <%=eAttribute.getName()%> = new ArrayList<<%=eAttribute.getEType().getInstanceClassName()%>>();
 <%
 					} else {
-						if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEByteArray()) {
+						if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEByteArray() && eAttribute.getEAnnotation("file") != null) {
 %>
 	@XmlMimeType("application/octet-stream")
 	private DataHandler <%=eAttribute.getName()%>;
@@ -164,7 +164,7 @@ public class S<%=eClass.getName()%>
 	}
 <%
 					} else {
-						if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEByteArray()) {
+						if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEByteArray() && eAttribute.getEAnnotation("file") != null) {
 %>
 	public DataHandler <%=GenerateUtils.makeGetter(eAttribute)%>() {
 		return <%=eAttribute.getName()%>;

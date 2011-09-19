@@ -1,9 +1,10 @@
 package org.bimserver.interfaces.objects;
 
-import java.util.*;
-import javax.xml.bind.annotation.*;
-import org.bimserver.shared.meta.*;
-import javax.activation.DataHandler;
+import javax.xml.bind.annotation.XmlRootElement;
+
+import org.bimserver.shared.meta.SBase;
+import org.bimserver.shared.meta.SClass;
+import org.bimserver.shared.meta.SField;
 
 @XmlRootElement
 public class SDownloadResult implements SBase
@@ -15,7 +16,7 @@ public class SDownloadResult implements SBase
 		sClass.addField(new SField("oid", long.class));
 		sClass.addField(new SField("projectName", java.lang.String.class));
 		sClass.addField(new SField("revisionNr", int.class));
-		sClass.addField(new SField("file", byte[].class));
+		sClass.addField(new SField("file", javax.activation.DataHandler.class));
 	}
 	
 	public long getOid() {
@@ -31,8 +32,7 @@ public class SDownloadResult implements SBase
 	}
 	private java.lang.String projectName;
 	private int revisionNr;
-	@XmlMimeType("application/octet-stream")
-	private DataHandler file;
+	private javax.activation.DataHandler file;
 	public java.lang.String getProjectName() {
 		return projectName;
 	}
@@ -47,11 +47,11 @@ public class SDownloadResult implements SBase
 	public void setRevisionNr(int revisionNr) {
 		this.revisionNr = revisionNr;
 	}
-	public DataHandler getFile() {
+	public javax.activation.DataHandler getFile() {
 		return file;
 	}
 
-	public void setFile(DataHandler file) {
+	public void setFile(javax.activation.DataHandler file) {
 		this.file = file;
 	}
 	@Override

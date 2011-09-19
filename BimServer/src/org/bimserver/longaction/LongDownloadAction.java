@@ -8,9 +8,10 @@ import org.bimserver.database.actions.DownloadByOidsDatabaseAction;
 import org.bimserver.database.actions.DownloadDatabaseAction;
 import org.bimserver.database.actions.DownloadOfTypeDatabaseAction;
 import org.bimserver.database.actions.DownloadProjectsDatabaseAction;
-import org.bimserver.interfaces.objects.LongActionState;
-import org.bimserver.interfaces.objects.LongActionState.ActionState;
 import org.bimserver.models.log.AccessMethod;
+import org.bimserver.models.store.ActionState;
+import org.bimserver.models.store.LongActionState;
+import org.bimserver.models.store.StoreFactory;
 import org.bimserver.plugins.serializers.IfcModelInterface;
 
 public class LongDownloadAction extends LongDownloadOrCheckoutAction {
@@ -62,7 +63,7 @@ public class LongDownloadAction extends LongDownloadOrCheckoutAction {
 
 	@Override
 	public synchronized LongActionState getState() {
-		LongActionState ds = new LongActionState();
+		LongActionState ds = StoreFactory.eINSTANCE.createLongActionState();
 		if (action == null) {
 			ds.setState(state);
 			ds.setProgress(100);

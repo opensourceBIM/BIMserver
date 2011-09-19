@@ -1,7 +1,7 @@
 package org.bimserver.cache;
 
-import org.bimserver.ifc.compare.CompareResult;
 import org.bimserver.models.store.CompareIdentifier;
+import org.bimserver.models.store.CompareResult;
 import org.bimserver.models.store.CompareType;
 
 public class CompareCache extends GenericCache<CompareCache.CompareKey, CompareCache.CompareValue> {

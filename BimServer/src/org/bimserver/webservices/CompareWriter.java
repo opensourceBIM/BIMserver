@@ -1,11 +1,14 @@
 package org.bimserver.webservices;
 
 import java.util.List;
-import java.util.Map;
 
+import org.bimserver.interfaces.objects.SCompareContainer;
+import org.bimserver.interfaces.objects.SCompareItem;
 import org.bimserver.interfaces.objects.SCompareResult;
 import org.bimserver.interfaces.objects.SCompareType;
+import org.bimserver.interfaces.objects.SObjectAdded;
 import org.bimserver.interfaces.objects.SObjectModified;
+import org.bimserver.interfaces.objects.SObjectRemoved;
 import org.bimserver.interfaces.objects.SProject;
 
 public class CompareWriter {
@@ -13,7 +16,7 @@ public class CompareWriter {
 		StringBuilder builder = new StringBuilder();
 		builder.append("<h1>Building Model Comparator</h1>");
 		builder.append("Compare results for revisions '" + rid1 + "' and '" + rid2 + "' of project '" + project.getName() + "'<br/>");
-		builder.append("Total number of differences: " + compareResult.size() + "<br/>");
+		builder.append("Total number of differences: " + compareResult.getItems().size() + "<br/>");
 		if (compareResult.getItems().size() == 0) {
 			return builder.toString();
 		}
@@ -34,9 +37,9 @@ public class CompareWriter {
 			builder.append("<select id=\"typeselector\" name=\"type\">");
 			for (SCompareType cr : SCompareType.values()) {
 				if (cr == sCompareType) {
-					builder.append("<option selected=\"selected\" value=\"" + cr.name() + "\">" + cr.getNiceName() + "</option>");
+					builder.append("<option selected=\"selected\" value=\"" + cr.name() + "\">" + cr.name() + "</option>");
 				} else {
-					builder.append("<option value=\"" + cr.name() + "\">" + cr.getNiceName() + "</option>");
+					builder.append("<option value=\"" + cr.name() + "\">" + cr.name() + "</option>");
 				}
 			}
 			builder.append("</select>");
@@ -44,31 +47,31 @@ public class CompareWriter {
 			builder.append("</tr>");
 		}
 
-		Map<String, List<SCompareResult.SItem>> items = compareResult.getItems();
-		for (String eClass : items.keySet()) {
-			for (SCompareResult.SItem item : items.get(eClass)) {
+		List<SCompareContainer> items = compareResult.getItems();
+		for (SCompareContainer container : items) {
+			for (SCompareItem item : container.getItems()) {
 				String name = "";
 				String guid = "";
-				if (item.dataObject.getGuid() != null) {
-					guid = item.dataObject.getGuid();
+				if (item.getDataObject().getGuid() != null) {
+					guid = item.getDataObject().getGuid();
 				}
-				if (item.dataObject.getName() != null) {
-					name = item.dataObject.getName();
+				if (item.getDataObject().getName() != null) {
+					name = item.getDataObject().getName();
 				}
 				builder.append("<tr>");
-				if (item instanceof SCompareResult.SObjectAdded) {
-					builder.append("<td>" + eClass + "</td>");
+				if (item instanceof SObjectAdded) {
+					builder.append("<td>" + container.getType() + "</td>");
 					builder.append("<td>" + guid + "</td>");
 					builder.append("<td>" + name + "</td>");
 					builder.append("<td>Added</td>");
-				} else if (item instanceof SCompareResult.SObjectRemoved) {
-					builder.append("<td>" + eClass + "</td>");
+				} else if (item instanceof SObjectRemoved) {
+					builder.append("<td>" + container.getType() + "</td>");
 					builder.append("<td>" + guid + "</td>");
 					builder.append("<td>" + name + "</td>");
 					builder.append("<td>Deleted</td>");
-				} else if (item instanceof SCompareResult.SObjectModified) {
+				} else if (item instanceof SObjectModified) {
 					SObjectModified objectModified = (SObjectModified) item;
-					builder.append("<td>" + eClass + "</td>");
+					builder.append("<td>" + container.getType() + "</td>");
 					builder.append("<td>" + guid + "</td>");
 					builder.append("<td>" + name + "</td>");
 					builder.append("<td>Modified " + objectModified.getFieldName() + " (" + objectModified.getOldValue() + " -> " + objectModified.getNewValue() + ")" + "</td>");

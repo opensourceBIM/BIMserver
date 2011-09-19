@@ -1,9 +1,13 @@
 package org.bimserver.interfaces.objects;
 
-import java.util.*;
-import javax.xml.bind.annotation.*;
-import org.bimserver.shared.meta.*;
-import javax.activation.DataHandler;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.xml.bind.annotation.XmlRootElement;
+
+import org.bimserver.shared.meta.SBase;
+import org.bimserver.shared.meta.SClass;
+import org.bimserver.shared.meta.SField;
 
 @XmlRootElement
 public class SConcreteRevision implements SBase
@@ -37,8 +41,7 @@ public class SConcreteRevision implements SBase
 	private int id;
 	private long projectId;
 	private SCheckinState state;
-	@XmlMimeType("application/octet-stream")
-	private DataHandler checksum;
+	private byte[] checksum;
 	private List<Long> revisions = new ArrayList<Long>();
 	private long size;
 	private java.util.Date date;
@@ -65,11 +68,11 @@ public class SConcreteRevision implements SBase
 	public void setState(SCheckinState state) {
 		this.state = state;
 	}
-	public DataHandler getChecksum() {
+	public byte[] getChecksum() {
 		return checksum;
 	}
 
-	public void setChecksum(DataHandler checksum) {
+	public void setChecksum(byte[] checksum) {
 		this.checksum = checksum;
 	}
 	public List<Long> getRevisions() {
