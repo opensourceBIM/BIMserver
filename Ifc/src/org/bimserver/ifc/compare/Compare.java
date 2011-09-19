@@ -235,7 +235,7 @@ public class Compare {
 								ObjectModified objectModified = StoreFactory.eINSTANCE.createObjectModified();
 								objectModified.setDataObject(makeDataObject(eObject1));
 								objectModified.setFieldName(eStructuralFeature.getName());
-								objectModified.setOldValue(value1.toString());
+								objectModified.setOldValue(null);
 								objectModified.setNewValue(value2.toString());
 								getCompareContainer(eObject1.eClass()).getItems().add(objectModified);
 							} else if (value1 != null && value2 == null) {
@@ -243,7 +243,7 @@ public class Compare {
 								objectModified.setDataObject(makeDataObject(eObject1));
 								objectModified.setFieldName(eStructuralFeature.getName());
 								objectModified.setOldValue(value1.toString());
-								objectModified.setNewValue(value2.toString());
+								objectModified.setNewValue(null);
 								getCompareContainer(eObject1.eClass()).getItems().add(objectModified);
 							} else if (!value1.equals(value2)) {
 								ObjectModified objectModified = StoreFactory.eINSTANCE.createObjectModified();
