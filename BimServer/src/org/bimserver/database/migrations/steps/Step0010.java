@@ -157,6 +157,9 @@ public class Step0010 extends Migration {
 		EClass longActionStateClass = schema.createEClass(schema.getEPackage("store"), "LongActionState");
 		schema.createEAttribute(longActionStateClass, "progress", ecorePackage.getEInt(), Multiplicity.SINGLE);
 		schema.createEAttribute(longActionStateClass, "state", actionStateEnum, Multiplicity.SINGLE);
+		
+		EEnum accessMethodEnum = schema.getEEnum("log", "AccessMethod");
+		schema.createEEnumLiteral(accessMethodEnum, "PROTOCOL_BUFFERS");
 	}
 
 	private EAnnotation createEmbedsReference() {

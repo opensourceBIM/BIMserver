@@ -40,40 +40,22 @@ public class ProtocolBuffersGenerator {
 		methodsToIgnore.add("getSClass");
 	}
 	
-	public static void main(String[] args) {
-		new ProtocolBuffersGenerator().start();
+	public void generate(Class<?> serviceInterfaceClass, File protoFile, File descFile, File reflectorImplementationFile, boolean createBaseMessages, String... imports) {
+		generateProtoFile(serviceInterfaceClass, protoFile, createBaseMessages, imports);
+		generateProtocolBuffersObjects(protoFile, descFile, true);
+		generateServiceInterfaceImplementationForReflector(serviceInterfaceClass, reflectorImplementationFile);
 	}
 
-	public void start() {
-		File serviceProtoFile = new File("../Builds/build/pb/service.proto");
-		File listenerProtoFile = new File("../Builds/build/pb/listener.proto");
-		generateProtoFile(serviceProtoFile);
-		File protoDestFile = new File("../Builds/build/pb/service.desc");
-		
-		generateProtocolBuffersImplementation(serviceProtoFile, protoDestFile, true);
-		
+	private void generateServiceInterfaceImplementationForReflector(Class<?> serviceInterfaceClass, File reflectorImplementationFile) {
 		try {
-			FileUtils.copyFile(protoDestFile, new File("../BimServerClientLib/src/" + protoDestFile.getName()));
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
-		
-		generateProtocolBuffersImplementation(listenerProtoFile, new File("../Builds/build/pb/listener.desc"), true);
-		generateServiceInterfaceImplementation();
-		generateServiceInterfaceImplementation2();
-	}
-
-	private void generateServiceInterfaceImplementation2() {
-		File file = new File("../BimServerClientLib/generated/org/bimserver/pb/ProtocolBuffersServiceInterfaceImplementation.java");
-		try {
-			PrintWriter out = new PrintWriter(file);
+			PrintWriter out = new PrintWriter(reflectorImplementationFile);
 			out.println("package org.bimserver.pb;\n");
-			out.println("import org.bimserver.client.Reflector;\n");
+			out.println("import org.bimserver.shared.pb.Reflector;\n");
 			out.println("@SuppressWarnings(\"unchecked\")");
-			out.println("public class ProtocolBuffersServiceInterfaceImplementation implements org.bimserver.shared.ServiceInterface {\n");
+			out.println("public class " + serviceInterfaceClass.getSimpleName() + "ReflectorImpl implements " + serviceInterfaceClass.getName() + " {\n");
 			out.println("private Reflector reflector;\n");
-			out.println("\tpublic ProtocolBuffersServiceInterfaceImplementation(Reflector reflector) {this.reflector = reflector;}");
-			for (Method method : ServiceInterface.class.getMethods()) {
+			out.println("\tpublic " + serviceInterfaceClass.getSimpleName() + "ReflectorImpl (Reflector reflector) {this.reflector = reflector;}");
+			for (Method method : serviceInterfaceClass.getMethods()) {
 				String returnType = method.getGenericReturnType().toString();
 				if (returnType.startsWith("class ")) {
 					returnType = returnType.substring(6);
@@ -106,7 +88,7 @@ public class ProtocolBuffersGenerator {
 		}
 	}
 
-	private void generateProtocolBuffersImplementation(File protoFile, File protoDestFile, boolean javaOut) {
+	private void generateProtocolBuffersObjects(File protoFile, File protoDestFile, boolean javaOut) {
 		File destDir = new File("../GeneratedProtocolBuffersClient/generated");
 		File protoDir = new File("../Builds/build/pb");
 		File execFile = new File("../Builds/build/pb/protoc.exe");
@@ -154,18 +136,15 @@ public class ProtocolBuffersGenerator {
 					}
 				}
 			}).start();
+			exec.waitFor();
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
-		try {
-			FileUtils.copyFile(protoDestFile, new File("../Builds/build/targets/shared/" + protoDestFile.getName()));
-		} catch (IOException e1) {
-			e1.printStackTrace();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}
 	}
 
-	private void generateServiceInterfaceImplementation() {
-		File file = new File("../BimServerClientLib/generated/org/bimserver/pb/ProtocolBuffersServiceInterfaceImplementation.java");
+	public void generateServiceInterfaceImplementation(String name, File file) {
 		try {
 			PrintWriter out = new PrintWriter(file);
 			out.println("package org.bimserver.pb;\n");
@@ -182,7 +161,7 @@ public class ProtocolBuffersGenerator {
 			out.println("import javax.activation.DataHandler;");
 			out.println();
 			out.println("@SuppressWarnings(\"unused\")");
-			out.println("public class ProtocolBuffersServiceInterfaceImplementation implements org.bimserver.shared.ServiceInterface {\n");
+			out.println("public class " + name + " implements org.bimserver.shared.ServiceInterface {\n");
 			out.println("\tprivate BlockingInterface service;\n");
 			out.println("\tprivate SocketRpcController rpcController;\n");
 			out.println("\tpublic ProtocolBuffersServiceInterfaceImplementation(String address, int port) {");
@@ -421,8 +400,7 @@ public class ProtocolBuffersGenerator {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
-	private void generateProtoFile(File protoFile) {
+	private void generateProtoFile(Class<?> serviceInterfaceClass, File protoFile, boolean createBaseMessages, String... imports) {
 		PrintWriter out = null;
 		try {
 			out = new PrintWriter(protoFile);
@@ -431,31 +409,33 @@ public class ProtocolBuffersGenerator {
 		}
 		try {
 			out.println("package org.bimserver.pb;\n");
+			for (String importFile : imports) {
+				out.println("import \"" + importFile + ".proto\";");
+			}
 			out.println("option java_generic_services = true;\n");
-			out.println("option java_outer_classname = \"ProtocolBuffersService\";\n");
+			out.println("option java_outer_classname = \"" + serviceInterfaceClass.getSimpleName() + "Impl\";\n");
 			out.println("option optimize_for = CODE_SIZE;\n");
 			StringBuilder serviceBuilder = new StringBuilder();
 			StringBuilder messageBuilder = new StringBuilder();
-			serviceBuilder.append("service ServiceInterface {\n");
-			createVoidResponseMessage(messageBuilder);
-			Class<ServiceInterface> serviceInterfaceClass = (Class<ServiceInterface>) Class.forName("org.bimserver.shared.ServiceInterface");
+			serviceBuilder.append("service " + serviceInterfaceClass.getSimpleName() + " {\n");
+			if (createBaseMessages) {
+				createVoidResponseMessage(messageBuilder);
+				generateVoidMessage(messageBuilder);
+			}
 			for (Method method : serviceInterfaceClass.getMethods()) {
 				String inputObjectName = StringUtils.firstUpperCase(method.getName()) + "Request";
 				String outputObjectName = StringUtils.firstUpperCase(method.getName()) + "Response";
 				createRequestMessage(messageBuilder, method, inputObjectName);
-				if (method.getReturnType() == void.class) {
+				if (method.getReturnType() == void.class || method.getReturnType() == Void.class) {
 					outputObjectName = "VoidResponse";
 				} else {
 					createResponseMessage(messageBuilder, method, outputObjectName);
 				}
 				serviceBuilder.append("\trpc " + method.getName() + " (" + inputObjectName + ") returns (" + outputObjectName + ");\n\n");
 			}
-			generateVoidMessage(messageBuilder);
 			serviceBuilder.append("}\n\n");
 			out.print(serviceBuilder.toString());
 			out.print(messageBuilder.toString());
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
 		} finally {
 			if (out != null) {
 				out.close();

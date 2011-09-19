@@ -1,9 +1,9 @@
 package org.bimserver;
 
-import org.bimserver.pb.server.ReflectiveRpcChannel;
+import org.bimserver.shared.pb.ProtocolBuffersMetaData;
+import org.bimserver.shared.pb.ReflectiveRpcChannel;
 
 import com.google.protobuf.BlockingService;
-import com.google.protobuf.Descriptors.FileDescriptor;
 import com.google.protobuf.Descriptors.MethodDescriptor;
 import com.google.protobuf.Descriptors.ServiceDescriptor;
 import com.google.protobuf.DynamicMessage;
@@ -12,17 +12,17 @@ import com.google.protobuf.RpcController;
 import com.google.protobuf.ServiceException;
 
 public class ProtocolBuffersBlockingService implements BlockingService {
-	private final FileDescriptor fileDescriptor;
 	private final ReflectiveRpcChannel reflectiveRpcChannel;
+	private final ProtocolBuffersMetaData protocolBuffersMetaData;
 
-	public ProtocolBuffersBlockingService(FileDescriptor fileDescriptor, ReflectiveRpcChannel reflectiveRpcChannel) {
-		this.fileDescriptor = fileDescriptor;
+	public ProtocolBuffersBlockingService(ProtocolBuffersMetaData protocolBuffersMetaData, ReflectiveRpcChannel reflectiveRpcChannel) {
+		this.protocolBuffersMetaData = protocolBuffersMetaData;
 		this.reflectiveRpcChannel = reflectiveRpcChannel;
 	}
 
 	@Override
 	public ServiceDescriptor getDescriptorForType() {
-		return fileDescriptor.getServices().get(0);
+		return protocolBuffersMetaData.getServices().iterator().next().getServiceDescriptor();
 	}
 
 	@Override

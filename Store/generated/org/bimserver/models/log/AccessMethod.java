@@ -70,7 +70,15 @@ public enum AccessMethod implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	SYNDICATION(4, "SYNDICATION", "SYNDICATION");
+	SYNDICATION(4, "SYNDICATION", "SYNDICATION"), /**
+	 * The '<em><b>PROTOCOL BUFFERS</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #PROTOCOL_BUFFERS_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	PROTOCOL_BUFFERS(5, "PROTOCOL_BUFFERS", "PROTOCOL_BUFFERS");
 
 	/**
 	 * The '<em><b>SOAP</b></em>' literal value.
@@ -148,6 +156,21 @@ public enum AccessMethod implements Enumerator {
 	public static final int SYNDICATION_VALUE = 4;
 
 	/**
+	 * The '<em><b>PROTOCOL BUFFERS</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>PROTOCOL BUFFERS</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #PROTOCOL_BUFFERS
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int PROTOCOL_BUFFERS_VALUE = 5;
+
+	/**
 	 * An array of all the '<em><b>Access Method</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -160,6 +183,7 @@ public enum AccessMethod implements Enumerator {
 			INTERNAL,
 			REST,
 			SYNDICATION,
+			PROTOCOL_BUFFERS,
 		};
 
 	/**
@@ -215,6 +239,7 @@ public enum AccessMethod implements Enumerator {
 			case INTERNAL_VALUE: return INTERNAL;
 			case REST_VALUE: return REST;
 			case SYNDICATION_VALUE: return SYNDICATION;
+			case PROTOCOL_BUFFERS_VALUE: return PROTOCOL_BUFFERS;
 		}
 		return null;
 	}

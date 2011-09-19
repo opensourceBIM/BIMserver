@@ -7,7 +7,10 @@ import java.io.InputStreamReader;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.apache.commons.io.FileUtils;
 import org.bimserver.querycompiler.VirtualFile;
+import org.bimserver.shared.NotificationInterface;
+import org.bimserver.shared.ServiceInterface;
 import org.bimserver.tools.generators.DataObjectGenerator;
 import org.bimserver.tools.generators.ProtocolBuffersGenerator;
 import org.bimserver.tools.generators.SConverterGeneratorWrapper;
@@ -79,9 +82,40 @@ public class CodeMigrator {
 		
 		LOGGER.info("Generating protocol buffers file and classes...");
 		ProtocolBuffersGenerator protocolBuffersGenerator = new ProtocolBuffersGenerator();
-		protocolBuffersGenerator.start();
+
+		generateProtocolBuffersServiceInterface(protocolBuffersGenerator);
+		generateNotificationInterfaceImplementation(protocolBuffersGenerator);
+		
+//		protocolBuffersGenerator.generateServiceInterfaceImplementation("ProtocolBuffersServiceInterfaceImplementation", new File("../BimServerClientLib/generated/org/bimserver/pb/ProtocolBuffersServiceInterfaceImplementation.java"));
+
 		LOGGER.info("Protocol buffers file and classes generated");
 		LOGGER.info("");
 		LOGGER.info("Migration successfull");
+	}
+
+	private void generateNotificationInterfaceImplementation(ProtocolBuffersGenerator protocolBuffersGenerator) {
+		File protoFile = new File("../Builds/build/pb/notification.proto");
+		File descFile = new File("../Builds/build/pb/notification.desc");
+		File reflectorImplementationFile = new File("../BimServer/generated/org/bimserver/pb/NotificationInterfaceReflectorImpl.java");
+		protocolBuffersGenerator.generate(NotificationInterface.class, protoFile, descFile, reflectorImplementationFile, false, "service");
+		try {
+			FileUtils.copyFile(protoFile, new File("../Builds/build/targets/shared/notification.proto"));
+			FileUtils.copyFile(descFile, new File("../Builds/build/targets/shared/notification.desc"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void generateProtocolBuffersServiceInterface(ProtocolBuffersGenerator protocolBuffersGenerator) {
+		File protoFile = new File("../Builds/build/pb/service.proto");
+		File descFile = new File("../Builds/build/pb/service.desc");
+		File reflectorImplementationFile = new File("../BimServerClientLib/generated/org/bimserver/pb/ServiceInterfaceReflectorImpl.java");
+		protocolBuffersGenerator.generate(ServiceInterface.class, protoFile, descFile, reflectorImplementationFile, true);
+		try {
+			FileUtils.copyFile(protoFile, new File("../Builds/build/targets/shared/service.proto"));
+			FileUtils.copyFile(descFile, new File("../Builds/build/targets/shared/service.desc"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }

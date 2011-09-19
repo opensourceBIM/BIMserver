@@ -75,12 +75,18 @@ public class AddProjectDatabaseAction extends BimDatabaseAction<Project> {
 			project.setClashDetectionSettings(parent.getClashDetectionSettings());
 			project.setGeoTag(parent.getGeoTag());
 		}
-		NewProjectAdded newProjectAdded = LogFactory.eINSTANCE.createNewProjectAdded();
+		final NewProjectAdded newProjectAdded = LogFactory.eINSTANCE.createNewProjectAdded();
 		newProjectAdded.setDate(new Date());
 		newProjectAdded.setExecutor(actingUser);
 		newProjectAdded.setParentProject(parentProject);
 		newProjectAdded.setProject(project);
 		newProjectAdded.setAccessMethod(getAccessMethod());
+		getDatabaseSession().addPostCommitAction(new PostCommitAction() {
+			@Override
+			public void execute() throws UserException {
+				bimServer.getNotificationsManager().notify(newProjectAdded);
+			}
+		});
 		project.setId(getDatabaseSession().newPid());
 		project.setName(trimmedName);
 //		project.getHasAuthorizedUsers().add(getAdminUser());

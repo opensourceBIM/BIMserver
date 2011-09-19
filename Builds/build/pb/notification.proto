@@ -1,0 +1,18 @@
+package org.bimserver.pb;
+
+import "service.proto";
+option java_generic_services = true;
+
+option java_outer_classname = "NotificationInterfaceImpl";
+
+option optimize_for = CODE_SIZE;
+
+service NotificationInterface {
+	rpc newLogAction (NewLogActionRequest) returns (VoidResponse);
+
+}
+
+message NewLogActionRequest {
+	optional SLogAction unknown = 1;
+}
+

@@ -1000,6 +1000,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 		addEEnumLiteral(accessMethodEEnum, AccessMethod.INTERNAL);
 		addEEnumLiteral(accessMethodEEnum, AccessMethod.REST);
 		addEEnumLiteral(accessMethodEEnum, AccessMethod.SYNDICATION);
+		addEEnumLiteral(accessMethodEEnum, AccessMethod.PROTOCOL_BUFFERS);
 
 		// Create resource
 		createResource(eNS_URI);
