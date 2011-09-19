@@ -2,7 +2,6 @@ package org.bimserver.tools.generators;
 
 import org.eclipse.emf.ecore.*;
 import java.util.Set;
-import org.bimserver.tools.generators.GenerateUtils;
 import org.bimserver.utils.StringUtils;
 
 public class SConverterGenerator

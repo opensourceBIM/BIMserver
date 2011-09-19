@@ -69,27 +69,35 @@ public class ProtocolBuffersGenerator {
 			PrintWriter out = new PrintWriter(file);
 			out.println("package org.bimserver.pb;\n");
 			out.println("import org.bimserver.client.Reflector;\n");
-			out.println("@SuppressWarnings(\"unused\")");
+			out.println("@SuppressWarnings(\"unchecked\")");
 			out.println("public class ProtocolBuffersServiceInterfaceImplementation implements org.bimserver.shared.ServiceInterface {\n");
 			out.println("private Reflector reflector;\n");
-			out.println("public ProtocolBuffersServiceInterfaceImplementation(Reflector reflector) {this.reflector = reflector;}");
+			out.println("\tpublic ProtocolBuffersServiceInterfaceImplementation(Reflector reflector) {this.reflector = reflector;}");
 			for (Method method : ServiceInterface.class.getMethods()) {
-				out.println("public " + method.getReturnType().getName() + " " + method.getName() + "(");
+				String returnType = method.getGenericReturnType().toString();
+				if (returnType.startsWith("class ")) {
+					returnType = returnType.substring(6);
+				}
+				out.print("\tpublic " + returnType + " " + method.getName() + "(");
 				int i=0;
 				StringBuilder sb1 = new StringBuilder();
 				StringBuilder sb2 = new StringBuilder();
-				for (Class<?> type : method.getParameterTypes()) {
-					sb1.append(type.getName().replace("$", ".") + " arg" + i + (i < method.getParameterTypes().length-1 ? ", " : ""));
+				for (Type type : method.getGenericParameterTypes()) {
+					String typeName = type.toString();
+					if (typeName.startsWith("class ")) {
+						typeName = typeName.substring(6);
+					}
+					sb1.append(typeName + " arg" + i + (i < method.getParameterTypes().length-1 ? ", " : ""));
 					sb2.append("arg" + i +  (i < method.getParameterTypes().length-1 ? ", " : ""));
 					i++;
 				}
 				out.println(sb1.toString() + ") throws org.bimserver.shared.exceptions.ServerException {");
 				if (method.getReturnType() == void.class) {
-					out.println("reflector.callMethod(\"" + method.getName() + "\"" + (method.getParameterTypes().length > 0 ? ", " : "") + sb2.toString() + ");");
+					out.println("\t\treflector.callMethod(\"" + method.getName() + "\"" + (method.getParameterTypes().length > 0 ? ", " : "") + sb2.toString() + ");");
 				} else {
-					out.println("return (" + method.getReturnType().getName() + ") reflector.callMethod(\"" + method.getName() + "\"" + (method.getParameterTypes().length > 0 ? (", " + sb2.toString()) : "") + ");");
+					out.println("\t\treturn (" + returnType + ") reflector.callMethod(\"" + method.getName() + "\"" + (method.getParameterTypes().length > 0 ? (", " + sb2.toString()) : "") + ");");
 				}
-				out.println("}");
+				out.println("\t}");
 			}
 			out.println("}");
 			out.close();
