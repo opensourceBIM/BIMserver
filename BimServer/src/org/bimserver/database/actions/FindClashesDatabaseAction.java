@@ -57,6 +57,7 @@ public class FindClashesDatabaseAction<T extends Clash> extends BimDatabaseActio
 		this.actingUoid = actingUoid;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public Set<T> execute() throws UserException, BimDeadlockException, BimDatabaseException {
 		Map<Long, Revision> oidToRoidMap = new HashMap<Long, Revision>();

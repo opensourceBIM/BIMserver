@@ -7,11 +7,9 @@
 package org.bimserver.models.store.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
-
 import org.bimserver.models.store.CompareContainer;
 import org.bimserver.models.store.CompareResult;
 import org.bimserver.models.store.StorePackage;
-
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 

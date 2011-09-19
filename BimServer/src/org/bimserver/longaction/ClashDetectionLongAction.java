@@ -38,6 +38,7 @@ public class ClashDetectionLongAction extends LongAction {
 		this.poid = poid;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void execute() {
 		BimDatabaseSession session = bimServer.getDatabase().createSession(true);

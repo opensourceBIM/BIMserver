@@ -72,7 +72,6 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EEnumImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.dao.DataAccessException;
 
 import com.google.common.base.Charsets;
 import com.google.common.collect.BiMap;

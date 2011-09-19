@@ -7,6 +7,7 @@
 package org.bimserver.models.store.impl;
 
 import javax.activation.DataHandler;
+
 import org.bimserver.models.ifc2x3.Ifc2x3Package;
 import org.bimserver.models.ifc2x3.impl.Ifc2x3PackageImpl;
 import org.bimserver.models.log.LogPackage;
@@ -20,7 +21,6 @@ import org.bimserver.models.store.Clash;
 import org.bimserver.models.store.ClashDetectionSettings;
 import org.bimserver.models.store.CompareContainer;
 import org.bimserver.models.store.CompareIdentifier;
-import org.bimserver.models.store.CompareIdentifer;
 import org.bimserver.models.store.CompareItem;
 import org.bimserver.models.store.CompareResult;
 import org.bimserver.models.store.CompareType;
@@ -58,7 +58,6 @@ import org.bimserver.models.store.Serializer;
 import org.bimserver.models.store.SerializerPluginDescriptor;
 import org.bimserver.models.store.Settings;
 import org.bimserver.models.store.SimpleDataValue;
-import org.bimserver.models.store.SimpleValue;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;

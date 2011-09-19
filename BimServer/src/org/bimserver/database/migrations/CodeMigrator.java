@@ -7,7 +7,6 @@ import java.io.InputStreamReader;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.bimserver.models.store.StorePackage;
 import org.bimserver.querycompiler.VirtualFile;
 import org.bimserver.tools.generators.DataObjectGenerator;
 import org.bimserver.tools.generators.ProtocolBuffersGenerator;
