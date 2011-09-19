@@ -261,7 +261,7 @@ public class Schema {
 		return indirectSubClasses.get(eClass);
 	}
 
-	public EDataType getEEnum(String packageName, String enumName) {
+	public EEnum getEEnum(String packageName, String enumName) {
 		return (EEnum) packages.get(packageName).getEClassifier(enumName);
 	}
 

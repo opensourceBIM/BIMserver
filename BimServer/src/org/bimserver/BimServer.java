@@ -46,7 +46,6 @@ import org.bimserver.models.store.Serializer;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.notifications.NotificationsManager;
-import org.bimserver.pb.server.ReflectiveRpcChannel;
 import org.bimserver.plugins.Plugin;
 import org.bimserver.plugins.PluginChangeListener;
 import org.bimserver.plugins.PluginContext;
@@ -60,7 +59,10 @@ import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.serializers.EmfSerializerFactory;
 import org.bimserver.shared.ServiceInterface;
 import org.bimserver.shared.exceptions.ServerException;
+import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.shared.pb.ProtocolBuffersMetaData;
+import org.bimserver.shared.pb.ReflectiveRpcChannel;
 import org.bimserver.templating.TemplateEngine;
 import org.bimserver.utils.CollectionUtils;
 import org.bimserver.version.VersionChecker;
@@ -267,7 +269,7 @@ public class BimServer {
 			if (!((Service) getSystemService()).loginAsSystem()) {
 				throw new RuntimeException("System user not found");
 			}
-		} catch (UserException e) {
+		} catch (ServiceException e) {
 			e.printStackTrace();
 		}
 
@@ -279,12 +281,9 @@ public class BimServer {
 		protocolBuffersRpcServer = new RpcServer(SocketRpcConnectionFactories.createServerRpcConnectionFactory(8020), Executors.newFixedThreadPool(10), false);
 
 		try {
-			FileDescriptorSet descriptorSet = FileDescriptorSet.parseFrom(new FileInputStream(resourceFetcher.getFile("service.desc")));
-			List<FileDescriptorProto> fileList = descriptorSet.getFileList();
-			FileDescriptorProto fileDescriptorProto = fileList.get(0);
-			final FileDescriptor fileDescriptor = FileDescriptor.buildFrom(fileDescriptorProto, new FileDescriptor[]{});
-			final ReflectiveRpcChannel reflectiveRpcChannel = new ReflectiveRpcChannel(serviceFactory);
-			BlockingService blockingService = new ProtocolBuffersBlockingService(fileDescriptor, reflectiveRpcChannel);
+			ProtocolBuffersMetaData protocolBuffersMetaData = new ProtocolBuffersMetaData(resourceFetcher.getFile("service.desc"));
+			final ReflectiveRpcChannel reflectiveRpcChannel = new ReflectiveRpcChannel(serviceFactory, protocolBuffersMetaData);
+			BlockingService blockingService = new ProtocolBuffersBlockingService(protocolBuffersMetaData, reflectiveRpcChannel);
 			protocolBuffersRpcServer.registerBlockingService(blockingService);
 			protocolBuffersRpcServer.startServer();
 		} catch (Exception e1) {

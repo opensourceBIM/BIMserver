@@ -16,36 +16,38 @@ import org.bimserver.ServerInfo.ServerState;
 import org.bimserver.database.BimDatabaseException;
 import org.bimserver.database.DatabaseRestartRequiredException;
 import org.bimserver.database.berkeley.DatabaseInitException;
-import org.bimserver.pb.ProtocolBuffersService.AddProjectRequest;
-import org.bimserver.pb.ProtocolBuffersService.AddProjectResponse;
-import org.bimserver.pb.ProtocolBuffersService.AddUserRequest;
-import org.bimserver.pb.ProtocolBuffersService.AddUserResponse;
-import org.bimserver.pb.ProtocolBuffersService.ChangePasswordRequest;
-import org.bimserver.pb.ProtocolBuffersService.ChangePasswordResponse;
-import org.bimserver.pb.ProtocolBuffersService.CheckinSyncRequest;
-import org.bimserver.pb.ProtocolBuffersService.CheckinSyncResponse;
-import org.bimserver.pb.ProtocolBuffersService.CheckoutRequest;
-import org.bimserver.pb.ProtocolBuffersService.DownloadRequest;
-import org.bimserver.pb.ProtocolBuffersService.DownloadResponse;
-import org.bimserver.pb.ProtocolBuffersService.GetAllProjectsRequest;
-import org.bimserver.pb.ProtocolBuffersService.GetAllProjectsResponse;
-import org.bimserver.pb.ProtocolBuffersService.GetAllRevisionsOfProjectRequest;
-import org.bimserver.pb.ProtocolBuffersService.GetAllRevisionsOfProjectResponse;
-import org.bimserver.pb.ProtocolBuffersService.GetDownloadDataRequest;
-import org.bimserver.pb.ProtocolBuffersService.GetDownloadDataResponse;
-import org.bimserver.pb.ProtocolBuffersService.GetProjectsByNameRequest;
-import org.bimserver.pb.ProtocolBuffersService.GetProjectsByNameResponse;
-import org.bimserver.pb.ProtocolBuffersService.GetRevisionSummaryRequest;
-import org.bimserver.pb.ProtocolBuffersService.GetRevisionSummaryResponse;
-import org.bimserver.pb.ProtocolBuffersService.LoginRequest;
-import org.bimserver.pb.ProtocolBuffersService.LoginResponse;
-import org.bimserver.pb.ProtocolBuffersService.SDownloadResult;
-import org.bimserver.pb.ProtocolBuffersService.SRevision;
-import org.bimserver.pb.ProtocolBuffersService.SRevisionSummary;
-import org.bimserver.pb.ProtocolBuffersService.SRevisionSummaryContainer;
-import org.bimserver.pb.ProtocolBuffersService.SRevisionSummaryType;
-import org.bimserver.pb.ProtocolBuffersService.ServiceInterface;
-import org.bimserver.pb.ProtocolBuffersService.ServiceInterface.BlockingInterface;
+import org.bimserver.pb.ServiceInterfaceImpl;
+import org.bimserver.pb.ServiceInterfaceImpl.AddProjectRequest;
+import org.bimserver.pb.ServiceInterfaceImpl.AddProjectResponse;
+import org.bimserver.pb.ServiceInterfaceImpl.AddUserRequest;
+import org.bimserver.pb.ServiceInterfaceImpl.AddUserResponse;
+import org.bimserver.pb.ServiceInterfaceImpl.ChangePasswordRequest;
+import org.bimserver.pb.ServiceInterfaceImpl.ChangePasswordResponse;
+import org.bimserver.pb.ServiceInterfaceImpl.CheckinSyncRequest;
+import org.bimserver.pb.ServiceInterfaceImpl.CheckinSyncResponse;
+import org.bimserver.pb.ServiceInterfaceImpl.CheckoutRequest;
+import org.bimserver.pb.ServiceInterfaceImpl.DownloadRequest;
+import org.bimserver.pb.ServiceInterfaceImpl.DownloadResponse;
+import org.bimserver.pb.ServiceInterfaceImpl.GetAllProjectsRequest;
+import org.bimserver.pb.ServiceInterfaceImpl.GetAllProjectsResponse;
+import org.bimserver.pb.ServiceInterfaceImpl.GetAllRevisionsOfProjectRequest;
+import org.bimserver.pb.ServiceInterfaceImpl.GetAllRevisionsOfProjectResponse;
+import org.bimserver.pb.ServiceInterfaceImpl.GetDownloadDataRequest;
+import org.bimserver.pb.ServiceInterfaceImpl.GetDownloadDataResponse;
+import org.bimserver.pb.ServiceInterfaceImpl.GetProjectsByNameRequest;
+import org.bimserver.pb.ServiceInterfaceImpl.GetProjectsByNameResponse;
+import org.bimserver.pb.ServiceInterfaceImpl.GetRevisionSummaryRequest;
+import org.bimserver.pb.ServiceInterfaceImpl.GetRevisionSummaryResponse;
+import org.bimserver.pb.ServiceInterfaceImpl.LoginRequest;
+import org.bimserver.pb.ServiceInterfaceImpl.LoginResponse;
+import org.bimserver.pb.ServiceInterfaceImpl.SDownloadResult;
+import org.bimserver.pb.ServiceInterfaceImpl.SProject;
+import org.bimserver.pb.ServiceInterfaceImpl.SRevision;
+import org.bimserver.pb.ServiceInterfaceImpl.SRevisionSummary;
+import org.bimserver.pb.ServiceInterfaceImpl.SRevisionSummaryContainer;
+import org.bimserver.pb.ServiceInterfaceImpl.SRevisionSummaryType;
+import org.bimserver.pb.ServiceInterfaceImpl.SUserType;
+import org.bimserver.pb.ServiceInterfaceImpl.ServiceInterface.BlockingInterface;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
 import org.bimserver.tests.TestFile;
@@ -122,7 +124,7 @@ public class TestBasicProtocolBuffersInterface {
 		try {
 			BlockingRpcChannel rpcChannel = RpcChannels.newBlockingRpcChannel(SocketRpcConnectionFactories.createRpcConnectionFactory("localhost", 8020));
 			SocketRpcController rpcController = new SocketRpcController();
-			BlockingInterface service = ServiceInterface.newBlockingStub(rpcChannel);
+			BlockingInterface service = ServiceInterfaceImpl.ServiceInterface.newBlockingStub(rpcChannel);
 
 			LoginRequest.Builder loginRequestBuilder = LoginRequest.newBuilder();
 			loginRequestBuilder.setUsername("admin@bimserver.org");
@@ -134,7 +136,7 @@ public class TestBasicProtocolBuffersInterface {
 					AddUserRequest.Builder addUserRequestBuilder = AddUserRequest.newBuilder();
 					addUserRequestBuilder.setUsername(username);
 					addUserRequestBuilder.setName("Test");
-					addUserRequestBuilder.setType(org.bimserver.pb.ProtocolBuffersService.SUserType.USER);
+					addUserRequestBuilder.setType(SUserType.USER);
 					addUserRequestBuilder.setSelfRegistration(false);
 					AddUserResponse addUserResponse = service.addUser(rpcController, addUserRequestBuilder.build());
 					if (addUserResponse.getErrorMessage().equals("OKE")) {
@@ -170,7 +172,7 @@ public class TestBasicProtocolBuffersInterface {
 		try {
 			BlockingRpcChannel rpcChannel = RpcChannels.newBlockingRpcChannel(SocketRpcConnectionFactories.createRpcConnectionFactory("localhost", 8020));
 			SocketRpcController rpcController = new SocketRpcController();
-			BlockingInterface service = ServiceInterface.newBlockingStub(rpcChannel);
+			BlockingInterface service = ServiceInterfaceImpl.ServiceInterface.newBlockingStub(rpcChannel);
 
 			LoginRequest.Builder loginRequestBuilder = LoginRequest.newBuilder();
 			loginRequestBuilder.setUsername(username);
@@ -181,7 +183,7 @@ public class TestBasicProtocolBuffersInterface {
 				addProjectRequestBuilder.setProjectName(projectName);
 				AddProjectResponse addProjectResponse = service.addProject(rpcController, addProjectRequestBuilder.build());
 				if (addProjectResponse.getErrorMessage().equals("OKE")) {
-					org.bimserver.pb.ProtocolBuffersService.SProject project = addProjectResponse.getValue();
+					SProject project = addProjectResponse.getValue();
 					File sourceFile = TestFile.AC11.getFile();
 
 					CheckinSyncRequest.Builder checkinSyncRequestBuilder = CheckinSyncRequest.newBuilder();
@@ -212,7 +214,7 @@ public class TestBasicProtocolBuffersInterface {
 	public void testGetProjectByName() {
 		BlockingRpcChannel rpcChannel = RpcChannels.newBlockingRpcChannel(SocketRpcConnectionFactories.createRpcConnectionFactory("localhost", 8020));
 		SocketRpcController rpcController = new SocketRpcController();
-		BlockingInterface service = ServiceInterface.newBlockingStub(rpcChannel);
+		BlockingInterface service = ServiceInterfaceImpl.ServiceInterface.newBlockingStub(rpcChannel);
 
 		GetProjectsByNameRequest.Builder getProjectByNameRequestBuilder = GetProjectsByNameRequest.newBuilder();
 		getProjectByNameRequestBuilder.setName(projectName);
@@ -238,7 +240,7 @@ public class TestBasicProtocolBuffersInterface {
 		try {
 			BlockingRpcChannel rpcChannel = RpcChannels.newBlockingRpcChannel(SocketRpcConnectionFactories.createRpcConnectionFactory("localhost", 8020));
 			SocketRpcController rpcController = new SocketRpcController();
-			BlockingInterface service = ServiceInterface.newBlockingStub(rpcChannel);
+			BlockingInterface service = ServiceInterfaceImpl.ServiceInterface.newBlockingStub(rpcChannel);
 
 			LoginRequest.Builder loginRequestBuilder = LoginRequest.newBuilder();
 			loginRequestBuilder.setUsername(username);
@@ -248,7 +250,7 @@ public class TestBasicProtocolBuffersInterface {
 				GetAllProjectsRequest.Builder getAllProjectsRequestBuilder = GetAllProjectsRequest.newBuilder();
 				GetAllProjectsResponse getAllProjectsResponse = service.getAllProjects(rpcController, getAllProjectsRequestBuilder.build());
 				if (getAllProjectsResponse.getErrorMessage().equals("OKE")) {
-					for (org.bimserver.pb.ProtocolBuffersService.SProject project : getAllProjectsResponse.getValueList()) {
+					for (SProject project : getAllProjectsResponse.getValueList()) {
 						System.out.println(project.getName());
 						if (project.getRevisionsCount() > 0) {
 							GetAllRevisionsOfProjectRequest.Builder getAllRevisionsOfProjectRequestBuilder = GetAllRevisionsOfProjectRequest.newBuilder();
